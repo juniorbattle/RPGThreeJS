@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chroniques d'Élyndra — Combat tactique HD-2D</title>
+    <link rel="stylesheet" href="/src/styles/combat.css" />
+  </head>
+  <body>
+    <div id="combat-parallax" aria-hidden="true"></div>
+    <div id="ui">
+      <div id="turnbar" class="panel hidden"></div>
+      <div id="hint"></div>
+      <div id="panel" class="panel hidden"></div>
+      <div id="menu" class="panel hidden"></div>
+      <div id="skillmenu" class="panel hidden"></div>
+      <div id="action-preview" class="panel hidden" aria-live="polite"></div>
+      <div id="log" class="panel hidden"></div>
+      <div id="help" class="panel hidden">
+        <details>
+          <summary><b>Aide et commandes</b></summary>
+          <div class="help-copy">
+            <b>Souris</b> sélectionner / cibler · <b>Q/E</b> pivoter · <b>molette</b> zoom<br />
+            <b>Clic droit / Échap</b> annuler · <b>Entrée</b> fin de tour<br />
+            <b>M</b> déplacer · <b>A</b> attaquer · <b>U</b> annuler le déplacement
+          </div>
+        </details>
+      </div>
+      <div id="fx"></div>
+      <div id="banner" class="hidden"></div>
+    </div>
+    <div id="loading">
+      <div class="sp"></div>
+      <div class="title pixel" id="title">CHRONIQUES<br />D'ÉLYNDRA</div>
+      <div>Chargement…</div>
+    </div>
+    <script type="module" src="/src/combat/legacyCombat.ts"></script>
+  </body>
+</html>
