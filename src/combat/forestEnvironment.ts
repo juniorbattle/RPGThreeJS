@@ -109,6 +109,7 @@ function createSkyDome(): THREE.Mesh {
     side: THREE.BackSide,
     depthWrite: false,
     fog: false,
+    transparent: true,
     uniforms: {
       topColor: { value: new THREE.Color(0x668aa1) },
       horizonColor: { value: new THREE.Color(0xc6c9a6) },
@@ -131,7 +132,7 @@ function createSkyDome(): THREE.Mesh {
         float h = normalize(vWorldPosition).y;
         vec3 low = mix(bottomColor, horizonColor, smoothstep(-0.18, 0.12, h));
         vec3 color = mix(low, topColor, smoothstep(0.05, 0.72, h));
-        gl_FragColor = vec4(color, 1.0);
+        gl_FragColor = vec4(color, 0.42);
       }
     `,
   });
@@ -149,25 +150,25 @@ function createTerrainShell(): THREE.Group {
   const earth = new THREE.MeshStandardMaterial({ color: 0x594435, roughness: 1 });
   const grass = new THREE.MeshStandardMaterial({ color: 0x5e784b, roughness: 1 });
 
-  const earthDisc = new THREE.Mesh(new THREE.CylinderGeometry(28, 30, 2.4, 48), earth);
+  const earthDisc = new THREE.Mesh(new THREE.CylinderGeometry(12.5, 13.2, 2.4, 48), earth);
   earthDisc.position.y = -2.25;
   earthDisc.receiveShadow = true;
 
-  const grassDisc = new THREE.Mesh(new THREE.CylinderGeometry(27.8, 28, 0.22, 48), grass);
+  const grassDisc = new THREE.Mesh(new THREE.CylinderGeometry(12.3, 12.6, 0.22, 48), grass);
   grassDisc.position.y = -0.98;
   grassDisc.receiveShadow = true;
 
   group.add(earthDisc, grassDisc);
 
   const mountainMaterial = new THREE.MeshStandardMaterial({ color: 0x5f7167, roughness: 1, flatShading: true });
-  for (let index = 0; index < 12; index += 1) {
-    const angle = (index / 12) * Math.PI * 2;
-    const radius = 21 + (index % 3) * 1.7;
+  for (let index = 0; index < 8; index += 1) {
+    const angle = (index / 8) * Math.PI * 2;
+    const radius = 11.2 + (index % 2) * 0.65;
     const mountain = new THREE.Mesh(
-      new THREE.DodecahedronGeometry(3.8 + (index % 4) * 0.55, 0),
+      new THREE.DodecahedronGeometry(2.5 + (index % 3) * 0.35, 0),
       mountainMaterial,
     );
-    mountain.position.set(Math.sin(angle) * radius, 0.45 + (index % 3) * 0.35, Math.cos(angle) * radius);
+    mountain.position.set(Math.sin(angle) * radius, 0.15 + (index % 3) * 0.25, Math.cos(angle) * radius);
     mountain.rotation.y = angle * 0.7;
     mountain.scale.set(1.25, 1.05 + (index % 3) * 0.18, 0.65);
     mountain.receiveShadow = true;
@@ -449,7 +450,7 @@ function cloneTemplate(
 export async function createForestEnvironment(scene: THREE.Scene): Promise<ForestEnvironment> {
   const root = new THREE.Group();
   root.name = 'ForestEnvironment';
-  root.add(createSkyDome(), createTerrainShell());
+  root.add(createTerrainShell());
   scene.add(root);
 
   const swayTargets: Array<{ object: THREE.Object3D; phase: number; amplitude: number }> = [];
@@ -499,21 +500,21 @@ export async function createForestEnvironment(scene: THREE.Scene): Promise<Fores
     const treeTypes = ['Tree_Broad_A', 'Tree_Pine_A', 'Tree_Broad_A', 'Tree_Pine_B'];
     for (let index = 0; index < 24; index += 1) {
       const side = index % 4;
-      const along = -14 + random() * 28;
-      const distance = 6.8 + random() * 5.2;
+      const along = -9 + random() * 18;
+      const distance = 5.4 + random() * 3.4;
       const position: [number, number, number] = side === 0
         ? [along, -0.86, -distance]
         : side === 1
           ? [along, -0.86, distance]
           : side === 2
-            ? [-distance - 8, -0.86, along * 0.55]
-            : [distance + 8, -0.86, along * 0.55];
+            ? [-distance - 1.4, -0.86, along * 0.55]
+            : [distance + 1.4, -0.86, along * 0.55];
       place(treeTypes[index % treeTypes.length] ?? 'Tree_Pine_A', position, 0.72 + random() * 0.55, undefined, 0.012 + random() * 0.012);
     }
 
     for (let index = 0; index < 16; index += 1) {
       const angle = random() * Math.PI * 2;
-      const radius = 9.2 + random() * 6.2;
+      const radius = 6.2 + random() * 3.4;
       place(
         index % 3 === 0 ? 'Bush_Light' : 'Bush_Dark',
         [Math.sin(angle) * radius, -0.82, Math.cos(angle) * radius],
@@ -524,7 +525,7 @@ export async function createForestEnvironment(scene: THREE.Scene): Promise<Fores
     const rockTypes = ['Rock_Small', 'Rock_Medium', 'Rock_Tall'];
     for (let index = 0; index < 12; index += 1) {
       const angle = random() * Math.PI * 2;
-      const radius = 8.5 + random() * 8;
+      const radius = 6.1 + random() * 4.2;
       place(rockTypes[index % rockTypes.length] ?? 'Rock_Small', [Math.sin(angle) * radius, -0.84, Math.cos(angle) * radius], 0.8 + random() * 0.75);
     }
 

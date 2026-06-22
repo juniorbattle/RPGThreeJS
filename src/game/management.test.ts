@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { buyItem, equipAccessory, equipWeapon, excludeUnit, sellItem } from './management';
 import { createInitialState, migrateState } from './store';
+import { getResolvedSkills } from './catalog';
 
 describe('clan management', () => {
   it('swaps equipment without losing inventory items', () => {
@@ -22,19 +23,30 @@ describe('clan management', () => {
 
   it('validates shop gold and persistent stock', () => {
     const state = createInitialState();
-    const initialGold = state.gold;
+    state.run.temporaryLoot.gold = 100;
+    const initialGold = state.run.temporaryLoot.gold;
     const initialStock = state.shops.valmir!.stock.potion!;
     expect(buyItem(state, 'valmir', 'potion')).toBe(true);
-    expect(state.gold).toBe(initialGold - 15);
+    expect(state.run.temporaryLoot.gold).toBe(initialGold - 15);
     expect(state.shops.valmir!.stock.potion).toBe(initialStock - 1);
     expect(sellItem(state, 'valmir', 'potion')).toBe(true);
-    expect(state.gold).toBe(initialGold - 8);
+    expect(state.run.temporaryLoot.gold).toBe(initialGold - 8);
     expect(state.shops.valmir!.stock.potion).toBe(initialStock);
   });
 
   it('protects narrative members from exclusion', () => {
     const state = createInitialState();
     expect(excludeUnit(state, 'knight')).toBe(false);
+  });
+
+  it('grants equipment skills without levels', () => {
+    const state = createInitialState();
+    const knight = state.clan.members.find((unit) => unit.id === 'knight')!;
+    expect(getResolvedSkills(knight)).not.toContain('heavy');
+    expect(equipAccessory(state, knight.id, 0, 'strength_ring')).toBe(true);
+    expect(getResolvedSkills(knight)).toContain('heavy');
+    expect(knight).not.toHaveProperty('level');
+    expect(knight).not.toHaveProperty('xp');
   });
 });
 
@@ -56,8 +68,8 @@ describe('save migration', () => {
       endingId: null,
     });
 
-    expect(migrated.version).toBe(4);
-    expect(migrated.visitedNodeIds).toContain('camp');
+    expect(migrated.version).toBe(5);
+    expect(migrated.run.graph.nodes.length).toBeGreaterThanOrEqual(9);
     expect(migrated.inventory.consumables.potion).toBe(2);
     expect(migrated.clan.members).toHaveLength(4);
     expect(migrated.deployment.unitIds).toHaveLength(4);
@@ -72,6 +84,8 @@ describe('save migration', () => {
         ...current.clan,
         members: current.clan.members.map((unit) => ({
           ...unit,
+          level: 1,
+          xp: 0,
           equipment: {
             weaponId: unit.equipment.weaponIds[0],
             accessoryIds: unit.equipment.accessoryIds,
@@ -80,20 +94,25 @@ describe('save migration', () => {
       },
     };
     const migrated = migrateState(v2);
-    expect(migrated.version).toBe(4);
+    expect(migrated.version).toBe(5);
     expect(migrated.clan.members[0]!.equipment.weaponIds).toEqual(['iron_sword', 'wooden_spear']);
   });
 
   it('migrates v3 saves with a route history', () => {
     const current = createInitialState();
-    const { visitedNodeIds: _visitedNodeIds, ...v3 } = current;
+    const { visitedNodeIds: _visitedNodeIds, run: _run, reputationHistory: _history, ...v3 } = current;
     const migrated = migrateState({
       ...v3,
       version: 3,
       currentNodeId: 'village',
       resolvedNodeIds: ['camp', 'lion', 'mystery-a'],
+      clan: {
+        ...v3.clan,
+        members: v3.clan.members.map((unit) => ({ ...unit, level: 1, xp: 0 })),
+      },
     });
-    expect(migrated.version).toBe(4);
-    expect(migrated.visitedNodeIds).toEqual(expect.arrayContaining(['camp', 'lion', 'mystery-a', 'village']));
+    expect(migrated.version).toBe(5);
+    expect(migrated.run.visitedNodeIds.length).toBeGreaterThan(1);
+    expect(migrated.clan.members[0]).not.toHaveProperty('level');
   });
 });

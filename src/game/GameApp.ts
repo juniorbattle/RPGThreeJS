@@ -1,16 +1,21 @@
-import { campaignNodes, combatConfigs, dialogues, mysteryPools } from './content';
-import { chooseMysteryEvent, tickCombatCooldowns } from './mystery';
-import { buildCampaignAdjacency } from './campaignNavigation';
+import { combatConfigs, dialogues } from './content';
 import { createInitialState, SaveRepository } from './store';
-import type { CampaignNode, CombatResult, GameState, NarrativeEffect } from './types';
+import type { CampaignNode, CombatResult, GameState, NarrativeEffect, RunNode } from './types';
 import { createUnitInstance, getItemCategory, toCombatant } from './catalog';
 import { applyCombatProgress } from './combatProgress';
+import {
+  addTemporaryLoot, enterRunNode, failRunToCheckpoint, getAvailableRunNodes,
+  getRunNode, secureRunLoot, toCampaignNodes,
+} from './runSystem';
+import { changeReputation, getReputationRule } from './reputation';
 import { CombatBridge } from '../combat/CombatBridge';
 import { DialogueView } from '../ui/DialogueView';
 import { ManagementView } from '../ui/ManagementView';
+import { TravelView } from '../ui/TravelView';
+import { ExplorationView } from '../ui/ExplorationView';
 import { WorldMap } from '../world/WorldMap';
 
-type AppMode = 'TITLE' | 'WORLD_MAP' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT';
+type AppMode = 'TITLE' | 'TRAVEL' | 'WORLD_MAP' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT';
 
 export class GameApp {
   private mode: AppMode = 'TITLE';
@@ -21,6 +26,8 @@ export class GameApp {
   private readonly dialogue: DialogueView;
   private readonly management: ManagementView;
   private readonly combat: CombatBridge;
+  private readonly travel: TravelView;
+  private readonly exploration: ExplorationView;
   private world: WorldMap | null = null;
   private pendingCombatId: string | null = null;
 
@@ -45,6 +52,14 @@ export class GameApp {
       },
     });
     this.combat = new CombatBridge(root);
+    this.travel = new TravelView({
+      root,
+      getState: () => this.state,
+      onSelect: (node) => this.chooseRunNode(node),
+      onOpenMap: () => this.openStrategicMap(),
+      onOpenClan: () => void this.openManagement('clan'),
+    });
+    this.exploration = new ExplorationView({ root });
   }
 
   async start(): Promise<void> {
@@ -53,6 +68,10 @@ export class GameApp {
 
   private renderTitle(): void {
     this.setMode('TITLE');
+    this.travel.close();
+    this.exploration.close();
+    this.combat.close();
+    this.world?.setVisible(false);
     this.canvas.hidden = true;
     this.labelLayer.hidden = true;
     this.chrome.innerHTML = `
@@ -72,111 +91,115 @@ export class GameApp {
       this.saves.clear();
       this.state = createInitialState();
       this.saves.saveAuto(this.state);
-      this.enterMap(true);
+      this.world?.dispose();
+      this.world = null;
+      const current = getRunNode(this.state.run);
+      if (current) void this.resolveRunNode(current, true);
     });
     this.chrome.querySelector('[data-action="continue"]')?.addEventListener('click', () => {
       this.state = this.saves.loadAuto() ?? this.saves.loadManual() ?? createInitialState();
-      this.enterMap(false);
-      const current = campaignNodes.find((node) => node.id === this.state.currentNodeId);
-      const randomCombatCompleted = current?.type === 'random-combat'
-        && this.state.combatCooldowns[current.id] !== undefined;
-      if (current && !this.state.resolvedNodeIds.includes(current.id) && !randomCombatCompleted) {
-        void this.resolveNode(current, true);
-      }
+      this.world?.dispose();
+      this.world = null;
+      const current = getRunNode(this.state.run);
+      if (current && !this.state.resolvedNodeIds.includes(current.id)) void this.resolveRunNode(current, true);
+      else this.enterTravel();
     });
   }
 
-  private enterMap(triggerCurrent: boolean): void {
+  private enterTravel(): void {
+    this.setMode('TRAVEL');
+    this.world?.setVisible(false);
+    this.canvas.hidden = true;
+    this.labelLayer.hidden = true;
+    this.chrome.replaceChildren();
+    this.travel.open();
+  }
+
+  private openStrategicMap(): void {
+    this.travel.close();
     this.setMode('WORLD_MAP');
     this.ensureWorld();
     this.world?.setVisible(true);
     this.renderHud();
     this.world?.update(this.state);
-    if (triggerCurrent) {
-      const current = campaignNodes.find((node) => node.id === this.state.currentNodeId);
-      if (current) void this.resolveNode(current, true);
-    }
   }
 
   private ensureWorld(): void {
     if (this.world) return;
+    const nodes = toCampaignNodes(this.state.run);
     this.world = new WorldMap({
       canvas: this.canvas,
       labelLayer: this.labelLayer,
-      nodes: campaignNodes,
+      nodes,
       onSelect: (node) => void this.selectNode(node),
     });
   }
 
   private async selectNode(node: CampaignNode): Promise<void> {
     if (this.mode !== 'WORLD_MAP') return;
-    const current = campaignNodes.find((candidate) => candidate.id === this.state.currentNodeId);
-    const adjacent = buildCampaignAdjacency(campaignNodes).get(current?.id ?? '');
-    if (!adjacent?.has(node.id)) return;
-    if (this.state.combatCooldowns[node.id] !== undefined) return;
-    const revisiting = this.state.visitedNodeIds.includes(node.id);
-    this.setMode('RESULT');
-    await this.world?.travelTo(node);
-    this.state.currentNodeId = node.id;
-    if (!revisiting) this.state.visitedNodeIds.push(node.id);
-    this.state.stepCounter += 1;
-    tickCombatCooldowns(this.state);
-    this.saves.saveAuto(this.state);
-    this.renderHud();
-    this.world?.update(this.state);
-    await this.resolveNode(node, false, revisiting);
+    const runNode = getAvailableRunNodes(this.state.run).find((candidate) => candidate.id === node.id);
+    if (runNode) await this.chooseRunNode(runNode);
   }
 
-  private async resolveNode(node: CampaignNode, initial: boolean, revisiting = false): Promise<void> {
+  private async chooseRunNode(node: RunNode): Promise<void> {
+    if (this.mode !== 'TRAVEL' && this.mode !== 'WORLD_MAP') return;
+    const fromMap = this.mode === 'WORLD_MAP';
+    this.travel.close();
+    this.setMode('RESULT');
+    const mapNode = toCampaignNodes(this.state.run).find((candidate) => candidate.id === node.id);
+    if (fromMap && mapNode) await this.world?.travelTo(mapNode);
+    const entered = enterRunNode(this.state.run, node.id);
+    if (!entered) {
+      this.enterTravel();
+      return;
+    }
+    this.state.currentNodeId = entered.id;
+    this.state.visitedNodeIds = [...this.state.run.visitedNodeIds];
+    this.state.stepCounter += 1;
+    this.saves.saveAuto(this.state);
+    await this.resolveRunNode(entered, false);
+  }
+
+  private async resolveRunNode(node: RunNode, initial: boolean): Promise<void> {
+    if (node.type === 'refuge') {
+      if (getReputationRule(this.state.reputation).min >= 60) {
+        addTemporaryLoot(this.state.run, { category: 'consumables', itemId: 'potion', quantity: 1 });
+      }
+      const secured = secureRunLoot(this.state);
+      this.setMode('NARRATIVE');
+      const action = await this.exploration.open(getReputationRule(this.state.reputation).label, secured.gold);
+      if (action === 'shop') {
+        this.setMode('RESULT');
+        await this.openManagement('shop', 'valmir', 'permanent');
+      } else if (action === 'clan') {
+        this.setMode('RESULT');
+        await this.openManagement('clan');
+      }
+      this.markResolved(node.id);
+      this.enterTravel();
+      return;
+    }
     if (node.type === 'shop') {
-      await this.openManagement('shop', node.shopId ?? 'valmir');
+      await this.openManagement('shop', node.contentId);
       this.markResolved(node.id);
-      this.enterMap(false);
+      this.enterTravel();
       return;
     }
-    if (revisiting && this.state.resolvedNodeIds.includes(node.id)) {
-      this.enterMap(false);
+    if (node.type === 'combat' || node.type === 'boss') {
+      await this.startCombat(node.contentId, node);
       return;
     }
-    if (node.type === 'random-combat') {
-      await this.startCombat(node.combatId!, node);
+    if (!initial && this.state.resolvedNodeIds.includes(node.id)) {
+      this.enterTravel();
       return;
     }
-    if (node.type === 'story-combat') {
-      if (!this.state.resolvedNodeIds.includes(node.id)) await this.startCombat(node.combatId!, node);
-      else this.enterMap(false);
-      return;
-    }
-    if (node.type === 'mystery') {
-      const pool = mysteryPools.get(node.mysteryPoolId ?? '');
-      if (!pool) throw new Error(`Missing mystery pool '${node.mysteryPoolId}'.`);
-      const event = chooseMysteryEvent(node.id, pool, this.state);
-      this.saves.saveAuto(this.state);
-      await this.playDialogue(event.dialogueId);
-      if (this.pendingCombatId) {
-        await this.flushPendingCombat(node);
-      } else {
-        this.markResolved(node.id);
-        this.enterMap(false);
-      }
-      return;
-    }
-    if (node.type === 'boss') {
-      await this.playDialogue(node.dialogueId!);
-      const combatId = this.state.flags.missionSuccess === false ? 'lion_chief' : 'forest_patrol';
-      await this.startCombat(combatId, node);
-      return;
-    }
-    if (node.dialogueId && (!this.state.resolvedNodeIds.includes(node.id) || initial)) {
-      await this.playDialogue(node.dialogueId);
-      if (node.id === 'village') {
-        this.markResolved(node.id);
-        await this.flushPendingCombat(campaignNodes.find((candidate) => candidate.id === 'village-battle')!);
-        return;
-      }
+    await this.playDialogue(node.contentId);
+    if (this.pendingCombatId) {
+      await this.flushPendingCombat(node);
+    } else {
       this.markResolved(node.id);
+      this.enterTravel();
     }
-    this.enterMap(false);
   }
 
   private async playDialogue(dialogueId: string): Promise<void> {
@@ -195,16 +218,26 @@ export class GameApp {
           this.state.flags[effect.key] = effect.value;
           break;
         case 'addGold':
-          this.state.gold += effect.amount;
+          if (effect.amount >= 0) {
+            addTemporaryLoot(this.state.run, { gold: effect.amount });
+          } else {
+            const cost = Math.abs(effect.amount);
+            const fromLoot = Math.min(cost, this.state.run.temporaryLoot.gold);
+            this.state.run.temporaryLoot.gold -= fromLoot;
+            this.state.gold = Math.max(0, this.state.gold - (cost - fromLoot));
+          }
           break;
         case 'addReputation':
-          this.state.reputation = Math.max(0, Math.min(100, this.state.reputation + effect.amount));
+          changeReputation(this.state, effect.amount, 'narrative');
           break;
         case 'addItem':
           {
             const category = getItemCategory(effect.itemId) ?? 'consumables';
-            this.state.inventory[category][effect.itemId] =
-              (this.state.inventory[category][effect.itemId] ?? 0) + effect.quantity;
+            addTemporaryLoot(this.state.run, {
+              category,
+              itemId: effect.itemId,
+              quantity: effect.quantity,
+            });
           }
           break;
         case 'recruitUnit':
@@ -226,18 +259,19 @@ export class GameApp {
     }
   }
 
-  private async flushPendingCombat(node: CampaignNode): Promise<void> {
+  private async flushPendingCombat(node: RunNode): Promise<void> {
     const combatId = this.pendingCombatId;
     this.pendingCombatId = null;
     if (combatId) await this.startCombat(combatId, node);
-    else this.enterMap(false);
+    else this.enterTravel();
   }
 
-  private async startCombat(combatId: string, node: CampaignNode): Promise<void> {
+  private async startCombat(combatId: string, node: RunNode): Promise<void> {
     const config = combatConfigs.get(combatId);
     if (!config) throw new Error(`Missing combat '${combatId}'.`);
     this.saves.saveAuto(this.state);
     this.setMode('COMBAT');
+    this.travel.close();
     this.world?.setVisible(false);
     this.chrome.replaceChildren();
     const combatants = this.state.clan.members.map((unit) => toCombatant(unit));
@@ -253,32 +287,32 @@ export class GameApp {
 
   private async resolveCombat(
     result: CombatResult,
-    node: CampaignNode,
+    node: RunNode,
     rewards: { gold: number; reputation: number },
   ): Promise<void> {
     if (!result.victory) {
       this.state = this.saves.loadAuto() ?? this.state;
-      this.enterMap(false);
+      failRunToCheckpoint(this.state);
+      this.saves.saveAuto(this.state);
+      this.enterTravel();
       return;
     }
     const encounterLimit = combatConfigs.get(result.combatId)?.maxPlayerUnits ?? 4;
     applyCombatProgress(this.state, result, encounterLimit);
     this.state.currentNodeId = node.id;
-    this.state.gold += rewards.gold;
-    this.state.reputation = Math.max(0, Math.min(100, this.state.reputation + rewards.reputation));
-    if (node.type === 'random-combat') {
-      this.state.combatCooldowns[node.id] = this.state.stepCounter + 3;
-    } else {
-      this.markResolved(node.id);
-    }
+    addTemporaryLoot(this.state.run, { gold: rewards.gold });
+    changeReputation(this.state, rewards.reputation, `combat:${result.combatId}`);
+    this.markResolved(node.id);
     this.saves.saveAuto(this.state);
     if (node.type === 'boss') {
-      const ending = campaignNodes.find((candidate) => candidate.id === 'end')!;
-      this.state.currentNodeId = ending.id;
-      await this.resolveNode(ending, false);
+      this.state.run.status = 'completed';
+      secureRunLoot(this.state);
+      await this.playDialogue('epilogue');
+      this.saves.saveAuto(this.state);
+      this.enterTravel();
       return;
     }
-    this.enterMap(false);
+    this.enterTravel();
   }
 
   private markResolved(nodeId: string): void {
@@ -287,7 +321,8 @@ export class GameApp {
   }
 
   private renderHud(): void {
-    const current = campaignNodes.find((node) => node.id === this.state.currentNodeId);
+    const current = getRunNode(this.state.run);
+    const reputation = getReputationRule(this.state.reputation);
     this.chrome.innerHTML = `
       <header class="map-hud">
         <div>
@@ -295,12 +330,13 @@ export class GameApp {
           <strong>${current?.label ?? 'Route inconnue'}</strong>
         </div>
         <div class="map-hud__stats">
-          <span>🪙 ${this.state.gold}</span>
-          <span>♜ ${this.state.reputation}%</span>
+          <span>🪙 ${this.state.run.temporaryLoot.gold} / ${this.state.gold}</span>
+          <span>♜ ${this.state.reputation}% · ${reputation.label}</span>
           <span>⚔ ${this.state.clan.members.length}</span>
         </div>
         <div class="map-hud__actions">
           <button type="button" data-action="clan">Compagnie</button>
+          <button type="button" data-action="travel">Reprendre la route</button>
           <button type="button" data-action="graphics">FX ${this.state.settings.reducedGraphics ? 'réduits' : 'HD'}</button>
           <button type="button" data-action="save">Sauvegarder</button>
           <button type="button" data-action="title">Menu</button>
@@ -314,6 +350,7 @@ export class GameApp {
     this.chrome.querySelector('[data-action="clan"]')?.addEventListener('click', () => {
       void this.openManagement('clan');
     });
+    this.chrome.querySelector('[data-action="travel"]')?.addEventListener('click', () => this.enterTravel());
     this.chrome.querySelector('[data-action="graphics"]')?.addEventListener('click', () => {
       this.state.settings.reducedGraphics = !this.state.settings.reducedGraphics;
       this.saves.saveAuto(this.state);
@@ -328,12 +365,18 @@ export class GameApp {
     this.chrome.querySelector('[data-action="title"]')?.addEventListener('click', () => this.renderTitle());
   }
 
-  private async openManagement(tab: 'clan' | 'inventory' | 'shop', shopId?: string): Promise<void> {
-    if (this.mode !== 'WORLD_MAP' && this.mode !== 'RESULT') return;
+  private async openManagement(
+    tab: 'clan' | 'inventory' | 'shop',
+    shopId?: string,
+    shopWallet: 'temporary' | 'permanent' = 'temporary',
+  ): Promise<void> {
+    if (this.mode !== 'WORLD_MAP' && this.mode !== 'RESULT' && this.mode !== 'TRAVEL') return;
+    const returnToMap = this.mode === 'WORLD_MAP';
     this.setMode('MANAGEMENT');
-    await this.management.open(tab, shopId);
+    await this.management.open(tab, shopId, shopWallet);
     this.saves.saveAuto(this.state);
-    this.enterMap(false);
+    if (returnToMap) this.openStrategicMap();
+    else this.enterTravel();
   }
 
   private setMode(mode: AppMode): void {
@@ -342,25 +385,11 @@ export class GameApp {
   }
 
   private getObjective(): string {
-    if (this.state.endingId) return 'Le Sceau du Lion répond désormais à votre appel.';
-    if (this.state.currentNodeId === 'camp' || this.state.currentNodeId === 'lion') {
-      return 'Prêter serment au Chef du Lion.';
-    }
-    if (this.state.currentNodeId === 'mystery-a' || this.state.currentNodeId === 'random-a') {
-      return 'Atteindre Valmir et reconnaître les routes occupées.';
-    }
-    if (this.state.currentNodeId === 'village') {
-      return 'Résoudre la crise de Valmir puis affronter les pillards.';
-    }
-    if (this.state.currentNodeId === 'village-battle') {
-      return 'Poursuivre vers les ruines et préparer le jugement final.';
-    }
-    if (this.state.currentNodeId === 'mystery-b') {
-      return 'Découvrir le secret des ruines anciennes.';
-    }
-    if (this.state.currentNodeId === 'finale') {
-      return 'Faire face au jugement du Chef du Lion.';
-    }
-    return 'Atteindre la Porte du Sceau.';
+    if (this.state.run.status === 'completed') return 'Le parcours est achevé. Le butin a été sécurisé.';
+    const node = getRunNode(this.state.run);
+    const depth = node?.depth ?? 0;
+    if (depth < 4) return 'Atteindre le premier refuge sans perdre le butin.';
+    if (depth < 8) return 'Traverser les routes ramifiées jusqu’au second refuge.';
+    return 'Atteindre la Porte du Sceau et vaincre son gardien.';
   }
 }

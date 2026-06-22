@@ -246,6 +246,171 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .dialogue-choice:hover:not(:disabled) { border-color: var(--gold-bright); transform: translateX(-5px); }
 .combat-frame { position: fixed; inset: 0; z-index: 100; width: 100%; height: 100%; border: 0; background: #05060a; }
 
+.travel-view {
+  position: fixed;
+  inset: 0;
+  z-index: 16;
+  overflow: hidden;
+  pointer-events: auto;
+  background: linear-gradient(#8da9a2 0 48%, #47604d 70%, #202c27);
+  isolation: isolate;
+}
+.travel-view__sky, .travel-view__mist, .travel-view__road, .travel-view__foreground {
+  position: absolute;
+  inset: -4%;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+}
+.travel-view__sky {
+  z-index: -4;
+  background-image: linear-gradient(rgba(35,52,58,.08),rgba(22,37,36,.2)), url('/assets/generated/forest-pilot/forest-dawn-far.webp');
+  filter: saturate(.82) contrast(.94);
+  animation: travel-parallax 18s ease-in-out infinite alternate;
+}
+.travel-view__mist {
+  z-index: -3;
+  opacity: .48;
+  background-image: url('/assets/generated/forest-pilot/forest-mid.webp');
+  animation: travel-parallax 12s ease-in-out infinite alternate-reverse;
+}
+.travel-view__road {
+  z-index: -2;
+  inset: 48% -5% -10%;
+  transform: perspective(500px) rotateX(57deg);
+  transform-origin: bottom;
+  background:
+    linear-gradient(90deg, transparent 0 13%, rgba(34,48,38,.86) 20% 80%, transparent 87%),
+    repeating-linear-gradient(90deg, rgba(196,181,125,.12) 0 18px, transparent 18px 80px),
+    linear-gradient(#617552,#28382e);
+}
+.travel-view__foreground {
+  z-index: 5;
+  inset: 67% -3% -8%;
+  opacity: .78;
+  background-image: url('/assets/generated/forest-pilot/forest-fore.webp');
+  filter: blur(1px) saturate(.9);
+}
+.travel-view__hud {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  right: 18px;
+  z-index: 8;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  background: rgba(7,12,21,.84);
+  backdrop-filter: blur(9px);
+}
+.travel-view__hud strong { font: 600 18px Cinzel, serif; }
+.travel-view__hud > div:last-child { justify-self: end; display: flex; gap: 8px; }
+.travel-view__hud button {
+  padding: 9px 12px;
+  border: 1px solid rgba(244,217,139,.45);
+  background: rgba(20,28,43,.9);
+  color: var(--cream);
+  cursor: pointer;
+}
+.travel-view__resources { display: flex; gap: 8px; }
+.travel-view__resources span { padding: 7px 10px; background: rgba(0,0,0,.28); color: var(--gold-bright); font-size: 12px; }
+.travel-view__choices {
+  position: absolute;
+  top: 116px;
+  left: 50%;
+  z-index: 7;
+  display: flex;
+  gap: 14px;
+  transform: translateX(-50%);
+}
+.route-choice {
+  width: 178px;
+  min-height: 112px;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  align-items: center;
+  gap: 4px 10px;
+  padding: 14px;
+  border: 1px solid rgba(244,217,139,.42);
+  border-radius: 15px;
+  background: linear-gradient(145deg, rgba(18,28,43,.95), rgba(7,12,21,.9));
+  color: var(--cream);
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 18px 40px rgba(0,0,0,.4);
+  transition: transform .18s, border-color .18s;
+}
+.route-choice:hover { transform: translateY(-5px); border-color: var(--gold-bright); }
+.route-choice > span { grid-row: 1 / 3; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: rgba(217,178,90,.13); color: var(--gold-bright); font-size: 22px; }
+.route-choice small { color: var(--muted); text-transform: uppercase; letter-spacing: .12em; }
+.route-choice strong { font: 600 14px/1.35 Cinzel, serif; }
+.travel-party {
+  position: absolute;
+  left: 50%;
+  bottom: 13%;
+  z-index: 3;
+  width: min(660px, 70vw);
+  display: flex;
+  justify-content: center;
+  gap: clamp(10px, 3vw, 34px);
+  transform: translateX(-50%);
+}
+.travel-hero {
+  width: clamp(78px, 9vw, 126px);
+  display: grid;
+  justify-items: center;
+  animation: travel-step .72s ease-in-out infinite alternate;
+  animation-delay: calc(var(--hero-index) * -.13s);
+  filter: drop-shadow(0 16px 11px rgba(0,0,0,.55));
+}
+.travel-hero img { width: 100%; height: clamp(145px, 24vh, 250px); object-fit: contain; object-position: center bottom; }
+.travel-hero span { margin-top: -12px; padding: 4px 8px; border-radius: 10px; background: rgba(5,9,15,.68); color: #e8eddf; font: 600 10px Cinzel, serif; }
+.travel-view.is-travelling .travel-party { animation: party-depart .72s ease-in forwards; }
+.travel-view__end { color: var(--gold-bright); font: 600 18px Cinzel, serif; }
+@keyframes travel-step { from { transform: translateY(0) rotate(-.8deg); } to { transform: translateY(-10px) rotate(.8deg); } }
+@keyframes travel-parallax { from { transform: translateX(-1.2%); } to { transform: translateX(1.2%); } }
+@keyframes party-depart { to { transform: translateX(75vw); opacity: .2; } }
+
+.exploration-stop {
+  position: fixed;
+  inset: 0;
+  z-index: 48;
+  display: grid;
+  align-content: end;
+  padding: clamp(24px, 5vw, 70px);
+  pointer-events: auto;
+  background:
+    linear-gradient(90deg, rgba(5,9,15,.82), rgba(5,9,15,.12) 62%, rgba(5,9,15,.58)),
+    url('/assets/generated/forest-pilot/forest-dawn-far.webp') center / cover no-repeat;
+}
+.exploration-stop__veil { position: absolute; inset: 0; background: linear-gradient(transparent 42%, rgba(3,7,12,.9)); pointer-events: none; }
+.exploration-stop header, .exploration-stop__hotspots { position: relative; z-index: 1; }
+.exploration-stop header { max-width: 620px; }
+.exploration-stop h2 { margin: 0; font: 700 clamp(34px, 5vw, 66px) Cinzel, serif; }
+.exploration-stop header p:not(.eyebrow) { color: #d2dacf; line-height: 1.65; }
+.exploration-stop header strong { color: var(--gold-bright); }
+.exploration-stop__hotspots { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+.exploration-stop__hotspots button {
+  min-width: 210px;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 2px 10px;
+  padding: 13px;
+  border: 1px solid rgba(244,217,139,.4);
+  background: rgba(8,14,24,.9);
+  color: var(--cream);
+  text-align: left;
+  cursor: pointer;
+}
+.exploration-stop__hotspots button:hover { border-color: var(--gold-bright); transform: translateY(-3px); }
+.exploration-stop__hotspots span { grid-row: 1 / 3; align-self: center; color: var(--gold-bright); font-size: 28px; }
+.exploration-stop__hotspots b { font: 600 14px Cinzel, serif; }
+.exploration-stop__hotspots small { color: var(--muted); }
+
 .management {
   position: fixed;
   inset: 0;
@@ -406,6 +571,13 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .unit-sheet__hero img { width: 100px; height: 120px; }
   .stat-grid { grid-template-columns: repeat(2, 1fr); }
   .equipment label { grid-template-columns: 1fr; gap: 6px; }
+  .travel-view__hud { grid-template-columns: 1fr auto; }
+  .travel-view__resources { display: none; }
+  .travel-view__hud > div:last-child button:first-child { display: none; }
+  .travel-view__choices { top: 105px; width: calc(100% - 24px); overflow-x: auto; justify-content: flex-start; }
+  .route-choice { min-width: 150px; }
+  .travel-party { width: 94vw; gap: 2px; bottom: 11%; }
+  .travel-hero { width: 23vw; }
 }
 
 @media (prefers-reduced-motion: reduce) {

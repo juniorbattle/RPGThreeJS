@@ -1,4 +1,5 @@
 import { itemById, unitById } from './catalog';
+import { getShopPrice } from './reputation';
 import type { GameState, InventoryState, ItemCategory, UnitInstance } from './types';
 
 function adjust(inventory: InventoryState, category: ItemCategory, itemId: string, amount: number): void {
@@ -35,23 +36,27 @@ export function equipAccessory(state: GameState, unitId: string, slot: 0 | 1, ac
   return true;
 }
 
-export function buyItem(state: GameState, shopId: string, itemId: string): boolean {
+export function buyItem(state: GameState, shopId: string, itemId: string, useTemporaryLoot = true): boolean {
   const shop = state.shops[shopId];
   const item = itemById.get(itemId);
-  if (!shop || !item || (shop.stock[itemId] ?? 0) < 1 || state.gold < item.price) return false;
-  state.gold -= item.price;
+  const price = item ? getShopPrice(item.price, state.reputation) : 0;
+  const availableGold = useTemporaryLoot ? state.run.temporaryLoot.gold : state.gold;
+  if (!shop || !item || (shop.stock[itemId] ?? 0) < 1 || availableGold < price) return false;
+  if (useTemporaryLoot) state.run.temporaryLoot.gold -= price;
+  else state.gold -= price;
   shop.stock[itemId] = (shop.stock[itemId] ?? 0) - 1;
-  adjust(state.inventory, item.category, itemId, 1);
+  adjust(useTemporaryLoot ? state.run.temporaryLoot.inventory : state.inventory, item.category, itemId, 1);
   return true;
 }
 
-export function sellItem(state: GameState, shopId: string, itemId: string): boolean {
+export function sellItem(state: GameState, shopId: string, itemId: string, useTemporaryLoot = true): boolean {
   const shop = state.shops[shopId];
   const item = itemById.get(itemId);
   if (!shop || !item || (state.inventory[item.category][itemId] ?? 0) < 1) return false;
   adjust(state.inventory, item.category, itemId, -1);
   shop.stock[itemId] = (shop.stock[itemId] ?? 0) + 1;
-  state.gold += Math.floor(item.price / 2);
+  if (useTemporaryLoot) state.run.temporaryLoot.gold += Math.floor(item.price / 2);
+  else state.gold += Math.floor(item.price / 2);
   return true;
 }
 

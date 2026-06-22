@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import type { CampaignNode, GameState } from '../game/types';
-import { getReachableNodeIds } from '../game/campaignNavigation';
 
 interface WorldMapOptions {
   canvas: HTMLCanvasElement;
@@ -36,6 +35,7 @@ export class WorldMap {
   private readonly clock = new THREE.Clock();
   private readonly visuals = new Map<string, NodeVisual>();
   private readonly pathMaterials: THREE.LineBasicMaterial[] = [];
+  private readonly pathVisuals: Array<{ from: string; to: string; line: THREE.Line }> = [];
   private readonly marker: THREE.Group;
   private readonly markerLight: THREE.PointLight;
   private readonly scenery = new THREE.Group();
@@ -101,12 +101,14 @@ export class WorldMap {
       }
     }
 
-    const currentCanBeLeft = current !== undefined && (
-      state.resolvedNodeIds.includes(current.id)
-      || current.type === 'random-combat'
-    );
-    const connected = getReachableNodeIds(this.options.nodes, state.currentNodeId, currentCanBeLeft);
+    const currentCanBeLeft = current !== undefined && state.resolvedNodeIds.includes(current.id);
+    const connected = new Set(currentCanBeLeft ? current?.links ?? [] : []);
+    for (const path of this.pathVisuals) {
+      path.line.visible = state.run.revealedNodeIds.includes(path.from)
+        && state.run.revealedNodeIds.includes(path.to);
+    }
     for (const visual of this.visuals.values()) {
+      const revealed = state.run.revealedNodeIds.includes(visual.node.id);
       const resolved = state.resolvedNodeIds.includes(visual.node.id);
       const visited = state.visitedNodeIds.includes(visual.node.id);
       const currentNode = visual.node.id === state.currentNodeId;
@@ -117,6 +119,8 @@ export class WorldMap {
       visual.halo.visible = currentNode || reachable;
       visual.halo.material.color.setHex(currentNode ? 0xffe39a : 0x72c7ff);
       visual.button.disabled = !reachable || cooldown !== undefined;
+      visual.button.hidden = !revealed;
+      visual.group.visible = revealed;
       visual.button.classList.toggle('is-current', currentNode);
       visual.button.classList.toggle('is-resolved', resolved);
       visual.button.classList.toggle('is-visited', visited);
@@ -248,6 +252,7 @@ export class WorldMap {
         ]);
         const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(20)), material);
         this.scene.add(line);
+        this.pathVisuals.push({ from: node.id, to: linked.id, line });
       }
     }
   }

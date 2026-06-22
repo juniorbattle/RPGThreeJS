@@ -92,7 +92,6 @@ export const unitStatsSchema = z.object({
   dexterity: z.number().int().nonnegative(),
   charisma: z.number().int().nonnegative(),
   moveRange: z.number().int().positive(),
-  jumpHeight: z.number().int().nonnegative(),
 });
 export type UnitStats = z.infer<typeof unitStatsSchema>;
 
@@ -106,8 +105,6 @@ export const unitInstanceSchema = z.object({
   id: z.string(),
   definitionId: z.string(),
   name: z.string(),
-  level: z.number().int().positive(),
-  xp: z.number().int().nonnegative(),
   narrativeLocked: z.boolean(),
   equipment: equipmentLoadoutSchema,
 });
@@ -139,6 +136,56 @@ export const deploymentSchema = z.object({
 });
 export type Deployment = z.infer<typeof deploymentSchema>;
 
+export const runNodeTypeSchema = z.enum([
+  'combat', 'event', 'mystery', 'recruitment', 'shop', 'refuge', 'story', 'boss',
+]);
+export type RunNodeType = z.infer<typeof runNodeTypeSchema>;
+
+export const runNodeSchema = z.object({
+  id: z.string(),
+  type: runNodeTypeSchema,
+  depth: z.number().int().nonnegative(),
+  links: z.array(z.string()),
+  contentId: z.string(),
+  label: z.string(),
+  icon: z.string(),
+  x: z.number(),
+  z: z.number(),
+});
+export type RunNode = z.infer<typeof runNodeSchema>;
+
+export const runGraphSchema = z.object({
+  nodes: z.array(runNodeSchema).min(9),
+});
+export type RunGraph = z.infer<typeof runGraphSchema>;
+
+export const runLootSchema = z.object({
+  gold: z.number().int().nonnegative(),
+  inventory: inventoryStateSchema,
+});
+export type RunLoot = z.infer<typeof runLootSchema>;
+
+export const runStateSchema = z.object({
+  id: z.string(),
+  seed: z.number().int(),
+  regionId: z.string(),
+  status: z.enum(['active', 'completed', 'failed']),
+  currentNodeId: z.string(),
+  checkpointNodeId: z.string(),
+  revealedNodeIds: z.array(z.string()),
+  visitedNodeIds: z.array(z.string()),
+  temporaryLoot: runLootSchema,
+  graph: runGraphSchema,
+});
+export type RunState = z.infer<typeof runStateSchema>;
+
+export const reputationHistoryEntrySchema = z.object({
+  delta: z.number().int(),
+  source: z.string(),
+  value: z.number().int().min(0).max(100),
+});
+export type ReputationHistoryEntry = z.infer<typeof reputationHistoryEntrySchema>;
+
 export const gameStateV1Schema = z.object({
   version: z.literal(1),
   currentNodeId: z.string(),
@@ -156,7 +203,12 @@ export const gameStateV1Schema = z.object({
 });
 export type GameStateV1 = z.infer<typeof gameStateV1Schema>;
 
-const unitInstanceV2Schema = unitInstanceSchema.extend({
+const legacyUnitInstanceSchema = unitInstanceSchema.extend({
+  level: z.number().int().positive(),
+  xp: z.number().int().nonnegative(),
+});
+
+const unitInstanceV2Schema = legacyUnitInstanceSchema.extend({
   equipment: z.object({
     weaponId: z.string(),
     accessoryIds: z.tuple([z.string().nullable(), z.string().nullable()]),
@@ -188,13 +240,39 @@ export type GameStateV2 = z.infer<typeof gameStateV2Schema>;
 
 export const gameStateV3Schema = gameStateV2Schema.extend({
   version: z.literal(3),
-  clan: clanStateSchema,
+  clan: z.object({
+    maxSize: z.number().int().positive(),
+    members: z.array(legacyUnitInstanceSchema).max(12),
+  }),
 });
 export type GameStateV3 = z.infer<typeof gameStateV3Schema>;
 
-export const gameStateSchema = gameStateV3Schema.extend({
+export const gameStateV4Schema = gameStateV3Schema.extend({
   version: z.literal(4),
   visitedNodeIds: z.array(z.string()),
+});
+export type GameStateV4 = z.infer<typeof gameStateV4Schema>;
+
+export const gameStateSchema = z.object({
+  version: z.literal(5),
+  currentNodeId: z.string(),
+  visitedNodeIds: z.array(z.string()),
+  stepCounter: z.number().int().nonnegative(),
+  resolvedNodeIds: z.array(z.string()),
+  combatCooldowns: z.record(z.number().int().nonnegative()),
+  mysteryAssignments: z.record(z.string()),
+  seenUniqueEvents: z.array(z.string()),
+  flags: z.record(z.boolean()),
+  gold: z.number().int(),
+  reputation: z.number().int().min(0).max(100),
+  reputationHistory: z.array(reputationHistoryEntrySchema),
+  inventory: inventoryStateSchema,
+  clan: clanStateSchema,
+  deployment: deploymentSchema,
+  shops: z.record(shopStateSchema),
+  settings: z.object({ reducedGraphics: z.boolean() }),
+  run: runStateSchema,
+  endingId: z.string().nullable(),
 });
 export type GameState = z.infer<typeof gameStateSchema>;
 
@@ -207,6 +285,12 @@ export interface ItemDefinition {
   price: number;
   icon: string;
   modifiers?: Partial<UnitStats>;
+  skillModifier?: EquipmentSkillModifier;
+}
+
+export interface EquipmentSkillModifier {
+  grants?: string[];
+  replaces?: Record<string, string>;
 }
 
 export interface WeaponDefinition extends ItemDefinition {
@@ -236,17 +320,9 @@ export interface CombatantPayload {
   name: string;
   kind: UnitDefinition['combatKind'];
   portrait: string;
-  level: number;
-  xp: number;
   stats: UnitStats;
   weapons: WeaponDefinition[];
   skills: string[];
-}
-
-export interface CombatProgress {
-  unitId: string;
-  level: number;
-  xp: number;
 }
 
 export interface CombatResult {
@@ -254,5 +330,13 @@ export interface CombatResult {
   combatId: string;
   consumables?: Record<string, number>;
   participants: string[];
-  progress: CombatProgress[];
+}
+
+export interface ReputationRule {
+  min: number;
+  max: number;
+  label: string;
+  shopPriceMultiplier: number;
+  ambushWeightMultiplier: number;
+  eventWeightModifiers: Record<string, number>;
 }

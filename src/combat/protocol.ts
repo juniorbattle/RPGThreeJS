@@ -21,8 +21,6 @@ export const combatantPayloadSchema = z.object({
   name: z.string(),
   kind: z.enum(['knight', 'cleric', 'mage', 'archer']),
   portrait: z.string(),
-  level: z.number().int().positive(),
-  xp: z.number().int().nonnegative(),
   stats: unitStatsSchema,
   weapons: z.array(weaponPayloadSchema).min(1).max(2),
   skills: z.array(z.string()),
@@ -48,11 +46,6 @@ export const combatResultMessageSchema = z.object({
   combatId: z.string(),
   inventory: z.record(z.number().int().nonnegative()),
   participants: z.array(z.string()),
-  progress: z.array(z.object({
-    unitId: z.string(),
-    level: z.number().int().positive(),
-    xp: z.number().int().nonnegative(),
-  })),
 });
 
 export function toCombatResult(value: unknown): CombatResult | null {
@@ -63,6 +56,5 @@ export function toCombatResult(value: unknown): CombatResult | null {
     combatId: parsed.data.combatId,
     consumables: parsed.data.inventory,
     participants: parsed.data.participants,
-    progress: parsed.data.progress,
   };
 }

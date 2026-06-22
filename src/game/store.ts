@@ -1,17 +1,22 @@
 import { createUnitInstance, getItemCategory } from './catalog';
+import { createRunState, enterRunNode, getAvailableRunNodes, getRunNode } from './runSystem';
 import {
   gameStateSchema,
   gameStateV1Schema,
   gameStateV2Schema,
   gameStateV3Schema,
+  gameStateV4Schema,
   type GameState,
   type GameStateV1,
   type GameStateV2,
   type GameStateV3,
+  type GameStateV4,
 } from './types';
 
-const AUTO_KEY = 'rpg-threejs:autosave:v4';
-const MANUAL_KEY = 'rpg-threejs:manual:v4';
+const AUTO_KEY = 'rpg-threejs:autosave:v5';
+const MANUAL_KEY = 'rpg-threejs:manual:v5';
+const V4_AUTO_KEY = 'rpg-threejs:autosave:v4';
+const V4_MANUAL_KEY = 'rpg-threejs:manual:v4';
 const V3_AUTO_KEY = 'rpg-threejs:autosave:v3';
 const V3_MANUAL_KEY = 'rpg-threejs:manual:v3';
 const V2_AUTO_KEY = 'rpg-threejs:autosave:v2';
@@ -20,10 +25,11 @@ const LEGACY_AUTO_KEY = 'rpg-threejs:autosave:v1';
 const LEGACY_MANUAL_KEY = 'rpg-threejs:manual:v1';
 
 export function createInitialState(): GameState {
+  const run = createRunState();
   return {
-    version: 4,
-    currentNodeId: 'camp',
-    visitedNodeIds: ['camp'],
+    version: 5,
+    currentNodeId: run.currentNodeId,
+    visitedNodeIds: [run.currentNodeId],
     stepCounter: 0,
     resolvedNodeIds: [],
     combatCooldowns: {},
@@ -32,6 +38,7 @@ export function createInitialState(): GameState {
     flags: {},
     gold: 250,
     reputation: 50,
+    reputationHistory: [],
     inventory: {
       consumables: { potion: 3, ether: 1, antidote: 2, bomb: 2 },
       accessories: { strength_ring: 1, magic_pendant: 1 },
@@ -59,6 +66,7 @@ export function createInitialState(): GameState {
       },
     },
     settings: { reducedGraphics: false },
+    run,
     endingId: null,
   };
 }
@@ -66,24 +74,27 @@ export function createInitialState(): GameState {
 export function migrateState(value: unknown): GameState {
   const current = gameStateSchema.safeParse(value);
   if (current.success) return current.data;
+  const v4 = gameStateV4Schema.safeParse(value);
+  if (v4.success) return migrateV4(v4.data);
   const v3 = gameStateV3Schema.safeParse(value);
-  if (v3.success) return migrateV3(v3.data);
+  if (v3.success) return migrateV4(migrateV3(v3.data));
   const v2 = gameStateV2Schema.safeParse(value);
-  if (v2.success) return migrateV2(v2.data);
+  if (v2.success) return migrateV4(migrateV2(v2.data));
   const legacy = gameStateV1Schema.parse(value);
   return migrateV1(legacy);
 }
 
-function migrateV3(previous: GameStateV3): GameState {
-  return gameStateSchema.parse({
+function migrateV3(previous: GameStateV3): GameStateV4 {
+  return gameStateV4Schema.parse({
     ...previous,
     version: 4,
     visitedNodeIds: [...new Set([...previous.resolvedNodeIds, previous.currentNodeId])],
   });
 }
 
-function migrateV2(previous: GameStateV2): GameState {
-  const next = createInitialState();
+function migrateV2(previous: GameStateV2): GameStateV4 {
+  const initial = createInitialState();
+  const { run: _run, reputationHistory: _history, ...next } = initial;
   Object.assign(next, previous, {
     version: 4,
     visitedNodeIds: [...new Set([...previous.resolvedNodeIds, previous.currentNodeId])],
@@ -101,7 +112,7 @@ function migrateV2(previous: GameStateV2): GameState {
       };
     }),
   };
-  return gameStateSchema.parse(next);
+  return gameStateV4Schema.parse(next);
 }
 
 function migrateV1(legacy: GameStateV1): GameState {
@@ -126,13 +137,37 @@ function migrateV1(legacy: GameStateV1): GameState {
   return gameStateSchema.parse(next);
 }
 
+function migrateV4(previous: GameStateV4): GameState {
+  const run = createRunState(20260622 + previous.stepCounter);
+  const targetDepth = Math.min(11, previous.resolvedNodeIds.length);
+  for (let depth = 0; depth < targetDepth; depth += 1) {
+    const next = getAvailableRunNodes(run)[0];
+    if (!next) break;
+    enterRunNode(run, next.id);
+    if (next.type === 'refuge') run.checkpointNodeId = next.id;
+  }
+  const activeNode = getRunNode(run);
+  return gameStateSchema.parse({
+    ...previous,
+    version: 5,
+    currentNodeId: activeNode?.id ?? run.currentNodeId,
+    visitedNodeIds: [...run.visitedNodeIds],
+    reputationHistory: [],
+    clan: {
+      ...previous.clan,
+      members: previous.clan.members.map(({ level: _level, xp: _xp, ...unit }) => unit),
+    },
+    run,
+  });
+}
+
 export class SaveRepository {
   loadAuto(): GameState | null {
-    return this.load(AUTO_KEY) ?? this.load(V3_AUTO_KEY) ?? this.load(V2_AUTO_KEY) ?? this.load(LEGACY_AUTO_KEY);
+    return this.load(AUTO_KEY) ?? this.load(V4_AUTO_KEY) ?? this.load(V3_AUTO_KEY) ?? this.load(V2_AUTO_KEY) ?? this.load(LEGACY_AUTO_KEY);
   }
 
   loadManual(): GameState | null {
-    return this.load(MANUAL_KEY) ?? this.load(V3_MANUAL_KEY) ?? this.load(V2_MANUAL_KEY) ?? this.load(LEGACY_MANUAL_KEY);
+    return this.load(MANUAL_KEY) ?? this.load(V4_MANUAL_KEY) ?? this.load(V3_MANUAL_KEY) ?? this.load(V2_MANUAL_KEY) ?? this.load(LEGACY_MANUAL_KEY);
   }
 
   saveAuto(state: GameState): void {
@@ -144,12 +179,12 @@ export class SaveRepository {
   }
 
   hasSave(): boolean {
-    return [AUTO_KEY, MANUAL_KEY, V3_AUTO_KEY, V3_MANUAL_KEY, V2_AUTO_KEY, V2_MANUAL_KEY, LEGACY_AUTO_KEY, LEGACY_MANUAL_KEY]
+    return [AUTO_KEY, MANUAL_KEY, V4_AUTO_KEY, V4_MANUAL_KEY, V3_AUTO_KEY, V3_MANUAL_KEY, V2_AUTO_KEY, V2_MANUAL_KEY, LEGACY_AUTO_KEY, LEGACY_MANUAL_KEY]
       .some((key) => localStorage.getItem(key) !== null);
   }
 
   clear(): void {
-    for (const key of [AUTO_KEY, MANUAL_KEY, V3_AUTO_KEY, V3_MANUAL_KEY, V2_AUTO_KEY, V2_MANUAL_KEY, LEGACY_AUTO_KEY, LEGACY_MANUAL_KEY]) {
+    for (const key of [AUTO_KEY, MANUAL_KEY, V4_AUTO_KEY, V4_MANUAL_KEY, V3_AUTO_KEY, V3_MANUAL_KEY, V2_AUTO_KEY, V2_MANUAL_KEY, LEGACY_AUTO_KEY, LEGACY_MANUAL_KEY]) {
       localStorage.removeItem(key);
     }
   }

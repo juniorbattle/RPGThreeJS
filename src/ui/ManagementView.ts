@@ -1,5 +1,6 @@
 import { getFinalStats, itemById, items, unitById, weaponById, weapons } from '../game/catalog';
 import { buyItem, equipAccessory, equipWeapon, excludeUnit, sellItem } from '../game/management';
+import { getReputationRule, getShopPrice } from '../game/reputation';
 import type { GameState, ItemCategory, UnitInstance } from '../game/types';
 
 type ManagementTab = 'clan' | 'inventory' | 'shop';
@@ -24,14 +25,16 @@ export class ManagementView {
   private shopId = 'valmir';
   private shopMode: 'buy' | 'sell' = 'buy';
   private shopEnabled = false;
+  private shopWallet: 'temporary' | 'permanent' = 'temporary';
 
   constructor(private readonly options: ManagementViewOptions) {}
 
-  open(initialTab: ManagementTab = 'clan', shopId?: string): Promise<void> {
+  open(initialTab: ManagementTab = 'clan', shopId?: string, shopWallet: 'temporary' | 'permanent' = 'temporary'): Promise<void> {
     this.close();
     this.shopEnabled = shopId !== undefined;
     this.tab = initialTab === 'shop' && !this.shopEnabled ? 'clan' : initialTab;
     this.shopId = shopId ?? 'valmir';
+    this.shopWallet = shopWallet;
     this.selectedUnitId = this.options.getState().clan.members[0]?.id ?? '';
     this.overlay = document.createElement('section');
     this.overlay.className = 'management';
@@ -59,7 +62,7 @@ export class ManagementView {
       <div class="management__shell">
         <header class="management__header">
           <div><p class="eyebrow">Camp du Lion</p><h2>Registre de compagnie</h2></div>
-          <div class="management__wealth"><span>OR</span><strong>${state.gold}</strong></div>
+          <div class="management__wealth"><span>BUTIN / COFFRE</span><strong>${state.run.temporaryLoot.gold} / ${state.gold}</strong></div>
           <button class="icon-button" type="button" data-action="close" aria-label="Fermer">×</button>
         </header>
         <nav class="management__tabs">
@@ -94,7 +97,7 @@ export class ManagementView {
       return `
         <button type="button" class="roster-card ${unit.id === selected.id ? 'is-active' : ''}" data-unit="${unit.id}">
           <img src="${def.portrait}" alt="">
-          <span><strong>${unit.name}</strong><small>${def.className} · niv. ${unit.level}</small></span>
+          <span><strong>${unit.name}</strong><small>${def.className}</small></span>
           ${unit.narrativeLocked ? '<i title="Unité narrative">◆</i>' : ''}
         </button>`;
     }).join('');
@@ -104,7 +107,7 @@ export class ManagementView {
         <article class="unit-sheet">
           <div class="unit-sheet__hero">
             <img src="${definition.portrait}" alt="${selected.name}">
-            <div><p class="eyebrow">${definition.className}</p><h3>${selected.name}</h3><span>Niveau ${selected.level} · ${selected.xp} XP</span></div>
+            <div><p class="eyebrow">${definition.className}</p><h3>${selected.name}</h3><span>Progression par équipement</span></div>
           </div>
           <div class="stat-grid">
             ${this.stat('PV', stats.maxHealth)}${this.stat('FOR', stats.strength)}
@@ -192,13 +195,14 @@ export class ManagementView {
     const rows = source.filter(([, quantity]) => quantity > 0).map(([id, quantity]) => {
       const item = itemById.get(id);
       if (!item) return '';
-      const price = this.shopMode === 'buy' ? item.price : Math.floor(item.price / 2);
-      const disabled = this.shopMode === 'buy' && state.gold < price;
+      const price = this.shopMode === 'buy' ? getShopPrice(item.price, state.reputation) : Math.floor(item.price / 2);
+      const availableGold = this.shopWallet === 'temporary' ? state.run.temporaryLoot.gold : state.gold;
+      const disabled = this.shopMode === 'buy' && availableGold < price;
       const action = `<button type="button" data-trade="${this.shopMode}" data-item="${id}" ${disabled ? 'disabled' : ''}>${price} or</button>`;
       return this.itemRow(id, quantity, action);
     }).join('');
     return `<div class="shop-view">
-      <div class="shop-view__intro"><div><p class="eyebrow">Échoppe de Valmir</p><h3>Le Comptoir du Cerf</h3></div>
+      <div class="shop-view__intro"><div><p class="eyebrow">Échoppe de Valmir · ${getReputationRule(state.reputation).label}</p><h3>Le Comptoir du Cerf</h3><small>Les achats utilisent ${this.shopWallet === 'temporary' ? 'le butin non sécurisé' : 'le coffre permanent'}.</small></div>
         <div class="shop-toggle">
           <button type="button" data-shop-mode="buy" class="${this.shopMode === 'buy' ? 'is-active' : ''}">Acheter</button>
           <button type="button" data-shop-mode="sell" class="${this.shopMode === 'sell' ? 'is-active' : ''}">Vendre</button>
@@ -253,8 +257,8 @@ export class ManagementView {
       button.addEventListener('click', () => {
         const itemId = button.dataset.item ?? '';
         const ok = button.dataset.trade === 'buy'
-          ? buyItem(this.options.getState(), this.shopId, itemId)
-          : sellItem(this.options.getState(), this.shopId, itemId);
+          ? buyItem(this.options.getState(), this.shopId, itemId, this.shopWallet === 'temporary')
+          : sellItem(this.options.getState(), this.shopId, itemId, this.shopWallet === 'temporary');
         if (ok) this.changed();
       });
     });

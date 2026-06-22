@@ -8,16 +8,16 @@ export const weapons: WeaponDefinition[] = [
   { id: 'steel_sword', name: 'Épée d’acier', description: 'Une lame équilibrée et plus mordante.', category: 'weapons', price: 170, icon: '⚔', type: 'sword', damage: 25, range: 1, accuracyBonus: 7, critBonus: 5 },
   { id: 'iron_dagger', name: 'Dague de fer', description: 'Rapide et précise à courte portée.', category: 'weapons', price: 75, icon: '†', type: 'dagger', damage: 12, range: 1, accuracyBonus: 15, critBonus: 10 },
   { id: 'battle_axe', name: 'Hache de bataille', description: 'Lourde, brutale et moins précise.', category: 'weapons', price: 190, icon: '◆', type: 'axe', damage: 28, range: 1, accuracyBonus: -10, critBonus: 15 },
-  { id: 'wooden_spear', name: 'Lance de frêne', description: 'Permet de frapper à deux cases.', category: 'weapons', price: 110, icon: '↟', type: 'spear', damage: 15, range: 2, accuracyBonus: 0, critBonus: 5 },
+  { id: 'wooden_spear', name: 'Lance de frêne', description: 'Permet de frapper à deux cases.', category: 'weapons', price: 110, icon: '↟', type: 'spear', damage: 15, range: 2, accuracyBonus: 0, critBonus: 5, skillModifier: { grants: ['charge'] } },
   { id: 'short_bow', name: 'Arc court', description: 'Arc mobile pour les engagements proches.', category: 'weapons', price: 120, icon: '⌁', type: 'bow', damage: 14, range: 4, minRange: 2, accuracyBonus: 0, critBonus: 5 },
-  { id: 'long_bow', name: 'Arc long', description: 'Excellente portée et puissance accrue.', category: 'weapons', price: 230, icon: '⌁', type: 'bow', damage: 22, range: 6, minRange: 3, accuracyBonus: 5, critBonus: 10 },
+  { id: 'long_bow', name: 'Arc long', description: 'Excellente portée et puissance accrue.', category: 'weapons', price: 230, icon: '⌁', type: 'bow', damage: 22, range: 4, minRange: 2, accuracyBonus: 5, critBonus: 10, skillModifier: { grants: ['pierce_shot'] } },
   { id: 'wooden_staff', name: 'Bâton d’apprenti', description: 'Canalise les sorts élémentaires.', category: 'weapons', price: 100, icon: '✦', type: 'staff', damage: 10, range: 2, accuracyBonus: 10, critBonus: 0 },
-  { id: 'mystic_staff', name: 'Bâton mystique', description: 'Bois ancien saturé de mana.', category: 'weapons', price: 260, icon: '✦', type: 'staff', damage: 18, range: 3, accuracyBonus: 15, critBonus: 5 },
+  { id: 'mystic_staff', name: 'Bâton mystique', description: 'Bois ancien saturé de mana.', category: 'weapons', price: 260, icon: '✦', type: 'staff', damage: 18, range: 3, accuracyBonus: 15, critBonus: 5, skillModifier: { grants: ['flame_wave'] } },
   { id: 'war_mace', name: 'Masse consacrée', description: 'Arme robuste des guérisseurs du Lion.', category: 'weapons', price: 130, icon: '✚', type: 'mace', damage: 16, range: 1, accuracyBonus: 5, critBonus: 3 },
 ];
 
 export const items: ItemDefinition[] = [
-  { id: 'strength_ring', name: 'Anneau de Force', description: 'Augmente la force de 5.', category: 'accessories', icon: '◇', price: 100, modifiers: { strength: 5 } },
+  { id: 'strength_ring', name: 'Anneau de Force', description: 'Augmente la force de 5.', category: 'accessories', icon: '◇', price: 100, modifiers: { strength: 5 }, skillModifier: { grants: ['heavy'] } },
   { id: 'magic_pendant', name: 'Pendentif magique', description: 'Augmente la magie de 5.', category: 'accessories', icon: '◇', price: 120, modifiers: { magic: 5 } },
   { id: 'life_belt', name: 'Ceinture de Vie', description: 'Augmente les PV de 20.', category: 'accessories', icon: '▰', price: 80, modifiers: { maxHealth: 20 } },
   { id: 'agility_boots', name: 'Bottes d’agilité', description: 'Augmente la dextérité de 5.', category: 'accessories', icon: '⌁', price: 150, modifiers: { dexterity: 5 } },
@@ -35,35 +35,35 @@ export const units: UnitDefinition[] = [
   {
     id: 'knight', name: 'Alistair', className: 'Chevalier', combatKind: 'knight',
     portrait: '/assets/portraits/alistair.png',
-    baseStats: { maxHealth: 140, strength: 18, magic: 5, endurance: 15, dexterity: 10, charisma: 12, moveRange: 4, jumpHeight: 1 },
+    baseStats: { maxHealth: 140, strength: 18, magic: 5, endurance: 15, dexterity: 10, charisma: 12, moveRange: 2 },
     weaponSlotCount: 2,
     allowedWeaponIds: ['iron_sword', 'steel_sword', 'wooden_spear'], skillIds: ['whirl', 'bulwark', 'provoke', 'charge'],
   },
   {
     id: 'cleric', name: 'Marian', className: 'Clerc', combatKind: 'cleric',
     portrait: '/assets/portraits/marian.png',
-    baseStats: { maxHealth: 105, strength: 8, magic: 22, endurance: 13, dexterity: 11, charisma: 18, moveRange: 3, jumpHeight: 1 },
+    baseStats: { maxHealth: 105, strength: 8, magic: 22, endurance: 13, dexterity: 11, charisma: 18, moveRange: 2 },
     weaponSlotCount: 1,
     allowedWeaponIds: ['war_mace', 'wooden_staff', 'mystic_staff'], skillIds: ['heal', 'regen', 'bless', 'revive'],
   },
   {
     id: 'mage', name: 'Elara', className: 'Mage', combatKind: 'mage',
     portrait: '/assets/portraits/elara.png',
-    baseStats: { maxHealth: 80, strength: 5, magic: 26, endurance: 8, dexterity: 12, charisma: 15, moveRange: 3, jumpHeight: 1 },
+    baseStats: { maxHealth: 80, strength: 5, magic: 26, endurance: 8, dexterity: 12, charisma: 15, moveRange: 2 },
     weaponSlotCount: 1,
     allowedWeaponIds: ['wooden_staff', 'mystic_staff'], skillIds: ['fireball', 'curse', 'flame_wave', 'blink'],
   },
   {
     id: 'archer', name: 'Kestrel', className: 'Archère', combatKind: 'archer',
     portrait: '/assets/portraits/kestrel.png',
-    baseStats: { maxHealth: 100, strength: 15, magic: 5, endurance: 10, dexterity: 20, charisma: 10, moveRange: 4, jumpHeight: 2 },
+    baseStats: { maxHealth: 100, strength: 15, magic: 5, endurance: 10, dexterity: 20, charisma: 10, moveRange: 3 },
     weaponSlotCount: 2,
     allowedWeaponIds: ['short_bow', 'long_bow', 'iron_dagger'], skillIds: ['weaken', 'blind_shot', 'pierce_shot', 'leap'],
   },
   {
     id: 'cedric', name: 'Cedric', className: 'Éclaireur', combatKind: 'archer',
     portrait: '/assets/portraits/kestrel.png',
-    baseStats: { maxHealth: 115, strength: 17, magic: 4, endurance: 11, dexterity: 22, charisma: 10, moveRange: 4, jumpHeight: 2 },
+    baseStats: { maxHealth: 115, strength: 17, magic: 4, endurance: 11, dexterity: 22, charisma: 10, moveRange: 3 },
     weaponSlotCount: 2,
     allowedWeaponIds: ['short_bow', 'long_bow', 'iron_dagger'], skillIds: ['weaken', 'blind_shot', 'leap'],
   },
@@ -87,8 +87,6 @@ export function createUnitInstance(definitionId: string, narrativeLocked = false
     id: definitionId,
     definitionId: definition.id,
     name: definition.name,
-    level: 1,
-    xp: 0,
     narrativeLocked,
     equipment: {
       weaponIds: (defaultWeapons[definition.id] ?? definition.allowedWeaponIds.slice(0, definition.weaponSlotCount))
@@ -104,15 +102,7 @@ export function getItemCategory(itemId: string): ItemCategory | null {
 
 export function getFinalStats(unit: UnitInstance): UnitStats {
   const definition = unitById.get(unit.definitionId) ?? units[0]!;
-  const levelScale = Math.max(0, unit.level - 1);
-  const result: UnitStats = {
-    ...definition.baseStats,
-    maxHealth: definition.baseStats.maxHealth + levelScale * 8,
-    strength: definition.baseStats.strength + levelScale,
-    magic: definition.baseStats.magic + levelScale,
-    endurance: definition.baseStats.endurance + Math.floor(levelScale / 2),
-    dexterity: definition.baseStats.dexterity + Math.floor(levelScale / 2),
-  };
+  const result: UnitStats = { ...definition.baseStats };
   for (const accessoryId of unit.equipment.accessoryIds) {
     const modifiers = accessoryId ? itemById.get(accessoryId)?.modifiers : undefined;
     if (!modifiers) continue;
@@ -123,6 +113,24 @@ export function getFinalStats(unit: UnitInstance): UnitStats {
   return result;
 }
 
+export function getResolvedSkills(unit: UnitInstance): string[] {
+  const definition = unitById.get(unit.definitionId) ?? units[0]!;
+  const result = new Set(definition.skillIds);
+  const equipmentIds = [
+    ...unit.equipment.weaponIds,
+    ...unit.equipment.accessoryIds.filter((id): id is string => Boolean(id)),
+  ];
+  for (const itemId of equipmentIds) {
+    const modifier = itemById.get(itemId)?.skillModifier;
+    if (!modifier) continue;
+    for (const [source, replacement] of Object.entries(modifier.replaces ?? {})) {
+      if (result.delete(source)) result.add(replacement);
+    }
+    for (const skillId of modifier.grants ?? []) result.add(skillId);
+  }
+  return [...result];
+}
+
 export function toCombatant(unit: UnitInstance): CombatantPayload {
   const definition = unitById.get(unit.definitionId) ?? units[0]!;
   return {
@@ -130,12 +138,10 @@ export function toCombatant(unit: UnitInstance): CombatantPayload {
     name: unit.name,
     kind: definition.combatKind,
     portrait: definition.portrait,
-    level: unit.level,
-    xp: unit.xp,
     stats: getFinalStats(unit),
     weapons: unit.equipment.weaponIds
       .map((weaponId) => weaponById.get(weaponId))
       .filter((weapon): weapon is WeaponDefinition => weapon !== undefined),
-    skills: definition.skillIds,
+    skills: getResolvedSkills(unit),
   };
 }

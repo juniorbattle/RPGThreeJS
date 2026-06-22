@@ -23,11 +23,11 @@ const rawNodes: CampaignNode[] = [
 ];
 
 const rawCombats: CombatConfig[] = [
-  { id: 'village_defense', objective: 'Repoussez les pillards et protégez Valmir.', encounterLabel: 'Défense de Valmir', maxPlayerUnits: 5, rewards: { gold: 140, reputation: 10 } },
+  { id: 'village_defense', objective: 'Repoussez les pillards et protégez Valmir.', encounterLabel: 'Défense de Valmir', maxPlayerUnits: 4, rewards: { gold: 140, reputation: 10 } },
   { id: 'village_raid', objective: 'Éliminez les témoins et sécurisez les coffres.', encounterLabel: 'Raid sur Valmir', maxPlayerUnits: 4, rewards: { gold: 300, reputation: -15 } },
   { id: 'forest_patrol', objective: 'Éliminez la patrouille Serpent avant qu’elle ne donne l’alerte.', encounterLabel: 'Patrouille Serpent', maxPlayerUnits: 4, rewards: { gold: 90, reputation: 2 } },
-  { id: 'forest_ambush', objective: 'Survivez à l’embuscade dans le sous-bois.', encounterLabel: 'Embuscade', maxPlayerUnits: 3, rewards: { gold: 75, reputation: 4 } },
-  { id: 'lion_chief', objective: 'Survivez à la colère du Chef du Lion.', encounterLabel: 'Duel pour le Sceau', maxPlayerUnits: 3, rewards: { gold: 0, reputation: 0 } },
+  { id: 'forest_ambush', objective: 'Survivez à l’embuscade dans le sous-bois.', encounterLabel: 'Embuscade', maxPlayerUnits: 4, rewards: { gold: 75, reputation: 4 } },
+  { id: 'lion_chief', objective: 'Survivez à la colère du Chef du Lion.', encounterLabel: 'Duel pour le Sceau', maxPlayerUnits: 4, rewards: { gold: 0, reputation: 0 } },
 ];
 
 const rawDialogues: DialogueSequence[] = [

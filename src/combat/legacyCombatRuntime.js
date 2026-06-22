@@ -11,10 +11,12 @@ import { canStartDeployment, normalizeDeploymentLimit, orderDeploymentCandidates
 import { getUnitVisualState } from './unitVisualState';
 import { createBrokenColumn, createFallenLog, createForestStump, createLanternPost, createMossyRock, createShrineStone } from './forestProps';
 import { createForestEnvironment, loadForestMaterialTextures } from './forestEnvironment';
+import { BackgroundLayerSystem } from '../render/BackgroundLayerSystem';
+import { forestCombatBackground } from '../render/combatBackgrounds';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
-  W:16, D:8, TILE:1, LEVEL:0.5,
+  W:8, D:4, TILE:1.18,
   COL:{ grassA:0x6f9a4a, grassB:0x5d8a3e, dirt:0x7a5a3a, stone:0x8f8f9c, stone2:0x767688,
         water:0x2f6fa6, wood:0x6b4a2a, sky1:0x2a3a6a, sky2:0xe9a86a, move:0x49b6ff, foe:0xff5a4a, ally:0xffb347, path:0xffe08a }
 };
@@ -42,8 +44,7 @@ let PREFERRED_UNIT_IDS=[];
 let REDUCED_GRAPHICS=campaignParams.get('reduced')==='1';
 const notifyCampaignResult=victory=>window.parent.postMessage({
   type:'rpg-threejs:combat-result',victory,combatId:COMBAT_ID,inventory:G.inv,
-  participants:G.deployedUnits.map(u=>u.campaignId||u.name),
-  progress:G.deployedUnits.map(u=>({unitId:u.campaignId||u.name,level:u.level||1,xp:u.xp||0}))
+  participants:G.deployedUnits.map(u=>u.campaignId||u.name)
 },location.origin);
 
 // ============================= GAME STATE =============================
@@ -87,7 +88,7 @@ scene.background=new THREE.Color(0x657f88);
 scene.fog=new THREE.FogExp2(0x61766f, 0.018);
 
 const camera=new THREE.PerspectiveCamera(33, innerWidth/innerHeight, 0.1, 200);
-const cam={ yaw:0, dist:14.5, height:8.4, tx:0, ty:0.7, tz:0 };
+const cam={ yaw:0, dist:11.2, height:7.2, tx:0, ty:0.7, tz:0 };
 function applyCam(){
   const x=Math.sin(cam.yaw)*cam.dist, z=Math.cos(cam.yaw)*cam.dist;
   let sx=0,sy=0; if(G.shake&&G.shake.t<G.shake.dur){ const k=(1-G.shake.t/G.shake.dur)*G.shake.mag; sx=(Math.random()*2-1)*k; sy=(Math.random()*2-1)*k; }
@@ -207,7 +208,7 @@ function outlineCanvas(cv,S,c){ const w=cv.width,h=cv.height; const sd=cv.getCon
 function buildSprites(){
   for(const k in PAL){
     const {cv,GW,S}=drawUnit(k); const ocv=outlineCanvas(cv,S,[22,16,30]);
-    SPR[k]={ tex:texFromCanvas(ocv), w:GW/30*2.7, h:2.7, ar:GW/30 };
+    SPR[k]={ tex:texFromCanvas(ocv), w:GW/30*1.9, h:1.9, ar:GW/30 };
     const pc=document.createElement('canvas'); pc.width=14*S; pc.height=20*S;
     const px=pc.getContext('2d'); px.imageSmoothingEnabled=false;
     px.fillStyle='#1a1f30'; px.fillRect(0,0,pc.width,pc.height);
@@ -222,19 +223,9 @@ const hlGroup=new THREE.Group(); scene.add(hlGroup);
 const G_timeMats=[];
 const wX=gx=>(gx-(CFG.W-1)/2)*CFG.TILE;
 const wZ=gz=>(gz-(CFG.D-1)/2)*CFG.TILE;
-const tileTop=(gx,gz)=> (G.grid[gx]&&G.grid[gx][gz])?G.grid[gx][gz].level*CFG.LEVEL:0;
+const tileTop=(gx,gz)=> (G.grid[gx]&&G.grid[gx][gz])?G.grid[gx][gz].topY:0;
 const inBounds=(gx,gz)=>gx>=0&&gz>=0&&gx<CFG.W&&gz<CFG.D;
 const cellAt=(gx,gz)=>inBounds(gx,gz)?G.grid[gx][gz]:null;
-
-function levelAt(gx,gz){
-  if((gx===2||gx===3)&&gz>=1&&gz<=6) return 1;     // ridge gauche
-  if((gx===12||gx===13)&&gz>=1&&gz<=6) return 1;    // ridge droite
-  if((gx===7||gx===8)&&(gz===3||gz===4)) return 1;  // estrade centrale
-  if(gx===0&&(gz<=1||gz>=6)) return 2;              // rochers
-  if(gx===15&&(gz<=1||gz>=6)) return 2;
-  return 0;
-}
-const WATER=new Set(['5,6','6,6','5,7','6,7']);
 
 function mat(top,side){ return [side,side,top,side,side,side]; }
 function makeShortGrassGeometry(){
@@ -255,8 +246,7 @@ function buildPlayableGrass(){
   const random=mulberry32(42817), placements=[];
   for(let gx=0;gx<CFG.W;gx++)for(let gz=0;gz<CFG.D;gz++){
     const c=cellAt(gx,gz); if(!c||!c.walkable)continue;
-    const stone=c.level>0&&(gx===7||gx===8);
-    const density=stone?1:((gx<2||gx>13||gz===0||gz===7)?4:3);
+    const density=(gx<1||gx>6||gz===0||gz===3)?3:2;
     for(let i=0;i<density;i++)placements.push({
       x:wX(gx)+(random()-.5)*.76,y:c.topY+.012,z:wZ(gz)+(random()-.5)*.76,
       r:random()*Math.PI*2,s:.68+random()*.78,col:random()
@@ -284,9 +274,8 @@ function buildGridOverlay(){
 function buildTerrainFoundation(grassMap,stoneMap){
   const shape=new THREE.Shape();
   const outline=[
-    [-8.72,-4.1],[-6.2,-4.42],[-3.4,-4.28],[-1.3,-4.5],[1.2,-4.34],[3.7,-4.48],[6.25,-4.25],[8.7,-4.05],
-    [8.98,-2.2],[8.82,.1],[9.05,2.1],[8.68,4.18],[6.15,4.5],[3.5,4.32],[1.1,4.52],[-1.5,4.35],[-3.9,4.55],[-6.25,4.3],[-8.8,4.05],
-    [-9.02,2.05],[-8.82,.05],[-9.05,-2.05]
+    [-5.25,-3.15],[-2.8,-3.35],[0,-3.2],[2.8,-3.36],[5.25,-3.12],
+    [5.48,0],[5.22,3.12],[2.7,3.34],[0,3.22],[-2.8,3.36],[-5.25,3.1],[-5.48,0]
   ];
   outline.forEach(([x,z],i)=>i?shape.lineTo(x,z):shape.moveTo(x,z));
   shape.closePath();
@@ -305,6 +294,8 @@ function buildTerrainFoundation(grassMap,stoneMap){
   worldRoot.add(meadow);
 }
 async function buildWorld(){
+  G.backgroundLayers=new BackgroundLayerSystem(scene);
+  await G.backgroundLayers.load(forestCombatBackground);
   const painted=await loadForestMaterialTextures();
   const grassMapA=painted.grass.clone(); grassMapA.needsUpdate=true; grassMapA.offset.set(.08,.17);
   const grassMapB=painted.grass.clone(); grassMapB.needsUpdate=true; grassMapB.offset.set(.53,.41);
@@ -318,11 +309,11 @@ async function buildWorld(){
   const geoCache={};
   for(let gx=0;gx<CFG.W;gx++){ G.grid[gx]=[];
     for(let gz=0;gz<CFG.D;gz++){
-      const water=WATER.has(gx+','+gz);
-      const lv=water?0:levelAt(gx,gz);
-      const top=lv*CFG.LEVEL, bh=.18+top, key=bh.toFixed(2);
+      const water=false;
+      const lv=0;
+      const top=0, bh=.18, key='flat';
       const geo=geoCache[key]||(geoCache[key]=new RoundedBoxGeometry(CFG.TILE*0.985,bh,CFG.TILE*0.985,3,0.075));
-      const stone=lv>=1&&(gx===7||gx===8);
+      const stone=false;
       const sideMaterial=water?new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false}):(stone?stoneSide:dirtSide);
       const topMaterial=water||stone?stoneTop:((gx+gz)%2?grassTop:grassTop2);
       const m=new THREE.Mesh(geo,sideMaterial);
@@ -330,7 +321,7 @@ async function buildWorld(){
       m.receiveShadow=true; m.castShadow=lv>0;
       m.userData={gx,gz}; worldRoot.add(m);
       G.tilesMesh.push(m);
-      G.grid[gx][gz]={gx,gz,level:lv,walkable:!water,water,topY:top,mesh:m,occupant:null};
+      G.grid[gx][gz]={gx,gz,walkable:true,topY:top,mesh:m,occupant:null};
       if(!water){
         const capGeo=new THREE.PlaneGeometry(CFG.TILE*.998,CFG.TILE*.998);
         const uv=capGeo.attributes.uv;
@@ -370,17 +361,17 @@ function buildGodRays(){ G.rays=[]; const baseTex=makeRayTex();
   glow.position.set(-7,11.5,-15); glow.renderOrder=1; scene.add(glow);
   G.rays.push({mat:glow.material,map:null,base:0.55,spd:0,pulse:0.5,amp:0.12,ph:1.5}); }
 function buildProps(){
-  const addAt=(gx,gz,obj,yoff=0)=>{ const c=cellAt(gx,gz); if(!c)return; obj.position.set(wX(gx),c.topY+yoff,wZ(gz)); obj.castShadow=true; obj.receiveShadow=true; worldRoot.add(obj); c.walkable=false; c.prop=true; };
-  addAt(1,3,createForestStump());
-  addAt(14,4,createForestStump());
-  addAt(6,1,createFallenLog());
-  addAt(1,4,createMossyRock(1));
-  addAt(14,3,createMossyRock(2));
-  addAt(9,6,createBrokenColumn());
-  addAt(10,1,createBrokenColumn());
-  addAt(15,5,createShrineStone());
-  addAt(4,0,createLanternPost());
-  addAt(11,7,createLanternPost());
+  const place=(obj,x,z,rotation=0,scale=1)=>{ obj.position.set(x,-.02,z);obj.rotation.y=rotation;obj.scale.setScalar(scale);obj.castShadow=true;obj.receiveShadow=true;worldRoot.add(obj); };
+  place(createForestStump(),-5.1,-2.3,.25,1.1);
+  place(createForestStump(),5.0,2.2,-.4,.9);
+  place(createFallenLog(),0,3.25,.05,1.1);
+  place(createMossyRock(1),-4.8,1.8,.4,1.15);
+  place(createMossyRock(2),4.9,-1.9,-.2,1.05);
+  place(createBrokenColumn(),-3.2,-3.05,.35,.9);
+  place(createBrokenColumn(),3.35,3.0,-.25,.85);
+  place(createShrineStone(),5.05,.2,-.1,.9);
+  place(createLanternPost(),-4.95,-.25,0,.9);
+  place(createLanternPost(),4.9,.5,Math.PI,.9);
 }
 
 function buildDust(){
@@ -408,35 +399,34 @@ function moveCursor(gx,gz){ const c=cellAt(gx,gz); if(!c){cursorMesh.visible=fal
 const SKILLS={
   whirl:{name:'Coup Tournoyant',ap:2,type:'phys',power:9,range:[0,0],radius:1,self:true,offensive:true,acc:0.95,desc:'Frappe en cercle autour de soi (touche les alliés).'},
   bulwark:{name:'Rempart',ap:2,type:'buff',power:0,range:[0,0],radius:1.3,self:true,support:true,status:'barrier',statusTurns:3,desc:'Barrière : +END aux alliés proches (3 tours).'},
-  provoke:{name:'Provocation',ap:1,type:'debuff',power:0,range:[1,3],radius:1.6,offensive:true,acc:1,status:'taunt',statusTurns:2,desc:'Force les ennemis proches à vous cibler (2 tours).'},
-  weaken:{name:'Flèche Affaiblissante',ap:1,type:'phys',power:7,range:[2,4],radius:0,offensive:true,acc:0.9,status:'slow',statusTurns:2,desc:'Tir unique + Ralentissement.'},
-  blind_shot:{name:'Tir Aveuglant',ap:2,type:'phys',power:6,range:[2,5],radius:0,offensive:true,acc:0.9,status:'blind',statusTurns:3,desc:'Tir qui réduit la précision (3 tours).'},
-  pierce_shot:{name:'Tir Perçant',ap:2,type:'phys',power:9,range:[2,4],radius:2,shape:'line',offensive:true,acc:0.9,desc:'Flèche traversante alignée sur la cible (ligne).'},
-  fireball:{name:'Boule de Feu',ap:3,type:'mag',power:13,range:[2,5],radius:1.5,offensive:true,acc:0.85,status:'burn',statusTurns:2,desc:'Explosion de feu en zone (touche les alliés).'},
-  flame_wave:{name:'Vague de Flammes',ap:3,type:'mag',power:11,range:[1,1],radius:2.4,shape:'cone',offensive:true,acc:0.9,status:'burn',statusTurns:2,desc:'Cône de feu devant le lanceur (touche les alliés).'},
-  bolt:{name:'Éclair Sombre',ap:3,type:'mag',power:12,range:[1,5],radius:1,offensive:true,acc:0.9,desc:'Décharge magique en zone.'},
-  curse:{name:'Malédiction',ap:2,type:'debuff',power:0,range:[1,5],radius:1,offensive:true,acc:1,status:'curse',statusTurns:3,desc:'Réduit la défense (END) des ennemis (zone, 3 tours).'},
-  heal:{name:'Lumière Salvatrice',ap:2,type:'heal',power:1.2,range:[0,4],radius:1,support:true,desc:'Soigne les alliés dans la zone.'},
-  regen:{name:'Régénération',ap:2,type:'buff',power:0,range:[0,4],radius:1,support:true,status:'regen',statusTurns:3,desc:'Régénère les PV des alliés chaque tour (3 tours).'},
-  bless:{name:'Bénédiction',ap:2,type:'buff',power:0,range:[0,4],radius:1,support:true,status:'boost',statusTurns:3,desc:'+FOR/+MAG aux alliés (3 tours).'},
+  provoke:{name:'Provocation',ap:1,type:'debuff',power:0,range:[1,2],radius:1.2,offensive:true,acc:1,status:'taunt',statusTurns:2,desc:'Force les ennemis proches à vous cibler (2 tours).'},
+  weaken:{name:'Flèche Affaiblissante',ap:1,type:'phys',power:7,range:[2,3],radius:0,offensive:true,acc:0.9,status:'slow',statusTurns:2,desc:'Tir unique + Ralentissement.'},
+  blind_shot:{name:'Tir Aveuglant',ap:2,type:'phys',power:6,range:[2,4],radius:0,offensive:true,acc:0.9,status:'blind',statusTurns:3,desc:'Tir qui réduit la précision (3 tours).'},
+  pierce_shot:{name:'Tir Perçant',ap:2,type:'phys',power:9,range:[2,4],radius:1,shape:'line',offensive:true,acc:0.9,desc:'Flèche traversante alignée sur la cible (ligne).'},
+  fireball:{name:'Boule de Feu',ap:3,type:'mag',power:13,range:[2,4],radius:1,offensive:true,acc:0.85,status:'burn',statusTurns:2,desc:'Explosion de feu en zone (touche les alliés).'},
+  flame_wave:{name:'Vague de Flammes',ap:3,type:'mag',power:11,range:[1,1],radius:1.6,shape:'cone',offensive:true,acc:0.9,status:'burn',statusTurns:2,desc:'Cône de feu devant le lanceur (touche les alliés).'},
+  bolt:{name:'Éclair Sombre',ap:3,type:'mag',power:12,range:[1,4],radius:1,offensive:true,acc:0.9,desc:'Décharge magique en zone.'},
+  curse:{name:'Malédiction',ap:2,type:'debuff',power:0,range:[1,4],radius:1,offensive:true,acc:1,status:'curse',statusTurns:3,desc:'Réduit la défense (END) des ennemis (zone, 3 tours).'},
+  heal:{name:'Lumière Salvatrice',ap:2,type:'heal',power:1.2,range:[0,3],radius:1,support:true,desc:'Soigne les alliés dans la zone.'},
+  regen:{name:'Régénération',ap:2,type:'buff',power:0,range:[0,3],radius:1,support:true,status:'regen',statusTurns:3,desc:'Régénère les PV des alliés chaque tour (3 tours).'},
+  bless:{name:'Bénédiction',ap:2,type:'buff',power:0,range:[0,3],radius:1,support:true,status:'boost',statusTurns:3,desc:'+FOR/+MAG aux alliés (3 tours).'},
   revive:{name:'Résurrection',ap:4,type:'revive',power:0.5,range:[1,1],radius:0,support:true,desc:'Relève un allié K.O. à 50% PV.'},
   heavy:{name:'Coup Lourd',ap:2,type:'phys',power:11,range:[1,1],radius:1,offensive:true,acc:0.95,status:'stun',statusTurns:1,desc:'Choc de zone qui étourdit (1 tour).'},
-  blink:{name:'Clignotement',ap:2,type:'move',mode:'teleport',dest:true,range:[2,4],radius:0,desc:'Se téléporte sur une case libre (ignore le terrain et les unités).'},
-  leap:{name:'Bond',ap:1,type:'move',mode:'leap',dest:true,range:[2,3],radius:0,desc:'Saute par-dessus obstacles et unités vers une case libre.'},
-  charge:{name:'Charge',ap:2,type:'move',mode:'dash',dest:true,range:[2,4],radius:0,power:8,impact:{status:'stun',statusTurns:1},desc:'Fonce en ligne droite; bouscule et étourdit les ennemis autour de l\'arrivée.'}
+  blink:{name:'Clignotement',ap:2,type:'move',mode:'teleport',dest:true,range:[2,3],radius:0,desc:'Se repositionne instantanément sur une case libre.'},
+  leap:{name:'Bond',ap:1,type:'move',mode:'leap',dest:true,range:[2,3],radius:0,desc:'Repositionnement rapide vers une case libre.'},
+  charge:{name:'Charge',ap:2,type:'move',mode:'dash',dest:true,range:[2,3],radius:0,power:8,impact:{status:'stun',statusTurns:1},desc:'Fonce en ligne droite et étourdit près de l’arrivée.'}
 };
 
 // ============================= UNIT DEFINITIONS =============================
 const DEFS=[
-  {team:'player',kind:'knight', name:'Chevalier',hp:130,str:24,mag:4, end:20,dex:9, cha:10,mov:3,jump:1, weapons:[{name:'Épée',icon:'⚔️',type:'phys',min:1,max:1,power:10,crit:0.10,acc:0.95},{name:'Hache',icon:'🪓',type:'phys',min:1,max:1,power:15,crit:0.16,acc:0.80}], skills:['whirl','bulwark','provoke','charge'], gx:3,gz:4},
-  {team:'player',kind:'cleric', name:'Clerc',    hp:90, str:8, mag:20,end:13,dex:11,cha:18,mov:3,jump:1, weapons:[{name:'Masse',icon:'🔨',type:'phys',min:1,max:1,power:8,crit:0.06,acc:0.92}], skills:['heal','regen','bless','revive'], gx:2,gz:3},
-  {team:'player',kind:'mage',   name:'Mage',     hp:70, str:4, mag:26,end:9, dex:12,cha:10,mov:3,jump:1, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:2,power:8,crit:0.06,acc:0.95}], skills:['fireball','curse','flame_wave','blink'], gx:1,gz:2},
-  {team:'player',kind:'archer', name:'Archère',  hp:80, str:18,mag:5, end:11,dex:18,cha:9, mov:4,jump:2, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:8,crit:0.22,acc:0.95},{name:'Arc',icon:'🏹',type:'phys',min:2,max:4,power:9,crit:0.10,acc:0.92}], skills:['weaken','blind_shot','pierce_shot','leap'], gx:1,gz:5},
-  {team:'foe',kind:'brigand', name:'Brigand',  hp:90, str:18,mag:4, end:11,dex:14,cha:6, mov:3,jump:1, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}], skills:[], ai:'aggressive', gx:12,gz:2},
-  {team:'foe',kind:'brigand', name:'Brigand',  hp:90, str:18,mag:4, end:11,dex:14,cha:6, mov:3,jump:1, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}], skills:[], ai:'aggressive', gx:12,gz:5},
-  {team:'foe',kind:'brute',   name:'Brute',    hp:130,str:22,mag:4, end:16,dex:7, cha:5, mov:3,jump:1, weapons:[{name:'Massue',icon:'🏏',type:'phys',min:1,max:1,power:13,crit:0.05,acc:0.85}], skills:['heavy'], ai:'guardian', gx:13,gz:4},
-  {team:'foe',kind:'darkmage',name:'Mage Noir',hp:70, str:4, mag:22,end:10,dex:12,cha:8, mov:3,jump:1, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:2,power:8,crit:0.05,acc:0.95}], skills:['bolt','curse'], ai:'cautious', gx:15,gz:3},
-  {team:'foe',kind:'darkmage',name:'Chaman',   hp:64, str:4, mag:18,end:10,dex:13,cha:16,mov:3,jump:1, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:2,power:7,crit:0.05,acc:0.95}], skills:['heal','regen'], ai:'healer', gx:15,gz:6}
+  {team:'player',kind:'knight', name:'Chevalier',hp:130,str:24,mag:4, end:20,dex:9, cha:10,mov:2, weapons:[{name:'Épée',icon:'⚔️',type:'phys',min:1,max:1,power:10,crit:0.10,acc:0.95},{name:'Hache',icon:'🪓',type:'phys',min:1,max:1,power:15,crit:0.16,acc:0.80}], skills:['whirl','bulwark','provoke','charge'], gx:0,gz:0},
+  {team:'player',kind:'cleric', name:'Clerc',    hp:90, str:8, mag:20,end:13,dex:11,cha:18,mov:2, weapons:[{name:'Masse',icon:'🔨',type:'phys',min:1,max:1,power:8,crit:0.06,acc:0.92}], skills:['heal','regen','bless','revive'], gx:0,gz:1},
+  {team:'player',kind:'mage',   name:'Mage',     hp:70, str:4, mag:26,end:9, dex:12,cha:10,mov:2, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:2,power:8,crit:0.06,acc:0.95}], skills:['fireball','curse','flame_wave','blink'], gx:1,gz:2},
+  {team:'player',kind:'archer', name:'Archère',  hp:80, str:18,mag:5, end:11,dex:18,cha:9, mov:3, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:8,crit:0.22,acc:0.95},{name:'Arc',icon:'🏹',type:'phys',min:2,max:4,power:9,crit:0.10,acc:0.92}], skills:['weaken','blind_shot','pierce_shot','leap'], gx:1,gz:3},
+  {team:'foe',kind:'brigand', name:'Brigand',  hp:90, str:18,mag:4, end:11,dex:14,cha:6, mov:2, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}], skills:[], ai:'aggressive', gx:6,gz:0},
+  {team:'foe',kind:'brigand', name:'Brigand',  hp:90, str:18,mag:4, end:11,dex:14,cha:6, mov:2, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}], skills:[], ai:'aggressive', gx:6,gz:3},
+  {team:'foe',kind:'brute',   name:'Brute',    hp:130,str:22,mag:4, end:16,dex:7, cha:5, mov:2, weapons:[{name:'Massue',icon:'🏏',type:'phys',min:1,max:1,power:13,crit:0.05,acc:0.85}], skills:['heavy'], ai:'guardian', gx:7,gz:1},
+  {team:'foe',kind:'darkmage',name:'Mage Noir',hp:70, str:4, mag:22,end:10,dex:12,cha:8, mov:2, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}], skills:['bolt','curse'], ai:'cautious', gx:7,gz:2}
 ];
 
 // ============================= STATUS EFFECTS =============================
@@ -503,8 +493,8 @@ function createUnit(def){
   const u={
     id:++UID, campaignId:def.campaignId||null, portrait:def.portrait||'', team:def.team, kind:def.kind, name:def.name,
     maxhp:def.hp, hp:def.hp, str:def.str, mag:def.mag, end:def.end, dex:def.dex, cha:def.cha,
-    mov:def.mov, jump:def.jump, weapons:def.weapons, skills:def.skills.slice(), ai:def.ai||'aggressive',
-    ap:0, maxap:5, gx:def.gx, gz:def.gz, alive:true, statuses:{}, level:def.level||1, xp:def.xp||0,
+    mov:def.mov, weapons:def.weapons, skills:def.skills.slice(), ai:def.ai||'aggressive',
+    ap:0, maxap:5, gx:def.gx, gz:def.gz, alive:true, statuses:{},
     facing:def.team==='player'?{dx:1,dz:0}:{dx:-1,dz:0},
     grp, spr, mat, blob, baseY:s.h*0.5,
     cell(){ return cellAt(this.gx,this.gz); }
@@ -521,7 +511,7 @@ function campaignDef(payload,index){
   return {
     team:'player',kind:payload.kind||'knight',name:payload.name||'Allié',
     hp:stats.maxHealth||100,str:stats.strength||10,mag:stats.magic||5,end:stats.endurance||10,
-    dex:stats.dexterity||10,cha:stats.charisma||10,mov:stats.moveRange||3,jump:stats.jumpHeight||1,
+    dex:stats.dexterity||10,cha:stats.charisma||10,mov:Math.min(3,stats.moveRange||2),
     id:payload.id,campaignId:payload.id,portrait:payload.portrait||'',
     weapons:(payload.weapons||[]).map(weapon=>({
       name:weapon.name||'Arme',icon:icons[weapon.type]||'⚔',type:weapon.type==='staff'?'mag':'phys',
@@ -530,7 +520,7 @@ function campaignDef(payload,index){
       acc:Math.max(0.55,Math.min(0.99,0.9+(weapon.accuracyBonus||0)/100)),
     })),
     skills:(payload.skills||[]).filter(id=>SKILLS[id]),
-    level:payload.level||1,xp:payload.xp||0,gx:1+(index%3),gz:2+(index%5),
+    gx:index%2,gz:index%CFG.D,
   };
 }
 function placeUnit(u,gx,gz,instant){
@@ -551,7 +541,7 @@ function effDEX(u){ return u.dex*statMul(u,'dex'); }
 function effCHA(u){ return u.cha*statMul(u,'cha'); }
 function aliveUnits(team){ return G.units.filter(u=>u.alive&&(!team||u.team===team)); }
 const neighbors=(gx,gz)=>[[gx+1,gz],[gx-1,gz],[gx,gz+1],[gx,gz-1]];
-function canStep(from,to,u){ if(!to||!to.walkable)return false; if(Math.abs(to.level-from.level)>u.jump)return false; if(to.occupant&&to.occupant!==u&&to.occupant.team!==u.team)return false; return true; }
+function canStep(from,to,u){ if(!to||!to.walkable)return false; if(to.occupant&&to.occupant!==u&&to.occupant.team!==u.team)return false; return true; }
 function computeReach(u){ const dist={}, prev={}; const s=u.gx+','+u.gz; dist[s]=0; const q=[[u.gx,u.gz]];
   while(q.length){ const [cx,cz]=q.shift(); const cc=cellAt(cx,cz); const d=dist[cx+','+cz]; if(d>=u.mov)continue;
     for(const [nx,nz] of neighbors(cx,cz)){ const nc=cellAt(nx,nz); if(!nc)continue; const k=nx+','+nz; if(k in dist)continue; if(!canStep(cc,nc,u))continue; dist[k]=d+1; prev[k]=[cx,cz]; q.push([nx,nz]); } }
@@ -599,15 +589,14 @@ function vfx(type,pos){ const C={fire:{c:0xff8a3a,n:18,up:1.3,smoke:1},dark:{c:0
   if(C.smoke){ for(let i=0;i<6;i++){ const sm=new THREE.Mesh(new THREE.SphereGeometry(rnd(0.14,0.24),6,6),new THREE.MeshBasicMaterial({color:0x2a2630,transparent:true,opacity:.5})); sm.position.copy(pos); sm.position.x+=rnd(-0.3,0.3); scene.add(sm); tween(sm.position,{y:pos.y+1.5},0.85,easeOutCubic); tween(sm.material,{opacity:0},0.85,easeOutCubic,()=>scene.remove(sm)); } } }
 
 function orientMult(att,tgt){ const ax=att.gx-tgt.gx, az=att.gz-tgt.gz; const len=Math.hypot(ax,az)||1; const d=tgt.facing.dx*(ax/len)+tgt.facing.dz*(az/len); if(d>0.55)return{m:1.0,lab:'face'}; if(d<-0.55)return{m:1.3,lab:'DOS'}; return{m:1.15,lab:'flanc'}; }
-function heightMult(att,tgt){ const dh=att.cell().level-tgt.cell().level; return dh>0?1.1:(dh<0?0.9:1.0); }
-function computeDamage(att,tgt,spec){ const K=15, isMag=spec.type==='mag'; const atkStat=isMag?effMAG(att):effSTR(att); const def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); const o=orientMult(att,tgt); let d=Math.sqrt(spec.power*K*atkStat/def)*2*o.m*heightMult(att,tgt)*dmgTakenMul(tgt)*rnd(0.92,1.08); return {dmg:Math.max(1,Math.round(d)),lab:o.lab}; }
+function computeDamage(att,tgt,spec){ const K=15, isMag=spec.type==='mag'; const atkStat=isMag?effMAG(att):effSTR(att); const def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); const o=orientMult(att,tgt); let d=Math.sqrt(spec.power*K*atkStat/def)*2*o.m*dmgTakenMul(tgt)*rnd(0.92,1.08); return {dmg:Math.max(1,Math.round(d)),lab:o.lab}; }
 function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*100:5; return cl(base+Math.max(0,(effDEX(att)-effDEX(tgt))/2),1,90)/100; }
 function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return true; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; return Math.random()*100<cl(acc,5,95); }
 
 async function applyDamage(u,dmg,src){ u.hp=Math.max(0,u.hp-dmg); flashUnit(u,'#ff6a5a'); if(u.spr){ const dir=u.facing.dx<0?-1:1; killTweens(u.spr.position); u.spr.position.x=0; tween(u.spr.position,{x:0.16*dir},0.05,easeOutCubic,()=>tween(u.spr.position,{x:0},0.14,easeOutCubic)); } screenShake(0.16,0.16); refreshPanel(u); if(u.hp<=0&&u.alive) await knockOut(u,src); }
 function applyHeal(u,amt){ if(!u.alive)return; u.hp=Math.min(u.maxhp,u.hp+amt); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
 function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; t.statuses[st]=Math.max(t.statuses[st]||0,turns||2); floatText(t,(d.name||st).toUpperCase(),d.col||'#fff'); refreshPanel(t); }
-async function knockOut(u,src){ u.alive=false; u.downed=true; const state=getUnitVisualState(u.team,u.alive,u.downed); const c=u.cell(); if(c&&c.occupant===u)c.occupant=null; floatText(u,'K.O.','#ff5a4a',true); logMsg(u.name+' est K.O. !'); screenShake(0.5,0.4); screenFlash('#ff5a4a',0.22); tween(u.spr.scale,{y:0.32},0.4,easeOutCubic); tween(u.spr.rotation,{z:(u.facing.dx<0?-1:1)*1.15},0.4); tween(u.mat,{opacity:state.bodyOpacity},0.4); tween(u.blob.material,{opacity:state.shadowOpacity},0.4); refreshTurnbar(); await wait(0.42); u.grp.visible=state.visible; if(u.team==='foe'){ const xp=xpValue(u); if(src&&src.team==='player'&&src.alive)gainXP(src,xp); else { const ps=aliveUnits('player'); const sh=Math.max(1,Math.round(xp/Math.max(1,ps.length))); for(const p of ps)gainXP(p,sh); } } }
+async function knockOut(u,src){ u.alive=false; u.downed=true; const state=getUnitVisualState(u.team,u.alive,u.downed); const c=u.cell(); if(c&&c.occupant===u)c.occupant=null; floatText(u,'K.O.','#ff5a4a',true); logMsg(u.name+' est K.O. !'); screenShake(0.5,0.4); screenFlash('#ff5a4a',0.22); tween(u.spr.scale,{y:0.32},0.4,easeOutCubic); tween(u.spr.rotation,{z:(u.facing.dx<0?-1:1)*1.15},0.4); tween(u.mat,{opacity:state.bodyOpacity},0.4); tween(u.blob.material,{opacity:state.shadowOpacity},0.4); refreshTurnbar(); await wait(0.42); u.grp.visible=state.visible; }
 function reviveUnit(u,hp){ u.alive=true; u.downed=false; u.hp=hp; u.statuses={}; u.grp.visible=true; const c=u.cell(); if(c&&!c.occupant)c.occupant=u; u.spr.scale.y=1; u.spr.rotation.z=0; u.mat.opacity=1; u.mat.color.set('#ffffff'); u.blob.material.opacity=0.6; floatText(u,'+'+hp,'#7ed957',true); logMsg(u.name+' est relevé !'); refreshTurnbar(); }
 
 function getSpec(u,which,wi){ if(which==='attack'){ const w=(u.weapons&&u.weapons[wi||0])||(u.weapons&&u.weapons[0])||{name:'Attaque',type:'phys',min:1,max:1,power:8,crit:0.05,acc:0.9}; return {key:'attack',wi:(wi||0),name:w.name,icon:w.icon,ap:0,type:w.type,power:w.power,range:[w.min,w.max],radius:0,offensive:true,self:false,acc:w.acc,crit:w.crit}; }
@@ -621,7 +610,7 @@ function coneCells(u,cx,cz,radius){ const d=dirTo(u,cx,cz); const R=radius+0.001
 function aoeCells(u,spec,cx,cz){ const sh=spec.shape||'circle'; if(sh==='line')return lineCells(u,cx,cz,spec.radius); if(sh==='cone')return coneCells(u,cx,cz,spec.radius); return aoeTiles(cx,cz,spec.radius); }
 function affectedUnits(u,spec,cx,cz){ if(spec.revive){ const ko=G.units.find(x=>!x.alive&&x.downed&&x.team===u.team&&x.gx===cx&&x.gz===cz); return ko?[ko]:[]; } const set=[]; for(const [gx,gz] of aoeCells(u,spec,cx,cz)){ const c=cellAt(gx,gz); if(c&&c.occupant&&c.occupant.alive)set.push(c.occupant); } if(spec.heal||spec.support)return set.filter(t=>t.team===u.team); return set; }
 function previewAccuracy(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return 100; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; return Math.round(cl(acc,5,95)); }
-function previewPower(att,tgt,spec){ if(spec.heal)return Math.max(1,(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(att)*spec.power))+Math.floor(effCHA(att)/4)); if(spec.apRestore)return spec.apRestore; if((spec.power||0)<=0)return 0; if(spec.flatDmg)return Math.max(1,Math.round(spec.flatDmg)); const K=15,isMag=spec.type==='mag'; const atk=isMag?effMAG(att):effSTR(att); const def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); return Math.max(1,Math.round(Math.sqrt(spec.power*K*atk/def)*2*orientMult(att,tgt).m*heightMult(att,tgt)*dmgTakenMul(tgt))); }
+function previewPower(att,tgt,spec){ if(spec.heal)return Math.max(1,(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(att)*spec.power))+Math.floor(effCHA(att)/4)); if(spec.apRestore)return spec.apRestore; if((spec.power||0)<=0)return 0; if(spec.flatDmg)return Math.max(1,Math.round(spec.flatDmg)); const K=15,isMag=spec.type==='mag'; const atk=isMag?effMAG(att):effSTR(att); const def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); return Math.max(1,Math.round(Math.sqrt(spec.power*K*atk/def)*2*orientMult(att,tgt).m*dmgTakenMul(tgt))); }
 function hideActionPreview(){ dom.actionPreview.classList.add('hidden'); dom.actionPreview.innerHTML=''; }
 function showActionPreview(att,spec,targets,cx,cz){ const primary=targets[0]||null; const helpful=Boolean(spec.heal||spec.support||spec.revive||spec.apRestore||spec.cure); const alliesHit=targets.filter(t=>t.team===att.team&&!helpful).length; const estimate=primary?previewPower(att,primary,spec):0; const accuracy=primary?previewAccuracy(att,primary,spec):null; const valueLabel=spec.heal?'Soin':spec.apRestore?'AP':'Dégâts'; const targetLabel=primary?primary.name:(spec.type==='move'?('Case '+cx+','+cz):'Aucune cible');
   dom.actionPreview.innerHTML='<div class="action-preview__unit"><small>Lanceur</small><b>'+att.name+'</b></div><span class="action-preview__arrow">→</span><div class="action-preview__act"><small>'+((helpful)?'Soutien':'Action')+'</small><b>'+(spec.icon||'✦')+' '+spec.name+'</b>'+(estimate?'<em>'+valueLabel+' ~'+estimate+(accuracy!=null&&!helpful?' · '+accuracy+'%':'')+'</em>':'')+'</div><span class="action-preview__arrow">→</span><div class="action-preview__unit"><small>Cible'+(targets.length>1?'s':'')+'</small><b>'+targetLabel+(targets.length>1?' ×'+targets.length:'')+'</b></div>'+(alliesHit?'<strong class="action-preview__warning">⚠ '+alliesHit+' allié'+(alliesHit>1?'s':'')+' touché'+(alliesHit>1?'s':'')+'</strong>':'');
@@ -722,7 +711,7 @@ async function aiTurn(u){
 }
 
 // ============================= CAMERA CONTROL =============================
-const camBase={dist:14.5,height:8.4};
+const camBase={dist:11.2,height:7.2};
 const cl=(v,a,b)=>Math.max(a,Math.min(b,v));
 function killTweens(obj){ for(let i=tweens.length-1;i>=0;i--) if(tweens[i].obj===obj) tweens.splice(i,1); }
 function focusCam(u){ if(!u)return; killTweens(cam); tween(cam,{tx:cl(wX(u.gx)*0.4,-3.5,3.5),tz:cl(wZ(u.gz)*0.45,-1.6,1.6),dist:camBase.dist,height:camBase.height},0.6,easeInOut); }
@@ -829,7 +818,7 @@ function logMsg(t){ const d=document.createElement('div'); d.className='l'; d.te
 let statsPanelKey=null, statsPanelExpanded=false;
 function selectUnit(u){ const key=u.campaignId||u.id||u.name; if(statsPanelKey!==key){statsPanelKey=key;statsPanelExpanded=false;} G.selected=u; renderPanel(u); }
 function refreshPanel(u){ if(u&&u===G.selected)renderPanel(u); }
-function statBarsHTML(u){ const ST=[['FOR',effSTR(u),'#f97316',30],['MAG',effMAG(u),'#a78bfa',30],['END',effEND(u),'#60a5fa',30],['DEX',effDEX(u),'#4ade80',30],['CHA',effCHA(u),'#fbbf24',30],['MOV',u.mov,'#94a3b8',6],['JMP',u.jump,'#94a3b8',3]];
+function statBarsHTML(u){ const ST=[['FOR',effSTR(u),'#f97316',30],['MAG',effMAG(u),'#a78bfa',30],['END',effEND(u),'#60a5fa',30],['DEX',effDEX(u),'#4ade80',30],['CHA',effCHA(u),'#fbbf24',30],['MOV',u.mov,'#94a3b8',4]];
   let h='<div class="stats">'; for(const [k,val,col] of ST){ const v=Math.round(val); h+='<div class="sr" style="--stat-color:'+col+'"><span class="k">'+k+'</span><span class="v">'+v+'</span></div>'; } return h+'</div>'; }
 function statsDetailsHTML(u){ return '<button class="stats-toggle" type="button" aria-expanded="'+statsPanelExpanded+'"><span>Attributs</span><i aria-hidden="true">'+(statsPanelExpanded?'&#8963;':'&#8964;')+'</i></button>'+
   '<div class="stats-details'+(statsPanelExpanded?' is-open':' hidden')+'" aria-hidden="'+(!statsPanelExpanded)+'">'+statBarsHTML(u)+'</div>'; }
@@ -839,7 +828,7 @@ function renderPanel(u){ dom.panel.classList.remove('hidden'); const hpp=Math.ma
   let tags=''; for(const s in u.statuses){ const d=STATUS[s]; if(!d)continue; tags+='<span class="tag" style="color:'+d.col+';border-color:'+d.col+'">'+d.name+' '+u.statuses[s]+'</span>'; } if(!u.alive)tags+='<span class="tag" style="color:#ff5a4a;border-color:#ff5a4a">K.O.</span>';
   dom.panel.innerHTML='<div class="nm">'+u.name+'<span style="font-size:15px;color:'+(u.team==='player'?'#7fd0ff':'#ff8a7a')+'">'+(u.team==='player'?'Allié':'Ennemi')+'</span></div>'+
    '<div class="cls">'+(ROLE[u.kind]||'')+'</div>'+
-   (u.team==='player'?'<div class="cls" style="color:#ffe08a;margin-top:-2px">Niveau '+(u.level||1)+' · XP '+(u.xp||0)+' / '+xpForLevel(u.level||1)+'</div>':'')+
+   (u.team==='player'?'<div class="cls" style="color:#ffe08a;margin-top:-2px">Puissance issue de l’équipement</div>':'')+
    '<div class="bar"><i style="width:'+hpp+'%"></i><span>'+u.hp+' / '+u.maxhp+' PV</span></div>'+
    '<div class="ap">'+pips+'</div>'+
    '<div class="status-row">'+tags+'</div>'+
@@ -891,20 +880,10 @@ function openItemMenu(){ const u=G.active; dom.skillmenu.classList.remove('hidde
   if(!any)h+='<div class="btn dis">Sac vide</div>';
   h+='<div class="btn" data-i="_back">Retour</div>';
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.classList.contains('dis'))return; const id=b.dataset.i; if(id==='_back'){ dom.skillmenu.classList.add('hidden'); return; } enterTarget(itemSpec(id)); }); }
-// ============================= XP / LEVELS / WAVES =============================
-function xpForLevel(lv){ return 40 + (lv-1)*30; }
-function xpValue(foe){ return Math.round((foe.maxhp + foe.str*3 + foe.mag*3 + foe.end*4)/14) + 6; }
-function gainXP(u,n){ if(!u||u.team!=='player'||n<=0)return; u.xp=(u.xp||0)+n; floatText(u,'+'+n+' XP','#ffe08a'); refreshPanel(u); }
-function levelUpStats(u){ const b={hp:u.maxhp,str:u.str,mag:u.mag,end:u.end,dex:u.dex,cha:u.cha};
-  u.maxhp+=Math.max(6,Math.round(u.maxhp*0.12)); u.str+=Math.max(1,Math.round(u.str*0.08)); u.mag+=Math.max(1,Math.round(u.mag*0.08)); u.end+=Math.max(1,Math.round(u.end*0.07)); u.dex+=Math.max(1,Math.round(u.dex*0.06)); u.cha+=Math.max(0,Math.round(u.cha*0.05)); u.level++;
-  return {hp:u.maxhp-b.hp,str:u.str-b.str,mag:u.mag-b.mag,end:u.end-b.end,dex:u.dex-b.dex,cha:u.cha-b.cha}; }
-function processLevelUps(){ const sum=[]; for(const u of G.units){ if(u.team!=='player')continue; let levels=0; const delta={hp:0,str:0,mag:0,end:0,dex:0,cha:0}; let g=0;
-    while(u.xp>=xpForLevel(u.level)&&g++<30){ u.xp-=xpForLevel(u.level); const d=levelUpStats(u); levels++; for(const k in delta)delta[k]+=d[k]; }
-    sum.push({u,levels,delta,xp:u.xp,next:xpForLevel(u.level)}); }
-  return sum; }
+// ============================= WAVES =============================
 function freeNear(gx,gz){ const c=cellAt(gx,gz); if(c&&c.walkable&&!c.occupant)return c; for(let r=1;r<=7;r++)for(let dx=-r;dx<=r;dx++)for(let dz=-r;dz<=r;dz++){ if(Math.abs(dx)+Math.abs(dz)!==r)continue; const cc=cellAt(gx+dx,gz+dz); if(cc&&cc.walkable&&!cc.occupant)return cc; } return null; }
 function spawnWave(wave){ const k=1+0.18*(wave-1); const foes=DEFS.filter(d=>d.team==='foe'); const list=foes.slice();
-  if(wave%2===0)list.push(Object.assign({},foes[0],{name:'Renfort',gx:13,gz:1}));
+  if(wave%2===0&&list.length<4)list.push(Object.assign({},foes[0],{name:'Renfort',gx:7,gz:0}));
   for(const d of list){ const cell=freeNear(d.gx,d.gz); if(!cell)continue; createUnit(Object.assign({},d,{gx:cell.gx,gz:cell.gz,hp:Math.round(d.hp*k),str:Math.round(d.str*k),mag:Math.round(d.mag*k),end:Math.round(d.end*k)})); } }
 function startNextWave(){ G.wave++;
   for(const u of G.units.filter(x=>x.team==='foe')) removeUnit(u);
@@ -915,10 +894,8 @@ function startNextWave(){ G.wave++;
     placeUnit(u,u.gx,u.gz,true); refreshPanel(u); }
   spawnWave(G.wave); G.over=false; G.round=0; G.mode='idle'; logMsg('— Vague '+G.wave+' approche ! —'); startRound(); }
 function winWave(){ if(G.over)return; G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
-  logMsg('— Vague '+G.wave+' vaincue ! —'); const sum=processLevelUps();
-  let rows=''; for(const s of sum){ const ko=s.u.alive?'':' <span style="color:#ff7a6a">(K.O.)</span>'; const lvl=s.levels?('<b style="color:#ffe08a"> Niv.'+s.u.level+' (+'+s.levels+')</b>'):(' <span style="color:#9fb0d0">Niv.'+s.u.level+'</span>');
-    let g=''; if(s.levels){ const parts=[]; for(const [k,lab] of [['hp','PV'],['str','FOR'],['mag','MAG'],['end','END'],['dex','DEX'],['cha','CHA']]) if(s.delta[k])parts.push('+'+s.delta[k]+' '+lab); if(parts.length)g='<div style="color:#8fa3c0;font-size:12px;margin-left:2px">'+parts.join(' · ')+'</div>'; }
-    rows+='<div style="margin:5px 0"><span style="color:#e8edf7">'+s.u.name+'</span>'+ko+lvl+'<span style="color:#6f7f9f;font-size:12px"> · XP '+s.xp+'/'+s.next+'</span>'+g+'</div>'; }
+  logMsg('— Vague '+G.wave+' vaincue ! —');
+  const rows=G.deployedUnits.map(u=>'<div style="margin:5px 0"><span style="color:#e8edf7">'+u.name+'</span>'+(u.alive?'':' <span style="color:#ff7a6a">(K.O.)</span>')+'</div>').join('');
   dom.banner.classList.remove('hidden');
   if(CAMPAIGN_MODE){
     dom.banner.innerHTML='<h1 class="pixel" style="color:#7ed957">VICTOIRE</h1><p>'+COMBAT_LABEL+'</p><div style="text-align:left;max-width:440px;margin:10px auto 16px">'+rows+'</div><div class="btn" id="return-map" style="pointer-events:auto;justify-content:center">Continuer la chronique ◆</div>';
@@ -943,6 +920,7 @@ function animate(){ requestAnimationFrame(animate);
   for(const m of G_timeMats) if(m.uniforms&&m.uniforms.t) m.uniforms.t.value=_t;
   if(G.dust){ G.dust.mesh.visible=!REDUCED_GRAPHICS; const p=G.dust.mesh.geometry.attributes.position; for(let i=0;i<G.dust.N;i++){ let y=p.getY(i)+G.dust.spd[i]*dt; if(y>7.5)y=0.3; p.setY(i,y); p.setX(i,p.getX(i)+Math.sin(_t+i)*0.0016); } p.needsUpdate=true; }
   if(G.environment)G.environment.update(_t,dt,REDUCED_GRAPHICS);
+  if(G.backgroundLayers)G.backgroundLayers.update(dt,camera,REDUCED_GRAPHICS);
   if(G.groundCover){
     const tactical=G.mode==='move'||G.mode==='target';
     G.groundCover.material.opacity=REDUCED_GRAPHICS ? .28 : (tactical ? .26 : (G.mode==='deploy' ? .38 : .64));
@@ -963,13 +941,14 @@ function animate(){ requestAnimationFrame(animate);
     textures:renderer.info.memory.textures,
     reducedGraphics:REDUCED_GRAPHICS,
     units:G.units.length,
+    grid:{width:CFG.W,depth:CFG.D,walkable:G.grid.flat().filter(c=>c&&c.walkable).length,blocked:G.grid.flat().filter(c=>c&&!c.walkable).length},
   };
 }
 
 // ============================= DEPLOYMENT =============================
 function inZone(gx,gz){ return G.deployZone.some(z=>z.gx===gx&&z.gz===gz); }
-function computeDeployZone(){ G.deployZone=[]; for(let gx=0;gx<=4;gx++)for(let gz=0;gz<CFG.D;gz++){ const c=cellAt(gx,gz); if(c&&c.walkable)G.deployZone.push(c); } }
-function overviewCam(){ killTweens(cam); tween(cam,{tx:0,tz:0,dist:16.5,height:9.4},0.6,easeInOut); }
+function computeDeployZone(){ G.deployZone=[]; for(let gx=0;gx<=1;gx++)for(let gz=0;gz<CFG.D;gz++){ const c=cellAt(gx,gz); if(c&&c.walkable)G.deployZone.push(c); } }
+function overviewCam(){ killTweens(cam); tween(cam,{tx:0,tz:0,dist:12.5,height:8.4},0.6,easeInOut); }
 function drawDeployZone(){ clearHL(); for(const c of G.deployZone){ if(c.occupant)continue; addHL(c.gx,c.gz,0x5ad1ff,0.34); } }
 function playerDefinitions(){
   if(CAMPAIGN_MODE&&CAMPAIGN_SQUAD.length) return orderDeploymentCandidates(CAMPAIGN_SQUAD.map(campaignDef),PREFERRED_UNIT_IDS);
@@ -996,7 +975,8 @@ function autoDeploy(){
   const preferred=PREFERRED_UNIT_IDS.map(deployDefById).filter(Boolean);
   const rest=G.rosterDefs.filter(d=>!preferred.includes(d));
   const picks=[...preferred,...rest].slice(0,MAX_PLAYER_UNITS);
-  for(const def of picks){ const c=G.deployZone.find(z=>!z.occupant); if(!c)break; deployUnit(c.gx,c.gz,def.campaignId||def.name); }
+  const formation=[[0,0],[0,3],[1,1],[1,2]].map(([gx,gz])=>cellAt(gx,gz)).filter(Boolean);
+  for(const def of picks){ const c=formation.find(z=>!z.occupant)||G.deployZone.find(z=>!z.occupant); if(!c)break; deployUnit(c.gx,c.gz,def.campaignId||def.name); }
   drawDeployZone(); openDeployMenu(); setHint(G.deployedUnits.length+' / '+MAX_PLAYER_UNITS+' unités prêtes');
 }
 function beginBattle(){ if(!canStartDeployment(G.deployedUnits.length,MAX_PLAYER_UNITS))return; G.mode='idle'; dom.menu.classList.remove('deploy-roster'); dom.panel.classList.remove('deploy-preview'); clearHL(); closeMenus(); refreshTurnbar(); startRound(); }
@@ -1004,7 +984,7 @@ function deploymentCard(def){
   const id=def.campaignId||def.name,active=G.selectedDeployId===id,deployed=deployedIds().has(id);
   const portrait=def.portrait?'<img src="'+def.portrait+'" alt="">':'<span class="deploy-avatar">'+def.name.charAt(0)+'</span>';
   return '<button type="button" class="deploy-card '+(active?'is-selected ':'')+(deployed?'is-deployed':'')+'" data-unit="'+id+'">'+
-    portrait+'<span><b>'+def.name+'</b><small>Niv. '+(def.level||1)+' · '+def.weapons.length+' arme'+(def.weapons.length>1?'s':'')+'</small></span>'+
+    portrait+'<span><b>'+def.name+'</b><small>'+def.weapons.length+' arme'+(def.weapons.length>1?'s':'')+'</small></span>'+
     '<i>'+(deployed?'EN JEU':'+')+'</i></button>';
 }
 function openDeployMenu(){
@@ -1019,7 +999,7 @@ function openDeployMenu(){
   dom.menu.querySelectorAll('[data-unit]').forEach(b=>b.onclick=()=>{ G.selectedDeployId=b.dataset.unit; openDeployMenu(); const d=deployDefById(G.selectedDeployId); if(d)selectUnitData(d); setHint('Placez « '+(d?.name||'unité')+' » sur une case bleue'); });
   dom.menu.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>onDeploy(b.dataset.d,b));
 }
-function renderDefinitionPanel(def){ const key=def.campaignId||def.name; if(statsPanelKey!==key){statsPanelKey=key;statsPanelExpanded=false;} dom.panel.classList.remove('hidden'); dom.panel.innerHTML='<div class="nm">'+def.name+'</div><div class="cls">Disponible · Niveau '+(def.level||1)+'</div><div class="bar"><i style="width:100%"></i><span>'+def.hp+' PV</span></div>'+statsDetailsHTML(def); const button=dom.panel.querySelector('.stats-toggle'); if(button)button.onclick=()=>{statsPanelExpanded=!statsPanelExpanded;renderDefinitionPanel(def);}; }
+function renderDefinitionPanel(def){ const key=def.campaignId||def.name; if(statsPanelKey!==key){statsPanelKey=key;statsPanelExpanded=false;} dom.panel.classList.remove('hidden'); dom.panel.innerHTML='<div class="nm">'+def.name+'</div><div class="cls">Disponible · progression par équipement</div><div class="bar"><i style="width:100%"></i><span>'+def.hp+' PV</span></div>'+statsDetailsHTML(def); const button=dom.panel.querySelector('.stats-toggle'); if(button)button.onclick=()=>{statsPanelExpanded=!statsPanelExpanded;renderDefinitionPanel(def);}; }
 function selectUnitData(def){ dom.panel.classList.add('deploy-preview'); const preview=deployedById(def.campaignId||def.name); if(preview)selectUnit(preview); else renderDefinitionPanel(def); }
 function onDeploy(a,b){ if(b.disabled)return; if(a==='cancel'){CAMPAIGN_MODE?notifyCampaignResult(false):location.reload();}else if(a==='auto')autoDeploy(); else if(a==='reset')resetDeploy(); else if(a==='start')beginBattle(); else if(a==='prev'){G.deployPage--;openDeployMenu();}else if(a==='next'){G.deployPage++;openDeployMenu();} }
 function startDeployment(){
