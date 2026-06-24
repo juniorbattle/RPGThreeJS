@@ -38,14 +38,12 @@ export class WorldMap {
   private readonly pathVisuals: Array<{ from: string; to: string; line: THREE.Line }> = [];
   private readonly marker: THREE.Group;
   private readonly markerLight: THREE.PointLight;
-  private readonly scenery = new THREE.Group();
   private readonly atmosphere = new THREE.Group();
   private waterMaterial: THREE.MeshBasicMaterial | null = null;
   private frame = 0;
   private disposed = false;
   private currentNodeId = '';
   private cameraCenterX = 0;
-  private state: GameState | null = null;
   private resizeObserver: ResizeObserver;
 
   constructor(private readonly options: WorldMapOptions) {
@@ -70,7 +68,6 @@ export class WorldMap {
     this.scene.add(sun);
 
     this.buildGround();
-    this.buildScenery();
     this.buildAtmosphere();
     this.buildPaths();
     this.buildNodes();
@@ -86,7 +83,6 @@ export class WorldMap {
   }
 
   update(state: GameState): void {
-    this.state = state;
     this.atmosphere.visible = !state.settings.reducedGraphics;
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, state.settings.reducedGraphics ? 1 : 1.75));
     const nodeChanged = this.currentNodeId !== state.currentNodeId;
@@ -203,10 +199,6 @@ export class WorldMap {
     this.scene.add(water);
   }
 
-  private buildScenery(): void {
-    this.scene.add(this.scenery);
-  }
-
   private buildAtmosphere(): void {
     this.scene.add(this.atmosphere);
     const count = 180;
@@ -320,7 +312,6 @@ export class WorldMap {
     if (this.disposed) return;
     this.frame = requestAnimationFrame(this.animate);
     const time = this.clock.getElapsedTime();
-    this.scenery.position.x += (this.cameraCenterX * 0.18 - this.scenery.position.x) * 0.025;
     this.atmosphere.position.x = this.cameraCenterX;
     this.atmosphere.rotation.y = Math.sin(time * 0.08) * 0.02;
     if (this.waterMaterial) {
@@ -328,7 +319,6 @@ export class WorldMap {
       this.waterMaterial.color.setHSL(0.59 + Math.sin(time * 0.2) * 0.008, 0.52, 0.18);
     }
     this.marker.rotation.y = time * 1.1;
-    this.marker.position.y = 0.08 + Math.sin(time * 2.4) * 0.06;
     this.markerLight.intensity = 3.4 + Math.sin(time * 3) * 0.8;
     this.camera.position.x += (this.cameraCenterX - this.camera.position.x) * 0.09;
     this.camera.lookAt(this.cameraCenterX, 0, 0);

@@ -20,4 +20,12 @@ export const assets = {
     elara: '/assets/portraits/elara.png',
     kestrel: '/assets/portraits/kestrel.png',
   },
+  // Named per-screen background slots. Swap these to point at dedicated
+  // painted illustrations later; they currently reuse the forest pilot art.
+  screens: {
+    travel: {
+      sky: '/assets/generated/forest-pilot/forest-dawn-far.webp',
+      mist: '/assets/generated/forest-pilot/forest-mid.webp',
+    },
+  },
 } as const;

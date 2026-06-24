@@ -53,7 +53,14 @@ async function loadTexture(url: string | undefined, fallback: [string, string]):
   }
 }
 
+/**
+ * Decorative parallax backdrop made of stacked planes. Non-interactive by design
+ * (each layer has raycast disabled) so gameplay clicks always pass through to the
+ * scene. `reducedGraphics` keeps only the rearmost layer and freezes shader time.
+ */
 export class BackgroundLayerSystem {
+  /** Cap on simultaneously loaded layers to bound draw/overdraw cost. */
+  static readonly MAX_LAYERS = 3;
   private readonly root = new THREE.Group();
   private readonly layers: Layer[] = [];
   private visible = true;
@@ -94,7 +101,7 @@ export class BackgroundLayerSystem {
     this.visible = config.enabled;
     this.root.visible = config.enabled;
     if (!config.enabled) return;
-    for (const layer of config.layers.slice(0, 3)) await this.createLayer(layer);
+    for (const layer of config.layers.slice(0, BackgroundLayerSystem.MAX_LAYERS)) await this.createLayer(layer);
   }
 
   update(deltaTime: number, camera: THREE.Camera, reducedGraphics = false): void {

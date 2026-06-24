@@ -84,7 +84,13 @@ export class GameApp {
           <button type="button" data-action="new">Nouvelle chronique</button>
           <button type="button" data-action="continue" ${this.saves.hasSave() ? '' : 'disabled'}>Continuer</button>
         </div>
-        <small>Combat tactique · choix narratifs · conséquences persistantes</small>
+        <nav class="title-screen__nav">
+          <span class="title-screen__nav-link">⚙ Options</span>
+          <span class="title-screen__nav-sep"></span>
+          <span class="title-screen__nav-link">📖 Crédits</span>
+          <span class="title-screen__nav-sep"></span>
+          <span class="title-screen__nav-link">◆ Feuille de route</span>
+        </nav>
       </section>
     `;
     this.chrome.querySelector('[data-action="new"]')?.addEventListener('click', () => {

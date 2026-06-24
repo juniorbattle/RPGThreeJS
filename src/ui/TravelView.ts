@@ -1,6 +1,7 @@
 import { unitById } from '../game/catalog';
 import { getAvailableRunNodes } from '../game/runSystem';
-import type { GameState, RunNode } from '../game/types';
+import { assets } from '../render/assetManifest';
+import type { GameState, RunNode, RunNodeType } from '../game/types';
 
 interface TravelViewOptions {
   root: HTMLElement;
@@ -8,6 +9,39 @@ interface TravelViewOptions {
   onSelect: (node: RunNode) => Promise<void>;
   onOpenMap: () => void;
   onOpenClan: () => void;
+}
+
+// Presentation-only mapping. Risk/reward are derived from the node type so the
+// cards read clearly; this never alters RunSystem data or outcomes.
+const NODE_PRESENTATION: Record<RunNodeType, { label: string; risk: number; reward: number }> = {
+  combat: { label: 'Combat', risk: 2, reward: 3 },
+  event: { label: 'Événement', risk: 1, reward: 3 },
+  mystery: { label: 'Mystère', risk: 2, reward: 2 },
+  recruitment: { label: 'Recrutement', risk: 1, reward: 2 },
+  shop: { label: 'Marchand', risk: 0, reward: 1 },
+  refuge: { label: 'Refuge', risk: 0, reward: 1 },
+  story: { label: 'Récit', risk: 1, reward: 2 },
+  boss: { label: 'Boss', risk: 3, reward: 3 },
+};
+
+function ratingDots(value: number, max = 3): string {
+  const filled = Math.max(0, Math.min(max, value));
+  return (
+    '<b>' + '◆'.repeat(filled) + '</b>' + '<em>' + '◇'.repeat(max - filled) + '</em>'
+  );
+}
+
+function particleLayer(count = 16): string {
+  let motes = '';
+  for (let i = 0; i < count; i += 1) {
+    const left = Math.round(Math.random() * 100);
+    const delay = (Math.random() * 9).toFixed(2);
+    const duration = (7 + Math.random() * 7).toFixed(2);
+    const drift = (Math.random() * 40 - 20).toFixed(1);
+    const scale = (0.5 + Math.random() * 1.1).toFixed(2);
+    motes += `<i style="--x:${left}%;--delay:${delay}s;--dur:${duration}s;--drift:${drift}px;--scale:${scale}"></i>`;
+  }
+  return motes;
 }
 
 export class TravelView {
@@ -26,10 +60,14 @@ export class TravelView {
       .slice(0, 4);
     const section = document.createElement('section');
     section.className = 'travel-view';
+    section.style.setProperty('--travel-sky', `url('${assets.screens.travel.sky}')`);
+    section.style.setProperty('--travel-mist', `url('${assets.screens.travel.mist}')`);
     section.innerHTML = `
       <div class="travel-view__sky"></div>
       <div class="travel-view__mist"></div>
-      <div class="travel-view__road"></div>
+      <div class="travel-view__glow"></div>
+      <div class="travel-view__particles" aria-hidden="true">${particleLayer()}</div>
+      <div class="travel-view__vignette"></div>
       <header class="travel-view__hud">
         <div><p class="eyebrow">Run · ${state.run.regionId}</p><strong>Choisissez la prochaine étape</strong></div>
         <div class="travel-view__resources">
@@ -42,13 +80,20 @@ export class TravelView {
         </div>
       </header>
       <div class="travel-view__choices">
-        ${choices.map((node) => `
-          <button type="button" class="route-choice" data-node="${node.id}">
-            <span>${node.icon}</span>
-            <small>${node.type}</small>
-            <strong>${node.label}</strong>
+        ${choices.map((node) => {
+          const meta = NODE_PRESENTATION[node.type];
+          return `
+          <button type="button" class="route-choice route-choice--${node.type}" data-node="${node.id}">
+            <span class="route-choice__type">${meta.label}</span>
+            <span class="route-choice__icon">${node.icon}</span>
+            <strong class="route-choice__title">${node.label}</strong>
+            <span class="route-choice__meta">
+              <span class="route-choice__stat route-choice__stat--risk"><small>Risque</small><span class="dots">${ratingDots(meta.risk)}</span></span>
+              <span class="route-choice__stat route-choice__stat--reward"><small>Récompense</small><span class="dots">${ratingDots(meta.reward)}</span></span>
+            </span>
           </button>
-        `).join('') || '<p class="travel-view__end">La route s’achève ici.</p>'}
+        `;
+        }).join('') || '<p class="travel-view__end">La route s’achève ici.</p>'}
       </div>
       <div class="travel-party" aria-label="Compagnie en marche">
         ${deployed.map((unit, index) => {
@@ -59,7 +104,6 @@ export class TravelView {
           </div>`;
         }).join('')}
       </div>
-      <div class="travel-view__foreground"></div>
     `;
     this.options.root.append(section);
     this.element = section;

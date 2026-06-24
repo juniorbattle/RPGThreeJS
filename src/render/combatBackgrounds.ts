@@ -1,6 +1,11 @@
 import type { BackgroundSceneConfig } from './BackgroundLayerSystem';
 import { assets } from './assetManifest';
 
+/**
+ * Forest combat backdrop: sky, distance, mist. Kept faint and low-parallax so
+ * the backdrop never competes with units or the tactical grid. Swap the texture
+ * paths to plug in future pre-rendered panoramas without touching this file.
+ */
 export const forestCombatBackground: BackgroundSceneConfig = {
   id: 'forest-dawn',
   enabled: true,
