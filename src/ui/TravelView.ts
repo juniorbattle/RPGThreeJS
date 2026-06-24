@@ -31,15 +31,16 @@ function ratingDots(value: number, max = 3): string {
   );
 }
 
-function particleLayer(count = 16): string {
+function particleLayer(count = 10): string {
   let motes = '';
   for (let i = 0; i < count; i += 1) {
     const left = Math.round(Math.random() * 100);
-    const delay = (Math.random() * 9).toFixed(2);
-    const duration = (7 + Math.random() * 7).toFixed(2);
-    const drift = (Math.random() * 40 - 20).toFixed(1);
-    const scale = (0.5 + Math.random() * 1.1).toFixed(2);
-    motes += `<i style="--x:${left}%;--delay:${delay}s;--dur:${duration}s;--drift:${drift}px;--scale:${scale}"></i>`;
+    const delay = (Math.random() * 12).toFixed(2);
+    const duration = (14 + Math.random() * 10).toFixed(2);
+    const drift = (Math.random() * 24 - 12).toFixed(1);
+    const scale = (0.45 + Math.random() * 0.4).toFixed(2);
+    const alpha = (0.28 + Math.random() * 0.22).toFixed(2);
+    motes += `<i style="--x:${left}%;--delay:${delay}s;--dur:${duration}s;--drift:${drift}px;--scale:${scale};--alpha:${alpha}"></i>`;
   }
   return motes;
 }
@@ -68,13 +69,14 @@ export class TravelView {
       <div class="travel-view__glow"></div>
       <div class="travel-view__particles" aria-hidden="true">${particleLayer()}</div>
       <div class="travel-view__vignette"></div>
+      <div class="travel-view__scene-dim" aria-hidden="true"></div>
       <header class="travel-view__hud">
         <div><p class="eyebrow">Run · ${state.run.regionId}</p><strong>Choisissez la prochaine étape</strong></div>
         <div class="travel-view__resources">
-          <span>Butin ${state.run.temporaryLoot.gold}</span>
-          <span>Réputation ${state.reputation}</span>
+          <span>🪙 Butin ${state.run.temporaryLoot.gold}</span>
+          <span>✶ Réputation ${state.reputation}</span>
         </div>
-        <div>
+        <div class="travel-view__hud-actions">
           <button type="button" data-action="clan">Compagnie</button>
           <button type="button" data-action="map">Carte stratégique</button>
         </div>
@@ -115,9 +117,13 @@ export class TravelView {
         const node = choices.find((candidate) => candidate.id === button.dataset.node);
         if (!node) return;
         this.busy = true;
+        button.classList.add('is-selected');
         section.classList.add('is-travelling');
-        section.querySelectorAll('button').forEach((candidate) => { candidate.disabled = true; });
-        await new Promise((resolve) => window.setTimeout(resolve, 720));
+        section.querySelectorAll('button').forEach((candidate) => {
+          candidate.disabled = true;
+          candidate.setAttribute('aria-disabled', 'true');
+        });
+        await new Promise((resolve) => window.setTimeout(resolve, 420));
         this.close();
         await this.options.onSelect(node);
       });
