@@ -35,27 +35,29 @@ const tacticalArena = {
   scale: 1.0,
   centerLightOpacity: 0,
   edgeVignetteOpacity: 0,
-  terrainSaturation: 0.68,
-  terrainBrightness: 0.92,
+  terrainSaturation: 0.52,
+  terrainBrightness: 1.02,
   groundCoverOpacityIdle: 0,
   groundCoverOpacityTactical: 0,
   groundCoverOpacityDeploy: 0,
 };
 
 const gameplayGrid = {
-  idleOpacity: 0.08,
-  tacticalOpacity: 0.24,
-  stageOpacity: 0.02,
-  moveTileOpacity: 0.28,
-  deployTileOpacity: 0.26,
-  rangeTileOpacity: 0.15,
-  targetTileOpacity: 0.38,
-  hoverTileOpacity: 0.22,
+  idleOpacity: 0.34,
+  selectedOpacity: 0.58,
+  tacticalOpacity: 0.86,
+  stageOpacity: 0.14,
+  moveTileOpacity: 0.84,
+  deployTileOpacity: 0.8,
+  rangeTileOpacity: 0.68,
+  targetTileOpacity: 0.96,
+  hoverTileOpacity: 0.9,
+  invalidTileOpacity: 0.38,
 };
 
 const ambientMist = {
-  globalMistOpacity: 0.04,
-  centerWashOpacity: 0.06,
+  globalMistOpacity: 0.03,
+  centerWashOpacity: 0.035,
   bloomStrength: 0.28,
   bloomRadius: 0.58,
   bloomThreshold: 0.96,
@@ -66,12 +68,12 @@ const ambientMist = {
 };
 
 const unitPresentation = {
-  contactShadowOpacity: 0.72,
-  shadowOpacity: 0.72,
-  shadowScale: 1.14,
-  teamRingOpacity: 0.3,
-  activeRingOpacity: 0.78,
-  activeRingIntensity: 0.68,
+  contactShadowOpacity: 0.96,
+  shadowOpacity: 0.94,
+  shadowScale: 1.12,
+  teamRingOpacity: 0.92,
+  activeRingOpacity: 1,
+  activeRingIntensity: 1,
   activeBaseOpacity: 0.12,
   protectFromFog: true,
 };
@@ -113,6 +115,7 @@ export const COMBAT_PRESENTATION = {
   },
   arena: {
     gridOpacityIdle: gameplayGrid.idleOpacity,
+    gridOpacitySelected: gameplayGrid.selectedOpacity,
     gridOpacityTactical: gameplayGrid.tacticalOpacity,
     gridOpacityStage: gameplayGrid.stageOpacity,
     moveTileOpacity: gameplayGrid.moveTileOpacity,
@@ -120,6 +123,7 @@ export const COMBAT_PRESENTATION = {
     rangeTileOpacity: gameplayGrid.rangeTileOpacity,
     targetTileOpacity: gameplayGrid.targetTileOpacity,
     hoverTileOpacity: gameplayGrid.hoverTileOpacity,
+    invalidTileOpacity: gameplayGrid.invalidTileOpacity,
     terrainSaturation: tacticalArena.terrainSaturation,
     terrainBrightness: tacticalArena.terrainBrightness,
     centerLightOpacity: tacticalArena.centerLightOpacity,
