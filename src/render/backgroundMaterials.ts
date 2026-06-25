@@ -11,9 +11,10 @@ export interface UvWaveConfig {
 export function createUvWaveMaterial(texture: THREE.Texture, config: UvWaveConfig, opacity = 1): THREE.ShaderMaterial {
   return new THREE.ShaderMaterial({
     transparent: true,
-    depthTest: true,
+    depthTest: false,
     depthWrite: false,
     fog: false,
+    toneMapped: false,
     uniforms: {
       uTime: { value: 0 },
       uTexture: { value: texture },

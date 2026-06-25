@@ -44,7 +44,8 @@ export const assets = {
       background: '/assets/generated/forest-pilot/forest-dawn-far.webp',
     },
     combat: {
-      background: '/assets/generated/forest-pilot/forest-dawn-far.webp',
+      background: '/assets/generated/combat-painted/forest-ruins-backdrop.png',
+      forestRuinsBackdrop: '/assets/generated/combat-painted/forest-ruins-backdrop.png',
       sky: '/assets/generated/forest-pilot/forest-dawn-far.webp',
       distance: '/assets/generated/forest-pilot/forest-mid.webp',
       mist: '/assets/generated/forest-pilot/forest-fore.webp',

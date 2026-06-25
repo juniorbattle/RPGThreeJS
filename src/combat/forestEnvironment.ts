@@ -6,6 +6,18 @@ export interface ForestEnvironment {
   update(time: number, delta: number, reducedGraphics: boolean): void;
 }
 
+interface CombatPresentationOptions {
+  props?: {
+    opacity?: number;
+    contrast?: number;
+    scale?: number;
+    lanternIntensity?: number;
+    ambientVegetationOpacity?: number;
+    saturation?: number;
+    keepOutOfCenter?: boolean;
+  };
+}
+
 const KIT_URL = '/assets/3d/forest-kit.glb';
 const MATERIAL_URLS = {
   grass: '/assets/3d/forest-kit/materials/grass.webp',
@@ -111,9 +123,9 @@ function createSkyDome(): THREE.Mesh {
     fog: false,
     transparent: true,
     uniforms: {
-      topColor: { value: new THREE.Color(0x668aa1) },
-      horizonColor: { value: new THREE.Color(0xc6c9a6) },
-      bottomColor: { value: new THREE.Color(0x475b4d) },
+      topColor: { value: new THREE.Color(0x4f7088) },
+      horizonColor: { value: new THREE.Color(0xaeb69b) },
+      bottomColor: { value: new THREE.Color(0x33463d) },
     },
     vertexShader: `
       varying vec3 vWorldPosition;
@@ -147,8 +159,8 @@ function createTerrainShell(): THREE.Group {
   const group = new THREE.Group();
   group.name = 'ForestTerrainShell';
 
-  const earth = new THREE.MeshStandardMaterial({ color: 0x594435, roughness: 1 });
-  const grass = new THREE.MeshStandardMaterial({ color: 0x5e784b, roughness: 1 });
+  const earth = new THREE.MeshStandardMaterial({ color: 0x2f2924, roughness: 1, transparent: true, opacity: 0.18, depthWrite: false });
+  const grass = new THREE.MeshStandardMaterial({ color: 0x354533, roughness: 1, transparent: true, opacity: 0.12, depthWrite: false });
 
   const earthDisc = new THREE.Mesh(new THREE.CylinderGeometry(12.5, 13.2, 2.4, 48), earth);
   earthDisc.position.y = -2.25;
@@ -160,17 +172,17 @@ function createTerrainShell(): THREE.Group {
 
   group.add(earthDisc, grassDisc);
 
-  const mountainMaterial = new THREE.MeshStandardMaterial({ color: 0x5f7167, roughness: 1, flatShading: true });
-  for (let index = 0; index < 8; index += 1) {
+  const mountainMaterial = new THREE.MeshStandardMaterial({ color: 0x26362f, roughness: 1, flatShading: true, transparent: true, opacity: 0.12, depthWrite: false });
+  for (let index = 0; index < 7; index += 1) {
     const angle = (index / 8) * Math.PI * 2;
-    const radius = 11.2 + (index % 2) * 0.65;
+    const radius = 12.4 + (index % 2) * 0.8;
     const mountain = new THREE.Mesh(
-      new THREE.DodecahedronGeometry(2.5 + (index % 3) * 0.35, 0),
+      new THREE.DodecahedronGeometry(1.8 + (index % 3) * 0.22, 0),
       mountainMaterial,
     );
-    mountain.position.set(Math.sin(angle) * radius, 0.15 + (index % 3) * 0.25, Math.cos(angle) * radius);
+    mountain.position.set(Math.sin(angle) * radius, -0.15 + (index % 3) * 0.16, Math.cos(angle) * radius);
     mountain.rotation.y = angle * 0.7;
-    mountain.scale.set(1.25, 1.05 + (index % 3) * 0.18, 0.65);
+    mountain.scale.set(1.15, 0.82 + (index % 3) * 0.12, 0.5);
     mountain.receiveShadow = true;
     group.add(mountain);
   }
@@ -211,9 +223,9 @@ export function createForestWaterMaterial(): THREE.ShaderMaterial {
     side: THREE.DoubleSide,
     uniforms: {
       t: { value: 0 },
-      deepColor: { value: new THREE.Color(0x176f83) },
-      shallowColor: { value: new THREE.Color(0x67d6c7) },
-      foamColor: { value: new THREE.Color(0xe7f3d4) },
+      deepColor: { value: new THREE.Color(0x245d68) },
+      shallowColor: { value: new THREE.Color(0x79b2a5) },
+      foamColor: { value: new THREE.Color(0xcfd9bd) },
     },
     vertexShader: `
       varying vec2 vUv;
@@ -235,7 +247,7 @@ export function createForestWaterMaterial(): THREE.ShaderMaterial {
         float edgeFoam = smoothstep(0.44, 0.5, abs(vUv.x - 0.5));
         vec3 water = mix(deepColor, shallowColor, 0.28 + 0.2 * sin(vUv.y * 7.0 + t));
         water = mix(water, foamColor, max(shimmer * 0.14, edgeFoam * 0.26));
-        gl_FragColor = vec4(water, 0.9);
+        gl_FragColor = vec4(water, 0.2);
       }
     `,
   });
@@ -266,9 +278,9 @@ function createWaterFeatures(): {
   group.add(pool);
 
   const foamMaterial = new THREE.MeshBasicMaterial({
-    color: 0xe7f4d9,
+    color: 0xcfd9bd,
     transparent: true,
-    opacity: 0.68,
+    opacity: 0.08,
     depthWrite: false,
   });
   for (let index = 0; index < 11; index += 1) {
@@ -346,28 +358,28 @@ function createFernGeometry(): THREE.BufferGeometry {
   return geometry;
 }
 
-function createAmbientVegetation(_textures: ForestMaterialTextures): {
+function createAmbientVegetation(_textures: ForestMaterialTextures, opacity = 0.2): {
   group: THREE.Group;
   sway: THREE.InstancedMesh[];
 } {
   const group = new THREE.Group();
   group.name = 'ForestAmbientVegetation';
   const bladeMaterial = new THREE.MeshBasicMaterial({
-    color: 0x668b4f,
+    color: 0x526a48,
     side: THREE.DoubleSide,
     transparent: true,
-    opacity: 0.9,
+    opacity,
   });
   const bladeGeometry = createGrassClusterGeometry();
-  const count = 112;
+  const count = 36;
   const blades = new THREE.InstancedMesh(bladeGeometry, bladeMaterial, count);
   const random = seededRandom(8128);
   const transform = new THREE.Object3D();
   for (let index = 0; index < count; index += 1) {
     const edge = index % 4;
     const along = -8.6 + random() * 17.2;
-    const distance = 4.15 + random() * 1.4;
-    const x = edge < 2 ? along : (edge === 2 ? -8.2 - random() * 1.8 : 8.2 + random() * 1.8);
+    const distance = 5.35 + random() * 1.55;
+    const x = edge < 2 ? along : (edge === 2 ? -8.8 - random() * 1.9 : 8.8 + random() * 1.9);
     const z = edge < 2 ? (edge === 0 ? -distance : distance) : along * 0.48;
     transform.position.set(x, -0.08, z);
     transform.rotation.set((random() - 0.5) * 0.22, random() * Math.PI, (random() - 0.5) * 0.24);
@@ -380,10 +392,10 @@ function createAmbientVegetation(_textures: ForestMaterialTextures): {
   blades.receiveShadow = true;
   group.add(blades);
 
-  const flowerMaterial = new THREE.MeshBasicMaterial({ color: 0xffe8a6 });
+  const flowerMaterial = new THREE.MeshBasicMaterial({ color: 0xcab77c, transparent: true, opacity: opacity * 0.72 });
   const flowerGeometry = new THREE.OctahedronGeometry(0.055, 0);
-  const flowers = new THREE.InstancedMesh(flowerGeometry, flowerMaterial, 28);
-  for (let index = 0; index < 28; index += 1) {
+  const flowers = new THREE.InstancedMesh(flowerGeometry, flowerMaterial, 8);
+  for (let index = 0; index < 8; index += 1) {
     const side = index % 2 ? -1 : 1;
     transform.position.set(side * (7.2 + random() * 1.8), 0.12, -3.4 + random() * 6.8);
     transform.rotation.set(0, random() * Math.PI, 0);
@@ -395,13 +407,15 @@ function createAmbientVegetation(_textures: ForestMaterialTextures): {
   group.add(flowers);
 
   const fernMaterial = new THREE.MeshBasicMaterial({
-    color: 0x365f35,
+    color: 0x2f4d32,
     side: THREE.DoubleSide,
     vertexColors: true,
+    transparent: true,
+    opacity,
   });
-  const ferns = new THREE.InstancedMesh(createFernGeometry(), fernMaterial, 24);
+  const ferns = new THREE.InstancedMesh(createFernGeometry(), fernMaterial, 8);
   const fernColor = new THREE.Color();
-  for (let index = 0; index < 24; index += 1) {
+  for (let index = 0; index < 8; index += 1) {
     const side = index % 2 ? -1 : 1;
     transform.position.set(side * (7.35 + random() * 1.45), -0.07, -3.8 + random() * 7.6);
     transform.rotation.set(0, random() * Math.PI, 0);
@@ -447,7 +461,27 @@ function cloneTemplate(
   return clone;
 }
 
-export async function createForestEnvironment(scene: THREE.Scene): Promise<ForestEnvironment> {
+function attenuateObject(object: THREE.Object3D, opacity: number, contrast: number, saturation = 1): void {
+  object.traverse((child) => {
+    if (!(child instanceof THREE.Mesh) || !child.material) return;
+    const materials = Array.isArray(child.material) ? child.material : [child.material];
+    const attenuated = materials.map((material) => {
+      const clone = material.clone();
+      if ('color' in clone && clone.color instanceof THREE.Color) {
+        const hsl = { h: 0, s: 0, l: 0 };
+        clone.color.getHSL(hsl);
+        clone.color.setHSL(hsl.h, hsl.s * saturation, hsl.l * contrast);
+      }
+      clone.transparent = true;
+      clone.opacity = opacity;
+      clone.depthWrite = false;
+      return clone;
+    });
+    child.material = Array.isArray(child.material) ? attenuated : attenuated[0]!;
+  });
+}
+
+export async function createForestEnvironment(scene: THREE.Scene, presentation: CombatPresentationOptions = {}): Promise<ForestEnvironment> {
   const root = new THREE.Group();
   root.name = 'ForestEnvironment';
   root.add(createTerrainShell());
@@ -455,9 +489,14 @@ export async function createForestEnvironment(scene: THREE.Scene): Promise<Fores
 
   const swayTargets: Array<{ object: THREE.Object3D; phase: number; amplitude: number }> = [];
   const lanternMaterials: THREE.MeshStandardMaterial[] = [];
-  const waterMaterials: THREE.ShaderMaterial[] = [];
   const ambientSway: THREE.InstancedMesh[] = [];
   let ambientVegetation: THREE.Group | null = null;
+  const propOpacity = presentation.props?.opacity ?? 0.58;
+  const propContrast = presentation.props?.contrast ?? 0.74;
+  const propScale = presentation.props?.scale ?? 0.62;
+  const ambientOpacity = presentation.props?.ambientVegetationOpacity ?? 0.06;
+  const lanternIntensity = presentation.props?.lanternIntensity ?? 0.82;
+  const propSaturation = presentation.props?.saturation ?? 0.6;
 
   try {
     const [gltf, textures] = await Promise.all([
@@ -465,10 +504,7 @@ export async function createForestEnvironment(scene: THREE.Scene): Promise<Fores
       loadForestMaterialTextures(),
     ]);
     dressForestMaterials(gltf.scene, textures);
-    const water = createWaterFeatures();
-    root.add(water.group);
-    waterMaterials.push(...water.materials);
-    const vegetation = createAmbientVegetation(textures);
+    const vegetation = createAmbientVegetation(textures, ambientOpacity);
     root.add(vegetation.group);
     ambientVegetation = vegetation.group;
     ambientSway.push(...vegetation.sway);
@@ -482,8 +518,9 @@ export async function createForestEnvironment(scene: THREE.Scene): Promise<Fores
       rotation = random() * Math.PI * 2,
       sway = 0,
     ) => {
-      const object = cloneTemplate(templates, name, position, scale, rotation);
+      const object = cloneTemplate(templates, name, position, scale * propScale, rotation);
       if (!object) return;
+      attenuateObject(object, propOpacity, propContrast, propSaturation);
       root.add(object);
       if (sway > 0) swayTargets.push({ object, phase: random() * Math.PI * 2, amplitude: sway });
       object.traverse((child) => {
@@ -498,10 +535,10 @@ export async function createForestEnvironment(scene: THREE.Scene): Promise<Fores
     };
 
     const treeTypes = ['Tree_Broad_A', 'Tree_Pine_A', 'Tree_Broad_A', 'Tree_Pine_B'];
-    for (let index = 0; index < 24; index += 1) {
+    for (let index = 0; index < 8; index += 1) {
       const side = index % 4;
       const along = -9 + random() * 18;
-      const distance = 5.4 + random() * 3.4;
+      const distance = 8.8 + random() * 3.8;
       const position: [number, number, number] = side === 0
         ? [along, -0.86, -distance]
         : side === 1
@@ -509,55 +546,46 @@ export async function createForestEnvironment(scene: THREE.Scene): Promise<Fores
           : side === 2
             ? [-distance - 1.4, -0.86, along * 0.55]
             : [distance + 1.4, -0.86, along * 0.55];
-      place(treeTypes[index % treeTypes.length] ?? 'Tree_Pine_A', position, 0.72 + random() * 0.55, undefined, 0.012 + random() * 0.012);
+      place(treeTypes[index % treeTypes.length] ?? 'Tree_Pine_A', position, 0.56 + random() * 0.34, undefined, 0.008 + random() * 0.008);
     }
 
-    for (let index = 0; index < 16; index += 1) {
+    for (let index = 0; index < 4; index += 1) {
       const angle = random() * Math.PI * 2;
-      const radius = 6.2 + random() * 3.4;
+      const radius = 8.8 + random() * 3.4;
       place(
         index % 3 === 0 ? 'Bush_Light' : 'Bush_Dark',
         [Math.sin(angle) * radius, -0.82, Math.cos(angle) * radius],
-        0.65 + random() * 0.55,
+        0.52 + random() * 0.38,
       );
     }
 
     const rockTypes = ['Rock_Small', 'Rock_Medium', 'Rock_Tall'];
-    for (let index = 0; index < 12; index += 1) {
+    for (let index = 0; index < 4; index += 1) {
       const angle = random() * Math.PI * 2;
-      const radius = 6.1 + random() * 4.2;
-      place(rockTypes[index % rockTypes.length] ?? 'Rock_Small', [Math.sin(angle) * radius, -0.84, Math.cos(angle) * radius], 0.8 + random() * 0.75);
+      const radius = 9.0 + random() * 3.9;
+      place(rockTypes[index % rockTypes.length] ?? 'Rock_Small', [Math.sin(angle) * radius, -0.84, Math.cos(angle) * radius], 0.62 + random() * 0.45);
     }
 
-    place('Cliff_Wide', [-9.6, -0.9, -6.4], 1.45, 0.18);
-    place('Cliff_Straight', [9.7, -0.9, -5.8], 1.45, -0.25);
-    place('Cliff_Straight', [-10.2, -0.9, 5.4], 1.25, Math.PI + 0.15);
-    place('Ruin_Arch', [0.5, -0.86, -9.4], 1.35, 0.04);
-    place('Ruin_Arch', [11.8, -0.86, 2.8], 0.9, -Math.PI / 2);
-    place('Lantern_Post', [-8.8, -0.86, 4.5], 1.05, 0);
-    place('Lantern_Post', [8.9, -0.86, 4.8], 1.05, Math.PI);
-    place('Bridge_Wood', [0, -0.72, 7.5], 1.25, 0);
+    place('Cliff_Wide', [-12.2, -0.9, -8.4], 0.78, 0.18);
+    place('Cliff_Straight', [12.4, -0.9, -7.8], 0.74, -0.25);
+    place('Ruin_Arch', [13.4, -0.86, 4.4], 0.48, -Math.PI / 2);
+    place('Lantern_Post', [-10.8, -0.86, 5.8], 0.56, 0);
+    place('Lantern_Post', [11.0, -0.86, 6.2], 0.56, Math.PI);
 
     const bankDetails: Array<[string, [number, number, number], number, number]> = [
-      ['Rock_Medium', [-3.28, -0.78, 4.45], 1.15, 0.3],
-      ['Rock_Small', [-0.72, -0.78, 4.75], 1.05, 1.2],
-      ['Bush_Dark', [-3.55, -0.78, 5.35], 0.82, 0.4],
-      ['Bush_Light', [-0.45, -0.78, 5.75], 0.74, 2.1],
-      ['Rock_Tall', [-3.32, -1.1, 7.0], 0.76, 0.2],
-      ['Rock_Medium', [-0.63, -1.08, 7.45], 0.92, 0.8],
-      ['Bush_Dark', [-3.62, -1.08, 8.35], 0.78, 1.5],
-      ['Rock_Small', [-0.38, -1.1, 9.0], 1.0, 2.4],
-      ['Tree_Broad_A', [-7.9, -0.86, 5.6], 1.28, 0.15],
-      ['Tree_Broad_A', [8.0, -0.86, 5.8], 1.22, -0.3],
+      ['Rock_Medium', [-5.9, -0.9, 6.4], 0.7, 0.3],
+      ['Bush_Dark', [-6.4, -0.86, 7.1], 0.58, 0.4],
+      ['Rock_Tall', [-5.8, -1.14, 8.4], 0.52, 0.2],
+      ['Tree_Broad_A', [-9.4, -0.9, 6.7], 0.76, 0.15],
+      ['Tree_Broad_A', [9.5, -0.9, 6.9], 0.72, -0.3],
     ];
     for (const [name, position, scale, rotation] of bankDetails) place(name, position, scale, rotation, name.startsWith('Tree_') ? 0.014 : 0);
 
     const plantDetails: Array<[string, [number, number, number], number, number]> = [
-      ['Broad_Plant_A', [-8.25, -0.8, 1.8], 1.08, 0.6],
-      ['Broad_Plant_A', [8.35, -0.8, -1.2], 1.1, 1.4],
-      ['Broad_Plant_A', [-0.15, -0.82, 4.55], 0.92, 1.6],
-      ['Mushroom_Cluster_A', [-7.2, -0.78, -3.55], 1.2, 0.2],
-      ['Mushroom_Cluster_A', [7.25, -0.78, 3.55], 1.0, 1.4],
+      ['Broad_Plant_A', [-9.0, -0.84, 2.4], 0.62, 0.6],
+      ['Broad_Plant_A', [9.1, -0.84, -1.8], 0.64, 1.4],
+      ['Mushroom_Cluster_A', [-8.6, -0.82, -4.2], 0.68, 0.2],
+      ['Mushroom_Cluster_A', [8.8, -0.82, 4.2], 0.6, 1.4],
     ];
     for (const [name, position, scale, rotation] of plantDetails) {
       place(name, position, scale, rotation);
@@ -575,11 +603,7 @@ export async function createForestEnvironment(scene: THREE.Scene): Promise<Fores
           : Math.sin(time * 0.72 + target.phase) * target.amplitude;
       }
       for (const material of lanternMaterials) {
-        material.emissiveIntensity = reducedGraphics ? 1.3 : 2.2 + Math.sin(time * 5.2) * 0.35;
-      }
-      for (const material of waterMaterials) {
-        const timeUniform = material.uniforms.t;
-        if (timeUniform) timeUniform.value = reducedGraphics ? 0 : time;
+        material.emissiveIntensity = reducedGraphics ? lanternIntensity * 0.72 : lanternIntensity + Math.sin(time * 5.2) * 0.18;
       }
       for (const mesh of ambientSway) {
         mesh.rotation.z = reducedGraphics ? 0 : Math.sin(time * 0.65) * 0.012;

@@ -80,9 +80,10 @@ export class BackgroundLayerSystem {
         map: texture,
         transparent: (config.opacity ?? 1) < 1,
         opacity: config.opacity ?? 1,
-        depthTest: true,
+        depthTest: false,
         depthWrite: false,
         fog: false,
+        toneMapped: false,
       });
     const size = config.size ?? [32, 18];
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(size[0], size[1]), material);

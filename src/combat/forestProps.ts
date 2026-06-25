@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 
-const bark = new THREE.MeshStandardMaterial({ color: 0x503820, roughness: 1 });
-const barkDark = new THREE.MeshStandardMaterial({ color: 0x2f281d, roughness: 1 });
-const stone = new THREE.MeshStandardMaterial({ color: 0x8b927f, roughness: 0.96 });
-const stoneDark = new THREE.MeshStandardMaterial({ color: 0x525d55, roughness: 1 });
-const moss = new THREE.MeshStandardMaterial({ color: 0x587544, roughness: 1 });
-const metal = new THREE.MeshStandardMaterial({ color: 0x3c3631, roughness: 0.72, metalness: 0.22 });
+const bark = new THREE.MeshStandardMaterial({ color: 0x3d2f22, roughness: 1 });
+const barkDark = new THREE.MeshStandardMaterial({ color: 0x27241d, roughness: 1 });
+const stone = new THREE.MeshStandardMaterial({ color: 0x747969, roughness: 1 });
+const stoneDark = new THREE.MeshStandardMaterial({ color: 0x424c45, roughness: 1 });
+const moss = new THREE.MeshStandardMaterial({ color: 0x405737, roughness: 1 });
+const metal = new THREE.MeshStandardMaterial({ color: 0x312d2a, roughness: 0.86, metalness: 0.12 });
 
 function shadows(group: THREE.Object3D): THREE.Object3D {
   group.traverse((child) => {
@@ -35,7 +35,7 @@ export function createForestStump(): THREE.Group {
   const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.38, 0.62, 10), bark);
   trunk.position.y = 0.31;
   const cut = new THREE.Mesh(new THREE.CylinderGeometry(0.29, 0.29, 0.035, 16), new THREE.MeshStandardMaterial({
-    color: 0xb99058,
+    color: 0x8a6f49,
     roughness: 1,
   }));
   cut.position.y = 0.64;
@@ -83,10 +83,10 @@ export function createShrineStone(): THREE.Group {
   slab.position.y = 0.64;
   slab.scale.z = 0.38;
   const inset = new THREE.Mesh(new THREE.TorusGeometry(0.14, 0.025, 8, 18), new THREE.MeshStandardMaterial({
-    color: 0xd7b76c,
-    emissive: 0x6c5422,
-    emissiveIntensity: 0.5,
-    roughness: 0.58,
+    color: 0xb99b5c,
+    emissive: 0x47391b,
+    emissiveIntensity: 0.26,
+    roughness: 0.78,
   }));
   inset.position.set(0, 0.75, 0.125);
   group.add(slab, inset);
@@ -102,7 +102,7 @@ export function createLanternPost(): THREE.Group {
   arm.position.set(0.16, 1.27, 0);
   const cage = new THREE.Mesh(new THREE.OctahedronGeometry(0.16, 0), metal);
   cage.position.set(0.34, 1.08, 0);
-  const glow = new THREE.PointLight(0xffc56d, 3.3, 4.5, 2);
+  const glow = new THREE.PointLight(0xe8b66d, 1.45, 4.0, 2);
   glow.position.copy(cage.position);
   group.add(post, arm, cage, glow);
   return shadows(group) as THREE.Group;
