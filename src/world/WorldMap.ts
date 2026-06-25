@@ -109,6 +109,9 @@ export class WorldMap {
       const visited = state.visitedNodeIds.includes(visual.node.id);
       const currentNode = visual.node.id === state.currentNodeId;
       const reachable = connected.has(visual.node.id);
+      const locked = revealed && !currentNode && !reachable && !visited && !resolved;
+      const boss = visual.node.type === 'boss';
+      const special = visual.node.type === 'shop' || visual.node.type === 'treasure' || visual.node.type === 'mystery';
       const cooldown = state.combatCooldowns[visual.node.id];
       visual.core.material.opacity = resolved ? 0.4 : 1;
       visual.core.material.transparent = resolved;
@@ -121,6 +124,10 @@ export class WorldMap {
       visual.button.classList.toggle('is-resolved', resolved);
       visual.button.classList.toggle('is-visited', visited);
       visual.button.classList.toggle('is-reachable', reachable && cooldown === undefined);
+      visual.button.classList.toggle('is-locked', locked || cooldown !== undefined);
+      visual.button.classList.toggle('is-boss', boss);
+      visual.button.classList.toggle('is-special', special);
+      visual.button.dataset.state = currentNode ? 'current' : reachable && cooldown === undefined ? 'reachable' : resolved ? 'resolved' : visited ? 'visited' : 'locked';
       visual.button.dataset.cooldown = cooldown === undefined
         ? ''
         : `Disponible dans ${Math.max(0, cooldown - state.stepCounter)} déplacement(s)`;
@@ -275,8 +282,9 @@ export class WorldMap {
       this.scene.add(group);
 
       const button = document.createElement('button');
-      button.className = 'map-node';
+      button.className = `map-node map-node--${node.type}`;
       button.type = 'button';
+      button.dataset.nodeType = node.type;
       button.innerHTML = `<span class="map-node__icon">${node.icon}</span><span class="map-node__label">${node.label}</span><small></small>`;
       button.addEventListener('click', () => this.options.onSelect(node));
       this.options.labelLayer.append(button);

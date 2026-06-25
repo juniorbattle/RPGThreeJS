@@ -1,0 +1,66 @@
+:root {
+  color-scheme: dark;
+  --ui-font-title: Cinzel, serif;
+  --ui-font-body: Inter, system-ui, sans-serif;
+  --ui-font-feedback: VT323, monospace;
+
+  --ui-color-ink: #080b14;
+  --ui-color-ink-deep: #03050a;
+  --ui-color-surface: rgba(10, 15, 28, 0.88);
+  --ui-color-surface-strong: rgba(7, 11, 21, 0.96);
+  --ui-color-surface-soft: rgba(17, 24, 39, 0.7);
+  --ui-color-surface-elevated: rgba(20, 29, 46, 0.94);
+  --ui-color-gold: #d9b25a;
+  --ui-color-gold-bright: #f6db91;
+  --ui-color-cream: #f4ead0;
+  --ui-color-muted: #a7b1c5;
+  --ui-color-muted-strong: #d4dbea;
+  --ui-color-blue: #72c7ff;
+  --ui-color-emerald: #65c59b;
+  --ui-color-danger: #d96464;
+  --ui-color-danger-soft: rgba(90, 29, 35, 0.38);
+  --ui-line-gold: rgba(224, 197, 128, 0.28);
+  --ui-line-gold-strong: rgba(246, 219, 145, 0.54);
+  --ui-line-soft: rgba(255, 255, 255, 0.08);
+
+  --ui-radius-xs: 3px;
+  --ui-radius-sm: 5px;
+  --ui-radius-md: 8px;
+  --ui-radius-lg: 12px;
+  --ui-radius-xl: 18px;
+
+  --ui-space-1: 4px;
+  --ui-space-2: 8px;
+  --ui-space-3: 12px;
+  --ui-space-4: 16px;
+  --ui-space-5: 20px;
+  --ui-space-6: 24px;
+  --ui-space-7: 32px;
+  --ui-space-8: 40px;
+
+  --ui-shadow-panel: 0 20px 56px rgba(0, 0, 0, 0.58), inset 0 1px 0 rgba(255, 236, 190, 0.08);
+  --ui-shadow-panel-strong: 0 32px 100px rgba(0, 0, 0, 0.72), inset 0 0 80px rgba(91, 116, 147, 0.06);
+  --ui-shadow-hud: 0 16px 44px rgba(0, 0, 0, 0.52), 0 1px 0 rgba(244, 217, 139, 0.1);
+  --ui-shadow-glow: 0 0 22px rgba(246, 219, 145, 0.28);
+  --ui-shadow-danger: 0 0 20px rgba(217, 100, 100, 0.18);
+
+  --ui-motion-fast: 0.16s;
+  --ui-motion-base: 0.22s;
+  --ui-motion-slow: 0.36s;
+  --ui-motion-ambient: 24s;
+
+  --ink: var(--ui-color-ink);
+  --panel: var(--ui-color-surface);
+  --panel-soft: var(--ui-color-surface-soft);
+  --gold: var(--ui-color-gold);
+  --gold-bright: var(--ui-color-gold-bright);
+  --gold2: var(--ui-color-gold-bright);
+  --cream: var(--ui-color-cream);
+  --muted: var(--ui-color-muted);
+  --blue: var(--ui-color-blue);
+  --emerald: var(--ui-color-emerald);
+  --danger: var(--ui-color-danger);
+  --line: var(--ui-line-gold);
+  --font-title: var(--ui-font-title);
+  --font-body: var(--ui-font-body);
+}

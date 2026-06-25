@@ -1,6 +1,7 @@
 import { getFinalStats, itemById, items, unitById, weaponById, weapons } from '../game/catalog';
 import { buyItem, equipAccessory, equipWeapon, excludeUnit, sellItem } from '../game/management';
 import { getReputationRule, getShopPrice } from '../game/reputation';
+import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
 import type { GameState, ItemCategory, UnitInstance } from '../game/types';
 
 type ManagementTab = 'clan' | 'inventory' | 'shop';
@@ -37,7 +38,8 @@ export class ManagementView {
     this.shopWallet = shopWallet;
     this.selectedUnitId = this.options.getState().clan.members[0]?.id ?? '';
     this.overlay = document.createElement('section');
-    this.overlay.className = 'management';
+    this.overlay.className = 'management ui-screen ui-screen--dialog';
+    applyScreenEnvironment(this.overlay, 'management');
     this.overlay.setAttribute('role', 'dialog');
     this.overlay.setAttribute('aria-modal', 'true');
     this.options.root.append(this.overlay);
@@ -59,11 +61,12 @@ export class ManagementView {
     const state = this.options.getState();
     this.overlay.innerHTML = `
       <div class="management__veil"></div>
-      <div class="management__shell">
-        <header class="management__header">
-          <div><p class="eyebrow">Camp du Lion</p><h2>Registre de compagnie</h2></div>
-          <div class="management__wealth"><span>BUTIN / COFFRE</span><strong>${state.run.temporaryLoot.gold} / ${state.gold}</strong></div>
-          <button class="icon-button" type="button" data-action="close" aria-label="Fermer">×</button>
+      <div class="ui-environment-layer ui-environment-layer--fog" aria-hidden="true"></div>
+      <div class="management__shell ui-shell ui-shell--management ui-panel">
+        <header class="management__header ui-hud">
+          <div class="ui-hud__section"><p class="eyebrow ui-eyebrow">Camp du Lion</p><h2>Registre de compagnie</h2></div>
+          <div class="management__wealth ui-chip"><span>BUTIN / COFFRE</span><strong>${state.run.temporaryLoot.gold} / ${state.gold}</strong></div>
+          <button class="icon-button ui-icon-button" type="button" data-action="close" aria-label="Fermer">×</button>
         </header>
         <nav class="management__tabs">
           ${this.tabButton('clan', 'Clan')}
@@ -77,7 +80,7 @@ export class ManagementView {
   }
 
   private tabButton(tab: ManagementTab, label: string): string {
-    return `<button type="button" data-tab="${tab}" class="${this.tab === tab ? 'is-active' : ''}">${label}</button>`;
+    return `<button type="button" data-tab="${tab}" class="ui-tab ${this.tab === tab ? 'is-active' : ''}">${label}</button>`;
   }
 
   private renderContent(): string {
@@ -95,19 +98,19 @@ export class ManagementView {
     const roster = state.clan.members.map((unit) => {
       const def = unitById.get(unit.definitionId)!;
       return `
-        <button type="button" class="roster-card ${unit.id === selected.id ? 'is-active' : ''}" data-unit="${unit.id}">
+        <button type="button" class="roster-card ui-panel ui-panel--dense ${unit.id === selected.id ? 'is-active' : ''}" data-unit="${unit.id}">
           <img src="${def.portrait}" alt="">
           <span><strong>${unit.name}</strong><small>${def.className}</small></span>
           ${unit.narrativeLocked ? '<i title="Unité narrative">◆</i>' : ''}
         </button>`;
     }).join('');
     return `
-      <div class="clan-layout">
-        <aside class="roster"><div class="section-title">Membres ${state.clan.members.length}/${state.clan.maxSize}</div>${roster}</aside>
-        <article class="unit-sheet">
+      <div class="clan-layout ui-split">
+        <aside class="roster ui-scroll-panel"><div class="section-title ui-section-title">Membres ${state.clan.members.length}/${state.clan.maxSize}</div>${roster}</aside>
+        <article class="unit-sheet ui-scroll-panel">
           <div class="unit-sheet__hero">
             <img src="${definition.portrait}" alt="${selected.name}">
-            <div><p class="eyebrow">${definition.className}</p><h3>${selected.name}</h3><span>Progression par équipement</span></div>
+            <div><p class="eyebrow ui-eyebrow">${definition.className}</p><h3>${selected.name}</h3><span>Progression par équipement</span></div>
           </div>
           <div class="stat-grid">
             ${this.stat('PV', stats.maxHealth)}${this.stat('FOR', stats.strength)}
@@ -115,13 +118,13 @@ export class ManagementView {
             ${this.stat('DEX', stats.dexterity)}${this.stat('CHA', stats.charisma)}
           </div>
           <div class="equipment">
-            <div class="section-title">Équipement</div>
+            <div class="section-title ui-section-title">Équipement</div>
             ${Array.from({ length: definition.weaponSlotCount }, (_, slot) =>
               this.weaponSelect(selected, slot as 0 | 1)).join('')}
             ${([0, 1] as const).map((slot) => this.accessorySelect(selected, slot)).join('')}
           </div>
           <div class="unit-sheet__actions">
-            <button type="button" class="danger-button" data-action="exclude" ${selected.narrativeLocked ? 'disabled' : ''}>
+            <button type="button" class="danger-button ui-button ui-button--danger" data-action="exclude" ${selected.narrativeLocked ? 'disabled' : ''}>
               ${selected.narrativeLocked ? 'Lié à la chronique' : 'Exclure du clan'}
             </button>
           </div>
@@ -164,14 +167,14 @@ export class ManagementView {
   }
 
   private stat(label: string, value: number): string {
-    return `<div><span>${label}</span><strong>${value}</strong></div>`;
+    return `<div class="ui-stat"><span>${label}</span><strong>${value}</strong></div>`;
   }
 
   private renderInventory(): string {
     const state = this.options.getState();
     return `<div class="inventory-view">${(Object.keys(categoryLabels) as ItemCategory[]).map((category) => {
       const rows = Object.entries(state.inventory[category]).filter(([, quantity]) => quantity > 0);
-      return `<section class="inventory-group"><div class="section-title">${categoryLabels[category]}</div>
+      return `<section class="inventory-group ui-panel ui-panel--soft"><div class="section-title ui-section-title">${categoryLabels[category]}</div>
         ${rows.length ? rows.map(([id, quantity]) => this.itemRow(id, quantity)).join('') : '<p class="empty-copy">Aucun objet.</p>'}
       </section>`;
     }).join('')}</div>`;
@@ -180,8 +183,8 @@ export class ManagementView {
   private itemRow(id: string, quantity: number, action = ''): string {
     const item = itemById.get(id);
     if (!item) return '';
-    return `<div class="item-row">
-      <span class="item-row__icon">${item.icon}</span>
+    return `<div class="item-row ui-panel ui-panel--dense">
+      <span class="item-row__icon ui-chip">${item.icon}</span>
       <span><strong>${item.name}</strong><small>${item.description}</small></span>
       <b>×${quantity}</b>${action}
     </div>`;
@@ -198,14 +201,14 @@ export class ManagementView {
       const price = this.shopMode === 'buy' ? getShopPrice(item.price, state.reputation) : Math.floor(item.price / 2);
       const availableGold = this.shopWallet === 'temporary' ? state.run.temporaryLoot.gold : state.gold;
       const disabled = this.shopMode === 'buy' && availableGold < price;
-      const action = `<button type="button" data-trade="${this.shopMode}" data-item="${id}" ${disabled ? 'disabled' : ''}>${price} or</button>`;
+      const action = `<button type="button" class="ui-button ui-button--secondary" data-trade="${this.shopMode}" data-item="${id}" ${disabled ? 'disabled' : ''}>${price} or</button>`;
       return this.itemRow(id, quantity, action);
     }).join('');
     return `<div class="shop-view">
-      <div class="shop-view__intro"><div><p class="eyebrow">Échoppe de Valmir · ${getReputationRule(state.reputation).label}</p><h3>Le Comptoir du Cerf</h3><small>Les achats utilisent ${this.shopWallet === 'temporary' ? 'le butin non sécurisé' : 'le coffre permanent'}.</small></div>
+      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Échoppe de Valmir · ${getReputationRule(state.reputation).label}</p><h3>Le Comptoir du Cerf</h3><small>Les achats utilisent ${this.shopWallet === 'temporary' ? 'le butin non sécurisé' : 'le coffre permanent'}.</small></div>
         <div class="shop-toggle">
-          <button type="button" data-shop-mode="buy" class="${this.shopMode === 'buy' ? 'is-active' : ''}">Acheter</button>
-          <button type="button" data-shop-mode="sell" class="${this.shopMode === 'sell' ? 'is-active' : ''}">Vendre</button>
+          <button type="button" data-shop-mode="buy" class="ui-tab ${this.shopMode === 'buy' ? 'is-active' : ''}">Acheter</button>
+          <button type="button" data-shop-mode="sell" class="ui-tab ${this.shopMode === 'sell' ? 'is-active' : ''}">Vendre</button>
         </div>
       </div>
       <div class="shop-list">${rows || '<p class="empty-copy">Aucun article disponible.</p>'}</div>

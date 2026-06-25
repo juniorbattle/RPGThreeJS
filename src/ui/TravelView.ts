@@ -1,6 +1,7 @@
 import { unitById } from '../game/catalog';
 import { getAvailableRunNodes } from '../game/runSystem';
 import { assets } from '../render/assetManifest';
+import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
 import type { GameState, RunNode, RunNodeType } from '../game/types';
 
 interface TravelViewOptions {
@@ -60,8 +61,9 @@ export class TravelView {
       .filter((unit) => Boolean(unit))
       .slice(0, 4);
     const section = document.createElement('section');
-    section.className = 'travel-view';
-    section.style.setProperty('--travel-sky', `url('${assets.screens.travel.sky}')`);
+    section.className = 'travel-view ui-screen';
+    const environment = applyScreenEnvironment(section, 'travel');
+    section.style.setProperty('--travel-sky', `url('${environment.mainImage}')`);
     section.style.setProperty('--travel-mist', `url('${assets.screens.travel.mist}')`);
     section.innerHTML = `
       <div class="travel-view__sky"></div>
@@ -70,22 +72,22 @@ export class TravelView {
       <div class="travel-view__particles" aria-hidden="true">${particleLayer()}</div>
       <div class="travel-view__vignette"></div>
       <div class="travel-view__scene-dim" aria-hidden="true"></div>
-      <header class="travel-view__hud">
-        <div><p class="eyebrow">Run · ${state.run.regionId}</p><strong>Choisissez la prochaine étape</strong></div>
-        <div class="travel-view__resources">
-          <span>🪙 Butin ${state.run.temporaryLoot.gold}</span>
-          <span>✶ Réputation ${state.reputation}</span>
+      <header class="travel-view__hud ui-hud ui-panel ui-panel--hud">
+        <div class="ui-hud__section"><p class="eyebrow ui-eyebrow">Run · ${state.run.regionId}</p><strong>Choisissez la prochaine étape</strong></div>
+        <div class="travel-view__resources ui-hud__stats">
+          <span class="ui-chip">🪙 Butin ${state.run.temporaryLoot.gold}</span>
+          <span class="ui-chip">✶ Réputation ${state.reputation}</span>
         </div>
-        <div class="travel-view__hud-actions">
-          <button type="button" data-action="clan">Compagnie</button>
-          <button type="button" data-action="map">Carte stratégique</button>
+        <div class="travel-view__hud-actions ui-hud__actions">
+          <button class="ui-button ui-button--hud" type="button" data-action="clan">Compagnie</button>
+          <button class="ui-button ui-button--hud" type="button" data-action="map">Carte stratégique</button>
         </div>
       </header>
       <div class="travel-view__choices">
         ${choices.map((node) => {
           const meta = NODE_PRESENTATION[node.type];
           return `
-          <button type="button" class="route-choice route-choice--${node.type}" data-node="${node.id}">
+          <button type="button" class="route-choice route-choice--${node.type} ui-route-card" data-node="${node.id}">
             <span class="route-choice__type">${meta.label}</span>
             <span class="route-choice__icon">${node.icon}</span>
             <strong class="route-choice__title">${node.label}</strong>

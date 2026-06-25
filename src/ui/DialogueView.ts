@@ -1,3 +1,4 @@
+import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
 import type { DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../game/types';
 
 interface DialogueViewOptions {
@@ -19,15 +20,17 @@ export class DialogueView {
     this.close();
     this.sequence = sequence;
     this.overlay = document.createElement('section');
-    this.overlay.className = 'dialogue';
+    this.overlay.className = 'dialogue ui-screen';
+    applyScreenEnvironment(this.overlay, 'dialogue');
     this.overlay.setAttribute('role', 'dialog');
     this.overlay.setAttribute('aria-modal', 'true');
     this.overlay.innerHTML = `
       <div class="dialogue__backdrop"></div>
+      <div class="ui-environment-layer ui-environment-layer--fog" aria-hidden="true"></div>
       <div class="dialogue__portrait dialogue__portrait--left" aria-hidden="true"></div>
       <div class="dialogue__portrait dialogue__portrait--right" aria-hidden="true"></div>
       <div class="dialogue__choices"></div>
-      <button class="dialogue__box" type="button">
+      <button class="dialogue__box ui-panel ui-panel--dialogue" type="button">
         <span class="dialogue__speaker"></span>
         <span class="dialogue__tag"></span>
         <span class="dialogue__text"></span>
@@ -95,7 +98,7 @@ export class DialogueView {
 
   private createChoice(choice: DialogueChoice): HTMLButtonElement {
     const button = document.createElement('button');
-    button.className = 'dialogue-choice';
+    button.className = 'dialogue-choice ui-panel ui-panel--dense';
     button.type = 'button';
     const state = this.options.getState();
     const blockedByGold = choice.requiresGold !== undefined && state.gold < choice.requiresGold;

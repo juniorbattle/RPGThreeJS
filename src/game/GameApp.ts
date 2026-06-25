@@ -14,6 +14,7 @@ import { ManagementView } from '../ui/ManagementView';
 import { TravelView } from '../ui/TravelView';
 import { ExplorationView } from '../ui/ExplorationView';
 import { WorldMap } from '../world/WorldMap';
+import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
 
 type AppMode = 'TITLE' | 'TRAVEL' | 'WORLD_MAP' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT';
 
@@ -124,6 +125,7 @@ export class GameApp {
   private openStrategicMap(): void {
     this.travel.close();
     this.setMode('WORLD_MAP');
+    applyScreenEnvironment(this.canvas, 'worldMap');
     this.ensureWorld();
     this.world?.setVisible(true);
     this.renderHud();
@@ -330,26 +332,26 @@ export class GameApp {
     const current = getRunNode(this.state.run);
     const reputation = getReputationRule(this.state.reputation);
     this.chrome.innerHTML = `
-      <header class="map-hud">
-        <div>
-          <p class="eyebrow">Terres du Lion</p>
+      <header class="map-hud ui-hud ui-panel ui-panel--hud">
+        <div class="ui-hud__section">
+          <p class="eyebrow ui-eyebrow">Terres du Lion</p>
           <strong>${current?.label ?? 'Route inconnue'}</strong>
         </div>
-        <div class="map-hud__stats">
-          <span>🪙 ${this.state.run.temporaryLoot.gold} / ${this.state.gold}</span>
-          <span>♜ ${this.state.reputation}% · ${reputation.label}</span>
-          <span>⚔ ${this.state.clan.members.length}</span>
+        <div class="map-hud__stats ui-hud__stats">
+          <span class="ui-chip">🪙 ${this.state.run.temporaryLoot.gold} / ${this.state.gold}</span>
+          <span class="ui-chip">♜ ${this.state.reputation}% · ${reputation.label}</span>
+          <span class="ui-chip">⚔ ${this.state.clan.members.length}</span>
         </div>
-        <div class="map-hud__actions">
-          <button type="button" data-action="clan">Compagnie</button>
-          <button type="button" data-action="travel">Reprendre la route</button>
-          <button type="button" data-action="graphics">FX ${this.state.settings.reducedGraphics ? 'réduits' : 'HD'}</button>
-          <button type="button" data-action="save">Sauvegarder</button>
-          <button type="button" data-action="title">Menu</button>
+        <div class="map-hud__actions ui-hud__actions">
+          <button class="ui-button ui-button--hud" type="button" data-action="clan">Compagnie</button>
+          <button class="ui-button ui-button--hud" type="button" data-action="travel">Reprendre la route</button>
+          <button class="ui-button ui-button--hud" type="button" data-action="graphics">FX ${this.state.settings.reducedGraphics ? 'réduits' : 'HD'}</button>
+          <button class="ui-button ui-button--hud" type="button" data-action="save">Sauvegarder</button>
+          <button class="ui-button ui-button--hud" type="button" data-action="title">Menu</button>
         </div>
       </header>
-      <aside class="objective-chip">
-        <span>Objectif</span>
+      <aside class="objective-chip ui-panel ui-panel--dense">
+        <span class="ui-eyebrow">Objectif</span>
         <strong>${this.getObjective()}</strong>
       </aside>
     `;

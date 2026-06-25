@@ -1,0 +1,102 @@
+[data-screen-env] {
+  --screen-bg-image: none;
+  --screen-bg-fallback: linear-gradient(#111a32 0%, #131827 45%, #080b14 100%);
+  --screen-overlay-opacity: 0.42;
+  --screen-vignette-opacity: 0.62;
+}
+
+[data-screen-env]::before,
+[data-screen-env]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+[data-screen-env]::before {
+  z-index: -2;
+  background: var(--screen-bg-fallback), var(--screen-bg-image) center bottom / cover no-repeat;
+}
+
+[data-screen-env]::after {
+  z-index: -1;
+  opacity: var(--screen-vignette-opacity);
+  background: radial-gradient(120% 92% at 50% 38%, transparent 50%, rgba(2, 3, 7, 0.72)), linear-gradient(180deg, rgba(4, 7, 12, 0.38), transparent 34%, rgba(3, 5, 10, 0.68));
+}
+
+[data-overlay="premium-night"] {
+  --screen-bg-fallback: linear-gradient(110deg, rgba(3, 6, 12, 0.96), rgba(10, 17, 29, 0.8));
+}
+
+[data-overlay="forest-dawn"] {
+  --screen-bg-fallback: linear-gradient(180deg, rgba(57, 76, 91, 0.42), rgba(6, 10, 18, 0.86));
+}
+
+[data-vignette="soft"] {
+  --screen-vignette-opacity: 0.46;
+}
+
+[data-vignette="medium"] {
+  --screen-vignette-opacity: 0.62;
+}
+
+[data-vignette="strong"] {
+  --screen-vignette-opacity: 0.78;
+}
+
+.ui-environment-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ui-environment-layer--fog {
+  z-index: 0;
+  opacity: 0.16;
+  background: radial-gradient(ellipse 120% 34% at 50% 100%, rgba(160, 190, 188, 0.22), transparent 66%), radial-gradient(ellipse 82% 24% at 17% 92%, rgba(140, 168, 190, 0.12), transparent 60%);
+  animation: ui-fog-breathe var(--ui-motion-ambient) ease-in-out infinite alternate;
+}
+
+[data-fog="none"] .ui-environment-layer--fog {
+  display: none;
+}
+
+[data-fog="low"] .ui-environment-layer--fog {
+  opacity: 0.12;
+}
+
+[data-fog="scene"] .ui-environment-layer--fog {
+  opacity: 0.18;
+}
+
+[data-hero-staging="management-unit"] .unit-sheet__hero {
+  position: relative;
+}
+
+[data-hero-staging="management-unit"] .unit-sheet__hero::after {
+  content: '';
+  position: absolute;
+  left: 22px;
+  bottom: 12px;
+  width: 170px;
+  height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.42), transparent 70%);
+  pointer-events: none;
+}
+
+[data-hero-staging="management-unit"] .unit-sheet__hero img {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes ui-fog-breathe {
+  from { opacity: 0.1; }
+  to { opacity: 0.18; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-environment-layer--fog {
+    animation: none;
+  }
+}
