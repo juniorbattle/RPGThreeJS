@@ -772,7 +772,7 @@ function pickUnit(ev){ ndc.x=(ev.clientX/innerWidth)*2-1; ndc.y=-(ev.clientY/inn
   const living=G.units.filter(u=>u.alive&&u.grp.visible); const bySprite=new Map(living.map(u=>[u.spr,u])); const hits=ray.intersectObjects([...bySprite.keys()],false); return hits.length?(bySprite.get(hits[0].object)||null):null; }
 
 function drawReach(){ clearHL(); const keys=new Set(G.reach.list.map(t=>cellKey(t.gx,t.gz))); addInvalidTiles(keys,true); for(const t of G.reach.list){ if(t.gx===G.active.gx&&t.gz===G.active.gz)continue; addHL(t.gx,t.gz,CFG.COL.move,COMBAT_PRESENTATION.arena.moveTileOpacity,'move'); } }
-function enterMove(){ if(G.movedThisTurn||G.busy)return; if(hasS(G.active,'root')){ toast('Entravé — déplacement impossible'); return; } G.mode='move'; G.reach=reachableStand(G.active); unitFocus.focus(G.units,G.active); closeMenus(false); drawReach(); setHint('Déplacement — cliquez une case disponible (U pour annuler)'); }
+function enterMove(){ if(G.movedThisTurn||G.busy)return; if(hasS(G.active,'root')){ toast('Entravé — déplacement impossible'); return; } G.mode='move'; G.reach=reachableStand(G.active); unitFocus.focus(G.units,G.active); closeMenus(false); drawReach(); setHint('Déplacement — choisissez une case'); }
 function drawRange(){ hideActionPreview(); clearHL(); const keys=new Set(G.pending.centers.map(c=>cellKey(c.gx,c.gz))); addInvalidTiles(keys,false); for(const c of G.pending.centers) addHL(c.gx,c.gz,CFG.COL.path,COMBAT_PRESENTATION.arena.rangeTileOpacity,'range'); }
 function previewAt(cx,cz){ drawRange(); const sp=G.pending.spec,hoverCell=cellAt(cx,cz),hoverOcc=hoverCell&&hoverCell.occupant,hoverEnemy=hoverOcc&&G.active&&hoverOcc.team!==G.active.team; addHL(cx,cz,hoverEnemy?CFG.COL.foe:0xf7edcf,COMBAT_PRESENTATION.arena.hoverTileOpacity,hoverEnemy?'target':'hover'); if(hoverEnemy)addRingHL(cx,cz,CFG.COL.foe,COMBAT_PRESENTATION.arena.targetTileOpacity+.22);
   const targets=affectedUnits(G.active,sp,cx,cz); unitFocus.preview(targets); showActionPreview(G.active,sp,targets,cx,cz);
@@ -786,12 +786,12 @@ function enterTarget(spec){ if(G.busy)return; if(G.actedThisTurn){ toast('Action
   const validTargets=[...new Set(centers.flatMap(c=>affectedUnits(G.active,spec,c.gx,c.gz)))];
   unitFocus.focus(G.units,G.active,validTargets);
   if(spec.self) previewAt(G.active.gx,G.active.gz); else drawRange();
-  setHint((spec.self?'Confirmez ':(spec.type==='move'?'Destination ':'Ciblez '))+'· '+spec.name); }
+  setHint((spec.self?'Action':(spec.type==='move'?'Déplacement':'Ciblage'))+' — '+spec.name); }
 function cancelToMenu(){ if(G.busy)return; if(G.mode==='move'||G.mode==='target'){ unitFocus.restore(); hideActionPreview(); G.pending=null; clearHL(); G.mode='menu'; openActionMenu(); setHint(G.active.name+' — à vous de jouer'); } }
 
 async function doExecute(spec,cx,cz){ await executeAction(G.active,spec,cx,cz); afterSub(); }
 function afterSub(){ unitFocus.restore(); hideActionPreview(); if(G.over)return; G.mode='menu'; selectUnit(G.active); openActionMenu();
-  if(G.movedThisTurn&&G.actedThisTurn) setHint('Tour terminé ? (Entrée)'); }
+  if(G.movedThisTurn&&G.actedThisTurn) setHint('Tour terminé — Entrée pour attendre'); else setHint(G.active.name+' — choisissez une action'); }
 function undoMove(){ if(G.busy||!G.movedThisTurn||G.actedThisTurn||G.startGX==null)return; unitFocus.restore(); const u=G.active; placeUnit(u,G.startGX,G.startGZ,true); G.movedThisTurn=false; clearHL(); G.mode='menu'; selectUnit(u); openActionMenu(); setHint(u.name+' — déplacement annulé'); }
 
 function transientInspect(u){ if(!u)return; const key=u.campaignId||u.id||u.name; if(statsPanelKey!==key){statsPanelKey=key;statsPanelExpanded=false;} G.selected=u; renderPanel(u); }
@@ -832,11 +832,17 @@ function bindInput(){ const el=renderer.domElement;
 
 // ============================= UI (HUD) =============================
 const ROLE={knight:'Chevalier · Tank',cleric:'Clerc · Soutien',mage:'Mage · Zone',archer:'Archère · Distance',brigand:'Brigand',brute:'Brute',darkmage:'Mage Noir'};
-function setHint(t){ dom.hint.innerHTML=t; }
+const ESC_MAP={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
+function escHTML(v){ return String(v==null?'':v).replace(/[&<>"']/g,ch=>ESC_MAP[ch]); }
+function teamLabel(team){ return team==='player'?'Allié':'Ennemi'; }
+function setHint(t){ const text=String(t||''),parts=text.split(/\s+[—–·]\s+/); if(parts.length>1){ const lead=parts.shift(); dom.hint.innerHTML='<span class="hint__lead">'+escHTML(lead)+'</span><span class="hint__sep">—</span><span class="hint__copy">'+escHTML(parts.join(' — '))+'</span>'; } else dom.hint.innerHTML='<span class="hint__copy">'+escHTML(text)+'</span>'; }
 function toast(t){ setHint('⚠ '+t); }
 // ---- Objective (compact / collapsible) ----
 function renderObjective(){ if(!dom.objective)return; dom.objective.classList.remove('hidden');
-  dom.objective.innerHTML='<details open><summary><span class="obj__eyebrow">Objectif</span><span class="obj__label">'+(COMBAT_LABEL||'Combat')+'</span><i class="obj__chevron" aria-hidden="true"></i></summary><p class="obj__text">'+COMBAT_OBJECTIVE+'</p></details>'; }
+  const foes=G.units.filter(u=>u.team==='foe'),foeAlive=aliveUnits('foe').length,foeDone=Math.max(0,foes.length-foeAlive),deploying=G.mode==='deploy'||!G.round;
+  const playerAlive=aliveUnits('player').length,playerTotal=G.deployedUnits.length||G.units.filter(u=>u.team==='player').length||MAX_PLAYER_UNITS;
+  const squadLabel=deploying?'Unités placées':'Escouade debout',squadValue=deploying?(G.deployedUnits.length+' / '+MAX_PLAYER_UNITS):(playerAlive+' / '+playerTotal),roundLabel=deploying?'Déploiement':'Manche '+G.round;
+  dom.objective.innerHTML='<details open><summary><span class="obj__eyebrow">Objectif</span><span class="obj__label">'+escHTML(COMBAT_LABEL||'Combat tactique')+'</span><i class="obj__chevron" aria-hidden="true"></i></summary><div class="obj__body"><p class="obj__text">'+escHTML(COMBAT_OBJECTIVE)+'</p><div class="obj__section">Sous-objectifs</div><div class="obj__sub"><span>Ennemis neutralisés</span><b>'+foeDone+' / '+foes.length+'</b></div><div class="obj__sub"><span>'+squadLabel+'</span><b>'+squadValue+'</b></div><div class="obj__round"><span>Manche actuelle</span><b>'+roundLabel+'</b></div></div></details>'; }
 // ---- Settings (gear) : purely visual toggles, no rules touched ----
 function applyGraphics(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); if(typeof bloom!=='undefined'&&bloom)bloom.enabled=!REDUCED_GRAPHICS; if(typeof tiltPass!=='undefined'&&tiltPass)tiltPass.enabled=!REDUCED_GRAPHICS; }
 function renderSettings(){ if(!dom.settings)return;
@@ -849,32 +855,30 @@ function renderSettings(){ if(!dom.settings)return;
 function toggleSettings(show){ if(!dom.settings)return; const open=(show==null)?dom.settings.classList.contains('hidden'):show;
   if(open){ renderSettings(); dom.settings.classList.remove('hidden'); } else dom.settings.classList.add('hidden');
   if(dom.settingsBtn)dom.settingsBtn.classList.toggle('is-open',open); }
+function initLogPanel(){ if(!dom.log||dom.log.dataset.ready)return; dom.log.innerHTML='<button type="button" class="log-toggle" aria-expanded="false"><span>Journal</span><b>0</b></button><div class="log-body"></div>'; dom.log.dataset.ready='1'; dom.log.classList.add('is-collapsed'); dom.log.classList.remove('is-open','hidden'); const button=dom.log.querySelector('.log-toggle'); if(button)button.onclick=()=>toggleLogPanel(); }
+function toggleLogPanel(show){ if(!dom.log)return; initLogPanel(); const open=show==null?dom.log.classList.contains('is-collapsed'):show; dom.log.classList.toggle('is-collapsed',!open); dom.log.classList.toggle('is-open',open); const button=dom.log.querySelector('.log-toggle'); if(button)button.setAttribute('aria-expanded',open?'true':'false'); }
 function initHud(){ if(dom.settingsBtn)dom.settingsBtn.onclick=()=>toggleSettings();
   addEventListener('pointerdown',(e)=>{ if(dom.settings&&!dom.settings.classList.contains('hidden')&&!dom.settings.contains(e.target)&&e.target!==dom.settingsBtn)toggleSettings(false); },true);
-  renderObjective(); }
-function logMsg(t){ const d=document.createElement('div'); d.className='l'; d.textContent=t; dom.log.appendChild(d); while(dom.log.children.length>7)dom.log.removeChild(dom.log.firstChild); dom.log.classList.remove('hidden'); }
+  initLogPanel(); renderObjective(); }
+function logMsg(t){ initLogPanel(); const body=dom.log.querySelector('.log-body')||dom.log,d=document.createElement('div'); d.className='l'; d.textContent=t; body.appendChild(d); while(body.children.length>7)body.removeChild(body.firstChild); const count=dom.log.querySelector('.log-toggle b'); if(count)count.textContent=body.children.length; dom.log.classList.remove('hidden'); }
 let statsPanelKey=null, statsPanelExpanded=false;
 function selectUnit(u){ const key=u.campaignId||u.id||u.name; if(statsPanelKey!==key){statsPanelKey=key;statsPanelExpanded=false;} G.selected=u; renderPanel(u); }
 function refreshPanel(u){ if(u&&u===G.selected)renderPanel(u); }
-function statBarsHTML(u){ const ST=[['FOR',effSTR(u),'#f97316',30],['MAG',effMAG(u),'#a78bfa',30],['END',effEND(u),'#60a5fa',30],['DEX',effDEX(u),'#4ade80',30],['CHA',effCHA(u),'#fbbf24',30],['MOV',u.mov,'#94a3b8',4]];
-  let h='<div class="stats">'; for(const [k,val,col] of ST){ const v=Math.round(val); h+='<div class="sr" style="--stat-color:'+col+'"><span class="k">'+k+'</span><span class="v">'+v+'</span></div>'; } return h+'</div>'; }
-function statsDetailsHTML(u){ return '<button class="stats-toggle" type="button" aria-expanded="'+statsPanelExpanded+'"><span>Attributs</span><i aria-hidden="true">'+(statsPanelExpanded?'&#8963;':'&#8964;')+'</i></button>'+
-  '<div class="stats-details'+(statsPanelExpanded?' is-open':' hidden')+'" aria-hidden="'+(!statsPanelExpanded)+'">'+statBarsHTML(u)+'</div>'; }
+function apPipsHTML(u){ let pips=''; for(let i=0;i<u.maxap;i++)pips+='<i class="'+(i<u.ap?'on':'')+'"></i>'; return '<div class="du-ap"><div class="du-ap__pips">'+pips+'</div></div>'; }
+function statBarsHTML(u){ const ST=[['⚔','FOR',Math.round(effSTR(u))],['✦','MAG',Math.round(effMAG(u))],['◈','END',Math.round(effEND(u))],['◎','DEX',Math.round(effDEX(u))],['✧','CHA',Math.round(effCHA(u))],['◆','MOV',u.mov]];
+  let h='<div class="du-stats">'; for(const [ico,k,v] of ST)h+='<div class="du-stat"><i>'+ico+'</i><span>'+k+'</span><b>'+v+'</b></div>'; return h+'</div>'; }
+function statsDetailsHTML(u){ return statBarsHTML(u); }
 function bindStatsToggle(u){ const button=dom.panel.querySelector('.stats-toggle'); if(!button)return; button.onclick=()=>{statsPanelExpanded=!statsPanelExpanded;renderPanel(u);}; }
-function renderPanel(u){ dom.panel.classList.remove('hidden'); dom.panel.dataset.team=u.team; const hpp=Math.max(0,Math.round(u.hp/u.maxhp*100));
-  let pips=''; for(let i=0;i<u.maxap;i++)pips+='<i class="'+(i<u.ap?'on':'')+'"></i>';
-  let tags=''; for(const s in u.statuses){ const d=STATUS[s]; if(!d)continue; tags+='<span class="tag" style="color:'+d.col+';border-color:'+d.col+'">'+d.name+' '+u.statuses[s]+'</span>'; } if(!u.alive)tags+='<span class="tag" style="color:#ff5a4a;border-color:#ff5a4a">K.O.</span>';
-  dom.panel.innerHTML='<div class="nm">'+u.name+'<span class="team-badge">'+(u.team==='player'?'Allié':'Ennemi')+'</span></div>'+
-   '<div class="cls">'+(ROLE[u.kind]||'')+'</div>'+
-   '<div class="bar"><i style="width:'+hpp+'%"></i><span>'+u.hp+' / '+u.maxhp+' PV</span></div>'+
-   '<div class="ap">'+pips+'</div>'+
-   '<div class="status-row">'+tags+'</div>'+
-   statsDetailsHTML(u);
+function renderPanel(u){ dom.panel.classList.remove('hidden'); dom.panel.dataset.team=u.team; const hpp=Math.max(0,Math.round(u.hp/u.maxhp*100)),portrait=SPR[u.kind]&&SPR[u.kind].portrait?SPR[u.kind].portrait:'';
+  let tags=''; for(const s in u.statuses){ const d=STATUS[s]; if(!d)continue; tags+='<span class="tag" style="color:'+d.col+';border-color:'+d.col+'">'+escHTML(d.name)+' '+u.statuses[s]+'</span>'; } if(!u.alive)tags+='<span class="tag" style="color:#ff5a4a;border-color:#ff5a4a">K.O.</span>';
+  dom.panel.innerHTML='<div class="details-unit"><div class="du-top"><div class="du-portrait">'+(portrait?'<img src="'+portrait+'" alt="">':'<span>'+escHTML(u.name.charAt(0))+'</span>')+'</div><div class="du-id"><div class="du-head"><span>'+(u===G.active?'Actif':'Inspection')+'</span></div><div class="nm">'+escHTML(u.name)+'</div>'+apPipsHTML(u)+'</div><div class="du-team"><b class="team-badge">'+teamLabel(u.team)+'</b></div></div>'+
+   '<div class="du-hp"><div class="unit-row"><span>PV</span><b>'+u.hp+' / '+u.maxhp+'</b></div><div class="bar"><i style="width:'+hpp+'%"></i><span>'+hpp+'%</span></div></div>'+
+   statsDetailsHTML(u)+(tags?'<div class="status-row">'+tags+'</div>':'')+'</div>';
   bindStatsToggle(u); }
-function refreshTurnbar(){ dom.turnbar.classList.remove('hidden'); let h='<div class="turn-round pixel">M'+G.round+'</div>';
-  for(const u of G.order){ const cls=['chip']; if(u.team==='player')cls.push('ally'); if(u.team==='foe')cls.push('foe'); if(u===G.active)cls.push('active'); if(!u.alive)cls.push('dead');
-    h+='<div class="'+cls.join(' ')+'"><img src="'+SPR[u.kind].portrait+'"><div class="nm">'+u.name.slice(0,7)+'</div></div>'; }
-  dom.turnbar.innerHTML=h; }
+function refreshTurnbar(){ dom.turnbar.classList.remove('hidden'); renderObjective(); const order=G.order.length?G.order:G.units;
+  const chip=u=>{ const cls=['chip']; if(u.team==='player')cls.push('ally'); if(u.team==='foe')cls.push('foe'); if(u===G.active)cls.push('active'); if(!u.alive)cls.push('dead'); return '<div class="'+cls.join(' ')+'" title="'+escHTML(u.name)+'"><div class="chip__portrait"><img src="'+SPR[u.kind].portrait+'" alt=""></div><div class="chip__name">'+escHTML(u.name.slice(0,8))+'</div></div>'; };
+  const step=G.order.length&&G.turnIdx>=0?(G.turnIdx+1)+' / '+G.order.length:'Préparation';
+  dom.turnbar.innerHTML='<div class="turn-center pixel"><span>Tour</span><b>'+(G.round||1)+'</b><em>'+escHTML(step)+'</em></div><div class="turn-sequence"><div class="turn-chips">'+order.map(chip).join('')+'</div></div>'; }
 function closeMenus(){ dom.menu.classList.add('hidden'); dom.skillmenu.classList.add('hidden'); }
 function tipFor(u,b){ const a=b.dataset.a;
   if(a==='move')return 'Déplacer · MOV '+u.mov;
@@ -886,12 +890,12 @@ function tipFor(u,b){ const a=b.dataset.a;
 function openActionMenu(){ const u=G.active; if(!u||u.team!=='player'||G.over){ closeMenus(); return; }
   dom.menu.classList.remove('hidden'); dom.skillmenu.classList.add('hidden');
   const md=G.movedThisTurn, ad=G.actedThisTurn;
-  const ico=(a,icon,dot,dis,extra)=>'<div class="ico'+(dis?' dis':'')+'" data-a="'+a+'"'+(extra||'')+'><div class="c">'+icon+'</div><div class="dot" style="background:'+dot+'"></div></div>';
-  let h = (md&&!ad) ? ico('undo','↩️','#f59e0b',false) : ico('move','🔗','#22c55e',md||hasS(u,'root'));
-  (u.weapons||[]).forEach((w,i)=>{ h+=ico('attack',w.icon||'⚔️','#ef4444',ad,' data-wi="'+i+'"'); });
-  h+=ico('skill','✨','#8b5cf6',ad||!u.skills.length||hasS(u,'silence'));
-  h+=ico('item','🎒','#ec4899',ad||invCount()<=0);
-  h+=ico('wait','⏳','#64748b',false);
+  const ico=(a,icon,label,sub,dot,dis,extra)=>'<div class="ico action-'+a+(dis?' dis':'')+'" role="button" aria-disabled="'+(dis?'true':'false')+'" data-a="'+a+'"'+(extra||'')+' style="--action-accent:'+dot+'"><div class="c"><span>'+icon+'</span></div><div class="tx"><b>'+escHTML(label)+'</b><small>'+escHTML(sub)+'</small></div><div class="dot"></div></div>';
+  let h = (md&&!ad) ? ico('undo','↩','Annuler','Déplacement','#f59e0b',false) : ico('move','◆','Déplacer','MOV '+u.mov,'#55d4ff',md||hasS(u,'root'));
+  (u.weapons||[]).forEach((w,i)=>{ h+=ico('attack',w.icon||'⚔','Attaquer',w.name||('Arme '+(i+1)),'#ff6b58',ad,' data-wi="'+i+'"'); });
+  h+=ico('skill','✦','Compétence',u.ap+' AP','#b78cff',ad||!u.skills.length||hasS(u,'silence'));
+  h+=ico('item','◈','Objet','Sac ×'+invCount(),'#f09ac9',ad||invCount()<=0);
+  h+=ico('wait','⌛','Attendre','Fin du tour','#d0ba82',false);
   h+='<div class="lbl"></div>';
   dom.menu.innerHTML=h;
   const lbl=dom.menu.querySelector('.lbl');
@@ -1031,7 +1035,7 @@ function deploymentCard(def){
     '<i>'+(deployed?'EN JEU':'+')+'</i></button>';
 }
 function openDeployMenu(){
-  dom.menu.classList.remove('hidden'); dom.menu.classList.add('deploy-roster'); dom.skillmenu.classList.add('hidden');
+  renderObjective(); dom.menu.classList.remove('hidden'); dom.menu.classList.add('deploy-roster'); dom.skillmenu.classList.add('hidden');
   const size=4,pages=Math.max(1,Math.ceil(G.rosterDefs.length/size)); G.deployPage=cl(G.deployPage,0,pages-1);
   const visible=G.rosterDefs.slice(G.deployPage*size,G.deployPage*size+size);
   dom.menu.innerHTML='<div class="deploy-head"><span>DÉPLOIEMENT</span><b>'+G.deployedUnits.length+' / '+MAX_PLAYER_UNITS+'</b></div>'+
