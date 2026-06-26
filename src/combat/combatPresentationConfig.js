@@ -111,7 +111,7 @@ export const COMBAT_PRESENTATION = {
     actionHeight: 6.7,
     stageDistance: 9.4,
     stageHeight: 3.45,
-    targetY: 1.7,
+    targetY: 2.2,
   },
   arena: {
     gridOpacityIdle: gameplayGrid.idleOpacity,
