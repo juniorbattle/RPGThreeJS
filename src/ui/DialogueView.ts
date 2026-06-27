@@ -1,10 +1,36 @@
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
+import { assets } from '../render/assetManifest';
 import type { DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../game/types';
 
 interface DialogueViewOptions {
   root: HTMLElement;
   getState: () => GameState;
   applyEffects: (effects: NarrativeEffect[]) => Promise<void>;
+}
+
+type OutcomeTone = 'gain' | 'loss' | 'risk' | 'help' | 'neutral';
+
+interface OutcomeDescriptor {
+  icon: string;
+  label: string;
+  tone: OutcomeTone;
+}
+
+function signedAmount(amount: number): string {
+  return amount > 0 ? `+${amount}` : `${amount}`;
+}
+
+function formatItemId(itemId: string): string {
+  return itemId.replace(/[-_]/g, ' ');
+}
+
+function dialogueBackdrop(sequence: DialogueSequence): string {
+  if (sequence.backdrop) return sequence.backdrop;
+  const first = sequence.steps[0];
+  const context = `${sequence.id} ${first?.speaker ?? ''} ${first?.tag ?? ''} ${first?.text ?? ''}`.toLocaleLowerCase('fr-FR');
+  if (/valmir|village|marchand|coffre|réserve|reserve|cedric|recrut/.test(context)) return assets.screens.travel.backdrops.city;
+  if (/chef|alaric|serment|sceau|jugement|finale|épilogue|epilogue|chroniqueur/.test(context)) return assets.screens.travel.backdrops.castle;
+  return assets.screens.travel.backdrops.default;
 }
 
 export class DialogueView {
@@ -24,16 +50,26 @@ export class DialogueView {
     applyScreenEnvironment(this.overlay, 'dialogue');
     this.overlay.setAttribute('role', 'dialog');
     this.overlay.setAttribute('aria-modal', 'true');
+    this.overlay.style.setProperty('--dialogue-bg-image', `url("${dialogueBackdrop(sequence)}")`);
     this.overlay.innerHTML = `
-      <div class="dialogue__backdrop"></div>
+      <div class="dialogue__painted" aria-hidden="true"></div>
+      <div class="dialogue__backdrop" aria-hidden="true"></div>
       <div class="ui-environment-layer ui-environment-layer--fog" aria-hidden="true"></div>
-      <div class="dialogue__portrait dialogue__portrait--left" aria-hidden="true"></div>
-      <div class="dialogue__portrait dialogue__portrait--right" aria-hidden="true"></div>
-      <div class="dialogue__choices"></div>
+      <div class="dialogue__brand" aria-hidden="true"><span>Chroniques d'Élyndra</span></div>
+      <div class="dialogue__stage" aria-hidden="true">
+        <div class="dialogue__portrait dialogue__portrait--left"></div>
+        <div class="dialogue__portrait dialogue__portrait--right"></div>
+        <div class="dialogue__portrait dialogue__portrait--center"></div>
+      </div>
+      <div class="dialogue__choices" aria-label="Choix de dialogue"></div>
       <button class="dialogue__box ui-panel ui-panel--dialogue" type="button">
-        <span class="dialogue__speaker"></span>
-        <span class="dialogue__tag"></span>
+        <span class="dialogue__speaker-block">
+          <span class="dialogue__speaker"></span>
+          <span class="dialogue__tag"></span>
+        </span>
+        <span class="dialogue__divider" aria-hidden="true"></span>
         <span class="dialogue__text"></span>
+        <span class="dialogue__outcomes" aria-label="Conséquences"></span>
         <span class="dialogue__continue">Continuer ◆</span>
       </button>
     `;
@@ -66,20 +102,29 @@ export class DialogueView {
     this.current = step;
     const left = this.overlay.querySelector<HTMLElement>('.dialogue__portrait--left');
     const right = this.overlay.querySelector<HTMLElement>('.dialogue__portrait--right');
+    const center = this.overlay.querySelector<HTMLElement>('.dialogue__portrait--center');
     const speaker = this.overlay.querySelector<HTMLElement>('.dialogue__speaker');
     const tag = this.overlay.querySelector<HTMLElement>('.dialogue__tag');
     const text = this.overlay.querySelector<HTMLElement>('.dialogue__text');
+    const outcomes = this.overlay.querySelector<HTMLElement>('.dialogue__outcomes');
     const choices = this.overlay.querySelector<HTMLElement>('.dialogue__choices');
     const continueLabel = this.overlay.querySelector<HTMLElement>('.dialogue__continue');
-    if (!left || !right || !speaker || !tag || !text || !choices || !continueLabel) return;
+    if (!left || !right || !center || !speaker || !tag || !text || !outcomes || !choices || !continueLabel) return;
 
+    this.overlay.dataset.speakerSide = step.side;
+    this.overlay.classList.toggle('dialogue--has-choices', Boolean(step.choices?.length));
     this.setPortrait(left, step.side === 'left' ? step.portrait : '');
     this.setPortrait(right, step.side === 'right' ? step.portrait : '');
+    this.setPortrait(center, step.side === 'center' ? step.portrait : '');
     left.classList.toggle('is-visible', step.side === 'left');
     right.classList.toggle('is-visible', step.side === 'right');
+    center.classList.toggle('is-visible', step.side === 'center');
     speaker.textContent = step.speaker;
     tag.textContent = step.tag;
+    tag.hidden = !step.tag;
     choices.replaceChildren();
+    outcomes.replaceChildren(...this.createOutcomeBadges(this.describeEffects(step.effects)));
+    outcomes.hidden = outcomes.childElementCount === 0;
     continueLabel.hidden = Boolean(step.choices?.length);
     this.typeText(text, step.text);
 
@@ -99,17 +144,102 @@ export class DialogueView {
   private createChoice(choice: DialogueChoice): HTMLButtonElement {
     const button = document.createElement('button');
     button.className = 'dialogue-choice ui-panel ui-panel--dense';
+    button.classList.add(this.choiceToneClass(choice));
     button.type = 'button';
     const state = this.options.getState();
     const blockedByGold = choice.requiresGold !== undefined && state.gold < choice.requiresGold;
     const blockedByFlag = choice.requiresFlag !== undefined && !state.flags[choice.requiresFlag];
     button.disabled = blockedByGold || blockedByFlag;
-    button.textContent = blockedByGold ? `${choice.text} — Or insuffisant` : choice.text;
+    button.classList.toggle('is-blocked', button.disabled);
+
+    const icon = document.createElement('span');
+    icon.className = 'dialogue-choice__icon';
+    icon.textContent = this.choiceIcon(choice);
+
+    const body = document.createElement('span');
+    body.className = 'dialogue-choice__body';
+
+    const label = document.createElement('strong');
+    label.textContent = choice.text;
+    body.append(label);
+
+    const descriptors = this.describeEffects(choice.effects);
+    if (choice.requiresGold !== undefined) descriptors.unshift({ icon: '●', label: `Coût ${choice.requiresGold} or`, tone: blockedByGold ? 'loss' : 'neutral' });
+    if (choice.requiresFlag !== undefined && blockedByFlag) descriptors.unshift({ icon: '◇', label: 'Condition requise', tone: 'loss' });
+    const meta = document.createElement('span');
+    meta.className = 'dialogue-choice__meta';
+    meta.append(...this.createOutcomeBadges(descriptors));
+    if (blockedByGold) meta.append(this.createOutcomeBadge({ icon: '!', label: 'Or insuffisant', tone: 'loss' }));
+    if (meta.childElementCount > 0) body.append(meta);
+
+    button.append(icon, body);
     button.addEventListener('click', async () => {
       await this.options.applyEffects(choice.effects);
       await this.advance(choice.next);
     });
     return button;
+  }
+
+  private choiceIcon(choice: DialogueChoice): string {
+    if (choice.effects.some((effect) => effect.type === 'startCombat')) return '⚔';
+    if (choice.effects.some((effect) => effect.type === 'recruitUnit')) return '♙';
+    if (choice.effects.some((effect) => effect.type === 'addGold' && effect.amount > 0)) return '◈';
+    if (choice.effects.some((effect) => effect.type === 'addReputation' && effect.amount > 0)) return '♜';
+    if (choice.effects.some((effect) => effect.type === 'addReputation' && effect.amount < 0)) return '⚖';
+    return '◆';
+  }
+
+  private choiceToneClass(choice: DialogueChoice): string {
+    if (choice.effects.some((effect) => effect.type === 'startCombat')) return 'dialogue-choice--risk';
+    if (choice.effects.some((effect) => effect.type === 'addGold' && effect.amount > 0) || choice.effects.some((effect) => effect.type === 'addItem')) return 'dialogue-choice--reward';
+    if (choice.effects.some((effect) => effect.type === 'addReputation' || effect.type === 'setFlag' || effect.type === 'recruitUnit')) return 'dialogue-choice--moral';
+    if (choice.requiresGold !== undefined) return 'dialogue-choice--cost';
+    return 'dialogue-choice--neutral';
+  }
+
+  private describeEffects(effects: readonly NarrativeEffect[]): OutcomeDescriptor[] {
+    const descriptors: OutcomeDescriptor[] = [];
+    for (const effect of effects) {
+      switch (effect.type) {
+        case 'addReputation':
+          descriptors.push({ icon: '♜', label: `Réputation ${signedAmount(effect.amount)}`, tone: effect.amount >= 0 ? 'gain' : 'loss' });
+          break;
+        case 'addGold':
+          descriptors.push({ icon: '●', label: `Or ${signedAmount(effect.amount)}`, tone: effect.amount >= 0 ? 'gain' : 'loss' });
+          break;
+        case 'addItem':
+          descriptors.push({ icon: '▣', label: `Butin ${formatItemId(effect.itemId)} ×${effect.quantity}`, tone: 'gain' });
+          break;
+        case 'recruitUnit':
+          descriptors.push({ icon: '♙', label: `Secours ${formatItemId(effect.unitId)}`, tone: 'help' });
+          break;
+        case 'startCombat':
+          descriptors.push({ icon: '⚔', label: 'Risque combat', tone: 'risk' });
+          break;
+        case 'setFlag':
+          if (/success|help|save|sauv/i.test(effect.key)) descriptors.push({ icon: effect.value ? '✦' : '⚖', label: effect.value ? 'Secours' : 'Perte possible', tone: effect.value ? 'help' : 'loss' });
+          break;
+        case 'finishChapter':
+          descriptors.push({ icon: '◇', label: 'Chapitre conclu', tone: 'neutral' });
+          break;
+      }
+    }
+    return descriptors;
+  }
+
+  private createOutcomeBadges(descriptors: readonly OutcomeDescriptor[]): HTMLElement[] {
+    return descriptors.map((descriptor) => this.createOutcomeBadge(descriptor));
+  }
+
+  private createOutcomeBadge(descriptor: OutcomeDescriptor): HTMLElement {
+    const badge = document.createElement('span');
+    badge.className = `dialogue-outcome dialogue-outcome--${descriptor.tone}`;
+    const icon = document.createElement('b');
+    icon.textContent = descriptor.icon;
+    const label = document.createElement('span');
+    label.textContent = descriptor.label;
+    badge.append(icon, label);
+    return badge;
   }
 
   private async advance(next: string | null): Promise<void> {

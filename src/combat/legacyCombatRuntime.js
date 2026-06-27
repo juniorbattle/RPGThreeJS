@@ -1014,7 +1014,7 @@ function deployUnit(gx,gz,id=G.selectedDeployId){
 }
 function resetDeploy(){
   for(const u of G.deployedUnits.slice())removeUnit(u);
-  G.selectedDeployId=(PREFERRED_UNIT_IDS.find(id=>deployDefById(id))||(G.rosterDefs[0]&&(G.rosterDefs[0].campaignId||G.rosterDefs[0].name)))||null;
+  G.selectedDeployId=null; dom.panel.classList.add('hidden','deploy-preview');
   drawDeployZone(); openDeployMenu(); setHint('Déploiement — choisissez une unité puis une case disponible');
 }
 function autoDeploy(){
@@ -1041,18 +1041,18 @@ function openDeployMenu(){
   dom.menu.innerHTML='<div class="deploy-head"><span>DÉPLOIEMENT</span><b>'+G.deployedUnits.length+' / '+MAX_PLAYER_UNITS+'</b></div>'+
     '<div class="deploy-list">'+visible.map(deploymentCard).join('')+'</div>'+
     '<div class="deploy-pages"><button data-d="prev" '+(G.deployPage===0?'disabled':'')+'>‹</button><span>'+(G.deployPage+1)+' / '+pages+'</span><button data-d="next" '+(G.deployPage>=pages-1?'disabled':'')+'>›</button></div>'+
-    '<div class="deploy-actions"><button data-d="cancel">Retour carte</button><button data-d="auto">Auto</button><button data-d="reset" '+(!G.deployedUnits.length?'disabled':'')+'>Retirer tout</button>'+
+    '<div class="deploy-actions"><button data-d="auto">Auto</button><button data-d="reset" '+(!G.deployedUnits.length?'disabled':'')+'>Retirer tout</button>'+
     '<button class="deploy-start" data-d="start" '+(!G.deployedUnits.length?'disabled':'')+'>Lancer le combat</button></div>';
   dom.menu.querySelectorAll('[data-unit]').forEach(b=>b.onclick=()=>{ G.selectedDeployId=b.dataset.unit; openDeployMenu(); const d=deployDefById(G.selectedDeployId); if(d)selectUnitData(d); setHint('Placez « '+(d?.name||'unité')+' » sur une case disponible'); });
   dom.menu.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>onDeploy(b.dataset.d,b));
 }
 function renderDefinitionPanel(def){ const key=def.campaignId||def.name; if(statsPanelKey!==key){statsPanelKey=key;statsPanelExpanded=false;} const preview=Object.assign({statuses:{}},def),portrait=preview.portrait||(SPR[preview.kind]&&SPR[preview.kind].portrait?SPR[preview.kind].portrait:''),hp=preview.hp||preview.maxhp||0; dom.panel.dataset.team='player'; dom.panel.classList.remove('hidden'); dom.panel.innerHTML='<div class="details-unit"><div class="du-top"><div class="du-portrait">'+(portrait?'<img src="'+portrait+'" alt="">':'<span>'+escHTML(preview.name.charAt(0))+'</span>')+'</div><div class="du-id"><div class="du-head"><span>Sélection</span></div><div class="nm">'+escHTML(preview.name)+'</div></div><div class="du-team"><b class="team-badge">Déploiement</b></div></div><div class="du-hp"><div class="unit-row"><span>PV</span><b>'+hp+'</b></div><div class="bar"><i style="width:100%"></i><span>'+hp+' PV</span></div></div>'+statsDetailsHTML(preview)+'</div>'; const button=dom.panel.querySelector('.stats-toggle'); if(button)button.onclick=()=>{statsPanelExpanded=!statsPanelExpanded;renderDefinitionPanel(def);}; }
 function selectUnitData(def){ dom.panel.classList.add('deploy-preview'); const preview=deployedById(def.campaignId||def.name); if(preview)selectUnit(preview); else renderDefinitionPanel(def); }
-function onDeploy(a,b){ if(b.disabled)return; if(a==='cancel'){CAMPAIGN_MODE?notifyCampaignResult(false):location.reload();}else if(a==='auto')autoDeploy(); else if(a==='reset')resetDeploy(); else if(a==='start')beginBattle(); else if(a==='prev'){G.deployPage--;openDeployMenu();}else if(a==='next'){G.deployPage++;openDeployMenu();} }
+function onDeploy(a,b){ if(b.disabled)return; if(a==='auto')autoDeploy(); else if(a==='reset')resetDeploy(); else if(a==='start')beginBattle(); else if(a==='prev'){G.deployPage--;openDeployMenu();}else if(a==='next'){G.deployPage++;openDeployMenu();} }
 function startDeployment(){
   G.mode='deploy'; G.deployedUnits=[]; G.rosterDefs=playerDefinitions(); G.deployPage=0;
-  G.selectedDeployId=(PREFERRED_UNIT_IDS.find(id=>deployDefById(id))||(G.rosterDefs[0]&&(G.rosterDefs[0].campaignId||G.rosterDefs[0].name)))||null;
-  computeDeployZone(); overviewCam(); drawDeployZone(); dom.help.classList.remove('hidden'); dom.panel.classList.add('deploy-preview');
+  G.selectedDeployId=null;
+  computeDeployZone(); overviewCam(); drawDeployZone(); dom.help.classList.remove('hidden'); dom.panel.classList.add('hidden','deploy-preview');
   setHint('Déploiement — choisissez une unité puis une case disponible'); openDeployMenu();
 }
 
