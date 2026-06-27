@@ -1,3 +1,7 @@
+const travelDefaultBackdrop = new URL('../../assets-source/backdrop/travel_default.png', import.meta.url).href;
+const travelCityBackdrop = new URL('../../assets-source/backdrop/travel_city.png', import.meta.url).href;
+const travelCastleBackdrop = new URL('../../assets-source/backdrop/travel_castle.png', import.meta.url).href;
+
 export const assets = {
   models: {
     forestKit: '/assets/3d/forest-kit.glb',
@@ -20,16 +24,20 @@ export const assets = {
     elara: '/assets/portraits/elara.png',
     kestrel: '/assets/portraits/kestrel.png',
   },
-  // Named per-screen background slots. Swap these to point at dedicated
-  // painted illustrations later; they currently reuse the forest pilot art.
+  // Named per-screen background slots.
   screens: {
     title: {
       background: '/assets/generated/forest-pilot/forest-dawn-far.webp',
     },
     travel: {
-      background: '/assets/generated/forest-pilot/forest-dawn-far.webp',
-      sky: '/assets/generated/forest-pilot/forest-dawn-far.webp',
+      background: travelDefaultBackdrop,
+      sky: travelDefaultBackdrop,
       mist: '/assets/generated/forest-pilot/forest-mid.webp',
+      backdrops: {
+        default: travelDefaultBackdrop,
+        city: travelCityBackdrop,
+        castle: travelCastleBackdrop,
+      },
     },
     worldMap: {
       background: '/assets/generated/forest-pilot/world-map.webp',

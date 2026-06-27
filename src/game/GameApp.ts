@@ -1,11 +1,11 @@
 import { combatConfigs, dialogues } from './content';
 import { createInitialState, SaveRepository } from './store';
-import type { CampaignNode, CombatResult, GameState, NarrativeEffect, RunNode } from './types';
+import type { CombatResult, GameState, NarrativeEffect, RunNode } from './types';
 import { createUnitInstance, getItemCategory, toCombatant } from './catalog';
 import { applyCombatProgress } from './combatProgress';
 import {
-  addTemporaryLoot, enterRunNode, failRunToCheckpoint, getAvailableRunNodes,
-  getRunNode, secureRunLoot, toCampaignNodes,
+  addTemporaryLoot, enterRunNode, failRunToCheckpoint,
+  getRunNode, secureRunLoot,
 } from './runSystem';
 import { changeReputation, getReputationRule } from './reputation';
 import { CombatBridge } from '../combat/CombatBridge';
@@ -13,10 +13,7 @@ import { DialogueView } from '../ui/DialogueView';
 import { ManagementView } from '../ui/ManagementView';
 import { TravelView } from '../ui/TravelView';
 import { ExplorationView } from '../ui/ExplorationView';
-import { WorldMap } from '../world/WorldMap';
-import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
-
-type AppMode = 'TITLE' | 'TRAVEL' | 'WORLD_MAP' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT';
+type AppMode = 'TITLE' | 'TRAVEL' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT';
 
 export class GameApp {
   private mode: AppMode = 'TITLE';
@@ -29,7 +26,6 @@ export class GameApp {
   private readonly combat: CombatBridge;
   private readonly travel: TravelView;
   private readonly exploration: ExplorationView;
-  private world: WorldMap | null = null;
   private pendingCombatId: string | null = null;
 
   constructor(
@@ -57,7 +53,6 @@ export class GameApp {
       root,
       getState: () => this.state,
       onSelect: (node) => this.chooseRunNode(node),
-      onOpenMap: () => this.openStrategicMap(),
       onOpenClan: () => void this.openManagement('clan'),
     });
     this.exploration = new ExplorationView({ root });
@@ -72,7 +67,6 @@ export class GameApp {
     this.travel.close();
     this.exploration.close();
     this.combat.close();
-    this.world?.setVisible(false);
     this.canvas.hidden = true;
     this.labelLayer.hidden = true;
     this.chrome.innerHTML = `
@@ -98,15 +92,11 @@ export class GameApp {
       this.saves.clear();
       this.state = createInitialState();
       this.saves.saveAuto(this.state);
-      this.world?.dispose();
-      this.world = null;
       const current = getRunNode(this.state.run);
       if (current) void this.resolveRunNode(current, true);
     });
     this.chrome.querySelector('[data-action="continue"]')?.addEventListener('click', () => {
       this.state = this.saves.loadAuto() ?? this.saves.loadManual() ?? createInitialState();
-      this.world?.dispose();
-      this.world = null;
       const current = getRunNode(this.state.run);
       if (current && !this.state.resolvedNodeIds.includes(current.id)) void this.resolveRunNode(current, true);
       else this.enterTravel();
@@ -115,47 +105,16 @@ export class GameApp {
 
   private enterTravel(): void {
     this.setMode('TRAVEL');
-    this.world?.setVisible(false);
     this.canvas.hidden = true;
     this.labelLayer.hidden = true;
     this.chrome.replaceChildren();
     this.travel.open();
   }
 
-  private openStrategicMap(): void {
-    this.travel.close();
-    this.setMode('WORLD_MAP');
-    applyScreenEnvironment(this.canvas, 'worldMap');
-    this.ensureWorld();
-    this.world?.setVisible(true);
-    this.renderHud();
-    this.world?.update(this.state);
-  }
-
-  private ensureWorld(): void {
-    if (this.world) return;
-    const nodes = toCampaignNodes(this.state.run);
-    this.world = new WorldMap({
-      canvas: this.canvas,
-      labelLayer: this.labelLayer,
-      nodes,
-      onSelect: (node) => void this.selectNode(node),
-    });
-  }
-
-  private async selectNode(node: CampaignNode): Promise<void> {
-    if (this.mode !== 'WORLD_MAP') return;
-    const runNode = getAvailableRunNodes(this.state.run).find((candidate) => candidate.id === node.id);
-    if (runNode) await this.chooseRunNode(runNode);
-  }
-
   private async chooseRunNode(node: RunNode): Promise<void> {
-    if (this.mode !== 'TRAVEL' && this.mode !== 'WORLD_MAP') return;
-    const fromMap = this.mode === 'WORLD_MAP';
+    if (this.mode !== 'TRAVEL') return;
     this.travel.close();
     this.setMode('RESULT');
-    const mapNode = toCampaignNodes(this.state.run).find((candidate) => candidate.id === node.id);
-    if (fromMap && mapNode) await this.world?.travelTo(mapNode);
     const entered = enterRunNode(this.state.run, node.id);
     if (!entered) {
       this.enterTravel();
@@ -280,7 +239,6 @@ export class GameApp {
     this.saves.saveAuto(this.state);
     this.setMode('COMBAT');
     this.travel.close();
-    this.world?.setVisible(false);
     this.chrome.replaceChildren();
     const combatants = this.state.clan.members.map((unit) => toCombatant(unit));
     const result = await this.combat.play({
@@ -362,7 +320,6 @@ export class GameApp {
     this.chrome.querySelector('[data-action="graphics"]')?.addEventListener('click', () => {
       this.state.settings.reducedGraphics = !this.state.settings.reducedGraphics;
       this.saves.saveAuto(this.state);
-      this.world?.update(this.state);
       this.renderHud();
     });
     this.chrome.querySelector('[data-action="save"]')?.addEventListener('click', () => {
@@ -378,13 +335,11 @@ export class GameApp {
     shopId?: string,
     shopWallet: 'temporary' | 'permanent' = 'temporary',
   ): Promise<void> {
-    if (this.mode !== 'WORLD_MAP' && this.mode !== 'RESULT' && this.mode !== 'TRAVEL') return;
-    const returnToMap = this.mode === 'WORLD_MAP';
+    if (this.mode !== 'RESULT' && this.mode !== 'TRAVEL') return;
     this.setMode('MANAGEMENT');
     await this.management.open(tab, shopId, shopWallet);
     this.saves.saveAuto(this.state);
-    if (returnToMap) this.openStrategicMap();
-    else this.enterTravel();
+    this.enterTravel();
   }
 
   private setMode(mode: AppMode): void {
