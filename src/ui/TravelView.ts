@@ -1,5 +1,6 @@
 import { unitById } from '../game/catalog';
 import { getAvailableRunNodes } from '../game/runSystem';
+import { getReputationRule } from '../game/reputation';
 import { assets } from '../render/assetManifest';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
 import type { GameState, RunNode, RunNodeType, UnitInstance } from '../game/types';
@@ -9,6 +10,8 @@ interface TravelViewOptions {
   getState: () => GameState;
   onSelect: (node: RunNode) => Promise<void>;
   onOpenClan: () => void;
+  onSave: () => void;
+  onOpenMenu: () => void;
 }
 
 interface TravelPartySlot {
@@ -101,6 +104,11 @@ function chooseTravelBackdrop(choices: readonly RunNode[]): TravelBackdropKey {
 
 function currentRunNode(state: GameState): RunNode | undefined {
   return state.run.graph.nodes.find((node) => node.id === state.run.currentNodeId);
+}
+
+function completedCombatCount(state: GameState): number {
+  const resolved = new Set(state.resolvedNodeIds);
+  return state.run.graph.nodes.filter((node) => resolved.has(node.id) && (node.type === 'combat' || node.type === 'boss')).length;
 }
 
 function laneLabel(node: RunNode): string {
@@ -293,6 +301,9 @@ export class TravelView {
     const choices = getAvailableRunNodes(state.run);
     const backdropKey = chooseTravelBackdrop(choices);
     const roadmap = renderRoadmap(state, choices);
+    const current = currentRunNode(state);
+    const reputation = getReputationRule(state.reputation);
+    const combatCount = completedCombatCount(state);
     const deployed = state.deployment.unitIds
       .map((id) => state.clan.members.find((unit) => unit.id === id))
       .filter((unit): unit is UnitInstance => Boolean(unit))
@@ -311,14 +322,23 @@ export class TravelView {
       <div class="travel-view__vignette"></div>
       <div class="travel-view__scene-dim" aria-hidden="true"></div>
       <header class="travel-view__hud ui-hud ui-panel ui-panel--hud">
-        <div class="travel-view__heading"><p class="eyebrow ui-eyebrow">Run · ${escapeHtml(state.run.regionId).toUpperCase()}</p><strong>Choisissez la prochaine étape</strong></div>
-        <div class="travel-view__resources ui-hud__stats">
-          <span class="ui-chip"><b>♛</b> Butin ${state.run.temporaryLoot.gold}</span>
-          <span class="ui-chip"><b>✶</b> Réputation ${state.reputation}</span>
+        <div class="travel-view__identity">
+          <div class="travel-view__sigil" aria-hidden="true">♛</div>
+          <div class="travel-view__heading">
+            <p class="eyebrow ui-eyebrow">Terres du Lion</p>
+            <strong>${escapeHtml(current?.label ?? 'Écho de la chronique')}</strong>
+          </div>
+        </div>
+        <div class="travel-view__resources ui-hud__stats" aria-label="Résumé de route">
+          <span class="travel-view__resource"><b>●</b><strong>${state.run.temporaryLoot.gold} / ${state.gold}</strong><small>Or</small></span>
+          <span class="travel-view__resource"><b>♜</b><strong>${state.reputation}% · ${escapeHtml(reputation.label)}</strong><small>Réputation</small></span>
+          <span class="travel-view__resource"><b>⚔</b><strong>${combatCount}</strong><small>Combats menés</small></span>
         </div>
         <div class="travel-view__hud-actions ui-hud__actions">
-          <button class="ui-button ui-button--hud" type="button" data-action="clan">Compagnie</button>
-          <button class="ui-button ui-button--hud" type="button" data-action="roadmap" aria-haspopup="dialog">Feuille de route</button>
+          <button class="ui-button ui-button--hud" type="button" data-action="clan"><span>♙</span> Compagnie</button>
+          <button class="ui-button ui-button--hud" type="button" data-action="roadmap" aria-haspopup="dialog"><span>◇</span> Feuille de route</button>
+          <button class="ui-button ui-button--hud" type="button" data-action="save"><span>▣</span> Sauvegarder</button>
+          <button class="ui-button ui-button--hud" type="button" data-action="menu"><span>☰</span> Menu</button>
         </div>
       </header>
       <div class="travel-view__choices">
@@ -365,6 +385,12 @@ export class TravelView {
       if (event.key === 'Escape') this.closeRoadmap();
     });
     section.querySelector('[data-action="clan"]')?.addEventListener('click', () => this.options.onOpenClan());
+    section.querySelector('[data-action="save"]')?.addEventListener('click', () => {
+      this.options.onSave();
+      const button = section.querySelector<HTMLButtonElement>('[data-action="save"]');
+      if (button) button.innerHTML = '<span>✓</span> Sauvegardé';
+    });
+    section.querySelector('[data-action="menu"]')?.addEventListener('click', () => this.options.onOpenMenu());
     section.querySelectorAll<HTMLButtonElement>('[data-node]').forEach((button) => {
       button.addEventListener('click', async () => {
         if (this.busy) return;

@@ -54,6 +54,8 @@ export class GameApp {
       getState: () => this.state,
       onSelect: (node) => this.chooseRunNode(node),
       onOpenClan: () => void this.openManagement('clan'),
+      onSave: () => this.saves.saveManual(this.state),
+      onOpenMenu: () => this.renderTitle(),
     });
     this.exploration = new ExplorationView({ root });
   }
