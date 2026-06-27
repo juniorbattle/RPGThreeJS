@@ -2,7 +2,7 @@ import { getFinalStats, itemById, items, unitById, weaponById, weapons } from '.
 import { buyItem, equipAccessory, equipWeapon, excludeUnit, sellItem } from '../game/management';
 import { getReputationRule, getShopPrice } from '../game/reputation';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
-import type { GameState, ItemCategory, UnitInstance } from '../game/types';
+import type { GameState, ItemCategory, UnitDefinition, UnitInstance } from '../game/types';
 
 type ManagementTab = 'clan' | 'inventory' | 'shop';
 
@@ -59,13 +59,22 @@ export class ManagementView {
   private render(): void {
     if (!this.overlay) return;
     const state = this.options.getState();
+    const gems = state.inventory.materials.red_gem ?? 0;
     this.overlay.innerHTML = `
       <div class="management__veil"></div>
       <div class="ui-environment-layer ui-environment-layer--fog" aria-hidden="true"></div>
       <div class="management__shell ui-shell ui-shell--management ui-panel">
         <header class="management__header ui-hud">
-          <div class="ui-hud__section"><p class="eyebrow ui-eyebrow">Camp du Lion</p><h2>Registre de compagnie</h2></div>
-          <div class="management__wealth ui-chip"><span>BUTIN / COFFRE</span><strong>${state.run.temporaryLoot.gold} / ${state.gold}</strong></div>
+          <div class="management__brand">
+            <span class="management__sigil" aria-hidden="true">✥</span>
+            <div><p class="eyebrow ui-eyebrow">Camp du Lion</p><h2>Registre de Compagnie</h2><small>Organisation, équipement et préparation de la compagnie.</small></div>
+          </div>
+          <div class="management__resources">
+            <div class="management__resource ui-chip"><span>Or</span><strong>${state.gold}</strong></div>
+            <div class="management__resource ui-chip"><span>Gemmes</span><strong>${gems}</strong></div>
+            <div class="management__resource ui-chip"><span>Capacité</span><strong>${state.clan.members.length}/${state.clan.maxSize}</strong></div>
+            <div class="management__resource management__resource--wide ui-chip"><span>Butin / Coffre</span><strong>${state.run.temporaryLoot.gold} / ${state.gold}</strong></div>
+          </div>
           <button class="icon-button ui-icon-button" type="button" data-action="close" aria-label="Fermer">×</button>
         </header>
         <nav class="management__tabs">
@@ -92,30 +101,48 @@ export class ManagementView {
   private renderClan(): string {
     const state = this.options.getState();
     const selected = state.clan.members.find((unit) => unit.id === this.selectedUnitId) ?? state.clan.members[0];
-    if (!selected) return '<p>Aucune unité.</p>';
+    if (!selected) return '<p class="empty-copy">Aucune unité.</p>';
     const definition = unitById.get(selected.definitionId)!;
     const stats = getFinalStats(selected);
+    const selectedLevel = this.unitLevel(selected);
+    const xp = this.unitXp(selected);
+    const xpTarget = this.xpTarget(selectedLevel);
+    const xpPercent = Math.min(100, Math.round((xp / xpTarget) * 100));
     const roster = state.clan.members.map((unit) => {
       const def = unitById.get(unit.definitionId)!;
+      const level = this.unitLevel(unit);
       return `
         <button type="button" class="roster-card ui-panel ui-panel--dense ${unit.id === selected.id ? 'is-active' : ''}" data-unit="${unit.id}">
-          <img src="${def.portrait}" alt="">
-          <span><strong>${unit.name}</strong><small>${def.className}</small></span>
+          <span class="roster-card__portrait"><img src="${def.portrait}" alt=""></span>
+          <span class="roster-card__body"><strong>${unit.name}</strong><small>${def.className}</small></span>
+          <span class="roster-card__level">Niv. ${level}</span>
           ${unit.narrativeLocked ? '<i title="Unité narrative">◆</i>' : ''}
         </button>`;
     }).join('');
     return `
       <div class="clan-layout ui-split">
-        <aside class="roster ui-scroll-panel"><div class="section-title ui-section-title">Membres ${state.clan.members.length}/${state.clan.maxSize}</div>${roster}</aside>
+        <aside class="roster ui-scroll-panel">
+          <div class="roster__header"><div class="section-title ui-section-title">Compagnie</div><span>Membres ${state.clan.members.length}/${state.clan.maxSize}</span></div>
+          <div class="roster__list">${roster}</div>
+        </aside>
+        <section class="unit-stage" aria-label="Personnage sélectionné">
+          <div class="unit-stage__banner" aria-hidden="true"><span>⚜</span></div>
+          <div class="unit-stage__aura" aria-hidden="true"></div>
+          <div class="unit-stage__figure"><img src="${definition.portrait}" alt="${selected.name}"></div>
+          <div class="unit-stage__base" aria-hidden="true"></div>
+          <div class="unit-stage__caption"><span>Unité active</span><strong>${selected.name}</strong></div>
+        </section>
         <article class="unit-sheet ui-scroll-panel">
-          <div class="unit-sheet__hero">
-            <img src="${definition.portrait}" alt="${selected.name}">
-            <div><p class="eyebrow ui-eyebrow">${definition.className}</p><h3>${selected.name}</h3><span>Progression par équipement</span></div>
+          <div class="unit-sheet__identity">
+            <p class="eyebrow ui-eyebrow">${definition.className}</p>
+            <h3>${selected.name}</h3>
+            <div class="unit-xp"><div class="unit-xp__bar"><i style="width:${xpPercent}%"></i></div><span>${xp} / ${xpTarget} EXP</span></div>
+            <p class="unit-sheet__description">${this.unitDescription(definition)}</p>
           </div>
           <div class="stat-grid">
-            ${this.stat('PV', stats.maxHealth)}${this.stat('FOR', stats.strength)}
-            ${this.stat('MAG', stats.magic)}${this.stat('END', stats.endurance)}
-            ${this.stat('DEX', stats.dexterity)}${this.stat('CHA', stats.charisma)}
+            ${this.stat('PV', stats.maxHealth)}${this.stat('FOR', stats.strength)}${this.stat('MAG', stats.magic)}
+            ${this.stat('END', stats.endurance)}${this.stat('DEX', stats.dexterity)}${this.stat('CHA', stats.charisma)}
+            ${this.stat('DÉPLAC.', stats.moveRange)}
           </div>
           <div class="equipment">
             <div class="section-title ui-section-title">Équipement</div>
@@ -142,12 +169,12 @@ export class ManagementView {
       definition.allowedWeaponIds.includes(candidate.id)
       && !equipped.has(candidate.id)
       && (state.inventory.weapons[candidate.id] ?? 0) > 0);
-    return `<label>Arme ${definition.weaponSlotCount > 1 ? slot + 1 : ''}
-      <select data-equip="weapon" data-slot="${slot}">
+    return `<label class="equipment-slot"><span class="equipment-slot__label">Arme ${slot + 1}</span>
+      <span class="equipment-slot__control"><span class="equipment-slot__icon">${current?.icon ?? '⚔'}</span><select data-equip="weapon" data-slot="${slot}">
         <option value="${currentId}">${current?.name ?? currentId} — équipée</option>
         ${available.map((candidate) =>
           `<option value="${candidate.id}">${candidate.name} · ${candidate.damage} puissance</option>`).join('')}
-      </select>
+      </select></span>
     </label>`;
   }
 
@@ -157,17 +184,41 @@ export class ManagementView {
     const current = currentId ? itemById.get(currentId) : null;
     const available = items.filter((item) =>
       item.category === 'accessories' && item.id !== currentId && (state.inventory.accessories[item.id] ?? 0) > 0);
-    return `<label>Accessoire ${slot + 1}
-      <select data-equip="accessory" data-slot="${slot}">
+    return `<label class="equipment-slot"><span class="equipment-slot__label">Accessoire ${slot + 1}</span>
+      <span class="equipment-slot__control"><span class="equipment-slot__icon">${current?.icon ?? '◇'}</span><select data-equip="accessory" data-slot="${slot}">
         <option value="${currentId ?? ''}">${current?.name ?? 'Emplacement vide'}</option>
         ${currentId ? '<option value="">Retirer</option>' : ''}
         ${available.map((item) => `<option value="${item.id}">${item.name}</option>`).join('')}
-      </select>
+      </select></span>
     </label>`;
   }
 
-  private stat(label: string, value: number): string {
+  private stat(label: string, value: number | string): string {
     return `<div class="ui-stat"><span>${label}</span><strong>${value}</strong></div>`;
+  }
+
+  private unitLevel(unit: UnitInstance): number {
+    const progress = unit as UnitInstance & { level?: number };
+    return progress.level ?? 1;
+  }
+
+  private unitXp(unit: UnitInstance): number {
+    const progress = unit as UnitInstance & { xp?: number };
+    return Math.max(0, progress.xp ?? 0);
+  }
+
+  private xpTarget(level: number): number {
+    return Math.max(100, level * 100);
+  }
+
+  private unitDescription(definition: UnitDefinition): string {
+    const descriptions: Record<UnitDefinition['combatKind'], string> = {
+      knight: 'Combattant de première ligne robuste et défenseur loyal. Protège ses alliés et contrôle le champ de bataille.',
+      cleric: 'Soutien spirituel de la compagnie. Préserve l’escouade et renforce les lignes fragiles.',
+      mage: 'Arcaniste à haute pression. Excelle dans les dégâts magiques et le contrôle tactique.',
+      archer: 'Tireur mobile et précis. Harcèle les cibles clés depuis les lignes sûres.',
+    };
+    return descriptions[definition.combatKind];
   }
 
   private renderInventory(): string {
