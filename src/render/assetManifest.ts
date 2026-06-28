@@ -16,7 +16,6 @@ export const assets = {
     forestFar: '/assets/generated/forest-pilot/forest-dawn-far.webp',
     forestMid: '/assets/generated/forest-pilot/forest-mid.webp',
     forestFore: '/assets/generated/forest-pilot/forest-fore.webp',
-    mapBackdrop: '/assets/generated/forest-pilot/world-map.webp',
   },
   portraits: {
     alistair: '/assets/portraits/alistair.png',
@@ -38,9 +37,6 @@ export const assets = {
         city: travelCityBackdrop,
         castle: travelCastleBackdrop,
       },
-    },
-    worldMap: {
-      background: '/assets/generated/forest-pilot/world-map.webp',
     },
     dialogue: {
       background: '/assets/generated/forest-pilot/forest-dawn-far.webp',

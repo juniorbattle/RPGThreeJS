@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { createUvWaveMaterial, type UvWaveConfig } from './backgroundMaterials';
 
 export interface BackgroundLayerConfig {
   id: string;
@@ -8,7 +7,6 @@ export interface BackgroundLayerConfig {
   size?: [number, number];
   parallax?: number;
   opacity?: number;
-  shader?: UvWaveConfig | null;
   fallback?: [string, string];
 }
 
@@ -74,17 +72,15 @@ export class BackgroundLayerSystem {
 
   async createLayer(config: BackgroundLayerConfig): Promise<THREE.Mesh> {
     const texture = await loadTexture(config.texture, config.fallback ?? ['#65828b', '#31483d']);
-    const material = config.shader?.type === 'uvWave'
-      ? createUvWaveMaterial(texture, config.shader, config.opacity ?? 1)
-      : new THREE.MeshBasicMaterial({
-        map: texture,
-        transparent: (config.opacity ?? 1) < 1,
-        opacity: config.opacity ?? 1,
-        depthTest: false,
-        depthWrite: false,
-        fog: false,
-        toneMapped: false,
-      });
+    const material = new THREE.MeshBasicMaterial({
+      map: texture,
+      transparent: (config.opacity ?? 1) < 1,
+      opacity: config.opacity ?? 1,
+      depthTest: false,
+      depthWrite: false,
+      fog: false,
+      toneMapped: false,
+    });
     const size = config.size ?? [32, 18];
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(size[0], size[1]), material);
     mesh.name = config.id;
@@ -121,9 +117,6 @@ export class BackgroundLayerSystem {
         base[1] - (camera.position.y - this.origin.y) * parallax * 0.3,
         base[2],
       );
-      if (layer.material instanceof THREE.ShaderMaterial) {
-        layer.material.uniforms.uTime!.value = reducedGraphics ? 0 : elapsed;
-      }
     }
   }
 

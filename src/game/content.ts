@@ -2,11 +2,9 @@ import {
   campaignNodeSchema,
   combatConfigSchema,
   dialogueSequenceSchema,
-  mysteryEventSchema,
   type CampaignNode,
   type CombatConfig,
   type DialogueSequence,
-  type MysteryEvent,
 } from './types';
 
 const rawNodes: CampaignNode[] = [
@@ -114,14 +112,6 @@ const rawDialogues: DialogueSequence[] = [
   },
 ];
 
-const rawMysteries: MysteryEvent[] = [
-  { id: 'recruit', dialogueId: 'mystery_recruit', weight: 2, unique: true },
-  { id: 'help', dialogueId: 'mystery_help', weight: 3, unique: true },
-  { id: 'ambush', dialogueId: 'mystery_ambush', weight: 2, unique: false },
-  { id: 'treasure', dialogueId: 'mystery_treasure', weight: 2, unique: true },
-  { id: 'shrine', dialogueId: 'mystery_shrine', weight: 1, unique: true },
-];
-
 export const campaignNodes = rawNodes.map((node) => campaignNodeSchema.parse(node));
 export const combatConfigs = new Map(rawCombats.map((combat) => {
   const parsed = combatConfigSchema.parse(combat);
@@ -131,6 +121,3 @@ export const dialogues = new Map(rawDialogues.map((dialogue) => {
   const parsed = dialogueSequenceSchema.parse(dialogue);
   return [parsed.id, parsed];
 }));
-export const mysteryPools = new Map<string, MysteryEvent[]>([
-  ['forest', rawMysteries.map((event) => mysteryEventSchema.parse(event))],
-]);

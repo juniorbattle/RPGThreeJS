@@ -32,17 +32,6 @@ export const screenEnvironments: Record<ScreenEnvironmentId, ScreenEnvironmentPr
     heroStagingProfile: heroStagingPresets.travelParty,
     motionPolicy: motionPresets.ambientOnly,
   },
-  worldMap: {
-    id: 'worldMap',
-    mainImage: assets.screens.worldMap.background,
-    fallback: 'linear-gradient(180deg, #111a32 0%, #131827 45%, #080b14 100%)',
-    overlayType: overlayPresets.premiumNight,
-    vignetteType: vignettePresets.medium,
-    fogProfile: fogPresets.none,
-    particleProfile: particlePresets.none,
-    heroStagingProfile: heroStagingPresets.none,
-    motionPolicy: motionPresets.static,
-  },
   dialogue: {
     id: 'dialogue',
     mainImage: assets.screens.dialogue.background,
@@ -107,14 +96,3 @@ export function applyScreenEnvironment(element: HTMLElement, id: ScreenEnvironme
   return preset;
 }
 
-export function clearScreenEnvironment(element: HTMLElement): void {
-  delete element.dataset.screenEnv;
-  delete element.dataset.overlay;
-  delete element.dataset.vignette;
-  delete element.dataset.fog;
-  delete element.dataset.particles;
-  delete element.dataset.heroStaging;
-  delete element.dataset.motion;
-  element.style.removeProperty('--screen-bg-image');
-  element.style.removeProperty('--screen-bg-fallback');
-}

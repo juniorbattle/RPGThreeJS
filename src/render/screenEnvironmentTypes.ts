@@ -1,4 +1,4 @@
-export type ScreenEnvironmentId = 'title' | 'travel' | 'worldMap' | 'dialogue' | 'management' | 'exploration' | 'combat';
+export type ScreenEnvironmentId = 'title' | 'travel' | 'dialogue' | 'management' | 'exploration' | 'combat';
 
 export type ScreenOverlayType = 'none' | 'premium-night' | 'forest-dawn';
 

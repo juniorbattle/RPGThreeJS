@@ -20,7 +20,6 @@ export class GameApp {
   private state: GameState = createInitialState();
   private readonly saves = new SaveRepository();
   private readonly chrome = document.createElement('div');
-  private readonly labelLayer = document.createElement('div');
   private readonly dialogue: DialogueView;
   private readonly management: ManagementView;
   private readonly combat: CombatBridge;
@@ -33,8 +32,7 @@ export class GameApp {
     private readonly canvas: HTMLCanvasElement,
   ) {
     this.chrome.className = 'game-chrome';
-    this.labelLayer.className = 'map-labels';
-    this.root.append(this.labelLayer, this.chrome);
+    this.root.append(this.chrome);
     this.dialogue = new DialogueView({
       root,
       getState: () => this.state,
@@ -45,7 +43,6 @@ export class GameApp {
       getState: () => this.state,
       onChange: () => {
         this.saves.saveAuto(this.state);
-        this.renderHud();
       },
     });
     this.combat = new CombatBridge(root);
@@ -70,7 +67,6 @@ export class GameApp {
     this.exploration.close();
     this.combat.close();
     this.canvas.hidden = true;
-    this.labelLayer.hidden = true;
     this.chrome.innerHTML = `
       <section class="title-screen">
         <div class="title-screen__sigil">✦</div>
@@ -108,7 +104,6 @@ export class GameApp {
   private enterTravel(): void {
     this.setMode('TRAVEL');
     this.canvas.hidden = true;
-    this.labelLayer.hidden = true;
     this.chrome.replaceChildren();
     this.travel.open();
   }
@@ -288,50 +283,6 @@ export class GameApp {
     this.saves.saveAuto(this.state);
   }
 
-  private renderHud(): void {
-    const current = getRunNode(this.state.run);
-    const reputation = getReputationRule(this.state.reputation);
-    this.chrome.innerHTML = `
-      <header class="map-hud ui-hud ui-panel ui-panel--hud">
-        <div class="ui-hud__section">
-          <p class="eyebrow ui-eyebrow">Terres du Lion</p>
-          <strong>${current?.label ?? 'Route inconnue'}</strong>
-        </div>
-        <div class="map-hud__stats ui-hud__stats">
-          <span class="ui-chip">🪙 ${this.state.run.temporaryLoot.gold} / ${this.state.gold}</span>
-          <span class="ui-chip">♜ ${this.state.reputation}% · ${reputation.label}</span>
-          <span class="ui-chip">⚔ ${this.state.clan.members.length}</span>
-        </div>
-        <div class="map-hud__actions ui-hud__actions">
-          <button class="ui-button ui-button--hud" type="button" data-action="clan">Compagnie</button>
-          <button class="ui-button ui-button--hud" type="button" data-action="travel">Reprendre la route</button>
-          <button class="ui-button ui-button--hud" type="button" data-action="graphics">FX ${this.state.settings.reducedGraphics ? 'réduits' : 'HD'}</button>
-          <button class="ui-button ui-button--hud" type="button" data-action="save">Sauvegarder</button>
-          <button class="ui-button ui-button--hud" type="button" data-action="title">Menu</button>
-        </div>
-      </header>
-      <aside class="objective-chip ui-panel ui-panel--dense">
-        <span class="ui-eyebrow">Objectif</span>
-        <strong>${this.getObjective()}</strong>
-      </aside>
-    `;
-    this.chrome.querySelector('[data-action="clan"]')?.addEventListener('click', () => {
-      void this.openManagement('clan');
-    });
-    this.chrome.querySelector('[data-action="travel"]')?.addEventListener('click', () => this.enterTravel());
-    this.chrome.querySelector('[data-action="graphics"]')?.addEventListener('click', () => {
-      this.state.settings.reducedGraphics = !this.state.settings.reducedGraphics;
-      this.saves.saveAuto(this.state);
-      this.renderHud();
-    });
-    this.chrome.querySelector('[data-action="save"]')?.addEventListener('click', () => {
-      this.saves.saveManual(this.state);
-      const button = this.chrome.querySelector<HTMLButtonElement>('[data-action="save"]');
-      if (button) button.textContent = 'Sauvegardé ✓';
-    });
-    this.chrome.querySelector('[data-action="title"]')?.addEventListener('click', () => this.renderTitle());
-  }
-
   private async openManagement(
     tab: 'clan' | 'inventory' | 'shop',
     shopId?: string,
@@ -349,12 +300,4 @@ export class GameApp {
     document.body.dataset.mode = mode.toLowerCase();
   }
 
-  private getObjective(): string {
-    if (this.state.run.status === 'completed') return 'Le parcours est achevé. Le butin a été sécurisé.';
-    const node = getRunNode(this.state.run);
-    const depth = node?.depth ?? 0;
-    if (depth < 4) return 'Atteindre le premier refuge sans perdre le butin.';
-    if (depth < 8) return 'Traverser les routes ramifiées jusqu’au second refuge.';
-    return 'Atteindre la Porte du Sceau et vaincre son gardien.';
-  }
 }
