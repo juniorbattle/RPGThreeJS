@@ -304,6 +304,7 @@ export class TravelView {
     const current = currentRunNode(state);
     const reputation = getReputationRule(state.reputation);
     const combatCount = completedCombatCount(state);
+    const gems = state.inventory.materials.red_gem ?? 0;
     const deployed = state.deployment.unitIds
       .map((id) => state.clan.members.find((unit) => unit.id === id))
       .filter((unit): unit is UnitInstance => Boolean(unit))
@@ -330,7 +331,8 @@ export class TravelView {
           </div>
         </div>
         <div class="travel-view__resources ui-hud__stats" aria-label="Résumé de route">
-          <span class="travel-view__resource"><b>●</b><strong>${state.run.temporaryLoot.gold} / ${state.gold}</strong><small>Or</small></span>
+          <span class="travel-view__resource"><b>●</b><strong>${state.gold}</strong><small>Or</small></span>
+          <span class="travel-view__resource"><b>✦</b><strong>${gems}</strong><small>Gemmes</small></span>
           <span class="travel-view__resource"><b>♜</b><strong>${state.reputation}% · ${escapeHtml(reputation.label)}</strong><small>Réputation</small></span>
           <span class="travel-view__resource"><b>⚔</b><strong>${combatCount}</strong><small>Combats menés</small></span>
         </div>

@@ -1,4 +1,4 @@
-import { getFinalStats, itemById, items, unitById, weaponById, weapons } from '../game/catalog';
+import { getFinalStats, getResolvedSkills, itemById, items, unitById, weaponById, weapons } from '../game/catalog';
 import { buyItem, equipAccessory, equipWeapon, excludeUnit, sellItem } from '../game/management';
 import { getReputationRule, getShopPrice } from '../game/reputation';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
@@ -17,6 +17,27 @@ const categoryLabels: Record<ItemCategory, string> = {
   accessories: 'Accessoires',
   materials: 'Matériaux',
   weapons: 'Armes',
+};
+
+const skillPresentation: Record<string, { name: string; description: string; ap?: number }> = {
+  whirl: { name: 'Coup Tournoyant', ap: 2, description: 'Frappe en cercle autour de soi.' },
+  bulwark: { name: 'Rempart', ap: 2, description: 'Renforce les alliés proches avec une barrière défensive.' },
+  provoke: { name: 'Provocation', ap: 1, description: 'Force les ennemis proches à concentrer leur attention.' },
+  weaken: { name: 'Flèche Affaiblissante', ap: 1, description: 'Tir précis qui ralentit la cible.' },
+  blind_shot: { name: 'Tir Aveuglant', ap: 2, description: 'Réduit la précision de la cible.' },
+  pierce_shot: { name: 'Tir Perçant', ap: 2, description: 'Flèche traversante alignée sur la cible.' },
+  fireball: { name: 'Boule de Feu', ap: 3, description: 'Explosion magique de feu en zone.' },
+  flame_wave: { name: 'Vague de Flammes', ap: 3, description: 'Cône de feu devant le lanceur.' },
+  bolt: { name: 'Éclair Sombre', ap: 3, description: 'Décharge magique en zone.' },
+  curse: { name: 'Malédiction', ap: 2, description: 'Affaiblit la défense des ennemis touchés.' },
+  heal: { name: 'Lumière Salvatrice', ap: 2, description: 'Soigne les alliés dans la zone.' },
+  regen: { name: 'Régénération', ap: 2, description: 'Régénère les PV des alliés chaque tour.' },
+  bless: { name: 'Bénédiction', ap: 2, description: 'Augmente la force et la magie des alliés.' },
+  revive: { name: 'Résurrection', ap: 4, description: 'Relève un allié tombé au combat.' },
+  heavy: { name: 'Coup Lourd', ap: 2, description: 'Choc puissant qui peut étourdir.' },
+  blink: { name: 'Clignotement', ap: 2, description: 'Repositionnement instantané sur une case libre.' },
+  leap: { name: 'Bond', ap: 1, description: 'Déplacement rapide vers une case libre.' },
+  charge: { name: 'Charge', ap: 2, description: 'Fonce en ligne droite et perturbe l’arrivée.' },
 };
 
 export class ManagementView {
@@ -73,7 +94,6 @@ export class ManagementView {
             <div class="management__resource ui-chip"><span>Or</span><strong>${state.gold}</strong></div>
             <div class="management__resource ui-chip"><span>Gemmes</span><strong>${gems}</strong></div>
             <div class="management__resource ui-chip"><span>Capacité</span><strong>${state.clan.members.length}/${state.clan.maxSize}</strong></div>
-            <div class="management__resource management__resource--wide ui-chip"><span>Butin / Coffre</span><strong>${state.run.temporaryLoot.gold} / ${state.gold}</strong></div>
           </div>
           <button class="icon-button ui-icon-button" type="button" data-action="close" aria-label="Fermer">×</button>
         </header>
@@ -104,10 +124,6 @@ export class ManagementView {
     if (!selected) return '<p class="empty-copy">Aucune unité.</p>';
     const definition = unitById.get(selected.definitionId)!;
     const stats = getFinalStats(selected);
-    const selectedLevel = this.unitLevel(selected);
-    const xp = this.unitXp(selected);
-    const xpTarget = this.xpTarget(selectedLevel);
-    const xpPercent = Math.min(100, Math.round((xp / xpTarget) * 100));
     const roster = state.clan.members.map((unit) => {
       const def = unitById.get(unit.definitionId)!;
       const level = this.unitLevel(unit);
@@ -136,13 +152,16 @@ export class ManagementView {
           <div class="unit-sheet__identity">
             <p class="eyebrow ui-eyebrow">${definition.className}</p>
             <h3>${selected.name}</h3>
-            <div class="unit-xp"><div class="unit-xp__bar"><i style="width:${xpPercent}%"></i></div><span>${xp} / ${xpTarget} EXP</span></div>
             <p class="unit-sheet__description">${this.unitDescription(definition)}</p>
           </div>
           <div class="stat-grid">
             ${this.stat('PV', stats.maxHealth)}${this.stat('FOR', stats.strength)}${this.stat('MAG', stats.magic)}
             ${this.stat('END', stats.endurance)}${this.stat('DEX', stats.dexterity)}${this.stat('CHA', stats.charisma)}
             ${this.stat('DÉPLAC.', stats.moveRange)}
+          </div>
+          <div class="skills">
+            <div class="section-title ui-section-title">Compétences</div>
+            <div class="skill-list">${this.renderSkills(selected)}</div>
           </div>
           <div class="equipment">
             <div class="section-title ui-section-title">Équipement</div>
@@ -197,18 +216,19 @@ export class ManagementView {
     return `<div class="ui-stat"><span>${label}</span><strong>${value}</strong></div>`;
   }
 
+  private renderSkills(unit: UnitInstance): string {
+    const skillIds = getResolvedSkills(unit);
+    if (skillIds.length === 0) return '<p class="empty-copy">Aucune compétence.</p>';
+    return skillIds.map((skillId) => {
+      const skill = skillPresentation[skillId] ?? { name: skillId, description: 'Compétence disponible en combat.' };
+      const cost = skill.ap === undefined ? '' : `<span>${skill.ap} PA</span>`;
+      return `<article class="skill-card"><div><strong>${skill.name}</strong>${cost}</div><p>${skill.description}</p></article>`;
+    }).join('');
+  }
+
   private unitLevel(unit: UnitInstance): number {
     const progress = unit as UnitInstance & { level?: number };
     return progress.level ?? 1;
-  }
-
-  private unitXp(unit: UnitInstance): number {
-    const progress = unit as UnitInstance & { xp?: number };
-    return Math.max(0, progress.xp ?? 0);
-  }
-
-  private xpTarget(level: number): number {
-    return Math.max(100, level * 100);
   }
 
   private unitDescription(definition: UnitDefinition): string {
