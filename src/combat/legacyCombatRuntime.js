@@ -842,7 +842,8 @@ function renderObjective(){ if(!dom.objective)return; dom.objective.classList.re
   const foes=G.units.filter(u=>u.team==='foe'),foeAlive=aliveUnits('foe').length,foeDone=Math.max(0,foes.length-foeAlive),deploying=G.mode==='deploy'||!G.round;
   const playerAlive=aliveUnits('player').length,playerTotal=G.deployedUnits.length||G.units.filter(u=>u.team==='player').length||MAX_PLAYER_UNITS;
   const squadLabel=deploying?'Unités placées':'Escouade debout',squadValue=deploying?(G.deployedUnits.length+' / '+MAX_PLAYER_UNITS):(playerAlive+' / '+playerTotal),roundLabel=deploying?'Déploiement':'Manche '+G.round;
-  dom.objective.innerHTML='<details open><summary><span class="obj__eyebrow">Objectif</span><span class="obj__label">'+escHTML(COMBAT_LABEL||'Combat tactique')+'</span><i class="obj__chevron" aria-hidden="true"></i></summary><div class="obj__body"><p class="obj__text">'+escHTML(COMBAT_OBJECTIVE)+'</p><div class="obj__section">Sous-objectifs</div><div class="obj__sub"><span>Ennemis neutralisés</span><b>'+foeDone+' / '+foes.length+'</b></div><div class="obj__sub"><span>'+squadLabel+'</span><b>'+squadValue+'</b></div><div class="obj__round"><span>Manche actuelle</span><b>'+roundLabel+'</b></div></div></details>'; }
+  const openAttr=deploying?' open':'';
+  dom.objective.innerHTML='<details'+openAttr+'><summary><span class="obj__eyebrow">Objectif</span><span class="obj__label">'+escHTML(COMBAT_LABEL||'Combat tactique')+'</span><span class="obj__summary"><b>'+foeDone+'/'+foes.length+'</b><i>'+squadValue+'</i></span><i class="obj__chevron" aria-hidden="true"></i></summary><div class="obj__body"><p class="obj__text">'+escHTML(COMBAT_OBJECTIVE)+'</p><div class="obj__section">Sous-objectifs</div><div class="obj__sub"><span>Ennemis neutralisés</span><b>'+foeDone+' / '+foes.length+'</b></div><div class="obj__sub"><span>'+squadLabel+'</span><b>'+squadValue+'</b></div><div class="obj__round"><span>Manche actuelle</span><b>'+roundLabel+'</b></div></div></details>'; }
 // ---- Settings (gear) : purely visual toggles, no rules touched ----
 function applyGraphics(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); if(typeof bloom!=='undefined'&&bloom)bloom.enabled=!REDUCED_GRAPHICS; if(typeof tiltPass!=='undefined'&&tiltPass)tiltPass.enabled=!REDUCED_GRAPHICS; }
 function renderSettings(){ if(!dom.settings)return;
@@ -867,7 +868,7 @@ function refreshPanel(u){ if(u&&u===G.selected)renderPanel(u); }
 function apPipsHTML(u){ let pips=''; for(let i=0;i<u.maxap;i++)pips+='<i class="'+(i<u.ap?'on':'')+'"></i>'; return '<div class="du-ap"><div class="du-ap__pips">'+pips+'</div></div>'; }
 function statBarsHTML(u){ const ST=[['⚔','FOR',Math.round(effSTR(u))],['✦','MAG',Math.round(effMAG(u))],['◈','END',Math.round(effEND(u))],['◎','DEX',Math.round(effDEX(u))],['✧','CHA',Math.round(effCHA(u))],['◆','MOV',u.mov]];
   let h='<div class="du-stats">'; for(const [ico,k,v] of ST)h+='<div class="du-stat"><i>'+ico+'</i><span>'+k+'</span><b>'+v+'</b></div>'; return h+'</div>'; }
-function statsDetailsHTML(u){ return statBarsHTML(u); }
+function statsDetailsHTML(u){ return '<button type="button" class="stats-toggle" aria-expanded="'+(statsPanelExpanded?'true':'false')+'"><span>'+(statsPanelExpanded?'Masquer':'Afficher')+' stats</span><b>'+(statsPanelExpanded?'−':'+')+'</b></button>'+(statsPanelExpanded?statBarsHTML(u):''); }
 function bindStatsToggle(u){ const button=dom.panel.querySelector('.stats-toggle'); if(!button)return; button.onclick=()=>{statsPanelExpanded=!statsPanelExpanded;renderPanel(u);}; }
 function renderPanel(u){ dom.panel.classList.remove('hidden'); dom.panel.dataset.team=u.team; const hpp=Math.max(0,Math.round(u.hp/u.maxhp*100)),portrait=SPR[u.kind]&&SPR[u.kind].portrait?SPR[u.kind].portrait:'';
   let tags=''; for(const s in u.statuses){ const d=STATUS[s]; if(!d)continue; tags+='<span class="tag" style="color:'+d.col+';border-color:'+d.col+'">'+escHTML(d.name)+' '+u.statuses[s]+'</span>'; } if(!u.alive)tags+='<span class="tag" style="color:#ff5a4a;border-color:#ff5a4a">K.O.</span>';
@@ -934,21 +935,30 @@ function startNextWave(){ G.wave++;
     u.statuses={}; u.ap=0; u._taunter=null; u.mat.color.set('#ffffff'); u.mat.opacity=1; u.spr.scale.set(u.facing.dx<0?-1:1,1,1); u.spr.rotation.z=0; u.blob.material.opacity=COMBAT_PRESENTATION.units.shadowOpacity; if(u.teamRing)u.teamRing.material.opacity=COMBAT_PRESENTATION.units.teamRingOpacity;
     placeUnit(u,u.gx,u.gz,true); refreshPanel(u); }
   spawnWave(G.wave); G.over=false; G.round=0; G.mode='idle'; logMsg('— Vague '+G.wave+' approche ! —'); startRound(); }
+function resultRowsHTML(){ const rows=G.deployedUnits.map(u=>'<li class="combat-result__unit '+(u.alive?'':'is-ko')+'"><span>'+escHTML(u.name)+'</span><b>'+(u.alive?'Debout':'K.O.')+'</b></li>').join('');
+  return rows||'<li class="combat-result__unit"><span>Escouade</span><b>—</b></li>'; }
+function showCombatResult(tone,title,subtitle,buttonLabel,onClick,meta){
+  dom.banner.className='combat-result-overlay combat-result-overlay--'+tone;
+  dom.banner.innerHTML='<section class="combat-result-card panel" role="dialog" aria-modal="true" aria-label="'+escHTML(title)+'">'+
+    '<p class="combat-result__kicker">'+(tone==='victory'?'Chronique victorieuse':'Route brisée')+'</p>'+
+    '<h1 class="pixel">'+escHTML(title)+'</h1>'+
+    '<p class="combat-result__subtitle">'+escHTML(subtitle)+'</p>'+
+    (meta?'<div class="combat-result__meta">'+meta+'</div>':'')+
+    '<ul class="combat-result__squad">'+resultRowsHTML()+'</ul>'+
+    '<button class="btn combat-result__button" id="combat-result-action" type="button">'+escHTML(buttonLabel)+'</button>'+
+    '</section>';
+  byId('combat-result-action').onclick=onClick;
+}
 function winWave(){ if(G.over)return; G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
   logMsg('— Vague '+G.wave+' vaincue ! —');
-  const rows=G.deployedUnits.map(u=>'<div style="margin:5px 0"><span style="color:#e8edf7">'+u.name+'</span>'+(u.alive?'':' <span style="color:#ff7a6a">(K.O.)</span>')+'</div>').join('');
-  dom.banner.classList.remove('hidden');
   if(CAMPAIGN_MODE){
-    dom.banner.innerHTML='<h1 class="pixel" style="color:#7ed957">VICTOIRE</h1><p>'+COMBAT_LABEL+'</p><div style="text-align:left;max-width:440px;margin:10px auto 16px">'+rows+'</div><div class="btn" id="return-map" style="pointer-events:auto;justify-content:center">Continuer la chronique ◆</div>';
-    byId('return-map').onclick=()=>notifyCampaignResult(true);
+    showCombatResult('victory','Victoire',COMBAT_LABEL,'Continuer la chronique',()=>notifyCampaignResult(true),'<span>Objectif sécurisé</span><b>'+escHTML(COMBAT_OBJECTIVE)+'</b>');
   } else {
-    dom.banner.innerHTML='<h1 class="pixel" style="color:#7ed957">VAGUE '+G.wave+' VAINCUE</h1><div style="text-align:left;max-width:440px;margin:10px auto 16px">'+rows+'</div><div class="btn" id="nextw" style="pointer-events:auto;justify-content:center">Vague '+(G.wave+1)+' \u25b6</div>';
-    byId('nextw').onclick=()=>{ dom.banner.classList.add('hidden'); startNextWave(); };
+    showCombatResult('victory','Vague '+G.wave+' vaincue','La formation tient encore la ligne.','Vague '+(G.wave+1)+' ▶',()=>{ dom.banner.className='hidden'; startNextWave(); },'<span>Mode escarmouche</span><b>Renforts imminents</b>');
   } }
 function endGame(win){ if(G.over)return; G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
-  dom.banner.classList.remove('hidden');
-  dom.banner.innerHTML='<h1 class="pixel">'+(win?'VICTOIRE':'DÉFAITE')+'</h1><p>'+(win?'Élyndra est sauvée !':'Votre équipe a été vaincue…')+'</p><div class="btn" id="again" style="pointer-events:auto;justify-content:center">'+(CAMPAIGN_MODE?'Revenir à la carte':'Rejouer')+'</div>';
-  byId('again').onclick=()=>CAMPAIGN_MODE?notifyCampaignResult(Boolean(win)):location.reload(); logMsg(win?'— VICTOIRE —':'— DÉFAITE —'); }
+  showCombatResult(win?'victory':'defeat',win?'Victoire':'Défaite',win?'Élyndra est sauvée !':'Votre équipe a été vaincue…',CAMPAIGN_MODE?'Revenir à la carte':'Rejouer',()=>CAMPAIGN_MODE?notifyCampaignResult(Boolean(win)):location.reload(),win?'<span>Issue</span><b>Combat terminé</b>':'<span>Checkpoint</span><b>Retour au dernier refuge</b>');
+  logMsg(win?'— VICTOIRE —':'— DÉFAITE —'); }
 
 // ============================= RENDER LOOP =============================
 let _last=performance.now(), _t=0;

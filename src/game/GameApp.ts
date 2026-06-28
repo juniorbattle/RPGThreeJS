@@ -90,11 +90,13 @@ export class GameApp {
       this.saves.clear();
       this.state = createInitialState();
       this.saves.saveAuto(this.state);
+      this.chrome.replaceChildren();
       const current = getRunNode(this.state.run);
       if (current) void this.resolveRunNode(current, true);
     });
     this.chrome.querySelector('[data-action="continue"]')?.addEventListener('click', () => {
       this.state = this.saves.loadAuto() ?? this.saves.loadManual() ?? createInitialState();
+      this.chrome.replaceChildren();
       const current = getRunNode(this.state.run);
       if (current && !this.state.resolvedNodeIds.includes(current.id)) void this.resolveRunNode(current, true);
       else this.enterTravel();
