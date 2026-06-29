@@ -10,32 +10,260 @@ const EMPTY_INVENTORY = (): InventoryState => ({
   weapons: {},
 });
 
-const NODE_POOLS: Record<RunNodeType, string[]> = {
-  combat: ['forest_patrol', 'forest_ambush', 'village_defense'],
-  event: ['mystery_help', 'mystery_treasure', 'mystery_shrine'],
-  mystery: ['mystery_treasure', 'mystery_shrine', 'mystery_ambush'],
-  recruitment: ['mystery_recruit'],
-  shop: ['valmir'],
-  refuge: ['forest_refuge'],
-  story: ['lion_intro', 'lion_oath', 'village_choice'],
-  boss: ['lion_chief'],
-};
+type RouteDifficulty = NonNullable<RunNode['difficulty']>;
+type RouteMoralTone = NonNullable<RunNode['moralTone']>;
 
-const LABELS: Record<RunNodeType, string[]> = {
-  combat: ['Escarmouche', 'Patrouille ennemie', 'Lisière assiégée'],
-  event: ['Rencontre sur la route', 'Appel dans les bois', 'Vestiges oubliés'],
-  mystery: ['Sentier voilé', 'Clairière inconnue', 'Signe inquiétant'],
-  recruitment: ['Voyageur solitaire'],
-  shop: ['Marchand itinérant'],
-  refuge: ['Refuge du Lion'],
-  story: ['Serment sur la route', 'Écho de la chronique', 'Choix décisif'],
-  boss: ['Porte du Sceau'],
-};
+interface LionRouteNode {
+  id: string;
+  type: RunNodeType;
+  depth: number;
+  lane: number;
+  contentId: string;
+  label: string;
+  icon: string;
+  links: string[];
+  risk: number;
+  reward: number;
+  difficulty: RouteDifficulty;
+  moralTone: RouteMoralTone;
+  hint: string;
+}
 
-const ICONS: Record<RunNodeType, string> = {
-  combat: '⚔', event: '◇', mystery: '?', recruitment: '♟',
-  shop: '¤', refuge: '⌂', story: '◆', boss: '♛',
-};
+const INTRIGUE_EVENTS = [
+  'mystery_help',
+  'mystery_recruit',
+  'mystery_ambush',
+  'mystery_treasure',
+  'mystery_shrine',
+] as const;
+
+const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
+  {
+    id: 'lion-camp',
+    type: 'story',
+    depth: 0,
+    lane: 0,
+    contentId: 'camp_departure',
+    label: 'Camp du Lion',
+    icon: '◆',
+    links: ['lion-audience'],
+    risk: 0,
+    reward: 1,
+    difficulty: 'safe',
+    moralTone: 'neutral',
+    hint: 'La compagnie se rassemble avant de demander le premier Sceau.',
+  },
+  {
+    id: 'lion-audience',
+    type: 'story',
+    depth: 1,
+    lane: 0,
+    contentId: 'lion_briefing',
+    label: 'Audience d’Alaric',
+    icon: '♛',
+    links: ['lion-refugees', 'lion-veiled-path'],
+    risk: 0,
+    reward: 2,
+    difficulty: 'safe',
+    moralTone: 'honour',
+    hint: 'Recevoir la mission du Vieux Lion et choisir votre premier engagement.',
+  },
+  {
+    id: 'lion-refugees',
+    type: 'event',
+    depth: 2,
+    lane: -1,
+    contentId: 'refugee_trial',
+    label: 'Route des réfugiés',
+    icon: '◇',
+    links: ['lion-serpent-checkpoint', 'lion-intrigue-early'],
+    risk: 1,
+    reward: 2,
+    difficulty: 'safe',
+    moralTone: 'honour',
+    hint: 'Un détour plus lent qui teste votre compassion.',
+  },
+  {
+    id: 'lion-patrol',
+    type: 'combat',
+    depth: 2,
+    lane: 0,
+    contentId: 'forest_patrol',
+    label: 'Patrouille Serpent',
+    icon: '⚔',
+    links: ['lion-serpent-checkpoint', 'lion-intrigue-early'],
+    risk: 2,
+    reward: 2,
+    difficulty: 'standard',
+    moralTone: 'neutral',
+    hint: 'Une route directe, gardée par des éclaireurs ennemis.',
+  },
+  {
+    id: 'lion-veiled-path',
+    type: 'mystery',
+    depth: 2,
+    lane: 1,
+    contentId: 'seeded-intrigue',
+    label: 'Sentier voilé',
+    icon: '?',
+    links: ['lion-intrigue-early', 'lion-serpent-checkpoint'],
+    risk: 2,
+    reward: 3,
+    difficulty: 'dangerous',
+    moralTone: 'mystery',
+    hint: 'Un raccourci incertain : recrue, embuscade ou secret ancien.',
+  },
+  {
+    id: 'lion-serpent-checkpoint',
+    type: 'combat',
+    depth: 3,
+    lane: -0.65,
+    contentId: 'serpent_checkpoint',
+    label: 'Barrage des Serpents',
+    icon: '⚔',
+    links: ['lion-first-refuge'],
+    risk: 2,
+    reward: 3,
+    difficulty: 'standard',
+    moralTone: 'neutral',
+    hint: 'Un poste avancé protège la route de Bois-Clair.',
+  },
+  {
+    id: 'lion-intrigue-early',
+    type: 'mystery',
+    depth: 3,
+    lane: 0.65,
+    contentId: 'seeded-intrigue',
+    label: 'Intrigue des sous-bois',
+    icon: '?',
+    links: ['lion-first-refuge'],
+    risk: 2,
+    reward: 3,
+    difficulty: 'dangerous',
+    moralTone: 'mystery',
+    hint: 'Une situation secondaire peut renforcer ou salir votre réputation.',
+  },
+  {
+    id: 'lion-first-refuge',
+    type: 'refuge',
+    depth: 4,
+    lane: 0,
+    contentId: 'forest_refuge',
+    label: 'Refuge du Lion',
+    icon: '⌂',
+    links: ['lion-valmir-road', 'lion-reserve-trail'],
+    risk: 0,
+    reward: 1,
+    difficulty: 'safe',
+    moralTone: 'neutral',
+    hint: 'Sécuriser le butin, acheter, améliorer et préparer Bois-Clair.',
+  },
+  {
+    id: 'lion-valmir-road',
+    type: 'combat',
+    depth: 5,
+    lane: -0.75,
+    contentId: 'road_to_valmir',
+    label: 'Route de Bois-Clair',
+    icon: '⚔',
+    links: ['lion-village-choice'],
+    risk: 2,
+    reward: 2,
+    difficulty: 'standard',
+    moralTone: 'honour',
+    hint: 'La voie la plus claire vers les habitants menacés.',
+  },
+  {
+    id: 'lion-reserve-trail',
+    type: 'event',
+    depth: 5,
+    lane: 0.75,
+    contentId: 'reserve_trail',
+    label: 'Chemin des réserves',
+    icon: '◇',
+    links: ['lion-village-choice'],
+    risk: 2,
+    reward: 3,
+    difficulty: 'dangerous',
+    moralTone: 'greed',
+    hint: 'Une route rentable, mais les villageois risquent d’en payer le prix.',
+  },
+  {
+    id: 'lion-village-choice',
+    type: 'story',
+    depth: 6,
+    lane: 0,
+    contentId: 'village_choice',
+    label: 'Bois-Clair assiégé',
+    icon: '⌂',
+    links: ['lion-second-refuge'],
+    risk: 3,
+    reward: 3,
+    difficulty: 'decisive',
+    moralTone: 'pragmatic',
+    hint: 'Choisir ce qui sera sauvé : les habitants, les réserves, ou votre nom.',
+  },
+  {
+    id: 'lion-second-refuge',
+    type: 'refuge',
+    depth: 7,
+    lane: 0,
+    contentId: 'forest_refuge',
+    label: 'Dernier feu du Lion',
+    icon: '⌂',
+    links: ['lion-witnesses', 'lion-shadow-signs'],
+    risk: 0,
+    reward: 1,
+    difficulty: 'safe',
+    moralTone: 'neutral',
+    hint: 'Dernière halte avant de faire rapport à Alaric.',
+  },
+  {
+    id: 'lion-witnesses',
+    type: 'event',
+    depth: 8,
+    lane: -0.75,
+    contentId: 'witnesses_on_road',
+    label: 'Témoins de Valmir',
+    icon: '◇',
+    links: ['lion-final-judgement'],
+    risk: 1,
+    reward: 2,
+    difficulty: 'safe',
+    moralTone: 'honour',
+    hint: 'Des survivants peuvent confirmer vos actes... ou votre abandon.',
+  },
+  {
+    id: 'lion-shadow-signs',
+    type: 'mystery',
+    depth: 8,
+    lane: 0.75,
+    contentId: 'shadow_signs',
+    label: 'Signes des Ombres',
+    icon: '?',
+    links: ['lion-final-judgement'],
+    risk: 2,
+    reward: 3,
+    difficulty: 'dangerous',
+    moralTone: 'mystery',
+    hint: 'Une piste sombre relie les Serpents à une menace plus ancienne.',
+  },
+  {
+    id: 'lion-final-judgement',
+    type: 'boss',
+    depth: 9,
+    lane: 0,
+    contentId: 'lion_finale_judgement',
+    label: 'Jugement du Sceau',
+    icon: '♛',
+    links: [],
+    risk: 3,
+    reward: 3,
+    difficulty: 'decisive',
+    moralTone: 'pragmatic',
+    hint: 'Alaric rend son verdict. Le Sceau sera accordé par respect ou par force.',
+  },
+];
 
 function seededRandom(seed: number): () => number {
   let state = seed >>> 0;
@@ -48,30 +276,17 @@ function seededRandom(seed: number): () => number {
   };
 }
 
-function pick<T>(items: T[], random: () => number): T {
-  return items[Math.floor(random() * items.length)] ?? items[0]!;
-}
-
-function weightedContent(type: RunNodeType, random: () => number, reputation: number): string {
-  if (type !== 'event' && type !== 'mystery') return pick(NODE_POOLS[type], random);
+function weightedIntrigue(random: () => number, reputation: number): string {
   const rule = getReputationRule(reputation);
-  const candidates = type === 'mystery'
-    ? [
-      { id: 'mystery_ambush', tag: 'hostile' },
-      { id: 'mystery_treasure', tag: 'neutral' },
-      { id: 'mystery_shrine', tag: 'helpful' },
-    ]
-    : [
-      { id: 'mystery_help', tag: 'helpful' },
-      { id: 'mystery_treasure', tag: 'neutral' },
-      { id: 'mystery_shrine', tag: 'helpful' },
-    ];
-  const weighted = candidates.map((candidate) => ({
-    ...candidate,
-    weight: candidate.tag === 'hostile'
-      ? rule.ambushWeightMultiplier
-      : (rule.eventWeightModifiers[candidate.tag] ?? 1),
-  }));
+  const weighted = INTRIGUE_EVENTS.map((id) => {
+    const tag = id === 'mystery_ambush' ? 'hostile' : id === 'mystery_treasure' ? 'neutral' : 'helpful';
+    return {
+      id,
+      weight: tag === 'hostile'
+        ? rule.ambushWeightMultiplier
+        : (rule.eventWeightModifiers[tag] ?? 1),
+    };
+  });
   const total = weighted.reduce((sum, candidate) => sum + candidate.weight, 0);
   let roll = random() * total;
   for (const candidate of weighted) {
@@ -81,69 +296,32 @@ function weightedContent(type: RunNodeType, random: () => number, reputation: nu
   return weighted.at(-1)!.id;
 }
 
-function makeNode(
-  id: string,
-  type: RunNodeType,
-  depth: number,
-  lane: number,
-  random: () => number,
-  reputation: number,
-): RunNode {
+function makeLionNode(template: LionRouteNode, random: () => number, reputation: number): RunNode {
   return {
-    id,
-    type,
-    depth,
-    links: [],
-    contentId: weightedContent(type, random, reputation),
-    label: pick(LABELS[type], random),
-    icon: ICONS[type],
-    x: (depth - 5.5) * 1.55,
-    z: lane * 1.45,
+    id: template.id,
+    type: template.type,
+    depth: template.depth,
+    links: [...template.links],
+    contentId: template.contentId === 'seeded-intrigue'
+      ? weightedIntrigue(random, reputation)
+      : template.contentId,
+    label: template.label,
+    icon: template.icon,
+    x: (template.depth - 4.5) * 1.45,
+    z: template.lane * 1.45,
+    risk: template.risk,
+    reward: template.reward,
+    difficulty: template.difficulty,
+    moralTone: template.moralTone,
+    hint: template.hint,
   };
-}
-
-function connect(nodes: RunNode[], fromIds: string[], toIds: string[]): void {
-  for (let index = 0; index < fromIds.length; index += 1) {
-    const node = nodes.find((candidate) => candidate.id === fromIds[index]);
-    if (!node) continue;
-    node.links = toIds.length === 1
-      ? [...toIds]
-      : [toIds[index % toIds.length]!, toIds[(index + 1) % toIds.length]!];
-  }
 }
 
 export function generateRunGraph(seed: number, reputation = 50): RunGraph {
   const random = seededRandom(seed);
-  const nodes: RunNode[] = [];
-  const layers: string[][] = [];
-  const layout: Array<Array<{ type: RunNodeType; lane: number }>> = [
-    [{ type: 'story', lane: 0 }],
-    [{ type: 'event', lane: -1 }, { type: 'combat', lane: 1 }],
-    [{ type: 'combat', lane: -1 }, { type: 'mystery', lane: 1 }],
-    [{ type: 'shop', lane: -1 }, { type: 'recruitment', lane: 1 }],
-    [{ type: 'refuge', lane: 0 }],
-    [{ type: 'combat', lane: -1 }, { type: 'event', lane: 1 }],
-    [{ type: 'mystery', lane: -1 }, { type: 'combat', lane: 1 }],
-    [{ type: 'shop', lane: -1 }, { type: 'story', lane: 1 }],
-    [{ type: 'refuge', lane: 0 }],
-    [{ type: 'combat', lane: -1 }, { type: 'event', lane: 1 }],
-    [{ type: 'mystery', lane: -1 }, { type: 'combat', lane: 1 }],
-    [{ type: 'boss', lane: 0 }],
-  ];
-
-  layout.forEach((layer, depth) => {
-    const ids: string[] = [];
-    layer.forEach((entry, index) => {
-      const id = `run-${depth}-${index}`;
-      ids.push(id);
-      nodes.push(makeNode(id, entry.type, depth, entry.lane, random, reputation));
-    });
-    layers.push(ids);
-  });
-  for (let depth = 0; depth < layers.length - 1; depth += 1) {
-    connect(nodes, layers[depth]!, layers[depth + 1]!);
-  }
-  return { nodes };
+  return {
+    nodes: LION_ROUTE_TEMPLATE.map((node) => makeLionNode(node, random, reputation)),
+  };
 }
 
 export function createRunState(seed = Date.now() & 0x7fffffff, reputation = 50): RunState {
@@ -186,8 +364,8 @@ export function toCampaignNodes(run: RunState): CampaignNode[] {
       icon: node.icon,
       label: node.label,
       links: node.links,
-      combatId: node.type === 'combat' || node.type === 'boss' ? node.contentId : undefined,
-      dialogueId: ['event', 'mystery', 'recruitment', 'story'].includes(node.type) ? node.contentId : undefined,
+      combatId: node.type === 'combat' ? node.contentId : undefined,
+      dialogueId: ['event', 'mystery', 'recruitment', 'story', 'boss'].includes(node.type) ? node.contentId : undefined,
       shopId: node.type === 'shop' ? node.contentId : undefined,
     };
   });

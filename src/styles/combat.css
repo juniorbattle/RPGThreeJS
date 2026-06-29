@@ -215,6 +215,7 @@
     #action-preview em{font-size:9px}
     .action-preview__warning{display:none}
     #log{
+      position:absolute;
       top:62px;right:8px;width:min(250px,calc(100vw - 16px));
       max-height:112px;font-size:14px
     }
@@ -238,10 +239,104 @@
     }
     #ui:has(#menu.deploy-roster) #help{display:none}
     .hud-gear{top:8px;right:8px;width:34px;height:34px;font-size:17px}
-    #objective{top:48px;right:8px;width:auto;max-width:calc(100vw - 52px)}
+    #hud-right-stack{top:48px;right:8px;width:min(244px,calc(100vw - 52px));gap:6px}
+    #objective{width:100%;max-width:none}
     #objective summary{padding:8px 10px}
     .obj__label{max-width:32vw}
     #settings{top:88px;right:8px;width:min(220px,calc(100vw - 16px))}
     #log{top:150px;max-height:96px}
     #ui:has(#menu.deploy-roster) #objective{display:none}
+  }
+
+  @media (max-width:560px){
+    #ui{font-size:14px}
+    #turnbar{
+      height:58px;
+      grid-template-columns:48px minmax(0,1fr);
+      padding-right:44px
+    }
+    .turn-center{width:48px;height:48px;grid-template-rows:9px 19px 8px 6px}
+    .turn-center b{font-size:18px;line-height:18px}
+    .turn-chips{gap:5px;justify-content:flex-start;overflow-x:auto;scrollbar-width:none}
+    .turn-chips::-webkit-scrollbar{display:none}
+    .chip{flex:0 0 35px;width:35px;height:46px;grid-template-rows:30px 12px}
+    .chip__portrait{width:29px;height:29px}
+    .chip__name{width:38px;font-size:7px}
+    #hint{
+      top:70px;
+      left:8px;
+      right:48px;
+      width:auto;
+      min-width:0;
+      max-width:none;
+      transform:none;
+      padding:6px 9px;
+      font-size:10px;
+      line-height:13px;
+      letter-spacing:.05em
+    }
+    #ui:has(#menu.deploy-roster) #hint{
+      top:8px;
+      left:8px;
+      right:48px;
+      width:auto;
+      max-width:none;
+      transform:none
+    }
+    .hint__lead,.hint__copy{font-size:10px}
+    #hud-right-stack{
+      top:108px;
+      left:8px;
+      right:8px;
+      width:auto;
+      max-width:none;
+    }
+    #objective summary{padding:7px 9px}
+    .obj__eyebrow{display:none}
+    .obj__label{max-width:none;font-size:11px}
+    .obj__body{padding:7px 9px 8px}
+    #panel{
+      width:min(236px,calc(100vw - 16px));
+      max-height:26dvh;
+      bottom:74px;
+    }
+    #panel.deploy-preview{
+      left:8px;
+      right:8px;
+      width:auto;
+      bottom:calc(50dvh + 12px);
+      max-height:25dvh;
+    }
+    #menu{bottom:max(6px,env(safe-area-inset-bottom));padding:6px 7px}
+    #menu .ico{width:58px;min-height:54px;grid-template-rows:22px 1fr;padding:5px 4px}
+    #menu .ico .c{width:24px;height:24px;font-size:18px}
+    #menu .ico .tx b{font-size:10px;line-height:12px}
+    #menu .ico .tx small{display:none}
+    #skillmenu{bottom:66px;max-height:42dvh}
+    #action-preview{top:88px;flex-wrap:wrap}
+    .action-preview__arrow{display:none}
+    .combat-result-card{
+      width:calc(100vw - 22px);
+      max-height:calc(100dvh - 22px);
+      overflow:auto;
+      padding:22px 18px 20px;
+    }
+    .combat-result-card h1{font-size:36px}
+    .combat-result__subtitle{font-size:13px}
+    .combat-result__meta,
+    .combat-result__squad{grid-template-columns:1fr}
+  }
+
+  @media (max-height:620px){
+    #turnbar{height:54px}
+    #hint{display:none}
+    #hud-right-stack{top:56px;width:220px}
+    #panel{width:226px;max-height:32dvh;bottom:68px}
+    #panel.deploy-preview{bottom:calc(48dvh + 8px);max-height:29dvh}
+    #menu{bottom:6px}
+    #menu .ico{min-height:50px}
+    #skillmenu{bottom:64px;max-height:45dvh}
+    #action-preview{top:62px}
+    #help{display:none}
+    .combat-result-card{max-height:calc(100dvh - 18px);overflow:auto}
   }

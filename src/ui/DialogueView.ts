@@ -28,8 +28,8 @@ function dialogueBackdrop(sequence: DialogueSequence): string {
   if (sequence.backdrop) return sequence.backdrop;
   const first = sequence.steps[0];
   const context = `${sequence.id} ${first?.speaker ?? ''} ${first?.tag ?? ''} ${first?.text ?? ''}`.toLocaleLowerCase('fr-FR');
-  if (/valmir|village|marchand|coffre|réserve|reserve|cedric|recrut/.test(context)) return assets.screens.travel.backdrops.city;
-  if (/chef|alaric|serment|sceau|jugement|finale|épilogue|epilogue|chroniqueur/.test(context)) return assets.screens.travel.backdrops.castle;
+  if (/bois-clair|valmir|village|marchand|coffre|réserve|reserve|cedric|recrut/.test(context)) return assets.screens.travel.backdrops.city;
+  if (/chef|alaric|serment|sceau|jugement|finale|épilogue|epilogue|chroniqueur|lion/.test(context)) return assets.screens.travel.backdrops.castle;
   return assets.screens.travel.backdrops.default;
 }
 
@@ -147,9 +147,12 @@ export class DialogueView {
     button.classList.add(this.choiceToneClass(choice));
     button.type = 'button';
     const state = this.options.getState();
-    const blockedByGold = choice.requiresGold !== undefined && state.gold < choice.requiresGold;
+    const availableGold = state.gold + state.run.temporaryLoot.gold;
+    const blockedByGold = choice.requiresGold !== undefined && availableGold < choice.requiresGold;
     const blockedByFlag = choice.requiresFlag !== undefined && !state.flags[choice.requiresFlag];
-    button.disabled = blockedByGold || blockedByFlag;
+    const blockedByReputationMin = choice.requiresReputationMin !== undefined && state.reputation < choice.requiresReputationMin;
+    const blockedByReputationMax = choice.requiresReputationMax !== undefined && state.reputation > choice.requiresReputationMax;
+    button.disabled = blockedByGold || blockedByFlag || blockedByReputationMin || blockedByReputationMax;
     button.classList.toggle('is-blocked', button.disabled);
 
     const icon = document.createElement('span');
@@ -166,10 +169,15 @@ export class DialogueView {
     const descriptors = this.describeEffects(choice.effects);
     if (choice.requiresGold !== undefined) descriptors.unshift({ icon: '●', label: `Coût ${choice.requiresGold} or`, tone: blockedByGold ? 'loss' : 'neutral' });
     if (choice.requiresFlag !== undefined && blockedByFlag) descriptors.unshift({ icon: '◇', label: 'Condition requise', tone: 'loss' });
+    if (choice.requiresReputationMin !== undefined) descriptors.unshift({ icon: '♜', label: `Réputation ≥ ${choice.requiresReputationMin}`, tone: blockedByReputationMin ? 'loss' : 'neutral' });
+    if (choice.requiresReputationMax !== undefined) descriptors.unshift({ icon: '♜', label: `Réputation ≤ ${choice.requiresReputationMax}`, tone: blockedByReputationMax ? 'loss' : 'neutral' });
     const meta = document.createElement('span');
     meta.className = 'dialogue-choice__meta';
     meta.append(...this.createOutcomeBadges(descriptors));
     if (blockedByGold) meta.append(this.createOutcomeBadge({ icon: '!', label: 'Or insuffisant', tone: 'loss' }));
+    if ((blockedByReputationMin || blockedByReputationMax) && choice.blockedText) {
+      meta.append(this.createOutcomeBadge({ icon: '!', label: choice.blockedText, tone: 'loss' }));
+    }
     if (meta.childElementCount > 0) body.append(meta);
 
     button.append(icon, body);
@@ -183,10 +191,10 @@ export class DialogueView {
   private choiceIcon(choice: DialogueChoice): string {
     if (choice.effects.some((effect) => effect.type === 'startCombat')) return '⚔';
     if (choice.effects.some((effect) => effect.type === 'recruitUnit')) return '♙';
-    if (choice.effects.some((effect) => effect.type === 'addGold' && effect.amount > 0)) return '◈';
+    if (choice.effects.some((effect) => effect.type === 'addGold' && effect.amount > 0)) return '◆';
     if (choice.effects.some((effect) => effect.type === 'addReputation' && effect.amount > 0)) return '♜';
     if (choice.effects.some((effect) => effect.type === 'addReputation' && effect.amount < 0)) return '⚖';
-    return '◆';
+    return '◇';
   }
 
   private choiceToneClass(choice: DialogueChoice): string {
@@ -217,7 +225,7 @@ export class DialogueView {
           descriptors.push({ icon: '⚔', label: 'Risque combat', tone: 'risk' });
           break;
         case 'setFlag':
-          if (/success|help|save|sauv/i.test(effect.key)) descriptors.push({ icon: effect.value ? '✦' : '⚖', label: effect.value ? 'Secours' : 'Perte possible', tone: effect.value ? 'help' : 'loss' });
+          if (/success|help|save|sauv|protect|evidence/i.test(effect.key)) descriptors.push({ icon: effect.value ? '✦' : '⚖', label: effect.value ? 'Trace positive' : 'Trace risquée', tone: effect.value ? 'help' : 'loss' });
           break;
         case 'finishChapter':
           descriptors.push({ icon: '◇', label: 'Chapitre conclu', tone: 'neutral' });

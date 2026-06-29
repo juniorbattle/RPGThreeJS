@@ -10,10 +10,25 @@ describe('hybrid run system', () => {
     expect(generateRunGraph(42)).not.toEqual(generateRunGraph(43));
   });
 
-  it('creates a twelve-step route with two refuges', () => {
+  it('creates a guided Lion route with two refuge hubs', () => {
     const graph = generateRunGraph(7);
-    expect(Math.max(...graph.nodes.map((node) => node.depth))).toBe(11);
+    expect(Math.max(...graph.nodes.map((node) => node.depth))).toBe(9);
     expect(graph.nodes.filter((node) => node.type === 'refuge')).toHaveLength(2);
+    expect(graph.nodes.filter((node) => node.type === 'shop')).toHaveLength(0);
+    expect(graph.nodes[0]!.id).toBe('lion-camp');
+    expect(graph.nodes.some((node) => node.contentId === 'lion_finale_judgement')).toBe(true);
+  });
+
+  it('describes route risk, reward and narrative hints for TravelView', () => {
+    const graph = generateRunGraph(11);
+    expect(graph.nodes.every((node) => typeof node.risk === 'number')).toBe(true);
+    expect(graph.nodes.every((node) => typeof node.reward === 'number')).toBe(true);
+    expect(graph.nodes.every((node) => typeof node.hint === 'string' && node.hint.length > 0)).toBe(true);
+  });
+
+  it('never exposes more than two route choices from one node', () => {
+    const graph = generateRunGraph(12);
+    expect(graph.nodes.every((node) => node.links.length <= 2)).toBe(true);
   });
 
   it('banks temporary loot at a refuge and drops it after defeat', () => {
@@ -31,4 +46,3 @@ describe('hybrid run system', () => {
     expect(state.run.currentNodeId).toBe(state.run.checkpointNodeId);
   });
 });
-

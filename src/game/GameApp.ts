@@ -91,14 +91,13 @@ export class GameApp {
       this.state = createInitialState();
       this.saves.saveAuto(this.state);
       this.chrome.replaceChildren();
-      const current = getRunNode(this.state.run);
-      if (current) void this.resolveRunNode(current, true);
+      this.enterTravel();
     });
     this.chrome.querySelector('[data-action="continue"]')?.addEventListener('click', () => {
       this.state = this.saves.loadAuto() ?? this.saves.loadManual() ?? createInitialState();
       this.chrome.replaceChildren();
       const current = getRunNode(this.state.run);
-      if (current && !this.state.resolvedNodeIds.includes(current.id)) void this.resolveRunNode(current, true);
+      if (current && current.depth > 0 && !this.state.resolvedNodeIds.includes(current.id)) void this.resolveRunNode(current, true);
       else this.enterTravel();
     });
   }
@@ -152,6 +151,15 @@ export class GameApp {
       return;
     }
     if (node.type === 'combat' || node.type === 'boss') {
+      if (!combatConfigs.has(node.contentId)) {
+        await this.playDialogue(node.contentId);
+        if (this.pendingCombatId) await this.flushPendingCombat(node);
+        else {
+          this.markResolved(node.id);
+          this.enterTravel();
+        }
+        return;
+      }
       await this.startCombat(node.contentId, node);
       return;
     }

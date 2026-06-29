@@ -23,6 +23,9 @@ export const dialogueChoiceSchema = z.object({
   next: z.string().nullable(),
   requiresGold: z.number().int().nonnegative().optional(),
   requiresFlag: z.string().optional(),
+  requiresReputationMin: z.number().int().min(0).max(100).optional(),
+  requiresReputationMax: z.number().int().min(0).max(100).optional(),
+  blockedText: z.string().optional(),
   effects: z.array(narrativeEffectSchema).default([]),
 });
 export type DialogueChoice = z.infer<typeof dialogueChoiceSchema>;
@@ -151,6 +154,11 @@ export const runNodeSchema = z.object({
   icon: z.string(),
   x: z.number(),
   z: z.number(),
+  risk: z.number().int().min(0).max(3).optional(),
+  reward: z.number().int().min(0).max(3).optional(),
+  difficulty: z.enum(['safe', 'standard', 'dangerous', 'decisive']).optional(),
+  moralTone: z.enum(['honour', 'pragmatic', 'greed', 'mystery', 'neutral']).optional(),
+  hint: z.string().optional(),
 });
 export type RunNode = z.infer<typeof runNodeSchema>;
 

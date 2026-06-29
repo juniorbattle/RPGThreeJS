@@ -12,9 +12,19 @@ describe('campaign content integrity', () => {
     }
   });
 
-  it('routes the optional patrol back through the mandatory village chapter', () => {
-    const patrol = campaignNodes.find((node) => node.id === 'random-a');
-    expect(patrol?.links).toContain('village');
-    expect(patrol?.links).not.toContain('mystery-b');
+  it('routes the first refuge into the village objective branches', () => {
+    const refuge = campaignNodes.find((node) => node.id === 'lion-first-refuge');
+    expect(refuge?.links).toContain('lion-valmir-road');
+    expect(refuge?.links).toContain('lion-reserve-trail');
+    expect(refuge?.links).not.toContain('lion-final-judgement');
+  });
+
+  it('keeps route and dialogue choices limited to two impactful options', () => {
+    expect(campaignNodes.every((node) => node.links.length <= 2)).toBe(true);
+    for (const dialogue of dialogues.values()) {
+      for (const step of dialogue.steps) {
+        expect(step.choices?.length ?? 0, `${dialogue.id}:${step.id}`).toBeLessThanOrEqual(2);
+      }
+    }
   });
 });
