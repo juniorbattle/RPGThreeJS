@@ -38,6 +38,7 @@ let COMBAT_ID='standalone';
 let COMBAT_SCENE_ID='forest_route';
 let COMBAT_OBJECTIVE='Vaincre tous les ennemis.';
 let COMBAT_LABEL='Combat tactique';
+let COMBAT_REWARD_TEXT='';
 let MAX_PLAYER_UNITS=4;
 let CAMPAIGN_SQUAD=[];
 let CAMPAIGN_INVENTORY={};
@@ -221,7 +222,10 @@ function uiPortraitFor(path){ return typeof path==='string'&&path.includes('/ass
 async function preloadExternalSprites(){
   const urls=[...new Set([
     ...CAMPAIGN_SQUAD.map(unit=>unit&&unit.portrait),
-    ...DEFS.map(unit=>unit&&unit.portrait)
+    ...DEFS.map(unit=>unit&&unit.portrait),
+    ...BOSS_DEFS.map(unit=>unit&&unit.portrait),
+    ...Object.values(BOSS_PORTRAITS),
+    ...Object.values(BOSS_ESCORTS).flat().map(unit=>unit&&unit.portrait)
   ].filter(url=>typeof url==='string'&&url.startsWith('/assets/characters/pixel/full/')))];
   if(!urls.length)return;
   await Promise.all(urls.map(async url=>{
@@ -516,8 +520,24 @@ const DEFS=[
 
 const BOSS_DEFS=[
   {team:'foe',kind:'brute',name:'Capitaine Serpent',portrait:'/assets/characters/pixel/full/shadow_omen.png',hp:320,str:30,mag:10,end:24,dex:10,cha:12,mov:0,weapons:[{name:'Lame Serpent',icon:'⚔️',type:'phys',min:1,max:2,power:18,crit:0.08,acc:0.9}],skills:['boss_slam','boss_roar','boss_quake','boss_guard'],ai:'aggressive',gx:5,gz:1,size:2,immobile:true,boss:true},
-  {team:'foe',kind:'knight',name:'Vieux Lion Alaric',portrait:'/assets/characters/pixel/full/alistair.png',hp:380,str:28,mag:8,end:26,dex:12,cha:16,mov:0,weapons:[{name:'Lame du Lion',icon:'⚔️',type:'phys',min:1,max:2,power:16,crit:0.06,acc:0.92}],skills:['boss_slam','boss_roar','boss_quake','boss_guard'],ai:'guardian',gx:5,gz:1,size:2,immobile:true,boss:true}
+  {team:'foe',kind:'knight',name:'Vieux Lion Alaric',portrait:'/assets/characters/pixel/full/alaric.png',hp:380,str:28,mag:8,end:26,dex:12,cha:16,mov:0,weapons:[{name:'Lame du Lion',icon:'⚔️',type:'phys',min:1,max:2,power:16,crit:0.06,acc:0.92}],skills:['boss_slam','boss_roar','boss_quake','boss_guard'],ai:'guardian',gx:5,gz:1,size:2,immobile:true,boss:true}
 ];
+
+const BOSS_PORTRAITS={
+  serpent_captain:'/assets/characters/pixel/full/boss_serpent_captain.png',
+  lion_chief:'/assets/characters/pixel/full/alaric.png'
+};
+const BOSS_ESCORTS={
+  serpent_captain:[
+    {team:'foe',kind:'brigand', name:'Garde Serpent',portrait:'/assets/characters/pixel/full/serpent_raider.png',hp:95,str:19,mag:4,end:12,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:[],ai:'aggressive',gx:7,gz:0},
+    {team:'foe',kind:'brigand', name:'Garde Serpent',portrait:'/assets/characters/pixel/full/serpent_raider.png',hp:95,str:19,mag:4,end:12,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:[],ai:'aggressive',gx:7,gz:3},
+    {team:'foe',kind:'darkmage',name:'Oracle Serpent',portrait:'/assets/characters/pixel/full/shadow_omen.png',hp:78,str:4,mag:23,end:10,dex:12,cha:8,mov:2,weapons:[{name:'Bâton',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}],skills:['bolt','curse'],ai:'cautious',gx:4,gz:3}
+  ],
+  lion_chief:[
+    {team:'foe',kind:'knight',name:'Champion du Lion',portrait:'/assets/characters/pixel/full/alaric.png',hp:120,str:22,mag:4,end:17,dex:9,cha:9,mov:2,weapons:[{name:'Lame',icon:'⚔',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.92}],skills:['heavy'],ai:'guardian',gx:7,gz:0},
+    {team:'foe',kind:'darkmage',name:'Gardien du Sceau',portrait:'/assets/characters/pixel/full/shrine_apparition.png',hp:92,str:8,mag:20,end:13,dex:10,cha:16,mov:2,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.04,acc:0.94}],skills:['curse','boss_guard'],ai:'cautious',gx:7,gz:3}
+  ]
+};
 
 // ============================= STATUS EFFECTS =============================
 const STATUS={
@@ -585,7 +605,7 @@ function updateSelectors(){
     faceArrow.rotation.z=-a; }
   else { selRing.visible=false; if(selRingUnder)selRingUnder.visible=false; faceArrow.visible=false; if(selBase)selBase.visible=false; }
   const h=G.hoverUnit&&G.hoverUnit.alive&&!G.stage&&!G.over&&G.hoverUnit!==G.active?G.hoverUnit:null;
-  if(h&&hoverRing){ const top=h.cell().topY,col=h.team==='player'?0x69d7ff:0xff5f52; if(hoverRingUnder){ hoverRingUnder.visible=true; hoverRingUnder.material.opacity=.58; hoverRingUnder.position.set(wX(h.gx),top+0.062,wZ(h.gz)); } hoverRing.visible=true; hoverRing.material.color.setHex(col); hoverRing.material.opacity=h.team==='player'?0.92:0.96; hoverRing.position.set(wX(h.gx),top+0.066,wZ(h.gz)); }
+  if(h&&hoverRing){ const top=h.cell().topY,col=h.team==='player'?0x69d7ff:0xff5f52,hx=h.size>1?bossCenterGX(h):h.gx,hz=h.size>1?bossCenterGZ(h):h.gz,hs=h.size>1?h.size:1; if(hoverRingUnder){ hoverRingUnder.visible=true; hoverRingUnder.material.opacity=.58; hoverRingUnder.scale.set(hs,hs,hs); hoverRingUnder.position.set(wX(hx),top+0.062,wZ(hz)); } hoverRing.visible=true; hoverRing.material.color.setHex(col); hoverRing.material.opacity=h.team==='player'?0.92:0.96; hoverRing.scale.set(hs,hs,hs); hoverRing.position.set(wX(hx),top+0.066,wZ(hz)); }
   else { if(hoverRing)hoverRing.visible=false; if(hoverRingUnder)hoverRingUnder.visible=false; }
 }
 
@@ -626,8 +646,9 @@ function createUnit(def){
     grp, spr, outline, mat, blob, teamGlow, teamRingUnder, teamRing, baseY:s.h*0.5,
     cell(){ return cellAt(this.gx,this.gz); }
   };
-  if(u.size>1){ const sc=u.size*1.6; spr.scale.set(sc,sc,1); outline.scale.set(sc*1.1,sc*1.1,1); blob.scale.set(u.size,u.size,1); teamGlow.scale.set(u.size,u.size,1); teamRing.scale.set(u.size,u.size,1); if(teamRingUnder)teamRingUnder.scale.set(u.size,u.size,1); u.baseY=s.h*0.5*sc; }
-  spr.scale.x=u.facing.dx<0?-(u.size>1?u.size*1.6:1):(u.size>1?u.size*1.6:1); outline.scale.x=u.facing.dx<0?-1.1:1.1;
+  const spriteScale=u.size>1?u.size*1.6:1, outlineScale=spriteScale*1.1;
+  if(u.size>1){ spr.scale.set(spriteScale,spriteScale,1); outline.scale.set(outlineScale,outlineScale,1); blob.scale.set(u.size,u.size,1); teamGlow.scale.set(u.size,u.size,1); teamRing.scale.set(u.size,u.size,1); if(teamRingUnder)teamRingUnder.scale.set(u.size,u.size,1); u.baseY=s.h*0.5*spriteScale; spr.position.y=u.baseY; outline.position.y=u.baseY; }
+  spr.scale.x=u.facing.dx<0?-spriteScale:spriteScale; outline.scale.x=u.facing.dx<0?-outlineScale:outlineScale;
   placeUnit(u,def.gx,def.gz,true);
   G.units.push(u);
   return u;
@@ -662,9 +683,18 @@ function placeUnit(u,gx,gz,instant){
 }
 function setFacing(u,tx,tz){ const dx=tx-u.gx, dz=tz-u.gz; if(dx===0&&dz===0)return;
   if(Math.abs(dx)>=Math.abs(dz)) u.facing={dx:Math.sign(dx),dz:0}; else u.facing={dx:0,dz:Math.sign(dz)};
-  u.spr.scale.x=u.facing.dx<0?-1:(u.facing.dx>0?1:u.spr.scale.x); if(u.outline)u.outline.scale.x=u.spr.scale.x<0?-1.1:1.1; }
+  const spriteScale=u.size>1?u.size*1.6:1, outlineScale=spriteScale*1.1;
+  u.spr.scale.x=u.facing.dx<0?-spriteScale:(u.facing.dx>0?spriteScale:u.spr.scale.x);
+  if(u.outline)u.outline.scale.x=u.spr.scale.x<0?-outlineScale:outlineScale; }
 
-function spawnUnits(){ for(const d of DEFS) if(d.team!=='player') createUnit(d); if(IS_BOSS_COMBAT&&!BOSS_SPAWNED){ const bossDef=BOSS_DEFS.find(b=>COMBAT_ID==='lion_chief'&&b.name.includes('Alaric'))||BOSS_DEFS[0]; if(bossDef){ createUnit(bossDef); BOSS_SPAWNED=true; } } }
+function spawnUnits(){
+  if(!IS_BOSS_COMBAT) for(const d of DEFS) if(d.team!=='player') createUnit(d);
+  if(IS_BOSS_COMBAT&&!BOSS_SPAWNED){
+    const bossDef=BOSS_DEFS.find(b=>COMBAT_ID==='lion_chief'&&b.name.includes('Alaric'))||BOSS_DEFS[0];
+    for(const escort of BOSS_ESCORTS[COMBAT_ID]||[]) createUnit(escort);
+    if(bossDef){ createUnit({...bossDef,portrait:BOSS_PORTRAITS[COMBAT_ID]||bossDef.portrait,gx:5,gz:1,size:2,immobile:true,boss:true}); BOSS_SPAWNED=true; }
+  }
+}
 
 // ============================= TURN SYSTEM & PATHFINDING =============================
 const gdist=(a,b)=>Math.abs(a.gx-b.gx)+Math.abs(a.gz-b.gz);
@@ -1070,6 +1100,15 @@ function startNextWave(){ G.wave++;
   spawnWave(G.wave); G.over=false; G.round=0; G.mode='idle'; logMsg('— Vague '+G.wave+' approche ! —'); startRound(); }
 function resultRowsHTML(){ const rows=G.deployedUnits.map(u=>'<li class="combat-result__unit '+(u.alive?'':'is-ko')+'"><span>'+escHTML(u.name)+'</span><b>'+(u.alive?'Debout':'K.O.')+'</b></li>').join('');
   return rows||'<li class="combat-result__unit"><span>Escouade</span><b>—</b></li>'; }
+function combatRewardText(rewards){
+  if(!rewards)return '';
+  const parts=[];
+  if(rewards.gold)parts.push('+'+rewards.gold+' or');
+  const gems=rewards.materials&&rewards.materials.red_gem||0;
+  if(gems)parts.push('+'+gems+' gemme'+(gems>1?'s':''));
+  if(rewards.reputation)parts.push((rewards.reputation>0?'+':'')+rewards.reputation+' réputation');
+  return parts.join(' · ');
+}
 function showCombatResult(tone,title,subtitle,buttonLabel,onClick,meta){
   dom.banner.className='combat-result-overlay combat-result-overlay--'+tone;
   dom.banner.innerHTML='<section class="combat-result-card panel" role="dialog" aria-modal="true" aria-label="'+escHTML(title)+'">'+
@@ -1085,7 +1124,8 @@ function showCombatResult(tone,title,subtitle,buttonLabel,onClick,meta){
 function winWave(){ if(G.over)return; G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
   logMsg('— Vague '+G.wave+' vaincue ! —');
   if(CAMPAIGN_MODE){
-    showCombatResult('victory','Victoire',COMBAT_LABEL,'Continuer la chronique',()=>notifyCampaignResult(true),'<span>Objectif sécurisé</span><b>'+escHTML(COMBAT_OBJECTIVE)+'</b>');
+    const reward=COMBAT_REWARD_TEXT?'<span>Butin de combat</span><b>'+escHTML(COMBAT_REWARD_TEXT)+'</b>':'';
+    showCombatResult('victory','Victoire',COMBAT_LABEL,'Continuer la chronique',()=>notifyCampaignResult(true),'<span>Objectif sécurisé</span><b>'+escHTML(COMBAT_OBJECTIVE)+'</b>'+reward);
   } else {
     showCombatResult('victory','Vague '+G.wave+' vaincue','La formation tient encore la ligne.','Vague '+(G.wave+1)+' ▶',()=>{ dom.banner.className='hidden'; startNextWave(); },'<span>Mode escarmouche</span><b>Renforts imminents</b>');
   } }
@@ -1213,6 +1253,7 @@ window.addEventListener('error',()=>{ if(dom.loading&&dom.loading.style.display!
 window.addEventListener('unhandledrejection',e=>console.error(e.reason));
 function bootCampaign(message){
   COMBAT_ID=message.config.id; COMBAT_SCENE_ID=message.config.sceneId||'forest_route'; COMBAT_OBJECTIVE=message.config.objective; COMBAT_LABEL=message.config.encounterLabel;
+  COMBAT_REWARD_TEXT=combatRewardText(message.config.rewards);
   MAX_PLAYER_UNITS=normalizeDeploymentLimit(message.config.maxPlayerUnits); CAMPAIGN_SQUAD=message.clan; CAMPAIGN_INVENTORY=message.inventory;
   PREFERRED_UNIT_IDS=message.preferredUnitIds; REDUCED_GRAPHICS=message.reducedGraphics;
   IS_BOSS_COMBAT=!!message.config.isBoss; BOSS_SPAWNED=false;

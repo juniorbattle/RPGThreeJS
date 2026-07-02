@@ -1,6 +1,6 @@
-import { getFinalStats, getResolvedSkills, itemById, items, unitById, weaponById, weapons } from '../game/catalog';
+import { craftRecipes, getFinalStats, getResolvedSkills, itemById, items, unitById, weaponById, weapons } from '../game/catalog';
 import {
-  buyItem, equipAccessory, equipWeapon, excludeUnit,
+  buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit,
   getSkillUpgradeCost, sellItem, upgradeSkill,
 } from '../game/management';
 import { getReputationRule, getShopPrice } from '../game/reputation';
@@ -70,7 +70,7 @@ export class ManagementView {
   private selectedUnitId = '';
   private tab: ManagementTab = 'clan';
   private shopId = 'valmir';
-  private shopMode: 'buy' | 'sell' = 'buy';
+  private shopMode: 'buy' | 'sell' | 'craft' = 'buy';
   private shopEnabled = false;
   private shopOnly = false;
   private skillsEnabled = false;
@@ -359,6 +359,7 @@ export class ManagementView {
 
   private renderShop(): string {
     const state = this.options.getState();
+    if (this.shopMode === 'craft') return this.renderForge();
     const source = this.shopMode === 'buy'
       ? Object.entries(state.shops[this.shopId]?.stock ?? {})
       : (Object.keys(categoryLabels) as ItemCategory[]).flatMap((category) => Object.entries(state.inventory[category]));
@@ -376,10 +377,55 @@ export class ManagementView {
         <div class="shop-toggle">
           <button type="button" data-shop-mode="buy" class="ui-tab ${this.shopMode === 'buy' ? 'is-active' : ''}">Acheter</button>
           <button type="button" data-shop-mode="sell" class="ui-tab ${this.shopMode === 'sell' ? 'is-active' : ''}">Vendre</button>
+          <button type="button" data-shop-mode="craft" class="ui-tab">Forge</button>
         </div>
       </div>
       <div class="shop-list">${rows || '<p class="empty-copy">Aucun article disponible.</p>'}</div>
     </div>`;
+  }
+
+  private renderForge(): string {
+    const state = this.options.getState();
+    const rows = craftRecipes.map((recipe) => {
+      const output = itemById.get(recipe.output.itemId);
+      const disabled = !canCraftItem(state, recipe.id);
+      const ingredients = [
+        ...Object.entries(recipe.inputs.weapons ?? {}).map(([id, quantity]) => this.ingredientLabel('weapons', id, quantity)),
+        ...Object.entries(recipe.inputs.accessories ?? {}).map(([id, quantity]) => this.ingredientLabel('accessories', id, quantity)),
+      ].join('');
+      return `<article class="craft-recipe ui-panel ui-panel--soft">
+        <div class="craft-recipe__output">
+          <span class="item-row__icon ui-chip">${output?.icon ?? '✦'}</span>
+          <div>
+            <strong>${recipe.name}</strong>
+            <small>${recipe.description}</small>
+          </div>
+        </div>
+        <div class="craft-recipe__meta">
+          <p><b>Créé</b> ${output?.name ?? recipe.output.itemId} ×${recipe.output.quantity}</p>
+          <p><b>Effet</b> ${recipe.preview}</p>
+        </div>
+        <div class="craft-recipe__ingredients">${ingredients}<span class="ui-chip">${recipe.inputs.gold} or</span></div>
+        <button type="button" class="ui-button ui-button--secondary" data-craft="${recipe.id}" ${disabled ? 'disabled' : ''}>Forger</button>
+      </article>`;
+    }).join('');
+    return `<div class="shop-view shop-view--forge">
+      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Forge de Valmir · ${getReputationRule(state.reputation).label}</p><h3>Artisan du refuge</h3><small>Les recettes consomment vos objets permanents et l’or du coffre.</small></div>
+        <div class="shop-toggle">
+          <button type="button" data-shop-mode="buy" class="ui-tab ${this.shopMode === 'buy' ? 'is-active' : ''}">Acheter</button>
+          <button type="button" data-shop-mode="sell" class="ui-tab ${this.shopMode === 'sell' ? 'is-active' : ''}">Vendre</button>
+          <button type="button" data-shop-mode="craft" class="ui-tab ${this.shopMode === 'craft' ? 'is-active' : ''}">Forge</button>
+        </div>
+      </div>
+      <div class="craft-list">${rows}</div>
+    </div>`;
+  }
+
+  private ingredientLabel(category: 'weapons' | 'accessories', itemId: string, quantity: number): string {
+    const state = this.options.getState();
+    const item = itemById.get(itemId);
+    const owned = state.inventory[category][itemId] ?? 0;
+    return `<span class="ui-chip ${owned >= quantity ? '' : 'is-missing'}">${item?.name ?? itemId} ${owned}/${quantity}</span>`;
   }
 
   private bind(): void {
@@ -419,7 +465,7 @@ export class ManagementView {
     });
     this.overlay.querySelectorAll<HTMLButtonElement>('[data-shop-mode]').forEach((button) => {
       button.addEventListener('click', () => {
-        this.shopMode = button.dataset.shopMode as 'buy' | 'sell';
+        this.shopMode = button.dataset.shopMode as 'buy' | 'sell' | 'craft';
         this.render();
       });
     });
@@ -430,6 +476,12 @@ export class ManagementView {
           ? buyItem(this.options.getState(), this.shopId, itemId, this.shopWallet === 'temporary')
           : sellItem(this.options.getState(), this.shopId, itemId, this.shopWallet === 'temporary');
         if (ok) this.changed();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-craft]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const recipeId = button.dataset.craft ?? '';
+        if (craftItem(this.options.getState(), recipeId)) this.changed();
       });
     });
     this.overlay.querySelectorAll<HTMLButtonElement>('[data-upgrade-skill]').forEach((button) => {

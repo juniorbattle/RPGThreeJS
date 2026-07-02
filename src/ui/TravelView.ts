@@ -1,4 +1,5 @@
 import { unitById } from '../game/catalog';
+import { combatConfigs } from '../game/content';
 import { getAvailableRunNodes } from '../game/runSystem';
 import { getReputationRule } from '../game/reputation';
 import { assets } from '../render/assetManifest';
@@ -45,7 +46,18 @@ const NODE_PRESENTATION: Record<RunNodeType, { label: string; risk: number; rewa
   boss: { label: 'Boss', risk: 3, reward: 3 },
 };
 
-function routePresentation(node: RunNode): { label: string; risk: number; reward: number; hint: string; difficulty: string } {
+function rewardLine(node: RunNode): string {
+  const combat = (node.type === 'combat' || node.type === 'boss') ? combatConfigs.get(node.contentId) : undefined;
+  if (!combat) return '';
+  const gems = combat.rewards.materials?.red_gem ?? 0;
+  return [
+    combat.rewards.gold ? `${combat.rewards.gold} or` : '',
+    gems ? `${gems} gemme${gems > 1 ? 's' : ''}` : '',
+    combat.encounterRank === 'elite' ? 'élite' : combat.encounterRank === 'boss' ? 'boss' : '',
+  ].filter(Boolean).join(' · ');
+}
+
+function routePresentation(node: RunNode): { label: string; risk: number; reward: number; hint: string; difficulty: string; rewardLine: string } {
   const fallback = NODE_PRESENTATION[node.type];
   const difficultyLabels: Record<NonNullable<RunNode['difficulty']>, string> = {
     safe: 'Sûr',
@@ -59,6 +71,7 @@ function routePresentation(node: RunNode): { label: string; risk: number; reward
     reward: node.reward ?? fallback.reward,
     hint: node.hint ?? 'Route inconnue.',
     difficulty: node.difficulty ? difficultyLabels[node.difficulty] : fallback.label,
+    rewardLine: rewardLine(node),
   };
 }
 
@@ -370,6 +383,7 @@ export class TravelView {
             <span class="route-choice__meta">
               <span class="route-choice__hint">${escapeHtml(meta.hint)}</span>
               <span class="route-choice__stat route-choice__stat--risk"><small>Risque</small><span class="dots">${ratingDots(meta.risk)}</span></span>
+              ${meta.rewardLine ? `<span class="route-choice__loot">${escapeHtml(meta.rewardLine)}</span>` : ''}
               <span class="route-choice__stat route-choice__stat--reward"><small>Récompense</small><span class="dots">${ratingDots(meta.reward)}</span></span>
             </span>
           </button>

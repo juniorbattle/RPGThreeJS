@@ -66,7 +66,7 @@ export function createInitialState(): GameState {
         id: 'valmir',
         stock: {
           potion: 8, ether: 3, antidote: 4, bomb: 3,
-          strength_ring: 1, life_belt: 1, agility_boots: 1,
+          strength_ring: 1, life_belt: 1, agility_boots: 1, wisdom_crown: 1,
           steel_sword: 1, long_bow: 1, mystic_staff: 1,
         },
       },

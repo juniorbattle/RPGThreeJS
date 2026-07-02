@@ -6,6 +6,8 @@ export const nodeTypeSchema = z.enum([
 ]);
 export type NodeType = z.infer<typeof nodeTypeSchema>;
 
+const countRecordSchema = z.record(z.number().int().nonnegative());
+
 const baseEffectSchema = z.object({ delayMs: z.number().int().nonnegative().optional() });
 export const narrativeEffectSchema = z.discriminatedUnion('type', [
   baseEffectSchema.extend({ type: z.literal('setFlag'), key: z.string(), value: z.boolean() }),
@@ -63,11 +65,13 @@ export const combatConfigSchema = z.object({
   sceneId: z.string(),
   objective: z.string(),
   encounterLabel: z.string(),
+  encounterRank: z.enum(['normal', 'elite', 'boss']).default('normal'),
   maxPlayerUnits: z.number().int().min(3).max(5).default(4),
   isBoss: z.boolean().optional(),
   rewards: z.object({
     gold: z.number().int().nonnegative().default(0),
     reputation: z.number().int().default(0),
+    materials: countRecordSchema.default({}),
   }),
 });
 export type CombatConfig = z.infer<typeof combatConfigSchema>;
@@ -129,7 +133,6 @@ export const unitInstanceSchema = unitInstanceV5Schema.extend({
 });
 export type UnitInstance = z.infer<typeof unitInstanceSchema>;
 
-const countRecordSchema = z.record(z.number().int().nonnegative());
 export const inventoryStateSchema = z.object({
   consumables: countRecordSchema,
   accessories: countRecordSchema,
@@ -337,6 +340,23 @@ export interface WeaponDefinition extends ItemDefinition {
   minRange?: number;
   accuracyBonus: number;
   critBonus: number;
+}
+
+export interface CraftRecipeDefinition {
+  id: string;
+  name: string;
+  description: string;
+  inputs: {
+    weapons?: Record<string, number>;
+    accessories?: Record<string, number>;
+    gold: number;
+  };
+  output: {
+    itemId: string;
+    category: 'weapons' | 'accessories';
+    quantity: number;
+  };
+  preview: string;
 }
 
 export interface UnitDefinition {

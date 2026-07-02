@@ -37,9 +37,11 @@ describe('hybrid run system', () => {
     const initialGold = state.gold;
     addTemporaryLoot(state.run, { gold: 45 });
     addTemporaryLoot(state.run, { category: 'consumables', itemId: 'potion', quantity: 2 });
+    addTemporaryLoot(state.run, { category: 'materials', itemId: 'red_gem', quantity: 2 });
     secureRunLoot(state);
     expect(state.gold).toBe(initialGold + 45);
     expect(state.inventory.consumables.potion).toBe(5);
+    expect(state.inventory.materials.red_gem).toBe(2);
     addTemporaryLoot(state.run, { gold: 30 });
     failRunToCheckpoint(state);
     expect(state.run.temporaryLoot.gold).toBe(0);

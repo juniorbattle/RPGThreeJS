@@ -3,7 +3,7 @@
 import { describe, expect, it } from 'vitest';
 import { campaignNodes, combatConfigs, dialogues } from './content';
 import { assets } from '../render/assetManifest';
-import { units } from './catalog';
+import { craftRecipes, itemById, units } from './catalog';
 import characterQc from '../../public/assets/characters/pixel/canonical-character-qc.json';
 
 interface CharacterAssetProfile {
@@ -105,6 +105,31 @@ describe('campaign content integrity', () => {
       expect(combat.sceneId, combat.id).toBeTruthy();
       expect(combatScenes[combat.sceneId], `${combat.id}:${combat.sceneId}`).toBeTruthy();
       expectPublicAsset(combatScenes[combat.sceneId]!, `${combat.id}:${combat.sceneId}`);
+    }
+  });
+
+  it('defines encounter ranks and measured red gem rewards for every combat', () => {
+    const expectedGemRewards = { normal: 1, elite: 2, boss: 4 } as const;
+
+    for (const combat of combatConfigs.values()) {
+      expect(['normal', 'elite', 'boss']).toContain(combat.encounterRank);
+      expect(combat.rewards.materials.red_gem, combat.id).toBe(expectedGemRewards[combat.encounterRank]);
+      if (combat.encounterRank === 'boss') expect(combat.isBoss, combat.id).toBe(true);
+    }
+  });
+
+  it('keeps craft recipes data-driven and backed by existing items', () => {
+    expect(craftRecipes.length).toBeGreaterThanOrEqual(4);
+    for (const recipe of craftRecipes) {
+      expect(itemById.has(recipe.output.itemId), `${recipe.id}:output`).toBe(true);
+      expect(recipe.inputs.gold, `${recipe.id}:gold`).toBeGreaterThan(0);
+      for (const itemId of Object.keys(recipe.inputs.weapons ?? {})) {
+        expect(itemById.get(itemId)?.category, `${recipe.id}:${itemId}`).toBe('weapons');
+      }
+      for (const itemId of Object.keys(recipe.inputs.accessories ?? {})) {
+        expect(itemById.get(itemId)?.category, `${recipe.id}:${itemId}`).toBe('accessories');
+      }
+      expect(['weapons', 'accessories']).toContain(recipe.output.category);
     }
   });
 

@@ -1,6 +1,6 @@
 import { combatConfigs, dialogues } from './content';
 import { createInitialState, SaveRepository } from './store';
-import type { CombatResult, GameState, NarrativeEffect, RunNode } from './types';
+import type { CombatConfig, CombatResult, GameState, NarrativeEffect, RunNode } from './types';
 import { createUnitInstance, getItemCategory, toCombatant } from './catalog';
 import { applyCombatProgress } from './combatProgress';
 import {
@@ -288,7 +288,7 @@ export class GameApp {
   private async resolveCombat(
     result: CombatResult,
     node: RunNode,
-    rewards: { gold: number; reputation: number },
+    rewards: CombatConfig['rewards'],
   ): Promise<void> {
     if (!result.victory) {
       this.state = this.saves.loadAuto() ?? this.state;
@@ -301,6 +301,9 @@ export class GameApp {
     applyCombatProgress(this.state, result, encounterLimit);
     this.state.currentNodeId = node.id;
     addTemporaryLoot(this.state.run, { gold: rewards.gold });
+    for (const [itemId, quantity] of Object.entries(rewards.materials ?? {})) {
+      addTemporaryLoot(this.state.run, { category: 'materials', itemId, quantity });
+    }
     changeReputation(this.state, rewards.reputation, `combat:${result.combatId}`);
     this.markResolved(node.id);
     this.saves.saveAuto(this.state);

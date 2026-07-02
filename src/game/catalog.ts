@@ -1,5 +1,5 @@
 import type {
-  CombatantPayload, EquipmentLoadout, ItemCategory, ItemDefinition, UnitDefinition,
+  CombatantPayload, CraftRecipeDefinition, EquipmentLoadout, ItemCategory, ItemDefinition, UnitDefinition,
   UnitInstance, UnitStats, WeaponDefinition,
 } from './types';
 
@@ -14,6 +14,8 @@ export const weapons: WeaponDefinition[] = [
   { id: 'wooden_staff', name: 'Bâton d’apprenti', description: 'Canalise les sorts élémentaires.', category: 'weapons', price: 100, icon: '✦', type: 'staff', damage: 10, range: 2, accuracyBonus: 10, critBonus: 0 },
   { id: 'mystic_staff', name: 'Bâton mystique', description: 'Bois ancien saturé de mana.', category: 'weapons', price: 260, icon: '✦', type: 'staff', damage: 18, range: 3, accuracyBonus: 15, critBonus: 5, skillModifier: { grants: ['flame_wave'] } },
   { id: 'war_mace', name: 'Masse consacrée', description: 'Arme robuste des guérisseurs du Lion.', category: 'weapons', price: 130, icon: '✚', type: 'mace', damage: 16, range: 1, accuracyBonus: 5, critBonus: 3 },
+  { id: 'lion_guard_blade', name: 'Lame du Lion', description: 'Épée de garde renforcée par un anneau martial.', category: 'weapons', price: 320, icon: '⚔', type: 'sword', damage: 27, range: 1, accuracyBonus: 8, critBonus: 6, skillModifier: { grants: ['bulwark'] } },
+  { id: 'windstep_bow', name: 'Arc du Vent', description: 'Arc nerveux équilibré par des bottes d’éclaireur.', category: 'weapons', price: 340, icon: '⌁', type: 'bow', damage: 24, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 12, skillModifier: { grants: ['leap'] } },
 ];
 
 export const items: ItemDefinition[] = [
@@ -22,6 +24,8 @@ export const items: ItemDefinition[] = [
   { id: 'life_belt', name: 'Ceinture de Vie', description: 'Augmente les PV de 20.', category: 'accessories', icon: '▰', price: 80, modifiers: { maxHealth: 20 } },
   { id: 'agility_boots', name: 'Bottes d’agilité', description: 'Augmente la dextérité de 5.', category: 'accessories', icon: '⌁', price: 150, modifiers: { dexterity: 5 } },
   { id: 'wisdom_crown', name: 'Couronne de Sagesse', description: 'Augmente la magie de 8.', category: 'accessories', icon: '♛', price: 200, modifiers: { magic: 8 } },
+  { id: 'sage_seal', name: 'Sceau du Sage', description: 'Accessoire magique façonné pour stabiliser les arcanes.', category: 'accessories', icon: '✦', price: 310, modifiers: { magic: 10, charisma: 3 }, skillModifier: { grants: ['regen'] } },
+  { id: 'warding_buckle', name: 'Boucle de Garde', description: 'Fermoir défensif gravé pour tenir la ligne.', category: 'accessories', icon: '▰', price: 240, modifiers: { maxHealth: 15, endurance: 4 } },
   { id: 'potion', name: 'Potion légère', description: 'Restaure 55 PV en combat.', category: 'consumables', icon: '◉', price: 15 },
   { id: 'ether', name: 'Éther', description: 'Restaure 2 AP en combat.', category: 'consumables', icon: '◈', price: 35 },
   { id: 'antidote', name: 'Antidote', description: 'Dissipe les altérations négatives.', category: 'consumables', icon: '✚', price: 10 },
@@ -37,7 +41,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/alistair.png',
     baseStats: { maxHealth: 140, strength: 18, magic: 5, endurance: 15, dexterity: 10, charisma: 12, moveRange: 2 },
     weaponSlotCount: 2,
-    allowedWeaponIds: ['iron_sword', 'steel_sword', 'wooden_spear'], skillIds: ['whirl', 'bulwark', 'provoke', 'charge'],
+    allowedWeaponIds: ['iron_sword', 'steel_sword', 'lion_guard_blade', 'wooden_spear'], skillIds: ['whirl', 'bulwark', 'provoke', 'charge'],
   },
   {
     id: 'cleric', name: 'Marian', className: 'Clerc', combatKind: 'cleric',
@@ -58,20 +62,57 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/kestrel.png',
     baseStats: { maxHealth: 100, strength: 15, magic: 5, endurance: 10, dexterity: 20, charisma: 10, moveRange: 3 },
     weaponSlotCount: 2,
-    allowedWeaponIds: ['short_bow', 'long_bow', 'iron_dagger'], skillIds: ['weaken', 'blind_shot', 'pierce_shot', 'leap'],
+    allowedWeaponIds: ['short_bow', 'long_bow', 'windstep_bow', 'iron_dagger'], skillIds: ['weaken', 'blind_shot', 'pierce_shot', 'leap'],
   },
   {
     id: 'cedric', name: 'Cedric', className: 'Éclaireur', combatKind: 'archer',
     portrait: '/assets/characters/pixel/full/cedric.png',
     baseStats: { maxHealth: 115, strength: 17, magic: 4, endurance: 11, dexterity: 22, charisma: 10, moveRange: 3 },
     weaponSlotCount: 2,
-    allowedWeaponIds: ['short_bow', 'long_bow', 'iron_dagger'], skillIds: ['weaken', 'blind_shot', 'leap'],
+    allowedWeaponIds: ['short_bow', 'long_bow', 'windstep_bow', 'iron_dagger'], skillIds: ['weaken', 'blind_shot', 'leap'],
   },
 ];
 
 export const itemById = new Map(items.map((item) => [item.id, item]));
 export const weaponById = new Map(weapons.map((weapon) => [weapon.id, weapon]));
 export const unitById = new Map(units.map((unit) => [unit.id, unit]));
+
+export const craftRecipes: CraftRecipeDefinition[] = [
+  {
+    id: 'craft_lion_guard_blade',
+    name: 'Forger la Lame du Lion',
+    description: 'Transformer une épée d’acier et un anneau de force en arme défensive de front.',
+    inputs: { weapons: { steel_sword: 1 }, accessories: { strength_ring: 1 }, gold: 80 },
+    output: { itemId: 'lion_guard_blade', category: 'weapons', quantity: 1 },
+    preview: '+27 puissance, précision +8, accorde Rempart.',
+  },
+  {
+    id: 'craft_windstep_bow',
+    name: 'Forger l’Arc du Vent',
+    description: 'Assembler un arc long et des bottes d’agilité pour un tireur mobile.',
+    inputs: { weapons: { long_bow: 1 }, accessories: { agility_boots: 1 }, gold: 90 },
+    output: { itemId: 'windstep_bow', category: 'weapons', quantity: 1 },
+    preview: '+24 puissance, critique +12, accorde Bond.',
+  },
+  {
+    id: 'craft_sage_seal',
+    name: 'Façonner le Sceau du Sage',
+    description: 'Fusionner deux focalisateurs pour stabiliser les soins et les arcanes.',
+    inputs: { accessories: { magic_pendant: 1, wisdom_crown: 1 }, gold: 100 },
+    output: { itemId: 'sage_seal', category: 'accessories', quantity: 1 },
+    preview: '+10 magie, +3 charisme, accorde Régénération.',
+  },
+  {
+    id: 'craft_warding_buckle',
+    name: 'Façonner la Boucle de Garde',
+    description: 'Renforcer une ceinture de vie par un anneau martial.',
+    inputs: { accessories: { life_belt: 1, strength_ring: 1 }, gold: 75 },
+    output: { itemId: 'warding_buckle', category: 'accessories', quantity: 1 },
+    preview: '+15 PV, +4 endurance.',
+  },
+];
+
+export const craftRecipeById = new Map(craftRecipes.map((recipe) => [recipe.id, recipe]));
 
 const defaultWeapons: Record<string, string[]> = {
   knight: ['iron_sword', 'wooden_spear'],

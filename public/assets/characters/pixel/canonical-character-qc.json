@@ -3,10 +3,10 @@
     "variants": {
       "full": {
         "alpha_bbox": [
-          24,
-          154,
-          617,
-          735
+          27,
+          56,
+          612,
+          742
         ],
         "corner_alpha": [
           0,
@@ -15,17 +15,17 @@
           0
         ],
         "magenta_pixels": 0,
-        "white_pixels": 1610,
+        "white_pixels": 0,
         "white_background_pixels": 0,
         "artifact_violet_pixels": 0,
         "floor_artifact_pixels": 0
       },
       "dialogue": {
         "alpha_bbox": [
-          29,
-          285,
-          741,
-          983
+          44,
+          203,
+          724,
+          1000
         ],
         "corner_alpha": [
           0,
@@ -34,17 +34,17 @@
           0
         ],
         "magenta_pixels": 0,
-        "white_pixels": 2350,
+        "white_pixels": 0,
         "white_background_pixels": 0,
         "artifact_violet_pixels": 0,
         "floor_artifact_pixels": 0
       },
       "ui": {
         "alpha_bbox": [
-          20,
-          29,
-          363,
-          365
+          36,
+          0,
+          348,
+          366
         ],
         "corner_alpha": [
           0,
@@ -53,7 +53,7 @@
           0
         ],
         "magenta_pixels": 0,
-        "white_pixels": 550,
+        "white_pixels": 0,
         "white_background_pixels": 0,
         "artifact_violet_pixels": 0,
         "floor_artifact_pixels": 0

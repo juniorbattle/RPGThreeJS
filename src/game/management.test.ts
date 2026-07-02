@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
-  buyItem, equipAccessory, equipWeapon, excludeUnit,
+  buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit,
   restUnits, sellItem, upgradeSkill,
 } from './management';
 import { createInitialState, migrateState } from './store';
@@ -74,6 +74,29 @@ describe('clan management', () => {
     expect(state.inventory.materials.red_gem).toBe(0);
     expect(upgradeSkill(state, knight.id, 'whirl')).toBe(false);
     expect(upgradeSkill(state, knight.id, 'unknown')).toBe(false);
+  });
+
+  it('crafts fixed shop recipes by consuming permanent ingredients and gold', () => {
+    const state = createInitialState();
+    const beforeGold = state.gold;
+
+    expect(canCraftItem(state, 'craft_lion_guard_blade')).toBe(true);
+    expect(craftItem(state, 'craft_lion_guard_blade')).toBe(true);
+    expect(state.gold).toBe(beforeGold - 80);
+    expect(state.inventory.weapons.steel_sword).toBe(0);
+    expect(state.inventory.accessories.strength_ring).toBe(0);
+    expect(state.inventory.weapons.lion_guard_blade).toBe(1);
+    expect(craftItem(state, 'craft_lion_guard_blade')).toBe(false);
+  });
+
+  it('blocks craft recipes with missing ingredients or insufficient gold', () => {
+    const state = createInitialState();
+    state.gold = 0;
+
+    expect(canCraftItem(state, 'craft_lion_guard_blade')).toBe(false);
+    expect(craftItem(state, 'craft_unknown')).toBe(false);
+    state.gold = 250;
+    expect(canCraftItem(state, 'craft_windstep_bow')).toBe(false);
   });
 });
 

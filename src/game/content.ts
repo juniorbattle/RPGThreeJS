@@ -22,14 +22,14 @@ const rawNodes: CampaignNode[] = [
 ];
 
 const rawCombats: CombatConfig[] = [
-  { id: 'village_defense', sceneId: 'bois_clair_burning', objective: 'Repoussez les pillards et protégez les habitants de Bois-Clair.', encounterLabel: 'Défense de Bois-Clair', maxPlayerUnits: 4, rewards: { gold: 140, reputation: 10 } },
-  { id: 'village_raid', sceneId: 'bois_clair_burning', objective: 'Sécurisez les coffres pendant que les Serpents dispersent les témoins.', encounterLabel: 'Raid sur Bois-Clair', maxPlayerUnits: 4, rewards: { gold: 300, reputation: -15 } },
-  { id: 'forest_patrol', sceneId: 'forest_route', objective: 'Éliminez la patrouille Serpent avant qu’elle ne donne l’alerte.', encounterLabel: 'Patrouille Serpent', maxPlayerUnits: 4, rewards: { gold: 90, reputation: 2 } },
-  { id: 'forest_ambush', sceneId: 'forest_route', objective: 'Survivez à l’embuscade dans le sous-bois.', encounterLabel: 'Embuscade', maxPlayerUnits: 4, rewards: { gold: 75, reputation: 4 } },
-  { id: 'serpent_checkpoint', sceneId: 'forest_route', objective: 'Forcez le barrage Serpent sans laisser de messager s’échapper.', encounterLabel: 'Barrage des Serpents', maxPlayerUnits: 4, rewards: { gold: 120, reputation: 3 } },
-  { id: 'road_to_valmir', sceneId: 'forest_route', objective: 'Ouvrez la route de Bois-Clair avant que le village ne tombe.', encounterLabel: 'Route de Bois-Clair', maxPlayerUnits: 4, rewards: { gold: 100, reputation: 4 } },
-  { id: 'serpent_captain', sceneId: 'lion_sanctum', objective: 'Traquez le capitaine Serpent et exposez l’artefact des Ombres.', encounterLabel: 'Capitaine Serpent', maxPlayerUnits: 4, isBoss: true, rewards: { gold: 180, reputation: 12 } },
-  { id: 'lion_chief', sceneId: 'lion_sanctum', objective: 'Survivez à l’épreuve du Vieux Lion.', encounterLabel: 'Duel pour le Sceau', maxPlayerUnits: 4, isBoss: true, rewards: { gold: 0, reputation: -10 } },
+  { id: 'village_defense', sceneId: 'bois_clair_burning', objective: 'Repoussez les pillards et protégez les habitants de Bois-Clair.', encounterLabel: 'Défense de Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, rewards: { gold: 140, reputation: 10, materials: { red_gem: 2 } } },
+  { id: 'village_raid', sceneId: 'bois_clair_burning', objective: 'Sécurisez les coffres pendant que les Serpents dispersent les témoins.', encounterLabel: 'Raid sur Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, rewards: { gold: 300, reputation: -15, materials: { red_gem: 2 } } },
+  { id: 'forest_patrol', sceneId: 'forest_route', objective: 'Éliminez la patrouille Serpent avant qu’elle ne donne l’alerte.', encounterLabel: 'Patrouille Serpent', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 90, reputation: 2, materials: { red_gem: 1 } } },
+  { id: 'forest_ambush', sceneId: 'forest_route', objective: 'Survivez à l’embuscade dans le sous-bois.', encounterLabel: 'Embuscade', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 75, reputation: 4, materials: { red_gem: 1 } } },
+  { id: 'serpent_checkpoint', sceneId: 'forest_route', objective: 'Forcez le barrage Serpent sans laisser de messager s’échapper.', encounterLabel: 'Barrage des Serpents', encounterRank: 'elite', maxPlayerUnits: 4, rewards: { gold: 120, reputation: 3, materials: { red_gem: 2 } } },
+  { id: 'road_to_valmir', sceneId: 'forest_route', objective: 'Ouvrez la route de Bois-Clair avant que le village ne tombe.', encounterLabel: 'Route de Bois-Clair', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 100, reputation: 4, materials: { red_gem: 1 } } },
+  { id: 'serpent_captain', sceneId: 'lion_sanctum', objective: 'Traquez le capitaine Serpent et exposez l’artefact des Ombres.', encounterLabel: 'Capitaine Serpent', encounterRank: 'elite', maxPlayerUnits: 4, isBoss: true, rewards: { gold: 180, reputation: 12, materials: { red_gem: 2 } } },
+  { id: 'lion_chief', sceneId: 'lion_sanctum', objective: 'Survivez à l’épreuve du Vieux Lion.', encounterLabel: 'Duel pour le Sceau', encounterRank: 'boss', maxPlayerUnits: 4, isBoss: true, rewards: { gold: 0, reputation: -10, materials: { red_gem: 4 } } },
 ];
 
 const rawDialogues = [

@@ -1,6 +1,6 @@
-import { getFinalStats, getResolvedSkills, itemById, unitById } from './catalog';
+import { craftRecipeById, getFinalStats, getResolvedSkills, itemById, unitById } from './catalog';
 import { getShopPrice } from './reputation';
-import type { GameState, InventoryState, ItemCategory, UnitInstance } from './types';
+import type { CraftRecipeDefinition, GameState, InventoryState, ItemCategory, UnitInstance } from './types';
 
 function adjust(inventory: InventoryState, category: ItemCategory, itemId: string, amount: number): void {
   inventory[category][itemId] = Math.max(0, (inventory[category][itemId] ?? 0) + amount);
@@ -95,6 +95,37 @@ export function sellItem(state: GameState, shopId: string, itemId: string, useTe
   shop.stock[itemId] = (shop.stock[itemId] ?? 0) + 1;
   if (useTemporaryLoot) state.run.temporaryLoot.gold += Math.floor(item.price / 2);
   else state.gold += Math.floor(item.price / 2);
+  return true;
+}
+
+function hasIngredients(state: GameState, recipe: CraftRecipeDefinition): boolean {
+  for (const [itemId, quantity] of Object.entries(recipe.inputs.weapons ?? {})) {
+    if ((state.inventory.weapons[itemId] ?? 0) < quantity) return false;
+  }
+  for (const [itemId, quantity] of Object.entries(recipe.inputs.accessories ?? {})) {
+    if ((state.inventory.accessories[itemId] ?? 0) < quantity) return false;
+  }
+  return true;
+}
+
+export function canCraftItem(state: GameState, recipeId: string): boolean {
+  const recipe = craftRecipeById.get(recipeId);
+  if (!recipe) return false;
+  if (!itemById.has(recipe.output.itemId)) return false;
+  return state.gold >= recipe.inputs.gold && hasIngredients(state, recipe);
+}
+
+export function craftItem(state: GameState, recipeId: string): boolean {
+  const recipe = craftRecipeById.get(recipeId);
+  if (!recipe || !canCraftItem(state, recipeId)) return false;
+  state.gold -= recipe.inputs.gold;
+  for (const [itemId, quantity] of Object.entries(recipe.inputs.weapons ?? {})) {
+    adjust(state.inventory, 'weapons', itemId, -quantity);
+  }
+  for (const [itemId, quantity] of Object.entries(recipe.inputs.accessories ?? {})) {
+    adjust(state.inventory, 'accessories', itemId, -quantity);
+  }
+  adjust(state.inventory, recipe.output.category, recipe.output.itemId, recipe.output.quantity);
   return true;
 }
 
