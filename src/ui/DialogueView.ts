@@ -10,6 +10,12 @@ interface DialogueViewOptions {
 
 type OutcomeTone = 'gain' | 'loss' | 'risk' | 'help' | 'neutral';
 
+interface CharacterAssetProfile {
+  dialogue: string;
+  dialogueScale: number;
+  dialogueSideOffset: string;
+}
+
 interface OutcomeDescriptor {
   icon: string;
   label: string;
@@ -25,12 +31,33 @@ function formatItemId(itemId: string): string {
 }
 
 function dialogueBackdrop(sequence: DialogueSequence): string {
+  if (sequence.sceneArtId) {
+    const dialogueScenes = assets.dialogueScenes as Record<string, string>;
+    const scene = dialogueScenes[sequence.sceneArtId];
+    if (scene) return scene;
+  }
   if (sequence.backdrop) return sequence.backdrop;
-  const first = sequence.steps[0];
-  const context = `${sequence.id} ${first?.speaker ?? ''} ${first?.tag ?? ''} ${first?.text ?? ''}`.toLocaleLowerCase('fr-FR');
+  const context = '';
   if (/bois-clair|valmir|village|marchand|coffre|réserve|reserve|cedric|recrut/.test(context)) return assets.screens.travel.backdrops.city;
   if (/chef|alaric|serment|sceau|jugement|finale|épilogue|epilogue|chroniqueur|lion/.test(context)) return assets.screens.travel.backdrops.castle;
   return assets.screens.travel.backdrops.default;
+}
+
+function dialoguePortrait(step: DialogueStep): string {
+  const profile = dialogueActorProfile(step);
+  if (profile) return profile.dialogue;
+  if (step.actorId) {
+    const dialogueActors = assets.dialogueActors as Record<string, string>;
+    const actor = dialogueActors[step.actorId];
+    if (actor) return actor;
+  }
+  return step.portrait;
+}
+
+function dialogueActorProfile(step: DialogueStep): CharacterAssetProfile | undefined {
+  if (!step.actorId) return undefined;
+  const profiles = assets.characterProfiles as Record<string, CharacterAssetProfile>;
+  return profiles[step.actorId];
 }
 
 export class DialogueView {
@@ -111,11 +138,13 @@ export class DialogueView {
     const continueLabel = this.overlay.querySelector<HTMLElement>('.dialogue__continue');
     if (!left || !right || !center || !speaker || !tag || !text || !outcomes || !choices || !continueLabel) return;
 
+    const portrait = dialoguePortrait(step);
+    const profile = dialogueActorProfile(step);
     this.overlay.dataset.speakerSide = step.side;
     this.overlay.classList.toggle('dialogue--has-choices', Boolean(step.choices?.length));
-    this.setPortrait(left, step.side === 'left' ? step.portrait : '');
-    this.setPortrait(right, step.side === 'right' ? step.portrait : '');
-    this.setPortrait(center, step.side === 'center' ? step.portrait : '');
+    this.setPortrait(left, step.side === 'left' ? portrait : '', step.expression, step.side === 'left' ? profile : undefined);
+    this.setPortrait(right, step.side === 'right' ? portrait : '', step.expression, step.side === 'right' ? profile : undefined);
+    this.setPortrait(center, step.side === 'center' ? portrait : '', step.expression, step.side === 'center' ? profile : undefined);
     left.classList.toggle('is-visible', step.side === 'left');
     right.classList.toggle('is-visible', step.side === 'right');
     center.classList.toggle('is-visible', step.side === 'center');
@@ -134,10 +163,13 @@ export class DialogueView {
     }
   }
 
-  private setPortrait(element: HTMLElement, portrait: string): void {
+  private setPortrait(element: HTMLElement, portrait: string, expression = 'neutral', profile?: CharacterAssetProfile): void {
     const isImage = portrait.startsWith('/');
+    element.dataset.expression = expression;
     element.textContent = isImage ? '' : portrait;
     element.style.backgroundImage = isImage ? `url("${portrait}")` : '';
+    element.style.setProperty('--dialogue-actor-height', `${Math.round((profile?.dialogueScale ?? 1) * 84)}%`);
+    element.style.setProperty('--dialogue-actor-offset-x', profile?.dialogueSideOffset ?? '0px');
     element.classList.toggle('has-image', isImage);
   }
 

@@ -1,0 +1,978 @@
+{
+  "alaric": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          24,
+          154,
+          617,
+          735
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 1610,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          29,
+          285,
+          741,
+          983
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 2350,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          20,
+          29,
+          363,
+          365
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 550,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "alistair": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          86,
+          190,
+          581,
+          736
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 6769,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          66,
+          239,
+          741,
+          983
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 12486,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          54,
+          44,
+          346,
+          366
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 2297,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "cedric": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          36,
+          210,
+          602,
+          734
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 95,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          27,
+          321,
+          740,
+          978
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 157,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          21,
+          51,
+          361,
+          364
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 39,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "chroniqueur": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          127,
+          188,
+          512,
+          734
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 217,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          99,
+          174,
+          667,
+          978
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 483,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          80,
+          49,
+          303,
+          364
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 75,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "elara": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          89,
+          148,
+          550,
+          733
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 166,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          49,
+          129,
+          717,
+          976
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 349,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          62,
+          37,
+          320,
+          363
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 46,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "fallback_hero": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          78,
+          188,
+          562,
+          735
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 16,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          30,
+          179,
+          739,
+          980
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 36,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          51,
+          47,
+          333,
+          365
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 4,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "kestrel": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          29,
+          188,
+          610,
+          734
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 194,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          26,
+          309,
+          741,
+          979
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 340,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          22,
+          47,
+          360,
+          364
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 58,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "maelor": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          134,
+          191,
+          504,
+          734
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 338,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          110,
+          176,
+          657,
+          978
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 722,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          84,
+          50,
+          299,
+          364
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 112,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "marian": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          61,
+          163,
+          580,
+          738
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 16979,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          29,
+          198,
+          740,
+          985
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 31859,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          45,
+          41,
+          339,
+          367
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 5529,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "refugee_mother": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          171,
+          213,
+          467,
+          734
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 48,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          164,
+          209,
+          602,
+          978
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 102,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          105,
+          59,
+          278,
+          364
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 14,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "serpent_raider": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          81,
+          188,
+          573,
+          734
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 693,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          47,
+          212,
+          740,
+          978
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 1365,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          52,
+          45,
+          340,
+          364
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 237,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "shadow_omen": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          55,
+          138,
+          546,
+          734
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 218,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 20757,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          27,
+          175,
+          690,
+          978
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 396,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 50584,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          44,
+          33,
+          317,
+          364
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 63,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 2172,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "shrine_apparition": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          41,
+          126,
+          598,
+          743
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 1492,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 311,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          27,
+          202,
+          740,
+          992
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 2480,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 542,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          38,
+          30,
+          345,
+          370
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 456,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 74,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "survivor": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          157,
+          228,
+          511,
+          737
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 78,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          143,
+          229,
+          667,
+          983
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 174,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          94,
+          61,
+          306,
+          366
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 35,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "villageoise": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          188,
+          228,
+          444,
+          734
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 8,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          188,
+          229,
+          568,
+          978
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 18,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          112,
+          61,
+          265,
+          364
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 4,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "wounded_merchant": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          131,
+          228,
+          508,
+          737
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 32,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          104,
+          229,
+          662,
+          983
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 72,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          78,
+          61,
+          304,
+          366
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 9,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  }
+}

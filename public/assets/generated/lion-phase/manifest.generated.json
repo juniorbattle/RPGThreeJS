@@ -1,0 +1,39 @@
+{
+  "dialogueScenes": {
+    "camp_departure": "/assets/generated/lion-phase/dialogue/camp_departure.webp",
+    "lion_briefing": "/assets/generated/lion-phase/dialogue/lion_briefing.webp",
+    "refugee_trial": "/assets/generated/lion-phase/dialogue/refugee_trial.webp",
+    "reserve_trail": "/assets/generated/lion-phase/dialogue/reserve_trail.webp",
+    "village_choice": "/assets/generated/lion-phase/dialogue/village_choice.webp",
+    "mystery_recruit": "/assets/generated/lion-phase/dialogue/mystery_recruit.webp",
+    "mystery_help": "/assets/generated/lion-phase/dialogue/mystery_help.webp",
+    "mystery_ambush": "/assets/generated/lion-phase/dialogue/mystery_ambush.webp",
+    "mystery_treasure": "/assets/generated/lion-phase/dialogue/mystery_treasure.webp",
+    "mystery_shrine": "/assets/generated/lion-phase/dialogue/mystery_shrine.webp",
+    "witnesses_on_road": "/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+    "shadow_signs": "/assets/generated/lion-phase/dialogue/shadow_signs.webp",
+    "lion_finale_judgement": "/assets/generated/lion-phase/dialogue/lion_finale_judgement.webp",
+    "epilogue": "/assets/generated/lion-phase/dialogue/epilogue.webp",
+    "lion_refuge": "/assets/generated/lion-phase/dialogue/lion_refuge.webp",
+    "forest_fork": "/assets/generated/lion-phase/dialogue/forest_fork.webp"
+  },
+  "combatScenes": {
+    "forest_route": "/assets/generated/lion-phase/combat/forest_route.webp",
+    "bois_clair_burning": "/assets/generated/lion-phase/combat/bois_clair_burning.webp",
+    "lion_sanctum": "/assets/generated/lion-phase/combat/lion_sanctum.webp"
+  },
+  "dialogueActors": {
+    "alaric": "/assets/portraits/dialogue/alaric.png",
+    "elara_advisor": "/assets/portraits/dialogue/elara_advisor.png",
+    "maelor": "/assets/portraits/dialogue/maelor.png",
+    "villageoise": "/assets/portraits/dialogue/villageoise.png",
+    "refugee_mother": "/assets/portraits/dialogue/refugee_mother.png",
+    "cedric": "/assets/portraits/dialogue/cedric.png",
+    "wounded_merchant": "/assets/portraits/dialogue/wounded_merchant.png",
+    "survivor": "/assets/portraits/dialogue/survivor.png",
+    "serpent_raider": "/assets/portraits/dialogue/serpent_raider.png",
+    "chroniqueur": "/assets/portraits/dialogue/chroniqueur.png",
+    "shrine_apparition": "/assets/portraits/dialogue/shrine_apparition.png",
+    "shadow_omen": "/assets/portraits/dialogue/shadow_omen.png"
+  }
+}

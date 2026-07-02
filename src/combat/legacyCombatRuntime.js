@@ -10,7 +10,7 @@ import { combatInitializeMessageSchema } from './protocol';
 import { canStartDeployment, normalizeDeploymentLimit, orderDeploymentCandidates } from './deploymentRules';
 import { getUnitVisualState } from './unitVisualState';
 import { BackgroundLayerSystem } from '../render/BackgroundLayerSystem';
-import { forestCombatBackground } from '../render/combatBackgrounds';
+import { combatBackgroundFor } from '../render/combatBackgrounds';
 import { COMBAT_PRESENTATION } from './combatPresentationConfig.js';
 
 // ============================= CONFIG & UTILS =============================
@@ -35,12 +35,18 @@ const dom={ ui:byId('ui'), turnbar:byId('turnbar'), hint:byId('hint'), panel:byI
 const campaignParams=new URLSearchParams(location.search);
 const CAMPAIGN_MODE=campaignParams.get('campaign')==='1'&&window.parent!==window;
 let COMBAT_ID='standalone';
+let COMBAT_SCENE_ID='forest_route';
 let COMBAT_OBJECTIVE='Vaincre tous les ennemis.';
 let COMBAT_LABEL='Combat tactique';
 let MAX_PLAYER_UNITS=4;
 let CAMPAIGN_SQUAD=[];
 let CAMPAIGN_INVENTORY={};
 let PREFERRED_UNIT_IDS=[];
+const SCENE_AMBIENCE={
+  forest_route:{fog:0x52635c,density:0.012,count:96,color:0xf3d983,size:0.082,opacity:0.5,area:[9.2,5.1],y:[0.28,3.55],rise:[0.05,0.15],drift:0.34,glow:0.1,glowColor:0xd8f0a8,mistColor:0xb9d7bd,mistOpacity:0.16,rayColor:0xf3d29a,rayOpacity:0.09},
+  bois_clair_burning:{fog:0x5a3c32,density:0.014,count:132,color:0xffa24f,size:0.09,opacity:0.62,area:[9.6,5.5],y:[0.16,4.4],rise:[0.14,0.38],drift:0.52,glow:0.22,glowColor:0xff8136,mistColor:0x8b5f46,mistOpacity:0.2,rayColor:0xff9a3f,rayOpacity:0.15},
+  lion_sanctum:{fog:0x4d445e,density:0.011,count:118,color:0xf7d98d,size:0.084,opacity:0.56,area:[9.1,5.2],y:[0.24,3.9],rise:[0.06,0.19],drift:0.28,glow:0.2,glowColor:0xd9b86a,mistColor:0xd3b978,mistOpacity:0.17,rayColor:0xffe1a1,rayOpacity:0.12},
+};
 let REDUCED_GRAPHICS=campaignParams.get('reduced')==='1';
 const notifyCampaignResult=victory=>window.parent.postMessage({
   type:'rpg-threejs:combat-result',victory,combatId:COMBAT_ID,inventory:G.inv,
@@ -167,6 +173,7 @@ const PAL={
   darkmage:{skin:'#caa6c2',hair:'#150f24',c1:'#3a2a60',c2:'#221842',acc:'#b06aff',metal:'#c79bff',wpn:'staff',head:'darkhood'}
 };
 const SPR={};
+const externalSpriteCache=new Map();
 function drawUnit(kind){
   const GW=22,GH=30,S=8,P=PAL[kind];
   const cv=document.createElement('canvas'); cv.width=GW*S; cv.height=GH*S;
@@ -202,6 +209,23 @@ function drawUnit(kind){
   return {cv,GW,GH,S};
 }
 function texFromCanvas(cv){ const t=new THREE.CanvasTexture(cv); t.magFilter=THREE.NearestFilter; t.minFilter=THREE.NearestFilter; t.colorSpace=THREE.SRGBColorSpace; t.generateMipmaps=false; return t; }
+function uiPortraitFor(path){ return typeof path==='string'&&path.includes('/assets/characters/pixel/full/')?path.replace('/full/','/ui/'):path; }
+async function preloadExternalSprites(){
+  const urls=[...new Set([
+    ...CAMPAIGN_SQUAD.map(unit=>unit&&unit.portrait),
+    ...DEFS.map(unit=>unit&&unit.portrait)
+  ].filter(url=>typeof url==='string'&&url.startsWith('/assets/characters/pixel/full/')))];
+  if(!urls.length)return;
+  await Promise.all(urls.map(async url=>{
+    if(externalSpriteCache.has(url))return;
+    try{
+      const tex=await new THREE.TextureLoader().loadAsync(url);
+      tex.colorSpace=THREE.SRGBColorSpace; tex.magFilter=THREE.NearestFilter; tex.minFilter=THREE.LinearFilter; tex.generateMipmaps=false;
+      const img=tex.image||{width:640,height:768},h=2.14,w=Math.min(2.18,Math.max(1.22,img.width/img.height*h));
+      externalSpriteCache.set(url,{tex,w,h,ar:w/h,portrait:url,external:true});
+    }catch(err){ console.warn('Sprite externe indisponible',url,err); }
+  }));
+}
 function outlineCanvas(cv,S,c){ const w=cv.width,h=cv.height; const sd=cv.getContext('2d').getImageData(0,0,w,h).data;
   const out=document.createElement('canvas'); out.width=w; out.height=h; const o=out.getContext('2d'); o.imageSmoothingEnabled=false;
   const od=o.createImageData(w,h), dd=od.data; const A=(x,y)=>(x<0||y<0||x>=w||y>=h)?0:sd[(y*w+x)*4+3];
@@ -281,7 +305,8 @@ function buildGridOverlay(){
 }
 async function buildWorld(){
   G.backgroundLayers=new BackgroundLayerSystem(scene);
-  await G.backgroundLayers.load(forestCombatBackground);
+  await G.backgroundLayers.load(combatBackgroundFor(COMBAT_SCENE_ID));
+  G.environment=buildSceneAmbience(COMBAT_SCENE_ID);
   const pickMaterial=new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false,color:0x000000});
   const geoCache={};
   for(let gx=0;gx<CFG.W;gx++){ G.grid[gx]=[];
@@ -336,6 +361,69 @@ function buildDust(){
   const g=new THREE.BufferGeometry(); g.setAttribute('position',new THREE.BufferAttribute(pos,3));
   const dust=new THREE.Points(g,new THREE.PointsMaterial({color:0xd8c091,size:.052,transparent:true,opacity:.28,depthWrite:false}));
   scene.add(dust); G.dust={mesh:dust,spd,N};
+}
+
+function makeSoftParticleTex(){
+  const c=document.createElement('canvas'); c.width=c.height=64; const x=c.getContext('2d');
+  const g=x.createRadialGradient(32,32,1,32,32,31);
+  g.addColorStop(0,'rgba(255,255,255,0.92)'); g.addColorStop(0.42,'rgba(255,255,255,0.34)'); g.addColorStop(1,'rgba(255,255,255,0)');
+  x.fillStyle=g; x.fillRect(0,0,64,64);
+  const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; return t;
+}
+function makeHazeTex(){
+  const c=document.createElement('canvas'); c.width=512; c.height=192; const x=c.getContext('2d');
+  const g=x.createLinearGradient(0,0,0,192);
+  g.addColorStop(0,'rgba(255,255,255,0)');
+  g.addColorStop(0.35,'rgba(255,255,255,0.22)');
+  g.addColorStop(0.62,'rgba(255,255,255,0.38)');
+  g.addColorStop(1,'rgba(255,255,255,0)');
+  x.fillStyle=g; x.fillRect(0,0,512,192);
+  for(let i=0;i<18;i++){
+    const cx=rnd(0,512), cy=rnd(36,156), rx=rnd(38,94), ry=rnd(10,28);
+    const p=x.createRadialGradient(cx,cy,1,cx,cy,rx);
+    p.addColorStop(0,`rgba(255,255,255,${rnd(.12,.28)})`);
+    p.addColorStop(1,'rgba(255,255,255,0)');
+    x.fillStyle=p; x.beginPath(); x.ellipse(cx,cy,rx,ry,0,0,Math.PI*2); x.fill();
+  }
+  const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; t.wrapS=THREE.RepeatWrapping; t.wrapT=THREE.ClampToEdgeWrapping; return t;
+}
+function buildSceneAmbience(sceneId){
+  const p=SCENE_AMBIENCE[sceneId]||SCENE_AMBIENCE.forest_route;
+  scene.fog=new THREE.FogExp2(p.fog,p.density);
+  const pos=new Float32Array(p.count*3),spd=[],phase=[];
+  for(let i=0;i<p.count;i++){
+    pos[i*3]=rnd(-p.area[0],p.area[0]); pos[i*3+1]=rnd(p.y[0],p.y[1]); pos[i*3+2]=rnd(-p.area[1],p.area[1]);
+    spd.push(rnd(p.rise[0],p.rise[1])); phase.push(rnd(0,Math.PI*2));
+  }
+  const geo=new THREE.BufferGeometry(); geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  const mat=new THREE.PointsMaterial({map:makeSoftParticleTex(),color:p.color,size:p.size,transparent:true,opacity:p.opacity,depthWrite:false,depthTest:true,blending:THREE.AdditiveBlending,fog:false,toneMapped:false});
+  const points=new THREE.Points(geo,mat); points.name='SceneAmbienceParticles'; points.renderOrder=1; points.raycast=()=>{}; scene.add(points);
+  const glowMat=new THREE.MeshBasicMaterial({map:makeGlowTex(),color:p.glowColor,transparent:true,opacity:p.glow,depthWrite:false,depthTest:false,blending:THREE.AdditiveBlending,fog:false,toneMapped:false});
+  const glow=new THREE.Mesh(new THREE.PlaneGeometry(24,15),glowMat); glow.name='SceneAmbienceGlow'; glow.position.set(0,2,-8); glow.renderOrder=-5; glow.raycast=()=>{}; scene.add(glow);
+  const hazeTex=makeHazeTex();
+  const hazeMat=new THREE.MeshBasicMaterial({map:hazeTex,color:p.mistColor,transparent:true,opacity:p.mistOpacity,depthWrite:false,depthTest:false,blending:THREE.NormalBlending,fog:false,toneMapped:false});
+  const haze=new THREE.Mesh(new THREE.PlaneGeometry(18,5.2),hazeMat); haze.name='SceneAmbienceHaze'; haze.position.set(0,1.12,-4.9); haze.renderOrder=-4; haze.raycast=()=>{}; scene.add(haze);
+  const rayTex=makeRayTex();
+  const rayMat=new THREE.MeshBasicMaterial({map:rayTex,color:p.rayColor,transparent:true,opacity:p.rayOpacity,depthWrite:false,depthTest:false,blending:THREE.AdditiveBlending,fog:false,toneMapped:false});
+  const rays=new THREE.Mesh(new THREE.PlaneGeometry(20,10),rayMat); rays.name='SceneAmbienceRays'; rays.position.set(-1.4,4.6,-7.4); rays.rotation.z=-0.08; rays.renderOrder=-4.5; rays.raycast=()=>{}; scene.add(rays);
+  return {update(t,dt,reduced){
+    const attr=geo.attributes.position;
+    points.visible=!reduced; mat.opacity=reduced?0:p.opacity*(0.86+Math.sin(t*1.1)*0.14);
+    haze.visible=true; hazeMat.opacity=reduced?p.mistOpacity*0.34:p.mistOpacity*(0.82+Math.sin(t*0.42)*0.18);
+    glow.visible=true; glowMat.opacity=reduced?p.glow*0.3:p.glow*(0.78+Math.sin(t*0.72)*0.22);
+    rays.visible=!reduced; rayMat.opacity=reduced?0:p.rayOpacity*(0.72+Math.sin(t*0.5)*0.28);
+    hazeTex.offset.x=(hazeTex.offset.x+dt*0.006)%1;
+    rayTex.offset.y=(rayTex.offset.y+dt*0.004)%1;
+    if(reduced)return;
+    for(let i=0;i<p.count;i++){
+      let y=attr.getY(i)+spd[i]*dt;
+      if(y>p.y[1]){ y=p.y[0]; attr.setX(i,rnd(-p.area[0],p.area[0])); attr.setZ(i,rnd(-p.area[1],p.area[1])); }
+      attr.setY(i,y);
+      attr.setX(i,attr.getX(i)+Math.sin(t*0.72+phase[i])*p.drift*dt*0.1);
+      attr.setZ(i,attr.getZ(i)+Math.cos(t*0.36+phase[i])*p.drift*dt*0.035);
+    }
+    attr.needsUpdate=true;
+  }};
 }
 
 // ---- highlights ----
@@ -404,14 +492,14 @@ const SKILLS={
 
 // ============================= UNIT DEFINITIONS =============================
 const DEFS=[
-  {team:'player',kind:'knight', name:'Chevalier',hp:130,str:24,mag:4, end:20,dex:9, cha:10,mov:2, weapons:[{name:'Épée',icon:'⚔️',type:'phys',min:1,max:1,power:10,crit:0.10,acc:0.95},{name:'Hache',icon:'🪓',type:'phys',min:1,max:1,power:15,crit:0.16,acc:0.80}], skills:['whirl','bulwark','provoke','charge'], gx:0,gz:0},
-  {team:'player',kind:'cleric', name:'Clerc',    hp:90, str:8, mag:20,end:13,dex:11,cha:18,mov:2, weapons:[{name:'Masse',icon:'🔨',type:'phys',min:1,max:1,power:8,crit:0.06,acc:0.92}], skills:['heal','regen','bless','revive'], gx:0,gz:1},
-  {team:'player',kind:'mage',   name:'Mage',     hp:70, str:4, mag:26,end:9, dex:12,cha:10,mov:2, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:2,power:8,crit:0.06,acc:0.95}], skills:['fireball','curse','flame_wave','blink'], gx:1,gz:2},
-  {team:'player',kind:'archer', name:'Archère',  hp:80, str:18,mag:5, end:11,dex:18,cha:9, mov:3, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:8,crit:0.22,acc:0.95},{name:'Arc',icon:'🏹',type:'phys',min:2,max:4,power:9,crit:0.10,acc:0.92}], skills:['weaken','blind_shot','pierce_shot','leap'], gx:1,gz:3},
-  {team:'foe',kind:'brigand', name:'Brigand',  hp:90, str:18,mag:4, end:11,dex:14,cha:6, mov:2, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}], skills:[], ai:'aggressive', gx:6,gz:0},
-  {team:'foe',kind:'brigand', name:'Brigand',  hp:90, str:18,mag:4, end:11,dex:14,cha:6, mov:2, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}], skills:[], ai:'aggressive', gx:6,gz:3},
-  {team:'foe',kind:'brute',   name:'Brute',    hp:130,str:22,mag:4, end:16,dex:7, cha:5, mov:2, weapons:[{name:'Massue',icon:'🏏',type:'phys',min:1,max:1,power:13,crit:0.05,acc:0.85}], skills:['heavy'], ai:'guardian', gx:7,gz:1},
-  {team:'foe',kind:'darkmage',name:'Mage Noir',hp:70, str:4, mag:22,end:10,dex:12,cha:8, mov:2, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}], skills:['bolt','curse'], ai:'cautious', gx:7,gz:2}
+  {team:'player',kind:'knight', name:'Chevalier',portrait:'/assets/characters/pixel/full/alistair.png',hp:130,str:24,mag:4, end:20,dex:9, cha:10,mov:2, weapons:[{name:'Épée',icon:'⚔️',type:'phys',min:1,max:1,power:10,crit:0.10,acc:0.95},{name:'Hache',icon:'🪓',type:'phys',min:1,max:1,power:15,crit:0.16,acc:0.80}], skills:['whirl','bulwark','provoke','charge'], gx:0,gz:0},
+  {team:'player',kind:'cleric', name:'Clerc',portrait:'/assets/characters/pixel/full/marian.png',    hp:90, str:8, mag:20,end:13,dex:11,cha:18,mov:2, weapons:[{name:'Masse',icon:'🔨',type:'phys',min:1,max:1,power:8,crit:0.06,acc:0.92}], skills:['heal','regen','bless','revive'], gx:0,gz:1},
+  {team:'player',kind:'mage',   name:'Mage',portrait:'/assets/characters/pixel/full/elara.png',     hp:70, str:4, mag:26,end:9, dex:12,cha:10,mov:2, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:2,power:8,crit:0.06,acc:0.95}], skills:['fireball','curse','flame_wave','blink'], gx:1,gz:2},
+  {team:'player',kind:'archer', name:'Archère',portrait:'/assets/characters/pixel/full/kestrel.png',  hp:80, str:18,mag:5, end:11,dex:18,cha:9, mov:3, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:8,crit:0.22,acc:0.95},{name:'Arc',icon:'🏹',type:'phys',min:2,max:4,power:9,crit:0.10,acc:0.92}], skills:['weaken','blind_shot','pierce_shot','leap'], gx:1,gz:3},
+  {team:'foe',kind:'brigand', name:'Brigand',portrait:'/assets/characters/pixel/full/serpent_raider.png',  hp:90, str:18,mag:4, end:11,dex:14,cha:6, mov:2, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}], skills:[], ai:'aggressive', gx:6,gz:0},
+  {team:'foe',kind:'brigand', name:'Brigand',portrait:'/assets/characters/pixel/full/serpent_raider.png',  hp:90, str:18,mag:4, end:11,dex:14,cha:6, mov:2, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}], skills:[], ai:'aggressive', gx:6,gz:3},
+  {team:'foe',kind:'brute',   name:'Brute',portrait:'/assets/characters/pixel/full/serpent_raider.png',    hp:130,str:22,mag:4, end:16,dex:7, cha:5, mov:2, weapons:[{name:'Massue',icon:'🏏',type:'phys',min:1,max:1,power:13,crit:0.05,acc:0.85}], skills:['heavy'], ai:'guardian', gx:7,gz:1},
+  {team:'foe',kind:'darkmage',name:'Mage Noir',portrait:'/assets/characters/pixel/full/shadow_omen.png',hp:70, str:4, mag:22,end:10,dex:12,cha:8, mov:2, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}], skills:['bolt','curse'], ai:'cautious', gx:7,gz:2}
 ];
 
 // ============================= STATUS EFFECTS =============================
@@ -486,7 +574,7 @@ function updateSelectors(){
 // ============================= UNIT FACTORY =============================
 let UID=0;
 function createUnit(def){
-  const s=SPR[def.kind];
+  const s=externalSpriteCache.get(def.portrait)||SPR[def.kind];
   const grp=new THREE.Group();
   const shadowScale=COMBAT_PRESENTATION.units.shadowScale;
   const blob=new THREE.Mesh(new THREE.PlaneGeometry(1.32*shadowScale,1.32*0.5*shadowScale),new THREE.MeshBasicMaterial({map:blobTex,transparent:true,depthWrite:false,opacity:COMBAT_PRESENTATION.units.shadowOpacity,fog:false,toneMapped:false}));
@@ -872,14 +960,14 @@ function statBarsHTML(u){ const ST=[['⚔','FOR',Math.round(effSTR(u))],['✦','
   let h='<div class="du-stats">'; for(const [ico,k,v] of ST)h+='<div class="du-stat"><i>'+ico+'</i><span>'+k+'</span><b>'+v+'</b></div>'; return h+'</div>'; }
 function statsDetailsHTML(u){ return '<button type="button" class="stats-toggle" aria-expanded="'+(statsPanelExpanded?'true':'false')+'"><span>'+(statsPanelExpanded?'Masquer':'Afficher')+' stats</span><b>'+(statsPanelExpanded?'−':'+')+'</b></button>'+(statsPanelExpanded?statBarsHTML(u):''); }
 function bindStatsToggle(u){ const button=dom.panel.querySelector('.stats-toggle'); if(!button)return; button.onclick=()=>{statsPanelExpanded=!statsPanelExpanded;renderPanel(u);}; }
-function renderPanel(u){ dom.panel.classList.remove('hidden'); dom.panel.dataset.team=u.team; const hpp=Math.max(0,Math.round(u.hp/u.maxhp*100)),portrait=SPR[u.kind]&&SPR[u.kind].portrait?SPR[u.kind].portrait:'';
+function renderPanel(u){ dom.panel.classList.remove('hidden'); dom.panel.dataset.team=u.team; const hpp=Math.max(0,Math.round(u.hp/u.maxhp*100)),portrait=uiPortraitFor(u.portrait)||(SPR[u.kind]&&SPR[u.kind].portrait?SPR[u.kind].portrait:'');
   let tags=''; for(const s in u.statuses){ const d=STATUS[s]; if(!d)continue; tags+='<span class="tag" style="color:'+d.col+';border-color:'+d.col+'">'+escHTML(d.name)+' '+u.statuses[s]+'</span>'; } if(!u.alive)tags+='<span class="tag" style="color:#ff5a4a;border-color:#ff5a4a">K.O.</span>';
   dom.panel.innerHTML='<div class="details-unit"><div class="du-top"><div class="du-portrait">'+(portrait?'<img src="'+portrait+'" alt="">':'<span>'+escHTML(u.name.charAt(0))+'</span>')+'</div><div class="du-id"><div class="du-head"><span>'+(u===G.active?'Actif':'Inspection')+'</span></div><div class="nm">'+escHTML(u.name)+'</div>'+apPipsHTML(u)+'</div><div class="du-team"><b class="team-badge">'+teamLabel(u.team)+'</b></div></div>'+
    '<div class="du-hp"><div class="unit-row"><span>PV</span><b>'+u.hp+' / '+u.maxhp+'</b></div><div class="bar"><i style="width:'+hpp+'%"></i><span>'+hpp+'%</span></div></div>'+
    statsDetailsHTML(u)+(tags?'<div class="status-row">'+tags+'</div>':'')+'</div>';
   bindStatsToggle(u); }
 function refreshTurnbar(){ dom.turnbar.classList.remove('hidden'); renderObjective(); const order=G.order.length?G.order:G.units;
-  const chip=u=>{ const cls=['chip']; if(u.team==='player')cls.push('ally'); if(u.team==='foe')cls.push('foe'); if(u===G.active)cls.push('active'); if(!u.alive)cls.push('dead'); return '<div class="'+cls.join(' ')+'" title="'+escHTML(u.name)+'"><div class="chip__portrait"><img src="'+SPR[u.kind].portrait+'" alt=""></div><div class="chip__name">'+escHTML(u.name.slice(0,8))+'</div></div>'; };
+  const chip=u=>{ const cls=['chip'],portrait=uiPortraitFor(u.portrait)||(SPR[u.kind]&&SPR[u.kind].portrait?SPR[u.kind].portrait:''); if(u.team==='player')cls.push('ally'); if(u.team==='foe')cls.push('foe'); if(u===G.active)cls.push('active'); if(!u.alive)cls.push('dead'); return '<div class="'+cls.join(' ')+'" title="'+escHTML(u.name)+'"><div class="chip__portrait">'+(portrait?'<img src="'+portrait+'" alt="">':'')+'</div><div class="chip__name">'+escHTML(u.name.slice(0,8))+'</div></div>'; };
   const step=G.order.length&&G.turnIdx>=0?(G.turnIdx+1)+' / '+G.order.length:'Préparation';
   dom.turnbar.innerHTML='<div class="turn-center pixel"><span>Tour</span><b>'+(G.round||1)+'</b><em>'+escHTML(step)+'</em></div><div class="turn-sequence"><div class="turn-chips">'+order.map(chip).join('')+'</div></div>'; }
 function closeMenus(){ dom.menu.classList.add('hidden'); dom.skillmenu.classList.add('hidden'); }
@@ -1041,7 +1129,7 @@ function autoDeploy(){
 function beginBattle(){ if(!canStartDeployment(G.deployedUnits.length,MAX_PLAYER_UNITS))return; G.mode='idle'; dom.menu.classList.remove('deploy-roster'); dom.panel.classList.remove('deploy-preview'); clearHL(); closeMenus(); refreshTurnbar(); startRound(); }
 function deploymentCard(def){
   const id=def.campaignId||def.name,active=G.selectedDeployId===id,deployed=deployedIds().has(id);
-  const portrait=def.portrait?'<img src="'+def.portrait+'" alt="">':'<span class="deploy-avatar">'+def.name.charAt(0)+'</span>';
+  const portrait=def.portrait?'<img src="'+uiPortraitFor(def.portrait)+'" alt="">':'<span class="deploy-avatar">'+def.name.charAt(0)+'</span>';
   return '<button type="button" class="deploy-card '+(active?'is-selected ':'')+(deployed?'is-deployed':'')+'" data-unit="'+id+'">'+
     portrait+'<span><b>'+def.name+'</b><small>'+def.weapons.length+' arme'+(def.weapons.length>1?'s':'')+'</small></span>'+
     '<i>'+(deployed?'EN JEU':'+')+'</i></button>';
@@ -1058,7 +1146,7 @@ function openDeployMenu(){
   dom.menu.querySelectorAll('[data-unit]').forEach(b=>b.onclick=()=>{ G.selectedDeployId=b.dataset.unit; openDeployMenu(); const d=deployDefById(G.selectedDeployId); if(d)selectUnitData(d); setHint('Placez « '+(d?.name||'unité')+' » sur une case disponible'); });
   dom.menu.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>onDeploy(b.dataset.d,b));
 }
-function renderDefinitionPanel(def){ const key=def.campaignId||def.name; if(statsPanelKey!==key){statsPanelKey=key;statsPanelExpanded=false;} const preview=Object.assign({statuses:{}},def),portrait=preview.portrait||(SPR[preview.kind]&&SPR[preview.kind].portrait?SPR[preview.kind].portrait:''),hp=preview.hp||preview.maxhp||0; dom.panel.dataset.team='player'; dom.panel.classList.remove('hidden'); dom.panel.innerHTML='<div class="details-unit"><div class="du-top"><div class="du-portrait">'+(portrait?'<img src="'+portrait+'" alt="">':'<span>'+escHTML(preview.name.charAt(0))+'</span>')+'</div><div class="du-id"><div class="du-head"><span>Sélection</span></div><div class="nm">'+escHTML(preview.name)+'</div></div><div class="du-team"><b class="team-badge">Déploiement</b></div></div><div class="du-hp"><div class="unit-row"><span>PV</span><b>'+hp+'</b></div><div class="bar"><i style="width:100%"></i><span>'+hp+' PV</span></div></div>'+statsDetailsHTML(preview)+'</div>'; const button=dom.panel.querySelector('.stats-toggle'); if(button)button.onclick=()=>{statsPanelExpanded=!statsPanelExpanded;renderDefinitionPanel(def);}; }
+function renderDefinitionPanel(def){ const key=def.campaignId||def.name; if(statsPanelKey!==key){statsPanelKey=key;statsPanelExpanded=false;} const preview=Object.assign({statuses:{}},def),portrait=uiPortraitFor(preview.portrait)||(SPR[preview.kind]&&SPR[preview.kind].portrait?SPR[preview.kind].portrait:''),hp=preview.hp||preview.maxhp||0; dom.panel.dataset.team='player'; dom.panel.classList.remove('hidden'); dom.panel.innerHTML='<div class="details-unit"><div class="du-top"><div class="du-portrait">'+(portrait?'<img src="'+portrait+'" alt="">':'<span>'+escHTML(preview.name.charAt(0))+'</span>')+'</div><div class="du-id"><div class="du-head"><span>Sélection</span></div><div class="nm">'+escHTML(preview.name)+'</div></div><div class="du-team"><b class="team-badge">Déploiement</b></div></div><div class="du-hp"><div class="unit-row"><span>PV</span><b>'+hp+'</b></div><div class="bar"><i style="width:100%"></i><span>'+hp+' PV</span></div></div>'+statsDetailsHTML(preview)+'</div>'; const button=dom.panel.querySelector('.stats-toggle'); if(button)button.onclick=()=>{statsPanelExpanded=!statsPanelExpanded;renderDefinitionPanel(def);}; }
 function selectUnitData(def){ dom.panel.classList.add('deploy-preview'); const preview=deployedById(def.campaignId||def.name); if(preview)selectUnit(preview); else renderDefinitionPanel(def); }
 function onDeploy(a,b){ if(b.disabled)return; if(a==='auto')autoDeploy(); else if(a==='reset')resetDeploy(); else if(a==='start')beginBattle(); else if(a==='prev'){G.deployPage--;openDeployMenu();}else if(a==='next'){G.deployPage++;openDeployMenu();} }
 function startDeployment(){
@@ -1076,12 +1164,12 @@ async function initGame(){
   logMsg(CAMPAIGN_MODE?COMBAT_OBJECTIVE:'Préparez votre formation, puis lancez la bataille.');
   startDeployment();
 }
-async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await initGame(); bindInput(); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none'; }
+async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none'; }
 
 window.addEventListener('error',()=>{ if(dom.loading&&dom.loading.style.display!=='none') dom.loading.innerHTML='<div style="color:#ff8a7a;max-width:540px;text-align:center;line-height:26px">Échec du chargement de Three.js.<br>Vérifiez votre connexion internet puis rechargez la page.<br><span style="color:#9fb0d0">La page doit être servie via un serveur local (http://), pas ouverte directement depuis le disque.</span></div>'; });
 window.addEventListener('unhandledrejection',e=>console.error(e.reason));
 function bootCampaign(message){
-  COMBAT_ID=message.config.id; COMBAT_OBJECTIVE=message.config.objective; COMBAT_LABEL=message.config.encounterLabel;
+  COMBAT_ID=message.config.id; COMBAT_SCENE_ID=message.config.sceneId||'forest_route'; COMBAT_OBJECTIVE=message.config.objective; COMBAT_LABEL=message.config.encounterLabel;
   MAX_PLAYER_UNITS=normalizeDeploymentLimit(message.config.maxPlayerUnits); CAMPAIGN_SQUAD=message.clan; CAMPAIGN_INVENTORY=message.inventory;
   PREFERRED_UNIT_IDS=message.preferredUnitIds; REDUCED_GRAPHICS=message.reducedGraphics;
   main().then(()=>{ window.__BOOTED=true; }).catch(err=>{ console.error(err); dom.loading.innerHTML='<div style="color:#ff8a7a">Erreur : '+(err&&err.message||err)+'</div>'; });

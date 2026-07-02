@@ -1,6 +1,7 @@
 import { getFinalStats, getResolvedSkills, itemById, items, unitById, weaponById, weapons } from '../game/catalog';
 import { buyItem, equipAccessory, equipWeapon, excludeUnit, sellItem } from '../game/management';
 import { getReputationRule, getShopPrice } from '../game/reputation';
+import { assets } from '../render/assetManifest';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
 import type { GameState, ItemCategory, UnitDefinition, UnitInstance } from '../game/types';
 
@@ -18,6 +19,27 @@ const categoryLabels: Record<ItemCategory, string> = {
   materials: 'Matériaux',
   weapons: 'Armes',
 };
+
+interface CharacterAssetProfile {
+  full: string;
+  ui: string;
+}
+
+function characterProfileFromPortrait(portrait: string): CharacterAssetProfile | undefined {
+  const match = /\/([^/]+)\.png$/.exec(portrait);
+  const key = match?.[1];
+  if (!key) return undefined;
+  const profiles = assets.characterProfiles as Record<string, CharacterAssetProfile>;
+  return profiles[key];
+}
+
+function unitFullPortrait(definition: UnitDefinition): string {
+  return characterProfileFromPortrait(definition.portrait)?.full ?? definition.portrait;
+}
+
+function unitUiPortrait(definition: UnitDefinition): string {
+  return characterProfileFromPortrait(definition.portrait)?.ui ?? definition.portrait;
+}
 
 const skillPresentation: Record<string, { name: string; description: string; ap?: number }> = {
   whirl: { name: 'Coup Tournoyant', ap: 2, description: 'Frappe en cercle autour de soi.' },
@@ -129,7 +151,7 @@ export class ManagementView {
       const level = this.unitLevel(unit);
       return `
         <button type="button" class="roster-card ui-panel ui-panel--dense ${unit.id === selected.id ? 'is-active' : ''}" data-unit="${unit.id}">
-          <span class="roster-card__portrait"><img src="${def.portrait}" alt=""></span>
+          <span class="roster-card__portrait"><img src="${unitUiPortrait(def)}" alt=""></span>
           <span class="roster-card__body"><strong>${unit.name}</strong><small>${def.className}</small></span>
           <span class="roster-card__level">Niv. ${level}</span>
           ${unit.narrativeLocked ? '<i title="Unité narrative">◆</i>' : ''}
@@ -144,7 +166,7 @@ export class ManagementView {
         <section class="unit-stage" aria-label="Personnage sélectionné">
           <div class="unit-stage__banner" aria-hidden="true"><span>⚜</span></div>
           <div class="unit-stage__aura" aria-hidden="true"></div>
-          <div class="unit-stage__figure"><img src="${definition.portrait}" alt="${selected.name}"></div>
+          <div class="unit-stage__figure"><img src="${unitFullPortrait(definition)}" alt="${selected.name}"></div>
           <div class="unit-stage__base" aria-hidden="true"></div>
           <div class="unit-stage__caption"><span>Unité active</span><strong>${selected.name}</strong></div>
         </section>

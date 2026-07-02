@@ -30,11 +30,18 @@ export const dialogueChoiceSchema = z.object({
 });
 export type DialogueChoice = z.infer<typeof dialogueChoiceSchema>;
 
+export const dialogueExpressionSchema = z.enum([
+  'neutral', 'stern', 'wounded', 'fearful', 'grateful', 'hostile', 'mystical',
+]);
+export type DialogueExpression = z.infer<typeof dialogueExpressionSchema>;
+
 export const dialogueStepSchema = z.object({
   id: z.string(),
   speaker: z.string(),
   tag: z.string().default(''),
   text: z.string(),
+  actorId: z.string().optional(),
+  expression: dialogueExpressionSchema.default('neutral'),
   portrait: z.string().default(''),
   side: z.enum(['left', 'right', 'center', 'none']).default('center'),
   next: z.string().nullable().optional(),
@@ -45,6 +52,7 @@ export type DialogueStep = z.infer<typeof dialogueStepSchema>;
 
 export const dialogueSequenceSchema = z.object({
   id: z.string(),
+  sceneArtId: z.string().optional(),
   backdrop: z.string().optional(),
   steps: z.array(dialogueStepSchema).min(1),
 });
@@ -52,6 +60,7 @@ export type DialogueSequence = z.infer<typeof dialogueSequenceSchema>;
 
 export const combatConfigSchema = z.object({
   id: z.string(),
+  sceneId: z.string(),
   objective: z.string(),
   encounterLabel: z.string(),
   maxPlayerUnits: z.number().int().min(3).max(5).default(4),
