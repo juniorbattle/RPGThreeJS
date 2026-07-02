@@ -1,9 +1,24 @@
-import { itemById, unitById } from './catalog';
+import { getFinalStats, getResolvedSkills, itemById, unitById } from './catalog';
 import { getShopPrice } from './reputation';
 import type { GameState, InventoryState, ItemCategory, UnitInstance } from './types';
 
 function adjust(inventory: InventoryState, category: ItemCategory, itemId: string, amount: number): void {
   inventory[category][itemId] = Math.max(0, (inventory[category][itemId] ?? 0) + amount);
+}
+
+export const MAX_SKILL_UPGRADE_LEVEL = 2;
+export const REST_COST_PER_WOUNDED_UNIT = 10;
+
+export function getSkillUpgradeCost(currentLevel: number): number | null {
+  return currentLevel >= MAX_SKILL_UPGRADE_LEVEL ? null : currentLevel + 1;
+}
+
+export function getWoundedUnitCount(state: GameState): number {
+  return state.clan.members.filter((unit) => unit.currentHealth < getFinalStats(unit).maxHealth).length;
+}
+
+export function getRestCost(state: GameState): number {
+  return getWoundedUnitCount(state) * REST_COST_PER_WOUNDED_UNIT;
 }
 
 export function equipWeapon(state: GameState, unitId: string, slot: 0 | 1, weaponId: string): boolean {
@@ -33,6 +48,29 @@ export function equipAccessory(state: GameState, unitId: string, slot: 0 | 1, ac
   if (previous) adjust(state.inventory, 'accessories', previous, 1);
   if (accessoryId) adjust(state.inventory, 'accessories', accessoryId, -1);
   unit.equipment.accessoryIds[slot] = accessoryId;
+  unit.currentHealth = Math.min(unit.currentHealth, getFinalStats(unit).maxHealth);
+  return true;
+}
+
+export function restUnits(state: GameState): boolean {
+  const cost = getRestCost(state);
+  if (cost <= 0 || state.gold < cost) return false;
+  state.gold -= cost;
+  for (const unit of state.clan.members) {
+    unit.currentHealth = getFinalStats(unit).maxHealth;
+  }
+  return true;
+}
+
+export function upgradeSkill(state: GameState, unitId: string, skillId: string): boolean {
+  const unit = state.clan.members.find((candidate) => candidate.id === unitId);
+  if (!unit) return false;
+  if (!getResolvedSkills(unit).includes(skillId)) return false;
+  const currentLevel = Math.max(0, Math.min(MAX_SKILL_UPGRADE_LEVEL, unit.skillUpgrades[skillId] ?? 0));
+  const cost = getSkillUpgradeCost(currentLevel);
+  if (cost === null || (state.inventory.materials.red_gem ?? 0) < cost) return false;
+  adjust(state.inventory, 'materials', 'red_gem', -cost);
+  unit.skillUpgrades[skillId] = currentLevel + 1;
   return true;
 }
 

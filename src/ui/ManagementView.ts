@@ -1,11 +1,14 @@
 import { getFinalStats, getResolvedSkills, itemById, items, unitById, weaponById, weapons } from '../game/catalog';
-import { buyItem, equipAccessory, equipWeapon, excludeUnit, sellItem } from '../game/management';
+import {
+  buyItem, equipAccessory, equipWeapon, excludeUnit,
+  getSkillUpgradeCost, sellItem, upgradeSkill,
+} from '../game/management';
 import { getReputationRule, getShopPrice } from '../game/reputation';
 import { assets } from '../render/assetManifest';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
 import type { GameState, ItemCategory, UnitDefinition, UnitInstance } from '../game/types';
 
-type ManagementTab = 'clan' | 'inventory' | 'shop';
+type ManagementTab = 'clan' | 'inventory' | 'shop' | 'skills';
 
 interface ManagementViewOptions {
   root: HTMLElement;
@@ -69,6 +72,8 @@ export class ManagementView {
   private shopId = 'valmir';
   private shopMode: 'buy' | 'sell' = 'buy';
   private shopEnabled = false;
+  private shopOnly = false;
+  private skillsEnabled = false;
   private shopWallet: 'temporary' | 'permanent' = 'temporary';
 
   constructor(private readonly options: ManagementViewOptions) {}
@@ -76,12 +81,18 @@ export class ManagementView {
   open(initialTab: ManagementTab = 'clan', shopId?: string, shopWallet: 'temporary' | 'permanent' = 'temporary'): Promise<void> {
     this.close();
     this.shopEnabled = shopId !== undefined;
-    this.tab = initialTab === 'shop' && !this.shopEnabled ? 'clan' : initialTab;
+    this.shopOnly = initialTab === 'shop' && this.shopEnabled;
+    this.skillsEnabled = initialTab === 'skills';
+    this.tab = initialTab === 'shop' && !this.shopEnabled
+      ? 'clan'
+      : initialTab === 'skills' && !this.skillsEnabled
+        ? 'clan'
+        : initialTab;
     this.shopId = shopId ?? 'valmir';
     this.shopWallet = shopWallet;
     this.selectedUnitId = this.options.getState().clan.members[0]?.id ?? '';
     this.overlay = document.createElement('section');
-    this.overlay.className = 'management ui-screen ui-screen--dialog';
+    this.overlay.className = `management ui-screen ui-screen--dialog${this.shopOnly ? ' management--shop-only' : ''}`;
     applyScreenEnvironment(this.overlay, 'management');
     this.overlay.setAttribute('role', 'dialog');
     this.overlay.setAttribute('aria-modal', 'true');
@@ -120,9 +131,11 @@ export class ManagementView {
           <button class="icon-button ui-icon-button" type="button" data-action="close" aria-label="Fermer">×</button>
         </header>
         <nav class="management__tabs">
-          ${this.tabButton('clan', 'Clan')}
-          ${this.tabButton('inventory', 'Inventaire')}
-          ${this.shopEnabled ? this.tabButton('shop', 'Boutique') : ''}
+          ${this.skillsEnabled
+            ? this.tabButton('skills', 'Amélioration')
+            : `${this.tabButton('clan', 'Clan')}
+              ${this.tabButton('inventory', 'Inventaire')}
+              ${this.shopEnabled ? this.tabButton('shop', 'Boutique') : ''}`}
         </nav>
         <div class="management__content">${this.renderContent()}</div>
       </div>
@@ -137,6 +150,7 @@ export class ManagementView {
   private renderContent(): string {
     if (this.tab === 'inventory') return this.renderInventory();
     if (this.tab === 'shop') return this.renderShop();
+    if (this.tab === 'skills') return this.renderSkillUpgrades();
     return this.renderClan();
   }
 
@@ -248,6 +262,66 @@ export class ManagementView {
     }).join('');
   }
 
+  private renderSkillUpgrades(): string {
+    const state = this.options.getState();
+    const selected = state.clan.members.find((unit) => unit.id === this.selectedUnitId) ?? state.clan.members[0];
+    if (!selected) return '<p class="empty-copy">Aucune unité.</p>';
+    const definition = unitById.get(selected.definitionId)!;
+    const skills = getResolvedSkills(selected);
+    const gems = state.inventory.materials.red_gem ?? 0;
+    const rows = skills.map((skillId) => {
+      const skill = skillPresentation[skillId] ?? { name: skillId, description: 'Compétence disponible en combat.' };
+      const level = Math.max(0, Math.min(2, selected.skillUpgrades[skillId] ?? 0));
+      const cost = getSkillUpgradeCost(level);
+      const disabled = cost === null || gems < cost;
+      const effect = this.skillUpgradeEffect(skillId, level);
+      const next = cost === null ? 'Niveau maximal atteint.' : this.skillUpgradeEffect(skillId, level + 1);
+      return `<article class="skill-upgrade-card ui-panel ui-panel--soft">
+        <div class="skill-upgrade-card__head">
+          <div><strong>${skill.name}</strong><small>${skill.description}</small></div>
+          <span class="ui-chip">Niv. ${level}/2</span>
+        </div>
+        <div class="skill-upgrade-card__body">
+          <p><b>Actuel</b> ${effect}</p>
+          <p><b>Prochain</b> ${next}</p>
+        </div>
+        <button type="button" class="ui-button ui-button--secondary" data-upgrade-skill="${skillId}" ${disabled ? 'disabled' : ''}>
+          ${cost === null ? 'Amélioration max' : `Améliorer · ${cost} gemme${cost > 1 ? 's' : ''}`}
+        </button>
+      </article>`;
+    }).join('');
+    return `<div class="skills-view">
+      <aside class="roster ui-scroll-panel">
+        <div class="roster__header"><div class="section-title ui-section-title">Compagnie</div><span>Gemmes ${gems}</span></div>
+        <div class="roster__list">${state.clan.members.map((unit) => {
+          const def = unitById.get(unit.definitionId)!;
+          return `<button type="button" class="roster-card ui-panel ui-panel--dense ${unit.id === selected.id ? 'is-active' : ''}" data-unit="${unit.id}">
+            <span class="roster-card__portrait"><img src="${unitUiPortrait(def)}" alt=""></span>
+            <span class="roster-card__body"><strong>${unit.name}</strong><small>${def.className}</small></span>
+          </button>`;
+        }).join('')}</div>
+      </aside>
+      <section class="skills-view__tree ui-scroll-panel">
+        <div class="unit-sheet__identity">
+          <p class="eyebrow ui-eyebrow">${definition.className}</p>
+          <h3>${selected.name}</h3>
+          <p class="unit-sheet__description">Dépense des gemmes rouges pour renforcer les compétences résolues par la classe et l’équipement.</p>
+        </div>
+        <div class="skill-upgrade-list">${rows || '<p class="empty-copy">Aucune compétence à améliorer.</p>'}</div>
+      </section>
+    </div>`;
+  }
+
+  private skillUpgradeEffect(skillId: string, level: number): string {
+    if (level <= 0) return 'Effet de base.';
+    const damageSkills = new Set(['whirl', 'weaken', 'blind_shot', 'pierce_shot', 'fireball', 'flame_wave', 'bolt', 'heavy', 'charge']);
+    if (damageSkills.has(skillId)) return `Puissance +${level === 1 ? 2 : 4}.`;
+    if (skillId === 'heal') return `Soins +${level === 1 ? 10 : 20}%.`;
+    if (skillId === 'revive') return `Relève à ${level === 1 ? 60 : 70}% PV.`;
+    if (['blink', 'leap'].includes(skillId)) return `Portée maximale +${level}${level >= 2 ? ', coût optimisé si possible' : ''}.`;
+    return level === 1 ? 'Durée +1 tour si applicable.' : 'Durée +1 tour et efficacité légèrement renforcée.';
+  }
+
   private unitLevel(unit: UnitInstance): number {
     const progress = unit as UnitInstance & { level?: number };
     return progress.level ?? 1;
@@ -356,6 +430,12 @@ export class ManagementView {
           ? buyItem(this.options.getState(), this.shopId, itemId, this.shopWallet === 'temporary')
           : sellItem(this.options.getState(), this.shopId, itemId, this.shopWallet === 'temporary');
         if (ok) this.changed();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-upgrade-skill]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const skillId = button.dataset.upgradeSkill ?? '';
+        if (upgradeSkill(this.options.getState(), this.selectedUnitId, skillId)) this.changed();
       });
     });
   }

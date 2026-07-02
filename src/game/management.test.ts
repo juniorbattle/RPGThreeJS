@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { buyItem, equipAccessory, equipWeapon, excludeUnit, sellItem } from './management';
+import {
+  buyItem, equipAccessory, equipWeapon, excludeUnit,
+  restUnits, sellItem, upgradeSkill,
+} from './management';
 import { createInitialState, migrateState } from './store';
 import { getResolvedSkills } from './catalog';
 
@@ -48,6 +51,30 @@ describe('clan management', () => {
     expect(knight).not.toHaveProperty('level');
     expect(knight).not.toHaveProperty('xp');
   });
+
+  it('rests wounded units to their calculated maximum health for a gold cost', () => {
+    const state = createInitialState();
+    state.clan.members[0]!.currentHealth = 12;
+    const beforeGold = state.gold;
+    expect(restUnits(state)).toBe(true);
+    expect(state.clan.members[0]!.currentHealth).toBe(140);
+    expect(state.gold).toBe(beforeGold - 10);
+    expect(restUnits(state)).toBe(false);
+  });
+
+  it('upgrades resolved skills with escalating red gem costs', () => {
+    const state = createInitialState();
+    state.inventory.materials.red_gem = 3;
+    const knight = state.clan.members[0]!;
+    expect(upgradeSkill(state, knight.id, 'whirl')).toBe(true);
+    expect(knight.skillUpgrades.whirl).toBe(1);
+    expect(state.inventory.materials.red_gem).toBe(2);
+    expect(upgradeSkill(state, knight.id, 'whirl')).toBe(true);
+    expect(knight.skillUpgrades.whirl).toBe(2);
+    expect(state.inventory.materials.red_gem).toBe(0);
+    expect(upgradeSkill(state, knight.id, 'whirl')).toBe(false);
+    expect(upgradeSkill(state, knight.id, 'unknown')).toBe(false);
+  });
 });
 
 describe('save migration', () => {
@@ -68,11 +95,13 @@ describe('save migration', () => {
       endingId: null,
     });
 
-    expect(migrated.version).toBe(5);
+    expect(migrated.version).toBe(6);
     expect(migrated.run.graph.nodes.length).toBeGreaterThanOrEqual(9);
     expect(migrated.inventory.consumables.potion).toBe(2);
     expect(migrated.clan.members).toHaveLength(4);
     expect(migrated.deployment.unitIds).toHaveLength(4);
+    expect(migrated.clan.members[0]).toHaveProperty('currentHealth');
+    expect(migrated.clan.members[0]).toHaveProperty('skillUpgrades');
   });
 
   it('migrates a v2 weapon into the first v3 weapon slot', () => {
@@ -94,8 +123,9 @@ describe('save migration', () => {
       },
     };
     const migrated = migrateState(v2);
-    expect(migrated.version).toBe(5);
+    expect(migrated.version).toBe(6);
     expect(migrated.clan.members[0]!.equipment.weaponIds).toEqual(['iron_sword', 'wooden_spear']);
+    expect(migrated.clan.members[0]!.currentHealth).toBe(140);
   });
 
   it('migrates v3 saves with a route history', () => {
@@ -111,8 +141,9 @@ describe('save migration', () => {
         members: v3.clan.members.map((unit) => ({ ...unit, level: 1, xp: 0 })),
       },
     });
-    expect(migrated.version).toBe(5);
+    expect(migrated.version).toBe(6);
     expect(migrated.run.visitedNodeIds.length).toBeGreaterThan(1);
     expect(migrated.clan.members[0]).not.toHaveProperty('level');
+    expect(migrated.clan.members[0]).toHaveProperty('skillUpgrades');
   });
 });

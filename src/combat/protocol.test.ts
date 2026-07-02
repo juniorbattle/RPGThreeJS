@@ -8,15 +8,20 @@ describe('combat protocol', () => {
   it('validates initialization without URL payloads', () => {
     const state = createInitialState();
     const config = combatConfigs.get('forest_patrol')!;
+    state.clan.members[0]!.currentHealth = 77;
+    state.clan.members[0]!.skillUpgrades.whirl = 2;
+    const clan = state.clan.members.map(toCombatant);
     const parsed = combatInitializeMessageSchema.safeParse({
       type: 'rpg-threejs:combat-initialize',
       config,
-      clan: state.clan.members.map(toCombatant),
+      clan,
       inventory: state.inventory.consumables,
       preferredUnitIds: state.deployment.unitIds,
       reducedGraphics: false,
     });
     expect(parsed.success).toBe(true);
+    expect(clan[0]!.currentHealth).toBe(77);
+    expect(clan[0]!.skillUpgrades.whirl).toBe(2);
   });
 
   it('rejects incomplete combat results', () => {
@@ -24,5 +29,16 @@ describe('combat protocol', () => {
       type: 'rpg-threejs:combat-result',
       victory: true,
     }).success).toBe(false);
+  });
+
+  it('validates combat result health payloads', () => {
+    expect(combatResultMessageSchema.safeParse({
+      type: 'rpg-threejs:combat-result',
+      victory: true,
+      combatId: 'forest_patrol',
+      inventory: { potion: 1 },
+      participants: ['knight'],
+      unitHealth: { knight: 23 },
+    }).success).toBe(true);
   });
 });

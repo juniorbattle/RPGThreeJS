@@ -64,6 +64,7 @@ export const combatConfigSchema = z.object({
   objective: z.string(),
   encounterLabel: z.string(),
   maxPlayerUnits: z.number().int().min(3).max(5).default(4),
+  isBoss: z.boolean().optional(),
   rewards: z.object({
     gold: z.number().int().nonnegative().default(0),
     reputation: z.number().int().default(0),
@@ -113,12 +114,18 @@ export const equipmentLoadoutSchema = z.object({
 });
 export type EquipmentLoadout = z.infer<typeof equipmentLoadoutSchema>;
 
-export const unitInstanceSchema = z.object({
+export const unitInstanceV5Schema = z.object({
   id: z.string(),
   definitionId: z.string(),
   name: z.string(),
   narrativeLocked: z.boolean(),
   equipment: equipmentLoadoutSchema,
+});
+export type UnitInstanceV5 = z.infer<typeof unitInstanceV5Schema>;
+
+export const unitInstanceSchema = unitInstanceV5Schema.extend({
+  currentHealth: z.number().int().positive(),
+  skillUpgrades: z.record(z.number().int().min(0).max(2)),
 });
 export type UnitInstance = z.infer<typeof unitInstanceSchema>;
 
@@ -136,6 +143,12 @@ export const clanStateSchema = z.object({
   members: z.array(unitInstanceSchema).max(12),
 });
 export type ClanState = z.infer<typeof clanStateSchema>;
+
+export const clanStateV5Schema = z.object({
+  maxSize: z.number().int().positive(),
+  members: z.array(unitInstanceV5Schema).max(12),
+});
+export type ClanStateV5 = z.infer<typeof clanStateV5Schema>;
 
 export const shopStateSchema = z.object({
   id: z.string(),
@@ -220,7 +233,7 @@ export const gameStateV1Schema = z.object({
 });
 export type GameStateV1 = z.infer<typeof gameStateV1Schema>;
 
-const legacyUnitInstanceSchema = unitInstanceSchema.extend({
+const legacyUnitInstanceSchema = unitInstanceV5Schema.extend({
   level: z.number().int().positive(),
   xp: z.number().int().nonnegative(),
 });
@@ -270,7 +283,7 @@ export const gameStateV4Schema = gameStateV3Schema.extend({
 });
 export type GameStateV4 = z.infer<typeof gameStateV4Schema>;
 
-export const gameStateSchema = z.object({
+export const gameStateV5Schema = z.object({
   version: z.literal(5),
   currentNodeId: z.string(),
   visitedNodeIds: z.array(z.string()),
@@ -284,12 +297,18 @@ export const gameStateSchema = z.object({
   reputation: z.number().int().min(0).max(100),
   reputationHistory: z.array(reputationHistoryEntrySchema),
   inventory: inventoryStateSchema,
-  clan: clanStateSchema,
+  clan: clanStateV5Schema,
   deployment: deploymentSchema,
   shops: z.record(shopStateSchema),
   settings: z.object({ reducedGraphics: z.boolean() }),
   run: runStateSchema,
   endingId: z.string().nullable(),
+});
+export type GameStateV5 = z.infer<typeof gameStateV5Schema>;
+
+export const gameStateSchema = gameStateV5Schema.extend({
+  version: z.literal(6),
+  clan: clanStateSchema,
 });
 export type GameState = z.infer<typeof gameStateSchema>;
 
@@ -338,8 +357,10 @@ export interface CombatantPayload {
   kind: UnitDefinition['combatKind'];
   portrait: string;
   stats: UnitStats;
+  currentHealth: number;
   weapons: WeaponDefinition[];
   skills: string[];
+  skillUpgrades: Record<string, number>;
 }
 
 export interface CombatResult {
@@ -347,6 +368,7 @@ export interface CombatResult {
   combatId: string;
   consumables?: Record<string, number>;
   participants: string[];
+  unitHealth: Record<string, number>;
 }
 
 export interface ReputationRule {

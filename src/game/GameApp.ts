@@ -8,6 +8,7 @@ import {
   getRunNode, secureRunLoot,
 } from './runSystem';
 import { changeReputation, getReputationRule } from './reputation';
+import { getRestCost, getWoundedUnitCount, restUnits } from './management';
 import { CombatBridge } from '../combat/CombatBridge';
 import { DialogueView } from '../ui/DialogueView';
 import { ManagementView } from '../ui/ManagementView';
@@ -127,18 +128,44 @@ export class GameApp {
 
   private async resolveRunNode(node: RunNode, initial: boolean): Promise<void> {
     if (node.type === 'refuge') {
-      if (getReputationRule(this.state.reputation).min >= 60) {
-        addTemporaryLoot(this.state.run, { category: 'consumables', itemId: 'potion', quantity: 1 });
+      const securedFlag = `refugeSecured:${node.id}`;
+      let securedGold = 0;
+      if (!this.state.flags[securedFlag]) {
+        if (getReputationRule(this.state.reputation).min >= 60) {
+          addTemporaryLoot(this.state.run, { category: 'consumables', itemId: 'potion', quantity: 1 });
+        }
+        securedGold = secureRunLoot(this.state).gold;
+        this.state.flags[securedFlag] = true;
+        this.saves.saveAuto(this.state);
       }
-      const secured = secureRunLoot(this.state);
-      this.setMode('NARRATIVE');
-      const action = await this.exploration.open(getReputationRule(this.state.reputation).label, secured.gold);
-      if (action === 'shop') {
+      let refugeMessage = '';
+      while (true) {
+        this.setMode('NARRATIVE');
+        const restCost = getRestCost(this.state);
+        const woundedCount = getWoundedUnitCount(this.state);
+        const action = await this.exploration.open(getReputationRule(this.state.reputation).label, securedGold, {
+          cost: restCost,
+          woundedCount,
+          canRest: woundedCount > 0 && this.state.gold >= restCost,
+          message: refugeMessage,
+        });
+        refugeMessage = '';
+        securedGold = 0;
+        if (action === 'continue') break;
+        if (action === 'rest') {
+          const costBeforeRest = getRestCost(this.state);
+          refugeMessage = restUnits(this.state)
+            ? `Repos effectu&eacute; : ${costBeforeRest} or d&eacute;pens&eacute;.`
+            : getWoundedUnitCount(this.state) === 0
+              ? 'Aucune unit&eacute; bless&eacute;e : le repos est inutile.'
+              : 'Or insuffisant pour soigner la compagnie.';
+          this.saves.saveAuto(this.state);
+          continue;
+        }
         this.setMode('RESULT');
-        await this.openManagement('shop', 'valmir', 'permanent');
-      } else if (action === 'clan') {
-        this.setMode('RESULT');
-        await this.openManagement('clan');
+        if (action === 'shop') await this.openManagement('shop', 'valmir', 'permanent', false);
+        if (action === 'clan') await this.openManagement('clan', undefined, 'temporary', false);
+        if (action === 'skills') await this.openManagement('skills', undefined, 'temporary', false);
       }
       this.markResolved(node.id);
       this.enterTravel();
@@ -294,15 +321,16 @@ export class GameApp {
   }
 
   private async openManagement(
-    tab: 'clan' | 'inventory' | 'shop',
+    tab: 'clan' | 'inventory' | 'shop' | 'skills',
     shopId?: string,
     shopWallet: 'temporary' | 'permanent' = 'temporary',
+    returnToTravel = true,
   ): Promise<void> {
     if (this.mode !== 'RESULT' && this.mode !== 'TRAVEL') return;
     this.setMode('MANAGEMENT');
     await this.management.open(tab, shopId, shopWallet);
     this.saves.saveAuto(this.state);
-    this.enterTravel();
+    if (returnToTravel) this.enterTravel();
   }
 
   private setMode(mode: AppMode): void {

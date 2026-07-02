@@ -1,5 +1,5 @@
 import type {
-  CombatantPayload, ItemCategory, ItemDefinition, UnitDefinition,
+  CombatantPayload, EquipmentLoadout, ItemCategory, ItemDefinition, UnitDefinition,
   UnitInstance, UnitStats, WeaponDefinition,
 } from './types';
 
@@ -83,16 +83,22 @@ const defaultWeapons: Record<string, string[]> = {
 
 export function createUnitInstance(definitionId: string, narrativeLocked = false): UnitInstance {
   const definition = unitById.get(definitionId) ?? units[0]!;
-  return {
+  const equipment = {
+    weaponIds: (defaultWeapons[definition.id] ?? definition.allowedWeaponIds.slice(0, definition.weaponSlotCount))
+      .slice(0, definition.weaponSlotCount),
+    accessoryIds: [null, null] as [string | null, string | null],
+  };
+  const baseUnit = {
     id: definitionId,
     definitionId: definition.id,
     name: definition.name,
     narrativeLocked,
-    equipment: {
-      weaponIds: (defaultWeapons[definition.id] ?? definition.allowedWeaponIds.slice(0, definition.weaponSlotCount))
-        .slice(0, definition.weaponSlotCount),
-      accessoryIds: [null, null],
-    },
+    equipment,
+  };
+  return {
+    ...baseUnit,
+    currentHealth: getFinalStats(baseUnit).maxHealth,
+    skillUpgrades: {},
   };
 }
 
@@ -100,7 +106,7 @@ export function getItemCategory(itemId: string): ItemCategory | null {
   return itemById.get(itemId)?.category ?? null;
 }
 
-export function getFinalStats(unit: UnitInstance): UnitStats {
+export function getFinalStats(unit: { definitionId: string; equipment: EquipmentLoadout }): UnitStats {
   const definition = unitById.get(unit.definitionId) ?? units[0]!;
   const result: UnitStats = { ...definition.baseStats };
   for (const accessoryId of unit.equipment.accessoryIds) {
@@ -113,7 +119,7 @@ export function getFinalStats(unit: UnitInstance): UnitStats {
   return result;
 }
 
-export function getResolvedSkills(unit: UnitInstance): string[] {
+export function getResolvedSkills(unit: { definitionId: string; equipment: EquipmentLoadout }): string[] {
   const definition = unitById.get(unit.definitionId) ?? units[0]!;
   const result = new Set(definition.skillIds);
   const equipmentIds = [
@@ -133,15 +139,25 @@ export function getResolvedSkills(unit: UnitInstance): string[] {
 
 export function toCombatant(unit: UnitInstance): CombatantPayload {
   const definition = unitById.get(unit.definitionId) ?? units[0]!;
+  const stats = getFinalStats(unit);
+  const skillIds = getResolvedSkills(unit);
+  const skillUpgrades = Object.fromEntries(
+    skillIds.map((skillId) => [
+      skillId,
+      Math.max(0, Math.min(2, Math.floor(unit.skillUpgrades[skillId] ?? 0))),
+    ]),
+  );
   return {
     id: unit.id,
     name: unit.name,
     kind: definition.combatKind,
     portrait: definition.portrait,
-    stats: getFinalStats(unit),
+    stats,
+    currentHealth: Math.max(1, Math.min(stats.maxHealth, Math.floor(unit.currentHealth))),
     weapons: unit.equipment.weaponIds
       .map((weaponId) => weaponById.get(weaponId))
       .filter((weapon): weapon is WeaponDefinition => weapon !== undefined),
-    skills: getResolvedSkills(unit),
+    skills: skillIds,
+    skillUpgrades,
   };
 }

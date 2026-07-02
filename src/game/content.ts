@@ -28,8 +28,8 @@ const rawCombats: CombatConfig[] = [
   { id: 'forest_ambush', sceneId: 'forest_route', objective: 'Survivez à l’embuscade dans le sous-bois.', encounterLabel: 'Embuscade', maxPlayerUnits: 4, rewards: { gold: 75, reputation: 4 } },
   { id: 'serpent_checkpoint', sceneId: 'forest_route', objective: 'Forcez le barrage Serpent sans laisser de messager s’échapper.', encounterLabel: 'Barrage des Serpents', maxPlayerUnits: 4, rewards: { gold: 120, reputation: 3 } },
   { id: 'road_to_valmir', sceneId: 'forest_route', objective: 'Ouvrez la route de Bois-Clair avant que le village ne tombe.', encounterLabel: 'Route de Bois-Clair', maxPlayerUnits: 4, rewards: { gold: 100, reputation: 4 } },
-  { id: 'serpent_captain', sceneId: 'lion_sanctum', objective: 'Traquez le capitaine Serpent et exposez l’artefact des Ombres.', encounterLabel: 'Capitaine Serpent', maxPlayerUnits: 4, rewards: { gold: 180, reputation: 12 } },
-  { id: 'lion_chief', sceneId: 'lion_sanctum', objective: 'Survivez à l’épreuve du Vieux Lion.', encounterLabel: 'Duel pour le Sceau', maxPlayerUnits: 4, rewards: { gold: 0, reputation: -10 } },
+  { id: 'serpent_captain', sceneId: 'lion_sanctum', objective: 'Traquez le capitaine Serpent et exposez l’artefact des Ombres.', encounterLabel: 'Capitaine Serpent', maxPlayerUnits: 4, isBoss: true, rewards: { gold: 180, reputation: 12 } },
+  { id: 'lion_chief', sceneId: 'lion_sanctum', objective: 'Survivez à l’épreuve du Vieux Lion.', encounterLabel: 'Duel pour le Sceau', maxPlayerUnits: 4, isBoss: true, rewards: { gold: 0, reputation: -10 } },
 ];
 
 const rawDialogues = [
