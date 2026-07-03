@@ -66,6 +66,9 @@ export const combatConfigSchema = z.object({
   objective: z.string(),
   encounterLabel: z.string(),
   encounterRank: z.enum(['normal', 'elite', 'boss']).default('normal'),
+  enemyVisualIds: z.array(z.string()).default([]),
+  bossVisualId: z.string().optional(),
+  escortVisualIds: z.array(z.string()).default([]),
   maxPlayerUnits: z.number().int().min(3).max(5).default(4),
   isBoss: z.boolean().optional(),
   rewards: z.object({
@@ -364,6 +367,8 @@ export interface UnitDefinition {
   name: string;
   className: string;
   combatKind: 'knight' | 'cleric' | 'mage' | 'archer';
+  visualProfileId: string;
+  recruitTier: 'core' | 'optional' | 'late';
   portrait: string;
   baseStats: UnitStats;
   weaponSlotCount: 1 | 2;

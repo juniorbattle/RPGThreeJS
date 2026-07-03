@@ -5,6 +5,7 @@ import { campaignNodes, combatConfigs, dialogues } from './content';
 import { assets } from '../render/assetManifest';
 import { craftRecipes, itemById, units } from './catalog';
 import characterQc from '../../public/assets/characters/pixel/canonical-character-qc.json';
+import legacyCombatRuntimeSource from '../combat/legacyCombatRuntime.js?raw';
 
 interface CharacterAssetProfile {
   full: string;
@@ -15,6 +16,18 @@ interface CharacterAssetProfile {
   dialogueSideOffset: string;
   combatHeight: number;
   uiCropMode: string;
+}
+
+interface VisualProfile {
+  category: 'playable_hero' | 'story_npc' | 'faction_enemy' | 'monster' | 'elite_monster' | 'boss';
+  factionId?: string;
+  species?: string;
+  rarity: 'generic' | 'elite' | 'unique' | 'boss';
+  recruitTier?: 'core' | 'optional' | 'late';
+  artStatus?: 'pending_art_proxy' | 'approved';
+  promotionGate?: string;
+  colorPalette: readonly string[];
+  silhouetteNotes: string;
 }
 
 interface CharacterQcVariant {
@@ -37,6 +50,21 @@ const publicAssets = new Set(Object.keys(publicAssetModules).map((assetPath) => 
 function expectPublicAsset(assetPath: string, label: string): void {
   expect(assetPath.startsWith('/assets/'), label).toBe(true);
   expect(publicAssets.has(assetPath), label).toBe(true);
+}
+
+function collectAssetPaths(value: unknown, output: string[] = []): string[] {
+  if (typeof value === 'string') {
+    if (value.startsWith('/assets/')) output.push(value);
+    return output;
+  }
+  if (Array.isArray(value)) {
+    for (const item of value) collectAssetPaths(item, output);
+    return output;
+  }
+  if (value && typeof value === 'object') {
+    for (const item of Object.values(value)) collectAssetPaths(item, output);
+  }
+  return output;
 }
 
 describe('campaign content integrity', () => {
@@ -135,9 +163,11 @@ describe('campaign content integrity', () => {
 
   it('uses existing pixel character assets for playable units', () => {
     const characterProfiles = assets.characterProfiles as Record<string, CharacterAssetProfile>;
+    const visualProfiles = assets.visualProfiles as unknown as Record<string, VisualProfile>;
     const qc = characterQc as unknown as Record<string, CharacterQcEntry>;
 
     for (const [id, profile] of Object.entries(characterProfiles)) {
+      expect(visualProfiles[id], `${id}:visualProfile`).toBeTruthy();
       expectPublicAsset(profile.full, `${id}:full`);
       expectPublicAsset(profile.dialogue, `${id}:dialogue`);
       expectPublicAsset(profile.ui, `${id}:ui`);
@@ -156,9 +186,116 @@ describe('campaign content integrity', () => {
       }
     }
 
+    const heroProfileIds = new Set<string>();
+    const heroFullPaths = new Set<string>();
     for (const unit of units) {
+      expect(unit.visualProfileId, `${unit.id}:visualProfileId`).toBeTruthy();
+      const visualProfile = visualProfiles[unit.visualProfileId];
+      expect(visualProfile, `${unit.id}:visualProfile`).toBeTruthy();
+      expect(visualProfile?.category, `${unit.id}:category`).toBe('playable_hero');
+      expect(visualProfile?.rarity, `${unit.id}:rarity`).toBe('unique');
+      expect(['core', 'optional', 'late']).toContain(unit.recruitTier);
+      expect(characterProfiles[unit.visualProfileId]?.full, `${unit.id}:fullProfile`).toBe(unit.portrait);
+      heroProfileIds.add(unit.visualProfileId);
+      heroFullPaths.add(unit.portrait);
       expect(unit.portrait, unit.id).toContain('/assets/characters/pixel/full/');
       expectPublicAsset(unit.portrait, unit.id);
+    }
+    expect(heroProfileIds.size).toBe(units.length);
+
+    for (const [id, profile] of Object.entries(visualProfiles)) {
+      expect(profile.colorPalette.length, `${id}:palette`).toBeGreaterThan(0);
+      expect(profile.silhouetteNotes.length, `${id}:silhouette`).toBeGreaterThan(0);
+      if (profile.category !== 'playable_hero') {
+        const fullPath = characterProfiles[id]?.full;
+        expect(fullPath, `${id}:profileAsset`).toBeTruthy();
+        expect(heroFullPaths.has(fullPath ?? ''), `${id}:sharesHeroSprite`).toBe(false);
+      }
+      if (profile.category === 'boss' || profile.category === 'elite_monster') {
+        expect(['elite', 'boss']).toContain(profile.rarity);
+        expect(characterProfiles[id]?.combatHeight, `${id}:combatHeight`).toBeGreaterThan(2.2);
+      }
+    }
+  });
+
+  it('keeps validation and rejected sprite work out of runtime manifests', () => {
+    for (const assetPath of collectAssetPaths(assets)) {
+      expect(assetPath, `${assetPath}:validationLeak`).not.toContain('/validation/');
+      expect(assetPath, `${assetPath}:rejectedLeak`).not.toContain('/rejected/');
+    }
+  });
+
+  it('keeps pending generic Serpent sprites out of runtime until approved', () => {
+    const visualProfiles = assets.visualProfiles as unknown as Record<string, VisualProfile>;
+    const characterProfiles = assets.characterProfiles as Record<string, CharacterAssetProfile>;
+    const dialogueActors = assets.dialogueActors as Record<string, string>;
+    const pendingProfileIds = new Set(['serpent_raider', 'serpent_brute', 'serpent_oracle']);
+
+    for (const id of pendingProfileIds) {
+      expect(visualProfiles[id], `${id}:visualProfile`).toBeUndefined();
+      expect(characterProfiles[id], `${id}:characterProfile`).toBeUndefined();
+      expect(dialogueActors[id], `${id}:dialogueActor`).toBeUndefined();
+    }
+
+    for (const dialogue of dialogues.values()) {
+      for (const step of dialogue.steps) {
+        if (step.actorId) expect(pendingProfileIds.has(step.actorId), `${dialogue.id}:${step.id}:${step.actorId}`).toBe(false);
+      }
+    }
+
+    for (const combat of combatConfigs.values()) {
+      for (const id of combat.enemyVisualIds) {
+        expect(pendingProfileIds.has(id), `${combat.id}:${id}:enemyVisualIds`).toBe(false);
+      }
+      for (const id of combat.escortVisualIds) {
+        expect(pendingProfileIds.has(id), `${combat.id}:${id}:escortVisualIds`).toBe(false);
+      }
+      if (combat.bossVisualId) {
+        expect(pendingProfileIds.has(combat.bossVisualId), `${combat.id}:${combat.bossVisualId}:bossVisualId`).toBe(false);
+      }
+    }
+
+    for (const id of pendingProfileIds) {
+      expect(legacyCombatRuntimeSource.includes(`/assets/characters/pixel/full/${id}.png`), `${id}:legacyFullPath`).toBe(false);
+      expect(legacyCombatRuntimeSource.includes(`/assets/characters/pixel/dialogue/${id}.png`), `${id}:legacyDialoguePath`).toBe(false);
+      expect(legacyCombatRuntimeSource.includes(`/assets/characters/pixel/ui/${id}.png`), `${id}:legacyUiPath`).toBe(false);
+    }
+  });
+
+  it('declares valid visual compositions for faction, monster, elite and boss encounters', () => {
+    const characterProfiles = assets.characterProfiles as Record<string, CharacterAssetProfile>;
+    const visualProfiles = assets.visualProfiles as unknown as Record<string, VisualProfile>;
+    const expectedMonsterIds = ['wolf', 'venom_serpent', 'goblin', 'skeleton'];
+    const expectedEliteIds = ['troll', 'young_wyrm', 'undead_champion'];
+
+    for (const id of expectedMonsterIds) {
+      expect(visualProfiles[id]?.category, `${id}:category`).toBe('monster');
+      expect(characterProfiles[id]?.full, `${id}:asset`).toBeTruthy();
+    }
+    for (const id of expectedEliteIds) {
+      expect(visualProfiles[id]?.category, `${id}:category`).toBe('elite_monster');
+      expect(visualProfiles[id]?.rarity, `${id}:rarity`).toBe('elite');
+      expect(characterProfiles[id]?.combatHeight, `${id}:combatHeight`).toBeGreaterThan(2.2);
+    }
+
+    for (const combat of combatConfigs.values()) {
+      for (const id of combat.enemyVisualIds) {
+        expect(characterProfiles[id], `${combat.id}:${id}:asset`).toBeTruthy();
+        const visualProfile = visualProfiles[id];
+        expect(visualProfile, `${combat.id}:${id}:visualProfile`).toBeTruthy();
+        expect(visualProfile?.category, `${combat.id}:${id}:notHero`).not.toBe('playable_hero');
+      }
+      for (const id of combat.escortVisualIds) {
+        expect(characterProfiles[id], `${combat.id}:${id}:asset`).toBeTruthy();
+        const visualProfile = visualProfiles[id];
+        expect(visualProfile, `${combat.id}:${id}:visualProfile`).toBeTruthy();
+        expect(visualProfile?.category, `${combat.id}:${id}:notHero`).not.toBe('playable_hero');
+      }
+      if (combat.isBoss) {
+        expect(combat.bossVisualId, `${combat.id}:bossVisualId`).toBeTruthy();
+        expect(visualProfiles[combat.bossVisualId ?? '']?.category, `${combat.id}:bossCategory`).toBe('boss');
+        expect(characterProfiles[combat.bossVisualId ?? '']?.combatHeight, `${combat.id}:bossHeight`).toBeGreaterThan(2.2);
+      }
     }
   });
 });

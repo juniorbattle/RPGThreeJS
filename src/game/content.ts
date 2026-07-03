@@ -6,6 +6,9 @@ import {
   type CombatConfig,
 } from './types';
 
+type RawCombatConfig = Omit<CombatConfig, 'enemyVisualIds' | 'escortVisualIds'> &
+  Partial<Pick<CombatConfig, 'enemyVisualIds' | 'escortVisualIds'>>;
+
 const rawNodes: CampaignNode[] = [
   { id: 'lion-camp', type: 'start', x: -7, z: 0, icon: '◆', label: 'Camp du Lion', links: ['lion-audience'], dialogueId: 'camp_departure' },
   { id: 'lion-audience', type: 'story', x: -5.2, z: 0, icon: '♛', label: 'Audience d’Alaric', links: ['lion-refugees', 'lion-veiled-path'], dialogueId: 'lion_briefing' },
@@ -21,7 +24,7 @@ const rawNodes: CampaignNode[] = [
   { id: 'lion-final-judgement', type: 'boss', x: 4.2, z: 0, icon: '♛', label: 'Jugement du Sceau', links: [], dialogueId: 'lion_finale_judgement' },
 ];
 
-const rawCombats: CombatConfig[] = [
+const rawCombats: RawCombatConfig[] = [
   { id: 'village_defense', sceneId: 'bois_clair_burning', objective: 'Repoussez les pillards et protégez les habitants de Bois-Clair.', encounterLabel: 'Défense de Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, rewards: { gold: 140, reputation: 10, materials: { red_gem: 2 } } },
   { id: 'village_raid', sceneId: 'bois_clair_burning', objective: 'Sécurisez les coffres pendant que les Serpents dispersent les témoins.', encounterLabel: 'Raid sur Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, rewards: { gold: 300, reputation: -15, materials: { red_gem: 2 } } },
   { id: 'forest_patrol', sceneId: 'forest_route', objective: 'Éliminez la patrouille Serpent avant qu’elle ne donne l’alerte.', encounterLabel: 'Patrouille Serpent', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 90, reputation: 2, materials: { red_gem: 1 } } },
@@ -31,6 +34,23 @@ const rawCombats: CombatConfig[] = [
   { id: 'serpent_captain', sceneId: 'lion_sanctum', objective: 'Traquez le capitaine Serpent et exposez l’artefact des Ombres.', encounterLabel: 'Capitaine Serpent', encounterRank: 'elite', maxPlayerUnits: 4, isBoss: true, rewards: { gold: 180, reputation: 12, materials: { red_gem: 2 } } },
   { id: 'lion_chief', sceneId: 'lion_sanctum', objective: 'Survivez à l’épreuve du Vieux Lion.', encounterLabel: 'Duel pour le Sceau', encounterRank: 'boss', maxPlayerUnits: 4, isBoss: true, rewards: { gold: 0, reputation: -10, materials: { red_gem: 4 } } },
 ];
+
+const combatVisualComposition: Record<string, Partial<Pick<CombatConfig, 'enemyVisualIds' | 'bossVisualId' | 'escortVisualIds'>>> = {
+  village_defense: { enemyVisualIds: ['serpent_elite_raider', 'serpent_elite_brute', 'serpent_elite_raider'] },
+  village_raid: { enemyVisualIds: ['serpent_elite_raider', 'serpent_elite_brute', 'serpent_elite_raider', 'serpent_elite_brute'] },
+  forest_patrol: { enemyVisualIds: ['serpent_elite_raider', 'serpent_elite_raider', 'serpent_elite_brute'] },
+  forest_ambush: { enemyVisualIds: ['wolf', 'goblin', 'serpent_elite_raider'] },
+  serpent_checkpoint: { enemyVisualIds: ['serpent_elite_raider', 'serpent_elite_brute', 'serpent_elite_raider'] },
+  road_to_valmir: { enemyVisualIds: ['wolf', 'venom_serpent', 'skeleton'] },
+  serpent_captain: {
+    bossVisualId: 'serpent_captain',
+    escortVisualIds: ['serpent_elite_raider', 'serpent_elite_brute', 'serpent_elite_raider'],
+  },
+  lion_chief: {
+    bossVisualId: 'alaric',
+    escortVisualIds: ['lion_champion', 'seal_guardian'],
+  },
+};
 
 const rawDialogues = [
   {
@@ -299,7 +319,7 @@ const rawDialogues = [
     id: 'mystery_ambush',
     sceneArtId: 'mystery_ambush',
     steps: [
-      { id: '1', speaker: 'Pillard Serpent', actorId: 'serpent_raider', expression: 'hostile', tag: 'Embuscade', text: 'Vous avez suivi exactement le chemin que nous avions préparé.', side: 'right', next: null, effects: [{ type: 'startCombat', combatId: 'forest_ambush' }], choices: [] },
+      { id: '1', speaker: 'Pillard Serpent', actorId: 'serpent_elite_raider', expression: 'hostile', tag: 'Embuscade', text: 'Vous avez suivi exactement le chemin que nous avions préparé.', side: 'right', next: null, effects: [{ type: 'startCombat', combatId: 'forest_ambush' }], choices: [] },
     ],
   },
   {
@@ -404,7 +424,7 @@ const rawDialogues = [
 
 export const campaignNodes = rawNodes.map((node) => campaignNodeSchema.parse(node));
 export const combatConfigs = new Map(rawCombats.map((combat) => {
-  const parsed = combatConfigSchema.parse(combat);
+  const parsed = combatConfigSchema.parse({ ...combat, ...combatVisualComposition[combat.id] });
   return [parsed.id, parsed];
 }));
 export const dialogues = new Map(rawDialogues.map((dialogue) => {

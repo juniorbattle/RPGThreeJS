@@ -38,6 +38,8 @@ export const items: ItemDefinition[] = [
 export const units: UnitDefinition[] = [
   {
     id: 'knight', name: 'Alistair', className: 'Chevalier', combatKind: 'knight',
+    visualProfileId: 'alistair',
+    recruitTier: 'core',
     portrait: '/assets/characters/pixel/full/alistair.png',
     baseStats: { maxHealth: 140, strength: 18, magic: 5, endurance: 15, dexterity: 10, charisma: 12, moveRange: 2 },
     weaponSlotCount: 2,
@@ -45,6 +47,8 @@ export const units: UnitDefinition[] = [
   },
   {
     id: 'cleric', name: 'Marian', className: 'Clerc', combatKind: 'cleric',
+    visualProfileId: 'marian',
+    recruitTier: 'core',
     portrait: '/assets/characters/pixel/full/marian.png',
     baseStats: { maxHealth: 105, strength: 8, magic: 22, endurance: 13, dexterity: 11, charisma: 18, moveRange: 2 },
     weaponSlotCount: 1,
@@ -52,6 +56,8 @@ export const units: UnitDefinition[] = [
   },
   {
     id: 'mage', name: 'Elara', className: 'Mage', combatKind: 'mage',
+    visualProfileId: 'elara',
+    recruitTier: 'core',
     portrait: '/assets/characters/pixel/full/elara.png',
     baseStats: { maxHealth: 80, strength: 5, magic: 26, endurance: 8, dexterity: 12, charisma: 15, moveRange: 2 },
     weaponSlotCount: 1,
@@ -59,6 +65,8 @@ export const units: UnitDefinition[] = [
   },
   {
     id: 'archer', name: 'Kestrel', className: 'Archère', combatKind: 'archer',
+    visualProfileId: 'kestrel',
+    recruitTier: 'core',
     portrait: '/assets/characters/pixel/full/kestrel.png',
     baseStats: { maxHealth: 100, strength: 15, magic: 5, endurance: 10, dexterity: 20, charisma: 10, moveRange: 3 },
     weaponSlotCount: 2,
@@ -66,6 +74,8 @@ export const units: UnitDefinition[] = [
   },
   {
     id: 'cedric', name: 'Cedric', className: 'Éclaireur', combatKind: 'archer',
+    visualProfileId: 'cedric',
+    recruitTier: 'optional',
     portrait: '/assets/characters/pixel/full/cedric.png',
     baseStats: { maxHealth: 115, strength: 17, magic: 4, endurance: 11, dexterity: 22, charisma: 10, moveRange: 3 },
     weaponSlotCount: 2,
