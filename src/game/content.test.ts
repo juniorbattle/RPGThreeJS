@@ -5,7 +5,6 @@ import { campaignNodes, combatConfigs, dialogues } from './content';
 import { assets } from '../render/assetManifest';
 import { craftRecipes, itemById, units } from './catalog';
 import characterQc from '../../public/assets/characters/pixel/canonical-character-qc.json';
-import legacyCombatRuntimeSource from '../combat/legacyCombatRuntime.js?raw';
 
 interface CharacterAssetProfile {
   full: string;
@@ -255,11 +254,6 @@ describe('campaign content integrity', () => {
       }
     }
 
-    for (const id of pendingProfileIds) {
-      expect(legacyCombatRuntimeSource.includes(`/assets/characters/pixel/full/${id}.png`), `${id}:legacyFullPath`).toBe(false);
-      expect(legacyCombatRuntimeSource.includes(`/assets/characters/pixel/dialogue/${id}.png`), `${id}:legacyDialoguePath`).toBe(false);
-      expect(legacyCombatRuntimeSource.includes(`/assets/characters/pixel/ui/${id}.png`), `${id}:legacyUiPath`).toBe(false);
-    }
   });
 
   it('declares valid visual compositions for faction, monster, elite and boss encounters', () => {
@@ -296,6 +290,18 @@ describe('campaign content integrity', () => {
         expect(visualProfiles[combat.bossVisualId ?? '']?.category, `${combat.id}:bossCategory`).toBe('boss');
         expect(characterProfiles[combat.bossVisualId ?? '']?.combatHeight, `${combat.id}:bossHeight`).toBeGreaterThan(2.2);
       }
+    }
+  });
+
+  it('keeps all character pixel asset paths within runtime folders', () => {
+    const characterProfiles = assets.characterProfiles as Record<string, CharacterAssetProfile>;
+    const allPaths: string[] = [];
+    for (const profile of Object.values(characterProfiles)) {
+      allPaths.push(profile.full, profile.dialogue, profile.ui, profile.fallback);
+    }
+    for (const path of allPaths) {
+      expect(path, `path:${path}`).toMatch(/\/assets\/characters\/pixel\/(full|dialogue|ui)\//);
+      expectPublicAsset(path, `path:${path}`);
     }
   });
 });

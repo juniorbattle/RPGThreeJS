@@ -11,11 +11,11 @@ describe('clan management', () => {
     const state = createInitialState();
     const unit = state.clan.members[0]!;
 
-    expect(equipWeapon(state, unit.id, 0, 'steel_sword')).toBe(true);
-    expect(unit.equipment.weaponIds).toEqual(['steel_sword', 'wooden_spear']);
+    expect(equipWeapon(state, unit.id, 'steel_sword')).toBe(true);
+    expect(unit.equipment.weaponIds).toEqual(['steel_sword']);
     expect(state.inventory.weapons.iron_sword).toBe(1);
     expect(state.inventory.weapons.steel_sword).toBe(0);
-    expect(equipWeapon(state, unit.id, 1, 'steel_sword')).toBe(false);
+    expect(equipWeapon(state, unit.id, 'steel_sword')).toBe(false);
 
     expect(equipAccessory(state, unit.id, 0, 'strength_ring')).toBe(true);
     expect(unit.equipment.accessoryIds[0]).toBe('strength_ring');
@@ -140,14 +140,14 @@ describe('save migration', () => {
           xp: 0,
           equipment: {
             weaponId: unit.equipment.weaponIds[0],
-            accessoryIds: unit.equipment.accessoryIds,
+            accessoryIds: unit.equipment.accessoryIds.slice(0, 2) as [string | null, string | null],
           },
         })),
       },
     };
     const migrated = migrateState(v2);
     expect(migrated.version).toBe(6);
-    expect(migrated.clan.members[0]!.equipment.weaponIds).toEqual(['iron_sword', 'wooden_spear']);
+    expect(migrated.clan.members[0]!.equipment.weaponIds).toEqual(['iron_sword']);
     expect(migrated.clan.members[0]!.currentHealth).toBe(140);
   });
 

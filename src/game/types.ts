@@ -116,8 +116,8 @@ export const unitStatsSchema = z.object({
 export type UnitStats = z.infer<typeof unitStatsSchema>;
 
 export const equipmentLoadoutSchema = z.object({
-  weaponIds: z.array(z.string()).min(1).max(2),
-  accessoryIds: z.tuple([z.string().nullable(), z.string().nullable()]),
+  weaponIds: z.array(z.string()).min(1).max(1),
+  accessoryIds: z.tuple([z.string().nullable(), z.string().nullable(), z.string().nullable()]),
 });
 export type EquipmentLoadout = z.infer<typeof equipmentLoadoutSchema>;
 
@@ -247,7 +247,10 @@ const legacyUnitInstanceSchema = unitInstanceV5Schema.extend({
 const unitInstanceV2Schema = legacyUnitInstanceSchema.extend({
   equipment: z.object({
     weaponId: z.string(),
-    accessoryIds: z.tuple([z.string().nullable(), z.string().nullable()]),
+    accessoryIds: z.union([
+      z.tuple([z.string().nullable(), z.string().nullable()]),
+      z.tuple([z.string().nullable(), z.string().nullable(), z.string().nullable()]),
+    ]),
   }),
 });
 
@@ -371,7 +374,7 @@ export interface UnitDefinition {
   recruitTier: 'core' | 'optional' | 'late';
   portrait: string;
   baseStats: UnitStats;
-  weaponSlotCount: 1 | 2;
+  weaponSlotCount: 1;
   allowedWeaponIds: string[];
   skillIds: string[];
 }

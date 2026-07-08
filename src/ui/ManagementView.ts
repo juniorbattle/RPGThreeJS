@@ -201,9 +201,8 @@ export class ManagementView {
           </div>
           <div class="equipment">
             <div class="section-title ui-section-title">Équipement</div>
-            ${Array.from({ length: definition.weaponSlotCount }, (_, slot) =>
-              this.weaponSelect(selected, slot as 0 | 1)).join('')}
-            ${([0, 1] as const).map((slot) => this.accessorySelect(selected, slot)).join('')}
+            ${this.weaponSelect(selected, 0)}
+            ${([0, 1, 2] as const).map((slot) => this.accessorySelect(selected, slot)).join('')}
           </div>
           <div class="unit-sheet__actions">
             <button type="button" class="danger-button ui-button ui-button--danger" data-action="exclude" ${selected.narrativeLocked ? 'disabled' : ''}>
@@ -214,7 +213,7 @@ export class ManagementView {
       </div>`;
   }
 
-  private weaponSelect(unit: UnitInstance, slot: 0 | 1): string {
+  private weaponSelect(unit: UnitInstance, slot: 0): string {
     const state = this.options.getState();
     const definition = unitById.get(unit.definitionId)!;
     const currentId = unit.equipment.weaponIds[slot]!;
@@ -233,7 +232,7 @@ export class ManagementView {
     </label>`;
   }
 
-  private accessorySelect(unit: UnitInstance, slot: 0 | 1): string {
+  private accessorySelect(unit: UnitInstance, slot: 0 | 1 | 2): string {
     const state = this.options.getState();
     const currentId = unit.equipment.accessoryIds[slot];
     const current = currentId ? itemById.get(currentId) : null;
@@ -445,13 +444,13 @@ export class ManagementView {
     });
     this.overlay.querySelectorAll<HTMLSelectElement>('[data-equip="weapon"]').forEach((select) => {
       select.addEventListener('change', () => {
-        const slot = Number(select.dataset.slot) as 0 | 1;
-        if (equipWeapon(this.options.getState(), this.selectedUnitId, slot, select.value)) this.changed();
+        const slot = 0;
+        if (equipWeapon(this.options.getState(), this.selectedUnitId, select.value)) this.changed();
       });
     });
     this.overlay.querySelectorAll<HTMLSelectElement>('[data-equip="accessory"]').forEach((select) => {
       select.addEventListener('change', () => {
-        const slot = Number(select.dataset.slot) as 0 | 1;
+        const slot = Number(select.dataset.slot) as 0 | 1 | 2;
         if (equipAccessory(this.options.getState(), this.selectedUnitId, slot, select.value || null)) this.changed();
       });
     });

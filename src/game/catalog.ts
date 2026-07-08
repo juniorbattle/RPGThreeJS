@@ -42,7 +42,7 @@ export const units: UnitDefinition[] = [
     recruitTier: 'core',
     portrait: '/assets/characters/pixel/full/alistair.png',
     baseStats: { maxHealth: 140, strength: 18, magic: 5, endurance: 15, dexterity: 10, charisma: 12, moveRange: 2 },
-    weaponSlotCount: 2,
+    weaponSlotCount: 1,
     allowedWeaponIds: ['iron_sword', 'steel_sword', 'lion_guard_blade', 'wooden_spear'], skillIds: ['whirl', 'bulwark', 'provoke', 'charge'],
   },
   {
@@ -69,7 +69,7 @@ export const units: UnitDefinition[] = [
     recruitTier: 'core',
     portrait: '/assets/characters/pixel/full/kestrel.png',
     baseStats: { maxHealth: 100, strength: 15, magic: 5, endurance: 10, dexterity: 20, charisma: 10, moveRange: 3 },
-    weaponSlotCount: 2,
+    weaponSlotCount: 1,
     allowedWeaponIds: ['short_bow', 'long_bow', 'windstep_bow', 'iron_dagger'], skillIds: ['weaken', 'blind_shot', 'pierce_shot', 'leap'],
   },
   {
@@ -78,7 +78,7 @@ export const units: UnitDefinition[] = [
     recruitTier: 'optional',
     portrait: '/assets/characters/pixel/full/cedric.png',
     baseStats: { maxHealth: 115, strength: 17, magic: 4, endurance: 11, dexterity: 22, charisma: 10, moveRange: 3 },
-    weaponSlotCount: 2,
+    weaponSlotCount: 1,
     allowedWeaponIds: ['short_bow', 'long_bow', 'windstep_bow', 'iron_dagger'], skillIds: ['weaken', 'blind_shot', 'leap'],
   },
 ];
@@ -137,7 +137,7 @@ export function createUnitInstance(definitionId: string, narrativeLocked = false
   const equipment = {
     weaponIds: (defaultWeapons[definition.id] ?? definition.allowedWeaponIds.slice(0, definition.weaponSlotCount))
       .slice(0, definition.weaponSlotCount),
-    accessoryIds: [null, null] as [string | null, string | null],
+    accessoryIds: [null, null, null] as [string | null, string | null, string | null],
   };
   const baseUnit = {
     id: definitionId,

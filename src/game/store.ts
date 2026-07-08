@@ -115,8 +115,8 @@ function migrateV2(previous: GameStateV2): GameStateV4 {
       return {
         ...unit,
         equipment: {
-          weaponIds: [unit.equipment.weaponId, ...defaults.filter((id) => id !== unit.equipment.weaponId)].slice(0, defaults.length),
-          accessoryIds: unit.equipment.accessoryIds,
+          weaponIds: [unit.equipment.weaponId, ...defaults.filter((id) => id !== unit.equipment.weaponId)].slice(0, 1),
+          accessoryIds: [...unit.equipment.accessoryIds, null, null].slice(0, 3) as [string | null, string | null, string | null],
         },
       };
     }),

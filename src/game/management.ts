@@ -21,26 +21,25 @@ export function getRestCost(state: GameState): number {
   return getWoundedUnitCount(state) * REST_COST_PER_WOUNDED_UNIT;
 }
 
-export function equipWeapon(state: GameState, unitId: string, slot: 0 | 1, weaponId: string): boolean {
+export function equipWeapon(state: GameState, unitId: string, weaponId: string): boolean {
   const unit = state.clan.members.find((candidate) => candidate.id === unitId);
   const definition = unit && unitById.get(unit.definitionId);
   if (
     !unit
     || !definition
-    || slot >= definition.weaponSlotCount
     || !definition.allowedWeaponIds.includes(weaponId)
     || unit.equipment.weaponIds.includes(weaponId)
     || (state.inventory.weapons[weaponId] ?? 0) < 1
   ) return false;
-  const previous = unit.equipment.weaponIds[slot];
+  const previous = unit.equipment.weaponIds[0];
   if (!previous) return false;
   adjust(state.inventory, 'weapons', previous, 1);
   adjust(state.inventory, 'weapons', weaponId, -1);
-  unit.equipment.weaponIds[slot] = weaponId;
+  unit.equipment.weaponIds[0] = weaponId;
   return true;
 }
 
-export function equipAccessory(state: GameState, unitId: string, slot: 0 | 1, accessoryId: string | null): boolean {
+export function equipAccessory(state: GameState, unitId: string, slot: 0 | 1 | 2, accessoryId: string | null): boolean {
   const unit = state.clan.members.find((candidate) => candidate.id === unitId);
   if (!unit) return false;
   if (accessoryId && (state.inventory.accessories[accessoryId] ?? 0) < 1) return false;
