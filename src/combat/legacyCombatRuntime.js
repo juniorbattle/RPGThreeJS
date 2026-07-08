@@ -70,6 +70,7 @@ const G = {
   units:[], tilesMesh:[], grid:[], order:[], turnIdx:0, round:1,
   mode:'idle', active:null, selected:null, pinnedUnit:null, hover:null, hoverUnit:null,
   movedThisTurn:false, actedThisTurn:false, movedBeforeAct:false, pending:null, busy:false, over:false, inv:{},
+  basicAttacksThisTurn:0,
   rosterDefs:[],selectedDeployId:null,deployPage:0,deployedUnits:[]
 };
 window.G = G;
@@ -223,6 +224,9 @@ function drawUnit(kind){
 function texFromCanvas(cv){ const t=new THREE.CanvasTexture(cv); t.magFilter=THREE.NearestFilter; t.minFilter=THREE.NearestFilter; t.colorSpace=THREE.SRGBColorSpace; t.generateMipmaps=false; return t; }
 function uiPortraitFor(path){ return typeof path==='string'&&path.includes('/assets/characters/pixel/full/')?path.replace('/full/','/ui/'):path; }
 const EXTERNAL_SPRITE_HEIGHTS={
+  '/assets/characters/pixel/full/serpent_raider.png':2.1,
+  '/assets/characters/pixel/full/serpent_brute.png':2.2,
+  '/assets/characters/pixel/full/serpent_oracle.png':2.12,
   '/assets/characters/pixel/full/serpent_elite_raider.png':2.04,
   '/assets/characters/pixel/full/serpent_elite_brute.png':2.2,
   '/assets/characters/pixel/full/wolf.png':1.42,
@@ -501,40 +505,40 @@ function moveCursor(gx,gz){ const c=cellAt(gx,gz); if(!c){cursorMesh.visible=fal
 
 // ============================= SKILLS =============================
 const SKILLS={
-  whirl:{name:'Coup Tournoyant',ap:2,type:'phys',power:9,range:[0,0],radius:1,self:true,offensive:true,acc:0.95,desc:'Frappe les unités autour du lanceur, sans toucher le lanceur.'},
-  bulwark:{name:'Rempart',ap:2,type:'buff',power:0,range:[0,0],radius:1.3,self:true,support:true,status:'barrier',statusTurns:3,desc:'Barrière : +END aux alliés proches (3 tours).'},
-  provoke:{name:'Provocation',ap:1,type:'debuff',power:0,range:[1,2],radius:1.2,offensive:true,acc:1,status:'taunt',statusTurns:2,desc:'Force les ennemis proches à vous cibler (2 tours).'},
-  weaken:{name:'Flèche Affaiblissante',ap:1,type:'phys',power:7,range:[2,3],radius:0,offensive:true,acc:0.9,status:'slow',statusTurns:2,desc:'Tir unique + Ralentissement.'},
-  blind_shot:{name:'Tir Aveuglant',ap:2,type:'phys',power:6,range:[2,4],radius:0,offensive:true,acc:0.9,status:'blind',statusTurns:3,desc:'Tir qui réduit la précision (3 tours).'},
-  pierce_shot:{name:'Tir Perçant',ap:2,type:'phys',power:9,range:[2,4],radius:1,shape:'line',offensive:true,acc:0.9,desc:'Flèche traversante alignée sur la cible (ligne).'},
-  fireball:{name:'Boule de Feu',ap:3,type:'mag',power:13,range:[2,4],radius:1,offensive:true,acc:0.85,status:'burn',statusTurns:2,desc:'Explosion de feu en zone (touche les alliés).'},
-  flame_wave:{name:'Vague de Flammes',ap:3,type:'mag',power:11,range:[1,1],radius:1.6,shape:'cone',offensive:true,acc:0.9,status:'burn',statusTurns:2,desc:'Cône de feu devant le lanceur (touche les alliés).'},
-  bolt:{name:'Éclair Sombre',ap:3,type:'mag',power:12,range:[1,4],radius:1,offensive:true,acc:0.9,desc:'Décharge magique en zone.'},
-  curse:{name:'Malédiction',ap:2,type:'debuff',power:0,range:[1,4],radius:1,offensive:true,acc:1,status:'curse',statusTurns:3,desc:'Réduit la défense (END) des ennemis (zone, 3 tours).'},
-  heal:{name:'Lumière Salvatrice',ap:2,type:'heal',power:1.2,range:[0,3],radius:1,support:true,desc:'Soigne les alliés dans la zone.'},
-  regen:{name:'Régénération',ap:2,type:'buff',power:0,range:[0,3],radius:1,support:true,status:'regen',statusTurns:3,desc:'Régénère les PV des alliés chaque tour (3 tours).'},
-  bless:{name:'Bénédiction',ap:2,type:'buff',power:0,range:[0,3],radius:1,support:true,status:'boost',statusTurns:3,desc:'+FOR/+MAG aux alliés (3 tours).'},
-  revive:{name:'Résurrection',ap:4,type:'revive',power:0.5,range:[1,1],radius:0,support:true,desc:'Relève un allié K.O. à 50% PV.'},
-  heavy:{name:'Coup Lourd',ap:2,type:'phys',power:11,range:[1,1],radius:1,offensive:true,acc:0.95,status:'stun',statusTurns:1,desc:'Choc de zone qui étourdit (1 tour).'},
-  blink:{name:'Clignotement',ap:2,type:'move',mode:'teleport',dest:true,range:[2,3],radius:0,desc:'Se repositionne instantanément sur une case libre.'},
-  leap:{name:'Bond',ap:1,type:'move',mode:'leap',dest:true,range:[2,3],radius:0,desc:'Repositionnement rapide vers une case libre.'},
-  charge:{name:'Charge',ap:2,type:'move',mode:'dash',dest:true,range:[2,3],radius:0,power:8,impact:{status:'stun',statusTurns:1},desc:'Charge en ligne droite et etourdit pres de l arrivee.'},
-  boss_slam:{name:'Frappe Sismique',ap:2,type:'phys',power:16,range:[1,2],radius:1.2,offensive:true,acc:0.95,desc:'Coup de zone devastateur autour de la cible.'},
-  boss_roar:{name:'Rugissement',ap:3,type:'debuff',power:0,range:[0,3],radius:2,offensive:true,acc:1,status:'weak',statusTurns:3,desc:'Affaiblit tous les ennemis a portee.'},
-  boss_quake:{name:'Onde de Choc',ap:3,type:'mag',power:14,range:[2,4],radius:1.5,offensive:true,acc:0.85,status:'stun',statusTurns:1,desc:'Explosion magique a distance qui etourdit.'},
-  boss_guard:{name:'Garde',ap:2,type:'buff',power:0,range:[0,0],radius:0,self:true,support:true,status:'barrier',statusTurns:3,desc:'Se protege d une barriere.'}
+  whirl:{name:'Coup Tournoyant',ap:4,type:'phys',power:9,range:[0,0],radius:1,self:true,offensive:true,acc:0.95,desc:'Frappe les unités autour du lanceur, sans toucher le lanceur.'},
+  bulwark:{name:'Rempart',ap:3,type:'buff',power:0,range:[0,0],radius:1.3,self:true,support:true,status:'barrier',statusTurns:3,desc:'Barrière : +END aux alliés proches (3 tours).'},
+  provoke:{name:'Provocation',ap:3,type:'debuff',power:0,range:[1,2],radius:1.2,offensive:true,acc:1,status:'taunt',statusTurns:2,desc:'Force les ennemis proches à vous cibler (2 tours).'},
+  weaken:{name:'Flèche Affaiblissante',ap:3,type:'phys',power:7,range:[2,3],radius:0,offensive:true,acc:0.9,status:'slow',statusTurns:2,desc:'Tir unique + Ralentissement.'},
+  blind_shot:{name:'Tir Aveuglant',ap:4,type:'phys',power:6,range:[2,4],radius:0,offensive:true,acc:0.9,status:'blind',statusTurns:3,desc:'Tir qui réduit la précision (3 tours).'},
+  pierce_shot:{name:'Tir Perçant',ap:4,type:'phys',power:9,range:[2,4],radius:1,shape:'line',offensive:true,acc:0.9,desc:'Flèche traversante alignée sur la cible (ligne).'},
+  fireball:{name:'Boule de Feu',ap:5,type:'mag',power:13,range:[2,4],radius:1,offensive:true,acc:0.85,status:'burn',statusTurns:2,desc:'Explosion de feu en zone (touche les alliés).'},
+  flame_wave:{name:'Vague de Flammes',ap:4,type:'mag',power:11,range:[1,1],radius:1.6,shape:'cone',offensive:true,acc:0.9,status:'burn',statusTurns:2,desc:'Cône de feu devant le lanceur (touche les alliés).'},
+  bolt:{name:'Éclair Sombre',ap:5,type:'mag',power:12,range:[1,4],radius:1,offensive:true,acc:0.9,desc:'Décharge magique en zone.'},
+  curse:{name:'Malédiction',ap:4,type:'debuff',power:0,range:[1,4],radius:1,offensive:true,acc:1,status:'curse',statusTurns:3,desc:'Réduit la défense (END) des ennemis (zone, 3 tours).'},
+  heal:{name:'Lumière Salvatrice',ap:3,type:'heal',power:1.2,range:[0,3],radius:1,support:true,desc:'Soigne les alliés dans la zone.'},
+  regen:{name:'Régénération',ap:4,type:'buff',power:0,range:[0,3],radius:1,support:true,status:'regen',statusTurns:3,desc:'Régénère les PV des alliés chaque tour (3 tours).'},
+  bless:{name:'Bénédiction',ap:4,type:'buff',power:0,range:[0,3],radius:1,support:true,status:'boost',statusTurns:3,desc:'+FOR/+MAG aux alliés (3 tours).'},
+  revive:{name:'Résurrection',ap:5,type:'revive',power:0.5,range:[1,1],radius:0,support:true,desc:'Relève un allié K.O. à 50% PV.'},
+  heavy:{name:'Coup Lourd',ap:4,type:'phys',power:11,range:[1,1],radius:1,offensive:true,acc:0.95,status:'stun',statusTurns:1,desc:'Choc de zone qui étourdit (1 tour).'},
+  blink:{name:'Clignotement',ap:3,type:'move',mode:'teleport',dest:true,range:[2,3],radius:0,desc:'Se repositionne instantanément sur une case libre.'},
+  leap:{name:'Bond',ap:3,type:'move',mode:'leap',dest:true,range:[2,3],radius:0,desc:'Repositionnement rapide vers une case libre.'},
+  charge:{name:'Charge',ap:4,type:'move',mode:'dash',dest:true,range:[2,3],radius:0,power:8,impact:{status:'stun',statusTurns:1},desc:'Charge en ligne droite et etourdit pres de l arrivee.'},
+  boss_slam:{name:'Frappe Sismique',ap:4,type:'phys',power:16,range:[1,2],radius:1.2,offensive:true,acc:0.95,desc:'Coup de zone devastateur autour de la cible.'},
+  boss_roar:{name:'Rugissement',ap:5,type:'debuff',power:0,range:[0,3],radius:2,offensive:true,acc:1,status:'weak',statusTurns:3,desc:'Affaiblit tous les ennemis a portee.'},
+  boss_quake:{name:'Onde de Choc',ap:5,type:'mag',power:14,range:[2,4],radius:1.5,offensive:true,acc:0.85,status:'stun',statusTurns:1,desc:'Explosion magique a distance qui etourdit.'},
+  boss_guard:{name:'Garde',ap:3,type:'buff',power:0,range:[0,0],radius:0,self:true,support:true,status:'barrier',statusTurns:3,desc:'Se protege d une barriere.'}
 };
 
 // ============================= UNIT DEFINITIONS =============================
 const DEFS=[
-  {team:'player',kind:'knight', name:'Chevalier',portrait:'/assets/characters/pixel/full/alistair.png',hp:130,str:24,mag:4, end:20,dex:9, cha:10,mov:2, weapons:[{name:'Épée',icon:'⚔️',type:'phys',min:1,max:1,power:10,crit:0.10,acc:0.95},{name:'Hache',icon:'🪓',type:'phys',min:1,max:1,power:15,crit:0.16,acc:0.80}], skills:['whirl','bulwark','provoke','charge'], gx:0,gz:0},
+  {team:'player',kind:'knight', name:'Chevalier',portrait:'/assets/characters/pixel/full/alistair.png',hp:130,str:24,mag:4, end:20,dex:9, cha:10,mov:2, weapons:[{name:'Épée',icon:'⚔️',type:'phys',min:1,max:1,power:10,crit:0.10,acc:0.95}], skills:['whirl','bulwark','provoke','charge'], gx:0,gz:0},
   {team:'player',kind:'cleric', name:'Clerc',portrait:'/assets/characters/pixel/full/marian.png',    hp:90, str:8, mag:20,end:13,dex:11,cha:18,mov:2, weapons:[{name:'Masse',icon:'🔨',type:'phys',min:1,max:1,power:8,crit:0.06,acc:0.92}], skills:['heal','regen','bless','revive'], gx:0,gz:1},
   {team:'player',kind:'mage',   name:'Mage',portrait:'/assets/characters/pixel/full/elara.png',     hp:70, str:4, mag:26,end:9, dex:12,cha:10,mov:2, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:2,power:8,crit:0.06,acc:0.95}], skills:['fireball','curse','flame_wave','blink'], gx:1,gz:2},
-  {team:'player',kind:'archer', name:'Archère',portrait:'/assets/characters/pixel/full/kestrel.png',  hp:80, str:18,mag:5, end:11,dex:18,cha:9, mov:3, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:8,crit:0.22,acc:0.95},{name:'Arc',icon:'🏹',type:'phys',min:2,max:4,power:9,crit:0.10,acc:0.92}], skills:['weaken','blind_shot','pierce_shot','leap'], gx:1,gz:3},
-  {team:'foe',kind:'brigand', name:'Brigand',portrait:'/assets/characters/pixel/full/serpent_elite_raider.png',  hp:90, str:18,mag:4, end:11,dex:14,cha:6, mov:2, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}], skills:[], ai:'aggressive', gx:6,gz:0},
-  {team:'foe',kind:'brigand', name:'Brigand',portrait:'/assets/characters/pixel/full/serpent_elite_raider.png',  hp:90, str:18,mag:4, end:11,dex:14,cha:6, mov:2, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}], skills:[], ai:'aggressive', gx:6,gz:3},
-  {team:'foe',kind:'brute',   name:'Brute',portrait:'/assets/characters/pixel/full/serpent_elite_brute.png',    hp:130,str:22,mag:4, end:16,dex:7, cha:5, mov:2, weapons:[{name:'Massue',icon:'🏏',type:'phys',min:1,max:1,power:13,crit:0.05,acc:0.85}], skills:['heavy'], ai:'guardian', gx:7,gz:1},
-  {team:'foe',kind:'darkmage',name:'Mage Noir',portrait:'/assets/characters/pixel/full/shadow_omen.png',hp:70, str:4, mag:22,end:10,dex:12,cha:8, mov:2, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}], skills:['bolt','curse'], ai:'cautious', gx:7,gz:2}
+  {team:'player',kind:'archer', name:'Archère',portrait:'/assets/characters/pixel/full/kestrel.png',  hp:80, str:18,mag:5, end:11,dex:18,cha:9, mov:3, weapons:[{name:'Arc',icon:'🏹',type:'phys',min:2,max:4,power:9,crit:0.10,acc:0.92}], skills:['weaken','blind_shot','pierce_shot','leap'], gx:1,gz:3},
+  {team:'foe',kind:'brigand', name:'Brigand',portrait:'/assets/characters/pixel/full/serpent_raider.png',  hp:90, str:18,mag:4, end:11,dex:14,cha:6, mov:2, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}], skills:[], ai:'aggressive', gx:6,gz:0},
+  {team:'foe',kind:'brigand', name:'Brigand',portrait:'/assets/characters/pixel/full/serpent_raider.png',  hp:90, str:18,mag:4, end:11,dex:14,cha:6, mov:2, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}], skills:[], ai:'aggressive', gx:6,gz:3},
+  {team:'foe',kind:'brute',   name:'Brute',portrait:'/assets/characters/pixel/full/serpent_brute.png',    hp:130,str:22,mag:4, end:16,dex:7, cha:5, mov:2, weapons:[{name:'Massue',icon:'🏏',type:'phys',min:1,max:1,power:13,crit:0.05,acc:0.85}], skills:['heavy'], ai:'guardian', gx:7,gz:1},
+  {team:'foe',kind:'darkmage',name:'Mage Noir',portrait:'/assets/characters/pixel/full/serpent_oracle.png',hp:70, str:4, mag:22,end:10,dex:12,cha:8, mov:2, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}], skills:['bolt','curse'], ai:'cautious', gx:7,gz:2}
 ];
 
 const BOSS_DEFS=[
@@ -549,9 +553,9 @@ const BOSS_PORTRAITS={
 };
 const BOSS_ESCORTS={
   serpent_captain:[
-    {team:'foe',kind:'brigand', name:'Garde Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_raider.png',hp:95,str:19,mag:4,end:12,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:[],ai:'aggressive',gx:7,gz:0},
-    {team:'foe',kind:'brigand', name:'Garde Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_raider.png',hp:95,str:19,mag:4,end:12,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:[],ai:'aggressive',gx:7,gz:3},
-    {team:'foe',kind:'darkmage',name:'Oracle Serpent',portrait:'/assets/characters/pixel/full/shadow_omen.png',hp:78,str:4,mag:23,end:10,dex:12,cha:8,mov:2,weapons:[{name:'Bâton',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}],skills:['bolt','curse'],ai:'cautious',gx:4,gz:3}
+    {team:'foe',kind:'brigand', name:'Garde Serpent',portrait:'/assets/characters/pixel/full/serpent_raider.png',hp:95,str:19,mag:4,end:12,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:[],ai:'aggressive',gx:7,gz:0},
+    {team:'foe',kind:'brigand', name:'Garde Serpent',portrait:'/assets/characters/pixel/full/serpent_raider.png',hp:95,str:19,mag:4,end:12,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:[],ai:'aggressive',gx:7,gz:3},
+    {team:'foe',kind:'darkmage',name:'Oracle Serpent',portrait:'/assets/characters/pixel/full/serpent_oracle.png',hp:78,str:4,mag:23,end:10,dex:12,cha:8,mov:2,weapons:[{name:'Bâton',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}],skills:['bolt','curse'],ai:'cautious',gx:4,gz:3}
   ],
   lion_chief:[
     {team:'foe',kind:'knight',name:'Champion du Lion',portrait:'/assets/characters/pixel/full/alaric.png',hp:120,str:22,mag:4,end:17,dex:9,cha:9,mov:2,weapons:[{name:'Lame',icon:'⚔',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.92}],skills:['heavy'],ai:'guardian',gx:7,gz:0},
@@ -560,9 +564,9 @@ const BOSS_ESCORTS={
 };
 
 const VISUAL_UNIT_TEMPLATES={
-  serpent_raider:{team:'foe',kind:'brigand', name:'Pillard Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_raider.png',hp:90,str:18,mag:4,end:11,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:[],ai:'aggressive'},
-  serpent_brute:{team:'foe',kind:'brute',name:'Brute Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_brute.png',hp:130,str:22,mag:4,end:16,dex:7,cha:5,mov:2,weapons:[{name:'Massue',icon:'◆',type:'phys',min:1,max:1,power:13,crit:0.05,acc:0.85}],skills:['heavy'],ai:'guardian'},
-  serpent_oracle:{team:'foe',kind:'darkmage',name:'Oracle Serpent',portrait:'/assets/characters/pixel/full/shadow_omen.png',hp:78,str:4,mag:23,end:10,dex:12,cha:8,mov:2,weapons:[{name:'Bâton',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}],skills:['bolt','curse'],ai:'cautious'},
+  serpent_raider:{team:'foe',kind:'brigand', name:'Pillard Serpent',portrait:'/assets/characters/pixel/full/serpent_raider.png',hp:90,str:18,mag:4,end:11,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:[],ai:'aggressive'},
+  serpent_brute:{team:'foe',kind:'brute',name:'Brute Serpent',portrait:'/assets/characters/pixel/full/serpent_brute.png',hp:130,str:22,mag:4,end:16,dex:7,cha:5,mov:2,weapons:[{name:'Massue',icon:'◆',type:'phys',min:1,max:1,power:13,crit:0.05,acc:0.85}],skills:['heavy'],ai:'guardian'},
+  serpent_oracle:{team:'foe',kind:'darkmage',name:'Oracle Serpent',portrait:'/assets/characters/pixel/full/serpent_oracle.png',hp:78,str:4,mag:23,end:10,dex:12,cha:8,mov:2,weapons:[{name:'Bâton',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}],skills:['bolt','curse'],ai:'cautious'},
   serpent_elite_raider:{team:'foe',kind:'brigand', name:'Duelliste Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_raider.png',hp:112,str:21,mag:5,end:13,dex:17,cha:8,mov:3,weapons:[{name:'Lame courbe',icon:'†',type:'phys',min:1,max:1,power:11,crit:0.22,acc:0.95}],skills:['weaken'],ai:'aggressive'},
   serpent_elite_brute:{team:'foe',kind:'brute',name:'Massacreur Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_brute.png',hp:155,str:25,mag:4,end:19,dex:7,cha:7,mov:2,weapons:[{name:'Masse lourde',icon:'◆',type:'phys',min:1,max:1,power:15,crit:0.06,acc:0.84}],skills:['heavy','provoke'],ai:'guardian'},
   wolf:{team:'foe',kind:'brigand',name:'Loup',portrait:'/assets/characters/pixel/full/wolf.png',hp:82,str:19,mag:2,end:10,dex:18,cha:4,mov:3,weapons:[{name:'Morsure',icon:'◆',type:'phys',min:1,max:1,power:10,crit:0.12,acc:0.94}],skills:[],ai:'aggressive'},
@@ -602,7 +606,7 @@ const STATUS={
 };
 const ITEMS={
   potion:  {name:'Potion',  effect:'heal', flatHeal:55, range:[0,1], radius:0,   desc:'Rend 55 PV à un allié proche.'},
-  ether:   {name:'Éther',   effect:'ap',   apRestore:2, range:[0,1], radius:0,   desc:'Rend 2 AP à un allié proche.'},
+  ether:   {name:'Éther',   effect:'ap',   apRestore:3, range:[0,1], radius:0,   desc:'Rend 3 AP à un allié proche.'},
   antidote:{name:'Antidote',effect:'cure',              range:[0,1], radius:0,   desc:'Dissipe les altérations négatives d’un allié.'},
   bomb:    {name:'Bombe',   effect:'bomb', flatDmg:42,  range:[1,4], radius:1.2, desc:'Explosion de zone : dégâts aux unités touchées.'}
 };
@@ -611,7 +615,7 @@ function hasS(u,s){ return (u.statuses[s]||0)>0; }
 function statMul(u,key){ let m=1; for(const s in u.statuses){ const d=STATUS[s]; if(d&&u.statuses[s]>0&&d[key]!=null) m*=d[key]; } return m; }
 function effSTR(u){ return u.str*statMul(u,'str'); }
 function effMAG(u){ return u.mag*statMul(u,'mag'); }
-function effEND(u){ return u.end*statMul(u,'end'); }
+function effEND(u){ return u.end*statMul(u,'end') + Math.min(u.gardeAP||0, 3) * 2; }
 function dmgTakenMul(u){ let m=1; for(const s in u.statuses){ const d=STATUS[s]; if(d&&u.statuses[s]>0&&d.dmgTaken) m*=d.dmgTaken; } return m; }
 
 // ---- blob shadow + selectors ----
@@ -685,7 +689,7 @@ function createUnit(def){
     id:++UID, campaignId:def.campaignId||null, portrait:def.portrait||'', team:def.team, kind:def.kind, name:def.name,
     maxhp:def.maxhp||def.hp, hp:Math.min(def.hp,def.maxhp||def.hp), str:def.str, mag:def.mag, end:def.end, dex:def.dex, cha:def.cha,
     mov:def.mov, weapons:def.weapons, skills:def.skills.slice(), skillUpgrades:def.skillUpgrades||{}, ai:def.ai||'aggressive',
-    ap:0, maxap:5, gx:def.gx, gz:def.gz, alive:true, statuses:{},
+    ap:0, maxap:6, gx:def.gx, gz:def.gz, alive:true, statuses:{}, gardeAP:0, _souffle:false,
     size:def.size||1, immobile:!!def.immobile, boss:!!def.boss,
     facing:def.team==='player'?{dx:1,dz:0}:{dx:-1,dz:0},
     grp, spr, outline, mat, blob, teamGlow, teamRingUnder, teamRing, baseY:s.h*0.5,
@@ -784,8 +788,8 @@ function tickStatusDuration(u){ for(const s in u.statuses){ u.statuses[s]--; if(
 function buildOrder(){ return aliveUnits().sort((a,b)=> (effDEX(b)-effDEX(a)) || (a.team===b.team? a.id-b.id : (a.team==='player'?-1:1))); }
 function startRound(){ if(checkEnd())return; G.round++; G.order=buildOrder(); G.turnIdx=-1; logMsg('— Manche '+G.round+' —'); nextTurn(); }
 function nextTurn(){ if(G.over||checkEnd())return; G.turnIdx++; if(G.turnIdx>=G.order.length){ startRound(); return; } const u=G.order[G.turnIdx]; if(!u||!u.alive){ nextTurn(); return; } beginTurn(u); }
-async function beginTurn(u){ if(G.over)return; G.active=u; G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.startGX=u.gx; G.startGZ=u.gz;
-  u.ap=Math.min(u.maxap,u.ap+1);
+async function beginTurn(u){ if(G.over)return; G.active=u; G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.basicAttacksThisTurn=0; G.startGX=u.gx; G.startGZ=u.gz;
+  const regen=u.boss?4:(u._souffle?3:2); u.ap=Math.min(u.maxap,u.ap+regen); u._souffle=false; u.gardeAP=0;
   refreshTurnbar(); selectUnit(u); focusCam(u);
   await tickStatusDamage(u); if(G.over)return; if(!u.alive){ nextTurn(); return; }
   const sk=statusSkips(u); tickStatusDuration(u); if(!hasS(u,'taunt'))u._taunter=null; refreshPanel(u);
@@ -793,7 +797,7 @@ async function beginTurn(u){ if(G.over)return; G.active=u; G.pinnedUnit=null; hi
   if(u.team==='player'){ G.mode='menu'; setHint(u.name+' — à vous de jouer'); openActionMenu(); }
   else { G.mode='ai'; closeMenus(); setHint(u.name+' (ennemi)…'); await wait(0.35); await aiTurn(u); }
 }
-function endTurn(){ if(G.busy||G.over)return; unitFocus.restore(); hideActionPreview(); closeMenus(); clearHL(); G.pending=null; G.mode='idle'; nextTurn(); }
+function endTurn(){ if(G.busy||G.over)return; const u=G.active; if(u){ u._souffle=u.ap>=1; u.gardeAP=u.ap; } unitFocus.restore(); hideActionPreview(); closeMenus(); clearHL(); G.pending=null; G.mode='idle'; nextTurn(); }
 function checkEnd(){ if(G.over)return true; if(aliveUnits('foe').length===0){ winWave(); return true; } if(aliveUnits('player').length===0){ endGame(false); return true; } return false; }
 
 // ============================= COMBAT & AOE =============================
@@ -812,7 +816,7 @@ function vfx(type,pos){ const C={fire:{c:0xff8a3a,n:18,up:1.3,smoke:1},dark:{c:0
   if(C.smoke){ for(let i=0;i<6;i++){ const sm=new THREE.Mesh(new THREE.SphereGeometry(rnd(0.14,0.24),6,6),new THREE.MeshBasicMaterial({color:0x2a2630,transparent:true,opacity:.5})); sm.position.copy(pos); sm.position.x+=rnd(-0.3,0.3); scene.add(sm); tween(sm.position,{y:pos.y+1.5},0.85,easeOutCubic); tween(sm.material,{opacity:0},0.85,easeOutCubic,()=>scene.remove(sm)); } } }
 
 function orientMult(att,tgt){ const ax=(att.size>1?bossCenterGX(att):att.gx)-tgt.gx, az=(att.size>1?bossCenterGZ(att):att.gz)-tgt.gz; const len=Math.hypot(ax,az)||1; const d=tgt.facing.dx*(ax/len)+tgt.facing.dz*(az/len); if(d>0.55)return{m:1.0,lab:'face'}; if(d<-0.55)return{m:1.3,lab:'DOS'}; return{m:1.15,lab:'flanc'}; }
-function computeDamage(att,tgt,spec){ const K=15, isMag=spec.type==='mag'; const atkStat=isMag?effMAG(att):effSTR(att); const def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); const o=orientMult(att,tgt); let d=Math.sqrt(spec.power*K*atkStat/def)*2*o.m*dmgTakenMul(tgt)*rnd(0.92,1.08); return {dmg:Math.max(1,Math.round(d)),lab:o.lab}; }
+function computeDamage(att,tgt,spec){ const K=15, isMag=spec.type==='mag'; const atkStat=isMag?effMAG(att):effSTR(att); let def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); if(spec.elanPierce) def=Math.max(1,def*(1-spec.elanPierce)); const o=orientMult(att,tgt); let d=Math.sqrt(spec.power*K*atkStat/def)*2*o.m*dmgTakenMul(tgt)*rnd(0.92,1.08); if(spec.elanMul) d*=spec.elanMul; return {dmg:Math.max(1,Math.round(d)),lab:o.lab}; }
 const FX_COL={phys:0xff7a4a,mag:0xb06aff,heal:0x7ed957,buff:0xffd27a,debuff:0xb06aff,move:0x5ad1ff};
 function fxColor(spec){ return FX_COL[spec.heal?'heal':(spec.revive?'heal':spec.type)]||0xfff0b0; }
 function castTelegraph(u,spec){ const c=u.cell(); if(!c)return; const col=fxColor(spec);
@@ -823,9 +827,9 @@ function castTelegraph(u,spec){ const c=u.cell(); if(!c)return; const col=fxColo
   tween(m.material,{opacity:.9},0.12,easeOutCubic,()=>tween(m.material,{opacity:0},0.36,easeOutCubic,()=>{ scene.remove(m); m.geometry.dispose(); m.material.dispose(); }));
   burst(new THREE.Vector3(wX(ux),c.topY+0.5,wZ(uz)),col); }
 function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*100:5; return cl(base+Math.max(0,(effDEX(att)-effDEX(tgt))/2),1,90)/100; }
-function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return true; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; return Math.random()*100<cl(acc,5,95); }
+function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return true; if(spec.elanAcc!=null&&spec.elanAcc>=1)return true; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; return Math.random()*100<cl(acc,5,95); }
 
-async function applyDamage(u,dmg,src){ u.hp=Math.max(0,u.hp-dmg); flashUnit(u,'#ff6a5a'); if(u.spr){ const dir=u.facing.dx<0?-1:1; killTweens(u.spr.position); u.spr.position.x=0; tween(u.spr.position,{x:0.16*dir},0.05,easeOutCubic,()=>tween(u.spr.position,{x:0},0.14,easeOutCubic)); } screenShake(0.16,0.16); refreshPanel(u); if(u.hp<=0&&u.alive){ await knockOut(u,src); checkEnd(); } }
+async function applyDamage(u,dmg,src){ u.hp=Math.max(0,u.hp-dmg); flashUnit(u,'#ff6a5a'); if(u.spr){ const dir=u.facing.dx<0?-1:1; killTweens(u.spr.position); u.spr.position.x=0; tween(u.spr.position,{x:0.16*dir},0.05,easeOutCubic,()=>tween(u.spr.position,{x:0},0.14,easeOutCubic)); } screenShake(0.16,0.16); refreshPanel(u); if(u.hp<=0&&u.alive){ await knockOut(u,src); if(src&&src.alive){ src.ap=Math.min(src.maxap,src.ap+1); if(src===G.active) G.basicAttacksThisTurn=0; floatText(src,'+1 AP','#7fd0ff',true); refreshPanel(src); } checkEnd(); } }
 function applyHeal(u,amt){ if(!u.alive)return; u.hp=Math.min(u.maxhp,u.hp+amt); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
 function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; t.statuses[st]=Math.max(t.statuses[st]||0,turns||2); floatText(t,(d.name||st).toUpperCase(),d.col||'#fff'); refreshPanel(t); }
 async function knockOut(u,src){ u.alive=false; u.downed=true; const state=getUnitVisualState(u.team,u.alive,u.downed); if(u.size>1)clearBossCells(u); else { const c=u.cell(); if(c&&c.occupant===u)c.occupant=null; } floatText(u,'K.O.','#ff5a4a',true); logMsg(u.name+' est K.O. !'); screenShake(0.5,0.4); screenFlash('#ff5a4a',0.22); tween(u.spr.scale,{y:0.32},0.4,easeOutCubic); tween(u.spr.rotation,{z:(u.facing.dx<0?-1:1)*1.15},0.4); tween(u.mat,{opacity:state.bodyOpacity},0.4); tween(u.blob.material,{opacity:state.shadowOpacity},0.4); if(u.teamRing)tween(u.teamRing.material,{opacity:0},0.4); refreshTurnbar(); await wait(0.42); u.grp.visible=state.visible; }
@@ -844,7 +848,14 @@ function applySkillUpgrade(u,skillId,spec){
   if(level>=2&&out.dest&&out.ap>1) out.ap-=1;
   return out;
 }
-function getSpec(u,which,wi){ if(which==='attack'){ const w=(u.weapons&&u.weapons[wi||0])||(u.weapons&&u.weapons[0])||{name:'Attaque',type:'phys',min:1,max:1,power:8,crit:0.05,acc:0.9}; return {key:'attack',wi:(wi||0),name:w.name,icon:w.icon,ap:0,type:w.type,power:w.power,range:[w.min,w.max],radius:0,offensive:true,self:false,acc:w.acc,crit:w.crit}; }
+function getSpec(u,which,wi){ if(which==='attack'){ const w=(u.weapons&&u.weapons[wi||0])||(u.weapons&&u.weapons[0])||{name:'Attaque',type:'phys',min:1,max:1,power:8,crit:0.05,acc:0.9};
+    const elanLevel=G.basicAttacksThisTurn;
+    const apCost=elanLevel+1;
+    const elanMul=1+0.3*elanLevel;
+    const elanPierce=elanLevel>=2?0.5:0;
+    const elanAcc=elanLevel>=2?1.0:w.acc;
+    const labels=['Attaque','Attaque+','Attaque++'];
+    return {key:'attack',wi:(wi||0),name:labels[Math.min(elanLevel,2)],icon:w.icon,ap:apCost,type:w.type,power:w.power,range:[w.min,w.max],radius:0,offensive:true,self:false,acc:w.acc,crit:w.crit,elanLevel,elanMul,elanPierce,elanAcc}; }
   const s=SKILLS[which]; return applySkillUpgrade(u,which,{key:which,name:s.name,ap:s.ap,type:s.type,power:s.power||0,range:s.self?[0,0]:s.range,radius:s.radius,shape:s.shape,mode:s.mode,dest:!!s.dest,impact:s.impact,status:s.status,statusTurns:s.statusTurns,acc:s.acc,support:!!s.support,offensive:!!s.offensive,self:!!s.self,heal:s.type==='heal',revive:s.type==='revive'}); }
 function rangeCells(u,spec){ if(spec.self)return [{gx:u.gx,gz:u.gz}]; const ux=u.size>1?bossCenterGX(u):u.gx, uz=u.size>1?bossCenterGZ(u):u.gz; const out=[]; for(let gx=0;gx<CFG.W;gx++)for(let gz=0;gz<CFG.D;gz++){ const md=Math.abs(gx-ux)+Math.abs(gz-uz); if(md<spec.range[0]||md>spec.range[1])continue; if(spec.revive){ if(!G.units.some(x=>!x.alive&&x.downed&&x.team===u.team&&x.gx===gx&&x.gz===gz))continue; } if(spec.item&&spec.support){ const oc=cellAt(gx,gz)?.occupant; if(!(oc&&oc.alive&&oc.team===u.team))continue; } if(spec.dest){ const dc=cellAt(gx,gz); if(!dc||!dc.walkable||(dc.occupant&&dc.occupant!==u))continue; if(spec.mode==='dash'&&gx!==u.gx&&gz!==u.gz)continue; if(spec.mode==='dash'&&!clearLine(u,gx,gz))continue; } out.push({gx,gz}); } return out; }
 function clearLine(u,gx,gz){ const dx=Math.sign(gx-u.gx), dz=Math.sign(gz-u.gz); let x=u.gx+dx, z=u.gz+dz, g=0; while((x!==gx||z!==gz)&&g++<40){ const c=cellAt(x,z); if(!c||!c.walkable||c.occupant)return false; x+=dx; z+=dz; } return true; }
@@ -855,8 +866,8 @@ function coneCells(u,cx,cz,radius){ const d=dirTo(u,cx,cz); const R=radius+0.001
 function aoeCells(u,spec,cx,cz){ const sh=spec.shape||'circle'; if(sh==='line')return lineCells(u,cx,cz,spec.radius); if(sh==='cone')return coneCells(u,cx,cz,spec.radius); return aoeTiles(cx,cz,spec.radius); }
 function canAffectUnit(caster,spec,target){ if(!target)return false; if(spec.offensive&&target===caster&&!spec.allowSelfDamage)return false; return true; }
 function affectedUnits(u,spec,cx,cz){ if(spec.revive){ const ko=G.units.find(x=>!x.alive&&x.downed&&x.team===u.team&&x.gx===cx&&x.gz===cz); return ko?[ko]:[]; } const set=[]; for(const [gx,gz] of aoeCells(u,spec,cx,cz)){ const c=cellAt(gx,gz); if(c&&c.occupant&&c.occupant.alive&&canAffectUnit(u,spec,c.occupant))set.push(c.occupant); } if(spec.heal||spec.support)return set.filter(t=>t.team===u.team); return set; }
-function previewAccuracy(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return 100; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; return Math.round(cl(acc,5,95)); }
-function previewPower(att,tgt,spec){ if(spec.heal)return Math.max(1,(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(att)*spec.power))+Math.floor(effCHA(att)/4)); if(spec.apRestore)return spec.apRestore; if((spec.power||0)<=0)return 0; if(spec.flatDmg)return Math.max(1,Math.round(spec.flatDmg)); const K=15,isMag=spec.type==='mag'; const atk=isMag?effMAG(att):effSTR(att); const def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); return Math.max(1,Math.round(Math.sqrt(spec.power*K*atk/def)*2*orientMult(att,tgt).m*dmgTakenMul(tgt))); }
+function previewAccuracy(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return 100; if(spec.elanAcc!=null&&spec.elanAcc>=1)return 100; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; return Math.round(cl(acc,5,95)); }
+function previewPower(att,tgt,spec){ if(spec.heal)return Math.max(1,(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(att)*spec.power))+Math.floor(effCHA(att)/4)); if(spec.apRestore)return spec.apRestore; if((spec.power||0)<=0)return 0; if(spec.flatDmg)return Math.max(1,Math.round(spec.flatDmg)); const K=15,isMag=spec.type==='mag'; const atk=isMag?effMAG(att):effSTR(att); let def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); if(spec.elanPierce) def=Math.max(1,def*(1-spec.elanPierce)); let d=Math.sqrt(spec.power*K*atk/def)*2*orientMult(att,tgt).m*dmgTakenMul(tgt); if(spec.elanMul) d*=spec.elanMul; return Math.max(1,Math.round(d)); }
 function hideActionPreview(){ dom.actionPreview.classList.add('hidden'); dom.actionPreview.innerHTML=''; }
 function showActionPreview(att,spec,targets,cx,cz){ const primary=targets[0]||null; const helpful=Boolean(spec.heal||spec.support||spec.revive||spec.apRestore||spec.cure); const alliesHit=targets.filter(t=>t.team===att.team&&!helpful).length; const estimate=primary?previewPower(att,primary,spec):0; const accuracy=primary?previewAccuracy(att,primary,spec):null; const valueLabel=spec.heal?'Soin':spec.apRestore?'AP':'Dégâts'; const targetLabel=primary?primary.name:(spec.type==='move'?('Case '+cx+','+cz):'Aucune cible');
   dom.actionPreview.innerHTML='<div class="action-preview__unit"><small>Lanceur</small><b>'+att.name+'</b></div><span class="action-preview__arrow">→</span><div class="action-preview__act"><small>'+((helpful)?'Soutien':'Action')+'</small><b>'+(spec.icon||'✦')+' '+spec.name+'</b>'+(estimate?'<em>'+valueLabel+' ~'+estimate+(accuracy!=null&&!helpful?' · '+accuracy+'%':'')+'</em>':'')+'</div><span class="action-preview__arrow">→</span><div class="action-preview__unit"><small>Cible'+(targets.length>1?'s':'')+'</small><b>'+targetLabel+(targets.length>1?' ×'+targets.length:'')+'</b></div>'+(alliesHit?'<strong class="action-preview__warning">⚠ '+alliesHit+' allié'+(alliesHit>1?'s':'')+' touché'+(alliesHit>1?'s':'')+'</strong>':'');
@@ -881,7 +892,7 @@ async function doMove(u,spec,cx,cz){ setFacing(u,cx,cz); const c=cellAt(cx,cz); 
     if(spec.impact){ const hits=aliveUnits().filter(t=>t.team!==u.team&&(Math.abs(t.gx-cx)+Math.abs(t.gz-cz)===1)); for(const t of hits){ const {dmg}=computeDamage(u,t,{type:'phys',power:spec.power||8}); floatText(t,'-'+dmg,'#ffffff',true); await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&spec.impact.status)applyStatus(t,spec.impact.status,spec.impact.statusTurns); await wait(0.06); } } }
   await wait(0.12); }
 async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPreview(); G.busy=true; closeMenus(); clearHL();
-  if(spec.type==='move'){ await doMove(u,spec,cx,cz); if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap); G.actedThisTurn=true; G.movedThisTurn=true; refreshPanel(u); restoreCam(); G.busy=false; checkEnd(); return; }
+  if(spec.type==='move'){ await doMove(u,spec,cx,cz); if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap); G.movedThisTurn=true; refreshPanel(u); restoreCam(); G.busy=false; checkEnd(); return; }
   if(!spec.self)setFacing(u,cx,cz);
   const targets=affectedUnits(u,spec,cx,cz);
   logMsg(u.name+' → '+spec.name);
@@ -902,13 +913,14 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
       if(lab==='DOS')floatText({grp:{position:t.grp.position.clone().add(new THREE.Vector3(0,0.3,0))},gx:t.gx,gz:t.gz},'DOS !','#ff5a4a');
       await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } } await wait(0.15); }
   if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap);
-  if(G.movedThisTurn)G.movedBeforeAct=true; G.actedThisTurn=true; refreshPanel(u); await combatStageExit(); G.busy=false; checkEnd();
+  if(spec.key==='attack'){ G.basicAttacksThisTurn++; }
+  if(G.movedThisTurn)G.movedBeforeAct=true; refreshPanel(u); await combatStageExit(); G.busy=false; checkEnd();
 }
 
 // ============================= ENEMY AI =============================
 function simAt(u,st){ return Object.assign(Object.create(Object.getPrototypeOf(u)),u,{gx:st.gx,gz:st.gz}); }
 function nearestDist(st,arr){ let m=1e9; for(const a of arr){ const d=Math.abs(st.gx-a.gx)+Math.abs(st.gz-a.gz); if(d<m)m=d; } return m; }
-function bestOffense(u,stands,taunter){ const specs=[...(u.weapons||[]).map((w,i)=>getSpec(u,'attack',i)), ...u.skills.filter(s=>SKILLS[s].offensive&&SKILLS[s].ap<=u.ap).map(s=>getSpec(u,s))]; let best=null;
+function bestOffense(u,stands,taunter){ const specs=[...(u.weapons||[]).map((w,i)=>getSpec(u,'attack',i)).filter(s=>s.ap<=u.ap), ...u.skills.filter(s=>SKILLS[s].offensive&&SKILLS[s].ap<=u.ap).map(s=>getSpec(u,s))]; let best=null;
   for(const st of stands){ const sim=simAt(u,st);
     for(const spec of specs){ for(const c of rangeCells(sim,spec)){ const aff=affectedUnits(sim,spec,c.gx,c.gz);
       const en=aff.filter(t=>t.team!==u.team), al=aff.filter(t=>t.team===u.team&&t!==u);
@@ -917,6 +929,26 @@ function bestOffense(u,stands,taunter){ const specs=[...(u.weapons||[]).map((w,i
       for(const t of al){ const {dmg}=computeDamage(sim,t,spec); score-=dmg*1.6; }
       if(taunter&&en.includes(taunter))score+=50;
       if(!best||score>best.score) best={score,st,spec,cx:c.gx,cz:c.gz}; } } }
+  return best; }
+function bestSupport(u,stands){ const supSpecs=u.skills.map(s=>getSpec(u,s)).filter(s=>(s.heal||s.support)&&s.ap<=u.ap); if(!supSpecs.length)return null;
+  const allies=aliveUnits(u.team).filter(a=>a!==u); const wounded=[u,...allies].filter(a=>a.alive&&a.hp<a.maxhp*0.75);
+  if(!wounded.length)return null; let best=null;
+  for(const spec of supSpecs){ for(const st of stands){ const sim=simAt(u,st);
+    for(const c of rangeCells(sim,spec)){ const aff=affectedUnits(sim,spec,c.gx,c.gz).filter(t=>wounded.includes(t)); if(!aff.length)continue;
+      let sc=aff.length*10 - st.d*0.4 + aff.reduce((m,t)=>m+(1-t.hp/t.maxhp),0)*8;
+      if(spec.cure){ const neg=aff.filter(t=>Object.keys(t.statuses).some(s=>isNegative(s)&&hasS(t,s))); if(neg.length)sc+=neg.length*6; }
+      if(!best||sc>best.score) best={score:sc,spec,cx:c.gx,cz:c.gz}; } } }
+  return best; }
+function bestItem(u,stands){ if(u.ap<1)return null; const allies=aliveUnits(u.team); let best=null;
+  for(const id in ITEMS){ if((G.inv[id]||0)<=0)continue; const spec=itemSpec(id); if(spec.ap>u.ap)continue;
+    for(const st of stands){ const sim=simAt(u,st);
+      for(const c of rangeCells(sim,spec)){ const aff=affectedUnits(sim,spec,c.gx,c.gz); if(!aff.length)continue;
+        let sc=0;
+        if(spec.heal){ const w=aff.filter(t=>t.team===u.team&&t.alive&&t.hp<t.maxhp*0.6); if(!w.length)continue; sc=w.reduce((m,t)=>m+(1-t.hp/t.maxhp),0)*12; }
+        else if(spec.apRestore){ const w=aff.filter(t=>t.team===u.team&&t.alive&&t.ap<t.maxap-1); if(!w.length)continue; sc=w.length*8+w.reduce((m,t)=>m+(t.maxap-t.ap)*0.5,0); }
+        else if(spec.cure){ const w=aff.filter(t=>t.team===u.team&&t.alive&&Object.keys(t.statuses).some(s=>isNegative(s)&&hasS(t,s))); if(!w.length)continue; sc=w.length*10; }
+        else if(spec.offensive){ const en=aff.filter(t=>t.team!==u.team); if(!en.length)continue; sc=en.reduce((m,t)=>m+(spec.flatDmg||0),0)*0.8; }
+        if(sc>0&&(!best||sc>best.score)) best={score:sc,spec,cx:c.gx,cz:c.gz}; } } }
   return best; }
 async function aiTurn(u){
   if(G.over)return;
@@ -927,34 +959,53 @@ async function aiTurn(u){
   const {list,prev}=reachableStand(u);
   const stands=[{gx:u.gx,gz:u.gz,d:0},...list];
 
-  // SOIGNEUR : priorité aux soins/buffs d'un allié blessé
-  if(prof==='healer'){ const supSpecs=u.skills.map(s=>getSpec(u,s)).filter(s=>(s.heal||s.support)&&s.ap<=u.ap);
-    const wounded=[u,...allies].filter(a=>a.alive&&a.hp<a.maxhp*0.75);
-    if(supSpecs.length&&wounded.length){ const healSpec=supSpecs.find(s=>s.heal)||supSpecs[0]; let pickH=null;
-      for(const st of stands){ const sim=simAt(u,st); for(const c of rangeCells(sim,healSpec)){ const aff=affectedUnits(sim,healSpec,c.gx,c.gz).filter(t=>wounded.includes(t)); if(!aff.length)continue; const sc=aff.length*10 - st.d*0.4 + aff.reduce((m,t)=>m+(1-t.hp/t.maxhp),0)*8; if(!pickH||sc>pickH.score)pickH={score:sc,st,cx:c.gx,cz:c.gz}; } }
-      if(pickH){ if(pickH.st.gx!==u.gx||pickH.st.gz!==u.gz){ await moveAlong(u,buildPath(prev,u,pickH.st.gx,pickH.st.gz)); await wait(0.12);} await executeAction(u,healSpec,pickH.cx,pickH.cz); await wait(0.18); endTurn(); return; } } }
-
-  // OFFENSE : meilleure attaque possible (le campeur reste sur place)
-  const atkStands = (prof==='camper'||u.immobile) ? [{gx:u.gx,gz:u.gz,d:0}] : stands;
+  // MOVEMENT: evaluate best position considering offense AND support
+  const atkStands=(prof==='camper'||u.immobile)?[{gx:u.gx,gz:u.gz,d:0}]:stands;
   const best=bestOffense(u,atkStands,taunter);
-  if(best&&best.score>0){
-    if(best.st.gx!==u.gx||best.st.gz!==u.gz){ await moveAlong(u,buildPath(prev,u,best.st.gx,best.st.gz)); await wait(0.15); }
-    await executeAction(u,best.spec,best.cx,best.cz); await wait(0.2); endTurn(); return;
+  const supBefore=bestSupport(u,atkStands);
+  // Healer prioritizes support position; others prioritize offense
+  let moveTarget=null;
+  if(prof==='healer'&&supBefore&&(!best||supBefore.score>best.score*0.5)){ moveTarget=supBefore; }
+  else if(best&&best.score>0){ moveTarget=best; }
+  if(moveTarget){
+    // Find which stand the moveTarget came from
+    const moveSt=atkStands.find(st=>{ const sim=simAt(u,st); return rangeCells(sim,moveTarget.spec).some(c=>c.gx===moveTarget.cx&&c.gz===moveTarget.cz); });
+    if(moveSt&&(moveSt.gx!==u.gx||moveSt.gz!==u.gz)){ await moveAlong(u,buildPath(prev,u,moveSt.gx,moveSt.gz)); await wait(0.15); }
+  } else {
+    let tgt=foes[0],bd=1e9; for(const f of foes){ const d=gdist(u,f); if(d<bd){bd=d;tgt=f;} }
+    if(taunter)tgt=taunter;
+    if(prof==='camper'||u.immobile){ setFacing(u,tgt.gx,tgt.gz); await wait(0.2); endTurn(); return; }
+    const lowHP=u.hp<u.maxhp*0.3; let pick=stands[0],bestSc=-1e9;
+    for(const st of stands){ const dN=Math.abs(st.gx-tgt.gx)+Math.abs(st.gz-tgt.gz); let sc;
+      if(prof==='cautious'){ sc = lowHP ? dN - st.d*0.1 : -Math.abs(dN-4)*1.2 - st.d*0.05; }
+      else if(prof==='healer'){ sc = -dN*0.4 - st.d*0.05 - (allies.length?nearestDist(st,allies)*0.6:0); }
+      else if(prof==='guardian'){ sc = -dN - st.d*0.05 - (allies.length?nearestDist(st,allies)*0.3:0); }
+      else { sc = -dN - st.d*0.1; }
+      if(sc>bestSc){ bestSc=sc; pick=st; } }
+    if(pick&&(pick.gx!==u.gx||pick.gz!==u.gz)) await moveAlong(u,buildPath(prev,u,pick.gx,pick.gz));
+    setFacing(u,tgt.gx,tgt.gz); await wait(0.25); endTurn(); return;
   }
 
-  // Pas d'attaque possible : repositionnement selon le profil
-  let tgt=foes[0],bd=1e9; for(const f of foes){ const d=gdist(u,f); if(d<bd){bd=d;tgt=f;} }
-  if(taunter)tgt=taunter;
-  if(prof==='camper'||u.immobile){ setFacing(u,tgt.gx,tgt.gz); await wait(0.2); endTurn(); return; }
-  const lowHP=u.hp<u.maxhp*0.3; let pick=stands[0],bestSc=-1e9;
-  for(const st of stands){ const dN=Math.abs(st.gx-tgt.gx)+Math.abs(st.gz-tgt.gz); let sc;
-    if(prof==='cautious'){ sc = lowHP ? dN - st.d*0.1 : -Math.abs(dN-4)*1.2 - st.d*0.05; }
-    else if(prof==='healer'){ sc = -dN*0.4 - st.d*0.05 - (allies.length?nearestDist(st,allies)*0.6:0); }
-    else if(prof==='guardian'){ sc = -dN - st.d*0.05 - (allies.length?nearestDist(st,allies)*0.3:0); }
-    else { sc = -dN - st.d*0.1; }
-    if(sc>bestSc){ bestSc=sc; pick=st; } }
-  if(pick&&(pick.gx!==u.gx||pick.gz!==u.gz)) await moveAlong(u,buildPath(prev,u,pick.gx,pick.gz));
-  setFacing(u,tgt.gx,tgt.gz); await wait(0.25); endTurn();
+  // ACTION LOOP: evaluate offense, support, and items each iteration
+  let safety=0;
+  const here=[{gx:u.gx,gz:u.gz,d:0}];
+  while(!G.over&&u.alive&&safety++<8){
+    const actBest=bestOffense(u,here,taunter);
+    const supBest=bestSupport(u,here);
+    const itmBest=bestItem(u,here);
+    // Priority: healer prefers support; low-HP units prefer items; otherwise offense
+    let pick=null;
+    if(prof==='healer'&&supBest&&supBest.score>5){ pick={type:'support',best:supBest}; }
+    else if(u.hp<u.maxhp*0.3&&itmBest&&itmBest.score>5){ pick={type:'item',best:itmBest}; }
+    else if(actBest&&actBest.score>0){ pick={type:'offense',best:actBest}; }
+    else if(supBest&&supBest.score>0){ pick={type:'support',best:supBest}; }
+    else if(itmBest&&itmBest.score>0){ pick={type:'item',best:itmBest}; }
+    if(!pick)break;
+    const spec=pick.best.spec;
+    if(spec.ap>u.ap)break;
+    await executeAction(u,spec,pick.best.cx,pick.best.cz); await wait(0.2);
+  }
+  endTurn();
 }
 
 // ============================= CAMERA CONTROL =============================
@@ -1004,7 +1055,8 @@ function previewAt(cx,cz){ drawRange(); const sp=G.pending.spec,hoverCell=cellAt
     if(occ&&occ.alive){ col=(sp.heal||sp.revive)?0x7ed957:(occ.team===G.active.team?CFG.COL.ally:CFG.COL.foe); op=COMBAT_PRESENTATION.arena.targetTileOpacity+(occ.team===G.active.team?0.02:0.1); kind=occ.team===G.active.team?'hover':'target'; }
     else if(sp.revive){ const ko=G.units.find(x=>!x.alive&&x.downed&&x.gx===gx&&x.gz===gz); if(ko){col=0x7ed957;op=COMBAT_PRESENTATION.arena.targetTileOpacity+.08;kind='hover';} }
     addHL(gx,gz,col,op,kind); if(occ&&occ.alive&&G.active&&occ.team!==G.active.team)addRingHL(gx,gz,CFG.COL.foe,COMBAT_PRESENTATION.arena.targetTileOpacity+.18); } }
-function enterTarget(spec){ if(G.busy)return; if(G.actedThisTurn){ toast('Action déjà utilisée'); return; } if(spec.ap>G.active.ap){ toast('AP insuffisants'); return; }
+function enterTarget(spec){ if(G.busy)return;
+  if(spec.ap>G.active.ap){ toast('AP insuffisants'); return; }
   const centers=rangeCells(G.active,spec); if(!centers.length){ toast('Aucune cible à portée'); return; }
   G.mode='target'; G.pending={spec,centers,keys:new Set(centers.map(c=>c.gx+','+c.gz))}; closeMenus(false);
   const validTargets=[...new Set(centers.flatMap(c=>affectedUnits(G.active,spec,c.gx,c.gz)))];
@@ -1015,7 +1067,10 @@ function cancelToMenu(){ if(G.busy)return; if(G.mode==='move'||G.mode==='target'
 
 async function doExecute(spec,cx,cz){ await executeAction(G.active,spec,cx,cz); afterSub(); }
 function afterSub(){ unitFocus.restore(); hideActionPreview(); if(G.over)return; G.mode='menu'; selectUnit(G.active); openActionMenu();
-  if(G.movedThisTurn&&G.actedThisTurn) setHint('Tour terminé — Entrée pour attendre'); else setHint(G.active.name+' — choisissez une action'); }
+  const u=G.active;
+  const nextAtkCost=G.basicAttacksThisTurn+1;
+  const canAct = (u.ap>=nextAtkCost) || u.skills.some(s=>getSpec(u,s).ap<=u.ap) || (u.ap>=1 && invCount()>0);
+  if(!canAct && G.movedThisTurn) setHint('Tour terminé — Entrée pour attendre'); else setHint(u.name+' — choisissez une action'); }
 function undoMove(){ if(G.busy||!G.movedThisTurn||G.movedBeforeAct||G.startGX==null)return; unitFocus.restore(); const u=G.active; placeUnit(u,G.startGX,G.startGZ,true); G.movedThisTurn=false; clearHL(); G.mode='menu'; selectUnit(u); openActionMenu(); setHint(u.name+' — déplacement annulé'); }
 
 function transientInspect(u){ if(!u)return; const key=u.campaignId||u.id||u.name; if(statsPanelKey!==key){statsPanelKey=key;statsPanelExpanded=false;} G.selected=u; renderPanel(u); }
@@ -1108,18 +1163,27 @@ function closeMenus(){ dom.menu.classList.add('hidden'); dom.skillmenu.classList
 function tipFor(u,b){ const a=b.dataset.a;
   if(a==='move')return 'Déplacer · MOV '+u.mov;
   if(a==='undo')return 'Annuler le déplacement (U)';
-  if(a==='attack'){ const w=u.weapons[+b.dataset.wi||0]; return w.name+' · portée '+w.min+'-'+w.max+' · puiss '+w.power+' · crit '+Math.round(w.crit*100)+'% · préc '+Math.round(w.acc*100)+'%'; }
+  if(a==='attack'){ const w=u.weapons[+b.dataset.wi||0]; const elan=G.basicAttacksThisTurn; const elanInfo=elan>0?' (Élan +'+elan*30+'%'+(elan>=2?' · perce 50% END':'')+')':''; return w.name+' · portée '+w.min+'-'+w.max+' · puiss '+w.power+elanInfo+' · crit '+Math.round(w.crit*100)+'% · préc '+(elan>=2?'100':Math.round(w.acc*100))+'%'; }
   if(a==='skill')return 'Compétences · '+u.ap+' AP';
-  if(a==='item')return 'Objets · sac ×'+invCount();
+  if(a==='item')return 'Objets · sac ×'+invCount()+' · 1 AP';
   if(a==='wait')return 'Attendre · fin de tour'; return ''; }
 function openActionMenu(){ const u=G.active; if(!u||u.team!=='player'||G.over){ closeMenus(); return; }
   dom.menu.classList.remove('hidden'); dom.skillmenu.classList.add('hidden');
-  const md=G.movedThisTurn, ad=G.actedThisTurn;
+  const md=G.movedThisTurn;
+  const elanLevel=G.basicAttacksThisTurn;
+  const atkCost=elanLevel+1;
+  const atkDis = u.ap<atkCost;
+  const atkLabels=['Attaque','Attaque+','Attaque++'];
+  const atkSubs=['1 AP','2 AP · +30%','3 AP · +60% · perce'];
+  const atkLabel=atkLabels[Math.min(elanLevel,2)];
+  const atkSub=atkSubs[Math.min(elanLevel,2)];
+  const sklDis = !u.skills.length || hasS(u,'silence') || !u.skills.some(s=>getSpec(u,s).ap<=u.ap);
+  const itmDis = u.ap<1 || invCount()<=0;
   const ico=(a,icon,label,sub,dot,dis,extra)=>'<div class="ico action-'+a+(dis?' dis':'')+'" role="button" aria-disabled="'+(dis?'true':'false')+'" data-a="'+a+'"'+(extra||'')+' style="--action-accent:'+dot+'"><div class="c"><span>'+icon+'</span></div><div class="tx"><b>'+escHTML(label)+'</b><small>'+escHTML(sub)+'</small></div><div class="dot"></div></div>';
-  let h = (md&&!G.movedBeforeAct) ? ico('undo','↩','Annuler','Déplacement','#f59e0b',false) : ico('move','◆','Déplacer','MOV '+u.mov,'#55d4ff',md||hasS(u,'root'));
-  (u.weapons||[]).forEach((w,i)=>{ h+=ico('attack',w.icon||'⚔','Attaquer',w.name||('Arme '+(i+1)),'#ff6b58',ad,' data-wi="'+i+'"'); });
-  h+=ico('skill','✦','Compétence',u.ap+' AP','#b78cff',ad||!u.skills.length||hasS(u,'silence'));
-  h+=ico('item','◈','Objet','Sac ×'+invCount(),'#f09ac9',ad||invCount()<=0);
+  let h = (md&&!G.movedBeforeAct) ? ico('undo','↩','Annuler','Déplacement','#f59e0b',false) : ico('move','◆','Déplacer','MOV '+u.mov,'#55d4ff',md||hasS(u,'root')||u.immobile);
+  (u.weapons||[]).forEach((w,i)=>{ h+=ico('attack',w.icon||'⚔',atkLabel,atkSub,'#ff6b58',atkDis,' data-wi="'+i+'"'); });
+  h+=ico('skill','✦','Compétence',u.ap+' AP','#b78cff',sklDis);
+  h+=ico('item','◈','Objet','Sac ×'+invCount(),'#f09ac9',itmDis);
   h+=ico('wait','⌛','Attendre','Fin du tour','#d0ba82',false);
   h+='<div class="lbl"></div>';
   dom.menu.innerHTML=h;
@@ -1134,15 +1198,15 @@ function openSkillMenu(){ const u=G.active; dom.skillmenu.classList.remove('hidd
     h+='<div class="btn '+dis+'" data-s="'+id+'" title="'+s.desc+'">'+sp.name+(sp.upgradeLevel?' +'+sp.upgradeLevel:'')+' <small>'+sp.ap+' AP</small></div>'; }
   h+='<div class="btn" data-s="_back">Retour</div>';
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.classList.contains('dis'))return; const id=b.dataset.s; if(id==='_back'){ dom.skillmenu.classList.add('hidden'); return; } enterTarget(getSpec(u,id)); }); }
-function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name:it.name,ap:0,range:it.range,radius:it.radius||0,self:false,item:true,desc:it.desc};
+function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name:it.name,ap:1,range:it.range,radius:it.radius||0,self:false,item:true,desc:it.desc};
   if(it.effect==='heal')  return Object.assign(base,{type:'heal',power:0,heal:true,support:true,flatHeal:it.flatHeal});
   if(it.effect==='ap')    return Object.assign(base,{type:'buff',power:0,support:true,apRestore:it.apRestore});
   if(it.effect==='cure')  return Object.assign(base,{type:'buff',power:0,support:true,cure:true});
   if(it.effect==='bomb')  return Object.assign(base,{type:'mag', power:0,offensive:true,acc:1,flatDmg:it.flatDmg});
   return base; }
 function invCount(){ let n=0; for(const k in G.inv)n+=G.inv[k]; return n; }
-function openItemMenu(){ const u=G.active; dom.skillmenu.classList.remove('hidden'); let h='<div class="ttl">Objets — sac commun</div>'; let any=false;
-  for(const id in ITEMS){ const n=G.inv[id]||0; const it=ITEMS[id]; if(n>0)any=true; h+='<div class="btn '+(n<=0?'dis':'')+'" data-i="'+id+'" title="'+it.desc+'">'+it.name+' <small>×'+n+'</small></div>'; }
+function openItemMenu(){ const u=G.active; dom.skillmenu.classList.remove('hidden'); let h='<div class="ttl">Objets — sac commun · '+u.ap+' AP</div>'; let any=false;
+  for(const id in ITEMS){ const n=G.inv[id]||0; const it=ITEMS[id]; const dis=n<=0||u.ap<1; if(n>0)any=true; h+='<div class="btn '+(dis?'dis':'')+'" data-i="'+id+'" title="'+it.desc+'">'+it.name+' <small>×'+n+' · 1 AP</small></div>'; }
   if(!any)h+='<div class="btn dis">Sac vide</div>';
   h+='<div class="btn" data-i="_back">Retour</div>';
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.classList.contains('dis'))return; const id=b.dataset.i; if(id==='_back'){ dom.skillmenu.classList.add('hidden'); return; } enterTarget(itemSpec(id)); }); }
