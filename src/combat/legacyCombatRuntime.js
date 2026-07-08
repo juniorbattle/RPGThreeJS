@@ -615,7 +615,7 @@ function hasS(u,s){ return (u.statuses[s]||0)>0; }
 function statMul(u,key){ let m=1; for(const s in u.statuses){ const d=STATUS[s]; if(d&&u.statuses[s]>0&&d[key]!=null) m*=d[key]; } return m; }
 function effSTR(u){ return u.str*statMul(u,'str'); }
 function effMAG(u){ return u.mag*statMul(u,'mag'); }
-function effEND(u){ return u.end*statMul(u,'end') + Math.min(u.gardeAP||0, 3) * 2; }
+function effEND(u){ return u.end*statMul(u,'end') + Math.min(u.gardeAP||0, 3) * 3; }
 function dmgTakenMul(u){ let m=1; for(const s in u.statuses){ const d=STATUS[s]; if(d&&u.statuses[s]>0&&d.dmgTaken) m*=d.dmgTaken; } return m; }
 
 // ---- blob shadow + selectors ----
@@ -689,7 +689,7 @@ function createUnit(def){
     id:++UID, campaignId:def.campaignId||null, portrait:def.portrait||'', team:def.team, kind:def.kind, name:def.name,
     maxhp:def.maxhp||def.hp, hp:Math.min(def.hp,def.maxhp||def.hp), str:def.str, mag:def.mag, end:def.end, dex:def.dex, cha:def.cha,
     mov:def.mov, weapons:def.weapons, skills:def.skills.slice(), skillUpgrades:def.skillUpgrades||{}, ai:def.ai||'aggressive',
-    ap:0, maxap:6, gx:def.gx, gz:def.gz, alive:true, statuses:{}, gardeAP:0, _souffle:false,
+    ap:0, maxap:5, gx:def.gx, gz:def.gz, alive:true, statuses:{}, gardeAP:0, _souffle:false,
     size:def.size||1, immobile:!!def.immobile, boss:!!def.boss,
     facing:def.team==='player'?{dx:1,dz:0}:{dx:-1,dz:0},
     grp, spr, outline, mat, blob, teamGlow, teamRingUnder, teamRing, baseY:s.h*0.5,
@@ -789,7 +789,7 @@ function buildOrder(){ return aliveUnits().sort((a,b)=> (effDEX(b)-effDEX(a)) ||
 function startRound(){ if(checkEnd())return; G.round++; G.order=buildOrder(); G.turnIdx=-1; logMsg('— Manche '+G.round+' —'); nextTurn(); }
 function nextTurn(){ if(G.over||checkEnd())return; G.turnIdx++; if(G.turnIdx>=G.order.length){ startRound(); return; } const u=G.order[G.turnIdx]; if(!u||!u.alive){ nextTurn(); return; } beginTurn(u); }
 async function beginTurn(u){ if(G.over)return; G.active=u; G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.basicAttacksThisTurn=0; G.startGX=u.gx; G.startGZ=u.gz;
-  const regen=u.boss?4:(u._souffle?3:2); u.ap=Math.min(u.maxap,u.ap+regen); u._souffle=false; u.gardeAP=0;
+  const regen=u.boss?(G.round<=1?2:4):(G.round<=1?1:2); u.ap=Math.min(u.maxap,u.ap+regen); u._souffle=false; u.gardeAP=0;
   refreshTurnbar(); selectUnit(u); focusCam(u);
   await tickStatusDamage(u); if(G.over)return; if(!u.alive){ nextTurn(); return; }
   const sk=statusSkips(u); tickStatusDuration(u); if(!hasS(u,'taunt'))u._taunter=null; refreshPanel(u);
@@ -797,7 +797,14 @@ async function beginTurn(u){ if(G.over)return; G.active=u; G.pinnedUnit=null; hi
   if(u.team==='player'){ G.mode='menu'; setHint(u.name+' — à vous de jouer'); openActionMenu(); }
   else { G.mode='ai'; closeMenus(); setHint(u.name+' (ennemi)…'); await wait(0.35); await aiTurn(u); }
 }
-function endTurn(){ if(G.busy||G.over)return; const u=G.active; if(u){ u._souffle=u.ap>=1; u.gardeAP=u.ap; } unitFocus.restore(); hideActionPreview(); closeMenus(); clearHL(); G.pending=null; G.mode='idle'; nextTurn(); }
+function endTurn(){ if(G.busy||G.over)return; const u=G.active;
+  if(u&&u.alive){
+    if(u.ap>=1){ u.ap=Math.min(u.maxap,u.ap+1); u._souffle=true; floatText(u,'SOUFFLE +1 AP','#7fd0ff',true); logMsg(u.name+' reprend son souffle (+1 AP).'); }
+    else u._souffle=false;
+    u.gardeAP=u.ap;
+    if(u.gardeAP>0){ const bonus=Math.min(u.gardeAP,3)*3; setTimeout(()=>{ if(u.alive)floatText(u,'GARDE +'+bonus+' END','#9fe7ff'); },380); }
+  }
+  unitFocus.restore(); hideActionPreview(); closeMenus(); clearHL(); G.pending=null; G.mode='idle'; nextTurn(); }
 function checkEnd(){ if(G.over)return true; if(aliveUnits('foe').length===0){ winWave(); return true; } if(aliveUnits('player').length===0){ endGame(false); return true; } return false; }
 
 // ============================= COMBAT & AOE =============================
@@ -827,7 +834,7 @@ function castTelegraph(u,spec){ const c=u.cell(); if(!c)return; const col=fxColo
   tween(m.material,{opacity:.9},0.12,easeOutCubic,()=>tween(m.material,{opacity:0},0.36,easeOutCubic,()=>{ scene.remove(m); m.geometry.dispose(); m.material.dispose(); }));
   burst(new THREE.Vector3(wX(ux),c.topY+0.5,wZ(uz)),col); }
 function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*100:5; return cl(base+Math.max(0,(effDEX(att)-effDEX(tgt))/2),1,90)/100; }
-function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return true; if(spec.elanAcc!=null&&spec.elanAcc>=1)return true; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; return Math.random()*100<cl(acc,5,95); }
+function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return true; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; return Math.random()*100<cl(acc,5,95); }
 
 async function applyDamage(u,dmg,src){ u.hp=Math.max(0,u.hp-dmg); flashUnit(u,'#ff6a5a'); if(u.spr){ const dir=u.facing.dx<0?-1:1; killTweens(u.spr.position); u.spr.position.x=0; tween(u.spr.position,{x:0.16*dir},0.05,easeOutCubic,()=>tween(u.spr.position,{x:0},0.14,easeOutCubic)); } screenShake(0.16,0.16); refreshPanel(u); if(u.hp<=0&&u.alive){ await knockOut(u,src); if(src&&src.alive){ src.ap=Math.min(src.maxap,src.ap+1); if(src===G.active) G.basicAttacksThisTurn=0; floatText(src,'+1 AP','#7fd0ff',true); refreshPanel(src); } checkEnd(); } }
 function applyHeal(u,amt){ if(!u.alive)return; u.hp=Math.min(u.maxhp,u.hp+amt); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
@@ -848,14 +855,14 @@ function applySkillUpgrade(u,skillId,spec){
   if(level>=2&&out.dest&&out.ap>1) out.ap-=1;
   return out;
 }
-function getSpec(u,which,wi){ if(which==='attack'){ const w=(u.weapons&&u.weapons[wi||0])||(u.weapons&&u.weapons[0])||{name:'Attaque',type:'phys',min:1,max:1,power:8,crit:0.05,acc:0.9};
-    const elanLevel=G.basicAttacksThisTurn;
-    const apCost=elanLevel+1;
-    const elanMul=1+0.3*elanLevel;
-    const elanPierce=elanLevel>=2?0.5:0;
-    const elanAcc=elanLevel>=2?1.0:w.acc;
+function getSpec(u,which,wi,charge){ if(which==='attack'){ const w=(u.weapons&&u.weapons[wi||0])||(u.weapons&&u.weapons[0])||{name:'Attaque',type:'phys',min:1,max:1,power:8,crit:0.05,acc:0.9};
+    const lvl=Math.max(0,Math.min(2,charge||0));
+    const apCost=(lvl+1)+G.basicAttacksThisTurn;
+    const elanMul=[1.0,1.5,2.0][lvl];
+    const elanPierce=[0,0.3,0.6][lvl];
+    const acc=lvl>=2?Math.min(0.99,w.acc+0.10):w.acc;
     const labels=['Attaque','Attaque+','Attaque++'];
-    return {key:'attack',wi:(wi||0),name:labels[Math.min(elanLevel,2)],icon:w.icon,ap:apCost,type:w.type,power:w.power,range:[w.min,w.max],radius:0,offensive:true,self:false,acc:w.acc,crit:w.crit,elanLevel,elanMul,elanPierce,elanAcc}; }
+    return {key:'attack',wi:(wi||0),charge:lvl,name:labels[lvl],icon:w.icon,ap:apCost,type:w.type,power:w.power,range:[w.min,w.max],radius:0,offensive:true,self:false,acc,crit:w.crit,elanMul,elanPierce}; }
   const s=SKILLS[which]; return applySkillUpgrade(u,which,{key:which,name:s.name,ap:s.ap,type:s.type,power:s.power||0,range:s.self?[0,0]:s.range,radius:s.radius,shape:s.shape,mode:s.mode,dest:!!s.dest,impact:s.impact,status:s.status,statusTurns:s.statusTurns,acc:s.acc,support:!!s.support,offensive:!!s.offensive,self:!!s.self,heal:s.type==='heal',revive:s.type==='revive'}); }
 function rangeCells(u,spec){ if(spec.self)return [{gx:u.gx,gz:u.gz}]; const ux=u.size>1?bossCenterGX(u):u.gx, uz=u.size>1?bossCenterGZ(u):u.gz; const out=[]; for(let gx=0;gx<CFG.W;gx++)for(let gz=0;gz<CFG.D;gz++){ const md=Math.abs(gx-ux)+Math.abs(gz-uz); if(md<spec.range[0]||md>spec.range[1])continue; if(spec.revive){ if(!G.units.some(x=>!x.alive&&x.downed&&x.team===u.team&&x.gx===gx&&x.gz===gz))continue; } if(spec.item&&spec.support){ const oc=cellAt(gx,gz)?.occupant; if(!(oc&&oc.alive&&oc.team===u.team))continue; } if(spec.dest){ const dc=cellAt(gx,gz); if(!dc||!dc.walkable||(dc.occupant&&dc.occupant!==u))continue; if(spec.mode==='dash'&&gx!==u.gx&&gz!==u.gz)continue; if(spec.mode==='dash'&&!clearLine(u,gx,gz))continue; } out.push({gx,gz}); } return out; }
 function clearLine(u,gx,gz){ const dx=Math.sign(gx-u.gx), dz=Math.sign(gz-u.gz); let x=u.gx+dx, z=u.gz+dz, g=0; while((x!==gx||z!==gz)&&g++<40){ const c=cellAt(x,z); if(!c||!c.walkable||c.occupant)return false; x+=dx; z+=dz; } return true; }
@@ -866,7 +873,7 @@ function coneCells(u,cx,cz,radius){ const d=dirTo(u,cx,cz); const R=radius+0.001
 function aoeCells(u,spec,cx,cz){ const sh=spec.shape||'circle'; if(sh==='line')return lineCells(u,cx,cz,spec.radius); if(sh==='cone')return coneCells(u,cx,cz,spec.radius); return aoeTiles(cx,cz,spec.radius); }
 function canAffectUnit(caster,spec,target){ if(!target)return false; if(spec.offensive&&target===caster&&!spec.allowSelfDamage)return false; return true; }
 function affectedUnits(u,spec,cx,cz){ if(spec.revive){ const ko=G.units.find(x=>!x.alive&&x.downed&&x.team===u.team&&x.gx===cx&&x.gz===cz); return ko?[ko]:[]; } const set=[]; for(const [gx,gz] of aoeCells(u,spec,cx,cz)){ const c=cellAt(gx,gz); if(c&&c.occupant&&c.occupant.alive&&canAffectUnit(u,spec,c.occupant))set.push(c.occupant); } if(spec.heal||spec.support)return set.filter(t=>t.team===u.team); return set; }
-function previewAccuracy(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return 100; if(spec.elanAcc!=null&&spec.elanAcc>=1)return 100; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; return Math.round(cl(acc,5,95)); }
+function previewAccuracy(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return 100; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; return Math.round(cl(acc,5,95)); }
 function previewPower(att,tgt,spec){ if(spec.heal)return Math.max(1,(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(att)*spec.power))+Math.floor(effCHA(att)/4)); if(spec.apRestore)return spec.apRestore; if((spec.power||0)<=0)return 0; if(spec.flatDmg)return Math.max(1,Math.round(spec.flatDmg)); const K=15,isMag=spec.type==='mag'; const atk=isMag?effMAG(att):effSTR(att); let def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); if(spec.elanPierce) def=Math.max(1,def*(1-spec.elanPierce)); let d=Math.sqrt(spec.power*K*atk/def)*2*orientMult(att,tgt).m*dmgTakenMul(tgt); if(spec.elanMul) d*=spec.elanMul; return Math.max(1,Math.round(d)); }
 function hideActionPreview(){ dom.actionPreview.classList.add('hidden'); dom.actionPreview.innerHTML=''; }
 function showActionPreview(att,spec,targets,cx,cz){ const primary=targets[0]||null; const helpful=Boolean(spec.heal||spec.support||spec.revive||spec.apRestore||spec.cure); const alliesHit=targets.filter(t=>t.team===att.team&&!helpful).length; const estimate=primary?previewPower(att,primary,spec):0; const accuracy=primary?previewAccuracy(att,primary,spec):null; const valueLabel=spec.heal?'Soin':spec.apRestore?'AP':'Dégâts'; const targetLabel=primary?primary.name:(spec.type==='move'?('Case '+cx+','+cz):'Aucune cible');
@@ -920,11 +927,11 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
 // ============================= ENEMY AI =============================
 function simAt(u,st){ return Object.assign(Object.create(Object.getPrototypeOf(u)),u,{gx:st.gx,gz:st.gz}); }
 function nearestDist(st,arr){ let m=1e9; for(const a of arr){ const d=Math.abs(st.gx-a.gx)+Math.abs(st.gz-a.gz); if(d<m)m=d; } return m; }
-function bestOffense(u,stands,taunter){ const specs=[...(u.weapons||[]).map((w,i)=>getSpec(u,'attack',i)).filter(s=>s.ap<=u.ap), ...u.skills.filter(s=>SKILLS[s].offensive&&SKILLS[s].ap<=u.ap).map(s=>getSpec(u,s))]; let best=null;
+function bestOffense(u,stands,taunter){ const specs=[]; (u.weapons||[]).forEach((w,i)=>{ for(let ch=0;ch<3;ch++){ const s=getSpec(u,'attack',i,ch); if(s.ap<=u.ap)specs.push(s); } }); specs.push(...u.skills.filter(s=>SKILLS[s].offensive&&SKILLS[s].ap<=u.ap).map(s=>getSpec(u,s))); let best=null;
   for(const st of stands){ const sim=simAt(u,st);
     for(const spec of specs){ for(const c of rangeCells(sim,spec)){ const aff=affectedUnits(sim,spec,c.gx,c.gz);
       const en=aff.filter(t=>t.team!==u.team), al=aff.filter(t=>t.team===u.team&&t!==u);
-      if(!en.length)continue; let score=-st.d*0.6;
+      if(!en.length)continue; let score=-st.d*0.6-spec.ap*1.5;
       for(const t of en){ const {dmg}=computeDamage(sim,t,spec); score+=dmg+(dmg>=t.hp?70:0); }
       for(const t of al){ const {dmg}=computeDamage(sim,t,spec); score-=dmg*1.6; }
       if(taunter&&en.includes(taunter))score+=50;
@@ -939,7 +946,7 @@ function bestSupport(u,stands){ const supSpecs=u.skills.map(s=>getSpec(u,s)).fil
       if(spec.cure){ const neg=aff.filter(t=>Object.keys(t.statuses).some(s=>isNegative(s)&&hasS(t,s))); if(neg.length)sc+=neg.length*6; }
       if(!best||sc>best.score) best={score:sc,spec,cx:c.gx,cz:c.gz}; } } }
   return best; }
-function bestItem(u,stands){ if(u.ap<1)return null; const allies=aliveUnits(u.team); let best=null;
+function bestItem(u,stands){ if(u.ap<3)return null; const allies=aliveUnits(u.team); let best=null;
   for(const id in ITEMS){ if((G.inv[id]||0)<=0)continue; const spec=itemSpec(id); if(spec.ap>u.ap)continue;
     for(const st of stands){ const sim=simAt(u,st);
       for(const c of rangeCells(sim,spec)){ const aff=affectedUnits(sim,spec,c.gx,c.gz); if(!aff.length)continue;
@@ -989,7 +996,7 @@ async function aiTurn(u){
   // ACTION LOOP: evaluate offense, support, and items each iteration
   let safety=0;
   const here=[{gx:u.gx,gz:u.gz,d:0}];
-  while(!G.over&&u.alive&&safety++<8){
+  while(!G.over&&u.alive&&safety++<4){
     const actBest=bestOffense(u,here,taunter);
     const supBest=bestSupport(u,here);
     const itmBest=bestItem(u,here);
@@ -1069,7 +1076,7 @@ async function doExecute(spec,cx,cz){ await executeAction(G.active,spec,cx,cz); 
 function afterSub(){ unitFocus.restore(); hideActionPreview(); if(G.over)return; G.mode='menu'; selectUnit(G.active); openActionMenu();
   const u=G.active;
   const nextAtkCost=G.basicAttacksThisTurn+1;
-  const canAct = (u.ap>=nextAtkCost) || u.skills.some(s=>getSpec(u,s).ap<=u.ap) || (u.ap>=1 && invCount()>0);
+  const canAct = (u.ap>=nextAtkCost) || u.skills.some(s=>getSpec(u,s).ap<=u.ap) || (u.ap>=3 && invCount()>0);
   if(!canAct && G.movedThisTurn) setHint('Tour terminé — Entrée pour attendre'); else setHint(u.name+' — choisissez une action'); }
 function undoMove(){ if(G.busy||!G.movedThisTurn||G.movedBeforeAct||G.startGX==null)return; unitFocus.restore(); const u=G.active; placeUnit(u,G.startGX,G.startGZ,true); G.movedThisTurn=false; clearHL(); G.mode='menu'; selectUnit(u); openActionMenu(); setHint(u.name+' — déplacement annulé'); }
 
@@ -1105,7 +1112,7 @@ function bindInput(){ const el=renderer.domElement;
     else if(k==='enter'&&G.mode==='menu'&&!G.busy)endTurn();
     else if(k==='m'&&G.mode==='menu')enterMove();
     else if(k==='u'&&G.mode==='menu')undoMove();
-    else if(k==='a'&&G.mode==='menu')enterTarget(getSpec(G.active,'attack'));
+    else if(k==='a'&&G.mode==='menu')openElanMenu(0);
   });
 }
 
@@ -1163,25 +1170,21 @@ function closeMenus(){ dom.menu.classList.add('hidden'); dom.skillmenu.classList
 function tipFor(u,b){ const a=b.dataset.a;
   if(a==='move')return 'Déplacer · MOV '+u.mov;
   if(a==='undo')return 'Annuler le déplacement (U)';
-  if(a==='attack'){ const w=u.weapons[+b.dataset.wi||0]; const elan=G.basicAttacksThisTurn; const elanInfo=elan>0?' (Élan +'+elan*30+'%'+(elan>=2?' · perce 50% END':'')+')':''; return w.name+' · portée '+w.min+'-'+w.max+' · puiss '+w.power+elanInfo+' · crit '+Math.round(w.crit*100)+'% · préc '+(elan>=2?'100':Math.round(w.acc*100))+'%'; }
+  if(a==='attack'){ const w=u.weapons[+b.dataset.wi||0]; const n=G.basicAttacksThisTurn; return w.name+' · portée '+w.min+'-'+w.max+' · puiss '+w.power+' · crit '+Math.round(w.crit*100)+'% · préc '+Math.round(w.acc*100)+'% · 3 niveaux d\'Élan'+(n>0?' · escalade +'+n+' PA':''); }
   if(a==='skill')return 'Compétences · '+u.ap+' AP';
-  if(a==='item')return 'Objets · sac ×'+invCount()+' · 1 AP';
+  if(a==='item')return 'Objets · sac ×'+invCount()+' · 3 AP';
   if(a==='wait')return 'Attendre · fin de tour'; return ''; }
 function openActionMenu(){ const u=G.active; if(!u||u.team!=='player'||G.over){ closeMenus(); return; }
   dom.menu.classList.remove('hidden'); dom.skillmenu.classList.add('hidden');
   const md=G.movedThisTurn;
-  const elanLevel=G.basicAttacksThisTurn;
-  const atkCost=elanLevel+1;
-  const atkDis = u.ap<atkCost;
-  const atkLabels=['Attaque','Attaque+','Attaque++'];
-  const atkSubs=['1 AP','2 AP · +30%','3 AP · +60% · perce'];
-  const atkLabel=atkLabels[Math.min(elanLevel,2)];
-  const atkSub=atkSubs[Math.min(elanLevel,2)];
+  const n=G.basicAttacksThisTurn;
+  const atkDis = u.ap<1+n;
+  const atkSub = 'Élan · dès '+(1+n)+' AP';
   const sklDis = !u.skills.length || hasS(u,'silence') || !u.skills.some(s=>getSpec(u,s).ap<=u.ap);
-  const itmDis = u.ap<1 || invCount()<=0;
+  const itmDis = u.ap<3 || invCount()<=0;
   const ico=(a,icon,label,sub,dot,dis,extra)=>'<div class="ico action-'+a+(dis?' dis':'')+'" role="button" aria-disabled="'+(dis?'true':'false')+'" data-a="'+a+'"'+(extra||'')+' style="--action-accent:'+dot+'"><div class="c"><span>'+icon+'</span></div><div class="tx"><b>'+escHTML(label)+'</b><small>'+escHTML(sub)+'</small></div><div class="dot"></div></div>';
   let h = (md&&!G.movedBeforeAct) ? ico('undo','↩','Annuler','Déplacement','#f59e0b',false) : ico('move','◆','Déplacer','MOV '+u.mov,'#55d4ff',md||hasS(u,'root')||u.immobile);
-  (u.weapons||[]).forEach((w,i)=>{ h+=ico('attack',w.icon||'⚔',atkLabel,atkSub,'#ff6b58',atkDis,' data-wi="'+i+'"'); });
+  (u.weapons||[]).forEach((w,i)=>{ h+=ico('attack',w.icon||'⚔','Attaque',atkSub,'#ff6b58',atkDis,' data-wi="'+i+'"'); });
   h+=ico('skill','✦','Compétence',u.ap+' AP','#b78cff',sklDis);
   h+=ico('item','◈','Objet','Sac ×'+invCount(),'#f09ac9',itmDis);
   h+=ico('wait','⌛','Attendre','Fin du tour','#d0ba82',false);
@@ -1192,13 +1195,20 @@ function openActionMenu(){ const u=G.active; if(!u||u.team!=='player'||G.over){ 
     b.onmouseenter=()=>{ lbl.textContent=tipFor(u,b); lbl.classList.add('on'); };
     b.onmouseleave=()=>{ lbl.classList.remove('on'); }; }); }
 function onMenu(a,b){ if(b.classList.contains('dis'))return; const u=G.active;
-  if(a==='move')enterMove(); else if(a==='undo')undoMove(); else if(a==='attack')enterTarget(getSpec(u,'attack',+b.dataset.wi||0)); else if(a==='skill')openSkillMenu(); else if(a==='item')openItemMenu(); else if(a==='wait')endTurn(); }
+  if(a==='move')enterMove(); else if(a==='undo')undoMove(); else if(a==='attack')openElanMenu(+b.dataset.wi||0); else if(a==='skill')openSkillMenu(); else if(a==='item')openItemMenu(); else if(a==='wait')endTurn(); }
+function openElanMenu(wi){ const u=G.active; if(!u)return; dom.skillmenu.classList.remove('hidden'); const n=G.basicAttacksThisTurn;
+  let h='<div class="ttl">Élan — '+u.ap+' AP'+(n>0?' · escalade +'+n+' PA':'')+'</div>';
+  for(let ch=0;ch<3;ch++){ const sp=getSpec(u,'attack',wi,ch); const dis=sp.ap>u.ap?'dis':'';
+    const info='×'+sp.elanMul.toFixed(1)+(sp.elanPierce?' · perce '+Math.round(sp.elanPierce*100)+'% END':'')+(ch>=2?' · préc +10%':'');
+    h+='<div class="btn '+dis+'" data-ch="'+ch+'" title="Coût '+sp.ap+' AP · dégâts '+info+'">'+sp.name+' <small>'+sp.ap+' AP · '+info+'</small></div>'; }
+  h+='<div class="btn" data-ch="_back">Retour</div>';
+  dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.classList.contains('dis'))return; const ch=b.dataset.ch; if(ch==='_back'){ dom.skillmenu.classList.add('hidden'); return; } enterTarget(getSpec(u,'attack',wi,+ch)); }); }
 function openSkillMenu(){ const u=G.active; dom.skillmenu.classList.remove('hidden'); let h='<div class="ttl">Compétences — '+u.ap+' AP</div>';
   for(const id of u.skills){ const s=SKILLS[id], sp=getSpec(u,id); const dis=(sp.ap>u.ap||(id==='revive'&&!G.units.some(x=>!x.alive&&x.downed&&x.team===u.team)))?'dis':'';
     h+='<div class="btn '+dis+'" data-s="'+id+'" title="'+s.desc+'">'+sp.name+(sp.upgradeLevel?' +'+sp.upgradeLevel:'')+' <small>'+sp.ap+' AP</small></div>'; }
   h+='<div class="btn" data-s="_back">Retour</div>';
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.classList.contains('dis'))return; const id=b.dataset.s; if(id==='_back'){ dom.skillmenu.classList.add('hidden'); return; } enterTarget(getSpec(u,id)); }); }
-function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name:it.name,ap:1,range:it.range,radius:it.radius||0,self:false,item:true,desc:it.desc};
+function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name:it.name,ap:3,range:it.range,radius:it.radius||0,self:false,item:true,desc:it.desc};
   if(it.effect==='heal')  return Object.assign(base,{type:'heal',power:0,heal:true,support:true,flatHeal:it.flatHeal});
   if(it.effect==='ap')    return Object.assign(base,{type:'buff',power:0,support:true,apRestore:it.apRestore});
   if(it.effect==='cure')  return Object.assign(base,{type:'buff',power:0,support:true,cure:true});
@@ -1206,7 +1216,7 @@ function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name
   return base; }
 function invCount(){ let n=0; for(const k in G.inv)n+=G.inv[k]; return n; }
 function openItemMenu(){ const u=G.active; dom.skillmenu.classList.remove('hidden'); let h='<div class="ttl">Objets — sac commun · '+u.ap+' AP</div>'; let any=false;
-  for(const id in ITEMS){ const n=G.inv[id]||0; const it=ITEMS[id]; const dis=n<=0||u.ap<1; if(n>0)any=true; h+='<div class="btn '+(dis?'dis':'')+'" data-i="'+id+'" title="'+it.desc+'">'+it.name+' <small>×'+n+' · 1 AP</small></div>'; }
+  for(const id in ITEMS){ const n=G.inv[id]||0; const it=ITEMS[id]; const dis=n<=0||u.ap<3; if(n>0)any=true; h+='<div class="btn '+(dis?'dis':'')+'" data-i="'+id+'" title="'+it.desc+'">'+it.name+' <small>×'+n+' · 3 AP</small></div>'; }
   if(!any)h+='<div class="btn dis">Sac vide</div>';
   h+='<div class="btn" data-i="_back">Retour</div>';
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.classList.contains('dis'))return; const id=b.dataset.i; if(id==='_back'){ dom.skillmenu.classList.add('hidden'); return; } enterTarget(itemSpec(id)); }); }
