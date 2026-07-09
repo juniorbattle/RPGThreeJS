@@ -505,16 +505,16 @@ function moveCursor(gx,gz){ const c=cellAt(gx,gz); if(!c){cursorMesh.visible=fal
 
 // ============================= SKILLS =============================
 const SKILLS={
-  whirl:{name:'Coup Tournoyant',ap:4,type:'phys',power:9,range:[0,0],radius:1,self:true,offensive:true,acc:0.95,desc:'Frappe les unités autour du lanceur, sans toucher le lanceur.'},
+  whirl:{name:'Coup Tournoyant',ap:4,type:'phys',power:12,range:[0,0],radius:1,self:true,offensive:true,acc:0.95,desc:'Frappe les unités autour du lanceur, sans toucher le lanceur.'},
   bulwark:{name:'Rempart',ap:3,type:'buff',power:0,range:[0,0],radius:1.3,self:true,support:true,status:'barrier',statusTurns:3,desc:'Barrière : +END aux alliés proches (3 tours).'},
-  provoke:{name:'Provocation',ap:3,type:'debuff',power:0,range:[1,2],radius:1.2,offensive:true,acc:1,status:'taunt',statusTurns:2,desc:'Force les ennemis proches à vous cibler (2 tours).'},
+  provoke:{name:'Provocation',ap:3,type:'debuff',power:0,range:[1,2],radius:1.5,offensive:true,acc:1,status:'taunt',statusTurns:2,desc:'Force les ennemis proches à vous cibler (2 tours).'},
   weaken:{name:'Flèche Affaiblissante',ap:3,type:'phys',power:7,range:[2,3],radius:0,offensive:true,acc:0.9,status:'slow',statusTurns:2,desc:'Tir unique + Ralentissement.'},
   blind_shot:{name:'Tir Aveuglant',ap:4,type:'phys',power:6,range:[2,4],radius:0,offensive:true,acc:0.9,status:'blind',statusTurns:3,desc:'Tir qui réduit la précision (3 tours).'},
-  pierce_shot:{name:'Tir Perçant',ap:4,type:'phys',power:9,range:[2,4],radius:1,shape:'line',offensive:true,acc:0.9,desc:'Flèche traversante alignée sur la cible (ligne).'},
-  fireball:{name:'Boule de Feu',ap:5,type:'mag',power:13,range:[2,4],radius:1,offensive:true,acc:0.85,status:'burn',statusTurns:2,desc:'Explosion de feu en zone (touche les alliés).'},
-  flame_wave:{name:'Vague de Flammes',ap:4,type:'mag',power:11,range:[1,1],radius:1.6,shape:'cone',offensive:true,acc:0.9,status:'burn',statusTurns:2,desc:'Cône de feu devant le lanceur (touche les alliés).'},
+  pierce_shot:{name:'Tir Perçant',ap:4,type:'phys',power:11,range:[2,4],radius:1,shape:'line',offensive:true,acc:0.9,desc:'Flèche traversante alignée sur la cible (ligne).'},
+  fireball:{name:'Boule de Feu',ap:5,type:'mag',power:16,range:[2,4],radius:1,offensive:true,acc:0.85,status:'burn',statusTurns:2,desc:'Explosion de feu en zone (touche les alliés).'},
+  flame_wave:{name:'Vague de Flammes',ap:4,type:'mag',power:13,range:[1,1],radius:1.6,shape:'cone',offensive:true,acc:0.9,status:'burn',statusTurns:2,desc:'Cône de feu devant le lanceur (touche les alliés).'},
   bolt:{name:'Éclair Sombre',ap:5,type:'mag',power:12,range:[1,4],radius:1,offensive:true,acc:0.9,desc:'Décharge magique en zone.'},
-  curse:{name:'Malédiction',ap:4,type:'debuff',power:0,range:[1,4],radius:1,offensive:true,acc:1,status:'curse',statusTurns:3,desc:'Réduit la défense (END) des ennemis (zone, 3 tours).'},
+  curse:{name:'Malédiction',ap:3,type:'debuff',power:0,range:[1,4],radius:1,offensive:true,acc:1,status:'curse',statusTurns:3,desc:'Réduit la défense (END) des ennemis (zone, 3 tours).'},
   heal:{name:'Lumière Salvatrice',ap:3,type:'heal',power:1.2,range:[0,3],radius:1,support:true,desc:'Soigne les alliés dans la zone.'},
   regen:{name:'Régénération',ap:4,type:'buff',power:0,range:[0,3],radius:1,support:true,status:'regen',statusTurns:3,desc:'Régénère les PV des alliés chaque tour (3 tours).'},
   bless:{name:'Bénédiction',ap:4,type:'buff',power:0,range:[0,3],radius:1,support:true,status:'boost',statusTurns:3,desc:'+FOR/+MAG aux alliés (3 tours).'},
@@ -594,7 +594,7 @@ const STATUS={
   poison: {name:'Poison',  col:'#9bd45a', dot:u=>Math.ceil(u.maxhp*0.05)+6},
   regen:  {name:'Régén.',  col:'#7ed957', hot:u=>Math.ceil(u.maxhp*0.08)+6},
   slow:   {name:'Ralenti', col:'#7fd0ff', dex:0.65},
-  boost:  {name:'Force+',  col:'#ffd27a', str:1.3, mag:1.3},
+  boost:  {name:'Force+',  col:'#ffd27a', str:1.4, mag:1.4},
   weak:   {name:'Affaibli',col:'#c9a0ff', str:0.75, mag:0.75},
   barrier:{name:'Barrière',col:'#9fe7ff', end:1.4},
   curse:  {name:'Malédic.',col:'#b06aff', end:0.7},
@@ -615,7 +615,7 @@ function hasS(u,s){ return (u.statuses[s]||0)>0; }
 function statMul(u,key){ let m=1; for(const s in u.statuses){ const d=STATUS[s]; if(d&&u.statuses[s]>0&&d[key]!=null) m*=d[key]; } return m; }
 function effSTR(u){ return u.str*statMul(u,'str'); }
 function effMAG(u){ return u.mag*statMul(u,'mag'); }
-function effEND(u){ return u.end*statMul(u,'end') + Math.min(u.gardeAP||0, 3) * 3; }
+function effEND(u){ return u.end*statMul(u,'end') + Math.min(u.gardeAP||0, 5) * 3; }
 function dmgTakenMul(u){ let m=1; for(const s in u.statuses){ const d=STATUS[s]; if(d&&u.statuses[s]>0&&d.dmgTaken) m*=d.dmgTaken; } return m; }
 
 // ---- blob shadow + selectors ----
@@ -789,7 +789,8 @@ function buildOrder(){ return aliveUnits().sort((a,b)=> (effDEX(b)-effDEX(a)) ||
 function startRound(){ if(checkEnd())return; G.round++; G.order=buildOrder(); G.turnIdx=-1; logMsg('— Manche '+G.round+' —'); nextTurn(); }
 function nextTurn(){ if(G.over||checkEnd())return; G.turnIdx++; if(G.turnIdx>=G.order.length){ startRound(); return; } const u=G.order[G.turnIdx]; if(!u||!u.alive){ nextTurn(); return; } beginTurn(u); }
 async function beginTurn(u){ if(G.over)return; G.active=u; G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.basicAttacksThisTurn=0; G.startGX=u.gx; G.startGZ=u.gz;
-  const regen=u.boss?(G.round<=1?2:4):(G.round<=1?1:2); u.ap=Math.min(u.maxap,u.ap+regen); u._souffle=false; u.gardeAP=0;
+  const regen=u.boss?2:1; u.ap=Math.min(u.maxap,u.ap+regen); u._souffle=false; u.gardeAP=0;
+  if(regen>0) setTimeout(()=>{ if(u.alive)floatText(u,'+'+regen+' AP','#7fd0ff'); },120);
   refreshTurnbar(); selectUnit(u); focusCam(u);
   await tickStatusDamage(u); if(G.over)return; if(!u.alive){ nextTurn(); return; }
   const sk=statusSkips(u); tickStatusDuration(u); if(!hasS(u,'taunt'))u._taunter=null; refreshPanel(u);
@@ -802,7 +803,7 @@ function endTurn(){ if(G.busy||G.over)return; const u=G.active;
     if(u.ap>=1){ u.ap=Math.min(u.maxap,u.ap+1); u._souffle=true; floatText(u,'SOUFFLE +1 AP','#7fd0ff',true); logMsg(u.name+' reprend son souffle (+1 AP).'); }
     else u._souffle=false;
     u.gardeAP=u.ap;
-    if(u.gardeAP>0){ const bonus=Math.min(u.gardeAP,3)*3; setTimeout(()=>{ if(u.alive)floatText(u,'GARDE +'+bonus+' END','#9fe7ff'); },380); }
+    if(u.gardeAP>0){ const bonus=Math.min(u.gardeAP,5)*3; setTimeout(()=>{ if(u.alive)floatText(u,'GARDE +'+bonus+' END','#9fe7ff'); },380); }
   }
   unitFocus.restore(); hideActionPreview(); closeMenus(); clearHL(); G.pending=null; G.mode='idle'; nextTurn(); }
 function checkEnd(){ if(G.over)return true; if(aliveUnits('foe').length===0){ winWave(); return true; } if(aliveUnits('player').length===0){ endGame(false); return true; } return false; }
@@ -859,7 +860,7 @@ function getSpec(u,which,wi,charge){ if(which==='attack'){ const w=(u.weapons&&u
     const lvl=Math.max(0,Math.min(2,charge||0));
     const apCost=(lvl+1)+G.basicAttacksThisTurn;
     const elanMul=[1.0,1.5,2.0][lvl];
-    const elanPierce=[0,0.3,0.6][lvl];
+    const elanPierce=[0,0.3,0.8][lvl];
     const acc=lvl>=2?Math.min(0.99,w.acc+0.10):w.acc;
     const labels=['Attaque','Attaque+','Attaque++'];
     return {key:'attack',wi:(wi||0),charge:lvl,name:labels[lvl],icon:w.icon,ap:apCost,type:w.type,power:w.power,range:[w.min,w.max],radius:0,offensive:true,self:false,acc,crit:w.crit,elanMul,elanPierce}; }
@@ -946,7 +947,7 @@ function bestSupport(u,stands){ const supSpecs=u.skills.map(s=>getSpec(u,s)).fil
       if(spec.cure){ const neg=aff.filter(t=>Object.keys(t.statuses).some(s=>isNegative(s)&&hasS(t,s))); if(neg.length)sc+=neg.length*6; }
       if(!best||sc>best.score) best={score:sc,spec,cx:c.gx,cz:c.gz}; } } }
   return best; }
-function bestItem(u,stands){ if(u.ap<3)return null; const allies=aliveUnits(u.team); let best=null;
+function bestItem(u,stands){ if(u.ap<2)return null; const allies=aliveUnits(u.team); let best=null;
   for(const id in ITEMS){ if((G.inv[id]||0)<=0)continue; const spec=itemSpec(id); if(spec.ap>u.ap)continue;
     for(const st of stands){ const sim=simAt(u,st);
       for(const c of rangeCells(sim,spec)){ const aff=affectedUnits(sim,spec,c.gx,c.gz); if(!aff.length)continue;
@@ -1076,7 +1077,7 @@ async function doExecute(spec,cx,cz){ await executeAction(G.active,spec,cx,cz); 
 function afterSub(){ unitFocus.restore(); hideActionPreview(); if(G.over)return; G.mode='menu'; selectUnit(G.active); openActionMenu();
   const u=G.active;
   const nextAtkCost=G.basicAttacksThisTurn+1;
-  const canAct = (u.ap>=nextAtkCost) || u.skills.some(s=>getSpec(u,s).ap<=u.ap) || (u.ap>=3 && invCount()>0);
+  const canAct = (u.ap>=nextAtkCost) || u.skills.some(s=>getSpec(u,s).ap<=u.ap) || (u.ap>=2 && invCount()>0);
   if(!canAct && G.movedThisTurn) setHint('Tour terminé — Entrée pour attendre'); else setHint(u.name+' — choisissez une action'); }
 function undoMove(){ if(G.busy||!G.movedThisTurn||G.movedBeforeAct||G.startGX==null)return; unitFocus.restore(); const u=G.active; placeUnit(u,G.startGX,G.startGZ,true); G.movedThisTurn=false; clearHL(); G.mode='menu'; selectUnit(u); openActionMenu(); setHint(u.name+' — déplacement annulé'); }
 
@@ -1172,7 +1173,7 @@ function tipFor(u,b){ const a=b.dataset.a;
   if(a==='undo')return 'Annuler le déplacement (U)';
   if(a==='attack'){ const w=u.weapons[+b.dataset.wi||0]; const n=G.basicAttacksThisTurn; return w.name+' · portée '+w.min+'-'+w.max+' · puiss '+w.power+' · crit '+Math.round(w.crit*100)+'% · préc '+Math.round(w.acc*100)+'% · 3 niveaux d\'Élan'+(n>0?' · escalade +'+n+' PA':''); }
   if(a==='skill')return 'Compétences · '+u.ap+' AP';
-  if(a==='item')return 'Objets · sac ×'+invCount()+' · 3 AP';
+  if(a==='item')return 'Objets · sac ×'+invCount()+' · 2 AP';
   if(a==='wait')return 'Attendre · fin de tour'; return ''; }
 function openActionMenu(){ const u=G.active; if(!u||u.team!=='player'||G.over){ closeMenus(); return; }
   dom.menu.classList.remove('hidden'); dom.skillmenu.classList.add('hidden');
@@ -1181,7 +1182,7 @@ function openActionMenu(){ const u=G.active; if(!u||u.team!=='player'||G.over){ 
   const atkDis = u.ap<1+n;
   const atkSub = 'Élan · dès '+(1+n)+' AP';
   const sklDis = !u.skills.length || hasS(u,'silence') || !u.skills.some(s=>getSpec(u,s).ap<=u.ap);
-  const itmDis = u.ap<3 || invCount()<=0;
+  const itmDis = u.ap<2 || invCount()<=0;
   const ico=(a,icon,label,sub,dot,dis,extra)=>'<div class="ico action-'+a+(dis?' dis':'')+'" role="button" aria-disabled="'+(dis?'true':'false')+'" data-a="'+a+'"'+(extra||'')+' style="--action-accent:'+dot+'"><div class="c"><span>'+icon+'</span></div><div class="tx"><b>'+escHTML(label)+'</b><small>'+escHTML(sub)+'</small></div><div class="dot"></div></div>';
   let h = (md&&!G.movedBeforeAct) ? ico('undo','↩','Annuler','Déplacement','#f59e0b',false) : ico('move','◆','Déplacer','MOV '+u.mov,'#55d4ff',md||hasS(u,'root')||u.immobile);
   (u.weapons||[]).forEach((w,i)=>{ h+=ico('attack',w.icon||'⚔','Attaque',atkSub,'#ff6b58',atkDis,' data-wi="'+i+'"'); });
@@ -1208,7 +1209,7 @@ function openSkillMenu(){ const u=G.active; dom.skillmenu.classList.remove('hidd
     h+='<div class="btn '+dis+'" data-s="'+id+'" title="'+s.desc+'">'+sp.name+(sp.upgradeLevel?' +'+sp.upgradeLevel:'')+' <small>'+sp.ap+' AP</small></div>'; }
   h+='<div class="btn" data-s="_back">Retour</div>';
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.classList.contains('dis'))return; const id=b.dataset.s; if(id==='_back'){ dom.skillmenu.classList.add('hidden'); return; } enterTarget(getSpec(u,id)); }); }
-function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name:it.name,ap:3,range:it.range,radius:it.radius||0,self:false,item:true,desc:it.desc};
+function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name:it.name,ap:2,range:it.range,radius:it.radius||0,self:false,item:true,desc:it.desc};
   if(it.effect==='heal')  return Object.assign(base,{type:'heal',power:0,heal:true,support:true,flatHeal:it.flatHeal});
   if(it.effect==='ap')    return Object.assign(base,{type:'buff',power:0,support:true,apRestore:it.apRestore});
   if(it.effect==='cure')  return Object.assign(base,{type:'buff',power:0,support:true,cure:true});
@@ -1216,7 +1217,7 @@ function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name
   return base; }
 function invCount(){ let n=0; for(const k in G.inv)n+=G.inv[k]; return n; }
 function openItemMenu(){ const u=G.active; dom.skillmenu.classList.remove('hidden'); let h='<div class="ttl">Objets — sac commun · '+u.ap+' AP</div>'; let any=false;
-  for(const id in ITEMS){ const n=G.inv[id]||0; const it=ITEMS[id]; const dis=n<=0||u.ap<3; if(n>0)any=true; h+='<div class="btn '+(dis?'dis':'')+'" data-i="'+id+'" title="'+it.desc+'">'+it.name+' <small>×'+n+' · 3 AP</small></div>'; }
+  for(const id in ITEMS){ const n=G.inv[id]||0; const it=ITEMS[id]; const dis=n<=0||u.ap<2; if(n>0)any=true; h+='<div class="btn '+(dis?'dis':'')+'" data-i="'+id+'" title="'+it.desc+'">'+it.name+' <small>×'+n+' · 2 AP</small></div>'; }
   if(!any)h+='<div class="btn dis">Sac vide</div>';
   h+='<div class="btn" data-i="_back">Retour</div>';
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.classList.contains('dis'))return; const id=b.dataset.i; if(id==='_back'){ dom.skillmenu.classList.add('hidden'); return; } enterTarget(itemSpec(id)); }); }
