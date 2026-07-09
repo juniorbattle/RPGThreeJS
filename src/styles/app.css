@@ -1711,7 +1711,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
     scrollbar-width: thin;
   }
   .route-choice { min-height: 124px; gap: 8px; }
-  .route-choice__hint { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .route-choice__hint { display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .travel-party { opacity: .9; }
   .travel-hero figcaption { display: none; }
   .dialogue__portrait { opacity: .48; height: 36dvh; }
