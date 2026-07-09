@@ -46,7 +46,7 @@ button { font: inherit; }
   background:
     radial-gradient(ellipse 92% 88% at 50% 50%, transparent 28%, rgba(2,4,8,.54)),
     linear-gradient(rgba(7,14,22,.22), rgba(5,9,16,.46)),
-    var(--screen-bg-image, url('/assets/generated/forest-pilot/world-map.webp')) center/cover no-repeat; }
+    var(--screen-bg-image, url('/assets/generated/forest-pilot/forest-dawn-far.webp')) center/cover no-repeat; }
 .game-chrome { position: fixed; inset: 0; pointer-events: none; z-index: 20; }
 .eyebrow { margin: 0 0 6px; color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; }
 

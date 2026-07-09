@@ -1,0 +1,478 @@
+{
+  "inputs": [
+    {
+      "role": "serpent_raider_candidate",
+      "label": "Serpent Raider",
+      "file": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\raw\\ChatGPT Image 8 juil. 2026, 23_03_55.png",
+      "size": [
+        1086,
+        1448
+      ],
+      "mode": "RGB"
+    },
+    {
+      "role": "serpent_oracle_candidate",
+      "label": "Serpent Oracle",
+      "file": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\raw\\ChatGPT Image 8 juil. 2026, 23_04_42.png",
+      "size": [
+        1086,
+        1448
+      ],
+      "mode": "RGB"
+    },
+    {
+      "role": "serpent_brute_candidate",
+      "label": "Serpent Brute",
+      "file": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\raw\\ChatGPT Image 8 juil. 2026, 23_04_47.png",
+      "size": [
+        1086,
+        1448
+      ],
+      "mode": "RGB"
+    }
+  ],
+  "outputs": [
+    {
+      "role": "serpent_raider_candidate",
+      "label": "Serpent Raider",
+      "clean": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\processed\\serpent_raider_candidate.clean.png",
+      "clean_qc": {
+        "magenta_opaque_pixels": 0,
+        "white_opaque_pixels": 462,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_touch": false,
+        "bbox": [
+          88,
+          185,
+          911,
+          1287
+        ]
+      },
+      "variants": {
+        "full": {
+          "file": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\processed\\serpent_raider_candidate.full.png",
+          "size": [
+            640,
+            768
+          ],
+          "meta": {
+            "source_bbox": [
+              88,
+              185,
+              911,
+              1287
+            ],
+            "scaled_size": [
+              485,
+              649
+            ],
+            "paste": [
+              77,
+              89
+            ],
+            "baseline_y": 738
+          },
+          "qc": {
+            "magenta_opaque_pixels": 366,
+            "white_opaque_pixels": 135,
+            "corner_alpha": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "edge_touch": false,
+            "bbox": [
+              77,
+              89,
+              562,
+              738
+            ]
+          }
+        },
+        "dialogue": {
+          "file": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\processed\\serpent_raider_candidate.dialogue.png",
+          "size": [
+            768,
+            1024
+          ],
+          "meta": {
+            "source_bbox": [
+              88,
+              185,
+              911,
+              1287
+            ],
+            "scaled_size": [
+              634,
+              849
+            ],
+            "paste": [
+              67,
+              116
+            ],
+            "baseline_y": 965
+          },
+          "qc": {
+            "magenta_opaque_pixels": 711,
+            "white_opaque_pixels": 249,
+            "corner_alpha": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "edge_touch": false,
+            "bbox": [
+              67,
+              116,
+              701,
+              965
+            ]
+          }
+        },
+        "ui": {
+          "file": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\processed\\serpent_raider_candidate.ui.png",
+          "size": [
+            384,
+            384
+          ],
+          "meta": {
+            "source_bbox": [
+              88,
+              185,
+              911,
+              1287
+            ],
+            "scaled_size": [
+              208,
+              279
+            ],
+            "paste": [
+              88,
+              79
+            ],
+            "baseline_y": 358
+          },
+          "qc": {
+            "magenta_opaque_pixels": 28,
+            "white_opaque_pixels": 10,
+            "corner_alpha": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "edge_touch": false,
+            "bbox": [
+              88,
+              79,
+              296,
+              358
+            ]
+          }
+        }
+      }
+    },
+    {
+      "role": "serpent_oracle_candidate",
+      "label": "Serpent Oracle",
+      "clean": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\processed\\serpent_oracle_candidate.clean.png",
+      "clean_qc": {
+        "magenta_opaque_pixels": 0,
+        "white_opaque_pixels": 91,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_touch": false,
+        "bbox": [
+          203,
+          82,
+          917,
+          1347
+        ]
+      },
+      "variants": {
+        "full": {
+          "file": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\processed\\serpent_oracle_candidate.full.png",
+          "size": [
+            640,
+            768
+          ],
+          "meta": {
+            "source_bbox": [
+              203,
+              82,
+              917,
+              1347
+            ],
+            "scaled_size": [
+              366,
+              649
+            ],
+            "paste": [
+              137,
+              89
+            ],
+            "baseline_y": 738
+          },
+          "qc": {
+            "magenta_opaque_pixels": 322,
+            "white_opaque_pixels": 12,
+            "corner_alpha": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "edge_touch": false,
+            "bbox": [
+              137,
+              89,
+              503,
+              738
+            ]
+          }
+        },
+        "dialogue": {
+          "file": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\processed\\serpent_oracle_candidate.dialogue.png",
+          "size": [
+            768,
+            1024
+          ],
+          "meta": {
+            "source_bbox": [
+              203,
+              82,
+              917,
+              1347
+            ],
+            "scaled_size": [
+              479,
+              849
+            ],
+            "paste": [
+              144,
+              116
+            ],
+            "baseline_y": 965
+          },
+          "qc": {
+            "magenta_opaque_pixels": 598,
+            "white_opaque_pixels": 30,
+            "corner_alpha": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "edge_touch": false,
+            "bbox": [
+              144,
+              116,
+              623,
+              965
+            ]
+          }
+        },
+        "ui": {
+          "file": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\processed\\serpent_oracle_candidate.ui.png",
+          "size": [
+            384,
+            384
+          ],
+          "meta": {
+            "source_bbox": [
+              203,
+              82,
+              917,
+              1347
+            ],
+            "scaled_size": [
+              157,
+              279
+            ],
+            "paste": [
+              113,
+              79
+            ],
+            "baseline_y": 358
+          },
+          "qc": {
+            "magenta_opaque_pixels": 7,
+            "white_opaque_pixels": 0,
+            "corner_alpha": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "edge_touch": false,
+            "bbox": [
+              113,
+              79,
+              270,
+              358
+            ]
+          }
+        }
+      }
+    },
+    {
+      "role": "serpent_brute_candidate",
+      "label": "Serpent Brute",
+      "clean": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\processed\\serpent_brute_candidate.clean.png",
+      "clean_qc": {
+        "magenta_opaque_pixels": 0,
+        "white_opaque_pixels": 276,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_touch": false,
+        "bbox": [
+          151,
+          211,
+          1036,
+          1220
+        ]
+      },
+      "variants": {
+        "full": {
+          "file": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\processed\\serpent_brute_candidate.full.png",
+          "size": [
+            640,
+            768
+          ],
+          "meta": {
+            "source_bbox": [
+              151,
+              211,
+              1036,
+              1220
+            ],
+            "scaled_size": [
+              563,
+              642
+            ],
+            "paste": [
+              38,
+              96
+            ],
+            "baseline_y": 738
+          },
+          "qc": {
+            "magenta_opaque_pixels": 488,
+            "white_opaque_pixels": 91,
+            "corner_alpha": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "edge_touch": false,
+            "bbox": [
+              38,
+              96,
+              601,
+              738
+            ]
+          }
+        },
+        "dialogue": {
+          "file": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\processed\\serpent_brute_candidate.dialogue.png",
+          "size": [
+            768,
+            1024
+          ],
+          "meta": {
+            "source_bbox": [
+              151,
+              211,
+              1036,
+              1220
+            ],
+            "scaled_size": [
+              675,
+              770
+            ],
+            "paste": [
+              46,
+              195
+            ],
+            "baseline_y": 965
+          },
+          "qc": {
+            "magenta_opaque_pixels": 733,
+            "white_opaque_pixels": 161,
+            "corner_alpha": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "edge_touch": false,
+            "bbox": [
+              46,
+              195,
+              721,
+              965
+            ]
+          }
+        },
+        "ui": {
+          "file": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\processed\\serpent_brute_candidate.ui.png",
+          "size": [
+            384,
+            384
+          ],
+          "meta": {
+            "source_bbox": [
+              151,
+              211,
+              1036,
+              1220
+            ],
+            "scaled_size": [
+              245,
+              279
+            ],
+            "paste": [
+              69,
+              79
+            ],
+            "baseline_y": 358
+          },
+          "qc": {
+            "magenta_opaque_pixels": 71,
+            "white_opaque_pixels": 2,
+            "corner_alpha": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "edge_touch": false,
+            "bbox": [
+              69,
+              79,
+              314,
+              358
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "board": "public\\assets\\characters\\pixel\\validation\\gpt-serpent-generics-v1\\serpent-generics-validation-board.png"
+}

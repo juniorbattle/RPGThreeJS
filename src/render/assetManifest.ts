@@ -1,6 +1,6 @@
-const travelDefaultBackdrop = new URL('../../assets-source/backdrop/travel_default.png', import.meta.url).href;
-const travelCityBackdrop = new URL('../../assets-source/backdrop/travel_city.png', import.meta.url).href;
-const travelCastleBackdrop = new URL('../../assets-source/backdrop/travel_castle.png', import.meta.url).href;
+const travelDefaultBackdrop = '/assets/backdrops/travel_default.png';
+const travelCityBackdrop = '/assets/backdrops/travel_city.png';
+const travelCastleBackdrop = '/assets/backdrops/travel_castle.png';
 
 export const assets = {
   models: {
