@@ -1,0 +1,985 @@
+{
+  "run": "gpt-basic-monsters-v1",
+  "validatedRuntime": [
+    "forest_spider",
+    "forest_badger",
+    "marsh_toad",
+    "forest_wolf",
+    "cave_rat",
+    "wild_boar",
+    "venom_serpent"
+  ],
+  "futureCandidates": [
+    "forest_viper",
+    "giant_mygale",
+    "swamp_crocodile"
+  ],
+  "selected": {
+    "forest_spider": {
+      "raw": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\raw\\araignee.png",
+      "status": "validated_for_runtime",
+      "clean": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_spider.clean.png",
+      "qcClean": {
+        "size": [
+          1086,
+          1448
+        ],
+        "alphaBBox": [
+          24,
+          292,
+          1064,
+          1175
+        ],
+        "opaquePixels": 381923,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 43,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "full": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_spider.full.png",
+      "qcFull": {
+        "size": [
+          640,
+          768
+        ],
+        "alphaBBox": [
+          27,
+          243,
+          612,
+          740
+        ],
+        "opaquePixels": 122074,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 10,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dialogue": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_spider.dialogue.png",
+      "qcDialogue": {
+        "size": [
+          768,
+          1024
+        ],
+        "alphaBBox": [
+          48,
+          401,
+          719,
+          972
+        ],
+        "opaquePixels": 160450,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 20,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "ui": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_spider.ui.png",
+      "qcUi": {
+        "size": [
+          384,
+          384
+        ],
+        "alphaBBox": [
+          31,
+          79,
+          352,
+          351
+        ],
+        "opaquePixels": 37132,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 4,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "forest_badger": {
+      "raw": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\raw\\blaireau.png",
+      "status": "validated_for_runtime",
+      "clean": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_badger.clean.png",
+      "qcClean": {
+        "size": [
+          1086,
+          1448
+        ],
+        "alphaBBox": [
+          89,
+          367,
+          1047,
+          1067
+        ],
+        "opaquePixels": 413184,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 72,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "full": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_badger.full.png",
+      "qcFull": {
+        "size": [
+          640,
+          768
+        ],
+        "alphaBBox": [
+          27,
+          312,
+          612,
+          740
+        ],
+        "opaquePixels": 154443,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 18,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dialogue": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_badger.dialogue.png",
+      "qcDialogue": {
+        "size": [
+          768,
+          1024
+        ],
+        "alphaBBox": [
+          47,
+          481,
+          721,
+          971
+        ],
+        "opaquePixels": 202953,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 26,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "ui": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_badger.ui.png",
+      "qcUi": {
+        "size": [
+          384,
+          384
+        ],
+        "alphaBBox": [
+          31,
+          117,
+          352,
+          351
+        ],
+        "opaquePixels": 46583,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 6,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "marsh_toad": {
+      "raw": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\raw\\crapaud.png",
+      "status": "validated_for_runtime",
+      "clean": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\marsh_toad.clean.png",
+      "qcClean": {
+        "size": [
+          1086,
+          1448
+        ],
+        "alphaBBox": [
+          45,
+          276,
+          1019,
+          1094
+        ],
+        "opaquePixels": 427991,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 143,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "full": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\marsh_toad.full.png",
+      "qcFull": {
+        "size": [
+          640,
+          768
+        ],
+        "alphaBBox": [
+          27,
+          250,
+          612,
+          740
+        ],
+        "opaquePixels": 154370,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 49,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dialogue": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\marsh_toad.dialogue.png",
+      "qcDialogue": {
+        "size": [
+          768,
+          1024
+        ],
+        "alphaBBox": [
+          49,
+          408,
+          720,
+          972
+        ],
+        "opaquePixels": 203228,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 67,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "ui": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\marsh_toad.ui.png",
+      "qcUi": {
+        "size": [
+          384,
+          384
+        ],
+        "alphaBBox": [
+          31,
+          82,
+          352,
+          351
+        ],
+        "opaquePixels": 46740,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 13,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "forest_wolf": {
+      "raw": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\raw\\loup.png",
+      "status": "validated_for_runtime",
+      "clean": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_wolf.clean.png",
+      "qcClean": {
+        "size": [
+          1086,
+          1448
+        ],
+        "alphaBBox": [
+          108,
+          401,
+          1054,
+          1046
+        ],
+        "opaquePixels": 348345,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 35,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "full": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_wolf.full.png",
+      "qcFull": {
+        "size": [
+          640,
+          768
+        ],
+        "alphaBBox": [
+          28,
+          341,
+          612,
+          740
+        ],
+        "opaquePixels": 133495,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 13,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dialogue": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_wolf.dialogue.png",
+      "qcDialogue": {
+        "size": [
+          768,
+          1024
+        ],
+        "alphaBBox": [
+          48,
+          513,
+          719,
+          971
+        ],
+        "opaquePixels": 175866,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 17,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "ui": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_wolf.ui.png",
+      "qcUi": {
+        "size": [
+          384,
+          384
+        ],
+        "alphaBBox": [
+          31,
+          132,
+          352,
+          351
+        ],
+        "opaquePixels": 40499,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 4,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "cave_rat": {
+      "raw": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\raw\\rat.png",
+      "status": "validated_for_runtime",
+      "clean": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\cave_rat.clean.png",
+      "qcClean": {
+        "size": [
+          1086,
+          1448
+        ],
+        "alphaBBox": [
+          57,
+          392,
+          1042,
+          1031
+        ],
+        "opaquePixels": 295874,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 845,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "full": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\cave_rat.full.png",
+      "qcFull": {
+        "size": [
+          640,
+          768
+        ],
+        "alphaBBox": [
+          27,
+          360,
+          612,
+          740
+        ],
+        "opaquePixels": 104859,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 290,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dialogue": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\cave_rat.dialogue.png",
+      "qcDialogue": {
+        "size": [
+          768,
+          1024
+        ],
+        "alphaBBox": [
+          48,
+          536,
+          719,
+          972
+        ],
+        "opaquePixels": 137623,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 365,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "ui": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\cave_rat.ui.png",
+      "qcUi": {
+        "size": [
+          384,
+          384
+        ],
+        "alphaBBox": [
+          31,
+          143,
+          352,
+          351
+        ],
+        "opaquePixels": 31890,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 28,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "wild_boar": {
+      "raw": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\raw\\sanglier.png",
+      "status": "validated_for_runtime",
+      "clean": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\wild_boar.clean.png",
+      "qcClean": {
+        "size": [
+          1086,
+          1448
+        ],
+        "alphaBBox": [
+          88,
+          304,
+          1047,
+          1074
+        ],
+        "opaquePixels": 428273,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 59,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "full": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\wild_boar.full.png",
+      "qcFull": {
+        "size": [
+          640,
+          768
+        ],
+        "alphaBBox": [
+          27,
+          270,
+          611,
+          740
+        ],
+        "opaquePixels": 159435,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 18,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dialogue": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\wild_boar.dialogue.png",
+      "qcDialogue": {
+        "size": [
+          768,
+          1024
+        ],
+        "alphaBBox": [
+          48,
+          432,
+          719,
+          972
+        ],
+        "opaquePixels": 209660,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 35,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "ui": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\wild_boar.ui.png",
+      "qcUi": {
+        "size": [
+          384,
+          384
+        ],
+        "alphaBBox": [
+          31,
+          93,
+          352,
+          351
+        ],
+        "opaquePixels": 48245,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 4,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "venom_serpent": {
+      "raw": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\raw\\serpent.png",
+      "status": "validated_for_runtime",
+      "clean": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\venom_serpent.clean.png",
+      "qcClean": {
+        "size": [
+          1086,
+          1448
+        ],
+        "alphaBBox": [
+          157,
+          267,
+          1018,
+          1211
+        ],
+        "opaquePixels": 417907,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 12,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "full": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\venom_serpent.full.png",
+      "qcFull": {
+        "size": [
+          640,
+          768
+        ],
+        "alphaBBox": [
+          27,
+          99,
+          612,
+          739
+        ],
+        "opaquePixels": 192739,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 9,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dialogue": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\venom_serpent.dialogue.png",
+      "qcDialogue": {
+        "size": [
+          768,
+          1024
+        ],
+        "alphaBBox": [
+          49,
+          237,
+          719,
+          971
+        ],
+        "opaquePixels": 253635,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 13,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "ui": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\venom_serpent.ui.png",
+      "qcUi": {
+        "size": [
+          384,
+          384
+        ],
+        "alphaBBox": [
+          49,
+          38,
+          334,
+          351
+        ],
+        "opaquePixels": 46243,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 0,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "forest_viper": {
+      "raw": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\raw\\viper.png",
+      "status": "future_candidate",
+      "clean": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_viper.clean.png",
+      "qcClean": {
+        "size": [
+          1086,
+          1448
+        ],
+        "alphaBBox": [
+          159,
+          257,
+          994,
+          1169
+        ],
+        "opaquePixels": 433717,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 287,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "full": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_viper.full.png",
+      "qcFull": {
+        "size": [
+          640,
+          768
+        ],
+        "alphaBBox": [
+          27,
+          101,
+          612,
+          739
+        ],
+        "opaquePixels": 212425,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 142,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dialogue": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_viper.dialogue.png",
+      "qcDialogue": {
+        "size": [
+          768,
+          1024
+        ],
+        "alphaBBox": [
+          49,
+          240,
+          719,
+          971
+        ],
+        "opaquePixels": 279576,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 182,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "ui": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\forest_viper.ui.png",
+      "qcUi": {
+        "size": [
+          384,
+          384
+        ],
+        "alphaBBox": [
+          48,
+          38,
+          335,
+          351
+        ],
+        "opaquePixels": 51389,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 27,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "giant_mygale": {
+      "raw": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\raw\\mygale.png",
+      "status": "future_candidate",
+      "clean": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\giant_mygale.clean.png",
+      "qcClean": {
+        "size": [
+          1086,
+          1448
+        ],
+        "alphaBBox": [
+          45,
+          335,
+          1040,
+          1113
+        ],
+        "opaquePixels": 349403,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 647,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "full": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\giant_mygale.full.png",
+      "qcFull": {
+        "size": [
+          640,
+          768
+        ],
+        "alphaBBox": [
+          27,
+          283,
+          612,
+          740
+        ],
+        "opaquePixels": 121002,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 187,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dialogue": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\giant_mygale.dialogue.png",
+      "qcDialogue": {
+        "size": [
+          768,
+          1024
+        ],
+        "alphaBBox": [
+          49,
+          446,
+          721,
+          972
+        ],
+        "opaquePixels": 159432,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 272,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "ui": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\giant_mygale.ui.png",
+      "qcUi": {
+        "size": [
+          384,
+          384
+        ],
+        "alphaBBox": [
+          31,
+          100,
+          352,
+          351
+        ],
+        "opaquePixels": 36852,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 26,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "swamp_crocodile": {
+      "raw": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\raw\\croco.png",
+      "status": "future_candidate",
+      "clean": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\swamp_crocodile.clean.png",
+      "qcClean": {
+        "size": [
+          1086,
+          1448
+        ],
+        "alphaBBox": [
+          70,
+          408,
+          1033,
+          986
+        ],
+        "opaquePixels": 308279,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 699,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "full": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\swamp_crocodile.full.png",
+      "qcFull": {
+        "size": [
+          640,
+          768
+        ],
+        "alphaBBox": [
+          27,
+          389,
+          612,
+          739
+        ],
+        "opaquePixels": 113688,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 235,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dialogue": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\swamp_crocodile.dialogue.png",
+      "qcDialogue": {
+        "size": [
+          768,
+          1024
+        ],
+        "alphaBBox": [
+          48,
+          568,
+          720,
+          972
+        ],
+        "opaquePixels": 149844,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 337,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "ui": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\processed\\swamp_crocodile.ui.png",
+      "qcUi": {
+        "size": [
+          384,
+          384
+        ],
+        "alphaBBox": [
+          31,
+          158,
+          352,
+          351
+        ],
+        "opaquePixels": 34590,
+        "magentaOpaqueResidue": 0,
+        "whiteOpaquePixels": 28,
+        "touchesEdge": false,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "reserve": {
+    "cave_bat": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\reserve\\cave_bat.raw.png",
+    "mountain_ram": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\reserve\\mountain_ram.raw.png",
+    "river_crab": "public\\assets\\characters\\pixel\\validation\\gpt-basic-monsters-v1\\reserve\\river_crab.raw.png"
+  },
+  "notes": "Validation variants only. Runtime promotion is handled separately."
+}

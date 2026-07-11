@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { campaignNodes, combatConfigs, dialogues } from './content';
 import { assets } from '../render/assetManifest';
 import { craftRecipes, itemById, units } from './catalog';
+import { prologuePanels } from './prologue';
 import characterQc from '../../public/assets/characters/pixel/canonical-character-qc.json';
 
 interface CharacterAssetProfile {
@@ -66,6 +67,21 @@ function collectAssetPaths(value: unknown, output: string[] = []): string[] {
   return output;
 }
 
+function collectTextStrings(value: unknown, output: string[] = []): string[] {
+  if (typeof value === 'string') {
+    output.push(value);
+    return output;
+  }
+  if (Array.isArray(value)) {
+    for (const item of value) collectTextStrings(item, output);
+    return output;
+  }
+  if (value && typeof value === 'object') {
+    for (const item of Object.values(value)) collectTextStrings(item, output);
+  }
+  return output;
+}
+
 describe('campaign content integrity', () => {
   it('only references existing nodes, dialogues and combats', () => {
     const nodeIds = new Set(campaignNodes.map((node) => node.id));
@@ -122,6 +138,31 @@ describe('campaign content integrity', () => {
         expectPublicAsset(dialogueActors[step.actorId ?? '']!, `${dialogue.id}:${step.id}`);
         expect(characterProfiles[step.actorId ?? '']?.dialogue, `${dialogue.id}:${step.id}`).toBe(dialogueActors[step.actorId ?? '']);
       }
+    }
+  });
+
+  it('defines a short cinematic prologue backed by existing painted scenes', () => {
+    const prologueScenes = assets.prologueScenes as Record<string, string>;
+    expect(prologuePanels).toHaveLength(5);
+
+    for (const panel of prologuePanels) {
+      expect(panel.eyebrow.length, `${panel.id}:eyebrow`).toBeGreaterThan(0);
+      expect(panel.title.length, `${panel.id}:title`).toBeGreaterThan(0);
+      expect(panel.body.length, `${panel.id}:body`).toBeGreaterThan(80);
+      expect(prologueScenes[panel.id], panel.id).toBeTruthy();
+      expectPublicAsset(prologueScenes[panel.id]!, panel.id);
+    }
+  });
+
+  it('keeps touched narrative content free of mojibake markers', () => {
+    const text = collectTextStrings({
+      campaignNodes,
+      combatConfigs: Array.from(combatConfigs.values()),
+      dialogues: Array.from(dialogues.values()),
+      prologuePanels,
+    }).join('\n');
+    for (const marker of ['Ã', 'â€', 'ðŸ', '�']) {
+      expect(text, `mojibake:${marker}`).not.toContain(marker);
     }
   });
 
@@ -220,47 +261,78 @@ describe('campaign content integrity', () => {
   it('keeps validation and rejected sprite work out of runtime manifests', () => {
     for (const assetPath of collectAssetPaths(assets)) {
       expect(assetPath, `${assetPath}:validationLeak`).not.toContain('/validation/');
+      expect(assetPath, `${assetPath}:rawLeak`).not.toContain('/raw/');
+      expect(assetPath, `${assetPath}:processedLeak`).not.toContain('/processed/');
       expect(assetPath, `${assetPath}:rejectedLeak`).not.toContain('/rejected/');
     }
   });
 
-  it('keeps pending generic Serpent sprites out of runtime until approved', () => {
+  it('declares approved generic Serpent sprites as runtime faction enemies', () => {
     const visualProfiles = assets.visualProfiles as unknown as Record<string, VisualProfile>;
     const characterProfiles = assets.characterProfiles as Record<string, CharacterAssetProfile>;
     const dialogueActors = assets.dialogueActors as Record<string, string>;
-    const pendingProfileIds = new Set(['serpent_raider', 'serpent_brute', 'serpent_oracle']);
+    const approvedProfileIds = ['serpent_raider', 'serpent_brute', 'serpent_oracle'];
 
-    for (const id of pendingProfileIds) {
-      expect(visualProfiles[id], `${id}:visualProfile`).toBeUndefined();
-      expect(characterProfiles[id], `${id}:characterProfile`).toBeUndefined();
-      expect(dialogueActors[id], `${id}:dialogueActor`).toBeUndefined();
+    for (const id of approvedProfileIds) {
+      expect(visualProfiles[id]?.category, `${id}:category`).toBe('faction_enemy');
+      expect(visualProfiles[id]?.rarity, `${id}:rarity`).toBe('generic');
+      expect(visualProfiles[id]?.artStatus, `${id}:artStatus`).toBe('approved');
+      expect(characterProfiles[id]?.full, `${id}:full`).toBe(`/assets/characters/pixel/full/${id}.png`);
+      expect(characterProfiles[id]?.dialogue, `${id}:dialogue`).toBe(`/assets/characters/pixel/dialogue/${id}.png`);
+      expect(characterProfiles[id]?.ui, `${id}:ui`).toBe(`/assets/characters/pixel/ui/${id}.png`);
+      expect(dialogueActors[id], `${id}:dialogueActor`).toBe(`/assets/characters/pixel/dialogue/${id}.png`);
     }
 
     for (const dialogue of dialogues.values()) {
       for (const step of dialogue.steps) {
-        if (step.actorId) expect(pendingProfileIds.has(step.actorId), `${dialogue.id}:${step.id}:${step.actorId}`).toBe(false);
+        if (step.actorId && approvedProfileIds.includes(step.actorId)) {
+          expect(dialogueActors[step.actorId], `${dialogue.id}:${step.id}:${step.actorId}`).toBeTruthy();
+        }
       }
     }
 
     for (const combat of combatConfigs.values()) {
       for (const id of combat.enemyVisualIds) {
-        expect(pendingProfileIds.has(id), `${combat.id}:${id}:enemyVisualIds`).toBe(false);
+        if (approvedProfileIds.includes(id)) expect(characterProfiles[id], `${combat.id}:${id}:enemyVisualIds`).toBeTruthy();
       }
       for (const id of combat.escortVisualIds) {
-        expect(pendingProfileIds.has(id), `${combat.id}:${id}:escortVisualIds`).toBe(false);
+        if (approvedProfileIds.includes(id)) expect(characterProfiles[id], `${combat.id}:${id}:escortVisualIds`).toBeTruthy();
       }
       if (combat.bossVisualId) {
-        expect(pendingProfileIds.has(combat.bossVisualId), `${combat.id}:${combat.bossVisualId}:bossVisualId`).toBe(false);
+        expect(approvedProfileIds.includes(combat.bossVisualId), `${combat.id}:${combat.bossVisualId}:bossVisualId`).toBe(false);
       }
     }
+  });
 
+  it('promotes validated elite sprites into runtime profiles and demo encounters', () => {
+    const visualProfiles = assets.visualProfiles as unknown as Record<string, VisualProfile>;
+    const characterProfiles = assets.characterProfiles as Record<string, CharacterAssetProfile>;
+    const expectedRuntimeIds = ['serpent_general_boss', 'serpent_duelist_elite', 'forest_troll_elite', 'young_dragon_elite'];
+
+    for (const id of expectedRuntimeIds) {
+      expect(characterProfiles[id], `${id}:profile`).toBeTruthy();
+      expect(characterProfiles[id]?.full, `${id}:full`).toBe(`/assets/characters/pixel/full/${id}.png`);
+      expect(characterProfiles[id]?.dialogue, `${id}:dialogue`).toBe(`/assets/characters/pixel/dialogue/${id}.png`);
+      expect(characterProfiles[id]?.ui, `${id}:ui`).toBe(`/assets/characters/pixel/ui/${id}.png`);
+      expectPublicAsset(characterProfiles[id]!.full, `${id}:full`);
+      expectPublicAsset(characterProfiles[id]!.dialogue, `${id}:dialogue`);
+      expectPublicAsset(characterProfiles[id]!.ui, `${id}:ui`);
+      expect(visualProfiles[id]?.artStatus, `${id}:approved`).toBe('approved');
+    }
+
+    expect(visualProfiles.serpent_general_boss?.category).toBe('boss');
+    expect(combatConfigs.get('serpent_captain')?.bossVisualId).toBe('serpent_general_boss');
+    expect(combatConfigs.get('serpent_captain')?.encounterRank).toBe('boss');
+    expect(combatConfigs.get('serpent_duelist_trial')?.enemyVisualIds).toContain('serpent_duelist_elite');
+    expect(combatConfigs.get('troll_crossing')?.enemyVisualIds).toContain('forest_troll_elite');
+    expect(combatConfigs.get('young_dragon_roost')?.enemyVisualIds).toContain('young_dragon_elite');
   });
 
   it('declares valid visual compositions for faction, monster, elite and boss encounters', () => {
     const characterProfiles = assets.characterProfiles as Record<string, CharacterAssetProfile>;
     const visualProfiles = assets.visualProfiles as unknown as Record<string, VisualProfile>;
-    const expectedMonsterIds = ['wolf', 'venom_serpent', 'goblin', 'skeleton'];
-    const expectedEliteIds = ['troll', 'young_wyrm', 'undead_champion'];
+    const expectedMonsterIds = ['wolf', 'venom_serpent', 'forest_spider', 'forest_badger', 'marsh_toad', 'cave_rat', 'wild_boar', 'goblin', 'skeleton'];
+    const expectedEliteIds = ['troll', 'young_wyrm', 'undead_champion', 'forest_troll_elite', 'young_dragon_elite'];
 
     for (const id of expectedMonsterIds) {
       expect(visualProfiles[id]?.category, `${id}:category`).toBe('monster');

@@ -33,6 +33,9 @@ const INTRIGUE_EVENTS = [
   'mystery_help',
   'mystery_recruit',
   'mystery_ambush',
+  'serpent_duelist_trial',
+  'mystery_troll_crossing',
+  'mystery_dragon_roost',
   'mystery_treasure',
   'mystery_shrine',
 ] as const;
@@ -279,7 +282,11 @@ function seededRandom(seed: number): () => number {
 function weightedIntrigue(random: () => number, reputation: number): string {
   const rule = getReputationRule(reputation);
   const weighted = INTRIGUE_EVENTS.map((id) => {
-    const tag = id === 'mystery_ambush' ? 'hostile' : id === 'mystery_treasure' ? 'neutral' : 'helpful';
+    const tag = id === 'mystery_ambush' || id === 'serpent_duelist_trial' || id === 'mystery_troll_crossing' || id === 'mystery_dragon_roost'
+      ? 'hostile'
+      : id === 'mystery_treasure'
+        ? 'neutral'
+        : 'helpful';
     return {
       id,
       weight: tag === 'hostile'

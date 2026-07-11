@@ -1110,10 +1110,10 @@
     "variants": {
       "full": {
         "alpha_bbox": [
-          27,
-          125,
+          28,
+          341,
           612,
-          742
+          740
         ],
         "corner_alpha": [
           0,
@@ -1122,17 +1122,17 @@
           0
         ],
         "magenta_pixels": 0,
-        "white_pixels": 0,
+        "white_pixels": 13,
         "white_background_pixels": 0,
         "artifact_violet_pixels": 0,
         "floor_artifact_pixels": 0
       },
       "dialogue": {
         "alpha_bbox": [
-          39,
-          272,
-          729,
-          1000
+          48,
+          513,
+          719,
+          971
         ],
         "corner_alpha": [
           0,
@@ -1141,17 +1141,17 @@
           0
         ],
         "magenta_pixels": 0,
-        "white_pixels": 0,
+        "white_pixels": 17,
         "white_background_pixels": 0,
         "artifact_violet_pixels": 0,
         "floor_artifact_pixels": 0
       },
       "ui": {
         "alpha_bbox": [
-          32,
-          29,
+          31,
+          132,
           352,
-          366
+          351
         ],
         "corner_alpha": [
           0,
@@ -1160,7 +1160,7 @@
           0
         ],
         "magenta_pixels": 0,
-        "white_pixels": 0,
+        "white_pixels": 4,
         "white_background_pixels": 0,
         "artifact_violet_pixels": 0,
         "floor_artifact_pixels": 0
@@ -1172,9 +1172,9 @@
       "full": {
         "alpha_bbox": [
           27,
-          155,
+          99,
           612,
-          742
+          739
         ],
         "corner_alpha": [
           0,
@@ -1183,17 +1183,17 @@
           0
         ],
         "magenta_pixels": 0,
-        "white_pixels": 0,
+        "white_pixels": 9,
         "white_background_pixels": 0,
         "artifact_violet_pixels": 0,
         "floor_artifact_pixels": 0
       },
       "dialogue": {
         "alpha_bbox": [
-          39,
-          308,
-          729,
-          1000
+          49,
+          237,
+          719,
+          971
         ],
         "corner_alpha": [
           0,
@@ -1202,17 +1202,17 @@
           0
         ],
         "magenta_pixels": 0,
-        "white_pixels": 0,
+        "white_pixels": 13,
         "white_background_pixels": 0,
         "artifact_violet_pixels": 0,
         "floor_artifact_pixels": 0
       },
       "ui": {
         "alpha_bbox": [
-          32,
-          45,
-          352,
-          366
+          49,
+          38,
+          334,
+          351
         ],
         "corner_alpha": [
           0,
@@ -1856,6 +1856,555 @@
         ],
         "magenta_pixels": 0,
         "white_pixels": 8,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "forest_spider": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          27,
+          243,
+          612,
+          740
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 10,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          48,
+          401,
+          719,
+          972
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 20,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          31,
+          79,
+          352,
+          351
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 4,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "forest_badger": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          27,
+          312,
+          612,
+          740
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 18,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          47,
+          481,
+          721,
+          971
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 26,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          31,
+          117,
+          352,
+          351
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 6,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "marsh_toad": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          27,
+          250,
+          612,
+          740
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 49,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          49,
+          408,
+          720,
+          972
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 67,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          31,
+          82,
+          352,
+          351
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 13,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "cave_rat": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          27,
+          360,
+          612,
+          740
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 290,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          48,
+          536,
+          719,
+          972
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 365,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          31,
+          143,
+          352,
+          351
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 28,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "wild_boar": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          27,
+          270,
+          611,
+          740
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 18,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          48,
+          432,
+          719,
+          972
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 35,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          31,
+          93,
+          352,
+          351
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 4,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "forest_troll_elite": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          20,
+          131,
+          620,
+          742
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 1222,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          19,
+          231,
+          749,
+          974
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 1471,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          32,
+          30,
+          352,
+          356
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 520,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "young_dragon_elite": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          20,
+          109,
+          620,
+          742
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 1121,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          19,
+          203,
+          749,
+          974
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 1545,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          37,
+          30,
+          346,
+          356
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 609,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "serpent_general_boss": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          65,
+          42,
+          574,
+          742
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 310,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          53,
+          64,
+          715,
+          974
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 585,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          73,
+          30,
+          310,
+          356
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 108,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "serpent_duelist_elite": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          48,
+          42,
+          592,
+          742
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 1170,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          30,
+          64,
+          737,
+          974
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 1761,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          65,
+          30,
+          318,
+          356
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 325,
         "white_background_pixels": 0,
         "artifact_violet_pixels": 0,
         "floor_artifact_pixels": 0

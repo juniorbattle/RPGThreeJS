@@ -115,6 +115,123 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .title-screen__nav-link:hover { color: var(--gold-bright); }
 .title-screen__nav-sep { width: 1px; height: 14px; background: rgba(244,217,139,.22); }
 
+.prologue-view {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  overflow: hidden;
+  pointer-events: auto;
+  color: var(--cream);
+  background: #03060e;
+  isolation: isolate;
+}
+.prologue-view__painted {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(242,211,139,.08), transparent 34%),
+    linear-gradient(180deg, rgba(2,4,9,.58), rgba(2,4,9,.18) 42%, rgba(2,4,9,.78)),
+    linear-gradient(90deg, rgba(2,4,9,.78), transparent 38%, rgba(2,4,9,.62)),
+    var(--prologue-bg-image) center/cover no-repeat;
+  filter: saturate(.92) contrast(1.05);
+  animation: prologue-panel-in .5s ease both;
+}
+.prologue-view::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: inset 0 0 160px rgba(0,0,0,.84);
+  background:
+    radial-gradient(ellipse at 50% 52%, transparent 16%, rgba(0,0,0,.28) 68%, rgba(0,0,0,.64)),
+    linear-gradient(180deg, rgba(0,0,0,.24), transparent 28%, rgba(0,0,0,.38));
+}
+.prologue-view__mist {
+  position: absolute;
+  inset: -8% -10%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .36;
+  background:
+    radial-gradient(ellipse at 20% 72%, rgba(180,205,220,.28), transparent 34%),
+    radial-gradient(ellipse at 72% 66%, rgba(242,211,139,.12), transparent 31%),
+    radial-gradient(circle at 46% 34%, rgba(255,255,255,.12), transparent 18%);
+  filter: blur(18px);
+  animation: prologue-mist 8s ease-in-out infinite alternate;
+}
+.prologue-view__skip {
+  position: absolute;
+  top: 26px;
+  right: 30px;
+  z-index: 5;
+  border: 1px solid rgba(244,217,139,.42);
+  border-radius: 999px;
+  padding: 9px 15px;
+  background: rgba(5,9,20,.68);
+  color: rgba(244,217,139,.88);
+  font: 700 10px var(--ui-font-title, Cinzel, serif);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.prologue-view__card {
+  position: absolute;
+  left: clamp(30px, 7vw, 110px);
+  bottom: clamp(46px, 9vh, 110px);
+  z-index: 4;
+  width: min(760px, calc(100% - 84px));
+  padding: 28px 32px 24px;
+  border-left: 2px solid rgba(244,217,139,.74);
+  background: linear-gradient(90deg, rgba(5,9,20,.72), rgba(5,9,20,.42) 72%, transparent);
+  text-shadow: 0 3px 16px rgba(0,0,0,.82);
+  animation: prologue-text-in .5s ease both;
+}
+.prologue-view__eyebrow {
+  margin: 0 0 14px;
+  color: var(--gold);
+  font: 700 11px var(--ui-font-title, Cinzel, serif);
+  letter-spacing: .28em;
+  text-transform: uppercase;
+}
+.prologue-view__card h1 {
+  margin: 0 0 16px;
+  color: var(--cream);
+  font: 700 clamp(42px, 6vw, 78px)/.95 var(--ui-font-title, Cinzel, serif);
+  letter-spacing: -.03em;
+  text-transform: uppercase;
+}
+.prologue-view__card p:not(.prologue-view__eyebrow) {
+  max-width: 680px;
+  margin: 0;
+  color: #e8e0d2;
+  font: 400 clamp(17px, 1.35vw, 22px)/1.72 var(--ui-font-body, Inter, sans-serif);
+}
+.prologue-view__card footer {
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  margin-top: 22px;
+  color: rgba(244,217,139,.78);
+  font: 700 10px var(--ui-font-title, Cinzel, serif);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+@keyframes prologue-panel-in {
+  from { opacity: 0; filter: saturate(.8) contrast(1.02) blur(2px); }
+  to { opacity: 1; filter: saturate(.92) contrast(1.05) blur(0); }
+}
+@keyframes prologue-text-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes prologue-mist {
+  from { opacity: .2; transform: translate3d(-1.4%, .4%, 0) scale(1); }
+  to { opacity: .42; transform: translate3d(1.2%, -.6%, 0) scale(1.02); }
+}
+
 
 .dialogue {
   position: fixed;
@@ -1633,6 +1750,11 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .title-screen__lead { max-width: 34rem; margin-bottom: 22px; font-size: 14px; line-height: 1.55; }
   .title-screen__actions { width: min(360px, 100%); flex-direction: column; }
   .title-screen button { width: 100%; min-height: 44px; }
+  .prologue-view__skip { top: max(14px, env(safe-area-inset-top)); right: 14px; padding: 8px 12px; }
+  .prologue-view__card { left: 18px; right: 18px; bottom: max(18px, env(safe-area-inset-bottom)); width: auto; padding: 22px 22px 20px; }
+  .prologue-view__card h1 { font-size: clamp(34px, 11vw, 52px); }
+  .prologue-view__card p:not(.prologue-view__eyebrow) { font-size: 15px; line-height: 1.58; }
+  .prologue-view__card footer { flex-direction: column; gap: 7px; }
   .dialogue__brand { top: 12px; font-size: 9px; letter-spacing: .28em; }
   .dialogue__brand span::before,
   .dialogue__brand span::after { width: 34px; }
@@ -1730,6 +1852,9 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .travel-view__hud { min-height: 54px; }
   .travel-view__choices { top: 106px; max-height: calc(100dvh - 132px); }
   .travel-party { opacity: .58; transform: translateY(12px) scale(.86); transform-origin: 50% 100%; }
+  .prologue-view__card { padding: 18px 20px 16px; }
+  .prologue-view__card h1 { margin-bottom: 10px; font-size: clamp(30px, 9vw, 46px); }
+  .prologue-view__card p:not(.prologue-view__eyebrow) { font-size: 14px; line-height: 1.48; }
   .dialogue__brand { display: none; }
   .dialogue__portrait { opacity: .34; height: 32dvh; bottom: 184px; }
   .dialogue__box { min-height: 150px; max-height: 46dvh; padding: 15px 18px 18px; }

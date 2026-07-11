@@ -224,17 +224,26 @@ function drawUnit(kind){
 function texFromCanvas(cv){ const t=new THREE.CanvasTexture(cv); t.magFilter=THREE.NearestFilter; t.minFilter=THREE.NearestFilter; t.colorSpace=THREE.SRGBColorSpace; t.generateMipmaps=false; return t; }
 function uiPortraitFor(path){ return typeof path==='string'&&path.includes('/assets/characters/pixel/full/')?path.replace('/full/','/ui/'):path; }
 const EXTERNAL_SPRITE_HEIGHTS={
-  '/assets/characters/pixel/full/serpent_raider.png':2.1,
-  '/assets/characters/pixel/full/serpent_brute.png':2.2,
-  '/assets/characters/pixel/full/serpent_oracle.png':2.12,
+  '/assets/characters/pixel/full/serpent_raider.png':1.76,
+  '/assets/characters/pixel/full/serpent_brute.png':1.76,
+  '/assets/characters/pixel/full/serpent_oracle.png':1.76,
   '/assets/characters/pixel/full/serpent_elite_raider.png':2.04,
   '/assets/characters/pixel/full/serpent_elite_brute.png':2.2,
+  '/assets/characters/pixel/full/serpent_duelist_elite.png':2.08,
+  '/assets/characters/pixel/full/serpent_general_boss.png':2.42,
   '/assets/characters/pixel/full/wolf.png':1.42,
   '/assets/characters/pixel/full/venom_serpent.png':1.48,
+  '/assets/characters/pixel/full/forest_spider.png':1.34,
+  '/assets/characters/pixel/full/forest_badger.png':1.32,
+  '/assets/characters/pixel/full/marsh_toad.png':1.36,
+  '/assets/characters/pixel/full/cave_rat.png':1.24,
+  '/assets/characters/pixel/full/wild_boar.png':1.42,
   '/assets/characters/pixel/full/goblin.png':1.72,
   '/assets/characters/pixel/full/skeleton.png':1.9,
   '/assets/characters/pixel/full/troll.png':2.3,
   '/assets/characters/pixel/full/young_wyrm.png':2.18,
+  '/assets/characters/pixel/full/forest_troll_elite.png':2.3,
+  '/assets/characters/pixel/full/young_dragon_elite.png':2.22,
   '/assets/characters/pixel/full/undead_champion.png':2.18,
   '/assets/characters/pixel/full/boss_serpent_captain.png':2.42,
   '/assets/characters/pixel/full/alaric.png':2.42,
@@ -542,12 +551,13 @@ const DEFS=[
 ];
 
 const BOSS_DEFS=[
-  {team:'foe',kind:'brute',name:'Capitaine Serpent',portrait:'/assets/characters/pixel/full/shadow_omen.png',hp:320,str:30,mag:10,end:24,dex:10,cha:12,mov:0,weapons:[{name:'Lame Serpent',icon:'⚔️',type:'phys',min:1,max:2,power:18,crit:0.08,acc:0.9}],skills:['boss_slam','boss_roar','boss_quake','boss_guard'],ai:'aggressive',gx:5,gz:1,size:2,immobile:true,boss:true},
+  {team:'foe',kind:'brute',name:'Général Serpent',portrait:'/assets/characters/pixel/full/serpent_general_boss.png',hp:320,str:30,mag:10,end:24,dex:10,cha:12,mov:0,weapons:[{name:'Lame Serpent',icon:'⚔️',type:'phys',min:1,max:2,power:18,crit:0.08,acc:0.9}],skills:['boss_slam','boss_roar','boss_quake','boss_guard'],ai:'aggressive',gx:5,gz:1,size:2,immobile:true,boss:true},
   {team:'foe',kind:'knight',name:'Vieux Lion Alaric',portrait:'/assets/characters/pixel/full/alaric.png',hp:380,str:28,mag:8,end:26,dex:12,cha:16,mov:0,weapons:[{name:'Lame du Lion',icon:'⚔️',type:'phys',min:1,max:2,power:16,crit:0.06,acc:0.92}],skills:['boss_slam','boss_roar','boss_quake','boss_guard'],ai:'guardian',gx:5,gz:1,size:2,immobile:true,boss:true}
 ];
 
 const BOSS_PORTRAITS={
-  serpent_captain:'/assets/characters/pixel/full/boss_serpent_captain.png',
+  serpent_captain:'/assets/characters/pixel/full/serpent_general_boss.png',
+  serpent_general_boss:'/assets/characters/pixel/full/serpent_general_boss.png',
   alaric:'/assets/characters/pixel/full/alaric.png',
   lion_chief:'/assets/characters/pixel/full/alaric.png'
 };
@@ -569,12 +579,20 @@ const VISUAL_UNIT_TEMPLATES={
   serpent_oracle:{team:'foe',kind:'darkmage',name:'Oracle Serpent',portrait:'/assets/characters/pixel/full/serpent_oracle.png',hp:78,str:4,mag:23,end:10,dex:12,cha:8,mov:2,weapons:[{name:'Bâton',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}],skills:['bolt','curse'],ai:'cautious'},
   serpent_elite_raider:{team:'foe',kind:'brigand', name:'Duelliste Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_raider.png',hp:112,str:21,mag:5,end:13,dex:17,cha:8,mov:3,weapons:[{name:'Lame courbe',icon:'†',type:'phys',min:1,max:1,power:11,crit:0.22,acc:0.95}],skills:['weaken'],ai:'aggressive'},
   serpent_elite_brute:{team:'foe',kind:'brute',name:'Massacreur Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_brute.png',hp:155,str:25,mag:4,end:19,dex:7,cha:7,mov:2,weapons:[{name:'Masse lourde',icon:'◆',type:'phys',min:1,max:1,power:15,crit:0.06,acc:0.84}],skills:['heavy','provoke'],ai:'guardian'},
+  serpent_duelist_elite:{team:'foe',kind:'brigand',name:'Duelliste Serpent',portrait:'/assets/characters/pixel/full/serpent_duelist_elite.png',hp:118,str:22,mag:6,end:14,dex:19,cha:8,mov:3,weapons:[{name:'Lames courbes',icon:'†',type:'phys',min:1,max:1,power:12,crit:0.24,acc:0.96}],skills:['weaken','blind_shot'],ai:'aggressive'},
   wolf:{team:'foe',kind:'brigand',name:'Loup',portrait:'/assets/characters/pixel/full/wolf.png',hp:82,str:19,mag:2,end:10,dex:18,cha:4,mov:3,weapons:[{name:'Morsure',icon:'◆',type:'phys',min:1,max:1,power:10,crit:0.12,acc:0.94}],skills:[],ai:'aggressive'},
   venom_serpent:{team:'foe',kind:'brigand',name:'Serpent venimeux',portrait:'/assets/characters/pixel/full/venom_serpent.png',hp:95,str:17,mag:8,end:12,dex:13,cha:4,mov:2,weapons:[{name:'Crochets',icon:'◆',type:'phys',min:1,max:1,power:9,crit:0.1,acc:0.93}],skills:['weaken'],ai:'cautious'},
+  forest_spider:{team:'foe',kind:'brigand',name:'Araignee forestiere',portrait:'/assets/characters/pixel/full/forest_spider.png',hp:72,str:16,mag:6,end:9,dex:17,cha:3,mov:3,weapons:[{name:'Mandibules',icon:'◆',type:'phys',min:1,max:1,power:8,crit:0.12,acc:0.93}],skills:['weaken'],ai:'aggressive'},
+  forest_badger:{team:'foe',kind:'brigand',name:'Blaireau',portrait:'/assets/characters/pixel/full/forest_badger.png',hp:88,str:18,mag:2,end:12,dex:14,cha:3,mov:2,weapons:[{name:'Griffes',icon:'◆',type:'phys',min:1,max:1,power:10,crit:0.1,acc:0.92}],skills:[],ai:'aggressive'},
+  marsh_toad:{team:'foe',kind:'brute',name:'Crapaud toxique',portrait:'/assets/characters/pixel/full/marsh_toad.png',hp:108,str:14,mag:10,end:15,dex:8,cha:3,mov:2,weapons:[{name:'Langue lourde',icon:'◆',type:'phys',min:1,max:2,power:8,crit:0.04,acc:0.88}],skills:['weaken'],ai:'guardian'},
+  cave_rat:{team:'foe',kind:'brigand',name:'Rat geant',portrait:'/assets/characters/pixel/full/cave_rat.png',hp:68,str:14,mag:2,end:8,dex:20,cha:2,mov:3,weapons:[{name:'Morsure',icon:'◆',type:'phys',min:1,max:1,power:8,crit:0.16,acc:0.94}],skills:[],ai:'aggressive'},
+  wild_boar:{team:'foe',kind:'brute',name:'Sanglier',portrait:'/assets/characters/pixel/full/wild_boar.png',hp:116,str:21,mag:2,end:15,dex:10,cha:3,mov:2,weapons:[{name:'Charge',icon:'◆',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.9}],skills:['heavy'],ai:'guardian'},
   goblin:{team:'foe',kind:'brigand',name:'Gobelin',portrait:'/assets/characters/pixel/full/goblin.png',hp:75,str:15,mag:4,end:9,dex:16,cha:5,mov:3,weapons:[{name:'Lance rouillée',icon:'↟',type:'phys',min:1,max:2,power:8,crit:0.08,acc:0.9}],skills:[],ai:'aggressive'},
   skeleton:{team:'foe',kind:'knight',name:'Squelette',portrait:'/assets/characters/pixel/full/skeleton.png',hp:105,str:18,mag:4,end:14,dex:8,cha:3,mov:2,weapons:[{name:'Épée rouillée',icon:'⚔',type:'phys',min:1,max:1,power:10,crit:0.05,acc:0.88}],skills:['heavy'],ai:'guardian'},
   troll:{team:'foe',kind:'brute',name:'Troll',portrait:'/assets/characters/pixel/full/troll.png',hp:190,str:28,mag:3,end:22,dex:5,cha:4,mov:2,weapons:[{name:'Tronc',icon:'◆',type:'phys',min:1,max:1,power:16,crit:0.04,acc:0.82}],skills:['heavy'],ai:'guardian'},
   young_wyrm:{team:'foe',kind:'brute',name:'Jeune Wyrm',portrait:'/assets/characters/pixel/full/young_wyrm.png',hp:160,str:24,mag:14,end:18,dex:10,cha:8,mov:2,weapons:[{name:'Souffle court',icon:'✦',type:'mag',min:1,max:2,power:14,crit:0.06,acc:0.88}],skills:['bolt'],ai:'cautious'},
+  forest_troll_elite:{team:'foe',kind:'brute',name:'Troll forestier',portrait:'/assets/characters/pixel/full/forest_troll_elite.png',hp:210,str:30,mag:3,end:24,dex:6,cha:5,mov:2,weapons:[{name:'Massue de pierre',icon:'◆',type:'phys',min:1,max:1,power:17,crit:0.04,acc:0.84}],skills:['heavy','provoke'],ai:'guardian'},
+  young_dragon_elite:{team:'foe',kind:'brute',name:'Jeune dragon',portrait:'/assets/characters/pixel/full/young_dragon_elite.png',hp:185,str:24,mag:18,end:18,dex:12,cha:10,mov:2,weapons:[{name:'Souffle emeraude',icon:'✦',type:'mag',min:1,max:3,power:15,crit:0.07,acc:0.9}],skills:['bolt','flame_wave'],ai:'cautious'},
   undead_champion:{team:'foe',kind:'knight',name:'Champion mort-vivant',portrait:'/assets/characters/pixel/full/undead_champion.png',hp:170,str:24,mag:8,end:20,dex:9,cha:6,mov:2,weapons:[{name:'Lame froide',icon:'⚔',type:'phys',min:1,max:1,power:14,crit:0.08,acc:0.9}],skills:['heavy','curse'],ai:'guardian'},
   lion_champion:{team:'foe',kind:'knight',name:'Champion du Lion',portrait:'/assets/characters/pixel/full/lion_champion.png',hp:120,str:22,mag:4,end:17,dex:9,cha:9,mov:2,weapons:[{name:'Lame',icon:'⚔',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.92}],skills:['heavy'],ai:'guardian'},
   seal_guardian:{team:'foe',kind:'darkmage',name:'Gardien du Sceau',portrait:'/assets/characters/pixel/full/seal_guardian.png',hp:92,str:8,mag:20,end:13,dex:10,cha:16,mov:2,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.04,acc:0.94}],skills:['curse','boss_guard'],ai:'cautious'}

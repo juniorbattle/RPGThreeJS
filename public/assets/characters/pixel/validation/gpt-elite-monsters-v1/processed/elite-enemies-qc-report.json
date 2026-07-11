@@ -1,0 +1,606 @@
+{
+  "run": "gpt-elite-enemies-v1",
+  "assets": {
+    "forest_troll_elite": {
+      "label": "Troll elite",
+      "category": "elite_monster",
+      "suggestedCombatHeight": 2.55,
+      "notes": "quete secondaire / elite massif 1x1 large ou boss 2x2",
+      "raw": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/raw/forest_troll_elite.raw.png",
+      "clean": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/forest_troll_elite.clean.png",
+      "cleanMeta": {
+        "sourceSize": [
+          1086,
+          1448
+        ],
+        "cropBox": [
+          12,
+          165,
+          1066,
+          1238
+        ]
+      },
+      "cleanQc": {
+        "size": [
+          1054,
+          1073
+        ],
+        "cornersTransparent": true,
+        "alphaPixels": 659673,
+        "opaqueMagentaPixels": 0,
+        "opaqueWhitePixels": 308,
+        "whiteRatioOfAlpha": 0.000467,
+        "bbox": [
+          8,
+          8,
+          1046,
+          1065
+        ]
+      },
+      "variants": {
+        "full": {
+          "path": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/forest_troll_elite.full.png",
+          "meta": {
+            "scale": 0.5780346820809249,
+            "placedBox": [
+              20,
+              131,
+              620,
+              742
+            ],
+            "subjectSize": [
+              1038,
+              1057
+            ],
+            "outputSize": [
+              640,
+              768
+            ]
+          },
+          "qc": {
+            "size": [
+              640,
+              768
+            ],
+            "cornersTransparent": true,
+            "alphaPixels": 222582,
+            "opaqueMagentaPixels": 0,
+            "opaqueWhitePixels": 1222,
+            "whiteRatioOfAlpha": 0.00549,
+            "bbox": [
+              20,
+              131,
+              620,
+              742
+            ]
+          }
+        },
+        "dialogue": {
+          "path": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/forest_troll_elite.dialogue.png",
+          "meta": {
+            "scale": 0.7032755298651252,
+            "placedBox": [
+              19,
+              231,
+              749,
+              974
+            ],
+            "subjectSize": [
+              1038,
+              1057
+            ],
+            "outputSize": [
+              768,
+              1024
+            ]
+          },
+          "qc": {
+            "size": [
+              768,
+              1024
+            ],
+            "cornersTransparent": true,
+            "alphaPixels": 328178,
+            "opaqueMagentaPixels": 0,
+            "opaqueWhitePixels": 1471,
+            "whiteRatioOfAlpha": 0.004482,
+            "bbox": [
+              19,
+              231,
+              749,
+              974
+            ]
+          }
+        },
+        "ui": {
+          "path": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/forest_troll_elite.ui.png",
+          "meta": {
+            "scale": 0.30842005676442763,
+            "placedBox": [
+              32,
+              30,
+              352,
+              356
+            ],
+            "subjectSize": [
+              1038,
+              1057
+            ],
+            "outputSize": [
+              384,
+              384
+            ]
+          },
+          "qc": {
+            "size": [
+              384,
+              384
+            ],
+            "cornersTransparent": true,
+            "alphaPixels": 64403,
+            "opaqueMagentaPixels": 0,
+            "opaqueWhitePixels": 520,
+            "whiteRatioOfAlpha": 0.008074,
+            "bbox": [
+              32,
+              30,
+              352,
+              356
+            ]
+          }
+        }
+      }
+    },
+    "young_dragon_elite": {
+      "label": "Jeune dragon",
+      "category": "elite_monster",
+      "suggestedCombatHeight": 2.75,
+      "notes": "elite rare / boss 2x2",
+      "raw": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/raw/young_dragon_elite.raw.png",
+      "clean": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/young_dragon_elite.clean.png",
+      "cleanMeta": {
+        "sourceSize": [
+          1086,
+          1448
+        ],
+        "cropBox": [
+          25,
+          174,
+          1062,
+          1268
+        ]
+      },
+      "cleanQc": {
+        "size": [
+          1037,
+          1094
+        ],
+        "cornersTransparent": true,
+        "alphaPixels": 625638,
+        "opaqueMagentaPixels": 0,
+        "opaqueWhitePixels": 1815,
+        "whiteRatioOfAlpha": 0.002901,
+        "bbox": [
+          8,
+          8,
+          1029,
+          1086
+        ]
+      },
+      "variants": {
+        "full": {
+          "path": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/young_dragon_elite.full.png",
+          "meta": {
+            "scale": 0.5876591576885406,
+            "placedBox": [
+              20,
+              109,
+              620,
+              742
+            ],
+            "subjectSize": [
+              1021,
+              1078
+            ],
+            "outputSize": [
+              640,
+              768
+            ]
+          },
+          "qc": {
+            "size": [
+              640,
+              768
+            ],
+            "cornersTransparent": true,
+            "alphaPixels": 218232,
+            "opaqueMagentaPixels": 0,
+            "opaqueWhitePixels": 1121,
+            "whiteRatioOfAlpha": 0.005137,
+            "bbox": [
+              20,
+              109,
+              620,
+              742
+            ]
+          }
+        },
+        "dialogue": {
+          "path": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/young_dragon_elite.dialogue.png",
+          "meta": {
+            "scale": 0.7149853085210578,
+            "placedBox": [
+              19,
+              203,
+              749,
+              974
+            ],
+            "subjectSize": [
+              1021,
+              1078
+            ],
+            "outputSize": [
+              768,
+              1024
+            ]
+          },
+          "qc": {
+            "size": [
+              768,
+              1024
+            ],
+            "cornersTransparent": true,
+            "alphaPixels": 322286,
+            "opaqueMagentaPixels": 0,
+            "opaqueWhitePixels": 1545,
+            "whiteRatioOfAlpha": 0.004794,
+            "bbox": [
+              19,
+              203,
+              749,
+              974
+            ]
+          }
+        },
+        "ui": {
+          "path": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/young_dragon_elite.ui.png",
+          "meta": {
+            "scale": 0.30241187384044527,
+            "placedBox": [
+              37,
+              30,
+              346,
+              356
+            ],
+            "subjectSize": [
+              1021,
+              1078
+            ],
+            "outputSize": [
+              384,
+              384
+            ]
+          },
+          "qc": {
+            "size": [
+              384,
+              384
+            ],
+            "cornersTransparent": true,
+            "alphaPixels": 59780,
+            "opaqueMagentaPixels": 0,
+            "opaqueWhitePixels": 609,
+            "whiteRatioOfAlpha": 0.010187,
+            "bbox": [
+              37,
+              30,
+              346,
+              356
+            ]
+          }
+        }
+      }
+    },
+    "serpent_general_boss": {
+      "label": "General Serpent",
+      "category": "boss",
+      "suggestedCombatHeight": 3.05,
+      "notes": "boss Serpent village / 2x2 avec escortes",
+      "raw": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/raw/serpent_general_boss.raw.png",
+      "clean": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/serpent_general_boss.clean.png",
+      "cleanMeta": {
+        "sourceSize": [
+          1086,
+          1448
+        ],
+        "cropBox": [
+          48,
+          24,
+          1050,
+          1395
+        ]
+      },
+      "cleanQc": {
+        "size": [
+          1002,
+          1371
+        ],
+        "cornersTransparent": true,
+        "alphaPixels": 609963,
+        "opaqueMagentaPixels": 0,
+        "opaqueWhitePixels": 460,
+        "whiteRatioOfAlpha": 0.000754,
+        "bbox": [
+          8,
+          8,
+          994,
+          1363
+        ]
+      },
+      "variants": {
+        "full": {
+          "path": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/serpent_general_boss.full.png",
+          "meta": {
+            "scale": 0.5166051660516605,
+            "placedBox": [
+              65,
+              42,
+              574,
+              742
+            ],
+            "subjectSize": [
+              986,
+              1355
+            ],
+            "outputSize": [
+              640,
+              768
+            ]
+          },
+          "qc": {
+            "size": [
+              640,
+              768
+            ],
+            "cornersTransparent": true,
+            "alphaPixels": 164619,
+            "opaqueMagentaPixels": 0,
+            "opaqueWhitePixels": 310,
+            "whiteRatioOfAlpha": 0.001883,
+            "bbox": [
+              65,
+              42,
+              574,
+              742
+            ]
+          }
+        },
+        "dialogue": {
+          "path": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/serpent_general_boss.dialogue.png",
+          "meta": {
+            "scale": 0.6715867158671587,
+            "placedBox": [
+              53,
+              64,
+              715,
+              974
+            ],
+            "subjectSize": [
+              986,
+              1355
+            ],
+            "outputSize": [
+              768,
+              1024
+            ]
+          },
+          "qc": {
+            "size": [
+              768,
+              1024
+            ],
+            "cornersTransparent": true,
+            "alphaPixels": 276703,
+            "opaqueMagentaPixels": 0,
+            "opaqueWhitePixels": 585,
+            "whiteRatioOfAlpha": 0.002114,
+            "bbox": [
+              53,
+              64,
+              715,
+              974
+            ]
+          }
+        },
+        "ui": {
+          "path": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/serpent_general_boss.ui.png",
+          "meta": {
+            "scale": 0.24059040590405903,
+            "placedBox": [
+              73,
+              30,
+              310,
+              356
+            ],
+            "subjectSize": [
+              986,
+              1355
+            ],
+            "outputSize": [
+              384,
+              384
+            ]
+          },
+          "qc": {
+            "size": [
+              384,
+              384
+            ],
+            "cornersTransparent": true,
+            "alphaPixels": 36847,
+            "opaqueMagentaPixels": 0,
+            "opaqueWhitePixels": 108,
+            "whiteRatioOfAlpha": 0.002931,
+            "bbox": [
+              73,
+              30,
+              310,
+              356
+            ]
+          }
+        }
+      }
+    },
+    "serpent_duelist_elite": {
+      "label": "Duelliste Serpent",
+      "category": "elite_faction_enemy",
+      "suggestedCombatHeight": 2.05,
+      "notes": "elite 1x1, menace mobile",
+      "raw": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/raw/serpent_duelist_elite.raw.png",
+      "clean": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/serpent_duelist_elite.clean.png",
+      "cleanMeta": {
+        "sourceSize": [
+          1086,
+          1448
+        ],
+        "cropBox": [
+          32,
+          60,
+          1057,
+          1375
+        ]
+      },
+      "cleanQc": {
+        "size": [
+          1025,
+          1315
+        ],
+        "cornersTransparent": true,
+        "alphaPixels": 404497,
+        "opaqueMagentaPixels": 0,
+        "opaqueWhitePixels": 2060,
+        "whiteRatioOfAlpha": 0.005093,
+        "bbox": [
+          8,
+          8,
+          1017,
+          1307
+        ]
+      },
+      "variants": {
+        "full": {
+          "path": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/serpent_duelist_elite.full.png",
+          "meta": {
+            "scale": 0.5388760585065435,
+            "placedBox": [
+              48,
+              42,
+              592,
+              742
+            ],
+            "subjectSize": [
+              1009,
+              1299
+            ],
+            "outputSize": [
+              640,
+              768
+            ]
+          },
+          "qc": {
+            "size": [
+              640,
+              768
+            ],
+            "cornersTransparent": true,
+            "alphaPixels": 119559,
+            "opaqueMagentaPixels": 0,
+            "opaqueWhitePixels": 1170,
+            "whiteRatioOfAlpha": 0.009786,
+            "bbox": [
+              48,
+              42,
+              592,
+              742
+            ]
+          }
+        },
+        "dialogue": {
+          "path": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/serpent_duelist_elite.dialogue.png",
+          "meta": {
+            "scale": 0.7005388760585065,
+            "placedBox": [
+              30,
+              64,
+              737,
+              974
+            ],
+            "subjectSize": [
+              1009,
+              1299
+            ],
+            "outputSize": [
+              768,
+              1024
+            ]
+          },
+          "qc": {
+            "size": [
+              768,
+              1024
+            ],
+            "cornersTransparent": true,
+            "alphaPixels": 200461,
+            "opaqueMagentaPixels": 0,
+            "opaqueWhitePixels": 1761,
+            "whiteRatioOfAlpha": 0.008785,
+            "bbox": [
+              30,
+              64,
+              737,
+              974
+            ]
+          }
+        },
+        "ui": {
+          "path": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/processed/serpent_duelist_elite.ui.png",
+          "meta": {
+            "scale": 0.25096227867590454,
+            "placedBox": [
+              65,
+              30,
+              318,
+              356
+            ],
+            "subjectSize": [
+              1009,
+              1299
+            ],
+            "outputSize": [
+              384,
+              384
+            ]
+          },
+          "qc": {
+            "size": [
+              384,
+              384
+            ],
+            "cornersTransparent": true,
+            "alphaPixels": 27297,
+            "opaqueMagentaPixels": 0,
+            "opaqueWhitePixels": 325,
+            "whiteRatioOfAlpha": 0.011906,
+            "bbox": [
+              65,
+              30,
+              318,
+              356
+            ]
+          }
+        }
+      }
+    }
+  },
+  "board": "public/assets/characters/pixel/validation/gpt-elite-monsters-v1/boards/elite-enemies-validation-board.png"
+}

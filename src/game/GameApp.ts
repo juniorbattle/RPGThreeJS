@@ -14,7 +14,8 @@ import { DialogueView } from '../ui/DialogueView';
 import { ManagementView } from '../ui/ManagementView';
 import { TravelView } from '../ui/TravelView';
 import { ExplorationView } from '../ui/ExplorationView';
-type AppMode = 'TITLE' | 'TRAVEL' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT';
+import { PrologueView } from '../ui/PrologueView';
+type AppMode = 'TITLE' | 'PROLOGUE' | 'TRAVEL' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT';
 
 export class GameApp {
   private mode: AppMode = 'TITLE';
@@ -26,6 +27,7 @@ export class GameApp {
   private readonly combat: CombatBridge;
   private readonly travel: TravelView;
   private readonly exploration: ExplorationView;
+  private readonly prologue: PrologueView;
   private pendingCombatId: string | null = null;
 
   constructor(
@@ -56,6 +58,7 @@ export class GameApp {
       onOpenMenu: () => this.renderTitle(),
     });
     this.exploration = new ExplorationView({ root });
+    this.prologue = new PrologueView(root);
   }
 
   async start(): Promise<void> {
@@ -66,6 +69,7 @@ export class GameApp {
     this.setMode('TITLE');
     this.travel.close();
     this.exploration.close();
+    this.prologue.close();
     this.combat.close();
     this.canvas.hidden = true;
     this.chrome.innerHTML = `
@@ -87,13 +91,7 @@ export class GameApp {
         </nav>
       </section>
     `;
-    this.chrome.querySelector('[data-action="new"]')?.addEventListener('click', () => {
-      this.saves.clear();
-      this.state = createInitialState();
-      this.saves.saveAuto(this.state);
-      this.chrome.replaceChildren();
-      this.enterTravel();
-    });
+    this.chrome.querySelector('[data-action="new"]')?.addEventListener('click', () => void this.startNewChronicle());
     this.chrome.querySelector('[data-action="continue"]')?.addEventListener('click', () => {
       this.state = this.saves.loadAuto() ?? this.saves.loadManual() ?? createInitialState();
       this.chrome.replaceChildren();
@@ -334,6 +332,22 @@ export class GameApp {
     await this.management.open(tab, shopId, shopWallet);
     this.saves.saveAuto(this.state);
     if (returnToTravel) this.enterTravel();
+  }
+
+  private async startNewChronicle(): Promise<void> {
+    this.saves.clear();
+    this.state = createInitialState();
+    this.state.flags.prologueSeen = false;
+    this.saves.saveAuto(this.state);
+    this.chrome.replaceChildren();
+    this.setMode('PROLOGUE');
+    this.canvas.hidden = true;
+    if (!this.state.flags.prologueSeen) {
+      await this.prologue.open();
+      this.state.flags.prologueSeen = true;
+      this.saves.saveAuto(this.state);
+    }
+    this.enterTravel();
   }
 
   private setMode(mode: AppMode): void {
