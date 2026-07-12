@@ -135,6 +135,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
     linear-gradient(90deg, rgba(2,4,9,.78), transparent 38%, rgba(2,4,9,.62)),
     var(--prologue-bg-image) center/cover no-repeat;
   filter: saturate(.92) contrast(1.05);
+  will-change: opacity;
   animation: prologue-panel-in .5s ease both;
 }
 .prologue-view::after {
@@ -155,10 +156,10 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   pointer-events: none;
   opacity: .36;
   background:
-    radial-gradient(ellipse at 20% 72%, rgba(180,205,220,.28), transparent 34%),
-    radial-gradient(ellipse at 72% 66%, rgba(242,211,139,.12), transparent 31%),
-    radial-gradient(circle at 46% 34%, rgba(255,255,255,.12), transparent 18%);
-  filter: blur(18px);
+    radial-gradient(ellipse 60% 50% at 20% 72%, rgba(180,205,220,.22), transparent 70%),
+    radial-gradient(ellipse 55% 45% at 72% 66%, rgba(242,211,139,.10), transparent 70%),
+    radial-gradient(circle 40% at 46% 34%, rgba(255,255,255,.08), transparent 70%);
+  will-change: transform, opacity;
   animation: prologue-mist 8s ease-in-out infinite alternate;
 }
 .prologue-view__skip {
@@ -220,8 +221,8 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 }
 
 @keyframes prologue-panel-in {
-  from { opacity: 0; filter: saturate(.8) contrast(1.02) blur(2px); }
-  to { opacity: 1; filter: saturate(.92) contrast(1.05) blur(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 @keyframes prologue-text-in {
   from { opacity: 0; transform: translateY(18px); }

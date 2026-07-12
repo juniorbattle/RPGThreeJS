@@ -182,9 +182,10 @@ export class DialogueView {
     const availableGold = state.gold + state.run.temporaryLoot.gold;
     const blockedByGold = choice.requiresGold !== undefined && availableGold < choice.requiresGold;
     const blockedByFlag = choice.requiresFlag !== undefined && !state.flags[choice.requiresFlag];
+    const blockedByExcludesFlag = choice.excludesFlag !== undefined && !!state.flags[choice.excludesFlag];
     const blockedByReputationMin = choice.requiresReputationMin !== undefined && state.reputation < choice.requiresReputationMin;
     const blockedByReputationMax = choice.requiresReputationMax !== undefined && state.reputation > choice.requiresReputationMax;
-    button.disabled = blockedByGold || blockedByFlag || blockedByReputationMin || blockedByReputationMax;
+    button.disabled = blockedByGold || blockedByFlag || blockedByExcludesFlag || blockedByReputationMin || blockedByReputationMax;
     button.classList.toggle('is-blocked', button.disabled);
 
     const icon = document.createElement('span');
@@ -207,7 +208,10 @@ export class DialogueView {
     meta.className = 'dialogue-choice__meta';
     meta.append(...this.createOutcomeBadges(descriptors));
     if (blockedByGold) meta.append(this.createOutcomeBadge({ icon: '!', label: 'Or insuffisant', tone: 'loss' }));
-    if ((blockedByReputationMin || blockedByReputationMax) && choice.blockedText) {
+    if (blockedByFlag && choice.blockedText) {
+      meta.append(this.createOutcomeBadge({ icon: '!', label: choice.blockedText, tone: 'loss' }));
+    }
+    if (blockedByExcludesFlag && choice.blockedText) {
       meta.append(this.createOutcomeBadge({ icon: '!', label: choice.blockedText, tone: 'loss' }));
     }
     if (meta.childElementCount > 0) body.append(meta);

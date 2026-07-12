@@ -7,7 +7,7 @@ function adjust(inventory: InventoryState, category: ItemCategory, itemId: strin
 }
 
 export const MAX_SKILL_UPGRADE_LEVEL = 2;
-export const REST_COST_PER_WOUNDED_UNIT = 10;
+export const REST_COST_PER_WOUNDED_UNIT = 15;
 
 export function getSkillUpgradeCost(currentLevel: number): number | null {
   return currentLevel >= MAX_SKILL_UPGRADE_LEVEL ? null : currentLevel + 1;

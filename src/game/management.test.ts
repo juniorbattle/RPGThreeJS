@@ -58,7 +58,7 @@ describe('clan management', () => {
     const beforeGold = state.gold;
     expect(restUnits(state)).toBe(true);
     expect(state.clan.members[0]!.currentHealth).toBe(140);
-    expect(state.gold).toBe(beforeGold - 10);
+    expect(state.gold).toBe(beforeGold - 15);
     expect(restUnits(state)).toBe(false);
   });
 
@@ -82,7 +82,7 @@ describe('clan management', () => {
 
     expect(canCraftItem(state, 'craft_lion_guard_blade')).toBe(true);
     expect(craftItem(state, 'craft_lion_guard_blade')).toBe(true);
-    expect(state.gold).toBe(beforeGold - 80);
+    expect(state.gold).toBe(beforeGold - 120);
     expect(state.inventory.weapons.steel_sword).toBe(0);
     expect(state.inventory.accessories.strength_ring).toBe(0);
     expect(state.inventory.weapons.lion_guard_blade).toBe(1);

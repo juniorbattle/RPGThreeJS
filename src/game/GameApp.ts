@@ -308,6 +308,14 @@ export class GameApp {
     if (node.type === 'boss') {
       this.state.run.status = 'completed';
       secureRunLoot(this.state);
+      const bossConfig = combatConfigs.get(result.combatId);
+      if (bossConfig?.postCombatDialogueId) {
+        await this.playDialogue(bossConfig.postCombatDialogueId);
+        if (this.pendingCombatId) {
+          await this.flushPendingCombat(node);
+          return;
+        }
+      }
       await this.playDialogue('epilogue');
       this.saves.saveAuto(this.state);
       this.enterTravel();

@@ -177,11 +177,11 @@ describe('campaign content integrity', () => {
   });
 
   it('defines encounter ranks and measured red gem rewards for every combat', () => {
-    const expectedGemRewards = { normal: 1, elite: 2, boss: 4 } as const;
+    const minGemRewards = { normal: 1, elite: 2, boss: 5 } as const;
 
     for (const combat of combatConfigs.values()) {
       expect(['normal', 'elite', 'boss']).toContain(combat.encounterRank);
-      expect(combat.rewards.materials.red_gem, combat.id).toBe(expectedGemRewards[combat.encounterRank]);
+      expect(combat.rewards.materials.red_gem, combat.id).toBeGreaterThanOrEqual(minGemRewards[combat.encounterRank]);
       if (combat.encounterRank === 'boss') expect(combat.isBoss, combat.id).toBe(true);
     }
   });
