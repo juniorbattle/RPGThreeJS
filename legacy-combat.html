@@ -33,6 +33,114 @@
       </div>
       <div id="fx"></div>
       <div id="banner" class="hidden"></div>
+      <div id="tutorial" class="hidden">
+        <div class="tutorial-backdrop"></div>
+        <div class="tutorial-card">
+          <div class="tutorial-header">
+            <span class="tutorial-eyebrow pixel">Initiation</span>
+            <h2 class="tutorial-title pixel">École du Combat</h2>
+          </div>
+          <div class="tutorial-pages">
+            <div class="tutorial-page" data-page="0">
+              <div class="tutorial-section">
+                <h3>◆ Déploiement</h3>
+                <p>Sélectionnez vos unités dans le roster, puis cliquez une case de la <b>zone bleue</b> pour les déployer. Vous pouvez aussi utiliser <b>Auto</b> pour un déploiement rapide. Quand vous êtes prêt, cliquez <b>Lancer la bataille</b>.</p>
+              </div>
+              <div class="tutorial-section">
+                <h3>⌛ Tours et AP</h3>
+                <p>Chaque unité agit à son tour, selon sa <b>DEX</b>. Vous avez <b>5 AP</b> max. Les attaques, compétences et objets coûtent des AP. Le <b>déplacement est gratuit</b> (limité par votre MOV, une fois par tour). Les AP se régénèrent au début de chaque tour (1 AP, ou 2 pour les boss/élites).</p>
+              </div>
+            </div>
+            <div class="tutorial-page" data-page="1">
+              <div class="tutorial-section">
+                <h3>⚔ Élan — Attaques chargées</h3>
+                <p>En attaquant, choisissez votre niveau d'<b>Élan</b> :</p>
+                <ul>
+                  <li><b>Attaque</b> (1 AP) — coup normal, ×1.0 dégâts</li>
+                  <li><b>Attaque+</b> (2 AP) — coup renforcé, ×1.5 dégâts</li>
+                  <li><b>Attaque++</b> (3 AP) — coup maximal, ×2.0 dégâts + 10% précision</li>
+                </ul>
+                <p>Chaque attaque successive dans le même tour coûte <b>+1 AP</b> (escalade). Plus vous frappez, plus ça coûte cher.</p>
+              </div>
+            </div>
+            <div class="tutorial-page" data-page="2">
+              <div class="tutorial-section">
+                <h3>🌬 Souffle — Récupération</h3>
+                <p>Si vous terminez votre tour avec <b>≥1 AP restant</b>, l'unité <b>récupère 1 AP</b> (Souffle). C'est un filet de sécurité : gardez toujours un AP en réserve pour ne pas gaspiller votre tour.</p>
+              </div>
+              <div class="tutorial-section">
+                <h3>🛡 Garde — Défense passive</h3>
+                <p>Les AP non dépensés à la fin du tour sont convertis en <b>Garde</b> : <b>+3 END par AP</b> restant (max 5 AP). La Garde réduit les dégâts subis jusqu'au prochain tour. Terminer son tour avec des AP = meilleure survie.</p>
+              </div>
+            </div>
+            <div class="tutorial-page" data-page="3">
+              <div class="tutorial-section">
+                <h3>✦ Compétences</h3>
+                <p>Chaque classe a 4 compétences uniques : soins, buffs, debuffs, attaques de zone, téléportation... Les compétences coûtent 3-5 AP. Survolez une compétence pour voir sa description.</p>
+              </div>
+              <div class="tutorial-section">
+                <h3>◈ Objets</h3>
+                <p>Coût fixe : <b>2 AP</b>. Potions (soin), Éthers (AP), Antidotes (débuff), Bombes (dégâts de zone). Usage limité par l'inventaire.</p>
+              </div>
+              <div class="tutorial-section">
+                <h3>⚑ Altérations</h3>
+                <p>Brûlure/Poison (dégâts/tour), Ralenti (DEX−), Étourdi (tour sauté), Aveuglé (précision−), Malédiction (END−), Barrière (END+), etc. Les altérations se cumulent et durent plusieurs tours.</p>
+              </div>
+              <div class="tutorial-section">
+                <h3>⌨ Commandes</h3>
+                <p><b>Souris</b> : sélectionner / cibler · <b>Q/E</b> : pivoter caméra · <b>Molette</b> : zoom<br/><b>Échap / Clic droit</b> : annuler · <b>Entrée</b> : fin de tour · <b>M</b> : déplacer · <b>A</b> : attaquer · <b>U</b> : annuler déplacement</p>
+              </div>
+            </div>
+          </div>
+          <div class="tutorial-footer">
+            <div class="tutorial-dots"></div>
+            <div class="tutorial-buttons">
+              <button type="button" class="tutorial-btn tutorial-btn--skip" data-action="skip">Passer</button>
+              <button type="button" class="tutorial-btn tutorial-btn--next" data-action="next">Suivant</button>
+              <button type="button" class="tutorial-btn tutorial-btn--start hidden" data-action="start">Commencer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="boss-tutorial" class="hidden">
+        <div class="tutorial-backdrop"></div>
+        <div class="tutorial-card">
+          <div class="tutorial-header">
+            <span class="tutorial-eyebrow pixel">Menace</span>
+            <h2 class="tutorial-title pixel">Boss & Élites</h2>
+          </div>
+          <div class="tutorial-pages">
+            <div class="tutorial-page active" data-page="0">
+              <div class="tutorial-section">
+                <h3>♚ Unités colossales</h3>
+                <p>Les <b>boss</b> et <b>élites</b> sont des unités <b>2×2 cases</b> : elles occupent quatre cellules et ne peuvent pas se déplacer. Elles attaquent à <b>distance</b> (portée 2-4) et régénèrent <b>2 AP/tour</b> au lieu de 1.</p>
+              </div>
+              <div class="tutorial-section">
+                <h3>⚔ Compétences dévastatrices</h3>
+                <ul>
+                  <li><b>Frappe Sismique</b> — coup de zone autour de la cible</li>
+                  <li><b>Rugissement</b> — affaiblit tous les ennemis à portée</li>
+                  <li><b>Onde de Choc</b> — explosion magique à distance + étourdissement</li>
+                  <li><b>Garde</b> — se protège avec une barrière (END+)</li>
+                </ul>
+              </div>
+              <div class="tutorial-section">
+                <h3>🛡 Stratégie</h3>
+                <p>Les boss sont souvent accompagnés d'<b>escorts</b>. Éliminez d'abord les supports (soigneurs, mages) pour isoler le boss. Profitez de leur immobilité : restez hors de portée avec vos archers/mages tout en les harcelant. La <b>Garde</b> (AP non dépensés) est cruciale pour encaisser leurs attaques de zone.</p>
+              </div>
+              <div class="tutorial-section">
+                <h3>◇ Élites = défis optionnels</h3>
+                <p>Les élites sont <b>aussi puissantes que les boss</b> mais ne sont pas liées à l'histoire. Ce sont des défis optionnels qui offrent de meilleures récompenses. Affrontez-les seulement si votre escouade est prête.</p>
+              </div>
+            </div>
+          </div>
+          <div class="tutorial-footer">
+            <div class="tutorial-buttons">
+              <button type="button" class="tutorial-btn tutorial-btn--start" data-action="start">Au combat</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div id="loading">
       <div class="sp"></div>

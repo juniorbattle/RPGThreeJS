@@ -346,6 +346,10 @@ export class GameApp {
     this.saves.clear();
     this.state = createInitialState();
     this.state.flags.prologueSeen = false;
+    try {
+      localStorage.removeItem('rpg-tutorial-seen');
+      localStorage.removeItem('rpg-boss-tutorial-seen');
+    } catch {}
     this.saves.saveAuto(this.state);
     this.chrome.replaceChildren();
     this.setMode('PROLOGUE');

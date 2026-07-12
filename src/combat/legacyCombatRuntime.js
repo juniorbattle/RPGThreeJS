@@ -31,7 +31,7 @@ const byId=id=>document.getElementById(id);
 const dom={ ui:byId('ui'), turnbar:byId('turnbar'), hint:byId('hint'), panel:byId('panel'),
   menu:byId('menu'), skillmenu:byId('skillmenu'), actionPreview:byId('action-preview'), log:byId('log'), help:byId('help'),
   objective:byId('objective'), settingsBtn:byId('settings-btn'), settings:byId('settings'),
-  fx:byId('fx'), banner:byId('banner'), loading:byId('loading') };
+  fx:byId('fx'), banner:byId('banner'), loading:byId('loading'), tutorial:byId('tutorial'), bossTutorial:byId('boss-tutorial') };
 const campaignParams=new URLSearchParams(location.search);
 const CAMPAIGN_MODE=campaignParams.get('campaign')==='1'&&window.parent!==window;
 let COMBAT_ID='standalone';
@@ -577,9 +577,9 @@ const VISUAL_UNIT_TEMPLATES={
   serpent_raider:{team:'foe',kind:'brigand', name:'Pillard Serpent',portrait:'/assets/characters/pixel/full/serpent_raider.png',hp:90,str:18,mag:4,end:11,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:[],ai:'aggressive'},
   serpent_brute:{team:'foe',kind:'brute',name:'Brute Serpent',portrait:'/assets/characters/pixel/full/serpent_brute.png',hp:130,str:22,mag:4,end:16,dex:7,cha:5,mov:2,weapons:[{name:'Massue',icon:'◆',type:'phys',min:1,max:1,power:13,crit:0.05,acc:0.85}],skills:['heavy'],ai:'guardian'},
   serpent_oracle:{team:'foe',kind:'darkmage',name:'Oracle Serpent',portrait:'/assets/characters/pixel/full/serpent_oracle.png',hp:78,str:4,mag:23,end:10,dex:12,cha:8,mov:2,weapons:[{name:'Bâton',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}],skills:['bolt','curse'],ai:'cautious'},
-  serpent_elite_raider:{team:'foe',kind:'brigand', name:'Duelliste Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_raider.png',hp:112,str:21,mag:5,end:13,dex:17,cha:8,mov:3,weapons:[{name:'Lame courbe',icon:'†',type:'phys',min:1,max:1,power:11,crit:0.22,acc:0.95}],skills:['weaken'],ai:'aggressive'},
-  serpent_elite_brute:{team:'foe',kind:'brute',name:'Massacreur Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_brute.png',hp:155,str:25,mag:4,end:19,dex:7,cha:7,mov:2,weapons:[{name:'Masse lourde',icon:'◆',type:'phys',min:1,max:1,power:15,crit:0.06,acc:0.84}],skills:['heavy','provoke'],ai:'guardian'},
-  serpent_duelist_elite:{team:'foe',kind:'brigand',name:'Duelliste Serpent',portrait:'/assets/characters/pixel/full/serpent_duelist_elite.png',hp:118,str:22,mag:6,end:14,dex:19,cha:8,mov:3,weapons:[{name:'Lames courbes',icon:'†',type:'phys',min:1,max:1,power:12,crit:0.24,acc:0.96}],skills:['weaken','blind_shot'],ai:'aggressive'},
+  serpent_elite_raider:{team:'foe',kind:'brigand', name:'Duelliste Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_raider.png',hp:220,str:24,mag:6,end:16,dex:17,cha:8,mov:0,weapons:[{name:'Lames volantes',icon:'†',type:'phys',min:2,max:3,power:13,crit:0.22,acc:0.95}],skills:['weaken','blind_shot','boss_guard'],ai:'aggressive',size:2,immobile:true,elite:true},
+  serpent_elite_brute:{team:'foe',kind:'brute',name:'Massacreur Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_brute.png',hp:280,str:28,mag:4,end:22,dex:7,cha:7,mov:0,weapons:[{name:'Lance-masse',icon:'◆',type:'phys',min:2,max:3,power:17,crit:0.06,acc:0.84}],skills:['heavy','provoke','boss_guard'],ai:'guardian',size:2,immobile:true,elite:true},
+  serpent_duelist_elite:{team:'foe',kind:'brigand',name:'Duelliste Serpent',portrait:'/assets/characters/pixel/full/serpent_duelist_elite.png',hp:240,str:25,mag:8,end:17,dex:19,cha:8,mov:0,weapons:[{name:'Lames de jet',icon:'†',type:'phys',min:2,max:4,power:14,crit:0.24,acc:0.96}],skills:['weaken','blind_shot','boss_guard'],ai:'aggressive',size:2,immobile:true,elite:true},
   wolf:{team:'foe',kind:'brigand',name:'Loup',portrait:'/assets/characters/pixel/full/wolf.png',hp:82,str:19,mag:2,end:10,dex:18,cha:4,mov:3,weapons:[{name:'Morsure',icon:'◆',type:'phys',min:1,max:1,power:10,crit:0.12,acc:0.94}],skills:[],ai:'aggressive'},
   venom_serpent:{team:'foe',kind:'brigand',name:'Serpent venimeux',portrait:'/assets/characters/pixel/full/venom_serpent.png',hp:95,str:17,mag:8,end:12,dex:13,cha:4,mov:2,weapons:[{name:'Crochets',icon:'◆',type:'phys',min:1,max:1,power:9,crit:0.1,acc:0.93}],skills:['weaken'],ai:'cautious'},
   forest_spider:{team:'foe',kind:'brigand',name:'Araignee forestiere',portrait:'/assets/characters/pixel/full/forest_spider.png',hp:72,str:16,mag:6,end:9,dex:17,cha:3,mov:3,weapons:[{name:'Mandibules',icon:'◆',type:'phys',min:1,max:1,power:8,crit:0.12,acc:0.93}],skills:['weaken'],ai:'aggressive'},
@@ -591,9 +591,9 @@ const VISUAL_UNIT_TEMPLATES={
   skeleton:{team:'foe',kind:'knight',name:'Squelette',portrait:'/assets/characters/pixel/full/skeleton.png',hp:105,str:18,mag:4,end:14,dex:8,cha:3,mov:2,weapons:[{name:'Épée rouillée',icon:'⚔',type:'phys',min:1,max:1,power:10,crit:0.05,acc:0.88}],skills:['heavy'],ai:'guardian'},
   troll:{team:'foe',kind:'brute',name:'Troll',portrait:'/assets/characters/pixel/full/troll.png',hp:190,str:28,mag:3,end:22,dex:5,cha:4,mov:2,weapons:[{name:'Tronc',icon:'◆',type:'phys',min:1,max:1,power:16,crit:0.04,acc:0.82}],skills:['heavy'],ai:'guardian'},
   young_wyrm:{team:'foe',kind:'brute',name:'Jeune Wyrm',portrait:'/assets/characters/pixel/full/young_wyrm.png',hp:160,str:24,mag:14,end:18,dex:10,cha:8,mov:2,weapons:[{name:'Souffle court',icon:'✦',type:'mag',min:1,max:2,power:14,crit:0.06,acc:0.88}],skills:['bolt'],ai:'cautious'},
-  forest_troll_elite:{team:'foe',kind:'brute',name:'Troll forestier',portrait:'/assets/characters/pixel/full/forest_troll_elite.png',hp:210,str:30,mag:3,end:24,dex:6,cha:5,mov:2,weapons:[{name:'Massue de pierre',icon:'◆',type:'phys',min:1,max:1,power:17,crit:0.04,acc:0.84}],skills:['heavy','provoke'],ai:'guardian'},
-  young_dragon_elite:{team:'foe',kind:'brute',name:'Jeune dragon',portrait:'/assets/characters/pixel/full/young_dragon_elite.png',hp:185,str:24,mag:18,end:18,dex:12,cha:10,mov:2,weapons:[{name:'Souffle emeraude',icon:'✦',type:'mag',min:1,max:3,power:15,crit:0.07,acc:0.9}],skills:['bolt','flame_wave'],ai:'cautious'},
-  undead_champion:{team:'foe',kind:'knight',name:'Champion mort-vivant',portrait:'/assets/characters/pixel/full/undead_champion.png',hp:170,str:24,mag:8,end:20,dex:9,cha:6,mov:2,weapons:[{name:'Lame froide',icon:'⚔',type:'phys',min:1,max:1,power:14,crit:0.08,acc:0.9}],skills:['heavy','curse'],ai:'guardian'},
+  forest_troll_elite:{team:'foe',kind:'brute',name:'Troll forestier',portrait:'/assets/characters/pixel/full/forest_troll_elite.png',hp:320,str:30,mag:3,end:24,dex:6,cha:5,mov:0,weapons:[{name:'Jet de pierre',icon:'◆',type:'phys',min:2,max:4,power:18,crit:0.04,acc:0.84}],skills:['heavy','provoke','boss_guard'],ai:'guardian',size:2,immobile:true,elite:true},
+  young_dragon_elite:{team:'foe',kind:'brute',name:'Jeune dragon',portrait:'/assets/characters/pixel/full/young_dragon_elite.png',hp:300,str:24,mag:20,end:20,dex:12,cha:10,mov:0,weapons:[{name:'Souffle emeraude',icon:'✦',type:'mag',min:2,max:4,power:17,crit:0.07,acc:0.9}],skills:['bolt','flame_wave','boss_guard'],ai:'cautious',size:2,immobile:true,elite:true},
+  undead_champion:{team:'foe',kind:'knight',name:'Champion mort-vivant',portrait:'/assets/characters/pixel/full/undead_champion.png',hp:260,str:26,mag:10,end:22,dex:9,cha:6,mov:0,weapons:[{name:'Onde froide',icon:'✦',type:'mag',min:2,max:3,power:15,crit:0.08,acc:0.9}],skills:['heavy','curse','boss_guard'],ai:'guardian',size:2,immobile:true,elite:true},
   lion_champion:{team:'foe',kind:'knight',name:'Champion du Lion',portrait:'/assets/characters/pixel/full/lion_champion.png',hp:120,str:22,mag:4,end:17,dex:9,cha:9,mov:2,weapons:[{name:'Lame',icon:'⚔',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.92}],skills:['heavy'],ai:'guardian'},
   seal_guardian:{team:'foe',kind:'darkmage',name:'Gardien du Sceau',portrait:'/assets/characters/pixel/full/seal_guardian.png',hp:92,str:8,mag:20,end:13,dex:10,cha:16,mov:2,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.04,acc:0.94}],skills:['curse','boss_guard'],ai:'cautious'}
 };
@@ -757,10 +757,21 @@ function setFacing(u,tx,tz){ const dx=tx-u.gx, dz=tz-u.gz; if(dx===0&&dz===0)ret
 function spawnUnits(){
   if(!IS_BOSS_COMBAT){
     if(ENCOUNTER_ENEMY_VISUAL_IDS.length){
-      ENCOUNTER_ENEMY_VISUAL_IDS
-        .map((id,index)=>unitDefFromVisual(id,index))
-        .filter(Boolean)
-        .forEach(def=>createUnit(def));
+      const eliteIds=ENCOUNTER_ENEMY_VISUAL_IDS.filter(id=>VISUAL_UNIT_TEMPLATES[id]?.elite);
+      const normalIds=ENCOUNTER_ENEMY_VISUAL_IDS.filter(id=>!VISUAL_UNIT_TEMPLATES[id]?.elite);
+      if(eliteIds.length){
+        const eliteDef=VISUAL_UNIT_TEMPLATES[eliteIds[0]];
+        if(eliteDef) createUnit({...eliteDef,gx:5,gz:1,weapons:eliteDef.weapons.map(w=>({...w})),skills:eliteDef.skills.slice()});
+        normalIds
+          .map((id,index)=>unitDefFromVisual(id,index,ESCORT_VISUAL_POSITIONS))
+          .filter(Boolean)
+          .forEach(def=>createUnit(def));
+      } else {
+        ENCOUNTER_ENEMY_VISUAL_IDS
+          .map((id,index)=>unitDefFromVisual(id,index))
+          .filter(Boolean)
+          .forEach(def=>createUnit(def));
+      }
     } else {
       for(const d of DEFS) if(d.team!=='player') createUnit(d);
     }
@@ -807,7 +818,7 @@ function buildOrder(){ return aliveUnits().sort((a,b)=> (effDEX(b)-effDEX(a)) ||
 function startRound(){ if(checkEnd())return; G.round++; G.order=buildOrder(); G.turnIdx=-1; logMsg('— Manche '+G.round+' —'); nextTurn(); }
 function nextTurn(){ if(G.over||checkEnd())return; G.turnIdx++; if(G.turnIdx>=G.order.length){ startRound(); return; } const u=G.order[G.turnIdx]; if(!u||!u.alive){ nextTurn(); return; } beginTurn(u); }
 async function beginTurn(u){ if(G.over)return; G.active=u; G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.basicAttacksThisTurn=0; G.startGX=u.gx; G.startGZ=u.gz;
-  const regen=u.boss?2:1; u.ap=Math.min(u.maxap,u.ap+regen); u._souffle=false; u.gardeAP=0;
+  const regen=(u.boss||u.elite)?2:1; u.ap=Math.min(u.maxap,u.ap+regen); u._souffle=false; u.gardeAP=0;
   if(regen>0) setTimeout(()=>{ if(u.alive)floatText(u,'+'+regen+' AP','#7fd0ff'); },120);
   refreshTurnbar(); selectUnit(u); focusCam(u);
   await tickStatusDamage(u); if(G.over)return; if(!u.alive){ nextTurn(); return; }
@@ -1392,6 +1403,74 @@ function startDeployment(){
   setHint('Déploiement — choisissez une unité puis une case disponible'); openDeployMenu();
 }
 
+// ============================= TUTORIAL =============================
+let TUTORIAL_SEEN=false;
+try{ TUTORIAL_SEEN=localStorage.getItem('rpg-tutorial-seen')==='1'; }catch(e){}
+let tutorialPage=0;
+const TUTORIAL_PAGES=4;
+
+function buildTutorialDots(){
+  if(!dom.tutorial)return;
+  const dots=dom.tutorial.querySelector('.tutorial-dots');
+  if(!dots)return;
+  dots.innerHTML='';
+  for(let i=0;i<TUTORIAL_PAGES;i++){
+    const d=document.createElement('div');
+    d.className='tutorial-dot'+(i===tutorialPage?' active':'');
+    dots.appendChild(d);
+  }
+}
+function tutGoTo(idx){
+  if(!dom.tutorial)return;
+  tutorialPage=idx;
+  dom.tutorial.querySelectorAll('.tutorial-page').forEach(p=>p.classList.toggle('active',+p.dataset.page===idx));
+  buildTutorialDots();
+  const nextBtn=dom.tutorial.querySelector('[data-action="next"]');
+  const startBtn=dom.tutorial.querySelector('[data-action="start"]');
+  if(nextBtn)nextBtn.classList.toggle('hidden',idx>=TUTORIAL_PAGES-1);
+  if(startBtn)startBtn.classList.toggle('hidden',idx<TUTORIAL_PAGES-1);
+}
+function closeTutorial(){
+  if(!dom.tutorial)return;
+  dom.tutorial.classList.add('hidden');
+  try{ localStorage.setItem('rpg-tutorial-seen','1'); }catch(e){}
+  if(bossTutorialQueued){
+    bossTutorialQueued=false;
+    dom.bossTutorial.classList.remove('hidden');
+    dom.bossTutorial.querySelector('[data-action="start"]')?.addEventListener('click',closeBossTutorial);
+  }
+}
+function showTutorial(){
+  if(!dom.tutorial||TUTORIAL_SEEN)return;
+  dom.tutorial.classList.remove('hidden');
+  tutGoTo(0);
+  dom.tutorial.querySelector('[data-action="next"]')?.addEventListener('click',()=>{
+    if(tutorialPage<TUTORIAL_PAGES-1)tutGoTo(tutorialPage+1);
+  });
+  dom.tutorial.querySelector('[data-action="skip"]')?.addEventListener('click',closeTutorial);
+  dom.tutorial.querySelector('[data-action="start"]')?.addEventListener('click',closeTutorial);
+}
+
+let BOSS_TUTORIAL_SEEN=false;
+try{ BOSS_TUTORIAL_SEEN=localStorage.getItem('rpg-boss-tutorial-seen')==='1'; }catch(e){}
+let bossTutorialQueued=false;
+function closeBossTutorial(){
+  if(!dom.bossTutorial)return;
+  dom.bossTutorial.classList.add('hidden');
+  try{ localStorage.setItem('rpg-boss-tutorial-seen','1'); }catch(e){}
+}
+function showBossTutorial(){
+  if(!dom.bossTutorial||BOSS_TUTORIAL_SEEN)return;
+  const isElite=ENCOUNTER_ENEMY_VISUAL_IDS.some(id=>VISUAL_UNIT_TEMPLATES[id]?.elite);
+  if(!IS_BOSS_COMBAT&&!isElite)return;
+  if(!dom.tutorial||dom.tutorial.classList.contains('hidden')){
+    dom.bossTutorial.classList.remove('hidden');
+    dom.bossTutorial.querySelector('[data-action="start"]')?.addEventListener('click',closeBossTutorial);
+  } else {
+    bossTutorialQueued=true;
+  }
+}
+
 // ============================= INIT & BOOT =============================
 async function initGame(){
   G.inv=CAMPAIGN_MODE?{...CAMPAIGN_INVENTORY}:{potion:3,ether:1,antidote:2,bomb:2}; G.wave=1; G.round=0; G.over=false;
@@ -1399,7 +1478,10 @@ async function initGame(){
   initHud();
   logMsg(CAMPAIGN_MODE?COMBAT_OBJECTIVE:'Préparez votre formation, puis lancez la bataille.');
   startDeployment();
+  showTutorial();
+  showBossTutorial();
 }
+
 async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none'; }
 
 window.addEventListener('error',()=>{ if(dom.loading&&dom.loading.style.display!=='none') dom.loading.innerHTML='<div style="color:#ff8a7a;max-width:540px;text-align:center;line-height:26px">Échec du chargement de Three.js.<br>Vérifiez votre connexion internet puis rechargez la page.<br><span style="color:#9fb0d0">La page doit être servie via un serveur local (http://), pas ouverte directement depuis le disque.</span></div>'; });

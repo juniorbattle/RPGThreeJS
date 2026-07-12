@@ -340,3 +340,35 @@
     #help{display:none}
     .combat-result-card{max-height:calc(100dvh - 18px);overflow:auto}
   }
+
+  /* Tutorial overlay */
+  #tutorial,#boss-tutorial{position:absolute;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;pointer-events:auto}
+  #tutorial.hidden,#boss-tutorial.hidden{display:none!important}
+  .tutorial-backdrop{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 42%,rgba(244,217,139,.1),rgba(0,0,0,.3) 36%,rgba(1,3,8,.88) 100%);backdrop-filter:blur(3px)}
+  .tutorial-card{position:relative;width:min(580px,calc(100vw - 36px));max-height:calc(100dvh - 36px);display:flex;flex-direction:column;
+    background:linear-gradient(160deg,rgba(9,15,28,.98),rgba(3,6,12,.995));border:1px solid rgba(244,217,139,.72);border-radius:var(--ui-radius-lg);
+    box-shadow:0 34px 90px rgba(0,0,0,.82),0 0 0 1px rgba(255,246,218,.06),inset 0 1px 0 rgba(255,246,218,.16);overflow:hidden}
+  .tutorial-header{padding:22px 28px 14px;text-align:center;border-bottom:1px solid rgba(230,199,126,.22);background:linear-gradient(180deg,rgba(18,26,43,.6),transparent)}
+  .tutorial-eyebrow{display:block;font-size:9px;letter-spacing:.28em;color:var(--gold2);margin-bottom:4px}
+  .tutorial-title{margin:0;font-size:28px;letter-spacing:.1em;color:var(--gold2);text-shadow:0 2px 12px rgba(0,0,0,.7)}
+  .tutorial-pages{flex:1;overflow-y:auto;padding:18px 28px 8px}
+  .tutorial-page{display:none}.tutorial-page.active{display:block;animation:tutFade .35s ease}
+  @keyframes tutFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .tutorial-section{margin-bottom:16px}
+  .tutorial-section h3{margin:0 0 6px;font-family:var(--font-title);font-size:14px;letter-spacing:.06em;color:var(--gold2);text-transform:uppercase}
+  .tutorial-section p{margin:0;font-size:13px;line-height:1.6;color:#d9e2f0}
+  .tutorial-section p b{color:var(--gold2)}
+  .tutorial-section ul{margin:6px 0 6px 18px;padding:0;list-style:none}
+  .tutorial-section ul li{font-size:13px;line-height:1.7;color:#d9e2f0;padding-left:14px;position:relative}
+  .tutorial-section ul li::before{content:"▸";position:absolute;left:0;color:var(--gold2)}
+  .tutorial-section ul li b{color:var(--gold2)}
+  .tutorial-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 28px 18px;border-top:1px solid rgba(230,199,126,.18)}
+  .tutorial-dots{display:flex;gap:7px}
+  .tutorial-dot{width:8px;height:8px;border-radius:50%;background:rgba(230,199,126,.28);transition:.2s}
+  .tutorial-dot.active{background:var(--gold2);box-shadow:0 0 8px rgba(244,217,139,.5)}
+  .tutorial-buttons{display:flex;gap:8px}
+  .tutorial-btn{padding:8px 18px;font-family:var(--font-title);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    border:1px solid rgba(230,199,126,.52);border-radius:var(--ui-radius-sm);background:rgba(19,24,39,.7);color:#dce6f7;cursor:pointer;transition:.15s}
+  .tutorial-btn:hover{border-color:var(--gold2);background:rgba(62,48,26,.4);color:var(--gold2)}
+  .tutorial-btn--next,.tutorial-btn--start{background:linear-gradient(180deg,rgba(62,48,26,.6),rgba(30,22,10,.8));border-color:rgba(244,217,139,.62);color:var(--gold2)}
+  .tutorial-btn--next:hover,.tutorial-btn--start:hover{background:linear-gradient(180deg,rgba(80,60,30,.8),rgba(40,28,12,.9));box-shadow:0 0 16px rgba(244,217,139,.25)}

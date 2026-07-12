@@ -3,7 +3,7 @@ import { getAvailableRunNodes } from '../game/runSystem';
 import { getReputationRule } from '../game/reputation';
 import { assets } from '../render/assetManifest';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
-import type { GameState, RunNode, RunNodeType, UnitInstance } from '../game/types';
+import type { GameState, RunNode, RunNodeType } from '../game/types';
 
 interface TravelViewOptions {
   root: HTMLElement;
@@ -69,12 +69,80 @@ const TRAVEL_PARTY_LAYOUT: readonly TravelPartySlot[] = [
   { left: 63, bottom: 28.1, scale: 1, z: 1 },
 ];
 
+function computeTravelPartyLayout(count: number): TravelPartySlot[] {
+  if (count <= TRAVEL_PARTY_LAYOUT.length) {
+    return TRAVEL_PARTY_LAYOUT.slice(0, count);
+  }
+  const scale = count > 8 ? 0.68 : count > 6 ? 0.78 : 0.88;
+  const spread = 64;
+  const start = 50 - spread / 2;
+  const step = count > 1 ? spread / (count - 1) : 0;
+  const slots: TravelPartySlot[] = [];
+  for (let i = 0; i < count; i += 1) {
+    const left = start + step * i;
+    const arc = count > 1 ? Math.sin((i / (count - 1)) * Math.PI) : 0.5;
+    const bottom = 27 + arc * 2.4;
+    const z = Math.round(arc * 3) + 1;
+    slots.push({ left, bottom, scale, z });
+  }
+  return slots;
+}
+
 const TRAVEL_HERO_PALETTES: Record<string, TravelHeroPalette> = {
   knight: { skin: '#f0c39b', hair: '#6b4a2a', c1: '#4f63b5', c2: '#2f3c78', acc: '#d9b25a', metal: '#d2d8ea', wpn: 'sword', head: 'helm' },
   archer: { skin: '#f0c39b', hair: '#caa24a', c1: '#4f9f5e', c2: '#2f6b3c', acc: '#caa05a', metal: '#cfd6e6', wpn: 'bow', head: 'hood-light' },
   mage: { skin: '#f0c39b', hair: '#3a2a55', c1: '#7a4fb0', c2: '#4d2f78', acc: '#f4d98b', metal: '#e6c2ff', wpn: 'staff', head: 'hat' },
   cleric: { skin: '#f0c39b', hair: '#b06a3a', c1: '#ece6d4', c2: '#c9bfa0', acc: '#d9b25a', metal: '#fff3c4', wpn: 'mace', head: 'hair' },
 };
+
+interface TravelPartyMember {
+  name: string;
+  portrait: string;
+  kind: string;
+  isAdvisor: boolean;
+  quotes: readonly string[];
+}
+
+const TRAVEL_HERO_QUOTES: Record<string, readonly string[]> = {
+  knight: [
+    'Mon épée est à vous. Un bouclier ne sert à rien sans quelqu’un à protéger.',
+    'J’aurais pu fuir quand le clan est tombé. Mais la loyauté ne se retire pas comme une armure.',
+    'Je marche en première ligne. Pas par bravade — parce que c’est ma place.',
+  ],
+  cleric: [
+    'Tant que je tiendrai mon staff, aucun de nous ne tombera sans espoir de se relever.',
+    'La foi ne guérit pas les blessures du cœur. Mais elle donne la force de continuer.',
+    'Mes prières sont pour les vivants. Les morts n’ont plus besoin de moi.',
+  ],
+  mage: [
+    'Je veille au-delà des routes. Des choses anciennes se réveillent, et je suis celle qui les comprend.',
+    'Le savoir est une arme plus tranchée que toute épée. Mais il coupe dans les deux sens.',
+    'Il y a des forces que même les héros refusent de nommer. Moi, je les étudie.',
+  ],
+  archer: [
+    'Mes flèches marqueront le chemin. On ne me voit pas venir, mais on m’entend partir.',
+    'Le vent, l’ombre, la patience — voilà mes alliés les plus fidèles.',
+    'Je ne vise pas le cœur. Je vise ce qui arrive après.',
+  ],
+  cedric: [
+    'Je connais les passages que personne ne surveille. Mon arc est à qui paie — ou à qui mérite.',
+    'La liberté n’a pas de prix. Mais mes services, si.',
+    'Je suis passé par dix camps ennemis sans qu’on me voie. Le onzième, je n’ai pas eu besoin.',
+  ],
+};
+
+const TRAVEL_ADVISORS: readonly TravelPartyMember[] = [
+  { name: 'Sage Séraphine', portrait: assets.pixelCharactersFull.seraphine!, kind: 'cleric', isAdvisor: true, quotes: [
+    'La sagesse n’est pas dans la force, mais dans la compassion. Secourir les faibles vaut plus que mille victoires.',
+    'Les étoiles ne mentent jamais. Mais elles ne disent jamais toute la vérité non plus.',
+    'Chaque choix porte une ombre. Le mien est de veiller sur les vôtres.',
+  ] },
+  { name: 'Intendant Maelor', portrait: assets.pixelCharactersFull.maelor!, kind: 'knight', isAdvisor: true, quotes: [
+    'Un clan ne survit pas par l’honneur seul. L’or, les alliances, le calcul — voilà ce qui tient une compagnie debout.',
+    'Je ne porte pas d’épée. Je porte les comptes. Et c’est souvent plus lourd.',
+    'Méfiez-vous des héros qui refusent de compter. Ce sont les premiers à vous ruiner.',
+  ] },
+];
 
 const travelHeroSpriteCache = new Map<string, string>();
 
@@ -309,6 +377,7 @@ function travelHeroSprite(kind: string): string {
 export class TravelView {
   private element: HTMLElement | null = null;
   private busy = false;
+  private autoTooltipTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(private readonly options: TravelViewOptions) {}
 
@@ -322,10 +391,12 @@ export class TravelView {
     const reputation = getReputationRule(state.reputation);
     const combatCount = completedCombatCount(state);
     const gems = state.inventory.materials.red_gem ?? 0;
-    const deployed = state.deployment.unitIds
-      .map((id) => state.clan.members.find((unit) => unit.id === id))
-      .filter((unit): unit is UnitInstance => Boolean(unit))
-      .slice(0, 4);
+    const clanMembers: TravelPartyMember[] = state.clan.members.map((unit) => {
+      const def = unitById.get(unit.definitionId);
+      return { name: unit.name, portrait: def?.portrait ?? '', kind: def?.combatKind ?? 'knight', isAdvisor: false, quotes: TRAVEL_HERO_QUOTES[unit.definitionId] ?? [] };
+    });
+    const party = [...clanMembers, ...TRAVEL_ADVISORS];
+    const partyLayout = computeTravelPartyLayout(party.length);
     const section = document.createElement('section');
     section.className = 'travel-view ui-screen';
     section.dataset.travelBackdrop = backdropKey;
@@ -377,14 +448,13 @@ export class TravelView {
         }).join('') || '<p class="travel-view__end">La route s’achève ici.</p>'}
       </div>
       <div class="travel-party" aria-label="Compagnie en marche">
-        ${deployed.map((unit, index) => {
-          const definition = unitById.get(unit.definitionId);
-          const kind = definition?.combatKind ?? 'knight';
-          const slot = TRAVEL_PARTY_LAYOUT[index] ?? TRAVEL_PARTY_LAYOUT[TRAVEL_PARTY_LAYOUT.length - 1]!;
-          return `<figure class="travel-hero travel-hero--${escapeHtml(kind)}" style="--hero-left:${slot.left}%;--hero-bottom:${slot.bottom}%;--hero-scale:${slot.scale};--hero-z:${slot.z}">
+        ${party.map((member, index) => {
+          const slot = partyLayout[index] ?? partyLayout[partyLayout.length - 1]!;
+          return `<figure class="travel-hero travel-hero--${escapeHtml(member.kind)}${member.isAdvisor ? ' travel-hero--advisor' : ''}" style="--hero-left:${slot.left}%;--hero-bottom:${slot.bottom}%;--hero-scale:${slot.scale};--hero-z:${slot.z}">
             <span class="travel-hero__shadow" aria-hidden="true"></span>
-            <img class="travel-hero__sprite" src="${travelHeroSprite(kind)}" alt="${escapeHtml(unit.name)}">
-            <figcaption>${escapeHtml(unit.name)}</figcaption>
+            <img class="travel-hero__sprite" src="${member.portrait}" alt="${escapeHtml(member.name)}">
+            <figcaption>${escapeHtml(member.name)}</figcaption>
+            ${member.quotes.length > 0 ? `<span class="travel-hero__tooltip" data-quotes='${escapeHtml(JSON.stringify(member.quotes))}'>${escapeHtml(member.quotes[Math.floor(Math.random() * member.quotes.length)]!)}</span>` : ''}
           </figure>`;
         }).join('')}
       </div>
@@ -411,6 +481,7 @@ export class TravelView {
       if (button) button.innerHTML = '<span>✓</span> Sauvegardé';
     });
     section.querySelector('[data-action="menu"]')?.addEventListener('click', () => this.options.onOpenMenu());
+    this.startAutoTooltips();
     section.querySelectorAll<HTMLButtonElement>('[data-node]').forEach((button) => {
       button.addEventListener('click', async () => {
         if (this.busy) return;
@@ -447,7 +518,42 @@ export class TravelView {
     this.element?.classList.remove('is-roadmap-open');
   }
 
+  private startAutoTooltips(): void {
+    if (this.autoTooltipTimer) clearTimeout(this.autoTooltipTimer);
+    const heroes = this.element?.querySelectorAll<HTMLElement>('.travel-hero .travel-hero__tooltip');
+    if (!heroes || heroes.length === 0) return;
+    const schedule = () => {
+      const delay = 4000 + Math.random() * 2000;
+      this.autoTooltipTimer = setTimeout(() => {
+        if (!this.element) return;
+        const tooltips = this.element.querySelectorAll<HTMLElement>('.travel-hero .travel-hero__tooltip');
+        if (tooltips.length === 0) return;
+        const pick = tooltips[Math.floor(Math.random() * tooltips.length)]!;
+        const raw = pick.dataset.quotes;
+        if (raw) {
+          try {
+            const quotes = JSON.parse(raw) as string[];
+            if (quotes.length > 0) {
+              const last = pick.dataset.lastQuote;
+              const pool = quotes.length > 1 ? quotes.filter((q) => q !== last) : quotes;
+              const chosen = pool[Math.floor(Math.random() * pool.length)]!;
+              pick.textContent = chosen;
+              pick.dataset.lastQuote = chosen;
+            }
+          } catch { /* keep existing text */ }
+        }
+        pick.classList.add('travel-hero__tooltip--auto');
+        setTimeout(() => {
+          pick.classList.remove('travel-hero__tooltip--auto');
+          schedule();
+        }, 3500);
+      }, delay);
+    };
+    schedule();
+  }
+
   close(): void {
+    if (this.autoTooltipTimer) { clearTimeout(this.autoTooltipTimer); this.autoTooltipTimer = null; }
     this.element?.remove();
     this.element = null;
     this.busy = false;
