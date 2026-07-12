@@ -186,6 +186,25 @@ describe('campaign content integrity', () => {
     }
   });
 
+  it('keeps bosses and elite opponents unique within every encounter', () => {
+    const visualProfiles = assets.visualProfiles as unknown as Record<string, VisualProfile>;
+
+    for (const combat of combatConfigs.values()) {
+      const visualIds = [
+        ...combat.enemyVisualIds,
+        ...combat.escortVisualIds,
+        ...(combat.bossVisualId ? [combat.bossVisualId] : []),
+      ];
+      const majorOpponents = visualIds.filter((id) => {
+        const profile = visualProfiles[id];
+        return profile?.rarity === 'elite' || profile?.rarity === 'boss';
+      });
+
+      expect(majorOpponents.length, `${combat.id}:multipleMajorOpponents`).toBeLessThanOrEqual(1);
+      if (combat.isBoss) expect(majorOpponents, `${combat.id}:missingBoss`).toHaveLength(1);
+    }
+  });
+
   it('keeps craft recipes data-driven and backed by existing items', () => {
     expect(craftRecipes.length).toBeGreaterThanOrEqual(4);
     for (const recipe of craftRecipes) {

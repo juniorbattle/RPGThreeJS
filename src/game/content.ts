@@ -51,11 +51,12 @@ const combatVisualComposition: Record<string, Partial<Pick<CombatConfig, 'enemyV
   young_dragon_roost: { enemyVisualIds: ['young_dragon_elite', 'venom_serpent', 'marsh_toad'] },
   serpent_captain: {
     bossVisualId: 'serpent_general_boss',
-    escortVisualIds: ['serpent_duelist_elite', 'serpent_raider', 'serpent_oracle'],
+    escortVisualIds: ['serpent_raider', 'serpent_brute', 'serpent_oracle'],
   },
   lion_chief: {
     bossVisualId: 'alaric',
-    escortVisualIds: ['lion_champion', 'seal_guardian'],
+    // Alaric's trial is a true one-on-one boss encounter: no elite guards.
+    escortVisualIds: [],
   },
 };
 

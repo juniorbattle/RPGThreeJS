@@ -801,7 +801,9 @@ function spawnUnits(){
   if(IS_BOSS_COMBAT&&!BOSS_SPAWNED){
     const bossDef=BOSS_DEFS.find(b=>COMBAT_ID==='lion_chief'&&b.name.includes('Alaric'))||BOSS_DEFS[0];
     if(ENCOUNTER_ESCORT_VISUAL_IDS.length){
-      ENCOUNTER_ESCORT_VISUAL_IDS
+      // A boss is the encounter's only major opponent. Ignore any accidental
+      // elite escort so a malformed content entry cannot create boss + elite.
+      ENCOUNTER_ESCORT_VISUAL_IDS.filter(id=>!VISUAL_UNIT_TEMPLATES[id]?.elite)
         .map((id,index)=>unitDefFromVisual(id,index,ESCORT_VISUAL_POSITIONS))
         .filter(Boolean)
         .forEach(def=>createUnit(def));
