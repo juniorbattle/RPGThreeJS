@@ -361,6 +361,9 @@ export class GameApp {
   private setMode(mode: AppMode): void {
     this.mode = mode;
     document.body.dataset.mode = mode.toLowerCase();
+    document.body.classList.remove('mode-entering');
+    void document.body.offsetWidth;
+    document.body.classList.add('mode-entering');
   }
 
 }

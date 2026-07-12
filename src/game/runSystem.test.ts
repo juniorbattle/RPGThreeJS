@@ -12,7 +12,7 @@ describe('hybrid run system', () => {
 
   it('creates a guided Lion route with two refuge hubs', () => {
     const graph = generateRunGraph(7);
-    expect(Math.max(...graph.nodes.map((node) => node.depth))).toBe(9);
+    expect(Math.max(...graph.nodes.map((node) => node.depth))).toBe(10);
     expect(graph.nodes.filter((node) => node.type === 'refuge')).toHaveLength(2);
     expect(graph.nodes.filter((node) => node.type === 'shop')).toHaveLength(0);
     expect(graph.nodes[0]!.id).toBe('lion-camp');

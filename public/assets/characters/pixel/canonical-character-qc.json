@@ -243,6 +243,67 @@
       }
     }
   },
+  "sage_seraphine": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [
+          127,
+          188,
+          512,
+          734
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 217,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [
+          99,
+          174,
+          667,
+          978
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 483,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [
+          80,
+          49,
+          303,
+          364
+        ],
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "magenta_pixels": 0,
+        "white_pixels": 75,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
   "elara": {
     "variants": {
       "full": {

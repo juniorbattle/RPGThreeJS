@@ -49,7 +49,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     contentId: 'camp_departure',
     label: 'Camp du Lion',
     icon: '◆',
-    links: ['lion-audience'],
+    links: ['lion-opening-act'],
     risk: 0,
     reward: 1,
     difficulty: 'safe',
@@ -57,9 +57,24 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     hint: 'La compagnie se rassemble avant de demander le premier Sceau.',
   },
   {
-    id: 'lion-audience',
+    id: 'lion-opening-act',
     type: 'story',
     depth: 1,
+    lane: 0,
+    contentId: 'acte_ouverture',
+    label: 'Acte I — L’Appel de l’Honneur',
+    icon: '★',
+    links: ['lion-audience'],
+    risk: 0,
+    reward: 1,
+    difficulty: 'safe',
+    moralTone: 'neutral',
+    hint: 'Séraphine et Maelor présentent les enjeux et la mission du clan.',
+  },
+  {
+    id: 'lion-audience',
+    type: 'story',
+    depth: 2,
     lane: 0,
     contentId: 'lion_briefing',
     label: 'Audience d’Alaric',
@@ -74,7 +89,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-refugees',
     type: 'event',
-    depth: 2,
+    depth: 3,
     lane: -1,
     contentId: 'refugee_trial',
     label: 'Route des réfugiés',
@@ -89,7 +104,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-patrol',
     type: 'combat',
-    depth: 2,
+    depth: 3,
     lane: 0,
     contentId: 'forest_patrol',
     label: 'Patrouille Serpent',
@@ -104,7 +119,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-veiled-path',
     type: 'mystery',
-    depth: 2,
+    depth: 3,
     lane: 1,
     contentId: 'seeded-intrigue',
     label: 'Sentier voilé',
@@ -119,7 +134,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-serpent-checkpoint',
     type: 'combat',
-    depth: 3,
+    depth: 4,
     lane: -0.65,
     contentId: 'serpent_checkpoint',
     label: 'Barrage des Serpents',
@@ -134,7 +149,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-intrigue-early',
     type: 'mystery',
-    depth: 3,
+    depth: 4,
     lane: 0.65,
     contentId: 'seeded-intrigue',
     label: 'Intrigue des sous-bois',
@@ -149,7 +164,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-first-refuge',
     type: 'refuge',
-    depth: 4,
+    depth: 5,
     lane: 0,
     contentId: 'forest_refuge',
     label: 'Refuge du Lion',
@@ -164,7 +179,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-valmir-road',
     type: 'combat',
-    depth: 5,
+    depth: 6,
     lane: -0.75,
     contentId: 'road_to_valmir',
     label: 'Route de Bois-Clair',
@@ -179,7 +194,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-reserve-trail',
     type: 'event',
-    depth: 5,
+    depth: 6,
     lane: 0.75,
     contentId: 'reserve_trail',
     label: 'Chemin des réserves',
@@ -194,7 +209,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-village-choice',
     type: 'story',
-    depth: 6,
+    depth: 7,
     lane: 0,
     contentId: 'village_choice',
     label: 'Bois-Clair assiégé',
@@ -209,7 +224,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-second-refuge',
     type: 'refuge',
-    depth: 7,
+    depth: 8,
     lane: 0,
     contentId: 'forest_refuge',
     label: 'Dernier feu du Lion',
@@ -224,7 +239,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-witnesses',
     type: 'event',
-    depth: 8,
+    depth: 9,
     lane: -0.75,
     contentId: 'witnesses_on_road',
     label: 'Témoins de Valmir',
@@ -239,7 +254,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-shadow-signs',
     type: 'mystery',
-    depth: 8,
+    depth: 9,
     lane: 0.75,
     contentId: 'shadow_signs',
     label: 'Signes des Ombres',
@@ -254,7 +269,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-final-judgement',
     type: 'boss',
-    depth: 9,
+    depth: 10,
     lane: 0,
     contentId: 'lion_finale_judgement',
     label: 'Jugement du Sceau',

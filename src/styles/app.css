@@ -41,6 +41,22 @@ body::after {
   box-shadow: inset 0 0 140px rgba(0,0,0,.68);
   background: linear-gradient(180deg, rgba(255,215,145,.035), transparent 30%, rgba(3,5,10,.22));
 }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0;
+  background: #05060a;
+}
+body.mode-entering::before {
+  animation: mode-flash var(--ui-motion-base) ease;
+}
+@keyframes mode-flash {
+  0% { opacity: .45; }
+  100% { opacity: 0; }
+}
 button { font: inherit; }
 #world-canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block;
   background:
@@ -48,6 +64,18 @@ button { font: inherit; }
     linear-gradient(rgba(7,14,22,.22), rgba(5,9,16,.46)),
     var(--screen-bg-image, url('/assets/generated/forest-pilot/forest-dawn-far.webp')) center/cover no-repeat; }
 .game-chrome { position: fixed; inset: 0; pointer-events: none; z-index: 20; }
+
+@keyframes ui-screen-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.ui-screen { animation: ui-screen-in var(--ui-motion-slow) cubic-bezier(.2,.8,.2,1) both; }
+
+@keyframes ui-screen-out {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-8px); }
+}
+.ui-screen.is-leaving { animation: ui-screen-out var(--ui-motion-fast) ease both; }
 .eyebrow { margin: 0 0 6px; color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; }
 
 .title-screen {
@@ -413,7 +441,24 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .dialogue[data-speaker-side="right"] .dialogue-choice:focus-visible { transform: translateX(6px); }
 .dialogue-choice:active:not(:disabled) { transform: translateX(-3px) scale(.99); }
 .dialogue[data-speaker-side="right"] .dialogue-choice:active:not(:disabled) { transform: translateX(3px) scale(.99); }
-.dialogue-choice:disabled { cursor: not-allowed; opacity: .48; filter: grayscale(.22); }
+.dialogue-choice:disabled,
+.dialogue-choice.is-blocked { cursor: not-allowed; opacity: .52; filter: grayscale(.3); border-color: rgba(217,100,100,.28); }
+.dialogue-choice.is-blocked::after {
+  content: '\1F512';
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 13px;
+  opacity: .55;
+  filter: grayscale(.4);
+}
+.dialogue-choice.is-blocked .dialogue-choice__meta {
+  animation: blocked-pulse 2.4s ease-in-out infinite;
+}
+@keyframes blocked-pulse {
+  0%, 100% { opacity: .7; }
+  50% { opacity: 1; }
+}
 .dialogue-outcome { display: inline-flex; align-items: center; gap: 5px; min-height: 23px; padding: 4px 8px; border: 1px solid rgba(244,217,139,.32); border-radius: 999px; background: rgba(5,8,16,.82); color: #d6deec; font: 700 10px var(--ui-font-body); letter-spacing: .045em; text-transform: uppercase; }
 .dialogue-outcome b { color: var(--ui-color-gold-bright); font-size: 11px; line-height: 1; }
 .dialogue-outcome--gain { border-color: rgba(139,230,151,.48); color: #d2f8d6; background: rgba(17,47,29,.5); }
