@@ -15,7 +15,7 @@ import { ManagementView } from '../ui/ManagementView';
 import { TravelView } from '../ui/TravelView';
 import { ExplorationView } from '../ui/ExplorationView';
 import { PrologueView } from '../ui/PrologueView';
-type AppMode = 'TITLE' | 'PROLOGUE' | 'TRAVEL' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT';
+type AppMode = 'TITLE' | 'PROLOGUE' | 'TRAVEL' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT' | 'QA';
 
 export class GameApp {
   private mode: AppMode = 'TITLE';
@@ -29,6 +29,8 @@ export class GameApp {
   private readonly exploration: ExplorationView;
   private readonly prologue: PrologueView;
   private pendingCombatId: string | null = null;
+  private readonly qaEnabled = import.meta.env.DEV
+    && new URLSearchParams(window.location.search).get('qa') === '1';
 
   constructor(
     private readonly root: HTMLElement,
@@ -81,6 +83,7 @@ export class GameApp {
         <div class="title-screen__actions">
           <button type="button" data-action="new">Nouvelle chronique</button>
           <button type="button" data-action="continue" ${this.saves.hasSave() ? '' : 'disabled'}>Continuer</button>
+          ${this.qaEnabled ? '<button type="button" class="title-screen__qa" data-action="qa">QA rencontres</button>' : ''}
         </div>
         <nav class="title-screen__nav">
           <span class="title-screen__nav-link">⚙ Options</span>
@@ -99,6 +102,59 @@ export class GameApp {
       if (current && current.depth > 0 && !this.state.resolvedNodeIds.includes(current.id)) void this.resolveRunNode(current, true);
       else this.enterTravel();
     });
+    this.chrome.querySelector('[data-action="qa"]')?.addEventListener('click', () => this.renderQaLab());
+  }
+
+  private renderQaLab(message = ''): void {
+    if (!this.qaEnabled) {
+      this.renderTitle();
+      return;
+    }
+    this.setMode('QA');
+    this.travel.close();
+    this.exploration.close();
+    this.prologue.close();
+    this.combat.close();
+    this.canvas.hidden = true;
+    const encounterCards = [...combatConfigs.values()].map((config) => `
+      <button type="button" class="qa-lab__encounter qa-lab__encounter--${config.encounterRank}" data-qa-combat="${config.id}">
+        <span>${config.encounterRank}</span>
+        <b>${config.encounterLabel}</b>
+        <small>${config.objective}</small>
+      </button>
+    `).join('');
+    this.chrome.innerHTML = `
+      <section class="qa-lab ui-screen" aria-label="Laboratoire QA de combat">
+        <header class="qa-lab__header">
+          <div><p class="eyebrow">Développement local</p><h1>Laboratoire de combat</h1></div>
+          <button type="button" data-qa-back>Retour au titre</button>
+        </header>
+        <p class="qa-lab__lead">Chaque lancement ouvre le combat par le bridge réel, sans modifier la chronique ni sa sauvegarde.</p>
+        ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
+        <div class="qa-lab__grid">${encounterCards}</div>
+      </section>
+    `;
+    this.chrome.querySelector('[data-qa-back]')?.addEventListener('click', () => this.renderTitle());
+    this.chrome.querySelectorAll<HTMLButtonElement>('[data-qa-combat]').forEach((button) => {
+      button.addEventListener('click', () => void this.startQaCombat(button.dataset.qaCombat ?? ''));
+    });
+  }
+
+  private async startQaCombat(combatId: string): Promise<void> {
+    if (!this.qaEnabled) return;
+    const config = combatConfigs.get(combatId);
+    if (!config) return;
+    this.setMode('COMBAT');
+    this.chrome.replaceChildren();
+    const result = await this.combat.play({
+      config,
+      clan: this.state.clan.members.map((unit) => toCombatant(unit)),
+      inventory: this.state.inventory.consumables,
+      preferredUnitIds: this.state.deployment.unitIds,
+      reducedGraphics: this.state.settings.reducedGraphics,
+      devQa: true,
+    });
+    this.renderQaLab(`${config.encounterLabel} — ${result.victory ? 'victoire de test' : 'défaite de test'}.`);
   }
 
   private enterTravel(): void {
@@ -279,6 +335,7 @@ export class GameApp {
       inventory: this.state.inventory.consumables,
       preferredUnitIds: this.state.deployment.unitIds,
       reducedGraphics: this.state.settings.reducedGraphics,
+      devQa: false,
     });
     await this.resolveCombat(result, node, config.rewards);
   }

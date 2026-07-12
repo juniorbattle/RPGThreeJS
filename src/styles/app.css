@@ -115,6 +115,7 @@ button { font: inherit; }
   font-weight: 700;
 }
 .title-screen button:first-child { color: #15100a; background: linear-gradient(#f4d98b, #b88c38); }
+.title-screen button.title-screen__qa { color: #d9eaff; border-color: rgba(105,215,255,.56); background: linear-gradient(180deg, rgba(24,55,79,.94), rgba(8,18,33,.98)); }
 button:disabled { cursor: not-allowed; opacity: .35; }
 .title-screen small { display: none; }
 .title-screen__nav {
@@ -142,6 +143,21 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 }
 .title-screen__nav-link:hover { color: var(--gold-bright); }
 .title-screen__nav-sep { width: 1px; height: 14px; background: rgba(244,217,139,.22); }
+
+.qa-lab { position:absolute; inset:0; overflow:auto; pointer-events:auto; padding:clamp(28px,5vw,76px); color:var(--cream); background:linear-gradient(180deg,rgba(3,7,14,.84),rgba(3,7,14,.96)),url('/assets/generated/forest-pilot/forest-dawn-far.webp') center/cover no-repeat; }
+.qa-lab__header { display:flex; align-items:end; justify-content:space-between; gap:24px; max-width:1120px; margin:0 auto 10px; padding-bottom:18px; border-bottom:1px solid rgba(244,217,139,.26); }
+.qa-lab h1 { margin:0; color:var(--gold-bright); font:700 clamp(32px,5vw,58px)/.95 Cinzel,serif; letter-spacing:.035em; text-transform:uppercase; }
+.qa-lab__header button { flex:0 0 auto; border:1px solid rgba(244,217,139,.48); border-radius:4px; padding:11px 15px; background:#0a1324; color:var(--cream); cursor:pointer; font:700 10px Cinzel,serif; letter-spacing:.1em; text-transform:uppercase; }
+.qa-lab__lead,.qa-lab__result { max-width:1120px; margin:14px auto 20px; color:#c4d1e4; font:500 14px/1.55 Inter,sans-serif; }
+.qa-lab__result { padding:10px 13px; border-left:2px solid #72c7ff; background:rgba(30,77,111,.25); color:#d9f1ff; }
+.qa-lab__grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:12px; max-width:1120px; margin:0 auto; }
+.qa-lab__encounter { min-height:144px; display:flex; flex-direction:column; align-items:flex-start; gap:7px; padding:17px; border:1px solid rgba(244,217,139,.32); border-radius:8px; background:linear-gradient(145deg,rgba(16,27,46,.92),rgba(4,8,16,.96)); color:var(--cream); text-align:left; cursor:pointer; transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease; }
+.qa-lab__encounter:hover { transform:translateY(-3px); border-color:rgba(244,217,139,.75); box-shadow:0 14px 30px rgba(0,0,0,.44),0 0 18px rgba(244,217,139,.11); }
+.qa-lab__encounter>span { color:#a7b9d8; font:700 9px Inter,sans-serif; letter-spacing:.17em; text-transform:uppercase; }
+.qa-lab__encounter>b { color:#fff0c8; font:700 18px/1.05 Cinzel,serif; }
+.qa-lab__encounter small { color:#b5c1d4; font:500 12px/1.45 Inter,sans-serif; }
+.qa-lab__encounter--elite { border-color:rgba(202,142,90,.58); }
+.qa-lab__encounter--boss { border-color:rgba(244,217,139,.78); box-shadow:inset 0 0 22px rgba(244,217,139,.08); }
 
 .prologue-view {
   position: fixed;

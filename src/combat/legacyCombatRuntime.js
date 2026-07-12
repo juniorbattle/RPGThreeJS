@@ -34,6 +34,7 @@ const dom={ ui:byId('ui'), turnbar:byId('turnbar'), hint:byId('hint'), panel:byI
   fx:byId('fx'), banner:byId('banner'), loading:byId('loading'), tutorial:byId('tutorial'), bossTutorial:byId('boss-tutorial') };
 const campaignParams=new URLSearchParams(location.search);
 const CAMPAIGN_MODE=campaignParams.get('campaign')==='1'&&window.parent!==window;
+let QA_ENABLED=false;
 let COMBAT_ID='standalone';
 let COMBAT_SCENE_ID='forest_route';
 let COMBAT_OBJECTIVE='Vaincre tous les ennemis.';
@@ -554,6 +555,8 @@ const BOSS_DEFS=[
   {team:'foe',kind:'brute',name:'Général Serpent',portrait:'/assets/characters/pixel/full/serpent_general_boss.png',hp:320,str:30,mag:10,end:24,dex:10,cha:12,mov:0,weapons:[{name:'Lame Serpent',icon:'⚔️',type:'phys',min:1,max:2,power:18,crit:0.08,acc:0.9}],skills:['boss_slam','boss_roar','boss_quake','boss_guard'],ai:'aggressive',gx:5,gz:1,size:2,immobile:true,boss:true},
   {team:'foe',kind:'knight',name:'Vieux Lion Alaric',portrait:'/assets/characters/pixel/full/alaric.png',hp:380,str:28,mag:8,end:26,dex:12,cha:16,mov:0,weapons:[{name:'Lame du Lion',icon:'⚔️',type:'phys',min:1,max:2,power:16,crit:0.06,acc:0.92}],skills:['boss_slam','boss_roar','boss_quake','boss_guard'],ai:'guardian',gx:5,gz:1,size:2,immobile:true,boss:true}
 ];
+// The 2x2 footprint occupies the rightmost two columns (6 and 7).
+for(const bossDef of BOSS_DEFS){ bossDef.gx=6; bossDef.gz=1; }
 
 const BOSS_PORTRAITS={
   serpent_captain:'/assets/characters/pixel/full/serpent_general_boss.png',
@@ -598,7 +601,9 @@ const VISUAL_UNIT_TEMPLATES={
   seal_guardian:{team:'foe',kind:'darkmage',name:'Gardien du Sceau',portrait:'/assets/characters/pixel/full/seal_guardian.png',hp:92,str:8,mag:20,end:13,dex:10,cha:16,mov:2,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.04,acc:0.94}],skills:['curse','boss_guard'],ai:'cautious'}
 };
 const ENEMY_VISUAL_POSITIONS=[[6,0],[7,1],[6,3],[7,2]];
-const ESCORT_VISUAL_POSITIONS=[[7,0],[7,3],[4,3]];
+// Large enemies reserve the outer two columns. Escorts stay to the left so
+// the boss remains the focal point instead of being visually buried.
+const ESCORT_VISUAL_POSITIONS=[[5,0],[5,3],[4,1]];
 function unitDefFromVisual(id,index,positions=ENEMY_VISUAL_POSITIONS){
   const base=VISUAL_UNIT_TEMPLATES[id];
   if(!base)return null;
@@ -683,6 +688,20 @@ function bossCenterGX(u){ return u.gx+(u.size||1)/2-0.5; }
 function bossCenterGZ(u){ return u.gz+(u.size||1)/2-0.5; }
 function occupyBossCells(u){ for(const c of bossCells(u)){ c.occupant=u; c.walkable=false; } }
 function clearBossCells(u){ for(const c of bossCells(u)){ if(c.occupant===u)c.occupant=null; c.walkable=true; } }
+function largeUnitSpriteScale(u){
+  if((u.size||1)<=1)return 1;
+  return u.boss
+    ? COMBAT_PRESENTATION.units.twoByTwoBossSpriteScale
+    : COMBAT_PRESENTATION.units.twoByTwoEliteSpriteScale;
+}
+function resetUnitSpriteScale(u){
+  const spriteScale=largeUnitSpriteScale(u),outlineScale=spriteScale*1.1;
+  const visualFacing=u.visualFacingX||u.facing?.dx||(u.team==='player'?1:-1);
+  const sourceFacing=u.spriteFacing||1;
+  const scaleX=sourceFacing*(visualFacing<0?-spriteScale:spriteScale);
+  u.spr.scale.set(scaleX,spriteScale,1);
+  if(u.outline)u.outline.scale.set(scaleX<0?-outlineScale:outlineScale,outlineScale,1);
+}
 function createUnit(def){
   const s=externalSpriteCache.get(def.portrait)||SPR[def.kind];
   const grp=new THREE.Group();
@@ -708,14 +727,18 @@ function createUnit(def){
     maxhp:def.maxhp||def.hp, hp:Math.min(def.hp,def.maxhp||def.hp), str:def.str, mag:def.mag, end:def.end, dex:def.dex, cha:def.cha,
     mov:def.mov, weapons:def.weapons, skills:def.skills.slice(), skillUpgrades:def.skillUpgrades||{}, ai:def.ai||'aggressive',
     ap:0, maxap:5, gx:def.gx, gz:def.gz, alive:true, statuses:{}, gardeAP:0, _souffle:false,
-    size:def.size||1, immobile:!!def.immobile, boss:!!def.boss,
+    size:def.size||1, immobile:!!def.immobile, boss:!!def.boss, elite:!!def.elite,
+    // All sprites are authored facing right. Foes are mirrored via
+    // visualFacingX so they face the player team at combat start.
+    spriteFacing:def.spriteFacing??1,
     facing:def.team==='player'?{dx:1,dz:0}:{dx:-1,dz:0},
+    visualFacingX:def.team==='player'?1:-1,
     grp, spr, outline, mat, blob, teamGlow, teamRingUnder, teamRing, baseY:s.h*0.5,
     cell(){ return cellAt(this.gx,this.gz); }
   };
-  const spriteScale=u.size>1?u.size*1.6:1, outlineScale=spriteScale*1.1;
-  if(u.size>1){ spr.scale.set(spriteScale,spriteScale,1); outline.scale.set(outlineScale,outlineScale,1); blob.scale.set(u.size,u.size,1); teamGlow.scale.set(u.size,u.size,1); teamRing.scale.set(u.size,u.size,1); if(teamRingUnder)teamRingUnder.scale.set(u.size,u.size,1); u.baseY=s.h*0.5*spriteScale; spr.position.y=u.baseY; outline.position.y=u.baseY; }
-  spr.scale.x=u.facing.dx<0?-spriteScale:spriteScale; outline.scale.x=u.facing.dx<0?-outlineScale:outlineScale;
+  const spriteScale=largeUnitSpriteScale(u);
+  if(u.size>1){ blob.scale.set(u.size,u.size,1); teamGlow.scale.set(u.size,u.size,1); teamRing.scale.set(u.size,u.size,1); if(teamRingUnder)teamRingUnder.scale.set(u.size,u.size,1); u.baseY=s.h*0.5*spriteScale; spr.position.y=u.baseY; outline.position.y=u.baseY; }
+  resetUnitSpriteScale(u);
   placeUnit(u,def.gx,def.gz,true);
   G.units.push(u);
   return u;
@@ -750,9 +773,8 @@ function placeUnit(u,gx,gz,instant){
 }
 function setFacing(u,tx,tz){ const dx=tx-u.gx, dz=tz-u.gz; if(dx===0&&dz===0)return;
   if(Math.abs(dx)>=Math.abs(dz)) u.facing={dx:Math.sign(dx),dz:0}; else u.facing={dx:0,dz:Math.sign(dz)};
-  const spriteScale=u.size>1?u.size*1.6:1, outlineScale=spriteScale*1.1;
-  u.spr.scale.x=u.facing.dx<0?-spriteScale:(u.facing.dx>0?spriteScale:u.spr.scale.x);
-  if(u.outline)u.outline.scale.x=u.spr.scale.x<0?-outlineScale:outlineScale; }
+  if(u.facing.dx!==0)u.visualFacingX=u.facing.dx;
+  resetUnitSpriteScale(u); }
 
 function spawnUnits(){
   if(!IS_BOSS_COMBAT){
@@ -761,7 +783,7 @@ function spawnUnits(){
       const normalIds=ENCOUNTER_ENEMY_VISUAL_IDS.filter(id=>!VISUAL_UNIT_TEMPLATES[id]?.elite);
       if(eliteIds.length){
         const eliteDef=VISUAL_UNIT_TEMPLATES[eliteIds[0]];
-        if(eliteDef) createUnit({...eliteDef,gx:5,gz:1,weapons:eliteDef.weapons.map(w=>({...w})),skills:eliteDef.skills.slice()});
+        if(eliteDef) createUnit({...eliteDef,gx:6,gz:1,weapons:eliteDef.weapons.map(w=>({...w})),skills:eliteDef.skills.slice()});
         normalIds
           .map((id,index)=>unitDefFromVisual(id,index,ESCORT_VISUAL_POSITIONS))
           .filter(Boolean)
@@ -784,9 +806,12 @@ function spawnUnits(){
         .filter(Boolean)
         .forEach(def=>createUnit(def));
     } else {
-      for(const escort of BOSS_ESCORTS[COMBAT_ID]||[]) createUnit(escort);
+      (BOSS_ESCORTS[COMBAT_ID]||[]).forEach((escort,index)=>{
+        const [gx,gz]=ESCORT_VISUAL_POSITIONS[index%ESCORT_VISUAL_POSITIONS.length];
+        createUnit({...escort,gx,gz});
+      });
     }
-    if(bossDef){ createUnit({...bossDef,portrait:BOSS_PORTRAITS[ENCOUNTER_BOSS_VISUAL_ID]||BOSS_PORTRAITS[COMBAT_ID]||bossDef.portrait,gx:5,gz:1,size:2,immobile:true,boss:true}); BOSS_SPAWNED=true; }
+    if(bossDef){ createUnit({...bossDef,portrait:BOSS_PORTRAITS[ENCOUNTER_BOSS_VISUAL_ID]||BOSS_PORTRAITS[COMBAT_ID]||bossDef.portrait,gx:6,gz:1,size:2,immobile:true,boss:true}); BOSS_SPAWNED=true; }
   }
 }
 
@@ -870,7 +895,7 @@ async function applyDamage(u,dmg,src){ u.hp=Math.max(0,u.hp-dmg); flashUnit(u,'#
 function applyHeal(u,amt){ if(!u.alive)return; u.hp=Math.min(u.maxhp,u.hp+amt); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
 function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; t.statuses[st]=Math.max(t.statuses[st]||0,turns||2); floatText(t,(d.name||st).toUpperCase(),d.col||'#fff'); refreshPanel(t); }
 async function knockOut(u,src){ u.alive=false; u.downed=true; const state=getUnitVisualState(u.team,u.alive,u.downed); if(u.size>1)clearBossCells(u); else { const c=u.cell(); if(c&&c.occupant===u)c.occupant=null; } floatText(u,'K.O.','#ff5a4a',true); logMsg(u.name+' est K.O. !'); screenShake(0.5,0.4); screenFlash('#ff5a4a',0.22); tween(u.spr.scale,{y:0.32},0.4,easeOutCubic); tween(u.spr.rotation,{z:(u.facing.dx<0?-1:1)*1.15},0.4); tween(u.mat,{opacity:state.bodyOpacity},0.4); tween(u.blob.material,{opacity:state.shadowOpacity},0.4); if(u.teamRing)tween(u.teamRing.material,{opacity:0},0.4); refreshTurnbar(); await wait(0.42); u.grp.visible=state.visible; }
-function reviveUnit(u,hp){ u.alive=true; u.downed=false; u.hp=hp; u.statuses={}; u.grp.visible=true; if(u.size>1)occupyBossCells(u); else { const c=u.cell(); if(c&&c.occupant&&c.occupant!==u){ const f=freeNear(u.gx,u.gz); if(f){ u.gx=f.gx; u.gz=f.gz; } } const nc=cellAt(u.gx,u.gz); if(nc&&!nc.occupant)nc.occupant=u; if(nc)u.grp.position.set(wX(u.gx),nc.topY,wZ(u.gz)); } u.spr.scale.y=1; u.spr.rotation.z=0; u.mat.opacity=1; u.mat.color.set('#ffffff'); u.blob.material.opacity=COMBAT_PRESENTATION.units.shadowOpacity; if(u.teamRing)u.teamRing.material.opacity=COMBAT_PRESENTATION.units.teamRingOpacity; floatText(u,'+'+hp,'#7ed957',true); logMsg(u.name+' est relevé !'); refreshTurnbar(); }
+function reviveUnit(u,hp){ u.alive=true; u.downed=false; u.hp=hp; u.statuses={}; u.grp.visible=true; if(u.size>1)occupyBossCells(u); else { const c=u.cell(); if(c&&c.occupant&&c.occupant!==u){ const f=freeNear(u.gx,u.gz); if(f){ u.gx=f.gx; u.gz=f.gz; } } const nc=cellAt(u.gx,u.gz); if(nc&&!nc.occupant)nc.occupant=u; if(nc)u.grp.position.set(wX(u.gx),nc.topY,wZ(u.gz)); } resetUnitSpriteScale(u); u.spr.rotation.z=0; u.mat.opacity=1; u.mat.color.set('#ffffff'); u.blob.material.opacity=COMBAT_PRESENTATION.units.shadowOpacity; if(u.teamRing)u.teamRing.material.opacity=COMBAT_PRESENTATION.units.teamRingOpacity; floatText(u,'+'+hp,'#7ed957',true); logMsg(u.name+' est relevé !'); refreshTurnbar(); }
 
 function skillUpgradeLevel(u,skillId){ return Math.max(0,Math.min(2,Math.floor((u.skillUpgrades&&u.skillUpgrades[skillId])||0))); }
 function applySkillUpgrade(u,skillId,spec){
@@ -1259,7 +1284,7 @@ function startNextWave(){ G.wave++;
   for(const u of G.units.filter(x=>x.team==='player')){
     if(!u.alive){ const cur=u.cell(); if(!cur||(cur.occupant&&cur.occupant!==u)){ const f=(G.deployZone||[]).find(z=>!z.occupant); if(f){ u.gx=f.gx; u.gz=f.gz; } } reviveUnit(u,u.maxhp); }
     else u.hp=u.maxhp;
-    u.statuses={}; u.ap=0; u._taunter=null; u.mat.color.set('#ffffff'); u.mat.opacity=1; u.spr.scale.set(u.facing.dx<0?-1:1,1,1); u.spr.rotation.z=0; u.blob.material.opacity=COMBAT_PRESENTATION.units.shadowOpacity; if(u.teamRing)u.teamRing.material.opacity=COMBAT_PRESENTATION.units.teamRingOpacity;
+    u.statuses={}; u.ap=0; u._taunter=null; u.mat.color.set('#ffffff'); u.mat.opacity=1; resetUnitSpriteScale(u); u.spr.rotation.z=0; u.blob.material.opacity=COMBAT_PRESENTATION.units.shadowOpacity; if(u.teamRing)u.teamRing.material.opacity=COMBAT_PRESENTATION.units.teamRingOpacity;
     placeUnit(u,u.gx,u.gz,true); refreshPanel(u); }
   spawnWave(G.wave); G.over=false; G.round=0; G.mode='idle'; logMsg('— Vague '+G.wave+' approche ! —'); startRound(); }
 function resultRowsHTML(){ const rows=G.deployedUnits.map(u=>'<li class="combat-result__unit '+(u.alive?'':'is-ko')+'"><span>'+escHTML(u.name)+'</span><b>'+(u.alive?'Debout':'K.O.')+'</b></li>').join('');
@@ -1471,6 +1496,24 @@ function showBossTutorial(){
   }
 }
 
+// ============================= DEVELOPMENT QA =============================
+function qaPrepareCombat(){
+  if(G.mode!=='deploy')return;
+  autoDeploy();
+  beginBattle();
+}
+function mountQaControls(){
+  if(!QA_ENABLED||byId('qa-combat-controls'))return;
+  const controls=document.createElement('aside');
+  controls.id='qa-combat-controls';
+  controls.setAttribute('aria-label','Outils QA de combat');
+  controls.innerHTML='<b>QA combat</b><span>Session isolée</span><div><button type="button" data-qa="prepare">Auto-déployer</button><button type="button" data-qa="victory">Victoire</button><button type="button" data-qa="defeat">Défaite</button></div>';
+  controls.querySelector('[data-qa="prepare"]').onclick=()=>qaPrepareCombat();
+  controls.querySelector('[data-qa="victory"]').onclick=()=>{ if(!G.over){ qaPrepareCombat(); winWave(); } };
+  controls.querySelector('[data-qa="defeat"]').onclick=()=>{ if(!G.over){ qaPrepareCombat(); endGame(false); } };
+  document.body.appendChild(controls);
+}
+
 // ============================= INIT & BOOT =============================
 async function initGame(){
   G.inv=CAMPAIGN_MODE?{...CAMPAIGN_INVENTORY}:{potion:3,ether:1,antidote:2,bomb:2}; G.wave=1; G.round=0; G.over=false;
@@ -1478,6 +1521,7 @@ async function initGame(){
   initHud();
   logMsg(CAMPAIGN_MODE?COMBAT_OBJECTIVE:'Préparez votre formation, puis lancez la bataille.');
   startDeployment();
+  mountQaControls();
   showTutorial();
   showBossTutorial();
 }
@@ -1491,6 +1535,7 @@ function bootCampaign(message){
   COMBAT_REWARD_TEXT=combatRewardText(message.config.rewards);
   MAX_PLAYER_UNITS=normalizeDeploymentLimit(message.config.maxPlayerUnits); CAMPAIGN_SQUAD=message.clan; CAMPAIGN_INVENTORY=message.inventory;
   PREFERRED_UNIT_IDS=message.preferredUnitIds; REDUCED_GRAPHICS=message.reducedGraphics;
+  QA_ENABLED=campaignParams.get('qa')==='1'&&message.devQa===true;
   IS_BOSS_COMBAT=!!message.config.isBoss; BOSS_SPAWNED=false;
   ENCOUNTER_ENEMY_VISUAL_IDS=Array.isArray(message.config.enemyVisualIds)?message.config.enemyVisualIds:[];
   ENCOUNTER_BOSS_VISUAL_ID=message.config.bossVisualId||'';

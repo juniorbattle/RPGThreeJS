@@ -71,6 +71,11 @@ const unitPresentation = {
   contactShadowOpacity: 0.96,
   shadowOpacity: 0.94,
   shadowScale: 1.12,
+  // Every 2x2 opponent uses the same visual scale. Tactical mass comes from
+  // the footprint and ring as much as the sprite, so 1.6 keeps both elites
+  // and bosses imposing without swallowing the compact 8x4 arena.
+  twoByTwoEliteSpriteScale: 1.6,
+  twoByTwoBossSpriteScale: 1.6,
   teamRingOpacity: 0.92,
   activeRingOpacity: 1,
   activeRingIntensity: 1,

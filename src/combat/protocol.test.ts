@@ -20,8 +20,25 @@ describe('combat protocol', () => {
       reducedGraphics: false,
     });
     expect(parsed.success).toBe(true);
+    expect(parsed.data?.devQa).toBe(false);
     expect(clan[0]!.currentHealth).toBe(77);
     expect(clan[0]!.skillUpgrades.whirl).toBe(2);
+  });
+
+  it('accepts the development QA flag only as an explicit initialization field', () => {
+    const state = createInitialState();
+    const config = combatConfigs.get('forest_patrol')!;
+    const parsed = combatInitializeMessageSchema.safeParse({
+      type: 'rpg-threejs:combat-initialize',
+      config,
+      clan: state.clan.members.map(toCombatant),
+      inventory: state.inventory.consumables,
+      preferredUnitIds: state.deployment.unitIds,
+      reducedGraphics: false,
+      devQa: true,
+    });
+    expect(parsed.success).toBe(true);
+    expect(parsed.data?.devQa).toBe(true);
   });
 
   it('rejects incomplete combat results', () => {

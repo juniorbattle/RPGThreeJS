@@ -39,6 +39,7 @@ export const combatInitializeMessageSchema = z.object({
   inventory: z.record(z.number().int().nonnegative()),
   preferredUnitIds: z.array(z.string()).max(5),
   reducedGraphics: z.boolean(),
+  devQa: z.boolean().default(false),
 });
 export type CombatInitializeMessage = z.infer<typeof combatInitializeMessageSchema>;
 

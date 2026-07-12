@@ -25,6 +25,7 @@
   body.reduced-graphics #combat-parallax::after{display:none}
   body.reduced-graphics #combat-parallax::before{opacity:.1;filter:none}
   #ui{position:fixed;inset:0;z-index:10;pointer-events:none;font-size:18px}
+  #qa-combat-controls{position:fixed;top:14px;left:14px;z-index:16;display:grid;gap:5px;width:176px;padding:9px 10px;border:1px solid rgba(105,215,255,.56);border-radius:8px;background:rgba(5,12,23,.92);box-shadow:0 10px 24px rgba(0,0,0,.62);font:700 9px var(--font-body);letter-spacing:.11em;text-transform:uppercase;color:#aee9ff}#qa-combat-controls>span{color:#9baac1;font-size:8px;letter-spacing:.08em}#qa-combat-controls>div{display:grid;grid-template-columns:1fr 1fr;gap:5px}#qa-combat-controls button{min-height:28px;padding:4px;border:1px solid rgba(105,215,255,.36);border-radius:4px;background:#0c1b30;color:#dff6ff;font:800 8px var(--font-body);letter-spacing:.06em;text-transform:uppercase;cursor:pointer}#qa-combat-controls button[data-qa="prepare"]{grid-column:1/-1}#qa-combat-controls button[data-qa="victory"]{border-color:rgba(126,217,87,.6);color:#c9f7b8}#qa-combat-controls button[data-qa="defeat"]{border-color:rgba(255,95,82,.58);color:#ffbbb4}#qa-combat-controls button:hover{filter:brightness(1.22)}
   .hidden{display:none!important}
   .pixel{font-family:var(--font-title);letter-spacing:.04em;text-transform:uppercase}
   .panel{background:linear-gradient(155deg,#0c1221,#04070f);border:1px solid rgba(230,199,126,.72);border-radius:var(--ui-radius-lg);

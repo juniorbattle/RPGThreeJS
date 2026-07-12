@@ -11,6 +11,7 @@ interface CombatSession {
   inventory: Record<string, number>;
   preferredUnitIds: string[];
   reducedGraphics: boolean;
+  devQa?: boolean;
 }
 
 export class CombatBridge {
@@ -29,7 +30,7 @@ export class CombatBridge {
     iframe.className = 'combat-frame';
     iframe.title = session.config.encounterLabel;
     iframe.allow = 'fullscreen';
-    iframe.src = '/legacy-combat.html?campaign=1';
+    iframe.src = `/legacy-combat.html?campaign=1${session.devQa && import.meta.env.DEV ? '&qa=1' : ''}`;
     this.root.append(iframe);
     this.iframe = iframe;
     return new Promise<CombatResult>((resolve) => {
@@ -60,6 +61,7 @@ export class CombatBridge {
         inventory: this.session.inventory,
         preferredUnitIds: this.session.preferredUnitIds,
         reducedGraphics: this.session.reducedGraphics,
+        devQa: Boolean(this.session.devQa && import.meta.env.DEV),
       };
       this.iframe?.contentWindow?.postMessage(message, window.location.origin);
       return;
