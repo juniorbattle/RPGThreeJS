@@ -96,7 +96,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     icon: '⚔',
     links: ['lion-serpent-checkpoint', 'lion-intrigue-early'],
     risk: 2,
-    reward: 3,
+    reward: 2,
     difficulty: 'standard',
     moralTone: 'neutral',
     hint: 'Une route directe, gardée par des éclaireurs ennemis.',
@@ -126,7 +126,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     icon: '⚔',
     links: ['lion-first-refuge'],
     risk: 2,
-    reward: 4,
+    reward: 3,
     difficulty: 'standard',
     moralTone: 'neutral',
     hint: 'Un poste avancé protège la route de Bois-Clair.',
@@ -201,7 +201,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     icon: '⌂',
     links: ['lion-second-refuge'],
     risk: 3,
-    reward: 3,
+    reward: 4,
     difficulty: 'decisive',
     moralTone: 'pragmatic',
     hint: 'Choisir ce qui sera sauvé : les habitants, les réserves, ou votre nom.',
@@ -324,14 +324,14 @@ function makeLionNode(template: LionRouteNode, random: () => number, reputation:
   };
 }
 
-export function generateRunGraph(seed: number, reputation = 50): RunGraph {
+export function generateRunGraph(seed: number, reputation = 30): RunGraph {
   const random = seededRandom(seed);
   return {
     nodes: LION_ROUTE_TEMPLATE.map((node) => makeLionNode(node, random, reputation)),
   };
 }
 
-export function createRunState(seed = Date.now() & 0x7fffffff, reputation = 50): RunState {
+export function createRunState(seed = Date.now() & 0x7fffffff, reputation = 30): RunState {
   const graph = generateRunGraph(seed, reputation);
   const start = graph.nodes.find((node) => node.depth === 0)!;
   return {

@@ -199,8 +199,8 @@ export class DialogueView {
     label.textContent = choice.text;
     body.append(label);
 
-    const descriptors = this.describeEffects(choice.effects);
-    if (choice.requiresGold !== undefined) descriptors.unshift({ icon: '●', label: `Coût ${choice.requiresGold} or`, tone: blockedByGold ? 'loss' : 'neutral' });
+    const descriptors = this.describeEffects(choice.effects, choice.requiresGold);
+    if (choice.requiresGold !== undefined) descriptors.unshift({ icon: '●', label: `Coût ${choice.requiresGold} / ${availableGold} or`, tone: blockedByGold ? 'loss' : 'neutral' });
     if (choice.requiresFlag !== undefined && blockedByFlag) descriptors.unshift({ icon: '◇', label: 'Condition requise', tone: 'loss' });
     if (choice.requiresReputationMin !== undefined) descriptors.unshift({ icon: '♜', label: `Réputation ≥ ${choice.requiresReputationMin}`, tone: blockedByReputationMin ? 'loss' : 'neutral' });
     if (choice.requiresReputationMax !== undefined) descriptors.unshift({ icon: '♜', label: `Réputation ≤ ${choice.requiresReputationMax}`, tone: blockedByReputationMax ? 'loss' : 'neutral' });
@@ -241,7 +241,7 @@ export class DialogueView {
     return 'dialogue-choice--neutral';
   }
 
-  private describeEffects(effects: readonly NarrativeEffect[]): OutcomeDescriptor[] {
+  private describeEffects(effects: readonly NarrativeEffect[], requiresGold?: number): OutcomeDescriptor[] {
     const descriptors: OutcomeDescriptor[] = [];
     for (const effect of effects) {
       switch (effect.type) {
@@ -249,6 +249,7 @@ export class DialogueView {
           descriptors.push({ icon: '♜', label: `Réputation ${signedAmount(effect.amount)}`, tone: effect.amount >= 0 ? 'gain' : 'loss' });
           break;
         case 'addGold':
+          if (requiresGold !== undefined && effect.amount === -requiresGold) break;
           descriptors.push({ icon: '●', label: `Or ${signedAmount(effect.amount)}`, tone: effect.amount >= 0 ? 'gain' : 'loss' });
           break;
         case 'addItem':
@@ -259,9 +260,6 @@ export class DialogueView {
           break;
         case 'startCombat':
           descriptors.push({ icon: '⚔', label: 'Risque combat', tone: 'risk' });
-          break;
-        case 'setFlag':
-          if (/success|help|save|sauv|protect|evidence/i.test(effect.key)) descriptors.push({ icon: effect.value ? '✦' : '⚖', label: effect.value ? 'Trace positive' : 'Trace risquée', tone: effect.value ? 'help' : 'loss' });
           break;
         case 'finishChapter':
           descriptors.push({ icon: '◇', label: 'Chapitre conclu', tone: 'neutral' });

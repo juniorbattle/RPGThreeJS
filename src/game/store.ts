@@ -43,7 +43,7 @@ export function createInitialState(): GameState {
     seenUniqueEvents: [],
     flags: {},
     gold: 150,
-    reputation: 50,
+    reputation: 30,
     reputationHistory: [],
     inventory: {
       consumables: { potion: 3, ether: 1, antidote: 2, bomb: 2 },

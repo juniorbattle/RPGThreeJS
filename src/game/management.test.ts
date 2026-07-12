@@ -30,10 +30,10 @@ describe('clan management', () => {
     const initialGold = state.run.temporaryLoot.gold;
     const initialStock = state.shops.valmir!.stock.potion!;
     expect(buyItem(state, 'valmir', 'potion')).toBe(true);
-    expect(state.run.temporaryLoot.gold).toBe(initialGold - 15);
+    expect(state.run.temporaryLoot.gold).toBe(initialGold - 17);
     expect(state.shops.valmir!.stock.potion).toBe(initialStock - 1);
     expect(sellItem(state, 'valmir', 'potion')).toBe(true);
-    expect(state.run.temporaryLoot.gold).toBe(initialGold - 8);
+    expect(state.run.temporaryLoot.gold).toBe(initialGold - 10);
     expect(state.shops.valmir!.stock.potion).toBe(initialStock);
   });
 
