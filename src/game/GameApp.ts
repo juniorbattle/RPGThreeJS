@@ -330,6 +330,13 @@ export class GameApp {
   private async startCombat(combatId: string, node: RunNode): Promise<void> {
     const config = combatConfigs.get(combatId);
     if (!config) throw new Error(`Missing combat '${combatId}'.`);
+    if (config.preCombatDialogueId) {
+      await this.playDialogue(config.preCombatDialogueId);
+      if (this.pendingCombatId) {
+        await this.flushPendingCombat(node);
+        return;
+      }
+    }
     this.saves.saveAuto(this.state);
     this.setMode('COMBAT');
     this.travel.close();
@@ -383,6 +390,14 @@ export class GameApp {
       this.saves.saveAuto(this.state);
       this.enterTravel();
       return;
+    }
+    const combatConfig = combatConfigs.get(result.combatId);
+    if (combatConfig?.postCombatDialogueId) {
+      await this.playDialogue(combatConfig.postCombatDialogueId);
+      if (this.pendingCombatId) {
+        await this.flushPendingCombat(node);
+        return;
+      }
     }
     this.enterTravel();
   }

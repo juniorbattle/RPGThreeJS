@@ -1,4 +1,4 @@
-import {
+﻿import {
   campaignNodeSchema,
   combatConfigSchema,
   dialogueSequenceSchema,
@@ -32,8 +32,8 @@ const rawNodes: CampaignNode[] = [
 ];
 
 const rawCombats: RawCombatConfig[] = [
-  { id: 'village_defense', sceneId: 'bois_clair_burning', objective: 'Repoussez les pillards et protégez les habitants de Bois-Clair.', encounterLabel: 'Défense de Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, rewards: { gold: 160, reputation: 10, materials: { red_gem: 2 } } },
-  { id: 'village_raid', sceneId: 'bois_clair_burning', objective: 'Sécurisez les coffres pendant que les Serpents dispersent les témoins.', encounterLabel: 'Raid sur Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, rewards: { gold: 260, reputation: -15, materials: { red_gem: 3 } } },
+  { id: 'village_defense', sceneId: 'bois_clair_burning', objective: 'Repoussez les pillards et protégez les habitants de Bois-Clair.', encounterLabel: 'Défense de Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, postCombatDialogueId: 'village_defense_aftermath', rewards: { gold: 160, reputation: 10, materials: { red_gem: 2 } } },
+  { id: 'village_raid', sceneId: 'bois_clair_burning', objective: 'Sécurisez les coffres pendant que les Serpents dispersent les témoins.', encounterLabel: 'Raid sur Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, postCombatDialogueId: 'village_raid_aftermath', rewards: { gold: 260, reputation: -15, materials: { red_gem: 3 } } },
   { id: 'forest_patrol', sceneId: 'forest_route', objective: 'Éliminez la patrouille Serpent avant qu’elle ne donne l’alerte.', encounterLabel: 'Patrouille Serpent', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 80, reputation: 1, materials: { red_gem: 1 } } },
   { id: 'forest_ambush', sceneId: 'forest_route', objective: 'Survivez à l’embuscade dans le sous-bois.', encounterLabel: 'Embuscade', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 70, reputation: 1, materials: { red_gem: 1 } } },
   { id: 'wolf_pack', sceneId: 'forest_route', objective: 'Repoussez la meute qui encercle la compagnie.', encounterLabel: 'Meute affamée', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 75, reputation: 1, materials: { red_gem: 1 } } },
@@ -47,7 +47,7 @@ const rawCombats: RawCombatConfig[] = [
   { id: 'serpent_duelist_trial', sceneId: 'forest_route', objective: 'Défaites le duelliste Serpent avant qu’il ne coupe la retraite.', encounterLabel: 'Duel sous les pins', encounterRank: 'elite', maxPlayerUnits: 4, rewards: { gold: 160, reputation: 2, materials: { red_gem: 3 } } },
   { id: 'troll_crossing', sceneId: 'forest_route', objective: 'Forcez le passage gardé par le troll des pierres moussues.', encounterLabel: 'Passage du troll', encounterRank: 'elite', maxPlayerUnits: 4, rewards: { gold: 180, reputation: 2, materials: { red_gem: 3 } } },
   { id: 'young_dragon_roost', sceneId: 'lion_sanctum', objective: 'Approchez le nid du jeune dragon et survivez à son courroux.', encounterLabel: 'Nid du jeune dragon', encounterRank: 'elite', maxPlayerUnits: 4, rewards: { gold: 260, reputation: 2, materials: { red_gem: 3 } } },
-  { id: 'serpent_captain', sceneId: 'lion_sanctum', objective: 'Traquez le général Serpent et exposez l’artefact des Ombres.', encounterLabel: 'Général Serpent', encounterRank: 'boss', maxPlayerUnits: 4, isBoss: true, postCombatDialogueId: 'lion_finale_aftermath', rewards: { gold: 300, reputation: 12, materials: { red_gem: 5 } } },
+  { id: 'serpent_captain', sceneId: 'lion_sanctum', objective: 'Traquez le général Serpent et exposez l’artefact des Ombres.', encounterLabel: 'Général Serpent', encounterRank: 'boss', maxPlayerUnits: 4, isBoss: true, preCombatDialogueId: 'serpent_general_pre_combat', postCombatDialogueId: 'lion_finale_aftermath', rewards: { gold: 300, reputation: 12, materials: { red_gem: 5 } } },
   { id: 'lion_chief', sceneId: 'lion_sanctum', objective: 'Survivez à l’épreuve du Vieux Lion.', encounterLabel: 'Duel pour le Sceau', encounterRank: 'boss', maxPlayerUnits: 4, isBoss: true, postCombatDialogueId: 'lion_finale_aftermath', rewards: { gold: 200, reputation: -10, materials: { red_gem: 5 } } },
 ];
 
@@ -679,8 +679,8 @@ const rawDialogues = [
         next: null,
         effects: [],
         choices: [
-          { text: 'Continuer.', next: '5', requiresReputationMin: 45, effects: [] },
-          { text: 'Continuer.', next: '5', requiresReputationMax: 44, effects: [] },
+          { text: 'Le Lion vous reconnaît digne du Sceau.', next: '5', requiresReputationMin: 45, effects: [{ type: 'setFlag', key: 'lionSealAcknowledged', value: true }] },
+          { text: 'Le Lion doute, mais vous laisse tenter votre chance.', next: '5', requiresReputationMax: 44, effects: [{ type: 'setFlag', key: 'alaricDoubt', value: true }] },
         ],
       },
       {
@@ -726,17 +726,86 @@ const rawDialogues = [
         actorId: 'sage_seraphine',
         expression: 'mystical',
         tag: 'Révélation',
-        text: 'Le combat est fini. Mais ce que portait l’ennemi n’était pas une arme ordinaire — c’est une marque des Ombres. Ceux qui ont brisé l’autel en ont vu les fragments.',
+        text: 'Le général Serpent gît à vos pieds. Mais son artefact… cette marque des Ombres n’a pas été forgée par les Serpents. Quelqu’un les guide depuis l’extérieur — quelque chose de plus ancien que les Sceaux.',
         side: 'left',
         next: null,
         effects: [],
         choices: [
           { text: 'Révéler les preuves des Ombres à Alaric.', next: '2', requiresFlag: 'shadowEvidence', effects: [{ type: 'addReputation', amount: 10 }, { type: 'setFlag', key: 'shadowRevealed', value: true }] },
-          { text: 'Garder le silence sur les Ombres.', next: '3', effects: [{ type: 'addReputation', amount: -3 }] },
+          { text: 'Garder le silence — le clan conservera son avantage.', next: '3', effects: [{ type: 'addReputation', amount: -5 }, { type: 'setFlag', key: 'shadowConcealed', value: true }] },
         ],
       },
-      { id: '2', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'fearful', tag: 'Vérité', text: 'Des Ombres… Alors ce que nous voyions n’était pas de la folie. Merci d’avoir parlé. Le Lion se souviendra de cette vérité.', side: 'right', next: null, effects: [], choices: [] },
-      { id: '3', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'neutral', tag: 'Silence', text: 'Vous gardez le secret. Peut-être pour protéger le clan, peut-être par peur. Mais les Ombres n’oublient pas ceux qui les ignorent.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '2', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'fearful', tag: 'Alliance', text: 'Des Ombres… Alors les raids n’étaient qu’un prétexte. Le Lion mettra ses éclaireurs à votre disposition. Ce que vous avez trouvé changera le destin de tous les Sceaux.', side: 'right', next: null, effects: [], choices: [] },
+      { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Secret', text: 'Prudent. Si le Lion ignore la vraie menace, il restera aveugle. Mais vous aurez vos preuves… et le fardeau de votre silence.', side: 'left', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'serpent_general_pre_combat',
+    sceneArtId: 'lion_finale_judgement',
+    steps: [
+      {
+        id: '1',
+        speaker: 'Général Serpent',
+        actorId: 'serpent_general_boss',
+        expression: 'hostile',
+        tag: 'Confrontation',
+        text: 'Alors c’est vous. Le clan du Lion envoie ses chiens pour reprendre ce qui ne lui appartient pas. Vous ne savez pas ce que vous protégez — ni ce que vous venez réveiller.',
+        side: 'right',
+        next: null,
+        effects: [],
+        choices: [
+          { text: 'Rendre l’artefact et vous rendrez service à tous.', next: '2', effects: [{ type: 'addReputation', amount: 2 }] },
+          { text: 'Vos menaces ne vous sauveront pas. Combattez.', next: '3', effects: [] },
+        ],
+      },
+      { id: '2', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Refus', text: 'Rendre ? Vous ne comprenez pas. Ce n’est pas une arme — c’est une clé. Et les Ombres l’attendent depuis longtemps. Tuez-moi, et d’autres viendront.', side: 'right', next: null, effects: [], choices: [] },
+      { id: '3', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Défi', text: 'Alors venez. Voyons si le Lion a forgé des lames ou des jouets.', side: 'right', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'village_defense_aftermath',
+    sceneArtId: 'village_choice',
+    steps: [
+      {
+        id: '1',
+        speaker: 'Villageoise de Bois-Clair',
+        actorId: 'villageoise',
+        expression: 'grateful',
+        tag: 'Bois-Clair sauvé',
+        text: 'Les Serpents fuient. Les enfants sont sains et saufs. Vous avez fait ce que le Lion n’a pas eu le courage de faire.',
+        side: 'left',
+        next: null,
+        effects: [],
+        choices: [
+          { text: 'Refuser toute récompense.', next: '2', effects: [{ type: 'addReputation', amount: 5 }, { type: 'setFlag', key: 'protectedWitnesses', value: true }] },
+          { text: 'Accepter leur gratitude et leurs provisions.', next: '3', effects: [{ type: 'addItem', itemId: 'potion', quantity: 2 }, { type: 'setFlag', key: 'protectedWitnesses', value: true }] },
+        ],
+      },
+      { id: '2', speaker: 'Villageoise de Bois-Clair', actorId: 'villageoise', expression: 'grateful', tag: 'Générosité', text: 'Alors nous parlerons de vous à tous ceux qui passeront. Le nom de votre clan sera béni sur cette route.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '3', speaker: 'Villageoise de Bois-Clair', actorId: 'villageoise', expression: 'grateful', tag: 'Reconnaissance', text: 'Prenez ces provisions. Et sachez que Bois-Clair n’oubliera pas. Nos témoins parleront pour vous devant Alaric.', side: 'left', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'village_raid_aftermath',
+    sceneArtId: 'village_choice',
+    steps: [
+      {
+        id: '1',
+        speaker: 'Intendant Maelor',
+        actorId: 'maelor',
+        expression: 'neutral',
+        tag: 'Butin',
+        text: 'Les coffres sont à nous. Les Serpents sont dispersés. Mais les villageois… ils ne nous maudiront pas à voix haute. Ils n’osent plus.',
+        side: 'left',
+        next: null,
+        effects: [],
+        choices: [
+          { text: 'Laisser quelques provisions aux villageois.', next: '2', effects: [{ type: 'addGold', amount: -40 }, { type: 'addReputation', amount: 3 }] },
+          { text: 'Partir avec tout. Ils ne sont pas notre probléme.', next: '3', effects: [{ type: 'addReputation', amount: -5 }, { type: 'setFlag', key: 'silencedWitnesses', value: true }] },
+        ],
+      },
+      { id: '2', speaker: 'Villageoise de Bois-Clair', actorId: 'villageoise', expression: 'wounded', tag: 'Reste de dignité', text: 'Vous prenez nos coffres et vous nous laissez des miettes. Ce n’est pas de la générosité — c’est de la pitié. Mais au moins, nous ne mourrons pas de faim.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Rationalisation', text: 'Ils survivront. Ils ont survécu à pire. Et nous avons ce qu’il nous faut pour le Sceau.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
   {

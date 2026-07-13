@@ -72,6 +72,7 @@ export const combatConfigSchema = z.object({
   escortVisualIds: z.array(z.string()).default([]),
   maxPlayerUnits: z.number().int().min(3).max(5).default(4),
   isBoss: z.boolean().optional(),
+  preCombatDialogueId: z.string().optional(),
   postCombatDialogueId: z.string().optional(),
   rewards: z.object({
     gold: z.number().int().nonnegative().default(0),
