@@ -106,11 +106,17 @@ describe('campaign content integrity', () => {
     }
   });
 
-  it('routes the first refuge into the village objective branches', () => {
+  it('defines the 19-node braid and routes each trial back into the shared story', () => {
     const refuge = campaignNodes.find((node) => node.id === 'lion-first-refuge');
-    expect(refuge?.links).toContain('lion-valmir-road');
-    expect(refuge?.links).toContain('lion-reserve-trail');
-    expect(refuge?.links).not.toContain('lion-final-judgement');
+    expect(campaignNodes).toHaveLength(19);
+    expect(refuge?.links).toEqual(['lion-reserve-trail']);
+
+    for (const nodeId of ['lion-refugees', 'lion-valmir-road', 'lion-witnesses']) {
+      const node = campaignNodes.find((candidate) => candidate.id === nodeId)!;
+      const choices = node.links.map((id) => campaignNodes.find((candidate) => candidate.id === id)!);
+      expect(choices.map((choice) => choice.type).sort()).toEqual(['mystery', 'random-combat']);
+      expect(new Set(choices.flatMap((choice) => choice.links)).size).toBe(1);
+    }
   });
 
   it('keeps route and dialogue choices limited to two impactful options', () => {

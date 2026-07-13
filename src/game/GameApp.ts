@@ -175,6 +175,12 @@ export class GameApp {
     }
     this.state.currentNodeId = entered.id;
     this.state.visitedNodeIds = [...this.state.run.visitedNodeIds];
+    if (
+      ['event', 'mystery', 'recruitment'].includes(entered.type)
+      && !this.state.seenUniqueEvents.includes(entered.contentId)
+    ) {
+      this.state.seenUniqueEvents.push(entered.contentId);
+    }
     this.state.stepCounter += 1;
     this.saves.saveAuto(this.state);
     await this.resolveRunNode(entered, false);

@@ -91,20 +91,9 @@ export const campaignNodeSchema = z.object({
   links: z.array(z.string()),
   dialogueId: z.string().optional(),
   combatId: z.string().optional(),
-  mysteryPoolId: z.string().optional(),
   shopId: z.string().optional(),
 });
 export type CampaignNode = z.infer<typeof campaignNodeSchema>;
-
-export const mysteryEventSchema = z.object({
-  id: z.string(),
-  dialogueId: z.string(),
-  weight: z.number().positive(),
-  unique: z.boolean().default(false),
-  requiresFlag: z.string().optional(),
-  excludesFlag: z.string().optional(),
-});
-export type MysteryEvent = z.infer<typeof mysteryEventSchema>;
 
 export const unitStatsSchema = z.object({
   maxHealth: z.number().int().positive(),

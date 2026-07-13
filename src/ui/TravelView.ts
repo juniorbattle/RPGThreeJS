@@ -384,7 +384,7 @@ export class TravelView {
   open(): void {
     this.close();
     const state = this.options.getState();
-    const choices = getAvailableRunNodes(state.run);
+    const choices = getAvailableRunNodes(state);
     const backdropKey = chooseTravelBackdrop(choices);
     const roadmap = renderRoadmap(state, choices);
     const current = currentRunNode(state);

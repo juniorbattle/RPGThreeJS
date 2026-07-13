@@ -77,9 +77,39 @@ export function createInitialState(): GameState {
   };
 }
 
+function hasCurrentLionRoute(state: GameState): boolean {
+  const nodes = state.run.graph.nodes;
+  return nodes.length === 19
+    && nodes.some((node) => node.id === 'lion-opening-ambush')
+    && nodes.some((node) => node.id === 'lion-final-trial-event')
+    && Math.max(...nodes.map((node) => node.depth)) === 15;
+}
+
+function migrateCurrentLionRoute(previous: GameState): GameState {
+  const previousNode = getRunNode(previous.run);
+  const targetDepth = Math.min(15, previousNode?.depth ?? previous.resolvedNodeIds.length);
+  const run = createRunState(previous.run.seed);
+  for (let depth = 0; depth < targetDepth; depth += 1) {
+    const next = getAvailableRunNodes(run)[0];
+    if (!next) break;
+    enterRunNode(run, next.id);
+    if (next.type === 'refuge') run.checkpointNodeId = next.id;
+  }
+  run.temporaryLoot = structuredClone(previous.run.temporaryLoot);
+  const activeNode = getRunNode(run);
+  return gameStateSchema.parse({
+    ...previous,
+    currentNodeId: activeNode?.id ?? run.currentNodeId,
+    visitedNodeIds: [...run.visitedNodeIds],
+    resolvedNodeIds: run.visitedNodeIds.filter((id) => id !== run.currentNodeId),
+    mysteryAssignments: {},
+    run,
+  });
+}
+
 export function migrateState(value: unknown): GameState {
   const current = gameStateSchema.safeParse(value);
-  if (current.success) return current.data;
+  if (current.success) return hasCurrentLionRoute(current.data) ? current.data : migrateCurrentLionRoute(current.data);
   const v5 = gameStateV5Schema.safeParse(value);
   if (v5.success) return migrateV5(v5.data);
   const v4 = gameStateV4Schema.safeParse(value);
@@ -156,7 +186,7 @@ function hydrateV6Unit(unit: UnitInstanceV5): UnitInstance {
 }
 
 function migrateV5(previous: GameStateV5): GameState {
-  return gameStateSchema.parse({
+  const migrated = gameStateSchema.parse({
     ...previous,
     version: 6,
     clan: {
@@ -164,11 +194,12 @@ function migrateV5(previous: GameStateV5): GameState {
       members: previous.clan.members.map(hydrateV6Unit),
     },
   });
+  return hasCurrentLionRoute(migrated) ? migrated : migrateCurrentLionRoute(migrated);
 }
 
 function migrateV4(previous: GameStateV4): GameState {
   const run = createRunState(20260622 + previous.stepCounter);
-  const targetDepth = Math.min(11, previous.resolvedNodeIds.length);
+  const targetDepth = Math.min(15, previous.resolvedNodeIds.length);
   for (let depth = 0; depth < targetDepth; depth += 1) {
     const next = getAvailableRunNodes(run)[0];
     if (!next) break;

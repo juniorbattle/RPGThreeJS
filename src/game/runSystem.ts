@@ -1,7 +1,6 @@
 import type {
   CampaignNode, GameState, InventoryState, RunGraph, RunLoot, RunNode, RunNodeType, RunState,
 } from './types';
-import { getReputationRule } from './reputation';
 
 const EMPTY_INVENTORY = (): InventoryState => ({
   consumables: {},
@@ -29,16 +28,51 @@ interface LionRouteNode {
   hint: string;
 }
 
-const INTRIGUE_EVENTS = [
-  'mystery_help',
-  'mystery_recruit',
-  'mystery_ambush',
-  'serpent_duelist_trial',
-  'mystery_troll_crossing',
-  'mystery_dragon_roost',
-  'mystery_treasure',
-  'mystery_shrine',
-] as const;
+export type LionConductTier = 'honour' | 'uncertain' | 'infamy';
+
+type AdaptiveRouteVariant = Pick<
+  LionRouteNode,
+  'type' | 'contentId' | 'label' | 'icon' | 'risk' | 'reward' | 'difficulty' | 'moralTone' | 'hint'
+>;
+
+const LION_CONDUCT_FLAG_WEIGHTS: Readonly<Record<string, number>> = {
+  helpedRefugees: 2,
+  exploitedRefugees: -2,
+  alaricDoubt: -1,
+  helpedMerchant: 1,
+  abandonedMerchant: -1,
+  recruitedCedric: 1,
+  returnedLostTreasure: 1,
+  claimedLostTreasure: -1,
+  prioritizedVillage: 1,
+  prioritizedLoot: -1,
+  shrineRested: 1,
+  shrineLooted: -1,
+  preservedShrine: 1,
+  desecratedShrine: -1,
+  missionSuccess: 2,
+  missionGreed: -2,
+  protectedWitnesses: 1,
+  silencedWitnesses: -1,
+  protectedInformant: 1,
+  betrayedInformant: -1,
+  shadowEvidence: 1,
+  shadowFragments: -1,
+};
+
+export function getLionConductScore(flags: Record<string, boolean>): number {
+  return Object.entries(LION_CONDUCT_FLAG_WEIGHTS).reduce(
+    (score, [flag, weight]) => score + (flags[flag] ? weight : 0),
+    0,
+  );
+}
+
+export function getLionConductTier(flags: Record<string, boolean>): LionConductTier {
+  const score = getLionConductScore(flags);
+  if (score >= 2) return 'honour';
+  if (score <= -2) return 'infamy';
+  return 'uncertain';
+}
 
 const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
@@ -79,97 +113,82 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     contentId: 'lion_briefing',
     label: 'Audience d’Alaric',
     icon: '♛',
-    links: ['lion-refugees', 'lion-veiled-path'],
+    links: ['lion-opening-ambush'],
     risk: 0,
     reward: 2,
     difficulty: 'safe',
     moralTone: 'honour',
-    hint: 'Recevoir la mission du Vieux Lion et choisir votre premier engagement.',
+    hint: 'Recevoir la mission du Vieux Lion avant de prendre la route.',
+  },
+  {
+    id: 'lion-opening-ambush',
+    type: 'combat',
+    depth: 3,
+    lane: 0,
+    contentId: 'forest_ambush',
+    label: 'Piste des bêtes',
+    icon: '⚔',
+    links: ['lion-refugees'],
+    risk: 1,
+    reward: 2,
+    difficulty: 'standard',
+    moralTone: 'neutral',
+    hint: 'Des créatures affamées rôdent sur la première piste.',
   },
   {
     id: 'lion-refugees',
     type: 'event',
-    depth: 3,
-    lane: -1,
+    depth: 4,
+    lane: 0,
     contentId: 'refugee_trial',
     label: 'Route des réfugiés',
     icon: '◇',
-    links: ['lion-serpent-checkpoint', 'lion-intrigue-early'],
+    links: ['lion-first-trial-event', 'lion-first-trial-combat'],
     risk: 1,
     reward: 2,
     difficulty: 'safe',
     moralTone: 'honour',
-    hint: 'Un détour plus lent qui teste votre compassion.',
+    hint: 'Des familles affamées mettent votre parole à l’épreuve.',
   },
   {
-    id: 'lion-patrol',
+    id: 'lion-first-trial-event',
+    type: 'event',
+    depth: 5,
+    lane: -0.75,
+    contentId: 'mystery_recruit',
+    label: 'Rencontre sur la route',
+    icon: '◇',
+    links: ['lion-first-refuge'],
+    risk: 1,
+    reward: 2,
+    difficulty: 'safe',
+    moralTone: 'pragmatic',
+    hint: 'Une rencontre peut renforcer la compagnie ou éprouver sa conduite.',
+  },
+  {
+    id: 'lion-first-trial-combat',
     type: 'combat',
-    depth: 3,
-    lane: 0,
+    depth: 5,
+    lane: 0.75,
     contentId: 'forest_patrol',
-    label: 'Patrouille Serpent',
+    label: 'Piste contestée',
     icon: '⚔',
-    links: ['lion-serpent-checkpoint', 'lion-intrigue-early'],
+    links: ['lion-first-refuge'],
     risk: 2,
     reward: 2,
     difficulty: 'standard',
     moralTone: 'neutral',
-    hint: 'Une route directe, gardée par des éclaireurs ennemis.',
-  },
-  {
-    id: 'lion-veiled-path',
-    type: 'mystery',
-    depth: 3,
-    lane: 1,
-    contentId: 'seeded-intrigue',
-    label: 'Sentier voilé',
-    icon: '?',
-    links: ['lion-intrigue-early', 'lion-serpent-checkpoint'],
-    risk: 2,
-    reward: 3,
-    difficulty: 'dangerous',
-    moralTone: 'mystery',
-    hint: 'Un raccourci incertain : recrue, embuscade ou secret ancien.',
-  },
-  {
-    id: 'lion-serpent-checkpoint',
-    type: 'combat',
-    depth: 4,
-    lane: -0.65,
-    contentId: 'serpent_checkpoint',
-    label: 'Barrage des Serpents',
-    icon: '⚔',
-    links: ['lion-first-refuge'],
-    risk: 2,
-    reward: 3,
-    difficulty: 'standard',
-    moralTone: 'neutral',
-    hint: 'Un poste avancé protège la route de Bois-Clair.',
-  },
-  {
-    id: 'lion-intrigue-early',
-    type: 'mystery',
-    depth: 4,
-    lane: 0.65,
-    contentId: 'seeded-intrigue',
-    label: 'Intrigue des sous-bois',
-    icon: '?',
-    links: ['lion-first-refuge'],
-    risk: 3,
-    reward: 3,
-    difficulty: 'dangerous',
-    moralTone: 'mystery',
-    hint: 'Une situation secondaire peut renforcer ou salir votre réputation.',
+    hint: 'Un affrontement direct permet de sécuriser le chemin du refuge.',
   },
   {
     id: 'lion-first-refuge',
     type: 'refuge',
-    depth: 5,
+    depth: 6,
     lane: 0,
     contentId: 'forest_refuge',
     label: 'Refuge du Lion',
     icon: '⌂',
-    links: ['lion-valmir-road', 'lion-reserve-trail'],
+    links: ['lion-reserve-trail'],
     risk: 0,
     reward: 1,
     difficulty: 'safe',
@@ -177,39 +196,69 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     hint: 'Sécuriser le butin, acheter, améliorer et préparer Bois-Clair.',
   },
   {
-    id: 'lion-valmir-road',
-    type: 'combat',
-    depth: 6,
-    lane: -0.75,
-    contentId: 'road_to_valmir',
-    label: 'Route de Bois-Clair',
-    icon: '⚔',
-    links: ['lion-village-choice'],
-    risk: 2,
-    reward: 2,
-    difficulty: 'standard',
-    moralTone: 'honour',
-    hint: 'La voie la plus claire vers les habitants menacés.',
-  },
-  {
     id: 'lion-reserve-trail',
     type: 'event',
-    depth: 6,
-    lane: 0.75,
+    depth: 7,
+    lane: 0,
     contentId: 'reserve_trail',
     label: 'Chemin des réserves',
     icon: '◇',
-    links: ['lion-village-choice'],
+    links: ['lion-valmir-road'],
     risk: 2,
     reward: 3,
     difficulty: 'dangerous',
     moralTone: 'greed',
-    hint: 'Une route rentable, mais les villageois risquent d’en payer le prix.',
+    hint: 'Les réserves de Bois-Clair opposent urgence et appât du gain.',
+  },
+  {
+    id: 'lion-valmir-road',
+    type: 'combat',
+    depth: 8,
+    lane: 0,
+    contentId: 'road_to_valmir',
+    label: 'Route de Bois-Clair',
+    icon: '⚔',
+    links: ['lion-second-trial-event', 'lion-second-trial-combat'],
+    risk: 2,
+    reward: 2,
+    difficulty: 'standard',
+    moralTone: 'neutral',
+    hint: 'Des créatures ont envahi la voie menant aux habitants menacés.',
+  },
+  {
+    id: 'lion-second-trial-event',
+    type: 'event',
+    depth: 9,
+    lane: -0.75,
+    contentId: 'old_shrine_event',
+    label: 'Vieux sanctuaire',
+    icon: '◇',
+    links: ['lion-village-choice'],
+    risk: 1,
+    reward: 3,
+    difficulty: 'safe',
+    moralTone: 'greed',
+    hint: 'Un sanctuaire oublié offre repos ou richesse.',
+  },
+  {
+    id: 'lion-second-trial-combat',
+    type: 'combat',
+    depth: 9,
+    lane: 0.75,
+    contentId: 'serpent_checkpoint',
+    label: 'Barrage renforcé',
+    icon: '⚔',
+    links: ['lion-village-choice'],
+    risk: 3,
+    reward: 3,
+    difficulty: 'dangerous',
+    moralTone: 'neutral',
+    hint: 'Après le refuge, la compagnie peut affronter une opposition plus dangereuse.',
   },
   {
     id: 'lion-village-choice',
     type: 'story',
-    depth: 7,
+    depth: 10,
     lane: 0,
     contentId: 'village_choice',
     label: 'Bois-Clair assiégé',
@@ -224,38 +273,68 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-second-refuge',
     type: 'refuge',
-    depth: 8,
+    depth: 11,
     lane: 0,
     contentId: 'forest_refuge',
     label: 'Dernier feu du Lion',
     icon: '⌂',
-    links: ['lion-witnesses', 'lion-shadow-signs'],
+    links: ['lion-witnesses'],
     risk: 0,
     reward: 1,
     difficulty: 'safe',
     moralTone: 'neutral',
-    hint: 'Dernière halte avant de faire rapport à Alaric.',
+    hint: 'Dernière halte avant de rassembler les conséquences de vos actes.',
   },
   {
     id: 'lion-witnesses',
     type: 'event',
-    depth: 9,
-    lane: -0.75,
+    depth: 12,
+    lane: 0,
     contentId: 'witnesses_on_road',
-    label: 'Témoins de Valmir',
+    label: 'Témoins de Bois-Clair',
     icon: '◇',
-    links: ['lion-final-judgement'],
+    links: ['lion-final-trial-event', 'lion-final-trial-combat'],
     risk: 1,
     reward: 2,
     difficulty: 'safe',
     moralTone: 'honour',
-    hint: 'Des survivants peuvent confirmer vos actes... ou votre abandon.',
+    hint: 'Les survivants peuvent confirmer vos actes ou dénoncer votre abandon.',
+  },
+  {
+    id: 'lion-final-trial-event',
+    type: 'event',
+    depth: 13,
+    lane: -0.75,
+    contentId: 'mystery_dragon_roost',
+    label: 'Dernière tentation',
+    icon: '◇',
+    links: ['lion-shadow-signs'],
+    risk: 2,
+    reward: 3,
+    difficulty: 'dangerous',
+    moralTone: 'greed',
+    hint: 'Une dernière rencontre mesure ce que vaut encore votre parole.',
+  },
+  {
+    id: 'lion-final-trial-combat',
+    type: 'combat',
+    depth: 13,
+    lane: 0.75,
+    contentId: 'ruins_guardians',
+    label: 'Ruines infestées',
+    icon: '⚔',
+    links: ['lion-shadow-signs'],
+    risk: 2,
+    reward: 3,
+    difficulty: 'standard',
+    moralTone: 'neutral',
+    hint: 'Un dernier passage hostile mène aux traces laissées par les Ombres.',
   },
   {
     id: 'lion-shadow-signs',
     type: 'mystery',
-    depth: 9,
-    lane: 0.75,
+    depth: 14,
+    lane: 0,
     contentId: 'shadow_signs',
     label: 'Signes des Ombres',
     icon: '?',
@@ -269,7 +348,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-final-judgement',
     type: 'boss',
-    depth: 10,
+    depth: 15,
     lane: 0,
     contentId: 'lion_finale_judgement',
     label: 'Jugement du Sceau',
@@ -283,53 +362,158 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   },
 ];
 
-function seededRandom(seed: number): () => number {
-  let state = seed >>> 0;
-  return () => {
-    state += 0x6d2b79f5;
-    let value = state;
-    value = Math.imul(value ^ (value >>> 15), value | 1);
-    value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
-    return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
-  };
+const FIRST_EVENT_VARIANTS: Readonly<Record<LionConductTier, AdaptiveRouteVariant>> = {
+  honour: {
+    type: 'event', contentId: 'mystery_help', label: 'Marchand blessé', icon: '◇', risk: 1, reward: 2,
+    difficulty: 'safe', moralTone: 'honour', hint: 'Aider un voyageur éprouve la générosité de la compagnie.',
+  },
+  uncertain: {
+    type: 'event', contentId: 'mystery_recruit', label: 'Éclaireur nomade', icon: '◇', risk: 1, reward: 2,
+    difficulty: 'safe', moralTone: 'pragmatic', hint: 'Un éclaireur propose son arc contre une part de vos réserves.',
+  },
+  infamy: {
+    type: 'event', contentId: 'mystery_treasure', label: 'Chariot abandonné', icon: '◇', risk: 1, reward: 3,
+    difficulty: 'dangerous', moralTone: 'greed', hint: 'Des biens perdus peuvent être rendus ou ajoutés à votre butin.',
+  },
+};
+
+const FIRST_COMBAT_VARIANTS: Readonly<Record<LionConductTier, AdaptiveRouteVariant>> = {
+  honour: {
+    type: 'combat', contentId: 'spider_nest', label: 'Nid venimeux', icon: '⚔', risk: 2, reward: 2,
+    difficulty: 'standard', moralTone: 'neutral', hint: 'Des créatures venimeuses ont envahi le sentier du refuge.',
+  },
+  uncertain: {
+    type: 'combat', contentId: 'forest_patrol', label: 'Patrouille Serpent', icon: '⚔', risk: 2, reward: 2,
+    difficulty: 'standard', moralTone: 'neutral', hint: 'Des éclaireurs Serpent surveillent la route sans renfort élite.',
+  },
+  infamy: {
+    type: 'combat', contentId: 'serpent_reprisals', label: 'Premières représailles', icon: '⚔', risk: 2, reward: 2,
+    difficulty: 'standard', moralTone: 'neutral', hint: 'Les Serpents profitent de votre réputation fragile pour frapper.',
+  },
+};
+
+const SECOND_EVENT_VARIANT: AdaptiveRouteVariant = {
+  type: 'event', contentId: 'old_shrine_event', label: 'Vieux sanctuaire', icon: '◇', risk: 1, reward: 3,
+  difficulty: 'safe', moralTone: 'greed', hint: 'Un sanctuaire oublié offre repos ou richesse.',
+};
+
+const SECOND_COMBAT_VARIANTS: Readonly<Record<LionConductTier, AdaptiveRouteVariant>> = {
+  honour: {
+    type: 'combat', contentId: 'troll_crossing', label: 'Passage du troll', icon: '⚔', risk: 3, reward: 4,
+    difficulty: 'dangerous', moralTone: 'honour', hint: 'Une élite monstrueuse garde les réserves volées de Bois-Clair.',
+  },
+  uncertain: {
+    type: 'combat', contentId: 'serpent_checkpoint', label: 'Barrage renforcé', icon: '⚔', risk: 2, reward: 3,
+    difficulty: 'standard', moralTone: 'neutral', hint: 'Une troupe Serpent ordinaire verrouille la route du village.',
+  },
+  infamy: {
+    type: 'combat', contentId: 'serpent_duelist_trial', label: 'Duelliste des représailles', icon: '⚔', risk: 3, reward: 4,
+    difficulty: 'dangerous', moralTone: 'neutral', hint: 'Un combattant élite a été envoyé pour punir votre conduite.',
+  },
+};
+
+const FINAL_EVENT_VARIANTS: Readonly<Record<LionConductTier, AdaptiveRouteVariant>> = {
+  honour: {
+    type: 'event', contentId: 'mystery_dragon_roost', label: 'Nid du jeune dragon', icon: '◇', risk: 3, reward: 4,
+    difficulty: 'dangerous', moralTone: 'greed', hint: 'Une dernière tentation oppose les gemmes à la retenue.',
+  },
+  uncertain: {
+    type: 'event', contentId: 'mystery_dragon_roost', label: 'Nid du jeune dragon', icon: '◇', risk: 3, reward: 4,
+    difficulty: 'dangerous', moralTone: 'greed', hint: 'Une dernière tentation oppose les gemmes à la retenue.',
+  },
+  infamy: {
+    type: 'event', contentId: 'serpent_informant', label: 'Informateur traqué', icon: '◇', risk: 2, reward: 3,
+    difficulty: 'dangerous', moralTone: 'pragmatic', hint: 'Protéger ou vendre un informateur déterminera votre dernier témoignage.',
+  },
+};
+
+const FINAL_EVENT_AFTER_ELITE: AdaptiveRouteVariant = {
+  type: 'event', contentId: 'mystery_shrine', label: 'Autel des voyageurs', icon: '◇', risk: 1, reward: 3,
+  difficulty: 'safe', moralTone: 'greed', hint: 'Après l’épreuve élite, un dernier autel mesure votre retenue.',
+};
+
+const FINAL_COMBAT_VARIANTS: Readonly<Record<LionConductTier, AdaptiveRouteVariant>> = {
+  honour: {
+    type: 'combat', contentId: 'ruins_guardians', label: 'Ruines infestées', icon: '⚔', risk: 2, reward: 3,
+    difficulty: 'standard', moralTone: 'neutral', hint: 'Des monstres occupent le passage vers les traces des Ombres.',
+  },
+  uncertain: {
+    type: 'combat', contentId: 'ruins_guardians', label: 'Ruines infestées', icon: '⚔', risk: 2, reward: 3,
+    difficulty: 'standard', moralTone: 'neutral', hint: 'Des monstres occupent le passage vers les traces des Ombres.',
+  },
+  infamy: {
+    type: 'combat', contentId: 'serpent_hunters', label: 'Chasseurs Serpent', icon: '⚔', risk: 3, reward: 3,
+    difficulty: 'dangerous', moralTone: 'neutral', hint: 'Une seconde troupe de représailles ferme la route du retour.',
+  },
+};
+
+const SEEDED_CREATURE_VARIANTS: Readonly<Record<string, readonly string[]>> = {
+  'lion-opening-ambush': ['forest_ambush', 'wolf_pack'],
+  'lion-valmir-road': ['road_to_valmir', 'marsh_crossing'],
+};
+
+const ELITE_ROUTE_CONTENT_IDS = new Set(['troll_crossing', 'serpent_duelist_trial', 'young_dragon_roost']);
+
+function completedEliteEncounter(state: GameState): boolean {
+  const resolved = new Set(state.resolvedNodeIds);
+  return state.run.graph.nodes.some((node) => resolved.has(node.id) && ELITE_ROUTE_CONTENT_IDS.has(node.contentId));
 }
 
-function weightedIntrigue(random: () => number, reputation: number): string {
-  const rule = getReputationRule(reputation);
-  const weighted = INTRIGUE_EVENTS.map((id) => {
-    const tag = id === 'mystery_ambush' || id === 'serpent_duelist_trial' || id === 'mystery_troll_crossing' || id === 'mystery_dragon_roost'
-      ? 'hostile'
-      : id === 'mystery_treasure'
-        ? 'neutral'
-        : 'helpful';
-    return {
-      id,
-      weight: tag === 'hostile'
-        ? rule.ambushWeightMultiplier
-        : (rule.eventWeightModifiers[tag] ?? 1),
-    };
-  });
-  const total = weighted.reduce((sum, candidate) => sum + candidate.weight, 0);
-  let roll = random() * total;
-  for (const candidate of weighted) {
-    roll -= candidate.weight;
-    if (roll <= 0) return candidate.id;
+function selectAdaptiveVariant(state: GameState, nodeId: string): AdaptiveRouteVariant | null {
+  const tier = getLionConductTier(state.flags);
+  if (nodeId === 'lion-first-trial-event') return FIRST_EVENT_VARIANTS[tier];
+  if (nodeId === 'lion-first-trial-combat') return FIRST_COMBAT_VARIANTS[tier];
+  if (nodeId === 'lion-second-trial-event') return SECOND_EVENT_VARIANT;
+  if (nodeId === 'lion-second-trial-combat') return SECOND_COMBAT_VARIANTS[tier];
+  if (nodeId === 'lion-final-trial-event') {
+    return tier !== 'infamy' && completedEliteEncounter(state) ? FINAL_EVENT_AFTER_ELITE : FINAL_EVENT_VARIANTS[tier];
   }
-  return weighted.at(-1)!.id;
+  if (nodeId === 'lion-final-trial-combat') return FINAL_COMBAT_VARIANTS[tier];
+  return null;
 }
 
-function makeLionNode(template: LionRouteNode, random: () => number, reputation: number): RunNode {
+function adaptiveVariantByContentId(nodeId: string, contentId: string): AdaptiveRouteVariant | null {
+  const candidates = nodeId === 'lion-first-trial-event'
+    ? Object.values(FIRST_EVENT_VARIANTS)
+    : nodeId === 'lion-first-trial-combat'
+      ? Object.values(FIRST_COMBAT_VARIANTS)
+      : nodeId === 'lion-second-trial-event'
+        ? [SECOND_EVENT_VARIANT]
+        : nodeId === 'lion-second-trial-combat'
+          ? Object.values(SECOND_COMBAT_VARIANTS)
+          : nodeId === 'lion-final-trial-event'
+            ? [...Object.values(FINAL_EVENT_VARIANTS), FINAL_EVENT_AFTER_ELITE]
+            : nodeId === 'lion-final-trial-combat'
+              ? Object.values(FINAL_COMBAT_VARIANTS)
+              : [];
+  return candidates.find((candidate) => candidate.contentId === contentId) ?? null;
+}
+
+function resolveAdaptiveNode(state: GameState, node: RunNode): RunNode {
+  if (state.run.visitedNodeIds.includes(node.id)) return node;
+  const assignment = state.mysteryAssignments[node.id];
+  const variant = (assignment ? adaptiveVariantByContentId(node.id, assignment) : null)
+    ?? selectAdaptiveVariant(state, node.id);
+  if (!variant) return node;
+  Object.assign(node, variant);
+  state.mysteryAssignments[node.id] = variant.contentId;
+  return node;
+}
+
+function makeLionNode(template: LionRouteNode, seed: number): RunNode {
+  const creatureVariants = SEEDED_CREATURE_VARIANTS[template.id];
+  const contentId = creatureVariants
+    ? creatureVariants[((seed >>> 0) + template.depth) % creatureVariants.length]!
+    : template.contentId;
   return {
     id: template.id,
     type: template.type,
     depth: template.depth,
     links: [...template.links],
-    contentId: template.contentId === 'seeded-intrigue'
-      ? weightedIntrigue(random, reputation)
-      : template.contentId,
+    contentId,
     label: template.label,
     icon: template.icon,
-    x: (template.depth - 4.5) * 1.45,
+    x: (template.depth - 7.5) * 1.25,
     z: template.lane * 1.45,
     risk: template.risk,
     reward: template.reward,
@@ -339,15 +523,14 @@ function makeLionNode(template: LionRouteNode, random: () => number, reputation:
   };
 }
 
-export function generateRunGraph(seed: number, reputation = 30): RunGraph {
-  const random = seededRandom(seed);
+export function generateRunGraph(seed: number): RunGraph {
   return {
-    nodes: LION_ROUTE_TEMPLATE.map((node) => makeLionNode(node, random, reputation)),
+    nodes: LION_ROUTE_TEMPLATE.map((node) => makeLionNode(node, seed)),
   };
 }
 
-export function createRunState(seed = Date.now() & 0x7fffffff, reputation = 30): RunState {
-  const graph = generateRunGraph(seed, reputation);
+export function createRunState(seed = Date.now() & 0x7fffffff): RunState {
+  const graph = generateRunGraph(seed);
   const start = graph.nodes.find((node) => node.depth === 0)!;
   return {
     id: `lion-${seed}`,
@@ -393,12 +576,15 @@ export function toCampaignNodes(run: RunState): CampaignNode[] {
   });
 }
 
-export function getAvailableRunNodes(run: RunState): RunNode[] {
+export function getAvailableRunNodes(source: RunState | GameState): RunNode[] {
+  const state = 'run' in source ? source : null;
+  const run: RunState = state ? state.run : source as RunState;
   const current = getRunNode(run);
   return current
     ? current.links
       .map((id) => getRunNode(run, id))
       .filter((node): node is RunNode => Boolean(node))
+      .map((node) => state ? resolveAdaptiveNode(state, node) : node)
     : [];
 }
 

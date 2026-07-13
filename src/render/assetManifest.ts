@@ -270,6 +270,7 @@ export const assets = {
     mystery_ambush: '/assets/generated/lion-phase/dialogue/mystery_ambush.webp',
     mystery_treasure: '/assets/generated/lion-phase/dialogue/mystery_treasure.webp',
     mystery_shrine: '/assets/generated/lion-phase/dialogue/mystery_shrine.webp',
+    old_shrine_event: '/assets/generated/lion-phase/dialogue/mystery_shrine.webp',
     serpent_duelist_trial: '/assets/generated/lion-phase/dialogue/mystery_ambush.webp',
     mystery_troll_crossing: '/assets/generated/lion-phase/dialogue/forest_fork.webp',
     mystery_dragon_roost: '/assets/generated/lion-phase/dialogue/shadow_signs.webp',
