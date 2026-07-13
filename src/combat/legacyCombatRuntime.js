@@ -12,6 +12,8 @@ import { getUnitVisualState } from './unitVisualState';
 import { BackgroundLayerSystem } from '../render/BackgroundLayerSystem';
 import { combatBackgroundFor } from '../render/combatBackgrounds';
 import { COMBAT_PRESENTATION } from './combatPresentationConfig.js';
+import { VfxSystem } from './vfx/VfxSystem';
+import { installVfxWorkbench } from './vfx/VfxWorkbench';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
@@ -106,6 +108,7 @@ window.__COMBAT_RENDERER=renderer;
 const scene=new THREE.Scene();
 scene.background=new THREE.Color(0x111923);
 scene.fog=new THREE.FogExp2(0x52635c, COMBAT_PRESENTATION.ambientMist.fogDensity);
+const combatVfxSystem=new VfxSystem();
 
 const camera=new THREE.PerspectiveCamera(COMBAT_PRESENTATION.camera.fov, innerWidth/innerHeight, 0.1, 200);
 const cam={ yaw:0, dist:COMBAT_PRESENTATION.camera.baseDistance, height:COMBAT_PRESENTATION.camera.baseHeight, tx:0, ty:COMBAT_PRESENTATION.camera.targetY, tz:0 };
@@ -997,7 +1000,24 @@ function castTelegraph(u,spec){ const c=u.cell(); if(!c)return; const col=fxColo
 function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*100:5; return cl(base+Math.max(0,(effDEX(att)-effDEX(tgt))/2),1,90)/100; }
 function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return true; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; return Math.random()*100<cl(acc,5,95); }
 
-async function applyDamage(u,dmg,src){ u.hp=Math.max(0,u.hp-dmg); flashUnit(u,'#ff6a5a'); await playSpriteMotion(u,u.hp<=0?'knockout':'hit_reaction',{source:src}); screenShake(u.hp<=0?0.26:0.16,u.hp<=0?0.2:0.16); refreshPanel(u); if(u.hp<=0&&u.alive){ await knockOut(u,src); if(src&&src.alive){ src.ap=Math.min(src.maxap,src.ap+1); if(src===G.active){ G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; } floatText(src,'+1 AP','#7fd0ff',true); refreshPanel(src); } checkEnd(); } }
+async function applyDamage(u,dmg,src){
+  u.hp=Math.max(0,u.hp-dmg);
+  const willKnockOut=u.hp<=0&&u.alive;
+  if(willKnockOut)playFeedbackVfx('kill_spark',src,u);
+  flashUnit(u,'#ff6a5a');
+  await playSpriteMotion(u,willKnockOut?'knockout':'hit_reaction',{source:src});
+  screenShake(willKnockOut?0.26:0.16,willKnockOut?0.2:0.16);
+  refreshPanel(u);
+  if(willKnockOut){
+    await knockOut(u,src);
+    if(src&&src.alive){
+      src.ap=Math.min(src.maxap,src.ap+1);
+      if(src===G.active){ G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; }
+      floatText(src,'+1 AP','#7fd0ff',true); refreshPanel(src);
+    }
+    checkEnd();
+  }
+}
 function applyHeal(u,amt){ if(!u.alive)return; u.hp=Math.min(u.maxhp,u.hp+amt); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
 function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; t.statuses[st]=Math.max(t.statuses[st]||0,turns||2); floatText(t,(d.name||st).toUpperCase(),d.col||'#fff'); refreshPanel(t); }
 async function knockOut(u,src){ u.alive=false; u.downed=true; const state=getUnitVisualState(u.team,u.alive,u.downed); if(u.size>1)clearBossCells(u); else { const c=u.cell(); if(c&&c.occupant===u)c.occupant=null; } floatText(u,'K.O.','#ff5a4a',true); logMsg(u.name+' est K.O. !'); screenShake(0.5,0.4); screenFlash('#ff5a4a',0.22); tween(u.spr.scale,{y:0.32},0.4,easeOutCubic); tween(u.spr.rotation,{z:(u.facing.dx<0?-1:1)*1.15},0.4); tween(u.mat,{opacity:state.bodyOpacity},0.4); tween(u.blob.material,{opacity:state.shadowOpacity},0.4); if(u.teamRing)tween(u.teamRing.material,{opacity:0},0.4); refreshTurnbar(); await wait(0.42); u.grp.visible=state.visible; }
@@ -1046,9 +1066,63 @@ async function projectile(u,cx,cz,spec){ const isDark=u.kind==='darkmage'; const
   const e=new THREE.Vector3(wX(cx),tileTop(cx,cz)+0.7,wZ(cz)); await tweenP(m.position,{x:e.x,y:e.y,z:e.z},0.26,easeInOut); disposeVFXMesh(m);
   vfx(isHeal?'heal':(isBuff?'buff':(spec.type==='mag'?(isDark?'dark':'fire'):'arrow')),e);
   if(spec.type==='mag'){ screenShake(0.4,0.3); screenFlash(isDark?'#7a4fff':'#ff8a3a',0.2); } }
+function normalizeVfxSearchText(value){ return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(); }
+function actionVfxSearchText(spec={},u=null){
+  const weapon=u&&u.weapons&&u.weapons[(spec.wi||0)]||u&&u.weapons&&u.weapons[0];
+  return normalizeVfxSearchText([spec.key,spec.name,spec.status,spec.type,weapon&&weapon.name,u&&u.name,u&&u.kind].filter(Boolean).join(' '));
+}
+function vfxTextIncludes(text,terms){ return terms.some(term=>text.includes(term)); }
+function getActionVfxPreset(spec={},u=null){
+  const text=actionVfxSearchText(spec,u);
+  if(spec.key==='boss_quake')return 'boss_quake';
+  if(spec.key==='boss_slam')return 'boss_slam';
+  if(spec.key==='fireball'||spec.key==='flame_wave'||vfxTextIncludes(text,['feu','flamme','ardent']))return 'fireball';
+  if(spec.heal||spec.revive)return 'heal_burst';
+  if(spec.key==='bulwark'||spec.key==='boss_guard'||spec.status==='barrier')return 'guard_barrier';
+  if(spec.key==='bless'||spec.key==='regen'||spec.apRestore||spec.cure)return 'bless_aura';
+  if(spec.type==='debuff'||spec.key==='curse'||spec.key==='provoke'||spec.key==='boss_roar')return 'curse_pulse';
+  if(vfxTextIncludes(text,['poison','venin','venimeux','venom','toxique','crochet']))return 'poison_bite';
+  if(spec.type==='mag')return 'dark_bolt';
+  if(spec.type==='phys'&&spec.range&&spec.range[1]>1)return 'arrow_shot';
+  if(spec.key==='whirl')return 'sword_slash';
+  if(spec.key==='heavy'||spec.key==='charge'||vfxTextIncludes(text,['masse','massue','marteau','tronc','pierre','lourd']))return 'blunt_impact';
+  if(spec.offensive&&spec.type==='phys')return 'sword_slash';
+  if(spec.offensive)return 'generic_hit';
+  if(spec.support)return 'bless_aura';
+  return null;
+}
+function makeActionVfxContext(u,targets,cx,cz){
+  return {
+    scene,camera,sourceUnit:u,targetUnits:targets,
+    targetPoint:new THREE.Vector3(wX(cx),tileTop(cx,cz),wZ(cz)),
+    reducedGraphics:REDUCED_GRAPHICS,
+    helpers:{wait,screenShake,screenFlash,floatText,wX,wZ,tileTop}
+  };
+}
+function playActionVfx(spec,u,targets,cx,cz){
+  const presetId=getActionVfxPreset(spec,u);
+  if(!presetId)return null;
+  const perTarget=presetId==='heal_burst'||presetId==='bless_aura'||presetId==='guard_barrier';
+  const visualTargets=(perTarget&&targets.length>1)?targets.map(target=>[target]):[targets];
+  const results=visualTargets.map(group=>combatVfxSystem.play(presetId,makeActionVfxContext(u,group,cx,cz))).filter(result=>result.played);
+  if(!results.length)return null;
+  const completion=Promise.all(results.map(result=>result.completion)).then(()=>undefined);
+  void completion.catch(error=>console.warn('[CombatVfx] Action playback failed safely.',error));
+  return {played:true,presetId,impactTime:Math.max(...results.map(result=>result.impactTime)),completion};
+}
+function playFeedbackVfx(presetId,source,target){
+  if(!target)return false;
+  const cx=target.size>1?bossCenterGX(target):target.gx, cz=target.size>1?bossCenterGZ(target):target.gz;
+  const result=combatVfxSystem.play(presetId,makeActionVfxContext(source,[target],cx,cz));
+  if(!result.played)return false;
+  void result.completion.catch(error=>console.warn('[CombatVfx] Feedback playback failed safely.',error));
+  return true;
+}
 async function attackAnim(u,spec,cx,cz,targets=[]){ const ctr=new THREE.Vector3(wX(cx),tileTop(cx,cz)+0.6,wZ(cz)); const preset=getActionMotionPreset(spec);
   const impact=async()=>{
     if(spec.key!=='attack')castTelegraph(u,spec);
+    const generated=playActionVfx(spec,u,targets,cx,cz);
+    if(generated){ await wait(generated.impactTime); return; }
     if(spec.heal||spec.revive||spec.support||spec.apRestore||spec.cure){
       const type=(spec.type==='debuff')?'dark':'heal';
       for(const [gx,gz] of aoeCells(u,spec,cx,cz))vfx(type,new THREE.Vector3(wX(gx),tileTop(gx,gz)+0.6,wZ(gz)));
@@ -1099,7 +1173,10 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
       if(!rollHit(u,t,spec)){ floatText(t,'RATÉ','#cfd6e6'); await wait(0.05); continue; }
       const crit=!spec.flatDmg&&Math.random()<critChance(u,t,spec); let {dmg,lab}=spec.flatDmg?{dmg:Math.max(1,Math.round(spec.flatDmg*rnd(0.85,1.15))),lab:'face'}:computeDamage(u,t,spec); if(crit)dmg=Math.round(dmg*1.5);
       floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':(friendly?'#ffd27a':'#ffffff'),lab==='DOS'||crit);
-      if(crit){ screenShake(0.5,0.3); screenFlash('#fff3b0',0.18); vfx('crit',t.grp.position.clone().add(new THREE.Vector3(0,1,0))); logMsg('Coup critique !'); }
+      if(crit){
+        if(!playFeedbackVfx('critical_hit',u,t)){ screenShake(0.5,0.3); screenFlash('#fff3b0',0.18); vfx('crit',t.grp.position.clone().add(new THREE.Vector3(0,1,0))); }
+        logMsg('Coup critique !');
+      }
       if(lab==='DOS')floatText({grp:{position:t.grp.position.clone().add(new THREE.Vector3(0,0.3,0))},gx:t.gx,gz:t.gz},'DOS !','#ff5a4a');
       await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } } await wait(0.15); }
   if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap);
@@ -1654,7 +1731,19 @@ async function initGame(){
   showBossTutorial();
 }
 
-async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none'; }
+function vfxWorkbenchContext(targetMode){
+  const source=(G.active&&G.active.alive?G.active:null)||aliveUnits('player')[0]||aliveUnits()[0];
+  if(!source)return null;
+  let target=null;
+  if(targetMode==='active')target=source;
+  else if(targetMode==='hovered')target=G.hoverUnit&&G.hoverUnit.alive?G.hoverUnit:null;
+  else target=(G.hoverUnit&&G.hoverUnit.alive?G.hoverUnit:null)||aliveUnits(source.team==='player'?'foe':'player')[0]||source;
+  if(!target)return null;
+  const tx=target.size>1?bossCenterGX(target):target.gx, tz=target.size>1?bossCenterGZ(target):target.gz;
+  return makeActionVfxContext(source,[target],tx,tz);
+}
+
+async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); installVfxWorkbench({system:combatVfxSystem,getContext:vfxWorkbenchContext}); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none'; }
 
 window.addEventListener('error',()=>{ if(dom.loading&&dom.loading.style.display!=='none') dom.loading.innerHTML='<div style="color:#ff8a7a;max-width:540px;text-align:center;line-height:26px">Échec du chargement de Three.js.<br>Vérifiez votre connexion internet puis rechargez la page.<br><span style="color:#9fb0d0">La page doit être servie via un serveur local (http://), pas ouverte directement depuis le disque.</span></div>'; });
 window.addEventListener('unhandledrejection',e=>console.error(e.reason));

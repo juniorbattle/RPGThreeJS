@@ -30,7 +30,9 @@ export class CombatBridge {
     iframe.className = 'combat-frame';
     iframe.title = session.config.encounterLabel;
     iframe.allow = 'fullscreen';
-    iframe.src = `/legacy-combat.html?campaign=1${session.devQa && import.meta.env.DEV ? '&qa=1' : ''}`;
+    const devQa = Boolean(session.devQa && import.meta.env.DEV);
+    const devVfx = devQa && new URLSearchParams(window.location.search).get('vfx') === '1';
+    iframe.src = `/legacy-combat.html?campaign=1${devQa ? '&qa=1' : ''}${devVfx ? '&vfx=1' : ''}`;
     this.root.append(iframe);
     this.iframe = iframe;
     return new Promise<CombatResult>((resolve) => {
