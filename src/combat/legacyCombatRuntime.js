@@ -872,12 +872,114 @@ function floatText(u,txt,color,big){ const el=document.createElement('div'); el.
   (function a(){ const e=Math.min(1,(performance.now()-start)/(dur*1000)); const wp=base.clone(); wp.y+=e*1.0; const s=worldToScreen(wp); el.style.left=s.x+'px'; el.style.top=s.y+'px'; el.style.opacity=(1-e*e); if(e<1)requestAnimationFrame(a); else el.remove(); })(); }
 function flashUnit(u,color){ u.mat.color.set(color); setTimeout(()=>u.alive&&u.mat.color.set('#ffffff'),140); }
 function shockRing(pos,radius,color){ const m=new THREE.Mesh(new THREE.RingGeometry(0.1,0.34,28),new THREE.MeshBasicMaterial({color:color||0xfff0b0,transparent:true,opacity:.85,side:THREE.DoubleSide,depthWrite:false})); m.rotation.x=-Math.PI/2; m.position.copy(pos); m.position.y+=0.05; scene.add(m); const sc=Math.max(1,radius)*2.6; tween(m.scale,{x:sc,y:sc},0.45,easeOutCubic); tween(m.material,{opacity:0},0.45,easeOutCubic,()=>scene.remove(m)); }
-function burst(pos,col){ for(let i=0;i<12;i++){ const p=new THREE.Mesh(new THREE.SphereGeometry(0.07,6,6),new THREE.MeshBasicMaterial({color:col,transparent:true})); p.position.copy(pos); scene.add(p); const d=new THREE.Vector3(rnd(-1,1),rnd(0.1,1),rnd(-1,1)).multiplyScalar(rnd(0.4,0.9)); tween(p.position,{x:pos.x+d.x,y:pos.y+d.y,z:pos.z+d.z},0.45,easeOutCubic); tween(p.material,{opacity:0},0.45,easeOutCubic,()=>scene.remove(p)); } }
-function screenShake(mag,dur){ if(!G.shake||G.shake.t>=G.shake.dur||mag>=G.shake.mag) G.shake={mag,dur,t:0}; }
+function burst(pos,col){ const count=REDUCED_GRAPHICS?6:12; for(let i=0;i<count;i++){ const p=new THREE.Mesh(new THREE.SphereGeometry(0.07,6,6),new THREE.MeshBasicMaterial({color:col,transparent:true})); p.position.copy(pos); scene.add(p); const d=new THREE.Vector3(rnd(-1,1),rnd(0.1,1),rnd(-1,1)).multiplyScalar(rnd(0.4,0.9)); tween(p.position,{x:pos.x+d.x,y:pos.y+d.y,z:pos.z+d.z},0.45,easeOutCubic); tween(p.material,{opacity:0},0.45,easeOutCubic,()=>scene.remove(p)); } }
+function screenShake(mag,dur){ const scale=REDUCED_GRAPHICS?0.58:1; mag*=scale; dur*=REDUCED_GRAPHICS?0.8:1; if(!G.shake||G.shake.t>=G.shake.dur||mag>=G.shake.mag) G.shake={mag,dur,t:0}; }
 function screenFlash(color,a){ const el=document.createElement('div'); el.style.cssText='position:fixed;inset:0;z-index:18;pointer-events:none;background:'+(color||'#ffffff'); el.style.opacity=a||0.4; document.body.appendChild(el); const s=performance.now(); (function f(){ const e=(performance.now()-s)/200; el.style.opacity=String((a||0.4)*(1-e)); if(e<1)requestAnimationFrame(f); else el.remove(); })(); }
 function vfx(type,pos){ const C={fire:{c:0xff8a3a,n:18,up:1.3,smoke:1},dark:{c:0xb06aff,n:18,up:1.1,smoke:1},heal:{c:0x7ed957,n:16,up:1.7,smoke:0},arrow:{c:0xffe08a,n:9,up:0.6,smoke:0},hit:{c:0xffe7a6,n:13,up:0.8,smoke:0}}[type]||{c:0xffffff,n:10,up:0.7,smoke:0};
-  for(let i=0;i<C.n;i++){ const p=new THREE.Mesh(new THREE.SphereGeometry(rnd(0.05,0.12),6,6),new THREE.MeshBasicMaterial({color:C.c,transparent:true})); p.position.copy(pos); scene.add(p); const d=new THREE.Vector3(rnd(-1,1),rnd(0.2,1)*C.up,rnd(-1,1)).multiplyScalar(rnd(0.5,1.15)); tween(p.position,{x:pos.x+d.x,y:pos.y+d.y,z:pos.z+d.z},rnd(0.4,0.7),easeOutCubic); tween(p.material,{opacity:0},0.62,easeOutCubic,()=>scene.remove(p)); }
-  if(C.smoke){ for(let i=0;i<6;i++){ const sm=new THREE.Mesh(new THREE.SphereGeometry(rnd(0.14,0.24),6,6),new THREE.MeshBasicMaterial({color:0x2a2630,transparent:true,opacity:.5})); sm.position.copy(pos); sm.position.x+=rnd(-0.3,0.3); scene.add(sm); tween(sm.position,{y:pos.y+1.5},0.85,easeOutCubic); tween(sm.material,{opacity:0},0.85,easeOutCubic,()=>scene.remove(sm)); } } }
+  const count=REDUCED_GRAPHICS?Math.max(4,Math.ceil(C.n*0.55)):C.n;
+  for(let i=0;i<count;i++){ const p=new THREE.Mesh(new THREE.SphereGeometry(rnd(0.05,0.12),6,6),new THREE.MeshBasicMaterial({color:C.c,transparent:true})); p.position.copy(pos); scene.add(p); const d=new THREE.Vector3(rnd(-1,1),rnd(0.2,1)*C.up,rnd(-1,1)).multiplyScalar(rnd(0.5,1.15)); tween(p.position,{x:pos.x+d.x,y:pos.y+d.y,z:pos.z+d.z},rnd(0.4,0.7),easeOutCubic); tween(p.material,{opacity:0},0.62,easeOutCubic,()=>scene.remove(p)); }
+  if(C.smoke){ const smokeCount=REDUCED_GRAPHICS?3:6; for(let i=0;i<smokeCount;i++){ const sm=new THREE.Mesh(new THREE.SphereGeometry(rnd(0.14,0.24),6,6),new THREE.MeshBasicMaterial({color:0x2a2630,transparent:true,opacity:.5})); sm.position.copy(pos); sm.position.x+=rnd(-0.3,0.3); scene.add(sm); tween(sm.position,{y:pos.y+1.5},0.85,easeOutCubic); tween(sm.material,{opacity:0},0.85,easeOutCubic,()=>scene.remove(sm)); } } }
+
+// ============================= SPRITE MOTION =============================
+// Fixed billboard sprites stay static assets. These small runtime motions give
+// attacks weight while preserving the authoritative grid position and rules.
+const SPRITE_MOTION_PRESETS=Object.freeze({
+  melee_light:{windup:0.09,dash:0.10,recoil:0.14,windupDistance:0.12,dashDistance:0.34,squash:0.025},
+  melee_heavy:{windup:0.16,dash:0.17,recoil:0.20,windupDistance:0.20,dashDistance:0.48,squash:0.075,heavy:true},
+  ranged_attack:{windup:0.11,recoil:0.18,windupDistance:0.14,lift:0.04},
+  magic_cast:{cast:0.22,recoil:0.24,lift:0.20,squash:0.025},
+  heal_cast:{cast:0.20,recoil:0.25,lift:0.16,squash:0.02},
+  buff_cast:{cast:0.20,recoil:0.25,lift:0.14,squash:0.02},
+  debuff_cast:{cast:0.22,recoil:0.25,lift:0.17,squash:0.025},
+  self_aoe:{jumpUp:0.16,jumpDown:0.16,jumpHeight:0.30,squash:0.05},
+  move_leap:{jumpUp:0.19,jumpDown:0.18,jumpHeight:1.7,squash:0.04},
+  teleport:{cast:0.14,recoil:0.18,lift:0.10},
+  hit_reaction:{hitOut:0.06,hitBack:0.12,hitDistance:0.11,squash:0.035},
+  knockout:{hitOut:0.08,hitBack:0.14,hitDistance:0.16,squash:0.06}
+});
+function getActionMotionPreset(spec={}){
+  if(spec.type==='move'){
+    if(spec.mode==='teleport')return 'teleport';
+    if(spec.mode==='leap')return 'move_leap';
+    return spec.mode==='dash'?'melee_heavy':'melee_light';
+  }
+  if(spec.heal||spec.revive)return 'heal_cast';
+  if(spec.self&&spec.offensive)return 'self_aoe';
+  if(spec.key==='boss_slam'||spec.key==='heavy'||spec.key==='charge'||(spec.type==='phys'&&(spec.power||0)>=15))return 'melee_heavy';
+  if(spec.type==='debuff'||spec.key==='curse'||spec.key==='boss_roar'||spec.key==='provoke'||spec.key==='weaken')return 'debuff_cast';
+  if(spec.support||spec.apRestore||spec.cure||spec.key==='bless'||spec.key==='regen'||spec.key==='bulwark'||spec.key==='boss_guard')return 'buff_cast';
+  if(spec.type==='mag'||spec.key==='fireball'||spec.key==='bolt'||spec.key==='boss_quake'||spec.key==='flame_wave')return 'magic_cast';
+  if((spec.range&&spec.range[1]>1)||spec.type==='ranged')return 'ranged_attack';
+  return 'melee_light';
+}
+function motionBaseline(u){ return {group:u.grp.position.clone(),sprZ:u.spr.rotation.z,outlineZ:u.outline?u.outline.rotation.z:0}; }
+function killSpriteMotion(u){ if(!u)return; for(const obj of [u.grp&&u.grp.position,u.spr&&u.spr.position,u.spr&&u.spr.scale,u.spr&&u.spr.rotation,u.outline&&u.outline.position,u.outline&&u.outline.scale,u.outline&&u.outline.rotation])if(obj)killTweens(obj); }
+function spriteReturnBaseline(u,baseline){ if(!u||!baseline)return; killSpriteMotion(u); u.grp.position.copy(baseline.group); u.spr.position.x=0; u.spr.position.y=u.baseY; u.spr.position.z=0; u.spr.rotation.z=baseline.sprZ||0; if(u.outline){ u.outline.position.x=0; u.outline.position.y=u.baseY; u.outline.position.z=0; u.outline.rotation.z=baseline.outlineZ||0; } resetUnitSpriteScale(u); u._motionPlaying=false; }
+function motionDirection(u,context={},away=false){
+  let target=context.target||null,tx,tz;
+  if(context.reaction&&context.source)target=context.source;
+  if(target&&target.grp){ tx=target.grp.position.x; tz=target.grp.position.z; }
+  else if(Number.isFinite(context.cx)&&Number.isFinite(context.cz)){ tx=wX(context.cx); tz=wZ(context.cz); }
+  let dx=Number.isFinite(tx)?tx-u.grp.position.x:(u.facing?.dx||u.visualFacingX||1);
+  let dz=Number.isFinite(tz)?tz-u.grp.position.z:(u.facing?.dz||0);
+  if(away){ dx=-dx; dz=-dz; }
+  const len=Math.hypot(dx,dz)||1;
+  return {x:dx/len,z:dz/len};
+}
+function spriteScaleSign(mesh){ return mesh&&mesh.scale.x<0?-1:1; }
+async function spriteSquash(u,amount,duration){
+  if(!amount)return; const spriteScale=largeUnitSpriteScale(u),outlineScale=spriteScale*1.1;
+  const spriteSign=spriteScaleSign(u.spr),outlineSign=spriteScaleSign(u.outline);
+  const sqY=spriteScale*(1-amount),sqX=spriteScale*(1+amount*0.45);
+  const osqY=outlineScale*(1-amount),osqX=outlineScale*(1+amount*0.45);
+  const forward=[tweenP(u.spr.scale,{x:spriteSign*sqX,y:sqY},duration,easeOutCubic)];
+  if(u.outline)forward.push(tweenP(u.outline.scale,{x:outlineSign*osqX,y:osqY},duration,easeOutCubic));
+  await Promise.all(forward);
+  const back=[tweenP(u.spr.scale,{x:spriteSign*spriteScale,y:spriteScale},duration,easeInOut)];
+  if(u.outline)back.push(tweenP(u.outline.scale,{x:outlineSign*outlineScale,y:outlineScale},duration,easeInOut));
+  await Promise.all(back);
+}
+async function spriteWindup(u,baseline,direction,preset){ const d=(preset.windupDistance||0.12)*(u.size>1?1.08:1); await tweenP(u.grp.position,{x:baseline.group.x-direction.x*d,y:baseline.group.y,z:baseline.group.z-direction.z*d},preset.windup||0.1,easeOutCubic); }
+async function spriteDash(u,baseline,direction,preset){ const d=(preset.dashDistance||0.34)*(u.size>1?1.08:1); await tweenP(u.grp.position,{x:baseline.group.x+direction.x*d,y:baseline.group.y,z:baseline.group.z+direction.z*d},preset.dash||0.1,easeOutCubic); }
+async function spriteRecoil(u,baseline,duration){ await tweenP(u.grp.position,{x:baseline.group.x,y:baseline.group.y,z:baseline.group.z},duration||0.14,easeInOut); }
+async function spriteJump(u,baseline,preset){ await tweenP(u.grp.position,{x:baseline.group.x,y:baseline.group.y+(preset.jumpHeight||0.3),z:baseline.group.z},preset.jumpUp||0.16,easeOutCubic); await tweenP(u.grp.position,{x:baseline.group.x,y:baseline.group.y,z:baseline.group.z},preset.jumpDown||0.16,easeInOut); }
+async function spriteCastLift(u,baseline,preset){ await tweenP(u.grp.position,{x:baseline.group.x,y:baseline.group.y+(preset.lift||0.16),z:baseline.group.z},preset.cast||0.2,easeOutCubic); }
+async function spriteHitShake(u,magnitude,duration){ const x=(magnitude||0.05)*spriteScaleSign(u.spr); const a=(duration||0.16); await tweenP(u.spr.position,{x:x},a*0.32,easeOutCubic); await tweenP(u.spr.position,{x:-x*0.42},a*0.30,easeInOut); await tweenP(u.spr.position,{x:0},a*0.38,easeOutCubic); }
+async function playSpriteMotion(u,presetId,context={}){
+  if(!u||!u.grp||!u.spr){ if(typeof context.onImpact==='function')await context.onImpact(); return; }
+  const preset=SPRITE_MOTION_PRESETS[presetId]||SPRITE_MOTION_PRESETS.melee_light;
+  const baseline=motionBaseline(u);
+  // The action pipeline owns G.busy/G.stage; motion only consumes that state
+  // and never changes it, so staged camera/VFX remain in sync with the action.
+  killSpriteMotion(u); u._motionPlaying=true;
+  const direction=motionDirection(u,context,false);
+  const impact=async()=>{ if(typeof context.onImpact==='function')await context.onImpact(); };
+  try{
+    if(presetId==='melee_light'||presetId==='melee_heavy'){
+      const squash=spriteSquash(u,preset.squash,preset.windup*0.45);
+      await spriteWindup(u,baseline,direction,preset); await squash;
+      await spriteDash(u,baseline,direction,preset); await impact();
+      await spriteRecoil(u,baseline,preset.recoil);
+    } else if(presetId==='ranged_attack'){
+      await spriteWindup(u,baseline,direction,preset); await impact();
+      await spriteRecoil(u,baseline,preset.recoil);
+    } else if(presetId==='magic_cast'||presetId==='heal_cast'||presetId==='buff_cast'||presetId==='debuff_cast'||presetId==='teleport'){
+      const squash=spriteSquash(u,preset.squash,(preset.cast||0.16)*0.4);
+      await spriteCastLift(u,baseline,preset); await squash; await impact();
+      await spriteRecoil(u,baseline,preset.recoil);
+    } else if(presetId==='self_aoe'||presetId==='move_leap'){
+      const squash=spriteSquash(u,preset.squash,(preset.jumpUp||0.16)*0.4);
+      await spriteJump(u,baseline,preset); await squash; await impact();
+    } else if(presetId==='hit_reaction'||presetId==='knockout'){
+      const away=motionDirection(u,{...context,reaction:true},true);
+      const d=(preset.hitDistance||0.11)*(u.size>1?1.08:1);
+      const shake=spriteHitShake(u,d*0.55,(preset.hitOut||0.06)+(preset.hitBack||0.12));
+      const squash=spriteSquash(u,preset.squash,(preset.hitOut||0.06)*0.55);
+      await tweenP(u.grp.position,{x:baseline.group.x+away.x*d,y:baseline.group.y,z:baseline.group.z+away.z*d},preset.hitOut||0.06,easeOutCubic);
+      await Promise.all([shake,squash]); await spriteRecoil(u,baseline,preset.hitBack||0.12); await impact();
+    } else await impact();
+  } finally { spriteReturnBaseline(u,baseline); }
+}
 
 function orientMult(att,tgt){ const ax=(att.size>1?bossCenterGX(att):att.gx)-tgt.gx, az=(att.size>1?bossCenterGZ(att):att.gz)-tgt.gz; const len=Math.hypot(ax,az)||1; const d=tgt.facing.dx*(ax/len)+tgt.facing.dz*(az/len); if(d>0.55)return{m:1.0,lab:'face'}; if(d<-0.55)return{m:1.3,lab:'DOS'}; return{m:1.15,lab:'flanc'}; }
 function computeDamage(att,tgt,spec){ const K=15, isMag=spec.type==='mag'; const atkStat=isMag?effMAG(att):effSTR(att); let def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); if(spec.elanPierce) def=Math.max(1,def*(1-spec.elanPierce)); const o=orientMult(att,tgt); let d=Math.sqrt(spec.power*K*atkStat/def)*2*o.m*dmgTakenMul(tgt)*rnd(0.92,1.08); if(spec.elanMul) d*=spec.elanMul; return {dmg:Math.max(1,Math.round(d)),lab:o.lab}; }
@@ -893,7 +995,7 @@ function castTelegraph(u,spec){ const c=u.cell(); if(!c)return; const col=fxColo
 function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*100:5; return cl(base+Math.max(0,(effDEX(att)-effDEX(tgt))/2),1,90)/100; }
 function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return true; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; return Math.random()*100<cl(acc,5,95); }
 
-async function applyDamage(u,dmg,src){ u.hp=Math.max(0,u.hp-dmg); flashUnit(u,'#ff6a5a'); if(u.spr){ const dir=u.facing.dx<0?-1:1; killTweens(u.spr.position); u.spr.position.x=0; tween(u.spr.position,{x:0.16*dir},0.05,easeOutCubic,()=>tween(u.spr.position,{x:0},0.14,easeOutCubic)); } screenShake(0.16,0.16); refreshPanel(u); if(u.hp<=0&&u.alive){ await knockOut(u,src); if(src&&src.alive){ src.ap=Math.min(src.maxap,src.ap+1); if(src===G.active) G.basicAttacksThisTurn=0; floatText(src,'+1 AP','#7fd0ff',true); refreshPanel(src); } checkEnd(); } }
+async function applyDamage(u,dmg,src){ u.hp=Math.max(0,u.hp-dmg); flashUnit(u,'#ff6a5a'); await playSpriteMotion(u,u.hp<=0?'knockout':'hit_reaction',{source:src}); screenShake(u.hp<=0?0.26:0.16,u.hp<=0?0.2:0.16); refreshPanel(u); if(u.hp<=0&&u.alive){ await knockOut(u,src); if(src&&src.alive){ src.ap=Math.min(src.maxap,src.ap+1); if(src===G.active) G.basicAttacksThisTurn=0; floatText(src,'+1 AP','#7fd0ff',true); refreshPanel(src); } checkEnd(); } }
 function applyHeal(u,amt){ if(!u.alive)return; u.hp=Math.min(u.maxhp,u.hp+amt); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
 function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; t.statuses[st]=Math.max(t.statuses[st]||0,turns||2); floatText(t,(d.name||st).toUpperCase(),d.col||'#fff'); refreshPanel(t); }
 async function knockOut(u,src){ u.alive=false; u.downed=true; const state=getUnitVisualState(u.team,u.alive,u.downed); if(u.size>1)clearBossCells(u); else { const c=u.cell(); if(c&&c.occupant===u)c.occupant=null; } floatText(u,'K.O.','#ff5a4a',true); logMsg(u.name+' est K.O. !'); screenShake(0.5,0.4); screenFlash('#ff5a4a',0.22); tween(u.spr.scale,{y:0.32},0.4,easeOutCubic); tween(u.spr.rotation,{z:(u.facing.dx<0?-1:1)*1.15},0.4); tween(u.mat,{opacity:state.bodyOpacity},0.4); tween(u.blob.material,{opacity:state.shadowOpacity},0.4); if(u.teamRing)tween(u.teamRing.material,{opacity:0},0.4); refreshTurnbar(); await wait(0.42); u.grp.visible=state.visible; }
@@ -942,17 +1044,40 @@ async function projectile(u,cx,cz,spec){ const isDark=u.kind==='darkmage'; const
   const e=new THREE.Vector3(wX(cx),tileTop(cx,cz)+0.7,wZ(cz)); await tweenP(m.position,{x:e.x,y:e.y,z:e.z},0.26,easeInOut); scene.remove(m);
   vfx(spec.type==='mag'?(isDark?'dark':'fire'):'arrow',e);
   if(spec.type==='mag'){ screenShake(0.4,0.3); screenFlash(isDark?'#7a4fff':'#ff8a3a',0.2); } }
-async function attackAnim(u,spec,cx,cz){ const from=u.grp.position.clone(); const ctr=new THREE.Vector3(wX(cx),tileTop(cx,cz)+0.6,wZ(cz));
-  if(spec.heal||spec.revive||spec.support){ await tweenP(u.grp.position,{y:from.y+0.24},0.14,easeOutCubic); for(const [gx,gz] of aoeCells(u,spec,cx,cz)) vfx('heal',new THREE.Vector3(wX(gx),tileTop(gx,gz)+0.6,wZ(gz))); screenFlash('#bfffc0',0.14); await tweenP(u.grp.position,{y:from.y},0.18); return; }
-  if(spec.self){ await tweenP(u.grp.position,{y:from.y+0.34},0.13,easeOutCubic); await tweenP(u.grp.position,{y:from.y},0.08,easeInOut); shockRing(ctr,spec.radius,spec.type==='mag'?0xff8a3a:0xfff0b0); screenShake(0.42,0.32); screenFlash('#fff0b0',0.16); for(const [gx,gz] of aoeCells(u,spec,cx,cz)) vfx('hit',new THREE.Vector3(wX(gx),tileTop(gx,gz)+0.6,wZ(gz))); return; }
-  if(spec.type==='mag'||spec.range[1]>1){ await tweenP(u.grp.position,{x:from.x-u.facing.dx*0.2,y:from.y+0.05},0.12,easeOutCubic); await projectile(u,cx,cz,spec); if(spec.radius>=1)shockRing(ctr,spec.radius,spec.type==='mag'?0xff8a3a:0xfff0b0); await tweenP(u.grp.position,{x:from.x,y:from.y},0.12,easeOutCubic); }
-  else { await tweenP(u.grp.position,{x:from.x-u.facing.dx*0.18,z:from.z-u.facing.dz*0.18},0.1,easeOutCubic); await tweenP(u.grp.position,{x:lerp(from.x,ctr.x,0.5),z:lerp(from.z,ctr.z,0.5)},0.07,easeOutCubic); vfx('hit',ctr); screenShake(0.36,0.24); await tweenP(u.grp.position,{x:from.x,z:from.z},0.13,easeOutCubic); }
+async function attackAnim(u,spec,cx,cz,targets=[]){ const ctr=new THREE.Vector3(wX(cx),tileTop(cx,cz)+0.6,wZ(cz)); const preset=getActionMotionPreset(spec);
+  const impact=async()=>{
+    if(spec.key!=='attack')castTelegraph(u,spec);
+    if(spec.heal||spec.revive||spec.support||spec.apRestore||spec.cure){
+      const type=(spec.type==='debuff')?'dark':'heal';
+      for(const [gx,gz] of aoeCells(u,spec,cx,cz))vfx(type,new THREE.Vector3(wX(gx),tileTop(gx,gz)+0.6,wZ(gz)));
+      screenFlash(spec.type==='debuff'?'#8d5cff':'#bfffc0',0.14);
+      return;
+    }
+    if(preset==='self_aoe'){
+      shockRing(ctr,spec.radius,spec.type==='mag'?0xff8a3a:0xfff0b0); screenShake(0.42,0.32); screenFlash('#fff0b0',0.16);
+      for(const [gx,gz] of aoeCells(u,spec,cx,cz))vfx('hit',new THREE.Vector3(wX(gx),tileTop(gx,gz)+0.6,wZ(gz)));
+      return;
+    }
+    if(preset==='magic_cast'||preset==='ranged_attack'){
+      await projectile(u,cx,cz,spec);
+      if(spec.radius>=1)shockRing(ctr,spec.radius,spec.type==='mag'?0xff8a3a:0xfff0b0);
+      return;
+    }
+    if(preset==='debuff_cast'){
+      if(spec.range&&spec.range[1]>1)await projectile(u,cx,cz,spec); else vfx('dark',ctr);
+      if(spec.radius>=1)shockRing(ctr,spec.radius,0xb06aff);
+      return;
+    }
+    vfx('hit',ctr); screenShake(preset==='melee_heavy'?0.46:0.32,preset==='melee_heavy'?0.28:0.22);
+  };
+  await playSpriteMotion(u,preset,{cx,cz,spec,target:targets[0],onImpact:impact});
 }
 async function doMove(u,spec,cx,cz){ setFacing(u,cx,cz); const c=cellAt(cx,cz); const dest=new THREE.Vector3(wX(cx),c.topY,wZ(cz)); const head=dest.clone().add(new THREE.Vector3(0,0.9,0));
+  const motion=SPRITE_MOTION_PRESETS[getActionMotionPreset(spec)]||SPRITE_MOTION_PRESETS.melee_light;
   actionCam(head); logMsg(u.name+' → '+spec.name);
-  if(spec.mode==='teleport'){ vfx('dark',u.grp.position.clone().add(new THREE.Vector3(0,0.9,0))); screenFlash('#b9a0ff',0.14); await tweenP(u.mat,{opacity:0},0.16,easeOutCubic); placeUnit(u,cx,cz,true); vfx('dark',head); screenFlash('#9fe7ff',0.16); await tweenP(u.mat,{opacity:1},0.2,easeOutCubic); }
-  else if(spec.mode==='leap'){ const from=u.grp.position.clone(); placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:(from.x+dest.x)/2,y:Math.max(from.y,dest.y)+1.7,z:(from.z+dest.z)/2},0.19,easeOutCubic); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},0.18,easeInOut); vfx('hit',head); screenShake(0.32,0.22); }
-  else { placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},0.2,easeOutCubic); screenShake(0.5,0.3); screenFlash('#fff0b0',0.16); vfx('hit',head);
+  if(spec.mode==='teleport'){ vfx('dark',u.grp.position.clone().add(new THREE.Vector3(0,0.9,0))); screenFlash('#b9a0ff',0.14); await tweenP(u.mat,{opacity:0},motion.cast,easeOutCubic); placeUnit(u,cx,cz,true); vfx('dark',head); screenFlash('#9fe7ff',0.16); await tweenP(u.mat,{opacity:1},motion.recoil,easeOutCubic); }
+  else if(spec.mode==='leap'){ const from=u.grp.position.clone(); placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:(from.x+dest.x)/2,y:Math.max(from.y,dest.y)+motion.jumpHeight,z:(from.z+dest.z)/2},motion.jumpUp,easeOutCubic); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.jumpDown,easeInOut); vfx('hit',head); screenShake(0.32,0.22); }
+  else { placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.dash||0.2,easeOutCubic); screenShake(0.5,0.3); screenFlash('#fff0b0',0.16); vfx('hit',head);
     if(spec.impact){ const hits=aliveUnits().filter(t=>t.team!==u.team&&(Math.abs(t.gx-cx)+Math.abs(t.gz-cz)===1)); for(const t of hits){ const {dmg}=computeDamage(u,t,{type:'phys',power:spec.power||8}); floatText(t,'-'+dmg,'#ffffff',true); await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&spec.impact.status)applyStatus(t,spec.impact.status,spec.impact.statusTurns); await wait(0.06); } } }
   await wait(0.12); }
 async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPreview(); G.busy=true; closeMenus(); clearHL();
@@ -961,8 +1086,7 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
   const targets=affectedUnits(u,spec,cx,cz);
   logMsg(u.name+' → '+spec.name);
   await combatStageEnter(u,targets,spec);
-  if(spec.key!=='attack')castTelegraph(u,spec);
-  await attackAnim(u,spec,cx,cz);
+  await attackAnim(u,spec,cx,cz,targets);
   if(spec.item&&spec.itemId)G.inv[spec.itemId]=Math.max(0,(G.inv[spec.itemId]||0)-1);
   if(spec.heal){ for(const t of targets)applyHeal(t,(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(u)*spec.power))+Math.floor(effCHA(u)/4)); await wait(0.25); }
   else if(spec.revive){ for(const t of targets)reviveUnit(t,Math.round(t.maxhp*spec.power)); await wait(0.25); }
