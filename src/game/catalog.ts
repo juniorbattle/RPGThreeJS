@@ -30,6 +30,7 @@ export const items: ItemDefinition[] = [
   { id: 'ether', name: 'Éther', description: 'Restaure 2 AP en combat.', category: 'consumables', icon: '◈', price: 35 },
   { id: 'antidote', name: 'Antidote', description: 'Dissipe les altérations négatives.', category: 'consumables', icon: '✚', price: 10 },
   { id: 'bomb', name: 'Bombe', description: 'Inflige des dégâts de zone.', category: 'consumables', icon: '●', price: 30 },
+  { id: 'revive_vial', name: 'Fiole de Résurrection', description: 'Ranime une unité tombée au combat à 50% de ses PV max.', category: 'consumables', icon: '✚', price: 60 },
   { id: 'iron_ore', name: 'Minerai de fer', description: 'Un matériau de forge commun.', category: 'materials', icon: '⬟', price: 5 },
   { id: 'red_gem', name: 'Gemme rouge', description: 'Une pierre rare prisée des artisans.', category: 'materials', icon: '◆', price: 50 },
   ...weapons,
@@ -73,13 +74,22 @@ export const units: UnitDefinition[] = [
     allowedWeaponIds: ['short_bow', 'long_bow', 'windstep_bow', 'iron_dagger'], skillIds: ['weaken', 'blind_shot', 'pierce_shot', 'leap'],
   },
   {
-    id: 'cedric', name: 'Cedric', className: 'Éclaireur', combatKind: 'archer',
+    id: 'cedric', name: 'Cedric', className: 'Rogue', combatKind: 'rogue',
     visualProfileId: 'cedric',
     recruitTier: 'optional',
     portrait: '/assets/characters/pixel/full/cedric.png',
     baseStats: { maxHealth: 115, strength: 17, magic: 4, endurance: 11, dexterity: 22, charisma: 10, moveRange: 3 },
     weaponSlotCount: 1,
     allowedWeaponIds: ['short_bow', 'long_bow', 'windstep_bow', 'iron_dagger'], skillIds: ['weaken', 'blind_shot', 'leap'],
+  },
+  {
+    id: 'lancer', name: 'Garen', className: 'Lancier', combatKind: 'knight',
+    visualProfileId: 'lancer',
+    recruitTier: 'optional',
+    portrait: '/assets/characters/pixel/full/lancer.png',
+    baseStats: { maxHealth: 130, strength: 16, magic: 3, endurance: 17, dexterity: 12, charisma: 8, moveRange: 2 },
+    weaponSlotCount: 1,
+    allowedWeaponIds: ['wooden_spear', 'iron_sword', 'steel_sword'], skillIds: ['charge', 'bulwark', 'provoke', 'heavy'],
   },
 ];
 
@@ -130,6 +140,7 @@ const defaultWeapons: Record<string, string[]> = {
   mage: ['wooden_staff'],
   archer: ['short_bow', 'iron_dagger'],
   cedric: ['short_bow', 'iron_dagger'],
+  lancer: ['wooden_spear'],
 };
 
 export function createUnitInstance(definitionId: string, narrativeLocked = false): UnitInstance {
@@ -204,7 +215,7 @@ export function toCombatant(unit: UnitInstance): CombatantPayload {
     kind: definition.combatKind,
     portrait: definition.portrait,
     stats,
-    currentHealth: Math.max(1, Math.min(stats.maxHealth, Math.floor(unit.currentHealth))),
+    currentHealth: Math.max(0, Math.min(stats.maxHealth, Math.floor(unit.currentHealth))),
     weapons: unit.equipment.weaponIds
       .map((weaponId) => weaponById.get(weaponId))
       .filter((weapon): weapon is WeaponDefinition => weapon !== undefined),

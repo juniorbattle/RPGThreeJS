@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit,
-  restUnits, sellItem, upgradeSkill,
+  getFallenUnitCount, restUnits, sellItem, upgradeSkill, useConsumable,
 } from './management';
 import { createInitialState, migrateState } from './store';
 import { getResolvedSkills } from './catalog';
@@ -60,6 +60,40 @@ describe('clan management', () => {
     expect(state.clan.members[0]!.currentHealth).toBe(140);
     expect(state.gold).toBe(beforeGold - 15);
     expect(restUnits(state)).toBe(false);
+  });
+
+  it('heals a wounded unit with a potion from inventory', () => {
+    const state = createInitialState();
+    state.inventory.consumables.potion = 2;
+    state.clan.members[0]!.currentHealth = 50;
+    expect(useConsumable(state, state.clan.members[0]!.id, 'potion')).toBe(true);
+    expect(state.clan.members[0]!.currentHealth).toBe(105);
+    expect(state.inventory.consumables.potion).toBe(1);
+  });
+
+  it('refuses to heal a full-health unit with a potion', () => {
+    const state = createInitialState();
+    state.inventory.consumables.potion = 1;
+    expect(useConsumable(state, state.clan.members[0]!.id, 'potion')).toBe(false);
+    expect(state.inventory.consumables.potion).toBe(1);
+  });
+
+  it('revives a fallen unit with a revive vial to 50% HP', () => {
+    const state = createInitialState();
+    state.inventory.consumables.revive_vial = 1;
+    state.clan.members[0]!.currentHealth = 0;
+    expect(getFallenUnitCount(state)).toBe(1);
+    expect(useConsumable(state, state.clan.members[0]!.id, 'revive_vial')).toBe(true);
+    expect(state.clan.members[0]!.currentHealth).toBe(70);
+    expect(state.inventory.consumables.revive_vial).toBe(0);
+    expect(getFallenUnitCount(state)).toBe(0);
+  });
+
+  it('refuses to revive a unit that is still alive', () => {
+    const state = createInitialState();
+    state.inventory.consumables.revive_vial = 1;
+    expect(useConsumable(state, state.clan.members[0]!.id, 'revive_vial')).toBe(false);
+    expect(state.inventory.consumables.revive_vial).toBe(1);
   });
 
   it('upgrades resolved skills with escalating red gem costs', () => {

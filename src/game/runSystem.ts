@@ -39,9 +39,11 @@ const LION_CONDUCT_FLAG_WEIGHTS: Readonly<Record<string, number>> = {
   helpedRefugees: 2,
   exploitedRefugees: -2,
   alaricDoubt: -1,
+  lionMandateHonour: 1,
   helpedMerchant: 1,
   abandonedMerchant: -1,
   recruitedCedric: 1,
+  recruitedLancer: 1,
   returnedLostTreasure: 1,
   claimedLostTreasure: -1,
   prioritizedVillage: 1,
@@ -427,9 +429,39 @@ const FINAL_EVENT_VARIANTS: Readonly<Record<LionConductTier, AdaptiveRouteVarian
   },
 };
 
+const MANDATE_FIRST_EVENT_HONOUR: AdaptiveRouteVariant = {
+  type: 'event', contentId: 'mystery_help', label: 'Marchand blessé', icon: '◇', risk: 1, reward: 2,
+  difficulty: 'safe', moralTone: 'honour', hint: 'Le mandat du Lion vous appelle à secourir les voyageurs de la route.',
+};
+
+const MANDATE_FIRST_EVENT_ADVANCE: AdaptiveRouteVariant = {
+  type: 'event', contentId: 'mystery_recruit', label: 'Éclaireur nomade', icon: '◇', risk: 1, reward: 2,
+  difficulty: 'safe', moralTone: 'pragmatic', hint: 'L’avance du Lion attire les pragmatiques — un éclaireur propose ses services.',
+};
+
+const MANDATE_FIRST_COMBAT_HONOUR: AdaptiveRouteVariant = {
+  type: 'combat', contentId: 'spider_nest', label: 'Nid venimeux', icon: '⚔', risk: 2, reward: 2,
+  difficulty: 'standard', moralTone: 'neutral', hint: 'Des créatures venimeuses bloquent le sentier mandaté par le Lion.',
+};
+
+const MANDATE_FIRST_COMBAT_ADVANCE: AdaptiveRouteVariant = {
+  type: 'combat', contentId: 'serpent_reprisals', label: 'Représailles anticipées', icon: '⚔', risk: 2, reward: 2,
+  difficulty: 'standard', moralTone: 'neutral', hint: 'Les Serpents ont vent de votre avance — ils frappent plus tôt que prévu.',
+};
+
+const MANDATE_SECOND_COMBAT_ADVANCE: AdaptiveRouteVariant = {
+  type: 'combat', contentId: 'serpent_checkpoint', label: 'Barrage préparé', icon: '⚔', risk: 2, reward: 3,
+  difficulty: 'standard', moralTone: 'neutral', hint: 'L’avance du Lion a mis les Serpents en alerte — le barrage est renforcé.',
+};
+
 const FINAL_EVENT_AFTER_ELITE: AdaptiveRouteVariant = {
   type: 'event', contentId: 'mystery_shrine', label: 'Autel des voyageurs', icon: '◇', risk: 1, reward: 3,
   difficulty: 'safe', moralTone: 'greed', hint: 'Après l’épreuve élite, un dernier autel mesure votre retenue.',
+};
+
+const LANCER_RECRUIT_VARIANT: AdaptiveRouteVariant = {
+  type: 'event', contentId: 'mystery_lancer_recruit', label: 'Volontaire de Bois-Clair', icon: '◇', risk: 1, reward: 3,
+  difficulty: 'safe', moralTone: 'honour', hint: 'Un jeune lancier de Bois-Clair offre sa lance au clan.',
 };
 
 const FINAL_COMBAT_VARIANTS: Readonly<Record<LionConductTier, AdaptiveRouteVariant>> = {
@@ -461,11 +493,25 @@ function completedEliteEncounter(state: GameState): boolean {
 
 function selectAdaptiveVariant(state: GameState, nodeId: string): AdaptiveRouteVariant | null {
   const tier = getLionConductTier(state.flags);
-  if (nodeId === 'lion-first-trial-event') return FIRST_EVENT_VARIANTS[tier];
-  if (nodeId === 'lion-first-trial-combat') return FIRST_COMBAT_VARIANTS[tier];
+  const mandateHonour = !!state.flags.lionMandateHonour;
+  const mandateAdvance = !!state.flags.lionMandateAdvance;
+  if (nodeId === 'lion-first-trial-event') {
+    if (mandateHonour) return MANDATE_FIRST_EVENT_HONOUR;
+    if (mandateAdvance) return MANDATE_FIRST_EVENT_ADVANCE;
+    return FIRST_EVENT_VARIANTS[tier];
+  }
+  if (nodeId === 'lion-first-trial-combat') {
+    if (mandateHonour) return MANDATE_FIRST_COMBAT_HONOUR;
+    if (mandateAdvance) return MANDATE_FIRST_COMBAT_ADVANCE;
+    return FIRST_COMBAT_VARIANTS[tier];
+  }
   if (nodeId === 'lion-second-trial-event') return SECOND_EVENT_VARIANT;
-  if (nodeId === 'lion-second-trial-combat') return SECOND_COMBAT_VARIANTS[tier];
+  if (nodeId === 'lion-second-trial-combat') {
+    if (mandateAdvance) return MANDATE_SECOND_COMBAT_ADVANCE;
+    return SECOND_COMBAT_VARIANTS[tier];
+  }
   if (nodeId === 'lion-final-trial-event') {
+    if (mandateHonour && state.flags.missionSuccess) return LANCER_RECRUIT_VARIANT;
     return tier !== 'infamy' && completedEliteEncounter(state) ? FINAL_EVENT_AFTER_ELITE : FINAL_EVENT_VARIANTS[tier];
   }
   if (nodeId === 'lion-final-trial-combat') return FINAL_COMBAT_VARIANTS[tier];
@@ -474,15 +520,15 @@ function selectAdaptiveVariant(state: GameState, nodeId: string): AdaptiveRouteV
 
 function adaptiveVariantByContentId(nodeId: string, contentId: string): AdaptiveRouteVariant | null {
   const candidates = nodeId === 'lion-first-trial-event'
-    ? Object.values(FIRST_EVENT_VARIANTS)
+    ? [...Object.values(FIRST_EVENT_VARIANTS), MANDATE_FIRST_EVENT_HONOUR, MANDATE_FIRST_EVENT_ADVANCE]
     : nodeId === 'lion-first-trial-combat'
-      ? Object.values(FIRST_COMBAT_VARIANTS)
+      ? [...Object.values(FIRST_COMBAT_VARIANTS), MANDATE_FIRST_COMBAT_HONOUR, MANDATE_FIRST_COMBAT_ADVANCE]
       : nodeId === 'lion-second-trial-event'
         ? [SECOND_EVENT_VARIANT]
         : nodeId === 'lion-second-trial-combat'
-          ? Object.values(SECOND_COMBAT_VARIANTS)
+          ? [...Object.values(SECOND_COMBAT_VARIANTS), MANDATE_SECOND_COMBAT_ADVANCE]
           : nodeId === 'lion-final-trial-event'
-            ? [...Object.values(FINAL_EVENT_VARIANTS), FINAL_EVENT_AFTER_ELITE]
+            ? [...Object.values(FINAL_EVENT_VARIANTS), FINAL_EVENT_AFTER_ELITE, LANCER_RECRUIT_VARIANT]
             : nodeId === 'lion-final-trial-combat'
               ? Object.values(FINAL_COMBAT_VARIANTS)
               : [];

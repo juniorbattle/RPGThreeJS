@@ -123,7 +123,7 @@ export const unitInstanceV5Schema = z.object({
 export type UnitInstanceV5 = z.infer<typeof unitInstanceV5Schema>;
 
 export const unitInstanceSchema = unitInstanceV5Schema.extend({
-  currentHealth: z.number().int().positive(),
+  currentHealth: z.number().int().nonnegative(),
   skillUpgrades: z.record(z.number().int().min(0).max(2)),
 });
 export type UnitInstance = z.infer<typeof unitInstanceSchema>;
@@ -361,7 +361,7 @@ export interface UnitDefinition {
   id: string;
   name: string;
   className: string;
-  combatKind: 'knight' | 'cleric' | 'mage' | 'archer';
+  combatKind: 'knight' | 'cleric' | 'mage' | 'archer' | 'rogue';
   visualProfileId: string;
   recruitTier: 'core' | 'optional' | 'late';
   portrait: string;

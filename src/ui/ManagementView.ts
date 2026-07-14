@@ -1,7 +1,7 @@
 import { craftRecipes, getFinalStats, getResolvedSkills, itemById, items, unitById, weaponById, weapons } from '../game/catalog';
 import {
   buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit,
-  getSkillUpgradeCost, sellItem, upgradeSkill,
+  getSkillUpgradeCost, sellItem, upgradeSkill, useConsumable,
 } from '../game/management';
 import { getReputationRule, getShopPrice } from '../game/reputation';
 import { assets } from '../render/assetManifest';
@@ -162,12 +162,13 @@ export class ManagementView {
     const stats = getFinalStats(selected);
     const roster = state.clan.members.map((unit) => {
       const def = unitById.get(unit.definitionId)!;
-      const level = this.unitLevel(unit);
+      const maxHp = getFinalStats(unit).maxHealth;
+      const hpClass = unit.currentHealth === 0 ? ' is-fallen' : unit.currentHealth < maxHp ? ' is-wounded' : '';
       return `
-        <button type="button" class="roster-card ui-panel ui-panel--dense ${unit.id === selected.id ? 'is-active' : ''}" data-unit="${unit.id}">
+        <button type="button" class="roster-card ui-panel ui-panel--dense${hpClass} ${unit.id === selected.id ? 'is-active' : ''}" data-unit="${unit.id}">
           <span class="roster-card__portrait"><img src="${unitUiPortrait(def)}" alt=""></span>
           <span class="roster-card__body"><strong>${unit.name}</strong><small>${def.className}</small></span>
-          <span class="roster-card__level">Niv. ${level}</span>
+          <span class="roster-card__hp">${unit.currentHealth}/${maxHp}</span>
           ${unit.narrativeLocked ? '<i title="Unité narrative">◆</i>' : ''}
         </button>`;
     }).join('');
@@ -191,7 +192,7 @@ export class ManagementView {
             <p class="unit-sheet__description">${this.unitDescription(definition)}</p>
           </div>
           <div class="stat-grid">
-            ${this.stat('PV', stats.maxHealth)}${this.stat('FOR', stats.strength)}${this.stat('MAG', stats.magic)}
+            ${this.stat('PV', `${selected.currentHealth}/${stats.maxHealth}`)}${this.stat('FOR', stats.strength)}${this.stat('MAG', stats.magic)}
             ${this.stat('END', stats.endurance)}${this.stat('DEX', stats.dexterity)}${this.stat('CHA', stats.charisma)}
             ${this.stat('DÉPLAC.', stats.moveRange)}
           </div>
@@ -321,17 +322,13 @@ export class ManagementView {
     return level === 1 ? 'Durée +1 tour si applicable.' : 'Durée +1 tour et efficacité légèrement renforcée.';
   }
 
-  private unitLevel(unit: UnitInstance): number {
-    const progress = unit as UnitInstance & { level?: number };
-    return progress.level ?? 1;
-  }
-
   private unitDescription(definition: UnitDefinition): string {
     const descriptions: Record<UnitDefinition['combatKind'], string> = {
       knight: 'Combattant de première ligne robuste et défenseur loyal. Protège ses alliés et contrôle le champ de bataille.',
       cleric: 'Soutien spirituel de la compagnie. Préserve l’escouade et renforce les lignes fragiles.',
       mage: 'Arcaniste à haute pression. Excelle dans les dégâts magiques et le contrôle tactique.',
       archer: 'Tireur mobile et précis. Harcèle les cibles clés depuis les lignes sûres.',
+      rogue: 'Éclaireur furtif à dextérité supérieure. Repère, affaiblit et frappe les cibles vulnérables.',
     };
     return descriptions[definition.combatKind];
   }
@@ -341,9 +338,32 @@ export class ManagementView {
     return `<div class="inventory-view">${(Object.keys(categoryLabels) as ItemCategory[]).map((category) => {
       const rows = Object.entries(state.inventory[category]).filter(([, quantity]) => quantity > 0);
       return `<section class="inventory-group ui-panel ui-panel--soft"><div class="section-title ui-section-title">${categoryLabels[category]}</div>
-        ${rows.length ? rows.map(([id, quantity]) => this.itemRow(id, quantity)).join('') : '<p class="empty-copy">Aucun objet.</p>'}
+        ${rows.length ? rows.map(([id, quantity]) => this.itemRow(id, quantity, category === 'consumables' ? this.consumableAction(id) : '')).join('') : '<p class="empty-copy">Aucun objet.</p>'}
       </section>`;
     }).join('')}</div>`;
+  }
+
+  private consumableAction(itemId: string): string {
+    const state = this.options.getState();
+    if (itemId === 'revive_vial') {
+      const fallen = state.clan.members.filter((unit) => unit.currentHealth === 0);
+      if (fallen.length === 0) return '';
+      const options = fallen.map((unit) => {
+        const maxHealth = getFinalStats(unit).maxHealth;
+        return `<option value="${unit.id}">${unit.name} (0/${maxHealth})</option>`;
+      }).join('');
+      return `<span class="item-row__action"><select data-use-unit="${itemId}"><option value="">— Ranimer —</option>${options}</select><button type="button" class="ui-button ui-button--secondary" data-use-item="${itemId}">Utiliser</button></span>`;
+    }
+    if (itemId === 'potion') {
+      const wounded = state.clan.members.filter((unit) => unit.currentHealth > 0 && unit.currentHealth < getFinalStats(unit).maxHealth);
+      if (wounded.length === 0) return '';
+      const options = wounded.map((unit) => {
+        const maxHealth = getFinalStats(unit).maxHealth;
+        return `<option value="${unit.id}">${unit.name} (${unit.currentHealth}/${maxHealth})</option>`;
+      }).join('');
+      return `<span class="item-row__action"><select data-use-unit="${itemId}"><option value="">— Soigner —</option>${options}</select><button type="button" class="ui-button ui-button--secondary" data-use-item="${itemId}">Utiliser</button></span>`;
+    }
+    return '';
   }
 
   private itemRow(id: string, quantity: number, action = ''): string {
@@ -487,6 +507,15 @@ export class ManagementView {
       button.addEventListener('click', () => {
         const skillId = button.dataset.upgradeSkill ?? '';
         if (upgradeSkill(this.options.getState(), this.selectedUnitId, skillId)) this.changed();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-use-item]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const itemId = button.dataset.useItem ?? '';
+        const select = this.overlay?.querySelector<HTMLSelectElement>(`[data-use-unit="${itemId}"]`);
+        const unitId = select?.value ?? '';
+        if (!unitId) return;
+        if (useConsumable(this.options.getState(), unitId, itemId)) this.changed();
       });
     });
   }

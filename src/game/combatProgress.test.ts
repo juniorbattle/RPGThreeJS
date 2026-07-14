@@ -18,6 +18,18 @@ describe('combat progress synchronization', () => {
     expect(state.clan.members.find((unit) => unit.id === 'knight')!.currentHealth).toBe(1);
   });
 
+  it('sets currentHealth to 0 when a unit is reported dead', () => {
+    const state = createInitialState();
+    applyCombatProgress(state, {
+      victory: true,
+      combatId: 'test',
+      participants: ['knight', 'cleric'],
+      unitHealth: { knight: 0, cleric: 80 },
+    }, 4);
+    expect(state.clan.members.find((unit) => unit.id === 'knight')!.currentHealth).toBe(0);
+    expect(state.clan.members.find((unit) => unit.id === 'cleric')!.currentHealth).toBe(80);
+  });
+
   it('does not mutate campaign progression after defeat', () => {
     const state = createInitialState();
     const before = structuredClone(state);

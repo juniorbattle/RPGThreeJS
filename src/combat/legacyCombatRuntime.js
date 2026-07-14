@@ -59,7 +59,7 @@ const SCENE_AMBIENCE={
 let REDUCED_GRAPHICS=campaignParams.get('reduced')==='1';
 function campaignUnitHealth(){
   const out={};
-  for(const u of G.deployedUnits||[]) out[u.campaignId||u.name]=Math.max(1,Math.round(u.alive?u.hp:1));
+  for(const u of G.deployedUnits||[]) out[u.campaignId||u.name]=Math.max(0,Math.round(u.alive?u.hp:0));
   return out;
 }
 const notifyCampaignResult=victory=>window.parent.postMessage({
@@ -187,7 +187,8 @@ const PAL={
   cleric:{skin:'#f0c39b',hair:'#b06a3a',c1:'#ece6d4',c2:'#c9bfa0',acc:'#d9b25a',metal:'#fff3c4',wpn:'mace',head:'hair'},
   brigand:{skin:'#d9a87a',hair:'#2a2a2a',c1:'#7a3636',c2:'#4d2222',acc:'#8a6a3a',metal:'#c2c8d6',wpn:'dagger',head:'hair'},
   brute:{skin:'#cf9a6a',hair:'#3a2a1a',c1:'#6a5638',c2:'#473722',acc:'#9a3030',metal:'#b9bfcf',wpn:'club',head:'bald'},
-  darkmage:{skin:'#caa6c2',hair:'#150f24',c1:'#3a2a60',c2:'#221842',acc:'#b06aff',metal:'#c79bff',wpn:'staff',head:'darkhood'}
+  darkmage:{skin:'#caa6c2',hair:'#150f24',c1:'#3a2a60',c2:'#221842',acc:'#b06aff',metal:'#c79bff',wpn:'staff',head:'darkhood'},
+  rogue:{skin:'#f0c39b',hair:'#caa24a',c1:'#8a7a5a',c2:'#5a4a3a',acc:'#c9a05a',metal:'#cfd6e6',wpn:'dagger',head:'hood-light'}
 };
 const SPR={};
 const externalSpriteCache=new Map();
@@ -252,7 +253,8 @@ const EXTERNAL_SPRITE_HEIGHTS={
   '/assets/characters/pixel/full/boss_serpent_captain.png':2.42,
   '/assets/characters/pixel/full/alaric.png':2.42,
   '/assets/characters/pixel/full/lion_champion.png':2.08,
-  '/assets/characters/pixel/full/seal_guardian.png':2.05
+  '/assets/characters/pixel/full/seal_guardian.png':2.05,
+  '/assets/characters/pixel/full/lancer.png':2.12
 };
 async function preloadExternalSprites(){
   const urls=[...new Set([
@@ -750,7 +752,7 @@ function createUnit(def){
 function campaignDef(payload,index){
   const stats=payload.stats||{};
   const maxhp=stats.maxHealth||100;
-  const startHp=Math.max(1,Math.min(maxhp,Math.round(payload.currentHealth||maxhp)));
+  const startHp=Math.max(0,Math.min(maxhp,Math.round(payload.currentHealth!=null?payload.currentHealth:maxhp)));
   const icons={sword:'⚔',dagger:'†',axe:'◆',spear:'↟',bow:'⌁',staff:'✦',mace:'✚'};
   return {
     team:'player',kind:payload.kind||'knight',name:payload.name||'Allié',

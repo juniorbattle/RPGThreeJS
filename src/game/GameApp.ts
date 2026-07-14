@@ -148,7 +148,7 @@ export class GameApp {
     this.chrome.replaceChildren();
     const result = await this.combat.play({
       config,
-      clan: this.state.clan.members.map((unit) => toCombatant(unit)),
+      clan: this.state.clan.members.filter((unit) => unit.currentHealth > 0).map((unit) => toCombatant(unit)),
       inventory: this.state.inventory.consumables,
       preferredUnitIds: this.state.deployment.unitIds,
       reducedGraphics: this.state.settings.reducedGraphics,
@@ -302,11 +302,16 @@ export class GameApp {
           }
           break;
         case 'recruitUnit':
-          if (
-            this.state.clan.members.length < this.state.clan.maxSize
-            && !this.state.clan.members.some((unit) => unit.id === effect.unitId)
-          ) {
-            this.state.clan.members.push(createUnitInstance(effect.unitId));
+          {
+            const coreIds = new Set(['knight', 'cleric', 'mage', 'archer']);
+            const chapterRecruits = this.state.clan.members.filter((m) => !coreIds.has(m.definitionId)).length;
+            if (
+              chapterRecruits < 2
+              && this.state.clan.members.length < this.state.clan.maxSize
+              && !this.state.clan.members.some((unit) => unit.id === effect.unitId)
+            ) {
+              this.state.clan.members.push(createUnitInstance(effect.unitId));
+            }
           }
           break;
         case 'startCombat':
@@ -341,7 +346,7 @@ export class GameApp {
     this.setMode('COMBAT');
     this.travel.close();
     this.chrome.replaceChildren();
-    const combatants = this.state.clan.members.map((unit) => toCombatant(unit));
+    const combatants = this.state.clan.members.filter((unit) => unit.currentHealth > 0).map((unit) => toCombatant(unit));
     const result = await this.combat.play({
       config,
       clan: combatants,

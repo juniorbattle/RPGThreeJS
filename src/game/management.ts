@@ -17,6 +17,10 @@ export function getWoundedUnitCount(state: GameState): number {
   return state.clan.members.filter((unit) => unit.currentHealth < getFinalStats(unit).maxHealth).length;
 }
 
+export function getFallenUnitCount(state: GameState): number {
+  return state.clan.members.filter((unit) => unit.currentHealth === 0).length;
+}
+
 export function getRestCost(state: GameState): number {
   return getWoundedUnitCount(state) * REST_COST_PER_WOUNDED_UNIT;
 }
@@ -58,6 +62,28 @@ export function restUnits(state: GameState): boolean {
   for (const unit of state.clan.members) {
     unit.currentHealth = getFinalStats(unit).maxHealth;
   }
+  return true;
+}
+
+const CONSUMABLE_HEAL_AMOUNT: Record<string, number> = {
+  potion: 55,
+};
+
+export function useConsumable(state: GameState, unitId: string, itemId: string): boolean {
+  const unit = state.clan.members.find((candidate) => candidate.id === unitId);
+  if (!unit) return false;
+  if ((state.inventory.consumables[itemId] ?? 0) < 1) return false;
+  const maxHealth = getFinalStats(unit).maxHealth;
+  if (itemId === 'revive_vial') {
+    if (unit.currentHealth > 0) return false;
+    unit.currentHealth = Math.floor(maxHealth * 0.5);
+  } else {
+    const healAmount = CONSUMABLE_HEAL_AMOUNT[itemId];
+    if (healAmount === undefined) return false;
+    if (unit.currentHealth >= maxHealth) return false;
+    unit.currentHealth = Math.min(maxHealth, unit.currentHealth + healAmount);
+  }
+  adjust(state.inventory, 'consumables', itemId, -1);
   return true;
 }
 

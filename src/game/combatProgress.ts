@@ -12,9 +12,9 @@ export function applyCombatProgress(
     const stats = getFinalStats(unit);
     const reportedHealth = result.unitHealth[unit.id];
     if (reportedHealth !== undefined) {
-      unit.currentHealth = Math.max(1, Math.min(stats.maxHealth, Math.floor(reportedHealth)));
+      unit.currentHealth = Math.max(0, Math.min(stats.maxHealth, Math.floor(reportedHealth)));
     } else {
-      unit.currentHealth = Math.max(1, Math.min(stats.maxHealth, Math.floor(unit.currentHealth)));
+      unit.currentHealth = Math.max(0, Math.min(stats.maxHealth, Math.floor(unit.currentHealth)));
     }
   }
   state.deployment.unitIds = result.participants
