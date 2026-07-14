@@ -399,3 +399,81 @@ export interface ReputationRule {
   ambushWeightMultiplier: number;
   eventWeightModifiers: Record<string, number>;
 }
+
+export type SkillType = 'phys' | 'mag' | 'heal' | 'buff' | 'debuff' | 'move' | 'revive';
+export type SkillShape = 'circle' | 'line' | 'cone';
+export type SkillMoveMode = 'teleport' | 'leap' | 'dash';
+export type SkillEffectKind =
+  | 'damage' | 'heal' | 'status' | 'buff' | 'revive'
+  | 'dispel' | 'lifesteal' | 'hp_cost' | 'trap' | 'ap_restore' | 'move';
+export type SkillEffectTarget = 'enemies' | 'allies' | 'self' | 'caster' | 'all' | 'tile';
+
+export interface SkillEffect {
+  kind: SkillEffectKind;
+  target: SkillEffectTarget;
+  damageType?: 'phys' | 'mag';
+  power?: number;
+  penetration?: number;
+  status?: string;
+  statusTurns?: number;
+  accuracy?: number;
+  flatHeal?: number;
+  flatDamage?: number;
+  hpCostPercent?: number;
+  lifestealPercent?: number;
+  moveMode?: SkillMoveMode;
+  dispelType?: 'positive' | 'negative' | 'all';
+}
+
+export interface SkillUpgrade {
+  description: string;
+  powerBonus?: number;
+  statusTurnsBonus?: number;
+  radiusBonus?: number;
+  rangeBonus?: number;
+  accuracyBonus?: number;
+  penetrationBonus?: number;
+  additionalStatus?: string;
+  additionalStatusTurns?: number;
+  healMultiplier?: number;
+  revivePercent?: number;
+  hpCostReduction?: number;
+  lifestealBonus?: number;
+  critBonus?: number;
+  selfHealPercent?: number;
+  minRangeReduction?: number;
+  stealBuffs?: boolean;
+  dispelAllies?: boolean;
+}
+
+export interface SkillDefinition {
+  id: string;
+  name: string;
+  description: string;
+  ap: number;
+  icon: string;
+  type: SkillType;
+  power?: number;
+  range?: [number, number];
+  radius?: number;
+  shape?: SkillShape;
+  mode?: SkillMoveMode;
+  dest?: boolean;
+  self?: boolean;
+  offensive?: boolean;
+  support?: boolean;
+  acc?: number;
+  status?: string;
+  statusTurns?: number;
+  impact?: { status: string; statusTurns: number };
+  flatDmg?: number;
+  flatHeal?: number;
+  apRestore?: number;
+  cure?: boolean;
+  allowSelfDamage?: boolean;
+  penetration?: number;
+  crit?: number;
+  effects?: SkillEffect[];
+  upgradeLevel1?: SkillUpgrade;
+  upgradeLevel2?: SkillUpgrade;
+}

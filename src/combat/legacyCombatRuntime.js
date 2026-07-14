@@ -14,6 +14,7 @@ import { combatBackgroundFor } from '../render/combatBackgrounds';
 import { COMBAT_PRESENTATION } from './combatPresentationConfig.js';
 import { VfxSystem } from './vfx/VfxSystem';
 import { installVfxWorkbench } from './vfx/VfxWorkbench';
+import { skills as SKILL_DEFS, skillById as SKILL_MAP } from '../game/skills';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
@@ -519,7 +520,8 @@ function hoverState(c){ if(!c)return'invalid'; if(G.mode==='deploy')return G.dep
 function moveCursor(gx,gz){ const c=cellAt(gx,gz); if(!c){cursorMesh.visible=false;if(cursorUnderMesh)cursorUnderMesh.visible=false;return;} const st=hoverState(c),col=st==='target'?0xff7364:(st==='move'?0x82dfff:(st==='invalid'?0xb7ad83:0xfff0c8)),op=st==='invalid' ? COMBAT_PRESENTATION.arena.invalidTileOpacity+.2 : (st==='target' ? 1 : .95),sc=st==='target'?1.26:(st==='invalid'?1:1.12); cursorMesh.visible=true; cursorMesh.material.color.setHex(col); cursorMesh.material.opacity=op; cursorMesh.scale.setScalar(sc); cursorMesh.position.set(wX(gx),c.topY+0.06,wZ(gz)); if(cursorUnderMesh){cursorUnderMesh.visible=true; cursorUnderMesh.material.opacity=st==='invalid' ? .46 : .66; cursorUnderMesh.scale.setScalar(sc); cursorUnderMesh.position.copy(cursorMesh.position);} }
 
 // ============================= SKILLS =============================
-const SKILLS={
+// Legacy skill definitions for enemy/boss units not yet migrated to the new class system.
+const LEGACY_SKILLS={
   whirl:{name:'Coup Tournoyant',ap:4,type:'phys',power:12,range:[0,0],radius:1,self:true,offensive:true,acc:0.95,desc:'Frappe les unités autour du lanceur, sans toucher le lanceur.'},
   bulwark:{name:'Rempart',ap:3,type:'buff',power:0,range:[0,0],radius:1.3,self:true,support:true,status:'barrier',statusTurns:3,desc:'Barrière : +END aux alliés proches (3 tours).'},
   provoke:{name:'Provocation',ap:3,type:'debuff',power:0,range:[1,2],radius:1.5,offensive:true,acc:1,status:'taunt',statusTurns:2,desc:'Force les ennemis proches à vous cibler (2 tours).'},
@@ -538,22 +540,27 @@ const SKILLS={
   blink:{name:'Clignotement',ap:3,type:'move',mode:'teleport',dest:true,range:[2,3],radius:0,desc:'Se repositionne instantanément sur une case libre.'},
   leap:{name:'Bond',ap:3,type:'move',mode:'leap',dest:true,range:[2,3],radius:0,desc:'Repositionnement rapide vers une case libre.'},
   charge:{name:'Charge',ap:4,type:'move',mode:'dash',dest:true,range:[2,3],radius:0,power:8,impact:{status:'stun',statusTurns:1},desc:'Charge en ligne droite et etourdit pres de l arrivee.'},
-  boss_slam:{name:'Frappe Sismique',ap:4,type:'phys',power:16,range:[1,2],radius:1.2,offensive:true,acc:0.95,desc:'Coup de zone devastateur autour de la cible.'},
-  boss_roar:{name:'Rugissement',ap:5,type:'debuff',power:0,range:[0,3],radius:2,offensive:true,acc:1,status:'weak',statusTurns:3,desc:'Affaiblit tous les ennemis a portee.'},
-  boss_quake:{name:'Onde de Choc',ap:5,type:'mag',power:14,range:[2,4],radius:1.5,offensive:true,acc:0.85,status:'stun',statusTurns:1,desc:'Explosion magique a distance qui etourdit.'},
-  boss_guard:{name:'Garde',ap:3,type:'buff',power:0,range:[0,0],radius:0,self:true,support:true,status:'barrier',statusTurns:3,desc:'Se protege d une barriere.'}
 };
+// Build SKILLS: start with legacy fallbacks, then override with new SkillDefinitions from skills.ts
+const SKILLS={...LEGACY_SKILLS};
+for(const [id,def] of SKILL_MAP){ SKILLS[id]={...def,desc:def.description}; }
 
 // ============================= UNIT DEFINITIONS =============================
 const DEFS=[
-  {team:'player',kind:'knight', name:'Chevalier',portrait:'/assets/characters/pixel/full/alistair.png',hp:130,str:24,mag:4, end:20,dex:9, cha:10,mov:2, weapons:[{name:'Épée',icon:'⚔️',type:'phys',min:1,max:1,power:10,crit:0.10,acc:0.95}], skills:['whirl','bulwark','provoke','charge'], gx:0,gz:0},
-  {team:'player',kind:'cleric', name:'Clerc',portrait:'/assets/characters/pixel/full/marian.png',    hp:90, str:8, mag:20,end:13,dex:11,cha:18,mov:2, weapons:[{name:'Masse',icon:'🔨',type:'phys',min:1,max:1,power:8,crit:0.06,acc:0.92}], skills:['heal','regen','bless','revive'], gx:0,gz:1},
-  {team:'player',kind:'mage',   name:'Mage',portrait:'/assets/characters/pixel/full/elara.png',     hp:70, str:4, mag:26,end:9, dex:12,cha:10,mov:2, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:2,power:8,crit:0.06,acc:0.95}], skills:['fireball','curse','flame_wave','blink'], gx:1,gz:2},
-  {team:'player',kind:'archer', name:'Archère',portrait:'/assets/characters/pixel/full/kestrel.png',  hp:80, str:18,mag:5, end:11,dex:18,cha:9, mov:3, weapons:[{name:'Arc',icon:'🏹',type:'phys',min:2,max:4,power:9,crit:0.10,acc:0.92}], skills:['weaken','blind_shot','pierce_shot','leap'], gx:1,gz:3},
+  {team:'player',kind:'knight', name:'Chevalier',portrait:'/assets/characters/pixel/full/alistair.png',hp:130,str:24,mag:4, end:20,dex:9, cha:10,mov:2, weapons:[{name:'Épée',icon:'⚔️',type:'phys',min:1,max:1,power:10,crit:0.10,acc:0.95}], skills:['w_break_guard','w_charge','w_whirl','w_lion_surge'], gx:0,gz:0},
+  {team:'player',kind:'cleric', name:'Clerc',portrait:'/assets/characters/pixel/full/marian.png',    hp:90, str:8, mag:20,end:13,dex:11,cha:18,mov:2, weapons:[{name:'Masse',icon:'🔨',type:'phys',min:1,max:1,power:8,crit:0.06,acc:0.92}], skills:['w_salvation','w_purify','w_sanctuary','w_miracle'], gx:0,gz:1},
+  {team:'player',kind:'mage',   name:'Mage',portrait:'/assets/characters/pixel/full/elara.png',     hp:70, str:4, mag:26,end:9, dex:12,cha:10,mov:2, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:2,power:8,crit:0.06,acc:0.95}], skills:['n_dark_bolt','n_teleport','n_flame_wave','n_dark_meteor'], gx:1,gz:2},
+  {team:'player',kind:'archer', name:'Archère',portrait:'/assets/characters/pixel/full/kestrel.png',  hp:80, str:18,mag:5, end:11,dex:18,cha:9, mov:3, weapons:[{name:'Arc',icon:'🏹',type:'phys',min:2,max:4,power:9,crit:0.10,acc:0.92}], skills:['a_precise_shot','a_hawk_leap','a_arrow_rain','a_zenith_arrow'], gx:1,gz:3},
+  {team:'player',kind:'knight', name:'Paladin',portrait:'/assets/characters/pixel/full/lion_champion.png',hp:135,str:17,mag:12,end:16,dex:10,cha:14,mov:2,weapons:[{name:'Lame sainte',icon:'⚔',type:'phys',min:1,max:1,power:10,crit:0.06,acc:0.93}],skills:['p_holy_strike','p_interpose','p_oathwall','p_radiant_judgement'],gx:0,gz:2},
+  {team:'player',kind:'darkmage',name:'Chevalier Noir',portrait:'/assets/characters/pixel/full/maelor.png',hp:125,str:19,mag:14,end:14,dex:11,cha:8,mov:2,weapons:[{name:'Lame maudite',icon:'⚔',type:'phys',min:1,max:1,power:11,crit:0.08,acc:0.92}],skills:['d_cursed_blade','d_void_step','d_blood_pact','d_devouring_eclipse'],gx:0,gz:3},
+  {team:'player',kind:'mage',   name:'Mage Rouge',portrait:'/assets/characters/pixel/full/seraphine.png',hp:95,str:13,mag:20,end:10,dex:13,cha:14,mov:2,weapons:[{name:'Bâton rouge',icon:'✦',type:'mag',min:1,max:2,power:9,crit:0.06,acc:0.95}],skills:['r_arcane_blade','r_rune_step','r_scarlet_circle','r_perfect_duality'],gx:1,gz:0},
+  {team:'player',kind:'cleric', name:'Enchanteur',portrait:'/assets/characters/pixel/full/chroniqueur.png',hp:90,str:6,mag:22,end:10,dex:12,cha:20,mov:2,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:2,power:7,crit:0.04,acc:0.94}],skills:['e_vigor_rune','e_transpose','e_binding_seal','e_absolute_harmony'],gx:1,gz:1},
+  {team:'player',kind:'rogue',  name:'Ninja',portrait:'/assets/characters/pixel/full/seal_guardian.png',hp:105,str:16,mag:8,end:10,dex:24,cha:10,mov:3,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:8,crit:0.20,acc:0.95}],skills:['ni_venom_blade','ni_shadow_step','ni_smoke_bomb','ni_silent_assassin'],gx:2,gz:0},
+  {team:'player',kind:'archer', name:'Artilleur',portrait:'/assets/characters/pixel/full/fallback_hero.png',hp:110,str:16,mag:6,end:12,dex:18,cha:8,mov:2,weapons:[{name:'Arbalète',icon:'⌁',type:'phys',min:2,max:4,power:10,crit:0.08,acc:0.93}],skills:['ar_calibrated_shot','ar_explosive_retreat','ar_incendiary_grenade','ar_artillery_barrage'],gx:2,gz:1},
   {team:'foe',kind:'brigand', name:'Brigand',portrait:'/assets/characters/pixel/full/serpent_raider.png',  hp:90, str:18,mag:4, end:11,dex:14,cha:6, mov:2, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}], skills:[], ai:'aggressive', gx:6,gz:0},
   {team:'foe',kind:'brigand', name:'Brigand',portrait:'/assets/characters/pixel/full/serpent_raider.png',  hp:90, str:18,mag:4, end:11,dex:14,cha:6, mov:2, weapons:[{name:'Dague',icon:'🗡️',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}], skills:[], ai:'aggressive', gx:6,gz:3},
-  {team:'foe',kind:'brute',   name:'Brute',portrait:'/assets/characters/pixel/full/serpent_brute.png',    hp:130,str:22,mag:4, end:16,dex:7, cha:5, mov:2, weapons:[{name:'Massue',icon:'🏏',type:'phys',min:1,max:1,power:13,crit:0.05,acc:0.85}], skills:['heavy'], ai:'guardian', gx:7,gz:1},
-  {team:'foe',kind:'darkmage',name:'Mage Noir',portrait:'/assets/characters/pixel/full/serpent_oracle.png',hp:70, str:4, mag:22,end:10,dex:12,cha:8, mov:2, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}], skills:['bolt','curse'], ai:'cautious', gx:7,gz:2}
+  {team:'foe',kind:'brute',   name:'Brute',portrait:'/assets/characters/pixel/full/serpent_brute.png',    hp:130,str:22,mag:4, end:16,dex:7, cha:5, mov:2, weapons:[{name:'Massue',icon:'🏏',type:'phys',min:1,max:1,power:13,crit:0.05,acc:0.85}], skills:['enemy_heavy_strike'], ai:'guardian', gx:7,gz:1},
+  {team:'foe',kind:'darkmage',name:'Mage Noir',portrait:'/assets/characters/pixel/full/serpent_oracle.png',hp:70, str:4, mag:22,end:10,dex:12,cha:8, mov:2, weapons:[{name:'Bâton',icon:'🪄',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}], skills:['enemy_dark_bolt','enemy_hex'], ai:'cautious', gx:7,gz:2}
 ];
 
 const BOSS_DEFS=[
@@ -573,37 +580,37 @@ const BOSS_ESCORTS={
   serpent_captain:[
     {team:'foe',kind:'brigand', name:'Garde Serpent',portrait:'/assets/characters/pixel/full/serpent_raider.png',hp:95,str:19,mag:4,end:12,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:[],ai:'aggressive',gx:7,gz:0},
     {team:'foe',kind:'brigand', name:'Garde Serpent',portrait:'/assets/characters/pixel/full/serpent_raider.png',hp:95,str:19,mag:4,end:12,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:[],ai:'aggressive',gx:7,gz:3},
-    {team:'foe',kind:'darkmage',name:'Oracle Serpent',portrait:'/assets/characters/pixel/full/serpent_oracle.png',hp:78,str:4,mag:23,end:10,dex:12,cha:8,mov:2,weapons:[{name:'Bâton',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}],skills:['bolt','curse'],ai:'cautious',gx:4,gz:3}
+    {team:'foe',kind:'darkmage',name:'Oracle Serpent',portrait:'/assets/characters/pixel/full/serpent_oracle.png',hp:78,str:4,mag:23,end:10,dex:12,cha:8,mov:2,weapons:[{name:'Bâton',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}],skills:['enemy_dark_bolt','enemy_hex'],ai:'cautious',gx:4,gz:3}
   ],
   lion_chief:[
-    {team:'foe',kind:'knight',name:'Champion du Lion',portrait:'/assets/characters/pixel/full/alaric.png',hp:120,str:22,mag:4,end:17,dex:9,cha:9,mov:2,weapons:[{name:'Lame',icon:'⚔',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.92}],skills:['heavy'],ai:'guardian',gx:7,gz:0},
-    {team:'foe',kind:'darkmage',name:'Gardien du Sceau',portrait:'/assets/characters/pixel/full/shrine_apparition.png',hp:92,str:8,mag:20,end:13,dex:10,cha:16,mov:2,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.04,acc:0.94}],skills:['curse','boss_guard'],ai:'cautious',gx:7,gz:3}
+    {team:'foe',kind:'knight',name:'Champion du Lion',portrait:'/assets/characters/pixel/full/alaric.png',hp:120,str:22,mag:4,end:17,dex:9,cha:9,mov:2,weapons:[{name:'Lame',icon:'⚔',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.92}],skills:['enemy_heavy_strike'],ai:'guardian',gx:7,gz:0},
+    {team:'foe',kind:'darkmage',name:'Gardien du Sceau',portrait:'/assets/characters/pixel/full/shrine_apparition.png',hp:92,str:8,mag:20,end:13,dex:10,cha:16,mov:2,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.04,acc:0.94}],skills:['enemy_hex','boss_guard'],ai:'cautious',gx:7,gz:3}
   ]
 };
 
 const VISUAL_UNIT_TEMPLATES={
   serpent_raider:{team:'foe',kind:'brigand', name:'Pillard Serpent',portrait:'/assets/characters/pixel/full/serpent_raider.png',hp:90,str:18,mag:4,end:11,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:[],ai:'aggressive'},
-  serpent_brute:{team:'foe',kind:'brute',name:'Brute Serpent',portrait:'/assets/characters/pixel/full/serpent_brute.png',hp:130,str:22,mag:4,end:16,dex:7,cha:5,mov:2,weapons:[{name:'Massue',icon:'◆',type:'phys',min:1,max:1,power:13,crit:0.05,acc:0.85}],skills:['heavy'],ai:'guardian'},
-  serpent_oracle:{team:'foe',kind:'darkmage',name:'Oracle Serpent',portrait:'/assets/characters/pixel/full/serpent_oracle.png',hp:78,str:4,mag:23,end:10,dex:12,cha:8,mov:2,weapons:[{name:'Bâton',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}],skills:['bolt','curse'],ai:'cautious'},
-  serpent_elite_raider:{team:'foe',kind:'brigand', name:'Duelliste Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_raider.png',hp:220,str:24,mag:6,end:16,dex:17,cha:8,mov:0,weapons:[{name:'Lames volantes',icon:'†',type:'phys',min:2,max:3,power:13,crit:0.22,acc:0.95}],skills:['weaken','blind_shot','boss_guard'],ai:'aggressive',size:2,immobile:true,elite:true},
-  serpent_elite_brute:{team:'foe',kind:'brute',name:'Massacreur Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_brute.png',hp:280,str:28,mag:4,end:22,dex:7,cha:7,mov:0,weapons:[{name:'Lance-masse',icon:'◆',type:'phys',min:2,max:3,power:17,crit:0.06,acc:0.84}],skills:['heavy','provoke','boss_guard'],ai:'guardian',size:2,immobile:true,elite:true},
-  serpent_duelist_elite:{team:'foe',kind:'brigand',name:'Duelliste Serpent',portrait:'/assets/characters/pixel/full/serpent_duelist_elite.png',hp:240,str:25,mag:8,end:17,dex:19,cha:8,mov:0,weapons:[{name:'Lames de jet',icon:'†',type:'phys',min:2,max:4,power:14,crit:0.24,acc:0.96}],skills:['weaken','blind_shot','boss_guard'],ai:'aggressive',size:2,immobile:true,elite:true},
+  serpent_brute:{team:'foe',kind:'brute',name:'Brute Serpent',portrait:'/assets/characters/pixel/full/serpent_brute.png',hp:130,str:22,mag:4,end:16,dex:7,cha:5,mov:2,weapons:[{name:'Massue',icon:'◆',type:'phys',min:1,max:1,power:13,crit:0.05,acc:0.85}],skills:['enemy_heavy_strike'],ai:'guardian'},
+  serpent_oracle:{team:'foe',kind:'darkmage',name:'Oracle Serpent',portrait:'/assets/characters/pixel/full/serpent_oracle.png',hp:78,str:4,mag:23,end:10,dex:12,cha:8,mov:2,weapons:[{name:'Bâton',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}],skills:['enemy_dark_bolt','enemy_hex'],ai:'cautious'},
+  serpent_elite_raider:{team:'foe',kind:'brigand', name:'Duelliste Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_raider.png',hp:220,str:24,mag:6,end:16,dex:17,cha:8,mov:0,weapons:[{name:'Lames volantes',icon:'†',type:'phys',min:2,max:3,power:13,crit:0.22,acc:0.95}],skills:['enemy_binding_shot','enemy_smoke_veil','boss_guard'],ai:'aggressive',size:2,immobile:true,elite:true},
+  serpent_elite_brute:{team:'foe',kind:'brute',name:'Massacreur Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_brute.png',hp:280,str:28,mag:4,end:22,dex:7,cha:7,mov:0,weapons:[{name:'Lance-masse',icon:'◆',type:'phys',min:2,max:3,power:17,crit:0.06,acc:0.84}],skills:['enemy_heavy_strike','enemy_taunt','boss_guard'],ai:'guardian',size:2,immobile:true,elite:true},
+  serpent_duelist_elite:{team:'foe',kind:'brigand',name:'Duelliste Serpent',portrait:'/assets/characters/pixel/full/serpent_duelist_elite.png',hp:240,str:25,mag:8,end:17,dex:19,cha:8,mov:0,weapons:[{name:'Lames de jet',icon:'†',type:'phys',min:2,max:4,power:14,crit:0.24,acc:0.96}],skills:['enemy_binding_shot','enemy_smoke_veil','boss_guard'],ai:'aggressive',size:2,immobile:true,elite:true},
   wolf:{team:'foe',kind:'brigand',name:'Loup',portrait:'/assets/characters/pixel/full/wolf.png',hp:82,str:19,mag:2,end:10,dex:18,cha:4,mov:3,weapons:[{name:'Morsure',icon:'◆',type:'phys',min:1,max:1,power:10,crit:0.12,acc:0.94}],skills:[],ai:'aggressive'},
-  venom_serpent:{team:'foe',kind:'brigand',name:'Serpent venimeux',portrait:'/assets/characters/pixel/full/venom_serpent.png',hp:95,str:17,mag:8,end:12,dex:13,cha:4,mov:2,weapons:[{name:'Crochets',icon:'◆',type:'phys',min:1,max:1,power:9,crit:0.1,acc:0.93}],skills:['weaken'],ai:'cautious'},
-  forest_spider:{team:'foe',kind:'brigand',name:'Araignee forestiere',portrait:'/assets/characters/pixel/full/forest_spider.png',hp:72,str:16,mag:6,end:9,dex:17,cha:3,mov:3,weapons:[{name:'Mandibules',icon:'◆',type:'phys',min:1,max:1,power:8,crit:0.12,acc:0.93}],skills:['weaken'],ai:'aggressive'},
+  venom_serpent:{team:'foe',kind:'brigand',name:'Serpent venimeux',portrait:'/assets/characters/pixel/full/venom_serpent.png',hp:95,str:17,mag:8,end:12,dex:13,cha:4,mov:2,weapons:[{name:'Crochets',icon:'◆',type:'phys',min:1,max:1,power:9,crit:0.1,acc:0.93}],skills:['enemy_venom_strike'],ai:'cautious'},
+  forest_spider:{team:'foe',kind:'brigand',name:'Araignee forestiere',portrait:'/assets/characters/pixel/full/forest_spider.png',hp:72,str:16,mag:6,end:9,dex:17,cha:3,mov:3,weapons:[{name:'Mandibules',icon:'◆',type:'phys',min:1,max:1,power:8,crit:0.12,acc:0.93}],skills:['enemy_binding_shot'],ai:'aggressive'},
   forest_badger:{team:'foe',kind:'brigand',name:'Blaireau',portrait:'/assets/characters/pixel/full/forest_badger.png',hp:88,str:18,mag:2,end:12,dex:14,cha:3,mov:2,weapons:[{name:'Griffes',icon:'◆',type:'phys',min:1,max:1,power:10,crit:0.1,acc:0.92}],skills:[],ai:'aggressive'},
-  marsh_toad:{team:'foe',kind:'brute',name:'Crapaud toxique',portrait:'/assets/characters/pixel/full/marsh_toad.png',hp:108,str:14,mag:10,end:15,dex:8,cha:3,mov:2,weapons:[{name:'Langue lourde',icon:'◆',type:'phys',min:1,max:2,power:8,crit:0.04,acc:0.88}],skills:['weaken'],ai:'guardian'},
+  marsh_toad:{team:'foe',kind:'brute',name:'Crapaud toxique',portrait:'/assets/characters/pixel/full/marsh_toad.png',hp:108,str:14,mag:10,end:15,dex:8,cha:3,mov:2,weapons:[{name:'Langue lourde',icon:'◆',type:'phys',min:1,max:2,power:8,crit:0.04,acc:0.88}],skills:['enemy_venom_strike'],ai:'guardian'},
   cave_rat:{team:'foe',kind:'brigand',name:'Rat geant',portrait:'/assets/characters/pixel/full/cave_rat.png',hp:68,str:14,mag:2,end:8,dex:20,cha:2,mov:3,weapons:[{name:'Morsure',icon:'◆',type:'phys',min:1,max:1,power:8,crit:0.16,acc:0.94}],skills:[],ai:'aggressive'},
-  wild_boar:{team:'foe',kind:'brute',name:'Sanglier',portrait:'/assets/characters/pixel/full/wild_boar.png',hp:116,str:21,mag:2,end:15,dex:10,cha:3,mov:2,weapons:[{name:'Charge',icon:'◆',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.9}],skills:['heavy'],ai:'guardian'},
+  wild_boar:{team:'foe',kind:'brute',name:'Sanglier',portrait:'/assets/characters/pixel/full/wild_boar.png',hp:116,str:21,mag:2,end:15,dex:10,cha:3,mov:2,weapons:[{name:'Charge',icon:'◆',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.9}],skills:['enemy_heavy_strike'],ai:'guardian'},
   goblin:{team:'foe',kind:'brigand',name:'Gobelin',portrait:'/assets/characters/pixel/full/goblin.png',hp:75,str:15,mag:4,end:9,dex:16,cha:5,mov:3,weapons:[{name:'Lance rouillée',icon:'↟',type:'phys',min:1,max:2,power:8,crit:0.08,acc:0.9}],skills:[],ai:'aggressive'},
-  skeleton:{team:'foe',kind:'knight',name:'Squelette',portrait:'/assets/characters/pixel/full/skeleton.png',hp:105,str:18,mag:4,end:14,dex:8,cha:3,mov:2,weapons:[{name:'Épée rouillée',icon:'⚔',type:'phys',min:1,max:1,power:10,crit:0.05,acc:0.88}],skills:['heavy'],ai:'guardian'},
-  troll:{team:'foe',kind:'brute',name:'Troll',portrait:'/assets/characters/pixel/full/troll.png',hp:190,str:28,mag:3,end:22,dex:5,cha:4,mov:2,weapons:[{name:'Tronc',icon:'◆',type:'phys',min:1,max:1,power:16,crit:0.04,acc:0.82}],skills:['heavy'],ai:'guardian'},
-  young_wyrm:{team:'foe',kind:'brute',name:'Jeune Wyrm',portrait:'/assets/characters/pixel/full/young_wyrm.png',hp:160,str:24,mag:14,end:18,dex:10,cha:8,mov:2,weapons:[{name:'Souffle court',icon:'✦',type:'mag',min:1,max:2,power:14,crit:0.06,acc:0.88}],skills:['bolt'],ai:'cautious'},
-  forest_troll_elite:{team:'foe',kind:'brute',name:'Troll forestier',portrait:'/assets/characters/pixel/full/forest_troll_elite.png',hp:320,str:30,mag:3,end:24,dex:6,cha:5,mov:0,weapons:[{name:'Jet de pierre',icon:'◆',type:'phys',min:2,max:4,power:18,crit:0.04,acc:0.84}],skills:['heavy','provoke','boss_guard'],ai:'guardian',size:2,immobile:true,elite:true},
-  young_dragon_elite:{team:'foe',kind:'brute',name:'Jeune dragon',portrait:'/assets/characters/pixel/full/young_dragon_elite.png',hp:300,str:24,mag:20,end:20,dex:12,cha:10,mov:0,weapons:[{name:'Souffle emeraude',icon:'✦',type:'mag',min:2,max:4,power:17,crit:0.07,acc:0.9}],skills:['bolt','flame_wave','boss_guard'],ai:'cautious',size:2,immobile:true,elite:true},
-  undead_champion:{team:'foe',kind:'knight',name:'Champion mort-vivant',portrait:'/assets/characters/pixel/full/undead_champion.png',hp:260,str:26,mag:10,end:22,dex:9,cha:6,mov:0,weapons:[{name:'Onde froide',icon:'✦',type:'mag',min:2,max:3,power:15,crit:0.08,acc:0.9}],skills:['heavy','curse','boss_guard'],ai:'guardian',size:2,immobile:true,elite:true},
-  lion_champion:{team:'foe',kind:'knight',name:'Champion du Lion',portrait:'/assets/characters/pixel/full/lion_champion.png',hp:120,str:22,mag:4,end:17,dex:9,cha:9,mov:2,weapons:[{name:'Lame',icon:'⚔',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.92}],skills:['heavy'],ai:'guardian'},
-  seal_guardian:{team:'foe',kind:'darkmage',name:'Gardien du Sceau',portrait:'/assets/characters/pixel/full/seal_guardian.png',hp:92,str:8,mag:20,end:13,dex:10,cha:16,mov:2,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.04,acc:0.94}],skills:['curse','boss_guard'],ai:'cautious'}
+  skeleton:{team:'foe',kind:'knight',name:'Squelette',portrait:'/assets/characters/pixel/full/skeleton.png',hp:105,str:18,mag:4,end:14,dex:8,cha:3,mov:2,weapons:[{name:'Épée rouillée',icon:'⚔',type:'phys',min:1,max:1,power:10,crit:0.05,acc:0.88}],skills:['enemy_heavy_strike'],ai:'guardian'},
+  troll:{team:'foe',kind:'brute',name:'Troll',portrait:'/assets/characters/pixel/full/troll.png',hp:190,str:28,mag:3,end:22,dex:5,cha:4,mov:2,weapons:[{name:'Tronc',icon:'◆',type:'phys',min:1,max:1,power:16,crit:0.04,acc:0.82}],skills:['enemy_heavy_strike'],ai:'guardian'},
+  young_wyrm:{team:'foe',kind:'brute',name:'Jeune Wyrm',portrait:'/assets/characters/pixel/full/young_wyrm.png',hp:160,str:24,mag:14,end:18,dex:10,cha:8,mov:2,weapons:[{name:'Souffle court',icon:'✦',type:'mag',min:1,max:2,power:14,crit:0.06,acc:0.88}],skills:['enemy_dark_bolt'],ai:'cautious'},
+  forest_troll_elite:{team:'foe',kind:'brute',name:'Troll forestier',portrait:'/assets/characters/pixel/full/forest_troll_elite.png',hp:320,str:30,mag:3,end:24,dex:6,cha:5,mov:0,weapons:[{name:'Jet de pierre',icon:'◆',type:'phys',min:2,max:4,power:18,crit:0.04,acc:0.84}],skills:['enemy_heavy_strike','enemy_taunt','boss_guard'],ai:'guardian',size:2,immobile:true,elite:true},
+  young_dragon_elite:{team:'foe',kind:'brute',name:'Jeune dragon',portrait:'/assets/characters/pixel/full/young_dragon_elite.png',hp:300,str:24,mag:20,end:20,dex:12,cha:10,mov:0,weapons:[{name:'Souffle emeraude',icon:'✦',type:'mag',min:2,max:4,power:17,crit:0.07,acc:0.9}],skills:['enemy_dark_bolt','enemy_dragon_breath','boss_guard'],ai:'cautious',size:2,immobile:true,elite:true},
+  undead_champion:{team:'foe',kind:'knight',name:'Champion mort-vivant',portrait:'/assets/characters/pixel/full/undead_champion.png',hp:260,str:26,mag:10,end:22,dex:9,cha:6,mov:0,weapons:[{name:'Onde froide',icon:'✦',type:'mag',min:2,max:3,power:15,crit:0.08,acc:0.9}],skills:['enemy_heavy_strike','enemy_hex','boss_guard'],ai:'guardian',size:2,immobile:true,elite:true},
+  lion_champion:{team:'foe',kind:'knight',name:'Champion du Lion',portrait:'/assets/characters/pixel/full/lion_champion.png',hp:120,str:22,mag:4,end:17,dex:9,cha:9,mov:2,weapons:[{name:'Lame',icon:'⚔',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.92}],skills:['enemy_heavy_strike'],ai:'guardian'},
+  seal_guardian:{team:'foe',kind:'darkmage',name:'Gardien du Sceau',portrait:'/assets/characters/pixel/full/seal_guardian.png',hp:92,str:8,mag:20,end:13,dex:10,cha:16,mov:2,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.04,acc:0.94}],skills:['enemy_hex','boss_guard'],ai:'cautious'}
 };
 const ENEMY_VISUAL_POSITIONS=[[6,0],[7,1],[6,3],[7,2]];
 // Large enemies reserve the outer two columns. Escorts stay to the left so
@@ -989,7 +996,7 @@ async function playSpriteMotion(u,presetId,context={}){
 }
 
 function orientMult(att,tgt){ const ax=(att.size>1?bossCenterGX(att):att.gx)-tgt.gx, az=(att.size>1?bossCenterGZ(att):att.gz)-tgt.gz; const len=Math.hypot(ax,az)||1; const d=tgt.facing.dx*(ax/len)+tgt.facing.dz*(az/len); if(d>0.55)return{m:1.0,lab:'face'}; if(d<-0.55)return{m:1.3,lab:'DOS'}; return{m:1.15,lab:'flanc'}; }
-function computeDamage(att,tgt,spec){ const K=15, isMag=spec.type==='mag'; const atkStat=isMag?effMAG(att):effSTR(att); let def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); if(spec.elanPierce) def=Math.max(1,def*(1-spec.elanPierce)); const o=orientMult(att,tgt); let d=Math.sqrt(spec.power*K*atkStat/def)*2*o.m*dmgTakenMul(tgt)*rnd(0.92,1.08); if(spec.elanMul) d*=spec.elanMul; return {dmg:Math.max(1,Math.round(d)),lab:o.lab}; }
+function computeDamage(att,tgt,spec){ const K=15, isMag=spec.type==='mag'; const atkStat=isMag?effMAG(att):effSTR(att); let def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); if(spec.elanPierce) def=Math.max(1,def*(1-spec.elanPierce)); if(spec.penetration) def=Math.max(1,def*(1-spec.penetration)); const o=orientMult(att,tgt); let d=Math.sqrt(spec.power*K*atkStat/def)*2*o.m*dmgTakenMul(tgt)*rnd(0.92,1.08); if(spec.elanMul) d*=spec.elanMul; return {dmg:Math.max(1,Math.round(d)),lab:o.lab}; }
 const FX_COL={phys:0xff7a4a,mag:0xb06aff,heal:0x7ed957,buff:0xffd27a,debuff:0xb06aff,move:0x5ad1ff};
 function fxColor(spec){ return FX_COL[spec.heal?'heal':(spec.revive?'heal':spec.type)]||0xfff0b0; }
 function castTelegraph(u,spec){ const c=u.cell(); if(!c)return; const col=fxColor(spec);
@@ -1029,13 +1036,37 @@ function skillUpgradeLevel(u,skillId){ return Math.max(0,Math.min(2,Math.floor((
 function applySkillUpgrade(u,skillId,spec){
   const level=skillUpgradeLevel(u,skillId); if(!level)return spec;
   const out={...spec,upgradeLevel:level};
+  const def=SKILLS[skillId];
+  // New per-skill upgrade system: apply upgradeLevel1, then upgradeLevel2
+  if(def&&def.upgradeLevel1){
+    const ups=[def.upgradeLevel1,def.upgradeLevel2].filter(Boolean).slice(0,level);
+    for(const up of ups){
+      if(up.powerBonus&&(out.power||0)>0) out.power+=up.powerBonus;
+      if(up.statusTurnsBonus&&out.statusTurns) out.statusTurns+=up.statusTurnsBonus;
+      if(up.radiusBonus&&out.radius) out.radius+=up.radiusBonus;
+      if(up.rangeBonus&&out.range) out.range=[out.range[0],out.range[1]+up.rangeBonus];
+      if(up.accuracyBonus&&out.acc) out.acc=Math.min(0.99,out.acc+up.accuracyBonus);
+      if(up.penetrationBonus) out.penetration=(out.penetration||0)+up.penetrationBonus;
+      if(up.healMultiplier&&out.heal) out.power*=1+up.healMultiplier;
+      if(up.revivePercent!=null&&out.revive) out.power=up.revivePercent;
+      if(up.critBonus) out.crit=(out.crit||0)+up.critBonus;
+      if(up.hpCostReduction&&out.hpCostPercent) out.hpCostPercent=Math.max(0,out.hpCostPercent-up.hpCostReduction);
+      if(up.lifestealBonus&&out.lifestealPercent) out.lifestealPercent+=up.lifestealBonus;
+      if(up.additionalStatus){ out.additionalStatus=up.additionalStatus; out.additionalStatusTurns=up.additionalStatusTurns||1; }
+      if(up.selfHealPercent) out.selfHealPercent=up.selfHealPercent;
+      if(up.minRangeReduction&&out.range) out.range=[Math.max(0,out.range[0]-up.minRangeReduction),out.range[1]];
+      if(up.stealBuffs) out.stealBuffs=true;
+      if(up.dispelAllies) out.dispelAllies=true;
+    }
+    return out;
+  }
+  // Legacy generic upgrade fallback for old skills without per-skill upgrades
   if(out.heal) out.power*=level===1?1.1:1.2;
   else if(out.revive) out.power=level===1?0.6:0.7;
   else if((out.power||0)>0) out.power+=level===1?2:4;
   if(out.statusTurns) out.statusTurns+=1;
   if(level>=2&&out.radius&&out.radius>0) out.radius+=0.25;
   if(out.dest&&out.range) out.range=[out.range[0],out.range[1]+level];
-  if(level>=2&&out.dest&&out.ap>1) out.ap-=1;
   return out;
 }
 function getSpec(u,which,wi,charge){ if(which==='attack'){ const w=(u.weapons&&u.weapons[wi||0])||(u.weapons&&u.weapons[0])||{name:'Attaque',type:'phys',min:1,max:1,power:8,crit:0.05,acc:0.9};
@@ -1046,7 +1077,7 @@ function getSpec(u,which,wi,charge){ if(which==='attack'){ const w=(u.weapons&&u
     const acc=lvl>=2?Math.min(0.99,w.acc+0.10):w.acc;
     const labels=['Attaque','Attaque+','Attaque++'];
     return {key:'attack',wi:(wi||0),charge:lvl,name:labels[lvl],icon:w.icon,ap:apCost,type:w.type,power:w.power,range:[w.min,w.max],radius:0,offensive:true,self:false,acc,crit:w.crit,elanMul,elanPierce}; }
-  const s=SKILLS[which]; return applySkillUpgrade(u,which,{key:which,name:s.name,ap:s.ap,type:s.type,power:s.power||0,range:s.self?[0,0]:s.range,radius:s.radius,shape:s.shape,mode:s.mode,dest:!!s.dest,impact:s.impact,status:s.status,statusTurns:s.statusTurns,acc:s.acc,support:!!s.support,offensive:!!s.offensive,self:!!s.self,heal:s.type==='heal',revive:s.type==='revive'}); }
+  const s=SKILLS[which]; return applySkillUpgrade(u,which,{key:which,name:s.name,icon:s.icon,ap:s.ap,type:s.type,power:s.power||0,range:s.self?[0,0]:s.range,radius:s.radius,shape:s.shape,mode:s.mode,dest:!!s.dest,impact:s.impact,status:s.status,statusTurns:s.statusTurns,acc:s.acc,support:!!s.support,offensive:!!s.offensive,self:!!s.self,heal:s.type==='heal',revive:s.type==='revive',penetration:s.penetration,crit:s.crit,effects:s.effects,flatHeal:s.flatHeal,flatDmg:s.flatDmg,apRestore:s.apRestore,cure:s.cure,allowSelfDamage:s.allowSelfDamage,hpCostPercent:s.hpCostPercent,lifestealPercent:s.lifestealPercent}); }
 function rangeCells(u,spec){ if(spec.self)return [{gx:u.gx,gz:u.gz}]; const ux=u.size>1?bossCenterGX(u):u.gx, uz=u.size>1?bossCenterGZ(u):u.gz; const out=[]; for(let gx=0;gx<CFG.W;gx++)for(let gz=0;gz<CFG.D;gz++){ const md=Math.abs(gx-ux)+Math.abs(gz-uz); if(md<spec.range[0]||md>spec.range[1])continue; if(spec.revive){ if(!G.units.some(x=>!x.alive&&x.downed&&x.team===u.team&&x.gx===gx&&x.gz===gz))continue; } if(spec.item&&spec.support){ const oc=cellAt(gx,gz)?.occupant; if(!(oc&&oc.alive&&oc.team===u.team))continue; } if(spec.dest){ const dc=cellAt(gx,gz); if(!dc||!dc.walkable||(dc.occupant&&dc.occupant!==u))continue; if(spec.mode==='dash'&&gx!==u.gx&&gz!==u.gz)continue; if(spec.mode==='dash'&&!clearLine(u,gx,gz))continue; } out.push({gx,gz}); } return out; }
 function clearLine(u,gx,gz){ const dx=Math.sign(gx-u.gx), dz=Math.sign(gz-u.gz); let x=u.gx+dx, z=u.gz+dz, g=0; while((x!==gx||z!==gz)&&g++<40){ const c=cellAt(x,z); if(!c||!c.walkable||c.occupant)return false; x+=dx; z+=dz; } return true; }
 function aoeTiles(cx,cz,radius){ const out=[],R=radius+0.001; for(let gx=Math.ceil(cx-radius);gx<=Math.floor(cx+radius);gx++)for(let gz=Math.ceil(cz-radius);gz<=Math.floor(cz+radius);gz++){ if(inBounds(gx,gz)&&eud(gx,gz,cx,cz)<=R)out.push([gx,gz]); } if(!out.length&&inBounds(cx,cz))out.push([cx,cz]); return out; }
@@ -1056,8 +1087,9 @@ function coneCells(u,cx,cz,radius){ const d=dirTo(u,cx,cz); const R=radius+0.001
 function aoeCells(u,spec,cx,cz){ const sh=spec.shape||'circle'; if(sh==='line')return lineCells(u,cx,cz,spec.radius); if(sh==='cone')return coneCells(u,cx,cz,spec.radius); return aoeTiles(cx,cz,spec.radius); }
 function canAffectUnit(caster,spec,target){ if(!target)return false; if(spec.offensive&&target===caster&&!spec.allowSelfDamage)return false; return true; }
 function affectedUnits(u,spec,cx,cz){ if(spec.revive){ const ko=G.units.find(x=>!x.alive&&x.downed&&x.team===u.team&&x.gx===cx&&x.gz===cz); return ko?[ko]:[]; } const set=[]; for(const [gx,gz] of aoeCells(u,spec,cx,cz)){ const c=cellAt(gx,gz); if(c&&c.occupant&&c.occupant.alive&&canAffectUnit(u,spec,c.occupant))set.push(c.occupant); } if(spec.heal||spec.support)return set.filter(t=>t.team===u.team); return set; }
+function effectTargets(u,spec,cx,cz,effect){ const all=affectedUnits(u,spec,cx,cz); const t=effect.target; if(t==='caster'||t==='self')return [u]; if(t==='allies')return all.filter(x=>x.team===u.team); if(t==='enemies')return all.filter(x=>x.team!==u.team); if(t==='all')return all; return all; }
 function previewAccuracy(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return 100; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; return Math.round(cl(acc,5,95)); }
-function previewPower(att,tgt,spec){ if(spec.heal)return Math.max(1,(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(att)*spec.power))+Math.floor(effCHA(att)/4)); if(spec.apRestore)return spec.apRestore; if((spec.power||0)<=0)return 0; if(spec.flatDmg)return Math.max(1,Math.round(spec.flatDmg)); const K=15,isMag=spec.type==='mag'; const atk=isMag?effMAG(att):effSTR(att); let def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); if(spec.elanPierce) def=Math.max(1,def*(1-spec.elanPierce)); let d=Math.sqrt(spec.power*K*atk/def)*2*orientMult(att,tgt).m*dmgTakenMul(tgt); if(spec.elanMul) d*=spec.elanMul; return Math.max(1,Math.round(d)); }
+function previewPower(att,tgt,spec){ if(spec.heal)return Math.max(1,(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(att)*spec.power))+Math.floor(effCHA(att)/4)); if(spec.apRestore)return spec.apRestore; if((spec.power||0)<=0)return 0; if(spec.flatDmg)return Math.max(1,Math.round(spec.flatDmg)); const K=15,isMag=spec.type==='mag'; const atk=isMag?effMAG(att):effSTR(att); let def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); if(spec.elanPierce) def=Math.max(1,def*(1-spec.elanPierce)); if(spec.penetration) def=Math.max(1,def*(1-spec.penetration)); let d=Math.sqrt(spec.power*K*atk/def)*2*orientMult(att,tgt).m*dmgTakenMul(tgt); if(spec.elanMul) d*=spec.elanMul; return Math.max(1,Math.round(d)); }
 function hideActionPreview(){ dom.actionPreview.classList.add('hidden'); dom.actionPreview.innerHTML=''; }
 function showActionPreview(att,spec,targets,cx,cz){ const primary=targets[0]||null; const helpful=Boolean(spec.heal||spec.support||spec.revive||spec.apRestore||spec.cure); const alliesHit=targets.filter(t=>t.team===att.team&&!helpful).length; const estimate=primary?previewPower(att,primary,spec):0; const accuracy=primary?previewAccuracy(att,primary,spec):null; const valueLabel=spec.heal?'Soin':spec.apRestore?'AP':'Dégâts'; const targetLabel=primary?primary.name:(spec.type==='move'?('Case '+cx+','+cz):'Aucune cible');
   dom.actionPreview.innerHTML='<div class="action-preview__unit"><small>Lanceur</small><b>'+att.name+'</b></div><span class="action-preview__arrow">→</span><div class="action-preview__act"><small>'+((helpful)?'Soutien':'Action')+'</small><b>'+(spec.icon||'✦')+' '+spec.name+'</b>'+(estimate?'<em>'+valueLabel+' ~'+estimate+(accuracy!=null&&!helpful?' · '+accuracy+'%':'')+'</em>':'')+'</div><span class="action-preview__arrow">→</span><div class="action-preview__unit"><small>Cible'+(targets.length>1?'s':'')+'</small><b>'+targetLabel+(targets.length>1?' ×'+targets.length:'')+'</b></div>'+(alliesHit?'<strong class="action-preview__warning">⚠ '+alliesHit+' allié'+(alliesHit>1?'s':'')+' touché'+(alliesHit>1?'s':'')+'</strong>':'');
@@ -1159,19 +1191,55 @@ async function doMove(u,spec,cx,cz){ setFacing(u,cx,cz); const c=cellAt(cx,cz); 
     if(spec.impact){ const hits=aliveUnits().filter(t=>t.team!==u.team&&(Math.abs(t.gx-cx)+Math.abs(t.gz-cz)===1)); for(const t of hits){ const {dmg}=computeDamage(u,t,{type:'phys',power:spec.power||8}); floatText(t,'-'+dmg,'#ffffff',true); await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&spec.impact.status)applyStatus(t,spec.impact.status,spec.impact.statusTurns); await wait(0.06); } } }
   await wait(0.12); }
 async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPreview(); G.busy=true; closeMenus(); clearHL();
-  if(spec.type==='move'){ await doMove(u,spec,cx,cz); if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap); G.movedThisTurn=true; refreshPanel(u); restoreCam(); G.busy=false; checkEnd(); return; }
+  if(spec.type==='move'&&!spec.effects){ await doMove(u,spec,cx,cz); if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap); G.movedThisTurn=true; refreshPanel(u); restoreCam(); G.busy=false; checkEnd(); return; }
   if(!spec.self)setFacing(u,cx,cz);
   const targets=affectedUnits(u,spec,cx,cz);
   logMsg(u.name+' → '+spec.name);
   await combatStageEnter(u,targets,spec);
   await attackAnim(u,spec,cx,cz,targets);
   if(spec.item&&spec.itemId)G.inv[spec.itemId]=Math.max(0,(G.inv[spec.itemId]||0)-1);
-  if(spec.heal){ for(const t of targets)applyHeal(t,(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(u)*spec.power))+Math.floor(effCHA(u)/4)); await wait(0.25); }
+  // Process effects[] if present (multi-effect system)
+  if(spec.effects&&spec.effects.length){
+    let totalDamageDealt=0;
+    for(const eff of spec.effects){
+      if(eff.kind==='move'){ await doMove(u,{...spec,mode:eff.moveMode||spec.mode,type:'move',ap:0},cx,cz); continue; }
+      if(eff.kind==='hp_cost'){ if(eff.target==='caster'||eff.target==='self'){ const cost=Math.round(u.maxhp*(eff.hpCostPercent||0)); u.hp=Math.max(1,u.hp-cost); floatText(u,'-'+cost,'#ff5a4a',true); refreshPanel(u); } continue; }
+      const etgts=effectTargets(u,spec,cx,cz,eff);
+      if(eff.kind==='damage'){
+        for(const t of etgts){ if(!rollHit(u,t,spec)){ floatText(t,'RATÉ','#cfd6e6'); continue; }
+          const dmgSpec={type:eff.damageType||spec.type,power:eff.power||spec.power,penetration:eff.penetration||spec.penetration,crit:spec.crit,elanPierce:spec.elanPierce,elanMul:spec.elanMul};
+          const crit=!spec.flatDmg&&Math.random()<critChance(u,t,spec); let {dmg,lab}=computeDamage(u,t,dmgSpec); if(crit)dmg=Math.round(dmg*1.5);
+          floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':'#ffffff',lab==='DOS'||crit);
+          if(crit){ if(!playFeedbackVfx('critical_hit',u,t)){ screenShake(0.5,0.3); screenFlash('#fff3b0',0.18); vfx('crit',t.grp.position.clone().add(new THREE.Vector3(0,1,0))); } logMsg('Coup critique !'); }
+          await applyDamage(t,dmg,u); totalDamageDealt+=dmg; if(G.over)break;
+          if(t.alive&&eff.status){ applyStatus(t,eff.status,eff.statusTurns); if(eff.status==='taunt')t._taunter=u; }
+        }
+      } else if(eff.kind==='heal'){
+        for(const t of etgts){ const amt=(eff.flatHeal!=null?eff.flatHeal:Math.round(effMAG(u)*(eff.power||spec.power||1)))+Math.floor(effCHA(u)/4); applyHeal(t,amt); }
+      } else if(eff.kind==='status'){
+        for(const t of etgts){ applyStatus(t,eff.status,eff.statusTurns); if(eff.status==='taunt')t._taunter=u; }
+      } else if(eff.kind==='revive'){
+        for(const t of etgts){ if(!t.alive&&t.downed)reviveUnit(t,Math.round(t.maxhp*(spec.power||0.5))); }
+      } else if(eff.kind==='dispel'){
+        for(const t of etgts){ let n=0; for(const s in t.statuses){ const neg=isNegative(s),pos=!neg; if((eff.dispelType==='negative'&&neg)||(eff.dispelType==='positive'&&pos)||(eff.dispelType==='all')){ delete t.statuses[s]; n++; } } floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); refreshPanel(t); }
+      } else if(eff.kind==='lifesteal'){
+        // processed after all damage effects
+      } else if(eff.kind==='ap_restore'){
+        for(const t of etgts){ t.ap=Math.min(t.maxap,t.ap+(eff.apRestore||spec.apRestore||1)); floatText(t,'+'+(eff.apRestore||spec.apRestore||1)+' AP','#7fd0ff',true); flashUnit(t,'#bfe0ff'); refreshPanel(t); }
+      }
+      await wait(0.1);
+    }
+    // Lifesteal processing: heal caster based on total damage dealt
+    const lsEffect=spec.effects.find(e=>e.kind==='lifesteal');
+    if(lsEffect&&totalDamageDealt>0&&u.alive){ const lsPct=lsEffect.lifestealPercent||0; const healAmt=Math.round(totalDamageDealt*lsPct); if(healAmt>0){ applyHeal(u,healAmt); } }
+    // Additional status from upgrades
+    if(spec.additionalStatus){ for(const t of targets){ if(t.alive&&t.team!==u.team){ applyStatus(t,spec.additionalStatus,spec.additionalStatusTurns||1); } } }
+  } else if(spec.heal){ for(const t of targets)applyHeal(t,(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(u)*spec.power))+Math.floor(effCHA(u)/4)); await wait(0.25); }
   else if(spec.revive){ for(const t of targets)reviveUnit(t,Math.round(t.maxhp*spec.power)); await wait(0.25); }
   else if(spec.apRestore){ for(const t of targets){ t.ap=Math.min(t.maxap,t.ap+spec.apRestore); floatText(t,'+'+spec.apRestore+' AP','#7fd0ff',true); flashUnit(t,'#bfe0ff'); refreshPanel(t); } await wait(0.25); }
   else if(spec.cure){ for(const t of targets){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); flashUnit(t,'#bfffc0'); refreshPanel(t); } await wait(0.25); }
   else { for(const t of targets){ const friendly=t.team===u.team;
-      if((spec.power||0)<=0){ if(rollHit(u,t,spec)){ if(spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } } else floatText(t,'RATÉ','#cfd6e6'); continue; }
+      if((spec.power||0)<=0){ if(rollHit(u,t,spec)){ if(spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } if(spec.additionalStatus){ applyStatus(t,spec.additionalStatus,spec.additionalStatusTurns||1); } } else floatText(t,'RATÉ','#cfd6e6'); continue; }
       if(!rollHit(u,t,spec)){ floatText(t,'RATÉ','#cfd6e6'); await wait(0.05); continue; }
       const crit=!spec.flatDmg&&Math.random()<critChance(u,t,spec); let {dmg,lab}=spec.flatDmg?{dmg:Math.max(1,Math.round(spec.flatDmg*rnd(0.85,1.15))),lab:'face'}:computeDamage(u,t,spec); if(crit)dmg=Math.round(dmg*1.5);
       floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':(friendly?'#ffd27a':'#ffffff'),lab==='DOS'||crit);
@@ -1180,16 +1248,22 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
         logMsg('Coup critique !');
       }
       if(lab==='DOS')floatText({grp:{position:t.grp.position.clone().add(new THREE.Vector3(0,0.3,0))},gx:t.gx,gz:t.gz},'DOS !','#ff5a4a');
-      await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } } await wait(0.15); }
+      await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } if(t.alive&&spec.additionalStatus){ applyStatus(t,spec.additionalStatus,spec.additionalStatusTurns||1); } } await wait(0.15); }
+  // Post-action upgrade effects
+  if(spec.selfHealPercent&&u.alive){ const healAmt=Math.round(u.maxhp*spec.selfHealPercent); if(healAmt>0)applyHeal(u,healAmt); }
+  if(spec.dispelAllies){ const allies=G.units.filter(t=>t.alive&&t.team===u.team); for(const t of allies){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } if(n)floatText(t,'PURIFIÉ','#7ed957',true); refreshPanel(t); } }
+  if(spec.stealBuffs){ for(const t of targets){ if(t.alive&&t.team!==u.team){ for(const s in t.statuses){ if(!isNegative(s)){ u.statuses[s]=t.statuses[s]; delete t.statuses[s]; } } refreshPanel(t); } } refreshPanel(u); }
   if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap);
   if(spec.key==='attack'){ G.basicAttacksThisTurn++; } if(spec.item){ G.itemsUsedThisTurn++; }
   if(G.movedThisTurn)G.movedBeforeAct=true; refreshPanel(u); await combatStageExit(); G.busy=false; checkEnd();
 }
 
 // ============================= ENEMY AI =============================
+function skillHasDamage(spec){ if(spec.offensive&&(spec.power||0)>0)return true; if(spec.effects&&spec.effects.some(e=>e.kind==='damage'))return true; return false; }
+function skillHasSupport(spec){ if(spec.heal||spec.support||spec.cure||spec.apRestore)return true; if(spec.effects&&spec.effects.some(e=>e.kind==='heal'||e.kind==='status'||e.kind==='dispel'||e.kind==='ap_restore'))return true; return false; }
 function simAt(u,st){ return Object.assign(Object.create(Object.getPrototypeOf(u)),u,{gx:st.gx,gz:st.gz}); }
 function nearestDist(st,arr){ let m=1e9; for(const a of arr){ const d=Math.abs(st.gx-a.gx)+Math.abs(st.gz-a.gz); if(d<m)m=d; } return m; }
-function bestOffense(u,stands,taunter){ const specs=[]; (u.weapons||[]).forEach((w,i)=>{ for(let ch=0;ch<3;ch++){ const s=getSpec(u,'attack',i,ch); if(s.ap<=u.ap)specs.push(s); } }); specs.push(...u.skills.filter(s=>SKILLS[s].offensive&&SKILLS[s].ap<=u.ap).map(s=>getSpec(u,s))); let best=null;
+function bestOffense(u,stands,taunter){ const specs=[]; (u.weapons||[]).forEach((w,i)=>{ for(let ch=0;ch<3;ch++){ const s=getSpec(u,'attack',i,ch); if(s.ap<=u.ap)specs.push(s); } }); specs.push(...u.skills.filter(s=>{ const def=SKILLS[s]; return def&&(def.offensive||(def.effects&&def.effects.some(e=>e.kind==='damage')))&&def.ap<=u.ap; }).map(s=>getSpec(u,s))); let best=null;
   for(const st of stands){ const sim=simAt(u,st);
     for(const spec of specs){ for(const c of rangeCells(sim,spec)){ const aff=affectedUnits(sim,spec,c.gx,c.gz);
       const en=aff.filter(t=>t.team!==u.team), al=aff.filter(t=>t.team===u.team&&t!==u);
@@ -1199,7 +1273,7 @@ function bestOffense(u,stands,taunter){ const specs=[]; (u.weapons||[]).forEach(
       if(taunter&&en.includes(taunter))score+=50;
       if(!best||score>best.score) best={score,st,spec,cx:c.gx,cz:c.gz}; } } }
   return best; }
-function bestSupport(u,stands){ const supSpecs=u.skills.map(s=>getSpec(u,s)).filter(s=>(s.heal||s.support)&&s.ap<=u.ap); if(!supSpecs.length)return null;
+function bestSupport(u,stands){ const supSpecs=u.skills.map(s=>getSpec(u,s)).filter(s=>skillHasSupport(s)&&s.ap<=u.ap); if(!supSpecs.length)return null;
   const allies=aliveUnits(u.team).filter(a=>a!==u); const wounded=[u,...allies].filter(a=>a.alive&&a.hp<a.maxhp*0.75);
   if(!wounded.length)return null; let best=null;
   for(const spec of supSpecs){ for(const st of stands){ const sim=simAt(u,st);
@@ -1465,7 +1539,7 @@ function openElanMenu(wi){ const u=G.active; if(!u)return; dom.skillmenu.classLi
   h+='<div class="btn" data-ch="_back">Retour</div>';
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.classList.contains('dis'))return; const ch=b.dataset.ch; if(ch==='_back'){ dom.skillmenu.classList.add('hidden'); return; } enterTarget(getSpec(u,'attack',wi,+ch)); }); }
 function openSkillMenu(){ const u=G.active; dom.skillmenu.classList.remove('hidden'); let h='<div class="ttl">Compétences — '+u.ap+' AP</div>';
-  for(const id of u.skills){ const s=SKILLS[id], sp=getSpec(u,id); const dis=(sp.ap>u.ap||(id==='revive'&&!G.units.some(x=>!x.alive&&x.downed&&x.team===u.team)))?'dis':'';
+  for(const id of u.skills){ const s=SKILLS[id], sp=getSpec(u,id); const isRevive=sp.revive||(s.type==='revive'); const dis=(sp.ap>u.ap||(isRevive&&!G.units.some(x=>!x.alive&&x.downed&&x.team===u.team)))?'dis':'';
     h+='<div class="btn '+dis+'" data-s="'+id+'" title="'+s.desc+'">'+sp.name+(sp.upgradeLevel?' +'+sp.upgradeLevel:'')+' <small>'+sp.ap+' AP</small></div>'; }
   h+='<div class="btn" data-s="_back">Retour</div>';
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.classList.contains('dis'))return; const id=b.dataset.s; if(id==='_back'){ dom.skillmenu.classList.add('hidden'); return; } enterTarget(getSpec(u,id)); }); }

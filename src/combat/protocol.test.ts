@@ -9,7 +9,7 @@ describe('combat protocol', () => {
     const state = createInitialState();
     const config = combatConfigs.get('forest_patrol')!;
     state.clan.members[0]!.currentHealth = 77;
-    state.clan.members[0]!.skillUpgrades.whirl = 2;
+    state.clan.members[0]!.skillUpgrades.w_break_guard = 2;
     const clan = state.clan.members.map(toCombatant);
     const parsed = combatInitializeMessageSchema.safeParse({
       type: 'rpg-threejs:combat-initialize',
@@ -22,7 +22,7 @@ describe('combat protocol', () => {
     expect(parsed.success).toBe(true);
     expect(parsed.data?.devQa).toBe(false);
     expect(clan[0]!.currentHealth).toBe(77);
-    expect(clan[0]!.skillUpgrades.whirl).toBe(2);
+    expect(clan[0]!.skillUpgrades.w_break_guard).toBe(2);
   });
 
   it('accepts the development QA flag only as an explicit initialization field', () => {

@@ -6,6 +6,7 @@ import {
 import { getReputationRule, getShopPrice } from '../game/reputation';
 import { assets } from '../render/assetManifest';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
+import { skills as SKILL_DEFS } from '../game/skills';
 import type { GameState, ItemCategory, ItemDefinition, UnitDefinition, UnitInstance } from '../game/types';
 
 type ManagementTab = 'clan' | 'inventory' | 'shop' | 'skills';
@@ -44,7 +45,11 @@ function unitUiPortrait(definition: UnitDefinition): string {
   return characterProfileFromPortrait(definition.portrait)?.ui ?? definition.portrait;
 }
 
-const skillPresentation: Record<string, { name: string; description: string; ap?: number }> = {
+const skillPresentation: Record<string, { name: string; description: string; ap?: number }> = Object.fromEntries(
+  SKILL_DEFS.map((s) => [s.id, { name: s.name, description: s.description, ap: s.ap }]),
+);
+// Legacy fallbacks for enemy/boss skills still used in combat
+Object.assign(skillPresentation, {
   whirl: { name: 'Coup Tournoyant', ap: 2, description: 'Frappe en cercle autour de soi.' },
   bulwark: { name: 'Rempart', ap: 2, description: 'Renforce les alliés proches avec une barrière défensive.' },
   provoke: { name: 'Provocation', ap: 1, description: 'Force les ennemis proches à concentrer leur attention.' },
@@ -62,8 +67,8 @@ const skillPresentation: Record<string, { name: string; description: string; ap?
   heavy: { name: 'Coup Lourd', ap: 2, description: 'Choc puissant qui peut étourdir.' },
   blink: { name: 'Clignotement', ap: 2, description: 'Repositionnement instantané sur une case libre.' },
   leap: { name: 'Bond', ap: 1, description: 'Déplacement rapide vers une case libre.' },
-  charge: { name: 'Charge', ap: 2, description: 'Fonce en ligne droite et perturbe l’arrivée.' },
-};
+  charge: { name: 'Charge', ap: 2, description: 'Fonce en ligne droite et perturbe l\u2019arrivée.' },
+});
 
 export class ManagementView {
   private overlay: HTMLElement | null = null;
@@ -364,6 +369,12 @@ export class ManagementView {
 
   private skillUpgradeEffect(skillId: string, level: number): string {
     if (level <= 0) return 'Effet de base.';
+    const def = SKILL_DEFS.find((s) => s.id === skillId);
+    if (def) {
+      const up = level === 1 ? def.upgradeLevel1 : def.upgradeLevel2;
+      if (up) return up.description;
+    }
+    // Legacy fallback
     const damageSkills = new Set(['whirl', 'weaken', 'blind_shot', 'pierce_shot', 'fireball', 'flame_wave', 'bolt', 'heavy', 'charge']);
     if (damageSkills.has(skillId)) return `Puissance +${level === 1 ? 2 : 4}.`;
     if (skillId === 'heal') return `Soins +${level === 1 ? 10 : 20}%.`;

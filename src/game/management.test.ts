@@ -42,12 +42,14 @@ describe('clan management', () => {
     expect(excludeUnit(state, 'knight')).toBe(false);
   });
 
-  it('grants equipment skills without levels', () => {
+  it('replaces equipment skills without levels', () => {
     const state = createInitialState();
     const knight = state.clan.members.find((unit) => unit.id === 'knight')!;
-    expect(getResolvedSkills(knight)).not.toContain('heavy');
+    expect(getResolvedSkills(knight)).toContain('w_break_guard');
+    expect(getResolvedSkills(knight)).not.toContain('d_cursed_blade');
     expect(equipAccessory(state, knight.id, 0, 'strength_ring')).toBe(true);
-    expect(getResolvedSkills(knight)).toContain('heavy');
+    expect(getResolvedSkills(knight)).not.toContain('w_break_guard');
+    expect(getResolvedSkills(knight)).toContain('d_cursed_blade');
     expect(knight).not.toHaveProperty('level');
     expect(knight).not.toHaveProperty('xp');
   });
@@ -100,13 +102,13 @@ describe('clan management', () => {
     const state = createInitialState();
     state.inventory.materials.red_gem = 3;
     const knight = state.clan.members[0]!;
-    expect(upgradeSkill(state, knight.id, 'whirl')).toBe(true);
-    expect(knight.skillUpgrades.whirl).toBe(1);
+    expect(upgradeSkill(state, knight.id, 'w_break_guard')).toBe(true);
+    expect(knight.skillUpgrades.w_break_guard).toBe(1);
     expect(state.inventory.materials.red_gem).toBe(2);
-    expect(upgradeSkill(state, knight.id, 'whirl')).toBe(true);
-    expect(knight.skillUpgrades.whirl).toBe(2);
+    expect(upgradeSkill(state, knight.id, 'w_break_guard')).toBe(true);
+    expect(knight.skillUpgrades.w_break_guard).toBe(2);
     expect(state.inventory.materials.red_gem).toBe(0);
-    expect(upgradeSkill(state, knight.id, 'whirl')).toBe(false);
+    expect(upgradeSkill(state, knight.id, 'w_break_guard')).toBe(false);
     expect(upgradeSkill(state, knight.id, 'unknown')).toBe(false);
   });
 
