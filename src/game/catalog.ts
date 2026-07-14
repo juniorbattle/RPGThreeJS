@@ -148,7 +148,7 @@ export function createUnitInstance(definitionId: string, narrativeLocked = false
   const equipment = {
     weaponIds: (defaultWeapons[definition.id] ?? definition.allowedWeaponIds.slice(0, definition.weaponSlotCount))
       .slice(0, definition.weaponSlotCount),
-    accessoryIds: [null, null, null] as [string | null, string | null, string | null],
+    accessoryIds: [null, null] as [string | null, string | null],
   };
   const baseUnit = {
     id: definitionId,

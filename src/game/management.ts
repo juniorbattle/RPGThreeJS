@@ -43,7 +43,7 @@ export function equipWeapon(state: GameState, unitId: string, weaponId: string):
   return true;
 }
 
-export function equipAccessory(state: GameState, unitId: string, slot: 0 | 1 | 2, accessoryId: string | null): boolean {
+export function equipAccessory(state: GameState, unitId: string, slot: 0 | 1, accessoryId: string | null): boolean {
   const unit = state.clan.members.find((candidate) => candidate.id === unitId);
   if (!unit) return false;
   if (accessoryId && (state.inventory.accessories[accessoryId] ?? 0) < 1) return false;

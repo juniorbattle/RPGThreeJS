@@ -6,7 +6,7 @@ import {
 import { getReputationRule, getShopPrice } from '../game/reputation';
 import { assets } from '../render/assetManifest';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
-import type { GameState, ItemCategory, UnitDefinition, UnitInstance } from '../game/types';
+import type { GameState, ItemCategory, ItemDefinition, UnitDefinition, UnitInstance } from '../game/types';
 
 type ManagementTab = 'clan' | 'inventory' | 'shop' | 'skills';
 
@@ -68,6 +68,9 @@ const skillPresentation: Record<string, { name: string; description: string; ap?
 export class ManagementView {
   private overlay: HTMLElement | null = null;
   private selectedUnitId = '';
+  private activeItemId: string | null = null;
+  private activeEquipSlot: { type: 'weapon' | 'accessory'; slot: number } | null = null;
+  private previewItemId: string | null = null;
   private tab: ManagementTab = 'clan';
   private shopId = 'valmir';
   private shopMode: 'buy' | 'sell' | 'craft' = 'buy';
@@ -139,6 +142,9 @@ export class ManagementView {
         </nav>
         <div class="management__content">${this.renderContent()}</div>
       </div>
+      ${this.activeItemId ? this.renderItemModal() : ''}
+      ${this.activeEquipSlot ? this.renderEquipSlotModal() : ''}
+      ${this.previewItemId ? this.renderPreviewModal() : ''}
     `;
     this.bind();
   }
@@ -202,8 +208,8 @@ export class ManagementView {
           </div>
           <div class="equipment">
             <div class="section-title ui-section-title">Équipement</div>
-            ${this.weaponSelect(selected, 0)}
-            ${([0, 1, 2] as const).map((slot) => this.accessorySelect(selected, slot)).join('')}
+            ${this.equipmentSlot(selected, 'weapon', 0)}
+            ${([0, 1] as const).map((slot) => this.equipmentSlot(selected, 'accessory', slot)).join('')}
           </div>
           <div class="unit-sheet__actions">
             <button type="button" class="danger-button ui-button ui-button--danger" data-action="exclude" ${selected.narrativeLocked ? 'disabled' : ''}>
@@ -214,38 +220,82 @@ export class ManagementView {
       </div>`;
   }
 
-  private weaponSelect(unit: UnitInstance, slot: 0): string {
-    const state = this.options.getState();
-    const definition = unitById.get(unit.definitionId)!;
-    const currentId = unit.equipment.weaponIds[slot]!;
-    const current = weaponById.get(currentId);
-    const equipped = new Set(unit.equipment.weaponIds);
-    const available = weapons.filter((candidate) =>
-      definition.allowedWeaponIds.includes(candidate.id)
-      && !equipped.has(candidate.id)
-      && (state.inventory.weapons[candidate.id] ?? 0) > 0);
-    return `<label class="equipment-slot"><span class="equipment-slot__label">Arme ${slot + 1}</span>
-      <span class="equipment-slot__control"><span class="equipment-slot__icon">${current?.icon ?? '⚔'}</span><select data-equip="weapon" data-slot="${slot}">
-        <option value="${currentId}">${current?.name ?? currentId} — équipée</option>
-        ${available.map((candidate) =>
-          `<option value="${candidate.id}">${candidate.name} · ${candidate.damage} puissance</option>`).join('')}
-      </select></span>
-    </label>`;
+  private equipmentSlot(unit: UnitInstance, type: 'weapon' | 'accessory', slot: number): string {
+    const currentId = type === 'weapon'
+      ? unit.equipment.weaponIds[slot]!
+      : unit.equipment.accessoryIds[slot as 0 | 1] ?? null;
+    const item = currentId ? itemById.get(currentId) : null;
+    const label = type === 'weapon' ? 'Arme' : `Accessoire ${slot + 1}`;
+    const icon = item?.icon ?? (type === 'weapon' ? '⚔' : '◇');
+    const name = item?.name ?? 'Emplacement vide';
+    return `<button type="button" class="equipment-slot ui-panel ui-panel--dense" data-equip-slot="${type}" data-equip-slot-index="${slot}">
+      <span class="equipment-slot__icon">${icon}</span>
+      <span class="equipment-slot__body"><span class="equipment-slot__label">${label}</span><strong>${name}</strong></span>
+      ${item ? `<span class="equipment-slot__hint">⚙</span>` : '<span class="equipment-slot__hint">+</span>'}
+    </button>`;
   }
 
-  private accessorySelect(unit: UnitInstance, slot: 0 | 1 | 2): string {
+  private renderEquipSlotModal(): string {
+    const slot = this.activeEquipSlot!;
     const state = this.options.getState();
-    const currentId = unit.equipment.accessoryIds[slot];
-    const current = currentId ? itemById.get(currentId) : null;
-    const available = items.filter((item) =>
-      item.category === 'accessories' && item.id !== currentId && (state.inventory.accessories[item.id] ?? 0) > 0);
-    return `<label class="equipment-slot"><span class="equipment-slot__label">Accessoire ${slot + 1}</span>
-      <span class="equipment-slot__control"><span class="equipment-slot__icon">${current?.icon ?? '◇'}</span><select data-equip="accessory" data-slot="${slot}">
-        <option value="${currentId ?? ''}">${current?.name ?? 'Emplacement vide'}</option>
-        ${currentId ? '<option value="">Retirer</option>' : ''}
-        ${available.map((item) => `<option value="${item.id}">${item.name}</option>`).join('')}
-      </select></span>
-    </label>`;
+    const unit = state.clan.members.find((u) => u.id === this.selectedUnitId);
+    if (!unit) return '';
+    const currentId = slot.type === 'weapon'
+      ? unit.equipment.weaponIds[slot.slot]!
+      : unit.equipment.accessoryIds[slot.slot as 0 | 1] ?? null;
+    const currentItem = currentId ? itemById.get(currentId) : null;
+    const available = this.getAvailableItemsForSlot(unit, slot.type, currentId);
+    const slotLabel = slot.type === 'weapon' ? 'Arme' : `Accessoire ${slot.slot + 1}`;
+    return `<div class="item-modal-overlay" data-equip-slot-close>
+      <div class="item-modal ui-panel">
+        <button type="button" class="icon-button ui-icon-button" data-equip-slot-close aria-label="Fermer">×</button>
+        <div class="item-modal__header">
+          <span class="item-row__icon ui-chip">${currentItem?.icon ?? '◇'}</span>
+          <div><h3>${slotLabel}</h3><small>${currentItem?.name ?? 'Emplacement vide'}</small></div>
+        </div>
+        ${currentItem ? `<div class="item-modal__stats stat-grid">${this.itemStatRows(currentItem)}</div>` : '<p class="empty-copy">Aucun objet équipé.</p>'}
+        ${currentItem ? `<button type="button" class="ui-button ui-button--secondary" data-equip-unequip="${slot.type}" data-equip-unequip-slot="${slot.slot}">Retirer</button>` : ''}
+        <div class="equip-slot__list">
+          <div class="section-title ui-section-title">Remplacer par</div>
+          ${available.length > 0
+            ? available.map((item) => `<button type="button" class="item-row ui-panel ui-panel--dense item-row--selectable" data-preview-item="${item.id}"><span class="item-row__icon ui-chip">${item.icon}</span><span><strong>${item.name}</strong><small>${item.description}</small></span></button>`).join('')
+            : '<p class="empty-copy">Aucun objet disponible dans l\'inventaire.</p>'}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  private renderPreviewModal(): string {
+    const item = this.previewItemId ? itemById.get(this.previewItemId) : null;
+    if (!item) return '';
+    const slot = this.activeEquipSlot!;
+    return `<div class="item-modal-overlay item-modal-overlay--top" data-preview-close>
+      <div class="item-modal ui-panel">
+        <button type="button" class="icon-button ui-icon-button" data-preview-close aria-label="Fermer">×</button>
+        <div class="item-modal__header">
+          <span class="item-row__icon ui-chip">${item.icon}</span>
+          <div><h3>${item.name}</h3><small>${item.description}</small></div>
+        </div>
+        <div class="item-modal__stats stat-grid">${this.itemStatRows(item)}</div>
+        <button type="button" class="ui-button" data-equip-confirm="${item.id}">Équiper</button>
+      </div>
+    </div>`;
+  }
+
+  private getAvailableItemsForSlot(unit: UnitInstance, type: 'weapon' | 'accessory', currentId: string | null): ItemDefinition[] {
+    const state = this.options.getState();
+    if (type === 'weapon') {
+      const definition = unitById.get(unit.definitionId)!;
+      const equipped = new Set(unit.equipment.weaponIds);
+      return weapons.filter((w) =>
+        definition.allowedWeaponIds.includes(w.id)
+        && !equipped.has(w.id)
+        && (state.inventory.weapons[w.id] ?? 0) > 0);
+    }
+    return items.filter((item) =>
+      item.category === 'accessories'
+      && item.id !== currentId
+      && (state.inventory.accessories[item.id] ?? 0) > 0);
   }
 
   private stat(label: string, value: number | string): string {
@@ -369,11 +419,64 @@ export class ManagementView {
   private itemRow(id: string, quantity: number, action = ''): string {
     const item = itemById.get(id);
     if (!item) return '';
-    return `<div class="item-row ui-panel ui-panel--dense">
+    const hasDetails = item.category === 'weapons' || item.category === 'accessories';
+    const detailsAttr = hasDetails ? ` data-item-details="${id}"` : '';
+    const detailsClass = hasDetails ? ' item-row--details' : '';
+    return `<div class="item-row ui-panel ui-panel--dense${detailsClass}"${detailsAttr}>
       <span class="item-row__icon ui-chip">${item.icon}</span>
       <span><strong>${item.name}</strong><small>${item.description}</small></span>
       <b>×${quantity}</b>${action}
     </div>`;
+  }
+
+  private renderItemModal(): string {
+    const item = this.activeItemId ? itemById.get(this.activeItemId) : null;
+    if (!item) return '';
+    return `<div class="item-modal-overlay" data-item-modal-close>
+      <div class="item-modal ui-panel">
+        <button type="button" class="icon-button ui-icon-button" data-item-modal-close aria-label="Fermer">×</button>
+        <div class="item-modal__header">
+          <span class="item-row__icon ui-chip">${item.icon}</span>
+          <div><h3>${item.name}</h3><small>${item.description}</small></div>
+        </div>
+        <div class="item-modal__stats stat-grid">
+          ${this.itemStatRows(item)}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  private itemStatRows(item: ItemDefinition): string {
+    if (item.category === 'weapons') {
+      const weapon = weaponById.get(item.id);
+      if (!weapon) return '';
+      const rangeLabel = weapon.minRange ? `${weapon.minRange}–${weapon.range}` : `${weapon.range}`;
+      const granted = weapon.skillModifier?.grants ?? [];
+      const grantedLabel = granted.length > 0
+        ? granted.map((id) => skillPresentation[id]?.name ?? id).join(', ')
+        : '';
+      return `${this.stat('Puiss.', weapon.damage)}
+        ${this.stat('Portée', rangeLabel)}
+        ${this.stat('Précis.', `+${weapon.accuracyBonus}`)}
+        ${this.stat('Crit', `+${weapon.critBonus}`)}
+        ${grantedLabel ? this.stat('Don', grantedLabel) : ''}`;
+    }
+    if (item.category === 'accessories') {
+      const modifiers = item.modifiers ?? {};
+      const entries = Object.entries(modifiers) as [string, number][];
+      if (entries.length === 0) return '<p class="empty-copy">Aucun bonus statistique.</p>';
+      const labels: Record<string, string> = {
+        maxHealth: 'PV', strength: 'FOR', magic: 'MAG', endurance: 'END',
+        dexterity: 'DEX', charisma: 'CHA', moveRange: 'DÉPLAC.',
+      };
+      const granted = item.skillModifier?.grants ?? [];
+      const grantedLabel = granted.length > 0
+        ? granted.map((id) => skillPresentation[id]?.name ?? id).join(', ')
+        : '';
+      return `${entries.map(([key, value]) => this.stat(labels[key] ?? key, `+${value}`)).join('')}
+        ${grantedLabel ? this.stat('Don', grantedLabel) : ''}`;
+    }
+    return '';
   }
 
   private renderShop(): string {
@@ -462,16 +565,72 @@ export class ManagementView {
         this.render();
       });
     });
-    this.overlay.querySelectorAll<HTMLSelectElement>('[data-equip="weapon"]').forEach((select) => {
-      select.addEventListener('change', () => {
-        const slot = 0;
-        if (equipWeapon(this.options.getState(), this.selectedUnitId, select.value)) this.changed();
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-equip-slot]').forEach((button) => {
+      button.addEventListener('click', () => {
+        this.activeEquipSlot = {
+          type: button.dataset.equipSlot as 'weapon' | 'accessory',
+          slot: Number(button.dataset.equipSlotIndex),
+        };
+        this.previewItemId = null;
+        this.render();
       });
     });
-    this.overlay.querySelectorAll<HTMLSelectElement>('[data-equip="accessory"]').forEach((select) => {
-      select.addEventListener('change', () => {
-        const slot = Number(select.dataset.slot) as 0 | 1 | 2;
-        if (equipAccessory(this.options.getState(), this.selectedUnitId, slot, select.value || null)) this.changed();
+    this.overlay.querySelectorAll<HTMLElement>('[data-equip-slot-close]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        if (e.target === el) {
+          this.activeEquipSlot = null;
+          this.previewItemId = null;
+          this.render();
+        }
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-equip-unequip]').forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const type = button.dataset.equipUnequip as 'weapon' | 'accessory';
+        const slot = Number(button.dataset.equipUnequipSlot);
+        if (type === 'accessory') {
+          if (equipAccessory(this.options.getState(), this.selectedUnitId, slot as 0 | 1, null)) {
+            this.activeEquipSlot = null;
+            this.previewItemId = null;
+            this.changed();
+          }
+        }
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-preview-item]').forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.previewItemId = button.dataset.previewItem ?? null;
+        this.render();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLElement>('[data-preview-close]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        if (e.target === el) {
+          this.previewItemId = null;
+          this.render();
+        }
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-equip-confirm]').forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const itemId = button.dataset.equipConfirm ?? '';
+        const slot = this.activeEquipSlot!;
+        if (slot.type === 'weapon') {
+          if (equipWeapon(this.options.getState(), this.selectedUnitId, itemId)) {
+            this.activeEquipSlot = null;
+            this.previewItemId = null;
+            this.changed();
+          }
+        } else {
+          if (equipAccessory(this.options.getState(), this.selectedUnitId, slot.slot as 0 | 1, itemId)) {
+            this.activeEquipSlot = null;
+            this.previewItemId = null;
+            this.changed();
+          }
+        }
       });
     });
     this.overlay.querySelector('[data-action="exclude"]')?.addEventListener('click', () => {
@@ -516,6 +675,20 @@ export class ManagementView {
         const unitId = select?.value ?? '';
         if (!unitId) return;
         if (useConsumable(this.options.getState(), unitId, itemId)) this.changed();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLElement>('[data-item-details]').forEach((row) => {
+      row.addEventListener('click', () => {
+        this.activeItemId = row.dataset.itemDetails ?? null;
+        this.render();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLElement>('[data-item-modal-close]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        if (e.target === el) {
+          this.activeItemId = null;
+          this.render();
+        }
       });
     });
   }

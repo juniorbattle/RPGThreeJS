@@ -108,17 +108,18 @@ function migrateCurrentLionRoute(previous: GameState): GameState {
 }
 
 export function migrateState(value: unknown): GameState {
-  const current = gameStateSchema.safeParse(value);
+  const normalized = normalizeLegacyEquipment(value);
+  const current = gameStateSchema.safeParse(normalized);
   if (current.success) return hasCurrentLionRoute(current.data) ? current.data : migrateCurrentLionRoute(current.data);
-  const v5 = gameStateV5Schema.safeParse(value);
+  const v5 = gameStateV5Schema.safeParse(normalized);
   if (v5.success) return migrateV5(v5.data);
-  const v4 = gameStateV4Schema.safeParse(value);
+  const v4 = gameStateV4Schema.safeParse(normalized);
   if (v4.success) return migrateV4(v4.data);
-  const v3 = gameStateV3Schema.safeParse(value);
+  const v3 = gameStateV3Schema.safeParse(normalized);
   if (v3.success) return migrateV4(migrateV3(v3.data));
-  const v2 = gameStateV2Schema.safeParse(value);
+  const v2 = gameStateV2Schema.safeParse(normalized);
   if (v2.success) return migrateV4(migrateV2(v2.data));
-  const legacy = gameStateV1Schema.parse(value);
+  const legacy = gameStateV1Schema.parse(normalized);
   return migrateV1(legacy);
 }
 
@@ -146,7 +147,7 @@ function migrateV2(previous: GameStateV2): GameStateV4 {
         ...unit,
         equipment: {
           weaponIds: [unit.equipment.weaponId, ...defaults.filter((id) => id !== unit.equipment.weaponId)].slice(0, 1),
-          accessoryIds: [...unit.equipment.accessoryIds, null, null].slice(0, 3) as [string | null, string | null, string | null],
+          accessoryIds: [...unit.equipment.accessoryIds, null, null].slice(0, 2) as [string | null, string | null],
         },
       };
     }),
@@ -183,6 +184,28 @@ function hydrateV6Unit(unit: UnitInstanceV5): UnitInstance {
     currentHealth: stats.maxHealth,
     skillUpgrades: {},
   };
+}
+
+function normalizeLegacyEquipment(raw: unknown): unknown {
+  if (typeof raw !== 'object' || raw === null) return raw;
+  const obj = raw as Record<string, unknown>;
+  const clan = obj.clan;
+  if (typeof clan !== 'object' || clan === null) return raw;
+  const clanObj = clan as Record<string, unknown>;
+  const members = clanObj.members;
+  if (!Array.isArray(members)) return raw;
+  for (const member of members) {
+    if (typeof member !== 'object' || member === null) continue;
+    const m = member as Record<string, unknown>;
+    const equipment = m.equipment;
+    if (typeof equipment !== 'object' || equipment === null) continue;
+    const eq = equipment as Record<string, unknown>;
+    const accessoryIds = eq.accessoryIds;
+    if (Array.isArray(accessoryIds) && accessoryIds.length > 2) {
+      eq.accessoryIds = accessoryIds.slice(0, 2);
+    }
+  }
+  return raw;
 }
 
 function migrateV5(previous: GameStateV5): GameState {

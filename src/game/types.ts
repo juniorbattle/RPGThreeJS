@@ -109,7 +109,7 @@ export type UnitStats = z.infer<typeof unitStatsSchema>;
 
 export const equipmentLoadoutSchema = z.object({
   weaponIds: z.array(z.string()).min(1).max(1),
-  accessoryIds: z.tuple([z.string().nullable(), z.string().nullable(), z.string().nullable()]),
+  accessoryIds: z.tuple([z.string().nullable(), z.string().nullable()]),
 });
 export type EquipmentLoadout = z.infer<typeof equipmentLoadoutSchema>;
 

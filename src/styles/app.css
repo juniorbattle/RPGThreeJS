@@ -1434,14 +1434,16 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .roster-card strong { overflow: hidden; color: #fff0c8; font: 700 16px/1.05 var(--ui-font-title); text-overflow: ellipsis; white-space: nowrap; }
 .roster-card small,
 .item-row small { color: #aeb9cc; font-size: 11px; line-height: 1.35; }
-.roster-card__level {
+.roster-card__hp {
   align-self: end;
   color: #d7c288;
-  font: 800 9px var(--ui-font-title);
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  font: 700 11px var(--ui-font-body);
   white-space: nowrap;
 }
+.roster-card.is-wounded { border-color: rgba(217,178,90,.55); }
+.roster-card.is-wounded .roster-card__hp { color: #e8a050; }
+.roster-card.is-fallen { opacity: .55; border-color: rgba(180,60,60,.5); }
+.roster-card.is-fallen .roster-card__hp { color: #c05050; }
 .roster-card i { color: var(--ui-color-gold); font-style: normal; text-shadow: 0 0 11px rgba(246,219,145,.35); }
 .unit-stage {
   position: relative;
@@ -1785,6 +1787,55 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   color: var(--ui-color-cream);
   cursor: pointer;
 }
+.item-row--details { cursor: pointer; transition: border-color .15s, background .15s; }
+.item-row--details:hover { border-color: rgba(230,199,126,.5); background: linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); }
+.item-row__action { display: flex; gap: 6px; align-items: center; }
+.item-row__action select { min-width: 120px; padding: 6px 8px; border: 1px solid rgba(230,199,126,.3); background: rgba(0,0,0,.3); color: var(--ui-color-cream); font-size: 12px; }
+.weapon-stats { margin: 6px 0 10px; padding: 10px 12px; border: 1px solid rgba(230,199,126,.2); background: rgba(0,0,0,.18); }
+.item-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,.6);
+}
+.item-modal {
+  position: relative;
+  max-width: 420px;
+  width: 90vw;
+  padding: 24px;
+  border: 1px solid rgba(230,199,126,.4);
+  background: linear-gradient(180deg, rgba(9,15,26,.96), rgba(4,8,15,.94));
+}
+.item-modal .icon-button { position: absolute; top: 10px; right: 10px; }
+.item-modal__header { display: flex; gap: 14px; align-items: center; margin-bottom: 18px; }
+.item-modal__header h3 { color: #fff0c8; font: 700 18px/1.1 var(--ui-font-title); }
+.item-modal__header small { color: #aeb9cc; font-size: 12px; }
+.item-modal__stats { gap: 12px; }
+.item-modal-overlay--top { z-index: 110; }
+.equipment-slot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 6px;
+  padding: 10px 14px;
+  border: 1px solid rgba(230,199,126,.2);
+  background: linear-gradient(90deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  text-align: left;
+}
+.equipment-slot:hover { border-color: rgba(230,199,126,.5); background: linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); }
+.equipment-slot__icon { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid rgba(230,199,126,.4); color: var(--ui-color-gold-bright); background: rgba(0,0,0,.22); }
+.equipment-slot__body { flex: 1; display: grid; gap: 2px; min-width: 0; }
+.equipment-slot__label { color: #aeb9cc; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+.equipment-slot strong { color: #fff0c8; font-size: 14px; }
+.equipment-slot__hint { color: var(--ui-color-gold); font-size: 18px; }
+.equip-slot__list { margin-top: 16px; max-height: 240px; overflow-y: auto; }
+.item-row--selectable { cursor: pointer; width: 100%; transition: border-color .15s, background .15s; }
+.item-row--selectable:hover { border-color: rgba(230,199,126,.5); background: linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); }
 .shop-view { height: 100%; padding: 28px; overflow: auto; }
 .shop-view__intro { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid rgba(230,199,126,.36); }
 .shop-toggle { display: flex; gap: 14px; }
