@@ -14,7 +14,8 @@ import { combatBackgroundFor } from '../render/combatBackgrounds';
 import { COMBAT_PRESENTATION } from './combatPresentationConfig.js';
 import { VfxSystem } from './vfx/VfxSystem';
 import { installVfxWorkbench } from './vfx/VfxWorkbench';
-import { skills as SKILL_DEFS, skillById as SKILL_MAP } from '../game/skills';
+import { skillById as SKILL_MAP } from '../game/skills';
+import { getSkillPresentation } from './skillPresentation';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
@@ -912,6 +913,8 @@ const SPRITE_MOTION_PRESETS=Object.freeze({
   knockout:{hitOut:0.08,hitBack:0.14,hitDistance:0.16,squash:0.06}
 });
 function getActionMotionPreset(spec={}){
+  const presentation=getSkillPresentation(spec);
+  if(presentation)return presentation.motionPreset;
   if(spec.type==='move'){
     if(spec.mode==='teleport')return 'teleport';
     if(spec.mode==='leap')return 'move_leap';
@@ -1035,24 +1038,29 @@ function reviveUnit(u,hp){ u.alive=true; u.downed=false; u.hp=hp; u.statuses={};
 function skillUpgradeLevel(u,skillId){ return Math.max(0,Math.min(2,Math.floor((u.skillUpgrades&&u.skillUpgrades[skillId])||0))); }
 function applySkillUpgrade(u,skillId,spec){
   const level=skillUpgradeLevel(u,skillId); if(!level)return spec;
-  const out={...spec,upgradeLevel:level};
+  const out={...spec,range:spec.range?[...spec.range]:spec.range,effects:spec.effects?.map(effect=>({...effect})),upgradeLevel:level};
   const def=SKILLS[skillId];
   // New per-skill upgrade system: apply upgradeLevel1, then upgradeLevel2
   if(def&&def.upgradeLevel1){
     const ups=[def.upgradeLevel1,def.upgradeLevel2].filter(Boolean).slice(0,level);
     for(const up of ups){
       if(up.powerBonus&&(out.power||0)>0) out.power+=up.powerBonus;
-      if(up.statusTurnsBonus&&out.statusTurns) out.statusTurns+=up.statusTurnsBonus;
-      if(up.radiusBonus&&out.radius) out.radius+=up.radiusBonus;
+      if(up.powerBonus&&out.effects)for(const effect of out.effects)if(effect.kind==='damage'&&typeof effect.power==='number')effect.power+=up.powerBonus;
+      if(up.statusTurnsBonus&&out.statusTurns!=null) out.statusTurns+=up.statusTurnsBonus;
+      if(up.statusTurnsBonus&&out.effects)for(const effect of out.effects)if(effect.statusTurns!=null)effect.statusTurns+=up.statusTurnsBonus;
+      if(up.radiusBonus&&out.radius!=null) out.radius+=up.radiusBonus;
       if(up.rangeBonus&&out.range) out.range=[out.range[0],out.range[1]+up.rangeBonus];
       if(up.accuracyBonus&&out.acc) out.acc=Math.min(0.99,out.acc+up.accuracyBonus);
       if(up.penetrationBonus) out.penetration=(out.penetration||0)+up.penetrationBonus;
-      if(up.healMultiplier&&out.heal) out.power*=1+up.healMultiplier;
+      if(up.healMultiplier&&(out.heal||out.revive)) out.power*=1+up.healMultiplier;
+      if(up.healMultiplier&&out.effects)for(const effect of out.effects)if(effect.kind==='heal'&&typeof effect.power==='number')effect.power*=1+up.healMultiplier;
       if(up.revivePercent!=null&&out.revive) out.power=up.revivePercent;
       if(up.critBonus) out.crit=(out.crit||0)+up.critBonus;
       if(up.hpCostReduction&&out.hpCostPercent) out.hpCostPercent=Math.max(0,out.hpCostPercent-up.hpCostReduction);
+      if(up.hpCostReduction&&out.effects)for(const effect of out.effects)if(effect.kind==='hp_cost'&&effect.hpCostPercent)effect.hpCostPercent=Math.max(0,effect.hpCostPercent-up.hpCostReduction);
       if(up.lifestealBonus&&out.lifestealPercent) out.lifestealPercent+=up.lifestealBonus;
-      if(up.additionalStatus){ out.additionalStatus=up.additionalStatus; out.additionalStatusTurns=up.additionalStatusTurns||1; }
+      if(up.lifestealBonus&&out.effects)for(const effect of out.effects)if(effect.kind==='lifesteal'&&effect.lifestealPercent)effect.lifestealPercent+=up.lifestealBonus;
+      if(up.additionalStatus){ out.additionalStatus=up.additionalStatus; out.additionalStatusTurns=up.additionalStatusTurns||1; out.additionalStatusTarget=up.additionalStatusTarget||'enemies'; }
       if(up.selfHealPercent) out.selfHealPercent=up.selfHealPercent;
       if(up.minRangeReduction&&out.range) out.range=[Math.max(0,out.range[0]-up.minRangeReduction),out.range[1]];
       if(up.stealBuffs) out.stealBuffs=true;
@@ -1077,8 +1085,32 @@ function getSpec(u,which,wi,charge){ if(which==='attack'){ const w=(u.weapons&&u
     const acc=lvl>=2?Math.min(0.99,w.acc+0.10):w.acc;
     const labels=['Attaque','Attaque+','Attaque++'];
     return {key:'attack',wi:(wi||0),charge:lvl,name:labels[lvl],icon:w.icon,ap:apCost,type:w.type,power:w.power,range:[w.min,w.max],radius:0,offensive:true,self:false,acc,crit:w.crit,elanMul,elanPierce}; }
-  const s=SKILLS[which]; return applySkillUpgrade(u,which,{key:which,name:s.name,icon:s.icon,ap:s.ap,type:s.type,power:s.power||0,range:s.self?[0,0]:s.range,radius:s.radius,shape:s.shape,mode:s.mode,dest:!!s.dest,impact:s.impact,status:s.status,statusTurns:s.statusTurns,acc:s.acc,support:!!s.support,offensive:!!s.offensive,self:!!s.self,heal:s.type==='heal',revive:s.type==='revive',penetration:s.penetration,crit:s.crit,effects:s.effects,flatHeal:s.flatHeal,flatDmg:s.flatDmg,apRestore:s.apRestore,cure:s.cure,allowSelfDamage:s.allowSelfDamage,hpCostPercent:s.hpCostPercent,lifestealPercent:s.lifestealPercent}); }
-function rangeCells(u,spec){ if(spec.self)return [{gx:u.gx,gz:u.gz}]; const ux=u.size>1?bossCenterGX(u):u.gx, uz=u.size>1?bossCenterGZ(u):u.gz; const out=[]; for(let gx=0;gx<CFG.W;gx++)for(let gz=0;gz<CFG.D;gz++){ const md=Math.abs(gx-ux)+Math.abs(gz-uz); if(md<spec.range[0]||md>spec.range[1])continue; if(spec.revive){ if(!G.units.some(x=>!x.alive&&x.downed&&x.team===u.team&&x.gx===gx&&x.gz===gz))continue; } if(spec.item&&spec.support){ const oc=cellAt(gx,gz)?.occupant; if(!(oc&&oc.alive&&oc.team===u.team))continue; } if(spec.dest){ const dc=cellAt(gx,gz); if(!dc||!dc.walkable||(dc.occupant&&dc.occupant!==u))continue; if(spec.mode==='dash'&&gx!==u.gx&&gz!==u.gz)continue; if(spec.mode==='dash'&&!clearLine(u,gx,gz))continue; } out.push({gx,gz}); } return out; }
+  const s=SKILLS[which]; return applySkillUpgrade(u,which,{key:which,name:s.name,icon:s.icon,ap:s.ap,type:s.type,power:s.power||0,range:s.self?[0,0]:s.range,radius:s.radius,shape:s.shape,mode:s.mode,dest:!!s.dest,targetMode:s.targetMode,movePhase:s.movePhase,impact:s.impact,status:s.status,statusTurns:s.statusTurns,acc:s.acc,support:!!s.support,offensive:!!s.offensive,self:!!s.self,heal:s.type==='heal',revive:s.type==='revive',penetration:s.penetration,crit:s.crit,effects:s.effects,flatHeal:s.flatHeal,flatDmg:s.flatDmg,apRestore:s.apRestore,cure:s.cure,allowSelfDamage:s.allowSelfDamage,hpCostPercent:s.hpCostPercent,lifestealPercent:s.lifestealPercent}); }
+function unitAtTargetCell(u,spec,gx,gz){
+  if(spec.revive)return G.units.find(x=>!x.alive&&x.downed&&x.team===u.team&&x.gx===gx&&x.gz===gz)||null;
+  const target=cellAt(gx,gz)?.occupant||null;
+  if(!target||!target.alive)return null;
+  if(spec.targetMode==='ally')return target.team===u.team?target:null;
+  if(spec.targetMode==='enemy')return target.team!==u.team?target:null;
+  return target;
+}
+function selectedTargetsForAction(u,spec,cx,cz){ const target=unitAtTargetCell(u,spec,cx,cz); return target?[target]:[]; }
+function areaUnits(u,spec,cx,cz){ const out=new Set(); for(const [gx,gz] of aoeCells(u,spec,cx,cz)){ const target=cellAt(gx,gz)?.occupant; if(target&&target.alive&&canAffectUnit(u,spec,target))out.add(target); } return [...out]; }
+function rangeCells(u,spec){
+  if(spec.self)return [{gx:u.gx,gz:u.gz}];
+  const ux=u.size>1?bossCenterGX(u):u.gx, uz=u.size>1?bossCenterGZ(u):u.gz, out=[];
+  for(let gx=0;gx<CFG.W;gx++)for(let gz=0;gz<CFG.D;gz++){
+    const md=Math.abs(gx-ux)+Math.abs(gz-uz); if(md<spec.range[0]||md>spec.range[1])continue;
+    if(spec.revive||spec.targetMode==='ally'||spec.targetMode==='enemy'){
+      if(!unitAtTargetCell(u,spec,gx,gz))continue;
+      out.push({gx,gz}); continue;
+    }
+    if(spec.item&&spec.support){ const oc=cellAt(gx,gz)?.occupant; if(!(oc&&oc.alive&&oc.team===u.team))continue; }
+    if(spec.dest){ const dc=cellAt(gx,gz); if(!dc||!dc.walkable||(dc.occupant&&dc.occupant!==u))continue; if(spec.mode==='dash'&&gx!==u.gx&&gz!==u.gz)continue; if(spec.mode==='dash'&&!clearLine(u,gx,gz))continue; }
+    out.push({gx,gz});
+  }
+  return out;
+}
 function clearLine(u,gx,gz){ const dx=Math.sign(gx-u.gx), dz=Math.sign(gz-u.gz); let x=u.gx+dx, z=u.gz+dz, g=0; while((x!==gx||z!==gz)&&g++<40){ const c=cellAt(x,z); if(!c||!c.walkable||c.occupant)return false; x+=dx; z+=dz; } return true; }
 function aoeTiles(cx,cz,radius){ const out=[],R=radius+0.001; for(let gx=Math.ceil(cx-radius);gx<=Math.floor(cx+radius);gx++)for(let gz=Math.ceil(cz-radius);gz<=Math.floor(cz+radius);gz++){ if(inBounds(gx,gz)&&eud(gx,gz,cx,cz)<=R)out.push([gx,gz]); } if(!out.length&&inBounds(cx,cz))out.push([cx,cz]); return out; }
 function dirTo(u,cx,cz){ const ux=u.size>1?bossCenterGX(u):u.gx, uz=u.size>1?bossCenterGZ(u):u.gz; const dx=cx-ux, dz=cz-uz; if(Math.abs(dx)>=Math.abs(dz)) return {dx:Math.sign(dx)||(u.facing.dx||1),dz:0}; return {dx:0,dz:Math.sign(dz)||1}; }
@@ -1086,8 +1118,24 @@ function lineCells(u,cx,cz,radius){ const d=dirTo(u,cx,cz); const R=Math.max(1,M
 function coneCells(u,cx,cz,radius){ const d=dirTo(u,cx,cz); const R=radius+0.001; const out=[]; for(let gx=Math.ceil(cx-radius);gx<=Math.floor(cx+radius);gx++)for(let gz=Math.ceil(cz-radius);gz<=Math.floor(cz+radius);gz++){ if(!inBounds(gx,gz)||eud(gx,gz,cx,cz)>R)continue; const vx=gx-cx,vz=gz-cz; if(vx===0&&vz===0){out.push([gx,gz]);continue;} if((vx*d.dx+vz*d.dz)/Math.hypot(vx,vz)>=0.34)out.push([gx,gz]); } return out.length?out:[[cx,cz]]; }
 function aoeCells(u,spec,cx,cz){ const sh=spec.shape||'circle'; if(sh==='line')return lineCells(u,cx,cz,spec.radius); if(sh==='cone')return coneCells(u,cx,cz,spec.radius); return aoeTiles(cx,cz,spec.radius); }
 function canAffectUnit(caster,spec,target){ if(!target)return false; if(spec.offensive&&target===caster&&!spec.allowSelfDamage)return false; return true; }
-function affectedUnits(u,spec,cx,cz){ if(spec.revive){ const ko=G.units.find(x=>!x.alive&&x.downed&&x.team===u.team&&x.gx===cx&&x.gz===cz); return ko?[ko]:[]; } const set=[]; for(const [gx,gz] of aoeCells(u,spec,cx,cz)){ const c=cellAt(gx,gz); if(c&&c.occupant&&c.occupant.alive&&canAffectUnit(u,spec,c.occupant))set.push(c.occupant); } if(spec.heal||spec.support)return set.filter(t=>t.team===u.team); return set; }
-function effectTargets(u,spec,cx,cz,effect){ const all=affectedUnits(u,spec,cx,cz); const t=effect.target; if(t==='caster'||t==='self')return [u]; if(t==='allies')return all.filter(x=>x.team===u.team); if(t==='enemies')return all.filter(x=>x.team!==u.team); if(t==='all')return all; return all; }
+function affectedUnits(u,spec,cx,cz){
+  if(spec.revive||spec.targetMode==='ally'||spec.targetMode==='enemy')return selectedTargetsForAction(u,spec,cx,cz);
+  const targets=areaUnits(u,spec,cx,cz);
+  if(spec.heal||spec.support)return targets.filter(t=>t.team===u.team);
+  return targets;
+}
+function effectTargets(u,spec,cx,cz,effect,context={}){
+  let all;
+  if(effect.targetSource==='selected'||effect.kind==='revive')all=context.selectedTargets||selectedTargetsForAction(u,spec,cx,cz);
+  else all=areaUnits(u,spec,cx,cz);
+  if(effect.kind!=='revive')all=all.filter(target=>target.alive);
+  const t=effect.target;
+  if(t==='caster'||t==='self')return [u];
+  if(t==='allies')return all.filter(target=>target.team===u.team);
+  if(t==='enemies')return all.filter(target=>target.team!==u.team);
+  if(t==='all')return all;
+  return all;
+}
 function previewAccuracy(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return 100; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; return Math.round(cl(acc,5,95)); }
 function previewPower(att,tgt,spec){ if(spec.heal)return Math.max(1,(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(att)*spec.power))+Math.floor(effCHA(att)/4)); if(spec.apRestore)return spec.apRestore; if((spec.power||0)<=0)return 0; if(spec.flatDmg)return Math.max(1,Math.round(spec.flatDmg)); const K=15,isMag=spec.type==='mag'; const atk=isMag?effMAG(att):effSTR(att); let def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); if(spec.elanPierce) def=Math.max(1,def*(1-spec.elanPierce)); if(spec.penetration) def=Math.max(1,def*(1-spec.penetration)); let d=Math.sqrt(spec.power*K*atk/def)*2*orientMult(att,tgt).m*dmgTakenMul(tgt); if(spec.elanMul) d*=spec.elanMul; return Math.max(1,Math.round(d)); }
 function hideActionPreview(){ dom.actionPreview.classList.add('hidden'); dom.actionPreview.innerHTML=''; }
@@ -1107,6 +1155,8 @@ function actionVfxSearchText(spec={},u=null){
 }
 function vfxTextIncludes(text,terms){ return terms.some(term=>text.includes(term)); }
 function getActionVfxPreset(spec={},u=null){
+  const presentation=getSkillPresentation(spec);
+  if(presentation)return presentation.vfxPreset;
   const text=actionVfxSearchText(spec,u);
   if(spec.key==='boss_quake')return 'boss_quake';
   if(spec.key==='boss_slam')return 'boss_slam';
@@ -1152,11 +1202,12 @@ function playFeedbackVfx(presetId,source,target){
   void result.completion.catch(error=>console.warn('[CombatVfx] Feedback playback failed safely.',error));
   return true;
 }
-async function attackAnim(u,spec,cx,cz,targets=[]){ const ctr=new THREE.Vector3(wX(cx),tileTop(cx,cz)+0.6,wZ(cz)); const preset=getActionMotionPreset(spec);
+async function attackAnim(u,spec,cx,cz,targets=[]){ const ctr=new THREE.Vector3(wX(cx),tileTop(cx,cz)+0.6,wZ(cz)); const presentation=getSkillPresentation(spec),preset=getActionMotionPreset(spec),isUltimate=Boolean(presentation?.ultimate),impactCount=presentation?.impactCount||1;
   const impact=async()=>{
+    if(isUltimate){ floatText(u,'ULTIME','#ffd86a',true); screenFlash('#fff0b0',0.12); screenShake(0.26,0.16); }
     if(spec.key!=='attack')castTelegraph(u,spec);
     const generated=playActionVfx(spec,u,targets,cx,cz);
-    if(generated){ await wait(generated.impactTime); return; }
+    if(generated){ for(let i=1;i<impactCount;i++){ await wait(0.08); playActionVfx(spec,u,targets,cx,cz); } await wait(generated.impactTime); return; }
     if(spec.heal||spec.revive||spec.support||spec.apRestore||spec.cure){
       const type=(spec.type==='debuff')?'dark':'heal';
       for(const [gx,gz] of aoeCells(u,spec,cx,cz))vfx(type,new THREE.Vector3(wX(gx),tileTop(gx,gz)+0.6,wZ(gz)));
@@ -1190,21 +1241,101 @@ async function doMove(u,spec,cx,cz){ setFacing(u,cx,cz); const c=cellAt(cx,cz); 
   else { placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.dash||0.2,easeOutCubic); screenShake(0.5,0.3); screenFlash('#fff0b0',0.16); vfx('hit',head);
     if(spec.impact){ const hits=aliveUnits().filter(t=>t.team!==u.team&&(Math.abs(t.gx-cx)+Math.abs(t.gz-cz)===1)); for(const t of hits){ const {dmg}=computeDamage(u,t,{type:'phys',power:spec.power||8}); floatText(t,'-'+dmg,'#ffffff',true); await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&spec.impact.status)applyStatus(t,spec.impact.status,spec.impact.statusTurns); await wait(0.06); } } }
   await wait(0.12); }
+function unitCenter(u){ return {gx:u.size>1?bossCenterGX(u):u.gx,gz:u.size>1?bossCenterGZ(u):u.gz}; }
+function isFreeSkillTile(gx,gz){ const c=cellAt(gx,gz); return !!(c&&c.walkable&&!c.occupant); }
+function findStrikeDestination(u,target){
+  if(!target)return null;
+  const from=unitCenter(u), to=unitCenter(target), awayX=Math.sign(to.gx-from.gx)||1, awayZ=Math.sign(to.gz-from.gz), options=[], seen=new Set();
+  const footprint=target.size>1?bossCells(target):[target.cell()];
+  for(const cell of footprint)for(const [dx,dz] of [[1,0],[-1,0],[0,1],[0,-1]]){
+    const gx=cell.gx+dx,gz=cell.gz+dz,key=gx+','+gz;
+    if(!seen.has(key)&&isFreeSkillTile(gx,gz)){ seen.add(key); options.push({gx,gz}); }
+  }
+  const score=option=>((option.gx-to.gx)*awayX+(option.gz-to.gz)*awayZ)*4-Math.abs(option.gx-from.gx)-Math.abs(option.gz-from.gz);
+  return options.sort((a,b)=>score(b)-score(a))[0]||null;
+}
+function findRetreatDestination(u,threat,distance=1){
+  const from=unitCenter(u), other=threat?unitCenter(threat):null;
+  let dx=other?Math.sign(from.gx-other.gx):-(u.facing?.dx||1), dz=other?Math.sign(from.gz-other.gz):-(u.facing?.dz||0);
+  if(Math.abs(dx)>=Math.abs(dz)){ dx=dx||-(u.facing?.dx||1); dz=0; } else { dz=dz||-(u.facing?.dz||1); dx=0; }
+  for(let step=distance;step>=1;step--){ const gx=u.gx+dx*step,gz=u.gz+dz*step; if(isFreeSkillTile(gx,gz))return {gx,gz}; }
+  const candidates=[];
+  for(const [cx,cz] of [[1,0],[-1,0],[0,1],[0,-1]]){ const gx=u.gx+cx,gz=u.gz+cz; if(isFreeSkillTile(gx,gz))candidates.push({gx,gz}); }
+  if(!candidates.length)return null;
+  const score=option=>other?Math.abs(option.gx-other.gx)+Math.abs(option.gz-other.gz):0;
+  return candidates.sort((a,b)=>score(b)-score(a))[0];
+}
+async function swapUnits(a,b){
+  if(!a||!b||a.size>1||b.size>1)return false;
+  const aCell=a.cell(),bCell=b.cell(); if(!aCell||!bCell)return false;
+  const aPos={gx:a.gx,gz:a.gz},bPos={gx:b.gx,gz:b.gz};
+  killSpriteMotion(a); killSpriteMotion(b);
+  await Promise.all([tweenP(a.mat,{opacity:0.2},0.12,easeOutCubic),tweenP(b.mat,{opacity:0.2},0.12,easeOutCubic)]);
+  aCell.occupant=b; bCell.occupant=a;
+  a.gx=bPos.gx; a.gz=bPos.gz; b.gx=aPos.gx; b.gz=aPos.gz;
+  a.grp.position.set(wX(a.gx),bCell.topY,wZ(a.gz)); b.grp.position.set(wX(b.gx),aCell.topY,wZ(b.gz));
+  vfx('dark',a.grp.position.clone().add(new THREE.Vector3(0,0.85,0))); vfx('dark',b.grp.position.clone().add(new THREE.Vector3(0,0.85,0)));
+  await Promise.all([tweenP(a.mat,{opacity:1},0.14,easeOutCubic),tweenP(b.mat,{opacity:1},0.14,easeOutCubic)]);
+  return true;
+}
+async function performSkillMovement(u,spec,cx,cz,context={}){
+  const selected=(context.selectedTargets||[])[0]||null;
+  if(spec.mode==='swap'){
+    if(!await swapUnits(u,selected)){ toast('Échange impossible'); return false; }
+    return true;
+  }
+  if(spec.mode==='strike'){
+    const dest=findStrikeDestination(u,selected);
+    if(!dest){ toast('Aucune case libre derrière la cible'); return false; }
+    await doMove(u,{...spec,type:'move',mode:'teleport',dest:true,impact:null,ap:0},dest.gx,dest.gz);
+    if(selected){ const center=unitCenter(selected); setFacing(u,center.gx,center.gz); }
+    return true;
+  }
+  if(spec.mode==='retreat'){
+    const threat=selected||aliveUnits().filter(target=>target.team!==u.team).sort((a,b)=>{ const ac=unitCenter(a),bc=unitCenter(b); return Math.abs(ac.gx-u.gx)+Math.abs(ac.gz-u.gz)-Math.abs(bc.gx-u.gx)-Math.abs(bc.gz-u.gz); })[0]||null;
+    const dest=findRetreatDestination(u,threat,1);
+    if(!dest){ toast('Aucun repli possible'); return false; }
+    await doMove(u,{...spec,type:'move',mode:'leap',dest:true,impact:null,ap:0},dest.gx,dest.gz);
+    if(threat){ const center=unitCenter(threat); setFacing(u,center.gx,center.gz); }
+    return true;
+  }
+  if(spec.dest){ await doMove(u,spec,cx,cz); return true; }
+  return false;
+}
+function applyAdditionalStatus(u,spec,cx,cz,context={}){
+  if(!spec.additionalStatus)return;
+  const selected=context.selectedTargets||[];
+  let targets=[];
+  switch(spec.additionalStatusTarget||'enemies'){
+    case 'self': targets=[u]; break;
+    case 'selected': targets=selected; break;
+    case 'casterAndSelected': targets=[u,...selected]; break;
+    case 'allies': targets=areaUnits(u,spec,cx,cz).filter(target=>target.team===u.team); break;
+    case 'enemies': targets=areaUnits(u,spec,cx,cz).filter(target=>target.team!==u.team); break;
+    default: targets=areaUnits(u,spec,cx,cz).filter(target=>target.team!==u.team); break;
+  }
+  for(const target of [...new Set(targets)])if(target&&target.alive){ applyStatus(target,spec.additionalStatus,spec.additionalStatusTurns||1); if(spec.additionalStatus==='taunt')target._taunter=u; }
+}
 async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPreview(); G.busy=true; closeMenus(); clearHL();
-  if(spec.type==='move'&&!spec.effects){ await doMove(u,spec,cx,cz); if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap); G.movedThisTurn=true; refreshPanel(u); restoreCam(); G.busy=false; checkEnd(); return; }
-  if(!spec.self)setFacing(u,cx,cz);
-  const targets=affectedUnits(u,spec,cx,cz);
+  const context={origin:{gx:u.gx,gz:u.gz},selectedTargets:selectedTargetsForAction(u,spec,cx,cz)};
+  const isStandaloneMove=spec.type==='move'&&(!spec.effects||spec.effects.length===0)&&!['swap','strike','retreat'].includes(spec.mode);
+  if(isStandaloneMove){ await doMove(u,spec,cx,cz); applyAdditionalStatus(u,spec,cx,cz,context); if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap); G.movedThisTurn=true; refreshPanel(u); restoreCam(); G.busy=false; checkEnd(); return; }
+  const hasSkillMovement=Boolean(spec.dest||spec.mode==='swap'||spec.mode==='strike'||spec.mode==='retreat'),moveBefore=hasSkillMovement&&spec.movePhase==='before';
+  let impactCx=cx,impactCz=cz;
+  if(moveBefore){ const moved=await performSkillMovement(u,spec,cx,cz,context); if(!moved){ restoreCam(); G.busy=false; return; } G.movedThisTurn=true; if(spec.mode!=='strike'&&spec.mode!=='swap'){ impactCx=u.gx; impactCz=u.gz; } }
+  if(!spec.self){ const target=context.selectedTargets[0]; if(target){ const center=unitCenter(target); setFacing(u,center.gx,center.gz); } else setFacing(u,impactCx,impactCz); }
+  const targets=context.selectedTargets.length&&(spec.revive||spec.targetMode==='ally'||spec.targetMode==='enemy')?context.selectedTargets:affectedUnits(u,spec,impactCx,impactCz);
   logMsg(u.name+' → '+spec.name);
   await combatStageEnter(u,targets,spec);
-  await attackAnim(u,spec,cx,cz,targets);
+  await attackAnim(u,spec,impactCx,impactCz,targets);
   if(spec.item&&spec.itemId)G.inv[spec.itemId]=Math.max(0,(G.inv[spec.itemId]||0)-1);
   // Process effects[] if present (multi-effect system)
   if(spec.effects&&spec.effects.length){
     let totalDamageDealt=0;
     for(const eff of spec.effects){
-      if(eff.kind==='move'){ await doMove(u,{...spec,mode:eff.moveMode||spec.mode,type:'move',ap:0},cx,cz); continue; }
+      if(eff.kind==='move'){ await doMove(u,{...spec,mode:eff.moveMode||spec.mode,type:'move',ap:0},impactCx,impactCz); G.movedThisTurn=true; continue; }
       if(eff.kind==='hp_cost'){ if(eff.target==='caster'||eff.target==='self'){ const cost=Math.round(u.maxhp*(eff.hpCostPercent||0)); u.hp=Math.max(1,u.hp-cost); floatText(u,'-'+cost,'#ff5a4a',true); refreshPanel(u); } continue; }
-      const etgts=effectTargets(u,spec,cx,cz,eff);
+      const etgts=effectTargets(u,spec,impactCx,impactCz,eff,context);
       if(eff.kind==='damage'){
         for(const t of etgts){ if(!rollHit(u,t,spec)){ floatText(t,'RATÉ','#cfd6e6'); continue; }
           const dmgSpec={type:eff.damageType||spec.type,power:eff.power||spec.power,penetration:eff.penetration||spec.penetration,crit:spec.crit,elanPierce:spec.elanPierce,elanMul:spec.elanMul};
@@ -1232,14 +1363,12 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
     // Lifesteal processing: heal caster based on total damage dealt
     const lsEffect=spec.effects.find(e=>e.kind==='lifesteal');
     if(lsEffect&&totalDamageDealt>0&&u.alive){ const lsPct=lsEffect.lifestealPercent||0; const healAmt=Math.round(totalDamageDealt*lsPct); if(healAmt>0){ applyHeal(u,healAmt); } }
-    // Additional status from upgrades
-    if(spec.additionalStatus){ for(const t of targets){ if(t.alive&&t.team!==u.team){ applyStatus(t,spec.additionalStatus,spec.additionalStatusTurns||1); } } }
   } else if(spec.heal){ for(const t of targets)applyHeal(t,(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(u)*spec.power))+Math.floor(effCHA(u)/4)); await wait(0.25); }
   else if(spec.revive){ for(const t of targets)reviveUnit(t,Math.round(t.maxhp*spec.power)); await wait(0.25); }
   else if(spec.apRestore){ for(const t of targets){ t.ap=Math.min(t.maxap,t.ap+spec.apRestore); floatText(t,'+'+spec.apRestore+' AP','#7fd0ff',true); flashUnit(t,'#bfe0ff'); refreshPanel(t); } await wait(0.25); }
   else if(spec.cure){ for(const t of targets){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); flashUnit(t,'#bfffc0'); refreshPanel(t); } await wait(0.25); }
   else { for(const t of targets){ const friendly=t.team===u.team;
-      if((spec.power||0)<=0){ if(rollHit(u,t,spec)){ if(spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } if(spec.additionalStatus){ applyStatus(t,spec.additionalStatus,spec.additionalStatusTurns||1); } } else floatText(t,'RATÉ','#cfd6e6'); continue; }
+      if((spec.power||0)<=0){ if(rollHit(u,t,spec)){ if(spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } } else floatText(t,'RATÉ','#cfd6e6'); continue; }
       if(!rollHit(u,t,spec)){ floatText(t,'RATÉ','#cfd6e6'); await wait(0.05); continue; }
       const crit=!spec.flatDmg&&Math.random()<critChance(u,t,spec); let {dmg,lab}=spec.flatDmg?{dmg:Math.max(1,Math.round(spec.flatDmg*rnd(0.85,1.15))),lab:'face'}:computeDamage(u,t,spec); if(crit)dmg=Math.round(dmg*1.5);
       floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':(friendly?'#ffd27a':'#ffffff'),lab==='DOS'||crit);
@@ -1248,7 +1377,9 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
         logMsg('Coup critique !');
       }
       if(lab==='DOS')floatText({grp:{position:t.grp.position.clone().add(new THREE.Vector3(0,0.3,0))},gx:t.gx,gz:t.gz},'DOS !','#ff5a4a');
-      await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } if(t.alive&&spec.additionalStatus){ applyStatus(t,spec.additionalStatus,spec.additionalStatusTurns||1); } } await wait(0.15); }
+      await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } } await wait(0.15); }
+  if(hasSkillMovement&&!moveBefore){ const moved=await performSkillMovement(u,spec,cx,cz,context); if(moved)G.movedThisTurn=true; }
+  applyAdditionalStatus(u,spec,impactCx,impactCz,context);
   // Post-action upgrade effects
   if(spec.selfHealPercent&&u.alive){ const healAmt=Math.round(u.maxhp*spec.selfHealPercent); if(healAmt>0)applyHeal(u,healAmt); }
   if(spec.dispelAllies){ const allies=G.units.filter(t=>t.alive&&t.team===u.team); for(const t of allies){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } if(n)floatText(t,'PURIFIÉ','#7ed957',true); refreshPanel(t); } }

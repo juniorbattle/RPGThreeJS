@@ -402,7 +402,11 @@ export interface ReputationRule {
 
 export type SkillType = 'phys' | 'mag' | 'heal' | 'buff' | 'debuff' | 'move' | 'revive';
 export type SkillShape = 'circle' | 'line' | 'cone';
-export type SkillMoveMode = 'teleport' | 'leap' | 'dash';
+export type SkillMoveMode = 'teleport' | 'leap' | 'dash' | 'swap' | 'strike' | 'retreat';
+export type SkillMovementPhase = 'before' | 'after';
+export type SkillTargetMode = 'tile' | 'ally' | 'enemy';
+export type SkillEffectTargetSource = 'area' | 'selected';
+export type SkillUpgradeStatusTarget = 'self' | 'allies' | 'enemies' | 'selected' | 'casterAndSelected';
 export type SkillEffectKind =
   | 'damage' | 'heal' | 'status' | 'buff' | 'revive'
   | 'dispel' | 'lifesteal' | 'hp_cost' | 'trap' | 'ap_restore' | 'move';
@@ -423,6 +427,8 @@ export interface SkillEffect {
   lifestealPercent?: number;
   moveMode?: SkillMoveMode;
   dispelType?: 'positive' | 'negative' | 'all';
+  /** Reuse the explicitly selected unit instead of recomputing an area. */
+  targetSource?: SkillEffectTargetSource;
 }
 
 export interface SkillUpgrade {
@@ -435,6 +441,7 @@ export interface SkillUpgrade {
   penetrationBonus?: number;
   additionalStatus?: string;
   additionalStatusTurns?: number;
+  additionalStatusTarget?: SkillUpgradeStatusTarget;
   healMultiplier?: number;
   revivePercent?: number;
   hpCostReduction?: number;
@@ -459,6 +466,10 @@ export interface SkillDefinition {
   shape?: SkillShape;
   mode?: SkillMoveMode;
   dest?: boolean;
+  /** Controls whether the selected cell resolves as a free tile, ally or enemy. */
+  targetMode?: SkillTargetMode;
+  /** Applies a movement component before or after the skill's effects. */
+  movePhase?: SkillMovementPhase;
   self?: boolean;
   offensive?: boolean;
   support?: boolean;
