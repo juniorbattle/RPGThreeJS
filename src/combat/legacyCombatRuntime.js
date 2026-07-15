@@ -74,7 +74,7 @@ const notifyCampaignResult=victory=>window.parent.postMessage({
 const G = {
   units:[], tilesMesh:[], grid:[], order:[], turnIdx:0, round:1,
   mode:'idle', active:null, selected:null, pinnedUnit:null, hover:null, hoverUnit:null,
-  movedThisTurn:false, actedThisTurn:false, movedBeforeAct:false, pending:null, busy:false, over:false, inv:{},
+  movedThisTurn:false, actedThisTurn:false, movedBeforeAct:false, skillMovedThisTurn:false, pending:null, busy:false, over:false, inv:{},
   basicAttacksThisTurn:0, itemsUsedThisTurn:0,
   rosterDefs:[],selectedDeployId:null,deployPage:0,deployedUnits:[]
 };
@@ -861,7 +861,7 @@ function tickStatusDuration(u){ for(const s in u.statuses){ u.statuses[s]--; if(
 function buildOrder(){ return aliveUnits().sort((a,b)=> (effDEX(b)-effDEX(a)) || (a.team===b.team? a.id-b.id : (a.team==='player'?-1:1))); }
 function startRound(){ if(checkEnd())return; G.round++; G.order=buildOrder(); G.turnIdx=-1; logMsg('— Manche '+G.round+' —'); nextTurn(); }
 function nextTurn(){ if(G.over||checkEnd())return; G.turnIdx++; if(G.turnIdx>=G.order.length){ startRound(); return; } const u=G.order[G.turnIdx]; if(!u||!u.alive){ nextTurn(); return; } beginTurn(u); }
-async function beginTurn(u){ if(G.over)return; G.active=u; G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; G.startGX=u.gx; G.startGZ=u.gz;
+async function beginTurn(u){ if(G.over)return; G.active=u; G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.skillMovedThisTurn=false; G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; G.startGX=u.gx; G.startGZ=u.gz;
   const regen=(u.boss||u.elite)?2:1; u.ap=Math.min(u.maxap,u.ap+regen); u._souffle=false; u.gardeAP=0;
   if(regen>0) setTimeout(()=>{ if(u.alive)floatText(u,'+'+regen+' AP','#7fd0ff'); },120);
   refreshTurnbar(); selectUnit(u); focusCam(u);
@@ -1323,10 +1323,10 @@ function applyAdditionalStatus(u,spec,cx,cz,context={}){
 async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPreview(); G.busy=true; closeMenus(); clearHL();
   const context={origin:{gx:u.gx,gz:u.gz},selectedTargets:selectedTargetsForAction(u,spec,cx,cz)};
   const isStandaloneMove=spec.type==='move'&&(!spec.effects||spec.effects.length===0)&&!['swap','strike','retreat'].includes(spec.mode);
-  if(isStandaloneMove){ await doMove(u,spec,cx,cz); applyAdditionalStatus(u,spec,cx,cz,context); if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap); G.movedThisTurn=true; refreshPanel(u); restoreCam(); G.busy=false; checkEnd(); return; }
+  if(isStandaloneMove){ await doMove(u,spec,cx,cz); applyAdditionalStatus(u,spec,cx,cz,context); if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap); G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz; refreshPanel(u); restoreCam(); G.busy=false; checkEnd(); return; }
   const hasSkillMovement=Boolean(spec.dest||spec.mode==='swap'||spec.mode==='strike'||spec.mode==='retreat'),moveBefore=hasSkillMovement&&spec.movePhase==='before';
   let impactCx=cx,impactCz=cz;
-  if(moveBefore){ const moved=await performSkillMovement(u,spec,cx,cz,context); if(!moved){ restoreCam(); G.busy=false; return; } G.movedThisTurn=true; if(spec.mode!=='strike'&&spec.mode!=='swap'){ impactCx=u.gx; impactCz=u.gz; } }
+  if(moveBefore){ const moved=await performSkillMovement(u,spec,cx,cz,context); if(!moved){ restoreCam(); G.busy=false; return; } G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz; if(spec.mode!=='strike'&&spec.mode!=='swap'){ impactCx=u.gx; impactCz=u.gz; } }
   if(!spec.self){ const target=context.selectedTargets[0]; if(target){ const center=unitCenter(target); setFacing(u,center.gx,center.gz); } else setFacing(u,impactCx,impactCz); }
   const targets=context.selectedTargets.length&&(spec.revive||spec.targetMode==='ally'||spec.targetMode==='enemy')?context.selectedTargets:affectedUnits(u,spec,impactCx,impactCz);
   logMsg(u.name+' → '+spec.name);
@@ -1337,7 +1337,7 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
   if(spec.effects&&spec.effects.length){
     let totalDamageDealt=0;
     for(const eff of spec.effects){
-      if(eff.kind==='move'){ await doMove(u,{...spec,mode:eff.moveMode||spec.mode,type:'move',ap:0},impactCx,impactCz); G.movedThisTurn=true; continue; }
+      if(eff.kind==='move'){ await doMove(u,{...spec,mode:eff.moveMode||spec.mode,type:'move',ap:0},impactCx,impactCz); G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz; continue; }
       if(eff.kind==='hp_cost'){ if(eff.target==='caster'||eff.target==='self'){ const cost=Math.round(u.maxhp*(eff.hpCostPercent||0)); u.hp=Math.max(1,u.hp-cost); floatText(u,'-'+cost,'#ff5a4a',true); refreshPanel(u); } continue; }
       const etgts=effectTargets(u,spec,impactCx,impactCz,eff,context);
       if(eff.kind==='damage'){
@@ -1382,7 +1382,7 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
       }
       if(lab==='DOS')floatText({grp:{position:t.grp.position.clone().add(new THREE.Vector3(0,0.3,0))},gx:t.gx,gz:t.gz},'DOS !','#ff5a4a');
       await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } } await wait(0.15); }
-  if(hasSkillMovement&&!moveBefore){ const moved=await performSkillMovement(u,spec,cx,cz,context); if(moved)G.movedThisTurn=true; }
+  if(hasSkillMovement&&!moveBefore){ const moved=await performSkillMovement(u,spec,cx,cz,context); if(moved){G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz;} }
   applyAdditionalStatus(u,spec,impactCx,impactCz,context);
   // Post-action upgrade effects
   if(spec.selfHealPercent&&u.alive){ const healAmt=Math.round(u.maxhp*spec.selfHealPercent); if(healAmt>0)applyHeal(u,healAmt); }
