@@ -19,6 +19,7 @@ const weaponPayloadSchema = z.object({
 export const combatantPayloadSchema = z.object({
   id: z.string(),
   name: z.string(),
+  className: z.string(),
   kind: z.enum(['knight', 'cleric', 'mage', 'archer', 'rogue']),
   portrait: z.string(),
   stats: unitStatsSchema,

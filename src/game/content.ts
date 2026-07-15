@@ -383,7 +383,7 @@ const rawDialogues = [
         side: 'right',
         effects: [],
         choices: [
-          { text: 'Recruter Cedric — 50 or.', next: '2', requiresGold: 50, effects: [{ type: 'addGold', amount: -50 }, { type: 'recruitUnit', unitId: 'cedric' }, { type: 'addReputation', amount: 3 }, { type: 'setFlag', key: 'recruitedCedric', value: true }] },
+          { text: 'Recruter Cedric — 50 or.', next: '2', requiresGold: 50, effects: [{ type: 'addGold', amount: -50 }, { type: 'recruitUnit', unitId: 'rogue' }, { type: 'addReputation', amount: 3 }, { type: 'setFlag', key: 'recruitedCedric', value: true }] },
           { text: 'Décliner.', next: '3', effects: [] },
         ],
       },

@@ -38,7 +38,7 @@ export const items: ItemDefinition[] = [
 
 export const units: UnitDefinition[] = [
   {
-    id: 'knight', name: 'Alistair', className: 'Chevalier', combatKind: 'knight',
+    id: 'warrior', name: 'Alistair', className: 'Guerrier', combatKind: 'knight',
     visualProfileId: 'alistair',
     recruitTier: 'core',
     portrait: '/assets/characters/pixel/full/alistair.png',
@@ -47,7 +47,7 @@ export const units: UnitDefinition[] = [
     allowedWeaponIds: ['iron_sword', 'steel_sword', 'lion_guard_blade', 'wooden_spear'], skillIds: ['w_break_guard', 'w_charge', 'w_whirl', 'w_lion_surge'],
   },
   {
-    id: 'cleric', name: 'Marian', className: 'Clerc', combatKind: 'cleric',
+    id: 'white_mage', name: 'Marian', className: 'Mage Blanc', combatKind: 'cleric',
     visualProfileId: 'marian',
     recruitTier: 'core',
     portrait: '/assets/characters/pixel/full/marian.png',
@@ -56,7 +56,7 @@ export const units: UnitDefinition[] = [
     allowedWeaponIds: ['war_mace', 'wooden_staff', 'mystic_staff'], skillIds: ['w_salvation', 'w_purify', 'w_sanctuary', 'w_miracle'],
   },
   {
-    id: 'mage', name: 'Elara', className: 'Mage', combatKind: 'mage',
+    id: 'dark_mage', name: 'Elara', className: 'Mage Noir', combatKind: 'mage',
     visualProfileId: 'elara',
     recruitTier: 'core',
     portrait: '/assets/characters/pixel/full/elara.png',
@@ -65,7 +65,7 @@ export const units: UnitDefinition[] = [
     allowedWeaponIds: ['wooden_staff', 'mystic_staff'], skillIds: ['n_dark_bolt', 'n_teleport', 'n_flame_wave', 'n_dark_meteor'],
   },
   {
-    id: 'archer', name: 'Kestrel', className: 'Archère', combatKind: 'archer',
+    id: 'archer', name: 'Kestrel', className: 'Archer', combatKind: 'archer',
     visualProfileId: 'kestrel',
     recruitTier: 'core',
     portrait: '/assets/characters/pixel/full/kestrel.png',
@@ -74,7 +74,7 @@ export const units: UnitDefinition[] = [
     allowedWeaponIds: ['short_bow', 'long_bow', 'windstep_bow', 'iron_dagger'], skillIds: ['a_precise_shot', 'a_hawk_leap', 'a_arrow_rain', 'a_zenith_arrow'],
   },
   {
-    id: 'cedric', name: 'Cedric', className: 'Rogue', combatKind: 'rogue',
+    id: 'rogue', name: 'Cedric', className: 'Rôdeur', combatKind: 'rogue',
     visualProfileId: 'cedric',
     recruitTier: 'optional',
     portrait: '/assets/characters/pixel/full/cedric.png',
@@ -189,11 +189,11 @@ export const craftRecipes: CraftRecipeDefinition[] = [
 export const craftRecipeById = new Map(craftRecipes.map((recipe) => [recipe.id, recipe]));
 
 const defaultWeapons: Record<string, string[]> = {
-  knight: ['iron_sword', 'wooden_spear'],
-  cleric: ['war_mace'],
-  mage: ['wooden_staff'],
+  warrior: ['iron_sword', 'wooden_spear'],
+  white_mage: ['war_mace'],
+  dark_mage: ['wooden_staff'],
   archer: ['short_bow', 'iron_dagger'],
-  cedric: ['short_bow', 'iron_dagger'],
+  rogue: ['short_bow', 'iron_dagger'],
   lancer: ['wooden_spear'],
   paladin: ['iron_sword'],
   dark_knight: ['iron_sword'],
@@ -272,6 +272,7 @@ export function toCombatant(unit: UnitInstance): CombatantPayload {
   return {
     id: unit.id,
     name: unit.name,
+    className: definition.className,
     kind: definition.combatKind,
     portrait: definition.portrait,
     stats,

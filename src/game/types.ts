@@ -374,6 +374,7 @@ export interface UnitDefinition {
 export interface CombatantPayload {
   id: string;
   name: string;
+  className: string;
   kind: UnitDefinition['combatKind'];
   portrait: string;
   stats: UnitStats;

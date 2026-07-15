@@ -104,17 +104,17 @@ interface TravelPartyMember {
 }
 
 const TRAVEL_HERO_QUOTES: Record<string, readonly string[]> = {
-  knight: [
+  warrior: [
     'Mon épée est à vous. Un bouclier ne sert à rien sans quelqu’un à protéger.',
     'J’aurais pu fuir quand le clan est tombé. Mais la loyauté ne se retire pas comme une armure.',
     'Je marche en première ligne. Pas par bravade — parce que c’est ma place.',
   ],
-  cleric: [
+  white_mage: [
     'Tant que je tiendrai mon staff, aucun de nous ne tombera sans espoir de se relever.',
     'La foi ne guérit pas les blessures du cœur. Mais elle donne la force de continuer.',
     'Mes prières sont pour les vivants. Les morts n’ont plus besoin de moi.',
   ],
-  mage: [
+  dark_mage: [
     'Je veille au-delà des routes. Des choses anciennes se réveillent, et je suis celle qui les comprend.',
     'Le savoir est une arme plus tranchée que toute épée. Mais il coupe dans les deux sens.',
     'Il y a des forces que même les héros refusent de nommer. Moi, je les étudie.',
@@ -124,7 +124,7 @@ const TRAVEL_HERO_QUOTES: Record<string, readonly string[]> = {
     'Le vent, l’ombre, la patience — voilà mes alliés les plus fidèles.',
     'Je ne vise pas le cœur. Je vise ce qui arrive après.',
   ],
-  cedric: [
+  rogue: [
     'Je connais les passages que personne ne surveille. Mon arc est à qui paie — ou à qui mérite.',
     'La liberté n’a pas de prix. Mais mes services, si.',
     'Je suis passé par dix camps ennemis sans qu’on me voie. Le onzième, je n’ai pas eu besoin.',

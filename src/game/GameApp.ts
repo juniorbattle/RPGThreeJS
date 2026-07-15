@@ -303,7 +303,7 @@ export class GameApp {
           break;
         case 'recruitUnit':
           {
-            const coreIds = new Set(['knight', 'cleric', 'mage', 'archer']);
+            const coreIds = new Set(['warrior', 'white_mage', 'dark_mage', 'archer']);
             const chapterRecruits = this.state.clan.members.filter((m) => !coreIds.has(m.definitionId)).length;
             if (
               chapterRecruits < 2

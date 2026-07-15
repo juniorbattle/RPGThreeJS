@@ -39,12 +39,12 @@ describe('clan management', () => {
 
   it('protects narrative members from exclusion', () => {
     const state = createInitialState();
-    expect(excludeUnit(state, 'knight')).toBe(false);
+    expect(excludeUnit(state, 'warrior')).toBe(false);
   });
 
   it('replaces equipment skills without levels', () => {
     const state = createInitialState();
-    const knight = state.clan.members.find((unit) => unit.id === 'knight')!;
+    const knight = state.clan.members.find((unit) => unit.id === 'warrior')!;
     expect(getResolvedSkills(knight)).toContain('w_break_guard');
     expect(getResolvedSkills(knight)).not.toContain('d_cursed_blade');
     expect(equipAccessory(state, knight.id, 0, 'strength_ring')).toBe(true);
@@ -150,7 +150,7 @@ describe('save migration', () => {
       gold: 99,
       reputation: 42,
       inventory: { potion: 2, bomb: 1 },
-      roster: ['knight', 'cleric', 'mage', 'archer'],
+      roster: ['warrior', 'white_mage', 'dark_mage', 'archer'],
       endingId: null,
     });
 

@@ -54,13 +54,13 @@ export function createInitialState(): GameState {
     clan: {
       maxSize: 12,
       members: [
-        createUnitInstance('knight', true),
-        createUnitInstance('cleric', true),
-        createUnitInstance('mage', true),
+        createUnitInstance('warrior', true),
+        createUnitInstance('white_mage', true),
+        createUnitInstance('dark_mage', true),
         createUnitInstance('archer', true),
       ],
     },
-    deployment: { unitIds: ['knight', 'cleric', 'mage', 'archer'] },
+    deployment: { unitIds: ['warrior', 'white_mage', 'dark_mage', 'archer'] },
     shops: {
       valmir: {
         id: 'valmir',
@@ -194,15 +194,31 @@ function normalizeLegacyEquipment(raw: unknown): unknown {
   const clanObj = clan as Record<string, unknown>;
   const members = clanObj.members;
   if (!Array.isArray(members)) return raw;
+  const legacyUnitIdMap: Record<string, string> = { knight: 'warrior', cleric: 'white_mage', mage: 'dark_mage', cedric: 'rogue' };
   for (const member of members) {
     if (typeof member !== 'object' || member === null) continue;
     const m = member as Record<string, unknown>;
+    // Migrate legacy unit definition IDs to new class-based IDs
+    const defId = m.definitionId;
+    if (typeof defId === 'string' && legacyUnitIdMap[defId]) {
+      m.definitionId = legacyUnitIdMap[defId];
+      if (typeof m.id === 'string' && legacyUnitIdMap[m.id]) m.id = legacyUnitIdMap[m.id];
+    }
     const equipment = m.equipment;
     if (typeof equipment !== 'object' || equipment === null) continue;
     const eq = equipment as Record<string, unknown>;
     const accessoryIds = eq.accessoryIds;
     if (Array.isArray(accessoryIds) && accessoryIds.length > 2) {
       eq.accessoryIds = accessoryIds.slice(0, 2);
+    }
+  }
+  // Migrate deployment unitIds
+  const deployment = obj.deployment;
+  if (typeof deployment === 'object' && deployment !== null) {
+    const dep = deployment as Record<string, unknown>;
+    const unitIds = dep.unitIds;
+    if (Array.isArray(unitIds)) {
+      dep.unitIds = unitIds.map((id) => typeof id === 'string' && legacyUnitIdMap[id] ? legacyUnitIdMap[id] : id);
     }
   }
   return raw;

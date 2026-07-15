@@ -9,13 +9,13 @@ describe('combat progress synchronization', () => {
       victory: true,
       combatId: 'test',
       consumables: { potion: 1 },
-      participants: ['archer', 'knight'],
-      unitHealth: { archer: 44, knight: 1 },
+      participants: ['archer', 'warrior'],
+      unitHealth: { archer: 44, warrior: 1 },
     }, 3);
     expect(state.inventory.consumables).toEqual({ potion: 1 });
-    expect(state.deployment.unitIds).toEqual(['archer', 'knight']);
+    expect(state.deployment.unitIds).toEqual(['archer', 'warrior']);
     expect(state.clan.members.find((unit) => unit.id === 'archer')!.currentHealth).toBe(44);
-    expect(state.clan.members.find((unit) => unit.id === 'knight')!.currentHealth).toBe(1);
+    expect(state.clan.members.find((unit) => unit.id === 'warrior')!.currentHealth).toBe(1);
   });
 
   it('sets currentHealth to 0 when a unit is reported dead', () => {
@@ -23,11 +23,11 @@ describe('combat progress synchronization', () => {
     applyCombatProgress(state, {
       victory: true,
       combatId: 'test',
-      participants: ['knight', 'cleric'],
-      unitHealth: { knight: 0, cleric: 80 },
+      participants: ['warrior', 'white_mage'],
+      unitHealth: { warrior: 0, white_mage: 80 },
     }, 4);
-    expect(state.clan.members.find((unit) => unit.id === 'knight')!.currentHealth).toBe(0);
-    expect(state.clan.members.find((unit) => unit.id === 'cleric')!.currentHealth).toBe(80);
+    expect(state.clan.members.find((unit) => unit.id === 'warrior')!.currentHealth).toBe(0);
+    expect(state.clan.members.find((unit) => unit.id === 'white_mage')!.currentHealth).toBe(80);
   });
 
   it('does not mutate campaign progression after defeat', () => {

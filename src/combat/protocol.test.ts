@@ -54,8 +54,8 @@ describe('combat protocol', () => {
       victory: true,
       combatId: 'forest_patrol',
       inventory: { potion: 1 },
-      participants: ['knight'],
-      unitHealth: { knight: 23 },
+      participants: ['warrior'],
+      unitHealth: { warrior: 23 },
     }).success).toBe(true);
   });
 });
