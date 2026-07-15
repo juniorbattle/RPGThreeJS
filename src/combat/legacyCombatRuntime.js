@@ -1084,8 +1084,8 @@ function applySkillUpgrade(u,skillId,spec){
 function getSpec(u,which,wi,charge){ if(which==='attack'){ const w=(u.weapons&&u.weapons[wi||0])||(u.weapons&&u.weapons[0])||{name:'Attaque',type:'phys',min:1,max:1,power:8,crit:0.05,acc:0.9};
     const lvl=Math.max(0,Math.min(2,charge||0));
     const apCost=(lvl+1)+G.basicAttacksThisTurn;
-    const elanMul=[1.0,1.5,2.0][lvl];
-    const elanPierce=[0,0.3,0.8][lvl];
+    const elanMul=[1.0,1.4,1.6][lvl];
+    const elanPierce=[0,0,0.5][lvl];
     const acc=lvl>=2?Math.min(0.99,w.acc+0.10):w.acc;
     const labels=['Attaque','Attaque+','Attaque++'];
     return {key:'attack',wi:(wi||0),charge:lvl,name:labels[lvl],icon:w.icon,ap:apCost,type:w.type,power:w.power,range:[w.min,w.max],radius:0,offensive:true,self:false,acc,crit:w.crit,elanMul,elanPierce}; }
