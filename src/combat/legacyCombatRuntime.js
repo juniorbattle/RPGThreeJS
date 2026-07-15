@@ -1667,7 +1667,7 @@ function openActionMenu(){ const u=G.active; if(!u||u.team!=='player'||G.over){ 
   dom.menu.querySelectorAll('.ico').forEach(b=>{ b.onclick=()=>onMenu(b.dataset.a,b);
     b.onmouseenter=()=>{ lbl.textContent=tipFor(u,b); lbl.classList.add('on'); };
     b.onmouseleave=()=>{ lbl.classList.remove('on'); }; }); }
-function onMenu(a,b){ if(b.classList.contains('dis'))return; const u=G.active;
+function onMenu(a,b){ if(b.classList.contains('dis'))return; const u=G.active; selectUnit(u);
   if(a==='move')enterMove(); else if(a==='undo')undoMove(); else if(a==='attack')openElanMenu(+b.dataset.wi||0); else if(a==='skill')openSkillMenu(); else if(a==='item')openItemMenu(); else if(a==='wait')endTurn(); }
 function openElanMenu(wi){ const u=G.active; if(!u)return; dom.skillmenu.classList.remove('hidden'); const n=G.basicAttacksThisTurn;
   let h='<div class="ttl">Élan — '+u.ap+' AP'+(n>0?' · escalade +'+n+' PA':'')+'</div>';
