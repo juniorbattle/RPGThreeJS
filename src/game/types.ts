@@ -332,12 +332,13 @@ export interface EquipmentSkillModifier {
 
 export interface WeaponDefinition extends ItemDefinition {
   category: 'weapons';
-  type: 'sword' | 'dagger' | 'axe' | 'spear' | 'bow' | 'staff' | 'mace';
+  type: 'greatsword' | 'holy_mace' | 'scythe' | 'long_spear' | 'grimoire' | 'crosier' | 'rapier' | 'wand' | 'longbow' | 'shuriken' | 'dagger' | 'hand_cannon';
   damage: number;
   range: number;
   minRange?: number;
   accuracyBonus: number;
   critBonus: number;
+  healthBonus?: number;
 }
 
 export interface CraftRecipeDefinition {

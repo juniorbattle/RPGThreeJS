@@ -8,12 +8,13 @@ const weaponPayloadSchema = z.object({
   category: z.literal('weapons'),
   price: z.number(),
   icon: z.string(),
-  type: z.enum(['sword', 'dagger', 'axe', 'spear', 'bow', 'staff', 'mace']),
+  type: z.enum(['greatsword', 'holy_mace', 'scythe', 'long_spear', 'grimoire', 'crosier', 'rapier', 'wand', 'longbow', 'shuriken', 'dagger', 'hand_cannon']),
   damage: z.number(),
   range: z.number(),
   minRange: z.number().optional(),
   accuracyBonus: z.number(),
   critBonus: z.number(),
+  healthBonus: z.number().optional(),
 });
 
 export const combatantPayloadSchema = z.object({

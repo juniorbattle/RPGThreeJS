@@ -11,11 +11,11 @@ describe('clan management', () => {
     const state = createInitialState();
     const unit = state.clan.members[0]!;
 
-    expect(equipWeapon(state, unit.id, 'steel_sword')).toBe(true);
-    expect(unit.equipment.weaponIds).toEqual(['steel_sword']);
-    expect(state.inventory.weapons.iron_sword).toBe(1);
-    expect(state.inventory.weapons.steel_sword).toBe(0);
-    expect(equipWeapon(state, unit.id, 'steel_sword')).toBe(false);
+    expect(equipWeapon(state, unit.id, 'steel_greatsword')).toBe(true);
+    expect(unit.equipment.weaponIds).toEqual(['steel_greatsword']);
+    expect(state.inventory.weapons.novice_greatsword).toBe(1);
+    expect(state.inventory.weapons.steel_greatsword).toBe(0);
+    expect(equipWeapon(state, unit.id, 'steel_greatsword')).toBe(false);
 
     expect(equipAccessory(state, unit.id, 0, 'strength_ring')).toBe(true);
     expect(unit.equipment.accessoryIds[0]).toBe('strength_ring');
@@ -116,23 +116,23 @@ describe('clan management', () => {
     const state = createInitialState();
     const beforeGold = state.gold;
 
-    expect(canCraftItem(state, 'craft_lion_guard_blade')).toBe(true);
-    expect(craftItem(state, 'craft_lion_guard_blade')).toBe(true);
+    expect(canCraftItem(state, 'craft_lion_guard_greatsword')).toBe(true);
+    expect(craftItem(state, 'craft_lion_guard_greatsword')).toBe(true);
     expect(state.gold).toBe(beforeGold - 120);
-    expect(state.inventory.weapons.steel_sword).toBe(0);
+    expect(state.inventory.weapons.steel_greatsword).toBe(0);
     expect(state.inventory.accessories.strength_ring).toBe(0);
-    expect(state.inventory.weapons.lion_guard_blade).toBe(1);
-    expect(craftItem(state, 'craft_lion_guard_blade')).toBe(false);
+    expect(state.inventory.weapons.lion_guard_greatsword).toBe(1);
+    expect(craftItem(state, 'craft_lion_guard_greatsword')).toBe(false);
   });
 
   it('blocks craft recipes with missing ingredients or insufficient gold', () => {
     const state = createInitialState();
     state.gold = 0;
 
-    expect(canCraftItem(state, 'craft_lion_guard_blade')).toBe(false);
+    expect(canCraftItem(state, 'craft_lion_guard_greatsword')).toBe(false);
     expect(craftItem(state, 'craft_unknown')).toBe(false);
     state.gold = 250;
-    expect(canCraftItem(state, 'craft_windstep_bow')).toBe(false);
+    expect(canCraftItem(state, 'craft_windstep_longbow')).toBe(false);
   });
 });
 
@@ -183,7 +183,7 @@ describe('save migration', () => {
     };
     const migrated = migrateState(v2);
     expect(migrated.version).toBe(6);
-    expect(migrated.clan.members[0]!.equipment.weaponIds).toEqual(['iron_sword']);
+    expect(migrated.clan.members[0]!.equipment.weaponIds).toEqual(['novice_greatsword']);
     expect(migrated.clan.members[0]!.currentHealth).toBe(140);
   });
 
