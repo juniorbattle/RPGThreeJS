@@ -644,6 +644,20 @@ const STATUS={
   silence:{name:'Mutisme', col:'#d08ad0', noSkill:true},
   taunt:  {name:'Provoqué',col:'#ff7a3a'}
 };
+const WEAPON_APTITUDES={
+  greatsword:{name:'Garde Brisée',desc:"20% de chance de maudire la cible (END -30%) pendant 2 tours."},
+  holy_mace:{name:'Bénédiction Martiale',desc:"20% de chance de se soigner de 8% des PV max à chaque attaque."},
+  scythe:{name:'Vol de Vie',desc:"Récupère 10% des dégâts infligés en PV."},
+  long_spear:{name:'Percée',desc:"25% de chance de transpercer et frapper un second ennemi aligné."},
+  grimoire:{name:'Flux de Mana',desc:"20% de chance de récupérer 2 AP après une attaque de base."},
+  crosier:{name:'Main Bienveillante',desc:"Soigne les alliés au lieu de les blesser, inflige des dégâts aux ennemis."},
+  rapier:{name:'Lame Hybride',desc:"Attaque physique de près, attaque magique à distance."},
+  wand:{name:'Maléfice Aléatoire',desc:"25% de chance d'infliger une altération aléatoire à la cible."},
+  longbow:{name:'Tir de Précision',desc:"+5% de précision à portée maximale."},
+  shuriken:{name:'Double Frappe',desc:"25% de chance de lancer une seconde attaque gratuite."},
+  dagger:{name:'Frappe Sournoise',desc:"Dégâts accrus de 45% en attaquant par derrière."},
+  hand_cannon:{name:'Tir de Zone',desc:"25% des dégâts en zone sur les ennemis adjacents."}
+};
 const ITEMS={
   potion:  {name:'Potion',  effect:'heal', flatHeal:55, range:[0,1], radius:0,   desc:'Rend 55 PV à un allié proche.'},
   ether:   {name:'Éther',   effect:'ap',   apRestore:3, range:[0,1], radius:0,   desc:'Rend 3 AP à un allié proche.'},
@@ -1419,6 +1433,7 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
   else if(spec.apRestore){ for(const t of targets){ t.ap=Math.min(t.maxap,t.ap+spec.apRestore); floatText(t,'+'+spec.apRestore+' AP','#7fd0ff',true); flashUnit(t,'#bfe0ff'); refreshPanel(t); } await wait(0.25); }
   else if(spec.cure){ for(const t of targets){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); flashUnit(t,'#bfffc0'); refreshPanel(t); } await wait(0.25); }
   else { let basicDmg=0; for(const t of targets){ const friendly=t.team===u.team;
+      if(spec.key==='attack'&&spec.weaponType==='crosier'&&friendly&&t.alive){ const healAmt=Math.max(1,Math.round(effMAG(u)*0.5)); applyHeal(t,healAmt); await wait(0.1); continue; }
       if((spec.power||0)<=0){ if(rollHit(u,t,spec)){ if(spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } } else floatText(t,'RATÉ','#cfd6e6'); continue; }
       if(!rollHit(u,t,spec)){ floatText(t,'RATÉ','#cfd6e6'); await wait(0.05); continue; }
       const crit=!spec.flatDmg&&Math.random()<critChance(u,t,spec); let {dmg,lab}=spec.flatDmg?{dmg:Math.max(1,Math.round(spec.flatDmg*rnd(0.85,1.15))),lab:'face'}:computeDamage(u,t,spec); if(crit)dmg=Math.round(dmg*1.5);
@@ -1432,6 +1447,12 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
       await applyDamage(t,dmg,u); basicDmg=dmg; if(G.over)break; if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } }
     if(spec.key==='attack'&&spec.weaponType==='scythe'&&u.alive&&basicDmg>0){ applyHeal(u,Math.max(1,Math.round(basicDmg*0.10))); }
     if(spec.key==='attack'&&spec.weaponType==='hand_cannon'){ const splashTgts=aliveUnits().filter(st=>st.team!==u.team&&st.alive&&Math.abs(st.gx-impactCx)+Math.abs(st.gz-impactCz)===1); for(const st of splashTgts){ const sd=Math.max(1,Math.round(basicDmg*0.25)); floatText(st,'-'+sd,'#ffaa6a'); await applyDamage(st,sd,u); if(G.over)break; await wait(0.06); } }
+    if(spec.key==='attack'&&spec.weaponType==='greatsword'&&u.alive&&basicDmg>0&&Math.random()<0.20){ const t=targets[0]; if(t&&t.alive){ applyStatus(t,'curse',2); } }
+    if(spec.key==='attack'&&spec.weaponType==='holy_mace'&&u.alive&&basicDmg>0&&Math.random()<0.20){ applyHeal(u,Math.max(1,Math.round(u.maxhp*0.08))); }
+    if(spec.key==='attack'&&spec.weaponType==='long_spear'&&u.alive&&basicDmg>0&&Math.random()<0.25){ const t=targets[0]; if(t){ const dx=Math.sign(t.gx-u.gx),dz=Math.sign(t.gz-u.gz); const pierceTgt=aliveUnits().find(st=>st.team!==u.team&&st.alive&&st.gx===t.gx+dx&&st.gz===t.gz+dz); if(pierceTgt){ const pd=Math.max(1,Math.round(basicDmg*0.75)); floatText(pierceTgt,'PERCE ! -'+pd,'#ffaa6a',true); await applyDamage(pierceTgt,pd,u); } } }
+    if(spec.key==='attack'&&spec.weaponType==='grimoire'&&u.alive&&basicDmg>0&&Math.random()<0.20){ u.ap=Math.min(u.maxap,u.ap+2); floatText(u,'+2 AP','#7fd0ff',true); refreshPanel(u); }
+    if(spec.key==='attack'&&spec.weaponType==='wand'&&u.alive&&basicDmg>0&&Math.random()<0.25){ const t=targets[0]; if(t&&t.alive){ const neg=['burn','poison','slow','weak','curse','blind','root','silence']; const rs=neg[Math.floor(Math.random()*neg.length)]; applyStatus(t,rs,2); } }
+    if(spec.key==='attack'&&spec.weaponType==='shuriken'&&u.alive&&basicDmg>0&&Math.random()<0.25){ const t=targets[0]; if(t&&t.alive){ floatText(u,'DOUBLE !','#ffd27a',true); const sd=Math.max(1,Math.round(basicDmg*0.75)); floatText(t,'-'+sd,'#ffd27a'); await applyDamage(t,sd,u); } }
     await wait(0.15); }
   if(hasSkillMovement&&!moveBefore){ const moved=await performSkillMovement(u,spec,cx,cz,context); if(moved){G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz;} }
   applyAdditionalStatus(u,spec,impactCx,impactCz,context);
@@ -1694,9 +1715,11 @@ function statsDetailsHTML(u){ return '<button type="button" class="stats-toggle"
 function bindStatsToggle(u){ const button=dom.panel.querySelector('.stats-toggle'); if(!button)return; button.onclick=()=>{statsPanelExpanded=!statsPanelExpanded;renderPanel(u);}; }
 function renderPanel(u){ dom.panel.classList.remove('hidden'); dom.panel.dataset.team=u.team; const hpp=Math.max(0,Math.round(u.hp/u.maxhp*100)),portrait=uiPortraitFor(u.portrait)||(SPR[u.kind]&&SPR[u.kind].portrait?SPR[u.kind].portrait:'');
   let tags=''; for(const s in u.statuses){ const d=STATUS[s]; if(!d)continue; tags+='<span class="tag" style="color:'+d.col+';border-color:'+d.col+'">'+escHTML(d.name)+' '+u.statuses[s]+'</span>'; } if(!u.alive)tags+='<span class="tag" style="color:#ff5a4a;border-color:#ff5a4a">K.O.</span>';
+  const wt=u.weapons&&u.weapons[0]&&u.weapons[0].weaponType?WEAPON_APTITUDES[u.weapons[0].weaponType]:null;
+  const aptHTML=wt?'<div class="du-aptitude"><span class="du-aptitude__label">Aptitude</span><strong>'+escHTML(wt.name)+'</strong><small>'+escHTML(wt.desc)+'</small></div>':'';
   dom.panel.innerHTML='<div class="details-unit"><div class="du-top"><div class="du-portrait">'+(portrait?'<img src="'+portrait+'" alt="">':'<span>'+escHTML(u.name.charAt(0))+'</span>')+'</div><div class="du-id"><div class="du-head"><span>'+escHTML(u.className||u.name||'')+'</span></div><div class="nm">'+escHTML(u.name)+'</div>'+apPipsHTML(u)+'</div><div class="du-team"><b class="team-badge">'+teamLabel(u.team)+'</b></div></div>'+
    '<div class="du-hp"><div class="unit-row"><span>PV</span><b>'+u.hp+' / '+u.maxhp+'</b></div><div class="bar"><i style="width:'+hpp+'%"></i><span>'+hpp+'%</span></div></div>'+
-   statsDetailsHTML(u)+(tags?'<div class="status-row">'+tags+'</div>':'')+'</div>';
+   aptHTML+statsDetailsHTML(u)+(tags?'<div class="status-row">'+tags+'</div>':'')+'</div>';
   bindStatsToggle(u); }
 function refreshTurnbar(){ dom.turnbar.classList.remove('hidden'); renderObjective(); const order=G.order.length?G.order:G.units;
   const chip=u=>{ const cls=['chip'],portrait=uiPortraitFor(u.portrait)||(SPR[u.kind]&&SPR[u.kind].portrait?SPR[u.kind].portrait:''); if(u.team==='player')cls.push('ally'); if(u.team==='foe')cls.push('foe'); if(u===G.active)cls.push('active'); if(!u.alive)cls.push('dead'); return '<div class="'+cls.join(' ')+'" title="'+escHTML(u.name)+'"><div class="chip__portrait">'+(portrait?'<img src="'+portrait+'" alt="">':'')+'</div><div class="chip__name">'+escHTML(u.name.slice(0,8))+'</div></div>'; };

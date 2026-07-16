@@ -1,4 +1,4 @@
-import { craftRecipes, getFinalStats, getResolvedSkills, itemById, items, unitById, weaponById, weapons } from '../game/catalog';
+import { craftRecipes, getFinalStats, getResolvedSkills, itemById, items, unitById, weaponById, weapons, WEAPON_APTITUDES } from '../game/catalog';
 import {
   buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit,
   getSkillUpgradeCost, sellItem, upgradeSkill, useConsumable,
@@ -466,10 +466,13 @@ export class ManagementView {
       const grantedLabel = granted.length > 0
         ? granted.map((id) => skillPresentation[id]?.name ?? id).join(', ')
         : '';
+      const apt = WEAPON_APTITUDES[weapon.type];
       return `${this.stat('Puiss.', weapon.damage)}
         ${this.stat('Portée', rangeLabel)}
         ${this.stat('Précis.', `+${weapon.accuracyBonus}`)}
         ${this.stat('Crit', `+${weapon.critBonus}`)}
+        ${weapon.healthBonus ? this.stat('PV', `+${weapon.healthBonus}`) : ''}
+        ${apt ? this.stat('Aptitude', apt.name) : ''}
         ${grantedLabel ? this.stat('Don', grantedLabel) : ''}`;
     }
     if (item.category === 'accessories') {

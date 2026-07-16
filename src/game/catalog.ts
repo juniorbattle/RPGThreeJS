@@ -18,6 +18,21 @@ export const WEAPON_TIER_HEALTH: Record<WeaponDefinition['type'], number[]> = {
   wand:        [0, 13,  25,  50,  75],
 };
 
+export const WEAPON_APTITUDES: Record<WeaponDefinition['type'], { name: string; description: string }> = {
+  greatsword:  { name: 'Garde Brisée',          description: "20% de chance de maudire la cible (END -30%) pendant 2 tours." },
+  holy_mace:   { name: 'Bénédiction Martiale',  description: "20% de chance de se soigner de 8% des PV max à chaque attaque." },
+  scythe:      { name: 'Vol de Vie',            description: "Récupère 10% des dégâts infligés en PV." },
+  long_spear:  { name: 'Percée',                description: "25% de chance de transpercer et frapper un second ennemi aligné." },
+  grimoire:    { name: 'Flux de Mana',          description: "20% de chance de récupérer 2 AP après une attaque de base." },
+  crosier:     { name: 'Main Bienveillante',    description: "Soigne les alliés au lieu de les blesser, inflige des dégâts aux ennemis." },
+  rapier:      { name: 'Lame Hybride',          description: "Attaque physique de près, attaque magique à distance." },
+  wand:        { name: 'Maléfice Aléatoire',    description: "25% de chance d'infliger une altération aléatoire à la cible." },
+  longbow:     { name: 'Tir de Précision',      description: "+5% de précision à portée maximale." },
+  shuriken:    { name: 'Double Frappe',         description: "25% de chance de lancer une seconde attaque gratuite." },
+  dagger:      { name: 'Frappe Sournoise',      description: "Dégâts accrus de 45% en attaquant par derrière." },
+  hand_cannon: { name: 'Tir de Zone',           description: "25% des dégâts en zone sur les ennemis adjacents." },
+};
+
 export const weapons: WeaponDefinition[] = [
   // Greatsword (Warrior) — T0 Novice / T1 / T2
   { id: 'novice_greatsword', name: 'Espadon novice', description: "Lame d'écuyer pour les premières batailles.", category: 'weapons', price: 90, icon: '⚔', type: 'greatsword', damage: 20, range: 1, accuracyBonus: 5, critBonus: 5 },
