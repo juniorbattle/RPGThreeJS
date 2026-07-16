@@ -1,4 +1,4 @@
-﻿import { z } from 'zod';
+import { z } from 'zod';
 
 export const nodeTypeSchema = z.enum([
   'start', 'story', 'mystery', 'random-combat', 'story-combat',
@@ -430,6 +430,9 @@ export interface SkillEffect {
   dispelType?: 'positive' | 'negative' | 'all';
   /** Reuse the explicitly selected unit instead of recomputing an area. */
   targetSource?: SkillEffectTargetSource;
+  damageMultiplier?: number;
+  bonusVsSize?: number;
+  bonusVsAfflicted?: number;
 }
 
 export interface SkillUpgrade {
@@ -442,6 +445,9 @@ export interface SkillUpgrade {
   penetrationBonus?: number;
   additionalStatus?: string;
   additionalStatusTurns?: number;
+  damageMultiplier?: number;
+  bonusVsSize?: number;
+  bonusVsAfflicted?: number;
   additionalStatusTarget?: SkillUpgradeStatusTarget;
   healMultiplier?: number;
   revivePercent?: number;
@@ -488,6 +494,9 @@ export interface SkillDefinition {
   effects?: SkillEffect[];
   additionalStatus?: string;
   additionalStatusTurns?: number;
+  damageMultiplier?: number;
+  bonusVsSize?: number;
+  bonusVsAfflicted?: number;
   upgradeLevel1?: SkillUpgrade;
   upgradeLevel2?: SkillUpgrade;
 }
