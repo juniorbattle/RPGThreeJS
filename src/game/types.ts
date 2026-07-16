@@ -458,6 +458,7 @@ export interface SkillUpgrade {
   minRangeReduction?: number;
   stealBuffs?: boolean;
   dispelAllies?: boolean;
+  flatHealBonus?: number;
 }
 
 export interface SkillDefinition {

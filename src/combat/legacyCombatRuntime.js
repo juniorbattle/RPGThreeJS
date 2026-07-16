@@ -1070,6 +1070,7 @@ function applySkillUpgrade(u,skillId,spec){
       if(up.minRangeReduction&&out.range) out.range=[Math.max(0,out.range[0]-up.minRangeReduction),out.range[1]];
       if(up.stealBuffs) out.stealBuffs=true;
       if(up.dispelAllies) out.dispelAllies=true;
+      if(up.flatHealBonus&&out.effects)for(const effect of out.effects)if(effect.kind==='heal'&&effect.flatHeal!=null)effect.flatHeal+=up.flatHealBonus;
     }
     return out;
   }
