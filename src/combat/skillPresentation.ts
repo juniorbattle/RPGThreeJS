@@ -120,6 +120,45 @@ export const SKILL_PRESENTATION: Readonly<Record<HeroSkillId, SkillPresentation>
   ar_artillery_barrage: presentation('ranged_attack', 'boss_quake', 'ultimateCast', 'impact', true, 3),
 });
 
+export const ENEMY_SKILL_IDS = [
+  'enemy_heavy_strike', 'enemy_crush', 'enemy_dark_bolt', 'enemy_hex',
+  'enemy_venom_strike', 'enemy_binding_shot', 'enemy_smoke_veil', 'enemy_taunt',
+  'enemy_battle_cry', 'enemy_dragon_breath',
+  'boss_slam', 'boss_roar', 'boss_quake', 'boss_guard', 'boss_apocalypse',
+  'boss_regen', 'boss_fortify', 'boss_freeze', 'boss_pin', 'boss_execution',
+  'boss_flurry', 'boss_inferno', 'boss_titan_slam',
+] as const;
+
+export type EnemySkillId = (typeof ENEMY_SKILL_IDS)[number];
+
+export const ENEMY_SKILL_PRESENTATION: Readonly<Record<EnemySkillId, SkillPresentation>> = Object.freeze({
+  enemy_heavy_strike: presentation('melee_heavy', 'blunt_impact', 'strike', 'impact'),
+  enemy_crush: presentation('self_aoe', 'boss_slam', 'areaCast', 'landing'),
+  enemy_dark_bolt: presentation('magic_cast', 'dark_bolt', 'rangedShot', 'release'),
+  enemy_hex: presentation('debuff_cast', 'curse_pulse', 'rangedShot', 'release'),
+  enemy_venom_strike: presentation('melee_light', 'poison_bite', 'strike', 'impact'),
+  enemy_binding_shot: presentation('ranged_attack', 'arrow_shot', 'rangedShot', 'release'),
+  enemy_smoke_veil: presentation('debuff_cast', 'curse_pulse', 'areaCast', 'release'),
+  enemy_taunt: presentation('debuff_cast', 'curse_pulse', 'rangedShot', 'release'),
+  enemy_battle_cry: presentation('debuff_cast', 'curse_pulse', 'areaCast', 'release'),
+  enemy_dragon_breath: presentation('magic_cast', 'fireball', 'areaCast', 'release'),
+
+  boss_slam: presentation('melee_heavy', 'boss_slam', 'areaCast', 'impact'),
+  boss_roar: presentation('debuff_cast', 'curse_pulse', 'areaCast', 'release'),
+  boss_quake: presentation('magic_cast', 'boss_quake', 'rangedShot', 'impact'),
+  boss_guard: presentation('buff_cast', 'guard_barrier', 'supportCast', 'release'),
+  boss_apocalypse: presentation('magic_cast', 'boss_quake', 'areaCast', 'impact'),
+  boss_regen: presentation('buff_cast', 'bless_aura', 'supportCast', 'release'),
+  boss_fortify: presentation('buff_cast', 'bless_aura', 'supportCast', 'release'),
+  boss_freeze: presentation('magic_cast', 'dark_bolt', 'rangedShot', 'impact'),
+  boss_pin: presentation('ranged_attack', 'arrow_shot', 'rangedShot', 'impact'),
+  boss_execution: presentation('melee_heavy', 'blunt_impact', 'strike', 'impact'),
+  boss_flurry: presentation('melee_heavy', 'sword_slash', 'strike', 'impact'),
+  boss_inferno: presentation('magic_cast', 'fireball', 'areaCast', 'impact'),
+  boss_titan_slam: presentation('melee_heavy', 'boss_slam', 'areaCast', 'impact'),
+});
+
 export function getSkillPresentation(spec?: { key?: string }): SkillPresentation | undefined {
-  return spec?.key ? SKILL_PRESENTATION[spec.key as HeroSkillId] : undefined;
+  if (!spec?.key) return undefined;
+  return SKILL_PRESENTATION[spec.key as HeroSkillId] ?? ENEMY_SKILL_PRESENTATION[spec.key as EnemySkillId];
 }
