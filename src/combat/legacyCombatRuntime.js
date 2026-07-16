@@ -569,8 +569,8 @@ const DEFS=[
 ];
 
 const BOSS_DEFS=[
-  {team:'foe',kind:'brute',name:'Général Serpent',className:'Général Serpent',portrait:'/assets/characters/pixel/full/serpent_general_boss.png',hp:320,str:30,mag:10,end:24,dex:10,cha:12,mov:0,weapons:[{name:'Lame Serpent',icon:'⚔️',type:'phys',min:1,max:2,power:18,crit:0.08,acc:0.9}],skills:['boss_slam','boss_roar','boss_quake','boss_guard'],ai:'aggressive',gx:5,gz:1,size:2,immobile:true,boss:true},
-  {team:'foe',kind:'knight',name:'Vieux Lion Alaric',className:'Vieux Lion Alaric',portrait:'/assets/characters/pixel/full/alaric.png',hp:380,str:28,mag:8,end:26,dex:12,cha:16,mov:0,weapons:[{name:'Lame du Lion',icon:'⚔️',type:'phys',min:1,max:2,power:16,crit:0.06,acc:0.92}],skills:['boss_slam','boss_roar','boss_quake','boss_guard'],ai:'guardian',gx:5,gz:1,size:2,immobile:true,boss:true}
+  {team:'foe',kind:'brute',name:'Général Serpent',className:'Général Serpent',portrait:'/assets/characters/pixel/full/serpent_general_boss.png',hp:450,str:30,mag:10,end:24,dex:10,cha:12,mov:0,weapons:[{name:'Lame Serpent',icon:'⚔️',type:'phys',min:1,max:2,power:18,crit:0.08,acc:0.9}],skills:['enemy_hex','boss_guard','boss_quake','boss_titan_slam'],ai:'aggressive',gx:5,gz:1,size:2,immobile:true,boss:true},
+  {team:'foe',kind:'knight',name:'Vieux Lion Alaric',className:'Vieux Lion Alaric',portrait:'/assets/characters/pixel/full/alaric.png',hp:520,str:28,mag:8,end:26,dex:12,cha:16,mov:0,weapons:[{name:'Lame du Lion',icon:'⚔️',type:'phys',min:1,max:2,power:16,crit:0.06,acc:0.92}],skills:['enemy_heavy_strike','boss_guard','boss_quake','boss_apocalypse'],ai:'guardian',gx:5,gz:1,size:2,immobile:true,boss:true}
 ];
 // The 2x2 footprint occupies the rightmost two columns (6 and 7).
 for(const bossDef of BOSS_DEFS){ bossDef.gx=6; bossDef.gz=1; }
@@ -594,14 +594,14 @@ const BOSS_ESCORTS={
 };
 
 const VISUAL_UNIT_TEMPLATES={
-  serpent_raider:{team:'foe',kind:'brigand', name:'Pillard Serpent',className:'Pillard Serpent',portrait:'/assets/characters/pixel/full/serpent_raider.png',hp:90,str:14,mag:4,end:11,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:[],ai:'aggressive'},
+  serpent_raider:{team:'foe',kind:'brigand', name:'Pillard Serpent',className:'Pillard Serpent',portrait:'/assets/characters/pixel/full/serpent_raider.png',hp:90,str:14,mag:4,end:11,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:['enemy_binding_shot'],ai:'aggressive'},
   serpent_brute:{team:'foe',kind:'brute',name:'Brute Serpent',className:'Brute Serpent',portrait:'/assets/characters/pixel/full/serpent_brute.png',hp:130,str:18,mag:4,end:16,dex:7,cha:5,mov:2,weapons:[{name:'Massue',icon:'◆',type:'phys',min:1,max:1,power:13,crit:0.05,acc:0.85}],skills:['enemy_heavy_strike'],ai:'guardian'},
   serpent_oracle:{team:'foe',kind:'darkmage',name:'Oracle Serpent',className:'Oracle Serpent',portrait:'/assets/characters/pixel/full/serpent_oracle.png',hp:78,str:4,mag:19,end:10,dex:12,cha:8,mov:2,weapons:[{name:'Bâton',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}],skills:['enemy_dark_bolt','enemy_hex'],ai:'cautious'},
-  serpent_elite_raider:{team:'foe',kind:'brigand', name:'Duelliste Serpent',className:'Duelliste Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_raider.png',hp:220,str:24,mag:6,end:16,dex:17,cha:8,mov:0,weapons:[{name:'Lames volantes',icon:'†',type:'phys',min:2,max:3,power:13,crit:0.22,acc:0.95}],skills:['enemy_binding_shot','enemy_smoke_veil','boss_guard'],ai:'aggressive',size:2,immobile:true,elite:true},
-  serpent_elite_brute:{team:'foe',kind:'brute',name:'Massacreur Serpent',className:'Massacreur Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_brute.png',hp:280,str:28,mag:4,end:22,dex:7,cha:7,mov:0,weapons:[{name:'Lance-masse',icon:'◆',type:'phys',min:2,max:3,power:17,crit:0.06,acc:0.84}],skills:['enemy_heavy_strike','enemy_taunt','boss_guard'],ai:'guardian',size:2,immobile:true,elite:true},
-  serpent_duelist_elite:{team:'foe',kind:'brigand',name:'Duelliste Serpent',className:'Duelliste Serpent',portrait:'/assets/characters/pixel/full/serpent_duelist_elite.png',hp:240,str:25,mag:8,end:17,dex:19,cha:8,mov:0,weapons:[{name:'Lames de jet',icon:'†',type:'phys',min:2,max:4,power:14,crit:0.24,acc:0.96}],skills:['enemy_binding_shot','enemy_smoke_veil','boss_guard'],ai:'aggressive',size:2,immobile:true,elite:true},
+  serpent_elite_raider:{team:'foe',kind:'brigand', name:'Duelliste Serpent',className:'Duelliste Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_raider.png',hp:300,str:24,mag:6,end:16,dex:17,cha:8,mov:0,weapons:[{name:'Lames volantes',icon:'†',type:'phys',min:2,max:3,power:13,crit:0.22,acc:0.95}],skills:['enemy_binding_shot','boss_fortify','boss_pin','boss_flurry'],ai:'aggressive',size:2,immobile:true,elite:true},
+  serpent_elite_brute:{team:'foe',kind:'brute',name:'Massacreur Serpent',className:'Massacreur Serpent',portrait:'/assets/characters/pixel/full/serpent_elite_brute.png',hp:380,str:28,mag:4,end:22,dex:7,cha:7,mov:0,weapons:[{name:'Lance-masse',icon:'◆',type:'phys',min:2,max:3,power:17,crit:0.06,acc:0.84}],skills:['enemy_venom_strike','boss_guard','boss_quake','boss_slam'],ai:'guardian',size:2,immobile:true,elite:true},
+  serpent_duelist_elite:{team:'foe',kind:'brigand',name:'Duelliste Serpent',className:'Duelliste Serpent',portrait:'/assets/characters/pixel/full/serpent_duelist_elite.png',hp:320,str:25,mag:8,end:17,dex:19,cha:8,mov:0,weapons:[{name:'Lames de jet',icon:'†',type:'phys',min:2,max:4,power:14,crit:0.24,acc:0.96}],skills:['enemy_binding_shot','boss_fortify','boss_pin','boss_flurry'],ai:'aggressive',size:2,immobile:true,elite:true},
   wolf:{team:'foe',kind:'brigand',name:'Loup',className:'Loup',portrait:'/assets/characters/pixel/full/wolf.png',hp:82,str:14,mag:2,end:10,dex:18,cha:4,mov:3,weapons:[{name:'Morsure',icon:'◆',type:'phys',min:1,max:1,power:10,crit:0.12,acc:0.94}],skills:[],ai:'aggressive'},
-  venom_serpent:{team:'foe',kind:'brigand',name:'Serpent venimeux',className:'Serpent venimeux',portrait:'/assets/characters/pixel/full/venom_serpent.png',hp:95,str:13,mag:8,end:12,dex:13,cha:4,mov:2,weapons:[{name:'Crochets',icon:'◆',type:'phys',min:1,max:1,power:9,crit:0.1,acc:0.93}],skills:['enemy_venom_strike'],ai:'cautious'},
+  venom_serpent:{team:'foe',kind:'brigand',name:'Serpent venimeux',className:'Serpent venimeux',portrait:'/assets/characters/pixel/full/venom_serpent.png',hp:95,str:13,mag:8,end:12,dex:13,cha:4,mov:2,weapons:[{name:'Crochets',icon:'◆',type:'phys',min:1,max:1,power:9,crit:0.1,acc:0.93}],skills:['enemy_venom_strike','enemy_hex'],ai:'cautious'},
   forest_spider:{team:'foe',kind:'brigand',name:'Araignee forestiere',className:'Araignee forestiere',portrait:'/assets/characters/pixel/full/forest_spider.png',hp:72,str:12,mag:6,end:9,dex:17,cha:3,mov:3,weapons:[{name:'Mandibules',icon:'◆',type:'phys',min:1,max:1,power:8,crit:0.12,acc:0.93}],skills:['enemy_binding_shot'],ai:'aggressive'},
   forest_badger:{team:'foe',kind:'brigand',name:'Blaireau',className:'Blaireau',portrait:'/assets/characters/pixel/full/forest_badger.png',hp:88,str:14,mag:2,end:12,dex:14,cha:3,mov:2,weapons:[{name:'Griffes',icon:'◆',type:'phys',min:1,max:1,power:10,crit:0.1,acc:0.92}],skills:[],ai:'aggressive'},
   marsh_toad:{team:'foe',kind:'brute',name:'Crapaud toxique',className:'Crapaud toxique',portrait:'/assets/characters/pixel/full/marsh_toad.png',hp:108,str:12,mag:10,end:15,dex:8,cha:3,mov:2,weapons:[{name:'Langue lourde',icon:'◆',type:'phys',min:1,max:2,power:8,crit:0.04,acc:0.88}],skills:['enemy_venom_strike'],ai:'guardian'},
@@ -609,12 +609,12 @@ const VISUAL_UNIT_TEMPLATES={
   wild_boar:{team:'foe',kind:'brute',name:'Sanglier',className:'Sanglier',portrait:'/assets/characters/pixel/full/wild_boar.png',hp:116,str:17,mag:2,end:15,dex:10,cha:3,mov:2,weapons:[{name:'Charge',icon:'◆',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.9}],skills:['enemy_heavy_strike'],ai:'guardian'},
   goblin:{team:'foe',kind:'brigand',name:'Gobelin',className:'Gobelin',portrait:'/assets/characters/pixel/full/goblin.png',hp:75,str:12,mag:4,end:9,dex:16,cha:5,mov:3,weapons:[{name:'Lance rouillée',icon:'↟',type:'phys',min:1,max:2,power:8,crit:0.08,acc:0.9}],skills:[],ai:'aggressive'},
   skeleton:{team:'foe',kind:'knight',name:'Squelette',className:'Squelette',portrait:'/assets/characters/pixel/full/skeleton.png',hp:105,str:16,mag:4,end:14,dex:8,cha:3,mov:2,weapons:[{name:'Épée rouillée',icon:'⚔',type:'phys',min:1,max:1,power:10,crit:0.05,acc:0.88}],skills:['enemy_heavy_strike'],ai:'guardian'},
-  troll:{team:'foe',kind:'brute',name:'Troll',className:'Troll',portrait:'/assets/characters/pixel/full/troll.png',hp:190,str:24,mag:3,end:22,dex:5,cha:4,mov:2,weapons:[{name:'Tronc',icon:'◆',type:'phys',min:1,max:1,power:16,crit:0.04,acc:0.82}],skills:['enemy_heavy_strike'],ai:'guardian'},
-  young_wyrm:{team:'foe',kind:'brute',name:'Jeune Wyrm',className:'Jeune Wyrm',portrait:'/assets/characters/pixel/full/young_wyrm.png',hp:160,str:22,mag:14,end:18,dex:10,cha:8,mov:2,weapons:[{name:'Souffle court',icon:'✦',type:'mag',min:1,max:2,power:14,crit:0.06,acc:0.88}],skills:['enemy_dark_bolt'],ai:'cautious'},
-  forest_troll_elite:{team:'foe',kind:'brute',name:'Troll forestier',className:'Troll forestier',portrait:'/assets/characters/pixel/full/forest_troll_elite.png',hp:320,str:30,mag:3,end:24,dex:6,cha:5,mov:0,weapons:[{name:'Jet de pierre',icon:'◆',type:'phys',min:2,max:4,power:18,crit:0.04,acc:0.84}],skills:['enemy_heavy_strike','enemy_taunt','boss_guard'],ai:'guardian',size:2,immobile:true,elite:true},
-  young_dragon_elite:{team:'foe',kind:'brute',name:'Jeune dragon',className:'Jeune dragon',portrait:'/assets/characters/pixel/full/young_dragon_elite.png',hp:300,str:24,mag:20,end:20,dex:12,cha:10,mov:0,weapons:[{name:'Souffle emeraude',icon:'✦',type:'mag',min:2,max:4,power:17,crit:0.07,acc:0.9}],skills:['enemy_dark_bolt','enemy_dragon_breath','boss_guard'],ai:'cautious',size:2,immobile:true,elite:true},
-  undead_champion:{team:'foe',kind:'knight',name:'Champion mort-vivant',className:'Champion mort-vivant',portrait:'/assets/characters/pixel/full/undead_champion.png',hp:260,str:26,mag:10,end:22,dex:9,cha:6,mov:0,weapons:[{name:'Onde froide',icon:'✦',type:'mag',min:2,max:3,power:15,crit:0.08,acc:0.9}],skills:['enemy_heavy_strike','enemy_hex','boss_guard'],ai:'guardian',size:2,immobile:true,elite:true},
-  lion_champion:{team:'foe',kind:'knight',name:'Champion du Lion',className:'Champion du Lion',portrait:'/assets/characters/pixel/full/lion_champion.png',hp:120,str:20,mag:4,end:17,dex:9,cha:9,mov:2,weapons:[{name:'Lame',icon:'⚔',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.92}],skills:['enemy_heavy_strike'],ai:'guardian'},
+  troll:{team:'foe',kind:'brute',name:'Troll',className:'Troll',portrait:'/assets/characters/pixel/full/troll.png',hp:190,str:24,mag:3,end:22,dex:5,cha:4,mov:2,weapons:[{name:'Tronc',icon:'◆',type:'phys',min:1,max:1,power:16,crit:0.04,acc:0.82}],skills:['enemy_heavy_strike','enemy_crush'],ai:'guardian'},
+  young_wyrm:{team:'foe',kind:'brute',name:'Jeune Wyrm',className:'Jeune Wyrm',portrait:'/assets/characters/pixel/full/young_wyrm.png',hp:160,str:22,mag:14,end:18,dex:10,cha:8,mov:2,weapons:[{name:'Souffle court',icon:'✦',type:'mag',min:1,max:2,power:14,crit:0.06,acc:0.88}],skills:['enemy_dark_bolt','enemy_dragon_breath'],ai:'cautious'},
+  forest_troll_elite:{team:'foe',kind:'brute',name:'Troll forestier',className:'Troll forestier',portrait:'/assets/characters/pixel/full/forest_troll_elite.png',hp:420,str:30,mag:3,end:24,dex:6,cha:5,mov:0,weapons:[{name:'Jet de pierre',icon:'◆',type:'phys',min:2,max:4,power:18,crit:0.04,acc:0.84}],skills:['enemy_hex','boss_guard','boss_quake','boss_slam'],ai:'guardian',size:2,immobile:true,elite:true},
+  young_dragon_elite:{team:'foe',kind:'brute',name:'Jeune dragon',className:'Jeune dragon',portrait:'/assets/characters/pixel/full/young_dragon_elite.png',hp:400,str:24,mag:20,end:20,dex:12,cha:10,mov:0,weapons:[{name:'Souffle emeraude',icon:'✦',type:'mag',min:2,max:4,power:17,crit:0.07,acc:0.9}],skills:['enemy_hex','boss_regen','boss_freeze','boss_inferno'],ai:'cautious',size:2,immobile:true,elite:true},
+  undead_champion:{team:'foe',kind:'knight',name:'Champion mort-vivant',className:'Champion mort-vivant',portrait:'/assets/characters/pixel/full/undead_champion.png',hp:350,str:26,mag:10,end:22,dex:9,cha:6,mov:0,weapons:[{name:'Onde froide',icon:'✦',type:'mag',min:2,max:3,power:15,crit:0.08,acc:0.9}],skills:['enemy_hex','boss_guard','boss_quake','boss_execution'],ai:'guardian',size:2,immobile:true,elite:true},
+  lion_champion:{team:'foe',kind:'knight',name:'Champion du Lion',className:'Champion du Lion',portrait:'/assets/characters/pixel/full/lion_champion.png',hp:120,str:20,mag:4,end:17,dex:9,cha:9,mov:2,weapons:[{name:'Lame',icon:'⚔',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.92}],skills:['enemy_heavy_strike','enemy_battle_cry'],ai:'guardian'},
   seal_guardian:{team:'foe',kind:'darkmage',name:'Gardien du Sceau',className:'Gardien du Sceau',portrait:'/assets/characters/pixel/full/seal_guardian.png',hp:92,str:8,mag:18,end:13,dex:10,cha:16,mov:2,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.04,acc:0.94}],skills:['enemy_hex','boss_guard'],ai:'cautious'}
 };
 const ENEMY_VISUAL_POSITIONS=[[6,0],[7,1],[6,3],[7,2]];
@@ -743,7 +743,7 @@ function createUnit(def){
     id:++UID, campaignId:def.campaignId||null, portrait:def.portrait||'', team:def.team, kind:def.kind, name:def.name, className:def.className||'',
     maxhp:def.maxhp||def.hp, hp:Math.min(def.hp,def.maxhp||def.hp), str:def.str, mag:def.mag, end:def.end, dex:def.dex, cha:def.cha,
     mov:def.mov, weapons:def.weapons, skills:def.skills.slice(), skillUpgrades:def.skillUpgrades||{}, ai:def.ai||'aggressive',
-    ap:0, maxap:5, gx:def.gx, gz:def.gz, alive:true, statuses:{}, gardeAP:0, _souffle:false,
+    ap:0, maxap:5, gx:def.gx, gz:def.gz, alive:true, statuses:{}, gardeAP:0, _souffle:false, _ultCooldown:5,
     size:def.size||1, immobile:!!def.immobile, boss:!!def.boss, elite:!!def.elite,
     // All sprites are authored facing right. Foes are mirrored via
     // visualFacingX so they face the player team at combat start.
@@ -861,13 +861,14 @@ function tickStatusDuration(u){ for(const s in u.statuses){ u.statuses[s]--; if(
 function buildOrder(){ return aliveUnits().sort((a,b)=> (effDEX(b)-effDEX(a)) || (a.team===b.team? a.id-b.id : (a.team==='player'?-1:1))); }
 function startRound(){ if(checkEnd())return; G.round++; G.order=buildOrder(); G.turnIdx=-1; logMsg('— Manche '+G.round+' —'); nextTurn(); }
 function nextTurn(){ if(G.over||checkEnd())return; G.turnIdx++; if(G.turnIdx>=G.order.length){ startRound(); return; } const u=G.order[G.turnIdx]; if(!u||!u.alive){ nextTurn(); return; } beginTurn(u); }
-async function beginTurn(u){ if(G.over)return; G.active=u; G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.skillMovedThisTurn=false; G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; G.startGX=u.gx; G.startGZ=u.gz;
+async function beginTurn(u){ if(G.over)return; G.active=u; G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.skillMovedThisTurn=false; G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; G.startGX=u.gx; G.startGZ=u.gz; u._usedUtility=false;
   const regen=(u.boss||u.elite)?2:1; u.ap=Math.min(u.maxap,u.ap+regen); u._souffle=false; u.gardeAP=0;
   if(regen>0) setTimeout(()=>{ if(u.alive)floatText(u,'+'+regen+' AP','#7fd0ff'); },120);
   refreshTurnbar(); selectUnit(u); focusCam(u);
   await tickStatusDamage(u); if(G.over)return; if(!u.alive){ nextTurn(); return; }
   const sk=statusSkips(u); tickStatusDuration(u); if(!hasS(u,'taunt'))u._taunter=null; refreshPanel(u);
-  if(sk){ floatText(u,sk.name.toUpperCase()+' !',sk.col,true); logMsg(u.name+' est '+sk.name.toLowerCase()+' — tour passé.'); await wait(0.7); if(G.over)return; nextTurn(); return; }
+  if(sk){ if((u.boss||u.elite)&&u._ultCooldown<5)u._ultCooldown=5; floatText(u,sk.name.toUpperCase()+' !',sk.col,true); logMsg(u.name+' est '+sk.name.toLowerCase()+' — tour passé.'); await wait(0.7); if(G.over)return; nextTurn(); return; }
+  if(u._ultCooldown>0)u._ultCooldown--;
   if(u.team==='player'){ G.mode='menu'; setHint(u.name+' — à vous de jouer'); openActionMenu(); }
   else { G.mode='ai'; closeMenus(); setHint(u.name+' (ennemi)…'); await wait(0.35); await aiTurn(u); }
 }
@@ -1398,7 +1399,7 @@ function skillHasDamage(spec){ if(spec.offensive&&(spec.power||0)>0)return true;
 function skillHasSupport(spec){ if(spec.heal||spec.support||spec.cure||spec.apRestore)return true; if(spec.effects&&spec.effects.some(e=>e.kind==='heal'||e.kind==='status'||e.kind==='dispel'||e.kind==='ap_restore'))return true; return false; }
 function simAt(u,st){ return Object.assign(Object.create(Object.getPrototypeOf(u)),u,{gx:st.gx,gz:st.gz}); }
 function nearestDist(st,arr){ let m=1e9; for(const a of arr){ const d=Math.abs(st.gx-a.gx)+Math.abs(st.gz-a.gz); if(d<m)m=d; } return m; }
-function bestOffense(u,stands,taunter){ const specs=[]; (u.weapons||[]).forEach((w,i)=>{ for(let ch=0;ch<3;ch++){ const s=getSpec(u,'attack',i,ch); if(s.ap<=u.ap)specs.push(s); } }); specs.push(...u.skills.filter(s=>{ const def=SKILLS[s]; return def&&(def.offensive||(def.effects&&def.effects.some(e=>e.kind==='damage')))&&def.ap<=u.ap; }).map(s=>getSpec(u,s))); let best=null;
+function bestOffense(u,stands,taunter){ const specs=[]; const isBE=!!(u.boss||u.elite),saving=isBE&&u._ultCooldown===0&&u.ap<5,forceUlt=isBE&&u._ultCooldown===0&&u.ap>=5,onCD=isBE&&u._ultCooldown>0; (u.weapons||[]).forEach((w,i)=>{ for(let ch=0;ch<3;ch++){ const s=getSpec(u,'attack',i,ch); if(s.ap<=u.ap&&!(saving&&s.ap>=4)&&!(forceUlt&&s.ap<5)&&!(onCD&&s.ap>=5))specs.push(s); } }); specs.push(...u.skills.filter(s=>{ const def=SKILLS[s]; if(!def||!(def.offensive||(def.effects&&def.effects.some(e=>e.kind==='damage')))||def.ap>u.ap)return false; if(saving&&def.ap>=4)return false; if(forceUlt&&def.ap<5)return false; if(onCD&&def.ap>=5)return false; return true; }).map(s=>getSpec(u,s))); let best=null;
   for(const st of stands){ const sim=simAt(u,st);
     for(const spec of specs){ for(const c of rangeCells(sim,spec)){ const aff=affectedUnits(sim,spec,c.gx,c.gz);
       const en=aff.filter(t=>t.team!==u.team), al=aff.filter(t=>t.team===u.team&&t!==u);
@@ -1406,12 +1407,16 @@ function bestOffense(u,stands,taunter){ const specs=[]; (u.weapons||[]).forEach(
       for(const t of en){ const {dmg}=computeDamage(sim,t,spec); score+=dmg+(dmg>=t.hp?70:0); }
       for(const t of al){ const {dmg}=computeDamage(sim,t,spec); score-=dmg*1.6; }
       if(taunter&&en.includes(taunter))score+=50;
+      if(en.length>1)score+=8*en.length;
+      if(spec.status&&en.length>0){ const newT=en.filter(t=>!hasS(t,spec.status)); const sv={stun:30,curse:15,weak:15,blind:12,root:10,burn:8,poison:8,slow:8}[spec.status]||5; score+=sv*newT.length; }
       if(!best||score>best.score) best={score,st,spec,cx:c.gx,cz:c.gz}; } } }
   return best; }
 function bestSupport(u,stands){ const supSpecs=u.skills.map(s=>getSpec(u,s)).filter(s=>skillHasSupport(s)&&s.ap<=u.ap); if(!supSpecs.length)return null;
   const allies=aliveUnits(u.team).filter(a=>a!==u); const wounded=[u,...allies].filter(a=>a.alive&&a.hp<a.maxhp*0.75);
-  if(!wounded.length)return null; let best=null;
+  let best=null;
   for(const spec of supSpecs){ for(const st of stands){ const sim=simAt(u,st);
+    if(spec.self&&spec.status){ const foes=aliveUnits('player').filter(f=>f.alive); const threat=foes.filter(f=>Math.abs(f.gx-sim.gx)+Math.abs(f.gz-sim.gz)<=3).length; let sc=threat*8+(u.hp<u.maxhp*0.5?15:0); if(!hasS(u,spec.status)&&sc>0){ if(!best||sc>best.score)best={score:sc,st,spec,cx:sim.gx,cz:sim.gz}; } continue; }
+    if(!wounded.length)continue;
     for(const c of rangeCells(sim,spec)){ const aff=affectedUnits(sim,spec,c.gx,c.gz).filter(t=>wounded.includes(t)); if(!aff.length)continue;
       let sc=aff.length*10 - st.d*0.4 + aff.reduce((m,t)=>m+(1-t.hp/t.maxhp),0)*8;
       if(spec.cure){ const neg=aff.filter(t=>Object.keys(t.statuses).some(s=>isNegative(s)&&hasS(t,s))); if(neg.length)sc+=neg.length*6; }
@@ -1473,7 +1478,11 @@ async function aiTurn(u){
     const itmBest=bestItem(u,here);
     // Priority: healer prefers support; low-HP units prefer items; otherwise offense
     let pick=null;
-    if(prof==='healer'&&supBest&&supBest.score>5){ pick={type:'support',best:supBest}; }
+    const isBE=!!(u.boss||u.elite),forceUlt=isBE&&u._ultCooldown===0&&u.ap>=5;
+    const utilPhase=(isBE&&!forceUlt&&!u._usedUtility&&u.ap>=2)||(prof==='cautious'&&!u._usedUtility&&u.ap>=2);
+    if(forceUlt&&actBest&&actBest.score>0){ pick={type:'offense',best:actBest}; }
+    else if(utilPhase&&supBest&&supBest.score>10&&Math.random()<(isBE?0.4:0.25)){ pick={type:'support',best:supBest}; }
+    else if(prof==='healer'&&supBest&&supBest.score>5){ pick={type:'support',best:supBest}; }
     else if(u.hp<u.maxhp*0.3&&itmBest&&itmBest.score>5){ pick={type:'item',best:itmBest}; }
     else if(actBest&&actBest.score>0){ pick={type:'offense',best:actBest}; }
     else if(supBest&&supBest.score>0){ pick={type:'support',best:supBest}; }
@@ -1481,7 +1490,11 @@ async function aiTurn(u){
     if(!pick)break;
     const spec=pick.best.spec;
     if(spec.ap>u.ap)break;
+    if(spec.ap>=5&&(u.boss||u.elite)&&u._ultCooldown>0)break;
+    if(pick.type==='support')u._usedUtility=true;
     await executeAction(u,spec,pick.best.cx,pick.best.cz); await wait(0.2);
+    if(spec.ap>=5&&(u.boss||u.elite))u._ultCooldown=5;
+    if((u.boss||u.elite)&&u._ultCooldown===0&&u.ap<5)break;
   }
   endTurn();
 }
@@ -1748,6 +1761,8 @@ function animate(){ requestAnimationFrame(animate);
   updateTweens(dt); if(G.shake)G.shake.t+=dt; applyCam();
   for(const u of G.units){ const dx=camera.position.x-u.grp.position.x, dz=camera.position.z-u.grp.position.z; u.spr.rotation.y=Math.atan2(dx,dz); if(u.outline){ u.outline.rotation.y=u.spr.rotation.y; u.outline.material.opacity=Math.max(0.16,u.mat.opacity*0.44); }
     if(u.teamRing){ const isActive=u===G.active&&!G.stage&&!G.over,isHover=G.hoverUnit===u,isTarget=G.mode==='target'&&G.pending&&G.pending.keys.has(cellKey(u.gx,u.gz))&&G.active&&u.team!==G.active.team; u.teamRing.material.opacity=Math.min(1,COMBAT_PRESENTATION.units.teamRingOpacity*(isActive?1.16:(isTarget?1.12:(isHover?1.08:0.94)))); if(u.teamRingUnder)u.teamRingUnder.material.opacity=isActive ? .68 : (isTarget ? .64 : (isHover ? .6 : .5)); if(u.teamGlow)u.teamGlow.material.opacity=isActive ? .28 : (isTarget ? .25 : (isHover ? .22 : (u.team==='player' ? .15 : .17))); }
+    if(u.alive&&(u.boss||u.elite)&&u.ap>=3&&u._ultCooldown<=1){ const p=0.5+0.5*Math.sin(_t*6); u.teamRing.material.color.setRGB(1,0.373-0.248*p,0.322-0.197*p); if(u.teamGlow){ u.teamGlow.material.color.setRGB(1,0.373-0.248*p,0.322-0.197*p); u.teamGlow.material.opacity=0.17+0.15*p; } }
+    else if((u.boss||u.elite)&&u.teamRing){ u.teamRing.material.color.setHex(0xff5f52); if(u.teamGlow)u.teamGlow.material.color.setHex(0xff5f52); }
     if(u.alive) u.spr.position.y=u.baseY+(u===G.active?Math.sin(_t*3.2)*0.05:0); }
   Grade.uniforms.time.value=_t*1000;
   for(const m of G_timeMats) if(m.uniforms&&m.uniforms.t) m.uniforms.t.value=_t;

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+﻿import { z } from 'zod';
 
 export const nodeTypeSchema = z.enum([
   'start', 'story', 'mystery', 'random-combat', 'story-combat',
@@ -486,6 +486,8 @@ export interface SkillDefinition {
   penetration?: number;
   crit?: number;
   effects?: SkillEffect[];
+  additionalStatus?: string;
+  additionalStatusTurns?: number;
   upgradeLevel1?: SkillUpgrade;
   upgradeLevel2?: SkillUpgrade;
 }
