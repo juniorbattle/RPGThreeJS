@@ -1,4 +1,5 @@
 import type { VfxPreset, VfxStepType } from './VfxTypes';
+import { PREMIUM_VFX_PRESETS } from './VfxPremiumPresets';
 
 export const VFX_PARTICLE_STEP_TYPES = new Set<VfxStepType>([
   'particleBurst',
@@ -304,11 +305,13 @@ const presets = [
   },
 ] as const satisfies readonly VfxPreset[];
 
+const completePresetPack = [...presets, ...PREMIUM_VFX_PRESETS] as const satisfies readonly VfxPreset[];
+
 export const VFX_PRESETS: Readonly<Record<string, VfxPreset>> = Object.freeze(
-  Object.fromEntries(presets.map((preset) => [preset.id, preset])),
+  Object.fromEntries(completePresetPack.map((preset) => [preset.id, preset])),
 );
 
-export const VFX_PRESET_IDS = Object.freeze(presets.map((preset) => preset.id));
+export const VFX_PRESET_IDS = Object.freeze(completePresetPack.map((preset) => preset.id));
 
 export function getVfxPreset(id: string): VfxPreset | undefined {
   return VFX_PRESETS[id];

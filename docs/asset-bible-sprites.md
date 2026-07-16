@@ -55,6 +55,34 @@ Démo Phase du Lion :
 - Kestrel : archère mobile, vert/cuir.
 - Cedric : éclaireur nomade optionnel, plus léger que Kestrel.
 
+### Arme signature par classe
+
+Chaque héros possède un type d'arme signature unique. Ce type est verrouillé et définit la ligne d'armes échangeables, achetables et forgeables pour ce héros.
+
+Règles verrouillées :
+
+- Un seul type d'arme signature par classe — jamais plusieurs.
+- L'arme doit être lisible au format `full` et `ui`.
+- Aucune substitution de type entre classes.
+- Chaque ligne comporte 2 à 3 tiers progressifs.
+
+Armes signatures verrouillées :
+
+| Classe | Type | Tier 1 | Tier 2 | Tier 3 (craft) |
+| --- | --- | --- | --- | --- |
+| Warrior | greatsword | iron_greatsword | steel_greatsword | lion_guard_greatsword |
+| Paladin | holy_mace | blessed_mace | sacred_mace | oath_mace |
+| Dark Knight | scythe | iron_scythe | steel_scythe | eclipse_scythe |
+| Lancer | long_spear | ash_spear | steel_spear | griffon_spear |
+| Black Mage | grimoire | apprentice_grimoire | mystic_grimoire | abyssal_grimoire |
+| White Mage | crosier | blessed_crosier | sacred_crosier | miracle_crosier |
+| Red Mage | rapier | iron_rapier | steel_rapier | crimson_rapier |
+| Enchanter | wand | ritual_wand | orb_scepter | harmony_scepter |
+| Archer | longbow | short_longbow | longbow | windstep_longbow |
+| Ninja | shuriken | iron_shuriken | steel_shuriken | shadow_shuriken |
+| Rogue | dagger | iron_dagger | steel_dagger | hooked_dagger |
+| Artillerist | hand_cannon | light_cannon | siege_cannon | barrage_cannon |
+
 ### Ennemis humanoïdes génériques
 
 - `faction_enemy`

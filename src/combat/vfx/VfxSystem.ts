@@ -215,7 +215,8 @@ export class VfxSystem {
         return;
       }
       if (step.type === 'screenFlash') {
-        const opacity = (step.opacity ?? 0.12) * this.quality(step, preset, context);
+        const emphasis = clamp(context.intensity ?? 1, 0.7, 1.25);
+        const opacity = Math.min(0.22, (step.opacity ?? 0.12) * emphasis * this.quality(step, preset, context));
         if (context.helpers?.screenFlash) context.helpers.screenFlash(String(step.color ?? '#ffffff'), opacity);
         else this.fallbackScreenFlash(String(step.color ?? '#ffffff'), opacity, duration);
         await waitSeconds(duration, context);

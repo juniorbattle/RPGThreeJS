@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { skillById } from '../game/skills';
+import { VFX_PRESET_IDS } from './vfx/VfxPresets';
 import {
   HERO_SKILL_IDS,
   SKILL_MOTION_PRESET_IDS,
@@ -12,6 +13,18 @@ const heroSkills = HERO_SKILL_IDS.map((id) => {
   if (!skill) throw new Error(`Missing hero skill definition: ${id}`);
   return skill;
 });
+
+const HERO_ULTIMATE_IDS = [
+  'w_lion_surge', 'p_radiant_judgement', 'd_devouring_eclipse',
+  'l_firmament_lance', 'n_dark_meteor', 'w_miracle',
+  'r_perfect_duality', 'e_absolute_harmony', 'a_zenith_arrow',
+  'ni_silent_assassin', 'ro_fault_breaker', 'ar_artillery_barrage',
+] as const;
+
+const BOSS_SIGNATURE_IDS = [
+  'boss_slam', 'boss_quake', 'boss_apocalypse', 'boss_execution',
+  'boss_flurry', 'boss_inferno', 'boss_titan_slam',
+] as const;
 
 describe('hero skill action contracts', () => {
   it('keeps exactly 48 explicit hero skill presentations', () => {
@@ -39,6 +52,32 @@ describe('hero skill action contracts', () => {
       expect(presentation?.ultimate).toBe(skill.ap === 5 || undefined);
       expect('ap' in (skill.upgradeLevel1 ?? {})).toBe(false);
       expect('ap' in (skill.upgradeLevel2 ?? {})).toBe(false);
+    }
+  });
+
+  it('gives every hero ultimate a unique premium identity at visual tier five', () => {
+    const presentations = HERO_ULTIMATE_IDS.map((id) => getSkillPresentation({ key: id }));
+    expect(presentations).not.toContain(undefined);
+    expect(new Set(presentations.map((presentation) => presentation?.vfxPreset)).size).toBe(12);
+    for (const presentation of presentations) {
+      expect(presentation).toMatchObject({ ultimate: true, visualTier: 5 });
+      expect(VFX_PRESET_IDS).toContain(presentation?.vfxPreset);
+    }
+  });
+
+  it('keeps boss signatures at the highest presentation tier with valid VFX', () => {
+    for (const id of BOSS_SIGNATURE_IDS) {
+      const presentation = getSkillPresentation({ key: id });
+      expect(presentation?.visualTier).toBe(6);
+      expect(VFX_PRESET_IDS).toContain(presentation?.vfxPreset);
+    }
+  });
+
+  it('only references registered motion and VFX presets', () => {
+    for (const id of HERO_SKILL_IDS) {
+      const presentation = getSkillPresentation({ key: id });
+      expect(SKILL_MOTION_PRESET_IDS).toContain(presentation?.motionPreset);
+      expect(VFX_PRESET_IDS).toContain(presentation?.vfxPreset);
     }
   });
 
