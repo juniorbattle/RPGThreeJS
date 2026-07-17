@@ -1,0 +1,11 @@
+{
+  "target": "npc",
+  "mode": "single",
+  "prompt": "",
+  "role": "",
+  "input": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\public\\assets\\characters\\pixel\\validation\\gpt-key-character-v1\\raw\\a05e3301-e7e8-41d8-a797-9e8ed5e00d15.png",
+  "threshold": 130,
+  "edge_threshold": 220,
+  "duration": 200,
+  "single_size": 1024
+}

@@ -229,7 +229,7 @@ function drawUnit(kind){
   return {cv,GW,GH,S};
 }
 function texFromCanvas(cv){ const t=new THREE.CanvasTexture(cv); t.magFilter=THREE.NearestFilter; t.minFilter=THREE.NearestFilter; t.colorSpace=THREE.SRGBColorSpace; t.generateMipmaps=false; return t; }
-function uiPortraitFor(path){ return typeof path==='string'&&path.includes('/assets/characters/pixel/full/')?path.replace('/full/','/ui/'):path; }
+function uiPortraitFor(path){ return path; }
 const EXTERNAL_SPRITE_HEIGHTS={
   '/assets/characters/pixel/full/serpent_raider.png':1.76,
   '/assets/characters/pixel/full/serpent_brute.png':1.76,

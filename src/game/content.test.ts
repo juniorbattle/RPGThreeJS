@@ -241,7 +241,7 @@ describe('campaign content integrity', () => {
       expect(profile.combatHeight, `${id}:combatHeight`).toBeGreaterThan(0);
       expect(profile.uiCropMode, `${id}:uiCropMode`).toBe('contain');
 
-      for (const variant of ['full', 'dialogue', 'ui'] as const) {
+      for (const variant of ['full'] as const) {
         const metrics = qc[id]?.variants[variant];
         expect(metrics?.alpha_bbox, `${id}:${variant}:alpha`).toBeTruthy();
         expect(metrics?.corner_alpha, `${id}:${variant}:corners`).toEqual([0, 0, 0, 0]);
@@ -303,9 +303,9 @@ describe('campaign content integrity', () => {
       expect(visualProfiles[id]?.rarity, `${id}:rarity`).toBe('generic');
       expect(visualProfiles[id]?.artStatus, `${id}:artStatus`).toBe('approved');
       expect(characterProfiles[id]?.full, `${id}:full`).toBe(`/assets/characters/pixel/full/${id}.png`);
-      expect(characterProfiles[id]?.dialogue, `${id}:dialogue`).toBe(`/assets/characters/pixel/dialogue/${id}.png`);
-      expect(characterProfiles[id]?.ui, `${id}:ui`).toBe(`/assets/characters/pixel/ui/${id}.png`);
-      expect(dialogueActors[id], `${id}:dialogueActor`).toBe(`/assets/characters/pixel/dialogue/${id}.png`);
+      expect(characterProfiles[id]?.dialogue, `${id}:dialogue`).toBe(`/assets/characters/pixel/full/${id}.png`);
+      expect(characterProfiles[id]?.ui, `${id}:ui`).toBe(`/assets/characters/pixel/full/${id}.png`);
+      expect(dialogueActors[id], `${id}:dialogueActor`).toBe(`/assets/characters/pixel/full/${id}.png`);
     }
 
     for (const dialogue of dialogues.values()) {
@@ -337,8 +337,8 @@ describe('campaign content integrity', () => {
     for (const id of expectedRuntimeIds) {
       expect(characterProfiles[id], `${id}:profile`).toBeTruthy();
       expect(characterProfiles[id]?.full, `${id}:full`).toBe(`/assets/characters/pixel/full/${id}.png`);
-      expect(characterProfiles[id]?.dialogue, `${id}:dialogue`).toBe(`/assets/characters/pixel/dialogue/${id}.png`);
-      expect(characterProfiles[id]?.ui, `${id}:ui`).toBe(`/assets/characters/pixel/ui/${id}.png`);
+      expect(characterProfiles[id]?.dialogue, `${id}:dialogue`).toBe(`/assets/characters/pixel/full/${id}.png`);
+      expect(characterProfiles[id]?.ui, `${id}:ui`).toBe(`/assets/characters/pixel/full/${id}.png`);
       expectPublicAsset(characterProfiles[id]!.full, `${id}:full`);
       expectPublicAsset(characterProfiles[id]!.dialogue, `${id}:dialogue`);
       expectPublicAsset(characterProfiles[id]!.ui, `${id}:ui`);
@@ -397,7 +397,7 @@ describe('campaign content integrity', () => {
       allPaths.push(profile.full, profile.dialogue, profile.ui, profile.fallback);
     }
     for (const path of allPaths) {
-      expect(path, `path:${path}`).toMatch(/\/assets\/characters\/pixel\/(full|dialogue|ui)\//);
+      expect(path, `path:${path}`).toMatch(/\/assets\/characters\/pixel\/full\//);
       expectPublicAsset(path, `path:${path}`);
     }
   });
