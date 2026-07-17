@@ -1,4 +1,51 @@
 {
+  "__runtime_integration_v1": {
+    "status": "validated_runtime_export",
+    "runtime_variants": {
+      "full": [640, 768],
+      "dialogue": [768, 1024],
+      "ui": [384, 384]
+    },
+    "alpha_qc": {
+      "exact_magenta_background_pixels": 0,
+      "white_background_pixels": 0,
+      "transparent_corners": "51/51 variants"
+    },
+    "promoted_heroes": {
+      "alistair": "gpt-heros-v1/warrior.png",
+      "marian": "gpt-heros-v1/white_mage.png",
+      "elara": "gpt-heros-v1/black_mage.png",
+      "kestrel": "gpt-heros-v1/archer.png",
+      "cedric": "gpt-heros-v1/rogue.png",
+      "lancer": "gpt-heros-v1/lancer.png",
+      "lion_champion": "gpt-heros-v1/paladin.png",
+      "maelor": "gpt-heros-v1/dark_knight.png",
+      "seraphine": "gpt-heros-v1/red_mage.png",
+      "chroniqueur": "gpt-heros-v1/enchanter.png",
+      "seal_guardian": "gpt-heros-v1/ninja.png",
+      "fallback_hero": "gpt-heros-v1/artiller.png"
+    },
+    "promoted_key_characters": {
+      "alaric": "gpt-key-character-v1/b28d085e-e307-4469-bbf1-daef659698e8.png",
+      "villageoise": "gpt-key-character-v1/d2605722-d1d9-4f5e-b429-bb85202250ac.png",
+      "refugee_mother": "gpt-key-character-v1/9f27d293-f1f0-41b7-8aec-d996935b6ee1.png",
+      "wounded_merchant": "gpt-key-character-v1/a05e3301-e7e8-41d8-a797-9e8ed5e00d15.png",
+      "survivor": "gpt-key-character-v1/846782ab-7b6c-4378-8119-33e6d5019c3f.png"
+    },
+    "future_reserved": [
+      "gpt-key-character-v1/0718f701-7262-40ad-a383-d1eecec141ae.png",
+      "gpt-key-character-v1/18b76cce-4298-4303-a66f-830437a8ad8a.png",
+      "gpt-key-character-v1/3ecd9c77-42fe-417f-a256-4621f03de0cc.png",
+      "gpt-key-character-v1/3fd00f6f-3c0a-4c40-a886-ea8f21d2d5c4.png",
+      "gpt-key-character-v1/6fac64d9-2e8d-48ec-9bce-9d5b69c47680.png",
+      "gpt-key-character-v1/7586a2fc-11ac-49dc-9081-e393e3697730.png",
+      "gpt-key-character-v1/90850c4f-c87a-4648-aad6-654c6515c86a.png",
+      "gpt-key-character-v1/b6076bee-1ae4-4114-b107-4719ac753915.png",
+      "gpt-key-character-v1/d2f50a8d-22d3-4a11-b82d-92a290e6b0a3.png",
+      "gpt-key-character-v1/d37cdeb4-ba73-412d-aa81-2d8fb1a16e8a.png"
+    ],
+    "runtime_policy": "Only full, dialogue and ui paths are referenced by runtime profiles."
+  },
   "alaric": {
     "variants": {
       "full": {
