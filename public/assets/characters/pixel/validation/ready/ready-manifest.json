@@ -1,0 +1,5495 @@
+{
+  "formatVersion": 1,
+  "status": "validation_only",
+  "source": "public/assets/characters/pixel/validation/final",
+  "runtimePromotion": "manual_approval_required",
+  "canvasStandards": {
+    "full": [
+      640,
+      768
+    ],
+    "dialogue": [
+      768,
+      1024
+    ],
+    "ui": [
+      384,
+      384
+    ]
+  },
+  "baselineStandards": {
+    "full": 740,
+    "dialogue": 966,
+    "ui": 354
+  },
+  "boards": {
+    "full": "public/assets/characters/pixel/validation/ready/boards/ready-full-board.png",
+    "dialogue": "public/assets/characters/pixel/validation/ready/boards/ready-dialogue-board.png",
+    "ui": "public/assets/characters/pixel/validation/ready/boards/ready-ui-board.png"
+  },
+  "sprites": [
+    {
+      "id": "alistair",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/alistair.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        76,
+        149,
+        1005,
+        1306
+      ],
+      "trimmedCanvas": [
+        953,
+        1181
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/alistair.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/alistair.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/alistair.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            533,
+            660
+          ],
+          "paste": [
+            53,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            806
+          ],
+          "paste": [
+            59,
+            160
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            258,
+            320
+          ],
+          "paste": [
+            63,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            60,
+            86,
+            580,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            67,
+            168,
+            701,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            66,
+            37,
+            318,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "marian",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/marian.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        36,
+        73,
+        1029,
+        1307
+      ],
+      "trimmedCanvas": [
+        1017,
+        1258
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/marian.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/marian.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/marian.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            534,
+            660
+          ],
+          "paste": [
+            53,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            804
+          ],
+          "paste": [
+            59,
+            162
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            259,
+            320
+          ],
+          "paste": [
+            62,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            59,
+            86,
+            581,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            66,
+            169,
+            702,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            64,
+            37,
+            318,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "elara",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/elara.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        60,
+        161,
+        1032,
+        1311
+      ],
+      "trimmedCanvas": [
+        996,
+        1174
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/elara.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/elara.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/elara.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            548,
+            646
+          ],
+          "paste": [
+            46,
+            94
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            766
+          ],
+          "paste": [
+            59,
+            200
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            271,
+            320
+          ],
+          "paste": [
+            56,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            53,
+            101,
+            588,
+            733
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            66,
+            207,
+            702,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            59,
+            37,
+            324,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "kestrel",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/kestrel.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        102,
+        87,
+        984,
+        1327
+      ],
+      "trimmedCanvas": [
+        906,
+        1264
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/kestrel.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/kestrel.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/kestrel.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            473,
+            660
+          ],
+          "paste": [
+            83,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            625,
+            872
+          ],
+          "paste": [
+            71,
+            94
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            229,
+            320
+          ],
+          "paste": [
+            77,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            89,
+            86,
+            550,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            79,
+            102,
+            688,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            80,
+            37,
+            303,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "cedric",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/cedric.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        107,
+        217,
+        938,
+        1317
+      ],
+      "trimmedCanvas": [
+        855,
+        1124
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/cedric.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/cedric.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/cedric.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            502,
+            660
+          ],
+          "paste": [
+            69,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            855
+          ],
+          "paste": [
+            59,
+            111
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            243,
+            320
+          ],
+          "paste": [
+            70,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            76,
+            87,
+            564,
+            733
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            68,
+            120,
+            700,
+            957
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            73,
+            37,
+            310,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "lancer",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/lancer.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        62,
+        161,
+        1046,
+        1290
+      ],
+      "trimmedCanvas": [
+        1008,
+        1153
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/lancer.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/lancer.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/lancer.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            548,
+            627
+          ],
+          "paste": [
+            46,
+            113
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            744
+          ],
+          "paste": [
+            59,
+            222
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            280,
+            320
+          ],
+          "paste": [
+            52,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            52,
+            119,
+            588,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            66,
+            230,
+            702,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            55,
+            37,
+            329,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "aldric",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/aldric.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        46,
+        160,
+        1035,
+        1342
+      ],
+      "trimmedCanvas": [
+        1013,
+        1206
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/aldric.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/aldric.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/aldric.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            548,
+            652
+          ],
+          "paste": [
+            46,
+            88
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            774
+          ],
+          "paste": [
+            59,
+            192
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            269,
+            320
+          ],
+          "paste": [
+            57,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            52,
+            94,
+            588,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            67,
+            199,
+            702,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            60,
+            37,
+            323,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "eldwin",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/eldwin.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        38,
+        115,
+        1011,
+        1308
+      ],
+      "trimmedCanvas": [
+        997,
+        1217
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/eldwin.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/eldwin.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/eldwin.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            541,
+            660
+          ],
+          "paste": [
+            49,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            793
+          ],
+          "paste": [
+            59,
+            173
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            262,
+            320
+          ],
+          "paste": [
+            61,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            55,
+            87,
+            584,
+            733
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            66,
+            180,
+            702,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            64,
+            37,
+            320,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "gunnar",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/gunnar.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        75,
+        184,
+        1010,
+        1314
+      ],
+      "trimmedCanvas": [
+        959,
+        1154
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/gunnar.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/gunnar.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/gunnar.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            548,
+            659
+          ],
+          "paste": [
+            46,
+            81
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            782
+          ],
+          "paste": [
+            59,
+            184
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            266,
+            320
+          ],
+          "paste": [
+            59,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            52,
+            87,
+            588,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            67,
+            192,
+            701,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            62,
+            37,
+            322,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "lyra",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/lyra.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        55,
+        54,
+        1032,
+        1349
+      ],
+      "trimmedCanvas": [
+        1001,
+        1319
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/lyra.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/lyra.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/lyra.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            501,
+            660
+          ],
+          "paste": [
+            69,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            856
+          ],
+          "paste": [
+            59,
+            110
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            243,
+            320
+          ],
+          "paste": [
+            70,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            74,
+            86,
+            564,
+            735
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            66,
+            117,
+            701,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            72,
+            37,
+            311,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "morvan",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/morvan.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        33,
+        79,
+        1033,
+        1350
+      ],
+      "trimmedCanvas": [
+        1024,
+        1295
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/morvan.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/morvan.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/morvan.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            522,
+            660
+          ],
+          "paste": [
+            59,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            822
+          ],
+          "paste": [
+            59,
+            144
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            253,
+            320
+          ],
+          "paste": [
+            65,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            65,
+            86,
+            575,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            66,
+            151,
+            702,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            67,
+            36,
+            315,
+            352
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "talon",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/talon.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        36,
+        270,
+        1057,
+        1374
+      ],
+      "trimmedCanvas": [
+        1045,
+        1128
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/talon.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/talon.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/talon.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            548,
+            592
+          ],
+          "paste": [
+            46,
+            148
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            702
+          ],
+          "paste": [
+            59,
+            264
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            292,
+            315
+          ],
+          "paste": [
+            46,
+            39
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            52,
+            154,
+            588,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            67,
+            271,
+            701,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            49,
+            42,
+            335,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "alaric",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/alaric.png",
+      "sourceCanvas": [
+        1145,
+        1374
+      ],
+      "sourceAlphaBox": [
+        104,
+        114,
+        971,
+        1267
+      ],
+      "trimmedCanvas": [
+        891,
+        1177
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/alaric.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/alaric.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/alaric.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            500,
+            660
+          ],
+          "paste": [
+            70,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            859
+          ],
+          "paste": [
+            59,
+            107
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            242,
+            320
+          ],
+          "paste": [
+            71,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            76,
+            86,
+            564,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            67,
+            115,
+            701,
+            957
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            74,
+            37,
+            310,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "maelor",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/maelor.png",
+      "sourceCanvas": [
+        1024,
+        1536
+      ],
+      "sourceAlphaBox": [
+        99,
+        120,
+        996,
+        1378
+      ],
+      "trimmedCanvas": [
+        921,
+        1282
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/maelor.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/maelor.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/maelor.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            474,
+            660
+          ],
+          "paste": [
+            83,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            626,
+            872
+          ],
+          "paste": [
+            71,
+            94
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            230,
+            320
+          ],
+          "paste": [
+            77,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            89,
+            86,
+            551,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            79,
+            102,
+            689,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            79,
+            37,
+            305,
+            352
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "lion_champion",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/lion_champion.png",
+      "sourceCanvas": [
+        1024,
+        1536
+      ],
+      "sourceAlphaBox": [
+        14,
+        93,
+        1007,
+        1366
+      ],
+      "trimmedCanvas": [
+        1017,
+        1297
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/lion_champion.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/lion_champion.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/lion_champion.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            518,
+            660
+          ],
+          "paste": [
+            61,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            829
+          ],
+          "paste": [
+            59,
+            137
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            251,
+            320
+          ],
+          "paste": [
+            66,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            67,
+            86,
+            573,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            66,
+            144,
+            702,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            68,
+            37,
+            315,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "seal_guardian",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/seal_guardian.png",
+      "sourceCanvas": [
+        1024,
+        1536
+      ],
+      "sourceAlphaBox": [
+        8,
+        200,
+        1012,
+        1288
+      ],
+      "trimmedCanvas": [
+        1024,
+        1112
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/seal_guardian.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/seal_guardian.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/seal_guardian.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            548,
+            595
+          ],
+          "paste": [
+            46,
+            145
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            706
+          ],
+          "paste": [
+            59,
+            260
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            292,
+            317
+          ],
+          "paste": [
+            46,
+            37
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            50,
+            151,
+            588,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            64,
+            268,
+            702,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            48,
+            40,
+            335,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "sage_seraphine",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/sage_seraphine.png",
+      "sourceCanvas": [
+        1145,
+        1374
+      ],
+      "sourceAlphaBox": [
+        116,
+        42,
+        983,
+        1307
+      ],
+      "trimmedCanvas": [
+        891,
+        1289
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/sage_seraphine.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/sage_seraphine.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/sage_seraphine.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            456,
+            660
+          ],
+          "paste": [
+            92,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            603,
+            872
+          ],
+          "paste": [
+            82,
+            94
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            221,
+            320
+          ],
+          "paste": [
+            81,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            98,
+            86,
+            542,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            90,
+            102,
+            677,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            83,
+            37,
+            299,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "shrine_apparition",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/shrine_apparition.png",
+      "sourceCanvas": [
+        1024,
+        1536
+      ],
+      "sourceAlphaBox": [
+        34,
+        85,
+        997,
+        1392
+      ],
+      "trimmedCanvas": [
+        987,
+        1331
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/shrine_apparition.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/shrine_apparition.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/shrine_apparition.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            489,
+            660
+          ],
+          "paste": [
+            75,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            647,
+            872
+          ],
+          "paste": [
+            60,
+            94
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            237,
+            320
+          ],
+          "paste": [
+            73,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            80,
+            85,
+            559,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            67,
+            101,
+            700,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            75,
+            36,
+            308,
+            352
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "chroniqueur",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/chroniqueur.png",
+      "sourceCanvas": [
+        1024,
+        1536
+      ],
+      "sourceAlphaBox": [
+        187,
+        112,
+        891,
+        1423
+      ],
+      "trimmedCanvas": [
+        728,
+        1335
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/chroniqueur.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/chroniqueur.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/chroniqueur.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            360,
+            660
+          ],
+          "paste": [
+            140,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            476,
+            872
+          ],
+          "paste": [
+            146,
+            94
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            175,
+            320
+          ],
+          "paste": [
+            104,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            145,
+            85,
+            495,
+            735
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            154,
+            101,
+            615,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            106,
+            37,
+            277,
+            352
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "villageoise",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/villageoise.png",
+      "sourceCanvas": [
+        1024,
+        1536
+      ],
+      "sourceAlphaBox": [
+        211,
+        150,
+        775,
+        1398
+      ],
+      "trimmedCanvas": [
+        588,
+        1272
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/villageoise.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/villageoise.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/villageoise.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            305,
+            660
+          ],
+          "paste": [
+            167,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            403,
+            872
+          ],
+          "paste": [
+            182,
+            94
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            148,
+            320
+          ],
+          "paste": [
+            118,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            173,
+            86,
+            466,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            190,
+            102,
+            577,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            121,
+            36,
+            263,
+            352
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "refugee_mother",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/refugee_mother.png",
+      "sourceCanvas": [
+        1024,
+        1536
+      ],
+      "sourceAlphaBox": [
+        198,
+        172,
+        768,
+        1342
+      ],
+      "trimmedCanvas": [
+        594,
+        1194
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/refugee_mother.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/refugee_mother.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/refugee_mother.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            328,
+            660
+          ],
+          "paste": [
+            156,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            434,
+            872
+          ],
+          "paste": [
+            167,
+            94
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            159,
+            320
+          ],
+          "paste": [
+            112,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            162,
+            86,
+            478,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            175,
+            102,
+            593,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            115,
+            37,
+            268,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "wounded_merchant",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/wounded_merchant.png",
+      "sourceCanvas": [
+        1145,
+        1374
+      ],
+      "sourceAlphaBox": [
+        195,
+        85,
+        1007,
+        1319
+      ],
+      "trimmedCanvas": [
+        836,
+        1258
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/wounded_merchant.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/wounded_merchant.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/wounded_merchant.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            439,
+            660
+          ],
+          "paste": [
+            100,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            579,
+            872
+          ],
+          "paste": [
+            94,
+            94
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            213,
+            320
+          ],
+          "paste": [
+            85,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            106,
+            86,
+            533,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            102,
+            102,
+            665,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            88,
+            37,
+            295,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "survivor",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/survivor.png",
+      "sourceCanvas": [
+        1024,
+        1536
+      ],
+      "sourceAlphaBox": [
+        133,
+        163,
+        892,
+        1317
+      ],
+      "trimmedCanvas": [
+        783,
+        1178
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/survivor.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/survivor.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/survivor.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            439,
+            660
+          ],
+          "paste": [
+            100,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            580,
+            872
+          ],
+          "paste": [
+            94,
+            94
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            213,
+            320
+          ],
+          "paste": [
+            85,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            106,
+            87,
+            533,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            103,
+            103,
+            666,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            88,
+            37,
+            295,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "future_herbalist",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/future_herbalist.png",
+      "sourceCanvas": [
+        1145,
+        1374
+      ],
+      "sourceAlphaBox": [
+        135,
+        109,
+        979,
+        1287
+      ],
+      "trimmedCanvas": [
+        868,
+        1202
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/future_herbalist.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/future_herbalist.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/future_herbalist.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            477,
+            660
+          ],
+          "paste": [
+            81,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            630,
+            872
+          ],
+          "paste": [
+            69,
+            94
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            231,
+            320
+          ],
+          "paste": [
+            76,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            87,
+            86,
+            552,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            77,
+            102,
+            691,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            79,
+            37,
+            304,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "future_lion_scribe",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/future_lion_scribe.png",
+      "sourceCanvas": [
+        1145,
+        1374
+      ],
+      "sourceAlphaBox": [
+        159,
+        101,
+        919,
+        1308
+      ],
+      "trimmedCanvas": [
+        784,
+        1231
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/future_lion_scribe.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/future_lion_scribe.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/future_lion_scribe.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            420,
+            660
+          ],
+          "paste": [
+            110,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            555,
+            872
+          ],
+          "paste": [
+            106,
+            94
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            204,
+            320
+          ],
+          "paste": [
+            90,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            116,
+            86,
+            524,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            114,
+            102,
+            653,
+            957
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            93,
+            37,
+            291,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "future_lion_spearman",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/future_lion_spearman.png",
+      "sourceCanvas": [
+        1145,
+        1374
+      ],
+      "sourceAlphaBox": [
+        98,
+        45,
+        955,
+        1305
+      ],
+      "trimmedCanvas": [
+        881,
+        1284
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/future_lion_spearman.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/future_lion_spearman.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/future_lion_spearman.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            453,
+            660
+          ],
+          "paste": [
+            93,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            598,
+            872
+          ],
+          "paste": [
+            85,
+            94
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            220,
+            320
+          ],
+          "paste": [
+            82,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            99,
+            86,
+            540,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            93,
+            102,
+            675,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            84,
+            37,
+            299,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "future_shadow_envoy",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/future_shadow_envoy.png",
+      "sourceCanvas": [
+        1145,
+        1374
+      ],
+      "sourceAlphaBox": [
+        73,
+        73,
+        1024,
+        1320
+      ],
+      "trimmedCanvas": [
+        975,
+        1271
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/future_shadow_envoy.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/future_shadow_envoy.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/future_shadow_envoy.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            506,
+            660
+          ],
+          "paste": [
+            67,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            847
+          ],
+          "paste": [
+            59,
+            119
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            245,
+            320
+          ],
+          "paste": [
+            69,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            73,
+            86,
+            567,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            66,
+            126,
+            702,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            72,
+            37,
+            311,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "serpent_raider",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/serpent_raider.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        88,
+        185,
+        911,
+        1287
+      ],
+      "trimmedCanvas": [
+        847,
+        1126
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/serpent_raider.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/serpent_raider.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/serpent_raider.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            496,
+            660
+          ],
+          "paste": [
+            72,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            864
+          ],
+          "paste": [
+            59,
+            102
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            241,
+            320
+          ],
+          "paste": [
+            71,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            79,
+            87,
+            561,
+            733
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            68,
+            111,
+            699,
+            957
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            74,
+            37,
+            309,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "serpent_brute",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/serpent_brute.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        151,
+        211,
+        1036,
+        1220
+      ],
+      "trimmedCanvas": [
+        909,
+        1033
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/serpent_brute.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/serpent_brute.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/serpent_brute.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            548,
+            623
+          ],
+          "paste": [
+            46,
+            117
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            739
+          ],
+          "paste": [
+            59,
+            227
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            282,
+            320
+          ],
+          "paste": [
+            51,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            53,
+            124,
+            587,
+            733
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            67,
+            236,
+            701,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            54,
+            38,
+            329,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "serpent_oracle",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/serpent_oracle.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        203,
+        82,
+        917,
+        1346
+      ],
+      "trimmedCanvas": [
+        738,
+        1288
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/serpent_oracle.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/serpent_oracle.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/serpent_oracle.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            378,
+            660
+          ],
+          "paste": [
+            131,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            500,
+            872
+          ],
+          "paste": [
+            134,
+            94
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            183,
+            320
+          ],
+          "paste": [
+            100,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            137,
+            86,
+            503,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            142,
+            102,
+            626,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            103,
+            37,
+            280,
+            352
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "serpent_duelist_elite",
+      "category": "elite_or_boss",
+      "combatScaleHint": 1.6,
+      "source": "public/assets/characters/pixel/validation/final/serpent_duelist_elite.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        40,
+        68,
+        1049,
+        1367
+      ],
+      "trimmedCanvas": [
+        1033,
+        1323
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/serpent_duelist_elite.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/serpent_duelist_elite.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/serpent_duelist_elite.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            531,
+            680
+          ],
+          "paste": [
+            54,
+            60
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            693,
+            888
+          ],
+          "paste": [
+            37,
+            78
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            259,
+            332
+          ],
+          "paste": [
+            62,
+            22
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            60,
+            66,
+            579,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            45,
+            86,
+            722,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            65,
+            25,
+            318,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "serpent_general_boss",
+      "category": "elite_or_boss",
+      "combatScaleHint": 1.6,
+      "source": "public/assets/characters/pixel/validation/final/serpent_general_boss.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        56,
+        32,
+        1042,
+        1387
+      ],
+      "trimmedCanvas": [
+        1010,
+        1379
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/serpent_general_boss.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/serpent_general_boss.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/serpent_general_boss.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            498,
+            680
+          ],
+          "paste": [
+            71,
+            60
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            888
+          ],
+          "paste": [
+            59,
+            78
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            243,
+            332
+          ],
+          "paste": [
+            70,
+            22
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            76,
+            65,
+            564,
+            735
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            67,
+            85,
+            702,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            72,
+            25,
+            310,
+            352
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "forest_wolf",
+      "category": "ground_creature",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/forest_wolf.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        108,
+        401,
+        1054,
+        1046
+      ],
+      "trimmedCanvas": [
+        970,
+        669
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/forest_wolf.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/forest_wolf.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/forest_wolf.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            584,
+            403
+          ],
+          "paste": [
+            28,
+            337
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            694,
+            479
+          ],
+          "paste": [
+            37,
+            487
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            336,
+            232
+          ],
+          "paste": [
+            24,
+            122
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            35,
+            344,
+            605,
+            733
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            45,
+            495,
+            723,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            28,
+            126,
+            356,
+            350
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "wild_boar",
+      "category": "ground_creature",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/wild_boar.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        87,
+        304,
+        1047,
+        1074
+      ],
+      "trimmedCanvas": [
+        984,
+        794
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/wild_boar.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/wild_boar.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/wild_boar.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            584,
+            471
+          ],
+          "paste": [
+            28,
+            269
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            694,
+            560
+          ],
+          "paste": [
+            37,
+            406
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            292,
+            236
+          ],
+          "paste": [
+            46,
+            118
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            35,
+            276,
+            605,
+            733
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            46,
+            414,
+            723,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            49,
+            121,
+            335,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "cave_rat",
+      "category": "ground_creature",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/cave_rat.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        57,
+        392,
+        1042,
+        1032
+      ],
+      "trimmedCanvas": [
+        1009,
+        664
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/cave_rat.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/cave_rat.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/cave_rat.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            584,
+            384
+          ],
+          "paste": [
+            28,
+            356
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            694,
+            457
+          ],
+          "paste": [
+            37,
+            509
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            336,
+            221
+          ],
+          "paste": [
+            24,
+            133
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            34,
+            363,
+            606,
+            733
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            45,
+            517,
+            723,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            27,
+            136,
+            357,
+            350
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "forest_spider",
+      "category": "ground_creature",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/forest_spider.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        24,
+        292,
+        1064,
+        1175
+      ],
+      "trimmedCanvas": [
+        1064,
+        907
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/forest_spider.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/forest_spider.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/forest_spider.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            565,
+            482
+          ],
+          "paste": [
+            37,
+            258
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            694,
+            592
+          ],
+          "paste": [
+            37,
+            374
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            277,
+            236
+          ],
+          "paste": [
+            53,
+            118
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            44,
+            264,
+            597,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            44,
+            381,
+            724,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            56,
+            121,
+            327,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "forest_badger",
+      "category": "ground_creature",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/forest_badger.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        89,
+        367,
+        1047,
+        1067
+      ],
+      "trimmedCanvas": [
+        982,
+        724
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/forest_badger.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/forest_badger.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/forest_badger.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            584,
+            431
+          ],
+          "paste": [
+            28,
+            309
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            694,
+            512
+          ],
+          "paste": [
+            37,
+            454
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            320,
+            236
+          ],
+          "paste": [
+            32,
+            118
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            35,
+            316,
+            605,
+            733
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            45,
+            462,
+            723,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            35,
+            121,
+            349,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "marsh_toad",
+      "category": "ground_creature",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/marsh_toad.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        45,
+        276,
+        1019,
+        1094
+      ],
+      "trimmedCanvas": [
+        998,
+        842
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/marsh_toad.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/marsh_toad.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/marsh_toad.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            571,
+            482
+          ],
+          "paste": [
+            34,
+            258
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            694,
+            586
+          ],
+          "paste": [
+            37,
+            380
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            280,
+            236
+          ],
+          "paste": [
+            52,
+            118
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            41,
+            264,
+            600,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            45,
+            388,
+            723,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            55,
+            121,
+            329,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "venom_serpent",
+      "category": "vertical_creature",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/venom_serpent.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        157,
+        267,
+        1018,
+        1211
+      ],
+      "trimmedCanvas": [
+        885,
+        968
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/venom_serpent.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/venom_serpent.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/venom_serpent.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            486,
+            532
+          ],
+          "paste": [
+            77,
+            208
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            590,
+            645
+          ],
+          "paste": [
+            89,
+            321
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            260,
+            284
+          ],
+          "paste": [
+            62,
+            70
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            83,
+            214,
+            557,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            96,
+            328,
+            672,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            65,
+            73,
+            319,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "forest_viper",
+      "category": "vertical_creature",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/forest_viper.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        159,
+        257,
+        995,
+        1169
+      ],
+      "trimmedCanvas": [
+        860,
+        936
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/forest_viper.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/forest_viper.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/forest_viper.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            486,
+            529
+          ],
+          "paste": [
+            77,
+            211
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            590,
+            642
+          ],
+          "paste": [
+            89,
+            324
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            260,
+            283
+          ],
+          "paste": [
+            62,
+            71
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            83,
+            217,
+            557,
+            733
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            97,
+            332,
+            671,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            65,
+            74,
+            319,
+            350
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "giant_mygale",
+      "category": "ground_creature",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/giant_mygale.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        45,
+        335,
+        1040,
+        1113
+      ],
+      "trimmedCanvas": [
+        1019,
+        802
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/giant_mygale.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/giant_mygale.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/giant_mygale.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            584,
+            460
+          ],
+          "paste": [
+            28,
+            280
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            694,
+            546
+          ],
+          "paste": [
+            37,
+            420
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            300,
+            236
+          ],
+          "paste": [
+            42,
+            118
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            34,
+            286,
+            606,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            45,
+            428,
+            723,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            45,
+            121,
+            339,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "swamp_crocodile",
+      "category": "ground_creature",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/swamp_crocodile.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        70,
+        408,
+        1033,
+        986
+      ],
+      "trimmedCanvas": [
+        987,
+        602
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/swamp_crocodile.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/swamp_crocodile.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/swamp_crocodile.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            584,
+            356
+          ],
+          "paste": [
+            28,
+            384
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            694,
+            423
+          ],
+          "paste": [
+            37,
+            543
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            336,
+            205
+          ],
+          "paste": [
+            24,
+            149
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            35,
+            391,
+            605,
+            733
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            45,
+            551,
+            723,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            28,
+            153,
+            356,
+            350
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "cave_bat",
+      "category": "ground_creature",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/cave_bat.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        79,
+        274,
+        1022,
+        1127
+      ],
+      "trimmedCanvas": [
+        967,
+        877
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/cave_bat.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/cave_bat.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/cave_bat.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            531,
+            482
+          ],
+          "paste": [
+            54,
+            258
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            664,
+            602
+          ],
+          "paste": [
+            52,
+            364
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            260,
+            236
+          ],
+          "paste": [
+            62,
+            118
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            60,
+            265,
+            579,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            60,
+            372,
+            708,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            65,
+            121,
+            319,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "mountain_ram",
+      "category": "ground_creature",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/mountain_ram.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        88,
+        338,
+        1013,
+        1080
+      ],
+      "trimmedCanvas": [
+        949,
+        766
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/mountain_ram.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/mountain_ram.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/mountain_ram.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            584,
+            471
+          ],
+          "paste": [
+            28,
+            269
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            694,
+            560
+          ],
+          "paste": [
+            37,
+            406
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            292,
+            236
+          ],
+          "paste": [
+            46,
+            118
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            35,
+            276,
+            605,
+            732
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            45,
+            414,
+            723,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            49,
+            121,
+            335,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "river_crab",
+      "category": "ground_creature",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/river_crab.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        41,
+        391,
+        1042,
+        1041
+      ],
+      "trimmedCanvas": [
+        1025,
+        674
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/river_crab.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/river_crab.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/river_crab.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            584,
+            384
+          ],
+          "paste": [
+            28,
+            356
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            694,
+            456
+          ],
+          "paste": [
+            37,
+            510
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            336,
+            221
+          ],
+          "paste": [
+            24,
+            133
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            34,
+            362,
+            606,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            45,
+            518,
+            723,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            28,
+            136,
+            357,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "forest_troll_elite",
+      "category": "elite_or_boss",
+      "combatScaleHint": 1.6,
+      "source": "public/assets/characters/pixel/validation/final/forest_troll_elite.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        20,
+        174,
+        1058,
+        1230
+      ],
+      "trimmedCanvas": [
+        1062,
+        1080
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/forest_troll_elite.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/forest_troll_elite.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/forest_troll_elite.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            594,
+            604
+          ],
+          "paste": [
+            23,
+            136
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            704,
+            716
+          ],
+          "paste": [
+            32,
+            250
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            326,
+            332
+          ],
+          "paste": [
+            29,
+            22
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            29,
+            142,
+            611,
+            733
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            39,
+            257,
+            729,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            32,
+            25,
+            352,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "young_dragon_elite",
+      "category": "elite_or_boss",
+      "combatScaleHint": 1.6,
+      "source": "public/assets/characters/pixel/validation/final/young_dragon_elite.png",
+      "sourceCanvas": [
+        1086,
+        1448
+      ],
+      "sourceAlphaBox": [
+        33,
+        182,
+        1054,
+        1260
+      ],
+      "trimmedCanvas": [
+        1045,
+        1102
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/young_dragon_elite.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/young_dragon_elite.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/young_dragon_elite.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            594,
+            626
+          ],
+          "paste": [
+            23,
+            114
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            704,
+            742
+          ],
+          "paste": [
+            32,
+            224
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            315,
+            332
+          ],
+          "paste": [
+            34,
+            22
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            29,
+            120,
+            610,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            40,
+            232,
+            728,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            37,
+            25,
+            346,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "goblin",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/goblin.png",
+      "sourceCanvas": [
+        1024,
+        1536
+      ],
+      "sourceAlphaBox": [
+        28,
+        306,
+        989,
+        1270
+      ],
+      "trimmedCanvas": [
+        985,
+        988
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/goblin.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/goblin.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/goblin.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            548,
+            550
+          ],
+          "paste": [
+            46,
+            190
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            652
+          ],
+          "paste": [
+            59,
+            314
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            292,
+            293
+          ],
+          "paste": [
+            46,
+            61
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            52,
+            197,
+            587,
+            733
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            66,
+            321,
+            702,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            49,
+            64,
+            335,
+            350
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "skeleton",
+      "category": "humanoid",
+      "combatScaleHint": 1.0,
+      "source": "public/assets/characters/pixel/validation/final/skeleton.png",
+      "sourceCanvas": [
+        1024,
+        1536
+      ],
+      "sourceAlphaBox": [
+        23,
+        211,
+        988,
+        1334
+      ],
+      "trimmedCanvas": [
+        989,
+        1147
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/skeleton.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/skeleton.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/skeleton.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            548,
+            636
+          ],
+          "paste": [
+            46,
+            104
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            650,
+            754
+          ],
+          "paste": [
+            59,
+            212
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            276,
+            320
+          ],
+          "paste": [
+            54,
+            34
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            53,
+            110,
+            587,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            66,
+            219,
+            702,
+            958
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            57,
+            37,
+            327,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "troll",
+      "category": "elite_or_boss",
+      "combatScaleHint": 1.6,
+      "source": "public/assets/characters/pixel/validation/final/troll.png",
+      "sourceCanvas": [
+        1024,
+        1536
+      ],
+      "sourceAlphaBox": [
+        18,
+        205,
+        1004,
+        1304
+      ],
+      "trimmedCanvas": [
+        1010,
+        1123
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/troll.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/troll.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/troll.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            594,
+            660
+          ],
+          "paste": [
+            23,
+            80
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            704,
+            783
+          ],
+          "paste": [
+            32,
+            183
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            299,
+            332
+          ],
+          "paste": [
+            42,
+            22
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            30,
+            87,
+            610,
+            733
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            40,
+            192,
+            728,
+            957
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            46,
+            25,
+            338,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    },
+    {
+      "id": "undead_champion",
+      "category": "elite_or_boss",
+      "combatScaleHint": 1.6,
+      "source": "public/assets/characters/pixel/validation/final/undead_champion.png",
+      "sourceCanvas": [
+        1122,
+        1402
+      ],
+      "sourceAlphaBox": [
+        31,
+        97,
+        1090,
+        1253
+      ],
+      "trimmedCanvas": [
+        1083,
+        1180
+      ],
+      "variants": {
+        "full": "public/assets/characters/pixel/validation/ready/full/undead_champion.png",
+        "dialogue": "public/assets/characters/pixel/validation/ready/dialogue/undead_champion.png",
+        "ui": "public/assets/characters/pixel/validation/ready/ui/undead_champion.png"
+      },
+      "calibration": {
+        "full": {
+          "canvas": [
+            640,
+            768
+          ],
+          "renderedSize": [
+            594,
+            647
+          ],
+          "paste": [
+            23,
+            93
+          ],
+          "baselineY": 740
+        },
+        "dialogue": {
+          "canvas": [
+            768,
+            1024
+          ],
+          "renderedSize": [
+            704,
+            767
+          ],
+          "paste": [
+            32,
+            199
+          ],
+          "baselineY": 966
+        },
+        "ui": {
+          "canvas": [
+            384,
+            384
+          ],
+          "renderedSize": [
+            305,
+            332
+          ],
+          "paste": [
+            39,
+            22
+          ],
+          "baselineY": 354
+        }
+      },
+      "qc": {
+        "full": {
+          "alphaBox": [
+            30,
+            99,
+            611,
+            734
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "dialogue": {
+          "alphaBox": [
+            39,
+            206,
+            728,
+            959
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        },
+        "ui": {
+          "alphaBox": [
+            42,
+            26,
+            341,
+            351
+          ],
+          "opaqueMagentaPixels": 0,
+          "transparentCorners": true,
+          "touchesCanvasEdge": false
+        }
+      }
+    }
+  ],
+  "qc": {
+    "spriteCount": 51,
+    "variantCount": 153,
+    "failureCount": 0,
+    "failures": []
+  }
+}

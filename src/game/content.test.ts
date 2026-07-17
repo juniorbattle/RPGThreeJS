@@ -357,7 +357,7 @@ describe('campaign content integrity', () => {
     const characterProfiles = assets.characterProfiles as Record<string, CharacterAssetProfile>;
     const visualProfiles = assets.visualProfiles as unknown as Record<string, VisualProfile>;
     const expectedMonsterIds = ['wolf', 'venom_serpent', 'forest_spider', 'forest_badger', 'marsh_toad', 'cave_rat', 'wild_boar', 'goblin', 'skeleton'];
-    const expectedEliteIds = ['troll', 'young_wyrm', 'undead_champion', 'forest_troll_elite', 'young_dragon_elite'];
+    const expectedEliteIds = ['troll', 'undead_champion', 'forest_troll_elite', 'young_dragon_elite'];
 
     for (const id of expectedMonsterIds) {
       expect(visualProfiles[id]?.category, `${id}:category`).toBe('monster');
