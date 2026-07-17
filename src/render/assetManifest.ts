@@ -14,8 +14,8 @@ export const assets = {
   },
   world: {
     forestFar: '/assets/generated/forest-pilot/forest-dawn-far.webp',
-    forestMid: '/assets/generated/forest-pilot/forest-mid.webp',
-    forestFore: '/assets/generated/forest-pilot/forest-fore.webp',
+    forestMid: '/assets/generated/forest-pilot/forest-dawn-far.webp',
+    forestFore: '/assets/generated/forest-pilot/forest-dawn-far.webp',
   },
   portraits: {
     alistair: '/assets/characters/pixel/full/alistair.png',
@@ -230,7 +230,7 @@ export const assets = {
     travel: {
       background: travelDefaultBackdrop,
       sky: travelDefaultBackdrop,
-      mist: '/assets/generated/forest-pilot/forest-mid.webp',
+      mist: '/assets/generated/forest-pilot/forest-dawn-far.webp',
       backdrops: {
         default: travelDefaultBackdrop,
         city: travelCityBackdrop,
@@ -250,8 +250,8 @@ export const assets = {
       background: '/assets/generated/lion-phase/combat/forest_route.webp',
       forestRuinsBackdrop: '/assets/generated/combat-painted/forest-ruins-backdrop.png',
       sky: '/assets/generated/forest-pilot/forest-dawn-far.webp',
-      distance: '/assets/generated/forest-pilot/forest-mid.webp',
-      mist: '/assets/generated/forest-pilot/forest-fore.webp',
+      distance: '/assets/generated/forest-pilot/forest-dawn-far.webp',
+      mist: '/assets/generated/forest-pilot/forest-dawn-far.webp',
     },
   },
 } as const;
