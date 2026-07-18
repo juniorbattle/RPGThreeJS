@@ -1,4 +1,4 @@
-import { craftRecipeById, getFinalStats, getResolvedSkills, itemById, unitById } from './catalog';
+import { craftRecipeById, getFinalStats, getResolvedSkills, isSkillUnlockedForHero, itemById, unitById } from './catalog';
 import { getShopPrice } from './reputation';
 import type { CraftRecipeDefinition, GameState, InventoryState, ItemCategory, UnitInstance } from './types';
 
@@ -40,6 +40,7 @@ export function equipWeapon(state: GameState, unitId: string, weaponId: string):
   adjust(state.inventory, 'weapons', previous, 1);
   adjust(state.inventory, 'weapons', weaponId, -1);
   unit.equipment.weaponIds[0] = weaponId;
+  unit.currentHealth = Math.min(unit.currentHealth, getFinalStats(unit).maxHealth);
   return true;
 }
 
@@ -91,6 +92,7 @@ export function upgradeSkill(state: GameState, unitId: string, skillId: string):
   const unit = state.clan.members.find((candidate) => candidate.id === unitId);
   if (!unit) return false;
   if (!getResolvedSkills(unit).includes(skillId)) return false;
+  if (!isSkillUnlockedForHero(unit, skillId)) return false;
   const currentLevel = Math.max(0, Math.min(MAX_SKILL_UPGRADE_LEVEL, unit.skillUpgrades[skillId] ?? 0));
   const cost = getSkillUpgradeCost(currentLevel);
   if (cost === null || (state.inventory.materials.red_gem ?? 0) < cost) return false;

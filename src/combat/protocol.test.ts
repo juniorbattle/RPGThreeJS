@@ -6,12 +6,14 @@ import {
 } from './protocol';
 import { combatConfigs } from '../game/content';
 import { createInitialState } from '../game/store';
+import { equipWeapon } from '../game/management';
 import { toCombatant } from '../game/catalog';
 
 describe('combat protocol', () => {
   it('validates initialization without URL payloads', () => {
     const state = createInitialState();
     const config = combatConfigs.get('forest_patrol')!;
+    equipWeapon(state, state.clan.members[0]!.id, 'steel_greatsword');
     state.clan.members[0]!.currentHealth = 77;
     state.clan.members[0]!.skillUpgrades.w_break_guard = 2;
     const clan = state.clan.members.map(toCombatant);

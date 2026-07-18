@@ -2,6 +2,7 @@ import type {
   CombatantPayload, CraftRecipeDefinition, EquipmentLoadout, ItemCategory, ItemDefinition, UnitDefinition,
   UnitInstance, UnitStats, WeaponDefinition,
 } from './types';
+import { skillById } from './skills';
 
 export const WEAPON_TIER_HEALTH: Record<WeaponDefinition['type'], number[]> = {
   greatsword:  [0, 25,  50, 100, 150],
@@ -35,53 +36,53 @@ export const WEAPON_APTITUDES: Record<WeaponDefinition['type'], { name: string; 
 
 export const weapons: WeaponDefinition[] = [
   // Greatsword (Warrior) — T0 Novice / T1 / T2
-  { id: 'novice_greatsword', name: 'Espadon novice', description: "Lame d'écuyer pour les premières batailles.", category: 'weapons', price: 90, icon: '⚔', type: 'greatsword', damage: 20, range: 1, accuracyBonus: 5, critBonus: 5 },
-  { id: 'steel_greatsword', name: "Espadon d'acier", description: 'Lame équilibrée et plus mordante.', category: 'weapons', price: 170, icon: '⚔', type: 'greatsword', damage: 25, range: 1, accuracyBonus: 7, critBonus: 5, healthBonus: 25 },
-  { id: 'lion_guard_greatsword', name: 'Espadon du Lion', description: 'Lame de garde renforcée par un anneau martial.', category: 'weapons', price: 320, icon: '⚔', type: 'greatsword', damage: 27, range: 1, accuracyBonus: 8, critBonus: 6, healthBonus: 50, skillModifier: { replaces: { w_lion_surge: 'p_oathwall' } } },
+  { id: 'novice_greatsword', name: 'Espadon novice', description: "Lame d'écuyer pour les premières batailles.", category: 'weapons', price: 90, icon: '⚔', type: 'greatsword', tier: 0, damage: 20, range: 1, accuracyBonus: 5, critBonus: 5 },
+  { id: 'steel_greatsword', name: "Espadon d'acier", description: 'Lame équilibrée et plus mordante.', category: 'weapons', price: 170, icon: '⚔', type: 'greatsword', tier: 1, damage: 25, range: 1, accuracyBonus: 7, critBonus: 5, healthBonus: 25 },
+  { id: 'lion_guard_greatsword', name: 'Espadon du Lion', description: 'Lame de garde renforcée par un anneau martial.', category: 'weapons', price: 320, icon: '⚔', type: 'greatsword', tier: 2, damage: 27, range: 1, accuracyBonus: 8, critBonus: 6, healthBonus: 50, skillModifier: { replaces: { w_lion_surge: 'p_oathwall' } } },
   // Holy mace (Paladin) — T0 Novice / T1 / T2
-  { id: 'novice_mace', name: 'Masse novice', description: 'Masse simple des protecteurs débutants.', category: 'weapons', price: 130, icon: '✚', type: 'holy_mace', damage: 16, range: 1, accuracyBonus: 5, critBonus: 3 },
-  { id: 'sacred_mace', name: 'Masse sacrée', description: 'Masse consacrée frappant avec force.', category: 'weapons', price: 220, icon: '✚', type: 'holy_mace', damage: 22, range: 1, accuracyBonus: 7, critBonus: 5, healthBonus: 23 },
-  { id: 'oath_mace', name: 'Masse du Serment', description: 'Masse de garde renforcée par un serment sacré.', category: 'weapons', price: 340, icon: '✚', type: 'holy_mace', damage: 27, range: 1, accuracyBonus: 8, critBonus: 6, healthBonus: 45 },
+  { id: 'novice_mace', name: 'Masse novice', description: 'Masse simple des protecteurs débutants.', category: 'weapons', price: 130, icon: '✚', type: 'holy_mace', tier: 0, damage: 16, range: 1, accuracyBonus: 5, critBonus: 3 },
+  { id: 'sacred_mace', name: 'Masse sacrée', description: 'Masse consacrée frappant avec force.', category: 'weapons', price: 220, icon: '✚', type: 'holy_mace', tier: 1, damage: 22, range: 1, accuracyBonus: 7, critBonus: 5, healthBonus: 23 },
+  { id: 'oath_mace', name: 'Masse du Serment', description: 'Masse de garde renforcée par un serment sacré.', category: 'weapons', price: 340, icon: '✚', type: 'holy_mace', tier: 2, damage: 27, range: 1, accuracyBonus: 8, critBonus: 6, healthBonus: 45 },
   // Scythe (Dark Knight) — T0 Novice / T1 / T2
-  { id: 'novice_scythe', name: 'Faux novice', description: 'Faux rudimentaire mais menaçante.', category: 'weapons', price: 100, icon: '☠', type: 'scythe', damage: 20, range: 2, accuracyBonus: 3, critBonus: 8 },
-  { id: 'steel_scythe', name: "Faux d'acier", description: 'Faux équilibrée à la lame plus mordante.', category: 'weapons', price: 190, icon: '☠', type: 'scythe', damage: 25, range: 2, accuracyBonus: 5, critBonus: 10, healthBonus: 23 },
-  { id: 'eclipse_scythe', name: "Faux de l'Éclipse", description: "Faux imprégnée d'énergie obscure.", category: 'weapons', price: 330, icon: '☠', type: 'scythe', damage: 28, range: 2, accuracyBonus: 5, critBonus: 12, healthBonus: 45 },
+  { id: 'novice_scythe', name: 'Faux novice', description: 'Faux rudimentaire mais menaçante.', category: 'weapons', price: 100, icon: '☠', type: 'scythe', tier: 0, damage: 20, range: 2, accuracyBonus: 3, critBonus: 8 },
+  { id: 'steel_scythe', name: "Faux d'acier", description: 'Faux équilibrée à la lame plus mordante.', category: 'weapons', price: 190, icon: '☠', type: 'scythe', tier: 1, damage: 25, range: 2, accuracyBonus: 5, critBonus: 10, healthBonus: 23 },
+  { id: 'eclipse_scythe', name: "Faux de l'Éclipse", description: "Faux imprégnée d'énergie obscure.", category: 'weapons', price: 330, icon: '☠', type: 'scythe', tier: 2, damage: 28, range: 2, accuracyBonus: 5, critBonus: 12, healthBonus: 45 },
   // Long spear (Lancer) — T0 Novice / T1 / T2
-  { id: 'novice_spear', name: 'Lance novice', description: 'Lance de bois pour frapper à distance.', category: 'weapons', price: 110, icon: '↟', type: 'long_spear', damage: 15, range: 2, accuracyBonus: 0, critBonus: 5 },
-  { id: 'steel_spear', name: "Lance d'acier", description: 'Lance robuste à longue portée.', category: 'weapons', price: 200, icon: '↟', type: 'long_spear', damage: 20, range: 2, accuracyBonus: 3, critBonus: 5, healthBonus: 20 },
-  { id: 'griffon_spear', name: 'Lance du Griffon', description: 'Lance de guerre équilibrée pour les charges.', category: 'weapons', price: 320, icon: '↟', type: 'long_spear', damage: 24, range: 2, accuracyBonus: 5, critBonus: 8, healthBonus: 40 },
+  { id: 'novice_spear', name: 'Lance novice', description: 'Lance de bois pour frapper à distance.', category: 'weapons', price: 110, icon: '↟', type: 'long_spear', tier: 0, damage: 15, range: 2, accuracyBonus: 0, critBonus: 5 },
+  { id: 'steel_spear', name: "Lance d'acier", description: 'Lance robuste à longue portée.', category: 'weapons', price: 200, icon: '↟', type: 'long_spear', tier: 1, damage: 20, range: 2, accuracyBonus: 3, critBonus: 5, healthBonus: 20 },
+  { id: 'griffon_spear', name: 'Lance du Griffon', description: 'Lance de guerre équilibrée pour les charges.', category: 'weapons', price: 320, icon: '↟', type: 'long_spear', tier: 2, damage: 24, range: 2, accuracyBonus: 5, critBonus: 8, healthBonus: 40 },
   // Grimoire (Black Mage) — T0 Novice / T1 / T2
-  { id: 'novice_grimoire', name: 'Grimoire novice', description: 'Tome élémentaire pour apprentis mages.', category: 'weapons', price: 100, icon: '✦', type: 'grimoire', damage: 10, range: 2, accuracyBonus: 10, critBonus: 0 },
-  { id: 'mystic_grimoire', name: 'Grimoire mystique', description: 'Tome ancien saturé de mana.', category: 'weapons', price: 260, icon: '✦', type: 'grimoire', damage: 18, range: 3, accuracyBonus: 15, critBonus: 5, healthBonus: 13, skillModifier: { replaces: { n_dark_meteor: 'n_flame_wave' } } },
-  { id: 'abyssal_grimoire', name: 'Grimoire des Abysses', description: "Tome interdit débordant d'arcanes noirs.", category: 'weapons', price: 340, icon: '✦', type: 'grimoire', damage: 22, range: 3, accuracyBonus: 18, critBonus: 8, healthBonus: 25 },
+  { id: 'novice_grimoire', name: 'Grimoire novice', description: 'Tome élémentaire pour apprentis mages.', category: 'weapons', price: 100, icon: '✦', type: 'grimoire', tier: 0, damage: 10, range: 2, accuracyBonus: 10, critBonus: 0 },
+  { id: 'mystic_grimoire', name: 'Grimoire mystique', description: 'Tome ancien saturé de mana.', category: 'weapons', price: 260, icon: '✦', type: 'grimoire', tier: 1, damage: 18, range: 3, accuracyBonus: 15, critBonus: 5, healthBonus: 13, skillModifier: { replaces: { n_dark_meteor: 'n_flame_wave' } } },
+  { id: 'abyssal_grimoire', name: 'Grimoire des Abysses', description: "Tome interdit débordant d'arcanes noirs.", category: 'weapons', price: 340, icon: '✦', type: 'grimoire', tier: 2, damage: 22, range: 3, accuracyBonus: 18, critBonus: 8, healthBonus: 25 },
   // Crosier (White Mage) — T0 Novice / T1 / T2
-  { id: 'novice_crosier', name: 'Crosse novice', description: 'Crosse simple pour canaliser les prières.', category: 'weapons', price: 100, icon: '✚', type: 'crosier', damage: 10, range: 2, accuracyBonus: 10, critBonus: 0 },
-  { id: 'sacred_crosier', name: 'Crosse sacrée', description: 'Crosse imprégnée de lumière divine.', category: 'weapons', price: 220, icon: '✚', type: 'crosier', damage: 16, range: 2, accuracyBonus: 12, critBonus: 3, healthBonus: 13 },
-  { id: 'miracle_crosier', name: 'Crosse des Miracles', description: "Crosse rayonnant d'énergie bienveillante.", category: 'weapons', price: 340, icon: '✚', type: 'crosier', damage: 20, range: 3, accuracyBonus: 15, critBonus: 5, healthBonus: 25 },
+  { id: 'novice_crosier', name: 'Crosse novice', description: 'Crosse simple pour canaliser les prières.', category: 'weapons', price: 100, icon: '✚', type: 'crosier', tier: 0, damage: 10, range: 2, accuracyBonus: 10, critBonus: 0 },
+  { id: 'sacred_crosier', name: 'Crosse sacrée', description: 'Crosse imprégnée de lumière divine.', category: 'weapons', price: 220, icon: '✚', type: 'crosier', tier: 1, damage: 16, range: 2, accuracyBonus: 12, critBonus: 3, healthBonus: 13 },
+  { id: 'miracle_crosier', name: 'Crosse des Miracles', description: "Crosse rayonnant d'énergie bienveillante.", category: 'weapons', price: 340, icon: '✚', type: 'crosier', tier: 2, damage: 20, range: 3, accuracyBonus: 15, critBonus: 5, healthBonus: 25 },
   // Rapier (Red Mage) — T0 Novice / T1 / T2
-  { id: 'novice_rapier', name: 'Rapière novice', description: 'Lame fine pour les duellistes en herbe.', category: 'weapons', price: 100, icon: '⚔', type: 'rapier', damage: 14, range: 2, accuracyBonus: 12, critBonus: 8 },
-  { id: 'steel_rapier', name: "Rapière d'acier", description: 'Rapière équilibrée à la lame mordante.', category: 'weapons', price: 200, icon: '⚔', type: 'rapier', damage: 20, range: 2, accuracyBonus: 14, critBonus: 10, healthBonus: 18 },
-  { id: 'crimson_rapier', name: 'Rapière Cramoisie', description: "Rapière enchantée d'écarlate.", category: 'weapons', price: 320, icon: '⚔', type: 'rapier', damage: 24, range: 2, accuracyBonus: 16, critBonus: 12, healthBonus: 35 },
+  { id: 'novice_rapier', name: 'Rapière novice', description: 'Lame fine pour les duellistes en herbe.', category: 'weapons', price: 100, icon: '⚔', type: 'rapier', tier: 0, damage: 14, range: 2, accuracyBonus: 12, critBonus: 8 },
+  { id: 'steel_rapier', name: "Rapière d'acier", description: 'Rapière équilibrée à la lame mordante.', category: 'weapons', price: 200, icon: '⚔', type: 'rapier', tier: 1, damage: 20, range: 2, accuracyBonus: 14, critBonus: 10, healthBonus: 18 },
+  { id: 'crimson_rapier', name: 'Rapière Cramoisie', description: "Rapière enchantée d'écarlate.", category: 'weapons', price: 320, icon: '⚔', type: 'rapier', tier: 2, damage: 24, range: 2, accuracyBonus: 16, critBonus: 12, healthBonus: 35 },
   // Wand (Enchanter) — T0 Novice / T1 / T2
-  { id: 'novice_wand', name: 'Baguette novice', description: 'Baguette de bois pour les premiers enchantements.', category: 'weapons', price: 100, icon: '✦', type: 'wand', damage: 10, range: 2, accuracyBonus: 10, critBonus: 0 },
-  { id: 'orb_scepter', name: 'Sceptre-orbe', description: "Sceptre surmonté d'un orbe focalisateur.", category: 'weapons', price: 240, icon: '✦', type: 'wand', damage: 16, range: 3, accuracyBonus: 14, critBonus: 3, healthBonus: 13 },
-  { id: 'harmony_scepter', name: "Sceptre d'Harmonie", description: "Sceptre résonnant d'énergie arcanique.", category: 'weapons', price: 340, icon: '✦', type: 'wand', damage: 20, range: 3, accuracyBonus: 16, critBonus: 5, healthBonus: 25 },
+  { id: 'novice_wand', name: 'Baguette novice', description: 'Baguette de bois pour les premiers enchantements.', category: 'weapons', price: 100, icon: '✦', type: 'wand', tier: 0, damage: 10, range: 2, accuracyBonus: 10, critBonus: 0 },
+  { id: 'orb_scepter', name: 'Sceptre-orbe', description: "Sceptre surmonté d'un orbe focalisateur.", category: 'weapons', price: 240, icon: '✦', type: 'wand', tier: 1, damage: 16, range: 3, accuracyBonus: 14, critBonus: 3, healthBonus: 13 },
+  { id: 'harmony_scepter', name: "Sceptre d'Harmonie", description: "Sceptre résonnant d'énergie arcanique.", category: 'weapons', price: 340, icon: '✦', type: 'wand', tier: 2, damage: 20, range: 3, accuracyBonus: 16, critBonus: 5, healthBonus: 25 },
   // Longbow (Archer) — T0 Novice / T1 / T2
-  { id: 'novice_longbow', name: 'Arc novice', description: 'Arc court pour les engagements proches.', category: 'weapons', price: 120, icon: '⌁', type: 'longbow', damage: 14, range: 4, minRange: 2, accuracyBonus: 0, critBonus: 5 },
-  { id: 'longbow', name: 'Arc long', description: 'Excellente portée et puissance accrue.', category: 'weapons', price: 230, icon: '⌁', type: 'longbow', damage: 22, range: 4, minRange: 2, accuracyBonus: 5, critBonus: 10, healthBonus: 15, skillModifier: { replaces: { a_hawk_leap: 'ar_calibrated_shot' } } },
-  { id: 'windstep_longbow', name: 'Arc du Vent', description: "Arc nerveux équilibré par des bottes d'éclaireur.", category: 'weapons', price: 340, icon: '⌁', type: 'longbow', damage: 24, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 12, healthBonus: 30, skillModifier: { replaces: { a_arrow_rain: 'ni_shadow_step' } } },
+  { id: 'novice_longbow', name: 'Arc novice', description: 'Arc court pour les engagements proches.', category: 'weapons', price: 120, icon: '⌁', type: 'longbow', tier: 0, damage: 14, range: 4, minRange: 2, accuracyBonus: 0, critBonus: 5 },
+  { id: 'longbow', name: 'Arc long', description: 'Excellente portée et puissance accrue.', category: 'weapons', price: 230, icon: '⌁', type: 'longbow', tier: 1, damage: 22, range: 4, minRange: 2, accuracyBonus: 5, critBonus: 10, healthBonus: 15, skillModifier: { replaces: { a_hawk_leap: 'ar_calibrated_shot' } } },
+  { id: 'windstep_longbow', name: 'Arc du Vent', description: "Arc nerveux équilibré par des bottes d'éclaireur.", category: 'weapons', price: 340, icon: '⌁', type: 'longbow', tier: 2, damage: 24, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 12, healthBonus: 30, skillModifier: { replaces: { a_arrow_rain: 'ni_shadow_step' } } },
   // Shuriken (Ninja) — T0 Novice / T1 / T2
-  { id: 'novice_shuriken', name: 'Shuriken novice', description: 'Étoile de lancer pour les ninjas débutants.', category: 'weapons', price: 80, icon: '✦', type: 'shuriken', damage: 12, range: 3, accuracyBonus: 15, critBonus: 10 },
-  { id: 'steel_shuriken', name: "Shuriken d'acier", description: 'Shuriken équilibré à la coupe plus profonde.', category: 'weapons', price: 180, icon: '✦', type: 'shuriken', damage: 18, range: 3, accuracyBonus: 15, critBonus: 12, healthBonus: 15 },
-  { id: 'shadow_shuriken', name: "Shuriken de l'Ombre", description: "Shuriken enchanté d'énergie occulte.", category: 'weapons', price: 300, icon: '✦', type: 'shuriken', damage: 22, range: 3, accuracyBonus: 18, critBonus: 15, healthBonus: 30 },
+  { id: 'novice_shuriken', name: 'Shuriken novice', description: 'Étoile de lancer pour les ninjas débutants.', category: 'weapons', price: 80, icon: '✦', type: 'shuriken', tier: 0, damage: 12, range: 3, accuracyBonus: 15, critBonus: 10 },
+  { id: 'steel_shuriken', name: "Shuriken d'acier", description: 'Shuriken équilibré à la coupe plus profonde.', category: 'weapons', price: 180, icon: '✦', type: 'shuriken', tier: 1, damage: 18, range: 3, accuracyBonus: 15, critBonus: 12, healthBonus: 15 },
+  { id: 'shadow_shuriken', name: "Shuriken de l'Ombre", description: "Shuriken enchanté d'énergie occulte.", category: 'weapons', price: 300, icon: '✦', type: 'shuriken', tier: 2, damage: 22, range: 3, accuracyBonus: 18, critBonus: 15, healthBonus: 30 },
   // Dagger (Rogue) — T0 Novice / T1 / T2
-  { id: 'novice_dagger', name: 'Dague novice', description: 'Dague simple pour les rôdeurs en herbe.', category: 'weapons', price: 75, icon: '†', type: 'dagger', damage: 12, range: 1, accuracyBonus: 15, critBonus: 10 },
-  { id: 'steel_dagger', name: "Dague d'acier", description: 'Dague équilibrée à la lame plus mordante.', category: 'weapons', price: 170, icon: '†', type: 'dagger', damage: 18, range: 1, accuracyBonus: 17, critBonus: 12, healthBonus: 18 },
-  { id: 'hooked_dagger', name: 'Dague Crochue', description: 'Dague recourbée déchirant les défenses.', category: 'weapons', price: 290, icon: '†', type: 'dagger', damage: 22, range: 1, accuracyBonus: 18, critBonus: 15, healthBonus: 35 },
+  { id: 'novice_dagger', name: 'Dague novice', description: 'Dague simple pour les rôdeurs en herbe.', category: 'weapons', price: 75, icon: '†', type: 'dagger', tier: 0, damage: 12, range: 1, accuracyBonus: 15, critBonus: 10 },
+  { id: 'steel_dagger', name: "Dague d'acier", description: 'Dague équilibrée à la lame plus mordante.', category: 'weapons', price: 170, icon: '†', type: 'dagger', tier: 1, damage: 18, range: 1, accuracyBonus: 17, critBonus: 12, healthBonus: 18 },
+  { id: 'hooked_dagger', name: 'Dague Crochue', description: 'Dague recourbée déchirant les défenses.', category: 'weapons', price: 290, icon: '†', type: 'dagger', tier: 2, damage: 22, range: 1, accuracyBonus: 18, critBonus: 15, healthBonus: 35 },
   // Hand cannon (Artillerist) — T0 Novice / T1 / T2
-  { id: 'novice_cannon', name: 'Canon novice', description: 'Canon portatif pour les artilleurs débutants.', category: 'weapons', price: 120, icon: '⌁', type: 'hand_cannon', damage: 14, range: 4, minRange: 2, accuracyBonus: 0, critBonus: 5 },
-  { id: 'siege_cannon', name: 'Canon de siège', description: 'Canon lourd à la puissance accrue.', category: 'weapons', price: 240, icon: '⌁', type: 'hand_cannon', damage: 22, range: 4, minRange: 2, accuracyBonus: 5, critBonus: 8, healthBonus: 18 },
-  { id: 'barrage_cannon', name: 'Canon de Barrage', description: 'Canon dévastateur à tir multiple.', category: 'weapons', price: 360, icon: '⌁', type: 'hand_cannon', damage: 26, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 10, healthBonus: 35 },
+  { id: 'novice_cannon', name: 'Canon novice', description: 'Canon portatif pour les artilleurs débutants.', category: 'weapons', price: 120, icon: '⌁', type: 'hand_cannon', tier: 0, damage: 14, range: 4, minRange: 2, accuracyBonus: 0, critBonus: 5 },
+  { id: 'siege_cannon', name: 'Canon de siège', description: 'Canon lourd à la puissance accrue.', category: 'weapons', price: 240, icon: '⌁', type: 'hand_cannon', tier: 1, damage: 22, range: 4, minRange: 2, accuracyBonus: 5, critBonus: 8, healthBonus: 18 },
+  { id: 'barrage_cannon', name: 'Canon de Barrage', description: 'Canon dévastateur à tir multiple.', category: 'weapons', price: 360, icon: '⌁', type: 'hand_cannon', tier: 2, damage: 26, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 10, healthBonus: 35 },
 ];
 
 export const items: ItemDefinition[] = [
@@ -329,10 +330,69 @@ export function getResolvedSkills(unit: { definitionId: string; equipment: Equip
   return [...result];
 }
 
+const ULTIMATE_AP = 5;
+
+export function getEquippedWeaponTier(unit: { equipment: EquipmentLoadout }): number {
+  const weaponId = unit.equipment.weaponIds[0];
+  if (!weaponId) return 0;
+  return weaponById.get(weaponId)?.tier ?? 0;
+}
+
+export function getMaxUnlockedSkillAp(tier: number): number {
+  if (tier >= 3) return 4;
+  if (tier >= 2) return 3;
+  if (tier >= 1) return 2;
+  return 0;
+}
+
+export function isUltimateUnlockedForHero(_unit: UnitInstance): boolean {
+  return false;
+}
+
+export function isSkillUnlockedForHero(unit: { equipment: EquipmentLoadout }, skillId: string): boolean {
+  const skill = skillById.get(skillId);
+  if (!skill) return false;
+  if (skill.ap >= ULTIMATE_AP) return isUltimateUnlockedForHero(unit as UnitInstance);
+  return skill.ap <= getMaxUnlockedSkillAp(getEquippedWeaponTier(unit));
+}
+
+export function getUnlockedSkillsForHero(unit: { definitionId: string; equipment: EquipmentLoadout }): string[] {
+  return getResolvedSkills(unit).filter((skillId) => isSkillUnlockedForHero(unit, skillId));
+}
+
+export function getLockedSkillReason(unit: { equipment: EquipmentLoadout }, skillId: string): string {
+  const skill = skillById.get(skillId);
+  if (!skill) return 'Compétence inconnue';
+  if (skill.ap >= ULTIMATE_AP) return 'Ultimate — éveil spécial requis';
+  const maxAp = getMaxUnlockedSkillAp(getEquippedWeaponTier(unit));
+  if (skill.ap <= maxAp) return '';
+  if (skill.ap === 2) return 'Débloquée avec arme T1';
+  if (skill.ap === 3) return 'Débloquée avec arme T2';
+  if (skill.ap === 4) return 'Débloquée avec arme T3';
+  return 'Débloquée avec arme T' + skill.ap;
+}
+
+export function getWeaponSkillUnlockLabel(weapon: WeaponDefinition): string {
+  if (weapon.tier <= 0) return 'Aucune compétence active';
+  if (weapon.tier === 1) return 'Débloque : compétence 2 PA';
+  if (weapon.tier === 2) return 'Débloque : compétence 3 PA';
+  return 'Débloque : compétence 4 PA';
+}
+
+const MAGICAL_WEAPON_TYPES: WeaponDefinition['type'][] = ['grimoire', 'crosier', 'wand'];
+
+export function getWeaponProfileLabel(weapon: WeaponDefinition): string {
+  if (MAGICAL_WEAPON_TYPES.includes(weapon.type)) return 'magique';
+  if (weapon.critBonus >= 10 && weapon.accuracyBonus >= 14) return 'précision';
+  if ((weapon.healthBonus ?? 0) >= 40) return 'défensif';
+  if (weapon.damage >= 25 && (weapon.healthBonus ?? 0) < 30) return 'offensif';
+  return 'équilibré';
+}
+
 export function toCombatant(unit: UnitInstance): CombatantPayload {
   const definition = unitById.get(unit.definitionId) ?? units[0]!;
   const stats = getFinalStats(unit);
-  const skillIds = getResolvedSkills(unit);
+  const skillIds = getUnlockedSkillsForHero(unit);
   const skillUpgrades = Object.fromEntries(
     skillIds.map((skillId) => [
       skillId,

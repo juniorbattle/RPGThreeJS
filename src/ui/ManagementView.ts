@@ -1,4 +1,7 @@
-import { craftRecipes, getFinalStats, getResolvedSkills, itemById, items, unitById, weaponById, weapons, WEAPON_APTITUDES } from '../game/catalog';
+import {
+  craftRecipes, getFinalStats, getLockedSkillReason, getResolvedSkills, getWeaponProfileLabel, getWeaponSkillUnlockLabel,
+  isSkillUnlockedForHero, itemById, items, unitById, weaponById, weapons, WEAPON_APTITUDES,
+} from '../game/catalog';
 import {
   buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit,
   getSkillUpgradeCost, sellItem, upgradeSkill, useConsumable,
@@ -309,12 +312,23 @@ export class ManagementView {
 
   private renderSkills(unit: UnitInstance): string {
     const skillIds = getResolvedSkills(unit);
-    if (skillIds.length === 0) return '<p class="empty-copy">Aucune compétence.</p>';
-    return skillIds.map((skillId) => {
+    const weaponId = unit.equipment.weaponIds[0];
+    const weapon = weaponId ? weaponById.get(weaponId) : null;
+    const apt = weapon ? WEAPON_APTITUDES[weapon.type] : null;
+    const basicAttack = '<article class="skill-card skill-card--innate"><div><strong>Attaque de base</strong><span>1 PA</span></div><p>Frappe avec l\'arme équipée.</p></article>';
+    const innateGift = apt
+      ? `<article class="skill-card skill-card--innate"><div><strong>Don inné — ${apt.name}</strong><span>Passif</span></div><p>${apt.description}</p></article>`
+      : '';
+    const skillCards = skillIds.map((skillId) => {
       const skill = skillPresentation[skillId] ?? { name: skillId, description: 'Compétence disponible en combat.' };
       const cost = skill.ap === undefined ? '' : `<span>${skill.ap} PA</span>`;
-      return `<article class="skill-card"><div><strong>${skill.name}</strong>${cost}</div><p>${skill.description}</p></article>`;
+      if (isSkillUnlockedForHero(unit, skillId)) {
+        return `<article class="skill-card"><div><strong>${skill.name}</strong>${cost}</div><p>${skill.description}</p></article>`;
+      }
+      const reason = getLockedSkillReason(unit, skillId);
+      return `<article class="skill-card skill-card--locked"><div><strong>${skill.name}</strong>${cost}</div><p>${skill.description}</p><small class="skill-card__lock">${reason}</small></article>`;
     }).join('');
+    return basicAttack + innateGift + skillCards;
   }
 
   private renderSkillUpgrades(): string {
@@ -322,7 +336,7 @@ export class ManagementView {
     const selected = state.clan.members.find((unit) => unit.id === this.selectedUnitId) ?? state.clan.members[0];
     if (!selected) return '<p class="empty-copy">Aucune unité.</p>';
     const definition = unitById.get(selected.definitionId)!;
-    const skills = getResolvedSkills(selected);
+    const skills = getResolvedSkills(selected).filter((id) => isSkillUnlockedForHero(selected, id));
     const gems = state.inventory.materials.red_gem ?? 0;
     const rows = skills.map((skillId) => {
       const skill = skillPresentation[skillId] ?? { name: skillId, description: 'Compétence disponible en combat.' };
@@ -467,12 +481,18 @@ export class ManagementView {
         ? granted.map((id) => skillPresentation[id]?.name ?? id).join(', ')
         : '';
       const apt = WEAPON_APTITUDES[weapon.type];
-      return `${this.stat('Puiss.', weapon.damage)}
+      const tierLabel = `T${weapon.tier ?? 0}`;
+      const profileLabel = getWeaponProfileLabel(weapon);
+      const unlockLabel = getWeaponSkillUnlockLabel(weapon);
+      return `${this.stat('Niveau', tierLabel)}
+        ${this.stat('Profil', profileLabel)}
+        ${this.stat('Puiss.', weapon.damage)}
         ${this.stat('Portée', rangeLabel)}
         ${this.stat('Précis.', `+${weapon.accuracyBonus}`)}
         ${this.stat('Crit', `+${weapon.critBonus}`)}
         ${weapon.healthBonus ? this.stat('PV', `+${weapon.healthBonus}`) : ''}
-        ${apt ? this.stat('Aptitude', apt.name) : ''}
+        ${apt ? this.stat('Don inné', apt.name) : ''}
+        ${this.stat('Compétences', unlockLabel)}
         ${grantedLabel ? this.stat('Don', grantedLabel) : ''}`;
     }
     if (item.category === 'accessories') {
