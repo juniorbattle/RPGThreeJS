@@ -34,6 +34,11 @@ export const combatReadyMessageSchema = z.object({
   type: z.literal('rpg-threejs:combat-ready'),
 });
 
+/** Sent only after the combat iframe has built its scene and dismissed its loader. */
+export const combatInitializedMessageSchema = z.object({
+  type: z.literal('rpg-threejs:combat-initialized'),
+});
+
 export const combatInitializeMessageSchema = z.object({
   type: z.literal('rpg-threejs:combat-initialize'),
   config: combatConfigSchema,

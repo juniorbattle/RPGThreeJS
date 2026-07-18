@@ -2055,7 +2055,7 @@ function bootCampaign(message){
   ENCOUNTER_ENEMY_VISUAL_IDS=Array.isArray(message.config.enemyVisualIds)?message.config.enemyVisualIds:[];
   ENCOUNTER_BOSS_VISUAL_ID=message.config.bossVisualId||'';
   ENCOUNTER_ESCORT_VISUAL_IDS=Array.isArray(message.config.escortVisualIds)?message.config.escortVisualIds:[];
-  main().then(()=>{ window.__BOOTED=true; }).catch(err=>{ console.error(err); dom.loading.innerHTML='<div style="color:#ff8a7a">Erreur : '+(err&&err.message||err)+'</div>'; });
+  main().then(()=>{ window.__BOOTED=true; window.parent.postMessage({type:'rpg-threejs:combat-initialized'},location.origin); }).catch(err=>{ console.error(err); dom.loading.innerHTML='<div style="color:#ff8a7a">Erreur : '+(err&&err.message||err)+'</div>'; });
 }
 if(CAMPAIGN_MODE){
   addEventListener('message',event=>{ if(event.source!==window.parent||event.origin!==location.origin)return; const parsed=combatInitializeMessageSchema.safeParse(event.data); if(parsed.success&&!window.__BOOTED)bootCampaign(parsed.data); });

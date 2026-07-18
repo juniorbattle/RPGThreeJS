@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { combatInitializeMessageSchema, combatResultMessageSchema } from './protocol';
+import {
+  combatInitializeMessageSchema,
+  combatInitializedMessageSchema,
+  combatResultMessageSchema,
+} from './protocol';
 import { combatConfigs } from '../game/content';
 import { createInitialState } from '../game/store';
 import { toCombatant } from '../game/catalog';
@@ -39,6 +43,12 @@ describe('combat protocol', () => {
     });
     expect(parsed.success).toBe(true);
     expect(parsed.data?.devQa).toBe(true);
+  });
+
+  it('recognizes a fully initialized combat scene', () => {
+    expect(combatInitializedMessageSchema.safeParse({
+      type: 'rpg-threejs:combat-initialized',
+    }).success).toBe(true);
   });
 
   it('rejects incomplete combat results', () => {
