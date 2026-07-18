@@ -78,11 +78,13 @@ export class DialogueView {
     this.overlay.setAttribute('role', 'dialog');
     this.overlay.setAttribute('aria-modal', 'true');
     this.overlay.style.setProperty('--dialogue-bg-image', `url("${dialogueBackdrop(sequence)}")`);
+    const brandText = sequence.title ?? "Chroniques d'Élyndra";
+    const brandClass = sequence.title ? 'dialogue__brand dialogue__brand--ate' : 'dialogue__brand';
     this.overlay.innerHTML = `
       <div class="dialogue__painted" aria-hidden="true"></div>
       <div class="dialogue__backdrop" aria-hidden="true"></div>
       <div class="ui-environment-layer ui-environment-layer--fog" aria-hidden="true"></div>
-      <div class="dialogue__brand" aria-hidden="true"><span>Chroniques d'Élyndra</span></div>
+      <div class="${brandClass}" aria-hidden="true"><span>${brandText}</span></div>
       <div class="dialogue__stage" aria-hidden="true">
         <div class="dialogue__portrait dialogue__portrait--left"></div>
         <div class="dialogue__portrait dialogue__portrait--right"></div>

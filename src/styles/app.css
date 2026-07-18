@@ -330,6 +330,10 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .dialogue__brand span::before,
 .dialogue__brand span::after { content: ''; width: 74px; height: 1px; background: linear-gradient(90deg, transparent, rgba(244,217,139,.55)); }
 .dialogue__brand span::after { background: linear-gradient(90deg, rgba(244,217,139,.55), transparent); }
+.dialogue__brand--ate { color: rgba(180,200,220,.72); }
+.dialogue__brand--ate span::before,
+.dialogue__brand--ate span::after { background: linear-gradient(90deg, transparent, rgba(180,200,220,.45)); }
+.dialogue__brand--ate span::after { background: linear-gradient(90deg, rgba(180,200,220,.45), transparent); }
 .dialogue__stage { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
 .dialogue__portrait {
   position: absolute;

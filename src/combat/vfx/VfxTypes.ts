@@ -2,6 +2,22 @@ import type * as THREE from 'three';
 
 export type VfxQualityMode = 'full' | 'reduced';
 
+export type VfxSpriteSheetId =
+  | 'slash_arc'
+  | 'small_impact'
+  | 'thrust_line'
+  | 'projectile_shot'
+  | 'magic_bolt'
+  | 'fire_explosion'
+  | 'heal_touch'
+  | 'buff_pulse'
+  | 'barrier_shell'
+  | 'teleport_burst'
+  | 'shockwave_ring'
+  | 'leap_impact';
+
+export type VfxSpriteSheetMode = 'billboard' | 'projectile';
+
 export type VfxAnchor =
   | 'source'
   | 'target'
@@ -26,6 +42,7 @@ export type VfxStepType =
   | 'smokePuff'
   | 'sparkleBurst'
   | 'impactStar'
+  | 'spriteSheet'
   | 'hitStop';
 
 export type VfxTextureName =
@@ -45,6 +62,8 @@ export interface VfxStep {
   anchor: VfxAnchor;
   targetAnchor?: VfxAnchor;
   texture?: VfxTextureName;
+  spriteSheet?: VfxSpriteSheetId;
+  sheetMode?: VfxSpriteSheetMode;
   startTime: number;
   duration: number;
   color?: string | number;

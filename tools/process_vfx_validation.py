@@ -27,7 +27,9 @@ from PIL import Image, ImageDraw
 
 MAGENTA = (255, 0, 255)
 OUTPUT_CELL_SIZE = 256
-SEPARATOR_PADDING = 3
+SEPARATOR_GUARD = 2
+POST_RESAMPLE_MAGENTA_DISTANCE = 64
+HOT_MAGENTA_MIN_SPILL = 18
 
 
 @dataclass(frozen=True)
@@ -38,6 +40,7 @@ class SheetDefinition:
     cols: int = 5
     align: str = "center"
     duration_ms: int = 40
+    chroma_palette: str = "warm"
 
 
 SHEETS: tuple[SheetDefinition, ...] = (
@@ -45,12 +48,18 @@ SHEETS: tuple[SheetDefinition, ...] = (
     SheetDefinition("small_impact", "small_impact_5x5_25f_1280.png"),
     SheetDefinition("thrust_line", "thrust_line_5x5_25f_1280.png"),
     SheetDefinition("projectile_shot", "projectile_shot_5x5_25f_1280.png"),
-    SheetDefinition("magic_bolt", "magic_bolt_5x5_25f_1280.png"),
+    SheetDefinition("magic_bolt", "magic_bolt_5x5_25f_1280.png", chroma_palette="blue"),
     SheetDefinition("fire_explosion", "fire_explosion_5x5_25f_1280.png", align="bottom"),
     SheetDefinition("heal_touch", "heal_touch_5x5_25f_1280.png", align="bottom"),
-    SheetDefinition("buff_pulse", "buff_pulse_5x5_25f_1280.png", align="bottom"),
-    SheetDefinition("barrier_shell", "barrier_shell_5x5_25f_1280.png", align="bottom"),
-    SheetDefinition("teleport_burst", "teleport_burst_5x5_25f_1280.png", align="bottom"),
+    SheetDefinition(
+        "buff_pulse", "buff_pulse_5x5_25f_1280.png", align="bottom", chroma_palette="cyan"
+    ),
+    SheetDefinition(
+        "barrier_shell", "barrier_shell_5x5_25f_1280.png", align="bottom", chroma_palette="blue"
+    ),
+    SheetDefinition(
+        "teleport_burst", "teleport_burst_5x5_25f_1280.png", align="bottom", chroma_palette="violet"
+    ),
     SheetDefinition("shockwave_ring", "shockwave_ring_5x5_25f_1280.png", align="bottom"),
     SheetDefinition("leap_impact", "leap_impact_5x5_25f_1280.png", align="bottom"),
 )
@@ -64,7 +73,22 @@ def _axis_separator_scores(rgb: np.ndarray, axis: int) -> np.ndarray:
     return near_white.mean(axis=axis)
 
 
-def _detect_boundaries(rgb: np.ndarray, count: int, orientation: str) -> tuple[list[int], list[float]]:
+def _separator_band(scores: np.ndarray, peak: int) -> list[int]:
+    """Return the complete bright separator run surrounding ``peak``."""
+
+    threshold = max(0.82, float(scores[peak]) * 0.82)
+    left = peak
+    right = peak
+    while left > 0 and scores[left - 1] >= threshold:
+        left -= 1
+    while right + 1 < len(scores) and scores[right + 1] >= threshold:
+        right += 1
+    return [left, right]
+
+
+def _detect_boundaries(
+    rgb: np.ndarray, count: int, orientation: str
+) -> tuple[list[int], list[float], list[list[int]]]:
     size = rgb.shape[1] if orientation == "x" else rgb.shape[0]
     scores = _axis_separator_scores(rgb, 0 if orientation == "x" else 1)
     expected_step = size / count
@@ -97,13 +121,14 @@ def _detect_boundaries(rgb: np.ndarray, count: int, orientation: str) -> tuple[l
         raise ValueError(
             f"Unreliable {orientation} grid: {boundaries} (minimum cell {min(widths)}, expected {expected_step:.1f})."
         )
-    return boundaries, confidences
+    bands = [_separator_band(scores, peak) for peak in boundaries]
+    return boundaries, confidences, bands
 
 
 def _normalize_grid(source: Image.Image, definition: SheetDefinition) -> tuple[Image.Image, dict[str, object]]:
     rgb = np.asarray(source.convert("RGB"))
-    x_bounds, x_confidence = _detect_boundaries(rgb, definition.cols, "x")
-    y_bounds, y_confidence = _detect_boundaries(rgb, definition.rows, "y")
+    x_bounds, x_confidence, x_bands = _detect_boundaries(rgb, definition.cols, "x")
+    y_bounds, y_confidence, y_bands = _detect_boundaries(rgb, definition.rows, "y")
 
     normalized = Image.new(
         "RGB",
@@ -114,10 +139,13 @@ def _normalize_grid(source: Image.Image, definition: SheetDefinition) -> tuple[I
 
     for row in range(definition.rows):
         for col in range(definition.cols):
-            left = 2 if col == 0 else x_bounds[col] + SEPARATOR_PADDING
-            right = source.width - 2 if col == definition.cols - 1 else x_bounds[col + 1] - SEPARATOR_PADDING
-            top = 2 if row == 0 else y_bounds[row] + SEPARATOR_PADDING
-            bottom = source.height - 2 if row == definition.rows - 1 else y_bounds[row + 1] - SEPARATOR_PADDING
+            # Separator widths differ between generated sheets (from one to
+            # seven pixels). Crop from the detected band extents rather than a
+            # hard-coded point; the guard removes anti-aliased keyline spill.
+            left = x_bands[col][1] + 1 + SEPARATOR_GUARD
+            right = x_bands[col + 1][0] - SEPARATOR_GUARD
+            top = y_bands[row][1] + 1 + SEPARATOR_GUARD
+            bottom = y_bands[row + 1][0] - SEPARATOR_GUARD
             if right <= left or bottom <= top:
                 raise ValueError(f"Invalid crop for {definition.id} frame {row},{col}.")
 
@@ -141,6 +169,8 @@ def _normalize_grid(source: Image.Image, definition: SheetDefinition) -> tuple[I
         "frame_count": definition.rows * definition.cols,
         "x_boundaries": x_bounds,
         "y_boundaries": y_bounds,
+        "x_separator_bands": x_bands,
+        "y_separator_bands": y_bands,
         "x_separator_confidence": [round(value, 4) for value in x_confidence],
         "y_separator_confidence": [round(value, 4) for value in y_confidence],
         "source_boxes": source_boxes,
@@ -201,6 +231,19 @@ def _run_processor(
     subprocess.run(command, check=True)
 
 
+def _sanitize_processor_metadata(output_dir: Path, definition: SheetDefinition) -> None:
+    """Replace machine-local temporary paths with stable validation metadata."""
+
+    metadata_path = output_dir / "pipeline-meta.json"
+    if not metadata_path.exists():
+        return
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    metadata["input"] = f"raw/{definition.filename}"
+    metadata["input_transform"] = "separator-detected normalized grid (ephemeral)"
+    metadata["processor"] = "generate2dsprite.py"
+    metadata_path.write_text(json.dumps(metadata, indent=2), encoding="utf-8")
+
+
 def _natural_frame_key(path: Path) -> int:
     return int(path.stem.rsplit("-", 1)[-1])
 
@@ -220,11 +263,124 @@ def _organize_frames(output_dir: Path, definition: SheetDefinition) -> list[Path
     return organized
 
 
+def _sanitize_and_rebuild_outputs(
+    frame_paths: list[Path], output_dir: Path, definition: SheetDefinition
+) -> None:
+    """Remove the key colour *and* decontaminate pre-composited glow edges.
+
+    Generated VFX frequently contain translucent smoke or light already blended
+    against ``#FF00FF``.  Removing only pixels close to the key leaves a pink
+    fringe (and sometimes an opaque pink fill).  Because the background colour
+    is known, this pass estimates its contribution, restores transparency and
+    reconstructs the foreground colour.  A small per-effect palette policy
+    then steers ambiguous pixels away from hot magenta while preserving neutral
+    smoke/white highlights and the authored violet teleport family.
+    """
+
+    frames: list[Image.Image] = []
+    for frame_path in frame_paths:
+        rgba = np.asarray(Image.open(frame_path).convert("RGBA")).copy()
+        rgb = rgba[:, :, :3].astype(np.float32)
+        alpha = rgba[:, :, 3].astype(np.float32) / 255.0
+        distance = np.sqrt(
+            (rgb[:, :, 0] - 255) ** 2 + rgb[:, :, 1] ** 2 + (rgb[:, :, 2] - 255) ** 2
+        )
+        hard_key = (distance < POST_RESAMPLE_MAGENTA_DISTANCE) & (alpha > 0)
+
+        red = rgb[:, :, 0]
+        green = rgb[:, :, 1]
+        blue = rgb[:, :, 2]
+        spill = np.clip(np.minimum(red, blue) - green, 0.0, 255.0)
+        contaminated = (
+            (alpha > 0)
+            & (~hard_key)
+            & (spill > 2.0)
+            & (red > green + 2.0)
+            & (blue > green + 2.0)
+        )
+
+        # C = aF + (1-a)K, with K=(255, 0, 255).  ``spill`` is the
+        # conservative key contribution that can be inferred without an
+        # authored alpha channel.  Keep the processor alpha when it is already
+        # stricter so this operation remains stable at anti-aliased edges.
+        matte = np.clip(1.0 - spill / 255.0, 0.0, 1.0)
+        safe_matte = np.maximum(matte, 1.0 / 255.0)
+        recovered = np.empty_like(rgb)
+        recovered[:, :, 0] = (red - spill) / safe_matte
+        recovered[:, :, 1] = green / safe_matte
+        recovered[:, :, 2] = (blue - spill) / safe_matte
+        recovered = np.clip(recovered, 0.0, 255.0)
+
+        value = recovered.max(axis=2)
+        channel_range = recovered.max(axis=2) - recovered.min(axis=2)
+        # White sparks and neutral smoke are valid after dematting.  Palette
+        # steering applies only where recovered colour is still chromatic.
+        neutral = channel_range <= np.maximum(22.0, value * 0.14)
+        palette_mask = contaminated & (~neutral)
+
+        target = recovered.copy()
+        if definition.chroma_palette == "warm":
+            target[:, :, 0] = value
+            target[:, :, 1] = np.maximum(recovered[:, :, 1], value * 0.54)
+            target[:, :, 2] = np.minimum(recovered[:, :, 2], value * 0.18)
+        elif definition.chroma_palette == "blue":
+            target[:, :, 0] = np.minimum(recovered[:, :, 0], value * 0.20)
+            target[:, :, 1] = np.maximum(recovered[:, :, 1], value * 0.58)
+            target[:, :, 2] = value
+        elif definition.chroma_palette == "cyan":
+            target[:, :, 0] = np.minimum(recovered[:, :, 0], value * 0.24)
+            target[:, :, 1] = np.maximum(recovered[:, :, 1], value * 0.74)
+            target[:, :, 2] = value
+        elif definition.chroma_palette == "violet":
+            target[:, :, 0] = value * 0.52
+            target[:, :, 1] = np.minimum(
+                np.maximum(recovered[:, :, 1], value * 0.10), value * 0.26
+            )
+            target[:, :, 2] = value
+        else:
+            raise ValueError(f"Unknown chroma palette: {definition.chroma_palette}")
+
+        recovered[palette_mask] = target[palette_mask]
+        rgb[contaminated] = recovered[contaminated]
+        new_alpha = np.minimum(alpha, matte)
+        new_alpha[(new_alpha < 0.025) | hard_key] = 0.0
+
+        rgba[:, :, :3] = np.rint(np.clip(rgb, 0.0, 255.0)).astype(np.uint8)
+        rgba[:, :, 3] = np.rint(new_alpha * 255.0).astype(np.uint8)
+        rgba[rgba[:, :, 3] == 0, :3] = 0
+        frame = Image.fromarray(rgba, "RGBA")
+        frame.save(frame_path)
+        frames.append(frame)
+
+    sheet = Image.new(
+        "RGBA",
+        (definition.cols * OUTPUT_CELL_SIZE, definition.rows * OUTPUT_CELL_SIZE),
+        (0, 0, 0, 0),
+    )
+    for index, frame in enumerate(frames):
+        row, col = divmod(index, definition.cols)
+        sheet.alpha_composite(frame, (col * OUTPUT_CELL_SIZE, row * OUTPUT_CELL_SIZE))
+    sheet.save(output_dir / "sheet-transparent.png")
+
+    if frames:
+        frames[0].save(
+            output_dir / "animation.gif",
+            save_all=True,
+            append_images=frames[1:],
+            duration=definition.duration_ms,
+            loop=0,
+            disposal=2,
+            transparency=0,
+        )
+
+
 def _frame_qc(frame_paths: list[Path]) -> dict[str, object]:
     magenta_pixels = 0
+    hot_magenta_pixels = 0
     edge_alpha_pixels = 0
     opaque_pixels = 0
     empty_frames: list[int] = []
+    suspicious_linear_frames: list[int] = []
     frame_bboxes: list[list[int] | None] = []
 
     for index, path in enumerate(frame_paths):
@@ -244,6 +400,30 @@ def _frame_qc(frame_paths: list[Path]) -> dict[str, object]:
             (rgb[:, :, 0] - 255) ** 2 + rgb[:, :, 1] ** 2 + (rgb[:, :, 2] - 255) ** 2
         )
         magenta_pixels += int(((distance < 48) & opaque).sum())
+        red = rgb[:, :, 0]
+        green = rgb[:, :, 1]
+        blue = rgb[:, :, 2]
+        spill = np.minimum(red, blue) - green
+        hot_magenta = (
+            opaque
+            & (red > 90)
+            & (blue > 90)
+            & (spill > HOT_MAGENTA_MIN_SPILL)
+            & (np.abs(red - blue) < 72)
+        )
+        hot_magenta_pixels += int(hot_magenta.sum())
+
+        # Long, neutral, nearly axis-aligned strokes are characteristic of the
+        # white grid keylines in the generated sources. Flag them explicitly;
+        # normal projectiles, rings and sparks do not span 82% of a frame as a
+        # one-pixel neutral line.
+        channel_spread = rgb.max(axis=2) - rgb.min(axis=2)
+        neutral_bright = opaque & (rgb.min(axis=2) > 100) & (channel_spread < 65)
+        linear_limit = int(min(alpha.shape) * 0.82)
+        if int(neutral_bright.sum(axis=0).max()) >= linear_limit or int(
+            neutral_bright.sum(axis=1).max()
+        ) >= linear_limit:
+            suspicious_linear_frames.append(index)
         edge_alpha_pixels += int((alpha[0, :] > 8).sum())
         edge_alpha_pixels += int((alpha[-1, :] > 8).sum())
         edge_alpha_pixels += int((alpha[:, 0] > 8).sum())
@@ -254,9 +434,15 @@ def _frame_qc(frame_paths: list[Path]) -> dict[str, object]:
     if magenta_pixels:
         status = "needs_review"
         issues.append(f"{magenta_pixels} opaque near-magenta pixels remain")
+    if hot_magenta_pixels:
+        status = "needs_review"
+        issues.append(f"{hot_magenta_pixels} hot-magenta spill pixels remain")
     if edge_alpha_pixels:
         status = "needs_review"
         issues.append(f"{edge_alpha_pixels} opaque edge pixels remain")
+    if suspicious_linear_frames:
+        status = "needs_review"
+        issues.append(f"possible grid-line remnants in frames: {suspicious_linear_frames}")
     if empty_frames:
         issues.append(f"empty tail/start frames: {empty_frames}")
 
@@ -265,8 +451,10 @@ def _frame_qc(frame_paths: list[Path]) -> dict[str, object]:
         "frame_count": len(frame_paths),
         "opaque_pixels": opaque_pixels,
         "near_magenta_pixels": magenta_pixels,
+        "hot_magenta_pixels": hot_magenta_pixels,
         "edge_alpha_pixels": edge_alpha_pixels,
         "empty_frames": empty_frames,
+        "suspicious_linear_frames": suspicious_linear_frames,
         "frame_bboxes": frame_bboxes,
         "issues": issues,
     }
@@ -332,6 +520,53 @@ def _make_overview(entries: list[dict[str, object]], validation_root: Path) -> N
     board.save(boards_dir / "vfx-foundation-overview.png", quality=94)
 
 
+def _write_validation_readme(validation_root: Path) -> None:
+    (validation_root / "README.md").write_text(
+        """# Combat VFX spritesheets - validation pack V1
+
+This directory contains visual candidates only. Nothing in `validation/` may be referenced by runtime code.
+
+## Contents
+
+- `raw/`: untouched copies of selected generated source sheets.
+- `processed/<effect>/frames/`: cleaned, transparent 256x256 frames.
+- `processed/<effect>/sheet-transparent.png`: rebuilt transparent sheet.
+- `processed/<effect>/animation.gif`: timing preview only.
+- `processed/<effect>/qc.json`: deterministic chroma, edge and separator checks.
+- `boards/`: per-effect contact sheets and the global comparison board.
+- `vfx-sheets-manifest.json`: validation inventory; `runtime_ready` remains `false` until manual approval.
+
+## Rebuild
+
+```powershell
+python tools/process_vfx_validation.py --processor <path-to-generate2dsprite.py>
+```
+
+Use `--only slash_arc fire_explosion` for a subset. Use `--refresh-existing-metadata` to remove machine-local paths without reprocessing images.
+
+## Promotion gate
+
+An effect can be promoted only after its contact sheet and animation preview are approved, its QC status is `candidate`, and a runtime preset defines scale, blend mode, anchor, timing and reduced-graphics behavior.
+""",
+        encoding="utf-8",
+    )
+
+
+def refresh_existing_metadata(repo_root: Path) -> None:
+    validation_root = repo_root / "public" / "assets" / "vfx" / "validation" / "vfx-sheets-v1"
+    manifest_path = validation_root / "vfx-sheets-manifest.json"
+    if not manifest_path.exists():
+        raise FileNotFoundError(manifest_path)
+
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["processor"] = "generate2dsprite.py"
+    manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    for definition in SHEETS:
+        _sanitize_processor_metadata(validation_root / "processed" / definition.id, definition)
+    _write_validation_readme(validation_root)
+    print(f"refreshed portable metadata: {validation_root}")
+
+
 def process_batch(repo_root: Path, processor: Path, selected_ids: set[str] | None) -> None:
     vfx_root = repo_root / "public" / "assets" / "vfx"
     validation_root = vfx_root / "validation" / "vfx-sheets-v1"
@@ -377,11 +612,14 @@ def process_batch(repo_root: Path, processor: Path, selected_ids: set[str] | Non
             normalized.save(normalized_path)
             _run_processor(processor, normalized_path, output_dir, prompt_file, definition)
 
+        _sanitize_processor_metadata(output_dir, definition)
+
         frame_paths = _organize_frames(output_dir, definition)
         expected_frames = definition.rows * definition.cols
         if len(frame_paths) != expected_frames:
             raise ValueError(f"{definition.id}: expected {expected_frames} frames, got {len(frame_paths)}.")
 
+        _sanitize_and_rebuild_outputs(frame_paths, output_dir, definition)
         qc = _frame_qc(frame_paths)
         (output_dir / "source-grid-meta.json").write_text(
             json.dumps(grid_metadata, indent=2), encoding="utf-8"
@@ -409,7 +647,7 @@ def process_batch(repo_root: Path, processor: Path, selected_ids: set[str] | Non
         "version": 1,
         "runtime_ready": False,
         "notes": "Validation candidates only. Runtime must never reference this directory.",
-        "processor": str(processor),
+        "processor": processor.name,
         "entries": entries,
     }
     (validation_root / "vfx-sheets-manifest.json").write_text(
@@ -420,6 +658,7 @@ def process_batch(repo_root: Path, processor: Path, selected_ids: set[str] | Non
         "# Rejected VFX candidates\n\nMove only visually rejected validation candidates here. Runtime must never reference this directory.\n",
         encoding="utf-8",
     )
+    _write_validation_readme(validation_root)
     print(f"validation pack: {validation_root}")
 
 
@@ -431,11 +670,21 @@ def main() -> None:
         default=Path(__file__).resolve().parents[1],
         help="RPGThreeJS repository root.",
     )
-    parser.add_argument("--processor", type=Path, required=True, help="generate2dsprite.py path.")
+    parser.add_argument("--processor", type=Path, help="generate2dsprite.py path.")
     parser.add_argument("--only", nargs="*", help="Optional subset of VFX ids.")
+    parser.add_argument(
+        "--refresh-existing-metadata",
+        action="store_true",
+        help="Refresh portable metadata and README without reprocessing images.",
+    )
     args = parser.parse_args()
 
     repo_root = args.repo_root.resolve()
+    if args.refresh_existing_metadata:
+        refresh_existing_metadata(repo_root)
+        return
+    if args.processor is None:
+        parser.error("--processor is required unless --refresh-existing-metadata is used")
     processor = args.processor.resolve()
     if not processor.exists():
         raise FileNotFoundError(processor)

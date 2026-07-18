@@ -1,0 +1,1 @@
+Imported generated VFX source for deterministic chroma cleanup, frame extraction, alignment and QC. The original creative generation prompt was not stored with the source image.

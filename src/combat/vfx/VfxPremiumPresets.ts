@@ -88,6 +88,7 @@ export const PREMIUM_VFX_PRESETS = [
     tags: ['hero', 'ultimate', 'piercing', 'anti-boss', 'line'],
     reducedGraphicsScale: 0.45,
     steps: [
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'thrust_line', startTime: 0.32, duration: 0.58, scale: 1.82, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.72 },
       { type: 'magicCircle', anchor: 'sourceGround', texture: 'magicCircle', startTime: 0, duration: 0.46, color: '#9adfff', secondaryColor: '#f5d47c', scale: 1.26, opacity: 0.52, rotation: 0.45, reducedGraphicsMultiplier: 0.6 },
       { type: 'lightPulse', anchor: 'source', texture: 'magicGlow', startTime: 0.05, duration: 0.44, color: '#b6ecff', secondaryColor: '#ffe08b', scale: 1.48, opacity: 0.56, reducedGraphicsMultiplier: 0.62 },
       { type: 'projectile', anchor: 'source', targetAnchor: 'target', texture: 'projectileCore', startTime: 0.18, duration: 0.38, color: '#f7fdff', secondaryColor: '#55cfff', scale: 0.32, count: 14, opacity: 1, heightOffset: 0.28, reducedGraphicsMultiplier: 0.46 },
@@ -196,6 +197,7 @@ export const PREMIUM_VFX_PRESETS = [
     tags: ['hero', 'ultimate', 'execution', 'shadow', 'poison'],
     reducedGraphicsScale: 0.42,
     steps: [
+      { type: 'spriteSheet', anchor: 'sourceGround', spriteSheet: 'teleport_burst', startTime: 0, duration: 0.54, scale: 1.46, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.72 },
       { type: 'smokePuff', anchor: 'sourceGround', texture: 'smokePuff', startTime: 0, duration: 0.48, color: '#15151d', secondaryColor: '#44254f', scale: 0.38, count: 8, speed: 0.4, rise: 0.7, spread: 0.86, opacity: 0.52, blending: 'normal', reducedGraphicsMultiplier: 0.38 },
       { type: 'magicCircle', anchor: 'sourceGround', texture: 'magicCircle', startTime: 0, duration: 0.34, color: '#693b80', secondaryColor: '#67d497', scale: 1.12, opacity: 0.45, rotation: -0.62, reducedGraphicsMultiplier: 0.54 },
       { type: 'slashArc', anchor: 'target', texture: 'slashArc', startTime: 0.25, duration: 0.3, color: '#f5f2ff', secondaryColor: '#8b55ba', scale: 1.82, opacity: 1, rotation: -0.7 },

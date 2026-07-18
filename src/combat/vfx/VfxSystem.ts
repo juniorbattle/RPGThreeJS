@@ -1,5 +1,11 @@
 import * as THREE from 'three';
 import { getVfxPreset } from './VfxPresets';
+import {
+  VFX_SPRITE_SHEETS,
+  disposeVfxSpriteSheetTextures,
+  loadVfxSpriteSheetTexture,
+  setVfxSpriteSheetFrame,
+} from './VfxSpriteSheets';
 import { getVfxTexture, disposeVfxTextures } from './VfxTextures';
 import type {
   VfxAnchor,
@@ -181,6 +187,7 @@ export class VfxSystem {
     cleanupVfxObjects(this.activeObjects);
     this.activeObjects.clear();
     disposeVfxTextures();
+    disposeVfxSpriteSheetTextures();
   }
 
   private track<T extends THREE.Object3D>(object: T, context: VfxContext) {
@@ -230,6 +237,10 @@ export class VfxSystem {
         await this.playProjectile(step, preset, context, duration);
         return;
       }
+      if (step.type === 'spriteSheet' && step.sheetMode === 'projectile') {
+        await this.playSpriteSheetProjectile(step, preset, context, duration);
+        return;
+      }
 
       const anchors = resolveVfxAnchors(step.anchor, context);
       await Promise.all(anchors.map((anchor) => this.playAtAnchor(step, preset, context, duration, anchor)));
@@ -259,6 +270,9 @@ export class VfxSystem {
       case 'slashArc':
       case 'impactStar':
         await this.playBillboard(step, context, duration, anchor);
+        break;
+      case 'spriteSheet':
+        await this.playSpriteSheetBillboard(step, preset, context, duration, anchor);
         break;
       case 'shockwave':
         await this.playGroundPulse(step, preset, context, duration, anchor, true);
@@ -386,6 +400,104 @@ export class VfxSystem {
       });
     } finally {
       this.cleanup(objects);
+    }
+  }
+
+  private async playSpriteSheetBillboard(
+    step: VfxStep,
+    preset: VfxPreset,
+    context: VfxContext,
+    duration: number,
+    anchor: THREE.Vector3,
+  ) {
+    if (!step.spriteSheet) return;
+    const definition = VFX_SPRITE_SHEETS[step.spriteSheet];
+    const texture = await loadVfxSpriteSheetTexture(step.spriteSheet);
+    setVfxSpriteSheetFrame(texture, definition, 0);
+    const material = new THREE.SpriteMaterial({
+      map: texture,
+      color: asColor(step.color),
+      transparent: true,
+      opacity: step.opacity ?? 1,
+      alphaTest: 0.01,
+      depthWrite: false,
+      depthTest: true,
+      toneMapped: false,
+      fog: false,
+      blending: blendingFor(step),
+      rotation: step.rotation ?? 0,
+    });
+    const sprite = this.track(new THREE.Sprite(material), context);
+    const objects: THREE.Object3D[] = [sprite];
+    const intensity = clamp(context.intensity ?? 1, 0.35, 1.8);
+    const quality = this.quality(step, preset, context);
+    const baseHeight = (step.scale ?? 1) * intensity * (context.reducedGraphics ? 0.9 : 1);
+    const frameAspect = definition.rows / definition.cols;
+    sprite.renderOrder = 30;
+    sprite.position.copy(anchor);
+    if (definition.align === 'bottom') sprite.position.y += baseHeight * 0.5;
+    sprite.scale.set(baseHeight * frameAspect, baseHeight, 1);
+    try {
+      await animate(duration, (progress) => {
+        const frame = Math.min(definition.frameCount - 1, Math.floor(progress * definition.frameCount));
+        setVfxSpriteSheetFrame(texture, definition, frame);
+        material.opacity = (step.opacity ?? 1) * (0.82 + quality * 0.18);
+      });
+    } finally {
+      this.cleanup(objects);
+      texture.dispose();
+    }
+  }
+
+  private async playSpriteSheetProjectile(
+    step: VfxStep,
+    preset: VfxPreset,
+    context: VfxContext,
+    duration: number,
+  ) {
+    if (!step.spriteSheet) return;
+    const definition = VFX_SPRITE_SHEETS[step.spriteSheet];
+    const texture = await loadVfxSpriteSheetTexture(step.spriteSheet);
+    setVfxSpriteSheetFrame(texture, definition, 0);
+    const material = new THREE.SpriteMaterial({
+      map: texture,
+      color: asColor(step.color),
+      transparent: true,
+      opacity: step.opacity ?? 1,
+      alphaTest: 0.01,
+      depthWrite: false,
+      depthTest: true,
+      toneMapped: false,
+      fog: false,
+      blending: blendingFor(step),
+      rotation: step.rotation ?? 0,
+    });
+    const sprite = this.track(new THREE.Sprite(material), context);
+    const objects: THREE.Object3D[] = [sprite];
+    const start = resolveVfxAnchor(step.anchor, context);
+    const end = resolveVfxAnchor(step.targetAnchor ?? 'target', context);
+    end.y += step.heightOffset ?? 0;
+    const baseHeight = (step.scale ?? 0.9)
+      * clamp(context.particleScale ?? 1, 0.45, 1.8)
+      * (context.reducedGraphics ? 0.9 : 1);
+    const frameAspect = definition.rows / definition.cols;
+    const projectedStart = start.clone().project(context.camera);
+    const projectedEnd = end.clone().project(context.camera);
+    material.rotation += Math.atan2(projectedEnd.y - projectedStart.y, projectedEnd.x - projectedStart.x);
+    sprite.renderOrder = 30;
+    sprite.position.copy(start);
+    sprite.scale.set(baseHeight * frameAspect, baseHeight, 1);
+    try {
+      await animate(duration, (progress) => {
+        const frame = Math.min(definition.frameCount - 1, Math.floor(progress * definition.frameCount));
+        const travel = easeOutCubic(clamp(progress / 0.7, 0, 1));
+        setVfxSpriteSheetFrame(texture, definition, frame);
+        sprite.position.lerpVectors(start, end, travel);
+        sprite.position.y += Math.sin(Math.PI * travel) * 0.24;
+      });
+    } finally {
+      this.cleanup(objects);
+      texture.dispose();
     }
   }
 

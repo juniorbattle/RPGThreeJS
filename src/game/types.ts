@@ -55,6 +55,8 @@ export type DialogueStep = z.infer<typeof dialogueStepSchema>;
 
 export const dialogueSequenceSchema = z.object({
   id: z.string(),
+  title: z.string().optional(),
+  perspective: z.string().optional(),
   sceneArtId: z.string().optional(),
   backdrop: z.string().optional(),
   steps: z.array(dialogueStepSchema).min(1),

@@ -10,25 +10,24 @@ type RawCombatConfig = Omit<CombatConfig, 'enemyVisualIds' | 'escortVisualIds'> 
   Partial<Pick<CombatConfig, 'enemyVisualIds' | 'escortVisualIds'>>;
 
 const rawNodes: CampaignNode[] = [
-  { id: 'lion-camp', type: 'start', x: -9.4, z: 0, icon: '◆', label: 'Camp du Lion', links: ['lion-opening-act'] },
-  { id: 'lion-opening-act', type: 'story', x: -8.1, z: 0, icon: '★', label: 'Acte I — L’Appel de l’Honneur', links: ['lion-audience'], dialogueId: 'acte_ouverture' },
-  { id: 'lion-audience', type: 'story', x: -6.9, z: 0, icon: '♛', label: 'Audience d’Alaric', links: ['lion-opening-ambush'], dialogueId: 'lion_briefing' },
-  { id: 'lion-opening-ambush', type: 'random-combat', x: -5.6, z: 0, icon: '⚔', label: 'Piste des bêtes', links: ['lion-refugees'], combatId: 'forest_ambush' },
-  { id: 'lion-refugees', type: 'mystery', x: -4.4, z: 0, icon: '◇', label: 'Route des réfugiés', links: ['lion-first-trial-event', 'lion-first-trial-combat'], dialogueId: 'refugee_trial' },
-  { id: 'lion-first-trial-event', type: 'mystery', x: -3.1, z: -1.1, icon: '◇', label: 'Éclaireur nomade', links: ['lion-first-refuge'], dialogueId: 'mystery_recruit' },
-  { id: 'lion-first-trial-combat', type: 'random-combat', x: -3.1, z: 1.1, icon: '⚔', label: 'Patrouille Serpent', links: ['lion-first-refuge'], combatId: 'forest_patrol' },
-  { id: 'lion-first-refuge', type: 'story', x: -1.9, z: 0, icon: '⌂', label: 'Refuge du Lion', links: ['lion-reserve-trail'] },
-  { id: 'lion-reserve-trail', type: 'mystery', x: -0.6, z: 0, icon: '◇', label: 'Chemin des réserves', links: ['lion-valmir-road'], dialogueId: 'reserve_trail' },
-  { id: 'lion-valmir-road', type: 'random-combat', x: 0.6, z: 0, icon: '⚔', label: 'Route de Bois-Clair', links: ['lion-second-trial-event', 'lion-second-trial-combat'], combatId: 'road_to_valmir' },
-  { id: 'lion-second-trial-event', type: 'mystery', x: 1.9, z: -1.1, icon: '◇', label: 'Vieux sanctuaire', links: ['lion-village-choice'], dialogueId: 'old_shrine_event' },
-  { id: 'lion-second-trial-combat', type: 'random-combat', x: 1.9, z: 1.1, icon: '⚔', label: 'Barrage renforcé', links: ['lion-village-choice'], combatId: 'serpent_checkpoint' },
-  { id: 'lion-village-choice', type: 'story', x: 3.1, z: 0, icon: '⌂', label: 'Bois-Clair assiégé', links: ['lion-second-refuge'], dialogueId: 'village_choice' },
-  { id: 'lion-second-refuge', type: 'story', x: 4.4, z: 0, icon: '⌂', label: 'Dernier feu du Lion', links: ['lion-witnesses'] },
-  { id: 'lion-witnesses', type: 'mystery', x: 5.6, z: 0, icon: '◇', label: 'Témoins de Bois-Clair', links: ['lion-final-trial-event', 'lion-final-trial-combat'], dialogueId: 'witnesses_on_road' },
-  { id: 'lion-final-trial-event', type: 'mystery', x: 6.9, z: -1.1, icon: '◇', label: 'Nid du jeune dragon', links: ['lion-shadow-signs'], dialogueId: 'mystery_dragon_roost' },
-  { id: 'lion-final-trial-combat', type: 'random-combat', x: 6.9, z: 1.1, icon: '⚔', label: 'Ruines infestées', links: ['lion-shadow-signs'], combatId: 'ruins_guardians' },
-  { id: 'lion-shadow-signs', type: 'mystery', x: 8.1, z: 0, icon: '?', label: 'Signes des Ombres', links: ['lion-final-judgement'], dialogueId: 'shadow_signs' },
-  { id: 'lion-final-judgement', type: 'boss', x: 9.4, z: 0, icon: '♛', label: 'Jugement du Sceau', links: [], dialogueId: 'lion_finale_judgement' },
+  { id: 'lion-camp', type: 'start', x: -9.4, z: 0, icon: '◆', label: 'Camp du Lion', links: ['lion-audience'] },
+  { id: 'lion-audience', type: 'story', x: -8.1, z: 0, icon: '♛', label: 'Audience d\u2019Alaric', links: ['lion-opening-ambush'], dialogueId: 'lion_briefing' },
+  { id: 'lion-opening-ambush', type: 'random-combat', x: -6.9, z: 0, icon: '⚔', label: 'Piste des bêtes', links: ['lion-refugees'], combatId: 'forest_ambush' },
+  { id: 'lion-refugees', type: 'mystery', x: -5.6, z: 0, icon: '◇', label: 'Route des réfugiés', links: ['lion-first-trial-event', 'lion-first-trial-combat'], dialogueId: 'refugee_trial' },
+  { id: 'lion-first-trial-event', type: 'mystery', x: -4.4, z: -1.1, icon: '◇', label: 'Éclaireur nomade', links: ['lion-first-refuge'], dialogueId: 'mystery_recruit' },
+  { id: 'lion-first-trial-combat', type: 'random-combat', x: -4.4, z: 1.1, icon: '⚔', label: 'Patrouille Serpent', links: ['lion-first-refuge'], combatId: 'forest_patrol' },
+  { id: 'lion-first-refuge', type: 'story', x: -3.1, z: 0, icon: '⌂', label: 'Refuge du Lion', links: ['lion-reserve-trail'] },
+  { id: 'lion-reserve-trail', type: 'mystery', x: -1.9, z: 0, icon: '◇', label: 'Chemin des réserves', links: ['lion-valmir-road'], dialogueId: 'reserve_trail' },
+  { id: 'lion-valmir-road', type: 'random-combat', x: -0.6, z: 0, icon: '⚔', label: 'Route de Bois-Clair', links: ['lion-second-trial-event', 'lion-second-trial-combat'], combatId: 'road_to_valmir' },
+  { id: 'lion-second-trial-event', type: 'mystery', x: 0.6, z: -1.1, icon: '◇', label: 'Vieux sanctuaire', links: ['lion-village-choice'], dialogueId: 'old_shrine_event' },
+  { id: 'lion-second-trial-combat', type: 'random-combat', x: 0.6, z: 1.1, icon: '⚔', label: 'Barrage renforcé', links: ['lion-village-choice'], combatId: 'serpent_checkpoint' },
+  { id: 'lion-village-choice', type: 'story', x: 1.9, z: 0, icon: '⌂', label: 'Bois-Clair assiégé', links: ['lion-second-refuge'], dialogueId: 'village_choice' },
+  { id: 'lion-second-refuge', type: 'story', x: 3.1, z: 0, icon: '⌂', label: 'Dernier feu du Lion', links: ['lion-witnesses'] },
+  { id: 'lion-witnesses', type: 'mystery', x: 4.4, z: 0, icon: '◇', label: 'Témoins de Bois-Clair', links: ['lion-final-trial-event', 'lion-final-trial-combat'], dialogueId: 'witnesses_on_road' },
+  { id: 'lion-final-trial-event', type: 'mystery', x: 5.6, z: -1.1, icon: '◇', label: 'Nid du jeune dragon', links: ['lion-shadow-signs'], dialogueId: 'mystery_dragon_roost' },
+  { id: 'lion-final-trial-combat', type: 'random-combat', x: 5.6, z: 1.1, icon: '⚔', label: 'Ruines infestées', links: ['lion-shadow-signs'], combatId: 'ruins_guardians' },
+  { id: 'lion-shadow-signs', type: 'mystery', x: 6.9, z: 0, icon: '?', label: 'Signes des Ombres', links: ['lion-final-judgement'], dialogueId: 'shadow_signs' },
+  { id: 'lion-final-judgement', type: 'boss', x: 8.1, z: 0, icon: '♛', label: 'Jugement du Sceau', links: [], dialogueId: 'lion_finale_judgement' },
 ];
 
 const rawCombats: RawCombatConfig[] = [
@@ -895,6 +894,76 @@ const rawDialogues = [
       { id: '4', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Silence', text: 'Vous emportez le Sceau et ses secrets. Les Ombres restent dans l’ombre — pour l’instant. Mais au-delà des montagnes, le Serpent rassemble déjà ses armées.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
+  {
+    id: 'ate_alaric_reports',
+    title: 'Camp du Lion',
+    perspective: 'alaric',
+    sceneArtId: 'lion_briefing',
+    steps: [
+      { id: '1', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'stern', tag: 'Observation', text: 'Ils ont pris la piste des bêtes. Et ils en sont sortis.', side: 'left', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'neutral', tag: 'Jugement', text: 'Soit ils sont courageux, soit ils sont fous. À Bois-Clair, on a besoin des deux.', side: 'left', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'ate_village_fear',
+    title: 'Bois-Clair',
+    perspective: 'villageoise',
+    sceneArtId: 'village_choice',
+    steps: [
+      { id: '1', speaker: 'Villageoise', actorId: 'villageoise', expression: 'fearful', tag: 'Rumeurs', text: 'Des réfugiés sont revenus de la route. Ils parlaient de gens armés.', side: 'left', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Villageoise', actorId: 'villageoise', expression: 'fearful', tag: 'Inquiétude', text: 'Le Lion ? Les Serpents ? Comment on fait la différence quand tout brûle ?', side: 'left', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'ate_serpent_general_warning',
+    title: 'Lignes Serpent',
+    perspective: 'serpent_general',
+    sceneArtId: 'shadow_signs',
+    steps: [
+      { id: '1', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'stern', tag: 'Rapport', text: 'Une compagnie franchit nos barrages. Pas des bandits — des combattants organisés.', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Ordre', text: 'S’ils atteignent le village, tout notre dispositif s’effondre. Renforcez le barrage.', side: 'right', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'ate_maelor_seal_analysis',
+    title: 'Ailleurs…',
+    perspective: 'maelor',
+    sceneArtId: 'acte_ouverture',
+    steps: [
+      { id: '1', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Étude', text: 'Le Sceau du Lion résonne. Pas comme un objet de pouvoir — comme une porte.', side: 'left', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'mystical', tag: 'Pressentiment', text: 'Quelque chose de l’autre côté commence à pousser. Ce n’est pas le Serpent qui devrait nous inquiéter.', side: 'left', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'ate_lion_council_doubt',
+    title: 'Camp du Lion',
+    perspective: 'lion_council',
+    sceneArtId: 'lion_briefing',
+    steps: [
+      { id: '1', speaker: 'Champion du Lion', actorId: 'lion_champion', expression: 'stern', tag: 'Doute', text: 'Des étrangers qui se disent envoyés par le clan déchu. Et on devrait les croire ?', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'stern', tag: 'Réponse', text: 'Je ne crois personne. Mais Bois-Clair a vu ce qu’ils ont fait. Les actes parlent. Pas les noms.', side: 'left', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'ate_ruins_awaken',
+    title: 'Pendant ce temps…',
+    perspective: 'chroniqueur',
+    sceneArtId: 'shadow_signs',
+    steps: [
+      { id: '1', speaker: 'Chroniqueur', actorId: 'chroniqueur', expression: 'mystical', tag: 'Observation', text: 'Les ruines s’éclairent. Les inscriptions anciennes brillent sans feu ni lune.', side: 'left', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Chroniqueur', actorId: 'chroniqueur', expression: 'mystical', tag: 'Révélation', text: 'C’est le Sceau. Plus il s’approche, plus les vieilles choses se souviennent de ce qu’elles étaient.', side: 'left', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'ate_serpent_retreat_order',
+    title: 'Lignes Serpent',
+    perspective: 'serpent_general',
+    sceneArtId: 'shadow_signs',
+    steps: [
+      { id: '1', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Constat', text: 'Ils ont trouvé les signes. Trop tôt. Trop vite.', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'stern', tag: 'Ordre de repli', text: 'Toutes les unités en arrière. Laissez-les venir à moi. Si le Sceau s’ouvre ici, autant que ce soit sous mon contrôle.', side: 'right', next: null, effects: [], choices: [] },
+    ],
+  },
 ];
 
 export const campaignNodes = rawNodes.map((node) => campaignNodeSchema.parse(node));
@@ -906,3 +975,12 @@ export const dialogues = new Map(rawDialogues.map((dialogue) => {
   const parsed = dialogueSequenceSchema.parse(dialogue);
   return [parsed.id, parsed];
 }));
+
+export const POST_NODE_ATE: Readonly<Record<string, string[]>> = {
+  'lion-opening-ambush': ['ate_alaric_reports'],
+  'lion-refugees': ['ate_village_fear'],
+  'lion-valmir-road': ['ate_serpent_general_warning'],
+  'lion-village-choice': ['ate_maelor_seal_analysis'],
+  'lion-witnesses': ['ate_lion_council_doubt'],
+  'lion-shadow-signs': ['ate_ruins_awaken', 'ate_serpent_retreat_order'],
+};

@@ -34,6 +34,7 @@ const VALID_STEP_TYPES = new Set<VfxStepType>([
   'smokePuff',
   'sparkleBurst',
   'impactStar',
+  'spriteSheet',
   'hitStop',
 ]);
 

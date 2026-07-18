@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "runtime_ready": true,
+  "entries": [
+    { "id": "slash_arc", "url": "/assets/vfx/runtime/v1/slash_arc.png", "rows": 5, "cols": 6, "frameCount": 30, "frameDurationMs": 40, "align": "center" },
+    { "id": "small_impact", "url": "/assets/vfx/runtime/v1/small_impact.png", "rows": 5, "cols": 5, "frameCount": 25, "frameDurationMs": 40, "align": "center" },
+    { "id": "thrust_line", "url": "/assets/vfx/runtime/v1/thrust_line.png", "rows": 5, "cols": 5, "frameCount": 25, "frameDurationMs": 40, "align": "center" },
+    { "id": "projectile_shot", "url": "/assets/vfx/runtime/v1/projectile_shot.png", "rows": 5, "cols": 5, "frameCount": 25, "frameDurationMs": 40, "align": "center" },
+    { "id": "magic_bolt", "url": "/assets/vfx/runtime/v1/magic_bolt.png", "rows": 5, "cols": 5, "frameCount": 25, "frameDurationMs": 40, "align": "center" },
+    { "id": "fire_explosion", "url": "/assets/vfx/runtime/v1/fire_explosion.png", "rows": 5, "cols": 5, "frameCount": 25, "frameDurationMs": 40, "align": "bottom" },
+    { "id": "heal_touch", "url": "/assets/vfx/runtime/v1/heal_touch.png", "rows": 5, "cols": 5, "frameCount": 25, "frameDurationMs": 40, "align": "bottom" },
+    { "id": "buff_pulse", "url": "/assets/vfx/runtime/v1/buff_pulse.png", "rows": 5, "cols": 5, "frameCount": 25, "frameDurationMs": 40, "align": "bottom" },
+    { "id": "barrier_shell", "url": "/assets/vfx/runtime/v1/barrier_shell.png", "rows": 5, "cols": 5, "frameCount": 25, "frameDurationMs": 40, "align": "bottom" },
+    { "id": "teleport_burst", "url": "/assets/vfx/runtime/v1/teleport_burst.png", "rows": 5, "cols": 5, "frameCount": 25, "frameDurationMs": 40, "align": "bottom" },
+    { "id": "shockwave_ring", "url": "/assets/vfx/runtime/v1/shockwave_ring.png", "rows": 5, "cols": 5, "frameCount": 25, "frameDurationMs": 40, "align": "bottom" },
+    { "id": "leap_impact", "url": "/assets/vfx/runtime/v1/leap_impact.png", "rows": 5, "cols": 5, "frameCount": 25, "frameDurationMs": 40, "align": "bottom" }
+  ]
+}

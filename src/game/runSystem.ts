@@ -85,7 +85,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     contentId: 'camp_departure',
     label: 'Camp du Lion',
     icon: '◆',
-    links: ['lion-opening-act'],
+    links: ['lion-audience'],
     risk: 0,
     reward: 1,
     difficulty: 'safe',
@@ -93,24 +93,9 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     hint: 'La compagnie se rassemble avant de demander le premier Sceau.',
   },
   {
-    id: 'lion-opening-act',
-    type: 'story',
-    depth: 1,
-    lane: 0,
-    contentId: 'acte_ouverture',
-    label: 'Acte I — L’Appel de l’Honneur',
-    icon: '★',
-    links: ['lion-audience'],
-    risk: 0,
-    reward: 1,
-    difficulty: 'safe',
-    moralTone: 'neutral',
-    hint: 'Séraphine et Maelor présentent les enjeux et la mission du clan.',
-  },
-  {
     id: 'lion-audience',
     type: 'story',
-    depth: 2,
+    depth: 1,
     lane: 0,
     contentId: 'lion_briefing',
     label: 'Audience d’Alaric',
@@ -125,7 +110,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-opening-ambush',
     type: 'combat',
-    depth: 3,
+    depth: 2,
     lane: 0,
     contentId: 'forest_ambush',
     label: 'Piste des bêtes',
@@ -140,7 +125,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-refugees',
     type: 'event',
-    depth: 4,
+    depth: 3,
     lane: 0,
     contentId: 'refugee_trial',
     label: 'Route des réfugiés',
@@ -155,7 +140,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-first-trial-event',
     type: 'event',
-    depth: 5,
+    depth: 4,
     lane: -0.75,
     contentId: 'mystery_recruit',
     label: 'Rencontre sur la route',
@@ -170,7 +155,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-first-trial-combat',
     type: 'combat',
-    depth: 5,
+    depth: 4,
     lane: 0.75,
     contentId: 'forest_patrol',
     label: 'Piste contestée',
@@ -185,7 +170,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-first-refuge',
     type: 'refuge',
-    depth: 6,
+    depth: 5,
     lane: 0,
     contentId: 'forest_refuge',
     label: 'Refuge du Lion',
@@ -200,7 +185,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-reserve-trail',
     type: 'event',
-    depth: 7,
+    depth: 6,
     lane: 0,
     contentId: 'reserve_trail',
     label: 'Chemin des réserves',
@@ -215,7 +200,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-valmir-road',
     type: 'combat',
-    depth: 8,
+    depth: 7,
     lane: 0,
     contentId: 'road_to_valmir',
     label: 'Route de Bois-Clair',
@@ -230,7 +215,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-second-trial-event',
     type: 'event',
-    depth: 9,
+    depth: 8,
     lane: -0.75,
     contentId: 'old_shrine_event',
     label: 'Vieux sanctuaire',
@@ -245,7 +230,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-second-trial-combat',
     type: 'combat',
-    depth: 9,
+    depth: 8,
     lane: 0.75,
     contentId: 'serpent_checkpoint',
     label: 'Barrage renforcé',
@@ -260,7 +245,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-village-choice',
     type: 'story',
-    depth: 10,
+    depth: 9,
     lane: 0,
     contentId: 'village_choice',
     label: 'Bois-Clair assiégé',
@@ -275,7 +260,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-second-refuge',
     type: 'refuge',
-    depth: 11,
+    depth: 10,
     lane: 0,
     contentId: 'forest_refuge',
     label: 'Dernier feu du Lion',
@@ -290,7 +275,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-witnesses',
     type: 'event',
-    depth: 12,
+    depth: 11,
     lane: 0,
     contentId: 'witnesses_on_road',
     label: 'Témoins de Bois-Clair',
@@ -305,7 +290,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-final-trial-event',
     type: 'event',
-    depth: 13,
+    depth: 12,
     lane: -0.75,
     contentId: 'mystery_dragon_roost',
     label: 'Dernière tentation',
@@ -320,7 +305,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-final-trial-combat',
     type: 'combat',
-    depth: 13,
+    depth: 12,
     lane: 0.75,
     contentId: 'ruins_guardians',
     label: 'Ruines infestées',
@@ -335,7 +320,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-shadow-signs',
     type: 'mystery',
-    depth: 14,
+    depth: 13,
     lane: 0,
     contentId: 'shadow_signs',
     label: 'Signes des Ombres',
@@ -350,7 +335,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-final-judgement',
     type: 'boss',
-    depth: 15,
+    depth: 14,
     lane: 0,
     contentId: 'lion_finale_judgement',
     label: 'Jugement du Sceau',

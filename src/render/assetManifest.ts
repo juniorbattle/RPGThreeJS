@@ -179,6 +179,7 @@ export const assets = {
     serpent_elite_raider: '/assets/characters/pixel/full/serpent_duelist_elite.png',
     serpent_duelist_elite: '/assets/characters/pixel/full/serpent_duelist_elite.png',
     serpent_general_boss: '/assets/characters/pixel/full/serpent_general_boss.png',
+    lion_champion: '/assets/characters/pixel/full/lion_champion.png',
     forest_troll_elite: '/assets/characters/pixel/full/forest_troll_elite.png',
     young_dragon_elite: '/assets/characters/pixel/full/young_dragon_elite.png',
     chroniqueur: '/assets/characters/pixel/full/chroniqueur.png',

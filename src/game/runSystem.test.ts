@@ -23,10 +23,10 @@ describe('hybrid run system', () => {
     }
   });
 
-  it('creates a 19-node Lion braid with two refuges and three reconverging trials', () => {
+  it('creates a 18-node Lion braid with two refuges and three reconverging trials', () => {
     const graph = generateRunGraph(7);
-    expect(graph.nodes).toHaveLength(19);
-    expect(Math.max(...graph.nodes.map((node) => node.depth))).toBe(15);
+    expect(graph.nodes).toHaveLength(18);
+    expect(Math.max(...graph.nodes.map((node) => node.depth))).toBe(14);
     expect(graph.nodes.filter((node) => node.type === 'refuge')).toHaveLength(2);
     expect(graph.nodes.filter((node) => node.type === 'shop')).toHaveLength(0);
     expect(graph.nodes[0]!.id).toBe('lion-camp');
@@ -63,7 +63,7 @@ describe('hybrid run system', () => {
       node = graph.nodes.find((candidate) => candidate.id === node.links[0])!;
       path.push(node.id);
     }
-    expect(path).toHaveLength(16);
+    expect(path).toHaveLength(15);
   });
 
   it('describes route risk, reward and narrative hints for TravelView', () => {
@@ -162,7 +162,7 @@ describe('hybrid run system', () => {
     stale.currentNodeId = 'lion-reserve-trail';
 
     const migrated = migrateState(stale);
-    expect(migrated.run.graph.nodes).toHaveLength(19);
+    expect(migrated.run.graph.nodes).toHaveLength(18);
     expect(migrated.run.currentNodeId).toBe('lion-reserve-trail');
     expect(migrated.flags.helpedRefugees).toBe(true);
     expect(migrated.run.temporaryLoot.gold).toBe(75);

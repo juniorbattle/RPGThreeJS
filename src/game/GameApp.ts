@@ -1,4 +1,4 @@
-import { combatConfigs, dialogues } from './content';
+import { combatConfigs, dialogues, POST_NODE_ATE } from './content';
 import { createInitialState, SaveRepository } from './store';
 import type { CombatConfig, CombatResult, GameState, NarrativeEffect, RunNode } from './types';
 import { createUnitInstance, getItemCategory, toCombatant } from './catalog';
@@ -243,6 +243,7 @@ export class GameApp {
         if (this.pendingCombatId) await this.flushPendingCombat(node);
         else {
           this.markResolved(node.id);
+          await this.maybePlayATEs(node.id);
           this.enterTravel();
         }
         return;
@@ -259,6 +260,7 @@ export class GameApp {
       await this.flushPendingCombat(node);
     } else {
       this.markResolved(node.id);
+      await this.maybePlayATEs(node.id);
       this.enterTravel();
     }
   }
@@ -269,6 +271,21 @@ export class GameApp {
     this.setMode('NARRATIVE');
     await this.dialogue.play(sequence);
     this.saves.saveAuto(this.state);
+  }
+
+  private async maybePlayATEs(nodeId: string): Promise<void> {
+    const ateIds = POST_NODE_ATE[nodeId];
+    if (!ateIds) return;
+    for (const ateId of ateIds) {
+      const flagKey = `ate:${ateId}`;
+      if (this.state.flags[flagKey]) continue;
+      const sequence = dialogues.get(ateId);
+      if (!sequence) continue;
+      this.setMode('NARRATIVE');
+      await this.dialogue.play(sequence);
+      this.state.flags[flagKey] = true;
+      this.saves.saveAuto(this.state);
+    }
   }
 
   private async applyEffects(effects: NarrativeEffect[]): Promise<void> {
@@ -404,6 +421,7 @@ export class GameApp {
         return;
       }
     }
+    await this.maybePlayATEs(node.id);
     this.enterTravel();
   }
 
@@ -442,6 +460,7 @@ export class GameApp {
       this.state.flags.prologueSeen = true;
       this.saves.saveAuto(this.state);
     }
+    await this.playDialogue('acte_ouverture');
     this.enterTravel();
   }
 

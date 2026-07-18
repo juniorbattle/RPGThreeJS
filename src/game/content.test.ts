@@ -106,9 +106,9 @@ describe('campaign content integrity', () => {
     }
   });
 
-  it('defines the 19-node braid and routes each trial back into the shared story', () => {
+  it('defines the 18-node braid and routes each trial back into the shared story', () => {
     const refuge = campaignNodes.find((node) => node.id === 'lion-first-refuge');
-    expect(campaignNodes).toHaveLength(19);
+    expect(campaignNodes).toHaveLength(18);
     expect(refuge?.links).toEqual(['lion-reserve-trail']);
 
     for (const nodeId of ['lion-refugees', 'lion-valmir-road', 'lion-witnesses']) {
