@@ -2020,19 +2020,48 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 
 /* ─── Scene Transition Overlay ─── */
 .scene-transition {
+  --transition-accent-rgb: 244, 217, 139;
+  --transition-glow-rgb: 93, 133, 197;
   position: fixed;
   inset: 0;
   z-index: 9000;
-  pointer-events: none;
   display: grid;
   place-items: center;
-  background: linear-gradient(180deg, rgba(6, 10, 22, .98), rgba(4, 7, 16, .99));
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 66% 52% at 50% 48%, rgba(var(--transition-glow-rgb), .13), transparent 72%),
+    radial-gradient(circle at 50% 50%, rgba(var(--transition-accent-rgb), .065), transparent 30%),
+    linear-gradient(180deg, rgba(8, 14, 29, .985), rgba(3, 7, 17, .99));
+}
+.scene-transition::before,
+.scene-transition::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.scene-transition::before {
+  opacity: .52;
+  background:
+    repeating-radial-gradient(ellipse at 18% 22%, rgba(255,255,255,.045) 0 1px, transparent 1px 5px),
+    linear-gradient(118deg, transparent 12%, rgba(var(--transition-accent-rgb), .045) 50%, transparent 86%);
+  mix-blend-mode: soft-light;
+  animation: scene-transition-grain 2.6s steps(2, end) infinite;
+}
+.scene-transition::after {
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 28%, rgba(0,0,0,.14) 62%, rgba(0,0,0,.66) 100%),
+    linear-gradient(90deg, rgba(1,3,10,.42), transparent 24%, transparent 76%, rgba(1,3,10,.42));
+  box-shadow: inset 0 0 110px rgba(0,0,0,.48);
 }
 
-/* ── Fade style (dialogue, travel, result, fade) ── */
+/* ── Fade style: quiet, storybook-like transitions ── */
 .scene-transition--fade {
   opacity: 0;
-  transition: opacity .6s cubic-bezier(.22, .61, .36, 1);
+  transition: opacity var(--scene-transition-in, .82s) cubic-bezier(.16, .78, .26, 1);
 }
 .scene-transition--fade.scene-transition--visible {
   opacity: 1;
@@ -2040,53 +2069,184 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 }
 .scene-transition--fade.scene-transition--leaving {
   opacity: 0;
-  transition: opacity .5s cubic-bezier(.4, 0, .58, 1);
+  transition: opacity var(--scene-transition-out, .68s) cubic-bezier(.45, 0, .62, 1);
 }
 
-/* ── Wipe style (combat, boss) — circle clip-path ── */
+/* ── Wipe style: a deliberate seal closing over the scene ── */
 .scene-transition--wipe {
   opacity: 1;
   pointer-events: auto;
   clip-path: circle(0% at 50% 50%);
-  transition: clip-path .52s cubic-bezier(.65, 0, .35, 1);
+  transition: clip-path var(--scene-transition-in, .95s) cubic-bezier(.65, 0, .27, 1);
 }
 .scene-transition--wipe.scene-transition--visible {
   clip-path: circle(150% at 50% 50%);
 }
 .scene-transition--wipe.scene-transition--leaving {
   clip-path: circle(0% at 50% 50%);
-  transition: clip-path .52s cubic-bezier(.65, 0, .35, 1);
+  transition: clip-path var(--scene-transition-out, .76s) cubic-bezier(.55, 0, .7, 1);
 }
 
-/* ── Variant backgrounds ── */
+/* ── Variant atmosphere ── */
+.scene-transition--dialogue {
+  --transition-accent-rgb: 224, 198, 137;
+  --transition-glow-rgb: 76, 113, 168;
+  background:
+    radial-gradient(ellipse 70% 54% at 50% 46%, rgba(81, 118, 176, .16), transparent 72%),
+    linear-gradient(180deg, rgba(9, 17, 36, .985), rgba(3, 8, 20, .99));
+}
+.scene-transition--travel {
+  --transition-accent-rgb: 239, 207, 133;
+  --transition-glow-rgb: 93, 142, 192;
+  background:
+    radial-gradient(ellipse 70% 58% at 50% 42%, rgba(91, 142, 190, .15), transparent 72%),
+    linear-gradient(180deg, rgba(7, 17, 34, .98), rgba(3, 8, 19, .99));
+}
+.scene-transition--launch {
+  --transition-accent-rgb: 244, 217, 139;
+  --transition-glow-rgb: 83, 126, 181;
+  background:
+    radial-gradient(ellipse 66% 58% at 50% 46%, rgba(92, 137, 191, .16), transparent 72%),
+    radial-gradient(circle at 50% 52%, rgba(244, 217, 139, .09), transparent 28%),
+    linear-gradient(180deg, rgba(8, 15, 32, .99), rgba(2, 6, 16, .995));
+}
+.scene-transition--result {
+  --transition-accent-rgb: 250, 220, 146;
+  --transition-glow-rgb: 120, 153, 197;
+  background:
+    radial-gradient(ellipse 62% 50% at 50% 48%, rgba(250, 220, 146, .13), transparent 70%),
+    linear-gradient(180deg, rgba(11, 18, 35, .985), rgba(4, 8, 18, .99));
+}
+.scene-transition--combat {
+  --transition-accent-rgb: 245, 211, 132;
+  --transition-glow-rgb: 76, 126, 192;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(245, 211, 132, .12), transparent 26%),
+    radial-gradient(ellipse 78% 62% at 50% 50%, rgba(62, 109, 176, .15), transparent 72%),
+    linear-gradient(180deg, rgba(7, 14, 31, .99), rgba(3, 6, 15, .995));
+}
 .scene-transition--boss {
-  background: linear-gradient(180deg, rgba(12, 4, 6, .98), rgba(2, 1, 3, .99));
+  --transition-accent-rgb: 246, 185, 112;
+  --transition-glow-rgb: 151, 50, 53;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(246, 185, 112, .105), transparent 24%),
+    radial-gradient(ellipse 72% 58% at 50% 50%, rgba(137, 42, 48, .22), transparent 74%),
+    linear-gradient(180deg, rgba(22, 7, 15, .99), rgba(4, 4, 13, .995));
 }
-.scene-transition--boss::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(217, 100, 100, .08), transparent 70%);
+.scene-transition--boss.scene-transition--wipe {
+  transition-duration: var(--scene-transition-in, 1.08s);
 }
-.scene-transition--combat::before {
-  content: "";
+.scene-transition--boss.scene-transition--leaving {
+  transition-duration: var(--scene-transition-out, .9s);
+}
+
+/* ── The restrained seal motif gives every transition a shared identity ── */
+.scene-transition__motif {
   position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(244, 217, 139, .05), transparent 70%);
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: min(68vw, 760px);
+  height: 1px;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, rgba(var(--transition-accent-rgb), .42) 18%, rgba(var(--transition-accent-rgb), .9) 50%, rgba(var(--transition-accent-rgb), .42) 82%, transparent);
+  box-shadow: 0 0 14px rgba(var(--transition-accent-rgb), .2);
+  transform: translate(-50%, 36px) scaleX(.72);
+  transition: opacity .58s ease .18s, transform .68s cubic-bezier(.18, .78, .26, 1) .14s;
+}
+.scene-transition__motif::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(var(--transition-accent-rgb), .94);
+  background: rgba(8, 14, 29, .92);
+  box-shadow: 0 0 14px rgba(var(--transition-accent-rgb), .55), inset 0 0 5px rgba(var(--transition-accent-rgb), .26);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.scene-transition__motif::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgb(var(--transition-accent-rgb));
+  box-shadow: 0 0 11px 3px rgba(var(--transition-accent-rgb), .45);
+  transform: translate(-50%, -50%);
+}
+.scene-transition--visible .scene-transition__motif {
+  opacity: .88;
+  transform: translate(-50%, 36px) scaleX(1);
+}
+.scene-transition--leaving .scene-transition__motif {
+  opacity: 0;
+  transform: translate(-50%, 28px) scaleX(.86);
+  transition-delay: 0s;
+}
+.scene-transition--wipe .scene-transition__motif {
+  width: clamp(132px, 17vw, 228px);
+  height: clamp(132px, 17vw, 228px);
+  border: 1px solid rgba(var(--transition-accent-rgb), .58);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--transition-accent-rgb), .07), transparent 61%);
+  box-shadow: 0 0 0 8px rgba(var(--transition-accent-rgb), .025), 0 0 40px rgba(var(--transition-accent-rgb), .18), inset 0 0 30px rgba(var(--transition-glow-rgb), .13);
+  transform: translate(-50%, -50%) scale(.78) rotate(-18deg);
+}
+.scene-transition--wipe .scene-transition__motif::before {
+  width: 74%;
+  height: 74%;
+  border-radius: 50%;
+  border-color: rgba(var(--transition-accent-rgb), .28);
+  background: transparent;
+  box-shadow: none;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.scene-transition--wipe .scene-transition__motif::after {
+  width: 13px;
+  height: 13px;
+  border-radius: 1px;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.scene-transition--wipe.scene-transition--visible .scene-transition__motif {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  animation: scene-transition-seal-pulse 1.8s ease-in-out .3s infinite alternate;
+}
+.scene-transition--wipe.scene-transition--leaving .scene-transition__motif {
+  animation: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.12) rotate(10deg);
 }
 
 /* ── Label ── */
 .scene-transition__label {
-  font: 600 clamp(18px, 3vw, 28px)/1.4 Cinzel, serif;
-  letter-spacing: .14em;
+  position: relative;
+  z-index: 2;
+  max-width: min(80vw, 820px);
+  padding: 7px clamp(16px, 3vw, 30px);
+  color: rgb(var(--transition-accent-rgb));
+  font: 600 clamp(17px, 2.75vw, 28px)/1.35 Cinzel, serif;
+  letter-spacing: .15em;
+  text-align: center;
   text-transform: uppercase;
-  color: var(--gold);
-  text-shadow: 0 2px 16px rgba(0, 0, 0, .8);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .9), 0 0 18px rgba(var(--transition-accent-rgb), .14);
   opacity: 0;
-  transform: translateY(8px);
-  transition: opacity .4s ease .15s, transform .4s ease .15s;
+  transform: translateY(12px);
+  transition: opacity .56s ease .22s, transform .64s cubic-bezier(.2, .78, .3, 1) .22s;
+}
+.scene-transition--wipe .scene-transition__label {
+  padding: 10px clamp(18px, 3.5vw, 34px);
+  background: linear-gradient(90deg, transparent, rgba(5, 10, 22, .68) 18%, rgba(5, 10, 22, .88) 50%, rgba(5, 10, 22, .68) 82%, transparent);
+  transition-delay: .3s;
+}
+.scene-transition--boss .scene-transition__label {
+  color: #f5c576;
+  letter-spacing: .18em;
+  text-shadow: 0 2px 18px #000, 0 0 20px rgba(198, 66, 56, .25);
 }
 .scene-transition--visible .scene-transition__label {
   opacity: 1;
@@ -2094,9 +2254,49 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 }
 .scene-transition--leaving .scene-transition__label {
   opacity: 0;
-  transform: translateY(-4px);
-  transition: opacity .3s ease, transform .3s ease;
+  transform: translateY(-6px);
+  transition: opacity .5s ease, transform .54s cubic-bezier(.38, 0, .62, 1);
+}
+
+@keyframes scene-transition-grain {
+  0% { background-position: 0 0, 0 0; }
+  50% { background-position: 17px -11px, 5% 0; }
+  100% { background-position: -13px 9px, -4% 0; }
+}
+@keyframes scene-transition-seal-pulse {
+  from { box-shadow: 0 0 0 8px rgba(var(--transition-accent-rgb), .025), 0 0 32px rgba(var(--transition-accent-rgb), .16), inset 0 0 26px rgba(var(--transition-glow-rgb), .12); }
+  to { box-shadow: 0 0 0 12px rgba(var(--transition-accent-rgb), .04), 0 0 52px rgba(var(--transition-accent-rgb), .28), inset 0 0 38px rgba(var(--transition-glow-rgb), .2); }
 }
 
 .scene-transition--locked { user-select: none; cursor: wait; }
 .scene-transition--locked * { pointer-events: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-transition::before { animation: none; }
+  .scene-transition--wipe,
+  .scene-transition--wipe.scene-transition--visible,
+  .scene-transition--wipe.scene-transition--leaving {
+    clip-path: none;
+    transition: opacity .01ms linear !important;
+  }
+  .scene-transition--wipe { opacity: 0; }
+  .scene-transition--wipe.scene-transition--visible { opacity: 1; }
+  .scene-transition--wipe.scene-transition--leaving { opacity: 0; }
+  .scene-transition__motif,
+  .scene-transition--wipe .scene-transition__motif,
+  .scene-transition--wipe.scene-transition--visible .scene-transition__motif,
+  .scene-transition--wipe.scene-transition--leaving .scene-transition__motif {
+    animation: none;
+    transform: translate(-50%, 36px) scaleX(1);
+  }
+  .scene-transition--wipe .scene-transition__motif {
+    width: min(56vw, 250px);
+    height: 1px;
+    border: 0;
+    border-radius: 0;
+    background: linear-gradient(90deg, transparent, rgba(var(--transition-accent-rgb), .52), transparent);
+    box-shadow: none;
+  }
+  .scene-transition--wipe .scene-transition__motif::before,
+  .scene-transition--wipe .scene-transition__motif::after { display: none; }
+}

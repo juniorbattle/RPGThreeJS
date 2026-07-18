@@ -97,13 +97,7 @@ export class GameApp {
       </section>
     `;
     this.chrome.querySelector('[data-action="new"]')?.addEventListener('click', () => void this.startNewChronicle());
-    this.chrome.querySelector('[data-action="continue"]')?.addEventListener('click', () => {
-      this.state = this.saves.loadAuto() ?? this.saves.loadManual() ?? createInitialState();
-      this.chrome.replaceChildren();
-      const current = getRunNode(this.state.run);
-      if (current && current.depth > 0 && !this.state.resolvedNodeIds.includes(current.id)) void this.resolveRunNode(current, true);
-      else void this.enterTravel();
-    });
+    this.chrome.querySelector('[data-action="continue"]')?.addEventListener('click', () => void this.continueChronicle());
     this.chrome.querySelector('[data-action="qa"]')?.addEventListener('click', () => this.renderQaLab());
   }
 
@@ -163,12 +157,16 @@ export class GameApp {
     await sceneTransition.run({
       variant: 'travel',
       task: async () => {
-        this.setMode('TRAVEL');
-        this.canvas.hidden = true;
-        this.chrome.replaceChildren();
-        this.travel.open();
+        this.showTravel();
       },
     });
+  }
+
+  private showTravel(): void {
+    this.setMode('TRAVEL');
+    this.canvas.hidden = true;
+    this.chrome.replaceChildren();
+    this.travel.open();
   }
 
   private async chooseRunNode(node: RunNode): Promise<void> {
@@ -383,6 +381,11 @@ export class GameApp {
       }
     }
     const variant: TransitionVariant = config.encounterRank === 'boss' ? 'boss' : 'combat';
+    const combatants = this.state.clan.members.filter((unit) => unit.currentHealth > 0).map((unit) => toCombatant(unit));
+    let resolveCombatStart!: (session: ReturnType<CombatBridge['start']>) => void;
+    const combatStarted = new Promise<ReturnType<CombatBridge['start']>>((resolve) => {
+      resolveCombatStart = resolve;
+    });
     await sceneTransition.run({
       variant,
       label: config.encounterLabel,
@@ -391,17 +394,20 @@ export class GameApp {
         this.setMode('COMBAT');
         this.travel.close();
         this.chrome.replaceChildren();
+        const combatSession = this.combat.start({
+          config,
+          clan: combatants,
+          inventory: this.state.inventory.consumables,
+          preferredUnitIds: this.state.deployment.unitIds,
+          reducedGraphics: this.state.settings.reducedGraphics,
+          devQa: false,
+        });
+        resolveCombatStart(combatSession);
+        await combatSession.ready;
       },
     });
-    const combatants = this.state.clan.members.filter((unit) => unit.currentHealth > 0).map((unit) => toCombatant(unit));
-    const result = await this.combat.play({
-      config,
-      clan: combatants,
-      inventory: this.state.inventory.consumables,
-      preferredUnitIds: this.state.deployment.unitIds,
-      reducedGraphics: this.state.settings.reducedGraphics,
-      devQa: false,
-    });
+    const combatSession = await combatStarted;
+    const result = await combatSession.result;
     await this.resolveCombat(result, node, config.rewards);
   }
 
@@ -479,24 +485,49 @@ export class GameApp {
   }
 
   private async startNewChronicle(): Promise<void> {
-    this.saves.clear();
-    this.state = createInitialState();
-    this.state.flags.prologueSeen = false;
-    try {
-      localStorage.removeItem('rpg-tutorial-seen');
-      localStorage.removeItem('rpg-boss-tutorial-seen');
-    } catch {}
+    let prologuePromise: Promise<void> | null = null;
+    await sceneTransition.run({
+      variant: 'launch',
+      label: 'Une chronique s’éveille',
+      task: async () => {
+        this.saves.clear();
+        this.state = createInitialState();
+        this.state.flags.prologueSeen = false;
+        try {
+          localStorage.removeItem('rpg-tutorial-seen');
+          localStorage.removeItem('rpg-boss-tutorial-seen');
+        } catch {}
+        this.saves.saveAuto(this.state);
+        this.chrome.replaceChildren();
+        this.setMode('PROLOGUE');
+        this.canvas.hidden = true;
+        prologuePromise = this.prologue.open();
+      },
+    });
+    await prologuePromise;
+    this.state.flags.prologueSeen = true;
     this.saves.saveAuto(this.state);
-    this.chrome.replaceChildren();
-    this.setMode('PROLOGUE');
-    this.canvas.hidden = true;
-    if (!this.state.flags.prologueSeen) {
-      await this.prologue.open();
-      this.state.flags.prologueSeen = true;
-      this.saves.saveAuto(this.state);
-    }
     await this.playDialogue('acte_ouverture');
     await this.enterTravel();
+  }
+
+  private async continueChronicle(): Promise<void> {
+    let current: RunNode | undefined;
+    await sceneTransition.run({
+      variant: 'launch',
+      label: 'La chronique reprend',
+      task: async () => {
+        this.state = this.saves.loadAuto() ?? this.saves.loadManual() ?? createInitialState();
+        this.prologue.close();
+        this.exploration.close();
+        this.combat.close();
+        this.showTravel();
+        current = getRunNode(this.state.run);
+      },
+    });
+    if (current && current.depth > 0 && !this.state.resolvedNodeIds.includes(current.id)) {
+      await this.resolveRunNode(current, true);
+    }
   }
 
   private setMode(mode: AppMode): void {

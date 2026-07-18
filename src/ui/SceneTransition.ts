@@ -1,4 +1,4 @@
-export type TransitionVariant = 'fade' | 'dialogue' | 'travel' | 'combat' | 'boss' | 'result';
+export type TransitionVariant = 'fade' | 'launch' | 'dialogue' | 'travel' | 'combat' | 'boss' | 'result';
 export type TransitionStyle = 'fade' | 'wipe';
 
 interface TransitionOptions {
@@ -9,13 +9,24 @@ interface TransitionOptions {
 
 const WIPE_VARIANTS: TransitionVariant[] = ['combat', 'boss'];
 
-const FADE_IN_MS = 600;
-const FADE_HOLD_MS = 500;
-const FADE_OUT_MS = 500;
+interface TransitionTiming {
+  inMs: number;
+  holdMs: number;
+  outMs: number;
+}
 
-const WIPE_IN_MS = 520;
-const WIPE_HOLD_MS = 650;
-const WIPE_OUT_MS = 520;
+const TRANSITION_TIMINGS: Record<TransitionVariant, TransitionTiming> = {
+  fade: { inMs: 900, holdMs: 1000, outMs: 800 },
+  launch: { inMs: 1200, holdMs: 2600, outMs: 1200 },
+  dialogue: { inMs: 1150, holdMs: 2200, outMs: 1100 },
+  travel: { inMs: 1050, holdMs: 1700, outMs: 1000 },
+  result: { inMs: 1150, holdMs: 2000, outMs: 1050 },
+  // Combat labels need time to establish the encounter before the battlefield appears.
+  combat: { inMs: 1200, holdMs: 2600, outMs: 1200 },
+  boss: { inMs: 1300, holdMs: 2500, outMs: 1200 },
+};
+
+const REDUCED_MOTION_TIMING: TransitionTiming = { inMs: 130, holdMs: 110, outMs: 150 };
 
 function styleFor(variant: TransitionVariant): TransitionStyle {
   return WIPE_VARIANTS.includes(variant) ? 'wipe' : 'fade';
@@ -23,6 +34,13 @@ function styleFor(variant: TransitionVariant): TransitionStyle {
 
 function wait(ms: number): Promise<void> {
   return new Promise((resolve) => window.setTimeout(resolve, ms));
+}
+
+function timingFor(variant: TransitionVariant): TransitionTiming {
+  if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+    return REDUCED_MOTION_TIMING;
+  }
+  return TRANSITION_TIMINGS[variant];
 }
 
 class SceneTransition {
@@ -36,15 +54,13 @@ class SceneTransition {
     this.active = true;
     document.body.classList.add('scene-transition--locked');
     const style = styleFor(options.variant);
-    const inMs = style === 'wipe' ? WIPE_IN_MS : FADE_IN_MS;
-    const holdMs = style === 'wipe' ? WIPE_HOLD_MS : FADE_HOLD_MS;
-    const outMs = style === 'wipe' ? WIPE_OUT_MS : FADE_OUT_MS;
-    this.createOverlay(options.variant, style, options.label ?? '');
+    const timing = timingFor(options.variant);
+    this.createOverlay(options.variant, style, options.label ?? '', timing);
     try {
-      await wait(inMs);
+      await wait(timing.inMs);
       await options.task();
-      await wait(holdMs);
-      await this.reveal(outMs);
+      await wait(timing.holdMs);
+      await this.reveal(timing.outMs);
     } catch (error) {
       this.destroyOverlay();
       throw error;
@@ -54,10 +70,20 @@ class SceneTransition {
     }
   }
 
-  private createOverlay(variant: TransitionVariant, style: TransitionStyle, label: string): void {
+  private createOverlay(
+    variant: TransitionVariant,
+    style: TransitionStyle,
+    label: string,
+    timing: TransitionTiming,
+  ): void {
     this.overlay = document.createElement('div');
     this.overlay.className = `scene-transition scene-transition--${variant} scene-transition--${style}`;
     this.overlay.setAttribute('aria-hidden', 'true');
+    this.overlay.style.setProperty('--scene-transition-in', `${timing.inMs}ms`);
+    this.overlay.style.setProperty('--scene-transition-out', `${timing.outMs}ms`);
+    const motif = document.createElement('span');
+    motif.className = 'scene-transition__motif';
+    this.overlay.append(motif);
     if (label) {
       const labelEl = document.createElement('span');
       labelEl.className = 'scene-transition__label';
