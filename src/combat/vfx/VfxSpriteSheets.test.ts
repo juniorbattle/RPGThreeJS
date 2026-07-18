@@ -18,6 +18,11 @@ describe('combat VFX sprite sheets', () => {
       expect(definition).toMatchObject(entry);
       expect(definition.url).toMatch(/^\/assets\/vfx\/runtime\/v1\/[a-z_]+\.png$/);
       for (const forbidden of FORBIDDEN_RUNTIME_SEGMENTS) expect(definition.url).not.toContain(forbidden);
+      expect(definition.presentation.scaleMultiplier).toBeGreaterThanOrEqual(1);
+      expect(definition.presentation.opacityMultiplier).toBeGreaterThan(0);
+      expect(definition.presentation.fadeIn).toBeGreaterThanOrEqual(0);
+      expect(definition.presentation.fadeOut).toBeGreaterThan(definition.presentation.fadeIn);
+      expect(definition.presentation.fadeOut).toBeLessThan(1);
     }
   });
 

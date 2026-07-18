@@ -15,6 +15,8 @@ import { ManagementView } from '../ui/ManagementView';
 import { TravelView } from '../ui/TravelView';
 import { ExplorationView } from '../ui/ExplorationView';
 import { PrologueView } from '../ui/PrologueView';
+import { sceneTransition } from '../ui/SceneTransition';
+import type { TransitionVariant } from '../ui/SceneTransition';
 type AppMode = 'TITLE' | 'PROLOGUE' | 'TRAVEL' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT' | 'QA';
 
 export class GameApp {
@@ -100,7 +102,7 @@ export class GameApp {
       this.chrome.replaceChildren();
       const current = getRunNode(this.state.run);
       if (current && current.depth > 0 && !this.state.resolvedNodeIds.includes(current.id)) void this.resolveRunNode(current, true);
-      else this.enterTravel();
+      else void this.enterTravel();
     });
     this.chrome.querySelector('[data-action="qa"]')?.addEventListener('click', () => this.renderQaLab());
   }
@@ -157,11 +159,16 @@ export class GameApp {
     this.renderQaLab(`${config.encounterLabel} — ${result.victory ? 'victoire de test' : 'défaite de test'}.`);
   }
 
-  private enterTravel(): void {
-    this.setMode('TRAVEL');
-    this.canvas.hidden = true;
-    this.chrome.replaceChildren();
-    this.travel.open();
+  private async enterTravel(): Promise<void> {
+    await sceneTransition.run({
+      variant: 'travel',
+      task: async () => {
+        this.setMode('TRAVEL');
+        this.canvas.hidden = true;
+        this.chrome.replaceChildren();
+        this.travel.open();
+      },
+    });
   }
 
   private async chooseRunNode(node: RunNode): Promise<void> {
@@ -170,7 +177,7 @@ export class GameApp {
     this.setMode('RESULT');
     const entered = enterRunNode(this.state.run, node.id);
     if (!entered) {
-      this.enterTravel();
+      await this.enterTravel();
       return;
     }
     this.state.currentNodeId = entered.id;
@@ -228,13 +235,13 @@ export class GameApp {
         if (action === 'skills') await this.openManagement('skills', undefined, 'temporary', false);
       }
       this.markResolved(node.id);
-      this.enterTravel();
+      await this.enterTravel();
       return;
     }
     if (node.type === 'shop') {
       await this.openManagement('shop', node.contentId);
       this.markResolved(node.id);
-      this.enterTravel();
+      await this.enterTravel();
       return;
     }
     if (node.type === 'combat' || node.type === 'boss') {
@@ -244,7 +251,7 @@ export class GameApp {
         else {
           this.markResolved(node.id);
           await this.maybePlayATEs(node.id);
-          this.enterTravel();
+          await this.enterTravel();
         }
         return;
       }
@@ -252,7 +259,7 @@ export class GameApp {
       return;
     }
     if (!initial && this.state.resolvedNodeIds.includes(node.id)) {
-      this.enterTravel();
+      await this.enterTravel();
       return;
     }
     await this.playDialogue(node.contentId);
@@ -261,15 +268,23 @@ export class GameApp {
     } else {
       this.markResolved(node.id);
       await this.maybePlayATEs(node.id);
-      this.enterTravel();
+      await this.enterTravel();
     }
   }
 
   private async playDialogue(dialogueId: string): Promise<void> {
     const sequence = dialogues.get(dialogueId);
     if (!sequence) throw new Error(`Missing dialogue '${dialogueId}'.`);
-    this.setMode('NARRATIVE');
-    await this.dialogue.play(sequence);
+    let playPromise: Promise<void> | null = null;
+    await sceneTransition.run({
+      variant: 'dialogue',
+      label: sequence.title ?? '',
+      task: async () => {
+        this.setMode('NARRATIVE');
+        playPromise = this.dialogue.play(sequence);
+      },
+    });
+    await playPromise;
     this.saves.saveAuto(this.state);
   }
 
@@ -281,8 +296,16 @@ export class GameApp {
       if (this.state.flags[flagKey]) continue;
       const sequence = dialogues.get(ateId);
       if (!sequence) continue;
-      this.setMode('NARRATIVE');
-      await this.dialogue.play(sequence);
+      let playPromise: Promise<void> | null = null;
+      await sceneTransition.run({
+        variant: 'dialogue',
+        label: sequence.title ?? '',
+        task: async () => {
+          this.setMode('NARRATIVE');
+          playPromise = this.dialogue.play(sequence);
+        },
+      });
+      await playPromise;
       this.state.flags[flagKey] = true;
       this.saves.saveAuto(this.state);
     }
@@ -346,7 +369,7 @@ export class GameApp {
     const combatId = this.pendingCombatId;
     this.pendingCombatId = null;
     if (combatId) await this.startCombat(combatId, node);
-    else this.enterTravel();
+    else await this.enterTravel();
   }
 
   private async startCombat(combatId: string, node: RunNode): Promise<void> {
@@ -359,10 +382,17 @@ export class GameApp {
         return;
       }
     }
-    this.saves.saveAuto(this.state);
-    this.setMode('COMBAT');
-    this.travel.close();
-    this.chrome.replaceChildren();
+    const variant: TransitionVariant = config.encounterRank === 'boss' ? 'boss' : 'combat';
+    await sceneTransition.run({
+      variant,
+      label: config.encounterLabel,
+      task: async () => {
+        this.saves.saveAuto(this.state);
+        this.setMode('COMBAT');
+        this.travel.close();
+        this.chrome.replaceChildren();
+      },
+    });
     const combatants = this.state.clan.members.filter((unit) => unit.currentHealth > 0).map((unit) => toCombatant(unit));
     const result = await this.combat.play({
       config,
@@ -384,7 +414,12 @@ export class GameApp {
       this.state = this.saves.loadAuto() ?? this.state;
       failRunToCheckpoint(this.state);
       this.saves.saveAuto(this.state);
-      this.enterTravel();
+      await sceneTransition.run({
+        variant: 'result',
+        label: 'Défaite',
+        task: async () => {},
+      });
+      await this.enterTravel();
       return;
     }
     const encounterLimit = combatConfigs.get(result.combatId)?.maxPlayerUnits ?? 4;
@@ -410,7 +445,7 @@ export class GameApp {
       }
       await this.playDialogue('epilogue');
       this.saves.saveAuto(this.state);
-      this.enterTravel();
+      await this.enterTravel();
       return;
     }
     const combatConfig = combatConfigs.get(result.combatId);
@@ -422,7 +457,7 @@ export class GameApp {
       }
     }
     await this.maybePlayATEs(node.id);
-    this.enterTravel();
+    await this.enterTravel();
   }
 
   private markResolved(nodeId: string): void {
@@ -440,7 +475,7 @@ export class GameApp {
     this.setMode('MANAGEMENT');
     await this.management.open(tab, shopId, shopWallet);
     this.saves.saveAuto(this.state);
-    if (returnToTravel) this.enterTravel();
+    if (returnToTravel) await this.enterTravel();
   }
 
   private async startNewChronicle(): Promise<void> {
@@ -461,7 +496,7 @@ export class GameApp {
       this.saves.saveAuto(this.state);
     }
     await this.playDialogue('acte_ouverture');
-    this.enterTravel();
+    await this.enterTravel();
   }
 
   private setMode(mode: AppMode): void {

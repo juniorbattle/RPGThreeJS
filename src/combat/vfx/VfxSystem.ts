@@ -12,6 +12,7 @@ import type {
   VfxContext,
   VfxPlayResult,
   VfxPreset,
+  VfxSpriteSheetId,
   VfxStep,
   VfxTextureName,
   VfxUnitLike,
@@ -115,6 +116,22 @@ function waitSeconds(seconds: number, context: VfxContext) {
 
 function blendingFor(step: VfxStep) {
   return step.blending === 'normal' ? THREE.NormalBlending : THREE.AdditiveBlending;
+}
+
+function spriteSheetBlending(definition: (typeof VFX_SPRITE_SHEETS)[VfxSpriteSheetId], step: VfxStep) {
+  return definition.presentation.blending === 'additive' ? THREE.AdditiveBlending : blendingFor(step);
+}
+
+function spriteSheetEnvelope(progress: number, definition: (typeof VFX_SPRITE_SHEETS)[VfxSpriteSheetId]) {
+  const { fadeIn, fadeOut } = definition.presentation;
+  const fadeInProgress = easeOutCubic(clamp(progress / Math.max(fadeIn, 0.001), 0, 1));
+  const fadeOutProgress = clamp((progress - fadeOut) / Math.max(1 - fadeOut, 0.001), 0, 1);
+  return fadeInProgress * (1 - easeInOut(fadeOutProgress));
+}
+
+function spriteSheetScalePulse(progress: number, definition: (typeof VFX_SPRITE_SHEETS)[VfxSpriteSheetId]) {
+  const peak = clamp(progress / definition.presentation.fadeOut, 0, 1);
+  return 0.94 + Math.sin(Math.PI * peak) * 0.12;
 }
 
 function makeSprite(step: VfxStep, textureName: VfxTextureName, color?: string | number) {
@@ -421,27 +438,35 @@ export class VfxSystem {
       opacity: step.opacity ?? 1,
       alphaTest: 0.01,
       depthWrite: false,
-      depthTest: true,
+      depthTest: definition.presentation.layer === 'ground',
       toneMapped: false,
       fog: false,
-      blending: blendingFor(step),
+      blending: spriteSheetBlending(definition, step),
       rotation: step.rotation ?? 0,
     });
     const sprite = this.track(new THREE.Sprite(material), context);
     const objects: THREE.Object3D[] = [sprite];
     const intensity = clamp(context.intensity ?? 1, 0.35, 1.8);
     const quality = this.quality(step, preset, context);
-    const baseHeight = (step.scale ?? 1) * intensity * (context.reducedGraphics ? 0.9 : 1);
+    const baseHeight = (step.scale ?? 1)
+      * definition.presentation.scaleMultiplier
+      * intensity
+      * (context.reducedGraphics ? 0.9 : 1);
     const frameAspect = definition.rows / definition.cols;
-    sprite.renderOrder = 30;
+    const baseOpacity = (step.opacity ?? 1)
+      * definition.presentation.opacityMultiplier
+      * (context.reducedGraphics ? 0.92 + quality * 0.08 : 1);
+    sprite.renderOrder = definition.presentation.layer === 'ground' ? 34 : 56;
     sprite.position.copy(anchor);
-    if (definition.align === 'bottom') sprite.position.y += baseHeight * 0.5;
-    sprite.scale.set(baseHeight * frameAspect, baseHeight, 1);
     try {
       await animate(duration, (progress) => {
         const frame = Math.min(definition.frameCount - 1, Math.floor(progress * definition.frameCount));
+        const scale = baseHeight * spriteSheetScalePulse(progress, definition);
         setVfxSpriteSheetFrame(texture, definition, frame);
-        material.opacity = (step.opacity ?? 1) * (0.82 + quality * 0.18);
+        sprite.position.copy(anchor);
+        if (definition.align === 'bottom') sprite.position.y += scale * 0.5;
+        sprite.scale.set(scale * frameAspect, scale, 1);
+        material.opacity = baseOpacity * spriteSheetEnvelope(progress, definition);
       });
     } finally {
       this.cleanup(objects);
@@ -466,10 +491,10 @@ export class VfxSystem {
       opacity: step.opacity ?? 1,
       alphaTest: 0.01,
       depthWrite: false,
-      depthTest: true,
+      depthTest: definition.presentation.layer === 'ground',
       toneMapped: false,
       fog: false,
-      blending: blendingFor(step),
+      blending: spriteSheetBlending(definition, step),
       rotation: step.rotation ?? 0,
     });
     const sprite = this.track(new THREE.Sprite(material), context);
@@ -478,22 +503,29 @@ export class VfxSystem {
     const end = resolveVfxAnchor(step.targetAnchor ?? 'target', context);
     end.y += step.heightOffset ?? 0;
     const baseHeight = (step.scale ?? 0.9)
+      * definition.presentation.scaleMultiplier
       * clamp(context.particleScale ?? 1, 0.45, 1.8)
       * (context.reducedGraphics ? 0.9 : 1);
     const frameAspect = definition.rows / definition.cols;
+    const quality = this.quality(step, preset, context);
+    const baseOpacity = (step.opacity ?? 1)
+      * definition.presentation.opacityMultiplier
+      * (context.reducedGraphics ? 0.92 + quality * 0.08 : 1);
     const projectedStart = start.clone().project(context.camera);
     const projectedEnd = end.clone().project(context.camera);
     material.rotation += Math.atan2(projectedEnd.y - projectedStart.y, projectedEnd.x - projectedStart.x);
-    sprite.renderOrder = 30;
+    sprite.renderOrder = definition.presentation.layer === 'ground' ? 34 : 56;
     sprite.position.copy(start);
-    sprite.scale.set(baseHeight * frameAspect, baseHeight, 1);
     try {
       await animate(duration, (progress) => {
         const frame = Math.min(definition.frameCount - 1, Math.floor(progress * definition.frameCount));
-        const travel = easeOutCubic(clamp(progress / 0.7, 0, 1));
+        const travel = easeOutCubic(clamp(progress / 0.67, 0, 1));
+        const scale = baseHeight * spriteSheetScalePulse(progress, definition);
         setVfxSpriteSheetFrame(texture, definition, frame);
         sprite.position.lerpVectors(start, end, travel);
         sprite.position.y += Math.sin(Math.PI * travel) * 0.24;
+        sprite.scale.set(scale * frameAspect, scale, 1);
+        material.opacity = baseOpacity * spriteSheetEnvelope(progress, definition);
       });
     } finally {
       this.cleanup(objects);

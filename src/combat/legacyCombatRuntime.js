@@ -930,8 +930,8 @@ const SPRITE_MOTION_PRESETS=Object.freeze({
 // Presentation-only hierarchy. These values never affect AP, damage, targeting
 // or any other combat rule; they only tune the existing motion/VFX pipeline.
 const ACTION_PRESENTATION_TIERS=Object.freeze({
-  1:{intensity:0.88,particleScale:0.90,durationScale:0.94,motionDurationScale:0.92,motionIntensity:0.94,afterEffectDelay:0.02},
-  2:{intensity:0.98,particleScale:0.98,durationScale:0.98,motionDurationScale:0.98,motionIntensity:1.00,afterEffectDelay:0.03},
+  1:{intensity:0.88,particleScale:0.90,durationScale:0.94,motionDurationScale:0.92,motionIntensity:0.94,afterEffectDelay:0.03},
+  2:{intensity:0.98,particleScale:0.98,durationScale:0.98,motionDurationScale:0.98,motionIntensity:1.00,afterEffectDelay:0.035},
   3:{intensity:1.07,particleScale:1.04,durationScale:1.01,motionDurationScale:1.02,motionIntensity:1.04,afterEffectDelay:0.04},
   4:{intensity:1.14,particleScale:1.08,durationScale:1.04,motionDurationScale:1.05,motionIntensity:1.08,afterEffectDelay:0.05},
   5:{intensity:1.20,particleScale:1.11,durationScale:1.04,motionDurationScale:1.08,motionIntensity:1.11,afterEffectDelay:0.07},
