@@ -73,12 +73,12 @@ const unitPresentation = {
   shadowScale: 1.12,
   // Normal foes get a slight scale boost so they feel more imposing
   // without overflowing their 1x1 tile.
-  foeSpriteScale: 1.15,
+  foeSpriteScale: 1.25,
   // Every 2x2 opponent uses the same visual scale. Tactical mass comes from
   // the footprint and ring as much as the sprite, so 1.6 keeps both elites
   // and bosses imposing without swallowing the compact 8x4 arena.
-  twoByTwoEliteSpriteScale: 1.6,
-  twoByTwoBossSpriteScale: 1.6,
+  twoByTwoEliteSpriteScale: 2.2,
+  twoByTwoBossSpriteScale: 2.2,
   teamRingOpacity: 0.92,
   activeRingOpacity: 1,
   activeRingIntensity: 1,
