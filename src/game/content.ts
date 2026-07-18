@@ -31,8 +31,8 @@ const rawNodes: CampaignNode[] = [
 ];
 
 const rawCombats: RawCombatConfig[] = [
-  { id: 'village_defense', sceneId: 'bois_clair_burning', objective: 'Repoussez les pillards et protégez les habitants de Bois-Clair.', encounterLabel: 'Défense de Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, postCombatDialogueId: 'village_defense_aftermath', rewards: { gold: 160, reputation: 10, materials: { red_gem: 2 } } },
-  { id: 'village_raid', sceneId: 'bois_clair_burning', objective: 'Sécurisez les coffres pendant que les Serpents dispersent les témoins.', encounterLabel: 'Raid sur Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, postCombatDialogueId: 'village_raid_aftermath', rewards: { gold: 260, reputation: -15, materials: { red_gem: 3 } } },
+  { id: 'village_defense', sceneId: 'bois_clair_burning', objective: 'Repoussez les pillards et protégez les habitants de Bois-Clair.', encounterLabel: 'Défense de Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, preCombatDialogueId: 'pre_village_defense', postCombatDialogueId: 'village_defense_aftermath', rewards: { gold: 160, reputation: 10, materials: { red_gem: 2 } } },
+  { id: 'village_raid', sceneId: 'bois_clair_burning', objective: 'Sécurisez les coffres pendant que les Serpents dispersent les témoins.', encounterLabel: 'Raid sur Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, preCombatDialogueId: 'pre_village_raid', postCombatDialogueId: 'village_raid_aftermath', rewards: { gold: 260, reputation: -15, materials: { red_gem: 3 } } },
   { id: 'forest_patrol', sceneId: 'forest_route', objective: 'Éliminez la patrouille Serpent avant qu’elle ne donne l’alerte.', encounterLabel: 'Patrouille Serpent', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 80, reputation: 1, materials: { red_gem: 1 } } },
   { id: 'forest_ambush', sceneId: 'forest_route', objective: 'Survivez à l’embuscade dans le sous-bois.', encounterLabel: 'Embuscade', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 70, reputation: 1, materials: { red_gem: 1 } } },
   { id: 'wolf_pack', sceneId: 'forest_route', objective: 'Repoussez la meute qui encercle la compagnie.', encounterLabel: 'Meute affamée', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 75, reputation: 1, materials: { red_gem: 1 } } },
@@ -43,11 +43,11 @@ const rawCombats: RawCombatConfig[] = [
   { id: 'road_to_valmir', sceneId: 'forest_route', objective: 'Ouvrez la route de Bois-Clair avant que le village ne tombe.', encounterLabel: 'Route de Bois-Clair', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 90, reputation: 1, materials: { red_gem: 1 } } },
   { id: 'ruins_guardians', sceneId: 'lion_sanctum', objective: 'Éliminez les créatures qui infestent les ruines des Ombres.', encounterLabel: 'Ruines infestées', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 110, reputation: 1, materials: { red_gem: 1 } } },
   { id: 'serpent_hunters', sceneId: 'lion_sanctum', objective: 'Survivez aux chasseurs Serpent lancés sur votre piste.', encounterLabel: 'Chasseurs Serpent', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 125, reputation: 0, materials: { red_gem: 2 } } },
-  { id: 'serpent_duelist_trial', sceneId: 'forest_route', objective: 'Défaites le duelliste Serpent avant qu’il ne coupe la retraite.', encounterLabel: 'Duel sous les pins', encounterRank: 'elite', maxPlayerUnits: 4, rewards: { gold: 160, reputation: 2, materials: { red_gem: 3 } } },
-  { id: 'troll_crossing', sceneId: 'forest_route', objective: 'Forcez le passage gardé par le troll des pierres moussues.', encounterLabel: 'Passage du troll', encounterRank: 'elite', maxPlayerUnits: 4, rewards: { gold: 180, reputation: 2, materials: { red_gem: 3 } } },
-  { id: 'young_dragon_roost', sceneId: 'lion_sanctum', objective: 'Approchez le nid du jeune dragon et survivez à son courroux.', encounterLabel: 'Nid du jeune dragon', encounterRank: 'elite', maxPlayerUnits: 4, rewards: { gold: 260, reputation: 2, materials: { red_gem: 3 } } },
+  { id: 'serpent_duelist_trial', sceneId: 'forest_route', objective: 'Défaites le duelliste Serpent avant qu’il ne coupe la retraite.', encounterLabel: 'Duel sous les pins', encounterRank: 'elite', maxPlayerUnits: 4, preCombatDialogueId: 'pre_serpent_duelist_trial', rewards: { gold: 160, reputation: 2, materials: { red_gem: 3 } } },
+  { id: 'troll_crossing', sceneId: 'forest_route', objective: 'Forcez le passage gardé par le troll des pierres moussues.', encounterLabel: 'Passage du troll', encounterRank: 'elite', maxPlayerUnits: 4, preCombatDialogueId: 'pre_troll_crossing', rewards: { gold: 180, reputation: 2, materials: { red_gem: 3 } } },
+  { id: 'young_dragon_roost', sceneId: 'lion_sanctum', objective: 'Approchez le nid du jeune dragon et survivez à son courroux.', encounterLabel: 'Nid du jeune dragon', encounterRank: 'elite', maxPlayerUnits: 4, preCombatDialogueId: 'pre_young_dragon_roost', rewards: { gold: 260, reputation: 2, materials: { red_gem: 3 } } },
   { id: 'serpent_captain', sceneId: 'lion_sanctum', objective: 'Traquez le général Serpent et exposez l’artefact des Ombres.', encounterLabel: 'Général Serpent', encounterRank: 'boss', maxPlayerUnits: 4, isBoss: true, preCombatDialogueId: 'serpent_general_pre_combat', postCombatDialogueId: 'lion_finale_aftermath', rewards: { gold: 300, reputation: 12, materials: { red_gem: 5 } } },
-  { id: 'lion_chief', sceneId: 'lion_sanctum', objective: 'Survivez à l’épreuve du Vieux Lion.', encounterLabel: 'Duel pour le Sceau', encounterRank: 'boss', maxPlayerUnits: 4, isBoss: true, postCombatDialogueId: 'lion_finale_aftermath', rewards: { gold: 200, reputation: -10, materials: { red_gem: 5 } } },
+  { id: 'lion_chief', sceneId: 'lion_sanctum', objective: 'Survivez à l’épreuve du Vieux Lion.', encounterLabel: 'Duel pour le Sceau', encounterRank: 'boss', maxPlayerUnits: 4, isBoss: true, preCombatDialogueId: 'pre_lion_chief', postCombatDialogueId: 'lion_finale_aftermath', rewards: { gold: 200, reputation: -10, materials: { red_gem: 5 } } },
 ];
 
 const combatVisualComposition: Record<string, Partial<Pick<CombatConfig, 'enemyVisualIds' | 'bossVisualId' | 'escortVisualIds'>>> = {
@@ -962,6 +962,56 @@ const rawDialogues = [
     steps: [
       { id: '1', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Constat', text: 'Ils ont trouvé les signes. Trop tôt. Trop vite.', side: 'right', next: '2', effects: [], choices: [] },
       { id: '2', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'stern', tag: 'Ordre de repli', text: 'Toutes les unités en arrière. Laissez-les venir à moi. Si le Sceau s’ouvre ici, autant que ce soit sous mon contrôle.', side: 'right', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'pre_village_defense',
+    sceneArtId: 'village_choice',
+    steps: [
+      { id: '1', speaker: 'Pillard Serpent', actorId: 'serpent_raider', expression: 'hostile', tag: 'Ultimatum', text: 'Le village brûle déjà. Ceux qui prennent les armes meurent les premiers.', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Pillard Serpent', actorId: 'serpent_raider', expression: 'hostile', tag: 'Menace', text: 'Vous voulez défendre ces paysans ? Montrez-moi ce que vaut le sang du Lion.', side: 'right', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'pre_village_raid',
+    sceneArtId: 'village_choice',
+    steps: [
+      { id: '1', speaker: 'Brute Serpent', actorId: 'serpent_brute', expression: 'hostile', tag: 'Moquerie', text: 'Regardez-les. Ils croient que leurs murs les protègent.', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Brute Serpent', actorId: 'serpent_brute', expression: 'hostile', tag: 'Provocation', text: 'Le Lion n\u2019est pas l\u00e0. Personne ne vient pour Bois-Clair. Prenez ce que vous voulez, et frappez ceux qui regardent.', side: 'right', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'pre_serpent_duelist_trial',
+    sceneArtId: 'serpent_duelist_trial',
+    steps: [
+      { id: '1', speaker: 'Duelliste Serpent', actorId: 'serpent_duelist_elite', expression: 'stern', tag: 'Défi', text: 'Vous avez coup\u00e9 la route. Vous avez dispers\u00e9 mes \u00e9claireurs. Mais ici, c\u2019est entre nous.', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Duelliste Serpent', actorId: 'serpent_duelist_elite', expression: 'stern', tag: 'Provocation', text: 'Une lame. Un adversaire. Pas de tactique, pas de retraite. Si vous survivez, la route est \u00e0 vous.', side: 'right', next: '3', effects: [], choices: [] },
+      { id: '3', speaker: 'Duelliste Serpent', actorId: 'serpent_duelist_elite', expression: 'hostile', tag: 'Engagement', text: 'En garde. Le Lion n\u2019apprendra rien de votre d\u00e9faite.', side: 'right', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'pre_troll_crossing',
+    sceneArtId: 'mystery_troll_crossing',
+    steps: [
+      { id: '1', speaker: 'Troll des pierres', actorId: 'forest_troll_elite', expression: 'hostile', tag: 'Territoire', text: 'GROOORR. Le pont. A moi. Vous pas passer.', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Troll des pierres', actorId: 'forest_troll_elite', expression: 'hostile', tag: 'Intimidation', text: 'Vous sentir faible. Vous sentir peur. Bon. Peur bon pour troll.', side: 'right', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'pre_young_dragon_roost',
+    sceneArtId: 'mystery_dragon_roost',
+    steps: [
+      { id: '1', speaker: 'Jeune dragon', actorId: 'young_dragon_elite', expression: 'hostile', tag: 'R\u00e9veil', text: 'GRRRRR\u2026 Qui entre dans mon nid ? Qui ose r\u00e9veiller ce qui dormait ?', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Jeune dragon', actorId: 'young_dragon_elite', expression: 'hostile', tag: 'Avertissement', text: 'Vous sentez la peur des autres. Vous sentez le feu aussi. Partez\u2026 ou br\u00fblez avec eux.', side: 'right', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'pre_lion_chief',
+    sceneArtId: 'lion_finale_judgement',
+    steps: [
+      { id: '1', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'stern', tag: 'Confrontation', text: 'Vous demandez le Sceau par la force. Je ne peux pas vous en vouloir \u2014 c\u2019est ainsi que mon clan l\u2019a gagn\u00e9 autrefois.', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'stern', tag: 'Mise en garde', text: 'Mais le Sceau ne se donne pas. Il se prend. Et si vous le voulez, vous devez me prouver que votre clan survivra \u00e0 ce qu\u2019il contient.', side: 'right', next: '3', effects: [], choices: [] },
+      { id: '3', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'hostile', tag: 'Duel', text: 'En garde. Le Lion ne c\u00e8de pas sans verser le sang.', side: 'right', next: null, effects: [], choices: [] },
     ],
   },
 ];
