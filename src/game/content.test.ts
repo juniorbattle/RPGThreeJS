@@ -128,6 +128,52 @@ describe('campaign content integrity', () => {
     }
   });
 
+  it('stages village_choice with Villageoise, Serpent, Séraphine, and Maelor', () => {
+    const dialogue = dialogues.get('village_choice')!;
+    const speakers = new Set(dialogue.steps.map((step) => step.actorId));
+    expect(speakers.has('villageoise')).toBe(true);
+    expect(speakers.has('serpent_raider')).toBe(true);
+    expect(speakers.has('sage_seraphine')).toBe(true);
+    expect(speakers.has('maelor')).toBe(true);
+  });
+
+  it('preserves village_defense and village_raid combat references in village_choice', () => {
+    const dialogue = dialogues.get('village_choice')!;
+    const combatIds = new Set<string>();
+    for (const step of dialogue.steps) {
+      for (const choice of step.choices ?? []) {
+        for (const effect of choice.effects) {
+          if (effect.type === 'startCombat') combatIds.add(effect.combatId);
+        }
+      }
+    }
+    expect(combatIds.has('village_defense')).toBe(true);
+    expect(combatIds.has('village_raid')).toBe(true);
+  });
+
+  it('stages lion_finale_judgement with Alaric, Champion, Maelor, and Séraphine', () => {
+    const dialogue = dialogues.get('lion_finale_judgement')!;
+    const speakers = new Set(dialogue.steps.map((step) => step.actorId));
+    expect(speakers.has('alaric')).toBe(true);
+    expect(speakers.has('lion_champion')).toBe(true);
+    expect(speakers.has('maelor')).toBe(true);
+    expect(speakers.has('sage_seraphine')).toBe(true);
+  });
+
+  it('preserves serpent_captain and lion_chief combat references in lion_finale_judgement', () => {
+    const dialogue = dialogues.get('lion_finale_judgement')!;
+    const combatIds = new Set<string>();
+    for (const step of dialogue.steps) {
+      for (const choice of step.choices ?? []) {
+        for (const effect of choice.effects) {
+          if (effect.type === 'startCombat') combatIds.add(effect.combatId);
+        }
+      }
+    }
+    expect(combatIds.has('serpent_captain')).toBe(true);
+    expect(combatIds.has('lion_chief')).toBe(true);
+  });
+
   it('uses explicit existing narrative art and dialogue actors', () => {
     const dialogueScenes = assets.dialogueScenes as Record<string, string>;
     const dialogueActors = assets.dialogueActors as Record<string, string>;
