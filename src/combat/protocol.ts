@@ -56,7 +56,7 @@ export const combatResultMessageSchema = z.object({
   combatId: z.string(),
   inventory: z.record(z.number().int().nonnegative()),
   participants: z.array(z.string()),
-  unitHealth: z.record(z.number().int().positive()),
+  unitHealth: z.record(z.number().int().nonnegative()),
 });
 
 export function toCombatResult(value: unknown): CombatResult | null {

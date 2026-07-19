@@ -70,4 +70,15 @@ describe('combat protocol', () => {
       unitHealth: { warrior: 23 },
     }).success).toBe(true);
   });
+
+  it('validates combat result with dead units (hp: 0)', () => {
+    expect(combatResultMessageSchema.safeParse({
+      type: 'rpg-threejs:combat-result',
+      victory: true,
+      combatId: 'forest_patrol',
+      inventory: { potion: 1 },
+      participants: ['warrior', 'cleric'],
+      unitHealth: { warrior: 23, cleric: 0 },
+    }).success).toBe(true);
+  });
 });
