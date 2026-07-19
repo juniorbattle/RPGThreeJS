@@ -94,9 +94,3 @@
   from { opacity: 0.1; }
   to { opacity: 0.18; }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .ui-environment-layer--fog {
-    animation: none;
-  }
-}

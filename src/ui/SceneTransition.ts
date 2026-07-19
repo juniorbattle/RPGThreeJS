@@ -16,17 +16,15 @@ interface TransitionTiming {
 }
 
 const TRANSITION_TIMINGS: Record<TransitionVariant, TransitionTiming> = {
-  fade: { inMs: 900, holdMs: 1000, outMs: 800 },
-  launch: { inMs: 1200, holdMs: 2600, outMs: 1200 },
-  dialogue: { inMs: 1150, holdMs: 2200, outMs: 1100 },
-  travel: { inMs: 1050, holdMs: 1700, outMs: 1000 },
-  result: { inMs: 1150, holdMs: 2000, outMs: 1050 },
+  fade: { inMs: 400, holdMs: 600, outMs: 400 },
+  launch: { inMs: 500, holdMs: 1000, outMs: 500 },
+  dialogue: { inMs: 500, holdMs: 1200, outMs: 500 },
+  travel: { inMs: 450, holdMs: 800, outMs: 450 },
+  result: { inMs: 500, holdMs: 1000, outMs: 500 },
   // Combat labels need time to establish the encounter before the battlefield appears.
-  combat: { inMs: 1200, holdMs: 2600, outMs: 1200 },
-  boss: { inMs: 1300, holdMs: 2500, outMs: 1200 },
+  combat: { inMs: 600, holdMs: 1400, outMs: 600 },
+  boss: { inMs: 600, holdMs: 1400, outMs: 600 },
 };
-
-const REDUCED_MOTION_TIMING: TransitionTiming = { inMs: 130, holdMs: 110, outMs: 150 };
 
 function styleFor(variant: TransitionVariant): TransitionStyle {
   return WIPE_VARIANTS.includes(variant) ? 'wipe' : 'fade';
@@ -37,9 +35,6 @@ function wait(ms: number): Promise<void> {
 }
 
 function timingFor(variant: TransitionVariant): TransitionTiming {
-  if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
-    return REDUCED_MOTION_TIMING;
-  }
   return TRANSITION_TIMINGS[variant];
 }
 

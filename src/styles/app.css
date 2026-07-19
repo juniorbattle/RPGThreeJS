@@ -1066,13 +1066,6 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .travel-roadmap__body { grid-template-columns: 1fr; }
   .travel-roadmap__timeline { border-right: 0; padding-right: 0; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .travel-view__mist,
-  .travel-view__glow,
-  .travel-view__particles { display: none; }
-  .travel-view__scene-dim,
-  .travel-view__choices { transition: none; }
-}
 
 .exploration-stop {
   position: fixed;
@@ -2280,10 +2273,6 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .dialogue[data-speaker-side="right"] .dialogue__choices { bottom: calc(48dvh + 10px); max-height: 26dvh; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
-}
-
 /* ─── Scene Transition Overlay ─── */
 .scene-transition {
   --transition-accent-rgb: 244, 217, 139;
@@ -2536,33 +2525,3 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 
 .scene-transition--locked { user-select: none; cursor: wait; }
 .scene-transition--locked * { pointer-events: none !important; }
-
-@media (prefers-reduced-motion: reduce) {
-  .scene-transition::before { animation: none; }
-  .scene-transition--wipe,
-  .scene-transition--wipe.scene-transition--visible,
-  .scene-transition--wipe.scene-transition--leaving {
-    clip-path: none;
-    transition: opacity .01ms linear !important;
-  }
-  .scene-transition--wipe { opacity: 0; }
-  .scene-transition--wipe.scene-transition--visible { opacity: 1; }
-  .scene-transition--wipe.scene-transition--leaving { opacity: 0; }
-  .scene-transition__motif,
-  .scene-transition--wipe .scene-transition__motif,
-  .scene-transition--wipe.scene-transition--visible .scene-transition__motif,
-  .scene-transition--wipe.scene-transition--leaving .scene-transition__motif {
-    animation: none;
-    transform: translate(-50%, 36px) scaleX(1);
-  }
-  .scene-transition--wipe .scene-transition__motif {
-    width: min(56vw, 250px);
-    height: 1px;
-    border: 0;
-    border-radius: 0;
-    background: linear-gradient(90deg, transparent, rgba(var(--transition-accent-rgb), .52), transparent);
-    box-shadow: none;
-  }
-  .scene-transition--wipe .scene-transition__motif::before,
-  .scene-transition--wipe .scene-transition__motif::after { display: none; }
-}

@@ -296,10 +296,6 @@ export class DialogueView {
 
   private typeText(element: HTMLElement, value: string): void {
     window.clearInterval(this.typingTimer);
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      element.textContent = value;
-      return;
-    }
     let index = 0;
     element.textContent = '';
     this.typingTimer = window.setInterval(() => {
