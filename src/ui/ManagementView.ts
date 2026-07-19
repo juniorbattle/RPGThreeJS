@@ -10,7 +10,7 @@ import { getReputationRule, getShopPrice } from '../game/reputation';
 import { assets } from '../render/assetManifest';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
 import { skills as SKILL_DEFS } from '../game/skills';
-import type { GameState, ItemCategory, ItemDefinition, UnitDefinition, UnitInstance } from '../game/types';
+import type { GameState, ItemCategory, ItemDefinition, UnitDefinition, UnitInstance, WeaponDefinition } from '../game/types';
 
 type ManagementTab = 'clan' | 'inventory' | 'shop' | 'skills';
 
@@ -152,7 +152,6 @@ export class ManagementView {
       </div>
       ${this.activeItemId ? this.renderItemModal() : ''}
       ${this.activeEquipSlot ? this.renderEquipSlotModal() : ''}
-      ${this.previewItemId ? this.renderPreviewModal() : ''}
     `;
     this.bind();
   }
@@ -212,7 +211,7 @@ export class ManagementView {
           </div>
           <div class="skills">
             <div class="section-title ui-section-title">Compétences</div>
-            <div class="skill-list">${this.renderSkills(selected)}</div>
+            ${this.renderSkills(selected)}
           </div>
           <div class="equipment">
             <div class="section-title ui-section-title">Équipement</div>
@@ -252,42 +251,109 @@ export class ManagementView {
       ? unit.equipment.weaponIds[slot.slot]!
       : unit.equipment.accessoryIds[slot.slot as 0 | 1] ?? null;
     const currentItem = currentId ? itemById.get(currentId) : null;
+    const currentWeapon = currentItem?.category === 'weapons' ? weaponById.get(currentItem.id) ?? null : null;
+    const previewItem = this.previewItemId ? itemById.get(this.previewItemId) : null;
     const available = this.getAvailableItemsForSlot(unit, slot.type, currentId);
-    const slotLabel = slot.type === 'weapon' ? 'Arme' : `Accessoire ${slot.slot + 1}`;
+    const isWeaponSlot = slot.type === 'weapon';
+    const slotLabel = isWeaponSlot ? 'Arme' : `Accessoire ${slot.slot + 1}`;
+    const statsClass = (item: ItemDefinition) => item.category === 'weapons' ? 'item-modal__weapon-details' : 'item-modal__stats stat-grid';
     return `<div class="item-modal-overlay" data-equip-slot-close>
-      <div class="item-modal ui-panel">
+      <div class="item-modal ui-panel weapon-modal">
         <button type="button" class="icon-button ui-icon-button" data-equip-slot-close aria-label="Fermer">×</button>
-        <div class="item-modal__header">
-          <span class="item-row__icon ui-chip">${currentItem?.icon ?? '◇'}</span>
-          <div><h3>${slotLabel}</h3><small>${currentItem?.name ?? 'Emplacement vide'}</small></div>
-        </div>
-        ${currentItem ? `<div class="item-modal__stats stat-grid">${this.itemStatRows(currentItem)}</div>` : '<p class="empty-copy">Aucun objet équipé.</p>'}
-        ${currentItem ? `<button type="button" class="ui-button ui-button--secondary" data-equip-unequip="${slot.type}" data-equip-unequip-slot="${slot.slot}">Retirer</button>` : ''}
-        <div class="equip-slot__list">
-          <div class="section-title ui-section-title">Remplacer par</div>
-          ${available.length > 0
-            ? available.map((item) => `<button type="button" class="item-row ui-panel ui-panel--dense item-row--selectable" data-preview-item="${item.id}"><span class="item-row__icon ui-chip">${item.icon}</span><span><strong>${item.name}</strong><small>${item.description}</small></span></button>`).join('')
-            : '<p class="empty-copy">Aucun objet disponible dans l\'inventaire.</p>'}
-        </div>
+        ${previewItem ? `
+          <div class="weapon-modal__header">
+            <span class="item-row__icon ui-chip">${previewItem.icon}</span>
+            <div class="weapon-modal__title-block">
+              <h3 class="weapon-modal__title">${previewItem.name}</h3>
+              <small class="weapon-modal__subtitle">${previewItem.description}</small>
+            </div>
+          </div>
+          <div class="${statsClass(previewItem)}">${this.itemStatRows(previewItem, currentWeapon ?? undefined, unit)}</div>
+          <div class="weapon-modal__actions">
+            <button type="button" class="ui-button ui-button--secondary" data-preview-back>← Retour</button>
+            <button type="button" class="ui-button" data-equip-confirm="${previewItem.id}">Équiper</button>
+          </div>
+        ` : `
+          <div class="weapon-modal__header">
+            <span class="item-row__icon ui-chip">${currentItem?.icon ?? '◇'}</span>
+            <div class="weapon-modal__title-block">
+              <h3 class="weapon-modal__title">${isWeaponSlot && currentItem ? currentItem.name : slotLabel}</h3>
+              ${isWeaponSlot && currentItem
+                ? '<small class="weapon-modal__status">Arme équipée</small>'
+                : `<small class="weapon-modal__subtitle">${currentItem?.name ?? 'Emplacement vide'}</small>`}
+            </div>
+          </div>
+          ${currentItem ? `<div class="${statsClass(currentItem)}">${this.itemStatRows(currentItem, undefined, unit)}</div>` : '<p class="empty-copy">Aucun objet équipé.</p>'}
+          ${!isWeaponSlot && currentItem ? `<button type="button" class="ui-button ui-button--secondary" data-equip-unequip="${slot.type}" data-equip-unequip-slot="${slot.slot}">Retirer</button>` : ''}
+          <div class="weapon-modal__replacement-section">
+            <div class="weapon-modal__section-title">Remplacer par</div>
+            ${available.length > 0
+              ? `<div class="weapon-replacement-list">${available.map((item) => this.renderReplacementCard(item, currentWeapon, isWeaponSlot ? unit : null)).join('')}</div>`
+              : '<p class="empty-copy">Aucun objet disponible dans l\'inventaire.</p>'}
+          </div>
+        `}
       </div>
     </div>`;
   }
 
-  private renderPreviewModal(): string {
-    const item = this.previewItemId ? itemById.get(this.previewItemId) : null;
-    if (!item) return '';
-    const slot = this.activeEquipSlot!;
-    return `<div class="item-modal-overlay item-modal-overlay--top" data-preview-close>
-      <div class="item-modal ui-panel">
-        <button type="button" class="icon-button ui-icon-button" data-preview-close aria-label="Fermer">×</button>
-        <div class="item-modal__header">
-          <span class="item-row__icon ui-chip">${item.icon}</span>
-          <div><h3>${item.name}</h3><small>${item.description}</small></div>
-        </div>
-        <div class="item-modal__stats stat-grid">${this.itemStatRows(item)}</div>
-        <button type="button" class="ui-button" data-equip-confirm="${item.id}">Équiper</button>
-      </div>
-    </div>`;
+  private weaponStatRow(label: string, value: string, delta?: number): string {
+    const deltaHtml = delta !== undefined && delta !== 0
+      ? `<span class="weapon-modal__stat-delta ${delta > 0 ? 'weapon-modal__stat-delta--positive' : 'weapon-modal__stat-delta--negative'}">${delta > 0 ? '+' : ''}${delta}</span>`
+      : '';
+    return `<div class="weapon-modal__stat-row"><span class="weapon-modal__stat-label">${label}</span><span class="weapon-modal__stat-value">${value}</span>${deltaHtml}</div>`;
+  }
+
+  private getWeaponSkillName(weapon: WeaponDefinition, unit: UnitInstance): string | null {
+    const tier = weapon.tier ?? 0;
+    if (tier <= 0) return null;
+    const targetAp = tier + 1;
+    const skillIds = getResolvedSkills(unit);
+    for (const id of skillIds) {
+      const s = skillPresentation[id];
+      if (s && s.ap === targetAp) return s.name;
+    }
+    return null;
+  }
+
+  private getWeaponProgressionLabel(weapon: WeaponDefinition, unit?: UnitInstance): string {
+    if (weapon.tier <= 0) return 'Aucune compétence active débloquée';
+    if (unit) {
+      const skillName = this.getWeaponSkillName(weapon, unit);
+      if (skillName) {
+        const ap = (weapon.tier ?? 0) + 1;
+        return `Débloque : ${skillName} — ${ap} PA`;
+      }
+    }
+    return getWeaponSkillUnlockLabel(weapon);
+  }
+
+  private renderReplacementCard(item: ItemDefinition, currentWeapon: WeaponDefinition | null, unit: UnitInstance | null): string {
+    if (item.category === 'weapons' && unit) {
+      const weapon = weaponById.get(item.id);
+      if (!weapon) return '';
+      const tierLabel = `T${weapon.tier ?? 0}`;
+      const profileLabel = getWeaponProfileLabel(weapon);
+      const skillName = this.getWeaponSkillName(weapon, unit);
+      const skillShort = skillName ? `${skillName} ${(weapon.tier ?? 0) + 1} PA` : (weapon.tier ?? 0) <= 0 ? 'Aucune compétence' : '';
+      const metaParts: string[] = [`${tierLabel} · ${profileLabel}`];
+      if (skillShort) metaParts.push(skillShort);
+      if (currentWeapon) {
+        const dDmg = weapon.damage - currentWeapon.damage;
+        const dHp = (weapon.healthBonus ?? 0) - (currentWeapon.healthBonus ?? 0);
+        const dAcc = weapon.accuracyBonus - currentWeapon.accuracyBonus;
+        if (dDmg !== 0) metaParts.push(`${dDmg > 0 ? '+' : ''}${dDmg} Puiss.`);
+        if (dHp !== 0) metaParts.push(`${dHp > 0 ? '+' : ''}${dHp} PV`);
+        if (dAcc !== 0) metaParts.push(`${dAcc > 0 ? '+' : ''}${dAcc} Précis.`);
+      }
+      return `<button type="button" class="weapon-replacement-row" data-preview-item="${item.id}">
+        <span class="item-row__icon ui-chip">${item.icon}</span>
+        <span class="weapon-replacement-main">
+          <strong>${item.name}</strong>
+          <small class="weapon-replacement-meta">${metaParts.join(' · ')}</small>
+        </span>
+      </button>`;
+    }
+    return `<button type="button" class="item-row ui-panel ui-panel--dense item-row--selectable" data-preview-item="${item.id}"><span class="item-row__icon ui-chip">${item.icon}</span><span><strong>${item.name}</strong><small>${item.description}</small></span></button>`;
   }
 
   private getAvailableItemsForSlot(unit: UnitInstance, type: 'weapon' | 'accessory', currentId: string | null): ItemDefinition[] {
@@ -315,20 +381,60 @@ export class ManagementView {
     const weaponId = unit.equipment.weaponIds[0];
     const weapon = weaponId ? weaponById.get(weaponId) : null;
     const apt = weapon ? WEAPON_APTITUDES[weapon.type] : null;
-    const basicAttack = '<article class="skill-card skill-card--innate"><div><strong>Attaque de base</strong><span>1 PA</span></div><p>Frappe avec l\'arme équipée.</p></article>';
-    const innateGift = apt
-      ? `<article class="skill-card skill-card--innate"><div><strong>Don inné — ${apt.name}</strong><span>Passif</span></div><p>${apt.description}</p></article>`
-      : '';
-    const skillCards = skillIds.map((skillId) => {
-      const skill = skillPresentation[skillId] ?? { name: skillId, description: 'Compétence disponible en combat.' };
-      const cost = skill.ap === undefined ? '' : `<span>${skill.ap} PA</span>`;
-      if (isSkillUnlockedForHero(unit, skillId)) {
-        return `<article class="skill-card"><div><strong>${skill.name}</strong>${cost}</div><p>${skill.description}</p></article>`;
-      }
-      const reason = getLockedSkillReason(unit, skillId);
-      return `<article class="skill-card skill-card--locked"><div><strong>${skill.name}</strong>${cost}</div><p>${skill.description}</p><small class="skill-card__lock">${reason}</small></article>`;
+
+    const activeSkills = skillIds.filter((id) => {
+      const s = skillPresentation[id];
+      return s && s.ap !== undefined && s.ap < 5 && isSkillUnlockedForHero(unit, id);
+    });
+    const activeCards = activeSkills.map((id) => {
+      const s = skillPresentation[id]!;
+      return `<article class="skill-card skill-card--active"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p></article>`;
     }).join('');
-    return basicAttack + innateGift + skillCards;
+    const actionsSection = `<div class="skill-section">
+      <div class="skill-section-title">Actions disponibles</div>
+      <div class="skill-list">
+        <article class="skill-card skill-card--active"><div><strong>Attaque de base</strong><span>1 PA</span></div><p>Frappe avec l'arme équipée.</p></article>
+        ${activeCards}
+      </div>
+    </div>`;
+
+    const innateSection = apt ? `<div class="skill-section">
+      <div class="skill-section-title">Don inné</div>
+      <article class="skill-card skill-card--passive">
+        <div><strong>${apt.name}</strong><span class="skill-badge--passive">Passif</span></div>
+        <p>${apt.description}</p>
+        <small class="skill-card__hint">Disponible dès le début</small>
+      </article>
+    </div>` : '';
+
+    const lockedSkills = skillIds.filter((id) => {
+      const s = skillPresentation[id];
+      return s && s.ap !== undefined && s.ap < 5 && !isSkillUnlockedForHero(unit, id);
+    });
+    const lockedRows = lockedSkills.map((id) => {
+      const s = skillPresentation[id]!;
+      const reason = getLockedSkillReason(unit, id);
+      return `<article class="skill-card skill-card--locked-compact"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><small class="skill-card__lock">${reason}</small></article>`;
+    }).join('');
+    const progressionSection = lockedSkills.length > 0 ? `<div class="skill-section">
+      <div class="skill-section-title">Progression</div>
+      <div class="skill-list">${lockedRows}</div>
+    </div>` : '';
+
+    const ultimateSkills = skillIds.filter((id) => {
+      const s = skillPresentation[id];
+      return s && s.ap !== undefined && s.ap >= 5;
+    });
+    const ultimateCards = ultimateSkills.map((id) => {
+      const s = skillPresentation[id]!;
+      return `<article class="skill-card skill-card--ultimate"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p><small class="skill-card__lock">Éveil spécial requis</small></article>`;
+    }).join('');
+    const ultimateSection = ultimateSkills.length > 0 ? `<div class="skill-section">
+      <div class="skill-section-title">Ultimate</div>
+      <div class="skill-list">${ultimateCards}</div>
+    </div>` : '';
+
+    return actionsSection + innateSection + progressionSection + ultimateSection;
   }
 
   private renderSkillUpgrades(): string {
@@ -464,36 +570,16 @@ export class ManagementView {
           <span class="item-row__icon ui-chip">${item.icon}</span>
           <div><h3>${item.name}</h3><small>${item.description}</small></div>
         </div>
-        <div class="item-modal__stats stat-grid">
+        <div class="${item.category === 'weapons' ? 'item-modal__weapon-details' : 'item-modal__stats stat-grid'}">
           ${this.itemStatRows(item)}
         </div>
       </div>
     </div>`;
   }
 
-  private itemStatRows(item: ItemDefinition): string {
+  private itemStatRows(item: ItemDefinition, comparisonWeapon?: WeaponDefinition, unit?: UnitInstance): string {
     if (item.category === 'weapons') {
-      const weapon = weaponById.get(item.id);
-      if (!weapon) return '';
-      const rangeLabel = weapon.minRange ? `${weapon.minRange}–${weapon.range}` : `${weapon.range}`;
-      const granted = weapon.skillModifier?.grants ?? [];
-      const grantedLabel = granted.length > 0
-        ? granted.map((id) => skillPresentation[id]?.name ?? id).join(', ')
-        : '';
-      const apt = WEAPON_APTITUDES[weapon.type];
-      const tierLabel = `T${weapon.tier ?? 0}`;
-      const profileLabel = getWeaponProfileLabel(weapon);
-      const unlockLabel = getWeaponSkillUnlockLabel(weapon);
-      return `${this.stat('Niveau', tierLabel)}
-        ${this.stat('Profil', profileLabel)}
-        ${this.stat('Puiss.', weapon.damage)}
-        ${this.stat('Portée', rangeLabel)}
-        ${this.stat('Précis.', `+${weapon.accuracyBonus}`)}
-        ${this.stat('Crit', `+${weapon.critBonus}`)}
-        ${weapon.healthBonus ? this.stat('PV', `+${weapon.healthBonus}`) : ''}
-        ${apt ? this.stat('Don inné', apt.name) : ''}
-        ${this.stat('Compétences', unlockLabel)}
-        ${grantedLabel ? this.stat('Don', grantedLabel) : ''}`;
+      return this.renderWeaponDetails(item, comparisonWeapon, unit);
     }
     if (item.category === 'accessories') {
       const modifiers = item.modifiers ?? {};
@@ -511,6 +597,35 @@ export class ManagementView {
         ${grantedLabel ? this.stat('Don', grantedLabel) : ''}`;
     }
     return '';
+  }
+
+  private renderWeaponDetails(item: ItemDefinition, comparisonWeapon?: WeaponDefinition, unit?: UnitInstance): string {
+    const weapon = weaponById.get(item.id);
+    if (!weapon) return '';
+    const tierLabel = `T${weapon.tier ?? 0}`;
+    const profileLabel = getWeaponProfileLabel(weapon);
+    const progressionLabel = this.getWeaponProgressionLabel(weapon, unit);
+    const rangeLabel = weapon.minRange ? `${weapon.minRange}–${weapon.range}` : `${weapon.range}`;
+    const showRange = weapon.range > 1 || weapon.minRange;
+    const cmp = comparisonWeapon;
+    const statRows = [
+      this.weaponStatRow('Puissance', `${weapon.damage}`, cmp ? weapon.damage - cmp.damage : undefined),
+      weapon.healthBonus ? this.weaponStatRow('PV', `+${weapon.healthBonus}`, cmp ? weapon.healthBonus - (cmp.healthBonus ?? 0) : undefined) : '',
+      showRange ? this.weaponStatRow('Portée', rangeLabel) : '',
+      this.weaponStatRow('Précision', `+${weapon.accuracyBonus}`, cmp ? weapon.accuracyBonus - cmp.accuracyBonus : undefined),
+      this.weaponStatRow('Critique', `+${weapon.critBonus}`, cmp ? weapon.critBonus - cmp.critBonus : undefined),
+    ].filter(Boolean).join('');
+    return `<div class="weapon-modal__body">
+      <div class="weapon-modal__badges">
+        <span class="weapon-modal__tier-badge">${tierLabel}</span>
+        <span class="weapon-modal__profile-badge">${profileLabel}</span>
+      </div>
+      <div class="weapon-modal__stat-list">${statRows}</div>
+      <div class="weapon-modal__progression">
+        <span class="weapon-modal__progression-label">Progression</span>
+        <p>${progressionLabel}</p>
+      </div>
+    </div>`;
   }
 
   private renderShop(): string {
@@ -639,12 +754,11 @@ export class ManagementView {
         this.render();
       });
     });
-    this.overlay.querySelectorAll<HTMLElement>('[data-preview-close]').forEach((el) => {
-      el.addEventListener('click', (e) => {
-        if (e.target === el) {
-          this.previewItemId = null;
-          this.render();
-        }
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-preview-back]').forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.previewItemId = null;
+        this.render();
       });
     });
     this.overlay.querySelectorAll<HTMLButtonElement>('[data-equip-confirm]').forEach((button) => {

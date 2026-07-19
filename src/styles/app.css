@@ -1649,6 +1649,71 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   font: 600 10px var(--ui-font-title);
   letter-spacing: .04em;
 }
+.skill-section { display: grid; gap: 6px; margin-bottom: 14px; }
+.skill-section-title {
+  color: #c4945a;
+  font: 700 11px var(--ui-font-title);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.skill-card--active {
+  border-color: rgba(230,199,126,.22);
+  background: linear-gradient(90deg, rgba(11,18,31,.78), rgba(5,9,17,.58));
+}
+.skill-card--active strong { color: #fff0c8; }
+.skill-card--active span { border-color: rgba(230,199,126,.28); color: var(--ui-color-gold-bright); }
+.skill-card--passive {
+  border-color: rgba(91,142,190,.28);
+  background: linear-gradient(90deg, rgba(11,18,31,.78), rgba(8,18,34,.58));
+}
+.skill-card--passive strong { color: #c8d8f0; }
+.skill-badge--passive {
+  flex: 0 0 auto;
+  padding: 2px 7px;
+  border: 1px solid rgba(91,142,190,.28);
+  color: #8bb4e0;
+  font: 800 9px var(--ui-font-title);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.skill-card__hint {
+  display: block;
+  margin-top: 2px;
+  color: #6a7a90;
+  font: 600 10px var(--ui-font-title);
+  letter-spacing: .04em;
+}
+.skill-card--locked-compact {
+  display: grid;
+  gap: 3px;
+  padding: 7px 10px;
+  border: 1px solid rgba(120,120,120,.12);
+  border-style: dashed;
+  background: rgba(5,9,17,.42);
+  opacity: .7;
+}
+.skill-card--locked-compact div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.skill-card--locked-compact strong { color: #7a7a7a; font: 600 12px var(--ui-font-title); }
+.skill-card--locked-compact span {
+  flex: 0 0 auto;
+  padding: 1px 6px;
+  border: 1px solid rgba(120,120,120,.15);
+  color: #777;
+  font: 700 8px var(--ui-font-title);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.skill-card--ultimate {
+  border-color: rgba(180,120,200,.25);
+  background: linear-gradient(90deg, rgba(18,11,31,.78), rgba(12,8,20,.58));
+}
+.skill-card--ultimate strong { color: #d8b8e8; }
+.skill-card--ultimate span { border-color: rgba(180,120,200,.28); color: #b890d0; }
 .skills-view {
   height: 100%;
   display: grid;
@@ -1838,6 +1903,132 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .item-modal__header small { color: #aeb9cc; font-size: 12px; }
 .item-modal__stats { gap: 12px; }
 .item-modal-overlay--top { z-index: 110; }
+.item-modal__weapon-details { margin-bottom: 18px; }
+.weapon-modal { max-width: 440px; }
+.weapon-modal__header { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; }
+.weapon-modal__title-block { display: grid; gap: 3px; min-width: 0; }
+.weapon-modal__title {
+  color: #fff0c8;
+  font: 700 20px/1.1 var(--ui-font-title);
+  letter-spacing: .02em;
+  margin: 0;
+}
+.weapon-modal__subtitle { color: #aeb9cc; font-size: 12px; line-height: 1.4; }
+.weapon-modal__status {
+  color: #8bb4e0;
+  font: 700 10px var(--ui-font-title);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.weapon-modal__body { display: grid; gap: 16px; }
+.weapon-modal__badges { display: flex; gap: 8px; }
+.weapon-modal__tier-badge {
+  padding: 3px 12px;
+  border: 1px solid rgba(230,199,126,.4);
+  color: var(--ui-color-gold-bright);
+  font: 800 11px var(--ui-font-title);
+  letter-spacing: .08em;
+  background: rgba(230,199,126,.08);
+}
+.weapon-modal__profile-badge {
+  padding: 3px 12px;
+  border: 1px solid rgba(160,170,190,.25);
+  color: #a8b4c8;
+  font: 700 11px var(--ui-font-title);
+  letter-spacing: .06em;
+  text-transform: capitalize;
+  background: rgba(160,170,190,.06);
+}
+.weapon-modal__stat-list {
+  display: grid;
+  gap: 0;
+  border: 1px solid rgba(230,199,126,.12);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.weapon-modal__stat-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 14px;
+  border-bottom: 1px solid rgba(230,199,126,.06);
+  background: linear-gradient(90deg, rgba(11,18,31,.5), rgba(5,9,17,.3));
+}
+.weapon-modal__stat-row:last-child { border-bottom: none; }
+.weapon-modal__stat-label {
+  flex: 0 0 90px;
+  color: #8a96aa;
+  font: 800 10px var(--ui-font-title);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.weapon-modal__stat-value {
+  flex: 1;
+  color: #ffe0a0;
+  font: 800 15px var(--ui-font-title);
+  text-align: right;
+}
+.weapon-modal__stat-delta {
+  flex: 0 0 auto;
+  min-width: 36px;
+  padding: 2px 8px;
+  font: 700 11px var(--ui-font-title);
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+.weapon-modal__stat-delta--positive { color: #6ec88a; border-color: rgba(110,200,138,.2); background: rgba(110,200,138,.05); }
+.weapon-modal__stat-delta--negative { color: #d88a6e; border-color: rgba(216,138,110,.15); background: rgba(216,138,110,.04); }
+.weapon-modal__progression {
+  padding: 12px 14px;
+  border: 1px solid rgba(230,199,126,.12);
+  border-left: 3px solid rgba(230,199,126,.2);
+  background: linear-gradient(90deg, rgba(8,18,34,.4), rgba(5,9,17,.25));
+}
+.weapon-modal__progression-label {
+  display: block;
+  color: #c4945a;
+  font: 800 9px var(--ui-font-title);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.weapon-modal__progression p { margin: 0; color: #cbd3df; font-size: 12px; line-height: 1.45; }
+.weapon-modal__actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
+.weapon-modal__replacement-section { margin-top: 20px; }
+.weapon-modal__section-title {
+  color: #c4945a;
+  font: 800 11px var(--ui-font-title);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.weapon-replacement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+.weapon-replacement-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 7px 12px;
+  border: 1px solid rgba(230,199,126,.1);
+  background: rgba(8,14,24,.4);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color .15s, background .15s;
+}
+.weapon-replacement-row:hover {
+  border-color: rgba(230,199,126,.3);
+  background: rgba(12,18,30,.55);
+}
+.weapon-replacement-main { display: flex; flex-direction: column; gap: 1px; min-width: 0; flex: 1; }
+.weapon-replacement-main strong { color: #fff0c8; font: 700 13px var(--ui-font-title); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.weapon-replacement-meta { color: #8a96aa; font-size: 11px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .equipment-slot {
   display: flex;
   align-items: center;
