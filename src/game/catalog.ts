@@ -19,26 +19,15 @@ export const WEAPON_TIER_HEALTH: Record<WeaponDefinition['type'], number[]> = {
   wand:        [0, 13,  25,  50,  75],
 };
 
-export const WEAPON_APTITUDES: Record<WeaponDefinition['type'], { name: string; description: string }> = {
-  greatsword:  { name: 'Garde Brisée',          description: "20% de chance de maudire la cible (END -30%) pendant 2 tours." },
-  holy_mace:   { name: 'Bénédiction Martiale',  description: "20% de chance de se soigner de 8% des PV max à chaque attaque." },
-  scythe:      { name: 'Vol de Vie',            description: "Récupère 10% des dégâts infligés en PV." },
-  long_spear:  { name: 'Percée',                description: "25% de chance de transpercer et frapper un second ennemi aligné." },
-  grimoire:    { name: 'Flux de Mana',          description: "20% de chance de récupérer 2 AP après une attaque de base." },
-  crosier:     { name: 'Main Bienveillante',    description: "Soigne les alliés au lieu de les blesser, inflige des dégâts aux ennemis." },
-  rapier:      { name: 'Lame Hybride',          description: "Attaque physique de près, attaque magique à distance." },
-  wand:        { name: 'Maléfice Aléatoire',    description: "25% de chance d'infliger une altération aléatoire à la cible." },
-  longbow:     { name: 'Tir de Précision',      description: "+5% de précision à portée maximale." },
-  shuriken:    { name: 'Double Frappe',         description: "25% de chance de lancer une seconde attaque gratuite." },
-  dagger:      { name: 'Frappe Sournoise',      description: "Dégâts accrus de 45% en attaquant par derrière." },
-  hand_cannon: { name: 'Tir de Zone',           description: "25% des dégâts en zone sur les ennemis adjacents." },
-};
+export function getInnateGift(definitionId: string): { name: string; description: string } | null {
+  return unitById.get(definitionId)?.innateGift ?? null;
+}
 
 export const weapons: WeaponDefinition[] = [
   // Greatsword (Warrior) — T0 Novice / T1 / T2
   { id: 'novice_greatsword', name: 'Espadon novice', description: "Lame d'écuyer pour les premières batailles.", category: 'weapons', price: 90, icon: '⚔', type: 'greatsword', tier: 0, damage: 20, range: 1, accuracyBonus: 5, critBonus: 5 },
   { id: 'steel_greatsword', name: "Espadon d'acier", description: 'Lame équilibrée et plus mordante.', category: 'weapons', price: 170, icon: '⚔', type: 'greatsword', tier: 1, damage: 25, range: 1, accuracyBonus: 7, critBonus: 5, healthBonus: 25 },
-  { id: 'lion_guard_greatsword', name: 'Espadon du Lion', description: 'Lame de garde renforcée par un anneau martial.', category: 'weapons', price: 320, icon: '⚔', type: 'greatsword', tier: 2, damage: 27, range: 1, accuracyBonus: 8, critBonus: 6, healthBonus: 50, skillModifier: { replaces: { w_lion_surge: 'p_oathwall' } } },
+  { id: 'lion_guard_greatsword', name: 'Espadon du Lion', description: 'Lame de garde renforcée par un anneau martial.', category: 'weapons', price: 320, icon: '⚔', type: 'greatsword', tier: 2, damage: 27, range: 1, accuracyBonus: 8, critBonus: 6, healthBonus: 50, skillModifier: { replaces: { w_whirl: 'p_oathwall' } } },
   // Holy mace (Paladin) — T0 Novice / T1 / T2
   { id: 'novice_mace', name: 'Masse novice', description: 'Masse simple des protecteurs débutants.', category: 'weapons', price: 130, icon: '✚', type: 'holy_mace', tier: 0, damage: 16, range: 1, accuracyBonus: 5, critBonus: 3 },
   { id: 'sacred_mace', name: 'Masse sacrée', description: 'Masse consacrée frappant avec force.', category: 'weapons', price: 220, icon: '✚', type: 'holy_mace', tier: 1, damage: 22, range: 1, accuracyBonus: 7, critBonus: 5, healthBonus: 23 },
@@ -69,8 +58,8 @@ export const weapons: WeaponDefinition[] = [
   { id: 'harmony_scepter', name: "Sceptre d'Harmonie", description: "Sceptre résonnant d'énergie arcanique.", category: 'weapons', price: 340, icon: '✦', type: 'wand', tier: 2, damage: 20, range: 3, accuracyBonus: 16, critBonus: 5, healthBonus: 25 },
   // Longbow (Archer) — T0 Novice / T1 / T2
   { id: 'novice_longbow', name: 'Arc novice', description: 'Arc court pour les engagements proches.', category: 'weapons', price: 120, icon: '⌁', type: 'longbow', tier: 0, damage: 14, range: 4, minRange: 2, accuracyBonus: 0, critBonus: 5 },
-  { id: 'longbow', name: 'Arc long', description: 'Excellente portée et puissance accrue.', category: 'weapons', price: 230, icon: '⌁', type: 'longbow', tier: 1, damage: 22, range: 4, minRange: 2, accuracyBonus: 5, critBonus: 10, healthBonus: 15, skillModifier: { replaces: { a_hawk_leap: 'ar_calibrated_shot' } } },
-  { id: 'windstep_longbow', name: 'Arc du Vent', description: "Arc nerveux équilibré par des bottes d'éclaireur.", category: 'weapons', price: 340, icon: '⌁', type: 'longbow', tier: 2, damage: 24, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 12, healthBonus: 30, skillModifier: { replaces: { a_arrow_rain: 'ni_shadow_step' } } },
+  { id: 'longbow', name: 'Arc long', description: 'Excellente portée et puissance accrue.', category: 'weapons', price: 230, icon: '⌁', type: 'longbow', tier: 1, damage: 22, range: 4, minRange: 2, accuracyBonus: 5, critBonus: 10, healthBonus: 15, skillModifier: { replaces: { a_precise_shot: 'ar_calibrated_shot' } } },
+  { id: 'windstep_longbow', name: 'Arc du Vent', description: "Arc nerveux équilibré par des bottes d'éclaireur.", category: 'weapons', price: 340, icon: '⌁', type: 'longbow', tier: 2, damage: 24, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 12, healthBonus: 30, skillModifier: { replaces: { a_hawk_leap: 'ni_shadow_step' } } },
   // Shuriken (Ninja) — T0 Novice / T1 / T2
   { id: 'novice_shuriken', name: 'Shuriken novice', description: 'Étoile de lancer pour les ninjas débutants.', category: 'weapons', price: 80, icon: '✦', type: 'shuriken', tier: 0, damage: 12, range: 3, accuracyBonus: 15, critBonus: 10 },
   { id: 'steel_shuriken', name: "Shuriken d'acier", description: 'Shuriken équilibré à la coupe plus profonde.', category: 'weapons', price: 180, icon: '✦', type: 'shuriken', tier: 1, damage: 18, range: 3, accuracyBonus: 15, critBonus: 12, healthBonus: 15 },
@@ -111,7 +100,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/alistair.png',
     baseStats: { maxHealth: 140, strength: 20, magic: 3, endurance: 18, dexterity: 9, charisma: 10, moveRange: 2 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_greatsword', 'steel_greatsword', 'lion_guard_greatsword'], skillIds: ['w_break_guard', 'w_charge', 'w_whirl', 'w_lion_surge'],
+    allowedWeaponIds: ['novice_greatsword', 'steel_greatsword', 'lion_guard_greatsword'], skillIds: ['w_break_guard', 'w_charge', 'w_whirl', 'w_lion_surge'], innateGift: { name: 'Garde Brisée', description: "20% de chance de maudire la cible (END -30%) pendant 2 tours." },
   },
   {
     id: 'white_mage', name: 'Marian', className: 'Mage Blanc', combatKind: 'cleric',
@@ -120,7 +109,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/marian.png',
     baseStats: { maxHealth: 100, strength: 6, magic: 22, endurance: 10, dexterity: 11, charisma: 18, moveRange: 2 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_crosier', 'sacred_crosier', 'miracle_crosier'], skillIds: ['w_salvation', 'w_purify', 'w_sanctuary', 'w_miracle'],
+    allowedWeaponIds: ['novice_crosier', 'sacred_crosier', 'miracle_crosier'], skillIds: ['w_salvation', 'w_purify', 'w_sanctuary', 'w_miracle'], innateGift: { name: 'Main Bienveillante', description: "Soigne les alliés au lieu de les blesser, inflige des dégâts aux ennemis." },
   },
   {
     id: 'dark_mage', name: 'Elara', className: 'Mage Noir', combatKind: 'mage',
@@ -129,7 +118,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/elara.png',
     baseStats: { maxHealth: 75, strength: 5, magic: 28, endurance: 7, dexterity: 12, charisma: 14, moveRange: 2 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_grimoire', 'mystic_grimoire', 'abyssal_grimoire'], skillIds: ['n_dark_bolt', 'n_teleport', 'n_flame_wave', 'n_dark_meteor'],
+    allowedWeaponIds: ['novice_grimoire', 'mystic_grimoire', 'abyssal_grimoire'], skillIds: ['n_dark_bolt', 'n_teleport', 'n_flame_wave', 'n_dark_meteor'], innateGift: { name: 'Flux de Mana', description: "20% de chance de récupérer 2 AP après une attaque de base." },
   },
   {
     id: 'archer', name: 'Kestrel', className: 'Archer', combatKind: 'archer',
@@ -138,7 +127,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/kestrel.png',
     baseStats: { maxHealth: 90, strength: 14, magic: 3, endurance: 9, dexterity: 22, charisma: 10, moveRange: 3 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_longbow', 'longbow', 'windstep_longbow'], skillIds: ['a_precise_shot', 'a_hawk_leap', 'a_arrow_rain', 'a_zenith_arrow'],
+    allowedWeaponIds: ['novice_longbow', 'longbow', 'windstep_longbow'], skillIds: ['a_precise_shot', 'a_hawk_leap', 'a_arrow_rain', 'a_zenith_arrow'], innateGift: { name: 'Tir de Précision', description: "+5% de précision à portée maximale." },
   },
   {
     id: 'rogue', name: 'Cedric', className: 'Rôdeur', combatKind: 'rogue',
@@ -147,7 +136,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/cedric.png',
     baseStats: { maxHealth: 100, strength: 15, magic: 3, endurance: 10, dexterity: 24, charisma: 10, moveRange: 3 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_dagger', 'steel_dagger', 'hooked_dagger'], skillIds: ['ro_sneak_attack', 'ro_tumble', 'ro_jaw_trap', 'ro_fault_breaker'],
+    allowedWeaponIds: ['novice_dagger', 'steel_dagger', 'hooked_dagger'], skillIds: ['ro_sneak_attack', 'ro_tumble', 'ro_jaw_trap', 'ro_fault_breaker'], innateGift: { name: 'Frappe Sournoise', description: "Dégâts accrus de 45% en attaquant par derrière." },
   },
   {
     id: 'lancer', name: 'Garen', className: 'Lancier', combatKind: 'knight',
@@ -156,7 +145,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/lancer.png',
     baseStats: { maxHealth: 130, strength: 17, magic: 3, endurance: 18, dexterity: 11, charisma: 8, moveRange: 2 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_spear', 'steel_spear', 'griffon_spear'], skillIds: ['l_long_thrust', 'l_haft_recoil', 'l_griffon_jump', 'l_firmament_lance'],
+    allowedWeaponIds: ['novice_spear', 'steel_spear', 'griffon_spear'], skillIds: ['l_long_thrust', 'l_haft_recoil', 'l_griffon_jump', 'l_firmament_lance'], innateGift: { name: 'Percée', description: "25% de chance de transpercer et frapper un second ennemi aligné." },
   },
   {
     id: 'paladin', name: 'Aldric', className: 'Paladin', combatKind: 'knight',
@@ -165,7 +154,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/aldric.png',
     baseStats: { maxHealth: 140, strength: 16, magic: 14, endurance: 17, dexterity: 9, charisma: 14, moveRange: 2 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_mace', 'sacred_mace', 'oath_mace'], skillIds: ['p_holy_strike', 'p_interpose', 'p_oathwall', 'p_radiant_judgement'],
+    allowedWeaponIds: ['novice_mace', 'sacred_mace', 'oath_mace'], skillIds: ['p_holy_strike', 'p_interpose', 'p_oathwall', 'p_radiant_judgement'], innateGift: { name: 'Bénédiction Martiale', description: "20% de chance de se soigner de 8% des PV max à chaque attaque." },
   },
   {
     id: 'dark_knight', name: 'Morvan', className: 'Chevalier Noir', combatKind: 'knight',
@@ -174,7 +163,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/morvan.png',
     baseStats: { maxHealth: 130, strength: 18, magic: 15, endurance: 14, dexterity: 11, charisma: 8, moveRange: 2 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_scythe', 'steel_scythe', 'eclipse_scythe'], skillIds: ['d_cursed_blade', 'd_void_step', 'd_blood_pact', 'd_devouring_eclipse'],
+    allowedWeaponIds: ['novice_scythe', 'steel_scythe', 'eclipse_scythe'], skillIds: ['d_cursed_blade', 'd_void_step', 'd_blood_pact', 'd_devouring_eclipse'], innateGift: { name: 'Vol de Vie', description: "Récupère 10% des dégâts infligés en PV." },
   },
   {
     id: 'red_mage', name: 'Lyra', className: 'Mage Rouge', combatKind: 'mage',
@@ -183,7 +172,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/lyra.png',
     baseStats: { maxHealth: 90, strength: 12, magic: 21, endurance: 9, dexterity: 13, charisma: 14, moveRange: 2 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_rapier', 'steel_rapier', 'crimson_rapier'], skillIds: ['r_arcane_blade', 'r_rune_step', 'r_scarlet_circle', 'r_perfect_duality'],
+    allowedWeaponIds: ['novice_rapier', 'steel_rapier', 'crimson_rapier'], skillIds: ['r_arcane_blade', 'r_rune_step', 'r_scarlet_circle', 'r_perfect_duality'], innateGift: { name: 'Lame Hybride', description: "Attaque physique de près, attaque magique à distance." },
   },
   {
     id: 'enchanter', name: 'Eldwin', className: 'Enchanteur', combatKind: 'cleric',
@@ -192,7 +181,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/eldwin.png',
     baseStats: { maxHealth: 85, strength: 5, magic: 23, endurance: 9, dexterity: 12, charisma: 20, moveRange: 2 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_wand', 'orb_scepter', 'harmony_scepter'], skillIds: ['e_vigor_rune', 'e_transpose', 'e_binding_seal', 'e_absolute_harmony'],
+    allowedWeaponIds: ['novice_wand', 'orb_scepter', 'harmony_scepter'], skillIds: ['e_vigor_rune', 'e_transpose', 'e_binding_seal', 'e_absolute_harmony'], innateGift: { name: 'Maléfice Aléatoire', description: "25% de chance d'infliger une altération aléatoire à la cible." },
   },
   {
     id: 'ninja', name: 'Talon', className: 'Ninja', combatKind: 'rogue',
@@ -201,7 +190,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/talon.png',
     baseStats: { maxHealth: 100, strength: 15, magic: 10, endurance: 10, dexterity: 26, charisma: 10, moveRange: 3 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_shuriken', 'steel_shuriken', 'shadow_shuriken'], skillIds: ['ni_venom_blade', 'ni_shadow_step', 'ni_smoke_bomb', 'ni_silent_assassin'],
+    allowedWeaponIds: ['novice_shuriken', 'steel_shuriken', 'shadow_shuriken'], skillIds: ['ni_venom_blade', 'ni_shadow_step', 'ni_smoke_bomb', 'ni_silent_assassin'], innateGift: { name: 'Double Frappe', description: "25% de chance de lancer une seconde attaque gratuite." },
   },
   {
     id: 'artillerist', name: 'Gunnar', className: 'Artilleur', combatKind: 'archer',
@@ -210,7 +199,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/gunnar.png',
     baseStats: { maxHealth: 100, strength: 15, magic: 4, endurance: 11, dexterity: 19, charisma: 8, moveRange: 2 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_cannon', 'siege_cannon', 'barrage_cannon'], skillIds: ['ar_calibrated_shot', 'ar_explosive_retreat', 'ar_incendiary_grenade', 'ar_artillery_barrage'],
+    allowedWeaponIds: ['novice_cannon', 'siege_cannon', 'barrage_cannon'], skillIds: ['ar_calibrated_shot', 'ar_explosive_retreat', 'ar_incendiary_grenade', 'ar_artillery_barrage'], innateGift: { name: 'Tir de Zone', description: "25% des dégâts en zone sur les ennemis adjacents." },
   },
 ];
 

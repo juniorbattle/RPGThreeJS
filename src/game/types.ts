@@ -380,6 +380,7 @@ export interface UnitDefinition {
   weaponSlotCount: 1;
   allowedWeaponIds: string[];
   skillIds: string[];
+  innateGift: { name: string; description: string };
 }
 
 export interface CombatantPayload {

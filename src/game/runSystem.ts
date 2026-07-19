@@ -115,7 +115,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     contentId: 'forest_ambush',
     label: 'Piste des bêtes',
     icon: '⚔',
-    links: ['lion-refugees'],
+    links: ['lion-nomad-crossroads'],
     risk: 1,
     reward: 2,
     difficulty: 'standard',
@@ -123,9 +123,24 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     hint: 'Des créatures affamées rôdent sur la première piste.',
   },
   {
-    id: 'lion-refugees',
+    id: 'lion-nomad-crossroads',
     type: 'event',
     depth: 3,
+    lane: 0,
+    contentId: 'mystery_recruit',
+    label: 'Croisement du rôdeur',
+    icon: '◇',
+    links: ['lion-refugees'],
+    risk: 1,
+    reward: 2,
+    difficulty: 'safe',
+    moralTone: 'pragmatic',
+    hint: 'Un éclaireur nomade propose ses services à la compagnie.',
+  },
+  {
+    id: 'lion-refugees',
+    type: 'event',
+    depth: 4,
     lane: 0,
     contentId: 'refugee_trial',
     label: 'Route des réfugiés',
@@ -140,9 +155,9 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-first-trial-event',
     type: 'event',
-    depth: 4,
+    depth: 5,
     lane: -0.75,
-    contentId: 'mystery_recruit',
+    contentId: 'mystery_help',
     label: 'Rencontre sur la route',
     icon: '◇',
     links: ['lion-first-refuge'],
@@ -155,7 +170,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-first-trial-combat',
     type: 'combat',
-    depth: 4,
+    depth: 5,
     lane: 0.75,
     contentId: 'forest_patrol',
     label: 'Piste contestée',
@@ -170,7 +185,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-first-refuge',
     type: 'refuge',
-    depth: 5,
+    depth: 6,
     lane: 0,
     contentId: 'forest_refuge',
     label: 'Refuge du Lion',
@@ -185,7 +200,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-reserve-trail',
     type: 'event',
-    depth: 6,
+    depth: 7,
     lane: 0,
     contentId: 'reserve_trail',
     label: 'Chemin des réserves',
@@ -200,7 +215,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-valmir-road',
     type: 'combat',
-    depth: 7,
+    depth: 8,
     lane: 0,
     contentId: 'road_to_valmir',
     label: 'Route de Bois-Clair',
@@ -215,7 +230,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-second-trial-event',
     type: 'event',
-    depth: 8,
+    depth: 9,
     lane: -0.75,
     contentId: 'old_shrine_event',
     label: 'Vieux sanctuaire',
@@ -230,7 +245,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-second-trial-combat',
     type: 'combat',
-    depth: 8,
+    depth: 9,
     lane: 0.75,
     contentId: 'serpent_checkpoint',
     label: 'Barrage renforcé',
@@ -245,7 +260,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-village-choice',
     type: 'story',
-    depth: 9,
+    depth: 10,
     lane: 0,
     contentId: 'village_choice',
     label: 'Bois-Clair assiégé',
@@ -260,7 +275,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-second-refuge',
     type: 'refuge',
-    depth: 10,
+    depth: 11,
     lane: 0,
     contentId: 'forest_refuge',
     label: 'Dernier feu du Lion',
@@ -275,7 +290,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-witnesses',
     type: 'event',
-    depth: 11,
+    depth: 12,
     lane: 0,
     contentId: 'witnesses_on_road',
     label: 'Témoins de Bois-Clair',
@@ -290,7 +305,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-final-trial-event',
     type: 'event',
-    depth: 12,
+    depth: 13,
     lane: -0.75,
     contentId: 'mystery_dragon_roost',
     label: 'Dernière tentation',
@@ -305,7 +320,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-final-trial-combat',
     type: 'combat',
-    depth: 12,
+    depth: 13,
     lane: 0.75,
     contentId: 'ruins_guardians',
     label: 'Ruines infestées',
@@ -320,7 +335,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-shadow-signs',
     type: 'mystery',
-    depth: 13,
+    depth: 14,
     lane: 0,
     contentId: 'shadow_signs',
     label: 'Signes des Ombres',
@@ -335,7 +350,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-final-judgement',
     type: 'boss',
-    depth: 14,
+    depth: 15,
     lane: 0,
     contentId: 'lion_finale_judgement',
     label: 'Jugement du Sceau',
@@ -355,8 +370,8 @@ const FIRST_EVENT_VARIANTS: Readonly<Record<LionConductTier, AdaptiveRouteVarian
     difficulty: 'safe', moralTone: 'honour', hint: 'Aider un voyageur éprouve la générosité de la compagnie.',
   },
   uncertain: {
-    type: 'event', contentId: 'mystery_recruit', label: 'Éclaireur nomade', icon: '◇', risk: 1, reward: 2,
-    difficulty: 'safe', moralTone: 'pragmatic', hint: 'Un éclaireur propose son arc contre une part de vos réserves.',
+    type: 'event', contentId: 'mystery_help', label: 'Marchand blessé', icon: '◇', risk: 1, reward: 2,
+    difficulty: 'safe', moralTone: 'pragmatic', hint: 'Aider un voyageur éprouve la générosité de la compagnie.',
   },
   infamy: {
     type: 'event', contentId: 'mystery_treasure', label: 'Chariot abandonné', icon: '◇', risk: 1, reward: 3,
@@ -420,8 +435,8 @@ const MANDATE_FIRST_EVENT_HONOUR: AdaptiveRouteVariant = {
 };
 
 const MANDATE_FIRST_EVENT_ADVANCE: AdaptiveRouteVariant = {
-  type: 'event', contentId: 'mystery_recruit', label: 'Éclaireur nomade', icon: '◇', risk: 1, reward: 2,
-  difficulty: 'safe', moralTone: 'pragmatic', hint: 'L’avance du Lion attire les pragmatiques — un éclaireur propose ses services.',
+  type: 'event', contentId: 'mystery_help', label: 'Marchand blessé', icon: '◇', risk: 1, reward: 2,
+  difficulty: 'safe', moralTone: 'pragmatic', hint: 'L’avance du Lion attire les pragmatiques — un voyageur demande de l’aide.',
 };
 
 const MANDATE_FIRST_COMBAT_HONOUR: AdaptiveRouteVariant = {

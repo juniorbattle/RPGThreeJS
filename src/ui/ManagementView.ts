@@ -1,6 +1,6 @@
 import {
-  craftRecipes, getFinalStats, getLockedSkillReason, getResolvedSkills, getWeaponProfileLabel, getWeaponSkillUnlockLabel,
-  isSkillUnlockedForHero, itemById, items, unitById, weaponById, weapons, WEAPON_APTITUDES,
+  craftRecipes, getFinalStats, getInnateGift, getLockedSkillReason, getResolvedSkills, getWeaponProfileLabel, getWeaponSkillUnlockLabel,
+  isSkillUnlockedForHero, itemById, items, unitById, weaponById, weapons,
 } from '../game/catalog';
 import {
   buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit,
@@ -395,14 +395,12 @@ export class ManagementView {
 
   private renderSkills(unit: UnitInstance): string {
     const skillIds = getResolvedSkills(unit);
-    const weaponId = unit.equipment.weaponIds[0];
-    const weapon = weaponId ? weaponById.get(weaponId) : null;
-    const apt = weapon ? WEAPON_APTITUDES[weapon.type] : null;
+    const apt = getInnateGift(unit.definitionId);
 
     const activeSkills = skillIds.filter((id) => {
       const s = skillPresentation[id];
       return s && s.ap !== undefined && s.ap < 5 && isSkillUnlockedForHero(unit, id);
-    });
+    }).sort((a, b) => (skillPresentation[a]?.ap ?? 0) - (skillPresentation[b]?.ap ?? 0));
     const activeCards = activeSkills.map((id) => {
       const s = skillPresentation[id]!;
       return `<article class="skill-card skill-card--active"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p></article>`;

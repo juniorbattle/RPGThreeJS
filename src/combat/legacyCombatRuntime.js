@@ -566,7 +566,7 @@ const DEFS=[
 
 const BOSS_DEFS=[
   {team:'foe',kind:'brute',name:'Général Serpent',className:'Général Serpent',portrait:'/assets/characters/pixel/full/serpent_general_boss.png',hp:450,str:30,mag:8,end:24,dex:9,cha:12,mov:0,weapons:[{name:'Lame Serpent',icon:'⚔️',type:'phys',min:1,max:2,power:18,crit:0.08,acc:0.9}],skills:['enemy_hex','boss_guard','boss_quake','boss_titan_slam'],ai:'aggressive',gx:5,gz:1,size:2,immobile:true,boss:true},
-  {team:'foe',kind:'knight',name:'Vieux Lion Alaric',className:'Vieux Lion Alaric',portrait:'/assets/characters/pixel/full/alaric.png',hp:520,str:28,mag:6,end:27,dex:10,cha:16,mov:0,weapons:[{name:'Lame du Lion',icon:'⚔️',type:'phys',min:1,max:2,power:16,crit:0.06,acc:0.92}],skills:['enemy_heavy_strike','boss_guard','boss_quake','boss_apocalypse'],ai:'guardian',gx:5,gz:1,size:2,immobile:true,boss:true}
+  {team:'foe',kind:'knight',name:'Champion du Lion',className:'Champion du Lion',portrait:'/assets/characters/pixel/full/lion_champion.png',hp:520,str:28,mag:6,end:27,dex:10,cha:16,mov:0,weapons:[{name:'Lame du Lion',icon:'⚔️',type:'phys',min:1,max:2,power:16,crit:0.06,acc:0.92}],skills:['enemy_heavy_strike','boss_guard','boss_quake','boss_apocalypse'],ai:'guardian',gx:5,gz:1,size:2,immobile:true,boss:true}
 ];
 // The 2x2 footprint occupies the rightmost two columns (6 and 7).
 for(const bossDef of BOSS_DEFS){ bossDef.gx=6; bossDef.gz=1; }
@@ -575,18 +575,11 @@ const BOSS_PORTRAITS={
   serpent_captain:'/assets/characters/pixel/full/serpent_general_boss.png',
   serpent_general_boss:'/assets/characters/pixel/full/serpent_general_boss.png',
   alaric:'/assets/characters/pixel/full/alaric.png',
-  lion_chief:'/assets/characters/pixel/full/alaric.png'
+  lion_chief:'/assets/characters/pixel/full/lion_champion.png'
 };
 const BOSS_ESCORTS={
-  serpent_captain:[
-    {team:'foe',kind:'brigand', name:'Garde Serpent',className:'Garde Serpent',portrait:'/assets/characters/pixel/full/serpent_raider.png',hp:95,str:15,mag:3,end:12,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:[],ai:'aggressive',gx:7,gz:0},
-    {team:'foe',kind:'brigand', name:'Garde Serpent',className:'Garde Serpent',portrait:'/assets/characters/pixel/full/serpent_raider.png',hp:95,str:15,mag:3,end:12,dex:14,cha:6,mov:2,weapons:[{name:'Dague',icon:'†',type:'phys',min:1,max:1,power:9,crit:0.18,acc:0.95}],skills:[],ai:'aggressive',gx:7,gz:3},
-    {team:'foe',kind:'darkmage',name:'Oracle Serpent',className:'Oracle Serpent',portrait:'/assets/characters/pixel/full/serpent_oracle.png',hp:75,str:4,mag:20,end:9,dex:12,cha:8,mov:2,weapons:[{name:'Bâton',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.05,acc:0.95}],skills:['enemy_dark_bolt','enemy_hex'],ai:'cautious',gx:4,gz:3}
-  ],
-  lion_chief:[
-    {team:'foe',kind:'knight',name:'Champion du Lion',className:'Champion du Lion',portrait:'/assets/characters/pixel/full/alaric.png',hp:120,str:20,mag:3,end:18,dex:8,cha:9,mov:2,weapons:[{name:'Lame',icon:'⚔',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.92}],skills:['enemy_heavy_strike'],ai:'guardian',gx:7,gz:0},
-    {team:'foe',kind:'darkmage',name:'Gardien du Sceau',className:'Gardien du Sceau',portrait:'/assets/characters/pixel/full/shrine_apparition.png',hp:90,str:6,mag:20,end:11,dex:10,cha:16,mov:2,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.04,acc:0.94}],skills:['enemy_hex','boss_guard'],ai:'cautious',gx:7,gz:3}
-  ]
+  serpent_captain:[],
+  lion_chief:[]
 };
 
 const VISUAL_UNIT_TEMPLATES={
@@ -610,7 +603,7 @@ const VISUAL_UNIT_TEMPLATES={
   forest_troll_elite:{team:'foe',kind:'brute',name:'Troll forestier',className:'Troll forestier',portrait:'/assets/characters/pixel/full/forest_troll_elite.png',hp:420,str:30,mag:2,end:25,dex:5,cha:5,mov:0,weapons:[{name:'Jet de pierre',icon:'◆',type:'phys',min:2,max:4,power:18,crit:0.04,acc:0.84}],skills:['enemy_hex','boss_guard','boss_quake','boss_slam'],ai:'guardian',size:2,immobile:true,elite:true},
   young_dragon_elite:{team:'foe',kind:'brute',name:'Jeune dragon',className:'Jeune dragon',portrait:'/assets/characters/pixel/full/young_dragon_elite.png',hp:400,str:24,mag:20,end:20,dex:12,cha:10,mov:0,weapons:[{name:'Souffle emeraude',icon:'✦',type:'mag',min:2,max:4,power:17,crit:0.07,acc:0.9}],skills:['enemy_hex','boss_regen','boss_freeze','boss_inferno'],ai:'cautious',size:2,immobile:true,elite:true},
   undead_champion:{team:'foe',kind:'knight',name:'Champion mort-vivant',className:'Champion mort-vivant',portrait:'/assets/characters/pixel/full/undead_champion.png',hp:350,str:26,mag:8,end:23,dex:8,cha:6,mov:0,weapons:[{name:'Onde froide',icon:'✦',type:'mag',min:2,max:3,power:15,crit:0.08,acc:0.9}],skills:['enemy_hex','boss_guard','boss_quake','boss_execution'],ai:'guardian',size:2,immobile:true,elite:true},
-  lion_champion:{team:'foe',kind:'knight',name:'Champion du Lion',className:'Champion du Lion',portrait:'/assets/characters/pixel/full/lion_champion.png',hp:120,str:20,mag:3,end:18,dex:8,cha:9,mov:2,weapons:[{name:'Lame',icon:'⚔',type:'phys',min:1,max:1,power:12,crit:0.08,acc:0.92}],skills:['enemy_heavy_strike','enemy_battle_cry'],ai:'guardian'},
+  lion_champion:{team:'foe',kind:'knight',name:'Champion du Lion',className:'Champion du Lion',portrait:'/assets/characters/pixel/full/lion_champion.png',hp:520,str:28,mag:6,end:27,dex:10,cha:16,mov:0,weapons:[{name:'Lame du Lion',icon:'⚔',type:'phys',min:1,max:2,power:16,crit:0.06,acc:0.92}],skills:['enemy_heavy_strike','boss_guard','boss_quake','boss_apocalypse'],ai:'guardian',size:2,immobile:true,boss:true},
   seal_guardian:{team:'foe',kind:'darkmage',name:'Gardien du Sceau',className:'Gardien du Sceau',portrait:'/assets/characters/pixel/full/seal_guardian.png',hp:90,str:6,mag:20,end:11,dex:10,cha:16,mov:2,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.04,acc:0.94}],skills:['enemy_hex','boss_guard'],ai:'cautious'}
 };
 const ENEMY_VISUAL_POSITIONS=[[6,0],[7,1],[6,3],[7,2]];
@@ -640,7 +633,10 @@ const STATUS={
   silence:{name:'Mutisme', col:'#d08ad0', noSkill:true},
   taunt:  {name:'Provoqué',col:'#ff7a3a'}
 };
-const WEAPON_APTITUDES={
+// Innate gifts are class-based, not weapon-based. The combat runtime keys by
+// weaponType because each class can only equip one weapon type, making it a
+// reliable proxy for the unit's class/innate gift.
+const INNATE_GIFTS_BY_WEAPON={
   greatsword:{name:'Garde Brisée',desc:"20% de chance de maudire la cible (END -30%) pendant 2 tours."},
   holy_mace:{name:'Bénédiction Martiale',desc:"20% de chance de se soigner de 8% des PV max à chaque attaque."},
   scythe:{name:'Vol de Vie',desc:"Récupère 10% des dégâts infligés en PV."},
@@ -826,7 +822,7 @@ function spawnUnits(){
     }
   }
   if(IS_BOSS_COMBAT&&!BOSS_SPAWNED){
-    const bossDef=BOSS_DEFS.find(b=>COMBAT_ID==='lion_chief'&&b.name.includes('Alaric'))||BOSS_DEFS[0];
+    const bossDef=BOSS_DEFS.find(b=>COMBAT_ID==='lion_chief'&&b.name.includes('Champion'))||BOSS_DEFS[0];
     if(ENCOUNTER_ESCORT_VISUAL_IDS.length){
       // A boss is the encounter's only major opponent. Ignore any accidental
       // elite escort so a malformed content entry cannot create boss + elite.
@@ -1711,7 +1707,7 @@ function statsDetailsHTML(u){ return '<button type="button" class="stats-toggle"
 function bindStatsToggle(u){ const button=dom.panel.querySelector('.stats-toggle'); if(!button)return; button.onclick=()=>{statsPanelExpanded=!statsPanelExpanded;renderPanel(u);}; }
 function renderPanel(u){ dom.panel.classList.remove('hidden'); dom.panel.dataset.team=u.team; const hpp=Math.max(0,Math.round(u.hp/u.maxhp*100)),portrait=uiPortraitFor(u.portrait)||(SPR[u.kind]&&SPR[u.kind].portrait?SPR[u.kind].portrait:'');
   let tags=''; for(const s in u.statuses){ const d=STATUS[s]; if(!d)continue; tags+='<span class="tag" style="color:'+d.col+';border-color:'+d.col+'">'+escHTML(d.name)+' '+u.statuses[s]+'</span>'; } if(!u.alive)tags+='<span class="tag" style="color:#ff5a4a;border-color:#ff5a4a">K.O.</span>';
-  const wt=u.weapons&&u.weapons[0]&&u.weapons[0].weaponType?WEAPON_APTITUDES[u.weapons[0].weaponType]:null;
+  const wt=u.weapons&&u.weapons[0]&&u.weapons[0].weaponType?INNATE_GIFTS_BY_WEAPON[u.weapons[0].weaponType]:null;
   const aptHTML=wt?'<div class="du-aptitude"><span class="du-aptitude__label">Aptitude</span><strong>'+escHTML(wt.name)+'</strong><small>'+escHTML(wt.desc)+'</small></div>':'';
   dom.panel.innerHTML='<div class="details-unit"><div class="du-top"><div class="du-portrait">'+(portrait?'<img src="'+portrait+'" alt="">':'<span>'+escHTML(u.name.charAt(0))+'</span>')+'</div><div class="du-id"><div class="du-head"><span>'+escHTML(u.className||u.name||'')+'</span></div><div class="nm">'+escHTML(u.name)+'</div>'+apPipsHTML(u)+'</div><div class="du-team"><b class="team-badge">'+teamLabel(u.team)+'</b></div></div>'+
    '<div class="du-hp"><div class="unit-row"><span>PV</span><b>'+u.hp+' / '+u.maxhp+'</b></div><div class="bar"><i style="width:'+hpp+'%"></i><span>'+hpp+'%</span></div></div>'+

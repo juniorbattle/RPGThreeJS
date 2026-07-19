@@ -235,7 +235,7 @@ export class GameApp {
       return;
     }
     if (node.type === 'shop') {
-      await this.openManagement('shop', node.contentId);
+      await this.openManagement('shop', node.contentId, 'temporary', false);
       this.markResolved(node.id);
       await this.enterTravel();
       return;
@@ -472,7 +472,10 @@ export class GameApp {
     this.setMode('MANAGEMENT');
     await this.management.open(tab, shopId, shopWallet);
     this.saves.saveAuto(this.state);
-    if (returnToTravel) await this.enterTravel();
+    if (returnToTravel) {
+      this.showTravel();
+      this.saves.saveAuto(this.state);
+    }
   }
 
   private async startNewChronicle(): Promise<void> {

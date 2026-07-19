@@ -12,9 +12,10 @@ type RawCombatConfig = Omit<CombatConfig, 'enemyVisualIds' | 'escortVisualIds'> 
 const rawNodes: CampaignNode[] = [
   { id: 'lion-camp', type: 'start', x: -9.4, z: 0, icon: '◆', label: 'Camp du Lion', links: ['lion-audience'] },
   { id: 'lion-audience', type: 'story', x: -8.1, z: 0, icon: '♛', label: 'Audience d\u2019Alaric', links: ['lion-opening-ambush'], dialogueId: 'lion_briefing' },
-  { id: 'lion-opening-ambush', type: 'random-combat', x: -6.9, z: 0, icon: '⚔', label: 'Piste des bêtes', links: ['lion-refugees'], combatId: 'forest_ambush' },
+  { id: 'lion-opening-ambush', type: 'random-combat', x: -6.9, z: 0, icon: '⚔', label: 'Piste des bêtes', links: ['lion-nomad-crossroads'], combatId: 'forest_ambush' },
+  { id: 'lion-nomad-crossroads', type: 'mystery', x: -6.2, z: 0, icon: '◇', label: 'Croisement du rôdeur', links: ['lion-refugees'], dialogueId: 'mystery_recruit' },
   { id: 'lion-refugees', type: 'mystery', x: -5.6, z: 0, icon: '◇', label: 'Route des réfugiés', links: ['lion-first-trial-event', 'lion-first-trial-combat'], dialogueId: 'refugee_trial' },
-  { id: 'lion-first-trial-event', type: 'mystery', x: -4.4, z: -1.1, icon: '◇', label: 'Éclaireur nomade', links: ['lion-first-refuge'], dialogueId: 'mystery_recruit' },
+  { id: 'lion-first-trial-event', type: 'mystery', x: -4.4, z: -1.1, icon: '◇', label: 'Rencontre sur la route', links: ['lion-first-refuge'], dialogueId: 'mystery_help' },
   { id: 'lion-first-trial-combat', type: 'random-combat', x: -4.4, z: 1.1, icon: '⚔', label: 'Patrouille Serpent', links: ['lion-first-refuge'], combatId: 'forest_patrol' },
   { id: 'lion-first-refuge', type: 'story', x: -3.1, z: 0, icon: '⌂', label: 'Refuge du Lion', links: ['lion-reserve-trail'] },
   { id: 'lion-reserve-trail', type: 'mystery', x: -1.9, z: 0, icon: '◇', label: 'Chemin des réserves', links: ['lion-valmir-road'], dialogueId: 'reserve_trail' },
@@ -34,7 +35,7 @@ const rawCombats: RawCombatConfig[] = [
   { id: 'village_defense', sceneId: 'bois_clair_burning', objective: 'Repoussez les pillards et protégez les habitants de Bois-Clair.', encounterLabel: 'Défense de Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, preCombatDialogueId: 'pre_village_defense', postCombatDialogueId: 'village_defense_aftermath', rewards: { gold: 160, reputation: 10, materials: { red_gem: 2 } } },
   { id: 'village_raid', sceneId: 'bois_clair_burning', objective: 'Sécurisez les coffres pendant que les Serpents dispersent les témoins.', encounterLabel: 'Raid sur Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, preCombatDialogueId: 'pre_village_raid', postCombatDialogueId: 'village_raid_aftermath', rewards: { gold: 260, reputation: -15, materials: { red_gem: 3 } } },
   { id: 'forest_patrol', sceneId: 'forest_route', objective: 'Éliminez la patrouille Serpent avant qu’elle ne donne l’alerte.', encounterLabel: 'Patrouille Serpent', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 80, reputation: 1, materials: { red_gem: 1 } } },
-  { id: 'forest_ambush', sceneId: 'forest_route', objective: 'Survivez à l’embuscade dans le sous-bois.', encounterLabel: 'Embuscade', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 70, reputation: 1, materials: { red_gem: 1 } } },
+  { id: 'forest_ambush', sceneId: 'forest_route', objective: 'Défaites le champion du Lion et réclamez le Sceau.', encounterLabel: 'Embuscade', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 70, reputation: 1, materials: { red_gem: 1 } } },
   { id: 'wolf_pack', sceneId: 'forest_route', objective: 'Repoussez la meute qui encercle la compagnie.', encounterLabel: 'Meute affamée', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 75, reputation: 1, materials: { red_gem: 1 } } },
   { id: 'spider_nest', sceneId: 'forest_route', objective: 'Détruisez le nid venimeux avant que la piste ne soit condamnée.', encounterLabel: 'Nid venimeux', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 85, reputation: 1, materials: { red_gem: 1 } } },
   { id: 'marsh_crossing', sceneId: 'forest_route', objective: 'Traversez les eaux infestées qui coupent la route de Bois-Clair.', encounterLabel: 'Passage des marais', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 90, reputation: 1, materials: { red_gem: 1 } } },
@@ -47,7 +48,7 @@ const rawCombats: RawCombatConfig[] = [
   { id: 'troll_crossing', sceneId: 'forest_route', objective: 'Forcez le passage gardé par le troll des pierres moussues.', encounterLabel: 'Passage du troll', encounterRank: 'elite', maxPlayerUnits: 4, preCombatDialogueId: 'pre_troll_crossing', rewards: { gold: 180, reputation: 2, materials: { red_gem: 3 } } },
   { id: 'young_dragon_roost', sceneId: 'lion_sanctum', objective: 'Approchez le nid du jeune dragon et survivez à son courroux.', encounterLabel: 'Nid du jeune dragon', encounterRank: 'elite', maxPlayerUnits: 4, preCombatDialogueId: 'pre_young_dragon_roost', rewards: { gold: 260, reputation: 2, materials: { red_gem: 3 } } },
   { id: 'serpent_captain', sceneId: 'lion_sanctum', objective: 'Traquez le général Serpent et exposez l’artefact des Ombres.', encounterLabel: 'Général Serpent', encounterRank: 'boss', maxPlayerUnits: 4, isBoss: true, preCombatDialogueId: 'serpent_general_pre_combat', postCombatDialogueId: 'lion_finale_aftermath', rewards: { gold: 300, reputation: 12, materials: { red_gem: 5 } } },
-  { id: 'lion_chief', sceneId: 'lion_sanctum', objective: 'Survivez à l’épreuve du Vieux Lion.', encounterLabel: 'Duel pour le Sceau', encounterRank: 'boss', maxPlayerUnits: 4, isBoss: true, preCombatDialogueId: 'pre_lion_chief', postCombatDialogueId: 'lion_finale_aftermath', rewards: { gold: 200, reputation: -10, materials: { red_gem: 5 } } },
+  { id: 'lion_chief', sceneId: 'lion_sanctum', objective: 'Défaites le champion du Lion et réclamez le Sceau.', encounterLabel: 'Duel pour le Sceau', encounterRank: 'boss', maxPlayerUnits: 4, isBoss: true, preCombatDialogueId: 'pre_lion_chief', postCombatDialogueId: 'lion_finale_aftermath', rewards: { gold: 200, reputation: -10, materials: { red_gem: 5 } } },
 ];
 
 const combatVisualComposition: Record<string, Partial<Pick<CombatConfig, 'enemyVisualIds' | 'bossVisualId' | 'escortVisualIds'>>> = {
@@ -63,16 +64,15 @@ const combatVisualComposition: Record<string, Partial<Pick<CombatConfig, 'enemyV
   road_to_valmir: { enemyVisualIds: ['wild_boar', 'venom_serpent', 'forest_badger'] },
   ruins_guardians: { enemyVisualIds: ['goblin', 'skeleton', 'cave_rat'] },
   serpent_hunters: { enemyVisualIds: ['serpent_raider', 'serpent_brute', 'serpent_oracle', 'serpent_raider'] },
-  serpent_duelist_trial: { enemyVisualIds: ['serpent_duelist_elite', 'serpent_raider', 'serpent_oracle'] },
-  troll_crossing: { enemyVisualIds: ['forest_troll_elite', 'cave_rat', 'forest_spider'] },
-  young_dragon_roost: { enemyVisualIds: ['young_dragon_elite', 'venom_serpent', 'marsh_toad'] },
+  serpent_duelist_trial: { enemyVisualIds: ['serpent_duelist_elite'] },
+  troll_crossing: { enemyVisualIds: ['forest_troll_elite'] },
+  young_dragon_roost: { enemyVisualIds: ['young_dragon_elite'] },
   serpent_captain: {
     bossVisualId: 'serpent_general_boss',
-    escortVisualIds: ['serpent_raider', 'serpent_brute', 'serpent_oracle'],
+    escortVisualIds: [],
   },
   lion_chief: {
-    bossVisualId: 'alaric',
-    // Alaric's trial is a true one-on-one boss encounter: no elite guards.
+    bossVisualId: 'lion_champion',
     escortVisualIds: [],
   },
 };
@@ -382,7 +382,7 @@ const rawDialogues = [
         side: 'right',
         effects: [],
         choices: [
-          { text: 'Recruter Cedric — 50 or.', next: '2', requiresGold: 50, effects: [{ type: 'addGold', amount: -50 }, { type: 'recruitUnit', unitId: 'rogue' }, { type: 'addReputation', amount: 3 }, { type: 'setFlag', key: 'recruitedCedric', value: true }] },
+          { text: 'Recruter Cedric — 50 or.', next: '2', requiresGold: 50, requiresReputationMin: 20, blockedText: 'Réputation insuffisante — Cedric ne suit pas les clans sans honneur.', effects: [{ type: 'addGold', amount: -50 }, { type: 'recruitUnit', unitId: 'rogue' }, { type: 'addReputation', amount: 3 }, { type: 'setFlag', key: 'recruitedCedric', value: true }] },
           { text: 'Décliner.', next: '3', effects: [] },
         ],
       },
@@ -1010,8 +1010,8 @@ const rawDialogues = [
     sceneArtId: 'lion_finale_judgement',
     steps: [
       { id: '1', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'stern', tag: 'Confrontation', text: 'Vous demandez le Sceau par la force. Je ne peux pas vous en vouloir \u2014 c\u2019est ainsi que mon clan l\u2019a gagn\u00e9 autrefois.', side: 'right', next: '2', effects: [], choices: [] },
-      { id: '2', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'stern', tag: 'Mise en garde', text: 'Mais le Sceau ne se donne pas. Il se prend. Et si vous le voulez, vous devez me prouver que votre clan survivra \u00e0 ce qu\u2019il contient.', side: 'right', next: '3', effects: [], choices: [] },
-      { id: '3', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'hostile', tag: 'Duel', text: 'En garde. Le Lion ne c\u00e8de pas sans verser le sang.', side: 'right', next: null, effects: [], choices: [] },
+      { id: '2', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'stern', tag: 'Mise en garde', text: 'Mais le Sceau ne se donne pas. Il se prend. Mon bras n\u2019est plus ce qu\u2019il \u00e9tait, mais mon champion porte le poids du Lion dans sa lame.', side: 'right', next: '3', effects: [], choices: [] },
+      { id: '3', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'hostile', tag: 'Duel', text: 'Prouvez votre valeur face \u00e0 mon champion. Le Lion ne c\u00e8de pas sans verser le sang.', side: 'right', next: null, effects: [], choices: [] },
     ],
   },
 ];

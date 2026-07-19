@@ -87,7 +87,7 @@ function hasCurrentLionRoute(state: GameState): boolean {
 
 function migrateCurrentLionRoute(previous: GameState): GameState {
   const previousNode = getRunNode(previous.run);
-  const targetDepth = Math.min(15, previousNode?.depth ?? previous.resolvedNodeIds.length);
+  const targetDepth = Math.min(16, previousNode?.depth ?? previous.resolvedNodeIds.length);
   const run = createRunState(previous.run.seed);
   for (let depth = 0; depth < targetDepth; depth += 1) {
     const next = getAvailableRunNodes(run)[0];
