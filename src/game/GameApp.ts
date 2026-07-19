@@ -390,7 +390,6 @@ export class GameApp {
       variant,
       label: config.encounterLabel,
       task: async () => {
-        this.saves.saveAuto(this.state);
         this.setMode('COMBAT');
         this.travel.close();
         this.chrome.replaceChildren();

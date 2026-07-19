@@ -380,7 +380,8 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .dialogue__portrait.has-image::before { opacity: .56; }
 .dialogue__portrait.is-visible { opacity: 1; transform: translateY(0) scale(1.02); }
 .dialogue__portrait--left { left: clamp(-4px, 4vw, 76px); }
-.dialogue__portrait--right { right: clamp(-4px, 4vw, 76px); }
+.dialogue__portrait--right { right: clamp(-4px, 4vw, 76px); transform: translateY(32px) scale(.96) scaleX(-1); }
+.dialogue__portrait--right.is-visible { transform: translateY(0) scale(1.02) scaleX(-1); }
 .dialogue__portrait--center { left: 50%; transform: translate(-50%, 32px) scale(.96); }
 .dialogue__portrait--center.is-visible { transform: translate(-50%, 0) scale(1); opacity: .94; }
 .dialogue__box {
