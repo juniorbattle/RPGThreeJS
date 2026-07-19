@@ -242,7 +242,7 @@ export class GameApp {
     }
     if (node.type === 'combat' || node.type === 'boss') {
       if (!combatConfigs.has(node.contentId)) {
-        await this.playDialogue(node.contentId);
+        await this.playDialogue(node.contentId, node.label);
         if (this.pendingCombatId) await this.flushPendingCombat(node);
         else {
           this.markResolved(node.id);
@@ -258,7 +258,7 @@ export class GameApp {
       await this.enterTravel();
       return;
     }
-    await this.playDialogue(node.contentId);
+    await this.playDialogue(node.contentId, node.label);
     if (this.pendingCombatId) {
       await this.flushPendingCombat(node);
     } else {
@@ -268,13 +268,13 @@ export class GameApp {
     }
   }
 
-  private async playDialogue(dialogueId: string): Promise<void> {
+  private async playDialogue(dialogueId: string, fallbackLabel?: string): Promise<void> {
     const sequence = dialogues.get(dialogueId);
     if (!sequence) throw new Error(`Missing dialogue '${dialogueId}'.`);
     let playPromise: Promise<void> | null = null;
     await sceneTransition.run({
       variant: 'dialogue',
-      label: sequence.title ?? '',
+      label: sequence.title ?? fallbackLabel ?? '',
       task: async () => {
         this.setMode('NARRATIVE');
         playPromise = this.dialogue.play(sequence);
@@ -369,7 +369,7 @@ export class GameApp {
     const config = combatConfigs.get(combatId);
     if (!config) throw new Error(`Missing combat '${combatId}'.`);
     if (config.preCombatDialogueId) {
-      await this.playDialogue(config.preCombatDialogueId);
+      await this.playDialogue(config.preCombatDialogueId, node.label);
       if (this.pendingCombatId) {
         await this.flushPendingCombat(node);
         return;
@@ -436,7 +436,7 @@ export class GameApp {
       secureRunLoot(this.state);
       const bossConfig = combatConfigs.get(result.combatId);
       if (bossConfig?.postCombatDialogueId) {
-        await this.playDialogue(bossConfig.postCombatDialogueId);
+        await this.playDialogue(bossConfig.postCombatDialogueId, node.label);
         if (this.pendingCombatId) {
           await this.flushPendingCombat(node);
           return;
@@ -448,7 +448,7 @@ export class GameApp {
     }
     const combatConfig = combatConfigs.get(result.combatId);
     if (combatConfig?.postCombatDialogueId) {
-      await this.playDialogue(combatConfig.postCombatDialogueId);
+      await this.playDialogue(combatConfig.postCombatDialogueId, node.label);
       if (this.pendingCombatId) {
         await this.flushPendingCombat(node);
         return;
