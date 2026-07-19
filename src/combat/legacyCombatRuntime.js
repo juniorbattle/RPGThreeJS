@@ -1726,7 +1726,7 @@ function tipFor(u,b){ const a=b.dataset.a;
   if(a==='move')return 'Déplacer · MOV '+u.mov;
   if(a==='undo')return 'Annuler le déplacement (U)';
   if(a==='attack'){ const w=u.weapons[+b.dataset.wi||0]; const n=G.basicAttacksThisTurn; return w.name+' · portée '+w.min+'-'+w.max+' · puiss '+w.power+' · crit '+Math.round(w.crit*100)+'% · préc '+Math.round(w.acc*100)+'% · 3 niveaux d\'Élan'+(n>0?' · escalade +'+n+' PA':''); }
-  if(a==='skill')return 'Compétences · '+u.ap+' AP';
+  if(a==='skill'){ if(!u.skills.length)return 'Aucune compétence disponible'; if(hasS(u,'silence'))return 'Mutisme · compétences bloquées'; return 'Compétences · '+u.ap+' AP'; }
   if(a==='item')return 'Objets · sac ×'+invCount()+' · dès '+(G.itemsUsedThisTurn+1)+' AP';
   if(a==='wait')return 'Attendre · fin de tour'; return ''; }
 function openActionMenu(){ const u=G.active; if(!u||u.team!=='player'||G.over){ closeMenus(); return; }
@@ -1735,7 +1735,7 @@ function openActionMenu(){ const u=G.active; if(!u||u.team!=='player'||G.over){ 
   const n=G.basicAttacksThisTurn;
   const atkDis = u.ap<1+n;
   const atkSub = 'Élan · dès '+(1+n)+' AP';
-  const sklDis = !u.skills.length || hasS(u,'silence') || !u.skills.some(s=>getSpec(u,s).ap<=u.ap);
+  const sklDis = !u.skills.length || hasS(u,'silence');
   const itmDis = u.ap<(G.itemsUsedThisTurn+1) || invCount()<=0;
   const ico=(a,icon,label,sub,dot,dis,extra)=>'<div class="ico action-'+a+(dis?' dis':'')+'" role="button" aria-disabled="'+(dis?'true':'false')+'" data-a="'+a+'"'+(extra||'')+' style="--action-accent:'+dot+'"><div class="c"><span>'+icon+'</span></div><div class="tx"><b>'+escHTML(label)+'</b><small>'+escHTML(sub)+'</small></div><div class="dot"></div></div>';
   let h = (md&&!G.movedBeforeAct) ? ico('undo','↩','Annuler','Déplacement','#f59e0b',false) : ico('move','◆','Déplacer','MOV '+u.mov,'#55d4ff',md||hasS(u,'root')||u.immobile);
