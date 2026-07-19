@@ -1935,7 +1935,7 @@ function startDeployment(){
 let TUTORIAL_SEEN=false;
 try{ TUTORIAL_SEEN=localStorage.getItem('rpg-tutorial-seen')==='1'; }catch(e){}
 let tutorialPage=0;
-const TUTORIAL_PAGES=4;
+const TUTORIAL_PAGES=5;
 
 function buildTutorialDots(){
   if(!dom.tutorial)return;

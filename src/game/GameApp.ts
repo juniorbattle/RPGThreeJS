@@ -158,6 +158,7 @@ export class GameApp {
       variant: 'travel',
       task: async () => {
         this.showTravel();
+        this.saves.saveAuto(this.state);
       },
     });
   }
@@ -187,7 +188,6 @@ export class GameApp {
       this.state.seenUniqueEvents.push(entered.contentId);
     }
     this.state.stepCounter += 1;
-    this.saves.saveAuto(this.state);
     await this.resolveRunNode(entered, false);
   }
 
@@ -201,7 +201,6 @@ export class GameApp {
         }
         securedGold = secureRunLoot(this.state).gold;
         this.state.flags[securedFlag] = true;
-        this.saves.saveAuto(this.state);
       }
       let refugeMessage = '';
       while (true) {
@@ -224,7 +223,6 @@ export class GameApp {
             : getWoundedUnitCount(this.state) === 0
               ? 'Aucune unit&eacute; bless&eacute;e : le repos est inutile.'
               : 'Or insuffisant pour soigner la compagnie.';
-          this.saves.saveAuto(this.state);
           continue;
         }
         this.setMode('RESULT');
@@ -283,7 +281,6 @@ export class GameApp {
       },
     });
     await playPromise;
-    this.saves.saveAuto(this.state);
   }
 
   private async maybePlayATEs(nodeId: string): Promise<void> {
@@ -305,7 +302,6 @@ export class GameApp {
       });
       await playPromise;
       this.state.flags[flagKey] = true;
-      this.saves.saveAuto(this.state);
     }
   }
 
@@ -359,7 +355,6 @@ export class GameApp {
           this.state.endingId = effect.endingId;
           break;
       }
-      this.saves.saveAuto(this.state);
     }
   }
 
@@ -436,7 +431,6 @@ export class GameApp {
     }
     changeReputation(this.state, rewards.reputation, `combat:${result.combatId}`);
     this.markResolved(node.id);
-    this.saves.saveAuto(this.state);
     if (node.type === 'boss') {
       this.state.run.status = 'completed';
       secureRunLoot(this.state);
@@ -449,7 +443,6 @@ export class GameApp {
         }
       }
       await this.playDialogue('epilogue');
-      this.saves.saveAuto(this.state);
       await this.enterTravel();
       return;
     }
@@ -467,7 +460,6 @@ export class GameApp {
 
   private markResolved(nodeId: string): void {
     if (!this.state.resolvedNodeIds.includes(nodeId)) this.state.resolvedNodeIds.push(nodeId);
-    this.saves.saveAuto(this.state);
   }
 
   private async openManagement(
@@ -505,7 +497,6 @@ export class GameApp {
     });
     await prologuePromise;
     this.state.flags.prologueSeen = true;
-    this.saves.saveAuto(this.state);
     await this.playDialogue('acte_ouverture');
     await this.enterTravel();
   }
