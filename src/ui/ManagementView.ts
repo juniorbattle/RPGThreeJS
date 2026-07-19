@@ -10,7 +10,7 @@ import { getReputationRule, getShopPrice } from '../game/reputation';
 import { assets } from '../render/assetManifest';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
 import { skills as SKILL_DEFS } from '../game/skills';
-import type { GameState, ItemCategory, ItemDefinition, UnitDefinition, UnitInstance, WeaponDefinition } from '../game/types';
+import type { GameState, InnateGiftModifier, ItemCategory, ItemDefinition, UnitDefinition, UnitInstance, WeaponDefinition } from '../game/types';
 
 type ManagementTab = 'clan' | 'inventory' | 'shop' | 'skills';
 
@@ -209,19 +209,14 @@ export class ManagementView {
             ${this.stat('END', stats.endurance)}${this.stat('DEX', stats.dexterity)}${this.stat('CHA', stats.charisma)}
             ${this.stat('DÉPLAC.', stats.moveRange)}
           </div>
-          <div class="skills">
-            <div class="section-title ui-section-title">Compétences</div>
-            ${this.renderSkills(selected)}
-          </div>
           <div class="equipment">
             <div class="section-title ui-section-title">Équipement</div>
             ${this.equipmentSlot(selected, 'weapon', 0)}
             ${([0, 1] as const).map((slot) => this.equipmentSlot(selected, 'accessory', slot)).join('')}
           </div>
-          <div class="unit-sheet__actions">
-            <button type="button" class="danger-button ui-button ui-button--danger" data-action="exclude" ${selected.narrativeLocked ? 'disabled' : ''}>
-              ${selected.narrativeLocked ? 'Lié à la chronique' : 'Exclure du clan'}
-            </button>
+          <div class="skills">
+            <div class="section-title ui-section-title">Capacités de combat</div>
+            ${this.renderSkills(selected)}
           </div>
         </article>
       </div>`;
@@ -256,7 +251,7 @@ export class ManagementView {
     const available = this.getAvailableItemsForSlot(unit, slot.type, currentId);
     const isWeaponSlot = slot.type === 'weapon';
     const slotLabel = isWeaponSlot ? 'Arme' : `Accessoire ${slot.slot + 1}`;
-    const statsClass = (item: ItemDefinition) => item.category === 'weapons' ? 'item-modal__weapon-details' : 'item-modal__stats stat-grid';
+    const statsClass = (item: ItemDefinition) => item.category === 'weapons' ? 'item-modal__weapon-details' : 'item-modal__stats';
     return `<div class="item-modal-overlay" data-equip-slot-close>
       <div class="item-modal ui-panel weapon-modal">
         <button type="button" class="icon-button ui-icon-button" data-equip-slot-close aria-label="Fermer">×</button>
@@ -277,10 +272,10 @@ export class ManagementView {
           <div class="weapon-modal__header">
             <span class="item-row__icon ui-chip">${currentItem?.icon ?? '◇'}</span>
             <div class="weapon-modal__title-block">
-              <h3 class="weapon-modal__title">${isWeaponSlot && currentItem ? currentItem.name : slotLabel}</h3>
-              ${isWeaponSlot && currentItem
-                ? '<small class="weapon-modal__status">Arme équipée</small>'
-                : `<small class="weapon-modal__subtitle">${currentItem?.name ?? 'Emplacement vide'}</small>`}
+              <h3 class="weapon-modal__title">${currentItem ? currentItem.name : slotLabel}</h3>
+              ${currentItem
+                ? `<small class="weapon-modal__status">${isWeaponSlot ? 'Arme équipée' : 'Accessoire équipé'}</small>`
+                : '<small class="weapon-modal__subtitle">Emplacement vide</small>'}
             </div>
           </div>
           ${currentItem ? `<div class="${statsClass(currentItem)}">${this.itemStatRows(currentItem, undefined, unit)}</div>` : '<p class="empty-copy">Aucun objet équipé.</p>'}
@@ -353,7 +348,29 @@ export class ManagementView {
         </span>
       </button>`;
     }
-    return `<button type="button" class="item-row ui-panel ui-panel--dense item-row--selectable" data-preview-item="${item.id}"><span class="item-row__icon ui-chip">${item.icon}</span><span><strong>${item.name}</strong><small>${item.description}</small></span></button>`;
+    if (item.category === 'accessories') {
+      const metaParts: string[] = [];
+      const modifiers = item.modifiers ?? {};
+      const labels: Record<string, string> = { maxHealth: 'PV', strength: 'FOR', magic: 'MAG', endurance: 'END', dexterity: 'DEX', charisma: 'CHA', moveRange: 'DÉPLAC.' };
+      for (const [key, value] of Object.entries(modifiers)) {
+        metaParts.push(`+${value} ${labels[key] ?? key}`);
+      }
+      const granted = item.skillModifier?.grants ?? [];
+      if (granted.length > 0) {
+        metaParts.push(granted.map((id) => skillPresentation[id]?.name ?? id).join(', '));
+      }
+      if (item.innateGiftModifier) {
+        metaParts.push(`Améliore ${item.innateGiftModifier.label}`);
+      }
+      return `<button type="button" class="weapon-replacement-row" data-preview-item="${item.id}">
+        <span class="item-row__icon ui-chip">${item.icon}</span>
+        <span class="weapon-replacement-main">
+          <strong>${item.name}</strong>
+          <small class="weapon-replacement-meta">${metaParts.join(' · ') || 'Aucun bonus'}</small>
+        </span>
+      </button>`;
+    }
+    return `<button type="button" class="weapon-replacement-row" data-preview-item="${item.id}"><span class="item-row__icon ui-chip">${item.icon}</span><span class="weapon-replacement-main"><strong>${item.name}</strong><small class="weapon-replacement-meta">${item.description}</small></span></button>`;
   }
 
   private getAvailableItemsForSlot(unit: UnitInstance, type: 'weapon' | 'accessory', currentId: string | null): ItemDefinition[] {
@@ -390,16 +407,15 @@ export class ManagementView {
       const s = skillPresentation[id]!;
       return `<article class="skill-card skill-card--active"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p></article>`;
     }).join('');
-    const actionsSection = `<div class="skill-section">
-      <div class="skill-section-title">Actions disponibles</div>
+    const actionsSection = `<div class="unit-skill-section">
+      <div class="unit-skill-section__title">Action de base</div>
       <div class="skill-list">
         <article class="skill-card skill-card--active"><div><strong>Attaque de base</strong><span>1 PA</span></div><p>Frappe avec l'arme équipée.</p></article>
-        ${activeCards}
       </div>
     </div>`;
 
-    const innateSection = apt ? `<div class="skill-section">
-      <div class="skill-section-title">Don inné</div>
+    const innateSection = apt ? `<div class="unit-skill-section">
+      <div class="unit-skill-section__title">Don inné</div>
       <article class="skill-card skill-card--passive">
         <div><strong>${apt.name}</strong><span class="skill-badge--passive">Passif</span></div>
         <p>${apt.description}</p>
@@ -410,15 +426,21 @@ export class ManagementView {
     const lockedSkills = skillIds.filter((id) => {
       const s = skillPresentation[id];
       return s && s.ap !== undefined && s.ap < 5 && !isSkillUnlockedForHero(unit, id);
-    });
+    }).sort((a, b) => (skillPresentation[a]?.ap ?? 0) - (skillPresentation[b]?.ap ?? 0));
     const lockedRows = lockedSkills.map((id) => {
       const s = skillPresentation[id]!;
       const reason = getLockedSkillReason(unit, id);
-      return `<article class="skill-card skill-card--locked-compact"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><small class="skill-card__lock">${reason}</small></article>`;
+      return `<div class="unit-skill-locked-row"><strong>${s.name}</strong><span>${s.ap} PA</span><small>${reason}</small></div>`;
     }).join('');
-    const progressionSection = lockedSkills.length > 0 ? `<div class="skill-section">
-      <div class="skill-section-title">Progression</div>
-      <div class="skill-list">${lockedRows}</div>
+    const unlockedCards = activeSkills.map((id) => {
+      const s = skillPresentation[id]!;
+      return `<article class="skill-card skill-card--active"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p></article>`;
+    }).join('');
+    const hasTechniques = activeSkills.length > 0 || lockedSkills.length > 0;
+    const techniquesSection = hasTechniques ? `<div class="unit-skill-section">
+      <div class="unit-skill-section__title">Compétences</div>
+      ${activeSkills.length > 0 ? `<div class="skill-list">${unlockedCards}</div>` : ''}
+      ${lockedSkills.length > 0 ? `<div class="unit-skill-locked-list">${lockedRows}</div>` : ''}
     </div>` : '';
 
     const ultimateSkills = skillIds.filter((id) => {
@@ -429,12 +451,12 @@ export class ManagementView {
       const s = skillPresentation[id]!;
       return `<article class="skill-card skill-card--ultimate"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p><small class="skill-card__lock">Éveil spécial requis</small></article>`;
     }).join('');
-    const ultimateSection = ultimateSkills.length > 0 ? `<div class="skill-section">
-      <div class="skill-section-title">Ultimate</div>
+    const ultimateSection = ultimateSkills.length > 0 ? `<div class="unit-skill-section">
+      <div class="unit-skill-section__title">Ultimate</div>
       <div class="skill-list">${ultimateCards}</div>
     </div>` : '';
 
-    return actionsSection + innateSection + progressionSection + ultimateSection;
+    return actionsSection + innateSection + techniquesSection + ultimateSection;
   }
 
   private renderSkillUpgrades(): string {
@@ -564,13 +586,16 @@ export class ManagementView {
     const item = this.activeItemId ? itemById.get(this.activeItemId) : null;
     if (!item) return '';
     return `<div class="item-modal-overlay" data-item-modal-close>
-      <div class="item-modal ui-panel">
+      <div class="item-modal ui-panel weapon-modal">
         <button type="button" class="icon-button ui-icon-button" data-item-modal-close aria-label="Fermer">×</button>
-        <div class="item-modal__header">
+        <div class="weapon-modal__header">
           <span class="item-row__icon ui-chip">${item.icon}</span>
-          <div><h3>${item.name}</h3><small>${item.description}</small></div>
+          <div class="weapon-modal__title-block">
+            <h3 class="weapon-modal__title">${item.name}</h3>
+            <small class="weapon-modal__subtitle">${item.description}</small>
+          </div>
         </div>
-        <div class="${item.category === 'weapons' ? 'item-modal__weapon-details' : 'item-modal__stats stat-grid'}">
+        <div class="${item.category === 'weapons' ? 'item-modal__weapon-details' : 'item-modal__stats'}">
           ${this.itemStatRows(item)}
         </div>
       </div>
@@ -582,21 +607,38 @@ export class ManagementView {
       return this.renderWeaponDetails(item, comparisonWeapon, unit);
     }
     if (item.category === 'accessories') {
-      const modifiers = item.modifiers ?? {};
-      const entries = Object.entries(modifiers) as [string, number][];
-      if (entries.length === 0) return '<p class="empty-copy">Aucun bonus statistique.</p>';
-      const labels: Record<string, string> = {
-        maxHealth: 'PV', strength: 'FOR', magic: 'MAG', endurance: 'END',
-        dexterity: 'DEX', charisma: 'CHA', moveRange: 'DÉPLAC.',
-      };
-      const granted = item.skillModifier?.grants ?? [];
-      const grantedLabel = granted.length > 0
-        ? granted.map((id) => skillPresentation[id]?.name ?? id).join(', ')
-        : '';
-      return `${entries.map(([key, value]) => this.stat(labels[key] ?? key, `+${value}`)).join('')}
-        ${grantedLabel ? this.stat('Don', grantedLabel) : ''}`;
+      return this.renderAccessoryDetails(item);
     }
     return '';
+  }
+
+  private renderAccessoryDetails(item: ItemDefinition): string {
+    const modifiers = item.modifiers ?? {};
+    const labels: Record<string, string> = {
+      maxHealth: 'PV', strength: 'FOR', magic: 'MAG', endurance: 'END',
+      dexterity: 'DEX', charisma: 'CHA', moveRange: 'DÉPLAC.',
+    };
+    const statRows = Object.entries(modifiers).map(([key, value]) =>
+      this.weaponStatRow(labels[key] ?? key, `+${value}`)
+    ).join('');
+    const granted = item.skillModifier?.grants ?? [];
+    const grantedLabel = granted.length > 0
+      ? granted.map((id) => skillPresentation[id]?.name ?? id).join(', ')
+      : '';
+    const innate = item.innateGiftModifier;
+    return `<div class="weapon-modal__body">
+      ${statRows ? `<div class="weapon-modal__stat-list">${statRows}</div>` : '<p class="empty-copy">Aucun bonus statistique.</p>'}
+      ${grantedLabel ? `<div class="weapon-modal__progression"><span class="weapon-modal__progression-label">Effet spécial</span><p>${grantedLabel}</p></div>` : ''}
+      ${innate ? this.renderInnateGiftModifierSection(innate) : ''}
+    </div>`;
+  }
+
+  private renderInnateGiftModifierSection(modifier: InnateGiftModifier): string {
+    return `<div class="weapon-modal__innate-modifier">
+      <span class="weapon-modal__innate-modifier-label">Améliore le don inné</span>
+      <strong>${modifier.label}</strong>
+      <p>${modifier.description}</p>
+    </div>`;
   }
 
   private renderWeaponDetails(item: ItemDefinition, comparisonWeapon?: WeaponDefinition, unit?: UnitInstance): string {

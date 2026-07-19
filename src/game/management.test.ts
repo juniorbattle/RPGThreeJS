@@ -7,7 +7,7 @@ import { createInitialState, migrateState } from './store';
 import {
   getEquippedWeaponTier, getLockedSkillReason, getMaxUnlockedSkillAp, getResolvedSkills, getUnlockedSkillsForHero,
   getWeaponProfileLabel, getWeaponSkillUnlockLabel, isSkillUnlockedForHero, isUltimateUnlockedForHero,
-  toCombatant, weaponById,
+  itemById, toCombatant, weaponById,
 } from './catalog';
 
 describe('clan management', () => {
@@ -310,5 +310,29 @@ describe('save migration', () => {
     expect(migrated.run.visitedNodeIds.length).toBeGreaterThan(1);
     expect(migrated.clan.members[0]).not.toHaveProperty('level');
     expect(migrated.clan.members[0]).toHaveProperty('skillUpgrades');
+  });
+});
+
+describe('equipment identity', () => {
+  it('weapons do not have innateModifier field', () => {
+    for (const weapon of Object.values(weaponById)) {
+      expect(weapon).not.toHaveProperty('innateModifier');
+    }
+  });
+
+  it('normal accessories do not have innateGiftModifier', () => {
+    const state = createInitialState();
+    for (const id of Object.keys(state.inventory.accessories)) {
+      const item = itemById.get(id);
+      if (item?.category === 'accessories') {
+        expect(item.innateGiftModifier).toBeUndefined();
+      }
+    }
+  });
+
+  it('innateGiftModifier is optional and safe when absent', () => {
+    const state = createInitialState();
+    const unit = state.clan.members[0]!;
+    expect(equipAccessory(state, unit.id, 0, 'strength_ring')).toBe(true);
   });
 });

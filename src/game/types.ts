@@ -325,6 +325,13 @@ export interface ItemDefinition {
   icon: string;
   modifiers?: Partial<UnitStats>;
   skillModifier?: EquipmentSkillModifier;
+  innateGiftModifier?: InnateGiftModifier;
+}
+
+export interface InnateGiftModifier {
+  targetHeroId?: string;
+  label: string;
+  description: string;
 }
 
 export interface EquipmentSkillModifier {
@@ -342,7 +349,6 @@ export interface WeaponDefinition extends ItemDefinition {
   accuracyBonus: number;
   critBonus: number;
   healthBonus?: number;
-  innateModifier?: string;
 }
 
 export interface CraftRecipeDefinition {
