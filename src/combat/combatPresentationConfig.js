@@ -74,11 +74,23 @@ const unitPresentation = {
   // Normal foes get a slight scale boost so they feel more imposing
   // without overflowing their 1x1 tile.
   foeSpriteScale: 1.25,
+  // Heroes use a slightly reduced scale so they don't feel oversized
+  // next to foes on the compact 8x4 arena.
+  heroSpriteScale: 1.0,
+  // Same principle as largeUnitGroundOffset: hero sprites have
+  // transparent padding at the bottom. This sinks the plane so
+  // the character's feet rest on the grid.
+  heroGroundOffset: 0.05,
   // Every 2x2 opponent uses the same visual scale. Tactical mass comes from
   // the footprint and ring as much as the sprite, so 1.6 keeps both elites
   // and bosses imposing without swallowing the compact 8x4 arena.
-  twoByTwoEliteSpriteScale: 2.2,
-  twoByTwoBossSpriteScale: 2.2,
+  twoByTwoEliteSpriteScale: 2.0,
+  twoByTwoBossSpriteScale: 2.0,
+  // Large unit sprites have transparent padding at the bottom of the
+  // texture. Without a ground offset, the 2.2x scale lifts the visible
+  // character off the grid. This fraction of the unscaled sprite height
+  // sinks the plane so the character's feet touch the ground.
+  largeUnitGroundOffset: 0.2,
   teamRingOpacity: 0.92,
   activeRingOpacity: 1,
   activeRingIntensity: 1,

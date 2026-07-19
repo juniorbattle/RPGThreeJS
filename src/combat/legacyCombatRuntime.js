@@ -715,7 +715,7 @@ function largeUnitSpriteScale(u){
   if((u.size||1)>1) return u.boss
     ? COMBAT_PRESENTATION.units.twoByTwoBossSpriteScale
     : COMBAT_PRESENTATION.units.twoByTwoEliteSpriteScale;
-  return u.team==='foe' ? COMBAT_PRESENTATION.units.foeSpriteScale : 1;
+  return u.team==='foe' ? COMBAT_PRESENTATION.units.foeSpriteScale : COMBAT_PRESENTATION.units.heroSpriteScale;
 }
 function resetUnitSpriteScale(u){
   const spriteScale=largeUnitSpriteScale(u),outlineScale=spriteScale*1.1;
@@ -760,7 +760,8 @@ function createUnit(def){
     cell(){ return cellAt(this.gx,this.gz); }
   };
   const spriteScale=largeUnitSpriteScale(u);
-  if(u.size>1){ blob.scale.set(u.size,u.size,1); teamGlow.scale.set(u.size,u.size,1); teamRing.scale.set(u.size,u.size,1); if(teamRingUnder)teamRingUnder.scale.set(u.size,u.size,1); u.baseY=s.h*0.5*spriteScale; spr.position.y=u.baseY; outline.position.y=u.baseY; }
+  if(u.size>1){ blob.scale.set(u.size,u.size,1); teamGlow.scale.set(u.size,u.size,1); teamRing.scale.set(u.size,u.size,1); if(teamRingUnder)teamRingUnder.scale.set(u.size,u.size,1); u.baseY=s.h*0.5*spriteScale-s.h*COMBAT_PRESENTATION.units.largeUnitGroundOffset; spr.position.y=u.baseY; outline.position.y=u.baseY; }
+  else if(u.team==='player'){ u.baseY=s.h*0.5-s.h*COMBAT_PRESENTATION.units.heroGroundOffset; spr.position.y=u.baseY; outline.position.y=u.baseY; }
   resetUnitSpriteScale(u);
   placeUnit(u,def.gx,def.gz,true);
   G.units.push(u);
