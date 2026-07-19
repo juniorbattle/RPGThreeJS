@@ -35,7 +35,7 @@ const rawCombats: RawCombatConfig[] = [
   { id: 'village_defense', sceneId: 'bois_clair_burning', objective: 'Repoussez les pillards et protégez les habitants de Bois-Clair.', encounterLabel: 'Défense de Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, preCombatDialogueId: 'pre_village_defense', postCombatDialogueId: 'village_defense_aftermath', rewards: { gold: 160, reputation: 10, materials: { red_gem: 2 } } },
   { id: 'village_raid', sceneId: 'bois_clair_burning', objective: 'Sécurisez les coffres pendant que les Serpents dispersent les témoins.', encounterLabel: 'Raid sur Bois-Clair', encounterRank: 'elite', maxPlayerUnits: 4, preCombatDialogueId: 'pre_village_raid', postCombatDialogueId: 'village_raid_aftermath', rewards: { gold: 260, reputation: -15, materials: { red_gem: 3 } } },
   { id: 'forest_patrol', sceneId: 'forest_route', objective: 'Éliminez la patrouille Serpent avant qu’elle ne donne l’alerte.', encounterLabel: 'Patrouille Serpent', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 80, reputation: 1, materials: { red_gem: 1 } } },
-  { id: 'forest_ambush', sceneId: 'forest_route', objective: 'Défaites le champion du Lion et réclamez le Sceau.', encounterLabel: 'Embuscade', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 70, reputation: 1, materials: { red_gem: 1 } } },
+  { id: 'forest_ambush', sceneId: 'forest_route', objective: 'Défaites les créatures qui tendent l’embuscade sur la piste.', encounterLabel: 'Embuscade', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 70, reputation: 1, materials: { red_gem: 1 } } },
   { id: 'wolf_pack', sceneId: 'forest_route', objective: 'Repoussez la meute qui encercle la compagnie.', encounterLabel: 'Meute affamée', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 75, reputation: 1, materials: { red_gem: 1 } } },
   { id: 'spider_nest', sceneId: 'forest_route', objective: 'Détruisez le nid venimeux avant que la piste ne soit condamnée.', encounterLabel: 'Nid venimeux', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 85, reputation: 1, materials: { red_gem: 1 } } },
   { id: 'marsh_crossing', sceneId: 'forest_route', objective: 'Traversez les eaux infestées qui coupent la route de Bois-Clair.', encounterLabel: 'Passage des marais', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 90, reputation: 1, materials: { red_gem: 1 } } },
@@ -286,12 +286,12 @@ const rawDialogues = [
     steps: [
       {
         id: '1',
-        speaker: 'Cedric',
-        actorId: 'cedric',
+        speaker: 'Intendant Maelor',
+        actorId: 'maelor',
         expression: 'neutral',
         tag: 'Chemin des réserves',
         text: 'Un convoi Serpent transporte les coffres de Bois-Clair. L’intercepter enrichira la compagnie, mais retardera le secours.',
-        side: 'right',
+        side: 'left',
         effects: [],
         choices: [
           { text: 'Frapper le convoi et saisir les réserves.', next: '2', effects: [{ type: 'addGold', amount: 120 }, { type: 'addReputation', amount: -6 }, { type: 'setFlag', key: 'prioritizedLoot', value: true }] },
@@ -378,7 +378,7 @@ const rawDialogues = [
         actorId: 'cedric',
         expression: 'neutral',
         tag: 'Éclaireur nomade',
-        text: 'Je connais les passages des Serpents. Mes dagues et mes yeux sont  vous. Cinquante pices, et je rejoins votre compagnie.',
+        text: 'Je connais les passages des Serpents. Mes dagues et mes yeux sont à vous. Cinquante pièces, et je rejoins votre compagnie.',
         side: 'right',
         effects: [],
         choices: [
@@ -459,7 +459,7 @@ const rawDialogues = [
           { text: 'Lui abandonner une bourse — 80 or.', next: '3', requiresGold: 80, effects: [{ type: 'addGold', amount: -80 }, { type: 'addReputation', amount: -1 }] },
         ],
       },
-      { id: '2', speaker: 'Cedric', actorId: 'cedric', expression: 'stern', tag: 'Passage', text: 'S’il tombe, toute la vallée saura que la route n’appartient plus aux brutes.', side: 'right', next: null, effects: [], choices: [] },
+      { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'stern', tag: 'Passage', text: 'S’il tombe, toute la vallée saura que la route n’appartient plus aux brutes.', side: 'left', next: null, effects: [], choices: [] },
       { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Tribut', text: 'Un prix laid, mais moins laid qu’un cercueil. Nous reviendrons plus lourds de fer.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
@@ -787,7 +787,7 @@ const rawDialogues = [
           { text: 'Vos menaces ne vous sauveront pas. Combattez.', next: '3', effects: [] },
         ],
       },
-      { id: '2', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Refus', text: 'Rendre ? Vous ne comprenez pas. Ce n’est pas une arme — c’est une clé. Et les Ombres l’attendent depuis longtemps. Tuez-moi, et d’autres viendront.', side: 'right', next: null, effects: [], choices: [] },
+      { id: '2', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Refus', text: 'Rendre ? Vous ne comprenez pas ce que vous protégez. Ce n’est pas une arme — c’est bien plus. Et ceux qui le guident ne sont pas les Serpents. Tuez-moi, et d’autres viendront.', side: 'right', next: null, effects: [], choices: [] },
       { id: '3', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Défi', text: 'Alors venez. Voyons si le Lion a forgé des lames ou des jouets.', side: 'right', next: null, effects: [], choices: [] },
     ],
   },
@@ -900,8 +900,20 @@ const rawDialogues = [
     perspective: 'alaric',
     sceneArtId: 'lion_briefing',
     steps: [
-      { id: '1', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'stern', tag: 'Observation', text: 'Ils ont pris la piste des bêtes. Et ils en sont sortis.', side: 'left', next: '2', effects: [], choices: [] },
-      { id: '2', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'neutral', tag: 'Jugement', text: 'Soit ils sont courageux, soit ils sont fous. À Bois-Clair, on a besoin des deux.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '1', speaker: 'Champion du Lion', actorId: 'lion_champion', expression: 'stern', tag: 'Rapport', text: 'Ils ont pris la piste des bêtes. L’embuscade les a frappés au col — et ils en sont sortis. Nos éclaireurs ont compté leurs pas : ni pause ni retraite.', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'neutral', tag: 'Jugement', text: 'Soit ils sont courageux, soit ils sont fous. À Bois-Clair, on a besoin des deux. Mais le courage sans discipline devient un incendie.', side: 'left', next: '3', effects: [], choices: [] },
+      { id: '3', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'stern', tag: 'Décision', text: 'Ne pas les arrêter. Laissez-les arriver. S’ils tiennent la route jusqu’au village, on saura ce qu’ils valent. Sinon… les Serpents feront le travail pour nous.', side: 'left', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'ate_serpent_scout_report',
+    title: 'Lignes Serpent',
+    perspective: 'serpent_scout',
+    sceneArtId: 'shadow_signs',
+    steps: [
+      { id: '1', speaker: 'Pillard Serpent', actorId: 'serpent_raider', expression: 'fearful', tag: 'Reconnaissance', text: 'Général. La compagnie franchit le carrefour. Un rôdeur leur a montré où nos lanternes vertes guident les embuscades.', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Oracle Serpent', actorId: 'serpent_oracle', expression: 'fearful', tag: 'Pressentiment', text: 'S’ils connaissent les lanternes, nos passages ne sont plus sûrs. Il faut frapper avant qu’ils ne révèlent tout au Lion.', side: 'left', next: '3', effects: [], choices: [] },
+      { id: '3', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Ordre', text: 'Un rôdeur. Bien. Envoyez les brutes au pont. S’il connaît nos passages, il connaît aussi nos pièges. On verra s’il sait les éviter.', side: 'right', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -910,8 +922,9 @@ const rawDialogues = [
     perspective: 'villageoise',
     sceneArtId: 'village_choice',
     steps: [
-      { id: '1', speaker: 'Villageoise', actorId: 'villageoise', expression: 'fearful', tag: 'Rumeurs', text: 'Des réfugiés sont revenus de la route. Ils parlaient de gens armés.', side: 'left', next: '2', effects: [], choices: [] },
-      { id: '2', speaker: 'Villageoise', actorId: 'villageoise', expression: 'fearful', tag: 'Inquiétude', text: 'Le Lion ? Les Serpents ? Comment on fait la différence quand tout brûle ?', side: 'left', next: null, effects: [], choices: [] },
+      { id: '1', speaker: 'Villageoise', actorId: 'villageoise', expression: 'fearful', tag: 'Rumeurs', text: 'Des réfugiés sont revenus de la route. Ils parlaient de gens armés — pas des Serpents, pas des bandits. Quelqu’un d’autre.', side: 'left', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Mère réfugiée', actorId: 'refugee_mother', expression: 'fearful', tag: 'Témoignage', text: 'Certains disent qu’ils aident. D’autres disent qu’ils prennent. Difficile de savoir qui protège et qui pille, quand tout le monde porte une arme.', side: 'right', next: '3', effects: [], choices: [] },
+      { id: '3', speaker: 'Villageoise', actorId: 'villageoise', expression: 'fearful', tag: 'Inquiétude', text: 'Le Lion ? Les Serpents ? Comment on fait la différence quand tout brûle ? On n’a plus qu’à prier pour que ce soit le bon camp qui arrive le premier.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -920,8 +933,9 @@ const rawDialogues = [
     perspective: 'serpent_general',
     sceneArtId: 'shadow_signs',
     steps: [
-      { id: '1', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'stern', tag: 'Rapport', text: 'Une compagnie franchit nos barrages. Pas des bandits — des combattants organisés.', side: 'right', next: '2', effects: [], choices: [] },
-      { id: '2', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Ordre', text: 'S’ils atteignent le village, tout notre dispositif s’effondre. Renforcez le barrage.', side: 'right', next: null, effects: [], choices: [] },
+      { id: '1', speaker: 'Oracle Serpent', actorId: 'serpent_oracle', expression: 'fearful', tag: 'Rapport', text: 'Général. La compagnie a franchi le barrage de Valmir. Nos pillards n’ont pas tenu une charge. Ils se battent en formation — pas comme des bandits.', side: 'left', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'stern', tag: 'Évaluation', text: 'Une compagnie organisée. Avec un rôdeur pour guide. Ils apprennent vite — trop vite pour des mercenaires. Qui les envoie ?', side: 'right', next: '3', effects: [], choices: [] },
+      { id: '3', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Ordre', text: 'S’ils atteignent le village, tout notre dispositif s’effondre. Renforcez le barrage. Et dites aux brutes de ne pas attendre — frappez avant qu’ils ne s’organisent.', side: 'right', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -930,8 +944,9 @@ const rawDialogues = [
     perspective: 'maelor',
     sceneArtId: 'acte_ouverture',
     steps: [
-      { id: '1', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Étude', text: 'Le Sceau du Lion résonne. Pas comme un objet de pouvoir — comme une porte.', side: 'left', next: '2', effects: [], choices: [] },
-      { id: '2', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'mystical', tag: 'Pressentiment', text: 'Quelque chose de l’autre côté commence à pousser. Ce n’est pas le Serpent qui devrait nous inquiéter.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '1', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Étude', text: 'Le Sceau du Lion résonne. Pas comme un objet de pouvoir — comme une porte. Chaque combat le rapproche de s’ouvrir.', side: 'left', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Écho lointain', text: 'Même d’ici, je le sens. Le Sceau ne choisit pas le plus fort — il choisit celui qui porte le poids des autres. Si la compagnie a tenu la route, le Sceau le sait déjà.', side: 'right', next: '3', effects: [], choices: [] },
+      { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'mystical', tag: 'Pressentiment', text: 'Quelque chose de l’autre côté commence à pousser. Ce n’est pas le Serpent qui devrait nous inquiéter. C’est ce qui attend derrière la porte.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -940,8 +955,9 @@ const rawDialogues = [
     perspective: 'lion_council',
     sceneArtId: 'lion_briefing',
     steps: [
-      { id: '1', speaker: 'Champion du Lion', actorId: 'lion_champion', expression: 'stern', tag: 'Doute', text: 'Des étrangers qui se disent envoyés par le clan déchu. Et on devrait les croire ?', side: 'right', next: '2', effects: [], choices: [] },
-      { id: '2', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'stern', tag: 'Réponse', text: 'Je ne crois personne. Mais Bois-Clair a vu ce qu’ils ont fait. Les actes parlent. Pas les noms.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '1', speaker: 'Champion du Lion', actorId: 'lion_champion', expression: 'stern', tag: 'Doute', text: 'Des étrangers qui se disent envoyés par le clan déchu. Et on devrait les croire ? Le Sceau n’est pas un prix qu’on remporte pour avoir tué quelques pillards.', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'stern', tag: 'Réponse', text: 'Je ne crois personne. Mais Bois-Clair a vu ce qu’ils ont fait. Les actes parlent. Pas les noms, pas les serments.', side: 'left', next: '3', effects: [], choices: [] },
+      { id: '3', speaker: 'Champion du Lion', actorId: 'lion_champion', expression: 'hostile', tag: 'Défi', text: 'Et s’ils échouent ? S’ils prennent l’or et fuient ? Le Sceau tombe dans des mains vides, et le Lion perd la seule chose qui le tient debout.', side: 'right', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -950,8 +966,9 @@ const rawDialogues = [
     perspective: 'chroniqueur',
     sceneArtId: 'shadow_signs',
     steps: [
-      { id: '1', speaker: 'Chroniqueur', actorId: 'chroniqueur', expression: 'mystical', tag: 'Observation', text: 'Les ruines s’éclairent. Les inscriptions anciennes brillent sans feu ni lune.', side: 'left', next: '2', effects: [], choices: [] },
-      { id: '2', speaker: 'Chroniqueur', actorId: 'chroniqueur', expression: 'mystical', tag: 'Révélation', text: 'C’est le Sceau. Plus il s’approche, plus les vieilles choses se souviennent de ce qu’elles étaient.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '1', speaker: 'Chroniqueur', actorId: 'chroniqueur', expression: 'mystical', tag: 'Observation', text: 'Les ruines s’éclairent. Les inscriptions anciennes brillent sans feu ni lune. La pierre froide depuis des siècles est tiède sous mes doigts.', side: 'left', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Résonance', text: 'Même d’ici, je sens la pierre chanter. Les vieilles choses ne dorment plus — elles écoutent. Elles attendent de voir qui porte le Sceau.', side: 'right', next: '3', effects: [], choices: [] },
+      { id: '3', speaker: 'Chroniqueur', actorId: 'chroniqueur', expression: 'mystical', tag: 'Révélation', text: 'C’est le Sceau. Plus il s’approche, plus les vieilles choses se souviennent de ce qu’elles étaient. Et certaines… n’avaient pas besoin qu’on les réveille.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -960,8 +977,9 @@ const rawDialogues = [
     perspective: 'serpent_general',
     sceneArtId: 'shadow_signs',
     steps: [
-      { id: '1', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Constat', text: 'Ils ont trouvé les signes. Trop tôt. Trop vite.', side: 'right', next: '2', effects: [], choices: [] },
-      { id: '2', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'stern', tag: 'Ordre de repli', text: 'Toutes les unités en arrière. Laissez-les venir à moi. Si le Sceau s’ouvre ici, autant que ce soit sous mon contrôle.', side: 'right', next: null, effects: [], choices: [] },
+      { id: '1', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Constat', text: 'Ils ont trouvé les signes. Les marques des Ombres. Trop tôt. Trop vite. Quelqu’un parmi eux lit ce que nous cachons.', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Oracle Serpent', actorId: 'serpent_oracle', expression: 'fearful', tag: 'Question', text: 'Général, s’ils révèlent les marques au Lion, tout le dispositif… On devrait les frapper maintenant. Tant qu’ils sont sur la route.', side: 'left', next: '3', effects: [], choices: [] },
+      { id: '3', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'stern', tag: 'Ordre de repli', text: 'Non. Toutes les unités en arrière. Laissez-les venir à moi. Si le Sceau s’ouvre ici, autant que ce soit sous mon contrôle. Pas le Lion. Pas les Ombres. Moi.', side: 'right', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -1028,6 +1046,7 @@ export const dialogues = new Map(rawDialogues.map((dialogue) => {
 
 export const POST_NODE_ATE: Readonly<Record<string, string[]>> = {
   'lion-opening-ambush': ['ate_alaric_reports'],
+  'lion-nomad-crossroads': ['ate_serpent_scout_report'],
   'lion-refugees': ['ate_village_fear'],
   'lion-valmir-road': ['ate_serpent_general_warning'],
   'lion-village-choice': ['ate_maelor_seal_analysis'],
