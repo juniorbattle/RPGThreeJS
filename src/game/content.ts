@@ -390,8 +390,8 @@ const rawDialogues = [
           { text: 'Continuer la route.', next: '3', effects: [{ type: 'addReputation', amount: -2 }, { type: 'setFlag', key: 'abandonedMerchant', value: true }] },
         ],
       },
-      { id: '2', speaker: 'Marchand blessé', actorId: 'wounded_merchant', expression: 'grateful', tag: 'Allié', text: 'Je ferai parvenir des potions au refuge. Vous avez ma parole.', side: 'left', next: null, effects: [{ type: 'addItem', itemId: 'potion', quantity: 1 }], choices: [] },
-      { id: '3', speaker: 'Marchand blessé', actorId: 'wounded_merchant', expression: 'wounded', tag: 'Abandonné', text: 'Allez... Je trouverai bien une autre âme charitable.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '2', speaker: 'Marchand blessé', actorId: 'survivor', expression: 'grateful', tag: 'Allié', text: 'Je ferai parvenir des potions au refuge. Vous avez ma parole.', side: 'left', next: null, effects: [{ type: 'addItem', itemId: 'potion', quantity: 1 }], choices: [] },
+      { id: '3', speaker: 'Marchand blessé', actorId: 'survivor', expression: 'wounded', tag: 'Abandonné', text: 'Allez... Je trouverai bien une autre âme charitable.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
   {
