@@ -379,7 +379,7 @@ const rawDialogues = [
       {
         id: '1',
         speaker: 'Marchand blessé',
-        actorId: 'wounded_merchant',
+        actorId: 'survivor',
         expression: 'wounded',
         tag: 'Quête secondaire',
         text: 'Mon chariot est brisé et les loups approchent. Pouvez-vous partager quelques provisions ?',
@@ -617,11 +617,12 @@ const rawDialogues = [
         next: null,
         effects: [],
         choices: [
-          { text: 'Ils bénissent votre nom.', next: '1r', requiresFlag: 'helpedRefugees', effects: [{ type: 'addReputation', amount: 5 }] },
-          { text: 'Ils ne vous mentionnent pas.', next: '1r', excludesFlag: 'helpedRefugees', effects: [] },
+          { text: 'Ils bénissent votre nom.', next: '1r', requiresFlag: 'helpedRefugees', effects: [{ type: 'addReputation', amount: 5 }], contest: { kind: 'lie', risk: 'high', truthState: 'known', hint: 'Les réfugiés sont présents — la vérité se voit.', success: { next: '1r', effects: [{ type: 'addReputation', amount: 5 }] }, failure: { next: '1lie', effects: [{ type: 'addReputation', amount: -8 }, { type: 'setFlag', key: 'liedToAlaric', value: true }] } } },
+          { text: 'Ils ne vous mentionnent pas.', next: '1r', effects: [] },
         ],
       },
       { id: '1r', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Défense', text: 'Les vivants reconstruisent les réputations. Un clan mort n’a pas d’honneur. Nous sommes venus survivre — et nous avons survécu.', side: 'left', next: '2', effects: [], choices: [] },
+      { id: '1lie', speaker: 'Champion du Lion', actorId: 'lion_champion', expression: 'hostile', tag: 'Mensonge', text: 'Les réfugiés sont ici. Ils ne bénissent personne — ils tremblent. Vos mots sentent le mensonge.', side: 'right', next: '2', effects: [], choices: [] },
       {
         id: '2',
         speaker: 'Chef Alaric',
@@ -633,10 +634,11 @@ const rawDialogues = [
         next: null,
         effects: [],
         choices: [
-          { text: 'Nous l’avons marqué pour le village.', next: '3', requiresFlag: 'prioritizedVillage', effects: [{ type: 'addReputation', amount: 3 }] },
-          { text: 'Nous avons pris notre part — ou rien du tout.', next: '3', excludesFlag: 'prioritizedVillage', effects: [] },
+          { text: 'Nous l’avons marqué pour le village.', next: '3', requiresFlag: 'prioritizedVillage', effects: [{ type: 'addReputation', amount: 3 }], contest: { kind: 'lie', risk: 'moderate', truthState: 'known', hint: 'Le convoi a laissé des traces.', success: { next: '3', effects: [{ type: 'addReputation', amount: 3 }] }, failure: { next: '2lie', effects: [{ type: 'addReputation', amount: -5 }] } } },
+          { text: 'Nous avons pris notre part — ou rien du tout.', next: '3', effects: [] },
         ],
       },
+      { id: '2lie', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Justification', text: 'La survie justifie bien des choix. Mais le convoi porte encore les marques de votre passage — et elles ne pointent pas vers le village.', side: 'left', next: '3', effects: [], choices: [] },
       {
         id: '3',
         speaker: 'Chef Alaric',
@@ -648,12 +650,13 @@ const rawDialogues = [
         next: null,
         effects: [],
         choices: [
-          { text: 'Ils ont parlé en votre faveur.', next: '3r', requiresFlag: 'protectedWitnesses', effects: [{ type: 'addReputation', amount: 5 }] },
-          { text: 'Ils se sont tus.', next: '3s', excludesFlag: 'protectedWitnesses', effects: [] },
+          { text: 'Ils ont parlé en votre faveur.', next: '3r', requiresFlag: 'protectedWitnesses', effects: [{ type: 'addReputation', amount: 5 }], contest: { kind: 'lie', risk: 'high', truthState: 'known', hint: 'Les témoins sont dans la salle.', success: { next: '3r', effects: [{ type: 'addReputation', amount: 5 }] }, failure: { next: '3lie', effects: [{ type: 'addReputation', amount: -8 }, { type: 'setFlag', key: 'liedToAlaric', value: true }] } } },
+          { text: 'Ils se sont tus.', next: '3s', effects: [] },
         ],
       },
       { id: '3r', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'stern', tag: 'Témoignage', text: 'Leurs voix portent plus loin que cette salle. Ce que Bois-Clair a vu, le Lion ne peut l’ignorer.', side: 'left', next: '4', effects: [], choices: [] },
       { id: '3s', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'neutral', tag: 'Silence', text: 'Le silence parle aussi. Quand les témoins n’osent pas témoigner, c’est une réponse en soi.', side: 'left', next: '4', effects: [], choices: [] },
+      { id: '3lie', speaker: 'Champion du Lion', actorId: 'lion_champion', expression: 'hostile', tag: 'Défi', text: 'Les témoins sont là. Ils se taisent — non par loyauté, mais par peur. La peur n’est pas un témoignage.', side: 'right', next: '4', effects: [], choices: [] },
       {
         id: '4',
         speaker: 'Chef Alaric',
@@ -710,12 +713,13 @@ const rawDialogues = [
         next: null,
         effects: [],
         choices: [
-          { text: 'Oui — des preuves des Ombres.', next: '5e', requiresFlag: 'shadowEvidence', effects: [{ type: 'addReputation', amount: 5 }, { type: 'setFlag', key: 'shadowRevealed', value: true }] },
-          { text: 'Rien de plus qu’une guerre de clan.', next: '5n', excludesFlag: 'shadowEvidence', effects: [] },
+          { text: 'Oui — des preuves des Ombres.', next: '5e', requiresFlag: 'shadowEvidence', effects: [{ type: 'addReputation', amount: 5 }, { type: 'setFlag', key: 'shadowRevealed', value: true }], contest: { kind: 'bluff', risk: 'moderate', truthState: 'suspected', hint: 'Séraphine sait que la suspicion n’est pas une preuve.', success: { next: '5e', effects: [{ type: 'addReputation', amount: 5 }, { type: 'setFlag', key: 'shadowRevealed', value: true }] }, failure: { next: '5lie', effects: [{ type: 'addReputation', amount: -3 }] } } },
+          { text: 'Rien de plus qu’une guerre de clan.', next: '5n', effects: [] },
         ],
       },
       { id: '5e', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Pressentiment', text: 'Les marques anciennes ne dorment pas sans raison. Ce que vous avez trouvé dépasse le Lion et le Serpent — mais une vérité offerte trop tôt peut devenir une arme contre nous.', side: 'left', next: '6', effects: [], choices: [] },
       { id: '5n', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'neutral', tag: 'Prudence', text: 'Peut-être. Ou peut-être que nous n’avons pas encore vu ce qui se cache derrière les raids. Les vieilles pierres ne se taisent que lorsqu’elles n’ont plus rien à dire.', side: 'left', next: '6', effects: [], choices: [] },
+      { id: '5lie', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'stern', tag: 'Prudence', text: 'La suspicion n’est pas une preuve. Présenter des ombres comme des certitudes affaiblit ceux qui cherchent la vérité.', side: 'left', next: '6', effects: [], choices: [] },
       {
         id: '6',
         speaker: 'Chef Alaric',
@@ -726,12 +730,13 @@ const rawDialogues = [
         side: 'right',
         effects: [],
         choices: [
-          { text: 'Présenter les survivants et les preuves.', next: '7', requiresFlag: 'missionSuccess', excludesFlag: 'missionGreed', requiresReputationMin: 45, blockedText: 'Vos actes à Bois-Clair parlent contre vous.', effects: [{ type: 'addReputation', amount: 8 }, { type: 'setFlag', key: 'lionSealHonour', value: true }, { type: 'startCombat', combatId: 'serpent_captain' }] },
+          { text: 'Présenter les survivants et les preuves.', next: '7', requiresFlag: 'missionSuccess', excludesFlag: 'missionGreed', requiresReputationMin: 45, blockedText: 'Vos actes à Bois-Clair parlent contre vous.', effects: [{ type: 'addReputation', amount: 8 }, { type: 'setFlag', key: 'lionSealHonour', value: true }, { type: 'startCombat', combatId: 'serpent_captain' }], contest: { kind: 'justify', risk: 'extreme', gainHint: 'important', truthState: 'suspected', hint: 'Le Champion attend une contradiction.', success: { next: '7', effects: [{ type: 'addReputation', amount: 8 }, { type: 'setFlag', key: 'lionSealHonour', value: true }, { type: 'startCombat', combatId: 'serpent_captain' }] }, failure: { next: '6lie', effects: [{ type: 'addReputation', amount: -10 }, { type: 'setFlag', key: 'alaricDoubt', value: true }, { type: 'startCombat', combatId: 'lion_chief' }] } } },
           { text: 'Demander l’épreuve du Lion.', next: '8', effects: [{ type: 'addReputation', amount: -6 }, { type: 'setFlag', key: 'lionTrialRequested', value: true }, { type: 'startCombat', combatId: 'lion_chief' }] },
         ],
       },
       { id: '7', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'grateful', tag: 'Respect', text: 'Alors le Lion vous reconnaît. Le général Serpent fuit avec un artefact des Ombres. Finissez ce que vous avez commencé.', side: 'right', next: null, effects: [], choices: [] },
       { id: '8', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'hostile', tag: 'Défi', text: 'Vous demandez le Sceau sans être certain que l’honneur vous le donne. Alors prenez-le si votre lame le mérite.', side: 'right', next: null, effects: [], choices: [] },
+      { id: '6lie', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'hostile', tag: 'Refus', text: 'Vos preuves sont faibles et vos mots tremblent. Le Sceau ne se donne pas à ceux qui trichent avec l’honneur. Le Champion vous montrera une autre voie.', side: 'right', next: '8', effects: [], choices: [] },
     ],
   },
   {

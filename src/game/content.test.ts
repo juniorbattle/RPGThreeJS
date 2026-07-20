@@ -2,6 +2,7 @@
 
 import { describe, expect, it } from 'vitest';
 import { campaignNodes, combatConfigs, dialogues } from './content';
+import { dialogueChoiceSchema } from './types';
 import { assets } from '../render/assetManifest';
 import { craftRecipes, itemById, units } from './catalog';
 import { prologuePanels } from './prologue';
@@ -445,6 +446,58 @@ describe('campaign content integrity', () => {
     for (const path of allPaths) {
       expect(path, `path:${path}`).toMatch(/\/assets\/characters\/pixel\/full\//);
       expectPublicAsset(path, `path:${path}`);
+    }
+  });
+
+  it('validates contestable choice schema', () => {
+    const contestable = {
+      text: 'Test claim',
+      next: 'success',
+      requiresFlag: 'testFlag',
+      effects: [],
+      contest: {
+        kind: 'lie' as const,
+        risk: 'high' as const,
+        truthState: 'known' as const,
+        hint: 'Test hint',
+        success: { next: 'success', effects: [] },
+        failure: { next: 'failure', effects: [{ type: 'addReputation' as const, amount: -5 }] },
+      },
+    };
+    expect(() => dialogueChoiceSchema.parse(contestable)).not.toThrow();
+  });
+
+  it('validates normal choice without contest field', () => {
+    const normal = { text: 'Test', next: 'next', effects: [] };
+    expect(() => dialogueChoiceSchema.parse(normal)).not.toThrow();
+  });
+
+  it('uses contestable branches in lion_finale_judgement', () => {
+    const dialogue = dialogues.get('lion_finale_judgement')!;
+    const contestChoices = dialogue.steps.flatMap((step) => step.choices ?? []).filter((choice) => choice.contest);
+    expect(contestChoices.length, 'contest choices').toBeGreaterThanOrEqual(3);
+    for (const choice of contestChoices) {
+      expect(choice.contest!.success.next, `${choice.text}:success.next`).toBeTruthy();
+      expect(choice.contest!.failure.next, `${choice.text}:failure.next`).toBeTruthy();
+    }
+  });
+
+  it('validates all dialogue next targets point to existing step ids', () => {
+    for (const dialogue of dialogues.values()) {
+      const stepIds = new Set(dialogue.steps.map((s) => s.id));
+      for (const step of dialogue.steps) {
+        if (step.next) expect(stepIds.has(step.next), `${dialogue.id}:${step.id}:next`).toBe(true);
+        for (const choice of step.choices ?? []) {
+          if (choice.next) expect(stepIds.has(choice.next), `${dialogue.id}:${step.id}:choice.next`).toBe(true);
+          if (choice.contest) {
+            expect(stepIds.has(choice.contest.success.next), `${dialogue.id}:${step.id}:contest.success`).toBe(true);
+            expect(stepIds.has(choice.contest.failure.next), `${dialogue.id}:${step.id}:contest.failure`).toBe(true);
+            for (const effect of choice.contest.failure.effects) {
+              if (effect.type === 'startCombat') expect(combatConfigs.has(effect.combatId), `${dialogue.id}:${step.id}:contest.failure.combat`).toBe(true);
+            }
+          }
+        }
+      }
     }
   });
 });

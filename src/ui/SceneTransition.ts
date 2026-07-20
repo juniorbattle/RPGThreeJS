@@ -52,7 +52,7 @@ class SceneTransition {
     const timing = timingFor(options.variant);
     this.createOverlay(options.variant, style, options.label ?? '', timing);
     try {
-      await wait(timing.inMs);
+      await this.awaitCovered(timing.inMs);
       await options.task();
       await wait(timing.holdMs);
       await this.reveal(timing.outMs);
@@ -96,6 +96,25 @@ class SceneTransition {
     this.overlay.classList.add('scene-transition--leaving');
     await wait(outMs);
     this.destroyOverlay();
+  }
+
+  private awaitCovered(inMs: number): Promise<void> {
+    return new Promise((resolve) => {
+      if (!this.overlay) { resolve(); return; }
+      let settled = false;
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        this.overlay?.removeEventListener('transitionend', onEnd);
+        resolve();
+      };
+      const onEnd = (event: TransitionEvent) => {
+        if (event.target !== this.overlay) return;
+        finish();
+      };
+      this.overlay.addEventListener('transitionend', onEnd);
+      window.setTimeout(finish, inMs + 120);
+    });
   }
 
   private destroyOverlay(): void {

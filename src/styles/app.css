@@ -62,7 +62,7 @@ button { font: inherit; }
   background:
     radial-gradient(ellipse 92% 88% at 50% 50%, transparent 28%, rgba(2,4,8,.54)),
     linear-gradient(rgba(7,14,22,.22), rgba(5,9,16,.46)),
-    var(--screen-bg-image, url('/assets/generated/forest-pilot/forest-dawn-far.webp')) center/cover no-repeat; }
+    var(--screen-bg-image, #05060a) center/cover no-repeat; }
 .game-chrome { position: fixed; inset: 0; pointer-events: none; z-index: 20; }
 
 @keyframes ui-screen-in {
@@ -456,6 +456,9 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .dialogue-choice--moral::before { background: #72c7ff; box-shadow: 0 0 16px rgba(114,199,255,.34); }
 .dialogue-choice--moral .dialogue-choice__icon { color: #c8eaff; border-color: rgba(114,199,255,.44); }
 .dialogue-choice--cost::before { background: #d9b25a; box-shadow: 0 0 14px rgba(217,178,90,.28); }
+.dialogue-choice--contest { border-color: rgba(255,140,83,.5); }
+.dialogue-choice--contest::before { background: #ff8c53; box-shadow: 0 0 16px rgba(255,140,83,.38); }
+.dialogue-choice--contest .dialogue-choice__icon { color: #ffd0a0; border-color: rgba(255,140,83,.48); }
 .dialogue-choice:hover:not(:disabled),
 .dialogue-choice:focus-visible { outline: none; border-color: var(--ui-color-gold-bright); transform: translateX(-6px); background: linear-gradient(135deg, rgba(17,27,47,.98), rgba(8,13,24,.99)); box-shadow: 0 16px 38px rgba(0,0,0,.62), 0 0 0 1px rgba(244,217,139,.18), inset 3px 0 0 rgba(244,217,139,.92); }
 .dialogue[data-speaker-side="right"] .dialogue-choice:hover:not(:disabled),

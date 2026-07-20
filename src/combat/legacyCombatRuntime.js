@@ -1427,8 +1427,8 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
   else if(spec.cure){ for(const t of targets){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); flashUnit(t,'#bfffc0'); refreshPanel(t); } await wait(0.25); }
   else { let basicDmg=0; for(const t of targets){ const friendly=t.team===u.team;
       if(spec.key==='attack'&&spec.weaponType==='crosier'&&friendly&&t.alive){ const healAmt=Math.max(1,Math.round(effMAG(u)*0.5)); applyHeal(t,healAmt); await wait(0.1); continue; }
-      if((spec.power||0)<=0){ if(rollHit(u,t,spec)){ if(spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } } else floatText(t,'RATÉ','#cfd6e6'); continue; }
-      if(!rollHit(u,t,spec)){ floatText(t,'RATÉ','#cfd6e6'); await wait(0.05); continue; }
+      if((spec.power||0)<=0){ if(rollHit(u,t,spec)){ if(spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; const sn=(STATUS[spec.status]&&STATUS[spec.status].name)||spec.status; floatText(t,sn.toUpperCase()+' !','#ff9a4a',true); await wait(0.15); } } else { floatText(t,'RATÉ','#cfd6e6'); await wait(0.15); } continue; }
+      if(!rollHit(u,t,spec)){ floatText(t,'RATÉ','#cfd6e6'); await wait(0.15); continue; }
       const crit=!spec.flatDmg&&Math.random()<critChance(u,t,spec); let {dmg,lab}=spec.flatDmg?{dmg:Math.max(1,Math.round(spec.flatDmg*rnd(0.85,1.15))),lab:'face'}:computeDamage(u,t,spec); if(crit)dmg=Math.round(dmg*1.5);
       if(!spec.flatDmg){ if(spec.damageMultiplier)dmg=Math.round(dmg*spec.damageMultiplier); if(spec.bonusVsSize&&t.size>1)dmg=Math.round(dmg*spec.bonusVsSize); if(spec.bonusVsAfflicted&&Object.keys(t.statuses).some(s=>isNegative(s)))dmg=Math.round(dmg*spec.bonusVsAfflicted); }
       floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':(friendly?'#ffd27a':'#ffffff'),lab==='DOS'||crit);
@@ -1486,7 +1486,7 @@ function bestSupport(u,stands){ const supSpecs=u.skills.map(s=>getSpec(u,s)).fil
       if(spec.cure){ const neg=aff.filter(t=>Object.keys(t.statuses).some(s=>isNegative(s)&&hasS(t,s))); if(neg.length)sc+=neg.length*6; }
       if(!best||sc>best.score) best={score:sc,spec,cx:c.gx,cz:c.gz}; } } }
   return best; }
-function bestItem(u,stands){ if(u.ap<(1+G.itemsUsedThisTurn))return null; const allies=aliveUnits(u.team); let best=null;
+function bestItem(u,stands){ if(u.team!=='player')return null; if(u.ap<(1+G.itemsUsedThisTurn))return null; const allies=aliveUnits(u.team); let best=null;
   for(const id in ITEMS){ if((G.inv[id]||0)<=0)continue; const spec=itemSpec(id); if(spec.ap>u.ap)continue;
     for(const st of stands){ const sim=simAt(u,st);
       for(const c of rangeCells(sim,spec)){ const aff=affectedUnits(sim,spec,c.gx,c.gz); if(!aff.length)continue;

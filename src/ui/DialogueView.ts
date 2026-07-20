@@ -1,6 +1,7 @@
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
 import { assets } from '../render/assetManifest';
-import type { DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../game/types';
+import type { Contest, DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../game/types';
+import { resolveContestOutcome } from '../game/contestResolution';
 
 interface DialogueViewOptions {
   root: HTMLElement;
@@ -187,8 +188,11 @@ export class DialogueView {
     const blockedByExcludesFlag = choice.excludesFlag !== undefined && !!state.flags[choice.excludesFlag];
     const blockedByReputationMin = choice.requiresReputationMin !== undefined && state.reputation < choice.requiresReputationMin;
     const blockedByReputationMax = choice.requiresReputationMax !== undefined && state.reputation > choice.requiresReputationMax;
-    button.disabled = blockedByGold || blockedByFlag || blockedByExcludesFlag || blockedByReputationMin || blockedByReputationMax;
+    const isBlocked = blockedByGold || blockedByFlag || blockedByExcludesFlag || blockedByReputationMin || blockedByReputationMax;
+    const isContest = isBlocked && !!choice.contest;
+    button.disabled = isBlocked && !isContest;
     button.classList.toggle('is-blocked', button.disabled);
+    button.classList.toggle('dialogue-choice--contest', isContest);
 
     const icon = document.createElement('span');
     icon.className = 'dialogue-choice__icon';
@@ -201,29 +205,64 @@ export class DialogueView {
     label.textContent = choice.text;
     body.append(label);
 
-    const descriptors = this.describeEffects(choice.effects, choice.requiresGold);
-    if (choice.requiresGold !== undefined) descriptors.unshift({ icon: '●', label: `Coût ${choice.requiresGold} / ${availableGold} or`, tone: blockedByGold ? 'loss' : 'neutral' });
-    if (choice.requiresFlag !== undefined && blockedByFlag) descriptors.unshift({ icon: '◇', label: 'Condition requise', tone: 'loss' });
-    if (choice.requiresReputationMin !== undefined) descriptors.unshift({ icon: '♜', label: `Réputation ≥ ${choice.requiresReputationMin}`, tone: blockedByReputationMin ? 'loss' : 'neutral' });
-    if (choice.requiresReputationMax !== undefined) descriptors.unshift({ icon: '♜', label: `Réputation ≤ ${choice.requiresReputationMax}`, tone: blockedByReputationMax ? 'loss' : 'neutral' });
     const meta = document.createElement('span');
     meta.className = 'dialogue-choice__meta';
-    meta.append(...this.createOutcomeBadges(descriptors));
-    if (blockedByGold) meta.append(this.createOutcomeBadge({ icon: '!', label: 'Or insuffisant', tone: 'loss' }));
-    if (blockedByFlag && choice.blockedText) {
-      meta.append(this.createOutcomeBadge({ icon: '!', label: choice.blockedText, tone: 'loss' }));
-    }
-    if (blockedByExcludesFlag && choice.blockedText) {
-      meta.append(this.createOutcomeBadge({ icon: '!', label: choice.blockedText, tone: 'loss' }));
+
+    if (isContest) {
+      meta.append(...this.createOutcomeBadges(this.contestBadges(choice.contest!, state)));
+    } else {
+      const descriptors = this.describeEffects(choice.effects, choice.requiresGold);
+      if (choice.requiresGold !== undefined) descriptors.unshift({ icon: '●', label: `${availableGold} or disponible`, tone: blockedByGold ? 'loss' : 'neutral' });
+      if (choice.requiresFlag !== undefined && blockedByFlag) descriptors.unshift({ icon: '◇', label: 'Condition requise', tone: 'loss' });
+      if (choice.requiresReputationMin !== undefined) descriptors.unshift({ icon: '♜', label: `Réputation ≥ ${choice.requiresReputationMin}`, tone: blockedByReputationMin ? 'loss' : 'neutral' });
+      if (choice.requiresReputationMax !== undefined) descriptors.unshift({ icon: '♜', label: `Réputation ≤ ${choice.requiresReputationMax}`, tone: blockedByReputationMax ? 'loss' : 'neutral' });
+      meta.append(...this.createOutcomeBadges(descriptors));
+      if (blockedByGold) meta.append(this.createOutcomeBadge({ icon: '!', label: 'Or insuffisant', tone: 'loss' }));
+      if (blockedByFlag && choice.blockedText) {
+        meta.append(this.createOutcomeBadge({ icon: '!', label: choice.blockedText, tone: 'loss' }));
+      }
+      if (blockedByExcludesFlag && choice.blockedText) {
+        meta.append(this.createOutcomeBadge({ icon: '!', label: choice.blockedText, tone: 'loss' }));
+      }
     }
     if (meta.childElementCount > 0) body.append(meta);
 
     button.append(icon, body);
     button.addEventListener('click', async () => {
-      await this.options.applyEffects(choice.effects);
-      await this.advance(choice.next);
+      const outcome = resolveContestOutcome(choice, this.options.getState());
+      if (outcome.type === 'blocked') return;
+      await this.options.applyEffects(outcome.effects);
+      await this.advance(outcome.next);
     });
     return button;
+  }
+
+  private contestBadges(contest: Contest, state: GameState): OutcomeDescriptor[] {
+    const badges: OutcomeDescriptor[] = [];
+    const riskLabels: Record<string, string> = {
+      low: 'Risque : faible',
+      moderate: 'Risque : modéré',
+      high: 'Risque : élevé',
+      extreme: 'Risque : extrême',
+    };
+    badges.push({ icon: '⚠', label: riskLabels[contest.risk] ?? 'Risque : modéré', tone: 'risk' });
+    if (contest.gainHint) {
+      const gainLabels: Record<string, string> = {
+        minor: 'Gain possible : mineur',
+        moderate: 'Gain possible : modéré',
+        important: 'Gain possible : important',
+      };
+      const gainLabel = gainLabels[contest.gainHint];
+      if (gainLabel) badges.push({ icon: '◆', label: gainLabel, tone: 'gain' });
+    }
+    if (state.flags['liedToAlaric']) {
+      badges.push({ icon: '◇', label: 'Vos mensonges précédents pèsent contre vous', tone: 'loss' });
+    } else if (state.flags['alaricDoubt']) {
+      badges.push({ icon: '◇', label: 'Alaric semble méfiant', tone: 'loss' });
+    } else if (contest.hint) {
+      badges.push({ icon: '◇', label: contest.hint, tone: 'loss' });
+    }
+    return badges;
   }
 
   private choiceIcon(choice: DialogueChoice): string {

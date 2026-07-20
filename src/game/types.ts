@@ -20,6 +20,23 @@ export const narrativeEffectSchema = z.discriminatedUnion('type', [
 ]);
 export type NarrativeEffect = z.infer<typeof narrativeEffectSchema>;
 
+const contestOutcomeSchema = z.object({
+  next: z.string(),
+  effects: z.array(narrativeEffectSchema).default([]),
+});
+export type ContestOutcome = z.infer<typeof contestOutcomeSchema>;
+
+const contestSchema = z.object({
+  kind: z.enum(['lie', 'bluff', 'persuade', 'threaten', 'justify', 'gamble']),
+  risk: z.enum(['low', 'moderate', 'high', 'extreme']),
+  gainHint: z.enum(['minor', 'moderate', 'important']).optional(),
+  truthState: z.enum(['unknown', 'suspected', 'known']),
+  hint: z.string().optional(),
+  success: contestOutcomeSchema,
+  failure: contestOutcomeSchema,
+});
+export type Contest = z.infer<typeof contestSchema>;
+
 export const dialogueChoiceSchema = z.object({
   text: z.string(),
   next: z.string().nullable(),
@@ -30,6 +47,7 @@ export const dialogueChoiceSchema = z.object({
   requiresReputationMax: z.number().int().min(0).max(100).optional(),
   blockedText: z.string().optional(),
   effects: z.array(narrativeEffectSchema).default([]),
+  contest: contestSchema.optional(),
 });
 export type DialogueChoice = z.infer<typeof dialogueChoiceSchema>;
 
