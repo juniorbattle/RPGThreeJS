@@ -123,6 +123,8 @@ export class ManagementView {
 
   private render(): void {
     if (!this.overlay) return;
+    const scrollEls = this.overlay.querySelectorAll<HTMLElement>('.ui-scroll-panel, .shop-view, .inventory-grid, .inventory-view');
+    const savedScrolls = Array.from(scrollEls).map((el) => el.scrollTop);
     const state = this.options.getState();
     const gems = state.inventory.materials.red_gem ?? 0;
     this.overlay.innerHTML = `
@@ -154,6 +156,8 @@ export class ManagementView {
       ${this.activeEquipSlot ? this.renderEquipSlotModal() : ''}
     `;
     this.bind();
+    this.overlay.querySelectorAll<HTMLElement>('.ui-scroll-panel, .shop-view, .inventory-grid, .inventory-view')
+      .forEach((el, i) => { if (savedScrolls[i] !== undefined) el.scrollTop = savedScrolls[i]; });
   }
 
   private tabButton(tab: ManagementTab, label: string): string {
