@@ -907,4 +907,85 @@ describe('campaign content integrity', () => {
       expect(softChoices.length, `${dialogueId} V5B soft choices still present`).toBe(2);
     }
   });
+
+  it('V5.2 converted choices have outcomePreview.mode === soft', () => {
+    const dialogueIds = ['lion_briefing', 'village_defense_aftermath', 'village_raid_aftermath'];
+    for (const dialogueId of dialogueIds) {
+      const dialogue = dialogues.get(dialogueId)!;
+      const softChoices = dialogue.steps
+        .flatMap((s) => s.choices ?? [])
+        .filter((c) => c.outcomePreview?.mode === 'soft');
+      expect(softChoices.length, `${dialogueId} has 2 soft choices`).toBe(2);
+    }
+  });
+
+  it('V5.2 converted choices each have at least one hint', () => {
+    const dialogueIds = ['lion_briefing', 'village_defense_aftermath', 'village_raid_aftermath'];
+    for (const dialogueId of dialogueIds) {
+      const dialogue = dialogues.get(dialogueId)!;
+      for (const choice of dialogue.steps.flatMap((s) => s.choices ?? [])) {
+        if (choice.outcomePreview?.mode === 'soft') {
+          expect(choice.outcomePreview.hints.length > 0, `${dialogueId} soft choice has hints`).toBe(true);
+        }
+      }
+    }
+  });
+
+  it('lion_briefing keeps lionMandateHonour and lionMandateAdvance effects unchanged', () => {
+    const dialogue = dialogues.get('lion_briefing')!;
+    const allFlagKeys: string[] = [];
+    for (const step of dialogue.steps) {
+      for (const choice of step.choices ?? []) {
+        for (const effect of choice.effects) {
+          if (effect.type === 'setFlag') allFlagKeys.push(effect.key);
+        }
+      }
+    }
+    expect(allFlagKeys.includes('lionMandateHonour'), 'lion_briefing preserves lionMandateHonour').toBe(true);
+    expect(allFlagKeys.includes('lionMandateAdvance'), 'lion_briefing preserves lionMandateAdvance').toBe(true);
+    expect(allFlagKeys.includes('lionMissionAccepted'), 'lion_briefing preserves lionMissionAccepted').toBe(true);
+  });
+
+  it('V5.2 converted choices preserve flags, items, gold/reputation effects and next targets', () => {
+    const expectedFlags: Record<string, string[]> = {
+      village_defense_aftermath: ['protectedWitnesses'],
+      village_raid_aftermath: ['silencedWitnesses'],
+    };
+    for (const [dialogueId, expectedFlagKeys] of Object.entries(expectedFlags)) {
+      const dialogue = dialogues.get(dialogueId)!;
+      const allFlagKeys: string[] = [];
+      for (const step of dialogue.steps) {
+        for (const choice of step.choices ?? []) {
+          for (const effect of choice.effects) {
+            if (effect.type === 'setFlag') allFlagKeys.push(effect.key);
+          }
+        }
+      }
+      for (const expectedKey of expectedFlagKeys) {
+        expect(allFlagKeys.includes(expectedKey), `${dialogueId} preserves flag ${expectedKey}`).toBe(true);
+      }
+    }
+    const defenseDialogue = dialogues.get('village_defense_aftermath')!;
+    const hasItemEffect = defenseDialogue.steps.some((s) => s.choices?.some((c) => c.effects.some((e) => e.type === 'addItem' && e.itemId === 'potion')));
+    expect(hasItemEffect, 'village_defense_aftermath preserves potion item reward').toBe(true);
+    const raidDialogue = dialogues.get('village_raid_aftermath')!;
+    const hasGoldEffect = raidDialogue.steps.some((s) => s.choices?.some((c) => c.effects.some((e) => e.type === 'addGold' && e.amount === -40)));
+    expect(hasGoldEffect, 'village_raid_aftermath preserves gold -40 effect').toBe(true);
+    const briefingDialogue = dialogues.get('lion_briefing')!;
+    const hasNext4 = briefingDialogue.steps.some((s) => s.choices?.some((c) => c.next === '4'));
+    const hasNext5 = briefingDialogue.steps.some((s) => s.choices?.some((c) => c.next === '5'));
+    expect(hasNext4, 'lion_briefing preserves next target 4').toBe(true);
+    expect(hasNext5, 'lion_briefing preserves next target 5').toBe(true);
+  });
+
+  it('V5.1 converted choices remain converted', () => {
+    const v51Dialogues = ['reserve_trail', 'old_shrine_event', 'mystery_treasure', 'mystery_shrine'];
+    for (const dialogueId of v51Dialogues) {
+      const dialogue = dialogues.get(dialogueId)!;
+      const softChoices = dialogue.steps
+        .flatMap((s) => s.choices ?? [])
+        .filter((c) => c.outcomePreview?.mode === 'soft');
+      expect(softChoices.length, `${dialogueId} V5.1 soft choices still present`).toBe(2);
+    }
+  });
 });

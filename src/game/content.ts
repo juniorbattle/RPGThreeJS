@@ -207,8 +207,8 @@ const rawDialogues = [
         side: 'left',
         effects: [],
         choices: [
-          { text: 'Accepter la mission d’Alaric.', next: '4', effects: [{ type: 'setFlag', key: 'lionMissionAccepted', value: true }, { type: 'setFlag', key: 'lionMandateHonour', value: true }, { type: 'addReputation', amount: 3 }] },
-          { text: 'Accepter, mais réclamer une avance.', next: '5', effects: [{ type: 'setFlag', key: 'lionMissionAccepted', value: true }, { type: 'setFlag', key: 'lionMandateAdvance', value: true }, { type: 'addGold', amount: 60 }, { type: 'addReputation', amount: -3 }] },
+          { text: 'Accepter la mission d’Alaric.', next: '4', effects: [{ type: 'setFlag', key: 'lionMissionAccepted', value: true }, { type: 'setFlag', key: 'lionMandateHonour', value: true }, { type: 'addReputation', amount: 3 }], outcomePreview: { mode: 'soft', hints: ['Serment clair devant le Lion', 'Alaric observe votre conduite'] } },
+          { text: 'Accepter, mais réclamer une avance.', next: '5', effects: [{ type: 'setFlag', key: 'lionMissionAccepted', value: true }, { type: 'setFlag', key: 'lionMandateAdvance', value: true }, { type: 'addGold', amount: 60 }, { type: 'addReputation', amount: -3 }], outcomePreview: { mode: 'soft', hints: ['Soutien matériel immédiat', 'Chaque pièce pèsera dans le jugement'] } },
         ],
       },
       {
@@ -783,8 +783,8 @@ const rawDialogues = [
         next: null,
         effects: [],
         choices: [
-          { text: 'Refuser toute récompense.', next: '2', effects: [{ type: 'addReputation', amount: 5 }, { type: 'setFlag', key: 'protectedWitnesses', value: true }] },
-          { text: 'Accepter leur gratitude et leurs provisions.', next: '3', effects: [{ type: 'addItem', itemId: 'potion', quantity: 2 }, { type: 'setFlag', key: 'protectedWitnesses', value: true }] },
+          { text: 'Refuser toute récompense.', next: '2', effects: [{ type: 'addReputation', amount: 5 }, { type: 'setFlag', key: 'protectedWitnesses', value: true }], outcomePreview: { mode: 'soft', hints: ['Le village s\u2019en souviendra', 'Le clan gagne en respect'] } },
+          { text: 'Accepter leur gratitude et leurs provisions.', next: '3', effects: [{ type: 'addItem', itemId: 'potion', quantity: 2 }, { type: 'setFlag', key: 'protectedWitnesses', value: true }], outcomePreview: { mode: 'soft', hints: ['Le village s\u2019en souviendra', 'Le clan reçoit l\u2019aide promise'] } },
         ],
       },
       { id: '2', speaker: 'Villageoise de Bois-Clair', actorId: 'villageoise', expression: 'grateful', tag: 'Générosité', text: 'Alors nous parlerons de vous à tous ceux qui passeront. Le nom de votre clan sera béni sur cette route.', side: 'left', next: null, effects: [], choices: [] },
@@ -806,8 +806,8 @@ const rawDialogues = [
         next: null,
         effects: [],
         choices: [
-          { text: 'Laisser quelques provisions aux villageois.', next: '2', effects: [{ type: 'addGold', amount: -40 }, { type: 'addReputation', amount: 3 }] },
-          { text: 'Partir avec tout. Ils ne sont pas notre probléme.', next: '3', effects: [{ type: 'addReputation', amount: -5 }, { type: 'setFlag', key: 'silencedWitnesses', value: true }] },
+          { text: 'Laisser quelques provisions aux villageois.', next: '2', effects: [{ type: 'addGold', amount: -40 }, { type: 'addReputation', amount: 3 }], outcomePreview: { mode: 'soft', hints: ['Votre conduite sera jugée', 'Une part d\u2019honneur demeure'] } },
+          { text: 'Partir avec tout. Ils ne sont pas notre probléme.', next: '3', effects: [{ type: 'addReputation', amount: -5 }, { type: 'setFlag', key: 'silencedWitnesses', value: true }], outcomePreview: { mode: 'soft', hints: ['Votre nom sera terni', 'Maelor approuve ce calcul'] } },
         ],
       },
       { id: '2', speaker: 'Villageoise de Bois-Clair', actorId: 'villageoise', expression: 'wounded', tag: 'Reste de dignité', text: 'Vous prenez nos coffres et vous nous laissez des miettes. Ce n’est pas de la générosité — c’est de la pitié. Mais au moins, nous ne mourrons pas de faim.', side: 'left', next: null, effects: [], choices: [] },
