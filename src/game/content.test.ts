@@ -1,3 +1,4 @@
+// @vitest-environment happy-dom
 /// <reference types="vite/client" />
 
 import { describe, expect, it } from 'vitest';
@@ -7,6 +8,8 @@ import { assets } from '../render/assetManifest';
 import { craftRecipes, itemById, units } from './catalog';
 import { prologuePanels } from './prologue';
 import characterQc from '../../public/assets/characters/pixel/canonical-character-qc.json';
+import { DialogueView } from '../ui/DialogueView';
+import { createInitialState } from './store';
 
 interface CharacterAssetProfile {
   full: string;
@@ -107,9 +110,9 @@ describe('campaign content integrity', () => {
     }
   });
 
-  it('defines the 19-node braid and routes each trial back into the shared story', () => {
+  it('defines the 20-node braid and routes each trial back into the shared story', () => {
     const refuge = campaignNodes.find((node) => node.id === 'lion-first-refuge');
-    expect(campaignNodes).toHaveLength(19);
+    expect(campaignNodes).toHaveLength(20);
     expect(refuge?.links).toEqual(['lion-reserve-trail']);
 
     for (const nodeId of ['lion-refugees', 'lion-valmir-road', 'lion-witnesses']) {
@@ -499,5 +502,151 @@ describe('campaign content integrity', () => {
         }
       }
     }
+  });
+
+  it('lion_finale_judgement has no non-contestable requiresReputationMin/Max choices', () => {
+    const dialogue = dialogues.get('lion_finale_judgement')!;
+    for (const step of dialogue.steps) {
+      for (const choice of step.choices ?? []) {
+        if (choice.requiresReputationMin !== undefined || choice.requiresReputationMax !== undefined) {
+          expect(choice.contest, `${step.id}:${choice.text}:must-be-contestable`).toBeDefined();
+        }
+      }
+    }
+  });
+
+  it('lion_finale_judgement mandate segment has no mutually blocked lionMandateHonour choices', () => {
+    const dialogue = dialogues.get('lion_finale_judgement')!;
+    const mandateSteps = dialogue.steps.filter((s) => ['4', '4h', '4n'].includes(s.id));
+    for (const step of mandateSteps) {
+      for (const choice of step.choices ?? []) {
+        expect(choice.requiresFlag, `${step.id}:${choice.text}:no-requiresFlag-lionMandateHonour`).not.toBe('lionMandateHonour');
+        expect(choice.excludesFlag, `${step.id}:${choice.text}:no-excludesFlag-lionMandateHonour`).not.toBe('lionMandateHonour');
+      }
+    }
+  });
+
+  it('lion_finale_judgement still preserves serpent_captain and lion_chief combat paths', () => {
+    const dialogue = dialogues.get('lion_finale_judgement')!;
+    const combatIds = new Set<string>();
+    for (const step of dialogue.steps) {
+      for (const choice of step.choices ?? []) {
+        for (const effect of choice.effects) {
+          if (effect.type === 'startCombat') combatIds.add(effect.combatId);
+        }
+        if (choice.contest) {
+          for (const effect of choice.contest.success.effects) {
+            if (effect.type === 'startCombat') combatIds.add(effect.combatId);
+          }
+          for (const effect of choice.contest.failure.effects) {
+            if (effect.type === 'startCombat') combatIds.add(effect.combatId);
+          }
+        }
+      }
+    }
+    expect(combatIds.has('serpent_captain'), 'serpent_captain path preserved').toBe(true);
+    expect(combatIds.has('lion_chief'), 'lion_chief path preserved').toBe(true);
+  });
+
+  it('lionSealAcknowledged is set only on step 6 contest success path', () => {
+    const dialogue = dialogues.get('lion_finale_judgement')!;
+    for (const step of dialogue.steps) {
+      for (const choice of step.choices ?? []) {
+        const topLevelAck = choice.effects.some((e) => e.type === 'setFlag' && e.key === 'lionSealAcknowledged');
+        const successAck = choice.contest?.success.effects.some((e) => e.type === 'setFlag' && e.key === 'lionSealAcknowledged') ?? false;
+        const failureAck = choice.contest?.failure.effects.some((e) => e.type === 'setFlag' && e.key === 'lionSealAcknowledged') ?? false;
+        if (topLevelAck || successAck) {
+          expect(step.id, `lionSealAcknowledged only on step 6, found on ${step.id}`).toBe('6');
+        }
+        expect(failureAck, `${step.id}:failure must not set lionSealAcknowledged`).toBe(false);
+      }
+    }
+  });
+
+  it('contestable choices never render exact effect descriptors in DialogueView', () => {
+    const state = { ...createInitialState(), flags: { helpedRefugees: true }, reputation: 50 };
+    const root = document.createElement('div');
+    const view = new DialogueView({
+      root,
+      getState: () => state,
+      applyEffects: async () => {},
+    });
+    const sequence = {
+      id: 'test',
+      sceneArtId: undefined,
+      steps: [{
+        id: '1',
+        speaker: 'Test',
+        actorId: undefined,
+        expression: 'neutral' as const,
+        tag: '',
+        text: 'Test',
+        portrait: '',
+        side: 'right' as const,
+        next: null,
+        effects: [],
+        choices: [{
+          text: 'Claim',
+          next: null,
+          requiresFlag: 'helpedRefugees',
+          effects: [{ type: 'addReputation' as const, amount: 5 }],
+          contest: {
+            kind: 'lie' as const,
+            risk: 'high' as const,
+            truthState: 'known' as const,
+            hint: 'Test hint',
+            success: { next: '1', effects: [] },
+            failure: { next: '1', effects: [{ type: 'addReputation' as const, amount: -5 }] },
+          },
+        }],
+      }],
+    } as any;
+    view.play(sequence);
+    const choiceBtn = root.querySelector('.dialogue-choice') as HTMLButtonElement;
+    expect(choiceBtn).toBeTruthy();
+    expect(choiceBtn.classList.contains('dialogue-choice--contest'), 'contestable choice has contest class').toBe(true);
+    expect(choiceBtn.disabled, 'contestable choice is not disabled when requirements met').toBe(false);
+    const badgeTexts = Array.from(root.querySelectorAll('.dialogue-outcome span')).map((el) => el.textContent);
+    const hasExactRep = badgeTexts.some((t) => t?.includes('Réputation +') || t?.includes('Réputation -'));
+    expect(hasExactRep, 'contestable choice must not show exact reputation values').toBe(false);
+    view.close();
+  });
+
+  it('blocked non-contestable choices remain blocked in DialogueView', () => {
+    const state = { ...createInitialState(), flags: {}, reputation: 10 };
+    const root = document.createElement('div');
+    const view = new DialogueView({
+      root,
+      getState: () => state,
+      applyEffects: async () => {},
+    });
+    const sequence = {
+      id: 'test',
+      sceneArtId: undefined,
+      steps: [{
+        id: '1',
+        speaker: 'Test',
+        actorId: undefined,
+        expression: 'neutral' as const,
+        tag: '',
+        text: 'Test',
+        portrait: '',
+        side: 'right' as const,
+        next: null,
+        effects: [],
+        choices: [{
+          text: 'Blocked choice',
+          next: '1',
+          requiresFlag: 'missingFlag',
+          effects: [],
+        }],
+      }],
+    } as any;
+    view.play(sequence);
+    const choiceBtn = root.querySelector('.dialogue-choice') as HTMLButtonElement;
+    expect(choiceBtn).toBeTruthy();
+    expect(choiceBtn.disabled, 'non-contestable blocked choice is disabled').toBe(true);
+    expect(choiceBtn.classList.contains('is-blocked'), 'non-contestable blocked choice has is-blocked class').toBe(true);
+    view.close();
   });
 });

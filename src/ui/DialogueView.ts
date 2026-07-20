@@ -189,10 +189,10 @@ export class DialogueView {
     const blockedByReputationMin = choice.requiresReputationMin !== undefined && state.reputation < choice.requiresReputationMin;
     const blockedByReputationMax = choice.requiresReputationMax !== undefined && state.reputation > choice.requiresReputationMax;
     const isBlocked = blockedByGold || blockedByFlag || blockedByExcludesFlag || blockedByReputationMin || blockedByReputationMax;
-    const isContest = isBlocked && !!choice.contest;
-    button.disabled = isBlocked && !isContest;
+    const isContestable = !!choice.contest;
+    button.disabled = isBlocked && !isContestable;
     button.classList.toggle('is-blocked', button.disabled);
-    button.classList.toggle('dialogue-choice--contest', isContest);
+    button.classList.toggle('dialogue-choice--contest', isContestable);
 
     const icon = document.createElement('span');
     icon.className = 'dialogue-choice__icon';
@@ -208,7 +208,7 @@ export class DialogueView {
     const meta = document.createElement('span');
     meta.className = 'dialogue-choice__meta';
 
-    if (isContest) {
+    if (isContestable) {
       meta.append(...this.createOutcomeBadges(this.contestBadges(choice.contest!, state)));
     } else {
       const descriptors = this.describeEffects(choice.effects, choice.requiresGold);
