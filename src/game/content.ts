@@ -348,7 +348,7 @@ const rawDialogues = [
         ],
       },
       { id: '6', speaker: 'Villageoise de Bois-Clair', actorId: 'villageoise', expression: 'grateful', tag: 'Bois-Clair', text: 'Merci. Le vieux pont mène directement à leurs positions.', side: 'left', next: null, effects: [], choices: [] },
-      { id: '7', speaker: 'Villageoise de Bois-Clair', actorId: 'villageoise', expression: 'wounded', tag: 'Bois-Clair', text: 'Prenez l’or si vous le voulez... mais ne prétendez plus être nos protecteurs.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '7', speaker: 'Villageoise de Bois-Clair', actorId: 'villageoise', expression: 'wounded', tag: 'Bois-Clair', text: 'Prenez l’or si vous le voulez… mais ne prétendez plus être nos protecteurs.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -392,7 +392,7 @@ const rawDialogues = [
         ],
       },
       { id: '2', speaker: 'Marchand blessé', actorId: 'survivor', expression: 'grateful', tag: 'Allié', text: 'Je ferai parvenir des potions au refuge. Vous avez ma parole.', side: 'left', next: null, effects: [{ type: 'addItem', itemId: 'potion', quantity: 1 }], choices: [] },
-      { id: '3', speaker: 'Marchand blessé', actorId: 'survivor', expression: 'wounded', tag: 'Abandonné', text: 'Allez... Je trouverai bien une autre âme charitable.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '3', speaker: 'Marchand blessé', actorId: 'survivor', expression: 'wounded', tag: 'Abandonné', text: 'Allez… Je trouverai bien une autre âme charitable.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -807,7 +807,7 @@ const rawDialogues = [
         effects: [],
         choices: [
           { text: 'Laisser quelques provisions aux villageois.', next: '2', effects: [{ type: 'addGold', amount: -40 }, { type: 'addReputation', amount: 3 }], outcomePreview: { mode: 'soft', hints: ['Votre conduite sera jugée', 'Une part d\u2019honneur demeure'] } },
-          { text: 'Partir avec tout. Ils ne sont pas notre probléme.', next: '3', effects: [{ type: 'addReputation', amount: -5 }, { type: 'setFlag', key: 'silencedWitnesses', value: true }], outcomePreview: { mode: 'soft', hints: ['Votre nom sera terni', 'Maelor approuve ce calcul'] } },
+          { text: 'Partir avec tout. Ils ne sont pas notre problème.', next: '3', effects: [{ type: 'addReputation', amount: -5 }, { type: 'setFlag', key: 'silencedWitnesses', value: true }], outcomePreview: { mode: 'soft', hints: ['Votre nom sera terni', 'Maelor approuve ce calcul'] } },
         ],
       },
       { id: '2', speaker: 'Villageoise de Bois-Clair', actorId: 'villageoise', expression: 'wounded', tag: 'Reste de dignité', text: 'Vous prenez nos coffres et vous nous laissez des miettes. Ce n’est pas de la générosité — c’est de la pitié. Mais au moins, nous ne mourrons pas de faim.', side: 'left', next: null, effects: [], choices: [] },
@@ -988,7 +988,7 @@ const rawDialogues = [
     id: 'pre_troll_crossing',
     sceneArtId: 'mystery_troll_crossing',
     steps: [
-      { id: '1', speaker: 'Troll des pierres', actorId: 'forest_troll_elite', expression: 'hostile', tag: 'Territoire', text: 'GROOORR. Le pont. A moi. Vous pas passer.', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '1', speaker: 'Troll des pierres', actorId: 'forest_troll_elite', expression: 'hostile', tag: 'Territoire', text: 'GROOORR. Le pont. À moi. Vous pas passer.', side: 'right', next: '2', effects: [], choices: [] },
       { id: '2', speaker: 'Troll des pierres', actorId: 'forest_troll_elite', expression: 'hostile', tag: 'Intimidation', text: 'Vous sentir faible. Vous sentir peur. Bon. Peur bon pour troll.', side: 'right', next: null, effects: [], choices: [] },
     ],
   },
@@ -1005,7 +1005,7 @@ const rawDialogues = [
     sceneArtId: 'lion_finale_judgement',
     steps: [
       { id: '1', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'stern', tag: 'Préparation', text: 'Le camp du Lion est en vue. Avant de franchir ces portes, chacun doit savoir ce qu’il porte — et ce qu’il risque. Le Sceau ne se donne pas, et Alaric ne pardonne pas.', side: 'left', next: '2', effects: [], choices: [] },
-      { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Pressentiment', text: 'Les ruines chantent encore. Les Ombres se réveillent. Ce jugement ne concernera pas seulement le Lion et le Serpent — quelque chose d’plus ancien nous observe.', side: 'right', next: '3', effects: [], choices: [] },
+      { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Pressentiment', text: 'Les ruines chantent encore. Les Ombres se réveillent. Ce jugement ne concernera pas seulement le Lion et le Serpent — quelque chose de plus ancien nous observe.', side: 'right', next: '3', effects: [], choices: [] },
       { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Rappel', text: 'Vos actes parlent pour vous. Les réfugiés, les témoins, le convoi — chaque choix a mené ici. Si votre réputation est solide, Alaric vous écoutera. Sinon… son champion vous répondra.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
