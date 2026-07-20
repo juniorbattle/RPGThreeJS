@@ -873,8 +873,8 @@ async function beginTurn(u){ if(G.over)return; G.active=u; G.pinnedUnit=null; hi
   if(regen>0) setTimeout(()=>{ if(u.alive)floatText(u,'+'+regen+' AP','#7fd0ff'); },120);
   refreshTurnbar(); selectUnit(u); focusCam(u);
   await tickStatusDamage(u); if(G.over)return; if(!u.alive){ nextTurn(); return; }
-  const sk=statusSkips(u); tickStatusDuration(u); if(!hasS(u,'taunt'))u._taunter=null; refreshPanel(u);
-  if(sk){ if((u.boss||u.elite)&&u._ultCooldown<5)u._ultCooldown=5; floatText(u,sk.name.toUpperCase()+' !',sk.col,true); logMsg(u.name+' est '+sk.name.toLowerCase()+' — tour passé.'); await wait(0.7); if(G.over)return; nextTurn(); return; }
+  const sk=statusSkips(u); if(!hasS(u,'taunt'))u._taunter=null; refreshPanel(u);
+  if(sk){ tickStatusDuration(u); if((u.boss||u.elite)&&u._ultCooldown<5)u._ultCooldown=5; floatText(u,sk.name.toUpperCase()+' !',sk.col,true); logMsg(u.name+' est '+sk.name.toLowerCase()+' — tour passé.'); await wait(0.7); if(G.over)return; nextTurn(); return; }
   if(u._ultCooldown>0)u._ultCooldown--;
   if(u.team==='player'){ G.mode='menu'; setHint(u.name+' — à vous de jouer'); openActionMenu(); }
   else { G.mode='ai'; closeMenus(); setHint(u.name+' (ennemi)…'); await wait(0.35); await aiTurn(u); }
@@ -885,6 +885,7 @@ function endTurn(){ if(G.busy||G.over)return; const u=G.active;
     else u._souffle=false;
     u.gardeAP=u.ap;
     if(u.gardeAP>0){ const bonus=Math.min(u.gardeAP,5)*3; setTimeout(()=>{ if(u.alive)floatText(u,'GARDE +'+bonus+' END','#9fe7ff'); },380); }
+    tickStatusDuration(u); refreshPanel(u);
   }
   unitFocus.restore(); hideActionPreview(); closeMenus(); clearHL(); G.pending=null; G.mode='idle'; nextTurn(); }
 function checkEnd(){ if(G.over)return true; if(aliveUnits('foe').length===0){ winWave(); return true; } if(aliveUnits('player').length===0){ endGame(false); return true; } return false; }
@@ -1507,7 +1508,8 @@ async function aiTurn(u){
   const stands=[{gx:u.gx,gz:u.gz,d:0},...list];
 
   // MOVEMENT: evaluate best position considering offense AND support
-  const atkStands=(prof==='camper'||u.immobile)?[{gx:u.gx,gz:u.gz,d:0}]:stands;
+  const rooted=hasS(u,'root');
+  const atkStands=(prof==='camper'||u.immobile||rooted)?[{gx:u.gx,gz:u.gz,d:0}]:stands;
   const best=bestOffense(u,atkStands,taunter);
   const supBefore=bestSupport(u,atkStands);
   // Healer prioritizes support position; others prioritize offense
@@ -1521,7 +1523,7 @@ async function aiTurn(u){
   } else {
     let tgt=foes[0],bd=1e9; for(const f of foes){ const d=gdist(u,f); if(d<bd){bd=d;tgt=f;} }
     if(taunter)tgt=taunter;
-    if(prof==='camper'||u.immobile){ setFacing(u,tgt.gx,tgt.gz); await wait(0.2); endTurn(); return; }
+    if(prof==='camper'||u.immobile||rooted){ setFacing(u,tgt.gx,tgt.gz); await wait(0.2); endTurn(); return; }
     const lowHP=u.hp<u.maxhp*0.3; let pick=stands[0],bestSc=-1e9;
     for(const st of stands){ const dN=Math.abs(st.gx-tgt.gx)+Math.abs(st.gz-tgt.gz); let sc;
       if(prof==='cautious'){ sc = lowHP ? dN - st.d*0.1 : -Math.abs(dN-4)*1.2 - st.d*0.05; }

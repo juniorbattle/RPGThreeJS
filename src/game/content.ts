@@ -27,7 +27,8 @@ const rawNodes: CampaignNode[] = [
   { id: 'lion-witnesses', type: 'mystery', x: 4.4, z: 0, icon: '◇', label: 'Témoins de Bois-Clair', links: ['lion-final-trial-event', 'lion-final-trial-combat'], dialogueId: 'witnesses_on_road' },
   { id: 'lion-final-trial-event', type: 'mystery', x: 5.6, z: -1.1, icon: '◇', label: 'Nid du jeune dragon', links: ['lion-shadow-signs'], dialogueId: 'mystery_dragon_roost' },
   { id: 'lion-final-trial-combat', type: 'random-combat', x: 5.6, z: 1.1, icon: '⚔', label: 'Ruines infestées', links: ['lion-shadow-signs'], combatId: 'ruins_guardians' },
-  { id: 'lion-shadow-signs', type: 'mystery', x: 6.9, z: 0, icon: '?', label: 'Signes des Ombres', links: ['lion-final-judgement'], dialogueId: 'shadow_signs' },
+  { id: 'lion-shadow-signs', type: 'mystery', x: 6.9, z: 0, icon: '?', label: 'Signes des Ombres', links: ['lion-final-refuge'], dialogueId: 'shadow_signs' },
+  { id: 'lion-final-refuge', type: 'story', x: 7.5, z: 0, icon: '⌂', label: 'Refuge avant le Sceau', links: ['lion-final-judgement'], dialogueId: 'final_refuge' },
   { id: 'lion-final-judgement', type: 'boss', x: 8.1, z: 0, icon: '♛', label: 'Jugement du Sceau', links: [], dialogueId: 'lion_finale_judgement' },
 ];
 
@@ -43,7 +44,7 @@ const rawCombats: RawCombatConfig[] = [
   { id: 'serpent_checkpoint', sceneId: 'forest_route', objective: 'Forcez le barrage Serpent sans laisser de messager s’échapper.', encounterLabel: 'Barrage des Serpents', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 120, reputation: 1, materials: { red_gem: 2 } } },
   { id: 'road_to_valmir', sceneId: 'forest_route', objective: 'Ouvrez la route de Bois-Clair avant que le village ne tombe.', encounterLabel: 'Route de Bois-Clair', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 90, reputation: 1, materials: { red_gem: 1 } } },
   { id: 'ruins_guardians', sceneId: 'lion_sanctum', objective: 'Éliminez les créatures qui infestent les ruines des Ombres.', encounterLabel: 'Ruines infestées', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 110, reputation: 1, materials: { red_gem: 1 } } },
-  { id: 'serpent_hunters', sceneId: 'lion_sanctum', objective: 'Survivez aux chasseurs Serpent lancés sur votre piste.', encounterLabel: 'Chasseurs Serpent', encounterRank: 'normal', maxPlayerUnits: 4, rewards: { gold: 125, reputation: 0, materials: { red_gem: 2 } } },
+  { id: 'serpent_hunters', sceneId: 'lion_sanctum', objective: 'Survivez aux chasseurs Serpent lancés sur votre piste.', encounterLabel: 'Chasseurs Serpent', encounterRank: 'normal', maxPlayerUnits: 4, preCombatDialogueId: 'pre_serpent_hunters', rewards: { gold: 125, reputation: 0, materials: { red_gem: 2 } } },
   { id: 'serpent_duelist_trial', sceneId: 'forest_route', objective: 'Défaites le duelliste Serpent avant qu’il ne coupe la retraite.', encounterLabel: 'Duel sous les pins', encounterRank: 'elite', maxPlayerUnits: 4, preCombatDialogueId: 'pre_serpent_duelist_trial', rewards: { gold: 160, reputation: 2, materials: { red_gem: 3 } } },
   { id: 'troll_crossing', sceneId: 'forest_route', objective: 'Forcez le passage gardé par le troll des pierres moussues.', encounterLabel: 'Passage du troll', encounterRank: 'elite', maxPlayerUnits: 4, preCombatDialogueId: 'pre_troll_crossing', rewards: { gold: 180, reputation: 2, materials: { red_gem: 3 } } },
   { id: 'young_dragon_roost', sceneId: 'lion_sanctum', objective: 'Approchez le nid du jeune dragon et survivez à son courroux.', encounterLabel: 'Nid du jeune dragon', encounterRank: 'elite', maxPlayerUnits: 4, preCombatDialogueId: 'pre_young_dragon_roost', rewards: { gold: 260, reputation: 2, materials: { red_gem: 3 } } },
@@ -420,7 +421,7 @@ const rawDialogues = [
         ],
       },
       { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'stern', tag: 'Défi', text: 'Les Serpents testent notre résolution. Que ce masque tombe devant le Lion.', side: 'left', next: null, effects: [], choices: [] },
-      { id: '3', speaker: 'Chroniqueur', actorId: 'chroniqueur', expression: 'neutral', tag: 'Détour', text: 'La route se referme derrière vous. Le duelliste ne tombe pas, mais vous gagnez quelques heures de vie.', side: 'center', next: null, effects: [], choices: [] },
+      { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Détour', text: 'La route se referme derrière vous. Le duelliste ne tombe pas, mais nous gagnons quelques heures de vie.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -464,7 +465,7 @@ const rawDialogues = [
         ],
       },
       { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Gemme vive', text: 'Ses écailles résonnent avec les Sceaux. Ce combat peut nous enrichir, ou nous annoncer aux Ombres.', side: 'left', next: null, effects: [], choices: [] },
-      { id: '3', speaker: 'Chroniqueur', actorId: 'chroniqueur', expression: 'neutral', tag: 'Marque', text: 'Vous laissez une balise discrète. Certains trésors valent mieux lorsqu’ils attendent le bon serment.', side: 'center', next: null, effects: [], choices: [] },
+      { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Marque', text: 'Vous laissez une balise discrète. Certains trésors valent mieux lorsqu’ils attendent le bon serment.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -731,12 +732,11 @@ const rawDialogues = [
         effects: [],
         choices: [
           { text: 'Présenter les survivants et les preuves.', next: '7', requiresFlag: 'missionSuccess', excludesFlag: 'missionGreed', requiresReputationMin: 45, blockedText: 'Vos actes à Bois-Clair parlent contre vous.', effects: [{ type: 'addReputation', amount: 8 }, { type: 'setFlag', key: 'lionSealHonour', value: true }, { type: 'startCombat', combatId: 'serpent_captain' }], contest: { kind: 'justify', risk: 'extreme', gainHint: 'important', truthState: 'suspected', hint: 'Le Champion attend une contradiction.', success: { next: '7', effects: [{ type: 'addReputation', amount: 8 }, { type: 'setFlag', key: 'lionSealHonour', value: true }, { type: 'startCombat', combatId: 'serpent_captain' }] }, failure: { next: '6lie', effects: [{ type: 'addReputation', amount: -10 }, { type: 'setFlag', key: 'alaricDoubt', value: true }, { type: 'startCombat', combatId: 'lion_chief' }] } } },
-          { text: 'Demander l’épreuve du Lion.', next: '8', effects: [{ type: 'addReputation', amount: -6 }, { type: 'setFlag', key: 'lionTrialRequested', value: true }, { type: 'startCombat', combatId: 'lion_chief' }] },
+          { text: 'Demander l’épreuve du Lion.', next: null, effects: [{ type: 'addReputation', amount: -6 }, { type: 'setFlag', key: 'lionTrialRequested', value: true }, { type: 'startCombat', combatId: 'lion_chief' }] },
         ],
       },
       { id: '7', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'grateful', tag: 'Respect', text: 'Alors le Lion vous reconnaît. Le général Serpent fuit avec un artefact des Ombres. Finissez ce que vous avez commencé.', side: 'right', next: null, effects: [], choices: [] },
-      { id: '8', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'hostile', tag: 'Défi', text: 'Vous demandez le Sceau sans être certain que l’honneur vous le donne. Alors prenez-le si votre lame le mérite.', side: 'right', next: null, effects: [], choices: [] },
-      { id: '6lie', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'hostile', tag: 'Refus', text: 'Vos preuves sont faibles et vos mots tremblent. Le Sceau ne se donne pas à ceux qui trichent avec l’honneur. Le Champion vous montrera une autre voie.', side: 'right', next: '8', effects: [], choices: [] },
+      { id: '6lie', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'hostile', tag: 'Refus', text: 'Vos preuves sont faibles et vos mots tremblent. Le Sceau ne se donne pas à ceux qui trichent avec l’honneur. Le Champion vous montrera une autre voie.', side: 'right', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -763,6 +763,15 @@ const rawDialogues = [
     ],
   },
   {
+    id: 'pre_serpent_hunters',
+    sceneArtId: 'mystery_ambush',
+    steps: [
+      { id: '1', speaker: 'Chasseur Serpent', actorId: 'serpent_raider', expression: 'hostile', tag: 'Traque', text: 'L’Oracle a parlé. Un traître parmi nous a vendu notre route à des étrangers. Nous avons suivi ses pas jusqu’ici — et les vôtres avec.', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'stern', tag: 'Riposte', text: 'L’informateur est sous notre protection. Si vous voulez sa tête, il faudra passer par nos lames d’abord.', side: 'left', next: '3', effects: [], choices: [] },
+      { id: '3', speaker: 'Chasseur Serpent', actorId: 'serpent_raider', expression: 'hostile', tag: 'Menace', text: 'Le général veut ce traître mort ou silencieux. Vous ne savez pas ce qu’il a vu — et ce que ça coûte à ceux qui le protègent.', side: 'right', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
     id: 'serpent_general_pre_combat',
     sceneArtId: 'lion_finale_judgement',
     steps: [
@@ -781,8 +790,9 @@ const rawDialogues = [
           { text: 'Vos menaces ne vous sauveront pas. Combattez.', next: '3', effects: [] },
         ],
       },
-      { id: '2', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Refus', text: 'Rendre ? Vous ne comprenez pas ce que vous protégez. Ce n’est pas une arme — c’est bien plus. Et ceux qui le guident ne sont pas les Serpents. Tuez-moi, et d’autres viendront.', side: 'right', next: null, effects: [], choices: [] },
-      { id: '3', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Défi', text: 'Alors venez. Voyons si le Lion a forgé des lames ou des jouets.', side: 'right', next: null, effects: [], choices: [] },
+      { id: '2', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Refus', text: 'Rendre ? Vous ne comprenez pas ce que vous protégez. Ce n’est pas une arme — c’est bien plus. Et ceux qui le guident ne sont pas les Serpents. Tuez-moi, et d’autres viendront.', side: 'right', next: '4', effects: [], choices: [] },
+      { id: '3', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Défi', text: 'Alors venez. Voyons si le Lion a forgé des lames ou des jouets.', side: 'right', next: '4', effects: [], choices: [] },
+      { id: '4', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'stern', tag: 'Mise en garde', text: 'L’artefact pulse entre ses mains. Ce qu’il porte n’est pas de ce monde — et ce combat décidera de bien plus que le Sceau.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -957,12 +967,12 @@ const rawDialogues = [
   {
     id: 'ate_ruins_awaken',
     title: 'Pendant ce temps…',
-    perspective: 'chroniqueur',
+    perspective: 'maelor',
     sceneArtId: 'shadow_signs',
     steps: [
-      { id: '1', speaker: 'Chroniqueur', actorId: 'chroniqueur', expression: 'mystical', tag: 'Observation', text: 'Les ruines s’éclairent. Les inscriptions anciennes brillent sans feu ni lune. La pierre froide depuis des siècles est tiède sous mes doigts.', side: 'left', next: '2', effects: [], choices: [] },
+      { id: '1', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'mystical', tag: 'Observation', text: 'Les ruines s’éclairent. Les inscriptions anciennes brillent sans feu ni lune. La pierre froide depuis des siècles est tiède sous mes doigts.', side: 'left', next: '2', effects: [], choices: [] },
       { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Résonance', text: 'Même d’ici, je sens la pierre chanter. Les vieilles choses ne dorment plus — elles écoutent. Elles attendent de voir qui porte le Sceau.', side: 'right', next: '3', effects: [], choices: [] },
-      { id: '3', speaker: 'Chroniqueur', actorId: 'chroniqueur', expression: 'mystical', tag: 'Révélation', text: 'C’est le Sceau. Plus il s’approche, plus les vieilles choses se souviennent de ce qu’elles étaient. Et certaines… n’avaient pas besoin qu’on les réveille.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'mystical', tag: 'Révélation', text: 'C’est le Sceau. Plus il s’approche, plus les vieilles choses se souviennent de ce qu’elles étaient. Et certaines… n’avaient pas besoin qu’on les réveille.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -1018,12 +1028,22 @@ const rawDialogues = [
     ],
   },
   {
+    id: 'final_refuge',
+    sceneArtId: 'lion_finale_judgement',
+    steps: [
+      { id: '1', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'stern', tag: 'Préparation', text: 'Le camp du Lion est en vue. Avant de franchir ces portes, chacun doit savoir ce qu’il porte — et ce qu’il risque. Le Sceau ne se donne pas, et Alaric ne pardonne pas.', side: 'left', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Pressentiment', text: 'Les ruines chantent encore. Les Ombres se réveillent. Ce jugement ne concernera pas seulement le Lion et le Serpent — quelque chose d’plus ancien nous observe.', side: 'right', next: '3', effects: [], choices: [] },
+      { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Rappel', text: 'Vos actes parlent pour vous. Les réfugiés, les témoins, le convoi — chaque choix a mené ici. Si votre réputation est solide, Alaric vous écoutera. Sinon… son champion vous répondra.', side: 'left', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
     id: 'pre_lion_chief',
     sceneArtId: 'lion_finale_judgement',
     steps: [
       { id: '1', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'stern', tag: 'Confrontation', text: 'Vous demandez le Sceau par la force. Je ne peux pas vous en vouloir \u2014 c\u2019est ainsi que mon clan l\u2019a gagn\u00e9 autrefois.', side: 'right', next: '2', effects: [], choices: [] },
       { id: '2', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'stern', tag: 'Mise en garde', text: 'Mais le Sceau ne se donne pas. Il se prend. Mon bras n\u2019est plus ce qu\u2019il \u00e9tait, mais mon champion porte le poids du Lion dans sa lame.', side: 'right', next: '3', effects: [], choices: [] },
-      { id: '3', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'hostile', tag: 'Duel', text: 'Prouvez votre valeur face \u00e0 mon champion. Le Lion ne c\u00e8de pas sans verser le sang.', side: 'right', next: null, effects: [], choices: [] },
+      { id: '3', speaker: 'Champion du Lion', actorId: 'lion_champion', expression: 'hostile', tag: 'Défi', text: 'Je suis la lame du Lion. Si vous tombez, le clan meurt avec vous. Si vous tenez, le Sceau est à vous. Prouvez que vous méritez de le porter.', side: 'right', next: '4', effects: [], choices: [] },
+      { id: '4', speaker: 'Champion du Lion', actorId: 'lion_champion', expression: 'stern', tag: 'Engagement', text: 'Le Lion ne c\u00e8de pas sans verser le sang. En garde.', side: 'right', next: null, effects: [], choices: [] },
     ],
   },
 ];
