@@ -37,6 +37,12 @@ const contestSchema = z.object({
 });
 export type Contest = z.infer<typeof contestSchema>;
 
+const outcomePreviewSchema = z.object({
+  mode: z.enum(['exact', 'soft', 'hidden']).default('exact'),
+  hints: z.array(z.string()).default([]),
+});
+export type OutcomePreview = z.infer<typeof outcomePreviewSchema>;
+
 export const dialogueChoiceSchema = z.object({
   text: z.string(),
   next: z.string().nullable(),
@@ -48,6 +54,7 @@ export const dialogueChoiceSchema = z.object({
   blockedText: z.string().optional(),
   effects: z.array(narrativeEffectSchema).default([]),
   contest: contestSchema.optional(),
+  outcomePreview: outcomePreviewSchema.optional(),
 });
 export type DialogueChoice = z.infer<typeof dialogueChoiceSchema>;
 

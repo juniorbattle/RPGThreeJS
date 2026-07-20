@@ -251,8 +251,8 @@ const rawDialogues = [
         side: 'left',
         effects: [],
         choices: [
-          { text: 'Partager vos réserves — 40 or.', next: '2', requiresGold: 40, effects: [{ type: 'addGold', amount: -40 }, { type: 'addReputation', amount: 8 }, { type: 'setFlag', key: 'helpedRefugees', value: true }] },
-          { text: 'Prendre l’information et continuer.', next: '3', effects: [{ type: 'addGold', amount: 40 }, { type: 'addReputation', amount: -8 }, { type: 'setFlag', key: 'exploitedRefugees', value: true }] },
+          { text: 'Partager vos réserves — 40 or.', next: '2', requiresGold: 40, effects: [{ type: 'addGold', amount: -40 }, { type: 'addReputation', amount: 8 }, { type: 'setFlag', key: 'helpedRefugees', value: true }], outcomePreview: { mode: 'soft', hints: ['Le clan gagne en respect', 'Les vivants passent avant les coffres'] } },
+          { text: 'Prendre l’information et continuer.', next: '3', effects: [{ type: 'addGold', amount: 40 }, { type: 'addReputation', amount: -8 }, { type: 'setFlag', key: 'exploitedRefugees', value: true }], outcomePreview: { mode: 'soft', hints: ['Gain matériel modéré', 'Votre conduite sera jugée'] } },
         ],
       },
       {
@@ -343,8 +343,8 @@ const rawDialogues = [
         side: 'left',
         effects: [],
         choices: [
-          { text: 'Sauver les habitants.', next: '6', effects: [{ type: 'setFlag', key: 'missionSuccess', value: true }, { type: 'addReputation', amount: 10 }, { type: 'startCombat', combatId: 'village_defense' }] },
-          { text: 'Sécuriser les réserves.', next: '7', effects: [{ type: 'setFlag', key: 'missionSuccess', value: false }, { type: 'setFlag', key: 'missionGreed', value: true }, { type: 'addGold', amount: 200 }, { type: 'addReputation', amount: -10 }, { type: 'startCombat', combatId: 'village_raid' }] },
+          { text: 'Sauver les habitants.', next: '6', effects: [{ type: 'setFlag', key: 'missionSuccess', value: true }, { type: 'addReputation', amount: 10 }, { type: 'startCombat', combatId: 'village_defense' }], outcomePreview: { mode: 'soft', hints: ['Les vivants passent avant les coffres', 'Le village s\u2019en souviendra'] } },
+          { text: 'Sécuriser les réserves.', next: '7', effects: [{ type: 'setFlag', key: 'missionSuccess', value: false }, { type: 'setFlag', key: 'missionGreed', value: true }, { type: 'addGold', amount: 200 }, { type: 'addReputation', amount: -10 }, { type: 'startCombat', combatId: 'village_raid' }], outcomePreview: { mode: 'soft', hints: ['Gain matériel important', 'Votre nom sera terni'] } },
         ],
       },
       { id: '6', speaker: 'Villageoise de Bois-Clair', actorId: 'villageoise', expression: 'grateful', tag: 'Bois-Clair', text: 'Merci. Le vieux pont mène directement à leurs positions.', side: 'left', next: null, effects: [], choices: [] },
@@ -526,8 +526,8 @@ const rawDialogues = [
         side: 'right',
         effects: [],
         choices: [
-          { text: 'Protéger l’informateur et affronter ses chasseurs.', next: '2', effects: [{ type: 'addReputation', amount: 4 }, { type: 'setFlag', key: 'protectedInformant', value: true }, { type: 'startCombat', combatId: 'serpent_hunters' }] },
-          { text: 'Vendre sa route aux Serpents.', next: '3', effects: [{ type: 'addGold', amount: 120 }, { type: 'addReputation', amount: -6 }, { type: 'setFlag', key: 'betrayedInformant', value: true }] },
+          { text: 'Protéger l’informateur et affronter ses chasseurs.', next: '2', effects: [{ type: 'addReputation', amount: 4 }, { type: 'setFlag', key: 'protectedInformant', value: true }, { type: 'startCombat', combatId: 'serpent_hunters' }], outcomePreview: { mode: 'soft', hints: ['Les témoins parleront', 'Les Serpents perdront du temps'] } },
+          { text: 'Vendre sa route aux Serpents.', next: '3', effects: [{ type: 'addGold', amount: 120 }, { type: 'addReputation', amount: -6 }, { type: 'setFlag', key: 'betrayedInformant', value: true }], outcomePreview: { mode: 'soft', hints: ['Gain matériel important', 'Votre nom sera terni'] } },
         ],
       },
       { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'stern', tag: 'Protection', text: 'Sa parole peut encore sauver des vies. Les chasseurs devront nous traverser pour l’atteindre.', side: 'left', next: null, effects: [], choices: [] },
@@ -548,12 +548,13 @@ const rawDialogues = [
         side: 'left',
         effects: [],
         choices: [
-          { text: 'Protéger les témoins jusqu’au camp.', next: '2', requiresReputationMin: 45, blockedText: 'Ils refusent votre escorte.', effects: [{ type: 'addReputation', amount: 5 }, { type: 'setFlag', key: 'protectedWitnesses', value: true }] },
+          { text: 'Protéger les témoins jusqu’au camp.', next: '2', requiresReputationMin: 45, blockedText: 'Ils refusent votre escorte.', effects: [{ type: 'addReputation', amount: 5 }, { type: 'setFlag', key: 'protectedWitnesses', value: true }], contest: { kind: 'persuade', risk: 'high', truthState: 'suspected', hint: 'Les témoins doutent de votre protection.', success: { next: '2', effects: [{ type: 'addReputation', amount: 5 }, { type: 'setFlag', key: 'protectedWitnesses', value: true }] }, failure: { next: '4', effects: [{ type: 'addReputation', amount: -2 }] } } },
           { text: 'Faire taire les témoins, quel qu’en soit le prix.', next: '3', effects: [{ type: 'addGold', amount: -80 }, { type: 'addReputation', amount: -5 }, { type: 'setFlag', key: 'silencedWitnesses', value: true }] },
         ],
       },
       { id: '2', speaker: 'Survivant de Bois-Clair', actorId: 'survivor', expression: 'grateful', tag: 'Parole sauvée', text: 'Alors nous parlerons. Pas pour vous flatter, mais parce que la vérité doit survivre.', side: 'left', next: null, effects: [], choices: [] },
       { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Silence', text: 'La vérité coûte cher. Heureusement, le silence a un prix plus simple.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '4', speaker: 'Survivant de Bois-Clair', actorId: 'survivor', expression: 'fearful', tag: 'Refus', text: 'Vos actes parlent plus fort que vos promesses. Nous trouverons notre propre chemin jusqu’au camp.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -570,8 +571,8 @@ const rawDialogues = [
         side: 'left',
         effects: [],
         choices: [
-          { text: 'Préserver les preuves pour Alaric.', next: '2', effects: [{ type: 'addReputation', amount: 5 }, { type: 'setFlag', key: 'shadowEvidence', value: true }] },
-          { text: 'Briser l’autel et récupérer les fragments.', next: '3', effects: [{ type: 'addItem', itemId: 'iron_ore', quantity: 2 }, { type: 'addReputation', amount: -2 }, { type: 'setFlag', key: 'shadowFragments', value: true }] },
+          { text: 'Préserver les preuves pour Alaric.', next: '2', effects: [{ type: 'addReputation', amount: 5 }, { type: 'setFlag', key: 'shadowEvidence', value: true }], outcomePreview: { mode: 'soft', hints: ['Les preuves seront préservées', 'Le Lion s’en souviendra'] } },
+          { text: 'Briser l’autel et récupérer les fragments.', next: '3', effects: [{ type: 'addItem', itemId: 'iron_ore', quantity: 2 }, { type: 'addReputation', amount: -2 }, { type: 'setFlag', key: 'shadowFragments', value: true }], outcomePreview: { mode: 'soft', hints: ['Gain matériel modéré', 'Séraphine désapprouve ce choix'] } },
         ],
       },
       { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'stern', tag: 'Preuve', text: 'Avec ceci, Alaric verra que son conflit dépasse les frontières du Lion. Ce que nous avons trouvé n’est pas une simple guerre de clan.', side: 'left', next: null, effects: [], choices: [] },

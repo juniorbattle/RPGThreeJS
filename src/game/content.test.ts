@@ -563,6 +563,63 @@ describe('campaign content integrity', () => {
     }
   });
 
+  it('witnesses_on_road protectedWitnesses choice has contest', () => {
+    const dialogue = dialogues.get('witnesses_on_road')!;
+    const step = dialogue.steps.find((s) => s.id === '1')!;
+    const protectChoice = step.choices?.find((c) => c.text.includes('Protéger'));
+    expect(protectChoice, 'protect choice exists').toBeDefined();
+    expect(protectChoice!.contest, 'protect choice has contest').toBeDefined();
+  });
+
+  it('witnesses_on_road protectedWitnesses choice keeps requiresReputationMin', () => {
+    const dialogue = dialogues.get('witnesses_on_road')!;
+    const step = dialogue.steps.find((s) => s.id === '1')!;
+    const protectChoice = step.choices?.find((c) => c.text.includes('Protéger'));
+    expect(protectChoice!.requiresReputationMin, 'keeps requiresReputationMin 45').toBe(45);
+  });
+
+  it('witnesses_on_road has no non-contestable requiresReputationMin/Max choices', () => {
+    const dialogue = dialogues.get('witnesses_on_road')!;
+    for (const step of dialogue.steps) {
+      for (const choice of step.choices ?? []) {
+        if (choice.requiresReputationMin !== undefined || choice.requiresReputationMax !== undefined) {
+          expect(choice.contest, `${step.id}:${choice.text}:must-be-contestable`).toBeDefined();
+        }
+      }
+    }
+  });
+
+  it('witnesses_on_road preserves protectedWitnesses and silencedWitnesses flag paths', () => {
+    const dialogue = dialogues.get('witnesses_on_road')!;
+    const allEffects: string[] = [];
+    for (const step of dialogue.steps) {
+      for (const choice of step.choices ?? []) {
+        for (const effect of choice.effects) {
+          if (effect.type === 'setFlag') allEffects.push(effect.key);
+        }
+        if (choice.contest) {
+          for (const effect of choice.contest.success.effects) {
+            if (effect.type === 'setFlag') allEffects.push(effect.key);
+          }
+        }
+      }
+    }
+    expect(allEffects.includes('protectedWitnesses'), 'protectedWitnesses path exists').toBe(true);
+    expect(allEffects.includes('silencedWitnesses'), 'silencedWitnesses path exists').toBe(true);
+  });
+
+  it('witnesses_on_road contest failure step exists and next targets are valid', () => {
+    const dialogue = dialogues.get('witnesses_on_road')!;
+    const stepIds = new Set(dialogue.steps.map((s) => s.id));
+    const protectChoice = dialogue.steps.find((s) => s.id === '1')!.choices!.find((c) => c.text.includes('Protéger'))!;
+    const failureNext = protectChoice.contest!.failure.next;
+    expect(stepIds.has(failureNext), `failure next '${failureNext}' is a valid step`).toBe(true);
+    const failureStep = dialogue.steps.find((s) => s.id === failureNext)!;
+    expect(failureStep, 'failure step exists').toBeDefined();
+    const failureSetsProtected = failureStep.effects.some((e) => e.type === 'setFlag' && e.key === 'protectedWitnesses');
+    expect(failureSetsProtected, 'failure step must not set protectedWitnesses').toBe(false);
+  });
+
   it('contestable choices never render exact effect descriptors in DialogueView', () => {
     const state = { ...createInitialState(), flags: { helpedRefugees: true }, reputation: 50 };
     const root = document.createElement('div');
@@ -648,5 +705,140 @@ describe('campaign content integrity', () => {
     expect(choiceBtn.disabled, 'non-contestable blocked choice is disabled').toBe(true);
     expect(choiceBtn.classList.contains('is-blocked'), 'non-contestable blocked choice has is-blocked class').toBe(true);
     view.close();
+  });
+
+  it('default choice without outcomePreview still renders exact effects', () => {
+    const state = createInitialState();
+    const root = document.createElement('div');
+    const view = new DialogueView({ root, getState: () => state, applyEffects: async () => {} });
+    const sequence = {
+      id: 'test', sceneArtId: undefined,
+      steps: [{
+        id: '1', speaker: 'Test', actorId: undefined, expression: 'neutral' as const,
+        tag: '', text: 'Test', portrait: '', side: 'right' as const, next: null, effects: [],
+        choices: [{ text: 'Exact', next: null, effects: [{ type: 'addReputation' as const, amount: 5 }] }],
+      }],
+    } as any;
+    view.play(sequence);
+    const badgeTexts = Array.from(root.querySelectorAll('.dialogue-outcome span')).map((el) => el.textContent);
+    expect(badgeTexts.some((t) => t?.includes('Réputation +5')), 'exact rep value shown').toBe(true);
+    view.close();
+  });
+
+  it('outcomePreview soft mode renders hints and hides exact effect values', () => {
+    const state = createInitialState();
+    const root = document.createElement('div');
+    const view = new DialogueView({ root, getState: () => state, applyEffects: async () => {} });
+    const sequence = {
+      id: 'test', sceneArtId: undefined,
+      steps: [{
+        id: '1', speaker: 'Test', actorId: undefined, expression: 'neutral' as const,
+        tag: '', text: 'Test', portrait: '', side: 'right' as const, next: null, effects: [],
+        choices: [{
+          text: 'Soft', next: null,
+          effects: [{ type: 'addReputation' as const, amount: 10 }, { type: 'addGold' as const, amount: 200 }],
+          outcomePreview: { mode: 'soft' as const, hints: ['Le village s\u2019en souviendra', 'Gain matériel important'] },
+        }],
+      }],
+    } as any;
+    view.play(sequence);
+    const badgeTexts = Array.from(root.querySelectorAll('.dialogue-outcome span')).map((el) => el.textContent);
+    expect(badgeTexts.some((t) => t === 'Le village s\u2019en souviendra'), 'hint shown').toBe(true);
+    expect(badgeTexts.some((t) => t === 'Gain matériel important'), 'hint shown').toBe(true);
+    expect(badgeTexts.some((t) => t?.includes('Réputation')), 'exact rep hidden').toBe(false);
+    expect(badgeTexts.some((t) => t?.includes('Or +')), 'exact gold hidden').toBe(false);
+    view.close();
+  });
+
+  it('outcomePreview hidden mode renders no effect preview', () => {
+    const state = createInitialState();
+    const root = document.createElement('div');
+    const view = new DialogueView({ root, getState: () => state, applyEffects: async () => {} });
+    const sequence = {
+      id: 'test', sceneArtId: undefined,
+      steps: [{
+        id: '1', speaker: 'Test', actorId: undefined, expression: 'neutral' as const,
+        tag: '', text: 'Test', portrait: '', side: 'right' as const, next: null, effects: [],
+        choices: [{
+          text: 'Hidden', next: null,
+          effects: [{ type: 'addReputation' as const, amount: 5 }],
+          outcomePreview: { mode: 'hidden' as const, hints: [] },
+        }],
+      }],
+    } as any;
+    view.play(sequence);
+    const badges = root.querySelectorAll('.dialogue-outcome');
+    expect(badges.length, 'no effect badges in hidden mode').toBe(0);
+    view.close();
+  });
+
+  it('contestable choices ignore outcomePreview and keep contest badges', () => {
+    const state = { ...createInitialState(), flags: { helpedRefugees: true }, reputation: 50 };
+    const root = document.createElement('div');
+    const view = new DialogueView({ root, getState: () => state, applyEffects: async () => {} });
+    const sequence = {
+      id: 'test', sceneArtId: undefined,
+      steps: [{
+        id: '1', speaker: 'Test', actorId: undefined, expression: 'neutral' as const,
+        tag: '', text: 'Test', portrait: '', side: 'right' as const, next: null, effects: [],
+        choices: [{
+          text: 'Contest', next: null,
+          effects: [{ type: 'addReputation' as const, amount: 5 }],
+          contest: { kind: 'lie' as const, risk: 'high' as const, truthState: 'known' as const, hint: 'Test', success: { next: '1', effects: [] }, failure: { next: '1', effects: [] } },
+          outcomePreview: { mode: 'soft' as const, hints: ['Should not appear'] },
+        }],
+      }],
+    } as any;
+    view.play(sequence);
+    const badgeTexts = Array.from(root.querySelectorAll('.dialogue-outcome span')).map((el) => el.textContent);
+    expect(badgeTexts.some((t) => t?.includes('Risque')), 'contest badge shown').toBe(true);
+    expect(badgeTexts.some((t) => t === 'Should not appear'), 'outcomePreview hint ignored').toBe(false);
+    view.close();
+  });
+
+  it('V5B converted choices keep original effects unchanged', () => {
+    const dialogueIds = ['refugee_trial', 'village_choice', 'serpent_informant', 'shadow_signs'];
+    for (const dialogueId of dialogueIds) {
+      const dialogue = dialogues.get(dialogueId)!;
+      for (const step of dialogue.steps) {
+        for (const choice of step.choices ?? []) {
+          if (choice.outcomePreview?.mode === 'soft') {
+            expect(choice.effects.length > 0, `${dialogueId}:${step.id} soft choice has effects`).toBe(true);
+            expect(choice.outcomePreview.hints.length > 0, `${dialogueId}:${step.id} soft choice has hints`).toBe(true);
+          }
+        }
+      }
+    }
+  });
+
+  it('V5B converted choices preserve flags, combats and next targets', () => {
+    const expectedFlags: Record<string, string[]> = {
+      refugee_trial: ['helpedRefugees', 'exploitedRefugees'],
+      village_choice: ['missionSuccess', 'missionGreed'],
+      serpent_informant: ['protectedInformant', 'betrayedInformant'],
+      shadow_signs: ['shadowEvidence', 'shadowFragments'],
+    };
+    for (const [dialogueId, expectedFlagKeys] of Object.entries(expectedFlags)) {
+      const dialogue = dialogues.get(dialogueId)!;
+      const allFlagKeys: string[] = [];
+      for (const step of dialogue.steps) {
+        for (const choice of step.choices ?? []) {
+          for (const effect of choice.effects) {
+            if (effect.type === 'setFlag') allFlagKeys.push(effect.key);
+          }
+        }
+      }
+      for (const expectedKey of expectedFlagKeys) {
+        expect(allFlagKeys.includes(expectedKey), `${dialogueId} preserves flag ${expectedKey}`).toBe(true);
+      }
+    }
+    const villageDialogue = dialogues.get('village_choice')!;
+    const hasVillageDefense = villageDialogue.steps.some((s) => s.choices?.some((c) => c.effects.some((e) => e.type === 'startCombat' && e.combatId === 'village_defense')));
+    const hasVillageRaid = villageDialogue.steps.some((s) => s.choices?.some((c) => c.effects.some((e) => e.type === 'startCombat' && e.combatId === 'village_raid')));
+    expect(hasVillageDefense, 'village_choice preserves village_defense combat').toBe(true);
+    expect(hasVillageRaid, 'village_choice preserves village_raid combat').toBe(true);
+    const informantDialogue = dialogues.get('serpent_informant')!;
+    const hasHunters = informantDialogue.steps.some((s) => s.choices?.some((c) => c.effects.some((e) => e.type === 'startCombat' && e.combatId === 'serpent_hunters')));
+    expect(hasHunters, 'serpent_informant preserves serpent_hunters combat').toBe(true);
   });
 });

@@ -211,18 +211,29 @@ export class DialogueView {
     if (isContestable) {
       meta.append(...this.createOutcomeBadges(this.contestBadges(choice.contest!, state)));
     } else {
-      const descriptors = this.describeEffects(choice.effects, choice.requiresGold);
-      if (choice.requiresGold !== undefined) descriptors.unshift({ icon: '●', label: `${availableGold} or disponible`, tone: blockedByGold ? 'loss' : 'neutral' });
-      if (choice.requiresFlag !== undefined && blockedByFlag) descriptors.unshift({ icon: '◇', label: 'Condition requise', tone: 'loss' });
-      if (choice.requiresReputationMin !== undefined) descriptors.unshift({ icon: '♜', label: `Réputation ≥ ${choice.requiresReputationMin}`, tone: blockedByReputationMin ? 'loss' : 'neutral' });
-      if (choice.requiresReputationMax !== undefined) descriptors.unshift({ icon: '♜', label: `Réputation ≤ ${choice.requiresReputationMax}`, tone: blockedByReputationMax ? 'loss' : 'neutral' });
-      meta.append(...this.createOutcomeBadges(descriptors));
-      if (blockedByGold) meta.append(this.createOutcomeBadge({ icon: '!', label: 'Or insuffisant', tone: 'loss' }));
-      if (blockedByFlag && choice.blockedText) {
-        meta.append(this.createOutcomeBadge({ icon: '!', label: choice.blockedText, tone: 'loss' }));
-      }
-      if (blockedByExcludesFlag && choice.blockedText) {
-        meta.append(this.createOutcomeBadge({ icon: '!', label: choice.blockedText, tone: 'loss' }));
+      const preview = choice.outcomePreview;
+      const mode = preview?.mode ?? 'exact';
+
+      if (mode === 'soft') {
+        const hintDescriptors = (preview?.hints ?? []).map((h) => ({ icon: '◇', label: h, tone: 'neutral' as const }));
+        meta.append(...this.createOutcomeBadges(hintDescriptors));
+        this.appendRequirementBadges(meta, choice, availableGold, blockedByGold, blockedByFlag, blockedByExcludesFlag, blockedByReputationMin, blockedByReputationMax);
+      } else if (mode === 'hidden') {
+        this.appendRequirementBadges(meta, choice, availableGold, blockedByGold, blockedByFlag, blockedByExcludesFlag, blockedByReputationMin, blockedByReputationMax);
+      } else {
+        const descriptors = this.describeEffects(choice.effects, choice.requiresGold);
+        if (choice.requiresGold !== undefined) descriptors.unshift({ icon: '●', label: `${availableGold} or disponible`, tone: blockedByGold ? 'loss' : 'neutral' });
+        if (choice.requiresFlag !== undefined && blockedByFlag) descriptors.unshift({ icon: '◇', label: 'Condition requise', tone: 'loss' });
+        if (choice.requiresReputationMin !== undefined) descriptors.unshift({ icon: '♜', label: `Réputation ≥ ${choice.requiresReputationMin}`, tone: blockedByReputationMin ? 'loss' : 'neutral' });
+        if (choice.requiresReputationMax !== undefined) descriptors.unshift({ icon: '♜', label: `Réputation ≤ ${choice.requiresReputationMax}`, tone: blockedByReputationMax ? 'loss' : 'neutral' });
+        meta.append(...this.createOutcomeBadges(descriptors));
+        if (blockedByGold) meta.append(this.createOutcomeBadge({ icon: '!', label: 'Or insuffisant', tone: 'loss' }));
+        if (blockedByFlag && choice.blockedText) {
+          meta.append(this.createOutcomeBadge({ icon: '!', label: choice.blockedText, tone: 'loss' }));
+        }
+        if (blockedByExcludesFlag && choice.blockedText) {
+          meta.append(this.createOutcomeBadge({ icon: '!', label: choice.blockedText, tone: 'loss' }));
+        }
       }
     }
     if (meta.childElementCount > 0) body.append(meta);
@@ -235,6 +246,31 @@ export class DialogueView {
       await this.advance(outcome.next);
     });
     return button;
+  }
+
+  private appendRequirementBadges(
+    meta: HTMLElement,
+    choice: DialogueChoice,
+    availableGold: number,
+    blockedByGold: boolean,
+    blockedByFlag: boolean,
+    blockedByExcludesFlag: boolean,
+    blockedByReputationMin: boolean,
+    blockedByReputationMax: boolean,
+  ): void {
+    if (choice.requiresGold !== undefined) {
+      meta.append(this.createOutcomeBadge({ icon: '●', label: `${availableGold} or disponible`, tone: blockedByGold ? 'loss' : 'neutral' }));
+    }
+    if (choice.requiresFlag !== undefined && blockedByFlag) {
+      meta.append(this.createOutcomeBadge({ icon: '◇', label: 'Condition requise', tone: 'loss' }));
+    }
+    if (blockedByGold) meta.append(this.createOutcomeBadge({ icon: '!', label: 'Or insuffisant', tone: 'loss' }));
+    if (blockedByFlag && choice.blockedText) {
+      meta.append(this.createOutcomeBadge({ icon: '!', label: choice.blockedText, tone: 'loss' }));
+    }
+    if (blockedByExcludesFlag && choice.blockedText) {
+      meta.append(this.createOutcomeBadge({ icon: '!', label: choice.blockedText, tone: 'loss' }));
+    }
   }
 
   private contestBadges(contest: Contest, state: GameState): OutcomeDescriptor[] {
