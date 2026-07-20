@@ -295,8 +295,8 @@ const rawDialogues = [
         side: 'left',
         effects: [],
         choices: [
-          { text: 'Frapper le convoi et saisir les réserves.', next: '2', effects: [{ type: 'addGold', amount: 120 }, { type: 'addReputation', amount: -6 }, { type: 'setFlag', key: 'prioritizedLoot', value: true }] },
-          { text: 'Marquer le convoi et continuer vers le village.', next: '3', effects: [{ type: 'addReputation', amount: 4 }, { type: 'setFlag', key: 'prioritizedVillage', value: true }] },
+          { text: 'Frapper le convoi et saisir les réserves.', next: '2', effects: [{ type: 'addGold', amount: 120 }, { type: 'addReputation', amount: -6 }, { type: 'setFlag', key: 'prioritizedLoot', value: true }], outcomePreview: { mode: 'soft', hints: ['Gain matériel important', 'Maelor approuve ce calcul'] } },
+          { text: 'Marquer le convoi et continuer vers le village.', next: '3', effects: [{ type: 'addReputation', amount: 4 }, { type: 'setFlag', key: 'prioritizedVillage', value: true }], outcomePreview: { mode: 'soft', hints: ['Le clan gagne en respect', 'Les vivants passent avant les coffres'] } },
         ],
       },
       {
@@ -482,8 +482,8 @@ const rawDialogues = [
         side: 'left',
         effects: [],
         choices: [
-          { text: 'Rendre les provisions aux réfugiés.', next: '2', effects: [{ type: 'addReputation', amount: 4 }, { type: 'setFlag', key: 'returnedLostTreasure', value: true }] },
-          { text: 'Prendre l’or et les provisions.', next: '3', effects: [{ type: 'addGold', amount: 100 }, { type: 'addItem', itemId: 'potion', quantity: 1 }, { type: 'addReputation', amount: -4 }, { type: 'setFlag', key: 'claimedLostTreasure', value: true }] },
+          { text: 'Rendre les provisions aux réfugiés.', next: '2', effects: [{ type: 'addReputation', amount: 4 }, { type: 'setFlag', key: 'returnedLostTreasure', value: true }], outcomePreview: { mode: 'soft', hints: ['Le clan gagne en respect', 'Le village s\u2019en souviendra'] } },
+          { text: 'Prendre l’or et les provisions.', next: '3', effects: [{ type: 'addGold', amount: 100 }, { type: 'addItem', itemId: 'potion', quantity: 1 }, { type: 'addReputation', amount: -4 }, { type: 'setFlag', key: 'claimedLostTreasure', value: true }], outcomePreview: { mode: 'soft', hints: ['Gain matériel important', 'Votre conduite sera jugée'] } },
         ],
       },
       { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'grateful', tag: 'Restitution', text: 'Un bien rendu vaut davantage qu’un coffre gagné sans témoin. La route se souviendra de ce geste.', side: 'left', next: null, effects: [], choices: [] },
@@ -504,8 +504,8 @@ const rawDialogues = [
         side: 'center',
         effects: [],
         choices: [
-          { text: 'Préserver l’offrande et raviver l’autel.', next: '2', effects: [{ type: 'addReputation', amount: 3 }, { type: 'setFlag', key: 'preservedShrine', value: true }] },
-          { text: 'Briser le reliquaire et prendre l’offrande.', next: '3', effects: [{ type: 'addGold', amount: 80 }, { type: 'addReputation', amount: -4 }, { type: 'setFlag', key: 'desecratedShrine', value: true }] },
+          { text: 'Préserver l’offrande et raviver l’autel.', next: '2', effects: [{ type: 'addReputation', amount: 3 }, { type: 'setFlag', key: 'preservedShrine', value: true }], outcomePreview: { mode: 'soft', hints: ['Les anciens rites sont respectés', 'Séraphine approuve ce choix'] } },
+          { text: 'Briser le reliquaire et prendre l’offrande.', next: '3', effects: [{ type: 'addGold', amount: 80 }, { type: 'addReputation', amount: -4 }, { type: 'setFlag', key: 'desecratedShrine', value: true }], outcomePreview: { mode: 'soft', hints: ['Gain matériel modéré', 'Séraphine désapprouve ce choix'] } },
         ],
       },
       { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Protection', text: 'La flamme reprend. D’autres survivront ici parce que nous avons choisi de laisser quelque chose derrière nous.', side: 'left', next: null, effects: [], choices: [] },
@@ -594,8 +594,8 @@ const rawDialogues = [
         next: null,
         effects: [],
         choices: [
-          { text: 'Se recueillir et pr\u00e9server le sanctuaire.', next: '2', effects: [{ type: 'addReputation', amount: 2 }, { type: 'setFlag', key: 'shrineRested', value: true }] },
-          { text: 'Fouiller le sanctuaire pour des reliques.', next: '3', effects: [{ type: 'addGold', amount: 50 }, { type: 'addReputation', amount: -3 }, { type: 'setFlag', key: 'shrineLooted', value: true }] },
+          { text: 'Se recueillir et pr\u00e9server le sanctuaire.', next: '2', effects: [{ type: 'addReputation', amount: 2 }, { type: 'setFlag', key: 'shrineRested', value: true }], outcomePreview: { mode: 'soft', hints: ['Le clan gagne en respect', 'S\u00e9raphine approuve ce respect'] } },
+          { text: 'Fouiller le sanctuaire pour des reliques.', next: '3', effects: [{ type: 'addGold', amount: 50 }, { type: 'addReputation', amount: -3 }, { type: 'setFlag', key: 'shrineLooted', value: true }], outcomePreview: { mode: 'soft', hints: ['Gain mat\u00e9riel mod\u00e9r\u00e9', 'S\u00e9raphine d\u00e9sapprouve ce choix'] } },
         ],
       },
       { id: '2', speaker: 'Sage S\u00e9raphine', actorId: 'sage_seraphine', expression: 'neutral', tag: 'Repos', text: 'La chaleur de la pierre apaise les esprits. Nous repartons sans avoir profan\u00e9 ce refuge.', side: 'left', next: null, effects: [], choices: [] },

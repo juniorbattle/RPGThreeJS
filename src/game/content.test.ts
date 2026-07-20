@@ -841,4 +841,70 @@ describe('campaign content integrity', () => {
     const hasHunters = informantDialogue.steps.some((s) => s.choices?.some((c) => c.effects.some((e) => e.type === 'startCombat' && e.combatId === 'serpent_hunters')));
     expect(hasHunters, 'serpent_informant preserves serpent_hunters combat').toBe(true);
   });
+
+  it('V5.1 converted choices have outcomePreview.mode === soft', () => {
+    const dialogueIds = ['reserve_trail', 'old_shrine_event', 'mystery_treasure', 'mystery_shrine'];
+    for (const dialogueId of dialogueIds) {
+      const dialogue = dialogues.get(dialogueId)!;
+      const softChoices = dialogue.steps
+        .flatMap((s) => s.choices ?? [])
+        .filter((c) => c.outcomePreview?.mode === 'soft');
+      expect(softChoices.length, `${dialogueId} has 2 soft choices`).toBe(2);
+    }
+  });
+
+  it('V5.1 converted choices each have at least one hint', () => {
+    const dialogueIds = ['reserve_trail', 'old_shrine_event', 'mystery_treasure', 'mystery_shrine'];
+    for (const dialogueId of dialogueIds) {
+      const dialogue = dialogues.get(dialogueId)!;
+      for (const choice of dialogue.steps.flatMap((s) => s.choices ?? [])) {
+        if (choice.outcomePreview?.mode === 'soft') {
+          expect(choice.outcomePreview.hints.length > 0, `${dialogueId} soft choice has hints`).toBe(true);
+        }
+      }
+    }
+  });
+
+  it('V5.1 converted choices preserve flags, items, gold/reputation effects and next targets', () => {
+    const expectedFlags: Record<string, string[]> = {
+      reserve_trail: ['prioritizedLoot', 'prioritizedVillage'],
+      old_shrine_event: ['shrineRested', 'shrineLooted'],
+      mystery_treasure: ['returnedLostTreasure', 'claimedLostTreasure'],
+      mystery_shrine: ['preservedShrine', 'desecratedShrine'],
+    };
+    for (const [dialogueId, expectedFlagKeys] of Object.entries(expectedFlags)) {
+      const dialogue = dialogues.get(dialogueId)!;
+      const allFlagKeys: string[] = [];
+      for (const step of dialogue.steps) {
+        for (const choice of step.choices ?? []) {
+          for (const effect of choice.effects) {
+            if (effect.type === 'setFlag') allFlagKeys.push(effect.key);
+          }
+        }
+      }
+      for (const expectedKey of expectedFlagKeys) {
+        expect(allFlagKeys.includes(expectedKey), `${dialogueId} preserves flag ${expectedKey}`).toBe(true);
+      }
+    }
+    const treasureDialogue = dialogues.get('mystery_treasure')!;
+    const hasItemEffect = treasureDialogue.steps.some((s) => s.choices?.some((c) => c.effects.some((e) => e.type === 'addItem' && e.itemId === 'potion')));
+    expect(hasItemEffect, 'mystery_treasure preserves potion item reward').toBe(true);
+    const reserveDialogue = dialogues.get('reserve_trail')!;
+    const hasGoldEffect = reserveDialogue.steps.some((s) => s.choices?.some((c) => c.effects.some((e) => e.type === 'addGold' && e.amount === 120)));
+    expect(hasGoldEffect, 'reserve_trail preserves gold 120 effect').toBe(true);
+    const shrineDialogue = dialogues.get('mystery_shrine')!;
+    const hasNextTargets = shrineDialogue.steps.some((s) => s.choices?.some((c) => c.next === '2')) && shrineDialogue.steps.some((s) => s.choices?.some((c) => c.next === '3'));
+    expect(hasNextTargets, 'mystery_shrine preserves next targets 2 and 3').toBe(true);
+  });
+
+  it('V5B converted choices remain converted', () => {
+    const v5bDialogues = ['refugee_trial', 'village_choice', 'serpent_informant', 'shadow_signs'];
+    for (const dialogueId of v5bDialogues) {
+      const dialogue = dialogues.get(dialogueId)!;
+      const softChoices = dialogue.steps
+        .flatMap((s) => s.choices ?? [])
+        .filter((c) => c.outcomePreview?.mode === 'soft');
+      expect(softChoices.length, `${dialogueId} V5B soft choices still present`).toBe(2);
+    }
+  });
 });
