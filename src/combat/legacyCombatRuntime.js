@@ -492,19 +492,20 @@ function buildTileTex(fillA,fillB,strokeA,strokeB,cornerA,glowA,lw=1.45,cornerLe
   for(const [cx,cy,sx,sy] of corners){ x.beginPath(); x.moveTo(cx,cy+sy*(cornerLen+3)); x.lineTo(cx,cy); x.lineTo(cx+sx*(cornerLen+3),cy); x.stroke(); }
   const t=new THREE.CanvasTexture(c); t.anisotropy=4; t.needsUpdate=true; return t; }
 function makeTileTex(){ hlTextures={
-  range:buildTileTex('rgba(255,250,240,0.22)','rgba(220,215,200,0.10)','rgba(255,248,232,0.9)','rgba(80,78,68,0.88)','rgba(255,245,220,0.9)','rgba(240,235,210,0.6)',2.2,18),
+  range:buildTileTex('rgba(255,250,240,0.48)','rgba(220,215,200,0.28)','rgba(255,248,232,0.9)','rgba(80,78,68,0.88)','rgba(255,245,220,0.9)','rgba(240,235,210,0.6)',2.2,18),
   move:buildTileTex('rgba(214,246,232,0.42)','rgba(93,178,157,0.22)','rgba(230,255,242,1)','rgba(48,116,112,0.98)','rgba(240,255,236,1)','rgba(136,235,205,0.9)',3.15,25),
   hover:buildTileTex('rgba(255,250,220,0.52)','rgba(231,215,155,0.32)','rgba(255,248,195,1)','rgba(92,83,46,1)','rgba(255,252,200,1)','rgba(248,228,160,0.98)',3.6,28),
   target:buildTileTex('rgba(255,198,150,0.62)','rgba(200,70,56,0.38)','rgba(255,222,165,1)','rgba(110,30,26,1)','rgba(255,200,130,1)','rgba(255,120,80,1)',3.8,28),
   target_ally:buildTileTex('rgba(210,255,220,0.52)','rgba(110,200,130,0.32)','rgba(230,255,238,1)','rgba(40,100,60,1)','rgba(230,255,232,1)','rgba(150,240,170,0.98)',3.5,26),
   aoe:buildTileTex('rgba(255,250,240,0.30)','rgba(220,215,200,0.14)','rgba(255,248,232,0.92)','rgba(80,78,68,0.85)','rgba(255,245,220,0.92)','rgba(240,235,210,0.65)',2.4,18),
+  range_max:buildTileTex('rgba(255,243,180,0.58)','rgba(230,210,100,0.34)','rgba(255,238,140,0.95)','rgba(120,100,30,0.9)','rgba(255,240,160,0.95)','rgba(255,225,100,0.8)',2.6,20),
   invalid:buildTileTex('rgba(160,156,122,0.15)','rgba(94,98,83,0.07)','rgba(186,186,148,0.78)','rgba(63,68,54,0.66)','rgba(176,176,132,0.7)','rgba(130,130,104,0.26)',1.9,15)
 }; hlTex=hlTextures.range; }
 function clearHL(){ for(const m of hlMeshes){ hlGroup.remove(m); m.material.dispose(); } hlMeshes.length=0; }
-function addHL(gx,gz,color,op=0.45,kind='range'){ const c=cellAt(gx,gz); if(!c)return; const boost=kind==='target'||kind==='target_ally'?1.28:(kind==='hover'?1.24:(kind==='move'?1.22:(kind==='aoe'?1.10:(kind==='invalid'?1.08:1.14)))),finalOp=Math.min(1,op*boost);
+function addHL(gx,gz,color,op=0.45,kind='range'){ const c=cellAt(gx,gz); if(!c)return; const boost=kind==='target'||kind==='target_ally'?1.28:(kind==='hover'?1.24:(kind==='move'?1.22:(kind==='range_max'?1.18:(kind==='aoe'?1.10:(kind==='invalid'?1.08:1.14))))),finalOp=Math.min(1,op*boost);
   const m=new THREE.Mesh(hlGeo,new THREE.MeshBasicMaterial({map:hlTextures[kind]||hlTex,color,transparent:true,opacity:finalOp,depthWrite:false,depthTest:false,side:THREE.DoubleSide,blending:THREE.NormalBlending,fog:false,toneMapped:false}));
-  const ro=kind==='hover'?10:(kind==='target'||kind==='target_ally'?9:(kind==='aoe'?8.5:8)),yOff=kind==='hover'?0.072:(kind==='target'||kind==='target_ally'?0.070:0.068);
-  m.rotation.x=-Math.PI/2; m.position.set(wX(gx),c.topY+yOff,wZ(gz)); m.renderOrder=ro; m.userData.baseOp=finalOp; m.userData.pulse=kind==='target'||kind==='target_ally'||kind==='hover'?0.018:(kind==='aoe'?0.028:(kind==='invalid'?0.006:0.012)); hlGroup.add(m); hlMeshes.push(m); return m; }
+  const ro=kind==='hover'?10:(kind==='target'||kind==='target_ally'?9:(kind==='aoe'?8.5:(kind==='range_max'?8.2:8))),yOff=kind==='hover'?0.072:(kind==='target'||kind==='target_ally'?0.070:0.068);
+  m.rotation.x=-Math.PI/2; m.position.set(wX(gx),c.topY+yOff,wZ(gz)); m.renderOrder=ro; m.userData.baseOp=finalOp; m.userData.pulse=kind==='target'||kind==='target_ally'||kind==='hover'?0.018:(kind==='aoe'?0.028:(kind==='range_max'?0.016:(kind==='invalid'?0.006:0.012))); hlGroup.add(m); hlMeshes.push(m); return m; }
 function addRingHL(gx,gz,color,op=0.62,ringScale=1,cgx=null,cgz=null){ const c=cellAt(gx,gz); if(!c)return;
   const px=cgx!=null?wX(cgx):wX(gx), pz=cgz!=null?wZ(cgz):wZ(gz);
   const u=new THREE.Mesh(targetRingGeo,new THREE.MeshBasicMaterial({color:0x0a0603,transparent:true,opacity:Math.min(.76,op*.76),depthWrite:false,depthTest:false,side:THREE.DoubleSide,blending:THREE.NormalBlending,fog:false,toneMapped:false}));
@@ -1603,7 +1604,7 @@ function pickUnit(ev){ const c=pickCell(ev); return (c&&c.occupant&&c.occupant.a
 
 function drawReach(){ clearHL(); const keys=new Set(G.reach.list.map(t=>cellKey(t.gx,t.gz))); addInvalidTiles(keys,true); for(const t of G.reach.list){ if(t.gx===G.active.gx&&t.gz===G.active.gz)continue; addHL(t.gx,t.gz,CFG.COL.move,COMBAT_PRESENTATION.arena.moveTileOpacity,'move'); } }
 function enterMove(){ if(G.movedThisTurn||G.busy)return; if(G.active.immobile){ toast('Immobile — deplacement impossible'); return; } if(hasS(G.active,'root')){ toast('Entravé — déplacement impossible'); return; } G.mode='move'; G.reach=reachableStand(G.active); unitFocus.focus(G.units,G.active); closeMenus(false); drawReach(); setHint('Déplacement — choisissez une case'); }
-function drawRange(){ hideActionPreview(); clearHL(); const sp=G.pending.spec,keys=new Set(G.pending.centers.map(c=>cellKey(c.gx,c.gz))); addInvalidTiles(keys,false); const helpful=Boolean(sp.heal||sp.support||sp.revive||sp.cure); const rangeCol=helpful?0x6aff7a:0xff6a5a; for(const c of G.pending.centers) addHL(c.gx,c.gz,rangeCol,COMBAT_PRESENTATION.arena.rangeTileOpacity,'range');
+function drawRange(){ hideActionPreview(); clearHL(); const sp=G.pending.spec,keys=new Set(G.pending.centers.map(c=>cellKey(c.gx,c.gz))); addInvalidTiles(keys,false); const helpful=Boolean(sp.heal||sp.support||sp.revive||sp.cure); const rangeCol=helpful?0x6aff7a:0xff6a5a; const maxR=sp.range[1]||0; const ux=G.active.size>1?bossCenterGX(G.active):G.active.gx, uz=G.active.size>1?bossCenterGZ(G.active):G.active.gz; for(const c of G.pending.centers){ const md=Math.abs(c.gx-ux)+Math.abs(c.gz-uz); if(maxR>0&&md===maxR){ addHL(c.gx,c.gz,0xffd84a,COMBAT_PRESENTATION.arena.rangeTileOpacity,'range_max'); } else { addHL(c.gx,c.gz,rangeCol,COMBAT_PRESENTATION.arena.rangeTileOpacity,'range'); } }
   for(const c of G.pending.centers){ const occ=cellAt(c.gx,c.gz)?.occupant; if(!occ||!occ.alive||!G.active)continue; const isAlly=occ.team===G.active.team; if(helpful&&!isAlly)continue; if(!helpful&&isAlly)continue;
     const tk=helpful?'target_ally':'target',tc=helpful?0x7edf7a:CFG.COL.foe; addHL(c.gx,c.gz,tc,COMBAT_PRESENTATION.arena.targetTileOpacity,tk);
     const sc=occ.size>1?occ.size:1,cgx=occ.size>1?bossCenterGX(occ):c.gx,cgz=occ.size>1?bossCenterGZ(occ):c.gz; addRingHL(c.gx,c.gz,tc,COMBAT_PRESENTATION.arena.targetTileOpacity+.22,sc,cgx,cgz); } }
