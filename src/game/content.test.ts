@@ -988,4 +988,79 @@ describe('campaign content integrity', () => {
       expect(softChoices.length, `${dialogueId} V5.1 soft choices still present`).toBe(2);
     }
   });
+
+  it('V6 mystery_lancer_recruit has neutral opening text not assuming Bois-Clair was saved', () => {
+    const dialogue = dialogues.get('mystery_lancer_recruit')!;
+    const step1 = dialogue.steps.find((s) => s.id === '1')!;
+    expect(step1.text.includes('défendu'), 'opening must not contain "défendu"').toBe(false);
+    expect(step1.text.includes('sauvés'), 'opening must not contain "sauvés"').toBe(false);
+  });
+
+  it('V6 mystery_lancer_recruit recruit choice has requiresReputationMin and contest', () => {
+    const dialogue = dialogues.get('mystery_lancer_recruit')!;
+    const step1 = dialogue.steps.find((s) => s.id === '1')!;
+    const recruitChoice = step1.choices!.find((c) => c.text.includes('Accueillir'))!;
+    expect(recruitChoice.requiresReputationMin, 'requiresReputationMin: 15').toBe(15);
+    expect(recruitChoice.blockedText, 'has blockedText').toBeTruthy();
+    expect(recruitChoice.contest?.kind, 'contest.kind: persuade').toBe('persuade');
+    expect(recruitChoice.contest?.risk, 'contest.risk: moderate').toBe('moderate');
+  });
+
+  it('V6 mystery_lancer_recruit top-level recruit effects include recruitUnit and recruitedLancer', () => {
+    const dialogue = dialogues.get('mystery_lancer_recruit')!;
+    const step1 = dialogue.steps.find((s) => s.id === '1')!;
+    const recruitChoice = step1.choices!.find((c) => c.text.includes('Accueillir'))!;
+    const effectTypes = recruitChoice.effects.map((e) => e.type);
+    expect(effectTypes.includes('recruitUnit'), 'top-level effects include recruitUnit').toBe(true);
+    const recruitEffect = recruitChoice.effects.find((e) => e.type === 'recruitUnit')!;
+    expect(recruitEffect.unitId, 'recruitUnit unitId: lancer').toBe('lancer');
+    const flagEffect = recruitChoice.effects.find((e) => e.type === 'setFlag')!;
+    expect(flagEffect.key, 'setFlag key: recruitedLancer').toBe('recruitedLancer');
+  });
+
+  it('V6 mystery_lancer_recruit contest.success mirrors recruitUnit and recruitedLancer', () => {
+    const dialogue = dialogues.get('mystery_lancer_recruit')!;
+    const step1 = dialogue.steps.find((s) => s.id === '1')!;
+    const recruitChoice = step1.choices!.find((c) => c.text.includes('Accueillir'))!;
+    const successEffects = recruitChoice.contest!.success.effects;
+    expect(successEffects.some((e) => e.type === 'recruitUnit' && e.unitId === 'lancer'), 'success mirrors recruitUnit').toBe(true);
+    expect(successEffects.some((e) => e.type === 'setFlag' && e.key === 'recruitedLancer'), 'success mirrors recruitedLancer').toBe(true);
+  });
+
+  it('V6 mystery_lancer_recruit contest.failure routes to step 4 with empty effects', () => {
+    const dialogue = dialogues.get('mystery_lancer_recruit')!;
+    const step1 = dialogue.steps.find((s) => s.id === '1')!;
+    const recruitChoice = step1.choices!.find((c) => c.text.includes('Accueillir'))!;
+    expect(recruitChoice.contest!.failure.next, 'failure.next: 4').toBe('4');
+    expect(recruitChoice.contest!.failure.effects, 'failure effects empty').toHaveLength(0);
+  });
+
+  it('V6 mystery_lancer_recruit has step 4 for contest failure', () => {
+    const dialogue = dialogues.get('mystery_lancer_recruit')!;
+    const step4 = dialogue.steps.find((s) => s.id === '4');
+    expect(step4, 'step 4 exists').toBeTruthy();
+    expect(step4!.effects, 'step 4 has no recruitUnit').not.toContainEqual(expect.objectContaining({ type: 'recruitUnit' }));
+    expect(step4!.effects, 'step 4 has no recruitedLancer flag').not.toContainEqual(expect.objectContaining({ type: 'setFlag', key: 'recruitedLancer' }));
+  });
+
+  it('V6 mystery_lancer_recruit all next targets resolve to existing steps', () => {
+    const dialogue = dialogues.get('mystery_lancer_recruit')!;
+    const stepIds = new Set(dialogue.steps.map((s) => s.id));
+    for (const step of dialogue.steps) {
+      for (const choice of step.choices ?? []) {
+        if (choice.next) expect(stepIds.has(choice.next), `${step.id}:choice.next ${choice.next}`).toBe(true);
+        if (choice.contest) {
+          expect(stepIds.has(choice.contest.success.next), `${step.id}:contest.success`).toBe(true);
+          expect(stepIds.has(choice.contest.failure.next), `${step.id}:contest.failure`).toBe(true);
+        }
+      }
+    }
+  });
+
+  it('V6 mystery_lancer_recruit has at most 2 choices per step', () => {
+    const dialogue = dialogues.get('mystery_lancer_recruit')!;
+    for (const step of dialogue.steps) {
+      expect((step.choices ?? []).length, `${step.id} choices <= 2`).toBeLessThanOrEqual(2);
+    }
+  });
 });

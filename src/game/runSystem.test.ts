@@ -25,8 +25,8 @@ describe('hybrid run system', () => {
 
   it('creates a 19-node Lion braid with two refuges and three reconverging trials', () => {
     const graph = generateRunGraph(7);
-    expect(graph.nodes).toHaveLength(19);
-    expect(Math.max(...graph.nodes.map((node) => node.depth))).toBe(15);
+    expect(graph.nodes).toHaveLength(20);
+    expect(Math.max(...graph.nodes.map((node) => node.depth))).toBe(16);
     expect(graph.nodes.filter((node) => node.type === 'refuge')).toHaveLength(2);
     expect(graph.nodes.filter((node) => node.type === 'shop')).toHaveLength(0);
     expect(graph.nodes[0]!.id).toBe('lion-camp');
@@ -63,7 +63,7 @@ describe('hybrid run system', () => {
       node = graph.nodes.find((candidate) => candidate.id === node.links[0])!;
       path.push(node.id);
     }
-    expect(path).toHaveLength(16);
+    expect(path).toHaveLength(17);
   });
 
   it('describes route risk, reward and narrative hints for TravelView', () => {
@@ -162,7 +162,7 @@ describe('hybrid run system', () => {
     stale.currentNodeId = 'lion-reserve-trail';
 
     const migrated = migrateState(stale);
-    expect(migrated.run.graph.nodes).toHaveLength(19);
+    expect(migrated.run.graph.nodes).toHaveLength(20);
     expect(migrated.run.currentNodeId).toBe('lion-reserve-trail');
     expect(migrated.flags.helpedRefugees).toBe(true);
     expect(migrated.run.temporaryLoot.gold).toBe(75);
@@ -183,5 +183,50 @@ describe('hybrid run system', () => {
     failRunToCheckpoint(state);
     expect(state.run.temporaryLoot.gold).toBe(0);
     expect(state.run.currentNodeId).toBe(state.run.checkpointNodeId);
+  });
+
+  it('places lion-lancer-recruit on the common route between lion-second-refuge and lion-witnesses', () => {
+    const graph = generateRunGraph(7);
+    const lancerNode = graph.nodes.find((node) => node.id === 'lion-lancer-recruit');
+    expect(lancerNode, 'lion-lancer-recruit exists').toBeTruthy();
+    expect(lancerNode!.contentId).toBe('mystery_lancer_recruit');
+    expect(lancerNode!.type).toBe('event');
+
+    const refuge = graph.nodes.find((node) => node.id === 'lion-second-refuge')!;
+    expect(refuge.links).toContain('lion-lancer-recruit');
+
+    expect(lancerNode!.links).toEqual(['lion-witnesses']);
+  });
+
+  it('makes lion-lancer-recruit accessible regardless of missionSuccess, missionGreed, lionMandateHonour or conduct tier', () => {
+    const flagSets = [
+      { helpedRefugees: true, prioritizedVillage: true, missionSuccess: true, lionMandateHonour: true },
+      { exploitedRefugees: true, prioritizedLoot: true, missionGreed: true, lionMandateAdvance: true },
+      {},
+    ];
+    for (const flags of flagSets) {
+      const state = createInitialState();
+      state.run = createRunState(30);
+      Object.assign(state.flags, flags);
+      const available = choicesAt(state, 'lion-second-refuge');
+      expect(available.some((node) => node.contentId === 'mystery_lancer_recruit'),
+        `lancer accessible with flags ${JSON.stringify(flags)}`).toBe(true);
+    }
+  });
+
+  it('no longer selects mystery_lancer_recruit as adaptive variant at lion-final-trial-event', () => {
+    const flagSets = [
+      { helpedRefugees: true, prioritizedVillage: true, missionSuccess: true, lionMandateHonour: true },
+      { exploitedRefugees: true, missionGreed: true },
+      {},
+    ];
+    for (const flags of flagSets) {
+      const state = createInitialState();
+      state.run = createRunState(31);
+      Object.assign(state.flags, flags);
+      const available = choicesAt(state, 'lion-witnesses');
+      const finalEvent = available.find((node) => node.type === 'event');
+      expect(finalEvent?.contentId, `final-trial-event not lancer with flags ${JSON.stringify(flags)}`).not.toBe('mystery_lancer_recruit');
+    }
   });
 });

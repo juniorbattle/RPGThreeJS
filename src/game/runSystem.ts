@@ -280,7 +280,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     contentId: 'forest_refuge',
     label: 'Dernier feu du Lion',
     icon: '⌂',
-    links: ['lion-witnesses'],
+    links: ['lion-lancer-recruit'],
     risk: 0,
     reward: 1,
     difficulty: 'safe',
@@ -288,9 +288,24 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     hint: 'Dernière halte avant de rassembler les conséquences de vos actes.',
   },
   {
-    id: 'lion-witnesses',
+    id: 'lion-lancer-recruit',
     type: 'event',
     depth: 12,
+    lane: 0,
+    contentId: 'mystery_lancer_recruit',
+    label: 'Volontaire de Bois-Clair',
+    icon: '◇',
+    links: ['lion-witnesses'],
+    risk: 1,
+    reward: 3,
+    difficulty: 'safe',
+    moralTone: 'honour',
+    hint: 'Un jeune lancier de Bois-Clair veut voir ce que votre clan fera du Sceau.',
+  },
+  {
+    id: 'lion-witnesses',
+    type: 'event',
+    depth: 13,
     lane: 0,
     contentId: 'witnesses_on_road',
     label: 'Témoins de Bois-Clair',
@@ -305,7 +320,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-final-trial-event',
     type: 'event',
-    depth: 13,
+    depth: 14,
     lane: -0.75,
     contentId: 'mystery_dragon_roost',
     label: 'Dernière tentation',
@@ -320,7 +335,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-final-trial-combat',
     type: 'combat',
-    depth: 13,
+    depth: 14,
     lane: 0.75,
     contentId: 'ruins_guardians',
     label: 'Ruines infestées',
@@ -335,7 +350,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-shadow-signs',
     type: 'mystery',
-    depth: 14,
+    depth: 15,
     lane: 0,
     contentId: 'shadow_signs',
     label: 'Signes des Ombres',
@@ -350,7 +365,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
     id: 'lion-final-judgement',
     type: 'boss',
-    depth: 15,
+    depth: 16,
     lane: 0,
     contentId: 'lion_finale_judgement',
     label: 'Jugement du Sceau',
@@ -511,7 +526,6 @@ function selectAdaptiveVariant(state: GameState, nodeId: string): AdaptiveRouteV
     return SECOND_COMBAT_VARIANTS[tier];
   }
   if (nodeId === 'lion-final-trial-event') {
-    if (mandateHonour && state.flags.missionSuccess) return LANCER_RECRUIT_VARIANT;
     return tier !== 'infamy' && completedEliteEncounter(state) ? FINAL_EVENT_AFTER_ELITE : FINAL_EVENT_VARIANTS[tier];
   }
   if (nodeId === 'lion-final-trial-combat') return FINAL_COMBAT_VARIANTS[tier];
@@ -528,7 +542,7 @@ function adaptiveVariantByContentId(nodeId: string, contentId: string): Adaptive
         : nodeId === 'lion-second-trial-combat'
           ? [...Object.values(SECOND_COMBAT_VARIANTS), MANDATE_SECOND_COMBAT_ADVANCE]
           : nodeId === 'lion-final-trial-event'
-            ? [...Object.values(FINAL_EVENT_VARIANTS), FINAL_EVENT_AFTER_ELITE, LANCER_RECRUIT_VARIANT]
+            ? [...Object.values(FINAL_EVENT_VARIANTS), FINAL_EVENT_AFTER_ELITE, LANCER_RECRUIT_VARIANT] // Retained for legacy mysteryAssignments compatibility — do not use for new run generation.
             : nodeId === 'lion-final-trial-combat'
               ? Object.values(FINAL_COMBAT_VARIANTS)
               : [];
