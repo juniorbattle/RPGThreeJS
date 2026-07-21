@@ -67,7 +67,7 @@ Object.assign(skillPresentation, {
   regen: { name: 'Régénération', ap: 2, description: 'Régénère les PV des alliés chaque tour.' },
   bless: { name: 'Bénédiction', ap: 2, description: 'Augmente la force et la magie des alliés.' },
   revive: { name: 'Résurrection', ap: 4, description: 'Relève un allié tombé au combat.' },
-  heavy: { name: 'Coup Lourd', ap: 2, description: 'Choc puissant qui peut étourdir.' },
+  heavy: { name: 'Coup Lourd', ap: 2, description: 'Choc puissant qui peut ralentir.' },
   blink: { name: 'Clignotement', ap: 2, description: 'Repositionnement instantané sur une case libre.' },
   leap: { name: 'Bond', ap: 1, description: 'Déplacement rapide vers une case libre.' },
   charge: { name: 'Charge', ap: 2, description: 'Fonce en ligne droite et perturbe l\u2019arrivée.' },

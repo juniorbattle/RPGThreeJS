@@ -538,10 +538,10 @@ const LEGACY_SKILLS={
   regen:{name:'Régénération',ap:4,type:'buff',power:0,range:[0,3],radius:1,support:true,status:'regen',statusTurns:3,desc:'Régénère les PV des alliés chaque tour (3 tours).'},
   bless:{name:'Bénédiction',ap:4,type:'buff',power:0,range:[0,3],radius:1,support:true,status:'boost',statusTurns:3,desc:'+FOR/+MAG aux alliés (3 tours).'},
   revive:{name:'Résurrection',ap:5,type:'revive',power:0.5,range:[1,1],radius:0,support:true,desc:'Relève un allié K.O. à 50% PV.'},
-  heavy:{name:'Coup Lourd',ap:4,type:'phys',power:11,range:[1,1],radius:1,offensive:true,acc:0.95,status:'stun',statusTurns:1,desc:'Choc de zone qui étourdit (1 tour).'},
+  heavy:{name:'Coup Lourd',ap:4,type:'phys',power:11,range:[1,1],radius:1,offensive:true,acc:0.95,status:'slow',statusTurns:1,desc:'Choc de zone qui ralentit (1 tour).'},
   blink:{name:'Clignotement',ap:3,type:'move',mode:'teleport',dest:true,range:[2,3],radius:0,desc:'Se repositionne instantanément sur une case libre.'},
   leap:{name:'Bond',ap:3,type:'move',mode:'leap',dest:true,range:[2,3],radius:0,desc:'Repositionnement rapide vers une case libre.'},
-  charge:{name:'Charge',ap:4,type:'move',mode:'dash',dest:true,range:[2,3],radius:0,power:8,impact:{status:'stun',statusTurns:1},desc:'Charge en ligne droite et etourdit pres de l arrivee.'},
+  charge:{name:'Charge',ap:4,type:'move',mode:'dash',dest:true,range:[2,3],radius:0,power:8,impact:{status:'slow',statusTurns:1},desc:'Charge en ligne droite et ralentit pres de l arrivee.'},
 };
 // Build SKILLS: start with legacy fallbacks, then override with new SkillDefinitions from skills.ts
 const SKILLS={...LEGACY_SKILLS};
@@ -628,7 +628,7 @@ const STATUS={
   weak:   {name:'Affaibli',col:'#c9a0ff', str:0.75, mag:0.75},
   barrier:{name:'Barrière',col:'#9fe7ff', end:1.4},
   curse:  {name:'Malédic.',col:'#b06aff', end:0.7},
-  stun:   {name:'Étourdi', col:'#ffe066', dmgTaken:1.25, skip:true},
+  staggered:{name:'Brisé', col:'#ff6a4a', end:0.4, skip:true},
   blind:  {name:'Aveuglé', col:'#8aa0b8', acc:-0.4},
   root:   {name:'Entravé', col:'#c98a52', noMove:true},
   silence:{name:'Mutisme', col:'#d08ad0', noSkill:true},
@@ -659,6 +659,7 @@ const ITEMS={
 };
 function isNegative(s){ return !['regen','boost','barrier'].includes(s); }
 function hasS(u,s){ return (u.statuses[s]||0)>0; }
+function isExhausted(u){ return !!u && u.alive && u.ap<=0; }
 function statMul(u,key){ let m=1; for(const s in u.statuses){ const d=STATUS[s]; if(d&&u.statuses[s]>0&&d[key]!=null) m*=d[key]; } return m; }
 function effSTR(u){ return u.str*statMul(u,'str'); }
 function effMAG(u){ return u.mag*statMul(u,'mag'); }
@@ -1056,7 +1057,7 @@ function castTelegraph(u,spec){ const c=u.cell(); if(!c)return; const col=fxColo
   tween(m.scale,{x:1.7,y:1.7,z:1.7},0.5,easeOutCubic);
   tween(m.material,{opacity:.9},0.12,easeOutCubic,()=>tween(m.material,{opacity:0},0.36,easeOutCubic,()=>{ scene.remove(m); m.geometry.dispose(); m.material.dispose(); }));
   burst(new THREE.Vector3(wX(ux),c.topY+0.5,wZ(uz)),col); }
-function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*100:5; return cl(base+Math.max(0,(effDEX(att)-effDEX(tgt))/2),1,90)/100; }
+function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*100:5; const dexBonus=Math.max(0,(effDEX(att)-effDEX(tgt))/2); const exhaustBonus=isExhausted(tgt)?20:0; return cl(base+dexBonus+exhaustBonus,1,90)/100; }
 function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return true; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; if(spec.weaponType==='longbow'){ const dist=Math.abs((att.size>1?bossCenterGX(att):att.gx)-tgt.gx)+Math.abs((att.size>1?bossCenterGZ(att):att.gz)-tgt.gz); if(dist>=spec.range[1])acc+=5; } return Math.random()*100<cl(acc,5,95); }
 
 async function applyDamage(u,dmg,src){
@@ -1403,6 +1404,7 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
           floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':'#ffffff',lab==='DOS'||crit);
           if(crit){ if(!playFeedbackVfx('critical_hit',u,t)){ screenShake(0.5,0.3); screenFlash('#fff3b0',0.18); vfx('crit',t.grp.position.clone().add(new THREE.Vector3(0,1,0))); } logMsg('Coup critique !'); }
           await applyDamage(t,dmg,u); totalDamageDealt+=dmg; if(G.over)break;
+          if(t.alive&&crit&&isExhausted(t)&&!hasS(t,'staggered')){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); }
           if(t.alive&&eff.status){ applyStatus(t,eff.status,eff.statusTurns); if(eff.status==='taunt')t._taunter=u; }
         }
       } else if(eff.kind==='heal'){
@@ -1439,14 +1441,14 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
         logMsg('Coup critique !');
       }
       if(lab==='DOS')floatText({grp:{position:t.grp.position.clone().add(new THREE.Vector3(0,0.3,0))},gx:t.gx,gz:t.gz},'DOS !','#ff5a4a');
-      await applyDamage(t,dmg,u); basicDmg=dmg; if(G.over)break; if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } }
+      await applyDamage(t,dmg,u); basicDmg=dmg; if(G.over)break; if(t.alive&&crit&&isExhausted(t)&&!hasS(t,'staggered')){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); } if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } }
     if(spec.key==='attack'&&spec.weaponType==='scythe'&&u.alive&&basicDmg>0){ applyHeal(u,Math.max(1,Math.round(basicDmg*0.10))); }
     if(spec.key==='attack'&&spec.weaponType==='hand_cannon'){ const splashTgts=aliveUnits().filter(st=>st.team!==u.team&&st.alive&&Math.abs(st.gx-impactCx)+Math.abs(st.gz-impactCz)===1); for(const st of splashTgts){ const sd=Math.max(1,Math.round(basicDmg*0.25)); floatText(st,'-'+sd,'#ffaa6a'); await applyDamage(st,sd,u); if(G.over)break; await wait(0.06); } }
-    if(spec.key==='attack'&&spec.weaponType==='greatsword'&&u.alive&&basicDmg>0&&Math.random()<0.20){ const t=targets[0]; if(t&&t.alive){ applyStatus(t,'curse',2); } }
+    if(spec.key==='attack'&&spec.weaponType==='greatsword'&&u.alive&&basicDmg>0&&Math.random()<(0.20+(isExhausted(targets[0])?0.20:0))){ const t=targets[0]; if(t&&t.alive){ applyStatus(t,'curse',2); } }
     if(spec.key==='attack'&&spec.weaponType==='holy_mace'&&u.alive&&basicDmg>0&&Math.random()<0.20){ applyHeal(u,Math.max(1,Math.round(u.maxhp*0.08))); }
     if(spec.key==='attack'&&spec.weaponType==='long_spear'&&u.alive&&basicDmg>0&&Math.random()<0.25){ const t=targets[0]; if(t){ const dx=Math.sign(t.gx-u.gx),dz=Math.sign(t.gz-u.gz); const pierceTgt=aliveUnits().find(st=>st.team!==u.team&&st.alive&&st.gx===t.gx+dx&&st.gz===t.gz+dz); if(pierceTgt){ const pd=Math.max(1,Math.round(basicDmg*0.75)); floatText(pierceTgt,'PERCE ! -'+pd,'#ffaa6a',true); await applyDamage(pierceTgt,pd,u); } } }
     if(spec.key==='attack'&&spec.weaponType==='grimoire'&&u.alive&&basicDmg>0&&Math.random()<0.20){ u.ap=Math.min(u.maxap,u.ap+2); floatText(u,'+2 AP','#7fd0ff',true); refreshPanel(u); }
-    if(spec.key==='attack'&&spec.weaponType==='wand'&&u.alive&&basicDmg>0&&Math.random()<0.25){ const t=targets[0]; if(t&&t.alive){ const neg=['burn','poison','slow','weak','curse','blind','root','silence']; const rs=neg[Math.floor(Math.random()*neg.length)]; applyStatus(t,rs,2); } }
+    if(spec.key==='attack'&&spec.weaponType==='wand'&&u.alive&&basicDmg>0&&Math.random()<(0.25+(isExhausted(targets[0])?0.20:0))){ const t=targets[0]; if(t&&t.alive){ const neg=['burn','poison','slow','weak','curse','blind','root','silence']; const rs=neg[Math.floor(Math.random()*neg.length)]; applyStatus(t,rs,2); } }
     if(spec.key==='attack'&&spec.weaponType==='shuriken'&&u.alive&&basicDmg>0&&Math.random()<0.25){ const t=targets[0]; if(t&&t.alive){ floatText(u,'DOUBLE !','#ffd27a',true); const sd=Math.max(1,Math.round(basicDmg*0.75)); floatText(t,'-'+sd,'#ffd27a'); await applyDamage(t,sd,u); } }
     await wait(0.15); }
   if(hasSkillMovement&&!moveBefore){ const moved=await performSkillMovement(u,spec,cx,cz,context); if(moved){G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz;} }
@@ -1474,7 +1476,7 @@ function bestOffense(u,stands,taunter){ const specs=[]; const isBE=!!(u.boss||u.
       for(const t of al){ const {dmg}=computeDamage(sim,t,spec); score-=dmg*1.6; }
       if(taunter&&en.includes(taunter))score+=50;
       if(en.length>1)score+=8*en.length;
-      if(spec.status&&en.length>0){ const newT=en.filter(t=>!hasS(t,spec.status)); const sv={stun:30,curse:15,weak:15,blind:12,root:10,burn:8,poison:8,slow:8}[spec.status]||5; score+=sv*newT.length; }
+      if(spec.status&&en.length>0){ const newT=en.filter(t=>!hasS(t,spec.status)); const sv={curse:15,weak:15,blind:12,root:10,burn:8,poison:8,slow:8}[spec.status]||5; score+=sv*newT.length; }
       if(!best||score>best.score) best={score,st,spec,cx:c.gx,cz:c.gz}; } } }
   return best; }
 function bestSupport(u,stands){ const supSpecs=u.skills.map(s=>getSpec(u,s)).filter(s=>skillHasSupport(s)&&s.ap<=u.ap); if(!supSpecs.length)return null;
@@ -1710,7 +1712,7 @@ function statBarsHTML(u){ const ST=[['⚔','FOR',Math.round(effSTR(u))],['✦','
 function statsDetailsHTML(u){ return '<button type="button" class="stats-toggle" aria-expanded="'+(statsPanelExpanded?'true':'false')+'"><span>'+(statsPanelExpanded?'Masquer':'Afficher')+' stats</span><b>'+(statsPanelExpanded?'−':'+')+'</b></button>'+(statsPanelExpanded?statBarsHTML(u):''); }
 function bindStatsToggle(u){ const button=dom.panel.querySelector('.stats-toggle'); if(!button)return; button.onclick=()=>{statsPanelExpanded=!statsPanelExpanded;renderPanel(u);}; }
 function renderPanel(u){ dom.panel.classList.remove('hidden'); dom.panel.dataset.team=u.team; const hpp=Math.max(0,Math.round(u.hp/u.maxhp*100)),portrait=uiPortraitFor(u.portrait)||(SPR[u.kind]&&SPR[u.kind].portrait?SPR[u.kind].portrait:'');
-  let tags=''; for(const s in u.statuses){ const d=STATUS[s]; if(!d)continue; tags+='<span class="tag" style="color:'+d.col+';border-color:'+d.col+'">'+escHTML(d.name)+' '+u.statuses[s]+'</span>'; } if(!u.alive)tags+='<span class="tag" style="color:#ff5a4a;border-color:#ff5a4a">K.O.</span>';
+  let tags=''; for(const s in u.statuses){ const d=STATUS[s]; if(!d)continue; tags+='<span class="tag" style="color:'+d.col+';border-color:'+d.col+'">'+escHTML(d.name)+' '+u.statuses[s]+'</span>'; } if(!u.alive)tags+='<span class="tag" style="color:#ff5a4a;border-color:#ff5a4a">K.O.</span>'; else if(isExhausted(u))tags+='<span class="tag" style="color:#7fd0ff;border-color:#7fd0ff">Essoufflé</span>';
   const wt=u.weapons&&u.weapons[0]&&u.weapons[0].weaponType?INNATE_GIFTS_BY_WEAPON[u.weapons[0].weaponType]:null;
   const aptHTML=wt?'<div class="du-aptitude"><span class="du-aptitude__label">Aptitude</span><strong>'+escHTML(wt.name)+'</strong><small>'+escHTML(wt.desc)+'</small></div>':'';
   dom.panel.innerHTML='<div class="details-unit"><div class="du-top"><div class="du-portrait">'+(portrait?'<img src="'+portrait+'" alt="">':'<span>'+escHTML(u.name.charAt(0))+'</span>')+'</div><div class="du-id"><div class="du-head"><span>'+escHTML(u.className||u.name||'')+'</span></div><div class="nm">'+escHTML(u.name)+'</div>'+apPipsHTML(u)+'</div><div class="du-team"><b class="team-badge">'+teamLabel(u.team)+'</b></div></div>'+
