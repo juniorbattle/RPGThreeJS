@@ -46,10 +46,10 @@ export function createInitialState(): GameState {
     reputation: 30,
     reputationHistory: [],
     inventory: {
-      consumables: { potion: 3, ether: 1, antidote: 2, bomb: 2 },
-      accessories: { strength_ring: 1, magic_pendant: 1 },
-      materials: { iron_ore: 3 },
-      weapons: { steel_greatsword: 1, longbow: 1, mystic_grimoire: 1 },
+      consumables: { potion: 4, revive_vial: 1, antidote: 2 },
+      accessories: {},
+      materials: {},
+      weapons: {},
     },
     clan: {
       maxSize: 12,
@@ -65,9 +65,12 @@ export function createInitialState(): GameState {
       valmir: {
         id: 'valmir',
         stock: {
-          potion: 8, ether: 3, antidote: 4, bomb: 3, revive_vial: 2,
-          strength_ring: 1, life_belt: 1, agility_boots: 1, wisdom_crown: 1, magic_pendant: 1,
-          steel_greatsword: 1, longbow: 1, mystic_grimoire: 1, sacred_mace: 1, steel_scythe: 1,
+          potion: 10, antidote: 6, revive_vial: 2, ether: 2, bomb: 2,
+          iron_ore: 8, red_gem: 2,
+          strength_ring: 1, life_belt: 1, agility_boots: 1, magic_pendant: 1, wisdom_crown: 1, warding_buckle: 1,
+          steel_greatsword: 1, sacred_mace: 1, steel_scythe: 1, steel_spear: 1,
+          mystic_grimoire: 1, sacred_crosier: 1, steel_rapier: 1, orb_scepter: 1,
+          longbow: 1, steel_shuriken: 1, steel_dagger: 1, siege_cannon: 1,
         },
       },
     },

@@ -7,7 +7,7 @@ import { createInitialState, migrateState } from './store';
 import {
   createUnitInstance, craftRecipeById, getEquippedWeaponTier, getLockedSkillReason, getMaxUnlockedSkillAp, getResolvedSkills, getUnlockedSkillsForHero,
   getWeaponProfileLabel, getWeaponSkillUnlockLabel, isSkillUnlockedForHero, isUltimateUnlockedForHero,
-  itemById, toCombatant, weaponById,
+  itemById, toCombatant, unitById, weaponById,
 } from './catalog';
 import type { CraftRecipeDefinition } from './types';
 
@@ -15,6 +15,8 @@ describe('clan management', () => {
   it('swaps equipment without losing inventory items', () => {
     const state = createInitialState();
     const unit = state.clan.members[0]!;
+    state.inventory.weapons.steel_greatsword = 1;
+    state.inventory.accessories.strength_ring = 1;
 
     expect(equipWeapon(state, unit.id, 'steel_greatsword')).toBe(true);
     expect(unit.equipment.weaponIds).toEqual(['steel_greatsword']);
@@ -50,6 +52,7 @@ describe('clan management', () => {
   it('replaces equipment skills without levels', () => {
     const state = createInitialState();
     const knight = state.clan.members.find((unit) => unit.id === 'warrior')!;
+    state.inventory.accessories.strength_ring = 1;
     expect(getResolvedSkills(knight)).toContain('w_break_guard');
     expect(getResolvedSkills(knight)).not.toContain('d_cursed_blade');
     expect(equipAccessory(state, knight.id, 0, 'strength_ring')).toBe(true);
@@ -106,6 +109,7 @@ describe('clan management', () => {
   it('upgrades resolved skills with escalating red gem costs', () => {
     const state = createInitialState();
     state.inventory.materials.red_gem = 3;
+    state.inventory.weapons.steel_greatsword = 1;
     const knight = state.clan.members[0]!;
     equipWeapon(state, knight.id, 'steel_greatsword');
     expect(upgradeSkill(state, knight.id, 'w_break_guard')).toBe(true);
@@ -120,6 +124,8 @@ describe('clan management', () => {
 
   it('crafts fixed shop recipes by consuming permanent ingredients and gold', () => {
     const state = createInitialState();
+    state.inventory.weapons.steel_greatsword = 1;
+    state.inventory.accessories.strength_ring = 1;
     const beforeGold = state.gold;
 
     expect(canCraftItem(state, 'craft_lion_guard_greatsword')).toBe(true);
@@ -206,6 +212,7 @@ describe('weapon progression', () => {
   it('T1 hero unlocks only the 2AP skill', () => {
     const state = createInitialState();
     const warrior = state.clan.members[0]!;
+    state.inventory.weapons.steel_greatsword = 1;
     equipWeapon(state, warrior.id, 'steel_greatsword');
     expect(getEquippedWeaponTier(warrior)).toBe(1);
     const unlocked = getUnlockedSkillsForHero(warrior);
@@ -249,6 +256,7 @@ describe('weapon progression', () => {
     expect(getLockedSkillReason(warrior, 'w_charge')).toBe('Débloquée avec arme T2');
     expect(getLockedSkillReason(warrior, 'w_whirl')).toBe('Débloquée avec arme T3');
     expect(getLockedSkillReason(warrior, 'w_lion_surge')).toBe('Ultimate — éveil spécial requis');
+    state.inventory.weapons.steel_greatsword = 1;
     equipWeapon(state, warrior.id, 'steel_greatsword');
     expect(getLockedSkillReason(warrior, 'w_break_guard')).toBe('');
     expect(getLockedSkillReason(warrior, 'w_charge')).toBe('Débloquée avec arme T2');
@@ -270,6 +278,7 @@ describe('weapon progression', () => {
     const state = createInitialState();
     const warrior = state.clan.members[0]!;
     expect(toCombatant(warrior).skills).toHaveLength(0);
+    state.inventory.weapons.steel_greatsword = 1;
     equipWeapon(state, warrior.id, 'steel_greatsword');
     const payload = toCombatant(warrior);
     expect(payload.skills).toContain('w_break_guard');
@@ -281,6 +290,7 @@ describe('weapon progression', () => {
     state.inventory.materials.red_gem = 3;
     const warrior = state.clan.members[0]!;
     expect(upgradeSkill(state, warrior.id, 'w_break_guard')).toBe(false);
+    state.inventory.weapons.steel_greatsword = 1;
     equipWeapon(state, warrior.id, 'steel_greatsword');
     expect(upgradeSkill(state, warrior.id, 'w_break_guard')).toBe(true);
   });
@@ -387,6 +397,7 @@ describe('equipment identity', () => {
   it('innateGiftModifier is optional and safe when absent', () => {
     const state = createInitialState();
     const unit = state.clan.members[0]!;
+    state.inventory.accessories.strength_ring = 1;
     expect(equipAccessory(state, unit.id, 0, 'strength_ring')).toBe(true);
   });
 
@@ -438,5 +449,101 @@ describe('equipment identity', () => {
     expect(getWeaponProfileLabel(weaponById.get('novice_grimoire')!)).toBe('magique');
     expect(getWeaponProfileLabel(weaponById.get('novice_crosier')!)).toBe('magique');
     expect(getWeaponProfileLabel(weaponById.get('novice_wand')!)).toBe('magique');
+  });
+});
+
+describe('weapon affix variants', () => {
+  const variantIds = ['ember_greatsword', 'venom_dagger', 'frost_spear', 'hex_grimoire', 'eclipse_longbow', 'inferno_cannon', 'shadow_scythe'];
+
+  it('all variant weapons exist in catalog', () => {
+    for (const id of variantIds) {
+      expect(weaponById.has(id), id).toBe(true);
+    }
+  });
+
+  it('all variant weapons have basicAttackStatus', () => {
+    for (const id of variantIds) {
+      const weapon = weaponById.get(id)!;
+      expect(weapon.basicAttackStatus, id).toBeDefined();
+    }
+  });
+
+  it('all variant affix statuses are allowed (no staggered/stun)', () => {
+    const allowed = ['burn', 'poison', 'slow', 'root', 'blind', 'weak', 'curse'];
+    for (const id of variantIds) {
+      const status = weaponById.get(id)!.basicAttackStatus!.status;
+      expect(allowed, id).toContain(status);
+    }
+  });
+
+  it('ember_greatsword is in warrior allowedWeaponIds', () => {
+    const state = createInitialState();
+    const warrior = state.clan.members.find((u) => u.definitionId === 'warrior')!;
+    const def = warrior;
+    expect(def.equipment.weaponIds).toContain('novice_greatsword');
+  });
+
+  it('each variant is in the correct unit allowedWeaponIds', () => {
+    const expected: Record<string, string> = {
+      ember_greatsword: 'warrior',
+      venom_dagger: 'rogue',
+      frost_spear: 'lancer',
+      hex_grimoire: 'dark_mage',
+      eclipse_longbow: 'archer',
+      inferno_cannon: 'artillerist',
+      shadow_scythe: 'dark_knight',
+    };
+    for (const [weaponId, unitId] of Object.entries(expected)) {
+      const unit = unitById.get(unitId)!;
+      expect(unit.allowedWeaponIds, `${weaponId} in ${unitId}`).toContain(weaponId);
+    }
+  });
+
+  it('new material recipes can be crafted when ingredients are available', () => {
+    const state = createInitialState();
+    state.inventory.weapons.steel_greatsword = 1;
+    state.inventory.materials.iron_ore = 2;
+    state.gold = 200;
+
+    expect(canCraftItem(state, 'craft_burn_greatsword')).toBe(true);
+    expect(craftItem(state, 'craft_burn_greatsword')).toBe(true);
+    expect(state.inventory.weapons.ember_greatsword).toBe(1);
+    expect(state.inventory.materials.iron_ore).toBe(0);
+  });
+
+  it('new material recipes fail when materials are missing', () => {
+    const state = createInitialState();
+    state.inventory.weapons.steel_greatsword = 1;
+    state.gold = 200;
+    state.inventory.materials.iron_ore = 1;
+
+    expect(canCraftItem(state, 'craft_burn_greatsword')).toBe(false);
+    expect(craftItem(state, 'craft_burn_greatsword')).toBe(false);
+  });
+
+  it('starting inventory has only consumables', () => {
+    const state = createInitialState();
+    expect(state.inventory.consumables).toEqual({ potion: 4, revive_vial: 1, antidote: 2 });
+    expect(Object.keys(state.inventory.accessories)).toHaveLength(0);
+    expect(Object.keys(state.inventory.materials)).toHaveLength(0);
+    expect(Object.keys(state.inventory.weapons)).toHaveLength(0);
+  });
+
+  it('shop stock includes all 12 T1 weapons', () => {
+    const state = createInitialState();
+    const stock = state.shops.valmir!.stock;
+    const t1Weapons = ['steel_greatsword', 'sacred_mace', 'steel_scythe', 'steel_spear', 'mystic_grimoire', 'sacred_crosier', 'steel_rapier', 'orb_scepter', 'longbow', 'steel_shuriken', 'steel_dagger', 'siege_cannon'];
+    for (const id of t1Weapons) {
+      expect(stock[id], id).toBeGreaterThanOrEqual(1);
+    }
+  });
+
+  it('shop stock includes materials and wisdom_crown', () => {
+    const state = createInitialState();
+    const stock = state.shops.valmir!.stock;
+    expect(stock.iron_ore).toBeGreaterThanOrEqual(1);
+    expect(stock.red_gem).toBeGreaterThanOrEqual(1);
+    expect(stock.wisdom_crown).toBeGreaterThanOrEqual(1);
+    expect(stock.warding_buckle).toBeGreaterThanOrEqual(1);
   });
 });

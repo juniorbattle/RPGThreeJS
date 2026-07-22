@@ -262,7 +262,7 @@ describe('campaign content integrity', () => {
   });
 
   it('keeps craft recipes data-driven and backed by existing items', () => {
-    expect(craftRecipes.length).toBeGreaterThanOrEqual(4);
+    expect(craftRecipes.length).toBeGreaterThanOrEqual(11);
     for (const recipe of craftRecipes) {
       expect(itemById.has(recipe.output.itemId), `${recipe.id}:output`).toBe(true);
       expect(recipe.inputs.gold, `${recipe.id}:gold`).toBeGreaterThan(0);
@@ -271,6 +271,9 @@ describe('campaign content integrity', () => {
       }
       for (const itemId of Object.keys(recipe.inputs.accessories ?? {})) {
         expect(itemById.get(itemId)?.category, `${recipe.id}:${itemId}`).toBe('accessories');
+      }
+      for (const itemId of Object.keys(recipe.inputs.materials ?? {})) {
+        expect(itemById.get(itemId)?.category, `${recipe.id}:${itemId}`).toBe('materials');
       }
       expect(['weapons', 'accessories']).toContain(recipe.output.category);
     }

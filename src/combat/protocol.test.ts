@@ -15,6 +15,7 @@ describe('combat protocol', () => {
   it('validates initialization without URL payloads', () => {
     const state = createInitialState();
     const config = combatConfigs.get('forest_patrol')!;
+    state.inventory.weapons.steel_greatsword = 1;
     equipWeapon(state, state.clan.members[0]!.id, 'steel_greatsword');
     state.clan.members[0]!.currentHealth = 77;
     state.clan.members[0]!.skillUpgrades.w_break_guard = 2;

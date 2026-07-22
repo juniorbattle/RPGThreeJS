@@ -72,6 +72,15 @@ export const weapons: WeaponDefinition[] = [
   { id: 'novice_cannon', name: 'Canon novice', description: 'Canon portatif pour les artilleurs débutants.', category: 'weapons', price: 120, icon: '⌁', type: 'hand_cannon', tier: 0, damage: 14, range: 4, minRange: 2, accuracyBonus: 0, critBonus: 5 },
   { id: 'siege_cannon', name: 'Canon de siège', description: 'Canon lourd à la puissance accrue.', category: 'weapons', price: 240, icon: '⌁', type: 'hand_cannon', tier: 1, damage: 22, range: 4, minRange: 2, accuracyBonus: 5, critBonus: 8, healthBonus: 18 },
   { id: 'barrage_cannon', name: 'Canon de Barrage', description: 'Canon dévastateur à tir multiple.', category: 'weapons', price: 360, icon: '⌁', type: 'hand_cannon', tier: 2, damage: 26, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 10, healthBonus: 35 },
+  // Affix variants — T1
+  { id: 'ember_greatsword', name: 'Espadon de Braise', description: "Espadon d'acier trempé dans des braises de forge.", category: 'weapons', price: 240, icon: '⚔', type: 'greatsword', tier: 1, damage: 25, range: 1, accuracyBonus: 7, critBonus: 5, healthBonus: 25, basicAttackStatus: { status: 'burn', chance: 0.15, turns: 1 } },
+  { id: 'venom_dagger', name: 'Dague du Serpent', description: 'Dague fine dont la gorge retient un venin persistant.', category: 'weapons', price: 230, icon: '†', type: 'dagger', tier: 1, damage: 18, range: 1, accuracyBonus: 17, critBonus: 12, healthBonus: 18, basicAttackStatus: { status: 'poison', chance: 0.20, turns: 1 } },
+  { id: 'frost_spear', name: 'Lance à Crochets', description: "Lance d'acier munie de crochets qui entravent l'élan adverse.", category: 'weapons', price: 260, icon: '↟', type: 'long_spear', tier: 1, damage: 20, range: 2, accuracyBonus: 3, critBonus: 5, healthBonus: 20, basicAttackStatus: { status: 'slow', chance: 0.15, turns: 1 } },
+  { id: 'hex_grimoire', name: 'Grimoire Noirci', description: 'Tome brûlé sur les bords, chargé de malédictions courtes.', category: 'weapons', price: 320, icon: '✦', type: 'grimoire', tier: 1, damage: 18, range: 1, accuracyBonus: 15, critBonus: 5, healthBonus: 13, basicAttackStatus: { status: 'curse', chance: 0.15, turns: 1 } },
+  // Affix variants — T2
+  { id: 'eclipse_longbow', name: "Arc d'Éclipse", description: 'Arc sombre dont les flèches voilent brièvement la vue.', category: 'weapons', price: 390, icon: '⌁', type: 'longbow', tier: 2, damage: 24, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 12, healthBonus: 30, basicAttackStatus: { status: 'blind', chance: 0.20, turns: 1 } },
+  { id: 'inferno_cannon', name: 'Canon Incendiaire', description: 'Canon lourd conçu pour projeter des charges embrasées.', category: 'weapons', price: 420, icon: '⌁', type: 'hand_cannon', tier: 2, damage: 26, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 10, healthBonus: 35, basicAttackStatus: { status: 'burn', chance: 0.20, turns: 1 } },
+  { id: 'shadow_scythe', name: "Faux de l'Ombre", description: 'Faux obscure qui affaiblit la garde des survivants.', category: 'weapons', price: 390, icon: '☠', type: 'scythe', tier: 2, damage: 28, range: 2, accuracyBonus: 5, critBonus: 12, healthBonus: 45, basicAttackStatus: { status: 'curse', chance: 0.20, turns: 1 } },
 ];
 
 export const items: ItemDefinition[] = [
@@ -100,7 +109,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/alistair.png',
     baseStats: { maxHealth: 140, strength: 20, magic: 3, endurance: 18, dexterity: 9, charisma: 10, moveRange: 2 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_greatsword', 'steel_greatsword', 'lion_guard_greatsword'], skillIds: ['w_break_guard', 'w_charge', 'w_whirl', 'w_lion_surge'], innateGift: { name: 'Garde Brisée', description: "20% de chance de maudire la cible (END -30%) pendant 2 tours." },
+    allowedWeaponIds: ['novice_greatsword', 'steel_greatsword', 'ember_greatsword', 'lion_guard_greatsword'], skillIds: ['w_break_guard', 'w_charge', 'w_whirl', 'w_lion_surge'], innateGift: { name: 'Garde Brisée', description: "20% de chance de maudire la cible (END -30%) pendant 2 tours." },
   },
   {
     id: 'white_mage', name: 'Marian', className: 'Mage Blanc', combatKind: 'cleric',
@@ -118,7 +127,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/elara.png',
     baseStats: { maxHealth: 75, strength: 5, magic: 28, endurance: 7, dexterity: 12, charisma: 14, moveRange: 2 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_grimoire', 'mystic_grimoire', 'abyssal_grimoire'], skillIds: ['n_dark_bolt', 'n_teleport', 'n_flame_wave', 'n_dark_meteor'], innateGift: { name: 'Flux de Mana', description: "20% de chance de récupérer 2 AP après une attaque de base." },
+    allowedWeaponIds: ['novice_grimoire', 'mystic_grimoire', 'hex_grimoire', 'abyssal_grimoire'], skillIds: ['n_dark_bolt', 'n_teleport', 'n_flame_wave', 'n_dark_meteor'], innateGift: { name: 'Flux de Mana', description: "20% de chance de récupérer 2 AP après une attaque de base." },
   },
   {
     id: 'archer', name: 'Kestrel', className: 'Archer', combatKind: 'archer',
@@ -127,7 +136,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/kestrel.png',
     baseStats: { maxHealth: 90, strength: 14, magic: 3, endurance: 9, dexterity: 22, charisma: 10, moveRange: 3 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_longbow', 'longbow', 'windstep_longbow'], skillIds: ['a_precise_shot', 'a_hawk_leap', 'a_arrow_rain', 'a_zenith_arrow'], innateGift: { name: 'Tir de Précision', description: "+5% de précision à portée maximale." },
+    allowedWeaponIds: ['novice_longbow', 'longbow', 'eclipse_longbow', 'windstep_longbow'], skillIds: ['a_precise_shot', 'a_hawk_leap', 'a_arrow_rain', 'a_zenith_arrow'], innateGift: { name: 'Tir de Précision', description: "+5% de précision à portée maximale." },
   },
   {
     id: 'rogue', name: 'Cedric', className: 'Rôdeur', combatKind: 'rogue',
@@ -136,7 +145,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/cedric.png',
     baseStats: { maxHealth: 100, strength: 15, magic: 3, endurance: 10, dexterity: 24, charisma: 10, moveRange: 3 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_dagger', 'steel_dagger', 'hooked_dagger'], skillIds: ['ro_sneak_attack', 'ro_tumble', 'ro_jaw_trap', 'ro_fault_breaker'], innateGift: { name: 'Frappe Sournoise', description: "Dégâts accrus de 45% en attaquant par derrière." },
+    allowedWeaponIds: ['novice_dagger', 'steel_dagger', 'venom_dagger', 'hooked_dagger'], skillIds: ['ro_sneak_attack', 'ro_tumble', 'ro_jaw_trap', 'ro_fault_breaker'], innateGift: { name: 'Frappe Sournoise', description: "Dégâts accrus de 45% en attaquant par derrière." },
   },
   {
     id: 'lancer', name: 'Garen', className: 'Lancier', combatKind: 'knight',
@@ -145,7 +154,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/lancer.png',
     baseStats: { maxHealth: 130, strength: 17, magic: 3, endurance: 18, dexterity: 11, charisma: 8, moveRange: 2 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_spear', 'steel_spear', 'griffon_spear'], skillIds: ['l_long_thrust', 'l_haft_recoil', 'l_griffon_jump', 'l_firmament_lance'], innateGift: { name: 'Percée', description: "25% de chance de transpercer et frapper un second ennemi aligné." },
+    allowedWeaponIds: ['novice_spear', 'steel_spear', 'frost_spear', 'griffon_spear'], skillIds: ['l_long_thrust', 'l_haft_recoil', 'l_griffon_jump', 'l_firmament_lance'], innateGift: { name: 'Percée', description: "25% de chance de transpercer et frapper un second ennemi aligné." },
   },
   {
     id: 'paladin', name: 'Aldric', className: 'Paladin', combatKind: 'knight',
@@ -163,7 +172,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/morvan.png',
     baseStats: { maxHealth: 130, strength: 18, magic: 15, endurance: 14, dexterity: 11, charisma: 8, moveRange: 2 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_scythe', 'steel_scythe', 'eclipse_scythe'], skillIds: ['d_cursed_blade', 'd_void_step', 'd_blood_pact', 'd_devouring_eclipse'], innateGift: { name: 'Vol de Vie', description: "Récupère 10% des dégâts infligés en PV." },
+    allowedWeaponIds: ['novice_scythe', 'steel_scythe', 'shadow_scythe', 'eclipse_scythe'], skillIds: ['d_cursed_blade', 'd_void_step', 'd_blood_pact', 'd_devouring_eclipse'], innateGift: { name: 'Vol de Vie', description: "Récupère 10% des dégâts infligés en PV." },
   },
   {
     id: 'red_mage', name: 'Lyra', className: 'Mage Rouge', combatKind: 'mage',
@@ -199,7 +208,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/full/gunnar.png',
     baseStats: { maxHealth: 100, strength: 15, magic: 4, endurance: 11, dexterity: 19, charisma: 8, moveRange: 2 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_cannon', 'siege_cannon', 'barrage_cannon'], skillIds: ['ar_calibrated_shot', 'ar_explosive_retreat', 'ar_incendiary_grenade', 'ar_artillery_barrage'], innateGift: { name: 'Tir de Zone', description: "25% des dégâts en zone sur les ennemis adjacents." },
+    allowedWeaponIds: ['novice_cannon', 'siege_cannon', 'inferno_cannon', 'barrage_cannon'], skillIds: ['ar_calibrated_shot', 'ar_explosive_retreat', 'ar_incendiary_grenade', 'ar_artillery_barrage'], innateGift: { name: 'Tir de Zone', description: "25% des dégâts en zone sur les ennemis adjacents." },
   },
 ];
 
@@ -239,6 +248,62 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     inputs: { accessories: { life_belt: 1, strength_ring: 1 }, gold: 100 },
     output: { itemId: 'warding_buckle', category: 'accessories', quantity: 1 },
     preview: '+15 PV, +4 endurance.',
+  },
+  {
+    id: 'craft_burn_greatsword',
+    name: "Forger l'Espadon de Braise",
+    description: "Renforcer un espadon d'acier avec du minerai pour y sceller une chaleur de forge.",
+    inputs: { weapons: { steel_greatsword: 1 }, materials: { iron_ore: 2 }, gold: 80 },
+    output: { itemId: 'ember_greatsword', category: 'weapons', quantity: 1 },
+    preview: "T1 espadon, statistiques d'acier, 15% Brûlure sur attaque basique.",
+  },
+  {
+    id: 'craft_venom_dagger',
+    name: 'Forger la Dague du Serpent',
+    description: 'Évider une dague d\'acier pour y loger un venin lent.',
+    inputs: { weapons: { steel_dagger: 1 }, materials: { iron_ore: 2 }, gold: 80 },
+    output: { itemId: 'venom_dagger', category: 'weapons', quantity: 1 },
+    preview: 'T1 dague, statistiques d\'acier, 20% Poison sur attaque basique.',
+  },
+  {
+    id: 'craft_chill_spear',
+    name: 'Forger la Lance à Crochets',
+    description: "Ajouter des crochets de forge à une lance d'acier pour freiner l'ennemi.",
+    inputs: { weapons: { steel_spear: 1 }, materials: { iron_ore: 2 }, gold: 80 },
+    output: { itemId: 'frost_spear', category: 'weapons', quantity: 1 },
+    preview: 'T1 lance, statistiques d\'acier, 15% Ralenti sur attaque basique.',
+  },
+  {
+    id: 'craft_hex_grimoire',
+    name: 'Noircir le Grimoire',
+    description: "Marquer un grimoire mystique avec des encres de forge instables.",
+    inputs: { weapons: { mystic_grimoire: 1 }, materials: { iron_ore: 2 }, gold: 80 },
+    output: { itemId: 'hex_grimoire', category: 'weapons', quantity: 1 },
+    preview: 'T1 grimoire, statistiques mystiques, 15% Malédic. sur attaque basique.',
+  },
+  {
+    id: 'craft_blind_longbow',
+    name: "Forger l'Arc d'Éclipse",
+    description: 'Monter une gemme rouge sur un arc long pour troubler la vue des cibles.',
+    inputs: { weapons: { longbow: 1 }, materials: { red_gem: 1 }, gold: 150 },
+    output: { itemId: 'eclipse_longbow', category: 'weapons', quantity: 1 },
+    preview: 'T2 arc, 20% Aveuglé sur attaque basique.',
+  },
+  {
+    id: 'craft_burn_cannon',
+    name: 'Forger le Canon Incendiaire',
+    description: 'Renforcer un canon de siège avec une gemme rouge et une chambre de combustion.',
+    inputs: { weapons: { siege_cannon: 1 }, materials: { red_gem: 1, iron_ore: 2 }, gold: 150 },
+    output: { itemId: 'inferno_cannon', category: 'weapons', quantity: 1 },
+    preview: 'T2 canon, 20% Brûlure sur attaque basique.',
+  },
+  {
+    id: 'craft_curse_scythe',
+    name: "Forger la Faux de l'Ombre",
+    description: 'Lier une faux d\'acier à une gemme sombre pour affaiblir les survivants.',
+    inputs: { weapons: { steel_scythe: 1 }, materials: { red_gem: 1 }, gold: 150 },
+    output: { itemId: 'shadow_scythe', category: 'weapons', quantity: 1 },
+    preview: 'T2 faux, 20% Malédic. sur attaque basique.',
   },
 ];
 
