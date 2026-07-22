@@ -1103,7 +1103,7 @@ function applySkillUpgrade(u,skillId,spec){
       if(up.penetrationBonus) out.penetration=(out.penetration||0)+up.penetrationBonus;
       if(up.healMultiplier&&(out.heal||out.revive)) out.power*=1+up.healMultiplier;
       if(up.healMultiplier&&out.healPercent) out.healPercent*=1+up.healMultiplier;
-      if(up.healMultiplier&&out.effects)for(const effect of out.effects)if(effect.kind==='heal'&&typeof effect.power==='number')effect.power*=1+up.healMultiplier;
+      if(up.healMultiplier&&out.effects)for(const effect of out.effects)if(effect.kind==='heal'){if(typeof effect.power==='number')effect.power*=1+up.healMultiplier;if(typeof effect.healPercent==='number')effect.healPercent*=1+up.healMultiplier;}
       if(up.revivePercent!=null&&out.revive) out.power=up.revivePercent;
       if(up.critBonus) out.crit=(out.crit||0)+up.critBonus;
       if(up.hpCostReduction&&out.hpCostPercent) out.hpCostPercent=Math.max(0,out.hpCostPercent-up.hpCostReduction);
@@ -1410,7 +1410,7 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
           if(t.alive&&eff.status){ applyStatus(t,eff.status,eff.statusTurns); if(eff.status==='taunt')t._taunter=u; }
         }
       } else if(eff.kind==='heal'){
-        for(const t of etgts){ const amt=(eff.flatHeal!=null?eff.flatHeal:Math.round(effMAG(u)*(eff.power||spec.power||1)))+Math.floor(effCHA(u)/4); applyHeal(t,amt); }
+        for(const t of etgts){ const amt=eff.healPercent!=null?Math.round(t.maxhp*eff.healPercent):(eff.flatHeal!=null?eff.flatHeal:Math.round(effMAG(u)*(eff.power||spec.power||1)))+Math.floor(effCHA(u)/4); applyHeal(t,amt); }
       } else if(eff.kind==='status'){
         for(const t of etgts){ applyStatus(t,eff.status,eff.statusTurns); if(eff.status==='taunt')t._taunter=u; }
       } else if(eff.kind==='revive'){

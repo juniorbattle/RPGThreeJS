@@ -460,6 +460,7 @@ export interface SkillEffect {
   statusTurns?: number;
   accuracy?: number;
   flatHeal?: number;
+  healPercent?: number;
   flatDamage?: number;
   hpCostPercent?: number;
   lifestealPercent?: number;
