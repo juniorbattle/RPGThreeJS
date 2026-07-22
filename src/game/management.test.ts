@@ -5,7 +5,7 @@ import {
 } from './management';
 import { createInitialState, migrateState } from './store';
 import {
-  getEquippedWeaponTier, getLockedSkillReason, getMaxUnlockedSkillAp, getResolvedSkills, getUnlockedSkillsForHero,
+  createUnitInstance, getEquippedWeaponTier, getLockedSkillReason, getMaxUnlockedSkillAp, getResolvedSkills, getUnlockedSkillsForHero,
   getWeaponProfileLabel, getWeaponSkillUnlockLabel, isSkillUnlockedForHero, isUltimateUnlockedForHero,
   itemById, toCombatant, weaponById,
 } from './catalog';
@@ -334,5 +334,55 @@ describe('equipment identity', () => {
     const state = createInitialState();
     const unit = state.clan.members[0]!;
     expect(equipAccessory(state, unit.id, 0, 'strength_ring')).toBe(true);
+  });
+
+  it('all grimoire weapons have range 1', () => {
+    for (const id of ['novice_grimoire', 'mystic_grimoire', 'abyssal_grimoire']) {
+      expect(weaponById.get(id)!.range, id).toBe(1);
+    }
+  });
+
+  it('all crosier weapons have range 1', () => {
+    for (const id of ['novice_crosier', 'sacred_crosier', 'miracle_crosier']) {
+      expect(weaponById.get(id)!.range, id).toBe(1);
+    }
+  });
+
+  it('all wand weapons have range 1', () => {
+    for (const id of ['novice_wand', 'orb_scepter', 'harmony_scepter']) {
+      expect(weaponById.get(id)!.range, id).toBe(1);
+    }
+  });
+
+  it('rapier weapons still have range 2', () => {
+    for (const id of ['novice_rapier', 'steel_rapier', 'crimson_rapier']) {
+      expect(weaponById.get(id)!.range, id).toBe(2);
+    }
+  });
+
+  it('toCombatant payload for dark_mage has weapon range 1', () => {
+    const state = createInitialState();
+    const darkMage = state.clan.members.find((u) => u.definitionId === 'dark_mage')!;
+    const payload = toCombatant(darkMage);
+    expect(payload.weapons[0]!.range).toBe(1);
+  });
+
+  it('toCombatant payload for white_mage has weapon range 1', () => {
+    const state = createInitialState();
+    const whiteMage = state.clan.members.find((u) => u.definitionId === 'white_mage')!;
+    const payload = toCombatant(whiteMage);
+    expect(payload.weapons[0]!.range).toBe(1);
+  });
+
+  it('toCombatant payload for enchanter has weapon range 1', () => {
+    const enchanter = createUnitInstance('enchanter');
+    const payload = toCombatant(enchanter);
+    expect(payload.weapons[0]!.range).toBe(1);
+  });
+
+  it('getWeaponProfileLabel still returns magique for magical weapons', () => {
+    expect(getWeaponProfileLabel(weaponById.get('novice_grimoire')!)).toBe('magique');
+    expect(getWeaponProfileLabel(weaponById.get('novice_crosier')!)).toBe('magique');
+    expect(getWeaponProfileLabel(weaponById.get('novice_wand')!)).toBe('magique');
   });
 });
