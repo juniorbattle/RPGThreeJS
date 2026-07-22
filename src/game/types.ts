@@ -524,6 +524,7 @@ export interface SkillDefinition {
   impact?: { status: string; statusTurns: number };
   flatDmg?: number;
   flatHeal?: number;
+  healPercent?: number;
   apRestore?: number;
   cure?: boolean;
   allowSelfDamage?: boolean;
