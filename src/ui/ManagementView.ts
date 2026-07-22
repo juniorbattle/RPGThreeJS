@@ -14,6 +14,30 @@ import type { GameState, InnateGiftModifier, ItemCategory, ItemDefinition, UnitD
 
 type ManagementTab = 'clan' | 'inventory' | 'shop' | 'skills';
 
+const STATUS_LABELS: Record<string, string> = {
+  burn: 'Brûlure',
+  poison: 'Poison',
+  slow: 'Ralenti',
+  root: 'Entravé',
+  blind: 'Aveuglé',
+  weak: 'Affaibli',
+  curse: 'Malédic.',
+};
+
+function formatWeaponAffix(weapon: WeaponDefinition): string | null {
+  const affix = weapon.basicAttackStatus;
+  if (!affix) return null;
+  const label = STATUS_LABELS[affix.status] ?? affix.status;
+  return `${Math.round(affix.chance * 100)}% ${label} (attaque basique, ${affix.turns}T)`;
+}
+
+function formatWeaponAffixShort(weapon: WeaponDefinition): string | null {
+  const affix = weapon.basicAttackStatus;
+  if (!affix) return null;
+  const label = STATUS_LABELS[affix.status] ?? affix.status;
+  return `${Math.round(affix.chance * 100)}% ${label}`;
+}
+
 interface ManagementViewOptions {
   root: HTMLElement;
   getState: () => GameState;
@@ -344,6 +368,8 @@ export class ManagementView {
         if (dHp !== 0) metaParts.push(`${dHp > 0 ? '+' : ''}${dHp} PV`);
         if (dAcc !== 0) metaParts.push(`${dAcc > 0 ? '+' : ''}${dAcc} Précis.`);
       }
+      const affixShort = formatWeaponAffixShort(weapon);
+      if (affixShort) metaParts.push(affixShort);
       return `<button type="button" class="weapon-replacement-row" data-preview-item="${item.id}">
         <span class="item-row__icon ui-chip">${item.icon}</span>
         <span class="weapon-replacement-main">
@@ -659,12 +685,14 @@ export class ManagementView {
       this.weaponStatRow('Précision', `+${weapon.accuracyBonus}`, cmp ? weapon.accuracyBonus - cmp.accuracyBonus : undefined),
       this.weaponStatRow('Critique', `+${weapon.critBonus}`, cmp ? weapon.critBonus - cmp.critBonus : undefined),
     ].filter(Boolean).join('');
+    const affixText = formatWeaponAffix(weapon);
     return `<div class="weapon-modal__body">
       <div class="weapon-modal__badges">
         <span class="weapon-modal__tier-badge">${tierLabel}</span>
         <span class="weapon-modal__profile-badge">${profileLabel}</span>
       </div>
       <div class="weapon-modal__stat-list">${statRows}</div>
+      ${affixText ? `<div class="weapon-modal__affix"><span class="weapon-modal__progression-label">Altération</span><p>${affixText}</p></div>` : ''}
       <div class="weapon-modal__progression">
         <span class="weapon-modal__progression-label">Progression</span>
         <p>${progressionLabel}</p>
