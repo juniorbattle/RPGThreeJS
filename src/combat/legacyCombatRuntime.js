@@ -660,6 +660,7 @@ const ITEMS={
 function isNegative(s){ return !['regen','boost','barrier'].includes(s); }
 function hasS(u,s){ return (u.statuses[s]||0)>0; }
 function isExhausted(u){ return !!u && u.alive && u.ap<=0; }
+function isBreakOpen(u){ return isExhausted(u) && !hasS(u,'staggered'); }
 function statMul(u,key){ let m=1; for(const s in u.statuses){ const d=STATUS[s]; if(d&&u.statuses[s]>0&&d[key]!=null) m*=d[key]; } return m; }
 function effSTR(u){ return u.str*statMul(u,'str'); }
 function effMAG(u){ return u.mag*statMul(u,'mag'); }
@@ -1057,7 +1058,7 @@ function castTelegraph(u,spec){ const c=u.cell(); if(!c)return; const col=fxColo
   tween(m.scale,{x:1.7,y:1.7,z:1.7},0.5,easeOutCubic);
   tween(m.material,{opacity:.9},0.12,easeOutCubic,()=>tween(m.material,{opacity:0},0.36,easeOutCubic,()=>{ scene.remove(m); m.geometry.dispose(); m.material.dispose(); }));
   burst(new THREE.Vector3(wX(ux),c.topY+0.5,wZ(uz)),col); }
-function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*100:5; const dexBonus=Math.max(0,(effDEX(att)-effDEX(tgt))/2); const exhaustBonus=isExhausted(tgt)?20:0; return cl(base+dexBonus+exhaustBonus,1,90)/100; }
+function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*100:5; const dexBonus=Math.max(0,(effDEX(att)-effDEX(tgt))/2); const exhaustBonus=isBreakOpen(tgt)?20:0; return cl(base+dexBonus+exhaustBonus,1,90)/100; }
 function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return true; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; if(spec.weaponType==='longbow'){ const dist=Math.abs((att.size>1?bossCenterGX(att):att.gx)-tgt.gx)+Math.abs((att.size>1?bossCenterGZ(att):att.gz)-tgt.gz); if(dist>=spec.range[1])acc+=5; } return Math.random()*100<cl(acc,5,95); }
 
 async function applyDamage(u,dmg,src){
@@ -1404,7 +1405,7 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
           floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':'#ffffff',lab==='DOS'||crit);
           if(crit){ if(!playFeedbackVfx('critical_hit',u,t)){ screenShake(0.5,0.3); screenFlash('#fff3b0',0.18); vfx('crit',t.grp.position.clone().add(new THREE.Vector3(0,1,0))); } logMsg('Coup critique !'); }
           await applyDamage(t,dmg,u); totalDamageDealt+=dmg; if(G.over)break;
-          if(t.alive&&crit&&isExhausted(t)&&!hasS(t,'staggered')){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); }
+          if(t.alive&&crit&&isBreakOpen(t)){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); }
           if(t.alive&&eff.status){ applyStatus(t,eff.status,eff.statusTurns); if(eff.status==='taunt')t._taunter=u; }
         }
       } else if(eff.kind==='heal'){
@@ -1441,14 +1442,14 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
         logMsg('Coup critique !');
       }
       if(lab==='DOS')floatText({grp:{position:t.grp.position.clone().add(new THREE.Vector3(0,0.3,0))},gx:t.gx,gz:t.gz},'DOS !','#ff5a4a');
-      await applyDamage(t,dmg,u); basicDmg=dmg; if(G.over)break; if(t.alive&&crit&&isExhausted(t)&&!hasS(t,'staggered')){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); } if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } }
+      await applyDamage(t,dmg,u); basicDmg=dmg; if(G.over)break; if(t.alive&&crit&&isBreakOpen(t)){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); } if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } }
     if(spec.key==='attack'&&spec.weaponType==='scythe'&&u.alive&&basicDmg>0){ applyHeal(u,Math.max(1,Math.round(basicDmg*0.10))); }
     if(spec.key==='attack'&&spec.weaponType==='hand_cannon'){ const splashTgts=aliveUnits().filter(st=>st.team!==u.team&&st.alive&&Math.abs(st.gx-impactCx)+Math.abs(st.gz-impactCz)===1); for(const st of splashTgts){ const sd=Math.max(1,Math.round(basicDmg*0.25)); floatText(st,'-'+sd,'#ffaa6a'); await applyDamage(st,sd,u); if(G.over)break; await wait(0.06); } }
-    if(spec.key==='attack'&&spec.weaponType==='greatsword'&&u.alive&&basicDmg>0&&Math.random()<(0.20+(isExhausted(targets[0])?0.20:0))){ const t=targets[0]; if(t&&t.alive){ applyStatus(t,'curse',2); } }
+    if(spec.key==='attack'&&spec.weaponType==='greatsword'&&u.alive&&basicDmg>0&&Math.random()<(0.20+(isBreakOpen(targets[0])?0.20:0))){ const t=targets[0]; if(t&&t.alive){ applyStatus(t,'curse',2); } }
     if(spec.key==='attack'&&spec.weaponType==='holy_mace'&&u.alive&&basicDmg>0&&Math.random()<0.20){ applyHeal(u,Math.max(1,Math.round(u.maxhp*0.08))); }
     if(spec.key==='attack'&&spec.weaponType==='long_spear'&&u.alive&&basicDmg>0&&Math.random()<0.25){ const t=targets[0]; if(t){ const dx=Math.sign(t.gx-u.gx),dz=Math.sign(t.gz-u.gz); const pierceTgt=aliveUnits().find(st=>st.team!==u.team&&st.alive&&st.gx===t.gx+dx&&st.gz===t.gz+dz); if(pierceTgt){ const pd=Math.max(1,Math.round(basicDmg*0.75)); floatText(pierceTgt,'PERCE ! -'+pd,'#ffaa6a',true); await applyDamage(pierceTgt,pd,u); } } }
     if(spec.key==='attack'&&spec.weaponType==='grimoire'&&u.alive&&basicDmg>0&&Math.random()<0.20){ u.ap=Math.min(u.maxap,u.ap+2); floatText(u,'+2 AP','#7fd0ff',true); refreshPanel(u); }
-    if(spec.key==='attack'&&spec.weaponType==='wand'&&u.alive&&basicDmg>0&&Math.random()<(0.25+(isExhausted(targets[0])?0.20:0))){ const t=targets[0]; if(t&&t.alive){ const neg=['burn','poison','slow','weak','curse','blind','root','silence']; const rs=neg[Math.floor(Math.random()*neg.length)]; applyStatus(t,rs,2); } }
+    if(spec.key==='attack'&&spec.weaponType==='wand'&&u.alive&&basicDmg>0&&Math.random()<(0.25+(isBreakOpen(targets[0])?0.20:0))){ const t=targets[0]; if(t&&t.alive){ const neg=['burn','poison','slow','weak','curse','blind','root','silence']; const rs=neg[Math.floor(Math.random()*neg.length)]; applyStatus(t,rs,2); } }
     if(spec.key==='attack'&&spec.weaponType==='shuriken'&&u.alive&&basicDmg>0&&Math.random()<0.25){ const t=targets[0]; if(t&&t.alive){ floatText(u,'DOUBLE !','#ffd27a',true); const sd=Math.max(1,Math.round(basicDmg*0.75)); floatText(t,'-'+sd,'#ffd27a'); await applyDamage(t,sd,u); } }
     await wait(0.15); }
   if(hasSkillMovement&&!moveBefore){ const moved=await performSkillMovement(u,spec,cx,cz,context); if(moved){G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz;} }
@@ -1712,7 +1713,7 @@ function statBarsHTML(u){ const ST=[['⚔','FOR',Math.round(effSTR(u))],['✦','
 function statsDetailsHTML(u){ return '<button type="button" class="stats-toggle" aria-expanded="'+(statsPanelExpanded?'true':'false')+'"><span>'+(statsPanelExpanded?'Masquer':'Afficher')+' stats</span><b>'+(statsPanelExpanded?'−':'+')+'</b></button>'+(statsPanelExpanded?statBarsHTML(u):''); }
 function bindStatsToggle(u){ const button=dom.panel.querySelector('.stats-toggle'); if(!button)return; button.onclick=()=>{statsPanelExpanded=!statsPanelExpanded;renderPanel(u);}; }
 function renderPanel(u){ dom.panel.classList.remove('hidden'); dom.panel.dataset.team=u.team; const hpp=Math.max(0,Math.round(u.hp/u.maxhp*100)),portrait=uiPortraitFor(u.portrait)||(SPR[u.kind]&&SPR[u.kind].portrait?SPR[u.kind].portrait:'');
-  let tags=''; for(const s in u.statuses){ const d=STATUS[s]; if(!d)continue; tags+='<span class="tag" style="color:'+d.col+';border-color:'+d.col+'">'+escHTML(d.name)+' '+u.statuses[s]+'</span>'; } if(!u.alive)tags+='<span class="tag" style="color:#ff5a4a;border-color:#ff5a4a">K.O.</span>'; else if(isExhausted(u))tags+='<span class="tag" style="color:#7fd0ff;border-color:#7fd0ff">Essoufflé</span>';
+  let tags=''; for(const s in u.statuses){ const d=STATUS[s]; if(!d)continue; tags+='<span class="tag" style="color:'+d.col+';border-color:'+d.col+'">'+escHTML(d.name)+' '+u.statuses[s]+'</span>'; } if(!u.alive)tags+='<span class="tag" style="color:#ff5a4a;border-color:#ff5a4a">K.O.</span>'; else if(isBreakOpen(u))tags+='<span class="tag" style="color:#7fd0ff;border-color:#7fd0ff">Essoufflé</span>';
   const wt=u.weapons&&u.weapons[0]&&u.weapons[0].weaponType?INNATE_GIFTS_BY_WEAPON[u.weapons[0].weaponType]:null;
   const aptHTML=wt?'<div class="du-aptitude"><span class="du-aptitude__label">Aptitude</span><strong>'+escHTML(wt.name)+'</strong><small>'+escHTML(wt.desc)+'</small></div>':'';
   dom.panel.innerHTML='<div class="details-unit"><div class="du-top"><div class="du-portrait">'+(portrait?'<img src="'+portrait+'" alt="">':'<span>'+escHTML(u.name.charAt(0))+'</span>')+'</div><div class="du-id"><div class="du-head"><span>'+escHTML(u.className||u.name||'')+'</span></div><div class="nm">'+escHTML(u.name)+'</div>'+apPipsHTML(u)+'</div><div class="du-team"><b class="team-badge">'+teamLabel(u.team)+'</b></div></div>'+
