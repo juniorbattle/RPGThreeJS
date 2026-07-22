@@ -1102,8 +1102,8 @@ function applySkillUpgrade(u,skillId,spec){
       if(up.accuracyBonus&&out.acc) out.acc=Math.min(0.99,out.acc+up.accuracyBonus);
       if(up.penetrationBonus) out.penetration=(out.penetration||0)+up.penetrationBonus;
       if(up.healMultiplier&&(out.heal||out.revive)) out.power*=1+up.healMultiplier;
-      if(up.healMultiplier&&out.healPercent) out.healPercent*=1+up.healMultiplier;
-      if(up.healMultiplier&&out.effects)for(const effect of out.effects)if(effect.kind==='heal'){if(typeof effect.power==='number')effect.power*=1+up.healMultiplier;if(typeof effect.healPercent==='number')effect.healPercent*=1+up.healMultiplier;}
+      if(up.healMultiplier&&out.healPercent) out.healPercent+=up.healMultiplier;
+      if(up.healMultiplier&&out.effects)for(const effect of out.effects)if(effect.kind==='heal'){if(typeof effect.power==='number')effect.power*=1+up.healMultiplier;if(typeof effect.healPercent==='number')effect.healPercent+=up.healMultiplier;}
       if(up.revivePercent!=null&&out.revive) out.power=up.revivePercent;
       if(up.critBonus) out.crit=(out.crit||0)+up.critBonus;
       if(up.hpCostReduction&&out.hpCostPercent) out.hpCostPercent=Math.max(0,out.hpCostPercent-up.hpCostReduction);
