@@ -132,6 +132,9 @@ function hasIngredients(state: GameState, recipe: CraftRecipeDefinition): boolea
   for (const [itemId, quantity] of Object.entries(recipe.inputs.accessories ?? {})) {
     if ((state.inventory.accessories[itemId] ?? 0) < quantity) return false;
   }
+  for (const [itemId, quantity] of Object.entries(recipe.inputs.materials ?? {})) {
+    if ((state.inventory.materials[itemId] ?? 0) < quantity) return false;
+  }
   return true;
 }
 
@@ -151,6 +154,9 @@ export function craftItem(state: GameState, recipeId: string): boolean {
   }
   for (const [itemId, quantity] of Object.entries(recipe.inputs.accessories ?? {})) {
     adjust(state.inventory, 'accessories', itemId, -quantity);
+  }
+  for (const [itemId, quantity] of Object.entries(recipe.inputs.materials ?? {})) {
+    adjust(state.inventory, 'materials', itemId, -quantity);
   }
   adjust(state.inventory, recipe.output.category, recipe.output.itemId, recipe.output.quantity);
   return true;

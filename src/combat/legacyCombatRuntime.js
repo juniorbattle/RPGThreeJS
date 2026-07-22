@@ -786,6 +786,7 @@ function campaignDef(payload,index){
       min:weapon.minRange||1,max:weapon.range||1,power:Math.max(7,Math.round((weapon.damage||14)*0.40)),
       crit:Math.max(0.03,(weapon.critBonus||5)/100),
       acc:Math.max(0.55,Math.min(0.99,0.9+(weapon.accuracyBonus||0)/100)),
+      basicAttackStatus:weapon.basicAttackStatus||null,
     })),
     skills:(payload.skills||[]).filter(id=>SKILLS[id]),
     skillUpgrades:payload.skillUpgrades||{},
@@ -1135,7 +1136,7 @@ function getSpec(u,which,wi,charge){ if(which==='attack'){ const w=(u.weapons&&u
     const elanPierce=[0,0,0.5][lvl];
     const acc=lvl>=2?Math.min(0.99,w.acc+0.10):w.acc;
     const labels=['Attaque','Attaque+','Attaque++'];
-    return {key:'attack',wi:(wi||0),charge:lvl,name:labels[lvl],icon:w.icon,weaponType:w.weaponType,ap:apCost,type:w.type,power:w.power,range:[w.min,w.max],radius:0,offensive:true,self:false,acc,crit:w.crit,elanMul,elanPierce}; }
+    return {key:'attack',wi:(wi||0),charge:lvl,name:labels[lvl],icon:w.icon,weaponType:w.weaponType,ap:apCost,type:w.type,power:w.power,range:[w.min,w.max],radius:0,offensive:true,self:false,acc,crit:w.crit,elanMul,elanPierce,basicAttackStatus:w.basicAttackStatus||null}; }
   const s=SKILLS[which]; return applySkillUpgrade(u,which,{key:which,name:s.name,icon:s.icon,ap:s.ap,type:s.type,power:s.power||0,range:s.self?[0,0]:s.range,radius:s.radius,shape:s.shape,mode:s.mode,dest:!!s.dest,targetMode:s.targetMode,movePhase:s.movePhase,impact:s.impact,status:s.status,statusTurns:s.statusTurns,acc:s.acc,support:!!s.support,offensive:!!s.offensive,self:!!s.self,heal:s.type==='heal',revive:s.type==='revive',penetration:s.penetration,crit:s.crit,effects:s.effects,flatHeal:s.flatHeal,flatDmg:s.flatDmg,apRestore:s.apRestore,cure:s.cure,allowSelfDamage:s.allowSelfDamage,hpCostPercent:s.hpCostPercent,lifestealPercent:s.lifestealPercent,damageMultiplier:s.damageMultiplier,bonusVsSize:s.bonusVsSize,bonusVsAfflicted:s.bonusVsAfflicted}); }
 function unitAtTargetCell(u,spec,gx,gz){
   if(spec.revive)return G.units.find(x=>!x.alive&&x.downed&&x.team===u.team&&x.gx===gx&&x.gz===gz)||null;
@@ -1452,6 +1453,7 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
     if(spec.key==='attack'&&spec.weaponType==='grimoire'&&u.alive&&basicDmg>0&&Math.random()<0.20){ u.ap=Math.min(u.maxap,u.ap+2); floatText(u,'+2 AP','#7fd0ff',true); refreshPanel(u); }
     if(spec.key==='attack'&&spec.weaponType==='wand'&&u.alive&&basicDmg>0&&Math.random()<(0.25+(isBreakOpen(targets[0])?0.20:0))){ const t=targets[0]; if(t&&t.alive){ const neg=['burn','poison','slow','weak','curse','blind','root','silence']; const rs=neg[Math.floor(Math.random()*neg.length)]; applyStatus(t,rs,2); } }
     if(spec.key==='attack'&&spec.weaponType==='shuriken'&&u.alive&&basicDmg>0&&Math.random()<0.25){ const t=targets[0]; if(t&&t.alive){ floatText(u,'DOUBLE !','#ffd27a',true); const sd=Math.max(1,Math.round(basicDmg*0.75)); floatText(t,'-'+sd,'#ffd27a'); await applyDamage(t,sd,u); } }
+    if(spec.key==='attack'&&spec.basicAttackStatus&&basicDmg>0){ for(const t of targets){ if(t.alive&&t.team!==u.team&&Math.random()<spec.basicAttackStatus.chance){ applyStatus(t,spec.basicAttackStatus.status,spec.basicAttackStatus.turns); } } }
     await wait(0.15); }
   if(hasSkillMovement&&!moveBefore){ const moved=await performSkillMovement(u,spec,cx,cz,context); if(moved){G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz;} }
   applyAdditionalStatus(u,spec,impactCx,impactCz,context);

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { combatConfigSchema, unitStatsSchema, type CombatResult } from '../game/types';
 
-const weaponPayloadSchema = z.object({
+export const weaponPayloadSchema = z.object({
   id: z.string(),
   name: z.string(),
   description: z.string(),
@@ -15,6 +15,11 @@ const weaponPayloadSchema = z.object({
   accuracyBonus: z.number(),
   critBonus: z.number(),
   healthBonus: z.number().optional(),
+  basicAttackStatus: z.object({
+    status: z.enum(['burn', 'poison', 'slow', 'root', 'blind', 'weak', 'curse']),
+    chance: z.number(),
+    turns: z.number(),
+  }).optional(),
 });
 
 export const combatantPayloadSchema = z.object({

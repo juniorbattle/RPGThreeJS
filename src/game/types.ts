@@ -364,6 +364,15 @@ export interface EquipmentSkillModifier {
   replaces?: Record<string, string>;
 }
 
+export type WeaponBasicAttackStatusKey =
+  | 'burn'
+  | 'poison'
+  | 'slow'
+  | 'root'
+  | 'blind'
+  | 'weak'
+  | 'curse';
+
 export interface WeaponDefinition extends ItemDefinition {
   category: 'weapons';
   type: 'greatsword' | 'holy_mace' | 'scythe' | 'long_spear' | 'grimoire' | 'crosier' | 'rapier' | 'wand' | 'longbow' | 'shuriken' | 'dagger' | 'hand_cannon';
@@ -374,6 +383,11 @@ export interface WeaponDefinition extends ItemDefinition {
   accuracyBonus: number;
   critBonus: number;
   healthBonus?: number;
+  basicAttackStatus?: {
+    status: WeaponBasicAttackStatusKey;
+    chance: number;
+    turns: number;
+  };
 }
 
 export interface CraftRecipeDefinition {
@@ -383,6 +397,7 @@ export interface CraftRecipeDefinition {
   inputs: {
     weapons?: Record<string, number>;
     accessories?: Record<string, number>;
+    materials?: Record<string, number>;
     gold: number;
   };
   output: {

@@ -5,10 +5,11 @@ import {
 } from './management';
 import { createInitialState, migrateState } from './store';
 import {
-  createUnitInstance, getEquippedWeaponTier, getLockedSkillReason, getMaxUnlockedSkillAp, getResolvedSkills, getUnlockedSkillsForHero,
+  createUnitInstance, craftRecipeById, getEquippedWeaponTier, getLockedSkillReason, getMaxUnlockedSkillAp, getResolvedSkills, getUnlockedSkillsForHero,
   getWeaponProfileLabel, getWeaponSkillUnlockLabel, isSkillUnlockedForHero, isUltimateUnlockedForHero,
   itemById, toCombatant, weaponById,
 } from './catalog';
+import type { CraftRecipeDefinition } from './types';
 
 describe('clan management', () => {
   it('swaps equipment without losing inventory items', () => {
@@ -138,6 +139,59 @@ describe('clan management', () => {
     expect(craftItem(state, 'craft_unknown')).toBe(false);
     state.gold = 250;
     expect(canCraftItem(state, 'craft_windstep_longbow')).toBe(false);
+  });
+
+  it('craft recipes with material inputs consume materials correctly', () => {
+    const state = createInitialState();
+    state.inventory.materials.iron_ore = 3;
+    state.inventory.weapons.steel_greatsword = 1;
+    state.gold = 200;
+
+    const recipe: CraftRecipeDefinition = {
+      id: 'test_material_recipe',
+      name: 'Test Material Recipe',
+      description: 'Test recipe with materials',
+      inputs: { weapons: { steel_greatsword: 1 }, materials: { iron_ore: 2 }, gold: 80 },
+      output: { itemId: 'lion_guard_greatsword', category: 'weapons', quantity: 1 },
+      preview: 'test',
+    };
+
+    expect(state.inventory.materials.iron_ore).toBe(3);
+    expect(state.inventory.weapons.steel_greatsword).toBe(1);
+
+    craftRecipeById.set(recipe.id, recipe);
+
+    expect(canCraftItem(state, recipe.id)).toBe(true);
+    expect(craftItem(state, recipe.id)).toBe(true);
+    expect(state.inventory.materials.iron_ore).toBe(1);
+    expect(state.inventory.weapons.steel_greatsword).toBe(0);
+    expect(state.gold).toBe(120);
+    expect(state.inventory.weapons.lion_guard_greatsword).toBe(1);
+
+    craftRecipeById.delete(recipe.id);
+  });
+
+  it('blocks craft when required materials are missing', () => {
+    const state = createInitialState();
+    state.inventory.weapons.steel_greatsword = 1;
+    state.gold = 200;
+    state.inventory.materials.iron_ore = 1;
+
+    const recipe: CraftRecipeDefinition = {
+      id: 'test_missing_material',
+      name: 'Test Missing Material',
+      description: 'Test recipe missing materials',
+      inputs: { weapons: { steel_greatsword: 1 }, materials: { iron_ore: 2 }, gold: 80 },
+      output: { itemId: 'lion_guard_greatsword', category: 'weapons', quantity: 1 },
+      preview: 'test',
+    };
+
+    craftRecipeById.set(recipe.id, recipe);
+
+    expect(canCraftItem(state, recipe.id)).toBe(false);
+    expect(craftItem(state, recipe.id)).toBe(false);
+
+    craftRecipeById.delete(recipe.id);
   });
 });
 
