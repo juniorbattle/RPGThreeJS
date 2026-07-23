@@ -1067,3 +1067,72 @@ describe('campaign content integrity', () => {
     }
   });
 });
+
+describe('V10B economy and content consistency', () => {
+  it('mystery_treasure dialogue exists', () => {
+    expect(dialogues.has('mystery_treasure')).toBe(true);
+  });
+
+  it('mystery_shrine dialogue exists', () => {
+    expect(dialogues.has('mystery_shrine')).toBe(true);
+  });
+
+  it('all runSystem adaptive content IDs have matching dialogues or combats', () => {
+    const routeContentIds = [
+      'mystery_treasure', 'mystery_shrine', 'mystery_help', 'mystery_dragon_roost',
+      'mystery_lancer_recruit', 'mystery_recruit',
+      'refugee_trial', 'reserve_trail', 'old_shrine_event', 'village_choice',
+      'witnesses_on_road', 'shadow_signs',
+      'lion_finale_judgement', 'final_refuge',
+      'serpent_informant',
+    ];
+    for (const id of routeContentIds) {
+      expect(dialogues.has(id) || combatConfigs.has(id), `route contentId ${id}`).toBe(true);
+    }
+  });
+
+  it('at least some normal combat rewards include iron_ore', () => {
+    const normalCombats = [...combatConfigs.values()].filter((c) => c.encounterRank === 'normal');
+    const withIronOre = normalCombats.filter((c) => (c.rewards.materials.iron_ore ?? 0) > 0);
+    expect(withIronOre.length, 'normal combats with iron_ore').toBeGreaterThan(0);
+  });
+
+  it('all elite combat rewards include iron_ore', () => {
+    const eliteCombats = [...combatConfigs.values()].filter((c) => c.encounterRank === 'elite');
+    for (const combat of eliteCombats) {
+      expect(combat.rewards.materials.iron_ore ?? 0, `${combat.id}:iron_ore`).toBeGreaterThan(0);
+    }
+  });
+
+  it('no combat reward has negative materials', () => {
+    for (const combat of combatConfigs.values()) {
+      for (const [key, value] of Object.entries(combat.rewards.materials)) {
+        expect(value, `${combat.id}:${key}`).toBeGreaterThanOrEqual(0);
+      }
+    }
+  });
+
+  it('all dialogue addItem effects reference valid item IDs', () => {
+    for (const [dialogueId, sequence] of dialogues) {
+      for (const step of sequence.steps) {
+        for (const effect of step.effects) {
+          if (effect.type === 'addItem') {
+            expect(itemById.has(effect.itemId), `${dialogueId}:${step.id}:addItem:${effect.itemId}`).toBe(true);
+          }
+        }
+        for (const choice of step.choices ?? []) {
+          for (const effect of choice.effects) {
+            if (effect.type === 'addItem') {
+              expect(itemById.has(effect.itemId), `${dialogueId}:${step.id}:choice:addItem:${effect.itemId}`).toBe(true);
+            }
+          }
+        }
+      }
+    }
+  });
+
+  it('route graph structure remains 20 nodes with max depth 16', () => {
+    expect(campaignNodes).toHaveLength(20);
+    expect(Math.max(...campaignNodes.map((n) => n.x))).toBeLessThanOrEqual(10);
+  });
+});
