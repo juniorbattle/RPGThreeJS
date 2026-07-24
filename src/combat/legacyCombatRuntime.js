@@ -655,7 +655,10 @@ const ITEMS={
   potion:  {name:'Potion',  effect:'heal', flatHeal:55, range:[0,1], radius:0,   desc:'Rend 55 PV à un allié proche.'},
   ether:   {name:'Éther',   effect:'ap',   apRestore:3, range:[0,1], radius:0,   desc:'Rend 3 AP à un allié proche.'},
   antidote:{name:'Antidote',effect:'cure',              range:[0,1], radius:0,   desc:'Dissipe les altérations négatives d’un allié.'},
-  bomb:    {name:'Bombe',   effect:'bomb', flatDmg:42,  range:[1,4], radius:1.2, desc:'Explosion de zone : dégâts aux unités touchées.'}
+  bomb:    {name:'Bombe',   effect:'bomb', flatDmg:42,  range:[1,4], radius:1.2, desc:'Explosion de zone : dégâts aux unités touchées.'},
+  grenade_incendiaire: {name:'Grenade incendiaire', effect:'grenade', flatDmg:32, status:'burn', statusTurns:2, range:[1,4], radius:0, desc:'Dégâts à une cible et Brûlure pendant 2 tours.'},
+  grenade_entravante:  {name:'Grenade entravante',  effect:'grenade', flatDmg:22, status:'root', statusTurns:2, range:[1,4], radius:0, desc:'Dégâts à une cible et Entrave pendant 2 tours.'},
+  grenade_aveuglante:  {name:'Grenade aveuglante',  effect:'grenade', flatDmg:20, status:'blind', statusTurns:2, range:[1,4], radius:0, desc:'Faibles dégâts à une cible et Aveuglement pendant 2 tours.'}
 };
 function isNegative(s){ return !['regen','boost','barrier'].includes(s); }
 function hasS(u,s){ return (u.statuses[s]||0)>0; }
@@ -1774,6 +1777,7 @@ function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name
   if(it.effect==='ap')    return Object.assign(base,{type:'buff',power:0,support:true,apRestore:it.apRestore});
   if(it.effect==='cure')  return Object.assign(base,{type:'buff',power:0,support:true,cure:true});
   if(it.effect==='bomb')  return Object.assign(base,{type:'mag', power:0,offensive:true,acc:1,flatDmg:it.flatDmg});
+  if(it.effect==='grenade') return Object.assign(base,{type:'mag', power:0,offensive:true,acc:1,flatDmg:it.flatDmg,status:it.status,statusTurns:it.statusTurns});
   return base; }
 function invCount(){ let n=0; for(const k in G.inv)n+=G.inv[k]; return n; }
 function openItemMenu(){ const u=G.active; dom.skillmenu.classList.remove('hidden'); const nextCost=G.itemsUsedThisTurn+1; let h='<div class="ttl">Objets — sac commun · '+u.ap+' AP</div>'; let any=false;

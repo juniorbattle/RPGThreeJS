@@ -1242,3 +1242,60 @@ describe('V10C.2A minimum 2T status durations', () => {
     }
   });
 });
+
+describe('V10C.2B offensive grenade items', () => {
+  it('all 3 grenade IDs exist in itemById', () => {
+    expect(itemById.has('grenade_incendiaire')).toBe(true);
+    expect(itemById.has('grenade_entravante')).toBe(true);
+    expect(itemById.has('grenade_aveuglante')).toBe(true);
+  });
+
+  it('all 3 grenade descriptions mention combat and 2 tours', () => {
+    const ids = ['grenade_incendiaire', 'grenade_entravante', 'grenade_aveuglante'];
+    for (const id of ids) {
+      const item = itemById.get(id)!;
+      expect(item.description, `${id}:combat`).toContain('combat');
+      expect(item.description, `${id}:2tours`).toContain('2 tours');
+    }
+  });
+
+  it('grenade prices are correct', () => {
+    expect(itemById.get('grenade_incendiaire')!.price).toBe(50);
+    expect(itemById.get('grenade_entravante')!.price).toBe(55);
+    expect(itemById.get('grenade_aveuglante')!.price).toBe(45);
+  });
+
+  it('Valmir shop stock contains grenades with correct quantities', () => {
+    const state = createInitialState();
+    const stock = state.shops.valmir!.stock;
+    expect(stock.grenade_incendiaire).toBe(2);
+    expect(stock.grenade_entravante).toBe(1);
+    expect(stock.grenade_aveuglante).toBe(2);
+  });
+
+  it('all shop stock item IDs still exist in itemById', () => {
+    const state = createInitialState();
+    const stock = state.shops.valmir!.stock;
+    for (const itemId of Object.keys(stock)) {
+      expect(itemById.has(itemId), `shop stock item ${itemId}`).toBe(true);
+    }
+  });
+
+  it('mystery_treasure take option rewards grenade_incendiaire', () => {
+    const dialogue = dialogues.get('mystery_treasure')!;
+    const takeChoice = dialogue.steps[0]!.choices!.find((c) => c.text.includes('Prendre'));
+    expect(takeChoice).toBeDefined();
+    const grenadeEffect = takeChoice!.effects.find((e): e is { type: 'addItem'; itemId: string; quantity: number } => e.type === 'addItem' && e.itemId === 'grenade_incendiaire');
+    expect(grenadeEffect, 'mystery_treasure:grenade_incendiaire').toBeDefined();
+    expect(grenadeEffect!.quantity).toBe(1);
+  });
+
+  it('shadow_signs break option rewards grenade_entravante', () => {
+    const dialogue = dialogues.get('shadow_signs')!;
+    const breakChoice = dialogue.steps[0]!.choices!.find((c) => c.text.includes('Briser'));
+    expect(breakChoice).toBeDefined();
+    const grenadeEffect = breakChoice!.effects.find((e): e is { type: 'addItem'; itemId: string; quantity: number } => e.type === 'addItem' && e.itemId === 'grenade_entravante');
+    expect(grenadeEffect, 'shadow_signs:grenade_entravante').toBeDefined();
+    expect(grenadeEffect!.quantity).toBe(1);
+  });
+});

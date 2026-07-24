@@ -525,7 +525,7 @@ const rawDialogues = [
         effects: [],
         choices: [
           { text: 'Rendre les provisions aux réfugiés.', next: '2', effects: [{ type: 'addReputation', amount: 4 }, { type: 'setFlag', key: 'returnedLostTreasure', value: true }], outcomePreview: { mode: 'soft', hints: ['Le clan gagne en respect', 'Le village s\u2019en souviendra'] } },
-          { text: 'Prendre l’or et les provisions.', next: '3', effects: [{ type: 'addGold', amount: 100 }, { type: 'addItem', itemId: 'potion', quantity: 1 }, { type: 'addItem', itemId: 'iron_ore', quantity: 2 }, { type: 'addReputation', amount: -4 }, { type: 'setFlag', key: 'claimedLostTreasure', value: true }], outcomePreview: { mode: 'soft', hints: ['Gain matériel important', 'Votre conduite sera jugée'] } },
+          { text: 'Prendre l’or et les provisions.', next: '3', effects: [{ type: 'addGold', amount: 100 }, { type: 'addItem', itemId: 'potion', quantity: 1 }, { type: 'addItem', itemId: 'iron_ore', quantity: 2 }, { type: 'addItem', itemId: 'grenade_incendiaire', quantity: 1 }, { type: 'addReputation', amount: -4 }, { type: 'setFlag', key: 'claimedLostTreasure', value: true }], outcomePreview: { mode: 'soft', hints: ['Gain matériel important', 'Votre conduite sera jugée'] } },
         ],
       },
       { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'grateful', tag: 'Restitution', text: 'Un bien rendu vaut davantage qu’un coffre gagné sans témoin. La route se souviendra de ce geste.', side: 'left', next: null, effects: [], choices: [] },
@@ -614,7 +614,7 @@ const rawDialogues = [
         effects: [],
         choices: [
           { text: 'Préserver les preuves pour Alaric.', next: '2', effects: [{ type: 'addReputation', amount: 5 }, { type: 'setFlag', key: 'shadowEvidence', value: true }], outcomePreview: { mode: 'soft', hints: ['Les preuves seront préservées', 'Le Lion s’en souviendra'] } },
-          { text: 'Briser l’autel et récupérer les fragments.', next: '3', effects: [{ type: 'addItem', itemId: 'iron_ore', quantity: 2 }, { type: 'addReputation', amount: -2 }, { type: 'setFlag', key: 'shadowFragments', value: true }], outcomePreview: { mode: 'soft', hints: ['Gain matériel modéré', 'Séraphine désapprouve ce choix'] } },
+          { text: 'Briser l’autel et récupérer les fragments.', next: '3', effects: [{ type: 'addItem', itemId: 'iron_ore', quantity: 2 }, { type: 'addItem', itemId: 'grenade_entravante', quantity: 1 }, { type: 'addReputation', amount: -2 }, { type: 'setFlag', key: 'shadowFragments', value: true }], outcomePreview: { mode: 'soft', hints: ['Gain matériel modéré', 'Séraphine désapprouve ce choix'] } },
         ],
       },
       { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'stern', tag: 'Preuve', text: 'Avec ceci, Alaric verra que son conflit dépasse les frontières du Lion. Ce que nous avons trouvé n’est pas une simple guerre de clan.', side: 'left', next: null, effects: [], choices: [] },

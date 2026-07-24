@@ -567,4 +567,32 @@ describe('weapon affix variants', () => {
     expect(useConsumable(state, state.clan.members[0]!.id, 'bomb')).toBe(false);
     expect(state.inventory.consumables.bomb).toBe(1);
   });
+
+  it('starting inventory does not include grenades', () => {
+    const state = createInitialState();
+    expect(state.inventory.consumables.grenade_incendiaire ?? 0).toBe(0);
+    expect(state.inventory.consumables.grenade_entravante ?? 0).toBe(0);
+    expect(state.inventory.consumables.grenade_aveuglante ?? 0).toBe(0);
+  });
+
+  it('grenade_incendiaire is not usable from management (combat-only)', () => {
+    const state = createInitialState();
+    state.inventory.consumables.grenade_incendiaire = 1;
+    expect(useConsumable(state, state.clan.members[0]!.id, 'grenade_incendiaire')).toBe(false);
+    expect(state.inventory.consumables.grenade_incendiaire).toBe(1);
+  });
+
+  it('grenade_entravante is not usable from management (combat-only)', () => {
+    const state = createInitialState();
+    state.inventory.consumables.grenade_entravante = 1;
+    expect(useConsumable(state, state.clan.members[0]!.id, 'grenade_entravante')).toBe(false);
+    expect(state.inventory.consumables.grenade_entravante).toBe(1);
+  });
+
+  it('grenade_aveuglante is not usable from management (combat-only)', () => {
+    const state = createInitialState();
+    state.inventory.consumables.grenade_aveuglante = 1;
+    expect(useConsumable(state, state.clan.members[0]!.id, 'grenade_aveuglante')).toBe(false);
+    expect(state.inventory.consumables.grenade_aveuglante).toBe(1);
+  });
 });
