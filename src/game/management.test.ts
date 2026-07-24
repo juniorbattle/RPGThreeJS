@@ -546,4 +546,25 @@ describe('weapon affix variants', () => {
     expect(stock.wisdom_crown).toBeGreaterThanOrEqual(1);
     expect(stock.warding_buckle).toBeGreaterThanOrEqual(1);
   });
+
+  it('ether is not usable from management (combat-only)', () => {
+    const state = createInitialState();
+    state.inventory.consumables.ether = 1;
+    expect(useConsumable(state, state.clan.members[0]!.id, 'ether')).toBe(false);
+    expect(state.inventory.consumables.ether).toBe(1);
+  });
+
+  it('antidote is not usable from management (combat-only)', () => {
+    const state = createInitialState();
+    state.inventory.consumables.antidote = 1;
+    expect(useConsumable(state, state.clan.members[0]!.id, 'antidote')).toBe(false);
+    expect(state.inventory.consumables.antidote).toBe(1);
+  });
+
+  it('bomb is not usable from management (combat-only)', () => {
+    const state = createInitialState();
+    state.inventory.consumables.bomb = 1;
+    expect(useConsumable(state, state.clan.members[0]!.id, 'bomb')).toBe(false);
+    expect(state.inventory.consumables.bomb).toBe(1);
+  });
 });

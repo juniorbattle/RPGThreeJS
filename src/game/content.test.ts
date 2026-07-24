@@ -5,7 +5,8 @@ import { describe, expect, it } from 'vitest';
 import { campaignNodes, combatConfigs, dialogues } from './content';
 import { dialogueChoiceSchema } from './types';
 import { assets } from '../render/assetManifest';
-import { craftRecipes, itemById, units } from './catalog';
+import { craftRecipes, itemById, units, weaponById } from './catalog';
+import { skills } from './skills';
 import { prologuePanels } from './prologue';
 import characterQc from '../../public/assets/characters/pixel/canonical-character-qc.json';
 import { DialogueView } from '../ui/DialogueView';
@@ -1079,6 +1080,7 @@ describe('V10B economy and content consistency', () => {
 
   it('all runSystem adaptive content IDs have matching dialogues or combats', () => {
     const routeContentIds = [
+      'camp_departure',
       'mystery_treasure', 'mystery_shrine', 'mystery_help', 'mystery_dragon_roost',
       'mystery_lancer_recruit', 'mystery_recruit',
       'refugee_trial', 'reserve_trail', 'old_shrine_event', 'village_choice',
@@ -1134,5 +1136,109 @@ describe('V10B economy and content consistency', () => {
   it('route graph structure remains 20 nodes with max depth 16', () => {
     expect(campaignNodes).toHaveLength(20);
     expect(Math.max(...campaignNodes.map((n) => n.x))).toBeLessThanOrEqual(10);
+  });
+});
+
+describe('V10C camp departure and consumable clarity', () => {
+  it('camp_departure dialogue exists', () => {
+    expect(dialogues.has('camp_departure')).toBe(true);
+  });
+
+  it('camp_departure dialogue has no combat or reward effects', () => {
+    const dialogue = dialogues.get('camp_departure')!;
+    for (const step of dialogue.steps) {
+      for (const effect of step.effects) {
+        expect(effect.type, `camp_departure:${step.id}:effect`).not.toBe('startCombat');
+        expect(effect.type, `camp_departure:${step.id}:effect`).not.toBe('addItem');
+        expect(effect.type, `camp_departure:${step.id}:effect`).not.toBe('addGold');
+      }
+    }
+  });
+
+  it('all shop stock item IDs exist in catalog', () => {
+    const state = createInitialState();
+    const stock = state.shops.valmir!.stock;
+    for (const itemId of Object.keys(stock)) {
+      expect(itemById.has(itemId), `shop stock item ${itemId}`).toBe(true);
+    }
+  });
+
+  it('ether description says 3 AP and mentions combat', () => {
+    const ether = itemById.get('ether')!;
+    expect(ether.description).toContain('3 AP');
+    expect(ether.description).toContain('combat');
+  });
+
+  it('antidote description mentions combat', () => {
+    const antidote = itemById.get('antidote')!;
+    expect(antidote.description).toContain('combat');
+  });
+
+  it('bomb description mentions combat', () => {
+    const bomb = itemById.get('bomb')!;
+    expect(bomb.description).toContain('combat');
+  });
+});
+
+describe('V10C.2A minimum 2T status durations', () => {
+  it('no skill has statusTurns: 1', () => {
+    for (const skill of skills) {
+      if (skill.statusTurns !== undefined) {
+        expect(skill.statusTurns, `${skill.id}:statusTurns`).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
+
+  it('no skill has additionalStatusTurns: 1', () => {
+    for (const skill of skills) {
+      if (skill.additionalStatusTurns !== undefined) {
+        expect(skill.additionalStatusTurns, `${skill.id}:additionalStatusTurns`).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
+
+  it('no skill impact has statusTurns: 1', () => {
+    for (const skill of skills) {
+      if (skill.impact?.statusTurns !== undefined) {
+        expect(skill.impact.statusTurns, `${skill.id}:impact.statusTurns`).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
+
+  it('no skill effect has statusTurns: 1', () => {
+    for (const skill of skills) {
+      for (const effect of skill.effects ?? []) {
+        if (effect.statusTurns !== undefined) {
+          expect(effect.statusTurns, `${skill.id}:effect:${effect.kind}:statusTurns`).toBeGreaterThanOrEqual(2);
+        }
+      }
+    }
+  });
+
+  it('no skill upgrade has additionalStatusTurns: 1', () => {
+    for (const skill of skills) {
+      for (const upgrade of [skill.upgradeLevel1, skill.upgradeLevel2]) {
+        if (upgrade?.additionalStatusTurns !== undefined) {
+          expect(upgrade.additionalStatusTurns, `${skill.id}:upgrade:additionalStatusTurns`).toBeGreaterThanOrEqual(2);
+        }
+      }
+    }
+  });
+
+  it('no weapon basicAttackStatus has turns < 2', () => {
+    for (const weapon of weaponById.values()) {
+      if (weapon.basicAttackStatus) {
+        expect(weapon.basicAttackStatus.turns, `${weapon.id}:basicAttackStatus.turns`).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
+
+  it('no weapon basicAttackStatus uses staggered or stun', () => {
+    for (const weapon of weaponById.values()) {
+      if (weapon.basicAttackStatus) {
+        expect(weapon.basicAttackStatus.status, `${weapon.id}:basicAttackStatus.status`).not.toBe('staggered');
+        expect(weapon.basicAttackStatus.status, `${weapon.id}:basicAttackStatus.status`).not.toBe('stun');
+      }
+    }
   });
 });
