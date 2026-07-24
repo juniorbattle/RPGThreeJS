@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { campaignNodes, combatConfigs, dialogues } from './content';
 import { dialogueChoiceSchema } from './types';
 import { assets } from '../render/assetManifest';
-import { craftRecipes, itemById, units, weaponById } from './catalog';
+import { craftRecipes, createUnitInstance, getResolvedSkills, itemById, toCombatant, unitById, units, weaponById } from './catalog';
 import { skills } from './skills';
 import { prologuePanels } from './prologue';
 import characterQc from '../../public/assets/characters/pixel/canonical-character-qc.json';
@@ -1297,5 +1297,78 @@ describe('V10C.2B offensive grenade items', () => {
     const grenadeEffect = breakChoice!.effects.find((e): e is { type: 'addItem'; itemId: string; quantity: number } => e.type === 'addItem' && e.itemId === 'grenade_entravante');
     expect(grenadeEffect, 'shadow_signs:grenade_entravante').toBeDefined();
     expect(grenadeEffect!.quantity).toBe(1);
+  });
+});
+
+describe('V10C.3B toCombatant QA skill unlock', () => {
+  it('default behavior filters skills by unlock rules', () => {
+    const warrior = createUnitInstance('warrior');
+    const payload = toCombatant(warrior);
+    const resolved = getResolvedSkills(warrior);
+    expect(payload.skills.length).toBeLessThanOrEqual(resolved.length);
+  });
+
+  it('qaUnlockAllSkills returns all resolved skills', () => {
+    const warrior = createUnitInstance('warrior');
+    const resolved = getResolvedSkills(warrior);
+    const payload = toCombatant(warrior, { qaUnlockAllSkills: true });
+    expect(payload.skills).toEqual(resolved);
+  });
+
+  it('qaUnlockAllSkills includes AP 5 ultimate skills', () => {
+    const warrior = createUnitInstance('warrior');
+    const resolved = getResolvedSkills(warrior);
+    const skillMap = new Map(skills.map((s) => [s.id, s]));
+    const ultimateSkill = resolved.find((id) => (skillMap.get(id)?.ap ?? 0) >= 5);
+    expect(ultimateSkill, 'warrior should have an ultimate skill').toBeDefined();
+    const payload = toCombatant(warrior, { qaUnlockAllSkills: true });
+    expect(payload.skills).toContain(ultimateSkill);
+  });
+
+  it('default behavior does not unlock ultimates', () => {
+    const warrior = createUnitInstance('warrior');
+    const resolved = getResolvedSkills(warrior);
+    const skillMap = new Map(skills.map((s) => [s.id, s]));
+    const ultimateSkill = resolved.find((id) => (skillMap.get(id)?.ap ?? 0) >= 5);
+    if (ultimateSkill) {
+      const payload = toCombatant(warrior);
+      expect(payload.skills).not.toContain(ultimateSkill);
+    }
+  });
+});
+
+describe('V10C.3B.1 QA hero IDs validity', () => {
+  const QA_HERO_IDS = [
+    'warrior', 'white_mage', 'dark_mage', 'archer', 'rogue', 'lancer',
+    'paladin', 'dark_knight', 'red_mage', 'enchanter', 'ninja', 'artillerist',
+  ];
+
+  it('all QA hero IDs exist in unitById', () => {
+    for (const id of QA_HERO_IDS) {
+      expect(unitById.has(id), `unitById should have ${id}`).toBe(true);
+    }
+  });
+
+  it('all QA hero IDs produce valid unit instances', () => {
+    for (const id of QA_HERO_IDS) {
+      const instance = createUnitInstance(id);
+      expect(instance.definitionId).toBe(id);
+      expect(instance.currentHealth).toBeGreaterThan(0);
+    }
+  });
+
+  it('QA hero IDs match catalog units exactly', () => {
+    const catalogIds = units.map((u) => u.id).sort();
+    const qaIds = [...QA_HERO_IDS].sort();
+    expect(qaIds).toEqual(catalogIds);
+  });
+
+  it('QA hero IDs has no duplicates', () => {
+    const unique = new Set(QA_HERO_IDS);
+    expect(unique.size).toBe(QA_HERO_IDS.length);
+  });
+
+  it('QA hero IDs count is 12', () => {
+    expect(QA_HERO_IDS.length).toBe(12);
   });
 });

@@ -13,6 +13,8 @@ interface CombatSession {
   preferredUnitIds: string[];
   reducedGraphics: boolean;
   devQa?: boolean;
+  qaFullAp?: boolean;
+  qaDeployAll?: boolean;
 }
 
 interface CombatStart {
@@ -90,6 +92,8 @@ export class CombatBridge {
         preferredUnitIds: this.session.preferredUnitIds,
         reducedGraphics: this.session.reducedGraphics,
         devQa: Boolean(this.session.devQa && import.meta.env.DEV),
+        qaFullAp: Boolean(this.session.qaFullAp && import.meta.env.DEV),
+        qaDeployAll: Boolean(this.session.qaDeployAll && import.meta.env.DEV),
       };
       this.iframe?.contentWindow?.postMessage(message, window.location.origin);
       return;

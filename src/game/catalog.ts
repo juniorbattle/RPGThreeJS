@@ -446,10 +446,15 @@ export function getWeaponProfileLabel(weapon: WeaponDefinition): string {
   return 'équilibré';
 }
 
-export function toCombatant(unit: UnitInstance): CombatantPayload {
+export function toCombatant(
+  unit: UnitInstance,
+  options: { qaUnlockAllSkills?: boolean } = {},
+): CombatantPayload {
   const definition = unitById.get(unit.definitionId) ?? units[0]!;
   const stats = getFinalStats(unit);
-  const skillIds = getUnlockedSkillsForHero(unit);
+  const skillIds = options.qaUnlockAllSkills
+    ? getResolvedSkills(unit)
+    : getUnlockedSkillsForHero(unit);
   const skillUpgrades = Object.fromEntries(
     skillIds.map((skillId) => [
       skillId,

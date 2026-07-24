@@ -39,6 +39,8 @@ const dom={ ui:byId('ui'), turnbar:byId('turnbar'), hint:byId('hint'), panel:byI
 const campaignParams=new URLSearchParams(location.search);
 const CAMPAIGN_MODE=campaignParams.get('campaign')==='1'&&window.parent!==window;
 let QA_ENABLED=false;
+let QA_FULL_AP=false;
+let QA_DEPLOY_ALL=false;
 let COMBAT_ID='standalone';
 let COMBAT_SCENE_ID='forest_route';
 let COMBAT_OBJECTIVE='Vaincre tous les ennemis.';
@@ -751,11 +753,12 @@ function createUnit(def){
   const spr=new THREE.Mesh(new THREE.PlaneGeometry(s.w,s.h),mat);
   spr.position.y=s.h*0.5; spr.renderOrder=6; grp.add(spr);
   scene.add(grp);
+  const unitMaxAp=Number.isFinite(def.maxap)?def.maxap:Number.isFinite(def.maxAp)?def.maxAp:5;
   const u={
     id:++UID, campaignId:def.campaignId||null, portrait:def.portrait||'', team:def.team, kind:def.kind, name:def.name, className:def.className||'',
     maxhp:def.maxhp||def.hp, hp:Math.min(def.hp,def.maxhp||def.hp), str:def.str, mag:def.mag, end:def.end, dex:def.dex, cha:def.cha,
     mov:def.mov, weapons:def.weapons, skills:def.skills.slice(), skillUpgrades:def.skillUpgrades||{}, ai:def.ai||'aggressive',
-    ap:0, maxap:5, gx:def.gx, gz:def.gz, alive:true, statuses:{}, gardeAP:0, _souffle:false, _ultCooldown:5,
+    ap:QA_FULL_AP?unitMaxAp:0, maxap:unitMaxAp, gx:def.gx, gz:def.gz, alive:true, statuses:{}, gardeAP:0, _souffle:false, _ultCooldown:5,
     size:def.size||1, immobile:!!def.immobile, boss:!!def.boss, elite:!!def.elite,
     // Sprites are authored facing right. Foes are mirrored via
     // visualFacingX so they face the player team at combat start.
@@ -1656,7 +1659,7 @@ async function onClick(ev){ if(G.over)return; if(ev.button!==0){ cancelToMenu();
       if(G.selectedDeployId&&G.selectedDeployId!==occupantId){ removeUnit(occupant); const nu=deployUnit(c.gx,c.gz); if(nu)selectUnit(nu); }
       else { G.selectedDeployId=occupantId; removeUnit(occupant); const def=deployDefById(occupantId); if(def)selectUnitData(def); }
     } else if(!c.occupant&&G.selectedDeployId){ const nu=deployUnit(c.gx,c.gz); if(nu)selectUnit(nu); }
-    drawDeployZone(); openDeployMenu(); setHint(G.deployedUnits.length+' / '+MAX_PLAYER_UNITS+' unités placées');
+    drawDeployZone(); openDeployMenu(); setHint(G.deployedUnits.length+' / '+playerDeployLimit()+' unités placées');
   } return; }
   if(G.mode==='move'){ if(c&&(c.gx!==G.active.gx||c.gz!==G.active.gz)&&G.reach.list.some(t=>t.gx===c.gx&&t.gz===c.gz)){ G.movedThisTurn=true; await moveAlong(G.active,buildPath(G.reach.prev,G.active,c.gx,c.gz)); afterSub(); } return; }
   if(G.mode==='target'){ const sp=G.pending.spec; if(sp.self){ await doExecute(sp,G.active.gx,G.active.gz); return; } if(c&&G.pending.keys.has(c.gx+','+c.gz)) await doExecute(sp,c.gx,c.gz); return; }
@@ -1688,8 +1691,8 @@ function toast(t){ setHint('⚠ '+t); }
 // ---- Objective (compact / collapsible) ----
 function renderObjective(){ if(!dom.objective)return; dom.objective.classList.remove('hidden');
   const foes=G.units.filter(u=>u.team==='foe'),foeAlive=aliveUnits('foe').length,foeDone=Math.max(0,foes.length-foeAlive),deploying=G.mode==='deploy'||!G.round;
-  const playerAlive=aliveUnits('player').length,playerTotal=G.deployedUnits.length||G.units.filter(u=>u.team==='player').length||MAX_PLAYER_UNITS;
-  const squadLabel=deploying?'Unités placées':'Escouade debout',squadValue=deploying?(G.deployedUnits.length+' / '+MAX_PLAYER_UNITS):(playerAlive+' / '+playerTotal),roundLabel=deploying?'Déploiement':'Manche '+G.round;
+  const playerAlive=aliveUnits('player').length,playerTotal=G.deployedUnits.length||G.units.filter(u=>u.team==='player').length||playerDeployLimit();
+  const squadLabel=deploying?'Unités placées':'Escouade debout',squadValue=deploying?(G.deployedUnits.length+' / '+playerDeployLimit()):(playerAlive+' / '+playerTotal),roundLabel=deploying?'Déploiement':'Manche '+G.round;
   const openAttr=deploying?' open':'';
   dom.objective.innerHTML='<details'+openAttr+'><summary><span class="obj__eyebrow">Objectif</span><span class="obj__label">'+escHTML(COMBAT_LABEL||'Combat tactique')+'</span><span class="obj__summary"><b>'+foeDone+'/'+foes.length+'</b><i>'+squadValue+'</i></span><i class="obj__chevron" aria-hidden="true"></i></summary><div class="obj__body"><p class="obj__text">'+escHTML(COMBAT_OBJECTIVE)+'</p><div class="obj__section">Sous-objectifs</div><div class="obj__sub"><span>Ennemis neutralisés</span><b>'+foeDone+' / '+foes.length+'</b></div><div class="obj__sub"><span>'+squadLabel+'</span><b>'+squadValue+'</b></div><div class="obj__round"><span>Manche actuelle</span><b>'+roundLabel+'</b></div></div></details>'; }
 // ---- Settings (gear) : purely visual toggles, no rules touched ----
@@ -1887,6 +1890,7 @@ function playerDefinitions(){
   return DEFS.filter(d=>d.team==='player').map((d,index)=>Object.assign({id:'standalone-'+index},d));
 }
 function removeUnit(u){ if(u.size>1)clearBossCells(u); else { const c=u.cell&&u.cell(); if(c&&c.occupant===u)c.occupant=null; } if(u.grp)scene.remove(u.grp); const i=G.units.indexOf(u); if(i>=0)G.units.splice(i,1); const d=G.deployedUnits.indexOf(u); if(d>=0)G.deployedUnits.splice(d,1); }
+function playerDeployLimit(){ return QA_DEPLOY_ALL&&G.rosterDefs&&G.rosterDefs.length?G.rosterDefs.length:MAX_PLAYER_UNITS; }
 function deployDefById(id){ return G.rosterDefs.find(d=>(d.campaignId||d.name)===id); }
 function deployedById(id){ return G.deployedUnits.find(u=>(u.campaignId||u.name)===id); }
 function deployedIds(){ return new Set(G.deployedUnits.map(u=>u.campaignId||u.name)); }
@@ -1894,7 +1898,7 @@ function deployUnit(gx,gz,id=G.selectedDeployId){
   const def=deployDefById(id); if(!def)return null;
   const previous=deployedById(id);
   if(previous){ placeUnit(previous,gx,gz,true); return previous; }
-  if(G.deployedUnits.length>=MAX_PLAYER_UNITS){ toast('Limite de '+MAX_PLAYER_UNITS+' unités atteinte'); return null; }
+  if(G.deployedUnits.length>=playerDeployLimit()){ toast('Limite de '+playerDeployLimit()+' unités atteinte'); return null; }
   const u=createUnit(Object.assign({},def,{gx,gz})); G.deployedUnits.push(u); return u;
 }
 function resetDeploy(){
@@ -1906,12 +1910,13 @@ function autoDeploy(){
   for(const u of G.deployedUnits.slice())removeUnit(u);
   const preferred=PREFERRED_UNIT_IDS.map(deployDefById).filter(Boolean);
   const rest=G.rosterDefs.filter(d=>!preferred.includes(d));
-  const picks=[...preferred,...rest].slice(0,MAX_PLAYER_UNITS);
+  const limit=playerDeployLimit();
+  const picks=[...preferred,...rest].slice(0,limit);
   const formation=[[0,0],[0,3],[1,1],[1,2]].map(([gx,gz])=>cellAt(gx,gz)).filter(Boolean);
   for(const def of picks){ const c=formation.find(z=>!z.occupant)||G.deployZone.find(z=>!z.occupant); if(!c)break; deployUnit(c.gx,c.gz,def.campaignId||def.name); }
-  drawDeployZone(); openDeployMenu(); setHint(G.deployedUnits.length+' / '+MAX_PLAYER_UNITS+' unités prêtes');
+  drawDeployZone(); openDeployMenu(); setHint(G.deployedUnits.length+' / '+limit+' unités prêtes');
 }
-function beginBattle(){ if(!canStartDeployment(G.deployedUnits.length,MAX_PLAYER_UNITS))return; G.mode='idle'; dom.menu.classList.remove('deploy-roster'); dom.panel.classList.remove('deploy-preview'); clearHL(); closeMenus(); refreshTurnbar(); startRound(); }
+function beginBattle(){ if(!canStartDeployment(G.deployedUnits.length,playerDeployLimit()))return; G.mode='idle'; dom.menu.classList.remove('deploy-roster'); dom.panel.classList.remove('deploy-preview'); clearHL(); closeMenus(); refreshTurnbar(); startRound(); }
 function deploymentCard(def){
   const id=def.campaignId||def.name,active=G.selectedDeployId===id,deployed=deployedIds().has(id);
   const portrait=def.portrait?'<img src="'+uiPortraitFor(def.portrait)+'" alt="">':'<span class="deploy-avatar">'+def.name.charAt(0)+'</span>';
@@ -1923,7 +1928,7 @@ function openDeployMenu(){
   renderObjective(); dom.menu.classList.remove('hidden'); dom.menu.classList.add('deploy-roster'); dom.skillmenu.classList.add('hidden');
   const size=4,pages=Math.max(1,Math.ceil(G.rosterDefs.length/size)); G.deployPage=cl(G.deployPage,0,pages-1);
   const visible=G.rosterDefs.slice(G.deployPage*size,G.deployPage*size+size);
-  dom.menu.innerHTML='<div class="deploy-head"><span>DÉPLOIEMENT</span><b>'+G.deployedUnits.length+' / '+MAX_PLAYER_UNITS+'</b></div>'+
+  dom.menu.innerHTML='<div class="deploy-head"><span>DÉPLOIEMENT</span><b>'+G.deployedUnits.length+' / '+playerDeployLimit()+'</b></div>'+
     '<div class="deploy-list">'+visible.map(deploymentCard).join('')+'</div>'+
     '<div class="deploy-pages"><button data-d="prev" '+(G.deployPage===0?'disabled':'')+'>‹</button><span>'+(G.deployPage+1)+' / '+pages+'</span><button data-d="next" '+(G.deployPage>=pages-1?'disabled':'')+'>›</button></div>'+
     '<div class="deploy-actions"><button data-d="auto">Auto</button><button data-d="reset" '+(!G.deployedUnits.length?'disabled':'')+'>Retirer tout</button>'+
@@ -2061,6 +2066,8 @@ function bootCampaign(message){
   MAX_PLAYER_UNITS=normalizeDeploymentLimit(message.config.maxPlayerUnits); CAMPAIGN_SQUAD=message.clan; CAMPAIGN_INVENTORY=message.inventory;
   PREFERRED_UNIT_IDS=message.preferredUnitIds; REDUCED_GRAPHICS=message.reducedGraphics;
   QA_ENABLED=campaignParams.get('qa')==='1'&&message.devQa===true;
+  QA_FULL_AP=QA_ENABLED&&message.qaFullAp===true;
+  QA_DEPLOY_ALL=QA_ENABLED&&message.qaDeployAll===true;
   IS_BOSS_COMBAT=!!message.config.isBoss; BOSS_SPAWNED=false;
   ENCOUNTER_ENEMY_VISUAL_IDS=Array.isArray(message.config.enemyVisualIds)?message.config.enemyVisualIds:[];
   ENCOUNTER_BOSS_VISUAL_ID=message.config.bossVisualId||'';

@@ -19,7 +19,7 @@ describe('combat protocol', () => {
     equipWeapon(state, state.clan.members[0]!.id, 'steel_greatsword');
     state.clan.members[0]!.currentHealth = 77;
     state.clan.members[0]!.skillUpgrades.w_break_guard = 2;
-    const clan = state.clan.members.map(toCombatant);
+    const clan = state.clan.members.map((u) => toCombatant(u));
     const parsed = combatInitializeMessageSchema.safeParse({
       type: 'rpg-threejs:combat-initialize',
       config,
@@ -40,7 +40,7 @@ describe('combat protocol', () => {
     const parsed = combatInitializeMessageSchema.safeParse({
       type: 'rpg-threejs:combat-initialize',
       config,
-      clan: state.clan.members.map(toCombatant),
+      clan: state.clan.members.map((u) => toCombatant(u)),
       inventory: state.inventory.consumables,
       preferredUnitIds: state.deployment.unitIds,
       reducedGraphics: false,
@@ -149,5 +149,107 @@ describe('weapon basic attack status affixes', () => {
     expect(parsed.success).toBe(true);
     expect(parsed.data?.weapons[0]?.basicAttackStatus?.status).toBe('burn');
     expect(parsed.data?.weapons[0]?.basicAttackStatus?.chance).toBe(0.15);
+  });
+});
+
+describe('V10C.3B QA protocol fields', () => {
+  it('accepts qaFullAp: true', () => {
+    const state = createInitialState();
+    const config = combatConfigs.get('forest_patrol')!;
+    const parsed = combatInitializeMessageSchema.safeParse({
+      type: 'rpg-threejs:combat-initialize',
+      config,
+      clan: state.clan.members.map((u) => toCombatant(u)),
+      inventory: state.inventory.consumables,
+      preferredUnitIds: state.deployment.unitIds,
+      reducedGraphics: false,
+      devQa: true,
+      qaFullAp: true,
+    });
+    expect(parsed.success).toBe(true);
+    expect(parsed.data?.qaFullAp).toBe(true);
+  });
+
+  it('defaults qaFullAp to false when omitted', () => {
+    const state = createInitialState();
+    const config = combatConfigs.get('forest_patrol')!;
+    const parsed = combatInitializeMessageSchema.safeParse({
+      type: 'rpg-threejs:combat-initialize',
+      config,
+      clan: state.clan.members.map((u) => toCombatant(u)),
+      inventory: state.inventory.consumables,
+      preferredUnitIds: state.deployment.unitIds,
+      reducedGraphics: false,
+    });
+    expect(parsed.success).toBe(true);
+    expect(parsed.data?.qaFullAp).toBe(false);
+  });
+
+  it('existing valid payloads still parse without qaFullAp', () => {
+    const state = createInitialState();
+    const config = combatConfigs.get('forest_patrol')!;
+    const parsed = combatInitializeMessageSchema.safeParse({
+      type: 'rpg-threejs:combat-initialize',
+      config,
+      clan: state.clan.members.map((u) => toCombatant(u)),
+      inventory: state.inventory.consumables,
+      preferredUnitIds: state.deployment.unitIds,
+      reducedGraphics: false,
+      devQa: true,
+    });
+    expect(parsed.success).toBe(true);
+    expect(parsed.data?.devQa).toBe(true);
+    expect(parsed.data?.qaFullAp).toBe(false);
+  });
+});
+
+describe('V10C.3B.2 qaDeployAll protocol field', () => {
+  it('accepts qaDeployAll: true', () => {
+    const state = createInitialState();
+    const config = combatConfigs.get('forest_patrol')!;
+    const parsed = combatInitializeMessageSchema.safeParse({
+      type: 'rpg-threejs:combat-initialize',
+      config,
+      clan: state.clan.members.map((u) => toCombatant(u)),
+      inventory: state.inventory.consumables,
+      preferredUnitIds: [],
+      reducedGraphics: false,
+      devQa: true,
+      qaDeployAll: true,
+    });
+    expect(parsed.success).toBe(true);
+    expect(parsed.data?.qaDeployAll).toBe(true);
+  });
+
+  it('defaults qaDeployAll to false when omitted', () => {
+    const state = createInitialState();
+    const config = combatConfigs.get('forest_patrol')!;
+    const parsed = combatInitializeMessageSchema.safeParse({
+      type: 'rpg-threejs:combat-initialize',
+      config,
+      clan: state.clan.members.map((u) => toCombatant(u)),
+      inventory: state.inventory.consumables,
+      preferredUnitIds: state.deployment.unitIds,
+      reducedGraphics: false,
+    });
+    expect(parsed.success).toBe(true);
+    expect(parsed.data?.qaDeployAll).toBe(false);
+  });
+
+  it('existing valid payloads still parse without qaDeployAll', () => {
+    const state = createInitialState();
+    const config = combatConfigs.get('forest_patrol')!;
+    const parsed = combatInitializeMessageSchema.safeParse({
+      type: 'rpg-threejs:combat-initialize',
+      config,
+      clan: state.clan.members.map((u) => toCombatant(u)),
+      inventory: state.inventory.consumables,
+      preferredUnitIds: state.deployment.unitIds,
+      reducedGraphics: false,
+      devQa: true,
+      qaFullAp: true,
+    });
+    expect(parsed.success).toBe(true);
+    expect(parsed.data?.qaDeployAll).toBe(false);
   });
 });

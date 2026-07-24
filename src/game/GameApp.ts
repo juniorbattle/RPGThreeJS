@@ -1,6 +1,6 @@
 import { combatConfigs, dialogues, POST_NODE_ATE } from './content';
 import { createInitialState, SaveRepository } from './store';
-import type { CombatConfig, CombatResult, GameState, NarrativeEffect, RunNode } from './types';
+import type { CombatConfig, CombatResult, GameState, NarrativeEffect, RunNode, UnitInstance } from './types';
 import { createUnitInstance, getItemCategory, toCombatant } from './catalog';
 import { applyCombatProgress } from './combatProgress';
 import {
@@ -19,6 +19,34 @@ import { sceneTransition } from '../ui/SceneTransition';
 import type { TransitionVariant } from '../ui/SceneTransition';
 type AppMode = 'TITLE' | 'PROLOGUE' | 'TRAVEL' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT' | 'QA';
 
+type QaPartyMode = 'campaign' | 'full';
+type QaSkillMode = 'normal' | 'all';
+type QaApMode = 'normal' | 'full';
+type QaHpMode = 'normal' | 'restored';
+type QaInventoryMode = 'campaign' | 'qa';
+type QaGraphicsMode = 'normal' | 'reduced';
+type QaDeployMode = 'normal' | 'full';
+
+interface QaParams {
+  party: QaPartyMode;
+  skills: QaSkillMode;
+  ap: QaApMode;
+  hp: QaHpMode;
+  inventory: QaInventoryMode;
+  graphics: QaGraphicsMode;
+  deployLimit: QaDeployMode;
+}
+
+const QA_FULL_CONSUMABLES: Record<string, number> = {
+  potion: 9, revive_vial: 9, ether: 9, antidote: 9,
+  bomb: 9, grenade_incendiaire: 9, grenade_entravante: 9, grenade_aveuglante: 9,
+};
+
+const QA_HERO_IDS = [
+  'warrior', 'white_mage', 'dark_mage', 'archer', 'rogue', 'lancer',
+  'paladin', 'dark_knight', 'red_mage', 'enchanter', 'ninja', 'artillerist',
+] as const;
+
 export class GameApp {
   private mode: AppMode = 'TITLE';
   private state: GameState = createInitialState();
@@ -33,6 +61,7 @@ export class GameApp {
   private pendingCombatId: string | null = null;
   private readonly qaEnabled = import.meta.env.DEV
     && new URLSearchParams(window.location.search).get('qa') === '1';
+  private qaParams: QaParams | null = null;
 
   constructor(
     private readonly root: HTMLElement,
@@ -106,6 +135,18 @@ export class GameApp {
       this.renderTitle();
       return;
     }
+    if (!this.qaParams) {
+      this.qaParams = {
+        party: 'campaign',
+        skills: 'normal',
+        ap: 'normal',
+        hp: 'normal',
+        inventory: 'campaign',
+        graphics: this.state.settings.reducedGraphics ? 'reduced' : 'normal',
+        deployLimit: 'normal',
+      };
+    }
+    const p = this.qaParams;
     this.setMode('QA');
     this.travel.close();
     this.exploration.close();
@@ -119,38 +160,122 @@ export class GameApp {
         <small>${config.objective}</small>
       </button>
     `).join('');
+    const radio = (group: string, value: string, label: string, checked: boolean) =>
+      `<label class="qa-lab__radio${checked ? ' is-checked' : ''}"><input type="radio" name="qa-${group}" value="${value}" ${checked ? 'checked' : ''}>${label}</label>`;
     this.chrome.innerHTML = `
       <section class="qa-lab ui-screen" aria-label="Laboratoire QA de combat">
         <header class="qa-lab__header">
           <div><p class="eyebrow">Développement local</p><h1>Laboratoire de combat</h1></div>
           <button type="button" data-qa-back>Retour au titre</button>
         </header>
-        <p class="qa-lab__lead">Chaque lancement ouvre le combat par le bridge réel, sans modifier la chronique ni sa sauvegarde.</p>
+        <p class="qa-lab__lead">Mode QA isolé : aucun résultat, récompense, PV ou objet consommé n'est appliqué à la chronique.</p>
         ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
+        <div class="qa-lab__params">
+          <fieldset>
+            <legend>Groupe</legend>
+            ${radio('party', 'campaign', 'Party actuelle', p.party === 'campaign')}
+            ${radio('party', 'full', 'Full roster QA', p.party === 'full')}
+          </fieldset>
+          <fieldset>
+            <legend>Compétences</legend>
+            ${radio('skills', 'normal', 'Déblocage normal', p.skills === 'normal')}
+            ${radio('skills', 'all', 'Toutes compétences', p.skills === 'all')}
+          </fieldset>
+          <fieldset>
+            <legend>PA</legend>
+            ${radio('ap', 'normal', 'AP normal', p.ap === 'normal')}
+            ${radio('ap', 'full', 'AP plein', p.ap === 'full')}
+          </fieldset>
+          <fieldset>
+            <legend>PV</legend>
+            ${radio('hp', 'normal', 'PV actuels', p.hp === 'normal')}
+            ${radio('hp', 'restored', 'PV restaurés', p.hp === 'restored')}
+          </fieldset>
+          <fieldset>
+            <legend>Inventaire</legend>
+            ${radio('inventory', 'campaign', 'Inventaire campagne', p.inventory === 'campaign')}
+            ${radio('inventory', 'qa', 'Inventaire QA complet ×9', p.inventory === 'qa')}
+          </fieldset>
+          <fieldset>
+            <legend>Graphismes</legend>
+            ${radio('graphics', 'normal', 'Normal', p.graphics === 'normal')}
+            ${radio('graphics', 'reduced', 'Réduit', p.graphics === 'reduced')}
+          </fieldset>
+          <fieldset>
+            <legend>Déploiement</legend>
+            ${radio('deployLimit', 'normal', 'Limite normale', p.deployLimit === 'normal')}
+            ${radio('deployLimit', 'full', 'Tous les héros QA', p.deployLimit === 'full')}
+          </fieldset>
+        </div>
         <div class="qa-lab__grid">${encounterCards}</div>
       </section>
     `;
     this.chrome.querySelector('[data-qa-back]')?.addEventListener('click', () => this.renderTitle());
+    this.chrome.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((input) => {
+      input.addEventListener('change', () => {
+        const group = input.name.split('qa-')[1] as keyof QaParams | undefined;
+        if (group && this.qaParams) {
+          this.qaParams[group] = input.value as never;
+          this.renderQaLab(message);
+        }
+      });
+    });
     this.chrome.querySelectorAll<HTMLButtonElement>('[data-qa-combat]').forEach((button) => {
       button.addEventListener('click', () => void this.startQaCombat(button.dataset.qaCombat ?? ''));
     });
   }
 
+  private buildQaSquad(): UnitInstance[] {
+    return QA_HERO_IDS.map((id) => createUnitInstance(id));
+  }
+
   private async startQaCombat(combatId: string): Promise<void> {
-    if (!this.qaEnabled) return;
+    if (!this.qaEnabled || !this.qaParams) return;
     const config = combatConfigs.get(combatId);
     if (!config) return;
+    const p = this.qaParams;
     this.setMode('COMBAT');
     this.chrome.replaceChildren();
-    const result = await this.combat.play({
-      config,
-      clan: this.state.clan.members.filter((unit) => unit.currentHealth > 0).map((unit) => toCombatant(unit)),
-      inventory: this.state.inventory.consumables,
-      preferredUnitIds: this.state.deployment.unitIds,
-      reducedGraphics: this.state.settings.reducedGraphics,
-      devQa: true,
+    const squad = p.party === 'full'
+      ? this.buildQaSquad()
+      : this.state.clan.members.filter((unit) => unit.currentHealth > 0);
+    const clan = squad.map((unit) => {
+      const combatant = toCombatant(unit, { qaUnlockAllSkills: p.skills === 'all' });
+      if (p.hp === 'restored') combatant.currentHealth = combatant.stats.maxHealth;
+      return combatant;
     });
-    this.renderQaLab(`${config.encounterLabel} — ${result.victory ? 'victoire de test' : 'défaite de test'}.`);
+    const inventory = p.inventory === 'qa'
+      ? { ...QA_FULL_CONSUMABLES }
+      : { ...this.state.inventory.consumables };
+    try {
+      const result = await this.withQaCombatTimeout(
+        this.combat.play({
+          config,
+          clan,
+          inventory,
+          preferredUnitIds: p.party === 'full' ? [] : this.state.deployment.unitIds,
+          reducedGraphics: p.graphics === 'reduced',
+          devQa: true,
+          qaFullAp: p.ap === 'full',
+          qaDeployAll: p.party === 'full' && p.deployLimit === 'full',
+        }),
+        config.encounterLabel,
+      );
+      this.renderQaLab(`${config.encounterLabel} — ${result.victory ? 'victoire de test' : 'défaite de test'}.`);
+    } catch (error) {
+      this.combat.close();
+      const message = error instanceof Error ? error.message : String(error);
+      this.renderQaLab(`${config.encounterLabel} — erreur QA : ${message}`);
+    }
+  }
+
+  private withQaCombatTimeout<T>(promise: Promise<T>, label: string): Promise<T> {
+    return Promise.race([
+      promise,
+      new Promise<T>((_, reject) => {
+        window.setTimeout(() => reject(new Error(`Combat QA sans réponse : ${label}`)), 20000);
+      }),
+    ]);
   }
 
   private async enterTravel(): Promise<void> {
