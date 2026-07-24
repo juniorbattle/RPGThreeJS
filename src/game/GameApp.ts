@@ -248,34 +248,22 @@ export class GameApp {
       ? { ...QA_FULL_CONSUMABLES }
       : { ...this.state.inventory.consumables };
     try {
-      const result = await this.withQaCombatTimeout(
-        this.combat.play({
-          config,
-          clan,
-          inventory,
-          preferredUnitIds: p.party === 'full' ? [] : this.state.deployment.unitIds,
-          reducedGraphics: p.graphics === 'reduced',
-          devQa: true,
-          qaFullAp: p.ap === 'full',
-          qaDeployAll: p.party === 'full' && p.deployLimit === 'full',
-        }),
-        config.encounterLabel,
-      );
+      const result = await this.combat.play({
+        config,
+        clan,
+        inventory,
+        preferredUnitIds: p.party === 'full' ? [] : this.state.deployment.unitIds,
+        reducedGraphics: p.graphics === 'reduced',
+        devQa: true,
+        qaFullAp: p.ap === 'full',
+        qaDeployAll: p.party === 'full' && p.deployLimit === 'full',
+      });
       this.renderQaLab(`${config.encounterLabel} — ${result.victory ? 'victoire de test' : 'défaite de test'}.`);
     } catch (error) {
       this.combat.close();
       const message = error instanceof Error ? error.message : String(error);
       this.renderQaLab(`${config.encounterLabel} — erreur QA : ${message}`);
     }
-  }
-
-  private withQaCombatTimeout<T>(promise: Promise<T>, label: string): Promise<T> {
-    return Promise.race([
-      promise,
-      new Promise<T>((_, reject) => {
-        window.setTimeout(() => reject(new Error(`Combat QA sans réponse : ${label}`)), 20000);
-      }),
-    ]);
   }
 
   private async enterTravel(): Promise<void> {
