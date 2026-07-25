@@ -12,6 +12,7 @@ const PHASE_2_PRESETS = [
   'blunt_impact',
   'arrow_shot',
   'dark_bolt',
+  'shadow_lightning_bolt',
   'bless_aura',
   'curse_pulse',
   'status_burn_mark',
@@ -37,7 +38,10 @@ const LOT_C_PRESETS = [
   'ultimate_drain_field', 'ultimate_zenith_arrow_v2', 'ultimate_fault_breaker_v2',
   'boss_apocalypse_v2',
 ];
-const REQUIRED_PRESETS = [...PHASE_1_PRESETS, ...PHASE_2_PRESETS, ...LOT_C_PRESETS, ...PREMIUM_VFX_PRESET_IDS];
+const V10F_DISPATCH_PRESETS = [
+  'thrust_line', 'teleport_burst', 'holy_strike', 'leap_impact', 'caster_roar', 'arrow_rain',
+];
+const REQUIRED_PRESETS = [...PHASE_1_PRESETS, ...PHASE_2_PRESETS, ...LOT_C_PRESETS, ...V10F_DISPATCH_PRESETS, ...PREMIUM_VFX_PRESET_IDS];
 const VALID_STEP_TYPES = new Set<VfxStepType>([
   'particleBurst',
   'projectile',

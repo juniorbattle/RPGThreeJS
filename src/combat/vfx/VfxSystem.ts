@@ -12,6 +12,7 @@ import type {
   VfxContext,
   VfxPlayResult,
   VfxPreset,
+  VfxScaleTier,
   VfxSpriteSheetId,
   VfxStep,
   VfxTextureName,
@@ -26,12 +27,35 @@ const clamp = (value: number, min: number, max: number) => Math.max(min, Math.mi
 const easeOutCubic = (value: number) => 1 - (1 - value) ** 3;
 const easeInOut = (value: number) => (value < 0.5 ? 2 * value * value : 1 - (-2 * value + 2) ** 2 / 2);
 
+const VFX_SCALE_TIER_MULTIPLIER: Readonly<Record<VfxScaleTier, number>> = Object.freeze({
+  basic: 0.96,
+  '2ap': 1,
+  '3ap': 1.035,
+  '4ap': 1.07,
+  '5ap_ultimate': 1.1,
+  boss: 1.15,
+});
+
 function asColor(value: string | number | undefined, fallback = 0xffffff) {
   return new THREE.Color(value ?? fallback);
 }
 
 function unitGround(unit?: VfxUnitLike | null) {
   return unit?.grp?.position.clone() ?? new THREE.Vector3();
+}
+
+function contextPresentationScale(context: VfxContext) {
+  return VFX_SCALE_TIER_MULTIPLIER[context.scaleTier ?? 'basic']
+    * clamp(context.presentationScale ?? 1, 0.55, 1.45);
+}
+
+function directionalRotation(step: VfxStep, context: VfxContext) {
+  const orientation = step.orientation ?? context.orientation;
+  if (!orientation || orientation === 'none' || orientation === 'center_on_target'
+    || orientation === 'center_on_aoe_origin' || orientation === 'source_to_destination') return 0;
+  const source = resolveVfxAnchor('source', context).project(context.camera);
+  const target = resolveVfxAnchor(step.targetAnchor ?? 'target', context).project(context.camera);
+  return Math.atan2(target.y - source.y, target.x - source.x);
 }
 
 function unitBody(unit?: VfxUnitLike | null) {
@@ -314,8 +338,9 @@ export class VfxSystem {
     const sprite = this.track(makeSprite(step, texture), context);
     const objects: THREE.Object3D[] = [sprite];
     const intensity = clamp(context.intensity ?? 1, 0.35, 1.8);
-    const baseScale = (step.scale ?? 1) * intensity;
+    const baseScale = (step.scale ?? 1) * intensity * contextPresentationScale(context);
     sprite.position.copy(anchor);
+    (sprite.material as THREE.SpriteMaterial).rotation += directionalRotation(step, context);
     sprite.scale.setScalar(baseScale * 0.32);
     try {
       await animate(duration, (progress, eased) => {
@@ -359,7 +384,7 @@ export class VfxSystem {
         Math.sin(angle) * radial * speed,
       );
       if (smoke) velocity.multiplyScalar(0.48);
-      const baseScale = (step.scale ?? 0.14) * particleScale * (0.72 + Math.random() * 0.52);
+    const baseScale = (step.scale ?? 0.14) * particleScale * contextPresentationScale(context) * (0.72 + Math.random() * 0.52);
       sprite.position.copy(origin);
       sprite.scale.setScalar(smoke ? baseScale * 0.65 : baseScale * 0.35);
       entries.push({ sprite, origin, velocity, baseScale, delay: vertical ? Math.random() * 0.18 : 0 });
@@ -390,7 +415,7 @@ export class VfxSystem {
     const count = this.adjustedCount(step, preset, context);
     const core = this.track(makeSprite(step, step.texture ?? 'projectileCore'), context);
     const objects: THREE.Object3D[] = [core];
-    const baseScale = (step.scale ?? 0.28) * clamp(context.particleScale ?? 1, 0.45, 1.8);
+    const baseScale = (step.scale ?? 0.28) * clamp(context.particleScale ?? 1, 0.45, 1.8) * contextPresentationScale(context);
     core.position.copy(start);
     core.scale.setScalar(baseScale);
     const trails: THREE.Sprite[] = [];
@@ -454,13 +479,15 @@ export class VfxSystem {
     const baseHeight = (step.scale ?? 1)
       * definition.presentation.scaleMultiplier
       * intensity
-      * (context.reducedGraphics ? 0.9 : 1);
+      * (context.reducedGraphics ? 0.9 : 1)
+      * contextPresentationScale(context);
     const frameAspect = definition.rows / definition.cols;
     const baseOpacity = (step.opacity ?? 1)
       * definition.presentation.opacityMultiplier
       * (context.reducedGraphics ? 0.92 + quality * 0.08 : 1);
     sprite.renderOrder = definition.presentation.layer === 'ground' ? VFX_RENDER_ORDER.ground : VFX_RENDER_ORDER.impact;
     sprite.position.copy(anchor);
+    material.rotation += directionalRotation(step, context);
     try {
       await animate(duration, (progress) => {
         const frame = Math.min(definition.frameCount - 1, Math.floor(progress * definition.frameCount));
@@ -508,7 +535,8 @@ export class VfxSystem {
     const baseHeight = (step.scale ?? 0.9)
       * definition.presentation.scaleMultiplier
       * clamp(context.particleScale ?? 1, 0.45, 1.8)
-      * (context.reducedGraphics ? 0.9 : 1);
+      * (context.reducedGraphics ? 0.9 : 1)
+      * contextPresentationScale(context);
     const frameAspect = definition.rows / definition.cols;
     const quality = this.quality(step, preset, context);
     const baseOpacity = (step.opacity ?? 1)
@@ -548,7 +576,7 @@ export class VfxSystem {
     const plane = this.track(makeGroundPlane(step, texture), context);
     const objects: THREE.Object3D[] = [plane];
     const intensity = clamp(context.intensity ?? 1, 0.35, 1.8);
-    const radius = (step.radius ?? 1) * (step.scale ?? 1) * intensity;
+    const radius = (step.radius ?? 1) * (step.scale ?? 1) * intensity * contextPresentationScale(context);
     plane.position.copy(anchor);
     plane.scale.setScalar(radius * 0.18);
 
@@ -587,7 +615,7 @@ export class VfxSystem {
     const light = this.track(new THREE.PointLight(asColor(step.color), 0, 4.2, 2), context);
     const glow = this.track(makeSprite(step, step.texture ?? 'magicGlow'), context);
     const objects: THREE.Object3D[] = [light, glow];
-    const scale = (step.scale ?? 1) * clamp(context.intensity ?? 1, 0.35, 1.8);
+    const scale = (step.scale ?? 1) * clamp(context.intensity ?? 1, 0.35, 1.8) * contextPresentationScale(context);
     light.position.copy(anchor);
     glow.position.copy(anchor);
     glow.scale.setScalar(scale * 0.4);

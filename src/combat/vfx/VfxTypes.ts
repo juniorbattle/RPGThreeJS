@@ -41,9 +41,24 @@ export type VfxSpriteSheetId =
   | 'drain_field'
   | 'zenith_arrow'
   | 'fault_breaker'
-  | 'apocalypse_field';
+  | 'apocalypse_field'
+  | 'shadow_lightning_bolt';
 
 export type VfxSpriteSheetMode = 'billboard' | 'projectile';
+
+/** Presentation-only directional metadata. It never changes targeting or area rules. */
+export type VfxOrientation =
+  | 'none'
+  | 'face_target'
+  | 'source_to_target'
+  | 'align_line'
+  | 'align_cone'
+  | 'center_on_target'
+  | 'center_on_aoe_origin'
+  | 'source_to_destination';
+
+/** Visual hierarchy only: combat calculations remain entirely unchanged. */
+export type VfxScaleTier = 'basic' | '2ap' | '3ap' | '4ap' | '5ap_ultimate' | 'boss';
 
 export type VfxAnchor =
   | 'source'
@@ -105,6 +120,7 @@ export interface VfxStep {
   rise?: number;
   spread?: number;
   rotation?: number;
+  orientation?: VfxOrientation;
   blending?: 'additive' | 'normal';
 }
 
@@ -148,6 +164,9 @@ export interface VfxContext {
   intensity?: number;
   particleScale?: number;
   durationScale?: number;
+  orientation?: VfxOrientation;
+  scaleTier?: VfxScaleTier;
+  presentationScale?: number;
   helpers?: VfxRuntimeHelpers;
 }
 

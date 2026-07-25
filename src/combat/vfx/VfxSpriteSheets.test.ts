@@ -17,6 +17,7 @@ const V2_SHEET_IDS = [
   'regen_aura', 'revive_pillar', 'holy_aura', 'bless_field', 'boost_aura', 'smoke_burst', 'mace_impact',
   'line_blast', 'cone_blast', 'dark_explosion', 'explosion_large', 'judgement_beam', 'holy_explosion',
   'eclipse_devour', 'drain_field', 'zenith_arrow', 'fault_breaker', 'apocalypse_field',
+  'shadow_lightning_bolt',
 ] as const;
 const RUNTIME_PUBLIC_ROOT = new URL('../../../public/', import.meta.url);
 

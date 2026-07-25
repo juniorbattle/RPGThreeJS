@@ -81,6 +81,36 @@ describe('hero skill action contracts', () => {
     }
   });
 
+  it('uses directional and scale-aware visual contracts for V10F priority actions', () => {
+    const contracts = [
+      ['w_break_guard', 'sword_slash', 'source_to_target', '2ap'],
+      ['l_long_thrust', 'thrust_line', 'source_to_target', '2ap'],
+      ['l_haft_recoil', 'thrust_line', 'source_to_target', '3ap'],
+      ['d_void_step', 'teleport_burst', 'source_to_destination', '3ap'],
+      ['n_dark_bolt', 'shadow_lightning_bolt', 'source_to_target', '2ap'],
+      ['p_holy_strike', 'holy_strike', 'source_to_target', '2ap'],
+      ['a_arrow_rain', 'arrow_rain', 'source_to_target', '4ap'],
+      ['n_flame_wave', 'shape_cone_blast', 'align_cone', '4ap'],
+      ['w_purify', 'support_holy_aura', 'center_on_target', '3ap'],
+    ] as const;
+
+    for (const [id, vfxPreset, orientation, scaleTier] of contracts) {
+      expect(getSkillPresentation({ key: id })).toMatchObject({ vfxPreset, orientation, scaleTier });
+      expect(VFX_PRESET_IDS).toContain(vfxPreset);
+    }
+  });
+
+  it('keeps dark lightning distinct from teleport and curse presentation', () => {
+    expect(getSkillPresentation({ key: 'enemy_dark_bolt' })).toMatchObject({
+      vfxPreset: 'shadow_lightning_bolt',
+      orientation: 'source_to_target',
+      scaleTier: '2ap',
+    });
+    expect(getSkillPresentation({ key: 'd_void_step' })?.vfxPreset).toBe('teleport_burst');
+    expect(getSkillPresentation({ key: 'n_teleport' })?.vfxPreset).toBe('teleport_burst');
+    expect(getSkillPresentation({ key: 'enemy_hex' })?.vfxPreset).toBe('status_curse_mark');
+  });
+
   it('uses explicit contracts for ally targeting, selected revival and special movement', () => {
     expect(skillById.get('e_vigor_rune')).toMatchObject({ targetMode: 'ally' });
     expect(skillById.get('e_transpose')).toMatchObject({

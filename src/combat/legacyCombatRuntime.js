@@ -1047,8 +1047,9 @@ function getActionVisualTier(spec={}){
   return cl(Math.round(spec.ap||1),1,5);
 }
 function getActionPresentationTuning(spec={}){
-  const tier=getActionVisualTier(spec),base=ACTION_PRESENTATION_TIERS[tier]||ACTION_PRESENTATION_TIERS[1];
-  return {...base,tier};
+  const tier=getActionVisualTier(spec),base=ACTION_PRESENTATION_TIERS[tier]||ACTION_PRESENTATION_TIERS[1],presentation=getSkillPresentation(spec);
+  const scaleTier=presentation?.scaleTier||(tier>=6?'boss':tier>=5?'5ap_ultimate':tier>=4?'4ap':tier>=3?'3ap':tier>=2?'2ap':'basic');
+  return {...base,tier,scaleTier,presentationScale:cl(presentation?.visualScale??1,.55,1.45)};
 }
 function scaledSpriteMotionPreset(base,context={}){
   const timeScale=cl(context.motionDurationScale||1,0.82,1.18),intensity=cl(context.motionIntensity||1,0.86,1.18),out={...base};
@@ -1340,12 +1341,21 @@ function getActionVfxPreset(spec={},u=null){
   const presentation=getSkillPresentation(spec);
   if(presentation)return presentation.vfxPreset;
   const text=actionVfxSearchText(spec,u);
+  if(spec.item){
+    if(spec.revive)return 'support_revive_pillar';
+    if(spec.cure)return 'support_holy_aura';
+    if(spec.apRestore)return 'bless_aura';
+    if(spec.flatDmg||vfxTextIncludes(text,['bombe','bomb','grenade']))return 'impact_explosion_large';
+    if(spec.heal||spec.flatHeal)return 'heal_burst';
+  }
   if(spec.key==='boss_quake')return 'boss_quake';
   if(spec.key==='boss_slam')return 'boss_slam';
   if(spec.key==='fireball'||spec.key==='flame_wave'||vfxTextIncludes(text,['feu','flamme','ardent']))return 'fireball';
-  if(spec.heal||spec.revive)return 'heal_burst';
+  if(spec.revive)return 'support_revive_pillar';
+  if(spec.heal)return 'heal_burst';
+  if(spec.cure)return 'support_holy_aura';
   if(spec.key==='bulwark'||spec.key==='boss_guard'||spec.status==='barrier')return 'guard_barrier';
-  if(spec.key==='bless'||spec.key==='regen'||spec.apRestore||spec.cure)return 'bless_aura';
+  if(spec.key==='bless'||spec.key==='regen'||spec.apRestore)return 'bless_aura';
   if(spec.type==='debuff'||spec.key==='curse'||spec.key==='provoke'||spec.key==='boss_roar')return 'curse_pulse';
   if(vfxTextIncludes(text,['poison','venin','venimeux','venom','toxique','crochet']))return 'poison_bite';
   if(spec.type==='mag')return 'dark_bolt';
@@ -1358,7 +1368,7 @@ function getActionVfxPreset(spec={},u=null){
   return null;
 }
 function makeActionVfxContext(u,targets,cx,cz,spec={}){
-  const tuning=getActionPresentationTuning(spec),primary=targets&&targets[0];
+  const tuning=getActionPresentationTuning(spec),presentation=getSkillPresentation(spec),primary=targets&&targets[0];
   const targetPoint=primary?.grp
     ?new THREE.Vector3(primary.grp.position.x,primary.grp.position.y,primary.grp.position.z)
     :new THREE.Vector3(wX(cx),tileTop(cx,cz),wZ(cz));
@@ -1369,19 +1379,30 @@ function makeActionVfxContext(u,targets,cx,cz,spec={}){
     intensity:tuning.intensity,
     particleScale:tuning.particleScale,
     durationScale:tuning.durationScale,
+    orientation:presentation?.orientation,
+    scaleTier:tuning.scaleTier,
+    presentationScale:tuning.presentationScale,
     helpers:{wait,screenShake,screenFlash,floatText,wX,wZ,tileTop}
   };
 }
 function playActionVfx(spec,u,targets,cx,cz){
   const presetId=getActionVfxPreset(spec,u);
   if(!presetId)return null;
-  const perTarget=presetId==='heal_burst'||presetId==='bless_aura'||presetId==='guard_barrier';
+  const perTarget=presetId==='heal_burst'||presetId==='bless_aura'||presetId==='guard_barrier'||presetId==='support_holy_aura'||presetId==='arrow_rain';
   const visualTargets=(perTarget&&targets.length>1)?targets.map(target=>[target]):[targets];
   const results=visualTargets.map(group=>combatVfxSystem.play(presetId,makeActionVfxContext(u,group,cx,cz,spec))).filter(result=>result.played);
   if(!results.length)return null;
   const completion=Promise.all(results.map(result=>result.completion)).then(()=>undefined);
   void completion.catch(error=>console.warn('[CombatVfx] Action playback failed safely.',error));
   return {played:true,presetId,impactTime:Math.max(...results.map(result=>result.impactTime)),completion};
+}
+function playActionVfxAt(presetId,u,targetPoint,spec={}){
+  if(!presetId||!u||!targetPoint)return null;
+  const point=targetPoint.clone?targetPoint.clone():new THREE.Vector3(targetPoint.x,targetPoint.y,targetPoint.z);
+  const result=combatVfxSystem.play(presetId,{...makeActionVfxContext(u,[],u.gx,u.gz,spec),targetPoint:point});
+  if(!result.played)return null;
+  void result.completion.catch(error=>console.warn('[CombatVfx] Action playback failed safely.',error));
+  return result;
 }
 function playFeedbackVfx(presetId,source,target){
   if(!target)return false;
@@ -1426,8 +1447,17 @@ async function attackAnim(u,spec,cx,cz,targets=[]){ const ctr=new THREE.Vector3(
 async function doMove(u,spec,cx,cz){ setFacing(u,cx,cz); const c=cellAt(cx,cz); const dest=new THREE.Vector3(wX(cx),c.topY,wZ(cz)); const head=dest.clone().add(new THREE.Vector3(0,0.9,0));
   const motion=scaledSpriteMotionPreset(SPRITE_MOTION_PRESETS[getActionMotionPreset(spec)]||SPRITE_MOTION_PRESETS.melee_light,getActionPresentationTuning(spec));
   actionCam(head); logMsg(u.name+' → '+spec.name);
-  if(spec.mode==='teleport'){ vfx('dark',u.grp.position.clone().add(new THREE.Vector3(0,0.9,0))); screenFlash('#b9a0ff',0.14); await tweenP(u.mat,{opacity:0},motion.cast,easeOutCubic); placeUnit(u,cx,cz,true); vfx('dark',head); screenFlash('#9fe7ff',0.16); await tweenP(u.mat,{opacity:1},motion.recoil,easeOutCubic); }
-  else if(spec.mode==='leap'){ const from=u.grp.position.clone(); placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:(from.x+dest.x)/2,y:Math.max(from.y,dest.y)+motion.jumpHeight,z:(from.z+dest.z)/2},motion.jumpUp,easeOutCubic); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.jumpDown,easeInOut); vfx('hit',head); screenShake(0.32,0.22); }
+  if(spec.mode==='teleport'){
+    const departure=u.grp.position.clone().add(new THREE.Vector3(0,0.9,0)),preset=getActionVfxPreset(spec,u);
+    if(preset==='teleport_burst')playActionVfxAt(preset,u,departure,spec); else vfx('dark',departure);
+    screenFlash('#b9a0ff',0.14); await tweenP(u.mat,{opacity:0},motion.cast,easeOutCubic); placeUnit(u,cx,cz,true);
+    if(preset==='teleport_burst')playActionVfxAt(preset,u,head,spec); else vfx('dark',head);
+    screenFlash('#9fe7ff',0.16); await tweenP(u.mat,{opacity:1},motion.recoil,easeOutCubic);
+  }
+  else if(spec.mode==='leap'){
+    const from=u.grp.position.clone(); placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:(from.x+dest.x)/2,y:Math.max(from.y,dest.y)+motion.jumpHeight,z:(from.z+dest.z)/2},motion.jumpUp,easeOutCubic); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.jumpDown,easeInOut);
+    const preset=getActionVfxPreset(spec,u); if(preset==='leap_impact')playActionVfxAt(preset,u,head,spec); else vfx('hit',head); screenShake(0.32,0.22);
+  }
   else { placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.dash||0.2,easeOutCubic); screenShake(0.5,0.3); screenFlash('#fff0b0',0.16); vfx('hit',head);
     if(spec.impact){ const hits=aliveUnits().filter(t=>t.team!==u.team&&(Math.abs(t.gx-cx)+Math.abs(t.gz-cz)===1)); for(const t of hits){ const impactSpec={type:'phys',power:spec.power||8}; const crit=Math.random()<critChance(u,t,impactSpec); let {dmg}=computeDamage(u,t,impactSpec); if(crit)dmg=Math.round(dmg*1.5); floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':'#ffffff',crit); if(crit){ if(!playFeedbackVfx('critical_hit',u,t)){ screenShake(0.5,0.3); screenFlash('#fff3b0',0.18); vfx('crit',t.grp.position.clone().add(new THREE.Vector3(0,1,0))); } logMsg('Coup critique !'); } await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&crit&&isBreakOpen(t)){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); } if(t.alive&&spec.impact.status)applyStatus(t,spec.impact.status,spec.impact.statusTurns); await wait(0.06); } } }
   await wait(0.12); }
@@ -1455,23 +1485,29 @@ function findRetreatDestination(u,threat,distance=1){
   const score=option=>other?Math.abs(option.gx-other.gx)+Math.abs(option.gz-other.gz):0;
   return candidates.sort((a,b)=>score(b)-score(a))[0];
 }
-async function swapUnits(a,b){
+async function swapUnits(a,b,spec={}){
   if(!a||!b||a.size>1||b.size>1)return false;
   const aCell=a.cell(),bCell=b.cell(); if(!aCell||!bCell)return false;
   const aPos={gx:a.gx,gz:a.gz},bPos={gx:b.gx,gz:b.gz};
+  const aDeparture=a.grp.position.clone().add(new THREE.Vector3(0,0.85,0)),bDeparture=b.grp.position.clone().add(new THREE.Vector3(0,0.85,0));
+  const preset=getActionVfxPreset(spec,a);
+  if(preset==='teleport_burst'){ playActionVfxAt(preset,a,aDeparture,spec); playActionVfxAt(preset,b,bDeparture,spec); }
+  else { vfx('dark',aDeparture); vfx('dark',bDeparture); }
   killSpriteMotion(a); killSpriteMotion(b);
   await Promise.all([tweenP(a.mat,{opacity:0.2},0.12,easeOutCubic),tweenP(b.mat,{opacity:0.2},0.12,easeOutCubic)]);
   aCell.occupant=b; bCell.occupant=a;
   a.gx=bPos.gx; a.gz=bPos.gz; b.gx=aPos.gx; b.gz=aPos.gz;
   a.grp.position.set(wX(a.gx),bCell.topY,wZ(a.gz)); b.grp.position.set(wX(b.gx),aCell.topY,wZ(b.gz));
-  vfx('dark',a.grp.position.clone().add(new THREE.Vector3(0,0.85,0))); vfx('dark',b.grp.position.clone().add(new THREE.Vector3(0,0.85,0)));
+  const aArrival=a.grp.position.clone().add(new THREE.Vector3(0,0.85,0)),bArrival=b.grp.position.clone().add(new THREE.Vector3(0,0.85,0));
+  if(preset==='teleport_burst'){ playActionVfxAt(preset,a,aArrival,spec); playActionVfxAt(preset,b,bArrival,spec); }
+  else { vfx('dark',aArrival); vfx('dark',bArrival); }
   await Promise.all([tweenP(a.mat,{opacity:1},0.14,easeOutCubic),tweenP(b.mat,{opacity:1},0.14,easeOutCubic)]);
   return true;
 }
 async function performSkillMovement(u,spec,cx,cz,context={}){
   const selected=(context.selectedTargets||[])[0]||null;
   if(spec.mode==='swap'){
-    if(!await swapUnits(u,selected)){ toast('Échange impossible'); return false; }
+    if(!await swapUnits(u,selected,spec)){ toast('Échange impossible'); return false; }
     return true;
   }
   if(spec.mode==='strike'){
