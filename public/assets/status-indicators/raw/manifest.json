@@ -1,0 +1,77 @@
+{
+  "pack": "status_indicator_assets_en",
+  "asset_count": 10,
+  "intended_use": "V10E-B persistent status indicator sprites; reference/processing sources, not runtime-ready.",
+  "entries": [
+    {
+      "id": "status_burn_indicator",
+      "filename": "status_burn_indicator.png",
+      "source": "emblème_magique_burn_flamboyant.png",
+      "status": "burn",
+      "note": "Raw generated English status indicator concept. Requires alpha cleanup/cropping before runtime use."
+    },
+    {
+      "id": "status_poison_indicator",
+      "filename": "status_poison_indicator.png",
+      "source": "indicateur_de_poison_lumineux.png",
+      "status": "poison",
+      "note": "Raw generated English status indicator concept. Requires alpha cleanup/cropping before runtime use."
+    },
+    {
+      "id": "status_slow_indicator",
+      "filename": "status_slow_indicator.png",
+      "source": "emblème_slow_magique.png",
+      "status": "slow",
+      "note": "Raw generated English status indicator concept. Requires alpha cleanup/cropping before runtime use."
+    },
+    {
+      "id": "status_root_indicator",
+      "filename": "status_root_indicator.png",
+      "source": "emblème_magique_rooted_énergisé.png",
+      "status": "root",
+      "note": "Raw generated English status indicator concept. Requires alpha cleanup/cropping before runtime use."
+    },
+    {
+      "id": "status_blind_indicator",
+      "filename": "status_blind_indicator.png",
+      "source": "indicateur_de_statut_aveugle.png",
+      "status": "blind",
+      "note": "Raw generated English status indicator concept. Requires alpha cleanup/cropping before runtime use."
+    },
+    {
+      "id": "status_weak_indicator",
+      "filename": "status_weak_indicator.png",
+      "source": "statut_affaibli_avec_éclats_de_cristal.png",
+      "status": "weak",
+      "note": "Raw generated English status indicator concept. Requires alpha cleanup/cropping before runtime use."
+    },
+    {
+      "id": "status_curse_indicator",
+      "filename": "status_curse_indicator.png",
+      "source": "indicateur_de_malédiction_arcane.png",
+      "status": "curse",
+      "note": "Raw generated English status indicator concept. Requires alpha cleanup/cropping before runtime use."
+    },
+    {
+      "id": "status_silence_indicator",
+      "filename": "status_silence_indicator.png",
+      "source": "indicateur_de_statut_silence.png",
+      "status": "silence",
+      "note": "Raw generated English status indicator concept. Requires alpha cleanup/cropping before runtime use."
+    },
+    {
+      "id": "status_exhausted_indicator",
+      "filename": "status_exhausted_indicator.png",
+      "source": "statut_épuisé_avec_aura_dorée.png",
+      "status": "exhausted",
+      "note": "Raw generated English status indicator concept. Requires alpha cleanup/cropping before runtime use."
+    },
+    {
+      "id": "status_staggered_indicator",
+      "filename": "status_staggered_indicator.png",
+      "source": "cristal_brisé_enflammé_staggered.png",
+      "status": "staggered",
+      "note": "Raw generated English status indicator concept. Requires alpha cleanup/cropping before runtime use."
+    }
+  ]
+}

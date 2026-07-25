@@ -19,6 +19,9 @@ import type {
 } from './VfxTypes';
 
 const SHARED_PLANE = new THREE.PlaneGeometry(1, 1);
+// Persistent combat badges use 60. Keep ground effects grounded and let short
+// action impacts read clearly above both sprites and status feedback.
+export const VFX_RENDER_ORDER = Object.freeze({ ground: 34, impact: 70 });
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 const easeOutCubic = (value: number) => 1 - (1 - value) ** 3;
 const easeInOut = (value: number) => (value < 0.5 ? 2 * value * value : 1 - (-2 * value + 2) ** 2 / 2);
@@ -141,14 +144,14 @@ function makeSprite(step: VfxStep, textureName: VfxTextureName, color?: string |
     transparent: true,
     opacity: step.opacity ?? 1,
     depthWrite: false,
-    depthTest: true,
+    depthTest: false,
     toneMapped: false,
     fog: false,
     blending: blendingFor(step),
     rotation: step.rotation ?? 0,
   });
   const sprite = new THREE.Sprite(material);
-  sprite.renderOrder = 28;
+  sprite.renderOrder = VFX_RENDER_ORDER.impact;
   return sprite;
 }
 
@@ -456,7 +459,7 @@ export class VfxSystem {
     const baseOpacity = (step.opacity ?? 1)
       * definition.presentation.opacityMultiplier
       * (context.reducedGraphics ? 0.92 + quality * 0.08 : 1);
-    sprite.renderOrder = definition.presentation.layer === 'ground' ? 34 : 56;
+    sprite.renderOrder = definition.presentation.layer === 'ground' ? VFX_RENDER_ORDER.ground : VFX_RENDER_ORDER.impact;
     sprite.position.copy(anchor);
     try {
       await animate(duration, (progress) => {
@@ -514,7 +517,7 @@ export class VfxSystem {
     const projectedStart = start.clone().project(context.camera);
     const projectedEnd = end.clone().project(context.camera);
     material.rotation += Math.atan2(projectedEnd.y - projectedStart.y, projectedEnd.x - projectedStart.x);
-    sprite.renderOrder = definition.presentation.layer === 'ground' ? 34 : 56;
+    sprite.renderOrder = definition.presentation.layer === 'ground' ? VFX_RENDER_ORDER.ground : VFX_RENDER_ORDER.impact;
     sprite.position.copy(start);
     try {
       await animate(duration, (progress) => {

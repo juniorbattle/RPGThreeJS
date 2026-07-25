@@ -14,6 +14,7 @@ import { combatBackgroundFor } from '../render/combatBackgrounds';
 import { COMBAT_PRESENTATION } from './combatPresentationConfig.js';
 import { VfxSystem } from './vfx/VfxSystem';
 import { installVfxWorkbench } from './vfx/VfxWorkbench';
+import { getVisibleStatusIndicators } from './statusPresentation';
 import { skillById as SKILL_MAP } from '../game/skills';
 import { getSkillPresentation } from './skillPresentation';
 
@@ -66,11 +67,14 @@ function campaignUnitHealth(){
   for(const u of G.deployedUnits||[]) out[u.campaignId||u.name]=Math.max(0,Math.round(u.alive?u.hp:0));
   return out;
 }
-const notifyCampaignResult=victory=>window.parent.postMessage({
-  type:'rpg-threejs:combat-result',victory,combatId:COMBAT_ID,inventory:G.inv,
-  participants:G.deployedUnits.map(u=>u.campaignId||u.name),
-  unitHealth:campaignUnitHealth()
-},location.origin);
+const notifyCampaignResult=victory=>{
+  for(const unit of G.units)disposeStatusIndicators(unit);
+  window.parent.postMessage({
+    type:'rpg-threejs:combat-result',victory,combatId:COMBAT_ID,inventory:G.inv,
+    participants:G.deployedUnits.map(u=>u.campaignId||u.name),
+    unitHealth:campaignUnitHealth()
+  },location.origin);
+};
 
 // ============================= GAME STATE =============================
 const G = {
@@ -666,6 +670,67 @@ function isNegative(s){ return !['regen','boost','barrier'].includes(s); }
 function hasS(u,s){ return (u.statuses[s]||0)>0; }
 function isExhausted(u){ return !!u && u.alive && u.ap<=0; }
 function isBreakOpen(u){ return isExhausted(u) && !hasS(u,'staggered'); }
+
+// Persistent status indicators are presentation-only. They read the existing
+// status records without changing their values, duration, or application.
+const STATUS_BADGE_RENDER_ORDER=60;
+const statusBadgeTextures=new Map();
+function statusBadgeGlyph(cue){ return ({cracked_diamond:'✦',fatigue_pulse:'~',root_knot:'✤',sealed_rune:'×',dark_rune:'◆',flame:'▲',droplet:'●',crossed_eye:'⊘',fracture:'⌁',spiral:'◎',provocation_mark:'!',leaf_pulse:'✚',upward_mark:'↑',shield:'⬡'})[cue]||'•'; }
+function statusBadgeTexture(indicator,reduced,overflow=0){
+  const cacheKey=(overflow?'overflow:'+overflow:indicator.key)+':'+(reduced?'reduced':'full');
+  if(statusBadgeTextures.has(cacheKey))return statusBadgeTextures.get(cacheKey);
+  const size=128,canvas=document.createElement('canvas'); canvas.width=canvas.height=size;
+  const ctx=canvas.getContext('2d');
+  const bg=overflow?'#1e2b42':indicator.backgroundColor, border=overflow?'#cfd8e8':indicator.borderColor, ink=overflow?'#ffffff':indicator.color;
+  ctx.clearRect(0,0,size,size); ctx.save(); ctx.translate(size/2,size/2); ctx.rotate(overflow?0:Math.PI/4); ctx.beginPath();
+  if(indicator.cue==='cracked_diamond')ctx.rect(-40,-40,80,80); else ctx.arc(0,0,47,0,Math.PI*2);
+  ctx.fillStyle=bg; ctx.globalAlpha=reduced ? .94 : .98; ctx.fill(); ctx.lineWidth=6; ctx.strokeStyle=border; ctx.stroke(); ctx.restore();
+  ctx.fillStyle=ink; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.font='bold 31px Georgia, serif'; ctx.fillText(overflow?'+'+overflow:statusBadgeGlyph(indicator.cue),64,45);
+  if(!overflow){ ctx.font='bold 21px Arial, sans-serif'; ctx.fillText(indicator.shortCode,64,82); }
+  const texture=new THREE.CanvasTexture(canvas); texture.colorSpace=THREE.SRGBColorSpace; texture.needsUpdate=true; statusBadgeTextures.set(cacheKey,texture); return texture;
+}
+function clearStatusBadges(u){
+  const group=u&&u.statusIndicatorGroup; if(!group)return;
+  while(group.children.length){ const badge=group.children[0]; group.remove(badge); if(badge.material)badge.material.dispose(); }
+  group.userData.signature='';
+}
+function disposeStatusIndicators(u){
+  if(!u)return; clearStatusBadges(u);
+  if(u.statusIndicatorGroup){ u.statusIndicatorGroup.removeFromParent(); u.statusIndicatorGroup=null; }
+  if(u.statusHalo){ u.statusHalo.removeFromParent(); u.statusHalo.geometry.dispose(); u.statusHalo.material.dispose(); u.statusHalo=null; }
+}
+function statusBadgeAnchorY(u){
+  const scaledHeight=(u.spriteHeight||1)*Math.abs(u.spr.scale.y||1);
+  return u.baseY+scaledHeight*.52+(u.size>1?.16:.1)+(u.spr.position.y-u.baseY);
+}
+function syncStatusIndicators(u,time){
+  if(!u||!u.statusIndicatorGroup)return;
+  const indicators=getVisibleStatusIndicators(u.statuses,{exhausted:isExhausted(u)});
+  const group=u.statusIndicatorGroup;
+  const all=indicators.overflowCount?[...indicators.visible,{key:'overflow',shortCode:'',cue:'overflow',pulseProfile:'normal',backgroundColor:'#1e2b42',borderColor:'#cfd8e8',color:'#fff',priority:99}]:indicators.visible;
+  const signature=all.map(indicator=>indicator.key).join('|')+':'+indicators.overflowCount+':'+REDUCED_GRAPHICS;
+  if(group.userData.signature!==signature){
+    clearStatusBadges(u); group.userData.signature=signature;
+    const spacing=.31*(u.size>1?1.13:1),start=-(all.length-1)*spacing*.5;
+    all.forEach((indicator,index)=>{
+      const overflow=indicator.key==='overflow'?indicators.overflowCount:0;
+      const material=new THREE.SpriteMaterial({map:statusBadgeTexture(indicator,REDUCED_GRAPHICS,overflow),transparent:true,depthWrite:false,depthTest:false,toneMapped:false,fog:false});
+      const badge=new THREE.Sprite(material); badge.renderOrder=STATUS_BADGE_RENDER_ORDER;
+      badge.userData={baseScale:.31*(u.size>1?1.12:1),offsetX:start+index*spacing,pulse:indicator.pulseProfile}; group.add(badge);
+    });
+  }
+  group.visible=Boolean(u.alive&&u.grp.visible&&all.length);
+  const halo=u.statusHalo,primary=indicators.visible[0];
+  if(halo){
+    const isBreak=primary&&primary.key==='staggered',isTired=primary&&primary.key==='exhausted'; halo.visible=Boolean(u.alive&&(isBreak||isTired));
+    if(halo.visible){ const pulse=.5+.5*Math.sin(time*(isBreak?7:3.2)); halo.material.color.set(isBreak?'#ff754d':'#d9c770'); halo.material.opacity=(isBreak ? .38 : .2)+pulse*(isBreak ? .2 : .08); const s=(u.size||1)*(1.04+(isBreak ? .08 : .035)*pulse); halo.scale.set(s,s,1); }
+  }
+  for(const badge of group.children){
+    const pulseType=badge.userData.pulse; const amplitude=REDUCED_GRAPHICS ? .015 : (pulseType==='urgent' ? .075 : pulseType==='calm' ? .035 : pulseType==='positive' ? .02 : .028); const speed=pulseType==='urgent'?7:pulseType==='calm'?3.2:4.2;
+    const scale=badge.userData.baseScale*(1+Math.sin(time*speed+badge.userData.offsetX*2)*amplitude);
+    badge.position.set(badge.userData.offsetX,statusBadgeAnchorY(u),.04); badge.scale.set(scale,scale,1);
+  }
+}
 function statMul(u,key){ let m=1; for(const s in u.statuses){ const d=STATUS[s]; if(d&&u.statuses[s]>0&&d[key]!=null) m*=d[key]; } return m; }
 function effSTR(u){ return u.str*statMul(u,'str'); }
 function effMAG(u){ return u.mag*statMul(u,'mag'); }
@@ -752,6 +817,9 @@ function createUnit(def){
   const mat=new THREE.MeshBasicMaterial({map:s.tex,transparent:true,alphaTest:0.05,depthWrite:false,side:THREE.DoubleSide,fog:false,toneMapped:false});
   const spr=new THREE.Mesh(new THREE.PlaneGeometry(s.w,s.h),mat);
   spr.position.y=s.h*0.5; spr.renderOrder=6; grp.add(spr);
+  const statusHalo=new THREE.Mesh(new THREE.RingGeometry(0.57,0.82,40),new THREE.MeshBasicMaterial({color:0xff754d,transparent:true,opacity:0,depthWrite:false,depthTest:false,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,fog:false,toneMapped:false}));
+  statusHalo.rotation.x=-Math.PI/2; statusHalo.position.y=.071; statusHalo.renderOrder=40; statusHalo.visible=false; grp.add(statusHalo);
+  const statusIndicatorGroup=new THREE.Group(); statusIndicatorGroup.name='status-indicators'; statusIndicatorGroup.renderOrder=STATUS_BADGE_RENDER_ORDER; grp.add(statusIndicatorGroup);
   scene.add(grp);
   const unitMaxAp=Number.isFinite(def.maxap)?def.maxap:Number.isFinite(def.maxAp)?def.maxAp:5;
   const u={
@@ -765,7 +833,7 @@ function createUnit(def){
     spriteFacing:def.spriteFacing??1,
     facing:def.team==='player'?{dx:1,dz:0}:{dx:-1,dz:0},
     visualFacingX:def.team==='player'?1:-1,
-    grp, spr, outline, mat, blob, teamGlow, teamRingUnder, teamRing, baseY:s.h*0.5,
+    grp, spr, outline, mat, blob, teamGlow, teamRingUnder, teamRing, statusHalo, statusIndicatorGroup, spriteHeight:s.h, baseY:s.h*0.5,
     cell(){ return cellAt(this.gx,this.gz); }
   };
   const spriteScale=largeUnitSpriteScale(u);
@@ -884,7 +952,7 @@ async function beginTurn(u){ if(G.over)return; G.active=u; G.pinnedUnit=null; hi
   refreshTurnbar(); selectUnit(u); focusCam(u);
   await tickStatusDamage(u); if(G.over)return; if(!u.alive){ nextTurn(); return; }
   const sk=statusSkips(u); if(!hasS(u,'taunt'))u._taunter=null; refreshPanel(u);
-  if(sk){ if((u.boss||u.elite)&&u._ultCooldown<5)u._ultCooldown=5; floatText(u,sk.name.toUpperCase()+' !',sk.col,true); logMsg(u.name+' est '+sk.name.toLowerCase()+' — tour passé.'); await wait(0.7); for(const s in u.statuses){ if(STATUS[s]&&STATUS[s].skip)delete u.statuses[s]; } refreshPanel(u); if(G.over)return; nextTurn(); return; }
+  if(sk){ if((u.boss||u.elite)&&u._ultCooldown<5)u._ultCooldown=5; floatText(u,sk.name.toUpperCase()+' !',sk.col,true); logMsg(u.name+' est '+sk.name.toLowerCase()+' — tour passé.'); await wait(0.7); for(const s in u.statuses){ if(STATUS[s]&&STATUS[s].skip){ u.statuses[s]--; if(u.statuses[s]<=0)delete u.statuses[s]; } } refreshPanel(u); if(G.over)return; nextTurn(); return; }
   if(u._ultCooldown>0)u._ultCooldown--;
   if(u.team==='player'){ G.mode='menu'; setHint(u.name+' — à vous de jouer'); openActionMenu(); }
   else { G.mode='ai'; closeMenus(); setHint(u.name+' (ennemi)…'); await wait(0.35); await aiTurn(u); }
@@ -1087,7 +1155,7 @@ async function applyDamage(u,dmg,src){
   }
 }
 function applyHeal(u,amt){ if(!u.alive)return; u.hp=Math.min(u.maxhp,u.hp+amt); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
-function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; const requestedTurns=turns||2; const effectiveTurns=(!d.skip&&requestedTurns<=1)?2:requestedTurns; t.statuses[st]=Math.max(t.statuses[st]||0,effectiveTurns); floatText(t,(d.name||st).toUpperCase(),d.col||'#fff'); refreshPanel(t); }
+function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; const requestedTurns=turns||2; const effectiveTurns=requestedTurns<=1?2:requestedTurns; t.statuses[st]=Math.max(t.statuses[st]||0,effectiveTurns); floatText(t,(d.name||st).toUpperCase(),d.col||'#fff'); refreshPanel(t); }
 async function knockOut(u,src){ u.alive=false; u.downed=true; const state=getUnitVisualState(u.team,u.alive,u.downed); if(u.size>1)clearBossCells(u); else { const c=u.cell(); if(c&&c.occupant===u)c.occupant=null; } floatText(u,'K.O.','#ff5a4a',true); logMsg(u.name+' est K.O. !'); screenShake(0.5,0.4); screenFlash('#ff5a4a',0.22); tween(u.spr.scale,{y:0.32},0.4,easeOutCubic); tween(u.spr.rotation,{z:(u.facing.dx<0?-1:1)*1.15},0.4); tween(u.mat,{opacity:state.bodyOpacity},0.4); tween(u.blob.material,{opacity:state.shadowOpacity},0.4); if(u.teamRing)tween(u.teamRing.material,{opacity:0},0.4); refreshTurnbar(); await wait(0.42); u.grp.visible=state.visible; }
 function reviveUnit(u,hp){ u.alive=true; u.downed=false; u.hp=hp; u.statuses={}; u.grp.visible=true; if(u.size>1)occupyBossCells(u); else { const c=u.cell(); if(c&&c.occupant&&c.occupant!==u){ const f=freeNear(u.gx,u.gz); if(f){ u.gx=f.gx; u.gz=f.gz; } } const nc=cellAt(u.gx,u.gz); if(nc&&!nc.occupant)nc.occupant=u; if(nc)u.grp.position.set(wX(u.gx),nc.topY,wZ(u.gz)); } resetUnitSpriteScale(u); u.spr.rotation.z=0; u.mat.opacity=1; u.mat.color.set('#ffffff'); u.blob.material.opacity=COMBAT_PRESENTATION.units.shadowOpacity; if(u.teamRing)u.teamRing.material.opacity=COMBAT_PRESENTATION.units.teamRingOpacity; floatText(u,'+'+hp,'#7ed957',true); logMsg(u.name+' est relevé !'); refreshTurnbar(); }
 
@@ -1761,6 +1829,14 @@ function logMsg(t){ initLogPanel(); const body=dom.log.querySelector('.log-body'
 let statsPanelKey=null, statsPanelExpanded=false;
 function selectUnit(u){ const key=u.campaignId||u.id||u.name; if(statsPanelKey!==key){statsPanelKey=key;statsPanelExpanded=false;} G.selected=u; renderPanel(u); }
 function refreshPanel(u){ if(u&&u===G.selected)renderPanel(u); }
+function renderStatusPanelTags(u){
+  const existing=dom.panel.querySelector('.status-row');
+  if(!u.alive){ if(existing)existing.innerHTML='<span class="tag" style="color:#ff5a4a;border-color:#ff5a4a">K.O.</span>'; return; }
+  const indicators=getVisibleStatusIndicators(u.statuses,{exhausted:isExhausted(u),maxVisible:Number.POSITIVE_INFINITY}).visible;
+  const tags=indicators.map(indicator=>'<span class="tag" style="color:'+indicator.color+';border-color:'+indicator.borderColor+'">'+escHTML(indicator.label)+(indicator.turns?' '+indicator.turns:'')+'</span>').join('');
+  if(existing){ existing.innerHTML=tags; if(!tags)existing.remove(); }
+  else if(tags){ const details=dom.panel.querySelector('.details-unit'); if(details){ const row=document.createElement('div'); row.className='status-row'; row.innerHTML=tags; details.appendChild(row); } }
+}
 function apPipsHTML(u){ let pips=''; for(let i=0;i<u.maxap;i++)pips+='<i class="'+(i<u.ap?'on':'')+'"></i>'; return '<div class="du-ap"><div class="du-ap__pips">'+pips+'</div></div>'; }
 function statBarsHTML(u){ const ST=[['⚔','FOR',Math.round(effSTR(u))],['✦','MAG',Math.round(effMAG(u))],['◈','END',Math.round(effEND(u))],['◎','DEX',Math.round(effDEX(u))],['✧','CHA',Math.round(effCHA(u))],['◆','MOV',u.mov]];
   let h='<div class="du-stats">'; for(const [ico,k,v] of ST)h+='<div class="du-stat"><i>'+ico+'</i><span>'+k+'</span><b>'+v+'</b></div>'; return h+'</div>'; }
@@ -1773,7 +1849,7 @@ function renderPanel(u){ dom.panel.classList.remove('hidden'); dom.panel.dataset
   dom.panel.innerHTML='<div class="details-unit"><div class="du-top"><div class="du-portrait">'+(portrait?'<img src="'+portrait+'" alt="">':'<span>'+escHTML(u.name.charAt(0))+'</span>')+'</div><div class="du-id"><div class="du-head"><span>'+escHTML(u.className||u.name||'')+'</span></div><div class="nm">'+escHTML(u.name)+'</div>'+apPipsHTML(u)+'</div><div class="du-team"><b class="team-badge">'+teamLabel(u.team)+'</b></div></div>'+
    '<div class="du-hp"><div class="unit-row"><span>PV</span><b>'+u.hp+' / '+u.maxhp+'</b></div><div class="bar"><i style="width:'+hpp+'%"></i><span>'+hpp+'%</span></div></div>'+
    aptHTML+statsDetailsHTML(u)+(tags?'<div class="status-row">'+tags+'</div>':'')+'</div>';
-  bindStatsToggle(u); }
+  bindStatsToggle(u); renderStatusPanelTags(u); }
 function refreshTurnbar(){ dom.turnbar.classList.remove('hidden'); renderObjective(); const order=G.order.length?G.order:G.units;
   const chip=u=>{ const cls=['chip'],portrait=uiPortraitFor(u.portrait)||(SPR[u.kind]&&SPR[u.kind].portrait?SPR[u.kind].portrait:''); if(u.team==='player')cls.push('ally'); if(u.team==='foe')cls.push('foe'); if(u===G.active)cls.push('active'); if(!u.alive)cls.push('dead'); return '<div class="'+cls.join(' ')+'" title="'+escHTML(u.name)+'"><div class="chip__portrait">'+(portrait?'<img src="'+portrait+'" alt="">':'')+'</div><div class="chip__name">'+escHTML(u.name.slice(0,8))+'</div></div>'; };
   const step=G.order.length&&G.turnIdx>=0?(G.turnIdx+1)+' / '+G.order.length:'Préparation';
@@ -1890,7 +1966,7 @@ function animate(){ requestAnimationFrame(animate);
     if(u.teamRing){ const isActive=u===G.active&&!G.stage&&!G.over,isHover=G.hoverUnit===u,isTarget=G.mode==='target'&&G.pending&&G.pending.keys.has(cellKey(u.gx,u.gz))&&G.active&&u.team!==G.active.team; u.teamRing.material.opacity=Math.min(1,COMBAT_PRESENTATION.units.teamRingOpacity*(isActive?1.16:(isTarget?1.12:(isHover?1.08:0.94)))); if(u.teamRingUnder)u.teamRingUnder.material.opacity=isActive ? .68 : (isTarget ? .64 : (isHover ? .6 : .5)); if(u.teamGlow)u.teamGlow.material.opacity=isActive ? .28 : (isTarget ? .25 : (isHover ? .22 : (u.team==='player' ? .15 : .17))); }
     if(u.alive&&(u.boss||u.elite)&&u.ap>=3&&u._ultCooldown<=1){ const p=0.5+0.5*Math.sin(_t*6); u.teamRing.material.color.setRGB(1,0.373-0.248*p,0.322-0.197*p); if(u.teamGlow){ u.teamGlow.material.color.setRGB(1,0.373-0.248*p,0.322-0.197*p); u.teamGlow.material.opacity=0.17+0.15*p; } }
     else if((u.boss||u.elite)&&u.teamRing){ u.teamRing.material.color.setHex(0xff5f52); if(u.teamGlow)u.teamGlow.material.color.setHex(0xff5f52); }
-    if(u.alive) u.spr.position.y=u.baseY+(u===G.active?Math.sin(_t*3.2)*0.05:0); }
+    if(u.alive) u.spr.position.y=u.baseY+(u===G.active?Math.sin(_t*3.2)*0.05:0); syncStatusIndicators(u,_t); }
   Grade.uniforms.time.value=_t*1000;
   for(const m of G_timeMats) if(m.uniforms&&m.uniforms.t) m.uniforms.t.value=_t;
   if(G.dust){ G.dust.mesh.visible=!REDUCED_GRAPHICS; const p=G.dust.mesh.geometry.attributes.position; for(let i=0;i<G.dust.N;i++){ let y=p.getY(i)+G.dust.spd[i]*dt; if(y>7.5)y=0.3; p.setY(i,y); p.setX(i,p.getX(i)+Math.sin(_t+i)*0.0016); } p.needsUpdate=true; }
@@ -1934,7 +2010,7 @@ function playerDefinitions(){
   if(CAMPAIGN_MODE&&CAMPAIGN_SQUAD.length) return orderDeploymentCandidates(CAMPAIGN_SQUAD.map(campaignDef),PREFERRED_UNIT_IDS);
   return DEFS.filter(d=>d.team==='player').map((d,index)=>Object.assign({id:'standalone-'+index},d));
 }
-function removeUnit(u){ if(u.size>1)clearBossCells(u); else { const c=u.cell&&u.cell(); if(c&&c.occupant===u)c.occupant=null; } if(u.grp)scene.remove(u.grp); const i=G.units.indexOf(u); if(i>=0)G.units.splice(i,1); const d=G.deployedUnits.indexOf(u); if(d>=0)G.deployedUnits.splice(d,1); }
+function removeUnit(u){ if(u.size>1)clearBossCells(u); else { const c=u.cell&&u.cell(); if(c&&c.occupant===u)c.occupant=null; } disposeStatusIndicators(u); if(u.grp)scene.remove(u.grp); const i=G.units.indexOf(u); if(i>=0)G.units.splice(i,1); const d=G.deployedUnits.indexOf(u); if(d>=0)G.deployedUnits.splice(d,1); }
 function playerDeployLimit(){ return QA_DEPLOY_ALL&&G.rosterDefs&&G.rosterDefs.length?G.rosterDefs.length:MAX_PLAYER_UNITS; }
 function deployDefById(id){ return G.rosterDefs.find(d=>(d.campaignId||d.name)===id); }
 function deployedById(id){ return G.deployedUnits.find(u=>(u.campaignId||u.name)===id); }
