@@ -14,7 +14,7 @@ import { combatBackgroundFor } from '../render/combatBackgrounds';
 import { COMBAT_PRESENTATION } from './combatPresentationConfig.js';
 import { VfxSystem } from './vfx/VfxSystem';
 import { installVfxWorkbench } from './vfx/VfxWorkbench';
-import { getVisibleStatusIndicators } from './statusPresentation';
+import { getCarouselStatusFrame, getStatusIndicatorAsset, getVisibleStatusIndicators } from './statusPresentation';
 import { skillById as SKILL_MAP } from '../game/skills';
 import { getSkillPresentation } from './skillPresentation';
 
@@ -675,6 +675,8 @@ function isBreakOpen(u){ return isExhausted(u) && !hasS(u,'staggered'); }
 // status records without changing their values, duration, or application.
 const STATUS_BADGE_RENDER_ORDER=60;
 const statusBadgeTextures=new Map();
+const statusIndicatorTextures=new Map();
+const statusIndicatorTextureState=new Map();
 function statusBadgeGlyph(cue){ return ({cracked_diamond:'✦',fatigue_pulse:'~',root_knot:'✤',sealed_rune:'×',dark_rune:'◆',flame:'▲',droplet:'●',crossed_eye:'⊘',fracture:'⌁',spiral:'◎',provocation_mark:'!',leaf_pulse:'✚',upward_mark:'↑',shield:'⬡'})[cue]||'•'; }
 function statusBadgeTexture(indicator,reduced,overflow=0){
   const cacheKey=(overflow?'overflow:'+overflow:indicator.key)+':'+(reduced?'reduced':'full');
@@ -688,6 +690,19 @@ function statusBadgeTexture(indicator,reduced,overflow=0){
   ctx.fillStyle=ink; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.font='bold 31px Georgia, serif'; ctx.fillText(overflow?'+'+overflow:statusBadgeGlyph(indicator.cue),64,45);
   if(!overflow){ ctx.font='bold 21px Arial, sans-serif'; ctx.fillText(indicator.shortCode,64,82); }
   const texture=new THREE.CanvasTexture(canvas); texture.colorSpace=THREE.SRGBColorSpace; texture.needsUpdate=true; statusBadgeTextures.set(cacheKey,texture); return texture;
+}
+function statusIndicatorTexture(indicator,reduced){
+  const asset=getStatusIndicatorAsset(indicator.key),fallback=statusBadgeTexture(indicator,reduced);
+  if(!asset||!asset.url)return fallback;
+  if(statusIndicatorTextures.has(asset.id))return statusIndicatorTextures.get(asset.id);
+  if(!statusIndicatorTextureState.has(asset.id)){
+    statusIndicatorTextureState.set(asset.id,'loading');
+    new THREE.TextureLoader().load(asset.url,(texture)=>{
+      texture.colorSpace=THREE.SRGBColorSpace; texture.needsUpdate=true;
+      statusIndicatorTextures.set(asset.id,texture); statusIndicatorTextureState.set(asset.id,'ready');
+    },undefined,()=>statusIndicatorTextureState.set(asset.id,'failed'));
+  }
+  return fallback;
 }
 function clearStatusBadges(u){
   const group=u&&u.statusIndicatorGroup; if(!group)return;
@@ -703,33 +718,45 @@ function statusBadgeAnchorY(u){
   const scaledHeight=(u.spriteHeight||1)*Math.abs(u.spr.scale.y||1);
   return u.baseY+scaledHeight*.52+(u.size>1?.16:.1)+(u.spr.position.y-u.baseY);
 }
+function statusCarouselOffsetMs(u){
+  const id=String(u.campaignId||u.id||u.name||'unit'); let hash=0;
+  for(let index=0;index<id.length;index++)hash=((hash<<5)-hash+id.charCodeAt(index))|0;
+  return Math.abs(hash)%641;
+}
+function ensureStatusCarouselSprite(group){
+  let badge=group.userData.carouselSprite;
+  if(badge)return badge;
+  const material=new THREE.SpriteMaterial({map:null,transparent:true,depthWrite:false,depthTest:false,toneMapped:false,fog:false});
+  badge=new THREE.Sprite(material); badge.renderOrder=STATUS_BADGE_RENDER_ORDER; badge.name='status-carousel-indicator';
+  group.userData.carouselSprite=badge; group.add(badge); return badge;
+}
 function syncStatusIndicators(u,time){
   if(!u||!u.statusIndicatorGroup)return;
-  const indicators=getVisibleStatusIndicators(u.statuses,{exhausted:isExhausted(u)});
   const group=u.statusIndicatorGroup;
-  const all=indicators.overflowCount?[...indicators.visible,{key:'overflow',shortCode:'',cue:'overflow',pulseProfile:'normal',backgroundColor:'#1e2b42',borderColor:'#cfd8e8',color:'#fff',priority:99}]:indicators.visible;
-  const signature=all.map(indicator=>indicator.key).join('|')+':'+indicators.overflowCount+':'+REDUCED_GRAPHICS;
+  const all=getVisibleStatusIndicators(u.statuses,{exhausted:isExhausted(u),maxVisible:Number.POSITIVE_INFINITY}).visible;
+  const signature=all.map(indicator=>indicator.key+':'+(indicator.turns||0)+':'+(indicator.derived?'d':'n')).join('|');
   if(group.userData.signature!==signature){
-    clearStatusBadges(u); group.userData.signature=signature;
-    const spacing=.31*(u.size>1?1.13:1),start=-(all.length-1)*spacing*.5;
-    all.forEach((indicator,index)=>{
-      const overflow=indicator.key==='overflow'?indicators.overflowCount:0;
-      const material=new THREE.SpriteMaterial({map:statusBadgeTexture(indicator,REDUCED_GRAPHICS,overflow),transparent:true,depthWrite:false,depthTest:false,toneMapped:false,fog:false});
-      const badge=new THREE.Sprite(material); badge.renderOrder=STATUS_BADGE_RENDER_ORDER;
-      badge.userData={baseScale:.31*(u.size>1?1.12:1),offsetX:start+index*spacing,pulse:indicator.pulseProfile}; group.add(badge);
-    });
+    group.userData.signature=signature; group.userData.startedAt=time*1000; group.userData.phaseOffset=statusCarouselOffsetMs(u);
   }
-  group.visible=Boolean(u.alive&&u.grp.visible&&all.length);
-  const halo=u.statusHalo,primary=indicators.visible[0];
+  const frame=getCarouselStatusFrame(u.statuses,Math.max(0,time*1000-(group.userData.startedAt||time*1000)),{exhausted:isExhausted(u),phaseOffsetMs:group.userData.phaseOffset||0,reducedGraphics:REDUCED_GRAPHICS});
+  group.visible=Boolean(u.alive&&u.grp.visible&&frame);
+  const halo=u.statusHalo,primary=all[0];
   if(halo){
     const isBreak=primary&&primary.key==='staggered',isTired=primary&&primary.key==='exhausted'; halo.visible=Boolean(u.alive&&(isBreak||isTired));
     if(halo.visible){ const pulse=.5+.5*Math.sin(time*(isBreak?7:3.2)); halo.material.color.set(isBreak?'#ff754d':'#d9c770'); halo.material.opacity=(isBreak ? .38 : .2)+pulse*(isBreak ? .2 : .08); const s=(u.size||1)*(1.04+(isBreak ? .08 : .035)*pulse); halo.scale.set(s,s,1); }
   }
-  for(const badge of group.children){
-    const pulseType=badge.userData.pulse; const amplitude=REDUCED_GRAPHICS ? .015 : (pulseType==='urgent' ? .075 : pulseType==='calm' ? .035 : pulseType==='positive' ? .02 : .028); const speed=pulseType==='urgent'?7:pulseType==='calm'?3.2:4.2;
-    const scale=badge.userData.baseScale*(1+Math.sin(time*speed+badge.userData.offsetX*2)*amplitude);
-    badge.position.set(badge.userData.offsetX,statusBadgeAnchorY(u),.04); badge.scale.set(scale,scale,1);
-  }
+  if(!frame)return;
+  const transitioning=frame.transitionProgress>0&&frame.next;
+  const display=transitioning&&frame.transitionProgress>=.5?frame.next:frame.current;
+  const badge=ensureStatusCarouselSprite(group),texture=statusIndicatorTexture(display,REDUCED_GRAPHICS);
+  if(badge.material.map!==texture){ badge.material.map=texture; badge.material.needsUpdate=true; }
+  const pulseType=display.pulseProfile,amplitude=REDUCED_GRAPHICS?.012:(pulseType==='urgent'?.052:pulseType==='calm'?.026:pulseType==='positive'?.018:.024);
+  const speed=pulseType==='urgent'?6.5:pulseType==='calm'?3.1:4.1;
+  const transitionFade=transitioning?1-Math.sin(Math.PI*frame.transitionProgress):1;
+  const lift=transitioning&&!REDUCED_GRAPHICS?Math.sin(Math.PI*frame.transitionProgress)*.026:0;
+  const baseScale=.47*(u.size>1?1.14:1)*frame.spriteScale;
+  const scale=baseScale*(1+Math.sin(time*speed+(group.userData.phaseOffset||0)*.01)*amplitude);
+  badge.material.opacity=transitionFade; badge.position.set(0,statusBadgeAnchorY(u)+lift,.04); badge.scale.set(scale,scale,1);
 }
 function statMul(u,key){ let m=1; for(const s in u.statuses){ const d=STATUS[s]; if(d&&u.statuses[s]>0&&d[key]!=null) m*=d[key]; } return m; }
 function effSTR(u){ return u.str*statMul(u,'str'); }
