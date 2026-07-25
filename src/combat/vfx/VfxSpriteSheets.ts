@@ -68,6 +68,8 @@ export const VFX_SPRITE_SHEETS = {
   fault_breaker: { id: 'fault_breaker', url: '/assets/vfx/runtime/v2/fault_breaker_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.96, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.82, layer: 'ground', blending: 'additive' } },
   apocalypse_field: { id: 'apocalypse_field', url: '/assets/vfx/runtime/v2/apocalypse_field_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 2.24, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.88, layer: 'ground', blending: 'additive' } },
   shadow_lightning_bolt: { id: 'shadow_lightning_bolt', url: '/assets/vfx/runtime/v2/shadow_lightning_bolt_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.34, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.78, layer: 'impact', blending: 'additive' } },
+  root_vines: { id: 'root_vines', url: '/assets/vfx/runtime/v2/root_vines_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.52, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.84, layer: 'impact', blending: 'normal' } },
+  frost_bind: { id: 'frost_bind', url: '/assets/vfx/runtime/v2/frost_bind_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.82, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
 } as const satisfies Record<VfxSpriteSheetId, VfxSpriteSheetDefinition>;
 
 export const VFX_SPRITE_SHEET_IDS = Object.freeze(Object.keys(VFX_SPRITE_SHEETS) as VfxSpriteSheetId[]);

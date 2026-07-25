@@ -29,7 +29,7 @@ export type SkillMotionPreset = (typeof SKILL_MOTION_PRESET_IDS)[number];
 
 export const SKILL_VFX_PRESET_IDS = [
   'melee_light', 'melee_heavy', 'fireball', 'heal_burst', 'boss_quake',
-  'generic_hit', 'sword_slash', 'blunt_impact', 'arrow_shot', 'dark_bolt', 'shadow_lightning_bolt',
+  'generic_hit', 'sword_slash', 'blunt_impact', 'arrow_shot', 'dark_bolt', 'shadow_lightning_bolt', 'root_vines', 'frost_bind',
   'thrust_line', 'teleport_burst', 'holy_strike', 'leap_impact', 'caster_roar', 'arrow_rain',
   'bless_aura', 'curse_pulse', 'poison_bite', 'guard_barrier', 'boss_slam',
   'critical_hit', 'kill_spark', 'status_burn_mark', 'status_silence_seal',
@@ -141,7 +141,7 @@ export const SKILL_PRESENTATION: Readonly<Record<HeroSkillId, SkillPresentation>
 
   e_vigor_rune: presentation('buff_cast', 'support_boost_aura', 'supportCast', 'release'),
   e_transpose: presentation('teleport', 'teleport_burst', 'swap', 'landing', undefined, undefined, { orientation: 'source_to_destination', scaleTier: '3ap' }),
-  e_binding_seal: presentation('debuff_cast', 'status_silence_seal', 'areaCast', 'release'),
+  e_binding_seal: presentation('debuff_cast', 'root_vines', 'areaCast', 'release', undefined, undefined, { orientation: 'center_on_target', scaleTier: '4ap' }),
   e_absolute_harmony: presentation('buff_cast', 'ultimate_absolute_harmony', 'ultimateCast', 'release', true),
 
   a_precise_shot: presentation('ranged_attack', 'arrow_shot', 'rangedShot', 'release', undefined, undefined, { orientation: 'source_to_target', scaleTier: '2ap' }),
@@ -156,7 +156,7 @@ export const SKILL_PRESENTATION: Readonly<Record<HeroSkillId, SkillPresentation>
 
   ro_sneak_attack: presentation('melee_light', 'sword_slash', 'strike', 'impact', undefined, undefined, { orientation: 'source_to_target', scaleTier: '2ap' }),
   ro_tumble: presentation('move_leap', 'sword_slash', 'leapLanding', 'landing'),
-  ro_jaw_trap: presentation('melee_heavy', 'blunt_impact', 'strike', 'impact'),
+  ro_jaw_trap: presentation('melee_heavy', 'root_vines', 'strike', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: '3ap' }),
   ro_fault_breaker: presentation('melee_heavy', 'ultimate_fault_breaker', 'ultimateCast', 'impact', true, undefined, { orientation: 'center_on_aoe_origin', scaleTier: '5ap_ultimate' }),
 
   ar_calibrated_shot: presentation('ranged_attack', 'arrow_shot', 'rangedShot', 'release', undefined, undefined, { orientation: 'source_to_target', scaleTier: '2ap' }),
@@ -182,7 +182,7 @@ export const ENEMY_SKILL_PRESENTATION: Readonly<Record<EnemySkillId, SkillPresen
   enemy_dark_bolt: presentation('magic_cast', 'shadow_lightning_bolt', 'rangedShot', 'release', undefined, undefined, { orientation: 'source_to_target', scaleTier: '2ap' }),
   enemy_hex: presentation('debuff_cast', 'status_curse_mark', 'rangedShot', 'release'),
   enemy_venom_strike: presentation('melee_light', 'poison_bite', 'strike', 'impact'),
-  enemy_binding_shot: presentation('ranged_attack', 'arrow_shot', 'rangedShot', 'release', undefined, undefined, { orientation: 'source_to_target', scaleTier: '2ap' }),
+  enemy_binding_shot: presentation('ranged_attack', 'root_vines', 'rangedShot', 'release', undefined, undefined, { orientation: 'center_on_target', scaleTier: '3ap' }),
   enemy_smoke_veil: presentation('debuff_cast', 'move_smoke_burst', 'areaCast', 'release'),
   enemy_taunt: presentation('debuff_cast', 'caster_roar', 'rangedShot', 'release', undefined, undefined, { orientation: 'center_on_aoe_origin', scaleTier: '2ap' }),
   enemy_battle_cry: presentation('debuff_cast', 'caster_roar', 'areaCast', 'release', undefined, undefined, { orientation: 'center_on_aoe_origin', scaleTier: '3ap' }),
@@ -195,7 +195,7 @@ export const ENEMY_SKILL_PRESENTATION: Readonly<Record<EnemySkillId, SkillPresen
   boss_apocalypse: bossSignature('magic_cast', 'boss_apocalypse_v2', 'areaCast', 'impact', { orientation: 'center_on_aoe_origin' }),
   boss_regen: presentation('buff_cast', 'support_regen_aura', 'supportCast', 'release'),
   boss_fortify: presentation('buff_cast', 'bless_aura', 'supportCast', 'release'),
-  boss_freeze: presentation('magic_cast', 'dark_bolt', 'rangedShot', 'impact'),
+  boss_freeze: presentation('magic_cast', 'frost_bind', 'rangedShot', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: 'boss' }),
   boss_pin: presentation('ranged_attack', 'arrow_shot', 'rangedShot', 'impact'),
   boss_execution: bossSignature('melee_heavy', 'boss_execution', 'strike', 'impact'),
   boss_flurry: bossSignature('melee_heavy', 'boss_flurry', 'strike', 'impact'),

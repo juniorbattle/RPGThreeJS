@@ -42,7 +42,9 @@ export type VfxSpriteSheetId =
   | 'zenith_arrow'
   | 'fault_breaker'
   | 'apocalypse_field'
-  | 'shadow_lightning_bolt';
+  | 'shadow_lightning_bolt'
+  | 'root_vines'
+  | 'frost_bind';
 
 export type VfxSpriteSheetMode = 'billboard' | 'projectile';
 

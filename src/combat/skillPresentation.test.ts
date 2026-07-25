@@ -92,6 +92,8 @@ describe('hero skill action contracts', () => {
       ['a_arrow_rain', 'arrow_rain', 'source_to_target', '4ap'],
       ['n_flame_wave', 'shape_cone_blast', 'align_cone', '4ap'],
       ['w_purify', 'support_holy_aura', 'center_on_target', '3ap'],
+      ['e_binding_seal', 'root_vines', 'center_on_target', '4ap'],
+      ['ro_jaw_trap', 'root_vines', 'center_on_target', '3ap'],
     ] as const;
 
     for (const [id, vfxPreset, orientation, scaleTier] of contracts) {
@@ -109,6 +111,16 @@ describe('hero skill action contracts', () => {
     expect(getSkillPresentation({ key: 'd_void_step' })?.vfxPreset).toBe('teleport_burst');
     expect(getSkillPresentation({ key: 'n_teleport' })?.vfxPreset).toBe('teleport_burst');
     expect(getSkillPresentation({ key: 'enemy_hex' })?.vfxPreset).toBe('status_curse_mark');
+    expect(getSkillPresentation({ key: 'enemy_binding_shot' })).toMatchObject({
+      vfxPreset: 'root_vines',
+      orientation: 'center_on_target',
+      scaleTier: '3ap',
+    });
+    expect(getSkillPresentation({ key: 'boss_freeze' })).toMatchObject({
+      vfxPreset: 'frost_bind',
+      orientation: 'center_on_target',
+      scaleTier: 'boss',
+    });
   });
 
   it('uses explicit contracts for ally targeting, selected revival and special movement', () => {

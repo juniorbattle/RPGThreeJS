@@ -13,6 +13,8 @@ const PHASE_2_PRESETS = [
   'arrow_shot',
   'dark_bolt',
   'shadow_lightning_bolt',
+  'root_vines',
+  'frost_bind',
   'bless_aura',
   'curse_pulse',
   'status_burn_mark',
