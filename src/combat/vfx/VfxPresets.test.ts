@@ -14,13 +14,30 @@ const PHASE_2_PRESETS = [
   'dark_bolt',
   'bless_aura',
   'curse_pulse',
+  'status_burn_mark',
+  'status_silence_seal',
+  'status_curse_mark',
+  'status_weak_mark',
   'poison_bite',
   'guard_barrier',
   'boss_slam',
   'critical_hit',
   'kill_spark',
+  'support_regen_aura',
+  'support_revive_pillar',
+  'support_holy_aura',
+  'support_bless_field',
+  'support_boost_aura',
+  'move_smoke_burst',
+  'impact_mace',
 ];
-const REQUIRED_PRESETS = [...PHASE_1_PRESETS, ...PHASE_2_PRESETS, ...PREMIUM_VFX_PRESET_IDS];
+const LOT_C_PRESETS = [
+  'shape_line_blast', 'shape_cone_blast', 'impact_dark_explosion', 'impact_explosion_large',
+  'ultimate_judgement_beam', 'ultimate_holy_explosion', 'ultimate_eclipse_devour',
+  'ultimate_drain_field', 'ultimate_zenith_arrow_v2', 'ultimate_fault_breaker_v2',
+  'boss_apocalypse_v2',
+];
+const REQUIRED_PRESETS = [...PHASE_1_PRESETS, ...PHASE_2_PRESETS, ...LOT_C_PRESETS, ...PREMIUM_VFX_PRESET_IDS];
 const VALID_STEP_TYPES = new Set<VfxStepType>([
   'particleBurst',
   'projectile',
@@ -69,6 +86,14 @@ describe('combat VFX presets', () => {
 
   it('keeps every Phase 2 effect addressable as an independent preset', () => {
     for (const id of PHASE_2_PRESETS) {
+      const preset = getVfxPreset(id);
+      expect(preset?.id).toBe(id);
+      expect(preset?.tags.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('keeps every Lot C shape, ultimate and boss signature addressable', () => {
+    for (const id of LOT_C_PRESETS) {
       const preset = getVfxPreset(id);
       expect(preset?.id).toBe(id);
       expect(preset?.tags.length).toBeGreaterThan(0);

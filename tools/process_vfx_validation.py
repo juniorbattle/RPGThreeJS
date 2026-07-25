@@ -41,9 +41,15 @@ class SheetDefinition:
     align: str = "center"
     duration_ms: int = 40
     chroma_palette: str = "warm"
+    # Some authored effects intentionally contain a pillar/beam that the
+    # generic separator detector would otherwise flag as a grid remnant.
+    allow_linear_strokes: bool = False
+    # A few generated sheets retain separator fragments in otherwise empty
+    # frames. Enable the narrow cleanup only for those known-safe candidates.
+    strip_linear_artifacts: bool = False
 
 
-SHEETS: tuple[SheetDefinition, ...] = (
+V1_SHEETS: tuple[SheetDefinition, ...] = (
     SheetDefinition("slash_arc", "slash_arc_5x5_25f_1280.png", cols=6),
     SheetDefinition("small_impact", "small_impact_5x5_25f_1280.png"),
     SheetDefinition("thrust_line", "thrust_line_5x5_25f_1280.png"),
@@ -63,6 +69,84 @@ SHEETS: tuple[SheetDefinition, ...] = (
     SheetDefinition("shockwave_ring", "shockwave_ring_5x5_25f_1280.png", align="bottom"),
     SheetDefinition("leap_impact", "leap_impact_5x5_25f_1280.png", align="bottom"),
 )
+
+
+# The second pack is deliberately isolated from the V1 foundation.  It shares
+# the deterministic cleanup/QC workflow but writes to its own validation and
+# runtime-versioned destinations when it is eventually promoted.
+V2_SHEETS: tuple[SheetDefinition, ...] = (
+    SheetDefinition("artillery_barrage", "artillery_barrage_5x5_25f_1280.png", align="bottom"),
+    SheetDefinition("dragon_breath", "dragon_breath_5x5_25f_1280.png", align="center"),
+    SheetDefinition("heavy_execution", "heavy_execution_5x5_25f_1280.png", align="center"),
+    SheetDefinition("meteor_fall", "meteor_fall_5x5_25f_1280.png", align="bottom"),
+    SheetDefinition("titan_slam", "titan_slam_5x5_25f_1280.png", align="bottom"),
+    # Runtime V2, Lot B: support, movement and physical-impact readability.
+    SheetDefinition("regen_aura", "regen_aura_5x5_25f_1280.png", align="bottom", chroma_palette="cyan"),
+    SheetDefinition("revive_pillar", "pillar_of_light_5x5_25f_1280.png", align="bottom", chroma_palette="warm", allow_linear_strokes=True),
+    SheetDefinition("holy_aura", "évolution_d_un_cercle_magique_lumineux.png", align="bottom", chroma_palette="cyan"),
+    SheetDefinition("bless_field", "évolution_d_un_symbole_magique_lumineux.png", align="bottom", chroma_palette="warm"),
+    SheetDefinition("boost_aura", "effet_magique_progressif_lumineux.png", align="bottom", chroma_palette="cyan"),
+    SheetDefinition("smoke_burst", "smoke_escape_5x5_25f_1280.png", align="bottom", chroma_palette="warm"),
+    SheetDefinition("mace_impact", "mace_impact_5x5_25f_1280.png", align="center", chroma_palette="warm", strip_linear_artifacts=True),
+    # Runtime V2, Lot C: tactical shapes, hero punctuation and boss signatures.
+    SheetDefinition("line_blast", "line_blast_5x5_25f_1280.png", align="center", chroma_palette="warm", strip_linear_artifacts=True),
+    SheetDefinition("cone_blast", "cone_blast_5x5_25f_1280.png", align="center", chroma_palette="warm", strip_linear_artifacts=True),
+    SheetDefinition("dark_explosion", "dark_explosion_5x5_25f_1280.png", align="center", chroma_palette="violet", strip_linear_artifacts=True),
+    SheetDefinition("explosion_large", "effet_magique_explosif_en_progression.png", align="bottom", chroma_palette="warm", strip_linear_artifacts=True),
+    SheetDefinition("judgement_beam", "judgement_beam_5x5_25f_1280.png", align="bottom", chroma_palette="warm", allow_linear_strokes=True),
+    SheetDefinition("holy_explosion", "holy_explosion_5x5_25f_1280.png", align="bottom", chroma_palette="warm", strip_linear_artifacts=True),
+    SheetDefinition("eclipse_devour", "eclipse_devour_5x5_25f_1280.png", align="bottom", chroma_palette="violet", strip_linear_artifacts=True),
+    SheetDefinition("drain_field", "drain_field_5x5_25f_1280.png", align="bottom", chroma_palette="violet", strip_linear_artifacts=True),
+    SheetDefinition("zenith_arrow", "effets_magiques_d_arrowes_énergétiques.png", align="center", chroma_palette="blue", allow_linear_strokes=True),
+    SheetDefinition("fault_breaker", "animation_d_impact_terrestre_en_vfx.png", align="bottom", chroma_palette="warm", strip_linear_artifacts=True),
+    SheetDefinition("apocalypse_field", "apocalypse_field_5x5_25f_1280.png", align="bottom", chroma_palette="violet", strip_linear_artifacts=True),
+)
+
+
+VFX_VALIDATION_PACKS: dict[str, tuple[str, tuple[SheetDefinition, ...]]] = {
+    "v1": ("vfx-sheets-v1", V1_SHEETS),
+    "v2": ("vfx-sheets-v2", V2_SHEETS),
+}
+
+LOT_B_IDS = (
+    "regen_aura",
+    "revive_pillar",
+    "holy_aura",
+    "bless_field",
+    "boost_aura",
+    "smoke_burst",
+    "mace_impact",
+)
+
+LOT_B_METADATA = {
+    "regen_aura": ("support", "boss_regen"),
+    "revive_pillar": ("support", "w_miracle"),
+    "holy_aura": ("support", "w_sanctuary"),
+    "bless_field": ("support", "reserved for a future blessing/harmony mapping"),
+    "boost_aura": ("support", "e_vigor_rune"),
+    "smoke_burst": ("movement", "ni_smoke_bomb and enemy_smoke_veil"),
+    "mace_impact": ("physical_impact", "registered for a future mace-specific action"),
+}
+
+LOT_C_IDS = (
+    "line_blast", "cone_blast", "dark_explosion", "explosion_large",
+    "judgement_beam", "holy_explosion", "eclipse_devour", "drain_field",
+    "zenith_arrow", "fault_breaker", "apocalypse_field",
+)
+
+LOT_C_METADATA = {
+    "line_blast": ("shape", "line attacks and tactical impacts"),
+    "cone_blast": ("shape", "cone and breath-like attacks"),
+    "dark_explosion": ("shape", "dark AoE detonation"),
+    "explosion_large": ("shape", "large fire or boss explosion"),
+    "judgement_beam": ("ultimate", "p_radiant_judgement"),
+    "holy_explosion": ("ultimate", "reserved holy burst; revive_pillar remains the primary miracle read"),
+    "eclipse_devour": ("ultimate", "d_devouring_eclipse"),
+    "drain_field": ("ultimate", "reserved drain/blood visual; blood_pact remains a support read"),
+    "zenith_arrow": ("ultimate", "a_zenith_arrow"),
+    "fault_breaker": ("ultimate", "ro_fault_breaker"),
+    "apocalypse_field": ("boss", "boss_apocalypse"),
+}
 
 
 def _axis_separator_scores(rgb: np.ndarray, axis: int) -> np.ndarray:
@@ -347,6 +431,17 @@ def _sanitize_and_rebuild_outputs(
 
         rgba[:, :, :3] = np.rint(np.clip(rgb, 0.0, 255.0)).astype(np.uint8)
         rgba[:, :, 3] = np.rint(new_alpha * 255.0).astype(np.uint8)
+        if definition.strip_linear_artifacts:
+            cleaned_rgb = rgba[:, :, :3].astype(np.int32)
+            opaque = rgba[:, :, 3] > 8
+            neutral_bright = opaque & (cleaned_rgb.min(axis=2) > 100) & (
+                cleaned_rgb.max(axis=2) - cleaned_rgb.min(axis=2) < 65
+            )
+            linear_limit = int(min(rgba.shape[:2]) * 0.82)
+            for column in np.where(neutral_bright.sum(axis=0) >= linear_limit)[0]:
+                rgba[:, column, 3] = 0
+            for row in np.where(neutral_bright.sum(axis=1) >= linear_limit)[0]:
+                rgba[row, :, 3] = 0
         rgba[rgba[:, :, 3] == 0, :3] = 0
         frame = Image.fromarray(rgba, "RGBA")
         frame.save(frame_path)
@@ -374,7 +469,7 @@ def _sanitize_and_rebuild_outputs(
         )
 
 
-def _frame_qc(frame_paths: list[Path]) -> dict[str, object]:
+def _frame_qc(frame_paths: list[Path], allow_linear_strokes: bool = False) -> dict[str, object]:
     magenta_pixels = 0
     hot_magenta_pixels = 0
     edge_alpha_pixels = 0
@@ -440,7 +535,7 @@ def _frame_qc(frame_paths: list[Path]) -> dict[str, object]:
     if edge_alpha_pixels:
         status = "needs_review"
         issues.append(f"{edge_alpha_pixels} opaque edge pixels remain")
-    if suspicious_linear_frames:
+    if suspicious_linear_frames and not allow_linear_strokes:
         status = "needs_review"
         issues.append(f"possible grid-line remnants in frames: {suspicious_linear_frames}")
     if empty_frames:
@@ -520,9 +615,189 @@ def _make_overview(entries: list[dict[str, object]], validation_root: Path) -> N
     board.save(boards_dir / "vfx-foundation-overview.png", quality=94)
 
 
-def _write_validation_readme(validation_root: Path) -> None:
+def _make_lot_b_contact_sheet(
+    validation_root: Path, entries: list[dict[str, object]], mode: str, output_path: Path
+) -> None:
+    """Render a small review board for raw, dark-matted or checkerboard assets."""
+
+    columns = 4
+    tile_width, tile_height = 320, 300
+    rows = (len(entries) + columns - 1) // columns
+    board = Image.new("RGB", (columns * tile_width, rows * tile_height), (13, 16, 23))
+    draw = ImageDraw.Draw(board)
+    for index, entry in enumerate(entries):
+        x = index % columns * tile_width
+        y = index // columns * tile_height
+        if mode == "raw":
+            image = Image.open(validation_root / str(entry["source"])).convert("RGBA")
+            background = Image.new("RGBA", (tile_width - 18, tile_height - 46), (37, 21, 42, 255))
+        else:
+            image = Image.open(validation_root / str(entry["processed_sheet"])).convert("RGBA")
+            background = (
+                _checkerboard((tile_width - 18, tile_height - 46), 14)
+                if mode == "checkerboard"
+                else Image.new("RGBA", (tile_width - 18, tile_height - 46), (17, 23, 33, 255))
+            )
+        image.thumbnail((tile_width - 32, tile_height - 60), Image.Resampling.LANCZOS)
+        background.alpha_composite(image, ((background.width - image.width) // 2, (background.height - image.height) // 2))
+        board.paste(background.convert("RGB"), (x + 9, y + 34))
+        draw.text((x + 10, y + 10), f"{entry['id']}  [{entry['status']}]", fill=(243, 213, 136))
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    board.save(output_path, quality=95)
+
+
+def write_lot_b_artifacts(repo_root: Path) -> None:
+    """Create portable Lot-B review artifacts after deterministic processing."""
+
+    validation_root = repo_root / "public" / "assets" / "vfx" / "validation" / "vfx-sheets-v2"
+    manifest_path = validation_root / "vfx-sheets-manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    by_id = {str(entry["id"]): entry for entry in manifest.get("entries", [])}
+    missing = [effect_id for effect_id in LOT_B_IDS if effect_id not in by_id]
+    if missing:
+        raise ValueError(f"Lot B artifacts require processed entries: {', '.join(missing)}")
+
+    entries = [by_id[effect_id] for effect_id in LOT_B_IDS]
+    inventory: list[dict[str, object]] = []
+    for entry in entries:
+        effect_id = str(entry["id"])
+        definition = next(item for item in V2_SHEETS if item.id == effect_id)
+        qc = json.loads((validation_root / str(entry["qc"])).read_text(encoding="utf-8"))
+        source = Image.open(validation_root / str(entry["source"])).convert("RGBA")
+        processed = Image.open(validation_root / str(entry["processed_sheet"])).convert("RGBA")
+        category, intended_use = LOT_B_METADATA[effect_id]
+        inventory.append({
+            "id": effect_id,
+            "category": category,
+            "intended_use": intended_use,
+            "source_raw": definition.filename,
+            "source_dimensions": [source.width, source.height],
+            "processed_sheet": str(entry["processed_sheet"]),
+            "processed_dimensions": [processed.width, processed.height],
+            "rows": definition.rows,
+            "cols": definition.cols,
+            "frame_count": definition.rows * definition.cols,
+            "frame_duration_ms": definition.duration_ms,
+            "align": definition.align,
+            "qc_status": qc["status"],
+            "promotion_decision": "candidate" if qc["status"] == "candidate" else "deferred",
+            "qc": entry["qc"],
+        })
+
+    (validation_root / "lot_b_inventory.json").write_text(
+        json.dumps({"lot": "B", "runtime_ready": False, "effects": inventory}, indent=2),
+        encoding="utf-8",
+    )
+    boards_dir = validation_root / "boards"
+    _make_lot_b_contact_sheet(validation_root, entries, "raw", boards_dir / "lot-b-raw-contact.png")
+    _make_lot_b_contact_sheet(validation_root, entries, "processed", boards_dir / "lot-b-processed-contact.png")
+    _make_lot_b_contact_sheet(validation_root, entries, "checkerboard", boards_dir / "lot-b-checkerboard-contact.png")
+    report_lines = [
+        "# VFX Runtime V2 - Lot B processing report",
+        "",
+        "All sources remain in validation only until the runtime promotion gate is applied.",
+        "",
+        "| ID | Category | Source | Result |",
+        "| --- | --- | --- | --- |",
+    ]
+    report_lines.extend(
+        f"| {entry['id']} | {entry['category']} | {entry['source_raw']} | {entry['promotion_decision']} ({entry['qc_status']}) |"
+        for entry in inventory
+    )
+    report_lines.extend([
+        "",
+        "Contact sheets: `boards/lot-b-raw-contact.png`, `boards/lot-b-processed-contact.png`, and `boards/lot-b-checkerboard-contact.png`.",
+        "Runtime code must never point at `validation/`, `raw/`, `processed/`, or `rejected/`.",
+    ])
+    (validation_root / "lot_b_processing_report.md").write_text("\n".join(report_lines) + "\n", encoding="utf-8")
+    print(f"Lot B review artifacts: {validation_root}")
+
+
+def write_lot_c_artifacts(repo_root: Path) -> None:
+    """Create portable Lot-C review artifacts after deterministic processing."""
+
+    validation_root = repo_root / "public" / "assets" / "vfx" / "validation" / "vfx-sheets-v2"
+    manifest_path = validation_root / "vfx-sheets-manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    by_id = {str(entry["id"]): entry for entry in manifest.get("entries", [])}
+    missing = [effect_id for effect_id in LOT_C_IDS if effect_id not in by_id]
+    if missing:
+        raise ValueError(f"Lot C artifacts require processed entries: {', '.join(missing)}")
+
+    entries = [by_id[effect_id] for effect_id in LOT_C_IDS]
+    inventory: list[dict[str, object]] = []
+    for entry in entries:
+        effect_id = str(entry["id"])
+        definition = next(item for item in V2_SHEETS if item.id == effect_id)
+        qc = json.loads((validation_root / str(entry["qc"])).read_text(encoding="utf-8"))
+        source = Image.open(validation_root / str(entry["source"])).convert("RGBA")
+        processed = Image.open(validation_root / str(entry["processed_sheet"])).convert("RGBA")
+        category, intended_use = LOT_C_METADATA[effect_id]
+        decision = "integrated" if qc["status"] == "candidate" else "deferred"
+        inventory.append({
+            "id": effect_id,
+            "category": category,
+            "intended_use": intended_use,
+            "source_file": definition.filename,
+            "final_file": f"runtime/v2/{effect_id}_5x5_25f_1280.png",
+            "source_dimensions": [source.width, source.height],
+            "final_dimensions": [processed.width, processed.height],
+            "rows": definition.rows,
+            "cols": definition.cols,
+            "frame_count": definition.rows * definition.cols,
+            "frame_duration_ms": definition.duration_ms,
+            "align": definition.align,
+            "alpha_validation": qc["status"] == "candidate",
+            "magenta_removal_validation": qc.get("near_magenta_pixels", 0) == 0 and qc.get("hot_magenta_pixels", 0) == 0,
+            # Judgement Beam deliberately contains a vertical beam; its linear
+            # frames are authored content, not separator remnants.
+            "grid_line_removal_validation": definition.allow_linear_strokes or not qc.get("suspicious_linear_frames", []),
+            "tactical_readability": "Peak overlap is allowed; the sheet clears before damage text and UI need to be read.",
+            "decision": decision,
+            "notes": qc.get("issues", []),
+            "qc": entry["qc"],
+        })
+
+    (validation_root / "lot_c_inventory.json").write_text(
+        json.dumps({"lot": "C", "runtime_ready": False, "effects": inventory}, indent=2),
+        encoding="utf-8",
+    )
+    _make_lot_b_contact_sheet(validation_root, entries, "raw", validation_root / "lot_c_contact_sheet_raw.jpg")
+    _make_lot_b_contact_sheet(validation_root, entries, "processed", validation_root / "lot_c_contact_sheet_processed.jpg")
+    _make_lot_b_contact_sheet(validation_root, entries, "checkerboard", validation_root / "lot_c_contact_sheet_checkerboard.jpg")
+    ultimate_entries = [entry for entry in entries if LOT_C_METADATA[str(entry["id"])][0] in {"ultimate", "boss"}]
+    _make_lot_b_contact_sheet(validation_root, ultimate_entries, "checkerboard", validation_root / "lot_c_ultimate_scale_review.jpg")
+
+    report_lines = [
+        "# VFX Runtime V2 - Lot C processing report",
+        "",
+        "Lot C is processed deterministically from raw sheets. Runtime promotion is allowed only for candidates with clean alpha and no residual magenta or separator artifacts.",
+        "",
+        "| ID | Source -> Final | Grid | Alpha / magenta / grid | Decision |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    report_lines.extend(
+        "| {id} | {source_file} -> {final_file} | {cols}x{rows}, {frame_count} frames | {alpha}/{magenta}/{grid} | {decision} |".format(
+            **entry,
+            alpha="pass" if entry["alpha_validation"] else "defer",
+            magenta="pass" if entry["magenta_removal_validation"] else "defer",
+            grid="pass" if entry["grid_line_removal_validation"] else "review",
+        )
+        for entry in inventory
+    )
+    report_lines.extend([
+        "",
+        "Tactical readability: normal shapes stay near the target ground; ultimates and the boss field intentionally peak over multiple cells, then clear before the next tactical decision.",
+        "Required review boards: `lot_c_contact_sheet_raw.jpg`, `lot_c_contact_sheet_processed.jpg`, `lot_c_contact_sheet_checkerboard.jpg`, and `lot_c_ultimate_scale_review.jpg`.",
+        "Runtime code must never point at `validation/`, `raw/`, `processed/`, or `rejected/`.",
+    ])
+    (validation_root / "lot_c_processing_report.md").write_text("\n".join(report_lines) + "\n", encoding="utf-8")
+    print(f"Lot C review artifacts: {validation_root}")
+
+
+def _write_validation_readme(validation_root: Path, version: int) -> None:
     (validation_root / "README.md").write_text(
-        """# Combat VFX spritesheets - validation pack V1
+        f"""# Combat VFX spritesheets - validation pack V{version}
 
 This directory contains visual candidates only. Nothing in `validation/` may be referenced by runtime code.
 
@@ -539,7 +814,7 @@ This directory contains visual candidates only. Nothing in `validation/` may be 
 ## Rebuild
 
 ```powershell
-python tools/process_vfx_validation.py --processor <path-to-generate2dsprite.py>
+python tools/process_vfx_validation.py --pack v{version} --processor <path-to-generate2dsprite.py>
 ```
 
 Use `--only slash_arc fire_explosion` for a subset. Use `--refresh-existing-metadata` to remove machine-local paths without reprocessing images.
@@ -552,8 +827,9 @@ An effect can be promoted only after its contact sheet and animation preview are
     )
 
 
-def refresh_existing_metadata(repo_root: Path) -> None:
-    validation_root = repo_root / "public" / "assets" / "vfx" / "validation" / "vfx-sheets-v1"
+def refresh_existing_metadata(repo_root: Path, pack: str) -> None:
+    directory_name, sheets = VFX_VALIDATION_PACKS[pack]
+    validation_root = repo_root / "public" / "assets" / "vfx" / "validation" / directory_name
     manifest_path = validation_root / "vfx-sheets-manifest.json"
     if not manifest_path.exists():
         raise FileNotFoundError(manifest_path)
@@ -561,15 +837,16 @@ def refresh_existing_metadata(repo_root: Path) -> None:
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     manifest["processor"] = "generate2dsprite.py"
     manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-    for definition in SHEETS:
+    for definition in sheets:
         _sanitize_processor_metadata(validation_root / "processed" / definition.id, definition)
-    _write_validation_readme(validation_root)
+    _write_validation_readme(validation_root, int(pack.removeprefix("v")))
     print(f"refreshed portable metadata: {validation_root}")
 
 
-def process_batch(repo_root: Path, processor: Path, selected_ids: set[str] | None) -> None:
+def process_batch(repo_root: Path, processor: Path, pack: str, selected_ids: set[str] | None) -> None:
     vfx_root = repo_root / "public" / "assets" / "vfx"
-    validation_root = vfx_root / "validation" / "vfx-sheets-v1"
+    directory_name, sheets = VFX_VALIDATION_PACKS[pack]
+    validation_root = vfx_root / "validation" / directory_name
     raw_dir = validation_root / "raw"
     processed_dir = validation_root / "processed"
     boards_dir = validation_root / "boards"
@@ -578,15 +855,29 @@ def process_batch(repo_root: Path, processor: Path, selected_ids: set[str] | Non
     for directory in (raw_dir, processed_dir, boards_dir, prompts_dir, rejected_dir):
         directory.mkdir(parents=True, exist_ok=True)
 
+    manifest_path = validation_root / "vfx-sheets-manifest.json"
+    existing_entries: dict[str, dict[str, object]] = {}
+    if manifest_path.exists():
+        previous_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        existing_entries = {
+            str(entry["id"]): entry
+            for entry in previous_manifest.get("entries", [])
+            if isinstance(entry, dict) and "id" in entry
+        }
+
     entries: list[dict[str, object]] = []
-    definitions = [item for item in SHEETS if not selected_ids or item.id in selected_ids]
+    definitions = [item for item in sheets if not selected_ids or item.id in selected_ids]
     if selected_ids:
-        unknown = selected_ids - {item.id for item in SHEETS}
+        unknown = selected_ids - {item.id for item in sheets}
         if unknown:
             raise ValueError(f"Unknown VFX ids: {', '.join(sorted(unknown))}")
 
     for definition in definitions:
-        source_path = vfx_root / definition.filename
+        # New generated sources live under ``raw/``.  Keep the historical
+        # root fallback so the V1 / pre-Lot-B workflow remains reproducible.
+        source_path = vfx_root / "raw" / definition.filename
+        if not source_path.exists():
+            source_path = vfx_root / definition.filename
         if not source_path.exists():
             raise FileNotFoundError(source_path)
 
@@ -620,7 +911,7 @@ def process_batch(repo_root: Path, processor: Path, selected_ids: set[str] | Non
             raise ValueError(f"{definition.id}: expected {expected_frames} frames, got {len(frame_paths)}.")
 
         _sanitize_and_rebuild_outputs(frame_paths, output_dir, definition)
-        qc = _frame_qc(frame_paths)
+        qc = _frame_qc(frame_paths, definition.allow_linear_strokes)
         (output_dir / "source-grid-meta.json").write_text(
             json.dumps(grid_metadata, indent=2), encoding="utf-8"
         )
@@ -643,22 +934,25 @@ def process_batch(repo_root: Path, processor: Path, selected_ids: set[str] | Non
         entries.append(entry)
         print(f"processed {definition.id}: {expected_frames} frames [{qc['status']}]")
 
+    merged_entries = {**existing_entries, **{str(entry["id"]): entry for entry in entries}}
+    ordered_ids = [definition.id for definition in sheets if definition.id in merged_entries]
+    ordered_ids.extend(entry_id for entry_id in merged_entries if entry_id not in ordered_ids)
     manifest = {
-        "version": 1,
+        "version": int(pack.removeprefix("v")),
         "runtime_ready": False,
         "notes": "Validation candidates only. Runtime must never reference this directory.",
         "processor": processor.name,
-        "entries": entries,
+        "entries": [merged_entries[entry_id] for entry_id in ordered_ids],
     }
-    (validation_root / "vfx-sheets-manifest.json").write_text(
+    manifest_path.write_text(
         json.dumps(manifest, indent=2), encoding="utf-8"
     )
-    _make_overview(entries, validation_root)
+    _make_overview(manifest["entries"], validation_root)
     (rejected_dir / "README.md").write_text(
         "# Rejected VFX candidates\n\nMove only visually rejected validation candidates here. Runtime must never reference this directory.\n",
         encoding="utf-8",
     )
-    _write_validation_readme(validation_root)
+    _write_validation_readme(validation_root, int(pack.removeprefix("v")))
     print(f"validation pack: {validation_root}")
 
 
@@ -671,7 +965,18 @@ def main() -> None:
         help="RPGThreeJS repository root.",
     )
     parser.add_argument("--processor", type=Path, help="generate2dsprite.py path.")
+    parser.add_argument("--pack", choices=sorted(VFX_VALIDATION_PACKS), default="v1")
     parser.add_argument("--only", nargs="*", help="Optional subset of VFX ids.")
+    parser.add_argument(
+        "--write-lot-b-artifacts",
+        action="store_true",
+        help="Write Lot B inventory, report and comparison boards from processed candidates.",
+    )
+    parser.add_argument(
+        "--write-lot-c-artifacts",
+        action="store_true",
+        help="Write Lot C inventory, report and comparison boards from processed candidates.",
+    )
     parser.add_argument(
         "--refresh-existing-metadata",
         action="store_true",
@@ -680,15 +985,21 @@ def main() -> None:
     args = parser.parse_args()
 
     repo_root = args.repo_root.resolve()
-    if args.refresh_existing_metadata:
-        refresh_existing_metadata(repo_root)
+    if args.write_lot_b_artifacts:
+        write_lot_b_artifacts(repo_root)
+        return
+    elif args.write_lot_c_artifacts:
+        write_lot_c_artifacts(repo_root)
+        return
+    elif args.refresh_existing_metadata:
+        refresh_existing_metadata(repo_root, args.pack)
         return
     if args.processor is None:
         parser.error("--processor is required unless --refresh-existing-metadata is used")
     processor = args.processor.resolve()
     if not processor.exists():
         raise FileNotFoundError(processor)
-    process_batch(repo_root, processor, set(args.only) if args.only else None)
+    process_batch(repo_root, processor, args.pack, set(args.only) if args.only else None)
 
 
 if __name__ == "__main__":
