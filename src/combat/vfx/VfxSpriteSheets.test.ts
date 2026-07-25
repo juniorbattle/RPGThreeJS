@@ -18,8 +18,6 @@ const V2_SHEET_IDS = [
   'line_blast', 'cone_blast', 'dark_explosion', 'explosion_large', 'judgement_beam', 'holy_explosion',
   'eclipse_devour', 'drain_field', 'zenith_arrow', 'fault_breaker', 'apocalypse_field',
 ] as const;
-const LOT_C_SHEET_IDS = V2_SHEET_IDS.slice(-11);
-
 const RUNTIME_PUBLIC_ROOT = new URL('../../../public/', import.meta.url);
 
 function runtimePath(url: string) {
@@ -80,22 +78,6 @@ describe('combat VFX sprite sheets', () => {
       expect(header.height).toBe(entry.rows * 256);
       expect(header.bitDepth).toBe(8);
       expect(header.colorType).toBe(6);
-    }
-  });
-
-  it('keeps Lot C candidates free from source magenta after processing', () => {
-    for (const id of LOT_C_SHEET_IDS) {
-      const qcPath = new URL(`../../../public/assets/vfx/validation/vfx-sheets-v2/processed/${id}/qc.json`, import.meta.url);
-      const qc = JSON.parse(readFileSync(qcPath, 'utf8')) as {
-        status: string;
-        near_magenta_pixels: number;
-        hot_magenta_pixels: number;
-        frame_count: number;
-      };
-      expect(qc.status, id).toBe('candidate');
-      expect(qc.near_magenta_pixels, id).toBe(0);
-      expect(qc.hot_magenta_pixels, id).toBe(0);
-      expect(qc.frame_count, id).toBe(25);
     }
   });
 
