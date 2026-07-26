@@ -5,14 +5,31 @@ import { HERO_SKILL_IDS, ENEMY_SKILL_IDS, getSkillPresentation } from './skillPr
 import {
   ACTION_PRESENTATION_TIERS,
   COMBAT_VFX_SKILL_IDS,
+  STATIC_VFX_TIER_PRESENTATION,
   applyResolvedPresentationToContext,
   getActionPresentationTuning,
   getActionVisualTier,
+  getStaticVfxTierPresentation,
   resolveCombatVfxPresentation,
 } from './combatVfxPresentation';
 import type { VfxContext } from './vfx/VfxTypes';
 
 const VALID_SCALE_TIERS = new Set(['basic', '2ap', '3ap', '4ap', '5ap_ultimate', 'boss']);
+const PRIORITY_5AP_IDS = [
+  'w_lion_surge', 'p_radiant_judgement', 'd_devouring_eclipse',
+  'l_firmament_lance', 'n_dark_meteor', 'w_miracle',
+  'r_perfect_duality', 'e_absolute_harmony', 'a_zenith_arrow',
+  'ni_silent_assassin', 'ro_fault_breaker', 'ar_artillery_barrage',
+] as const;
+const PRIORITY_4AP_IDS = [
+  'w_whirl', 'p_oathwall', 'd_blood_pact', 'l_griffon_jump',
+  'n_flame_wave', 'w_sanctuary', 'r_scarlet_circle', 'e_binding_seal',
+  'a_arrow_rain', 'ni_smoke_bomb', 'ro_jaw_trap', 'ar_incendiary_grenade',
+] as const;
+const PRIORITY_BOSS_IDS = [
+  'boss_apocalypse', 'boss_titan_slam', 'boss_execution', 'boss_inferno',
+  'boss_quake', 'boss_roar', 'boss_freeze', 'enemy_dragon_breath', 'boss_pin',
+] as const;
 
 const makeBaseContext = (): VfxContext => ({
   scene: {} as never,
@@ -88,7 +105,7 @@ describe('combatVfxPresentation — resolver', () => {
 });
 
 describe('combatVfxPresentation — context helper', () => {
-  it('applies orientation, scaleTier, presentationScale, intensity, particleScale, durationScale', () => {
+  it('applies orientation, scale, visibility, intensity, particle and duration metadata', () => {
     const resolved = resolveCombatVfxPresentation('n_dark_bolt');
     expect(resolved).toBeDefined();
     const base = makeBaseContext();
@@ -99,6 +116,9 @@ describe('combatVfxPresentation — context helper', () => {
     expect(context.intensity).toBe(resolved!.intensity);
     expect(context.particleScale).toBe(resolved!.particleScale);
     expect(context.durationScale).toBe(resolved!.durationScale);
+    expect(context.staticScaleMultiplier).toBe(resolved!.staticScaleMultiplier);
+    expect(context.impactOpacityFloor).toBe(resolved!.impactOpacityFloor);
+    expect(context.impactRenderOrder).toBe(resolved!.impactRenderOrder);
   });
 
   it('preserves base helpers', () => {
@@ -154,6 +174,9 @@ describe('combatVfxPresentation — combat parity', () => {
       expect(resolved!.durationScale).toBe(tuning.durationScale);
       expect(resolved!.scaleTier).toBe(tuning.scaleTier);
       expect(resolved!.presentationScale).toBe(tuning.presentationScale);
+      expect(resolved!.staticScaleMultiplier).toBe(tuning.staticScaleMultiplier);
+      expect(resolved!.impactOpacityFloor).toBe(tuning.impactOpacityFloor);
+      expect(resolved!.impactRenderOrder).toBe(tuning.impactRenderOrder);
       expect(resolved!.tier).toBe(tuning.tier);
     }
   });
@@ -193,6 +216,58 @@ describe('combatVfxPresentation — tuning extraction', () => {
     expect(getActionPresentationTuning({ ap: 4 }).scaleTier).toBe('4ap');
     expect(getActionPresentationTuning({ ap: 5 }).scaleTier).toBe('5ap_ultimate');
   });
+
+  it('keeps static scale, opacity and foreground order strictly increasing by tier', () => {
+    const tiers = ['basic', '2ap', '3ap', '4ap', '5ap_ultimate', 'boss'] as const;
+    const profiles = tiers.map((tier) => getStaticVfxTierPresentation(tier));
+    for (let index = 1; index < profiles.length; index += 1) {
+      expect(profiles[index]!.scaleMultiplier).toBeGreaterThan(profiles[index - 1]!.scaleMultiplier);
+      expect(profiles[index]!.impactOpacityFloor).toBeGreaterThan(profiles[index - 1]!.impactOpacityFloor);
+      expect(profiles[index]!.impactRenderOrder).toBeGreaterThan(profiles[index - 1]!.impactRenderOrder);
+    }
+    expect(STATIC_VFX_TIER_PRESENTATION.basic.impactRenderOrder).toBeGreaterThan(60);
+  });
+});
+
+describe('combatVfxPresentation — V10G-R1 priority hierarchy', () => {
+  it('resolves every priority 5 AP ultimate with dominant static presentation', () => {
+    for (const skillId of PRIORITY_5AP_IDS) {
+      const resolved = resolveCombatVfxPresentation(skillId);
+      expect(resolved).toBeDefined();
+      expect(resolved).toMatchObject({
+        scaleTier: '5ap_ultimate',
+        ultimate: true,
+        staticScaleMultiplier: STATIC_VFX_TIER_PRESENTATION['5ap_ultimate'].scaleMultiplier,
+        impactOpacityFloor: STATIC_VFX_TIER_PRESENTATION['5ap_ultimate'].impactOpacityFloor,
+        impactRenderOrder: STATIC_VFX_TIER_PRESENTATION['5ap_ultimate'].impactRenderOrder,
+      });
+      expect(resolved!.presetId).not.toContain('raw');
+    }
+  });
+
+  it('resolves every priority 4 AP skill above lower-tier presentation', () => {
+    for (const skillId of PRIORITY_4AP_IDS) {
+      const resolved = resolveCombatVfxPresentation(skillId);
+      expect(resolved).toBeDefined();
+      expect(resolved!.scaleTier).toBe('4ap');
+      expect(resolved!.staticScaleMultiplier).toBe(STATIC_VFX_TIER_PRESENTATION['4ap'].scaleMultiplier);
+      expect(resolved!.impactOpacityFloor).toBeGreaterThanOrEqual(0.9);
+      expect(resolved!.impactRenderOrder).toBeGreaterThan(60);
+    }
+  });
+
+  it('resolves boss and enemy signatures with the strongest static tier', () => {
+    for (const skillId of PRIORITY_BOSS_IDS) {
+      const resolved = resolveCombatVfxPresentation(skillId);
+      expect(resolved).toBeDefined();
+      expect(resolved!.scaleTier).toBe('boss');
+      expect(resolved!.staticScaleMultiplier).toBe(STATIC_VFX_TIER_PRESENTATION.boss.scaleMultiplier);
+      expect(resolved!.impactOpacityFloor).toBe(STATIC_VFX_TIER_PRESENTATION.boss.impactOpacityFloor);
+      expect(resolved!.impactRenderOrder).toBeGreaterThan(
+        STATIC_VFX_TIER_PRESENTATION['5ap_ultimate'].impactRenderOrder,
+      );
+    }
+  });
 });
 
 describe('combatVfxPresentation — no raw paths', () => {
@@ -225,8 +300,16 @@ describe('combatVfxPresentation — n_dark_meteor static', () => {
   it('resolves to a static preset without sky_descent or travel phases', () => {
     const resolved = resolveCombatVfxPresentation('n_dark_meteor');
     expect(resolved).toBeDefined();
+    expect(resolved).toMatchObject({
+      scaleTier: '5ap_ultimate',
+      staticScaleMultiplier: STATIC_VFX_TIER_PRESENTATION['5ap_ultimate'].scaleMultiplier,
+      impactOpacityFloor: STATIC_VFX_TIER_PRESENTATION['5ap_ultimate'].impactOpacityFloor,
+      impactRenderOrder: STATIC_VFX_TIER_PRESENTATION['5ap_ultimate'].impactRenderOrder,
+    });
+    expect(resolved!.presentationScale).toBeGreaterThan(1);
     const preset = getVfxPreset(resolved!.presetId);
     expect(preset).toBeDefined();
+    expect(preset!.steps.some((step) => step.type === 'projectile')).toBe(false);
     for (const step of preset!.steps) {
       expect(step.sheetMode).not.toBe('sky_descent');
       expect(step.skyDescent).toBeUndefined();

@@ -140,7 +140,10 @@ export function installVfxWorkbench(options: VfxWorkbenchOptions) {
     resolvedPanel.style.display = 'block';
     if (resolvedPreset) resolvedPreset.textContent = `Preset: ${resolved.presetId}`;
     if (resolvedTier) resolvedTier.textContent = `Tier: ${resolved.tier}${resolved.visualTier ? ` (visual ${resolved.visualTier})` : ''}${resolved.ultimate ? ' — ULTIMATE' : ''}`;
-    if (resolvedScale) resolvedScale.textContent = `Scale: ${resolved.scaleTier} × ${resolved.presentationScale.toFixed(2)}`;
+    if (resolvedScale) {
+      const effectiveScale = resolved.staticScaleMultiplier * resolved.presentationScale;
+      resolvedScale.textContent = `Scale: ${resolved.scaleTier} × ${effectiveScale.toFixed(2)} · Opacity ≥ ${resolved.impactOpacityFloor.toFixed(2)} · Layer ${resolved.impactRenderOrder}`;
+    }
     if (resolvedOrient) resolvedOrient.textContent = `Orientation: ${resolved.orientation ?? 'none'}`;
     if (resolvedIntensity) resolvedIntensity.textContent = `Intensity: ${resolved.intensity.toFixed(2)}`;
     if (resolvedParticles) resolvedParticles.textContent = `Particles: ${resolved.particleScale.toFixed(2)}`;

@@ -234,6 +234,12 @@ export interface VfxContext {
   orientation?: VfxOrientation;
   scaleTier?: VfxScaleTier;
   presentationScale?: number;
+  /** Shared static action-tier multiplier. It never changes tactical area. */
+  staticScaleMultiplier?: number;
+  /** Minimum peak opacity for foreground impact sprites. */
+  impactOpacityFloor?: number;
+  /** Foreground render order selected from the static action tier. */
+  impactRenderOrder?: number;
   /** Applied by a cinematic phase without mutating registered VFX presets. */
   opacityMultiplier?: number;
   cinematicPhase?: {

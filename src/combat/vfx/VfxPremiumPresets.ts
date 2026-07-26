@@ -110,7 +110,6 @@ export const PREMIUM_VFX_PRESETS = [
     steps: [
       { type: 'magicCircle', anchor: 'sourceGround', texture: 'magicCircle', startTime: 0, duration: 0.5, color: '#8d55cf', secondaryColor: '#ff7b3f', scale: 1.46, opacity: 0.58, rotation: -0.65, reducedGraphicsMultiplier: 0.58 },
       { type: 'lightPulse', anchor: 'source', texture: 'magicGlow', startTime: 0.06, duration: 0.48, color: '#9f62e5', secondaryColor: '#ff8c45', scale: 1.62, opacity: 0.52, reducedGraphicsMultiplier: 0.56 },
-      { type: 'projectile', anchor: 'source', targetAnchor: 'groundTarget', texture: 'projectileCore', startTime: 0.16, duration: 0.46, color: '#dfb4ff', secondaryColor: '#ff6035', scale: 0.46, count: 12, opacity: 1, heightOffset: 0.88, reducedGraphicsMultiplier: 0.42 },
       { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'meteor_fall', startTime: 0.04, duration: 1.02, scale: 2, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.64 },
       { type: 'shockwave', anchor: 'groundTarget', texture: 'ringGradient', startTime: 0.56, duration: 0.54, color: '#d18dff', secondaryColor: '#ff713f', scale: 2.05, radius: 1.46, count: 6, opacity: 0.8, reducedGraphicsMultiplier: 0.45 },
       { type: 'particleBurst', anchor: 'groundTarget', texture: 'softParticle', startTime: 0.56, duration: 0.6, color: '#d99cff', secondaryColor: '#ff653a', scale: 0.24, count: 22, speed: 1.68, rise: 1.02, spread: 1.78, opacity: 0.92, reducedGraphicsMultiplier: 0.4 },

@@ -1349,10 +1349,11 @@ function getActionVfxPreset(spec={},u=null){
   return null;
 }
 function makeActionVfxContext(u,targets,cx,cz,spec={},visualContext={}){
-  const tuning=getActionPresentationTuning(spec),presentation=getSkillPresentation(spec),primary=targets&&targets[0];
-  const targetPoint=visualContext.targetPoint||(primary?.grp
-    ?new THREE.Vector3(primary.grp.position.x,primary.grp.position.y,primary.grp.position.z)
-    :new THREE.Vector3(wX(cx),tileTop(cx,cz),wZ(cz)));
+  const tuning=getActionPresentationTuning(spec),presentation=getSkillPresentation(spec);
+  // The gameplay resolver already supplies the true target/AoE origin through
+  // cx/cz. Keep that point stable even when the first affected unit stands on
+  // another tile; target/targetGround anchors remain available for unit hits.
+  const targetPoint=visualContext.targetPoint||new THREE.Vector3(wX(cx),tileTop(cx,cz),wZ(cz));
   return {
     scene,camera,sourceUnit:u,targetUnits:targets,
     targetPoint,
@@ -1363,6 +1364,9 @@ function makeActionVfxContext(u,targets,cx,cz,spec={},visualContext={}){
     orientation:presentation?.orientation,
     scaleTier:tuning.scaleTier,
     presentationScale:tuning.presentationScale,
+    staticScaleMultiplier:tuning.staticScaleMultiplier,
+    impactOpacityFloor:tuning.impactOpacityFloor,
+    impactRenderOrder:tuning.impactRenderOrder,
     helpers:{wait,screenShake,screenFlash,floatText,wX,wZ,tileTop}
   };
 }
