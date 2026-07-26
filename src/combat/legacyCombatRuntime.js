@@ -1135,13 +1135,13 @@ function computeDamage(att,tgt,spec){ const K=12; let isMag=spec.type==='mag';
   const atkStat=isMag?effMAG(att):effSTR(att); let def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); if(spec.elanPierce) def=Math.max(1,def*(1-spec.elanPierce)); if(spec.penetration) def=Math.max(1,def*(1-spec.penetration)); const o=orientMult(att,tgt); let om=o.m; if(spec.weaponType==='dagger'&&o.lab==='DOS')om=1.45; let d=Math.sqrt(spec.power*K*atkStat/def)*2*om*dmgTakenMul(tgt)*rnd(0.92,1.08); if(spec.elanMul) d*=spec.elanMul; return {dmg:Math.max(1,Math.round(d)),lab:o.lab}; }
 const FX_COL={phys:0xff7a4a,mag:0xb06aff,heal:0x7ed957,buff:0xffd27a,debuff:0xb06aff,move:0x5ad1ff};
 function fxColor(spec){ return FX_COL[spec.heal?'heal':(spec.revive?'heal':spec.type)]||0xfff0b0; }
-function castTelegraph(u,spec){ const c=u.cell(); if(!c)return; const col=fxColor(spec);
+function castTelegraph(u,spec,skipBurst){ const c=u.cell(); if(!c)return; const col=fxColor(spec);
   const ux=u.size>1?bossCenterGX(u):u.gx, uz=u.size>1?bossCenterGZ(u):u.gz;
   const m=new THREE.Mesh(new THREE.RingGeometry(0.30,0.46,40),new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:0,side:THREE.DoubleSide,depthWrite:false}));
   m.rotation.x=-Math.PI/2; m.position.set(wX(ux),c.topY+0.06,wZ(uz)); m.scale.set(0.55,0.55,0.55); scene.add(m);
   tween(m.scale,{x:1.7,y:1.7,z:1.7},0.5,easeOutCubic);
   tween(m.material,{opacity:.9},0.12,easeOutCubic,()=>tween(m.material,{opacity:0},0.36,easeOutCubic,()=>{ scene.remove(m); m.geometry.dispose(); m.material.dispose(); }));
-  burst(new THREE.Vector3(wX(ux),c.topY+0.5,wZ(uz)),col); }
+  if(!skipBurst) burst(new THREE.Vector3(wX(ux),c.topY+0.5,wZ(uz)),col); }
 function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*100:5; const dexBonus=Math.max(0,(effDEX(att)-effDEX(tgt))/2); const exhaustBonus=isBreakOpen(tgt)?20:0; return cl(base+dexBonus+exhaustBonus,1,90)/100; }
 function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return true; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; if(spec.weaponType==='longbow'){ const dist=Math.abs((att.size>1?bossCenterGX(att):att.gx)-tgt.gx)+Math.abs((att.size>1?bossCenterGZ(att):att.gz)-tgt.gz); if(dist>=spec.range[1])acc+=5; } return Math.random()*100<cl(acc,5,95); }
 
@@ -1407,7 +1407,7 @@ async function attackAnim(u,spec,cx,cz,targets=[],actionContext={}){ const ctr=n
   const impact=async()=>{
     if(isUltimate){ floatText(u,'ULTIME','#ffd86a',true); screenFlash('#fff0b0',0.07); screenShake(0.20,0.14); }
     else if(isBossSignature){ floatText(u,'SIGNATURE','#ffb36a',true); screenFlash('#ffb36a',0.055); screenShake(0.22,0.16); }
-    if(spec.key!=='attack')castTelegraph(u,spec);
+    if(spec.key!=='attack')castTelegraph(u,spec,Boolean(getActionVfxPreset(spec,u)));
     if(spec.key==='ro_tumble')return;
     const origin=actionContext.origin;
     const visualContext=spec.key==='ar_explosive_retreat'&&origin

@@ -14,10 +14,9 @@ const V1_SHEET_IDS = [
 ] as const;
 const V2_SHEET_IDS = [
   'artillery_barrage', 'dragon_breath', 'heavy_execution', 'meteor_fall', 'titan_slam',
-  'burn_mark', 'silence_seal', 'curse_mark', 'weak_mark',
-  'regen_aura', 'revive_pillar', 'holy_aura', 'bless_field', 'boost_aura', 'smoke_burst', 'mace_impact',
-  'line_blast', 'cone_blast', 'dark_explosion', 'explosion_large', 'judgement_beam', 'holy_explosion',
-  'eclipse_devour', 'drain_field', 'zenith_arrow', 'fault_breaker', 'apocalypse_field',
+  'curse_mark',
+  'regen_aura', 'revive_pillar', 'holy_aura', 'boost_aura', 'smoke_burst',
+  'cone_blast', 'explosion_large', 'apocalypse_field',
   'shadow_lightning_bolt', 'root_vines', 'frost_bind',
 ] as const;
 const RUNTIME_PUBLIC_ROOT = new URL('../../../public/', import.meta.url);

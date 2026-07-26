@@ -5,7 +5,7 @@ import { VFX_TEXTURE_NAMES } from './VfxTextures';
 import { isVfxWorkbenchEnabled } from './VfxWorkbench';
 import type { VfxStepType } from './VfxTypes';
 
-const PHASE_1_PRESETS = ['melee_light', 'melee_heavy', 'fireball', 'heal_burst', 'boss_quake'];
+const PHASE_1_PRESETS = ['fireball', 'heal_burst', 'boss_quake'];
 const PHASE_2_PRESETS = [
   'generic_hit',
   'sword_slash',
@@ -17,10 +17,7 @@ const PHASE_2_PRESETS = [
   'frost_bind',
   'bless_aura',
   'curse_pulse',
-  'status_burn_mark',
-  'status_silence_seal',
   'status_curse_mark',
-  'status_weak_mark',
   'poison_bite',
   'guard_barrier',
   'boss_slam',
@@ -29,15 +26,11 @@ const PHASE_2_PRESETS = [
   'support_regen_aura',
   'support_revive_pillar',
   'support_holy_aura',
-  'support_bless_field',
   'support_boost_aura',
   'move_smoke_burst',
-  'impact_mace',
 ];
 const LOT_C_PRESETS = [
-  'shape_line_blast', 'shape_cone_blast', 'impact_dark_explosion', 'impact_explosion_large',
-  'ultimate_judgement_beam', 'ultimate_holy_explosion', 'ultimate_eclipse_devour',
-  'ultimate_drain_field', 'ultimate_zenith_arrow_v2', 'ultimate_fault_breaker_v2',
+  'shape_cone_blast', 'impact_explosion_large',
   'boss_apocalypse_v2',
 ];
 const V10F_DISPATCH_PRESETS = [
@@ -75,7 +68,7 @@ describe('combat VFX presets', () => {
     const heroUltimates = premiumPresets.filter((preset) => preset?.tags.includes('ultimate'));
     const bossSignatures = premiumPresets.filter((preset) => preset?.tags.includes('boss'));
     expect(heroUltimates).toHaveLength(12);
-    expect(bossSignatures).toHaveLength(5);
+    expect(bossSignatures).toHaveLength(4);
 
     for (const preset of heroUltimates) {
       expect(preset?.duration).toBeGreaterThanOrEqual(0.85);

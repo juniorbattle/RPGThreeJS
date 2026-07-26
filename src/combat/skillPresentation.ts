@@ -28,23 +28,21 @@ export const SKILL_MOTION_PRESET_IDS = [
 export type SkillMotionPreset = (typeof SKILL_MOTION_PRESET_IDS)[number];
 
 export const SKILL_VFX_PRESET_IDS = [
-  'melee_light', 'melee_heavy', 'fireball', 'heal_burst', 'boss_quake',
+  'fireball', 'heal_burst', 'boss_quake',
   'generic_hit', 'sword_slash', 'blunt_impact', 'arrow_shot', 'dark_bolt', 'shadow_lightning_bolt', 'root_vines', 'frost_bind',
   'thrust_line', 'teleport_burst', 'holy_strike', 'leap_impact', 'caster_roar', 'arrow_rain',
   'bless_aura', 'curse_pulse', 'poison_bite', 'guard_barrier', 'boss_slam',
-  'critical_hit', 'kill_spark', 'status_burn_mark', 'status_silence_seal',
-  'status_curse_mark', 'status_weak_mark',
-  'support_regen_aura', 'support_revive_pillar', 'support_holy_aura', 'support_bless_field',
-  'support_boost_aura', 'move_smoke_burst', 'impact_mace',
-  'shape_line_blast', 'shape_cone_blast', 'impact_dark_explosion', 'impact_explosion_large',
-  'ultimate_judgement_beam', 'ultimate_holy_explosion', 'ultimate_eclipse_devour',
-  'ultimate_drain_field', 'ultimate_zenith_arrow_v2', 'ultimate_fault_breaker_v2',
+  'critical_hit', 'kill_spark',
+  'status_curse_mark',
+  'support_regen_aura', 'support_revive_pillar', 'support_holy_aura',
+  'support_boost_aura', 'move_smoke_burst',
+  'shape_cone_blast', 'impact_explosion_large',
   'boss_apocalypse_v2',
   'ultimate_lion_surge', 'ultimate_radiant_judgement', 'ultimate_devouring_eclipse',
   'ultimate_firmament_lance', 'ultimate_dark_meteor', 'ultimate_miracle',
   'ultimate_perfect_duality', 'ultimate_absolute_harmony', 'ultimate_zenith_arrow',
   'ultimate_silent_assassin', 'ultimate_fault_breaker', 'ultimate_artillery_barrage',
-  'enemy_dragon_breath', 'boss_apocalypse', 'boss_execution', 'boss_flurry',
+  'enemy_dragon_breath', 'boss_execution', 'boss_flurry',
   'boss_inferno', 'boss_titan_slam',
 ] as const;
 export type SkillVfxPreset = (typeof SKILL_VFX_PRESET_IDS)[number];

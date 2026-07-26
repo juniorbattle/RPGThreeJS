@@ -316,3 +316,183 @@ describe('combatVfxPresentation — n_dark_meteor static', () => {
     }
   });
 });
+
+describe('combatVfxPresentation — V10G-R2A cleanup coverage', () => {
+  it('every resolved combat preset exists in VFX_PRESETS', () => {
+    for (const skillId of COMBAT_VFX_SKILL_IDS) {
+      const resolved = resolveCombatVfxPresentation(skillId);
+      if (!resolved) continue;
+      expect(VFX_PRESET_IDS).toContain(resolved.presetId);
+      expect(getVfxPreset(resolved.presetId)).toBeDefined();
+    }
+  });
+
+  it('shadow_lightning_bolt remains active and resolvable', () => {
+    const resolved = resolveCombatVfxPresentation('n_dark_bolt');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('shadow_lightning_bolt');
+    expect(getVfxPreset('shadow_lightning_bolt')).toBeDefined();
+  });
+
+  it('teleport_burst remains active and resolvable', () => {
+    const resolved = resolveCombatVfxPresentation('n_teleport');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('teleport_burst');
+    expect(getVfxPreset('teleport_burst')).toBeDefined();
+  });
+
+  it('root_vines remains active and resolvable', () => {
+    const resolved = resolveCombatVfxPresentation('e_binding_seal');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('root_vines');
+    expect(getVfxPreset('root_vines')).toBeDefined();
+  });
+
+  it('frost_bind remains active and resolvable', () => {
+    const resolved = resolveCombatVfxPresentation('boss_freeze');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('frost_bind');
+    expect(getVfxPreset('frost_bind')).toBeDefined();
+  });
+
+  it('boss_apocalypse_v2 remains active (boss_apocalypse removed)', () => {
+    const resolved = resolveCombatVfxPresentation('boss_apocalypse');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('boss_apocalypse_v2');
+    expect(getVfxPreset('boss_apocalypse_v2')).toBeDefined();
+    expect(getVfxPreset('boss_apocalypse')).toBeUndefined();
+  });
+
+  it('no resolved preset contains raw/', () => {
+    for (const skillId of COMBAT_VFX_SKILL_IDS) {
+      const resolved = resolveCombatVfxPresentation(skillId);
+      if (!resolved) continue;
+      expect(resolved.presetId).not.toContain('raw');
+    }
+  });
+
+  it('obsolete presets are no longer in VFX_PRESET_IDS', () => {
+    const obsolete = [
+      'melee_light', 'melee_heavy', 'boss_apocalypse',
+      'status_burn_mark', 'status_silence_seal', 'status_weak_mark',
+      'support_bless_field', 'impact_mace', 'shape_line_blast',
+      'impact_dark_explosion', 'ultimate_judgement_beam', 'ultimate_holy_explosion',
+      'ultimate_eclipse_devour', 'ultimate_drain_field',
+      'ultimate_zenith_arrow_v2', 'ultimate_fault_breaker_v2',
+    ];
+    for (const id of obsolete) {
+      expect(VFX_PRESET_IDS).not.toContain(id);
+      expect(getVfxPreset(id)).toBeUndefined();
+    }
+  });
+
+  it('fallback-required presets remain available', () => {
+    const fallbacks = [
+      'fireball', 'heal_burst', 'generic_hit', 'sword_slash', 'blunt_impact',
+      'arrow_shot', 'dark_bolt', 'bless_aura', 'curse_pulse', 'poison_bite',
+      'guard_barrier', 'boss_slam', 'boss_quake', 'critical_hit', 'kill_spark',
+      'support_revive_pillar', 'support_holy_aura', 'impact_explosion_large',
+    ];
+    for (const id of fallbacks) {
+      expect(VFX_PRESET_IDS).toContain(id);
+      expect(getVfxPreset(id)).toBeDefined();
+    }
+  });
+});
+
+describe('combatVfxPresentation — V10G-R2A.1 generic overlay cleanup', () => {
+  it('authored spritesheet actions resolve to presets (no generic fallback noise)', () => {
+    const authoredSkillIds = [
+      'n_dark_meteor', 'boss_apocalypse', 'boss_quake', 'boss_inferno',
+      'p_radiant_judgement', 'd_devouring_eclipse', 'ar_artillery_barrage',
+      'w_lion_surge', 'ro_fault_breaker', 'e_binding_seal',
+      'boss_freeze', 'n_dark_bolt',
+    ];
+    for (const skillId of authoredSkillIds) {
+      const resolved = resolveCombatVfxPresentation(skillId);
+      expect(resolved).toBeDefined();
+      expect(resolved!.presetId).not.toBe('generic_hit');
+      expect(getVfxPreset(resolved!.presetId)).toBeDefined();
+    }
+  });
+
+  it('n_dark_meteor keeps authored static preset without generic impact noise', () => {
+    const resolved = resolveCombatVfxPresentation('n_dark_meteor');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('ultimate_dark_meteor');
+    expect(resolved!.scaleTier).toBe('5ap_ultimate');
+    const preset = getVfxPreset(resolved!.presetId);
+    expect(preset).toBeDefined();
+    expect(preset!.steps.some((step) => step.type === 'spriteSheet')).toBe(true);
+  });
+
+  it('boss_apocalypse resolves to boss_apocalypse_v2 (not generic)', () => {
+    const resolved = resolveCombatVfxPresentation('boss_apocalypse');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('boss_apocalypse_v2');
+    const preset = getVfxPreset(resolved!.presetId);
+    expect(preset).toBeDefined();
+    expect(preset!.steps.some((step) => step.type === 'spriteSheet')).toBe(true);
+  });
+
+  it('boss_quake retains authored VFX without obsolete duplicate overlays', () => {
+    const resolved = resolveCombatVfxPresentation('boss_quake');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('boss_quake');
+    const preset = getVfxPreset(resolved!.presetId);
+    expect(preset).toBeDefined();
+    expect(preset!.steps.some((step) => step.type === 'spriteSheet' || step.type === 'shockwave')).toBe(true);
+  });
+
+  it('root_vines and frost_bind remain visible and resolvable', () => {
+    const rootResolved = resolveCombatVfxPresentation('e_binding_seal');
+    expect(rootResolved).toBeDefined();
+    expect(rootResolved!.presetId).toBe('root_vines');
+    expect(getVfxPreset('root_vines')).toBeDefined();
+
+    const frostResolved = resolveCombatVfxPresentation('boss_freeze');
+    expect(frostResolved).toBeDefined();
+    expect(frostResolved!.presetId).toBe('frost_bind');
+    expect(getVfxPreset('frost_bind')).toBeDefined();
+  });
+
+  it('shadow_lightning_bolt and teleport_burst remain active', () => {
+    const boltResolved = resolveCombatVfxPresentation('n_dark_bolt');
+    expect(boltResolved).toBeDefined();
+    expect(boltResolved!.presetId).toBe('shadow_lightning_bolt');
+    expect(getVfxPreset('shadow_lightning_bolt')).toBeDefined();
+
+    const teleportResolved = resolveCombatVfxPresentation('n_teleport');
+    expect(teleportResolved).toBeDefined();
+    expect(teleportResolved!.presetId).toBe('teleport_burst');
+    expect(getVfxPreset('teleport_burst')).toBeDefined();
+  });
+
+  it('fallback-required generic_hit remains available for non-authored actions', () => {
+    expect(VFX_PRESET_IDS).toContain('generic_hit');
+    expect(getVfxPreset('generic_hit')).toBeDefined();
+  });
+
+  it('no resolved preset references raw/ paths', () => {
+    for (const skillId of COMBAT_VFX_SKILL_IDS) {
+      const resolved = resolveCombatVfxPresentation(skillId);
+      if (!resolved) continue;
+      expect(resolved.presetId).not.toContain('raw');
+    }
+  });
+
+  it('V10G-R2A removed presets remain removed', () => {
+    const obsolete = [
+      'melee_light', 'melee_heavy', 'boss_apocalypse',
+      'status_burn_mark', 'status_silence_seal', 'status_weak_mark',
+      'support_bless_field', 'impact_mace', 'shape_line_blast',
+      'impact_dark_explosion', 'ultimate_judgement_beam', 'ultimate_holy_explosion',
+      'ultimate_eclipse_devour', 'ultimate_drain_field',
+      'ultimate_zenith_arrow_v2', 'ultimate_fault_breaker_v2',
+    ];
+    for (const id of obsolete) {
+      expect(VFX_PRESET_IDS).not.toContain(id);
+      expect(getVfxPreset(id)).toBeUndefined();
+    }
+  });
+});

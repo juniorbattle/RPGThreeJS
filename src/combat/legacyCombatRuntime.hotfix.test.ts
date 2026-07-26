@@ -28,4 +28,10 @@ describe('V10F final hotfix runtime contracts', () => {
     expect(runtimeSource).toContain("from './combatVfxPresentation'");
     expect(runtimeSource).not.toContain("const ACTION_PRESENTATION_TIERS=Object.freeze");
   });
+
+  it('guards castTelegraph burst when authored spritesheet preset exists (V10G-R2A.1)', () => {
+    expect(runtimeSource).toContain('function castTelegraph(u,spec,skipBurst)');
+    expect(runtimeSource).toContain('if(!skipBurst) burst(');
+    expect(runtimeSource).toContain("castTelegraph(u,spec,Boolean(getActionVfxPreset(spec,u)))");
+  });
 });
