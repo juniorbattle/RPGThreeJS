@@ -1,4 +1,4 @@
-import type { VfxOrientation, VfxScaleTier } from './vfx/VfxTypes';
+import type { CinematicDescriptor, VfxOrientation, VfxScaleTier } from './vfx/VfxTypes';
 
 /**
  * Presentation only.  Combat rules remain in the skill catalogue/runtime;
@@ -71,6 +71,11 @@ export interface SkillPresentation {
   scaleTier?: VfxScaleTier;
   /** Optional fine adjustment for compact support effects. */
   visualScale?: number;
+  /**
+   * Optional presentation-only sequence. V10G-A only supplies the runtime
+   * infrastructure; existing actions intentionally keep their V10F playback.
+   */
+  cinematic?: CinematicDescriptor;
 }
 
 const presentation = (

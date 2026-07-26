@@ -46,7 +46,7 @@ export type VfxSpriteSheetId =
   | 'root_vines'
   | 'frost_bind';
 
-export type VfxSpriteSheetMode = 'billboard' | 'projectile';
+export type VfxSpriteSheetMode = 'billboard' | 'projectile' | 'sky_descent';
 
 /** Presentation-only directional metadata. It never changes targeting or area rules. */
 export type VfxOrientation =
@@ -72,6 +72,69 @@ export type VfxAnchor =
   | 'targetGround'
   | 'camera'
   | 'screen';
+
+/**
+ * Semantic anchors used by the cinematic presentation layer. They are mapped
+ * to the existing tactical VFX anchors at playback time and never alter a
+ * skill's target cells.
+ */
+export type CinematicAnchor =
+  | 'caster'
+  | 'target'
+  | 'source'
+  | 'destination'
+  | 'impactPoint'
+  | 'aoeOrigin'
+  | 'self'
+  | 'arena';
+
+/** Presentation-only orientation metadata for staged combat VFX. */
+export type CinematicOrientation = VfxOrientation | 'sky_descent';
+
+export type CinematicPhaseType = 'cast' | 'prePosition' | 'travel' | 'impact' | 'aftermath';
+
+export interface VfxSkyDescentOptions {
+  /** World height above the real impact point where the effect starts. */
+  startHeight?: number;
+  /** Optional lateral offset, in world coordinates, for a readable descent. */
+  lateralOffset?: { x?: number; z?: number };
+  scaleStart?: number;
+  scaleEnd?: number;
+  rotationMode?: 'path' | 'none';
+  /** Reduced mode keeps the descent but can shorten it slightly. */
+  reducedGraphicsMultiplier?: number;
+}
+
+export interface CinematicReducedProfile {
+  enabled?: boolean;
+  durationMultiplier?: number;
+  intensityMultiplier?: number;
+  skipSecondary?: boolean;
+}
+
+export interface CinematicPhase {
+  id: string;
+  type: CinematicPhaseType;
+  startMs: number;
+  durationMs: number;
+  /** Existing VFX preset id only; raw assets are never valid here. */
+  preset: string;
+  anchor: CinematicAnchor;
+  orientation?: CinematicOrientation;
+  intensity?: number;
+  scaleMultiplier?: number;
+  opacityMultiplier?: number;
+  skyDescent?: VfxSkyDescentOptions;
+  reducedGraphics?: CinematicReducedProfile;
+}
+
+export interface CinematicDescriptor {
+  id: string;
+  totalMs: number;
+  impactAtMs: number;
+  phases: readonly CinematicPhase[];
+  reducedGraphics?: CinematicReducedProfile;
+}
 
 export type VfxStepType =
   | 'particleBurst'
@@ -123,6 +186,8 @@ export interface VfxStep {
   spread?: number;
   rotation?: number;
   orientation?: VfxOrientation;
+  /** Reusable presentation-only sky-to-ground trajectory primitive. */
+  skyDescent?: VfxSkyDescentOptions;
   blending?: 'additive' | 'normal';
 }
 
@@ -169,6 +234,13 @@ export interface VfxContext {
   orientation?: VfxOrientation;
   scaleTier?: VfxScaleTier;
   presentationScale?: number;
+  /** Applied by a cinematic phase without mutating registered VFX presets. */
+  opacityMultiplier?: number;
+  cinematicPhase?: {
+    anchor?: VfxAnchor;
+    orientation?: VfxOrientation;
+    skyDescent?: VfxSkyDescentOptions;
+  };
   helpers?: VfxRuntimeHelpers;
 }
 

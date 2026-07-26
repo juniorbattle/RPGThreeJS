@@ -1389,9 +1389,15 @@ function makeActionVfxContext(u,targets,cx,cz,spec={},visualContext={}){
 function playActionVfx(spec,u,targets,cx,cz,visualContext={}){
   const presetId=getActionVfxPreset(spec,u);
   if(!presetId)return null;
+  const presentation=getSkillPresentation(spec);
   const perTarget=presetId==='heal_burst'||presetId==='bless_aura'||presetId==='guard_barrier'||presetId==='support_holy_aura'||presetId==='arrow_rain';
   const visualTargets=(perTarget&&targets.length>1)?targets.map(target=>[target]):[targets];
-  const results=visualTargets.map(group=>combatVfxSystem.play(presetId,makeActionVfxContext(u,group,cx,cz,spec,visualContext))).filter(result=>result.played);
+  const results=visualTargets.map(group=>{
+    const context=makeActionVfxContext(u,group,cx,cz,spec,visualContext);
+    return presentation?.cinematic
+      ?combatVfxSystem.playCinematic(presentation.cinematic,context,presetId)
+      :combatVfxSystem.play(presetId,context);
+  }).filter(result=>result.played);
   if(!results.length)return null;
   const completion=Promise.all(results.map(result=>result.completion)).then(()=>undefined);
   void completion.catch(error=>console.warn('[CombatVfx] Action playback failed safely.',error));

@@ -8,6 +8,10 @@ import {
 } from './VfxSpriteSheets';
 import { getVfxTexture, disposeVfxTextures } from './VfxTextures';
 import type {
+  CinematicAnchor,
+  CinematicDescriptor,
+  CinematicOrientation,
+  CinematicPhaseType,
   VfxAnchor,
   VfxContext,
   VfxPlayResult,
@@ -26,6 +30,16 @@ export const VFX_RENDER_ORDER = Object.freeze({ ground: 34, impact: 70 });
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 const easeOutCubic = (value: number) => 1 - (1 - value) ** 3;
 const easeInOut = (value: number) => (value < 0.5 ? 2 * value * value : 1 - (-2 * value + 2) ** 2 / 2);
+
+export const CINEMATIC_PHASE_TYPES: readonly CinematicPhaseType[] = Object.freeze([
+  'cast', 'prePosition', 'travel', 'impact', 'aftermath',
+]);
+
+export const CINEMATIC_TIMING_GUIDELINES = Object.freeze({
+  fourAp: { totalMs: [720, 950] as const, impactAtMs: [400, 550] as const },
+  fiveAp: { totalMs: [1150, 1450] as const, impactAtMs: [650, 850] as const },
+  boss: { totalMs: [1050, 1500] as const, apocalypseMaxMs: 1650 },
+});
 
 const VFX_SCALE_TIER_MULTIPLIER: Readonly<Record<VfxScaleTier, number>> = Object.freeze({
   basic: 0.96,
@@ -50,12 +64,69 @@ function contextPresentationScale(context: VfxContext) {
 }
 
 function directionalRotation(step: VfxStep, context: VfxContext) {
-  const orientation = step.orientation ?? context.orientation;
+  const orientation = step.orientation ?? context.cinematicPhase?.orientation ?? context.orientation;
   if (!orientation || orientation === 'none' || orientation === 'center_on_target'
     || orientation === 'center_on_aoe_origin' || orientation === 'source_to_destination') return 0;
   const source = resolveVfxAnchor('source', context).project(context.camera);
   const target = resolveVfxAnchor(step.targetAnchor ?? 'target', context).project(context.camera);
   return Math.atan2(target.y - source.y, target.x - source.x);
+}
+
+function cinematicAnchorToVfxAnchor(anchor: CinematicAnchor): VfxAnchor {
+  switch (anchor) {
+    case 'caster':
+    case 'source':
+    case 'self': return 'source';
+    case 'target':
+    case 'destination': return 'target';
+    case 'impactPoint':
+    case 'aoeOrigin':
+    case 'arena': return 'groundTarget';
+    default: return 'groundTarget';
+  }
+}
+
+function cinematicOrientationToVfxOrientation(orientation?: CinematicOrientation) {
+  return orientation === 'sky_descent' ? 'center_on_aoe_origin' : orientation;
+}
+
+export function validateCinematicDescriptor(
+  descriptor: CinematicDescriptor | undefined,
+  hasPreset: (presetId: string) => boolean = (presetId) => Boolean(getVfxPreset(presetId)),
+) {
+  const issues: string[] = [];
+  if (!descriptor) return ['Missing cinematic descriptor.'];
+  if (!descriptor.id) issues.push('Cinematic descriptor requires an id.');
+  if (!Number.isFinite(descriptor.totalMs) || descriptor.totalMs <= 0) issues.push('totalMs must be positive.');
+  if (!Number.isFinite(descriptor.impactAtMs) || descriptor.impactAtMs < 0 || descriptor.impactAtMs > descriptor.totalMs) {
+    issues.push('impactAtMs must be within totalMs.');
+  }
+  if (!descriptor.phases.length) issues.push('Cinematic descriptor requires at least one phase.');
+  const ids = new Set<string>();
+  for (const phase of descriptor.phases) {
+    if (!CINEMATIC_PHASE_TYPES.includes(phase.type)) issues.push(`Unknown phase type: ${phase.type}.`);
+    if (!phase.id || ids.has(phase.id)) issues.push(`Phase ids must be unique: ${phase.id || '(missing)'}.`);
+    ids.add(phase.id);
+    if (!hasPreset(phase.preset)) issues.push(`Unknown VFX preset: ${phase.preset}.`);
+    if (!Number.isFinite(phase.startMs) || phase.startMs < 0) issues.push(`Phase ${phase.id} startMs must be non-negative.`);
+    if (!Number.isFinite(phase.durationMs) || phase.durationMs <= 0) issues.push(`Phase ${phase.id} durationMs must be positive.`);
+    if (phase.startMs + phase.durationMs > descriptor.totalMs) {
+      issues.push(`Phase ${phase.id} exceeds totalMs.`);
+    }
+    if (phase.orientation === 'sky_descent' && phase.type !== 'travel') {
+      issues.push(`sky_descent is reserved for travel phases (${phase.id}).`);
+    }
+  }
+  return issues;
+}
+
+export function getCinematicPlayablePhases(descriptor: CinematicDescriptor, reducedGraphics = false) {
+  return descriptor.phases.filter((phase) => {
+    const reduced = { ...descriptor.reducedGraphics, ...phase.reducedGraphics };
+    if (!reducedGraphics) return true;
+    if (reduced?.enabled === false) return false;
+    return !(reduced?.skipSecondary && phase.type === 'aftermath');
+  });
 }
 
 function unitBody(unit?: VfxUnitLike | null) {
@@ -227,6 +298,60 @@ export class VfxSystem {
     };
   }
 
+  /**
+   * Plays presentation phases on top of the existing preset library. It only
+   * changes timing, anchor and intensity; combat resolution still happens in
+   * the legacy runtime at its usual impact point.
+   */
+  playCinematic(descriptor: CinematicDescriptor, context: VfxContext, fallbackPresetId?: string): VfxPlayResult {
+    const issues = validateCinematicDescriptor(descriptor);
+    if (issues.length) {
+      console.warn('[CombatVfx] Invalid cinematic descriptor; using stable fallback.', issues);
+      return fallbackPresetId ? this.play(fallbackPresetId, context) : {
+        played: false,
+        presetId: descriptor.id,
+        impactTime: 0,
+        completion: Promise.resolve(),
+      };
+    }
+
+    const sequenceDurationScale = clamp(context.durationScale ?? 1, 0.45, 1.75);
+    const phases = getCinematicPlayablePhases(descriptor, Boolean(context.reducedGraphics));
+    const completion = Promise.all(phases.map(async (phase) => {
+      const phaseReduced = context.reducedGraphics
+        ? { ...descriptor.reducedGraphics, ...phase.reducedGraphics }
+        : undefined;
+      const phaseDurationMultiplier = clamp(phaseReduced?.durationMultiplier ?? 1, 0.45, 1.25);
+      await waitSeconds((phase.startMs / 1000) * sequenceDurationScale, context);
+      const preset = getVfxPreset(phase.preset);
+      if (!preset) return;
+      const phaseDurationScale = (phase.durationMs / 1000) / preset.duration;
+      const intensity = (context.intensity ?? 1)
+        * clamp(phase.intensity ?? 1, 0.35, 1.8)
+        * clamp(phaseReduced?.intensityMultiplier ?? 1, 0.35, 1.2);
+      const phaseContext: VfxContext = {
+        ...context,
+        intensity,
+        durationScale: sequenceDurationScale * phaseDurationScale * phaseDurationMultiplier,
+        presentationScale: (context.presentationScale ?? 1) * clamp(phase.scaleMultiplier ?? 1, 0.4, 2.5),
+        opacityMultiplier: (context.opacityMultiplier ?? 1) * clamp(phase.opacityMultiplier ?? 1, 0.15, 1.5),
+        cinematicPhase: {
+          anchor: cinematicAnchorToVfxAnchor(phase.anchor),
+          orientation: cinematicOrientationToVfxOrientation(phase.orientation),
+          ...(phase.orientation === 'sky_descent' ? { skyDescent: phase.skyDescent } : {}),
+        },
+      };
+      await this.play(phase.preset, phaseContext).completion;
+    })).then(() => undefined);
+
+    return {
+      played: true,
+      presetId: descriptor.id,
+      impactTime: (descriptor.impactAtMs / 1000) * sequenceDurationScale,
+      completion,
+    };
+  }
+
   dispose() {
     cleanupVfxObjects(this.activeObjects);
     this.activeObjects.clear();
@@ -255,41 +380,59 @@ export class VfxSystem {
     return Math.max(1, Math.round((step.count ?? 1) * intensity * this.quality(step, preset, context)));
   }
 
+  private withCinematicOverrides(step: VfxStep, context: VfxContext): VfxStep {
+    const phase = context.cinematicPhase;
+    if (!phase && context.opacityMultiplier === undefined) return step;
+    const skyDescent = phase?.skyDescent;
+    return {
+      ...step,
+      anchor: phase?.anchor ?? step.anchor,
+      orientation: phase?.orientation ?? step.orientation,
+      opacity: (step.opacity ?? 1) * (context.opacityMultiplier ?? 1),
+      ...(skyDescent ? { sheetMode: 'sky_descent' as const, skyDescent } : {}),
+    };
+  }
+
   private async scheduleStep(step: VfxStep, preset: VfxPreset, context: VfxContext, durationScale: number) {
-    await waitSeconds(step.startTime * durationScale, context);
-    const duration = step.duration * durationScale;
+    const effectiveStep = this.withCinematicOverrides(step, context);
+    await waitSeconds(effectiveStep.startTime * durationScale, context);
+    const duration = effectiveStep.duration * durationScale;
     try {
-      if (step.type === 'screenShake') {
-        const magnitude = (step.scale ?? 0.2) * clamp(context.intensity ?? 1, 0.35, 1.8) * this.quality(step, preset, context);
+      if (effectiveStep.type === 'screenShake') {
+        const magnitude = (effectiveStep.scale ?? 0.2) * clamp(context.intensity ?? 1, 0.35, 1.8) * this.quality(effectiveStep, preset, context);
         context.helpers?.screenShake?.(magnitude, duration);
         await waitSeconds(duration, context);
         return;
       }
-      if (step.type === 'screenFlash') {
+      if (effectiveStep.type === 'screenFlash') {
         const emphasis = clamp(context.intensity ?? 1, 0.7, 1.25);
-        const opacity = Math.min(0.22, (step.opacity ?? 0.12) * emphasis * this.quality(step, preset, context));
-        if (context.helpers?.screenFlash) context.helpers.screenFlash(String(step.color ?? '#ffffff'), opacity);
-        else this.fallbackScreenFlash(String(step.color ?? '#ffffff'), opacity, duration);
+        const opacity = Math.min(0.22, (effectiveStep.opacity ?? 0.12) * emphasis * this.quality(effectiveStep, preset, context));
+        if (context.helpers?.screenFlash) context.helpers.screenFlash(String(effectiveStep.color ?? '#ffffff'), opacity);
+        else this.fallbackScreenFlash(String(effectiveStep.color ?? '#ffffff'), opacity, duration);
         await waitSeconds(duration, context);
         return;
       }
-      if (step.type === 'hitStop') {
+      if (effectiveStep.type === 'hitStop') {
         await waitSeconds(duration, context);
         return;
       }
-      if (step.type === 'projectile') {
-        await this.playProjectile(step, preset, context, duration);
+      if (effectiveStep.type === 'projectile') {
+        await this.playProjectile(effectiveStep, preset, context, duration);
         return;
       }
-      if (step.type === 'spriteSheet' && step.sheetMode === 'projectile') {
-        await this.playSpriteSheetProjectile(step, preset, context, duration);
+      if (effectiveStep.type === 'spriteSheet' && effectiveStep.sheetMode === 'projectile') {
+        await this.playSpriteSheetProjectile(effectiveStep, preset, context, duration);
+        return;
+      }
+      if (effectiveStep.type === 'spriteSheet' && effectiveStep.sheetMode === 'sky_descent') {
+        await this.playSpriteSheetSkyDescent(effectiveStep, preset, context, duration);
         return;
       }
 
-      const anchors = resolveVfxAnchors(step.anchor, context);
-      await Promise.all(anchors.map((anchor) => this.playAtAnchor(step, preset, context, duration, anchor)));
+      const anchors = resolveVfxAnchors(effectiveStep.anchor, context);
+      await Promise.all(anchors.map((anchor) => this.playAtAnchor(effectiveStep, preset, context, duration, anchor)));
     } catch (error) {
-      console.warn(`[CombatVfx] Step ${step.type} failed safely.`, error);
+      console.warn(`[CombatVfx] Step ${effectiveStep.type} failed safely.`, error);
     }
   }
 
@@ -555,6 +698,86 @@ export class VfxSystem {
         setVfxSpriteSheetFrame(texture, definition, frame);
         sprite.position.lerpVectors(start, end, travel);
         sprite.position.y += Math.sin(Math.PI * travel) * 0.24;
+        sprite.scale.set(scale * frameAspect, scale, 1);
+        material.opacity = baseOpacity * spriteSheetEnvelope(progress, definition);
+      });
+    } finally {
+      this.cleanup(objects);
+      texture.dispose();
+    }
+  }
+
+  /**
+   * A reusable sky-to-ground trajectory for future cinematic attacks. The
+   * destination is still the exact tactical impact anchor; only the sprite's
+   * visual origin is raised and offset for readability.
+   */
+  private async playSpriteSheetSkyDescent(
+    step: VfxStep,
+    preset: VfxPreset,
+    context: VfxContext,
+    duration: number,
+  ) {
+    if (!step.spriteSheet) return;
+    const definition = VFX_SPRITE_SHEETS[step.spriteSheet];
+    const texture = await loadVfxSpriteSheetTexture(step.spriteSheet);
+    setVfxSpriteSheetFrame(texture, definition, 0);
+    const material = new THREE.SpriteMaterial({
+      map: texture,
+      color: asColor(step.color),
+      transparent: true,
+      opacity: step.opacity ?? 1,
+      alphaTest: 0.01,
+      depthWrite: false,
+      depthTest: definition.presentation.layer === 'ground',
+      toneMapped: false,
+      fog: false,
+      blending: spriteSheetBlending(definition, step),
+      rotation: step.rotation ?? 0,
+    });
+    const sprite = this.track(new THREE.Sprite(material), context);
+    const objects: THREE.Object3D[] = [sprite];
+    const options = step.skyDescent ?? {};
+    const end = resolveVfxAnchor(step.targetAnchor ?? step.anchor, context);
+    end.y += step.heightOffset ?? 0;
+    const lateral = options.lateralOffset ?? {};
+    const start = end.clone().add(new THREE.Vector3(
+      lateral.x ?? 0.85,
+      options.startHeight ?? 4.8,
+      lateral.z ?? -0.62,
+    ));
+    const baseHeight = (step.scale ?? 1)
+      * definition.presentation.scaleMultiplier
+      * clamp(context.particleScale ?? 1, 0.45, 1.8)
+      * (context.reducedGraphics ? 0.9 : 1)
+      * contextPresentationScale(context);
+    const frameAspect = definition.rows / definition.cols;
+    const quality = this.quality(step, preset, context);
+    const baseOpacity = (step.opacity ?? 1)
+      * definition.presentation.opacityMultiplier
+      * (context.reducedGraphics ? 0.92 + quality * 0.08 : 1);
+    const reducedDuration = context.reducedGraphics
+      ? clamp(options.reducedGraphicsMultiplier ?? 0.86, 0.65, 1)
+      : 1;
+    const actualDuration = duration * reducedDuration;
+    if (options.rotationMode !== 'none') {
+      const projectedStart = start.clone().project(context.camera);
+      const projectedEnd = end.clone().project(context.camera);
+      material.rotation += Math.atan2(projectedEnd.y - projectedStart.y, projectedEnd.x - projectedStart.x);
+    }
+    sprite.renderOrder = definition.presentation.layer === 'ground' ? VFX_RENDER_ORDER.ground : VFX_RENDER_ORDER.impact;
+    try {
+      await animate(actualDuration, (progress) => {
+        const frame = Math.min(definition.frameCount - 1, Math.floor(progress * definition.frameCount));
+        const descent = easeInOut(progress);
+        const scaleStart = clamp(options.scaleStart ?? 0.56, 0.2, 2);
+        const scaleEnd = clamp(options.scaleEnd ?? 1.18, 0.25, 2.5);
+        const scale = baseHeight
+          * (scaleStart + (scaleEnd - scaleStart) * descent)
+          * spriteSheetScalePulse(progress, definition);
+        setVfxSpriteSheetFrame(texture, definition, frame);
+        sprite.position.lerpVectors(start, end, descent);
+        if (definition.align === 'bottom') sprite.position.y += scale * 0.5;
         sprite.scale.set(scale * frameAspect, scale, 1);
         material.opacity = baseOpacity * spriteSheetEnvelope(progress, definition);
       });

@@ -2,6 +2,12 @@ import { describe, expect, it } from 'vitest';
 import { skillById } from '../game/skills';
 import { VFX_PRESET_IDS } from './vfx/VfxPresets';
 import {
+  CINEMATIC_PHASE_TYPES,
+  getCinematicPlayablePhases,
+  validateCinematicDescriptor,
+} from './vfx/VfxSystem';
+import type { CinematicDescriptor } from './vfx/VfxTypes';
+import {
   HERO_SKILL_IDS,
   SKILL_MOTION_PRESET_IDS,
   SKILL_VFX_PRESET_IDS,
@@ -171,5 +177,59 @@ describe('hero skill action contracts', () => {
     expect(skillById.get('n_teleport')?.upgradeLevel2).toMatchObject({
       additionalStatus: 'barrier', additionalStatusTarget: 'self',
     });
+  });
+});
+
+describe('V10G cinematic presentation infrastructure', () => {
+  const fixture: CinematicDescriptor = {
+    id: 'test_sky_descent_sequence',
+    totalMs: 1200,
+    impactAtMs: 760,
+    phases: [
+      { id: 'cast', type: 'cast', startMs: 0, durationMs: 240, preset: 'fireball', anchor: 'caster' },
+      { id: 'warn', type: 'prePosition', startMs: 220, durationMs: 260, preset: 'guard_barrier', anchor: 'aoeOrigin' },
+      {
+        id: 'descent', type: 'travel', startMs: 430, durationMs: 330, preset: 'ultimate_dark_meteor',
+        anchor: 'impactPoint', orientation: 'sky_descent',
+        skyDescent: { startHeight: 5.5, lateralOffset: { x: 0.8, z: -0.6 } },
+      },
+      { id: 'impact', type: 'impact', startMs: 760, durationMs: 250, preset: 'impact_explosion_large', anchor: 'impactPoint' },
+      {
+        id: 'after', type: 'aftermath', startMs: 920, durationMs: 280, preset: 'move_smoke_burst', anchor: 'impactPoint',
+        reducedGraphics: { skipSecondary: true },
+      },
+    ],
+  };
+
+  it('validates a fully staged descriptor using existing V10F presets only', () => {
+    expect(CINEMATIC_PHASE_TYPES).toEqual(['cast', 'prePosition', 'travel', 'impact', 'aftermath']);
+    expect(validateCinematicDescriptor(fixture)).toEqual([]);
+  });
+
+  it('rejects missing presets, invalid timing and invalid sky-descent placement', () => {
+    const invalid: CinematicDescriptor = {
+      ...fixture,
+      impactAtMs: 1400,
+      phases: [
+        { ...fixture.phases[0]!, preset: 'raw/meteor_sheet' },
+        { ...fixture.phases[2]!, type: 'impact' },
+      ],
+    };
+    expect(validateCinematicDescriptor(invalid).join(' ')).toMatch(/impactAtMs|Unknown VFX preset|sky_descent/);
+  });
+
+  it('keeps all core phases in reduced graphics while allowing secondary aftermath to skip', () => {
+    expect(getCinematicPlayablePhases(fixture, false).map((phase) => phase.id)).toEqual([
+      'cast', 'warn', 'descent', 'impact', 'after',
+    ]);
+    expect(getCinematicPlayablePhases(fixture, true).map((phase) => phase.id)).toEqual([
+      'cast', 'warn', 'descent', 'impact',
+    ]);
+  });
+
+  it('leaves every shipped V10F skill on its stable playback until a future V10G lot opts in', () => {
+    for (const id of [...HERO_SKILL_IDS, ...BOSS_SIGNATURE_IDS]) {
+      expect(getSkillPresentation({ key: id })?.cinematic).toBeUndefined();
+    }
   });
 });
