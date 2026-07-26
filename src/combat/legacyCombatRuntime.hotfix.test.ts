@@ -23,4 +23,9 @@ describe('V10F final hotfix runtime contracts', () => {
     expect(runtimeSource).toContain("if(preset==='leap_impact')playActionVfxAt(preset,u,head,spec)");
     expect(runtimeSource).toContain("else if(spec.key!=='ar_explosive_retreat')vfx('hit',head)");
   });
+
+  it('imports presentation tuning from the shared combatVfxPresentation module', () => {
+    expect(runtimeSource).toContain("from './combatVfxPresentation'");
+    expect(runtimeSource).not.toContain("const ACTION_PRESENTATION_TIERS=Object.freeze");
+  });
 });

@@ -17,6 +17,7 @@ import { installVfxWorkbench } from './vfx/VfxWorkbench';
 import { getCarouselStatusFrame, getStatusIndicatorAsset, getVisibleStatusIndicators } from './statusPresentation';
 import { skillById as SKILL_MAP } from '../game/skills';
 import { getSkillPresentation } from './skillPresentation';
+import { ACTION_PRESENTATION_TIERS, getActionVisualTier, getActionPresentationTuning } from './combatVfxPresentation';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
@@ -1031,27 +1032,6 @@ const SPRITE_MOTION_PRESETS=Object.freeze({
   hit_reaction:{hitOut:0.06,hitBack:0.12,hitDistance:0.11,squash:0.035},
   knockout:{hitOut:0.08,hitBack:0.14,hitDistance:0.16,squash:0.06}
 });
-// Presentation-only hierarchy. These values never affect AP, damage, targeting
-// or any other combat rule; they only tune the existing motion/VFX pipeline.
-const ACTION_PRESENTATION_TIERS=Object.freeze({
-  1:{intensity:0.88,particleScale:0.90,durationScale:0.94,motionDurationScale:0.92,motionIntensity:0.94,afterEffectDelay:0.03},
-  2:{intensity:0.98,particleScale:0.98,durationScale:0.98,motionDurationScale:0.98,motionIntensity:1.00,afterEffectDelay:0.035},
-  3:{intensity:1.07,particleScale:1.04,durationScale:1.01,motionDurationScale:1.02,motionIntensity:1.04,afterEffectDelay:0.04},
-  4:{intensity:1.14,particleScale:1.08,durationScale:1.04,motionDurationScale:1.05,motionIntensity:1.08,afterEffectDelay:0.05},
-  5:{intensity:1.20,particleScale:1.11,durationScale:1.04,motionDurationScale:1.08,motionIntensity:1.11,afterEffectDelay:0.07},
-  6:{intensity:1.25,particleScale:1.14,durationScale:1.05,motionDurationScale:1.10,motionIntensity:1.14,afterEffectDelay:0.09}
-});
-function getActionVisualTier(spec={}){
-  const presentation=getSkillPresentation(spec);
-  if(presentation?.visualTier)return presentation.visualTier;
-  if(spec.key==='attack')return cl(Math.floor(spec.charge||0)+1,1,3);
-  return cl(Math.round(spec.ap||1),1,5);
-}
-function getActionPresentationTuning(spec={}){
-  const tier=getActionVisualTier(spec),base=ACTION_PRESENTATION_TIERS[tier]||ACTION_PRESENTATION_TIERS[1],presentation=getSkillPresentation(spec);
-  const scaleTier=presentation?.scaleTier||(tier>=6?'boss':tier>=5?'5ap_ultimate':tier>=4?'4ap':tier>=3?'3ap':tier>=2?'2ap':'basic');
-  return {...base,tier,scaleTier,presentationScale:cl(presentation?.visualScale??1,.55,1.45)};
-}
 function scaledSpriteMotionPreset(base,context={}){
   const timeScale=cl(context.motionDurationScale||1,0.82,1.18),intensity=cl(context.motionIntensity||1,0.86,1.18),out={...base};
   for(const key of ['windup','dash','recoil','cast','jumpUp','jumpDown','hitOut','hitBack'])if(Number.isFinite(out[key]))out[key]*=timeScale;
