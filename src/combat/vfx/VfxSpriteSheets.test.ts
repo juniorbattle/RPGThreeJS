@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
+import { inflateSync } from 'node:zlib';
 import runtimeV1Manifest from '../../../public/assets/vfx/runtime/v1/manifest.json';
 import runtimeV2Manifest from '../../../public/assets/vfx/runtime/v2/manifest.json';
 import { VFX_PRESETS } from './VfxPresets';
@@ -33,6 +34,46 @@ function readPngHeader(path: URL) {
     bitDepth: buffer[24],
     colorType: buffer[25],
   };
+}
+
+function decodeRgbaPng(path: URL) {
+  const png = readFileSync(path);
+  const width = png.readUInt32BE(16);
+  const height = png.readUInt32BE(20);
+  const chunks: Buffer[] = [];
+  for (let offset = 8; offset < png.length;) {
+    const length = png.readUInt32BE(offset);
+    const type = png.toString('ascii', offset + 4, offset + 8);
+    if (type === 'IDAT') chunks.push(png.subarray(offset + 8, offset + 8 + length));
+    offset += length + 12;
+    if (type === 'IEND') break;
+  }
+  const encoded = inflateSync(Buffer.concat(chunks));
+  const stride = width * 4;
+  const pixels = Buffer.alloc(stride * height);
+  const paeth = (a: number, b: number, c: number) => {
+    const p = a + b - c;
+    const pa = Math.abs(p - a), pb = Math.abs(p - b), pc = Math.abs(p - c);
+    return pa <= pb && pa <= pc ? a : pb <= pc ? b : c;
+  };
+  for (let y = 0; y < height; y++) {
+    const filter = encoded[y * (stride + 1)] ?? 0;
+    const source = y * (stride + 1) + 1;
+    const target = y * stride;
+    for (let x = 0; x < stride; x++) {
+      const raw = encoded[source + x] ?? 0;
+      const left = x >= 4 ? (pixels[target + x - 4] ?? 0) : 0;
+      const up = y > 0 ? (pixels[target + x - stride] ?? 0) : 0;
+      const upperLeft = y > 0 && x >= 4 ? (pixels[target + x - stride - 4] ?? 0) : 0;
+      const predictor: number =
+        filter === 1 ? left :
+        filter === 2 ? up :
+        filter === 3 ? Math.floor((left + up) / 2) :
+        filter === 4 ? paeth(left, up, upperLeft) : 0;
+      pixels[target + x] = (raw + predictor) & 0xff;
+    }
+  }
+  return { width, height, pixels };
 }
 
 describe('combat VFX sprite sheets', () => {
@@ -93,6 +134,40 @@ describe('combat VFX sprite sheets', () => {
       expect(step.spriteSheet).toBeDefined();
       expect(VFX_SPRITE_SHEET_IDS).toContain(step.spriteSheet);
       if (step.sheetMode === 'projectile') expect(step.targetAnchor).toBeDefined();
+    }
+  });
+
+  it('keeps root_vines and frost_bind free of magenta and separator bands', () => {
+    for (const id of ['root_vines', 'frost_bind'] as const) {
+      const definition = VFX_SPRITE_SHEETS[id];
+      const { width, height, pixels } = decodeRgbaPng(runtimePath(definition.url));
+      let opaqueMagenta = 0;
+      for (let offset = 0; offset < pixels.length; offset += 4) {
+        if (
+          (pixels[offset + 3] ?? 0) > 8 &&
+          (pixels[offset] ?? 0) > 230 &&
+          (pixels[offset + 1] ?? 0) < 40 &&
+          (pixels[offset + 2] ?? 0) > 230
+        ) opaqueMagenta++;
+      }
+      expect(opaqueMagenta, `${id} opaque magenta pixels`).toBe(0);
+
+      for (const boundary of [256, 512, 768, 1024]) {
+        for (let delta = -2; delta <= 1; delta++) {
+          const x = boundary + delta;
+          const y = boundary + delta;
+          let columnOpaque = 0;
+          let rowOpaque = 0;
+          for (let index = 0; index < height; index++) {
+            if ((pixels[(index * width + x) * 4 + 3] ?? 0) > 8) columnOpaque++;
+          }
+          for (let index = 0; index < width; index++) {
+            if ((pixels[(y * width + index) * 4 + 3] ?? 0) > 8) rowOpaque++;
+          }
+          expect(columnOpaque, `${id} separator column ${x}`).toBeLessThan(height / 2);
+          expect(rowOpaque, `${id} separator row ${y}`).toBeLessThan(width / 2);
+        }
+      }
     }
   });
 });

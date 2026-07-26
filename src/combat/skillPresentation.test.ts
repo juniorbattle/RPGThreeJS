@@ -93,13 +93,26 @@ describe('hero skill action contracts', () => {
       ['n_flame_wave', 'shape_cone_blast', 'align_cone', '4ap'],
       ['w_purify', 'support_holy_aura', 'center_on_target', '3ap'],
       ['e_binding_seal', 'root_vines', 'center_on_target', '4ap'],
-      ['ro_jaw_trap', 'root_vines', 'center_on_target', '3ap'],
+      ['ro_jaw_trap', 'root_vines', 'center_on_target', '4ap'],
+      ['ro_tumble', 'leap_impact', 'source_to_destination', '3ap'],
+      ['ar_explosive_retreat', 'impact_explosion_large', 'center_on_aoe_origin', '3ap'],
     ] as const;
 
     for (const [id, vfxPreset, orientation, scaleTier] of contracts) {
       expect(getSkillPresentation({ key: id })).toMatchObject({ vfxPreset, orientation, scaleTier });
       expect(VFX_PRESET_IDS).toContain(vfxPreset);
     }
+  });
+
+  it('keeps boss support and pin visuals at boss scale without boss-signature semantics', () => {
+    for (const id of ['boss_guard', 'boss_regen', 'boss_fortify'] as const) {
+      expect(getSkillPresentation({ key: id })).toMatchObject({ scaleTier: 'boss' });
+      expect(getSkillPresentation({ key: id })?.visualTier).not.toBe(6);
+    }
+    expect(getSkillPresentation({ key: 'boss_pin' })).toMatchObject({
+      orientation: 'source_to_target',
+      scaleTier: 'boss',
+    });
   });
 
   it('keeps dark lightning distinct from teleport and curse presentation', () => {

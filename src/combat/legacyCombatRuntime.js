@@ -658,6 +658,7 @@ const INNATE_GIFTS_BY_WEAPON={
   hand_cannon:{name:'Tir de Zone',desc:"25% des dégâts en zone sur les ennemis adjacents."}
 };
 const ITEMS={
+  revive_vial:{name:'Fiole de résurrection',effect:'revive',power:0.5,range:[0,1],radius:0,desc:'Relève un allié K.O. avec 50% de ses PV.'},
   potion:  {name:'Potion',  effect:'heal', flatHeal:55, range:[0,1], radius:0,   desc:'Rend 55 PV à un allié proche.'},
   ether:   {name:'Éther',   effect:'ap',   apRestore:3, range:[0,1], radius:0,   desc:'Rend 3 AP à un allié proche.'},
   antidote:{name:'Antidote',effect:'cure',              range:[0,1], radius:0,   desc:'Dissipe les altérations négatives d’un allié.'},
@@ -1367,11 +1368,11 @@ function getActionVfxPreset(spec={},u=null){
   if(spec.support)return 'bless_aura';
   return null;
 }
-function makeActionVfxContext(u,targets,cx,cz,spec={}){
+function makeActionVfxContext(u,targets,cx,cz,spec={},visualContext={}){
   const tuning=getActionPresentationTuning(spec),presentation=getSkillPresentation(spec),primary=targets&&targets[0];
-  const targetPoint=primary?.grp
+  const targetPoint=visualContext.targetPoint||(primary?.grp
     ?new THREE.Vector3(primary.grp.position.x,primary.grp.position.y,primary.grp.position.z)
-    :new THREE.Vector3(wX(cx),tileTop(cx,cz),wZ(cz));
+    :new THREE.Vector3(wX(cx),tileTop(cx,cz),wZ(cz)));
   return {
     scene,camera,sourceUnit:u,targetUnits:targets,
     targetPoint,
@@ -1385,12 +1386,12 @@ function makeActionVfxContext(u,targets,cx,cz,spec={}){
     helpers:{wait,screenShake,screenFlash,floatText,wX,wZ,tileTop}
   };
 }
-function playActionVfx(spec,u,targets,cx,cz){
+function playActionVfx(spec,u,targets,cx,cz,visualContext={}){
   const presetId=getActionVfxPreset(spec,u);
   if(!presetId)return null;
   const perTarget=presetId==='heal_burst'||presetId==='bless_aura'||presetId==='guard_barrier'||presetId==='support_holy_aura'||presetId==='arrow_rain';
   const visualTargets=(perTarget&&targets.length>1)?targets.map(target=>[target]):[targets];
-  const results=visualTargets.map(group=>combatVfxSystem.play(presetId,makeActionVfxContext(u,group,cx,cz,spec))).filter(result=>result.played);
+  const results=visualTargets.map(group=>combatVfxSystem.play(presetId,makeActionVfxContext(u,group,cx,cz,spec,visualContext))).filter(result=>result.played);
   if(!results.length)return null;
   const completion=Promise.all(results.map(result=>result.completion)).then(()=>undefined);
   void completion.catch(error=>console.warn('[CombatVfx] Action playback failed safely.',error));
@@ -1412,13 +1413,18 @@ function playFeedbackVfx(presetId,source,target){
   void result.completion.catch(error=>console.warn('[CombatVfx] Feedback playback failed safely.',error));
   return true;
 }
-async function attackAnim(u,spec,cx,cz,targets=[]){ const ctr=new THREE.Vector3(wX(cx),tileTop(cx,cz)+0.6,wZ(cz)); const presentation=getSkillPresentation(spec),preset=getActionMotionPreset(spec),isUltimate=Boolean(presentation?.ultimate),tuning=getActionPresentationTuning(spec),isBossSignature=tuning.tier===6,impactCount=presentation?.impactCount||1;
+async function attackAnim(u,spec,cx,cz,targets=[],actionContext={}){ const ctr=new THREE.Vector3(wX(cx),tileTop(cx,cz)+0.6,wZ(cz)); const presentation=getSkillPresentation(spec),preset=getActionMotionPreset(spec),isUltimate=Boolean(presentation?.ultimate),tuning=getActionPresentationTuning(spec),isBossSignature=tuning.tier===6,impactCount=presentation?.impactCount||1;
   const impact=async()=>{
     if(isUltimate){ floatText(u,'ULTIME','#ffd86a',true); screenFlash('#fff0b0',0.07); screenShake(0.20,0.14); }
     else if(isBossSignature){ floatText(u,'SIGNATURE','#ffb36a',true); screenFlash('#ffb36a',0.055); screenShake(0.22,0.16); }
     if(spec.key!=='attack')castTelegraph(u,spec);
-    const generated=playActionVfx(spec,u,targets,cx,cz);
-    if(generated){ for(let i=1;i<impactCount;i++){ await wait(0.10); playActionVfx(spec,u,targets,cx,cz); } await wait(generated.impactTime+tuning.afterEffectDelay); return; }
+    if(spec.key==='ro_tumble')return;
+    const origin=actionContext.origin;
+    const visualContext=spec.key==='ar_explosive_retreat'&&origin
+      ?{targetPoint:new THREE.Vector3(wX(origin.gx),tileTop(origin.gx,origin.gz),wZ(origin.gz))}
+      :{};
+    const generated=playActionVfx(spec,u,targets,cx,cz,visualContext);
+    if(generated){ for(let i=1;i<impactCount;i++){ await wait(0.10); playActionVfx(spec,u,targets,cx,cz,visualContext); } await wait(generated.impactTime+tuning.afterEffectDelay); return; }
     if(spec.heal||spec.revive||spec.support||spec.apRestore||spec.cure){
       const type=(spec.type==='debuff')?'dark':'heal';
       for(const [gx,gz] of aoeCells(u,spec,cx,cz))vfx(type,new THREE.Vector3(wX(gx),tileTop(gx,gz)+0.6,wZ(gz)));
@@ -1456,7 +1462,10 @@ async function doMove(u,spec,cx,cz){ setFacing(u,cx,cz); const c=cellAt(cx,cz); 
   }
   else if(spec.mode==='leap'){
     const from=u.grp.position.clone(); placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:(from.x+dest.x)/2,y:Math.max(from.y,dest.y)+motion.jumpHeight,z:(from.z+dest.z)/2},motion.jumpUp,easeOutCubic); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.jumpDown,easeInOut);
-    const preset=getActionVfxPreset(spec,u); if(preset==='leap_impact')playActionVfxAt(preset,u,head,spec); else vfx('hit',head); screenShake(0.32,0.22);
+    const preset=getActionVfxPreset(spec,u);
+    if(preset==='leap_impact')playActionVfxAt(preset,u,head,spec);
+    else if(spec.key!=='ar_explosive_retreat')vfx('hit',head);
+    if(spec.key!=='ar_explosive_retreat')screenShake(0.32,0.22);
   }
   else { placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.dash||0.2,easeOutCubic); screenShake(0.5,0.3); screenFlash('#fff0b0',0.16); vfx('hit',head);
     if(spec.impact){ const hits=aliveUnits().filter(t=>t.team!==u.team&&(Math.abs(t.gx-cx)+Math.abs(t.gz-cz)===1)); for(const t of hits){ const impactSpec={type:'phys',power:spec.power||8}; const crit=Math.random()<critChance(u,t,impactSpec); let {dmg}=computeDamage(u,t,impactSpec); if(crit)dmg=Math.round(dmg*1.5); floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':'#ffffff',crit); if(crit){ if(!playFeedbackVfx('critical_hit',u,t)){ screenShake(0.5,0.3); screenFlash('#fff3b0',0.18); vfx('crit',t.grp.position.clone().add(new THREE.Vector3(0,1,0))); } logMsg('Coup critique !'); } await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&crit&&isBreakOpen(t)){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); } if(t.alive&&spec.impact.status)applyStatus(t,spec.impact.status,spec.impact.statusTurns); await wait(0.06); } } }
@@ -1570,8 +1579,8 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
   if(spec.key==='attack'&&spec.weaponType==='rapier'&&targets.length){ const t=targets[0]; const dist=Math.abs((u.size>1?bossCenterGX(u):u.gx)-t.gx)+Math.abs((u.size>1?bossCenterGZ(u):u.gz)-t.gz); spec.type=dist>=2?'mag':'phys'; }
   logMsg(u.name+' → '+spec.name);
   await combatStageEnter(u,targets,spec);
-  await attackAnim(u,spec,impactCx,impactCz,targets);
-  if(spec.item&&spec.itemId)G.inv[spec.itemId]=Math.max(0,(G.inv[spec.itemId]||0)-1);
+  await attackAnim(u,spec,impactCx,impactCz,targets,context);
+  if(spec.item&&spec.itemId&&!spec.revive)G.inv[spec.itemId]=Math.max(0,(G.inv[spec.itemId]||0)-1);
   // Process effects[] if present (multi-effect system)
   if(spec.effects&&spec.effects.length){
     let totalDamageDealt=0;
@@ -1611,7 +1620,7 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
     const lsEffect=spec.effects.find(e=>e.kind==='lifesteal');
     if(lsEffect&&totalDamageDealt>0&&u.alive){ const lsPct=lsEffect.lifestealPercent||0; const healAmt=Math.round(totalDamageDealt*lsPct); if(healAmt>0){ applyHeal(u,healAmt); } }
   } else if(spec.heal){ for(const t of targets)applyHeal(t,spec.healPercent!=null?Math.round(t.maxhp*spec.healPercent):(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(u)*spec.power))+Math.floor(effCHA(u)/4)); await wait(0.25); }
-  else if(spec.revive){ for(const t of targets)reviveUnit(t,Math.round(t.maxhp*spec.power)); await wait(0.25); }
+  else if(spec.revive){ let revived=0; for(const t of targets){ if(!t.alive&&t.downed&&t.team===u.team){ reviveUnit(t,Math.round(t.maxhp*spec.power)); revived++; } } if(revived>0&&spec.item&&spec.itemId)G.inv[spec.itemId]=Math.max(0,(G.inv[spec.itemId]||0)-1); await wait(0.25); }
   else if(spec.apRestore){ for(const t of targets){ t.ap=Math.min(t.maxap,t.ap+spec.apRestore); floatText(t,'+'+spec.apRestore+' AP','#7fd0ff',true); flashUnit(t,'#bfe0ff'); refreshPanel(t); } await wait(0.25); }
   else if(spec.cure){ for(const t of targets){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); flashUnit(t,'#bfffc0'); refreshPanel(t); } await wait(0.25); }
   else { let basicDmg=0; for(const t of targets){ const friendly=t.team===u.team;
@@ -1961,6 +1970,7 @@ function openSkillMenu(){ const u=G.active; dom.skillmenu.classList.remove('hidd
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.classList.contains('dis'))return; const id=b.dataset.s; if(id==='_back'){ dom.skillmenu.classList.add('hidden'); return; } enterTarget(getSpec(u,id)); }); }
 function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name:it.name,ap:1+G.itemsUsedThisTurn,range:it.range,radius:it.radius||0,self:false,item:true,desc:it.desc};
   if(it.effect==='heal')  return Object.assign(base,{type:'heal',power:0,heal:true,support:true,flatHeal:it.flatHeal});
+  if(it.effect==='revive')return Object.assign(base,{type:'revive',power:it.power||0.5,revive:true,support:true,targetMode:'ally'});
   if(it.effect==='ap')    return Object.assign(base,{type:'buff',power:0,support:true,apRestore:it.apRestore});
   if(it.effect==='cure')  return Object.assign(base,{type:'buff',power:0,support:true,cure:true});
   if(it.effect==='bomb')  return Object.assign(base,{type:'mag', power:0,offensive:true,acc:1,flatDmg:it.flatDmg});
@@ -1968,7 +1978,7 @@ function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name
   return base; }
 function invCount(){ let n=0; for(const k in G.inv)n+=G.inv[k]; return n; }
 function openItemMenu(){ const u=G.active; dom.skillmenu.classList.remove('hidden'); const nextCost=G.itemsUsedThisTurn+1; let h='<div class="ttl">Objets — sac commun · '+u.ap+' AP</div>'; let any=false;
-  for(const id in ITEMS){ const n=G.inv[id]||0; const it=ITEMS[id]; const dis=n<=0||u.ap<nextCost; if(n>0)any=true; h+='<div class="btn '+(dis?'dis':'')+'" data-i="'+id+'" title="'+it.desc+'">'+it.name+' <small>×'+n+' · '+nextCost+' AP</small></div>'; }
+  for(const id in ITEMS){ const n=G.inv[id]||0; const it=ITEMS[id]; const hasKoAlly=it.effect!=='revive'||G.units.some(x=>!x.alive&&x.downed&&x.team===u.team); const dis=n<=0||u.ap<nextCost||!hasKoAlly; if(n>0)any=true; h+='<div class="btn '+(dis?'dis':'')+'" data-i="'+id+'" title="'+it.desc+'">'+it.name+' <small>×'+n+' · '+nextCost+' AP</small></div>'; }
   if(!any)h+='<div class="btn dis">Sac vide</div>';
   h+='<div class="btn" data-i="_back">Retour</div>';
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.classList.contains('dis'))return; const id=b.dataset.i; if(id==='_back'){ dom.skillmenu.classList.add('hidden'); return; } enterTarget(itemSpec(id)); }); }
