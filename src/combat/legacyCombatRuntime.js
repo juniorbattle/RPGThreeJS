@@ -715,7 +715,6 @@ function clearStatusBadges(u){
 function disposeStatusIndicators(u){
   if(!u)return; clearStatusBadges(u);
   if(u.statusIndicatorGroup){ u.statusIndicatorGroup.removeFromParent(); u.statusIndicatorGroup=null; }
-  if(u.statusHalo){ u.statusHalo.removeFromParent(); u.statusHalo.geometry.dispose(); u.statusHalo.material.dispose(); u.statusHalo=null; }
 }
 function statusBadgeAnchorY(u){
   const scaledHeight=(u.spriteHeight||1)*Math.abs(u.spr.scale.y||1);
@@ -743,11 +742,6 @@ function syncStatusIndicators(u,time){
   }
   const frame=getCarouselStatusFrame(u.statuses,Math.max(0,time*1000-(group.userData.startedAt||time*1000)),{exhausted:isExhausted(u),phaseOffsetMs:group.userData.phaseOffset||0,reducedGraphics:REDUCED_GRAPHICS});
   group.visible=Boolean(u.alive&&u.grp.visible&&frame);
-  const halo=u.statusHalo,primary=all[0];
-  if(halo){
-    const isBreak=primary&&primary.key==='staggered',isTired=primary&&primary.key==='exhausted'; halo.visible=Boolean(u.alive&&(isBreak||isTired));
-    if(halo.visible){ const pulse=.5+.5*Math.sin(time*(isBreak?7:3.2)); halo.material.color.set(isBreak?'#ff754d':'#d9c770'); halo.material.opacity=(isBreak ? .38 : .2)+pulse*(isBreak ? .2 : .08); const s=(u.size||1)*(1.04+(isBreak ? .08 : .035)*pulse); halo.scale.set(s,s,1); }
-  }
   if(!frame)return;
   const transitioning=frame.transitionProgress>0&&frame.next;
   const display=transitioning&&frame.transitionProgress>=.5?frame.next:frame.current;
@@ -847,8 +841,6 @@ function createUnit(def){
   const mat=new THREE.MeshBasicMaterial({map:s.tex,transparent:true,alphaTest:0.05,depthWrite:false,side:THREE.DoubleSide,fog:false,toneMapped:false});
   const spr=new THREE.Mesh(new THREE.PlaneGeometry(s.w,s.h),mat);
   spr.position.y=s.h*0.5; spr.renderOrder=6; grp.add(spr);
-  const statusHalo=new THREE.Mesh(new THREE.RingGeometry(0.57,0.82,40),new THREE.MeshBasicMaterial({color:0xff754d,transparent:true,opacity:0,depthWrite:false,depthTest:false,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,fog:false,toneMapped:false}));
-  statusHalo.rotation.x=-Math.PI/2; statusHalo.position.y=.071; statusHalo.renderOrder=40; statusHalo.visible=false; grp.add(statusHalo);
   const statusIndicatorGroup=new THREE.Group(); statusIndicatorGroup.name='status-indicators'; statusIndicatorGroup.renderOrder=STATUS_BADGE_RENDER_ORDER; grp.add(statusIndicatorGroup);
   scene.add(grp);
   const unitMaxAp=Number.isFinite(def.maxap)?def.maxap:Number.isFinite(def.maxAp)?def.maxAp:5;
@@ -863,7 +855,7 @@ function createUnit(def){
     spriteFacing:def.spriteFacing??1,
     facing:def.team==='player'?{dx:1,dz:0}:{dx:-1,dz:0},
     visualFacingX:def.team==='player'?1:-1,
-    grp, spr, outline, mat, blob, teamGlow, teamRingUnder, teamRing, statusHalo, statusIndicatorGroup, spriteHeight:s.h, baseY:s.h*0.5,
+    grp, spr, outline, mat, blob, teamGlow, teamRingUnder, teamRing, statusIndicatorGroup, spriteHeight:s.h, baseY:s.h*0.5,
     cell(){ return cellAt(this.gx,this.gz); }
   };
   const spriteScale=largeUnitSpriteScale(u);

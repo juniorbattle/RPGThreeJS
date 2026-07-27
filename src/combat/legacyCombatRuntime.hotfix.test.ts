@@ -44,4 +44,12 @@ describe('V10F final hotfix runtime contracts', () => {
     expect(runtimeSource).toContain("if(preset!=='teleport_burst')screenFlash");
     expect(runtimeSource).toContain('if(!dashHasAuthored){ screenFlash');
   });
+
+  it('removes oversized statusHalo ring for exhausted/staggered (V10G-R2A.3)', () => {
+    expect(runtimeSource).not.toContain('statusHalo');
+    expect(runtimeSource).not.toContain('RingGeometry(0.57,0.82');
+    expect(runtimeSource).not.toContain('halo.visible');
+    expect(runtimeSource).not.toContain('halo.material');
+    expect(runtimeSource).not.toContain('halo.scale');
+  });
 });

@@ -94,3 +94,44 @@ describe('status presentation', () => {
     expect(reduced?.spriteScale).toBeLessThan(normal?.spriteScale ?? 0);
   });
 });
+
+describe('V10G-R2A.3 compact exhausted indicator', () => {
+  it('status carousel includes exhausted indicator when exhausted', () => {
+    const result = getVisibleStatusIndicators({}, { exhausted: true, maxVisible: 10 });
+    expect(result.visible.some(({ key }) => key === 'exhausted')).toBe(true);
+  });
+
+  it('status carousel includes staggered indicator when staggered', () => {
+    const result = getVisibleStatusIndicators({ staggered: 1 }, { maxVisible: 10 });
+    expect(result.visible.some(({ key }) => key === 'staggered')).toBe(true);
+  });
+
+  it('Brisé overrides Essoufflé visually in carousel', () => {
+    const result = getVisibleStatusIndicators({ staggered: 1 }, { exhausted: true, maxVisible: 10 });
+    expect(result.visible.some(({ key }) => key === 'staggered')).toBe(true);
+    expect(result.visible.some(({ key }) => key === 'exhausted')).toBe(false);
+  });
+
+  it('exhausted indicator uses compact carousel badge, not floor ring', () => {
+    const frame = getCarouselStatusFrame({}, 0, { exhausted: true });
+    expect(frame).toBeDefined();
+    expect(frame?.current.key).toBe('exhausted');
+    expect(frame?.current.shortCode).toBe('ESS');
+    expect(frame?.current.spriteScale).toBeLessThan(1.1);
+  });
+
+  it('staggered indicator uses compact carousel badge, not floor ring', () => {
+    const frame = getCarouselStatusFrame({ staggered: 1 }, 0);
+    expect(frame).toBeDefined();
+    expect(frame?.current.key).toBe('staggered');
+    expect(frame?.current.shortCode).toBe('BRI');
+    expect(frame?.current.spriteScale).toBeLessThan(1.15);
+  });
+
+  it('exhausted and staggered indicator assets remain referenced', () => {
+    const exhaustedAsset = getStatusIndicatorAsset('exhausted');
+    expect(exhaustedAsset?.url).toMatch(/^\/assets\/status-indicators\/runtime\//);
+    const staggeredAsset = getStatusIndicatorAsset('staggered');
+    expect(staggeredAsset?.url).toMatch(/^\/assets\/status-indicators\/runtime\//);
+  });
+});
