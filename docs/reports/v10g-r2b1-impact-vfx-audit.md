@@ -60,6 +60,48 @@ appearance → buildup → impact peak → burst → dissipation
 - Readable over combat floor
 - Large and impactful enough for combat readability
 
+### Visual Presence / Saturation / Opacity Rule
+
+Combat VFX are central to battle spectacle.
+Every generated spritesheet must be readable, vivid, saturated, dense, and impactful in real combat.
+
+**Required:**
+- Strong silhouette
+- Saturated colors
+- High contrast
+- Opaque or near-opaque impact core
+- Visible peak impact frame
+- Readable dissipation
+- Tactical-scale readability
+- No washed-out global transparency
+- No weak smoke-only effect
+- No pale gray/white-only VFX
+- No tiny particle-only effect
+
+**Frame occupancy at peak:**
+- Feedback/small VFX: 45–60% of 256×256 frame
+- Normal skill VFX: 60–75%
+- Heavy / 3AP / 4AP VFX: 70–85%
+- Ultimate / boss VFX: 85–95%
+
+**Color rules:**
+- Holy/heal must not be pale white only; use gold/cyan/blue sacred edges with dense luminous core
+- Dark/curse must not be black-transparent only; use violet/deep blue/dark magenta with readable contour
+- Fire must be red/orange/gold with dense core
+- Poison must be toxic green/purple with strong silhouette
+- Frost must be icy cyan/white with blue contour
+
+**Existing doctrine preserved:**
+- Magenta background
+- 1280×1280
+- 5×5 grid
+- 25 frames
+- Impact-only
+- No caster-to-target travel
+- No ground decal
+- No persistent floor trace
+- No floor-stuck aura/field
+
 ---
 
 ## 1. Full Action Audit
@@ -86,7 +128,7 @@ appearance → buildup → impact peak → burst → dissipation
 | l_firmament_lance | 5 | Lancer Ultimate | ultimate_firmament_lance | thrust_line (projectile) | Shared (3 actions) | Yes — travel VFX | Replace: `pierce_impact` + `lance_pierce_burst` |
 | n_dark_bolt | 2 | Dark Mage | shadow_lightning_bolt | shadow_lightning_bolt (projectile) | Shared (3 actions) | Yes — travel VFX | Replace with `dark_bolt_impact` |
 | n_teleport | 3 | Dark Mage | teleport_burst | teleport_burst | Shared (6 actions) | No — teleport is valid impact | Keep |
-| n_flame_wave | 4 | Dark Mage | shape_cone_blast | cone_blast (projectile) | Shared (1 action) | Yes — travel VFX | Replace with `fire_burst_medium` |
+| n_flame_wave | 4 | Dark Mage | shape_cone_blast | cone_blast (projectile) | Shared (1 action) | Yes — travel VFX | Replace with `fire_impact_burst` |
 | n_dark_meteor | 5 | Dark Mage Ultimate | ultimate_dark_meteor | meteor_fall | Shared (1 action) | Partially — sky descent is valid | Refine: `meteor_core_impact` + `meteor_shock_burst` |
 | w_salvation | 2 | White Mage | heal_burst | heal_touch | Shared (2 actions) | No — dedicated heal | Keep |
 | w_purify | 3 | White Mage | support_holy_aura | holy_aura | Shared (8 actions) | Yes — reuses generic aura | Refine: `holy_purify_burst` |
@@ -114,7 +156,7 @@ appearance → buildup → impact peak → burst → dissipation
 | ro_fault_breaker | 5 | Rogue Ultimate | ultimate_fault_breaker | slash_arc | Shared (13 actions) | Yes — reuses generic slash | Replace: `fault_breaker_shatter_burst` (unused PNG available) + `fault_breaker_debris_burst` |
 | ar_calibrated_shot | 2 | Artillerist | arrow_shot | projectile_shot (projectile) | Shared (5 actions) | Yes — travel VFX | Replace with `arrow_hit_small` |
 | ar_explosive_retreat | 3 | Artillerist | impact_explosion_large | explosion_large | Shared (7 actions) | Yes — generic explosion | Refine: `explosion_core_burst` |
-| ar_incendiary_grenade | 4 | Artillerist | impact_explosion_large | explosion_large | Shared (7 actions) | Yes — generic explosion | Refine: `explosion_core_burst` + `fire_burst_medium` |
+| ar_incendiary_grenade | 4 | Artillerist | impact_explosion_large | explosion_large | Shared (7 actions) | Yes — generic explosion | Refine: `explosion_core_burst` + `fire_impact_burst` |
 | ar_artillery_barrage | 5 | Artillerist Ultimate | ultimate_artillery_barrage | artillery_barrage | Shared (1 action) | No — dedicated barrage | Keep (already impact-on-area) |
 
 ### Enemy Skills
@@ -229,7 +271,7 @@ appearance → buildup → impact peak → burst → dissipation
 | Preset | New SpriteSheets | Reason |
 |---|---|---|
 | w_whirl (sword_slash) | `blade_combo_cross` | Whirl needs cross-slash, not generic slash |
-| ar_incendiary_grenade (impact_explosion_large) | `explosion_core_burst` + `fire_burst_medium` | Explosion + fire overlay |
+| ar_incendiary_grenade (impact_explosion_large) | `explosion_core_burst` + `fire_impact_burst` | Explosion + fire overlay |
 | ni_venom_blade (sword_slash) | `blade_hit_small` + `poison_burst_small` | Blade hit + poison cloud |
 | ultimate_silent_assassin | Keep `teleport_burst` + replace `slash_arc` with `blade_hit_small` | Teleport + refined slash |
 
@@ -242,7 +284,7 @@ appearance → buildup → impact peak → burst → dissipation
 | dark_bolt | `dark_bolt_impact` | Remove travel, direct target impact |
 | shadow_lightning_bolt | `dark_bolt_impact` | Remove travel, direct target impact |
 | thrust_line | `pierce_impact` | Remove travel, direct target impact |
-| shape_cone_blast | `fire_burst_medium` | Remove travel, area impact |
+| shape_cone_blast | `fire_impact_burst` | Remove travel, area impact |
 | caster_roar | `command_roar_burst` | Move from caster to target area |
 | enemy_dragon_breath | `dragon_breath_impact` | Remove travel, area impact |
 | ultimate_lion_surge | `lion_surge_slash_burst` | Dedicated golden slash burst |
@@ -327,12 +369,12 @@ appearance → buildup → impact peak → burst → dissipation
 | # | spriteSheetId | Intended Visual Role | Target Preset(s) | Target Action(s) | Priority | anchorMode | visualMode | groundDecalRisk | needsRenameForNoGroundDecal | recommendedSpriteName |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 28 | explosion_core_burst | Core explosion burst on target area — volumetric | impact_explosion_large (refine) | r_scarlet_circle, ar_explosive_retreat, ar_incendiary_grenade, item_bomb | high | groundTarget | volumetric_burst | medium | false | explosion_core_burst |
-| 29 | fire_burst_medium | Cone fire impact on target area — volumetric, not floor | shape_cone_blast (replace), ar_incendiary_grenade (refine) | n_flame_wave, ar_incendiary_grenade | high | groundTarget | fire_eruption | medium | false | fire_burst_medium |
+| 29 | fire_impact_burst | Cone fire impact on target area — volumetric, not floor | shape_cone_blast (replace), ar_incendiary_grenade (refine) | n_flame_wave, ar_incendiary_grenade | high | groundTarget | fire_eruption | medium | false | fire_impact_burst |
 | 30 | inferno_eruption_impact | Boss inferno eruption on target area — volumetric | boss_inferno (replace) | boss_inferno | medium | groundTarget | fire_eruption | high | true | inferno_eruption_impact |
 | 31 | inferno_flame_burst | Inferno flame burst after eruption | boss_inferno (replace) | boss_inferno | medium | groundTarget | volumetric_burst | low | false | inferno_flame_burst |
 | 32 | meteor_core_impact | Meteor core impact on target area — vertical, not floor | ultimate_dark_meteor (refine) | n_dark_meteor | medium | groundTarget | radial_impact | medium | false | meteor_core_impact |
 | 33 | meteor_shock_burst | Meteor shockwave burst after impact | ultimate_dark_meteor (refine) | n_dark_meteor | low | groundTarget | volumetric_burst | low | false | meteor_shock_burst |
-| 34 | meteor_smoke_afterhit | Meteor smoke/dust after impact — dissipates | ultimate_dark_meteor (refine) | n_dark_meteor | low | groundTarget | smoke_burst | low | false | meteor_smoke_afterhit |
+| 34 | meteor_afterburst_smoke | Meteor smoke/dust after impact — dissipates | ultimate_dark_meteor (refine) | n_dark_meteor | low | groundTarget | smoke_burst | low | false | meteor_afterburst_smoke |
 | 35 | dragon_breath_impact | Dragon breath fire impact on target area — volumetric | enemy_dragon_breath (replace) | enemy_dragon_breath | medium | groundTarget | fire_eruption | medium | false | dragon_breath_impact |
 
 ### Nature / Poison Family (4 spritesheets)
@@ -351,7 +393,7 @@ appearance → buildup → impact peak → burst → dissipation
 | 40 | frost_bind_impact | Frost bind impact on target — crystalline eruption | frost_bind (refine) | boss_freeze | medium | target | frost_shatter | medium | false | frost_bind_impact |
 | 41 | frost_shatter_burst | Frost shatter burst after bind — dissipates | frost_bind (refine) | boss_freeze | low | target | volumetric_burst | low | false | frost_shatter_burst |
 
-### Utility / Feedback Family (5 spritesheets)
+### Utility / Feedback Family (6 spritesheets)
 
 | # | spriteSheetId | Intended Visual Role | Target Preset(s) | Target Action(s) | Priority | anchorMode | visualMode | groundDecalRisk | needsRenameForNoGroundDecal | recommendedSpriteName |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -360,29 +402,88 @@ appearance → buildup → impact peak → burst → dissipation
 | 44 | command_roar_burst | Command roar impact on target area — volumetric wave | caster_roar (replace) | enemy_taunt, enemy_battle_cry, boss_roar | medium | groundTarget | volumetric_burst | low | false | command_roar_burst |
 | 45 | quake_eruption_burst | Quake eruption on target area — volumetric, not floor ring | boss_quake (refine) | boss_quake | medium | groundTarget | energy_eruption | high | true | quake_eruption_burst |
 | 46 | boss_flurry_impact_1 | First flurry blade impact on target | boss_flurry (replace) | boss_flurry | low | target | slash_impact | low | true | boss_flurry_impact_1 |
+| 47 | boss_flurry_impact_2 | Second flurry blade impact on target | boss_flurry (replace) | boss_flurry | low | target | slash_impact | low | true | boss_flurry_impact_2 |
 
-### Already Usable from Unused PNGs (4 — register immediately, no generation needed)
+### Existing Unused PNGs — Reference Candidates (require validation or regeneration)
 
-| # | spriteSheetId | PNG Already Exists | Target Preset(s) | Priority | anchorMode | visualMode | groundDecalRisk | needsRenameForNoGroundDecal | recommendedSpriteName |
-|---|---|---|---|---|---|---|---|---|---|
-| 47 | judgement_beam_impact | `judgement_beam_5x5_25f_1280.png` ✓ | ultimate_radiant_judgement | high | target | vertical_pillar | low | true | judgement_beam_impact |
-| 48 | zenith_arrow_impact | `zenith_arrow_5x5_25f_1280.png` ✓ | ultimate_zenith_arrow | high | target | radial_impact | low | true | zenith_arrow_impact |
-| 49 | fault_breaker_shatter_burst | `fault_breaker_5x5_25f_1280.png` ✓ | ultimate_fault_breaker | high | target | energy_eruption | medium | true | fault_breaker_shatter_burst |
-| 50 | eclipse_devour_impact | `eclipse_devour_5x5_25f_1280.png` ✓ | ultimate_devouring_eclipse | medium | groundTarget | energy_eruption | medium | true | eclipse_devour_impact |
+The following unused PNGs exist in the runtime folder. They are **reference candidates only** — they are not automatically final runtime sprites. Each must be validated against the visual presence doctrine and impact-only rules before registration, or regenerated if they fail validation.
 
-### Additional Unused PNGs (9 — available for future families, not yet planned)
+**Reference PNGs matching planned spritesheets (4):**
 
-| PNG Filename | Potential Future Use |
-|---|---|
-| `holy_explosion_5x5_25f_1280.png` | Sacred holy explosion family backup |
-| `dark_explosion_5x5_25f_1280.png` | Dark arcane explosion family backup |
-| `mace_impact_5x5_25f_1280.png` | Physical blunt impact family backup |
-| `line_blast_5x5_25f_1280.png` | Pierce/lance impact family backup |
-| `bless_field_5x5_25f_1280.png` | Sacred support aura backup (rename needed: `bless_burst`) |
-| `burn_mark_5x5_25f_1280.png` | Fire burn status impact (rename needed: `burn_impact`) |
-| `drain_field_5x5_25f_1280.png` | Dark drain impact (rename needed: `drain_burst`) |
-| `silence_seal_5x5_25f_1280.png` | Debuff seal impact (rename needed: `silence_seal_impact`) |
-| `weak_mark_5x5_25f_1280.png` | Weak status impact (rename needed: `weak_impact`) |
+| Planned spriteSheetId | Reference PNG | Target Preset(s) | Validation Required |
+|---|---|---|---|
+| judgement_beam_impact | `judgement_beam_5x5_25f_1280.png` | ultimate_radiant_judgement | Check vertical pillar readability, opacity, color saturation |
+| zenith_arrow_target_impact | `zenith_arrow_5x5_25f_1280.png` | ultimate_zenith_arrow | Check radial impact readability, opacity, color saturation |
+| fault_breaker_shatter_burst | `fault_breaker_5x5_25f_1280.png` | ultimate_fault_breaker | Check eruption volumetrics, no floor decal, dissipation |
+| eclipse_devour_impact | `eclipse_devour_5x5_25f_1280.png` | ultimate_devouring_eclipse | Check energy eruption volumetrics, no floor decal |
+
+**Additional unused PNGs — future family candidates (9, not yet planned):**
+
+| PNG Filename | Potential Future Use | Rename Needed |
+|---|---|---|
+| `holy_explosion_5x5_25f_1280.png` | Sacred holy explosion family backup | — |
+| `dark_explosion_5x5_25f_1280.png` | Dark arcane explosion family backup | — |
+| `mace_impact_5x5_25f_1280.png` | Physical blunt impact family backup | — |
+| `line_blast_5x5_25f_1280.png` | Pierce/lance impact family backup | — |
+| `bless_field_5x5_25f_1280.png` | Sacred support aura backup | `bless_burst` (avoid `_field`) |
+| `burn_mark_5x5_25f_1280.png` | Fire burn status impact | `burn_impact` (avoid `_mark`) |
+| `drain_field_5x5_25f_1280.png` | Dark drain impact | `drain_burst` (avoid `_field`) |
+| `silence_seal_5x5_25f_1280.png` | Debuff seal impact | `silence_seal_impact` (add `_impact`) |
+| `weak_mark_5x5_25f_1280.png` | Weak status impact | `weak_impact` (avoid `_mark`) |
+
+### Visual Presence Targets per Spritesheet
+
+The following table defines visual presence targets for each planned spritesheet. These fields must be respected during sprite generation to ensure combat readability.
+
+| # | spriteSheetId | combatReadabilityPriority | peakFrameCoverage | colorSaturationTarget | opacityTarget | visualContrastRisk | generationWarning |
+|---|---|---|---|---|---|---|---|
+| 1 | blade_hit_small | high | 60–75% | high — steel/white edge | 0.85–1.0 | low | Ensure slash arc is visible over floor |
+| 2 | blade_hit_heavy | high | 70–85% | high — steel/dark edge | 0.90–1.0 | low | Heavy impact must have visible shockwave ring |
+| 3 | blade_combo_cross | medium | 70–85% | high — steel/cyan cross | 0.85–1.0 | low | Cross pattern must read as two distinct slashes |
+| 4 | lion_surge_slash_burst | medium | 85–95% | high — gold/white | 0.90–1.0 | low | Ultimate golden energy must be vivid |
+| 5 | fault_breaker_shatter_burst | high | 70–85% | high — earth/brown debris | 0.85–1.0 | medium | Must read as eruption not floor crack |
+| 6 | fault_breaker_debris_burst | medium | 60–75% | medium — earth/brown | 0.80–0.95 | low | Debris must dissipate quickly |
+| 7 | pierce_impact | high | 60–75% | high — steel/white | 0.85–1.0 | low | Pierce must read as impact not travel |
+| 8 | lance_pierce_burst | medium | 70–85% | high — steel/cyan energy | 0.85–1.0 | low | Energy burst after pierce must be vivid |
+| 9 | arrow_hit_small | high | 60–75% | high — wood/steel | 0.85–1.0 | low | Impact burst must be visible |
+| 10 | arrow_hit_heavy | medium | 70–85% | high — steel/dark | 0.90–1.0 | low | Heavy arrow impact must be distinct from small |
+| 11 | arrow_rain_impact | high | 70–85% | high — steel/white multi | 0.85–1.0 | medium | Multi-arrow must read as area impact not floor |
+| 12 | zenith_arrow_target_impact | high | 85–95% | high — gold/white | 0.90–1.0 | low | Ultimate arrow impact must be spectacular |
+| 13 | zenith_arrow_pierce_burst | medium | 70–85% | high — gold/cyan | 0.85–1.0 | low | Pierce burst must be vivid |
+| 14 | holy_judgement_rune_burst | high | 85–95% | high — gold/cyan sacred | 0.90–1.0 | medium | Runes must float not stick to floor |
+| 15 | judgement_beam_impact | high | 85–95% | high — gold/white pillar | 0.95–1.0 | low | Vertical pillar must be opaque and vivid |
+| 16 | holy_judgement_afterburst | medium | 70–85% | high — gold/white | 0.85–1.0 | low | Afterburst must not be pale |
+| 17 | holy_strike_burst | medium | 60–75% | high — gold/cyan | 0.85–1.0 | low | Holy burst must have dense luminous core |
+| 18 | miracle_heal_column | medium | 85–95% | high — gold/cyan column | 0.90–1.0 | low | Heal column must not be pale white only |
+| 19 | miracle_revival_burst | medium | 70–85% | high — gold/green | 0.85–1.0 | low | Revival must read as positive energy |
+| 20 | harmony_resonance_burst | medium | 85–95% | high — cyan/gold | 0.90–1.0 | low | Resonance wave must be vivid |
+| 21 | holy_purify_burst | medium | 60–75% | high — gold/white | 0.85–1.0 | low | Must not be pale gray only |
+| 22 | dark_bolt_impact | high | 60–75% | high — violet/dark magenta | 0.85–1.0 | low | Must have readable contour not black-transparent |
+| 23 | dark_curse_burst | low | 60–75% | high — violet/deep blue | 0.80–0.95 | low | Curse must not be black-only |
+| 24 | eclipse_devour_impact | medium | 85–95% | high — violet/dark magenta | 0.90–1.0 | medium | Eclipse must read as eruption not floor |
+| 25 | duality_light_burst | medium | 70–85% | high — white/gold | 0.85–1.0 | low | Light half must be vivid |
+| 26 | duality_shadow_burst | medium | 70–85% | high — violet/dark | 0.85–1.0 | low | Shadow half must have readable contour |
+| 27 | apocalypse_eruption_burst | medium | 85–95% | high — red/violet | 0.90–1.0 | high | Must be volumetric eruption not floor field |
+| 28 | explosion_core_burst | high | 70–85% | high — red/orange/gold | 0.90–1.0 | medium | Core must be dense and opaque |
+| 29 | fire_impact_burst | high | 70–85% | high — red/orange/gold | 0.90–1.0 | medium | Must be volumetric fire not floor burn |
+| 30 | inferno_eruption_impact | medium | 85–95% | high — red/orange/dark | 0.90–1.0 | high | Boss inferno must be spectacular eruption |
+| 31 | inferno_flame_burst | medium | 70–85% | high — orange/gold | 0.85–1.0 | low | Flame burst must have dense core |
+| 32 | meteor_core_impact | medium | 85–95% | high — red/orange/white | 0.95–1.0 | medium | Meteor core must be vertical impact not floor |
+| 33 | meteor_shock_burst | low | 70–85% | high — orange/white | 0.85–1.0 | low | Shockwave must be visible burst |
+| 34 | meteor_afterburst_smoke | low | 45–60% | medium — gray/orange | 0.70–0.85 | medium | Smoke must not be weak-only; add embers for density |
+| 35 | dragon_breath_impact | medium | 70–85% | high — red/orange | 0.90–1.0 | medium | Must be volumetric breath not floor fire |
+| 36 | root_bind_impact | medium | 60–75% | high — toxic green/brown | 0.85–1.0 | medium | Roots must rise and dissipate not floor-stuck |
+| 37 | root_bind_burst | low | 60–75% | high — green/earth | 0.80–0.95 | low | Energy burst must be visible |
+| 38 | poison_fang_impact | medium | 60–75% | high — toxic green/purple | 0.85–1.0 | low | Strong silhouette required |
+| 39 | poison_burst_small | low | 45–60% | high — toxic green/purple | 0.80–0.95 | low | Must not be weak particle-only |
+| 40 | frost_bind_impact | medium | 60–75% | high — icy cyan/white | 0.85–1.0 | medium | Must have blue contour not white-only |
+| 41 | frost_shatter_burst | low | 60–75% | high — cyan/white | 0.80–0.95 | low | Shatter must be visible crystal burst |
+| 42 | critical_impact_flash | low | 45–60% | high — white/gold flash | 0.90–1.0 | low | Flash must be brief and vivid |
+| 43 | victory_spark_burst | low | 45–60% | high — gold/white | 0.85–1.0 | low | Spark must be readable |
+| 44 | command_roar_burst | medium | 70–85% | high — red/orange wave | 0.85–1.0 | low | Roar wave must be volumetric |
+| 45 | quake_eruption_burst | medium | 85–95% | high — earth/brown/orange | 0.90–1.0 | high | Must be volumetric eruption not floor ring |
+| 46 | boss_flurry_impact_1 | low | 60–75% | high — steel/dark | 0.85–1.0 | low | First hit must be distinct |
+| 47 | boss_flurry_impact_2 | low | 60–75% | high — steel/dark | 0.85–1.0 | low | Second hit must be distinct from first |
 
 ---
 
@@ -409,6 +510,8 @@ appearance → buildup → impact peak → burst → dissipation
 | apocalypse_field (replacement) | apocalypse_eruption_burst | "field" implies floor decal |
 | harmony_resonance_field_hit | harmony_resonance_burst | "field" implies floor decal |
 | burning_ground_hit | fire_eruption_impact | "ground" implies floor decal |
+| meteor_smoke_afterhit | meteor_afterburst_smoke | "afterhit" is weak; use `*_afterburst` for smoke dissipation |
+| fire_burst_medium | fire_impact_burst | Use `*_impact_burst` for fire impact clarity |
 
 ---
 
@@ -465,7 +568,7 @@ Update preset steps to:
 | high | arrow_hit_small | arrow_hit_small_5x5_25f_1280.png | projectile_shot for 2AP ranged |
 | high | arrow_rain_impact | arrow_rain_impact_5x5_25f_1280.png | projectile_shot for arrow rain |
 | high | dark_bolt_impact | dark_bolt_impact_5x5_25f_1280.png | shadow_lightning_bolt projectile |
-| high | fire_burst_medium | fire_burst_medium_5x5_25f_1280.png | cone_blast projectile |
+| high | fire_impact_burst | fire_impact_burst_5x5_25f_1280.png | cone_blast projectile |
 | medium | command_roar_burst | command_roar_burst_5x5_25f_1280.png | shockwave_ring on caster |
 
 ### Batch 1b — High-Priority Ultimate + Feedback (8 sprites)
@@ -474,26 +577,25 @@ Update preset steps to:
 |---|---|---|---|
 | high | explosion_core_burst | explosion_core_burst_5x5_25f_1280.png | explosion_large for non-ultimate |
 | high | holy_judgement_rune_burst | holy_judgement_rune_burst_5x5_25f_1280.png | holy_aura for ultimate_radiant_judgement |
-| high | judgement_beam_impact | judgement_beam_impact_5x5_25f_1280.png | (unused PNG available — register only) |
-| high | fault_breaker_shatter_burst | fault_breaker_shatter_burst_5x5_25f_1280.png | (unused PNG available — register only) |
+| high | judgement_beam_impact | judgement_beam_impact_5x5_25f_1280.png | (reference PNG available — validate or regenerate) |
+| high | fault_breaker_shatter_burst | fault_breaker_shatter_burst_5x5_25f_1280.png | (reference PNG available — validate or regenerate) |
 | high | zenith_arrow_target_impact | zenith_arrow_target_impact_5x5_25f_1280.png | projectile_shot for ultimate_zenith_arrow |
 | medium | dragon_breath_impact | dragon_breath_impact_5x5_25f_1280.png | dragon_breath projectile |
 | medium | arrow_hit_heavy | arrow_hit_heavy_5x5_25f_1280.png | projectile_shot for boss_pin |
 | low | critical_impact_flash | critical_impact_flash_5x5_25f_1280.png | slash_arc for critical_hit |
 
-### Batch 2 — Medium-Priority Ultimate Multi-Sheets (18 sprites)
+### Batch 2 — Medium-Priority Ultimate Multi-Sheets (17 sprites)
 
 | Priority | spriteSheetId | Filename | For Preset |
 |---|---|---|---|
 | medium | lion_surge_slash_burst | lion_surge_slash_burst_5x5_25f_1280.png | ultimate_lion_surge |
 | medium | fault_breaker_debris_burst | fault_breaker_debris_burst_5x5_25f_1280.png | ultimate_fault_breaker |
 | medium | zenith_arrow_pierce_burst | zenith_arrow_pierce_burst_5x5_25f_1280.png | ultimate_zenith_arrow |
-| medium | zenith_arrow_impact | zenith_arrow_impact_5x5_25f_1280.png | (unused PNG available — register only) |
 | medium | holy_judgement_afterburst | holy_judgement_afterburst_5x5_25f_1280.png | ultimate_radiant_judgement |
 | medium | miracle_heal_column | miracle_heal_column_5x5_25f_1280.png | ultimate_miracle |
 | medium | miracle_revival_burst | miracle_revival_burst_5x5_25f_1280.png | ultimate_miracle |
 | medium | harmony_resonance_burst | harmony_resonance_burst_5x5_25f_1280.png | ultimate_absolute_harmony |
-| medium | eclipse_devour_impact | eclipse_devour_impact_5x5_25f_1280.png | (unused PNG available — register only) |
+| medium | eclipse_devour_impact | eclipse_devour_impact_5x5_25f_1280.png | (reference PNG available — validate or regenerate) |
 | medium | duality_light_burst | duality_light_burst_5x5_25f_1280.png | ultimate_perfect_duality |
 | medium | duality_shadow_burst | duality_shadow_burst_5x5_25f_1280.png | ultimate_perfect_duality |
 | medium | inferno_eruption_impact | inferno_eruption_impact_5x5_25f_1280.png | boss_inferno |
@@ -504,7 +606,7 @@ Update preset steps to:
 | medium | frost_bind_impact | frost_bind_impact_5x5_25f_1280.png | frost_bind |
 | medium | blade_combo_cross | blade_combo_cross_5x5_25f_1280.png | w_whirl |
 
-### Batch 3 — Low-Priority Polish + Remaining (16 sprites)
+### Batch 3 — Low-Priority Polish + Remaining (14 sprites)
 
 | Priority | spriteSheetId | Filename | For Preset |
 |---|---|---|---|
@@ -514,7 +616,7 @@ Update preset steps to:
 | medium | quake_eruption_burst | quake_eruption_burst_5x5_25f_1280.png | boss_quake |
 | medium | apocalypse_eruption_burst | apocalypse_eruption_burst_5x5_25f_1280.png | boss_apocalypse_v2 |
 | low | meteor_shock_burst | meteor_shock_burst_5x5_25f_1280.png | ultimate_dark_meteor |
-| low | meteor_smoke_afterhit | meteor_smoke_afterhit_5x5_25f_1280.png | ultimate_dark_meteor |
+| low | meteor_afterburst_smoke | meteor_afterburst_smoke_5x5_25f_1280.png | ultimate_dark_meteor |
 | low | root_bind_burst | root_bind_burst_5x5_25f_1280.png | root_vines |
 | low | poison_burst_small | poison_burst_small_5x5_25f_1280.png | poison_bite |
 | low | frost_shatter_burst | frost_shatter_burst_5x5_25f_1280.png | frost_bind |
@@ -529,12 +631,15 @@ Update preset steps to:
 
 1. **Batch 1a** (8 sprites): All doctrine-violating travel replacements — fixes the core "no travel" rule
 2. **Batch 1b** (8 sprites): High-priority ultimate + feedback — fixes the most visible reuse problems
-3. **Batch 2** (18 sprites): All medium-priority ultimate multi-sheets and family refinements
+3. **Batch 2** (17 sprites): All medium-priority ultimate multi-sheets and family refinements
 4. **Batch 3** (14 sprites): Low-priority polish + remaining medium items
 
-**Total new spritesheets to generate**: 46
-**Total unused PNGs to register** (no generation needed): 4
-**Total spritesheets in final library**: 29 (existing) + 46 (new) + 4 (registered from unused) = 79
+**Total spritesheets to generate or validate**: 47
+**Spritesheets with reference PNG** (validate or regenerate): 4
+**Spritesheets requiring generation from scratch**: 43
+**Additional unused reference PNGs** (future candidates, not yet planned): 9
+**Total reference PNGs available**: 13
+**Total spritesheets in final library**: 29 (existing) + 47 (planned) = 76
 
 ---
 
@@ -542,9 +647,9 @@ Update preset steps to:
 
 | Risk Level | Count | Spritesheets |
 |---|---|---|
-| **high** | 4 | apocalypse_eruption_burst, inferno_eruption_impact, quake_eruption_burst, (apocalypse_field replacement) |
-| **medium** | 11 | fault_breaker_shatter_burst, arrow_rain_impact, holy_judgement_rune_burst, eclipse_devour_impact, explosion_core_burst, fire_burst_medium, meteor_core_impact, dragon_breath_impact, root_bind_impact, frost_bind_impact, fault_breaker_shatter_burst (unused PNG) |
-| **low** | 35 | All remaining spritesheets |
+| **high** | 3 | apocalypse_eruption_burst, inferno_eruption_impact, quake_eruption_burst |
+| **medium** | 10 | fault_breaker_shatter_burst, arrow_rain_impact, holy_judgement_rune_burst, eclipse_devour_impact, explosion_core_burst, fire_impact_burst, meteor_core_impact, dragon_breath_impact, root_bind_impact, frost_bind_impact |
+| **low** | 34 | All remaining spritesheets |
 
 **Mitigation**: All `high` and `medium` risk spritesheets must be generated with explicit volumetric/vertical animation language. The sprite artist must ensure effects rise from the target area and dissipate, never remaining as flat floor textures.
 
@@ -555,7 +660,7 @@ Update preset steps to:
 - **npm test**: 357 passed (357) — 0 failed (no code changes, report only)
 - **npm run build**: built successfully — 0 errors (no code changes, report only)
 - **git diff --check**: clean
-- **git status**: 1 new file (this report)
+- **git status**: 1 modified file (this report)
 
 ---
 
@@ -567,6 +672,7 @@ Update preset steps to:
 - No spritesheets generated yet ✓
 - No status indicator logic touched ✓
 - All doctrine rules applied ✓
-- No ground-deal addendum applied ✓
+- No ground-decal rule applied and enforced ✓
+- Visual presence / saturation / opacity doctrine applied ✓
 - Multi-spritesheet preset support preserved ✓
 - V10G-R2B.2 can begin sprite generation with this plan ✓
