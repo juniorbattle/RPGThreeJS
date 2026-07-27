@@ -20,7 +20,8 @@ describe('V10F final hotfix runtime contracts', () => {
   it('anchors retreat impact at departure and tumble impact at landing', () => {
     expect(runtimeSource).toContain("spec.key==='ar_explosive_retreat'&&origin");
     expect(runtimeSource).toContain("if(spec.key==='ro_tumble')return");
-    expect(runtimeSource).toContain("if(preset==='leap_impact')playActionVfxAt(preset,u,head,spec)");
+    expect(runtimeSource).toContain("leapHasSpritesheet=actionHasSpritesheetVfx(spec,u)");
+    expect(runtimeSource).toContain("if(leapHasSpritesheet)playActionVfxAt");
     expect(runtimeSource).toContain("else if(spec.key!=='ar_explosive_retreat')vfx('hit',head)");
   });
 
@@ -29,20 +30,22 @@ describe('V10F final hotfix runtime contracts', () => {
     expect(runtimeSource).not.toContain("const ACTION_PRESENTATION_TIERS=Object.freeze");
   });
 
-  it('guards castTelegraph burst when authored spritesheet preset exists (V10G-R2A.1)', () => {
+  it('guards castTelegraph burst when spritesheet VFX exists (V10G-R2A.1/R2A.5)', () => {
     expect(runtimeSource).toContain('function castTelegraph(u,spec,skipBurst)');
     expect(runtimeSource).toContain('if(!skipBurst) burst(');
-    expect(runtimeSource).toContain("castTelegraph(u,spec,Boolean(getActionVfxPreset(spec,u)))");
+    expect(runtimeSource).toContain('!hasSpritesheet)castTelegraph(u,spec,Boolean(hasPreset))');
   });
 
-  it('suppresses generic overlays when authored spritesheet exists (V10G-R2A.2)', () => {
+  it('suppresses generic overlays when spritesheet VFX exists (V10G-R2A.2/R2A.5)', () => {
     expect(runtimeSource).toContain("import { getVfxPreset } from './vfx/VfxPresets'");
-    expect(runtimeSource).toContain('function actionUsesAuthoredSpritesheet(spec={},u=null)');
-    expect(runtimeSource).toContain("preset.steps.some(step=>visualTypes.includes(step.type))");
-    expect(runtimeSource).toContain('const hasAuthoredVfx=actionUsesAuthoredSpritesheet(spec,u)');
-    expect(runtimeSource).toContain('if(!hasAuthoredVfx)screenFlash');
-    expect(runtimeSource).toContain("if(preset!=='teleport_burst')screenFlash");
-    expect(runtimeSource).toContain('if(!dashHasAuthored){ screenFlash');
+    expect(runtimeSource).toContain('function actionHasSpritesheetVfx(spec={},u=null)');
+    expect(runtimeSource).toContain("preset.steps.some(step=>step.type==='spriteSheet')");
+    expect(runtimeSource).toContain('function actionHasPreset(spec={},u=null)');
+    expect(runtimeSource).toContain('const hasSpritesheet=actionHasSpritesheetVfx(spec,u)');
+    expect(runtimeSource).toContain('const hasPreset=actionHasPreset(spec,u)');
+    expect(runtimeSource).toContain('if(!hasPreset)screenFlash');
+    expect(runtimeSource).toContain('if(!dashHasSpritesheet){ screenFlash');
+    expect(runtimeSource).not.toContain('actionUsesAuthoredSpritesheet');
   });
 
   it('removes oversized statusHalo ring for exhausted/staggered (V10G-R2A.3)', () => {

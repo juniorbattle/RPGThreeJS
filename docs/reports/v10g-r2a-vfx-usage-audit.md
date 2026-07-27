@@ -398,3 +398,156 @@ None. All active hero/enemy/boss skills resolve to authored spritesheet presets.
 ### Remaining Unknowns
 
 None. All generic steps classified and cleaned. Physical skills no longer use magicCircle. Authored impacts no longer have particleBurst/groundRing/lightPulse pollution. Hit reaction implemented for all damage paths.
+
+---
+
+## V10G-R2A.5 Strict Spritesheet VFX Policy
+
+### Core Rule
+
+Every active combat action must use at least one `spriteSheet` step as its main action VFX. Procedural/generic steps (slashArc, shockwave, impactStar, magicCircle, groundRing, lightPulse, particleBurst, smokePuff, projectile, sparkleBurst) are forbidden as main impact VFX. Only camera/global feedback (screenShake, screenFlash, hitStop) and spriteSheet steps remain in active presets.
+
+### Runtime Guard Functions
+
+- **`actionHasSpritesheetVfx(spec, u)`**: Returns true only if resolved preset contains at least one `spriteSheet` step
+- **`actionHasPreset(spec, u)`**: Returns true if any preset exists (including procedural-only, for fallback detection)
+- Replaced deprecated `actionUsesAuthoredSpritesheet` which checked for all visual types including procedural
+
+### Runtime Overlay Suppression
+
+- `castTelegraph` skipped entirely when `actionHasSpritesheetVfx` is true
+- `screenFlash` for ultimate/boss signatures only fires when no preset exists (`!hasPreset`)
+- Leap impact uses `actionHasSpritesheetVfx` to decide between spritesheet playback and generic `vfx('hit')`
+- Dash impact uses `actionHasSpritesheetVfx` to suppress generic `vfx('hit')` and `screenFlash`
+
+### Active Action Inventory
+
+| Action/Skill | Preset | Has spriteSheet | Procedural steps removed | Action taken | Remaining gap |
+|---|---|---:|---|---|---|
+| w_break_guard | sword_slash | YES | slashArc x2, impactStar | Cleaned | none |
+| w_charge | blunt_impact | YES | shockwave, particleBurst, smokePuff, impactStar | Remapped to small_impact spritesheet | none |
+| w_whirl | sword_slash | YES | slashArc x2, impactStar | Cleaned | none |
+| w_lion_surge | ultimate_lion_surge | YES | lightPulse, slashArc, shockwave, particleBurst, impactStar | Remapped to slash_arc spritesheet | none |
+| p_holy_strike | holy_strike | YES | impactStar | Cleaned | none |
+| p_interpose | leap_impact | YES | shockwave | Cleaned | none |
+| p_oathwall | guard_barrier | YES | groundRing, magicCircle, sparkleBurst, particleBurst, lightPulse | Cleaned | none |
+| p_radiant_judgement | ultimate_radiant_judgement | YES | magicCircle, groundRing, lightPulse, sparkleBurst, shockwave, impactStar | Remapped to holy_aura spritesheet | none |
+| d_cursed_blade | sword_slash | YES | (already clean) | Cleaned | none |
+| d_void_step | teleport_burst | YES | magicCircle | Cleaned | none |
+| d_blood_pact | bless_aura | YES | groundRing, magicCircle, sparkleBurst, particleBurst, lightPulse | Cleaned | none |
+| d_devouring_eclipse | ultimate_devouring_eclipse | YES | magicCircle, groundRing, smokePuff, particleBurst, projectile, shockwave | Remapped to apocalypse_field spritesheet | none |
+| l_long_thrust | thrust_line | YES | impactStar | Cleaned | none |
+| l_haft_recoil | thrust_line | YES | impactStar | Cleaned | none |
+| l_griffon_jump | leap_impact | YES | shockwave | Cleaned | none |
+| l_firmament_lance | ultimate_firmament_lance | YES | lightPulse, projectile, slashArc, impactStar, shockwave | Cleaned to thrust_line only | none |
+| n_dark_bolt | shadow_lightning_bolt | YES | magicCircle, lightPulse, projectile, particleBurst, smokePuff, impactStar | Cleaned | none |
+| n_teleport | teleport_burst | YES | magicCircle | Cleaned | none |
+| n_flame_wave | shape_cone_blast | YES | groundRing, lightPulse | Cleaned | none |
+| n_dark_meteor | ultimate_dark_meteor | YES | magicCircle, lightPulse, shockwave, smokePuff, impactStar | Cleaned to meteor_fall only | none |
+| w_salvation | heal_burst | YES | groundRing, magicCircle, sparkleBurst, particleBurst, lightPulse | Cleaned | none |
+| w_purify | support_holy_aura | YES | groundRing, magicCircle, sparkleBurst, particleBurst | Cleaned | none |
+| w_sanctuary | support_holy_aura | YES | groundRing, magicCircle, sparkleBurst, particleBurst | Cleaned | none |
+| w_miracle | ultimate_miracle | YES | magicCircle, groundRing, sparkleBurst, lightPulse, particleBurst | Remapped to holy_aura spritesheet | none |
+| r_arcane_blade | sword_slash | YES | (already clean) | Cleaned | none |
+| r_rune_step | teleport_burst | YES | magicCircle | Cleaned | none |
+| r_scarlet_circle | impact_explosion_large | YES | (already clean) | Cleaned | none |
+| r_perfect_duality | ultimate_perfect_duality | YES | magicCircle, groundRing, particleBurst, sparkleBurst, shockwave, impactStar | Remapped to explosion_large spritesheet | none |
+| e_vigor_rune | support_boost_aura | YES | magicCircle, sparkleBurst, particleBurst, lightPulse | Cleaned | none |
+| e_transpose | teleport_burst | YES | magicCircle | Cleaned | none |
+| e_binding_seal | root_vines | YES | projectile, groundRing, sparkleBurst, lightPulse | Cleaned | none |
+| e_absolute_harmony | ultimate_absolute_harmony | YES | magicCircle, groundRing, lightPulse, sparkleBurst | Remapped to holy_aura spritesheet | none |
+| a_precise_shot | arrow_shot | YES | projectile, impactStar, particleBurst | Cleaned | none |
+| a_hawk_leap | leap_impact | YES | shockwave | Cleaned | none |
+| a_arrow_rain | arrow_rain | YES | projectile, impactStar, particleBurst | Cleaned | none |
+| a_zenith_arrow | ultimate_zenith_arrow | YES | lightPulse, projectile, slashArc, impactStar, particleBurst | Remapped to projectile_shot spritesheet | none |
+| ni_venom_blade | sword_slash | YES | (already clean) | Cleaned | none |
+| ni_shadow_step | critical_hit | YES | impactStar, slashArc, particleBurst, lightPulse | Remapped to slash_arc spritesheet | none |
+| ni_smoke_bomb | move_smoke_burst | YES | smokePuff, particleBurst | Cleaned | none |
+| ni_silent_assassin | ultimate_silent_assassin | YES | smokePuff, slashArc x2, particleBurst, impactStar | Remapped to teleport_burst + slash_arc spritesheets | none |
+| ro_sneak_attack | sword_slash | YES | (already clean) | Cleaned | none |
+| ro_tumble | leap_impact | YES | shockwave | Cleaned | none |
+| ro_jaw_trap | root_vines | YES | projectile, groundRing, sparkleBurst, lightPulse | Cleaned | none |
+| ro_fault_breaker | ultimate_fault_breaker | YES | slashArc, impactStar, sparkleBurst, shockwave | Remapped to slash_arc spritesheet | none |
+| ar_calibrated_shot | arrow_shot | YES | projectile, impactStar, particleBurst | Cleaned | none |
+| ar_explosive_retreat | impact_explosion_large | YES | (already clean) | Cleaned | none |
+| ar_incendiary_grenade | impact_explosion_large | YES | (already clean) | Cleaned | none |
+| ar_artillery_barrage | ultimate_artillery_barrage | YES | magicCircle, projectile, shockwave, smokePuff, impactStar | Cleaned to artillery_barrage only | none |
+| enemy_heavy_strike | blunt_impact | YES | (remapped) | Remapped to small_impact spritesheet | none |
+| enemy_crush | blunt_impact | YES | (remapped) | Remapped to small_impact spritesheet | none |
+| enemy_dark_bolt | shadow_lightning_bolt | YES | (cleaned) | Cleaned | none |
+| enemy_hex | status_curse_mark | YES | groundRing, particleBurst, smokePuff | Cleaned | none |
+| enemy_venom_strike | poison_bite | YES | slashArc, particleBurst, groundRing, impactStar | Remapped to slash_arc spritesheet | none |
+| enemy_binding_shot | root_vines | YES | projectile, groundRing, sparkleBurst, lightPulse | Cleaned | none |
+| enemy_smoke_veil | move_smoke_burst | YES | smokePuff, particleBurst | Cleaned | none |
+| enemy_taunt | caster_roar | YES | shockwave, lightPulse | Cleaned | none |
+| enemy_battle_cry | caster_roar | YES | shockwave, lightPulse | Cleaned | none |
+| enemy_dragon_breath | enemy_dragon_breath | YES | lightPulse, projectile, smokePuff, shockwave | Cleaned to dragon_breath only | none |
+| boss_slam | boss_slam | YES | shockwave, smokePuff, impactStar | Cleaned to leap_impact only | none |
+| boss_roar | caster_roar | YES | shockwave, lightPulse | Cleaned | none |
+| boss_quake | boss_quake | YES | shockwave, smokePuff, impactStar | Cleaned to shockwave_ring only | none |
+| boss_guard | guard_barrier | YES | (cleaned) | Cleaned | none |
+| boss_apocalypse | boss_apocalypse_v2 | YES | magicCircle | Cleaned to apocalypse_field only | none |
+| boss_regen | support_regen_aura | YES | groundRing, sparkleBurst, particleBurst, lightPulse | Cleaned | none |
+| boss_fortify | bless_aura | YES | (cleaned) | Cleaned | none |
+| boss_freeze | frost_bind | YES | groundRing, sparkleBurst, lightPulse | Cleaned | none |
+| boss_pin | arrow_shot | YES | projectile, impactStar, particleBurst | Cleaned | none |
+| boss_execution | boss_execution | YES | slashArc, impactStar, shockwave | Cleaned to heavy_execution only | none |
+| boss_flurry | boss_flurry | YES | slashArc x3, impactStar x3, particleBurst | Remapped to slash_arc spritesheets x3 | none |
+| boss_inferno | boss_inferno | YES | magicCircle x2, shockwave, particleBurst, smokePuff, sparkleBurst | Remapped to explosion_large spritesheet | none |
+| boss_titan_slam | boss_titan_slam | YES | shockwave, smokePuff, impactStar | Cleaned to titan_slam only | none |
+| fireball | fireball | YES | magicCircle, lightPulse, projectile, impactStar, smokePuff | Cleaned to fire_explosion only | none |
+| curse_pulse | curse_pulse | YES | magicCircle, shockwave, particleBurst, smokePuff, lightPulse | Remapped to curse_mark spritesheet | none |
+| kill_spark | kill_spark | YES | groundRing, sparkleBurst, particleBurst, lightPulse | Remapped to small_impact spritesheet | none |
+| generic_hit | generic_hit | YES | impactStar, particleBurst | Cleaned to small_impact only | none |
+| Items (bomb/grenade) | impact_explosion_large | YES | (already clean) | Cleaned | none |
+| Items (revive_vial) | support_revive_pillar | YES | groundRing, magicCircle, sparkleBurst, particleBurst, lightPulse | Cleaned | none |
+| Items (potion/ether) | heal_burst | YES | (cleaned) | Cleaned | none |
+| Items (antidote) | support_holy_aura | YES | (cleaned) | Cleaned | none |
+
+### Remaps Applied
+
+- `blunt_impact`: procedural-only → `small_impact` spritesheet
+- `curse_pulse`: procedural-only → `curse_mark` spritesheet
+- `poison_bite`: procedural-only → `slash_arc` spritesheet
+- `critical_hit`: procedural-only → `slash_arc` spritesheet
+- `kill_spark`: procedural-only → `small_impact` spritesheet
+- `ultimate_lion_surge`: procedural-only → `slash_arc` spritesheet
+- `ultimate_radiant_judgement`: procedural-only → `holy_aura` spritesheet
+- `ultimate_devouring_eclipse`: procedural-only → `apocalypse_field` spritesheet
+- `ultimate_miracle`: procedural-only → `holy_aura` spritesheet
+- `ultimate_perfect_duality`: procedural-only → `explosion_large` spritesheet
+- `ultimate_absolute_harmony`: procedural-only → `holy_aura` spritesheet
+- `ultimate_zenith_arrow`: procedural-only → `projectile_shot` spritesheet
+- `ultimate_fault_breaker`: procedural-only → `slash_arc` spritesheet
+- `boss_flurry`: procedural-only → `slash_arc` spritesheets x3
+- `boss_inferno`: procedural-only → `explosion_large` spritesheet
+
+### Missing Spritesheet Gaps
+
+None. All active hero/enemy/boss/item actions now resolve to presets with at least one `spriteSheet` step.
+
+### screenShake/screenFlash Policy
+
+- screenShake and screenFlash remain as camera/global feedback only
+- They are not battlefield overlays — they do not create meshes, particles, rings, or sprites
+- Runtime suppresses screenFlash for ultimates/boss signatures when a preset exists
+- Support/movement presets may omit camera feedback (spriteSheet only)
+
+### Hit Reaction Confirmation
+
+- `playUnitHitReaction` remains functional for all non-KO damage
+- Critical hits use stronger flash/shake/squash
+- Boss hits use reduced displacement
+- KO still uses `flashUnit` + `playSpriteMotion('knockout')`
+
+### Status Carousel Confirmation
+
+- Status carousel untouched. No status indicator code modified.
+
+### Workbench Combat Preview
+
+VfxWorkbench now displays: `Spritesheet: YES/NO | Strict: YES/NO | Gap: YES/no | Camera: YES | HitReaction: YES`
+
+### Remaining Unknowns
+
+None. All active actions use spritesheet-led VFX. No procedural-only active presets remain. No missing spritesheet gaps.
