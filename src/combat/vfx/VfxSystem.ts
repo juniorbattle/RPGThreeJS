@@ -450,6 +450,16 @@ export class VfxSystem {
     anchor: THREE.Vector3,
   ) {
     anchor.y += step.heightOffset ?? 0;
+    const groundYOffset = context.groundYOffset ?? 0;
+    const isGroundBased = step.type === 'spriteSheet'
+      || step.type === 'shockwave'
+      || step.type === 'groundRing'
+      || step.type === 'magicCircle'
+      || step.type === 'particleBurst'
+      || step.type === 'smokePuff';
+    if (isGroundBased && groundYOffset !== 0) {
+      anchor.y += groundYOffset;
+    }
     switch (step.type) {
       case 'particleBurst':
         await this.playParticles(step, preset, context, duration, anchor, false, false);

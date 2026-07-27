@@ -227,6 +227,10 @@ export interface VfxContext {
   impactOpacityFloor?: number;
   /** Foreground render order selected from the static action tier. */
   impactRenderOrder?: number;
+  /** Presentation-only ground height offset (world Y). Negative values lower
+   *  ground-based effects toward the combat floor. Does not affect tactical
+   *  target points, AoE centers, hitboxes, or any gameplay rule. */
+  groundYOffset?: number;
   /** Applied by a cinematic phase without mutating registered VFX presets. */
   opacityMultiplier?: number;
   cinematicPhase?: {

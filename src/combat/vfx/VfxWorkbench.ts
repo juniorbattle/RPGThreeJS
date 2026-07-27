@@ -142,7 +142,7 @@ export function installVfxWorkbench(options: VfxWorkbenchOptions) {
     if (resolvedTier) resolvedTier.textContent = `Tier: ${resolved.tier}${resolved.visualTier ? ` (visual ${resolved.visualTier})` : ''}${resolved.ultimate ? ' — ULTIMATE' : ''}`;
     if (resolvedScale) {
       const effectiveScale = resolved.staticScaleMultiplier * resolved.presentationScale;
-      resolvedScale.textContent = `Scale: ${resolved.scaleTier} × ${effectiveScale.toFixed(2)} · Opacity ≥ ${resolved.impactOpacityFloor.toFixed(2)} · Layer ${resolved.impactRenderOrder}`;
+      resolvedScale.textContent = `Scale: ${resolved.scaleTier} x ${effectiveScale.toFixed(2)} | Opacity >= ${resolved.impactOpacityFloor.toFixed(2)} | Layer ${resolved.impactRenderOrder} | Ground Y ${resolved.groundYOffset.toFixed(2)}`;
     }
     if (resolvedOrient) resolvedOrient.textContent = `Orientation: ${resolved.orientation ?? 'none'}`;
     if (resolvedIntensity) resolvedIntensity.textContent = `Intensity: ${resolved.intensity.toFixed(2)}`;

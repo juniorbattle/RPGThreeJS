@@ -1367,6 +1367,7 @@ function makeActionVfxContext(u,targets,cx,cz,spec={},visualContext={}){
     staticScaleMultiplier:tuning.staticScaleMultiplier,
     impactOpacityFloor:tuning.impactOpacityFloor,
     impactRenderOrder:tuning.impactRenderOrder,
+    groundYOffset:tuning.groundYOffset,
     helpers:{wait,screenShake,screenFlash,floatText,wX,wZ,tileTop}
   };
 }

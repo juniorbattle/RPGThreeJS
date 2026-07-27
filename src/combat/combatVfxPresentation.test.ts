@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import type * as THREE from 'three';
 import { skillById } from '../game/skills';
 import { VFX_PRESET_IDS, getVfxPreset } from './vfx/VfxPresets';
 import { HERO_SKILL_IDS, ENEMY_SKILL_IDS, getSkillPresentation } from './skillPresentation';
@@ -493,6 +494,114 @@ describe('combatVfxPresentation — V10G-R2A.1 generic overlay cleanup', () => {
     for (const id of obsolete) {
       expect(VFX_PRESET_IDS).not.toContain(id);
       expect(getVfxPreset(id)).toBeUndefined();
+    }
+  });
+});
+
+describe('combatVfxPresentation â€” V10G-R2B.0 ground height calibration', () => {
+  it('resolved presentation includes groundYOffset field', () => {
+    const resolved = resolveCombatVfxPresentation('n_dark_meteor');
+    expect(resolved).toBeDefined();
+    expect(resolved!.groundYOffset).toBeDefined();
+    expect(typeof resolved!.groundYOffset).toBe('number');
+  });
+
+  it('basic tier has zero ground offset', () => {
+    const basic = getStaticVfxTierPresentation('basic');
+    expect(basic.groundYOffset).toBe(0);
+  });
+
+  it('5ap_ultimate tier has negative ground offset', () => {
+    const resolved = resolveCombatVfxPresentation('n_dark_meteor');
+    expect(resolved).toBeDefined();
+    expect(resolved!.scaleTier).toBe('5ap_ultimate');
+    expect(resolved!.groundYOffset).toBeLessThan(0);
+  });
+
+  it('boss tier has strongest negative ground offset', () => {
+    const resolved = resolveCombatVfxPresentation('boss_quake');
+    expect(resolved).toBeDefined();
+    expect(resolved!.scaleTier).toBe('boss');
+    expect(resolved!.groundYOffset).toBeLessThan(0);
+    const ultimateResolved = resolveCombatVfxPresentation('n_dark_meteor');
+    expect(resolved!.groundYOffset).toBeLessThanOrEqual(ultimateResolved!.groundYOffset);
+  });
+
+  it('ground offset progression: basic > 2ap > 3ap > 4ap > 5ap > boss', () => {
+    const basic = getStaticVfxTierPresentation('basic').groundYOffset;
+    const ap2 = getStaticVfxTierPresentation('2ap').groundYOffset;
+    const ap3 = getStaticVfxTierPresentation('3ap').groundYOffset;
+    const ap4 = getStaticVfxTierPresentation('4ap').groundYOffset;
+    const ap5 = getStaticVfxTierPresentation('5ap_ultimate').groundYOffset;
+    const boss = getStaticVfxTierPresentation('boss').groundYOffset;
+    expect(basic).toBe(0);
+    expect(ap2).toBeLessThanOrEqual(basic);
+    expect(ap3).toBeLessThanOrEqual(ap2);
+    expect(ap4).toBeLessThanOrEqual(ap3);
+    expect(ap5).toBeLessThanOrEqual(ap4);
+    expect(boss).toBeLessThanOrEqual(ap5);
+  });
+
+  it('n_dark_meteor resolves with grounded placement (negative offset)', () => {
+    const resolved = resolveCombatVfxPresentation('n_dark_meteor');
+    expect(resolved).toBeDefined();
+    expect(resolved!.groundYOffset).toBeLessThanOrEqual(-0.15);
+  });
+
+  it('boss_apocalypse resolves with grounded placement (negative offset)', () => {
+    const resolved = resolveCombatVfxPresentation('boss_apocalypse');
+    expect(resolved).toBeDefined();
+    expect(resolved!.groundYOffset).toBeLessThanOrEqual(-0.15);
+  });
+
+  it('boss_quake resolves with grounded placement (negative offset)', () => {
+    const resolved = resolveCombatVfxPresentation('boss_quake');
+    expect(resolved).toBeDefined();
+    expect(resolved!.groundYOffset).toBeLessThanOrEqual(-0.15);
+  });
+
+  it('boss_inferno resolves with grounded placement (negative offset)', () => {
+    const resolved = resolveCombatVfxPresentation('boss_inferno');
+    expect(resolved).toBeDefined();
+    expect(resolved!.groundYOffset).toBeLessThanOrEqual(-0.15);
+  });
+
+  it('applyResolvedPresentationToContext passes groundYOffset to context', () => {
+    const resolved = resolveCombatVfxPresentation('n_dark_meteor')!;
+    const baseContext: VfxContext = {
+      scene: {} as THREE.Scene,
+      camera: {} as THREE.Camera,
+    };
+    const context = applyResolvedPresentationToContext(resolved, baseContext);
+    expect(context.groundYOffset).toBe(resolved.groundYOffset);
+  });
+
+  it('STATIC_VFX_TIER_PRESENTATION has groundYOffset for all tiers', () => {
+    for (const tier of ['basic', '2ap', '3ap', '4ap', '5ap_ultimate', 'boss'] as const) {
+      const presentation = STATIC_VFX_TIER_PRESENTATION[tier];
+      expect(presentation.groundYOffset).toBeDefined();
+      expect(typeof presentation.groundYOffset).toBe('number');
+    }
+  });
+
+  it('no resolved preset references raw/ paths', () => {
+    for (const skillId of COMBAT_VFX_SKILL_IDS) {
+      const resolved = resolveCombatVfxPresentation(skillId);
+      if (!resolved) continue;
+      expect(resolved.presetId).not.toContain('raw');
+    }
+  });
+
+  it('no cinematic/travel/sky_descent fields reintroduced', () => {
+    for (const skillId of COMBAT_VFX_SKILL_IDS) {
+      const resolved = resolveCombatVfxPresentation(skillId);
+      if (!resolved) continue;
+      const preset = getVfxPreset(resolved.presetId);
+      if (!preset) continue;
+      for (const step of preset.steps) {
+        expect(step.sheetMode).not.toBe('sky_descent');
+        expect(step.skyDescent).toBeUndefined();
+      }
     }
   });
 });

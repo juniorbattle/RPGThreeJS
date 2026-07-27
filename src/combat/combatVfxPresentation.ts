@@ -27,6 +27,8 @@ export interface StaticVfxTierPresentation {
   scaleMultiplier: number;
   impactOpacityFloor: number;
   impactRenderOrder: number;
+  /** Presentation-only ground Y offset. Negative lowers ground-based VFX toward the floor. */
+  groundYOffset: number;
 }
 
 /**
@@ -35,12 +37,12 @@ export interface StaticVfxTierPresentation {
  * table only restores a readable progression between action tiers.
  */
 export const STATIC_VFX_TIER_PRESENTATION: Readonly<Record<VfxScaleTier, StaticVfxTierPresentation>> = Object.freeze({
-  basic: Object.freeze({ scaleMultiplier: 1, impactOpacityFloor: 0.80, impactRenderOrder: 74 }),
-  '2ap': Object.freeze({ scaleMultiplier: 1.10, impactOpacityFloor: 0.84, impactRenderOrder: 76 }),
-  '3ap': Object.freeze({ scaleMultiplier: 1.18, impactOpacityFloor: 0.88, impactRenderOrder: 78 }),
-  '4ap': Object.freeze({ scaleMultiplier: 1.28, impactOpacityFloor: 0.91, impactRenderOrder: 80 }),
-  '5ap_ultimate': Object.freeze({ scaleMultiplier: 1.42, impactOpacityFloor: 0.94, impactRenderOrder: 82 }),
-  boss: Object.freeze({ scaleMultiplier: 1.50, impactOpacityFloor: 0.96, impactRenderOrder: 84 }),
+  basic: Object.freeze({ scaleMultiplier: 1, impactOpacityFloor: 0.80, impactRenderOrder: 74, groundYOffset: 0 }),
+  '2ap': Object.freeze({ scaleMultiplier: 1.10, impactOpacityFloor: 0.84, impactRenderOrder: 76, groundYOffset: -0.05 }),
+  '3ap': Object.freeze({ scaleMultiplier: 1.18, impactOpacityFloor: 0.88, impactRenderOrder: 78, groundYOffset: -0.10 }),
+  '4ap': Object.freeze({ scaleMultiplier: 1.28, impactOpacityFloor: 0.91, impactRenderOrder: 80, groundYOffset: -0.15 }),
+  '5ap_ultimate': Object.freeze({ scaleMultiplier: 1.42, impactOpacityFloor: 0.94, impactRenderOrder: 82, groundYOffset: -0.20 }),
+  boss: Object.freeze({ scaleMultiplier: 1.50, impactOpacityFloor: 0.96, impactRenderOrder: 84, groundYOffset: -0.25 }),
 });
 
 export function getStaticVfxTierPresentation(scaleTier: VfxScaleTier = 'basic'): StaticVfxTierPresentation {
@@ -60,6 +62,7 @@ export interface ActionPresentationTuning {
   staticScaleMultiplier: number;
   impactOpacityFloor: number;
   impactRenderOrder: number;
+  groundYOffset: number;
 }
 
 export interface ResolvedCombatVfxPresentation {
@@ -71,6 +74,7 @@ export interface ResolvedCombatVfxPresentation {
   staticScaleMultiplier: number;
   impactOpacityFloor: number;
   impactRenderOrder: number;
+  groundYOffset: number;
   intensity: number;
   particleScale: number;
   durationScale: number;
@@ -102,6 +106,7 @@ export function getActionPresentationTuning(spec: { key?: string; charge?: numbe
     staticScaleMultiplier: staticPresentation.scaleMultiplier,
     impactOpacityFloor: staticPresentation.impactOpacityFloor,
     impactRenderOrder: staticPresentation.impactRenderOrder,
+    groundYOffset: staticPresentation.groundYOffset,
   };
 }
 
@@ -124,6 +129,7 @@ export function resolveCombatVfxPresentation(skillId: string): ResolvedCombatVfx
     staticScaleMultiplier: tuning.staticScaleMultiplier,
     impactOpacityFloor: tuning.impactOpacityFloor,
     impactRenderOrder: tuning.impactRenderOrder,
+    groundYOffset: tuning.groundYOffset,
     intensity: tuning.intensity,
     particleScale: tuning.particleScale,
     durationScale: tuning.durationScale,
@@ -153,6 +159,7 @@ export function applyResolvedPresentationToContext(
     staticScaleMultiplier: resolved.staticScaleMultiplier,
     impactOpacityFloor: resolved.impactOpacityFloor,
     impactRenderOrder: resolved.impactRenderOrder,
+    groundYOffset: resolved.groundYOffset,
   };
 }
 
