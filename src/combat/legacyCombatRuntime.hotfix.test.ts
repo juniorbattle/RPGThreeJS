@@ -34,4 +34,14 @@ describe('V10F final hotfix runtime contracts', () => {
     expect(runtimeSource).toContain('if(!skipBurst) burst(');
     expect(runtimeSource).toContain("castTelegraph(u,spec,Boolean(getActionVfxPreset(spec,u)))");
   });
+
+  it('suppresses generic overlays when authored spritesheet exists (V10G-R2A.2)', () => {
+    expect(runtimeSource).toContain("import { getVfxPreset } from './vfx/VfxPresets'");
+    expect(runtimeSource).toContain('function actionUsesAuthoredSpritesheet(spec={},u=null)');
+    expect(runtimeSource).toContain("preset.steps.some(step=>visualTypes.includes(step.type))");
+    expect(runtimeSource).toContain('const hasAuthoredVfx=actionUsesAuthoredSpritesheet(spec,u)');
+    expect(runtimeSource).toContain('if(!hasAuthoredVfx)screenFlash');
+    expect(runtimeSource).toContain("if(preset!=='teleport_burst')screenFlash");
+    expect(runtimeSource).toContain('if(!dashHasAuthored){ screenFlash');
+  });
 });

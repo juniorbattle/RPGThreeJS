@@ -188,3 +188,65 @@ This architecture ensures generic procedural VFX never overlap with authored spr
 - **Feedback presets:** 2 (critical_hit, kill_spark)
 - **Fallback-required presets:** 16 unique IDs (not 13 — previous count undercounted; includes fireball, heal_burst, generic_hit, sword_slash, blunt_impact, arrow_shot, dark_bolt, bless_aura, curse_pulse, poison_bite, guard_barrier, boss_slam, boss_quake, support_revive_pillar, support_holy_aura, impact_explosion_large)
 - **Presets appearing in multiple categories:** sword_slash, blunt_impact, arrow_shot, dark_bolt, bless_aura, guard_barrier, boss_slam, boss_quake, heal_burst, support_holy_aura, impact_explosion_large (both skill-mapped and fallback-required)
+
+---
+
+## V10G-R2A.2 Authored Spritesheet-Only Cleanup
+
+### Spritesheets Cleaned
+
+| Filename | Dimensions | Layout | Magenta Before | Magenta After | White Halo | Validation |
+|---|---|---|---|---|---|---|
+| root_vines_5x5_25f_1280.png | 1280x1280 | 5x5/25 frames | 5,633 | 0 | 0 | Pass |
+| frost_bind_5x5_25f_1280.png | 1280x1280 | 5x5/25 frames | 30,920 | 0 | 0 | Pass |
+
+### Pixel Cleanup Method
+
+Used PowerShell with System.Drawing to process RGBA PNGs:
+1. Loaded PNG as 32bpp ARGB bitmap
+2. Scanned all pixels for magenta background (R>180, B>180, G<100, saturation>0.3)
+3. Set magenta pixel alpha to 0 (fully transparent)
+4. Scanned for near-magenta edges (R>150, B>150, G<80, saturation>0.2) and removed
+5. Scanned for white halo (luminance>200, saturation<0.15, alpha 10-200) â€” none found
+6. Saved with preserved dimensions and format
+
+### Active Action VFX Policy
+
+**Authored spritesheet actions:** All hero/enemy/boss skills resolve to presets containing spritesheet steps. Generic impact overlays are suppressed when an authored preset exists.
+
+**Fallback-only actions:** `generic_hit` remains available but is not used by any authored action. Generic `vfx()`, `shockRing()`, `projectile()`, and `screenFlash()` only run when `playActionVfx()` returns null.
+
+**Generic overlays disabled:**
+- `screenFlash` for ultimate/boss signature pre-impact (suppressed when `actionUsesAuthoredSpritesheet` returns true)
+- `screenFlash` in teleport departure/arrival (suppressed when `teleport_burst` preset exists)
+- `screenFlash` + `vfx('hit')` in dash movement (suppressed when skill has authored preset)
+- `castTelegraph` burst (suppressed when authored preset exists â€” V10G-R2A.1)
+
+**Retained:**
+- `castTelegraph` ring (tactical telegraph, allowed)
+- `screenShake` (camera-only feedback, no visual overlay)
+- `floatText` (UI feedback)
+- `flashUnit` (unit material flash, not VFX overlay)
+- Status carousel indicators (untouched)
+
+### Generic Helpers Audited
+
+| Helper | File | Old Behavior | New Behavior | Status |
+|---|---|---|---|---|
+| `screenFlash` (ultimate) | legacyCombatRuntime.js:1418 | Always played | Suppressed when authored preset exists | Disabled for authored |
+| `screenFlash` (boss sig) | legacyCombatRuntime.js:1419 | Always played | Suppressed when authored preset exists | Disabled for authored |
+| `screenFlash` (teleport) | legacyCombatRuntime.js:1459,1461 | Always played | Suppressed when teleport_burst preset exists | Disabled for authored |
+| `screenFlash` (dash) | legacyCombatRuntime.js:1470 | Always played | Suppressed when skill has authored preset | Disabled for authored |
+| `vfx('hit')` (dash) | legacyCombatRuntime.js:1470 | Always played | Suppressed when skill has authored preset | Disabled for authored |
+| `burst()` (castTelegraph) | legacyCombatRuntime.js:1144 | Always played | Suppressed when authored preset exists (R2A.1) | Disabled for authored |
+| `vfx('hit')` (fallback) | legacyCombatRuntime.js:1440 | Played when no preset | Retained as fallback only | Fallback-only |
+| `shockRing()` (fallback) | legacyCombatRuntime.js:1426 | Played when no preset | Retained as fallback only | Fallback-only |
+| `projectile()` (fallback) | legacyCombatRuntime.js:1431 | Played when no preset | Retained as fallback only | Fallback-only |
+| `screenShake()` | legacyCombatRuntime.js:1418,1155 | Always played | Retained (camera-only, no overlay) | Retained |
+| `floatText()` | legacyCombatRuntime.js:1418 | Always played | Retained (UI feedback) | Retained |
+| `flashUnit()` | legacyCombatRuntime.js:1152 | Always played | Retained (unit material flash) | Retained |
+| `vfx('crit')` (crit fallback) | legacyCombatRuntime.js:1599,1634 | Played when playFeedbackVfx fails | Retained as fallback only | Fallback-only |
+
+### Remaining Unknowns
+
+None. All active hero/enemy/boss skills resolve to authored spritesheet presets. Fallback paths only activate when no preset resolves.

@@ -148,6 +148,9 @@ export function installVfxWorkbench(options: VfxWorkbenchOptions) {
     if (resolvedIntensity) resolvedIntensity.textContent = `Intensity: ${resolved.intensity.toFixed(2)}`;
     if (resolvedParticles) resolvedParticles.textContent = `Particles: ${resolved.particleScale.toFixed(2)}`;
     if (resolvedDuration) resolvedDuration.textContent = `Duration: ${resolved.durationScale.toFixed(2)}`;
+    const resolvedPresetDef = getVfxPreset(resolved.presetId);
+    const usesAuthored = resolvedPresetDef?.steps.some((s) => s.type === 'spriteSheet') ?? false;
+    if (resolvedOrient) resolvedOrient.textContent = `Orientation: ${resolved.orientation ?? 'none'} | Authored: ${usesAuthored ? 'YES' : 'no'} | Overlay: ${usesAuthored ? 'suppressed' : 'fallback'}`;
   };
 
   const setMode = (newMode: VfxWorkbenchMode) => {

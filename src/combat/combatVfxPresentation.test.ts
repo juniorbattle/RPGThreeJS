@@ -605,3 +605,136 @@ describe('combatVfxPresentation â€” V10G-R2B.0 ground height calibration', 
     }
   });
 });
+
+describe('combatVfxPresentation â€” V10G-R2A.2 authored spritesheet-only cleanup', () => {
+  it('n_dark_bolt resolves to shadow_lightning_bolt (not generic dark_bolt)', () => {
+    const resolved = resolveCombatVfxPresentation('n_dark_bolt');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('shadow_lightning_bolt');
+    expect(resolved!.presetId).not.toBe('dark_bolt');
+  });
+
+  it('enemy_dark_bolt resolves to shadow_lightning_bolt (not generic dark_bolt)', () => {
+    const resolved = resolveCombatVfxPresentation('enemy_dark_bolt');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('shadow_lightning_bolt');
+    expect(resolved!.presetId).not.toBe('dark_bolt');
+  });
+
+  it('e_binding_seal resolves to root_vines spritesheet', () => {
+    const resolved = resolveCombatVfxPresentation('e_binding_seal');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('root_vines');
+    const preset = getVfxPreset('root_vines');
+    expect(preset).toBeDefined();
+    expect(preset!.steps.some((s) => s.type === 'spriteSheet')).toBe(true);
+  });
+
+  it('ro_jaw_trap resolves to root_vines spritesheet', () => {
+    const resolved = resolveCombatVfxPresentation('ro_jaw_trap');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('root_vines');
+  });
+
+  it('boss_freeze resolves to frost_bind spritesheet', () => {
+    const resolved = resolveCombatVfxPresentation('boss_freeze');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('frost_bind');
+    const preset = getVfxPreset('frost_bind');
+    expect(preset).toBeDefined();
+    expect(preset!.steps.some((s) => s.type === 'spriteSheet')).toBe(true);
+  });
+
+  it('n_dark_meteor resolves to authored spritesheet preset', () => {
+    const resolved = resolveCombatVfxPresentation('n_dark_meteor');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('ultimate_dark_meteor');
+    const preset = getVfxPreset(resolved!.presetId);
+    expect(preset).toBeDefined();
+    expect(preset!.steps.some((s) => s.type === 'spriteSheet')).toBe(true);
+  });
+
+  it('boss_apocalypse resolves to authored spritesheet preset', () => {
+    const resolved = resolveCombatVfxPresentation('boss_apocalypse');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('boss_apocalypse_v2');
+    const preset = getVfxPreset(resolved!.presetId);
+    expect(preset).toBeDefined();
+    expect(preset!.steps.some((s) => s.type === 'spriteSheet')).toBe(true);
+  });
+
+  it('p_radiant_judgement resolves to authored visual preset', () => {
+    const resolved = resolveCombatVfxPresentation('p_radiant_judgement');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('ultimate_radiant_judgement');
+    const preset = getVfxPreset(resolved!.presetId);
+    expect(preset).toBeDefined();
+    const visualTypes = ['spriteSheet','shockwave','groundRing','magicCircle','particleBurst','smokePuff','sparkleBurst','slashArc','impactStar','lightPulse'];
+    expect(preset!.steps.some((s) => visualTypes.includes(s.type))).toBe(true);
+  });
+
+  it('boss_quake resolves to authored spritesheet preset', () => {
+    const resolved = resolveCombatVfxPresentation('boss_quake');
+    expect(resolved).toBeDefined();
+    expect(resolved!.presetId).toBe('boss_quake');
+    const preset = getVfxPreset(resolved!.presetId);
+    expect(preset).toBeDefined();
+    expect(preset!.steps.some((s) => s.type === 'spriteSheet' || s.type === 'shockwave')).toBe(true);
+  });
+
+  it('generic_hit remains available as fallback', () => {
+    expect(VFX_PRESET_IDS).toContain('generic_hit');
+    expect(getVfxPreset('generic_hit')).toBeDefined();
+  });
+
+  it('generic_hit is not used by authored actions', () => {
+    for (const skillId of COMBAT_VFX_SKILL_IDS) {
+      const resolved = resolveCombatVfxPresentation(skillId);
+      if (!resolved) continue;
+      expect(resolved.presetId).not.toBe('generic_hit');
+    }
+  });
+
+  it('all hero skill presets contain authored visual steps', () => {
+    const visualTypes = ['spriteSheet','shockwave','groundRing','magicCircle','particleBurst','smokePuff','sparkleBurst','slashArc','impactStar','lightPulse'];
+    for (const skillId of HERO_SKILL_IDS) {
+      const resolved = resolveCombatVfxPresentation(skillId);
+      if (!resolved) continue;
+      const preset = getVfxPreset(resolved.presetId);
+      if (!preset) continue;
+      expect(preset.steps.some((s) => visualTypes.includes(s.type))).toBe(true);
+    }
+  });
+
+  it('all enemy skill presets contain authored visual steps', () => {
+    const visualTypes = ['spriteSheet','shockwave','groundRing','magicCircle','particleBurst','smokePuff','sparkleBurst','slashArc','impactStar','lightPulse'];
+    for (const skillId of ENEMY_SKILL_IDS) {
+      const resolved = resolveCombatVfxPresentation(skillId);
+      if (!resolved) continue;
+      const preset = getVfxPreset(resolved.presetId);
+      if (!preset) continue;
+      expect(preset.steps.some((s) => visualTypes.includes(s.type))).toBe(true);
+    }
+  });
+
+  it('no runtime action path references raw/', () => {
+    for (const skillId of COMBAT_VFX_SKILL_IDS) {
+      const resolved = resolveCombatVfxPresentation(skillId);
+      if (!resolved) continue;
+      expect(resolved.presetId).not.toContain('raw');
+    }
+  });
+
+  it('no sky_descent/cinematic travel reintroduced', () => {
+    for (const skillId of COMBAT_VFX_SKILL_IDS) {
+      const resolved = resolveCombatVfxPresentation(skillId);
+      if (!resolved) continue;
+      const preset = getVfxPreset(resolved.presetId);
+      if (!preset) continue;
+      for (const step of preset.steps) {
+        expect(step.sheetMode).not.toBe('sky_descent');
+        expect(step.skyDescent).toBeUndefined();
+      }
+    }
+  });
+});

@@ -13,6 +13,7 @@ import { BackgroundLayerSystem } from '../render/BackgroundLayerSystem';
 import { combatBackgroundFor } from '../render/combatBackgrounds';
 import { COMBAT_PRESENTATION } from './combatPresentationConfig.js';
 import { VfxSystem } from './vfx/VfxSystem';
+import { getVfxPreset } from './vfx/VfxPresets';
 import { installVfxWorkbench } from './vfx/VfxWorkbench';
 import { getCarouselStatusFrame, getStatusIndicatorAsset, getVisibleStatusIndicators } from './statusPresentation';
 import { skillById as SKILL_MAP } from '../game/skills';
@@ -1348,6 +1349,14 @@ function getActionVfxPreset(spec={},u=null){
   if(spec.support)return 'bless_aura';
   return null;
 }
+function actionUsesAuthoredSpritesheet(spec={},u=null){
+  const presetId=getActionVfxPreset(spec,u);
+  if(!presetId)return false;
+  const preset=getVfxPreset(presetId);
+  if(!preset)return false;
+  const visualTypes=['spriteSheet','shockwave','groundRing','magicCircle','particleBurst','smokePuff','sparkleBurst','slashArc','impactStar','lightPulse'];
+  return preset.steps.some(step=>visualTypes.includes(step.type));
+}
 function makeActionVfxContext(u,targets,cx,cz,spec={},visualContext={}){
   const tuning=getActionPresentationTuning(spec),presentation=getSkillPresentation(spec);
   // The gameplay resolver already supplies the true target/AoE origin through
@@ -1406,8 +1415,9 @@ function playFeedbackVfx(presetId,source,target){
 }
 async function attackAnim(u,spec,cx,cz,targets=[],actionContext={}){ const ctr=new THREE.Vector3(wX(cx),tileTop(cx,cz)+0.6,wZ(cz)); const presentation=getSkillPresentation(spec),preset=getActionMotionPreset(spec),isUltimate=Boolean(presentation?.ultimate),tuning=getActionPresentationTuning(spec),isBossSignature=tuning.tier===6,impactCount=presentation?.impactCount||1;
   const impact=async()=>{
-    if(isUltimate){ floatText(u,'ULTIME','#ffd86a',true); screenFlash('#fff0b0',0.07); screenShake(0.20,0.14); }
-    else if(isBossSignature){ floatText(u,'SIGNATURE','#ffb36a',true); screenFlash('#ffb36a',0.055); screenShake(0.22,0.16); }
+    const hasAuthoredVfx=actionUsesAuthoredSpritesheet(spec,u);
+    if(isUltimate){ floatText(u,'ULTIME','#ffd86a',true); if(!hasAuthoredVfx)screenFlash('#fff0b0',0.07); screenShake(0.20,0.14); }
+    else if(isBossSignature){ floatText(u,'SIGNATURE','#ffb36a',true); if(!hasAuthoredVfx)screenFlash('#ffb36a',0.055); screenShake(0.22,0.16); }
     if(spec.key!=='attack')castTelegraph(u,spec,Boolean(getActionVfxPreset(spec,u)));
     if(spec.key==='ro_tumble')return;
     const origin=actionContext.origin;
@@ -1447,9 +1457,9 @@ async function doMove(u,spec,cx,cz){ setFacing(u,cx,cz); const c=cellAt(cx,cz); 
   if(spec.mode==='teleport'){
     const departure=u.grp.position.clone().add(new THREE.Vector3(0,0.9,0)),preset=getActionVfxPreset(spec,u);
     if(preset==='teleport_burst')playActionVfxAt(preset,u,departure,spec); else vfx('dark',departure);
-    screenFlash('#b9a0ff',0.14); await tweenP(u.mat,{opacity:0},motion.cast,easeOutCubic); placeUnit(u,cx,cz,true);
+    if(preset!=='teleport_burst')screenFlash('#b9a0ff',0.14); await tweenP(u.mat,{opacity:0},motion.cast,easeOutCubic); placeUnit(u,cx,cz,true);
     if(preset==='teleport_burst')playActionVfxAt(preset,u,head,spec); else vfx('dark',head);
-    screenFlash('#9fe7ff',0.16); await tweenP(u.mat,{opacity:1},motion.recoil,easeOutCubic);
+    if(preset!=='teleport_burst')screenFlash('#9fe7ff',0.16); await tweenP(u.mat,{opacity:1},motion.recoil,easeOutCubic);
   }
   else if(spec.mode==='leap'){
     const from=u.grp.position.clone(); placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:(from.x+dest.x)/2,y:Math.max(from.y,dest.y)+motion.jumpHeight,z:(from.z+dest.z)/2},motion.jumpUp,easeOutCubic); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.jumpDown,easeInOut);
@@ -1458,7 +1468,7 @@ async function doMove(u,spec,cx,cz){ setFacing(u,cx,cz); const c=cellAt(cx,cz); 
     else if(spec.key!=='ar_explosive_retreat')vfx('hit',head);
     if(spec.key!=='ar_explosive_retreat')screenShake(0.32,0.22);
   }
-  else { placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.dash||0.2,easeOutCubic); screenShake(0.5,0.3); screenFlash('#fff0b0',0.16); vfx('hit',head);
+  else { placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.dash||0.2,easeOutCubic); const dashPreset=getActionVfxPreset(spec,u); const dashHasAuthored=dashPreset&&actionUsesAuthoredSpritesheet(spec,u); screenShake(0.5,0.3); if(!dashHasAuthored){ screenFlash('#fff0b0',0.16); vfx('hit',head); }
     if(spec.impact){ const hits=aliveUnits().filter(t=>t.team!==u.team&&(Math.abs(t.gx-cx)+Math.abs(t.gz-cz)===1)); for(const t of hits){ const impactSpec={type:'phys',power:spec.power||8}; const crit=Math.random()<critChance(u,t,impactSpec); let {dmg}=computeDamage(u,t,impactSpec); if(crit)dmg=Math.round(dmg*1.5); floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':'#ffffff',crit); if(crit){ if(!playFeedbackVfx('critical_hit',u,t)){ screenShake(0.5,0.3); screenFlash('#fff3b0',0.18); vfx('crit',t.grp.position.clone().add(new THREE.Vector3(0,1,0))); } logMsg('Coup critique !'); } await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&crit&&isBreakOpen(t)){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); } if(t.alive&&spec.impact.status)applyStatus(t,spec.impact.status,spec.impact.statusTurns); await wait(0.06); } } }
   await wait(0.12); }
 function unitCenter(u){ return {gx:u.size>1?bossCenterGX(u):u.gx,gz:u.size>1?bossCenterGZ(u):u.gz}; }
