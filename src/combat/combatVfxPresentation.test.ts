@@ -738,3 +738,107 @@ describe('combatVfxPresentation â€” V10G-R2A.2 authored spritesheet-only cl
     }
   });
 });
+
+describe('V10G-R2A.4 contextual generic VFX policy', () => {
+  const PHYSICAL_PRESET_IDS = new Set([
+    'sword_slash', 'blunt_impact', 'arrow_shot', 'boss_quake', 'boss_slam',
+    'thrust_line', 'poison_bite', 'boss_execution', 'boss_flurry', 'boss_titan_slam',
+    'ultimate_lion_surge', 'ultimate_firmament_lance', 'ultimate_zenith_arrow',
+    'ultimate_silent_assassin', 'ultimate_fault_breaker',
+  ]);
+  const AUTHORED_IMPACT_PRESETS = new Set([
+    'fireball', 'boss_quake', 'sword_slash', 'root_vines', 'frost_bind',
+    'boss_slam', 'thrust_line', 'impact_explosion_large', 'boss_apocalypse_v2',
+    'ultimate_dark_meteor', 'ultimate_artillery_barrage', 'enemy_dragon_breath',
+    'boss_execution', 'boss_titan_slam',
+  ]);
+
+  it('magicCircle is not used by physical skill presets', () => {
+    for (const presetId of PHYSICAL_PRESET_IDS) {
+      const preset = getVfxPreset(presetId);
+      if (!preset) continue;
+      const magicCircles = preset.steps.filter((s) => s.type === 'magicCircle');
+      expect(magicCircles).toHaveLength(0);
+    }
+  });
+
+  it('magicCircle may be used by magical pre-cast or boss ritual contexts', () => {
+    const magicalPresetsWithCircle = ['fireball', 'dark_bolt', 'shadow_lightning_bolt', 'curse_pulse', 'teleport_burst',
+      'ultimate_radiant_judgement', 'ultimate_devouring_eclipse', 'ultimate_dark_meteor',
+      'ultimate_perfect_duality', 'ultimate_miracle', 'ultimate_absolute_harmony',
+      'boss_apocalypse_v2', 'boss_inferno', 'ultimate_artillery_barrage'];
+    for (const presetId of magicalPresetsWithCircle) {
+      const preset = getVfxPreset(presetId);
+      if (!preset) continue;
+      const hasCircle = preset.steps.some((s) => s.type === 'magicCircle');
+      expect(hasCircle).toBe(true);
+    }
+  });
+
+  it('groundRing is not a duplicate over authored impact presets', () => {
+    const removedGroundRingPresets = ['boss_quake', 'impact_explosion_large', 'boss_apocalypse_v2', 'boss_titan_slam'];
+    for (const presetId of removedGroundRingPresets) {
+      const preset = getVfxPreset(presetId);
+      if (!preset) continue;
+      const groundRings = preset.steps.filter((s) => s.type === 'groundRing');
+      expect(groundRings).toHaveLength(0);
+    }
+  });
+
+  it('lightPulse is not used as impact wash over authored spritesheet', () => {
+    const removedLightPulsePresets = ['boss_apocalypse_v2'];
+    for (const presetId of removedLightPulsePresets) {
+      const preset = getVfxPreset(presetId);
+      if (!preset) continue;
+      const lightPulses = preset.steps.filter((s) => s.type === 'lightPulse');
+      expect(lightPulses).toHaveLength(0);
+    }
+  });
+
+  it('particleBurst is not used by authored action impact presets', () => {
+    for (const presetId of AUTHORED_IMPACT_PRESETS) {
+      const preset = getVfxPreset(presetId);
+      if (!preset) continue;
+      const hasSpriteSheet = preset.steps.some((s) => s.type === 'spriteSheet');
+      const bursts = preset.steps.filter((s) => s.type === 'particleBurst');
+      if (hasSpriteSheet && bursts.length > 0) {
+        const isSupport = preset.tags?.includes('support') || preset.tags?.includes('heal');
+        if (!isSupport) {
+          expect(bursts).toHaveLength(0);
+        }
+      }
+    }
+  });
+
+  it('ultimate_dark_meteor, boss_apocalypse_v2, ultimate_radiant_judgement are clean from forbidden procedural impact pollution', () => {
+    const cleanPresets = ['ultimate_dark_meteor', 'boss_apocalypse_v2', 'ultimate_radiant_judgement'];
+    for (const presetId of cleanPresets) {
+      const preset = getVfxPreset(presetId);
+      if (!preset) continue;
+      const hasSpriteSheet = preset.steps.some((s) => s.type === 'spriteSheet');
+      if (!hasSpriteSheet) continue;
+      const isSupport = preset.tags?.includes('support') || preset.tags?.includes('heal');
+      if (isSupport) continue;
+      const bursts = preset.steps.filter((s) => s.type === 'particleBurst');
+      expect(bursts).toHaveLength(0);
+      const rings = preset.steps.filter((s) => s.type === 'groundRing');
+      expect(rings).toHaveLength(0);
+    }
+  });
+
+  it('support/heal/buff presets retain allowed compact generic steps', () => {
+    const supportPresets = ['heal_burst', 'bless_aura', 'guard_barrier', 'support_regen_aura', 'support_revive_pillar', 'support_holy_aura', 'support_boost_aura'];
+    for (const presetId of supportPresets) {
+      const preset = getVfxPreset(presetId);
+      if (!preset) continue;
+      const hasGeneric = preset.steps.some((s) => ['magicCircle', 'groundRing', 'lightPulse', 'particleBurst'].includes(s.type));
+      expect(hasGeneric).toBe(true);
+    }
+  });
+
+  it('no raw/ paths in runtime preset IDs', () => {
+    for (const presetId of VFX_PRESET_IDS) {
+      expect(presetId).not.toContain('raw/');
+    }
+  });
+});

@@ -150,7 +150,11 @@ export function installVfxWorkbench(options: VfxWorkbenchOptions) {
     if (resolvedDuration) resolvedDuration.textContent = `Duration: ${resolved.durationScale.toFixed(2)}`;
     const resolvedPresetDef = getVfxPreset(resolved.presetId);
     const usesAuthored = resolvedPresetDef?.steps.some((s) => s.type === 'spriteSheet') ?? false;
-    if (resolvedOrient) resolvedOrient.textContent = `Orientation: ${resolved.orientation ?? 'none'} | Authored: ${usesAuthored ? 'YES' : 'no'} | Overlay: ${usesAuthored ? 'suppressed' : 'fallback'}`;
+    const proceduralSteps = resolvedPresetDef?.steps.filter((s) => ['magicCircle', 'groundRing', 'lightPulse', 'particleBurst'].includes(s.type)) ?? [];
+    const hasProceduralSteps = proceduralSteps.length > 0;
+    const proceduralClassifications = proceduralSteps.map((s) => s.type).join(', ') || 'none';
+    const impactClean = usesAuthored && !proceduralSteps.some((s) => s.type === 'particleBurst' && (s.startTime ?? 0) >= (resolvedPresetDef?.impactTime ?? 0) * 0.8);
+    if (resolvedOrient) resolvedOrient.textContent = `Orientation: ${resolved.orientation ?? 'none'} | Authored: ${usesAuthored ? 'YES' : 'no'} | Overlay: ${usesAuthored ? 'suppressed' : 'fallback'} | Procedural: ${hasProceduralSteps ? proceduralClassifications : 'none'} | ImpactClean: ${impactClean ? 'YES' : 'n/a'} | HitReaction: YES`;
   };
 
   const setMode = (newMode: VfxWorkbenchMode) => {

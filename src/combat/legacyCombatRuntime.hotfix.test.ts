@@ -52,4 +52,35 @@ describe('V10F final hotfix runtime contracts', () => {
     expect(runtimeSource).not.toContain('halo.material');
     expect(runtimeSource).not.toContain('halo.scale');
   });
+
+  it('implements playUnitHitReaction for damage hit feedback (V10G-R2A.4)', () => {
+    expect(runtimeSource).toContain('async function playUnitHitReaction(u,opts={})');
+    expect(runtimeSource).toContain('const critical=Boolean(opts.critical)');
+    expect(runtimeSource).toContain('isBoss=u.size>1');
+    expect(runtimeSource).toContain('reduced=REDUCED_GRAPHICS');
+    expect(runtimeSource).toContain('flashColor=critical?\'#fff3b0\':\'#ff6a5a\'');
+    expect(runtimeSource).toContain('spriteReturnBaseline(u,baseline)');
+  });
+
+  it('wires applyDamage to use playUnitHitReaction for non-KO damage (V10G-R2A.4)', () => {
+    expect(runtimeSource).toContain('async function applyDamage(u,dmg,src,opts={})');
+    expect(runtimeSource).toContain('if(willKnockOut){ flashUnit(u');
+    expect(runtimeSource).toContain("await playUnitHitReaction(u,{source:src,critical:opts.critical})");
+  });
+
+  it('passes critical flag from attack code to applyDamage (V10G-R2A.4)', () => {
+    expect(runtimeSource).toContain('applyDamage(t,dmg,u,{critical:crit})');
+  });
+
+  it('does not trigger hit reaction for healing (V10G-R2A.4)', () => {
+    const applyHealIdx = runtimeSource.indexOf('function applyHeal(u,amt)');
+    expect(applyHealIdx).toBeGreaterThan(0);
+    const applyHealSection = runtimeSource.slice(applyHealIdx, applyHealIdx + 200);
+    expect(applyHealSection).not.toContain('playUnitHitReaction');
+  });
+
+  it('no sky_descent or cinematic travel reintroduced (V10G-R2A.4)', () => {
+    expect(runtimeSource).not.toContain('sky_descent');
+    expect(runtimeSource).not.toContain('cinematic_travel');
+  });
 });

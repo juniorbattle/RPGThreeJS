@@ -250,3 +250,151 @@ Used PowerShell with System.Drawing to process RGBA PNGs:
 ### Remaining Unknowns
 
 None. All active hero/enemy/boss skills resolve to authored spritesheet presets. Fallback paths only activate when no preset resolves.
+
+---
+
+## V10G-R2A.4 Contextual Generic VFX Policy + Damage Hit Reaction
+
+### Generic Step Inventory
+
+| Preset | Step | Context | Classification | Action |
+|---|---|---|---|---|
+| fireball | particleBurst | target impact over fire_explosion | authored_impact_forbidden | Removed |
+| boss_quake | magicCircle | physical boss pre-cast | physical_pre_cast_forbidden | Removed |
+| boss_quake | groundRing | duplicate over shockwave_ring | authored_impact_forbidden | Removed |
+| boss_quake | particleBurst | groundTarget over shockwave_ring | authored_impact_forbidden | Removed |
+| sword_slash | particleBurst | target over slash_arc | authored_impact_forbidden | Removed |
+| root_vines | particleBurst | targetGround over root_vines | authored_impact_forbidden | Removed |
+| frost_bind | particleBurst | targetGround over frost_bind | authored_impact_forbidden | Removed |
+| boss_slam | magicCircle | physical boss pre-cast | physical_pre_cast_forbidden | Removed |
+| boss_slam | particleBurst | targetGround over leap_impact | authored_impact_forbidden | Removed |
+| thrust_line | particleBurst | target over thrust_line | authored_impact_forbidden | Removed |
+| impact_explosion_large | groundRing | duplicate over explosion_large | authored_impact_forbidden | Removed |
+| boss_apocalypse_v2 | groundRing | duplicate over apocalypse_field | authored_impact_forbidden | Removed |
+| boss_apocalypse_v2 | lightPulse | target wash over apocalypse_field | authored_impact_forbidden | Removed |
+| ultimate_lion_surge | magicCircle | physical ultimate pre-cast | physical_pre_cast_forbidden | Removed |
+| ultimate_firmament_lance | magicCircle | physical piercing pre-cast | physical_pre_cast_forbidden | Removed |
+| ultimate_zenith_arrow | magicCircle | physical ranged pre-cast | physical_pre_cast_forbidden | Removed |
+| ultimate_silent_assassin | magicCircle | physical execution pre-cast | physical_pre_cast_forbidden | Removed |
+| ultimate_fault_breaker | magicCircle | physical shatter pre-cast | physical_pre_cast_forbidden | Removed |
+| ultimate_dark_meteor | particleBurst | groundTarget over meteor_fall | authored_impact_forbidden | Removed |
+| ultimate_artillery_barrage | particleBurst | groundTarget over artillery_barrage | authored_impact_forbidden | Removed |
+| enemy_dragon_breath | particleBurst | groundTarget over dragon_breath | authored_impact_forbidden | Removed |
+| boss_execution | magicCircle | physical boss pre-cast | physical_pre_cast_forbidden | Removed |
+| boss_execution | particleBurst | target over heavy_execution | authored_impact_forbidden | Removed |
+| boss_titan_slam | magicCircle | physical boss pre-cast | physical_pre_cast_forbidden | Removed |
+| boss_titan_slam | groundRing | duplicate over titan_slam | authored_impact_forbidden | Removed |
+| boss_titan_slam | particleBurst | groundTarget over titan_slam | authored_impact_forbidden | Removed |
+| fireball | magicCircle | sourceGround magical pre-cast | magical_pre_cast_allowed | Kept |
+| fireball | lightPulse | source magical cue | magical_pre_cast_allowed | Kept |
+| heal_burst | magicCircle | targetGround support | simple_bonus_allowed | Kept |
+| heal_burst | groundRing | targetGround support | simple_bonus_allowed | Kept |
+| heal_burst | lightPulse | target support feedback | simple_bonus_allowed | Kept |
+| heal_burst | particleBurst | target support (count 4) | simple_bonus_allowed | Kept |
+| dark_bolt | magicCircle | sourceGround magical pre-cast | magical_pre_cast_allowed | Kept |
+| dark_bolt | lightPulse | source magical cue | magical_pre_cast_allowed | Kept |
+| shadow_lightning_bolt | magicCircle | sourceGround magical pre-cast | magical_pre_cast_allowed | Kept |
+| shadow_lightning_bolt | lightPulse | source magical cue | magical_pre_cast_allowed | Kept |
+| root_vines | groundRing | targetGround magical ground effect | simple_bonus_allowed | Kept |
+| root_vines | lightPulse | target magical glow | simple_bonus_allowed | Kept |
+| frost_bind | groundRing | targetGround magical warning | high_level_magic_ground_warning_allowed | Kept |
+| frost_bind | lightPulse | target magical glow | simple_bonus_allowed | Kept |
+| bless_aura | magicCircle | groundTarget support | simple_bonus_allowed | Kept |
+| bless_aura | groundRing | groundTarget support | simple_bonus_allowed | Kept |
+| bless_aura | lightPulse | target support feedback | simple_bonus_allowed | Kept |
+| bless_aura | particleBurst | target support (count 4) | simple_bonus_allowed | Kept |
+| curse_pulse | magicCircle | groundTarget magical debuff | magical_pre_cast_allowed | Kept |
+| curse_pulse | lightPulse | target magical feedback | simple_bonus_allowed | Kept |
+| curse_pulse | particleBurst | groundTarget fallback (no spritesheet) | fallback_only | Kept |
+| guard_barrier | magicCircle | targetGround support | simple_bonus_allowed | Kept |
+| guard_barrier | groundRing | targetGround support | simple_bonus_allowed | Kept |
+| guard_barrier | lightPulse | target support feedback | simple_bonus_allowed | Kept |
+| guard_barrier | particleBurst | target support (count 4) | simple_bonus_allowed | Kept |
+| critical_hit | lightPulse | target critical accent | critical_accent_allowed | Kept |
+| critical_hit | particleBurst | target critical (no spritesheet) | critical_accent_allowed | Kept |
+| kill_spark | groundRing | targetGround knockout reward | simple_bonus_allowed | Kept |
+| kill_spark | lightPulse | target knockout glow | simple_bonus_allowed | Kept |
+| kill_spark | particleBurst | target knockout (no spritesheet) | simple_bonus_allowed | Kept |
+| support_regen_aura | groundRing | targetGround support | simple_bonus_allowed | Kept |
+| support_regen_aura | lightPulse | target support feedback | simple_bonus_allowed | Kept |
+| support_regen_aura | particleBurst | target support (count 4) | simple_bonus_allowed | Kept |
+| support_revive_pillar | magicCircle | targetGround support | simple_bonus_allowed | Kept |
+| support_revive_pillar | groundRing | targetGround support | simple_bonus_allowed | Kept |
+| support_revive_pillar | lightPulse | target support feedback | simple_bonus_allowed | Kept |
+| support_revive_pillar | particleBurst | target support (count 4) | simple_bonus_allowed | Kept |
+| support_holy_aura | magicCircle | targetGround support | simple_bonus_allowed | Kept |
+| support_holy_aura | groundRing | targetGround support | simple_bonus_allowed | Kept |
+| support_holy_aura | particleBurst | target support (count 4) | simple_bonus_allowed | Kept |
+| support_boost_aura | magicCircle | targetGround support | simple_bonus_allowed | Kept |
+| support_boost_aura | lightPulse | target support feedback | simple_bonus_allowed | Kept |
+| support_boost_aura | particleBurst | target support (count 2) | simple_bonus_allowed | Kept |
+| teleport_burst | magicCircle | groundTarget magical movement | magical_pre_cast_allowed | Kept |
+| shape_cone_blast | groundRing | targetGround cone effect | simple_bonus_allowed | Kept |
+| shape_cone_blast | lightPulse | target cone glow | simple_bonus_allowed | Kept |
+| caster_roar | lightPulse | source caster cue | simple_bonus_allowed | Kept |
+| boss_apocalypse_v2 | magicCircle | targetGround boss ritual | boss_ritual_warning_allowed | Kept |
+| ultimate_radiant_judgement | magicCircle | groundTarget sacred pre-cast | magical_pre_cast_allowed | Kept |
+| ultimate_radiant_judgement | groundRing | groundTarget area warning | high_level_magic_ground_warning_allowed | Kept |
+| ultimate_radiant_judgement | lightPulse | allTargets support glow | simple_bonus_allowed | Kept |
+| ultimate_devouring_eclipse | magicCircle | groundTarget dark pre-cast | magical_pre_cast_allowed | Kept |
+| ultimate_devouring_eclipse | groundRing | groundTarget area warning | high_level_magic_ground_warning_allowed | Kept |
+| ultimate_devouring_eclipse | particleBurst | allTargets fallback (no spritesheet) | fallback_only | Kept |
+| ultimate_dark_meteor | magicCircle | sourceGround dark magical pre-cast | magical_pre_cast_allowed | Kept |
+| ultimate_dark_meteor | lightPulse | source magical cue | magical_pre_cast_allowed | Kept |
+| ultimate_miracle | magicCircle | sourceGround support | simple_bonus_allowed | Kept |
+| ultimate_miracle | groundRing | targetGround support | simple_bonus_allowed | Kept |
+| ultimate_miracle | lightPulse | allTargets support glow | simple_bonus_allowed | Kept |
+| ultimate_miracle | particleBurst | allTargets support (count 4) | simple_bonus_allowed | Kept |
+| ultimate_perfect_duality | magicCircle | sourceGround hybrid magical | magical_pre_cast_allowed | Kept |
+| ultimate_perfect_duality | groundRing | groundTarget area warning | high_level_magic_ground_warning_allowed | Kept |
+| ultimate_perfect_duality | particleBurst | allTargets fallback (no spritesheet) | fallback_only | Kept |
+| ultimate_absolute_harmony | magicCircle | sourceGround support | simple_bonus_allowed | Kept |
+| ultimate_absolute_harmony | groundRing | sourceGround support | simple_bonus_allowed | Kept |
+| ultimate_absolute_harmony | lightPulse | allTargets support glow | simple_bonus_allowed | Kept |
+| ultimate_zenith_arrow | lightPulse | source physical cue | simple_bonus_allowed | Kept |
+| ultimate_lion_surge | lightPulse | source physical cue | simple_bonus_allowed | Kept |
+| ultimate_lion_surge | particleBurst | target fallback (no spritesheet) | fallback_only | Kept |
+| ultimate_firmament_lance | lightPulse | source physical cue | simple_bonus_allowed | Kept |
+| ultimate_silent_assassin | particleBurst | target fallback (no authored impact spritesheet) | fallback_only | Kept |
+| ultimate_artillery_barrage | magicCircle | groundTarget fire zone warning | high_level_magic_ground_warning_allowed | Kept |
+| enemy_dragon_breath | lightPulse | source fire breath cue | magical_pre_cast_allowed | Kept |
+| boss_inferno | magicCircle (x2) | source/ground boss fire ritual | boss_ritual_warning_allowed | Kept |
+| boss_inferno | particleBurst | groundTarget fallback (no spritesheet) | fallback_only | Kept |
+| boss_flurry | particleBurst | target fallback (no spritesheet) | fallback_only | Kept |
+| blunt_impact | particleBurst | targetGround fallback (no spritesheet) | fallback_only | Kept |
+| arrow_shot | particleBurst | target impact (no authored impact spritesheet) | fallback_only | Kept |
+| dark_bolt | particleBurst | target impact (projectile spritesheet only) | fallback_only | Kept |
+| shadow_lightning_bolt | particleBurst | target impact (projectile spritesheet only) | fallback_only | Kept |
+| poison_bite | particleBurst | target fallback (no spritesheet) | fallback_only | Kept |
+| status_curse_mark | particleBurst | target status accent | simple_bonus_allowed | Kept |
+| move_smoke_burst | particleBurst | targetGround movement (count 3) | simple_bonus_allowed | Kept |
+| arrow_rain | particleBurst | targetGround impact (projectile spritesheet only) | fallback_only | Kept |
+
+### Kept Usages
+
+- **magicCircle**: magical pre-cast (fireball, dark_bolt, shadow_lightning_bolt, ultimate_radiant_judgement, ultimate_devouring_eclipse, ultimate_dark_meteor, ultimate_perfect_duality, curse_pulse, teleport_burst), boss ritual (boss_apocalypse_v2, boss_inferno), support (heal_burst, bless_aura, guard_barrier, support_revive_pillar, support_holy_aura, support_boost_aura, ultimate_miracle, ultimate_absolute_harmony), fire zone warning (ultimate_artillery_barrage)
+- **groundRing**: high-level magic warning (ultimate_radiant_judgement, ultimate_devouring_eclipse, ultimate_perfect_duality, frost_bind), support (heal_burst, bless_aura, guard_barrier, support_regen_aura, support_revive_pillar, support_holy_aura, ultimate_miracle, ultimate_absolute_harmony), simple bonus (root_vines, shape_cone_blast, kill_spark, status_curse_mark, poison_bite)
+- **lightPulse**: critical accent (critical_hit), source cue (fireball, dark_bolt, shadow_lightning_bolt, ultimate_lion_surge, ultimate_firmament_lance, ultimate_zenith_arrow, enemy_dragon_breath, caster_roar), support feedback (heal_burst, root_vines, frost_bind, bless_aura, curse_pulse, guard_barrier, kill_spark, support_regen_aura, support_revive_pillar, support_boost_aura, ultimate_radiant_judgement, ultimate_miracle, ultimate_absolute_harmony)
+- **particleBurst**: fallback only (blunt_impact, arrow_shot, dark_bolt, shadow_lightning_bolt, poison_bite, arrow_rain, ultimate_lion_surge, ultimate_devouring_eclipse, ultimate_perfect_duality, ultimate_silent_assassin, boss_inferno, boss_flurry, curse_pulse), support (heal_burst, bless_aura, guard_barrier, support_regen_aura, support_revive_pillar, support_holy_aura, support_boost_aura, ultimate_miracle, move_smoke_burst, status_curse_mark), critical accent (critical_hit, kill_spark)
+
+### Removed/Disabled Usages
+
+- **Physical magicCircle**: boss_quake, boss_slam, boss_execution, boss_titan_slam, ultimate_lion_surge, ultimate_firmament_lance, ultimate_zenith_arrow, ultimate_silent_assassin, ultimate_fault_breaker (9 presets)
+- **Authored impact particleBurst**: fireball, boss_quake, sword_slash, root_vines, frost_bind, boss_slam, thrust_line, ultimate_dark_meteor, ultimate_artillery_barrage, enemy_dragon_breath, boss_execution, boss_titan_slam (12 presets)
+- **Duplicate groundRing over authored impact**: boss_quake, impact_explosion_large, boss_apocalypse_v2, boss_titan_slam (4 presets)
+- **Impact lightPulse wash**: boss_apocalypse_v2 (1 preset)
+
+### Hit Reaction Implementation
+
+- **Trigger path**: `applyDamage(u, dmg, src, opts)` in `legacyCombatRuntime.js`
+- **Helper function**: `playUnitHitReaction(u, opts)` — standalone async function with flash + shake + squash + recoil
+- **Duration/intensity**: Normal 120ms (hitOut 0.06 + hitBack 0.12), Critical 180ms with stronger flash, Boss reduced displacement (0.07 vs 0.12), Reduced graphics 100ms with 50-65% intensity
+- **Reduced graphics behavior**: Flash 90ms, hitDist *0.65, squashAmt *0.6, shakeMag *0.5, hitOut 0.05, hitBack 0.10
+- **Boss behavior**: hitDist 0.07 (vs 0.12 normal), squashAmt 0.025 (vs 0.045), shakeMag 0.035 (vs 0.055) — low displacement, readable flash
+- **Restore baseline behavior**: `spriteReturnBaseline(u, baseline)` in finally block guarantees transform restoration; `killSpriteMotion(u)` at start prevents stacking
+- **Critical flag**: Passed via `opts.critical` from attack code through `applyDamage` to `playUnitHitReaction` — visual only, no gameplay change
+- **KO handling**: Knockout still uses `flashUnit` + `playSpriteMotion('knockout')` path unchanged
+
+### Remaining Unknowns
+
+None. All generic steps classified and cleaned. Physical skills no longer use magicCircle. Authored impacts no longer have particleBurst/groundRing/lightPulse pollution. Hit reaction implemented for all damage paths.

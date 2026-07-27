@@ -997,6 +997,30 @@ function floatText(u,txt,color,big){ const el=document.createElement('div'); el.
   const base=(u.grp?u.grp.position.clone():new THREE.Vector3(wX(u.gx),0,wZ(u.gz))); base.y+=2.5; base.x+=rnd(-0.2,0.2);
   (function a(){ const e=Math.min(1,(performance.now()-start)/(dur*1000)); const wp=base.clone(); wp.y+=e*1.0; const s=worldToScreen(wp); el.style.left=s.x+'px'; el.style.top=s.y+'px'; el.style.opacity=(1-e*e); if(e<1)requestAnimationFrame(a); else el.remove(); })(); }
 function flashUnit(u,color){ u.mat.color.set(color); setTimeout(()=>u.alive&&u.mat.color.set('#ffffff'),140); }
+async function playUnitHitReaction(u,opts={}){
+  if(!u||!u.alive||!u.grp||!u.spr)return;
+  const critical=Boolean(opts.critical),isBoss=u.size>1,reduced=REDUCED_GRAPHICS;
+  const baseline=motionBaseline(u); killSpriteMotion(u); u._motionPlaying=true;
+  try{
+    const flashColor=critical?'#fff3b0':'#ff6a5a';
+    if(u.mat){ u.mat.color.set(flashColor); setTimeout(()=>{if(u.alive&&u.mat)u.mat.color.set('#ffffff');},reduced?90:(critical?180:140)); }
+    const away=opts.source?motionDirection(u,{source:opts.source,reaction:true},true):{x:0,z:0};
+    const hitDist=(critical?0.15:(isBoss?0.07:0.12))*(reduced?0.65:1);
+    const squashAmt=(critical?0.055:(isBoss?0.025:0.045))*(reduced?0.6:1);
+    const shakeMag=(critical?0.08:(isBoss?0.035:0.055))*(reduced?0.5:1);
+    const hitOut=reduced?0.05:0.06,hitBack=reduced?0.10:0.12;
+    const ss=largeUnitSpriteScale(u),sg=spriteScaleSign(u.spr);
+    const os=ss*1.1,og=u.outline?spriteScaleSign(u.outline):1;
+    const sqY=ss*(1-squashAmt),sqX=ss*(1+squashAmt*0.45);
+    await tweenP(u.grp.position,{x:baseline.group.x+away.x*hitDist,y:baseline.group.y,z:baseline.group.z+away.z*hitDist},hitOut,easeOutCubic);
+    const x=shakeMag*sg;
+    const shake=(async()=>{ await tweenP(u.spr.position,{x},hitBack*0.3,easeOutCubic); await tweenP(u.spr.position,{x:-x*0.4},hitBack*0.3,easeInOut); await tweenP(u.spr.position,{x:0},hitBack*0.4,easeOutCubic); })();
+    const squash=(async()=>{ await tweenP(u.spr.scale,{x:sg*sqX,y:sqY},hitBack*0.35,easeOutCubic); await tweenP(u.spr.scale,{x:sg*ss,y:ss},hitBack*0.65,easeInOut); })();
+    const recoil=tweenP(u.grp.position,{x:baseline.group.x,y:baseline.group.y,z:baseline.group.z},hitBack,easeInOut);
+    if(u.outline){ const osqY=os*(1-squashAmt),osqX=os*(1+squashAmt*0.45); tween(u.outline.scale,{x:og*osqX,y:osqY},hitBack*0.35,easeOutCubic,()=>{ tween(u.outline.scale,{x:og*os,y:os},hitBack*0.65,easeInOut); }); }
+    await Promise.all([shake,squash,recoil]);
+  } finally { spriteReturnBaseline(u,baseline); }
+}
 const VFX_GEO={spark:new THREE.SphereGeometry(1,6,6),ring:new THREE.RingGeometry(0.1,0.34,28)};
 function disposeVFXMesh(m){ if(!m)return; scene.remove(m); if(m.material)m.material.dispose(); if(m.geometry&&m.geometry!==VFX_GEO.spark&&m.geometry!==VFX_GEO.ring)m.geometry.dispose(); }
 function shockRing(pos,radius,color){ const m=new THREE.Mesh(VFX_GEO.ring,new THREE.MeshBasicMaterial({color:color||0xfff0b0,transparent:true,opacity:.85,side:THREE.DoubleSide,depthWrite:false,fog:false,toneMapped:false})); m.rotation.x=-Math.PI/2; m.position.copy(pos); m.position.y+=0.05; scene.add(m); const sc=Math.max(1,radius)*2.6; tween(m.scale,{x:sc,y:sc},0.45,easeOutCubic); tween(m.material,{opacity:0},0.45,easeOutCubic,()=>disposeVFXMesh(m)); }
@@ -1138,12 +1162,12 @@ function castTelegraph(u,spec,skipBurst){ const c=u.cell(); if(!c)return; const 
 function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*100:5; const dexBonus=Math.max(0,(effDEX(att)-effDEX(tgt))/2); const exhaustBonus=isBreakOpen(tgt)?20:0; return cl(base+dexBonus+exhaustBonus,1,90)/100; }
 function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return true; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; if(spec.weaponType==='longbow'){ const dist=Math.abs((att.size>1?bossCenterGX(att):att.gx)-tgt.gx)+Math.abs((att.size>1?bossCenterGZ(att):att.gz)-tgt.gz); if(dist>=spec.range[1])acc+=5; } return Math.random()*100<cl(acc,5,95); }
 
-async function applyDamage(u,dmg,src){
+async function applyDamage(u,dmg,src,opts={}){
   u.hp=Math.max(0,u.hp-dmg);
   const willKnockOut=u.hp<=0&&u.alive;
   if(willKnockOut)playFeedbackVfx('kill_spark',src,u);
-  flashUnit(u,'#ff6a5a');
-  await playSpriteMotion(u,willKnockOut?'knockout':'hit_reaction',{source:src});
+  if(willKnockOut){ flashUnit(u,'#ff6a5a'); await playSpriteMotion(u,'knockout',{source:src}); }
+  else { await playUnitHitReaction(u,{source:src,critical:opts.critical}); }
   screenShake(willKnockOut?0.26:0.16,willKnockOut?0.2:0.16);
   refreshPanel(u);
   if(willKnockOut){
@@ -1590,7 +1614,7 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
           if(spec.bonusVsAfflicted&&Object.keys(t.statuses).some(s=>isNegative(s)))dmg=Math.round(dmg*spec.bonusVsAfflicted);
           floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':'#ffffff',lab==='DOS'||crit);
           if(crit){ if(!playFeedbackVfx('critical_hit',u,t)){ screenShake(0.5,0.3); screenFlash('#fff3b0',0.18); vfx('crit',t.grp.position.clone().add(new THREE.Vector3(0,1,0))); } logMsg('Coup critique !'); }
-          await applyDamage(t,dmg,u); totalDamageDealt+=dmg; if(G.over)break;
+          await applyDamage(t,dmg,u,{critical:crit}); totalDamageDealt+=dmg; if(G.over)break;
           if(t.alive&&crit&&isBreakOpen(t)){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); }
           if(t.alive&&eff.status){ applyStatus(t,eff.status,eff.statusTurns); if(eff.status==='taunt')t._taunter=u; }
         }
@@ -1628,7 +1652,7 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
         logMsg('Coup critique !');
       }
       if(lab==='DOS')floatText({grp:{position:t.grp.position.clone().add(new THREE.Vector3(0,0.3,0))},gx:t.gx,gz:t.gz},'DOS !','#ff5a4a');
-      await applyDamage(t,dmg,u); basicDmg=dmg; if(G.over)break; if(t.alive&&crit&&isBreakOpen(t)){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); } if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } }
+      await applyDamage(t,dmg,u,{critical:crit}); basicDmg=dmg; if(G.over)break; if(t.alive&&crit&&isBreakOpen(t)){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); } if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } }
     if(spec.key==='attack'&&spec.weaponType==='scythe'&&u.alive&&basicDmg>0){ applyHeal(u,Math.max(1,Math.round(basicDmg*0.10))); }
     if(spec.key==='attack'&&spec.weaponType==='hand_cannon'){ const splashTgts=aliveUnits().filter(st=>st.team!==u.team&&st.alive&&Math.abs(st.gx-impactCx)+Math.abs(st.gz-impactCz)===1); for(const st of splashTgts){ const sd=Math.max(1,Math.round(basicDmg*0.25)); floatText(st,'-'+sd,'#ffaa6a'); await applyDamage(st,sd,u); if(G.over)break; await wait(0.06); } }
     if(spec.key==='attack'&&spec.weaponType==='greatsword'&&u.alive&&basicDmg>0&&Math.random()<(0.20+(isBreakOpen(targets[0])?0.20:0))){ const t=targets[0]; if(t&&t.alive){ applyStatus(t,'curse',2); } }

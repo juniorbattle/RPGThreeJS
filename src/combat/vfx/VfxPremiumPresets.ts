@@ -31,7 +31,6 @@ export const PREMIUM_VFX_PRESETS = [
     tags: ['hero', 'ultimate', 'physical', 'golden', 'line'],
     reducedGraphicsScale: 0.45,
     steps: [
-      { type: 'magicCircle', anchor: 'sourceGround', texture: 'magicCircle', startTime: 0, duration: 0.42, color: '#ffe39a', secondaryColor: '#c98a26', scale: 1.34, opacity: 0.56, rotation: 0.35, reducedGraphicsMultiplier: 0.62 },
       { type: 'lightPulse', anchor: 'source', texture: 'magicGlow', startTime: 0.05, duration: 0.4, color: '#ffd86a', scale: 1.5, opacity: 0.56, reducedGraphicsMultiplier: 0.62 },
       { type: 'slashArc', anchor: 'target', texture: 'slashArc', startTime: 0.3, duration: 0.38, color: '#fffbdc', secondaryColor: '#e8a733', scale: 2.22, opacity: 1, rotation: -0.42, orientation: 'align_line' },
       { type: 'shockwave', anchor: 'targetGround', texture: 'ringGradient', startTime: 0.36, duration: 0.48, color: '#ffe8a1', secondaryColor: '#a55d22', scale: 1.72, radius: 1.22, count: 5, opacity: 0.78, reducedGraphicsMultiplier: 0.5 },
@@ -89,7 +88,6 @@ export const PREMIUM_VFX_PRESETS = [
     reducedGraphicsScale: 0.45,
     steps: [
       { type: 'spriteSheet', anchor: 'target', spriteSheet: 'thrust_line', startTime: 0.22, duration: 0.56, scale: 1.82, opacity: 1, blending: 'normal', orientation: 'source_to_target', reducedGraphicsMultiplier: 0.72 },
-      { type: 'magicCircle', anchor: 'sourceGround', texture: 'magicCircle', startTime: 0, duration: 0.46, color: '#9adfff', secondaryColor: '#f5d47c', scale: 1.26, opacity: 0.52, rotation: 0.45, reducedGraphicsMultiplier: 0.6 },
       { type: 'lightPulse', anchor: 'source', texture: 'magicGlow', startTime: 0.05, duration: 0.44, color: '#b6ecff', secondaryColor: '#ffe08b', scale: 1.48, opacity: 0.56, reducedGraphicsMultiplier: 0.62 },
       { type: 'projectile', anchor: 'source', targetAnchor: 'target', texture: 'projectileCore', startTime: 0.18, duration: 0.38, color: '#f7fdff', secondaryColor: '#55cfff', scale: 0.32, count: 14, opacity: 1, heightOffset: 0.28, reducedGraphicsMultiplier: 0.46 },
       { type: 'slashArc', anchor: 'target', texture: 'slashArc', startTime: 0.5, duration: 0.32, color: '#ffffff', secondaryColor: '#73d8ff', scale: 2.05, opacity: 0.96, rotation: -1.12 },
@@ -112,7 +110,6 @@ export const PREMIUM_VFX_PRESETS = [
       { type: 'lightPulse', anchor: 'source', texture: 'magicGlow', startTime: 0.06, duration: 0.48, color: '#9f62e5', secondaryColor: '#ff8c45', scale: 1.62, opacity: 0.52, reducedGraphicsMultiplier: 0.56 },
       { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'meteor_fall', startTime: 0.04, duration: 1.02, scale: 2, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.64 },
       { type: 'shockwave', anchor: 'groundTarget', texture: 'ringGradient', startTime: 0.56, duration: 0.54, color: '#d18dff', secondaryColor: '#ff713f', scale: 2.05, radius: 1.46, count: 6, opacity: 0.8, reducedGraphicsMultiplier: 0.45 },
-      { type: 'particleBurst', anchor: 'groundTarget', texture: 'softParticle', startTime: 0.56, duration: 0.6, color: '#d99cff', secondaryColor: '#ff653a', scale: 0.24, count: 22, speed: 1.68, rise: 1.02, spread: 1.78, opacity: 0.92, reducedGraphicsMultiplier: 0.4 },
       { type: 'smokePuff', anchor: 'groundTarget', texture: 'smokePuff', startTime: 0.61, duration: 0.56, color: '#332238', secondaryColor: '#703734', scale: 0.46, count: 6, speed: 0.5, rise: 0.8, spread: 1.15, opacity: 0.42, blending: 'normal', reducedGraphicsMultiplier: 0.32 },
       { type: 'impactStar', anchor: 'target', texture: 'impactStar', startTime: 0.56, duration: 0.3, color: '#fff0cf', secondaryColor: '#b86bea', scale: 1.84, opacity: 0.96 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.57, duration: 0.17, color: '#b064d4', opacity: 0.15, reducedGraphicsMultiplier: 0.44 },
@@ -178,7 +175,6 @@ export const PREMIUM_VFX_PRESETS = [
     tags: ['hero', 'ultimate', 'ranged', 'piercing', 'critical'],
     reducedGraphicsScale: 0.45,
     steps: [
-      { type: 'magicCircle', anchor: 'sourceGround', texture: 'magicCircle', startTime: 0, duration: 0.43, color: '#c8f1ff', secondaryColor: '#ffd76a', scale: 1.18, opacity: 0.5, rotation: 0.34, reducedGraphicsMultiplier: 0.62 },
       { type: 'lightPulse', anchor: 'source', texture: 'magicGlow', startTime: 0.04, duration: 0.43, color: '#dcf7ff', secondaryColor: '#ffe27d', scale: 1.38, opacity: 0.56, reducedGraphicsMultiplier: 0.6 },
       { type: 'projectile', anchor: 'source', targetAnchor: 'target', texture: 'projectileCore', startTime: 0.16, duration: 0.38, color: '#ffffff', secondaryColor: '#5ed8ff', scale: 0.29, count: 16, opacity: 1, heightOffset: 0.3, orientation: 'source_to_target', reducedGraphicsMultiplier: 0.45 },
       { type: 'slashArc', anchor: 'target', texture: 'slashArc', startTime: 0.5, duration: 0.28, color: '#ffffff', secondaryColor: '#ffd35d', scale: 1.72, opacity: 0.94, rotation: -1.24 },
@@ -199,7 +195,6 @@ export const PREMIUM_VFX_PRESETS = [
     steps: [
       { type: 'spriteSheet', anchor: 'sourceGround', spriteSheet: 'teleport_burst', startTime: 0, duration: 0.62, scale: 1.46, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.72 },
       { type: 'smokePuff', anchor: 'sourceGround', texture: 'smokePuff', startTime: 0, duration: 0.48, color: '#15151d', secondaryColor: '#44254f', scale: 0.38, count: 8, speed: 0.4, rise: 0.7, spread: 0.86, opacity: 0.52, blending: 'normal', reducedGraphicsMultiplier: 0.38 },
-      { type: 'magicCircle', anchor: 'sourceGround', texture: 'magicCircle', startTime: 0, duration: 0.34, color: '#693b80', secondaryColor: '#67d497', scale: 1.12, opacity: 0.45, rotation: -0.62, reducedGraphicsMultiplier: 0.54 },
       { type: 'slashArc', anchor: 'target', texture: 'slashArc', startTime: 0.25, duration: 0.3, color: '#f5f2ff', secondaryColor: '#8b55ba', scale: 1.82, opacity: 1, rotation: -0.7 },
       { type: 'slashArc', anchor: 'target', texture: 'slashArc', startTime: 0.3, duration: 0.3, color: '#b9ffd7', secondaryColor: '#7250a0', scale: 1.64, opacity: 0.9, rotation: 0.7 },
       { type: 'particleBurst', anchor: 'target', texture: 'softParticle', startTime: 0.28, duration: 0.45, color: '#8df0ad', secondaryColor: '#b970e2', scale: 0.16, count: 16, speed: 1.5, rise: 0.72, spread: 1.12, opacity: 0.92, reducedGraphicsMultiplier: 0.42 },
@@ -217,7 +212,6 @@ export const PREMIUM_VFX_PRESETS = [
     tags: ['hero', 'ultimate', 'physical', 'shatter', 'dispel'],
     reducedGraphicsScale: 0.44,
     steps: [
-      { type: 'magicCircle', anchor: 'targetGround', texture: 'magicCircle', startTime: 0, duration: 0.52, color: '#f0c365', secondaryColor: '#62d7dc', scale: 1.35, opacity: 0.5, rotation: 0.8, reducedGraphicsMultiplier: 0.58 },
       { type: 'slashArc', anchor: 'target', texture: 'slashArc', startTime: 0.28, duration: 0.34, color: '#fff8db', secondaryColor: '#61dce2', scale: 1.86, opacity: 0.96, rotation: -0.48 },
       { type: 'impactStar', anchor: 'target', texture: 'impactStar', startTime: 0.34, duration: 0.29, color: '#ffffff', secondaryColor: '#5ad6da', scale: 1.82, opacity: 1 },
       { type: 'sparkleBurst', anchor: 'target', texture: 'sparkle', startTime: 0.35, duration: 0.52, color: '#fff0a4', secondaryColor: '#70e0e5', scale: 0.18, count: 18, speed: 1.48, rise: 0.9, spread: 1.32, opacity: 0.96, reducedGraphicsMultiplier: 0.44 },
@@ -239,7 +233,6 @@ export const PREMIUM_VFX_PRESETS = [
       { type: 'projectile', anchor: 'source', targetAnchor: 'groundTarget', texture: 'projectileCore', startTime: 0.08, duration: 0.34, color: '#fff0b8', secondaryColor: '#ff5635', scale: 0.3, count: 7, opacity: 0.96, heightOffset: 0.74, reducedGraphicsMultiplier: 0.38 },
       { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'artillery_barrage', startTime: 0.04, duration: 0.8, scale: 1.82, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.66 },
       { type: 'shockwave', anchor: 'groundTarget', texture: 'ringGradient', startTime: 0.36, duration: 0.45, color: '#ffbf68', secondaryColor: '#9b3329', scale: 1.62, radius: 1.16, count: 4, opacity: 0.72, reducedGraphicsMultiplier: 0.44 },
-      { type: 'particleBurst', anchor: 'groundTarget', texture: 'softParticle', startTime: 0.36, duration: 0.5, color: '#ffe0a2', secondaryColor: '#ff4d30', scale: 0.2, count: 17, speed: 1.58, rise: 0.9, spread: 1.36, opacity: 0.9, reducedGraphicsMultiplier: 0.38 },
       { type: 'smokePuff', anchor: 'groundTarget', texture: 'smokePuff', startTime: 0.4, duration: 0.48, color: '#493631', scale: 0.39, count: 4, speed: 0.42, rise: 0.72, spread: 0.76, opacity: 0.38, blending: 'normal', reducedGraphicsMultiplier: 0.3 },
       { type: 'impactStar', anchor: 'target', texture: 'impactStar', startTime: 0.36, duration: 0.25, color: '#fff4c6', secondaryColor: '#ff623b', scale: 1.48, opacity: 0.95 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.37, duration: 0.12, color: '#ffb25f', opacity: 0.12, reducedGraphicsMultiplier: 0.42 },
@@ -258,7 +251,6 @@ export const PREMIUM_VFX_PRESETS = [
       { type: 'lightPulse', anchor: 'source', texture: 'magicGlow', startTime: 0, duration: 0.36, color: '#ffb256', secondaryColor: '#ff5133', scale: 1.24, opacity: 0.5, reducedGraphicsMultiplier: 0.58 },
       { type: 'projectile', anchor: 'source', targetAnchor: 'groundTarget', texture: 'projectileCore', startTime: 0.1, duration: 0.36, color: '#ffd37e', secondaryColor: '#ff3e28', scale: 0.42, count: 14, opacity: 0.88, heightOffset: 0.44, orientation: 'align_cone', reducedGraphicsMultiplier: 0.4 },
       { type: 'spriteSheet', anchor: 'source', targetAnchor: 'groundTarget', spriteSheet: 'dragon_breath', sheetMode: 'projectile', startTime: 0.04, duration: 0.54, scale: 1.62, opacity: 1, blending: 'additive', orientation: 'align_cone', reducedGraphicsMultiplier: 0.64 },
-      { type: 'particleBurst', anchor: 'groundTarget', texture: 'softParticle', startTime: 0.4, duration: 0.4, color: '#ffc36c', secondaryColor: '#ed3d2a', scale: 0.2, count: 16, speed: 1.48, rise: 0.76, spread: 1.42, opacity: 0.88, reducedGraphicsMultiplier: 0.4 },
       { type: 'smokePuff', anchor: 'groundTarget', texture: 'smokePuff', startTime: 0.43, duration: 0.39, color: '#493431', scale: 0.36, count: 4, speed: 0.43, rise: 0.67, spread: 0.76, opacity: 0.34, blending: 'normal', reducedGraphicsMultiplier: 0.32 },
       { type: 'shockwave', anchor: 'targetGround', texture: 'ringGradient', startTime: 0.4, duration: 0.36, color: '#ffb25f', secondaryColor: '#8b2e26', scale: 1.32, radius: 0.96, count: 3, opacity: 0.62, reducedGraphicsMultiplier: 0.45 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.41, duration: 0.12, color: '#ff984d', opacity: 0.12, reducedGraphicsMultiplier: 0.46 },
@@ -273,11 +265,9 @@ export const PREMIUM_VFX_PRESETS = [
     tags: ['boss', 'signature', 'physical', 'execution'],
     reducedGraphicsScale: 0.42,
     steps: [
-      { type: 'magicCircle', anchor: 'sourceGround', texture: 'magicCircle', startTime: 0, duration: 0.46, color: '#9a2d2d', secondaryColor: '#e0a55a', scale: 1.72, opacity: 0.45, rotation: 0.38, reducedGraphicsMultiplier: 0.54 },
       { type: 'slashArc', anchor: 'target', texture: 'slashArc', startTime: 0.36, duration: 0.4, color: '#fff3d2', secondaryColor: '#be3c32', scale: 2.42, opacity: 1, rotation: -0.52 },
       { type: 'spriteSheet', anchor: 'target', spriteSheet: 'heavy_execution', startTime: 0.24, duration: 0.62, scale: 1.55, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.64 },
       { type: 'impactStar', anchor: 'target', texture: 'impactStar', startTime: 0.44, duration: 0.3, color: '#ffffff', secondaryColor: '#d64b34', scale: 1.92, opacity: 1 },
-      { type: 'particleBurst', anchor: 'target', texture: 'softParticle', startTime: 0.44, duration: 0.52, color: '#ffe0a7', secondaryColor: '#c63c32', scale: 0.21, count: 22, speed: 1.7, rise: 0.72, spread: 1.42, opacity: 0.92, reducedGraphicsMultiplier: 0.4 },
       { type: 'shockwave', anchor: 'targetGround', texture: 'ringGradient', startTime: 0.45, duration: 0.46, color: '#e6b060', secondaryColor: '#7a2c2a', scale: 1.62, radius: 1.16, count: 5, opacity: 0.72, reducedGraphicsMultiplier: 0.44 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.45, duration: 0.14, color: '#e5a25c', opacity: 0.16, reducedGraphicsMultiplier: 0.45 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.45, duration: 0.36, scale: 0.62, reducedGraphicsMultiplier: 0.4 },
@@ -331,11 +321,8 @@ export const PREMIUM_VFX_PRESETS = [
     tags: ['boss', 'signature', 'physical', 'ground', 'massive'],
     reducedGraphicsScale: 0.38,
     steps: [
-      { type: 'magicCircle', anchor: 'sourceGround', texture: 'magicCircle', startTime: 0, duration: 0.56, color: '#bd7d4a', secondaryColor: '#efd187', scale: 2.05, opacity: 0.44, rotation: 0.4, reducedGraphicsMultiplier: 0.5 },
       { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'titan_slam', startTime: 0.12, duration: 1, scale: 1.9, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.62 },
       { type: 'shockwave', anchor: 'groundTarget', texture: 'ringGradient', startTime: 0.48, duration: 0.68, color: '#f1cf88', secondaryColor: '#71432e', scale: 2.42, radius: 1.75, count: 8, opacity: 0.82, reducedGraphicsMultiplier: 0.42 },
-      { type: 'groundRing', anchor: 'groundTarget', texture: 'ringGradient', startTime: 0.51, duration: 0.66, color: '#ffe5a3', secondaryColor: '#81503a', scale: 2.15, radius: 1.58, opacity: 0.62, reducedGraphicsMultiplier: 0.46 },
-      { type: 'particleBurst', anchor: 'groundTarget', texture: 'softParticle', startTime: 0.5, duration: 0.68, color: '#edc57d', secondaryColor: '#72513b', scale: 0.28, count: 25, speed: 1.85, rise: 0.86, spread: 2.0, opacity: 0.84, blending: 'normal', reducedGraphicsMultiplier: 0.34 },
       { type: 'smokePuff', anchor: 'groundTarget', texture: 'smokePuff', startTime: 0.55, duration: 0.66, color: '#756354', scale: 0.5, count: 8, speed: 0.48, rise: 0.82, spread: 1.28, opacity: 0.38, blending: 'normal', reducedGraphicsMultiplier: 0.28 },
       { type: 'impactStar', anchor: 'target', texture: 'impactStar', startTime: 0.5, duration: 0.31, color: '#fff4cf', secondaryColor: '#d49753', scale: 1.92, opacity: 0.96 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.51, duration: 0.16, color: '#d69a5e', opacity: 0.15, reducedGraphicsMultiplier: 0.42 },
