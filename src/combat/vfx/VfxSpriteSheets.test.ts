@@ -1,24 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { inflateSync } from 'node:zlib';
-import runtimeV1Manifest from '../../../public/assets/vfx/runtime/v1/manifest.json';
-import runtimeV2Manifest from '../../../public/assets/vfx/runtime/v2/manifest.json';
+import runtimeManifest from '../../../public/assets/vfx/runtime/manifest.json';
 import { VFX_PRESETS } from './VfxPresets';
 import { VFX_SPRITE_SHEETS, VFX_SPRITE_SHEET_IDS } from './VfxSpriteSheets';
 import type { VfxSpriteSheetId } from './VfxTypes';
 
-const FORBIDDEN_RUNTIME_SEGMENTS = ['/validation/', '/raw/', '/processed/', '/rejected/'];
-const V1_SHEET_IDS = [
-  'slash_arc', 'small_impact', 'thrust_line', 'projectile_shot', 'magic_bolt', 'fire_explosion',
-  'heal_touch', 'buff_pulse', 'barrier_shell', 'teleport_burst', 'shockwave_ring', 'leap_impact',
-] as const;
-const V2_SHEET_IDS = [
-  'artillery_barrage', 'dragon_breath', 'heavy_execution', 'meteor_fall', 'titan_slam',
-  'curse_mark',
-  'regen_aura', 'revive_pillar', 'holy_aura', 'boost_aura', 'smoke_burst',
-  'cone_blast', 'explosion_large', 'apocalypse_field',
-  'shadow_lightning_bolt', 'root_vines', 'frost_bind',
-] as const;
+const FORBIDDEN_RUNTIME_SEGMENTS = ['/validation/', '/raw/', '/processed/', '/rejected/', '/v1/', '/v2/'];
 const RUNTIME_PUBLIC_ROOT = new URL('../../../public/', import.meta.url);
 
 function runtimePath(url: string) {
@@ -77,17 +65,11 @@ function decodeRgbaPng(path: URL) {
 
 describe('combat VFX sprite sheets', () => {
   it('keeps the approved manifest and typed runtime registry synchronized', () => {
-    expect(runtimeV1Manifest.runtime_ready).toBe(true);
-    expect(runtimeV1Manifest.version).toBe(1);
-    expect(runtimeV1Manifest.entries.map((entry) => entry.id)).toEqual(V1_SHEET_IDS);
-    expect(runtimeV2Manifest.runtime_ready).toBe(true);
-    expect(runtimeV2Manifest.version).toBe(2);
-    expect(runtimeV2Manifest.entries.map((entry) => entry.id)).toEqual(V2_SHEET_IDS);
+    expect(runtimeManifest.runtime_ready).toBe(true);
+    expect(runtimeManifest.version).toBe(3);
+    expect(runtimeManifest.entries.map((entry) => entry.id)).toEqual(VFX_SPRITE_SHEET_IDS);
 
-    const runtimeEntries = [...runtimeV1Manifest.entries, ...runtimeV2Manifest.entries];
-    expect(runtimeEntries.map((entry) => entry.id)).toEqual(VFX_SPRITE_SHEET_IDS);
-
-    for (const entry of runtimeEntries) {
+    for (const entry of runtimeManifest.entries) {
       const definition = VFX_SPRITE_SHEETS[entry.id as VfxSpriteSheetId];
       expect(definition).toBeDefined();
       expect(definition).toMatchObject({
@@ -100,7 +82,7 @@ describe('combat VFX sprite sheets', () => {
         align: entry.align,
         presentation: entry.presentation,
       });
-      expect(definition.url).toMatch(/^\/assets\/vfx\/runtime\/v[12]\/[a-z0-9_f]+\.png$/);
+      expect(definition.url).toMatch(/^\/assets\/vfx\/runtime\/[a-z0-9_f]+\.png$/);
       for (const forbidden of FORBIDDEN_RUNTIME_SEGMENTS) expect(definition.url).not.toContain(forbidden);
       expect(definition.presentation.scaleMultiplier).toBeGreaterThanOrEqual(1);
       expect(definition.presentation.opacityMultiplier).toBeGreaterThan(0);
@@ -111,7 +93,7 @@ describe('combat VFX sprite sheets', () => {
   });
 
   it('ships every runtime sheet as a public RGBA PNG asset', () => {
-    for (const entry of [...runtimeV1Manifest.entries, ...runtimeV2Manifest.entries]) {
+    for (const entry of runtimeManifest.entries) {
       const assetPath = runtimePath(entry.url);
       expect(existsSync(assetPath), entry.url).toBe(true);
       const header = readPngHeader(assetPath);

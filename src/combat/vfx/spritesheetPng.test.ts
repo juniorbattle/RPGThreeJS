@@ -124,34 +124,34 @@ function countMagentaPixels(pixels: PngPixels): number {
 }
 
 describe('V10G-R2A.2 spritesheet PNG validation', () => {
-  const v2Dir = 'public/assets/vfx/runtime/v2';
+  const runtimeDir = 'public/assets/vfx/runtime';
 
   it('root_vines PNG has no visible magenta background pixels', () => {
-    const pixels = readPngPixels(`${v2Dir}/root_vines_5x5_25f_1280.png`);
+    const pixels = readPngPixels(`${runtimeDir}/root_vines_5x5_25f_1280.png`);
     const magenta = countMagentaPixels(pixels);
     expect(magenta).toBe(0);
   });
 
   it('frost_bind PNG has no visible magenta background pixels', () => {
-    const pixels = readPngPixels(`${v2Dir}/frost_bind_5x5_25f_1280.png`);
+    const pixels = readPngPixels(`${runtimeDir}/frost_bind_5x5_25f_1280.png`);
     const magenta = countMagentaPixels(pixels);
     expect(magenta).toBe(0);
   });
 
   it('root_vines PNG dimensions remain 1280x1280', () => {
-    const pixels = readPngPixels(`${v2Dir}/root_vines_5x5_25f_1280.png`);
+    const pixels = readPngPixels(`${runtimeDir}/root_vines_5x5_25f_1280.png`);
     expect(pixels.width).toBe(1280);
     expect(pixels.height).toBe(1280);
   });
 
   it('frost_bind PNG dimensions remain 1280x1280', () => {
-    const pixels = readPngPixels(`${v2Dir}/frost_bind_5x5_25f_1280.png`);
+    const pixels = readPngPixels(`${runtimeDir}/frost_bind_5x5_25f_1280.png`);
     expect(pixels.width).toBe(1280);
     expect(pixels.height).toBe(1280);
   });
 
   it('root_vines PNG has transparent pixels (alpha channel works)', () => {
-    const pixels = readPngPixels(`${v2Dir}/root_vines_5x5_25f_1280.png`);
+    const pixels = readPngPixels(`${runtimeDir}/root_vines_5x5_25f_1280.png`);
     let transparentCount = 0;
     for (let i = 3; i < pixels.data.length; i += 4) {
       if (pixels.data[i] === 0) transparentCount++;
@@ -160,7 +160,7 @@ describe('V10G-R2A.2 spritesheet PNG validation', () => {
   });
 
   it('frost_bind PNG has transparent pixels (alpha channel works)', () => {
-    const pixels = readPngPixels(`${v2Dir}/frost_bind_5x5_25f_1280.png`);
+    const pixels = readPngPixels(`${runtimeDir}/frost_bind_5x5_25f_1280.png`);
     let transparentCount = 0;
     for (let i = 3; i < pixels.data.length; i += 4) {
       if (pixels.data[i] === 0) transparentCount++;

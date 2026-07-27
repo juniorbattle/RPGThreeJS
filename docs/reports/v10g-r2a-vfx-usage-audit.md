@@ -551,3 +551,138 @@ VfxWorkbench now displays: `Spritesheet: YES/NO | Strict: YES/NO | Gap: YES/no |
 ### Remaining Unknowns
 
 None. All active actions use spritesheet-led VFX. No procedural-only active presets remain. No missing spritesheet gaps.
+
+---
+
+## V10G-R2A.6 Runtime VFX Flattening & Action VFX Registry Refactor
+
+### Old Folder Structure
+
+```
+public/assets/vfx/runtime/
+  v1/
+    manifest.json (12 entries)
+    slash_arc.png
+    small_impact.png
+    ... (12 PNGs total)
+  v2/
+    manifest.json (17 entries)
+    artillery_barrage.png
+    curse_mark_5x5_25f_1280.png
+    ... (30 PNGs total, 17 active, 13 unused)
+```
+
+### New Folder Structure
+
+```
+public/assets/vfx/runtime/
+  manifest.json (29 entries, version 3)
+  slash_arc.png
+  small_impact.png
+  ... (42 PNGs total: 29 active + 13 unused retained)
+```
+
+### Files Moved
+
+- 12 PNGs moved from `runtime/v1/` to `runtime/`
+- 30 PNGs moved from `runtime/v2/` to `runtime/`
+- Total: 42 PNGs moved via `git mv`
+- Old `v1/manifest.json` and `v2/manifest.json` removed via `git rm`
+- Old `v1/` and `v2/` directories removed (empty after moves)
+
+### Unified Manifest Path
+
+`public/assets/vfx/runtime/manifest.json` — version 3, 29 active entries, all paths `/assets/vfx/runtime/<filename>.png`
+
+### Active Spritesheet Count
+
+29 active spritesheets (12 formerly v1 + 17 formerly v2)
+
+### Old v1/v2 Folder Handling
+
+- All PNGs moved to flat `runtime/` directory
+- Old manifests deleted
+- Old directories deleted
+- 13 unused v2 PNGs retained in `runtime/` (not in manifest, not referenced by code)
+- No PNG/WebP pixel content modified
+
+### Old v1/v2 Manifest Handling
+
+- Merged into single `manifest.json` (version 3)
+- All entry metadata preserved exactly (id, url, rows, cols, frameCount, frameDurationMs, align, presentation, category, sourceRaw, qcStatus)
+- URLs updated from `/assets/vfx/runtime/v1/` and `/assets/vfx/runtime/v2/` to `/assets/vfx/runtime/`
+
+### Unified Preset Module
+
+- **Chosen**: Option B — merged `VfxPremiumPresets.ts` into `VfxPresets.ts`
+- `VfxPremiumPresets.ts` deleted via `git rm`
+- All 15 premium presets inlined into `VfxPresets.ts` with section comment
+- `PREMIUM_VFX_PRESET_IDS` exported from `VfxPresets.ts` for backward compatibility
+- `premiumPreset()` helper inlined into `VfxPresets.ts`
+
+### Removed/Retired Preset Module
+
+- `src/combat/vfx/VfxPremiumPresets.ts` — deleted
+
+### Import Changes
+
+- `VfxPresets.test.ts`: `PREMIUM_VFX_PRESET_IDS` now imported from `./VfxPresets` instead of `./VfxPremiumPresets`
+- `VfxSpriteSheets.test.ts`: imports `runtimeManifest` from `../../../public/assets/vfx/runtime/manifest.json` instead of separate v1/v2 manifests
+- `spritesheetPng.test.ts`: path updated from `public/assets/vfx/runtime/v2/` to `public/assets/vfx/runtime/`
+- `VfxSpriteSheets.ts`: all 29 URL paths updated from `/assets/vfx/runtime/v[12]/` to `/assets/vfx/runtime/`
+- No changes needed in: `VfxSystem.ts`, `VfxWorkbench.ts`, `combatVfxPresentation.ts`, `legacyCombatRuntime.js`, `skillPresentation.ts` — all already imported from `VfxPresets.ts`
+
+### Action-to-VFX Registry/Helper
+
+New file: `src/combat/vfx/VfxActionRegistry.ts`
+
+Exports:
+- `getActionVfxAuditRows()`: Returns full audit table with actionId, kind, presetId, spriteSheetIds, runtimeFilenames, strict compliance, upgrade metadata
+- `getActionVfxChain(actionId)`: Returns single audit row for a given action
+- `getActionsUsingSpriteSheet(spriteSheetId)`: Returns all action IDs sharing a sprite
+- `getMissingOrUpgradeCandidateSprites()`: Returns rows with upgrade metadata
+
+Audit row shape:
+```
+{ actionId, actionKind, presetId, spriteSheetIds, runtimeFilenames, strictSpritesheetCompliant, upgrade?, note? }
+```
+
+### Temporary Sprite Upgrade Metadata
+
+10 presets marked with `needsDedicatedSpriteUpgrade` in `VfxActionRegistry.ts`:
+
+| Priority | Preset | Current Sprite | Suggested Sprite |
+|---|---|---|---|
+| high | ultimate_radiant_judgement | holy_aura | judgement_beam |
+| high | ultimate_zenith_arrow | projectile_shot | zenith_arrow |
+| high | ultimate_fault_breaker | slash_arc | fault_breaker |
+| medium | ultimate_lion_surge | slash_arc | lion_surge |
+| medium | ultimate_miracle | holy_aura | miracle_burst |
+| medium | ultimate_absolute_harmony | holy_aura | harmony_aura |
+| medium | boss_inferno | explosion_large | inferno_field |
+| low | critical_hit | slash_arc | critical_impact |
+| low | poison_bite | slash_arc | poison_bite |
+| low | kill_spark | small_impact | victory_spark |
+
+Full details in `docs/reports/vfx-sprite-upgrade-candidates.md`
+
+### Tests Added/Updated
+
+- `VfxActionRegistry.test.ts`: 8 new tests covering audit rows, chain lookup, sprite sharing, upgrade candidates
+- `VfxSpriteSheets.test.ts`: Updated to use unified manifest, check `/v1/` and `/v2/` as forbidden segments
+- `VfxPresets.test.ts`: Updated import of `PREMIUM_VFX_PRESET_IDS` from unified module
+- `spritesheetPng.test.ts`: Updated path from `runtime/v2/` to `runtime/`
+
+### Validation Results
+
+- **npm test**: 348 passed (348) — 0 failed
+- **npm run build**: built in 4.41s — 0 errors
+- **git diff --check**: clean
+- **git status**: 42 PNGs moved, 2 manifests removed, 1 new manifest, 1 file deleted (VfxPremiumPresets.ts), 1 new file (VfxActionRegistry.ts), 1 new test, 1 new doc, 4 files updated
+
+### Confirmation
+
+- No gameplay changed
+- No PNG/WebP pixel content changed
+- No status carousel changed
+- V10G-R2B visual polish can begin — all active actions resolve to spritesheet-led VFX from a flat runtime folder with a unified preset registry

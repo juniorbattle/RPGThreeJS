@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { VFX_PRESET_IDS, VFX_PRESETS, VFX_PARTICLE_STEP_TYPES, getVfxPreset } from './VfxPresets';
-import { PREMIUM_VFX_PRESET_IDS } from './VfxPremiumPresets';
+import { VFX_PRESET_IDS, VFX_PRESETS, VFX_PARTICLE_STEP_TYPES, getVfxPreset, PREMIUM_VFX_PRESET_IDS } from './VfxPresets';
 import { VFX_TEXTURE_NAMES } from './VfxTextures';
 import { isVfxWorkbenchEnabled } from './VfxWorkbench';
 import type { VfxStepType } from './VfxTypes';
