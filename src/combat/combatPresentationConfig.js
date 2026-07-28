@@ -49,12 +49,12 @@ const gameplayGrid = {
   selectedOpacity: 0,
   tacticalOpacity: 0,
   stageOpacity: 0,
-  moveTileOpacity: 0.46,
-  deployTileOpacity: 0.52,
-  rangeTileOpacity: 0.38,
-  targetTileOpacity: 0.72,
-  hoverTileOpacity: 0.78,
-  invalidTileOpacity: 0.16,
+  moveTileOpacity: 1,
+  deployTileOpacity: 1,
+  rangeTileOpacity: 1,
+  targetTileOpacity: 1,
+  hoverTileOpacity: 1,
+  invalidTileOpacity: 0.1,
 };
 
 const ambientMist = {
