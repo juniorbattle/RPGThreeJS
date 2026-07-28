@@ -1,0 +1,136 @@
+{
+  "source": "test_input/fake_hero_sheet.png",
+  "split_mode": "grid",
+  "sprites_exported": 16,
+  "sprites": [
+    {
+      "file": "fake_hero_sheet_r0_c0.png",
+      "row": 0,
+      "col": 0,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    },
+    {
+      "file": "fake_hero_sheet_r0_c1.png",
+      "row": 0,
+      "col": 1,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    },
+    {
+      "file": "fake_hero_sheet_r0_c2.png",
+      "row": 0,
+      "col": 2,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    },
+    {
+      "file": "fake_hero_sheet_r0_c3.png",
+      "row": 0,
+      "col": 3,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    },
+    {
+      "file": "fake_hero_sheet_r1_c0.png",
+      "row": 1,
+      "col": 0,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    },
+    {
+      "file": "fake_hero_sheet_r1_c1.png",
+      "row": 1,
+      "col": 1,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    },
+    {
+      "file": "fake_hero_sheet_r1_c2.png",
+      "row": 1,
+      "col": 2,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    },
+    {
+      "file": "fake_hero_sheet_r1_c3.png",
+      "row": 1,
+      "col": 3,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    },
+    {
+      "file": "fake_hero_sheet_r2_c0.png",
+      "row": 2,
+      "col": 0,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    },
+    {
+      "file": "fake_hero_sheet_r2_c1.png",
+      "row": 2,
+      "col": 1,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    },
+    {
+      "file": "fake_hero_sheet_r2_c2.png",
+      "row": 2,
+      "col": 2,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    },
+    {
+      "file": "fake_hero_sheet_r2_c3.png",
+      "row": 2,
+      "col": 3,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    },
+    {
+      "file": "fake_hero_sheet_r3_c0.png",
+      "row": 3,
+      "col": 0,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    },
+    {
+      "file": "fake_hero_sheet_r3_c1.png",
+      "row": 3,
+      "col": 1,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    },
+    {
+      "file": "fake_hero_sheet_r3_c2.png",
+      "row": 3,
+      "col": 2,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    },
+    {
+      "file": "fake_hero_sheet_r3_c3.png",
+      "row": 3,
+      "col": 3,
+      "w": 63,
+      "h": 93,
+      "touches_edge": false
+    }
+  ],
+  "warnings": []
+}
