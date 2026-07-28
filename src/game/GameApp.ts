@@ -17,6 +17,10 @@ import { ExplorationView } from '../ui/ExplorationView';
 import { PrologueView } from '../ui/PrologueView';
 import { sceneTransition } from '../ui/SceneTransition';
 import type { TransitionVariant } from '../ui/SceneTransition';
+import { CinematicPlayer } from '../cinematics/CinematicPlayer';
+import { CinematicRegistry } from '../cinematics/CinematicRegistry';
+import { resolveVideoCinematicTrigger } from '../cinematics/CinematicTriggers';
+import type { VideoCinematicTrigger } from '../cinematics/CinematicTypes';
 type AppMode = 'TITLE' | 'PROLOGUE' | 'TRAVEL' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT' | 'QA';
 
 type QaPartyMode = 'campaign' | 'full';
@@ -58,9 +62,14 @@ export class GameApp {
   private readonly travel: TravelView;
   private readonly exploration: ExplorationView;
   private readonly prologue: PrologueView;
+  private readonly cinematicRegistry = new CinematicRegistry();
+  private readonly cinematicPlayer = new CinematicPlayer(this.cinematicRegistry);
   private pendingCombatId: string | null = null;
+  private pendingChapterBeatId: string | null = null;
   private readonly qaEnabled = import.meta.env.DEV
     && new URLSearchParams(window.location.search).get('qa') === '1';
+  private readonly cinematicQaEnabled = this.qaEnabled
+    && new URLSearchParams(window.location.search).get('cinematic') === '1';
   private qaParams: QaParams | null = null;
 
   constructor(
@@ -95,7 +104,17 @@ export class GameApp {
   }
 
   async start(): Promise<void> {
-    this.renderTitle();
+    await this.cinematicRegistry.load();
+    if (this.cinematicQaEnabled) this.renderCinematicQa();
+    else this.renderTitle();
+  }
+
+  dispose(): void {
+    this.cinematicPlayer.dispose();
+    this.combat.dispose();
+    this.travel.close();
+    this.exploration.close();
+    this.prologue.close();
   }
 
   private renderTitle(): void {
@@ -223,6 +242,74 @@ export class GameApp {
     this.chrome.querySelectorAll<HTMLButtonElement>('[data-qa-combat]').forEach((button) => {
       button.addEventListener('click', () => void this.startQaCombat(button.dataset.qaCombat ?? ''));
     });
+  }
+
+  private renderCinematicQa(message = ''): void {
+    if (!this.cinematicQaEnabled) {
+      this.renderTitle();
+      return;
+    }
+    this.setMode('QA');
+    this.travel.close();
+    this.exploration.close();
+    this.prologue.close();
+    this.combat.close();
+    this.canvas.hidden = true;
+    this.chrome.innerHTML = `
+      <section class="qa-lab cinematic-qa ui-screen" aria-label="Laboratoire QA cinématique">
+        <header class="qa-lab__header">
+          <div><p class="eyebrow">Développement local</p><h1>Laboratoire cinématique</h1></div>
+          <button type="button" data-cinematic-back>Retour au titre</button>
+        </header>
+        <p class="qa-lab__lead">Lecteur isolé : aucune donnée de chronique, de combat ou de sauvegarde n'est modifiée.</p>
+        ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
+        <div class="cinematic-qa__grid">
+          <button type="button" data-cinematic-qa="placeholder"><b>Placeholder</b><span>Lecture, Continuer et nettoyage</span></button>
+          <button type="button" data-cinematic-qa="missing"><b>ID absent</b><span>Fallback immédiat sans blocage</span></button>
+          <button type="button" data-cinematic-qa="reduced"><b>Mouvement réduit</b><span>Continuation immédiate</span></button>
+          <button type="button" data-cinematic-qa="abort"><b>Annulation</b><span>Abort et règlement exact</span></button>
+          <button type="button" data-cinematic-qa="transition"><b>Transition</b><span>Interlude couvert et interactif</span></button>
+        </div>
+      </section>
+    `;
+    this.chrome.querySelector('[data-cinematic-back]')?.addEventListener('click', () => this.renderTitle());
+    this.chrome.querySelectorAll<HTMLButtonElement>('[data-cinematic-qa]').forEach((button) => {
+      button.addEventListener('click', () => void this.runCinematicQa(button.dataset.cinematicQa ?? ''));
+    });
+  }
+
+  private async runCinematicQa(scenario: string): Promise<void> {
+    let result: Awaited<ReturnType<CinematicPlayer['play']>> | undefined;
+    if (scenario === 'missing') result = await this.cinematicPlayer.play('missing-cinematic', { reducedMotion: false });
+    else if (scenario === 'reduced') result = await this.cinematicPlayer.play('qa-placeholder', { reducedMotion: true });
+    else if (scenario === 'abort') {
+      const controller = new AbortController();
+      window.setTimeout(() => controller.abort(), 180);
+      result = await this.cinematicPlayer.play('qa-placeholder', { signal: controller.signal, reducedMotion: false, placeholderDurationMs: 5_000 });
+    } else if (scenario === 'transition') {
+      let transitionResult;
+      await sceneTransition.run({
+        variant: 'fade',
+        label: 'Interlude cinématique',
+        interlude: async () => { transitionResult = await this.cinematicPlayer.play('qa-placeholder', { reducedMotion: false, placeholderDurationMs: 5_000 }); },
+        task: async () => undefined,
+        holdMs: 0,
+      });
+      result = transitionResult;
+    } else result = await this.cinematicPlayer.play('qa-placeholder', { reducedMotion: false, placeholderDurationMs: 5_000 });
+    this.renderCinematicQa(`Résultat : ${result?.reason ?? 'inconnu'} · overlay ${document.querySelector('.cinematic-overlay') ? 'actif' : 'nettoyé'}.`);
+  }
+
+  private cinematicInterlude(trigger: VideoCinematicTrigger): (() => Promise<unknown>) | undefined {
+    const id = resolveVideoCinematicTrigger(trigger);
+    if (!id) return undefined;
+    return () => this.cinematicPlayer.play(id, { reducedMotion: this.state.settings.reducedGraphics });
+  }
+
+  private async playStandaloneCinematic(trigger: VideoCinematicTrigger, label = ''): Promise<void> {
+    const interlude = this.cinematicInterlude(trigger);
+    if (!interlude) return;
+    await sceneTransition.run({ variant: 'fade', label, interlude, task: async () => undefined, holdMs: 0 });
   }
 
   private buildQaSquad(): UnitInstance[] {
@@ -385,15 +472,21 @@ export class GameApp {
     const sequence = dialogues.get(dialogueId);
     if (!sequence) throw new Error(`Missing dialogue '${dialogueId}'.`);
     let playPromise: Promise<void> | null = null;
+    const interlude = this.cinematicInterlude({ hook: 'beforeDialogue', dialogueId });
     await sceneTransition.run({
       variant: 'dialogue',
       label: sequence.title ?? fallbackLabel ?? '',
+      interlude,
+      ...(interlude ? { holdMs: 0 } : {}),
       task: async () => {
         this.setMode('NARRATIVE');
         playPromise = this.dialogue.play(sequence);
       },
     });
     await playPromise;
+    const chapterBeatId = this.pendingChapterBeatId;
+    this.pendingChapterBeatId = null;
+    if (chapterBeatId) await this.playStandaloneCinematic({ hook: 'chapterBeat', beatId: chapterBeatId }, sequence.title ?? fallbackLabel ?? '');
   }
 
   private async maybePlayATEs(nodeId: string): Promise<void> {
@@ -405,15 +498,21 @@ export class GameApp {
       const sequence = dialogues.get(ateId);
       if (!sequence) continue;
       let playPromise: Promise<void> | null = null;
+      const interlude = this.cinematicInterlude({ hook: 'beforeDialogue', dialogueId: ateId });
       await sceneTransition.run({
         variant: 'dialogue',
         label: sequence.title ?? '',
+        interlude,
+        ...(interlude ? { holdMs: 0 } : {}),
         task: async () => {
           this.setMode('NARRATIVE');
           playPromise = this.dialogue.play(sequence);
         },
       });
       await playPromise;
+      const chapterBeatId = this.pendingChapterBeatId;
+      this.pendingChapterBeatId = null;
+      if (chapterBeatId) await this.playStandaloneCinematic({ hook: 'chapterBeat', beatId: chapterBeatId }, sequence.title ?? '');
       this.state.flags[flagKey] = true;
     }
   }
@@ -466,6 +565,7 @@ export class GameApp {
           break;
         case 'finishChapter':
           this.state.endingId = effect.endingId;
+          this.pendingChapterBeatId = effect.endingId;
           break;
       }
     }
@@ -494,9 +594,12 @@ export class GameApp {
     const combatStarted = new Promise<ReturnType<CombatBridge['start']>>((resolve) => {
       resolveCombatStart = resolve;
     });
+    const interlude = this.cinematicInterlude({ hook: 'beforeCombat', combatId });
     await sceneTransition.run({
       variant,
       label: config.encounterLabel,
+      interlude,
+      ...(interlude ? { holdMs: 0 } : {}),
       task: async () => {
         this.setMode('COMBAT');
         this.travel.close();
@@ -523,6 +626,7 @@ export class GameApp {
     node: RunNode,
     rewards: CombatConfig['rewards'],
   ): Promise<void> {
+    await this.playStandaloneCinematic({ hook: 'afterCombat', combatId: result.combatId, outcome: result.victory ? 'victory' : 'defeat' }, result.victory ? 'Victoire' : 'Défaite');
     if (!result.victory) {
       this.state = this.saves.loadAuto() ?? this.state;
       failRunToCheckpoint(this.state);

@@ -15,10 +15,14 @@ import { COMBAT_PRESENTATION } from './combatPresentationConfig.js';
 import { VfxSystem } from './vfx/VfxSystem';
 import { getVfxPreset } from './vfx/VfxPresets';
 import { installVfxWorkbench } from './vfx/VfxWorkbench';
-import { getCarouselStatusFrame, getStatusIndicatorAsset, getVisibleStatusIndicators } from './statusPresentation';
+import { getResolvedCarouselStatusFrame, getStatusIndicatorAsset, getVisibleStatusIndicators, resolveStatusCarousel } from './statusPresentation';
 import { skillById as SKILL_MAP } from '../game/skills';
 import { getSkillPresentation } from './skillPresentation';
 import { ACTION_PRESENTATION_TIERS, getActionVisualTier, getActionPresentationTuning } from './combatVfxPresentation';
+import { UNIT_MOTION_PRESETS, beginUnitMotion, cancelUnitMotion, createCanonicalUnitMotionBaseline, isUnitMotionCurrent, onceAsync } from './unitMotion';
+import { resolveCombatFeel } from './combatFeel';
+import { CombatCameraFeedback, applyAdditiveCameraShake } from './combatCameraFeedback';
+import { installUnitMotionWorkbench } from './UnitMotionWorkbench';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
@@ -42,6 +46,7 @@ const dom={ ui:byId('ui'), turnbar:byId('turnbar'), hint:byId('hint'), panel:byI
 const campaignParams=new URLSearchParams(location.search);
 const CAMPAIGN_MODE=campaignParams.get('campaign')==='1'&&window.parent!==window;
 let QA_ENABLED=false;
+let MOTION_QA_ENABLED=false;
 let QA_FULL_AP=false;
 let QA_DEPLOY_ALL=false;
 let COMBAT_ID='standalone';
@@ -93,16 +98,16 @@ const unitFocus=new UnitFocusController();
 const tweens=[];
 function tween(obj,to,dur,ease,onDone){
   const from={}; for(const k in to) from[k]=obj[k];
-  const o={obj,to,from,dur:dur||0.3,ease:ease||easeOutCubic,t:0,onDone};
+  const o={obj,to,from,dur:dur||0.3,ease:ease||easeOutCubic,t:0,onDone,onCancel:null,settled:false};
   tweens.push(o); return o;
 }
-function tweenP(obj,to,dur,ease){ return new Promise(r=>tween(obj,to,dur,ease,r)); }
+function tweenP(obj,to,dur,ease){ return new Promise(resolve=>{ const handle=tween(obj,to,dur,ease,()=>resolve({cancelled:false})); handle.onCancel=()=>resolve({cancelled:true}); }); }
 function wait(s){ return new Promise(r=>setTimeout(r,s*1000)); }
 function updateTweens(dt){
   for(let i=tweens.length-1;i>=0;i--){
     const o=tweens[i]; o.t+=dt; const p=clamp(o.t/o.dur,0,1), e=o.ease(p);
     for(const k in o.to) o.obj[k]=lerp(o.from[k],o.to[k],e);
-    if(p>=1){ tweens.splice(i,1); o.onDone&&o.onDone(); }
+    if(p>=1){ tweens.splice(i,1); if(!o.settled){ o.settled=true; o.onDone&&o.onDone(); } }
   }
 }
 
@@ -121,11 +126,12 @@ scene.fog=new THREE.FogExp2(0x52635c, COMBAT_PRESENTATION.ambientMist.fogDensity
 const combatVfxSystem=new VfxSystem();
 
 const camera=new THREE.PerspectiveCamera(COMBAT_PRESENTATION.camera.fov, innerWidth/innerHeight, 0.1, 200);
-const cam={ yaw:0, dist:COMBAT_PRESENTATION.camera.baseDistance, height:COMBAT_PRESENTATION.camera.baseHeight, tx:0, ty:COMBAT_PRESENTATION.camera.targetY, tz:0 };
+const cam=Object.freeze({ yaw:0, dist:COMBAT_PRESENTATION.camera.baseDistance, height:COMBAT_PRESENTATION.camera.baseHeight, tx:0, ty:COMBAT_PRESENTATION.camera.targetY, tz:0 });
+const cameraFeedback=new CombatCameraFeedback();
 function applyCam(){
   const x=Math.sin(cam.yaw)*cam.dist, z=Math.cos(cam.yaw)*cam.dist;
-  let sx=0,sy=0; if(G.shake&&G.shake.t<G.shake.dur){ const k=(1-G.shake.t/G.shake.dur)*G.shake.mag; sx=(Math.random()*2-1)*k; sy=(Math.random()*2-1)*k; }
-  camera.position.set(cam.tx+x+sx, cam.ty+cam.height+sy, cam.tz+z);
+  const position=applyAdditiveCameraShake({x:cam.tx+x,y:cam.ty+cam.height,z:cam.tz+z},cameraFeedback.sample());
+  camera.position.set(position.x,position.y,position.z);
   camera.lookAt(cam.tx,cam.ty,cam.tz);
 }
 applyCam();
@@ -732,15 +738,15 @@ function ensureStatusCarouselSprite(group){
   badge=new THREE.Sprite(material); badge.renderOrder=STATUS_BADGE_RENDER_ORDER; badge.name='status-carousel-indicator';
   group.userData.carouselSprite=badge; group.add(badge); return badge;
 }
+function statusCarouselInputKey(u,exhausted){ let key=(exhausted?'1':'0')+(REDUCED_GRAPHICS?'r':'n'); for(const status in u.statuses)key+='|'+status+':'+u.statuses[status]; return key; }
 function syncStatusIndicators(u,time){
   if(!u||!u.statusIndicatorGroup)return;
-  const group=u.statusIndicatorGroup;
-  const all=getVisibleStatusIndicators(u.statuses,{exhausted:isExhausted(u),maxVisible:Number.POSITIVE_INFINITY}).visible;
-  const signature=all.map(indicator=>indicator.key+':'+(indicator.turns||0)+':'+(indicator.derived?'d':'n')).join('|');
-  if(group.userData.signature!==signature){
-    group.userData.signature=signature; group.userData.startedAt=time*1000; group.userData.phaseOffset=statusCarouselOffsetMs(u);
+  const group=u.statusIndicatorGroup,exhausted=isExhausted(u),inputKey=statusCarouselInputKey(u,exhausted);
+  if(group.userData.inputKey!==inputKey){
+    group.userData.inputKey=inputKey; group.userData.carouselModel=resolveStatusCarousel(u.statuses,exhausted); group.userData.startedAt=time*1000; group.userData.phaseOffset=statusCarouselOffsetMs(u);
   }
-  const frame=getCarouselStatusFrame(u.statuses,Math.max(0,time*1000-(group.userData.startedAt||time*1000)),{exhausted:isExhausted(u),phaseOffsetMs:group.userData.phaseOffset||0,reducedGraphics:REDUCED_GRAPHICS});
+  const model=group.userData.carouselModel||resolveStatusCarousel();
+  const frame=getResolvedCarouselStatusFrame(model,Math.max(0,time*1000-(group.userData.startedAt||time*1000)),{phaseOffsetMs:group.userData.phaseOffset||0,reducedGraphics:REDUCED_GRAPHICS});
   group.visible=Boolean(u.alive&&u.grp.visible&&frame);
   if(!frame)return;
   const transitioning=frame.transitionProgress>0&&frame.next;
@@ -955,7 +961,33 @@ function computeReach(u){ const dist={}, prev={}; const s=u.gx+','+u.gz; dist[s]
   return {dist,prev}; }
 function reachableStand(u){ const {dist,prev}=computeReach(u); const list=[]; for(const k in dist){ const [gx,gz]=k.split(',').map(Number); const c=cellAt(gx,gz); if(c&&(!c.occupant||c.occupant===u)) list.push({gx,gz,d:dist[k]}); } return {list,dist,prev}; }
 function buildPath(prev,u,gx,gz){ const path=[]; const s=u.gx+','+u.gz; let k=gx+','+gz; let guard=0; while(k!==s&&guard++<200){ const [x,z]=k.split(',').map(Number); path.unshift([x,z]); const p=prev[k]; if(!p)break; k=p[0]+','+p[1]; } return path; }
-async function moveAlong(u,path){ if(!path.length)return; G.busy=true; clearHL(); for(const [gx,gz] of path){ const c=cellAt(gx,gz); setFacing(u,gx,gz); await tweenP(u.grp.position,{x:wX(gx),y:c.topY,z:wZ(gz)},0.13,easeInOut); } const last=path[path.length-1]; placeUnit(u,last[0],last[1]); G.busy=false; }
+async function moveAlong(u,path){
+  if(!path.length)return;
+  G.busy=true; clearHL(); killSpriteMotion(u); const epoch=beginUnitMotion(u),motion=UNIT_MOTION_PRESETS.move_step;
+  try{
+    for(const [gx,gz] of path){
+      if(!isUnitMotionCurrent(u,epoch))return;
+      const c=cellAt(gx,gz),from=u.grp.position.clone(),sign=spriteScaleSign(u.spr),scale=largeUnitSpriteScale(u),outlineScale=scale*1.1;
+      setFacing(u,gx,gz);
+      const nextSign=spriteScaleSign(u.spr),mid={x:(from.x+wX(gx))/2,y:Math.max(from.y,c.topY)+(motion.lift||0.08),z:(from.z+wZ(gz))/2};
+      const launch=[tweenP(u.grp.position,mid,motion.stepHalf,easeOutCubic),tweenP(u.spr.rotation,{z:-nextSign*(motion.tilt||0.045)},motion.stepHalf,easeOutCubic),tweenP(u.spr.scale,{x:nextSign*scale*(1+(motion.squash||0.035)*0.35),y:scale*(1-(motion.squash||0.035))},motion.stepHalf,easeOutCubic)];
+      if(u.outline){ const os=spriteScaleSign(u.outline); launch.push(tweenP(u.outline.rotation,{z:-os*(motion.tilt||0.045)},motion.stepHalf,easeOutCubic),tweenP(u.outline.scale,{x:os*outlineScale*(1+(motion.squash||0.035)*0.35),y:outlineScale*(1-(motion.squash||0.035))},motion.stepHalf,easeOutCubic)); }
+      await Promise.all(launch); if(!isUnitMotionCurrent(u,epoch))return;
+      const land=[tweenP(u.grp.position,{x:wX(gx),y:c.topY,z:wZ(gz)},motion.stepHalf,easeInOut),tweenP(u.spr.rotation,{z:0},motion.stepHalf,easeInOut),tweenP(u.spr.scale,{x:nextSign*scale,y:scale},motion.stepHalf,easeInOut)];
+      if(u.outline){ const os=spriteScaleSign(u.outline); land.push(tweenP(u.outline.rotation,{z:0},motion.stepHalf,easeInOut),tweenP(u.outline.scale,{x:os*outlineScale,y:outlineScale},motion.stepHalf,easeInOut)); }
+      await Promise.all(land);
+      if(sign!==nextSign)u.visualFacingX=u.facing.dx||u.visualFacingX;
+    }
+    if(!isUnitMotionCurrent(u,epoch))return;
+    const last=path[path.length-1]; placeUnit(u,last[0],last[1]);
+    const settleHalf=(motion.settle||.06)/2,settleAmount=REDUCED_GRAPHICS?.012:.022,scale=largeUnitSpriteScale(u),sign=spriteScaleSign(u.spr),outlineScale=scale*1.1;
+    const compress=[tweenP(u.spr.scale,{x:sign*scale*(1+settleAmount*.4),y:scale*(1-settleAmount)},settleHalf,easeOutCubic)]; if(u.outline){ const os=spriteScaleSign(u.outline); compress.push(tweenP(u.outline.scale,{x:os*outlineScale*(1+settleAmount*.4),y:outlineScale*(1-settleAmount)},settleHalf,easeOutCubic)); } await Promise.all(compress); if(!isUnitMotionCurrent(u,epoch))return;
+    const settle=[tweenP(u.spr.scale,{x:sign*scale,y:scale},settleHalf,easeInOut)]; if(u.outline){ const os=spriteScaleSign(u.outline); settle.push(tweenP(u.outline.scale,{x:os*outlineScale,y:outlineScale},settleHalf,easeInOut)); } await Promise.all(settle);
+  } finally {
+    if(isUnitMotionCurrent(u,epoch))restoreUnitVisualBaseline(u);
+    G.busy=false;
+  }
+}
 
 function tickStatusDamage(u){ return (async()=>{
   for(const s in u.statuses){ const d=STATUS[s]; if(!d){ delete u.statuses[s]; continue; }
@@ -1000,7 +1032,7 @@ function flashUnit(u,color){ u.mat.color.set(color); setTimeout(()=>u.alive&&u.m
 async function playUnitHitReaction(u,opts={}){
   if(!u||!u.alive||!u.grp||!u.spr)return;
   const critical=Boolean(opts.critical),isBoss=u.size>1,reduced=REDUCED_GRAPHICS;
-  const baseline=motionBaseline(u); killSpriteMotion(u); u._motionPlaying=true;
+  const baseline=motionBaseline(u); killSpriteMotion(u); const epoch=beginUnitMotion(u); u._motionPlaying=true;
   try{
     const flashColor=critical?'#fff3b0':'#ff6a5a';
     if(u.mat){ u.mat.color.set(flashColor); setTimeout(()=>{if(u.alive&&u.mat)u.mat.color.set('#ffffff');},reduced?90:(critical?180:140)); }
@@ -1012,21 +1044,26 @@ async function playUnitHitReaction(u,opts={}){
     const ss=largeUnitSpriteScale(u),sg=spriteScaleSign(u.spr);
     const os=ss*1.1,og=u.outline?spriteScaleSign(u.outline):1;
     const sqY=ss*(1-squashAmt),sqX=ss*(1+squashAmt*0.45);
-    await tweenP(u.grp.position,{x:baseline.group.x+away.x*hitDist,y:baseline.group.y,z:baseline.group.z+away.z*hitDist},hitOut,easeOutCubic);
+    await tweenP(u.grp.position,{x:baseline.group.x+away.x*hitDist,y:baseline.group.y,z:baseline.group.z+away.z*hitDist},hitOut,easeOutCubic); if(!isUnitMotionCurrent(u,epoch))return;
     const x=shakeMag*sg;
-    const shake=(async()=>{ await tweenP(u.spr.position,{x},hitBack*0.3,easeOutCubic); await tweenP(u.spr.position,{x:-x*0.4},hitBack*0.3,easeInOut); await tweenP(u.spr.position,{x:0},hitBack*0.4,easeOutCubic); })();
-    const squash=(async()=>{ await tweenP(u.spr.scale,{x:sg*sqX,y:sqY},hitBack*0.35,easeOutCubic); await tweenP(u.spr.scale,{x:sg*ss,y:ss},hitBack*0.65,easeInOut); })();
+    const shake=(async()=>{ await tweenP(u.spr.position,{x},hitBack*0.3,easeOutCubic); if(!isUnitMotionCurrent(u,epoch))return; await tweenP(u.spr.position,{x:-x*0.4},hitBack*0.3,easeInOut); if(!isUnitMotionCurrent(u,epoch))return; await tweenP(u.spr.position,{x:0},hitBack*0.4,easeOutCubic); })();
+    const squash=(async()=>{ await tweenP(u.spr.scale,{x:sg*sqX,y:sqY},hitBack*0.35,easeOutCubic); if(!isUnitMotionCurrent(u,epoch))return; await tweenP(u.spr.scale,{x:sg*ss,y:ss},hitBack*0.65,easeInOut); })();
     const recoil=tweenP(u.grp.position,{x:baseline.group.x,y:baseline.group.y,z:baseline.group.z},hitBack,easeInOut);
     if(u.outline){ const osqY=os*(1-squashAmt),osqX=os*(1+squashAmt*0.45); tween(u.outline.scale,{x:og*osqX,y:osqY},hitBack*0.35,easeOutCubic,()=>{ tween(u.outline.scale,{x:og*os,y:os},hitBack*0.65,easeInOut); }); }
     await Promise.all([shake,squash,recoil]);
-  } finally { spriteReturnBaseline(u,baseline); }
+  } finally { if(isUnitMotionCurrent(u,epoch))spriteReturnBaseline(u,baseline); }
 }
 const VFX_GEO={spark:new THREE.SphereGeometry(1,6,6),ring:new THREE.RingGeometry(0.1,0.34,28)};
 function disposeVFXMesh(m){ if(!m)return; scene.remove(m); if(m.material)m.material.dispose(); if(m.geometry&&m.geometry!==VFX_GEO.spark&&m.geometry!==VFX_GEO.ring)m.geometry.dispose(); }
 function shockRing(pos,radius,color){ const m=new THREE.Mesh(VFX_GEO.ring,new THREE.MeshBasicMaterial({color:color||0xfff0b0,transparent:true,opacity:.85,side:THREE.DoubleSide,depthWrite:false,fog:false,toneMapped:false})); m.rotation.x=-Math.PI/2; m.position.copy(pos); m.position.y+=0.05; scene.add(m); const sc=Math.max(1,radius)*2.6; tween(m.scale,{x:sc,y:sc},0.45,easeOutCubic); tween(m.material,{opacity:0},0.45,easeOutCubic,()=>disposeVFXMesh(m)); }
 function burst(pos,col){ const count=REDUCED_GRAPHICS?6:12; for(let i=0;i<count;i++){ const p=new THREE.Mesh(VFX_GEO.spark,new THREE.MeshBasicMaterial({color:col,transparent:true,fog:false,toneMapped:false})); p.scale.setScalar(0.07); p.position.copy(pos); scene.add(p); const d=new THREE.Vector3(rnd(-1,1),rnd(0.1,1),rnd(-1,1)).multiplyScalar(rnd(0.4,0.9)); tween(p.position,{x:pos.x+d.x,y:pos.y+d.y,z:pos.z+d.z},0.45,easeOutCubic); tween(p.material,{opacity:0},0.45,easeOutCubic,()=>disposeVFXMesh(p)); } }
-function screenShake(mag,dur){ const scale=REDUCED_GRAPHICS?0.58:1; mag*=scale; dur*=REDUCED_GRAPHICS?0.8:1; if(!G.shake||G.shake.t>=G.shake.dur||mag>=G.shake.mag) G.shake={mag,dur,t:0}; }
-function screenFlash(color,a){ const el=document.createElement('div'); el.style.cssText='position:fixed;inset:0;z-index:18;pointer-events:none;background:'+(color||'#ffffff'); el.style.opacity=a||0.4; document.body.appendChild(el); const s=performance.now(); (function f(){ const e=(performance.now()-s)/200; el.style.opacity=String((a||0.4)*(1-e)); if(e<1)requestAnimationFrame(f); else el.remove(); })(); }
+function screenShake(mag,dur,accent=false){ const scale=REDUCED_GRAPHICS?0.58:1,token=G._actionFeedbackToken||'ambient'; cameraFeedback.request({token,magnitude:mag*scale,duration:dur*(REDUCED_GRAPHICS?0.8:1),frequency:G._actionShakeFrequency||18,accent}); }
+let screenFlashEl=null,screenFlashEpoch=0;
+function screenFlash(color,a){
+  if(!screenFlashEl){ screenFlashEl=document.createElement('div'); screenFlashEl.style.cssText='position:fixed;inset:0;z-index:18;pointer-events:none'; document.body.appendChild(screenFlashEl); }
+  const opacity=Math.min(REDUCED_GRAPHICS?.14:.28,a||.4),epoch=++screenFlashEpoch,start=performance.now(); screenFlashEl.style.background=color||'#ffffff'; screenFlashEl.style.opacity=String(opacity);
+  (function fade(){ if(epoch!==screenFlashEpoch||!screenFlashEl)return; const progress=Math.min(1,(performance.now()-start)/200); screenFlashEl.style.opacity=String(opacity*(1-progress)); if(progress<1)requestAnimationFrame(fade); else { screenFlashEl.remove(); screenFlashEl=null; } })();
+}
 function vfx(type,pos){ const C={fire:{c:0xff8a3a,n:18,up:1.3,smoke:1},dark:{c:0xb06aff,n:18,up:1.1,smoke:1},heal:{c:0x7ed957,n:16,up:1.7,smoke:0},arrow:{c:0xffe08a,n:9,up:0.6,smoke:0},hit:{c:0xffe7a6,n:13,up:0.8,smoke:0},burn:{c:0xff5a2a,n:10,up:0.9,smoke:0},poison:{c:0x8bc24a,n:10,up:-0.4,smoke:0},buff:{c:0xffd27a,n:12,up:1.2,smoke:0},debuff:{c:0x8a4fcf,n:12,up:0.4,smoke:0},crit:{c:0xfff3b0,n:16,up:1.0,smoke:0}}[type]||{c:0xffffff,n:10,up:0.7,smoke:0};
   const count=REDUCED_GRAPHICS?Math.max(4,Math.ceil(C.n*0.55)):C.n;
   for(let i=0;i<count;i++){ const p=new THREE.Mesh(VFX_GEO.spark,new THREE.MeshBasicMaterial({color:C.c,transparent:true,fog:false,toneMapped:false})); p.scale.setScalar(rnd(0.05,0.12)); p.position.copy(pos); scene.add(p); const dy=C.up<0?rnd(-0.8,-0.2)*Math.abs(C.up):rnd(0.2,1)*C.up; const d=new THREE.Vector3(rnd(-1,1),dy,rnd(-1,1)).multiplyScalar(rnd(0.5,1.15)); tween(p.position,{x:pos.x+d.x,y:pos.y+d.y,z:pos.z+d.z},rnd(0.3,0.6),easeOutCubic); tween(p.material,{opacity:0},0.52,easeOutCubic,()=>disposeVFXMesh(p)); }
@@ -1035,22 +1072,9 @@ function vfx(type,pos){ const C={fire:{c:0xff8a3a,n:18,up:1.3,smoke:1},dark:{c:0
 // ============================= SPRITE MOTION =============================
 // Fixed billboard sprites stay static assets. These small runtime motions give
 // attacks weight while preserving the authoritative grid position and rules.
-const SPRITE_MOTION_PRESETS=Object.freeze({
-  melee_light:{windup:0.09,dash:0.10,recoil:0.14,windupDistance:0.12,dashDistance:0.34,squash:0.025},
-  melee_heavy:{windup:0.16,dash:0.17,recoil:0.20,windupDistance:0.20,dashDistance:0.48,squash:0.075,heavy:true},
-  ranged_attack:{windup:0.11,recoil:0.18,windupDistance:0.14,lift:0.04},
-  magic_cast:{cast:0.22,recoil:0.24,lift:0.20,squash:0.025},
-  heal_cast:{cast:0.20,recoil:0.25,lift:0.16,squash:0.02},
-  buff_cast:{cast:0.20,recoil:0.25,lift:0.14,squash:0.02},
-  debuff_cast:{cast:0.22,recoil:0.25,lift:0.17,squash:0.025},
-  self_aoe:{jumpUp:0.16,jumpDown:0.16,jumpHeight:0.30,squash:0.05},
-  move_leap:{jumpUp:0.19,jumpDown:0.18,jumpHeight:1.7,squash:0.04},
-  teleport:{cast:0.14,recoil:0.18,lift:0.10},
-  hit_reaction:{hitOut:0.06,hitBack:0.12,hitDistance:0.11,squash:0.035},
-  knockout:{hitOut:0.08,hitBack:0.14,hitDistance:0.16,squash:0.06}
-});
+const SPRITE_MOTION_PRESETS=UNIT_MOTION_PRESETS;
 function scaledSpriteMotionPreset(base,context={}){
-  const timeScale=cl(context.motionDurationScale||1,0.82,1.18),intensity=cl(context.motionIntensity||1,0.86,1.18),out={...base};
+  const timeScale=cl(context.motionDurationScale||1,0.78,1.35),intensity=cl(context.motionIntensity||1,0.75,1.30),out={...base};
   for(const key of ['windup','dash','recoil','cast','jumpUp','jumpDown','hitOut','hitBack'])if(Number.isFinite(out[key]))out[key]*=timeScale;
   for(const key of ['windupDistance','dashDistance','lift','jumpHeight','hitDistance','squash'])if(Number.isFinite(out[key]))out[key]*=intensity;
   return out;
@@ -1077,9 +1101,12 @@ function getActionMotionPreset(spec={}){
   if((spec.range&&spec.range[1]>1)||spec.type==='ranged')return 'ranged_attack';
   return 'melee_light';
 }
-function motionBaseline(u){ return {group:u.grp.position.clone(),sprZ:u.spr.rotation.z,outlineZ:u.outline?u.outline.rotation.z:0}; }
-function killSpriteMotion(u){ if(!u)return; for(const obj of [u.grp&&u.grp.position,u.spr&&u.spr.position,u.spr&&u.spr.scale,u.spr&&u.spr.rotation,u.outline&&u.outline.position,u.outline&&u.outline.scale,u.outline&&u.outline.rotation])if(obj)killTweens(obj); }
-function spriteReturnBaseline(u,baseline){ if(!u||!baseline)return; killSpriteMotion(u); u.grp.position.copy(baseline.group); u.spr.position.x=0; u.spr.position.y=u.baseY; u.spr.position.z=0; u.spr.rotation.z=baseline.sprZ||0; if(u.outline){ u.outline.position.x=0; u.outline.position.y=u.baseY; u.outline.position.z=0; u.outline.rotation.z=baseline.outlineZ||0; } resetUnitSpriteScale(u); u._motionPlaying=false; }
+function motionBaseline(u){
+  const cx=u.size>1?bossCenterGX(u):u.gx,cz=u.size>1?bossCenterGZ(u):u.gz,cell=cellAt(u.gx,u.gz),scale=largeUnitSpriteScale(u),sign=u.spriteFacing*(u.visualFacingX<0?-1:1),outlineScale=scale*1.1,outlineSign=sign;
+  return createCanonicalUnitMotionBaseline({group:{x:wX(cx),y:cell?cell.topY:u.grp.position.y,z:wZ(cz)},baseY:u.baseY,spriteScaleX:sign*scale,spriteScaleY:scale,...(u.outline?{outlineScaleX:outlineSign*outlineScale,outlineScaleY:outlineScale}:{})});
+}
+function killSpriteMotion(u){ if(!u)return; cancelUnitMotion(u); for(const obj of [u.grp&&u.grp.position,u.spr&&u.spr.position,u.spr&&u.spr.scale,u.spr&&u.spr.rotation,u.outline&&u.outline.position,u.outline&&u.outline.scale,u.outline&&u.outline.rotation,u.mat,u.blob&&u.blob.material,u.teamRing&&u.teamRing.material])if(obj)killTweens(obj); u._motionPlaying=false; }
+function spriteReturnBaseline(u,baseline){ if(!u||!baseline)return; killSpriteMotion(u); u.grp.position.copy(baseline.group); u.spr.position.copy(baseline.spritePosition); u.spr.scale.copy(baseline.spriteScale); u.spr.rotation.z=baseline.spriteRotationZ; if(u.outline&&baseline.outlinePosition&&baseline.outlineScale){ u.outline.position.copy(baseline.outlinePosition); u.outline.scale.copy(baseline.outlineScale); u.outline.rotation.z=baseline.outlineRotationZ||0; } u._motionPlaying=false; }
 function motionDirection(u,context={},away=false){
   let target=context.target||null,tx,tz;
   if(context.reaction&&context.source)target=context.source;
@@ -1092,14 +1119,14 @@ function motionDirection(u,context={},away=false){
   return {x:dx/len,z:dz/len};
 }
 function spriteScaleSign(mesh){ return mesh&&mesh.scale.x<0?-1:1; }
-async function spriteSquash(u,amount,duration){
+async function spriteSquash(u,amount,duration,isCurrent=()=>true){
   if(!amount)return; const spriteScale=largeUnitSpriteScale(u),outlineScale=spriteScale*1.1;
   const spriteSign=spriteScaleSign(u.spr),outlineSign=spriteScaleSign(u.outline);
   const sqY=spriteScale*(1-amount),sqX=spriteScale*(1+amount*0.45);
   const osqY=outlineScale*(1-amount),osqX=outlineScale*(1+amount*0.45);
   const forward=[tweenP(u.spr.scale,{x:spriteSign*sqX,y:sqY},duration,easeOutCubic)];
   if(u.outline)forward.push(tweenP(u.outline.scale,{x:outlineSign*osqX,y:osqY},duration,easeOutCubic));
-  await Promise.all(forward);
+  await Promise.all(forward); if(!isCurrent())return;
   const back=[tweenP(u.spr.scale,{x:spriteSign*spriteScale,y:spriteScale},duration,easeInOut)];
   if(u.outline)back.push(tweenP(u.outline.scale,{x:outlineSign*outlineScale,y:outlineScale},duration,easeInOut));
   await Promise.all(back);
@@ -1107,43 +1134,38 @@ async function spriteSquash(u,amount,duration){
 async function spriteWindup(u,baseline,direction,preset){ const d=(preset.windupDistance||0.12)*(u.size>1?1.08:1); await tweenP(u.grp.position,{x:baseline.group.x-direction.x*d,y:baseline.group.y,z:baseline.group.z-direction.z*d},preset.windup||0.1,easeOutCubic); }
 async function spriteDash(u,baseline,direction,preset){ const d=(preset.dashDistance||0.34)*(u.size>1?1.08:1); await tweenP(u.grp.position,{x:baseline.group.x+direction.x*d,y:baseline.group.y,z:baseline.group.z+direction.z*d},preset.dash||0.1,easeOutCubic); }
 async function spriteRecoil(u,baseline,duration){ await tweenP(u.grp.position,{x:baseline.group.x,y:baseline.group.y,z:baseline.group.z},duration||0.14,easeInOut); }
-async function spriteJump(u,baseline,preset){ await tweenP(u.grp.position,{x:baseline.group.x,y:baseline.group.y+(preset.jumpHeight||0.3),z:baseline.group.z},preset.jumpUp||0.16,easeOutCubic); await tweenP(u.grp.position,{x:baseline.group.x,y:baseline.group.y,z:baseline.group.z},preset.jumpDown||0.16,easeInOut); }
+async function spriteJump(u,baseline,preset,isCurrent=()=>true){ await tweenP(u.grp.position,{x:baseline.group.x,y:baseline.group.y+(preset.jumpHeight||0.3),z:baseline.group.z},preset.jumpUp||0.16,easeOutCubic); if(!isCurrent())return; await tweenP(u.grp.position,{x:baseline.group.x,y:baseline.group.y,z:baseline.group.z},preset.jumpDown||0.16,easeInOut); }
 async function spriteCastLift(u,baseline,preset){ await tweenP(u.grp.position,{x:baseline.group.x,y:baseline.group.y+(preset.lift||0.16),z:baseline.group.z},preset.cast||0.2,easeOutCubic); }
 async function spriteHitShake(u,magnitude,duration){ const x=(magnitude||0.05)*spriteScaleSign(u.spr); const a=(duration||0.16); await tweenP(u.spr.position,{x:x},a*0.32,easeOutCubic); await tweenP(u.spr.position,{x:-x*0.42},a*0.30,easeInOut); await tweenP(u.spr.position,{x:0},a*0.38,easeOutCubic); }
 async function playSpriteMotion(u,presetId,context={}){
-  if(!u||!u.grp||!u.spr){ if(typeof context.onImpact==='function')await context.onImpact(); return; }
-  const preset=scaledSpriteMotionPreset(SPRITE_MOTION_PRESETS[presetId]||SPRITE_MOTION_PRESETS.melee_light,context);
-  const baseline=motionBaseline(u);
-  // The action pipeline owns G.busy/G.stage; motion only consumes that state
-  // and never changes it, so staged camera/VFX remain in sync with the action.
-  killSpriteMotion(u); u._motionPlaying=true;
-  const direction=motionDirection(u,context,false);
-  const impact=async()=>{ if(typeof context.onImpact==='function')await context.onImpact(); };
+  const impact=onceAsync(async()=>{ if(typeof context.onImpact==='function')await context.onImpact(); });
+  if(!u||!u.grp||!u.spr){ await impact(); return; }
+  const preset=scaledSpriteMotionPreset(SPRITE_MOTION_PRESETS[presetId]||SPRITE_MOTION_PRESETS.melee_light,context),baseline=motionBaseline(u);
+  killSpriteMotion(u); const epoch=beginUnitMotion(u); u._motionPlaying=true;
+  const direction=motionDirection(u,context,false),current=()=>isUnitMotionCurrent(u,epoch),impactIfCurrent=async()=>{ if(current())await impact(); };
   try{
     if(presetId==='melee_light'||presetId==='melee_heavy'){
-      const squash=spriteSquash(u,preset.squash,preset.windup*0.45);
-      await spriteWindup(u,baseline,direction,preset); await squash;
-      await spriteDash(u,baseline,direction,preset); await impact();
+      const squash=spriteSquash(u,preset.squash,preset.windup*0.45,current);
+      await spriteWindup(u,baseline,direction,preset); await squash; if(!current())return;
+      await spriteDash(u,baseline,direction,preset); await impactIfCurrent(); if(!current())return;
       await spriteRecoil(u,baseline,preset.recoil);
     } else if(presetId==='ranged_attack'){
-      await spriteWindup(u,baseline,direction,preset); await impact();
+      await spriteWindup(u,baseline,direction,preset); await impactIfCurrent(); if(!current())return;
       await spriteRecoil(u,baseline,preset.recoil);
     } else if(presetId==='magic_cast'||presetId==='heal_cast'||presetId==='buff_cast'||presetId==='debuff_cast'||presetId==='teleport'){
-      const squash=spriteSquash(u,preset.squash,(preset.cast||0.16)*0.4);
-      await spriteCastLift(u,baseline,preset); await squash; await impact();
+      const squash=spriteSquash(u,preset.squash,(preset.cast||0.16)*0.4,current);
+      await spriteCastLift(u,baseline,preset); await squash; if(!current())return; await impactIfCurrent(); if(!current())return;
       await spriteRecoil(u,baseline,preset.recoil);
     } else if(presetId==='self_aoe'||presetId==='move_leap'){
-      const squash=spriteSquash(u,preset.squash,(preset.jumpUp||0.16)*0.4);
-      await spriteJump(u,baseline,preset); await squash; await impact();
+      const squash=spriteSquash(u,preset.squash,(preset.jumpUp||0.16)*0.4,current);
+      await spriteJump(u,baseline,preset,current); await squash; if(!current())return; await impactIfCurrent();
     } else if(presetId==='hit_reaction'||presetId==='knockout'){
-      const away=motionDirection(u,{...context,reaction:true},true);
-      const d=(preset.hitDistance||0.11)*(u.size>1?1.08:1);
-      const shake=spriteHitShake(u,d*0.55,(preset.hitOut||0.06)+(preset.hitBack||0.12));
-      const squash=spriteSquash(u,preset.squash,(preset.hitOut||0.06)*0.55);
+      const away=motionDirection(u,{...context,reaction:true},true),d=(preset.hitDistance||0.11)*(u.size>1?1.08:1);
+      const shake=spriteHitShake(u,d*0.55,(preset.hitOut||0.06)+(preset.hitBack||0.12)),squash=spriteSquash(u,preset.squash,(preset.hitOut||0.06)*0.55);
       await tweenP(u.grp.position,{x:baseline.group.x+away.x*d,y:baseline.group.y,z:baseline.group.z+away.z*d},preset.hitOut||0.06,easeOutCubic);
-      await Promise.all([shake,squash]); await spriteRecoil(u,baseline,preset.hitBack||0.12); await impact();
-    } else await impact();
-  } finally { spriteReturnBaseline(u,baseline); }
+      await Promise.all([shake,squash]); if(!current())return; await spriteRecoil(u,baseline,preset.hitBack||0.12); await impactIfCurrent();
+    } else await impactIfCurrent();
+  } finally { if(current())spriteReturnBaseline(u,baseline); }
 }
 
 function orientMult(att,tgt){ const ax=(att.size>1?bossCenterGX(att):att.gx)-tgt.gx, az=(att.size>1?bossCenterGZ(att):att.gz)-tgt.gz; const len=Math.hypot(ax,az)||1; const d=tgt.facing.dx*(ax/len)+tgt.facing.dz*(az/len); if(d>0.55)return{m:1.0,lab:'face'}; if(d<-0.55)return{m:1.3,lab:'DOS'}; return{m:1.15,lab:'flanc'}; }
@@ -1166,12 +1188,11 @@ async function applyDamage(u,dmg,src,opts={}){
   u.hp=Math.max(0,u.hp-dmg);
   const willKnockOut=u.hp<=0&&u.alive;
   if(willKnockOut)playFeedbackVfx('kill_spark',src,u);
-  if(willKnockOut){ flashUnit(u,'#ff6a5a'); await playSpriteMotion(u,'knockout',{source:src}); }
+  if(willKnockOut){ flashUnit(u,'#ff6a5a'); await knockOut(u,src); }
   else { await playUnitHitReaction(u,{source:src,critical:opts.critical}); }
-  screenShake(willKnockOut?0.26:0.16,willKnockOut?0.2:0.16);
+  screenShake(willKnockOut?0.26:0.16,willKnockOut?0.2:0.16,willKnockOut);
   refreshPanel(u);
   if(willKnockOut){
-    await knockOut(u,src);
     if(src&&src.alive){
       src.ap=Math.min(src.maxap,src.ap+1);
       if(src===G.active){ G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; }
@@ -1182,8 +1203,34 @@ async function applyDamage(u,dmg,src,opts={}){
 }
 function applyHeal(u,amt){ if(!u.alive)return; u.hp=Math.min(u.maxhp,u.hp+amt); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
 function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; const requestedTurns=turns||2; const effectiveTurns=requestedTurns<=1?2:requestedTurns; t.statuses[st]=Math.max(t.statuses[st]||0,effectiveTurns); floatText(t,(d.name||st).toUpperCase(),d.col||'#fff'); refreshPanel(t); }
-async function knockOut(u,src){ u.alive=false; u.downed=true; const state=getUnitVisualState(u.team,u.alive,u.downed); if(u.size>1)clearBossCells(u); else { const c=u.cell(); if(c&&c.occupant===u)c.occupant=null; } floatText(u,'K.O.','#ff5a4a',true); logMsg(u.name+' est K.O. !'); screenShake(0.5,0.4); screenFlash('#ff5a4a',0.22); tween(u.spr.scale,{y:0.32},0.4,easeOutCubic); tween(u.spr.rotation,{z:(u.facing.dx<0?-1:1)*1.15},0.4); tween(u.mat,{opacity:state.bodyOpacity},0.4); tween(u.blob.material,{opacity:state.shadowOpacity},0.4); if(u.teamRing)tween(u.teamRing.material,{opacity:0},0.4); refreshTurnbar(); await wait(0.42); u.grp.visible=state.visible; }
-function reviveUnit(u,hp){ u.alive=true; u.downed=false; u.hp=hp; u.statuses={}; u.grp.visible=true; if(u.size>1)occupyBossCells(u); else { const c=u.cell(); if(c&&c.occupant&&c.occupant!==u){ const f=freeNear(u.gx,u.gz); if(f){ u.gx=f.gx; u.gz=f.gz; } } const nc=cellAt(u.gx,u.gz); if(nc&&!nc.occupant)nc.occupant=u; if(nc)u.grp.position.set(wX(u.gx),nc.topY,wZ(u.gz)); } resetUnitSpriteScale(u); u.spr.rotation.z=0; u.mat.opacity=1; u.mat.color.set('#ffffff'); u.blob.material.opacity=COMBAT_PRESENTATION.units.shadowOpacity; if(u.teamRing)u.teamRing.material.opacity=COMBAT_PRESENTATION.units.teamRingOpacity; floatText(u,'+'+hp,'#7ed957',true); logMsg(u.name+' est relevé !'); refreshTurnbar(); }
+async function knockOut(u,src){
+  const baseline=motionBaseline(u),away=src?motionDirection(u,{source:src,reaction:true},true):{x:0,z:0},state=getUnitVisualState(u.team,false,true),sign=spriteScaleSign(u.spr),scale=largeUnitSpriteScale(u),outlineScale=scale*1.1;
+  killSpriteMotion(u); const epoch=beginUnitMotion(u); u.alive=false; u.downed=true;
+  if(u.size>1)clearBossCells(u); else { const c=u.cell(); if(c&&c.occupant===u)c.occupant=null; }
+  floatText(u,'K.O.','#ff5a4a',true); logMsg(u.name+' est K.O. !'); screenShake(0.5,0.4,true); screenFlash('#ff5a4a',0.22); refreshTurnbar();
+  try{
+    await tweenP(u.grp.position,{x:baseline.group.x+away.x*(u.size>1?.08:.16),y:baseline.group.y,z:baseline.group.z+away.z*(u.size>1?.08:.16)},.1,easeOutCubic);
+    if(!isUnitMotionCurrent(u,epoch))return;
+    const collapse=[tweenP(u.grp.position,{x:baseline.group.x,y:baseline.group.y,z:baseline.group.z},.32,easeInOut),tweenP(u.spr.scale,{x:sign*scale*1.04,y:.32},.32,easeOutCubic),tweenP(u.spr.rotation,{z:(u.facing.dx<0?-1:1)*1.15},.32,easeOutCubic),tweenP(u.mat,{opacity:state.bodyOpacity},.32,easeOutCubic),tweenP(u.blob.material,{opacity:state.shadowOpacity},.32,easeOutCubic)];
+    if(u.outline)collapse.push(tweenP(u.outline.scale,{x:sign*outlineScale*1.04,y:.35},.32,easeOutCubic),tweenP(u.outline.rotation,{z:(u.facing.dx<0?-1:1)*1.15},.32,easeOutCubic));
+    if(u.teamRing)collapse.push(tweenP(u.teamRing.material,{opacity:0},.24,easeOutCubic)); if(u.teamRingUnder)collapse.push(tweenP(u.teamRingUnder.material,{opacity:0},.24,easeOutCubic)); if(u.teamGlow)collapse.push(tweenP(u.teamGlow.material,{opacity:0},.24,easeOutCubic));
+    await Promise.all(collapse);
+  } finally { if(isUnitMotionCurrent(u,epoch)){ u.grp.position.copy(baseline.group); u.grp.visible=state.visible; u._motionPlaying=false; } }
+}
+async function reviveUnit(u,hp){
+  killSpriteMotion(u); u.alive=true; u.downed=false; u.hp=hp; u.statuses={}; u.grp.visible=true;
+  if(u.size>1)occupyBossCells(u); else { const c=u.cell(); if(c&&c.occupant&&c.occupant!==u){ const f=freeNear(u.gx,u.gz); if(f){ u.gx=f.gx; u.gz=f.gz; } } const nc=cellAt(u.gx,u.gz); if(nc&&!nc.occupant)nc.occupant=u; }
+  const baseline=motionBaseline(u),epoch=beginUnitMotion(u),scale=largeUnitSpriteScale(u),sign=u.spriteFacing*(u.visualFacingX<0?-1:1),outlineScale=scale*1.1; u._motionPlaying=true;
+  u.grp.position.copy(baseline.group); u.spr.position.copy(baseline.spritePosition); u.spr.scale.set(sign*scale*1.04,.32,1); u.spr.rotation.z=(u.facing.dx<0?-1:1)*1.15; u.mat.opacity=.34; u.mat.color.set('#bfffc0'); u.blob.material.opacity=.12;
+  if(u.outline){ u.outline.position.copy(baseline.outlinePosition); u.outline.scale.set(sign*outlineScale*1.04,.35,1); u.outline.rotation.z=u.spr.rotation.z; }
+  if(u.teamRing)u.teamRing.material.opacity=0; if(u.teamRingUnder)u.teamRingUnder.material.opacity=0; if(u.teamGlow)u.teamGlow.material.opacity=0;
+  floatText(u,'+'+hp,'#7ed957',true); logMsg(u.name+' est relevé !'); refreshTurnbar();
+  try{
+    const rise=[tweenP(u.grp.position,{y:baseline.group.y+(REDUCED_GRAPHICS?.12:.22)},.16,easeOutCubic),tweenP(u.spr.scale,{x:sign*scale,y:scale},.2,easeOutCubic),tweenP(u.spr.rotation,{z:0},.2,easeInOut),tweenP(u.mat,{opacity:1},.2,easeOutCubic),tweenP(u.blob.material,{opacity:COMBAT_PRESENTATION.units.shadowOpacity},.2,easeOutCubic)];
+    if(u.outline)rise.push(tweenP(u.outline.scale,{x:sign*outlineScale,y:outlineScale},.2,easeOutCubic),tweenP(u.outline.rotation,{z:0},.2,easeInOut)); if(u.teamRing)rise.push(tweenP(u.teamRing.material,{opacity:COMBAT_PRESENTATION.units.teamRingOpacity},.2,easeOutCubic)); if(u.teamRingUnder)rise.push(tweenP(u.teamRingUnder.material,{opacity:.54},.2,easeOutCubic)); if(u.teamGlow)rise.push(tweenP(u.teamGlow.material,{opacity:u.team==='player'?.16:.18},.2,easeOutCubic));
+    await Promise.all(rise); if(!isUnitMotionCurrent(u,epoch))return; await tweenP(u.grp.position,{y:baseline.group.y},REDUCED_GRAPHICS?.05:.08,easeInOut);
+  } finally { if(isUnitMotionCurrent(u,epoch))restoreUnitVisualBaseline(u); }
+}
 
 function skillUpgradeLevel(u,skillId){ return Math.max(0,Math.min(2,Math.floor((u.skillUpgrades&&u.skillUpgrades[skillId])||0))); }
 function applySkillUpgrade(u,skillId,spec){
@@ -1262,15 +1309,13 @@ function isPureSwapAction(spec){
 }
 function restoreUnitVisualBaseline(u){
   if(!u||!u.alive||!u.grp)return;
-  u.grp.visible=true;
+  const baseline=motionBaseline(u); spriteReturnBaseline(u,baseline); u.grp.visible=true;
   if(u.mat){ u.mat.opacity=1; if(u.mat.color)u.mat.color.set('#ffffff'); }
-  if(u.spr)u.spr.rotation.z=0;
+  if(u.outline&&u.outline.material)u.outline.material.opacity=.44;
   if(u.blob&&u.blob.material)u.blob.material.opacity=COMBAT_PRESENTATION.units.shadowOpacity;
   if(u.teamRing)u.teamRing.material.opacity=COMBAT_PRESENTATION.units.teamRingOpacity;
-  resetUnitSpriteScale(u);
-  const cx=u.size>1?bossCenterGX(u):u.gx, cz=u.size>1?bossCenterGZ(u):u.gz;
-  const cell=cellAt(u.gx,u.gz);
-  if(cell)u.grp.position.set(wX(cx),cell.topY,wZ(cz));
+  if(u.teamRingUnder)u.teamRingUnder.material.opacity=.54;
+  if(u.teamGlow)u.teamGlow.material.opacity=u.team==='player'?.16:.18;
 }
 function rangeCells(u,spec){
   if(spec.self)return [{gx:u.gx,gz:u.gz}];
@@ -1433,44 +1478,33 @@ function playFeedbackVfx(presetId,source,target){
   void result.completion.catch(error=>console.warn('[CombatVfx] Feedback playback failed safely.',error));
   return true;
 }
-async function attackAnim(u,spec,cx,cz,targets=[],actionContext={}){ const ctr=new THREE.Vector3(wX(cx),tileTop(cx,cz)+0.6,wZ(cz)); const presentation=getSkillPresentation(spec),preset=getActionMotionPreset(spec),isUltimate=Boolean(presentation?.ultimate),tuning=getActionPresentationTuning(spec),isBossSignature=tuning.tier===6,impactCount=presentation?.impactCount||1;
+async function attackAnim(u,spec,cx,cz,targets=[],actionContext={}){ const ctr=new THREE.Vector3(wX(cx),tileTop(cx,cz)+0.6,wZ(cz)); const presentation=getSkillPresentation(spec),preset=getActionMotionPreset(spec),isUltimate=Boolean(presentation?.ultimate),tuning=getActionPresentationTuning(spec),isBossSignature=tuning.tier===6,impactCount=presentation?.impactCount||1,feel=resolveCombatFeel({motionPreset:preset,visualTier:tuning.tier,boss:Boolean(u.boss&&spec.offensive),reducedGraphics:REDUCED_GRAPHICS});
+  G._actionShakeFrequency=feel.shakeFrequency;
+  const resolveImpact=onceAsync(async()=>{ if(typeof actionContext.onResolveImpact==='function')await actionContext.onResolveImpact(); });
   const impact=async()=>{
     const hasSpritesheet=actionHasSpritesheetVfx(spec,u);
     const hasPreset=actionHasPreset(spec,u);
     if(isUltimate){ floatText(u,'ULTIME','#ffd86a',true); if(!hasPreset)screenFlash('#fff0b0',0.07); screenShake(0.20,0.14); }
     else if(isBossSignature){ floatText(u,'SIGNATURE','#ffb36a',true); if(!hasPreset)screenFlash('#ffb36a',0.055); screenShake(0.22,0.16); }
     if(spec.key!=='attack'&&!hasSpritesheet)castTelegraph(u,spec,Boolean(hasPreset));
-    if(spec.key==='ro_tumble')return;
-    const origin=actionContext.origin;
-    const visualContext=spec.key==='ar_explosive_retreat'&&origin
-      ?{targetPoint:new THREE.Vector3(wX(origin.gx),tileTop(origin.gx,origin.gz),wZ(origin.gz))}
-      :{};
-    const generated=playActionVfx(spec,u,targets,cx,cz,visualContext);
-    if(generated){ for(let i=1;i<impactCount;i++){ await wait(0.10); playActionVfx(spec,u,targets,cx,cz,visualContext); } await wait(generated.impactTime+tuning.afterEffectDelay); return; }
-    if(spec.heal||spec.revive||spec.support||spec.apRestore||spec.cure){
-      const type=(spec.type==='debuff')?'dark':'heal';
-      for(const [gx,gz] of aoeCells(u,spec,cx,cz))vfx(type,new THREE.Vector3(wX(gx),tileTop(gx,gz)+0.6,wZ(gz)));
-      screenFlash(spec.type==='debuff'?'#8d5cff':'#bfffc0',0.14);
-      return;
-    }
-    if(preset==='self_aoe'){
-      shockRing(ctr,spec.radius,spec.type==='mag'?0xff8a3a:0xfff0b0); screenShake(0.42,0.32); screenFlash('#fff0b0',0.16);
-      for(const [gx,gz] of aoeCells(u,spec,cx,cz))vfx('hit',new THREE.Vector3(wX(gx),tileTop(gx,gz)+0.6,wZ(gz)));
-      return;
-    }
-    if(preset==='magic_cast'||preset==='ranged_attack'){
-      await projectile(u,cx,cz,spec);
-      if(spec.radius>=1)shockRing(ctr,spec.radius,spec.type==='mag'?0xff8a3a:0xfff0b0);
-      return;
-    }
-    if(preset==='debuff_cast'){
-      if(spec.range&&spec.range[1]>1)await projectile(u,cx,cz,spec); else vfx('dark',ctr);
-      if(spec.radius>=1)shockRing(ctr,spec.radius,0xb06aff);
-      return;
-    }
-    vfx('hit',ctr); screenShake(preset==='melee_heavy'?0.46:0.32,preset==='melee_heavy'?0.28:0.22);
+    if(spec.key==='ro_tumble')return resolveImpact();
+    const origin=actionContext.origin,visualContext=spec.key==='ar_explosive_retreat'&&origin?{targetPoint:new THREE.Vector3(wX(origin.gx),tileTop(origin.gx,origin.gz),wZ(origin.gz))}:{};
+      const generated=playActionVfx(spec,u,targets,cx,cz,visualContext);
+      if(generated){ for(let i=1;i<impactCount;i++){ await wait(0.10); playActionVfx(spec,u,targets,cx,cz,visualContext); } await wait(generated.impactTime); }
+      else if(spec.heal||spec.revive||spec.support||spec.apRestore||spec.cure){
+        const type=(spec.type==='debuff')?'dark':'heal'; for(const [gx,gz] of aoeCells(u,spec,cx,cz))vfx(type,new THREE.Vector3(wX(gx),tileTop(gx,gz)+0.6,wZ(gz))); screenFlash(spec.type==='debuff'?'#8d5cff':'#bfffc0',0.14);
+      } else if(preset==='self_aoe'){
+        shockRing(ctr,spec.radius,spec.type==='mag'?0xff8a3a:0xfff0b0); screenShake(0.42,0.32); screenFlash('#fff0b0',0.16); for(const [gx,gz] of aoeCells(u,spec,cx,cz))vfx('hit',new THREE.Vector3(wX(gx),tileTop(gx,gz)+0.6,wZ(gz)));
+      } else if(preset==='magic_cast'||preset==='ranged_attack'){
+        await projectile(u,cx,cz,spec); if(spec.radius>=1)shockRing(ctr,spec.radius,spec.type==='mag'?0xff8a3a:0xfff0b0);
+      } else if(preset==='debuff_cast'){
+        if(spec.range&&spec.range[1]>1)await projectile(u,cx,cz,spec); else vfx('dark',ctr); if(spec.radius>=1)shockRing(ctr,spec.radius,0xb06aff);
+      } else { vfx('hit',ctr); screenShake(preset==='melee_heavy'?0.46:0.32,preset==='melee_heavy'?0.28:0.22); }
+    await resolveImpact();
+    const impactHold=Math.max(feel.impactHold,tuning.afterEffectDelay); if(impactHold>0)await wait(impactHold);
   };
-  await playSpriteMotion(u,preset,{cx,cz,spec,target:targets[0],...tuning,onImpact:impact});
+  await playSpriteMotion(u,preset,{cx,cz,spec,target:targets[0],...tuning,motionDurationScale:tuning.motionDurationScale*feel.motionDurationScale,motionIntensity:tuning.motionIntensity*feel.motionIntensity,onImpact:impact});
+  await resolveImpact();
 }
 async function doMove(u,spec,cx,cz){ setFacing(u,cx,cz); const c=cellAt(cx,cz); const dest=new THREE.Vector3(wX(cx),c.topY,wZ(cz)); const head=dest.clone().add(new THREE.Vector3(0,0.9,0));
   const motion=scaledSpriteMotionPreset(SPRITE_MOTION_PRESETS[getActionMotionPreset(spec)]||SPRITE_MOTION_PRESETS.melee_light,getActionPresentationTuning(spec));
@@ -1520,20 +1554,22 @@ async function swapUnits(a,b,spec={}){
   if(!a||!b||a.size>1||b.size>1)return false;
   const aCell=a.cell(),bCell=b.cell(); if(!aCell||!bCell)return false;
   const aPos={gx:a.gx,gz:a.gz},bPos={gx:b.gx,gz:b.gz};
-  const aDeparture=a.grp.position.clone().add(new THREE.Vector3(0,0.85,0)),bDeparture=b.grp.position.clone().add(new THREE.Vector3(0,0.85,0));
-  const preset=getActionVfxPreset(spec,a);
-  if(preset==='teleport_burst'){ playActionVfxAt(preset,a,aDeparture,spec); playActionVfxAt(preset,b,bDeparture,spec); }
-  else { vfx('dark',aDeparture); vfx('dark',bDeparture); }
-  killSpriteMotion(a); killSpriteMotion(b);
-  await Promise.all([tweenP(a.mat,{opacity:0.2},0.12,easeOutCubic),tweenP(b.mat,{opacity:0.2},0.12,easeOutCubic)]);
-  aCell.occupant=b; bCell.occupant=a;
-  a.gx=bPos.gx; a.gz=bPos.gz; b.gx=aPos.gx; b.gz=aPos.gz;
-  a.grp.position.set(wX(a.gx),bCell.topY,wZ(a.gz)); b.grp.position.set(wX(b.gx),aCell.topY,wZ(b.gz));
-  const aArrival=a.grp.position.clone().add(new THREE.Vector3(0,0.85,0)),bArrival=b.grp.position.clone().add(new THREE.Vector3(0,0.85,0));
-  if(preset==='teleport_burst'){ playActionVfxAt(preset,a,aArrival,spec); playActionVfxAt(preset,b,bArrival,spec); }
-  else { vfx('dark',aArrival); vfx('dark',bArrival); }
-  await Promise.all([tweenP(a.mat,{opacity:1},0.14,easeOutCubic),tweenP(b.mat,{opacity:1},0.14,easeOutCubic)]);
-  return true;
+  try{
+    const aDeparture=a.grp.position.clone().add(new THREE.Vector3(0,0.85,0)),bDeparture=b.grp.position.clone().add(new THREE.Vector3(0,0.85,0));
+    const preset=getActionVfxPreset(spec,a);
+    if(preset==='teleport_burst'){ playActionVfxAt(preset,a,aDeparture,spec); playActionVfxAt(preset,b,bDeparture,spec); }
+    else { vfx('dark',aDeparture); vfx('dark',bDeparture); }
+    killSpriteMotion(a); killSpriteMotion(b);
+    await Promise.all([tweenP(a.mat,{opacity:0.2},0.12,easeOutCubic),tweenP(b.mat,{opacity:0.2},0.12,easeOutCubic)]);
+    aCell.occupant=b; bCell.occupant=a;
+    a.gx=bPos.gx; a.gz=bPos.gz; b.gx=aPos.gx; b.gz=aPos.gz;
+    a.grp.position.set(wX(a.gx),bCell.topY,wZ(a.gz)); b.grp.position.set(wX(b.gx),aCell.topY,wZ(b.gz));
+    const aArrival=a.grp.position.clone().add(new THREE.Vector3(0,0.85,0)),bArrival=b.grp.position.clone().add(new THREE.Vector3(0,0.85,0));
+    if(preset==='teleport_burst'){ playActionVfxAt(preset,a,aArrival,spec); playActionVfxAt(preset,b,bArrival,spec); }
+    else { vfx('dark',aArrival); vfx('dark',bArrival); }
+    await Promise.all([tweenP(a.mat,{opacity:1},0.14,easeOutCubic),tweenP(b.mat,{opacity:1},0.14,easeOutCubic)]);
+    return true;
+  } finally { if(a.alive)restoreUnitVisualBaseline(a); if(b.alive)restoreUnitVisualBaseline(b); }
 }
 async function performSkillMovement(u,spec,cx,cz,context={}){
   const selected=(context.selectedTargets||[])[0]||null;
@@ -1559,6 +1595,7 @@ async function performSkillMovement(u,spec,cx,cz,context={}){
   if(spec.dest){ await doMove(u,spec,cx,cz); return true; }
   return false;
 }
+let actionFeedbackSerial=0;
 function applyAdditionalStatus(u,spec,cx,cz,context={}){
   if(!spec.additionalStatus)return;
   const selected=context.selectedTargets||[];
@@ -1573,35 +1610,39 @@ function applyAdditionalStatus(u,spec,cx,cz,context={}){
   }
   for(const target of [...new Set(targets)])if(target&&target.alive){ applyStatus(target,spec.additionalStatus,spec.additionalStatusTurns||1); if(spec.additionalStatus==='taunt')target._taunter=u; }
 }
-async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPreview(); G.busy=true; closeMenus(); clearHL();
+async function executeActionCore(u,spec,cx,cz){ unitFocus.restore(); hideActionPreview(); G.busy=true; closeMenus(); clearHL();
   const context={origin:{gx:u.gx,gz:u.gz},selectedTargets:selectedTargetsForAction(u,spec,cx,cz)};
   const emptyHybridTarget=allowsEmptyTileHybridTarget(spec)&&context.selectedTargets.length===0;
   if(emptyHybridTarget){
     const moveSpec=spec.mode==='strike'?{...spec,type:'move',mode:'teleport',dest:true,impact:null,ap:0}:{...spec,type:'move',mode:'leap',dest:true,impact:null,ap:0};
     await doMove(u,moveSpec,cx,cz);
     if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap); G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz;
-    restoreUnitVisualBaseline(u); refreshPanel(u); restoreCam(); G.busy=false; checkEnd(); return;
+    restoreUnitVisualBaseline(u); refreshPanel(u); await restoreCam(); G.busy=false; checkEnd(); return;
   }
   const isStandaloneMove=spec.type==='move'&&(!spec.effects||spec.effects.length===0)&&!['swap','strike','retreat'].includes(spec.mode);
-  if(isStandaloneMove){ await doMove(u,spec,cx,cz); applyAdditionalStatus(u,spec,cx,cz,context); if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap); G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz; refreshPanel(u); restoreCam(); G.busy=false; checkEnd(); return; }
+  if(isStandaloneMove){ await doMove(u,spec,cx,cz); applyAdditionalStatus(u,spec,cx,cz,context); if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap); G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz; refreshPanel(u); await restoreCam(); G.busy=false; checkEnd(); return; }
   const pureSwapAction=isPureSwapAction(spec);
   if(pureSwapAction){
-    const moved=await performSkillMovement(u,spec,cx,cz,context); if(!moved){ restoreCam(); G.busy=false; return; }
+    const moved=await performSkillMovement(u,spec,cx,cz,context); if(!moved){ await restoreCam(); G.busy=false; return; }
     G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz;
     applyAdditionalStatus(u,spec,cx,cz,context);
     if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap);
     restoreUnitVisualBaseline(u); for(const t of context.selectedTargets)restoreUnitVisualBaseline(t);
-    refreshPanel(u); restoreCam(); G.busy=false; checkEnd(); return;
+    refreshPanel(u); await restoreCam(); G.busy=false; checkEnd(); return;
   }
   const hasSkillMovement=Boolean(spec.dest||spec.mode==='swap'||spec.mode==='strike'||spec.mode==='retreat'),moveBefore=hasSkillMovement&&spec.movePhase==='before';
   let impactCx=cx,impactCz=cz;
-  if(moveBefore){ const moved=await performSkillMovement(u,spec,cx,cz,context); if(!moved){ restoreCam(); G.busy=false; return; } G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz; restoreUnitVisualBaseline(u); if(spec.mode!=='strike'&&spec.mode!=='swap'){ impactCx=u.gx; impactCz=u.gz; } }
+  if(moveBefore){ const moved=await performSkillMovement(u,spec,cx,cz,context); if(!moved){ await restoreCam(); G.busy=false; return; } G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz; restoreUnitVisualBaseline(u); if(spec.mode!=='strike'&&spec.mode!=='swap'){ impactCx=u.gx; impactCz=u.gz; } }
   if(!spec.self){ const target=context.selectedTargets[0]; if(target){ const center=unitCenter(target); setFacing(u,center.gx,center.gz); } else setFacing(u,impactCx,impactCz); }
   const targets=context.selectedTargets.length&&(spec.revive||spec.targetMode==='ally'||spec.targetMode==='enemy')?context.selectedTargets:affectedUnits(u,spec,impactCx,impactCz);
   if(spec.key==='attack'&&spec.weaponType==='rapier'&&targets.length){ const t=targets[0]; const dist=Math.abs((u.size>1?bossCenterGX(u):u.gx)-t.gx)+Math.abs((u.size>1?bossCenterGZ(u):u.gz)-t.gz); spec.type=dist>=2?'mag':'phys'; }
   logMsg(u.name+' → '+spec.name);
   await combatStageEnter(u,targets,spec);
-  await attackAnim(u,spec,impactCx,impactCz,targets,context);
+  let signalImpact,finishImpact;
+  const impactStarted=new Promise(resolve=>{signalImpact=resolve;}),impactFinished=new Promise(resolve=>{finishImpact=resolve;});
+  const animation=attackAnim(u,spec,impactCx,impactCz,targets,{...context,onResolveImpact:async()=>{signalImpact(); await impactFinished;}});
+  await Promise.race([impactStarted,animation]);
+  try{
   if(spec.item&&spec.itemId&&!spec.revive)G.inv[spec.itemId]=Math.max(0,(G.inv[spec.itemId]||0)-1);
   // Process effects[] if present (multi-effect system)
   if(spec.effects&&spec.effects.length){
@@ -1668,6 +1709,8 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
     if(spec.key==='attack'&&spec.weaponType==='shuriken'&&u.alive&&basicDmg>0&&Math.random()<0.25){ const t=targets[0]; if(t&&t.alive){ floatText(u,'DOUBLE !','#ffd27a',true); const sd=Math.max(1,Math.round(basicDmg*0.75)); floatText(t,'-'+sd,'#ffd27a'); await applyDamage(t,sd,u); } }
     if(spec.key==='attack'&&spec.basicAttackStatus&&basicDmg>0){ for(const t of targets){ if(t.alive&&t.team!==u.team&&Math.random()<spec.basicAttackStatus.chance){ applyStatus(t,spec.basicAttackStatus.status,spec.basicAttackStatus.turns); } } }
     await wait(0.15); }
+  } finally { finishImpact(); }
+  await animation;
   if(hasSkillMovement&&!moveBefore){ const moved=await performSkillMovement(u,spec,cx,cz,context); if(moved){G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz; restoreUnitVisualBaseline(u);} }
   applyAdditionalStatus(u,spec,impactCx,impactCz,context);
   // Post-action upgrade effects
@@ -1677,6 +1720,14 @@ async function executeAction(u,spec,cx,cz){ unitFocus.restore(); hideActionPrevi
   if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap);
   if(spec.key==='attack'){ G.basicAttacksThisTurn++; } if(spec.item){ G.itemsUsedThisTurn++; }
   if(G.movedThisTurn)G.movedBeforeAct=true; refreshPanel(u); await combatStageExit(); G.busy=false; checkEnd();
+}
+async function executeAction(u,spec,cx,cz){
+  G._actionFeedbackToken='action-'+(++actionFeedbackSerial); G._actionShakeFrequency=18;
+  try { await executeActionCore(u,spec,cx,cz); }
+  finally {
+    try { if(G.stage)await combatStageExit(); }
+    finally { if(u&&u.alive)restoreUnitVisualBaseline(u); G.busy=false; }
+  }
 }
 
 // ============================= ENEMY AI =============================
@@ -1786,34 +1837,32 @@ async function aiTurn(u){
 }
 
 // ============================= CAMERA CONTROL =============================
-const camBase={dist:COMBAT_PRESENTATION.camera.baseDistance,height:COMBAT_PRESENTATION.camera.baseHeight};
 const cl=(v,a,b)=>Math.max(a,Math.min(b,v));
-function killTweens(obj){ for(let i=tweens.length-1;i>=0;i--) if(tweens[i].obj===obj) tweens.splice(i,1); }
-function focusCam(u){ if(!u)return; killTweens(cam); tween(cam,{tx:0,ty:COMBAT_PRESENTATION.camera.targetY,tz:0,dist:camBase.dist,height:camBase.height},0.35,easeInOut); }
-function actionCam(v){ killTweens(cam); tween(cam,{tx:0,ty:COMBAT_PRESENTATION.camera.targetY,tz:0,dist:camBase.dist,height:camBase.height},0.25,easeOutCubic); }
-function restoreCam(){ killTweens(cam); tween(cam,{tx:0,ty:COMBAT_PRESENTATION.camera.targetY,tz:0,dist:camBase.dist,height:camBase.height},0.35,easeInOut); }
+function killTweens(obj){ for(let i=tweens.length-1;i>=0;i--) if(tweens[i].obj===obj){ const handle=tweens[i]; tweens.splice(i,1); if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } }
+function focusCam(){ }
+function actionCam(){ }
+function restoreCam(){ return Promise.resolve(); }
 // ---- Combat stage : focus cinématique attaquant/cible ----
 let stageVigEl=null, stageTitleEl=null;
 function buildStageOverlay(){ stageVigEl=document.createElement('div'); stageVigEl.id='stagevig'; document.body.appendChild(stageVigEl);
   stageTitleEl=document.createElement('div'); stageTitleEl.id='stagetitle'; stageTitleEl.innerHTML='<b></b><small></small>'; document.body.appendChild(stageTitleEl); }
-function stageFrame(att,targets){ killTweens(cam); tween(cam,{tx:0,ty:COMBAT_PRESENTATION.camera.targetY,tz:0,dist:camBase.dist,height:camBase.height,yaw:cam.yaw},0.25,easeInOut); }
-async function combatStageEnter(att,targets,spec){ hideActionPreview(); G.stage=true; G._stagePrevYaw=cam.yaw; if(!stageTitleEl)buildStageOverlay();
+function stageFrame(){ }
+async function combatStageEnter(att,targets,spec){ hideActionPreview(); G.stage=true; const feel=resolveCombatFeel({motionPreset:getActionMotionPreset(spec),visualTier:getActionVisualTier(spec),boss:Boolean(att.boss&&spec.offensive),reducedGraphics:REDUCED_GRAPHICS}); G._stageLeadOut=feel.stageLeadOut; if(!stageTitleEl)buildStageOverlay();
   const inv=new Set([att]); for(const t of targets)inv.add(t); G._stageFaded=[];
   for(const o of G.units){ if(inv.has(o))continue; o._opSnap={mat:o.mat.opacity,blob:o.blob.material.opacity,vis:o.grp.visible};
     tween(o.mat,{opacity:0},0.2,easeOutCubic,()=>{ if(o._opSnap)o.grp.visible=false; }); tween(o.blob.material,{opacity:0},0.2,easeOutCubic); G._stageFaded.push(o); }
   if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
-  stageFrame(att,targets); tween(Grade.uniforms.vig,{value:1.36},0.42,easeInOut);
+  stageFrame(att,targets); killTweens(Grade.uniforms.vig); tween(Grade.uniforms.vig,{value:1.36},0.42,easeInOut);
   const etgt=targets.find(t=>t!==att&&t.team!==att.team);
   stageTitleEl.querySelector('b').textContent=spec.name||'Action';
   stageTitleEl.querySelector('small').textContent=att.name+(etgt?'  \u2192  '+etgt.name:'');
-  stageVigEl.classList.add('on'); stageTitleEl.classList.add('on'); dom.ui.classList.add('staging'); await wait(0.22); }
-async function combatStageExit(){ killTweens(cam);
-  tween(cam,{tx:0,ty:COMBAT_PRESENTATION.camera.targetY,tz:0,dist:camBase.dist,height:camBase.height,yaw:(G._stagePrevYaw!=null?G._stagePrevYaw:cam.yaw)},0.35,easeInOut);
-  tween(Grade.uniforms.vig,{value:COMBAT_PRESENTATION.grade.vignette},0.5,easeInOut);
+  stageVigEl.classList.add('on'); stageTitleEl.classList.add('on'); dom.ui.classList.add('staging'); await wait(feel.stageLeadIn); }
+async function combatStageExit(){
+  killTweens(Grade.uniforms.vig); tween(Grade.uniforms.vig,{value:COMBAT_PRESENTATION.grade.vignette},0.5,easeInOut);
   if(stageVigEl)stageVigEl.classList.remove('on'); if(stageTitleEl)stageTitleEl.classList.remove('on'); if(dom.ui)dom.ui.classList.remove('staging');
-  if(G._stageFaded){ for(const o of G._stageFaded){ if(o._opSnap){ const state=getUnitVisualState(o.team,o.alive,o.downed); o.grp.visible=state.visible&&o._opSnap.vis; if(state.visible){ tween(o.mat,{opacity:o.alive?o._opSnap.mat:state.bodyOpacity},0.3,easeOutCubic); tween(o.blob.material,{opacity:o.alive?o._opSnap.blob:state.shadowOpacity},0.3,easeOutCubic); } delete o._opSnap; } } G._stageFaded=null; }
-  G.stage=false; await wait(0.32); }
-function rotateCam(d){ killTweens(cam); tween(cam,{yaw:cl(cam.yaw+d,-0.48,0.48)},0.3,easeInOut); }
+  if(G._stageFaded){ for(const o of G._stageFaded){ if(o._opSnap){ const state=getUnitVisualState(o.team,o.alive,o.downed); killTweens(o.mat); killTweens(o.blob.material); o.grp.visible=state.visible&&o._opSnap.vis; if(state.visible){ tween(o.mat,{opacity:o.alive?o._opSnap.mat:state.bodyOpacity},0.3,easeOutCubic); tween(o.blob.material,{opacity:o.alive?o._opSnap.blob:state.shadowOpacity},0.3,easeOutCubic); } delete o._opSnap; } } G._stageFaded=null; }
+  G.stage=false; const leadOut=G._stageLeadOut??.22; G._stageLeadOut=null; await wait(leadOut); }
+function rotateCam(){ }
 
 // ============================= INPUT =============================
 const ray=new THREE.Raycaster(), ndc=new THREE.Vector2();
@@ -1842,7 +1891,7 @@ function enterTarget(spec){ if(G.busy)return;
   unitFocus.focus(G.units,G.active,validTargets);
   if(spec.self) previewAt(G.active.gx,G.active.gz); else drawRange();
   setHint((spec.self?'Action':(spec.type==='move'?'Déplacement':'Ciblage'))+' — '+spec.name); }
-function cancelToMenu(){ if(G.busy)return; if(G.mode==='move'||G.mode==='target'){ unitFocus.restore(); hideActionPreview(); G.pending=null; clearHL(); G.mode='menu'; openActionMenu(); setHint(G.active.name+' — à vous de jouer'); } }
+function cancelToMenu(){ if(G.busy)return; if(G.mode==='move'||G.mode==='target'){ unitFocus.restore(); hideActionPreview(); G._targetPreviewKey=null; G.pending=null; clearHL(); G.mode='menu'; openActionMenu(); setHint(G.active.name+' — à vous de jouer'); } }
 
 async function doExecute(spec,cx,cz){ await executeAction(G.active,spec,cx,cz); afterSub(); }
 function afterSub(){ unitFocus.restore(); hideActionPreview(); if(G.over)return; G.mode='menu'; selectUnit(G.active); openActionMenu();
@@ -1855,7 +1904,7 @@ function undoMove(){ if(G.busy||!G.movedThisTurn||G.movedBeforeAct||G.startGX==n
 function transientInspect(u){ if(!u)return; const key=u.campaignId||u.id||u.name; if(statsPanelKey!==key){statsPanelKey=key;statsPanelExpanded=false;} G.selected=u; renderPanel(u); }
 function restoreInspection(){ const fallback=(G.pinnedUnit&&G.pinnedUnit.alive?G.pinnedUnit:G.active); if(fallback)transientInspect(fallback); }
 function onPointerMove(ev){ if(G.busy||G.over)return; const c=pickCell(ev); const hoveredUnit=(c&&c.occupant&&c.occupant.alive)?c.occupant:null; G.hover=c; G.hoverUnit=hoveredUnit; if(c)moveCursor(c.gx,c.gz); else if(cursorMesh)cursorMesh.visible=false;
-  if(G.mode==='target'){ const sp=G.pending.spec; const targetCell=hoveredUnit?.cell?.()||c; if(sp.self)previewAt(G.active.gx,G.active.gz); else if(targetCell&&G.pending.keys.has(targetCell.gx+','+targetCell.gz)){ previewAt(targetCell.gx,targetCell.gz); const target=affectedUnits(G.active,sp,targetCell.gx,targetCell.gz)[0]||hoveredUnit; if(target)transientInspect(target); } else { drawRange(); restoreInspection(); } }
+  if(G.mode==='target'){ const sp=G.pending.spec; const targetCell=hoveredUnit?.cell?.()||c,previewKey=sp.key+':'+(targetCell?targetCell.gx+','+targetCell.gz:'none'); if(G._targetPreviewKey===previewKey)return; G._targetPreviewKey=previewKey; if(sp.self)previewAt(G.active.gx,G.active.gz); else if(targetCell&&G.pending.keys.has(targetCell.gx+','+targetCell.gz)){ previewAt(targetCell.gx,targetCell.gz); const target=affectedUnits(G.active,sp,targetCell.gx,targetCell.gz)[0]||hoveredUnit; if(target)transientInspect(target); } else { drawRange(); restoreInspection(); } }
   else if((G.mode==='menu'||G.mode==='idle')&&hoveredUnit)transientInspect(hoveredUnit);
   else if((G.mode==='menu'||G.mode==='idle')&&c?.occupant?.alive)transientInspect(c.occupant);
   else if(G.mode==='menu'||G.mode==='idle')restoreInspection(); }
@@ -1877,10 +1926,9 @@ function bindInput(){ const el=renderer.domElement;
   el.addEventListener('pointermove',onPointerMove);
   el.addEventListener('pointerdown',onClick);
   el.addEventListener('contextmenu',e=>{ e.preventDefault(); cancelToMenu(); });
-  addEventListener('wheel',e=>{ e.preventDefault(); camera.fov=cl(camera.fov+Math.sign(e.deltaY)*COMBAT_PRESENTATION.camera.zoomFovStep,COMBAT_PRESENTATION.camera.zoomFovMin,COMBAT_PRESENTATION.camera.zoomFovMax); camera.updateProjectionMatrix(); },{passive:false});
+  addEventListener('wheel',e=>e.preventDefault(),{passive:false});
   addEventListener('keydown',e=>{ const k=e.key.toLowerCase();
-    if(k==='q')rotateCam(0.2); else if(k==='e')rotateCam(-0.2);
-    else if(k==='escape')cancelToMenu();
+    if(k==='escape')cancelToMenu();
     else if(k==='enter'&&G.mode==='menu'&&!G.busy)endTurn();
     else if(k==='m'&&G.mode==='menu')enterMove();
     else if(k==='u'&&G.mode==='menu')undoMove();
@@ -2053,12 +2101,12 @@ function endGame(win){ if(G.over)return; G.over=true; G.mode='over'; closeMenus(
   logMsg(win?'— VICTOIRE —':'— DÉFAITE —'); }
 
 // ============================= RENDER LOOP =============================
-let _last=performance.now(), _t=0;
-function animate(){ requestAnimationFrame(animate);
+let _last=performance.now(), _t=0,_diagnosticsAt=0,_animationFrame=0,_runtimeDisposed=false;
+function animate(){ if(_runtimeDisposed)return; _animationFrame=requestAnimationFrame(animate);
   const now=performance.now(); const dt=Math.min(0.05,(now-_last)/1000); _last=now; _t+=dt;
-  updateTweens(dt); if(G.shake)G.shake.t+=dt; applyCam();
+  updateTweens(dt); cameraFeedback.tick(dt); applyCam();
   for(const u of G.units){ const dx=camera.position.x-u.grp.position.x, dz=camera.position.z-u.grp.position.z; u.spr.rotation.y=Math.atan2(dx,dz); if(u.outline){ u.outline.rotation.y=u.spr.rotation.y; u.outline.material.opacity=Math.max(0.16,u.mat.opacity*0.44); }
-    if(u.teamRing){ const isActive=u===G.active&&!G.stage&&!G.over,isHover=G.hoverUnit===u,isTarget=G.mode==='target'&&G.pending&&G.pending.keys.has(cellKey(u.gx,u.gz))&&G.active&&u.team!==G.active.team; u.teamRing.material.opacity=Math.min(1,COMBAT_PRESENTATION.units.teamRingOpacity*(isActive?1.16:(isTarget?1.12:(isHover?1.08:0.94)))); if(u.teamRingUnder)u.teamRingUnder.material.opacity=isActive ? .68 : (isTarget ? .64 : (isHover ? .6 : .5)); if(u.teamGlow)u.teamGlow.material.opacity=isActive ? .28 : (isTarget ? .25 : (isHover ? .22 : (u.team==='player' ? .15 : .17))); }
+    if(u.teamRing){ if(!u.alive){ u.teamRing.material.opacity=0; if(u.teamRingUnder)u.teamRingUnder.material.opacity=0; if(u.teamGlow)u.teamGlow.material.opacity=0; } else if(!u._motionPlaying){ const isActive=u===G.active&&!G.stage&&!G.over,isHover=G.hoverUnit===u,isTarget=G.mode==='target'&&G.pending&&G.pending.keys.has(cellKey(u.gx,u.gz))&&G.active&&u.team!==G.active.team; u.teamRing.material.opacity=Math.min(1,COMBAT_PRESENTATION.units.teamRingOpacity*(isActive?1.16:(isTarget?1.12:(isHover?1.08:0.94)))); if(u.teamRingUnder)u.teamRingUnder.material.opacity=isActive ? .68 : (isTarget ? .64 : (isHover ? .6 : .5)); if(u.teamGlow)u.teamGlow.material.opacity=isActive ? .28 : (isTarget ? .25 : (isHover ? .22 : (u.team==='player' ? .15 : .17))); } }
     if(u.alive&&(u.boss||u.elite)&&u.ap>=3&&u._ultCooldown<=1){ const p=0.5+0.5*Math.sin(_t*6); u.teamRing.material.color.setRGB(1,0.373-0.248*p,0.322-0.197*p); if(u.teamGlow){ u.teamGlow.material.color.setRGB(1,0.373-0.248*p,0.322-0.197*p); u.teamGlow.material.opacity=0.17+0.15*p; } }
     else if((u.boss||u.elite)&&u.teamRing){ u.teamRing.material.color.setHex(0xff5f52); if(u.teamGlow)u.teamGlow.material.color.setHex(0xff5f52); }
     if(u.alive) u.spr.position.y=u.baseY+(u===G.active?Math.sin(_t*3.2)*0.05:0); syncStatusIndicators(u,_t); }
@@ -2085,27 +2133,21 @@ function animate(){ requestAnimationFrame(animate);
   if(G.rays){ for(const r of G.rays){ if(r.map)r.map.offset.x=(r.map.offset.x+r.spd*dt)%1; r.mat.opacity=REDUCED_GRAPHICS?0:Math.max(0,r.base+Math.sin(_t*r.pulse+r.ph)*r.amp); } }
   updateSelectors();
   composer.render();
-  window.__COMBAT_DIAGNOSTICS={
-    drawCalls:renderer.info.render.calls,
-    triangles:renderer.info.render.triangles,
-    geometries:renderer.info.memory.geometries,
-    textures:renderer.info.memory.textures,
-    reducedGraphics:REDUCED_GRAPHICS,
-    units:G.units.length,
-    grid:{width:CFG.W,depth:CFG.D,walkable:G.grid.flat().filter(c=>c&&c.walkable).length,blocked:G.grid.flat().filter(c=>c&&!c.walkable).length},
-  };
+  if(now-_diagnosticsAt>=250){ _diagnosticsAt=now; let walkable=0,blocked=0; for(const column of G.grid)for(const cell of column){ if(!cell)continue; if(cell.walkable)walkable++; else blocked++; }
+    window.__COMBAT_DIAGNOSTICS={drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,reducedGraphics:REDUCED_GRAPHICS,units:G.units.length,activeTweens:tweens.length,activeVfxObjects:combatVfxSystem.activeObjectCount,grid:{width:CFG.W,depth:CFG.D,walkable,blocked}};
+  }
 }
 
 // ============================= DEPLOYMENT =============================
 function inZone(gx,gz){ return G.deployZone.some(z=>z.gx===gx&&z.gz===gz); }
 function computeDeployZone(){ G.deployZone=[]; for(let gx=0;gx<=1;gx++)for(let gz=0;gz<CFG.D;gz++){ const c=cellAt(gx,gz); if(c&&c.walkable)G.deployZone.push(c); } }
-function overviewCam(){ killTweens(cam); tween(cam,{tx:0,ty:COMBAT_PRESENTATION.camera.targetY,tz:0,dist:COMBAT_PRESENTATION.camera.overviewDistance,height:COMBAT_PRESENTATION.camera.overviewHeight},0.6,easeInOut); }
+function overviewCam(){ }
 function drawDeployZone(){ clearHL(); const keys=new Set(G.deployZone.map(c=>cellKey(c.gx,c.gz))); addInvalidTiles(keys,false); for(const c of G.deployZone){ if(c.occupant){ addHL(c.gx,c.gz,CFG.COL.ally,COMBAT_PRESENTATION.arena.deployTileOpacity*.5,'range'); continue; } addHL(c.gx,c.gz,CFG.COL.move,COMBAT_PRESENTATION.arena.deployTileOpacity,'move'); } }
 function playerDefinitions(){
   if(CAMPAIGN_MODE&&CAMPAIGN_SQUAD.length) return orderDeploymentCandidates(CAMPAIGN_SQUAD.map(campaignDef),PREFERRED_UNIT_IDS);
   return DEFS.filter(d=>d.team==='player').map((d,index)=>Object.assign({id:'standalone-'+index},d));
 }
-function removeUnit(u){ if(u.size>1)clearBossCells(u); else { const c=u.cell&&u.cell(); if(c&&c.occupant===u)c.occupant=null; } disposeStatusIndicators(u); if(u.grp)scene.remove(u.grp); const i=G.units.indexOf(u); if(i>=0)G.units.splice(i,1); const d=G.deployedUnits.indexOf(u); if(d>=0)G.deployedUnits.splice(d,1); }
+function removeUnit(u){ if(u.size>1)clearBossCells(u); else { const c=u.cell&&u.cell(); if(c&&c.occupant===u)c.occupant=null; } killSpriteMotion(u); disposeStatusIndicators(u); if(u.grp){ scene.remove(u.grp); u.grp.traverse(object=>{ if(object.geometry)object.geometry.dispose(); if(object.material){ const materials=Array.isArray(object.material)?object.material:[object.material]; for(const material of materials)material.dispose(); } }); } const i=G.units.indexOf(u); if(i>=0)G.units.splice(i,1); const d=G.deployedUnits.indexOf(u); if(d>=0)G.deployedUnits.splice(d,1); }
 function playerDeployLimit(){ return QA_DEPLOY_ALL&&G.rosterDefs&&G.rosterDefs.length?G.rosterDefs.length:MAX_PLAYER_UNITS; }
 function deployDefById(id){ return G.rosterDefs.find(d=>(d.campaignId||d.name)===id); }
 function deployedById(id){ return G.deployedUnits.find(u=>(u.campaignId||u.name)===id); }
@@ -2236,6 +2278,18 @@ function qaPrepareCombat(){
   autoDeploy();
   beginBattle();
 }
+function qaMotionUnit(preferBoss=false){ return (preferBoss?aliveUnits().find(unit=>unit.boss):null)||G.active&&G.active.alive&&G.active||aliveUnits('player')[0]||aliveUnits()[0]||null; }
+async function playQaMotionScenario(scenario){
+  qaPrepareCombat(); const source=qaMotionUnit(scenario==='boss'),target=aliveUnits(source&&source.team==='player'?'foe':'player')[0]||source; if(!source)return;
+  G.busy=true;
+  try{
+    if(scenario==='hit')await playUnitHitReaction(source,{source:target});
+    else if(scenario==='critical')await playUnitHitReaction(source,{source:target,critical:true});
+    else if(scenario==='ko-revive'){ const hp=source.hp; await knockOut(source,target); await wait(.18); await reviveUnit(source,hp); }
+    else { const preset=scenario==='light'?'melee_light':scenario==='heavy'||scenario==='boss'?'melee_heavy':scenario==='ranged'?'ranged_attack':scenario==='support'?'heal_cast':'magic_cast'; await playSpriteMotion(source,preset,{target,motionDurationScale:scenario==='boss'?1.16:1,motionIntensity:scenario==='boss'?1.14:1,onImpact:async()=>{ if(scenario==='heavy'||scenario==='boss')screenShake(scenario==='boss'?.34:.24,.22); }}); }
+  } finally { for(const unit of G.units)if(unit.alive)restoreUnitVisualBaseline(unit); G.busy=false; }
+}
+function resetQaMotion(){ for(const unit of G.units){ killSpriteMotion(unit); if(unit.alive)restoreUnitVisualBaseline(unit); } cameraFeedback.clear(); void restoreCam(); }
 function mountQaControls(){
   if(!QA_ENABLED||byId('qa-combat-controls'))return;
   const controls=document.createElement('aside');
@@ -2272,8 +2326,9 @@ function vfxWorkbenchContext(targetMode){
   return makeActionVfxContext(source,[target],tx,tz);
 }
 
-async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); installVfxWorkbench({system:combatVfxSystem,getContext:vfxWorkbenchContext}); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none'; }
-
+async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); installVfxWorkbench({system:combatVfxSystem,getContext:vfxWorkbenchContext}); installUnitMotionWorkbench({enabled:MOTION_QA_ENABLED,play:playQaMotionScenario,reset:resetQaMotion}); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none'; }
+function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; if(_animationFrame)cancelAnimationFrame(_animationFrame); for(const unit of G.units.slice())killSpriteMotion(unit); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); combatVfxSystem.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
+window.addEventListener('pagehide',disposeCombatRuntime,{once:true});
 window.addEventListener('error',()=>{ if(dom.loading&&dom.loading.style.display!=='none') dom.loading.innerHTML='<div style="color:#ff8a7a;max-width:540px;text-align:center;line-height:26px">Échec du chargement de Three.js.<br>Vérifiez votre connexion internet puis rechargez la page.<br><span style="color:#9fb0d0">La page doit être servie via un serveur local (http://), pas ouverte directement depuis le disque.</span></div>'; });
 window.addEventListener('unhandledrejection',e=>console.error(e.reason));
 function bootCampaign(message){
@@ -2282,6 +2337,7 @@ function bootCampaign(message){
   MAX_PLAYER_UNITS=normalizeDeploymentLimit(message.config.maxPlayerUnits); CAMPAIGN_SQUAD=message.clan; CAMPAIGN_INVENTORY=message.inventory;
   PREFERRED_UNIT_IDS=message.preferredUnitIds; REDUCED_GRAPHICS=message.reducedGraphics;
   QA_ENABLED=campaignParams.get('qa')==='1'&&message.devQa===true;
+  MOTION_QA_ENABLED=QA_ENABLED&&campaignParams.get('motion')==='1';
   QA_FULL_AP=QA_ENABLED&&message.qaFullAp===true;
   QA_DEPLOY_ALL=QA_ENABLED&&message.qaDeployAll===true;
   IS_BOSS_COMBAT=!!message.config.isBoss; BOSS_SPAWNED=false;

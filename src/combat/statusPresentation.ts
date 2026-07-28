@@ -75,6 +75,11 @@ export interface CarouselStatusFrame {
   spriteScale: number;
 }
 
+export interface ResolvedStatusCarousel {
+  indicators: readonly VisibleStatusIndicator[];
+  signature: string;
+}
+
 const RUNTIME_INDICATOR_URLS: Partial<Record<StatusPresentationKey, string>> = {
   burn: '/assets/status-indicators/runtime/status_burn_indicator.png',
   poison: '/assets/status-indicators/runtime/status_poison_indicator.png',
@@ -154,19 +159,26 @@ export function getVisibleStatusIndicators(
   };
 }
 
-function carouselSignature(indicators: VisibleStatusIndicator[]): string {
+function carouselSignature(indicators: readonly VisibleStatusIndicator[]): string {
   return indicators.map((indicator) => `${indicator.key}:${indicator.turns ?? 0}:${indicator.derived ? 'derived' : 'native'}`).join('|');
 }
 
-export function getCarouselStatusFrame(
+export function resolveStatusCarousel(
   statuses: Record<string, number | undefined> = {},
-  elapsedMs = 0,
-  { exhausted = false, phaseOffsetMs = 0, reducedGraphics = false }: CarouselStatusOptions = {},
-): CarouselStatusFrame | null {
+  exhausted = false,
+): ResolvedStatusCarousel {
   const indicators = getVisibleStatusIndicators(statuses, { exhausted, maxVisible: Number.POSITIVE_INFINITY }).visible;
+  return { indicators, signature: carouselSignature(indicators) };
+}
+
+export function getResolvedCarouselStatusFrame(
+  model: ResolvedStatusCarousel,
+  elapsedMs = 0,
+  { phaseOffsetMs = 0, reducedGraphics = false }: Omit<CarouselStatusOptions, 'exhausted'> = {},
+): CarouselStatusFrame | null {
+  const { indicators, signature } = model;
   if (!indicators.length) return null;
 
-  const signature = carouselSignature(indicators);
   const scaleFor = (indicator: VisibleStatusIndicator) => indicator.spriteScale * (reducedGraphics ? indicator.reducedGraphicsScale : 1);
   if (indicators.length === 1) {
     const current = indicators[0]!;
@@ -210,4 +222,15 @@ export function getCarouselStatusFrame(
     transitionMs,
     spriteScale: scaleFor(current),
   };
+}
+
+export function getCarouselStatusFrame(
+  statuses: Record<string, number | undefined> = {},
+  elapsedMs = 0,
+  { exhausted = false, phaseOffsetMs = 0, reducedGraphics = false }: CarouselStatusOptions = {},
+): CarouselStatusFrame | null {
+  return getResolvedCarouselStatusFrame(resolveStatusCarousel(statuses, exhausted), elapsedMs, {
+    phaseOffsetMs,
+    reducedGraphics,
+  });
 }

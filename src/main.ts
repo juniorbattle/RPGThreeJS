@@ -9,4 +9,5 @@ if (!root || !canvas) {
 }
 
 const app = new GameApp(root, canvas);
+window.addEventListener('pagehide', () => app.dispose(), { once: true });
 void app.start();

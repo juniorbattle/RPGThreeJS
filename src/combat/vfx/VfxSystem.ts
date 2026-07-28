@@ -196,7 +196,12 @@ export function cleanupVfxObjects(objects: Iterable<THREE.Object3D>) {
   }
 }
 
-function animate(duration: number, frame: (progress: number, eased: number) => void) {
+function animate(
+  duration: number,
+  frame: (progress: number, eased: number) => void,
+  isActive: () => boolean = () => true,
+) {
+  if (!isActive()) return Promise.resolve();
   if (duration <= 0) {
     frame(1, 1);
     return Promise.resolve();
@@ -204,6 +209,10 @@ function animate(duration: number, frame: (progress: number, eased: number) => v
   return new Promise<void>((resolve) => {
     const start = performance.now();
     const tick = (now: number) => {
+      if (!isActive()) {
+        resolve();
+        return;
+      }
       const progress = clamp((now - start) / (duration * 1000), 0, 1);
       frame(progress, easeOutCubic(progress));
       if (progress < 1) requestAnimationFrame(tick);
@@ -286,9 +295,18 @@ interface ParticleEntry {
 
 export class VfxSystem {
   private readonly activeObjects = new Set<THREE.Object3D>();
+  private disposed = false;
+  private resolveDisposal: (() => void) | null = null;
+  private readonly disposal = new Promise<void>((resolve) => {
+    this.resolveDisposal = resolve;
+  });
+
+  get activeObjectCount(): number {
+    return this.activeObjects.size;
+  }
 
   play(presetId: string, context: VfxContext): VfxPlayResult {
-    const preset = getVfxPreset(presetId);
+    const preset = this.disposed ? undefined : getVfxPreset(presetId);
     if (!preset) {
       return { played: false, presetId, impactTime: 0, completion: Promise.resolve() };
     }
@@ -310,6 +328,9 @@ export class VfxSystem {
    * the legacy runtime at its usual impact point.
    */
   playCinematic(descriptor: CinematicDescriptor, context: VfxContext, fallbackPresetId?: string): VfxPlayResult {
+    if (this.disposed) {
+      return { played: false, presetId: descriptor.id, impactTime: 0, completion: Promise.resolve() };
+    }
     const issues = validateCinematicDescriptor(descriptor);
     if (issues.length) {
       console.warn('[CombatVfx] Invalid cinematic descriptor; using stable fallback.', issues);
@@ -328,7 +349,8 @@ export class VfxSystem {
         ? { ...descriptor.reducedGraphics, ...phase.reducedGraphics }
         : undefined;
       const phaseDurationMultiplier = clamp(phaseReduced?.durationMultiplier ?? 1, 0.45, 1.25);
-      await waitSeconds((phase.startMs / 1000) * sequenceDurationScale, context);
+      await this.wait((phase.startMs / 1000) * sequenceDurationScale, context);
+      if (this.disposed) return;
       const preset = getVfxPreset(phase.preset);
       if (!preset) return;
       const phaseDurationScale = (phase.durationMs / 1000) / preset.duration;
@@ -359,13 +381,27 @@ export class VfxSystem {
   }
 
   dispose() {
+    if (this.disposed) return;
+    this.disposed = true;
+    this.resolveDisposal?.();
+    this.resolveDisposal = null;
     cleanupVfxObjects(this.activeObjects);
     this.activeObjects.clear();
     disposeVfxTextures();
     disposeVfxSpriteSheetTextures();
   }
 
+  private wait(seconds: number, context: VfxContext): Promise<void> {
+    if (this.disposed || seconds <= 0) return Promise.resolve();
+    return Promise.race([waitSeconds(seconds, context), this.disposal]).then(() => undefined);
+  }
+
+  private animate(duration: number, frame: (progress: number, eased: number) => void): Promise<void> {
+    return animate(duration, frame, () => !this.disposed);
+  }
+
   private track<T extends THREE.Object3D>(object: T, context: VfxContext) {
+    if (this.disposed) return object;
     this.activeObjects.add(object);
     context.scene.add(object);
     return object;
@@ -401,13 +437,14 @@ export class VfxSystem {
 
   private async scheduleStep(step: VfxStep, preset: VfxPreset, context: VfxContext, durationScale: number) {
     const effectiveStep = this.withCinematicOverrides(step, context);
-    await waitSeconds(effectiveStep.startTime * durationScale, context);
+    await this.wait(effectiveStep.startTime * durationScale, context);
+    if (this.disposed) return;
     const duration = effectiveStep.duration * durationScale;
     try {
       if (effectiveStep.type === 'screenShake') {
         const magnitude = (effectiveStep.scale ?? 0.2) * clamp(context.intensity ?? 1, 0.35, 1.8) * this.quality(effectiveStep, preset, context);
         context.helpers?.screenShake?.(magnitude, duration);
-        await waitSeconds(duration, context);
+        await this.wait(duration, context);
         return;
       }
       if (effectiveStep.type === 'screenFlash') {
@@ -415,11 +452,11 @@ export class VfxSystem {
         const opacity = Math.min(0.22, (effectiveStep.opacity ?? 0.12) * emphasis * this.quality(effectiveStep, preset, context));
         if (context.helpers?.screenFlash) context.helpers.screenFlash(String(effectiveStep.color ?? '#ffffff'), opacity);
         else this.fallbackScreenFlash(String(effectiveStep.color ?? '#ffffff'), opacity, duration);
-        await waitSeconds(duration, context);
+        await this.wait(duration, context);
         return;
       }
       if (effectiveStep.type === 'hitStop') {
-        await waitSeconds(duration, context);
+        await this.wait(duration, context);
         return;
       }
       if (effectiveStep.type === 'projectile') {
@@ -502,7 +539,7 @@ export class VfxSystem {
     (sprite.material as THREE.SpriteMaterial).rotation += directionalRotation(step, context);
     sprite.scale.setScalar(baseScale * 0.32);
     try {
-      await animate(duration, (progress, eased) => {
+      await this.animate(duration, (progress, eased) => {
         const pulse = progress < 0.36 ? progress / 0.36 : 1 - (progress - 0.36) / 0.64;
         sprite.scale.setScalar(baseScale * (0.32 + eased * 0.83));
         (sprite.material as THREE.SpriteMaterial).opacity = foregroundPeakOpacity(step.opacity ?? 1, context) * clamp(pulse, 0, 1);
@@ -550,7 +587,7 @@ export class VfxSystem {
       objects.push(sprite);
     }
     try {
-      await animate(duration, (progress) => {
+      await this.animate(duration, (progress) => {
         for (const entry of entries) {
           const local = clamp((progress - entry.delay) / (1 - entry.delay), 0, 1);
           entry.sprite.visible = local > 0;
@@ -592,7 +629,7 @@ export class VfxSystem {
       objects.push(trail);
     }
     try {
-      await animate(duration, (progress, eased) => {
+      await this.animate(duration, (progress, eased) => {
         const arc = Math.sin(Math.PI * eased) * 0.42;
         core.position.lerpVectors(start, end, eased);
         core.position.y += arc;
@@ -622,6 +659,10 @@ export class VfxSystem {
     if (!step.spriteSheet) return;
     const definition = VFX_SPRITE_SHEETS[step.spriteSheet];
     const texture = await loadVfxSpriteSheetTexture(step.spriteSheet);
+    if (this.disposed) {
+      texture.dispose();
+      return;
+    }
     setVfxSpriteSheetFrame(texture, definition, 0);
     const material = new THREE.SpriteMaterial({
       map: texture,
@@ -658,7 +699,7 @@ export class VfxSystem {
     sprite.position.copy(anchor);
     material.rotation += directionalRotation(step, context);
     try {
-      await animate(duration, (progress) => {
+      await this.animate(duration, (progress) => {
         const frame = Math.min(definition.frameCount - 1, Math.floor(progress * definition.frameCount));
         const scale = baseHeight * spriteSheetScalePulse(progress, definition);
         setVfxSpriteSheetFrame(texture, definition, frame);
@@ -682,6 +723,10 @@ export class VfxSystem {
     if (!step.spriteSheet) return;
     const definition = VFX_SPRITE_SHEETS[step.spriteSheet];
     const texture = await loadVfxSpriteSheetTexture(step.spriteSheet);
+    if (this.disposed) {
+      texture.dispose();
+      return;
+    }
     setVfxSpriteSheetFrame(texture, definition, 0);
     const material = new THREE.SpriteMaterial({
       map: texture,
@@ -722,7 +767,7 @@ export class VfxSystem {
       : contextImpactRenderOrder(context);
     sprite.position.copy(start);
     try {
-      await animate(duration, (progress) => {
+      await this.animate(duration, (progress) => {
         const frame = Math.min(definition.frameCount - 1, Math.floor(progress * definition.frameCount));
         const travel = easeOutCubic(clamp(progress / 0.67, 0, 1));
         const scale = baseHeight * spriteSheetScalePulse(progress, definition);
@@ -752,6 +797,10 @@ export class VfxSystem {
     if (!step.spriteSheet) return;
     const definition = VFX_SPRITE_SHEETS[step.spriteSheet];
     const texture = await loadVfxSpriteSheetTexture(step.spriteSheet);
+    if (this.disposed) {
+      texture.dispose();
+      return;
+    }
     setVfxSpriteSheetFrame(texture, definition, 0);
     const material = new THREE.SpriteMaterial({
       map: texture,
@@ -803,7 +852,7 @@ export class VfxSystem {
       ? VFX_RENDER_ORDER.ground
       : contextImpactRenderOrder(context);
     try {
-      await animate(actualDuration, (progress) => {
+      await this.animate(actualDuration, (progress) => {
         const frame = Math.min(definition.frameCount - 1, Math.floor(progress * definition.frameCount));
         const descent = easeInOut(progress);
         const scaleStart = clamp(options.scaleStart ?? 0.56, 0.2, 2);
@@ -854,7 +903,7 @@ export class VfxSystem {
       objects.push(crack);
     }
     try {
-      await animate(duration, (progress, eased) => {
+      await this.animate(duration, (progress, eased) => {
         const fade = 1 - easeInOut(progress);
         plane.scale.setScalar(radius * (0.18 + eased * 1.82));
         plane.rotation.z = (step.rotation ?? 0) + progress * (step.type === 'magicCircle' ? 0.72 : 0.18);
@@ -879,7 +928,7 @@ export class VfxSystem {
     glow.position.copy(anchor);
     glow.scale.setScalar(scale * 0.4);
     try {
-      await animate(duration, (progress, eased) => {
+      await this.animate(duration, (progress, eased) => {
         const pulse = Math.sin(Math.PI * progress);
         light.intensity = pulse * 2.15 * quality;
         glow.scale.setScalar(scale * (0.4 + eased * 0.9));
@@ -891,12 +940,16 @@ export class VfxSystem {
   }
 
   private fallbackScreenFlash(color: string, opacity: number, duration: number) {
-    if (typeof document === 'undefined') return;
+    if (typeof document === 'undefined' || this.disposed) return;
     const element = document.createElement('div');
     element.style.cssText = `position:fixed;inset:0;z-index:18;pointer-events:none;background:${color};opacity:${opacity}`;
     document.body.appendChild(element);
     const start = performance.now();
     const tick = (now: number) => {
+      if (this.disposed) {
+        element.remove();
+        return;
+      }
       const progress = clamp((now - start) / Math.max(1, duration * 1000), 0, 1);
       element.style.opacity = String(opacity * (1 - progress));
       if (progress < 1) requestAnimationFrame(tick);

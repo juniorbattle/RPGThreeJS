@@ -378,6 +378,7 @@ export class TravelView {
   private element: HTMLElement | null = null;
   private busy = false;
   private autoTooltipTimer: ReturnType<typeof setTimeout> | null = null;
+  private autoTooltipHideTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(private readonly options: TravelViewOptions) {}
 
@@ -543,7 +544,8 @@ export class TravelView {
           } catch { /* keep existing text */ }
         }
         pick.classList.add('travel-hero__tooltip--auto');
-        setTimeout(() => {
+        this.autoTooltipHideTimer = setTimeout(() => {
+          this.autoTooltipHideTimer = null;
           pick.classList.remove('travel-hero__tooltip--auto');
           schedule();
         }, 3500);
@@ -554,6 +556,7 @@ export class TravelView {
 
   close(): void {
     if (this.autoTooltipTimer) { clearTimeout(this.autoTooltipTimer); this.autoTooltipTimer = null; }
+    if (this.autoTooltipHideTimer) { clearTimeout(this.autoTooltipHideTimer); this.autoTooltipHideTimer = null; }
     this.element?.remove();
     this.element = null;
     this.busy = false;

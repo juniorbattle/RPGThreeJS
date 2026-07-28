@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "cinematics": [
+    {
+      "id": "qa-placeholder",
+      "title": "Chronique cinématique",
+      "sources": [],
+      "fallbackText": "Emplacement réservé à une future séquence animée.",
+      "placeholderOnly": true,
+      "durationMs": 1200
+    }
+  ]
+}

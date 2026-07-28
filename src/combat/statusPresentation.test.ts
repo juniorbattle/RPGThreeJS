@@ -3,9 +3,11 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   getCarouselStatusFrame,
+  getResolvedCarouselStatusFrame,
   getStatusIndicatorAsset,
   getStatusLabel,
   getVisibleStatusIndicators,
+  resolveStatusCarousel,
 } from './statusPresentation';
 
 describe('status presentation', () => {
@@ -73,6 +75,21 @@ describe('status presentation', () => {
     const frame = getCarouselStatusFrame({ burn: 1, poison: 1, blind: 1, weak: 1, regen: 1 }, 0);
     expect(frame?.total).toBe(5);
     expect(frame?.signature.split('|')).toHaveLength(5);
+  });
+
+  it('keeps resolved carousel frames identical to the compatibility wrapper', () => {
+    const statuses = { staggered: 1, burn: 2, regen: 3 };
+    const model = resolveStatusCarousel(statuses, true);
+    for (const elapsedMs of [0, 900, 1_450, 2_900]) {
+      expect(getResolvedCarouselStatusFrame(model, elapsedMs, {
+        phaseOffsetMs: 217,
+        reducedGraphics: true,
+      })).toEqual(getCarouselStatusFrame(statuses, elapsedMs, {
+        exhausted: true,
+        phaseOffsetMs: 217,
+        reducedGraphics: true,
+      }));
+    }
   });
 
   it('maps the processed indicator assets and keeps Canvas fallback entries', () => {

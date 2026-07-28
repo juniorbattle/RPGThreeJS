@@ -1,10 +1,12 @@
 export type TransitionVariant = 'fade' | 'launch' | 'dialogue' | 'travel' | 'combat' | 'boss' | 'result';
 export type TransitionStyle = 'fade' | 'wipe';
 
-interface TransitionOptions {
+export interface TransitionOptions {
   variant: TransitionVariant;
   label?: string;
   task: () => Promise<void>;
+  interlude?: () => Promise<unknown>;
+  holdMs?: number;
 }
 
 const WIPE_VARIANTS: TransitionVariant[] = ['combat', 'boss'];
@@ -38,7 +40,7 @@ function timingFor(variant: TransitionVariant): TransitionTiming {
   return TRANSITION_TIMINGS[variant];
 }
 
-class SceneTransition {
+export class SceneTransition {
   private overlay: HTMLElement | null = null;
   private active = false;
 
@@ -53,14 +55,26 @@ class SceneTransition {
     this.createOverlay(options.variant, style, options.label ?? '', timing);
     try {
       await this.awaitCovered(timing.inMs);
+      if (options.interlude) {
+        document.body.classList.remove('scene-transition--locked');
+        document.body.classList.add('scene-transition--interlude');
+        try {
+          await options.interlude();
+        } catch (error) {
+          console.warn('[SceneTransition] Interlude failed safely.', error);
+        } finally {
+          document.body.classList.remove('scene-transition--interlude');
+          document.body.classList.add('scene-transition--locked');
+        }
+      }
       await options.task();
-      await wait(timing.holdMs);
+      await wait(options.holdMs ?? timing.holdMs);
       await this.reveal(timing.outMs);
     } catch (error) {
       this.destroyOverlay();
       throw error;
     } finally {
-      document.body.classList.remove('scene-transition--locked');
+      document.body.classList.remove('scene-transition--locked', 'scene-transition--interlude');
       this.active = false;
     }
   }

@@ -86,4 +86,58 @@ describe('V10F final hotfix runtime contracts', () => {
     expect(runtimeSource).not.toContain('sky_descent');
     expect(runtimeSource).not.toContain('cinematic_travel');
   });
+
+  it('keeps V11A unit presentation transform-only for idle billboards', () => {
+    expect(runtimeSource).toContain("from './unitMotion'");
+    expect(runtimeSource).toContain('createCanonicalUnitMotionBaseline');
+    expect(runtimeSource).toContain('restoreUnitVisualBaseline');
+    expect(runtimeSource).not.toContain('SkinnedMesh');
+    expect(runtimeSource).not.toContain('AnimationMixer');
+    expect(runtimeSource).not.toContain('Skeleton');
+    expect(runtimeSource).not.toContain('walkCycle');
+  });
+
+  it('resolves gameplay at visual impact before attacker recovery', () => {
+    expect(runtimeSource).toContain('onResolveImpact');
+    expect(runtimeSource).toContain('impactStarted');
+    expect(runtimeSource).toContain('await impactFinished');
+    expect(runtimeSource).toContain('await animation;');
+    expect(runtimeSource.indexOf('} finally { finishImpact(); }')).toBeLessThan(runtimeSource.indexOf('await animation;'));
+  });
+
+  it('settles cancelled tweens without firing their completion chain', () => {
+    expect(runtimeSource).toContain('handle.onCancel=()=>resolve({cancelled:true})');
+    expect(runtimeSource).toContain('handle.onCancel&&handle.onCancel()');
+    expect(runtimeSource).toContain('isUnitMotionCurrent');
+  });
+
+  it('guarantees action and page teardown', () => {
+    expect(runtimeSource).toContain('try { await executeActionCore');
+    expect(runtimeSource).toContain('if(G.stage)await combatStageExit()');
+    expect(runtimeSource).toContain("window.addEventListener('pagehide',disposeCombatRuntime");
+    expect(runtimeSource).toContain('combatVfxSystem.dispose()');
+  });
+
+  it('keeps the painted combat camera static across turns, actions, stages, and deployment', () => {
+    expect(runtimeSource).toContain('const cam=Object.freeze({');
+    expect(runtimeSource).toContain('function focusCam(){ }');
+    expect(runtimeSource).toContain('function actionCam(){ }');
+    expect(runtimeSource).toContain('function stageFrame(){ }');
+    expect(runtimeSource).toContain('function overviewCam(){ }');
+    expect(runtimeSource).toContain('function rotateCam(){ }');
+    expect(runtimeSource).toContain('function restoreCam(){ return Promise.resolve(); }');
+    expect(runtimeSource).not.toContain('tween(cam');
+    expect(runtimeSource).not.toContain('tweenP(cam');
+    expect(runtimeSource).not.toContain('_actionCameraBaseline');
+    expect(runtimeSource).not.toContain('_stageCameraBaseline');
+    expect(runtimeSource).not.toContain('camera.fov=cl(');
+  });
+
+  it('keeps only bounded additive camera shake over the immutable composition', () => {
+    expect(runtimeSource).toContain('applyAdditiveCameraShake');
+    expect(runtimeSource).toContain('cameraFeedback.sample()');
+    expect(runtimeSource).toContain('camera.lookAt(cam.tx,cam.ty,cam.tz)');
+    expect(runtimeSource).not.toContain("if(k==='q')rotateCam");
+    expect(runtimeSource).not.toContain("if(k==='e')rotateCam");
+  });
 });
