@@ -5,6 +5,7 @@ import {
   getCarouselStatusFrame,
   getResolvedCarouselStatusFrame,
   getStatusIndicatorAsset,
+  getStatusIndicatorEmphasis,
   getStatusLabel,
   getVisibleStatusIndicators,
   resolveStatusCarousel,
@@ -109,6 +110,23 @@ describe('status presentation', () => {
     expect(reduced?.current.key).toBe(normal?.current.key);
     expect(reduced?.transitionMs).toBeLessThanOrEqual(normal?.transitionMs ?? 0);
     expect(reduced?.spriteScale).toBeLessThan(normal?.spriteScale ?? 0);
+  });
+
+  it('emphasizes the active unit status and its turn-start pulse', () => {
+    const idle = getStatusIndicatorEmphasis();
+    const active = getStatusIndicatorEmphasis({ active: true });
+    const turnStart = getStatusIndicatorEmphasis({ active: true, turnPulse: 1 });
+    expect(active.scale).toBeGreaterThan(idle.scale);
+    expect(turnStart.scale).toBeGreaterThan(active.scale);
+    expect(active.transitionOpacityFloor).toBeGreaterThan(0);
+  });
+
+  it('keeps reduced active status emphasis readable and dims unrelated badges', () => {
+    const reduced = getStatusIndicatorEmphasis({ active: true, turnPulse: 1, reducedGraphics: true });
+    const dimmed = getStatusIndicatorEmphasis({ unitOpacity: 0.2 });
+    expect(reduced.scale).toBeGreaterThan(1);
+    expect(reduced.transitionOpacityFloor).toBeGreaterThan(0);
+    expect(dimmed.opacityMultiplier).toBe(0.35);
   });
 });
 

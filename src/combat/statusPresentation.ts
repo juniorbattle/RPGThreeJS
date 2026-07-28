@@ -80,6 +80,19 @@ export interface ResolvedStatusCarousel {
   signature: string;
 }
 
+export interface StatusIndicatorEmphasisOptions {
+  active?: boolean;
+  turnPulse?: number;
+  reducedGraphics?: boolean;
+  unitOpacity?: number;
+}
+
+export interface StatusIndicatorEmphasis {
+  scale: number;
+  opacityMultiplier: number;
+  transitionOpacityFloor: number;
+}
+
 const RUNTIME_INDICATOR_URLS: Partial<Record<StatusPresentationKey, string>> = {
   burn: '/assets/status-indicators/runtime/status_burn_indicator.png',
   poison: '/assets/status-indicators/runtime/status_poison_indicator.png',
@@ -221,6 +234,28 @@ export function getResolvedCarouselStatusFrame(
     holdMs: current.carouselHoldMs,
     transitionMs,
     spriteScale: scaleFor(current),
+  };
+}
+
+export function getStatusIndicatorEmphasis({
+  active = false,
+  turnPulse = 0,
+  reducedGraphics = false,
+  unitOpacity = 1,
+}: StatusIndicatorEmphasisOptions = {}): StatusIndicatorEmphasis {
+  const safePulse = Math.max(0, Math.min(1, turnPulse));
+  const safeOpacity = Math.max(0, Math.min(1, unitOpacity));
+  if (!active) {
+    return {
+      scale: 1,
+      opacityMultiplier: Math.max(0.35, safeOpacity),
+      transitionOpacityFloor: 0,
+    };
+  }
+  return {
+    scale: (reducedGraphics ? 1.08 : 1.14) + safePulse * (reducedGraphics ? 0.04 : 0.1),
+    opacityMultiplier: 1,
+    transitionOpacityFloor: reducedGraphics ? 0.82 : 0.72,
   };
 }
 

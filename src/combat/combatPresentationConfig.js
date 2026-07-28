@@ -43,16 +43,18 @@ const tacticalArena = {
 };
 
 const gameplayGrid = {
-  idleOpacity: 0.34,
-  selectedOpacity: 0.58,
-  tacticalOpacity: 0.86,
-  stageOpacity: 0.14,
-  moveTileOpacity: 0.84,
-  deployTileOpacity: 0.8,
-  rangeTileOpacity: 0.68,
-  targetTileOpacity: 0.96,
-  hoverTileOpacity: 0.9,
-  invalidTileOpacity: 0.38,
+  showBaseGridBorders: false,
+  showDebugGridBorders: true,
+  idleOpacity: 0,
+  selectedOpacity: 0,
+  tacticalOpacity: 0,
+  stageOpacity: 0,
+  moveTileOpacity: 0.46,
+  deployTileOpacity: 0.52,
+  rangeTileOpacity: 0.38,
+  targetTileOpacity: 0.72,
+  hoverTileOpacity: 0.78,
+  invalidTileOpacity: 0.16,
 };
 
 const ambientMist = {
@@ -95,6 +97,9 @@ const unitPresentation = {
   activeRingOpacity: 1,
   activeRingIntensity: 1,
   activeBaseOpacity: 0.12,
+  focusDimOpacity: 0.42,
+  focusBossFloor: 0.6,
+  focusEliteFloor: 0.55,
   protectFromFog: true,
 };
 
@@ -134,6 +139,8 @@ export const COMBAT_PRESENTATION = {
     targetY: 2.4,
   },
   arena: {
+    showBaseGridBorders: gameplayGrid.showBaseGridBorders,
+    showDebugGridBorders: gameplayGrid.showDebugGridBorders,
     gridOpacityIdle: gameplayGrid.idleOpacity,
     gridOpacitySelected: gameplayGrid.selectedOpacity,
     gridOpacityTactical: gameplayGrid.tacticalOpacity,

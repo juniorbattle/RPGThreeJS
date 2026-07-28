@@ -7,6 +7,8 @@ export type UnitMotionScenario =
   | 'hit'
   | 'critical'
   | 'boss'
+  | 'boss-charge'
+  | 'boss-ultimate'
   | 'ko-revive';
 
 export interface UnitMotionWorkbenchOptions {
@@ -28,6 +30,8 @@ const SCENARIOS: readonly { id: UnitMotionScenario; label: string }[] = [
   { id: 'hit', label: 'Impact' },
   { id: 'critical', label: 'Critique' },
   { id: 'boss', label: 'Boss' },
+  { id: 'boss-charge', label: 'Charge Boss' },
+  { id: 'boss-ultimate', label: 'Ultime Boss' },
   { id: 'ko-revive', label: 'K.O. / Relève' },
 ];
 

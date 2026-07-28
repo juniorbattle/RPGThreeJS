@@ -1,0 +1,15 @@
+export const COMBAT_RENDER_LAYERS = Object.freeze({
+  TILE_BASE: 3,
+  TILE_ACTION: 10,
+  TILE_TARGET: 14,
+  UNIT_SHADOW: 20,
+  UNIT_SELECTOR: 22,
+  UNIT_OUTLINE: 49,
+  UNIT_SPRITE: 50,
+  UNIT_STATUS: 60,
+  BOSS_ALERT: 68,
+  VFX: 74,
+  FLOATING_TEXT: 90,
+});
+
+export type CombatRenderLayerName = keyof typeof COMBAT_RENDER_LAYERS;

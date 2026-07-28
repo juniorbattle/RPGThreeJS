@@ -15,7 +15,7 @@ import { COMBAT_PRESENTATION } from './combatPresentationConfig.js';
 import { VfxSystem } from './vfx/VfxSystem';
 import { getVfxPreset } from './vfx/VfxPresets';
 import { installVfxWorkbench } from './vfx/VfxWorkbench';
-import { getResolvedCarouselStatusFrame, getStatusIndicatorAsset, getVisibleStatusIndicators, resolveStatusCarousel } from './statusPresentation';
+import { getResolvedCarouselStatusFrame, getStatusIndicatorAsset, getStatusIndicatorEmphasis, getVisibleStatusIndicators, resolveStatusCarousel } from './statusPresentation';
 import { skillById as SKILL_MAP } from '../game/skills';
 import { getSkillPresentation } from './skillPresentation';
 import { ACTION_PRESENTATION_TIERS, getActionVisualTier, getActionPresentationTuning } from './combatVfxPresentation';
@@ -23,6 +23,8 @@ import { UNIT_MOTION_PRESETS, beginUnitMotion, cancelUnitMotion, createCanonical
 import { resolveCombatFeel } from './combatFeel';
 import { CombatCameraFeedback, applyAdditiveCameraShake } from './combatCameraFeedback';
 import { installUnitMotionWorkbench } from './UnitMotionWorkbench';
+import { COMBAT_RENDER_LAYERS } from './combatRenderLayers';
+import { resolveBossIntentVisualState } from './bossIntentPresentation';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
@@ -47,6 +49,7 @@ const campaignParams=new URLSearchParams(location.search);
 const CAMPAIGN_MODE=campaignParams.get('campaign')==='1'&&window.parent!==window;
 let QA_ENABLED=false;
 let MOTION_QA_ENABLED=false;
+let GRID_DEBUG_ENABLED=false;
 let QA_FULL_AP=false;
 let QA_DEPLOY_ALL=false;
 let COMBAT_ID='standalone';
@@ -92,7 +95,15 @@ const G = {
   rosterDefs:[],selectedDeployId:null,deployPage:0,deployedUnits:[]
 };
 window.G = G;
-const unitFocus=new UnitFocusController();
+const unitFocus=new UnitFocusController({
+  dimOpacity:COMBAT_PRESENTATION.units.focusDimOpacity,
+  bossDimFloor:COMBAT_PRESENTATION.units.focusBossFloor,
+  eliteDimFloor:COMBAT_PRESENTATION.units.focusEliteFloor,
+});
+function restoreUnitFocus(){
+  unitFocus.restore();
+  for(const u of G.units){ if(u.alive)continue; const state=getUnitVisualState(u.team,u.alive,u.downed); if(u.grp)u.grp.visible=state.visible; if(u.mat)u.mat.opacity=state.bodyOpacity; if(u.blob&&u.blob.material)u.blob.material.opacity=state.shadowOpacity; }
+}
 
 // ============================= TWEENS =============================
 const tweens=[];
@@ -357,13 +368,13 @@ function buildGridOverlay(){
   const underX=new THREE.PlaneGeometry(xLen+.08,.052),coreX=new THREE.PlaneGeometry(xLen+.04,.019),glowX=new THREE.PlaneGeometry(xLen+.12,.088),underZ=new THREE.PlaneGeometry(.052,zLen+.08),coreZ=new THREE.PlaneGeometry(.019,zLen+.04),glowZ=new THREE.PlaneGeometry(.088,zLen+.12),knotGeo=new THREE.PlaneGeometry(.058,.058);
   G.gridBandUnderMaterial=underMat; G.gridBandCoreMaterial=coreMat; G.gridBandGlowMaterial=glowMat; G.gridKnotMaterial=knotMat;
   const addBand=(geo,mat,x,z,order)=>{ const m=new THREE.Mesh(geo,mat); m.rotation.x=-Math.PI/2; m.position.set(x,y,z); m.renderOrder=order; worldRoot.add(m); return m; };
-  for(let i=0;i<=CFG.D;i++){ const z=(i-CFG.D/2)*CFG.TILE; addBand(glowX,glowMat,0,z,3.05); addBand(underX,underMat,0,z,3.1); addBand(coreX,coreMat,0,z,3.18); }
-  for(let i=0;i<=CFG.W;i++){ const x=(i-CFG.W/2)*CFG.TILE; addBand(glowZ,glowMat,x,0,3.05); addBand(underZ,underMat,x,0,3.1); addBand(coreZ,coreMat,x,0,3.18); }
+  for(let i=0;i<=CFG.D;i++){ const z=(i-CFG.D/2)*CFG.TILE; addBand(glowX,glowMat,0,z,COMBAT_RENDER_LAYERS.TILE_BASE); addBand(underX,underMat,0,z,COMBAT_RENDER_LAYERS.TILE_BASE+.1); addBand(coreX,coreMat,0,z,COMBAT_RENDER_LAYERS.TILE_BASE+.2); }
+  for(let i=0;i<=CFG.W;i++){ const x=(i-CFG.W/2)*CFG.TILE; addBand(glowZ,glowMat,x,0,COMBAT_RENDER_LAYERS.TILE_BASE); addBand(underZ,underMat,x,0,COMBAT_RENDER_LAYERS.TILE_BASE+.1); addBand(coreZ,coreMat,x,0,COMBAT_RENDER_LAYERS.TILE_BASE+.2); }
   for(let gx=0;gx<CFG.W;gx++)for(let gz=0;gz<CFG.D;gz++){ const c=cellAt(gx,gz);if(!c||c.water)continue; const x=wX(gx),z=wZ(gz),h=.486; positions.push(x-h,y+.01,z-h,x+h,y+.01,z-h,x+h,y+.01,z-h,x+h,y+.01,z+h,x+h,y+.01,z+h,x-h,y+.01,z+h,x-h,y+.01,z+h,x-h,y+.01,z-h); }
-  for(let ix=0;ix<=CFG.W;ix++)for(let iz=0;iz<=CFG.D;iz++){ const k=new THREE.Mesh(knotGeo,knotMat); k.rotation.x=-Math.PI/2; k.rotation.z=Math.PI/4; k.position.set((ix-CFG.W/2)*CFG.TILE,y+.012,(iz-CFG.D/2)*CFG.TILE); k.renderOrder=3.26; worldRoot.add(k); }
+  for(let ix=0;ix<=CFG.W;ix++)for(let iz=0;iz<=CFG.D;iz++){ const k=new THREE.Mesh(knotGeo,knotMat); k.rotation.x=-Math.PI/2; k.rotation.z=Math.PI/4; k.position.set((ix-CFG.W/2)*CFG.TILE,y+.012,(iz-CFG.D/2)*CFG.TILE); k.renderOrder=COMBAT_RENDER_LAYERS.TILE_BASE+.3; worldRoot.add(k); }
   const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
   const material=new THREE.LineBasicMaterial({color:0xc7ad74,transparent:true,opacity:.045,depthWrite:false,depthTest:false,fog:false,toneMapped:false});
-  const lines=new THREE.LineSegments(geo,material);lines.renderOrder=3.28;worldRoot.add(lines);G.gridLines=lines;
+  const lines=new THREE.LineSegments(geo,material);lines.renderOrder=COMBAT_RENDER_LAYERS.TILE_BASE+.4;worldRoot.add(lines);G.gridLines=lines;
 }
 async function buildWorld(){
   G.backgroundLayers=new BackgroundLayerSystem(scene);
@@ -385,7 +396,7 @@ async function buildWorld(){
       G.grid[gx][gz]={gx,gz,walkable:true,topY:top,mesh:m,occupant:null};
     }
   }
-  buildGridOverlay();
+  if(COMBAT_PRESENTATION.arena.showBaseGridBorders||(GRID_DEBUG_ENABLED&&COMBAT_PRESENTATION.arena.showDebugGridBorders))buildGridOverlay();
 }
 
 function makeRayTex(){ const c=document.createElement('canvas'); c.width=256; c.height=256; const x=c.getContext('2d'); x.clearRect(0,0,256,256);
@@ -498,42 +509,42 @@ function buildTileTex(fillA,fillB,strokeA,strokeB,cornerA,glowA,lw=1.45,cornerLe
   const rr=(px,py,pw,ph,rad)=>{x.beginPath();x.moveTo(px+rad,py);x.arcTo(px+pw,py,px+pw,py+ph,rad);x.arcTo(px+pw,py+ph,px,py+ph,rad);x.arcTo(px,py+ph,px,py,rad);x.arcTo(px,py,px+pw,py,rad);x.closePath();};
   const grad=x.createLinearGradient(0,pad,0,pad+w); grad.addColorStop(0,fillA); grad.addColorStop(0.58,fillB); grad.addColorStop(1,'rgba(255,246,218,0.04)');
   x.fillStyle=grad; rr(pad,pad,w,w,r); x.fill();
-  x.shadowColor='rgba(12,8,3,.58)'; x.shadowBlur=0; x.lineWidth=lw+3.2; x.strokeStyle='rgba(14,10,5,.62)'; rr(pad+1,pad+1,w-2,w-2,r-1); x.stroke();
-  x.shadowColor=glowA; x.shadowBlur=10; x.lineWidth=lw; x.strokeStyle=strokeA; rr(pad+2,pad+2,w-4,w-4,r-2); x.stroke();
-  x.shadowBlur=0; x.lineWidth=Math.max(1.4,lw+.2); x.strokeStyle=strokeB; rr(pad+6,pad+6,w-12,w-12,r-5); x.stroke();
-  x.lineWidth=2.2; x.strokeStyle=cornerA;
-  const corners=[[pad+7,pad+7,1,1],[pad+w-7,pad+7,-1,1],[pad+7,pad+w-7,1,-1],[pad+w-7,pad+w-7,-1,-1]];
-  for(const [cx,cy,sx,sy] of corners){ x.beginPath(); x.moveTo(cx,cy+sy*(cornerLen+3)); x.lineTo(cx,cy); x.lineTo(cx+sx*(cornerLen+3),cy); x.stroke(); }
+  x.shadowColor='rgba(12,8,3,.38)'; x.shadowBlur=0; x.lineWidth=lw+1.2; x.strokeStyle='rgba(14,10,5,.42)'; rr(pad+1,pad+1,w-2,w-2,r-1); x.stroke();
+  x.shadowColor=glowA; x.shadowBlur=lw>2?8:4; x.lineWidth=lw; x.strokeStyle=strokeA; rr(pad+2,pad+2,w-4,w-4,r-2); x.stroke();
+  if(lw>1.8){ x.shadowBlur=0; x.lineWidth=1.2; x.strokeStyle=strokeB; rr(pad+6,pad+6,w-12,w-12,r-5); x.stroke(); }
+  if(cornerLen>0){ x.shadowBlur=0; x.lineWidth=Math.min(1.8,lw); x.strokeStyle=cornerA;
+    const corners=[[pad+7,pad+7,1,1],[pad+w-7,pad+7,-1,1],[pad+7,pad+w-7,1,-1],[pad+w-7,pad+w-7,-1,-1]];
+    for(const [cx,cy,sx,sy] of corners){ x.beginPath(); x.moveTo(cx,cy+sy*(cornerLen+3)); x.lineTo(cx,cy); x.lineTo(cx+sx*(cornerLen+3),cy); x.stroke(); } }
   const t=new THREE.CanvasTexture(c); t.anisotropy=4; t.needsUpdate=true; return t; }
 function makeTileTex(){ hlTextures={
-  range:buildTileTex('rgba(255,250,240,0.48)','rgba(220,215,200,0.28)','rgba(255,248,232,0.9)','rgba(80,78,68,0.88)','rgba(255,245,220,0.9)','rgba(240,235,210,0.6)',2.2,18),
-  move:buildTileTex('rgba(214,246,232,0.42)','rgba(93,178,157,0.22)','rgba(230,255,242,1)','rgba(48,116,112,0.98)','rgba(240,255,236,1)','rgba(136,235,205,0.9)',3.15,25),
-  hover:buildTileTex('rgba(255,250,220,0.52)','rgba(231,215,155,0.32)','rgba(255,248,195,1)','rgba(92,83,46,1)','rgba(255,252,200,1)','rgba(248,228,160,0.98)',3.6,28),
-  target:buildTileTex('rgba(255,198,150,0.62)','rgba(200,70,56,0.38)','rgba(255,222,165,1)','rgba(110,30,26,1)','rgba(255,200,130,1)','rgba(255,120,80,1)',3.8,28),
-  target_ally:buildTileTex('rgba(210,255,220,0.52)','rgba(110,200,130,0.32)','rgba(230,255,238,1)','rgba(40,100,60,1)','rgba(230,255,232,1)','rgba(150,240,170,0.98)',3.5,26),
-  aoe:buildTileTex('rgba(255,250,240,0.30)','rgba(220,215,200,0.14)','rgba(255,248,232,0.92)','rgba(80,78,68,0.85)','rgba(255,245,220,0.92)','rgba(240,235,210,0.65)',2.4,18),
-  range_max:buildTileTex('rgba(255,243,180,0.58)','rgba(230,210,100,0.34)','rgba(255,238,140,0.95)','rgba(120,100,30,0.9)','rgba(255,240,160,0.95)','rgba(255,225,100,0.8)',2.6,20),
-  invalid:buildTileTex('rgba(160,156,122,0.15)','rgba(94,98,83,0.07)','rgba(186,186,148,0.78)','rgba(63,68,54,0.66)','rgba(176,176,132,0.7)','rgba(130,130,104,0.26)',1.9,15)
+  range:buildTileTex('rgba(255,250,240,0.22)','rgba(220,215,200,0.10)','rgba(255,248,232,0.72)','rgba(80,78,68,0.48)','rgba(255,245,220,0.72)','rgba(240,235,210,0.32)',1.15,0),
+  move:buildTileTex('rgba(214,246,232,0.24)','rgba(93,178,157,0.10)','rgba(210,255,238,0.78)','rgba(48,116,112,0.54)','rgba(220,255,236,0.72)','rgba(136,235,205,0.42)',1.35,0),
+  hover:buildTileTex('rgba(255,250,220,0.34)','rgba(231,215,155,0.18)','rgba(255,248,195,0.96)','rgba(92,83,46,0.82)','rgba(255,252,200,0.94)','rgba(248,228,160,0.78)',2.5,18),
+  target:buildTileTex('rgba(255,198,150,0.38)','rgba(200,70,56,0.20)','rgba(255,222,165,0.98)','rgba(110,30,26,0.86)','rgba(255,200,130,0.94)','rgba(255,120,80,0.82)',2.7,20),
+  target_ally:buildTileTex('rgba(210,255,220,0.34)','rgba(110,200,130,0.17)','rgba(230,255,238,0.98)','rgba(40,100,60,0.84)','rgba(230,255,232,0.94)','rgba(150,240,170,0.78)',2.6,18),
+  aoe:buildTileTex('rgba(255,250,240,0.16)','rgba(220,215,200,0.07)','rgba(255,248,232,0.62)','rgba(80,78,68,0.42)','rgba(255,245,220,0.58)','rgba(240,235,210,0.28)',1.05,0),
+  range_max:buildTileTex('rgba(255,243,180,0.30)','rgba(230,210,100,0.15)','rgba(255,238,140,0.86)','rgba(120,100,30,0.68)','rgba(255,240,160,0.82)','rgba(255,225,100,0.52)',1.8,10),
+  invalid:buildTileTex('rgba(160,156,122,0.08)','rgba(94,98,83,0.03)','rgba(186,186,148,0.42)','rgba(63,68,54,0.32)','rgba(176,176,132,0.34)','rgba(130,130,104,0.12)',0.9,0)
 }; hlTex=hlTextures.range; }
 function clearHL(){ for(const m of hlMeshes){ hlGroup.remove(m); m.material.dispose(); } hlMeshes.length=0; }
 function addHL(gx,gz,color,op=0.45,kind='range'){ const c=cellAt(gx,gz); if(!c)return; const boost=kind==='target'||kind==='target_ally'?1.28:(kind==='hover'?1.24:(kind==='move'?1.22:(kind==='range_max'?1.18:(kind==='aoe'?1.10:(kind==='invalid'?1.08:1.14))))),finalOp=Math.min(1,op*boost);
   const m=new THREE.Mesh(hlGeo,new THREE.MeshBasicMaterial({map:hlTextures[kind]||hlTex,color,transparent:true,opacity:finalOp,depthWrite:false,depthTest:false,side:THREE.DoubleSide,blending:THREE.NormalBlending,fog:false,toneMapped:false}));
-  const ro=kind==='hover'?10:(kind==='target'||kind==='target_ally'?9:(kind==='aoe'?8.5:(kind==='range_max'?8.2:8))),yOff=kind==='hover'?0.072:(kind==='target'||kind==='target_ally'?0.070:0.068);
+  const ro=kind==='hover'?COMBAT_RENDER_LAYERS.TILE_TARGET+1:(kind==='target'||kind==='target_ally'?COMBAT_RENDER_LAYERS.TILE_TARGET:(kind==='aoe'?COMBAT_RENDER_LAYERS.TILE_ACTION+1:(kind==='range_max'?COMBAT_RENDER_LAYERS.TILE_ACTION+.5:COMBAT_RENDER_LAYERS.TILE_ACTION))),yOff=kind==='hover'?0.072:(kind==='target'||kind==='target_ally'?0.070:0.068);
   m.rotation.x=-Math.PI/2; m.position.set(wX(gx),c.topY+yOff,wZ(gz)); m.renderOrder=ro; m.userData.baseOp=finalOp; m.userData.pulse=kind==='target'||kind==='target_ally'||kind==='hover'?0.018:(kind==='aoe'?0.028:(kind==='range_max'?0.016:(kind==='invalid'?0.006:0.012))); hlGroup.add(m); hlMeshes.push(m); return m; }
 function addRingHL(gx,gz,color,op=0.62,ringScale=1,cgx=null,cgz=null){ const c=cellAt(gx,gz); if(!c)return;
   const px=cgx!=null?wX(cgx):wX(gx), pz=cgz!=null?wZ(cgz):wZ(gz);
   const u=new THREE.Mesh(targetRingGeo,new THREE.MeshBasicMaterial({color:0x0a0603,transparent:true,opacity:Math.min(.76,op*.76),depthWrite:false,depthTest:false,side:THREE.DoubleSide,blending:THREE.NormalBlending,fog:false,toneMapped:false}));
-  u.rotation.x=-Math.PI/2; u.position.set(px,c.topY+0.094,pz); u.renderOrder=9.5; u.scale.setScalar(ringScale); u.userData.baseOp=Math.min(.76,op*.76); u.userData.pulse=0.026; hlGroup.add(u); hlMeshes.push(u);
+  u.rotation.x=-Math.PI/2; u.position.set(px,c.topY+0.094,pz); u.renderOrder=COMBAT_RENDER_LAYERS.TILE_TARGET+1.5; u.scale.setScalar(ringScale); u.userData.baseOp=Math.min(.76,op*.76); u.userData.pulse=0.026; hlGroup.add(u); hlMeshes.push(u);
   const m=new THREE.Mesh(targetRingGeo,new THREE.MeshBasicMaterial({color,transparent:true,opacity:Math.min(1,op*1.12),depthWrite:false,depthTest:false,side:THREE.DoubleSide,blending:THREE.NormalBlending,fog:false,toneMapped:false}));
-  m.rotation.x=-Math.PI/2; m.position.set(px,c.topY+0.100,pz); m.renderOrder=10; m.scale.setScalar(ringScale); m.userData.baseOp=Math.min(1,op*1.12); m.userData.pulse=0.04; hlGroup.add(m); hlMeshes.push(m); return m; }
+  m.rotation.x=-Math.PI/2; m.position.set(px,c.topY+0.100,pz); m.renderOrder=COMBAT_RENDER_LAYERS.TILE_TARGET+2; m.scale.setScalar(ringScale); m.userData.baseOp=Math.min(1,op*1.12); m.userData.pulse=0.04; hlGroup.add(m); hlMeshes.push(m); return m; }
 function cellKey(gx,gz){ return gx+','+gz; }
-function addInvalidTiles(valid,skipActive=false){ for(let gx=0;gx<CFG.W;gx++)for(let gz=0;gz<CFG.D;gz++){ if(valid.has(cellKey(gx,gz)))continue; if(skipActive&&G.active&&G.active.gx===gx&&G.active.gz===gz)continue; addHL(gx,gz,0x7d8066,COMBAT_PRESENTATION.arena.invalidTileOpacity,'invalid'); } }
+function addInvalidTiles(valid,skipActive=false){ if(!GRID_DEBUG_ENABLED)return; for(let gx=0;gx<CFG.W;gx++)for(let gz=0;gz<CFG.D;gz++){ if(valid.has(cellKey(gx,gz)))continue; if(skipActive&&G.active&&G.active.gx===gx&&G.active.gz===gz)continue; addHL(gx,gz,0x7d8066,COMBAT_PRESENTATION.arena.invalidTileOpacity,'invalid'); } }
 
 // cursor ring
 let cursorMesh=null,cursorUnderMesh=null;
-function buildCursor(){ const ug=new THREE.RingGeometry(0.34,0.54,72),g=new THREE.RingGeometry(0.39,0.5,72); cursorUnderMesh=new THREE.Mesh(ug,new THREE.MeshBasicMaterial({color:0x080604,transparent:true,opacity:.62,side:THREE.DoubleSide,depthWrite:false,fog:false,toneMapped:false})); cursorUnderMesh.rotation.x=-Math.PI/2; cursorUnderMesh.visible=false; scene.add(cursorUnderMesh); cursorMesh=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:0xfff0c8,transparent:true,opacity:.96,side:THREE.DoubleSide,depthWrite:false,fog:false,toneMapped:false})); cursorMesh.rotation.x=-Math.PI/2; cursorMesh.visible=false; scene.add(cursorMesh); }
+function buildCursor(){ const ug=new THREE.RingGeometry(0.34,0.54,72),g=new THREE.RingGeometry(0.39,0.5,72); cursorUnderMesh=new THREE.Mesh(ug,new THREE.MeshBasicMaterial({color:0x080604,transparent:true,opacity:.62,side:THREE.DoubleSide,depthWrite:false,fog:false,toneMapped:false})); cursorUnderMesh.rotation.x=-Math.PI/2; cursorUnderMesh.renderOrder=COMBAT_RENDER_LAYERS.TILE_TARGET+2.5; cursorUnderMesh.visible=false; scene.add(cursorUnderMesh); cursorMesh=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:0xfff0c8,transparent:true,opacity:.96,side:THREE.DoubleSide,depthWrite:false,fog:false,toneMapped:false})); cursorMesh.rotation.x=-Math.PI/2; cursorMesh.renderOrder=COMBAT_RENDER_LAYERS.TILE_TARGET+3; cursorMesh.visible=false; scene.add(cursorMesh); }
 function hoverState(c){ if(!c)return'invalid'; if(G.mode==='deploy')return G.deployZone&&G.deployZone.some(z=>z.gx===c.gx&&z.gz===c.gz)?'move':'invalid'; if(G.mode==='move')return G.reach&&G.reach.list.some(t=>t.gx===c.gx&&t.gz===c.gz)&&!(G.active&&G.active.gx===c.gx&&G.active.gz===c.gz)?'move':'invalid'; if(G.mode==='target'){ if(!G.pending||!G.pending.keys.has(cellKey(c.gx,c.gz)))return'invalid'; const occ=c.occupant; if(!occ||!G.active)return'hover'; const sp=G.pending.spec; if(sp&&(sp.heal||sp.support||sp.revive||sp.cure))return occ.team===G.active.team?'target_ally':'hover'; return occ.team!==G.active.team?'target':'hover'; } return c.occupant&&G.active&&c.occupant.team!==G.active.team?'target':'hover'; }
-function moveCursor(gx,gz){ const c=cellAt(gx,gz); if(!c){cursorMesh.visible=false;if(cursorUnderMesh)cursorUnderMesh.visible=false;return;} const st=hoverState(c),col=st==='target'?0xff7364:(st==='target_ally'?0x7edf7a:(st==='move'?0x82dfff:(st==='invalid'?0xb7ad83:0xfff0c8))),op=st==='invalid' ? COMBAT_PRESENTATION.arena.invalidTileOpacity+.2 : (st==='target'||st==='target_ally' ? 1 : .95),sc=st==='target'||st==='target_ally'?1.26:(st==='invalid'?1:1.12); cursorMesh.visible=true; cursorMesh.material.color.setHex(col); cursorMesh.material.opacity=op; cursorMesh.scale.setScalar(sc); cursorMesh.position.set(wX(gx),c.topY+0.06,wZ(gz)); cursorMesh.renderOrder=11; if(cursorUnderMesh){cursorUnderMesh.visible=true; cursorUnderMesh.material.opacity=st==='invalid' ? .46 : .66; cursorUnderMesh.scale.setScalar(sc); cursorUnderMesh.position.copy(cursorMesh.position);} }
+function moveCursor(gx,gz){ const c=cellAt(gx,gz); if(!c){cursorMesh.visible=false;if(cursorUnderMesh)cursorUnderMesh.visible=false;return;} const st=hoverState(c),col=st==='target'?0xff7364:(st==='target_ally'?0x7edf7a:(st==='move'?0x82dfff:(st==='invalid'?0xb7ad83:0xfff0c8))),op=st==='invalid' ? COMBAT_PRESENTATION.arena.invalidTileOpacity+.2 : (st==='target'||st==='target_ally' ? 1 : .95),sc=st==='target'||st==='target_ally'?1.26:(st==='invalid'?1:1.12); cursorMesh.visible=true; cursorMesh.material.color.setHex(col); cursorMesh.material.opacity=op; cursorMesh.scale.setScalar(sc); cursorMesh.position.set(wX(gx),c.topY+0.06,wZ(gz)); if(cursorUnderMesh){cursorUnderMesh.visible=true; cursorUnderMesh.material.opacity=st==='invalid' ? .46 : .66; cursorUnderMesh.scale.setScalar(sc); cursorUnderMesh.position.copy(cursorMesh.position);} }
 
 // ============================= SKILLS =============================
 // Legacy skill definitions for enemy/boss units not yet migrated to the new class system.
@@ -682,7 +693,7 @@ function isBreakOpen(u){ return isExhausted(u) && !hasS(u,'staggered'); }
 
 // Persistent status indicators are presentation-only. They read the existing
 // status records without changing their values, duration, or application.
-const STATUS_BADGE_RENDER_ORDER=60;
+const STATUS_BADGE_RENDER_ORDER=COMBAT_RENDER_LAYERS.UNIT_STATUS;
 const statusBadgeTextures=new Map();
 const statusIndicatorTextures=new Map();
 const statusIndicatorTextureState=new Map();
@@ -757,10 +768,45 @@ function syncStatusIndicators(u,time){
   const speed=pulseType==='urgent'?6.5:pulseType==='calm'?3.1:4.1;
   const transitionFade=transitioning?1-Math.sin(Math.PI*frame.transitionProgress):1;
   const lift=transitioning&&!REDUCED_GRAPHICS?Math.sin(Math.PI*frame.transitionProgress)*.026:0;
+  const active=u===G.active&&!G.over,turnPulse=active&&Number.isFinite(u._statusPulseStartedAt)?Math.max(0,1-(time-u._statusPulseStartedAt)/.9):0;
+  const emphasis=getStatusIndicatorEmphasis({active,turnPulse,reducedGraphics:REDUCED_GRAPHICS,unitOpacity:u.mat.opacity});
   const baseScale=.47*(u.size>1?1.14:1)*frame.spriteScale;
-  const scale=baseScale*(1+Math.sin(time*speed+(group.userData.phaseOffset||0)*.01)*amplitude);
-  badge.material.opacity=transitionFade; badge.position.set(0,statusBadgeAnchorY(u)+lift,.04); badge.scale.set(scale,scale,1);
+  const scale=baseScale*(1+Math.sin(time*speed+(group.userData.phaseOffset||0)*.01)*amplitude)*emphasis.scale;
+  badge.material.opacity=Math.max(transitionFade,emphasis.transitionOpacityFloor)*emphasis.opacityMultiplier; badge.position.set(0,statusBadgeAnchorY(u)+lift,.04); badge.scale.set(scale,scale,1);
 }
+const bossIntentBadgeTextures=new Map();
+const bossIntentColors=Object.freeze({ultimateAccent:new THREE.Color(0xff4d36),ultimateDark:new THREE.Color(0x8c160f),chargeAccent:new THREE.Color(0xf2b84b),chargeDark:new THREE.Color(0x9a5b16)});
+function bossIntentBadgeTexture(label,boss){
+  const key=(boss?'boss:':'elite:')+label; if(bossIntentBadgeTextures.has(key))return bossIntentBadgeTextures.get(key);
+  const canvas=document.createElement('canvas'); canvas.width=256; canvas.height=96; const ctx=canvas.getContext('2d'),ultimate=label==='ULTIME',accent=ultimate?'#ff6b4a':'#f2c86b';
+  ctx.clearRect(0,0,256,96); ctx.fillStyle=boss?'rgba(28,8,8,.9)':'rgba(24,12,18,.86)'; ctx.strokeStyle=accent; ctx.lineWidth=boss?6:4; ctx.beginPath(); ctx.roundRect(9,12,238,72,18); ctx.fill(); ctx.stroke();
+  ctx.fillStyle=accent; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.font=(boss?'700 34px ':'700 30px ')+'Cinzel, Georgia, serif'; ctx.fillText(label,128,50);
+  const texture=new THREE.CanvasTexture(canvas); texture.colorSpace=THREE.SRGBColorSpace; texture.needsUpdate=true; bossIntentBadgeTextures.set(key,texture); return texture;
+}
+function ensureBossIntentBadge(u){
+  if(u.bossIntentBadge)return u.bossIntentBadge;
+  const material=new THREE.SpriteMaterial({transparent:true,depthWrite:false,depthTest:false,toneMapped:false,fog:false});
+  const badge=new THREE.Sprite(material); badge.name='boss-intent-alert'; badge.renderOrder=COMBAT_RENDER_LAYERS.BOSS_ALERT; badge.visible=false; u.grp.add(badge); u.bossIntentBadge=badge; return badge;
+}
+function clearBossIntentPresentation(u,dispose=false){
+  if(!u)return; u.focusOpacityFloor=undefined; u._bossIntentPreview=undefined; const badge=u.bossIntentBadge; if(badge)badge.visible=false;
+  if(u._bossIntentVisualActive){ if(u.teamRing){u.teamRing.material.color.setHex(u.team==='player'?0x69d7ff:0xff5f52);u.teamRing.material.opacity=u.alive?COMBAT_PRESENTATION.units.teamRingOpacity:0;} if(u.teamGlow){u.teamGlow.material.color.setHex(u.team==='player'?0x69d7ff:0xff5f52);u.teamGlow.material.opacity=u.alive?(u.team==='player'?.16:.18):0;} if(u.outline&&u.outline.material){u.outline.material.color.setHex(0x03050a);u.outline.material.opacity=u.alive?Math.max(.16,u.mat.opacity*.44):u.outline.material.opacity;} }
+  u._bossIntentVisualActive=false;
+  if(dispose&&badge){ badge.removeFromParent(); if(badge.material)badge.material.dispose(); u.bossIntentBadge=null; }
+}
+function syncBossIntentPresentation(u,time){
+  const state=resolveBossIntentVisualState({alive:u.alive,boss:u.boss,elite:u.elite,ap:u.ap,cooldown:u._ultCooldown,previewLevel:u._bossIntentPreview},REDUCED_GRAPHICS);
+  if(!state){ clearBossIntentPresentation(u); return; }
+  const badge=ensureBossIntentBadge(u),pulse=0.5+0.5*Math.sin(time*(state.level==='ultimate'?7.2:4.6)),boss=Boolean(u.boss||(!u.elite&&u._bossIntentPreview));
+  u.focusOpacityFloor=state.minOpacity; u.mat.opacity=Math.max(u.mat.opacity,state.minOpacity); const texture=bossIntentBadgeTexture(state.label,boss); if(badge.material.map!==texture){badge.material.map=texture;badge.material.needsUpdate=true;} badge.material.opacity=.86+.14*pulse; badge.visible=true;
+  badge.position.set(0,statusBadgeAnchorY(u)+(boss?.62:.52),.08); badge.scale.set(state.badgeScale*2.15,state.badgeScale*.72,1);
+  const accent=state.level==='ultimate'?bossIntentColors.ultimateAccent:bossIntentColors.chargeAccent,dark=state.level==='ultimate'?bossIntentColors.ultimateDark:bossIntentColors.chargeDark;
+  if(u.teamRing){ u.teamRing.material.color.copy(accent).lerp(dark,pulse*.32); u.teamRing.material.opacity=Math.max(u.teamRing.material.opacity,.82+state.ringPulse*pulse); }
+  if(u.teamGlow){ u.teamGlow.material.color.copy(accent); u.teamGlow.material.opacity=Math.max(u.teamGlow.material.opacity,.18+state.ringPulse*pulse); }
+  if(!REDUCED_GRAPHICS&&u.outline&&u.outline.material){ u.outline.material.color.copy(dark).lerp(accent,.22+.28*pulse); u.outline.material.opacity=Math.max(u.outline.material.opacity,.44+state.silhouettePulse*pulse); }
+  u._bossIntentVisualActive=true;
+}
+function disposeBossIntentPresentation(u){ clearBossIntentPresentation(u,true); }
 function statMul(u,key){ let m=1; for(const s in u.statuses){ const d=STATUS[s]; if(d&&u.statuses[s]>0&&d[key]!=null) m*=d[key]; } return m; }
 function effSTR(u){ return u.str*statMul(u,'str'); }
 function effMAG(u){ return u.mag*statMul(u,'mag'); }
@@ -777,17 +823,17 @@ function makeBaseTex(){ const s=128,c=document.createElement('canvas');c.width=c
   x.fillStyle=g; x.fillRect(0,0,s,s); baseTex=new THREE.CanvasTexture(c); }
 function buildSelectors(){
   selBase=new THREE.Mesh(new THREE.PlaneGeometry(2.12,2.12),new THREE.MeshBasicMaterial({map:baseTex,color:0xffefc4,transparent:true,opacity:0,depthWrite:false,side:THREE.DoubleSide,blending:THREE.AdditiveBlending}));
-  selBase.rotation.x=-Math.PI/2; selBase.visible=false; scene.add(selBase);
+  selBase.rotation.x=-Math.PI/2; selBase.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SHADOW; selBase.visible=false; scene.add(selBase);
   selRingUnder=new THREE.Mesh(new THREE.RingGeometry(0.42,0.68,72),new THREE.MeshBasicMaterial({color:0x080604,transparent:true,opacity:0,side:THREE.DoubleSide,depthWrite:false,fog:false,toneMapped:false}));
-  selRingUnder.rotation.x=-Math.PI/2; selRingUnder.visible=false; scene.add(selRingUnder);
+  selRingUnder.rotation.x=-Math.PI/2; selRingUnder.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SELECTOR; selRingUnder.visible=false; scene.add(selRingUnder);
   selRing=new THREE.Mesh(new THREE.RingGeometry(0.47,0.64,72),new THREE.MeshBasicMaterial({color:0xffefc4,transparent:true,opacity:COMBAT_PRESENTATION.units.activeRingOpacity,side:THREE.DoubleSide,depthWrite:false,fog:false,toneMapped:false}));
-  selRing.rotation.x=-Math.PI/2; selRing.visible=false; scene.add(selRing);
+  selRing.rotation.x=-Math.PI/2; selRing.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SELECTOR+1; selRing.visible=false; scene.add(selRing);
   hoverRingUnder=new THREE.Mesh(new THREE.RingGeometry(0.45,0.64,64),new THREE.MeshBasicMaterial({color:0x080604,transparent:true,opacity:0,side:THREE.DoubleSide,depthWrite:false,fog:false,toneMapped:false}));
-  hoverRingUnder.rotation.x=-Math.PI/2; hoverRingUnder.visible=false; scene.add(hoverRingUnder);
+  hoverRingUnder.rotation.x=-Math.PI/2; hoverRingUnder.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SELECTOR; hoverRingUnder.visible=false; scene.add(hoverRingUnder);
   hoverRing=new THREE.Mesh(new THREE.RingGeometry(0.49,0.61,64),new THREE.MeshBasicMaterial({color:0xffefc4,transparent:true,opacity:0,side:THREE.DoubleSide,depthWrite:false,fog:false,toneMapped:false}));
-  hoverRing.rotation.x=-Math.PI/2; hoverRing.visible=false; scene.add(hoverRing);
+  hoverRing.rotation.x=-Math.PI/2; hoverRing.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SELECTOR+1; hoverRing.visible=false; scene.add(hoverRing);
   faceArrow=new THREE.Mesh(new THREE.ConeGeometry(0.15,0.32,4),new THREE.MeshBasicMaterial({color:0xffefc4,transparent:true,opacity:.92,depthWrite:false,fog:false,toneMapped:false}));
-  faceArrow.rotation.x=Math.PI/2; faceArrow.visible=false; scene.add(faceArrow);
+  faceArrow.rotation.x=Math.PI/2; faceArrow.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SELECTOR+2; faceArrow.visible=false; scene.add(faceArrow);
 }
 function updateSelectors(){
   const u=G.active;
@@ -833,20 +879,20 @@ function createUnit(def){
   const grp=new THREE.Group();
   const shadowScale=COMBAT_PRESENTATION.units.shadowScale;
   const blob=new THREE.Mesh(new THREE.PlaneGeometry(1.32*shadowScale,1.32*0.5*shadowScale),new THREE.MeshBasicMaterial({map:blobTex,transparent:true,depthWrite:false,opacity:COMBAT_PRESENTATION.units.shadowOpacity,fog:false,toneMapped:false}));
-  blob.rotation.x=-Math.PI/2; blob.position.y=0.04; grp.add(blob);
+  blob.rotation.x=-Math.PI/2; blob.position.y=0.04; blob.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SHADOW; grp.add(blob);
   const ringColor=def.team==='player'?0x69d7ff:0xff5f52;
   const teamGlow=new THREE.Mesh(new THREE.PlaneGeometry(1.5,1.5),new THREE.MeshBasicMaterial({map:baseTex,color:ringColor,transparent:true,opacity:def.team==='player'?0.16:0.18,depthWrite:false,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,fog:false,toneMapped:false}));
-  teamGlow.rotation.x=-Math.PI/2; teamGlow.position.y=0.046; grp.add(teamGlow);
+  teamGlow.rotation.x=-Math.PI/2; teamGlow.position.y=0.046; teamGlow.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SHADOW+1; grp.add(teamGlow);
   const teamRingUnder=new THREE.Mesh(new THREE.RingGeometry(0.38,0.59,72),new THREE.MeshBasicMaterial({color:0x080604,transparent:true,opacity:.54,side:THREE.DoubleSide,depthWrite:false,fog:false,toneMapped:false}));
-  teamRingUnder.rotation.x=-Math.PI/2; teamRingUnder.position.y=0.052; grp.add(teamRingUnder);
+  teamRingUnder.rotation.x=-Math.PI/2; teamRingUnder.position.y=0.052; teamRingUnder.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SHADOW+2; grp.add(teamRingUnder);
   const teamRing=new THREE.Mesh(new THREE.RingGeometry(0.435,0.555,72),new THREE.MeshBasicMaterial({color:ringColor,transparent:true,opacity:COMBAT_PRESENTATION.units.teamRingOpacity,side:THREE.DoubleSide,depthWrite:false,fog:false,toneMapped:false}));
-  teamRing.rotation.x=-Math.PI/2; teamRing.position.y=0.058; grp.add(teamRing);
+  teamRing.rotation.x=-Math.PI/2; teamRing.position.y=0.058; teamRing.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SHADOW+3; grp.add(teamRing);
   const outlineMat=new THREE.MeshBasicMaterial({map:s.tex,color:0x03050a,transparent:true,opacity:0.44,alphaTest:0.05,depthWrite:false,side:THREE.DoubleSide,fog:false,toneMapped:false});
   const outline=new THREE.Mesh(new THREE.PlaneGeometry(s.w,s.h),outlineMat);
-  outline.position.y=s.h*0.5; outline.scale.set(1.1,1.1,1); outline.renderOrder=5; grp.add(outline);
+  outline.position.y=s.h*0.5; outline.scale.set(1.1,1.1,1); outline.renderOrder=COMBAT_RENDER_LAYERS.UNIT_OUTLINE; grp.add(outline);
   const mat=new THREE.MeshBasicMaterial({map:s.tex,transparent:true,alphaTest:0.05,depthWrite:false,side:THREE.DoubleSide,fog:false,toneMapped:false});
   const spr=new THREE.Mesh(new THREE.PlaneGeometry(s.w,s.h),mat);
-  spr.position.y=s.h*0.5; spr.renderOrder=6; grp.add(spr);
+  spr.position.y=s.h*0.5; spr.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SPRITE; grp.add(spr);
   const statusIndicatorGroup=new THREE.Group(); statusIndicatorGroup.name='status-indicators'; statusIndicatorGroup.renderOrder=STATUS_BADGE_RENDER_ORDER; grp.add(statusIndicatorGroup);
   scene.add(grp);
   const unitMaxAp=Number.isFinite(def.maxap)?def.maxap:Number.isFinite(def.maxAp)?def.maxAp:5;
@@ -1000,13 +1046,13 @@ function tickStatusDuration(u){ for(const s in u.statuses){ u.statuses[s]--; if(
 function buildOrder(){ return aliveUnits().sort((a,b)=> (effDEX(b)-effDEX(a)) || (a.team===b.team? a.id-b.id : (a.team==='player'?-1:1))); }
 function startRound(){ if(checkEnd())return; G.round++; G.order=buildOrder(); G.turnIdx=-1; logMsg('— Manche '+G.round+' —'); nextTurn(); }
 function nextTurn(){ if(G.over||checkEnd())return; G.turnIdx++; if(G.turnIdx>=G.order.length){ startRound(); return; } const u=G.order[G.turnIdx]; if(!u||!u.alive){ nextTurn(); return; } beginTurn(u); }
-async function beginTurn(u){ if(G.over)return; G.active=u; G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.skillMovedThisTurn=false; G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; G.startGX=u.gx; G.startGZ=u.gz; u._usedUtility=false;
+async function beginTurn(u){ if(G.over)return; G.active=u; G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.skillMovedThisTurn=false; G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; G.startGX=u.gx; G.startGZ=u.gz; u._usedUtility=false; u._statusPulseStartedAt=_t;
   const regen=(u.boss||u.elite)?2:1; u.ap=Math.min(u.maxap,u.ap+regen); u._souffle=false; u.gardeAP=0;
   if(regen>0) setTimeout(()=>{ if(u.alive)floatText(u,'+'+regen+' AP','#7fd0ff'); },120);
   refreshTurnbar(); selectUnit(u); focusCam(u);
   await tickStatusDamage(u); if(G.over)return; if(!u.alive){ nextTurn(); return; }
   const sk=statusSkips(u); if(!hasS(u,'taunt'))u._taunter=null; refreshPanel(u);
-  if(sk){ if((u.boss||u.elite)&&u._ultCooldown<5)u._ultCooldown=5; floatText(u,sk.name.toUpperCase()+' !',sk.col,true); logMsg(u.name+' est '+sk.name.toLowerCase()+' — tour passé.'); await wait(0.7); for(const s in u.statuses){ if(STATUS[s]&&STATUS[s].skip){ u.statuses[s]--; if(u.statuses[s]<=0)delete u.statuses[s]; } } refreshPanel(u); if(G.over)return; nextTurn(); return; }
+  if(sk){ if((u.boss||u.elite)&&u._ultCooldown<5){u._ultCooldown=5;clearBossIntentPresentation(u);} floatText(u,sk.name.toUpperCase()+' !',sk.col,true); logMsg(u.name+' est '+sk.name.toLowerCase()+' — tour passé.'); await wait(0.7); for(const s in u.statuses){ if(STATUS[s]&&STATUS[s].skip){ u.statuses[s]--; if(u.statuses[s]<=0)delete u.statuses[s]; } } refreshPanel(u); if(G.over)return; nextTurn(); return; }
   if(u._ultCooldown>0)u._ultCooldown--;
   if(u.team==='player'){ G.mode='menu'; setHint(u.name+' — à vous de jouer'); openActionMenu(); }
   else { G.mode='ai'; closeMenus(); setHint(u.name+' (ennemi)…'); await wait(0.35); await aiTurn(u); }
@@ -1019,7 +1065,7 @@ function endTurn(){ if(G.busy||G.over)return; const u=G.active;
     if(u.gardeAP>0){ const bonus=Math.min(u.gardeAP,5)*3; setTimeout(()=>{ if(u.alive)floatText(u,'GARDE +'+bonus+' END','#9fe7ff'); },380); }
     tickStatusDuration(u); refreshPanel(u);
   }
-  unitFocus.restore(); hideActionPreview(); closeMenus(); clearHL(); G.pending=null; G.mode='idle'; nextTurn(); }
+  restoreUnitFocus(); hideActionPreview(); closeMenus(); clearHL(); G._targetPreviewKey=null; G.pending=null; G.mode='idle'; nextTurn(); }
 function checkEnd(){ if(G.over)return true; if(aliveUnits('foe').length===0){ winWave(); return true; } if(aliveUnits('player').length===0){ endGame(false); return true; } return false; }
 
 // ============================= COMBAT & AOE =============================
@@ -1205,7 +1251,7 @@ function applyHeal(u,amt){ if(!u.alive)return; u.hp=Math.min(u.maxhp,u.hp+amt); 
 function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; const requestedTurns=turns||2; const effectiveTurns=requestedTurns<=1?2:requestedTurns; t.statuses[st]=Math.max(t.statuses[st]||0,effectiveTurns); floatText(t,(d.name||st).toUpperCase(),d.col||'#fff'); refreshPanel(t); }
 async function knockOut(u,src){
   const baseline=motionBaseline(u),away=src?motionDirection(u,{source:src,reaction:true},true):{x:0,z:0},state=getUnitVisualState(u.team,false,true),sign=spriteScaleSign(u.spr),scale=largeUnitSpriteScale(u),outlineScale=scale*1.1;
-  killSpriteMotion(u); const epoch=beginUnitMotion(u); u.alive=false; u.downed=true;
+  killSpriteMotion(u); const epoch=beginUnitMotion(u); u.alive=false; u.downed=true; clearBossIntentPresentation(u);
   if(u.size>1)clearBossCells(u); else { const c=u.cell(); if(c&&c.occupant===u)c.occupant=null; }
   floatText(u,'K.O.','#ff5a4a',true); logMsg(u.name+' est K.O. !'); screenShake(0.5,0.4,true); screenFlash('#ff5a4a',0.22); refreshTurnbar();
   try{
@@ -1610,7 +1656,7 @@ function applyAdditionalStatus(u,spec,cx,cz,context={}){
   }
   for(const target of [...new Set(targets)])if(target&&target.alive){ applyStatus(target,spec.additionalStatus,spec.additionalStatusTurns||1); if(spec.additionalStatus==='taunt')target._taunter=u; }
 }
-async function executeActionCore(u,spec,cx,cz){ unitFocus.restore(); hideActionPreview(); G.busy=true; closeMenus(); clearHL();
+async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPreview(); G.busy=true; closeMenus(); clearHL();
   const context={origin:{gx:u.gx,gz:u.gz},selectedTargets:selectedTargetsForAction(u,spec,cx,cz)};
   const emptyHybridTarget=allowsEmptyTileHybridTarget(spec)&&context.selectedTargets.length===0;
   if(emptyHybridTarget){
@@ -1725,7 +1771,7 @@ async function executeAction(u,spec,cx,cz){
   G._actionFeedbackToken='action-'+(++actionFeedbackSerial); G._actionShakeFrequency=18;
   try { await executeActionCore(u,spec,cx,cz); }
   finally {
-    try { if(G.stage)await combatStageExit(); }
+    try { if(G.stage)await combatStageExit(); else restoreUnitFocus(); }
     finally { if(u&&u.alive)restoreUnitVisualBaseline(u); G.busy=false; }
   }
 }
@@ -1830,7 +1876,7 @@ async function aiTurn(u){
     if(spec.ap>=5&&(u.boss||u.elite)&&u._ultCooldown>0)break;
     if(pick.type==='support')u._usedUtility=true;
     await executeAction(u,spec,pick.best.cx,pick.best.cz); await wait(0.2);
-    if(spec.ap>=5&&(u.boss||u.elite))u._ultCooldown=5;
+    if(spec.ap>=5&&(u.boss||u.elite)){u._ultCooldown=5;clearBossIntentPresentation(u);}
     if((u.boss||u.elite)&&u._ultCooldown===0&&u.ap<5)break;
   }
   endTurn();
@@ -1886,25 +1932,25 @@ function previewAt(cx,cz){ drawRange(); const sp=G.pending.spec,hoverCell=cellAt
 function enterTarget(spec){ if(G.busy)return;
   if(spec.ap>G.active.ap){ toast('AP insuffisants'); return; }
   const centers=rangeCells(G.active,spec); if(!centers.length){ toast('Aucune cible à portée'); return; }
-  G.mode='target'; G.pending={spec,centers,keys:new Set(centers.map(c=>c.gx+','+c.gz))}; closeMenus(false);
+  G.mode='target'; G._targetPreviewKey=null; G.pending={spec,centers,keys:new Set(centers.map(c=>c.gx+','+c.gz))}; closeMenus(false);
   const validTargets=[...new Set(centers.flatMap(c=>affectedUnits(G.active,spec,c.gx,c.gz)))];
   unitFocus.focus(G.units,G.active,validTargets);
   if(spec.self) previewAt(G.active.gx,G.active.gz); else drawRange();
   setHint((spec.self?'Action':(spec.type==='move'?'Déplacement':'Ciblage'))+' — '+spec.name); }
-function cancelToMenu(){ if(G.busy)return; if(G.mode==='move'||G.mode==='target'){ unitFocus.restore(); hideActionPreview(); G._targetPreviewKey=null; G.pending=null; clearHL(); G.mode='menu'; openActionMenu(); setHint(G.active.name+' — à vous de jouer'); } }
+function cancelToMenu(){ if(G.busy)return; if(G.mode==='move'||G.mode==='target'){ restoreUnitFocus(); hideActionPreview(); G._targetPreviewKey=null; G.pending=null; clearHL(); G.mode='menu'; openActionMenu(); setHint(G.active.name+' — à vous de jouer'); } }
 
 async function doExecute(spec,cx,cz){ await executeAction(G.active,spec,cx,cz); afterSub(); }
-function afterSub(){ unitFocus.restore(); hideActionPreview(); if(G.over)return; G.mode='menu'; selectUnit(G.active); openActionMenu();
+function afterSub(){ restoreUnitFocus(); hideActionPreview(); G._targetPreviewKey=null; if(G.over)return; G.mode='menu'; selectUnit(G.active); openActionMenu();
   const u=G.active;
   const nextAtkCost=G.basicAttacksThisTurn+1;
   const canAct = (u.ap>=nextAtkCost) || u.skills.some(s=>getSpec(u,s).ap<=u.ap) || (u.ap>=(G.itemsUsedThisTurn+1) && invCount()>0);
   if(!canAct && G.movedThisTurn) setHint('Tour terminé — Entrée pour attendre'); else setHint(u.name+' — choisissez une action'); }
-function undoMove(){ if(G.busy||!G.movedThisTurn||G.movedBeforeAct||G.startGX==null)return; unitFocus.restore(); const u=G.active; placeUnit(u,G.startGX,G.startGZ,true); G.movedThisTurn=false; clearHL(); G.mode='menu'; selectUnit(u); openActionMenu(); setHint(u.name+' — déplacement annulé'); }
+function undoMove(){ if(G.busy||!G.movedThisTurn||G.movedBeforeAct||G.startGX==null)return; restoreUnitFocus(); const u=G.active; placeUnit(u,G.startGX,G.startGZ,true); G.movedThisTurn=false; clearHL(); G.mode='menu'; selectUnit(u); openActionMenu(); setHint(u.name+' — déplacement annulé'); }
 
 function transientInspect(u){ if(!u)return; const key=u.campaignId||u.id||u.name; if(statsPanelKey!==key){statsPanelKey=key;statsPanelExpanded=false;} G.selected=u; renderPanel(u); }
 function restoreInspection(){ const fallback=(G.pinnedUnit&&G.pinnedUnit.alive?G.pinnedUnit:G.active); if(fallback)transientInspect(fallback); }
 function onPointerMove(ev){ if(G.busy||G.over)return; const c=pickCell(ev); const hoveredUnit=(c&&c.occupant&&c.occupant.alive)?c.occupant:null; G.hover=c; G.hoverUnit=hoveredUnit; if(c)moveCursor(c.gx,c.gz); else if(cursorMesh)cursorMesh.visible=false;
-  if(G.mode==='target'){ const sp=G.pending.spec; const targetCell=hoveredUnit?.cell?.()||c,previewKey=sp.key+':'+(targetCell?targetCell.gx+','+targetCell.gz:'none'); if(G._targetPreviewKey===previewKey)return; G._targetPreviewKey=previewKey; if(sp.self)previewAt(G.active.gx,G.active.gz); else if(targetCell&&G.pending.keys.has(targetCell.gx+','+targetCell.gz)){ previewAt(targetCell.gx,targetCell.gz); const target=affectedUnits(G.active,sp,targetCell.gx,targetCell.gz)[0]||hoveredUnit; if(target)transientInspect(target); } else { drawRange(); restoreInspection(); } }
+  if(G.mode==='target'){ const sp=G.pending.spec; const targetCell=hoveredUnit?.cell?.()||c,previewKey=sp.key+':'+(targetCell?targetCell.gx+','+targetCell.gz:'none'); if(G._targetPreviewKey===previewKey)return; G._targetPreviewKey=previewKey; if(sp.self)previewAt(G.active.gx,G.active.gz); else if(targetCell&&G.pending.keys.has(targetCell.gx+','+targetCell.gz)){ previewAt(targetCell.gx,targetCell.gz); const target=affectedUnits(G.active,sp,targetCell.gx,targetCell.gz)[0]||hoveredUnit; if(target)transientInspect(target); } else { unitFocus.preview([]); drawRange(); restoreInspection(); } }
   else if((G.mode==='menu'||G.mode==='idle')&&hoveredUnit)transientInspect(hoveredUnit);
   else if((G.mode==='menu'||G.mode==='idle')&&c?.occupant?.alive)transientInspect(c.occupant);
   else if(G.mode==='menu'||G.mode==='idle')restoreInspection(); }
@@ -2057,7 +2103,7 @@ function freeNear(gx,gz){ const c=cellAt(gx,gz); if(c&&c.walkable&&!c.occupant)r
 function spawnWave(wave){ const k=1+0.18*(wave-1); const foes=DEFS.filter(d=>d.team==='foe'); const list=foes.slice();
   if(wave%2===0&&list.length<4)list.push(Object.assign({},foes[0],{name:'Renfort',gx:5,gz:0}));
   for(const d of list){ const cell=freeNear(d.gx,d.gz); if(!cell)continue; createUnit(Object.assign({},d,{gx:cell.gx,gz:cell.gz,hp:Math.round(d.hp*k),str:Math.round(d.str*k),mag:Math.round(d.mag*k),end:Math.round(d.end*k)})); } }
-function startNextWave(){ G.wave++;
+function startNextWave(){ restoreUnitFocus(); for(const u of G.units)clearBossIntentPresentation(u); G.wave++;
   for(const u of G.units.filter(x=>x.team==='foe')) removeUnit(u);
   for(const u of G.units.filter(x=>x.team==='player')){
     if(!u.alive){ const cur=u.cell(); if(!cur||(cur.occupant&&cur.occupant!==u)){ const f=(G.deployZone||[]).find(z=>!z.occupant); if(f){ u.gx=f.gx; u.gz=f.gz; } } reviveUnit(u,u.maxhp); }
@@ -2088,7 +2134,7 @@ function showCombatResult(tone,title,subtitle,buttonLabel,onClick,meta){
     '</section>';
   byId('combat-result-action').onclick=onClick;
 }
-function winWave(){ if(G.over)return; G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
+function winWave(){ if(G.over)return; restoreUnitFocus(); for(const u of G.units)clearBossIntentPresentation(u); G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
   logMsg('— Vague '+G.wave+' vaincue ! —');
   if(CAMPAIGN_MODE){
     const reward=COMBAT_REWARD_TEXT?'<span>Butin de combat</span><b>'+escHTML(COMBAT_REWARD_TEXT)+'</b>':'';
@@ -2096,7 +2142,7 @@ function winWave(){ if(G.over)return; G.over=true; G.mode='over'; closeMenus(); 
   } else {
     showCombatResult('victory','Vague '+G.wave+' vaincue','La formation tient encore la ligne.','Vague '+(G.wave+1)+' ▶',()=>{ dom.banner.className='hidden'; startNextWave(); },'<span>Mode escarmouche</span><b>Renforts imminents</b>');
   } }
-function endGame(win){ if(G.over)return; G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
+function endGame(win){ if(G.over)return; restoreUnitFocus(); for(const u of G.units)clearBossIntentPresentation(u); G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
   showCombatResult(win?'victory':'defeat',win?'Victoire':'Défaite',win?'Élyndra est sauvée !':'Votre équipe a été vaincue…',CAMPAIGN_MODE?'Revenir à la carte':'Rejouer',()=>CAMPAIGN_MODE?notifyCampaignResult(Boolean(win)):location.reload(),win?'<span>Issue</span><b>Combat terminé</b>':'<span>Checkpoint</span><b>Retour au dernier refuge</b>');
   logMsg(win?'— VICTOIRE —':'— DÉFAITE —'); }
 
@@ -2107,8 +2153,7 @@ function animate(){ if(_runtimeDisposed)return; _animationFrame=requestAnimation
   updateTweens(dt); cameraFeedback.tick(dt); applyCam();
   for(const u of G.units){ const dx=camera.position.x-u.grp.position.x, dz=camera.position.z-u.grp.position.z; u.spr.rotation.y=Math.atan2(dx,dz); if(u.outline){ u.outline.rotation.y=u.spr.rotation.y; u.outline.material.opacity=Math.max(0.16,u.mat.opacity*0.44); }
     if(u.teamRing){ if(!u.alive){ u.teamRing.material.opacity=0; if(u.teamRingUnder)u.teamRingUnder.material.opacity=0; if(u.teamGlow)u.teamGlow.material.opacity=0; } else if(!u._motionPlaying){ const isActive=u===G.active&&!G.stage&&!G.over,isHover=G.hoverUnit===u,isTarget=G.mode==='target'&&G.pending&&G.pending.keys.has(cellKey(u.gx,u.gz))&&G.active&&u.team!==G.active.team; u.teamRing.material.opacity=Math.min(1,COMBAT_PRESENTATION.units.teamRingOpacity*(isActive?1.16:(isTarget?1.12:(isHover?1.08:0.94)))); if(u.teamRingUnder)u.teamRingUnder.material.opacity=isActive ? .68 : (isTarget ? .64 : (isHover ? .6 : .5)); if(u.teamGlow)u.teamGlow.material.opacity=isActive ? .28 : (isTarget ? .25 : (isHover ? .22 : (u.team==='player' ? .15 : .17))); } }
-    if(u.alive&&(u.boss||u.elite)&&u.ap>=3&&u._ultCooldown<=1){ const p=0.5+0.5*Math.sin(_t*6); u.teamRing.material.color.setRGB(1,0.373-0.248*p,0.322-0.197*p); if(u.teamGlow){ u.teamGlow.material.color.setRGB(1,0.373-0.248*p,0.322-0.197*p); u.teamGlow.material.opacity=0.17+0.15*p; } }
-    else if((u.boss||u.elite)&&u.teamRing){ u.teamRing.material.color.setHex(0xff5f52); if(u.teamGlow)u.teamGlow.material.color.setHex(0xff5f52); }
+    syncBossIntentPresentation(u,_t);
     if(u.alive) u.spr.position.y=u.baseY+(u===G.active?Math.sin(_t*3.2)*0.05:0); syncStatusIndicators(u,_t); }
   Grade.uniforms.time.value=_t*1000;
   for(const m of G_timeMats) if(m.uniforms&&m.uniforms.t) m.uniforms.t.value=_t;
@@ -2122,7 +2167,7 @@ function animate(){ if(_runtimeDisposed)return; _animationFrame=requestAnimation
   }
   if(G.gridLines){
     const tactical=G.mode==='deploy'||G.mode==='move'||G.mode==='target',selected=G.active&&(G.mode==='menu'||G.mode==='idle');
-    const gridOp=G.stage ? COMBAT_PRESENTATION.arena.gridOpacityStage : (tactical ? COMBAT_PRESENTATION.arena.gridOpacityTactical : (selected ? COMBAT_PRESENTATION.arena.gridOpacitySelected : COMBAT_PRESENTATION.arena.gridOpacityIdle));
+    const gridOp=GRID_DEBUG_ENABLED?1:(G.stage ? COMBAT_PRESENTATION.arena.gridOpacityStage : (tactical ? COMBAT_PRESENTATION.arena.gridOpacityTactical : (selected ? COMBAT_PRESENTATION.arena.gridOpacitySelected : COMBAT_PRESENTATION.arena.gridOpacityIdle)));
     G.gridLines.material.opacity=Math.min(.24,gridOp*.34);
     if(G.gridBandUnderMaterial)G.gridBandUnderMaterial.opacity=G.stage ? .16 : (tactical ? .66 : (selected ? .52 : .38));
     if(G.gridBandCoreMaterial)G.gridBandCoreMaterial.opacity=G.stage ? .2 : (tactical ? .94 : (selected ? .8 : .64));
@@ -2147,7 +2192,7 @@ function playerDefinitions(){
   if(CAMPAIGN_MODE&&CAMPAIGN_SQUAD.length) return orderDeploymentCandidates(CAMPAIGN_SQUAD.map(campaignDef),PREFERRED_UNIT_IDS);
   return DEFS.filter(d=>d.team==='player').map((d,index)=>Object.assign({id:'standalone-'+index},d));
 }
-function removeUnit(u){ if(u.size>1)clearBossCells(u); else { const c=u.cell&&u.cell(); if(c&&c.occupant===u)c.occupant=null; } killSpriteMotion(u); disposeStatusIndicators(u); if(u.grp){ scene.remove(u.grp); u.grp.traverse(object=>{ if(object.geometry)object.geometry.dispose(); if(object.material){ const materials=Array.isArray(object.material)?object.material:[object.material]; for(const material of materials)material.dispose(); } }); } const i=G.units.indexOf(u); if(i>=0)G.units.splice(i,1); const d=G.deployedUnits.indexOf(u); if(d>=0)G.deployedUnits.splice(d,1); }
+function removeUnit(u){ if(u.size>1)clearBossCells(u); else { const c=u.cell&&u.cell(); if(c&&c.occupant===u)c.occupant=null; } killSpriteMotion(u); disposeStatusIndicators(u); disposeBossIntentPresentation(u); if(u.grp){ scene.remove(u.grp); u.grp.traverse(object=>{ if(object.geometry)object.geometry.dispose(); if(object.material){ const materials=Array.isArray(object.material)?object.material:[object.material]; for(const material of materials)material.dispose(); } }); } const i=G.units.indexOf(u); if(i>=0)G.units.splice(i,1); const d=G.deployedUnits.indexOf(u); if(d>=0)G.deployedUnits.splice(d,1); }
 function playerDeployLimit(){ return QA_DEPLOY_ALL&&G.rosterDefs&&G.rosterDefs.length?G.rosterDefs.length:MAX_PLAYER_UNITS; }
 function deployDefById(id){ return G.rosterDefs.find(d=>(d.campaignId||d.name)===id); }
 function deployedById(id){ return G.deployedUnits.find(u=>(u.campaignId||u.name)===id); }
@@ -2278,18 +2323,20 @@ function qaPrepareCombat(){
   autoDeploy();
   beginBattle();
 }
-function qaMotionUnit(preferBoss=false){ return (preferBoss?aliveUnits().find(unit=>unit.boss):null)||G.active&&G.active.alive&&G.active||aliveUnits('player')[0]||aliveUnits()[0]||null; }
+function qaMotionUnit(preferBoss=false){ return (preferBoss?aliveUnits().find(unit=>unit.boss||unit.elite):null)||G.active&&G.active.alive&&G.active||aliveUnits('foe')[0]||aliveUnits('player')[0]||aliveUnits()[0]||null; }
+function clearQaBossIntentPreview(){ for(const unit of G.units){ unit._bossIntentPreview=undefined; clearBossIntentPresentation(unit); } }
 async function playQaMotionScenario(scenario){
-  qaPrepareCombat(); const source=qaMotionUnit(scenario==='boss'),target=aliveUnits(source&&source.team==='player'?'foe':'player')[0]||source; if(!source)return;
+  const bossAlert=scenario==='boss-charge'||scenario==='boss-ultimate'; qaPrepareCombat(); const source=qaMotionUnit(scenario==='boss'||bossAlert),target=aliveUnits(source&&source.team==='player'?'foe':'player')[0]||source; if(!source)return;
   G.busy=true;
   try{
-    if(scenario==='hit')await playUnitHitReaction(source,{source:target});
+    if(bossAlert){ clearQaBossIntentPreview(); source._bossIntentPreview=scenario==='boss-ultimate'?'ultimate':'charge'; syncBossIntentPresentation(source,_t); }
+    else if(scenario==='hit')await playUnitHitReaction(source,{source:target});
     else if(scenario==='critical')await playUnitHitReaction(source,{source:target,critical:true});
     else if(scenario==='ko-revive'){ const hp=source.hp; await knockOut(source,target); await wait(.18); await reviveUnit(source,hp); }
     else { const preset=scenario==='light'?'melee_light':scenario==='heavy'||scenario==='boss'?'melee_heavy':scenario==='ranged'?'ranged_attack':scenario==='support'?'heal_cast':'magic_cast'; await playSpriteMotion(source,preset,{target,motionDurationScale:scenario==='boss'?1.16:1,motionIntensity:scenario==='boss'?1.14:1,onImpact:async()=>{ if(scenario==='heavy'||scenario==='boss')screenShake(scenario==='boss'?.34:.24,.22); }}); }
   } finally { for(const unit of G.units)if(unit.alive)restoreUnitVisualBaseline(unit); G.busy=false; }
 }
-function resetQaMotion(){ for(const unit of G.units){ killSpriteMotion(unit); if(unit.alive)restoreUnitVisualBaseline(unit); } cameraFeedback.clear(); void restoreCam(); }
+function resetQaMotion(){ clearQaBossIntentPreview(); for(const unit of G.units){ killSpriteMotion(unit); if(unit.alive)restoreUnitVisualBaseline(unit); } cameraFeedback.clear(); void restoreCam(); }
 function mountQaControls(){
   if(!QA_ENABLED||byId('qa-combat-controls'))return;
   const controls=document.createElement('aside');
@@ -2327,7 +2374,7 @@ function vfxWorkbenchContext(targetMode){
 }
 
 async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); installVfxWorkbench({system:combatVfxSystem,getContext:vfxWorkbenchContext}); installUnitMotionWorkbench({enabled:MOTION_QA_ENABLED,play:playQaMotionScenario,reset:resetQaMotion}); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none'; }
-function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; if(_animationFrame)cancelAnimationFrame(_animationFrame); for(const unit of G.units.slice())killSpriteMotion(unit); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); combatVfxSystem.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
+function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; if(_animationFrame)cancelAnimationFrame(_animationFrame); restoreUnitFocus(); for(const unit of G.units.slice()){killSpriteMotion(unit);disposeBossIntentPresentation(unit);} for(const texture of bossIntentBadgeTextures.values())texture.dispose(); bossIntentBadgeTextures.clear(); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); combatVfxSystem.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
 window.addEventListener('pagehide',disposeCombatRuntime,{once:true});
 window.addEventListener('error',()=>{ if(dom.loading&&dom.loading.style.display!=='none') dom.loading.innerHTML='<div style="color:#ff8a7a;max-width:540px;text-align:center;line-height:26px">Échec du chargement de Three.js.<br>Vérifiez votre connexion internet puis rechargez la page.<br><span style="color:#9fb0d0">La page doit être servie via un serveur local (http://), pas ouverte directement depuis le disque.</span></div>'; });
 window.addEventListener('unhandledrejection',e=>console.error(e.reason));
@@ -2338,6 +2385,7 @@ function bootCampaign(message){
   PREFERRED_UNIT_IDS=message.preferredUnitIds; REDUCED_GRAPHICS=message.reducedGraphics;
   QA_ENABLED=campaignParams.get('qa')==='1'&&message.devQa===true;
   MOTION_QA_ENABLED=QA_ENABLED&&campaignParams.get('motion')==='1';
+  GRID_DEBUG_ENABLED=QA_ENABLED&&campaignParams.get('grid')==='1';
   QA_FULL_AP=QA_ENABLED&&message.qaFullAp===true;
   QA_DEPLOY_ALL=QA_ENABLED&&message.qaDeployAll===true;
   IS_BOSS_COMBAT=!!message.config.isBoss; BOSS_SPAWNED=false;
