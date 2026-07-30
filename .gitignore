@@ -12,3 +12,4 @@ coverage/
 # VFX development artifacts (raw AI sources + validation reports)
 public/assets/vfx/raw/
 public/assets/vfx/validation/
+public/assets/vfx/archive/
