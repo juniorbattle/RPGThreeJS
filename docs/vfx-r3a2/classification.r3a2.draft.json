@@ -1,0 +1,2201 @@
+{
+  "version": 1,
+  "source": "vfx-r3a2-sol-action-aware-naming",
+  "entries": [
+    {
+      "spriteSheetId": "white_basic_arrow_comet_burst_heavy",
+      "folder": "basics",
+      "sourceFile": "white_advanced_arc_comet_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_arrow_comet_burst_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "arrow",
+      "role": "weapon or creature impact",
+      "intensity": "heavy",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "source",
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [
+        "basic_attack_shuriken"
+      ],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": true,
+      "notes": "Source inspection: 1280x1280, RGBA, 2213267 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_magic_holy_ring_beam_heavy",
+      "folder": "basics",
+      "sourceFile": "white_advanced_beam_holy_ring_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_holy_ring_beam_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "magic",
+      "role": "weapon or creature impact",
+      "intensity": "heavy",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": true,
+      "notes": "Source inspection: 1280x1280, RGBA, 2156998 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_smash_shockwave_burst_heavy",
+      "folder": "basics",
+      "sourceFile": "white_advanced_beam_shockwave_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_smash_shockwave_burst_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "smash",
+      "role": "weapon or creature impact",
+      "intensity": "heavy",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [
+        "p_interpose",
+        "l_griffon_jump",
+        "a_hawk_leap",
+        "ro_tumble",
+        "boss_slam",
+        "boss_quake",
+        "boss_titan_slam"
+      ],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1802849 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_smash_comet_burst_heavy",
+      "folder": "basics",
+      "sourceFile": "white_advanced_comet_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_smash_comet_burst_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "smash",
+      "role": "weapon or creature impact",
+      "intensity": "heavy",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": true,
+      "notes": "Source inspection: 1280x1280, RGBA, 2213826 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_smash_crescent_impact_heavy",
+      "folder": "basics",
+      "sourceFile": "white_advanced_crescent_impact_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_smash_crescent_impact_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "smash",
+      "role": "weapon or creature impact",
+      "intensity": "heavy",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [
+        "ro_fault_breaker"
+      ],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": true,
+      "notes": "Source inspection: 1280x1280, RGBA, 1756180 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_magic_crescent_implosion_heavy",
+      "folder": "basics",
+      "sourceFile": "white_advanced_crescent_implosion_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_crescent_implosion_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "magic",
+      "role": "weapon or creature impact",
+      "intensity": "heavy",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": true,
+      "notes": "Source inspection: 1280x1280, RGBA, 2026377 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_slash_crescent_impact_heavy",
+      "folder": "basics",
+      "sourceFile": "white_advanced_crescent_slash_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_slash_crescent_impact_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "slash",
+      "role": "weapon or creature impact",
+      "intensity": "heavy",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [
+        "basic_attack_scythe"
+      ],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1672510 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_slash_crescent_impact_medium",
+      "folder": "basics",
+      "sourceFile": "white_advanced_crescent_slash_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "white_basic_slash_crescent_impact_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "slash",
+      "role": "weapon or creature impact",
+      "intensity": "medium",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1897831 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_magic_holy_cross_burst_heavy",
+      "folder": "basics",
+      "sourceFile": "white_advanced_holy_cross_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_holy_cross_burst_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "magic",
+      "role": "weapon or creature impact",
+      "intensity": "heavy",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": true,
+      "notes": "Source inspection: 1280x1280, RGBA, 1802118 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_magic_holy_ring_burst_heavy",
+      "folder": "basics",
+      "sourceFile": "white_advanced_holy_ring_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_holy_ring_burst_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "magic",
+      "role": "weapon or creature impact",
+      "intensity": "heavy",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [
+        "basic_attack_grimoire"
+      ],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": true,
+      "notes": "Source inspection: 1280x1280, RGBA, 1050794 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_magic_holy_sigil_burst_heavy",
+      "folder": "basics",
+      "sourceFile": "white_advanced_holy_sigil_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_holy_sigil_burst_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "magic",
+      "role": "weapon or creature impact",
+      "intensity": "heavy",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": true,
+      "notes": "Source inspection: 1280x1280, RGBA, 2155172 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_magic_holy_sigil_burst_medium",
+      "folder": "basics",
+      "sourceFile": "white_advanced_holy_sigil_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_holy_sigil_burst_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "magic",
+      "role": "weapon or creature impact",
+      "intensity": "medium",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [
+        "basic_attack_crosier",
+        "basic_attack_wand"
+      ],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": true,
+      "notes": "Source inspection: 1280x1280, RGBA, 2089944 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_arrow_nova_impact_heavy",
+      "folder": "basics",
+      "sourceFile": "white_advanced_projectile_nova_impact_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_arrow_nova_impact_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "arrow",
+      "role": "weapon or creature impact",
+      "intensity": "heavy",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "source",
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [
+        "basic_attack_hand_cannon",
+        "a_arrow_rain",
+        "a_zenith_arrow",
+        "ar_artillery_barrage"
+      ],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1998147 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_slash_triple_impact_heavy",
+      "folder": "basics",
+      "sourceFile": "white_advanced_slash_triple_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_slash_triple_impact_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "slash",
+      "role": "weapon or creature impact",
+      "intensity": "heavy",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [
+        "basic_attack_greatsword",
+        "w_lion_surge",
+        "boss_execution"
+      ],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1178098 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_smash_comet_impact_medium",
+      "folder": "basics",
+      "sourceFile": "white_basic_comet_impact_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "white_basic_smash_comet_impact_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "WARN_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "smash",
+      "role": "weapon or creature impact",
+      "intensity": "medium",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [
+        "basic_attack_holy_mace",
+        "w_charge",
+        "enemy_heavy_strike",
+        "enemy_crush",
+        "generic_hit"
+      ],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1611961 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_slash_cross_impact_heavy",
+      "folder": "basics",
+      "sourceFile": "white_basic_impact_cross_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_slash_cross_impact_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "WARN_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "slash",
+      "role": "weapon or creature impact",
+      "intensity": "heavy",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [
+        "basic_attack_rapier",
+        "p_holy_strike"
+      ],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1833149 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_slash_horizontal_flash_medium",
+      "folder": "basics",
+      "sourceFile": "white_basic_impact_horizontal_flash_mid_5x5_25f_1280.png",
+      "proposedFile": "white_basic_slash_horizontal_flash_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "WARN_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "slash",
+      "role": "weapon or creature impact",
+      "intensity": "medium",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [
+        "basic_attack_long_spear",
+        "l_long_thrust",
+        "l_haft_recoil",
+        "l_firmament_lance"
+      ],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": true,
+      "notes": "Source inspection: 1280x1280, RGBA, 1543288 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_crit_star_burst_heavy",
+      "folder": "basics",
+      "sourceFile": "white_basic_impact_star_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_crit_star_burst_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "WARN_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "crit",
+      "role": "weapon or creature impact",
+      "intensity": "heavy",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [
+        "ni_shadow_step",
+        "item_grenade_aveuglante",
+        "critical_hit"
+      ],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 2127746 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_arrow_arc_burst_heavy",
+      "folder": "basics",
+      "sourceFile": "white_basic_projectile_arc_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_arrow_arc_burst_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "WARN_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "arrow",
+      "role": "weapon or creature impact",
+      "intensity": "heavy",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "source",
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [
+        "basic_attack_longbow",
+        "a_precise_shot",
+        "a_arrow_rain",
+        "ar_calibrated_shot",
+        "boss_pin"
+      ],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1006317 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "white_basic_slash_diagonal_cut_medium",
+      "folder": "basics",
+      "sourceFile": "white_basic_slash_diagonal_cut_mid_5x5_25f_1280.png",
+      "proposedFile": "white_basic_slash_diagonal_cut_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "WARN_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "white",
+      "lotType": "basic",
+      "vfxFamily": "slash",
+      "role": "weapon or creature impact",
+      "intensity": "medium",
+      "presetRole": "primaryImpact",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "Exactly one sheet in a basic attack preset; optional primary impact in a weapon skill composite.",
+      "linkedActionNeeds": [
+        "basic_attack_dagger",
+        "w_break_guard",
+        "w_whirl",
+        "d_cursed_blade",
+        "r_arcane_blade",
+        "ni_venom_blade",
+        "ni_silent_assassin",
+        "ro_sneak_attack",
+        "boss_flurry"
+      ],
+      "comboPotential": [
+        "blue_skill_arcane_starburst_small",
+        "blue_skill_arcane_sigil_burst_medium",
+        "blue_skill_lightning_burst_impact_medium",
+        "blue_skill_lightning_pillar_impact_medium"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 2361936 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "blue_skill_arcane_starburst_small",
+      "folder": "skills",
+      "sourceFile": "blue_basic_starburst_impact_small_5x5_25f_1280.png",
+      "proposedFile": "blue_skill_arcane_starburst_small_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "blue",
+      "lotType": "skill",
+      "vfxFamily": "arcane",
+      "role": "skill impact",
+      "intensity": "small",
+      "presetRole": "secondaryBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "kill_spark"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 957354 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "blue_skill_arcane_sigil_burst_medium",
+      "folder": "skills",
+      "sourceFile": "blue_magic_arcanesigil_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "blue_skill_arcane_sigil_burst_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "blue",
+      "lotType": "skill",
+      "vfxFamily": "arcane",
+      "role": "skill impact",
+      "intensity": "medium",
+      "presetRole": "secondaryBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "e_vigor_rune",
+        "item_ether"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1499627 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "blue_skill_lightning_burst_impact_medium",
+      "folder": "skills",
+      "sourceFile": "blue_magic_lightningburst_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "blue_skill_lightning_burst_impact_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "blue",
+      "lotType": "skill",
+      "vfxFamily": "lightning",
+      "role": "elemental or status",
+      "intensity": "medium",
+      "presetRole": "statusBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "n_dark_bolt",
+        "enemy_dark_bolt"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1542283 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "blue_skill_lightning_pillar_impact_medium",
+      "folder": "skills",
+      "sourceFile": "blue_magic_lightningpillar_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "blue_skill_lightning_pillar_impact_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "blue",
+      "lotType": "skill",
+      "vfxFamily": "lightning",
+      "role": "elemental or status",
+      "intensity": "medium",
+      "presetRole": "statusBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "n_dark_bolt",
+        "enemy_dark_bolt"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1356341 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "blue_skill_barrier_guard_heavy",
+      "folder": "skills",
+      "sourceFile": "blue_support_barrier_guard_heavy_5x5_25f_1280.png",
+      "proposedFile": "blue_skill_barrier_guard_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "blue",
+      "lotType": "skill",
+      "vfxFamily": "barrier",
+      "role": "support",
+      "intensity": "heavy",
+      "presetRole": "supportBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "p_oathwall",
+        "boss_guard"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 2002939 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "bluegold_skill_ultimate_arcane_beam_ultimate",
+      "folder": "skills",
+      "sourceFile": "bluegold_ultimate_arcanebeam_large_5x5_25f_1280.png",
+      "proposedFile": "bluegold_skill_ultimate_arcane_beam_ultimate_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "bluegold",
+      "lotType": "skill",
+      "vfxFamily": "ultimate",
+      "role": "signature",
+      "intensity": "ultimate",
+      "presetRole": "bossSignature",
+      "recommendedAnchors": [
+        "target",
+        "arena"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "p_radiant_judgement",
+        "l_firmament_lance",
+        "a_zenith_arrow"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 2085758 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "bluegold_skill_ultimate_arcane_invocation_ultimate",
+      "folder": "skills",
+      "sourceFile": "bluegold_ultimate_arcaneinvocation_large_5x5_25f_1280.png",
+      "proposedFile": "bluegold_skill_ultimate_arcane_invocation_ultimate_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "bluegold",
+      "lotType": "skill",
+      "vfxFamily": "ultimate",
+      "role": "signature",
+      "intensity": "ultimate",
+      "presetRole": "bossSignature",
+      "recommendedAnchors": [
+        "target",
+        "arena"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "w_miracle",
+        "e_absolute_harmony",
+        "item_revive_vial"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 2030468 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "cyan_skill_arcane_orbit_burst_medium",
+      "folder": "skills",
+      "sourceFile": "cyan_magic_arcaneorbit_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "cyan_skill_arcane_orbit_burst_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "cyan",
+      "lotType": "skill",
+      "vfxFamily": "arcane",
+      "role": "skill impact",
+      "intensity": "medium",
+      "presetRole": "secondaryBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1458767 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "gold_skill_holy_radiance_burst_heavy",
+      "folder": "skills",
+      "sourceFile": "gold_advanced_holy_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "gold_skill_holy_radiance_burst_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "gold",
+      "lotType": "skill",
+      "vfxFamily": "holy",
+      "role": "skill impact",
+      "intensity": "heavy",
+      "presetRole": "secondaryBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "p_holy_strike",
+        "p_radiant_judgement",
+        "w_purify",
+        "w_sanctuary",
+        "item_antidote"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1621036 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "gold_skill_holy_vortex_nova_heavy",
+      "folder": "skills",
+      "sourceFile": "gold_advanced_vortex_nova_heavy_5x5_25f_1280.png",
+      "proposedFile": "gold_skill_holy_vortex_nova_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "gold",
+      "lotType": "skill",
+      "vfxFamily": "holy",
+      "role": "skill impact",
+      "intensity": "heavy",
+      "presetRole": "secondaryBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "r_perfect_duality",
+        "boss_roar",
+        "enemy_taunt",
+        "enemy_battle_cry"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 2382845 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "gold_skill_arcane_ring_fade_medium",
+      "folder": "skills",
+      "sourceFile": "gold_magic_arcanering_fade_mid_5x5_25f_1280.png",
+      "proposedFile": "gold_skill_arcane_ring_fade_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "gold",
+      "lotType": "skill",
+      "vfxFamily": "arcane",
+      "role": "skill impact",
+      "intensity": "medium",
+      "presetRole": "secondaryBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1332016 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "gold_skill_holy_sigil_burst_medium",
+      "folder": "skills",
+      "sourceFile": "gold_magic_holysigil_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "gold_skill_holy_sigil_burst_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "gold",
+      "lotType": "skill",
+      "vfxFamily": "holy",
+      "role": "skill impact",
+      "intensity": "medium",
+      "presetRole": "secondaryBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "d_blood_pact",
+        "boss_fortify"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1727308 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "green_skill_ice_starburst_impact_medium",
+      "folder": "skills",
+      "sourceFile": "green_advanced_ice_starburst_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_ice_starburst_impact_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "green",
+      "lotType": "skill",
+      "vfxFamily": "ice",
+      "role": "elemental or status",
+      "intensity": "medium",
+      "presetRole": "unknown",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": true,
+      "notes": "Source inspection: 1280x1280, RGBA, 1315446 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "green_skill_poison_nova_burst_medium",
+      "folder": "skills",
+      "sourceFile": "green_magic_poisonburst_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_poison_nova_burst_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "green",
+      "lotType": "skill",
+      "vfxFamily": "poison",
+      "role": "elemental or status",
+      "intensity": "medium",
+      "presetRole": "statusBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1941891 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "green_skill_poison_maw_bite_heavy",
+      "folder": "skills",
+      "sourceFile": "green_monster_poison_maw_bite_large_5x5_25f_1280.png",
+      "proposedFile": "green_skill_poison_maw_bite_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "green",
+      "lotType": "skill",
+      "vfxFamily": "poison",
+      "role": "elemental or status",
+      "intensity": "heavy",
+      "presetRole": "statusBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "enemy_venom_strike",
+        "enemy_dragon_breath"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 2037518 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "whitegreen_skill_heal_blessing_bloom_heavy",
+      "folder": "skills",
+      "sourceFile": "green_support_heal_blessing_heavy_5x5_25f_1280.png",
+      "proposedFile": "whitegreen_skill_heal_blessing_bloom_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "whitegreen",
+      "lotType": "skill",
+      "vfxFamily": "heal",
+      "role": "healing",
+      "intensity": "heavy",
+      "presetRole": "supportBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "w_salvation",
+        "w_miracle",
+        "item_potion",
+        "item_revive_vial"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1993345 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "green_skill_barrier_nature_guard_medium",
+      "folder": "skills",
+      "sourceFile": "green_support_nature_guard_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_barrier_nature_guard_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "green",
+      "lotType": "skill",
+      "vfxFamily": "barrier",
+      "role": "support",
+      "intensity": "medium",
+      "presetRole": "supportBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1241842 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "green_skill_support_leaf_burst_medium",
+      "folder": "skills",
+      "sourceFile": "green_support_nature_leaf_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_support_leaf_burst_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "green",
+      "lotType": "skill",
+      "vfxFamily": "support",
+      "role": "support",
+      "intensity": "medium",
+      "presetRole": "supportBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "boss_regen"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1368556 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "green_skill_barrier_orb_burst_medium",
+      "folder": "skills",
+      "sourceFile": "green_support_nature_orb_barrier_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_barrier_orb_burst_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "green",
+      "lotType": "skill",
+      "vfxFamily": "barrier",
+      "role": "support",
+      "intensity": "medium",
+      "presetRole": "supportBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1147543 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "green_skill_barrier_rune_guard_medium",
+      "folder": "skills",
+      "sourceFile": "green_support_nature_rune_guard_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_barrier_rune_guard_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "green",
+      "lotType": "skill",
+      "vfxFamily": "barrier",
+      "role": "support",
+      "intensity": "medium",
+      "presetRole": "supportBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "e_binding_seal",
+        "ro_jaw_trap",
+        "enemy_binding_shot",
+        "item_grenade_entravante"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1417415 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "green_skill_barrier_shield_burst_medium",
+      "folder": "skills",
+      "sourceFile": "green_support_nature_shield_barrier_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_barrier_shield_burst_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "green",
+      "lotType": "skill",
+      "vfxFamily": "barrier",
+      "role": "support",
+      "intensity": "medium",
+      "presetRole": "supportBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1262772 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "green_skill_barrier_shield_ring_medium",
+      "folder": "skills",
+      "sourceFile": "green_support_nature_shield_ring_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_barrier_shield_ring_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "green",
+      "lotType": "skill",
+      "vfxFamily": "barrier",
+      "role": "support",
+      "intensity": "medium",
+      "presetRole": "supportBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "e_absolute_harmony"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1696384 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "iceblue_skill_ice_pillar_impact_heavy",
+      "folder": "skills",
+      "sourceFile": "iceblue_magic_icepillar_impact_large_5x5_25f_1280.png",
+      "proposedFile": "iceblue_skill_ice_pillar_impact_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "iceblue",
+      "lotType": "skill",
+      "vfxFamily": "ice",
+      "role": "elemental or status",
+      "intensity": "heavy",
+      "presetRole": "statusBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "boss_freeze"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1313588 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "iceblue_skill_ice_shatter_burst_medium",
+      "folder": "skills",
+      "sourceFile": "iceblue_magic_iceshard_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "iceblue_skill_ice_shatter_burst_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "iceblue",
+      "lotType": "skill",
+      "vfxFamily": "ice",
+      "role": "elemental or status",
+      "intensity": "medium",
+      "presetRole": "statusBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1332255 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "iceblue_skill_ice_sigil_burst_medium",
+      "folder": "skills",
+      "sourceFile": "iceblue_magic_icesigil_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "iceblue_skill_ice_sigil_burst_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "iceblue",
+      "lotType": "skill",
+      "vfxFamily": "ice",
+      "role": "elemental or status",
+      "intensity": "medium",
+      "presetRole": "statusBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "boss_freeze"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1784500 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "iceblue_skill_holy_light_pillar_medium",
+      "folder": "skills",
+      "sourceFile": "iceblue_magic_lightpillar_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "iceblue_skill_holy_light_pillar_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "iceblue",
+      "lotType": "skill",
+      "vfxFamily": "holy",
+      "role": "skill impact",
+      "intensity": "medium",
+      "presetRole": "unknown",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": true,
+      "notes": "Source inspection: 1280x1280, RGBA, 819247 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "purple_skill_arcane_slash_burst_medium",
+      "folder": "skills",
+      "sourceFile": "magenta_basic_slashburst_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_arcane_slash_burst_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "purple",
+      "lotType": "skill",
+      "vfxFamily": "arcane",
+      "role": "skill impact",
+      "intensity": "medium",
+      "presetRole": "unknown",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "ni_silent_assassin",
+        "boss_execution"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": true,
+      "notes": "Source inspection: 1280x1280, RGBA, 2221012 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "orange_skill_fire_slash_combo_heavy",
+      "folder": "skills",
+      "sourceFile": "orange_advanced_slash_combo_heavy_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_fire_slash_combo_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "orange",
+      "lotType": "skill",
+      "vfxFamily": "fire",
+      "role": "skill impact",
+      "intensity": "heavy",
+      "presetRole": "secondaryBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "boss_flurry"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1370292 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "orange_skill_fire_smoke_explosion_heavy",
+      "folder": "skills",
+      "sourceFile": "orange_advanced_smoke_explosion_heavy_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_fire_smoke_explosion_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "orange",
+      "lotType": "skill",
+      "vfxFamily": "fire",
+      "role": "skill impact",
+      "intensity": "heavy",
+      "presetRole": "unknown",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "ni_smoke_bomb",
+        "enemy_smoke_veil"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": true,
+      "notes": "Source inspection: 1280x1280, RGBA, 2293161 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "orange_skill_fire_vortex_nova_heavy",
+      "folder": "skills",
+      "sourceFile": "orange_advanced_vortex_nova_heavy_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_fire_vortex_nova_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "orange",
+      "lotType": "skill",
+      "vfxFamily": "fire",
+      "role": "skill impact",
+      "intensity": "heavy",
+      "presetRole": "secondaryBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "n_flame_wave",
+        "r_scarlet_circle",
+        "ar_explosive_retreat",
+        "ar_incendiary_grenade",
+        "boss_apocalypse",
+        "boss_inferno",
+        "enemy_dragon_breath",
+        "item_grenade_incendiaire"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1841264 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "orange_skill_fire_impact_burst_medium",
+      "folder": "skills",
+      "sourceFile": "orange_magic_fireimpact_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_fire_impact_burst_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "orange",
+      "lotType": "skill",
+      "vfxFamily": "fire",
+      "role": "skill impact",
+      "intensity": "medium",
+      "presetRole": "secondaryBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "n_flame_wave",
+        "r_scarlet_circle",
+        "ar_explosive_retreat",
+        "ar_incendiary_grenade",
+        "ar_artillery_barrage",
+        "item_bomb",
+        "item_grenade_incendiaire"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1992932 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "orange_skill_fire_spark_cluster_medium",
+      "folder": "skills",
+      "sourceFile": "orange_magic_sparkcluster_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_fire_spark_cluster_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "orange",
+      "lotType": "skill",
+      "vfxFamily": "fire",
+      "role": "skill impact",
+      "intensity": "medium",
+      "presetRole": "secondaryBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "ar_artillery_barrage"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1348571 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "orange_skill_fire_energy_spiral_medium",
+      "folder": "skills",
+      "sourceFile": "orange_red_impact_energy_spiral_burst_medium_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_fire_energy_spiral_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "orange",
+      "lotType": "skill",
+      "vfxFamily": "fire",
+      "role": "skill impact",
+      "intensity": "medium",
+      "presetRole": "secondaryBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "r_perfect_duality",
+        "ro_fault_breaker",
+        "boss_quake",
+        "boss_titan_slam"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1312929 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "orange_skill_solar_halo_burst_ultimate",
+      "folder": "skills",
+      "sourceFile": "orange_ultimate_holy_solar_ring_burst_large_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_solar_halo_burst_ultimate_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "orange",
+      "lotType": "skill",
+      "vfxFamily": "solar",
+      "role": "signature",
+      "intensity": "ultimate",
+      "presetRole": "bossSignature",
+      "recommendedAnchors": [
+        "target",
+        "arena"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "w_lion_surge"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1980142 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "orange_skill_meteor_impact_burst_heavy",
+      "folder": "skills",
+      "sourceFile": "orange_ultimate_meteor_impact_heavy_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_meteor_impact_burst_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "orange",
+      "lotType": "skill",
+      "vfxFamily": "meteor",
+      "role": "signature",
+      "intensity": "heavy",
+      "presetRole": "bossSignature",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "n_dark_meteor",
+        "boss_inferno"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 2239710 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "cyan_skill_wind_slash_swirl_medium",
+      "folder": "skills",
+      "sourceFile": "palecyan_basic_slashswirl_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "cyan_skill_wind_slash_swirl_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "cyan",
+      "lotType": "skill",
+      "vfxFamily": "wind",
+      "role": "skill impact",
+      "intensity": "medium",
+      "presetRole": "secondaryBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1237661 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "purple_skill_arcane_vortex_nova_heavy",
+      "folder": "skills",
+      "sourceFile": "pink_advanced_vortex_nova_heavy_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_arcane_vortex_nova_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "purple",
+      "lotType": "skill",
+      "vfxFamily": "arcane",
+      "role": "skill impact",
+      "intensity": "heavy",
+      "presetRole": "unknown",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": true,
+      "notes": "Source inspection: 1280x1280, RGBA, 2533095 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "purple_skill_void_rune_orb_medium",
+      "folder": "skills",
+      "sourceFile": "purple_advanced_void_rune_orb_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_void_rune_orb_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "purple",
+      "lotType": "skill",
+      "vfxFamily": "void",
+      "role": "elemental or status",
+      "intensity": "medium",
+      "presetRole": "statusBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "enemy_hex"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1296292 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "purple_skill_void_spiral_implosion_medium",
+      "folder": "skills",
+      "sourceFile": "purple_advanced_void_spiral_implosion_mid_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_void_spiral_implosion_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "purple",
+      "lotType": "skill",
+      "vfxFamily": "void",
+      "role": "elemental or status",
+      "intensity": "medium",
+      "presetRole": "statusBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "ni_silent_assassin"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 2034861 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "purple_skill_arcane_impact_burst_medium",
+      "folder": "skills",
+      "sourceFile": "purple_magic_arcaneburst_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_arcane_impact_burst_medium_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "purple",
+      "lotType": "skill",
+      "vfxFamily": "arcane",
+      "role": "skill impact",
+      "intensity": "medium",
+      "presetRole": "secondaryBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1349106 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "purple_skill_shadow_maw_bite_heavy",
+      "folder": "skills",
+      "sourceFile": "purple_monster_shadow_maw_bite_large_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_shadow_maw_bite_heavy_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "purple",
+      "lotType": "skill",
+      "vfxFamily": "shadow",
+      "role": "elemental or status",
+      "intensity": "heavy",
+      "presetRole": "statusBurst",
+      "recommendedAnchors": [
+        "target"
+      ],
+      "recommendedBlend": "normal",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 2030492 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "purple_skill_void_arcane_portal_ultimate",
+      "folder": "skills",
+      "sourceFile": "purple_ultimate_void_arcane_portal_burst_large_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_void_arcane_portal_ultimate_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "purple",
+      "lotType": "skill",
+      "vfxFamily": "void",
+      "role": "elemental or status",
+      "intensity": "ultimate",
+      "presetRole": "bossSignature",
+      "recommendedAnchors": [
+        "target",
+        "arena"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "d_void_step",
+        "d_devouring_eclipse",
+        "n_teleport",
+        "r_rune_step",
+        "e_transpose",
+        "boss_apocalypse"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 1651939 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    },
+    {
+      "spriteSheetId": "purpleblack_skill_void_singularity_implosion_ultimate",
+      "folder": "skills",
+      "sourceFile": "purpleblue_ultimate_void_cosmic_vortex_implosion_large_5x5_25f_1280.png",
+      "proposedFile": "purpleblack_skill_void_singularity_implosion_ultimate_5x5_25f_1280.png",
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "nameStatus": "INVALID_NAME",
+      "technicalStatus": "PASS",
+      "colorFamily": "purpleblack",
+      "lotType": "skill",
+      "vfxFamily": "void",
+      "role": "elemental or status",
+      "intensity": "ultimate",
+      "presetRole": "bossSignature",
+      "recommendedAnchors": [
+        "target",
+        "arena"
+      ],
+      "recommendedBlend": "additive",
+      "recommendedUse": "One visual layer in a skill preset; combine only when action readability benefits.",
+      "linkedActionNeeds": [
+        "d_devouring_eclipse",
+        "n_dark_meteor",
+        "boss_apocalypse"
+      ],
+      "comboPotential": [
+        "white_basic_arrow_comet_burst_heavy",
+        "white_basic_smash_shockwave_burst_heavy",
+        "white_basic_smash_crescent_impact_heavy",
+        "white_basic_slash_crescent_impact_heavy"
+      ],
+      "manualReviewRequired": false,
+      "notes": "Source inspection: 1280x1280, RGBA, 2633324 bytes, transparent alpha, 25 active 5x5 cells. No file mutation performed."
+    }
+  ]
+}

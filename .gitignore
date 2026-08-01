@@ -13,3 +13,6 @@ coverage/
 public/assets/vfx/raw/
 public/assets/vfx/validation/
 public/assets/vfx/archive/
+
+# Local IDE config
+.devin/

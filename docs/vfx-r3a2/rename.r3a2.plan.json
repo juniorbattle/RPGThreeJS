@@ -1,0 +1,1951 @@
+{
+  "version": 1,
+  "source": "vfx-r3a2-sol-action-aware-naming",
+  "applyMode": "manual_approval_required",
+  "summary": {
+    "basicsFiles": 20,
+    "skillsFiles": 43,
+    "validNames": 0,
+    "warnNames": 6,
+    "invalidNames": 57,
+    "renameRecommended": 63,
+    "collisions": 0
+  },
+  "entries": [
+    {
+      "folder": "basics",
+      "currentFile": "white_advanced_arc_comet_burst_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_advanced_arc_comet_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_arrow_comet_burst_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_arrow_comet_burst_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "manual_review",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [
+        "basic_attack_shuriken"
+      ],
+      "parsed": {
+        "color": "white",
+        "lotType": "advanced",
+        "vfxFamily": "arc",
+        "actionOrEffect": "comet_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "arrow",
+        "actionOrEffect": "comet_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_advanced_beam_holy_ring_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_advanced_beam_holy_ring_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_holy_ring_beam_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_magic_holy_ring_beam_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "manual_review",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "white",
+        "lotType": "advanced",
+        "vfxFamily": "beam",
+        "actionOrEffect": "holy_ring",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "magic",
+        "actionOrEffect": "holy_ring_beam",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_advanced_beam_shockwave_burst_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_advanced_beam_shockwave_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_smash_shockwave_burst_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_smash_shockwave_burst_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [
+        "p_interpose",
+        "l_griffon_jump",
+        "a_hawk_leap",
+        "ro_tumble",
+        "boss_slam",
+        "boss_quake",
+        "boss_titan_slam"
+      ],
+      "parsed": {
+        "color": "white",
+        "lotType": "advanced",
+        "vfxFamily": "beam",
+        "actionOrEffect": "shockwave_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "smash",
+        "actionOrEffect": "shockwave_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_advanced_comet_burst_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_advanced_comet_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_smash_comet_burst_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_smash_comet_burst_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "manual_review",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "white",
+        "lotType": "advanced",
+        "vfxFamily": "comet",
+        "actionOrEffect": "burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "smash",
+        "actionOrEffect": "comet_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_advanced_crescent_impact_burst_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_advanced_crescent_impact_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_smash_crescent_impact_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_smash_crescent_impact_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "manual_review",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [
+        "ro_fault_breaker"
+      ],
+      "parsed": {
+        "color": "white",
+        "lotType": "advanced",
+        "vfxFamily": "crescent",
+        "actionOrEffect": "impact_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "smash",
+        "actionOrEffect": "crescent_impact",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_advanced_crescent_implosion_burst_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_advanced_crescent_implosion_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_crescent_implosion_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_magic_crescent_implosion_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "manual_review",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "white",
+        "lotType": "advanced",
+        "vfxFamily": "crescent",
+        "actionOrEffect": "implosion_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "magic",
+        "actionOrEffect": "crescent_implosion",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_advanced_crescent_slash_burst_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_advanced_crescent_slash_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_slash_crescent_impact_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_slash_crescent_impact_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [
+        "basic_attack_scythe"
+      ],
+      "parsed": {
+        "color": "white",
+        "lotType": "advanced",
+        "vfxFamily": "crescent",
+        "actionOrEffect": "slash_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "slash",
+        "actionOrEffect": "crescent_impact",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_advanced_crescent_slash_burst_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_advanced_crescent_slash_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "white_basic_slash_crescent_impact_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_slash_crescent_impact_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "white",
+        "lotType": "advanced",
+        "vfxFamily": "crescent",
+        "actionOrEffect": "slash_burst",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "slash",
+        "actionOrEffect": "crescent_impact",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_advanced_holy_cross_burst_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_advanced_holy_cross_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_holy_cross_burst_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_magic_holy_cross_burst_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "manual_review",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "white",
+        "lotType": "advanced",
+        "vfxFamily": "holy",
+        "actionOrEffect": "cross_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "magic",
+        "actionOrEffect": "holy_cross_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_advanced_holy_ring_burst_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_advanced_holy_ring_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_holy_ring_burst_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_magic_holy_ring_burst_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "manual_review",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [
+        "basic_attack_grimoire"
+      ],
+      "parsed": {
+        "color": "white",
+        "lotType": "advanced",
+        "vfxFamily": "holy",
+        "actionOrEffect": "ring_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "magic",
+        "actionOrEffect": "holy_ring_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_advanced_holy_sigil_burst_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_advanced_holy_sigil_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_holy_sigil_burst_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_magic_holy_sigil_burst_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "manual_review",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "white",
+        "lotType": "advanced",
+        "vfxFamily": "holy",
+        "actionOrEffect": "sigil_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "magic",
+        "actionOrEffect": "holy_sigil_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_advanced_holy_sigil_burst_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_advanced_holy_sigil_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "white_basic_magic_holy_sigil_burst_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_magic_holy_sigil_burst_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "manual_review",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [
+        "basic_attack_crosier",
+        "basic_attack_wand"
+      ],
+      "parsed": {
+        "color": "white",
+        "lotType": "advanced",
+        "vfxFamily": "holy",
+        "actionOrEffect": "sigil_burst",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "magic",
+        "actionOrEffect": "holy_sigil_burst",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_advanced_projectile_nova_impact_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_advanced_projectile_nova_impact_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_arrow_nova_impact_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_arrow_nova_impact_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [
+        "basic_attack_hand_cannon",
+        "a_arrow_rain",
+        "a_zenith_arrow",
+        "ar_artillery_barrage"
+      ],
+      "parsed": {
+        "color": "white",
+        "lotType": "advanced",
+        "vfxFamily": "projectile",
+        "actionOrEffect": "nova_impact",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "arrow",
+        "actionOrEffect": "nova_impact",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_advanced_slash_triple_burst_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_advanced_slash_triple_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_slash_triple_impact_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_slash_triple_impact_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Legacy basic filename uses an unsupported lotType or ambiguous family.",
+      "linkedActionNeeds": [
+        "basic_attack_greatsword",
+        "w_lion_surge",
+        "boss_execution"
+      ],
+      "parsed": {
+        "color": "white",
+        "lotType": "advanced",
+        "vfxFamily": "slash",
+        "actionOrEffect": "triple_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "slash",
+        "actionOrEffect": "triple_impact",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_basic_comet_impact_burst_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_basic_comet_impact_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "white_basic_smash_comet_impact_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_smash_comet_impact_medium_5x5_25f_1280.png",
+      "currentParseStatus": "WARN_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Folder/type is close to the convention, but intensity or semantic family needs normalization.",
+      "linkedActionNeeds": [
+        "basic_attack_holy_mace",
+        "w_charge",
+        "enemy_heavy_strike",
+        "enemy_crush",
+        "generic_hit"
+      ],
+      "parsed": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "comet",
+        "actionOrEffect": "impact_burst",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "smash",
+        "actionOrEffect": "comet_impact",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_basic_impact_cross_burst_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_basic_impact_cross_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_slash_cross_impact_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_slash_cross_impact_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "WARN_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Folder/type is close to the convention, but intensity or semantic family needs normalization.",
+      "linkedActionNeeds": [
+        "basic_attack_rapier",
+        "p_holy_strike"
+      ],
+      "parsed": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "impact",
+        "actionOrEffect": "cross_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "slash",
+        "actionOrEffect": "cross_impact",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_basic_impact_horizontal_flash_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_basic_impact_horizontal_flash_mid_5x5_25f_1280.png",
+      "proposedFile": "white_basic_slash_horizontal_flash_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_slash_horizontal_flash_medium_5x5_25f_1280.png",
+      "currentParseStatus": "WARN_NAME",
+      "renameRecommended": true,
+      "renameSafety": "manual_review",
+      "reason": "Folder/type is close to the convention, but intensity or semantic family needs normalization.",
+      "linkedActionNeeds": [
+        "basic_attack_long_spear",
+        "l_long_thrust",
+        "l_haft_recoil",
+        "l_firmament_lance"
+      ],
+      "parsed": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "impact",
+        "actionOrEffect": "horizontal_flash",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "slash",
+        "actionOrEffect": "horizontal_flash",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_basic_impact_star_burst_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_basic_impact_star_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_crit_star_burst_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_crit_star_burst_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "WARN_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Folder/type is close to the convention, but intensity or semantic family needs normalization.",
+      "linkedActionNeeds": [
+        "ni_shadow_step",
+        "item_grenade_aveuglante",
+        "critical_hit"
+      ],
+      "parsed": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "impact",
+        "actionOrEffect": "star_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "crit",
+        "actionOrEffect": "star_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_basic_projectile_arc_burst_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_basic_projectile_arc_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "white_basic_arrow_arc_burst_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_arrow_arc_burst_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "WARN_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Folder/type is close to the convention, but intensity or semantic family needs normalization.",
+      "linkedActionNeeds": [
+        "basic_attack_longbow",
+        "a_precise_shot",
+        "a_arrow_rain",
+        "ar_calibrated_shot",
+        "boss_pin"
+      ],
+      "parsed": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "projectile",
+        "actionOrEffect": "arc_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "arrow",
+        "actionOrEffect": "arc_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "basics",
+      "currentFile": "white_basic_slash_diagonal_cut_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/basics/white_basic_slash_diagonal_cut_mid_5x5_25f_1280.png",
+      "proposedFile": "white_basic_slash_diagonal_cut_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/basics/white_basic_slash_diagonal_cut_medium_5x5_25f_1280.png",
+      "currentParseStatus": "WARN_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Folder/type is close to the convention, but intensity or semantic family needs normalization.",
+      "linkedActionNeeds": [
+        "basic_attack_dagger",
+        "w_break_guard",
+        "w_whirl",
+        "d_cursed_blade",
+        "r_arcane_blade",
+        "ni_venom_blade",
+        "ni_silent_assassin",
+        "ro_sneak_attack",
+        "boss_flurry"
+      ],
+      "parsed": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "slash",
+        "actionOrEffect": "diagonal_cut",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "white",
+        "lotType": "basic",
+        "vfxFamily": "slash",
+        "actionOrEffect": "diagonal_cut",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "blue_basic_starburst_impact_small_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/blue_basic_starburst_impact_small_5x5_25f_1280.png",
+      "proposedFile": "blue_skill_arcane_starburst_small_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/blue_skill_arcane_starburst_small_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "kill_spark"
+      ],
+      "parsed": {
+        "color": "blue",
+        "lotType": "basic",
+        "vfxFamily": "starburst",
+        "actionOrEffect": "impact",
+        "intensity": "small",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "blue",
+        "lotType": "skill",
+        "vfxFamily": "arcane",
+        "actionOrEffect": "starburst",
+        "intensity": "small",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "blue_magic_arcanesigil_burst_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/blue_magic_arcanesigil_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "blue_skill_arcane_sigil_burst_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/blue_skill_arcane_sigil_burst_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "e_vigor_rune",
+        "item_ether"
+      ],
+      "parsed": {
+        "color": "blue",
+        "lotType": "magic",
+        "vfxFamily": "arcanesigil",
+        "actionOrEffect": "burst",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "blue",
+        "lotType": "skill",
+        "vfxFamily": "arcane",
+        "actionOrEffect": "sigil_burst",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "blue_magic_lightningburst_impact_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/blue_magic_lightningburst_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "blue_skill_lightning_burst_impact_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/blue_skill_lightning_burst_impact_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "n_dark_bolt",
+        "enemy_dark_bolt"
+      ],
+      "parsed": {
+        "color": "blue",
+        "lotType": "magic",
+        "vfxFamily": "lightningburst",
+        "actionOrEffect": "impact",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "blue",
+        "lotType": "skill",
+        "vfxFamily": "lightning",
+        "actionOrEffect": "burst_impact",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "blue_magic_lightningpillar_impact_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/blue_magic_lightningpillar_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "blue_skill_lightning_pillar_impact_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/blue_skill_lightning_pillar_impact_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "n_dark_bolt",
+        "enemy_dark_bolt"
+      ],
+      "parsed": {
+        "color": "blue",
+        "lotType": "magic",
+        "vfxFamily": "lightningpillar",
+        "actionOrEffect": "impact",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "blue",
+        "lotType": "skill",
+        "vfxFamily": "lightning",
+        "actionOrEffect": "pillar_impact",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "blue_support_barrier_guard_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/blue_support_barrier_guard_heavy_5x5_25f_1280.png",
+      "proposedFile": "blue_skill_barrier_guard_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/blue_skill_barrier_guard_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "p_oathwall",
+        "boss_guard"
+      ],
+      "parsed": {
+        "color": "blue",
+        "lotType": "support",
+        "vfxFamily": "barrier",
+        "actionOrEffect": "guard",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "blue",
+        "lotType": "skill",
+        "vfxFamily": "barrier",
+        "actionOrEffect": "guard",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "bluegold_ultimate_arcanebeam_large_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/bluegold_ultimate_arcanebeam_large_5x5_25f_1280.png",
+      "proposedFile": "bluegold_skill_ultimate_arcane_beam_ultimate_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/bluegold_skill_ultimate_arcane_beam_ultimate_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "p_radiant_judgement",
+        "l_firmament_lance",
+        "a_zenith_arrow"
+      ],
+      "parsed": {
+        "color": "bluegold",
+        "lotType": "ultimate",
+        "vfxFamily": "arcanebeam",
+        "actionOrEffect": "unknown",
+        "intensity": "large",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "bluegold",
+        "lotType": "skill",
+        "vfxFamily": "ultimate",
+        "actionOrEffect": "arcane_beam",
+        "intensity": "ultimate",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "bluegold_ultimate_arcaneinvocation_large_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/bluegold_ultimate_arcaneinvocation_large_5x5_25f_1280.png",
+      "proposedFile": "bluegold_skill_ultimate_arcane_invocation_ultimate_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/bluegold_skill_ultimate_arcane_invocation_ultimate_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "w_miracle",
+        "e_absolute_harmony",
+        "item_revive_vial"
+      ],
+      "parsed": {
+        "color": "bluegold",
+        "lotType": "ultimate",
+        "vfxFamily": "arcaneinvocation",
+        "actionOrEffect": "unknown",
+        "intensity": "large",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "bluegold",
+        "lotType": "skill",
+        "vfxFamily": "ultimate",
+        "actionOrEffect": "arcane_invocation",
+        "intensity": "ultimate",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "cyan_magic_arcaneorbit_burst_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/cyan_magic_arcaneorbit_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "cyan_skill_arcane_orbit_burst_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/cyan_skill_arcane_orbit_burst_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "cyan",
+        "lotType": "magic",
+        "vfxFamily": "arcaneorbit",
+        "actionOrEffect": "burst",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "cyan",
+        "lotType": "skill",
+        "vfxFamily": "arcane",
+        "actionOrEffect": "orbit_burst",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "gold_advanced_holy_burst_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/gold_advanced_holy_burst_heavy_5x5_25f_1280.png",
+      "proposedFile": "gold_skill_holy_radiance_burst_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/gold_skill_holy_radiance_burst_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "p_holy_strike",
+        "p_radiant_judgement",
+        "w_purify",
+        "w_sanctuary",
+        "item_antidote"
+      ],
+      "parsed": {
+        "color": "gold",
+        "lotType": "advanced",
+        "vfxFamily": "holy",
+        "actionOrEffect": "burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "gold",
+        "lotType": "skill",
+        "vfxFamily": "holy",
+        "actionOrEffect": "radiance_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "gold_advanced_vortex_nova_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/gold_advanced_vortex_nova_heavy_5x5_25f_1280.png",
+      "proposedFile": "gold_skill_holy_vortex_nova_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/gold_skill_holy_vortex_nova_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "r_perfect_duality",
+        "boss_roar",
+        "enemy_taunt",
+        "enemy_battle_cry"
+      ],
+      "parsed": {
+        "color": "gold",
+        "lotType": "advanced",
+        "vfxFamily": "vortex",
+        "actionOrEffect": "nova",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "gold",
+        "lotType": "skill",
+        "vfxFamily": "holy",
+        "actionOrEffect": "vortex_nova",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "gold_magic_arcanering_fade_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/gold_magic_arcanering_fade_mid_5x5_25f_1280.png",
+      "proposedFile": "gold_skill_arcane_ring_fade_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/gold_skill_arcane_ring_fade_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "gold",
+        "lotType": "magic",
+        "vfxFamily": "arcanering",
+        "actionOrEffect": "fade",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "gold",
+        "lotType": "skill",
+        "vfxFamily": "arcane",
+        "actionOrEffect": "ring_fade",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "gold_magic_holysigil_burst_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/gold_magic_holysigil_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "gold_skill_holy_sigil_burst_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/gold_skill_holy_sigil_burst_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "d_blood_pact",
+        "boss_fortify"
+      ],
+      "parsed": {
+        "color": "gold",
+        "lotType": "magic",
+        "vfxFamily": "holysigil",
+        "actionOrEffect": "burst",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "gold",
+        "lotType": "skill",
+        "vfxFamily": "holy",
+        "actionOrEffect": "sigil_burst",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "green_advanced_ice_starburst_impact_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/green_advanced_ice_starburst_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_ice_starburst_impact_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/green_skill_ice_starburst_impact_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "manual_review",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "green",
+        "lotType": "advanced",
+        "vfxFamily": "ice",
+        "actionOrEffect": "starburst_impact",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "green",
+        "lotType": "skill",
+        "vfxFamily": "ice",
+        "actionOrEffect": "starburst_impact",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "green_magic_poisonburst_impact_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/green_magic_poisonburst_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_poison_nova_burst_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/green_skill_poison_nova_burst_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "green",
+        "lotType": "magic",
+        "vfxFamily": "poisonburst",
+        "actionOrEffect": "impact",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "green",
+        "lotType": "skill",
+        "vfxFamily": "poison",
+        "actionOrEffect": "nova_burst",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "green_monster_poison_maw_bite_large_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/green_monster_poison_maw_bite_large_5x5_25f_1280.png",
+      "proposedFile": "green_skill_poison_maw_bite_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/green_skill_poison_maw_bite_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "enemy_venom_strike",
+        "enemy_dragon_breath"
+      ],
+      "parsed": {
+        "color": "green",
+        "lotType": "monster",
+        "vfxFamily": "poison",
+        "actionOrEffect": "maw_bite",
+        "intensity": "large",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "green",
+        "lotType": "skill",
+        "vfxFamily": "poison",
+        "actionOrEffect": "maw_bite",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "green_support_heal_blessing_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/green_support_heal_blessing_heavy_5x5_25f_1280.png",
+      "proposedFile": "whitegreen_skill_heal_blessing_bloom_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/whitegreen_skill_heal_blessing_bloom_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "w_salvation",
+        "w_miracle",
+        "item_potion",
+        "item_revive_vial"
+      ],
+      "parsed": {
+        "color": "green",
+        "lotType": "support",
+        "vfxFamily": "heal",
+        "actionOrEffect": "blessing",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "whitegreen",
+        "lotType": "skill",
+        "vfxFamily": "heal",
+        "actionOrEffect": "blessing_bloom",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "green_support_nature_guard_burst_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/green_support_nature_guard_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_barrier_nature_guard_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/green_skill_barrier_nature_guard_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "green",
+        "lotType": "support",
+        "vfxFamily": "nature",
+        "actionOrEffect": "guard_burst",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "green",
+        "lotType": "skill",
+        "vfxFamily": "barrier",
+        "actionOrEffect": "nature_guard",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "green_support_nature_leaf_burst_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/green_support_nature_leaf_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_support_leaf_burst_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/green_skill_support_leaf_burst_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "boss_regen"
+      ],
+      "parsed": {
+        "color": "green",
+        "lotType": "support",
+        "vfxFamily": "nature",
+        "actionOrEffect": "leaf_burst",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "green",
+        "lotType": "skill",
+        "vfxFamily": "support",
+        "actionOrEffect": "leaf_burst",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "green_support_nature_orb_barrier_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/green_support_nature_orb_barrier_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_barrier_orb_burst_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/green_skill_barrier_orb_burst_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "green",
+        "lotType": "support",
+        "vfxFamily": "nature",
+        "actionOrEffect": "orb_barrier",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "green",
+        "lotType": "skill",
+        "vfxFamily": "barrier",
+        "actionOrEffect": "orb_burst",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "green_support_nature_rune_guard_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/green_support_nature_rune_guard_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_barrier_rune_guard_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/green_skill_barrier_rune_guard_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "e_binding_seal",
+        "ro_jaw_trap",
+        "enemy_binding_shot",
+        "item_grenade_entravante"
+      ],
+      "parsed": {
+        "color": "green",
+        "lotType": "support",
+        "vfxFamily": "nature",
+        "actionOrEffect": "rune_guard",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "green",
+        "lotType": "skill",
+        "vfxFamily": "barrier",
+        "actionOrEffect": "rune_guard",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "green_support_nature_shield_barrier_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/green_support_nature_shield_barrier_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_barrier_shield_burst_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/green_skill_barrier_shield_burst_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "green",
+        "lotType": "support",
+        "vfxFamily": "nature",
+        "actionOrEffect": "shield_barrier",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "green",
+        "lotType": "skill",
+        "vfxFamily": "barrier",
+        "actionOrEffect": "shield_burst",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "green_support_nature_shield_ring_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/green_support_nature_shield_ring_mid_5x5_25f_1280.png",
+      "proposedFile": "green_skill_barrier_shield_ring_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/green_skill_barrier_shield_ring_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "e_absolute_harmony"
+      ],
+      "parsed": {
+        "color": "green",
+        "lotType": "support",
+        "vfxFamily": "nature",
+        "actionOrEffect": "shield_ring",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "green",
+        "lotType": "skill",
+        "vfxFamily": "barrier",
+        "actionOrEffect": "shield_ring",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "iceblue_magic_icepillar_impact_large_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/iceblue_magic_icepillar_impact_large_5x5_25f_1280.png",
+      "proposedFile": "iceblue_skill_ice_pillar_impact_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/iceblue_skill_ice_pillar_impact_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "boss_freeze"
+      ],
+      "parsed": {
+        "color": "iceblue",
+        "lotType": "magic",
+        "vfxFamily": "icepillar",
+        "actionOrEffect": "impact",
+        "intensity": "large",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "iceblue",
+        "lotType": "skill",
+        "vfxFamily": "ice",
+        "actionOrEffect": "pillar_impact",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "iceblue_magic_iceshard_impact_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/iceblue_magic_iceshard_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "iceblue_skill_ice_shatter_burst_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/iceblue_skill_ice_shatter_burst_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "iceblue",
+        "lotType": "magic",
+        "vfxFamily": "iceshard",
+        "actionOrEffect": "impact",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "iceblue",
+        "lotType": "skill",
+        "vfxFamily": "ice",
+        "actionOrEffect": "shatter_burst",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "iceblue_magic_icesigil_burst_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/iceblue_magic_icesigil_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "iceblue_skill_ice_sigil_burst_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/iceblue_skill_ice_sigil_burst_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "boss_freeze"
+      ],
+      "parsed": {
+        "color": "iceblue",
+        "lotType": "magic",
+        "vfxFamily": "icesigil",
+        "actionOrEffect": "burst",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "iceblue",
+        "lotType": "skill",
+        "vfxFamily": "ice",
+        "actionOrEffect": "sigil_burst",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "iceblue_magic_lightpillar_impact_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/iceblue_magic_lightpillar_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "iceblue_skill_holy_light_pillar_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/iceblue_skill_holy_light_pillar_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "manual_review",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "iceblue",
+        "lotType": "magic",
+        "vfxFamily": "lightpillar",
+        "actionOrEffect": "impact",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "iceblue",
+        "lotType": "skill",
+        "vfxFamily": "holy",
+        "actionOrEffect": "light_pillar",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "magenta_basic_slashburst_impact_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/magenta_basic_slashburst_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_arcane_slash_burst_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/purple_skill_arcane_slash_burst_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "manual_review",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "ni_silent_assassin",
+        "boss_execution"
+      ],
+      "parsed": {
+        "color": "magenta",
+        "lotType": "basic",
+        "vfxFamily": "slashburst",
+        "actionOrEffect": "impact",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "purple",
+        "lotType": "skill",
+        "vfxFamily": "arcane",
+        "actionOrEffect": "slash_burst",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "orange_advanced_slash_combo_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/orange_advanced_slash_combo_heavy_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_fire_slash_combo_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/orange_skill_fire_slash_combo_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "boss_flurry"
+      ],
+      "parsed": {
+        "color": "orange",
+        "lotType": "advanced",
+        "vfxFamily": "slash",
+        "actionOrEffect": "combo",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "orange",
+        "lotType": "skill",
+        "vfxFamily": "fire",
+        "actionOrEffect": "slash_combo",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "orange_advanced_smoke_explosion_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/orange_advanced_smoke_explosion_heavy_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_fire_smoke_explosion_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/orange_skill_fire_smoke_explosion_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "manual_review",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "ni_smoke_bomb",
+        "enemy_smoke_veil"
+      ],
+      "parsed": {
+        "color": "orange",
+        "lotType": "advanced",
+        "vfxFamily": "smoke",
+        "actionOrEffect": "explosion",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "orange",
+        "lotType": "skill",
+        "vfxFamily": "fire",
+        "actionOrEffect": "smoke_explosion",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "orange_advanced_vortex_nova_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/orange_advanced_vortex_nova_heavy_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_fire_vortex_nova_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/orange_skill_fire_vortex_nova_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "n_flame_wave",
+        "r_scarlet_circle",
+        "ar_explosive_retreat",
+        "ar_incendiary_grenade",
+        "boss_apocalypse",
+        "boss_inferno",
+        "enemy_dragon_breath",
+        "item_grenade_incendiaire"
+      ],
+      "parsed": {
+        "color": "orange",
+        "lotType": "advanced",
+        "vfxFamily": "vortex",
+        "actionOrEffect": "nova",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "orange",
+        "lotType": "skill",
+        "vfxFamily": "fire",
+        "actionOrEffect": "vortex_nova",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "orange_magic_fireimpact_burst_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/orange_magic_fireimpact_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_fire_impact_burst_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/orange_skill_fire_impact_burst_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "n_flame_wave",
+        "r_scarlet_circle",
+        "ar_explosive_retreat",
+        "ar_incendiary_grenade",
+        "ar_artillery_barrage",
+        "item_bomb",
+        "item_grenade_incendiaire"
+      ],
+      "parsed": {
+        "color": "orange",
+        "lotType": "magic",
+        "vfxFamily": "fireimpact",
+        "actionOrEffect": "burst",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "orange",
+        "lotType": "skill",
+        "vfxFamily": "fire",
+        "actionOrEffect": "impact_burst",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "orange_magic_sparkcluster_burst_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/orange_magic_sparkcluster_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_fire_spark_cluster_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/orange_skill_fire_spark_cluster_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "ar_artillery_barrage"
+      ],
+      "parsed": {
+        "color": "orange",
+        "lotType": "magic",
+        "vfxFamily": "sparkcluster",
+        "actionOrEffect": "burst",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "orange",
+        "lotType": "skill",
+        "vfxFamily": "fire",
+        "actionOrEffect": "spark_cluster",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "orange_red_impact_energy_spiral_burst_medium_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/orange_red_impact_energy_spiral_burst_medium_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_fire_energy_spiral_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/orange_skill_fire_energy_spiral_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "r_perfect_duality",
+        "ro_fault_breaker",
+        "boss_quake",
+        "boss_titan_slam"
+      ],
+      "parsed": {
+        "color": "orange",
+        "lotType": "red",
+        "vfxFamily": "impact",
+        "actionOrEffect": "energy_spiral_burst",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "orange",
+        "lotType": "skill",
+        "vfxFamily": "fire",
+        "actionOrEffect": "energy_spiral",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "orange_ultimate_holy_solar_ring_burst_large_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/orange_ultimate_holy_solar_ring_burst_large_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_solar_halo_burst_ultimate_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/orange_skill_solar_halo_burst_ultimate_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "w_lion_surge"
+      ],
+      "parsed": {
+        "color": "orange",
+        "lotType": "ultimate",
+        "vfxFamily": "holy",
+        "actionOrEffect": "solar_ring_burst",
+        "intensity": "large",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "orange",
+        "lotType": "skill",
+        "vfxFamily": "solar",
+        "actionOrEffect": "halo_burst",
+        "intensity": "ultimate",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "orange_ultimate_meteor_impact_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/orange_ultimate_meteor_impact_heavy_5x5_25f_1280.png",
+      "proposedFile": "orange_skill_meteor_impact_burst_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/orange_skill_meteor_impact_burst_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "n_dark_meteor",
+        "boss_inferno"
+      ],
+      "parsed": {
+        "color": "orange",
+        "lotType": "ultimate",
+        "vfxFamily": "meteor",
+        "actionOrEffect": "impact",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "orange",
+        "lotType": "skill",
+        "vfxFamily": "meteor",
+        "actionOrEffect": "impact_burst",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "palecyan_basic_slashswirl_impact_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/palecyan_basic_slashswirl_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "cyan_skill_wind_slash_swirl_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/cyan_skill_wind_slash_swirl_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "palecyan",
+        "lotType": "basic",
+        "vfxFamily": "slashswirl",
+        "actionOrEffect": "impact",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "cyan",
+        "lotType": "skill",
+        "vfxFamily": "wind",
+        "actionOrEffect": "slash_swirl",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "pink_advanced_vortex_nova_heavy_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/pink_advanced_vortex_nova_heavy_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_arcane_vortex_nova_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/purple_skill_arcane_vortex_nova_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "manual_review",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "pink",
+        "lotType": "advanced",
+        "vfxFamily": "vortex",
+        "actionOrEffect": "nova",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "purple",
+        "lotType": "skill",
+        "vfxFamily": "arcane",
+        "actionOrEffect": "vortex_nova",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "purple_advanced_void_rune_orb_burst_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/purple_advanced_void_rune_orb_burst_mid_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_void_rune_orb_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/purple_skill_void_rune_orb_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "enemy_hex"
+      ],
+      "parsed": {
+        "color": "purple",
+        "lotType": "advanced",
+        "vfxFamily": "void",
+        "actionOrEffect": "rune_orb_burst",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "purple",
+        "lotType": "skill",
+        "vfxFamily": "void",
+        "actionOrEffect": "rune_orb",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "purple_advanced_void_spiral_implosion_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/purple_advanced_void_spiral_implosion_mid_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_void_spiral_implosion_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/purple_skill_void_spiral_implosion_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "ni_silent_assassin"
+      ],
+      "parsed": {
+        "color": "purple",
+        "lotType": "advanced",
+        "vfxFamily": "void",
+        "actionOrEffect": "spiral_implosion",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "purple",
+        "lotType": "skill",
+        "vfxFamily": "void",
+        "actionOrEffect": "spiral_implosion",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "purple_magic_arcaneburst_impact_mid_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/purple_magic_arcaneburst_impact_mid_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_arcane_impact_burst_medium_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/purple_skill_arcane_impact_burst_medium_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "purple",
+        "lotType": "magic",
+        "vfxFamily": "arcaneburst",
+        "actionOrEffect": "impact",
+        "intensity": "mid",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "purple",
+        "lotType": "skill",
+        "vfxFamily": "arcane",
+        "actionOrEffect": "impact_burst",
+        "intensity": "medium",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "purple_monster_shadow_maw_bite_large_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/purple_monster_shadow_maw_bite_large_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_shadow_maw_bite_heavy_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/purple_skill_shadow_maw_bite_heavy_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [],
+      "parsed": {
+        "color": "purple",
+        "lotType": "monster",
+        "vfxFamily": "shadow",
+        "actionOrEffect": "maw_bite",
+        "intensity": "large",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "purple",
+        "lotType": "skill",
+        "vfxFamily": "shadow",
+        "actionOrEffect": "maw_bite",
+        "intensity": "heavy",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "purple_ultimate_void_arcane_portal_burst_large_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/purple_ultimate_void_arcane_portal_burst_large_5x5_25f_1280.png",
+      "proposedFile": "purple_skill_void_arcane_portal_ultimate_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/purple_skill_void_arcane_portal_ultimate_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "d_void_step",
+        "d_devouring_eclipse",
+        "n_teleport",
+        "r_rune_step",
+        "e_transpose",
+        "boss_apocalypse"
+      ],
+      "parsed": {
+        "color": "purple",
+        "lotType": "ultimate",
+        "vfxFamily": "void",
+        "actionOrEffect": "arcane_portal_burst",
+        "intensity": "large",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "purple",
+        "lotType": "skill",
+        "vfxFamily": "void",
+        "actionOrEffect": "arcane_portal",
+        "intensity": "ultimate",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    },
+    {
+      "folder": "skills",
+      "currentFile": "purpleblue_ultimate_void_cosmic_vortex_implosion_large_5x5_25f_1280.png",
+      "currentPath": "public/assets/vfx/raw/skills/purpleblue_ultimate_void_cosmic_vortex_implosion_large_5x5_25f_1280.png",
+      "proposedFile": "purpleblack_skill_void_singularity_implosion_ultimate_5x5_25f_1280.png",
+      "proposedPath": "public/assets/vfx/raw/skills/purpleblack_skill_void_singularity_implosion_ultimate_5x5_25f_1280.png",
+      "currentParseStatus": "INVALID_NAME",
+      "renameRecommended": true,
+      "renameSafety": "safe",
+      "reason": "Skill filename does not declare the required skill lotType in the second token.",
+      "linkedActionNeeds": [
+        "d_devouring_eclipse",
+        "n_dark_meteor",
+        "boss_apocalypse"
+      ],
+      "parsed": {
+        "color": "purpleblue",
+        "lotType": "ultimate",
+        "vfxFamily": "void",
+        "actionOrEffect": "cosmic_vortex_implosion",
+        "intensity": "large",
+        "technicalSuffix": "5x5_25f_1280"
+      },
+      "normalized": {
+        "color": "purpleblack",
+        "lotType": "skill",
+        "vfxFamily": "void",
+        "actionOrEffect": "singularity_implosion",
+        "intensity": "ultimate",
+        "technicalSuffix": "5x5_25f_1280"
+      }
+    }
+  ]
+}
