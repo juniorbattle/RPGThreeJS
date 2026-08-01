@@ -28,35 +28,6 @@ export interface VfxSpriteSheetDefinition {
 }
 
 export const VFX_SPRITE_SHEETS = {
-  slash_arc: { id: 'slash_arc', url: '/assets/vfx/runtime/slash_arc.png', rows: 5, cols: 6, frameCount: 30, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.16, opacityMultiplier: 1, fadeIn: 0.06, fadeOut: 0.82, layer: 'impact', blending: 'additive' } },
-  small_impact: { id: 'small_impact', url: '/assets/vfx/runtime/small_impact.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.34, opacityMultiplier: 1, fadeIn: 0.04, fadeOut: 0.67, layer: 'impact', blending: 'additive' } },
-  thrust_line: { id: 'thrust_line', url: '/assets/vfx/runtime/thrust_line.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.2, opacityMultiplier: 1, fadeIn: 0.04, fadeOut: 0.82, layer: 'impact', blending: 'additive' } },
-  projectile_shot: { id: 'projectile_shot', url: '/assets/vfx/runtime/projectile_shot.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.16, opacityMultiplier: 1, fadeIn: 0.04, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
-  magic_bolt: { id: 'magic_bolt', url: '/assets/vfx/runtime/magic_bolt.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.26, opacityMultiplier: 1, fadeIn: 0.04, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
-  fire_explosion: { id: 'fire_explosion', url: '/assets/vfx/runtime/fire_explosion.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.34, opacityMultiplier: 1, fadeIn: 0.03, fadeOut: 0.72, layer: 'impact', blending: 'additive' } },
-  heal_touch: { id: 'heal_touch', url: '/assets/vfx/runtime/heal_touch.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.26, opacityMultiplier: 0.96, fadeIn: 0.07, fadeOut: 0.82, layer: 'impact', blending: 'additive' } },
-  buff_pulse: { id: 'buff_pulse', url: '/assets/vfx/runtime/buff_pulse.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.3, opacityMultiplier: 0.95, fadeIn: 0.05, fadeOut: 0.83, layer: 'impact', blending: 'additive' } },
-  barrier_shell: { id: 'barrier_shell', url: '/assets/vfx/runtime/barrier_shell.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.22, opacityMultiplier: 0.96, fadeIn: 0.06, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
-  teleport_burst: { id: 'teleport_burst', url: '/assets/vfx/runtime/teleport_burst.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.34, opacityMultiplier: 1, fadeIn: 0.03, fadeOut: 0.75, layer: 'impact', blending: 'additive' } },
-  shockwave_ring: { id: 'shockwave_ring', url: '/assets/vfx/runtime/shockwave_ring.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.46, opacityMultiplier: 0.96, fadeIn: 0.04, fadeOut: 0.74, layer: 'ground', blending: 'additive' } },
-  leap_impact: { id: 'leap_impact', url: '/assets/vfx/runtime/leap_impact.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.38, opacityMultiplier: 1, fadeIn: 0.03, fadeOut: 0.74, layer: 'impact', blending: 'additive' } },
-  artillery_barrage: { id: 'artillery_barrage', url: '/assets/vfx/runtime/artillery_barrage.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.32, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
-  dragon_breath: { id: 'dragon_breath', url: '/assets/vfx/runtime/dragon_breath.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.42, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.9, layer: 'impact', blending: 'additive' } },
-  heavy_execution: { id: 'heavy_execution', url: '/assets/vfx/runtime/heavy_execution.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.38, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.82, layer: 'impact', blending: 'additive' } },
-  meteor_fall: { id: 'meteor_fall', url: '/assets/vfx/runtime/meteor_fall.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.46, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
-  titan_slam: { id: 'titan_slam', url: '/assets/vfx/runtime/titan_slam.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.5, opacityMultiplier: 0.98, fadeIn: 0.02, fadeOut: 0.84, layer: 'ground', blending: 'additive' } },
-  curse_mark: { id: 'curse_mark', url: '/assets/vfx/runtime/curse_mark_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.24, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.8, layer: 'impact', blending: 'additive' } },
-  regen_aura: { id: 'regen_aura', url: '/assets/vfx/runtime/regen_aura_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.48, opacityMultiplier: 0.98, fadeIn: 0.04, fadeOut: 0.84, layer: 'ground', blending: 'additive' } },
-  revive_pillar: { id: 'revive_pillar', url: '/assets/vfx/runtime/revive_pillar_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.6, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.9, layer: 'impact', blending: 'additive' } },
-  holy_aura: { id: 'holy_aura', url: '/assets/vfx/runtime/holy_aura_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.52, opacityMultiplier: 0.98, fadeIn: 0.04, fadeOut: 0.86, layer: 'ground', blending: 'additive' } },
-  boost_aura: { id: 'boost_aura', url: '/assets/vfx/runtime/boost_aura_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.4, opacityMultiplier: 0.98, fadeIn: 0.04, fadeOut: 0.84, layer: 'ground', blending: 'additive' } },
-  smoke_burst: { id: 'smoke_burst', url: '/assets/vfx/runtime/smoke_burst_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.44, opacityMultiplier: 0.86, fadeIn: 0.02, fadeOut: 0.7, layer: 'ground', blending: 'normal' } },
-  cone_blast: { id: 'cone_blast', url: '/assets/vfx/runtime/cone_blast_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.68, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.74, layer: 'impact', blending: 'additive' } },
-  explosion_large: { id: 'explosion_large', url: '/assets/vfx/runtime/explosion_large_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.95, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.82, layer: 'impact', blending: 'additive' } },
-  apocalypse_field: { id: 'apocalypse_field', url: '/assets/vfx/runtime/apocalypse_field_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 2.24, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.88, layer: 'ground', blending: 'additive' } },
-  shadow_lightning_bolt: { id: 'shadow_lightning_bolt', url: '/assets/vfx/runtime/shadow_lightning_bolt_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.34, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.78, layer: 'impact', blending: 'additive' } },
-  root_vines: { id: 'root_vines', url: '/assets/vfx/runtime/root_vines_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.52, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.84, layer: 'impact', blending: 'normal' } },
-  frost_bind: { id: 'frost_bind', url: '/assets/vfx/runtime/frost_bind_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.82, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
   basic_arrow_hit_small: { id: 'basic_arrow_hit_small', url: '/assets/vfx/runtime/white_basic_arrow_hit_small_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.14, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.78, layer: 'impact', blending: 'additive' } },
   basic_axe_chop_medium: { id: 'basic_axe_chop_medium', url: '/assets/vfx/runtime/white_basic_axe_chop_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.26, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.8, layer: 'impact', blending: 'additive' } },
   basic_bite_snap_small: { id: 'basic_bite_snap_small', url: '/assets/vfx/runtime/white_basic_bite_snap_small_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.14, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.78, layer: 'impact', blending: 'additive' } },
@@ -79,6 +50,33 @@ export const VFX_SPRITE_SHEETS = {
   basic_sword_slash_small: { id: 'basic_sword_slash_small', url: '/assets/vfx/runtime/white_basic_sword_slash_small_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.14, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.78, layer: 'impact', blending: 'additive' } },
   basic_tail_whip_medium: { id: 'basic_tail_whip_medium', url: '/assets/vfx/runtime/white_basic_tail_whip_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.26, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.8, layer: 'impact', blending: 'additive' } },
   basic_titan_crush_heavy: { id: 'basic_titan_crush_heavy', url: '/assets/vfx/runtime/white_basic_titan_crush_heavy_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.42, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.82, layer: 'impact', blending: 'additive' } },
+  // R3E-2: semantically approved skill sheets. All are target/beneficiary impacts, never travel effects.
+  skill_wind_slash_swirl_medium: { id: 'skill_wind_slash_swirl_medium', url: '/assets/vfx/runtime/cyan_skill_wind_slash_swirl_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.62, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.78, layer: 'impact', blending: 'additive' } },
+  skill_holy_radiance_burst_heavy: { id: 'skill_holy_radiance_burst_heavy', url: '/assets/vfx/runtime/gold_skill_holy_radiance_burst_heavy_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.7, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.84, layer: 'impact', blending: 'additive' } },
+  skill_barrier_guard_heavy: { id: 'skill_barrier_guard_heavy', url: '/assets/vfx/runtime/blue_skill_barrier_guard_heavy_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.48, opacityMultiplier: 0.98, fadeIn: 0.04, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
+  skill_barrier_shield_ring_medium: { id: 'skill_barrier_shield_ring_medium', url: '/assets/vfx/runtime/green_skill_barrier_shield_ring_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.42, opacityMultiplier: 0.96, fadeIn: 0.04, fadeOut: 0.84, layer: 'impact', blending: 'additive' } },
+  skill_void_rune_orb_medium: { id: 'skill_void_rune_orb_medium', url: '/assets/vfx/runtime/purple_skill_void_rune_orb_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.44, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.82, layer: 'impact', blending: 'additive' } },
+  skill_fire_impact_burst_medium: { id: 'skill_fire_impact_burst_medium', url: '/assets/vfx/runtime/orange_skill_fire_impact_burst_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.55, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.76, layer: 'impact', blending: 'additive' } },
+  skill_heal_blessing_bloom_heavy: { id: 'skill_heal_blessing_bloom_heavy', url: '/assets/vfx/runtime/whitegreen_skill_heal_blessing_bloom_heavy_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.58, opacityMultiplier: 1, fadeIn: 0.04, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
+  skill_holy_sigil_burst_medium: { id: 'skill_holy_sigil_burst_medium', url: '/assets/vfx/runtime/gold_skill_holy_sigil_burst_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.5, opacityMultiplier: 1, fadeIn: 0.03, fadeOut: 0.82, layer: 'impact', blending: 'additive' } },
+  skill_support_leaf_burst_medium: { id: 'skill_support_leaf_burst_medium', url: '/assets/vfx/runtime/green_skill_support_leaf_burst_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.46, opacityMultiplier: 0.98, fadeIn: 0.04, fadeOut: 0.84, layer: 'impact', blending: 'additive' } },
+  skill_arcane_vortex_nova_heavy: { id: 'skill_arcane_vortex_nova_heavy', url: '/assets/vfx/runtime/purple_skill_arcane_vortex_nova_heavy_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.72, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
+  skill_arcane_orbit_burst_medium: { id: 'skill_arcane_orbit_burst_medium', url: '/assets/vfx/runtime/cyan_skill_arcane_orbit_burst_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.46, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.82, layer: 'impact', blending: 'additive' } },
+  skill_arcane_sigil_burst_medium: { id: 'skill_arcane_sigil_burst_medium', url: '/assets/vfx/runtime/blue_skill_arcane_sigil_burst_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.44, opacityMultiplier: 1, fadeIn: 0.03, fadeOut: 0.82, layer: 'impact', blending: 'additive' } },
+  skill_fire_smoke_explosion_heavy: { id: 'skill_fire_smoke_explosion_heavy', url: '/assets/vfx/runtime/orange_skill_fire_smoke_explosion_heavy_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.76, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.8, layer: 'impact', blending: 'normal' } },
+  skill_poison_maw_bite_heavy: { id: 'skill_poison_maw_bite_heavy', url: '/assets/vfx/runtime/green_skill_poison_maw_bite_heavy_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.5, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.78, layer: 'impact', blending: 'additive' } },
+  skill_ice_pillar_impact_heavy: { id: 'skill_ice_pillar_impact_heavy', url: '/assets/vfx/runtime/iceblue_skill_ice_pillar_impact_heavy_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.74, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
+  skill_fire_vortex_nova_heavy: { id: 'skill_fire_vortex_nova_heavy', url: '/assets/vfx/runtime/orange_skill_fire_vortex_nova_heavy_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.82, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
+  skill_barrier_nature_guard_medium: { id: 'skill_barrier_nature_guard_medium', url: '/assets/vfx/runtime/green_skill_barrier_nature_guard_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.56, opacityMultiplier: 0.98, fadeIn: 0.04, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
+  // R3E-3: corrected arcane slash burst. Target-centered impact, never travel.
+  skill_arcane_slash_burst_medium: { id: 'skill_arcane_slash_burst_medium', url: '/assets/vfx/runtime/purple_skill_arcane_slash_burst_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.5, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.8, layer: 'impact', blending: 'additive' } },
+  // R3E-4: promoted HOLD_SEMANTIC raw sheets for legacy replacement.
+  skill_meteor_impact_burst_heavy: { id: 'skill_meteor_impact_burst_heavy', url: '/assets/vfx/runtime/orange_skill_meteor_impact_burst_heavy_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.46, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
+  skill_holy_light_pillar_medium: { id: 'skill_holy_light_pillar_medium', url: '/assets/vfx/runtime/blue_skill_holy_light_pillar_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.6, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.9, layer: 'impact', blending: 'additive' } },
+  skill_void_singularity_implosion_ultimate: { id: 'skill_void_singularity_implosion_ultimate', url: '/assets/vfx/runtime/purpleblack_skill_void_singularity_implosion_ultimate_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 2.24, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.88, layer: 'ground', blending: 'additive' } },
+  skill_void_spiral_implosion_medium: { id: 'skill_void_spiral_implosion_medium', url: '/assets/vfx/runtime/purple_skill_void_spiral_implosion_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.34, opacityMultiplier: 1, fadeIn: 0.03, fadeOut: 0.75, layer: 'impact', blending: 'additive' } },
+  skill_fire_spark_cluster_medium: { id: 'skill_fire_spark_cluster_medium', url: '/assets/vfx/runtime/orange_skill_fire_spark_cluster_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.32, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
+  skill_starburst_impact_medium: { id: 'skill_starburst_impact_medium', url: '/assets/vfx/runtime/green_skill_starburst_impact_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.46, opacityMultiplier: 0.96, fadeIn: 0.04, fadeOut: 0.74, layer: 'ground', blending: 'additive' } },
 } as const satisfies Record<VfxSpriteSheetId, VfxSpriteSheetDefinition>;
 
 export const VFX_SPRITE_SHEET_IDS = Object.freeze(Object.keys(VFX_SPRITE_SHEETS) as VfxSpriteSheetId[]);
@@ -95,9 +93,41 @@ export const BASIC_RUNTIME_SPRITE_SHEET_IDS = Object.freeze([
 
 /** Ready for later enemy/monster basic-attack mappings, intentionally not dispatched in R3E-1. */
 export const BASIC_LIBRARY_ONLY_SPRITE_SHEET_IDS = Object.freeze([
-  'basic_axe_chop_medium', 'basic_bite_snap_small', 'basic_body_slam_heavy', 'basic_claw_rake_small',
-  'basic_execution_slash_heavy', 'basic_hammer_crush_heavy', 'basic_horn_ram_medium', 'basic_shield_bash_medium',
-  'basic_sword_slash_heavy', 'basic_sword_slash_small', 'basic_tail_whip_medium', 'basic_titan_crush_heavy',
+  'basic_axe_chop_medium', 'basic_bite_snap_small', 'basic_claw_rake_small',
+  'basic_horn_ram_medium', 'basic_shield_bash_medium',
+  'basic_sword_slash_small', 'basic_tail_whip_medium',
+] as const satisfies readonly VfxSpriteSheetId[]);
+
+/** R3E-2 subset: only semantically approved skill sheets are present at runtime. */
+export const R3E2_SKILL_RUNTIME_SPRITE_SHEET_IDS = Object.freeze([
+  'skill_wind_slash_swirl_medium', 'skill_holy_radiance_burst_heavy', 'skill_barrier_guard_heavy',
+  'skill_barrier_shield_ring_medium', 'skill_void_rune_orb_medium', 'skill_fire_impact_burst_medium',
+  'skill_heal_blessing_bloom_heavy', 'skill_holy_sigil_burst_medium', 'skill_support_leaf_burst_medium',
+  'skill_arcane_vortex_nova_heavy', 'skill_arcane_orbit_burst_medium', 'skill_arcane_sigil_burst_medium',
+  'skill_fire_smoke_explosion_heavy', 'skill_poison_maw_bite_heavy', 'skill_ice_pillar_impact_heavy',
+  'skill_fire_vortex_nova_heavy', 'skill_barrier_nature_guard_medium',
+] as const satisfies readonly VfxSpriteSheetId[]);
+
+/** R3E-3: corrected arcane slash burst sheet promoted to runtime. */
+export const R3E3_SKILL_RUNTIME_SPRITE_SHEET_IDS = Object.freeze([
+  'skill_arcane_slash_burst_medium',
+] as const satisfies readonly VfxSpriteSheetId[]);
+
+/** R3E-4: promoted HOLD_SEMANTIC raw sheets for legacy replacement. */
+export const R3E4_PROMOTED_SPRITE_SHEET_IDS = Object.freeze([
+  'skill_meteor_impact_burst_heavy',
+  'skill_holy_light_pillar_medium',
+  'skill_void_singularity_implosion_ultimate',
+  'skill_void_spiral_implosion_medium',
+  'skill_fire_spark_cluster_medium',
+  'skill_starburst_impact_medium',
+] as const satisfies readonly VfxSpriteSheetId[]);
+
+/** All promoted skill sheets across R3E-2 + R3E-3 + R3E-4. */
+export const SKILL_RUNTIME_SPRITE_SHEET_IDS = Object.freeze([
+  ...R3E2_SKILL_RUNTIME_SPRITE_SHEET_IDS,
+  ...R3E3_SKILL_RUNTIME_SPRITE_SHEET_IDS,
+  ...R3E4_PROMOTED_SPRITE_SHEET_IDS,
 ] as const satisfies readonly VfxSpriteSheetId[]);
 
 const loader = new THREE.TextureLoader();

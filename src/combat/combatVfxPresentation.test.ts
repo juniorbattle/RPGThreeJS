@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { VFX_SPRITE_SHEETS } from './vfx/VfxSpriteSheets';
 import type * as THREE from 'three';
 import { skillById } from '../game/skills';
 import { VFX_PRESET_IDS, getVfxPreset } from './vfx/VfxPresets';
@@ -86,7 +87,7 @@ describe('combatVfxPresentation — resolver', () => {
   it('resolves key enemy/boss skill IDs correctly', () => {
     const checks: Array<[string, string]> = [
       ['enemy_dark_bolt', 'shadow_lightning_bolt'],
-      ['boss_freeze', 'frost_bind'],
+      ['boss_freeze', 'skill_ice_pillar'],
       ['boss_apocalypse', 'boss_apocalypse_v2'],
       ['boss_titan_slam', 'boss_titan_slam'],
       ['boss_execution', 'boss_execution'],
@@ -342,17 +343,14 @@ describe('combatVfxPresentation — V10G-R2A cleanup coverage', () => {
     expect(getVfxPreset('teleport_burst')).toBeDefined();
   });
 
-  it('root_vines remains active and resolvable', () => {
-    const resolved = resolveCombatVfxPresentation('e_binding_seal');
+  it('root_vines remains active for its retained jaw-trap mapping', () => {
+    const resolved = resolveCombatVfxPresentation('ro_jaw_trap');
     expect(resolved).toBeDefined();
     expect(resolved!.presetId).toBe('root_vines');
     expect(getVfxPreset('root_vines')).toBeDefined();
   });
 
-  it('frost_bind remains active and resolvable', () => {
-    const resolved = resolveCombatVfxPresentation('boss_freeze');
-    expect(resolved).toBeDefined();
-    expect(resolved!.presetId).toBe('frost_bind');
+  it('frost_bind remains registered as a legacy fallback', () => {
     expect(getVfxPreset('frost_bind')).toBeDefined();
   });
 
@@ -445,15 +443,12 @@ describe('combatVfxPresentation — V10G-R2A.1 generic overlay cleanup', () => {
     expect(preset!.steps.some((step) => step.type === 'spriteSheet' || step.type === 'shockwave')).toBe(true);
   });
 
-  it('root_vines and frost_bind remain visible and resolvable', () => {
-    const rootResolved = resolveCombatVfxPresentation('e_binding_seal');
+  it('retains root_vines for jaw trap and frost_bind as a valid fallback', () => {
+    const rootResolved = resolveCombatVfxPresentation('ro_jaw_trap');
     expect(rootResolved).toBeDefined();
     expect(rootResolved!.presetId).toBe('root_vines');
     expect(getVfxPreset('root_vines')).toBeDefined();
 
-    const frostResolved = resolveCombatVfxPresentation('boss_freeze');
-    expect(frostResolved).toBeDefined();
-    expect(frostResolved!.presetId).toBe('frost_bind');
     expect(getVfxPreset('frost_bind')).toBeDefined();
   });
 
@@ -560,10 +555,15 @@ describe('combatVfxPresentation â€” V10G-R2B.0 ground height calibration', 
     expect(resolved!.groundYOffset).toBeLessThanOrEqual(-0.15);
   });
 
-  it('boss_inferno resolves with grounded placement (negative offset)', () => {
+  it('boss_inferno resolves to an impact-layer skill sheet without a ground decal', () => {
     const resolved = resolveCombatVfxPresentation('boss_inferno');
     expect(resolved).toBeDefined();
-    expect(resolved!.groundYOffset).toBeLessThanOrEqual(-0.15);
+    expect(resolved!.presetId).toBe('skill_boss_inferno');
+    const preset = getVfxPreset(resolved!.presetId);
+    expect(preset).toBeDefined();
+    const spriteSteps = preset!.steps.filter((step) => step.type === 'spriteSheet');
+    expect(spriteSteps).toHaveLength(1);
+    expect(spriteSteps.every((step) => VFX_SPRITE_SHEETS[step.spriteSheet!]?.presentation.layer === 'impact')).toBe(true);
   });
 
   it('applyResolvedPresentationToContext passes groundYOffset to context', () => {
@@ -621,11 +621,11 @@ describe('combatVfxPresentation â€” V10G-R2A.2 authored spritesheet-only cl
     expect(resolved!.presetId).not.toBe('dark_bolt');
   });
 
-  it('e_binding_seal resolves to root_vines spritesheet', () => {
+  it('e_binding_seal resolves to its promoted skill spritesheet', () => {
     const resolved = resolveCombatVfxPresentation('e_binding_seal');
     expect(resolved).toBeDefined();
-    expect(resolved!.presetId).toBe('root_vines');
-    const preset = getVfxPreset('root_vines');
+    expect(resolved!.presetId).toBe('skill_binding_sigil');
+    const preset = getVfxPreset('skill_binding_sigil');
     expect(preset).toBeDefined();
     expect(preset!.steps.some((s) => s.type === 'spriteSheet')).toBe(true);
   });
@@ -636,11 +636,11 @@ describe('combatVfxPresentation â€” V10G-R2A.2 authored spritesheet-only cl
     expect(resolved!.presetId).toBe('root_vines');
   });
 
-  it('boss_freeze resolves to frost_bind spritesheet', () => {
+  it('boss_freeze resolves to its promoted ice-pillar spritesheet', () => {
     const resolved = resolveCombatVfxPresentation('boss_freeze');
     expect(resolved).toBeDefined();
-    expect(resolved!.presetId).toBe('frost_bind');
-    const preset = getVfxPreset('frost_bind');
+    expect(resolved!.presetId).toBe('skill_ice_pillar');
+    const preset = getVfxPreset('skill_ice_pillar');
     expect(preset).toBeDefined();
     expect(preset!.steps.some((s) => s.type === 'spriteSheet')).toBe(true);
   });

@@ -6,6 +6,9 @@ import {
   VFX_PARTICLE_STEP_TYPES,
   getVfxPreset,
   PREMIUM_VFX_PRESET_IDS,
+  R3E2_SKILL_VFX_PRESET_IDS,
+  R3E3_SKILL_VFX_PRESET_IDS,
+  SKILL_VFX_PRESET_IDS,
 } from './VfxPresets';
 import { VFX_TEXTURE_NAMES } from './VfxTextures';
 import { isVfxWorkbenchEnabled } from './VfxWorkbench';
@@ -48,6 +51,8 @@ const REQUIRED_PRESETS = [
   ...LOT_C_PRESETS,
   ...V10F_DISPATCH_PRESETS,
   ...BASIC_ATTACK_VFX_PRESET_IDS,
+  ...R3E2_SKILL_VFX_PRESET_IDS,
+  ...R3E3_SKILL_VFX_PRESET_IDS,
   ...PREMIUM_VFX_PRESET_IDS,
 ];
 const VALID_STEP_TYPES = new Set<VfxStepType>([
@@ -120,6 +125,39 @@ describe('combat VFX presets', () => {
       expect(spriteSteps).toHaveLength(1);
       expect(spriteSteps[0]?.spriteSheet).toMatch(/^basic_/);
       expect(spriteSteps[0]?.spriteSheet).not.toContain('skill');
+    }
+  });
+
+  it('keeps R3E-2 skill sheets as target-only impact presets', () => {
+    expect(R3E2_SKILL_VFX_PRESET_IDS).toHaveLength(16);
+    for (const id of R3E2_SKILL_VFX_PRESET_IDS) {
+      const preset = getVfxPreset(id);
+      expect(preset).toBeDefined();
+      const spriteSteps = preset?.steps.filter((step) => step.type === 'spriteSheet') ?? [];
+      expect(spriteSteps.length).toBeGreaterThanOrEqual(1);
+      expect(spriteSteps.length).toBeLessThanOrEqual(2);
+      expect(new Set(spriteSteps.map((step) => step.spriteSheet)).size).toBe(spriteSteps.length);
+      for (const step of spriteSteps) {
+        expect(step.spriteSheet).toMatch(/^skill_/);
+        expect(step.sheetMode).not.toBe('projectile');
+        expect(step.anchor).toBe('target');
+        expect(step.orientation).toBe('center_on_target');
+      }
+    }
+  });
+
+  it('keeps R3E-3 skill sheets as target-only impact presets', () => {
+    expect(R3E3_SKILL_VFX_PRESET_IDS).toHaveLength(1);
+    expect(SKILL_VFX_PRESET_IDS).toHaveLength(17);
+    for (const id of R3E3_SKILL_VFX_PRESET_IDS) {
+      const preset = getVfxPreset(id);
+      expect(preset).toBeDefined();
+      const spriteSteps = preset?.steps.filter((step) => step.type === 'spriteSheet') ?? [];
+      expect(spriteSteps).toHaveLength(1);
+      expect(spriteSteps[0]?.spriteSheet).toMatch(/^skill_/);
+      expect(spriteSteps[0]?.sheetMode).not.toBe('projectile');
+      expect(spriteSteps[0]?.anchor).toBe('target');
+      expect(spriteSteps[0]?.orientation).toBe('center_on_target');
     }
   });
 

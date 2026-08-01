@@ -26,62 +26,20 @@ export interface ActionVfxAuditRow {
 const UPGRADE_CANDIDATES: Record<string, SpriteUpgradeCandidate> = {
   ultimate_radiant_judgement: {
     needsDedicatedSpriteUpgrade: true,
-    upgradeReason: 'Reuses holy_aura generic support sprite for a sacred ultimate',
+    upgradeReason: 'Reuses skill_holy_radiance_burst_heavy for a sacred ultimate; may need a dedicated judgement beam',
     suggestedSpriteId: 'judgement_beam',
-    priority: 'high',
-  },
-  ultimate_zenith_arrow: {
-    needsDedicatedSpriteUpgrade: true,
-    upgradeReason: 'Reuses projectile_shot basic arrow sprite for a piercing ultimate',
-    suggestedSpriteId: 'zenith_arrow',
-    priority: 'high',
-  },
-  ultimate_fault_breaker: {
-    needsDedicatedSpriteUpgrade: true,
-    upgradeReason: 'Reuses slash_arc generic melee sprite for a shatter ultimate',
-    suggestedSpriteId: 'fault_breaker',
-    priority: 'high',
-  },
-  ultimate_lion_surge: {
-    needsDedicatedSpriteUpgrade: true,
-    upgradeReason: 'Reuses slash_arc generic melee sprite for a golden ultimate',
-    suggestedSpriteId: 'lion_surge',
     priority: 'medium',
   },
   ultimate_miracle: {
     needsDedicatedSpriteUpgrade: true,
-    upgradeReason: 'Reuses holy_aura generic support sprite for a miracle ultimate',
+    upgradeReason: 'Reuses skill_holy_radiance_burst_heavy for a miracle ultimate; may need a dedicated miracle burst',
     suggestedSpriteId: 'miracle_burst',
-    priority: 'medium',
+    priority: 'low',
   },
   ultimate_absolute_harmony: {
     needsDedicatedSpriteUpgrade: true,
-    upgradeReason: 'Reuses holy_aura generic support sprite for a harmony ultimate',
+    upgradeReason: 'Reuses skill_holy_radiance_burst_heavy for a harmony ultimate; may need a dedicated harmony aura',
     suggestedSpriteId: 'harmony_aura',
-    priority: 'medium',
-  },
-  boss_inferno: {
-    needsDedicatedSpriteUpgrade: true,
-    upgradeReason: 'Reuses explosion_large generic sprite for a boss signature inferno',
-    suggestedSpriteId: 'inferno_field',
-    priority: 'medium',
-  },
-  critical_hit: {
-    needsDedicatedSpriteUpgrade: true,
-    upgradeReason: 'Reuses slash_arc generic melee sprite for critical hit feedback',
-    suggestedSpriteId: 'critical_impact',
-    priority: 'low',
-  },
-  poison_bite: {
-    needsDedicatedSpriteUpgrade: true,
-    upgradeReason: 'Reuses slash_arc generic melee sprite for poison creature attack',
-    suggestedSpriteId: 'poison_bite',
-    priority: 'low',
-  },
-  kill_spark: {
-    needsDedicatedSpriteUpgrade: true,
-    upgradeReason: 'Reuses small_impact generic sprite for knockout reward',
-    suggestedSpriteId: 'victory_spark',
     priority: 'low',
   },
 };
@@ -120,6 +78,40 @@ export const BASIC_ATTACK_VFX_MAPPINGS = Object.freeze([
   { actionId: 'basic_dagger_hit', weaponType: 'dagger', presetId: 'basic_dagger_hit', spriteSheetId: 'basic_dagger_crosscut_small' },
   { actionId: 'basic_hand_cannon_hit', weaponType: 'hand_cannon', presetId: 'basic_hand_cannon_hit', spriteSheetId: 'basic_bullet_hit_medium' },
 ] as const satisfies readonly BasicAttackVfxMapping[]);
+
+/**
+ * R3E-2's explicit visual-only skill mappings.  Keeping this ledger next to
+ * the frozen weapon table makes it possible to verify that no basic weapon
+ * attack can silently consume a hero, support, or boss skill sheet.
+ */
+export const R3E2_SKILL_VFX_ACTION_IDS = Object.freeze([
+  'w_whirl',
+  'p_holy_strike',
+  'p_oathwall',
+  'd_blood_pact',
+  'n_flame_wave',
+  'w_salvation',
+  'w_purify',
+  'w_sanctuary',
+  'r_scarlet_circle',
+  'e_vigor_rune',
+  'e_binding_seal',
+  'ni_venom_blade',
+  'ar_incendiary_grenade',
+  'enemy_venom_strike',
+  'boss_freeze',
+  'boss_inferno',
+  'boss_guard',
+] as const);
+
+export const R3E3_SKILL_VFX_ACTION_IDS = Object.freeze([
+  'r_arcane_blade',
+] as const);
+
+export const SKILL_VFX_ACTION_IDS = Object.freeze([
+  ...R3E2_SKILL_VFX_ACTION_IDS,
+  ...R3E3_SKILL_VFX_ACTION_IDS,
+] as const);
 
 const FEEDBACK_PRESET_IDS = ['generic_hit', 'critical_hit', 'kill_spark'] as const;
 

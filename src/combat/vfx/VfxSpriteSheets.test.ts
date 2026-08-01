@@ -6,6 +6,10 @@ import { VFX_PRESETS } from './VfxPresets';
 import {
   BASIC_LIBRARY_ONLY_SPRITE_SHEET_IDS,
   BASIC_RUNTIME_SPRITE_SHEET_IDS,
+  R3E2_SKILL_RUNTIME_SPRITE_SHEET_IDS,
+  R3E3_SKILL_RUNTIME_SPRITE_SHEET_IDS,
+  R3E4_PROMOTED_SPRITE_SHEET_IDS,
+  SKILL_RUNTIME_SPRITE_SHEET_IDS,
   VFX_SPRITE_SHEETS,
   VFX_SPRITE_SHEET_IDS,
 } from './VfxSpriteSheets';
@@ -129,7 +133,7 @@ describe('combat VFX sprite sheets', () => {
   });
 
   it('keeps root_vines and frost_bind free of magenta and separator bands', () => {
-    for (const id of ['root_vines', 'frost_bind'] as const) {
+    for (const id of ['skill_void_spiral_implosion_medium', 'skill_ice_pillar_impact_heavy'] as const) {
       const definition = VFX_SPRITE_SHEETS[id];
       const { width, height, pixels } = decodeRgbaPng(runtimePath(definition.url));
       let opaqueMagenta = 0;
@@ -162,6 +166,31 @@ describe('combat VFX sprite sheets', () => {
     }
   });
 
+  it('ships R3E-4 promoted sheets as clean 5x5 RGBA assets', () => {
+    expect(R3E4_PROMOTED_SPRITE_SHEET_IDS).toHaveLength(6);
+    expect(SKILL_RUNTIME_SPRITE_SHEET_IDS).toHaveLength(24);
+    for (const id of R3E4_PROMOTED_SPRITE_SHEET_IDS) {
+      const definition = VFX_SPRITE_SHEETS[id];
+      expect(definition.url).toMatch(/^\/assets\/vfx\/runtime\/[a-z0-9_]+_skill_[a-z0-9_]+_5x5_25f_1280\.png$/);
+      expect(definition.rows).toBe(5);
+      expect(definition.cols).toBe(5);
+      expect(definition.frameCount).toBe(25);
+
+      const { width, height, pixels } = decodeRgbaPng(runtimePath(definition.url));
+      expect([width, height]).toEqual([1280, 1280]);
+      let opaqueMagenta = 0;
+      for (let offset = 0; offset < pixels.length; offset += 4) {
+        if (
+          (pixels[offset + 3] ?? 0) > 8 &&
+          (pixels[offset] ?? 0) > 230 &&
+          (pixels[offset + 1] ?? 0) < 40 &&
+          (pixels[offset + 2] ?? 0) > 230
+        ) opaqueMagenta++;
+      }
+      expect(opaqueMagenta, id + ' opaque magenta pixels').toBe(0);
+    }
+  });
+
   it('ships the R3E-1 basic library as public 1280px RGBA sheets without magenta', () => {
     expect(BASIC_RUNTIME_SPRITE_SHEET_IDS).toHaveLength(22);
     for (const id of BASIC_RUNTIME_SPRITE_SHEET_IDS) {
@@ -176,6 +205,57 @@ describe('combat VFX sprite sheets', () => {
       expect(header.colorType).toBe(6);
 
       const { pixels } = decodeRgbaPng(assetPath);
+      let opaqueMagenta = 0;
+      for (let offset = 0; offset < pixels.length; offset += 4) {
+        if (
+          (pixels[offset + 3] ?? 0) > 8 &&
+          (pixels[offset] ?? 0) > 230 &&
+          (pixels[offset + 1] ?? 0) < 40 &&
+          (pixels[offset + 2] ?? 0) > 230
+        ) opaqueMagenta++;
+      }
+      expect(opaqueMagenta, id + ' opaque magenta pixels').toBe(0);
+    }
+  });
+
+    it("ships R3E-2 approved skill impact sheets as clean 5x5 RGBA assets", () => {
+    expect(R3E2_SKILL_RUNTIME_SPRITE_SHEET_IDS).toHaveLength(17);
+    for (const id of R3E2_SKILL_RUNTIME_SPRITE_SHEET_IDS) {
+      const definition = VFX_SPRITE_SHEETS[id];
+      expect(definition.url).toMatch(/^\/assets\/vfx\/runtime\/[a-z0-9_]+_skill_[a-z0-9_]+_5x5_25f_1280\.png$/);
+      expect(definition.rows).toBe(5);
+      expect(definition.cols).toBe(5);
+      expect(definition.frameCount).toBe(25);
+      expect(definition.presentation.layer).toBe('impact');
+
+      const { width, height, pixels } = decodeRgbaPng(runtimePath(definition.url));
+      expect([width, height]).toEqual([1280, 1280]);
+      let opaqueMagenta = 0;
+      for (let offset = 0; offset < pixels.length; offset += 4) {
+        if (
+          (pixels[offset + 3] ?? 0) > 8 &&
+          (pixels[offset] ?? 0) > 230 &&
+          (pixels[offset + 1] ?? 0) < 40 &&
+          (pixels[offset + 2] ?? 0) > 230
+        ) opaqueMagenta++;
+      }
+      expect(opaqueMagenta, id + ' opaque magenta pixels').toBe(0);
+    }
+  });
+
+  it('ships R3E-3 corrected arcane slash as a clean 5x5 RGBA asset', () => {
+    expect(R3E3_SKILL_RUNTIME_SPRITE_SHEET_IDS).toHaveLength(1);
+    expect(SKILL_RUNTIME_SPRITE_SHEET_IDS).toHaveLength(24);
+    for (const id of R3E3_SKILL_RUNTIME_SPRITE_SHEET_IDS) {
+      const definition = VFX_SPRITE_SHEETS[id];
+      expect(definition.url).toMatch(/^\/assets\/vfx\/runtime\/[a-z0-9_]+_skill_[a-z0-9_]+_5x5_25f_1280\.png$/);
+      expect(definition.rows).toBe(5);
+      expect(definition.cols).toBe(5);
+      expect(definition.frameCount).toBe(25);
+      expect(definition.presentation.layer).toBe('impact');
+
+      const { width, height, pixels } = decodeRgbaPng(runtimePath(definition.url));
+      expect([width, height]).toEqual([1280, 1280]);
       let opaqueMagenta = 0;
       for (let offset = 0; offset < pixels.length; offset += 4) {
         if (

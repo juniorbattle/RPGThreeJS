@@ -126,32 +126,32 @@ function countMagentaPixels(pixels: PngPixels): number {
 describe('V10G-R2A.2 spritesheet PNG validation', () => {
   const runtimeDir = 'public/assets/vfx/runtime';
 
-  it('root_vines PNG has no visible magenta background pixels', () => {
-    const pixels = readPngPixels(`${runtimeDir}/root_vines_5x5_25f_1280.png`);
+  it('skill_arcane_sigil_burst_medium PNG has no visible magenta background pixels', () => {
+    const pixels = readPngPixels(`${runtimeDir}/blue_skill_arcane_sigil_burst_medium_5x5_25f_1280.png`);
     const magenta = countMagentaPixels(pixels);
     expect(magenta).toBe(0);
   });
 
-  it('frost_bind PNG has no visible magenta background pixels', () => {
-    const pixels = readPngPixels(`${runtimeDir}/frost_bind_5x5_25f_1280.png`);
+  it('skill_ice_pillar_impact_heavy PNG has no visible magenta background pixels', () => {
+    const pixels = readPngPixels(`${runtimeDir}/iceblue_skill_ice_pillar_impact_heavy_5x5_25f_1280.png`);
     const magenta = countMagentaPixels(pixels);
     expect(magenta).toBe(0);
   });
 
-  it('root_vines PNG dimensions remain 1280x1280', () => {
-    const pixels = readPngPixels(`${runtimeDir}/root_vines_5x5_25f_1280.png`);
+  it('skill_arcane_sigil_burst_medium PNG dimensions remain 1280x1280', () => {
+    const pixels = readPngPixels(`${runtimeDir}/blue_skill_arcane_sigil_burst_medium_5x5_25f_1280.png`);
     expect(pixels.width).toBe(1280);
     expect(pixels.height).toBe(1280);
   });
 
-  it('frost_bind PNG dimensions remain 1280x1280', () => {
-    const pixels = readPngPixels(`${runtimeDir}/frost_bind_5x5_25f_1280.png`);
+  it('skill_ice_pillar_impact_heavy PNG dimensions remain 1280x1280', () => {
+    const pixels = readPngPixels(`${runtimeDir}/iceblue_skill_ice_pillar_impact_heavy_5x5_25f_1280.png`);
     expect(pixels.width).toBe(1280);
     expect(pixels.height).toBe(1280);
   });
 
-  it('root_vines PNG has transparent pixels (alpha channel works)', () => {
-    const pixels = readPngPixels(`${runtimeDir}/root_vines_5x5_25f_1280.png`);
+  it('skill_arcane_sigil_burst_medium PNG has transparent pixels (alpha channel works)', () => {
+    const pixels = readPngPixels(`${runtimeDir}/blue_skill_arcane_sigil_burst_medium_5x5_25f_1280.png`);
     let transparentCount = 0;
     for (let i = 3; i < pixels.data.length; i += 4) {
       if (pixels.data[i] === 0) transparentCount++;
@@ -159,8 +159,8 @@ describe('V10G-R2A.2 spritesheet PNG validation', () => {
     expect(transparentCount).toBeGreaterThan(0);
   });
 
-  it('frost_bind PNG has transparent pixels (alpha channel works)', () => {
-    const pixels = readPngPixels(`${runtimeDir}/frost_bind_5x5_25f_1280.png`);
+  it('skill_ice_pillar_impact_heavy PNG has transparent pixels (alpha channel works)', () => {
+    const pixels = readPngPixels(`${runtimeDir}/iceblue_skill_ice_pillar_impact_heavy_5x5_25f_1280.png`);
     let transparentCount = 0;
     for (let i = 3; i < pixels.data.length; i += 4) {
       if (pixels.data[i] === 0) transparentCount++;

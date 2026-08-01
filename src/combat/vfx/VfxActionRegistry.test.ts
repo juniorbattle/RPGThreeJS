@@ -6,6 +6,9 @@ import {
   getActionsUsingSpriteSheet,
   getBasicAttackVfxPreset,
   getMissingOrUpgradeCandidateSprites,
+  R3E2_SKILL_VFX_ACTION_IDS,
+  R3E3_SKILL_VFX_ACTION_IDS,
+  SKILL_VFX_ACTION_IDS,
 } from './VfxActionRegistry';
 import { HERO_SKILL_IDS, ENEMY_SKILL_IDS } from '../skillPresentation';
 import { BASIC_ATTACK_VFX_PRESET_IDS, VFX_PRESET_IDS } from './VfxPresets';
@@ -66,7 +69,7 @@ describe('VfxActionRegistry — V10G-R2A.6', () => {
     const chain = getActionVfxChain('n_dark_meteor');
     expect(chain).toBeDefined();
     expect(chain!.presetId).toBe('ultimate_dark_meteor');
-    expect(chain!.spriteSheetIds).toContain('meteor_fall');
+    expect(chain!.spriteSheetIds).toContain('skill_meteor_impact_burst_heavy');
   });
 
   it('maps every supported weapon type to exactly one validated basic presentation', () => {
@@ -82,19 +85,17 @@ describe('VfxActionRegistry — V10G-R2A.6', () => {
   });
 
   it('getActionsUsingSpriteSheet returns all actions sharing a sprite', () => {
-    const actions = getActionsUsingSpriteSheet('slash_arc');
+    const actions = getActionsUsingSpriteSheet('basic_sword_slash_heavy');
     expect(actions.length).toBeGreaterThan(3);
     expect(actions).toContain('w_break_guard');
   });
 
   it('getMissingOrUpgradeCandidateSprites returns known temporary remaps', () => {
     const candidates = getMissingOrUpgradeCandidateSprites();
-    expect(candidates.length).toBeGreaterThanOrEqual(9);
+    expect(candidates.length).toBeGreaterThanOrEqual(3);
     const presetIds = candidates.map((c) => c.presetId);
     expect(presetIds).toContain('ultimate_radiant_judgement');
-    expect(presetIds).toContain('ultimate_zenith_arrow');
-    expect(presetIds).toContain('ultimate_fault_breaker');
-    expect(presetIds).toContain('boss_inferno');
+    expect(presetIds).not.toContain('boss_inferno');
   });
 
   it('upgrade candidates have suggested sprite IDs and priorities', () => {
@@ -103,6 +104,27 @@ describe('VfxActionRegistry — V10G-R2A.6', () => {
       expect(c.upgrade).toBeDefined();
       expect(c.upgrade!.suggestedSpriteId).toBeTruthy();
       expect(['high', 'medium', 'low']).toContain(c.upgrade!.priority);
+    }
+  });
+
+  it('registers every R3E-2 promoted action against a runtime skill preset', () => {
+    expect(R3E2_SKILL_VFX_ACTION_IDS).toHaveLength(17);
+    for (const actionId of R3E2_SKILL_VFX_ACTION_IDS) {
+      const chain = getActionVfxChain(actionId);
+      expect(chain).toBeDefined();
+      expect(chain!.presetId).toMatch(/^skill_/);
+      expect(chain!.runtimeFilenames.every((filename) => filename.includes('_skill_'))).toBe(true);
+    }
+  });
+
+  it('registers every R3E-3 promoted action against a runtime skill preset', () => {
+    expect(R3E3_SKILL_VFX_ACTION_IDS).toHaveLength(1);
+    expect(SKILL_VFX_ACTION_IDS).toHaveLength(18);
+    for (const actionId of R3E3_SKILL_VFX_ACTION_IDS) {
+      const chain = getActionVfxChain(actionId);
+      expect(chain).toBeDefined();
+      expect(chain!.presetId).toMatch(/^skill_/);
+      expect(chain!.runtimeFilenames.every((filename) => filename.includes('_skill_'))).toBe(true);
     }
   });
 });
