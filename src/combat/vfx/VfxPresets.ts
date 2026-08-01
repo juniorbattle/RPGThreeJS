@@ -27,7 +27,7 @@ const presets = [
     particleBudget: 0,
     reducedGraphicsScale: 0.43,
     steps: [
-      { type: 'spriteSheet', anchor: 'targetGround', spriteSheet: 'skill_fire_impact_burst_medium', startTime: 0.34, duration: 0.46, scale: 1.82, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.72 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'skill_fire_impact_burst_medium', startTime: 0.34, duration: 0.46, scale: 1.82, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.72 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.49, duration: 0.15, color: '#ffd06a', opacity: 0.14, reducedGraphicsMultiplier: 0.55 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.49, duration: 0.2, scale: 0.3, reducedGraphicsMultiplier: 0.52 },
       { type: 'hitStop', anchor: 'screen', startTime: 0.49, duration: 0.07 },
@@ -42,7 +42,7 @@ const presets = [
     particleBudget: 0,
     reducedGraphicsScale: 0.5,
     steps: [
-      { type: 'spriteSheet', anchor: 'targetGround', spriteSheet: 'skill_heal_blessing_bloom_heavy', startTime: 0.02, duration: 0.6, scale: 1.62, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.76 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'skill_heal_blessing_bloom_heavy', startTime: 0.02, duration: 0.6, scale: 1.62, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.76 },
     ],
   },
   {
@@ -63,13 +63,13 @@ const presets = [
   {
     id: 'generic_hit',
     label: 'Impact générique',
-    duration: 0.32,
+    duration: 0.6,
     impactTime: 0.11,
     tags: ['impact', 'fallback'],
     particleBudget: 0,
     reducedGraphicsScale: 0.52,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_bolt_hit_small', startTime: 0, duration: 0.23, scale: 0.92, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.78 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_bolt_hit_small', startTime: 0, duration: 0.5, scale: 1.2, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.78 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.08, duration: 0.1, scale: 0.12, reducedGraphicsMultiplier: 0.55 },
       { type: 'hitStop', anchor: 'screen', startTime: 0.08, duration: 0.04 },
     ],
@@ -77,13 +77,13 @@ const presets = [
   {
     id: 'sword_slash',
     label: 'Entaille d’acier',
-    duration: 0.46,
+    duration: 0.6,
     impactTime: 0.16,
     tags: ['physical', 'melee', 'blade'],
     particleBudget: 0,
     reducedGraphicsScale: 0.5,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_sword_slash_heavy', orientation: 'center_on_target', startTime: 0, duration: 0.34, scale: 1.46, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.76 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_sword_slash_heavy', orientation: 'center_on_target', startTime: 0, duration: 0.5, scale: 1.46, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.76 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.13, duration: 0.14, scale: 0.17, reducedGraphicsMultiplier: 0.56 },
       { type: 'hitStop', anchor: 'screen', startTime: 0.13, duration: 0.05 },
     ],
@@ -97,7 +97,7 @@ const presets = [
     particleBudget: 0,
     reducedGraphicsScale: 0.44,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_hammer_crush_heavy', startTime: 0.08, duration: 0.38, scale: 1.28, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.72 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_hammer_crush_heavy', startTime: 0.08, duration: 0.5, scale: 1.28, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.72 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.18, duration: 0.22, scale: 0.34, reducedGraphicsMultiplier: 0.52 },
       { type: 'hitStop', anchor: 'screen', startTime: 0.18, duration: 0.07 },
     ],
@@ -105,13 +105,13 @@ const presets = [
   {
     id: 'arrow_shot',
     label: 'Trait précis',
-    duration: 0.58,
+    duration: 0.68,
     impactTime: 0.36,
     tags: ['physical', 'ranged', 'projectile'],
     particleBudget: 0,
     reducedGraphicsScale: 0.48,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_arrow_hit_small', orientation: 'center_on_target', startTime: 0, duration: 0.54, scale: 0.9, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.76 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_arrow_hit_small', orientation: 'center_on_target', startTime: 0, duration: 0.6, scale: 1.15, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.76 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.33, duration: 0.1, scale: 0.12, reducedGraphicsMultiplier: 0.55 },
       { type: 'hitStop', anchor: 'screen', startTime: 0.33, duration: 0.045 },
     ],
@@ -180,7 +180,7 @@ const presets = [
     particleBudget: 0,
     reducedGraphicsScale: 0.5,
     steps: [
-      { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'skill_holy_sigil_burst_medium', startTime: 0, duration: 0.58, scale: 1.55, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.76 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'skill_holy_sigil_burst_medium', startTime: 0, duration: 0.58, scale: 1.55, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.76 },
     ],
   },
   {
@@ -192,7 +192,7 @@ const presets = [
     particleBudget: 0,
     reducedGraphicsScale: 0.44,
     steps: [
-      { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'skill_void_rune_orb_medium', startTime: 0.01, duration: 0.58, scale: 1.24, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.76 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'skill_void_rune_orb_medium', startTime: 0.01, duration: 0.58, scale: 1.24, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.76 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.24, duration: 0.12, color: '#7a49a8', opacity: 0.08, reducedGraphicsMultiplier: 0.48 },
     ],
   },
@@ -211,13 +211,13 @@ const presets = [
   {
     id: 'poison_bite',
     label: 'Morsure venimeuse',
-    duration: 0.46,
+    duration: 0.62,
     impactTime: 0.17,
     tags: ['physical', 'poison', 'creature'],
     particleBudget: 0,
     reducedGraphicsScale: 0.5,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'skill_poison_maw_bite_heavy', startTime: 0.04, duration: 0.28, scale: 1.08, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.76 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'skill_poison_maw_bite_heavy', startTime: 0.04, duration: 0.5, scale: 1.08, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.76 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.12, duration: 0.12, scale: 0.12, reducedGraphicsMultiplier: 0.55 },
       { type: 'hitStop', anchor: 'screen', startTime: 0.12, duration: 0.045 },
     ],
@@ -237,13 +237,13 @@ const presets = [
   {
     id: 'boss_slam',
     label: 'Écrasement colossal',
-    duration: 0.9,
+    duration: 1.0,
     impactTime: 0.31,
     tags: ['boss', 'physical', 'ground', 'aoe'],
     particleBudget: 0,
     reducedGraphicsScale: 0.4,
     steps: [
-      { type: 'spriteSheet', anchor: 'targetGround', spriteSheet: 'basic_body_slam_heavy', startTime: 0.02, duration: 0.58, scale: 2.08, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.7 },
+      { type: 'spriteSheet', anchor: 'targetGround', spriteSheet: 'basic_body_slam_heavy', startTime: 0.02, duration: 0.7, scale: 2.08, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.7 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.24, duration: 0.15, color: '#e9974c', opacity: 0.14, reducedGraphicsMultiplier: 0.48 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.23, duration: 0.35, scale: 0.62, reducedGraphicsMultiplier: 0.5 },
       { type: 'hitStop', anchor: 'screen', startTime: 0.24, duration: 0.11 },
@@ -252,13 +252,13 @@ const presets = [
   {
     id: 'critical_hit',
     label: 'Impact critique',
-    duration: 0.34,
+    duration: 0.55,
     impactTime: 0.08,
     tags: ['impact', 'critical'],
     particleBudget: 0,
     reducedGraphicsScale: 0.5,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_execution_slash_heavy', startTime: 0, duration: 0.28, scale: 1.36, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_execution_slash_heavy', startTime: 0, duration: 0.5, scale: 1.36, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.03, duration: 0.1, color: '#fff6c2', opacity: 0.15, reducedGraphicsMultiplier: 0.52 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.03, duration: 0.18, scale: 0.31, reducedGraphicsMultiplier: 0.52 },
       { type: 'hitStop', anchor: 'screen', startTime: 0.03, duration: 0.085 },
@@ -267,13 +267,13 @@ const presets = [
   {
     id: 'kill_spark',
     label: 'Éclat de victoire',
-    duration: 0.72,
+    duration: 0.82,
     impactTime: 0.09,
     tags: ['impact', 'knockout', 'reward'],
     particleBudget: 0,
     reducedGraphicsScale: 0.5,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_bolt_hit_small', startTime: 0, duration: 0.48, scale: 1.42, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_bolt_hit_small', startTime: 0, duration: 0.6, scale: 1.8, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.04, duration: 0.1, color: '#fae59a', opacity: 0.08, reducedGraphicsMultiplier: 0.5 },
     ],
   },
@@ -281,7 +281,7 @@ const presets = [
     id: 'support_regen_aura', label: 'Aura de régénération', duration: 0.72, impactTime: 0.3,
     tags: ['support', 'regen'], particleBudget: 0, reducedGraphicsScale: 0.56,
     steps: [
-      { type: 'spriteSheet', anchor: 'targetGround', spriteSheet: 'skill_support_leaf_burst_medium', startTime: 0.01, duration: 0.62, scale: 1.48, opacity: 0.98, blending: 'normal', reducedGraphicsMultiplier: 0.8 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'skill_support_leaf_burst_medium', startTime: 0.01, duration: 0.62, scale: 1.48, opacity: 0.98, blending: 'normal', reducedGraphicsMultiplier: 0.8 },
     ],
   },
   {
@@ -295,21 +295,21 @@ const presets = [
     id: 'support_holy_aura', label: 'Aura sacrée', duration: 0.76, impactTime: 0.33,
     tags: ['support', 'holy', 'aura'], particleBudget: 0, reducedGraphicsScale: 0.56,
     steps: [
-      { type: 'spriteSheet', anchor: 'targetGround', spriteSheet: 'skill_holy_radiance_burst_heavy', startTime: 0.01, duration: 0.65, scale: 1.52, opacity: 0.98, blending: 'normal', reducedGraphicsMultiplier: 0.8 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'skill_holy_radiance_burst_heavy', startTime: 0.01, duration: 0.65, scale: 1.52, opacity: 0.98, blending: 'normal', reducedGraphicsMultiplier: 0.8 },
     ],
   },
   {
     id: 'support_boost_aura', label: 'Aura d’élan', duration: 0.68, impactTime: 0.28,
     tags: ['support', 'boost', 'aura'], particleBudget: 0, reducedGraphicsScale: 0.58,
     steps: [
-      { type: 'spriteSheet', anchor: 'targetGround', spriteSheet: 'skill_arcane_orbit_burst_medium', startTime: 0.01, duration: 0.57, scale: 1.4, opacity: 0.98, blending: 'normal', reducedGraphicsMultiplier: 0.82 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'skill_arcane_orbit_burst_medium', startTime: 0.01, duration: 0.57, scale: 1.4, opacity: 0.98, blending: 'normal', reducedGraphicsMultiplier: 0.82 },
     ],
   },
   {
-    id: 'move_smoke_burst', label: 'Écran de fumée', duration: 0.48, impactTime: 0.14,
+    id: 'move_smoke_burst', label: 'Écran de fumée', duration: 0.6, impactTime: 0.14,
     tags: ['movement', 'smoke', 'tactical'], particleBudget: 0, reducedGraphicsScale: 0.6,
     steps: [
-      { type: 'spriteSheet', anchor: 'targetGround', spriteSheet: 'skill_void_spiral_implosion_medium', startTime: 0, duration: 0.42, scale: 1.44, opacity: 0.86, blending: 'normal', reducedGraphicsMultiplier: 0.82 },
+      { type: 'spriteSheet', anchor: 'targetGround', spriteSheet: 'skill_void_spiral_implosion_medium', startTime: 0, duration: 0.55, scale: 1.44, opacity: 0.86, blending: 'normal', reducedGraphicsMultiplier: 0.82 },
     ],
   },
   {
@@ -338,48 +338,48 @@ const presets = [
     ],
   },
   {
-    id: 'thrust_line', label: 'Percée de lance', duration: 0.5, impactTime: 0.24,
+    id: 'thrust_line', label: 'Percée de lance', duration: 0.6, impactTime: 0.24,
     tags: ['physical', 'thrust', 'line'], particleBudget: 0, reducedGraphicsScale: 0.6,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_spear_stab_medium', orientation: 'center_on_target', startTime: 0.02, duration: 0.38, scale: 1.2, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.72 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_spear_stab_medium', orientation: 'center_on_target', startTime: 0.02, duration: 0.5, scale: 1.2, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.72 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.24, duration: 0.1, scale: 0.14, reducedGraphicsMultiplier: 0.55 },
     ],
   },
   {
-    id: 'teleport_burst', label: 'Translation runique', duration: 0.46, impactTime: 0.2,
+    id: 'teleport_burst', label: 'Translation runique', duration: 0.6, impactTime: 0.2,
     tags: ['move', 'teleport'], particleBudget: 0, reducedGraphicsScale: 0.66,
     steps: [
-      { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'skill_void_spiral_implosion_medium', startTime: 0, duration: 0.43, scale: 1.2, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.76 },
+      { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'skill_void_spiral_implosion_medium', startTime: 0, duration: 0.55, scale: 1.2, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.76 },
     ],
   },
   {
-    id: 'holy_strike', label: 'Frappe sacrée', duration: 0.56, impactTime: 0.24,
+    id: 'holy_strike', label: 'Frappe sacrée', duration: 0.72, impactTime: 0.24,
     tags: ['holy', 'physical', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.62,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_sword_slash_heavy', orientation: 'center_on_target', startTime: 0.02, duration: 0.34, scale: 1.42, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 },
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'skill_holy_radiance_burst_heavy', startTime: 0.1, duration: 0.42, scale: 1.12, opacity: 0.86, blending: 'additive', reducedGraphicsMultiplier: 0.68 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_sword_slash_heavy', orientation: 'center_on_target', startTime: 0.02, duration: 0.5, scale: 1.42, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'skill_holy_radiance_burst_heavy', startTime: 0.1, duration: 0.55, scale: 1.12, opacity: 0.86, blending: 'additive', reducedGraphicsMultiplier: 0.68 },
     ],
   },
   {
-    id: 'leap_impact', label: 'Impact de saut', duration: 0.58, impactTime: 0.28,
+    id: 'leap_impact', label: 'Impact de saut', duration: 0.72, impactTime: 0.28,
     tags: ['move', 'landing', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.64,
     steps: [
-      { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'basic_body_slam_heavy', startTime: 0.04, duration: 0.48, scale: 1.38, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.74 },
+      { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'basic_body_slam_heavy', startTime: 0.04, duration: 0.6, scale: 1.38, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.74 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.25, duration: 0.12, scale: 0.2, reducedGraphicsMultiplier: 0.55 },
     ],
   },
   {
-    id: 'caster_roar', label: 'Onde de commandement', duration: 0.54, impactTime: 0.2,
+    id: 'caster_roar', label: 'Onde de commandement', duration: 0.65, impactTime: 0.2,
     tags: ['support', 'debuff', 'caster'], particleBudget: 0, reducedGraphicsScale: 0.66,
     steps: [
-      { type: 'spriteSheet', anchor: 'sourceGround', spriteSheet: 'skill_starburst_impact_medium', startTime: 0.02, duration: 0.42, scale: 1.28, opacity: 0.9, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
+      { type: 'spriteSheet', anchor: 'sourceGround', spriteSheet: 'skill_starburst_impact_medium', startTime: 0.02, duration: 0.55, scale: 1.28, opacity: 0.9, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
     ],
   },
   {
-    id: 'arrow_rain', label: 'Pluie de flèches', duration: 0.76, impactTime: 0.44,
+    id: 'arrow_rain', label: 'Pluie de flèches', duration: 0.8, impactTime: 0.44,
     tags: ['ranged', 'area', 'multi-impact'], particleBudget: 0, reducedGraphicsScale: 0.58,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_arrow_hit_small', orientation: 'center_on_target', startTime: 0.03, duration: 0.54, scale: 1.06, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.74 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_arrow_hit_small', orientation: 'center_on_target', startTime: 0.03, duration: 0.65, scale: 1.06, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.74 },
     ],
   },
 ] as const satisfies readonly VfxPreset[];
@@ -391,64 +391,64 @@ const presets = [
  */
 const basicAttackPresets = [
   {
-    id: 'basic_greatsword_hit', label: 'Impact espadon', duration: 0.55, impactTime: 0.28,
+    id: 'basic_greatsword_hit', label: 'Impact espadon', duration: 0.6, impactTime: 0.28,
     tags: ['basic', 'weapon', 'greatsword', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.78,
-    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_greatsword_cleave_heavy', orientation: 'source_to_target', startTime: 0, duration: 0.55, scale: 1.42, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.78 }],
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_greatsword_cleave_heavy', orientation: 'center_on_target', startTime: 0, duration: 0.6, scale: 1.42, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.78 }],
   },
   {
-    id: 'basic_holy_mace_hit', label: 'Impact masse sacree', duration: 0.46, impactTime: 0.22,
+    id: 'basic_holy_mace_hit', label: 'Impact masse sacree', duration: 0.55, impactTime: 0.22,
     tags: ['basic', 'weapon', 'holy_mace', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.76,
-    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_mace_impact_medium', orientation: 'source_to_target', startTime: 0, duration: 0.46, scale: 1.26, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 }],
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_mace_impact_medium', orientation: 'center_on_target', startTime: 0, duration: 0.55, scale: 1.26, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 }],
   },
   {
-    id: 'basic_scythe_hit', label: 'Impact faux', duration: 0.46, impactTime: 0.22,
+    id: 'basic_scythe_hit', label: 'Impact faux', duration: 0.55, impactTime: 0.22,
     tags: ['basic', 'weapon', 'scythe', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.76,
-    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_blade_crescent_medium', orientation: 'source_to_target', startTime: 0, duration: 0.46, scale: 1.26, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 }],
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_blade_crescent_medium', orientation: 'center_on_target', startTime: 0, duration: 0.55, scale: 1.26, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 }],
   },
   {
-    id: 'basic_long_spear_hit', label: 'Impact lance longue', duration: 0.46, impactTime: 0.22,
+    id: 'basic_long_spear_hit', label: 'Impact lance longue', duration: 0.55, impactTime: 0.22,
     tags: ['basic', 'weapon', 'long_spear', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.76,
-    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_spear_stab_medium', orientation: 'source_to_target', startTime: 0, duration: 0.46, scale: 1.26, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 }],
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_spear_stab_medium', orientation: 'center_on_target', startTime: 0, duration: 0.55, scale: 1.26, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 }],
   },
   {
-    id: 'basic_grimoire_hit', label: 'Impact grimoire', duration: 0.38, impactTime: 0.18,
+    id: 'basic_grimoire_hit', label: 'Impact grimoire', duration: 0.5, impactTime: 0.18,
     tags: ['basic', 'weapon', 'grimoire', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.74,
-    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_bolt_hit_small', orientation: 'source_to_target', startTime: 0, duration: 0.38, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_bolt_hit_small', orientation: 'center_on_target', startTime: 0, duration: 0.5, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
   },
   {
-    id: 'basic_crosier_hit', label: 'Impact crosier', duration: 0.38, impactTime: 0.18,
+    id: 'basic_crosier_hit', label: 'Impact crosier', duration: 0.5, impactTime: 0.18,
     tags: ['basic', 'weapon', 'crosier', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.74,
-    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_staff_strike_small', orientation: 'source_to_target', startTime: 0, duration: 0.38, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_staff_strike_small', orientation: 'center_on_target', startTime: 0, duration: 0.5, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
   },
   {
-    id: 'basic_rapier_hit', label: 'Impact rapiere', duration: 0.38, impactTime: 0.18,
+    id: 'basic_rapier_hit', label: 'Impact rapiere', duration: 0.5, impactTime: 0.18,
     tags: ['basic', 'weapon', 'rapier', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.74,
-    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_dagger_crosscut_small', orientation: 'source_to_target', startTime: 0, duration: 0.38, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_dagger_crosscut_small', orientation: 'center_on_target', startTime: 0, duration: 0.5, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
   },
   {
-    id: 'basic_wand_hit', label: 'Impact baguette', duration: 0.38, impactTime: 0.18,
+    id: 'basic_wand_hit', label: 'Impact baguette', duration: 0.5, impactTime: 0.18,
     tags: ['basic', 'weapon', 'wand', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.74,
-    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_bolt_hit_small', orientation: 'source_to_target', startTime: 0, duration: 0.38, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_bolt_hit_small', orientation: 'center_on_target', startTime: 0, duration: 0.5, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
   },
   {
-    id: 'basic_longbow_hit', label: 'Impact arc long', duration: 0.38, impactTime: 0.18,
+    id: 'basic_longbow_hit', label: 'Impact arc long', duration: 0.5, impactTime: 0.18,
     tags: ['basic', 'weapon', 'longbow', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.74,
-    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_arrow_hit_small', orientation: 'source_to_target', startTime: 0, duration: 0.38, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_arrow_hit_small', orientation: 'center_on_target', startTime: 0, duration: 0.5, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
   },
   {
-    id: 'basic_shuriken_hit', label: 'Impact shuriken', duration: 0.38, impactTime: 0.18,
+    id: 'basic_shuriken_hit', label: 'Impact shuriken', duration: 0.5, impactTime: 0.18,
     tags: ['basic', 'weapon', 'shuriken', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.74,
-    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_shuriken_cut_small', orientation: 'source_to_target', startTime: 0, duration: 0.38, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_shuriken_cut_small', orientation: 'center_on_target', startTime: 0, duration: 0.5, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
   },
   {
-    id: 'basic_dagger_hit', label: 'Impact dague', duration: 0.38, impactTime: 0.18,
+    id: 'basic_dagger_hit', label: 'Impact dague', duration: 0.5, impactTime: 0.18,
     tags: ['basic', 'weapon', 'dagger', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.74,
-    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_dagger_crosscut_small', orientation: 'source_to_target', startTime: 0, duration: 0.38, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_dagger_crosscut_small', orientation: 'center_on_target', startTime: 0, duration: 0.5, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
   },
   {
-    id: 'basic_hand_cannon_hit', label: 'Impact canon', duration: 0.46, impactTime: 0.22,
+    id: 'basic_hand_cannon_hit', label: 'Impact canon', duration: 0.55, impactTime: 0.22,
     tags: ['basic', 'weapon', 'hand_cannon', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.76,
-    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_bullet_hit_medium', orientation: 'source_to_target', startTime: 0, duration: 0.46, scale: 1.26, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 }],
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_bullet_hit_medium', orientation: 'center_on_target', startTime: 0, duration: 0.55, scale: 1.26, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 }],
   },
 ] as const satisfies readonly VfxPreset[];
 
@@ -578,7 +578,7 @@ const premiumPresets = [
     tags: ['hero', 'ultimate', 'physical', 'golden', 'line'],
     reducedGraphicsScale: 0.45,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_execution_slash_heavy', startTime: 0.2, duration: 0.5, scale: 2.22, opacity: 1, blending: 'additive', orientation: 'center_on_target', reducedGraphicsMultiplier: 0.72 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_execution_slash_heavy', startTime: 0.2, duration: 0.65, scale: 2.22, opacity: 1, blending: 'additive', orientation: 'center_on_target', reducedGraphicsMultiplier: 0.72 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.37, duration: 0.14, color: '#ffe5a0', opacity: 0.16, reducedGraphicsMultiplier: 0.52 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.37, duration: 0.3, scale: 0.48, reducedGraphicsMultiplier: 0.48 },
       { type: 'hitStop', anchor: 'screen', startTime: 0.38, duration: 0.1 },
@@ -620,7 +620,7 @@ const premiumPresets = [
     tags: ['hero', 'ultimate', 'piercing', 'anti-boss', 'line'],
     reducedGraphicsScale: 0.45,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_spear_stab_medium', startTime: 0.22, duration: 0.56, scale: 1.82, opacity: 1, blending: 'normal', orientation: 'center_on_target', reducedGraphicsMultiplier: 0.72 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_spear_stab_medium', startTime: 0.22, duration: 0.65, scale: 1.82, opacity: 1, blending: 'normal', orientation: 'center_on_target', reducedGraphicsMultiplier: 0.72 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.52, duration: 0.14, color: '#dff8ff', opacity: 0.16, reducedGraphicsMultiplier: 0.52 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.52, duration: 0.28, scale: 0.46, reducedGraphicsMultiplier: 0.46 },
       { type: 'hitStop', anchor: 'screen', startTime: 0.53, duration: 0.11 },
@@ -686,7 +686,7 @@ const premiumPresets = [
     tags: ['hero', 'ultimate', 'ranged', 'piercing', 'critical'],
     reducedGraphicsScale: 0.45,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_arrow_hit_small', orientation: 'center_on_target', startTime: 0.1, duration: 0.54, scale: 1.42, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_arrow_hit_small', orientation: 'center_on_target', startTime: 0.1, duration: 0.65, scale: 1.42, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.51, duration: 0.13, color: '#e9fbff', opacity: 0.16, reducedGraphicsMultiplier: 0.52 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.51, duration: 0.25, scale: 0.43, reducedGraphicsMultiplier: 0.46 },
       { type: 'hitStop', anchor: 'screen', startTime: 0.52, duration: 0.11 },
@@ -700,8 +700,8 @@ const premiumPresets = [
     tags: ['hero', 'ultimate', 'execution', 'shadow', 'poison'],
     reducedGraphicsScale: 0.42,
     steps: [
-      { type: 'spriteSheet', anchor: 'sourceGround', spriteSheet: 'skill_void_spiral_implosion_medium', startTime: 0, duration: 0.62, scale: 1.46, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.72 },
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_execution_slash_heavy', startTime: 0.25, duration: 0.34, scale: 1.82, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
+      { type: 'spriteSheet', anchor: 'sourceGround', spriteSheet: 'skill_void_spiral_implosion_medium', startTime: 0, duration: 0.65, scale: 1.46, opacity: 1, blending: 'normal', reducedGraphicsMultiplier: 0.72 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_execution_slash_heavy', startTime: 0.25, duration: 0.65, scale: 1.82, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.29, duration: 0.11, color: '#8e59aa', opacity: 0.13, reducedGraphicsMultiplier: 0.46 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.29, duration: 0.22, scale: 0.42, reducedGraphicsMultiplier: 0.44 },
       { type: 'hitStop', anchor: 'screen', startTime: 0.29, duration: 0.115 },
@@ -715,7 +715,7 @@ const premiumPresets = [
     tags: ['hero', 'ultimate', 'physical', 'shatter', 'dispel'],
     reducedGraphicsScale: 0.44,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_greatsword_cleave_heavy', startTime: 0.28, duration: 0.38, scale: 1.86, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_greatsword_cleave_heavy', startTime: 0.28, duration: 0.65, scale: 1.86, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.36, duration: 0.14, color: '#e7fbef', opacity: 0.15, reducedGraphicsMultiplier: 0.5 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.36, duration: 0.28, scale: 0.46, reducedGraphicsMultiplier: 0.45 },
       { type: 'hitStop', anchor: 'screen', startTime: 0.37, duration: 0.1 },
@@ -738,12 +738,12 @@ const premiumPresets = [
   premiumPreset({
     id: 'enemy_dragon_breath',
     label: 'Souffle draconique',
-    duration: 0.84,
+    duration: 0.9,
     impactTime: 0.46,
     tags: ['enemy', 'fire', 'breath', 'cone'],
     reducedGraphicsScale: 0.42,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'skill_fire_smoke_explosion_heavy', startTime: 0.04, duration: 0.54, scale: 1.62, opacity: 1, blending: 'additive', orientation: 'center_on_target', reducedGraphicsMultiplier: 0.64 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'skill_fire_smoke_explosion_heavy', startTime: 0.04, duration: 0.65, scale: 1.62, opacity: 1, blending: 'additive', orientation: 'center_on_target', reducedGraphicsMultiplier: 0.64 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.41, duration: 0.12, color: '#ff984d', opacity: 0.12, reducedGraphicsMultiplier: 0.46 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.41, duration: 0.22, scale: 0.32, reducedGraphicsMultiplier: 0.44 },
     ],
@@ -756,7 +756,7 @@ const premiumPresets = [
     tags: ['boss', 'signature', 'physical', 'execution'],
     reducedGraphicsScale: 0.42,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_execution_slash_heavy', startTime: 0.24, duration: 0.62, scale: 1.55, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.64 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_execution_slash_heavy', startTime: 0.24, duration: 0.7, scale: 1.55, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.64 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.45, duration: 0.14, color: '#e5a25c', opacity: 0.16, reducedGraphicsMultiplier: 0.45 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.45, duration: 0.36, scale: 0.62, reducedGraphicsMultiplier: 0.4 },
       { type: 'hitStop', anchor: 'screen', startTime: 0.46, duration: 0.12 },
@@ -765,14 +765,14 @@ const premiumPresets = [
   premiumPreset({
     id: 'boss_flurry',
     label: 'Déluge de lames',
-    duration: 1.12,
+    duration: 1.22,
     impactTime: 0.42,
     tags: ['boss', 'signature', 'physical', 'multi-hit'],
     reducedGraphicsScale: 0.4,
     steps: [
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_sword_slash_heavy', startTime: 0.22, duration: 0.42, scale: 1.68, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_sword_slash_heavy', startTime: 0.38, duration: 0.42, scale: 1.82, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
-      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_sword_slash_heavy', startTime: 0.55, duration: 0.48, scale: 2.12, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_sword_slash_heavy', startTime: 0.22, duration: 0.65, scale: 1.68, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_sword_slash_heavy', startTime: 0.38, duration: 0.65, scale: 1.82, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_sword_slash_heavy', startTime: 0.55, duration: 0.65, scale: 2.12, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
       { type: 'screenFlash', anchor: 'screen', startTime: 0.61, duration: 0.13, color: '#f5cf82', opacity: 0.14, reducedGraphicsMultiplier: 0.42 },
       { type: 'screenShake', anchor: 'camera', startTime: 0.61, duration: 0.32, scale: 0.52, reducedGraphicsMultiplier: 0.4 },
       { type: 'hitStop', anchor: 'screen', startTime: 0.62, duration: 0.1 },

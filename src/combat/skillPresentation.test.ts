@@ -89,11 +89,11 @@ describe('hero skill action contracts', () => {
 
   it('uses directional and scale-aware visual contracts for V10F priority actions', () => {
     const contracts = [
-      ['w_break_guard', 'sword_slash', 'source_to_target', '2ap'],
-      ['l_long_thrust', 'thrust_line', 'source_to_target', '2ap'],
-      ['l_haft_recoil', 'thrust_line', 'source_to_target', '3ap'],
+      ['w_break_guard', 'sword_slash', 'center_on_target', '2ap'],
+      ['l_long_thrust', 'thrust_line', 'center_on_target', '2ap'],
+      ['l_haft_recoil', 'thrust_line', 'center_on_target', '3ap'],
       ['d_void_step', 'teleport_burst', 'source_to_destination', '3ap'],
-      ['n_dark_bolt', 'shadow_lightning_bolt', 'source_to_target', '2ap'],
+      ['n_dark_bolt', 'shadow_lightning_bolt', 'center_on_target', '2ap'],
       ['p_holy_strike', 'skill_holy_radiance', 'center_on_target', '2ap'],
       ['a_arrow_rain', 'arrow_rain', 'center_on_aoe_origin', '4ap'],
       ['n_flame_wave', 'skill_fire_impact', 'center_on_target', '4ap'],
@@ -116,7 +116,7 @@ describe('hero skill action contracts', () => {
       expect(getSkillPresentation({ key: id })?.visualTier).not.toBe(6);
     }
     expect(getSkillPresentation({ key: 'boss_pin' })).toMatchObject({
-      orientation: 'source_to_target',
+      orientation: 'center_on_target',
       scaleTier: 'boss',
     });
   });
@@ -124,7 +124,7 @@ describe('hero skill action contracts', () => {
   it('keeps dark lightning distinct from teleport and curse presentation', () => {
     expect(getSkillPresentation({ key: 'enemy_dark_bolt' })).toMatchObject({
       vfxPreset: 'shadow_lightning_bolt',
-      orientation: 'source_to_target',
+      orientation: 'center_on_target',
       scaleTier: '2ap',
     });
     expect(getSkillPresentation({ key: 'd_void_step' })?.vfxPreset).toBe('teleport_burst');

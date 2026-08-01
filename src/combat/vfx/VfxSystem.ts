@@ -65,6 +65,12 @@ function contextImpactRenderOrder(context: VfxContext) {
   return Math.max(VFX_RENDER_ORDER.impact, context.impactRenderOrder ?? tier.impactRenderOrder);
 }
 
+function contextTargetSizeMultiplier(context: VfxContext) {
+  if (context.targetSizeMultiplier !== undefined) return context.targetSizeMultiplier;
+  const size = context.targetUnits?.[0]?.size ?? 1;
+  return size > 1 ? 1.3 : 1.0;
+}
+
 function foregroundPeakOpacity(value: number, context: VfxContext) {
   return clamp(Math.max(value, contextImpactOpacityFloor(context)) * (context.opacityMultiplier ?? 1), 0, 1);
 }
@@ -685,7 +691,8 @@ export class VfxSystem {
       * definition.presentation.scaleMultiplier
       * intensity
       * (context.reducedGraphics ? 0.94 : 1)
-      * contextPresentationScale(context);
+      * contextPresentationScale(context)
+      * contextTargetSizeMultiplier(context);
     const frameAspect = definition.rows / definition.cols;
     const requestedOpacity = (step.opacity ?? 1)
       * definition.presentation.opacityMultiplier
@@ -697,14 +704,13 @@ export class VfxSystem {
       ? VFX_RENDER_ORDER.ground
       : contextImpactRenderOrder(context);
     sprite.position.copy(anchor);
-    material.rotation += directionalRotation(step, context);
     try {
       await this.animate(duration, (progress) => {
         const frame = Math.min(definition.frameCount - 1, Math.floor(progress * definition.frameCount));
         const scale = baseHeight * spriteSheetScalePulse(progress, definition);
         setVfxSpriteSheetFrame(texture, definition, frame);
         sprite.position.copy(anchor);
-        if (definition.align === 'bottom') sprite.position.y += scale * 0.5;
+        if (definition.align === 'bottom') sprite.position.y += baseHeight * 0.5;
         sprite.scale.set(scale * frameAspect, scale, 1);
         material.opacity = baseOpacity * spriteSheetEnvelope(progress, definition);
       });
@@ -862,7 +868,7 @@ export class VfxSystem {
           * spriteSheetScalePulse(progress, definition);
         setVfxSpriteSheetFrame(texture, definition, frame);
         sprite.position.lerpVectors(start, end, descent);
-        if (definition.align === 'bottom') sprite.position.y += scale * 0.5;
+        if (definition.align === 'bottom') sprite.position.y += baseHeight * 0.5;
         sprite.scale.set(scale * frameAspect, scale, 1);
         material.opacity = baseOpacity * spriteSheetEnvelope(progress, definition);
       });

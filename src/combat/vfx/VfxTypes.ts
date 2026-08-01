@@ -248,6 +248,8 @@ export interface VfxContext {
    *  ground-based effects toward the combat floor. Does not affect tactical
    *  target points, AoE centers, hitboxes, or any gameplay rule. */
   groundYOffset?: number;
+  /** Presentation-only multiplier for larger targets (2x2/boss). Does not affect targeting. */
+  targetSizeMultiplier?: number;
   /** Applied by a cinematic phase without mutating registered VFX presets. */
   opacityMultiplier?: number;
   cinematicPhase?: {
