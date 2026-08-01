@@ -4,15 +4,14 @@ dist/
 .vite/
 coverage/
 *.log
-*.blend1
-*.blend2
-*.blend@
-*.blend.autosave
 
 # VFX development artifacts (raw AI sources + validation reports)
 public/assets/vfx/raw/
 public/assets/vfx/validation/
 public/assets/vfx/archive/
+
+# Temporary QC artifacts
+tmp/
 
 # Local IDE config
 .devin/

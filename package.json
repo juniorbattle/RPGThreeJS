@@ -8,10 +8,7 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest",
-    "blender:check": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/blender/blender.ps1 --background --python tools/blender/check_environment.py",
-    "blender:version": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/blender/blender.ps1 --version",
-    "blender:forest": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/blender/blender.ps1 --background --python tools/blender/build_forest_kit.py"
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@fontsource/cinzel": "5.1.1",
