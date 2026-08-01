@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { VFX_PRESET_IDS, VFX_PRESETS, VFX_PARTICLE_STEP_TYPES, getVfxPreset, PREMIUM_VFX_PRESET_IDS } from './VfxPresets';
+import {
+  BASIC_ATTACK_VFX_PRESET_IDS,
+  VFX_PRESET_IDS,
+  VFX_PRESETS,
+  VFX_PARTICLE_STEP_TYPES,
+  getVfxPreset,
+  PREMIUM_VFX_PRESET_IDS,
+} from './VfxPresets';
 import { VFX_TEXTURE_NAMES } from './VfxTextures';
 import { isVfxWorkbenchEnabled } from './VfxWorkbench';
 import type { VfxStepType } from './VfxTypes';
@@ -35,7 +42,14 @@ const LOT_C_PRESETS = [
 const V10F_DISPATCH_PRESETS = [
   'thrust_line', 'teleport_burst', 'holy_strike', 'leap_impact', 'caster_roar', 'arrow_rain',
 ];
-const REQUIRED_PRESETS = [...PHASE_1_PRESETS, ...PHASE_2_PRESETS, ...LOT_C_PRESETS, ...V10F_DISPATCH_PRESETS, ...PREMIUM_VFX_PRESET_IDS];
+const REQUIRED_PRESETS = [
+  ...PHASE_1_PRESETS,
+  ...PHASE_2_PRESETS,
+  ...LOT_C_PRESETS,
+  ...V10F_DISPATCH_PRESETS,
+  ...BASIC_ATTACK_VFX_PRESET_IDS,
+  ...PREMIUM_VFX_PRESET_IDS,
+];
 const VALID_STEP_TYPES = new Set<VfxStepType>([
   'particleBurst',
   'projectile',
@@ -95,6 +109,17 @@ describe('combat VFX presets', () => {
       const preset = getVfxPreset(id);
       expect(preset?.id).toBe(id);
       expect(preset?.tags.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('keeps twelve one-sheet basic weapon impact presets', () => {
+    expect(BASIC_ATTACK_VFX_PRESET_IDS).toHaveLength(12);
+    for (const id of BASIC_ATTACK_VFX_PRESET_IDS) {
+      const preset = getVfxPreset(id);
+      const spriteSteps = preset?.steps.filter((step) => step.type === 'spriteSheet') ?? [];
+      expect(spriteSteps).toHaveLength(1);
+      expect(spriteSteps[0]?.spriteSheet).toMatch(/^basic_/);
+      expect(spriteSteps[0]?.spriteSheet).not.toContain('skill');
     }
   });
 

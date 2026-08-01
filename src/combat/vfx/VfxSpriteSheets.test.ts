@@ -3,11 +3,17 @@ import { existsSync, readFileSync } from 'node:fs';
 import { inflateSync } from 'node:zlib';
 import runtimeManifest from '../../../public/assets/vfx/runtime/manifest.json';
 import { VFX_PRESETS } from './VfxPresets';
-import { VFX_SPRITE_SHEETS, VFX_SPRITE_SHEET_IDS } from './VfxSpriteSheets';
+import {
+  BASIC_LIBRARY_ONLY_SPRITE_SHEET_IDS,
+  BASIC_RUNTIME_SPRITE_SHEET_IDS,
+  VFX_SPRITE_SHEETS,
+  VFX_SPRITE_SHEET_IDS,
+} from './VfxSpriteSheets';
 import type { VfxSpriteSheetId } from './VfxTypes';
 
 const FORBIDDEN_RUNTIME_SEGMENTS = ['/validation/', '/raw/', '/processed/', '/rejected/', '/v1/', '/v2/'];
 const RUNTIME_PUBLIC_ROOT = new URL('../../../public/', import.meta.url);
+const BASIC_LIBRARY_ONLY_SHEET_IDS = new Set<string>(BASIC_LIBRARY_ONLY_SPRITE_SHEET_IDS);
 
 function runtimePath(url: string) {
   return new URL(`.${url}`, RUNTIME_PUBLIC_ROOT);
@@ -110,7 +116,11 @@ describe('combat VFX sprite sheets', () => {
       .filter((step) => step.type === 'spriteSheet');
     const usedIds = new Set(spriteSteps.map((step) => step.spriteSheet));
 
-    expect([...usedIds].sort()).toEqual([...VFX_SPRITE_SHEET_IDS].sort());
+    expect([...usedIds].sort()).toEqual(
+      [...VFX_SPRITE_SHEET_IDS]
+        .filter((id) => !BASIC_LIBRARY_ONLY_SHEET_IDS.has(id))
+        .sort(),
+    );
     for (const step of spriteSteps) {
       expect(step.spriteSheet).toBeDefined();
       expect(VFX_SPRITE_SHEET_IDS).toContain(step.spriteSheet);
@@ -149,6 +159,33 @@ describe('combat VFX sprite sheets', () => {
           expect(rowOpaque, `${id} separator row ${y}`).toBeLessThan(width / 2);
         }
       }
+    }
+  });
+
+  it('ships the R3E-1 basic library as public 1280px RGBA sheets without magenta', () => {
+    expect(BASIC_RUNTIME_SPRITE_SHEET_IDS).toHaveLength(22);
+    for (const id of BASIC_RUNTIME_SPRITE_SHEET_IDS) {
+      const definition = VFX_SPRITE_SHEETS[id];
+      expect(definition.url).toMatch(/^\/assets\/vfx\/runtime\/white_basic_[a-z0-9_]+_5x5_25f_1280\.png$/);
+      expect(definition.url).not.toContain('1254');
+      expect(definition.url).not.toContain('/skills/');
+
+      const assetPath = runtimePath(definition.url);
+      const header = readPngHeader(assetPath);
+      expect([header.width, header.height]).toEqual([1280, 1280]);
+      expect(header.colorType).toBe(6);
+
+      const { pixels } = decodeRgbaPng(assetPath);
+      let opaqueMagenta = 0;
+      for (let offset = 0; offset < pixels.length; offset += 4) {
+        if (
+          (pixels[offset + 3] ?? 0) > 8 &&
+          (pixels[offset] ?? 0) > 230 &&
+          (pixels[offset + 1] ?? 0) < 40 &&
+          (pixels[offset + 2] ?? 0) > 230
+        ) opaqueMagenta++;
+      }
+      expect(opaqueMagenta, id + ' opaque magenta pixels').toBe(0);
     }
   });
 });

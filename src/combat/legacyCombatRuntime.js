@@ -18,6 +18,7 @@ import { installVfxWorkbench } from './vfx/VfxWorkbench';
 import { getResolvedCarouselStatusFrame, getStatusIndicatorAsset, getStatusIndicatorEmphasis, getVisibleStatusIndicators, resolveStatusCarousel } from './statusPresentation';
 import { skillById as SKILL_MAP } from '../game/skills';
 import { getSkillPresentation } from './skillPresentation';
+import { getBasicAttackVfxPreset } from './vfx/VfxActionRegistry';
 import { ACTION_PRESENTATION_TIERS, getActionVisualTier, getActionPresentationTuning } from './combatVfxPresentation';
 import { UNIT_MOTION_PRESETS, beginUnitMotion, cancelUnitMotion, createCanonicalUnitMotionBaseline, isUnitMotionCurrent, onceAsync } from './unitMotion';
 import { resolveCombatFeel } from './combatFeel';
@@ -1429,6 +1430,8 @@ function vfxTextIncludes(text,terms){ return terms.some(term=>text.includes(term
 function getActionVfxPreset(spec={},u=null){
   const presentation=getSkillPresentation(spec);
   if(presentation)return presentation.vfxPreset;
+  const basicAttackPreset=getBasicAttackVfxPreset(spec,u);
+  if(basicAttackPreset)return basicAttackPreset;
   const text=actionVfxSearchText(spec,u);
   if(spec.item){
     if(spec.revive)return 'support_revive_pillar';

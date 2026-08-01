@@ -31,7 +31,29 @@ export type VfxSpriteSheetId =
   | 'apocalypse_field'
   | 'shadow_lightning_bolt'
   | 'root_vines'
-  | 'frost_bind';
+  | 'frost_bind'
+  | 'basic_arrow_hit_small'
+  | 'basic_axe_chop_medium'
+  | 'basic_bite_snap_small'
+  | 'basic_blade_crescent_medium'
+  | 'basic_body_slam_heavy'
+  | 'basic_bolt_hit_small'
+  | 'basic_bullet_hit_medium'
+  | 'basic_claw_rake_small'
+  | 'basic_dagger_crosscut_small'
+  | 'basic_execution_slash_heavy'
+  | 'basic_greatsword_cleave_heavy'
+  | 'basic_hammer_crush_heavy'
+  | 'basic_horn_ram_medium'
+  | 'basic_mace_impact_medium'
+  | 'basic_shield_bash_medium'
+  | 'basic_shuriken_cut_small'
+  | 'basic_spear_stab_medium'
+  | 'basic_staff_strike_small'
+  | 'basic_sword_slash_heavy'
+  | 'basic_sword_slash_small'
+  | 'basic_tail_whip_medium'
+  | 'basic_titan_crush_heavy';
 
 export type VfxSpriteSheetMode = 'billboard' | 'projectile' | 'sky_descent';
 

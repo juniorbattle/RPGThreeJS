@@ -384,6 +384,78 @@ const presets = [
   },
 ] as const satisfies readonly VfxPreset[];
 
+/**
+ * R3E-1 weapon-impact presets. These are deliberately one-sheet, one-impact
+ * presentations: weapon identity comes from the sprite sheet while combat
+ * timing, damage and targeting remain owned by the legacy runtime.
+ */
+const basicAttackPresets = [
+  {
+    id: 'basic_greatsword_hit', label: 'Impact espadon', duration: 0.55, impactTime: 0.28,
+    tags: ['basic', 'weapon', 'greatsword', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.78,
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_greatsword_cleave_heavy', orientation: 'source_to_target', startTime: 0, duration: 0.55, scale: 1.42, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.78 }],
+  },
+  {
+    id: 'basic_holy_mace_hit', label: 'Impact masse sacree', duration: 0.46, impactTime: 0.22,
+    tags: ['basic', 'weapon', 'holy_mace', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.76,
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_mace_impact_medium', orientation: 'source_to_target', startTime: 0, duration: 0.46, scale: 1.26, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 }],
+  },
+  {
+    id: 'basic_scythe_hit', label: 'Impact faux', duration: 0.46, impactTime: 0.22,
+    tags: ['basic', 'weapon', 'scythe', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.76,
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_blade_crescent_medium', orientation: 'source_to_target', startTime: 0, duration: 0.46, scale: 1.26, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 }],
+  },
+  {
+    id: 'basic_long_spear_hit', label: 'Impact lance longue', duration: 0.46, impactTime: 0.22,
+    tags: ['basic', 'weapon', 'long_spear', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.76,
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_spear_stab_medium', orientation: 'source_to_target', startTime: 0, duration: 0.46, scale: 1.26, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 }],
+  },
+  {
+    id: 'basic_grimoire_hit', label: 'Impact grimoire', duration: 0.38, impactTime: 0.18,
+    tags: ['basic', 'weapon', 'grimoire', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.74,
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_bolt_hit_small', orientation: 'source_to_target', startTime: 0, duration: 0.38, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
+  },
+  {
+    id: 'basic_crosier_hit', label: 'Impact crosier', duration: 0.38, impactTime: 0.18,
+    tags: ['basic', 'weapon', 'crosier', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.74,
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_staff_strike_small', orientation: 'source_to_target', startTime: 0, duration: 0.38, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
+  },
+  {
+    id: 'basic_rapier_hit', label: 'Impact rapiere', duration: 0.38, impactTime: 0.18,
+    tags: ['basic', 'weapon', 'rapier', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.74,
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_dagger_crosscut_small', orientation: 'source_to_target', startTime: 0, duration: 0.38, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
+  },
+  {
+    id: 'basic_wand_hit', label: 'Impact baguette', duration: 0.38, impactTime: 0.18,
+    tags: ['basic', 'weapon', 'wand', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.74,
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_bolt_hit_small', orientation: 'source_to_target', startTime: 0, duration: 0.38, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
+  },
+  {
+    id: 'basic_longbow_hit', label: 'Impact arc long', duration: 0.38, impactTime: 0.18,
+    tags: ['basic', 'weapon', 'longbow', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.74,
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_arrow_hit_small', orientation: 'source_to_target', startTime: 0, duration: 0.38, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
+  },
+  {
+    id: 'basic_shuriken_hit', label: 'Impact shuriken', duration: 0.38, impactTime: 0.18,
+    tags: ['basic', 'weapon', 'shuriken', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.74,
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_shuriken_cut_small', orientation: 'source_to_target', startTime: 0, duration: 0.38, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
+  },
+  {
+    id: 'basic_dagger_hit', label: 'Impact dague', duration: 0.38, impactTime: 0.18,
+    tags: ['basic', 'weapon', 'dagger', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.74,
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_dagger_crosscut_small', orientation: 'source_to_target', startTime: 0, duration: 0.38, scale: 1.14, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 }],
+  },
+  {
+    id: 'basic_hand_cannon_hit', label: 'Impact canon', duration: 0.46, impactTime: 0.22,
+    tags: ['basic', 'weapon', 'hand_cannon', 'impact'], particleBudget: 0, reducedGraphicsScale: 0.76,
+    steps: [{ type: 'spriteSheet', anchor: 'target', spriteSheet: 'basic_bullet_hit_medium', orientation: 'source_to_target', startTime: 0, duration: 0.46, scale: 1.26, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 }],
+  },
+] as const satisfies readonly VfxPreset[];
+
+export const BASIC_ATTACK_VFX_PRESET_IDS = Object.freeze(
+  basicAttackPresets.map((preset) => preset.id),
+);
+
 // ── Hero ultimate / enemy / boss signature presets (formerly VfxPremiumPresets.ts) ──
 const premiumPresets = [
   premiumPreset({
@@ -626,7 +698,7 @@ const premiumPresets = [
 
 export const PREMIUM_VFX_PRESET_IDS = Object.freeze(premiumPresets.map((preset) => preset.id));
 
-const completePresetPack = [...presets, ...premiumPresets] as const satisfies readonly VfxPreset[];
+const completePresetPack = [...presets, ...basicAttackPresets, ...premiumPresets] as const satisfies readonly VfxPreset[];
 
 export const VFX_PRESETS: Readonly<Record<string, VfxPreset>> = Object.freeze(
   Object.fromEntries(completePresetPack.map((preset) => [preset.id, preset])),

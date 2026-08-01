@@ -3,7 +3,7 @@ import { VFX_SPRITE_SHEETS } from './VfxSpriteSheets';
 import type { VfxSpriteSheetId } from './VfxTypes';
 import { HERO_SKILL_IDS, ENEMY_SKILL_IDS, getSkillPresentation } from '../skillPresentation';
 
-export type ActionVfxKind = 'heroSkill' | 'enemySkill' | 'bossSkill' | 'item' | 'feedback' | 'fallback';
+export type ActionVfxKind = 'basicAttack' | 'heroSkill' | 'enemySkill' | 'bossSkill' | 'item' | 'feedback' | 'fallback';
 
 export interface SpriteUpgradeCandidate {
   needsDedicatedSpriteUpgrade: true;
@@ -94,7 +94,60 @@ const ITEM_VFX_MAPPINGS: Array<{ actionId: string; presetId: string; note: strin
   { actionId: 'item_antidote', presetId: 'support_holy_aura', note: 'Status cure item' },
 ];
 
+export interface BasicAttackVfxMapping {
+  actionId: string;
+  weaponType: string;
+  presetId: string;
+  spriteSheetId: VfxSpriteSheetId;
+}
+
+/**
+ * Visual-only mapping for the 12 campaign weapon families. The combat runtime
+ * already exposes the selected weapon type on an attack spec, so this table
+ * never needs to participate in damage, range, or targeting resolution.
+ */
+export const BASIC_ATTACK_VFX_MAPPINGS = Object.freeze([
+  { actionId: 'basic_greatsword_hit', weaponType: 'greatsword', presetId: 'basic_greatsword_hit', spriteSheetId: 'basic_greatsword_cleave_heavy' },
+  { actionId: 'basic_holy_mace_hit', weaponType: 'holy_mace', presetId: 'basic_holy_mace_hit', spriteSheetId: 'basic_mace_impact_medium' },
+  { actionId: 'basic_scythe_hit', weaponType: 'scythe', presetId: 'basic_scythe_hit', spriteSheetId: 'basic_blade_crescent_medium' },
+  { actionId: 'basic_long_spear_hit', weaponType: 'long_spear', presetId: 'basic_long_spear_hit', spriteSheetId: 'basic_spear_stab_medium' },
+  { actionId: 'basic_grimoire_hit', weaponType: 'grimoire', presetId: 'basic_grimoire_hit', spriteSheetId: 'basic_bolt_hit_small' },
+  { actionId: 'basic_crosier_hit', weaponType: 'crosier', presetId: 'basic_crosier_hit', spriteSheetId: 'basic_staff_strike_small' },
+  { actionId: 'basic_rapier_hit', weaponType: 'rapier', presetId: 'basic_rapier_hit', spriteSheetId: 'basic_dagger_crosscut_small' },
+  { actionId: 'basic_wand_hit', weaponType: 'wand', presetId: 'basic_wand_hit', spriteSheetId: 'basic_bolt_hit_small' },
+  { actionId: 'basic_longbow_hit', weaponType: 'longbow', presetId: 'basic_longbow_hit', spriteSheetId: 'basic_arrow_hit_small' },
+  { actionId: 'basic_shuriken_hit', weaponType: 'shuriken', presetId: 'basic_shuriken_hit', spriteSheetId: 'basic_shuriken_cut_small' },
+  { actionId: 'basic_dagger_hit', weaponType: 'dagger', presetId: 'basic_dagger_hit', spriteSheetId: 'basic_dagger_crosscut_small' },
+  { actionId: 'basic_hand_cannon_hit', weaponType: 'hand_cannon', presetId: 'basic_hand_cannon_hit', spriteSheetId: 'basic_bullet_hit_medium' },
+] as const satisfies readonly BasicAttackVfxMapping[]);
+
 const FEEDBACK_PRESET_IDS = ['generic_hit', 'critical_hit', 'kill_spark'] as const;
+
+function normalizeWeaponType(value: unknown): string {
+  return String(value ?? '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_');
+}
+
+/**
+ * Resolves only the visual preset for the selected basic attack. Returning
+ * undefined intentionally preserves the established generic presentation for
+ * legacy or unknown weapon types.
+ */
+export function getBasicAttackVfxPreset(
+  spec: { key?: unknown; wi?: unknown; weaponType?: unknown },
+  unit?: {
+    weapons?: readonly { weaponType?: unknown; type?: unknown }[];
+  } | null,
+): string | undefined {
+  if (spec.key !== 'attack') return undefined;
+
+  const weaponIndex = typeof spec.wi === 'number' ? spec.wi : 0;
+  const weapon = unit?.weapons?.[weaponIndex] ?? unit?.weapons?.[0];
+  const weaponType = normalizeWeaponType(weapon?.weaponType ?? weapon?.type ?? spec.weaponType);
+  return BASIC_ATTACK_VFX_MAPPINGS.find((mapping) => mapping.weaponType === weaponType)?.presetId;
+}
 
 function getPresetSpriteSheetIds(presetId: string): string[] {
   const preset = getVfxPreset(presetId);
@@ -133,6 +186,15 @@ function buildAuditRow(actionId: string, actionKind: ActionVfxKind, presetId: st
 
 export function getActionVfxAuditRows(): ActionVfxAuditRow[] {
   const rows: ActionVfxAuditRow[] = [];
+
+  for (const mapping of BASIC_ATTACK_VFX_MAPPINGS) {
+    rows.push(buildAuditRow(
+      mapping.actionId,
+      'basicAttack',
+      mapping.presetId,
+      'Basic weapon: ' + mapping.weaponType,
+    ));
+  }
 
   for (const skillId of HERO_SKILL_IDS) {
     const presentation = getSkillPresentation({ key: skillId });

@@ -1,27 +1,31 @@
 import { describe, expect, it } from 'vitest';
 import {
+  BASIC_ATTACK_VFX_MAPPINGS,
   getActionVfxAuditRows,
   getActionVfxChain,
   getActionsUsingSpriteSheet,
+  getBasicAttackVfxPreset,
   getMissingOrUpgradeCandidateSprites,
 } from './VfxActionRegistry';
 import { HERO_SKILL_IDS, ENEMY_SKILL_IDS } from '../skillPresentation';
-import { VFX_PRESET_IDS } from './VfxPresets';
+import { BASIC_ATTACK_VFX_PRESET_IDS, VFX_PRESET_IDS } from './VfxPresets';
 import { VFX_SPRITE_SHEET_IDS } from './VfxSpriteSheets';
 
 describe('VfxActionRegistry — V10G-R2A.6', () => {
-  it('produces audit rows for all hero skills, enemy skills, items, and feedback', () => {
+  it('produces audit rows for all hero skills, enemy skills, items, feedback, and basic attacks', () => {
     const rows = getActionVfxAuditRows();
     const heroRows = rows.filter((r) => r.actionKind === 'heroSkill');
     const enemyRows = rows.filter((r) => r.actionKind === 'enemySkill');
     const bossRows = rows.filter((r) => r.actionKind === 'bossSkill');
     const itemRows = rows.filter((r) => r.actionKind === 'item');
     const feedbackRows = rows.filter((r) => r.actionKind === 'feedback');
+    const basicRows = rows.filter((r) => r.actionKind === 'basicAttack');
 
     expect(heroRows.length).toBe(HERO_SKILL_IDS.length);
     expect(enemyRows.length + bossRows.length).toBe(ENEMY_SKILL_IDS.length);
     expect(itemRows.length).toBe(5);
     expect(feedbackRows.length).toBe(3);
+    expect(basicRows.length).toBe(12);
   });
 
   it('every audit row resolves to a valid preset in the unified registry', () => {
@@ -63,6 +67,18 @@ describe('VfxActionRegistry — V10G-R2A.6', () => {
     expect(chain).toBeDefined();
     expect(chain!.presetId).toBe('ultimate_dark_meteor');
     expect(chain!.spriteSheetIds).toContain('meteor_fall');
+  });
+
+  it('maps every supported weapon type to exactly one validated basic presentation', () => {
+    expect(BASIC_ATTACK_VFX_MAPPINGS).toHaveLength(12);
+    expect(BASIC_ATTACK_VFX_MAPPINGS.map((mapping) => mapping.presetId)).toEqual(BASIC_ATTACK_VFX_PRESET_IDS);
+
+    for (const mapping of BASIC_ATTACK_VFX_MAPPINGS) {
+      expect(getBasicAttackVfxPreset({ key: 'attack', weaponType: mapping.weaponType })).toBe(mapping.presetId);
+      expect(getActionVfxChain(mapping.actionId)?.spriteSheetIds).toEqual([mapping.spriteSheetId]);
+    }
+
+    expect(getBasicAttackVfxPreset({ key: 'w_whirl', weaponType: 'greatsword' })).toBeUndefined();
   });
 
   it('getActionsUsingSpriteSheet returns all actions sharing a sprite', () => {
