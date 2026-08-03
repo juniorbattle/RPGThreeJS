@@ -253,6 +253,20 @@ function spriteSheetScalePulse(progress: number, definition: (typeof VFX_SPRITE_
   return 0.94 + Math.sin(Math.PI * peak) * 0.12;
 }
 
+/**
+ * Three.Sprite scales around its center by default. A fixed Y offset therefore
+ * cannot keep a bottom-aligned effect grounded while its scale pulse changes.
+ * Pinning the actual sprite pivot to its lower edge keeps the authored baseline
+ * stable without altering frame UVs or production PNGs.
+ */
+export function configureVfxSpriteSheetPivot(
+  sprite: THREE.Sprite,
+  align: 'center' | 'bottom',
+) {
+  sprite.center.set(0.5, align === 'bottom' ? 0 : 0.5);
+  return sprite;
+}
+
 function makeSprite(step: VfxStep, textureName: VfxTextureName, context: VfxContext, color?: string | number) {
   const material = new THREE.SpriteMaterial({
     map: getVfxTexture(textureName),
@@ -683,7 +697,7 @@ export class VfxSystem {
       blending: spriteSheetBlending(definition, step),
       rotation: step.rotation ?? 0,
     });
-    const sprite = this.track(new THREE.Sprite(material), context);
+    const sprite = this.track(configureVfxSpriteSheetPivot(new THREE.Sprite(material), definition.align), context);
     const objects: THREE.Object3D[] = [sprite];
     const intensity = clamp(context.intensity ?? 1, 0.35, 1.8);
     const quality = this.quality(step, preset, context);
@@ -710,7 +724,6 @@ export class VfxSystem {
         const scale = baseHeight * spriteSheetScalePulse(progress, definition);
         setVfxSpriteSheetFrame(texture, definition, frame);
         sprite.position.copy(anchor);
-        if (definition.align === 'bottom') sprite.position.y += baseHeight * 0.5;
         sprite.scale.set(scale * frameAspect, scale, 1);
         material.opacity = baseOpacity * spriteSheetEnvelope(progress, definition);
       });
@@ -821,7 +834,7 @@ export class VfxSystem {
       blending: spriteSheetBlending(definition, step),
       rotation: step.rotation ?? 0,
     });
-    const sprite = this.track(new THREE.Sprite(material), context);
+    const sprite = this.track(configureVfxSpriteSheetPivot(new THREE.Sprite(material), definition.align), context);
     const objects: THREE.Object3D[] = [sprite];
     const options = step.skyDescent ?? {};
     const end = resolveVfxAnchor(step.targetAnchor ?? step.anchor, context);
@@ -857,6 +870,7 @@ export class VfxSystem {
     sprite.renderOrder = definition.presentation.layer === 'ground'
       ? VFX_RENDER_ORDER.ground
       : contextImpactRenderOrder(context);
+    sprite.position.copy(start);
     try {
       await this.animate(actualDuration, (progress) => {
         const frame = Math.min(definition.frameCount - 1, Math.floor(progress * definition.frameCount));
@@ -868,7 +882,6 @@ export class VfxSystem {
           * spriteSheetScalePulse(progress, definition);
         setVfxSpriteSheetFrame(texture, definition, frame);
         sprite.position.lerpVectors(start, end, descent);
-        if (definition.align === 'bottom') sprite.position.y += baseHeight * 0.5;
         sprite.scale.set(scale * frameAspect, scale, 1);
         material.opacity = baseOpacity * spriteSheetEnvelope(progress, definition);
       });

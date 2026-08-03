@@ -9,6 +9,13 @@ coverage/
 public/assets/vfx/raw/
 public/assets/vfx/validation/
 public/assets/vfx/archive/
+public/assets/vfx/normalized_candidates/
+
+# VFX diagnostic evidence (PNG/GIF/JSON QC artifacts — too heavy for git)
+docs/reports/evidence/
+
+# Python cache
+__pycache__/
 
 # Temporary QC artifacts
 tmp/

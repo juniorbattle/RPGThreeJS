@@ -27,6 +27,45 @@ export interface VfxSpriteSheetDefinition {
   presentation: VfxSpriteSheetPresentation;
 }
 
+/**
+ * Runtime sheets are authored row-major from the top-left. Three.js uploads
+ * TextureLoader images with flipY enabled, so the UV row offset below must be
+ * expressed from the bottom of the WebGL texture. Keep this invariant explicit
+ * instead of relying on Texture's implicit default.
+ */
+export const VFX_SPRITE_SHEET_FLIP_Y = true;
+
+/**
+ * All runtime spritesheets are 1280×1280 RGBA PNGs with 5×5 cells (256px each).
+ * A half-texel UV inset prevents LinearFilter from sampling neighbouring cells
+ * at cell boundaries, eliminating texture bleeding without switching to
+ * NearestFilter or modifying the PNGs.
+ */
+const VFX_SPRITE_SHEET_SIZE_PX = 1280;
+const VFX_UV_INSET_TEXELS = 0.5;
+const VFX_UV_INSET_U = VFX_UV_INSET_TEXELS / VFX_SPRITE_SHEET_SIZE_PX;
+const VFX_UV_INSET_V = VFX_UV_INSET_TEXELS / VFX_SPRITE_SHEET_SIZE_PX;
+
+export function getVfxSpriteSheetFrameUv(
+  definition: VfxSpriteSheetDefinition,
+  frameIndex: number,
+) {
+  const safeFrame = Math.max(0, Math.min(definition.frameCount - 1, Math.floor(frameIndex)));
+  const column = safeFrame % definition.cols;
+  const row = Math.floor(safeFrame / definition.cols);
+  const cellWidth = 1 / definition.cols;
+  const cellHeight = 1 / definition.rows;
+  return {
+    safeFrame,
+    column,
+    row,
+    repeatX: cellWidth - VFX_UV_INSET_U * 2,
+    repeatY: cellHeight - VFX_UV_INSET_V * 2,
+    offsetX: column * cellWidth + VFX_UV_INSET_U,
+    offsetY: 1 - (row + 1) * cellHeight + VFX_UV_INSET_V,
+  };
+}
+
 export const VFX_SPRITE_SHEETS = {
   basic_arrow_hit_small: { id: 'basic_arrow_hit_small', url: '/assets/vfx/runtime/white_basic_arrow_hit_small_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.14, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.78, layer: 'impact', blending: 'additive' } },
   basic_axe_chop_medium: { id: 'basic_axe_chop_medium', url: '/assets/vfx/runtime/white_basic_axe_chop_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.26, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.8, layer: 'impact', blending: 'additive' } },
@@ -140,7 +179,7 @@ function configureTexture(texture: THREE.Texture) {
   texture.generateMipmaps = false;
   texture.wrapS = THREE.ClampToEdgeWrapping;
   texture.wrapT = THREE.ClampToEdgeWrapping;
-  texture.flipY = true;
+  texture.flipY = VFX_SPRITE_SHEET_FLIP_Y;
   texture.needsUpdate = true;
   return texture;
 }
@@ -164,11 +203,9 @@ export function setVfxSpriteSheetFrame(
   definition: VfxSpriteSheetDefinition,
   frameIndex: number,
 ) {
-  const safeFrame = Math.max(0, Math.min(definition.frameCount - 1, Math.floor(frameIndex)));
-  const column = safeFrame % definition.cols;
-  const row = Math.floor(safeFrame / definition.cols);
-  texture.repeat.set(1 / definition.cols, 1 / definition.rows);
-  texture.offset.set(column / definition.cols, 1 - (row + 1) / definition.rows);
+  const uv = getVfxSpriteSheetFrameUv(definition, frameIndex);
+  texture.repeat.set(uv.repeatX, uv.repeatY);
+  texture.offset.set(uv.offsetX, uv.offsetY);
 }
 
 export function disposeVfxSpriteSheetTextures() {

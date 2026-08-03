@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { inflateSync } from 'node:zlib';
+import * as THREE from 'three';
 import runtimeManifest from '../../../public/assets/vfx/runtime/manifest.json';
 import { VFX_PRESETS } from './VfxPresets';
 import {
@@ -11,7 +12,10 @@ import {
   R3E4_PROMOTED_SPRITE_SHEET_IDS,
   SKILL_RUNTIME_SPRITE_SHEET_IDS,
   VFX_SPRITE_SHEETS,
+  VFX_SPRITE_SHEET_FLIP_Y,
   VFX_SPRITE_SHEET_IDS,
+  getVfxSpriteSheetFrameUv,
+  setVfxSpriteSheetFrame,
 } from './VfxSpriteSheets';
 import type { VfxSpriteSheetId } from './VfxTypes';
 
@@ -74,6 +78,71 @@ function decodeRgbaPng(path: URL) {
 }
 
 describe('combat VFX sprite sheets', () => {
+  const INSET = 0.5 / 1280;
+  const CELL = 0.2;
+  const REPEAT = CELL - INSET * 2;
+
+  it('maps 5x5 frames row-major from the authored top-left with an explicit flipY invariant', () => {
+    const definition = VFX_SPRITE_SHEETS.basic_arrow_hit_small;
+    expect(VFX_SPRITE_SHEET_FLIP_Y).toBe(true);
+
+    const expected = [
+      { frame: 0, column: 0, row: 0, offsetX: INSET, offsetY: 0.8 + INSET },
+      { frame: 4, column: 4, row: 0, offsetX: 0.8 + INSET, offsetY: 0.8 + INSET },
+      { frame: 5, column: 0, row: 1, offsetX: INSET, offsetY: 0.6 + INSET },
+      { frame: 24, column: 4, row: 4, offsetX: 0.8 + INSET, offsetY: INSET },
+    ];
+
+    for (const entry of expected) {
+      const uv = getVfxSpriteSheetFrameUv(definition, entry.frame);
+      expect(uv.column).toBe(entry.column);
+      expect(uv.row).toBe(entry.row);
+      expect(uv.repeatX).toBeCloseTo(REPEAT);
+      expect(uv.repeatY).toBeCloseTo(REPEAT);
+      expect(uv.offsetX).toBeCloseTo(entry.offsetX);
+      expect(uv.offsetY).toBeCloseTo(entry.offsetY);
+    }
+
+    const texture = new THREE.Texture();
+    texture.flipY = VFX_SPRITE_SHEET_FLIP_Y;
+    setVfxSpriteSheetFrame(texture, definition, 24);
+    expect(texture.flipY).toBe(true);
+    expect(texture.repeat.x).toBeCloseTo(REPEAT);
+    expect(texture.repeat.y).toBeCloseTo(REPEAT);
+    expect(texture.offset.x).toBeCloseTo(0.8 + INSET);
+    expect(texture.offset.y).toBeCloseTo(INSET);
+  });
+
+  it('applies a half-texel UV inset so LinearFilter cannot sample neighbouring cells', () => {
+    const definition = VFX_SPRITE_SHEETS.basic_arrow_hit_small;
+    const inset = 0.5 / 1280;
+
+    for (let frame = 0; frame < 25; frame++) {
+      const uv = getVfxSpriteSheetFrameUv(definition, frame);
+      const col = frame % 5;
+      const row = Math.floor(frame / 5);
+
+      expect(uv.repeatX).toBeLessThan(CELL);
+      expect(uv.repeatY).toBeLessThan(CELL);
+      expect(uv.repeatX).toBeCloseTo(CELL - inset * 2);
+      expect(uv.repeatY).toBeCloseTo(CELL - inset * 2);
+
+      expect(uv.offsetX).toBeGreaterThan(col * CELL);
+      expect(uv.offsetX).toBeLessThan((col + 1) * CELL);
+      expect(uv.offsetY).toBeGreaterThan(1 - (row + 1) * CELL);
+      expect(uv.offsetY).toBeLessThan(1 - row * CELL);
+
+      const uMin = uv.offsetX;
+      const uMax = uv.offsetX + uv.repeatX;
+      const vMin = uv.offsetY;
+      const vMax = uv.offsetY + uv.repeatY;
+      expect(uMin).toBeGreaterThan(col * CELL - 1e-9);
+      expect(uMax).toBeLessThan((col + 1) * CELL + 1e-9);
+      expect(vMin).toBeGreaterThan(1 - (row + 1) * CELL - 1e-9);
+      expect(vMax).toBeLessThan(1 - row * CELL + 1e-9);
+    }
+  });
+
   it('keeps the approved manifest and typed runtime registry synchronized', () => {
     expect(runtimeManifest.runtime_ready).toBe(true);
     expect(runtimeManifest.version).toBe(3);

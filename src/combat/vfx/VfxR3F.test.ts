@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest';
+import * as THREE from 'three';
 import {
   BASIC_ATTACK_VFX_PRESET_IDS,
   VFX_PRESETS,
   getVfxPreset,
 } from './VfxPresets';
 import { VFX_SPRITE_SHEETS } from './VfxSpriteSheets';
+import { configureVfxSpriteSheetPivot } from './VfxSystem';
 import type { VfxOrientation, VfxStep } from './VfxTypes';
 
 const DYNAMIC_ROTATION_ORIENTATIONS: VfxOrientation[] = [
@@ -77,6 +79,26 @@ describe('VFX-R3F billboard placement and readability doctrine', () => {
         expect(expectedAnchors).toContain(step.anchor);
       }
     }
+  });
+
+  it('keeps a bottom-aligned sprite baseline fixed while its visual scale pulses', () => {
+    const anchorY = 0.055;
+    const sprite = configureVfxSpriteSheetPivot(new THREE.Sprite(), 'bottom');
+    sprite.position.y = anchorY;
+
+    const lowerEdgeAt = (height: number) => {
+      sprite.scale.y = height;
+      return sprite.position.y - sprite.scale.y * sprite.center.y;
+    };
+
+    expect(sprite.center.x).toBeCloseTo(0.5);
+    expect(sprite.center.y).toBeCloseTo(0);
+    expect(lowerEdgeAt(0.94)).toBeCloseTo(anchorY);
+    expect(lowerEdgeAt(1.06)).toBeCloseTo(anchorY);
+
+    const centered = configureVfxSpriteSheetPivot(new THREE.Sprite(), 'center');
+    expect(centered.center.x).toBeCloseTo(0.5);
+    expect(centered.center.y).toBeCloseTo(0.5);
   });
 
   it('spriteSheet steps meet minimum visual duration for 25-frame sheets', () => {
