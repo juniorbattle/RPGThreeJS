@@ -290,7 +290,7 @@ Each action entry below distinguishes:
 
 | Field | Value |
 |---|---|
-| **Current gameplay mechanic** | Magical, range 1, single, no status |
+| **Current gameplay mechanic** | Physical, range 1, single, no status |
 | **Current VFX presentation** | `basic_grimoire_hit` preset, `basic_bolt_hit_small` sheet, additive, scale 1.14 |
 | **R3H verdict** | NEEDS_REGENERATION |
 | **Proposed R0–R5 VFX** | Visual family: dark/grimoire bolt impact (small). Processing: REPLACE. Mega Pack candidate: `UNASSIGNED_PENDING_R1` |

@@ -25,7 +25,7 @@ deferred gameplay proposals that remain PROPOSAL_ONLY until the R6 approval gate
 
 | Slot | actionId | AP | Type | Range | Area | Status | Element |
 |---|---|---|---|---|---|---|---|
-| Base | basic_grimoire_hit | — | mag | 1 | single | — | dark |
+| Base | basic_grimoire_hit | — | phys | 1 | single | — | dark |
 | Skill 1 | n_dark_bolt | 2 | mag | 1–4 | single | root | dark |
 | Skill 2 | n_teleport | 3 | move/teleport | 2–3 | — | barrier (upgrade) | void |
 | Skill 3 | n_flame_wave | 4 | mag | 1 | cone, radius 1.6 | burn | fire |
@@ -64,7 +64,7 @@ deferred gameplay proposals that remain PROPOSAL_ONLY until the R6 approval gate
 | Field | Value |
 |---|---|
 | **Required visual family** | Small dark/grimoire bolt impact |
-| **Tactical presentation requirement** | Compact magical impact at target position; dark palette; should read as a basic ranged magical hit, not a skill-level effect |
+| **Tactical presentation requirement** | Compact physical impact at target position; dark palette; should read as a basic ranged physical hit, not a skill-level effect |
 | **Processing type** | REPLACE — current sheet is NEEDS_REGENERATION |
 | **Mega Pack candidate** | `UNASSIGNED_PENDING_R1` |
 | **Change classification** | REPLACE |
@@ -167,7 +167,7 @@ R0–R5.
 The Black Mage's VFX should communicate a clear dark/void identity across all five actions:
 
 ```
-Base:     small dark bolt impact (compact, magical)
+Base:     small dark bolt impact (compact, physical)
 Skill 1:  dark bolt + root crystallization (ranged, control)
 Skill 2:  void teleport spiral (utility, movement)
 Skill 3:  directional fire wave (area, offensive) — or dark wave if R6 approves

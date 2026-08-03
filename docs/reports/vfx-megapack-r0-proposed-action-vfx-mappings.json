@@ -371,7 +371,7 @@
       "unitId": "black_mage",
       "unitName": "Elara (Black Mage)",
       "slot": "base",
-      "currentGameplayMechanic": { "ap": null, "type": "magical", "range": 1, "area": "single", "status": null, "element": "dark" },
+      "currentGameplayMechanic": { "ap": null, "type": "physical", "range": 1, "area": "single", "status": null, "element": "dark" },
       "currentVfxPresentation": { "preset": "basic_grimoire_hit", "spritesheet": "basic_bolt_hit_small", "orientation": "center_on_target", "scaleTier": null, "r3hVerdict": "NEEDS_REGENERATION" },
       "proposedR0R5VfxPresentation": {
         "requiredVisualFamily": "projectile_impact",
