@@ -1,0 +1,279 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vfx-megapack-r0-asset-taxonomy.schema.json",
+  "title": "VfxAssetCandidate",
+  "description": "Metadata schema for classifying and processing Mega Pack PNG sequence assets during R1 intake. All Mega Pack source paths are relative to <MEGA_PACK_ROOT>, which is a configurable external directory outside public/assets/. No commercial source files are copied into the repository.",
+  "type": "object",
+  "required": [
+    "candidateId",
+    "sourceCollection",
+    "sourcePath",
+    "sourceFilename",
+    "frameCount",
+    "frameDimensions",
+    "alphaAvailability",
+    "animationDuration",
+    "loopSuitability",
+    "visualFamily",
+    "element",
+    "palette",
+    "direction",
+    "impactLocation",
+    "targetShape",
+    "intensity",
+    "playbackMode",
+    "supportVsOffensive",
+    "groundVsTarget",
+    "cameraCompatibility",
+    "classificationTier",
+    "estimatedRPGThreeJSUsage",
+    "processingType",
+    "r1VerificationStatus"
+  ],
+  "properties": {
+    "candidateId": {
+      "type": "string",
+      "description": "Unique identifier for this candidate. Use UNASSIGNED_PENDING_R1 when no verified source asset exists yet."
+    },
+    "sourceCollection": {
+      "type": "string",
+      "description": "Collection or pack name within the Mega Pack. Use UNASSIGNED_PENDING_R1 until R1 indexing."
+    },
+    "sourcePath": {
+      "type": "string",
+      "description": "Relative path from <MEGA_PACK_ROOT> to the source asset directory. Use UNASSIGNED_PENDING_R1 until R1 indexing."
+    },
+    "sourceFilename": {
+      "type": "string",
+      "description": "Source filename or filename pattern. Use UNASSIGNED_PENDING_R1 until R1 indexing."
+    },
+    "frameCount": {
+      "type": "integer",
+      "description": "Number of PNG frames in the source sequence. Set to 0 when UNASSIGNED_PENDING_R1.",
+      "minimum": 0
+    },
+    "frameDimensions": {
+      "type": "object",
+      "required": ["width", "height"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 0 },
+        "height": { "type": "integer", "minimum": 0 }
+      },
+      "description": "Source frame pixel dimensions. Set to 0x0 when UNASSIGNED_PENDING_R1."
+    },
+    "alphaAvailability": {
+      "type": "string",
+      "enum": ["alpha", "no_alpha", "PENDING_SOURCE_INSPECTION"],
+      "description": "Whether the source PNGs include an alpha channel for transparency."
+    },
+    "animationDuration": {
+      "type": "number",
+      "description": "Estimated total animation duration in seconds at intended playback FPS. Set to 0 when PENDING_SOURCE_INSPECTION.",
+      "minimum": 0
+    },
+    "loopSuitability": {
+      "type": "string",
+      "enum": ["one_shot", "loop", "loop_with_fadeout", "PENDING_SOURCE_INSPECTION"],
+      "description": "Whether the animation is suitable for looping or is a one-shot impact."
+    },
+    "visualFamily": {
+      "type": "string",
+      "enum": [
+        "slash",
+        "pierce",
+        "smash",
+        "projectile_impact",
+        "explosion",
+        "directional_wave",
+        "swirl",
+        "pillar",
+        "meteor",
+        "implosion",
+        "shockwave",
+        "shield",
+        "barrier",
+        "heal",
+        "buff",
+        "debuff",
+        "poison",
+        "burn",
+        "freeze",
+        "stun",
+        "curse",
+        "teleport",
+        "aura",
+        "rune",
+        "charge",
+        "smoke",
+        "sparks",
+        "critical_impact",
+        "guard_break",
+        "ultimate",
+        "persistent_loop",
+        "UNASSIGNED_PENDING_R1"
+      ],
+      "description": "Primary visual family classification for the asset."
+    },
+    "element": {
+      "type": "string",
+      "enum": [
+        "physical",
+        "fire",
+        "ice",
+        "dark",
+        "void",
+        "holy",
+        "arcane",
+        "poison",
+        "shadow",
+        "lightning",
+        "earth",
+        "nature",
+        "wind",
+        "neutral",
+        "UNASSIGNED_PENDING_R1"
+      ],
+      "description": "Elemental affinity of the visual effect."
+    },
+    "palette": {
+      "type": "string",
+      "enum": [
+        "warm",
+        "cool",
+        "dark",
+        "light",
+        "neutral",
+        "monochrome",
+        "PENDING_SOURCE_INSPECTION",
+        "UNASSIGNED_PENDING_R1"
+      ],
+      "description": "Color palette classification."
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "omnidirectional",
+        "directional_horizontal",
+        "directional_vertical",
+        "downward",
+        "upward",
+        "radial_outward",
+        "radial_inward",
+        "PENDING_SOURCE_INSPECTION",
+        "UNASSIGNED_PENDING_R1"
+      ],
+      "description": "Primary motion direction of the visual effect."
+    },
+    "impactLocation": {
+      "type": "string",
+      "enum": [
+        "target_centered",
+        "ground_centered",
+        "source_centered",
+        "source_to_target",
+        "area_origin",
+        "all_targets",
+        "PENDING_SOURCE_INSPECTION",
+        "UNASSIGNED_PENDING_R1"
+      ],
+      "description": "Where the visual impact is anchored in the combat scene."
+    },
+    "targetShape": {
+      "type": "string",
+      "enum": [
+        "single",
+        "cone",
+        "line",
+        "radius_small",
+        "radius_medium",
+        "radius_large",
+        "radius_ultimate",
+        "self",
+        "PENDING_SOURCE_INSPECTION",
+        "UNASSIGNED_PENDING_R1"
+      ],
+      "description": "The area shape the visual effect should communicate."
+    },
+    "intensity": {
+      "type": "string",
+      "enum": ["small", "medium", "heavy", "ultimate", "PENDING_SOURCE_INSPECTION", "UNASSIGNED_PENDING_R1"],
+      "description": "Visual intensity scale matching RPGThreeJS presentation tiers."
+    },
+    "playbackMode": {
+      "type": "string",
+      "enum": ["once", "loop", "PENDING_SOURCE_INSPECTION"],
+      "description": "Runtime playback mode. 'once' for one-shot impacts, 'loop' for persistent effects. This is a metadata field only — no runtime code changes during R0."
+    },
+    "supportVsOffensive": {
+      "type": "string",
+      "enum": ["offensive", "support", "hybrid", "PENDING_SOURCE_INSPECTION", "UNASSIGNED_PENDING_R1"],
+      "description": "Whether the effect reads as an offensive impact or a support/buff effect."
+    },
+    "groundVsTarget": {
+      "type": "string",
+      "enum": ["ground_based", "target_centered", "airborne", "PENDING_SOURCE_INSPECTION", "UNASSIGNED_PENDING_R1"],
+      "description": "Whether the effect is anchored to the ground, follows the target, or is airborne."
+    },
+    "cameraCompatibility": {
+      "type": "string",
+      "enum": ["top_down", "isometric", "billboard", "PENDING_SOURCE_INSPECTION", "UNASSIGNED_PENDING_R1"],
+      "description": "Camera projection compatibility for the sprite sheet."
+    },
+    "classificationTier": {
+      "type": "string",
+      "enum": [
+        "DIRECT_CANDIDATE",
+        "RECOLOR_CANDIDATE",
+        "RETIME_CANDIDATE",
+        "CROP_OR_REFRAME",
+        "LOOP_CANDIDATE",
+        "COMPOSITE_LAYER",
+        "REFERENCE_ONLY",
+        "REJECT",
+        "UNASSIGNED_PENDING_R1"
+      ],
+      "description": "Processing classification tier determined during R1 intake."
+    },
+    "estimatedRPGThreeJSUsage": {
+      "type": "string",
+      "enum": [
+        "basic_attack",
+        "skill_impact",
+        "ultimate_impact",
+        "status_effect",
+        "buff_aura",
+        "debuff_aura",
+        "movement_effect",
+        "environmental",
+        "UNASSIGNED_PENDING_R1"
+      ],
+      "description": "Estimated RPGThreeJS usage category for this candidate."
+    },
+    "processingType": {
+      "type": "string",
+      "enum": [
+        "DIRECT_CANDIDATE",
+        "RECOLOR_CANDIDATE",
+        "RETIME_CANDIDATE",
+        "CROP_OR_REFRAME",
+        "LOOP_CANDIDATE",
+        "COMPOSITE_LAYER",
+        "REFERENCE_ONLY",
+        "REJECT",
+        "PENDING_SOURCE_INSPECTION",
+        "UNASSIGNED_PENDING_R1"
+      ],
+      "description": "Processing pipeline step required to convert the source PNG sequence into a runtime spritesheet."
+    },
+    "r1VerificationStatus": {
+      "type": "string",
+      "enum": ["UNASSIGNED_PENDING_R1", "INSPECTED", "VERIFIED", "REJECTED"],
+      "description": "R1 intake verification status. UNASSIGNED_PENDING_R1 until the Mega Pack is purchased and indexed."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional notes about the candidate."
+    }
+  },
+  "additionalProperties": false
+}
