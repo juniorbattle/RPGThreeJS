@@ -96,9 +96,9 @@ describe('hero skill action contracts', () => {
       ['n_dark_bolt', 'shadow_lightning_bolt', 'center_on_target', '2ap'],
       ['p_holy_strike', 'skill_holy_radiance', 'center_on_target', '2ap'],
       ['a_arrow_rain', 'arrow_rain', 'center_on_aoe_origin', '4ap'],
-      ['n_flame_wave', 'skill_fire_impact', 'center_on_target', '4ap'],
-      ['w_purify', 'skill_holy_sigil', 'center_on_target', '3ap'],
-      ['e_binding_seal', 'skill_binding_sigil', 'center_on_target', '4ap'],
+      ['n_flame_wave', 'pilot_n_flame_wave', 'center_on_aoe_origin', '4ap'],
+      ['w_purify', 'pilot_w_purify', 'center_on_target', '3ap'],
+      ['e_binding_seal', 'pilot_e_binding_seal', 'center_on_aoe_origin', '4ap'],
       ['ro_jaw_trap', 'root_vines', 'center_on_target', '4ap'],
       ['ro_tumble', 'leap_impact', 'source_to_destination', '3ap'],
       ['ar_explosive_retreat', 'impact_explosion_large', 'center_on_aoe_origin', '3ap'],
@@ -143,21 +143,34 @@ describe('hero skill action contracts', () => {
   });
 
   it('keeps every R3E-2 promoted skill mapped to a registered impact preset', () => {
-    const contracts = [
-      ['w_whirl', 'skill_wind_slash_swirl'], ['p_holy_strike', 'skill_holy_radiance'],
-      ['p_oathwall', 'skill_oathwall'], ['d_blood_pact', 'skill_void_rune'],
-      ['n_flame_wave', 'skill_fire_impact'], ['w_salvation', 'skill_heal_bloom'],
-      ['w_purify', 'skill_holy_sigil'], ['w_sanctuary', 'skill_leaf_sanctuary'],
+    const targetContracts = [
+      ['p_holy_strike', 'skill_holy_radiance'],
+      ['p_oathwall', 'pilot_p_oathwall'], ['d_blood_pact', 'skill_void_rune'],
+      ['w_salvation', 'pilot_w_salvation'],
+      ['w_purify', 'pilot_w_purify'],
       ['r_scarlet_circle', 'skill_arcane_vortex'], ['e_vigor_rune', 'skill_arcane_orbit'],
-      ['e_binding_seal', 'skill_binding_sigil'], ['ni_venom_blade', 'skill_poison_maw'],
+      ['ni_venom_blade', 'skill_poison_maw'],
       ['ar_incendiary_grenade', 'skill_fire_smoke'], ['enemy_venom_strike', 'skill_poison_maw'],
       ['boss_freeze', 'skill_ice_pillar'], ['boss_inferno', 'skill_boss_inferno'],
       ['boss_guard', 'skill_boss_guard'],
     ] as const;
-    for (const [id, preset] of contracts) {
+    const aoeContracts = [
+      ['w_whirl', 'pilot_w_whirl'],
+      ['n_flame_wave', 'pilot_n_flame_wave'],
+      ['w_sanctuary', 'pilot_w_sanctuary'],
+      ['e_binding_seal', 'pilot_e_binding_seal'],
+    ] as const;
+    for (const [id, preset] of targetContracts) {
       expect(getSkillPresentation({ key: id })).toMatchObject({
         vfxPreset: preset,
         orientation: 'center_on_target',
+      });
+      expect(VFX_PRESET_IDS).toContain(preset);
+    }
+    for (const [id, preset] of aoeContracts) {
+      expect(getSkillPresentation({ key: id })).toMatchObject({
+        vfxPreset: preset,
+        orientation: 'center_on_aoe_origin',
       });
       expect(VFX_PRESET_IDS).toContain(preset);
     }

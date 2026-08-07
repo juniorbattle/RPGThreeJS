@@ -621,11 +621,11 @@ describe('combatVfxPresentation â€” V10G-R2A.2 authored spritesheet-only cl
     expect(resolved!.presetId).not.toBe('dark_bolt');
   });
 
-  it('e_binding_seal resolves to its promoted skill spritesheet', () => {
+  it('e_binding_seal resolves to its pilot spritesheet', () => {
     const resolved = resolveCombatVfxPresentation('e_binding_seal');
     expect(resolved).toBeDefined();
-    expect(resolved!.presetId).toBe('skill_binding_sigil');
-    const preset = getVfxPreset('skill_binding_sigil');
+    expect(resolved!.presetId).toBe('pilot_e_binding_seal');
+    const preset = getVfxPreset('pilot_e_binding_seal');
     expect(preset).toBeDefined();
     expect(preset!.steps.some((s) => s.type === 'spriteSheet')).toBe(true);
   });

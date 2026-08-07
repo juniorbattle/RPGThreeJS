@@ -49,6 +49,10 @@ export const SKILL_VFX_PRESET_IDS = [
   'skill_arcane_vortex', 'skill_arcane_orbit', 'skill_binding_sigil', 'skill_fire_smoke',
   'skill_poison_maw', 'skill_ice_pillar', 'skill_boss_inferno', 'skill_boss_guard',
   'skill_arcane_slash_burst',
+  'pilot_w_charge', 'pilot_w_whirl', 'pilot_n_flame_wave', 'pilot_p_oathwall',
+  'pilot_w_lion_surge', 'pilot_ni_shadow_step', 'pilot_d_devouring_eclipse',
+  'pilot_w_salvation', 'pilot_w_purify', 'pilot_w_sanctuary',
+  'pilot_ni_smoke_bomb', 'pilot_e_binding_seal',
 ] as const;
 export type SkillVfxPreset = (typeof SKILL_VFX_PRESET_IDS)[number];
 
@@ -113,19 +117,19 @@ const bossSignature = (
 
 export const SKILL_PRESENTATION: Readonly<Record<HeroSkillId, SkillPresentation>> = Object.freeze({
   w_break_guard: presentation('melee_light', 'sword_slash', 'strike', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: '2ap' }),
-  w_charge: presentation('melee_heavy', 'blunt_impact', 'dashImpact', 'impact'),
-  w_whirl: presentation('self_aoe', 'skill_wind_slash_swirl', 'areaCast', 'landing', undefined, undefined, { orientation: 'center_on_target', scaleTier: '4ap' }),
-  w_lion_surge: presentation('melee_heavy', 'ultimate_lion_surge', 'ultimateCast', 'impact', true, undefined, { orientation: 'center_on_target', scaleTier: '5ap_ultimate', visualScale: 1.04 }),
+  w_charge: presentation('melee_heavy', 'pilot_w_charge', 'dashImpact', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: '3ap' }),
+  w_whirl: presentation('self_aoe', 'pilot_w_whirl', 'areaCast', 'landing', undefined, undefined, { orientation: 'center_on_aoe_origin', scaleTier: '4ap' }),
+  w_lion_surge: presentation('melee_heavy', 'pilot_w_lion_surge', 'ultimateCast', 'impact', true, undefined, { orientation: 'center_on_target', scaleTier: '5ap_ultimate', visualScale: 1.04 }),
 
   p_holy_strike: presentation('melee_light', 'skill_holy_radiance', 'strike', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: '2ap' }),
   p_interpose: presentation('move_leap', 'leap_impact', 'leapLanding', 'landing', undefined, undefined, { orientation: 'center_on_target', scaleTier: '3ap' }),
-  p_oathwall: presentation('buff_cast', 'skill_oathwall', 'supportCast', 'release', undefined, undefined, { orientation: 'center_on_target', scaleTier: '4ap', visualScale: 0.96 }),
+  p_oathwall: presentation('buff_cast', 'pilot_p_oathwall', 'supportCast', 'release', undefined, undefined, { orientation: 'center_on_target', scaleTier: '4ap', visualScale: 0.96 }),
   p_radiant_judgement: presentation('magic_cast', 'ultimate_radiant_judgement', 'ultimateCast', 'impact', true, undefined, { orientation: 'center_on_aoe_origin', scaleTier: '5ap_ultimate', visualScale: 1.06 }),
 
   d_cursed_blade: presentation('melee_light', 'sword_slash', 'strike', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: '2ap' }),
   d_void_step: presentation('teleport', 'teleport_burst', 'teleport', 'landing', undefined, undefined, { orientation: 'source_to_destination', scaleTier: '3ap' }),
   d_blood_pact: presentation('buff_cast', 'skill_void_rune', 'supportCast', 'release', undefined, undefined, { orientation: 'center_on_target', scaleTier: '4ap', visualScale: 0.94 }),
-  d_devouring_eclipse: presentation('magic_cast', 'ultimate_devouring_eclipse', 'ultimateCast', 'impact', true, undefined, { orientation: 'center_on_aoe_origin', scaleTier: '5ap_ultimate', visualScale: 1.06 }),
+  d_devouring_eclipse: presentation('magic_cast', 'pilot_d_devouring_eclipse', 'ultimateCast', 'impact', true, undefined, { orientation: 'center_on_aoe_origin', scaleTier: '5ap_ultimate', visualScale: 1.06 }),
 
   l_long_thrust: presentation('melee_light', 'thrust_line', 'strike', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: '2ap' }),
   l_haft_recoil: presentation('melee_light', 'thrust_line', 'retreat', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: '3ap' }),
@@ -134,12 +138,12 @@ export const SKILL_PRESENTATION: Readonly<Record<HeroSkillId, SkillPresentation>
 
   n_dark_bolt: presentation('magic_cast', 'shadow_lightning_bolt', 'rangedShot', 'release', undefined, undefined, { orientation: 'center_on_target', scaleTier: '2ap' }),
   n_teleport: presentation('teleport', 'teleport_burst', 'teleport', 'landing', undefined, undefined, { orientation: 'source_to_destination', scaleTier: '3ap' }),
-  n_flame_wave: presentation('magic_cast', 'skill_fire_impact', 'areaCast', 'release', undefined, undefined, { orientation: 'center_on_target', scaleTier: '4ap', visualScale: 1.02 }),
+  n_flame_wave: presentation('magic_cast', 'pilot_n_flame_wave', 'areaCast', 'release', undefined, undefined, { orientation: 'center_on_aoe_origin', scaleTier: '4ap', visualScale: 1.02 }),
   n_dark_meteor: presentation('magic_cast', 'ultimate_dark_meteor', 'ultimateCast', 'impact', true, undefined, { orientation: 'center_on_aoe_origin', scaleTier: '5ap_ultimate', visualScale: 1.08 }),
 
-  w_salvation: presentation('heal_cast', 'skill_heal_bloom', 'supportCast', 'release', undefined, undefined, { orientation: 'center_on_target', scaleTier: '2ap', visualScale: 0.92 }),
-  w_purify: presentation('heal_cast', 'skill_holy_sigil', 'supportCast', 'release', undefined, undefined, { orientation: 'center_on_target', scaleTier: '3ap', visualScale: 0.84 }),
-  w_sanctuary: presentation('buff_cast', 'skill_leaf_sanctuary', 'areaCast', 'release', undefined, undefined, { orientation: 'center_on_target', scaleTier: '4ap', visualScale: 0.96 }),
+  w_salvation: presentation('heal_cast', 'pilot_w_salvation', 'supportCast', 'release', undefined, undefined, { orientation: 'center_on_target', scaleTier: '2ap', visualScale: 0.92 }),
+  w_purify: presentation('heal_cast', 'pilot_w_purify', 'supportCast', 'release', undefined, undefined, { orientation: 'center_on_target', scaleTier: '3ap', visualScale: 0.84 }),
+  w_sanctuary: presentation('buff_cast', 'pilot_w_sanctuary', 'areaCast', 'release', undefined, undefined, { orientation: 'center_on_aoe_origin', scaleTier: '4ap', visualScale: 0.96 }),
   w_miracle: presentation('heal_cast', 'ultimate_miracle', 'ultimateCast', 'release', true, undefined, { orientation: 'center_on_target', scaleTier: '5ap_ultimate', visualScale: 1.02 }),
 
   r_arcane_blade: presentation('melee_light', 'skill_arcane_slash_burst', 'strike', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: '2ap' }),
@@ -149,7 +153,7 @@ export const SKILL_PRESENTATION: Readonly<Record<HeroSkillId, SkillPresentation>
 
   e_vigor_rune: presentation('buff_cast', 'skill_arcane_orbit', 'supportCast', 'release', undefined, undefined, { orientation: 'center_on_target', scaleTier: '2ap', visualScale: 0.88 }),
   e_transpose: presentation('teleport', 'teleport_burst', 'swap', 'landing', undefined, undefined, { orientation: 'source_to_destination', scaleTier: '3ap' }),
-  e_binding_seal: presentation('debuff_cast', 'skill_binding_sigil', 'areaCast', 'release', undefined, undefined, { orientation: 'center_on_target', scaleTier: '4ap', visualScale: 0.96 }),
+  e_binding_seal: presentation('debuff_cast', 'pilot_e_binding_seal', 'areaCast', 'release', undefined, undefined, { orientation: 'center_on_aoe_origin', scaleTier: '4ap', visualScale: 0.96 }),
   e_absolute_harmony: presentation('buff_cast', 'ultimate_absolute_harmony', 'ultimateCast', 'release', true, undefined, { orientation: 'center_on_aoe_origin', scaleTier: '5ap_ultimate', visualScale: 1.05 }),
 
   a_precise_shot: presentation('ranged_attack', 'arrow_shot', 'rangedShot', 'release', undefined, undefined, { orientation: 'center_on_target', scaleTier: '2ap' }),
@@ -158,8 +162,8 @@ export const SKILL_PRESENTATION: Readonly<Record<HeroSkillId, SkillPresentation>
   a_zenith_arrow: presentation('ranged_attack', 'ultimate_zenith_arrow', 'ultimateCast', 'impact', true, undefined, { orientation: 'center_on_target', scaleTier: '5ap_ultimate', visualScale: 1.03 }),
 
   ni_venom_blade: presentation('melee_light', 'skill_poison_maw', 'strike', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: '2ap' }),
-  ni_shadow_step: presentation('melee_heavy', 'critical_hit', 'dashImpact', 'impact'),
-  ni_smoke_bomb: presentation('debuff_cast', 'move_smoke_burst', 'areaCast', 'release', undefined, undefined, { orientation: 'center_on_aoe_origin', scaleTier: '4ap', visualScale: 0.96 }),
+  ni_shadow_step: presentation('melee_heavy', 'pilot_ni_shadow_step', 'dashImpact', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: '3ap' }),
+  ni_smoke_bomb: presentation('debuff_cast', 'pilot_ni_smoke_bomb', 'areaCast', 'release', undefined, undefined, { orientation: 'center_on_aoe_origin', scaleTier: '4ap', visualScale: 0.96 }),
   ni_silent_assassin: presentation('melee_heavy', 'ultimate_silent_assassin', 'ultimateCast', 'impact', true, undefined, { orientation: 'center_on_target', scaleTier: '5ap_ultimate', visualScale: 1.03 }),
 
   ro_sneak_attack: presentation('melee_light', 'sword_slash', 'strike', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: '2ap' }),

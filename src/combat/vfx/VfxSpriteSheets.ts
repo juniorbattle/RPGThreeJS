@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import type { VfxSpriteSheetId } from './VfxTypes';
+import type { VfxSpriteSheetId, LegacyVfxSpriteSheetId, NativeVfxSpriteSheetId } from './VfxTypes';
 
 export interface VfxSpriteSheetPresentation {
   /** Multiplies the presentation scale without changing the skill's logical targeting. */
@@ -19,12 +19,28 @@ export interface VfxSpriteSheetPresentation {
 export interface VfxSpriteSheetDefinition {
   id: VfxSpriteSheetId;
   url: string;
+  /** Atlas pixel width. Used for per-definition half-texel UV inset calculation. */
+  sheetWidthPx: number;
+  /** Atlas pixel height. Used for per-definition half-texel UV inset calculation. */
+  sheetHeightPx: number;
   rows: number;
   cols: number;
   frameCount: number;
   frameDurationMs: number;
   align: 'center' | 'bottom';
   presentation: VfxSpriteSheetPresentation;
+  /** R1.2.4 candidate ID from the corrected inventory (megapack-native only). */
+  sourceCandidateId?: string;
+  /** CartoonCoffee source collection name (megapack-native only). */
+  sourceCollection?: string;
+  /** Original source filename from the CartoonCoffee pack (megapack-native only). */
+  sourceFilename?: string;
+  /** Native cell width in pixels: sheetWidthPx / cols. */
+  nativeCellWidthPx?: number;
+  /** Native cell height in pixels: sheetHeightPx / rows. */
+  nativeCellHeightPx?: number;
+  /** Whether this sheet is a legacy 1280/5×5 asset or a native CartoonCoffee asset. */
+  assetGeneration?: 'legacy' | 'megapack-native';
 }
 
 /**
@@ -36,15 +52,13 @@ export interface VfxSpriteSheetDefinition {
 export const VFX_SPRITE_SHEET_FLIP_Y = true;
 
 /**
- * All runtime spritesheets are 1280×1280 RGBA PNGs with 5×5 cells (256px each).
  * A half-texel UV inset prevents LinearFilter from sampling neighbouring cells
  * at cell boundaries, eliminating texture bleeding without switching to
- * NearestFilter or modifying the PNGs.
+ * NearestFilter or modifying the PNGs. The inset is computed per-definition
+ * from the sheet's actual pixel dimensions, supporting native 4×4/2048,
+ * 8×8/4096, and legacy 5×5/1280 atlases simultaneously.
  */
-const VFX_SPRITE_SHEET_SIZE_PX = 1280;
 const VFX_UV_INSET_TEXELS = 0.5;
-const VFX_UV_INSET_U = VFX_UV_INSET_TEXELS / VFX_SPRITE_SHEET_SIZE_PX;
-const VFX_UV_INSET_V = VFX_UV_INSET_TEXELS / VFX_SPRITE_SHEET_SIZE_PX;
 
 export function getVfxSpriteSheetFrameUv(
   definition: VfxSpriteSheetDefinition,
@@ -55,18 +69,51 @@ export function getVfxSpriteSheetFrameUv(
   const row = Math.floor(safeFrame / definition.cols);
   const cellWidth = 1 / definition.cols;
   const cellHeight = 1 / definition.rows;
+  const insetU = VFX_UV_INSET_TEXELS / definition.sheetWidthPx;
+  const insetV = VFX_UV_INSET_TEXELS / definition.sheetHeightPx;
   return {
     safeFrame,
     column,
     row,
-    repeatX: cellWidth - VFX_UV_INSET_U * 2,
-    repeatY: cellHeight - VFX_UV_INSET_V * 2,
-    offsetX: column * cellWidth + VFX_UV_INSET_U,
-    offsetY: 1 - (row + 1) * cellHeight + VFX_UV_INSET_V,
+    repeatX: cellWidth - insetU * 2,
+    repeatY: cellHeight - insetV * 2,
+    offsetX: column * cellWidth + insetU,
+    offsetY: 1 - (row + 1) * cellHeight + insetV,
   };
 }
 
-export const VFX_SPRITE_SHEETS = {
+/**
+ * Validates a sprite sheet definition. Returns an array of error strings;
+ * empty array means valid.
+ *
+ * Basic checks (always applied):
+ * - frameCount <= rows * cols
+ * - sheetWidthPx > 0, sheetHeightPx > 0
+ * - rows > 0, cols > 0
+ *
+ * Integral cell checks (applied for all known runtime sheets):
+ * - sheetWidthPx % cols === 0
+ * - sheetHeightPx % rows === 0
+ */
+export function validateVfxSpriteSheetDefinition(definition: VfxSpriteSheetDefinition): string[] {
+  const errors: string[] = [];
+  if (definition.sheetWidthPx <= 0) errors.push('sheetWidthPx must be > 0');
+  if (definition.sheetHeightPx <= 0) errors.push('sheetHeightPx must be > 0');
+  if (definition.rows <= 0) errors.push('rows must be > 0');
+  if (definition.cols <= 0) errors.push('cols must be > 0');
+  if (definition.frameCount > definition.rows * definition.cols) {
+    errors.push(`frameCount (${definition.frameCount}) must be <= rows * cols (${definition.rows * definition.cols})`);
+  }
+  if (definition.sheetWidthPx % definition.cols !== 0) {
+    errors.push(`sheetWidthPx (${definition.sheetWidthPx}) must be divisible by cols (${definition.cols})`);
+  }
+  if (definition.sheetHeightPx % definition.rows !== 0) {
+    errors.push(`sheetHeightPx (${definition.sheetHeightPx}) must be divisible by rows (${definition.rows})`);
+  }
+  return errors;
+}
+
+const _legacySheetDefinitions = {
   basic_arrow_hit_small: { id: 'basic_arrow_hit_small', url: '/assets/vfx/runtime/white_basic_arrow_hit_small_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.14, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.78, layer: 'impact', blending: 'additive' } },
   basic_axe_chop_medium: { id: 'basic_axe_chop_medium', url: '/assets/vfx/runtime/white_basic_axe_chop_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.26, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.8, layer: 'impact', blending: 'additive' } },
   basic_bite_snap_small: { id: 'basic_bite_snap_small', url: '/assets/vfx/runtime/white_basic_bite_snap_small_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'center', presentation: { scaleMultiplier: 1.14, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.78, layer: 'impact', blending: 'additive' } },
@@ -116,7 +163,43 @@ export const VFX_SPRITE_SHEETS = {
   skill_void_spiral_implosion_medium: { id: 'skill_void_spiral_implosion_medium', url: '/assets/vfx/runtime/purple_skill_void_spiral_implosion_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.34, opacityMultiplier: 1, fadeIn: 0.03, fadeOut: 0.75, layer: 'impact', blending: 'additive' } },
   skill_fire_spark_cluster_medium: { id: 'skill_fire_spark_cluster_medium', url: '/assets/vfx/runtime/orange_skill_fire_spark_cluster_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.32, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.86, layer: 'impact', blending: 'additive' } },
   skill_starburst_impact_medium: { id: 'skill_starburst_impact_medium', url: '/assets/vfx/runtime/green_skill_starburst_impact_medium_5x5_25f_1280.png', rows: 5, cols: 5, frameCount: 25, frameDurationMs: 40, align: 'bottom', presentation: { scaleMultiplier: 1.46, opacityMultiplier: 0.96, fadeIn: 0.04, fadeOut: 0.74, layer: 'ground', blending: 'additive' } },
-} as const satisfies Record<VfxSpriteSheetId, VfxSpriteSheetDefinition>;
+} as const satisfies Record<LegacyVfxSpriteSheetId, Omit<VfxSpriteSheetDefinition, 'sheetWidthPx' | 'sheetHeightPx' | 'assetGeneration'>>;
+
+const _nativeSheetDefinitions: Record<NativeVfxSpriteSheetId, VfxSpriteSheetDefinition> = {
+  megapack_dash_wind_white_v3: { id: 'megapack_dash_wind_white_v3', url: '/assets/vfx/megapack-runtime/r1_2561.png', sheetWidthPx: 2048, sheetHeightPx: 2048, rows: 4, cols: 4, frameCount: 16, frameDurationMs: 50, align: 'center', presentation: { scaleMultiplier: 1.4, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.8, layer: 'impact', blending: 'additive' }, sourceCandidateId: 'r1_2561', sourceCollection: 'Wind VFX Spritesheets', sourceFilename: 'Dash_Wind_White_v3_spritesheet.png', nativeCellWidthPx: 512, nativeCellHeightPx: 512, assetGeneration: 'megapack-native' },
+  megapack_blue_slash_flurry: { id: 'megapack_blue_slash_flurry', url: '/assets/vfx/megapack-runtime/r1_1605.png', sheetWidthPx: 4096, sheetHeightPx: 4096, rows: 8, cols: 8, frameCount: 64, frameDurationMs: 20, align: 'center', presentation: { scaleMultiplier: 1.6, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.85, layer: 'impact', blending: 'additive' }, sourceCandidateId: 'r1_1605', sourceCollection: 'Sword Slash VFX Spritesheets', sourceFilename: 'Blue Slash v1 - Flurry_spritesheet.png', nativeCellWidthPx: 512, nativeCellHeightPx: 512, assetGeneration: 'megapack-native' },
+  megapack_lightning_slash_flurry: { id: 'megapack_lightning_slash_flurry', url: '/assets/vfx/megapack-runtime/r1_1712.png', sheetWidthPx: 4096, sheetHeightPx: 4096, rows: 8, cols: 8, frameCount: 64, frameDurationMs: 20, align: 'center', presentation: { scaleMultiplier: 1.5, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.82, layer: 'impact', blending: 'additive' }, sourceCandidateId: 'r1_1712', sourceCollection: 'Sword Slash VFX Spritesheets', sourceFilename: 'Lightning Slash v1 - Flurry_spritesheet.png', nativeCellWidthPx: 512, nativeCellHeightPx: 512, assetGeneration: 'megapack-native' },
+  megapack_shield_on: { id: 'megapack_shield_on', url: '/assets/vfx/megapack-runtime/r1_0971.png', sheetWidthPx: 4096, sheetHeightPx: 4096, rows: 8, cols: 8, frameCount: 64, frameDurationMs: 20, align: 'bottom', presentation: { scaleMultiplier: 1.48, opacityMultiplier: 0.98, fadeIn: 0.04, fadeOut: 0.86, layer: 'impact', blending: 'additive' }, sourceCandidateId: 'r1_0971', sourceCollection: 'Essentials VFX Spritesheets', sourceFilename: 'Shield_On_spritesheet.png', nativeCellWidthPx: 512, nativeCellHeightPx: 512, assetGeneration: 'megapack-native' },
+  megapack_impact_darkness_lv3: { id: 'megapack_impact_darkness_lv3', url: '/assets/vfx/megapack-runtime/r1_0545.png', sheetWidthPx: 4096, sheetHeightPx: 4096, rows: 8, cols: 8, frameCount: 64, frameDurationMs: 20, align: 'bottom', presentation: { scaleMultiplier: 1.8, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.88, layer: 'ground', blending: 'additive' }, sourceCandidateId: 'r1_0545', sourceCollection: 'Essentials VFX Spritesheets', sourceFilename: 'Impact_Darkness_Lv3_spritesheet.png', nativeCellWidthPx: 512, nativeCellHeightPx: 512, assetGeneration: 'megapack-native' },
+  megapack_fire_slash_spin: { id: 'megapack_fire_slash_spin', url: '/assets/vfx/megapack-runtime/r1_1700.png', sheetWidthPx: 4096, sheetHeightPx: 4096, rows: 8, cols: 8, frameCount: 64, frameDurationMs: 20, align: 'center', presentation: { scaleMultiplier: 1.62, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.82, layer: 'impact', blending: 'additive' }, sourceCandidateId: 'r1_1700', sourceCollection: 'Sword Slash VFX Spritesheets', sourceFilename: 'Fire Slash v1 - Spin_spritesheet.png', nativeCellWidthPx: 512, nativeCellHeightPx: 512, assetGeneration: 'megapack-native' },
+  megapack_flamethrower_001: { id: 'megapack_flamethrower_001', url: '/assets/vfx/megapack-runtime/r1_0450.png', sheetWidthPx: 4096, sheetHeightPx: 4096, rows: 8, cols: 8, frameCount: 64, frameDurationMs: 20, align: 'center', presentation: { scaleMultiplier: 1.55, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.78, layer: 'impact', blending: 'additive' }, sourceCandidateId: 'r1_0450', sourceCollection: 'Essentials VFX Spritesheets', sourceFilename: 'Flamethrower_001_spritesheet.png', nativeCellWidthPx: 512, nativeCellHeightPx: 512, assetGeneration: 'megapack-native' },
+  megapack_positive_buff_v3: { id: 'megapack_positive_buff_v3', url: '/assets/vfx/megapack-runtime/r1_0677.png', sheetWidthPx: 4096, sheetHeightPx: 4096, rows: 8, cols: 8, frameCount: 64, frameDurationMs: 20, align: 'bottom', presentation: { scaleMultiplier: 1.46, opacityMultiplier: 0.98, fadeIn: 0.04, fadeOut: 0.84, layer: 'impact', blending: 'additive' }, sourceCandidateId: 'r1_0677', sourceCollection: 'Essentials VFX Spritesheets', sourceFilename: 'Positive_Buff_V3_spritesheet.png', nativeCellWidthPx: 512, nativeCellHeightPx: 512, assetGeneration: 'megapack-native' },
+  megapack_heart_buff_v3: { id: 'megapack_heart_buff_v3', url: '/assets/vfx/megapack-runtime/r1_0503.png', sheetWidthPx: 4096, sheetHeightPx: 4096, rows: 8, cols: 8, frameCount: 64, frameDurationMs: 20, align: 'bottom', presentation: { scaleMultiplier: 1.5, opacityMultiplier: 1, fadeIn: 0.03, fadeOut: 0.82, layer: 'impact', blending: 'additive' }, sourceCandidateId: 'r1_0503', sourceCollection: 'Essentials VFX Spritesheets', sourceFilename: 'Heart_Buff_V3_spritesheet.png', nativeCellWidthPx: 512, nativeCellHeightPx: 512, assetGeneration: 'megapack-native' },
+  megapack_angry_smoke_burst: { id: 'megapack_angry_smoke_burst', url: '/assets/vfx/megapack-runtime/r1_2509.png', sheetWidthPx: 4096, sheetHeightPx: 4096, rows: 8, cols: 8, frameCount: 64, frameDurationMs: 20, align: 'bottom', presentation: { scaleMultiplier: 1.44, opacityMultiplier: 0.86, fadeIn: 0.03, fadeOut: 0.8, layer: 'impact', blending: 'normal' }, sourceCandidateId: 'r1_2509', sourceCollection: 'Wind VFX Spritesheets', sourceFilename: 'Angry_Smoke_Burst_White_v2_A_spritesheet.png', nativeCellWidthPx: 512, nativeCellHeightPx: 512, assetGeneration: 'megapack-native' },
+  megapack_healing_v3: { id: 'megapack_healing_v3', url: '/assets/vfx/megapack-runtime/r1_0480.png', sheetWidthPx: 4096, sheetHeightPx: 4096, rows: 8, cols: 8, frameCount: 64, frameDurationMs: 20, align: 'bottom', presentation: { scaleMultiplier: 1.58, opacityMultiplier: 1, fadeIn: 0.04, fadeOut: 0.86, layer: 'impact', blending: 'additive' }, sourceCandidateId: 'r1_0480', sourceCollection: 'Essentials VFX Spritesheets', sourceFilename: 'Healing_V3_spritesheet.png', nativeCellWidthPx: 512, nativeCellHeightPx: 512, assetGeneration: 'megapack-native' },
+  megapack_hex_bursts_center_v2: { id: 'megapack_hex_bursts_center_v2', url: '/assets/vfx/megapack-runtime/r1_0525.png', sheetWidthPx: 4096, sheetHeightPx: 4096, rows: 8, cols: 8, frameCount: 64, frameDurationMs: 20, align: 'bottom', presentation: { scaleMultiplier: 1.54, opacityMultiplier: 1, fadeIn: 0.03, fadeOut: 0.82, layer: 'impact', blending: 'additive' }, sourceCandidateId: 'r1_0525', sourceCollection: 'Essentials VFX Spritesheets', sourceFilename: 'Hex_Bursts_Center_V2_spritesheet.png', nativeCellWidthPx: 512, nativeCellHeightPx: 512, assetGeneration: 'megapack-native' },
+  megapack_charge_darkness_v1_a: { id: 'megapack_charge_darkness_v1_a', url: '/assets/vfx/megapack-runtime/r1_0129.png', sheetWidthPx: 4096, sheetHeightPx: 4096, rows: 8, cols: 8, frameCount: 64, frameDurationMs: 20, align: 'center', presentation: { scaleMultiplier: 1.4, opacityMultiplier: 0.8, fadeIn: 0.06, fadeOut: 0.9, layer: 'ground', blending: 'additive' }, sourceCandidateId: 'r1_0129', sourceCollection: 'Essentials VFX Spritesheets', sourceFilename: 'Charge_Darkness_v1_A_spritesheet.png', nativeCellWidthPx: 512, nativeCellHeightPx: 512, assetGeneration: 'megapack-native' },
+  megapack_impact_darkness_lv2: { id: 'megapack_impact_darkness_lv2', url: '/assets/vfx/megapack-runtime/r1_0544.png', sheetWidthPx: 4096, sheetHeightPx: 4096, rows: 8, cols: 8, frameCount: 64, frameDurationMs: 20, align: 'bottom', presentation: { scaleMultiplier: 1.5, opacityMultiplier: 0.9, fadeIn: 0.03, fadeOut: 0.85, layer: 'ground', blending: 'additive' }, sourceCandidateId: 'r1_0544', sourceCollection: 'Essentials VFX Spritesheets', sourceFilename: 'Impact_Darkness_Lv2_spritesheet.png', nativeCellWidthPx: 512, nativeCellHeightPx: 512, assetGeneration: 'megapack-native' },
+  megapack_impact_shockwave_v1: { id: 'megapack_impact_shockwave_v1', url: '/assets/vfx/megapack-runtime/r1_0592.png', sheetWidthPx: 2048, sheetHeightPx: 2048, rows: 4, cols: 4, frameCount: 16, frameDurationMs: 50, align: 'center', presentation: { scaleMultiplier: 1.6, opacityMultiplier: 0.8, fadeIn: 0.02, fadeOut: 0.7, layer: 'ground', blending: 'additive' }, sourceCandidateId: 'r1_0592', sourceCollection: 'Essentials VFX Spritesheets', sourceFilename: 'Impact_Shockwave v1_spritesheet.png', nativeCellWidthPx: 512, nativeCellHeightPx: 512, assetGeneration: 'megapack-native' },
+};
+
+export const LEGACY_SPRITE_SHEET_IDS = Object.freeze(Object.keys(_legacySheetDefinitions) as LegacyVfxSpriteSheetId[]);
+export const NATIVE_SPRITE_SHEET_IDS = Object.freeze(Object.keys(_nativeSheetDefinitions) as NativeVfxSpriteSheetId[]);
+
+export const VFX_SPRITE_SHEETS: Readonly<Record<VfxSpriteSheetId, VfxSpriteSheetDefinition>> = Object.freeze({
+  ...Object.fromEntries(
+    Object.entries(_legacySheetDefinitions).map(([id, def]) => [
+      id,
+      {
+        ...def,
+        sheetWidthPx: 1280,
+        sheetHeightPx: 1280,
+        assetGeneration: 'legacy' as const,
+      },
+    ]),
+  ),
+  ..._nativeSheetDefinitions,
+}) as Readonly<Record<VfxSpriteSheetId, VfxSpriteSheetDefinition>>;
 
 export const VFX_SPRITE_SHEET_IDS = Object.freeze(Object.keys(VFX_SPRITE_SHEETS) as VfxSpriteSheetId[]);
 
@@ -135,6 +218,11 @@ export const BASIC_LIBRARY_ONLY_SPRITE_SHEET_IDS = Object.freeze([
   'basic_axe_chop_medium', 'basic_bite_snap_small', 'basic_claw_rake_small',
   'basic_horn_ram_medium', 'basic_shield_bash_medium',
   'basic_sword_slash_small', 'basic_tail_whip_medium',
+] as const satisfies readonly VfxSpriteSheetId[]);
+
+/** Reserved native sheets synced to runtime but not yet assigned to a preset. */
+export const RESERVED_NATIVE_SHEET_IDS = Object.freeze([
+  'megapack_flamethrower_001',
 ] as const satisfies readonly VfxSpriteSheetId[]);
 
 /** R3E-2 subset: only semantically approved skill sheets are present at runtime. */

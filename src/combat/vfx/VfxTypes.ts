@@ -2,7 +2,7 @@ import type * as THREE from 'three';
 
 export type VfxQualityMode = 'full' | 'reduced';
 
-export type VfxSpriteSheetId =
+export type LegacyVfxSpriteSheetId =
   | 'basic_arrow_hit_small'
   | 'basic_axe_chop_medium'
   | 'basic_bite_snap_small'
@@ -49,6 +49,25 @@ export type VfxSpriteSheetId =
   | 'skill_void_spiral_implosion_medium'
   | 'skill_fire_spark_cluster_medium'
   | 'skill_starburst_impact_medium';
+
+export type NativeVfxSpriteSheetId =
+  | 'megapack_dash_wind_white_v3'
+  | 'megapack_blue_slash_flurry'
+  | 'megapack_lightning_slash_flurry'
+  | 'megapack_shield_on'
+  | 'megapack_impact_darkness_lv3'
+  | 'megapack_fire_slash_spin'
+  | 'megapack_flamethrower_001'
+  | 'megapack_positive_buff_v3'
+  | 'megapack_heart_buff_v3'
+  | 'megapack_angry_smoke_burst'
+  | 'megapack_healing_v3'
+  | 'megapack_hex_bursts_center_v2'
+  | 'megapack_charge_darkness_v1_a'
+  | 'megapack_impact_darkness_lv2'
+  | 'megapack_impact_shockwave_v1';
+
+export type VfxSpriteSheetId = LegacyVfxSpriteSheetId | NativeVfxSpriteSheetId;
 
 export type VfxSpriteSheetMode = 'billboard' | 'projectile' | 'sky_descent';
 

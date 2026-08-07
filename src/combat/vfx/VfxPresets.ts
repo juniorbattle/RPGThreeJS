@@ -810,7 +810,122 @@ const premiumPresets = [
 
 export const PREMIUM_VFX_PRESET_IDS = Object.freeze(premiumPresets.map((preset) => preset.id));
 
-const completePresetPack = [...presets, ...basicAttackPresets, ...skillRuntimePresets, ...r3e3SkillPresets, ...premiumPresets] as const satisfies readonly VfxPreset[];
+/**
+ * R2B-QA2 pilot presets — tuned with AP-tier duration bands, semantic
+ * family anchors, and strengthened scale hierarchy. No legacy preset IDs
+ * are reused.
+ *
+ * Duration bands: 2AP 0.35–0.50, 3AP 0.45–0.65, 4AP 0.65–0.90,
+ * 5AP ultimate 1.00–1.45.
+ *
+ * Anchor families: impact→targetGround, heal/buff→targetGround+bottom,
+ * barrier→target+bottom, AoE→groundTarget, ultimate→groundTarget.
+ */
+const pilotPresets = [
+  premiumPreset({
+    id: 'pilot_w_charge', label: 'Ruée éolienne', duration: 0.55, impactTime: 0.22,
+    tags: ['pilot', 'physical', 'dash', 'wind'], reducedGraphicsScale: 0.6,
+    steps: [
+      { type: 'spriteSheet', anchor: 'targetGround', spriteSheet: 'megapack_dash_wind_white_v3', orientation: 'center_on_target', startTime: 0, duration: 0.55, scale: 1.4, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 },
+      { type: 'screenShake', anchor: 'camera', startTime: 0.2, duration: 0.1, scale: 0.18, reducedGraphicsMultiplier: 0.55 },
+      { type: 'hitStop', anchor: 'screen', startTime: 0.2, duration: 0.04 },
+    ],
+  }),
+  premiumPreset({
+    id: 'pilot_w_whirl', label: 'Tourbillon de flammes', duration: 0.80, impactTime: 0.32,
+    tags: ['pilot', 'physical', 'fire', 'area', 'spin'], reducedGraphicsScale: 0.56,
+    steps: [
+      { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'megapack_fire_slash_spin', orientation: 'center_on_aoe_origin', startTime: 0, duration: 0.80, scale: 1.62, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 },
+      { type: 'screenShake', anchor: 'camera', startTime: 0.28, duration: 0.12, scale: 0.22, reducedGraphicsMultiplier: 0.52 },
+    ],
+  }),
+  premiumPreset({
+    id: 'pilot_n_flame_wave', label: 'Vague de flammes', duration: 0.80, impactTime: 0.32,
+    tags: ['pilot', 'fire', 'directional', 'cone', 'pending_asset_review'], reducedGraphicsScale: 0.58,
+    steps: [
+      { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'megapack_fire_slash_spin', orientation: 'center_on_aoe_origin', startTime: 0, duration: 0.80, scale: 1.55, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 },
+      { type: 'screenShake', anchor: 'camera', startTime: 0.28, duration: 0.1, scale: 0.18, reducedGraphicsMultiplier: 0.52 },
+    ],
+  }),
+  premiumPreset({
+    id: 'pilot_p_oathwall', label: 'Rempart du serment', duration: 0.80, impactTime: 0.28,
+    tags: ['pilot', 'holy', 'barrier', 'shield'], reducedGraphicsScale: 0.62,
+    steps: [
+      { type: 'spriteSheet', anchor: 'target', spriteSheet: 'megapack_shield_on', orientation: 'center_on_target', startTime: 0, duration: 0.80, scale: 1.48, opacity: 0.98, blending: 'additive', reducedGraphicsMultiplier: 0.78 },
+    ],
+  }),
+  premiumPreset({
+    id: 'pilot_w_lion_surge', label: 'Ruée du Lion', duration: 1.30, impactTime: 0.48,
+    tags: ['pilot', 'ultimate', 'physical', 'slash', 'execution'], reducedGraphicsScale: 0.45,
+    steps: [
+      { type: 'spriteSheet', anchor: 'targetGround', spriteSheet: 'megapack_blue_slash_flurry', orientation: 'center_on_target', startTime: 0.08, duration: 1.22, scale: 1.6, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.72 },
+      { type: 'screenFlash', anchor: 'screen', startTime: 0.42, duration: 0.14, color: '#ffe5a0', opacity: 0.16, reducedGraphicsMultiplier: 0.52 },
+      { type: 'screenShake', anchor: 'camera', startTime: 0.42, duration: 0.3, scale: 0.48, reducedGraphicsMultiplier: 0.48 },
+      { type: 'hitStop', anchor: 'screen', startTime: 0.43, duration: 0.1 },
+    ],
+  }),
+  premiumPreset({
+    id: 'pilot_ni_shadow_step', label: 'Pas de l\'ombre', duration: 0.55, impactTime: 0.22,
+    tags: ['pilot', 'shadow', 'teleport', 'strike'], reducedGraphicsScale: 0.5,
+    steps: [
+      { type: 'spriteSheet', anchor: 'targetGround', spriteSheet: 'megapack_lightning_slash_flurry', orientation: 'center_on_target', startTime: 0, duration: 0.55, scale: 1.5, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.74 },
+      { type: 'screenShake', anchor: 'camera', startTime: 0.2, duration: 0.1, scale: 0.2, reducedGraphicsMultiplier: 0.52 },
+      { type: 'hitStop', anchor: 'screen', startTime: 0.2, duration: 0.05 },
+    ],
+  }),
+  premiumPreset({
+    id: 'pilot_d_devouring_eclipse', label: 'Éclipse dévorante', duration: 1.30, impactTime: 0.65,
+    tags: ['pilot', 'ultimate', 'dark', 'void', 'implosion', 'arena'], reducedGraphicsScale: 0.42,
+    steps: [
+      { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'megapack_charge_darkness_v1_a', orientation: 'center_on_aoe_origin', startTime: 0, duration: 0.35, scale: 1.2, opacity: 0.7, blending: 'additive', reducedGraphicsMultiplier: 0.68 },
+      { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'megapack_impact_darkness_lv2', orientation: 'center_on_aoe_origin', startTime: 0.25, duration: 0.45, scale: 1.5, opacity: 0.85, blending: 'additive', reducedGraphicsMultiplier: 0.65 },
+      { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'megapack_impact_darkness_lv3', orientation: 'center_on_aoe_origin', startTime: 0.5, duration: 0.55, scale: 1.8, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.68 },
+      { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'megapack_impact_shockwave_v1', orientation: 'center_on_aoe_origin', startTime: 0.85, duration: 0.3, scale: 1.6, opacity: 0.7, blending: 'additive', reducedGraphicsMultiplier: 0.6 },
+      { type: 'screenFlash', anchor: 'screen', startTime: 0.6, duration: 0.16, color: '#7a45a8', opacity: 0.15, reducedGraphicsMultiplier: 0.48 },
+      { type: 'screenShake', anchor: 'camera', startTime: 0.6, duration: 0.35, scale: 0.5, reducedGraphicsMultiplier: 0.45 },
+      { type: 'hitStop', anchor: 'screen', startTime: 0.62, duration: 0.12 },
+    ],
+  }),
+  premiumPreset({
+    id: 'pilot_w_salvation', label: 'Salut', duration: 0.45, impactTime: 0.18,
+    tags: ['pilot', 'holy', 'heal', 'support'], reducedGraphicsScale: 0.6,
+    steps: [
+      { type: 'spriteSheet', anchor: 'targetGround', spriteSheet: 'megapack_healing_v3', orientation: 'center_on_target', startTime: 0, duration: 0.45, scale: 1.58, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.78 },
+    ],
+  }),
+  premiumPreset({
+    id: 'pilot_w_purify', label: 'Purification', duration: 0.55, impactTime: 0.22,
+    tags: ['pilot', 'holy', 'cleanse', 'support'], reducedGraphicsScale: 0.6,
+    steps: [
+      { type: 'spriteSheet', anchor: 'targetGround', spriteSheet: 'megapack_heart_buff_v3', orientation: 'center_on_target', startTime: 0, duration: 0.55, scale: 1.5, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.78 },
+    ],
+  }),
+  premiumPreset({
+    id: 'pilot_w_sanctuary', label: 'Sanctuaire', duration: 0.80, impactTime: 0.32,
+    tags: ['pilot', 'holy', 'nature', 'regen', 'area'], reducedGraphicsScale: 0.58,
+    steps: [
+      { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'megapack_positive_buff_v3', orientation: 'center_on_aoe_origin', startTime: 0, duration: 0.80, scale: 1.46, opacity: 0.98, blending: 'additive', reducedGraphicsMultiplier: 0.76 },
+    ],
+  }),
+  premiumPreset({
+    id: 'pilot_ni_smoke_bomb', label: 'Bombe fumigène', duration: 0.80, impactTime: 0.24,
+    tags: ['pilot', 'shadow', 'smoke', 'debuff', 'area'], reducedGraphicsScale: 0.62,
+    steps: [
+      { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'megapack_angry_smoke_burst', orientation: 'center_on_aoe_origin', startTime: 0, duration: 0.80, scale: 1.44, opacity: 0.86, blending: 'normal', reducedGraphicsMultiplier: 0.78 },
+    ],
+  }),
+  premiumPreset({
+    id: 'pilot_e_binding_seal', label: 'Sceau entravant', duration: 0.80, impactTime: 0.32,
+    tags: ['pilot', 'arcane', 'bind', 'root', 'debuff'], reducedGraphicsScale: 0.58,
+    steps: [
+      { type: 'spriteSheet', anchor: 'groundTarget', spriteSheet: 'megapack_hex_bursts_center_v2', orientation: 'center_on_aoe_origin', startTime: 0, duration: 0.80, scale: 1.54, opacity: 1, blending: 'additive', reducedGraphicsMultiplier: 0.76 },
+    ],
+  }),
+] as const satisfies readonly VfxPreset[];
+
+export const PILOT_VFX_PRESET_IDS = Object.freeze(pilotPresets.map((preset) => preset.id));
+
+const completePresetPack = [...presets, ...basicAttackPresets, ...skillRuntimePresets, ...r3e3SkillPresets, ...premiumPresets, ...pilotPresets] as const satisfies readonly VfxPreset[];
 
 export const VFX_PRESETS: Readonly<Record<string, VfxPreset>> = Object.freeze(
   Object.fromEntries(completePresetPack.map((preset) => [preset.id, preset])),

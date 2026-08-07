@@ -118,6 +118,9 @@ const PILOT_FILES = [
   { id: 'r1_2509', path: '01_extracted/Wind VFX Spritesheets/Angry_Smoke_Burst_White_v2_A_spritesheet.png', expectedGrid: '8x8' },
   { id: 'r1_0480', path: '01_extracted/Essentials VFX Spritesheets/Healing_V3_spritesheet.png', expectedGrid: '8x8' },
   { id: 'r1_0525', path: '01_extracted/Essentials VFX Spritesheets/Hex_Bursts_Center_V2_spritesheet.png', expectedGrid: '8x8' },
+  { id: 'r1_0129', path: '01_extracted/Essentials VFX Spritesheets/Charge_Darkness_v1_A_spritesheet.png', expectedGrid: '8x8' },
+  { id: 'r1_0544', path: '01_extracted/Essentials VFX Spritesheets/Impact_Darkness_Lv2_spritesheet.png', expectedGrid: '8x8' },
+  { id: 'r1_0592', path: '01_extracted/Essentials VFX Spritesheets/Impact_Shockwave v1_spritesheet.png', expectedGrid: '4x4' },
 ];
 
 const externalAvailable = existsSync(join(MEGA_ROOT, '01_extracted'));
@@ -171,7 +174,7 @@ describe('R1.2.1 Grid Detector v2 — synthetic fixtures', () => {
 });
 
 describe('R1.2.1 Grid Detector v2 — external pilot files', () => {
-  it.skipIf(!externalAvailable)('all 12 pilot files detect as 8x8 or have ground truth available', { timeout: 60000 }, () => {
+  it.skipIf(!externalAvailable)('all 15 pilot files detect as 8x8 or have ground truth available', { timeout: 60000 }, () => {
     let heuristicCorrect = 0;
     let groundTruthNeeded = 0;
 
@@ -190,10 +193,10 @@ describe('R1.2.1 Grid Detector v2 — external pilot files', () => {
       }
     }
 
-    // At least 11/12 should be detected by heuristic alone
+    // At least 11/15 should be detected by heuristic alone
     expect(heuristicCorrect).toBeGreaterThanOrEqual(11);
-    // Total should be 12
-    expect(heuristicCorrect + groundTruthNeeded).toBe(12);
+    // Total should be 15
+    expect(heuristicCorrect + groundTruthNeeded).toBe(15);
   });
 
   it.skipIf(!externalAvailable)('Dash_Wind_White_v3 requires ground truth (heuristic limitation)', { timeout: 30000 }, () => {

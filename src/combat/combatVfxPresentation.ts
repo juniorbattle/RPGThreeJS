@@ -6,7 +6,7 @@ import {
   type HeroSkillId,
   type EnemySkillId,
 } from './skillPresentation';
-import type { VfxContext, VfxOrientation, VfxScaleTier } from './vfx/VfxTypes';
+import type { VfxAnchor, VfxContext, VfxOrientation, VfxScaleTier } from './vfx/VfxTypes';
 
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
@@ -36,13 +36,44 @@ export interface StaticVfxTierPresentation {
  * Preset and spritesheet scales still define each effect's silhouette; this
  * table only restores a readable progression between action tiers.
  */
+/**
+ * Reusable AP-tier duration bands (in seconds). These are tuning ranges, not
+ * strict constants — a preset may deviate when its native composition requires
+ * it. The bands ensure that higher-AP actions feel deliberately longer while
+ * low-AP effects stay snappy.
+ */
+export const VFX_TIER_DURATION_BANDS = Object.freeze({
+  basic: Object.freeze({ min: 0.30, max: 0.45 }),
+  '2ap': Object.freeze({ min: 0.35, max: 0.50 }),
+  '3ap': Object.freeze({ min: 0.45, max: 0.65 }),
+  '4ap': Object.freeze({ min: 0.65, max: 0.90 }),
+  '5ap_ultimate': Object.freeze({ min: 1.00, max: 1.45 }),
+  boss: Object.freeze({ min: 1.10, max: 1.60 }),
+} as const);
+
+/**
+ * Semantic VFX family anchor profiles. Instead of applying one arbitrary
+ * global Y offset, each family selects the correct semantic anchor and
+ * alignment. heightOffset is a fine adjustment applied after the anchor.
+ */
+export const VFX_FAMILY_ANCHOR_PROFILES = Object.freeze({
+  impact: Object.freeze({ anchor: 'targetGround' as VfxAnchor, align: 'center' as const, heightOffset: 0 }),
+  heal: Object.freeze({ anchor: 'targetGround' as VfxAnchor, align: 'bottom' as const, heightOffset: 0 }),
+  buff: Object.freeze({ anchor: 'targetGround' as VfxAnchor, align: 'bottom' as const, heightOffset: 0 }),
+  barrier: Object.freeze({ anchor: 'target' as VfxAnchor, align: 'bottom' as const, heightOffset: 0 }),
+  aoe: Object.freeze({ anchor: 'groundTarget' as VfxAnchor, align: 'center' as const, heightOffset: 0 }),
+  ultimate: Object.freeze({ anchor: 'groundTarget' as VfxAnchor, align: 'center' as const, heightOffset: 0 }),
+} as const);
+
+export type VfxFamily = keyof typeof VFX_FAMILY_ANCHOR_PROFILES;
+
 export const STATIC_VFX_TIER_PRESENTATION: Readonly<Record<VfxScaleTier, StaticVfxTierPresentation>> = Object.freeze({
-  basic: Object.freeze({ scaleMultiplier: 1, impactOpacityFloor: 0.80, impactRenderOrder: 74, groundYOffset: 0 }),
-  '2ap': Object.freeze({ scaleMultiplier: 1.10, impactOpacityFloor: 0.84, impactRenderOrder: 76, groundYOffset: -0.05 }),
-  '3ap': Object.freeze({ scaleMultiplier: 1.18, impactOpacityFloor: 0.88, impactRenderOrder: 78, groundYOffset: -0.10 }),
-  '4ap': Object.freeze({ scaleMultiplier: 1.28, impactOpacityFloor: 0.91, impactRenderOrder: 80, groundYOffset: -0.15 }),
-  '5ap_ultimate': Object.freeze({ scaleMultiplier: 1.42, impactOpacityFloor: 0.94, impactRenderOrder: 82, groundYOffset: -0.20 }),
-  boss: Object.freeze({ scaleMultiplier: 1.50, impactOpacityFloor: 0.96, impactRenderOrder: 84, groundYOffset: -0.25 }),
+  basic: Object.freeze({ scaleMultiplier: 1.0, impactOpacityFloor: 0.80, impactRenderOrder: 74, groundYOffset: 0 }),
+  '2ap': Object.freeze({ scaleMultiplier: 1.05, impactOpacityFloor: 0.84, impactRenderOrder: 76, groundYOffset: -0.05 }),
+  '3ap': Object.freeze({ scaleMultiplier: 1.12, impactOpacityFloor: 0.88, impactRenderOrder: 78, groundYOffset: -0.10 }),
+  '4ap': Object.freeze({ scaleMultiplier: 1.30, impactOpacityFloor: 0.91, impactRenderOrder: 80, groundYOffset: -0.15 }),
+  '5ap_ultimate': Object.freeze({ scaleMultiplier: 1.55, impactOpacityFloor: 0.94, impactRenderOrder: 82, groundYOffset: -0.20 }),
+  boss: Object.freeze({ scaleMultiplier: 1.65, impactOpacityFloor: 0.96, impactRenderOrder: 84, groundYOffset: -0.25 }),
 });
 
 export function getStaticVfxTierPresentation(scaleTier: VfxScaleTier = 'basic'): StaticVfxTierPresentation {

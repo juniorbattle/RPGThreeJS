@@ -14,6 +14,9 @@ public/assets/vfx/normalized_candidates/
 # VFX diagnostic evidence (PNG/GIF/JSON QC artifacts — too heavy for git)
 docs/reports/evidence/
 
+# VFX megapack runtime — commercial CartoonCoffee PNGs (synced locally, never committed)
+public/assets/vfx/megapack-runtime/
+
 # Python cache
 __pycache__/
 

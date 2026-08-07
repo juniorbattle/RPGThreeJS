@@ -9,6 +9,7 @@ import {
   R3E2_SKILL_VFX_PRESET_IDS,
   R3E3_SKILL_VFX_PRESET_IDS,
   SKILL_VFX_PRESET_IDS,
+  PILOT_VFX_PRESET_IDS,
 } from './VfxPresets';
 import { VFX_TEXTURE_NAMES } from './VfxTextures';
 import { isVfxWorkbenchEnabled } from './VfxWorkbench';
@@ -54,6 +55,7 @@ const REQUIRED_PRESETS = [
   ...R3E2_SKILL_VFX_PRESET_IDS,
   ...R3E3_SKILL_VFX_PRESET_IDS,
   ...PREMIUM_VFX_PRESET_IDS,
+  ...PILOT_VFX_PRESET_IDS,
 ];
 const VALID_STEP_TYPES = new Set<VfxStepType>([
   'particleBurst',

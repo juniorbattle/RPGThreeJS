@@ -107,13 +107,22 @@ describe('VfxActionRegistry — V10G-R2A.6', () => {
     }
   });
 
-  it('registers every R3E-2 promoted action against a runtime skill preset', () => {
+  it('registers every R3E-2 promoted action against a runtime skill or pilot preset', () => {
     expect(R3E2_SKILL_VFX_ACTION_IDS).toHaveLength(17);
+    const pilotRemapped = new Set([
+      'w_whirl', 'p_oathwall', 'n_flame_wave',
+      'w_salvation', 'w_purify', 'w_sanctuary', 'e_binding_seal',
+    ]);
     for (const actionId of R3E2_SKILL_VFX_ACTION_IDS) {
       const chain = getActionVfxChain(actionId);
       expect(chain).toBeDefined();
-      expect(chain!.presetId).toMatch(/^skill_/);
-      expect(chain!.runtimeFilenames.every((filename) => filename.includes('_skill_'))).toBe(true);
+      if (pilotRemapped.has(actionId)) {
+        expect(chain!.presetId).toMatch(/^pilot_/);
+        expect(chain!.runtimeFilenames.every((filename) => filename.startsWith('r1_'))).toBe(true);
+      } else {
+        expect(chain!.presetId).toMatch(/^skill_/);
+        expect(chain!.runtimeFilenames.every((filename) => filename.includes('_skill_'))).toBe(true);
+      }
     }
   });
 
