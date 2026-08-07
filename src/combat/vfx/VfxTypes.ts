@@ -212,6 +212,19 @@ export interface VfxStep {
   /** Reusable presentation-only sky-to-ground trajectory primitive. */
   skyDescent?: VfxSkyDescentOptions;
   blending?: 'additive' | 'normal';
+  /** Per-step sprite sheet presentation overrides. When absent, the
+   *  definition's presentation defaults are used unchanged. */
+  spritePresentation?: VfxSpritePresentationOverride;
+}
+
+export interface VfxSpritePresentationOverride {
+  align?: 'center' | 'bottom';
+  layer?: 'ground' | 'impact';
+  blending?: 'normal' | 'additive';
+  scaleMultiplier?: number;
+  opacityMultiplier?: number;
+  fadeIn?: number;
+  fadeOut?: number;
 }
 
 export interface VfxPreset {

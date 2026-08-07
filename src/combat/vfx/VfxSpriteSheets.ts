@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import type { VfxSpriteSheetId, LegacyVfxSpriteSheetId, NativeVfxSpriteSheetId } from './VfxTypes';
+import type { VfxSpriteSheetId, LegacyVfxSpriteSheetId, NativeVfxSpriteSheetId, VfxSpritePresentationOverride, VfxStep } from './VfxTypes';
 
 export interface VfxSpriteSheetPresentation {
   /** Multiplies the presentation scale without changing the skill's logical targeting. */
@@ -41,6 +41,39 @@ export interface VfxSpriteSheetDefinition {
   nativeCellHeightPx?: number;
   /** Whether this sheet is a legacy 1280/5×5 asset or a native CartoonCoffee asset. */
   assetGeneration?: 'legacy' | 'megapack-native';
+}
+
+export interface ResolvedVfxSpriteSheetPresentation {
+  align: 'center' | 'bottom';
+  layer: 'ground' | 'impact';
+  blending: 'normal' | 'additive';
+  scaleMultiplier: number;
+  opacityMultiplier: number;
+  fadeIn: number;
+  fadeOut: number;
+}
+
+/**
+ * Resolves per-step sprite presentation overrides against definition defaults.
+ * Step override → definition presentation default → safe runtime fallback.
+ * When no overrides are present, the result is identical to the definition's
+ * own presentation values plus its align field.
+ */
+export function resolveVfxSpriteSheetPresentation(
+  definition: VfxSpriteSheetDefinition,
+  step?: VfxStep,
+): ResolvedVfxSpriteSheetPresentation {
+  const dp = definition.presentation;
+  const ov: VfxSpritePresentationOverride | undefined = step?.spritePresentation;
+  return {
+    align: ov?.align ?? definition.align,
+    layer: ov?.layer ?? dp.layer,
+    blending: ov?.blending ?? dp.blending,
+    scaleMultiplier: ov?.scaleMultiplier ?? dp.scaleMultiplier,
+    opacityMultiplier: ov?.opacityMultiplier ?? dp.opacityMultiplier,
+    fadeIn: ov?.fadeIn ?? dp.fadeIn,
+    fadeOut: ov?.fadeOut ?? dp.fadeOut,
+  };
 }
 
 /**
