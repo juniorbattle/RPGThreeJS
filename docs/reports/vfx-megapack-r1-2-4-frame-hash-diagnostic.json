@@ -1,0 +1,167 @@
+{
+  "title": "VFX Mega Pack R1.2.4 — Frame Hash Diagnostic",
+  "generatedAt": "2026-08-07",
+  "candidates": [
+    {
+      "candidateId": "r1_1605",
+      "sourceFilename": "Blue Slash v1 - Flurry_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "nativeFrameCount": 64,
+      "uniqueHashes": 64,
+      "duplicateGroups": 0,
+      "emptyFrames": 0,
+      "frameDimensions": [
+        "512x512"
+      ]
+    },
+    {
+      "candidateId": "r1_1712",
+      "sourceFilename": "Lightning Slash v1 - Flurry_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "nativeFrameCount": 64,
+      "uniqueHashes": 64,
+      "duplicateGroups": 0,
+      "emptyFrames": 0,
+      "frameDimensions": [
+        "512x512"
+      ]
+    },
+    {
+      "candidateId": "r1_0971",
+      "sourceFilename": "Shield_On_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "nativeFrameCount": 64,
+      "uniqueHashes": 61,
+      "duplicateGroups": 1,
+      "emptyFrames": 0,
+      "frameDimensions": [
+        "512x512"
+      ]
+    },
+    {
+      "candidateId": "r1_0545",
+      "sourceFilename": "Impact_Darkness_Lv3_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "nativeFrameCount": 64,
+      "uniqueHashes": 62,
+      "duplicateGroups": 1,
+      "emptyFrames": 0,
+      "frameDimensions": [
+        "512x512"
+      ]
+    },
+    {
+      "candidateId": "r1_1700",
+      "sourceFilename": "Fire Slash v1 - Spin_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "nativeFrameCount": 64,
+      "uniqueHashes": 64,
+      "duplicateGroups": 0,
+      "emptyFrames": 0,
+      "frameDimensions": [
+        "512x512"
+      ]
+    },
+    {
+      "candidateId": "r1_2561",
+      "sourceFilename": "Dash_Wind_White_v3_spritesheet.png",
+      "dimensions": "2048x2048",
+      "grid": "4x4",
+      "nativeFrameCount": 16,
+      "uniqueHashes": 16,
+      "duplicateGroups": 0,
+      "emptyFrames": 0,
+      "frameDimensions": [
+        "512x512"
+      ]
+    },
+    {
+      "candidateId": "r1_0450",
+      "sourceFilename": "Flamethrower_001_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "nativeFrameCount": 64,
+      "uniqueHashes": 61,
+      "duplicateGroups": 3,
+      "emptyFrames": 0,
+      "frameDimensions": [
+        "512x512"
+      ]
+    },
+    {
+      "candidateId": "r1_0677",
+      "sourceFilename": "Positive_Buff_V3_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "nativeFrameCount": 64,
+      "uniqueHashes": 51,
+      "duplicateGroups": 1,
+      "emptyFrames": 0,
+      "frameDimensions": [
+        "512x512"
+      ]
+    },
+    {
+      "candidateId": "r1_0503",
+      "sourceFilename": "Heart_Buff_V3_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "nativeFrameCount": 64,
+      "uniqueHashes": 64,
+      "duplicateGroups": 0,
+      "emptyFrames": 0,
+      "frameDimensions": [
+        "512x512"
+      ]
+    },
+    {
+      "candidateId": "r1_2509",
+      "sourceFilename": "Angry_Smoke_Burst_White_v2_A_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "nativeFrameCount": 64,
+      "uniqueHashes": 64,
+      "duplicateGroups": 0,
+      "emptyFrames": 0,
+      "frameDimensions": [
+        "512x512"
+      ]
+    },
+    {
+      "candidateId": "r1_0480",
+      "sourceFilename": "Healing_V3_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "nativeFrameCount": 64,
+      "uniqueHashes": 62,
+      "duplicateGroups": 1,
+      "emptyFrames": 0,
+      "frameDimensions": [
+        "512x512"
+      ]
+    },
+    {
+      "candidateId": "r1_0525",
+      "sourceFilename": "Hex_Bursts_Center_V2_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "nativeFrameCount": 64,
+      "uniqueHashes": 64,
+      "duplicateGroups": 0,
+      "emptyFrames": 0,
+      "frameDimensions": [
+        "512x512"
+      ]
+    }
+  ],
+  "summary": {
+    "totalCandidates": 12,
+    "allFrameCountsCorrect": true,
+    "allDimsCorrect": true
+  }
+}

@@ -1,0 +1,1360 @@
+{
+  "title": "VFX Mega Pack R1.2 — Pilot Candidate Review",
+  "description": "13 proposed R2 pilot candidates with corrected validation terminology. All candidates are PENDING_HUMAN_REVIEW. Grid confidence does NOT equal visual approval. R2 remains blocked until explicit human approval.",
+  "generatedAt": "2026-08-06",
+  "terminology": {
+    "gridValidationStatus": [
+      "CONFIRMED_GRID",
+      "AMBIGUOUS_GRID",
+      "MANUAL_GRID_REVIEW_REQUIRED"
+    ],
+    "gridConfidence": [
+      "HIGH",
+      "MEDIUM",
+      "LOW"
+    ],
+    "semanticValidationStatus": [
+      "PENDING_HUMAN_REVIEW",
+      "HUMAN_APPROVED",
+      "HUMAN_REJECTED",
+      "ALTERNATIVE_REQUIRED"
+    ],
+    "visualValidationStatus": [
+      "PENDING_HUMAN_REVIEW",
+      "HUMAN_APPROVED",
+      "HUMAN_REJECTED",
+      "ALTERNATIVE_REQUIRED"
+    ],
+    "loopValidationStatus": [
+      "NOT_APPLICABLE",
+      "POSSIBLE_LOOP",
+      "CONFIRMED_LOOP",
+      "ONE_SHOT_ONLY",
+      "LOOP_REQUIRES_EDIT",
+      "PENDING_HUMAN_REVIEW"
+    ],
+    "r2AuthorizationStatus": [
+      "BLOCKED_PENDING_HUMAN_REVIEW",
+      "APPROVED_FOR_R2",
+      "REJECTED",
+      "ALTERNATIVE_REQUIRED"
+    ],
+    "recommendedVerdict": [
+      "RECOMMEND_APPROVAL",
+      "RECOMMEND_REJECTION",
+      "RECOMMEND_ALTERNATIVE"
+    ]
+  },
+  "summary": {
+    "totalTargets": 13,
+    "totalCandidates": 16,
+    "categoryBreakdown": {
+      "P0_REPLACEMENT": 8,
+      "SEMANTIC_MISMATCH": 3,
+      "STATUS_LOOP": 5
+    },
+    "gridConfidenceBreakdown": {
+      "HIGH": 0,
+      "MEDIUM": 1,
+      "LOW": 15
+    },
+    "gridValidationStatusBreakdown": {
+      "CONFIRMED_GRID": 1,
+      "AMBIGUOUS_GRID": 15,
+      "MANUAL_GRID_REVIEW_REQUIRED": 0
+    },
+    "allPendingHumanReview": true,
+    "r2Blocked": true,
+    "recommendedVerdicts": {
+      "RECOMMEND_APPROVAL": 15,
+      "RECOMMEND_REJECTION": 0,
+      "RECOMMEND_ALTERNATIVE": 1
+    }
+  },
+  "externalReviewLocation": "<MEGA_PACK_ROOT>/03_inventory_output/r1_2_pilot_review/",
+  "htmlIndex": "<MEGA_PACK_ROOT>/03_inventory_output/r1_2_pilot_review/index.html",
+  "candidates": [
+    {
+      "targetId": "p0_1",
+      "category": "P0_REPLACEMENT",
+      "targetSheet": "basic_execution_slash_heavy",
+      "action": {
+        "actionId": "w_lion_surge",
+        "unit": "Warrior",
+        "slot": "ultimate",
+        "mechanic": "Line charge execution slash, 5AP ultimate"
+      },
+      "candidate": {
+        "candidateId": "r1_1605",
+        "rank": 1,
+        "sourceFilename": "Blue Slash v1 - Flurry_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Sword Slash VFX Spritesheets/Blue Slash v1 - Flurry_spritesheet.png",
+        "sourceCollection": "Sword Slash VFX Spritesheets",
+        "confirmedGrid": "4x4",
+        "sourceFrameCount": 16,
+        "cellDimensions": {
+          "width": 1024,
+          "height": 1024
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "AMBIGUOUS_GRID",
+        "gridConfidence": "LOW",
+        "changedFromR1": true,
+        "ambiguityReason": "Top hypotheses too close: 4x4 (120.0) vs 8x8 (120.0)",
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "NOT_APPLICABLE",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "ultimate",
+        "observedVisualFamily": "slash",
+        "perspective": "omnidirectional",
+        "orientation": "center_on_target",
+        "groundDependency": "none",
+        "targetCenteredCompatibility": "yes",
+        "cameraCompatibility": "billboard",
+        "clippingRisk": "low",
+        "recolorRequirement": "blue → golden/physical for warrior identity",
+        "cropRequirement": "none",
+        "retimingRequirement": "16→25 frame interpolation",
+        "loopSuitability": "not_applicable",
+        "strengths": [
+          "Heavy slash visual matches execution theme",
+          "Omnidirectional billboard-compatible"
+        ],
+        "risks": [
+          "Grid confidence is LOW — grid structure ambiguous",
+          "Requires recolor from blue to golden",
+          "Center drift 35.6px suggests possible grid mismatch"
+        ],
+        "recommendedVerdict": "RECOMMEND_APPROVAL"
+      },
+      "processing": {
+        "r2ProcessingType": "REPLACE",
+        "requiredProcessing": [
+          "Resample 16→25 frames",
+          "Recolor: blue → golden/physical for warrior identity",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original basic_execution_slash_heavy.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/p0_1/",
+        "thumbnail": "thumbnail_r1_1605.png",
+        "gridOverlay": "grid_overlay_r1_1605.png",
+        "animatedGif": "animated_r1_1605.gif",
+        "contactSheet": "contact_sheet_r1_1605.png",
+        "alphaBoundary": "alpha_boundary_r1_1605.png",
+        "frameFirst": "frame_first_r1_1605.png",
+        "framePeak": "frame_peak_r1_1605.png",
+        "frameLast": "frame_last_r1_1605.png",
+        "peakFrameIndex": 7
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    },
+    {
+      "targetId": "p0_1",
+      "category": "P0_REPLACEMENT",
+      "targetSheet": "basic_execution_slash_heavy",
+      "action": {
+        "actionId": "ni_shadow_step",
+        "unit": "Ninja",
+        "slot": "skill2",
+        "mechanic": "Shadow step strike, 3AP, teleport-strike"
+      },
+      "candidate": {
+        "candidateId": "r1_1605",
+        "rank": 1,
+        "sourceFilename": "Blue Slash v1 - Flurry_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Sword Slash VFX Spritesheets/Blue Slash v1 - Flurry_spritesheet.png",
+        "sourceCollection": "Sword Slash VFX Spritesheets",
+        "confirmedGrid": "4x4",
+        "sourceFrameCount": 16,
+        "cellDimensions": {
+          "width": 1024,
+          "height": 1024
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "AMBIGUOUS_GRID",
+        "gridConfidence": "LOW",
+        "changedFromR1": true,
+        "ambiguityReason": "Top hypotheses too close: 4x4 (120.0) vs 8x8 (120.0)",
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "NOT_APPLICABLE",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "slash",
+        "observedVisualFamily": "slash",
+        "perspective": "omnidirectional",
+        "orientation": "center_on_target",
+        "groundDependency": "none",
+        "targetCenteredCompatibility": "yes",
+        "cameraCompatibility": "billboard",
+        "clippingRisk": "low",
+        "recolorRequirement": "lightning → shadow/dark for ninja identity",
+        "cropRequirement": "none",
+        "retimingRequirement": "16→25 frame interpolation",
+        "loopSuitability": "not_applicable",
+        "strengths": [
+          "Slash visual matches teleport-strike theme",
+          "Omnidirectional billboard-compatible"
+        ],
+        "risks": [
+          "Grid confidence is LOW — grid structure ambiguous",
+          "Requires recolor from lightning to shadow",
+          "Center drift 33.0px suggests possible grid mismatch"
+        ],
+        "recommendedVerdict": "RECOMMEND_APPROVAL"
+      },
+      "processing": {
+        "r2ProcessingType": "REPLACE",
+        "requiredProcessing": [
+          "Resample 16→25 frames",
+          "Recolor: lightning → shadow/dark for ninja identity",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original basic_execution_slash_heavy.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/p0_1/",
+        "thumbnail": "thumbnail_r1_1605.png",
+        "gridOverlay": "grid_overlay_r1_1605.png",
+        "animatedGif": "animated_r1_1605.gif",
+        "contactSheet": "contact_sheet_r1_1605.png",
+        "alphaBoundary": "alpha_boundary_r1_1605.png",
+        "frameFirst": "frame_first_r1_1605.png",
+        "framePeak": "frame_peak_r1_1605.png",
+        "frameLast": "frame_last_r1_1605.png",
+        "peakFrameIndex": 7
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    },
+    {
+      "targetId": "p0_1",
+      "category": "P0_REPLACEMENT",
+      "targetSheet": "basic_execution_slash_heavy",
+      "action": {
+        "actionId": "w_lion_surge",
+        "unit": "Warrior",
+        "slot": "ultimate",
+        "mechanic": "Line charge execution slash, 5AP ultimate"
+      },
+      "candidate": {
+        "candidateId": "r1_1712",
+        "rank": 2,
+        "sourceFilename": "Lightning Slash v1 - Flurry_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Sword Slash VFX Spritesheets/Lightning Slash v1 - Flurry_spritesheet.png",
+        "sourceCollection": "Sword Slash VFX Spritesheets",
+        "confirmedGrid": "4x4",
+        "sourceFrameCount": 16,
+        "cellDimensions": {
+          "width": 1024,
+          "height": 1024
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "AMBIGUOUS_GRID",
+        "gridConfidence": "LOW",
+        "changedFromR1": true,
+        "ambiguityReason": "Top hypotheses too close: 4x4 (120.0) vs 8x8 (120.0)",
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "NOT_APPLICABLE",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "ultimate",
+        "observedVisualFamily": "slash",
+        "perspective": "omnidirectional",
+        "orientation": "center_on_target",
+        "groundDependency": "none",
+        "targetCenteredCompatibility": "yes",
+        "cameraCompatibility": "billboard",
+        "clippingRisk": "low",
+        "recolorRequirement": "blue → golden/physical for warrior identity",
+        "cropRequirement": "none",
+        "retimingRequirement": "16→25 frame interpolation",
+        "loopSuitability": "not_applicable",
+        "strengths": [
+          "Heavy slash visual matches execution theme",
+          "Omnidirectional billboard-compatible"
+        ],
+        "risks": [
+          "Grid confidence is LOW — grid structure ambiguous",
+          "Requires recolor from blue to golden",
+          "Center drift 35.6px suggests possible grid mismatch"
+        ],
+        "recommendedVerdict": "RECOMMEND_APPROVAL"
+      },
+      "processing": {
+        "r2ProcessingType": "REPLACE",
+        "requiredProcessing": [
+          "Resample 16→25 frames",
+          "Recolor: blue → golden/physical for warrior identity",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original basic_execution_slash_heavy.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/p0_1/",
+        "thumbnail": "thumbnail_r1_1712.png",
+        "gridOverlay": "grid_overlay_r1_1712.png",
+        "animatedGif": "animated_r1_1712.gif",
+        "contactSheet": "contact_sheet_r1_1712.png",
+        "alphaBoundary": "alpha_boundary_r1_1712.png",
+        "frameFirst": "frame_first_r1_1712.png",
+        "framePeak": "frame_peak_r1_1712.png",
+        "frameLast": "frame_last_r1_1712.png",
+        "peakFrameIndex": 5
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    },
+    {
+      "targetId": "p0_1",
+      "category": "P0_REPLACEMENT",
+      "targetSheet": "basic_execution_slash_heavy",
+      "action": {
+        "actionId": "ni_shadow_step",
+        "unit": "Ninja",
+        "slot": "skill2",
+        "mechanic": "Shadow step strike, 3AP, teleport-strike"
+      },
+      "candidate": {
+        "candidateId": "r1_1712",
+        "rank": 2,
+        "sourceFilename": "Lightning Slash v1 - Flurry_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Sword Slash VFX Spritesheets/Lightning Slash v1 - Flurry_spritesheet.png",
+        "sourceCollection": "Sword Slash VFX Spritesheets",
+        "confirmedGrid": "4x4",
+        "sourceFrameCount": 16,
+        "cellDimensions": {
+          "width": 1024,
+          "height": 1024
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "AMBIGUOUS_GRID",
+        "gridConfidence": "LOW",
+        "changedFromR1": true,
+        "ambiguityReason": "Top hypotheses too close: 4x4 (120.0) vs 8x8 (120.0)",
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "NOT_APPLICABLE",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "slash",
+        "observedVisualFamily": "slash",
+        "perspective": "omnidirectional",
+        "orientation": "center_on_target",
+        "groundDependency": "none",
+        "targetCenteredCompatibility": "yes",
+        "cameraCompatibility": "billboard",
+        "clippingRisk": "low",
+        "recolorRequirement": "lightning → shadow/dark for ninja identity",
+        "cropRequirement": "none",
+        "retimingRequirement": "16→25 frame interpolation",
+        "loopSuitability": "not_applicable",
+        "strengths": [
+          "Slash visual matches teleport-strike theme",
+          "Omnidirectional billboard-compatible"
+        ],
+        "risks": [
+          "Grid confidence is LOW — grid structure ambiguous",
+          "Requires recolor from lightning to shadow",
+          "Center drift 33.0px suggests possible grid mismatch"
+        ],
+        "recommendedVerdict": "RECOMMEND_APPROVAL"
+      },
+      "processing": {
+        "r2ProcessingType": "REPLACE",
+        "requiredProcessing": [
+          "Resample 16→25 frames",
+          "Recolor: lightning → shadow/dark for ninja identity",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original basic_execution_slash_heavy.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/p0_1/",
+        "thumbnail": "thumbnail_r1_1712.png",
+        "gridOverlay": "grid_overlay_r1_1712.png",
+        "animatedGif": "animated_r1_1712.gif",
+        "contactSheet": "contact_sheet_r1_1712.png",
+        "alphaBoundary": "alpha_boundary_r1_1712.png",
+        "frameFirst": "frame_first_r1_1712.png",
+        "framePeak": "frame_peak_r1_1712.png",
+        "frameLast": "frame_last_r1_1712.png",
+        "peakFrameIndex": 5
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    },
+    {
+      "targetId": "p0_2",
+      "category": "P0_REPLACEMENT",
+      "targetSheet": "skill_barrier_guard_heavy",
+      "action": {
+        "actionId": "p_oathwall",
+        "unit": "Paladin",
+        "slot": "skill3",
+        "mechanic": "Defensive barrier wall with shield ring, 4AP"
+      },
+      "candidate": {
+        "candidateId": "r1_0971",
+        "rank": 1,
+        "sourceFilename": "Shield_On_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Essentials VFX Spritesheets/Shield_On_spritesheet.png",
+        "sourceCollection": "Essentials VFX Spritesheets",
+        "confirmedGrid": "4x4",
+        "sourceFrameCount": 16,
+        "cellDimensions": {
+          "width": 1024,
+          "height": 1024
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "AMBIGUOUS_GRID",
+        "gridConfidence": "LOW",
+        "changedFromR1": true,
+        "ambiguityReason": "Top hypotheses too close: 4x4 (135.0) vs 8x8 (134.1)",
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "NOT_APPLICABLE",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "barrier",
+        "observedVisualFamily": "shield",
+        "perspective": "omnidirectional",
+        "orientation": "center_on_caster",
+        "groundDependency": "partial — shield centered on caster",
+        "targetCenteredCompatibility": "yes",
+        "cameraCompatibility": "billboard",
+        "clippingRisk": "low",
+        "recolorRequirement": "none — holy/shield palette appropriate",
+        "cropRequirement": "none",
+        "retimingRequirement": "16→25 frame interpolation",
+        "loopSuitability": "not_applicable",
+        "strengths": [
+          "Shield activation matches barrier guard theme",
+          "Low center drift (9.6px)",
+          "Holy palette appropriate for paladin"
+        ],
+        "risks": [
+          "Grid confidence is LOW — grid structure ambiguous",
+          "May need downscaling for 4AP skill tier"
+        ],
+        "recommendedVerdict": "RECOMMEND_APPROVAL"
+      },
+      "processing": {
+        "r2ProcessingType": "REPLACE",
+        "requiredProcessing": [
+          "Resample 16→25 frames",
+          "Recolor: none — holy/shield palette appropriate",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original skill_barrier_guard_heavy.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/p0_2/",
+        "thumbnail": "thumbnail_r1_0971.png",
+        "gridOverlay": "grid_overlay_r1_0971.png",
+        "animatedGif": "animated_r1_0971.gif",
+        "contactSheet": "contact_sheet_r1_0971.png",
+        "alphaBoundary": "alpha_boundary_r1_0971.png",
+        "frameFirst": "frame_first_r1_0971.png",
+        "framePeak": "frame_peak_r1_0971.png",
+        "frameLast": "frame_last_r1_0971.png",
+        "peakFrameIndex": 5
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    },
+    {
+      "targetId": "p0_3",
+      "category": "P0_REPLACEMENT",
+      "targetSheet": "skill_meteor_impact_burst_heavy",
+      "action": {
+        "actionId": "n_dark_meteor",
+        "unit": "Black Mage",
+        "slot": "ultimate",
+        "mechanic": "Void/dark meteor, 5AP ultimate, radius_1.5"
+      },
+      "candidate": {
+        "candidateId": "r1_0545",
+        "rank": 1,
+        "sourceFilename": "Impact_Darkness_Lv3_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Essentials VFX Spritesheets/Impact_Darkness_Lv3_spritesheet.png",
+        "sourceCollection": "Essentials VFX Spritesheets",
+        "confirmedGrid": "8x8",
+        "sourceFrameCount": 64,
+        "cellDimensions": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "AMBIGUOUS_GRID",
+        "gridConfidence": "LOW",
+        "changedFromR1": false,
+        "ambiguityReason": null,
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "NOT_APPLICABLE",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "implosion",
+        "observedVisualFamily": "dark_impact",
+        "perspective": "omnidirectional",
+        "orientation": "center_on_target",
+        "groundDependency": "none",
+        "targetCenteredCompatibility": "yes",
+        "cameraCompatibility": "billboard",
+        "clippingRisk": "moderate — implosion effects may extend beyond cell boundaries",
+        "recolorRequirement": "none — dark/void palette matches",
+        "cropRequirement": "none",
+        "retimingRequirement": "64→25 frame resampling with composite layer for meteor descent",
+        "loopSuitability": "not_applicable",
+        "strengths": [
+          "Dark/void palette matches black mage identity",
+          "8x8 confirmed (not changed from R1)",
+          "50/64 active cells — good occupancy"
+        ],
+        "risks": [
+          "Grid confidence is LOW — 14 empty cells (21.9%)",
+          "Requires composite layer for meteor descent+impact",
+          "Clipping risk moderate"
+        ],
+        "recommendedVerdict": "RECOMMEND_APPROVAL"
+      },
+      "processing": {
+        "r2ProcessingType": "REPLACE",
+        "requiredProcessing": [
+          "Resample 64→25 frames",
+          "Recolor: none — dark/void palette matches",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original skill_meteor_impact_burst_heavy.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/p0_3/",
+        "thumbnail": "thumbnail_r1_0545.png",
+        "gridOverlay": "grid_overlay_r1_0545.png",
+        "animatedGif": "animated_r1_0545.gif",
+        "contactSheet": "contact_sheet_r1_0545.png",
+        "alphaBoundary": "alpha_boundary_r1_0545.png",
+        "frameFirst": "frame_first_r1_0545.png",
+        "framePeak": "frame_peak_r1_0545.png",
+        "frameLast": "frame_last_r1_0545.png",
+        "peakFrameIndex": 5
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    },
+    {
+      "targetId": "p0_4",
+      "category": "P0_REPLACEMENT",
+      "targetSheet": "skill_void_singularity_implosion_ultimate",
+      "action": {
+        "actionId": "d_devouring_eclipse",
+        "unit": "Dark Knight",
+        "slot": "ultimate",
+        "mechanic": "Void singularity implosion, 5AP ultimate, radius_1.5"
+      },
+      "candidate": {
+        "candidateId": "r1_0545",
+        "rank": 1,
+        "sourceFilename": "Impact_Darkness_Lv3_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Essentials VFX Spritesheets/Impact_Darkness_Lv3_spritesheet.png",
+        "sourceCollection": "Essentials VFX Spritesheets",
+        "confirmedGrid": "8x8",
+        "sourceFrameCount": 64,
+        "cellDimensions": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "AMBIGUOUS_GRID",
+        "gridConfidence": "LOW",
+        "changedFromR1": false,
+        "ambiguityReason": null,
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "NOT_APPLICABLE",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "implosion",
+        "observedVisualFamily": "dark_impact",
+        "perspective": "omnidirectional",
+        "orientation": "center_on_target",
+        "groundDependency": "none",
+        "targetCenteredCompatibility": "yes",
+        "cameraCompatibility": "billboard",
+        "clippingRisk": "moderate",
+        "recolorRequirement": "distinct tint from n_dark_meteor to differentiate",
+        "cropRequirement": "none",
+        "retimingRequirement": "64→25 frame resampling, scale for 5AP ultimate",
+        "loopSuitability": "not_applicable",
+        "strengths": [
+          "Dark implosion matches void singularity theme",
+          "Same source as n_dark_meteor — proven visual"
+        ],
+        "risks": [
+          "Grid confidence is LOW",
+          "Must differentiate from n_dark_meteor via tint/scale",
+          "Clipping risk moderate"
+        ],
+        "recommendedVerdict": "RECOMMEND_APPROVAL"
+      },
+      "processing": {
+        "r2ProcessingType": "REPLACE",
+        "requiredProcessing": [
+          "Resample 64→25 frames",
+          "Recolor: distinct tint from n_dark_meteor to differentiate",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original skill_void_singularity_implosion_ultimate.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/p0_4/",
+        "thumbnail": "thumbnail_r1_0545.png",
+        "gridOverlay": "grid_overlay_r1_0545.png",
+        "animatedGif": "animated_r1_0545.gif",
+        "contactSheet": "contact_sheet_r1_0545.png",
+        "alphaBoundary": "alpha_boundary_r1_0545.png",
+        "frameFirst": "frame_first_r1_0545.png",
+        "framePeak": "frame_peak_r1_0545.png",
+        "frameLast": "frame_last_r1_0545.png",
+        "peakFrameIndex": 5
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    },
+    {
+      "targetId": "p0_5",
+      "category": "P0_REPLACEMENT",
+      "targetSheet": "skill_wind_slash_swirl_medium",
+      "action": {
+        "actionId": "w_whirl",
+        "unit": "Warrior",
+        "slot": "skill3",
+        "mechanic": "Circular slash whirlwind, 4AP, radius_1"
+      },
+      "candidate": {
+        "candidateId": "r1_1700",
+        "rank": 1,
+        "sourceFilename": "Fire Slash v1 - Spin_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Sword Slash VFX Spritesheets/Fire Slash v1 - Spin_spritesheet.png",
+        "sourceCollection": "Sword Slash VFX Spritesheets",
+        "confirmedGrid": "4x4",
+        "sourceFrameCount": 16,
+        "cellDimensions": {
+          "width": 1024,
+          "height": 1024
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "AMBIGUOUS_GRID",
+        "gridConfidence": "LOW",
+        "changedFromR1": true,
+        "ambiguityReason": "Top hypotheses too close: 4x4 (128.0) vs 8x8 (128.0)",
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "NOT_APPLICABLE",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "swirl",
+        "observedVisualFamily": "spin_slash",
+        "perspective": "omnidirectional",
+        "orientation": "center_on_caster",
+        "groundDependency": "none",
+        "targetCenteredCompatibility": "yes",
+        "cameraCompatibility": "billboard",
+        "clippingRisk": "low-moderate — spin effects typically centered",
+        "recolorRequirement": "fire → physical/wind for warrior",
+        "cropRequirement": "none",
+        "retimingRequirement": "16→25 frame interpolation",
+        "loopSuitability": "not_applicable",
+        "strengths": [
+          "Circular spin slash matches whirlwind theme",
+          "Radial outward direction matches AoE",
+          "Low center drift (15.3px)"
+        ],
+        "risks": [
+          "Grid confidence is LOW — grid structure ambiguous",
+          "Requires recolor from fire to physical"
+        ],
+        "recommendedVerdict": "RECOMMEND_APPROVAL"
+      },
+      "processing": {
+        "r2ProcessingType": "REPLACE",
+        "requiredProcessing": [
+          "Resample 16→25 frames",
+          "Recolor: fire → physical/wind for warrior",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original skill_wind_slash_swirl_medium.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/p0_5/",
+        "thumbnail": "thumbnail_r1_1700.png",
+        "gridOverlay": "grid_overlay_r1_1700.png",
+        "animatedGif": "animated_r1_1700.gif",
+        "contactSheet": "contact_sheet_r1_1700.png",
+        "alphaBoundary": "alpha_boundary_r1_1700.png",
+        "frameFirst": "frame_first_r1_1700.png",
+        "framePeak": "frame_peak_r1_1700.png",
+        "frameLast": "frame_last_r1_1700.png",
+        "peakFrameIndex": 3
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    },
+    {
+      "targetId": "sem_1",
+      "category": "SEMANTIC_MISMATCH",
+      "targetSheet": "basic_hammer_crush_heavy",
+      "action": {
+        "actionId": "w_charge",
+        "unit": "Warrior",
+        "slot": "skill2",
+        "mechanic": "Directional dash/ram, 3AP, range 2-3, slow status"
+      },
+      "candidate": {
+        "candidateId": "r1_2561",
+        "rank": 1,
+        "sourceFilename": "Dash_Wind_White_v3_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Wind VFX Spritesheets/Dash_Wind_White_v3_spritesheet.png",
+        "sourceCollection": "Wind VFX Spritesheets",
+        "confirmedGrid": "4x4",
+        "sourceFrameCount": 16,
+        "cellDimensions": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "AMBIGUOUS_GRID",
+        "gridConfidence": "LOW",
+        "changedFromR1": true,
+        "ambiguityReason": null,
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "NOT_APPLICABLE",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "charge",
+        "observedVisualFamily": "wind_dash",
+        "perspective": "directional",
+        "orientation": "source_to_destination",
+        "groundDependency": "none",
+        "targetCenteredCompatibility": "no — directional",
+        "cameraCompatibility": "billboard with rotation",
+        "clippingRisk": "low",
+        "recolorRequirement": "wind/white → physical for warrior",
+        "cropRequirement": "none",
+        "retimingRequirement": "16→25 frame interpolation",
+        "loopSuitability": "not_applicable",
+        "strengths": [
+          "Directional dash communicates forward motion correctly",
+          "Fixes semantic mismatch (hammer crush → dash)"
+        ],
+        "risks": [
+          "Grid confidence is LOW",
+          "Wind element may not read as physical — recolor critical",
+          "Directional orientation requires rotation metadata"
+        ],
+        "recommendedVerdict": "RECOMMEND_APPROVAL"
+      },
+      "processing": {
+        "r2ProcessingType": "REPLACE",
+        "requiredProcessing": [
+          "Resample 16→25 frames",
+          "Recolor: wind/white → physical for warrior",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original basic_hammer_crush_heavy.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/sem_1/",
+        "thumbnail": "thumbnail_r1_2561.png",
+        "gridOverlay": "grid_overlay_r1_2561.png",
+        "animatedGif": "animated_r1_2561.gif",
+        "contactSheet": "contact_sheet_r1_2561.png",
+        "alphaBoundary": "alpha_boundary_r1_2561.png",
+        "frameFirst": "frame_first_r1_2561.png",
+        "framePeak": "frame_peak_r1_2561.png",
+        "frameLast": "frame_last_r1_2561.png",
+        "peakFrameIndex": 10
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    },
+    {
+      "targetId": "sem_2",
+      "category": "SEMANTIC_MISMATCH",
+      "targetSheet": "basic_body_slam_heavy",
+      "action": {
+        "actionId": "p_interpose",
+        "unit": "Paladin",
+        "slot": "skill2",
+        "mechanic": "Protective leap with barrier_allies, 3AP, range 2-3"
+      },
+      "candidate": {
+        "candidateId": "r1_0971",
+        "rank": 1,
+        "sourceFilename": "Shield_On_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Essentials VFX Spritesheets/Shield_On_spritesheet.png",
+        "sourceCollection": "Essentials VFX Spritesheets",
+        "confirmedGrid": "4x4",
+        "sourceFrameCount": 16,
+        "cellDimensions": {
+          "width": 1024,
+          "height": 1024
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "AMBIGUOUS_GRID",
+        "gridConfidence": "LOW",
+        "changedFromR1": true,
+        "ambiguityReason": "Top hypotheses too close: 4x4 (135.0) vs 8x8 (134.1)",
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "NOT_APPLICABLE",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "shield",
+        "observedVisualFamily": "shield",
+        "perspective": "omnidirectional",
+        "orientation": "center_on_caster",
+        "groundDependency": "partial — shield centered on caster",
+        "targetCenteredCompatibility": "yes",
+        "cameraCompatibility": "billboard",
+        "clippingRisk": "low",
+        "recolorRequirement": "none — holy palette appropriate",
+        "cropRequirement": "none",
+        "retimingRequirement": "16→25 frame interpolation",
+        "loopSuitability": "not_applicable",
+        "strengths": [
+          "Shield visual is semantically correct for interpose",
+          "Fixes semantic mismatch (body slam → shield)",
+          "Low center drift (9.6px)"
+        ],
+        "risks": [
+          "Grid confidence is LOW",
+          "Same candidate as p_oathwall — must differentiate via scale/timing"
+        ],
+        "recommendedVerdict": "RECOMMEND_APPROVAL"
+      },
+      "processing": {
+        "r2ProcessingType": "REPLACE",
+        "requiredProcessing": [
+          "Resample 16→25 frames",
+          "Recolor: none — holy palette appropriate",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original basic_body_slam_heavy.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/sem_2/",
+        "thumbnail": "thumbnail_r1_0971.png",
+        "gridOverlay": "grid_overlay_r1_0971.png",
+        "animatedGif": "animated_r1_0971.gif",
+        "contactSheet": "contact_sheet_r1_0971.png",
+        "alphaBoundary": "alpha_boundary_r1_0971.png",
+        "frameFirst": "frame_first_r1_0971.png",
+        "framePeak": "frame_peak_r1_0971.png",
+        "frameLast": "frame_last_r1_0971.png",
+        "peakFrameIndex": 5
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    },
+    {
+      "targetId": "sem_3",
+      "category": "SEMANTIC_MISMATCH",
+      "targetSheet": "skill_fire_impact_burst_medium",
+      "action": {
+        "actionId": "n_flame_wave",
+        "unit": "Black Mage",
+        "slot": "skill3",
+        "mechanic": "Directional fire cone, 4AP, cone_radius_1.6, burn"
+      },
+      "candidate": {
+        "candidateId": "r1_0450",
+        "rank": 1,
+        "sourceFilename": "Flamethrower_001_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Essentials VFX Spritesheets/Flamethrower_001_spritesheet.png",
+        "sourceCollection": "Essentials VFX Spritesheets",
+        "confirmedGrid": "4x4",
+        "sourceFrameCount": 16,
+        "cellDimensions": {
+          "width": 1024,
+          "height": 1024
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "AMBIGUOUS_GRID",
+        "gridConfidence": "LOW",
+        "changedFromR1": true,
+        "ambiguityReason": "Top hypotheses too close: 4x4 (128.0) vs 8x8 (128.0)",
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "NOT_APPLICABLE",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "directional_wave",
+        "observedVisualFamily": "flamethrower",
+        "perspective": "directional",
+        "orientation": "source_to_destination",
+        "groundDependency": "none",
+        "targetCenteredCompatibility": "no — directional cone",
+        "cameraCompatibility": "billboard with rotation",
+        "clippingRisk": "moderate — cone shape may not match cone_radius_1.6",
+        "recolorRequirement": "none — fire palette matches",
+        "cropRequirement": "CROP_OR_REFRAME to emphasize wave front",
+        "retimingRequirement": "16→25 frame interpolation",
+        "loopSuitability": "not_applicable",
+        "strengths": [
+          "Fire palette matches black mage fire spells",
+          "Directional effect communicates cone propagation",
+          "Fixes semantic mismatch (point burst → directional wave)"
+        ],
+        "risks": [
+          "Grid confidence is LOW",
+          "Flamethrower may not perfectly match cone_radius_1.6 shape",
+          "Highest risk candidate in pilot"
+        ],
+        "recommendedVerdict": "RECOMMEND_ALTERNATIVE"
+      },
+      "processing": {
+        "r2ProcessingType": "REPLACE",
+        "requiredProcessing": [
+          "Resample 16→25 frames",
+          "Recolor: none — fire palette matches",
+          "Crop: CROP_OR_REFRAME to emphasize wave front",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original skill_fire_impact_burst_medium.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/sem_3/",
+        "thumbnail": "thumbnail_r1_0450.png",
+        "gridOverlay": "grid_overlay_r1_0450.png",
+        "animatedGif": "animated_r1_0450.gif",
+        "contactSheet": "contact_sheet_r1_0450.png",
+        "alphaBoundary": "alpha_boundary_r1_0450.png",
+        "frameFirst": "frame_first_r1_0450.png",
+        "framePeak": "frame_peak_r1_0450.png",
+        "frameLast": "frame_last_r1_0450.png",
+        "peakFrameIndex": 10
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    },
+    {
+      "targetId": "stat_1",
+      "category": "STATUS_LOOP",
+      "targetSheet": "skill_support_leaf_burst_medium",
+      "action": {
+        "actionId": "w_sanctuary",
+        "unit": "White Mage",
+        "slot": "skill3",
+        "mechanic": "Nature sanctuary area regen, 4AP, radius_1.3"
+      },
+      "candidate": {
+        "candidateId": "r1_0677",
+        "rank": 1,
+        "sourceFilename": "Positive_Buff_V3_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Essentials VFX Spritesheets/Positive_Buff_V3_spritesheet.png",
+        "sourceCollection": "Essentials VFX Spritesheets",
+        "confirmedGrid": "8x8",
+        "sourceFrameCount": 64,
+        "cellDimensions": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "AMBIGUOUS_GRID",
+        "gridConfidence": "LOW",
+        "changedFromR1": false,
+        "ambiguityReason": null,
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "PENDING_HUMAN_REVIEW",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "aura",
+        "observedVisualFamily": "positive_buff",
+        "perspective": "omnidirectional",
+        "orientation": "center_on_target",
+        "groundDependency": "none",
+        "targetCenteredCompatibility": "yes",
+        "cameraCompatibility": "billboard",
+        "clippingRisk": "low",
+        "recolorRequirement": "holy → nature/holy hybrid for sanctuary",
+        "cropRequirement": "none",
+        "retimingRequirement": "64→25 loop-aware resampling",
+        "loopSuitability": "POSSIBLE_LOOP — sustained buff visual, requires loop confirmation",
+        "strengths": [
+          "Positive buff visual matches sanctuary theme",
+          "8x8 confirmed (not changed from R1)"
+        ],
+        "risks": [
+          "Grid confidence is LOW",
+          "Requires loop-aware resampling",
+          "Recolor needed for nature/holy hybrid"
+        ],
+        "recommendedVerdict": "RECOMMEND_APPROVAL"
+      },
+      "processing": {
+        "r2ProcessingType": "TUNE",
+        "requiredProcessing": [
+          "Resample 64→25 frames",
+          "Recolor: holy → nature/holy hybrid for sanctuary",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original skill_support_leaf_burst_medium.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/stat_1/",
+        "thumbnail": "thumbnail_r1_0677.png",
+        "gridOverlay": "grid_overlay_r1_0677.png",
+        "animatedGif": "animated_r1_0677.gif",
+        "contactSheet": "contact_sheet_r1_0677.png",
+        "alphaBoundary": "alpha_boundary_r1_0677.png",
+        "frameFirst": "frame_first_r1_0677.png",
+        "framePeak": "frame_peak_r1_0677.png",
+        "frameLast": "frame_last_r1_0677.png",
+        "peakFrameIndex": 26
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    },
+    {
+      "targetId": "stat_2",
+      "category": "STATUS_LOOP",
+      "targetSheet": "skill_arcane_orbit_burst_medium",
+      "action": {
+        "actionId": "e_vigor_rune",
+        "unit": "Enchanter",
+        "slot": "skill1",
+        "mechanic": "Arcane orbit buff on ally, 2AP, boost status"
+      },
+      "candidate": {
+        "candidateId": "r1_0503",
+        "rank": 1,
+        "sourceFilename": "Heart_Buff_V3_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Essentials VFX Spritesheets/Heart_Buff_V3_spritesheet.png",
+        "sourceCollection": "Essentials VFX Spritesheets",
+        "confirmedGrid": "4x4",
+        "sourceFrameCount": 16,
+        "cellDimensions": {
+          "width": 1024,
+          "height": 1024
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "AMBIGUOUS_GRID",
+        "gridConfidence": "LOW",
+        "changedFromR1": true,
+        "ambiguityReason": "Top hypotheses too close: 4x4 (120.0) vs 8x8 (119.7)",
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "PENDING_HUMAN_REVIEW",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "buff",
+        "observedVisualFamily": "heart_buff",
+        "perspective": "omnidirectional",
+        "orientation": "center_on_target",
+        "groundDependency": "none",
+        "targetCenteredCompatibility": "yes",
+        "cameraCompatibility": "billboard",
+        "clippingRisk": "low",
+        "recolorRequirement": "heart → arcane for enchanter identity",
+        "cropRequirement": "none",
+        "retimingRequirement": "16→25 frame interpolation",
+        "loopSuitability": "POSSIBLE_LOOP — buff visual, requires loop confirmation",
+        "strengths": [
+          "Buff visual matches boost status",
+          "Omnidirectional billboard-compatible"
+        ],
+        "risks": [
+          "Grid confidence is LOW",
+          "Requires recolor from heart to arcane"
+        ],
+        "recommendedVerdict": "RECOMMEND_APPROVAL"
+      },
+      "processing": {
+        "r2ProcessingType": "TUNE",
+        "requiredProcessing": [
+          "Resample 16→25 frames",
+          "Recolor: heart → arcane for enchanter identity",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original skill_arcane_orbit_burst_medium.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/stat_2/",
+        "thumbnail": "thumbnail_r1_0503.png",
+        "gridOverlay": "grid_overlay_r1_0503.png",
+        "animatedGif": "animated_r1_0503.gif",
+        "contactSheet": "contact_sheet_r1_0503.png",
+        "alphaBoundary": "alpha_boundary_r1_0503.png",
+        "frameFirst": "frame_first_r1_0503.png",
+        "framePeak": "frame_peak_r1_0503.png",
+        "frameLast": "frame_last_r1_0503.png",
+        "peakFrameIndex": 5
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    },
+    {
+      "targetId": "stat_3",
+      "category": "STATUS_LOOP",
+      "targetSheet": "skill_void_spiral_implosion_medium",
+      "action": {
+        "actionId": "ni_smoke_bomb",
+        "unit": "Ninja",
+        "slot": "skill3",
+        "mechanic": "Smoke bomb blind area, 4AP, radius_1.5, blind_barrier"
+      },
+      "candidate": {
+        "candidateId": "r1_2509",
+        "rank": 1,
+        "sourceFilename": "Angry_Smoke_Burst_White_v2_A_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Wind VFX Spritesheets/Angry_Smoke_Burst_White_v2_A_spritesheet.png",
+        "sourceCollection": "Wind VFX Spritesheets",
+        "confirmedGrid": "4x4",
+        "sourceFrameCount": 16,
+        "cellDimensions": {
+          "width": 1024,
+          "height": 1024
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "AMBIGUOUS_GRID",
+        "gridConfidence": "LOW",
+        "changedFromR1": true,
+        "ambiguityReason": "Top hypotheses too close: 4x4 (105.0) vs 8x8 (105.0)",
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "PENDING_HUMAN_REVIEW",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "smoke",
+        "observedVisualFamily": "smoke_burst",
+        "perspective": "omnidirectional",
+        "orientation": "center_on_target",
+        "groundDependency": "none",
+        "targetCenteredCompatibility": "yes",
+        "cameraCompatibility": "billboard",
+        "clippingRisk": "low",
+        "recolorRequirement": "white → shadow/dark for ninja",
+        "cropRequirement": "none",
+        "retimingRequirement": "16→25 loop-aware resampling",
+        "loopSuitability": "POSSIBLE_LOOP — smoke effect, requires loop confirmation",
+        "strengths": [
+          "Smoke burst matches blind barrier theme",
+          "Omnidirectional billboard-compatible"
+        ],
+        "risks": [
+          "Grid confidence is LOW",
+          "Requires recolor from white to shadow",
+          "Loop suitability uncertain"
+        ],
+        "recommendedVerdict": "RECOMMEND_APPROVAL"
+      },
+      "processing": {
+        "r2ProcessingType": "TUNE",
+        "requiredProcessing": [
+          "Resample 16→25 frames",
+          "Recolor: white → shadow/dark for ninja",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original skill_void_spiral_implosion_medium.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/stat_3/",
+        "thumbnail": "thumbnail_r1_2509.png",
+        "gridOverlay": "grid_overlay_r1_2509.png",
+        "animatedGif": "animated_r1_2509.gif",
+        "contactSheet": "contact_sheet_r1_2509.png",
+        "alphaBoundary": "alpha_boundary_r1_2509.png",
+        "frameFirst": "frame_first_r1_2509.png",
+        "framePeak": "frame_peak_r1_2509.png",
+        "frameLast": "frame_last_r1_2509.png",
+        "peakFrameIndex": 4
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    },
+    {
+      "targetId": "stat_4",
+      "category": "STATUS_LOOP",
+      "targetSheet": "skill_heal_blessing_bloom_heavy",
+      "action": {
+        "actionId": "w_salvation",
+        "unit": "White Mage",
+        "slot": "skill1",
+        "mechanic": "Heal bloom on ally, 2AP, single_ally"
+      },
+      "candidate": {
+        "candidateId": "r1_0480",
+        "rank": 1,
+        "sourceFilename": "Healing_V3_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Essentials VFX Spritesheets/Healing_V3_spritesheet.png",
+        "sourceCollection": "Essentials VFX Spritesheets",
+        "confirmedGrid": "8x8",
+        "sourceFrameCount": 64,
+        "cellDimensions": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "CONFIRMED_GRID",
+        "gridConfidence": "MEDIUM",
+        "changedFromR1": false,
+        "ambiguityReason": null,
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "NOT_APPLICABLE",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "heal",
+        "observedVisualFamily": "healing",
+        "perspective": "omnidirectional",
+        "orientation": "center_on_target",
+        "groundDependency": "none",
+        "targetCenteredCompatibility": "yes",
+        "cameraCompatibility": "billboard",
+        "clippingRisk": "low",
+        "recolorRequirement": "none — holy palette appropriate",
+        "cropRequirement": "none",
+        "retimingRequirement": "64→25 frame resampling",
+        "loopSuitability": "not_applicable",
+        "strengths": [
+          "Healing visual matches salvation theme",
+          "MEDIUM grid confidence (highest in pilot)",
+          "8x8 confirmed (not changed from R1)",
+          "Holy palette appropriate for white mage"
+        ],
+        "risks": [
+          "Only MEDIUM confidence — not HIGH",
+          "Requires 64→25 resampling"
+        ],
+        "recommendedVerdict": "RECOMMEND_APPROVAL"
+      },
+      "processing": {
+        "r2ProcessingType": "TUNE",
+        "requiredProcessing": [
+          "Resample 64→25 frames",
+          "Recolor: none — holy palette appropriate",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original skill_heal_blessing_bloom_heavy.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/stat_4/",
+        "thumbnail": "thumbnail_r1_0480.png",
+        "gridOverlay": "grid_overlay_r1_0480.png",
+        "animatedGif": "animated_r1_0480.gif",
+        "contactSheet": "contact_sheet_r1_0480.png",
+        "alphaBoundary": "alpha_boundary_r1_0480.png",
+        "frameFirst": "frame_first_r1_0480.png",
+        "framePeak": "frame_peak_r1_0480.png",
+        "frameLast": "frame_last_r1_0480.png",
+        "peakFrameIndex": 30
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    },
+    {
+      "targetId": "stat_5",
+      "category": "STATUS_LOOP",
+      "targetSheet": "skill_arcane_sigil_burst_medium",
+      "action": {
+        "actionId": "e_binding_seal",
+        "unit": "Enchanter",
+        "slot": "skill3",
+        "mechanic": "Binding seal root area, 4AP, radius_1.2, root"
+      },
+      "candidate": {
+        "candidateId": "r1_0525",
+        "rank": 1,
+        "sourceFilename": "Hex_Bursts_Center_V2_spritesheet.png",
+        "sourceRelativePath": "01_extracted/Essentials VFX Spritesheets/Hex_Bursts_Center_V2_spritesheet.png",
+        "sourceCollection": "Essentials VFX Spritesheets",
+        "confirmedGrid": "4x4",
+        "sourceFrameCount": 16,
+        "cellDimensions": {
+          "width": 1024,
+          "height": 1024
+        }
+      },
+      "validation": {
+        "gridValidationStatus": "AMBIGUOUS_GRID",
+        "gridConfidence": "LOW",
+        "changedFromR1": true,
+        "ambiguityReason": "Top hypotheses too close: 4x4 (120.0) vs 8x8 (120.0)",
+        "semanticValidationStatus": "PENDING_HUMAN_REVIEW",
+        "visualValidationStatus": "PENDING_HUMAN_REVIEW",
+        "loopValidationStatus": "NOT_APPLICABLE",
+        "r2AuthorizationStatus": "BLOCKED_PENDING_HUMAN_REVIEW"
+      },
+      "reviewSheet": {
+        "requiredVisualFamily": "debuff",
+        "observedVisualFamily": "hex_burst",
+        "perspective": "omnidirectional",
+        "orientation": "center_on_target",
+        "groundDependency": "none",
+        "targetCenteredCompatibility": "yes",
+        "cameraCompatibility": "billboard",
+        "clippingRisk": "low",
+        "recolorRequirement": "hex → arcane for enchanter identity",
+        "cropRequirement": "none",
+        "retimingRequirement": "16→25 frame interpolation",
+        "loopSuitability": "not_applicable",
+        "strengths": [
+          "Hex burst matches binding seal/root theme",
+          "Omnidirectional billboard-compatible"
+        ],
+        "risks": [
+          "Grid confidence is LOW",
+          "Requires recolor from hex to arcane"
+        ],
+        "recommendedVerdict": "RECOMMEND_APPROVAL"
+      },
+      "processing": {
+        "r2ProcessingType": "TUNE",
+        "requiredProcessing": [
+          "Resample 16→25 frames",
+          "Recolor: hex → arcane for enchanter identity",
+          "Repack to 1280x1280 5x5 grid"
+        ],
+        "rollback": "Restore original skill_arcane_sigil_burst_medium.png"
+      },
+      "visualEvidence": {
+        "externalReviewPath": "r1_2_pilot_review/stat_5/",
+        "thumbnail": "thumbnail_r1_0525.png",
+        "gridOverlay": "grid_overlay_r1_0525.png",
+        "animatedGif": "animated_r1_0525.gif",
+        "contactSheet": "contact_sheet_r1_0525.png",
+        "alphaBoundary": "alpha_boundary_r1_0525.png",
+        "frameFirst": "frame_first_r1_0525.png",
+        "framePeak": "frame_peak_r1_0525.png",
+        "frameLast": "frame_last_r1_0525.png",
+        "peakFrameIndex": 3
+      },
+      "approvalStatus": "PENDING_HUMAN_REVIEW"
+    }
+  ]
+}
