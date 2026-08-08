@@ -221,6 +221,9 @@ export const assets = {
     bois_clair_burning: '/assets/generated/lion-phase/combat/bois_clair_burning.webp',
     lion_sanctum: '/assets/generated/lion-phase/combat/lion_sanctum.webp',
   },
+  combatStageScenes: {
+    forest_route: '/assets/generated/lion-phase/combat-stage/forest_route_stage.webp',
+  },
   // Named per-screen background slots.
   screens: {
     title: {

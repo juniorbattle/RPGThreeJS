@@ -1,3 +1,4 @@
+import { assets } from '../../render/assetManifest';
 import type { BackgroundSceneConfig } from '../../render/BackgroundLayerSystem';
 
 /**
@@ -37,12 +38,42 @@ function placeholderStageBackground(id: string, fallback: [string, string]): Bac
   };
 }
 
+/**
+ * A painted stage background is camera-local and non-interactive. It is used
+ * only by the CombatStage cinematic and remains distinct from tactical art.
+ */
+function paintedStageBackground(
+  id: string,
+  texture: string,
+  fallback: [string, string],
+): BackgroundSceneConfig {
+  return {
+    id: `${id}-stage-painted`,
+    enabled: true,
+    layers: [
+      {
+        id: `${id}-stage-painted-backdrop`,
+        texture,
+        position: [0, 0.35, -8],
+        size: [17.8, 10],
+        parallax: 0,
+        opacity: 1,
+        fallback,
+      },
+    ],
+  };
+}
+
 const DEFAULT_ENVIRONMENT_ID = 'forest_route';
 
 const STAGE_ENVIRONMENTS: Readonly<Record<string, CombatStageEnvironmentBackgrounds>> = Object.freeze({
   forest_route: {
     tacticalBackground: 'forest_route',
-    stageBackground: placeholderStageBackground('forest-route', ['#2c3c33', '#0d1712']),
+    stageBackground: paintedStageBackground(
+      'forest-route',
+      assets.combatStageScenes.forest_route,
+      ['#2c3c33', '#0d1712'],
+    ),
   },
   bois_clair_burning: {
     tacticalBackground: 'bois_clair_burning',

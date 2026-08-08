@@ -40,6 +40,21 @@ function fallbackTexture(colors: [string, string]): THREE.CanvasTexture {
 
 async function loadTexture(url: string | undefined, fallback: [string, string]): Promise<THREE.Texture> {
   if (!url) return fallbackTexture(fallback);
+
+  // happy-dom does not complete TextureLoader image requests. Keep the visual
+  // fallback deterministic for the headless test environment; browsers still
+  // load the authored texture below.
+  const syntheticWindow = typeof window === 'undefined'
+    ? undefined
+    : (window as Window & { happyDOM?: unknown });
+  if (
+    !syntheticWindow
+    || syntheticWindow.happyDOM
+    || /happy-dom/i.test(syntheticWindow.navigator?.userAgent ?? '')
+  ) {
+    return fallbackTexture(fallback);
+  }
+
   try {
     const texture = await new THREE.TextureLoader().loadAsync(url);
     texture.colorSpace = THREE.SRGBColorSpace;
