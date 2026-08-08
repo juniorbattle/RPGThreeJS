@@ -141,3 +141,158 @@ describe('V10F final hotfix runtime contracts', () => {
     expect(runtimeSource).not.toContain("if(k==='e')rotateCam");
   });
 });
+
+describe('R0A-QA1.1 impact ordering and phase timing', () => {
+  it('notifyImpact occurs before resolveImpact with no presentation wait between them', () => {
+    const impactBlock = runtimeSource.match(/combatStage\.notifyImpact\(\);[\s\S]*?await resolveImpact\(\);/);
+    expect(impactBlock).not.toBeNull();
+    const block = impactBlock![0];
+    expect(block).toContain('combatStage.notifyImpact()');
+    expect(block).toContain('await resolveImpact()');
+    const notifyIdx = block.indexOf('combatStage.notifyImpact()');
+    const resolveIdx = block.indexOf('await resolveImpact()');
+    expect(notifyIdx).toBeLessThan(resolveIdx);
+    const between = block.slice(notifyIdx + 'combatStage.notifyImpact()'.length, resolveIdx);
+    expect(between).not.toContain('wait');
+    expect(between).not.toContain('impactToReactionMs');
+  });
+
+  it('impactToReactionMs wait occurs AFTER resolveImpact, not before', () => {
+    const impactBlock = runtimeSource.match(/combatStage\.notifyImpact\(\);[\s\S]*?impactHold/);
+    expect(impactBlock).not.toBeNull();
+    const block = impactBlock![0];
+    const resolveIdx = block.indexOf('await resolveImpact()');
+    const reactionIdx = block.indexOf('impactToReactionMs');
+    expect(resolveIdx).toBeGreaterThan(-1);
+    expect(reactionIdx).toBeGreaterThan(-1);
+    expect(reactionIdx).toBeGreaterThan(resolveIdx);
+  });
+
+  it('resolveImpact is wrapped in onceAsync for exactly-once resolution', () => {
+    expect(runtimeSource).toContain('const resolveImpact=onceAsync(async()=>{');
+    expect(runtimeSource).toContain("if(typeof actionContext.onResolveImpact==='function')await actionContext.onResolveImpact()");
+  });
+
+  it('settleMs is consumed after combatStageEnter and before attackAnim', () => {
+    const settleBlock = runtimeSource.match(/await combatStageEnter[\s\S]*?settleMs[\s\S]*?attackAnim/);
+    expect(settleBlock).not.toBeNull();
+  });
+
+  it('recoveryMs is consumed before combatStageExit', () => {
+    const recoveryBlock = runtimeSource.match(/recoveryMs[\s\S]*?combatStageExit/);
+    expect(recoveryBlock).not.toBeNull();
+  });
+
+  it('releaseToImpactMs is not consumed as a separate wait in the runtime', () => {
+    expect(runtimeSource).not.toContain('releaseToImpactMs');
+  });
+
+  it('reactionToFeedbackMs is not consumed as a separate wait in the runtime', () => {
+    expect(runtimeSource).not.toContain('reactionToFeedbackMs');
+  });
+
+  it('preserves signalImpact/finishImpact/onResolveImpact exactly-once chain', () => {
+    expect(runtimeSource).toContain('signalImpact=resolve');
+    expect(runtimeSource).toContain('finishImpact=resolve');
+    expect(runtimeSource).toContain('onResolveImpact:async()=>{signalImpact(); await impactFinished;}');
+    expect(runtimeSource).toContain('} finally { finishImpact(); }');
+  });
+});
+
+describe('R0B universal Stage routing in runtime', () => {
+  it('imports resolveCombatStageProfileUniversal and getStageProfileInfo', () => {
+    expect(runtimeSource).toContain('resolveCombatStageProfileUniversal');
+    expect(runtimeSource).toContain('getStageProfileInfo');
+  });
+
+  it('combatStageEnter resolves profile universally and passes it to combatStage.enter', () => {
+    expect(runtimeSource).toContain('resolveCombatStageProfileUniversal(spec,presentation)');
+    expect(runtimeSource).toContain('profile:stageProfile');
+  });
+
+  it('combatStageEnter passes sourceTeam from attacker team', () => {
+    expect(runtimeSource).toContain('sourceTeam:att.team');
+  });
+
+  it('combatStageEnter passes stationaryAttacker for boss/elite', () => {
+    expect(runtimeSource).toContain('stationaryAttacker');
+    expect(runtimeSource).toContain('att.boss||att.elite');
+  });
+
+  it('logs Stage QA info when STAGE_QA_ENABLED', () => {
+    expect(runtimeSource).toContain('getStageProfileInfo(spec,presentation)');
+    expect(runtimeSource).toContain('[Stage QA]');
+  });
+
+  it('QA logging includes faction direction and source team', () => {
+    expect(runtimeSource).toContain('att.team');
+    expect(runtimeSource).toContain('dir=');
+  });
+
+  it('uses getSkillPresentation for presentation metadata in combatStageEnter', () => {
+    expect(runtimeSource).toContain('const presentation=getSkillPresentation(spec)');
+  });
+
+  it('preserves resolveImpact exactly-once with universal routing', () => {
+    expect(runtimeSource).toContain('const resolveImpact=onceAsync(async()=>{');
+    expect(runtimeSource).toContain('combatStage.notifyImpact()');
+    expect(runtimeSource).toContain('await resolveImpact()');
+    const impactBlock = runtimeSource.match(/combatStage\.notifyImpact\(\);[\s\S]*?await resolveImpact\(\);/);
+    expect(impactBlock).not.toBeNull();
+    const block = impactBlock![0];
+    const notifyIdx = block.indexOf('combatStage.notifyImpact()');
+    const resolveIdx = block.indexOf('await resolveImpact()');
+    expect(notifyIdx).toBeLessThan(resolveIdx);
+    const between = block.slice(notifyIdx + 'combatStage.notifyImpact()'.length, resolveIdx);
+    expect(between).not.toContain('wait');
+  });
+
+  it('impactToReactionMs remains after resolveImpact', () => {
+    const impactBlock = runtimeSource.match(/combatStage\.notifyImpact\(\);[\s\S]*?impactHold/);
+    expect(impactBlock).not.toBeNull();
+    const block = impactBlock![0];
+    const resolveIdx = block.indexOf('await resolveImpact()');
+    const reactionIdx = block.indexOf('impactToReactionMs');
+    expect(reactionIdx).toBeGreaterThan(resolveIdx);
+  });
+
+  it('settleMs gap remains after combatStageEnter', () => {
+    const settleBlock = runtimeSource.match(/await combatStageEnter[\s\S]*?settleMs[\s\S]*?attackAnim/);
+    expect(settleBlock).not.toBeNull();
+  });
+
+  it('recoveryMs gap remains before combatStageExit', () => {
+    const recoveryBlock = runtimeSource.match(/recoveryMs[\s\S]*?combatStageExit/);
+    expect(recoveryBlock).not.toBeNull();
+  });
+
+  it('captures pre-resolution unit state for aftermath snapshot', () => {
+    expect(runtimeSource).toContain('_preState');
+    expect(runtimeSource).toContain('alive:u.alive,hp:u.hp,statuses');
+  });
+
+  it('calls presentResolvedAftermath with aftermath snapshot and floatText', () => {
+    expect(runtimeSource).toContain('combatStage.presentResolvedAftermath(_aftermath,floatText)');
+  });
+
+  it('builds aftermath snapshot with KO, statusesApplied, healed from pre/post state', () => {
+    expect(runtimeSource).toContain('_buildAE');
+    expect(runtimeSource).toContain('ko:_pre.alive&&!_un.alive');
+    expect(runtimeSource).toContain('statusesApplied');
+    expect(runtimeSource).toContain('healed:_un.alive&&_un.hp>_pre.hp');
+  });
+
+  it('aftermath hold is driven by presentResolvedAftermath, not reactionToFeedbackMs wait', () => {
+    expect(runtimeSource).not.toContain('reactionToFeedbackMs');
+    expect(runtimeSource).toContain('presentResolvedAftermath');
+  });
+
+  it('aftermath occurs after animation and before recovery/exit', () => {
+    const block = runtimeSource.match(/await animation;[\s\S]*?presentResolvedAftermath[\s\S]*?recoveryMs[\s\S]*?combatStageExit/);
+    expect(block).not.toBeNull();
+  });
+
+  it('aftermath filters attacker from targets list', () => {
+    expect(runtimeSource).toContain('targets.filter(t=>t!==u)');
+  });
+});

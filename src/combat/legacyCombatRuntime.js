@@ -26,6 +26,8 @@ import { CombatCameraFeedback, applyAdditiveCameraShake } from './combatCameraFe
 import { installUnitMotionWorkbench } from './UnitMotionWorkbench';
 import { COMBAT_RENDER_LAYERS } from './combatRenderLayers';
 import { resolveBossIntentVisualState } from './bossIntentPresentation';
+import { CombatStage } from './stage/CombatStage';
+import { resolveCombatStageProfileUniversal, getStageProfileInfo } from './stage/combatStageProfiles';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
@@ -73,6 +75,7 @@ const SCENE_AMBIENCE={
   lion_sanctum:{fog:0x4d445e,density:0.011,count:118,color:0xf7d98d,size:0.084,opacity:0.56,area:[9.1,5.2],y:[0.24,3.9],rise:[0.06,0.19],drift:0.28,glow:0.2,glowColor:0xd9b86a,mistColor:0xd3b978,mistOpacity:0.17,rayColor:0xffe1a1,rayOpacity:0.12},
 };
 let REDUCED_GRAPHICS=campaignParams.get('reduced')==='1';
+const STAGE_QA_ENABLED=campaignParams.get('stageqa')==='1';
 function campaignUnitHealth(){
   const out={};
   for(const u of G.deployedUnits||[]) out[u.campaignId||u.name]=Math.max(0,Math.round(u.alive?u.hp:0));
@@ -160,7 +163,8 @@ const fill=new THREE.DirectionalLight(0xd5b184,0.48); fill.position.set(10,6,8);
 
 // ============================= POST-PROCESSING (HD-2D) =============================
 const composer=new EffectComposer(renderer);
-composer.addPass(new RenderPass(scene,camera));
+const renderPass=new RenderPass(scene,camera);
+composer.addPass(renderPass);
 const bloom=new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),COMBAT_PRESENTATION.ambientMist.bloomStrength,COMBAT_PRESENTATION.ambientMist.bloomRadius,COMBAT_PRESENTATION.ambientMist.bloomThreshold);
 composer.addPass(bloom);
 
@@ -200,11 +204,14 @@ const Grade={ uniforms:{ tDiffuse:{value:null}, time:{value:0}, sat:{value:COMBA
 const gradePass=new ShaderPass(Grade); composer.addPass(gradePass);
 composer.addPass(new OutputPass());
 
+const combatStage=new CombatStage({renderPass,tacticalScene:scene,tacticalCamera:camera,tiltShiftStrength:TiltShift.uniforms.strength,width:innerWidth,height:innerHeight});
+
 addEventListener('resize',()=>{
   camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();
   renderer.setSize(innerWidth,innerHeight); composer.setSize(innerWidth,innerHeight);
   bloom.setSize(innerWidth,innerHeight);
   TiltShift.uniforms.w.value=1/innerWidth; TiltShift.uniforms.h.value=1/innerHeight;
+  combatStage.handleResize(innerWidth,innerHeight);
 });
 
 // ============================= PROCEDURAL PIXEL-ART SPRITES =============================
@@ -1070,11 +1077,14 @@ function endTurn(){ if(G.busy||G.over)return; const u=G.active;
 function checkEnd(){ if(G.over)return true; if(aliveUnits('foe').length===0){ winWave(); return true; } if(aliveUnits('player').length===0){ endGame(false); return true; } return false; }
 
 // ============================= COMBAT & AOE =============================
-function worldToScreen(v){ const p=v.clone().project(camera); return {x:(p.x*0.5+0.5)*innerWidth,y:(-p.y*0.5+0.5)*innerHeight}; }
+function worldToScreen(v,activeCamera){ const p=v.clone().project(activeCamera||camera); return {x:(p.x*0.5+0.5)*innerWidth,y:(-p.y*0.5+0.5)*innerHeight}; }
 function floatText(u,txt,color,big){ const el=document.createElement('div'); el.className='float'; el.textContent=txt; el.style.color=color||'#fff'; if(big)el.style.fontSize='26px';
   dom.fx.appendChild(el); const start=performance.now(), dur=1.05;
-  const base=(u.grp?u.grp.position.clone():new THREE.Vector3(wX(u.gx),0,wZ(u.gz))); base.y+=2.5; base.x+=rnd(-0.2,0.2);
-  (function a(){ const e=Math.min(1,(performance.now()-start)/(dur*1000)); const wp=base.clone(); wp.y+=e*1.0; const s=worldToScreen(wp); el.style.left=s.x+'px'; el.style.top=s.y+'px'; el.style.opacity=(1-e*e); if(e<1)requestAnimationFrame(a); else el.remove(); })(); }
+  const stageAnchor=combatStage.getFloatTextAnchor(u);
+  const activeCamera=stageAnchor?combatStage.camera:camera;
+  const base=stageAnchor?stageAnchor.clone():(u.grp?u.grp.position.clone():new THREE.Vector3(wX(u.gx),0,wZ(u.gz)));
+  if(!stageAnchor){ base.y+=2.5; base.x+=rnd(-0.2,0.2); }
+  (function a(){ const e=Math.min(1,(performance.now()-start)/(dur*1000)); const wp=base.clone(); wp.y+=e*1.0; const s=worldToScreen(wp,activeCamera); el.style.left=s.x+'px'; el.style.top=s.y+'px'; el.style.opacity=(1-e*e); if(e<1)requestAnimationFrame(a); else el.remove(); })(); }
 function flashUnit(u,color){ u.mat.color.set(color); setTimeout(()=>u.alive&&u.mat.color.set('#ffffff'),140); }
 async function playUnitHitReaction(u,opts={}){
   if(!u||!u.alive||!u.grp||!u.spr)return;
@@ -1249,12 +1259,12 @@ async function applyDamage(u,dmg,src,opts={}){
   }
 }
 function applyHeal(u,amt){ if(!u.alive)return; u.hp=Math.min(u.maxhp,u.hp+amt); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
-function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; const requestedTurns=turns||2; const effectiveTurns=requestedTurns<=1?2:requestedTurns; t.statuses[st]=Math.max(t.statuses[st]||0,effectiveTurns); floatText(t,(d.name||st).toUpperCase(),d.col||'#fff'); refreshPanel(t); }
+function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; const requestedTurns=turns||2; const effectiveTurns=requestedTurns<=1?2:requestedTurns; t.statuses[st]=Math.max(t.statuses[st]||0,effectiveTurns); if(!G.stage)floatText(t,(d.name||st).toUpperCase(),d.col||'#fff'); refreshPanel(t); }
 async function knockOut(u,src){
   const baseline=motionBaseline(u),away=src?motionDirection(u,{source:src,reaction:true},true):{x:0,z:0},state=getUnitVisualState(u.team,false,true),sign=spriteScaleSign(u.spr),scale=largeUnitSpriteScale(u),outlineScale=scale*1.1;
   killSpriteMotion(u); const epoch=beginUnitMotion(u); u.alive=false; u.downed=true; clearBossIntentPresentation(u);
   if(u.size>1)clearBossCells(u); else { const c=u.cell(); if(c&&c.occupant===u)c.occupant=null; }
-  floatText(u,'K.O.','#ff5a4a',true); logMsg(u.name+' est K.O. !'); screenShake(0.5,0.4,true); screenFlash('#ff5a4a',0.22); refreshTurnbar();
+  if(!G.stage)floatText(u,'K.O.','#ff5a4a',true); logMsg(u.name+' est K.O. !'); screenShake(0.5,0.4,true); screenFlash('#ff5a4a',0.22); refreshTurnbar();
   try{
     await tweenP(u.grp.position,{x:baseline.group.x+away.x*(u.size>1?.08:.16),y:baseline.group.y,z:baseline.group.z+away.z*(u.size>1?.08:.16)},.1,easeOutCubic);
     if(!isUnitMotionCurrent(u,epoch))return;
@@ -1262,7 +1272,7 @@ async function knockOut(u,src){
     if(u.outline)collapse.push(tweenP(u.outline.scale,{x:sign*outlineScale*1.04,y:.35},.32,easeOutCubic),tweenP(u.outline.rotation,{z:(u.facing.dx<0?-1:1)*1.15},.32,easeOutCubic));
     if(u.teamRing)collapse.push(tweenP(u.teamRing.material,{opacity:0},.24,easeOutCubic)); if(u.teamRingUnder)collapse.push(tweenP(u.teamRingUnder.material,{opacity:0},.24,easeOutCubic)); if(u.teamGlow)collapse.push(tweenP(u.teamGlow.material,{opacity:0},.24,easeOutCubic));
     await Promise.all(collapse);
-  } finally { if(isUnitMotionCurrent(u,epoch)){ u.grp.position.copy(baseline.group); u.grp.visible=state.visible; u._motionPlaying=false; } }
+  } finally { if(isUnitMotionCurrent(u,epoch)){ u.grp.position.copy(baseline.group); u.grp.visible=state.visible; u._motionPlaying=false; if(u.team==='player'&&u.mat&&u.mat.color)u.mat.color.set('#ff5a4a'); } }
 }
 async function reviveUnit(u,hp){
   killSpriteMotion(u); u.alive=true; u.downed=false; u.hp=hp; u.statuses={}; u.grp.visible=true;
@@ -1476,21 +1486,30 @@ function makeActionVfxContext(u,targets,cx,cz,spec={},visualContext={}){
   // The gameplay resolver already supplies the true target/AoE origin through
   // cx/cz. Keep that point stable even when the first affected unit stands on
   // another tile; target/targetGround anchors remain available for unit hits.
+  const stageOverride=combatStage.getVfxContextOverride();
+  if(stageOverride){
+    const sourceProxy=combatStage.getVfxUnitProxy(u)??stageOverride.sourceUnit;
+    const targetProxies=targets.length?targets.map(t=>combatStage.getVfxUnitProxy(t)??stageOverride.targetUnits[0]):stageOverride.targetUnits;
+    return {
+      scene:stageOverride.scene,camera:stageOverride.camera,sourceUnit:sourceProxy,targetUnits:targetProxies,
+      targetPoint:stageOverride.targetPoint,
+      reducedGraphics:REDUCED_GRAPHICS,
+      intensity:tuning.intensity,particleScale:tuning.particleScale,durationScale:tuning.durationScale,
+      orientation:presentation?.orientation,scaleTier:tuning.scaleTier,presentationScale:tuning.presentationScale,
+      staticScaleMultiplier:tuning.staticScaleMultiplier,impactOpacityFloor:tuning.impactOpacityFloor,
+      impactRenderOrder:tuning.impactRenderOrder,groundYOffset:tuning.groundYOffset,
+      helpers:{wait,screenShake,screenFlash,floatText,wX,wZ,tileTop}
+    };
+  }
   const targetPoint=visualContext.targetPoint||new THREE.Vector3(wX(cx),tileTop(cx,cz),wZ(cz));
   return {
     scene,camera,sourceUnit:u,targetUnits:targets,
     targetPoint,
     reducedGraphics:REDUCED_GRAPHICS,
-    intensity:tuning.intensity,
-    particleScale:tuning.particleScale,
-    durationScale:tuning.durationScale,
-    orientation:presentation?.orientation,
-    scaleTier:tuning.scaleTier,
-    presentationScale:tuning.presentationScale,
-    staticScaleMultiplier:tuning.staticScaleMultiplier,
-    impactOpacityFloor:tuning.impactOpacityFloor,
-    impactRenderOrder:tuning.impactRenderOrder,
-    groundYOffset:tuning.groundYOffset,
+    intensity:tuning.intensity,particleScale:tuning.particleScale,durationScale:tuning.durationScale,
+    orientation:presentation?.orientation,scaleTier:tuning.scaleTier,presentationScale:tuning.presentationScale,
+    staticScaleMultiplier:tuning.staticScaleMultiplier,impactOpacityFloor:tuning.impactOpacityFloor,
+    impactRenderOrder:tuning.impactRenderOrder,groundYOffset:tuning.groundYOffset,
     helpers:{wait,screenShake,screenFlash,floatText,wX,wZ,tileTop}
   };
 }
@@ -1549,7 +1568,10 @@ async function attackAnim(u,spec,cx,cz,targets=[],actionContext={}){ const ctr=n
       } else if(preset==='debuff_cast'){
         if(spec.range&&spec.range[1]>1)await projectile(u,cx,cz,spec); else vfx('dark',ctr); if(spec.radius>=1)shockRing(ctr,spec.radius,0xb06aff);
       } else { vfx('hit',ctr); screenShake(preset==='melee_heavy'?0.46:0.32,preset==='melee_heavy'?0.28:0.22); }
+    combatStage.notifyImpact();
     await resolveImpact();
+    const phaseTiming=combatStage.getActivePhaseTiming?.();
+    if(phaseTiming&&phaseTiming.impactToReactionMs>0) await wait(phaseTiming.impactToReactionMs/1000);
     const impactHold=Math.max(feel.impactHold,tuning.afterEffectDelay); if(impactHold>0)await wait(impactHold);
   };
   await playSpriteMotion(u,preset,{cx,cz,spec,target:targets[0],...tuning,motionDurationScale:tuning.motionDurationScale*feel.motionDurationScale,motionIntensity:tuning.motionIntensity*feel.motionIntensity,onImpact:impact});
@@ -1687,10 +1709,13 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
   if(spec.key==='attack'&&spec.weaponType==='rapier'&&targets.length){ const t=targets[0]; const dist=Math.abs((u.size>1?bossCenterGX(u):u.gx)-t.gx)+Math.abs((u.size>1?bossCenterGZ(u):u.gz)-t.gz); spec.type=dist>=2?'mag':'phys'; }
   logMsg(u.name+' → '+spec.name);
   await combatStageEnter(u,targets,spec);
+  const settleTiming=combatStage.getActivePhaseTiming?.();
+  if(settleTiming&&settleTiming.settleMs>0) await wait(settleTiming.settleMs/1000);
   let signalImpact,finishImpact;
   const impactStarted=new Promise(resolve=>{signalImpact=resolve;}),impactFinished=new Promise(resolve=>{finishImpact=resolve;});
   const animation=attackAnim(u,spec,impactCx,impactCz,targets,{...context,onResolveImpact:async()=>{signalImpact(); await impactFinished;}});
   await Promise.race([impactStarted,animation]);
+  const _preState=new Map(); _preState.set(u,{alive:u.alive,hp:u.hp,statuses:new Set(Object.keys(u.statuses))}); for(const _t of targets)_preState.set(_t,{alive:_t.alive,hp:_t.hp,statuses:new Set(Object.keys(_t.statuses))});
   try{
   if(spec.item&&spec.itemId&&!spec.revive)G.inv[spec.itemId]=Math.max(0,(G.inv[spec.itemId]||0)-1);
   // Process effects[] if present (multi-effect system)
@@ -1720,7 +1745,7 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
       } else if(eff.kind==='revive'){
         for(const t of etgts){ if(!t.alive&&t.downed)reviveUnit(t,Math.round(t.maxhp*(spec.power||0.5))); }
       } else if(eff.kind==='dispel'){
-        for(const t of etgts){ let n=0; for(const s in t.statuses){ const neg=isNegative(s),pos=!neg; if((eff.dispelType==='negative'&&neg)||(eff.dispelType==='positive'&&pos)||(eff.dispelType==='all')){ delete t.statuses[s]; n++; } } floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); refreshPanel(t); }
+        for(const t of etgts){ let n=0; for(const s in t.statuses){ const neg=isNegative(s),pos=!neg; if((eff.dispelType==='negative'&&neg)||(eff.dispelType==='positive'&&pos)||(eff.dispelType==='all')){ delete t.statuses[s]; n++; } } if(!G.stage)floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); refreshPanel(t); }
       } else if(eff.kind==='lifesteal'){
         // processed after all damage effects
       } else if(eff.kind==='ap_restore'){
@@ -1734,10 +1759,10 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
   } else if(spec.heal){ for(const t of targets)applyHeal(t,spec.healPercent!=null?Math.round(t.maxhp*spec.healPercent):(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(u)*spec.power))+Math.floor(effCHA(u)/4)); await wait(0.25); }
   else if(spec.revive){ let revived=0; for(const t of targets){ if(!t.alive&&t.downed&&t.team===u.team){ reviveUnit(t,Math.round(t.maxhp*spec.power)); revived++; } } if(revived>0&&spec.item&&spec.itemId)G.inv[spec.itemId]=Math.max(0,(G.inv[spec.itemId]||0)-1); await wait(0.25); }
   else if(spec.apRestore){ for(const t of targets){ t.ap=Math.min(t.maxap,t.ap+spec.apRestore); floatText(t,'+'+spec.apRestore+' AP','#7fd0ff',true); flashUnit(t,'#bfe0ff'); refreshPanel(t); } await wait(0.25); }
-  else if(spec.cure){ for(const t of targets){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); flashUnit(t,'#bfffc0'); refreshPanel(t); } await wait(0.25); }
+  else if(spec.cure){ for(const t of targets){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } if(!G.stage)floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); flashUnit(t,'#bfffc0'); refreshPanel(t); } await wait(0.25); }
   else { let basicDmg=0; for(const t of targets){ const friendly=t.team===u.team;
       if(spec.key==='attack'&&spec.weaponType==='crosier'&&friendly&&t.alive){ const healAmt=Math.max(1,Math.round(effMAG(u)*0.5)); applyHeal(t,healAmt); await wait(0.1); continue; }
-      if((spec.power||0)<=0&&!spec.flatDmg){ if(rollHit(u,t,spec)){ if(spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; const sn=(STATUS[spec.status]&&STATUS[spec.status].name)||spec.status; floatText(t,sn.toUpperCase()+' !','#ff9a4a',true); await wait(0.15); } } else { floatText(t,'RATÉ','#cfd6e6'); await wait(0.15); } continue; }
+      if((spec.power||0)<=0&&!spec.flatDmg){ if(rollHit(u,t,spec)){ if(spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; const sn=(STATUS[spec.status]&&STATUS[spec.status].name)||spec.status; if(!G.stage)floatText(t,sn.toUpperCase()+' !','#ff9a4a',true); await wait(0.15); } } else { floatText(t,'RATÉ','#cfd6e6'); await wait(0.15); } continue; }
       if(!rollHit(u,t,spec)){ floatText(t,'RATÉ','#cfd6e6'); await wait(0.15); continue; }
       const crit=!spec.flatDmg&&Math.random()<critChance(u,t,spec); let {dmg,lab}=spec.flatDmg?{dmg:Math.max(1,Math.round(spec.flatDmg*rnd(0.85,1.15))),lab:'face'}:computeDamage(u,t,spec); if(crit)dmg=Math.round(dmg*1.5);
       if(!spec.flatDmg){ if(spec.damageMultiplier)dmg=Math.round(dmg*spec.damageMultiplier); if(spec.bonusVsSize&&t.size>1)dmg=Math.round(dmg*spec.bonusVsSize); if(spec.bonusVsAfflicted&&Object.keys(t.statuses).some(s=>isNegative(s)))dmg=Math.round(dmg*spec.bonusVsAfflicted); }
@@ -1764,11 +1789,18 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
   applyAdditionalStatus(u,spec,impactCx,impactCz,context);
   // Post-action upgrade effects
   if(spec.selfHealPercent&&u.alive){ const healAmt=Math.round(u.maxhp*spec.selfHealPercent); if(healAmt>0)applyHeal(u,healAmt); }
-  if(spec.dispelAllies){ const allies=G.units.filter(t=>t.alive&&t.team===u.team); for(const t of allies){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } if(n)floatText(t,'PURIFIÉ','#7ed957',true); refreshPanel(t); } }
+  if(spec.dispelAllies){ const allies=G.units.filter(t=>t.alive&&t.team===u.team); for(const t of allies){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } if(n&&!G.stage)floatText(t,'PURIFIÉ','#7ed957',true); refreshPanel(t); } }
   if(spec.stealBuffs){ for(const t of targets){ if(t.alive&&t.team!==u.team){ for(const s in t.statuses){ if(!isNegative(s)){ u.statuses[s]=t.statuses[s]; delete t.statuses[s]; } } refreshPanel(t); } } refreshPanel(u); }
   if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap);
   if(spec.key==='attack'){ G.basicAttacksThisTurn++; } if(spec.item){ G.itemsUsedThisTurn++; }
-  if(G.movedThisTurn)G.movedBeforeAct=true; refreshPanel(u); await combatStageExit(); G.busy=false; checkEnd();
+  if(G.movedThisTurn)G.movedBeforeAct=true; refreshPanel(u);
+  const _pres=getSkillPresentation(spec);
+  const _buildAE=(_un)=>{ const _pre=_preState.get(_un); if(!_pre)return{unit:_un,ko:false,revived:false,statusesApplied:[],statusesRemoved:[],healed:false}; const _ps=new Set(Object.keys(_un.statuses)); return{unit:_un,ko:_pre.alive&&!_un.alive,revived:!_pre.alive&&_un.alive,statusesApplied:[..._ps].filter(s=>!_pre.statuses.has(s)).map(s=>({name:(STATUS[s]&&STATUS[s].name)||s,color:(STATUS[s]&&STATUS[s].col)||'#ff9a4a'})),statusesRemoved:[..._pre.statuses].filter(s=>!_ps.has(s)),healed:_un.alive&&_un.hp>_pre.hp}; };
+  const _aftermath={attacker:_buildAE(u),targets:targets.filter(t=>t!==u).map(t=>_buildAE(t)),isUltimate:Boolean(_pres&&_pres.ultimate)};
+  await combatStage.presentResolvedAftermath(_aftermath,floatText);
+  const recoveryTiming=combatStage.getActivePhaseTiming?.();
+  if(recoveryTiming&&recoveryTiming.recoveryMs>0) await wait(recoveryTiming.recoveryMs/1000);
+  await combatStageExit(); G.busy=false; checkEnd();
 }
 async function executeAction(u,spec,cx,cz){
   G._actionFeedbackToken='action-'+(++actionFeedbackSerial); G._actionShakeFrequency=18;
@@ -1896,7 +1928,8 @@ let stageVigEl=null, stageTitleEl=null;
 function buildStageOverlay(){ stageVigEl=document.createElement('div'); stageVigEl.id='stagevig'; document.body.appendChild(stageVigEl);
   stageTitleEl=document.createElement('div'); stageTitleEl.id='stagetitle'; stageTitleEl.innerHTML='<b></b><small></small>'; document.body.appendChild(stageTitleEl); }
 function stageFrame(){ }
-async function combatStageEnter(att,targets,spec){ hideActionPreview(); G.stage=true; const feel=resolveCombatFeel({motionPreset:getActionMotionPreset(spec),visualTier:getActionVisualTier(spec),boss:Boolean(att.boss&&spec.offensive),reducedGraphics:REDUCED_GRAPHICS}); G._stageLeadOut=feel.stageLeadOut; if(!stageTitleEl)buildStageOverlay();
+async function combatStageEnter(att,targets,spec){ const presentation=getSkillPresentation(spec); const stageProfile=resolveCombatStageProfileUniversal(spec,presentation); if(!stageProfile) return;
+  hideActionPreview(); G.stage=true; const feel=resolveCombatFeel({motionPreset:getActionMotionPreset(spec),visualTier:getActionVisualTier(spec),boss:Boolean(att.boss&&spec.offensive),reducedGraphics:REDUCED_GRAPHICS}); G._stageLeadOut=feel.stageLeadOut; if(!stageTitleEl)buildStageOverlay();
   const inv=new Set([att]); for(const t of targets)inv.add(t); G._stageFaded=[];
   for(const o of G.units){ if(inv.has(o))continue; o._opSnap={mat:o.mat.opacity,blob:o.blob.material.opacity,vis:o.grp.visible};
     tween(o.mat,{opacity:0},0.2,easeOutCubic,()=>{ if(o._opSnap)o.grp.visible=false; }); tween(o.blob.material,{opacity:0},0.2,easeOutCubic); G._stageFaded.push(o); }
@@ -1905,12 +1938,15 @@ async function combatStageEnter(att,targets,spec){ hideActionPreview(); G.stage=
   const etgt=targets.find(t=>t!==att&&t.team!==att.team);
   stageTitleEl.querySelector('b').textContent=spec.name||'Action';
   stageTitleEl.querySelector('small').textContent=att.name+(etgt?'  \u2192  '+etgt.name:'');
-  stageVigEl.classList.add('on'); stageTitleEl.classList.add('on'); dom.ui.classList.add('staging'); await wait(feel.stageLeadIn); }
+  stageVigEl.classList.add('on'); stageTitleEl.classList.add('on'); dom.ui.classList.add('staging');
+  const stationaryAttacker=Boolean(att.boss||att.elite);
+  if(STAGE_QA_ENABLED){ const info=getStageProfileInfo(spec,presentation); const isSupport=info&&(info.layout==='support_single'||info.layout==='support_group'||info.layout==='self_target'); const dir=att.team==='player'?(isSupport?'L→L':'L→R'):(isSupport?'R→R':'R→L'); if(info)console.log('[Stage QA] '+spec.key+' → '+info.id+(info.explicit?' (explicit)':' (generic)')+' layout='+info.layout+' impact='+info.impactAnchor+' source='+(att.team||'?')+' dir='+dir+(stationaryAttacker?' [stationary]':'')); }
+  await Promise.all([wait(feel.stageLeadIn),combatStage.enter(att,targets,spec,{reducedGraphics:REDUCED_GRAPHICS,environmentId:COMBAT_SCENE_ID,profile:stageProfile,sourceTeam:att.team,stationaryAttacker})]); }
 async function combatStageExit(){
   killTweens(Grade.uniforms.vig); tween(Grade.uniforms.vig,{value:COMBAT_PRESENTATION.grade.vignette},0.5,easeInOut);
   if(stageVigEl)stageVigEl.classList.remove('on'); if(stageTitleEl)stageTitleEl.classList.remove('on'); if(dom.ui)dom.ui.classList.remove('staging');
-  if(G._stageFaded){ for(const o of G._stageFaded){ if(o._opSnap){ const state=getUnitVisualState(o.team,o.alive,o.downed); killTweens(o.mat); killTweens(o.blob.material); o.grp.visible=state.visible&&o._opSnap.vis; if(state.visible){ tween(o.mat,{opacity:o.alive?o._opSnap.mat:state.bodyOpacity},0.3,easeOutCubic); tween(o.blob.material,{opacity:o.alive?o._opSnap.blob:state.shadowOpacity},0.3,easeOutCubic); } delete o._opSnap; } } G._stageFaded=null; }
-  G.stage=false; const leadOut=G._stageLeadOut??.22; G._stageLeadOut=null; await wait(leadOut); }
+  if(G._stageFaded){ for(const o of G._stageFaded){ if(o._opSnap){ const state=getUnitVisualState(o.team,o.alive,o.downed); killTweens(o.mat); killTweens(o.blob.material); o.grp.visible=state.visible&&o._opSnap.vis; if(state.visible){ tween(o.mat,{opacity:o.alive?o._opSnap.mat:state.bodyOpacity},0.3,easeOutCubic); tween(o.blob.material,{opacity:o.alive?o._opSnap.blob:state.shadowOpacity},0.3,easeOutCubic); if(!o.alive&&o.downed&&o.team==='player'&&o.mat&&o.mat.color)o.mat.color.set('#ff5a4a'); } delete o._opSnap; } } G._stageFaded=null; }
+  G.stage=false; const leadOut=G._stageLeadOut??.22; G._stageLeadOut=null; await Promise.all([wait(leadOut),combatStage.exit()]); }
 function rotateCam(){ }
 
 // ============================= INPUT =============================
@@ -2180,6 +2216,7 @@ function animate(){ if(_runtimeDisposed)return; _animationFrame=requestAnimation
   if(hlMeshes.length){ for(const m of hlMeshes){ if(REDUCED_GRAPHICS){ m.material.opacity=m.userData.baseOp||0.28; } else { const p=m.userData.pulse||0.08,k=1-p+p*Math.sin(_t*4.2); m.material.opacity=(m.userData.baseOp||0.28)*k; } } }
   if(G.rays){ for(const r of G.rays){ if(r.map)r.map.offset.x=(r.map.offset.x+r.spd*dt)%1; r.mat.opacity=REDUCED_GRAPHICS?0:Math.max(0,r.base+Math.sin(_t*r.pulse+r.ph)*r.amp); } }
   updateSelectors();
+  combatStage.tick(dt);
   composer.render();
   if(now-_diagnosticsAt>=250){ _diagnosticsAt=now; let walkable=0,blocked=0; for(const column of G.grid)for(const cell of column){ if(!cell)continue; if(cell.walkable)walkable++; else blocked++; }
     window.__COMBAT_DIAGNOSTICS={drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,reducedGraphics:REDUCED_GRAPHICS,units:G.units.length,activeTweens:tweens.length,activeVfxObjects:combatVfxSystem.activeObjectCount,grid:{width:CFG.W,depth:CFG.D,walkable,blocked}};
@@ -2196,7 +2233,7 @@ function playerDefinitions(){
   return DEFS.filter(d=>d.team==='player').map((d,index)=>Object.assign({id:'standalone-'+index},d));
 }
 function removeUnit(u){ if(u.size>1)clearBossCells(u); else { const c=u.cell&&u.cell(); if(c&&c.occupant===u)c.occupant=null; } killSpriteMotion(u); disposeStatusIndicators(u); disposeBossIntentPresentation(u); if(u.grp){ scene.remove(u.grp); u.grp.traverse(object=>{ if(object.geometry)object.geometry.dispose(); if(object.material){ const materials=Array.isArray(object.material)?object.material:[object.material]; for(const material of materials)material.dispose(); } }); } const i=G.units.indexOf(u); if(i>=0)G.units.splice(i,1); const d=G.deployedUnits.indexOf(u); if(d>=0)G.deployedUnits.splice(d,1); }
-function playerDeployLimit(){ return QA_DEPLOY_ALL&&G.rosterDefs&&G.rosterDefs.length?G.rosterDefs.length:MAX_PLAYER_UNITS; }
+function playerDeployLimit(){ return (QA_DEPLOY_ALL||STAGE_QA_ENABLED)&&G.rosterDefs&&G.rosterDefs.length?G.rosterDefs.length:MAX_PLAYER_UNITS; }
 function deployDefById(id){ return G.rosterDefs.find(d=>(d.campaignId||d.name)===id); }
 function deployedById(id){ return G.deployedUnits.find(u=>(u.campaignId||u.name)===id); }
 function deployedIds(){ return new Set(G.deployedUnits.map(u=>u.campaignId||u.name)); }
@@ -2340,15 +2377,55 @@ async function playQaMotionScenario(scenario){
   } finally { for(const unit of G.units)if(unit.alive)restoreUnitVisualBaseline(unit); G.busy=false; }
 }
 function resetQaMotion(){ clearQaBossIntentPreview(); for(const unit of G.units){ killSpriteMotion(unit); if(unit.alive)restoreUnitVisualBaseline(unit); } cameraFeedback.clear(); void restoreCam(); }
+const STAGE_QA_ACTIONS=[
+  {key:'attack',label:'Stage: Attaque'},
+  {key:'n_flame_wave',label:'Stage: Vague de Flammes'},
+  {key:'d_devouring_eclipse',label:'Stage: Éclipse Dévorante'},
+  {key:'__qa_multi_target',label:'Stage QA: Multi-cibles'},
+  {key:'__qa_support_group',label:'Stage QA: Soin de groupe'}
+];
+async function playStageQaScenario(actionKey){
+  if(G.busy||G.over)return;
+  qaPrepareCombat();
+  if(actionKey==='__qa_multi_target'||actionKey==='__qa_support_group'){
+    const owner=aliveUnits('player')[0]; if(!owner)return;
+    const foes=aliveUnits('foe').slice(0,3);
+    const allies=aliveUnits('player').filter(u=>u!==owner).slice(0,2);
+    const targets=actionKey==='__qa_multi_target'?foes:[owner,...allies];
+    if(!targets.length)return;
+    const spec={key:actionKey,name:actionKey==='__qa_multi_target'?'QA Multi-cibles':'QA Soin groupe',ap:1,type:actionKey==='__qa_multi_target'?'mag':'heal',offensive:actionKey==='__qa_multi_target',support:actionKey==='__qa_support_group',heal:actionKey==='__qa_support_group',range:[1,4],radius:2,self:false,targetMode:actionKey==='__qa_multi_target'?'enemy':'ally'};
+    if(spec.ap>owner.ap)owner.ap=spec.ap;
+    const cx=actionKey==='__qa_multi_target'?(foes[0]?.gx??owner.gx):owner.gx, cz=actionKey==='__qa_multi_target'?(foes[0]?.gz??owner.gz):owner.gz;
+    await executeAction(owner,spec,cx,cz);
+    return;
+  }
+  const owner=actionKey==='attack'?qaMotionUnit():G.units.find(unit=>unit.alive&&Array.isArray(unit.skills)&&unit.skills.includes(actionKey));
+  if(!owner||!owner.alive){ console.warn('[Stage QA] Aucune unité vivante ne possède',actionKey); return; }
+  const enemyTeam=owner.team==='player'?'foe':'player';
+  const target=aliveUnits(enemyTeam)[0]||aliveUnits(owner.team).find(unit=>unit!==owner);
+  if(!target){ console.warn('[Stage QA] Aucune cible disponible pour',actionKey); return; }
+  const ogx=inBounds(target.gx-1,target.gz)?target.gx-1:(inBounds(target.gx+1,target.gz)?target.gx+1:owner.gx);
+  placeUnit(owner,ogx,target.gz,true);
+  const spec=actionKey==='attack'?getSpec(owner,'attack',0,0):getSpec(owner,actionKey);
+  if(spec.ap>owner.ap)owner.ap=spec.ap;
+  await executeAction(owner,spec,spec.self?owner.gx:target.gx,spec.self?owner.gz:target.gz);
+}
 function mountQaControls(){
-  if(!QA_ENABLED||byId('qa-combat-controls'))return;
+  if((!QA_ENABLED&&!STAGE_QA_ENABLED)||byId('qa-combat-controls'))return;
   const controls=document.createElement('aside');
   controls.id='qa-combat-controls';
   controls.setAttribute('aria-label','Outils QA de combat');
-  controls.innerHTML='<b>QA combat</b><span>Session isolée</span><div><button type="button" data-qa="prepare">Auto-déployer</button><button type="button" data-qa="victory">Victoire</button><button type="button" data-qa="defeat">Défaite</button></div>';
-  controls.querySelector('[data-qa="prepare"]').onclick=()=>qaPrepareCombat();
-  controls.querySelector('[data-qa="victory"]').onclick=()=>{ if(!G.over){ qaPrepareCombat(); winWave(); } };
-  controls.querySelector('[data-qa="defeat"]').onclick=()=>{ if(!G.over){ qaPrepareCombat(); endGame(false); } };
+  const legacyButtons=QA_ENABLED?'<div><button type="button" data-qa="prepare">Auto-déployer</button><button type="button" data-qa="victory">Victoire</button><button type="button" data-qa="defeat">Défaite</button></div>':'';
+  const stageButtons=STAGE_QA_ENABLED?'<div>'+STAGE_QA_ACTIONS.map(a=>'<button type="button" data-stage-qa="'+a.key+'">'+a.label+'</button>').join('')+'</div>':'';
+  controls.innerHTML='<b>QA combat</b><span>Session isolée</span>'+legacyButtons+stageButtons;
+  if(QA_ENABLED){
+    controls.querySelector('[data-qa="prepare"]').onclick=()=>qaPrepareCombat();
+    controls.querySelector('[data-qa="victory"]').onclick=()=>{ if(!G.over){ qaPrepareCombat(); winWave(); } };
+    controls.querySelector('[data-qa="defeat"]').onclick=()=>{ if(!G.over){ qaPrepareCombat(); endGame(false); } };
+  }
+  if(STAGE_QA_ENABLED){
+    controls.querySelectorAll('[data-stage-qa]').forEach(btn=>{ btn.onclick=()=>playStageQaScenario(btn.dataset.stageQa); });
+  }
   document.body.appendChild(controls);
 }
 
@@ -2377,7 +2454,7 @@ function vfxWorkbenchContext(targetMode){
 }
 
 async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); installVfxWorkbench({system:combatVfxSystem,getContext:vfxWorkbenchContext}); installUnitMotionWorkbench({enabled:MOTION_QA_ENABLED,play:playQaMotionScenario,reset:resetQaMotion}); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none'; }
-function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; if(_animationFrame)cancelAnimationFrame(_animationFrame); restoreUnitFocus(); for(const unit of G.units.slice()){killSpriteMotion(unit);disposeBossIntentPresentation(unit);} for(const texture of bossIntentBadgeTextures.values())texture.dispose(); bossIntentBadgeTextures.clear(); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); combatVfxSystem.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
+function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; if(_animationFrame)cancelAnimationFrame(_animationFrame); restoreUnitFocus(); for(const unit of G.units.slice()){killSpriteMotion(unit);disposeBossIntentPresentation(unit);} for(const texture of bossIntentBadgeTextures.values())texture.dispose(); bossIntentBadgeTextures.clear(); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); combatVfxSystem.dispose(); combatStage.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
 window.addEventListener('pagehide',disposeCombatRuntime,{once:true});
 window.addEventListener('error',()=>{ if(dom.loading&&dom.loading.style.display!=='none') dom.loading.innerHTML='<div style="color:#ff8a7a;max-width:540px;text-align:center;line-height:26px">Échec du chargement de Three.js.<br>Vérifiez votre connexion internet puis rechargez la page.<br><span style="color:#9fb0d0">La page doit être servie via un serveur local (http://), pas ouverte directement depuis le disque.</span></div>'; });
 window.addEventListener('unhandledrejection',e=>console.error(e.reason));
