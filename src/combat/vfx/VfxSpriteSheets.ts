@@ -43,6 +43,19 @@ export interface VfxSpriteSheetDefinition {
   assetGeneration?: 'legacy' | 'megapack-native';
 }
 
+/**
+ * Minimal atlas shape used by isolated development review tools.  It stays
+ * separate from VfxSpriteSheetDefinition so an unapproved source never has to
+ * enter the production VFX registry to be previewed.
+ */
+export interface VfxSpriteSheetFrameDefinition {
+  sheetWidthPx: number;
+  sheetHeightPx: number;
+  rows: number;
+  cols: number;
+  frameCount: number;
+}
+
 export interface ResolvedVfxSpriteSheetPresentation {
   align: 'center' | 'bottom';
   layer: 'ground' | 'impact';
@@ -94,7 +107,7 @@ export const VFX_SPRITE_SHEET_FLIP_Y = true;
 const VFX_UV_INSET_TEXELS = 0.5;
 
 export function getVfxSpriteSheetFrameUv(
-  definition: VfxSpriteSheetDefinition,
+  definition: VfxSpriteSheetFrameDefinition,
   frameIndex: number,
 ) {
   const safeFrame = Math.max(0, Math.min(definition.frameCount - 1, Math.floor(frameIndex)));
@@ -293,7 +306,7 @@ export const SKILL_RUNTIME_SPRITE_SHEET_IDS = Object.freeze([
 const loader = new THREE.TextureLoader();
 const texturePromises = new Map<VfxSpriteSheetId, Promise<THREE.Texture>>();
 
-function configureTexture(texture: THREE.Texture) {
+export function configureVfxSpriteSheetTexture(texture: THREE.Texture) {
   texture.colorSpace = THREE.SRGBColorSpace;
   texture.magFilter = THREE.LinearFilter;
   texture.minFilter = THREE.LinearFilter;
@@ -309,19 +322,19 @@ export async function loadVfxSpriteSheetTexture(id: VfxSpriteSheetId) {
   let pending = texturePromises.get(id);
   if (!pending) {
     const definition = VFX_SPRITE_SHEETS[id];
-    pending = loader.loadAsync(definition.url).then(configureTexture).catch((error) => {
+    pending = loader.loadAsync(definition.url).then(configureVfxSpriteSheetTexture).catch((error) => {
       texturePromises.delete(id);
       throw error;
     });
     texturePromises.set(id, pending);
   }
   const baseTexture = await pending;
-  return configureTexture(baseTexture.clone());
+  return configureVfxSpriteSheetTexture(baseTexture.clone());
 }
 
 export function setVfxSpriteSheetFrame(
   texture: THREE.Texture,
-  definition: VfxSpriteSheetDefinition,
+  definition: VfxSpriteSheetFrameDefinition,
   frameIndex: number,
 ) {
   const uv = getVfxSpriteSheetFrameUv(definition, frameIndex);

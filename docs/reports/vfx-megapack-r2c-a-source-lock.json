@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 1,
+  "reportId": "vfx-megapack-r2c-a-source-lock",
+  "generatedAt": "2026-08-09",
+  "scope": {
+    "mode": "dev_only_source_review",
+    "reviewUrl": "http://localhost:5174/?r2ca=1",
+    "reviewMechanism": "A localhost-gated bench replays a held source through the actual resolvePresentationRoute result without executeAction.",
+    "productionMigration": false,
+    "resourceManagerRequired": true
+  },
+  "hardConstraints": {
+    "commercialSourcesRemainIgnored": true,
+    "heldSourcesAreNotInProductionRegistry": true,
+    "noRuntimeManifestEdited": true,
+    "noProductionPresetEdited": true,
+    "noGameplayOrRoutingChanges": true,
+    "protectedStageAsset": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
+    "protectedStageAssetModified": false,
+    "flameWaveSource": "r1_0453",
+    "dragonBreathReservedSource": "r1_0450",
+    "devouringEclipse": "accepted source retained for later presentation tuning; not one of the sixteen held candidates"
+  },
+  "r0cPreservation": {
+    "status": "PRESERVED_BY_SCOPE",
+    "stageAsset": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
+    "stageAssetRetained": true,
+    "baselineTestNote": "R0C previously reported 772 tests. This R2C-A pass does not claim a separate fresh R0C test count."
+  },
+  "routePresentation": {
+    "stage": {
+      "background": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
+      "route": "stage"
+    },
+    "tactical": {
+      "background": "public/assets/generated/lion-phase/combat/forest_route.webp",
+      "route": "tactical"
+    },
+    "selection": "Derived dynamically from resolvePresentationRoute using real skill metadata and skill presentation data."
+  },
+  "nativeSourceContract": {
+    "frameCellPx": 512,
+    "layout4096": { "dimensions": "4096x4096", "grid": "8x8", "frameCount": 64 },
+    "layout2048": { "dimensions": "2048x2048", "grid": "4x4", "frameCount": 16 },
+    "directLoadPolicy": "The dev-only reader loads native held sources directly. Promotion must later run through a separate resource-managed budget decision."
+  },
+  "heldReviewSummary": {
+    "heldCandidates": 16,
+    "presentationTuneOnly": 9,
+    "needsAlt": 7,
+    "lock": 0,
+    "reject": 0,
+    "sourceResolvedForCurrentPlanning": 9,
+    "unresolved": 7,
+    "reviewConclusion": "All sixteen are reviewable in their real presentation route. Nine are suitable source candidates pending presentation calibration; seven require a more semantic alternate source."
+  },
+  "sourceBudget": {
+    "previouslyLockedDistinctSources": 44,
+    "newlyUsableHeldSources": 9,
+    "currentLockedDistinctSources": 53,
+    "locked4096Sources": 39,
+    "locked2048Sources": 14,
+    "estimatedDecodedMiB": 2720,
+    "estimatedDecodedGiB": 2.66,
+    "all60SourceEstimateMiB": 3072,
+    "all60SourceEstimateGiB": 3,
+    "simultaneous4kEquivalentTarget": "8-12",
+    "conclusion": "A runtime resource manager remains mandatory before any production promotion."
+  },
+  "actions": [
+    {
+      "actionId": "basic_greatsword_hit",
+      "displayName": "Greatsword attack",
+      "sourceId": "r1_1709",
+      "sourceFilename": "Impact_Cut_V6_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "frameCount": 64,
+      "presentationRoute": "stage",
+      "verdict": "PRESENTATION_TUNE_ONLY",
+      "rationale": "Readable cut, but the impact window and anchor need calibration for greatsword weight."
+    },
+    {
+      "actionId": "basic_crosier_hit",
+      "displayName": "Crosier attack",
+      "sourceId": "r1_0483",
+      "sourceFilename": "Healing_V5_A_Heal_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "frameCount": 64,
+      "presentationRoute": "stage",
+      "verdict": "NEEDS_ALT",
+      "rationale": "Readable healing, but not a credible crosier impact."
+    },
+    {
+      "actionId": "basic_longbow_hit",
+      "displayName": "Longbow shot",
+      "sourceId": "r1_0961",
+      "sourceFilename": "Projectile_Wind_Ball_Lv1_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "frameCount": 64,
+      "presentationRoute": "stage",
+      "verdict": "NEEDS_ALT",
+      "rationale": "Travel is clean, but the arrow and piercing identity is not strong enough."
+    },
+    {
+      "actionId": "basic_hand_cannon_hit",
+      "displayName": "Hand cannon shot",
+      "sourceId": "r1_0943",
+      "sourceFilename": "Projectile_Fire_Ball_Lv4_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "frameCount": 64,
+      "presentationRoute": "stage",
+      "verdict": "PRESENTATION_TUNE_ONLY",
+      "rationale": "A readable fire shot; recoil and impact staging must establish a cannon rather than spell identity."
+    },
+    {
+      "actionId": "p_interpose",
+      "displayName": "Interpose",
+      "sourceId": "r1_2599",
+      "sourceFilename": "Jump_Wind_White_v1_spritesheet.png",
+      "dimensions": "2048x2048",
+      "grid": "4x4",
+      "frameCount": 16,
+      "presentationRoute": "tactical",
+      "verdict": "NEEDS_ALT",
+      "rationale": "The wind jump is a plausible movement cue but does not communicate interception or protection."
+    },
+    {
+      "actionId": "d_blood_pact",
+      "displayName": "Blood pact",
+      "sourceId": "r1_1728",
+      "sourceFilename": "Blood_Burst_v10_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "frameCount": 64,
+      "presentationRoute": "tactical",
+      "verdict": "PRESENTATION_TUNE_ONLY",
+      "rationale": "The blood burst is semantically correct; verify a short residue only."
+    },
+    {
+      "actionId": "l_griffon_jump",
+      "displayName": "Griffon jump",
+      "sourceId": "r1_2600",
+      "sourceFilename": "Jump_Wind_White_v2_spritesheet.png",
+      "dimensions": "2048x2048",
+      "grid": "4x4",
+      "frameCount": 16,
+      "presentationRoute": "stage",
+      "verdict": "PRESENTATION_TUNE_ONLY",
+      "rationale": "The jump reads well; tune contact point and height in the scene."
+    },
+    {
+      "actionId": "l_firmament_lance",
+      "displayName": "Firmament lance",
+      "sourceId": "r1_1718",
+      "sourceFilename": "Stab_V3_spritesheet.png",
+      "dimensions": "2048x2048",
+      "grid": "4x4",
+      "frameCount": 16,
+      "presentationRoute": "stage",
+      "verdict": "PRESENTATION_TUNE_ONLY",
+      "rationale": "The stab is suitable; tune the projectile alignment and cadence."
+    },
+    {
+      "actionId": "n_flame_wave",
+      "displayName": "Flame wave",
+      "sourceId": "r1_0453",
+      "sourceFilename": "Flamethrower_002_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "frameCount": 64,
+      "presentationRoute": "stage",
+      "verdict": "PRESENTATION_TUNE_ONLY",
+      "rationale": "Dedicated Flame Wave candidate. r1_0450 remains reserved exclusively for Dragon Breath."
+    },
+    {
+      "actionId": "w_sanctuary",
+      "displayName": "Sanctuary",
+      "sourceId": "r1_0677",
+      "sourceFilename": "Positive_Buff_V3_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "frameCount": 64,
+      "presentationRoute": "tactical",
+      "verdict": "PRESENTATION_TUNE_ONLY",
+      "rationale": "A suitable support loop; tune ground center and linger."
+    },
+    {
+      "actionId": "w_miracle",
+      "displayName": "Miracle",
+      "sourceId": "r1_0494",
+      "sourceFilename": "Healing_V7_A_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "frameCount": 64,
+      "presentationRoute": "stage",
+      "verdict": "PRESENTATION_TUNE_ONLY",
+      "rationale": "The high intensity heal supports an ultimate; verify lift and exit staging."
+    },
+    {
+      "actionId": "e_absolute_harmony",
+      "displayName": "Absolute harmony",
+      "sourceId": "r1_0679",
+      "sourceFilename": "Positive_Buff_V5_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "frameCount": 64,
+      "presentationRoute": "stage",
+      "verdict": "NEEDS_ALT",
+      "rationale": "The buff is clean, but lacks the visual uniqueness expected from a support ultimate."
+    },
+    {
+      "actionId": "a_hawk_leap",
+      "displayName": "Hawk leap",
+      "sourceId": "r1_0707",
+      "sourceFilename": "Power_Up_v10_A_Wind Rings_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "frameCount": 64,
+      "presentationRoute": "tactical",
+      "verdict": "PRESENTATION_TUNE_ONLY",
+      "rationale": "The wind rings strengthen a leap; departure timing is the remaining presentation task."
+    },
+    {
+      "actionId": "a_arrow_rain",
+      "displayName": "Arrow rain",
+      "sourceId": "r1_0004",
+      "sourceFilename": "Arrow_Indicator_V4_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "frameCount": 64,
+      "presentationRoute": "stage",
+      "verdict": "NEEDS_ALT",
+      "rationale": "A directional indicator cannot express a multi-impact arrow rain."
+    },
+    {
+      "actionId": "a_zenith_arrow",
+      "displayName": "Zenith arrow",
+      "sourceId": "r1_0005",
+      "sourceFilename": "Arrow_Indicator_V5_spritesheet.png",
+      "dimensions": "4096x4096",
+      "grid": "8x8",
+      "frameCount": 64,
+      "presentationRoute": "stage",
+      "verdict": "NEEDS_ALT",
+      "rationale": "A useful anticipation marker, but not an ultimate-level arrow signature."
+    },
+    {
+      "actionId": "ro_jaw_trap",
+      "displayName": "Jaw trap",
+      "sourceId": "r1_0300",
+      "sourceFilename": "Circle Cut Out_V1_spritesheet.png",
+      "dimensions": "2048x2048",
+      "grid": "4x4",
+      "frameCount": 16,
+      "presentationRoute": "stage",
+      "verdict": "NEEDS_ALT",
+      "rationale": "The generic circle cannot clearly communicate a physical jaw trap."
+    }
+  ]
+}

@@ -3,12 +3,13 @@ import { getStaticVfxTierPresentation } from '../combatVfxPresentation';
 import { getVfxPreset } from './VfxPresets';
 import {
   VFX_SPRITE_SHEETS,
+  configureVfxSpriteSheetTexture,
   disposeVfxSpriteSheetTextures,
   loadVfxSpriteSheetTexture,
   resolveVfxSpriteSheetPresentation,
   setVfxSpriteSheetFrame,
 } from './VfxSpriteSheets';
-import type { ResolvedVfxSpriteSheetPresentation } from './VfxSpriteSheets';
+import type { ResolvedVfxSpriteSheetPresentation, VfxSpriteSheetFrameDefinition } from './VfxSpriteSheets';
 import { getVfxTexture, disposeVfxTextures } from './VfxTextures';
 import type {
   CinematicAnchor,
@@ -32,6 +33,27 @@ export const VFX_RENDER_ORDER = Object.freeze({ ground: 38, impact: 74 });
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 const easeOutCubic = (value: number) => 1 - (1 - value) ** 3;
 const easeInOut = (value: number) => (value < 0.5 ? 2 * value * value : 1 - (-2 * value + 2) ** 2 / 2);
+const devReviewTextureLoader = new THREE.TextureLoader();
+
+/** Dev-only source shape. It deliberately cannot be added to VFX_SPRITE_SHEETS. */
+export interface DevVfxReviewSpriteSheetDefinition extends VfxSpriteSheetFrameDefinition {
+  id: string;
+  url: string;
+  frameDurationMs: number;
+  align: 'center' | 'bottom';
+  blending: 'normal' | 'additive';
+}
+
+export interface DevVfxReviewPlaybackOptions {
+  mode: 'billboard' | 'projectile';
+  anchor: VfxAnchor;
+  targetAnchor?: VfxAnchor;
+  scale: number;
+  opacity: number;
+  /** Omit to preserve the source's native frame cadence during held review. */
+  durationMs?: number;
+  heightOffset?: number;
+}
 
 export const CINEMATIC_PHASE_TYPES: readonly CinematicPhaseType[] = Object.freeze([
   'cast', 'prePosition', 'travel', 'impact', 'aftermath',
@@ -344,6 +366,29 @@ export class VfxSystem {
       presetId,
       impactTime: preset.impactTime * durationScale,
       completion,
+    };
+  }
+
+  /**
+   * Isolated R2C-A source preview. It loads a held asset directly for local
+   * review, without registering it as a combat preset or production asset.
+   */
+  playDevReviewSpriteSheet(
+    definition: DevVfxReviewSpriteSheetDefinition,
+    context: VfxContext,
+    options: DevVfxReviewPlaybackOptions,
+  ): VfxPlayResult {
+    if (this.disposed) {
+      return { played: false, presetId: `review:${definition.id}`, impactTime: 0, completion: Promise.resolve() };
+    }
+    const durationMs = options.durationMs ?? definition.frameDurationMs * definition.frameCount;
+    return {
+      played: true,
+      presetId: `review:${definition.id}`,
+      impactTime: durationMs / 2000,
+      completion: this.playDevReviewSpriteSheetInternal(definition, context, options).catch((error) => {
+        console.warn(`[CombatVfx] Held R2C-A source ${definition.id} failed safely.`, error);
+      }),
     };
   }
 
@@ -732,6 +777,64 @@ export class VfxSystem {
         sprite.position.copy(anchor);
         sprite.scale.set(scale * frameAspect, scale, 1);
         material.opacity = baseOpacity * spriteSheetEnvelope(progress, resolved);
+      });
+    } finally {
+      this.cleanup(objects);
+      texture.dispose();
+    }
+  }
+
+  private async playDevReviewSpriteSheetInternal(
+    definition: DevVfxReviewSpriteSheetDefinition,
+    context: VfxContext,
+    options: DevVfxReviewPlaybackOptions,
+  ) {
+    const texture = configureVfxSpriteSheetTexture(await devReviewTextureLoader.loadAsync(definition.url));
+    if (this.disposed) {
+      texture.dispose();
+      return;
+    }
+    setVfxSpriteSheetFrame(texture, definition, 0);
+    const material = new THREE.SpriteMaterial({
+      map: texture,
+      transparent: true,
+      opacity: options.opacity,
+      alphaTest: 0.01,
+      depthWrite: false,
+      depthTest: false,
+      toneMapped: false,
+      fog: false,
+      blending: definition.blending === 'additive' ? THREE.AdditiveBlending : THREE.NormalBlending,
+    });
+    const sprite = this.track(configureVfxSpriteSheetPivot(new THREE.Sprite(material), definition.align), context);
+    const objects: THREE.Object3D[] = [sprite];
+    const start = resolveVfxAnchor(options.anchor, context);
+    const end = options.mode === 'projectile'
+      ? resolveVfxAnchor(options.targetAnchor ?? 'target', context)
+      : start.clone();
+    start.y += options.heightOffset ?? 0;
+    end.y += options.heightOffset ?? 0;
+    const projectedStart = start.clone().project(context.camera);
+    const projectedEnd = end.clone().project(context.camera);
+    if (options.mode === 'projectile') {
+      material.rotation = Math.atan2(projectedEnd.y - projectedStart.y, projectedEnd.x - projectedStart.x);
+    }
+    const qualityScale = context.reducedGraphics ? 0.9 : 1;
+    const baseScale = options.scale * qualityScale;
+    const aspect = definition.rows / definition.cols;
+    sprite.renderOrder = VFX_RENDER_ORDER.impact + 1;
+    try {
+      const durationMs = options.durationMs ?? definition.frameDurationMs * definition.frameCount;
+      await this.animate(Math.max(0.24, durationMs / 1000), (progress) => {
+        const frame = Math.min(definition.frameCount - 1, Math.floor(progress * definition.frameCount));
+        const travel = easeOutCubic(clamp(progress / 0.78, 0, 1));
+        const envelope = progress < 0.05 ? progress / 0.05 : progress > 0.84 ? (1 - progress) / 0.16 : 1;
+        const pulse = 0.94 + Math.sin(Math.PI * progress) * (context.reducedGraphics ? 0.035 : 0.085);
+        setVfxSpriteSheetFrame(texture, definition, frame);
+        sprite.position.lerpVectors(start, end, options.mode === 'projectile' ? travel : 0);
+        if (options.mode === 'projectile') sprite.position.y += Math.sin(Math.PI * travel) * 0.28;
+        sprite.scale.set(baseScale * aspect * pulse, baseScale * pulse, 1);
+        material.opacity = clamp(options.opacity * envelope, 0, 1);
       });
     } finally {
       this.cleanup(objects);

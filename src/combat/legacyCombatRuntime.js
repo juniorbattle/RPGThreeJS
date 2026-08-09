@@ -15,6 +15,8 @@ import { COMBAT_PRESENTATION } from './combatPresentationConfig.js';
 import { VfxSystem } from './vfx/VfxSystem';
 import { getVfxPreset } from './vfx/VfxPresets';
 import { installVfxWorkbench } from './vfx/VfxWorkbench';
+import { getMegaPackHeldReviewEntries } from './vfx/MegaPackHeldReview';
+import { installMegaPackHeldReviewWorkbench } from './vfx/MegaPackHeldReviewWorkbench';
 import { getResolvedCarouselStatusFrame, getStatusIndicatorAsset, getStatusIndicatorEmphasis, getVisibleStatusIndicators, resolveStatusCarousel } from './statusPresentation';
 import { skillById as SKILL_MAP } from '../game/skills';
 import { getSkillPresentation } from './skillPresentation';
@@ -76,6 +78,8 @@ const SCENE_AMBIENCE={
 };
 let REDUCED_GRAPHICS=campaignParams.get('reduced')==='1';
 const STAGE_QA_ENABLED=campaignParams.get('stageqa')==='1';
+const R2CA_REVIEW_ENABLED=(campaignParams.get('r2ca')==='1')&&(location.hostname==='localhost'||location.hostname==='127.0.0.1');
+let disposeMegaPackHeldReviewWorkbench=()=>{};
 function campaignUnitHealth(){
   const out={};
   for(const u of G.deployedUnits||[]) out[u.campaignId||u.name]=Math.max(0,Math.round(u.alive?u.hp:0));
@@ -2363,6 +2367,49 @@ function qaPrepareCombat(){
   autoDeploy();
   beginBattle();
 }
+function r2caReviewUsesFriendlyTarget(spec={}){
+  return Boolean(spec.self||spec.support||spec.heal||spec.revive||spec.type==='heal'||spec.type==='buff'||(spec.type==='move'&&!spec.offensive));
+}
+function r2caReviewTargets(source,entry){
+  const spec=entry.actionSpec||{};
+  if(spec.self)return [source];
+  const friendly=r2caReviewUsesFriendlyTarget(spec);
+  const team=friendly?source.team:(source.team==='player'?'foe':'player');
+  const candidates=aliveUnits(team).filter(unit=>unit!==source);
+  return [candidates[0]||source];
+}
+/**
+ * Local-only R2C-A source review runner. It prepares real combat actors and
+ * enters the same Stage/Tactical route resolver used by combat presentation,
+ * but deliberately never calls executeAction or mutates combat resolution.
+ */
+async function playMegaPackHeldReview(entry,sourceTeam='player'){
+  if(G.busy||G.over)return;
+  qaPrepareCombat();
+  const source=aliveUnits(sourceTeam==='foe'?'foe':'player')[0]||aliveUnits()[0];
+  if(!source)return;
+  const targets=r2caReviewTargets(source,entry);
+  if(!targets.length)return;
+  const target=targets[0];
+  const cx=target.size>1?bossCenterGX(target):target.gx;
+  const cz=target.size>1?bossCenterGZ(target):target.gz;
+  let stageOpened=false;
+  G.busy=true;
+  try{
+    // `entry.route` is dynamically derived by resolvePresentationRoute from
+    // the real skill metadata in MegaPackHeldReview.ts.
+    if(entry.route==='stage'){
+      await combatStageEnter(source,targets,entry.actionSpec);
+      stageOpened=Boolean(G.stage);
+    }
+    const context=makeActionVfxContext(source,targets,cx,cz,entry.actionSpec);
+    const result=combatVfxSystem.playDevReviewSpriteSheet(entry.source,context,entry.playback);
+    await result.completion;
+  }finally{
+    if(stageOpened)await combatStageExit();
+    G.busy=false;
+  }
+}
 function qaMotionUnit(preferBoss=false){ return (preferBoss?aliveUnits().find(unit=>unit.boss||unit.elite):null)||G.active&&G.active.alive&&G.active||aliveUnits('foe')[0]||aliveUnits('player')[0]||aliveUnits()[0]||null; }
 function clearQaBossIntentPreview(){ for(const unit of G.units){ unit._bossIntentPreview=undefined; clearBossIntentPresentation(unit); } }
 async function playQaMotionScenario(scenario){
@@ -2453,8 +2500,8 @@ function vfxWorkbenchContext(targetMode){
   return makeActionVfxContext(source,[target],tx,tz);
 }
 
-async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); installVfxWorkbench({system:combatVfxSystem,getContext:vfxWorkbenchContext}); installUnitMotionWorkbench({enabled:MOTION_QA_ENABLED,play:playQaMotionScenario,reset:resetQaMotion}); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none'; }
-function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; if(_animationFrame)cancelAnimationFrame(_animationFrame); restoreUnitFocus(); for(const unit of G.units.slice()){killSpriteMotion(unit);disposeBossIntentPresentation(unit);} for(const texture of bossIntentBadgeTextures.values())texture.dispose(); bossIntentBadgeTextures.clear(); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); combatVfxSystem.dispose(); combatStage.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
+async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); installVfxWorkbench({system:combatVfxSystem,getContext:vfxWorkbenchContext}); disposeMegaPackHeldReviewWorkbench=installMegaPackHeldReviewWorkbench({enabled:R2CA_REVIEW_ENABLED,entries:R2CA_REVIEW_ENABLED?getMegaPackHeldReviewEntries():[],play:playMegaPackHeldReview}); installUnitMotionWorkbench({enabled:MOTION_QA_ENABLED,play:playQaMotionScenario,reset:resetQaMotion}); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none'; }
+function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; if(_animationFrame)cancelAnimationFrame(_animationFrame); restoreUnitFocus(); for(const unit of G.units.slice()){killSpriteMotion(unit);disposeBossIntentPresentation(unit);} for(const texture of bossIntentBadgeTextures.values())texture.dispose(); bossIntentBadgeTextures.clear(); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); disposeMegaPackHeldReviewWorkbench(); combatVfxSystem.dispose(); combatStage.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
 window.addEventListener('pagehide',disposeCombatRuntime,{once:true});
 window.addEventListener('error',()=>{ if(dom.loading&&dom.loading.style.display!=='none') dom.loading.innerHTML='<div style="color:#ff8a7a;max-width:540px;text-align:center;line-height:26px">Échec du chargement de Three.js.<br>Vérifiez votre connexion internet puis rechargez la page.<br><span style="color:#9fb0d0">La page doit être servie via un serveur local (http://), pas ouverte directement depuis le disque.</span></div>'; });
 window.addEventListener('unhandledrejection',e=>console.error(e.reason));
