@@ -6,10 +6,13 @@ import {
   configureVfxSpriteSheetTexture,
   disposeVfxSpriteSheetTextures,
   loadVfxSpriteSheetTexture,
+  releaseVfxSpriteSheetTexture,
   resolveVfxSpriteSheetPresentation,
   setVfxSpriteSheetFrame,
+  loadLabCandidateTexture,
+  releaseLabCandidateTexture,
 } from './VfxSpriteSheets';
-import type { ResolvedVfxSpriteSheetPresentation, VfxSpriteSheetFrameDefinition } from './VfxSpriteSheets';
+import type { ResolvedVfxSpriteSheetPresentation, VfxSpriteSheetFrameDefinition, VfxSpriteSheetDefinition } from './VfxSpriteSheets';
 import { getVfxTexture, disposeVfxTextures } from './VfxTextures';
 import type {
   CinematicAnchor,
@@ -357,16 +360,157 @@ export class VfxSystem {
     if (!preset) {
       return { played: false, presetId, impactTime: 0, completion: Promise.resolve() };
     }
+    return this.playPreset(preset, context, presetId);
+  }
+
+  /**
+   * Plays a preset directly without looking it up by ID. Used by the Lab
+   * for QA override playback with modified presets.
+   */
+  playPreset(preset: VfxPreset, context: VfxContext, presetId?: string): VfxPlayResult {
+    if (this.disposed) {
+      return { played: false, presetId: presetId ?? preset.id, impactTime: 0, completion: Promise.resolve() };
+    }
     const durationScale = clamp(context.durationScale ?? 1, 0.45, 1.75);
     const completion = Promise.all(
       preset.steps.map((step) => this.scheduleStep(step, preset, context, durationScale)),
     ).then(() => undefined);
     return {
       played: true,
-      presetId,
+      presetId: presetId ?? preset.id,
       impactTime: preset.impactTime * durationScale,
       completion,
     };
+  }
+
+  /**
+   * Lab sprite-sheet playback through VfxResourceManager.
+   *
+   * Plays a single CartoonCoffee candidate sprite sheet using the same
+   * billboard pipeline as production playback. The texture is loaded and
+   * released through the shared VfxResourceManager — no second texture cache.
+   *
+   * Presentation overrides (scale, opacity, fadeIn, fadeOut, layer, blending,
+   * offsetX, offsetY, duration) are applied from the QA state.
+   */
+  playLabSpriteSheet(
+    candidateId: string,
+    sheetDef: VfxSpriteSheetDefinition,
+    step: VfxStep,
+    context: VfxContext,
+    overrides: {
+      scale?: number;
+      offsetX?: number;
+      offsetY?: number;
+      duration?: number;
+      opacity?: number;
+      layer?: 'ground' | 'impact';
+      blending?: 'normal' | 'additive';
+      fadeIn?: number;
+      fadeOut?: number;
+    },
+  ): VfxPlayResult {
+    if (this.disposed) {
+      return { played: false, presetId: `lab:${candidateId}`, impactTime: 0, completion: Promise.resolve() };
+    }
+    return {
+      played: true,
+      presetId: `lab:${candidateId}`,
+      impactTime: (overrides.duration ?? step.duration) / 2,
+      completion: this.playLabSpriteSheetInternal(candidateId, sheetDef, step, context, overrides).catch((error) => {
+        console.warn(`[CombatVfx] Lab candidate ${candidateId} failed safely.`, error);
+      }),
+    };
+  }
+
+  private async playLabSpriteSheetInternal(
+    candidateId: string,
+    sheetDef: VfxSpriteSheetDefinition,
+    step: VfxStep,
+    context: VfxContext,
+    overrides: {
+      scale?: number;
+      offsetX?: number;
+      offsetY?: number;
+      duration?: number;
+      opacity?: number;
+      layer?: 'ground' | 'impact';
+      blending?: 'normal' | 'additive';
+      fadeIn?: number;
+      fadeOut?: number;
+    },
+  ) {
+    const texture = await loadLabCandidateTexture(candidateId);
+    if (this.disposed) {
+      releaseLabCandidateTexture(candidateId, texture);
+      return;
+    }
+    setVfxSpriteSheetFrame(texture, sheetDef, 0);
+    const resolved = resolveVfxSpriteSheetPresentation(sheetDef, step);
+    const effectiveLayer = overrides.layer ?? resolved.layer;
+    const effectiveBlending = overrides.blending ?? resolved.blending;
+    const effectiveScale = overrides.scale ?? resolved.scaleMultiplier;
+    const effectiveOpacity = overrides.opacity ?? resolved.opacityMultiplier;
+    const effectiveFadeIn = overrides.fadeIn ?? resolved.fadeIn;
+    const effectiveFadeOut = overrides.fadeOut ?? resolved.fadeOut;
+    const effectiveResolved: ResolvedVfxSpriteSheetPresentation = {
+      align: resolved.align,
+      layer: effectiveLayer,
+      blending: effectiveBlending,
+      scaleMultiplier: effectiveScale,
+      opacityMultiplier: effectiveOpacity,
+      fadeIn: effectiveFadeIn,
+      fadeOut: effectiveFadeOut,
+    };
+    const material = new THREE.SpriteMaterial({
+      map: texture,
+      color: asColor(step.color),
+      transparent: true,
+      opacity: step.opacity ?? 1,
+      alphaTest: 0.01,
+      depthWrite: false,
+      depthTest: effectiveLayer === 'ground',
+      toneMapped: false,
+      fog: false,
+      blending: effectiveBlending === 'additive' ? THREE.AdditiveBlending : THREE.NormalBlending,
+      rotation: step.rotation ?? 0,
+    });
+    const sprite = this.track(configureVfxSpriteSheetPivot(new THREE.Sprite(material), resolved.align), context);
+    const objects: THREE.Object3D[] = [sprite];
+    const anchor = resolveVfxAnchor(step.anchor, context);
+    anchor.y += step.heightOffset ?? 0;
+    anchor.x += overrides.offsetX ?? 0;
+    anchor.y += overrides.offsetY ?? 0;
+    const intensity = clamp(context.intensity ?? 1, 0.35, 1.8);
+    const baseHeight = (step.scale ?? 1)
+      * effectiveScale
+      * intensity
+      * (context.reducedGraphics ? 0.94 : 1)
+      * contextPresentationScale(context)
+      * contextTargetSizeMultiplier(context);
+    const frameAspect = sheetDef.rows / sheetDef.cols;
+    const requestedOpacity = (step.opacity ?? 1) * effectiveOpacity;
+    const baseOpacity = effectiveLayer === 'ground'
+      ? clamp(requestedOpacity * (context.opacityMultiplier ?? 1), 0, 1)
+      : foregroundPeakOpacity(requestedOpacity, context);
+    sprite.renderOrder = effectiveLayer === 'ground'
+      ? VFX_RENDER_ORDER.ground
+      : contextImpactRenderOrder(context);
+    sprite.position.copy(anchor);
+    const duration = overrides.duration ?? step.duration;
+    try {
+      await this.animate(duration, (progress) => {
+        const frame = Math.min(sheetDef.frameCount - 1, Math.floor(progress * sheetDef.frameCount));
+        const scale = baseHeight * spriteSheetScalePulse(progress, effectiveResolved);
+        setVfxSpriteSheetFrame(texture, sheetDef, frame);
+        sprite.position.copy(anchor);
+        sprite.scale.set(scale * frameAspect, scale, 1);
+        material.opacity = baseOpacity * spriteSheetEnvelope(progress, effectiveResolved);
+      });
+    } finally {
+      this.cleanup(objects);
+      releaseLabCandidateTexture(candidateId, texture);
+    }
   }
 
   /**
@@ -730,7 +874,7 @@ export class VfxSystem {
     const definition = VFX_SPRITE_SHEETS[step.spriteSheet];
     const texture = await loadVfxSpriteSheetTexture(step.spriteSheet);
     if (this.disposed) {
-      texture.dispose();
+      releaseVfxSpriteSheetTexture(step.spriteSheet, texture);
       return;
     }
     setVfxSpriteSheetFrame(texture, definition, 0);
@@ -780,7 +924,7 @@ export class VfxSystem {
       });
     } finally {
       this.cleanup(objects);
-      texture.dispose();
+      releaseVfxSpriteSheetTexture(step.spriteSheet, texture);
     }
   }
 
@@ -852,7 +996,7 @@ export class VfxSystem {
     const definition = VFX_SPRITE_SHEETS[step.spriteSheet];
     const texture = await loadVfxSpriteSheetTexture(step.spriteSheet);
     if (this.disposed) {
-      texture.dispose();
+      releaseVfxSpriteSheetTexture(step.spriteSheet, texture);
       return;
     }
     setVfxSpriteSheetFrame(texture, definition, 0);
@@ -908,7 +1052,7 @@ export class VfxSystem {
       });
     } finally {
       this.cleanup(objects);
-      texture.dispose();
+      releaseVfxSpriteSheetTexture(step.spriteSheet, texture);
     }
   }
 
@@ -927,7 +1071,7 @@ export class VfxSystem {
     const definition = VFX_SPRITE_SHEETS[step.spriteSheet];
     const texture = await loadVfxSpriteSheetTexture(step.spriteSheet);
     if (this.disposed) {
-      texture.dispose();
+      releaseVfxSpriteSheetTexture(step.spriteSheet, texture);
       return;
     }
     setVfxSpriteSheetFrame(texture, definition, 0);
@@ -998,7 +1142,7 @@ export class VfxSystem {
       });
     } finally {
       this.cleanup(objects);
-      texture.dispose();
+      releaseVfxSpriteSheetTexture(step.spriteSheet, texture);
     }
   }
 

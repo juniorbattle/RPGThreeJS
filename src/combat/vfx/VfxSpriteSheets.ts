@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import type { VfxSpriteSheetId, LegacyVfxSpriteSheetId, NativeVfxSpriteSheetId, VfxSpritePresentationOverride, VfxStep } from './VfxTypes';
+import { vfxResourceManager, resolveSheetSource, resolveCandidateSource } from './VfxResourceManager';
 
 export interface VfxSpriteSheetPresentation {
   /** Multiplies the presentation scale without changing the skill's logical targeting. */
@@ -303,9 +304,6 @@ export const SKILL_RUNTIME_SPRITE_SHEET_IDS = Object.freeze([
   ...R3E4_PROMOTED_SPRITE_SHEET_IDS,
 ] as const satisfies readonly VfxSpriteSheetId[]);
 
-const loader = new THREE.TextureLoader();
-const texturePromises = new Map<VfxSpriteSheetId, Promise<THREE.Texture>>();
-
 export function configureVfxSpriteSheetTexture(texture: THREE.Texture) {
   texture.colorSpace = THREE.SRGBColorSpace;
   texture.magFilter = THREE.LinearFilter;
@@ -318,18 +316,31 @@ export function configureVfxSpriteSheetTexture(texture: THREE.Texture) {
   return texture;
 }
 
+/**
+ * Loads a sprite-sheet texture through the shared VfxResourceManager.
+ *
+ * The manager owns and caches the base texture (with LRU eviction and
+ * weighted memory budget).  This function returns a configured CLONE
+ * for independent per-playback UV state, preserving existing behavior.
+ *
+ * Call releaseVfxSpriteSheetTexture(id, texture) when playback ends
+ * instead of calling texture.dispose() directly.
+ */
 export async function loadVfxSpriteSheetTexture(id: VfxSpriteSheetId) {
-  let pending = texturePromises.get(id);
-  if (!pending) {
-    const definition = VFX_SPRITE_SHEETS[id];
-    pending = loader.loadAsync(definition.url).then(configureVfxSpriteSheetTexture).catch((error) => {
-      texturePromises.delete(id);
-      throw error;
-    });
-    texturePromises.set(id, pending);
-  }
-  const baseTexture = await pending;
+  const descriptor = resolveSheetSource(id);
+  if (!descriptor) throw new Error(`Unknown sprite sheet: ${id}`);
+  const baseTexture = await vfxResourceManager.acquire(id, descriptor);
   return configureVfxSpriteSheetTexture(baseTexture.clone());
+}
+
+/**
+ * Releases a previously loaded sprite-sheet clone.  Disposes the clone's
+ * GPU resources and decrements the manager's reference count, making the
+ * base texture eligible for LRU eviction when no other playback uses it.
+ */
+export function releaseVfxSpriteSheetTexture(id: VfxSpriteSheetId, texture: THREE.Texture) {
+  texture.dispose();
+  vfxResourceManager.release(id);
 }
 
 export function setVfxSpriteSheetFrame(
@@ -343,6 +354,69 @@ export function setVfxSpriteSheetFrame(
 }
 
 export function disposeVfxSpriteSheetTextures() {
-  for (const pending of texturePromises.values()) pending.then((texture) => texture.dispose()).catch(() => undefined);
-  texturePromises.clear();
+  vfxResourceManager.disposeAll();
+}
+
+/**
+ * Loads a Lab candidate texture through the shared VfxResourceManager.
+ *
+ * The candidate must be a valid CartoonCoffee inventory candidate with a
+ * supported native format. The manager owns and caches the base texture;
+ * this function returns a configured clone for independent per-playback UV
+ * state, same as production sprite sheets.
+ *
+ * Call releaseLabCandidateTexture(candidateId, texture) when playback ends.
+ */
+export async function loadLabCandidateTexture(candidateId: string) {
+  const descriptor = resolveCandidateSource(candidateId);
+  if (!descriptor) throw new Error(`Unknown or unsupported candidate: ${candidateId}`);
+  const baseTexture = await vfxResourceManager.acquire(candidateId, descriptor);
+  return configureVfxSpriteSheetTexture(baseTexture.clone());
+}
+
+/**
+ * Releases a previously loaded Lab candidate clone. Disposes the clone's
+ * GPU resources and decrements the manager's reference count.
+ */
+export function releaseLabCandidateTexture(candidateId: string, texture: THREE.Texture) {
+  texture.dispose();
+  vfxResourceManager.release(candidateId);
+}
+
+/**
+ * Builds a temporary VfxSpriteSheetDefinition from a CartoonCoffee inventory
+ * record for Lab playback. This does NOT register the definition in
+ * VFX_SPRITE_SHEETS — it is used only for the duration of a single playback.
+ */
+export function buildLabSheetDefinition(
+  candidateId: string,
+  record: { width: number; height: number; nativeGrid: string; nativeFrameCount: number; nativeCellWidth: number; nativeCellHeight: number },
+): VfxSpriteSheetDefinition {
+  const grid = record.nativeGrid.split('x');
+  const rows = parseInt(grid[0] ?? '4', 10);
+  const cols = parseInt(grid[1] ?? '4', 10);
+  const is2048 = record.width === 2048;
+  return {
+    id: `lab:${candidateId}` as VfxSpriteSheetId,
+    url: `/assets/vfx/megapack-runtime/${candidateId}.png`,
+    sheetWidthPx: record.width,
+    sheetHeightPx: record.height,
+    rows,
+    cols,
+    frameCount: record.nativeFrameCount,
+    frameDurationMs: is2048 ? 50 : 20,
+    align: 'center',
+    presentation: {
+      scaleMultiplier: 1.4,
+      opacityMultiplier: 1,
+      fadeIn: 0.02,
+      fadeOut: 0.82,
+      layer: 'impact',
+      blending: 'additive',
+    },
+    sourceCandidateId: candidateId,
+    assetGeneration: 'megapack-native',
+    nativeCellWidthPx: record.nativeCellWidth,
+    nativeCellHeightPx: record.nativeCellHeight,
+  };
 }

@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "vfx:sync-runtime": "node tools/vfx/sync-runtime-vfx.mjs"
+    "vfx:sync-runtime": "node tools/vfx/sync-runtime-vfx.mjs",
+    "vfx:sync-candidate": "node tools/vfx/sync-candidate.mjs"
   },
   "dependencies": {
     "@fontsource/cinzel": "5.1.1",

@@ -55,7 +55,8 @@ export class CombatBridge {
     const devMotion = devQa && params.get('motion') === '1';
     const devGrid = devQa && params.get('grid') === '1';
     const devR2ca = devQa && params.get('r2ca') === '1';
-    iframe.src = `/legacy-combat.html?campaign=1${devQa ? '&qa=1' : ''}${devVfx ? '&vfx=1' : ''}${devMotion ? '&motion=1' : ''}${devGrid ? '&grid=1' : ''}${devR2ca ? '&r2ca=1' : ''}`;
+    const devVfxLab = devQa && params.get('vfxlab') === '1';
+    iframe.src = `/legacy-combat.html?campaign=1${devQa ? '&qa=1' : ''}${devVfx ? '&vfx=1' : ''}${devMotion ? '&motion=1' : ''}${devGrid ? '&grid=1' : ''}${devR2ca ? '&r2ca=1' : ''}${devVfxLab ? '&vfxlab=1' : ''}`;
     this.root.append(iframe);
     this.iframe = iframe;
     const ready = new Promise<void>((resolve) => {
