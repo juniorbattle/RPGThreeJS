@@ -29,6 +29,17 @@ export interface MegaPackHeldReviewEntry {
 }
 
 const HELD_ROOT = '/assets/vfx/megapack-runtime/r2c-a-held/';
+const RUNTIME_ROOT = '/assets/vfx/megapack-runtime/';
+
+/** Candidates whose PNG exists in megapack-runtime/ (not r2c-a-held/). */
+const RUNTIME_CANDIDATE_IDS = new Set([
+  'r1_0129', 'r1_0480', 'r1_0503', 'r1_0525', 'r1_0544', 'r1_0545',
+  'r1_0592', 'r1_0971', 'r1_1605', 'r1_1700', 'r1_1712', 'r1_2509', 'r1_2561',
+]);
+
+function candidateUrlRoot(candidateId: string): string {
+  return RUNTIME_CANDIDATE_IDS.has(candidateId) ? RUNTIME_ROOT : HELD_ROOT;
+}
 
 type CandidateSource = {
   id: string;
@@ -58,13 +69,28 @@ const CANDIDATES = {
   r1_1728: { id: 'r1_1728', filename: 'r1_1728.png', sourceFilename: 'Blood_Burst_v10_spritesheet.png', width: 4096, height: 4096, cols: 8, rows: 8, frameCount: 64 },
   r1_2599: { id: 'r1_2599', filename: 'r1_2599.png', sourceFilename: 'Jump_Wind_White_v1_spritesheet.png', width: 2048, height: 2048, cols: 4, rows: 4, frameCount: 16 },
   r1_2600: { id: 'r1_2600', filename: 'r1_2600.png', sourceFilename: 'Jump_Wind_White_v2_spritesheet.png', width: 2048, height: 2048, cols: 4, rows: 4, frameCount: 16 },
+  // Alternative candidates for NEEDS_ALT actions — all verified available in runtime
+  r1_0971: { id: 'r1_0971', filename: 'r1_0971.png', sourceFilename: 'Shield_On_spritesheet.png', width: 4096, height: 4096, cols: 8, rows: 8, frameCount: 64 },
+  r1_0592: { id: 'r1_0592', filename: 'r1_0592.png', sourceFilename: 'Impact_Shockwave v1_spritesheet.png', width: 2048, height: 2048, cols: 4, rows: 4, frameCount: 16 },
+  r1_0503: { id: 'r1_0503', filename: 'r1_0503.png', sourceFilename: 'Heart_Buff_V3_spritesheet.png', width: 4096, height: 4096, cols: 8, rows: 8, frameCount: 64 },
+  r1_0480: { id: 'r1_0480', filename: 'r1_0480.png', sourceFilename: 'Healing_V3_spritesheet.png', width: 4096, height: 4096, cols: 8, rows: 8, frameCount: 64 },
+  r1_0129: { id: 'r1_0129', filename: 'r1_0129.png', sourceFilename: 'Charge_Darkness_v1_A_spritesheet.png', width: 4096, height: 4096, cols: 8, rows: 8, frameCount: 64 },
+  r1_0525: { id: 'r1_0525', filename: 'r1_0525.png', sourceFilename: 'Hex_Bursts_Center_V2_spritesheet.png', width: 4096, height: 4096, cols: 8, rows: 8, frameCount: 64 },
+  r1_0544: { id: 'r1_0544', filename: 'r1_0544.png', sourceFilename: 'Impact_Darkness_Lv2_spritesheet.png', width: 4096, height: 4096, cols: 8, rows: 8, frameCount: 64 },
+  r1_0545: { id: 'r1_0545', filename: 'r1_0545.png', sourceFilename: 'Impact_Darkness_Lv3_spritesheet.png', width: 4096, height: 4096, cols: 8, rows: 8, frameCount: 64 },
+  r1_1605: { id: 'r1_1605', filename: 'r1_1605.png', sourceFilename: 'Blue Slash v1 - Flurry_spritesheet.png', width: 4096, height: 4096, cols: 8, rows: 8, frameCount: 64 },
+  r1_1700: { id: 'r1_1700', filename: 'r1_1700.png', sourceFilename: 'Fire Slash v1 - Spin_spritesheet.png', width: 4096, height: 4096, cols: 8, rows: 8, frameCount: 64 },
+  r1_1712: { id: 'r1_1712', filename: 'r1_1712.png', sourceFilename: 'Lightning Slash v1 - Flurry_spritesheet.png', width: 4096, height: 4096, cols: 8, rows: 8, frameCount: 64 },
+  r1_2509: { id: 'r1_2509', filename: 'r1_2509.png', sourceFilename: 'Angry_Smoke_Burst_White_v2_A_spritesheet.png', width: 4096, height: 4096, cols: 8, rows: 8, frameCount: 64 },
+  r1_2561: { id: 'r1_2561', filename: 'r1_2561.png', sourceFilename: 'Dash_Wind_White_v3_spritesheet.png', width: 2048, height: 2048, cols: 4, rows: 4, frameCount: 16 },
 } as const satisfies Record<string, CandidateSource>;
 
 function heldSource(candidateId: keyof typeof CANDIDATES, blending: 'normal' | 'additive' = 'additive'): DevVfxReviewSpriteSheetDefinition {
   const candidate = CANDIDATES[candidateId];
+  const root = candidateUrlRoot(candidate.id);
   return {
     id: `held_${candidate.id}`,
-    url: `${HELD_ROOT}${candidate.filename}`,
+    url: `${root}${candidate.filename}`,
     sheetWidthPx: candidate.width,
     sheetHeightPx: candidate.height,
     cols: candidate.cols,
@@ -202,3 +228,66 @@ export function getMegaPackHeldReviewEntries(): readonly MegaPackHeldReviewEntry
 }
 
 export const MEGAPACK_HELD_REVIEW_ROOT = HELD_ROOT;
+
+/**
+ * Alternative candidate IDs for each NEEDS_ALT action.
+ * Derived from R2 inventory metadata (vfx-megapack-r2-selected-runtime-assets.json
+ * and vfx-megapack-r2-future-opportunity-assets.json).
+ * Maximum 3 alternatives per action.
+ */
+const ALTERNATIVES: Readonly<Record<string, readonly string[]>> = Object.freeze({
+  basic_crosier_hit: ['r1_1605', 'r1_0592', 'r1_1709'],
+  basic_longbow_hit: ['r1_0943', 'r1_2561', 'r1_1712'],
+  p_interpose: ['r1_0971', 'r1_0525', 'r1_0592'],
+  e_absolute_harmony: ['r1_0503', 'r1_0494', 'r1_0480'],
+  a_arrow_rain: ['r1_1605', 'r1_0592', 'r1_1712'],
+  a_zenith_arrow: ['r1_0943', 'r1_2561', 'r1_1700'],
+  ro_jaw_trap: ['r1_0545', 'r1_0592', 'r1_1728'],
+});
+
+export type CandidateAvailability = 'READY' | 'MISSING_RUNTIME_COPY' | 'INVALID_METADATA' | 'UNAVAILABLE';
+
+export function getCandidateAvailability(candidateId: string): CandidateAvailability {
+  const c = CANDIDATES[candidateId as keyof typeof CANDIDATES];
+  if (!c) return 'UNAVAILABLE';
+  if (c.width % c.cols !== 0 || c.height % c.rows !== 0) return 'INVALID_METADATA';
+  if (c.frameCount !== c.cols * c.rows) return 'INVALID_METADATA';
+  return 'READY';
+}
+
+export interface AlternativeCandidate {
+  candidateId: string;
+  sourceFilename: string;
+  source: DevVfxReviewSpriteSheetDefinition;
+  label: string;
+  availability: CandidateAvailability;
+}
+
+export function getNeedsAltEntries(): readonly MegaPackHeldReviewEntry[] {
+  return getMegaPackHeldReviewEntries().filter((e) => e.provisionalVerdict === 'NEEDS_ALT');
+}
+
+export function getPresentationTuneOnlyEntries(): readonly MegaPackHeldReviewEntry[] {
+  return getMegaPackHeldReviewEntries().filter((e) => e.provisionalVerdict === 'PRESENTATION_TUNE_ONLY');
+}
+
+export function getAlternativesFor(actionId: string): readonly AlternativeCandidate[] {
+  const ids = ALTERNATIVES[actionId];
+  if (!ids) return [];
+  return ids.map((id, i) => {
+    const c = CANDIDATES[id as keyof typeof CANDIDATES];
+    const availability = getCandidateAvailability(id);
+    return {
+      candidateId: id,
+      sourceFilename: c?.sourceFilename ?? 'UNKNOWN',
+      source: heldSource(id as keyof typeof CANDIDATES),
+      label: `ALT ${String.fromCharCode(65 + i)} — ${id}`,
+      availability,
+    };
+  });
+}
+
+export function isDirectionalAction(entry: MegaPackHeldReviewEntry): boolean {
+  const spec = entry.actionSpec;
+  return Boolean(spec.offensive || spec.type === 'phys' || spec.type === 'ranged' || spec.type === 'mag');
+}

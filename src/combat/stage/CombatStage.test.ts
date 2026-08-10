@@ -79,7 +79,7 @@ describe('CombatStage', () => {
     expect(stage.isActive()).toBe(true);
     expect(renderPass.scene).toBe(stage.scene);
     expect(renderPass.camera).toBe(stage.camera);
-    expect(tiltShiftStrength.value).toBe(0);
+    expect(tiltShiftStrength.value).toBe(0.22);
   });
 
   it('restores the tactical render pass and the exact previous tilt-shift value on exit', async () => {
@@ -378,5 +378,333 @@ describe('CombatStage', () => {
     expect(renderPass.scene).toBe(tacticalScene);
     expect(renderPass.camera).toBe(tacticalCamera);
     expect(tiltShiftStrength.value).toBe(2.6);
+  });
+});
+
+const STAGE_PROXY_Y_SINK = 0.08;
+
+describe('R0C.1 player ground alignment', () => {
+  let tacticalScene: THREE.Scene;
+  let tacticalCamera: THREE.PerspectiveCamera;
+  let renderPass: RenderPassLike;
+  let tiltShiftStrength: UniformLike;
+  let stage: CombatStage;
+
+  beforeEach(() => {
+    tacticalScene = new THREE.Scene();
+    tacticalCamera = new THREE.PerspectiveCamera(33, 16 / 9, 0.1, 200);
+    renderPass = { scene: tacticalScene, camera: tacticalCamera };
+    tiltShiftStrength = { value: 2.6 };
+    stage = new CombatStage({
+      renderPass,
+      tacticalScene,
+      tacticalCamera,
+      tiltShiftStrength,
+      width: 1280,
+      height: 720,
+    });
+  });
+
+  const meleeSpec = { key: 'w_break_guard', type: 'phys' as const, offensive: true, ap: 2 };
+  let meleeProfile: import('./combatStageProfiles').CombatStageProfile;
+
+  beforeEach(async () => {
+    const { resolveCombatStageProfileUniversal } = await import('./combatStageProfiles');
+    meleeProfile = resolveCombatStageProfileUniversal(meleeSpec)!;
+  });
+
+  it('player attacker proxy Y is lowered by heroGroundOffset (feet sink to ground)', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    await stage.enter(attacker.source, [target.source], meleeSpec, { profile: meleeProfile, sourceTeam: 'player' });
+    const pos = stage.attackerProxyPosition()!;
+    const height = 1.9;
+    const expectedY = height * 0.5 - height * 0.05 - STAGE_PROXY_Y_SINK;
+    expect(pos.y).toBeCloseTo(expectedY, 4);
+    await stage.exit();
+  });
+
+  it('enemy attacker proxy Y is NOT lowered (no heroGroundOffset)', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    await stage.enter(attacker.source, [target.source], meleeSpec, { profile: meleeProfile, sourceTeam: 'foe' });
+    const pos = stage.attackerProxyPosition()!;
+    const height = 1.9;
+    expect(pos.y).toBeCloseTo(height * 0.5 - STAGE_PROXY_Y_SINK, 4);
+    await stage.exit();
+  });
+
+  it('enemy target proxy Y is unchanged when source is player', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    await stage.enter(attacker.source, [target.source], meleeSpec, { profile: meleeProfile, sourceTeam: 'player' });
+    const targetPos = stage.targetProxyPosition(0)!;
+    const height = 1.9;
+    expect(targetPos.y).toBeCloseTo(height * 0.5 - STAGE_PROXY_Y_SINK, 4);
+    await stage.exit();
+  });
+
+  it('player target proxy Y is lowered in support layout (player-side targets)', async () => {
+    const attacker = makeSpriteSource();
+    const ally1 = makeSpriteSource();
+    const ally2 = makeSpriteSource();
+    const { resolveCombatStageProfileUniversal } = await import('./combatStageProfiles');
+    const ultSpec = { key: 'e_absolute_harmony', type: 'buff' as const, support: true, radius: 2, ap: 5 };
+    const ultPres = { ultimate: true as const, visualTier: 5, castStyle: 'ultimateCast' as const };
+    const profile = resolveCombatStageProfileUniversal(ultSpec, ultPres)!;
+    await stage.enter(attacker.source, [attacker.source, ally1.source, ally2.source], ultSpec, { profile, sourceTeam: 'player' });
+    const targetPos = stage.targetProxyPosition(0)!;
+    const height = 1.9;
+    const expectedY = height * 0.5 - height * 0.05 - STAGE_PROXY_Y_SINK;
+    expect(targetPos.y).toBeCloseTo(expectedY, 4);
+    await stage.exit();
+  });
+
+  it('faction LEFT/RIGHT doctrine unchanged — player source on LEFT, enemy on RIGHT', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    await stage.enter(attacker.source, [target.source], meleeSpec, { profile: meleeProfile, sourceTeam: 'player' });
+    expect(stage.attackerProxyPosition()!.x).toBeLessThan(0);
+    expect(stage.targetProxyPosition(0)!.x).toBeGreaterThan(0);
+    await stage.exit();
+  });
+
+  it('boss/elite stationary attacker position unchanged', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    await stage.enter(attacker.source, [target.source], meleeSpec, { profile: meleeProfile, sourceTeam: 'foe', stationaryAttacker: true });
+    const pos = stage.attackerProxyPosition()!;
+    expect(pos.x).toBeGreaterThan(0);
+    const height = 1.9;
+    expect(pos.y).toBeCloseTo(height * 0.5 - STAGE_PROXY_Y_SINK, 4);
+    await stage.exit();
+  });
+
+  it('float text anchor follows proxy position (includes ground offset)', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    await stage.enter(attacker.source, [target.source], meleeSpec, { profile: meleeProfile, sourceTeam: 'player' });
+    const anchor = stage.getFloatTextAnchor(attacker.source)!;
+    const proxyPos = stage.attackerProxyPosition()!;
+    expect(anchor.y).toBeGreaterThan(proxyPos.y);
+    expect(anchor.x).toBeCloseTo(proxyPos.x, 4);
+    await stage.exit();
+  });
+
+  it('arenaCenter and stageGround remain at y=0', async () => {
+    const { STAGE_LAYOUT } = await import('./combatStageProfiles');
+    expect(STAGE_LAYOUT.arenaCenter.y).toBe(0);
+    expect(STAGE_LAYOUT.stageGround.y).toBe(-0.02);
+  });
+});
+
+describe('R0C.1B Stage vertical grounding tune', () => {
+  let tacticalScene: THREE.Scene;
+  let tacticalCamera: THREE.PerspectiveCamera;
+  let renderPass: RenderPassLike;
+  let tiltShiftStrength: UniformLike;
+  let stage: CombatStage;
+
+  beforeEach(() => {
+    tacticalScene = new THREE.Scene();
+    tacticalCamera = new THREE.PerspectiveCamera(33, 16 / 9, 0.1, 200);
+    renderPass = { scene: tacticalScene, camera: tacticalCamera };
+    tiltShiftStrength = { value: 2.6 };
+    stage = new CombatStage({
+      renderPass,
+      tacticalScene,
+      tacticalCamera,
+      tiltShiftStrength,
+      width: 1280,
+      height: 720,
+    });
+  });
+
+  const meleeSpec = { key: 'w_break_guard', type: 'phys' as const, offensive: true, ap: 2 };
+  let meleeProfile: import('./combatStageProfiles').CombatStageProfile;
+
+  beforeEach(async () => {
+    const { resolveCombatStageProfileUniversal } = await import('./combatStageProfiles');
+    meleeProfile = resolveCombatStageProfileUniversal(meleeSpec)!;
+  });
+
+  it('player attacker proxy is lower than pre-R0C.1B baseline', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    await stage.enter(attacker.source, [target.source], meleeSpec, { profile: meleeProfile, sourceTeam: 'player' });
+    const pos = stage.attackerProxyPosition()!;
+    const height = 1.9;
+    const preR0C1BY = height * 0.5 - height * 0.05;
+    expect(pos.y).toBeLessThan(preR0C1BY);
+    expect(pos.y).toBeCloseTo(preR0C1BY - STAGE_PROXY_Y_SINK, 4);
+    await stage.exit();
+  });
+
+  it('enemy attacker proxy is also lowered by the same sink', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    await stage.enter(attacker.source, [target.source], meleeSpec, { profile: meleeProfile, sourceTeam: 'foe' });
+    const pos = stage.attackerProxyPosition()!;
+    const height = 1.9;
+    const preR0C1BY = height * 0.5;
+    expect(pos.y).toBeLessThan(preR0C1BY);
+    expect(pos.y).toBeCloseTo(preR0C1BY - STAGE_PROXY_Y_SINK, 4);
+    await stage.exit();
+  });
+
+  it('player-enemy relative Y difference is preserved (sink is uniform)', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    await stage.enter(attacker.source, [target.source], meleeSpec, { profile: meleeProfile, sourceTeam: 'player' });
+    const playerY = stage.attackerProxyPosition()!.y;
+    const enemyY = stage.targetProxyPosition(0)!.y;
+    const height = 1.9;
+    const expectedDiff = height * 0.05;
+    expect(enemyY - playerY).toBeCloseTo(expectedDiff, 4);
+    await stage.exit();
+  });
+
+  it('multi-target layout: all target proxies receive the sink', async () => {
+    const attacker = makeSpriteSource();
+    const t1 = makeSpriteSource();
+    const t2 = makeSpriteSource();
+    const t3 = makeSpriteSource();
+    const { resolveCombatStageProfileUniversal } = await import('./combatStageProfiles');
+    const ultSpec = { key: 'e_absolute_harmony', type: 'buff' as const, support: true, radius: 2, ap: 5 };
+    const ultPres = { ultimate: true as const, visualTier: 5, castStyle: 'ultimateCast' as const };
+    const profile = resolveCombatStageProfileUniversal(ultSpec, ultPres)!;
+    await stage.enter(attacker.source, [attacker.source, t1.source, t2.source, t3.source], ultSpec, { profile, sourceTeam: 'player' });
+    const height = 1.9;
+    for (let i = 0; i < 3; i++) {
+      const pos = stage.targetProxyPosition(i)!;
+      const expectedY = height * 0.5 - height * 0.05 - STAGE_PROXY_Y_SINK;
+      expect(pos.y).toBeCloseTo(expectedY, 4);
+    }
+    await stage.exit();
+  });
+
+  it('float text anchor remains above proxy after sink', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    await stage.enter(attacker.source, [target.source], meleeSpec, { profile: meleeProfile, sourceTeam: 'player' });
+    const anchor = stage.getFloatTextAnchor(attacker.source)!;
+    const proxyPos = stage.attackerProxyPosition()!;
+    expect(anchor.y).toBeGreaterThan(proxyPos.y);
+    expect(anchor.x).toBeCloseTo(proxyPos.x, 4);
+    await stage.exit();
+  });
+
+  it('slot ordering remains correct (attacker left, targets right, Z-spread)', async () => {
+    const { STAGE_LAYOUT } = await import('./combatStageProfiles');
+    expect(STAGE_LAYOUT.attackerStart.x).toBeLessThan(STAGE_LAYOUT.arenaCenter.x);
+    expect(STAGE_LAYOUT.primaryTarget.x).toBeGreaterThan(STAGE_LAYOUT.arenaCenter.x);
+    expect(STAGE_LAYOUT.targetLeft.z).toBeLessThan(STAGE_LAYOUT.targetCenter.z);
+    expect(STAGE_LAYOUT.targetCenter.z).toBeLessThan(STAGE_LAYOUT.targetRight.z);
+  });
+});
+
+describe('R0C.2 Combat Stage visual filter parity', () => {
+  let tacticalScene: THREE.Scene;
+  let tacticalCamera: THREE.PerspectiveCamera;
+  let renderPass: RenderPassLike;
+  let tiltShiftStrength: UniformLike;
+  let stage: CombatStage;
+
+  beforeEach(() => {
+    tacticalScene = new THREE.Scene();
+    tacticalCamera = new THREE.PerspectiveCamera(33, 16 / 9, 0.1, 200);
+    renderPass = { scene: tacticalScene, camera: tacticalCamera };
+    tiltShiftStrength = { value: 2.6 };
+    stage = new CombatStage({
+      renderPass,
+      tacticalScene,
+      tacticalCamera,
+      tiltShiftStrength,
+      width: 1280,
+      height: 720,
+    });
+  });
+
+  const meleeSpec = { key: 'w_break_guard', type: 'phys' as const, offensive: true, ap: 2 };
+  let meleeProfile: import('./combatStageProfiles').CombatStageProfile;
+
+  beforeEach(async () => {
+    const { resolveCombatStageProfileUniversal } = await import('./combatStageProfiles');
+    meleeProfile = resolveCombatStageProfileUniversal(meleeSpec)!;
+  });
+
+  it('Stage scene has fog matching tactical scene parameters', () => {
+    expect(stage.scene.fog).toBeDefined();
+    expect(stage.scene.fog).toBeInstanceOf(THREE.FogExp2);
+    const fog = stage.scene.fog as THREE.FogExp2;
+    expect(fog.density).toBeCloseTo(0.01, 4);
+  });
+
+  it('Stage scene has hemisphere light (not flat ambient)', () => {
+    const lights = stage.scene.children.filter((c) => c instanceof THREE.Light);
+    const hemi = lights.find((l) => l instanceof THREE.HemisphereLight);
+    expect(hemi).toBeDefined();
+  });
+
+  it('Stage scene has directional sun light matching tactical', () => {
+    const lights = stage.scene.children.filter((c) => c instanceof THREE.Light);
+    const dir = lights.find((l) => l instanceof THREE.DirectionalLight && (l as THREE.DirectionalLight).intensity > 1);
+    expect(dir).toBeDefined();
+    expect((dir as THREE.DirectionalLight).intensity).toBeCloseTo(1.78, 2);
+  });
+
+  it('Stage scene has directional fill light matching tactical', () => {
+    const lights = stage.scene.children.filter((c) => c instanceof THREE.Light);
+    const fill = lights.find((l) => l instanceof THREE.DirectionalLight && (l as THREE.DirectionalLight).intensity < 1);
+    expect(fill).toBeDefined();
+    expect((fill as THREE.DirectionalLight).intensity).toBeCloseTo(0.48, 2);
+  });
+
+  it('tilt-shift is set to reduced stage value (not zero) during active stage', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    await stage.enter(attacker.source, [target.source], meleeSpec, { profile: meleeProfile, sourceTeam: 'player' });
+    expect(tiltShiftStrength.value).toBe(0.22);
+    expect(tiltShiftStrength.value).toBeGreaterThan(0);
+    await stage.exit();
+  });
+
+  it('tilt-shift is restored to original value on exit', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    tiltShiftStrength.value = 0.5;
+    await stage.enter(attacker.source, [target.source], meleeSpec, { profile: meleeProfile, sourceTeam: 'player' });
+    expect(tiltShiftStrength.value).toBe(0.22);
+    await stage.exit();
+    expect(tiltShiftStrength.value).toBe(0.5);
+  });
+
+  it('tilt-shift is restored even after forced restore', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    tiltShiftStrength.value = 0.5;
+    await stage.enter(attacker.source, [target.source], meleeSpec, { profile: meleeProfile, sourceTeam: 'player' });
+    stage.forceRestoreTactical();
+    expect(tiltShiftStrength.value).toBe(0.5);
+  });
+
+  it('Stage render pass uses Stage scene and camera during active session', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    await stage.enter(attacker.source, [target.source], meleeSpec, { profile: meleeProfile, sourceTeam: 'player' });
+    expect(renderPass.scene).toBe(stage.scene);
+    expect(renderPass.camera).toBe(stage.camera);
+    await stage.exit();
+    expect(renderPass.scene).toBe(tacticalScene);
+    expect(renderPass.camera).toBe(tacticalCamera);
+  });
+
+  it('non-pilot actions do not alter tilt-shift (no stage activation)', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    tiltShiftStrength.value = 0.5;
+    await stage.enter(attacker.source, [target.source], { key: 'w_whirl' });
+    await stage.exit();
+    expect(tiltShiftStrength.value).toBe(0.5);
   });
 });

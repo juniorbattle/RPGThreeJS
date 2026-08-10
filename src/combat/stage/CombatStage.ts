@@ -25,6 +25,47 @@ import type { VfxUnitLike } from '../vfx/VfxTypes';
  * and drives lightweight presentation-only actor proxies.
  */
 
+/**
+ * Player/hero sprites have transparent bottom padding (same as tactical
+ * heroGroundOffset). This sinks the proxy plane so hero feet rest on the
+ * Stage ground plane, matching enemy grounding. Enemy sprites do not need
+ * this correction.
+ */
+const STAGE_HERO_GROUND_OFFSET = 0.05;
+
+/**
+ * R0C.1B — Light global vertical sink applied to ALL Stage proxies (both
+ * player and enemy) to improve visual grounding against the painted
+ * background. Applied after the hero ground offset, so both factions
+ * shift down equally without altering their relative difference.
+ */
+const STAGE_PROXY_Y_SINK = 0.08;
+
+/**
+ * R0C.2 — Reduced tilt-shift strength for the Combat Stage. The tactical
+ * view uses 0.5; the Stage uses a milder value so the frontal composition
+ * retains subtle depth-of-field character without blurring the focused
+ * foreground sprites. Zero would create a visual rupture at transitions.
+ */
+const STAGE_TILT_SHIFT = 0.22;
+
+/**
+ * R0C.2 — Fog and lighting parameters matching the tactical scene to
+ * preserve colorimetric continuity across the Stage transition. These
+ * are applied once to the Stage scene in the constructor.
+ */
+const STAGE_FOG_COLOR = 0x52635c;
+const STAGE_FOG_DENSITY = 0.01;
+const STAGE_HEMI_SKY = 0xcfd8ca;
+const STAGE_HEMI_GROUND = 0x313d36;
+const STAGE_HEMI_INTENSITY = 0.86;
+const STAGE_SUN_COLOR = 0xffead1;
+const STAGE_SUN_INTENSITY = 1.78;
+const STAGE_SUN_DIR = new THREE.Vector3(-9, 15, 9);
+const STAGE_FILL_COLOR = 0xd5b184;
+const STAGE_FILL_INTENSITY = 0.48;
+const STAGE_FILL_DIR = new THREE.Vector3(10, 6, 8);
+
 /** Minimal duck-typed shape read from a live tactical unit's sprite mesh. Never mutated. */
 export interface StageSpriteSource {
   spr?: {
@@ -104,6 +145,8 @@ interface StageActorProxy {
   baseHeight: number;
   faction: StageFactionSide;
   isKO: boolean;
+  /** Y offset applied to sink player sprites to match enemy grounding. */
+  groundOffset: number;
 }
 
 /** Faction-aware slot vector — mirrors X when source is enemy (RIGHT side). */
@@ -173,7 +216,15 @@ export class CombatStage {
     this.height = options.height;
 
     this.scene.name = 'CombatStageScene';
-    this.scene.add(new THREE.AmbientLight(0xffffff, 1.15));
+    // R0C.2: Match tactical scene lighting for visual filter parity.
+    this.scene.fog = new THREE.FogExp2(STAGE_FOG_COLOR, STAGE_FOG_DENSITY);
+    this.scene.add(new THREE.HemisphereLight(STAGE_HEMI_SKY, STAGE_HEMI_GROUND, STAGE_HEMI_INTENSITY));
+    const stageSun = new THREE.DirectionalLight(STAGE_SUN_COLOR, STAGE_SUN_INTENSITY);
+    stageSun.position.copy(STAGE_SUN_DIR);
+    this.scene.add(stageSun);
+    const stageFill = new THREE.DirectionalLight(STAGE_FILL_COLOR, STAGE_FILL_INTENSITY);
+    stageFill.position.copy(STAGE_FILL_DIR);
+    this.scene.add(stageFill);
 
     this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 50);
     this.camera.position.set(0, 1.35, 6);
@@ -231,7 +282,7 @@ export class CombatStage {
 
     try {
       this.savedTiltShift = this.tiltShiftStrength.value;
-      this.tiltShiftStrength.value = 0;
+      this.tiltShiftStrength.value = STAGE_TILT_SHIFT;
       this.renderPass.scene = this.scene;
       this.renderPass.camera = this.camera;
       this.renderPassSwapped = true;
@@ -647,7 +698,8 @@ export class CombatStage {
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(width, height), material);
     const mirrorX = this.sideAssignment?.mirrorX ?? false;
     const start = resolvedSlotVec(startSlot, mirrorX);
-    mesh.position.set(start.x, start.y + height * 0.5, start.z);
+    const groundOffset = faction === 'player' ? height * STAGE_HERO_GROUND_OFFSET : 0;
+    mesh.position.set(start.x, start.y + height * 0.5 - groundOffset - STAGE_PROXY_Y_SINK, start.z);
     // Player units face right (toward enemy), enemy units face left (toward player).
     const faceSign = faction === 'player' ? 1 : -1;
     mesh.scale.x = faceSign;
@@ -661,7 +713,7 @@ export class CombatStage {
     }
 
     this.scene.add(mesh);
-    return { mesh, startSlot, impactSlot, isAttacker, baseHeight: height, faction, isKO };
+    return { mesh, startSlot, impactSlot, isAttacker, baseHeight: height, faction, isKO, groundOffset };
   }
 
   private disposeProxies(): void {
@@ -716,7 +768,7 @@ export class CombatStage {
       }
       const pulse = this.impactPulseFor(now, true);
       const faceSign = this.attackerProxy.faction === 'player' ? 1 : -1;
-      this.attackerProxy.mesh.position.set(pos.x, pos.y + height * 0.5, pos.z);
+      this.attackerProxy.mesh.position.set(pos.x, pos.y + height * 0.5 - this.attackerProxy.groundOffset - STAGE_PROXY_Y_SINK, pos.z);
       this.attackerProxy.mesh.scale.set(faceSign * pulse, pulse, pulse);
     }
 
@@ -725,7 +777,7 @@ export class CombatStage {
       const height = targetProxy.baseHeight;
       const pulse = this.impactPulseFor(now, false);
       const faceSign = targetProxy.faction === 'player' ? 1 : -1;
-      targetProxy.mesh.position.set(base.x, base.y + height * 0.5, base.z);
+      targetProxy.mesh.position.set(base.x, base.y + height * 0.5 - targetProxy.groundOffset - STAGE_PROXY_Y_SINK, base.z);
       targetProxy.mesh.scale.set(faceSign * pulse, pulse, pulse);
       if (this.impactAtMs !== null) {
         const p = Math.min(1, (now - this.impactAtMs) / profile.impactPulseMs);
