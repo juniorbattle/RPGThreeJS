@@ -262,7 +262,6 @@ describe('R2C-LAB V1D — Full Megapack Preview Library + GIF Preselection + Acc
       const state = createDefaultLabState();
       expect(getAccordionOpen(state, 'action_progress')).toBe(true);
       expect(getAccordionOpen(state, 'megapack_library')).toBe(true);
-      expect(getAccordionOpen(state, 'gif_preview')).toBe(true);
     });
 
     it('29. default closed sections correct', () => {

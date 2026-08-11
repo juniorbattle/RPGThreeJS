@@ -25,12 +25,12 @@ import {
   getQaPresentation,
   getProductionPresentation,
   getEffectivePresentation,
-  getSelectedStep,
+  getSelectedVisualStepIndex,
   getValidatedConfig,
 } from './CombatVfxLab';
 import type { LabState, LabPresentationOverride, LabAction, ValidatedStepConfiguration } from './CombatVfxLab';
 
-export type LabPlaybackMode = 'production' | 'qa' | 'validated';
+export type LabPlaybackMode = 'production' | 'qa' | 'validated' | 'qa_stage';
 
 export interface LabPlaybackSnapshot {
   mode: LabPlaybackMode;
@@ -45,6 +45,16 @@ export interface LabPlaybackSnapshot {
 export interface LabPlaybackContext {
   vfxSystem: VfxSystem;
   buildContext: (actionKey: string) => VfxContext | null;
+  /**
+   * DEV-ONLY: Enters the real Combat Stage for forced Stage preview, plays
+   * the QA VFX, then exits the Stage cleanly. Returns null if the Stage
+   * cannot be entered (e.g. no combat units available).
+   *
+   * The callback receives a VfxContext built inside the Stage scene/camera
+   * and must play the VFX through it. The callback's completion promise is
+   * awaited before exiting the Stage.
+   */
+  buildStageContext?: (actionKey: string, playVfx: (context: VfxContext) => Promise<void>) => Promise<boolean>;
 }
 
 let _lastSnapshot: LabPlaybackSnapshot | null = null;
@@ -71,7 +81,7 @@ export function playProduction(
   if (!context) {
     return { played: false, snapshot: null };
   }
-  const stepIndex = getSelectedStep(state, actionKey);
+  const stepIndex = getSelectedVisualStepIndex(state, action);
   const step = action.vfxSteps[stepIndex];
   const source = step?.sourceCandidateId ?? step?.spriteSheetId ?? 'none';
   const presentation = step ? getProductionPresentation(step) : {};
@@ -115,7 +125,7 @@ export function playQaOverride(
   if (!context) {
     return { played: false, snapshot: null };
   }
-  const stepIndex = getSelectedStep(state, actionKey);
+  const stepIndex = getSelectedVisualStepIndex(state, action);
   const step = action.vfxSteps[stepIndex];
   if (!step) {
     return { played: false, snapshot: null };
@@ -194,7 +204,7 @@ export function playValidated(
   if (!context) {
     return { played: false, snapshot: null };
   }
-  const stepIndex = getSelectedStep(state, actionKey);
+  const stepIndex = getSelectedVisualStepIndex(state, action);
   const step = action.vfxSteps[stepIndex];
   if (!step) {
     return { played: false, snapshot: null };
@@ -273,6 +283,97 @@ export function replay(
  */
 export function getLastPlaybackSnapshot(): LabPlaybackSnapshot | null {
   return _lastSnapshot;
+}
+
+/**
+ * DEV-ONLY: Plays the current QA configuration inside the REAL Combat Stage,
+ * regardless of the action's normal production route.
+ *
+ * This forces the QA VFX into the Stage scene/camera using the existing
+ * CombatStage infrastructure. It does NOT modify production routing, skill
+ * metadata, validated configs, or gameplay state.
+ *
+ * Requires:
+ * - ctx.buildStageContext (provided by the runtime)
+ * - A QA source for the selected action/step
+ *
+ * Returns { played: false } if no QA source, no Stage context, or no action.
+ */
+export async function playQaInCombatStage(
+  ctx: LabPlaybackContext,
+  state: LabState,
+  actionKey: string,
+): Promise<{ played: boolean; snapshot: LabPlaybackSnapshot | null }> {
+  const action = getLabAction(actionKey);
+  if (!action || !action.currentPresetId) {
+    return { played: false, snapshot: null };
+  }
+  const preset = getVfxPreset(action.currentPresetId);
+  if (!preset) {
+    return { played: false, snapshot: null };
+  }
+  if (!ctx.buildStageContext) {
+    return { played: false, snapshot: null };
+  }
+  const stepIndex = getSelectedVisualStepIndex(state, action);
+  const step = action.vfxSteps[stepIndex];
+  if (!step) {
+    return { played: false, snapshot: null };
+  }
+  const qaSourceId = getQaSourceId(state, actionKey, stepIndex);
+  if (!qaSourceId) {
+    return { played: false, snapshot: null };
+  }
+  const qaPres = getQaPresentation(state, actionKey, stepIndex);
+  const effectivePres = getEffectivePresentation(state, action, stepIndex);
+  const snapshot: LabPlaybackSnapshot = {
+    mode: 'qa_stage',
+    actionKey,
+    stepIndex,
+    source: qaSourceId,
+    route: 'STAGE',
+    direction: effectivePres.direction ?? 'AUTO',
+    presentation: effectivePres,
+  };
+  _lastSnapshot = snapshot;
+
+  // Build the VFX play function that will be called inside the Stage context
+  const playVfx = async (context: VfxContext): Promise<void> => {
+    // If QA source is a candidate (not in production VFX_SPRITE_SHEETS), use Lab playback
+    if (qaSourceId && step.spriteSheetId) {
+      const prodSheet = VFX_SPRITE_SHEETS[step.spriteSheetId as keyof typeof VFX_SPRITE_SHEETS];
+      if (prodSheet && prodSheet.sourceCandidateId !== qaSourceId) {
+        const invRecord = getCandidateInventoryRecord(qaSourceId);
+        if (invRecord) {
+          const sheetDef = buildLabSheetDefinition(qaSourceId, invRecord);
+          const prodStep = preset.steps[stepIndex];
+          if (prodStep) {
+            const result = ctx.vfxSystem.playLabSpriteSheet(qaSourceId, sheetDef, prodStep, context, {
+              scale: qaPres?.scale,
+              offsetX: qaPres?.offsetX,
+              offsetY: qaPres?.offsetY,
+              duration: qaPres?.duration,
+              opacity: qaPres?.opacity,
+              layer: qaPres?.layer,
+              blending: qaPres?.blending,
+              fadeIn: qaPres?.fadeIn,
+              fadeOut: qaPres?.fadeOut,
+            });
+            await result.completion;
+            return;
+          }
+        }
+      }
+    }
+
+    // QA source is a production sheet — play with QA presentation overrides
+    const modifiedPreset = applyQaOverridesToPreset(preset, stepIndex, qaPres);
+    const result = ctx.vfxSystem.playPreset(modifiedPreset, context, action.currentPresetId);
+    await result.completion;
+  };
+
+  const entered = await ctx.buildStageContext(actionKey, playVfx);
+  return { played: entered, snapshot: entered ? snapshot : null };
 }
 
 /**

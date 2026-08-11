@@ -27,6 +27,7 @@ import {
   getValidationActionStatus,
   getValidationProgress,
   findNextToValidate,
+  getVisualSpriteSheetSteps,
   exportValidatedConfig,
   serializeValidatedConfig,
   serializeLabState,
@@ -210,10 +211,15 @@ describe('R2C-LAB V1C — Status', () => {
 
   it('15. multi-step partial action = PARTIAL', () => {
     const allActions = getLabActions();
-    const multiStepAction = allActions.find(a => a.vfxSteps.length > 1);
+    // V1D.4.2: Find an action with multiple VISUAL spriteSheet steps (not just total steps)
+    const multiStepAction = allActions.find(a => {
+      const visualSteps = getVisualSpriteSheetSteps(a);
+      return visualSteps.length > 1;
+    });
     if (!multiStepAction) return;
     let state = createDefaultLabState();
-    state = validateStepConfiguration(state, multiStepAction, 0).state;
+    const firstVisualStep = getVisualSpriteSheetSteps(multiStepAction)[0]!;
+    state = validateStepConfiguration(state, multiStepAction, firstVisualStep.stepIndex).state;
     expect(getValidationActionStatus(state, multiStepAction)).toBe('PARTIAL');
   });
 
@@ -301,7 +307,7 @@ describe('R2C-LAB V1C — Navigation', () => {
     const firstAction = allActions[0]!;
     const next = findNextToValidate(state, firstAction.actionKey);
     expect(next).not.toBeNull();
-    expect(next).not.toBe(firstAction.actionKey);
+    expect(next!.actionKey).not.toBe(firstAction.actionKey);
   });
 
   it('25. NEXT wraps', () => {
@@ -317,7 +323,7 @@ describe('R2C-LAB V1C — Navigation', () => {
     const allActions = getLabActions();
     const firstAction = allActions[0]!;
     const next = findNextToValidate(state, firstAction.actionKey);
-    expect(next).not.toBe(firstAction.actionKey);
+    expect(next!.actionKey).not.toBe(firstAction.actionKey);
   });
 
   it('27. manual selection preserved', () => {

@@ -28,16 +28,16 @@ describe('R2C-LAB V1D.1 — Catalogue UX Refinement', () => {
   // ============================================================ SECTION ORDER
 
   describe('SECTION ORDER', () => {
-    it('1. GIF PREVIEW section index is before CATALOGUE section index', () => {
-      const gifIdx = ALL_ACCORDION_SECTIONS.indexOf('gif_preview');
+    it('1. CATALOGUE section index is directly after ACTION / PROGRESS', () => {
+      const actionIdx = ALL_ACCORDION_SECTIONS.indexOf('action_progress');
       const catIdx = ALL_ACCORDION_SECTIONS.indexOf('megapack_library');
-      expect(gifIdx).toBeGreaterThanOrEqual(0);
+      expect(actionIdx).toBeGreaterThanOrEqual(0);
       expect(catIdx).toBeGreaterThanOrEqual(0);
-      expect(gifIdx).toBeLessThan(catIdx);
+      expect(catIdx).toBe(actionIdx + 1);
     });
 
-    it('2. CATALOGUE section renders after GIF PREVIEW', () => {
-      const order = ['action_progress', 'gif_preview', 'megapack_library'];
+    it('2. CATALOGUE section renders after ACTION / PROGRESS', () => {
+      const order = ['action_progress', 'megapack_library', 'playback'];
       const indices = order.map((s) => ALL_ACCORDION_SECTIONS.indexOf(s as typeof ALL_ACCORDION_SECTIONS[number]));
       expect(indices[0]).toBeLessThan(indices[1]!);
       expect(indices[1]).toBeLessThan(indices[2]!);

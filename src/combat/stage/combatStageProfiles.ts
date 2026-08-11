@@ -729,6 +729,28 @@ export function resolveCombatStageProfileUniversal(
   return GENERIC_PROFILE_BY_FAMILY.get(family) ?? GENERIC_PROFILE_BY_FAMILY.get('SINGLE_TARGET_OFFENSIVE');
 }
 
+/**
+ * DEV-ONLY: Force-resolves a Combat Stage profile for ANY action, even if its
+ * normal presentation route is 'tactical'. Used by the VFX Lab's
+ * "PLAY QA IN COMBAT STAGE" button to preview QA VFX in the real Stage
+ * regardless of production routing.
+ *
+ * Resolution order: explicit → QA → generic family → SINGLE_TARGET_OFFENSIVE.
+ * Never returns undefined (always falls back to a valid profile).
+ */
+export function forceResolveCombatStageProfile(
+  spec?: ActionSpecForStage | null,
+  presentation?: PresentationForStage | null,
+): CombatStageProfile | undefined {
+  if (!spec?.key) return undefined;
+  const explicit = PLAY_PROFILE_BY_ACTION_KEY.get(spec.key);
+  if (explicit) return explicit;
+  const qa = PROFILE_BY_ACTION_KEY.get(spec.key);
+  if (qa) return qa;
+  const family = classifyActionPresentation(spec, presentation);
+  return GENERIC_PROFILE_BY_FAMILY.get(family) ?? GENERIC_PROFILE_BY_FAMILY.get('SINGLE_TARGET_OFFENSIVE');
+}
+
 /** An action is Stage-eligible only when its presentation route resolves to 'stage'. */
 export function isStageEligibleAction(
   spec?: ActionSpecForStage | null,

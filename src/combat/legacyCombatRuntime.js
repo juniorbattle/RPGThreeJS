@@ -32,7 +32,7 @@ import { installUnitMotionWorkbench } from './UnitMotionWorkbench';
 import { COMBAT_RENDER_LAYERS } from './combatRenderLayers';
 import { resolveBossIntentVisualState } from './bossIntentPresentation';
 import { CombatStage } from './stage/CombatStage';
-import { resolveCombatStageProfileUniversal, getStageProfileInfo } from './stage/combatStageProfiles';
+import { resolveCombatStageProfileUniversal, getStageProfileInfo, forceResolveCombatStageProfile } from './stage/combatStageProfiles';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
@@ -1937,7 +1937,7 @@ let stageVigEl=null, stageTitleEl=null;
 function buildStageOverlay(){ stageVigEl=document.createElement('div'); stageVigEl.id='stagevig'; document.body.appendChild(stageVigEl);
   stageTitleEl=document.createElement('div'); stageTitleEl.id='stagetitle'; stageTitleEl.innerHTML='<b></b><small></small>'; document.body.appendChild(stageTitleEl); }
 function stageFrame(){ }
-async function combatStageEnter(att,targets,spec){ const presentation=getSkillPresentation(spec); const stageProfile=resolveCombatStageProfileUniversal(spec,presentation); if(!stageProfile) return;
+async function combatStageEnter(att,targets,spec,opts){ const presentation=getSkillPresentation(spec); const stageProfile=opts&&opts.forceProfile?opts.forceProfile:resolveCombatStageProfileUniversal(spec,presentation); if(!stageProfile) return;
   hideActionPreview(); G.stage=true; const feel=resolveCombatFeel({motionPreset:getActionMotionPreset(spec),visualTier:getActionVisualTier(spec),boss:Boolean(att.boss&&spec.offensive),reducedGraphics:REDUCED_GRAPHICS}); G._stageLeadOut=feel.stageLeadOut; if(!stageTitleEl)buildStageOverlay();
   const inv=new Set([att]); for(const t of targets)inv.add(t); G._stageFaded=[];
   for(const o of G.units){ if(inv.has(o))continue; o._opSnap={mat:o.mat.opacity,blob:o.blob.material.opacity,vis:o.grp.visible};
@@ -2517,6 +2517,37 @@ function buildLabPlaybackContext(){
       const target=aliveUnits('foe')[0]||aliveUnits('player')[1]||source;
       const cx=target.size>1?bossCenterGX(target):target.gx, cz=target.size>1?bossCenterGZ(target):target.gz;
       return makeActionVfxContext(source,[target],cx,cz,{key:actionKey,ap:1});
+    },
+    buildStageContext:async(actionKey,playVfx)=>{
+      const action=getLabAction(actionKey);
+      if(!action)return false;
+      if(G.busy||G.over)return false;
+      qaPrepareCombat();
+      const isEnemy=action.ownerType==='ENEMY'||action.ownerType==='BOSS';
+      const sourceTeam=isEnemy?'foe':'player';
+      const source=aliveUnits(sourceTeam)[0]||aliveUnits()[0];
+      if(!source)return false;
+      const targetTeam=isEnemy?'player':'foe';
+      const target=aliveUnits(targetTeam)[0]||aliveUnits('player')[1]||source;
+      if(!target)return false;
+      const skill=SKILL_MAP.get(actionKey);
+      const spec={key:actionKey,name:action.displayName,ap:action.apCost??1,type:skill?.type,offensive:skill?.offensive,support:skill?.support,self:skill?.self,radius:skill?.radius,range:skill?.range,mode:skill?.mode,dest:skill?.dest,targetMode:skill?.targetMode,healPercent:skill?.healPercent,flatHeal:skill?.flatHeal,apRestore:skill?.apRestore,cure:skill?.cure,status:skill?.status,shape:skill?.shape,effects:skill?.effects};
+      const presentation=getSkillPresentation(spec);
+      const forceProfile=forceResolveCombatStageProfile(spec,presentation);
+      if(!forceProfile)return false;
+      const cx=target.size>1?bossCenterGX(target):target.gx, cz=target.size>1?bossCenterGZ(target):target.gz;
+      G.busy=true;
+      let stageOpened=false;
+      try{
+        await combatStageEnter(source,[target],spec,{forceProfile});
+        stageOpened=Boolean(G.stage);
+        const context=makeActionVfxContext(source,[target],cx,cz,spec);
+        await playVfx(context);
+      }finally{
+        if(stageOpened)await combatStageExit();
+        G.busy=false;
+      }
+      return true;
     },
   };
 }

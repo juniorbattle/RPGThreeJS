@@ -39,7 +39,6 @@ export type LabGifFilter = 'ALL' | 'HAS_GIF' | 'NO_GIF';
 export type LabAccordionSection =
   | 'action_progress'
   | 'megapack_library'
-  | 'gif_preview'
   | 'playback'
   | 'sources'
   | 'tuning'
@@ -50,12 +49,10 @@ export type LabAccordionSection =
 export const DEFAULT_ACCORDION_OPEN: readonly LabAccordionSection[] = [
   'action_progress',
   'megapack_library',
-  'gif_preview',
 ];
 
 export const ALL_ACCORDION_SECTIONS: readonly LabAccordionSection[] = [
   'action_progress',
-  'gif_preview',
   'megapack_library',
   'playback',
   'sources',
@@ -80,6 +77,21 @@ export interface LabVfxStep {
   anchor?: VfxAnchor;
   /** Production step orientation/direction. */
   orientation?: VfxOrientation;
+}
+
+/**
+ * V1D.4.2: A visual spritesheet step derived from a preset's step list.
+ * Only `spriteSheet` type steps appear — technical steps (screenShake, hitStop,
+ * screenFlash, etc.) are excluded from the artistic VFX selection workflow.
+ *
+ * `visualIndex` is UI-only (0-based ordinal among spriteSheet steps).
+ * `stepIndex` is the real underlying preset step index — authoritative for
+ * QA state, validation, and persisted configuration.
+ */
+export interface VisualSpriteSheetStep {
+  visualIndex: number;
+  stepIndex: number;
+  spriteSheetId: string;
 }
 
 export interface LabPresentationOverride {
@@ -165,6 +177,8 @@ export interface LabState {
   accordionState?: Record<string, boolean>;
   /** R2C-LAB V1D: GIF preview filter. */
   gifFilter?: LabGifFilter;
+  /** R2C-LAB V1D.4: catalogue display mode (GRID or COMPACT). UI-only, not in validated JSON. */
+  catalogueViewMode?: 'GRID' | 'COMPACT';
 }
 
 export interface LabSnapshotStep {
@@ -703,6 +717,7 @@ export function createDefaultLabState(): LabState {
     previewCandidateId: undefined,
     accordionState,
     gifFilter: 'ALL',
+    catalogueViewMode: 'GRID',
   };
 }
 
@@ -774,6 +789,54 @@ export function getSelectedStep(state: LabState, actionKey: string): number {
 
 export function setSelectedStep(state: LabState, actionKey: string, stepIndex: number): LabState {
   return { ...state, selectedStepByAction: { ...state.selectedStepByAction, [actionKey]: stepIndex } };
+}
+
+// ============================================================ V1D.4.2 Visual SpriteSheet Steps
+
+/**
+ * Derives the ordered list of visual spritesheet steps from a LabAction's preset.
+ * Only `spriteSheet` type steps are included — technical steps (screenShake,
+ * hitStop, screenFlash, etc.) are excluded from the artistic VFX workflow.
+ *
+ * Preserves the real underlying `stepIndex` for each visual step.
+ * `visualIndex` is UI-only (0-based ordinal among spriteSheet steps).
+ */
+export function getVisualSpriteSheetSteps(action: LabAction): VisualSpriteSheetStep[] {
+  const result: VisualSpriteSheetStep[] = [];
+  let visualIndex = 0;
+  for (const step of action.vfxSteps) {
+    if (step.stepType === 'spriteSheet' && step.spriteSheetId) {
+      result.push({ visualIndex, stepIndex: step.stepIndex, spriteSheetId: step.spriteSheetId });
+      visualIndex++;
+    }
+  }
+  return result;
+}
+
+/**
+ * Returns the count of visual spritesheet steps for an action.
+ */
+export function getVisualSpriteSheetCount(action: LabAction): number {
+  return getVisualSpriteSheetSteps(action).length;
+}
+
+/**
+ * Returns the real stepIndex for the currently selected visual spritesheet.
+ *
+ * If the current selectedStep points to a spriteSheet step, returns it directly.
+ * If it points to a technical step (or is out of range), auto-corrects to the
+ * first spriteSheet step. Returns 0 if there are no spriteSheet steps.
+ *
+ * Does NOT mutate state — callers should call setSelectedStep if correction
+ * is needed.
+ */
+export function getSelectedVisualStepIndex(state: LabState, action: LabAction): number {
+  const visualSteps = getVisualSpriteSheetSteps(action);
+  if (visualSteps.length === 0) return 0;
+  const currentStep = getSelectedStep(state, action.actionKey);
+  const match = visualSteps.find((vs) => vs.stepIndex === currentStep);
+  if (match) return match.stepIndex;
+  return visualSteps[0]!.stepIndex;
 }
 
 export function getQaStatus(state: LabState, action: LabAction, stepIndex: number): 'SAME_AS_PRODUCTION' | 'QA_MODIFIED' | 'UNRESOLVED' | 'NO_VFX' {
@@ -1005,6 +1068,9 @@ export function getValidationStepStatus(state: LabState, action: LabAction, step
   const step = action.vfxSteps[stepIndex];
   if (!step) return 'NO_VFX';
   if (action.sourceStatus === 'NO_VFX') return 'NO_VFX';
+  // V1D.4.2: Technical steps (screenShake, hitStop, etc.) are not artistically
+  // configurable and do NOT participate in visual VFX validation.
+  if (step.stepType !== 'spriteSheet') return 'NO_VFX';
 
   const validated = getValidatedConfig(state, action.actionKey, stepIndex);
   const qaModified = isQaStepModified(state, action, stepIndex);
@@ -1040,13 +1106,19 @@ export function getValidationStepStatus(state: LabState, action: LabAction, step
 export function getValidationActionStatus(state: LabState, action: LabAction): LabValidationActionStatus {
   if (action.vfxSteps.length === 0 || action.sourceStatus === 'NO_VFX') return 'NO_VFX';
 
+  // V1D.4.2: Only visual spriteSheet steps participate in artistic validation.
+  // Technical steps (screenShake, hitStop, etc.) do NOT count toward the
+  // validation denominator.
+  const visualSteps = getVisualSpriteSheetSteps(action);
+  if (visualSteps.length === 0) return 'NO_VFX';
+
   let validatedCount = 0;
   let modifiedAfterCount = 0;
   let configuredCount = 0;
-  const totalSteps = action.vfxSteps.length;
+  const totalSteps = visualSteps.length;
 
-  for (const step of action.vfxSteps) {
-    const status = getValidationStepStatus(state, action, step.stepIndex);
+  for (const vs of visualSteps) {
+    const status = getValidationStepStatus(state, action, vs.stepIndex);
     if (status === 'VALIDATED') validatedCount++;
     if (status === 'VALIDATED_BUT_MODIFIED') { modifiedAfterCount++; validatedCount++; }
     if (status === 'QA_MODIFIED' || status === 'VALIDATED_BUT_MODIFIED') configuredCount++;
@@ -1104,9 +1176,18 @@ export function getValidationProgress(state: LabState): LabValidationProgress {
     }
     if (status === 'MODIFIED_AFTER_VALIDATION') modifiedAfterValidation++;
 
-    // Check for unresolved source
-    const qaStatus = getQaStatus(state, action, 0);
-    if (qaStatus === 'UNRESOLVED') {
+    // V1D.4.2: Check for unresolved source only on visual spriteSheet steps.
+    // Technical steps (screenShake, hitStop, etc.) do NOT count as unresolved sources.
+    const visualSteps = getVisualSpriteSheetSteps(action);
+    let hasUnresolved = false;
+    for (const vs of visualSteps) {
+      const qaStatus = getQaStatus(state, action, vs.stepIndex);
+      if (qaStatus === 'UNRESOLVED') {
+        hasUnresolved = true;
+        break;
+      }
+    }
+    if (hasUnresolved) {
       unresolvedActions++;
       unresolvedActionKeys.push(action.actionKey);
     }
@@ -1132,11 +1213,22 @@ export function getValidationProgress(state: LabState): LabValidationProgress {
 /**
  * Finds the next action requiring validation, searching forward from currentActionKey.
  * Wraps once. Returns null if all actions are validated.
+ *
+ * V1D.4.2: Also returns the stepIndex of the first unvalidated visual spriteSheet
+ * step within that action, so the UI can auto-navigate to it.
  */
-export function findNextToValidate(state: LabState, currentActionKey: string): string | null {
+export function findNextToValidate(
+  state: LabState,
+  currentActionKey: string,
+): { actionKey: string; stepIndex: number } | null {
   const sorted = [..._allActions].sort((a, b) => a.actionKey.localeCompare(b.actionKey));
   const currentIdx = sorted.findIndex((a) => a.actionKey === currentActionKey);
-  if (currentIdx === -1) return sorted.length > 0 ? sorted[0]!.actionKey : null;
+  if (currentIdx === -1) {
+    if (sorted.length === 0) return null;
+    const firstAction = sorted[0]!;
+    const firstStep = findFirstUnvalidatedVisualStep(state, firstAction);
+    return firstStep !== null ? { actionKey: firstAction.actionKey, stepIndex: firstStep } : null;
+  }
 
   // Search forward from currentIdx+1, then wrap to 0..currentIdx
   for (let i = 1; i <= sorted.length; i++) {
@@ -1146,7 +1238,23 @@ export function findNextToValidate(state: LabState, currentActionKey: string): s
     if (!action) continue;
     const status = getValidationActionStatus(state, action);
     if (status !== 'VALIDATED' && status !== 'NO_VFX') {
-      return action.actionKey;
+      const stepIdx = findFirstUnvalidatedVisualStep(state, action);
+      return { actionKey: action.actionKey, stepIndex: stepIdx ?? 0 };
+    }
+  }
+  return null;
+}
+
+/**
+ * V1D.4.2: Returns the stepIndex of the first unvalidated visual spriteSheet
+ * step within an action, or null if all are validated.
+ */
+function findFirstUnvalidatedVisualStep(state: LabState, action: LabAction): number | null {
+  const visualSteps = getVisualSpriteSheetSteps(action);
+  for (const vs of visualSteps) {
+    const status = getValidationStepStatus(state, action, vs.stepIndex);
+    if (status !== 'VALIDATED' && status !== 'NO_VFX') {
+      return vs.stepIndex;
     }
   }
   return null;
@@ -1167,10 +1275,15 @@ export function exportValidatedConfig(state: LabState): ValidatedConfigExport {
 
   for (const action of sortedActions) {
     if (action.sourceStatus === 'NO_VFX') continue;
+    // V1D.4.2: Only export visual spriteSheet steps — technical steps are
+    // not artistically configurable and should not appear in validated config.
+    const visualSteps = getVisualSpriteSheetSteps(action);
 
     const steps: ValidatedConfigExport['actions'][string]['steps'] = {};
-    for (const step of action.vfxSteps) {
-      const validated = getValidatedConfig(state, action.actionKey, step.stepIndex);
+    for (const vs of visualSteps) {
+      const step = action.vfxSteps[vs.stepIndex];
+      if (!step) continue;
+      const validated = getValidatedConfig(state, action.actionKey, vs.stepIndex);
       if (!validated) continue;
 
       validatedSteps++;
@@ -1179,7 +1292,7 @@ export function exportValidatedConfig(state: LabState): ValidatedConfigExport {
       const diff = computePresentationDiff(prodPres, validated.presentation);
       const sourceChanged = validated.sourceId !== prodSourceId;
 
-      steps[String(step.stepIndex)] = {
+      steps[String(vs.stepIndex)] = {
         production: {
           sourceId: prodSourceId,
         },
@@ -1404,10 +1517,15 @@ export function exportLabSnapshot(state: LabState): LabSnapshot {
   const sortedActions = [..._allActions].sort((a, b) => a.actionKey.localeCompare(b.actionKey));
   for (const action of sortedActions) {
     const steps: LabSnapshot['actions'][string]['steps'] = {};
-    for (const step of action.vfxSteps) {
-      const qaId = getQaSourceId(state, action.actionKey, step.stepIndex);
-      const qaPres = getQaPresentation(state, action.actionKey, step.stepIndex);
-      const status = getQaStatus(state, action, step.stepIndex);
+    // V1D.4.2: Only include visual spriteSheet steps in the snapshot.
+    // Technical steps are not artistically configurable.
+    const visualSteps = getVisualSpriteSheetSteps(action);
+    for (const vs of visualSteps) {
+      const step = action.vfxSteps[vs.stepIndex];
+      if (!step) continue;
+      const qaId = getQaSourceId(state, action.actionKey, vs.stepIndex);
+      const qaPres = getQaPresentation(state, action.actionKey, vs.stepIndex);
+      const status = getQaStatus(state, action, vs.stepIndex);
       const prodPres = getProductionPresentation(step);
       const stepEntry: LabSnapshotStep = {
         production: {
@@ -1422,7 +1540,7 @@ export function exportLabSnapshot(state: LabState): LabSnapshot {
           presentation: qaPres ?? {},
         };
       }
-      steps[String(step.stepIndex)] = stepEntry;
+      steps[String(vs.stepIndex)] = stepEntry;
     }
     actions[action.actionKey] = {
       ownerType: action.ownerType,
