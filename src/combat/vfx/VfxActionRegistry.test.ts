@@ -46,21 +46,44 @@ describe('VfxActionRegistry — V10G-R2A.6', () => {
     }
   });
 
-  it('every audit row spriteSheetId exists in the sprite sheet registry', () => {
+  it('R2C-C.1: native audit row spriteSheetIds exist in the registry; legacy IDs are unresolved', () => {
     const rows = getActionVfxAuditRows();
+    const LEGACY_SPRITE_SHEET_IDS_LOCAL = new Set<string>([
+      'basic_arrow_hit_small', 'basic_axe_chop_medium', 'basic_bite_snap_small', 'basic_blade_crescent_medium',
+      'basic_body_slam_heavy', 'basic_bolt_hit_small', 'basic_bullet_hit_medium', 'basic_claw_rake_small',
+      'basic_dagger_crosscut_small', 'basic_execution_slash_heavy', 'basic_greatsword_cleave_heavy',
+      'basic_hammer_crush_heavy', 'basic_horn_ram_medium', 'basic_mace_impact_medium', 'basic_shield_bash_medium',
+      'basic_shuriken_cut_small', 'basic_spear_stab_medium', 'basic_staff_strike_small', 'basic_sword_slash_heavy',
+      'basic_sword_slash_small', 'basic_tail_whip_medium', 'basic_titan_crush_heavy',
+      'skill_wind_slash_swirl_medium', 'skill_holy_radiance_burst_heavy', 'skill_barrier_guard_heavy',
+      'skill_barrier_shield_ring_medium', 'skill_void_rune_orb_medium', 'skill_fire_impact_burst_medium',
+      'skill_heal_blessing_bloom_heavy', 'skill_holy_sigil_burst_medium', 'skill_support_leaf_burst_medium',
+      'skill_arcane_vortex_nova_heavy', 'skill_arcane_orbit_burst_medium', 'skill_arcane_sigil_burst_medium',
+      'skill_fire_smoke_explosion_heavy', 'skill_poison_maw_bite_heavy', 'skill_ice_pillar_impact_heavy',
+      'skill_fire_vortex_nova_heavy', 'skill_barrier_nature_guard_medium', 'skill_arcane_slash_burst_medium',
+      'skill_meteor_impact_burst_heavy', 'skill_holy_light_pillar_medium', 'skill_void_singularity_implosion_ultimate',
+      'skill_void_spiral_implosion_medium', 'skill_fire_spark_cluster_medium', 'skill_starburst_impact_medium',
+    ]);
     for (const row of rows) {
       for (const id of row.spriteSheetIds) {
-        expect(VFX_SPRITE_SHEET_IDS).toContain(id);
+        if (LEGACY_SPRITE_SHEET_IDS_LOCAL.has(id)) {
+          // Legacy IDs are retired — no longer in the registry
+          expect(VFX_SPRITE_SHEET_IDS).not.toContain(id);
+        } else {
+          // Native IDs must be in the registry
+          expect(VFX_SPRITE_SHEET_IDS).toContain(id);
+        }
       }
     }
   });
 
-  it('every audit row has runtime filenames matching the registry', () => {
+  it('R2C-C.1: audit row runtime filenames match registry (empty for retired legacy)', () => {
     const rows = getActionVfxAuditRows();
     for (const row of rows) {
       expect(row.runtimeFilenames.length).toBe(row.spriteSheetIds.length);
       for (const filename of row.runtimeFilenames) {
-        expect(filename).toMatch(/\.png$/);
+        // Native sheets have .png filenames; retired legacy sheets return empty string
+        if (filename) expect(filename).toMatch(/\.png$/);
       }
     }
   });
@@ -121,7 +144,9 @@ describe('VfxActionRegistry — V10G-R2A.6', () => {
         expect(chain!.runtimeFilenames.every((filename) => filename.startsWith('r1_'))).toBe(true);
       } else {
         expect(chain!.presetId).toMatch(/^skill_/);
-        expect(chain!.runtimeFilenames.every((filename) => filename.includes('_skill_'))).toBe(true);
+        // R2C-C.1: legacy skill sheets are retired — filenames may be empty
+        const nonEmpty = chain!.runtimeFilenames.filter((f) => f);
+        expect(nonEmpty.every((filename) => filename.includes('_skill_'))).toBe(true);
       }
     }
   });
@@ -133,7 +158,9 @@ describe('VfxActionRegistry — V10G-R2A.6', () => {
       const chain = getActionVfxChain(actionId);
       expect(chain).toBeDefined();
       expect(chain!.presetId).toMatch(/^skill_/);
-      expect(chain!.runtimeFilenames.every((filename) => filename.includes('_skill_'))).toBe(true);
+      // R2C-C.1: legacy skill sheets are retired — filenames may be empty
+      const nonEmpty = chain!.runtimeFilenames.filter((f) => f);
+      expect(nonEmpty.every((filename) => filename.includes('_skill_'))).toBe(true);
     }
   });
 });

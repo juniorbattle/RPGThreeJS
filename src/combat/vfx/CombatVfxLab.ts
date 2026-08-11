@@ -21,6 +21,7 @@ import type { VfxStep, VfxAnchor, VfxOrientation } from './VfxTypes';
 import { resolvePresentationRoute } from '../stage/combatStageProfiles';
 import type { ActionSpecForStage, ActionPresentationRoute } from '../stage/combatStageProfiles';
 import runtimeManifest from '../../../docs/reports/vfx-megapack-r2-selected-runtime-assets.json';
+import { hasGifPreview as candidateHasGifPreview } from './VfxPreviewResolver';
 
 // ============================================================ Types
 
@@ -32,8 +33,37 @@ export type LabCatalogueAvailability = 'READY' | 'AVAILABLE_ON_DEMAND' | 'UNSUPP
 export type LabAcquisitionStatus = 'READY' | 'AVAILABLE_ON_DEMAND' | 'ACQUIRING' | 'ERROR' | 'UNSUPPORTED_NATIVE';
 export type LabCatalogueFormat = '2048_16F' | '4096_64F' | 'OTHER';
 export type LabUsageFilter = 'ALL' | 'USED' | 'UNUSED' | 'CURRENT';
-export type LabAvailabilityFilter = 'ALL' | 'READY' | 'AVAILABLE_ON_DEMAND';
+export type LabAvailabilityFilter = 'ALL' | 'READY' | 'AVAILABLE_ON_DEMAND' | 'UNSUPPORTED_NATIVE';
 export type LabFormatFilter = 'ALL' | '2048_16F' | '4096_64F' | 'OTHER';
+export type LabGifFilter = 'ALL' | 'HAS_GIF' | 'NO_GIF';
+export type LabAccordionSection =
+  | 'action_progress'
+  | 'megapack_library'
+  | 'gif_preview'
+  | 'playback'
+  | 'sources'
+  | 'tuning'
+  | 'validation_notes'
+  | 'resource_debug'
+  | 'catalogue_filters';
+
+export const DEFAULT_ACCORDION_OPEN: readonly LabAccordionSection[] = [
+  'action_progress',
+  'megapack_library',
+  'gif_preview',
+];
+
+export const ALL_ACCORDION_SECTIONS: readonly LabAccordionSection[] = [
+  'action_progress',
+  'gif_preview',
+  'megapack_library',
+  'playback',
+  'sources',
+  'tuning',
+  'validation_notes',
+  'resource_debug',
+  'catalogue_filters',
+];
 
 export interface LabVfxStep {
   stepIndex: number;
@@ -98,6 +128,7 @@ export interface LabCatalogueRecord {
   format: LabCatalogueFormat;
   availability: LabCatalogueAvailability;
   usedBy: string[];
+  hasGifPreview: boolean;
 }
 
 export interface LabCatalogueResult {
@@ -128,6 +159,12 @@ export interface LabState {
   usageFilter: LabUsageFilter;
   cataloguePage: number;
   qaHistory: Record<string, LabQaHistoryEntry[]>;
+  /** R2C-LAB V1D: candidate currently being previewed (NOT assigned to QA). */
+  previewCandidateId?: string;
+  /** R2C-LAB V1D: accordion section open/closed state (UI-only, not in validated JSON). */
+  accordionState?: Record<string, boolean>;
+  /** R2C-LAB V1D: GIF preview filter. */
+  gifFilter?: LabGifFilter;
 }
 
 export interface LabSnapshotStep {
@@ -335,8 +372,10 @@ function resolveSourceStatus(steps: LabVfxStep[]): LabSourceStatus {
   if (steps.length === 0) return 'NO_VFX';
   const hasCartoonCoffee = steps.some((s) => s.assetGeneration === 'megapack-native' && s.sourceCandidateId);
   if (hasCartoonCoffee) return 'CARTOONCOFFEE';
-  const hasLegacy = steps.some((s) => s.assetGeneration === 'legacy' || (s.spriteSheetId && !s.sourceCandidateId));
-  if (hasLegacy) return 'LEGACY';
+  // R2C-C.1: Legacy 1280/5×5/25f assets have been deleted.
+  // Any step with a spriteSheetId but no resolvable definition is UNRESOLVED.
+  const hasUnresolvedSpriteSheet = steps.some((s) => s.spriteSheetId && !s.sourceCandidateId);
+  if (hasUnresolvedSpriteSheet) return 'UNRESOLVED';
   return 'UNRESOLVED';
 }
 
@@ -536,6 +575,7 @@ export function buildCatalogue(inventory: InventoryJson): LabCatalogueRecord[] {
       format,
       availability,
       usedBy: usageMap.get(candidateId) ?? [],
+      hasGifPreview: candidateHasGifPreview(candidateId),
     };
   });
 }
@@ -586,6 +626,7 @@ export function searchCatalogue(
     formatFilter?: LabFormatFilter;
     availabilityFilter?: LabAvailabilityFilter;
     usageFilter?: LabUsageFilter;
+    gifFilter?: LabGifFilter;
     page?: number;
     pageSize?: number;
     currentActionKey?: string;
@@ -595,6 +636,7 @@ export function searchCatalogue(
   const formatFilter = query.formatFilter ?? 'ALL';
   const availabilityFilter = query.availabilityFilter ?? 'ALL';
   const usageFilter = query.usageFilter ?? 'ALL';
+  const gifFilter = query.gifFilter ?? 'ALL';
   const page = Math.max(1, query.page ?? 1);
   const pageSize = query.pageSize ?? LAB_PAGE_SIZE;
   const currentActionKey = query.currentActionKey;
@@ -614,6 +656,12 @@ export function searchCatalogue(
 
   if (availabilityFilter !== 'ALL') {
     filtered = filtered.filter((r) => r.availability === availabilityFilter);
+  }
+
+  if (gifFilter === 'HAS_GIF') {
+    filtered = filtered.filter((r) => r.hasGifPreview);
+  } else if (gifFilter === 'NO_GIF') {
+    filtered = filtered.filter((r) => !r.hasGifPreview);
   }
 
   if (usageFilter === 'USED') {
@@ -636,6 +684,10 @@ export function searchCatalogue(
 // ============================================================ QA State
 
 export function createDefaultLabState(): LabState {
+  const accordionState: Record<string, boolean> = {};
+  for (const sec of ALL_ACCORDION_SECTIONS) {
+    accordionState[sec] = DEFAULT_ACCORDION_OPEN.includes(sec);
+  }
   return {
     selectedStepByAction: {},
     qaSourceByActionStep: {},
@@ -648,6 +700,9 @@ export function createDefaultLabState(): LabState {
     usageFilter: 'ALL',
     cataloguePage: 1,
     qaHistory: {},
+    previewCandidateId: undefined,
+    accordionState,
+    gifFilter: 'ALL',
   };
 }
 
@@ -672,6 +727,45 @@ export function clearQaSourceId(state: LabState, actionKey: string, stepIndex: n
   const newQa = { ...state.qaSourceByActionStep };
   delete newQa[key];
   return { ...state, qaSourceByActionStep: newQa };
+}
+
+// ============================================================ V1D Preview State
+
+export function getPreviewCandidateId(state: LabState): string | undefined {
+  return state.previewCandidateId;
+}
+
+export function setPreviewCandidateId(state: LabState, candidateId: string): LabState {
+  return { ...state, previewCandidateId: candidateId };
+}
+
+export function clearPreviewCandidateId(state: LabState): LabState {
+  return { ...state, previewCandidateId: undefined };
+}
+
+// ============================================================ V1D Accordion State
+
+export function getAccordionOpen(state: LabState, section: LabAccordionSection): boolean {
+  return state.accordionState?.[section] ?? DEFAULT_ACCORDION_OPEN.includes(section);
+}
+
+export function setAccordionOpen(state: LabState, section: LabAccordionSection, open: boolean): LabState {
+  return {
+    ...state,
+    accordionState: { ...state.accordionState, [section]: open },
+  };
+}
+
+export function expandAllAccordions(state: LabState): LabState {
+  const accordionState: Record<string, boolean> = {};
+  for (const sec of ALL_ACCORDION_SECTIONS) accordionState[sec] = true;
+  return { ...state, accordionState };
+}
+
+export function collapseAllAccordions(state: LabState): LabState {
+  const accordionState: Record<string, boolean> = {};
+  for (const sec of ALL_ACCORDION_SECTIONS) accordionState[sec] = false;
+  return { ...state, accordionState };
 }
 
 export function getSelectedStep(state: LabState, actionKey: string): number {

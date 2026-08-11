@@ -367,10 +367,16 @@ describe('VfxResourceManager — Stats', () => {
 
 describe('VfxResourceManager — VfxSystem Integration', () => {
   it('26. production VfxSystem uses manager acquisition', async () => {
-    const sheetId = 'basic_greatsword_cleave_heavy' as VfxSpriteSheetId;
+    const sheetId = 'megapack_fire_slash_spin' as VfxSpriteSheetId;
     const desc = resolveSheetSource(sheetId);
     expect(desc).not.toBeNull();
     expect(desc!.url).toBe(VFX_SPRITE_SHEETS[sheetId].url);
+  });
+
+  it('26b. R2C-C.1: legacy sheet IDs resolve to null (retired)', () => {
+    const sheetId = 'basic_greatsword_cleave_heavy' as VfxSpriteSheetId;
+    const desc = resolveSheetSource(sheetId);
+    expect(desc).toBeNull();
   });
 
   it('27. no second Lab texture cache exists', () => {

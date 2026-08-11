@@ -872,6 +872,10 @@ export class VfxSystem {
   ) {
     if (!step.spriteSheet) return;
     const definition = VFX_SPRITE_SHEETS[step.spriteSheet];
+    if (!definition) {
+      if (import.meta.env?.DEV) console.warn(`[VFX] Unresolved sprite sheet: ${step.spriteSheet} — skipping (legacy asset deleted)`);
+      return;
+    }
     const texture = await loadVfxSpriteSheetTexture(step.spriteSheet);
     if (this.disposed) {
       releaseVfxSpriteSheetTexture(step.spriteSheet, texture);
@@ -994,6 +998,10 @@ export class VfxSystem {
   ) {
     if (!step.spriteSheet) return;
     const definition = VFX_SPRITE_SHEETS[step.spriteSheet];
+    if (!definition) {
+      if (import.meta.env?.DEV) console.warn(`[VFX] Unresolved sprite sheet: ${step.spriteSheet} — skipping (legacy asset deleted)`);
+      return;
+    }
     const texture = await loadVfxSpriteSheetTexture(step.spriteSheet);
     if (this.disposed) {
       releaseVfxSpriteSheetTexture(step.spriteSheet, texture);
@@ -1069,6 +1077,10 @@ export class VfxSystem {
   ) {
     if (!step.spriteSheet) return;
     const definition = VFX_SPRITE_SHEETS[step.spriteSheet];
+    if (!definition) {
+      if (import.meta.env?.DEV) console.warn(`[VFX] Unresolved sprite sheet: ${step.spriteSheet} — skipping (legacy asset deleted)`);
+      return;
+    }
     const texture = await loadVfxSpriteSheetTexture(step.spriteSheet);
     if (this.disposed) {
       releaseVfxSpriteSheetTexture(step.spriteSheet, texture);

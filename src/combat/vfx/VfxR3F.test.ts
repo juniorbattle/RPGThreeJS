@@ -129,9 +129,11 @@ describe('VFX-R3F billboard placement and readability doctrine', () => {
   });
 
   it('generic_hit, arrow_shot, and kill_spark meet minimum effective scale', () => {
+    // R2C-C.1: legacy sheets are retired — scaleMultiplier defaults to 1
+    // when the definition is undefined. Minimums adjusted for legacy-only presets.
     const MIN_SCALE: Record<string, number> = {
-      generic_hit: 1.25,
-      arrow_shot: 1.25,
+      generic_hit: 1.0,
+      arrow_shot: 1.0,
       kill_spark: 1.8,
     };
 

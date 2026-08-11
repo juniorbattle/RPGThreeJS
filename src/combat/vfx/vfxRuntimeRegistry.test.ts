@@ -13,7 +13,8 @@ import {
 import { validateRuntimeRegistryConsistency } from './vfxRuntimeRegistry';
 import type { RuntimeManifest } from './vfxRuntimeRegistry';
 import { configureVfxSpriteSheetPivot } from './VfxSystem';
-import type { VfxStep, VfxSpritePresentationOverride, NativeVfxSpriteSheetId, LegacyVfxSpriteSheetId } from './VfxTypes';
+import type { VfxStep, VfxSpritePresentationOverride, NativeVfxSpriteSheetId, LegacyVfxSpriteSheetId, VfxSpriteSheetId } from './VfxTypes';
+import type { VfxSpriteSheetDefinition } from './VfxSpriteSheets';
 
 const manifest = runtimeManifest as unknown as RuntimeManifest;
 
@@ -30,7 +31,6 @@ function makeStep(overrides?: Partial<VfxStep> & { spritePresentation?: VfxSprit
 
 describe('VFX runtime registry hardening — presentation overrides', () => {
   const nativeDef = VFX_SPRITE_SHEETS.megapack_fire_slash_spin;
-  const legacyDef = VFX_SPRITE_SHEETS.basic_arrow_hit_small;
 
   it('returns definition defaults when no override is present', () => {
     const resolved = resolveVfxSpriteSheetPresentation(nativeDef, makeStep());
@@ -168,15 +168,27 @@ describe('VFX runtime registry hardening — presentation overrides', () => {
     expect(resolved.fadeOut).toBe(nativeDef.presentation.fadeOut);
   });
 
-  it('works correctly with legacy definitions', () => {
-    const resolved = resolveVfxSpriteSheetPresentation(legacyDef, makeStep({
+  it('works correctly with legacy-format definitions (generic engine support preserved)', () => {
+    const legacyFormatDef: VfxSpriteSheetDefinition = {
+      id: 'basic_arrow_hit_small' as VfxSpriteSheetId,
+      url: '/test/legacy_5x5.png',
+      sheetWidthPx: 1280,
+      sheetHeightPx: 1280,
+      rows: 5,
+      cols: 5,
+      frameCount: 25,
+      frameDurationMs: 40,
+      align: 'center',
+      presentation: { scaleMultiplier: 1.14, opacityMultiplier: 1, fadeIn: 0.02, fadeOut: 0.78, layer: 'impact', blending: 'additive' },
+    };
+    const resolved = resolveVfxSpriteSheetPresentation(legacyFormatDef, makeStep({
       spriteSheet: 'basic_arrow_hit_small',
       spritePresentation: { align: 'bottom', scaleMultiplier: 2.0 },
     }));
     expect(resolved.align).toBe('bottom');
     expect(resolved.scaleMultiplier).toBe(2.0);
-    expect(resolved.layer).toBe(legacyDef.presentation.layer);
-    expect(resolved.blending).toBe(legacyDef.presentation.blending);
+    expect(resolved.layer).toBe(legacyFormatDef.presentation.layer);
+    expect(resolved.blending).toBe(legacyFormatDef.presentation.blending);
   });
 });
 
@@ -329,27 +341,21 @@ describe('VFX runtime registry hardening — reserved assets', () => {
   });
 });
 
-describe('VFX runtime registry hardening — legacy 5×5 grid invariants', () => {
-  it('all legacy sheets are 5×5 / 25 frames / 1280px', () => {
+describe('VFX runtime registry hardening — R2C-C.1 legacy retirement', () => {
+  it('legacy sheet IDs are retained as historical reference but NOT in VFX_SPRITE_SHEETS', () => {
     expect(LEGACY_SPRITE_SHEET_IDS.length).toBeGreaterThan(0);
     for (const id of LEGACY_SPRITE_SHEET_IDS) {
-      const def = VFX_SPRITE_SHEETS[id as LegacyVfxSpriteSheetId];
-      expect(def.rows).toBe(5);
-      expect(def.cols).toBe(5);
-      expect(def.frameCount).toBe(25);
-      expect(def.sheetWidthPx).toBe(1280);
-      expect(def.sheetHeightPx).toBe(1280);
-      expect(def.assetGeneration).toBe('legacy');
-      expect(validateVfxSpriteSheetDefinition(def)).toEqual([]);
+      expect(VFX_SPRITE_SHEETS[id as LegacyVfxSpriteSheetId]).toBeUndefined();
     }
   });
 
-  it('legacy sheets have no sourceCandidateId or nativeCell dimensions', () => {
-    for (const id of LEGACY_SPRITE_SHEET_IDS) {
-      const def = VFX_SPRITE_SHEETS[id as LegacyVfxSpriteSheetId];
-      expect(def.sourceCandidateId).toBeUndefined();
-      expect(def.nativeCellWidthPx).toBeUndefined();
-      expect(def.nativeCellHeightPx).toBeUndefined();
+  it('VFX_SPRITE_SHEETS contains only native megapack definitions', () => {
+    const allIds = Object.keys(VFX_SPRITE_SHEETS);
+    expect(allIds.length).toBe(NATIVE_SPRITE_SHEET_IDS.length);
+    for (const id of allIds) {
+      const def = VFX_SPRITE_SHEETS[id as VfxSpriteSheetId];
+      expect(def).toBeDefined();
+      expect(def.assetGeneration).toBe('megapack-native');
     }
   });
 });
@@ -444,12 +450,23 @@ describe('VFX runtime registry hardening — R3F bottom pivot invariant', () => 
 });
 
 describe('VFX runtime registry hardening — R3G half-texel UV correctness', () => {
-  it('legacy 1280px sheets use 0.5/1280 inset on all frames', () => {
-    const def = VFX_SPRITE_SHEETS.basic_arrow_hit_small;
+  it('generic 1280px 5x5 grid UV math remains correct (engine support preserved)', () => {
+    const legacyGrid: VfxSpriteSheetDefinition = {
+      id: 'basic_arrow_hit_small' as VfxSpriteSheetId,
+      url: '/test/legacy_5x5.png',
+      sheetWidthPx: 1280,
+      sheetHeightPx: 1280,
+      rows: 5,
+      cols: 5,
+      frameCount: 25,
+      frameDurationMs: 40,
+      align: 'center',
+      presentation: { scaleMultiplier: 1, opacityMultiplier: 1, fadeIn: 0, fadeOut: 0.8, layer: 'impact', blending: 'additive' },
+    };
     const inset = 0.5 / 1280;
     const cell = 0.2;
     for (let frame = 0; frame < 25; frame++) {
-      const uv = getVfxSpriteSheetFrameUv(def, frame);
+      const uv = getVfxSpriteSheetFrameUv(legacyGrid, frame);
       expect(uv.repeatX).toBeCloseTo(cell - inset * 2);
       expect(uv.repeatY).toBeCloseTo(cell - inset * 2);
     }

@@ -1,12 +1,11 @@
 /**
- * R2C-LAB V1C — Combat VFX Presentation Lab Workbench UI.
+ * R2C-LAB V1D — Combat VFX Presentation Lab Workbench UI.
  *
  * Permanent dev-only panel for VFX designers. Installed only when
  * `vfxlab=1` is present in the combat iframe URL.
  *
- * V1C adds: validation snapshots, PLAY VALIDATED, action-level status,
- * global progress, NEXT TO VALIDATE navigation, visual notes, and
- * deterministic final validated JSON export.
+ * V1D adds: full megapack library, GIF preview preselection, accordion UI,
+ * preview/assignment separation, and source identity display.
  */
 
 import inventoryJson from '../../../docs/reports/vfx-megapack-r1-2-4-corrected-inventory.json';
@@ -50,6 +49,15 @@ import {
   findNextToValidate,
   exportValidatedConfig,
   serializeValidatedConfig,
+  getPreviewCandidateId,
+  setPreviewCandidateId,
+  clearPreviewCandidateId,
+  getAccordionOpen,
+  setAccordionOpen,
+  expandAllAccordions,
+  collapseAllAccordions,
+  DEFAULT_ACCORDION_OPEN,
+  ALL_ACCORDION_SECTIONS,
 } from './CombatVfxLab';
 import type {
   LabAction,
@@ -58,13 +66,16 @@ import type {
   LabFormatFilter,
   LabAvailabilityFilter,
   LabUsageFilter,
+  LabGifFilter,
   LabCatalogueResult,
   LabPresentationOverride,
   LabValidationStepStatus,
   LabValidationActionStatus,
   LabValidationProgress,
+  LabAccordionSection,
   ValidatedStepConfiguration,
   ValidatedConfigExport,
+  InventoryJsonRecord,
 } from './CombatVfxLab';
 import type { VfxAnchor, VfxOrientation } from './VfxTypes';
 import type { VfxResourceStats } from './VfxResourceManager';
@@ -72,6 +83,7 @@ import { acquireCandidate } from './LabAcquisition';
 import type { AcquireResult } from './LabAcquisition';
 import type { LabPlaybackContext, LabPlaybackSnapshot } from './LabPlayback';
 import { playProduction, playQaOverride, playValidated, replay, getLastPlaybackSnapshot } from './LabPlayback';
+import { resolvePreview, isValidCandidateId } from './VfxPreviewResolver';
 
 const STYLE_ID = 'r2c-vfx-lab-style';
 const ROOT_ID = 'r2c-vfx-lab';
@@ -106,63 +118,69 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
   title.textContent = 'Combat VFX Lab';
   const subtitle = document.createElement('span');
   subtitle.className = 'lab-subtitle';
-  subtitle.textContent = `V1C — ${actionCounts.total} actions · ${counts.total} catalogue records · DEV ONLY`;
+  subtitle.textContent = `V1D — ${actionCounts.total} actions · ${counts.total} catalogue records · DEV ONLY`;
   root.append(title, subtitle);
 
-  const actionSection = document.createElement('div');
-  actionSection.className = 'lab-section';
+  // Accordion controls
+  const accordionControls = document.createElement('div');
+  accordionControls.className = 'lab-accordion-controls';
+  const expandAllBtn = document.createElement('button');
+  expandAllBtn.className = 'lab-accordion-btn';
+  expandAllBtn.textContent = 'EXPAND ALL';
+  expandAllBtn.addEventListener('click', () => {
+    state = expandAllAccordions(state);
+    saveLabStateToStorage(localStorage, state);
+    render();
+  });
+  const collapseAllBtn = document.createElement('button');
+  collapseAllBtn.className = 'lab-accordion-btn';
+  collapseAllBtn.textContent = 'COLLAPSE ALL';
+  collapseAllBtn.addEventListener('click', () => {
+    state = collapseAllAccordions(state);
+    saveLabStateToStorage(localStorage, state);
+    render();
+  });
+  accordionControls.append(expandAllBtn, collapseAllBtn);
+  root.appendChild(accordionControls);
+
+  // Section containers — each wrapped in accordion
+  const actionSection = createAccordionSection('action_progress', 'ACTION / PROGRESS');
+  root.appendChild(actionSection.wrapper);
+  const stepSection = actionSection.body;
+
+  // Add action select to action section body
   const actionLabel = document.createElement('label');
   actionLabel.textContent = 'ACTION';
   const actionSelect = document.createElement('select');
   populateActionSelect(actionSelect);
   actionSelect.value = currentActionKey;
   actionLabel.appendChild(actionSelect);
-  actionSection.appendChild(actionLabel);
-  root.appendChild(actionSection);
+  stepSection.appendChild(actionLabel);
 
-  const stepSection = document.createElement('div');
-  stepSection.className = 'lab-section';
-  root.appendChild(stepSection);
+  // Progress container inside action section
+  const progressContainer = document.createElement('div');
+  stepSection.appendChild(progressContainer);
 
-  const prodSection = document.createElement('div');
-  prodSection.className = 'lab-section';
-  root.appendChild(prodSection);
+  const playbackSection = createAccordionSection('playback', 'PLAYBACK');
+  root.appendChild(playbackSection.wrapper);
 
-  const qaSection = document.createElement('div');
-  qaSection.className = 'lab-section';
-  root.appendChild(qaSection);
+  const gifPreviewSection = createAccordionSection('gif_preview', 'GIF PREVIEW');
+  root.appendChild(gifPreviewSection.wrapper);
 
-  const playbackSection = document.createElement('div');
-  playbackSection.className = 'lab-section';
-  root.appendChild(playbackSection);
+  const librarySection = createAccordionSection('megapack_library', 'CARTOONCOFFEE CATALOGUE');
+  root.appendChild(librarySection.wrapper);
 
-  const validationSection = document.createElement('div');
-  validationSection.className = 'lab-section';
-  root.appendChild(validationSection);
+  const sourcesSection = createAccordionSection('sources', 'SOURCES');
+  root.appendChild(sourcesSection.wrapper);
 
-  const tuningSection = document.createElement('div');
-  tuningSection.className = 'lab-section';
-  root.appendChild(tuningSection);
+  const tuningSection = createAccordionSection('tuning', 'TUNING');
+  root.appendChild(tuningSection.wrapper);
 
-  const notesSection = document.createElement('div');
-  notesSection.className = 'lab-section';
-  root.appendChild(notesSection);
+  const validationSection = createAccordionSection('validation_notes', 'VALIDATION / NOTES');
+  root.appendChild(validationSection.wrapper);
 
-  const progressSection = document.createElement('div');
-  progressSection.className = 'lab-section';
-  root.appendChild(progressSection);
-
-  const statsSection = document.createElement('div');
-  statsSection.className = 'lab-section';
-  root.appendChild(statsSection);
-
-  const catalogueSection = document.createElement('div');
-  catalogueSection.className = 'lab-section';
-  root.appendChild(catalogueSection);
-
-  const historySection = document.createElement('div');
-  historySection.className = 'lab-section';
-  root.appendChild(historySection);
+  const statsSection = createAccordionSection('resource_debug', 'RESOURCE MANAGER / DEBUG');
+  root.appendChild(statsSection.wrapper);
 
   const exportSection = document.createElement('div');
   exportSection.className = 'lab-section';
@@ -184,6 +202,44 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
   root.appendChild(statusLine);
 
   document.body.appendChild(root);
+
+  function createAccordionSection(section: LabAccordionSection, title: string): { wrapper: HTMLElement; body: HTMLElement } {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'lab-accordion';
+    wrapper.dataset.section = section;
+
+    const header = document.createElement('div');
+    header.className = 'lab-accordion-header';
+    header.textContent = title;
+
+    const toggle = document.createElement('span');
+    toggle.className = 'lab-accordion-toggle';
+    header.appendChild(toggle);
+
+    const body = document.createElement('div');
+    body.className = 'lab-accordion-body';
+
+    wrapper.append(header, body);
+
+    header.addEventListener('click', () => {
+      const isOpen = getAccordionOpen(state, section);
+      state = setAccordionOpen(state, section, !isOpen);
+      saveLabStateToStorage(localStorage, state);
+      updateAccordionVisual(wrapper, section, toggle, body);
+    });
+
+    updateAccordionVisual(wrapper, section, toggle, body);
+
+    return { wrapper, body };
+  }
+
+  function updateAccordionVisual(wrapper: HTMLElement, section: LabAccordionSection, toggle: HTMLElement, body: HTMLElement): void {
+    const isOpen = getAccordionOpen(state, section);
+    wrapper.classList.toggle('lab-accordion-open', isOpen);
+    wrapper.classList.toggle('lab-accordion-closed', !isOpen);
+    toggle.textContent = isOpen ? '▼' : '▶';
+    body.style.display = isOpen ? '' : 'none';
+  }
 
   function populateActionSelect(select: HTMLSelectElement): void {
     const heroGroups = getHeroGroups();
@@ -218,38 +274,38 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
 
   function render(): void {
     const action = getCurrentAction();
+    // Clear all section bodies
+    stepSection.querySelectorAll('.lab-step-selector,.lab-prod-info,.lab-qa-info,.lab-source-ids,.lab-history-list').forEach(el => el.remove());
+    sourcesSection.body.innerHTML = '';
+    playbackSection.body.innerHTML = '';
+    validationSection.body.innerHTML = '';
+    tuningSection.body.innerHTML = '';
+    statsSection.body.innerHTML = '';
+    progressContainer.innerHTML = '';
+
     if (!action) {
-      stepSection.innerHTML = '';
-      prodSection.innerHTML = '';
-      qaSection.innerHTML = '';
-      playbackSection.innerHTML = '';
-      validationSection.innerHTML = '';
-      tuningSection.innerHTML = '';
-      notesSection.innerHTML = '';
-      progressSection.innerHTML = '';
-      statsSection.innerHTML = '';
-      historySection.innerHTML = '';
       renderCatalogue();
+      renderGifPreview();
       return;
     }
 
     renderStepSelector(action);
-    renderProduction(action);
-    renderQaSource(action);
+    renderSourceIdentities(action);
     renderPlayback(action);
-    renderValidation(action);
+    renderValidationAndNotes(action);
     renderTuning(action);
-    renderNotes(action);
     renderProgress();
     renderStats();
     renderHistory(action);
     renderCatalogue();
+    renderGifPreview();
   }
 
   function renderStepSelector(action: LabAction): void {
-    stepSection.innerHTML = '';
+    stepSection.querySelectorAll('.lab-step-selector').forEach(el => el.remove());
     if (action.vfxSteps.length <= 1) return;
     const label = document.createElement('label');
+    label.className = 'lab-step-selector';
     label.textContent = 'VFX STEP';
     const select = document.createElement('select');
     const currentStep = getSelectedStep(state, action.actionKey);
@@ -270,80 +326,48 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     stepSection.appendChild(label);
   }
 
-  function renderProduction(action: LabAction): void {
-    prodSection.innerHTML = '';
-    const header = document.createElement('div');
-    header.className = 'lab-prod-header';
-    header.textContent = 'PRODUCTION STATE';
-    prodSection.appendChild(header);
-
-    const info = document.createElement('div');
-    info.className = 'lab-prod-info';
-
+  function renderSourceIdentities(action: LabAction): void {
+    const body = sourcesSection.body;
     const stepIdx = getSelectedStep(state, action.actionKey);
     const step = action.vfxSteps[stepIdx];
-
-    const routeDiv = document.createElement('div');
-    routeDiv.innerHTML = `<b>Route:</b> ${action.route}${action.routeReason ? ` (${action.routeReason})` : ''}`;
-    info.appendChild(routeDiv);
-
-    const presetDiv = document.createElement('div');
-    presetDiv.innerHTML = `<b>Preset:</b> ${action.currentPresetId ?? 'none'}`;
-    info.appendChild(presetDiv);
-
-    const statusDiv = document.createElement('div');
-    statusDiv.innerHTML = `<b>Source status:</b> ${action.sourceStatus}`;
-    info.appendChild(statusDiv);
-
-    if (step) {
-      const stepDiv = document.createElement('div');
-      stepDiv.className = 'lab-step-info';
-      stepDiv.innerHTML = `<b>Step ${step.stepIndex}:</b> ${step.stepType}`;
-      if (step.spriteSheetId) {
-        stepDiv.innerHTML += `<br><b>Sprite sheet:</b> ${step.spriteSheetId}`;
-      }
-      if (step.sourceCandidateId) {
-        stepDiv.innerHTML += `<br><b>Source candidate:</b> ${step.sourceCandidateId}`;
-      }
-      if (step.sourceFilename) {
-        stepDiv.innerHTML += `<br><b>Source file:</b> ${step.sourceFilename}`;
-      }
-      if (step.assetGeneration) {
-        stepDiv.innerHTML += `<br><b>Generation:</b> ${step.assetGeneration}`;
-      }
-      info.appendChild(stepDiv);
-    } else {
-      const noVfx = document.createElement('div');
-      noVfx.textContent = 'No VFX steps for this action.';
-      noVfx.className = 'lab-no-vfx';
-      info.appendChild(noVfx);
-    }
-
-    prodSection.appendChild(info);
-  }
-
-  function renderQaSource(action: LabAction): void {
-    qaSection.innerHTML = '';
-    const header = document.createElement('div');
-    header.className = 'lab-qa-header';
-    header.textContent = 'QA WORKING STATE';
-    qaSection.appendChild(header);
-
-    const stepIdx = getSelectedStep(state, action.actionKey);
     const qaId = getQaSourceId(state, action.actionKey, stepIdx);
     const qaStatus = getQaStatus(state, action, stepIdx);
+    const validated = getValidatedConfig(state, action.actionKey, stepIdx);
+    const previewId = getPreviewCandidateId(state);
+    const prodSource = step?.sourceCandidateId ?? step?.spriteSheetId ?? 'none';
+
+    const header = document.createElement('div');
+    header.className = 'lab-prod-header';
+    header.textContent = 'SOURCE IDENTITIES';
+    body.appendChild(header);
 
     const info = document.createElement('div');
-    info.className = 'lab-qa-info';
-    info.innerHTML = `<b>QA status:</b> ${qaStatus}`;
-    if (qaId) {
-      info.innerHTML += `<br><b>QA source:</b> ${qaId}`;
-    } else if (qaStatus === 'UNRESOLVED') {
-      info.innerHTML += `<br><b>QA source:</b> (unresolved — no accepted source)`;
-    } else {
-      info.innerHTML += `<br><b>QA source:</b> (not set — same as production)`;
+    info.className = 'lab-source-ids';
+    info.innerHTML = `
+      <div><b>PRODUCTION:</b> ${prodSource}</div>
+      <div><b>QA:</b> ${qaId ?? '(not set — same as production)'}</div>
+      <div><b>VALIDATED:</b> ${validated?.sourceId ?? '—'}</div>
+      <div><b>PREVIEWING:</b> ${previewId ?? '—'}</div>
+    `;
+    body.appendChild(info);
+
+    // Production details
+    const prodDetail = document.createElement('div');
+    prodDetail.className = 'lab-prod-info';
+    prodDetail.innerHTML = `<b>Route:</b> ${action.route}${action.routeReason ? ` (${action.routeReason})` : ''}<br><b>Preset:</b> ${action.currentPresetId ?? 'none'}<br><b>Source status:</b> ${action.sourceStatus}`;
+    if (step) {
+      prodDetail.innerHTML += `<br><b>Step ${step.stepIndex}:</b> ${step.stepType}`;
+      if (step.spriteSheetId) prodDetail.innerHTML += `<br><b>Sprite sheet:</b> ${step.spriteSheetId}`;
+      if (step.sourceCandidateId) prodDetail.innerHTML += `<br><b>Source candidate:</b> ${step.sourceCandidateId}`;
+      if (step.sourceFilename) prodDetail.innerHTML += `<br><b>Source file:</b> ${step.sourceFilename}`;
     }
-    qaSection.appendChild(info);
+    body.appendChild(prodDetail);
+
+    // QA details
+    const qaDetail = document.createElement('div');
+    qaDetail.className = 'lab-qa-info';
+    qaDetail.innerHTML = `<b>QA status:</b> ${qaStatus}`;
+    body.appendChild(qaDetail);
 
     if (qaId) {
       const clearBtn = document.createElement('button');
@@ -354,21 +378,22 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
         saveLabStateToStorage(localStorage, state);
         render();
       });
-      qaSection.appendChild(clearBtn);
+      body.appendChild(clearBtn);
     }
   }
 
   function renderPlayback(action: LabAction): void {
-    playbackSection.innerHTML = '';
+    const body = playbackSection.body;
+    body.innerHTML = '';
     const header = document.createElement('div');
     header.className = 'lab-playback-header';
     header.textContent = 'PLAYBACK';
-    playbackSection.appendChild(header);
+    body.appendChild(header);
 
     const routeDiv = document.createElement('div');
     routeDiv.className = 'lab-route-info';
     routeDiv.innerHTML = `<b>ROUTE:</b> ${action.route} · ${action.routeReason ?? 'automatic'}`;
-    playbackSection.appendChild(routeDiv);
+    body.appendChild(routeDiv);
 
     const btnRow = document.createElement('div');
     btnRow.className = 'lab-btn-row';
@@ -429,18 +454,19 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     });
     btnRow.appendChild(replayBtn);
 
-    playbackSection.appendChild(btnRow);
+    body.appendChild(btnRow);
 
     if (lastPlaybackSnapshot) {
       const snapDiv = document.createElement('div');
       snapDiv.className = 'lab-snapshot-info';
       snapDiv.innerHTML = `<b>Last:</b> ${lastPlaybackSnapshot.mode} · ${lastPlaybackSnapshot.actionKey} step ${lastPlaybackSnapshot.stepIndex} · src: ${lastPlaybackSnapshot.source}`;
-      playbackSection.appendChild(snapDiv);
+      body.appendChild(snapDiv);
     }
   }
 
-  function renderValidation(action: LabAction): void {
-    validationSection.innerHTML = '';
+  function renderValidationAndNotes(action: LabAction): void {
+    const body = validationSection.body;
+    body.innerHTML = '';
     const stepIdx = getSelectedStep(state, action.actionKey);
     const step = action.vfxSteps[stepIdx];
     if (!step) return;
@@ -448,7 +474,7 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     const header = document.createElement('div');
     header.className = 'lab-validation-header';
     header.textContent = 'VALIDATION';
-    validationSection.appendChild(header);
+    body.appendChild(header);
 
     const stepStatus = getValidationStepStatus(state, action, stepIdx);
     const actionStatus = getValidationActionStatus(state, action);
@@ -456,7 +482,7 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     const statusDiv = document.createElement('div');
     statusDiv.className = 'lab-validation-status';
     statusDiv.innerHTML = `<b>Step:</b> ${stepStatus} · <b>Action:</b> ${actionStatus}`;
-    validationSection.appendChild(statusDiv);
+    body.appendChild(statusDiv);
 
     // Source display: PRODUCTION / QA WORKING / VALIDATED
     const validated = getValidatedConfig(state, action.actionKey, stepIdx);
@@ -470,7 +496,7 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       <div><b>QA WORKING SOURCE:</b> ${qaSource ?? prodSource}</div>
       <div><b>VALIDATED SOURCE:</b> ${validated?.sourceId ?? '—'}</div>
     `;
-    validationSection.appendChild(sourceDiv);
+    body.appendChild(sourceDiv);
 
     // Validation buttons
     const btnRow = document.createElement('div');
@@ -516,7 +542,7 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       btnRow.appendChild(clearValBtn);
     }
 
-    validationSection.appendChild(btnRow);
+    body.appendChild(btnRow);
 
     // NEXT TO VALIDATE
     const nextBtn = document.createElement('button');
@@ -535,19 +561,13 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
         statusLine.textContent = 'All actions validated!';
       }
     });
-    validationSection.appendChild(nextBtn);
-  }
+    body.appendChild(nextBtn);
 
-  function renderNotes(action: LabAction): void {
-    notesSection.innerHTML = '';
-    const stepIdx = getSelectedStep(state, action.actionKey);
-    const step = action.vfxSteps[stepIdx];
-    if (!step) return;
-
-    const header = document.createElement('div');
-    header.className = 'lab-notes-header';
-    header.textContent = 'VISUAL NOTES';
-    notesSection.appendChild(header);
+    // Notes section (merged into validation)
+    const notesHeader = document.createElement('div');
+    notesHeader.className = 'lab-notes-header';
+    notesHeader.textContent = 'VISUAL NOTES';
+    body.appendChild(notesHeader);
 
     const textarea = document.createElement('textarea');
     textarea.className = 'lab-notes-input';
@@ -559,15 +579,15 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       saveLabStateToStorage(localStorage, state);
       statusLine.textContent = 'Notes saved';
     });
-    notesSection.appendChild(textarea);
+    body.appendChild(textarea);
   }
 
   function renderProgress(): void {
-    progressSection.innerHTML = '';
+    progressContainer.innerHTML = '';
     const header = document.createElement('div');
     header.className = 'lab-progress-header';
     header.textContent = 'VALIDATION PROGRESS';
-    progressSection.appendChild(header);
+    progressContainer.appendChild(header);
 
     const progress = getValidationProgress(state);
     const info = document.createElement('div');
@@ -585,29 +605,30 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       <div>Modified after validation: <b>${progress.modifiedAfterValidation}</b></div>
       <div>Unresolved source: <b>${progress.unresolvedActions}</b></div>
     `;
-    progressSection.appendChild(info);
+    progressContainer.appendChild(info);
 
     if (progress.unresolvedActionKeys.length > 0) {
       const unresolvedDiv = document.createElement('div');
       unresolvedDiv.className = 'lab-progress-unresolved';
       unresolvedDiv.innerHTML = `<b>Unresolved:</b> ${progress.unresolvedActionKeys.join(', ')}`;
-      progressSection.appendChild(unresolvedDiv);
+      progressContainer.appendChild(unresolvedDiv);
     }
   }
 
   function renderTuning(action: LabAction): void {
-    tuningSection.innerHTML = '';
+    const body = tuningSection.body;
+    body.innerHTML = '';
     const stepIdx = getSelectedStep(state, action.actionKey);
     const step = action.vfxSteps[stepIdx];
     if (!step) {
-      tuningSection.innerHTML = '<div class="lab-no-vfx">No VFX step to tune.</div>';
+      body.innerHTML = '<div class="lab-no-vfx">No VFX step to tune.</div>';
       return;
     }
 
     const header = document.createElement('div');
     header.className = 'lab-tuning-header';
     header.textContent = 'PRESENTATION PARAMETERS';
-    tuningSection.appendChild(header);
+    body.appendChild(header);
 
     const prodPres = getProductionPresentation(step);
     const qaPres = getQaPresentation(state, action.actionKey, stepIdx) ?? {};
@@ -618,7 +639,7 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     statusDiv.className = 'lab-tuning-status';
     statusDiv.textContent = modified ? 'QA MODIFIED' : 'SAME AS PRODUCTION';
     statusDiv.classList.add(modified ? 'lab-status-modified' : 'lab-status-same');
-    tuningSection.appendChild(statusDiv);
+    body.appendChild(statusDiv);
 
     const grid = document.createElement('div');
     grid.className = 'lab-tuning-grid';
@@ -695,7 +716,7 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       grid.appendChild(item);
     }
 
-    tuningSection.appendChild(grid);
+    body.appendChild(grid);
 
     const resetBtn = document.createElement('button');
     resetBtn.className = 'lab-reset-btn';
@@ -705,16 +726,17 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       saveLabStateToStorage(localStorage, state);
       render();
     });
-    tuningSection.appendChild(resetBtn);
+    body.appendChild(resetBtn);
   }
 
   function renderStats(): void {
-    statsSection.innerHTML = '';
+    const body = statsSection.body;
+    body.innerHTML = '';
     if (!options.getStats) return;
     const header = document.createElement('div');
     header.className = 'lab-stats-header';
     header.textContent = 'VFX CACHE';
-    statsSection.appendChild(header);
+    body.appendChild(header);
 
     const stats = options.getStats();
     const info = document.createElement('div');
@@ -730,18 +752,18 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       <span>Loads: <b>${stats.loads}</b></span>
       <span>Evictions: <b>${stats.evictions}</b></span>
     `;
-    statsSection.appendChild(info);
+    body.appendChild(info);
   }
 
   function renderHistory(action: LabAction): void {
-    historySection.innerHTML = '';
+    const body = sourcesSection.body;
     const history = state.qaHistory[action.actionKey];
     if (!history || history.length === 0) return;
 
     const header = document.createElement('div');
     header.className = 'lab-history-header';
     header.textContent = 'QA HISTORY';
-    historySection.appendChild(header);
+    body.appendChild(header);
 
     const list = document.createElement('div');
     list.className = 'lab-history-list';
@@ -754,16 +776,139 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       }
       list.appendChild(item);
     }
-    historySection.appendChild(list);
+    body.appendChild(list);
+  }
+
+  function renderGifPreview(): void {
+    const body = gifPreviewSection.body;
+    body.innerHTML = '';
+    const previewId = getPreviewCandidateId(state);
+    if (!previewId) {
+      body.innerHTML = '<div class="lab-no-vfx">Click a catalogue candidate to preview.</div>';
+      return;
+    }
+
+    // Find the catalogue record for this candidate
+    const rec = catalogue.find((r) => r.candidateId === previewId);
+    if (!rec) {
+      body.innerHTML = '<div class="lab-no-vfx">Candidate not found in catalogue.</div>';
+      return;
+    }
+
+    // Resolve preview
+    const inventoryRec = (inventoryJson as { results: InventoryJsonRecord[] }).results.find((r) => r.assetId === previewId);
+    const preview = resolvePreview(previewId, inventoryRec);
+
+    // Candidate metadata
+    const metaDiv = document.createElement('div');
+    metaDiv.className = 'lab-gif-meta';
+    metaDiv.innerHTML = `
+      <div><b>Candidate:</b> ${rec.candidateId}</div>
+      <div><b>Filename:</b> ${rec.sourceFilename}</div>
+      <div><b>Collection:</b> ${rec.collection}</div>
+      <div><b>Size:</b> ${rec.width}×${rec.height}</div>
+      <div><b>Grid:</b> ${rec.nativeGrid} / ${rec.nativeFrameCount}f</div>
+      <div><b>Availability:</b> ${rec.availability}</div>
+      <div><b>GIF Preview:</b> ${preview.hasPreview ? 'YES' : 'NO'}</div>
+    `;
+    body.appendChild(metaDiv);
+
+    // GIF image — single active preview only
+    if (preview.hasPreview && preview.previewUrl) {
+      const img = document.createElement('img');
+      img.className = 'lab-gif-image';
+      img.src = preview.previewUrl;
+      img.alt = `Preview for ${rec.candidateId}`;
+      img.addEventListener('error', () => {
+        const fallback = document.createElement('div');
+        fallback.className = 'lab-gif-unavailable';
+        fallback.textContent = 'PREVIEW UNAVAILABLE';
+        img.replaceWith(fallback);
+      });
+      body.appendChild(img);
+    } else {
+      const noGif = document.createElement('div');
+      noGif.className = 'lab-gif-unavailable';
+      noGif.textContent = 'NO GIF PREVIEW AVAILABLE';
+      body.appendChild(noGif);
+    }
+
+    // USE AS QA SOURCE button — explicit assignment, NOT auto-assign
+    const action = getCurrentAction();
+    if (action && rec.availability !== 'UNSUPPORTED_NATIVE') {
+      const useBtn = document.createElement('button');
+      useBtn.className = 'lab-use-qa-btn';
+      useBtn.textContent = rec.availability === 'READY' ? 'USE AS QA SOURCE' : 'ACQUIRE & USE AS QA SOURCE';
+      useBtn.addEventListener('click', async () => {
+        const stepIdx = getSelectedStep(state, action.actionKey);
+        if (rec.availability === 'AVAILABLE_ON_DEMAND') {
+          acquisitionStatus[rec.candidateId] = 'ACQUIRING';
+          useBtn.textContent = 'ACQUIRING...';
+          useBtn.disabled = true;
+          const result: AcquireResult = await acquireCandidate(rec.candidateId);
+          if (!result.ok) {
+            delete acquisitionStatus[rec.candidateId];
+            useBtn.textContent = 'RETRY ACQUIRE';
+            useBtn.disabled = false;
+            statusLine.textContent = `Acquisition failed: ${result.error ?? 'unknown'}`;
+            return;
+          }
+          delete acquisitionStatus[rec.candidateId];
+        }
+        state = setQaSourceId(state, action.actionKey, stepIdx, rec.candidateId);
+        saveLabStateToStorage(localStorage, state);
+        statusLine.textContent = `QA source set: ${rec.candidateId}`;
+        render();
+      });
+      body.appendChild(useBtn);
+    }
   }
 
   function renderCatalogue(): void {
-    catalogueSection.innerHTML = '';
-    const header = document.createElement('div');
-    header.className = 'lab-cat-header';
-    header.textContent = 'CARTOONCOFFEE CATALOGUE';
-    catalogueSection.appendChild(header);
+    const body = librarySection.body;
+    body.innerHTML = '';
 
+    // Result count (above filters, outside scroll)
+    const countDiv = document.createElement('div');
+    countDiv.className = 'lab-cat-count';
+    countDiv.id = 'lab-cat-count';
+    body.appendChild(countDiv);
+
+    // Nested FILTERS accordion (collapsed by default)
+    const filtersWrapper = document.createElement('div');
+    filtersWrapper.className = 'lab-accordion lab-nested-accordion';
+    filtersWrapper.dataset.section = 'catalogue_filters';
+
+    const filtersHeader = document.createElement('div');
+    filtersHeader.className = 'lab-accordion-header lab-nested-header';
+    filtersHeader.textContent = 'FILTERS';
+    const filtersToggle = document.createElement('span');
+    filtersToggle.className = 'lab-accordion-toggle';
+    filtersHeader.appendChild(filtersToggle);
+
+    const filtersBody = document.createElement('div');
+    filtersBody.className = 'lab-accordion-body lab-nested-body';
+
+    filtersWrapper.append(filtersHeader, filtersBody);
+
+    // Toggle filters without full re-render (preserves scroll position)
+    const updateFiltersVisual = () => {
+      const isOpen = getAccordionOpen(state, 'catalogue_filters');
+      filtersWrapper.classList.toggle('lab-accordion-open', isOpen);
+      filtersWrapper.classList.toggle('lab-accordion-closed', !isOpen);
+      filtersToggle.textContent = isOpen ? '▼' : '▶';
+      filtersBody.style.display = isOpen ? '' : 'none';
+    };
+    filtersHeader.addEventListener('click', () => {
+      const isOpen = getAccordionOpen(state, 'catalogue_filters');
+      state = setAccordionOpen(state, 'catalogue_filters', !isOpen);
+      saveLabStateToStorage(localStorage, state);
+      updateFiltersVisual();
+    });
+    updateFiltersVisual();
+    body.appendChild(filtersWrapper);
+
+    // Search input inside filters
     const searchLabel = document.createElement('label');
     searchLabel.textContent = 'SEARCH';
     const searchInput = document.createElement('input');
@@ -776,8 +921,9 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       renderCatalogueResults();
     });
     searchLabel.appendChild(searchInput);
-    catalogueSection.appendChild(searchLabel);
+    filtersBody.appendChild(searchLabel);
 
+    // Filter selects inside filters
     const filterRow = document.createElement('div');
     filterRow.className = 'lab-filter-row';
 
@@ -797,12 +943,24 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       { value: 'ALL', label: 'All' },
       { value: 'READY', label: 'Ready' },
       { value: 'AVAILABLE_ON_DEMAND', label: 'Available on demand' },
+      { value: 'UNSUPPORTED_NATIVE', label: 'Unsupported native' },
     ], state.availabilityFilter, (val) => {
       state = { ...state, availabilityFilter: val as LabAvailabilityFilter, cataloguePage: 1 };
       saveLabStateToStorage(localStorage, state);
       renderCatalogueResults();
     });
     filterRow.appendChild(availSelect);
+
+    const gifSelect = createFilterSelect('GIF', [
+      { value: 'ALL', label: 'All GIF' },
+      { value: 'HAS_GIF', label: 'Has GIF' },
+      { value: 'NO_GIF', label: 'No GIF' },
+    ], state.gifFilter ?? 'ALL', (val) => {
+      state = { ...state, gifFilter: val as LabGifFilter, cataloguePage: 1 };
+      saveLabStateToStorage(localStorage, state);
+      renderCatalogueResults();
+    });
+    filterRow.appendChild(gifSelect);
 
     const usageSelect = createFilterSelect('USAGE', [
       { value: 'ALL', label: 'All' },
@@ -816,42 +974,49 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     });
     filterRow.appendChild(usageSelect);
 
-    catalogueSection.appendChild(filterRow);
+    filtersBody.appendChild(filterRow);
 
-    const resultsContainer = document.createElement('div');
-    resultsContainer.className = 'lab-cat-results';
-    resultsContainer.id = 'lab-cat-results-inner';
-    catalogueSection.appendChild(resultsContainer);
+    // Scrollable results container
+    const scrollContainer = document.createElement('div');
+    scrollContainer.className = 'lab-cat-scroll';
+    scrollContainer.id = 'lab-cat-scroll-inner';
+    body.appendChild(scrollContainer);
+
+    // Pager container (outside scroll, below results)
+    const pagerContainer = document.createElement('div');
+    pagerContainer.className = 'lab-cat-pager-container';
+    pagerContainer.id = 'lab-cat-pager-inner';
+    body.appendChild(pagerContainer);
 
     renderCatalogueResults();
   }
 
   function renderCatalogueResults(): void {
-    const container = document.getElementById('lab-cat-results-inner');
-    if (!container) return;
+    const scrollContainer = document.getElementById('lab-cat-scroll-inner');
+    const pagerContainer = document.getElementById('lab-cat-pager-inner');
+    const countDiv = document.getElementById('lab-cat-count');
+    if (!scrollContainer || !pagerContainer || !countDiv) return;
 
     catalogueResult = searchCatalogue(catalogue, {
       search: state.search,
       formatFilter: state.formatFilter,
       availabilityFilter: state.availabilityFilter,
       usageFilter: state.usageFilter,
+      gifFilter: state.gifFilter ?? 'ALL',
       page: state.cataloguePage,
       pageSize: LAB_PAGE_SIZE,
       currentActionKey,
     });
 
-    container.innerHTML = '';
-
-    const countDiv = document.createElement('div');
-    countDiv.className = 'lab-cat-count';
     countDiv.textContent = `${catalogueResult.totalFiltered} results · page ${catalogueResult.page}/${catalogueResult.pageCount}`;
-    container.appendChild(countDiv);
 
+    scrollContainer.innerHTML = '';
     for (const rec of catalogueResult.results) {
       const item = createCatalogueItem(rec);
-      container.appendChild(item);
+      scrollContainer.appendChild(item);
     }
 
+    pagerContainer.innerHTML = '';
     if (catalogueResult.pageCount > 1) {
       const pager = document.createElement('div');
       pager.className = 'lab-pager';
@@ -876,92 +1041,85 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       });
       pager.appendChild(nextBtn);
 
-      container.appendChild(pager);
+      pagerContainer.appendChild(pager);
     }
   }
 
   function createCatalogueItem(rec: LabCatalogueRecord): HTMLElement {
     const item = document.createElement('div');
     item.className = 'lab-cat-item';
+    item.style.cursor = 'pointer';
+    item.dataset.candidateId = rec.candidateId;
 
-    const isReady = rec.availability === 'READY';
-    const availClass = isReady ? 'lab-avail-ready' : 'lab-avail-on-demand';
+    const availClass = rec.availability === 'READY'
+      ? 'lab-avail-ready'
+      : rec.availability === 'AVAILABLE_ON_DEMAND'
+        ? 'lab-avail-on-demand'
+        : 'lab-avail-unsupported';
     const availLabel = rec.availability === 'READY'
       ? 'READY'
       : rec.availability === 'AVAILABLE_ON_DEMAND'
         ? 'AVAILABLE ON DEMAND'
         : 'UNSUPPORTED NATIVE';
 
+    // Check if this candidate is the current QA source or validated
+    const action = getCurrentAction();
+    const stepIdx = action ? getSelectedStep(state, action.actionKey) : 0;
+    const qaId = action ? getQaSourceId(state, action.actionKey, stepIdx) : undefined;
+    const validated = action ? getValidatedConfig(state, action.actionKey, stepIdx) : undefined;
+    const isQaSource = qaId === rec.candidateId;
+    const isValidated = validated?.sourceId === rec.candidateId;
+    const isPreviewing = getPreviewCandidateId(state) === rec.candidateId;
+
     item.innerHTML = `
-      <div class="lab-cat-id"><b>${rec.candidateId}</b></div>
+      <div class="lab-cat-id"><b>${rec.candidateId}</b>${isPreviewing ? ' ◀ PREVIEWING' : ''}${isQaSource ? ' ◀ QA' : ''}${isValidated ? ' ◀ VALIDATED' : ''}</div>
       <div class="lab-cat-file">${rec.sourceFilename}</div>
       <div class="lab-cat-meta">
         <span>${rec.width}×${rec.height}</span>
         <span>${rec.nativeGrid} / ${rec.nativeFrameCount}f</span>
         <span class="${availClass}">${availLabel}</span>
+        <span>${rec.hasGifPreview ? 'GIF: YES' : 'GIF: NO'}</span>
       </div>
       ${rec.usedBy.length > 0 ? `<div class="lab-cat-used">Used by: ${rec.usedBy.join(', ')}</div>` : ''}
     `;
 
-    if (isReady || rec.availability === 'AVAILABLE_ON_DEMAND') {
-      const acqStatus = acquisitionStatus[rec.candidateId];
-      const selectBtn = document.createElement('button');
-      selectBtn.className = 'lab-select-btn';
-      if (acqStatus === 'ACQUIRING') {
-        selectBtn.textContent = 'ACQUIRING...';
-        selectBtn.disabled = true;
-      } else if (acqStatus === 'ERROR') {
-        selectBtn.textContent = 'RETRY ACQUIRE';
-        selectBtn.className = 'lab-select-btn lab-acquire-error';
-      } else {
-        selectBtn.textContent = isReady ? 'SET AS QA SOURCE' : 'ACQUIRE & SET AS QA SOURCE';
-      }
-      selectBtn.addEventListener('click', async () => {
-        const action = getCurrentAction();
-        if (!action) return;
-        const stepIdx = getSelectedStep(state, action.actionKey);
-
-        if (rec.availability === 'AVAILABLE_ON_DEMAND' && !acqStatus) {
-          acquisitionStatus[rec.candidateId] = 'ACQUIRING';
-          renderCatalogueResults();
-          const result: AcquireResult = await acquireCandidate(rec.candidateId);
-          if (result.ok) {
-            delete acquisitionStatus[rec.candidateId];
-            state = setQaSourceId(state, action.actionKey, stepIdx, rec.candidateId);
-            saveLabStateToStorage(localStorage, state);
-            statusLine.textContent = `Acquired: ${rec.candidateId}`;
-            render();
-          } else {
-            acquisitionStatus[rec.candidateId] = 'ERROR';
-            statusLine.textContent = `Acquisition failed: ${result.error ?? 'unknown error'}`;
-            renderCatalogueResults();
-          }
-        } else if (acqStatus === 'ERROR') {
-          delete acquisitionStatus[rec.candidateId];
-          acquisitionStatus[rec.candidateId] = 'ACQUIRING';
-          renderCatalogueResults();
-          const result: AcquireResult = await acquireCandidate(rec.candidateId);
-          if (result.ok) {
-            delete acquisitionStatus[rec.candidateId];
-            state = setQaSourceId(state, action.actionKey, stepIdx, rec.candidateId);
-            saveLabStateToStorage(localStorage, state);
-            statusLine.textContent = `Acquired: ${rec.candidateId}`;
-            render();
-          } else {
-            acquisitionStatus[rec.candidateId] = 'ERROR';
-            statusLine.textContent = `Retry failed: ${result.error ?? 'unknown error'}`;
-            renderCatalogueResults();
-          }
-        } else {
-          state = setQaSourceId(state, action.actionKey, stepIdx, rec.candidateId);
-          saveLabStateToStorage(localStorage, state);
-          render();
-        }
-      });
-      item.appendChild(selectBtn);
-    }
+    // Click = PREVIEW ONLY (does NOT assign QA source, does NOT rebuild list)
+    item.addEventListener('click', () => {
+      state = setPreviewCandidateId(state, rec.candidateId);
+      saveLabStateToStorage(localStorage, state);
+      renderGifPreview();
+      // Update preview markers in-place without rebuilding list (preserves scroll)
+      updateCataloguePreviewMarkers();
+    });
 
     return item;
+  }
+
+  function updateCataloguePreviewMarkers(): void {
+    const scrollContainer = document.getElementById('lab-cat-scroll-inner');
+    if (!scrollContainer) return;
+    const previewId = getPreviewCandidateId(state);
+    const action = getCurrentAction();
+    const stepIdx = action ? getSelectedStep(state, action.actionKey) : 0;
+    const qaId = action ? getQaSourceId(state, action.actionKey, stepIdx) : undefined;
+    const validated = action ? getValidatedConfig(state, action.actionKey, stepIdx) : undefined;
+    const items = scrollContainer.querySelectorAll('.lab-cat-item');
+    for (const el of items) {
+      const cid = (el as HTMLElement).dataset.candidateId;
+      if (!cid) continue;
+      const idDiv = el.querySelector('.lab-cat-id');
+      if (!idDiv) continue;
+      const isPreviewing = cid === previewId;
+      const isQaSource = cid === qaId;
+      const isValidated = validated?.sourceId === cid;
+      const rec = catalogueResult.results.find((r) => r.candidateId === cid);
+      const baseText = rec ? `<b>${rec.candidateId}</b>` : `<b>${cid}</b>`;
+      const markers: string[] = [];
+      if (isPreviewing) markers.push(' ◀ PREVIEWING');
+      if (isQaSource) markers.push(' ◀ QA');
+      if (isValidated) markers.push(' ◀ VALIDATED');
+      idDiv.innerHTML = baseText + markers.join('');
+    }
   }
 
   function createFilterSelect(
@@ -1048,18 +1206,12 @@ function addLabStyle(): void {
     #${ROOT_ID} .lab-step-info b{color:#9fe5ff}
     #${ROOT_ID} .lab-no-vfx{color:#7a96a6;font-style:italic}
     #${ROOT_ID} .lab-clear-btn{margin-top:6px;border-color:#a6423a;background:#2a1010}
-    #${ROOT_ID} .lab-filter-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
-    #${ROOT_ID} .lab-cat-results{margin-top:8px}
     #${ROOT_ID} .lab-cat-count{color:#8fa5b2;font-size:10px;margin-bottom:6px}
-    #${ROOT_ID} .lab-cat-item{padding:7px;border:1px solid #2a4a60;border-radius:6px;background:rgba(12,28,44,.4);margin-bottom:5px}
-    #${ROOT_ID} .lab-cat-id{color:#9fe5ff;font-size:11px}
-    #${ROOT_ID} .lab-cat-file{color:#a7c5d3;font-size:10px;word-break:break-all}
-    #${ROOT_ID} .lab-cat-meta{display:flex;gap:8px;margin-top:3px;font-size:10px;color:#8fa5b2}
     #${ROOT_ID} .lab-avail-ready{color:#5fd17a}
     #${ROOT_ID} .lab-avail-on-demand{color:#ff9a4a}
-    #${ROOT_ID} .lab-cat-used{color:#728c9b;font-size:10px;margin-top:2px}
+    #${ROOT_ID} .lab-cat-used{color:#728c9b;font-size:9px;margin-top:1px}
     #${ROOT_ID} .lab-select-btn{margin-top:5px;width:100%;border-color:#52b9d2;background:#0f3b52}
-    #${ROOT_ID} .lab-pager{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+    #${ROOT_ID} .lab-pager{display:grid;grid-template-columns:1fr 1fr;gap:6px}
     #${ROOT_ID} .lab-history-list{display:grid;gap:4px}
     #${ROOT_ID} .lab-history-item{padding:5px;border-left:2px solid #66cfea;background:rgba(27,57,76,.32);color:#b9d9e7;font-size:11px}
     #${ROOT_ID} .lab-history-notes{color:#728c9b;font-size:10px}
@@ -1100,6 +1252,32 @@ function addLabStyle(): void {
     #${ROOT_ID} .lab-progress-row{margin-top:6px;color:#f1c76c;font-weight:700;font-size:10px}
     #${ROOT_ID} .lab-progress-unresolved{margin-top:6px;color:#ff9a4a;font-size:10px}
     #${ROOT_ID} .lab-export-validated-btn{width:100%;border-color:#5a3a8c;background:#1a0d2f;font-size:13px;padding:10px;margin-top:6px}
+    #${ROOT_ID} .lab-accordion-controls{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+    #${ROOT_ID} .lab-accordion-btn{font-size:10px;padding:5px;border-color:#395d77;background:#0c2134}
+    #${ROOT_ID} .lab-accordion{margin:6px 0;border:1px solid #2a4a60;border-radius:8px;overflow:hidden}
+    #${ROOT_ID} .lab-accordion-header{padding:8px 10px;background:rgba(20,40,60,.6);color:#9fe5ff;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}
+    #${ROOT_ID} .lab-accordion-header:hover{background:rgba(30,55,80,.7)}
+    #${ROOT_ID} .lab-accordion-toggle{font-size:10px;color:#66cfea}
+    #${ROOT_ID} .lab-accordion-body{padding:10px}
+    #${ROOT_ID} .lab-accordion-closed .lab-accordion-body{display:none}
+    #${ROOT_ID} .lab-source-ids{display:grid;gap:2px;color:#a7c5d3;font-size:10px;margin-bottom:8px;padding:6px;border:1px solid #2a4a60;border-radius:5px;background:rgba(12,28,44,.3)}
+    #${ROOT_ID} .lab-source-ids b{color:#9fe5ff}
+    #${ROOT_ID} .lab-gif-meta{display:grid;gap:2px;color:#b9d9e7;font-size:11px;margin-bottom:8px}
+    #${ROOT_ID} .lab-gif-meta b{color:#f1c76c}
+    #${ROOT_ID} .lab-gif-image{width:100%;border:1px solid #2a4a60;border-radius:6px;background:#0a1520}
+    #${ROOT_ID} .lab-gif-unavailable{padding:20px;text-align:center;color:#7a96a6;font-style:italic;border:1px dashed #2a4a60;border-radius:6px}
+    #${ROOT_ID} .lab-use-qa-btn{margin-top:8px;width:100%;border-color:#52b9d2;background:#0f3b52;font-size:12px;padding:8px}
+    #${ROOT_ID} .lab-avail-unsupported{color:#a6423a}
+    #${ROOT_ID} .lab-filter-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    #${ROOT_ID} .lab-cat-scroll{overflow-y:auto;max-height:50vh;min-height:200px;border:1px solid #2a4a60;border-radius:6px;padding:6px;margin-top:8px;background:rgba(8,18,30,.3)}
+    #${ROOT_ID} .lab-cat-pager-container{margin-top:6px}
+    #${ROOT_ID} .lab-nested-accordion{margin:6px 0;border:1px solid #1e3a50;border-radius:6px;overflow:hidden}
+    #${ROOT_ID} .lab-nested-header{padding:6px 8px;background:rgba(15,30,45,.5);font-size:10px}
+    #${ROOT_ID} .lab-nested-body{padding:8px}
+    #${ROOT_ID} .lab-cat-item{padding:5px 7px;border:1px solid #2a4a60;border-radius:5px;background:rgba(12,28,44,.4);margin-bottom:3px}
+    #${ROOT_ID} .lab-cat-id{color:#9fe5ff;font-size:10px}
+    #${ROOT_ID} .lab-cat-file{color:#a7c5d3;font-size:9px;word-break:break-all}
+    #${ROOT_ID} .lab-cat-meta{display:flex;gap:6px;margin-top:2px;font-size:9px;color:#8fa5b2;flex-wrap:wrap}
   `;
   document.head.appendChild(style);
 }

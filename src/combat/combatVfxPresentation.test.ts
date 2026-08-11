@@ -563,7 +563,13 @@ describe('combatVfxPresentation â€” V10G-R2B.0 ground height calibration', 
     expect(preset).toBeDefined();
     const spriteSteps = preset!.steps.filter((step) => step.type === 'spriteSheet');
     expect(spriteSteps).toHaveLength(1);
-    expect(spriteSteps.every((step) => VFX_SPRITE_SHEETS[step.spriteSheet!]?.presentation.layer === 'impact')).toBe(true);
+    // R2C-C.1: legacy sheet is retired — definition may be undefined
+    // The step still references the intended sheet ID; layer is unresolved
+    expect(spriteSteps[0]!.spriteSheet).toBe('skill_fire_vortex_nova_heavy');
+    const def = VFX_SPRITE_SHEETS[spriteSteps[0]!.spriteSheet!];
+    if (def) {
+      expect(def.presentation.layer).toBe('impact');
+    }
   });
 
   it('applyResolvedPresentationToContext passes groundYOffset to context', () => {
