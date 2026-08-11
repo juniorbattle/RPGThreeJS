@@ -30,7 +30,7 @@ import {
 } from './CombatVfxLab';
 import type { LabState, LabPresentationOverride, LabAction, ValidatedStepConfiguration } from './CombatVfxLab';
 
-export type LabPlaybackMode = 'production' | 'qa' | 'validated' | 'qa_stage';
+export type LabPlaybackMode = 'production' | 'qa' | 'validated' | 'qa_stage' | 'validated_stage' | 'production_stage';
 
 export interface LabPlaybackSnapshot {
   mode: LabPlaybackMode;
@@ -369,6 +369,126 @@ export async function playQaInCombatStage(
     // QA source is a production sheet — play with QA presentation overrides
     const modifiedPreset = applyQaOverridesToPreset(preset, stepIndex, qaPres);
     const result = ctx.vfxSystem.playPreset(modifiedPreset, context, action.currentPresetId);
+    await result.completion;
+  };
+
+  const entered = await ctx.buildStageContext(actionKey, playVfx);
+  return { played: entered, snapshot: entered ? snapshot : null };
+}
+
+/**
+ * V1E: Plays the IMMUTABLE validated configuration inside the REAL Combat Stage.
+ *
+ * Uses validated source + validated presentation (NOT working QA changes).
+ * Does NOT mutate production or gameplay.
+ *
+ * This is the "APPROVED SNAPSHOT TEST" — distinct from PLAY QA IN COMBAT STAGE
+ * (working QA) and TEST PRODUCTION IN COMBAT STAGE (actual production config).
+ */
+export async function playValidatedInCombatStage(
+  ctx: LabPlaybackContext,
+  state: LabState,
+  actionKey: string,
+): Promise<{ played: boolean; snapshot: LabPlaybackSnapshot | null }> {
+  const action = getLabAction(actionKey);
+  if (!action || !action.currentPresetId) return { played: false, snapshot: null };
+  const preset = getVfxPreset(action.currentPresetId);
+  if (!preset) return { played: false, snapshot: null };
+  if (!ctx.buildStageContext) return { played: false, snapshot: null };
+
+  const stepIndex = getSelectedVisualStepIndex(state, action);
+  const step = action.vfxSteps[stepIndex];
+  if (!step) return { played: false, snapshot: null };
+
+  const validated = getValidatedConfig(state, actionKey, stepIndex);
+  if (!validated) return { played: false, snapshot: null };
+
+  const snapshot: LabPlaybackSnapshot = {
+    mode: 'validated_stage',
+    actionKey,
+    stepIndex,
+    source: validated.sourceId,
+    route: 'STAGE',
+    direction: validated.presentation.direction ?? 'AUTO',
+    presentation: validated.presentation,
+  };
+  _lastSnapshot = snapshot;
+
+  const playVfx = async (context: VfxContext): Promise<void> => {
+    if (validated.sourceId && step.spriteSheetId) {
+      const prodSheet = VFX_SPRITE_SHEETS[step.spriteSheetId as keyof typeof VFX_SPRITE_SHEETS];
+      if (prodSheet && prodSheet.sourceCandidateId !== validated.sourceId) {
+        const invRecord = getCandidateInventoryRecord(validated.sourceId);
+        if (invRecord) {
+          const sheetDef = buildLabSheetDefinition(validated.sourceId, invRecord);
+          const prodStep = preset.steps[stepIndex];
+          if (prodStep) {
+            const result = ctx.vfxSystem.playLabSpriteSheet(validated.sourceId, sheetDef, prodStep, context, {
+              scale: validated.presentation.scale,
+              offsetX: validated.presentation.offsetX,
+              offsetY: validated.presentation.offsetY,
+              duration: validated.presentation.duration,
+              opacity: validated.presentation.opacity,
+              layer: validated.presentation.layer,
+              blending: validated.presentation.blending,
+              fadeIn: validated.presentation.fadeIn,
+              fadeOut: validated.presentation.fadeOut,
+            });
+            await result.completion;
+            return;
+          }
+        }
+      }
+    }
+    // Validated source is a production sheet — play with validated presentation
+    const validatedPres: LabPresentationOverride = validated.presentation;
+    const modifiedPreset = applyQaOverridesToPreset(preset, stepIndex, validatedPres);
+    const result = ctx.vfxSystem.playPreset(modifiedPreset, context, action.currentPresetId);
+    await result.completion;
+  };
+
+  const entered = await ctx.buildStageContext(actionKey, playVfx);
+  return { played: entered, snapshot: entered ? snapshot : null };
+}
+
+/**
+ * V1E: Plays the ACTUAL PRODUCTION configuration inside the REAL Combat Stage.
+ *
+ * Uses actual production mapping, actual production preset, actual production
+ * presentation values. NOT QA, NOT validated override.
+ *
+ * This is the "REAL GAME CONFIG TEST" — for production verification.
+ */
+export async function playProductionInCombatStage(
+  ctx: LabPlaybackContext,
+  state: LabState,
+  actionKey: string,
+): Promise<{ played: boolean; snapshot: LabPlaybackSnapshot | null }> {
+  const action = getLabAction(actionKey);
+  if (!action || !action.currentPresetId) return { played: false, snapshot: null };
+  const preset = getVfxPreset(action.currentPresetId);
+  if (!preset) return { played: false, snapshot: null };
+  if (!ctx.buildStageContext) return { played: false, snapshot: null };
+
+  const stepIndex = getSelectedVisualStepIndex(state, action);
+  const step = action.vfxSteps[stepIndex];
+  if (!step) return { played: false, snapshot: null };
+
+  const prodSource = step.sourceCandidateId ?? step.spriteSheetId ?? 'none';
+  const prodPres = getProductionPresentation(step);
+  const snapshot: LabPlaybackSnapshot = {
+    mode: 'production_stage',
+    actionKey,
+    stepIndex,
+    source: prodSource,
+    route: 'STAGE',
+    direction: prodPres.direction ?? 'AUTO',
+    presentation: prodPres,
+  };
+  _lastSnapshot = snapshot;
+
+  const playVfx = async (context: VfxContext): Promise<void> => {
+    const result = ctx.vfxSystem.playPreset(preset, context, action.currentPresetId);
     await result.completion;
   };
 

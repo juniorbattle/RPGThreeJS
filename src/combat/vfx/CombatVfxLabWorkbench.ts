@@ -61,6 +61,19 @@ import {
   collapseAllAccordions,
   DEFAULT_ACCORDION_OPEN,
   ALL_ACCORDION_SECTIONS,
+  getProductionVisualConfig,
+  getValidatedVisualConfig,
+  configsSemanticallyEqual,
+  computeConfigFingerprint,
+  getLifecycleStatus,
+  confirmProductionVerified,
+  clearProductionVerified,
+  getActionLifecycleSummary,
+  getProductionProgress,
+  buildWorkQueue,
+  findNextInWorkQueue,
+  generateApplyPackage,
+  generateApplyTaskText,
 } from './CombatVfxLab';
 import type {
   LabAction,
@@ -80,13 +93,19 @@ import type {
   ValidatedConfigExport,
   InventoryJsonRecord,
   VisualSpriteSheetStep,
+  ProductionLifecycleStatus,
+  WorkQueueMode,
+  ActionLifecycleSummary,
+  ProductionProgress,
+  ApplyPackage,
+  VisualConfig,
 } from './CombatVfxLab';
 import type { VfxAnchor, VfxOrientation } from './VfxTypes';
 import type { VfxResourceStats } from './VfxResourceManager';
 import { acquireCandidate } from './LabAcquisition';
 import type { AcquireResult } from './LabAcquisition';
 import type { LabPlaybackContext, LabPlaybackSnapshot } from './LabPlayback';
-import { playProduction, playQaOverride, playValidated, replay, getLastPlaybackSnapshot, playQaInCombatStage } from './LabPlayback';
+import { playProduction, playQaOverride, playValidated, replay, getLastPlaybackSnapshot, playQaInCombatStage, playValidatedInCombatStage, playProductionInCombatStage } from './LabPlayback';
 import { resolvePreview, isValidCandidateId } from './VfxPreviewResolver';
 
 const STYLE_ID = 'r2c-vfx-lab-style';
@@ -127,67 +146,45 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
   title.textContent = 'Combat VFX Lab';
   const subtitle = document.createElement('span');
   subtitle.className = 'lab-subtitle';
-  subtitle.textContent = `V1D — ${actionCounts.total} actions · ${counts.total} catalogue records · DEV ONLY`;
+  subtitle.textContent = `V1E — ${actionCounts.total} actions · ${counts.total} catalogue · DEV ONLY`;
   root.append(title, subtitle);
 
-  // Accordion controls
-  const accordionControls = document.createElement('div');
-  accordionControls.className = 'lab-accordion-controls';
-  const expandAllBtn = document.createElement('button');
-  expandAllBtn.className = 'lab-accordion-btn';
-  expandAllBtn.textContent = 'EXPAND ALL';
-  expandAllBtn.addEventListener('click', () => {
-    state = expandAllAccordions(state);
-    saveLabStateToStorage(localStorage, state);
-    render();
-  });
-  const collapseAllBtn = document.createElement('button');
-  collapseAllBtn.className = 'lab-accordion-btn';
-  collapseAllBtn.textContent = 'COLLAPSE ALL';
-  collapseAllBtn.addEventListener('click', () => {
-    state = collapseAllAccordions(state);
-    saveLabStateToStorage(localStorage, state);
-    render();
-  });
-  accordionControls.append(expandAllBtn, collapseAllBtn);
-  root.appendChild(accordionControls);
+  // V1E: Top action bar — persistent context
+  const actionBar = document.createElement('div');
+  actionBar.className = 'lab-action-bar';
+  root.appendChild(actionBar);
 
-  // Section containers — each wrapped in accordion
-  const actionSection = createAccordionSection('action_progress', 'ACTION / PROGRESS');
-  root.appendChild(actionSection.wrapper);
-  const stepSection = actionSection.body;
+  // V1E: Work queue mode selector
+  const queueBar = document.createElement('div');
+  queueBar.className = 'lab-queue-bar';
+  root.appendChild(queueBar);
 
-  // Add action select to action section body
-  const actionLabel = document.createElement('label');
-  actionLabel.textContent = 'ACTION';
-  const actionSelect = document.createElement('select');
-  populateActionSelect(actionSelect);
-  actionSelect.value = currentActionKey;
-  actionLabel.appendChild(actionSelect);
-  stepSection.appendChild(actionLabel);
+  // V1E: Two-column workbench
+  const workbench = document.createElement('div');
+  workbench.className = 'lab-workbench';
 
-  // Progress container inside action section
-  const progressContainer = document.createElement('div');
-  stepSection.appendChild(progressContainer);
+  // Left column: Catalogue
+  const catalogueCol = document.createElement('div');
+  catalogueCol.className = 'lab-col-catalogue';
+  workbench.appendChild(catalogueCol);
 
-  const librarySection = createAccordionSection('megapack_library', 'CARTOONCOFFEE CATALOGUE');
-  root.appendChild(librarySection.wrapper);
+  // Right column: VFX Inspector
+  const inspectorCol = document.createElement('div');
+  inspectorCol.className = 'lab-col-inspector';
+  workbench.appendChild(inspectorCol);
 
-  const playbackSection = createAccordionSection('playback', 'PLAYBACK');
-  root.appendChild(playbackSection.wrapper);
+  root.appendChild(workbench);
 
-  const sourcesSection = createAccordionSection('sources', 'SOURCES');
-  root.appendChild(sourcesSection.wrapper);
+  // V1E: Bottom status bar with primary CTA
+  const ctaBar = document.createElement('div');
+  ctaBar.className = 'lab-cta-bar';
+  root.appendChild(ctaBar);
 
-  const tuningSection = createAccordionSection('tuning', 'TUNING');
-  root.appendChild(tuningSection.wrapper);
+  // V1E: Advanced/debug section (accordion)
+  const advancedSection = createAccordionSection('resource_debug', 'ADVANCED / DEBUG');
+  root.appendChild(advancedSection.wrapper);
 
-  const validationSection = createAccordionSection('validation_notes', 'VALIDATION / NOTES');
-  root.appendChild(validationSection.wrapper);
-
-  const statsSection = createAccordionSection('resource_debug', 'RESOURCE MANAGER / DEBUG');
-  root.appendChild(statsSection.wrapper);
-
+  // Export section
   const exportSection = document.createElement('div');
   exportSection.className = 'lab-section';
   const exportBtn = document.createElement('button');
@@ -208,6 +205,18 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
   root.appendChild(statusLine);
 
   document.body.appendChild(root);
+
+  // V1E: Action select in the top action bar
+  const actionSelect = document.createElement('select');
+  populateActionSelect(actionSelect);
+  actionSelect.value = currentActionKey;
+  actionSelect.addEventListener('change', () => {
+    currentActionKey = actionSelect.value;
+    state = { ...state, selectedActionKey: currentActionKey };
+    saveLabStateToStorage(localStorage, state);
+    render();
+  });
+  actionBar.appendChild(actionSelect);
 
   function createAccordionSection(section: LabAccordionSection, title: string): { wrapper: HTMLElement; body: HTMLElement } {
     const wrapper = document.createElement('div');
@@ -280,357 +289,90 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
 
   function render(): void {
     const action = getCurrentAction();
-    // Clear all section bodies
-    stepSection.querySelectorAll('.lab-step-selector,.lab-prod-info,.lab-qa-info,.lab-source-ids,.lab-history-list').forEach(el => el.remove());
-    sourcesSection.body.innerHTML = '';
-    playbackSection.body.innerHTML = '';
-    validationSection.body.innerHTML = '';
-    tuningSection.body.innerHTML = '';
-    statsSection.body.innerHTML = '';
-    progressContainer.innerHTML = '';
+    // Clear all dynamic containers
+    actionBar.querySelectorAll('.lab-action-context,.lab-action-nav').forEach(el => el.remove());
+    queueBar.innerHTML = '';
+    catalogueCol.innerHTML = '';
+    inspectorCol.innerHTML = '';
+    ctaBar.innerHTML = '';
+    advancedSection.body.innerHTML = '';
 
     if (!action) {
-      renderCatalogue();
+      renderCatalogue(catalogueCol);
       return;
     }
 
-    renderStepSelector(action);
-    renderSourceIdentities(action);
-    renderPlayback(action);
-    renderValidationAndNotes(action);
-    renderTuning(action);
-    renderProgress();
-    renderStats();
-    renderHistory(action);
-    renderCatalogue();
+    renderActionBar(action);
+    renderQueueBar();
+    renderInspector(action);
+    renderCtaBar(action);
+    renderAdvanced(action);
+    renderCatalogue(catalogueCol);
   }
 
-  function renderStepSelector(action: LabAction): void {
-    stepSection.querySelectorAll('.lab-step-selector,.lab-preset-info').forEach(el => el.remove());
+  // ============================================================ V1E Workbench Render Functions
 
-    // V1D.4.2: Preset-centric visual workflow
+  function renderActionBar(action: LabAction): void {
+    const ctx = document.createElement('div');
+    ctx.className = 'lab-action-context';
+
     const visualSteps = getVisualSpriteSheetSteps(action);
     const spriteSheetCount = visualSteps.length;
+    const stepIdx = getSelectedVisualStepIndex(state, action);
+    const lifecycle = getLifecycleStatus(state, action, stepIdx);
+    const summary = getActionLifecycleSummary(state, action);
 
-    // VFX PRESET block
-    const presetDiv = document.createElement('div');
-    presetDiv.className = 'lab-preset-info lab-step-selector';
-    presetDiv.innerHTML = `<b>VFX PRESET</b><br>${action.currentPresetId ?? 'none'}<br><b>SPRITESHEETS</b><br>${spriteSheetCount}`;
-    stepSection.appendChild(presetDiv);
+    // Action name + owner
+    const ownerName = action.ownerDisplayName ?? action.ownerType;
+    ctx.innerHTML = `
+      <div class="lab-action-owner">${ownerName}</div>
+      <div class="lab-action-name">${action.displayName}</div>
+      <div class="lab-action-meta">
+        <span class="lab-action-type">${action.ownerType}</span>
+        <span class="lab-action-preset"><b>PRESET</b> ${action.currentPresetId ?? 'none'}</span>
+        <span class="lab-action-vfx"><b>VFX</b> ${spriteSheetCount === 0 ? '0' : `${visualSteps.findIndex(v => v.stepIndex === stepIdx) + 1} / ${spriteSheetCount}`}</span>
+      </div>
+      <div class="lab-action-status lab-lifecycle-${lifecycle.toLowerCase()}">${formatLifecycleStatus(lifecycle)}</div>
+    `;
 
-    // No configurable spritesheet
-    if (spriteSheetCount === 0) {
-      const noVfxDiv = document.createElement('div');
-      noVfxDiv.className = 'lab-step-selector lab-no-spritesheet';
-      noVfxDiv.textContent = 'NO CONFIGURABLE SPRITESHEET';
-      stepSection.appendChild(noVfxDiv);
-      return;
+    // Multi-VFX progress
+    if (spriteSheetCount > 1) {
+      const progDiv = document.createElement('div');
+      progDiv.className = 'lab-action-progress';
+      progDiv.innerHTML = `
+        <span><b>ARTISTIC</b> ${summary.validatedCount} / ${spriteSheetCount}</span>
+        <span><b>PRODUCTION</b> ${summary.verifiedCount} / ${spriteSheetCount}</span>
+      `;
+      ctx.appendChild(progDiv);
     }
 
-    // Auto-correct selected step to a spriteSheet step
-    const realStepIndex = getSelectedVisualStepIndex(state, action);
-    if (realStepIndex !== getSelectedStep(state, action.actionKey)) {
-      state = setSelectedStep(state, action.actionKey, realStepIndex);
+    actionBar.appendChild(ctx);
+
+    // Navigation buttons
+    const nav = document.createElement('div');
+    nav.className = 'lab-action-nav';
+
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'lab-nav-btn';
+    prevBtn.textContent = '◀ PREVIOUS';
+    prevBtn.addEventListener('click', () => {
+      const allActions = getLabActions();
+      const idx = allActions.findIndex(a => a.actionKey === currentActionKey);
+      const prevIdx = idx > 0 ? idx - 1 : allActions.length - 1;
+      currentActionKey = allActions[prevIdx]!.actionKey;
+      actionSelect.value = currentActionKey;
+      state = { ...state, selectedActionKey: currentActionKey };
       saveLabStateToStorage(localStorage, state);
-    }
-
-    if (spriteSheetCount === 1) {
-      // Single spritesheet — no dropdown, just display
-      const currentDiv = document.createElement('div');
-      currentDiv.className = 'lab-step-selector lab-current-vfx';
-      currentDiv.innerHTML = `<b>CURRENT VFX</b><br>${visualSteps[0]!.spriteSheetId}`;
-      stepSection.appendChild(currentDiv);
-    } else {
-      // Multi-spritesheet — dropdown with only spriteSheet steps
-      const label = document.createElement('label');
-      label.className = 'lab-step-selector lab-vfx-spritesheet-selector';
-      label.textContent = 'VFX SPRITESHEET';
-      const select = document.createElement('select');
-      const currentStep = getSelectedVisualStepIndex(state, action);
-      for (const vs of visualSteps) {
-        const opt = document.createElement('option');
-        opt.value = String(vs.stepIndex);
-        opt.textContent = `${vs.visualIndex + 1} / ${spriteSheetCount} — ${vs.spriteSheetId}`;
-        select.appendChild(opt);
-      }
-      select.value = String(currentStep);
-      select.addEventListener('change', () => {
-        state = setSelectedStep(state, action.actionKey, parseInt(select.value, 10));
-        saveLabStateToStorage(localStorage, state);
-        render();
-      });
-      label.appendChild(select);
-      stepSection.appendChild(label);
-    }
-  }
-
-  function renderSourceIdentities(action: LabAction): void {
-    const body = sourcesSection.body;
-    const stepIdx = getSelectedVisualStepIndex(state, action);
-    const step = action.vfxSteps[stepIdx];
-    const qaId = getQaSourceId(state, action.actionKey, stepIdx);
-    const qaStatus = getQaStatus(state, action, stepIdx);
-    const validated = getValidatedConfig(state, action.actionKey, stepIdx);
-    const previewId = getPreviewCandidateId(state);
-    const prodSource = step?.sourceCandidateId ?? step?.spriteSheetId ?? 'none';
-
-    const header = document.createElement('div');
-    header.className = 'lab-prod-header';
-    header.textContent = 'SOURCE IDENTITIES';
-    body.appendChild(header);
-
-    const info = document.createElement('div');
-    info.className = 'lab-source-ids';
-    info.innerHTML = `
-      <div><b>PRODUCTION:</b> ${prodSource}</div>
-      <div><b>QA:</b> ${qaId ?? '(not set — same as production)'}</div>
-      <div><b>VALIDATED:</b> ${validated?.sourceId ?? '—'}</div>
-      <div><b>CATALOGUE SELECTION:</b> ${previewId ?? '—'}</div>
-    `;
-    body.appendChild(info);
-
-    // Production details
-    const prodDetail = document.createElement('div');
-    prodDetail.className = 'lab-prod-info';
-    prodDetail.innerHTML = `<b>Route:</b> ${action.route}${action.routeReason ? ` (${action.routeReason})` : ''}<br><b>Preset:</b> ${action.currentPresetId ?? 'none'}<br><b>Source status:</b> ${action.sourceStatus}`;
-    if (step) {
-      if (step.spriteSheetId) prodDetail.innerHTML += `<br><b>Sprite sheet:</b> ${step.spriteSheetId}`;
-      if (step.sourceCandidateId) prodDetail.innerHTML += `<br><b>Source candidate:</b> ${step.sourceCandidateId}`;
-      if (step.sourceFilename) prodDetail.innerHTML += `<br><b>Source file:</b> ${step.sourceFilename}`;
-    }
-    body.appendChild(prodDetail);
-
-    // QA details
-    const qaDetail = document.createElement('div');
-    qaDetail.className = 'lab-qa-info';
-    qaDetail.innerHTML = `<b>QA status:</b> ${qaStatus}`;
-    body.appendChild(qaDetail);
-
-    if (qaId) {
-      const clearBtn = document.createElement('button');
-      clearBtn.className = 'lab-clear-btn';
-      clearBtn.textContent = 'CLEAR QA SOURCE';
-      clearBtn.addEventListener('click', () => {
-        state = clearQaSourceId(state, action.actionKey, stepIdx);
-        saveLabStateToStorage(localStorage, state);
-        render();
-      });
-      body.appendChild(clearBtn);
-    }
-  }
-
-  function renderPlayback(action: LabAction): void {
-    const body = playbackSection.body;
-    body.innerHTML = '';
-    const header = document.createElement('div');
-    header.className = 'lab-playback-header';
-    header.textContent = 'PLAYBACK';
-    body.appendChild(header);
-
-    const routeDiv = document.createElement('div');
-    routeDiv.className = 'lab-route-info';
-    routeDiv.innerHTML = `<b>ROUTE:</b> ${action.route} · ${action.routeReason ?? 'automatic'}`;
-    body.appendChild(routeDiv);
-
-    const btnRow = document.createElement('div');
-    btnRow.className = 'lab-btn-row';
-
-    const playProdBtn = document.createElement('button');
-    playProdBtn.className = 'lab-play-btn';
-    playProdBtn.textContent = 'PLAY PRODUCTION';
-    playProdBtn.disabled = !options.playback;
-    playProdBtn.addEventListener('click', () => {
-      if (!options.playback) return;
-      const result = playProduction(options.playback, state, action.actionKey);
-      if (result.snapshot) {
-        lastPlaybackSnapshot = result.snapshot;
-        statusLine.textContent = `Played PRODUCTION: ${action.actionKey}`;
-      }
+      render();
     });
-    btnRow.appendChild(playProdBtn);
+    nav.appendChild(prevBtn);
 
-    const playQaBtn = document.createElement('button');
-    playQaBtn.className = 'lab-play-btn';
-    playQaBtn.textContent = 'PLAY QA';
-    playQaBtn.disabled = !options.playback;
-    playQaBtn.addEventListener('click', () => {
-      if (!options.playback) return;
-      const result = playQaOverride(options.playback, state, action.actionKey);
-      if (result.snapshot) {
-        lastPlaybackSnapshot = result.snapshot;
-        statusLine.textContent = `Played QA: ${action.actionKey}`;
-      }
-    });
-    btnRow.appendChild(playQaBtn);
-
-    const playValBtn = document.createElement('button');
-    playValBtn.className = 'lab-play-btn';
-    playValBtn.textContent = 'PLAY VALIDATED';
-    playValBtn.disabled = !options.playback || !getValidatedConfig(state, action.actionKey, getSelectedVisualStepIndex(state, action));
-    playValBtn.addEventListener('click', () => {
-      if (!options.playback) return;
-      const result = playValidated(options.playback, state, action.actionKey);
-      if (result.snapshot) {
-        lastPlaybackSnapshot = result.snapshot;
-        statusLine.textContent = `Played VALIDATED: ${action.actionKey}`;
-      }
-    });
-    btnRow.appendChild(playValBtn);
-
-    const replayBtn = document.createElement('button');
-    replayBtn.className = 'lab-play-btn';
-    replayBtn.textContent = 'REPLAY';
-    replayBtn.disabled = !options.playback || !lastPlaybackSnapshot;
-    replayBtn.addEventListener('click', () => {
-      if (!options.playback) return;
-      const result = replay(options.playback, state);
-      if (result.snapshot) {
-        lastPlaybackSnapshot = result.snapshot;
-        statusLine.textContent = `Replayed: ${result.snapshot.mode} — ${result.snapshot.actionKey}`;
-      }
-    });
-    btnRow.appendChild(replayBtn);
-
-    body.appendChild(btnRow);
-
-    // PLAY QA IN COMBAT STAGE — forced Stage visual preview
-    const stageBtnRow = document.createElement('div');
-    stageBtnRow.className = 'lab-btn-row lab-stage-btn-row';
-
-    const playStageBtn = document.createElement('button');
-    playStageBtn.className = 'lab-play-btn lab-play-stage-btn';
-    playStageBtn.textContent = 'PLAY QA IN COMBAT STAGE';
-    const hasQaSource = Boolean(getQaSourceId(state, action.actionKey, getSelectedVisualStepIndex(state, action)));
-    playStageBtn.disabled = !options.playback || !hasQaSource || !options.playback.buildStageContext;
-    playStageBtn.addEventListener('click', async () => {
-      if (!options.playback) return;
-      playStageBtn.disabled = true;
-      playStageBtn.textContent = 'PLAYING IN STAGE...';
-      const result = await playQaInCombatStage(options.playback, state, action.actionKey);
-      if (result.snapshot) {
-        lastPlaybackSnapshot = result.snapshot;
-        statusLine.textContent = `Played QA in Combat Stage: ${action.actionKey}`;
-      } else {
-        statusLine.textContent = `Stage preview unavailable: ${action.actionKey}`;
-      }
-      playStageBtn.disabled = false;
-      playStageBtn.textContent = 'PLAY QA IN COMBAT STAGE';
-    });
-    stageBtnRow.appendChild(playStageBtn);
-
-    if (!hasQaSource) {
-      const hint = document.createElement('span');
-      hint.className = 'lab-stage-hint';
-      hint.textContent = 'QA SOURCE REQUIRED';
-      stageBtnRow.appendChild(hint);
-    }
-
-    body.appendChild(stageBtnRow);
-
-    if (lastPlaybackSnapshot) {
-      const snapDiv = document.createElement('div');
-      snapDiv.className = 'lab-snapshot-info';
-      snapDiv.innerHTML = `<b>Last:</b> ${lastPlaybackSnapshot.mode} · ${lastPlaybackSnapshot.actionKey} step ${lastPlaybackSnapshot.stepIndex} · src: ${lastPlaybackSnapshot.source}`;
-      body.appendChild(snapDiv);
-    }
-  }
-
-  function renderValidationAndNotes(action: LabAction): void {
-    const body = validationSection.body;
-    body.innerHTML = '';
-    const stepIdx = getSelectedVisualStepIndex(state, action);
-    const step = action.vfxSteps[stepIdx];
-    if (!step) return;
-
-    const header = document.createElement('div');
-    header.className = 'lab-validation-header';
-    header.textContent = 'VALIDATION';
-    body.appendChild(header);
-
-    const stepStatus = getValidationStepStatus(state, action, stepIdx);
-    const actionStatus = getValidationActionStatus(state, action);
-
-    // V1D.4.2: Show visual spritesheet progress
-    const visualSteps = getVisualSpriteSheetSteps(action);
-    const validatedCount = visualSteps.filter((vs) =>
-      getValidationStepStatus(state, action, vs.stepIndex) === 'VALIDATED',
-    ).length;
-
-    const statusDiv = document.createElement('div');
-    statusDiv.className = 'lab-validation-status';
-    if (visualSteps.length > 0) {
-      statusDiv.innerHTML = `<b>VFX:</b> ${stepStatus} · <b>Action:</b> ${actionStatus} · <b>Validated:</b> ${validatedCount} / ${visualSteps.length}`;
-    } else {
-      statusDiv.innerHTML = `<b>Action:</b> ${actionStatus}`;
-    }
-    body.appendChild(statusDiv);
-
-    // Source display: PRODUCTION / QA WORKING / VALIDATED
-    const validated = getValidatedConfig(state, action.actionKey, stepIdx);
-    const qaSource = getQaSourceId(state, action.actionKey, stepIdx);
-    const prodSource = step.sourceCandidateId ?? step.spriteSheetId ?? 'none';
-
-    const sourceDiv = document.createElement('div');
-    sourceDiv.className = 'lab-validation-sources';
-    sourceDiv.innerHTML = `
-      <div><b>PRODUCTION SOURCE:</b> ${prodSource}</div>
-      <div><b>QA WORKING SOURCE:</b> ${qaSource ?? prodSource}</div>
-      <div><b>VALIDATED SOURCE:</b> ${validated?.sourceId ?? '—'}</div>
-    `;
-    body.appendChild(sourceDiv);
-
-    // Validation buttons
-    const btnRow = document.createElement('div');
-    btnRow.className = 'lab-validation-btn-row';
-
-    const validateBtn = document.createElement('button');
-    validateBtn.className = 'lab-validate-btn';
-    validateBtn.textContent = 'VALIDATE CONFIGURATION';
-    validateBtn.addEventListener('click', () => {
-      const result = validateStepConfiguration(state, action, stepIdx);
-      if (result.ok) {
-        state = result.state;
-        saveLabStateToStorage(localStorage, state);
-        statusLine.textContent = `Validated: ${action.actionKey} step ${stepIdx}`;
-        render();
-      } else {
-        statusLine.textContent = `Validation failed: ${result.error}`;
-      }
-    });
-    btnRow.appendChild(validateBtn);
-
-    if (validated) {
-      const restoreBtn = document.createElement('button');
-      restoreBtn.className = 'lab-restore-btn';
-      restoreBtn.textContent = 'RESTORE VALIDATED';
-      restoreBtn.addEventListener('click', () => {
-        state = restoreValidated(state, action, stepIdx);
-        saveLabStateToStorage(localStorage, state);
-        statusLine.textContent = `Restored validated: ${action.actionKey} step ${stepIdx}`;
-        render();
-      });
-      btnRow.appendChild(restoreBtn);
-
-      const clearValBtn = document.createElement('button');
-      clearValBtn.className = 'lab-clear-val-btn';
-      clearValBtn.textContent = 'CLEAR VALIDATION';
-      clearValBtn.addEventListener('click', () => {
-        state = clearValidation(state, action.actionKey, stepIdx);
-        saveLabStateToStorage(localStorage, state);
-        statusLine.textContent = `Cleared validation: ${action.actionKey} step ${stepIdx}`;
-        render();
-      });
-      btnRow.appendChild(clearValBtn);
-    }
-
-    body.appendChild(btnRow);
-
-    // NEXT TO VALIDATE
     const nextBtn = document.createElement('button');
-    nextBtn.className = 'lab-next-btn';
-    nextBtn.textContent = 'NEXT TO VALIDATE';
+    nextBtn.className = 'lab-nav-btn lab-nav-next';
+    nextBtn.textContent = 'NEXT REQUIRED ▶';
     nextBtn.addEventListener('click', () => {
-      const next = findNextToValidate(state, currentActionKey);
+      const mode = state.workQueueMode ?? 'ALL';
+      const next = findNextInWorkQueue(state, mode, currentActionKey, getSelectedVisualStepIndex(state, action));
       if (next) {
         currentActionKey = next.actionKey;
         actionSelect.value = next.actionKey;
@@ -640,77 +382,169 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
         statusLine.textContent = `Next: ${next.actionKey} (step ${next.stepIndex})`;
         render();
       } else {
-        statusLine.textContent = 'All actions validated!';
+        statusLine.textContent = 'Queue empty!';
       }
     });
-    body.appendChild(nextBtn);
+    nav.appendChild(nextBtn);
 
-    // Notes section (merged into validation)
-    const notesHeader = document.createElement('div');
-    notesHeader.className = 'lab-notes-header';
-    notesHeader.textContent = 'VISUAL NOTES';
-    body.appendChild(notesHeader);
-
-    const textarea = document.createElement('textarea');
-    textarea.className = 'lab-notes-input';
-    textarea.rows = 2;
-    textarea.placeholder = 'Notes for this action/step...';
-    textarea.value = getStepNotes(state, action.actionKey, stepIdx);
-    textarea.addEventListener('change', () => {
-      state = setStepNotes(state, action.actionKey, stepIdx, textarea.value);
-      saveLabStateToStorage(localStorage, state);
-      statusLine.textContent = 'Notes saved';
-    });
-    body.appendChild(textarea);
+    actionBar.appendChild(nav);
   }
 
-  function renderProgress(): void {
-    progressContainer.innerHTML = '';
-    const header = document.createElement('div');
-    header.className = 'lab-progress-header';
-    header.textContent = 'VALIDATION PROGRESS';
-    progressContainer.appendChild(header);
+  function renderQueueBar(): void {
+    const modes: WorkQueueMode[] = ['CONFIGURE', 'APPLY', 'VERIFY', 'ALL'];
+    const currentMode = state.workQueueMode ?? 'ALL';
 
-    const progress = getValidationProgress(state);
-    const info = document.createElement('div');
-    info.className = 'lab-progress-info';
-    info.innerHTML = `
-      <div class="lab-progress-row"><b>HERO ACTIONS</b></div>
-      <div>Validated: <b>${progress.heroValidated}</b> / ${progress.heroTotal}</div>
-      <div class="lab-progress-row"><b>ENEMY/BOSS ACTIONS</b></div>
-      <div>Validated: <b>${progress.enemyBossValidated}</b> / ${progress.enemyBossTotal}</div>
-      <div class="lab-progress-row"><b>ALL LAB ACTIONS</b></div>
-      <div>Validated: <b>${progress.allValidated}</b> / ${progress.allTotal}</div>
-      <div class="lab-progress-row"><b>BREAKDOWN</b></div>
-      <div>VFX-configurable: <b>${progress.vfxConfigurable}</b></div>
-      <div>No-VFX/not-applicable: <b>${progress.noVfx}</b></div>
-      <div>Modified after validation: <b>${progress.modifiedAfterValidation}</b></div>
-      <div>Unresolved source: <b>${progress.unresolvedActions}</b></div>
-    `;
-    progressContainer.appendChild(info);
+    const label = document.createElement('span');
+    label.className = 'lab-queue-label';
+    label.textContent = 'WORK QUEUE';
+    queueBar.appendChild(label);
 
-    if (progress.unresolvedActionKeys.length > 0) {
-      const unresolvedDiv = document.createElement('div');
-      unresolvedDiv.className = 'lab-progress-unresolved';
-      unresolvedDiv.innerHTML = `<b>Unresolved:</b> ${progress.unresolvedActionKeys.join(', ')}`;
-      progressContainer.appendChild(unresolvedDiv);
+    for (const mode of modes) {
+      const btn = document.createElement('button');
+      btn.className = 'lab-queue-btn' + (mode === currentMode ? ' lab-queue-active' : '');
+      btn.textContent = mode;
+      const count = buildWorkQueue(state, mode).length;
+      btn.textContent += ` (${count})`;
+      btn.addEventListener('click', () => {
+        state = { ...state, workQueueMode: mode };
+        saveLabStateToStorage(localStorage, state);
+        render();
+      });
+      queueBar.appendChild(btn);
     }
   }
 
-  function renderTuning(action: LabAction): void {
-    const body = tuningSection.body;
-    body.innerHTML = '';
+  function renderInspector(action: LabAction): void {
+    const visualSteps = getVisualSpriteSheetSteps(action);
+    const spriteSheetCount = visualSteps.length;
     const stepIdx = getSelectedVisualStepIndex(state, action);
     const step = action.vfxSteps[stepIdx];
-    if (!step) {
-      body.innerHTML = '<div class="lab-no-vfx">No VFX step to tune.</div>';
+    const lifecycle = getLifecycleStatus(state, action, stepIdx);
+
+    // Auto-correct selected step
+    const realStepIndex = getSelectedVisualStepIndex(state, action);
+    if (realStepIndex !== getSelectedStep(state, action.actionKey)) {
+      state = setSelectedStep(state, action.actionKey, realStepIndex);
+      saveLabStateToStorage(localStorage, state);
+    }
+
+    // === CURRENT VFX ===
+    const vfxHeader = document.createElement('div');
+    vfxHeader.className = 'lab-inspector-section';
+    vfxHeader.innerHTML = `<div class="lab-inspector-title">CURRENT VFX</div>`;
+
+    const presetDiv = document.createElement('div');
+    presetDiv.className = 'lab-preset-info';
+    presetDiv.innerHTML = `<b>PRESET</b> ${action.currentPresetId ?? 'none'} · <b>SPRITESHEETS</b> ${spriteSheetCount}`;
+    vfxHeader.appendChild(presetDiv);
+
+    if (spriteSheetCount === 0) {
+      const noVfx = document.createElement('div');
+      noVfx.className = 'lab-no-spritesheet';
+      noVfx.textContent = 'NO CONFIGURABLE SPRITESHEET';
+      vfxHeader.appendChild(noVfx);
+      inspectorCol.appendChild(vfxHeader);
       return;
     }
 
-    const header = document.createElement('div');
-    header.className = 'lab-tuning-header';
-    header.textContent = 'PRESENTATION PARAMETERS';
-    body.appendChild(header);
+    if (spriteSheetCount === 1) {
+      const currentDiv = document.createElement('div');
+      currentDiv.className = 'lab-current-vfx';
+      currentDiv.innerHTML = `<b>CURRENT VFX</b><br>${visualSteps[0]!.spriteSheetId}`;
+      vfxHeader.appendChild(currentDiv);
+    } else {
+      const label = document.createElement('label');
+      label.className = 'lab-vfx-spritesheet-selector';
+      label.textContent = 'VFX SPRITESHEET';
+      const select = document.createElement('select');
+      for (const vs of visualSteps) {
+        const opt = document.createElement('option');
+        opt.value = String(vs.stepIndex);
+        opt.textContent = `${vs.visualIndex + 1} / ${spriteSheetCount} — ${vs.spriteSheetId}`;
+        select.appendChild(opt);
+      }
+      select.value = String(stepIdx);
+      select.addEventListener('change', () => {
+        state = setSelectedStep(state, action.actionKey, parseInt(select.value, 10));
+        saveLabStateToStorage(localStorage, state);
+        render();
+      });
+      label.appendChild(select);
+      vfxHeader.appendChild(label);
+    }
+
+    // Lifecycle status badge
+    const lifecycleDiv = document.createElement('div');
+    lifecycleDiv.className = `lab-lifecycle-badge lab-lifecycle-${lifecycle.toLowerCase()}`;
+    lifecycleDiv.textContent = formatLifecycleStatus(lifecycle);
+    vfxHeader.appendChild(lifecycleDiv);
+
+    inspectorCol.appendChild(vfxHeader);
+
+    if (!step) return;
+
+    // === SOURCE PIPELINE ===
+    renderSourcePipeline(action, stepIdx);
+
+    // === PRESENTATION ===
+    renderPresentation(action, stepIdx);
+
+    // === PLAYBACK ===
+    renderPlaybackSection(action, stepIdx, lifecycle);
+
+    // === LIFECYCLE ===
+    renderLifecycleSection(action, stepIdx, lifecycle);
+  }
+
+  function renderSourcePipeline(action: LabAction, stepIdx: number): void {
+    const step = action.vfxSteps[stepIdx];
+    if (!step) return;
+
+    const prodSource = step.sourceCandidateId ?? step.spriteSheetId ?? 'none';
+    const qaId = getQaSourceId(state, action.actionKey, stepIdx);
+    const validated = getValidatedConfig(state, action.actionKey, stepIdx);
+    const previewId = getPreviewCandidateId(state);
+
+    const section = document.createElement('div');
+    section.className = 'lab-inspector-section';
+    section.innerHTML = `<div class="lab-inspector-title">SOURCE PIPELINE</div>`;
+
+    const pipeline = document.createElement('div');
+    pipeline.className = 'lab-source-pipeline';
+    pipeline.innerHTML = `
+      <div class="lab-pipeline-step"><b>PRODUCTION</b><br>${prodSource}</div>
+      <div class="lab-pipeline-arrow">↓</div>
+      <div class="lab-pipeline-step"><b>SELECTED</b><br>${previewId ?? '—'}</div>
+      <div class="lab-pipeline-arrow">↓</div>
+      <div class="lab-pipeline-step"><b>QA</b><br>${qaId ?? '(same as production)'}</div>
+      <div class="lab-pipeline-arrow">↓</div>
+      <div class="lab-pipeline-step"><b>VALIDATED</b><br>${validated?.sourceId ?? '—'}</div>
+    `;
+    section.appendChild(pipeline);
+
+    // Clear QA button
+    if (qaId) {
+      const clearBtn = document.createElement('button');
+      clearBtn.className = 'lab-clear-btn';
+      clearBtn.textContent = 'CLEAR QA SOURCE';
+      clearBtn.addEventListener('click', () => {
+        state = clearQaSourceId(state, action.actionKey, stepIdx);
+        saveLabStateToStorage(localStorage, state);
+        render();
+      });
+      section.appendChild(clearBtn);
+    }
+
+    inspectorCol.appendChild(section);
+  }
+
+  function renderPresentation(action: LabAction, stepIdx: number): void {
+    const step = action.vfxSteps[stepIdx];
+    if (!step) return;
+
+    const section = document.createElement('div');
+    section.className = 'lab-inspector-section';
+    section.innerHTML = `<div class="lab-inspector-title">PRESENTATION</div>`;
 
     const prodPres = getProductionPresentation(step);
     const qaPres = getQaPresentation(state, action.actionKey, stepIdx) ?? {};
@@ -721,7 +555,7 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     statusDiv.className = 'lab-tuning-status';
     statusDiv.textContent = modified ? 'QA MODIFIED' : 'SAME AS PRODUCTION';
     statusDiv.classList.add(modified ? 'lab-status-modified' : 'lab-status-same');
-    body.appendChild(statusDiv);
+    section.appendChild(statusDiv);
 
     const grid = document.createElement('div');
     grid.className = 'lab-tuning-grid';
@@ -798,7 +632,7 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       grid.appendChild(item);
     }
 
-    body.appendChild(grid);
+    section.appendChild(grid);
 
     const resetBtn = document.createElement('button');
     resetBtn.className = 'lab-reset-btn';
@@ -808,77 +642,500 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       saveLabStateToStorage(localStorage, state);
       render();
     });
-    body.appendChild(resetBtn);
+    section.appendChild(resetBtn);
+
+    inspectorCol.appendChild(section);
   }
 
-  function renderStats(): void {
-    const body = statsSection.body;
+  function renderPlaybackSection(action: LabAction, stepIdx: number, lifecycle: ProductionLifecycleStatus): void {
+    const section = document.createElement('div');
+    section.className = 'lab-inspector-section';
+    section.innerHTML = `<div class="lab-inspector-title">PLAYBACK</div>`;
+
+    const hasQaSource = Boolean(getQaSourceId(state, action.actionKey, stepIdx));
+    const hasValidated = Boolean(getValidatedConfig(state, action.actionKey, stepIdx));
+    const hasStage = Boolean(options.playback?.buildStageContext);
+
+    // Primary: PLAY QA IN COMBAT STAGE (dominant when QA_WORKING)
+    const primaryRow = document.createElement('div');
+    primaryRow.className = 'lab-btn-row lab-stage-btn-row';
+
+    const playStageBtn = document.createElement('button');
+    playStageBtn.className = 'lab-play-btn lab-play-stage-btn';
+    playStageBtn.textContent = 'PLAY QA IN COMBAT STAGE';
+    playStageBtn.disabled = !options.playback || !hasQaSource || !hasStage;
+    playStageBtn.addEventListener('click', async () => {
+      if (!options.playback) return;
+      playStageBtn.disabled = true;
+      playStageBtn.textContent = 'PLAYING IN STAGE...';
+      const result = await playQaInCombatStage(options.playback, state, action.actionKey);
+      if (result.snapshot) {
+        lastPlaybackSnapshot = result.snapshot;
+        statusLine.textContent = `Played QA in Combat Stage: ${action.actionKey}`;
+      } else {
+        statusLine.textContent = `Stage preview unavailable`;
+      }
+      playStageBtn.disabled = false;
+      playStageBtn.textContent = 'PLAY QA IN COMBAT STAGE';
+      render();
+    });
+    primaryRow.appendChild(playStageBtn);
+    section.appendChild(primaryRow);
+
+    // PLAY VALIDATED IN COMBAT STAGE
+    const validatedRow = document.createElement('div');
+    validatedRow.className = 'lab-btn-row lab-stage-btn-row';
+
+    const playValStageBtn = document.createElement('button');
+    playValStageBtn.className = 'lab-play-btn lab-play-validated-stage-btn';
+    playValStageBtn.textContent = 'PLAY VALIDATED IN COMBAT STAGE';
+    playValStageBtn.disabled = !options.playback || !hasValidated || !hasStage;
+    playValStageBtn.addEventListener('click', async () => {
+      if (!options.playback) return;
+      playValStageBtn.disabled = true;
+      playValStageBtn.textContent = 'PLAYING VALIDATED...';
+      const result = await playValidatedInCombatStage(options.playback, state, action.actionKey);
+      if (result.snapshot) {
+        lastPlaybackSnapshot = result.snapshot;
+        statusLine.textContent = `Played VALIDATED in Combat Stage: ${action.actionKey}`;
+      } else {
+        statusLine.textContent = `Validated stage preview unavailable`;
+      }
+      playValStageBtn.disabled = false;
+      playValStageBtn.textContent = 'PLAY VALIDATED IN COMBAT STAGE';
+      render();
+    });
+    validatedRow.appendChild(playValStageBtn);
+    section.appendChild(validatedRow);
+
+    // TEST PRODUCTION IN COMBAT STAGE
+    const prodRow = document.createElement('div');
+    prodRow.className = 'lab-btn-row lab-stage-btn-row';
+
+    const playProdStageBtn = document.createElement('button');
+    playProdStageBtn.className = 'lab-play-btn lab-play-prod-stage-btn';
+    playProdStageBtn.textContent = 'TEST PRODUCTION IN COMBAT STAGE';
+    playProdStageBtn.disabled = !options.playback || !hasStage;
+
+    // V1E Part S: Disable production test when validated not applied
+    if (lifecycle === 'VALIDATED_NOT_APPLIED') {
+      const warning = document.createElement('div');
+      warning.className = 'lab-prod-test-warning';
+      warning.textContent = 'PRODUCTION DOES NOT MATCH VALIDATED — APPLY VALIDATED CONFIG FIRST';
+      prodRow.appendChild(warning);
+    }
+
+    playProdStageBtn.addEventListener('click', async () => {
+      if (!options.playback) return;
+      playProdStageBtn.disabled = true;
+      playProdStageBtn.textContent = 'TESTING PRODUCTION...';
+      const result = await playProductionInCombatStage(options.playback, state, action.actionKey);
+      if (result.snapshot) {
+        lastPlaybackSnapshot = result.snapshot;
+        statusLine.textContent = `Tested PRODUCTION in Combat Stage: ${action.actionKey}`;
+      } else {
+        statusLine.textContent = `Production stage test unavailable`;
+      }
+      playProdStageBtn.disabled = false;
+      playProdStageBtn.textContent = 'TEST PRODUCTION IN COMBAT STAGE';
+      render();
+    });
+    prodRow.appendChild(playProdStageBtn);
+    section.appendChild(prodRow);
+
+    // Secondary playback buttons
+    const secondaryRow = document.createElement('div');
+    secondaryRow.className = 'lab-btn-row';
+
+    const playProdBtn = document.createElement('button');
+    playProdBtn.className = 'lab-play-btn';
+    playProdBtn.textContent = 'PLAY PRODUCTION';
+    playProdBtn.disabled = !options.playback;
+    playProdBtn.addEventListener('click', () => {
+      if (!options.playback) return;
+      const result = playProduction(options.playback, state, action.actionKey);
+      if (result.snapshot) {
+        lastPlaybackSnapshot = result.snapshot;
+        statusLine.textContent = `Played PRODUCTION: ${action.actionKey}`;
+      }
+    });
+    secondaryRow.appendChild(playProdBtn);
+
+    const playQaBtn = document.createElement('button');
+    playQaBtn.className = 'lab-play-btn';
+    playQaBtn.textContent = 'PLAY QA';
+    playQaBtn.disabled = !options.playback;
+    playQaBtn.addEventListener('click', () => {
+      if (!options.playback) return;
+      const result = playQaOverride(options.playback, state, action.actionKey);
+      if (result.snapshot) {
+        lastPlaybackSnapshot = result.snapshot;
+        statusLine.textContent = `Played QA: ${action.actionKey}`;
+      }
+    });
+    secondaryRow.appendChild(playQaBtn);
+
+    const playValBtn = document.createElement('button');
+    playValBtn.className = 'lab-play-btn';
+    playValBtn.textContent = 'PLAY VALIDATED';
+    playValBtn.disabled = !options.playback || !hasValidated;
+    playValBtn.addEventListener('click', () => {
+      if (!options.playback) return;
+      const result = playValidated(options.playback, state, action.actionKey);
+      if (result.snapshot) {
+        lastPlaybackSnapshot = result.snapshot;
+        statusLine.textContent = `Played VALIDATED: ${action.actionKey}`;
+      }
+    });
+    secondaryRow.appendChild(playValBtn);
+
+    const replayBtn = document.createElement('button');
+    replayBtn.className = 'lab-play-btn';
+    replayBtn.textContent = 'REPLAY';
+    replayBtn.disabled = !options.playback || !lastPlaybackSnapshot;
+    replayBtn.addEventListener('click', () => {
+      if (!options.playback) return;
+      const result = replay(options.playback, state);
+      if (result.snapshot) {
+        lastPlaybackSnapshot = result.snapshot;
+        statusLine.textContent = `Replayed: ${result.snapshot.mode}`;
+      }
+    });
+    secondaryRow.appendChild(replayBtn);
+
+    section.appendChild(secondaryRow);
+
+    if (lastPlaybackSnapshot) {
+      const snapDiv = document.createElement('div');
+      snapDiv.className = 'lab-snapshot-info';
+      snapDiv.innerHTML = `<b>Last:</b> ${lastPlaybackSnapshot.mode} · ${lastPlaybackSnapshot.actionKey} step ${lastPlaybackSnapshot.stepIndex} · src: ${lastPlaybackSnapshot.source}`;
+      section.appendChild(snapDiv);
+    }
+
+    inspectorCol.appendChild(section);
+  }
+
+  function renderLifecycleSection(action: LabAction, stepIdx: number, lifecycle: ProductionLifecycleStatus): void {
+    const section = document.createElement('div');
+    section.className = 'lab-inspector-section';
+    section.innerHTML = `<div class="lab-inspector-title">LIFECYCLE</div>`;
+
+    const validated = getValidatedConfig(state, action.actionKey, stepIdx);
+    const stepStatus = getValidationStepStatus(state, action, stepIdx);
+
+    // Status display
+    const statusDiv = document.createElement('div');
+    statusDiv.className = `lab-lifecycle-badge lab-lifecycle-${lifecycle.toLowerCase()}`;
+    statusDiv.textContent = formatLifecycleStatus(lifecycle);
+    section.appendChild(statusDiv);
+
+    // Validation status
+    const valStatusDiv = document.createElement('div');
+    valStatusDiv.className = 'lab-validation-status';
+    valStatusDiv.innerHTML = `<b>VFX:</b> ${stepStatus}`;
+    section.appendChild(valStatusDiv);
+
+    // VALIDATE CURRENT VFX button
+    const btnRow = document.createElement('div');
+    btnRow.className = 'lab-btn-row';
+
+    const validateBtn = document.createElement('button');
+    validateBtn.className = 'lab-validate-btn';
+    validateBtn.textContent = 'VALIDATE CURRENT VFX';
+    validateBtn.addEventListener('click', () => {
+      const result = validateStepConfiguration(state, action, stepIdx);
+      if (result.ok) {
+        state = result.state;
+        saveLabStateToStorage(localStorage, state);
+        statusLine.textContent = `Validated: ${action.actionKey} step ${stepIdx}`;
+        render();
+      } else {
+        statusLine.textContent = `Validation failed: ${result.error}`;
+      }
+    });
+    btnRow.appendChild(validateBtn);
+
+    if (validated) {
+      const restoreBtn = document.createElement('button');
+      restoreBtn.className = 'lab-restore-btn';
+      restoreBtn.textContent = 'RESTORE VALIDATED';
+      restoreBtn.addEventListener('click', () => {
+        state = restoreValidated(state, action, stepIdx);
+        saveLabStateToStorage(localStorage, state);
+        statusLine.textContent = `Restored validated: ${action.actionKey} step ${stepIdx}`;
+        render();
+      });
+      btnRow.appendChild(restoreBtn);
+
+      const clearValBtn = document.createElement('button');
+      clearValBtn.className = 'lab-clear-val-btn';
+      clearValBtn.textContent = 'CLEAR VALIDATION';
+      clearValBtn.addEventListener('click', () => {
+        state = clearValidation(state, action.actionKey, stepIdx);
+        saveLabStateToStorage(localStorage, state);
+        statusLine.textContent = `Cleared validation: ${action.actionKey} step ${stepIdx}`;
+        render();
+      });
+      btnRow.appendChild(clearValBtn);
+    }
+
+    section.appendChild(btnRow);
+
+    // Apply package (when VALIDATED_NOT_APPLIED)
+    if (lifecycle === 'VALIDATED_NOT_APPLIED') {
+      const pkg = generateApplyPackage(state, action, stepIdx);
+      if (pkg) {
+        const applyRow = document.createElement('div');
+        applyRow.className = 'lab-btn-row';
+
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'lab-apply-btn';
+        copyBtn.textContent = 'COPY APPLY TASK';
+        copyBtn.addEventListener('click', () => {
+          const text = generateApplyTaskText(pkg);
+          navigator.clipboard?.writeText(text).then(() => {
+            statusLine.textContent = 'Apply task copied to clipboard';
+          }).catch(() => {
+            statusLine.textContent = 'Clipboard unavailable — see console';
+            console.log(text);
+          });
+        });
+        applyRow.appendChild(copyBtn);
+
+        const exportBtn = document.createElement('button');
+        exportBtn.className = 'lab-apply-btn';
+        exportBtn.textContent = 'EXPORT APPLY PACKAGE';
+        exportBtn.addEventListener('click', () => {
+          const json = JSON.stringify(pkg, null, 2);
+          const blob = new Blob([json], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `apply-${action.actionKey}-step${stepIdx}.json`;
+          a.click();
+          URL.revokeObjectURL(url);
+          statusLine.textContent = 'Apply package exported';
+        });
+        applyRow.appendChild(exportBtn);
+
+        section.appendChild(applyRow);
+      }
+    }
+
+    // CONFIRM PRODUCTION VERIFIED (when APPLIED_NOT_VERIFIED)
+    if (lifecycle === 'APPLIED_NOT_VERIFIED') {
+      const confirmBtn = document.createElement('button');
+      confirmBtn.className = 'lab-confirm-verified-btn';
+      confirmBtn.textContent = 'CONFIRM PRODUCTION VERIFIED';
+      confirmBtn.addEventListener('click', () => {
+        state = confirmProductionVerified(state, action, stepIdx);
+        saveLabStateToStorage(localStorage, state);
+        statusLine.textContent = `Production verified: ${action.actionKey} step ${stepIdx}`;
+        render();
+      });
+      section.appendChild(confirmBtn);
+    }
+
+    // Clear verification (when PRODUCTION_VERIFIED or PRODUCTION_DRIFT)
+    if (lifecycle === 'PRODUCTION_VERIFIED' || lifecycle === 'PRODUCTION_DRIFT') {
+      const clearVerBtn = document.createElement('button');
+      clearVerBtn.className = 'lab-clear-val-btn';
+      clearVerBtn.textContent = 'CLEAR VERIFICATION';
+      clearVerBtn.addEventListener('click', () => {
+        state = clearProductionVerified(state, action.actionKey, stepIdx);
+        saveLabStateToStorage(localStorage, state);
+        statusLine.textContent = `Cleared verification: ${action.actionKey} step ${stepIdx}`;
+        render();
+      });
+      section.appendChild(clearVerBtn);
+    }
+
+    // Notes
+    const notesHeader = document.createElement('div');
+    notesHeader.className = 'lab-notes-header';
+    notesHeader.textContent = 'VISUAL NOTES';
+    section.appendChild(notesHeader);
+
+    const textarea = document.createElement('textarea');
+    textarea.className = 'lab-notes-input';
+    textarea.rows = 2;
+    textarea.placeholder = 'Notes for this action/step...';
+    textarea.value = getStepNotes(state, action.actionKey, stepIdx);
+    textarea.addEventListener('change', () => {
+      state = setStepNotes(state, action.actionKey, stepIdx, textarea.value);
+      saveLabStateToStorage(localStorage, state);
+      statusLine.textContent = 'Notes saved';
+    });
+    section.appendChild(textarea);
+
+    inspectorCol.appendChild(section);
+  }
+
+  function renderCtaBar(action: LabAction): void {
+    const stepIdx = getSelectedVisualStepIndex(state, action);
+    const lifecycle = getLifecycleStatus(state, action, stepIdx);
+
+    const cta = document.createElement('div');
+    cta.className = 'lab-cta-content';
+
+    let primaryText = '';
+    let secondaryText = '';
+
+    switch (lifecycle) {
+      case 'UNCONFIGURED':
+        primaryText = 'SELECT A CARTOONCOFFEE VFX →';
+        break;
+      case 'QA_WORKING':
+        primaryText = 'PLAY QA IN COMBAT STAGE';
+        secondaryText = 'VALIDATE CURRENT VFX';
+        break;
+      case 'VALIDATED_NOT_APPLIED':
+        primaryText = 'PLAY VALIDATED IN COMBAT STAGE';
+        secondaryText = 'COPY APPLY TASK';
+        break;
+      case 'APPLIED_NOT_VERIFIED':
+        primaryText = 'TEST PRODUCTION IN COMBAT STAGE';
+        secondaryText = 'CONFIRM PRODUCTION VERIFIED';
+        break;
+      case 'PRODUCTION_VERIFIED':
+        primaryText = 'NEXT REQUIRED →';
+        break;
+      case 'PRODUCTION_DRIFT':
+        primaryText = 'PRODUCTION DRIFT — REVIEW / REAPPLY';
+        break;
+      case 'NO_VFX':
+        primaryText = 'NO VFX — SKIP';
+        break;
+    }
+
+    cta.innerHTML = `<div class="lab-cta-primary">${primaryText}</div>`;
+    if (secondaryText) {
+      cta.innerHTML += `<div class="lab-cta-secondary">${secondaryText}</div>`;
+    }
+
+    ctaBar.appendChild(cta);
+  }
+
+  function renderAdvanced(action: LabAction): void {
+    const body = advancedSection.body;
     body.innerHTML = '';
 
-    // Mini preview stats (V1D.4)
-    const miniHeader = document.createElement('div');
-    miniHeader.className = 'lab-stats-header';
-    miniHeader.textContent = 'MINI PREVIEWS';
-    body.appendChild(miniHeader);
-    const miniInfo = document.createElement('div');
-    miniInfo.className = 'lab-stats-info';
-    miniInfo.id = 'lab-mini-preview-stats';
-    miniInfo.innerHTML = `
+    // Validation progress
+    const progress = getValidationProgress(state);
+    const prodProgress = getProductionProgress(state);
+    const progressDiv = document.createElement('div');
+    progressDiv.className = 'lab-progress-info';
+    progressDiv.innerHTML = `
+      <div class="lab-progress-row"><b>ARTISTIC VALIDATION</b></div>
+      <div>HERO: <b>${progress.heroValidated}</b> / ${progress.heroTotal}</div>
+      <div>ENEMY/BOSS: <b>${progress.enemyBossValidated}</b> / ${progress.enemyBossTotal}</div>
+      <div>ALL: <b>${progress.allValidated}</b> / ${progress.allTotal}</div>
+      <div class="lab-progress-row"><b>PRODUCTION VERIFICATION</b></div>
+      <div>HERO: <b>${prodProgress.heroVerified}</b> / ${prodProgress.heroTotal}</div>
+      <div>ENEMY/BOSS: <b>${prodProgress.enemyBossVerified}</b> / ${prodProgress.enemyBossTotal}</div>
+      <div>ALL: <b>${prodProgress.allVerified}</b> / ${prodProgress.allTotal}</div>
+      <div class="lab-progress-row"><b>BREAKDOWN</b></div>
+      <div>Validated not applied: <b>${prodProgress.validatedNotApplied}</b></div>
+      <div>Applied not verified: <b>${prodProgress.appliedNotVerified}</b></div>
+      <div>Modified after validation: <b>${progress.modifiedAfterValidation}</b></div>
+      <div>Unresolved source: <b>${progress.unresolvedActions}</b></div>
+    `;
+    body.appendChild(progressDiv);
+
+    // Internal IDs
+    const stepIdx = getSelectedVisualStepIndex(state, action);
+    const step = action.vfxSteps[stepIdx];
+    const idsDiv = document.createElement('div');
+    idsDiv.className = 'lab-debug-ids';
+    idsDiv.innerHTML = `
+      <div><b>actionKey:</b> ${action.actionKey}</div>
+      <div><b>presetId:</b> ${action.currentPresetId ?? 'none'}</div>
+      <div><b>stepIndex:</b> ${stepIdx}</div>
+      <div><b>sourceId:</b> ${step?.sourceCandidateId ?? step?.spriteSheetId ?? 'none'}</div>
+      <div><b>route:</b> ${action.route} (${action.routeReason ?? 'auto'})</div>
+    `;
+    body.appendChild(idsDiv);
+
+    // Fingerprints
+    const prodConfig = getProductionVisualConfig(action, stepIdx);
+    const valConfig = getValidatedVisualConfig(state, action.actionKey, stepIdx);
+    if (prodConfig) {
+      const fpDiv = document.createElement('div');
+      fpDiv.className = 'lab-debug-ids';
+      fpDiv.innerHTML = `<div><b>Production fingerprint:</b> ${computeConfigFingerprint(prodConfig)}</div>`;
+      if (valConfig) {
+        fpDiv.innerHTML += `<div><b>Validated fingerprint:</b> ${computeConfigFingerprint(valConfig)}</div>`;
+        fpDiv.innerHTML += `<div><b>Match:</b> ${configsSemanticallyEqual(prodConfig, valConfig) ? 'YES' : 'NO'}</div>`;
+      }
+      body.appendChild(fpDiv);
+    }
+
+    // Mini preview stats
+    const miniDiv = document.createElement('div');
+    miniDiv.className = 'lab-stats-info';
+    miniDiv.innerHTML = `
       <span>Active: <b>${miniPreviewStats.active}</b></span>
       <span>Loaded: <b>${miniPreviewStats.loaded}</b></span>
       <span>Failed: <b>${miniPreviewStats.failed}</b></span>
     `;
-    body.appendChild(miniInfo);
+    body.appendChild(miniDiv);
 
-    if (!options.getStats) return;
-    const header = document.createElement('div');
-    header.className = 'lab-stats-header';
-    header.textContent = 'VFX CACHE';
-    body.appendChild(header);
-
-    const stats = options.getStats();
-    const info = document.createElement('div');
-    info.className = 'lab-stats-info';
-    const mib = (stats.decodedBytesEstimate / (1024 * 1024)).toFixed(0);
-    const maxMib = (stats.budget * 64).toFixed(0);
-    info.innerHTML = `
-      <span>Resources: <b>${stats.cachedResources}</b></span>
-      <span>Pending: <b>${stats.pendingLoads}</b></span>
-      <span>Usage: <b>${stats.fourKEquivalentUsage.toFixed(2)} / ${stats.budget.toFixed(1)}</b> 4K-eq</span>
-      <span>Estimated: <b>${mib} / ${maxMib}</b> MiB</span>
-      <span>Hits: <b>${stats.cacheHits}</b></span>
-      <span>Loads: <b>${stats.loads}</b></span>
-      <span>Evictions: <b>${stats.evictions}</b></span>
-    `;
-    body.appendChild(info);
-  }
-
-  function renderHistory(action: LabAction): void {
-    const body = sourcesSection.body;
-    const history = state.qaHistory[action.actionKey];
-    if (!history || history.length === 0) return;
-
-    const header = document.createElement('div');
-    header.className = 'lab-history-header';
-    header.textContent = 'QA HISTORY';
-    body.appendChild(header);
-
-    const list = document.createElement('div');
-    list.className = 'lab-history-list';
-    for (const entry of history) {
-      const item = document.createElement('div');
-      item.className = 'lab-history-item';
-      item.innerHTML = `<b>${entry.candidateId}</b> — ${entry.verdict}`;
-      if (entry.notes) {
-        item.innerHTML += `<br><span class="lab-history-notes">${entry.notes}</span>`;
-      }
-      list.appendChild(item);
+    // Resource manager stats
+    if (options.getStats) {
+      const stats = options.getStats();
+      const statsDiv = document.createElement('div');
+      statsDiv.className = 'lab-stats-info';
+      const mib = (stats.decodedBytesEstimate / (1024 * 1024)).toFixed(0);
+      const maxMib = (stats.budget * 64).toFixed(0);
+      statsDiv.innerHTML = `
+        <span>Resources: <b>${stats.cachedResources}</b></span>
+        <span>Pending: <b>${stats.pendingLoads}</b></span>
+        <span>Usage: <b>${stats.fourKEquivalentUsage.toFixed(2)} / ${stats.budget.toFixed(1)}</b> 4K-eq</span>
+        <span>Estimated: <b>${mib} / ${maxMib}</b> MiB</span>
+        <span>Hits: <b>${stats.cacheHits}</b></span>
+        <span>Loads: <b>${stats.loads}</b></span>
+        <span>Evictions: <b>${stats.evictions}</b></span>
+      `;
+      body.appendChild(statsDiv);
     }
-    body.appendChild(list);
+
+    // QA History
+    const history = state.qaHistory[action.actionKey];
+    if (history && history.length > 0) {
+      const histHeader = document.createElement('div');
+      histHeader.className = 'lab-stats-header';
+      histHeader.textContent = 'QA HISTORY';
+      body.appendChild(histHeader);
+
+      const list = document.createElement('div');
+      list.className = 'lab-history-list';
+      for (const entry of history) {
+        const item = document.createElement('div');
+        item.className = 'lab-history-item';
+        item.innerHTML = `<b>${entry.candidateId}</b> — ${entry.verdict}`;
+        if (entry.notes) {
+          item.innerHTML += `<br><span class="lab-history-notes">${entry.notes}</span>`;
+        }
+        list.appendChild(item);
+      }
+      body.appendChild(list);
+    }
   }
 
-  function renderCatalogue(): void {
-    const body = librarySection.body;
+  function formatLifecycleStatus(status: ProductionLifecycleStatus): string {
+    switch (status) {
+      case 'UNCONFIGURED': return 'UNCONFIGURED';
+      case 'QA_WORKING': return 'QA WORKING';
+      case 'VALIDATED_NOT_APPLIED': return 'VALIDATED · NOT APPLIED';
+      case 'APPLIED_NOT_VERIFIED': return 'APPLIED · NOT VERIFIED';
+      case 'PRODUCTION_VERIFIED': return 'PRODUCTION VERIFIED';
+      case 'PRODUCTION_DRIFT': return 'PRODUCTION DRIFT';
+      case 'NO_VFX': return 'NO VFX';
+    }
+  }
+
+  function renderCatalogue(container: HTMLElement): void {
+    const body = container;
     body.innerHTML = '';
 
     // Result count (above filters, outside scroll)
@@ -1620,6 +1877,57 @@ function addLabStyle(): void {
     #${ROOT_ID} .lab-badge-qa{background:rgba(241,199,108,.2);color:#f1c76c}
     #${ROOT_ID} .lab-badge-validated{background:rgba(83,209,122,.2);color:#5fd17a}
     #${ROOT_ID} .lab-badge-prod{background:rgba(166,66,58,.2);color:#e07060}
+    /* V1E Workbench Layout */
+    #${ROOT_ID}{width:min(960px,calc(100vw - 36px))}
+    #${ROOT_ID} .lab-action-bar{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;padding:8px 10px;border:1px solid #2a4a60;border-radius:8px;background:rgba(12,28,44,.5)}
+    #${ROOT_ID} .lab-action-context{flex:1;min-width:0}
+    #${ROOT_ID} .lab-action-owner{color:#8fa5b2;font-size:10px}
+    #${ROOT_ID} .lab-action-name{color:#9fe5ff;font-size:14px;font-weight:700;margin:2px 0}
+    #${ROOT_ID} .lab-action-meta{display:flex;gap:8px;flex-wrap:wrap;font-size:10px;color:#b9d9e7}
+    #${ROOT_ID} .lab-action-meta b{color:#f1c76c}
+    #${ROOT_ID} .lab-action-status{margin-top:4px;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;display:inline-block}
+    #${ROOT_ID} .lab-action-progress{display:flex;gap:10px;margin-top:4px;font-size:10px;color:#b9d9e7}
+    #${ROOT_ID} .lab-action-progress b{color:#9fe5ff}
+    #${ROOT_ID} .lab-action-nav{display:flex;flex-direction:column;gap:4px;min-width:120px}
+    #${ROOT_ID} .lab-nav-btn{font-size:10px;padding:5px 8px;border-color:#395d77;background:#0c2134}
+    #${ROOT_ID} .lab-nav-next{border-color:#52b9d2;background:#0f3b52;color:#9fe5ff}
+    #${ROOT_ID} .lab-queue-bar{display:flex;align-items:center;gap:4px;margin-bottom:8px;flex-wrap:wrap}
+    #${ROOT_ID} .lab-queue-label{font-size:10px;font-weight:700;color:#8fa5b2;letter-spacing:.06em;margin-right:4px}
+    #${ROOT_ID} .lab-queue-btn{font-size:10px;padding:4px 8px;border-color:#395d77;background:#0c2134}
+    #${ROOT_ID} .lab-queue-active{border-color:#52b9d2;background:#0f3b52;color:#9fe5ff}
+    #${ROOT_ID} .lab-workbench{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}
+    #${ROOT_ID} .lab-col-catalogue{border:1px solid #2a4a60;border-radius:8px;padding:8px;background:rgba(8,18,30,.3);max-height:calc(100vh - 280px);overflow-y:auto}
+    #${ROOT_ID} .lab-col-inspector{border:1px solid #2a4a60;border-radius:8px;padding:8px;background:rgba(12,28,44,.3);max-height:calc(100vh - 280px);overflow-y:auto}
+    #${ROOT_ID} .lab-cta-bar{margin-bottom:8px;padding:10px;border:1px solid #3a5c70;border-radius:8px;background:rgba(20,40,56,.4);text-align:center}
+    #${ROOT_ID} .lab-cta-primary{font-size:14px;font-weight:700;color:#9fe5ff;letter-spacing:.04em}
+    #${ROOT_ID} .lab-cta-secondary{font-size:11px;color:#8fa5b2;margin-top:4px}
+    #${ROOT_ID} .lab-inspector-section{margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #1e3a50}
+    #${ROOT_ID} .lab-inspector-section:last-child{border-bottom:none}
+    #${ROOT_ID} .lab-inspector-title{color:#9fe5ff;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+    #${ROOT_ID} .lab-source-pipeline{display:grid;gap:2px;padding:6px;border:1px solid #2a4a60;border-radius:5px;background:rgba(12,28,44,.3)}
+    #${ROOT_ID} .lab-pipeline-step{padding:4px 6px;border-radius:4px;background:rgba(8,18,30,.4);font-size:10px;color:#b9d9e7}
+    #${ROOT_ID} .lab-pipeline-step b{color:#9fe5ff;font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;display:block;margin-bottom:2px}
+    #${ROOT_ID} .lab-pipeline-arrow{text-align:center;color:#5488a6;font-size:10px}
+    #${ROOT_ID} .lab-lifecycle-badge{font-size:11px;font-weight:700;padding:4px 8px;border-radius:4px;display:inline-block;margin:4px 0}
+    #${ROOT_ID} .lab-lifecycle-unconfigured{background:rgba(122,150,166,.15);color:#7a96a6}
+    #${ROOT_ID} .lab-lifecycle-qa_working{background:rgba(255,154,74,.15);color:#ff9a4a}
+    #${ROOT_ID} .lab-lifecycle-validated_not_applied{background:rgba(241,199,108,.15);color:#f1c76c}
+    #${ROOT_ID} .lab-lifecycle-applied_not_verified{background:rgba(82,185,210,.15);color:#52b9d2}
+    #${ROOT_ID} .lab-lifecycle-production_verified{background:rgba(83,209,122,.15);color:#5fd17a}
+    #${ROOT_ID} .lab-lifecycle-production_drift{background:rgba(166,66,58,.2);color:#e07060}
+    #${ROOT_ID} .lab-lifecycle-no_vfx{background:rgba(122,150,166,.1);color:#7a96a6;font-style:italic}
+    #${ROOT_ID} .lab-apply-btn{border-color:#5a3a8c;background:#1a0d2f;font-size:11px}
+    #${ROOT_ID} .lab-apply-btn:hover:not(:disabled){background:#2a154a}
+    #${ROOT_ID} .lab-confirm-verified-btn{width:100%;border-color:#3a8c4a;background:#0d2f1a;font-size:12px;font-weight:700;padding:8px;margin-top:6px}
+    #${ROOT_ID} .lab-confirm-verified-btn:hover:not(:disabled){background:#1a4a2a}
+    #${ROOT_ID} .lab-prod-test-warning{color:#ff9a4a;font-size:10px;font-weight:700;padding:4px 6px;border:1px solid rgba(255,154,74,.3);border-radius:4px;background:rgba(255,154,74,.08);margin-bottom:4px;grid-column:1/-1}
+    #${ROOT_ID} .lab-play-validated-stage-btn{border-color:#3a8c4a;background:#0d2f1a;font-weight:700}
+    #${ROOT_ID} .lab-play-validated-stage-btn:hover:not(:disabled){background:#1a4a2a}
+    #${ROOT_ID} .lab-play-prod-stage-btn{border-color:#c47a2a;background:#3a2410;font-weight:700}
+    #${ROOT_ID} .lab-play-prod-stage-btn:hover:not(:disabled){background:#4a3018}
+    #${ROOT_ID} .lab-debug-ids{display:grid;gap:2px;color:#728c9b;font-size:9px;padding:6px;border:1px solid #1e3a50;border-radius:5px;background:rgba(8,18,30,.3);margin-top:6px;word-break:break-all}
+    #${ROOT_ID} .lab-debug-ids b{color:#8fa5b2}
+    @media(max-width:700px){#${ROOT_ID} .lab-workbench{grid-template-columns:1fr}#${ROOT_ID} .lab-col-catalogue,#${ROOT_ID} .lab-col-inspector{max-height:40vh}}
   `;
   document.head.appendChild(style);
 }

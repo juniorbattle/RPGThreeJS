@@ -179,6 +179,12 @@ export interface LabState {
   gifFilter?: LabGifFilter;
   /** R2C-LAB V1D.4: catalogue display mode (GRID or COMPACT). UI-only, not in validated JSON. */
   catalogueViewMode?: 'GRID' | 'COMPACT';
+  /** R2C-LAB V1E: verified fingerprints per action+step. When the production
+   * fingerprint matches this stored fingerprint, the step is PRODUCTION_VERIFIED.
+   * If production changes, the fingerprint no longer matches → PRODUCTION_DRIFT. */
+  verifiedFingerprintByActionStep?: Record<string, string>;
+  /** R2C-LAB V1E: current work queue mode (UI-only). */
+  workQueueMode?: WorkQueueMode;
 }
 
 export interface LabSnapshotStep {
@@ -223,6 +229,52 @@ export type LabValidationActionStatus =
   | 'VALIDATED'
   | 'MODIFIED_AFTER_VALIDATION'
   | 'NO_VFX';
+
+// ============================================================ V1E Production Lifecycle
+
+/**
+ * V1E: Derived production-workflow status for each configurable visual spriteSheet.
+ *
+ * UNCONFIGURED — no usable QA configuration exists
+ * QA_WORKING — QA source/config exists but not validated
+ * VALIDATED_NOT_APPLIED — validated snapshot exists but production doesn't match
+ * APPLIED_NOT_VERIFIED — production matches validated but not visually verified
+ * PRODUCTION_VERIFIED — production matches validated and explicitly verified
+ * PRODUCTION_DRIFT — was verified/applied but production no longer matches
+ * NO_VFX — step has no artistic VFX
+ */
+export type ProductionLifecycleStatus =
+  | 'UNCONFIGURED'
+  | 'QA_WORKING'
+  | 'VALIDATED_NOT_APPLIED'
+  | 'APPLIED_NOT_VERIFIED'
+  | 'PRODUCTION_VERIFIED'
+  | 'PRODUCTION_DRIFT'
+  | 'NO_VFX';
+
+/**
+ * V1E: Canonical normalized visual VFX config for comparison.
+ * Only artistic fields — excludes UI state, notes, timestamps, debug fields.
+ */
+export interface VisualConfig {
+  sourceId: string;
+  scale?: number;
+  offsetX?: number;
+  offsetY?: number;
+  duration?: number;
+  opacity?: number;
+  anchor?: VfxAnchor;
+  layer?: 'ground' | 'impact';
+  blending?: 'normal' | 'additive';
+  fadeIn?: number;
+  fadeOut?: number;
+  direction?: VfxOrientation | 'AUTO';
+}
+
+/**
+ * V1E: Work queue mode for the production workbench.
+ */
+export type WorkQueueMode = 'CONFIGURE' | 'APPLY' | 'VERIFY' | 'ALL';
 
 export type LabActionFilter =
   | 'ALL'
@@ -1380,6 +1432,479 @@ function computePresentationDiff(prod: LabPresentationOverride, validated: LabPr
   return { changedFields };
 }
 
+// ============================================================ V1E Canonical Config Comparison
+
+/**
+ * V1E: Extracts the canonical production visual config for one spriteSheet step.
+ * Uses real actionKey, presetId, stepIndex.
+ */
+export function getProductionVisualConfig(action: LabAction, stepIndex: number): VisualConfig | null {
+  const step = action.vfxSteps[stepIndex];
+  if (!step || step.stepType !== 'spriteSheet') return null;
+  const sourceId = step.sourceCandidateId ?? step.spriteSheetId;
+  if (!sourceId) return null;
+  const pres = getProductionPresentation(step);
+  return {
+    sourceId,
+    scale: pres.scale,
+    offsetX: pres.offsetX,
+    offsetY: pres.offsetY,
+    duration: pres.duration,
+    opacity: pres.opacity,
+    anchor: pres.anchor,
+    layer: pres.layer,
+    blending: pres.blending,
+    fadeIn: pres.fadeIn,
+    fadeOut: pres.fadeOut,
+    direction: pres.direction,
+  };
+}
+
+/**
+ * V1E: Extracts the canonical validated visual config for one spriteSheet step.
+ * Returns null if no validated config exists.
+ */
+export function getValidatedVisualConfig(state: LabState, actionKey: string, stepIndex: number): VisualConfig | null {
+  const validated = getValidatedConfig(state, actionKey, stepIndex);
+  if (!validated) return null;
+  return {
+    sourceId: validated.sourceId,
+    scale: validated.presentation.scale,
+    offsetX: validated.presentation.offsetX,
+    offsetY: validated.presentation.offsetY,
+    duration: validated.presentation.duration,
+    opacity: validated.presentation.opacity,
+    anchor: validated.presentation.anchor,
+    layer: validated.presentation.layer,
+    blending: validated.presentation.blending,
+    fadeIn: validated.presentation.fadeIn,
+    fadeOut: validated.presentation.fadeOut,
+    direction: validated.presentation.direction,
+  };
+}
+
+/**
+ * V1E: Semantic equality of two VisualConfigs.
+ * Does not rely on object identity or JSON property order.
+ * Compares only artistic fields — ignores UI state, notes, timestamps.
+ */
+export function configsSemanticallyEqual(a: VisualConfig, b: VisualConfig): boolean {
+  if (a.sourceId !== b.sourceId) return false;
+  const keys: (keyof VisualConfig)[] = ['scale', 'offsetX', 'offsetY', 'duration', 'opacity', 'anchor', 'layer', 'blending', 'fadeIn', 'fadeOut', 'direction'];
+  for (const key of keys) {
+    const aVal = a[key];
+    const bVal = b[key];
+    if (aVal !== bVal) return false;
+  }
+  return true;
+}
+
+/**
+ * V1E: Computes a deterministic fingerprint for a VisualConfig.
+ * Used for verification tracking — if production changes, fingerprint changes,
+ * and verification automatically becomes invalid.
+ */
+export function computeConfigFingerprint(config: VisualConfig): string {
+  const keys: (keyof VisualConfig)[] = ['sourceId', 'scale', 'offsetX', 'offsetY', 'duration', 'opacity', 'anchor', 'layer', 'blending', 'fadeIn', 'fadeOut', 'direction'];
+  const parts: string[] = [];
+  for (const key of keys) {
+    const val = config[key];
+    parts.push(`${key}:${val === undefined ? '' : String(val)}`);
+  }
+  return parts.join('|');
+}
+
+// ============================================================ V1E Lifecycle Status
+
+/**
+ * V1E: Derives the production lifecycle status for one visual spriteSheet step.
+ *
+ * The status is fully derived from existing state — no manual marking.
+ *
+ * UNCONFIGURED — no QA config and no validation
+ * QA_WORKING — QA config exists but not validated (or validated but QA changed since)
+ * VALIDATED_NOT_APPLIED — validated exists, production doesn't match validated
+ * APPLIED_NOT_VERIFIED — production matches validated, not yet verified
+ * PRODUCTION_VERIFIED — production matches validated AND verified fingerprint matches
+ * PRODUCTION_DRIFT — was verified but production fingerprint no longer matches
+ * NO_VFX — step is not a visual spriteSheet
+ */
+export function getLifecycleStatus(state: LabState, action: LabAction, stepIndex: number): ProductionLifecycleStatus {
+  const step = action.vfxSteps[stepIndex];
+  if (!step || step.stepType !== 'spriteSheet') return 'NO_VFX';
+  if (action.sourceStatus === 'NO_VFX') return 'NO_VFX';
+
+  const validated = getValidatedConfig(state, action.actionKey, stepIndex);
+  const qaModified = isQaStepModified(state, action, stepIndex);
+
+  // No validation at all
+  if (!validated) {
+    return qaModified ? 'QA_WORKING' : 'UNCONFIGURED';
+  }
+
+  // Validation exists — check if QA working config matches validated
+  const currentSource = getQaSourceId(state, action.actionKey, stepIndex) ?? step.sourceCandidateId ?? step.spriteSheetId;
+  const currentPres = getEffectivePresentation(state, action, stepIndex);
+  const qaMatchesValidated = currentSource === validated.sourceId && presentationsEqual(currentPres, validated.presentation);
+
+  // Check production vs validated
+  const prodConfig = getProductionVisualConfig(action, stepIndex);
+  const valConfig = getValidatedVisualConfig(state, action.actionKey, stepIndex);
+  if (!prodConfig || !valConfig) return 'QA_WORKING';
+
+  const productionMatchesValidated = configsSemanticallyEqual(prodConfig, valConfig);
+
+  // Check verification fingerprint
+  const verifiedFp = state.verifiedFingerprintByActionStep?.[labStepKey(action.actionKey, stepIndex)];
+  const prodFp = computeConfigFingerprint(prodConfig);
+
+  if (verifiedFp) {
+    // Was previously verified
+    if (prodFp === verifiedFp) {
+      // Production fingerprint matches verified fingerprint
+      if (productionMatchesValidated) {
+        return 'PRODUCTION_VERIFIED';
+      } else {
+        // Verified fingerprint matches production but production != validated
+        // This means validated changed after verification
+        return 'PRODUCTION_DRIFT';
+      }
+    } else {
+      // Production fingerprint changed since verification
+      return 'PRODUCTION_DRIFT';
+    }
+  }
+
+  // No verification — check applied status
+  if (productionMatchesValidated) {
+    return 'APPLIED_NOT_VERIFIED';
+  }
+
+  // Validated but not applied
+  if (!qaMatchesValidated) {
+    // QA has been modified since validation — show QA_WORKING but validated exists
+    return 'QA_WORKING';
+  }
+
+  return 'VALIDATED_NOT_APPLIED';
+}
+
+/**
+ * V1E: Confirms production verification for a visual spriteSheet step.
+ * Stores the current production fingerprint as the verified fingerprint.
+ * If production later changes, the fingerprint won't match → PRODUCTION_DRIFT.
+ */
+export function confirmProductionVerified(state: LabState, action: LabAction, stepIndex: number): LabState {
+  const prodConfig = getProductionVisualConfig(action, stepIndex);
+  if (!prodConfig) return state;
+  const fingerprint = computeConfigFingerprint(prodConfig);
+  const key = labStepKey(action.actionKey, stepIndex);
+  return {
+    ...state,
+    verifiedFingerprintByActionStep: {
+      ...(state.verifiedFingerprintByActionStep ?? {}),
+      [key]: fingerprint,
+    },
+  };
+}
+
+/**
+ * V1E: Clears production verification for a visual spriteSheet step.
+ */
+export function clearProductionVerified(state: LabState, actionKey: string, stepIndex: number): LabState {
+  const key = labStepKey(actionKey, stepIndex);
+  const newFp = { ...(state.verifiedFingerprintByActionStep ?? {}) };
+  delete newFp[key];
+  return { ...state, verifiedFingerprintByActionStep: newFp };
+}
+
+/**
+ * V1E: Gets the lifecycle status for an entire action.
+ * Aggregates per-visual-spritesheet statuses.
+ */
+export interface ActionLifecycleSummary {
+  visualCount: number;
+  validatedCount: number;
+  verifiedCount: number;
+  appliedCount: number;
+  configuredCount: number;
+  statuses: ProductionLifecycleStatus[];
+}
+
+export function getActionLifecycleSummary(state: LabState, action: LabAction): ActionLifecycleSummary {
+  const visualSteps = getVisualSpriteSheetSteps(action);
+  const statuses: ProductionLifecycleStatus[] = [];
+  let validatedCount = 0;
+  let verifiedCount = 0;
+  let appliedCount = 0;
+  let configuredCount = 0;
+
+  for (const vs of visualSteps) {
+    const status = getLifecycleStatus(state, action, vs.stepIndex);
+    statuses.push(status);
+    if (status === 'PRODUCTION_VERIFIED') { verifiedCount++; validatedCount++; appliedCount++; }
+    if (status === 'APPLIED_NOT_VERIFIED') { appliedCount++; validatedCount++; }
+    if (status === 'VALIDATED_NOT_APPLIED') { validatedCount++; }
+    if (status === 'QA_WORKING') { configuredCount++; }
+  }
+
+  return {
+    visualCount: visualSteps.length,
+    validatedCount,
+    verifiedCount,
+    appliedCount,
+    configuredCount,
+    statuses,
+  };
+}
+
+// ============================================================ V1E Production Progress
+
+export interface ProductionProgress {
+  heroVerified: number;
+  heroTotal: number;
+  enemyBossVerified: number;
+  enemyBossTotal: number;
+  allVerified: number;
+  allTotal: number;
+  heroValidated: number;
+  allValidated: number;
+  appliedNotVerified: number;
+  validatedNotApplied: number;
+}
+
+export function getProductionProgress(state: LabState): ProductionProgress {
+  let heroVerified = 0, heroTotal = 0;
+  let enemyBossVerified = 0, enemyBossTotal = 0;
+  let allVerified = 0, allTotal = 0;
+  let heroValidated = 0, allValidated = 0;
+  let appliedNotVerified = 0, validatedNotApplied = 0;
+
+  for (const action of _allActions) {
+    if (action.sourceStatus === 'NO_VFX') continue;
+    const visualSteps = getVisualSpriteSheetSteps(action);
+    if (visualSteps.length === 0) continue;
+
+    allTotal++;
+    const isHero = action.ownerType === 'HERO';
+    if (isHero) heroTotal++;
+    else enemyBossTotal++;
+
+    const summary = getActionLifecycleSummary(state, action);
+    if (summary.verifiedCount === summary.visualCount) {
+      allVerified++;
+      if (isHero) heroVerified++;
+      else enemyBossVerified++;
+    }
+    if (summary.validatedCount === summary.visualCount) {
+      allValidated++;
+      if (isHero) heroValidated++;
+    }
+    if (summary.appliedCount > 0 && summary.verifiedCount < summary.visualCount) appliedNotVerified++;
+    if (summary.validatedCount > 0 && summary.appliedCount < summary.visualCount) validatedNotApplied++;
+  }
+
+  return {
+    heroVerified, heroTotal,
+    enemyBossVerified, enemyBossTotal,
+    allVerified, allTotal,
+    heroValidated, allValidated,
+    appliedNotVerified, validatedNotApplied,
+  };
+}
+
+// ============================================================ V1E Work Queue
+
+export interface WorkQueueItem {
+  actionKey: string;
+  stepIndex: number;
+  status: ProductionLifecycleStatus;
+  action: LabAction;
+}
+
+/**
+ * V1E: Builds the work queue for a given mode.
+ * CONFIGURE — unvalidated visual VFX
+ * APPLY — validated but not applied to production
+ * VERIFY — applied but not verified
+ * ALL — all visual VFX steps
+ */
+export function buildWorkQueue(state: LabState, mode: WorkQueueMode): WorkQueueItem[] {
+  const items: WorkQueueItem[] = [];
+  for (const action of _allActions) {
+    if (action.sourceStatus === 'NO_VFX') continue;
+    const visualSteps = getVisualSpriteSheetSteps(action);
+    for (const vs of visualSteps) {
+      const status = getLifecycleStatus(state, action, vs.stepIndex);
+      let include = false;
+      switch (mode) {
+        case 'CONFIGURE':
+          include = status === 'UNCONFIGURED' || status === 'QA_WORKING';
+          break;
+        case 'APPLY':
+          include = status === 'VALIDATED_NOT_APPLIED';
+          break;
+        case 'VERIFY':
+          include = status === 'APPLIED_NOT_VERIFIED';
+          break;
+        case 'ALL':
+          include = true;
+          break;
+      }
+      if (include) {
+        items.push({ actionKey: action.actionKey, stepIndex: vs.stepIndex, status, action });
+      }
+    }
+  }
+  return items;
+}
+
+/**
+ * V1E: Finds the next work queue item from the current position.
+ * Returns null if the queue is empty.
+ */
+export function findNextInWorkQueue(
+  state: LabState,
+  mode: WorkQueueMode,
+  currentActionKey: string,
+  currentStepIndex: number,
+): WorkQueueItem | null {
+  const queue = buildWorkQueue(state, mode);
+  if (queue.length === 0) return null;
+
+  // Find current position in sorted action order
+  const sorted = [..._allActions].sort((a, b) => a.actionKey.localeCompare(b.actionKey));
+  const currentIdx = sorted.findIndex((a) => a.actionKey === currentActionKey);
+
+  // Search forward from current, then wrap
+  for (let i = 0; i < sorted.length; i++) {
+    const idx = (currentIdx + 1 + i) % sorted.length;
+    const action = sorted[idx];
+    if (!action) continue;
+    const visualSteps = getVisualSpriteSheetSteps(action);
+    for (const vs of visualSteps) {
+      const item = queue.find((q) => q.actionKey === action.actionKey && q.stepIndex === vs.stepIndex);
+      if (item) {
+        // Skip the exact current position on first iteration
+        if (i === 0 && action.actionKey === currentActionKey && vs.stepIndex <= currentStepIndex) continue;
+        return item;
+      }
+    }
+  }
+  // Fallback: return first item
+  return queue[0] ?? null;
+}
+
+// ============================================================ V1E Apply Package
+
+export interface ApplyPackage {
+  actionKey: string;
+  actionName: string;
+  unitId?: string;
+  presetId: string;
+  visualIndex: number;
+  stepIndex: number;
+  currentProduction: VisualConfig;
+  validated: VisualConfig;
+  diff: {
+    sourceChanged: boolean;
+    changedFields: string[];
+  };
+  validatedFingerprint: string;
+}
+
+/**
+ * V1E: Generates an apply package for a validated-not-applied visual spriteSheet.
+ * Contains enough information for another coding agent to apply the config
+ * without understanding the Lab UI.
+ */
+export function generateApplyPackage(state: LabState, action: LabAction, stepIndex: number): ApplyPackage | null {
+  const prodConfig = getProductionVisualConfig(action, stepIndex);
+  const valConfig = getValidatedVisualConfig(state, action.actionKey, stepIndex);
+  if (!prodConfig || !valConfig) return null;
+
+  const visualSteps = getVisualSpriteSheetSteps(action);
+  const vs = visualSteps.find((v) => v.stepIndex === stepIndex);
+  if (!vs) return null;
+
+  const keys: (keyof VisualConfig)[] = ['sourceId', 'scale', 'offsetX', 'offsetY', 'duration', 'opacity', 'anchor', 'layer', 'blending', 'fadeIn', 'fadeOut', 'direction'];
+  const changedFields: string[] = [];
+  for (const key of keys) {
+    if (valConfig[key] !== prodConfig[key]) {
+      changedFields.push(key);
+    }
+  }
+
+  return {
+    actionKey: action.actionKey,
+    actionName: action.displayName,
+    unitId: action.ownerId,
+    presetId: action.currentPresetId ?? 'unknown',
+    visualIndex: vs.visualIndex,
+    stepIndex,
+    currentProduction: prodConfig,
+    validated: valConfig,
+    diff: {
+      sourceChanged: valConfig.sourceId !== prodConfig.sourceId,
+      changedFields,
+    },
+    validatedFingerprint: computeConfigFingerprint(valConfig),
+  };
+}
+
+/**
+ * V1E: Generates human-readable apply task text for COPY APPLY TASK.
+ */
+export function generateApplyTaskText(pkg: ApplyPackage): string {
+  const lines: string[] = [];
+  lines.push('RPGThreeJS VFX production integration');
+  lines.push('');
+  lines.push(`Action: ${pkg.actionKey}`);
+  lines.push(`Action name: ${pkg.actionName}`);
+  if (pkg.unitId) lines.push(`Unit: ${pkg.unitId}`);
+  lines.push(`Preset: ${pkg.presetId}`);
+  lines.push(`Visual spritesheet: ${pkg.visualIndex + 1}`);
+  lines.push(`Real stepIndex: ${pkg.stepIndex}`);
+  lines.push('');
+  lines.push('Replace production VFX source/config with the attached validated config.');
+  lines.push('');
+  lines.push(`Validated source: ${pkg.validated.sourceId}`);
+  lines.push('');
+  lines.push('Presentation:');
+  const presKeys: (keyof VisualConfig)[] = ['scale', 'offsetX', 'offsetY', 'duration', 'opacity', 'anchor', 'layer', 'blending', 'fadeIn', 'fadeOut', 'direction'];
+  for (const key of presKeys) {
+    if (key === 'sourceId') continue;
+    const val = pkg.validated[key];
+    if (val !== undefined) lines.push(`  ${key}: ${val}`);
+  }
+  lines.push('');
+  lines.push('Diff from current production:');
+  if (pkg.diff.sourceChanged) lines.push(`  source: ${pkg.currentProduction.sourceId} → ${pkg.validated.sourceId}`);
+  for (const field of pkg.diff.changedFields) {
+    if (field === 'sourceId') continue;
+    const prodVal = pkg.currentProduction[field as keyof VisualConfig];
+    const valVal = pkg.validated[field as keyof VisualConfig];
+    lines.push(`  ${field}: ${prodVal ?? '(unset)'} → ${valVal ?? '(unset)'}`);
+  }
+  if (!pkg.diff.sourceChanged && pkg.diff.changedFields.length === 0) {
+    lines.push('  (no changes — already matches)');
+  }
+  lines.push('');
+  lines.push('Validated fingerprint: ' + pkg.validatedFingerprint);
+  lines.push('');
+  lines.push('Requirements:');
+  lines.push('- modify production mapping only');
+  lines.push('- preserve preset technical steps');
+  lines.push('- preserve step order');
+  lines.push('- do not modify gameplay');
+  lines.push('- run tests/build');
+  lines.push('- report changes');
+  lines.push('');
+  lines.push('After application, reload VFX Lab.');
+  lines.push('Expected: status becomes APPLIED_NOT_VERIFIED.');
+  return lines.join('\n');
+}
+
 // ============================================================ Serialization
 
 export function serializeLabState(state: LabState): string {
@@ -1403,6 +1928,12 @@ export function deserializeLabState(raw: string): LabState | null {
       usageFilter: parsed.usageFilter ?? 'ALL',
       cataloguePage: parsed.cataloguePage ?? 1,
       qaHistory: parsed.qaHistory ?? {},
+      previewCandidateId: parsed.previewCandidateId,
+      accordionState: parsed.accordionState,
+      gifFilter: parsed.gifFilter,
+      catalogueViewMode: parsed.catalogueViewMode,
+      verifiedFingerprintByActionStep: parsed.verifiedFingerprintByActionStep ?? {},
+      workQueueMode: parsed.workQueueMode ?? 'ALL',
     };
   } catch {
     return null;
