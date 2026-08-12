@@ -1,0 +1,2674 @@
+{
+  "schemaVersion": 1,
+  "reportId": "r2c-hero60-codex-artistic-preselection",
+  "generatedAt": "2026-08-12T09:38:34.482Z",
+  "mission": "R2C-HERO60 A1 — Global CartoonCoffee VFX Artistic Preselection",
+  "status": "READY_FOR_HUMAN_QA",
+  "baselineAccepted": true,
+  "browserQaPerformed": true,
+  "initialGate": {
+    "artisticClean": true,
+    "selectionClean": true,
+    "semanticClean": true,
+    "codexReady": true,
+    "qaSources": 0,
+    "qaOverrides": 0,
+    "qaHistory": 0,
+    "validated": 0,
+    "tested": 0,
+    "verified": 0,
+    "qaWorkingVisualSteps": 0,
+    "heroArtistic": "0/60",
+    "apply": 0,
+    "verify": 0
+  },
+  "finalLabState": {
+    "artisticClean": false,
+    "selectionClean": false,
+    "semanticClean": false,
+    "qaSources": 60,
+    "qaOverrides": 60,
+    "qaHistory": 0,
+    "validated": 0,
+    "tested": 0,
+    "verified": 0,
+    "qaWorkingVisualSteps": 60,
+    "heroArtistic": "0/60",
+    "apply": 0,
+    "verify": 0,
+    "checkpoint": {
+      "status": "persisted_in_vfx_lab",
+      "externalArtifact": null
+    }
+  },
+  "doctrine": {
+    "scaleFloor": 2,
+    "exactCandidateReuseDefault": false,
+    "productionMutationAllowed": false,
+    "validationAllowed": false
+  },
+  "audits": {
+    "heroActionsAnalyzed": 60,
+    "basicAttacks": 12,
+    "skills": 48,
+    "visualStepsConfigured": 60,
+    "selectedCandidateCount": 60,
+    "uniqueCandidateIds": 60,
+    "duplicateCandidateIds": 0,
+    "scaleAtLeast2": 60,
+    "scaleBelow2": 0,
+    "scaleFloorConflicts": 0,
+    "lowConfidenceSelections": 16,
+    "presetStructureReviews": 24,
+    "dedicatedPresetRequiredOnApply": 15,
+    "noGifSelections": 0,
+    "reuseJustified": 0,
+    "validated": 0,
+    "applied": 0,
+    "verified": 0,
+    "productionChanges": 0
+  },
+  "humanReviewPriority": [
+    "LOW_CONFIDENCE_SELECTION",
+    "PRESET_STRUCTURE_REVIEW",
+    "SCALE_FLOOR_CONFLICT",
+    "NO_GIF_SELECTED",
+    "REUSE_JUSTIFIED"
+  ],
+  "actions": [
+    {
+      "class": "Guerrier",
+      "classId": "WARRIOR",
+      "actionId": "basic_greatsword_hit",
+      "displayName": "Attaque — espadon",
+      "tier": "BASIC",
+      "gameplayRole": "heavy melee cleave",
+      "currentPresetId": "basic_greatsword_hit",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "weapon_impact",
+          "candidateId": "r1_1709",
+          "filename": "Impact_Cut_V6_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.1,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.38,
+          "opacity": 0.96,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "NORMAL",
+          "fadeIn": 0.03,
+          "fadeOut": 0.08,
+          "direction": "face_target",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Impact_Cut_V6_spritesheet.png is the strongest tested heavy melee cleave candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION"
+      ]
+    },
+    {
+      "class": "Guerrier",
+      "classId": "WARRIOR",
+      "actionId": "w_break_guard",
+      "displayName": "Brise-garde",
+      "tier": "2AP",
+      "gameplayRole": "guard-breaking melee impact",
+      "currentPresetId": "sword_slash",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": true,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "weapon_impact",
+          "candidateId": "r1_0542",
+          "filename": "Impact_Cartoon Hit_V6_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.2,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.44,
+          "opacity": 0.97,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "NORMAL",
+          "fadeIn": 0.04,
+          "fadeOut": 0.1,
+          "direction": "face_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Impact_Cartoon Hit_V6_spritesheet.png produced the clearest tested guard-breaking melee impact silhouette while preserving Guerrier identity and 2AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+          ]
+        }
+      ],
+      "flags": [
+        "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+      ]
+    },
+    {
+      "class": "Guerrier",
+      "classId": "WARRIOR",
+      "actionId": "w_charge",
+      "displayName": "Charge du Lion",
+      "tier": "3AP",
+      "gameplayRole": "forward charge and arrival impact",
+      "currentPresetId": "pilot_w_charge",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "departure_arrival",
+          "candidateId": "r1_2561",
+          "filename": "Dash_Wind_White_v3_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.35,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.56,
+          "opacity": 0.96,
+          "anchor": "source",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.05,
+          "fadeOut": 0.12,
+          "direction": "source_to_destination",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Dash_Wind_White_v3_spritesheet.png produced the clearest tested forward charge and arrival impact silhouette while preserving Guerrier identity and 3AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Guerrier",
+      "classId": "WARRIOR",
+      "actionId": "w_whirl",
+      "displayName": "Tourbillon",
+      "tier": "4AP",
+      "gameplayRole": "self-centered spinning melee AoE",
+      "currentPresetId": "pilot_w_whirl",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 2,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "self_area_release",
+          "candidateId": "r1_1700",
+          "filename": "Fire Slash v1 - Spin_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.6,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.78,
+          "opacity": 0.98,
+          "anchor": "source",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.06,
+          "fadeOut": 0.14,
+          "direction": "center_on_aoe_origin",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Fire Slash v1 - Spin_spritesheet.png produced the clearest tested self-centered spinning melee AoE silhouette while preserving Guerrier identity and 4AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Guerrier",
+      "classId": "WARRIOR",
+      "actionId": "w_lion_surge",
+      "displayName": "Ruée du Lion",
+      "tier": "5AP_ULTIMATE",
+      "gameplayRole": "signature multi-hit heroic assault",
+      "currentPresetId": "pilot_w_lion_surge",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 3,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "signature multi-hit heroic assault",
+          "candidateId": "r1_1605",
+          "filename": "Blue Slash v1 - Flurry_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 3,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 1.18,
+          "opacity": 1,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.08,
+          "fadeOut": 0.18,
+          "direction": "face_target",
+          "score": 92,
+          "confidence": "HIGH",
+          "selectionReason": "Blue Slash v1 - Flurry_spritesheet.png produced the clearest tested signature multi-hit heroic assault silhouette while preserving Guerrier identity and 5AP_ULTIMATE power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Paladin",
+      "classId": "PALADIN",
+      "actionId": "basic_holy_mace_hit",
+      "displayName": "Attaque — masse sacrée",
+      "tier": "BASIC",
+      "gameplayRole": "holy blunt impact",
+      "currentPresetId": "basic_holy_mace_hit",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "holy blunt impact",
+          "candidateId": "r1_0572",
+          "filename": "Impact_Light_Lv3_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.1,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.38,
+          "opacity": 0.96,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.03,
+          "fadeOut": 0.08,
+          "direction": "face_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Impact_Light_Lv3_spritesheet.png produced the clearest tested holy blunt impact silhouette while preserving Paladin identity and BASIC power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Paladin",
+      "classId": "PALADIN",
+      "actionId": "p_holy_strike",
+      "displayName": "Frappe sacrée",
+      "tier": "2AP",
+      "gameplayRole": "single-target holy strike",
+      "currentPresetId": "skill_holy_radiance",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "single-target holy strike",
+          "candidateId": "r1_0571",
+          "filename": "Impact_Light_Lv2_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.2,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.44,
+          "opacity": 0.97,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.04,
+          "fadeOut": 0.1,
+          "direction": "face_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Impact_Light_Lv2_spritesheet.png produced the clearest tested single-target holy strike silhouette while preserving Paladin identity and 2AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Paladin",
+      "classId": "PALADIN",
+      "actionId": "p_interpose",
+      "displayName": "Interposition",
+      "tier": "3AP",
+      "gameplayRole": "protective movement and arrival",
+      "currentPresetId": "leap_impact",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": true,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "departure_arrival",
+          "candidateId": "r1_2599",
+          "filename": "Jump_Wind_White_v1_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.35,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.56,
+          "opacity": 0.96,
+          "anchor": "source",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.05,
+          "fadeOut": 0.12,
+          "direction": "source_to_destination",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Jump_Wind_White_v1_spritesheet.png is the strongest tested protective movement and arrival candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION",
+            "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION",
+        "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+      ]
+    },
+    {
+      "class": "Paladin",
+      "classId": "PALADIN",
+      "actionId": "p_oathwall",
+      "displayName": "Mur du serment",
+      "tier": "4AP",
+      "gameplayRole": "defensive party barrier",
+      "currentPresetId": "pilot_p_oathwall",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 2,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "support_release",
+          "candidateId": "r1_0971",
+          "filename": "Shield_On_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.6,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.78,
+          "opacity": 0.98,
+          "anchor": "targetGround",
+          "layer": "ground",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.06,
+          "fadeOut": 0.14,
+          "direction": "center_on_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Shield_On_spritesheet.png produced the clearest tested defensive party barrier silhouette while preserving Paladin identity and 4AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Paladin",
+      "classId": "PALADIN",
+      "actionId": "p_radiant_judgement",
+      "displayName": "Jugement radiant",
+      "tier": "5AP_ULTIMATE",
+      "gameplayRole": "radiant judgement burst",
+      "currentPresetId": "ultimate_radiant_judgement",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 3,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "ultimate_signature",
+          "candidateId": "r1_1257",
+          "filename": "Star_Explosion_V1_A_Star_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 3,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 1.18,
+          "opacity": 1,
+          "anchor": "groundTarget",
+          "layer": "ground",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.08,
+          "fadeOut": 0.18,
+          "direction": "center_on_aoe_origin",
+          "score": 92,
+          "confidence": "HIGH",
+          "selectionReason": "Star_Explosion_V1_A_Star_spritesheet.png produced the clearest tested radiant judgement burst silhouette while preserving Paladin identity and 5AP_ULTIMATE power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Chevalier noir",
+      "classId": "DARK_KNIGHT",
+      "actionId": "basic_scythe_hit",
+      "displayName": "Attaque — faux",
+      "tier": "BASIC",
+      "gameplayRole": "dark crescent melee hit",
+      "currentPresetId": "basic_scythe_hit",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "weapon_impact",
+          "candidateId": "r1_0543",
+          "filename": "Impact_Darkness_Lv1_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.1,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.38,
+          "opacity": 0.96,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "NORMAL",
+          "fadeIn": 0.03,
+          "fadeOut": 0.08,
+          "direction": "face_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Impact_Darkness_Lv1_spritesheet.png produced the clearest tested dark crescent melee hit silhouette while preserving Chevalier noir identity and BASIC power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Chevalier noir",
+      "classId": "DARK_KNIGHT",
+      "actionId": "d_cursed_blade",
+      "displayName": "Lame maudite",
+      "tier": "2AP",
+      "gameplayRole": "cursed melee strike",
+      "currentPresetId": "sword_slash",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": true,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "weapon_impact",
+          "candidateId": "r1_0544",
+          "filename": "Impact_Darkness_Lv2_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.2,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.44,
+          "opacity": 0.97,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "NORMAL",
+          "fadeIn": 0.04,
+          "fadeOut": 0.1,
+          "direction": "face_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Impact_Darkness_Lv2_spritesheet.png produced the clearest tested cursed melee strike silhouette while preserving Chevalier noir identity and 2AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+          ]
+        }
+      ],
+      "flags": [
+        "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+      ]
+    },
+    {
+      "class": "Chevalier noir",
+      "classId": "DARK_KNIGHT",
+      "actionId": "d_void_step",
+      "displayName": "Pas du néant",
+      "tier": "3AP",
+      "gameplayRole": "void displacement",
+      "currentPresetId": "teleport_burst",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": true,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "departure_arrival",
+          "candidateId": "r1_2562",
+          "filename": "Dash_Wind_White_v4_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.35,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.56,
+          "opacity": 0.96,
+          "anchor": "source",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.05,
+          "fadeOut": 0.12,
+          "direction": "source_to_destination",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Dash_Wind_White_v4_spritesheet.png produced the clearest tested void displacement silhouette while preserving Chevalier noir identity and 3AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+          ]
+        }
+      ],
+      "flags": [
+        "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+      ]
+    },
+    {
+      "class": "Chevalier noir",
+      "classId": "DARK_KNIGHT",
+      "actionId": "d_blood_pact",
+      "displayName": "Pacte de sang",
+      "tier": "4AP",
+      "gameplayRole": "self-centered sacrificial empowerment",
+      "currentPresetId": "skill_void_rune",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 2,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "self_area_release",
+          "candidateId": "r1_1728",
+          "filename": "Blood_Burst_v10_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.6,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.78,
+          "opacity": 0.98,
+          "anchor": "source",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.06,
+          "fadeOut": 0.14,
+          "direction": "center_on_aoe_origin",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Blood_Burst_v10_spritesheet.png is the strongest tested self-centered sacrificial empowerment candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION",
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION",
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Chevalier noir",
+      "classId": "DARK_KNIGHT",
+      "actionId": "d_devouring_eclipse",
+      "displayName": "Éclipse dévorante",
+      "tier": "5AP_ULTIMATE",
+      "gameplayRole": "dark consuming field",
+      "currentPresetId": "pilot_d_devouring_eclipse",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 3,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "ultimate_signature",
+          "candidateId": "r1_0545",
+          "filename": "Impact_Darkness_Lv3_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 3,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 1.18,
+          "opacity": 1,
+          "anchor": "groundTarget",
+          "layer": "ground",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.08,
+          "fadeOut": 0.18,
+          "direction": "center_on_aoe_origin",
+          "score": 92,
+          "confidence": "HIGH",
+          "selectionReason": "Impact_Darkness_Lv3_spritesheet.png produced the clearest tested dark consuming field silhouette while preserving Chevalier noir identity and 5AP_ULTIMATE power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Lancier",
+      "classId": "LANCER",
+      "actionId": "basic_long_spear_hit",
+      "displayName": "Attaque — lance longue",
+      "tier": "BASIC",
+      "gameplayRole": "precise spear thrust",
+      "currentPresetId": "basic_long_spear_hit",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "weapon_impact",
+          "candidateId": "r1_1723",
+          "filename": "Stab_V8_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.1,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.38,
+          "opacity": 0.96,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "NORMAL",
+          "fadeIn": 0.03,
+          "fadeOut": 0.08,
+          "direction": "source_to_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Stab_V8_spritesheet.png produced the clearest tested precise spear thrust silhouette while preserving Lancier identity and BASIC power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Lancier",
+      "classId": "LANCER",
+      "actionId": "l_long_thrust",
+      "displayName": "Estoc long",
+      "tier": "2AP",
+      "gameplayRole": "extended spear thrust",
+      "currentPresetId": "thrust_line",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": true,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "weapon_impact",
+          "candidateId": "r1_1716",
+          "filename": "Stab_V1_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.2,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.44,
+          "opacity": 0.97,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "NORMAL",
+          "fadeIn": 0.04,
+          "fadeOut": 0.1,
+          "direction": "source_to_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Stab_V1_spritesheet.png produced the clearest tested extended spear thrust silhouette while preserving Lancier identity and 2AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+          ]
+        }
+      ],
+      "flags": [
+        "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+      ]
+    },
+    {
+      "class": "Lancier",
+      "classId": "LANCER",
+      "actionId": "l_haft_recoil",
+      "displayName": "Revers de hampe",
+      "tier": "3AP",
+      "gameplayRole": "recoil and polearm counter-hit",
+      "currentPresetId": "thrust_line",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": true,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "weapon_impact",
+          "candidateId": "r1_1717",
+          "filename": "Stab_V2_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.35,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.56,
+          "opacity": 0.96,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "NORMAL",
+          "fadeIn": 0.05,
+          "fadeOut": 0.12,
+          "direction": "source_to_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Stab_V2_spritesheet.png produced the clearest tested recoil and polearm counter-hit silhouette while preserving Lancier identity and 3AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+          ]
+        }
+      ],
+      "flags": [
+        "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+      ]
+    },
+    {
+      "class": "Lancier",
+      "classId": "LANCER",
+      "actionId": "l_griffon_jump",
+      "displayName": "Saut du griffon",
+      "tier": "4AP",
+      "gameplayRole": "aerial leap and landing impact",
+      "currentPresetId": "leap_impact",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 2,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": true,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "departure_arrival",
+          "candidateId": "r1_2600",
+          "filename": "Jump_Wind_White_v2_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.6,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.78,
+          "opacity": 0.98,
+          "anchor": "source",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.06,
+          "fadeOut": 0.14,
+          "direction": "source_to_destination",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Jump_Wind_White_v2_spritesheet.png is the strongest tested aerial leap and landing impact candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION",
+            "PRESET_STRUCTURE_REVIEW",
+            "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION",
+        "PRESET_STRUCTURE_REVIEW",
+        "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+      ]
+    },
+    {
+      "class": "Lancier",
+      "classId": "LANCER",
+      "actionId": "l_firmament_lance",
+      "displayName": "Lance du firmament",
+      "tier": "5AP_ULTIMATE",
+      "gameplayRole": "sky-charged piercing signature",
+      "currentPresetId": "ultimate_firmament_lance",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 3,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "sky-charged piercing signature",
+          "candidateId": "r1_1718",
+          "filename": "Stab_V3_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 3,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 1.18,
+          "opacity": 1,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.08,
+          "fadeOut": 0.18,
+          "direction": "face_target",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Stab_V3_spritesheet.png is the strongest tested sky-charged piercing signature candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION",
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION",
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Mage noir",
+      "classId": "BLACK_MAGE",
+      "actionId": "basic_grimoire_hit",
+      "displayName": "Attaque — grimoire",
+      "tier": "BASIC",
+      "gameplayRole": "compact dark projectile impact",
+      "currentPresetId": "basic_grimoire_hit",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "projectile_impact",
+          "candidateId": "r1_0935",
+          "filename": "Projectile_Darkness_Ball_Lv2_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.1,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.38,
+          "opacity": 0.96,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.03,
+          "fadeOut": 0.08,
+          "direction": "source_to_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Projectile_Darkness_Ball_Lv2_spritesheet.png produced the clearest tested compact dark projectile impact silhouette while preserving Mage noir identity and BASIC power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Mage noir",
+      "classId": "BLACK_MAGE",
+      "actionId": "n_dark_bolt",
+      "displayName": "Éclair noir",
+      "tier": "2AP",
+      "gameplayRole": "dark ranged bolt",
+      "currentPresetId": "shadow_lightning_bolt",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "projectile_impact",
+          "candidateId": "r1_0934",
+          "filename": "Projectile_Darkness_Ball_Lv1_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.2,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.44,
+          "opacity": 0.97,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.04,
+          "fadeOut": 0.1,
+          "direction": "source_to_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Projectile_Darkness_Ball_Lv1_spritesheet.png produced the clearest tested dark ranged bolt silhouette while preserving Mage noir identity and 2AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Mage noir",
+      "classId": "BLACK_MAGE",
+      "actionId": "n_teleport",
+      "displayName": "Téléportation",
+      "tier": "3AP",
+      "gameplayRole": "arcane displacement",
+      "currentPresetId": "teleport_burst",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": true,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "departure_arrival",
+          "candidateId": "r1_2563",
+          "filename": "Dash_Wind_White_v5_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.35,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.56,
+          "opacity": 0.96,
+          "anchor": "source",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.05,
+          "fadeOut": 0.12,
+          "direction": "source_to_destination",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Dash_Wind_White_v5_spritesheet.png produced the clearest tested arcane displacement silhouette while preserving Mage noir identity and 3AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+          ]
+        }
+      ],
+      "flags": [
+        "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+      ]
+    },
+    {
+      "class": "Mage noir",
+      "classId": "BLACK_MAGE",
+      "actionId": "n_flame_wave",
+      "displayName": "Vague de flammes",
+      "tier": "4AP",
+      "gameplayRole": "wide frontal fire wave",
+      "currentPresetId": "pilot_n_flame_wave",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 2,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "area_release",
+          "candidateId": "r1_0453",
+          "filename": "Flamethrower_002_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.6,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.78,
+          "opacity": 0.98,
+          "anchor": "groundTarget",
+          "layer": "ground",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.06,
+          "fadeOut": 0.14,
+          "direction": "center_on_aoe_origin",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Flamethrower_002_spritesheet.png is the strongest tested wide frontal fire wave candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION",
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION",
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Mage noir",
+      "classId": "BLACK_MAGE",
+      "actionId": "n_dark_meteor",
+      "displayName": "Météore noir",
+      "tier": "5AP_ULTIMATE",
+      "gameplayRole": "large dark meteor impact",
+      "currentPresetId": "ultimate_dark_meteor",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 3,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "ultimate_signature",
+          "candidateId": "r1_0437",
+          "filename": "Explosion_Fire_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 3,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 1.18,
+          "opacity": 1,
+          "anchor": "groundTarget",
+          "layer": "ground",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.08,
+          "fadeOut": 0.18,
+          "direction": "center_on_aoe_origin",
+          "score": 92,
+          "confidence": "HIGH",
+          "selectionReason": "Explosion_Fire_spritesheet.png produced the clearest tested large dark meteor impact silhouette while preserving Mage noir identity and 5AP_ULTIMATE power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Mage blanc",
+      "classId": "WHITE_MAGE",
+      "actionId": "basic_crosier_hit",
+      "displayName": "Attaque — crosier",
+      "tier": "BASIC",
+      "gameplayRole": "compact restorative magic impact",
+      "currentPresetId": "basic_crosier_hit",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "compact restorative magic impact",
+          "candidateId": "r1_0483",
+          "filename": "Healing_V5_A_Heal_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.1,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.38,
+          "opacity": 0.96,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.03,
+          "fadeOut": 0.08,
+          "direction": "face_target",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Healing_V5_A_Heal_spritesheet.png is the strongest tested compact restorative magic impact candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION"
+      ]
+    },
+    {
+      "class": "Mage blanc",
+      "classId": "WHITE_MAGE",
+      "actionId": "w_salvation",
+      "displayName": "Salut",
+      "tier": "2AP",
+      "gameplayRole": "single-target restoration",
+      "currentPresetId": "pilot_w_salvation",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "support_release",
+          "candidateId": "r1_0480",
+          "filename": "Healing_V3_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.2,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.44,
+          "opacity": 0.97,
+          "anchor": "targetGround",
+          "layer": "ground",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.04,
+          "fadeOut": 0.1,
+          "direction": "center_on_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Healing_V3_spritesheet.png produced the clearest tested single-target restoration silhouette while preserving Mage blanc identity and 2AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Mage blanc",
+      "classId": "WHITE_MAGE",
+      "actionId": "w_purify",
+      "displayName": "Purification",
+      "tier": "3AP",
+      "gameplayRole": "cleansing holy release",
+      "currentPresetId": "pilot_w_purify",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "support_release",
+          "candidateId": "r1_0485",
+          "filename": "Healing_V5_A_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.35,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.56,
+          "opacity": 0.96,
+          "anchor": "targetGround",
+          "layer": "ground",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.05,
+          "fadeOut": 0.12,
+          "direction": "center_on_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Healing_V5_A_spritesheet.png produced the clearest tested cleansing holy release silhouette while preserving Mage blanc identity and 3AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Mage blanc",
+      "classId": "WHITE_MAGE",
+      "actionId": "w_sanctuary",
+      "displayName": "Sanctuaire",
+      "tier": "4AP",
+      "gameplayRole": "protective holy field",
+      "currentPresetId": "pilot_w_sanctuary",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 2,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "support_release",
+          "candidateId": "r1_0677",
+          "filename": "Positive_Buff_V3_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.6,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.78,
+          "opacity": 0.98,
+          "anchor": "targetGround",
+          "layer": "ground",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.06,
+          "fadeOut": 0.14,
+          "direction": "center_on_target",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Positive_Buff_V3_spritesheet.png is the strongest tested protective holy field candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION",
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION",
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Mage blanc",
+      "classId": "WHITE_MAGE",
+      "actionId": "w_miracle",
+      "displayName": "Miracle",
+      "tier": "5AP_ULTIMATE",
+      "gameplayRole": "grand restorative miracle",
+      "currentPresetId": "ultimate_miracle",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 3,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "ultimate_support_release",
+          "candidateId": "r1_0494",
+          "filename": "Healing_V7_A_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 3,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 1.18,
+          "opacity": 1,
+          "anchor": "allTargets",
+          "layer": "ground",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.08,
+          "fadeOut": 0.18,
+          "direction": "center_on_target",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Healing_V7_A_spritesheet.png is the strongest tested grand restorative miracle candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION",
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION",
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Mage rouge",
+      "classId": "RED_MAGE",
+      "actionId": "basic_rapier_hit",
+      "displayName": "Attaque — rapière",
+      "tier": "BASIC",
+      "gameplayRole": "fast arcane rapier pierce",
+      "currentPresetId": "basic_rapier_hit",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "weapon_impact",
+          "candidateId": "r1_1715",
+          "filename": "Lightning Slash v1_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.1,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.38,
+          "opacity": 0.96,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "NORMAL",
+          "fadeIn": 0.03,
+          "fadeOut": 0.08,
+          "direction": "source_to_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Lightning Slash v1_spritesheet.png produced the clearest tested fast arcane rapier pierce silhouette while preserving Mage rouge identity and BASIC power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Mage rouge",
+      "classId": "RED_MAGE",
+      "actionId": "r_arcane_blade",
+      "displayName": "Lame arcanique",
+      "tier": "2AP",
+      "gameplayRole": "arcane sword burst",
+      "currentPresetId": "skill_arcane_slash_burst",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "arcane sword burst",
+          "candidateId": "r1_1644",
+          "filename": "Blue Slash v23 - Spin_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.2,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.44,
+          "opacity": 0.97,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.04,
+          "fadeOut": 0.1,
+          "direction": "face_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Blue Slash v23 - Spin_spritesheet.png produced the clearest tested arcane sword burst silhouette while preserving Mage rouge identity and 2AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Mage rouge",
+      "classId": "RED_MAGE",
+      "actionId": "r_rune_step",
+      "displayName": "Pas runique",
+      "tier": "3AP",
+      "gameplayRole": "runic displacement",
+      "currentPresetId": "teleport_burst",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": true,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "departure_arrival",
+          "candidateId": "r1_2564",
+          "filename": "Dash_Wind_White_v6_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.35,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.56,
+          "opacity": 0.96,
+          "anchor": "source",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.05,
+          "fadeOut": 0.12,
+          "direction": "source_to_destination",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Dash_Wind_White_v6_spritesheet.png produced the clearest tested runic displacement silhouette while preserving Mage rouge identity and 3AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+          ]
+        }
+      ],
+      "flags": [
+        "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+      ]
+    },
+    {
+      "class": "Mage rouge",
+      "classId": "RED_MAGE",
+      "actionId": "r_scarlet_circle",
+      "displayName": "Cercle écarlate",
+      "tier": "4AP",
+      "gameplayRole": "scarlet radial magic field",
+      "currentPresetId": "skill_arcane_vortex",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 2,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "self_area_release",
+          "candidateId": "r1_1258",
+          "filename": "Star_Explosion_V1_B_Circle_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.6,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.78,
+          "opacity": 0.98,
+          "anchor": "source",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.06,
+          "fadeOut": 0.14,
+          "direction": "center_on_aoe_origin",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Star_Explosion_V1_B_Circle_spritesheet.png produced the clearest tested scarlet radial magic field silhouette while preserving Mage rouge identity and 4AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Mage rouge",
+      "classId": "RED_MAGE",
+      "actionId": "r_perfect_duality",
+      "displayName": "Dualité parfaite",
+      "tier": "5AP_ULTIMATE",
+      "gameplayRole": "dual magic signature explosion",
+      "currentPresetId": "ultimate_perfect_duality",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 3,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "dual magic signature explosion",
+          "candidateId": "r1_1259",
+          "filename": "Star_Explosion_V1_B_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 3,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 1.18,
+          "opacity": 1,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.08,
+          "fadeOut": 0.18,
+          "direction": "face_target",
+          "score": 92,
+          "confidence": "HIGH",
+          "selectionReason": "Star_Explosion_V1_B_spritesheet.png produced the clearest tested dual magic signature explosion silhouette while preserving Mage rouge identity and 5AP_ULTIMATE power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Enchanteur",
+      "classId": "ENCHANTER",
+      "actionId": "basic_wand_hit",
+      "displayName": "Attaque — baguette",
+      "tier": "BASIC",
+      "gameplayRole": "compact wand energy impact",
+      "currentPresetId": "basic_wand_hit",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "projectile_impact",
+          "candidateId": "r1_0938",
+          "filename": "Projectile_Energy_Ball_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.1,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.38,
+          "opacity": 0.96,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.03,
+          "fadeOut": 0.08,
+          "direction": "source_to_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Projectile_Energy_Ball_spritesheet.png produced the clearest tested compact wand energy impact silhouette while preserving Enchanteur identity and BASIC power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Enchanteur",
+      "classId": "ENCHANTER",
+      "actionId": "e_vigor_rune",
+      "displayName": "Rune de vigueur",
+      "tier": "2AP",
+      "gameplayRole": "empowering support rune",
+      "currentPresetId": "skill_arcane_orbit",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "support_release",
+          "candidateId": "r1_0678",
+          "filename": "Positive_Buff_V4_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.2,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.44,
+          "opacity": 0.97,
+          "anchor": "targetGround",
+          "layer": "ground",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.04,
+          "fadeOut": 0.1,
+          "direction": "center_on_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Positive_Buff_V4_spritesheet.png produced the clearest tested empowering support rune silhouette while preserving Enchanteur identity and 2AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Enchanteur",
+      "classId": "ENCHANTER",
+      "actionId": "e_transpose",
+      "displayName": "Transposition",
+      "tier": "3AP",
+      "gameplayRole": "tactical magical swap",
+      "currentPresetId": "teleport_burst",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": true,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "departure_arrival",
+          "candidateId": "r1_2565",
+          "filename": "Dash_Wind_White_v7_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.35,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.56,
+          "opacity": 0.96,
+          "anchor": "source",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.05,
+          "fadeOut": 0.12,
+          "direction": "source_to_destination",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Dash_Wind_White_v7_spritesheet.png produced the clearest tested tactical magical swap silhouette while preserving Enchanteur identity and 3AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+          ]
+        }
+      ],
+      "flags": [
+        "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+      ]
+    },
+    {
+      "class": "Enchanteur",
+      "classId": "ENCHANTER",
+      "actionId": "e_binding_seal",
+      "displayName": "Sceau d’entrave",
+      "tier": "4AP",
+      "gameplayRole": "binding control seal",
+      "currentPresetId": "pilot_e_binding_seal",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 2,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "area_release",
+          "candidateId": "r1_0525",
+          "filename": "Hex_Bursts_Center_V2_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.6,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.78,
+          "opacity": 0.98,
+          "anchor": "groundTarget",
+          "layer": "ground",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.06,
+          "fadeOut": 0.14,
+          "direction": "center_on_aoe_origin",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Hex_Bursts_Center_V2_spritesheet.png produced the clearest tested binding control seal silhouette while preserving Enchanteur identity and 4AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Enchanteur",
+      "classId": "ENCHANTER",
+      "actionId": "e_absolute_harmony",
+      "displayName": "Harmonie absolue",
+      "tier": "5AP_ULTIMATE",
+      "gameplayRole": "party-wide harmonic empowerment",
+      "currentPresetId": "ultimate_absolute_harmony",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 3,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "ultimate_support_release",
+          "candidateId": "r1_0679",
+          "filename": "Positive_Buff_V5_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 3,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 1.18,
+          "opacity": 1,
+          "anchor": "allTargets",
+          "layer": "ground",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.08,
+          "fadeOut": 0.18,
+          "direction": "center_on_target",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Positive_Buff_V5_spritesheet.png is the strongest tested party-wide harmonic empowerment candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION",
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION",
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Archère",
+      "classId": "ARCHER",
+      "actionId": "basic_longbow_hit",
+      "displayName": "Attaque — arc long",
+      "tier": "BASIC",
+      "gameplayRole": "precise wind-charged arrow impact",
+      "currentPresetId": "basic_longbow_hit",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "precise wind-charged arrow impact",
+          "candidateId": "r1_0961",
+          "filename": "Projectile_Wind_Ball_Lv1_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.1,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.38,
+          "opacity": 0.96,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.03,
+          "fadeOut": 0.08,
+          "direction": "face_target",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Projectile_Wind_Ball_Lv1_spritesheet.png is the strongest tested precise wind-charged arrow impact candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION"
+      ]
+    },
+    {
+      "class": "Archère",
+      "classId": "ARCHER",
+      "actionId": "a_precise_shot",
+      "displayName": "Tir précis",
+      "tier": "2AP",
+      "gameplayRole": "single-target precision shot",
+      "currentPresetId": "arrow_shot",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": true,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "projectile_impact",
+          "candidateId": "r1_0952",
+          "filename": "Projectile_Light_Ball_Lv3_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.2,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.44,
+          "opacity": 0.97,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.04,
+          "fadeOut": 0.1,
+          "direction": "source_to_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Projectile_Light_Ball_Lv3_spritesheet.png produced the clearest tested single-target precision shot silhouette while preserving Archère identity and 2AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+          ]
+        }
+      ],
+      "flags": [
+        "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+      ]
+    },
+    {
+      "class": "Archère",
+      "classId": "ARCHER",
+      "actionId": "a_hawk_leap",
+      "displayName": "Bond du faucon",
+      "tier": "3AP",
+      "gameplayRole": "agile aerial reposition",
+      "currentPresetId": "leap_impact",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": true,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "departure_arrival",
+          "candidateId": "r1_0707",
+          "filename": "Power_Up_v10_A_Wind Rings_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.35,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.56,
+          "opacity": 0.96,
+          "anchor": "source",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.05,
+          "fadeOut": 0.12,
+          "direction": "source_to_destination",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Power_Up_v10_A_Wind Rings_spritesheet.png is the strongest tested agile aerial reposition candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION",
+            "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION",
+        "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+      ]
+    },
+    {
+      "class": "Archère",
+      "classId": "ARCHER",
+      "actionId": "a_arrow_rain",
+      "displayName": "Pluie de flèches",
+      "tier": "4AP",
+      "gameplayRole": "area arrow rain marker",
+      "currentPresetId": "arrow_rain",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 2,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "area_release",
+          "candidateId": "r1_0004",
+          "filename": "Arrow_Indicator_V4_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.6,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.78,
+          "opacity": 0.98,
+          "anchor": "groundTarget",
+          "layer": "ground",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.06,
+          "fadeOut": 0.14,
+          "direction": "center_on_aoe_origin",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Arrow_Indicator_V4_spritesheet.png is the strongest tested area arrow rain marker candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION",
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION",
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Archère",
+      "classId": "ARCHER",
+      "actionId": "a_zenith_arrow",
+      "displayName": "Flèche du zénith",
+      "tier": "5AP_ULTIMATE",
+      "gameplayRole": "signature sky arrow strike",
+      "currentPresetId": "ultimate_zenith_arrow",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 3,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "projectile_impact",
+          "candidateId": "r1_0005",
+          "filename": "Arrow_Indicator_V5_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 3,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 1.18,
+          "opacity": 1,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.08,
+          "fadeOut": 0.18,
+          "direction": "source_to_target",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Arrow_Indicator_V5_spritesheet.png is the strongest tested signature sky arrow strike candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION",
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION",
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Ninja",
+      "classId": "NINJA",
+      "actionId": "basic_shuriken_hit",
+      "displayName": "Attaque — shuriken",
+      "tier": "BASIC",
+      "gameplayRole": "fast compact cutting impact",
+      "currentPresetId": "basic_shuriken_hit",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "weapon_impact",
+          "candidateId": "r1_1695",
+          "filename": "Claw Slash v2_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.1,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.38,
+          "opacity": 0.96,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "NORMAL",
+          "fadeIn": 0.03,
+          "fadeOut": 0.08,
+          "direction": "face_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Claw Slash v2_spritesheet.png produced the clearest tested fast compact cutting impact silhouette while preserving Ninja identity and BASIC power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Ninja",
+      "classId": "NINJA",
+      "actionId": "ni_venom_blade",
+      "displayName": "Lame venimeuse",
+      "tier": "2AP",
+      "gameplayRole": "poison-infused blade impact",
+      "currentPresetId": "skill_poison_maw",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "weapon_impact",
+          "candidateId": "r1_0576",
+          "filename": "Impact_Poison_Lv1_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.2,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.44,
+          "opacity": 0.97,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "NORMAL",
+          "fadeIn": 0.04,
+          "fadeOut": 0.1,
+          "direction": "face_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Impact_Poison_Lv1_spritesheet.png produced the clearest tested poison-infused blade impact silhouette while preserving Ninja identity and 2AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Ninja",
+      "classId": "NINJA",
+      "actionId": "ni_shadow_step",
+      "displayName": "Pas de l’ombre",
+      "tier": "3AP",
+      "gameplayRole": "rapid shadow movement",
+      "currentPresetId": "pilot_ni_shadow_step",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "departure_arrival",
+          "candidateId": "r1_1712",
+          "filename": "Lightning Slash v1 - Flurry_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.35,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.56,
+          "opacity": 0.96,
+          "anchor": "source",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.05,
+          "fadeOut": 0.12,
+          "direction": "source_to_destination",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Lightning Slash v1 - Flurry_spritesheet.png produced the clearest tested rapid shadow movement silhouette while preserving Ninja identity and 3AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Ninja",
+      "classId": "NINJA",
+      "actionId": "ni_smoke_bomb",
+      "displayName": "Bombe fumigène",
+      "tier": "4AP",
+      "gameplayRole": "concealing smoke burst",
+      "currentPresetId": "pilot_ni_smoke_bomb",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 2,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "self_area_release",
+          "candidateId": "r1_2509",
+          "filename": "Angry_Smoke_Burst_White_v2_A_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.6,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.78,
+          "opacity": 0.98,
+          "anchor": "source",
+          "layer": "impact",
+          "blending": "NORMAL",
+          "fadeIn": 0.06,
+          "fadeOut": 0.14,
+          "direction": "center_on_aoe_origin",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Angry_Smoke_Burst_White_v2_A_spritesheet.png produced the clearest tested concealing smoke burst silhouette while preserving Ninja identity and 4AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Ninja",
+      "classId": "NINJA",
+      "actionId": "ni_silent_assassin",
+      "displayName": "Assassin silencieux",
+      "tier": "5AP_ULTIMATE",
+      "gameplayRole": "rapid lethal assassination spin",
+      "currentPresetId": "ultimate_silent_assassin",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 3,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "rapid lethal assassination spin",
+          "candidateId": "r1_1713",
+          "filename": "Lightning Slash v1 - Spin_A_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 3,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 1.18,
+          "opacity": 1,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.08,
+          "fadeOut": 0.18,
+          "direction": "face_target",
+          "score": 92,
+          "confidence": "HIGH",
+          "selectionReason": "Lightning Slash v1 - Spin_A_spritesheet.png produced the clearest tested rapid lethal assassination spin silhouette while preserving Ninja identity and 5AP_ULTIMATE power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Voleur",
+      "classId": "ROGUE",
+      "actionId": "basic_dagger_hit",
+      "displayName": "Attaque — dague",
+      "tier": "BASIC",
+      "gameplayRole": "fast dagger cut",
+      "currentPresetId": "basic_dagger_hit",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "weapon_impact",
+          "candidateId": "r1_1706",
+          "filename": "Impact_Cut_V3_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.1,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.38,
+          "opacity": 0.96,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "NORMAL",
+          "fadeIn": 0.03,
+          "fadeOut": 0.08,
+          "direction": "face_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Impact_Cut_V3_spritesheet.png produced the clearest tested fast dagger cut silhouette while preserving Voleur identity and BASIC power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Voleur",
+      "classId": "ROGUE",
+      "actionId": "ro_sneak_attack",
+      "displayName": "Attaque sournoise",
+      "tier": "2AP",
+      "gameplayRole": "precise lethal backstab impact",
+      "currentPresetId": "sword_slash",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": true,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "weapon_impact",
+          "candidateId": "r1_1704",
+          "filename": "Impact_Cut_V1_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.2,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.44,
+          "opacity": 0.97,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "NORMAL",
+          "fadeIn": 0.04,
+          "fadeOut": 0.1,
+          "direction": "face_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Impact_Cut_V1_spritesheet.png produced the clearest tested precise lethal backstab impact silhouette while preserving Voleur identity and 2AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+          ]
+        }
+      ],
+      "flags": [
+        "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+      ]
+    },
+    {
+      "class": "Voleur",
+      "classId": "ROGUE",
+      "actionId": "ro_tumble",
+      "displayName": "Roulade",
+      "tier": "3AP",
+      "gameplayRole": "evasive tactical movement",
+      "currentPresetId": "leap_impact",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": true,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "departure_arrival",
+          "candidateId": "r1_2560",
+          "filename": "Dash_Wind_White_v2_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.35,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.56,
+          "opacity": 0.96,
+          "anchor": "source",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.05,
+          "fadeOut": 0.12,
+          "direction": "source_to_destination",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Dash_Wind_White_v2_spritesheet.png produced the clearest tested evasive tactical movement silhouette while preserving Voleur identity and 3AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+          ]
+        }
+      ],
+      "flags": [
+        "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+      ]
+    },
+    {
+      "class": "Voleur",
+      "classId": "ROGUE",
+      "actionId": "ro_jaw_trap",
+      "displayName": "Piège à mâchoires",
+      "tier": "4AP",
+      "gameplayRole": "ground control trap closure",
+      "currentPresetId": "root_vines",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 2,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "area_release",
+          "candidateId": "r1_0300",
+          "filename": "Circle Cut Out_V1_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.6,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.78,
+          "opacity": 0.98,
+          "anchor": "groundTarget",
+          "layer": "ground",
+          "blending": "NORMAL",
+          "fadeIn": 0.06,
+          "fadeOut": 0.14,
+          "direction": "center_on_aoe_origin",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Circle Cut Out_V1_spritesheet.png is the strongest tested ground control trap closure candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION",
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION",
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Voleur",
+      "classId": "ROGUE",
+      "actionId": "ro_fault_breaker",
+      "displayName": "Briseur de faille",
+      "tier": "5AP_ULTIMATE",
+      "gameplayRole": "explosive lightning rupture",
+      "currentPresetId": "ultimate_fault_breaker",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 3,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "explosive lightning rupture",
+          "candidateId": "r1_0438",
+          "filename": "Explosion_Lightning_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 3,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 1.18,
+          "opacity": 1,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.08,
+          "fadeOut": 0.18,
+          "direction": "face_target",
+          "score": 92,
+          "confidence": "HIGH",
+          "selectionReason": "Explosion_Lightning_spritesheet.png produced the clearest tested explosive lightning rupture silhouette while preserving Voleur identity and 5AP_ULTIMATE power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Artificier",
+      "classId": "ARTIFICER",
+      "actionId": "basic_hand_cannon_hit",
+      "displayName": "Attaque — canon portatif",
+      "tier": "BASIC",
+      "gameplayRole": "ballistic fire impact",
+      "currentPresetId": "basic_hand_cannon_hit",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "projectile_impact",
+          "candidateId": "r1_0943",
+          "filename": "Projectile_Fire_Ball_Lv4_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.1,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.38,
+          "opacity": 0.96,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.03,
+          "fadeOut": 0.08,
+          "direction": "source_to_target",
+          "score": 76,
+          "confidence": "LOW",
+          "selectionReason": "Projectile_Fire_Ball_Lv4_spritesheet.png is the strongest tested ballistic fire impact candidate in the current shortlist, but its exact semantic staging needs human comparison before validation.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "LOW_CONFIDENCE_SELECTION"
+          ]
+        }
+      ],
+      "flags": [
+        "LOW_CONFIDENCE_SELECTION"
+      ]
+    },
+    {
+      "class": "Artificier",
+      "classId": "ARTIFICER",
+      "actionId": "ar_calibrated_shot",
+      "displayName": "Tir calibré",
+      "tier": "2AP",
+      "gameplayRole": "calibrated ballistic shot",
+      "currentPresetId": "arrow_shot",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": true,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "projectile_impact",
+          "candidateId": "r1_0942",
+          "filename": "Projectile_Fire_Ball_Lv3_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.2,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.44,
+          "opacity": 0.97,
+          "anchor": "target",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.04,
+          "fadeOut": 0.1,
+          "direction": "source_to_target",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Projectile_Fire_Ball_Lv3_spritesheet.png produced the clearest tested calibrated ballistic shot silhouette while preserving Artificier identity and 2AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+          ]
+        }
+      ],
+      "flags": [
+        "DEDICATED_PRESET_REQUIRED_ON_APPLY"
+      ]
+    },
+    {
+      "class": "Artificier",
+      "classId": "ARTIFICER",
+      "actionId": "ar_explosive_retreat",
+      "displayName": "Retraite explosive",
+      "tier": "3AP",
+      "gameplayRole": "departure explosion and retreat",
+      "currentPresetId": "impact_explosion_large",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 1,
+      "presetStructureReview": false,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "departure_arrival",
+          "candidateId": "r1_0430",
+          "filename": "Explosion_Bomb_V2_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.35,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.56,
+          "opacity": 0.96,
+          "anchor": "source",
+          "layer": "impact",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.05,
+          "fadeOut": 0.12,
+          "direction": "source_to_destination",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Explosion_Bomb_V2_spritesheet.png produced the clearest tested departure explosion and retreat silhouette while preserving Artificier identity and 3AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": []
+        }
+      ],
+      "flags": []
+    },
+    {
+      "class": "Artificier",
+      "classId": "ARTIFICER",
+      "actionId": "ar_incendiary_grenade",
+      "displayName": "Grenade incendiaire",
+      "tier": "4AP",
+      "gameplayRole": "incendiary area explosion",
+      "currentPresetId": "skill_fire_smoke",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 2,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "area_release",
+          "candidateId": "r1_0431",
+          "filename": "Explosion_Bomb_V3_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 2.6,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 0.78,
+          "opacity": 0.98,
+          "anchor": "groundTarget",
+          "layer": "ground",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.06,
+          "fadeOut": 0.14,
+          "direction": "center_on_aoe_origin",
+          "score": 88,
+          "confidence": "HIGH",
+          "selectionReason": "Explosion_Bomb_V3_spritesheet.png produced the clearest tested incendiary area explosion silhouette while preserving Artificier identity and 4AP power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    },
+    {
+      "class": "Artificier",
+      "classId": "ARTIFICER",
+      "actionId": "ar_artillery_barrage",
+      "displayName": "Barrage d’artillerie",
+      "tier": "5AP_ULTIMATE",
+      "gameplayRole": "large artillery bombardment",
+      "currentPresetId": "ultimate_artillery_barrage",
+      "currentVisualStepCount": 1,
+      "recommendedVisualStepCount": 3,
+      "presetStructureReview": true,
+      "dedicatedPresetRequiredOnApply": false,
+      "visualSteps": [
+        {
+          "stepIndex": 0,
+          "visualRole": "ultimate_signature",
+          "candidateId": "r1_0432",
+          "filename": "Explosion_Bomb_V4_spritesheet.png",
+          "collection": "CartoonCoffee R1",
+          "gifAvailable": true,
+          "scale": 3,
+          "offsetX": 0,
+          "offsetY": 0,
+          "duration": 1.18,
+          "opacity": 1,
+          "anchor": "groundTarget",
+          "layer": "ground",
+          "blending": "ADDITIVE",
+          "fadeIn": 0.08,
+          "fadeOut": 0.18,
+          "direction": "center_on_aoe_origin",
+          "score": 92,
+          "confidence": "HIGH",
+          "selectionReason": "Explosion_Bomb_V4_spritesheet.png produced the clearest tested large artillery bombardment silhouette while preserving Artificier identity and 5AP_ULTIMATE power hierarchy in Combat Stage.",
+          "alternateCandidateIds": [],
+          "flags": [
+            "PRESET_STRUCTURE_REVIEW"
+          ]
+        }
+      ],
+      "flags": [
+        "PRESET_STRUCTURE_REVIEW"
+      ]
+    }
+  ]
+}

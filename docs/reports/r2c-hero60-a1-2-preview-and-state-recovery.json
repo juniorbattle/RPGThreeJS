@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "reportId": "r2c-hero60-a1-2-preview-and-state-recovery",
+  "generatedAt": "2026-08-12T18:57:00.000Z",
+  "mission": "R2C-HERO60 A1.2 — Preview Restore + A1 QA State Recovery",
+  "status": "COMPLETE",
+
+  "previewBridge": {
+    "megaPackRoot": "C:\\Users\\miche\\Documents\\VFX_Library\\CartoonCoffeeMegaPack",
+    "megaPackRootConfigured": true,
+    "r1_0001": { "httpStatus": 200, "contentType": "image/gif", "bytes": 86420 },
+    "r1_0002": { "httpStatus": 200, "contentType": "image/gif", "bytes": 70183 },
+    "r1_0003": { "httpStatus": 200, "contentType": "image/gif", "bytes": 70183 },
+    "visibleGifPreviews": true,
+    "previewErrorReproduced": false,
+    "gate": "HEALTHY"
+  },
+
+  "originForensics": {
+    "canonicalOrigin": "http://localhost:5173",
+    "previousWorkingOrigin": "http://localhost:5174",
+    "port5173InitialQaSources": 0,
+    "port5173InitialQaOverrides": 0,
+    "port5174HistoricalStateFound": false,
+    "port5174QaSources": 0,
+    "port5174QaOverrides": 0,
+    "port5174QaWorking": 0,
+    "port5174Validated": 0,
+    "port5174Tested": 0,
+    "port5174Verified": 0,
+    "note": "5174 was not running. No historical state could be recovered from that origin."
+  },
+
+  "recovery": {
+    "recoverySource": "A1_JSON_FALLBACK",
+    "a1ProposalsExpected": 60,
+    "a1ProposalsRecovered": 60,
+    "candidateMismatches": 0,
+    "presentationMismatches": 0,
+    "unexpectedQaEntries": 0
+  },
+
+  "currentHeroCoverage": {
+    "heroActions": 60,
+    "currentHeroVisualSpriteSheetSteps": 64,
+    "qaSources": 60,
+    "qaOverrides": 60,
+    "qaWorkingVisualSteps": 60,
+    "missingCurrentSlots": 4,
+    "unexpectedCurrentSlots": 0,
+    "completeActions": 56
+  },
+
+  "intentionallyDeferredToCodex": {
+    "d_devouring_eclipse_stepIndex_1": "UNCONFIGURED",
+    "d_devouring_eclipse_stepIndex_2": "UNCONFIGURED",
+    "d_devouring_eclipse_stepIndex_3": "UNCONFIGURED",
+    "ni_silent_assassin_stepIndex_1": "UNCONFIGURED",
+    "deferredArtisticSlots": 4,
+    "noNewCartoonCoffeeSelectionsMadeByDevin": true
+  },
+
+  "candidateIntegrity": {
+    "recoveredCandidates": 60,
+    "unique": 60,
+    "duplicates": 0,
+    "scaleAtLeast2": 60,
+    "scaleBelow2": 0
+  },
+
+  "safety": {
+    "validated": 0,
+    "tested": 0,
+    "verified": 0,
+    "apply": 0,
+    "verify": 0,
+    "productionChanges": 0,
+    "gameplayChanges": 0,
+    "combatStageChanges": 0,
+    "vfxLabArchitectureChanges": 0
+  },
+
+  "backup": {
+    "checkpoint": "docs/reports/hero60_a1_2_recovered_60of64_pre_codex_completion.json",
+    "canonicalOrigin": "http://localhost:5173",
+    "qaProposals": 60,
+    "currentHeroVisualSlots": 64,
+    "intentionallyMissing": 4,
+    "validated": 0,
+    "applied": 0,
+    "verified": 0
+  },
+
+  "reports": {
+    "markdown": "docs/reports/r2c-hero60-a1-2-preview-and-state-recovery.md",
+    "json": "docs/reports/r2c-hero60-a1-2-preview-and-state-recovery.json"
+  },
+
+  "repository": {
+    "applicationSourceModified": false,
+    "viteConfigModified": false,
+    "devEnvironmentChanged": true,
+    "devEnvironmentChangeDescription": "Vite process restarted with MEGA_PACK_ROOT environment variable set",
+    "temporaryRecoveryFiles": [
+      "tools/recover-a1-state.mjs",
+      "tools/generate-recovery-page.mjs",
+      "tools/inject-and-verify-a1.mjs",
+      "tools/verify-a1-recovery.mjs",
+      "public/recover-a1.html"
+    ],
+    "temporaryFilesToCleanUp": true
+  },
+
+  "finalGates": {
+    "R2C_VFX_PREVIEW_BRIDGE": "HEALTHY",
+    "R2C_HERO60_A1_STATE_RECOVERED": "YES",
+    "R2C_HERO60_A1_RECOVERED_PROPOSALS": "60/60",
+    "R2C_HERO60_CURRENT_QA_COVERAGE": "60/64",
+    "R2C_HERO60_DEFERRED_ARTISTIC_SLOTS": 4,
+    "R2C_HERO60_READY_FOR_CODEX_4_SLOT_COMPLETION": "YES"
+  }
+}

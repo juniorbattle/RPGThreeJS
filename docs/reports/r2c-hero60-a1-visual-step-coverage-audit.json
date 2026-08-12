@@ -1,0 +1,3992 @@
+{
+  "schemaVersion": 1,
+  "reportId": "R2C-HERO60-A1.1-VISUAL-STEP-COVERAGE-AUDIT",
+  "generatedAt": "2026-08-12T16:49:27.150Z",
+  "mode": "READ_ONLY_AUDIT",
+  "sourceReports": [
+    "docs/reports/r2c-hero60-codex-artistic-preselection.md",
+    "docs/reports/r2c-hero60-codex-artistic-preselection.json"
+  ],
+  "authoritativeSemantics": {
+    "configurableVisualStep": "stepType === 'spriteSheet' with spriteSheetId",
+    "helper": "getVisualSpriteSheetSteps(action)",
+    "realPresetStepIndexes": true,
+    "excludedTechnicalSteps": [
+      "screenShake",
+      "hitStop",
+      "screenFlash",
+      "particle-only",
+      "non-spriteSheet"
+    ]
+  },
+  "gates": {
+    "R2C_HERO60_EXISTING_VISUAL_STEP_COVERAGE": "INCOMPLETE",
+    "R2C_VFX_PREVIEW_BRIDGE": "BROKEN"
+  },
+  "actionCounts": {
+    "heroBasic": 12,
+    "heroSkills": 48,
+    "heroTotal": 60,
+    "enemyBoss": 23,
+    "total": 83
+  },
+  "visualStepCounts": {
+    "allExistingVisualSpriteSheetSteps": 89,
+    "heroExistingVisualSpriteSheetSteps": 64,
+    "enemyBossExistingVisualSpriteSheetSteps": 25,
+    "additiveInvariantPass": true
+  },
+  "a1WorkingStepExplanation": {
+    "reportedQaWorkingVisualSteps": 60,
+    "actualCases": [
+      "CASE_B",
+      "CASE_D"
+    ],
+    "rootCause": "The current project has 64 HERO spriteSheet steps, but A1 emitted exactly one report/QA slot at real index 0 for each of the 60 HERO actions. Its generator therefore flattened multi-step presets to one current step per action. The four omitted current slots belong to d_devouring_eclipse indexes 1, 2, 3 and ni_silent_assassin index 1.",
+    "a1ExistingSlotsCovered": 60,
+    "currentSlotsMissingFromA1Record": 4,
+    "missingFromA1ExecutionRecord": [
+      {
+        "actionId": "d_devouring_eclipse",
+        "presetId": "pilot_d_devouring_eclipse",
+        "realStepIndex": 1,
+        "visualRole": "secondary_dark_impact",
+        "spriteSheetId": "megapack_impact_darkness_lv2"
+      },
+      {
+        "actionId": "d_devouring_eclipse",
+        "presetId": "pilot_d_devouring_eclipse",
+        "realStepIndex": 2,
+        "visualRole": "ultimate_peak",
+        "spriteSheetId": "megapack_impact_darkness_lv3"
+      },
+      {
+        "actionId": "d_devouring_eclipse",
+        "presetId": "pilot_d_devouring_eclipse",
+        "realStepIndex": 3,
+        "visualRole": "aftermath_shockwave",
+        "spriteSheetId": "megapack_impact_shockwave_v1"
+      },
+      {
+        "actionId": "ni_silent_assassin",
+        "presetId": "ultimate_silent_assassin",
+        "realStepIndex": 1,
+        "visualRole": "execution_impact",
+        "spriteSheetId": "basic_execution_slash_heavy"
+      }
+    ]
+  },
+  "heroCoverageSummary": {
+    "heroExistingSteps": 64,
+    "heroQaConfiguredSteps": 0,
+    "heroMissingExistingSteps": 64,
+    "heroUnexpectedQaSteps": 0,
+    "completeHeroActions": 0,
+    "incompleteHeroActions": 60,
+    "inconsistentHeroActions": 0
+  },
+  "heroCoverage": [
+    {
+      "class": "Guerrier",
+      "classId": "WARRIOR",
+      "actionId": "basic_greatsword_hit",
+      "displayName": "Attaque de base",
+      "currentPresetId": "basic_greatsword_hit",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_greatsword_cleave_heavy",
+          "visualRole": "weapon_impact"
+        }
+      ]
+    },
+    {
+      "class": "Guerrier",
+      "classId": "WARRIOR",
+      "actionId": "w_break_guard",
+      "displayName": "Brise-Garde",
+      "currentPresetId": "sword_slash",
+      "allPresetStepCount": 3,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_sword_slash_heavy",
+          "visualRole": "weapon_impact"
+        }
+      ]
+    },
+    {
+      "class": "Guerrier",
+      "classId": "WARRIOR",
+      "actionId": "w_charge",
+      "displayName": "Charge",
+      "currentPresetId": "pilot_w_charge",
+      "allPresetStepCount": 3,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "megapack_dash_wind_white_v3",
+          "visualRole": "departure_arrival"
+        }
+      ]
+    },
+    {
+      "class": "Guerrier",
+      "classId": "WARRIOR",
+      "actionId": "w_whirl",
+      "displayName": "Tourbillon d'Acier",
+      "currentPresetId": "pilot_w_whirl",
+      "allPresetStepCount": 2,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "megapack_fire_slash_spin",
+          "visualRole": "self_area_release"
+        }
+      ]
+    },
+    {
+      "class": "Guerrier",
+      "classId": "WARRIOR",
+      "actionId": "w_lion_surge",
+      "displayName": "Déferlement du Lion",
+      "currentPresetId": "pilot_w_lion_surge",
+      "allPresetStepCount": 4,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2,
+        3
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "megapack_blue_slash_flurry",
+          "visualRole": "signature multi-hit heroic assault"
+        }
+      ]
+    },
+    {
+      "class": "Mage blanc",
+      "classId": "WHITE_MAGE",
+      "actionId": "basic_crosier_hit",
+      "displayName": "Attaque de base",
+      "currentPresetId": "basic_crosier_hit",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_staff_strike_small",
+          "visualRole": "compact restorative magic impact"
+        }
+      ]
+    },
+    {
+      "class": "Mage blanc",
+      "classId": "WHITE_MAGE",
+      "actionId": "w_salvation",
+      "displayName": "Lumière Salvatrice",
+      "currentPresetId": "pilot_w_salvation",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "megapack_healing_v3",
+          "visualRole": "support_release"
+        }
+      ]
+    },
+    {
+      "class": "Mage blanc",
+      "classId": "WHITE_MAGE",
+      "actionId": "w_purify",
+      "displayName": "Purification",
+      "currentPresetId": "pilot_w_purify",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "megapack_heart_buff_v3",
+          "visualRole": "support_release"
+        }
+      ]
+    },
+    {
+      "class": "Mage blanc",
+      "classId": "WHITE_MAGE",
+      "actionId": "w_sanctuary",
+      "displayName": "Sanctuaire",
+      "currentPresetId": "pilot_w_sanctuary",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "megapack_positive_buff_v3",
+          "visualRole": "support_release"
+        }
+      ]
+    },
+    {
+      "class": "Mage blanc",
+      "classId": "WHITE_MAGE",
+      "actionId": "w_miracle",
+      "displayName": "Miracle",
+      "currentPresetId": "ultimate_miracle",
+      "allPresetStepCount": 2,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_holy_radiance_burst_heavy",
+          "visualRole": "ultimate_support_release"
+        }
+      ]
+    },
+    {
+      "class": "Mage noir",
+      "classId": "BLACK_MAGE",
+      "actionId": "basic_grimoire_hit",
+      "displayName": "Attaque de base",
+      "currentPresetId": "basic_grimoire_hit",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_bolt_hit_small",
+          "visualRole": "projectile_impact"
+        }
+      ]
+    },
+    {
+      "class": "Mage noir",
+      "classId": "BLACK_MAGE",
+      "actionId": "n_dark_bolt",
+      "displayName": "Éclair Noir",
+      "currentPresetId": "shadow_lightning_bolt",
+      "allPresetStepCount": 4,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2,
+        3
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_void_rune_orb_medium",
+          "visualRole": "projectile_impact"
+        }
+      ]
+    },
+    {
+      "class": "Mage noir",
+      "classId": "BLACK_MAGE",
+      "actionId": "n_teleport",
+      "displayName": "Téléportation",
+      "currentPresetId": "teleport_burst",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_void_spiral_implosion_medium",
+          "visualRole": "departure_arrival"
+        }
+      ]
+    },
+    {
+      "class": "Mage noir",
+      "classId": "BLACK_MAGE",
+      "actionId": "n_flame_wave",
+      "displayName": "Vague de Flammes",
+      "currentPresetId": "pilot_n_flame_wave",
+      "allPresetStepCount": 2,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "megapack_fire_slash_spin",
+          "visualRole": "area_release"
+        }
+      ]
+    },
+    {
+      "class": "Mage noir",
+      "classId": "BLACK_MAGE",
+      "actionId": "n_dark_meteor",
+      "displayName": "Météore Obscur",
+      "currentPresetId": "ultimate_dark_meteor",
+      "allPresetStepCount": 4,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2,
+        3
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_meteor_impact_burst_heavy",
+          "visualRole": "ultimate_signature"
+        }
+      ]
+    },
+    {
+      "class": "Archère",
+      "classId": "ARCHER",
+      "actionId": "basic_longbow_hit",
+      "displayName": "Attaque de base",
+      "currentPresetId": "basic_longbow_hit",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_arrow_hit_small",
+          "visualRole": "precise wind-charged arrow impact"
+        }
+      ]
+    },
+    {
+      "class": "Archère",
+      "classId": "ARCHER",
+      "actionId": "a_precise_shot",
+      "displayName": "Tir Précis",
+      "currentPresetId": "arrow_shot",
+      "allPresetStepCount": 3,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_arrow_hit_small",
+          "visualRole": "projectile_impact"
+        }
+      ]
+    },
+    {
+      "class": "Archère",
+      "classId": "ARCHER",
+      "actionId": "a_hawk_leap",
+      "displayName": "Bond du Faucon",
+      "currentPresetId": "leap_impact",
+      "allPresetStepCount": 2,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_body_slam_heavy",
+          "visualRole": "departure_arrival"
+        }
+      ]
+    },
+    {
+      "class": "Archère",
+      "classId": "ARCHER",
+      "actionId": "a_arrow_rain",
+      "displayName": "Pluie de Flèches",
+      "currentPresetId": "arrow_rain",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_arrow_hit_small",
+          "visualRole": "area_release"
+        }
+      ]
+    },
+    {
+      "class": "Archère",
+      "classId": "ARCHER",
+      "actionId": "a_zenith_arrow",
+      "displayName": "Flèche du Zénith",
+      "currentPresetId": "ultimate_zenith_arrow",
+      "allPresetStepCount": 4,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2,
+        3
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_arrow_hit_small",
+          "visualRole": "projectile_impact"
+        }
+      ]
+    },
+    {
+      "class": "Voleur",
+      "classId": "ROGUE",
+      "actionId": "basic_dagger_hit",
+      "displayName": "Attaque de base",
+      "currentPresetId": "basic_dagger_hit",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_dagger_crosscut_small",
+          "visualRole": "weapon_impact"
+        }
+      ]
+    },
+    {
+      "class": "Voleur",
+      "classId": "ROGUE",
+      "actionId": "ro_sneak_attack",
+      "displayName": "Coup Sournois",
+      "currentPresetId": "sword_slash",
+      "allPresetStepCount": 3,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_sword_slash_heavy",
+          "visualRole": "weapon_impact"
+        }
+      ]
+    },
+    {
+      "class": "Voleur",
+      "classId": "ROGUE",
+      "actionId": "ro_tumble",
+      "displayName": "Roulade",
+      "currentPresetId": "leap_impact",
+      "allPresetStepCount": 2,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_body_slam_heavy",
+          "visualRole": "departure_arrival"
+        }
+      ]
+    },
+    {
+      "class": "Voleur",
+      "classId": "ROGUE",
+      "actionId": "ro_jaw_trap",
+      "displayName": "Mâchoire à Ressort",
+      "currentPresetId": "root_vines",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_arcane_sigil_burst_medium",
+          "visualRole": "area_release"
+        }
+      ]
+    },
+    {
+      "class": "Voleur",
+      "classId": "ROGUE",
+      "actionId": "ro_fault_breaker",
+      "displayName": "Casse-Faille",
+      "currentPresetId": "ultimate_fault_breaker",
+      "allPresetStepCount": 4,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2,
+        3
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_greatsword_cleave_heavy",
+          "visualRole": "explosive lightning rupture"
+        }
+      ]
+    },
+    {
+      "class": "Lancier",
+      "classId": "LANCER",
+      "actionId": "basic_long_spear_hit",
+      "displayName": "Attaque de base",
+      "currentPresetId": "basic_long_spear_hit",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_spear_stab_medium",
+          "visualRole": "weapon_impact"
+        }
+      ]
+    },
+    {
+      "class": "Lancier",
+      "classId": "LANCER",
+      "actionId": "l_long_thrust",
+      "displayName": "Estoc Long",
+      "currentPresetId": "thrust_line",
+      "allPresetStepCount": 2,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_spear_stab_medium",
+          "visualRole": "weapon_impact"
+        }
+      ]
+    },
+    {
+      "class": "Lancier",
+      "classId": "LANCER",
+      "actionId": "l_haft_recoil",
+      "displayName": "Repli de Hampe",
+      "currentPresetId": "thrust_line",
+      "allPresetStepCount": 2,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_spear_stab_medium",
+          "visualRole": "weapon_impact"
+        }
+      ]
+    },
+    {
+      "class": "Lancier",
+      "classId": "LANCER",
+      "actionId": "l_griffon_jump",
+      "displayName": "Saut du Griffon",
+      "currentPresetId": "leap_impact",
+      "allPresetStepCount": 2,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_body_slam_heavy",
+          "visualRole": "departure_arrival"
+        }
+      ]
+    },
+    {
+      "class": "Lancier",
+      "classId": "LANCER",
+      "actionId": "l_firmament_lance",
+      "displayName": "Lance du Firmament",
+      "currentPresetId": "ultimate_firmament_lance",
+      "allPresetStepCount": 4,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2,
+        3
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_spear_stab_medium",
+          "visualRole": "sky-charged piercing signature"
+        }
+      ]
+    },
+    {
+      "class": "Paladin",
+      "classId": "PALADIN",
+      "actionId": "basic_holy_mace_hit",
+      "displayName": "Attaque de base",
+      "currentPresetId": "basic_holy_mace_hit",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_mace_impact_medium",
+          "visualRole": "holy blunt impact"
+        }
+      ]
+    },
+    {
+      "class": "Paladin",
+      "classId": "PALADIN",
+      "actionId": "p_holy_strike",
+      "displayName": "Frappe Consacrée",
+      "currentPresetId": "skill_holy_radiance",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_holy_radiance_burst_heavy",
+          "visualRole": "single-target holy strike"
+        }
+      ]
+    },
+    {
+      "class": "Paladin",
+      "classId": "PALADIN",
+      "actionId": "p_interpose",
+      "displayName": "Interposition",
+      "currentPresetId": "leap_impact",
+      "allPresetStepCount": 2,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_body_slam_heavy",
+          "visualRole": "departure_arrival"
+        }
+      ]
+    },
+    {
+      "class": "Paladin",
+      "classId": "PALADIN",
+      "actionId": "p_oathwall",
+      "displayName": "Rempart du Serment",
+      "currentPresetId": "pilot_p_oathwall",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "megapack_shield_on",
+          "visualRole": "support_release"
+        }
+      ]
+    },
+    {
+      "class": "Paladin",
+      "classId": "PALADIN",
+      "actionId": "p_radiant_judgement",
+      "displayName": "Jugement Radieux",
+      "currentPresetId": "ultimate_radiant_judgement",
+      "allPresetStepCount": 4,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2,
+        3
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_holy_radiance_burst_heavy",
+          "visualRole": "ultimate_signature"
+        }
+      ]
+    },
+    {
+      "class": "Chevalier noir",
+      "classId": "DARK_KNIGHT",
+      "actionId": "basic_scythe_hit",
+      "displayName": "Attaque de base",
+      "currentPresetId": "basic_scythe_hit",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_blade_crescent_medium",
+          "visualRole": "weapon_impact"
+        }
+      ]
+    },
+    {
+      "class": "Chevalier noir",
+      "classId": "DARK_KNIGHT",
+      "actionId": "d_cursed_blade",
+      "displayName": "Lame Maudite",
+      "currentPresetId": "sword_slash",
+      "allPresetStepCount": 3,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_sword_slash_heavy",
+          "visualRole": "weapon_impact"
+        }
+      ]
+    },
+    {
+      "class": "Chevalier noir",
+      "classId": "DARK_KNIGHT",
+      "actionId": "d_void_step",
+      "displayName": "Pas du Néant",
+      "currentPresetId": "teleport_burst",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_void_spiral_implosion_medium",
+          "visualRole": "departure_arrival"
+        }
+      ]
+    },
+    {
+      "class": "Chevalier noir",
+      "classId": "DARK_KNIGHT",
+      "actionId": "d_blood_pact",
+      "displayName": "Pacte de Sang",
+      "currentPresetId": "skill_void_rune",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_void_rune_orb_medium",
+          "visualRole": "self_area_release"
+        }
+      ]
+    },
+    {
+      "class": "Chevalier noir",
+      "classId": "DARK_KNIGHT",
+      "actionId": "d_devouring_eclipse",
+      "displayName": "Éclipse Dévorante",
+      "currentPresetId": "pilot_d_devouring_eclipse",
+      "allPresetStepCount": 7,
+      "existingVisualStepCount": 4,
+      "realVisualStepIndexes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "technicalStepIndexes": [
+        4,
+        5,
+        6
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "megapack_charge_darkness_v1_a",
+          "visualRole": "ultimate_signature"
+        },
+        {
+          "realStepIndex": 1,
+          "visualIndex": 1,
+          "spriteSheetId": "megapack_impact_darkness_lv2",
+          "visualRole": "secondary_dark_impact"
+        },
+        {
+          "realStepIndex": 2,
+          "visualIndex": 2,
+          "spriteSheetId": "megapack_impact_darkness_lv3",
+          "visualRole": "ultimate_peak"
+        },
+        {
+          "realStepIndex": 3,
+          "visualIndex": 3,
+          "spriteSheetId": "megapack_impact_shockwave_v1",
+          "visualRole": "aftermath_shockwave"
+        }
+      ]
+    },
+    {
+      "class": "Mage rouge",
+      "classId": "RED_MAGE",
+      "actionId": "basic_rapier_hit",
+      "displayName": "Attaque de base",
+      "currentPresetId": "basic_rapier_hit",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_dagger_crosscut_small",
+          "visualRole": "weapon_impact"
+        }
+      ]
+    },
+    {
+      "class": "Mage rouge",
+      "classId": "RED_MAGE",
+      "actionId": "r_arcane_blade",
+      "displayName": "Lame Arcanique",
+      "currentPresetId": "skill_arcane_slash_burst",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_arcane_slash_burst_medium",
+          "visualRole": "arcane sword burst"
+        }
+      ]
+    },
+    {
+      "class": "Mage rouge",
+      "classId": "RED_MAGE",
+      "actionId": "r_rune_step",
+      "displayName": "Pas Runique",
+      "currentPresetId": "teleport_burst",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_void_spiral_implosion_medium",
+          "visualRole": "departure_arrival"
+        }
+      ]
+    },
+    {
+      "class": "Mage rouge",
+      "classId": "RED_MAGE",
+      "actionId": "r_scarlet_circle",
+      "displayName": "Cercle Écarlate",
+      "currentPresetId": "skill_arcane_vortex",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_arcane_vortex_nova_heavy",
+          "visualRole": "self_area_release"
+        }
+      ]
+    },
+    {
+      "class": "Mage rouge",
+      "classId": "RED_MAGE",
+      "actionId": "r_perfect_duality",
+      "displayName": "Dualité Parfaite",
+      "currentPresetId": "ultimate_perfect_duality",
+      "allPresetStepCount": 4,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2,
+        3
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_fire_vortex_nova_heavy",
+          "visualRole": "dual magic signature explosion"
+        }
+      ]
+    },
+    {
+      "class": "Enchanteur",
+      "classId": "ENCHANTER",
+      "actionId": "basic_wand_hit",
+      "displayName": "Attaque de base",
+      "currentPresetId": "basic_wand_hit",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_bolt_hit_small",
+          "visualRole": "projectile_impact"
+        }
+      ]
+    },
+    {
+      "class": "Enchanteur",
+      "classId": "ENCHANTER",
+      "actionId": "e_vigor_rune",
+      "displayName": "Rune de Vigueur",
+      "currentPresetId": "skill_arcane_orbit",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_arcane_orbit_burst_medium",
+          "visualRole": "support_release"
+        }
+      ]
+    },
+    {
+      "class": "Enchanteur",
+      "classId": "ENCHANTER",
+      "actionId": "e_transpose",
+      "displayName": "Transposition",
+      "currentPresetId": "teleport_burst",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_void_spiral_implosion_medium",
+          "visualRole": "departure_arrival"
+        }
+      ]
+    },
+    {
+      "class": "Enchanteur",
+      "classId": "ENCHANTER",
+      "actionId": "e_binding_seal",
+      "displayName": "Sceau d'Entrave",
+      "currentPresetId": "pilot_e_binding_seal",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "megapack_hex_bursts_center_v2",
+          "visualRole": "area_release"
+        }
+      ]
+    },
+    {
+      "class": "Enchanteur",
+      "classId": "ENCHANTER",
+      "actionId": "e_absolute_harmony",
+      "displayName": "Harmonie Absolue",
+      "currentPresetId": "ultimate_absolute_harmony",
+      "allPresetStepCount": 2,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_holy_radiance_burst_heavy",
+          "visualRole": "ultimate_support_release"
+        }
+      ]
+    },
+    {
+      "class": "Ninja",
+      "classId": "NINJA",
+      "actionId": "basic_shuriken_hit",
+      "displayName": "Attaque de base",
+      "currentPresetId": "basic_shuriken_hit",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_shuriken_cut_small",
+          "visualRole": "weapon_impact"
+        }
+      ]
+    },
+    {
+      "class": "Ninja",
+      "classId": "NINJA",
+      "actionId": "ni_venom_blade",
+      "displayName": "Lame Venimeuse",
+      "currentPresetId": "skill_poison_maw",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_poison_maw_bite_heavy",
+          "visualRole": "weapon_impact"
+        }
+      ]
+    },
+    {
+      "class": "Ninja",
+      "classId": "NINJA",
+      "actionId": "ni_shadow_step",
+      "displayName": "Pas d'Ombre",
+      "currentPresetId": "pilot_ni_shadow_step",
+      "allPresetStepCount": 3,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "megapack_lightning_slash_flurry",
+          "visualRole": "departure_arrival"
+        }
+      ]
+    },
+    {
+      "class": "Ninja",
+      "classId": "NINJA",
+      "actionId": "ni_smoke_bomb",
+      "displayName": "Bombe Fumigène",
+      "currentPresetId": "pilot_ni_smoke_bomb",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "megapack_angry_smoke_burst",
+          "visualRole": "self_area_release"
+        }
+      ]
+    },
+    {
+      "class": "Ninja",
+      "classId": "NINJA",
+      "actionId": "ni_silent_assassin",
+      "displayName": "Assassinat Silencieux",
+      "currentPresetId": "ultimate_silent_assassin",
+      "allPresetStepCount": 5,
+      "existingVisualStepCount": 2,
+      "realVisualStepIndexes": [
+        0,
+        1
+      ],
+      "technicalStepIndexes": [
+        2,
+        3,
+        4
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0,
+        1
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_void_spiral_implosion_medium",
+          "visualRole": "rapid lethal assassination spin"
+        },
+        {
+          "realStepIndex": 1,
+          "visualIndex": 1,
+          "spriteSheetId": "basic_execution_slash_heavy",
+          "visualRole": "execution_impact"
+        }
+      ]
+    },
+    {
+      "class": "Artificier",
+      "classId": "ARTIFICER",
+      "actionId": "basic_hand_cannon_hit",
+      "displayName": "Attaque de base",
+      "currentPresetId": "basic_hand_cannon_hit",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_bullet_hit_medium",
+          "visualRole": "projectile_impact"
+        }
+      ]
+    },
+    {
+      "class": "Artificier",
+      "classId": "ARTIFICER",
+      "actionId": "ar_calibrated_shot",
+      "displayName": "Tir Calibré",
+      "currentPresetId": "arrow_shot",
+      "allPresetStepCount": 3,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "basic_arrow_hit_small",
+          "visualRole": "projectile_impact"
+        }
+      ]
+    },
+    {
+      "class": "Artificier",
+      "classId": "ARTIFICER",
+      "actionId": "ar_explosive_retreat",
+      "displayName": "Repli Explosif",
+      "currentPresetId": "impact_explosion_large",
+      "allPresetStepCount": 3,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_fire_vortex_nova_heavy",
+          "visualRole": "departure_arrival"
+        }
+      ]
+    },
+    {
+      "class": "Artificier",
+      "classId": "ARTIFICER",
+      "actionId": "ar_incendiary_grenade",
+      "displayName": "Grenade Incendiaire",
+      "currentPresetId": "skill_fire_smoke",
+      "allPresetStepCount": 1,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_fire_smoke_explosion_heavy",
+          "visualRole": "area_release"
+        }
+      ]
+    },
+    {
+      "class": "Artificier",
+      "classId": "ARTIFICER",
+      "actionId": "ar_artillery_barrage",
+      "displayName": "Barrage d'Artillerie",
+      "currentPresetId": "ultimate_artillery_barrage",
+      "allPresetStepCount": 4,
+      "existingVisualStepCount": 1,
+      "realVisualStepIndexes": [
+        0
+      ],
+      "technicalStepIndexes": [
+        1,
+        2,
+        3
+      ],
+      "a1ReportedVisualIndexes": [
+        0
+      ],
+      "qaConfiguredVisualIndexes": [],
+      "configuredQaVisualStepCount": 0,
+      "missingQaVisualStepIndexes": [
+        0
+      ],
+      "unexpectedQaStepIndexes": [],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_fire_spark_cluster_medium",
+          "visualRole": "ultimate_signature"
+        }
+      ]
+    }
+  ],
+  "multiStepHeroPresets": [
+    {
+      "actionId": "d_devouring_eclipse",
+      "presetId": "pilot_d_devouring_eclipse",
+      "existingVisualStepCount": 4,
+      "realVisualStepIndexes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "qaConfiguredIndexes": [],
+      "missingIndexes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "megapack_charge_darkness_v1_a",
+          "visualRole": "ultimate_signature"
+        },
+        {
+          "realStepIndex": 1,
+          "visualIndex": 1,
+          "spriteSheetId": "megapack_impact_darkness_lv2",
+          "visualRole": "secondary_dark_impact"
+        },
+        {
+          "realStepIndex": 2,
+          "visualIndex": 2,
+          "spriteSheetId": "megapack_impact_darkness_lv3",
+          "visualRole": "ultimate_peak"
+        },
+        {
+          "realStepIndex": 3,
+          "visualIndex": 3,
+          "spriteSheetId": "megapack_impact_shockwave_v1",
+          "visualRole": "aftermath_shockwave"
+        }
+      ]
+    },
+    {
+      "actionId": "ni_silent_assassin",
+      "presetId": "ultimate_silent_assassin",
+      "existingVisualStepCount": 2,
+      "realVisualStepIndexes": [
+        0,
+        1
+      ],
+      "qaConfiguredIndexes": [],
+      "missingIndexes": [
+        0,
+        1
+      ],
+      "coverage": "INCOMPLETE",
+      "visualSteps": [
+        {
+          "realStepIndex": 0,
+          "visualIndex": 0,
+          "spriteSheetId": "skill_void_spiral_implosion_medium",
+          "visualRole": "rapid lethal assassination spin"
+        },
+        {
+          "realStepIndex": 1,
+          "visualIndex": 1,
+          "spriteSheetId": "basic_execution_slash_heavy",
+          "visualRole": "execution_impact"
+        }
+      ]
+    }
+  ],
+  "structuralReportAccuracy": {
+    "actionsChecked": 60,
+    "presetIdMismatches": 0,
+    "visualStepCountMismatches": 2,
+    "visualStepIndexMismatches": 2,
+    "actionsWithStructuralReportMismatch": 2,
+    "mismatchingActionIds": [
+      "d_devouring_eclipse",
+      "ni_silent_assassin"
+    ],
+    "rows": [
+      {
+        "actionId": "basic_greatsword_hit",
+        "authoritativePresetId": "basic_greatsword_hit",
+        "a1ReportedPresetId": "basic_greatsword_hit",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "w_break_guard",
+        "authoritativePresetId": "sword_slash",
+        "a1ReportedPresetId": "sword_slash",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "w_charge",
+        "authoritativePresetId": "pilot_w_charge",
+        "a1ReportedPresetId": "pilot_w_charge",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "w_whirl",
+        "authoritativePresetId": "pilot_w_whirl",
+        "a1ReportedPresetId": "pilot_w_whirl",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "w_lion_surge",
+        "authoritativePresetId": "pilot_w_lion_surge",
+        "a1ReportedPresetId": "pilot_w_lion_surge",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "basic_crosier_hit",
+        "authoritativePresetId": "basic_crosier_hit",
+        "a1ReportedPresetId": "basic_crosier_hit",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "w_salvation",
+        "authoritativePresetId": "pilot_w_salvation",
+        "a1ReportedPresetId": "pilot_w_salvation",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "w_purify",
+        "authoritativePresetId": "pilot_w_purify",
+        "a1ReportedPresetId": "pilot_w_purify",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "w_sanctuary",
+        "authoritativePresetId": "pilot_w_sanctuary",
+        "a1ReportedPresetId": "pilot_w_sanctuary",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "w_miracle",
+        "authoritativePresetId": "ultimate_miracle",
+        "a1ReportedPresetId": "ultimate_miracle",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "basic_grimoire_hit",
+        "authoritativePresetId": "basic_grimoire_hit",
+        "a1ReportedPresetId": "basic_grimoire_hit",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "n_dark_bolt",
+        "authoritativePresetId": "shadow_lightning_bolt",
+        "a1ReportedPresetId": "shadow_lightning_bolt",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "n_teleport",
+        "authoritativePresetId": "teleport_burst",
+        "a1ReportedPresetId": "teleport_burst",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "n_flame_wave",
+        "authoritativePresetId": "pilot_n_flame_wave",
+        "a1ReportedPresetId": "pilot_n_flame_wave",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "n_dark_meteor",
+        "authoritativePresetId": "ultimate_dark_meteor",
+        "a1ReportedPresetId": "ultimate_dark_meteor",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "basic_longbow_hit",
+        "authoritativePresetId": "basic_longbow_hit",
+        "a1ReportedPresetId": "basic_longbow_hit",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "a_precise_shot",
+        "authoritativePresetId": "arrow_shot",
+        "a1ReportedPresetId": "arrow_shot",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "a_hawk_leap",
+        "authoritativePresetId": "leap_impact",
+        "a1ReportedPresetId": "leap_impact",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "a_arrow_rain",
+        "authoritativePresetId": "arrow_rain",
+        "a1ReportedPresetId": "arrow_rain",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "a_zenith_arrow",
+        "authoritativePresetId": "ultimate_zenith_arrow",
+        "a1ReportedPresetId": "ultimate_zenith_arrow",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "basic_dagger_hit",
+        "authoritativePresetId": "basic_dagger_hit",
+        "a1ReportedPresetId": "basic_dagger_hit",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "ro_sneak_attack",
+        "authoritativePresetId": "sword_slash",
+        "a1ReportedPresetId": "sword_slash",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "ro_tumble",
+        "authoritativePresetId": "leap_impact",
+        "a1ReportedPresetId": "leap_impact",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "ro_jaw_trap",
+        "authoritativePresetId": "root_vines",
+        "a1ReportedPresetId": "root_vines",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "ro_fault_breaker",
+        "authoritativePresetId": "ultimate_fault_breaker",
+        "a1ReportedPresetId": "ultimate_fault_breaker",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "basic_long_spear_hit",
+        "authoritativePresetId": "basic_long_spear_hit",
+        "a1ReportedPresetId": "basic_long_spear_hit",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "l_long_thrust",
+        "authoritativePresetId": "thrust_line",
+        "a1ReportedPresetId": "thrust_line",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "l_haft_recoil",
+        "authoritativePresetId": "thrust_line",
+        "a1ReportedPresetId": "thrust_line",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "l_griffon_jump",
+        "authoritativePresetId": "leap_impact",
+        "a1ReportedPresetId": "leap_impact",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "l_firmament_lance",
+        "authoritativePresetId": "ultimate_firmament_lance",
+        "a1ReportedPresetId": "ultimate_firmament_lance",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "basic_holy_mace_hit",
+        "authoritativePresetId": "basic_holy_mace_hit",
+        "a1ReportedPresetId": "basic_holy_mace_hit",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "p_holy_strike",
+        "authoritativePresetId": "skill_holy_radiance",
+        "a1ReportedPresetId": "skill_holy_radiance",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "p_interpose",
+        "authoritativePresetId": "leap_impact",
+        "a1ReportedPresetId": "leap_impact",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "p_oathwall",
+        "authoritativePresetId": "pilot_p_oathwall",
+        "a1ReportedPresetId": "pilot_p_oathwall",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "p_radiant_judgement",
+        "authoritativePresetId": "ultimate_radiant_judgement",
+        "a1ReportedPresetId": "ultimate_radiant_judgement",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "basic_scythe_hit",
+        "authoritativePresetId": "basic_scythe_hit",
+        "a1ReportedPresetId": "basic_scythe_hit",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "d_cursed_blade",
+        "authoritativePresetId": "sword_slash",
+        "a1ReportedPresetId": "sword_slash",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "d_void_step",
+        "authoritativePresetId": "teleport_burst",
+        "a1ReportedPresetId": "teleport_burst",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "d_blood_pact",
+        "authoritativePresetId": "skill_void_rune",
+        "a1ReportedPresetId": "skill_void_rune",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "d_devouring_eclipse",
+        "authoritativePresetId": "pilot_d_devouring_eclipse",
+        "a1ReportedPresetId": "pilot_d_devouring_eclipse",
+        "authoritativeVisualStepCount": 4,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": true,
+        "visualStepIndexMismatch": true,
+        "structuralMismatch": true
+      },
+      {
+        "actionId": "basic_rapier_hit",
+        "authoritativePresetId": "basic_rapier_hit",
+        "a1ReportedPresetId": "basic_rapier_hit",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "r_arcane_blade",
+        "authoritativePresetId": "skill_arcane_slash_burst",
+        "a1ReportedPresetId": "skill_arcane_slash_burst",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "r_rune_step",
+        "authoritativePresetId": "teleport_burst",
+        "a1ReportedPresetId": "teleport_burst",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "r_scarlet_circle",
+        "authoritativePresetId": "skill_arcane_vortex",
+        "a1ReportedPresetId": "skill_arcane_vortex",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "r_perfect_duality",
+        "authoritativePresetId": "ultimate_perfect_duality",
+        "a1ReportedPresetId": "ultimate_perfect_duality",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "basic_wand_hit",
+        "authoritativePresetId": "basic_wand_hit",
+        "a1ReportedPresetId": "basic_wand_hit",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "e_vigor_rune",
+        "authoritativePresetId": "skill_arcane_orbit",
+        "a1ReportedPresetId": "skill_arcane_orbit",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "e_transpose",
+        "authoritativePresetId": "teleport_burst",
+        "a1ReportedPresetId": "teleport_burst",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "e_binding_seal",
+        "authoritativePresetId": "pilot_e_binding_seal",
+        "a1ReportedPresetId": "pilot_e_binding_seal",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "e_absolute_harmony",
+        "authoritativePresetId": "ultimate_absolute_harmony",
+        "a1ReportedPresetId": "ultimate_absolute_harmony",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "basic_shuriken_hit",
+        "authoritativePresetId": "basic_shuriken_hit",
+        "a1ReportedPresetId": "basic_shuriken_hit",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "ni_venom_blade",
+        "authoritativePresetId": "skill_poison_maw",
+        "a1ReportedPresetId": "skill_poison_maw",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "ni_shadow_step",
+        "authoritativePresetId": "pilot_ni_shadow_step",
+        "a1ReportedPresetId": "pilot_ni_shadow_step",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "ni_smoke_bomb",
+        "authoritativePresetId": "pilot_ni_smoke_bomb",
+        "a1ReportedPresetId": "pilot_ni_smoke_bomb",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "ni_silent_assassin",
+        "authoritativePresetId": "ultimate_silent_assassin",
+        "a1ReportedPresetId": "ultimate_silent_assassin",
+        "authoritativeVisualStepCount": 2,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0,
+          1
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": true,
+        "visualStepIndexMismatch": true,
+        "structuralMismatch": true
+      },
+      {
+        "actionId": "basic_hand_cannon_hit",
+        "authoritativePresetId": "basic_hand_cannon_hit",
+        "a1ReportedPresetId": "basic_hand_cannon_hit",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "ar_calibrated_shot",
+        "authoritativePresetId": "arrow_shot",
+        "a1ReportedPresetId": "arrow_shot",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "ar_explosive_retreat",
+        "authoritativePresetId": "impact_explosion_large",
+        "a1ReportedPresetId": "impact_explosion_large",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "ar_incendiary_grenade",
+        "authoritativePresetId": "skill_fire_smoke",
+        "a1ReportedPresetId": "skill_fire_smoke",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      },
+      {
+        "actionId": "ar_artillery_barrage",
+        "authoritativePresetId": "ultimate_artillery_barrage",
+        "a1ReportedPresetId": "ultimate_artillery_barrage",
+        "authoritativeVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "authoritativeVisualStepIndexes": [
+          0
+        ],
+        "a1ReportedVisualStepIndexes": [
+          0
+        ],
+        "presetMismatch": false,
+        "visualStepCountMismatch": false,
+        "visualStepIndexMismatch": false,
+        "structuralMismatch": false
+      }
+    ]
+  },
+  "presetStructureReview": {
+    "count": 24,
+    "currentSlotsMissingBecauseOfA1Coverage": 4,
+    "futureRecommendedAdditionalSlots": 33,
+    "rows": [
+      {
+        "actionId": "w_whirl",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 2,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 1,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "w_lion_surge",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 3,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 2,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "p_oathwall",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 2,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 1,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "p_radiant_judgement",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 3,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 2,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "d_blood_pact",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 2,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 1,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "d_devouring_eclipse",
+        "authoritativeCurrentVisualStepCount": 4,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 3,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 0,
+        "reportMismatch": true
+      },
+      {
+        "actionId": "l_griffon_jump",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 2,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 1,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "l_firmament_lance",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 3,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 2,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "n_flame_wave",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 2,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 1,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "n_dark_meteor",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 3,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 2,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "w_sanctuary",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 2,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 1,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "w_miracle",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 3,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 2,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "r_scarlet_circle",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 2,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 1,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "r_perfect_duality",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 3,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 2,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "e_binding_seal",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 2,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 1,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "e_absolute_harmony",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 3,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 2,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "a_arrow_rain",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 2,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 1,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "a_zenith_arrow",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 3,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 2,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "ni_smoke_bomb",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 2,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 1,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "ni_silent_assassin",
+        "authoritativeCurrentVisualStepCount": 2,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 3,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 1,
+        "reportMismatch": true
+      },
+      {
+        "actionId": "ro_jaw_trap",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 2,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 1,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "ro_fault_breaker",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 3,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 2,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "ar_incendiary_grenade",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 2,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 1,
+        "reportMismatch": false
+      },
+      {
+        "actionId": "ar_artillery_barrage",
+        "authoritativeCurrentVisualStepCount": 1,
+        "a1ReportedCurrentVisualStepCount": 1,
+        "a1RecommendedVisualStepCount": 3,
+        "currentCoverage": "INCOMPLETE",
+        "futureAdditionalVisualStepsRecommended": 2,
+        "reportMismatch": false
+      }
+    ]
+  },
+  "qaStateConsistency": {
+    "scope": "HERO_ONLY",
+    "evidence": {
+      "source": "read-only visible QA Lab counters",
+      "url": "http://localhost:5173/?qa=1&vfx=1&vfxlab=1",
+      "qaSourceEntries": 0,
+      "qaOverrideEntries": 0,
+      "qaWorkingVisualSteps": 0,
+      "validatedVisualSteps": 0,
+      "testedVisualSteps": 0,
+      "verifiedVisualSteps": 0,
+      "unexpectedStateEntries": 0,
+      "orphanQaSources": 0,
+      "orphanQaOverrides": 0
+    },
+    "qaSourceEntries": 0,
+    "qaOverrideEntries": 0,
+    "qaWorkingVisualSteps": 0,
+    "validatedVisualSteps": 0,
+    "testedVisualSteps": 0,
+    "verifiedVisualSteps": 0,
+    "unexpectedStateEntries": 0,
+    "orphanQaSources": 0,
+    "orphanQaOverrides": 0,
+    "qaOverrideWithoutSource": 0,
+    "qaSourceWithoutOverride": 0,
+    "qaStateOutsideHeroScope": 0,
+    "duplicateActionStepState": 0,
+    "missingReportedQaEntries": 60,
+    "unreportedLiveQaEntries": 0,
+    "note": "The A1 JSON is an execution record, but its 60 QA proposals are not present in the currently visible Lab state."
+  },
+  "candidateConsistency": {
+    "currentLive": {
+      "selectedCandidateCount": 0,
+      "uniqueCandidateCount": 0,
+      "duplicateCandidateIds": [],
+      "candidateIdsMissingFromCatalogue": [],
+      "reportCandidateMismatchCount": 60
+    },
+    "a1ExecutionRecord": {
+      "selectedCandidateCount": 60,
+      "uniqueCandidateCount": 60,
+      "duplicateCandidateIds": [],
+      "candidateIdsMissingFromCatalogue": []
+    }
+  },
+  "scalePresentationConsistency": {
+    "currentLive": {
+      "scaleAtLeast2": 0,
+      "scaleBelow2": 0,
+      "minimumScale": null,
+      "maximumScale": null,
+      "presentationMismatches": 60,
+      "reason": "No current QA overrides are visible; each of the 60 A1 presentation proposals lacks a matching live override."
+    },
+    "a1ExecutionRecord": {
+      "scaleAtLeast2": 60,
+      "scaleBelow2": 0,
+      "minimumScale": 2.1,
+      "maximumScale": 3,
+      "comparedFields": [
+        "scale",
+        "offsetX",
+        "offsetY",
+        "duration",
+        "opacity",
+        "anchor",
+        "layer",
+        "blending",
+        "fadeIn",
+        "fadeOut",
+        "direction"
+      ]
+    }
+  },
+  "reportFlags": {
+    "LOW_CONFIDENCE_SELECTION": 16,
+    "PRESET_STRUCTURE_REVIEW": 24,
+    "DEDICATED_PRESET_REQUIRED_ON_APPLY": 15,
+    "NO_GIF_SELECTED": 0,
+    "REUSE_JUSTIFIED": 0
+  },
+  "previewBridge": {
+    "previewIndexAvailable": true,
+    "candidates": [
+      {
+        "candidateId": "r1_0001",
+        "status": "RESOLVED",
+        "previewFilename": "Arrow_Indicator_V1.gif",
+        "previewRelativePath": "(PREVIEW) GIFs - Essentials VFX/Arrow_Indicator_V1.gif",
+        "previewFolder": "(PREVIEW) GIFs - Essentials VFX"
+      },
+      {
+        "candidateId": "r1_0002",
+        "status": "RESOLVED",
+        "previewFilename": "Arrow_Indicator_V2.gif",
+        "previewRelativePath": "(PREVIEW) GIFs - Essentials VFX/Arrow_Indicator_V2.gif",
+        "previewFolder": "(PREVIEW) GIFs - Essentials VFX"
+      },
+      {
+        "candidateId": "r1_0003",
+        "status": "RESOLVED",
+        "previewFilename": "Arrow_Indicator_V3.gif",
+        "previewRelativePath": "(PREVIEW) GIFs - Essentials VFX/Arrow_Indicator_V3.gif",
+        "previewFolder": "(PREVIEW) GIFs - Essentials VFX"
+      }
+    ],
+    "megaPackRootConfigured": false,
+    "effectiveMegaPackRoot": null,
+    "expectedGifPathForR10001": null,
+    "expectedGifPathExists": false,
+    "expectedGifReadable": false,
+    "httpBridge": {
+      "requestedUrl": "http://localhost:5173/dev/vfx-preview/r1_0001",
+      "statusCode": 503,
+      "category": "503_MEGA_PACK_ROOT_NOT_CONFIGURED",
+      "reason": "MEGA_PACK_ROOT not configured",
+      "checkedReadOnly": true
+    },
+    "status": "BROKEN",
+    "rootCause": "MEGA_PACK_ROOT_MISSING",
+    "additionalCauses": [],
+    "nextFixOnly": "Restart the Vite development server with MEGA_PACK_ROOT set to the Mega Pack root used by the preview index; then retry the same GET endpoint."
+  },
+  "exactMissingVisualSteps": [
+    {
+      "actionId": "basic_greatsword_hit",
+      "presetId": "basic_greatsword_hit",
+      "realStepIndex": 0,
+      "visualRole": "weapon_impact",
+      "spriteSheetId": "basic_greatsword_cleave_heavy"
+    },
+    {
+      "actionId": "w_break_guard",
+      "presetId": "sword_slash",
+      "realStepIndex": 0,
+      "visualRole": "weapon_impact",
+      "spriteSheetId": "basic_sword_slash_heavy"
+    },
+    {
+      "actionId": "w_charge",
+      "presetId": "pilot_w_charge",
+      "realStepIndex": 0,
+      "visualRole": "departure_arrival",
+      "spriteSheetId": "megapack_dash_wind_white_v3"
+    },
+    {
+      "actionId": "w_whirl",
+      "presetId": "pilot_w_whirl",
+      "realStepIndex": 0,
+      "visualRole": "self_area_release",
+      "spriteSheetId": "megapack_fire_slash_spin"
+    },
+    {
+      "actionId": "w_lion_surge",
+      "presetId": "pilot_w_lion_surge",
+      "realStepIndex": 0,
+      "visualRole": "signature multi-hit heroic assault",
+      "spriteSheetId": "megapack_blue_slash_flurry"
+    },
+    {
+      "actionId": "basic_crosier_hit",
+      "presetId": "basic_crosier_hit",
+      "realStepIndex": 0,
+      "visualRole": "compact restorative magic impact",
+      "spriteSheetId": "basic_staff_strike_small"
+    },
+    {
+      "actionId": "w_salvation",
+      "presetId": "pilot_w_salvation",
+      "realStepIndex": 0,
+      "visualRole": "support_release",
+      "spriteSheetId": "megapack_healing_v3"
+    },
+    {
+      "actionId": "w_purify",
+      "presetId": "pilot_w_purify",
+      "realStepIndex": 0,
+      "visualRole": "support_release",
+      "spriteSheetId": "megapack_heart_buff_v3"
+    },
+    {
+      "actionId": "w_sanctuary",
+      "presetId": "pilot_w_sanctuary",
+      "realStepIndex": 0,
+      "visualRole": "support_release",
+      "spriteSheetId": "megapack_positive_buff_v3"
+    },
+    {
+      "actionId": "w_miracle",
+      "presetId": "ultimate_miracle",
+      "realStepIndex": 0,
+      "visualRole": "ultimate_support_release",
+      "spriteSheetId": "skill_holy_radiance_burst_heavy"
+    },
+    {
+      "actionId": "basic_grimoire_hit",
+      "presetId": "basic_grimoire_hit",
+      "realStepIndex": 0,
+      "visualRole": "projectile_impact",
+      "spriteSheetId": "basic_bolt_hit_small"
+    },
+    {
+      "actionId": "n_dark_bolt",
+      "presetId": "shadow_lightning_bolt",
+      "realStepIndex": 0,
+      "visualRole": "projectile_impact",
+      "spriteSheetId": "skill_void_rune_orb_medium"
+    },
+    {
+      "actionId": "n_teleport",
+      "presetId": "teleport_burst",
+      "realStepIndex": 0,
+      "visualRole": "departure_arrival",
+      "spriteSheetId": "skill_void_spiral_implosion_medium"
+    },
+    {
+      "actionId": "n_flame_wave",
+      "presetId": "pilot_n_flame_wave",
+      "realStepIndex": 0,
+      "visualRole": "area_release",
+      "spriteSheetId": "megapack_fire_slash_spin"
+    },
+    {
+      "actionId": "n_dark_meteor",
+      "presetId": "ultimate_dark_meteor",
+      "realStepIndex": 0,
+      "visualRole": "ultimate_signature",
+      "spriteSheetId": "skill_meteor_impact_burst_heavy"
+    },
+    {
+      "actionId": "basic_longbow_hit",
+      "presetId": "basic_longbow_hit",
+      "realStepIndex": 0,
+      "visualRole": "precise wind-charged arrow impact",
+      "spriteSheetId": "basic_arrow_hit_small"
+    },
+    {
+      "actionId": "a_precise_shot",
+      "presetId": "arrow_shot",
+      "realStepIndex": 0,
+      "visualRole": "projectile_impact",
+      "spriteSheetId": "basic_arrow_hit_small"
+    },
+    {
+      "actionId": "a_hawk_leap",
+      "presetId": "leap_impact",
+      "realStepIndex": 0,
+      "visualRole": "departure_arrival",
+      "spriteSheetId": "basic_body_slam_heavy"
+    },
+    {
+      "actionId": "a_arrow_rain",
+      "presetId": "arrow_rain",
+      "realStepIndex": 0,
+      "visualRole": "area_release",
+      "spriteSheetId": "basic_arrow_hit_small"
+    },
+    {
+      "actionId": "a_zenith_arrow",
+      "presetId": "ultimate_zenith_arrow",
+      "realStepIndex": 0,
+      "visualRole": "projectile_impact",
+      "spriteSheetId": "basic_arrow_hit_small"
+    },
+    {
+      "actionId": "basic_dagger_hit",
+      "presetId": "basic_dagger_hit",
+      "realStepIndex": 0,
+      "visualRole": "weapon_impact",
+      "spriteSheetId": "basic_dagger_crosscut_small"
+    },
+    {
+      "actionId": "ro_sneak_attack",
+      "presetId": "sword_slash",
+      "realStepIndex": 0,
+      "visualRole": "weapon_impact",
+      "spriteSheetId": "basic_sword_slash_heavy"
+    },
+    {
+      "actionId": "ro_tumble",
+      "presetId": "leap_impact",
+      "realStepIndex": 0,
+      "visualRole": "departure_arrival",
+      "spriteSheetId": "basic_body_slam_heavy"
+    },
+    {
+      "actionId": "ro_jaw_trap",
+      "presetId": "root_vines",
+      "realStepIndex": 0,
+      "visualRole": "area_release",
+      "spriteSheetId": "skill_arcane_sigil_burst_medium"
+    },
+    {
+      "actionId": "ro_fault_breaker",
+      "presetId": "ultimate_fault_breaker",
+      "realStepIndex": 0,
+      "visualRole": "explosive lightning rupture",
+      "spriteSheetId": "basic_greatsword_cleave_heavy"
+    },
+    {
+      "actionId": "basic_long_spear_hit",
+      "presetId": "basic_long_spear_hit",
+      "realStepIndex": 0,
+      "visualRole": "weapon_impact",
+      "spriteSheetId": "basic_spear_stab_medium"
+    },
+    {
+      "actionId": "l_long_thrust",
+      "presetId": "thrust_line",
+      "realStepIndex": 0,
+      "visualRole": "weapon_impact",
+      "spriteSheetId": "basic_spear_stab_medium"
+    },
+    {
+      "actionId": "l_haft_recoil",
+      "presetId": "thrust_line",
+      "realStepIndex": 0,
+      "visualRole": "weapon_impact",
+      "spriteSheetId": "basic_spear_stab_medium"
+    },
+    {
+      "actionId": "l_griffon_jump",
+      "presetId": "leap_impact",
+      "realStepIndex": 0,
+      "visualRole": "departure_arrival",
+      "spriteSheetId": "basic_body_slam_heavy"
+    },
+    {
+      "actionId": "l_firmament_lance",
+      "presetId": "ultimate_firmament_lance",
+      "realStepIndex": 0,
+      "visualRole": "sky-charged piercing signature",
+      "spriteSheetId": "basic_spear_stab_medium"
+    },
+    {
+      "actionId": "basic_holy_mace_hit",
+      "presetId": "basic_holy_mace_hit",
+      "realStepIndex": 0,
+      "visualRole": "holy blunt impact",
+      "spriteSheetId": "basic_mace_impact_medium"
+    },
+    {
+      "actionId": "p_holy_strike",
+      "presetId": "skill_holy_radiance",
+      "realStepIndex": 0,
+      "visualRole": "single-target holy strike",
+      "spriteSheetId": "skill_holy_radiance_burst_heavy"
+    },
+    {
+      "actionId": "p_interpose",
+      "presetId": "leap_impact",
+      "realStepIndex": 0,
+      "visualRole": "departure_arrival",
+      "spriteSheetId": "basic_body_slam_heavy"
+    },
+    {
+      "actionId": "p_oathwall",
+      "presetId": "pilot_p_oathwall",
+      "realStepIndex": 0,
+      "visualRole": "support_release",
+      "spriteSheetId": "megapack_shield_on"
+    },
+    {
+      "actionId": "p_radiant_judgement",
+      "presetId": "ultimate_radiant_judgement",
+      "realStepIndex": 0,
+      "visualRole": "ultimate_signature",
+      "spriteSheetId": "skill_holy_radiance_burst_heavy"
+    },
+    {
+      "actionId": "basic_scythe_hit",
+      "presetId": "basic_scythe_hit",
+      "realStepIndex": 0,
+      "visualRole": "weapon_impact",
+      "spriteSheetId": "basic_blade_crescent_medium"
+    },
+    {
+      "actionId": "d_cursed_blade",
+      "presetId": "sword_slash",
+      "realStepIndex": 0,
+      "visualRole": "weapon_impact",
+      "spriteSheetId": "basic_sword_slash_heavy"
+    },
+    {
+      "actionId": "d_void_step",
+      "presetId": "teleport_burst",
+      "realStepIndex": 0,
+      "visualRole": "departure_arrival",
+      "spriteSheetId": "skill_void_spiral_implosion_medium"
+    },
+    {
+      "actionId": "d_blood_pact",
+      "presetId": "skill_void_rune",
+      "realStepIndex": 0,
+      "visualRole": "self_area_release",
+      "spriteSheetId": "skill_void_rune_orb_medium"
+    },
+    {
+      "actionId": "d_devouring_eclipse",
+      "presetId": "pilot_d_devouring_eclipse",
+      "realStepIndex": 0,
+      "visualRole": "ultimate_signature",
+      "spriteSheetId": "megapack_charge_darkness_v1_a"
+    },
+    {
+      "actionId": "d_devouring_eclipse",
+      "presetId": "pilot_d_devouring_eclipse",
+      "realStepIndex": 1,
+      "visualRole": "secondary_dark_impact",
+      "spriteSheetId": "megapack_impact_darkness_lv2"
+    },
+    {
+      "actionId": "d_devouring_eclipse",
+      "presetId": "pilot_d_devouring_eclipse",
+      "realStepIndex": 2,
+      "visualRole": "ultimate_peak",
+      "spriteSheetId": "megapack_impact_darkness_lv3"
+    },
+    {
+      "actionId": "d_devouring_eclipse",
+      "presetId": "pilot_d_devouring_eclipse",
+      "realStepIndex": 3,
+      "visualRole": "aftermath_shockwave",
+      "spriteSheetId": "megapack_impact_shockwave_v1"
+    },
+    {
+      "actionId": "basic_rapier_hit",
+      "presetId": "basic_rapier_hit",
+      "realStepIndex": 0,
+      "visualRole": "weapon_impact",
+      "spriteSheetId": "basic_dagger_crosscut_small"
+    },
+    {
+      "actionId": "r_arcane_blade",
+      "presetId": "skill_arcane_slash_burst",
+      "realStepIndex": 0,
+      "visualRole": "arcane sword burst",
+      "spriteSheetId": "skill_arcane_slash_burst_medium"
+    },
+    {
+      "actionId": "r_rune_step",
+      "presetId": "teleport_burst",
+      "realStepIndex": 0,
+      "visualRole": "departure_arrival",
+      "spriteSheetId": "skill_void_spiral_implosion_medium"
+    },
+    {
+      "actionId": "r_scarlet_circle",
+      "presetId": "skill_arcane_vortex",
+      "realStepIndex": 0,
+      "visualRole": "self_area_release",
+      "spriteSheetId": "skill_arcane_vortex_nova_heavy"
+    },
+    {
+      "actionId": "r_perfect_duality",
+      "presetId": "ultimate_perfect_duality",
+      "realStepIndex": 0,
+      "visualRole": "dual magic signature explosion",
+      "spriteSheetId": "skill_fire_vortex_nova_heavy"
+    },
+    {
+      "actionId": "basic_wand_hit",
+      "presetId": "basic_wand_hit",
+      "realStepIndex": 0,
+      "visualRole": "projectile_impact",
+      "spriteSheetId": "basic_bolt_hit_small"
+    },
+    {
+      "actionId": "e_vigor_rune",
+      "presetId": "skill_arcane_orbit",
+      "realStepIndex": 0,
+      "visualRole": "support_release",
+      "spriteSheetId": "skill_arcane_orbit_burst_medium"
+    },
+    {
+      "actionId": "e_transpose",
+      "presetId": "teleport_burst",
+      "realStepIndex": 0,
+      "visualRole": "departure_arrival",
+      "spriteSheetId": "skill_void_spiral_implosion_medium"
+    },
+    {
+      "actionId": "e_binding_seal",
+      "presetId": "pilot_e_binding_seal",
+      "realStepIndex": 0,
+      "visualRole": "area_release",
+      "spriteSheetId": "megapack_hex_bursts_center_v2"
+    },
+    {
+      "actionId": "e_absolute_harmony",
+      "presetId": "ultimate_absolute_harmony",
+      "realStepIndex": 0,
+      "visualRole": "ultimate_support_release",
+      "spriteSheetId": "skill_holy_radiance_burst_heavy"
+    },
+    {
+      "actionId": "basic_shuriken_hit",
+      "presetId": "basic_shuriken_hit",
+      "realStepIndex": 0,
+      "visualRole": "weapon_impact",
+      "spriteSheetId": "basic_shuriken_cut_small"
+    },
+    {
+      "actionId": "ni_venom_blade",
+      "presetId": "skill_poison_maw",
+      "realStepIndex": 0,
+      "visualRole": "weapon_impact",
+      "spriteSheetId": "skill_poison_maw_bite_heavy"
+    },
+    {
+      "actionId": "ni_shadow_step",
+      "presetId": "pilot_ni_shadow_step",
+      "realStepIndex": 0,
+      "visualRole": "departure_arrival",
+      "spriteSheetId": "megapack_lightning_slash_flurry"
+    },
+    {
+      "actionId": "ni_smoke_bomb",
+      "presetId": "pilot_ni_smoke_bomb",
+      "realStepIndex": 0,
+      "visualRole": "self_area_release",
+      "spriteSheetId": "megapack_angry_smoke_burst"
+    },
+    {
+      "actionId": "ni_silent_assassin",
+      "presetId": "ultimate_silent_assassin",
+      "realStepIndex": 0,
+      "visualRole": "rapid lethal assassination spin",
+      "spriteSheetId": "skill_void_spiral_implosion_medium"
+    },
+    {
+      "actionId": "ni_silent_assassin",
+      "presetId": "ultimate_silent_assassin",
+      "realStepIndex": 1,
+      "visualRole": "execution_impact",
+      "spriteSheetId": "basic_execution_slash_heavy"
+    },
+    {
+      "actionId": "basic_hand_cannon_hit",
+      "presetId": "basic_hand_cannon_hit",
+      "realStepIndex": 0,
+      "visualRole": "projectile_impact",
+      "spriteSheetId": "basic_bullet_hit_medium"
+    },
+    {
+      "actionId": "ar_calibrated_shot",
+      "presetId": "arrow_shot",
+      "realStepIndex": 0,
+      "visualRole": "projectile_impact",
+      "spriteSheetId": "basic_arrow_hit_small"
+    },
+    {
+      "actionId": "ar_explosive_retreat",
+      "presetId": "impact_explosion_large",
+      "realStepIndex": 0,
+      "visualRole": "departure_arrival",
+      "spriteSheetId": "skill_fire_vortex_nova_heavy"
+    },
+    {
+      "actionId": "ar_incendiary_grenade",
+      "presetId": "skill_fire_smoke",
+      "realStepIndex": 0,
+      "visualRole": "area_release",
+      "spriteSheetId": "skill_fire_smoke_explosion_heavy"
+    },
+    {
+      "actionId": "ar_artillery_barrage",
+      "presetId": "ultimate_artillery_barrage",
+      "realStepIndex": 0,
+      "visualRole": "ultimate_signature",
+      "spriteSheetId": "skill_fire_spark_cluster_medium"
+    }
+  ],
+  "mutations": {
+    "qaStateModified": false,
+    "productionModified": false,
+    "gameplayModified": false,
+    "combatStageModified": false,
+    "vfxLabModified": false,
+    "originalA1ReportsModified": false,
+    "environmentModified": false,
+    "commit": false,
+    "push": false
+  }
+}
