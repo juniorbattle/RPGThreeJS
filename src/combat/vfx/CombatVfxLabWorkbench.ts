@@ -1539,8 +1539,15 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
   }
 
   function renderAuditHtml(audit: CleanWorkspaceAudit): string {
+    const artisticClass = audit.artisticClean ? 'lab-semantic-clean-yes' : 'lab-semantic-clean-no';
+    const selectionClass = audit.selectionClean ? 'lab-semantic-clean-yes' : 'lab-semantic-clean-no';
     const cleanClass = audit.isClean ? 'lab-semantic-clean-yes' : 'lab-semantic-clean-no';
+    const uiClass = audit.uiDefaultsCanonical ? 'lab-semantic-clean-yes' : 'lab-semantic-clean-no';
+    const artisticLabel = audit.artisticClean ? 'YES' : 'NO';
+    const selectionLabel = audit.selectionClean ? 'YES' : 'NO';
     const cleanLabel = audit.isClean ? 'YES' : 'NO';
+    const uiLabel = audit.uiDefaultsCanonical ? 'YES' : 'NO';
+    const uiReason = audit.uiDefaultsCanonical ? '' : ` — ${audit.workQueueMode !== 'CONFIGURE' ? 'QUEUE ' + audit.workQueueMode : ''}${audit.displayMode !== 'EXPANDED' ? 'DISPLAY ' + audit.displayMode : ''}${audit.catalogueSearch !== '' ? 'SEARCH' : ''}${audit.cataloguePage !== 1 ? 'PAGE ' + audit.cataloguePage : ''}`.replace(/^ — | $/g, '').trim();
     return `
       <div class="lab-audit-row"><span>QA SOURCES</span><b>${audit.qaSources}</b></div>
       <div class="lab-audit-row"><span>QA OVERRIDES</span><b>${audit.qaPresentationOverrides}</b></div>
@@ -1549,7 +1556,11 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       <div class="lab-audit-row"><span>TESTED</span><b>${audit.testedFingerprints}</b></div>
       <div class="lab-audit-row"><span>VERIFIED</span><b>${audit.verifiedFingerprints}</b></div>
       <div class="lab-audit-row"><span>QA WORKING VISUAL STEPS</span><b>${audit.qaWorkingVisualSteps}</b></div>
+      <div class="lab-audit-row"><span>VALIDATED VISUAL STEPS</span><b>${audit.validatedVisualSteps}</b></div>
+      <div class="lab-audit-semantic ${artisticClass}"><span>ARTISTIC CLEAN</span><span class="lab-semantic-badge ${artisticClass}">${artisticLabel}</span></div>
+      <div class="lab-audit-semantic ${selectionClass}"><span>SELECTION CLEAN</span><span class="lab-semantic-badge ${selectionClass}">${selectionLabel}</span></div>
       <div class="lab-audit-semantic ${cleanClass}"><span>SEMANTIC CLEAN</span><span class="lab-semantic-badge ${cleanClass}">${cleanLabel}</span></div>
+      <div class="lab-audit-semantic ${uiClass}"><span>UI DEFAULTS</span><span class="lab-semantic-badge ${uiClass}">${uiLabel}${uiReason ? ' — ' + uiReason : ''}</span></div>
     `;
   }
 

@@ -1023,7 +1023,12 @@ export interface CleanWorkspaceAudit {
   validatedModifiedVisualSteps: number;
   unexpectedArtisticStates: number;
   totalConfigurableVisualSteps: number;
+  // V1E.3.6: Separated dimensions
+  artisticClean: boolean;
+  selectionClean: boolean;
+  uiDefaultsCanonical: boolean;
   isClean: boolean;
+  codexReady: boolean;
 }
 
 /**
@@ -1065,27 +1070,30 @@ export function auditCleanArtisticWorkspace(state: LabState): CleanWorkspaceAudi
     }
   }
 
-  const structuralClean =
+  // V1E.3.6: Separate artistic, selection, and UI dimensions
+  const artisticClean =
     qaSources === 0 &&
     qaPresentationOverrides === 0 &&
-    selectedCandidates === 0 &&
     validatedConfigs === 0 &&
     notes === 0 &&
     testedFingerprints === 0 &&
     verifiedFingerprints === 0 &&
     qaHistoryEntries === 0 &&
-    workQueueMode === 'CONFIGURE' &&
-    displayMode === 'EXPANDED' &&
-    catalogueSearch === '' &&
-    cataloguePage === 1;
-
-  const semanticClean =
     qaWorkingVisualSteps === 0 &&
     validatedVisualSteps === 0 &&
     validatedModifiedVisualSteps === 0 &&
     unexpectedArtisticStates === 0;
 
-  const isClean = structuralClean && semanticClean;
+  const selectionClean = selectedCandidates === 0;
+
+  const uiDefaultsCanonical =
+    workQueueMode === 'CONFIGURE' &&
+    displayMode === 'EXPANDED' &&
+    catalogueSearch === '' &&
+    cataloguePage === 1;
+
+  const isClean = artisticClean && selectionClean;
+  const codexReady = artisticClean && selectionClean;
 
   return {
     qaSources,
@@ -1105,7 +1113,11 @@ export function auditCleanArtisticWorkspace(state: LabState): CleanWorkspaceAudi
     validatedModifiedVisualSteps,
     unexpectedArtisticStates,
     totalConfigurableVisualSteps,
+    artisticClean,
+    selectionClean,
+    uiDefaultsCanonical,
     isClean,
+    codexReady,
   };
 }
 
