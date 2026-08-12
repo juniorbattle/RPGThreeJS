@@ -183,9 +183,18 @@ export interface LabState {
    * fingerprint matches this stored fingerprint, the step is PRODUCTION_VERIFIED.
    * If production changes, the fingerprint no longer matches → PRODUCTION_DRIFT. */
   verifiedFingerprintByActionStep?: Record<string, string>;
+  /** R2C-LAB V1E.1B: tested fingerprints per action+step. Records that a
+   * production-stage test was performed on this exact fingerprint. Required
+   * before CONFIRM PRODUCTION VERIFIED can be used. */
+  testedFingerprintByActionStep?: Record<string, string>;
   /** R2C-LAB V1E: current work queue mode (UI-only). */
   workQueueMode?: WorkQueueMode;
+  /** R2C-LAB V1E.2: Lab display mode — EXPANDED (full workbench) or MINIMIZED (compact test dock). UI-only. */
+  displayMode?: LabDisplayMode;
 }
+
+/** R2C-LAB V1E.2: UI-only display mode for the VFX Lab workbench. */
+export type LabDisplayMode = 'EXPANDED' | 'MINIMIZED';
 
 export interface LabSnapshotStep {
   production: {
@@ -251,6 +260,51 @@ export type ProductionLifecycleStatus =
   | 'PRODUCTION_VERIFIED'
   | 'PRODUCTION_DRIFT'
   | 'NO_VFX';
+
+// ============================================================ V1E.1B Dual-Dimension State Model
+
+/**
+ * V1E.1B: Artistic state dimension — tracks the QA/validated working state.
+ * Independent from production state.
+ *
+ * UNCONFIGURED — no QA config and no validation
+ * QA_WORKING — QA config exists but not yet validated
+ * VALIDATED — validated snapshot exists and QA matches it
+ * VALIDATED_QA_MODIFIED — validated snapshot exists but QA has since changed
+ */
+export type ArtisticState =
+  | 'UNCONFIGURED'
+  | 'QA_WORKING'
+  | 'VALIDATED'
+  | 'VALIDATED_QA_MODIFIED';
+
+/**
+ * V1E.1B: Production state dimension — tracks production vs validated + verification.
+ * Independent from artistic state.
+ *
+ * NOT_APPLIED — no validated config, or production doesn't match validated
+ * APPLIED_NOT_TESTED — production matches validated but no production test recorded
+ * TESTED_NOT_CONFIRMED — production test was performed but not yet confirmed
+ * VERIFIED — production matches validated AND verified by explicit confirmation
+ * DRIFT — was verified/tested but production fingerprint no longer matches
+ */
+export type ProductionState =
+  | 'NOT_APPLIED'
+  | 'APPLIED_NOT_TESTED'
+  | 'TESTED_NOT_CONFIRMED'
+  | 'VERIFIED'
+  | 'DRIFT';
+
+/**
+ * V1E.1B: Next required action instruction for the operator.
+ */
+export type NextRequiredAction = {
+  artistic: ArtisticState;
+  production: ProductionState;
+  instruction: string;
+  /** Whether the step has no VFX at all */
+  noVfx: boolean;
+};
 
 /**
  * V1E: Canonical normalized visual VFX config for comparison.
@@ -902,6 +956,16 @@ export function getQaStatus(state: LabState, action: LabAction, stepIndex: numbe
   return 'SAME_AS_PRODUCTION';
 }
 
+// ============================================================ V1E.2 Display Mode
+
+export function getDisplayMode(state: LabState): LabDisplayMode {
+  return state.displayMode ?? 'EXPANDED';
+}
+
+export function setDisplayMode(state: LabState, mode: LabDisplayMode): LabState {
+  return { ...state, displayMode: mode };
+}
+
 // ============================================================ Presentation Overrides
 
 export function getQaPresentation(state: LabState, actionKey: string, stepIndex: number): LabPresentationOverride | undefined {
@@ -1039,6 +1103,14 @@ export function validateStepConfiguration(state: LabState, action: LabAction, st
   };
 
   const key = labStepKey(action.actionKey, stepIndex);
+
+  // V1E.1B: Clear stale test and verification records on revalidation.
+  // If validated config changes, previous production-test authorization becomes stale.
+  const newTestedFp = { ...(state.testedFingerprintByActionStep ?? {}) };
+  const newVerifiedFp = { ...(state.verifiedFingerprintByActionStep ?? {}) };
+  delete newTestedFp[key];
+  delete newVerifiedFp[key];
+
   return {
     state: {
       ...state,
@@ -1046,6 +1118,8 @@ export function validateStepConfiguration(state: LabState, action: LabAction, st
         ...state.validatedByActionStep,
         [key]: validated,
       },
+      testedFingerprintByActionStep: newTestedFp,
+      verifiedFingerprintByActionStep: newVerifiedFp,
     },
     ok: true,
   };
@@ -1059,7 +1133,17 @@ export function clearValidation(state: LabState, actionKey: string, stepIndex: n
   const key = labStepKey(actionKey, stepIndex);
   const newValidated = { ...state.validatedByActionStep };
   delete newValidated[key];
-  return { ...state, validatedByActionStep: newValidated };
+  // V1E.1B: Also clear stale test and verification records
+  const newTestedFp = { ...(state.testedFingerprintByActionStep ?? {}) };
+  const newVerifiedFp = { ...(state.verifiedFingerprintByActionStep ?? {}) };
+  delete newTestedFp[key];
+  delete newVerifiedFp[key];
+  return {
+    ...state,
+    validatedByActionStep: newValidated,
+    testedFingerprintByActionStep: newTestedFp,
+    verifiedFingerprintByActionStep: newVerifiedFp,
+  };
 }
 
 /**
@@ -1593,12 +1677,20 @@ export function getLifecycleStatus(state: LabState, action: LabAction, stepIndex
  * V1E: Confirms production verification for a visual spriteSheet step.
  * Stores the current production fingerprint as the verified fingerprint.
  * If production later changes, the fingerprint won't match → PRODUCTION_DRIFT.
+ *
+ * V1E.1B: Now requires a prior production test (testedFingerprint must exist
+ * and match current production fingerprint).
  */
 export function confirmProductionVerified(state: LabState, action: LabAction, stepIndex: number): LabState {
   const prodConfig = getProductionVisualConfig(action, stepIndex);
   if (!prodConfig) return state;
   const fingerprint = computeConfigFingerprint(prodConfig);
   const key = labStepKey(action.actionKey, stepIndex);
+
+  // V1E.1B: Require prior production test
+  const testedFp = state.testedFingerprintByActionStep?.[key];
+  if (!testedFp || testedFp !== fingerprint) return state;
+
   return {
     ...state,
     verifiedFingerprintByActionStep: {
@@ -1616,6 +1708,179 @@ export function clearProductionVerified(state: LabState, actionKey: string, step
   const newFp = { ...(state.verifiedFingerprintByActionStep ?? {}) };
   delete newFp[key];
   return { ...state, verifiedFingerprintByActionStep: newFp };
+}
+
+// ============================================================ V1E.1B Production Test Tracking
+
+/**
+ * V1E.1B: Records that a production-stage test was performed for a visual
+ * spriteSheet step. Stores the current production fingerprint at test time.
+ * Required before CONFIRM PRODUCTION VERIFIED can be used.
+ */
+export function recordProductionTested(state: LabState, action: LabAction, stepIndex: number): LabState {
+  const prodConfig = getProductionVisualConfig(action, stepIndex);
+  if (!prodConfig) return state;
+  const fingerprint = computeConfigFingerprint(prodConfig);
+  const key = labStepKey(action.actionKey, stepIndex);
+  return {
+    ...state,
+    testedFingerprintByActionStep: {
+      ...(state.testedFingerprintByActionStep ?? {}),
+      [key]: fingerprint,
+    },
+  };
+}
+
+/**
+ * V1E.1B: Clears the production test record for a visual spriteSheet step.
+ */
+export function clearProductionTested(state: LabState, actionKey: string, stepIndex: number): LabState {
+  const key = labStepKey(actionKey, stepIndex);
+  const newFp = { ...(state.testedFingerprintByActionStep ?? {}) };
+  delete newFp[key];
+  return { ...state, testedFingerprintByActionStep: newFp };
+}
+
+/**
+ * V1E.1B: Checks whether CONFIRM PRODUCTION VERIFIED can be used.
+ * Requires a prior production test on the current exact fingerprint.
+ */
+export function canConfirmProductionVerified(state: LabState, action: LabAction, stepIndex: number): boolean {
+  const prodConfig = getProductionVisualConfig(action, stepIndex);
+  if (!prodConfig) return false;
+  const fingerprint = computeConfigFingerprint(prodConfig);
+  const key = labStepKey(action.actionKey, stepIndex);
+  const testedFp = state.testedFingerprintByActionStep?.[key];
+  return Boolean(testedFp) && testedFp === fingerprint;
+}
+
+// ============================================================ V1E.1B Dual-Dimension State Derivation
+
+/**
+ * V1E.1B: Derives the artistic state for one visual spriteSheet step.
+ * Tracks the QA/validated working state independently from production.
+ */
+export function getArtisticState(state: LabState, action: LabAction, stepIndex: number): ArtisticState {
+  const step = action.vfxSteps[stepIndex];
+  if (!step || step.stepType !== 'spriteSheet') return 'UNCONFIGURED';
+  if (action.sourceStatus === 'NO_VFX') return 'UNCONFIGURED';
+
+  const validated = getValidatedConfig(state, action.actionKey, stepIndex);
+  const qaModified = isQaStepModified(state, action, stepIndex);
+
+  if (!validated) {
+    return qaModified ? 'QA_WORKING' : 'UNCONFIGURED';
+  }
+
+  // Validation exists — check if current QA matches validated snapshot
+  const currentSource = getQaSourceId(state, action.actionKey, stepIndex) ?? step.sourceCandidateId ?? step.spriteSheetId;
+  const currentPres = getEffectivePresentation(state, action, stepIndex);
+  const sourceMatches = currentSource === validated.sourceId;
+  const presMatches = presentationsEqual(currentPres, validated.presentation);
+
+  if (sourceMatches && presMatches) {
+    return 'VALIDATED';
+  }
+  return 'VALIDATED_QA_MODIFIED';
+}
+
+/**
+ * V1E.1B: Derives the production state for one visual spriteSheet step.
+ * Tracks production vs validated + test/verification status independently from artistic state.
+ */
+export function getProductionState(state: LabState, action: LabAction, stepIndex: number): ProductionState {
+  const step = action.vfxSteps[stepIndex];
+  if (!step || step.stepType !== 'spriteSheet') return 'NOT_APPLIED';
+  if (action.sourceStatus === 'NO_VFX') return 'NOT_APPLIED';
+
+  const validated = getValidatedConfig(state, action.actionKey, stepIndex);
+  if (!validated) return 'NOT_APPLIED';
+
+  const prodConfig = getProductionVisualConfig(action, stepIndex);
+  const valConfig = getValidatedVisualConfig(state, action.actionKey, stepIndex);
+  if (!prodConfig || !valConfig) return 'NOT_APPLIED';
+
+  const productionMatchesValidated = configsSemanticallyEqual(prodConfig, valConfig);
+  if (!productionMatchesValidated) {
+    // Check if it was previously verified/tested → DRIFT
+    const key = labStepKey(action.actionKey, stepIndex);
+    const verifiedFp = state.verifiedFingerprintByActionStep?.[key];
+    const testedFp = state.testedFingerprintByActionStep?.[key];
+    if (verifiedFp || testedFp) return 'DRIFT';
+    return 'NOT_APPLIED';
+  }
+
+  // Production matches validated
+  const key = labStepKey(action.actionKey, stepIndex);
+  const prodFp = computeConfigFingerprint(prodConfig);
+  const verifiedFp = state.verifiedFingerprintByActionStep?.[key];
+
+  if (verifiedFp) {
+    if (prodFp === verifiedFp) return 'VERIFIED';
+    return 'DRIFT';
+  }
+
+  // Not yet verified — check if tested
+  const testedFp = state.testedFingerprintByActionStep?.[key];
+  if (testedFp && testedFp === prodFp) {
+    return 'TESTED_NOT_CONFIRMED';
+  }
+
+  return 'APPLIED_NOT_TESTED';
+}
+
+/**
+ * V1E.1B: Derives the next required action instruction for the operator.
+ * Combines both artistic and production state dimensions to produce
+ * a clear, actionable instruction.
+ */
+export function getNextRequiredAction(state: LabState, action: LabAction, stepIndex: number): NextRequiredAction {
+  const step = action.vfxSteps[stepIndex];
+  if (!step || step.stepType !== 'spriteSheet' || action.sourceStatus === 'NO_VFX') {
+    return { artistic: 'UNCONFIGURED', production: 'NOT_APPLIED', instruction: 'NO VFX — SKIP', noVfx: true };
+  }
+
+  const artistic = getArtisticState(state, action, stepIndex);
+  const production = getProductionState(state, action, stepIndex);
+
+  // Production drift takes priority
+  if (production === 'DRIFT') {
+    return { artistic, production, instruction: 'PRODUCTION DRIFT — REVIEW AND REAPPLY VALIDATED CONFIG', noVfx: false };
+  }
+
+  // No QA config
+  if (artistic === 'UNCONFIGURED') {
+    return { artistic, production, instruction: 'SELECT OR CONFIGURE A QA VFX SOURCE', noVfx: false };
+  }
+
+  // QA changed but not validated
+  if (artistic === 'QA_WORKING') {
+    return { artistic, production, instruction: 'PLAY QA IN COMBAT STAGE, THEN VALIDATE', noVfx: false };
+  }
+
+  // QA modified after validation
+  if (artistic === 'VALIDATED_QA_MODIFIED') {
+    return { artistic, production, instruction: 'QA MODIFIED SINCE VALIDATION — REVALIDATE OR RESTORE VALIDATED', noVfx: false };
+  }
+
+  // Artistic is VALIDATED — check production
+  if (production === 'NOT_APPLIED') {
+    return { artistic, production, instruction: 'COPY / EXPORT APPLY TASK AND APPLY VALIDATED CONFIG TO PRODUCTION', noVfx: false };
+  }
+
+  if (production === 'APPLIED_NOT_TESTED') {
+    return { artistic, production, instruction: 'TEST PRODUCTION IN COMBAT STAGE', noVfx: false };
+  }
+
+  if (production === 'TESTED_NOT_CONFIRMED') {
+    return { artistic, production, instruction: 'CONFIRM PRODUCTION VERIFIED', noVfx: false };
+  }
+
+  if (production === 'VERIFIED') {
+    return { artistic, production, instruction: 'READY — GO TO NEXT REQUIRED', noVfx: false };
+  }
+
+  return { artistic, production, instruction: 'REVIEW CURRENT STATE', noVfx: false };
 }
 
 /**
@@ -1933,7 +2198,9 @@ export function deserializeLabState(raw: string): LabState | null {
       gifFilter: parsed.gifFilter,
       catalogueViewMode: parsed.catalogueViewMode,
       verifiedFingerprintByActionStep: parsed.verifiedFingerprintByActionStep ?? {},
+      testedFingerprintByActionStep: parsed.testedFingerprintByActionStep ?? {},
       workQueueMode: parsed.workQueueMode ?? 'ALL',
+      displayMode: parsed.displayMode ?? 'EXPANDED',
     };
   } catch {
     return null;

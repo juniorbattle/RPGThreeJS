@@ -25,6 +25,7 @@ import {
   getLifecycleStatus,
   confirmProductionVerified,
   clearProductionVerified,
+  recordProductionTested,
   getActionLifecycleSummary,
   getProductionProgress,
   buildWorkQueue,
@@ -139,6 +140,8 @@ describe('R2C-LAB V1E — Production Lifecycle Workbench', () => {
       // Validate with production config
       const result = validateStepConfiguration(state, action, stepIdx);
       state = result.state;
+      // V1E.1B: Record production test before confirming
+      state = recordProductionTested(state, action, stepIdx);
       // Confirm verified
       state = confirmProductionVerified(state, action, stepIdx);
       expect(getLifecycleStatus(state, action, stepIdx)).toBe('PRODUCTION_VERIFIED');
@@ -151,15 +154,19 @@ describe('R2C-LAB V1E — Production Lifecycle Workbench', () => {
       // Validate and verify
       const result = validateStepConfiguration(state, action, stepIdx);
       state = result.state;
+      state = recordProductionTested(state, action, stepIdx);
       state = confirmProductionVerified(state, action, stepIdx);
       expect(getLifecycleStatus(state, action, stepIdx)).toBe('PRODUCTION_VERIFIED');
-      // Now set QA to different source and re-validate (simulates production change)
-      const step = action.vfxSteps[stepIdx];
-      const prodSource = step?.sourceCandidateId ?? step?.spriteSheetId ?? '';
-      state = setQaSourceId(state, action.actionKey, stepIdx, prodSource + '_changed');
-      const result2 = validateStepConfiguration(state, action, stepIdx);
-      state = result2.state;
-      // Production fingerprint no longer matches verified fingerprint
+      // V1E.1B: Revalidation now clears stale verified fingerprints, so to
+      // simulate production drift we corrupt the verified fingerprint directly
+      const key = `${action.actionKey}::${stepIdx}`;
+      state = {
+        ...state,
+        verifiedFingerprintByActionStep: {
+          ...(state.verifiedFingerprintByActionStep ?? {}),
+          [key]: 'old-fingerprint-that-no-longer-matches',
+        },
+      };
       expect(getLifecycleStatus(state, action, stepIdx)).toBe('PRODUCTION_DRIFT');
     });
 
@@ -311,6 +318,7 @@ describe('R2C-LAB V1E — Production Lifecycle Workbench', () => {
       let state = createDefaultLabState();
       const action = getFirstActionWithVfx();
       const stepIdx = getFirstVisualStep(action);
+      state = recordProductionTested(state, action, stepIdx);
       state = confirmProductionVerified(state, action, stepIdx);
       const key = `${action.actionKey}::${stepIdx}`;
       expect(state.verifiedFingerprintByActionStep?.[key]).toBeDefined();
@@ -320,6 +328,7 @@ describe('R2C-LAB V1E — Production Lifecycle Workbench', () => {
       let state = createDefaultLabState();
       const action = getFirstActionWithVfx();
       const stepIdx = getFirstVisualStep(action);
+      state = recordProductionTested(state, action, stepIdx);
       state = confirmProductionVerified(state, action, stepIdx);
       state = clearProductionVerified(state, action.actionKey, stepIdx);
       const key = `${action.actionKey}::${stepIdx}`;
@@ -330,6 +339,7 @@ describe('R2C-LAB V1E — Production Lifecycle Workbench', () => {
       let state = createDefaultLabState();
       const action = getFirstActionWithVfx();
       const stepIdx = getFirstVisualStep(action);
+      state = recordProductionTested(state, action, stepIdx);
       state = confirmProductionVerified(state, action, stepIdx);
       const prodConfig = getProductionVisualConfig(action, stepIdx)!;
       const key = `${action.actionKey}::${stepIdx}`;
@@ -343,6 +353,7 @@ describe('R2C-LAB V1E — Production Lifecycle Workbench', () => {
       // Verify with production config
       const result = validateStepConfiguration(state, action, stepIdx);
       state = result.state;
+      state = recordProductionTested(state, action, stepIdx);
       state = confirmProductionVerified(state, action, stepIdx);
       expect(getLifecycleStatus(state, action, stepIdx)).toBe('PRODUCTION_VERIFIED');
       // Manually corrupt the fingerprint to simulate production change
@@ -378,6 +389,7 @@ describe('R2C-LAB V1E — Production Lifecycle Workbench', () => {
       const stepIdx = getFirstVisualStep(action);
       const result = validateStepConfiguration(state, action, stepIdx);
       state = result.state;
+      state = recordProductionTested(state, action, stepIdx);
       state = confirmProductionVerified(state, action, stepIdx);
       const progress = getProductionProgress(state);
       expect(progress.allVerified).toBeGreaterThan(0);
@@ -453,6 +465,7 @@ describe('R2C-LAB V1E — Production Lifecycle Workbench', () => {
           const result = validateStepConfiguration(state, action, vs.stepIndex);
           if (result.ok) {
             state = result.state;
+            state = recordProductionTested(state, action, vs.stepIndex);
             state = confirmProductionVerified(state, action, vs.stepIndex);
           }
         }
@@ -585,6 +598,7 @@ describe('R2C-LAB V1E — Production Lifecycle Workbench', () => {
       const stepIdx = getFirstVisualStep(action);
       const result = validateStepConfiguration(state, action, stepIdx);
       state = result.state;
+      state = recordProductionTested(state, action, stepIdx);
       state = confirmProductionVerified(state, action, stepIdx);
       const summary = getActionLifecycleSummary(state, action);
       expect(summary.verifiedCount).toBeGreaterThan(0);
@@ -620,6 +634,7 @@ describe('R2C-LAB V1E — Production Lifecycle Workbench', () => {
       let state = createDefaultLabState();
       const action = getFirstActionWithVfx();
       const stepIdx = getFirstVisualStep(action);
+      state = recordProductionTested(state, action, stepIdx);
       state = confirmProductionVerified(state, action, stepIdx);
       const serialized = serializeLabState(state);
       const deserialized = deserializeLabState(serialized);
@@ -727,6 +742,7 @@ describe('R2C-LAB V1E — Production Lifecycle Workbench', () => {
       // Should be APPLIED_NOT_VERIFIED, not PRODUCTION_VERIFIED
       expect(getLifecycleStatus(state, action, stepIdx)).toBe('APPLIED_NOT_VERIFIED');
       // After manual confirm
+      state = recordProductionTested(state, action, stepIdx);
       state = confirmProductionVerified(state, action, stepIdx);
       expect(getLifecycleStatus(state, action, stepIdx)).toBe('PRODUCTION_VERIFIED');
     });

@@ -74,6 +74,15 @@ import {
   findNextInWorkQueue,
   generateApplyPackage,
   generateApplyTaskText,
+  getArtisticState,
+  getProductionState,
+  getNextRequiredAction,
+  recordProductionTested,
+  clearProductionTested,
+  canConfirmProductionVerified,
+  labStepKey,
+  getDisplayMode,
+  setDisplayMode,
 } from './CombatVfxLab';
 import type {
   LabAction,
@@ -99,6 +108,10 @@ import type {
   ProductionProgress,
   ApplyPackage,
   VisualConfig,
+  ArtisticState,
+  ProductionState,
+  NextRequiredAction,
+  LabDisplayMode,
 } from './CombatVfxLab';
 import type { VfxAnchor, VfxOrientation } from './VfxTypes';
 import type { VfxResourceStats } from './VfxResourceManager';
@@ -147,7 +160,27 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
   const subtitle = document.createElement('span');
   subtitle.className = 'lab-subtitle';
   subtitle.textContent = `V1E — ${actionCounts.total} actions · ${counts.total} catalogue · DEV ONLY`;
-  root.append(title, subtitle);
+
+  // V1E.2: Minimize button in header
+  const minimizeBtn = document.createElement('button');
+  minimizeBtn.className = 'lab-minimize-btn';
+  minimizeBtn.textContent = '— MINIMIZE';
+  minimizeBtn.addEventListener('click', () => {
+    state = setDisplayMode(state, 'MINIMIZED');
+    saveLabStateToStorage(localStorage, state);
+    if (previewObserver) {
+      previewObserver.disconnect();
+      previewObserver = null;
+    }
+    render();
+  });
+
+  const headerRow = document.createElement('div');
+  headerRow.className = 'lab-header-row';
+  const headerText = document.createElement('div');
+  headerText.append(title, subtitle);
+  headerRow.append(headerText, minimizeBtn);
+  root.appendChild(headerRow);
 
   // V1E: Top action bar — persistent context
   const actionBar = document.createElement('div');
@@ -216,7 +249,6 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     saveLabStateToStorage(localStorage, state);
     render();
   });
-  actionBar.appendChild(actionSelect);
 
   function createAccordionSection(section: LabAccordionSection, title: string): { wrapper: HTMLElement; body: HTMLElement } {
     const wrapper = document.createElement('div');
@@ -287,10 +319,59 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     return getLabAction(currentActionKey);
   }
 
+  // V1E.2: Minimized dock container (separate from main workbench)
+  const minimizedDock = document.createElement('div');
+  minimizedDock.className = 'lab-minimized-dock';
+  minimizedDock.style.display = 'none';
+  root.appendChild(minimizedDock);
+
   function render(): void {
     const action = getCurrentAction();
+    const mode = getDisplayMode(state);
+
+    // V1E.2: Toggle visibility based on display mode
+    if (mode === 'MINIMIZED') {
+      // V1E.2.1: Shrink root to compact floating dock
+      root.classList.add('lab-minimized');
+      // Hide all expanded-mode elements
+      headerRow.style.display = 'none';
+      actionBar.style.display = 'none';
+      queueBar.style.display = 'none';
+      workbench.style.display = 'none';
+      ctaBar.style.display = 'none';
+      advancedSection.wrapper.style.display = 'none';
+      exportSection.style.display = 'none';
+      statusLine.style.display = 'none';
+
+      // Clear expanded content to free DOM resources
+      actionBar.replaceChildren();
+      queueBar.innerHTML = '';
+      catalogueCol.innerHTML = '';
+      inspectorCol.innerHTML = '';
+      ctaBar.innerHTML = '';
+      advancedSection.body.innerHTML = '';
+
+      // Render minimized dock
+      minimizedDock.style.display = '';
+      renderMinimizedDock(action);
+      return;
+    }
+
+    // EXPANDED mode — show all elements
+    root.classList.remove('lab-minimized');
+    headerRow.style.display = '';
+    actionBar.style.display = '';
+    queueBar.style.display = '';
+    workbench.style.display = '';
+    ctaBar.style.display = '';
+    advancedSection.wrapper.style.display = '';
+    exportSection.style.display = '';
+    statusLine.style.display = '';
+    minimizedDock.style.display = 'none';
+    minimizedDock.innerHTML = '';
+
     // Clear all dynamic containers
-    actionBar.querySelectorAll('.lab-action-context,.lab-action-nav').forEach(el => el.remove());
+    actionBar.replaceChildren();
     queueBar.innerHTML = '';
     catalogueCol.innerHTML = '';
     inspectorCol.innerHTML = '';
@@ -310,6 +391,205 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     renderCatalogue(catalogueCol);
   }
 
+  // ============================================================ V1E.2 Minimized Test Dock
+
+  function renderMinimizedDock(action: LabAction | undefined): void {
+    minimizedDock.innerHTML = '';
+
+    // Header row: title + OPEN LAB
+    const dockHeader = document.createElement('div');
+    dockHeader.className = 'lab-dock-header';
+
+    const dockTitle = document.createElement('span');
+    dockTitle.className = 'lab-dock-title';
+    dockTitle.textContent = 'COMBAT VFX TEST';
+    dockHeader.appendChild(dockTitle);
+
+    const openLabBtn = document.createElement('button');
+    openLabBtn.className = 'lab-dock-open-btn';
+    openLabBtn.textContent = 'OPEN LAB';
+    openLabBtn.addEventListener('click', () => {
+      state = setDisplayMode(state, 'EXPANDED');
+      saveLabStateToStorage(localStorage, state);
+      render();
+    });
+    dockHeader.appendChild(openLabBtn);
+    minimizedDock.appendChild(dockHeader);
+
+    if (!action) {
+      const noAction = document.createElement('div');
+      noAction.className = 'lab-dock-no-action';
+      noAction.textContent = 'No action selected';
+      minimizedDock.appendChild(noAction);
+      return;
+    }
+
+    const visualSteps = getVisualSpriteSheetSteps(action);
+    const spriteSheetCount = visualSteps.length;
+    const stepIdx = getSelectedVisualStepIndex(state, action);
+    const artistic = getArtisticState(state, action, stepIdx);
+    const production = getProductionState(state, action, stepIdx);
+    const ownerName = action.ownerDisplayName ?? action.ownerType;
+    const visualLabel = spriteSheetCount === 0
+      ? '0 VISUAL'
+      : `VFX ${visualSteps.findIndex(v => v.stepIndex === stepIdx) + 1} / ${spriteSheetCount}`;
+
+    // Context info
+    const ctxDiv = document.createElement('div');
+    ctxDiv.className = 'lab-dock-context';
+    ctxDiv.innerHTML = `
+      <div class="lab-dock-action-name">${action.displayName}</div>
+      <div class="lab-dock-meta">
+        <span class="lab-dock-owner">${ownerName}</span>
+        <span class="lab-dock-visual">${visualLabel}</span>
+      </div>
+      <div class="lab-dock-badges">
+        <span class="lab-badge-artistic lab-artistic-${artistic.toLowerCase()}">ART · ${formatArtisticState(artistic)}</span>
+        <span class="lab-badge-production lab-production-${production.toLowerCase()}">PROD · ${formatProductionState(production)}</span>
+      </div>
+    `;
+    minimizedDock.appendChild(ctxDiv);
+
+    // Playback buttons
+    const hasQaSource = Boolean(getQaSourceId(state, action.actionKey, stepIdx));
+    const hasValidated = Boolean(getValidatedConfig(state, action.actionKey, stepIdx));
+    const hasStage = Boolean(options.playback?.buildStageContext);
+    const prodConfig = getProductionVisualConfig(action, stepIdx);
+    const valConfig = getValidatedVisualConfig(state, action.actionKey, stepIdx);
+    const productionMatchesValidated = prodConfig && valConfig
+      ? configsSemanticallyEqual(prodConfig, valConfig)
+      : false;
+
+    const playbackDiv = document.createElement('div');
+    playbackDiv.className = 'lab-dock-playback';
+
+    // PLAY QA IN STAGE
+    const playQaStageBtn = document.createElement('button');
+    playQaStageBtn.className = 'lab-dock-play-btn';
+    playQaStageBtn.textContent = 'PLAY QA IN STAGE';
+    playQaStageBtn.title = 'Play QA in Combat Stage';
+    playQaStageBtn.disabled = !options.playback || !hasQaSource || !hasStage;
+    if (playQaStageBtn.disabled && !hasQaSource) {
+      playQaStageBtn.textContent = 'QA SOURCE REQUIRED';
+    }
+    playQaStageBtn.addEventListener('click', async () => {
+      if (!options.playback) return;
+      playQaStageBtn.disabled = true;
+      playQaStageBtn.textContent = 'PLAYING...';
+      const result = await playQaInCombatStage(options.playback, state, action.actionKey);
+      if (result.snapshot) {
+        lastPlaybackSnapshot = result.snapshot;
+        dockStatus.textContent = `QA PLAYED: ${action.actionKey}`;
+      } else {
+        dockStatus.textContent = 'Stage preview unavailable';
+      }
+      playQaStageBtn.disabled = false;
+      playQaStageBtn.textContent = 'PLAY QA IN STAGE';
+    });
+    playbackDiv.appendChild(playQaStageBtn);
+
+    // PLAY VALIDATED IN STAGE
+    const playValStageBtn = document.createElement('button');
+    playValStageBtn.className = 'lab-dock-play-btn lab-play-validated-stage-btn';
+    playValStageBtn.textContent = 'PLAY VALIDATED IN STAGE';
+    playValStageBtn.title = 'Play Validated in Combat Stage';
+    playValStageBtn.disabled = !options.playback || !hasValidated || !hasStage;
+    if (playValStageBtn.disabled && !hasValidated) {
+      playValStageBtn.textContent = 'NO VALIDATED CONFIG';
+    }
+    playValStageBtn.addEventListener('click', async () => {
+      if (!options.playback) return;
+      playValStageBtn.disabled = true;
+      playValStageBtn.textContent = 'PLAYING...';
+      const result = await playValidatedInCombatStage(options.playback, state, action.actionKey);
+      if (result.snapshot) {
+        lastPlaybackSnapshot = result.snapshot;
+        dockStatus.textContent = `VALIDATED PLAYED: ${action.actionKey}`;
+      } else {
+        dockStatus.textContent = 'Validated stage unavailable';
+      }
+      playValStageBtn.disabled = false;
+      playValStageBtn.textContent = 'PLAY VALIDATED IN STAGE';
+    });
+    playbackDiv.appendChild(playValStageBtn);
+
+    // TEST PRODUCTION IN STAGE
+    const playProdStageBtn = document.createElement('button');
+    playProdStageBtn.className = 'lab-dock-play-btn lab-play-prod-stage-btn';
+    playProdStageBtn.textContent = 'TEST PRODUCTION IN STAGE';
+    playProdStageBtn.title = 'Test Production in Combat Stage';
+    const prodTestDisabled = !options.playback || !hasStage || !productionMatchesValidated;
+    playProdStageBtn.disabled = prodTestDisabled;
+    if (!productionMatchesValidated && hasValidated) {
+      playProdStageBtn.textContent = 'APPLY VALIDATED CONFIG FIRST';
+    }
+    playProdStageBtn.addEventListener('click', async () => {
+      if (!options.playback) return;
+      playProdStageBtn.disabled = true;
+      playProdStageBtn.textContent = 'TESTING...';
+      const result = await playProductionInCombatStage(options.playback, state, action.actionKey);
+      if (result.snapshot) {
+        lastPlaybackSnapshot = result.snapshot;
+        dockStatus.textContent = `PRODUCTION TESTED: ${action.actionKey}`;
+        // V1E.1B: Record production test fingerprint — same as expanded mode
+        state = recordProductionTested(state, action, stepIdx);
+        saveLabStateToStorage(localStorage, state);
+      } else {
+        dockStatus.textContent = 'Production stage unavailable';
+      }
+      playProdStageBtn.disabled = false;
+      playProdStageBtn.textContent = 'TEST PRODUCTION IN STAGE';
+    });
+    playbackDiv.appendChild(playProdStageBtn);
+
+    minimizedDock.appendChild(playbackDiv);
+
+    // Navigation
+    const navDiv = document.createElement('div');
+    navDiv.className = 'lab-dock-nav';
+
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'lab-nav-btn';
+    prevBtn.textContent = '◀ PREV';
+    prevBtn.addEventListener('click', () => {
+      const allActions = getLabActions();
+      const idx = allActions.findIndex(a => a.actionKey === currentActionKey);
+      const prevIdx = idx > 0 ? idx - 1 : allActions.length - 1;
+      currentActionKey = allActions[prevIdx]!.actionKey;
+      actionSelect.value = currentActionKey;
+      state = { ...state, selectedActionKey: currentActionKey };
+      saveLabStateToStorage(localStorage, state);
+      render();
+    });
+    navDiv.appendChild(prevBtn);
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'lab-nav-btn lab-nav-next';
+    nextBtn.textContent = 'NEXT ▶';
+    nextBtn.addEventListener('click', () => {
+      const mode = state.workQueueMode ?? 'ALL';
+      const next = findNextInWorkQueue(state, mode, currentActionKey, getSelectedVisualStepIndex(state, action));
+      if (next) {
+        currentActionKey = next.actionKey;
+        actionSelect.value = next.actionKey;
+        state = { ...state, selectedActionKey: next.actionKey };
+        state = setSelectedStep(state, next.actionKey, next.stepIndex);
+        saveLabStateToStorage(localStorage, state);
+        render();
+      } else {
+        dockStatus.textContent = 'Queue empty!';
+      }
+    });
+    navDiv.appendChild(nextBtn);
+
+    minimizedDock.appendChild(navDiv);
+
+    // Status feedback
+    const dockStatus = document.createElement('div');
+    dockStatus.className = 'lab-dock-status';
+    minimizedDock.appendChild(dockStatus);
+  }
+
   // ============================================================ V1E Workbench Render Functions
 
   function renderActionBar(action: LabAction): void {
@@ -319,34 +599,23 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     const visualSteps = getVisualSpriteSheetSteps(action);
     const spriteSheetCount = visualSteps.length;
     const stepIdx = getSelectedVisualStepIndex(state, action);
-    const lifecycle = getLifecycleStatus(state, action, stepIdx);
     const summary = getActionLifecycleSummary(state, action);
+    const artistic = getArtisticState(state, action, stepIdx);
+    const production = getProductionState(state, action, stepIdx);
 
-    // Action name + owner
     const ownerName = action.ownerDisplayName ?? action.ownerType;
-    ctx.innerHTML = `
-      <div class="lab-action-owner">${ownerName}</div>
-      <div class="lab-action-name">${action.displayName}</div>
-      <div class="lab-action-meta">
-        <span class="lab-action-type">${action.ownerType}</span>
-        <span class="lab-action-preset"><b>PRESET</b> ${action.currentPresetId ?? 'none'}</span>
-        <span class="lab-action-vfx"><b>VFX</b> ${spriteSheetCount === 0 ? '0' : `${visualSteps.findIndex(v => v.stepIndex === stepIdx) + 1} / ${spriteSheetCount}`}</span>
-      </div>
-      <div class="lab-action-status lab-lifecycle-${lifecycle.toLowerCase()}">${formatLifecycleStatus(lifecycle)}</div>
-    `;
+    const visualLabel = spriteSheetCount === 0
+      ? '0 VISUAL'
+      : `VISUAL ${visualSteps.findIndex(v => v.stepIndex === stepIdx) + 1} / ${spriteSheetCount}`;
 
-    // Multi-VFX progress
-    if (spriteSheetCount > 1) {
-      const progDiv = document.createElement('div');
-      progDiv.className = 'lab-action-progress';
-      progDiv.innerHTML = `
-        <span><b>ARTISTIC</b> ${summary.validatedCount} / ${spriteSheetCount}</span>
-        <span><b>PRODUCTION</b> ${summary.verifiedCount} / ${spriteSheetCount}</span>
-      `;
-      ctx.appendChild(progDiv);
-    }
+    // === ROW 1: Action select + Navigation ===
+    const mainRow = document.createElement('div');
+    mainRow.className = 'lab-action-main-row';
 
-    actionBar.appendChild(ctx);
+    const selectWrap = document.createElement('div');
+    selectWrap.className = 'lab-action-select-wrap';
+    selectWrap.appendChild(actionSelect);
+    mainRow.appendChild(selectWrap);
 
     // Navigation buttons
     const nav = document.createElement('div');
@@ -354,7 +623,7 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
 
     const prevBtn = document.createElement('button');
     prevBtn.className = 'lab-nav-btn';
-    prevBtn.textContent = '◀ PREVIOUS';
+    prevBtn.textContent = '◀ PREV';
     prevBtn.addEventListener('click', () => {
       const allActions = getLabActions();
       const idx = allActions.findIndex(a => a.actionKey === currentActionKey);
@@ -369,7 +638,7 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
 
     const nextBtn = document.createElement('button');
     nextBtn.className = 'lab-nav-btn lab-nav-next';
-    nextBtn.textContent = 'NEXT REQUIRED ▶';
+    nextBtn.textContent = 'NEXT ▶';
     nextBtn.addEventListener('click', () => {
       const mode = state.workQueueMode ?? 'ALL';
       const next = findNextInWorkQueue(state, mode, currentActionKey, getSelectedVisualStepIndex(state, action));
@@ -387,7 +656,42 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     });
     nav.appendChild(nextBtn);
 
-    actionBar.appendChild(nav);
+    mainRow.appendChild(nav);
+    ctx.appendChild(mainRow);
+
+    // === ROW 2: Metadata (owner, preset, visual, badges) ===
+    const metaRow = document.createElement('div');
+    metaRow.className = 'lab-action-meta-row';
+
+    const metaItems = document.createElement('div');
+    metaItems.className = 'lab-action-meta-items';
+    metaItems.innerHTML = `
+      <span class="lab-action-owner-chip">${ownerName}</span>
+      <span class="lab-action-preset-chip"><b>PRESET</b> ${action.currentPresetId ?? 'none'}</span>
+      <span class="lab-action-visual-chip">${visualLabel}</span>
+    `;
+
+    // Multi-VFX progress
+    if (spriteSheetCount > 1) {
+      metaItems.innerHTML += `
+        <span class="lab-action-progress-chip"><b>ART</b> ${summary.validatedCount}/${spriteSheetCount}</span>
+        <span class="lab-action-progress-chip"><b>PROD</b> ${summary.verifiedCount}/${spriteSheetCount}</span>
+      `;
+    }
+
+    metaRow.appendChild(metaItems);
+
+    // Status badges
+    const badges = document.createElement('div');
+    badges.className = 'lab-action-badges';
+    badges.innerHTML = `
+      <span class="lab-badge-artistic lab-artistic-${artistic.toLowerCase()}">ART · ${formatArtisticState(artistic)}</span>
+      <span class="lab-badge-production lab-production-${production.toLowerCase()}">PROD · ${formatProductionState(production)}</span>
+    `;
+    metaRow.appendChild(badges);
+
+    ctx.appendChild(metaRow);
+    actionBar.appendChild(ctx);
   }
 
   function renderQueueBar(): void {
@@ -435,32 +739,34 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
 
     const presetDiv = document.createElement('div');
     presetDiv.className = 'lab-preset-info';
-    presetDiv.innerHTML = `<b>PRESET</b> ${action.currentPresetId ?? 'none'} · <b>SPRITESHEETS</b> ${spriteSheetCount}`;
+    presetDiv.innerHTML = `<b>PRESET</b> ${action.currentPresetId ?? 'none'} · <b>VISUAL STEPS</b> ${spriteSheetCount}`;
     vfxHeader.appendChild(presetDiv);
 
     if (spriteSheetCount === 0) {
       const noVfx = document.createElement('div');
       noVfx.className = 'lab-no-spritesheet';
-      noVfx.textContent = 'NO CONFIGURABLE SPRITESHEET';
+      noVfx.textContent = 'NO CONFIGURABLE VISUAL STEP';
       vfxHeader.appendChild(noVfx);
       inspectorCol.appendChild(vfxHeader);
       return;
     }
 
     if (spriteSheetCount === 1) {
+      // Single visual step — hide selector, just show the step name
       const currentDiv = document.createElement('div');
       currentDiv.className = 'lab-current-vfx';
-      currentDiv.innerHTML = `<b>CURRENT VFX</b><br>${visualSteps[0]!.spriteSheetId}`;
+      currentDiv.innerHTML = `<b>VISUAL STEP</b><br>${visualSteps[0]!.spriteSheetId}`;
       vfxHeader.appendChild(currentDiv);
     } else {
+      // Multiple visual steps — show clean selector
       const label = document.createElement('label');
       label.className = 'lab-vfx-spritesheet-selector';
-      label.textContent = 'VFX SPRITESHEET';
+      label.textContent = 'PRESET VISUAL LAYER';
       const select = document.createElement('select');
       for (const vs of visualSteps) {
         const opt = document.createElement('option');
         opt.value = String(vs.stepIndex);
-        opt.textContent = `${vs.visualIndex + 1} / ${spriteSheetCount} — ${vs.spriteSheetId}`;
+        opt.textContent = `Visual layer ${vs.visualIndex + 1} / ${spriteSheetCount} — ${vs.spriteSheetId}`;
         select.appendChild(opt);
       }
       select.value = String(stepIdx);
@@ -655,19 +961,43 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     const hasQaSource = Boolean(getQaSourceId(state, action.actionKey, stepIdx));
     const hasValidated = Boolean(getValidatedConfig(state, action.actionKey, stepIdx));
     const hasStage = Boolean(options.playback?.buildStageContext);
+    const prodConfig = getProductionVisualConfig(action, stepIdx);
+    const valConfig = getValidatedVisualConfig(state, action.actionKey, stepIdx);
+    const productionMatchesValidated = prodConfig && valConfig
+      ? configsSemanticallyEqual(prodConfig, valConfig)
+      : false;
 
-    // Primary: PLAY QA IN COMBAT STAGE (dominant when QA_WORKING)
-    const primaryRow = document.createElement('div');
-    primaryRow.className = 'lab-btn-row lab-stage-btn-row';
+    // === QA PLAYBACK ===
+    const qaHeader = document.createElement('div');
+    qaHeader.className = 'lab-playback-group-header';
+    qaHeader.textContent = 'QA';
+    section.appendChild(qaHeader);
 
-    const playStageBtn = document.createElement('button');
-    playStageBtn.className = 'lab-play-btn lab-play-stage-btn';
-    playStageBtn.textContent = 'PLAY QA IN COMBAT STAGE';
-    playStageBtn.disabled = !options.playback || !hasQaSource || !hasStage;
-    playStageBtn.addEventListener('click', async () => {
+    const qaRow = document.createElement('div');
+    qaRow.className = 'lab-btn-row';
+
+    const playQaBtn = document.createElement('button');
+    playQaBtn.className = 'lab-play-btn';
+    playQaBtn.textContent = 'PLAY QA';
+    playQaBtn.disabled = !options.playback || !hasQaSource;
+    playQaBtn.addEventListener('click', () => {
       if (!options.playback) return;
-      playStageBtn.disabled = true;
-      playStageBtn.textContent = 'PLAYING IN STAGE...';
+      const result = playQaOverride(options.playback, state, action.actionKey);
+      if (result.snapshot) {
+        lastPlaybackSnapshot = result.snapshot;
+        statusLine.textContent = `Played QA: ${action.actionKey}`;
+      }
+    });
+    qaRow.appendChild(playQaBtn);
+
+    const playQaStageBtn = document.createElement('button');
+    playQaStageBtn.className = 'lab-play-btn lab-play-stage-btn';
+    playQaStageBtn.textContent = 'PLAY QA IN COMBAT STAGE';
+    playQaStageBtn.disabled = !options.playback || !hasQaSource || !hasStage;
+    playQaStageBtn.addEventListener('click', async () => {
+      if (!options.playback) return;
+      playQaStageBtn.disabled = true;
+      playQaStageBtn.textContent = 'PLAYING IN STAGE...';
       const result = await playQaInCombatStage(options.playback, state, action.actionKey);
       if (result.snapshot) {
         lastPlaybackSnapshot = result.snapshot;
@@ -675,16 +1005,35 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       } else {
         statusLine.textContent = `Stage preview unavailable`;
       }
-      playStageBtn.disabled = false;
-      playStageBtn.textContent = 'PLAY QA IN COMBAT STAGE';
+      playQaStageBtn.disabled = false;
+      playQaStageBtn.textContent = 'PLAY QA IN COMBAT STAGE';
       render();
     });
-    primaryRow.appendChild(playStageBtn);
-    section.appendChild(primaryRow);
+    qaRow.appendChild(playQaStageBtn);
+    section.appendChild(qaRow);
 
-    // PLAY VALIDATED IN COMBAT STAGE
-    const validatedRow = document.createElement('div');
-    validatedRow.className = 'lab-btn-row lab-stage-btn-row';
+    // === VALIDATED PLAYBACK ===
+    const valHeader = document.createElement('div');
+    valHeader.className = 'lab-playback-group-header';
+    valHeader.textContent = 'VALIDATED';
+    section.appendChild(valHeader);
+
+    const valRow = document.createElement('div');
+    valRow.className = 'lab-btn-row';
+
+    const playValBtn = document.createElement('button');
+    playValBtn.className = 'lab-play-btn';
+    playValBtn.textContent = 'PLAY VALIDATED';
+    playValBtn.disabled = !options.playback || !hasValidated;
+    playValBtn.addEventListener('click', () => {
+      if (!options.playback) return;
+      const result = playValidated(options.playback, state, action.actionKey);
+      if (result.snapshot) {
+        lastPlaybackSnapshot = result.snapshot;
+        statusLine.textContent = `Played VALIDATED: ${action.actionKey}`;
+      }
+    });
+    valRow.appendChild(playValBtn);
 
     const playValStageBtn = document.createElement('button');
     playValStageBtn.className = 'lab-play-btn lab-play-validated-stage-btn';
@@ -705,23 +1054,44 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       playValStageBtn.textContent = 'PLAY VALIDATED IN COMBAT STAGE';
       render();
     });
-    validatedRow.appendChild(playValStageBtn);
-    section.appendChild(validatedRow);
+    valRow.appendChild(playValStageBtn);
+    section.appendChild(valRow);
 
-    // TEST PRODUCTION IN COMBAT STAGE
+    // === PRODUCTION PLAYBACK ===
+    const prodHeader = document.createElement('div');
+    prodHeader.className = 'lab-playback-group-header';
+    prodHeader.textContent = 'PRODUCTION';
+    section.appendChild(prodHeader);
+
     const prodRow = document.createElement('div');
-    prodRow.className = 'lab-btn-row lab-stage-btn-row';
+    prodRow.className = 'lab-btn-row';
+
+    const playProdBtn = document.createElement('button');
+    playProdBtn.className = 'lab-play-btn';
+    playProdBtn.textContent = 'TEST PRODUCTION';
+    playProdBtn.disabled = !options.playback;
+    playProdBtn.addEventListener('click', () => {
+      if (!options.playback) return;
+      const result = playProduction(options.playback, state, action.actionKey);
+      if (result.snapshot) {
+        lastPlaybackSnapshot = result.snapshot;
+        statusLine.textContent = `Played PRODUCTION: ${action.actionKey}`;
+      }
+    });
+    prodRow.appendChild(playProdBtn);
 
     const playProdStageBtn = document.createElement('button');
     playProdStageBtn.className = 'lab-play-btn lab-play-prod-stage-btn';
     playProdStageBtn.textContent = 'TEST PRODUCTION IN COMBAT STAGE';
-    playProdStageBtn.disabled = !options.playback || !hasStage;
 
-    // V1E Part S: Disable production test when validated not applied
-    if (lifecycle === 'VALIDATED_NOT_APPLIED') {
+    // V1E.1B: Disable production stage test when production != validated
+    const prodTestDisabled = !options.playback || !hasStage || !productionMatchesValidated;
+    playProdStageBtn.disabled = prodTestDisabled;
+
+    if (!productionMatchesValidated && hasValidated) {
       const warning = document.createElement('div');
       warning.className = 'lab-prod-test-warning';
-      warning.textContent = 'PRODUCTION DOES NOT MATCH VALIDATED — APPLY VALIDATED CONFIG FIRST';
+      warning.textContent = 'APPLY VALIDATED CONFIG FIRST';
       prodRow.appendChild(warning);
     }
 
@@ -733,6 +1103,9 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       if (result.snapshot) {
         lastPlaybackSnapshot = result.snapshot;
         statusLine.textContent = `Tested PRODUCTION in Combat Stage: ${action.actionKey}`;
+        // V1E.1B: Record that a production test was performed
+        state = recordProductionTested(state, action, stepIdx);
+        saveLabStateToStorage(localStorage, state);
       } else {
         statusLine.textContent = `Production stage test unavailable`;
       }
@@ -743,51 +1116,9 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     prodRow.appendChild(playProdStageBtn);
     section.appendChild(prodRow);
 
-    // Secondary playback buttons
-    const secondaryRow = document.createElement('div');
-    secondaryRow.className = 'lab-btn-row';
-
-    const playProdBtn = document.createElement('button');
-    playProdBtn.className = 'lab-play-btn';
-    playProdBtn.textContent = 'PLAY PRODUCTION';
-    playProdBtn.disabled = !options.playback;
-    playProdBtn.addEventListener('click', () => {
-      if (!options.playback) return;
-      const result = playProduction(options.playback, state, action.actionKey);
-      if (result.snapshot) {
-        lastPlaybackSnapshot = result.snapshot;
-        statusLine.textContent = `Played PRODUCTION: ${action.actionKey}`;
-      }
-    });
-    secondaryRow.appendChild(playProdBtn);
-
-    const playQaBtn = document.createElement('button');
-    playQaBtn.className = 'lab-play-btn';
-    playQaBtn.textContent = 'PLAY QA';
-    playQaBtn.disabled = !options.playback;
-    playQaBtn.addEventListener('click', () => {
-      if (!options.playback) return;
-      const result = playQaOverride(options.playback, state, action.actionKey);
-      if (result.snapshot) {
-        lastPlaybackSnapshot = result.snapshot;
-        statusLine.textContent = `Played QA: ${action.actionKey}`;
-      }
-    });
-    secondaryRow.appendChild(playQaBtn);
-
-    const playValBtn = document.createElement('button');
-    playValBtn.className = 'lab-play-btn';
-    playValBtn.textContent = 'PLAY VALIDATED';
-    playValBtn.disabled = !options.playback || !hasValidated;
-    playValBtn.addEventListener('click', () => {
-      if (!options.playback) return;
-      const result = playValidated(options.playback, state, action.actionKey);
-      if (result.snapshot) {
-        lastPlaybackSnapshot = result.snapshot;
-        statusLine.textContent = `Played VALIDATED: ${action.actionKey}`;
-      }
-    });
-    secondaryRow.appendChild(playValBtn);
+    // === REPLAY ===
+    const replayRow = document.createElement('div');
+    replayRow.className = 'lab-btn-row';
 
     const replayBtn = document.createElement('button');
     replayBtn.className = 'lab-play-btn';
@@ -801,9 +1132,8 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
         statusLine.textContent = `Replayed: ${result.snapshot.mode}`;
       }
     });
-    secondaryRow.appendChild(replayBtn);
-
-    section.appendChild(secondaryRow);
+    replayRow.appendChild(replayBtn);
+    section.appendChild(replayRow);
 
     if (lastPlaybackSnapshot) {
       const snapDiv = document.createElement('div');
@@ -922,11 +1252,14 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       }
     }
 
-    // CONFIRM PRODUCTION VERIFIED (when APPLIED_NOT_VERIFIED)
-    if (lifecycle === 'APPLIED_NOT_VERIFIED') {
+    // CONFIRM PRODUCTION VERIFIED (when APPLIED_NOT_VERIFIED or TESTED_NOT_CONFIRMED)
+    const canConfirm = canConfirmProductionVerified(state, action, stepIdx);
+    const productionState = getProductionState(state, action, stepIdx);
+    if (productionState === 'APPLIED_NOT_TESTED' || productionState === 'TESTED_NOT_CONFIRMED') {
       const confirmBtn = document.createElement('button');
       confirmBtn.className = 'lab-confirm-verified-btn';
       confirmBtn.textContent = 'CONFIRM PRODUCTION VERIFIED';
+      confirmBtn.disabled = !canConfirm;
       confirmBtn.addEventListener('click', () => {
         state = confirmProductionVerified(state, action, stepIdx);
         saveLabStateToStorage(localStorage, state);
@@ -934,6 +1267,15 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
         render();
       });
       section.appendChild(confirmBtn);
+
+      if (!canConfirm) {
+        const reasonDiv = document.createElement('div');
+        reasonDiv.className = 'lab-confirm-reason';
+        reasonDiv.textContent = productionState === 'APPLIED_NOT_TESTED'
+          ? 'TEST PRODUCTION IN COMBAT STAGE FIRST'
+          : 'PRODUCTION FINGERPRINT CHANGED — RE-TEST REQUIRED';
+        section.appendChild(reasonDiv);
+      }
     }
 
     // Clear verification (when PRODUCTION_VERIFIED or PRODUCTION_DRIFT)
@@ -948,6 +1290,21 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
         render();
       });
       section.appendChild(clearVerBtn);
+    }
+
+    // V1E.1B: Clear test record (when TESTED_NOT_CONFIRMED or DRIFT)
+    const stepKey = labStepKey(action.actionKey, stepIdx);
+    if (state.testedFingerprintByActionStep?.[stepKey]) {
+      const clearTestBtn = document.createElement('button');
+      clearTestBtn.className = 'lab-clear-val-btn';
+      clearTestBtn.textContent = 'CLEAR TEST RECORD';
+      clearTestBtn.addEventListener('click', () => {
+        state = clearProductionTested(state, action.actionKey, stepIdx);
+        saveLabStateToStorage(localStorage, state);
+        statusLine.textContent = `Cleared test record: ${action.actionKey} step ${stepIdx}`;
+        render();
+      });
+      section.appendChild(clearTestBtn);
     }
 
     // Notes
@@ -973,45 +1330,19 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
 
   function renderCtaBar(action: LabAction): void {
     const stepIdx = getSelectedVisualStepIndex(state, action);
-    const lifecycle = getLifecycleStatus(state, action, stepIdx);
+    const next = getNextRequiredAction(state, action, stepIdx);
 
     const cta = document.createElement('div');
     cta.className = 'lab-cta-content';
 
-    let primaryText = '';
-    let secondaryText = '';
-
-    switch (lifecycle) {
-      case 'UNCONFIGURED':
-        primaryText = 'SELECT A CARTOONCOFFEE VFX →';
-        break;
-      case 'QA_WORKING':
-        primaryText = 'PLAY QA IN COMBAT STAGE';
-        secondaryText = 'VALIDATE CURRENT VFX';
-        break;
-      case 'VALIDATED_NOT_APPLIED':
-        primaryText = 'PLAY VALIDATED IN COMBAT STAGE';
-        secondaryText = 'COPY APPLY TASK';
-        break;
-      case 'APPLIED_NOT_VERIFIED':
-        primaryText = 'TEST PRODUCTION IN COMBAT STAGE';
-        secondaryText = 'CONFIRM PRODUCTION VERIFIED';
-        break;
-      case 'PRODUCTION_VERIFIED':
-        primaryText = 'NEXT REQUIRED →';
-        break;
-      case 'PRODUCTION_DRIFT':
-        primaryText = 'PRODUCTION DRIFT — REVIEW / REAPPLY';
-        break;
-      case 'NO_VFX':
-        primaryText = 'NO VFX — SKIP';
-        break;
-    }
-
-    cta.innerHTML = `<div class="lab-cta-primary">${primaryText}</div>`;
-    if (secondaryText) {
-      cta.innerHTML += `<div class="lab-cta-secondary">${secondaryText}</div>`;
-    }
+    cta.innerHTML = `
+      <div class="lab-cta-label">NEXT REQUIRED ACTION</div>
+      <div class="lab-cta-primary${next.noVfx ? ' lab-cta-novfx' : ''}">${next.instruction}</div>
+      <div class="lab-cta-states">
+        <span class="lab-cta-state lab-artistic-${next.artistic.toLowerCase()}">ART: ${formatArtisticState(next.artistic)}</span>
+        <span class="lab-cta-state lab-production-${next.production.toLowerCase()}">PROD: ${formatProductionState(next.production)}</span>
+      </div>
+    `;
 
     ctaBar.appendChild(cta);
   }
@@ -1066,6 +1397,17 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       if (valConfig) {
         fpDiv.innerHTML += `<div><b>Validated fingerprint:</b> ${computeConfigFingerprint(valConfig)}</div>`;
         fpDiv.innerHTML += `<div><b>Match:</b> ${configsSemanticallyEqual(prodConfig, valConfig) ? 'YES' : 'NO'}</div>`;
+      }
+      // V1E.1B: Show tested and verified fingerprints
+      const stepKey = labStepKey(action.actionKey, stepIdx);
+      const testedFp = state.testedFingerprintByActionStep?.[stepKey];
+      const verifiedFp = state.verifiedFingerprintByActionStep?.[stepKey];
+      if (testedFp) {
+        fpDiv.innerHTML += `<div><b>Tested fingerprint:</b> ${testedFp}</div>`;
+        fpDiv.innerHTML += `<div><b>Test matches prod:</b> ${testedFp === computeConfigFingerprint(prodConfig) ? 'YES' : 'NO'}</div>`;
+      }
+      if (verifiedFp) {
+        fpDiv.innerHTML += `<div><b>Verified fingerprint:</b> ${verifiedFp}</div>`;
       }
       body.appendChild(fpDiv);
     }
@@ -1131,6 +1473,25 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       case 'PRODUCTION_VERIFIED': return 'PRODUCTION VERIFIED';
       case 'PRODUCTION_DRIFT': return 'PRODUCTION DRIFT';
       case 'NO_VFX': return 'NO VFX';
+    }
+  }
+
+  function formatArtisticState(status: ArtisticState): string {
+    switch (status) {
+      case 'UNCONFIGURED': return 'UNCONFIGURED';
+      case 'QA_WORKING': return 'QA WORKING';
+      case 'VALIDATED': return 'VALIDATED';
+      case 'VALIDATED_QA_MODIFIED': return 'VALIDATED · QA MODIFIED';
+    }
+  }
+
+  function formatProductionState(status: ProductionState): string {
+    switch (status) {
+      case 'NOT_APPLIED': return 'NOT APPLIED';
+      case 'APPLIED_NOT_TESTED': return 'APPLIED · NOT TESTED';
+      case 'TESTED_NOT_CONFIRMED': return 'TESTED · NOT CONFIRMED';
+      case 'VERIFIED': return 'VERIFIED';
+      case 'DRIFT': return 'DRIFT';
     }
   }
 
@@ -1735,13 +2096,27 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     render();
   });
 
-  render();
+  // V1E.1B: Use requestAnimationFrame for stable first render — ensures
+  // CSS is applied before DOM construction, preventing layout shift and
+  // column overflow/clipping on initial paint.
+  requestAnimationFrame(() => render());
+
+  // V1E.2: Escape key expands Lab from minimized mode
+  const onKeyDown = (e: KeyboardEvent): void => {
+    if (e.key === 'Escape' && getDisplayMode(state) === 'MINIMIZED') {
+      state = setDisplayMode(state, 'EXPANDED');
+      saveLabStateToStorage(localStorage, state);
+      render();
+    }
+  };
+  document.addEventListener('keydown', onKeyDown);
 
   return () => {
     if (previewObserver) {
       previewObserver.disconnect();
       previewObserver = null;
     }
+    document.removeEventListener('keydown', onKeyDown);
     root.remove();
   };
 }
@@ -1751,9 +2126,33 @@ function addLabStyle(): void {
   const style = document.createElement('style');
   style.id = STYLE_ID;
   style.textContent = `
-    #${ROOT_ID}{position:fixed;z-index:10050;right:18px;bottom:18px;width:min(460px,calc(100vw - 36px));max-height:calc(100vh - 36px);overflow-y:auto;background:rgba(5,14,30,.95);border:1px solid #5488a6;border-radius:12px;box-shadow:0 15px 45px rgba(0,0,0,.52);padding:14px;color:#d7e7ee;font:12px/1.35 system-ui,sans-serif;backdrop-filter:blur(9px)}
-    #${ROOT_ID} h2{margin:0;color:#9fe5ff;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
-    #${ROOT_ID} .lab-subtitle{display:block;margin:4px 0 12px;color:#8fa5b2;font-size:11px}
+    #${ROOT_ID}{position:fixed;z-index:10050;right:18px;bottom:18px;width:min(460px,calc(100vw - 36px));max-height:calc(100vh - 36px);overflow-y:auto;background:rgba(5,14,30,.95);border:1px solid #5488a6;border-radius:12px;box-shadow:0 15px 45px rgba(0,0,0,.52);padding:14px;color:#d7e7ee;font:12px/1.35 system-ui,sans-serif;backdrop-filter:blur(9px);display:flex;flex-direction:column}
+    #${ROOT_ID} h2{margin:0;color:#9fe5ff;font-size:13px;letter-spacing:.08em;text-transform:uppercase;flex-shrink:0}
+    #${ROOT_ID} .lab-subtitle{display:block;margin:2px 0 8px;color:#8fa5b2;font-size:10px;flex-shrink:0}
+    /* V1E.2: Header row + minimize button */
+    #${ROOT_ID} .lab-header-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-shrink:0}
+    #${ROOT_ID} .lab-minimize-btn{font-size:10px;padding:4px 10px;border-color:#395d77;background:#0c2134;white-space:nowrap;flex-shrink:0}
+    #${ROOT_ID} .lab-minimize-btn:hover{border-color:#52b9d2;background:#0f3b52;color:#9fe5ff}
+    /* V1E.2: Minimized test dock */
+    #${ROOT_ID}.lab-minimized{width:clamp(340px,24vw,430px);max-width:calc(100vw - 24px);padding:10px;right:16px;bottom:16px}
+    #${ROOT_ID} .lab-minimized-dock{display:flex;flex-direction:column;gap:8px;flex:1 1 auto;min-height:0}
+    #${ROOT_ID} .lab-dock-header{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    #${ROOT_ID} .lab-dock-title{color:#9fe5ff;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    #${ROOT_ID} .lab-dock-open-btn{font-size:10px;padding:4px 10px;border-color:#52b9d2;background:#0f3b52;color:#9fe5ff;white-space:nowrap;flex-shrink:0}
+    #${ROOT_ID} .lab-dock-open-btn:hover{background:#1a5a72}
+    #${ROOT_ID} .lab-dock-no-action{color:#7a96a6;font-style:italic;font-size:11px;text-align:center;padding:12px 0}
+    #${ROOT_ID} .lab-dock-context{padding:6px 8px;border:1px solid #2a4a60;border-radius:6px;background:rgba(8,18,30,.4)}
+    #${ROOT_ID} .lab-dock-action-name{color:#9fe5ff;font-size:13px;font-weight:700;margin-bottom:2px}
+    #${ROOT_ID} .lab-dock-meta{display:flex;gap:8px;flex-wrap:wrap;font-size:10px;color:#b9d9e7}
+    #${ROOT_ID} .lab-dock-owner{color:#8fa5b2;font-weight:700;white-space:nowrap}
+    #${ROOT_ID} .lab-dock-visual{white-space:nowrap}
+    #${ROOT_ID} .lab-dock-badges{display:flex;gap:4px;margin-top:4px;flex-wrap:wrap}
+    #${ROOT_ID} .lab-dock-playback{display:flex;flex-direction:column;gap:5px}
+    #${ROOT_ID} .lab-dock-play-btn{width:100%;font-size:11px;font-weight:700;padding:7px 8px;text-align:center}
+    #${ROOT_ID} .lab-dock-play-btn:disabled{opacity:.5}
+    #${ROOT_ID} .lab-dock-nav{display:flex;gap:6px}
+    #${ROOT_ID} .lab-dock-nav .lab-nav-btn{flex:1;text-align:center}
+    #${ROOT_ID} .lab-dock-status{font-size:10px;color:#8fa5b2;text-align:center;min-height:14px}
     #${ROOT_ID} .lab-section{margin:10px 0;padding:10px;border:1px solid #2a4a60;border-radius:8px;background:rgba(12,28,44,.5)}
     #${ROOT_ID} label{display:grid;gap:4px;margin:6px 0;color:#b6d3e0;font-size:11px;font-weight:700}
     #${ROOT_ID} select,#${ROOT_ID} button,#${ROOT_ID} input{border:1px solid #395d77;border-radius:7px;background:#0c2134;color:#eff8ff;font:inherit;padding:7px}
@@ -1877,33 +2276,54 @@ function addLabStyle(): void {
     #${ROOT_ID} .lab-badge-qa{background:rgba(241,199,108,.2);color:#f1c76c}
     #${ROOT_ID} .lab-badge-validated{background:rgba(83,209,122,.2);color:#5fd17a}
     #${ROOT_ID} .lab-badge-prod{background:rgba(166,66,58,.2);color:#e07060}
-    /* V1E Workbench Layout */
+    /* V1E.1C Workbench Layout */
     #${ROOT_ID}{width:min(960px,calc(100vw - 36px))}
-    #${ROOT_ID} .lab-action-bar{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;padding:8px 10px;border:1px solid #2a4a60;border-radius:8px;background:rgba(12,28,44,.5)}
-    #${ROOT_ID} .lab-action-context{flex:1;min-width:0}
-    #${ROOT_ID} .lab-action-owner{color:#8fa5b2;font-size:10px}
-    #${ROOT_ID} .lab-action-name{color:#9fe5ff;font-size:14px;font-weight:700;margin:2px 0}
-    #${ROOT_ID} .lab-action-meta{display:flex;gap:8px;flex-wrap:wrap;font-size:10px;color:#b9d9e7}
-    #${ROOT_ID} .lab-action-meta b{color:#f1c76c}
-    #${ROOT_ID} .lab-action-status{margin-top:4px;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;display:inline-block}
-    #${ROOT_ID} .lab-action-progress{display:flex;gap:10px;margin-top:4px;font-size:10px;color:#b9d9e7}
-    #${ROOT_ID} .lab-action-progress b{color:#9fe5ff}
-    #${ROOT_ID} .lab-action-nav{display:flex;flex-direction:column;gap:4px;min-width:120px}
-    #${ROOT_ID} .lab-nav-btn{font-size:10px;padding:5px 8px;border-color:#395d77;background:#0c2134}
+    #${ROOT_ID} .lab-action-bar{margin-bottom:8px;padding:8px 10px;border:1px solid #2a4a60;border-radius:8px;background:rgba(12,28,44,.5);flex:0 0 auto;min-height:0}
+    #${ROOT_ID} .lab-action-context{width:100%;min-width:0}
+    #${ROOT_ID} .lab-action-main-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;margin-bottom:6px}
+    #${ROOT_ID} .lab-action-select-wrap{min-width:0}
+    #${ROOT_ID} .lab-action-select-wrap select{width:100%}
+    #${ROOT_ID} .lab-action-nav{display:flex;flex-direction:row;gap:6px;flex-shrink:0}
+    #${ROOT_ID} .lab-nav-btn{font-size:10px;padding:6px 10px;border-color:#395d77;background:#0c2134;white-space:nowrap}
     #${ROOT_ID} .lab-nav-next{border-color:#52b9d2;background:#0f3b52;color:#9fe5ff}
-    #${ROOT_ID} .lab-queue-bar{display:flex;align-items:center;gap:4px;margin-bottom:8px;flex-wrap:wrap}
+    #${ROOT_ID} .lab-action-meta-row{display:flex;gap:6px 12px;flex-wrap:wrap;align-items:center}
+    #${ROOT_ID} .lab-action-meta-items{display:flex;gap:6px 10px;flex-wrap:wrap;align-items:center;font-size:10px;color:#b9d9e7}
+    #${ROOT_ID} .lab-action-meta-items b{color:#f1c76c}
+    #${ROOT_ID} .lab-action-owner-chip{color:#9fe5ff;font-weight:700;white-space:nowrap}
+    #${ROOT_ID} .lab-action-preset-chip{white-space:nowrap}
+    #${ROOT_ID} .lab-action-visual-chip{white-space:nowrap}
+    #${ROOT_ID} .lab-action-progress-chip{white-space:nowrap;font-size:9px;color:#8fa5b2}
+    #${ROOT_ID} .lab-action-progress-chip b{color:#9fe5ff}
+    #${ROOT_ID} .lab-action-badges{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+    #${ROOT_ID} .lab-badge-artistic,#${ROOT_ID} .lab-badge-production{font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.03em;white-space:nowrap}
+    #${ROOT_ID} .lab-artistic-unconfigured{background:rgba(122,150,166,.15);color:#7a96a6}
+    #${ROOT_ID} .lab-artistic-qa_working{background:rgba(255,154,74,.15);color:#ff9a4a}
+    #${ROOT_ID} .lab-artistic-validated{background:rgba(83,209,122,.15);color:#5fd17a}
+    #${ROOT_ID} .lab-artistic-validated_qa_modified{background:rgba(241,199,108,.15);color:#f1c76c}
+    #${ROOT_ID} .lab-production-not_applied{background:rgba(122,150,166,.15);color:#7a96a6}
+    #${ROOT_ID} .lab-production-applied_not_tested{background:rgba(82,185,210,.15);color:#52b9d2}
+    #${ROOT_ID} .lab-production-tested_not_confirmed{background:rgba(82,185,210,.25);color:#84dfff}
+    #${ROOT_ID} .lab-production-verified{background:rgba(83,209,122,.15);color:#5fd17a}
+    #${ROOT_ID} .lab-production-drift{background:rgba(166,66,58,.2);color:#e07060}
+    #${ROOT_ID} .lab-queue-bar{display:flex;align-items:center;gap:4px;margin-bottom:8px;flex-wrap:wrap;flex:0 0 auto}
     #${ROOT_ID} .lab-queue-label{font-size:10px;font-weight:700;color:#8fa5b2;letter-spacing:.06em;margin-right:4px}
     #${ROOT_ID} .lab-queue-btn{font-size:10px;padding:4px 8px;border-color:#395d77;background:#0c2134}
     #${ROOT_ID} .lab-queue-active{border-color:#52b9d2;background:#0f3b52;color:#9fe5ff}
-    #${ROOT_ID} .lab-workbench{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}
-    #${ROOT_ID} .lab-col-catalogue{border:1px solid #2a4a60;border-radius:8px;padding:8px;background:rgba(8,18,30,.3);max-height:calc(100vh - 280px);overflow-y:auto}
-    #${ROOT_ID} .lab-col-inspector{border:1px solid #2a4a60;border-radius:8px;padding:8px;background:rgba(12,28,44,.3);max-height:calc(100vh - 280px);overflow-y:auto}
-    #${ROOT_ID} .lab-cta-bar{margin-bottom:8px;padding:10px;border:1px solid #3a5c70;border-radius:8px;background:rgba(20,40,56,.4);text-align:center}
-    #${ROOT_ID} .lab-cta-primary{font-size:14px;font-weight:700;color:#9fe5ff;letter-spacing:.04em}
+    #${ROOT_ID} .lab-workbench{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:10px;margin-bottom:8px;min-height:0;flex:1;overflow:hidden}
+    #${ROOT_ID} .lab-col-catalogue{border:1px solid #2a4a60;border-radius:8px;padding:8px;background:rgba(8,18,30,.3);min-height:0;overflow-y:auto;max-height:calc(100vh - 320px)}
+    #${ROOT_ID} .lab-col-inspector{border:1px solid #2a4a60;border-radius:8px;padding:8px;background:rgba(12,28,44,.3);min-height:0;overflow-y:auto;max-height:calc(100vh - 320px)}
+    #${ROOT_ID} .lab-cta-bar{margin-bottom:8px;padding:10px;border:1px solid #3a5c70;border-radius:8px;background:rgba(20,40,56,.5);text-align:center;flex-shrink:0;position:sticky;bottom:0;z-index:10;backdrop-filter:blur(6px)}
+    #${ROOT_ID} .lab-cta-label{font-size:9px;font-weight:800;color:#8fa5b2;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+    #${ROOT_ID} .lab-cta-primary{font-size:13px;font-weight:700;color:#9fe5ff;letter-spacing:.04em}
+    #${ROOT_ID} .lab-cta-novfx{color:#7a96a6;font-style:italic}
+    #${ROOT_ID} .lab-cta-states{display:flex;gap:6px;justify-content:center;margin-top:4px;flex-wrap:wrap}
+    #${ROOT_ID} .lab-cta-state{font-size:9px;font-weight:700;padding:2px 5px;border-radius:3px}
     #${ROOT_ID} .lab-cta-secondary{font-size:11px;color:#8fa5b2;margin-top:4px}
     #${ROOT_ID} .lab-inspector-section{margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #1e3a50}
     #${ROOT_ID} .lab-inspector-section:last-child{border-bottom:none}
     #${ROOT_ID} .lab-inspector-title{color:#9fe5ff;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+    #${ROOT_ID} .lab-playback-group-header{color:#8fa5b2;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin:8px 0 4px;padding-bottom:2px;border-bottom:1px solid #1e3a50}
+    #${ROOT_ID} .lab-playback-group-header:first-of-type{margin-top:4px}
     #${ROOT_ID} .lab-source-pipeline{display:grid;gap:2px;padding:6px;border:1px solid #2a4a60;border-radius:5px;background:rgba(12,28,44,.3)}
     #${ROOT_ID} .lab-pipeline-step{padding:4px 6px;border-radius:4px;background:rgba(8,18,30,.4);font-size:10px;color:#b9d9e7}
     #${ROOT_ID} .lab-pipeline-step b{color:#9fe5ff;font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;display:block;margin-bottom:2px}
@@ -1920,6 +2340,7 @@ function addLabStyle(): void {
     #${ROOT_ID} .lab-apply-btn:hover:not(:disabled){background:#2a154a}
     #${ROOT_ID} .lab-confirm-verified-btn{width:100%;border-color:#3a8c4a;background:#0d2f1a;font-size:12px;font-weight:700;padding:8px;margin-top:6px}
     #${ROOT_ID} .lab-confirm-verified-btn:hover:not(:disabled){background:#1a4a2a}
+    #${ROOT_ID} .lab-confirm-reason{color:#ff9a4a;font-size:10px;font-weight:700;padding:3px 6px;margin-top:4px;border:1px solid rgba(255,154,74,.3);border-radius:4px;background:rgba(255,154,74,.08)}
     #${ROOT_ID} .lab-prod-test-warning{color:#ff9a4a;font-size:10px;font-weight:700;padding:4px 6px;border:1px solid rgba(255,154,74,.3);border-radius:4px;background:rgba(255,154,74,.08);margin-bottom:4px;grid-column:1/-1}
     #${ROOT_ID} .lab-play-validated-stage-btn{border-color:#3a8c4a;background:#0d2f1a;font-weight:700}
     #${ROOT_ID} .lab-play-validated-stage-btn:hover:not(:disabled){background:#1a4a2a}
@@ -1927,7 +2348,7 @@ function addLabStyle(): void {
     #${ROOT_ID} .lab-play-prod-stage-btn:hover:not(:disabled){background:#4a3018}
     #${ROOT_ID} .lab-debug-ids{display:grid;gap:2px;color:#728c9b;font-size:9px;padding:6px;border:1px solid #1e3a50;border-radius:5px;background:rgba(8,18,30,.3);margin-top:6px;word-break:break-all}
     #${ROOT_ID} .lab-debug-ids b{color:#8fa5b2}
-    @media(max-width:700px){#${ROOT_ID} .lab-workbench{grid-template-columns:1fr}#${ROOT_ID} .lab-col-catalogue,#${ROOT_ID} .lab-col-inspector{max-height:40vh}}
+    @media(max-width:700px){#${ROOT_ID} .lab-workbench{grid-template-columns:1fr}#${ROOT_ID} .lab-col-catalogue,#${ROOT_ID} .lab-col-inspector{max-height:40vh}#${ROOT_ID} .lab-action-main-row{grid-template-columns:1fr}#${ROOT_ID} .lab-action-nav{justify-content:flex-end}}
   `;
   document.head.appendChild(style);
 }
