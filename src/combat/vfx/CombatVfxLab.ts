@@ -966,6 +966,158 @@ export function setDisplayMode(state: LabState, mode: LabDisplayMode): LabState 
   return { ...state, displayMode: mode };
 }
 
+// ============================================================ V1E.3 Clean Artistic Workspace Reset
+
+/**
+ * V1E.3: Resets all artistic/QA/validation/verification state to a clean baseline.
+ *
+ * Production presets, mappings, and presentation are NOT touched.
+ * CartoonCoffee catalogue and GIF mappings are NOT touched.
+ * Only Lab working/artistic state is cleared.
+ */
+export function resetArtisticWorkspace(state: LabState): LabState {
+  const accordionState: Record<string, boolean> = {};
+  for (const sec of ALL_ACCORDION_SECTIONS) {
+    accordionState[sec] = DEFAULT_ACCORDION_OPEN.includes(sec);
+  }
+  return {
+    selectedActionKey: undefined,
+    selectedStepByAction: {},
+    qaSourceByActionStep: {},
+    qaPresentationByActionStep: {},
+    notesByActionStep: {},
+    validatedByActionStep: {},
+    search: '',
+    formatFilter: 'ALL',
+    availabilityFilter: 'ALL',
+    usageFilter: 'ALL',
+    cataloguePage: 1,
+    qaHistory: {},
+    previewCandidateId: undefined,
+    accordionState,
+    gifFilter: 'ALL',
+    catalogueViewMode: 'GRID',
+    verifiedFingerprintByActionStep: {},
+    testedFingerprintByActionStep: {},
+    workQueueMode: 'CONFIGURE',
+    displayMode: 'EXPANDED',
+  };
+}
+
+export interface CleanWorkspaceAudit {
+  qaSources: number;
+  qaPresentationOverrides: number;
+  selectedCandidates: number;
+  validatedConfigs: number;
+  notes: number;
+  testedFingerprints: number;
+  verifiedFingerprints: number;
+  qaHistoryEntries: number;
+  workQueueMode: WorkQueueMode;
+  displayMode: LabDisplayMode;
+  catalogueSearch: string;
+  cataloguePage: number;
+  // V1E.3.1: Semantic checks
+  qaWorkingVisualSteps: number;
+  validatedVisualSteps: number;
+  validatedModifiedVisualSteps: number;
+  unexpectedArtisticStates: number;
+  totalConfigurableVisualSteps: number;
+  isClean: boolean;
+}
+
+/**
+ * V1E.3.1: Audits whether the Lab state is a clean artistic workspace.
+ * Performs BOTH structural checks (map counts) AND semantic checks
+ * (iterates all actions/steps to verify getArtisticState returns UNCONFIGURED).
+ */
+export function auditCleanArtisticWorkspace(state: LabState): CleanWorkspaceAudit {
+  const qaSources = Object.keys(state.qaSourceByActionStep).length;
+  const qaPresentationOverrides = Object.keys(state.qaPresentationByActionStep).length;
+  const selectedCandidates = state.previewCandidateId ? 1 : 0;
+  const validatedConfigs = Object.keys(state.validatedByActionStep).length;
+  const notes = Object.keys(state.notesByActionStep).length;
+  const testedFingerprints = Object.keys(state.testedFingerprintByActionStep ?? {}).length;
+  const verifiedFingerprints = Object.keys(state.verifiedFingerprintByActionStep ?? {}).length;
+  const qaHistoryEntries = Object.values(state.qaHistory).reduce((sum, entries) => sum + entries.length, 0);
+  const workQueueMode = state.workQueueMode ?? 'ALL';
+  const displayMode = getDisplayMode(state);
+  const catalogueSearch = state.search;
+  const cataloguePage = state.cataloguePage;
+
+  // V1E.3.1: Semantic checks — iterate all actions and visual steps
+  let qaWorkingVisualSteps = 0;
+  let validatedVisualSteps = 0;
+  let validatedModifiedVisualSteps = 0;
+  let unexpectedArtisticStates = 0;
+  let totalConfigurableVisualSteps = 0;
+
+  for (const action of _allActions) {
+    if (action.sourceStatus === 'NO_VFX') continue;
+    const visualSteps = getVisualSpriteSheetSteps(action);
+    for (const vs of visualSteps) {
+      totalConfigurableVisualSteps++;
+      const artistic = getArtisticState(state, action, vs.stepIndex);
+      if (artistic === 'QA_WORKING') qaWorkingVisualSteps++;
+      if (artistic === 'VALIDATED') validatedVisualSteps++;
+      if (artistic === 'VALIDATED_QA_MODIFIED') validatedModifiedVisualSteps++;
+      if (artistic !== 'UNCONFIGURED') unexpectedArtisticStates++;
+    }
+  }
+
+  const structuralClean =
+    qaSources === 0 &&
+    qaPresentationOverrides === 0 &&
+    selectedCandidates === 0 &&
+    validatedConfigs === 0 &&
+    notes === 0 &&
+    testedFingerprints === 0 &&
+    verifiedFingerprints === 0 &&
+    qaHistoryEntries === 0 &&
+    workQueueMode === 'CONFIGURE' &&
+    displayMode === 'EXPANDED' &&
+    catalogueSearch === '' &&
+    cataloguePage === 1;
+
+  const semanticClean =
+    qaWorkingVisualSteps === 0 &&
+    validatedVisualSteps === 0 &&
+    validatedModifiedVisualSteps === 0 &&
+    unexpectedArtisticStates === 0;
+
+  const isClean = structuralClean && semanticClean;
+
+  return {
+    qaSources,
+    qaPresentationOverrides,
+    selectedCandidates,
+    validatedConfigs,
+    notes,
+    testedFingerprints,
+    verifiedFingerprints,
+    qaHistoryEntries,
+    workQueueMode,
+    displayMode,
+    catalogueSearch,
+    cataloguePage,
+    qaWorkingVisualSteps,
+    validatedVisualSteps,
+    validatedModifiedVisualSteps,
+    unexpectedArtisticStates,
+    totalConfigurableVisualSteps,
+    isClean,
+  };
+}
+
+/**
+ * V1E.3.1: Clears the old R2C-A review state from localStorage.
+ * This prevents migrateLabStateIfNeeded from re-hydrating old QA sources
+ * and QA history after a clean reset.
+ */
+export function clearR2cAStateFromStorage(storage: Storage): void {
+  storage.removeItem('r2ca-qa-state');
+}
+
 // ============================================================ Presentation Overrides
 
 export function getQaPresentation(state: LabState, actionKey: string, stepIndex: number): LabPresentationOverride | undefined {

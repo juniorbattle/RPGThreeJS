@@ -83,6 +83,9 @@ import {
   labStepKey,
   getDisplayMode,
   setDisplayMode,
+  resetArtisticWorkspace,
+  auditCleanArtisticWorkspace,
+  clearR2cAStateFromStorage,
 } from './CombatVfxLab';
 import type {
   LabAction,
@@ -112,6 +115,7 @@ import type {
   ProductionState,
   NextRequiredAction,
   LabDisplayMode,
+  CleanWorkspaceAudit,
 } from './CombatVfxLab';
 import type { VfxAnchor, VfxOrientation } from './VfxTypes';
 import type { VfxResourceStats } from './VfxResourceManager';
@@ -213,9 +217,10 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
   ctaBar.className = 'lab-cta-bar';
   root.appendChild(ctaBar);
 
-  // V1E: Advanced/debug section (accordion)
-  const advancedSection = createAccordionSection('resource_debug', 'ADVANCED / DEBUG');
-  root.appendChild(advancedSection.wrapper);
+  // V1E.3.4: System / Debug Tools — standalone area, no outer accordion
+  const debugToolsContainer = document.createElement('div');
+  debugToolsContainer.className = 'lab-debug-tools';
+  root.appendChild(debugToolsContainer);
 
   // Export section
   const exportSection = document.createElement('div');
@@ -339,7 +344,7 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       queueBar.style.display = 'none';
       workbench.style.display = 'none';
       ctaBar.style.display = 'none';
-      advancedSection.wrapper.style.display = 'none';
+      debugToolsContainer.style.display = 'none';
       exportSection.style.display = 'none';
       statusLine.style.display = 'none';
 
@@ -349,7 +354,7 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       catalogueCol.innerHTML = '';
       inspectorCol.innerHTML = '';
       ctaBar.innerHTML = '';
-      advancedSection.body.innerHTML = '';
+      debugToolsContainer.innerHTML = '';
 
       // Render minimized dock
       minimizedDock.style.display = '';
@@ -364,7 +369,7 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     queueBar.style.display = '';
     workbench.style.display = '';
     ctaBar.style.display = '';
-    advancedSection.wrapper.style.display = '';
+    debugToolsContainer.style.display = '';
     exportSection.style.display = '';
     statusLine.style.display = '';
     minimizedDock.style.display = 'none';
@@ -376,7 +381,7 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     catalogueCol.innerHTML = '';
     inspectorCol.innerHTML = '';
     ctaBar.innerHTML = '';
-    advancedSection.body.innerHTML = '';
+    debugToolsContainer.innerHTML = '';
 
     if (!action) {
       renderCatalogue(catalogueCol);
@@ -387,7 +392,7 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     renderQueueBar();
     renderInspector(action);
     renderCtaBar(action);
-    renderAdvanced(action);
+    renderDebugTools(action);
     renderCatalogue(catalogueCol);
   }
 
@@ -1347,33 +1352,84 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
     ctaBar.appendChild(cta);
   }
 
-  function renderAdvanced(action: LabAction): void {
-    const body = advancedSection.body;
-    body.innerHTML = '';
+  function renderDebugTools(action: LabAction): void {
+    const container = debugToolsContainer;
+    container.innerHTML = '';
 
-    // Validation progress
+    // V1E.3.4: SYSTEM / DEBUG TOOLS heading (not an accordion)
+    const heading = document.createElement('div');
+    heading.className = 'lab-debug-tools-heading';
+    heading.textContent = 'SYSTEM / DEBUG TOOLS';
+    container.appendChild(heading);
+
+    // === Row 1: STATUS + AUDIT (side-by-side, always visible) ===
+    const topGrid = document.createElement('div');
+    topGrid.className = 'lab-debug-grid-two';
+
+    // 1a. STATUS PANEL
     const progress = getValidationProgress(state);
     const prodProgress = getProductionProgress(state);
-    const progressDiv = document.createElement('div');
-    progressDiv.className = 'lab-progress-info';
-    progressDiv.innerHTML = `
-      <div class="lab-progress-row"><b>ARTISTIC VALIDATION</b></div>
-      <div>HERO: <b>${progress.heroValidated}</b> / ${progress.heroTotal}</div>
-      <div>ENEMY/BOSS: <b>${progress.enemyBossValidated}</b> / ${progress.enemyBossTotal}</div>
-      <div>ALL: <b>${progress.allValidated}</b> / ${progress.allTotal}</div>
-      <div class="lab-progress-row"><b>PRODUCTION VERIFICATION</b></div>
-      <div>HERO: <b>${prodProgress.heroVerified}</b> / ${prodProgress.heroTotal}</div>
-      <div>ENEMY/BOSS: <b>${prodProgress.enemyBossVerified}</b> / ${prodProgress.enemyBossTotal}</div>
-      <div>ALL: <b>${prodProgress.allVerified}</b> / ${prodProgress.allTotal}</div>
-      <div class="lab-progress-row"><b>BREAKDOWN</b></div>
-      <div>Validated not applied: <b>${prodProgress.validatedNotApplied}</b></div>
-      <div>Applied not verified: <b>${prodProgress.appliedNotVerified}</b></div>
-      <div>Modified after validation: <b>${progress.modifiedAfterValidation}</b></div>
-      <div>Unresolved source: <b>${progress.unresolvedActions}</b></div>
+    const statusPanel = document.createElement('div');
+    statusPanel.className = 'lab-debug-card';
+    statusPanel.innerHTML = `
+      <div class="lab-debug-card-title">ARTISTIC / PRODUCTION STATUS</div>
+      <div class="lab-debug-card-body">
+        <div class="lab-debug-status-section"><b>ARTISTIC</b></div>
+        <div class="lab-debug-status-row">Hero: <b>${progress.heroValidated}</b> / ${progress.heroTotal}</div>
+        <div class="lab-debug-status-row">Enemy/Boss: <b>${progress.enemyBossValidated}</b> / ${progress.enemyBossTotal}</div>
+        <div class="lab-debug-status-row">All: <b>${progress.allValidated}</b> / ${progress.allTotal}</div>
+        <div class="lab-debug-status-section"><b>PRODUCTION</b></div>
+        <div class="lab-debug-status-row">Hero: <b>${prodProgress.heroVerified}</b> / ${prodProgress.heroTotal}</div>
+        <div class="lab-debug-status-row">Enemy/Boss: <b>${prodProgress.enemyBossVerified}</b> / ${prodProgress.enemyBossTotal}</div>
+      </div>
     `;
-    body.appendChild(progressDiv);
+    topGrid.appendChild(statusPanel);
 
-    // Internal IDs
+    // 1b. CLEAN RESET AUDIT PANEL
+    const auditPanel = document.createElement('div');
+    auditPanel.className = 'lab-debug-card';
+    const audit = auditCleanArtisticWorkspace(state);
+    auditPanel.innerHTML = `
+      <div class="lab-debug-card-title">CLEAN RESET AUDIT</div>
+      <div class="lab-debug-card-body">
+        <div class="lab-reset-audit" id="lab-reset-audit">${renderAuditHtml(audit)}</div>
+      </div>
+    `;
+    topGrid.appendChild(auditPanel);
+    container.appendChild(topGrid);
+
+    // === Row 2: QA HISTORY + RESOURCE/INTERNALS (side-by-side, both collapsible) ===
+    const midGrid = document.createElement('div');
+    midGrid.className = 'lab-debug-grid-two';
+
+    // 2a. QA REVIEW HISTORY (default collapsed)
+    const history = state.qaHistory[action.actionKey];
+    const historyCount = history ? history.length : 0;
+    const historySection = createDebugSubsection('qa_history', 'QA REVIEW HISTORY', false, historyCount);
+    if (history && history.length > 0) {
+      const list = document.createElement('div');
+      list.className = 'lab-debug-history-list';
+      for (const entry of history) {
+        const item = document.createElement('div');
+        item.className = 'lab-history-item';
+        item.innerHTML = `<b>${entry.candidateId}</b> — ${entry.verdict}`;
+        if (entry.notes) {
+          item.innerHTML += `<br><span class="lab-history-notes">${entry.notes}</span>`;
+        }
+        list.appendChild(item);
+      }
+      historySection.body.appendChild(list);
+    } else {
+      const empty = document.createElement('div');
+      empty.className = 'lab-debug-empty';
+      empty.textContent = 'NO QA REVIEW HISTORY';
+      historySection.body.appendChild(empty);
+    }
+    midGrid.appendChild(historySection.wrapper);
+
+    // 2b. RESOURCE / INTERNALS (default collapsed)
+    const internalsSection = createDebugSubsection('resource_internals', 'RESOURCE / INTERNALS', false);
+
     const stepIdx = getSelectedVisualStepIndex(state, action);
     const step = action.vfxSteps[stepIdx];
     const idsDiv = document.createElement('div');
@@ -1385,9 +1441,8 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       <div><b>sourceId:</b> ${step?.sourceCandidateId ?? step?.spriteSheetId ?? 'none'}</div>
       <div><b>route:</b> ${action.route} (${action.routeReason ?? 'auto'})</div>
     `;
-    body.appendChild(idsDiv);
+    internalsSection.body.appendChild(idsDiv);
 
-    // Fingerprints
     const prodConfig = getProductionVisualConfig(action, stepIdx);
     const valConfig = getValidatedVisualConfig(state, action.actionKey, stepIdx);
     if (prodConfig) {
@@ -1398,7 +1453,6 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
         fpDiv.innerHTML += `<div><b>Validated fingerprint:</b> ${computeConfigFingerprint(valConfig)}</div>`;
         fpDiv.innerHTML += `<div><b>Match:</b> ${configsSemanticallyEqual(prodConfig, valConfig) ? 'YES' : 'NO'}</div>`;
       }
-      // V1E.1B: Show tested and verified fingerprints
       const stepKey = labStepKey(action.actionKey, stepIdx);
       const testedFp = state.testedFingerprintByActionStep?.[stepKey];
       const verifiedFp = state.verifiedFingerprintByActionStep?.[stepKey];
@@ -1409,10 +1463,9 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       if (verifiedFp) {
         fpDiv.innerHTML += `<div><b>Verified fingerprint:</b> ${verifiedFp}</div>`;
       }
-      body.appendChild(fpDiv);
+      internalsSection.body.appendChild(fpDiv);
     }
 
-    // Mini preview stats
     const miniDiv = document.createElement('div');
     miniDiv.className = 'lab-stats-info';
     miniDiv.innerHTML = `
@@ -1420,9 +1473,8 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
       <span>Loaded: <b>${miniPreviewStats.loaded}</b></span>
       <span>Failed: <b>${miniPreviewStats.failed}</b></span>
     `;
-    body.appendChild(miniDiv);
+    internalsSection.body.appendChild(miniDiv);
 
-    // Resource manager stats
     if (options.getStats) {
       const stats = options.getStats();
       const statsDiv = document.createElement('div');
@@ -1438,30 +1490,121 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
         <span>Loads: <b>${stats.loads}</b></span>
         <span>Evictions: <b>${stats.evictions}</b></span>
       `;
-      body.appendChild(statsDiv);
+      internalsSection.body.appendChild(statsDiv);
     }
 
-    // QA History
-    const history = state.qaHistory[action.actionKey];
-    if (history && history.length > 0) {
-      const histHeader = document.createElement('div');
-      histHeader.className = 'lab-stats-header';
-      histHeader.textContent = 'QA HISTORY';
-      body.appendChild(histHeader);
+    midGrid.appendChild(internalsSection.wrapper);
+    container.appendChild(midGrid);
 
-      const list = document.createElement('div');
-      list.className = 'lab-history-list';
-      for (const entry of history) {
-        const item = document.createElement('div');
-        item.className = 'lab-history-item';
-        item.innerHTML = `<b>${entry.candidateId}</b> — ${entry.verdict}`;
-        if (entry.notes) {
-          item.innerHTML += `<br><span class="lab-history-notes">${entry.notes}</span>`;
-        }
-        list.appendChild(item);
+    // === Row 3: WORKSPACE MAINTENANCE (full width, always visible) ===
+    const footer = document.createElement('div');
+    footer.className = 'lab-advanced-maintenance';
+
+    const maintHeader = document.createElement('div');
+    maintHeader.className = 'lab-maintenance-header';
+    maintHeader.textContent = 'WORKSPACE MAINTENANCE';
+    footer.appendChild(maintHeader);
+
+    const maintDesc = document.createElement('div');
+    maintDesc.className = 'lab-maintenance-desc';
+    maintDesc.innerHTML = `<div>Reset all VFX Lab artistic / QA / validation / verification state.</div><div>Preserved: production VFX, production presets, production mappings, CartoonCoffee assets, Combat Stage, gameplay</div>`;
+    footer.appendChild(maintDesc);
+
+    const resetBtn = document.createElement('button');
+    resetBtn.className = 'lab-reset-workspace-btn';
+    resetBtn.textContent = 'RESET ARTISTIC WORKSPACE';
+    resetBtn.addEventListener('click', () => {
+      const confirmed = window.confirm(
+        'Reset all VFX Lab artistic/QA/validation data? Production VFX will NOT be changed.'
+      );
+      if (!confirmed) return;
+      state = resetArtisticWorkspace(state);
+      saveLabStateToStorage(localStorage, state);
+      clearR2cAStateFromStorage(localStorage);
+      currentActionKey = state.selectedActionKey ?? getLabActions()[0]?.actionKey ?? '';
+      if (previewObserver) {
+        previewObserver.disconnect();
+        previewObserver = null;
       }
-      body.appendChild(list);
+      render();
+      const auditEl = document.getElementById('lab-reset-audit');
+      if (auditEl) {
+        const postAudit = auditCleanArtisticWorkspace(state);
+        auditEl.innerHTML = renderAuditHtml(postAudit);
+      }
+      statusLine.textContent = postAuditStatus(state);
+    });
+    footer.appendChild(resetBtn);
+    container.appendChild(footer);
+  }
+
+  function renderAuditHtml(audit: CleanWorkspaceAudit): string {
+    const cleanClass = audit.isClean ? 'lab-semantic-clean-yes' : 'lab-semantic-clean-no';
+    const cleanLabel = audit.isClean ? 'YES' : 'NO';
+    return `
+      <div class="lab-audit-row"><span>QA SOURCES</span><b>${audit.qaSources}</b></div>
+      <div class="lab-audit-row"><span>QA OVERRIDES</span><b>${audit.qaPresentationOverrides}</b></div>
+      <div class="lab-audit-row"><span>QA HISTORY</span><b>${audit.qaHistoryEntries}</b></div>
+      <div class="lab-audit-row"><span>VALIDATED</span><b>${audit.validatedConfigs}</b></div>
+      <div class="lab-audit-row"><span>TESTED</span><b>${audit.testedFingerprints}</b></div>
+      <div class="lab-audit-row"><span>VERIFIED</span><b>${audit.verifiedFingerprints}</b></div>
+      <div class="lab-audit-row"><span>QA WORKING VISUAL STEPS</span><b>${audit.qaWorkingVisualSteps}</b></div>
+      <div class="lab-audit-semantic ${cleanClass}"><span>SEMANTIC CLEAN</span><span class="lab-semantic-badge ${cleanClass}">${cleanLabel}</span></div>
+    `;
+  }
+
+  function createDebugSubsection(
+    id: string,
+    title: string,
+    defaultOpen: boolean,
+    count?: number,
+  ): { wrapper: HTMLElement; body: HTMLElement } {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'lab-debug-subsection';
+    wrapper.dataset.subsection = id;
+    wrapper.dataset.open = defaultOpen ? 'true' : 'false';
+
+    const header = document.createElement('div');
+    header.className = 'lab-debug-subsection-header';
+
+    const toggle = document.createElement('span');
+    toggle.className = 'lab-debug-subsection-toggle';
+    toggle.textContent = defaultOpen ? '▼' : '▶';
+
+    const label = document.createElement('span');
+    label.className = 'lab-debug-subsection-label';
+    label.textContent = title;
+
+    header.append(toggle, label);
+
+    if (count !== undefined) {
+      const countSpan = document.createElement('span');
+      countSpan.className = 'lab-debug-subsection-count';
+      countSpan.textContent = String(count);
+      header.appendChild(countSpan);
     }
+
+    const subBody = document.createElement('div');
+    subBody.className = 'lab-debug-subsection-body';
+    subBody.style.display = defaultOpen ? '' : 'none';
+
+    wrapper.append(header, subBody);
+
+    header.addEventListener('click', () => {
+      const isOpen = wrapper.dataset.open === 'true';
+      const newOpen = !isOpen;
+      wrapper.dataset.open = newOpen ? 'true' : 'false';
+      toggle.textContent = newOpen ? '▼' : '▶';
+      subBody.style.display = newOpen ? '' : 'none';
+    });
+
+    return { wrapper, body: subBody };
+  }
+
+  function postAuditStatus(state: LabState): string {
+    const audit = auditCleanArtisticWorkspace(state);
+    if (audit.isClean) return 'ARTISTIC WORKSPACE RESET COMPLETE — SEMANTIC CLEAN: YES';
+    return 'RESET INCOMPLETE — SEMANTIC CLEAN: NO';
   }
 
   function formatLifecycleStatus(status: ProductionLifecycleStatus): string {
@@ -2309,7 +2452,7 @@ function addLabStyle(): void {
     #${ROOT_ID} .lab-queue-label{font-size:10px;font-weight:700;color:#8fa5b2;letter-spacing:.06em;margin-right:4px}
     #${ROOT_ID} .lab-queue-btn{font-size:10px;padding:4px 8px;border-color:#395d77;background:#0c2134}
     #${ROOT_ID} .lab-queue-active{border-color:#52b9d2;background:#0f3b52;color:#9fe5ff}
-    #${ROOT_ID} .lab-workbench{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:10px;margin-bottom:8px;min-height:0;flex:1;overflow:hidden}
+    #${ROOT_ID} .lab-workbench{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:10px;margin-bottom:8px;min-height:0;flex-shrink:0}
     #${ROOT_ID} .lab-col-catalogue{border:1px solid #2a4a60;border-radius:8px;padding:8px;background:rgba(8,18,30,.3);min-height:0;overflow-y:auto;max-height:calc(100vh - 320px)}
     #${ROOT_ID} .lab-col-inspector{border:1px solid #2a4a60;border-radius:8px;padding:8px;background:rgba(12,28,44,.3);min-height:0;overflow-y:auto;max-height:calc(100vh - 320px)}
     #${ROOT_ID} .lab-cta-bar{margin-bottom:8px;padding:10px;border:1px solid #3a5c70;border-radius:8px;background:rgba(20,40,56,.5);text-align:center;flex-shrink:0;position:sticky;bottom:0;z-index:10;backdrop-filter:blur(6px)}
@@ -2348,7 +2491,44 @@ function addLabStyle(): void {
     #${ROOT_ID} .lab-play-prod-stage-btn:hover:not(:disabled){background:#4a3018}
     #${ROOT_ID} .lab-debug-ids{display:grid;gap:2px;color:#728c9b;font-size:9px;padding:6px;border:1px solid #1e3a50;border-radius:5px;background:rgba(8,18,30,.3);margin-top:6px;word-break:break-all}
     #${ROOT_ID} .lab-debug-ids b{color:#8fa5b2}
-    @media(max-width:700px){#${ROOT_ID} .lab-workbench{grid-template-columns:1fr}#${ROOT_ID} .lab-col-catalogue,#${ROOT_ID} .lab-col-inspector{max-height:40vh}#${ROOT_ID} .lab-action-main-row{grid-template-columns:1fr}#${ROOT_ID} .lab-action-nav{justify-content:flex-end}}
+    /* V1E.3: Reset Artistic Workspace */
+    #${ROOT_ID} .lab-reset-section{margin-top:10px;padding-top:8px;border-top:1px solid #2a4a60}
+    #${ROOT_ID} .lab-reset-workspace-btn{width:100%;border-color:#a6423a;background:#2a1010;font-size:11px;font-weight:700;padding:8px;color:#e07060}
+    #${ROOT_ID} .lab-reset-workspace-btn:hover{background:#3a1818;border-color:#c45a4a}
+    /* V1E.3.4: System / Debug Tools — standalone sibling panels, no outer accordion */
+    #${ROOT_ID} .lab-debug-tools{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+    #${ROOT_ID} .lab-debug-tools-heading{color:#9fe5ff;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 0;border-bottom:1px solid #2a4a60}
+    #${ROOT_ID} .lab-debug-grid-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    #${ROOT_ID} .lab-debug-card{border:1px solid #2a4a60;border-radius:8px;background:rgba(12,28,44,.3);overflow:hidden}
+    #${ROOT_ID} .lab-debug-card-title{padding:6px 10px;background:rgba(15,30,45,.5);color:#9fe5ff;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+    #${ROOT_ID} .lab-debug-card-body{padding:8px 10px}
+    #${ROOT_ID} .lab-debug-status-section{color:#f1c76c;font-weight:700;font-size:10px;margin-top:4px;margin-bottom:2px}
+    #${ROOT_ID} .lab-debug-status-section:first-child{margin-top:0}
+    #${ROOT_ID} .lab-debug-status-row{color:#b9d9e7;font-size:10px;line-height:1.5}
+    #${ROOT_ID} .lab-debug-status-row b{color:#9fe5ff}
+    #${ROOT_ID} .lab-debug-subsection{border:1px solid #1e3a50;border-radius:6px;overflow:hidden}
+    #${ROOT_ID} .lab-debug-subsection-header{padding:6px 10px;background:rgba(15,30,45,.5);color:#9fe5ff;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:6px;user-select:none}
+    #${ROOT_ID} .lab-debug-subsection-header:hover{background:rgba(20,40,60,.6)}
+    #${ROOT_ID} .lab-debug-subsection-toggle{font-size:9px;color:#66cfea;min-width:10px}
+    #${ROOT_ID} .lab-debug-subsection-label{flex:1}
+    #${ROOT_ID} .lab-debug-subsection-count{color:#8fa5b2;font-size:10px;font-weight:700}
+    #${ROOT_ID} .lab-debug-subsection-body{padding:8px 10px}
+    #${ROOT_ID} .lab-debug-empty{color:#7a96a6;font-size:10px;font-style:italic}
+    #${ROOT_ID} .lab-debug-history-list{max-height:200px;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable;padding-right:4px;display:grid;gap:4px}
+    #${ROOT_ID} .lab-reset-audit{display:grid;gap:3px}
+    #${ROOT_ID} .lab-audit-row{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#b9d9e7;padding:2px 0}
+    #${ROOT_ID} .lab-audit-row b{color:#9fe5ff;font-weight:700}
+    #${ROOT_ID} .lab-audit-semantic{display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border-radius:5px;margin-top:4px;font-size:11px;font-weight:800}
+    #${ROOT_ID} .lab-audit-semantic span:first-child{letter-spacing:.06em;text-transform:uppercase}
+    #${ROOT_ID} .lab-semantic-clean-yes{background:rgba(83,209,122,.12);color:#5fd17a;border:1px solid rgba(83,209,122,.3)}
+    #${ROOT_ID} .lab-semantic-clean-no{background:rgba(255,154,74,.12);color:#ff9a4a;border:1px solid rgba(255,154,74,.3)}
+    #${ROOT_ID} .lab-semantic-badge{padding:2px 8px;border-radius:4px;font-weight:900}
+    #${ROOT_ID} .lab-semantic-badge.lab-semantic-clean-yes{background:rgba(83,209,122,.2);color:#5fd17a}
+    #${ROOT_ID} .lab-semantic-badge.lab-semantic-clean-no{background:rgba(255,154,74,.2);color:#ff9a4a}
+    #${ROOT_ID} .lab-advanced-maintenance{padding:10px;border:1px solid #2a4a60;border-radius:8px;background:rgba(20,30,40,.4)}
+    #${ROOT_ID} .lab-maintenance-header{color:#e07060;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+    #${ROOT_ID} .lab-maintenance-desc{color:#8fa5b2;font-size:10px;margin-bottom:8px;line-height:1.4;display:grid;gap:2px}
+    @media(max-width:700px){#${ROOT_ID} .lab-workbench{grid-template-columns:1fr}#${ROOT_ID} .lab-col-catalogue,#${ROOT_ID} .lab-col-inspector{max-height:40vh}#${ROOT_ID} .lab-action-main-row{grid-template-columns:1fr}#${ROOT_ID} .lab-action-nav{justify-content:flex-end}#${ROOT_ID} .lab-debug-grid-two{grid-template-columns:1fr}}
   `;
   document.head.appendChild(style);
 }
