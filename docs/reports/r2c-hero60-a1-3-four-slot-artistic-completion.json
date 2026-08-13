@@ -1,0 +1,314 @@
+{
+  "reportId": "r2c-hero60-a1-3-four-slot-artistic-completion",
+  "generatedAt": "2026-08-12T23:52:47.653Z",
+  "canonicalOrigin": "http://localhost:5173",
+  "mission": "Configure only the four missing CURRENT HERO visual spriteSheet slots and stop at QA WORKING.",
+  "activeSessionBootstrap": {
+    "initialQaSources": 60,
+    "initialQaOverrides": 60,
+    "initialQaWorking": 60,
+    "baselineRecoveryRequired": false,
+    "recoverySource": "EXISTING_ACTIVE_STATE",
+    "recoveredQaSources": 60,
+    "recoveredQaOverrides": 60,
+    "recoveredQaWorking": 60,
+    "baselineCandidateMismatches": 0,
+    "baselinePresentationMismatches": 0,
+    "activeStateReady": true
+  },
+  "preview": {
+    "megaPackRoot": "ACTIVE",
+    "probe": {
+      "id": "r1_0001",
+      "status": 200,
+      "contentType": "image/gif",
+      "bytes": 86420
+    },
+    "visibleGifPreviews": true,
+    "previewError": false,
+    "bridge": "HEALTHY"
+  },
+  "baselineCoverage": {
+    "heroActions": 60,
+    "heroVisualSteps": 64,
+    "qaWorking": 60,
+    "completeActions": 58,
+    "incompleteActions": 2,
+    "missing": 4,
+    "selectedCandidateCount": 60,
+    "uniqueCandidateCount": 60,
+    "duplicateCandidateCount": 0,
+    "scaleBelowTwo": 0
+  },
+  "selections": [
+    {
+      "actionId": "d_devouring_eclipse",
+      "presetId": "pilot_d_devouring_eclipse",
+      "stepIndex": 1,
+      "role": "secondary_dark_impact",
+      "candidateId": "r1_0123",
+      "sourceFilename": "Charge_Darkness_v1_A_Center Only_spritesheet.png",
+      "collection": "Essentials VFX Spritesheets",
+      "family": "Charge_Darkness_v1_A / darkness charge",
+      "nativeFormat": {
+        "width": 4096,
+        "height": 4096,
+        "cols": 8,
+        "rows": 8,
+        "frameCount": 64,
+        "cellWidth": 512,
+        "cellHeight": 512,
+        "alpha": true
+      },
+      "shortlist": [
+        "r1_0121",
+        "r1_0122",
+        "r1_0123",
+        "r1_0132"
+      ],
+      "reasonSelected": "Centered secondary dark convergence reinforces the existing consuming foundation without stealing the ultimate peak.",
+      "rejectedAlternatives": {
+        "r1_0121": "Too diffuse for the secondary impact role.",
+        "r1_0122": "Too small and brief to deepen a 5 AP ultimate.",
+        "r1_0132": "Reads as a separate spell rather than a complementary layer."
+      },
+      "presentation": {
+        "scale": 2.65,
+        "offsetX": 0,
+        "offsetY": 0,
+        "duration": 0.92,
+        "opacity": 1,
+        "anchor": "groundTarget",
+        "layer": "impact",
+        "blending": "additive",
+        "fadeIn": 0.06,
+        "fadeOut": 0.14,
+        "direction": "center_on_aoe_origin"
+      },
+      "confidence": 86,
+      "combatStageQa": "PASS — the centered convergence strengthens step 0, stays subordinate to step 2, and preserves the shared void palette."
+    },
+    {
+      "actionId": "d_devouring_eclipse",
+      "presetId": "pilot_d_devouring_eclipse",
+      "stepIndex": 2,
+      "role": "ultimate_peak",
+      "candidateId": "r1_0129",
+      "sourceFilename": "Charge_Darkness_v1_A_spritesheet.png",
+      "collection": "Essentials VFX Spritesheets",
+      "family": "Charge_Darkness_v1_A / darkness charge",
+      "nativeFormat": {
+        "width": 4096,
+        "height": 4096,
+        "cols": 8,
+        "rows": 8,
+        "frameCount": 64,
+        "cellWidth": 512,
+        "cellHeight": 512,
+        "alpha": true
+      },
+      "shortlist": [
+        "r1_0120",
+        "r1_0129",
+        "r1_0130",
+        "r1_0139"
+      ],
+      "reasonSelected": "Largest coherent void expansion in the shortlist, giving the four-step choreography a clear and readable ultimate climax.",
+      "rejectedAlternatives": {
+        "r1_0120": "Too compact to become the visual peak.",
+        "r1_0130": "Repeats the buildup language without enough climax contrast.",
+        "r1_0139": "Lacks a sufficiently strong central culmination."
+      },
+      "presentation": {
+        "scale": 3.35,
+        "offsetX": 0,
+        "offsetY": 0,
+        "duration": 1.28,
+        "opacity": 1,
+        "anchor": "groundTarget",
+        "layer": "impact",
+        "blending": "additive",
+        "fadeIn": 0.06,
+        "fadeOut": 0.2,
+        "direction": "center_on_aoe_origin"
+      },
+      "confidence": 90,
+      "combatStageQa": "PASS — this is visibly the dominant layer, fills the tactical focal area without clipping the screen, and resolves naturally into the shockwave."
+    },
+    {
+      "actionId": "d_devouring_eclipse",
+      "presetId": "pilot_d_devouring_eclipse",
+      "stepIndex": 3,
+      "role": "aftermath_shockwave",
+      "candidateId": "r1_0593",
+      "sourceFilename": "Impact_Shockwave v2_spritesheet.png",
+      "collection": "Essentials VFX Spritesheets",
+      "family": "Impact_Shockwave_v2 / neutral shockwave",
+      "nativeFormat": {
+        "width": 2048,
+        "height": 2048,
+        "cols": 4,
+        "rows": 4,
+        "frameCount": 16,
+        "cellWidth": 512,
+        "cellHeight": 512,
+        "alpha": true
+      },
+      "shortlist": [
+        "r1_0592",
+        "r1_0593",
+        "r1_0127",
+        "r1_0128"
+      ],
+      "reasonSelected": "Readable ground shockwave that punctuates the void climax as a consequence, then releases quickly instead of beginning a new spell.",
+      "rejectedAlternatives": {
+        "r1_0592": "Weaker ring definition at tactical scale.",
+        "r1_0127": "Reads like a renewed charge rather than aftermath.",
+        "r1_0128": "Reads like a renewed charge rather than aftermath."
+      },
+      "presentation": {
+        "scale": 3.1,
+        "offsetX": 0,
+        "offsetY": 0,
+        "duration": 0.95,
+        "opacity": 1,
+        "anchor": "groundTarget",
+        "layer": "ground",
+        "blending": "additive",
+        "fadeIn": 0.04,
+        "fadeOut": 0.24,
+        "direction": "center_on_aoe_origin"
+      },
+      "confidence": 88,
+      "combatStageQa": "PASS — the grounded ring reads as the pressure release after the climax, clears cleanly, and does not compete with the earlier dark layers."
+    },
+    {
+      "actionId": "ni_silent_assassin",
+      "presetId": "ultimate_silent_assassin",
+      "stepIndex": 1,
+      "role": "execution_impact",
+      "candidateId": "r1_1707",
+      "sourceFilename": "Impact_Cut_V4_spritesheet.png",
+      "collection": "Sword Slash VFX Spritesheets",
+      "family": "Impact_Cut_V4 / execution slash",
+      "nativeFormat": {
+        "width": 2048,
+        "height": 2048,
+        "cols": 4,
+        "rows": 4,
+        "frameCount": 16,
+        "cellWidth": 512,
+        "cellHeight": 512,
+        "alpha": true
+      },
+      "shortlist": [
+        "r1_1705",
+        "r1_1707",
+        "r1_1708",
+        "r1_1710",
+        "r1_1711",
+        "r1_1714"
+      ],
+      "reasonSelected": "Strongest clean execution slash: fast, compact, high-contrast and decisive, with no excessive lingering after the existing setup layer.",
+      "rejectedAlternatives": {
+        "r1_1705": "Less decisive at the execution beat.",
+        "r1_1708": "Less decisive at the execution beat.",
+        "r1_1710": "Too broad for a precise assassination.",
+        "r1_1711": "Too prolonged for the final punctuation.",
+        "r1_1714": "Too broad and persistent for the role."
+      },
+      "presentation": {
+        "scale": 2.7,
+        "offsetX": 0,
+        "offsetY": 0,
+        "duration": 0.72,
+        "opacity": 1,
+        "anchor": "target",
+        "layer": "impact",
+        "blending": "additive",
+        "fadeIn": 0.03,
+        "fadeOut": 0.13,
+        "direction": "face_target"
+      },
+      "confidence": 87,
+      "combatStageQa": "PASS — the second layer lands as a lethal execution punctuation, follows the target-facing direction, and clears before it obscures post-hit feedback."
+    }
+  ],
+  "compositionQa": {
+    "d_devouring_eclipse": {
+      "result": "PASS",
+      "notes": "The four layers read as one composed void event: consuming foundation, centered reinforcement, dominant expansion, then grounded pressure release. Palette, visual center and timing remain coherent."
+    },
+    "ni_silent_assassin": {
+      "result": "PASS",
+      "notes": "The two layers read as setup followed by a sharp target-facing execution. The finishing cut is compact, decisive and clears cleanly."
+    }
+  },
+  "finalCoverage": {
+    "heroActions": 60,
+    "heroVisualSteps": 64,
+    "qaSources": 64,
+    "qaOverrides": 64,
+    "qaWorking": 64,
+    "missing": 0,
+    "unexpected": 0,
+    "completeHeroActions": 60,
+    "incompleteHeroActions": 0
+  },
+  "preservationAudit": {
+    "existingBaselineSlots": 60,
+    "candidateChanges": 0,
+    "presentationChanges": 0,
+    "notesChanges": 0,
+    "validationChanges": 0
+  },
+  "candidateIntegrity": {
+    "total": 64,
+    "unique": 64,
+    "duplicates": 0,
+    "newCandidates": [
+      "r1_0123",
+      "r1_0129",
+      "r1_0593",
+      "r1_1707"
+    ],
+    "reuseJustified": 0
+  },
+  "safety": {
+    "validated": 0,
+    "tested": 0,
+    "verified": 0,
+    "applied": 0,
+    "productionChanges": 0,
+    "gameplayChanges": 0,
+    "combatStageArchitectureChanges": 0,
+    "presetStructureChanges": 0
+  },
+  "checkpoint": "docs/reports/hero60_a1_3_64of64_pre_human_qa.json",
+  "technical": {
+    "tests": {
+      "status": "PASS",
+      "passed": 1683,
+      "total": 1683,
+      "filesPassed": 64
+    },
+    "build": {
+      "status": "PASS",
+      "modulesTransformed": 83
+    },
+    "gitDiffCheck": "PASS",
+    "commit": false,
+    "push": false
+  },
+  "gates": {
+    "activeCodexBaselineRecovered": true,
+    "existingStatePreserved": true,
+    "fourMissingSlotsConfigured": true,
+    "visualStepCoverage": "64/64",
+    "allActionsQaConfigured": true,
+    "validatedCount": 0,
+    "appliedCount": 0,
+    "verifiedCount": 0,
+    "readyForHumanQa": true
+  }
+}
