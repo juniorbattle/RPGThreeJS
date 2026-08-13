@@ -2340,6 +2340,41 @@ export function serializeLabState(state: LabState): string {
   return JSON.stringify(state);
 }
 
+export interface LabCheckpointRestoreResult {
+  ok: boolean;
+  state?: LabState;
+  error?: string;
+}
+
+export function validateCheckpointLabState(raw: unknown): raw is LabState {
+  if (typeof raw !== 'object' || raw === null) return false;
+  const obj = raw as Record<string, unknown>;
+  if (typeof obj.qaSourceByActionStep !== 'object' || obj.qaSourceByActionStep === null) return false;
+  if (typeof obj.qaPresentationByActionStep !== 'object' || obj.qaPresentationByActionStep === null) return false;
+  if (typeof obj.selectedStepByAction !== 'object' || obj.selectedStepByActionStep === null) return false;
+  return true;
+}
+
+export function restoreLabStateFromCheckpoint(raw: string): LabCheckpointRestoreResult {
+  try {
+    const parsed = JSON.parse(raw);
+    if (typeof parsed !== 'object' || parsed === null) {
+      return { ok: false, error: 'Checkpoint is not a valid JSON object.' };
+    }
+    const candidate = (parsed as { labState?: unknown }).labState ?? parsed;
+    if (!validateCheckpointLabState(candidate)) {
+      return { ok: false, error: 'Checkpoint does not contain a valid LabState (missing required fields).' };
+    }
+    const restored = deserializeLabState(JSON.stringify(candidate));
+    if (!restored) {
+      return { ok: false, error: 'Failed to deserialize LabState from checkpoint.' };
+    }
+    return { ok: true, state: restored };
+  } catch (e) {
+    return { ok: false, error: `Checkpoint parse error: ${(e as Error).message}` };
+  }
+}
+
 export function deserializeLabState(raw: string): LabState | null {
   try {
     const parsed = JSON.parse(raw);

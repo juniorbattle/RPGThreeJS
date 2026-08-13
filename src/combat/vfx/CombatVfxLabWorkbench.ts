@@ -9,6 +9,7 @@
  */
 
 import inventoryJson from '../../../docs/reports/vfx-megapack-r1-2-4-corrected-inventory.json';
+import p01bCheckpoint from '../../../docs/reports/hero60_p0_1b_targeted_readability_repair.json';
 import {
   getLabActions,
   getLabAction,
@@ -86,6 +87,7 @@ import {
   resetArtisticWorkspace,
   auditCleanArtisticWorkspace,
   clearR2cAStateFromStorage,
+  restoreLabStateFromCheckpoint,
 } from './CombatVfxLab';
 import type {
   LabAction,
@@ -236,7 +238,65 @@ export function installCombatVfxLabWorkbench(options: WorkbenchOptions): () => v
   exportValidatedBtn.textContent = 'EXPORT VALIDATED VFX CONFIGURATION';
   exportValidatedBtn.addEventListener('click', onExportValidated);
   exportSection.appendChild(exportValidatedBtn);
-  root.appendChild(exportSection);
+
+  const restoreSection = document.createElement('div');
+  restoreSection.className = 'lab-section';
+  const restoreLabel = document.createElement('div');
+  restoreLabel.className = 'lab-restore-label';
+  restoreLabel.textContent = 'DEV ONLY — RESTORE QA CHECKPOINT';
+  restoreSection.appendChild(restoreLabel);
+
+  const restoreP01bBtn = document.createElement('button');
+  restoreP01bBtn.className = 'lab-restore-btn';
+  restoreP01bBtn.textContent = 'RESTORE P0.1B CHECKPOINT';
+  restoreP01bBtn.addEventListener('click', () => {
+    const json = JSON.stringify(p01bCheckpoint);
+    const result = restoreLabStateFromCheckpoint(json);
+    if (result.ok && result.state) {
+      state = result.state;
+      saveLabStateToStorage(localStorage, state);
+      currentActionKey = state.selectedActionKey ?? getLabActions()[0]?.actionKey ?? '';
+      actionSelect.value = currentActionKey;
+      render();
+      statusLine.textContent = `Restored P0.1B checkpoint: ${Object.keys(state.qaSourceByActionStep).length} QA sources`;
+    } else {
+      statusLine.textContent = `Restore failed: ${result.error}`;
+    }
+  });
+  restoreSection.appendChild(restoreP01bBtn);
+
+  const restoreFileBtn = document.createElement('button');
+  restoreFileBtn.className = 'lab-restore-btn';
+  restoreFileBtn.textContent = 'RESTORE FROM FILE...';
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.accept = '.json';
+  fileInput.style.display = 'none';
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const text = String(reader.result);
+      const result = restoreLabStateFromCheckpoint(text);
+      if (result.ok && result.state) {
+        state = result.state;
+        saveLabStateToStorage(localStorage, state);
+        currentActionKey = state.selectedActionKey ?? getLabActions()[0]?.actionKey ?? '';
+        actionSelect.value = currentActionKey;
+        render();
+        statusLine.textContent = `Restored from file: ${Object.keys(state.qaSourceByActionStep).length} QA sources`;
+      } else {
+        statusLine.textContent = `Restore failed: ${result.error}`;
+      }
+    };
+    reader.readAsText(file);
+    fileInput.value = '';
+  });
+  restoreFileBtn.addEventListener('click', () => fileInput.click());
+  restoreSection.appendChild(restoreFileBtn);
+  restoreSection.appendChild(fileInput);
+  root.appendChild(restoreSection);
 
   const statusLine = document.createElement('span');
   statusLine.className = 'lab-status';
@@ -2331,6 +2391,9 @@ function addLabStyle(): void {
     #${ROOT_ID} .lab-history-item{padding:5px;border-left:2px solid #66cfea;background:rgba(27,57,76,.32);color:#b9d9e7;font-size:11px}
     #${ROOT_ID} .lab-history-notes{color:#728c9b;font-size:10px}
     #${ROOT_ID} .lab-export-btn{width:100%;border-color:#3a8c4a;background:#0d2f1a;font-size:13px;padding:10px}
+    #${ROOT_ID} .lab-restore-label{color:#ff9a4a;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+    #${ROOT_ID} .lab-restore-btn{width:100%;border-color:#8c5a3a;background:#2f1d0d;font-size:12px;padding:8px;margin-bottom:4px}
+    #${ROOT_ID} .lab-restore-btn:hover:not(:disabled){background:#3d2818}
     #${ROOT_ID} .lab-status{display:block;min-height:16px;margin-top:8px;color:#8fa5b2;font-size:11px}
     #${ROOT_ID} .lab-playback-header,#${ROOT_ID} .lab-tuning-header,#${ROOT_ID} .lab-stats-header{color:#9fe5ff;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
     #${ROOT_ID} .lab-route-info{color:#b9d9e7;font-size:11px;margin-bottom:6px}

@@ -1,0 +1,411 @@
+// @vitest-environment happy-dom
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { installVfxComposerPanel } from './CombatVfxComposerPanel';
+import { COMPOSER_STORAGE_KEY, loadComposerStore } from './VfxComposerPlayback';
+
+const ROOT_ID = 'r2c-vfx-composer';
+
+function getRoot(): HTMLElement {
+  const root = document.getElementById(ROOT_ID);
+  if (!root) throw new Error('Composer root not installed');
+  return root;
+}
+
+function q<T extends Element = HTMLElement>(selector: string): T | null {
+  return getRoot().querySelector<T>(selector);
+}
+
+function qa<T extends Element = HTMLElement>(selector: string): T[] {
+  return Array.from(getRoot().querySelectorAll<T>(selector));
+}
+
+function click(el: Element | null | undefined): void {
+  (el as HTMLElement | null | undefined)?.dispatchEvent(new Event('click', { bubbles: true }));
+}
+
+function removeAllSlots(): void {
+  let guard = 0;
+  while (qa('.cmp-slot-card').length > 0 && guard < 50) {
+    click(qa('.cmp-slot-card')[0]!.querySelector('.cmp-slot-remove'));
+    guard += 1;
+  }
+}
+
+/**
+ * Opens the library once, then adds `count` distinct candidates. The library
+ * intentionally stays open after ADD TO PRESET so several sources can be added
+ * in a row, so it must only be toggled once.
+ */
+function addSlotsFromCatalogue(count: number): void {
+  if (!q('[data-section="catalogue"]')) click(q('.cmp-add-slot'));
+  for (let i = 0; i < count; i += 1) {
+    click(qa('.cmp-cat-add')[i]);
+  }
+}
+
+describe('R2C-VFX LAB V2 — Composer panel UI', () => {
+  let dispose: () => void = () => {};
+
+  beforeEach(() => {
+    localStorage.clear();
+    document.body.textContent = '';
+    document.head.textContent = '';
+    dispose = installVfxComposerPanel({ enabled: true });
+  });
+
+  afterEach(() => {
+    dispose();
+    localStorage.clear();
+  });
+
+  // ---------------------------------------------------------- simple flow
+
+  it('1. installs a single composer root when enabled', () => {
+    expect(document.querySelectorAll(`#${ROOT_ID}`)).toHaveLength(1);
+  });
+
+  it('2. does not install when disabled', () => {
+    dispose();
+    document.body.textContent = '';
+    const noop = installVfxComposerPanel({ enabled: false });
+    expect(document.getElementById(ROOT_ID)).toBeNull();
+    noop();
+  });
+
+  it('3. renders the simple layout sections in order', () => {
+    const sections = qa('[data-section]').map((el) => el.dataset.section);
+    expect(sections).toEqual([
+      'visual_slots',
+      'composition',
+      'technical_polish',
+      'primary_actions',
+      'advanced',
+    ]);
+  });
+
+  it('4. selecting an action opens its preset with an id', () => {
+    const select = q<HTMLSelectElement>('.cmp-action-select');
+    expect(select).not.toBeNull();
+    expect(select!.options.length).toBeGreaterThan(0);
+    expect(q('.cmp-preset-id')?.textContent).toContain('PRESET');
+  });
+
+  it('5. current visual spritesheets appear as slot cards', () => {
+    const select = q<HTMLSelectElement>('.cmp-action-select')!;
+    select.value = 'basic_greatsword_hit';
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    expect(qa('.cmp-slot-card').length).toBeGreaterThan(0);
+  });
+
+  // ---------------------------------------------------------- add / remove / reorder
+
+  it('6. + ADD SPRITESHEET opens the CartoonCoffee library', () => {
+    expect(q('[data-section="catalogue"]')).toBeNull();
+    click(q('.cmp-add-slot'));
+    expect(q('[data-section="catalogue"]')).not.toBeNull();
+    expect(qa('.cmp-cat-card').length).toBeGreaterThan(0);
+  });
+
+  it('7. candidate cards offer ADD TO PRESET, not USE AS QA SOURCE', () => {
+    click(q('.cmp-add-slot'));
+    const addBtn = q('.cmp-cat-add');
+    expect(addBtn?.textContent).toBe('ADD TO PRESET');
+    expect(getRoot().textContent).not.toContain('USE AS QA SOURCE');
+  });
+
+  it('8. ADD TO PRESET appends a slot card', () => {
+    const before = qa('.cmp-slot-card').length;
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    expect(qa('.cmp-slot-card').length).toBe(before + 1);
+  });
+
+  it('9. REMOVE deletes the slot card', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const before = qa('.cmp-slot-card').length;
+    click(q('.cmp-slot-remove'));
+    expect(qa('.cmp-slot-card').length).toBe(before - 1);
+  });
+
+  it('10. REPLACE swaps the slot candidate through the library', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const firstCard = qa('.cmp-slot-card')[0]!;
+    const originalCid = firstCard.querySelector('.cmp-slot-cid')!.textContent;
+    click(firstCard.querySelector('.cmp-slot-replace'));
+    expect(q('[data-section="catalogue"]')?.textContent).toContain('REPLACE WITH CANDIDATE');
+    const replacement = qa<HTMLElement>('.cmp-cat-card')
+      .find((card) => card.dataset.candidateId !== originalCid)!;
+    click(replacement.querySelector('.cmp-cat-add'));
+    expect(qa('.cmp-slot-card')[0]!.querySelector('.cmp-slot-cid')!.textContent)
+      .not.toBe(originalCid);
+  });
+
+  it('11. MOVE UP / MOVE DOWN reorder slot cards', () => {
+    addSlotsFromCatalogue(2);
+    const order = () => qa('.cmp-slot-card').map((c) => c.querySelector('.cmp-slot-cid')!.textContent);
+    const before = order();
+    expect(before.length).toBeGreaterThanOrEqual(2);
+    click(qa('.cmp-slot-card')[before.length - 1]!.querySelector('.cmp-slot-up'));
+    const after = order();
+    expect(after).not.toEqual(before);
+    expect(after.slice().sort()).toEqual(before.slice().sort());
+  });
+
+  it('12. MOVE UP is disabled on the first slot', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const first = qa('.cmp-slot-card')[0]!;
+    expect(first.querySelector<HTMLButtonElement>('.cmp-slot-up')!.disabled).toBe(true);
+  });
+
+  // ---------------------------------------------------------- semantic profiles only
+
+  it('13. slot cards expose SIZE / TIMING / PLACEMENT controls', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const card = qa('.cmp-slot-card')[0]!;
+    const profiles = Array.from(card.querySelectorAll<HTMLElement>('.cmp-profile'))
+      .map((el) => el.dataset.profile);
+    expect(profiles).toEqual(['size', 'timing', 'placement']);
+  });
+
+  it('14. SIZE exposes exactly LOW / MID / BIG', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const group = q('[data-profile="size"] .cmp-profile-group')!;
+    expect(Array.from(group.querySelectorAll('button')).map((b) => b.textContent))
+      .toEqual(['LOW', 'MID', 'BIG']);
+  });
+
+  it('15. TIMING exposes exactly QUICK / NORMAL / LONG', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const group = q('[data-profile="timing"] .cmp-profile-group')!;
+    expect(Array.from(group.querySelectorAll('button')).map((b) => b.textContent))
+      .toEqual(['QUICK', 'NORMAL', 'LONG']);
+  });
+
+  it('16. PLACEMENT exposes exactly AUTO / TARGET / CASTER / GROUND', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const group = q('[data-profile="placement"] .cmp-profile-group')!;
+    expect(Array.from(group.querySelectorAll('button')).map((b) => b.textContent))
+      .toEqual(['AUTO', 'TARGET', 'CASTER', 'GROUND']);
+  });
+
+  it('17. choosing SIZE=MID TIMING=NORMAL PLACEMENT=TARGET persists', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
+    const inSlot = (selector: string) =>
+      q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
+    click(inSlot('[data-profile="size"] button[data-value="MID"]'));
+    click(inSlot('[data-profile="timing"] button[data-value="NORMAL"]'));
+    click(inSlot('[data-profile="placement"] button[data-value="TARGET"]'));
+    const slot = Object.values(loadComposerStore(localStorage).drafts)[0]!
+      .visualSlots.find((s) => s.id === slotId)!;
+    expect(slot.sizeProfile).toBe('MID');
+    expect(slot.timingProfile).toBe('NORMAL');
+    expect(slot.placementProfile).toBe('TARGET');
+  });
+
+  it('18. standard UI never exposes raw fade/opacity/offset/startTime fields', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    // The ADVANCED accordion is collapsed, so no numeric inputs exist.
+    expect(qa('input[type="number"]')).toHaveLength(0);
+    expect(qa('input[data-adv-key]')).toHaveLength(0);
+  });
+
+  it('19. standard UI never exposes lifecycle / queue / fingerprint controls', () => {
+    const text = getRoot().textContent ?? '';
+    for (const forbidden of ['CONFIGURE', 'APPLY', 'VERIFY', 'FINGERPRINT', 'VALIDATED', 'WORK QUEUE']) {
+      expect(text.toUpperCase()).not.toContain(forbidden);
+    }
+  });
+
+  // ---------------------------------------------------------- composition
+
+  it('20. COMPOSITION exposes TOGETHER / SEQUENCE / PAIR THEN LAST', () => {
+    const labels = qa('.cmp-choreo-btn').map((b) => b.textContent);
+    expect(labels).toEqual(['TOGETHER', 'SEQUENCE', 'PAIR THEN LAST']);
+  });
+
+  it('21. selecting TOGETHER marks it active and zeroes all start times', () => {
+    addSlotsFromCatalogue(2);
+    click(qa('.cmp-choreo-btn')[0]);
+    expect(qa('.cmp-choreo-btn')[0]!.classList.contains('cmp-active')).toBe(true);
+    const starts = qa<HTMLElement>('.cmp-timeline-row').map((r) => Number(r.dataset.startTime));
+    expect(starts.every((s) => s === 0)).toBe(true);
+  });
+
+  it('22. selecting SEQUENCE produces increasing start times', () => {
+    addSlotsFromCatalogue(2);
+    click(qa('.cmp-choreo-btn')[1]);
+    const starts = qa<HTMLElement>('.cmp-timeline-row').map((r) => Number(r.dataset.startTime));
+    expect(starts.length).toBeGreaterThanOrEqual(2);
+    expect(starts[1]!).toBeGreaterThan(starts[0]!);
+  });
+
+  it('23. PAIR THEN LAST is disabled below three slots and explains why', () => {
+    const btn = qa<HTMLButtonElement>('.cmp-choreo-btn')[2]!;
+    const slotCount = qa('.cmp-slot-card').length;
+    if (slotCount < 3) {
+      expect(btn.disabled).toBe(true);
+      expect(btn.title).toContain('3');
+    }
+  });
+
+  it('24. PAIR THEN LAST on three slots plays two together then the last', () => {
+    removeAllSlots();
+    addSlotsFromCatalogue(3);
+    expect(qa('.cmp-slot-card')).toHaveLength(3);
+    click(qa('.cmp-choreo-btn')[2]);
+    const starts = qa<HTMLElement>('.cmp-timeline-row').map((r) => Number(r.dataset.startTime));
+    expect(starts).toHaveLength(3);
+    expect(starts[0]).toBe(0);
+    expect(starts[1]).toBe(0);
+    expect(starts[2]!).toBeGreaterThan(0);
+  });
+
+  it('25. the timeline is read-only — no manual startTime input', () => {
+    expect(qa('.cmp-timeline input')).toHaveLength(0);
+  });
+
+  // ---------------------------------------------------------- technical polish
+
+  it('26. TECHNICAL POLISH exposes AUTO / OFF / LIGHT / STRONG', () => {
+    expect(qa('.cmp-polish-btn').map((b) => b.textContent)).toEqual(['AUTO', 'OFF', 'LIGHT', 'STRONG']);
+  });
+
+  it('27. selecting a polish level persists it', () => {
+    click(qa('.cmp-polish-btn')[3]);
+    const draft = Object.values(loadComposerStore(localStorage).drafts)[0]!;
+    expect(draft.technicalPolish).toBe('STRONG');
+    expect(qa('.cmp-polish-btn')[3]!.classList.contains('cmp-active')).toBe(true);
+  });
+
+  // ---------------------------------------------------------- primary actions
+
+  it('28. both preview buttons and SAVE DRAFT are present', () => {
+    expect(q('.cmp-play-visuals')?.textContent).toBe('PLAY VISUALS ONLY');
+    expect(q('.cmp-play-full')?.textContent).toBe('PLAY FULL PRESET');
+    expect(q('.cmp-save-draft')?.textContent).toBe('SAVE DRAFT');
+  });
+
+  it('29. preview buttons are disabled with zero slots', () => {
+    removeAllSlots();
+    expect(q<HTMLButtonElement>('.cmp-play-visuals')!.disabled).toBe(true);
+    expect(q<HTMLButtonElement>('.cmp-play-full')!.disabled).toBe(true);
+  });
+
+  it('30. preview buttons enable once a slot exists', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    expect(q<HTMLButtonElement>('.cmp-play-visuals')!.disabled).toBe(false);
+    expect(q<HTMLButtonElement>('.cmp-play-full')!.disabled).toBe(false);
+  });
+
+  it('31. SAVE DRAFT persists to the composer store key', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    click(q('.cmp-save-draft'));
+    expect(localStorage.getItem(COMPOSER_STORAGE_KEY)).not.toBeNull();
+    expect(q('.cmp-status')?.textContent).toContain('Draft saved');
+  });
+
+  // ---------------------------------------------------------- advanced
+
+  it('32. ADVANCED is collapsed by default', () => {
+    expect(q('.cmp-advanced-body')).toBeNull();
+    expect(q('.cmp-advanced-header')?.textContent).toContain('▸');
+  });
+
+  it('33. ADVANCED reveals raw numeric overrides when expanded', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    click(q('.cmp-advanced-header'));
+    const keys = qa<HTMLInputElement>('input[data-adv-key]').map((i) => i.dataset.advKey);
+    expect(keys).toContain('scale');
+    expect(keys).toContain('duration');
+    expect(keys).toContain('opacity');
+    expect(keys).toContain('fadeIn');
+    expect(keys).toContain('fadeOut');
+    expect(keys).toContain('offsetX');
+    expect(keys).toContain('offsetY');
+  });
+
+  it('34. ADVANCED offers portable EXPORT / IMPORT of drafts', () => {
+    click(q('.cmp-advanced-header'));
+    expect(q('.cmp-export-drafts')?.textContent).toBe('EXPORT DRAFTS');
+    expect(q('.cmp-import-drafts')?.textContent).toBe('IMPORT DRAFTS...');
+    expect(q<HTMLInputElement>('.cmp-import-input')?.accept).toBe('.json');
+  });
+
+  // ---------------------------------------------------------- persistence
+
+  it('35. draft composition survives a panel reinstall (reload)', () => {
+    addSlotsFromCatalogue(1);
+    click(qa('.cmp-choreo-btn')[1]);
+    click(qa('.cmp-polish-btn')[3]);
+    const beforeSlots = qa('.cmp-slot-card').length;
+
+    dispose();
+    document.body.textContent = '';
+    document.head.textContent = '';
+    dispose = installVfxComposerPanel({ enabled: true });
+
+    expect(qa('.cmp-slot-card').length).toBe(beforeSlots);
+    expect(qa('.cmp-choreo-btn')[1]!.classList.contains('cmp-active')).toBe(true);
+    expect(qa('.cmp-polish-btn')[3]!.classList.contains('cmp-active')).toBe(true);
+  });
+
+  it('36. the selected action survives a panel reinstall', () => {
+    const select = q<HTMLSelectElement>('.cmp-action-select')!;
+    const target = select.options[3]!.value;
+    select.value = target;
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+
+    dispose();
+    document.body.textContent = '';
+    document.head.textContent = '';
+    dispose = installVfxComposerPanel({ enabled: true });
+
+    expect(q<HTMLSelectElement>('.cmp-action-select')!.value).toBe(target);
+  });
+
+  it('37. non-CartoonCoffee migrated sources are flagged, not silently ignored', () => {
+    // basic_greatsword_hit migrates from a legacy production sheet id when no
+    // megapack candidate is assigned. Such a slot cannot be previewed, so the
+    // UI must say so and invite REPLACE.
+    const select = q<HTMLSelectElement>('.cmp-action-select')!;
+    select.value = 'basic_greatsword_hit';
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    const flagged = qa('.cmp-slot-card.cmp-slot-unplayable');
+    if (flagged.length > 0) {
+      expect(flagged[0]!.querySelector('.cmp-slot-flag')?.textContent).toContain('REPLACE');
+      expect(q('[data-section="primary_actions"] .cmp-warn')?.textContent).toContain('REPLACE');
+    }
+  });
+
+  it('38. replacing an unplayable slot with a real candidate clears the flag', () => {
+    const select = q<HTMLSelectElement>('.cmp-action-select')!;
+    select.value = 'basic_greatsword_hit';
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    const flagged = qa<HTMLElement>('.cmp-slot-card.cmp-slot-unplayable');
+    if (flagged.length === 0) return;
+    click(flagged[0]!.querySelector('.cmp-slot-replace'));
+    click(q('.cmp-cat-add'));
+    expect(qa('.cmp-slot-card.cmp-slot-unplayable')).toHaveLength(0);
+    expect(q('[data-section="primary_actions"] .cmp-warn')).toBeNull();
+  });
+
+  it('39. dispose removes the root and its style', () => {
+    dispose();
+    expect(document.getElementById(ROOT_ID)).toBeNull();
+    expect(document.getElementById('r2c-vfx-composer-style')).toBeNull();
+    dispose = () => {};
+  });
+});

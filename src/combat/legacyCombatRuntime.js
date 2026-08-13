@@ -18,6 +18,7 @@ import { installVfxWorkbench } from './vfx/VfxWorkbench';
 import { getMegaPackHeldReviewEntries } from './vfx/MegaPackHeldReview';
 import { installMegaPackHeldReviewWorkbench } from './vfx/MegaPackHeldReviewWorkbench';
 import { installCombatVfxLabWorkbench, isVfxLabEnabled } from './vfx/CombatVfxLabWorkbench';
+import { installVfxComposerPanel } from './vfx/CombatVfxComposerPanel';
 import { vfxResourceManager } from './vfx/VfxResourceManager';
 import { getLabAction } from './vfx/CombatVfxLab';
 import { getResolvedCarouselStatusFrame, getStatusIndicatorAsset, getStatusIndicatorEmphasis, getVisibleStatusIndicators, resolveStatusCarousel } from './statusPresentation';
@@ -85,6 +86,7 @@ const R2CA_REVIEW_ENABLED=(campaignParams.get('r2ca')==='1')&&(location.hostname
 const VFX_LAB_ENABLED=isVfxLabEnabled();
 let disposeMegaPackHeldReviewWorkbench=()=>{};
 let disposeCombatVfxLabWorkbench=()=>{};
+let disposeVfxComposerPanel=()=>{};
 function campaignUnitHealth(){
   const out={};
   for(const u of G.deployedUnits||[]) out[u.campaignId||u.name]=Math.max(0,Math.round(u.alive?u.hp:0));
@@ -2552,8 +2554,8 @@ function buildLabPlaybackContext(){
   };
 }
 function getLabVfxStats(){ return vfxResourceManager.getStats(); }
-async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); installVfxWorkbench({system:combatVfxSystem,getContext:vfxWorkbenchContext}); disposeMegaPackHeldReviewWorkbench=installMegaPackHeldReviewWorkbench({enabled:R2CA_REVIEW_ENABLED,entries:R2CA_REVIEW_ENABLED?getMegaPackHeldReviewEntries():[],play:playMegaPackHeldReview}); disposeCombatVfxLabWorkbench=installCombatVfxLabWorkbench({enabled:VFX_LAB_ENABLED,playback:VFX_LAB_ENABLED?buildLabPlaybackContext():undefined,getStats:VFX_LAB_ENABLED?getLabVfxStats:undefined}); installUnitMotionWorkbench({enabled:MOTION_QA_ENABLED,play:playQaMotionScenario,reset:resetQaMotion}); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none'; }
-function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; if(_animationFrame)cancelAnimationFrame(_animationFrame); restoreUnitFocus(); for(const unit of G.units.slice()){killSpriteMotion(unit);disposeBossIntentPresentation(unit);} for(const texture of bossIntentBadgeTextures.values())texture.dispose(); bossIntentBadgeTextures.clear(); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); disposeMegaPackHeldReviewWorkbench(); disposeCombatVfxLabWorkbench(); combatVfxSystem.dispose(); combatStage.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
+async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); installVfxWorkbench({system:combatVfxSystem,getContext:vfxWorkbenchContext}); disposeMegaPackHeldReviewWorkbench=installMegaPackHeldReviewWorkbench({enabled:R2CA_REVIEW_ENABLED,entries:R2CA_REVIEW_ENABLED?getMegaPackHeldReviewEntries():[],play:playMegaPackHeldReview}); disposeCombatVfxLabWorkbench=installCombatVfxLabWorkbench({enabled:VFX_LAB_ENABLED,playback:VFX_LAB_ENABLED?buildLabPlaybackContext():undefined,getStats:VFX_LAB_ENABLED?getLabVfxStats:undefined}); disposeVfxComposerPanel=installVfxComposerPanel({enabled:VFX_LAB_ENABLED,playback:VFX_LAB_ENABLED?buildLabPlaybackContext():undefined}); installUnitMotionWorkbench({enabled:MOTION_QA_ENABLED,play:playQaMotionScenario,reset:resetQaMotion}); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none'; }
+function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; if(_animationFrame)cancelAnimationFrame(_animationFrame); restoreUnitFocus(); for(const unit of G.units.slice()){killSpriteMotion(unit);disposeBossIntentPresentation(unit);} for(const texture of bossIntentBadgeTextures.values())texture.dispose(); bossIntentBadgeTextures.clear(); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); disposeMegaPackHeldReviewWorkbench(); disposeCombatVfxLabWorkbench(); disposeVfxComposerPanel(); combatVfxSystem.dispose(); combatStage.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
 window.addEventListener('pagehide',disposeCombatRuntime,{once:true});
 window.addEventListener('error',()=>{ if(dom.loading&&dom.loading.style.display!=='none') dom.loading.innerHTML='<div style="color:#ff8a7a;max-width:540px;text-align:center;line-height:26px">Échec du chargement de Three.js.<br>Vérifiez votre connexion internet puis rechargez la page.<br><span style="color:#9fb0d0">La page doit être servie via un serveur local (http://), pas ouverte directement depuis le disque.</span></div>'; });
 window.addEventListener('unhandledrejection',e=>console.error(e.reason));

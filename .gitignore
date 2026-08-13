@@ -23,5 +23,8 @@ __pycache__/
 # Temporary QC artifacts
 tmp/
 
+# Playwright persistent browser profiles (QA only)
+.playwright-*/
+
 # Local IDE config
 .devin/

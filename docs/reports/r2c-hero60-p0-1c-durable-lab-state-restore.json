@@ -1,0 +1,100 @@
+{
+  "reportId": "r2c-hero60-p0-1c-durable-lab-state-restore",
+  "generatedAt": "2026-08-13T03:10:00.000Z",
+  "mission": "R2C-HERO60 P0.1C — Durable VFX Lab State Restore",
+  "status": "COMPLETE",
+
+  "restoreMechanism": {
+    "description": "DEV-only RESTORE QA CHECKPOINT buttons added to the VFX Lab Workbench. Two buttons: (1) RESTORE P0.1B CHECKPOINT — loads the bundled P0.1B checkpoint JSON directly, (2) RESTORE FROM FILE — opens a file picker to load any checkpoint JSON. Both call restoreLabStateFromCheckpoint() which validates the schema, extracts LabState, and persists through the normal saveLabStateToStorage(localStorage) path. The Inspector updates immediately after restore. No auto-overwrite on startup — restore is explicit and intentional only.",
+    "functions": [
+      "restoreLabStateFromCheckpoint(raw: string): LabCheckpointRestoreResult — validates and restores LabState from JSON string",
+      "validateCheckpointLabState(raw: unknown): boolean — schema validation for LabState fields"
+    ],
+    "uiButtons": [
+      "RESTORE P0.1B CHECKPOINT — loads bundled docs/reports/hero60_p0_1b_targeted_readability_repair.json",
+      "RESTORE FROM FILE... — opens file picker for any checkpoint JSON"
+    ],
+    "bundledCheckpoint": "docs/reports/hero60_p0_1b_targeted_readability_repair.json (imported as ES module JSON)"
+  },
+
+  "authoritativeCheckpoint": "docs/reports/hero60_p0_1b_targeted_readability_repair.json",
+
+  "basicGreatswordInspectorAfterRestore": {
+    "candidateId": "r1_1709",
+    "scale": 1.55,
+    "duration": 1.60,
+    "opacity": 1.0,
+    "fadeIn": 0.02,
+    "fadeOut": 0.90,
+    "offsetX": 0,
+    "offsetY": 0,
+    "anchor": "target",
+    "layer": "impact",
+    "blending": "normal",
+    "direction": "face_target"
+  },
+
+  "darkBoltInspectorAfterRestore": {
+    "candidateId": "r1_0934",
+    "scale": 1.55,
+    "duration": 1.70,
+    "opacity": 1.0,
+    "fadeIn": 0.02,
+    "fadeOut": 0.92,
+    "offsetX": 0,
+    "offsetY": 0,
+    "anchor": "target",
+    "layer": "impact",
+    "blending": "additive",
+    "direction": "center_on_target"
+  },
+
+  "acceptedThreePreserved": true,
+
+  "qaSourcesRestored": 64,
+  "qaOverridesRestored": 64,
+  "validated": 0,
+  "applied": 0,
+  "verified": 0,
+
+  "reloadPersistence": "PASS",
+  "freshBrowserProfileRestore": "PASS",
+
+  "verification": {
+    "method": "Playwright persistent context with FRESH profile directory (.playwright-fresh-profile). Navigated to /legacy-combat.html?campaign=1&qa=1&vfxlab=1. Verified localStorage was empty before restore. Clicked RESTORE P0.1B CHECKPOINT button. Verified all 64 QA sources + 64 QA overrides + P0.1B values in localStorage. Reloaded page. Verified values persisted.",
+    "freshProfileBeforeRestore": "localStorage empty (qaSources: 0)",
+    "freshProfileAfterRestore": "qaSources: 64, qaOverrides: 64, validated: 0, tested: 0, verified: 0",
+    "freshProfileAfterReload": "qaSources: 64, basic_greatsword_hit scale=1.55 duration=1.6, n_dark_bolt scale=1.55 duration=1.7"
+  },
+
+  "tests": {
+    "passed": 1757,
+    "total": 1757,
+    "newTests": 28,
+    "newTestFile": "src/combat/vfx/CombatVfxLabV1E38C.test.ts"
+  },
+
+  "build": "PASS",
+  "gitDiffCheck": "PASS",
+
+  "modifiedFiles": [
+    "src/combat/vfx/CombatVfxLab.ts (added restoreLabStateFromCheckpoint + validateCheckpointLabState)",
+    "src/combat/vfx/CombatVfxLabWorkbench.ts (added RESTORE QA CHECKPOINT buttons + bundled checkpoint import)"
+  ],
+
+  "newFiles": [
+    "src/combat/vfx/CombatVfxLabV1E38C.test.ts (28 tests for restore mechanism)",
+    "docs/reports/r2c-hero60-p0-1c-durable-lab-state-restore.md",
+    "docs/reports/r2c-hero60-p0-1c-durable-lab-state-restore.json"
+  ],
+
+  "commit": "NO",
+  "push": "NO",
+
+  "finalGates": {
+    "R2C_VFX_LAB_CHECKPOINT_PORTABLE": "YES",
+    "R2C_P0_1B_VALUES_VISIBLE_IN_INSPECTOR": "YES",
+    "R2C_P0_1B_VALUES_SURVIVE_RELOAD": "YES",
+    "R2C_P0_1B_VALUES_RESTORABLE_IN_FRESH_PROFILE": "YES"
+  }
+}
