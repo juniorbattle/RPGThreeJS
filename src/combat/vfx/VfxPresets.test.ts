@@ -12,7 +12,6 @@ import {
   PILOT_VFX_PRESET_IDS,
 } from './VfxPresets';
 import { VFX_TEXTURE_NAMES } from './VfxTextures';
-import { isVfxWorkbenchEnabled } from './VfxWorkbench';
 import type { VfxStepType } from './VfxTypes';
 
 const PHASE_1_PRESETS = ['fireball', 'heal_burst', 'boss_quake'];
@@ -194,10 +193,5 @@ describe('combat VFX presets', () => {
         expect(step.reducedGraphicsMultiplier).toBeLessThanOrEqual(1);
       }
     }
-  });
-
-  it('keeps the workbench strictly development-only', () => {
-    expect(isVfxWorkbenchEnabled(true)).toBe(true);
-    expect(isVfxWorkbenchEnabled(false)).toBe(false);
   });
 });

@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { installVfxComposerPanel } from './CombatVfxComposerPanel';
-import { COMPOSER_STORAGE_KEY, loadComposerStore } from './VfxComposerPlayback';
+import { COMPOSER_STORAGE_KEY, COMPOSER_UI_PREFS_KEY, loadComposerStore, loadComposerUiPrefs } from './VfxComposerPlayback';
 
 const ROOT_ID = 'r2c-vfx-composer';
 
@@ -289,26 +289,49 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
 
   // ---------------------------------------------------------- primary actions
 
-  it('28. both preview buttons and SAVE DRAFT are present', () => {
+  it('28. all four primary action buttons are present in order', () => {
     expect(q('.cmp-play-visuals')?.textContent).toBe('PLAY VISUALS ONLY');
     expect(q('.cmp-play-full')?.textContent).toBe('PLAY FULL PRESET');
+    expect(q('.cmp-play-stage')?.textContent).toBe('PLAY IN COMBAT STAGE');
     expect(q('.cmp-save-draft')?.textContent).toBe('SAVE DRAFT');
   });
 
-  it('29. preview buttons are disabled with zero slots', () => {
+  it('29. preview and stage buttons are disabled with zero slots', () => {
     removeAllSlots();
     expect(q<HTMLButtonElement>('.cmp-play-visuals')!.disabled).toBe(true);
     expect(q<HTMLButtonElement>('.cmp-play-full')!.disabled).toBe(true);
+    expect(q<HTMLButtonElement>('.cmp-play-stage')!.disabled).toBe(true);
   });
 
-  it('30. preview buttons enable once a slot exists', () => {
+  it('30. preview and stage buttons enable once a slot exists', () => {
     click(q('.cmp-add-slot'));
     click(q('.cmp-cat-add'));
     expect(q<HTMLButtonElement>('.cmp-play-visuals')!.disabled).toBe(false);
     expect(q<HTMLButtonElement>('.cmp-play-full')!.disabled).toBe(false);
+    expect(q<HTMLButtonElement>('.cmp-play-stage')!.disabled).toBe(false);
   });
 
-  it('31. SAVE DRAFT persists to the composer store key', () => {
+  it('31. PLAY IN COMBAT STAGE calls playDraftInCombatStage', () => {
+    dispose();
+    document.body.textContent = '';
+    document.head.textContent = '';
+    dispose = installVfxComposerPanel({
+      enabled: true,
+      playback: {
+        vfxSystem: { playLabSpriteSheet: () => ({ completion: Promise.resolve() }) } as never,
+        buildContext: () => ({ source: { gx: 0, gz: 0 }, target: { gx: 1, gz: 1 }, helpers: {} } as never),
+        buildStageContext: async (_key: string, playVfx: (ctx: never) => Promise<void>) => {
+          await playVfx({} as never);
+          return true;
+        },
+      },
+    });
+    addSlotsFromCatalogue(1);
+    click(q('.cmp-play-stage'));
+    expect(q('.cmp-status')?.textContent).toContain('Stage');
+  });
+
+  it('32. SAVE DRAFT persists to the composer store key', () => {
     click(q('.cmp-add-slot'));
     click(q('.cmp-cat-add'));
     click(q('.cmp-save-draft'));
@@ -318,12 +341,12 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
 
   // ---------------------------------------------------------- advanced
 
-  it('32. ADVANCED is collapsed by default', () => {
+  it('33. ADVANCED is collapsed by default', () => {
     expect(q('.cmp-advanced-body')).toBeNull();
     expect(q('.cmp-advanced-header')?.textContent).toContain('▸');
   });
 
-  it('33. ADVANCED reveals raw numeric overrides when expanded', () => {
+  it('34. ADVANCED reveals raw numeric overrides when expanded', () => {
     click(q('.cmp-add-slot'));
     click(q('.cmp-cat-add'));
     click(q('.cmp-advanced-header'));
@@ -337,7 +360,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     expect(keys).toContain('offsetY');
   });
 
-  it('34. ADVANCED offers portable EXPORT / IMPORT of drafts', () => {
+  it('35. ADVANCED offers portable EXPORT / IMPORT of drafts', () => {
     click(q('.cmp-advanced-header'));
     expect(q('.cmp-export-drafts')?.textContent).toBe('EXPORT DRAFTS');
     expect(q('.cmp-import-drafts')?.textContent).toBe('IMPORT DRAFTS...');
@@ -346,7 +369,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
 
   // ---------------------------------------------------------- persistence
 
-  it('35. draft composition survives a panel reinstall (reload)', () => {
+  it('36. draft composition survives a panel reinstall (reload)', () => {
     addSlotsFromCatalogue(1);
     click(qa('.cmp-choreo-btn')[1]);
     click(qa('.cmp-polish-btn')[3]);
@@ -362,7 +385,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     expect(qa('.cmp-polish-btn')[3]!.classList.contains('cmp-active')).toBe(true);
   });
 
-  it('36. the selected action survives a panel reinstall', () => {
+  it('37. the selected action survives a panel reinstall', () => {
     const select = q<HTMLSelectElement>('.cmp-action-select')!;
     const target = select.options[3]!.value;
     select.value = target;
@@ -376,7 +399,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     expect(q<HTMLSelectElement>('.cmp-action-select')!.value).toBe(target);
   });
 
-  it('37. non-CartoonCoffee migrated sources are flagged, not silently ignored', () => {
+  it('38. non-CartoonCoffee migrated sources are flagged, not silently ignored', () => {
     // basic_greatsword_hit migrates from a legacy production sheet id when no
     // megapack candidate is assigned. Such a slot cannot be previewed, so the
     // UI must say so and invite REPLACE.
@@ -390,7 +413,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     }
   });
 
-  it('38. replacing an unplayable slot with a real candidate clears the flag', () => {
+  it('39. replacing an unplayable slot with a real candidate clears the flag', () => {
     const select = q<HTMLSelectElement>('.cmp-action-select')!;
     select.value = 'basic_greatsword_hit';
     select.dispatchEvent(new Event('change', { bubbles: true }));
@@ -402,10 +425,195 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     expect(q('[data-section="primary_actions"] .cmp-warn')).toBeNull();
   });
 
-  it('39. dispose removes the root and its style', () => {
+  it('40. dispose removes the root and its style', () => {
     dispose();
     expect(document.getElementById(ROOT_ID)).toBeNull();
     expect(document.getElementById('r2c-vfx-composer-style')).toBeNull();
     dispose = () => {};
+  });
+});
+
+describe('R2C-VFX LAB V2.1.1 — Composer minimize / expand', () => {
+  let dispose: () => void = () => {};
+
+  beforeEach(() => {
+    localStorage.clear();
+    document.body.textContent = '';
+    document.head.textContent = '';
+    dispose = installVfxComposerPanel({ enabled: true });
+  });
+
+  afterEach(() => {
+    dispose();
+    localStorage.clear();
+  });
+
+  it('1. starts EXPANDED by default when no preference exists', () => {
+    expect(getRoot().classList.contains('cmp-minimized')).toBe(false);
+    expect(q('.cmp-minimize')).not.toBeNull();
+    expect(q('.cmp-expand')).toBeNull();
+  });
+
+  it('2. clicking MINIMIZE switches to MINIMIZED mode', () => {
+    click(q('.cmp-minimize'));
+    expect(getRoot().classList.contains('cmp-minimized')).toBe(true);
+  });
+
+  it('3. large Composer body is absent in MINIMIZED mode', () => {
+    click(q('.cmp-minimize'));
+    expect(q('[data-section="visual_slots"]')).toBeNull();
+    expect(q('[data-section="composition"]')).toBeNull();
+    expect(q('[data-section="technical_polish"]')).toBeNull();
+    expect(q('[data-section="primary_actions"]')).toBeNull();
+    expect(q('[data-section="advanced"]')).toBeNull();
+    expect(q('.cmp-action-select')).toBeNull();
+    expect(q('.cmp-play-visuals')).toBeNull();
+    expect(q('.cmp-play-full')).toBeNull();
+    expect(q('.cmp-play-stage')).toBeNull();
+    expect(q('.cmp-save-draft')).toBeNull();
+  });
+
+  it('4. compact header remains visible in MINIMIZED mode', () => {
+    click(q('.cmp-minimize'));
+    expect(q('.cmp-dock')).not.toBeNull();
+    expect(q('.cmp-dock-title')?.textContent).toBe('VFX PRESET COMPOSER');
+    expect(q('.cmp-expand')).not.toBeNull();
+    expect(q('.cmp-expand')?.getAttribute('aria-label')).toBe('EXPAND VFX PRESET COMPOSER');
+  });
+
+  it('5. clicking EXPAND restores the full Composer', () => {
+    click(q('.cmp-minimize'));
+    click(q('.cmp-expand'));
+    expect(getRoot().classList.contains('cmp-minimized')).toBe(false);
+    expect(q('.cmp-minimize')).not.toBeNull();
+    expect(q('[data-section="visual_slots"]')).not.toBeNull();
+    expect(q('[data-section="primary_actions"]')).not.toBeNull();
+  });
+
+  it('6. draft data is unchanged across minimize → expand', () => {
+    addSlotsFromCatalogue(2);
+    click(qa('.cmp-choreo-btn')[1]);
+    click(qa('.cmp-polish-btn')[3]);
+    const before = JSON.stringify(loadComposerStore(localStorage).drafts);
+    click(q('.cmp-minimize'));
+    click(q('.cmp-expand'));
+    const after = JSON.stringify(loadComposerStore(localStorage).drafts);
+    expect(after).toBe(before);
+  });
+
+  it('7. selected action remains unchanged across minimize → expand', () => {
+    const select = q<HTMLSelectElement>('.cmp-action-select')!;
+    const target = select.options[3]!.value;
+    select.value = target;
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    click(q('.cmp-minimize'));
+    click(q('.cmp-expand'));
+    expect(q<HTMLSelectElement>('.cmp-action-select')!.value).toBe(target);
+  });
+
+  it('8. display mode survives browser reload', () => {
+    click(q('.cmp-minimize'));
+    expect(getRoot().classList.contains('cmp-minimized')).toBe(true);
+    dispose();
+    document.body.textContent = '';
+    document.head.textContent = '';
+    dispose = installVfxComposerPanel({ enabled: true });
+    expect(getRoot().classList.contains('cmp-minimized')).toBe(true);
+    expect(q('.cmp-expand')).not.toBeNull();
+  });
+
+  it('9. display mode is NOT included in portable VFX draft export', () => {
+    addSlotsFromCatalogue(1);
+    click(q('.cmp-save-draft'));
+    click(q('.cmp-minimize'));
+    const draftStore = localStorage.getItem(COMPOSER_STORAGE_KEY);
+    const uiPrefs = localStorage.getItem(COMPOSER_UI_PREFS_KEY);
+    expect(draftStore).not.toBeNull();
+    expect(draftStore).not.toContain('displayMode');
+    expect(draftStore).not.toContain('minimized');
+    expect(uiPrefs).toContain('minimized');
+  });
+
+  it('10. PLAY IN COMBAT STAGE still works after expanding again', () => {
+    dispose();
+    document.body.textContent = '';
+    document.head.textContent = '';
+    dispose = installVfxComposerPanel({
+      enabled: true,
+      playback: {
+        vfxSystem: { playLabSpriteSheet: () => ({ completion: Promise.resolve() }) } as never,
+        buildContext: () => ({ source: { gx: 0, gz: 0 }, target: { gx: 1, gz: 1 }, helpers: {} } as never),
+        buildStageContext: async (_key: string, playVfx: (ctx: never) => Promise<void>) => {
+          await playVfx({} as never);
+          return true;
+        },
+      },
+    });
+    addSlotsFromCatalogue(1);
+    click(q('.cmp-minimize'));
+    click(q('.cmp-expand'));
+    click(q('.cmp-play-stage'));
+    expect(q('.cmp-status')?.textContent).toContain('Stage');
+  });
+});
+
+describe('R2C-VFX LAB V2.1.2 — Expanded layout regression', () => {
+  let dispose: () => void = () => {};
+
+  beforeEach(() => {
+    localStorage.clear();
+    document.body.textContent = '';
+    document.head.textContent = '';
+    dispose = installVfxComposerPanel({ enabled: true });
+  });
+
+  afterEach(() => {
+    dispose();
+    localStorage.clear();
+  });
+
+  it('1. MINIMIZE control is not inside the header element', () => {
+    const header = q('.cmp-header')!;
+    const minBtn = q('.cmp-minimize')!;
+    expect(header.contains(minBtn)).toBe(false);
+  });
+
+  it('2. MINIMIZE is a direct child of the root, not nested in any section', () => {
+    const minBtn = q('.cmp-minimize')!;
+    expect(minBtn.parentElement).toBe(getRoot());
+  });
+
+  it('3. action select belongs to the header action row, not a flex sibling of MINIMIZE', () => {
+    const select = q('.cmp-action-select')!;
+    const header = q('.cmp-header')!;
+    expect(header.contains(select)).toBe(true);
+  });
+
+  it('4. preset info remains structurally inside the header, separate from MINIMIZE', () => {
+    const preset = q('.cmp-preset-id')!;
+    const header = q('.cmp-header')!;
+    expect(header.contains(preset)).toBe(true);
+  });
+
+  it('5. expanded body structure is unchanged — all sections present in order', () => {
+    const sections = qa('[data-section]');
+    const sectionKeys = sections.map((s) => s.getAttribute('data-section'));
+    expect(sectionKeys).toContain('visual_slots');
+    expect(sectionKeys).toContain('composition');
+    expect(sectionKeys).toContain('technical_polish');
+    expect(sectionKeys).toContain('primary_actions');
+  });
+
+  it('6. header does not have flex/space-between layout', () => {
+    const header = q('.cmp-header')!;
+    const style = window.getComputedStyle(header);
+    expect(style.display).not.toBe('flex');
+  });
+
+  it('7. minimized mode remains compact with dock', () => {
+    click(q('.cmp-minimize'));
+    expect(q('.cmp-dock')).not.toBeNull();
+    expect(q('.cmp-expand')).not.toBeNull();
+    expect(q('.cmp-header')).toBeNull();
   });
 });

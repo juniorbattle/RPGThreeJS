@@ -57,6 +57,8 @@ import type {
 import {
   loadComposerStore,
   saveComposerStore,
+  loadComposerUiPrefs,
+  saveComposerUiPrefs,
   putDraft,
   getDraft,
   setSelectedActionKey,
@@ -67,8 +69,9 @@ import {
   unplayableSlotCandidates,
   playDraftVisualsOnly,
   playDraftFull,
+  playDraftInCombatStage,
 } from './VfxComposerPlayback';
-import type { ComposerPlaybackContext, ComposerStore } from './VfxComposerPlayback';
+import type { ComposerPlaybackContext, ComposerStore, ComposerDisplayMode } from './VfxComposerPlayback';
 import { resolvePreview } from './VfxPreviewResolver';
 
 const COMPOSER_STYLE_ID = 'r2c-vfx-composer-style';
@@ -93,6 +96,13 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
   let cataloguePage = 1;
   let advancedOpen = false;
   let replaceTargetSlotId: string | null = null;
+  let displayMode: ComposerDisplayMode = loadComposerUiPrefs(localStorage).displayMode;
+
+  function setDisplayMode(mode: ComposerDisplayMode): void {
+    displayMode = mode;
+    saveComposerUiPrefs(localStorage, { displayMode });
+    render();
+  }
 
   addComposerStyle();
 
@@ -157,7 +167,18 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
 
   function render(): void {
     root.textContent = '';
+    root.classList.toggle('cmp-minimized', displayMode === 'minimized');
     const draft = currentDraft();
+
+    if (displayMode === 'minimized') {
+      root.appendChild(renderMinimizedDock(draft));
+      return;
+    }
+
+    const minBtn = buildButton('MINIMIZE', 'cmp-minimize', () => setDisplayMode('minimized'));
+    minBtn.setAttribute('aria-label', 'MINIMIZE VFX PRESET COMPOSER');
+    minBtn.title = 'Minimize VFX Preset Composer';
+    root.appendChild(minBtn);
 
     root.appendChild(renderHeader(draft));
     root.appendChild(renderVisualSlots(draft));
@@ -167,6 +188,29 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     root.appendChild(renderPrimaryActions(draft));
     root.appendChild(renderAdvanced(draft));
     root.appendChild(statusLine);
+  }
+
+  function renderMinimizedDock(draft: VfxPresetDraft): HTMLElement {
+    const dock = document.createElement('div');
+    dock.className = 'cmp-dock';
+
+    const title = document.createElement('div');
+    title.className = 'cmp-dock-title';
+    title.textContent = 'VFX PRESET COMPOSER';
+    dock.appendChild(title);
+
+    const action = getLabAction(draft.actionKey);
+    const ctx = document.createElement('div');
+    ctx.className = 'cmp-dock-context';
+    ctx.textContent = action ? `${action.displayName} · ${draft.presetId}` : draft.presetId;
+    dock.appendChild(ctx);
+
+    const expandBtn = buildButton('EXPAND', 'cmp-expand', () => setDisplayMode('expanded'));
+    expandBtn.setAttribute('aria-label', 'EXPAND VFX PRESET COMPOSER');
+    expandBtn.title = 'Expand VFX Preset Composer';
+    dock.appendChild(expandBtn);
+
+    return dock;
   }
 
   function renderHeader(draft: VfxPresetDraft): HTMLElement {
@@ -533,6 +577,24 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     fullBtn.disabled = draft.visualSlots.length === 0;
     section.appendChild(fullBtn);
 
+    const stageBtn = buildButton('PLAY IN COMBAT STAGE', 'cmp-play-stage', () => {
+      if (!options.playback) { statusLine.textContent = 'Playback unavailable.'; return; }
+      statusLine.textContent = 'Opening Combat Stage…';
+      stageBtn.disabled = true;
+      playDraftInCombatStage(options.playback, draft, 'full_preset')
+        .then((result) => {
+          statusLine.textContent = result.played
+            ? `Stage playback: ${result.snapshot?.slotCount} slot(s), ${result.snapshot?.technicalEffectCount} technical effect(s)`
+            : `Stage unavailable: ${result.reason ?? 'unknown'}`;
+        })
+        .catch((err) => {
+          statusLine.textContent = `Stage error: ${err instanceof Error ? err.message : 'unknown'}`;
+        })
+        .finally(() => { stageBtn.disabled = draft.visualSlots.length === 0; });
+    });
+    stageBtn.disabled = draft.visualSlots.length === 0;
+    section.appendChild(stageBtn);
+
     section.appendChild(buildButton('SAVE DRAFT', 'cmp-save-draft', () => {
       persist(draft);
       statusLine.textContent = `Draft saved: ${draft.actionKey} (${draft.visualSlots.length} slots)`;
@@ -711,7 +773,7 @@ function addComposerStyle(): void {
     #${COMPOSER_ROOT_ID} button.cmp-active{border-color:#66cfea;background:#12506b;font-weight:700}
     #${COMPOSER_ROOT_ID} input,#${COMPOSER_ROOT_ID} select{width:100%;box-sizing:border-box;border:1px solid #3a5c70;border-radius:4px;
       background:#0c1c2c;color:#dfeef7;font:inherit;font-size:11px;padding:3px 5px}
-    #${COMPOSER_ROOT_ID} .cmp-title{color:#9fe5ff;font-size:12px;font-weight:800;letter-spacing:.08em;margin-bottom:6px}
+    #${COMPOSER_ROOT_ID} .cmp-title{color:#9fe5ff;font-size:12px;font-weight:800;letter-spacing:.08em;margin-bottom:6px;padding-right:72px}
     #${COMPOSER_ROOT_ID} .cmp-section{margin-bottom:10px;padding:8px;border:1px solid #24404f;border-radius:6px;background:rgba(14,30,44,.5)}
     #${COMPOSER_ROOT_ID} .cmp-section-heading{color:#9fe5ff;font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-bottom:6px}
     #${COMPOSER_ROOT_ID} .cmp-preset-id{color:#8fa5b2;font-size:10px;margin-top:5px}
@@ -760,6 +822,12 @@ function addComposerStyle(): void {
     #${COMPOSER_ROOT_ID} .cmp-adv-field{color:#8fa5b2;font-size:9px}
     #${COMPOSER_ROOT_ID} .cmp-adv-portable{display:grid;gap:4px;margin-top:8px}
     #${COMPOSER_ROOT_ID} .cmp-status{min-height:15px;margin-top:6px;color:#8fa5b2;font-size:10px}
+    #${COMPOSER_ROOT_ID} .cmp-minimize{position:absolute;top:8px;right:8px;z-index:9;font-size:9px;padding:2px 6px;border-color:#3a5c70}
+    #${COMPOSER_ROOT_ID}.cmp-minimized{width:300px;max-height:none;overflow:visible;padding:7px}
+    #${COMPOSER_ROOT_ID}.cmp-minimized .cmp-dock{display:flex;flex-direction:column;gap:5px}
+    #${COMPOSER_ROOT_ID} .cmp-dock-title{color:#9fe5ff;font-size:11px;font-weight:800;letter-spacing:.06em}
+    #${COMPOSER_ROOT_ID} .cmp-dock-context{color:#8fa5b2;font-size:10px;word-break:break-all}
+    #${COMPOSER_ROOT_ID} .cmp-expand{border-color:#66cfea;background:#0f3b52;font-weight:700;padding:5px;font-size:10px}
   `;
   document.head.appendChild(style);
 }

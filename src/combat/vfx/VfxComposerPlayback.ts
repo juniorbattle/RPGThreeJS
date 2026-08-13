@@ -46,6 +46,40 @@ import type {
 
 export const COMPOSER_STORAGE_KEY = 'r2c-vfx-composer-drafts';
 
+// ============================================================ UI Preferences
+
+/**
+ * Composer UI preferences — display-mode only. Kept strictly separate from the
+ * portable artistic draft schema so that export/import of drafts never carries
+ * UI state.
+ */
+export const COMPOSER_UI_PREFS_KEY = 'r2c-vfx-composer-ui-prefs';
+
+export type ComposerDisplayMode = 'expanded' | 'minimized';
+
+export interface ComposerUiPrefs {
+  displayMode: ComposerDisplayMode;
+}
+
+export function loadComposerUiPrefs(storage: Storage): ComposerUiPrefs {
+  try {
+    const raw = storage.getItem(COMPOSER_UI_PREFS_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw) as Partial<ComposerUiPrefs>;
+      if (parsed.displayMode === 'expanded' || parsed.displayMode === 'minimized') {
+        return { displayMode: parsed.displayMode };
+      }
+    }
+  } catch {
+    /* fall through to default */
+  }
+  return { displayMode: 'expanded' };
+}
+
+export function saveComposerUiPrefs(storage: Storage, prefs: ComposerUiPrefs): void {
+  storage.setItem(COMPOSER_UI_PREFS_KEY, JSON.stringify(prefs));
+}
+
 export interface ComposerStore {
   drafts: Record<string, VfxPresetDraft>;
   selectedActionKey?: string;

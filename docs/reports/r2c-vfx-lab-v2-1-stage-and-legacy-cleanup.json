@@ -1,0 +1,160 @@
+{
+  "reportId": "r2c-vfx-lab-v2-1-stage-and-legacy-cleanup",
+  "generatedAt": "2026-08-13T05:00:00.000Z",
+  "mission": "R2C-VFX LAB V2.1 — Combat Stage Preview + Legacy QA Audit/Cleanup",
+  "status": "COMPLETE",
+
+  "baseline": {
+    "head": "406c8474017dab9200579a73e7ea26f7cdd2e397",
+    "testsBefore": 1881,
+    "vfxFilesBefore": 57,
+    "testFilesBefore": 38
+  },
+
+  "phaseA": {
+    "buttonAdded": true,
+    "usesCurrentDraft": true,
+    "usesActualCombatStage": true,
+    "temporaryPresetOnly": true,
+    "productionMutation": 0,
+    "slot1StageTest": "PASS",
+    "togetherStageTest": "PASS",
+    "sequenceStageTest": "PASS",
+    "pairThenLastStageTest": "PASS",
+    "offStageTest": "PASS",
+    "strongStageTest": "PASS",
+    "draftPreserved": "PASS",
+    "implementation": "playDraftInCombatStage in VfxComposerPlayback.ts calls ctx.buildStageContext(actionKey, playVfx) which enters the real Combat Stage, plays the compiled draft, then exits. No production preset registration."
+  },
+
+  "phaseB": {
+    "vfxFilesAfter": 27,
+    "testFilesAfter": 14,
+    "filesDeleted": 32,
+    "filesAdded": 2,
+    "legacyVersionTestsRemoved": 25,
+    "currentTestsRetained": 12,
+    "currentTestsAdded": 2,
+    "linesAdded": 313,
+    "linesDeleted": 15133,
+    "netLocChange": -14820
+  },
+
+  "deletionManifest": [
+    { "file": "CombatVfxLabWorkbench.ts", "classification": "LEGACY_VFX_LAB", "action": "DELETE", "reason": "Old Lab workbench UI — replaced by Composer", "replacement": "CombatVfxComposerPanel.ts" },
+    { "file": "MegaPackHeldReview.ts", "classification": "LEGACY_R2CA", "action": "DELETE", "reason": "R2C-A source review data — superseded by Composer catalogue", "replacement": "VfxComposerPlayback.ts catalogue" },
+    { "file": "MegaPackHeldReviewWorkbench.ts", "classification": "LEGACY_R2CA", "action": "DELETE", "reason": "R2C-A workbench UI — retired", "replacement": "CombatVfxComposerPanel.ts" },
+    { "file": "MegaPackHeldReview.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired R2C-A workflow", "replacement": "None" },
+    { "file": "VfxWorkbench.ts", "classification": "LEGACY_VFX_LAB", "action": "DELETE", "reason": "Old ?vfx=1 workbench — superseded by Composer", "replacement": "CombatVfxComposerPanel.ts" },
+    { "file": "LabPlayback.ts", "classification": "LEGACY_VFX_LAB", "action": "DELETE", "reason": "Old Lab playback — Composer has its own playback", "replacement": "VfxComposerPlayback.ts" },
+    { "file": "LabAcquisition.ts", "classification": "LEGACY_VFX_LAB", "action": "DELETE", "reason": "Only used by deleted CombatVfxLabWorkbench", "replacement": "None (DEV endpoint preserved server-side)" },
+    { "file": "CombatVfxLab.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1 Lab workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1B.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1C.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1D.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1D catalogue workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1D1.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1D.1 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1D2.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1D.2 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1D3.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1D.3 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1D4.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1D.4 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1D4_1.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1D.4.1 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1D4_2.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1D.4.2 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1E.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1E workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1E1B.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1E.1B workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1E1C.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1E.1C workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1E2.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1E.2 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1E21.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1E.2.1 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1E3.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1E.3 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1E31.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1E.3.1 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1E33.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1E.3.3 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1E34.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1E.3.4 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1E35.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1E.3.5 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1E36.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1E.3.6 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1E37.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1E.3.7 workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1E38.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1E.3.8 checkpoint workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1E38B.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1E.3.8B checkpoint workflow", "replacement": "VfxActionCatalogue.test.ts" },
+    { "file": "CombatVfxLabV1E38C.test.ts", "classification": "OBSOLETE_TEST", "action": "DELETE", "reason": "Tests retired V1E.3.8C checkpoint workflow", "replacement": "VfxActionCatalogue.test.ts" }
+  ],
+
+  "keptFiles": [
+    { "file": "CombatVfxLab.ts", "classification": "KEEP_SHARED_DEV_INFRA", "reason": "Composer uses getLabActions, getLabAction, buildCatalogue, searchCatalogue, getVisualSpriteSheetSteps, getQaSourceId, loadLabStateFromStorage, isLabEnabled, and types LabAction/LabCatalogueRecord/LabState" },
+    { "file": "VfxPreviewResolver.ts", "classification": "KEEP_SHARED_DEV_INFRA", "reason": "Composer uses resolvePreview for GIF preview URLs" },
+    { "file": "vfxRuntimeRegistry.ts", "classification": "KEEP_CORE_RUNTIME", "reason": "Self-contained runtime manifest utility — not imported by anything but its own test, but documents the runtime manifest structure" },
+    { "file": "VfxR3F.test.ts", "classification": "KEEP_CORE_RUNTIME", "reason": "Tests VFX preset rotation/orientation — production runtime behavior" },
+    { "file": "galleryAnimationFix.test.ts", "classification": "KEEP_CORE_RUNTIME", "reason": "Tests external grid correction validation — production asset pipeline" },
+    { "file": "gridDetectorV2.test.ts", "classification": "KEEP_CORE_RUNTIME", "reason": "Tests grid detection — production asset pipeline" },
+    { "file": "spritesheetPng.test.ts", "classification": "KEEP_CORE_RUNTIME", "reason": "Tests spritesheet PNG validation — production asset pipeline" },
+    { "file": "VfxSystem.ts", "classification": "KEEP_CORE_RUNTIME", "reason": "Core VFX renderer" },
+    { "file": "VfxTypes.ts", "classification": "KEEP_CORE_RUNTIME", "reason": "Core VFX types" },
+    { "file": "VfxPresets.ts", "classification": "KEEP_CORE_RUNTIME", "reason": "Production VFX preset registry" },
+    { "file": "VfxSpriteSheets.ts", "classification": "KEEP_CORE_RUNTIME", "reason": "Sprite sheet definitions" },
+    { "file": "VfxResourceManager.ts", "classification": "KEEP_CORE_RUNTIME", "reason": "Resource management with reference counting" },
+    { "file": "VfxTextures.ts", "classification": "KEEP_CORE_RUNTIME", "reason": "Texture loading" },
+    { "file": "VfxActionRegistry.ts", "classification": "KEEP_CORE_RUNTIME", "reason": "Action registry" },
+    { "file": "VfxPresetComposer.ts", "classification": "KEEP_COMPOSER", "reason": "Composer data model and resolvers" },
+    { "file": "VfxComposerPlayback.ts", "classification": "KEEP_COMPOSER", "reason": "Composer draft store and playback" },
+    { "file": "CombatVfxComposerPanel.ts", "classification": "KEEP_COMPOSER", "reason": "Composer UI panel" }
+  ],
+
+  "legacyRetirement": {
+    "vfxParamRemoved": true,
+    "r2caParamRemoved": true,
+    "vfxlabParamRetained": true,
+    "oldWorkbenchMounted": false,
+    "oldR2caMounted": false
+  },
+
+  "corePreservation": {
+    "VfxSystem": "PRESERVED",
+    "VfxResourceManager": "PRESERVED",
+    "CartoonCoffeeCatalogue": "PRESERVED",
+    "PreviewResolver": "PRESERVED",
+    "CandidateAcquisition": "PRESERVED (server-side DEV endpoint)",
+    "VfxPresetComposer": "PRESERVED",
+    "VfxComposerPlayback": "PRESERVED",
+    "CombatVfxComposerPanel": "PRESERVED",
+    "CombatStage": "PRESERVED",
+    "ProductionVfxRuntime": "PRESERVED"
+  },
+
+  "deadCodeAudit": {
+    "unexpectedCombatVfxLabReferences": 0,
+    "unexpectedR2caReferences": 0,
+    "unexpectedVfxEquals1References": 0,
+    "unexpectedOldLabStorageReferences": 0,
+    "unexpectedLeftover": 0
+  },
+
+  "browserQa": {
+    "composerOnlyUi": "PASS",
+    "oldWorkbenchAbsent": true,
+    "oldR2caAbsent": true,
+    "draftPersistence": "PASS",
+    "visualsOnly": "PASS",
+    "fullPreset": "PASS",
+    "combatStage": "PASS"
+  },
+
+  "technical": {
+    "tests": "982/982 PASS",
+    "build": "PASS",
+    "typecheck": "PASS",
+    "gitDiffCheck": "PASS",
+    "commit": "NO",
+    "push": "NO"
+  },
+
+  "finalGates": {
+    "R2C_VFX_COMPOSER_STAGE_PLAYBACK": "YES",
+    "R2C_VFX_SINGLE_AUTHORING_UI": "YES",
+    "R2C_LEGACY_VFX_QA_RETIRED": "YES",
+    "R2C_R2CA_RETIRED": "YES",
+    "R2C_VFXLAB_QUERY_RETAINED": "YES",
+    "R2C_VFX_DIRECTORY_AUDITED": "YES",
+    "R2C_VFX_OBSOLETE_FILES_REMOVED": "YES",
+    "R2C_VFX_CORE_RUNTIME_PRESERVED": "YES",
+    "R2C_CARTOONCOFFEE_INFRA_PRESERVED": "YES",
+    "R2C_COMBAT_STAGE_PRESERVED": "YES",
+    "R2C_PRODUCTION_BEHAVIOR_UNCHANGED": "YES",
+    "R2C_UNEXPECTED_LEGACY_LEFTOVERS": 0
+  }
+}
