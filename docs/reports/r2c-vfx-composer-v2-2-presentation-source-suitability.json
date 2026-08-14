@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "reportId": "r2c-vfx-composer-v2-2-presentation-source-suitability",
+  "generatedAt": "2026-08-13",
+  "presentationLock": {
+    "sizeProfiles": {
+      "LOW": 1.8,
+      "MID": 2.5,
+      "BIG": 3.4
+    },
+    "visibility": {
+      "opacity": 1,
+      "fadeIn": 0,
+      "fadeOut": 1,
+      "nativePngAlphaPreserved": true,
+      "authorVisibilityControlsExposed": false
+    },
+    "foreground": {
+      "compiledLayer": "impact",
+      "spriteSheetRenderOrder": 74,
+      "statusIndicatorRenderOrder": 60,
+      "depthTest": false,
+      "depthWrite": false,
+      "placements": {
+        "AUTO": "semantic_anchor_foreground_impact",
+        "TARGET": "target_foreground_impact",
+        "CASTER": "source_foreground_impact",
+        "GROUND": "ground_target_foreground_impact"
+      }
+    },
+    "technicalPolishProfilesPreserved": [
+      "AUTO",
+      "OFF",
+      "LIGHT",
+      "STRONG"
+    ]
+  },
+  "sourceInventory": {
+    "path": "docs/reports/vfx-megapack-r1-2-4-corrected-inventory.json",
+    "total": 2769,
+    "defaultCatalogueTotal": 2764,
+    "counts": {
+      "COMBAT_EFFECT": 1589,
+      "SUPPORT_EFFECT": 420,
+      "INDICATOR_UI": 5,
+      "AMBIGUOUS_REVIEW": 755
+    },
+    "hiddenIndicatorIds": [
+      "r1_0001",
+      "r1_0002",
+      "r1_0003",
+      "r1_0004",
+      "r1_0005"
+    ]
+  },
+  "assignmentAudit": {
+    "sourceLockActionsAudited": 16,
+    "conclusiveInvalidAssignments": 2,
+    "repairs": [
+      {
+        "actionId": "a_arrow_rain",
+        "previousCandidateId": "r1_0004",
+        "previousFilename": "Arrow_Indicator_V4_spritesheet.png",
+        "replacementCandidateId": "r1_0614",
+        "replacementFilename": "Impact_Wind_Lv3_spritesheet.png"
+      },
+      {
+        "actionId": "a_zenith_arrow",
+        "previousCandidateId": "r1_0005",
+        "previousFilename": "Arrow_Indicator_V5_spritesheet.png",
+        "replacementCandidateId": "r1_0963",
+        "replacementFilename": "Projectile_Wind_Ball_Lv3_spritesheet.png"
+      }
+    ],
+    "ambiguousReview": [
+      {
+        "actionId": "basic_longbow_hit",
+        "candidateId": "r1_0961",
+        "reason": "Readable combat projectile, but the wind-ball identity is weaker than a true arrow."
+      },
+      {
+        "actionId": "a_precise_shot",
+        "candidateId": "r1_0952",
+        "reason": "Readable combat projectile, but the light/holy identity may be too magical for a physical precision shot."
+      }
+    ],
+    "remainingConclusiveInvalidAssignments": 0
+  },
+  "bowRangedAudit": [
+    {
+      "actionId": "basic_longbow_hit",
+      "displayName": "Longbow shot",
+      "apTier": "basic",
+      "candidateId": "r1_0961",
+      "filename": "Projectile_Wind_Ball_Lv1_spritesheet.png",
+      "decision": "AMBIGUOUS_REVIEW"
+    },
+    {
+      "actionId": "a_precise_shot",
+      "displayName": "Tir précis",
+      "apTier": 2,
+      "candidateId": "r1_0952",
+      "filename": "Projectile_Light_Ball_Lv3_spritesheet.png",
+      "decision": "AMBIGUOUS_REVIEW"
+    },
+    {
+      "actionId": "a_hawk_leap",
+      "displayName": "Bond du faucon",
+      "apTier": 3,
+      "candidateId": "r1_0707",
+      "filename": "Power_Up_v10_A_Wind Rings_spritesheet.png",
+      "decision": "SUPPORT_EFFECT"
+    },
+    {
+      "actionId": "a_arrow_rain",
+      "displayName": "Pluie de flèches",
+      "apTier": 4,
+      "candidateId": "r1_0614",
+      "filename": "Impact_Wind_Lv3_spritesheet.png",
+      "decision": "COMBAT_EFFECT_REPAIRED"
+    },
+    {
+      "actionId": "a_zenith_arrow",
+      "displayName": "Flèche du zénith",
+      "apTier": 5,
+      "candidateId": "r1_0963",
+      "filename": "Projectile_Wind_Ball_Lv3_spritesheet.png",
+      "decision": "COMBAT_EFFECT_REPAIRED"
+    },
+    {
+      "actionId": "ar_calibrated_shot",
+      "displayName": "Tir calibré",
+      "apTier": 2,
+      "candidateId": "r1_0942",
+      "filename": "Projectile_Fire_Ball_Lv3_spritesheet.png",
+      "decision": "COMBAT_EFFECT"
+    },
+    {
+      "actionId": "ar_explosive_retreat",
+      "displayName": "Recul explosif",
+      "apTier": 3,
+      "candidateId": "r1_0430",
+      "filename": "Explosion_Bomb_V2_spritesheet.png",
+      "decision": "COMBAT_EFFECT"
+    },
+    {
+      "actionId": "ar_incendiary_grenade",
+      "displayName": "Grenade incendiaire",
+      "apTier": 4,
+      "candidateId": "r1_0431",
+      "filename": "Explosion_Bomb_V3_spritesheet.png",
+      "decision": "COMBAT_EFFECT"
+    },
+    {
+      "actionId": "ar_artillery_barrage",
+      "displayName": "Barrage d’artillerie",
+      "apTier": 5,
+      "candidateId": "r1_0432",
+      "filename": "Explosion_Bomb_V4_spritesheet.png",
+      "decision": "COMBAT_EFFECT"
+    }
+  ],
+  "gameplayImpact": "none",
+  "validation": {
+    "tests": {
+      "status": "PASS",
+      "files": 46,
+      "tests": 1006
+    },
+    "typecheck": "PASS via npm.cmd run build",
+    "build": "PASS",
+    "diffCheck": "PASS",
+    "browserQa": {
+      "url": "http://127.0.0.1:5174/?qa=1&vfx=1&r2ca=1&vfxlab=1",
+      "previewBridgeConfigured": true,
+      "previewResolution": "512x512",
+      "repairedSourcesVisible": true,
+      "defaultCatalogueTotal": 2764,
+      "indicatorSourcesFiltered": true,
+      "playbackRoutesExercised": [
+        "visuals_only",
+        "full_preset",
+        "combat_stage"
+      ]
+    }
+  },
+  "git": {
+    "commit": false,
+    "push": false
+  }
+}

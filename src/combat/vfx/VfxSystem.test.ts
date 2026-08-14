@@ -4,7 +4,7 @@ import {
   STATIC_VFX_TIER_PRESENTATION,
   getStaticVfxTierPresentation,
 } from '../combatVfxPresentation';
-import { VFX_RENDER_ORDER, VfxSystem } from './VfxSystem';
+import { VFX_RENDER_ORDER, VfxSystem, spriteSheetEnvelope } from './VfxSystem';
 
 describe('VFX render layers', () => {
   it('keeps short impact VFX above status indicators while ground effects stay lower', () => {
@@ -33,5 +33,12 @@ describe('VFX render layers', () => {
     expect(getStaticVfxTierPresentation('boss').impactRenderOrder).toBeGreaterThan(
       getStaticVfxTierPresentation('5ap_ultimate').impactRenderOrder,
     );
+  });
+
+  it('keeps the native sheet alpha fully visible when the Composer disables fades', () => {
+    const presentation = { fadeIn: 0, fadeOut: 1 } as Parameters<typeof spriteSheetEnvelope>[1];
+    for (const progress of [0, 0.05, 0.25, 0.5, 0.9, 0.999]) {
+      expect(spriteSheetEnvelope(progress, presentation)).toBe(1);
+    }
   });
 });

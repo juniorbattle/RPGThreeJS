@@ -271,8 +271,9 @@ function spriteSheetBlending(resolved: ResolvedVfxSpriteSheetPresentation, step:
   return resolved.blending === 'additive' ? THREE.AdditiveBlending : blendingFor(step);
 }
 
-function spriteSheetEnvelope(progress: number, resolved: ResolvedVfxSpriteSheetPresentation) {
+export function spriteSheetEnvelope(progress: number, resolved: ResolvedVfxSpriteSheetPresentation) {
   const { fadeIn, fadeOut } = resolved;
+  if (fadeIn <= 0 && fadeOut >= 1) return 1;
   const fadeInProgress = easeOutCubic(clamp(progress / Math.max(fadeIn, 0.001), 0, 1));
   const fadeOutProgress = clamp((progress - fadeOut) / Math.max(1 - fadeOut, 0.001), 0, 1);
   return fadeInProgress * (1 - easeInOut(fadeOutProgress));

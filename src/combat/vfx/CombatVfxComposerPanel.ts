@@ -73,6 +73,7 @@ import {
 } from './VfxComposerPlayback';
 import type { ComposerPlaybackContext, ComposerStore, ComposerDisplayMode } from './VfxComposerPlayback';
 import { resolvePreview } from './VfxPreviewResolver';
+import { filterDefaultComposerCatalogue } from './VfxSourceSuitability';
 
 const COMPOSER_STYLE_ID = 'r2c-vfx-composer-style';
 const COMPOSER_ROOT_ID = 'r2c-vfx-composer';
@@ -87,7 +88,8 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     return () => {};
   }
 
-  const catalogue = buildCatalogue(inventoryJson as never);
+  const fullCatalogue = buildCatalogue(inventoryJson as never);
+  const catalogue = filterDefaultComposerCatalogue(fullCatalogue);
   let store: ComposerStore = loadComposerStore(localStorage);
   const actions = getLabActions();
   let currentActionKey = store.selectedActionKey ?? actions[0]?.actionKey ?? '';
@@ -435,7 +437,7 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
 
     const meta = document.createElement('div');
     meta.className = 'cmp-cat-meta';
-    meta.textContent = `${record.nativeGrid} · ${record.nativeFrameCount}f`;
+    meta.textContent = `${record.nativeGrid} · ${record.nativeFrameCount}f · ${record.suitability.replace(/_/g, ' ')}`;
     card.appendChild(meta);
 
     const label = replaceTargetSlotId ? 'USE THIS' : 'ADD TO PRESET';
@@ -635,12 +637,9 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
 
       const grid = document.createElement('div');
       grid.className = 'cmp-adv-grid';
-      const numeric: { key: 'scale' | 'duration' | 'opacity' | 'fadeIn' | 'fadeOut' | 'offsetX' | 'offsetY'; step: number }[] = [
+      const numeric: { key: 'scale' | 'duration' | 'offsetX' | 'offsetY'; step: number }[] = [
         { key: 'scale', step: 0.01 },
         { key: 'duration', step: 0.01 },
-        { key: 'opacity', step: 0.01 },
-        { key: 'fadeIn', step: 0.01 },
-        { key: 'fadeOut', step: 0.01 },
         { key: 'offsetX', step: 0.05 },
         { key: 'offsetY', step: 0.05 },
       ];

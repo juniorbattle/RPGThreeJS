@@ -22,6 +22,7 @@ import { resolvePresentationRoute } from '../stage/combatStageProfiles';
 import type { ActionSpecForStage, ActionPresentationRoute } from '../stage/combatStageProfiles';
 import runtimeManifest from '../../../docs/reports/vfx-megapack-r2-selected-runtime-assets.json';
 import { hasGifPreview as candidateHasGifPreview } from './VfxPreviewResolver';
+import { classifyVfxSourceSuitability, type VfxSourceSuitability } from './VfxSourceSuitability';
 
 // ============================================================ Types
 
@@ -137,6 +138,7 @@ export interface LabCatalogueRecord {
   nativeCellWidth: number;
   nativeCellHeight: number;
   classificationStatus: string;
+  suitability: VfxSourceSuitability;
   format: LabCatalogueFormat;
   availability: LabCatalogueAvailability;
   usedBy: string[];
@@ -692,6 +694,7 @@ export function buildCatalogue(inventory: InventoryJson): LabCatalogueRecord[] {
       nativeCellWidth: rec.nativeCellWidth,
       nativeCellHeight: rec.nativeCellHeight,
       classificationStatus: rec.classificationStatus,
+      suitability: classifyVfxSourceSuitability(rec),
       format,
       availability,
       usedBy: usageMap.get(candidateId) ?? [],

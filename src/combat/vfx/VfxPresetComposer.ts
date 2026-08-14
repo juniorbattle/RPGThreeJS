@@ -18,6 +18,7 @@
  */
 
 import type { VfxAnchor, VfxOrientation } from './VfxTypes';
+import { repairCandidateAssignment } from './VfxSourceSuitability';
 
 // ============================================================ Semantic Profiles
 
@@ -105,14 +106,13 @@ export interface VfxComposerDraftBundle {
  * every runtime multiplier so that a given profile produces the SAME visible
  * size across basic / 2AP / 3AP / 4AP / 5AP tiers — no double scaling.
  *
- * LOW = 1.55 is grounded in the P0.1B human-accepted readability calibration
- * (basic_greatsword_hit / n_dark_bolt were accepted at final height 1.55 on the
- * basic tier). LOW therefore remains clearly visible by construction.
+ * V2.2 presentation lock: LOW/MID/BIG are fixed semantic heights. Runtime
+ * scale compensation keeps those visible heights stable across action tiers.
  */
 export const SIZE_PROFILE_TARGET_HEIGHT: Readonly<Record<VfxSizeProfile, number>> = Object.freeze({
-  LOW: 1.55,
-  MID: 2.20,
-  BIG: 3.00,
+  LOW: 1.80,
+  MID: 2.50,
+  BIG: 3.40,
 });
 
 /** Hard safety clamp on the resolved multiplier handed to the runtime. */
@@ -233,15 +233,14 @@ export function resolveSlotDuration(
 /**
  * Safe visibility defaults. Fade controls are NOT exposed in the standard UI.
  *
- * Goals: opacity near full visibility, short fade-in, late fade-out, peak
- * clearly visible. `fadeOut` is a normalized progress position where the fade
- * BEGINS (see `VfxSystem.spriteSheetEnvelope`), so higher = later = more
- * visible. A1-style early values (0.08 / 0.10 / 0.18) are never produced.
+ * V2.2 presentation lock: native PNG alpha is preserved at full material
+ * opacity for the entire spritesheet lifetime. Fade controls remain in the
+ * portable schema for backwards compatibility but are not authored here.
  */
 export const VISIBILITY_DEFAULTS = Object.freeze({
   opacity: 1.0,
-  fadeIn: 0.02,
-  fadeOutByTiming: Object.freeze({ QUICK: 0.88, NORMAL: 0.90, LONG: 0.92 }) as Readonly<Record<VfxTimingProfile, number>>,
+  fadeIn: 0,
+  fadeOutByTiming: Object.freeze({ QUICK: 1, NORMAL: 1, LONG: 1 }) as Readonly<Record<VfxTimingProfile, number>>,
 });
 
 /** Lower bound enforced on every composed slot. Never regress to A1 values. */
@@ -270,7 +269,7 @@ export interface ResolvedPlacement {
 const PLACEMENT_TABLE: Readonly<Record<Exclude<VfxPlacementProfile, 'AUTO'>, ResolvedPlacement>> = Object.freeze({
   TARGET: Object.freeze({ anchor: 'target' as VfxAnchor, layer: 'impact' as const, orientation: 'face_target' as VfxOrientation }),
   CASTER: Object.freeze({ anchor: 'source' as VfxAnchor, layer: 'impact' as const, orientation: 'none' as VfxOrientation }),
-  GROUND: Object.freeze({ anchor: 'groundTarget' as VfxAnchor, layer: 'ground' as const, orientation: 'center_on_aoe_origin' as VfxOrientation }),
+  GROUND: Object.freeze({ anchor: 'groundTarget' as VfxAnchor, layer: 'impact' as const, orientation: 'center_on_aoe_origin' as VfxOrientation }),
 });
 
 /**
@@ -589,13 +588,13 @@ export function compileDraft(draft: VfxPresetDraft, options: CompileDraftOptions
       startTime,
       duration,
       scale,
-      opacity: slot.advanced?.opacity ?? visibility.opacity,
-      fadeIn: slot.advanced?.fadeIn ?? visibility.fadeIn,
-      fadeOut: slot.advanced?.fadeOut ?? visibility.fadeOut,
+      opacity: visibility.opacity,
+      fadeIn: visibility.fadeIn,
+      fadeOut: visibility.fadeOut,
       offsetX: slot.advanced?.offsetX ?? 0,
       offsetY: slot.advanced?.offsetY ?? 0,
       anchor: slot.advanced?.anchor ?? placement.anchor,
-      layer: slot.advanced?.layer ?? placement.layer,
+      layer: 'impact',
       blending: slot.advanced?.blending ?? DEFAULT_BLENDING,
       orientation: slot.advanced?.orientation ?? placement.orientation,
       finalDisplayHeight: computeFinalDisplayHeight(scale, factors),
@@ -755,7 +754,7 @@ export function createDraftFromAction(source: MigrationSource): VfxPresetDraft {
   const visualSlots = source.visualSteps
     .map((step) => step.candidateId ?? step.spriteSheetId)
     .filter((id): id is string => typeof id === 'string' && id.length > 0)
-    .map((candidateId) => createVisualSlot(candidateId, {
+    .map((candidateId) => createVisualSlot(repairCandidateAssignment(source.actionKey, candidateId), {
       sizeProfile: 'MID',
       timingProfile: 'NORMAL',
       placementProfile: 'AUTO',

@@ -10,7 +10,6 @@ import {
   SIZE_PROFILE_TARGET_HEIGHT,
   TIMING_PROFILE_NATIVE_MULTIPLIER,
   VISIBILITY_DEFAULTS,
-  MIN_SAFE_FADE_OUT,
   // resolvers
   resolveSlotScale,
   computeFinalDisplayHeight,
@@ -112,8 +111,7 @@ describe('R2C-VFX LAB V2 — Simple Preset Composer', () => {
     });
 
     it('2. LOW is clearly visible, never tiny', () => {
-      // Grounded in the P0.1B human-accepted readability calibration (1.55).
-      expect(SIZE_PROFILE_TARGET_HEIGHT.LOW).toBeGreaterThanOrEqual(1.5);
+      expect(SIZE_PROFILE_TARGET_HEIGHT).toEqual({ LOW: 1.8, MID: 2.5, BIG: 3.4 });
     });
 
     it('3. profiles are strictly ordered LOW < MID < BIG', () => {
@@ -215,16 +213,16 @@ describe('R2C-VFX LAB V2 — Simple Preset Composer', () => {
       expect(VISIBILITY_DEFAULTS.opacity).toBe(1.0);
     });
 
-    it('18. fadeIn is short for every timing profile', () => {
+    it('18. fadeIn is disabled for every timing profile', () => {
       for (const profile of VFX_TIMING_PROFILES) {
-        expect(resolveSlotVisibility(profile).fadeIn).toBeLessThanOrEqual(0.05);
+        expect(resolveSlotVisibility(profile).fadeIn).toBe(0);
       }
     });
 
     it('19. fadeOut is late for every timing profile — no A1-style early fade', () => {
       for (const profile of VFX_TIMING_PROFILES) {
         const { fadeOut } = resolveSlotVisibility(profile);
-        expect(fadeOut).toBeGreaterThanOrEqual(MIN_SAFE_FADE_OUT);
+        expect(fadeOut).toBe(1);
         expect(fadeOut).not.toBe(0.08);
         expect(fadeOut).not.toBe(0.10);
         expect(fadeOut).not.toBe(0.18);
@@ -254,14 +252,14 @@ describe('R2C-VFX LAB V2 — Simple Preset Composer', () => {
       expect(resolvePlacement('CASTER').anchor).toBe('source');
     });
 
-    it('24. GROUND uses the ground layer', () => {
+    it('24. GROUND keeps its ground anchor but renders in the foreground impact layer', () => {
       const resolved = resolvePlacement('GROUND');
       expect(resolved.anchor).toBe('groundTarget');
-      expect(resolved.layer).toBe('ground');
+      expect(resolved.layer).toBe('impact');
     });
 
     it('25. AUTO follows the derived hint, defaulting to TARGET', () => {
-      expect(resolvePlacement('AUTO', 'GROUND').layer).toBe('ground');
+      expect(resolvePlacement('AUTO', 'GROUND').layer).toBe('impact');
       expect(resolvePlacement('AUTO', 'CASTER').anchor).toBe('source');
       expect(resolvePlacement('AUTO').anchor).toBe('target');
     });
@@ -506,22 +504,32 @@ describe('R2C-VFX LAB V2 — Simple Preset Composer', () => {
       expect(slot.scale).toBeGreaterThan(0);
       expect(slot.duration).toBeGreaterThan(0);
       expect(slot.opacity).toBe(1);
-      expect(slot.fadeIn).toBeLessThanOrEqual(0.05);
-      expect(slot.fadeOut).toBeGreaterThanOrEqual(MIN_SAFE_FADE_OUT);
+      expect(slot.fadeIn).toBe(0);
+      expect(slot.fadeOut).toBe(1);
       expect(slot.anchor).toBe('target');
       expect(slot.layer).toBe('impact');
       expect(slot.offsetX).toBe(0);
       expect(slot.offsetY).toBe(0);
     });
 
-    it('59. ADVANCED overrides win over the semantic resolver', () => {
+    it('59. ADVANCED keeps spatial/timing overrides but cannot weaken V2.2 visibility or layering', () => {
       let draft = baseDraft(['slotA']);
       const slotId = draft.visualSlots[0]!.id;
-      draft = setSlotAdvancedOverride(draft, slotId, { scale: 9.5, duration: 3.25, fadeOut: 0.99 });
+      draft = setSlotAdvancedOverride(draft, slotId, {
+        scale: 9.5,
+        duration: 3.25,
+        opacity: 0.2,
+        fadeIn: 0.4,
+        fadeOut: 0.5,
+        layer: 'ground',
+      });
       const slot = compileDraft(draft, { includeTechnical: false, getCadence }).slots[0]!;
       expect(slot.scale).toBe(9.5);
       expect(slot.duration).toBe(3.25);
-      expect(slot.fadeOut).toBe(0.99);
+      expect(slot.opacity).toBe(1);
+      expect(slot.fadeIn).toBe(0);
+      expect(slot.fadeOut).toBe(1);
+      expect(slot.layer).toBe('impact');
     });
 
     it('60. clearing ADVANCED restores semantic resolution', () => {
@@ -576,6 +584,25 @@ describe('R2C-VFX LAB V2 — Simple Preset Composer', () => {
       const result = restoreDraftBundle(serializeDraftBundle(drafts));
       expect(result.ok).toBe(true);
       expect(Object.keys(result.drafts!).sort()).toEqual(['basic_greatsword_hit', 'n_dark_bolt']);
+    });
+
+    it('66b. repairs only the two known indicator assignments during action migration', () => {
+      const rain = createDraftFromAction({
+        actionKey: 'a_arrow_rain',
+        visualSteps: [{ candidateId: 'r1_0004' }],
+      });
+      const zenith = createDraftFromAction({
+        actionKey: 'a_zenith_arrow',
+        visualSteps: [{ candidateId: 'r1_0005' }],
+      });
+      const unrelated = createDraftFromAction({
+        actionKey: 'unrelated_action',
+        visualSteps: [{ candidateId: 'r1_0004' }],
+      });
+
+      expect(rain.visualSlots[0]!.candidateId).toBe('r1_0614');
+      expect(zenith.visualSlots[0]!.candidateId).toBe('r1_0963');
+      expect(unrelated.visualSlots[0]!.candidateId).toBe('r1_0004');
     });
 
     it('67. bundle import accepts a bare drafts map', () => {

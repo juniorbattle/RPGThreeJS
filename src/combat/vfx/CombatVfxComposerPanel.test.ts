@@ -113,6 +113,17 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     expect(getRoot().textContent).not.toContain('USE AS QA SOURCE');
   });
 
+  it('7b. hides interface indicators while retaining suitability metadata in the default catalogue', () => {
+    click(q('.cmp-add-slot'));
+    const cards = qa<HTMLElement>('.cmp-cat-card');
+    const ids = cards.map((card) => card.dataset.candidateId);
+    for (const indicatorId of ['r1_0001', 'r1_0002', 'r1_0003', 'r1_0004', 'r1_0005']) {
+      expect(ids).not.toContain(indicatorId);
+    }
+    expect(q('[data-section="catalogue"]')?.textContent)
+      .toMatch(/COMBAT EFFECT|SUPPORT EFFECT|AMBIGUOUS REVIEW/);
+  });
+
   it('8. ADD TO PRESET appends a slot card', () => {
     const before = qa('.cmp-slot-card').length;
     click(q('.cmp-add-slot'));
@@ -346,18 +357,18 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     expect(q('.cmp-advanced-header')?.textContent).toContain('▸');
   });
 
-  it('34. ADVANCED reveals raw numeric overrides when expanded', () => {
+  it('34. ADVANCED exposes spatial/timing overrides but not visibility controls', () => {
     click(q('.cmp-add-slot'));
     click(q('.cmp-cat-add'));
     click(q('.cmp-advanced-header'));
     const keys = qa<HTMLInputElement>('input[data-adv-key]').map((i) => i.dataset.advKey);
     expect(keys).toContain('scale');
     expect(keys).toContain('duration');
-    expect(keys).toContain('opacity');
-    expect(keys).toContain('fadeIn');
-    expect(keys).toContain('fadeOut');
     expect(keys).toContain('offsetX');
     expect(keys).toContain('offsetY');
+    expect(keys).not.toContain('opacity');
+    expect(keys).not.toContain('fadeIn');
+    expect(keys).not.toContain('fadeOut');
   });
 
   it('35. ADVANCED offers portable EXPORT / IMPORT of drafts', () => {

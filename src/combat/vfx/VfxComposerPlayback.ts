@@ -34,6 +34,7 @@ import {
   serializeDraftBundle,
   validateDraft,
 } from './VfxPresetComposer';
+import { repairComposerDraftAssignments } from './VfxSourceSuitability';
 import type {
   CompiledVfxDraft,
   CompiledVfxSlot,
@@ -119,7 +120,7 @@ export function deserializeComposerStore(raw: string): ComposerStore | null {
     if (typeof rawDrafts !== 'object' || rawDrafts === null) return null;
     const drafts: Record<string, VfxPresetDraft> = {};
     for (const [actionKey, value] of Object.entries(rawDrafts as Record<string, unknown>)) {
-      if (validateDraft(value)) drafts[actionKey] = value;
+      if (validateDraft(value)) drafts[actionKey] = repairComposerDraftAssignments(value);
     }
     const selected = (parsed as { selectedActionKey?: unknown }).selectedActionKey;
     return {
@@ -165,7 +166,16 @@ export function importComposerDrafts(store: ComposerStore, raw: string): Compose
   }
   return {
     ok: true,
-    store: { ...store, drafts: { ...store.drafts, ...result.drafts } },
+    store: {
+      ...store,
+      drafts: {
+        ...store.drafts,
+        ...Object.fromEntries(Object.entries(result.drafts).map(([actionKey, draft]) => [
+          actionKey,
+          repairComposerDraftAssignments(draft),
+        ])),
+      },
+    },
     imported: Object.keys(result.drafts).length,
     ...(result.skipped ? { skipped: result.skipped } : {}),
   };
