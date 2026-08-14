@@ -99,6 +99,19 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
   let advancedOpen = false;
   let replaceTargetSlotId: string | null = null;
   let displayMode: ComposerDisplayMode = loadComposerUiPrefs(localStorage).displayMode;
+  let bridgeAvailable = true;
+
+  async function checkBridgeHealth(): Promise<void> {
+    try {
+      const res = await fetch('/dev/vfx-preview-health');
+      if (!res.ok) { bridgeAvailable = false; return; }
+      const data = await res.json() as { ok?: boolean };
+      bridgeAvailable = data.ok === true;
+    } catch {
+      bridgeAvailable = false;
+    }
+    if (!bridgeAvailable) render();
+  }
 
   function setDisplayMode(mode: ComposerDisplayMode): void {
     displayMode = mode;
@@ -111,6 +124,8 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
   const root = document.createElement('aside');
   root.id = COMPOSER_ROOT_ID;
   document.body.appendChild(root);
+
+  void checkBridgeHealth();
 
   const statusLine = document.createElement('div');
   statusLine.className = 'cmp-status';
@@ -297,7 +312,12 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
         img.className = 'cmp-slot-preview';
         img.src = preview.previewUrl;
         img.alt = slot.candidateId;
+        img.addEventListener('error', () => {
+          img.replaceWith(createPreviewErrorEl('cmp-slot-preview'));
+        });
         card.appendChild(img);
+      } else if (!bridgeAvailable) {
+        card.appendChild(createPreviewErrorEl('cmp-slot-preview'));
       }
 
       const filename = document.createElement('div');
@@ -427,7 +447,12 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
       img.loading = 'lazy';
       img.src = preview.previewUrl;
       img.alt = record.candidateId;
+      img.addEventListener('error', () => {
+        img.replaceWith(createPreviewErrorEl('cmp-cat-preview'));
+      });
       card.appendChild(img);
+    } else if (!bridgeAvailable) {
+      card.appendChild(createPreviewErrorEl('cmp-cat-preview'));
     }
 
     const cid = document.createElement('div');
@@ -716,6 +741,13 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
 
   // ---------------------------------------------------------------- helpers
 
+  function createPreviewErrorEl(className: string): HTMLElement {
+    const el = document.createElement('div');
+    el.className = className + ' cmp-preview-error';
+    el.textContent = 'PREVIEW BRIDGE UNAVAILABLE';
+    return el;
+  }
+
   function buildButton(text: string, className: string, onClick: () => void): HTMLButtonElement {
     const btn = document.createElement('button');
     btn.className = className;
@@ -783,6 +815,7 @@ function addComposerStyle(): void {
     #${COMPOSER_ROOT_ID} .cmp-slot-num{color:#f1c76c;font-size:10px;font-weight:800;letter-spacing:.06em}
     #${COMPOSER_ROOT_ID} .cmp-slot-cid{color:#9fe5ff;font-size:11px;font-weight:700}
     #${COMPOSER_ROOT_ID} .cmp-slot-preview{display:block;width:100%;height:78px;object-fit:contain;background:#050d15;border-radius:4px;margin-bottom:4px}
+    #${COMPOSER_ROOT_ID} .cmp-preview-error{display:flex;align-items:center;justify-content:center;color:#c44;font-size:9px;font-weight:700;text-align:center;border:1px dashed #633;border-radius:4px}
     #${COMPOSER_ROOT_ID} .cmp-slot-filename{color:#728c9b;font-size:9px;word-break:break-all;margin-bottom:5px}
     #${COMPOSER_ROOT_ID} .cmp-slot-unplayable{border-color:#8c5a3a}
     #${COMPOSER_ROOT_ID} .cmp-slot-flag{margin-bottom:5px;padding:2px 4px;border-radius:3px;background:rgba(255,154,74,.14);color:#ff9a4a;font-size:9px;font-weight:700}
