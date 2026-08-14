@@ -73,6 +73,7 @@ import {
 } from './VfxComposerPlayback';
 import type { ComposerPlaybackContext, ComposerStore, ComposerDisplayMode } from './VfxComposerPlayback';
 import { ensureDraftRuntimeReady, ensureCandidateRuntimeReady } from './VfxRuntimeReadiness';
+import type { DraftReadinessResult } from './VfxRuntimeReadiness';
 import { resolvePreview } from './VfxPreviewResolver';
 import { filterDefaultComposerCatalogue } from './VfxSourceSuitability';
 
@@ -597,7 +598,7 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
       visualsBtn.disabled = true;
       statusLine.textContent = 'Preparing VFX assets…';
       ensureDraftRuntimeReady(activeDraft)
-        .then(async (readiness) => {
+        .then(async (readiness: DraftReadinessResult) => {
           if (!readiness.ready) {
             statusLine.textContent = `VFX ACQUISITION FAILED: ${readiness.failedCandidates.join(', ')}`;
             return;
@@ -624,7 +625,7 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
       fullBtn.disabled = true;
       statusLine.textContent = 'Preparing VFX assets…';
       ensureDraftRuntimeReady(activeDraft)
-        .then(async (readiness) => {
+        .then(async (readiness: DraftReadinessResult) => {
           if (!readiness.ready) {
             statusLine.textContent = `VFX ACQUISITION FAILED: ${readiness.failedCandidates.join(', ')}`;
             return;
