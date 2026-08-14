@@ -105,18 +105,19 @@ describe('R2C-VFX LAB V2 — Simple Preset Composer', () => {
 
   // ============================================================ Size Resolver
 
-  describe('semantic LOW/MID/BIG size resolver', () => {
-    it('1. exposes exactly three size profiles', () => {
-      expect(VFX_SIZE_PROFILES).toEqual(['LOW', 'MID', 'BIG']);
+  describe('semantic LOW/MID/BIG/GIGA size resolver', () => {
+    it('1. exposes exactly four size profiles', () => {
+      expect(VFX_SIZE_PROFILES).toEqual(['LOW', 'MID', 'BIG', 'GIGA']);
     });
 
-    it('2. LOW is clearly visible, never tiny', () => {
-      expect(SIZE_PROFILE_TARGET_HEIGHT).toEqual({ LOW: 1.8, MID: 2.5, BIG: 3.4 });
+    it('2. target heights are locked to V2.2 values', () => {
+      expect(SIZE_PROFILE_TARGET_HEIGHT).toEqual({ LOW: 1.8, MID: 2.5, BIG: 3.4, GIGA: 5.5 });
     });
 
-    it('3. profiles are strictly ordered LOW < MID < BIG', () => {
+    it('3. profiles are strictly ordered LOW < MID < BIG < GIGA', () => {
       expect(SIZE_PROFILE_TARGET_HEIGHT.LOW).toBeLessThan(SIZE_PROFILE_TARGET_HEIGHT.MID);
       expect(SIZE_PROFILE_TARGET_HEIGHT.MID).toBeLessThan(SIZE_PROFILE_TARGET_HEIGHT.BIG);
+      expect(SIZE_PROFILE_TARGET_HEIGHT.BIG).toBeLessThan(SIZE_PROFILE_TARGET_HEIGHT.GIGA);
     });
 
     it('4. resolved size produces a PREDICTABLE final height across every AP tier', () => {
@@ -127,6 +128,23 @@ describe('R2C-VFX LAB V2 — Simple Preset Composer', () => {
           const finalHeight = computeFinalDisplayHeight(scale, factors);
           expect(finalHeight).toBeCloseTo(SIZE_PROFILE_TARGET_HEIGHT[profile], 5);
         }
+      }
+    });
+
+    it('4b. GIGA reaches approximately 5.50 under normal runtime factors', () => {
+      const factors = { intensity: 1.0, contextPresentationScale: 1.0 };
+      const scale = resolveSlotScale('GIGA', factors);
+      const finalHeight = computeFinalDisplayHeight(scale, factors);
+      expect(finalHeight).toBeCloseTo(5.50, 5);
+      expect(scale).toBeLessThanOrEqual(12);
+    });
+
+    it('4c. GIGA is compensated across all AP tiers like other profiles', () => {
+      for (const { contextPresentationScale } of TIER_PRESENTATION_SCALES) {
+        const factors = { contextPresentationScale };
+        const scale = resolveSlotScale('GIGA', factors);
+        const finalHeight = computeFinalDisplayHeight(scale, factors);
+        expect(finalHeight).toBeCloseTo(5.50, 5);
       }
     });
 
@@ -681,6 +699,35 @@ describe('R2C-VFX LAB V2 — Simple Preset Composer', () => {
       expect(restored.visualSlots[0]!.timingProfile).toBe('LONG');
       expect(restored.visualSlots[0]!.placementProfile).toBe('GROUND');
       expect(restored.visualSlots.map((s) => s.candidateId)).toEqual(['slotA', 'slotB', 'slotC']);
+    });
+
+    it('73b. GIGA size profile survives export/import round-trip', () => {
+      let store = createEmptyComposerStore();
+      let draft = baseDraft(['slotA']);
+      draft = updateSlotProfile(draft, draft.visualSlots[0]!.id, { sizeProfile: 'GIGA' });
+      store = putDraft(store, draft);
+      const portable = exportComposerDrafts(store);
+      localStorage.clear();
+      const imported = importComposerDrafts(loadComposerStore(localStorage), portable);
+      const restored = imported.store!.drafts.basic_greatsword_hit!;
+      expect(restored.visualSlots[0]!.sizeProfile).toBe('GIGA');
+    });
+
+    it('73c. mixed-size multi-slot preset with GIGA compiles and serializes correctly', () => {
+      let draft = baseDraft(['slotA', 'slotB', 'slotC']);
+      draft = updateSlotProfile(draft, draft.visualSlots[0]!.id, { sizeProfile: 'MID' });
+      draft = updateSlotProfile(draft, draft.visualSlots[1]!.id, { sizeProfile: 'BIG' });
+      draft = updateSlotProfile(draft, draft.visualSlots[2]!.id, { sizeProfile: 'GIGA' });
+      const compiled = compileDraft(draft, { includeTechnical: false, getCadence });
+      expect(compiled.slots).toHaveLength(3);
+      expect(compiled.slots[0]!.scale).toBeCloseTo(resolveSlotScale('MID'), 5);
+      expect(compiled.slots[1]!.scale).toBeCloseTo(resolveSlotScale('BIG'), 5);
+      expect(compiled.slots[2]!.scale).toBeCloseTo(resolveSlotScale('GIGA'), 5);
+      // Round-trip through serialization
+      const restored = deserializeDraft(serializeDraft(draft))!;
+      expect(restored.visualSlots[0]!.sizeProfile).toBe('MID');
+      expect(restored.visualSlots[1]!.sizeProfile).toBe('BIG');
+      expect(restored.visualSlots[2]!.sizeProfile).toBe('GIGA');
     });
 
     it('74. compiled output is identical before export and after import', () => {

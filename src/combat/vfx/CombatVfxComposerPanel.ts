@@ -72,6 +72,7 @@ import {
   playDraftInCombatStage,
 } from './VfxComposerPlayback';
 import type { ComposerPlaybackContext, ComposerStore, ComposerDisplayMode } from './VfxComposerPlayback';
+import { ensureDraftRuntimeReady, ensureCandidateRuntimeReady } from './VfxRuntimeReadiness';
 import { resolvePreview } from './VfxPreviewResolver';
 import { filterDefaultComposerCatalogue } from './VfxSourceSuitability';
 
@@ -471,11 +472,17 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
         const next = replaceSlotCandidate(draft, replaceTargetSlotId, record.candidateId);
         replaceTargetSlotId = null;
         catalogueOpen = false;
-        statusLine.textContent = `Replaced slot with ${record.candidateId}`;
+        statusLine.textContent = `Preparing ${record.candidateId}…`;
         mutate(next);
+        void ensureCandidateRuntimeReady(record.candidateId).then((r) => {
+          if (r.ready) statusLine.textContent = `${record.candidateId} ready for playback`;
+        });
       } else {
-        statusLine.textContent = `Added ${record.candidateId} to preset`;
+        statusLine.textContent = `Preparing ${record.candidateId}…`;
         mutate(addSlot(draft, record.candidateId));
+        void ensureCandidateRuntimeReady(record.candidateId).then((r) => {
+          if (r.ready) statusLine.textContent = `${record.candidateId} ready for playback`;
+        });
       }
     }));
 
@@ -585,31 +592,69 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
 
     const visualsBtn = buildButton('PLAY VISUALS ONLY', 'cmp-play-visuals', () => {
       if (!options.playback) { statusLine.textContent = 'Playback unavailable.'; return; }
-      const result = playDraftVisualsOnly(options.playback, draft);
-      const skipped = unplayableSlotCandidates(draft).length;
-      statusLine.textContent = result.played
-        ? `Played visuals only: ${result.snapshot?.slotCount} slot(s), 0 technical effects${skipped > 0 ? ` · ${skipped} not previewable` : ''}`
-        : `Not played: ${result.reason}`;
+      const pb = options.playback;
+      const activeDraft = currentDraft();
+      visualsBtn.disabled = true;
+      statusLine.textContent = 'Preparing VFX assets…';
+      ensureDraftRuntimeReady(activeDraft)
+        .then((readiness) => {
+          if (!readiness.ready) {
+            statusLine.textContent = `VFX ACQUISITION FAILED: ${readiness.failedCandidates.join(', ')}`;
+            return;
+          }
+          const result = playDraftVisualsOnly(pb, activeDraft);
+          const skipped = unplayableSlotCandidates(activeDraft).length;
+          statusLine.textContent = result.played
+            ? `Played visuals only: ${result.snapshot?.slotCount} slot(s), 0 technical effects${skipped > 0 ? ` · ${skipped} not previewable` : ''}`
+            : `Not played: ${result.reason}`;
+        })
+        .catch(() => {
+          statusLine.textContent = 'VFX acquisition error.';
+        })
+        .finally(() => { visualsBtn.disabled = activeDraft.visualSlots.length === 0; });
     });
     visualsBtn.disabled = draft.visualSlots.length === 0;
     section.appendChild(visualsBtn);
 
     const fullBtn = buildButton('PLAY FULL PRESET', 'cmp-play-full', () => {
       if (!options.playback) { statusLine.textContent = 'Playback unavailable.'; return; }
-      const result = playDraftFull(options.playback, draft);
-      statusLine.textContent = result.played
-        ? `Played full preset: ${result.snapshot?.slotCount} slot(s), ${result.snapshot?.technicalEffectCount} technical effect(s)`
-        : `Not played: ${result.reason}`;
+      const pb = options.playback;
+      const activeDraft = currentDraft();
+      fullBtn.disabled = true;
+      statusLine.textContent = 'Preparing VFX assets…';
+      ensureDraftRuntimeReady(activeDraft)
+        .then((readiness) => {
+          if (!readiness.ready) {
+            statusLine.textContent = `VFX ACQUISITION FAILED: ${readiness.failedCandidates.join(', ')}`;
+            return;
+          }
+          const result = playDraftFull(pb, activeDraft);
+          statusLine.textContent = result.played
+            ? `Played full preset: ${result.snapshot?.slotCount} slot(s), ${result.snapshot?.technicalEffectCount} technical effect(s)`
+            : `Not played: ${result.reason}`;
+        })
+        .catch(() => {
+          statusLine.textContent = 'VFX acquisition error.';
+        })
+        .finally(() => { fullBtn.disabled = activeDraft.visualSlots.length === 0; });
     });
     fullBtn.disabled = draft.visualSlots.length === 0;
     section.appendChild(fullBtn);
 
     const stageBtn = buildButton('PLAY IN COMBAT STAGE', 'cmp-play-stage', () => {
       if (!options.playback) { statusLine.textContent = 'Playback unavailable.'; return; }
-      statusLine.textContent = 'Opening Combat Stage…';
+      const pb = options.playback;
+      const activeDraft = currentDraft();
       stageBtn.disabled = true;
-      playDraftInCombatStage(options.playback, draft, 'full_preset')
-        .then((result) => {
+      statusLine.textContent = 'Preparing VFX assets…';
+      ensureDraftRuntimeReady(activeDraft)
+        .then(async (readiness) => {
+          if (!readiness.ready) {
+            statusLine.textContent = `VFX ACQUISITION FAILED: ${readiness.failedCandidates.join(', ')}`;
+            return;
+          }
+          statusLine.textContent = 'Opening Combat Stage…';
+          const result = await playDraftInCombatStage(pb, activeDraft, 'full_preset');
           statusLine.textContent = result.played
             ? `Stage playback: ${result.snapshot?.slotCount} slot(s), ${result.snapshot?.technicalEffectCount} technical effect(s)`
             : `Stage unavailable: ${result.reason ?? 'unknown'}`;

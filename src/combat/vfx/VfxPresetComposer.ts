@@ -27,7 +27,7 @@ import { repairCandidateAssignment } from './VfxSourceSuitability';
  * impactful. It never means "tiny" or "subtle to the point of being hard to
  * perceive".
  */
-export type VfxSizeProfile = 'LOW' | 'MID' | 'BIG';
+export type VfxSizeProfile = 'LOW' | 'MID' | 'BIG' | 'GIGA';
 
 /** Timing derives from the candidate's native cadence, never fixed AP constants. */
 export type VfxTimingProfile = 'QUICK' | 'NORMAL' | 'LONG';
@@ -38,7 +38,7 @@ export type VfxChoreography = 'TOGETHER' | 'SEQUENCE' | 'PAIR_THEN_LAST';
 
 export type VfxTechnicalPolish = 'AUTO' | 'OFF' | 'LIGHT' | 'STRONG';
 
-export const VFX_SIZE_PROFILES: readonly VfxSizeProfile[] = ['LOW', 'MID', 'BIG'];
+export const VFX_SIZE_PROFILES: readonly VfxSizeProfile[] = ['LOW', 'MID', 'BIG', 'GIGA'];
 export const VFX_TIMING_PROFILES: readonly VfxTimingProfile[] = ['QUICK', 'NORMAL', 'LONG'];
 export const VFX_PLACEMENT_PROFILES: readonly VfxPlacementProfile[] = ['AUTO', 'TARGET', 'CASTER', 'GROUND'];
 export const VFX_CHOREOGRAPHIES: readonly VfxChoreography[] = ['TOGETHER', 'SEQUENCE', 'PAIR_THEN_LAST'];
@@ -106,13 +106,17 @@ export interface VfxComposerDraftBundle {
  * every runtime multiplier so that a given profile produces the SAME visible
  * size across basic / 2AP / 3AP / 4AP / 5AP tiers — no double scaling.
  *
- * V2.2 presentation lock: LOW/MID/BIG are fixed semantic heights. Runtime
+ * V2.2 presentation lock: LOW/MID/BIG/GIGA are fixed semantic heights. Runtime
  * scale compensation keeps those visible heights stable across action tiers.
+ * GIGA is intentionally enormous for major Ultimates, boss attacks, meteor /
+ * pillar / eruption, large summon effects, transformation effects, and extremely
+ * premium signature skills.
  */
 export const SIZE_PROFILE_TARGET_HEIGHT: Readonly<Record<VfxSizeProfile, number>> = Object.freeze({
   LOW: 1.80,
   MID: 2.50,
   BIG: 3.40,
+  GIGA: 5.50,
 });
 
 /** Hard safety clamp on the resolved multiplier handed to the runtime. */

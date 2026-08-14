@@ -45,17 +45,24 @@ function addSlotsFromCatalogue(count: number): void {
 
 describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   let dispose: () => void = () => {};
+  let origFetch: typeof fetch = () => Promise.resolve({ ok: false } as Response);
 
   beforeEach(() => {
     localStorage.clear();
     document.body.textContent = '';
     document.head.textContent = '';
+    origFetch = globalThis.fetch;
+    globalThis.fetch = (async (_url: string, init?: RequestInit) => {
+      if (init?.method === 'HEAD') return { ok: true } as Response;
+      return { ok: true, json: async () => ({ ok: true }) } as unknown as Response;
+    }) as typeof fetch;
     dispose = installVfxComposerPanel({ enabled: true });
   });
 
   afterEach(() => {
     dispose();
     localStorage.clear();
+    globalThis.fetch = origFetch;
   });
 
   // ---------------------------------------------------------- simple flow
@@ -182,12 +189,12 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     expect(profiles).toEqual(['size', 'timing', 'placement']);
   });
 
-  it('14. SIZE exposes exactly LOW / MID / BIG', () => {
+  it('14. SIZE exposes exactly LOW / MID / BIG / GIGA', () => {
     click(q('.cmp-add-slot'));
     click(q('.cmp-cat-add'));
     const group = q('[data-profile="size"] .cmp-profile-group')!;
     expect(Array.from(group.querySelectorAll('button')).map((b) => b.textContent))
-      .toEqual(['LOW', 'MID', 'BIG']);
+      .toEqual(['LOW', 'MID', 'BIG', 'GIGA']);
   });
 
   it('15. TIMING exposes exactly QUICK / NORMAL / LONG', () => {
@@ -220,6 +227,22 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     expect(slot.sizeProfile).toBe('MID');
     expect(slot.timingProfile).toBe('NORMAL');
     expect(slot.placementProfile).toBe('TARGET');
+  });
+
+  it('17b. choosing SIZE=GIGA persists and survives reload', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
+    const inSlot = (selector: string) =>
+      q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
+    click(inSlot('[data-profile="size"] button[data-value="GIGA"]'));
+    let slot = Object.values(loadComposerStore(localStorage).drafts)[0]!
+      .visualSlots.find((s) => s.id === slotId)!;
+    expect(slot.sizeProfile).toBe('GIGA');
+    // Simulate reload by re-loading from storage
+    slot = Object.values(loadComposerStore(localStorage).drafts)[0]!
+      .visualSlots.find((s) => s.id === slotId)!;
+    expect(slot.sizeProfile).toBe('GIGA');
   });
 
   it('18. standard UI never exposes raw fade/opacity/offset/startTime fields', () => {
@@ -322,7 +345,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     expect(q<HTMLButtonElement>('.cmp-play-stage')!.disabled).toBe(false);
   });
 
-  it('31. PLAY IN COMBAT STAGE calls playDraftInCombatStage', () => {
+  it('31. PLAY IN COMBAT STAGE calls playDraftInCombatStage', async () => {
     dispose();
     document.body.textContent = '';
     document.head.textContent = '';
@@ -338,7 +361,9 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
       },
     });
     addSlotsFromCatalogue(1);
+    await new Promise((r) => setTimeout(r, 200));
     click(q('.cmp-play-stage'));
+    await new Promise((r) => setTimeout(r, 300));
     expect(q('.cmp-status')?.textContent).toContain('Stage');
   });
 
@@ -447,16 +472,24 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
 describe('R2C-VFX LAB V2.1.1 — Composer minimize / expand', () => {
   let dispose: () => void = () => {};
 
+  let origFetch: typeof fetch = () => Promise.resolve({ ok: false } as Response);
+
   beforeEach(() => {
     localStorage.clear();
     document.body.textContent = '';
     document.head.textContent = '';
+    origFetch = globalThis.fetch;
+    globalThis.fetch = (async (_url: string, init?: RequestInit) => {
+      if (init?.method === 'HEAD') return { ok: true } as Response;
+      return { ok: true, json: async () => ({ ok: true }) } as unknown as Response;
+    }) as typeof fetch;
     dispose = installVfxComposerPanel({ enabled: true });
   });
 
   afterEach(() => {
     dispose();
     localStorage.clear();
+    globalThis.fetch = origFetch;
   });
 
   it('1. starts EXPANDED by default when no preference exists', () => {
@@ -545,7 +578,7 @@ describe('R2C-VFX LAB V2.1.1 — Composer minimize / expand', () => {
     expect(uiPrefs).toContain('minimized');
   });
 
-  it('10. PLAY IN COMBAT STAGE still works after expanding again', () => {
+  it('10. PLAY IN COMBAT STAGE still works after expanding again', async () => {
     dispose();
     document.body.textContent = '';
     document.head.textContent = '';
@@ -561,26 +594,35 @@ describe('R2C-VFX LAB V2.1.1 — Composer minimize / expand', () => {
       },
     });
     addSlotsFromCatalogue(1);
+    await new Promise((r) => setTimeout(r, 200));
     click(q('.cmp-minimize'));
     click(q('.cmp-expand'));
     click(q('.cmp-play-stage'));
+    await new Promise((r) => setTimeout(r, 300));
     expect(q('.cmp-status')?.textContent).toContain('Stage');
   });
 });
 
 describe('R2C-VFX LAB V2.1.2 — Expanded layout regression', () => {
   let dispose: () => void = () => {};
+  let origFetch: typeof fetch = () => Promise.resolve({ ok: false } as Response);
 
   beforeEach(() => {
     localStorage.clear();
     document.body.textContent = '';
     document.head.textContent = '';
+    origFetch = globalThis.fetch;
+    globalThis.fetch = (async (_url: string, init?: RequestInit) => {
+      if (init?.method === 'HEAD') return { ok: true } as Response;
+      return { ok: true, json: async () => ({ ok: true }) } as unknown as Response;
+    }) as typeof fetch;
     dispose = installVfxComposerPanel({ enabled: true });
   });
 
   afterEach(() => {
     dispose();
     localStorage.clear();
+    globalThis.fetch = origFetch;
   });
 
   it('1. MINIMIZE control is not inside the header element', () => {
