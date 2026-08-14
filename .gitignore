@@ -23,6 +23,9 @@ __pycache__/
 # Temporary QC artifacts
 tmp/
 
+# QA screenshots (local evidence only, never committed)
+tools/qa-shots/
+
 # Playwright persistent browser profiles (QA only)
 .playwright-*/
 

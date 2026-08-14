@@ -8,6 +8,7 @@ import {
   formatStartupWarning,
   PREVIEW_DIR_NAME,
 } from './src/dev/vfxDevHelpers';
+import { handlePublishRequest, handleUnpublishRequest } from './src/dev/vfxPublishDevServer';
 
 interface VfxDevPluginOptions {
   megaPackRoot: string;
@@ -196,6 +197,51 @@ function vfxDevAcquisitionPlugin(options: VfxDevPluginOptions): Plugin {
         res.setHeader('Content-Type', 'image/gif');
         res.setHeader('Cache-Control', 'no-cache');
         res.end(gifData);
+      });
+
+      // ---- Published VFX registry path (constant, no traversal) ----
+      // (Path is managed inside vfxPublishDevServer.ts)
+
+      // ---- Publish preset endpoint ----
+      server.middlewares.use('/dev/vfx-publish-preset', async (req, res) => {
+        if (req.method !== 'POST') {
+          res.statusCode = 405;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ ok: false, error: 'Method not allowed' }));
+          return;
+        }
+        let body = '';
+        for await (const chunk of req) {
+          body += chunk;
+        }
+        const result = handlePublishRequest(body);
+        res.setHeader('Content-Type', 'application/json');
+        res.statusCode = result.ok ? 200 : 400;
+        res.end(JSON.stringify(result));
+      });
+
+      // ---- Unpublish preset endpoint ----
+      server.middlewares.use('/dev/vfx-unpublish-preset', async (req, res) => {
+        if (req.method !== 'POST') {
+          res.statusCode = 405;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ ok: false, error: 'Method not allowed' }));
+          return;
+        }
+        let body = '';
+        for await (const chunk of req) {
+          body += chunk;
+        }
+        const result = handleUnpublishRequest(body);
+        res.setHeader('Content-Type', 'application/json');
+        if (result.ok) {
+          res.statusCode = 200;
+        } else if (result.error?.includes('not published')) {
+          res.statusCode = 404;
+        } else {
+          res.statusCode = 400;
+        }
+        res.end(JSON.stringify(result));
       });
     },
   };

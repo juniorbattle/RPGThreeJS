@@ -76,6 +76,18 @@ import { ensureDraftRuntimeReady, ensureCandidateRuntimeReady } from './VfxRunti
 import type { DraftReadinessResult } from './VfxRuntimeReadiness';
 import { resolvePreview } from './VfxPreviewResolver';
 import { filterDefaultComposerCatalogue } from './VfxSourceSuitability';
+import {
+  computeFingerprint,
+  compareFingerprint,
+  draftToPublishedEntry,
+  publishedPresetId,
+  getPublishedEntry,
+  publishedEntryToDraft,
+  type PublishedVfxRegistry,
+  type PublishedVfxEntry,
+} from './PublishedVfxRegistry';
+import { getActiveRegistry, __devUpdateOverlay, __devClearOverlay } from './PublishedVfxResolver';
+import { resolveCandidateSource } from './VfxResourceManager';
 
 const COMPOSER_STYLE_ID = 'r2c-vfx-composer-style';
 const COMPOSER_ROOT_ID = 'r2c-vfx-composer';
@@ -673,9 +685,222 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     section.appendChild(buildButton('SAVE DRAFT', 'cmp-save-draft', () => {
       persist(draft);
       statusLine.textContent = `Draft saved: ${draft.actionKey} (${draft.visualSlots.length} slots)`;
+      render();
     }));
 
+    // ---- Publication state ----
+    const registry = getActiveRegistry();
+    const pubState = compareFingerprint(registry, draft);
+    const pubBadge = document.createElement('div');
+    pubBadge.className = 'cmp-pub-badge';
+    if (pubState === 'not_published') {
+      pubBadge.textContent = 'NOT PUBLISHED';
+      pubBadge.classList.add('cmp-pub-not-published');
+    } else if (pubState === 'published') {
+      pubBadge.textContent = 'PUBLISHED';
+      pubBadge.classList.add('cmp-pub-published');
+    } else {
+      pubBadge.textContent = 'MODIFIED SINCE PUBLISH';
+      pubBadge.classList.add('cmp-pub-modified');
+    }
+    section.appendChild(pubBadge);
+
+    // ---- PUBLISH / UPDATE button ----
+    if (pubState !== 'published') {
+      const publishLabel = pubState === 'not_published' ? 'PUBLISH PRESET' : 'UPDATE PUBLISHED PRESET';
+      const publishBtn = buildButton(publishLabel, 'cmp-publish', () => {
+        showPublishConfirmation(draft, pubState);
+      });
+      publishBtn.disabled = draft.visualSlots.length === 0;
+      section.appendChild(publishBtn);
+    }
+
+    // ---- UNPUBLISH button ----
+    if (pubState !== 'not_published') {
+      const unpublishBtn = buildButton('UNPUBLISH', 'cmp-unpublish', () => {
+        showUnpublishConfirmation(draft);
+      });
+      section.appendChild(unpublishBtn);
+    }
+
     return section;
+  }
+
+  function showPublishConfirmation(draft: VfxPresetDraft, pubState: 'not_published' | 'modified'): void {
+    const overlay = document.createElement('div');
+    overlay.className = 'cmp-confirm-overlay';
+
+    const dialog = document.createElement('div');
+    dialog.className = 'cmp-confirm-dialog';
+
+    const title = document.createElement('div');
+    title.className = 'cmp-confirm-title';
+    title.textContent = pubState === 'not_published' ? 'PUBLISH PRESET' : 'UPDATE PUBLISHED PRESET';
+    dialog.appendChild(title);
+
+    const registry = getActiveRegistry();
+    const existingEntry = getPublishedEntry(registry, draft.actionKey);
+
+    // Current state
+    const currentLabel = document.createElement('div');
+    currentLabel.className = 'cmp-confirm-label';
+    currentLabel.textContent = 'CURRENT:';
+    dialog.appendChild(currentLabel);
+    const currentValue = document.createElement('div');
+    currentValue.className = 'cmp-confirm-value';
+    if (existingEntry) {
+      currentValue.textContent = `published_${draft.actionKey} (${existingEntry.visualSlots.length} slots, fingerprint ${existingEntry.fingerprint})`;
+    } else {
+      currentValue.textContent = 'STATIC FALLBACK';
+    }
+    dialog.appendChild(currentValue);
+
+    // New state
+    const newLabel = document.createElement('div');
+    newLabel.className = 'cmp-confirm-label';
+    newLabel.textContent = 'NEW:';
+    dialog.appendChild(newLabel);
+
+    const summary = document.createElement('div');
+    summary.className = 'cmp-confirm-summary';
+    const entry = draftToPublishedEntry(draft);
+    summary.textContent = [
+      `Action: ${draft.actionKey}`,
+      `Preset ID: ${entry.presetId}`,
+      `Candidates: ${draft.visualSlots.map((s) => s.candidateId).join(', ')}`,
+      `Slots: ${draft.visualSlots.length}`,
+      `Sizes: ${draft.visualSlots.map((s) => s.sizeProfile).join(', ')}`,
+      `Timings: ${draft.visualSlots.map((s) => s.timingProfile).join(', ')}`,
+      `Placements: ${draft.visualSlots.map((s) => s.placementProfile).join(', ')}`,
+      `Choreography: ${draft.choreography}`,
+      `Technical Polish: ${draft.technicalPolish}`,
+    ].join('\n');
+    dialog.appendChild(summary);
+
+    // Validate candidates are supported format
+    let formatOk = true;
+    for (const slot of draft.visualSlots) {
+      if (!resolveCandidateSource(slot.candidateId)) {
+        formatOk = false;
+        const warn = document.createElement('div');
+        warn.className = 'cmp-warn';
+        warn.textContent = `BLOCKED: Candidate ${slot.candidateId} has unsupported atlas format. Publication rejected.`;
+        dialog.appendChild(warn);
+        break;
+      }
+    }
+
+    const btnRow = document.createElement('div');
+    btnRow.className = 'cmp-confirm-buttons';
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.className = 'cmp-btn cmp-cancel';
+    cancelBtn.textContent = 'CANCEL';
+    cancelBtn.addEventListener('click', () => { overlay.remove(); });
+    btnRow.appendChild(cancelBtn);
+
+    const confirmBtn = document.createElement('button');
+    confirmBtn.className = 'cmp-btn cmp-confirm-btn';
+    confirmBtn.textContent = 'CONFIRM PUBLISH';
+    confirmBtn.disabled = !formatOk;
+    confirmBtn.addEventListener('click', async () => {
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = 'Publishing…';
+      try {
+        const res = await fetch('/dev/vfx-publish-preset', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ draft }),
+        });
+        const data = await res.json() as { ok: boolean; error?: string; fingerprint?: string; registry?: PublishedVfxRegistry };
+        if (data.ok && data.registry) {
+          __devUpdateOverlay(data.registry);
+          statusLine.textContent = `Published: ${draft.actionKey} (fingerprint ${data.fingerprint})`;
+          overlay.remove();
+          render();
+        } else {
+          statusLine.textContent = `PUBLISH FAILED: ${data.error ?? 'unknown'}`;
+          confirmBtn.disabled = false;
+          confirmBtn.textContent = 'CONFIRM PUBLISH';
+        }
+      } catch (err) {
+        statusLine.textContent = `PUBLISH ERROR: ${err instanceof Error ? err.message : 'unknown'}`;
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = 'CONFIRM PUBLISH';
+      }
+    });
+    btnRow.appendChild(confirmBtn);
+
+    dialog.appendChild(btnRow);
+    overlay.appendChild(dialog);
+    document.body.appendChild(overlay);
+  }
+
+  function showUnpublishConfirmation(draft: VfxPresetDraft): void {
+    const overlay = document.createElement('div');
+    overlay.className = 'cmp-confirm-overlay';
+
+    const dialog = document.createElement('div');
+    dialog.className = 'cmp-confirm-dialog';
+
+    const title = document.createElement('div');
+    title.className = 'cmp-confirm-title';
+    title.textContent = 'UNPUBLISH / RESTORE STATIC VFX';
+    dialog.appendChild(title);
+
+    const desc = document.createElement('div');
+    desc.className = 'cmp-confirm-summary';
+    desc.textContent = [
+      `Action: ${draft.actionKey}`,
+      `This will remove the published VFX configuration.`,
+      `Production gameplay will return to the static fallback preset.`,
+      `Composer draft remains untouched.`,
+    ].join('\n');
+    dialog.appendChild(desc);
+
+    const btnRow = document.createElement('div');
+    btnRow.className = 'cmp-confirm-buttons';
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.className = 'cmp-btn cmp-cancel';
+    cancelBtn.textContent = 'CANCEL';
+    cancelBtn.addEventListener('click', () => { overlay.remove(); });
+    btnRow.appendChild(cancelBtn);
+
+    const confirmBtn = document.createElement('button');
+    confirmBtn.className = 'cmp-btn cmp-unpublish-btn';
+    confirmBtn.textContent = 'CONFIRM UNPUBLISH';
+    confirmBtn.addEventListener('click', async () => {
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = 'Unpublishing…';
+      try {
+        const res = await fetch('/dev/vfx-unpublish-preset', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ actionKey: draft.actionKey }),
+        });
+        const data = await res.json() as { ok: boolean; error?: string; registry?: PublishedVfxRegistry };
+        if (data.ok && data.registry) {
+          __devUpdateOverlay(data.registry);
+          statusLine.textContent = `Unpublished: ${draft.actionKey}. Static fallback restored.`;
+          overlay.remove();
+          render();
+        } else {
+          statusLine.textContent = `UNPUBLISH FAILED: ${data.error ?? 'unknown'}`;
+          confirmBtn.disabled = false;
+          confirmBtn.textContent = 'CONFIRM UNPUBLISH';
+        }
+      } catch (err) {
+        statusLine.textContent = `UNPUBLISH ERROR: ${err instanceof Error ? err.message : 'unknown'}`;
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = 'CONFIRM UNPUBLISH';
+      }
+    });
+    btnRow.appendChild(confirmBtn);
+
+    dialog.appendChild(btnRow);
+    overlay.appendChild(dialog);
+    document.body.appendChild(overlay);
   }
 
   function renderAdvanced(draft: VfxPresetDraft): HTMLElement {
@@ -908,6 +1133,23 @@ function addComposerStyle(): void {
     #${COMPOSER_ROOT_ID} .cmp-dock-title{color:#9fe5ff;font-size:11px;font-weight:800;letter-spacing:.06em}
     #${COMPOSER_ROOT_ID} .cmp-dock-context{color:#8fa5b2;font-size:10px;word-break:break-all}
     #${COMPOSER_ROOT_ID} .cmp-expand{border-color:#66cfea;background:#0f3b52;font-weight:700;padding:5px;font-size:10px}
+    #${COMPOSER_ROOT_ID} .cmp-pub-badge{padding:4px 7px;border-radius:4px;font-size:10px;font-weight:800;letter-spacing:.06em;text-align:center}
+    #${COMPOSER_ROOT_ID} .cmp-pub-not-published{background:rgba(120,120,120,.18);color:#aaa;border:1px solid #555}
+    #${COMPOSER_ROOT_ID} .cmp-pub-published{background:rgba(58,140,74,.18);color:#5fd97a;border:1px solid #3a8c4a}
+    #${COMPOSER_ROOT_ID} .cmp-pub-modified{background:rgba(204,122,42,.18);color:#ff9a4a;border:1px solid #c47a2a}
+    #${COMPOSER_ROOT_ID} .cmp-publish{border-color:#c47a2a;background:#3a2410;font-weight:800;padding:7px;letter-spacing:.05em}
+    #${COMPOSER_ROOT_ID} .cmp-unpublish{border-color:#8c3a3a;background:#2f0d0d;font-weight:700;padding:6px}
+    .cmp-confirm-overlay{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6)}
+    .cmp-confirm-dialog{width:400px;max-height:80vh;overflow-y:auto;padding:16px;border:1px solid #3a5c70;border-radius:8px;background:rgba(8,18,28,.97);color:#dfeef7;font:12px/1.45 'Segoe UI',system-ui,sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.6)}
+    .cmp-confirm-title{color:#9fe5ff;font-size:14px;font-weight:800;letter-spacing:.06em;margin-bottom:10px}
+    .cmp-confirm-label{color:#8fa5b2;font-size:10px;font-weight:700;letter-spacing:.06em;margin-top:8px;margin-bottom:2px}
+    .cmp-confirm-value{color:#b9d9e7;font-size:11px;margin-bottom:4px}
+    .cmp-confirm-summary{white-space:pre-wrap;color:#dfeef7;font-size:11px;margin-bottom:10px}
+    .cmp-confirm-buttons{display:flex;gap:8px;margin-top:12px}
+    .cmp-confirm-buttons .cmp-btn{flex:1;padding:8px;font-size:12px;font-weight:700}
+    .cmp-confirm-btn{border-color:#c47a2a;background:#3a2410;color:#ffd9a0}
+    .cmp-unpublish-btn{border-color:#8c3a3a;background:#2f0d0d;color:#ff9a9a}
+    .cmp-cancel{border-color:#3a5c70;background:#122b3c}
   `;
   document.head.appendChild(style);
 }

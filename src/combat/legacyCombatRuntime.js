@@ -30,6 +30,7 @@ import { COMBAT_RENDER_LAYERS } from './combatRenderLayers';
 import { resolveBossIntentVisualState } from './bossIntentPresentation';
 import { CombatStage } from './stage/CombatStage';
 import { resolveCombatStageProfileUniversal, getStageProfileInfo, forceResolveCombatStageProfile } from './stage/combatStageProfiles';
+import { isActionPublished, playActionVfx as playPublishedActionVfx, getPublishedDraft, __devUpdateOverlay, __devClearOverlay, getActiveRegistry } from './vfx/PublishedVfxResolver';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
@@ -587,7 +588,7 @@ for(const [id,def] of SKILL_MAP){ SKILLS[id]={...def,desc:def.description}; }
 // ============================= UNIT DEFINITIONS =============================
 const DEFS=[
   {team:'player',kind:'knight', name:'Chevalier',className:'Guerrier',portrait:'/assets/characters/pixel/full/alistair.png',hp:140,str:20,mag:3, end:18,dex:9, cha:10,mov:2, weapons:[{name:'Épée',icon:'⚔️',type:'phys',min:1,max:1,power:10,crit:0.10,acc:0.95}], skills:['w_break_guard','w_charge','w_whirl','w_lion_surge'], gx:0,gz:0},
-  {team:'player',kind:'cleric', name:'Clerc',className:'Mage Blanc',portrait:'/assets/characters/pixel/full/marian.png',    hp:100,str:6, mag:22,end:10,dex:11,cha:18,mov:2, weapons:[{name:'Masse',icon:'🔨',type:'phys',min:1,max:1,power:8,crit:0.06,acc:0.92}], skills:['w_salvation','w_purify','w_sanctuary','w_miracle'], gx:0,gz:1},
+  {team:'player',kind:'cleric', name:'Clerc',className:'Mage Blanc',portrait:'/assets/characters/pixel/full/marian.png',    hp:100,str:6, mag:22,end:10,dex:11,cha:18,mov:2, weapons:[{name:'Masse',icon:'🔨',type:'phys',weaponType:'crosier',min:1,max:1,power:8,crit:0.06,acc:0.92}], skills:['w_salvation','w_purify','w_sanctuary','w_miracle'], gx:0,gz:1},
   {team:'player',kind:'mage',   name:'Mage',className:'Mage Noir',portrait:'/assets/characters/pixel/full/elara.png',     hp:75, str:5, mag:28,end:7, dex:12,cha:14,mov:2, weapons:[{name:'Bâton',icon:'🪄',type:'phys',min:1,max:1,power:8,crit:0.06,acc:0.95}], skills:['n_dark_bolt','n_teleport','n_flame_wave','n_dark_meteor'], gx:1,gz:2},
   {team:'player',kind:'archer', name:'Archère',className:'Archer',portrait:'/assets/characters/pixel/full/kestrel.png',  hp:90, str:14,mag:3, end:9, dex:22,cha:10,mov:3, weapons:[{name:'Arc',icon:'🏹',type:'phys',min:2,max:4,power:9,crit:0.10,acc:0.92}], skills:['a_precise_shot','a_hawk_leap','a_arrow_rain','a_zenith_arrow'], gx:1,gz:3},
   {team:'player',kind:'knight', name:'Paladin',className:'Paladin',portrait:'/assets/characters/pixel/full/aldric.png',hp:140,str:16,mag:14,end:17,dex:9, cha:14,mov:2,weapons:[{name:'Lame sainte',icon:'⚔',type:'phys',min:1,max:1,power:10,crit:0.06,acc:0.93}],skills:['p_holy_strike','p_interpose','p_oathwall','p_radiant_judgement'],gx:0,gz:2},
@@ -1474,6 +1475,8 @@ function getActionVfxPreset(spec={},u=null){
   return null;
 }
 function actionHasSpritesheetVfx(spec={},u=null){
+  const actionKey=getActionKeyForPublishedVfx(spec,u);
+  if(isActionPublished(actionKey))return true;
   const presetId=getActionVfxPreset(spec,u);
   if(!presetId)return false;
   const preset=getVfxPreset(presetId);
@@ -1481,9 +1484,41 @@ function actionHasSpritesheetVfx(spec={},u=null){
   return preset.steps.some(step=>step.type==='spriteSheet');
 }
 function actionHasPreset(spec={},u=null){
+  const actionKey=getActionKeyForPublishedVfx(spec,u);
+  if(isActionPublished(actionKey))return true;
   const presetId=getActionVfxPreset(spec,u);
   if(!presetId)return false;
   return Boolean(getVfxPreset(presetId));
+}
+function getActionKeyForPublishedVfx(spec={},u=null){
+  const presentation=getSkillPresentation(spec);
+  if(presentation)return String(spec.key||'');
+  const basicAttackPreset=getBasicAttackVfxPreset(spec,u);
+  if(basicAttackPreset)return basicAttackPreset;
+  return String(spec.key||'');
+}
+function playActionVfx(spec,u,targets,cx,cz,visualContext={}){
+  const presetId=getActionVfxPreset(spec,u);
+  if(!presetId)return null;
+  const presentation=getSkillPresentation(spec);
+  const actionKey=getActionKeyForPublishedVfx(spec,u);
+  const published=isActionPublished(actionKey);
+  console.log('[VFX-QA] playActionVfx:',{specKey:spec.key,weaponType:spec.weaponType,staticPresetId:presetId,resolvedActionKey:actionKey,published,candidate:published?(getPublishedDraft(actionKey)?.visualSlots?.[0]?.candidateId||'??'):'N/A'});
+  const perTarget=presetId==='heal_burst'||presetId==='bless_aura'||presetId==='guard_barrier'||presetId==='support_holy_aura'||presetId==='arrow_rain';
+  const visualTargets=(perTarget&&targets.length>1)?targets.map(target=>[target]):[targets];
+  const results=visualTargets.map(group=>{
+    const context=makeActionVfxContext(u,group,cx,cz,spec,visualContext);
+    if(published&&!presentation?.cinematic){
+      return playPublishedActionVfx({actionKey,fallbackPresetId:presetId,context,vfxSystem:combatVfxSystem});
+    }
+    return presentation?.cinematic
+      ?combatVfxSystem.playCinematic(presentation.cinematic,context,presetId)
+      :combatVfxSystem.play(presetId,context);
+  }).filter(result=>result.played);
+  if(!results.length)return null;
+  const completion=Promise.all(results.map(result=>result.completion)).then(()=>undefined);
+  void completion.catch(error=>console.warn('[CombatVfx] Action playback failed safely.',error));
+  return {played:true,presetId:published?`published_${actionKey}`:presetId,impactTime:Math.max(...results.map(result=>result.impactTime)),completion};
 }
 function makeActionVfxContext(u,targets,cx,cz,spec={},visualContext={}){
   const tuning=getActionPresentationTuning(spec),presentation=getSkillPresentation(spec);
@@ -1516,23 +1551,6 @@ function makeActionVfxContext(u,targets,cx,cz,spec={},visualContext={}){
     impactRenderOrder:tuning.impactRenderOrder,groundYOffset:tuning.groundYOffset,
     helpers:{wait,screenShake,screenFlash,floatText,wX,wZ,tileTop}
   };
-}
-function playActionVfx(spec,u,targets,cx,cz,visualContext={}){
-  const presetId=getActionVfxPreset(spec,u);
-  if(!presetId)return null;
-  const presentation=getSkillPresentation(spec);
-  const perTarget=presetId==='heal_burst'||presetId==='bless_aura'||presetId==='guard_barrier'||presetId==='support_holy_aura'||presetId==='arrow_rain';
-  const visualTargets=(perTarget&&targets.length>1)?targets.map(target=>[target]):[targets];
-  const results=visualTargets.map(group=>{
-    const context=makeActionVfxContext(u,group,cx,cz,spec,visualContext);
-    return presentation?.cinematic
-      ?combatVfxSystem.playCinematic(presentation.cinematic,context,presetId)
-      :combatVfxSystem.play(presetId,context);
-  }).filter(result=>result.played);
-  if(!results.length)return null;
-  const completion=Promise.all(results.map(result=>result.completion)).then(()=>undefined);
-  void completion.catch(error=>console.warn('[CombatVfx] Action playback failed safely.',error));
-  return {played:true,presetId,impactTime:Math.max(...results.map(result=>result.impactTime)),completion};
 }
 function playActionVfxAt(presetId,u,targetPoint,spec={}){
   if(!presetId||!u||!targetPoint)return null;
@@ -2492,7 +2510,111 @@ function buildLabPlaybackContext(){
     },
   };
 }
-async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); disposeVfxComposerPanel=installVfxComposerPanel({enabled:VFX_LAB_ENABLED,playback:VFX_LAB_ENABLED?buildLabPlaybackContext():undefined}); installUnitMotionWorkbench({enabled:MOTION_QA_ENABLED,play:playQaMotionScenario,reset:resetQaMotion}); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none'; }
+async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); disposeVfxComposerPanel=installVfxComposerPanel({enabled:VFX_LAB_ENABLED,playback:VFX_LAB_ENABLED?buildLabPlaybackContext():undefined}); installUnitMotionWorkbench({enabled:MOTION_QA_ENABLED,play:playQaMotionScenario,reset:resetQaMotion}); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none';
+  // DEV QA: expose published VFX resolver functions for Playwright testing
+  // Read-only helpers are always available; mutation helpers are DEV-gated.
+  const _DEV_QA=VFX_LAB_ENABLED||QA_ENABLED||STAGE_QA_ENABLED;
+  const _qaHelpers={
+    getEnemyScreenPositions:()=>{
+      const positions=[];
+      for(const u of G.units){
+        if(u.team==='foe'&&u.alive&&u.grp){
+          const pos=u.grp.position.clone();
+          pos.y+=0.5;
+          pos.project(camera);
+          const canvas=renderer.domElement;
+          const rect=canvas.getBoundingClientRect();
+          positions.push({
+            name:u.name,
+            gx:u.gx,gz:u.gz,
+            screenX:rect.left+(pos.x*0.5+0.5)*rect.width,
+            screenY:rect.top+(-pos.y*0.5+0.5)*rect.height,
+          });
+        }
+      }
+      return positions;
+    },
+    getActiveUnitName:()=>{const u=G.active;return u?u.name:'';},
+    getGameMode:()=>G.mode,
+    isGameBusy:()=>G.busy,
+    getNearestEnemyScreenPosition:()=>{
+      const u=G.active;
+      if(!u||!u.grp)return null;
+      const enemies=G.units.filter(e=>e.team==='foe'&&e.alive&&e.grp);
+      if(!enemies.length)return null;
+      let best=null,bestD=Infinity;
+      for(const e of enemies){
+        const d=Math.abs(u.gx-e.gx)+Math.abs(u.gz-e.gz);
+        if(d<bestD){bestD=d;best=e;}
+      }
+      if(!best)return null;
+      const pos=best.grp.position.clone();
+      pos.y+=0.5;
+      pos.project(camera);
+      const canvas=renderer.domElement;
+      const rect=canvas.getBoundingClientRect();
+      return{name:best.name,gx:best.gx,gz:best.gz,distance:bestD,screenX:rect.left+(pos.x*0.5+0.5)*rect.width,screenY:rect.top+(-pos.y*0.5+0.5)*rect.height};
+    },
+    getCellScreenPosition:(gx,gz)=>{
+      const pos=new THREE.Vector3(wX(gx),tileTop(gx,gz)+0.1,wZ(gz));
+      pos.project(camera);
+      const canvas=renderer.domElement;
+      const rect=canvas.getBoundingClientRect();
+      return{screenX:rect.left+(pos.x*0.5+0.5)*rect.width,screenY:rect.top+(-pos.y*0.5+0.5)*rect.height};
+    },
+  };
+  if(_DEV_QA){
+    _qaHelpers.swapDeployedUnitForQa=(removeName,addName)=>{
+      if(G.mode!=='deploy')return{error:'Not in deploy phase'};
+      const removed=G.deployedUnits.find(u=>u.name===removeName);
+      if(!removed)return{error:'Unit not deployed: '+removeName};
+      const cell=removed.cell();
+      removeUnit(removed);
+      const def=G.rosterDefs.find(d=>d.name===addName);
+      if(!def)return{error:'Roster unit not found: '+addName};
+      const id=def.campaignId||def.name;
+      G.selectedDeployId=id;
+      const nu=deployUnit(cell.gx,cell.gz,id);
+      if(!nu)return{error:'Could not deploy: '+addName};
+      drawDeployZone(); openDeployMenu();
+      return{ok:true,removed:removeName,added:addName};
+    };
+    _qaHelpers.restoreActiveUnitAp=()=>{
+      const u=G.active;
+      if(!u)return{error:'No active unit'};
+      u.ap=u.maxap;
+      u.movedThisTurn=false;
+      return{ok:true,unit:u.name,ap:u.ap};
+    };
+    _qaHelpers.teleportActiveUnitNextToEnemy=()=>{
+      const u=G.active;
+      if(!u)return{error:'No active unit'};
+      const enemies=G.units.filter(e=>e.team==='foe'&&e.alive);
+      if(!enemies.length)return{error:'No enemies'};
+      const nearest=enemies.reduce((best,e)=>{
+        const d=Math.abs(u.gx-e.gx)+Math.abs(u.gz-e.gz);
+        return(!best||d<best.d)?{enemy:e,d}:best;
+      },null);
+      const e=nearest.enemy;
+      let tx=e.gx-1,tz=e.gz;
+      if(u.team==='player'&&tx<2)tx=2;
+      const c=cellAt(tx,tz);
+      if(!c||!c.walkable){
+        for(let r=1;r<=3;r++){
+          for(let dx=-r;dx<=r;dx++)for(let dz=-r;dz<=r;dz++){
+            if(Math.abs(dx)+Math.abs(dz)!==r)continue;
+            const cc=cellAt(e.gx+dx,e.gz+dz);
+            if(cc&&cc.walkable&&!cc.occupant){tx=e.gx+dx;tz=e.gz+dz;break;}
+          }
+        }
+      }
+      placeUnit(u,tx,tz,true);
+      return{ok:true,unit:u.name,target:nearest.enemy.name,pos:{gx:tx,gz:tz}};
+    };
+  }
+  Object.assign(window,{__publishedVfx:{isActionPublished,getPublishedDraft,getActiveRegistry,__devUpdateOverlay,__devClearOverlay},
+    __qaHelpers:_qaHelpers});
+}
 function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; if(_animationFrame)cancelAnimationFrame(_animationFrame); restoreUnitFocus(); for(const unit of G.units.slice()){killSpriteMotion(unit);disposeBossIntentPresentation(unit);} for(const texture of bossIntentBadgeTextures.values())texture.dispose(); bossIntentBadgeTextures.clear(); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); disposeVfxComposerPanel(); combatVfxSystem.dispose(); combatStage.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
 window.addEventListener('pagehide',disposeCombatRuntime,{once:true});
 window.addEventListener('error',()=>{ if(dom.loading&&dom.loading.style.display!=='none') dom.loading.innerHTML='<div style="color:#ff8a7a;max-width:540px;text-align:center;line-height:26px">Échec du chargement de Three.js.<br>Vérifiez votre connexion internet puis rechargez la page.<br><span style="color:#9fb0d0">La page doit être servie via un serveur local (http://), pas ouverte directement depuis le disque.</span></div>'; });
