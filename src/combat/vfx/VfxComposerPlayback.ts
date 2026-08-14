@@ -35,6 +35,9 @@ import {
   validateDraft,
 } from './VfxPresetComposer';
 import { repairComposerDraftAssignments } from './VfxSourceSuitability';
+import {
+  CARTOONCOFFEE_UNIVERSAL_FRAME_DELAY_MS,
+} from './VfxPresetComposer';
 import type {
   CompiledVfxDraft,
   CompiledVfxSlot,
@@ -42,6 +45,7 @@ import type {
   VfxPresetDraft,
   VfxRuntimeScaleFactors,
 } from './VfxPresetComposer';
+import cadenceIndexData from '../../../docs/reports/vfx-cadence-index.json';
 
 // ============================================================ Draft Store
 
@@ -183,17 +187,56 @@ export function importComposerDrafts(store: ComposerStore, raw: string): Compose
 
 // ============================================================ Cadence Lookup
 
+interface CadenceIndexEntry {
+  /** GIF preview reference duration in milliseconds (sum of frame delays). */
+  referenceDurationMs: number;
+  gifFrameCount: number;
+  frameDelayMs: number;
+  atlasFrameCount: number | null;
+  atlasWidth: number;
+}
+
+interface CadenceIndexJson {
+  generatedAt: string;
+  source: string;
+  totalCandidates: number;
+  universalDelayMs: number;
+  fallbackRule: string;
+  index: Record<string, CadenceIndexEntry>;
+}
+
+const cadenceIndex = cadenceIndexData as CadenceIndexJson;
+
 /**
- * Native cadence for a CartoonCoffee candidate, read from the corrected
- * inventory. 2048px sources run at 50ms/frame, 4096px at 20ms/frame — the same
- * rule `buildLabSheetDefinition` applies.
+ * GIF preview reference cadence for a CartoonCoffee candidate. The V2.2.5
+ * cadence forensics proved that ALL 1973 CartoonCoffee preview GIFs use
+ * 40ms/frame uniformly. The cadence index stores the per-candidate GIF
+ * preview reference duration extracted from frame delays.
+ *
+ * This is a preview-generation reference cadence, not proven to be original
+ * CartoonCoffee authoring metadata.
+ *
+ * For candidates without a GIF preview, falls back to an inferred reference:
+ *   atlasFrameCount × 40ms (the universal preview GIF per-frame delay)
  */
 export function getCandidateCadence(candidateId: string): VfxNativeCadence | null {
   const record = getCandidateInventoryRecord(candidateId);
   if (!record) return null;
+
+  const entry = cadenceIndex.index[candidateId];
+  if (entry && entry.referenceDurationMs > 0) {
+    // Use GIF preview reference duration, distributed across all atlas frames.
+    // This preserves the reference timing while ensuring every atlas frame is traversed.
+    return {
+      frameCount: record.nativeFrameCount,
+      frameDurationMs: entry.referenceDurationMs / record.nativeFrameCount,
+    };
+  }
+
+  // Fallback: inferred reference cadence — atlasFrameCount × 40ms
   return {
     frameCount: record.nativeFrameCount,
-    frameDurationMs: record.width === 2048 ? 50 : 20,
+    frameDurationMs: CARTOONCOFFEE_UNIVERSAL_FRAME_DELAY_MS,
   };
 }
 

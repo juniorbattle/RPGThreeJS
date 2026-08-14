@@ -185,22 +185,54 @@ export function computeFinalDisplayHeight(
 // ============================================================ Timing Resolver
 
 /**
- * Timing multipliers applied to the candidate's NATIVE cadence.
+ * Timing multipliers applied to the candidate's GIF preview reference cadence.
+ * The reference duration is the sum of per-frame delays in the CartoonCoffee
+ * preview GIF — universally 40ms/frame across all 1973 GIFs analysed.
  *
- *   nativeDuration = frameCount × frameDurationMs / 1000
+ * V2.2.5 cadence forensics proved:
+ *   - ALL CartoonCoffee preview GIFs use 40ms/frame uniformly (zero variable
+ *     delays). This is a preview-generation constant, not proven to be
+ *     original CartoonCoffee authoring metadata.
+ *   - The previous 50ms (2048px) / 20ms (4096px) values were unsupported
+ *     RPGThreeJS assumptions from atlas dimension conventions.
+ *   - 64f GIF preview reference: ~2.12s; 16f GIF preview reference: ~0.52s.
+ *   - QUICK = 1.00× provided no actual acceleration profile — 64f QUICK at
+ *     1.28s was still too slow for responsive tactical impacts, and
+ *     NORMAL 1.66s / LONG 2.24s made the problem worse.
  *
- * NORMAL = 1.30× is grounded in the P0.1B human readability calibration:
- * a 1.28s native sequence was accepted at 1.60s / 1.70s (1.25×–1.33×).
- * The authored frame sequence is always preserved — only cadence is stretched.
+ * The new multipliers intentionally compress the GIF preview reference
+ * cadence for RPGThreeJS game feel:
+ *
+ *   QUICK  = 0.35× → sharp / immediate / attack-friendly
+ *   NORMAL = 0.60× → readable standard effect
+ *   LONG   = 1.00× → GIF preview reference speed (cinematic / lingering)
  */
 export const TIMING_PROFILE_NATIVE_MULTIPLIER: Readonly<Record<VfxTimingProfile, number>> = Object.freeze({
-  QUICK: 1.00,
-  NORMAL: 1.30,
-  LONG: 1.75,
+  QUICK: 0.35,
+  NORMAL: 0.60,
+  LONG: 1.00,
 });
 
-/** Fallback when a candidate has no inventory cadence record. */
-export const TIMING_FALLBACK_NATIVE_DURATION = 1.28;
+/**
+ * Floor durations per timing profile. Ensures QUICK < NORMAL < LONG always
+ * produces clearly perceptible visible separation, even for short 16f sources
+ * where the multiplier alone would produce too-short durations.
+ */
+export const TIMING_PROFILE_FLOOR: Readonly<Record<VfxTimingProfile, number>> = Object.freeze({
+  QUICK: 0.40,
+  NORMAL: 0.65,
+  LONG: 1.00,
+});
+
+/** Fallback when a candidate has no GIF preview reference cadence. Uses the
+ * universal CartoonCoffee preview GIF delay of 40ms/frame × 64 frames. This
+ * is an inferred reference cadence, not vendor-native metadata. */
+export const TIMING_FALLBACK_NATIVE_DURATION = 2.56;
+
+/** Universal CartoonCoffee preview GIF per-frame delay, extracted from 1973
+ * GIF previews. This is a preview-generation constant, not proven to be
+ * original CartoonCoffee authoring metadata. */
+export const CARTOONCOFFEE_UNIVERSAL_FRAME_DELAY_MS = 40;
 
 export const DURATION_CLAMP = Object.freeze({ min: 0.10, max: 6.0 });
 
@@ -225,8 +257,10 @@ export function resolveSlotDuration(
 ): number {
   const native = nativeDurationSeconds(cadence);
   const multiplier = TIMING_PROFILE_NATIVE_MULTIPLIER[timingProfile];
+  const floor = TIMING_PROFILE_FLOOR[timingProfile];
+  const scaled = Math.round(native * multiplier * 1000) / 1000;
   return clamp(
-    Math.round(native * multiplier * 1000) / 1000,
+    Math.max(scaled, floor),
     DURATION_CLAMP.min,
     DURATION_CLAMP.max,
   );

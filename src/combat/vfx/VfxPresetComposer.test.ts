@@ -9,6 +9,7 @@ import {
   VFX_TECHNICAL_POLISH_LEVELS,
   SIZE_PROFILE_TARGET_HEIGHT,
   TIMING_PROFILE_NATIVE_MULTIPLIER,
+  TIMING_PROFILE_FLOOR,
   VISIBILITY_DEFAULTS,
   // resolvers
   resolveSlotScale,
@@ -63,10 +64,10 @@ import { VFX_SPRITE_SHEETS } from './VfxSpriteSheets';
 
 // ============================================================ Fixtures
 
-/** 4096px source: 64 frames @ 20ms = 1.28s native. */
-const CADENCE_4096: VfxNativeCadence = { frameCount: 64, frameDurationMs: 20 };
-/** 2048px source: 16 frames @ 50ms = 0.80s native. */
-const CADENCE_2048: VfxNativeCadence = { frameCount: 16, frameDurationMs: 50 };
+/** 4096px source: 64 frames @ 40ms = 2.56s (CartoonCoffee preview GIF reference delay). */
+const CADENCE_4096: VfxNativeCadence = { frameCount: 64, frameDurationMs: 40 };
+/** 2048px source: 16 frames @ 40ms = 0.64s (CartoonCoffee preview GIF reference delay). */
+const CADENCE_2048: VfxNativeCadence = { frameCount: 16, frameDurationMs: 40 };
 
 const cadenceMap: Record<string, VfxNativeCadence> = {
   r1_1709: CADENCE_4096,
@@ -186,21 +187,22 @@ describe('R2C-VFX LAB V2 — Simple Preset Composer', () => {
     });
 
     it('11. native duration derives from frameCount x frameDurationMs', () => {
-      expect(nativeDurationSeconds(CADENCE_4096)).toBeCloseTo(1.28, 5);
-      expect(nativeDurationSeconds(CADENCE_2048)).toBeCloseTo(0.80, 5);
+      expect(nativeDurationSeconds(CADENCE_4096)).toBeCloseTo(2.56, 5);
+      expect(nativeDurationSeconds(CADENCE_2048)).toBeCloseTo(0.64, 5);
     });
 
-    it('12. QUICK preserves the native readable cadence', () => {
-      expect(TIMING_PROFILE_NATIVE_MULTIPLIER.QUICK).toBe(1.0);
-      expect(resolveSlotDuration('QUICK', CADENCE_4096)).toBeCloseTo(1.28, 3);
+    it('12. QUICK is faster than the reference cadence (sharp/attack-friendly)', () => {
+      expect(TIMING_PROFILE_NATIVE_MULTIPLIER.QUICK).toBe(0.35);
+      const quick = resolveSlotDuration('QUICK', CADENCE_4096);
+      expect(quick).toBeLessThan(nativeDurationSeconds(CADENCE_4096));
+      expect(quick).toBeGreaterThanOrEqual(TIMING_PROFILE_FLOOR.QUICK);
     });
 
-    it('13. NORMAL adds readability over native cadence', () => {
-      expect(TIMING_PROFILE_NATIVE_MULTIPLIER.NORMAL).toBeGreaterThan(1.0);
-      // P0.1B human calibration accepted 1.60s-1.70s for a 1.28s native source.
+    it('13. NORMAL is a readable standard cadence', () => {
+      expect(TIMING_PROFILE_NATIVE_MULTIPLIER.NORMAL).toBe(0.60);
       const normal = resolveSlotDuration('NORMAL', CADENCE_4096);
-      expect(normal).toBeGreaterThan(1.28);
-      expect(normal).toBeLessThanOrEqual(1.75);
+      expect(normal).toBeGreaterThan(resolveSlotDuration('QUICK', CADENCE_4096));
+      expect(normal).toBeGreaterThanOrEqual(TIMING_PROFILE_FLOOR.NORMAL);
     });
 
     it('14. LONG is deliberately more emphasised than NORMAL', () => {
@@ -210,17 +212,42 @@ describe('R2C-VFX LAB V2 — Simple Preset Composer', () => {
         .toBeGreaterThan(resolveSlotDuration('NORMAL', CADENCE_4096));
     });
 
+    it('14b. QUICK < NORMAL < LONG strictly, with no floor collisions', () => {
+      for (const cad of [CADENCE_4096, CADENCE_2048]) {
+        const q = resolveSlotDuration('QUICK', cad);
+        const n = resolveSlotDuration('NORMAL', cad);
+        const l = resolveSlotDuration('LONG', cad);
+        expect(q).toBeLessThan(n);
+        expect(n).toBeLessThan(l);
+      }
+    });
+
     it('15. timing scales with native cadence, NOT fixed AP constants', () => {
-      const long4096 = resolveSlotDuration('NORMAL', CADENCE_4096);
-      const long2048 = resolveSlotDuration('NORMAL', CADENCE_2048);
-      expect(long4096).not.toBeCloseTo(long2048, 2);
-      expect(long4096 / nativeDurationSeconds(CADENCE_4096))
-        .toBeCloseTo(long2048 / nativeDurationSeconds(CADENCE_2048), 2);
+      const normal4096 = resolveSlotDuration('NORMAL', CADENCE_4096);
+      const normal2048 = resolveSlotDuration('NORMAL', CADENCE_2048);
+      // Both should use the same multiplier, but floor may intervene for 2048
+      const native4096 = nativeDurationSeconds(CADENCE_4096);
+      const native2048 = nativeDurationSeconds(CADENCE_2048);
+      // 4096: multiplier alone exceeds floor, so ratio is exactly the multiplier
+      expect(normal4096 / native4096).toBeCloseTo(TIMING_PROFILE_NATIVE_MULTIPLIER.NORMAL, 2);
     });
 
     it('16. missing cadence falls back safely without throwing', () => {
       expect(resolveSlotDuration('NORMAL', null)).toBeGreaterThan(0);
       expect(resolveSlotDuration('NORMAL', { frameCount: 0, frameDurationMs: 0 })).toBeGreaterThan(0);
+    });
+
+    it('16b. floor prevents 16f QUICK from being too short', () => {
+      const quick16 = resolveSlotDuration('QUICK', CADENCE_2048);
+      expect(quick16).toBeGreaterThanOrEqual(TIMING_PROFILE_FLOOR.QUICK);
+    });
+
+    it('16c. advanced duration override wins over semantic timing', () => {
+      let draft = baseDraft(['slotA']);
+      const slotId = draft.visualSlots[0]!.id;
+      draft = setSlotAdvancedOverride(draft, slotId, { duration: 3.25 });
+      const slot = compileDraft(draft, { includeTechnical: false, getCadence }).slots[0]!;
+      expect(slot.duration).toBe(3.25);
     });
   });
 
