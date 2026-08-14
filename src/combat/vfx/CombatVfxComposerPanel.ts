@@ -597,16 +597,17 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
       visualsBtn.disabled = true;
       statusLine.textContent = 'Preparing VFX assets…';
       ensureDraftRuntimeReady(activeDraft)
-        .then((readiness) => {
+        .then(async (readiness) => {
           if (!readiness.ready) {
             statusLine.textContent = `VFX ACQUISITION FAILED: ${readiness.failedCandidates.join(', ')}`;
             return;
           }
-          const result = playDraftVisualsOnly(pb, activeDraft);
+          statusLine.textContent = 'Playing VFX…';
+          const result = await playDraftVisualsOnly(pb, activeDraft);
           const skipped = unplayableSlotCandidates(activeDraft).length;
           statusLine.textContent = result.played
-            ? `Played visuals only: ${result.snapshot?.slotCount} slot(s), 0 technical effects${skipped > 0 ? ` · ${skipped} not previewable` : ''}`
-            : `Not played: ${result.reason}`;
+            ? `Playback complete: ${result.snapshot?.slotCount} slot(s), 0 technical effects${skipped > 0 ? ` · ${skipped} not previewable` : ''}`
+            : `PLAYBACK FAILED: ${result.reason}`;
         })
         .catch(() => {
           statusLine.textContent = 'VFX acquisition error.';
@@ -623,15 +624,16 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
       fullBtn.disabled = true;
       statusLine.textContent = 'Preparing VFX assets…';
       ensureDraftRuntimeReady(activeDraft)
-        .then((readiness) => {
+        .then(async (readiness) => {
           if (!readiness.ready) {
             statusLine.textContent = `VFX ACQUISITION FAILED: ${readiness.failedCandidates.join(', ')}`;
             return;
           }
-          const result = playDraftFull(pb, activeDraft);
+          statusLine.textContent = 'Playing VFX…';
+          const result = await playDraftFull(pb, activeDraft);
           statusLine.textContent = result.played
-            ? `Played full preset: ${result.snapshot?.slotCount} slot(s), ${result.snapshot?.technicalEffectCount} technical effect(s)`
-            : `Not played: ${result.reason}`;
+            ? `Playback complete: ${result.snapshot?.slotCount} slot(s), ${result.snapshot?.technicalEffectCount} technical effect(s)`
+            : `PLAYBACK FAILED: ${result.reason}`;
         })
         .catch(() => {
           statusLine.textContent = 'VFX acquisition error.';
@@ -653,11 +655,11 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
             statusLine.textContent = `VFX ACQUISITION FAILED: ${readiness.failedCandidates.join(', ')}`;
             return;
           }
-          statusLine.textContent = 'Opening Combat Stage…';
+          statusLine.textContent = 'Playing VFX…';
           const result = await playDraftInCombatStage(pb, activeDraft, 'full_preset');
           statusLine.textContent = result.played
-            ? `Stage playback: ${result.snapshot?.slotCount} slot(s), ${result.snapshot?.technicalEffectCount} technical effect(s)`
-            : `Stage unavailable: ${result.reason ?? 'unknown'}`;
+            ? `Stage playback complete: ${result.snapshot?.slotCount} slot(s), ${result.snapshot?.technicalEffectCount} technical effect(s)`
+            : `STAGE PLAYBACK FAILED: ${result.reason ?? 'unknown'}`;
         })
         .catch((err) => {
           statusLine.textContent = `Stage error: ${err instanceof Error ? err.message : 'unknown'}`;

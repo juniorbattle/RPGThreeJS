@@ -280,7 +280,9 @@ async function playCompiledSlots(
 ): Promise<void> {
   await Promise.all(compiled.slots.map(async (slot) => {
     const record = getCandidateInventoryRecord(slot.candidateId);
-    if (!record) return;
+    if (!record) {
+      throw new Error(`Missing inventory record for candidate ${slot.candidateId}`);
+    }
     await wait(slot.startTime);
     const sheetDef = buildLabSheetDefinition(slot.candidateId, record);
     const result = ctx.vfxSystem.playLabSpriteSheet(
@@ -299,6 +301,7 @@ async function playCompiledSlots(
         fadeIn: slot.fadeIn,
         fadeOut: slot.fadeOut,
       },
+      { strict: true },
     );
     await result.completion;
   }));
@@ -357,11 +360,14 @@ function buildSnapshot(mode: ComposerPlaybackMode, compiled: CompiledVfxDraft): 
 /**
  * PLAY VISUALS ONLY — plays only the CartoonCoffee visual slots.
  * Guarantees zero technical effects.
+ *
+ * Awaits actual playback completion. Returns played:false if any slot
+ * fails to load or render.
  */
-export function playDraftVisualsOnly(
+export async function playDraftVisualsOnly(
   ctx: ComposerPlaybackContext,
   draft: VfxPresetDraft,
-): ComposerPlaybackResult {
+): Promise<ComposerPlaybackResult> {
   if (draft.visualSlots.length === 0) {
     return { played: false, snapshot: null, reason: 'Draft has no visual spritesheets.' };
   }
@@ -372,15 +378,23 @@ export function playDraftVisualsOnly(
   const compiled = compileForMode(draft, 'visuals_only', ctx.scaleFactors);
   const snapshot = buildSnapshot('visuals_only', compiled);
   _lastComposerSnapshot = snapshot;
-  void playCompiledSlots(ctx, compiled, context);
-  return { played: true, snapshot };
+  try {
+    await playCompiledSlots(ctx, compiled, context);
+    return { played: true, snapshot };
+  } catch (error) {
+    return { played: false, snapshot, reason: error instanceof Error ? error.message : 'Playback failed' };
+  }
 }
 
-/** PLAY FULL PRESET — visual slots + technical polish. */
-export function playDraftFull(
+/** PLAY FULL PRESET — visual slots + technical polish.
+ *
+ * Awaits actual playback completion. Returns played:false if any slot
+ * or technical effect fails.
+ */
+export async function playDraftFull(
   ctx: ComposerPlaybackContext,
   draft: VfxPresetDraft,
-): ComposerPlaybackResult {
+): Promise<ComposerPlaybackResult> {
   if (draft.visualSlots.length === 0) {
     return { played: false, snapshot: null, reason: 'Draft has no visual spritesheets.' };
   }
@@ -391,11 +405,15 @@ export function playDraftFull(
   const compiled = compileForMode(draft, 'full_preset', ctx.scaleFactors);
   const snapshot = buildSnapshot('full_preset', compiled);
   _lastComposerSnapshot = snapshot;
-  void Promise.all([
-    playCompiledSlots(ctx, compiled, context),
-    playCompiledTechnical(compiled, context),
-  ]);
-  return { played: true, snapshot };
+  try {
+    await Promise.all([
+      playCompiledSlots(ctx, compiled, context),
+      playCompiledTechnical(compiled, context),
+    ]);
+    return { played: true, snapshot };
+  } catch (error) {
+    return { played: false, snapshot, reason: error instanceof Error ? error.message : 'Playback failed' };
+  }
 }
 
 /** Plays a draft inside the REAL Combat Stage for full-scene evaluation. */
@@ -425,6 +443,10 @@ export async function playDraftInCombatStage(
     }
   };
 
-  const entered = await ctx.buildStageContext(draft.actionKey, playVfx);
-  return { played: entered, snapshot: entered ? snapshot : null };
+  try {
+    const entered = await ctx.buildStageContext(draft.actionKey, playVfx);
+    return { played: entered, snapshot: entered ? snapshot : null };
+  } catch (error) {
+    return { played: false, snapshot, reason: error instanceof Error ? error.message : 'Stage playback failed' };
+  }
 }

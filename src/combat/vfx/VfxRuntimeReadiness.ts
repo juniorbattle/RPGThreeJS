@@ -4,9 +4,10 @@
  * Ensures that every CartoonCoffee candidate needed by a Composer draft has
  * its native PNG available in megapack-runtime BEFORE playback starts.
  *
- * Uses a real HTTP check (HEAD) against the runtime asset URL — NOT the
- * static runtime manifest — because candidates acquired dynamically during
- * the current dev session may not appear in the static manifest.
+ * Uses the authoritative /dev/vfx-runtime-status/<candidateId> endpoint
+ * which checks the filesystem directly — NOT a HEAD request against the
+ * asset URL, because Vite's SPA fallback returns HTTP 200 text/html for
+ * missing static assets, causing false-positive readiness checks.
  *
  * Deduplicates concurrent acquisition requests via an in-flight promise map.
  */
@@ -36,19 +37,33 @@ export interface DraftReadinessResult {
 /** In-flight acquisition deduplication: candidateId → Promise. */
 const _inFlight = new Map<string, Promise<CandidateReadinessResult>>();
 
+interface RuntimeStatusResponse {
+  ok: boolean;
+  candidateId?: string;
+  exists?: boolean;
+  sizeBytes?: number;
+  isPng?: boolean;
+  supported?: boolean;
+  error?: string;
+}
+
 /**
- * Checks whether the runtime PNG for a candidate is already available by
- * issuing a HEAD request to the runtime asset URL.
+ * Authoritative filesystem check via the /dev/vfx-runtime-status endpoint.
+ *
+ * This endpoint checks the actual filesystem for the PNG file, verifies the
+ * PNG signature, and returns size information. It does NOT rely on HTTP
+ * status codes for static assets (which can false-positive due to Vite SPA
+ * fallback).
  */
 async function checkRuntimePngExists(
   candidateId: string,
   fetchFn: FetchFn,
 ): Promise<boolean> {
-  const source = resolveCandidateSource(candidateId);
-  if (!source) return false;
   try {
-    const res = await fetchFn(source.url, { method: 'HEAD' });
-    return res.ok;
+    const res = await fetchFn(`/dev/vfx-runtime-status/${candidateId}`);
+    if (!res.ok) return false;
+    const data = await res.json() as RuntimeStatusResponse;
+    return data.ok === true && data.exists === true && data.isPng !== false;
   } catch {
     return false;
   }
@@ -79,10 +94,10 @@ async function acquireCandidate(
 /**
  * Ensures a single candidate's runtime PNG is ready for playback.
  *
- * 1. Validates the candidate exists in inventory (isSlotPlayable).
- * 2. Checks if the PNG already exists via HEAD request.
+ * 1. Validates the candidate exists in inventory with supported native format.
+ * 2. Checks if the PNG already exists via authoritative /dev/vfx-runtime-status.
  * 3. If missing, POSTs to /dev/vfx-acquire.
- * 4. Verifies acquisition succeeded with a second HEAD check.
+ * 4. Verifies acquisition succeeded with a second status check.
  *
  * Deduplicates concurrent calls for the same candidate via an in-flight map.
  */
@@ -106,7 +121,7 @@ export async function ensureCandidateRuntimeReady(
   if (existing) return existing;
 
   const promise = (async (): Promise<CandidateReadinessResult> => {
-    // Step 1: Check if PNG already exists
+    // Step 1: Authoritative filesystem check
     const exists = await checkRuntimePngExists(candidateId, fetchFn);
     if (exists) {
       return { candidateId, ready: true, acquired: false };
@@ -123,14 +138,14 @@ export async function ensureCandidateRuntimeReady(
       };
     }
 
-    // Step 3: Verify the PNG now exists
+    // Step 3: Verify the PNG now exists (authoritative check)
     const verified = await checkRuntimePngExists(candidateId, fetchFn);
     if (!verified) {
       return {
         candidateId,
         ready: false,
         acquired: true,
-        error: 'Acquisition reported success but PNG not found',
+        error: 'Acquisition reported success but PNG not found on disk',
       };
     }
 

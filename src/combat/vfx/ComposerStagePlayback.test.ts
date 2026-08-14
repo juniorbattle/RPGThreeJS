@@ -6,12 +6,12 @@ import type { VfxPresetDraft } from './VfxPresetComposer';
 import { createVisualSlot } from './VfxPresetComposer';
 
 function makeDraft(slotCount: number): VfxPresetDraft {
-  const ids = ['slotA', 'slotB', 'slotC'];
+  const ids = ['r1_0001', 'r1_0002', 'r1_0003'];
   return {
     actionKey: 'basic_greatsword_hit',
     presetId: 'test_preset',
     visualSlots: Array.from({ length: slotCount }, (_, i) =>
-      createVisualSlot(ids[i] ?? `slot${i}`),
+      createVisualSlot(ids[i] ?? `r1_000${i + 1}`),
     ),
     choreography: 'TOGETHER',
     technicalPolish: 'AUTO',

@@ -1,5 +1,5 @@
 import { defineConfig, loadEnv, type Plugin } from 'vite';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   resolveMegaPackRoot,
@@ -55,6 +55,51 @@ function vfxDevAcquisitionPlugin(options: VfxDevPluginOptions): Plugin {
         res.setHeader('Content-Type', 'application/json');
         res.statusCode = 200;
         res.end(JSON.stringify(health));
+      });
+
+      // ---- Runtime status endpoint (authoritative filesystem check) ----
+      server.middlewares.use('/dev/vfx-runtime-status', async (req, res) => {
+        if (req.method !== 'GET') {
+          res.statusCode = 405;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ ok: false, error: 'Method not allowed' }));
+          return;
+        }
+        const url = req.url ?? '';
+        const candidateId = url.replace(/^\//, '');
+        if (!candidateId || candidateId.includes('/') || candidateId.includes('\\') || candidateId.includes('..')) {
+          res.statusCode = 400;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ ok: false, error: 'Invalid candidateId' }));
+          return;
+        }
+        const runtimeDir = join(process.cwd(), 'public', 'assets', 'vfx', 'megapack-runtime');
+        const pngPath = join(runtimeDir, `${candidateId}.png`);
+        const exists = existsSync(pngPath);
+        if (!exists) {
+          res.setHeader('Content-Type', 'application/json');
+          res.statusCode = 200;
+          res.end(JSON.stringify({ ok: true, candidateId, exists: false, supported: true }));
+          return;
+        }
+        const stat = statSync(pngPath);
+        // Verify PNG signature (first 8 bytes)
+        const fd = readFileSync(pngPath, { encoding: null });
+        const sig = [137, 80, 78, 71, 13, 10, 26, 10];
+        let isPng = fd.length >= 8;
+        for (let i = 0; isPng && i < sig.length; i++) {
+          if (fd[i] !== sig[i]) isPng = false;
+        }
+        res.setHeader('Content-Type', 'application/json');
+        res.statusCode = 200;
+        res.end(JSON.stringify({
+          ok: true,
+          candidateId,
+          exists: true,
+          sizeBytes: stat.size,
+          isPng,
+          supported: true,
+        }));
       });
 
       // ---- Acquisition endpoint ----

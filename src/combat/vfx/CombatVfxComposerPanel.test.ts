@@ -53,6 +53,9 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     document.head.textContent = '';
     origFetch = globalThis.fetch;
     globalThis.fetch = (async (_url: string, init?: RequestInit) => {
+      if (typeof _url === 'string' && _url.includes('/dev/vfx-runtime-status/')) {
+        return { ok: true, json: async () => ({ ok: true, exists: true, isPng: true }) } as unknown as Response;
+      }
       if (init?.method === 'HEAD') return { ok: true } as Response;
       return { ok: true, json: async () => ({ ok: true }) } as unknown as Response;
     }) as typeof fetch;
@@ -360,6 +363,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
         },
       },
     });
+    removeAllSlots();
     addSlotsFromCatalogue(1);
     await new Promise((r) => setTimeout(r, 200));
     click(q('.cmp-play-stage'));
@@ -480,6 +484,9 @@ describe('R2C-VFX LAB V2.1.1 — Composer minimize / expand', () => {
     document.head.textContent = '';
     origFetch = globalThis.fetch;
     globalThis.fetch = (async (_url: string, init?: RequestInit) => {
+      if (typeof _url === 'string' && _url.includes('/dev/vfx-runtime-status/')) {
+        return { ok: true, json: async () => ({ ok: true, exists: true, isPng: true }) } as unknown as Response;
+      }
       if (init?.method === 'HEAD') return { ok: true } as Response;
       return { ok: true, json: async () => ({ ok: true }) } as unknown as Response;
     }) as typeof fetch;
@@ -593,6 +600,7 @@ describe('R2C-VFX LAB V2.1.1 — Composer minimize / expand', () => {
         },
       },
     });
+    removeAllSlots();
     addSlotsFromCatalogue(1);
     await new Promise((r) => setTimeout(r, 200));
     click(q('.cmp-minimize'));
@@ -613,6 +621,9 @@ describe('R2C-VFX LAB V2.1.2 — Expanded layout regression', () => {
     document.head.textContent = '';
     origFetch = globalThis.fetch;
     globalThis.fetch = (async (_url: string, init?: RequestInit) => {
+      if (typeof _url === 'string' && _url.includes('/dev/vfx-runtime-status/')) {
+        return { ok: true, json: async () => ({ ok: true, exists: true, isPng: true }) } as unknown as Response;
+      }
       if (init?.method === 'HEAD') return { ok: true } as Response;
       return { ok: true, json: async () => ({ ok: true }) } as unknown as Response;
     }) as typeof fetch;

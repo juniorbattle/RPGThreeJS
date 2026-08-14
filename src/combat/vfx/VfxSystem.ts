@@ -410,16 +410,19 @@ export class VfxSystem {
       fadeIn?: number;
       fadeOut?: number;
     },
+    options?: { strict?: boolean },
   ): VfxPlayResult {
     if (this.disposed) {
       return { played: false, presetId: `lab:${candidateId}`, impactTime: 0, completion: Promise.resolve() };
     }
+    const strict = options?.strict ?? false;
     return {
       played: true,
       presetId: `lab:${candidateId}`,
       impactTime: (overrides.duration ?? step.duration) / 2,
       completion: this.playLabSpriteSheetInternal(candidateId, sheetDef, step, context, overrides).catch((error) => {
         console.warn(`[CombatVfx] Lab candidate ${candidateId} failed safely.`, error);
+        if (strict) throw error;
       }),
     };
   }
