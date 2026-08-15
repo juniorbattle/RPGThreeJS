@@ -343,6 +343,12 @@ async function playCompiledSlots(
         blending: slot.blending,
         fadeIn: slot.fadeIn,
         fadeOut: slot.fadeOut,
+        mirrorX: slot.mirrorX,
+        mirrorY: slot.mirrorY,
+        pivotCenterX: slot.pivotCenterX,
+        pivotCenterY: slot.pivotCenterY,
+        rotationOffset: slot.rotation,
+        aimProfile: slot.aimProfile,
       },
       { strict: true },
     );

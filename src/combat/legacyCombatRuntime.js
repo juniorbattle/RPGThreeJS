@@ -924,6 +924,7 @@ function createUnit(def){
     cell(){ return cellAt(this.gx,this.gz); }
   };
   const spriteScale=largeUnitSpriteScale(u);
+  u.visualHeight=s.h*spriteScale;
   if(u.size>1){ blob.scale.set(u.size,u.size,1); teamGlow.scale.set(u.size,u.size,1); teamRing.scale.set(u.size,u.size,1); if(teamRingUnder)teamRingUnder.scale.set(u.size,u.size,1); u.baseY=s.h*0.5*spriteScale-s.h*COMBAT_PRESENTATION.units.largeUnitGroundOffset; spr.position.y=u.baseY; outline.position.y=u.baseY; }
   else if(u.team==='player'){ u.baseY=s.h*0.5-s.h*COMBAT_PRESENTATION.units.heroGroundOffset; spr.position.y=u.baseY; outline.position.y=u.baseY; }
   resetUnitSpriteScale(u);

@@ -283,8 +283,8 @@ describe('R2C-VFX LAB V2 — Simple Preset Composer', () => {
   // ============================================================ Placement
 
   describe('placement profiles', () => {
-    it('21. exposes AUTO/TARGET/CASTER/GROUND only', () => {
-      expect(VFX_PLACEMENT_PROFILES).toEqual(['AUTO', 'TARGET', 'CASTER', 'GROUND']);
+    it('21. exposes AUTO/TARGET/FRONT/BACK/TOP/CASTER/GROUND', () => {
+      expect(VFX_PLACEMENT_PROFILES).toEqual(['AUTO', 'TARGET', 'FRONT', 'BACK', 'TOP', 'CASTER', 'GROUND']);
     });
 
     it('22. TARGET anchors on the target in the impact layer', () => {

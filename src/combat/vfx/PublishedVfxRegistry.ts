@@ -37,6 +37,9 @@ import type {
   VfxSlotAdvancedOverride,
   VfxVisualSlot,
   VfxPresetDraft,
+  VfxAimProfile,
+  VfxMirrorProfile,
+  VfxPivotProfile,
 } from './VfxPresetComposer';
 import {
   VFX_SIZE_PROFILES,
@@ -44,6 +47,13 @@ import {
   VFX_PLACEMENT_PROFILES,
   VFX_CHOREOGRAPHIES,
   VFX_TECHNICAL_POLISH_LEVELS,
+  VFX_AIM_PROFILES,
+  VFX_MIRROR_PROFILES,
+  VFX_PIVOT_PROFILES,
+  DEFAULT_AIM_PROFILE,
+  DEFAULT_ROTATION_DEGREES,
+  DEFAULT_MIRROR_PROFILE,
+  DEFAULT_PIVOT_PROFILE,
 } from './VfxPresetComposer';
 
 // ============================================================ Registry Types
@@ -56,6 +66,10 @@ export interface PublishedVfxSlot {
   sizeProfile: VfxSizeProfile;
   timingProfile: VfxTimingProfile;
   placementProfile: VfxPlacementProfile;
+  aimProfile?: VfxAimProfile;
+  rotationDegrees?: number;
+  mirrorProfile?: VfxMirrorProfile;
+  pivotProfile?: VfxPivotProfile;
   advanced?: VfxSlotAdvancedOverride;
 }
 
@@ -97,6 +111,11 @@ export function computeFingerprint(draft: VfxPresetDraft): string {
     parts.push(slot.sizeProfile);
     parts.push(slot.timingProfile);
     parts.push(slot.placementProfile);
+    // Transform fields — normalize undefined to default values for fingerprint stability
+    parts.push(slot.aimProfile ?? DEFAULT_AIM_PROFILE);
+    parts.push(String(slot.rotationDegrees ?? DEFAULT_ROTATION_DEGREES));
+    parts.push(slot.mirrorProfile ?? DEFAULT_MIRROR_PROFILE);
+    parts.push(slot.pivotProfile ?? DEFAULT_PIVOT_PROFILE);
     if (slot.advanced) {
       const adv = slot.advanced;
       parts.push(
@@ -227,6 +246,10 @@ export function validatePublishedEntry(
     errors.push(`technicalPolish must be one of: ${VFX_TECHNICAL_POLISH_LEVELS.join(', ')}.`);
   }
 
+  const VALID_AIM_PROFILES = new Set(VFX_AIM_PROFILES);
+  const VALID_MIRROR_PROFILES = new Set(VFX_MIRROR_PROFILES);
+  const VALID_PIVOT_PROFILES = new Set(VFX_PIVOT_PROFILES);
+
   if (!Array.isArray(e.visualSlots)) {
     errors.push('visualSlots must be an array.');
   } else {
@@ -257,6 +280,18 @@ export function validatePublishedEntry(
       }
       if (!VALID_PLACEMENT_PROFILES.has(slot.placementProfile as VfxPlacementProfile)) {
         errors.push(`Slot ${i}: placementProfile must be one of: ${VFX_PLACEMENT_PROFILES.join(', ')}.`);
+      }
+      if (slot.aimProfile != null && !VALID_AIM_PROFILES.has(slot.aimProfile as VfxAimProfile)) {
+        errors.push(`Slot ${i}: aimProfile must be one of: ${VFX_AIM_PROFILES.join(', ')}.`);
+      }
+      if (slot.rotationDegrees != null && typeof slot.rotationDegrees !== 'number') {
+        errors.push(`Slot ${i}: rotationDegrees must be a number.`);
+      }
+      if (slot.mirrorProfile != null && !VALID_MIRROR_PROFILES.has(slot.mirrorProfile as VfxMirrorProfile)) {
+        errors.push(`Slot ${i}: mirrorProfile must be one of: ${VFX_MIRROR_PROFILES.join(', ')}.`);
+      }
+      if (slot.pivotProfile != null && !VALID_PIVOT_PROFILES.has(slot.pivotProfile as VfxPivotProfile)) {
+        errors.push(`Slot ${i}: pivotProfile must be one of: ${VFX_PIVOT_PROFILES.join(', ')}.`);
       }
     }
   }

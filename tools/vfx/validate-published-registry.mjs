@@ -11,7 +11,10 @@ const REGISTRY_PATH = join(process.cwd(), 'src', 'combat', 'vfx', 'generated', '
 
 const VALID_SIZES = new Set(['LOW', 'MID', 'BIG', 'GIGA']);
 const VALID_TIMINGS = new Set(['QUICK', 'NORMAL', 'LONG']);
-const VALID_PLACEMENTS = new Set(['AUTO', 'TARGET', 'CASTER', 'GROUND']);
+const VALID_PLACEMENTS = new Set(['AUTO', 'TARGET', 'FRONT', 'BACK', 'TOP', 'CASTER', 'GROUND']);
+const VALID_AIM = new Set(['FIXED', 'TO_TARGET']);
+const VALID_MIRROR = new Set(['NONE', 'HORIZONTAL', 'VERTICAL', 'BOTH', 'AUTO_HORIZONTAL']);
+const VALID_PIVOT = new Set(['CENTER', 'LEFT', 'RIGHT', 'TOP', 'BOTTOM']);
 const VALID_CHOREOGRAPHIES = new Set(['TOGETHER', 'SEQUENCE', 'PAIR_THEN_LAST']);
 const VALID_POLISH = new Set(['AUTO', 'OFF', 'LIGHT', 'STRONG']);
 
@@ -39,6 +42,10 @@ function validateRegistry(registry) {
       if (!VALID_SIZES.has(s.sizeProfile)) errors.push(`[${actionKey}] Slot ${i}: sizeProfile invalid.`);
       if (!VALID_TIMINGS.has(s.timingProfile)) errors.push(`[${actionKey}] Slot ${i}: timingProfile invalid.`);
       if (!VALID_PLACEMENTS.has(s.placementProfile)) errors.push(`[${actionKey}] Slot ${i}: placementProfile invalid.`);
+      if (s.aimProfile != null && !VALID_AIM.has(s.aimProfile)) errors.push(`[${actionKey}] Slot ${i}: aimProfile invalid.`);
+      if (s.rotationDegrees != null && typeof s.rotationDegrees !== 'number') errors.push(`[${actionKey}] Slot ${i}: rotationDegrees must be number.`);
+      if (s.mirrorProfile != null && !VALID_MIRROR.has(s.mirrorProfile)) errors.push(`[${actionKey}] Slot ${i}: mirrorProfile invalid.`);
+      if (s.pivotProfile != null && !VALID_PIVOT.has(s.pivotProfile)) errors.push(`[${actionKey}] Slot ${i}: pivotProfile invalid.`);
     }
   }
   return { ok: errors.length === 0, errors };

@@ -183,13 +183,13 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
 
   // ---------------------------------------------------------- semantic profiles only
 
-  it('13. slot cards expose SIZE / TIMING / PLACEMENT controls', () => {
+  it('13. slot cards expose SIZE / TIMING / PLACEMENT / AIM / ROTATE / MIRROR / PIVOT controls', () => {
     click(q('.cmp-add-slot'));
     click(q('.cmp-cat-add'));
     const card = qa('.cmp-slot-card')[0]!;
     const profiles = Array.from(card.querySelectorAll<HTMLElement>('.cmp-profile'))
       .map((el) => el.dataset.profile);
-    expect(profiles).toEqual(['size', 'timing', 'placement']);
+    expect(profiles).toEqual(['size', 'timing', 'placement', 'aim', 'rotate', 'mirror', 'pivot']);
   });
 
   it('14. SIZE exposes exactly LOW / MID / BIG / GIGA', () => {
@@ -208,12 +208,12 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
       .toEqual(['QUICK', 'NORMAL', 'LONG']);
   });
 
-  it('16. PLACEMENT exposes exactly AUTO / TARGET / CASTER / GROUND', () => {
+  it('16. PLACEMENT exposes exactly AUTO / TARGET / FRONT / BACK / TOP / CASTER / GROUND', () => {
     click(q('.cmp-add-slot'));
     click(q('.cmp-cat-add'));
     const group = q('[data-profile="placement"] .cmp-profile-group')!;
     expect(Array.from(group.querySelectorAll('button')).map((b) => b.textContent))
-      .toEqual(['AUTO', 'TARGET', 'CASTER', 'GROUND']);
+      .toEqual(['AUTO', 'TARGET', 'FRONT', 'BACK', 'TOP', 'CASTER', 'GROUND']);
   });
 
   it('17. choosing SIZE=MID TIMING=NORMAL PLACEMENT=TARGET persists', () => {

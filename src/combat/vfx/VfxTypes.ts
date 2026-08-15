@@ -88,6 +88,9 @@ export type VfxScaleTier = 'basic' | '2ap' | '3ap' | '4ap' | '5ap_ultimate' | 'b
 export type VfxAnchor =
   | 'source'
   | 'target'
+  | 'targetFront'
+  | 'targetBack'
+  | 'targetTop'
   | 'midpoint'
   | 'groundTarget'
   | 'allTargets'
@@ -245,6 +248,10 @@ export interface VfxUnitLike {
   gz?: number;
   baseY?: number;
   alive?: boolean;
+  /** Actual rendered sprite height in world units. When present, enables precise visual center anchoring. */
+  visualHeight?: number;
+  /** Actual rendered sprite width in world units. Used for front/back offset calculation. */
+  visualWidth?: number;
 }
 
 export interface VfxRuntimeHelpers {

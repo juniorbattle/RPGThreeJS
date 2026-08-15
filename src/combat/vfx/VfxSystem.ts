@@ -76,6 +76,31 @@ function unitGround(unit?: VfxUnitLike | null) {
   return unit?.grp?.position.clone() ?? new THREE.Vector3();
 }
 
+// ============================================================ Visual Metrics
+
+export interface VfxUnitVisualMetrics {
+  ground: THREE.Vector3;
+  center: THREE.Vector3;
+  top: THREE.Vector3;
+  radius: number;
+  height: number;
+}
+
+const FALLBACK_NORMAL_HEIGHT = 1.56;
+const FALLBACK_LARGE_HEIGHT = 2.36;
+const TOP_PRESENTATION_MARGIN = 0.15;
+
+export function resolveVfxUnitMetrics(unit?: VfxUnitLike | null): VfxUnitVisualMetrics {
+  const ground = unitGround(unit);
+  const size = unit?.size ?? 1;
+  const visualHeight = unit?.visualHeight ?? (size > 1 ? FALLBACK_LARGE_HEIGHT : FALLBACK_NORMAL_HEIGHT);
+  const baseY = unit?.baseY ?? visualHeight * 0.5;
+  const center = ground.clone().add(new THREE.Vector3(0, baseY, 0));
+  const top = ground.clone().add(new THREE.Vector3(0, baseY + visualHeight * 0.5 + TOP_PRESENTATION_MARGIN, 0));
+  const radius = Math.max(0.3, visualHeight * 0.3);
+  return { ground, center, top, radius, height: visualHeight };
+}
+
 function contextPresentationScale(context: VfxContext) {
   const tier = getStaticVfxTierPresentation(context.scaleTier ?? 'basic');
   return (context.staticScaleMultiplier ?? tier.scaleMultiplier)
@@ -169,9 +194,7 @@ export function getCinematicPlayablePhases(descriptor: CinematicDescriptor, redu
 }
 
 function unitBody(unit?: VfxUnitLike | null) {
-  const point = unitGround(unit);
-  point.y += (unit?.size ?? 1) > 1 ? 1.18 : 0.78;
-  return point;
+  return resolveVfxUnitMetrics(unit).center;
 }
 
 function contextTargetPoint(context: VfxContext) {
@@ -183,23 +206,32 @@ function contextTargetPoint(context: VfxContext) {
 }
 
 export function resolveVfxAnchors(anchor: VfxAnchor, context: VfxContext): THREE.Vector3[] {
-  const sourceGround = unitGround(context.sourceUnit);
-  const source = unitBody(context.sourceUnit);
-  const targetGround = context.targetUnits?.[0] ? unitGround(context.targetUnits[0]) : contextTargetPoint(context);
-  const target = context.targetUnits?.[0]
-    ? unitBody(context.targetUnits[0])
-    : contextTargetPoint(context).add(new THREE.Vector3(0, 0.7, 0));
+  const sourceMetrics = resolveVfxUnitMetrics(context.sourceUnit);
+  const sourceGround = sourceMetrics.ground;
+  const source = sourceMetrics.center;
+  const targetUnit = context.targetUnits?.[0];
+  const targetMetrics = resolveVfxUnitMetrics(targetUnit);
+  const targetGround = targetUnit ? targetMetrics.ground : contextTargetPoint(context);
+  const target = targetUnit ? targetMetrics.center : contextTargetPoint(context).add(new THREE.Vector3(0, 0.7, 0));
+
+  // Caster→target ground-plane direction for FRONT/BACK
+  const dirX = targetGround.x - sourceGround.x;
+  const dirZ = targetGround.z - sourceGround.z;
+  const dirLen = Math.sqrt(dirX * dirX + dirZ * dirZ);
+  const ndirX = dirLen > 0.001 ? dirX / dirLen : 1;
+  const ndirZ = dirLen > 0.001 ? dirZ / dirLen : 0;
+  const targetRadius = targetMetrics.radius;
 
   switch (anchor) {
     case 'source': return [source];
-    case 'sourceGround': return [sourceGround.add(new THREE.Vector3(0, 0.055, 0))];
+    case 'sourceGround': return [sourceGround.clone().add(new THREE.Vector3(0, 0.055, 0))];
     case 'target': return [target];
-    case 'targetGround': return [targetGround.add(new THREE.Vector3(0, 0.055, 0))];
+    case 'targetGround': return [targetGround.clone().add(new THREE.Vector3(0, 0.055, 0))];
     case 'groundTarget': return [contextTargetPoint(context).add(new THREE.Vector3(0, 0.055, 0))];
-    case 'midpoint': return [source.add(target).multiplyScalar(0.5)];
+    case 'midpoint': return [source.clone().add(target).multiplyScalar(0.5)];
     case 'allTargets': {
       const targets = context.targetUnits?.length
-        ? context.targetUnits.map((unit) => unitBody(unit))
+        ? context.targetUnits.map((unit) => resolveVfxUnitMetrics(unit).center)
         : [target];
       return targets;
     }
@@ -409,6 +441,12 @@ export class VfxSystem {
       blending?: 'normal' | 'additive';
       fadeIn?: number;
       fadeOut?: number;
+      mirrorX?: number;
+      mirrorY?: number;
+      pivotCenterX?: number;
+      pivotCenterY?: number;
+      rotationOffset?: number;
+      aimProfile?: string;
     },
     options?: { strict?: boolean },
   ): VfxPlayResult {
@@ -442,6 +480,12 @@ export class VfxSystem {
       blending?: 'normal' | 'additive';
       fadeIn?: number;
       fadeOut?: number;
+      mirrorX?: number;
+      mirrorY?: number;
+      pivotCenterX?: number;
+      pivotCenterY?: number;
+      rotationOffset?: number;
+      aimProfile?: string;
     },
   ) {
     const texture = await loadLabCandidateTexture(candidateId);
@@ -466,6 +510,25 @@ export class VfxSystem {
       fadeIn: effectiveFadeIn,
       fadeOut: effectiveFadeOut,
     };
+    // Transform: pivot (override sprite center)
+    const pivotX = overrides.pivotCenterX ?? 0.5;
+    const pivotY = overrides.pivotCenterY ?? (resolved.align === 'bottom' ? 0 : 0.5);
+    // Transform: mirror signs (default 1 = no mirror)
+    const mirrorX = overrides.mirrorX ?? 1;
+    const mirrorY = overrides.mirrorY ?? 1;
+    // Transform: rotation — combine directional rotation + authored offset
+    const dirRot = directionalRotation(step, context);
+    const rotationOffset = overrides.rotationOffset ?? 0;
+    const aimProfile = overrides.aimProfile ?? 'FIXED';
+    const effectiveRotation = aimProfile === 'TO_TARGET' ? dirRot + rotationOffset : rotationOffset;
+    // Transform: AUTO_HORIZONTAL — flip X based on screen-space direction
+    let effectiveMirrorX = mirrorX;
+    if (aimProfile === 'TO_TARGET' && mirrorX === -1) {
+      // AUTO_HORIZONTAL: check screen-space direction
+      const sourceProj = resolveVfxAnchor('source', context).project(context.camera);
+      const targetProj = resolveVfxAnchor('target', context).project(context.camera);
+      effectiveMirrorX = targetProj.x < sourceProj.x ? -1 : 1;
+    }
     const material = new THREE.SpriteMaterial({
       map: texture,
       color: asColor(step.color),
@@ -477,9 +540,11 @@ export class VfxSystem {
       toneMapped: false,
       fog: false,
       blending: effectiveBlending === 'additive' ? THREE.AdditiveBlending : THREE.NormalBlending,
-      rotation: step.rotation ?? 0,
+      rotation: effectiveRotation,
     });
-    const sprite = this.track(configureVfxSpriteSheetPivot(new THREE.Sprite(material), resolved.align), context);
+    const sprite = new THREE.Sprite(material);
+    sprite.center.set(pivotX, pivotY);
+    this.track(sprite, context);
     const objects: THREE.Object3D[] = [sprite];
     const anchor = resolveVfxAnchor(step.anchor, context);
     anchor.y += step.heightOffset ?? 0;
@@ -508,7 +573,7 @@ export class VfxSystem {
         const scale = baseHeight * spriteSheetScalePulse(progress, effectiveResolved);
         setVfxSpriteSheetFrame(texture, sheetDef, frame);
         sprite.position.copy(anchor);
-        sprite.scale.set(scale * frameAspect, scale, 1);
+        sprite.scale.set(scale * frameAspect * effectiveMirrorX, scale * mirrorY, 1);
         material.opacity = baseOpacity * spriteSheetEnvelope(progress, effectiveResolved);
       });
     } finally {

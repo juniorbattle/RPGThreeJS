@@ -45,6 +45,14 @@ import {
   VFX_PLACEMENT_PROFILES,
   VFX_CHOREOGRAPHIES,
   VFX_TECHNICAL_POLISH_LEVELS,
+  VFX_AIM_PROFILES,
+  VFX_MIRROR_PROFILES,
+  VFX_PIVOT_PROFILES,
+  VFX_ROTATION_PRESETS,
+  DEFAULT_AIM_PROFILE,
+  DEFAULT_ROTATION_DEGREES,
+  DEFAULT_MIRROR_PROFILE,
+  DEFAULT_PIVOT_PROFILE,
 } from './VfxPresetComposer';
 import type {
   VfxPresetDraft,
@@ -53,6 +61,9 @@ import type {
   VfxPlacementProfile,
   VfxChoreography,
   VfxTechnicalPolish,
+  VfxAimProfile,
+  VfxMirrorProfile,
+  VfxPivotProfile,
 } from './VfxPresetComposer';
 import {
   loadComposerStore,
@@ -361,6 +372,61 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
         'PLACEMENT', VFX_PLACEMENT_PROFILES, slot.placementProfile,
         (value) => mutate(updateSlotProfile(draft, slot.id, { placementProfile: value })),
       ));
+      // TRANSFORM section
+      const transformSection = document.createElement('div');
+      transformSection.className = 'cmp-slot-transform';
+      const aim = slot.aimProfile ?? DEFAULT_AIM_PROFILE;
+      const rotDeg = slot.rotationDegrees ?? DEFAULT_ROTATION_DEGREES;
+      const mirror = slot.mirrorProfile ?? DEFAULT_MIRROR_PROFILE;
+      const pivot = slot.pivotProfile ?? DEFAULT_PIVOT_PROFILE;
+      const hasTransform = aim !== DEFAULT_AIM_PROFILE || rotDeg !== DEFAULT_ROTATION_DEGREES
+        || mirror !== DEFAULT_MIRROR_PROFILE || pivot !== DEFAULT_PIVOT_PROFILE;
+      if (hasTransform) {
+        const badge = document.createElement('div');
+        badge.className = 'cmp-slot-transform-badge';
+        const badges: string[] = [];
+        if (aim !== DEFAULT_AIM_PROFILE) badges.push('AIM');
+        if (rotDeg !== DEFAULT_ROTATION_DEGREES) badges.push(`${rotDeg > 0 ? '+' : ''}${rotDeg}°`);
+        if (mirror !== DEFAULT_MIRROR_PROFILE) {
+          if (mirror === 'AUTO_HORIZONTAL') badges.push('AUTO ↔');
+          else if (mirror === 'HORIZONTAL') badges.push('↔');
+          else if (mirror === 'VERTICAL') badges.push('↕');
+          else if (mirror === 'BOTH') badges.push('↔↕');
+        }
+        if (pivot !== DEFAULT_PIVOT_PROFILE) badges.push(`PIVOT ${pivot[0]}`);
+        badge.textContent = badges.join(' ');
+        transformSection.appendChild(badge);
+      }
+      const transformRow = document.createElement('div');
+      transformRow.className = 'cmp-slot-profiles';
+      transformRow.appendChild(buildProfileControl<VfxAimProfile>(
+        'AIM', VFX_AIM_PROFILES, aim,
+        (value) => mutate(updateSlotProfile(draft, slot.id, { aimProfile: value })),
+      ));
+      const rotValues = VFX_ROTATION_PRESETS.map(String) as readonly string[];
+      const rotCurrent = String(rotDeg);
+      transformRow.appendChild(buildProfileControl<string>(
+        'ROTATE', rotValues, rotCurrent,
+        (value) => mutate(updateSlotProfile(draft, slot.id, { rotationDegrees: Number(value) })),
+      ));
+      const mirrorLabels: Record<string, string> = {
+        NONE: 'NONE', HORIZONTAL: '↔', VERTICAL: '↕', BOTH: '↔↕', AUTO_HORIZONTAL: 'AUTO',
+      };
+      transformRow.appendChild(buildProfileControl<VfxMirrorProfile>(
+        'MIRROR', VFX_MIRROR_PROFILES, mirror,
+        (value) => mutate(updateSlotProfile(draft, slot.id, { mirrorProfile: value })),
+        mirrorLabels,
+      ));
+      const pivotLabels: Record<string, string> = {
+        CENTER: 'C', LEFT: 'L', RIGHT: 'R', TOP: 'T', BOTTOM: 'B',
+      };
+      transformRow.appendChild(buildProfileControl<VfxPivotProfile>(
+        'PIVOT', VFX_PIVOT_PROFILES, pivot,
+        (value) => mutate(updateSlotProfile(draft, slot.id, { pivotProfile: value })),
+        pivotLabels,
+      ));
+      transformSection.appendChild(transformRow);
+      profiles.appendChild(transformSection);
       card.appendChild(profiles);
 
       const actionsRow = document.createElement('div');
@@ -772,6 +838,14 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
       `Sizes: ${draft.visualSlots.map((s) => s.sizeProfile).join(', ')}`,
       `Timings: ${draft.visualSlots.map((s) => s.timingProfile).join(', ')}`,
       `Placements: ${draft.visualSlots.map((s) => s.placementProfile).join(', ')}`,
+      `Transforms: ${draft.visualSlots.map((s) => {
+        const parts: string[] = [];
+        if (s.aimProfile && s.aimProfile !== 'FIXED') parts.push(`aim=${s.aimProfile}`);
+        if (s.rotationDegrees != null && s.rotationDegrees !== 0) parts.push(`rot=${s.rotationDegrees}°`);
+        if (s.mirrorProfile && s.mirrorProfile !== 'NONE') parts.push(`mirror=${s.mirrorProfile}`);
+        if (s.pivotProfile && s.pivotProfile !== 'CENTER') parts.push(`pivot=${s.pivotProfile}`);
+        return parts.length ? parts.join(';') : '-';
+      }).join(', ')}`,
       `Choreography: ${draft.choreography}`,
       `Technical Polish: ${draft.technicalPolish}`,
     ].join('\n');
@@ -1034,6 +1108,7 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     values: readonly T[],
     current: T,
     onChange: (value: T) => void,
+    displayLabels?: Record<string, string>,
   ): HTMLElement {
     const wrapper = document.createElement('div');
     wrapper.className = 'cmp-profile';
@@ -1045,7 +1120,8 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     const group = document.createElement('div');
     group.className = 'cmp-profile-group';
     for (const value of values) {
-      const btn = buildButton(value, 'cmp-profile-btn', () => onChange(value));
+      const displayText = displayLabels?.[value] ?? value;
+      const btn = buildButton(displayText, 'cmp-profile-btn', () => onChange(value));
       btn.dataset.value = value;
       if (value === current) btn.classList.add('cmp-active');
       group.appendChild(btn);
@@ -1092,6 +1168,8 @@ function addComposerStyle(): void {
     #${COMPOSER_ROOT_ID} .cmp-slot-filename{color:#728c9b;font-size:9px;word-break:break-all;margin-bottom:5px}
     #${COMPOSER_ROOT_ID} .cmp-slot-unplayable{border-color:#8c5a3a}
     #${COMPOSER_ROOT_ID} .cmp-slot-flag{margin-bottom:5px;padding:2px 4px;border-radius:3px;background:rgba(255,154,74,.14);color:#ff9a4a;font-size:9px;font-weight:700}
+    #${COMPOSER_ROOT_ID} .cmp-slot-transform{margin-bottom:4px}
+    #${COMPOSER_ROOT_ID} .cmp-slot-transform-badge{margin-bottom:3px;padding:2px 6px;border-radius:3px;background:rgba(106,217,255,.12);color:#6ad9ff;font-size:9px;font-weight:700;letter-spacing:.04em}
     #${COMPOSER_ROOT_ID} .cmp-profile{margin-bottom:4px}
     #${COMPOSER_ROOT_ID} .cmp-profile-label{display:block;color:#8fa5b2;font-size:9px;font-weight:700;letter-spacing:.06em;margin-bottom:2px}
     #${COMPOSER_ROOT_ID} .cmp-profile-group{display:flex;gap:3px}

@@ -1,4 +1,41 @@
 {
   "schemaVersion": 1,
-  "actions": {}
+  "actions": {
+    "basic_greatsword_hit": {
+      "actionKey": "basic_greatsword_hit",
+      "presetId": "published_basic_greatsword_hit",
+      "visualSlots": [
+        {
+          "id": "slot_msr0a4qz_1",
+          "candidateId": "r1_1701",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "TARGET"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 1,
+      "fingerprint": "9cac19ba"
+    },
+    "w_break_guard": {
+      "actionKey": "w_break_guard",
+      "presetId": "published_w_break_guard",
+      "visualSlots": [
+        {
+          "id": "slot_msr0nbxw_4",
+          "candidateId": "r1_0542",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 2,
+      "fingerprint": "4ea982bf"
+    }
+  }
 }

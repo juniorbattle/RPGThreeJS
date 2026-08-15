@@ -32,7 +32,24 @@ export type VfxSizeProfile = 'LOW' | 'MID' | 'BIG' | 'GIGA';
 /** Timing derives from the candidate's native cadence, never fixed AP constants. */
 export type VfxTimingProfile = 'QUICK' | 'NORMAL' | 'LONG';
 
-export type VfxPlacementProfile = 'AUTO' | 'TARGET' | 'CASTER' | 'GROUND';
+export type VfxPlacementProfile = 'AUTO' | 'TARGET' | 'FRONT' | 'BACK' | 'TOP' | 'CASTER' | 'GROUND';
+
+// ============================================================ Transform Profiles
+
+export type VfxAimProfile = 'FIXED' | 'TO_TARGET';
+export type VfxMirrorProfile = 'NONE' | 'HORIZONTAL' | 'VERTICAL' | 'BOTH' | 'AUTO_HORIZONTAL';
+export type VfxPivotProfile = 'CENTER' | 'LEFT' | 'RIGHT' | 'TOP' | 'BOTTOM';
+
+export const VFX_AIM_PROFILES: readonly VfxAimProfile[] = ['FIXED', 'TO_TARGET'];
+export const VFX_MIRROR_PROFILES: readonly VfxMirrorProfile[] = ['NONE', 'HORIZONTAL', 'VERTICAL', 'BOTH', 'AUTO_HORIZONTAL'];
+export const VFX_PIVOT_PROFILES: readonly VfxPivotProfile[] = ['CENTER', 'LEFT', 'RIGHT', 'TOP', 'BOTTOM'];
+
+export const VFX_ROTATION_PRESETS: readonly number[] = [-90, -45, 0, 45, 90, 180];
+
+export const DEFAULT_AIM_PROFILE: VfxAimProfile = 'FIXED';
+export const DEFAULT_ROTATION_DEGREES = 0;
+export const DEFAULT_MIRROR_PROFILE: VfxMirrorProfile = 'NONE';
+export const DEFAULT_PIVOT_PROFILE: VfxPivotProfile = 'CENTER';
 
 export type VfxChoreography = 'TOGETHER' | 'SEQUENCE' | 'PAIR_THEN_LAST';
 
@@ -40,7 +57,7 @@ export type VfxTechnicalPolish = 'AUTO' | 'OFF' | 'LIGHT' | 'STRONG';
 
 export const VFX_SIZE_PROFILES: readonly VfxSizeProfile[] = ['LOW', 'MID', 'BIG', 'GIGA'];
 export const VFX_TIMING_PROFILES: readonly VfxTimingProfile[] = ['QUICK', 'NORMAL', 'LONG'];
-export const VFX_PLACEMENT_PROFILES: readonly VfxPlacementProfile[] = ['AUTO', 'TARGET', 'CASTER', 'GROUND'];
+export const VFX_PLACEMENT_PROFILES: readonly VfxPlacementProfile[] = ['AUTO', 'TARGET', 'FRONT', 'BACK', 'TOP', 'CASTER', 'GROUND'];
 export const VFX_CHOREOGRAPHIES: readonly VfxChoreography[] = ['TOGETHER', 'SEQUENCE', 'PAIR_THEN_LAST'];
 export const VFX_TECHNICAL_POLISH_LEVELS: readonly VfxTechnicalPolish[] = ['AUTO', 'OFF', 'LIGHT', 'STRONG'];
 
@@ -73,6 +90,14 @@ export interface VfxVisualSlot {
   sizeProfile: VfxSizeProfile;
   timingProfile: VfxTimingProfile;
   placementProfile: VfxPlacementProfile;
+  /** Transform: aim mode for directional spritesheets. Defaults to FIXED. */
+  aimProfile?: VfxAimProfile;
+  /** Transform: rotation offset in degrees. For AIM=TO_TARGET, offset from computed angle. Defaults to 0. */
+  rotationDegrees?: number;
+  /** Transform: mirror mode. Defaults to NONE. */
+  mirrorProfile?: VfxMirrorProfile;
+  /** Transform: sprite pivot/origin. Defaults to CENTER for Composer candidates. */
+  pivotProfile?: VfxPivotProfile;
   advanced?: VfxSlotAdvancedOverride;
 }
 
@@ -306,6 +331,9 @@ export interface ResolvedPlacement {
 
 const PLACEMENT_TABLE: Readonly<Record<Exclude<VfxPlacementProfile, 'AUTO'>, ResolvedPlacement>> = Object.freeze({
   TARGET: Object.freeze({ anchor: 'target' as VfxAnchor, layer: 'impact' as const, orientation: 'face_target' as VfxOrientation }),
+  FRONT: Object.freeze({ anchor: 'targetFront' as VfxAnchor, layer: 'impact' as const, orientation: 'face_target' as VfxOrientation }),
+  BACK: Object.freeze({ anchor: 'targetBack' as VfxAnchor, layer: 'impact' as const, orientation: 'face_target' as VfxOrientation }),
+  TOP: Object.freeze({ anchor: 'targetTop' as VfxAnchor, layer: 'impact' as const, orientation: 'center_on_target' as VfxOrientation }),
   CASTER: Object.freeze({ anchor: 'source' as VfxAnchor, layer: 'impact' as const, orientation: 'none' as VfxOrientation }),
   GROUND: Object.freeze({ anchor: 'groundTarget' as VfxAnchor, layer: 'impact' as const, orientation: 'center_on_aoe_origin' as VfxOrientation }),
 });
@@ -451,6 +479,10 @@ export function createVisualSlot(
     sizeProfile: overrides.sizeProfile ?? 'MID',
     timingProfile: overrides.timingProfile ?? 'NORMAL',
     placementProfile: overrides.placementProfile ?? 'AUTO',
+    ...(overrides.aimProfile ? { aimProfile: overrides.aimProfile } : {}),
+    ...(overrides.rotationDegrees != null ? { rotationDegrees: overrides.rotationDegrees } : {}),
+    ...(overrides.mirrorProfile ? { mirrorProfile: overrides.mirrorProfile } : {}),
+    ...(overrides.pivotProfile ? { pivotProfile: overrides.pivotProfile } : {}),
     ...(overrides.advanced ? { advanced: overrides.advanced } : {}),
   };
 }
@@ -492,7 +524,7 @@ export function replaceSlotCandidate(
 export function updateSlotProfile(
   draft: VfxPresetDraft,
   slotId: string,
-  patch: Partial<Pick<VfxVisualSlot, 'sizeProfile' | 'timingProfile' | 'placementProfile'>>,
+  patch: Partial<Pick<VfxVisualSlot, 'sizeProfile' | 'timingProfile' | 'placementProfile' | 'aimProfile' | 'rotationDegrees' | 'mirrorProfile' | 'pivotProfile'>>,
 ): VfxPresetDraft {
   return {
     ...draft,
@@ -556,6 +588,42 @@ export function setTechnicalPolish(draft: VfxPresetDraft, polish: VfxTechnicalPo
   return { ...draft, technicalPolish: polish, updatedAt: Date.now() };
 }
 
+// ============================================================ Transform Resolution
+
+const PIVOT_CENTER_MAP: Readonly<Record<VfxPivotProfile, { x: number; y: number }>> = Object.freeze({
+  CENTER: { x: 0.5, y: 0.5 },
+  LEFT: { x: 0.0, y: 0.5 },
+  RIGHT: { x: 1.0, y: 0.5 },
+  TOP: { x: 0.5, y: 1.0 },
+  BOTTOM: { x: 0.5, y: 0.0 },
+});
+
+const DEG_TO_RAD = Math.PI / 180;
+
+export function resolvePivotCenter(pivot: VfxPivotProfile): { x: number; y: number } {
+  return PIVOT_CENTER_MAP[pivot] ?? PIVOT_CENTER_MAP.CENTER;
+}
+
+export function resolveMirrorSigns(mirror: VfxMirrorProfile): { mirrorX: number; mirrorY: number } {
+  switch (mirror) {
+    case 'HORIZONTAL': return { mirrorX: -1, mirrorY: 1 };
+    case 'VERTICAL': return { mirrorX: 1, mirrorY: -1 };
+    case 'BOTH': return { mirrorX: -1, mirrorY: -1 };
+    default: return { mirrorX: 1, mirrorY: 1 };
+  }
+}
+
+export function resolveRotationRadians(aim: VfxAimProfile, rotationDegrees: number): number {
+  const degrees = rotationDegrees ?? DEFAULT_ROTATION_DEGREES;
+  if (aim === 'TO_TARGET') {
+    // For TO_TARGET, the authored rotation is an OFFSET from the computed directional angle.
+    // The directional angle is computed at runtime in directionalRotation().
+    // Here we just store the offset; the runtime adds the directional component.
+    return degrees * DEG_TO_RAD;
+  }
+  return degrees * DEG_TO_RAD;
+}
+
 // ============================================================ Compilation
 
 export interface CompiledVfxSlot {
@@ -573,6 +641,18 @@ export interface CompiledVfxSlot {
   layer: 'ground' | 'impact';
   blending: 'normal' | 'additive';
   orientation: VfxOrientation;
+  /** Resolved transform: aim mode. */
+  aimProfile: VfxAimProfile;
+  /** Resolved transform: rotation in radians (computed from degrees + directional if TO_TARGET). */
+  rotation: number;
+  /** Resolved transform: horizontal mirror sign (-1 or 1). */
+  mirrorX: number;
+  /** Resolved transform: vertical mirror sign (-1 or 1). */
+  mirrorY: number;
+  /** Resolved transform: pivot center X (0..1). */
+  pivotCenterX: number;
+  /** Resolved transform: pivot center Y (0..1). */
+  pivotCenterY: number;
   /** Resolved final displayed sprite height, for UI/QA reporting. */
   finalDisplayHeight: number;
 }
@@ -620,6 +700,13 @@ export function compileDraft(draft: VfxPresetDraft, options: CompileDraftOptions
     const scale = slot.advanced?.scale ?? semanticScale;
     const duration = durations[index] ?? TIMING_FALLBACK_NATIVE_DURATION;
     const startTime = slot.advanced?.startTime ?? startTimes[index] ?? 0;
+    const aim = slot.aimProfile ?? DEFAULT_AIM_PROFILE;
+    const rotationDegrees = slot.rotationDegrees ?? DEFAULT_ROTATION_DEGREES;
+    const mirror = slot.mirrorProfile ?? DEFAULT_MIRROR_PROFILE;
+    const pivot = slot.pivotProfile ?? DEFAULT_PIVOT_PROFILE;
+    const { mirrorX, mirrorY } = resolveMirrorSigns(mirror);
+    const pivotCenter = resolvePivotCenter(pivot);
+    const rotation = resolveRotationRadians(aim, rotationDegrees);
     return {
       slotId: slot.id,
       candidateId: slot.candidateId,
@@ -635,6 +722,12 @@ export function compileDraft(draft: VfxPresetDraft, options: CompileDraftOptions
       layer: 'impact',
       blending: slot.advanced?.blending ?? DEFAULT_BLENDING,
       orientation: slot.advanced?.orientation ?? placement.orientation,
+      aimProfile: aim,
+      rotation,
+      mirrorX,
+      mirrorY,
+      pivotCenterX: pivotCenter.x,
+      pivotCenterY: pivotCenter.y,
       finalDisplayHeight: computeFinalDisplayHeight(scale, factors),
     };
   });
@@ -672,6 +765,9 @@ export function validateDraft(raw: unknown): raw is VfxPresetDraft {
   if (!Array.isArray(obj.visualSlots)) return false;
   if (!VFX_CHOREOGRAPHIES.includes(obj.choreography as VfxChoreography)) return false;
   if (!VFX_TECHNICAL_POLISH_LEVELS.includes(obj.technicalPolish as VfxTechnicalPolish)) return false;
+  const VALID_AIM = new Set(VFX_AIM_PROFILES);
+  const VALID_MIRROR = new Set(VFX_MIRROR_PROFILES);
+  const VALID_PIVOT = new Set(VFX_PIVOT_PROFILES);
   for (const slot of obj.visualSlots) {
     if (typeof slot !== 'object' || slot === null) return false;
     const s = slot as Record<string, unknown>;
@@ -679,6 +775,10 @@ export function validateDraft(raw: unknown): raw is VfxPresetDraft {
     if (!VFX_SIZE_PROFILES.includes(s.sizeProfile as VfxSizeProfile)) return false;
     if (!VFX_TIMING_PROFILES.includes(s.timingProfile as VfxTimingProfile)) return false;
     if (!VFX_PLACEMENT_PROFILES.includes(s.placementProfile as VfxPlacementProfile)) return false;
+    if (s.aimProfile != null && !VALID_AIM.has(s.aimProfile as VfxAimProfile)) return false;
+    if (s.rotationDegrees != null && typeof s.rotationDegrees !== 'number') return false;
+    if (s.mirrorProfile != null && !VALID_MIRROR.has(s.mirrorProfile as VfxMirrorProfile)) return false;
+    if (s.pivotProfile != null && !VALID_PIVOT.has(s.pivotProfile as VfxPivotProfile)) return false;
   }
   return true;
 }
@@ -769,24 +869,24 @@ export function deriveAutoPlacement(
     case 'source':
     case 'sourceGround':
       return 'CASTER';
-    case 'groundTarget':
-    case 'targetGround':
-      return 'GROUND';
     case 'target':
     case 'midpoint':
     case 'allTargets':
       return 'TARGET';
+    case 'targetFront':
+      return 'FRONT';
+    case 'targetBack':
+      return 'BACK';
+    case 'targetTop':
+      return 'TOP';
+    case 'targetGround':
+    case 'groundTarget':
+      return 'GROUND';
     default:
       return 'TARGET';
   }
 }
 
-/**
- * Creates a Composer draft from an existing action/preset.
- *
- * Existing candidateIds seed the initial draft content. They are NOT locked —
- * the author is free to remove or replace any slot.
- */
 export function createDraftFromAction(source: MigrationSource): VfxPresetDraft {
   const autoPlacement = deriveAutoPlacement(source);
   const visualSlots = source.visualSteps
