@@ -11,6 +11,8 @@ import { changeReputation, getReputationRule } from './reputation';
 import {
   lionBossVictoryFacts,
   resolveLionFinaleExecution,
+  resolvePendingLionFinaleCombat,
+  resolveSelectedLionFinaleCombat,
 } from './lionFinale';
 import { ateSeenFlag } from './contextualDialogue';
 import { resolveGameAteRules, resolveGameDialogue } from './contextualDialogueContent';
@@ -452,6 +454,13 @@ export class GameApp {
       await this.enterTravel();
       return;
     }
+    if (node.type === 'boss') {
+      const pendingFinaleCombat = resolvePendingLionFinaleCombat(this.state.flags);
+      if (pendingFinaleCombat) {
+        await this.startCombat(pendingFinaleCombat, node);
+        return;
+      }
+    }
     if (node.type === 'combat' || node.type === 'boss') {
       if (!combatConfigs.has(node.contentId)) {
         await this.playDialogue(node.contentId, node.label);
@@ -570,12 +579,20 @@ export class GameApp {
           break;
         case 'resolveLionFinale':
           {
+            const existingCombat = resolveSelectedLionFinaleCombat(this.state.flags);
+            if (existingCombat) {
+              this.pendingCombatId = existingCombat;
+              break;
+            }
             const execution = resolveLionFinaleExecution(this.state, effect.intent);
             Object.assign(this.state.flags, execution.flagChanges);
             if (execution.reputationDelta !== 0) {
               changeReputation(this.state, execution.reputationDelta, `lion-finale:${execution.trialCause ?? execution.route}`);
             }
             this.pendingCombatId = execution.combatId;
+            // Route selection is a durable boundary. A reload can now resume
+            // the selected boss without replaying judgement or its effects.
+            this.saves.saveAuto(this.state);
           }
           break;
         case 'finishChapter':
@@ -751,7 +768,12 @@ export class GameApp {
         current = getRunNode(this.state.run);
       },
     });
-    if (current && current.depth > 0 && !this.state.resolvedNodeIds.includes(current.id)) {
+    const pendingFinaleCombat = resolvePendingLionFinaleCombat(this.state.flags);
+    if (
+      current
+      && current.depth > 0
+      && (pendingFinaleCombat !== null || !this.state.resolvedNodeIds.includes(current.id))
+    ) {
       await this.resolveRunNode(current, true);
     }
   }

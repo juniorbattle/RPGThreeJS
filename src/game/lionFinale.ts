@@ -27,6 +27,28 @@ export interface LionFinaleExecution {
   reputationDelta: number;
 }
 
+export const LION_FINALE_SERPENT_SELECTED_FLAG = 'lionFinaleSerpentPursuitSelected';
+export const LION_FINALE_TRIAL_SELECTED_FLAG = 'lionFinaleTrialSelected';
+
+export function resolveSelectedLionFinaleCombat(
+  flags: Readonly<Record<string, boolean>>,
+): LionFinaleExecution['combatId'] | null {
+  // Trial wins contradictory/corrupt selection state because it is the
+  // fail-safe route: it grants no recognition before the martial proof.
+  if (flags[LION_FINALE_TRIAL_SELECTED_FLAG]) return 'lion_chief';
+  if (flags[LION_FINALE_SERPENT_SELECTED_FLAG]) return 'serpent_captain';
+  return null;
+}
+
+export function resolvePendingLionFinaleCombat(
+  flags: Readonly<Record<string, boolean>>,
+): LionFinaleExecution['combatId'] | null {
+  const selected = resolveSelectedLionFinaleCombat(flags);
+  if (selected === 'serpent_captain' && flags.serpentGeneralDefeated) return null;
+  if (selected === 'lion_chief' && flags.lionTrialWon) return null;
+  return selected;
+}
+
 interface StepOptions {
   tag?: string;
   expression?: DialogueExpression;
@@ -84,6 +106,8 @@ export function resolveLionFinaleExecution(
         lionTrialRequested: false,
         lionSealHonour: true,
         lionSealAcknowledged: true,
+        [LION_FINALE_SERPENT_SELECTED_FLAG]: true,
+        [LION_FINALE_TRIAL_SELECTED_FLAG]: false,
       },
       reputationDelta: 2,
     };
@@ -96,8 +120,17 @@ export function resolveLionFinaleExecution(
     trialCause,
     combatId: 'lion_chief',
     flagChanges: voluntary
-      ? { lionTrialRequested: true }
-      : { lionTrialRequested: false, alaricDoubt: true },
+      ? {
+          lionTrialRequested: true,
+          [LION_FINALE_SERPENT_SELECTED_FLAG]: false,
+          [LION_FINALE_TRIAL_SELECTED_FLAG]: true,
+        }
+      : {
+          lionTrialRequested: false,
+          alaricDoubt: true,
+          [LION_FINALE_SERPENT_SELECTED_FLAG]: false,
+          [LION_FINALE_TRIAL_SELECTED_FLAG]: true,
+        },
     reputationDelta: voluntary ? -2 : 0,
   };
 }
