@@ -1,4 +1,4 @@
-import { combatConfigs, dialogues, POST_NODE_ATE } from './content';
+import { combatConfigs } from './content';
 import { createInitialState, SaveRepository } from './store';
 import type { CombatConfig, CombatResult, GameState, NarrativeEffect, RunNode, UnitInstance } from './types';
 import { createUnitInstance, getItemCategory, toCombatant } from './catalog';
@@ -9,10 +9,11 @@ import {
 } from './runSystem';
 import { changeReputation, getReputationRule } from './reputation';
 import {
-  buildLionContextualDialogue,
   lionBossVictoryFacts,
   resolveLionFinaleExecution,
 } from './lionFinale';
+import { ateSeenFlag } from './contextualDialogue';
+import { resolveGameAteRules, resolveGameDialogue } from './contextualDialogueContent';
 import { getRestCost, getWoundedUnitCount, restUnits } from './management';
 import { CombatBridge } from '../combat/CombatBridge';
 import { DialogueView } from '../ui/DialogueView';
@@ -474,8 +475,9 @@ export class GameApp {
   }
 
   private async playDialogue(dialogueId: string, fallbackLabel?: string): Promise<void> {
-    const sequence = buildLionContextualDialogue(dialogueId, this.state) ?? dialogues.get(dialogueId);
-    if (!sequence) throw new Error(`Missing dialogue '${dialogueId}'.`);
+    const resolved = resolveGameDialogue(dialogueId, this.state);
+    if (!resolved) throw new Error(`Missing dialogue '${dialogueId}'.`);
+    const { sequence } = resolved;
     let playPromise: Promise<void> | null = null;
     const interlude = this.cinematicInterlude({ hook: 'beforeDialogue', dialogueId });
     await sceneTransition.run({
@@ -495,30 +497,9 @@ export class GameApp {
   }
 
   private async maybePlayATEs(nodeId: string): Promise<void> {
-    const ateIds = POST_NODE_ATE[nodeId];
-    if (!ateIds) return;
-    for (const ateId of ateIds) {
-      const flagKey = `ate:${ateId}`;
-      if (this.state.flags[flagKey]) continue;
-      const sequence = dialogues.get(ateId);
-      if (!sequence) continue;
-      let playPromise: Promise<void> | null = null;
-      const interlude = this.cinematicInterlude({ hook: 'beforeDialogue', dialogueId: ateId });
-      await sceneTransition.run({
-        variant: 'dialogue',
-        label: sequence.title ?? '',
-        interlude,
-        ...(interlude ? { holdMs: 0 } : {}),
-        task: async () => {
-          this.setMode('NARRATIVE');
-          playPromise = this.dialogue.play(sequence);
-        },
-      });
-      await playPromise;
-      const chapterBeatId = this.pendingChapterBeatId;
-      this.pendingChapterBeatId = null;
-      if (chapterBeatId) await this.playStandaloneCinematic({ hook: 'chapterBeat', beatId: chapterBeatId }, sequence.title ?? '');
-      this.state.flags[flagKey] = true;
+    for (const rule of resolveGameAteRules(nodeId, this.state)) {
+      await this.playDialogue(rule.dialogueId);
+      if (rule.once) this.state.flags[ateSeenFlag(rule)] = true;
     }
   }
 
