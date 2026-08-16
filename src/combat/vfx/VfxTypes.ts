@@ -264,6 +264,8 @@ export interface VfxRuntimeHelpers {
   wait?: (seconds: number) => Promise<void>;
   screenShake?: (magnitude: number, duration: number) => void;
   screenFlash?: (color?: string, opacity?: number) => void;
+  /** Presentation-only hit-stop pause. Never affects damage, hit chance, AP, or any gameplay rule. */
+  hitStop?: (duration: number) => Promise<void> | void;
   floatText?: (unit: VfxUnitLike, text: string, color?: string, big?: boolean) => void;
   wX?: (gridX: number) => number;
   wZ?: (gridZ: number) => number;

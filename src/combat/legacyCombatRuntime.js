@@ -123,6 +123,7 @@ function tween(obj,to,dur,ease,onDone){
 }
 function tweenP(obj,to,dur,ease){ return new Promise(resolve=>{ const handle=tween(obj,to,dur,ease,()=>resolve({cancelled:false})); handle.onCancel=()=>resolve({cancelled:true}); }); }
 function wait(s){ return new Promise(r=>setTimeout(r,s*1000)); }
+function hitStop(dur){ return wait(dur); }
 function updateTweens(dt){
   for(let i=tweens.length-1;i>=0;i--){
     const o=tweens[i]; o.t+=dt; const p=clamp(o.t/o.dur,0,1), e=o.ease(p);
@@ -1539,7 +1540,7 @@ function makeActionVfxContext(u,targets,cx,cz,spec={},visualContext={}){
       orientation:presentation?.orientation,scaleTier:tuning.scaleTier,presentationScale:tuning.presentationScale,
       staticScaleMultiplier:tuning.staticScaleMultiplier,impactOpacityFloor:tuning.impactOpacityFloor,
       impactRenderOrder:tuning.impactRenderOrder,groundYOffset:tuning.groundYOffset,
-      helpers:{wait,screenShake,screenFlash,floatText,wX,wZ,tileTop}
+      helpers:{wait,screenShake,screenFlash,hitStop,floatText,wX,wZ,tileTop}
     };
   }
   const targetPoint=visualContext.targetPoint||new THREE.Vector3(wX(cx),tileTop(cx,cz),wZ(cz));
@@ -1551,7 +1552,7 @@ function makeActionVfxContext(u,targets,cx,cz,spec={},visualContext={}){
     orientation:presentation?.orientation,scaleTier:tuning.scaleTier,presentationScale:tuning.presentationScale,
     staticScaleMultiplier:tuning.staticScaleMultiplier,impactOpacityFloor:tuning.impactOpacityFloor,
     impactRenderOrder:tuning.impactRenderOrder,groundYOffset:tuning.groundYOffset,
-    helpers:{wait,screenShake,screenFlash,floatText,wX,wZ,tileTop}
+    helpers:{wait,screenShake,screenFlash,hitStop,floatText,wX,wZ,tileTop}
   };
 }
 function playActionVfxAt(presetId,u,targetPoint,spec={}){

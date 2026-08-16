@@ -295,7 +295,7 @@ export function getLastComposerSnapshot(): ComposerPlaybackSnapshot | null {
  * Builds a synthetic single-slot VfxStep for `playLabSpriteSheet`.
  * Neutral scale/opacity of 1 so the compiled overrides fully determine output.
  */
-function buildSlotStep(slot: CompiledVfxSlot): VfxStep {
+export function buildSlotStep(slot: CompiledVfxSlot): VfxStep {
   return {
     id: slot.slotId,
     type: 'spriteSheet',
@@ -310,7 +310,7 @@ function buildSlotStep(slot: CompiledVfxSlot): VfxStep {
   };
 }
 
-const wait = (seconds: number) => new Promise<void>((resolve) => {
+export const wait = (seconds: number) => new Promise<void>((resolve) => {
   if (seconds <= 0) { resolve(); return; }
   setTimeout(resolve, seconds * 1000);
 });
@@ -343,33 +343,42 @@ export function buildSlotOverrides(slot: CompiledVfxSlot): VfxLabPlaybackOverrid
   };
 }
 
-/** Plays every compiled visual slot, honouring the resolved phase start times. */
-async function playCompiledSlots(
-  ctx: ComposerPlaybackContext,
+/**
+ * Plays every compiled visual slot, honouring the resolved phase start times.
+ *
+ * SHARED SCHEDULER — used by both Composer playback and PublishedVfxResolver.
+ * The slot INVOCATION is delayed by `slot.startTime`, not just the completion
+ * await. This guarantees PHASE scheduling parity between Composer and production.
+ */
+export async function playCompiledVfxSlots(
+  vfxSystem: VfxSystem,
   compiled: CompiledVfxDraft,
   context: VfxContext,
+  strict: boolean = false,
 ): Promise<void> {
   await Promise.all(compiled.slots.map(async (slot) => {
     const record = getCandidateInventoryRecord(slot.candidateId);
     if (!record) {
-      throw new Error(`Missing inventory record for candidate ${slot.candidateId}`);
+      if (strict) throw new Error(`Missing inventory record for candidate ${slot.candidateId}`);
+      console.warn(`[VFX] Missing inventory record for ${slot.candidateId}, skipping slot.`);
+      return;
     }
     await wait(slot.startTime);
     const sheetDef = buildLabSheetDefinition(slot.candidateId, record);
-    const result = ctx.vfxSystem.playLabSpriteSheet(
+    const result = vfxSystem.playLabSpriteSheet(
       slot.candidateId,
       sheetDef,
       buildSlotStep(slot),
       context,
       buildSlotOverrides(slot),
-      { strict: true },
+      strict ? { strict: true } : undefined,
     );
     await result.completion;
   }));
 }
 
-/** Applies compiled technical polish through the runtime helper hooks. */
-async function playCompiledTechnical(
+/** Applies compiled technical effects through the runtime helper hooks. */
+export async function playCompiledTechnical(
   compiled: CompiledVfxDraft,
   context: VfxContext,
 ): Promise<void> {
@@ -381,9 +390,16 @@ async function playCompiledTechnical(
       helpers.screenFlash?.(effect.color ?? '#ffffff', effect.opacity ?? 0.2);
     } else if (effect.type === 'screenShake') {
       helpers.screenShake?.(effect.scale ?? 0.15, effect.duration);
+    } else if (effect.type === 'hitStop') {
+      // HITSTOP: presentation-only pause. If the helper is absent, fail safely
+      // with an async wait-only fallback so timing stays correct without
+      // blocking other effects or crashing combat.
+      if (helpers.hitStop) {
+        await Promise.resolve(helpers.hitStop(effect.duration));
+      } else {
+        await wait(effect.duration);
+      }
     }
-    // hitStop is a pacing-only effect; the composer records it in the snapshot
-    // but never stalls gameplay from the Lab.
   }));
 }
 
@@ -440,7 +456,7 @@ export async function playDraftVisualsOnly(
   const snapshot = buildSnapshot('visuals_only', compiled);
   _lastComposerSnapshot = snapshot;
   try {
-    await playCompiledSlots(ctx, compiled, context);
+    await playCompiledVfxSlots(ctx.vfxSystem, compiled, context, true);
     return { played: true, snapshot };
   } catch (error) {
     return { played: false, snapshot, reason: error instanceof Error ? error.message : 'Playback failed' };
@@ -468,7 +484,7 @@ export async function playDraftFull(
   _lastComposerSnapshot = snapshot;
   try {
     await Promise.all([
-      playCompiledSlots(ctx, compiled, context),
+      playCompiledVfxSlots(ctx.vfxSystem, compiled, context, true),
       playCompiledTechnical(compiled, context),
     ]);
     return { played: true, snapshot };
@@ -496,11 +512,11 @@ export async function playDraftInCombatStage(
   const playVfx = async (context: VfxContext): Promise<void> => {
     if (mode === 'full_preset') {
       await Promise.all([
-        playCompiledSlots(ctx, compiled, context),
+        playCompiledVfxSlots(ctx.vfxSystem, compiled, context, true),
         playCompiledTechnical(compiled, context),
       ]);
     } else {
-      await playCompiledSlots(ctx, compiled, context);
+      await playCompiledVfxSlots(ctx.vfxSystem, compiled, context, true);
     }
   };
 

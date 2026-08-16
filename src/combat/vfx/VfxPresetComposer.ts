@@ -738,14 +738,21 @@ export function resolveTechnicalEffects(
 // ============================================================ Slot Impact FX
 
 /**
- * Semantic ratio through a slot's own duration where its impact reads. Reused
- * from the previous global impact heuristic so existing feel is unchanged.
+ * Semantic ratio through a slot's own duration where its impact reads.
+ *
+ * FIXED: 45% — the visual peak of an impact/hit/aura animation.
+ * TRAVEL: 100% — the destination IS the semantic arrival/impact point.
  */
 export const SLOT_IMPACT_RATIO = 0.45;
+export const TRAVEL_IMPACT_RATIO = 1.0;
 
 /** Deterministic local impact point inside a slot's own duration. */
-export function resolveSlotLocalImpactTime(duration: number): number {
-  return Math.round(duration * SLOT_IMPACT_RATIO * 1000) / 1000;
+export function resolveSlotLocalImpactTime(
+  duration: number,
+  positionMode: VfxPositionMode = 'FIXED',
+): number {
+  const ratio = positionMode === 'TRAVEL' ? TRAVEL_IMPACT_RATIO : SLOT_IMPACT_RATIO;
+  return Math.round(duration * ratio * 1000) / 1000;
 }
 
 /**
@@ -1221,8 +1228,8 @@ export function compileDraft(draft: VfxPresetDraft, options: CompileDraftOptions
     const travelling = positionMode === 'TRAVEL';
     const travelFrom = slot.travelFrom ?? DEFAULT_TRAVEL_FROM;
     const travelTo = slot.travelTo ?? DEFAULT_TRAVEL_TO;
-    // Slot-local impact point. Automatically follows PHASE and SPEED changes.
-    const impactTime = Math.round((startTime + resolveSlotLocalImpactTime(duration)) * 1000) / 1000;
+    // Slot-local impact point. Automatically follows PHASE, SPEED, and POSITION changes.
+    const impactTime = Math.round((startTime + resolveSlotLocalImpactTime(duration, positionMode)) * 1000) / 1000;
     const technical = options.includeTechnical && slotFxAuthored
       ? resolveSlotImpactEvents(slot.impactFx, impactTime)
       : [];
@@ -1259,10 +1266,23 @@ export function compileDraft(draft: VfxPresetDraft, options: CompileDraftOptions
   });
 
   const totalDuration = slots.reduce((max, slot) => Math.max(max, slot.startTime + slot.duration), 0);
-  // Preset-level impact remains the first slot's own impact moment. It is used
-  // for gameplay read timing and for the legacy global polish path only.
+  /**
+   * PRESET GAMEPLAY IMPACT TIME — V2.5.1 doctrine.
+   *
+   * A. If one or more slots have ACTIVE per-slot Impact FX:
+   *    → earliest absolute impactTime among active-FX slots.
+   *    This lets the artist identify the real visual impact by placing
+   *    FLASH/SHAKE/HITSTOP on the responsible slot.
+   *
+   * B. If no slot has active Impact FX:
+   *    → first slot's impactTime (legacy compatibility), which now follows
+   *    the FIXED/TRAVEL rule automatically.
+   */
   const first = slots[0];
-  const impactTime = first ? first.impactTime : 0;
+  const activeFxSlots = slots.filter((s) => s.technical.length > 0);
+  const impactTime = activeFxSlots.length > 0
+    ? activeFxSlots.reduce((min, s) => Math.min(min, s.impactTime), Infinity)
+    : (first ? first.impactTime : 0);
 
   /**
    * OLD TECHNICAL POLISH COMPATIBILITY — Strategy A.
@@ -1328,7 +1348,7 @@ export function validateDraft(raw: unknown): raw is VfxPresetDraft {
     if (s.rotationDegrees != null && typeof s.rotationDegrees !== 'number') return false;
     if (s.mirrorProfile != null && !VALID_MIRROR.has(s.mirrorProfile as VfxMirrorProfile)) return false;
     if (s.pivotProfile != null && !VALID_PIVOT.has(s.pivotProfile as VfxPivotProfile)) return false;
-    if (s.phase != null && (typeof s.phase !== 'number' || !Number.isFinite(s.phase) || s.phase < 0)) return false;
+    if (s.phase != null && (typeof s.phase !== 'number' || !Number.isInteger(s.phase) || s.phase < 0 || s.phase > MAX_PHASE)) return false;
     if (s.impactFx != null) {
       if (typeof s.impactFx !== 'object') return false;
       const fx = s.impactFx as Record<string, unknown>;

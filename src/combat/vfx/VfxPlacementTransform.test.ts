@@ -834,9 +834,11 @@ describe('V2.5 Per-Slot Impact FX', () => {
     expect(updated.visualSlots[0]!.impactFx).toBeUndefined();
   });
 
-  it('resolveSlotLocalImpactTime returns 45% of duration', () => {
-    expect(resolveSlotLocalImpactTime(1.0)).toBeCloseTo(0.45);
-    expect(resolveSlotLocalImpactTime(2.0)).toBeCloseTo(0.9);
+  it('resolveSlotLocalImpactTime returns 45% for FIXED, 100% for TRAVEL', () => {
+    expect(resolveSlotLocalImpactTime(1.0, 'FIXED')).toBeCloseTo(0.45);
+    expect(resolveSlotLocalImpactTime(2.0, 'FIXED')).toBeCloseTo(0.9);
+    expect(resolveSlotLocalImpactTime(1.0, 'TRAVEL')).toBeCloseTo(1.0);
+    expect(resolveSlotLocalImpactTime(0.8, 'TRAVEL')).toBeCloseTo(0.8);
   });
 
   it('resolveSlotImpactEvents produces events for active channels', () => {
