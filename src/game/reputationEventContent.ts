@@ -17,12 +17,15 @@ const witness = (...states: Array<'none' | 'supportive' | 'unprotected' | 'silen
   kind: 'lionWitness', states,
 });
 const verdictReason = (reason: string): DialogueCondition => ({ kind: 'lionVerdictReason', reason });
+const flag = (key: string, value = true): DialogueCondition => ({ kind: 'flag', key, value });
 const publicReputation = (min?: number, max?: number): DialogueCondition => ({
   kind: 'publicReputation',
   ...(min === undefined ? {} : { min }),
   ...(max === undefined ? {} : { max }),
 });
 const any = (...conditions: DialogueCondition[]): DialogueCondition => ({ kind: 'any', conditions });
+const all = (...conditions: DialogueCondition[]): DialogueCondition => ({ kind: 'all', conditions });
+const not = (condition: DialogueCondition): DialogueCondition => ({ kind: 'not', condition });
 
 const SERIOUS_NEGATIVE_HISTORY = any(
   conduct('infamy'),
@@ -104,6 +107,110 @@ export const REPUTATION_EVENT_DEFINITIONS: readonly ReputationEventDefinition[] 
       contentTags: ['conduct-eligibility-pilot'],
     },
   },
+  {
+    id: 'refuge-supply-offer',
+    tags: ['social', 'refuge', 'supplies'],
+    baseWeight: 8,
+    scope: {
+      triggerNodeIds: ['lion-first-refuge'],
+      requiredOpportunityTags: ['social', 'refuge'],
+    },
+    unique: true,
+    familyId: 'roadside-opportunity',
+    cooldownSteps: 3,
+    dialogueId: 'rep_event_refuge_supply_offer',
+    reputationCategory: 'helpful',
+    priority: 6,
+    metadata: {
+      consequenceHints: ['Limited supply allocation', 'Gold or public response'],
+      contentTags: ['r5-social-variety', 'choice-class-b'],
+    },
+  },
+  {
+    id: 'serpent-rumour-market',
+    tags: ['social', 'information', 'road'],
+    baseWeight: 8,
+    scope: {
+      triggerNodeIds: ['lion-first-refuge', 'lion-village-choice'],
+      requiredOpportunityTags: ['social'],
+    },
+    unique: true,
+    familyId: 'roadside-opportunity',
+    cooldownSteps: 3,
+    dialogueId: 'rep_event_serpent_rumour_market',
+    reputationCategory: 'neutral',
+    priority: 5,
+    metadata: {
+      consequenceHints: ['Information purchase or public story', 'No Lion fact changes'],
+      contentTags: ['r5-social-variety', 'choice-class-b'],
+    },
+  },
+  {
+    id: 'fallen-banner-claimant',
+    tags: ['social', 'politics', 'public-pressure'],
+    baseWeight: 7,
+    scope: {
+      triggerNodeIds: ['lion-final-refuge'],
+      requiredOpportunityTags: ['social', 'camp'],
+    },
+    unique: true,
+    familyId: 'public-expectation',
+    cooldownSteps: 3,
+    dialogueId: 'rep_event_fallen_banner_claimant',
+    reputationCategory: 'helpful',
+    priority: 6,
+    metadata: {
+      consequenceHints: ['Political sponsorship', 'No Lion verdict effect'],
+      contentTags: ['r5-social-variety', 'choice-class-b'],
+    },
+  },
+  {
+    id: 'village-memorial-request',
+    tags: ['social', 'bois-clair', 'request', 'history'],
+    baseWeight: 9,
+    scope: {
+      triggerNodeIds: ['lion-village-choice', 'lion-final-refuge'],
+      requiredOpportunityTags: ['social', 'bois-clair'],
+    },
+    eligibility: all(
+      verdictReason('saved_bois_clair'),
+      not(verdictReason('sacrificed_bois_clair')),
+    ),
+    unique: true,
+    familyId: 'public-expectation',
+    cooldownSteps: 3,
+    dialogueId: 'rep_event_village_memorial_request',
+    reputationCategory: 'helpful',
+    priority: 12,
+    metadata: {
+      consequenceHints: ['Public memorial response', 'Bois-Clair fact remains dominant'],
+      contentTags: ['r5-social-variety', 'choice-class-b'],
+    },
+  },
+  {
+    id: 'displaced-family-demand',
+    tags: ['social', 'hostility', 'history', 'refugees'],
+    baseWeight: 9,
+    scope: {
+      triggerNodeIds: ['lion-village-choice', 'lion-final-refuge'],
+      requiredOpportunityTags: ['social'],
+    },
+    eligibility: any(
+      flag('exploitedRefugees'),
+      flag('abandonedMerchant'),
+      verdictReason('sacrificed_bois_clair'),
+    ),
+    unique: true,
+    familyId: 'roadside-pressure',
+    cooldownSteps: 4,
+    dialogueId: 'rep_event_displaced_family_demand',
+    reputationCategory: 'hostile',
+    priority: 14,
+    metadata: {
+      consequenceHints: ['Concrete social grievance', 'Acknowledgement cannot rewrite history'],
+      contentTags: ['r5-social-variety', 'choice-class-b'],
+    },
+  },
 ];
 
 type ReputationEventOpportunityTemplate = Omit<ReputationEventOpportunity, 'step'>;
@@ -136,6 +243,116 @@ const REPUTATION_EVENT_OPPORTUNITY_TEMPLATES: Readonly<Record<string, Reputation
 };
 
 export const REPUTATION_EVENT_DIALOGUE_DEFINITIONS: Readonly<Record<string, ContextualDialogueDefinition>> = {
+  rep_event_refuge_supply_offer: {
+    variants: [
+      {
+        id: 'supply-offer-after-aid',
+        priority: 200,
+        when: flag('helpedRefugees'),
+        stepPatches: [{
+          stepId: '1',
+          patch: { text: 'Les familles que vous avez aidées viennent d’arriver. Grâce à ce qu’elles racontent, le refuge peut vous céder une caisse de remèdes à prix réduit — ou la garder pour les voyageurs qui suivront votre route.' },
+        }],
+      },
+      {
+        id: 'supply-offer-after-exploitation',
+        priority: 100,
+        when: flag('exploitedRefugees'),
+        stepPatches: [{
+          stepId: '1',
+          patch: { text: 'Des familles disent que votre compagnie leur a pris plus qu’elle n’a donné. Le refuge vous propose pourtant une caisse de remèdes à prix réduit — ou la possibilité publique de la laisser à ceux qui arriveront après.' },
+        }],
+      },
+    ],
+  },
+  rep_event_serpent_rumour_market: {
+    variants: [
+      {
+        id: 'rumour-with-cedric',
+        priority: 100,
+        when: flag('recruitedCedric'),
+        stepPatches: [{
+          stepId: '1',
+          patch: { text: 'Cedric connaît mes tarifs et moi ses anciennes routes. Je vends ce que les Serpents répètent : vingt pièces pour écouter, ou une vérité de votre compagnie en échange.' },
+        }],
+      },
+    ],
+  },
+  rep_event_fallen_banner_claimant: {
+    variants: [
+      {
+        id: 'claimant-after-infamy',
+        priority: 200,
+        when: conduct('infamy'),
+        stepPatches: [{
+          stepId: '1',
+          patch: { text: 'Votre nom remonte dans les conversations, accompagné de récits difficiles. Mon maître peut rendre votre retour plus présentable s’il est cité dans votre première proclamation après le Sceau.' },
+        }],
+      },
+      {
+        id: 'claimant-after-honour',
+        priority: 100,
+        when: conduct('honour'),
+        stepPatches: [{
+          stepId: '1',
+          patch: { text: 'Vos actes rendent de nouveau votre bannière fréquentable. Mon maître peut déclarer publiquement qu’il vous a toujours soutenus, si votre première proclamation après le Sceau cite sa maison.' },
+        }],
+      },
+    ],
+  },
+  rep_event_village_memorial_request: {
+    variants: [
+      {
+        id: 'memorial-with-supportive-witnesses',
+        priority: 200,
+        when: witness('supportive'),
+        stepPatches: [{
+          stepId: '1',
+          patch: { text: 'Les témoins marcheront librement avec vous et porteront les faits. Je vous confie autre chose : la liste des morts de Bois-Clair. Faites-la lire au camp, ou aidez-nous à graver les noms ici.' },
+        }],
+      },
+      {
+        id: 'memorial-after-silence',
+        priority: 100,
+        when: witness('silenced'),
+        stepPatches: [{
+          stepId: '1',
+          patch: { text: 'Les voix vivantes ont été réduites au silence, mais les morts ne négocient pas. Portez leurs noms jusqu’au camp du Lion, ou financez la pierre qui les gardera ici.' },
+        }],
+      },
+    ],
+  },
+  rep_event_displaced_family_demand: {
+    variants: [
+      {
+        id: 'demand-after-bois-clair-sacrifice',
+        priority: 300,
+        when: verdictReason('sacrificed_bois_clair'),
+        stepPatches: [{
+          stepId: '1',
+          patch: { text: 'À Bois-Clair, votre compagnie avait les moyens d’aider, mais elle a choisi les réserves. Je ne demande pas que vous réécriviez ce fait. Je demande ce que vous faites maintenant pour les familles déplacées.' },
+        }],
+      },
+      {
+        id: 'demand-after-refugee-exploitation',
+        priority: 200,
+        when: flag('exploitedRefugees'),
+        stepPatches: [{
+          stepId: '1',
+          patch: { text: 'Vous avez pris l’information et l’or de familles qui n’avaient déjà presque rien. Je ne demande pas que vous réécriviez la route. Je demande ce que vous faites maintenant pour leur prochain convoi.' },
+        }],
+      },
+      {
+        id: 'demand-after-abandonment',
+        priority: 100,
+        when: flag('abandonedMerchant'),
+        stepPatches: [{
+          stepId: '1',
+          patch: { text: 'Le marchand que vous avez laissé derrière a atteint un refuge blessé. Je ne demande pas une excuse qui change le passé. Je demande ce que votre compagnie fait maintenant pour ceux qui empruntent la même route.' },
+        }],
+      },
+    ],
+  },
   rep_event_roadside_intimidation: {
     variants: [
       {

@@ -310,7 +310,7 @@ describe('contextual ATE rules', () => {
   });
 
   it('retains every pre-R3 ATE trigger and dialogue id', () => {
-    expect(CONTEXTUAL_ATE_RULES.map((rule) => [rule.triggerNodeId, rule.dialogueId])).toEqual([
+    expect(CONTEXTUAL_ATE_RULES.map((rule) => [rule.triggerNodeId, rule.dialogueId])).toEqual(expect.arrayContaining([
       ['lion-opening-ambush', 'ate_alaric_reports'],
       ['lion-nomad-crossroads', 'ate_serpent_scout_report'],
       ['lion-refugees', 'ate_village_fear'],
@@ -319,6 +319,6 @@ describe('contextual ATE rules', () => {
       ['lion-witnesses', 'ate_lion_council_doubt'],
       ['lion-shadow-signs', 'ate_ruins_awaken'],
       ['lion-shadow-signs', 'ate_serpent_retreat_order'],
-    ]);
+    ]));
   });
 });
