@@ -8,6 +8,7 @@ import {
   type ResolvedContextualDialogue,
 } from './contextualDialogue';
 import { buildLionContextualDialogue } from './lionFinale';
+import { REPUTATION_EVENT_DIALOGUE_DEFINITIONS } from './reputationEventContent';
 import type { DialogueExpression, DialogueStep, GameState } from './types';
 
 const always: DialogueCondition = { kind: 'always' };
@@ -278,7 +279,9 @@ export function resolveGameDialogue(
 ): ResolvedContextualDialogue | null {
   const base = buildLionContextualDialogue(dialogueId, state) ?? dialogues.get(dialogueId);
   if (!base) return null;
-  return resolveContextualDialogue(base, state, CONTEXTUAL_DIALOGUE_DEFINITIONS[dialogueId]);
+  const definition = CONTEXTUAL_DIALOGUE_DEFINITIONS[dialogueId]
+    ?? REPUTATION_EVENT_DIALOGUE_DEFINITIONS[dialogueId];
+  return resolveContextualDialogue(base, state, definition);
 }
 
 export function resolveGameAteRules(

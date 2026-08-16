@@ -891,6 +891,98 @@ const rawDialogues = [
     ],
   },
   {
+    id: 'rep_event_roadside_intimidation',
+    title: 'Pression sur la route',
+    sceneArtId: 'mystery_help',
+    steps: [
+      {
+        id: '1',
+        speaker: 'Chef de bande',
+        actorId: 'serpent_raider',
+        expression: 'hostile',
+        tag: 'Réputation publique',
+        text: 'Votre bannière attire les regards. Sur cette route, toute compagnie visible devient une cible. Payez le passage, ou défendez votre nom devant ceux qui regardent.',
+        side: 'right',
+        effects: [],
+        choices: [
+          { text: 'Refuser le tribut sans menacer les témoins.', next: '2', effects: [{ type: 'addReputation', amount: 1 }, { type: 'setFlag', key: 'r4FacedRoadsidePressure', value: true }], outcomePreview: { mode: 'soft', hints: ['Réponse publique', 'Votre réputation peut évoluer'] } },
+          { text: 'Payer 20 or et poursuivre la route.', next: '3', requiresGold: 20, effects: [{ type: 'addGold', amount: -20 }, { type: 'setFlag', key: 'r4PaidRoadsideTribute', value: true }], outcomePreview: { mode: 'exact', hints: ['20 or', 'Évite une confrontation'] } },
+        ],
+      },
+      { id: '2', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'stern', tag: 'Position tenue', text: 'Ils reculent parce que la route les observe. Le récit de cette rencontre voyagera plus vite que nous.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Passage acheté', text: 'Le passage est libre. La bourse est plus légère, et chacun ici sait désormais quel prix nous avons accepté.', side: 'left', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'rep_event_brokered_information',
+    title: 'Un renseignement à vendre',
+    sceneArtId: 'mystery_recruit',
+    steps: [
+      {
+        id: '1',
+        speaker: 'Courtière des routes',
+        actorId: 'survivor',
+        expression: 'neutral',
+        tag: 'Occasion',
+        text: 'Je vends une piste sûre et le nom du guetteur qui l’utilise. Votre réputation ne change pas le prix : vingt-cinq pièces, ou je garde mon renseignement.',
+        side: 'right',
+        effects: [],
+        choices: [
+          { text: 'Acheter le renseignement — 25 or.', next: '2', requiresGold: 25, effects: [{ type: 'addGold', amount: -25 }, { type: 'setFlag', key: 'r4BoughtRoadInformation', value: true }], outcomePreview: { mode: 'exact', hints: ['25 or', 'Renseignement mémorisé'] } },
+          { text: 'Décliner sans la menacer.', next: '3', effects: [{ type: 'setFlag', key: 'r4DeclinedRoadInformation', value: true }], outcomePreview: { mode: 'soft', hints: ['Aucun coût', 'L’occasion est perdue'] } },
+        ],
+      },
+      { id: '2', speaker: 'Courtière des routes', actorId: 'survivor', expression: 'grateful', tag: 'Marché conclu', text: 'Suivez les pierres blanches jusqu’au vieux chêne, puis quittez la piste. Vous verrez le guetteur avant qu’il vous voie.', side: 'right', next: null, effects: [], choices: [] },
+      { id: '3', speaker: 'Courtière des routes', actorId: 'survivor', expression: 'neutral', tag: 'Occasion refusée', text: 'Alors nous ne nous devons rien. Que la route juge lequel de nous deux avait le plus besoin de cet accord.', side: 'right', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'rep_event_public_petition',
+    title: 'Le poids d’un nom',
+    sceneArtId: 'refugee_trial',
+    steps: [
+      {
+        id: '1',
+        speaker: 'Porte-parole des réfugiés',
+        actorId: 'refugee_mother',
+        expression: 'stern',
+        tag: 'Attente publique',
+        text: 'Votre passage attire les regards. Nos familles ont besoin de provisions pour franchir la route. Votre compagnie a les moyens d’agir : accepterez-vous d’en porter le coût ?',
+        side: 'right',
+        effects: [],
+        choices: [
+          { text: 'Financer les provisions — 35 or.', next: '2', requiresGold: 35, effects: [{ type: 'addGold', amount: -35 }, { type: 'addReputation', amount: 3 }, { type: 'setFlag', key: 'r4FundedPublicPetition', value: true }], outcomePreview: { mode: 'exact', hints: ['35 or', 'Réputation +3'] } },
+          { text: 'Refuser publiquement.', next: '3', effects: [{ type: 'addReputation', amount: -1 }, { type: 'setFlag', key: 'r4RefusedPublicPetition', value: true }], outcomePreview: { mode: 'exact', hints: ['Réputation -1', 'Refus mémorisé'] } },
+        ],
+      },
+      { id: '2', speaker: 'Porte-parole des réfugiés', actorId: 'refugee_mother', expression: 'grateful', tag: 'Engagement tenu', text: 'Nous n’oublierons ni les provisions ni ceux qui les ont offertes. Votre nom voyagera avec nos familles.', side: 'right', next: null, effects: [], choices: [] },
+      { id: '3', speaker: 'Porte-parole des réfugiés', actorId: 'refugee_mother', expression: 'wounded', tag: 'Attente déçue', text: 'Alors les récits étaient plus riches que votre bourse — ou que votre volonté. Nous trouverons une autre route.', side: 'right', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
+    id: 'rep_event_bois_clair_denunciation',
+    title: 'La mémoire de Bois-Clair',
+    sceneArtId: 'village_choice',
+    steps: [
+      {
+        id: '1',
+        speaker: 'Survivante de Bois-Clair',
+        actorId: 'refugee_mother',
+        expression: 'stern',
+        tag: 'Conséquence historique',
+        text: 'Je porte une accusation née de vos actes, pas de votre renommée. Répondez devant ceux qui ont survécu à Bois-Clair.',
+        side: 'right',
+        effects: [],
+        choices: [
+          { text: 'Faire face à l’accusation sans la nier.', next: '2', effects: [{ type: 'addReputation', amount: 1 }, { type: 'setFlag', key: 'r4FacedBoisClairAccusation', value: true }], outcomePreview: { mode: 'soft', hints: ['Réponse publique', 'Le fait historique demeure'] } },
+          { text: 'Verser 50 or aux survivants.', next: '3', requiresGold: 50, effects: [{ type: 'addGold', amount: -50 }, { type: 'addReputation', amount: 2 }, { type: 'setFlag', key: 'r4PaidBoisClairReparations', value: true }], outcomePreview: { mode: 'exact', hints: ['50 or', 'Réputation +2', 'Le fait historique demeure'] } },
+        ],
+      },
+      { id: '2', speaker: 'Survivante de Bois-Clair', actorId: 'refugee_mother', expression: 'stern', tag: 'Réponse entendue', text: 'Au moins, vous n’avez pas fui notre regard. Nous porterons votre réponse avec le souvenir de ce qui s’est passé.', side: 'right', next: null, effects: [], choices: [] },
+      { id: '3', speaker: 'Survivante de Bois-Clair', actorId: 'refugee_mother', expression: 'neutral', tag: 'Réparation limitée', text: 'Cet or aidera des familles. Il ne rachète pas le passé, et personne ici ne prétendra le contraire.', side: 'right', next: null, effects: [], choices: [] },
+    ],
+  },
+  {
     id: 'final_refuge',
     sceneArtId: 'lion_finale_judgement',
     steps: [

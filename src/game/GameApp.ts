@@ -14,6 +14,11 @@ import {
 } from './lionFinale';
 import { ateSeenFlag } from './contextualDialogue';
 import { resolveGameAteRules, resolveGameDialogue } from './contextualDialogueContent';
+import { selectGameReputationEvent } from './reputationEventContent';
+import {
+  recordReputationEventSelection,
+  type ReputationEventSelection,
+} from './reputationEventDirector';
 import { getRestCost, getWoundedUnitCount, restUnits } from './management';
 import { CombatBridge } from '../combat/CombatBridge';
 import { DialogueView } from '../ui/DialogueView';
@@ -437,6 +442,7 @@ export class GameApp {
         if (action === 'skills') await this.openManagement('skills', undefined, 'temporary', false);
       }
       this.markResolved(node.id);
+      await this.playPostNodeNarrative(node.id);
       await this.enterTravel();
       return;
     }
@@ -452,7 +458,7 @@ export class GameApp {
         if (this.pendingCombatId) await this.flushPendingCombat(node);
         else {
           this.markResolved(node.id);
-          await this.maybePlayATEs(node.id);
+          await this.playPostNodeNarrative(node.id);
           await this.enterTravel();
         }
         return;
@@ -469,7 +475,7 @@ export class GameApp {
       await this.flushPendingCombat(node);
     } else {
       this.markResolved(node.id);
-      await this.maybePlayATEs(node.id);
+      await this.playPostNodeNarrative(node.id);
       await this.enterTravel();
     }
   }
@@ -501,6 +507,19 @@ export class GameApp {
       await this.playDialogue(rule.dialogueId);
       if (rule.once) this.state.flags[ateSeenFlag(rule)] = true;
     }
+  }
+
+  private async maybePlayReputationEvent(nodeId: string): Promise<ReputationEventSelection | null> {
+    const selection = selectGameReputationEvent(nodeId, this.state);
+    if (!selection?.selectedEvent) return selection;
+    await this.playDialogue(selection.selectedEvent.dialogueId);
+    recordReputationEventSelection(this.state, selection);
+    return selection;
+  }
+
+  private async playPostNodeNarrative(nodeId: string): Promise<void> {
+    await this.maybePlayATEs(nodeId);
+    await this.maybePlayReputationEvent(nodeId);
   }
 
   private async applyEffects(effects: NarrativeEffect[]): Promise<void> {
@@ -668,7 +687,7 @@ export class GameApp {
         return;
       }
     }
-    await this.maybePlayATEs(node.id);
+    await this.playPostNodeNarrative(node.id);
     await this.enterTravel();
   }
 
