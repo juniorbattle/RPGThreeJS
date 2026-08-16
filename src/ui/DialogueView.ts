@@ -209,7 +209,7 @@ export class DialogueView {
     meta.className = 'dialogue-choice__meta';
 
     if (isContestable) {
-      meta.append(...this.createOutcomeBadges(this.contestBadges(choice.contest!, state)));
+      meta.append(...this.createOutcomeBadges(this.contestBadges(choice.contest!)));
     } else {
       const preview = choice.outcomePreview;
       const mode = preview?.mode ?? 'exact';
@@ -273,7 +273,7 @@ export class DialogueView {
     }
   }
 
-  private contestBadges(contest: Contest, state: GameState): OutcomeDescriptor[] {
+  private contestBadges(contest: Contest): OutcomeDescriptor[] {
     const badges: OutcomeDescriptor[] = [];
     const riskLabels: Record<string, string> = {
       low: 'Risque : faible',
@@ -291,11 +291,7 @@ export class DialogueView {
       const gainLabel = gainLabels[contest.gainHint];
       if (gainLabel) badges.push({ icon: '◆', label: gainLabel, tone: 'gain' });
     }
-    if (state.flags['liedToAlaric']) {
-      badges.push({ icon: '◇', label: 'Vos mensonges précédents pèsent contre vous', tone: 'loss' });
-    } else if (state.flags['alaricDoubt']) {
-      badges.push({ icon: '◇', label: 'Alaric semble méfiant', tone: 'loss' });
-    } else if (contest.hint) {
+    if (contest.hint) {
       badges.push({ icon: '◇', label: contest.hint, tone: 'loss' });
     }
     return badges;

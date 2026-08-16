@@ -1,6 +1,10 @@
 import type {
   CampaignNode, GameState, InventoryState, RunGraph, RunLoot, RunNode, RunNodeType, RunState,
 } from './types';
+import { getLionConductTier, type LionConductTier } from './lionNarrative';
+
+export { getLionConductScore, getLionConductTier } from './lionNarrative';
+export type { LionConductTier } from './lionNarrative';
 
 const EMPTY_INVENTORY = (): InventoryState => ({
   consumables: {},
@@ -28,53 +32,10 @@ interface LionRouteNode {
   hint: string;
 }
 
-export type LionConductTier = 'honour' | 'uncertain' | 'infamy';
-
 type AdaptiveRouteVariant = Pick<
   LionRouteNode,
   'type' | 'contentId' | 'label' | 'icon' | 'risk' | 'reward' | 'difficulty' | 'moralTone' | 'hint'
 >;
-
-const LION_CONDUCT_FLAG_WEIGHTS: Readonly<Record<string, number>> = {
-  helpedRefugees: 2,
-  exploitedRefugees: -2,
-  alaricDoubt: -1,
-  lionMandateHonour: 1,
-  helpedMerchant: 1,
-  abandonedMerchant: -1,
-  recruitedCedric: 1,
-  recruitedLancer: 1,
-  returnedLostTreasure: 1,
-  claimedLostTreasure: -1,
-  prioritizedVillage: 1,
-  prioritizedLoot: -1,
-  shrineRested: 1,
-  shrineLooted: -1,
-  preservedShrine: 1,
-  desecratedShrine: -1,
-  missionSuccess: 2,
-  missionGreed: -2,
-  protectedWitnesses: 1,
-  silencedWitnesses: -1,
-  protectedInformant: 1,
-  betrayedInformant: -1,
-  shadowEvidence: 1,
-  shadowFragments: -1,
-};
-
-export function getLionConductScore(flags: Record<string, boolean>): number {
-  return Object.entries(LION_CONDUCT_FLAG_WEIGHTS).reduce(
-    (score, [flag, weight]) => score + (flags[flag] ? weight : 0),
-    0,
-  );
-}
-
-export function getLionConductTier(flags: Record<string, boolean>): LionConductTier {
-  const score = getLionConductScore(flags);
-  if (score >= 2) return 'honour';
-  if (score <= -2) return 'infamy';
-  return 'uncertain';
-}
 
 const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
   {
@@ -513,22 +474,24 @@ function selectAdaptiveVariant(state: GameState, nodeId: string): AdaptiveRouteV
   if (nodeId === 'lion-first-trial-event') {
     if (mandateHonour) return MANDATE_FIRST_EVENT_HONOUR;
     if (mandateAdvance) return MANDATE_FIRST_EVENT_ADVANCE;
-    return FIRST_EVENT_VARIANTS[tier];
+    return FIRST_EVENT_VARIANTS[tier] ?? null;
   }
   if (nodeId === 'lion-first-trial-combat') {
     if (mandateHonour) return MANDATE_FIRST_COMBAT_HONOUR;
     if (mandateAdvance) return MANDATE_FIRST_COMBAT_ADVANCE;
-    return FIRST_COMBAT_VARIANTS[tier];
+    return FIRST_COMBAT_VARIANTS[tier] ?? null;
   }
   if (nodeId === 'lion-second-trial-event') return SECOND_EVENT_VARIANT;
   if (nodeId === 'lion-second-trial-combat') {
     if (mandateAdvance) return MANDATE_SECOND_COMBAT_ADVANCE;
-    return SECOND_COMBAT_VARIANTS[tier];
+    return SECOND_COMBAT_VARIANTS[tier] ?? null;
   }
   if (nodeId === 'lion-final-trial-event') {
-    return tier !== 'infamy' && completedEliteEncounter(state) ? FINAL_EVENT_AFTER_ELITE : FINAL_EVENT_VARIANTS[tier];
+    return tier !== 'infamy' && completedEliteEncounter(state)
+      ? FINAL_EVENT_AFTER_ELITE
+      : FINAL_EVENT_VARIANTS[tier] ?? null;
   }
-  if (nodeId === 'lion-final-trial-combat') return FINAL_COMBAT_VARIANTS[tier];
+  if (nodeId === 'lion-final-trial-combat') return FINAL_COMBAT_VARIANTS[tier] ?? null;
   return null;
 }
 
