@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:r7-simulation": "vite-node tools/r7/run-r7-simulation.ts",
     "vfx:sync-runtime": "node tools/vfx/sync-runtime-vfx.mjs",
     "vfx:sync-candidate": "node tools/vfx/sync-candidate.mjs",
     "vfx:validate-published": "node tools/vfx/validate-published-registry.mjs"
