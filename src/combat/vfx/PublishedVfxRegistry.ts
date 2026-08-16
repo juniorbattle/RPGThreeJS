@@ -40,6 +40,10 @@ import type {
   VfxAimProfile,
   VfxMirrorProfile,
   VfxPivotProfile,
+  VfxPositionMode,
+  VfxTravelEndpoint,
+  VfxSlotImpactFx,
+  VfxImpactPower,
 } from './VfxPresetComposer';
 import {
   VFX_SIZE_PROFILES,
@@ -50,26 +54,52 @@ import {
   VFX_AIM_PROFILES,
   VFX_MIRROR_PROFILES,
   VFX_PIVOT_PROFILES,
+  VFX_POSITION_MODES,
+  VFX_TRAVEL_FROM_ENDPOINTS,
+  VFX_TRAVEL_TO_ENDPOINTS,
+  VFX_IMPACT_POWERS,
   DEFAULT_AIM_PROFILE,
   DEFAULT_ROTATION_DEGREES,
   DEFAULT_MIRROR_PROFILE,
   DEFAULT_PIVOT_PROFILE,
+  DEFAULT_POSITION_MODE,
+  DEFAULT_TRAVEL_FROM,
+  DEFAULT_TRAVEL_TO,
+  DEFAULT_PHASE,
+  DEFAULT_IMPACT_POWER,
+  MAX_PHASE,
+  hasActiveImpactFx,
+  resolveSlotDirectionProfile,
+  resolveSlotMirrorProfile,
 } from './VfxPresetComposer';
 
 // ============================================================ Registry Types
 
 export const PUBLISHED_REGISTRY_SCHEMA_VERSION = 1;
 
+/**
+ * Published slot schema.
+ *
+ * V2.5 adds `positionMode`, `travelFrom`, `travelTo`, `phase` and `impactFx` as
+ * ADDITIVE OPTIONAL fields, so `schemaVersion` stays at 1 and every existing
+ * publication continues to load and play unchanged. Semantic anchors are stored
+ * — never resolved world coordinates.
+ */
 export interface PublishedVfxSlot {
   id: string;
   candidateId: string;
   sizeProfile: VfxSizeProfile;
   timingProfile: VfxTimingProfile;
   placementProfile: VfxPlacementProfile;
+  positionMode?: VfxPositionMode;
+  travelFrom?: VfxTravelEndpoint;
+  travelTo?: VfxTravelEndpoint;
   aimProfile?: VfxAimProfile;
   rotationDegrees?: number;
   mirrorProfile?: VfxMirrorProfile;
   pivotProfile?: VfxPivotProfile;
+  phase?: number;
+  impactFx?: VfxSlotImpactFx;
   advanced?: VfxSlotAdvancedOverride;
 }
 
@@ -93,9 +123,20 @@ export interface PublishedVfxRegistry {
 
 /**
  * Deterministic fingerprint from meaningful VFX configuration.
- * Changes when any of: candidateId, slot order, SIZE, TIMING, PLACEMENT,
- * advanced override, choreography, technical polish change.
- * Does NOT change for updatedAt, UI state, catalogue search, display mode.
+ *
+ * Included: candidateId, slot order, SIZE, SPEED, POSITION mode, fixed AT
+ * anchor, travel FROM/TO, DIRECTION, ROTATION, MIRROR, ORIGIN, PHASE, per-slot
+ * FLASH/SHAKE/HITSTOP/POWER, advanced overrides, legacy choreography and legacy
+ * technical polish.
+ *
+ * Excluded: updatedAt, catalogue search, catalogue page, panel minimize state
+ * and any other UI state.
+ *
+ * DEFAULT NORMALIZATION: a missing field and an explicitly-authored default
+ * value fingerprint identically. V2.5 fields are therefore only contributed
+ * when they are NON-DEFAULT, which additionally guarantees that every existing
+ * V2.4 publication keeps its exact stored fingerprint and never falsely reports
+ * "MODIFIED SINCE PUBLISH".
  */
 export function computeFingerprint(draft: VfxPresetDraft): string {
   const parts: string[] = [
@@ -106,16 +147,42 @@ export function computeFingerprint(draft: VfxPresetDraft): string {
     String(draft.tier ?? ''),
   ];
 
+  // Legacy drafts carry no explicit phases; they inherit the choreography, which
+  // is already fingerprinted. Only explicitly authored phases add information.
+  const phaseAuthored = draft.visualSlots.some(
+    (slot) => typeof slot.phase === 'number' && Number.isFinite(slot.phase),
+  );
+
   for (const slot of draft.visualSlots) {
     parts.push(slot.candidateId);
     parts.push(slot.sizeProfile);
     parts.push(slot.timingProfile);
     parts.push(slot.placementProfile);
-    // Transform fields — normalize undefined to default values for fingerprint stability
-    parts.push(slot.aimProfile ?? DEFAULT_AIM_PROFILE);
+    // Effective (not raw) transform values, so a TRAVEL slot relying on seeded
+    // defaults fingerprints the same as one that spells them out.
+    parts.push(resolveSlotDirectionProfile(slot));
     parts.push(String(slot.rotationDegrees ?? DEFAULT_ROTATION_DEGREES));
-    parts.push(slot.mirrorProfile ?? DEFAULT_MIRROR_PROFILE);
+    parts.push(resolveSlotMirrorProfile(slot));
     parts.push(slot.pivotProfile ?? DEFAULT_PIVOT_PROFILE);
+    // ---- V2.5 additive contributions: emitted ONLY when non-default.
+    const positionMode = slot.positionMode ?? DEFAULT_POSITION_MODE;
+    if (positionMode === 'TRAVEL') {
+      parts.push(
+        'TRAVEL',
+        slot.travelFrom ?? DEFAULT_TRAVEL_FROM,
+        slot.travelTo ?? DEFAULT_TRAVEL_TO,
+      );
+    }
+    if (phaseAuthored) {
+      parts.push(`P${slot.phase ?? DEFAULT_PHASE}`);
+    }
+    if (hasActiveImpactFx(slot.impactFx)) {
+      const fx = slot.impactFx!;
+      parts.push(
+        `FX${fx.flash ? 'F' : '-'}${fx.shake ? 'S' : '-'}${fx.hitStop ? 'H' : '-'}`,
+        fx.power ?? DEFAULT_IMPACT_POWER,
+      );
+    }
     if (slot.advanced) {
       const adv = slot.advanced;
       parts.push(
@@ -249,6 +316,10 @@ export function validatePublishedEntry(
   const VALID_AIM_PROFILES = new Set(VFX_AIM_PROFILES);
   const VALID_MIRROR_PROFILES = new Set(VFX_MIRROR_PROFILES);
   const VALID_PIVOT_PROFILES = new Set(VFX_PIVOT_PROFILES);
+  const VALID_POSITION_MODES = new Set(VFX_POSITION_MODES);
+  const VALID_TRAVEL_FROM = new Set(VFX_TRAVEL_FROM_ENDPOINTS);
+  const VALID_TRAVEL_TO = new Set(VFX_TRAVEL_TO_ENDPOINTS);
+  const VALID_IMPACT_POWERS = new Set(VFX_IMPACT_POWERS);
 
   if (!Array.isArray(e.visualSlots)) {
     errors.push('visualSlots must be an array.');
@@ -292,6 +363,37 @@ export function validatePublishedEntry(
       }
       if (slot.pivotProfile != null && !VALID_PIVOT_PROFILES.has(slot.pivotProfile as VfxPivotProfile)) {
         errors.push(`Slot ${i}: pivotProfile must be one of: ${VFX_PIVOT_PROFILES.join(', ')}.`);
+      }
+      if (slot.positionMode != null && !VALID_POSITION_MODES.has(slot.positionMode as VfxPositionMode)) {
+        errors.push(`Slot ${i}: positionMode must be one of: ${VFX_POSITION_MODES.join(', ')}.`);
+      }
+      if (slot.travelFrom != null && !VALID_TRAVEL_FROM.has(slot.travelFrom as VfxTravelEndpoint)) {
+        errors.push(`Slot ${i}: travelFrom must be one of: ${VFX_TRAVEL_FROM_ENDPOINTS.join(', ')}.`);
+      }
+      if (slot.travelTo != null && !VALID_TRAVEL_TO.has(slot.travelTo as VfxTravelEndpoint)) {
+        errors.push(`Slot ${i}: travelTo must be one of: ${VFX_TRAVEL_TO_ENDPOINTS.join(', ')}.`);
+      }
+      if (slot.positionMode === 'TRAVEL' && slot.travelFrom == null && slot.travelTo == null) {
+        errors.push(`Slot ${i}: TRAVEL requires travelFrom and/or travelTo.`);
+      }
+      if (slot.phase != null
+        && (typeof slot.phase !== 'number' || !Number.isInteger(slot.phase) || slot.phase < 0 || slot.phase > MAX_PHASE)) {
+        errors.push(`Slot ${i}: phase must be an integer between 0 and ${MAX_PHASE}.`);
+      }
+      if (slot.impactFx != null) {
+        if (typeof slot.impactFx !== 'object') {
+          errors.push(`Slot ${i}: impactFx must be an object.`);
+        } else {
+          const fx = slot.impactFx as Record<string, unknown>;
+          for (const key of ['flash', 'shake', 'hitStop'] as const) {
+            if (fx[key] != null && typeof fx[key] !== 'boolean') {
+              errors.push(`Slot ${i}: impactFx.${key} must be a boolean.`);
+            }
+          }
+          if (fx.power != null && !VALID_IMPACT_POWERS.has(fx.power as VfxImpactPower)) {
+            errors.push(`Slot ${i}: impactFx.power must be one of: ${VFX_IMPACT_POWERS.join(', ')}.`);
+          }
+        }
       }
     }
   }

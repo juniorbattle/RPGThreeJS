@@ -24,7 +24,7 @@
  * mappings, or gameplay state.
  */
 
-import type { VfxSystem } from './VfxSystem';
+import type { VfxSystem, VfxLabPlaybackOverrides } from './VfxSystem';
 import type { VfxContext, VfxStep } from './VfxTypes';
 import { buildLabSheetDefinition } from './VfxSpriteSheets';
 import { getCandidateInventoryRecord } from './VfxResourceManager';
@@ -315,7 +315,35 @@ const wait = (seconds: number) => new Promise<void>((resolve) => {
   setTimeout(resolve, seconds * 1000);
 });
 
-/** Plays every compiled visual slot, honouring the choreography start times. */
+/**
+ * Runtime overrides for one compiled slot. Shared by the Composer and the
+ * published gameplay resolver so both paths are byte-identical.
+ */
+export function buildSlotOverrides(slot: CompiledVfxSlot): VfxLabPlaybackOverrides {
+  return {
+    scale: slot.scale,
+    offsetX: slot.offsetX,
+    offsetY: slot.offsetY,
+    duration: slot.duration,
+    opacity: slot.opacity,
+    layer: slot.layer,
+    blending: slot.blending,
+    fadeIn: slot.fadeIn,
+    fadeOut: slot.fadeOut,
+    mirrorX: slot.mirrorX,
+    mirrorY: slot.mirrorY,
+    autoMirrorHorizontal: slot.autoMirrorHorizontal,
+    pivotCenterX: slot.pivotCenterX,
+    pivotCenterY: slot.pivotCenterY,
+    rotationOffset: slot.rotation,
+    directionProfile: slot.aimProfile,
+    positionMode: slot.positionMode,
+    ...(slot.travelFromAnchor ? { travelFromAnchor: slot.travelFromAnchor } : {}),
+    ...(slot.travelToAnchor ? { travelToAnchor: slot.travelToAnchor } : {}),
+  };
+}
+
+/** Plays every compiled visual slot, honouring the resolved phase start times. */
 async function playCompiledSlots(
   ctx: ComposerPlaybackContext,
   compiled: CompiledVfxDraft,
@@ -333,23 +361,7 @@ async function playCompiledSlots(
       sheetDef,
       buildSlotStep(slot),
       context,
-      {
-        scale: slot.scale,
-        offsetX: slot.offsetX,
-        offsetY: slot.offsetY,
-        duration: slot.duration,
-        opacity: slot.opacity,
-        layer: slot.layer,
-        blending: slot.blending,
-        fadeIn: slot.fadeIn,
-        fadeOut: slot.fadeOut,
-        mirrorX: slot.mirrorX,
-        mirrorY: slot.mirrorY,
-        pivotCenterX: slot.pivotCenterX,
-        pivotCenterY: slot.pivotCenterY,
-        rotationOffset: slot.rotation,
-        aimProfile: slot.aimProfile,
-      },
+      buildSlotOverrides(slot),
       { strict: true },
     );
     await result.completion;

@@ -45,17 +45,34 @@ import {
   VFX_PLACEMENT_PROFILES,
   VFX_CHOREOGRAPHIES,
   VFX_TECHNICAL_POLISH_LEVELS,
-  VFX_AIM_PROFILES,
+  VFX_FIXED_DIRECTION_PROFILES,
   VFX_MIRROR_PROFILES,
   VFX_PIVOT_PROFILES,
   VFX_ROTATION_PRESETS,
-  DEFAULT_AIM_PROFILE,
+  VFX_POSITION_MODES,
+  VFX_TRAVEL_FROM_ENDPOINTS,
+  VFX_TRAVEL_TO_ENDPOINTS,
+  VFX_IMPACT_POWERS,
   DEFAULT_ROTATION_DEGREES,
-  DEFAULT_MIRROR_PROFILE,
   DEFAULT_PIVOT_PROFILE,
+  DEFAULT_TRAVEL_FROM,
+  DEFAULT_TRAVEL_TO,
+  DEFAULT_IMPACT_POWER,
+  DEFAULT_PHASE,
+  MAX_PHASE,
+  setSlotPositionMode,
+  nudgeSlotPhase,
+  toggleSlotImpactFx,
+  setSlotImpactPower,
+  resolveSlotPositionMode,
+  resolveSlotDirectionProfile,
+  resolveSlotMirrorProfile,
+  resolveSlotPhases,
+  hasActiveImpactFx,
 } from './VfxPresetComposer';
 import type {
   VfxPresetDraft,
+  VfxVisualSlot,
   VfxSizeProfile,
   VfxTimingProfile,
   VfxPlacementProfile,
@@ -64,6 +81,9 @@ import type {
   VfxAimProfile,
   VfxMirrorProfile,
   VfxPivotProfile,
+  VfxPositionMode,
+  VfxTravelEndpoint,
+  VfxImpactPower,
 } from './VfxPresetComposer';
 import {
   loadComposerStore,
@@ -314,6 +334,8 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
       section.appendChild(empty);
     }
 
+    const phases = resolveSlotPhases(draft);
+
     draft.visualSlots.forEach((slot, index) => {
       const card = document.createElement('div');
       card.className = 'cmp-slot-card';
@@ -358,76 +380,7 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
         card.appendChild(flag);
       }
 
-      const profiles = document.createElement('div');
-      profiles.className = 'cmp-slot-profiles';
-      profiles.appendChild(buildProfileControl<VfxSizeProfile>(
-        'SIZE', VFX_SIZE_PROFILES, slot.sizeProfile,
-        (value) => mutate(updateSlotProfile(draft, slot.id, { sizeProfile: value })),
-      ));
-      profiles.appendChild(buildProfileControl<VfxTimingProfile>(
-        'TIMING', VFX_TIMING_PROFILES, slot.timingProfile,
-        (value) => mutate(updateSlotProfile(draft, slot.id, { timingProfile: value })),
-      ));
-      profiles.appendChild(buildProfileControl<VfxPlacementProfile>(
-        'PLACEMENT', VFX_PLACEMENT_PROFILES, slot.placementProfile,
-        (value) => mutate(updateSlotProfile(draft, slot.id, { placementProfile: value })),
-      ));
-      // TRANSFORM section
-      const transformSection = document.createElement('div');
-      transformSection.className = 'cmp-slot-transform';
-      const aim = slot.aimProfile ?? DEFAULT_AIM_PROFILE;
-      const rotDeg = slot.rotationDegrees ?? DEFAULT_ROTATION_DEGREES;
-      const mirror = slot.mirrorProfile ?? DEFAULT_MIRROR_PROFILE;
-      const pivot = slot.pivotProfile ?? DEFAULT_PIVOT_PROFILE;
-      const hasTransform = aim !== DEFAULT_AIM_PROFILE || rotDeg !== DEFAULT_ROTATION_DEGREES
-        || mirror !== DEFAULT_MIRROR_PROFILE || pivot !== DEFAULT_PIVOT_PROFILE;
-      if (hasTransform) {
-        const badge = document.createElement('div');
-        badge.className = 'cmp-slot-transform-badge';
-        const badges: string[] = [];
-        if (aim !== DEFAULT_AIM_PROFILE) badges.push('AIM');
-        if (rotDeg !== DEFAULT_ROTATION_DEGREES) badges.push(`${rotDeg > 0 ? '+' : ''}${rotDeg}°`);
-        if (mirror !== DEFAULT_MIRROR_PROFILE) {
-          if (mirror === 'AUTO_HORIZONTAL') badges.push('AUTO ↔');
-          else if (mirror === 'HORIZONTAL') badges.push('↔');
-          else if (mirror === 'VERTICAL') badges.push('↕');
-          else if (mirror === 'BOTH') badges.push('↔↕');
-        }
-        if (pivot !== DEFAULT_PIVOT_PROFILE) badges.push(`PIVOT ${pivot[0]}`);
-        badge.textContent = badges.join(' ');
-        transformSection.appendChild(badge);
-      }
-      const transformRow = document.createElement('div');
-      transformRow.className = 'cmp-slot-profiles';
-      transformRow.appendChild(buildProfileControl<VfxAimProfile>(
-        'AIM', VFX_AIM_PROFILES, aim,
-        (value) => mutate(updateSlotProfile(draft, slot.id, { aimProfile: value })),
-      ));
-      const rotValues = VFX_ROTATION_PRESETS.map(String) as readonly string[];
-      const rotCurrent = String(rotDeg);
-      transformRow.appendChild(buildProfileControl<string>(
-        'ROTATE', rotValues, rotCurrent,
-        (value) => mutate(updateSlotProfile(draft, slot.id, { rotationDegrees: Number(value) })),
-      ));
-      const mirrorLabels: Record<string, string> = {
-        NONE: 'NONE', HORIZONTAL: '↔', VERTICAL: '↕', BOTH: '↔↕', AUTO_HORIZONTAL: 'AUTO',
-      };
-      transformRow.appendChild(buildProfileControl<VfxMirrorProfile>(
-        'MIRROR', VFX_MIRROR_PROFILES, mirror,
-        (value) => mutate(updateSlotProfile(draft, slot.id, { mirrorProfile: value })),
-        mirrorLabels,
-      ));
-      const pivotLabels: Record<string, string> = {
-        CENTER: 'C', LEFT: 'L', RIGHT: 'R', TOP: 'T', BOTTOM: 'B',
-      };
-      transformRow.appendChild(buildProfileControl<VfxPivotProfile>(
-        'PIVOT', VFX_PIVOT_PROFILES, pivot,
-        (value) => mutate(updateSlotProfile(draft, slot.id, { pivotProfile: value })),
-        pivotLabels,
-      ));
-      transformSection.appendChild(transformRow);
-      profiles.appendChild(transformSection);
-      card.appendChild(profiles);
+      card.appendChild(buildSlotProfiles(draft, slot, phases[index] ?? DEFAULT_PHASE));
 
       const actionsRow = document.createElement('div');
       actionsRow.className = 'cmp-slot-actions';
@@ -460,6 +413,222 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     section.appendChild(addBtn);
 
     return section;
+  }
+
+  // ---------------------------------------------------------- slot authoring UI
+
+  /** Compact labels used by the normal slot UI. */
+  const AT_LABELS: Record<string, string> = {
+    AUTO: 'AUTO', TARGET: 'TARGET', FRONT: 'FRONT', BACK: 'BACK', TOP: 'TOP',
+    BOTTOM: 'BOTTOM', CASTER: 'CASTER', CASTER_FRONT: 'C.F', CASTER_BACK: 'C.B', GROUND: 'GROUND',
+  };
+  const TRAVEL_LABELS: Record<string, string> = {
+    CASTER: 'CASTER', CASTER_FRONT: 'C.F', CASTER_BACK: 'C.B', TARGET: 'TARGET',
+    FRONT: 'FRONT', BACK: 'BACK', TOP: 'TOP', BOTTOM: 'BOTTOM', GROUND: 'GROUND', SKY: 'SKY',
+  };
+  const DIRECTION_LABELS: Record<string, string> = {
+    FIXED: 'FIXED', TO_TARGET: 'TO TARGET', ALONG_PATH: 'ALONG PATH',
+  };
+  const MIRROR_LABELS: Record<string, string> = {
+    NONE: 'NONE', AUTO_HORIZONTAL: 'AUTO', HORIZONTAL: 'H', VERTICAL: 'V', BOTH: 'BOTH',
+  };
+  const ORIGIN_LABELS: Record<string, string> = {
+    CENTER: 'C', LEFT: 'L', RIGHT: 'R', TOP: 'T', BOTTOM: 'B',
+  };
+
+  /**
+   * Compact indicators for non-default configuration, so the author can read a
+   * slot's special behaviour without reopening anything.
+   */
+  function buildSlotBadges(slot: VfxVisualSlot, phase: number): string[] {
+    const badges: string[] = [];
+    const positionMode = resolveSlotPositionMode(slot);
+    if (positionMode === 'TRAVEL') {
+      const from = TRAVEL_LABELS[slot.travelFrom ?? DEFAULT_TRAVEL_FROM] ?? '?';
+      const to = TRAVEL_LABELS[slot.travelTo ?? DEFAULT_TRAVEL_TO] ?? '?';
+      badges.push(`${from} -> ${to}`);
+    }
+    const direction = resolveSlotDirectionProfile(slot);
+    if (direction === 'TO_TARGET') badges.push('DIR TARGET');
+    const rotation = slot.rotationDegrees ?? DEFAULT_ROTATION_DEGREES;
+    if (rotation !== DEFAULT_ROTATION_DEGREES) badges.push(`${rotation > 0 ? '+' : ''}${rotation}°`);
+    const mirror = resolveSlotMirrorProfile(slot);
+    if (mirror === 'AUTO_HORIZONTAL') badges.push('AUTO ↔');
+    else if (mirror === 'HORIZONTAL') badges.push('↔');
+    else if (mirror === 'VERTICAL') badges.push('↕');
+    else if (mirror === 'BOTH') badges.push('↔↕');
+    const origin = slot.pivotProfile ?? DEFAULT_PIVOT_PROFILE;
+    if (origin !== DEFAULT_PIVOT_PROFILE) badges.push(`ORIGIN ${ORIGIN_LABELS[origin]}`);
+    if (phase !== DEFAULT_PHASE) badges.push(`PHASE ${phase}`);
+    if (hasActiveImpactFx(slot.impactFx)) {
+      const channels: string[] = [];
+      if (slot.impactFx?.flash) channels.push('F');
+      if (slot.impactFx?.shake) channels.push('S');
+      if (slot.impactFx?.hitStop) channels.push('H');
+      badges.push(`FX: ${channels.join('+')}`);
+    }
+    return badges;
+  }
+
+  /**
+   * The normal slot authoring surface.
+   *
+   * SIZE / SPEED / POSITION are always visible. AT is shown only for FIXED,
+   * FROM+TO only for TRAVEL, DIRECTION only when the path does not already
+   * define it, and POWER only when an Impact FX channel is active.
+   */
+  function buildSlotProfiles(draft: VfxPresetDraft, slot: VfxVisualSlot, phase: number): HTMLElement {
+    const profiles = document.createElement('div');
+    profiles.className = 'cmp-slot-profiles';
+
+    profiles.appendChild(buildProfileControl<VfxSizeProfile>(
+      'SIZE', VFX_SIZE_PROFILES, slot.sizeProfile,
+      (value) => mutate(updateSlotProfile(draft, slot.id, { sizeProfile: value })),
+    ));
+    profiles.appendChild(buildProfileControl<VfxTimingProfile>(
+      'SPEED', VFX_TIMING_PROFILES, slot.timingProfile,
+      (value) => mutate(updateSlotProfile(draft, slot.id, { timingProfile: value })),
+    ));
+
+    const positionMode = resolveSlotPositionMode(slot);
+    profiles.appendChild(buildProfileControl<VfxPositionMode>(
+      'POSITION', VFX_POSITION_MODES, positionMode,
+      (value) => mutate(setSlotPositionMode(draft, slot.id, value)),
+    ));
+
+    if (positionMode === 'FIXED') {
+      profiles.appendChild(buildProfileControl<VfxPlacementProfile>(
+        'AT', VFX_PLACEMENT_PROFILES, slot.placementProfile,
+        (value) => mutate(updateSlotProfile(draft, slot.id, { placementProfile: value })),
+        AT_LABELS,
+      ));
+    } else {
+      profiles.appendChild(buildProfileControl<VfxTravelEndpoint>(
+        'FROM', VFX_TRAVEL_FROM_ENDPOINTS, slot.travelFrom ?? DEFAULT_TRAVEL_FROM,
+        (value) => mutate(updateSlotProfile(draft, slot.id, { travelFrom: value })),
+        TRAVEL_LABELS,
+      ));
+      profiles.appendChild(buildProfileControl<VfxTravelEndpoint>(
+        'TO', VFX_TRAVEL_TO_ENDPOINTS, slot.travelTo ?? DEFAULT_TRAVEL_TO,
+        (value) => mutate(updateSlotProfile(draft, slot.id, { travelTo: value })),
+        TRAVEL_LABELS,
+      ));
+    }
+
+    // ---- TRANSFORM
+    const transformSection = document.createElement('div');
+    transformSection.className = 'cmp-slot-transform';
+    const badges = buildSlotBadges(slot, phase);
+    if (badges.length > 0) {
+      const badge = document.createElement('div');
+      badge.className = 'cmp-slot-transform-badge';
+      badge.textContent = badges.join(' · ');
+      transformSection.appendChild(badge);
+    }
+    const transformRow = document.createElement('div');
+    transformRow.className = 'cmp-slot-profiles';
+
+    // TRAVEL orients ALONG PATH automatically, so DIRECTION stays hidden there.
+    if (positionMode === 'FIXED') {
+      transformRow.appendChild(buildProfileControl<VfxAimProfile>(
+        'DIRECTION', VFX_FIXED_DIRECTION_PROFILES, resolveSlotDirectionProfile(slot),
+        (value) => mutate(updateSlotProfile(draft, slot.id, { aimProfile: value })),
+        DIRECTION_LABELS,
+      ));
+    }
+    transformRow.appendChild(buildProfileControl<string>(
+      'ROTATE',
+      VFX_ROTATION_PRESETS.map(String),
+      String(slot.rotationDegrees ?? DEFAULT_ROTATION_DEGREES),
+      (value) => mutate(updateSlotProfile(draft, slot.id, { rotationDegrees: Number(value) })),
+    ));
+    transformRow.appendChild(buildProfileControl<VfxMirrorProfile>(
+      'MIRROR', VFX_MIRROR_PROFILES, resolveSlotMirrorProfile(slot),
+      (value) => mutate(updateSlotProfile(draft, slot.id, { mirrorProfile: value })),
+      MIRROR_LABELS,
+    ));
+    transformRow.appendChild(buildProfileControl<VfxPivotProfile>(
+      'ORIGIN', VFX_PIVOT_PROFILES, slot.pivotProfile ?? DEFAULT_PIVOT_PROFILE,
+      (value) => mutate(updateSlotProfile(draft, slot.id, { pivotProfile: value })),
+      ORIGIN_LABELS,
+    ));
+    transformSection.appendChild(transformRow);
+    profiles.appendChild(transformSection);
+
+    // ---- PHASE
+    profiles.appendChild(buildPhaseControl(draft, slot, phase));
+
+    // ---- IMPACT FX
+    profiles.appendChild(buildImpactFxControl(draft, slot));
+
+    return profiles;
+  }
+
+  /** Compact PHASE stepper. Never raw integer typing. */
+  function buildPhaseControl(draft: VfxPresetDraft, slot: VfxVisualSlot, phase: number): HTMLElement {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'cmp-profile cmp-phase';
+    wrapper.dataset.profile = 'phase';
+    const caption = document.createElement('span');
+    caption.className = 'cmp-profile-label';
+    caption.textContent = 'PHASE';
+    wrapper.appendChild(caption);
+    const group = document.createElement('div');
+    group.className = 'cmp-profile-group cmp-phase-group';
+    const dec = buildButton('−', 'cmp-phase-dec', () => mutate(nudgeSlotPhase(draft, slot.id, -1)));
+    dec.disabled = phase <= 0;
+    const value = document.createElement('span');
+    value.className = 'cmp-phase-value';
+    value.dataset.phase = String(phase);
+    value.textContent = String(phase);
+    const inc = buildButton('+', 'cmp-phase-inc', () => mutate(nudgeSlotPhase(draft, slot.id, 1)));
+    inc.disabled = phase >= MAX_PHASE;
+    group.append(dec, value, inc);
+    wrapper.appendChild(group);
+    return wrapper;
+  }
+
+  /**
+   * Per-slot IMPACT FX. Default is fully OFF — nothing is ever auto-enabled
+   * from tier, AP cost, Ultimate status or candidate family.
+   */
+  function buildImpactFxControl(draft: VfxPresetDraft, slot: VfxVisualSlot): HTMLElement {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'cmp-slot-fx';
+
+    const row = document.createElement('div');
+    row.className = 'cmp-profile';
+    row.dataset.profile = 'impact_fx';
+    const caption = document.createElement('span');
+    caption.className = 'cmp-profile-label';
+    caption.textContent = 'IMPACT FX';
+    row.appendChild(caption);
+    const group = document.createElement('div');
+    group.className = 'cmp-profile-group';
+    const channels: Array<{ key: 'flash' | 'shake' | 'hitStop'; label: string }> = [
+      { key: 'flash', label: 'FLASH' },
+      { key: 'shake', label: 'SHAKE' },
+      { key: 'hitStop', label: 'HITSTOP' },
+    ];
+    for (const channel of channels) {
+      const btn = buildButton(channel.label, 'cmp-profile-btn cmp-fx-btn', () => {
+        mutate(toggleSlotImpactFx(draft, slot.id, channel.key));
+      });
+      btn.dataset.value = channel.key;
+      if (slot.impactFx?.[channel.key]) btn.classList.add('cmp-active');
+      group.appendChild(btn);
+    }
+    row.appendChild(group);
+    wrapper.appendChild(row);
+
+    // POWER only exists once at least one channel is active.
+    if (hasActiveImpactFx(slot.impactFx)) {
+      wrapper.appendChild(buildProfileControl<VfxImpactPower>(
+        'POWER', VFX_IMPACT_POWERS, slot.impactFx?.power ?? DEFAULT_IMPACT_POWER,
+        (value) => mutate(setSlotImpactPower(draft, slot.id, value)),
+      ));
+    }
+    return wrapper;
   }
 
   function renderCataloguePicker(draft: VfxPresetDraft): HTMLElement {
@@ -578,6 +747,11 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     heading.textContent = 'COMPOSITION';
     section.appendChild(heading);
 
+    const phaseHint = document.createElement('div');
+    phaseHint.className = 'cmp-hint';
+    phaseHint.textContent = 'Quick PHASE presets. Fine-tune per spritesheet with PHASE on each card.';
+    section.appendChild(phaseHint);
+
     const row = document.createElement('div');
     row.className = 'cmp-choreo-row';
     for (const choreography of VFX_CHOREOGRAPHIES) {
@@ -606,18 +780,21 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     return section;
   }
 
-  /** Shows the computed choreography start times — read-only, never editable. */
+  /** Shows the computed phase start times — read-only, never editable. */
   function renderTimeline(draft: VfxPresetDraft): HTMLElement {
     const wrapper = document.createElement('div');
     wrapper.className = 'cmp-timeline';
-    const compiled = compileDraft(draft, { includeTechnical: false, getCadence: getCandidateCadence });
+    const compiled = compileDraft(draft, { includeTechnical: true, getCadence: getCandidateCadence });
     compiled.slots.forEach((slot, index) => {
       const line = document.createElement('div');
       line.className = 'cmp-timeline-row';
       line.dataset.slotId = slot.slotId;
       line.dataset.startTime = String(slot.startTime);
       line.dataset.duration = String(slot.duration);
-      line.textContent = `SLOT ${index + 1}  start ${slot.startTime.toFixed(2)}s  ·  ${slot.duration.toFixed(2)}s  ·  h${slot.finalDisplayHeight.toFixed(2)}`;
+      line.dataset.phase = String(slot.phase);
+      line.dataset.impactTime = String(slot.impactTime);
+      const fx = slot.technical.length > 0 ? `  ·  fx@${slot.impactTime.toFixed(2)}s` : '';
+      line.textContent = `SLOT ${index + 1}  P${slot.phase}  start ${slot.startTime.toFixed(2)}s  ·  ${slot.duration.toFixed(2)}s  ·  h${slot.finalDisplayHeight.toFixed(2)}${fx}`;
       wrapper.appendChild(line);
     });
     const total = document.createElement('div');
@@ -627,14 +804,23 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     return wrapper;
   }
 
+  /**
+   * LEGACY preset-level polish.
+   *
+   * Technical feedback is authored per spritesheet in V2.5 (IMPACT FX on each
+   * slot card). This section only remains so that pre-V2.5 presets can still be
+   * inspected and turned off; it becomes inert as soon as any slot owns FX.
+   */
   function renderTechnicalPolish(draft: VfxPresetDraft): HTMLElement {
     const section = document.createElement('section');
     section.className = 'cmp-section';
     section.dataset.section = 'technical_polish';
 
+    const slotFxActive = draft.visualSlots.some((slot) => hasActiveImpactFx(slot.impactFx));
+
     const heading = document.createElement('div');
     heading.className = 'cmp-section-heading';
-    heading.textContent = 'TECHNICAL POLISH';
+    heading.textContent = 'LEGACY TECHNICAL POLISH';
     section.appendChild(heading);
 
     const row = document.createElement('div');
@@ -644,13 +830,19 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
         mutate(setTechnicalPolish(draft, level));
       });
       if (draft.technicalPolish === level) btn.classList.add('cmp-active');
+      if (slotFxActive) {
+        btn.disabled = true;
+        btn.title = 'Per-slot IMPACT FX is active and takes over completely.';
+      }
       row.appendChild(btn);
     }
     section.appendChild(row);
 
     const hint = document.createElement('div');
     hint.className = 'cmp-hint';
-    hint.textContent = 'Screen flash / shake / hit-stop. Never rendered by PLAY VISUALS ONLY.';
+    hint.textContent = slotFxActive
+      ? 'Superseded: per-slot IMPACT FX is authoritative for this preset.'
+      : 'Pre-V2.5 preset-wide flash / shake / hit-stop. Prefer per-slot IMPACT FX.';
     section.appendChild(hint);
 
     return section;
@@ -830,24 +1022,41 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     const summary = document.createElement('div');
     summary.className = 'cmp-confirm-summary';
     const entry = draftToPublishedEntry(draft);
+    const summaryPhases = resolveSlotPhases(draft);
+    const slotFxActive = draft.visualSlots.some((s) => hasActiveImpactFx(s.impactFx));
+    const slotLines = draft.visualSlots.map((s, i) => {
+      const parts: string[] = [`  SLOT ${i + 1} ${s.candidateId}`, s.sizeProfile, s.timingProfile];
+      if (resolveSlotPositionMode(s) === 'TRAVEL') {
+        parts.push(`${TRAVEL_LABELS[s.travelFrom ?? DEFAULT_TRAVEL_FROM]} -> ${TRAVEL_LABELS[s.travelTo ?? DEFAULT_TRAVEL_TO]}`);
+      } else {
+        parts.push(`AT ${AT_LABELS[s.placementProfile] ?? s.placementProfile}`);
+      }
+      const direction = resolveSlotDirectionProfile(s);
+      if (direction !== 'FIXED') parts.push(DIRECTION_LABELS[direction] ?? direction);
+      const rotation = s.rotationDegrees ?? DEFAULT_ROTATION_DEGREES;
+      if (rotation !== DEFAULT_ROTATION_DEGREES) parts.push(`ROT ${rotation}°`);
+      const mirror = resolveSlotMirrorProfile(s);
+      if (mirror !== 'NONE') parts.push(`MIRROR ${MIRROR_LABELS[mirror] ?? mirror}`);
+      const origin = s.pivotProfile ?? DEFAULT_PIVOT_PROFILE;
+      if (origin !== DEFAULT_PIVOT_PROFILE) parts.push(`ORIGIN ${ORIGIN_LABELS[origin]}`);
+      parts.push(`PHASE ${summaryPhases[i] ?? DEFAULT_PHASE}`);
+      if (hasActiveImpactFx(s.impactFx)) {
+        const channels: string[] = [];
+        if (s.impactFx?.flash) channels.push('FLASH');
+        if (s.impactFx?.shake) channels.push('SHAKE');
+        if (s.impactFx?.hitStop) channels.push('HITSTOP');
+        parts.push(`FX ${channels.join('+')} ${s.impactFx?.power ?? DEFAULT_IMPACT_POWER}`);
+      }
+      return parts.join(' · ');
+    });
     summary.textContent = [
       `Action: ${draft.actionKey}`,
       `Preset ID: ${entry.presetId}`,
-      `Candidates: ${draft.visualSlots.map((s) => s.candidateId).join(', ')}`,
       `Slots: ${draft.visualSlots.length}`,
-      `Sizes: ${draft.visualSlots.map((s) => s.sizeProfile).join(', ')}`,
-      `Timings: ${draft.visualSlots.map((s) => s.timingProfile).join(', ')}`,
-      `Placements: ${draft.visualSlots.map((s) => s.placementProfile).join(', ')}`,
-      `Transforms: ${draft.visualSlots.map((s) => {
-        const parts: string[] = [];
-        if (s.aimProfile && s.aimProfile !== 'FIXED') parts.push(`aim=${s.aimProfile}`);
-        if (s.rotationDegrees != null && s.rotationDegrees !== 0) parts.push(`rot=${s.rotationDegrees}°`);
-        if (s.mirrorProfile && s.mirrorProfile !== 'NONE') parts.push(`mirror=${s.mirrorProfile}`);
-        if (s.pivotProfile && s.pivotProfile !== 'CENTER') parts.push(`pivot=${s.pivotProfile}`);
-        return parts.length ? parts.join(';') : '-';
-      }).join(', ')}`,
-      `Choreography: ${draft.choreography}`,
-      `Technical Polish: ${draft.technicalPolish}`,
+      ...slotLines,
+      slotFxActive
+        ? 'Impact FX: per-slot (authoritative)'
+        : `Legacy Technical Polish: ${draft.technicalPolish}`,
     ].join('\n');
     dialog.appendChild(summary);
 
@@ -1172,8 +1381,13 @@ function addComposerStyle(): void {
     #${COMPOSER_ROOT_ID} .cmp-slot-transform-badge{margin-bottom:3px;padding:2px 6px;border-radius:3px;background:rgba(106,217,255,.12);color:#6ad9ff;font-size:9px;font-weight:700;letter-spacing:.04em}
     #${COMPOSER_ROOT_ID} .cmp-profile{margin-bottom:4px}
     #${COMPOSER_ROOT_ID} .cmp-profile-label{display:block;color:#8fa5b2;font-size:9px;font-weight:700;letter-spacing:.06em;margin-bottom:2px}
-    #${COMPOSER_ROOT_ID} .cmp-profile-group{display:flex;gap:3px}
-    #${COMPOSER_ROOT_ID} .cmp-profile-btn{flex:1;font-size:10px;padding:3px 2px}
+    #${COMPOSER_ROOT_ID} .cmp-profile-group{display:flex;flex-wrap:wrap;gap:3px}
+    #${COMPOSER_ROOT_ID} .cmp-profile-btn{flex:1 1 auto;min-width:30px;font-size:10px;padding:3px 2px}
+    #${COMPOSER_ROOT_ID} .cmp-phase-group{align-items:center;gap:5px}
+    #${COMPOSER_ROOT_ID} .cmp-phase-dec,#${COMPOSER_ROOT_ID} .cmp-phase-inc{width:26px;font-size:12px;font-weight:800;padding:2px 0;line-height:1}
+    #${COMPOSER_ROOT_ID} .cmp-phase-value{min-width:22px;text-align:center;color:#f1c76c;font-size:12px;font-weight:800;font-variant-numeric:tabular-nums}
+    #${COMPOSER_ROOT_ID} .cmp-slot-fx{margin-top:4px;padding-top:4px;border-top:1px dashed #2f5468}
+    #${COMPOSER_ROOT_ID} .cmp-fx-btn.cmp-active{border-color:#ff9a4a;background:#3a2410;color:#ffd9a0}
     #${COMPOSER_ROOT_ID} .cmp-slot-actions{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:5px}
     #${COMPOSER_ROOT_ID} .cmp-slot-remove{border-color:#8c3a3a;background:#2f0d0d}
     #${COMPOSER_ROOT_ID} .cmp-add-slot{width:100%;border-color:#3a8c4a;background:#0d2f1a;font-weight:700;padding:6px}

@@ -11,10 +11,21 @@ const REGISTRY_PATH = join(process.cwd(), 'src', 'combat', 'vfx', 'generated', '
 
 const VALID_SIZES = new Set(['LOW', 'MID', 'BIG', 'GIGA']);
 const VALID_TIMINGS = new Set(['QUICK', 'NORMAL', 'LONG']);
-const VALID_PLACEMENTS = new Set(['AUTO', 'TARGET', 'FRONT', 'BACK', 'TOP', 'CASTER', 'GROUND']);
-const VALID_AIM = new Set(['FIXED', 'TO_TARGET']);
+const VALID_PLACEMENTS = new Set([
+  'AUTO', 'TARGET', 'FRONT', 'BACK', 'TOP', 'BOTTOM', 'CASTER', 'CASTER_FRONT', 'CASTER_BACK', 'GROUND',
+]);
+const VALID_POSITION_MODES = new Set(['FIXED', 'TRAVEL']);
+const VALID_TRAVEL_FROM = new Set([
+  'CASTER', 'CASTER_FRONT', 'CASTER_BACK', 'TARGET', 'FRONT', 'BACK', 'TOP', 'BOTTOM', 'GROUND', 'SKY',
+]);
+const VALID_TRAVEL_TO = new Set([
+  'TARGET', 'FRONT', 'BACK', 'TOP', 'BOTTOM', 'CASTER', 'CASTER_FRONT', 'CASTER_BACK', 'GROUND',
+]);
+const VALID_AIM = new Set(['FIXED', 'TO_TARGET', 'ALONG_PATH']);
 const VALID_MIRROR = new Set(['NONE', 'HORIZONTAL', 'VERTICAL', 'BOTH', 'AUTO_HORIZONTAL']);
 const VALID_PIVOT = new Set(['CENTER', 'LEFT', 'RIGHT', 'TOP', 'BOTTOM']);
+const VALID_IMPACT_POWERS = new Set(['LIGHT', 'STRONG']);
+const MAX_PHASE = 15;
 const VALID_CHOREOGRAPHIES = new Set(['TOGETHER', 'SEQUENCE', 'PAIR_THEN_LAST']);
 const VALID_POLISH = new Set(['AUTO', 'OFF', 'LIGHT', 'STRONG']);
 
@@ -46,6 +57,20 @@ function validateRegistry(registry) {
       if (s.rotationDegrees != null && typeof s.rotationDegrees !== 'number') errors.push(`[${actionKey}] Slot ${i}: rotationDegrees must be number.`);
       if (s.mirrorProfile != null && !VALID_MIRROR.has(s.mirrorProfile)) errors.push(`[${actionKey}] Slot ${i}: mirrorProfile invalid.`);
       if (s.pivotProfile != null && !VALID_PIVOT.has(s.pivotProfile)) errors.push(`[${actionKey}] Slot ${i}: pivotProfile invalid.`);
+      if (s.positionMode != null && !VALID_POSITION_MODES.has(s.positionMode)) errors.push(`[${actionKey}] Slot ${i}: positionMode invalid.`);
+      if (s.travelFrom != null && !VALID_TRAVEL_FROM.has(s.travelFrom)) errors.push(`[${actionKey}] Slot ${i}: travelFrom invalid.`);
+      if (s.travelTo != null && !VALID_TRAVEL_TO.has(s.travelTo)) errors.push(`[${actionKey}] Slot ${i}: travelTo invalid.`);
+      if (s.positionMode === 'TRAVEL' && s.travelFrom == null && s.travelTo == null) errors.push(`[${actionKey}] Slot ${i}: TRAVEL requires travelFrom and/or travelTo.`);
+      if (s.phase != null && (!Number.isInteger(s.phase) || s.phase < 0 || s.phase > MAX_PHASE)) errors.push(`[${actionKey}] Slot ${i}: phase must be an integer 0..${MAX_PHASE}.`);
+      if (s.impactFx != null) {
+        if (typeof s.impactFx !== 'object') errors.push(`[${actionKey}] Slot ${i}: impactFx must be an object.`);
+        else {
+          for (const key of ['flash', 'shake', 'hitStop']) {
+            if (s.impactFx[key] != null && typeof s.impactFx[key] !== 'boolean') errors.push(`[${actionKey}] Slot ${i}: impactFx.${key} must be boolean.`);
+          }
+          if (s.impactFx.power != null && !VALID_IMPACT_POWERS.has(s.impactFx.power)) errors.push(`[${actionKey}] Slot ${i}: impactFx.power invalid.`);
+        }
+      }
     }
   }
   return { ok: errors.length === 0, errors };

@@ -17,7 +17,7 @@ import type { VfxSystem } from './VfxSystem';
 import type { VfxContext, VfxPlayResult } from './VfxTypes';
 import { buildLabSheetDefinition } from './VfxSpriteSheets';
 import { getCandidateInventoryRecord } from './VfxResourceManager';
-import { getCandidateCadence } from './VfxComposerPlayback';
+import { getCandidateCadence, buildSlotOverrides } from './VfxComposerPlayback';
 import {
   compileDraft,
   resolveSlotScale,
@@ -168,23 +168,8 @@ function playCompiledPublishedVfx(
       sheetDef,
       step,
       context,
-      {
-        scale: slot.scale,
-        offsetX: slot.offsetX,
-        offsetY: slot.offsetY,
-        duration: slot.duration,
-        opacity: slot.opacity,
-        layer: slot.layer,
-        blending: slot.blending,
-        fadeIn: slot.fadeIn,
-        fadeOut: slot.fadeOut,
-        mirrorX: slot.mirrorX,
-        mirrorY: slot.mirrorY,
-        pivotCenterX: slot.pivotCenterX,
-        pivotCenterY: slot.pivotCenterY,
-        rotationOffset: slot.rotation,
-        aimProfile: slot.aimProfile,
-      },
+      // Identical override construction as the Composer — no gameplay-only variant.
+      buildSlotOverrides(slot),
     );
     slotResults.push(
       new Promise<void>((resolve) => {

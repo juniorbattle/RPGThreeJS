@@ -91,6 +91,10 @@ export type VfxAnchor =
   | 'targetFront'
   | 'targetBack'
   | 'targetTop'
+  | 'targetBottom'
+  | 'sourceFront'
+  | 'sourceBack'
+  | 'sky'
   | 'midpoint'
   | 'groundTarget'
   | 'allTargets'
@@ -252,6 +256,8 @@ export interface VfxUnitLike {
   visualHeight?: number;
   /** Actual rendered sprite width in world units. Used for front/back offset calculation. */
   visualWidth?: number;
+  /** Presentation-only facing hint used when no target exists. Never gameplay facing. */
+  facing?: { dx?: number; dz?: number } | null;
 }
 
 export interface VfxRuntimeHelpers {

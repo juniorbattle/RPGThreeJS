@@ -58,6 +58,47 @@ export interface DevVfxReviewPlaybackOptions {
   heightOffset?: number;
 }
 
+/**
+ * Runtime playback overrides produced by `compileDraft`. Everything here is
+ * already numeric / explicit: the runtime never sees Composer semantics such as
+ * SIZE, SPEED, PHASE or LIGHT/STRONG.
+ */
+export interface VfxLabPlaybackOverrides {
+  scale?: number;
+  offsetX?: number;
+  offsetY?: number;
+  duration?: number;
+  opacity?: number;
+  layer?: 'ground' | 'impact';
+  blending?: 'normal' | 'additive';
+  fadeIn?: number;
+  fadeOut?: number;
+  /** Explicit horizontal mirror sign (-1 or 1). */
+  mirrorX?: number;
+  /** Explicit vertical mirror sign (-1 or 1). */
+  mirrorY?: number;
+  /**
+   * Explicit AUTO horizontal mirror state. When true, the runtime decides the
+   * horizontal sign from projected screen-space direction. AUTO is NEVER
+   * encoded by abusing `mirrorX`.
+   */
+  autoMirrorHorizontal?: boolean;
+  /** Sprite-local origin X (0..1). */
+  pivotCenterX?: number;
+  /** Sprite-local origin Y (0..1). */
+  pivotCenterY?: number;
+  /** Authored rotation correction in radians. */
+  rotationOffset?: number;
+  /** 'FIXED' | 'TO_TARGET' | 'ALONG_PATH'. */
+  directionProfile?: string;
+  /** 'FIXED' | 'TRAVEL'. */
+  positionMode?: string;
+  /** Resolved travel origin anchor. Only used when positionMode is TRAVEL. */
+  travelFromAnchor?: VfxAnchor;
+  /** Resolved travel destination anchor. Only used when positionMode is TRAVEL. */
+  travelToAnchor?: VfxAnchor;
+}
+
 export const CINEMATIC_PHASE_TYPES: readonly CinematicPhaseType[] = Object.freeze([
   'cast', 'prePosition', 'travel', 'impact', 'aftermath',
 ]);
@@ -78,27 +119,86 @@ function unitGround(unit?: VfxUnitLike | null) {
 
 // ============================================================ Visual Metrics
 
+/**
+ * ONE authoritative visual metrics resolver for VFX placement.
+ *
+ * Everything is derived from the unit's ACTUAL rendered combat sprite
+ * dimensions (`visualHeight` / `visualWidth`, already multiplied by the large
+ * unit sprite scale) plus its rendered vertical offset (`baseY`).
+ *
+ * Health bars, status indicators, selection rings, team rings, shadows and any
+ * other HUD marker are deliberately EXCLUDED — those are UI decorations and
+ * must never influence where a spritesheet is anchored.
+ *
+ * No magic 0.78 / 1.18 style heuristics: the result adapts naturally to normal
+ * heroes, normal enemies, large units and bosses.
+ */
 export interface VfxUnitVisualMetrics {
+  /** Tactical floor position of the unit group. */
   ground: THREE.Vector3;
+  /** Exact visual center of the rendered body sprite. */
   center: THREE.Vector3;
+  /** Actual visual upper edge of the rendered body sprite. */
   top: THREE.Vector3;
+  /** Actual visual lower edge of the rendered body sprite. NOT the ground. */
+  bottom: THREE.Vector3;
+  /** Horizontal displacement used for FRONT / BACK offsets. */
   radius: number;
+  /** Rendered sprite height in world units. */
   height: number;
+  /** Rendered sprite width in world units. */
+  width: number;
 }
 
 const FALLBACK_NORMAL_HEIGHT = 1.56;
 const FALLBACK_LARGE_HEIGHT = 2.36;
+/** Rendered combat sprites are taller than wide; used only when width is unknown. */
+const FALLBACK_WIDTH_TO_HEIGHT_RATIO = 0.72;
+/**
+ * Small documented presentation margin so a TOP effect reads clearly ABOVE the
+ * silhouette instead of clipping its topmost pixels.
+ */
 const TOP_PRESENTATION_MARGIN = 0.15;
+/** FRONT/BACK sit just outside the visual half-width of the body. */
+const FRONT_BACK_RADIUS_FACTOR = 0.62;
+const MIN_FRONT_BACK_RADIUS = 0.34;
+/** Reusable semantic sky anchor height above the resolved target center. */
+export const VFX_SKY_ANCHOR_HEIGHT = 6.2;
 
 export function resolveVfxUnitMetrics(unit?: VfxUnitLike | null): VfxUnitVisualMetrics {
   const ground = unitGround(unit);
   const size = unit?.size ?? 1;
-  const visualHeight = unit?.visualHeight ?? (size > 1 ? FALLBACK_LARGE_HEIGHT : FALLBACK_NORMAL_HEIGHT);
-  const baseY = unit?.baseY ?? visualHeight * 0.5;
+  const height = unit?.visualHeight ?? (size > 1 ? FALLBACK_LARGE_HEIGHT : FALLBACK_NORMAL_HEIGHT);
+  const width = unit?.visualWidth ?? height * FALLBACK_WIDTH_TO_HEIGHT_RATIO;
+  const baseY = unit?.baseY ?? height * 0.5;
   const center = ground.clone().add(new THREE.Vector3(0, baseY, 0));
-  const top = ground.clone().add(new THREE.Vector3(0, baseY + visualHeight * 0.5 + TOP_PRESENTATION_MARGIN, 0));
-  const radius = Math.max(0.3, visualHeight * 0.3);
-  return { ground, center, top, radius, height: visualHeight };
+  const top = ground.clone().add(new THREE.Vector3(0, baseY + height * 0.5 + TOP_PRESENTATION_MARGIN, 0));
+  const bottom = ground.clone().add(new THREE.Vector3(0, Math.max(0.02, baseY - height * 0.5), 0));
+  // Footprint-aware: a wide boss gets a proportionally larger FRONT/BACK offset.
+  const radius = Math.max(MIN_FRONT_BACK_RADIUS, width * 0.5 * FRONT_BACK_RADIUS_FACTOR * Math.max(1, size));
+  return { ground, center, top, bottom, radius, height, width };
+}
+
+/**
+ * Presentation-only caster→target ground direction. Falls back to the unit's
+ * existing facing metadata when no target is present, then to a deterministic
+ * +X direction. Gameplay facing is never modified.
+ */
+export function resolveVfxDirection(
+  sourceGround: THREE.Vector3,
+  targetGround: THREE.Vector3,
+  sourceUnit?: VfxUnitLike | null,
+): { x: number; z: number } {
+  const dx = targetGround.x - sourceGround.x;
+  const dz = targetGround.z - sourceGround.z;
+  const length = Math.sqrt(dx * dx + dz * dz);
+  if (length > 0.001) return { x: dx / length, z: dz / length };
+  const facing = sourceUnit?.facing;
+  const fx = facing?.dx ?? 0;
+  const fz = facing?.dz ?? 0;
+  const facingLength = Math.sqrt(fx * fx + fz * fz);
+  if (facingLength > 0.001) return { x: fx / facingLength, z: fz / facingLength };
+  return { x: 1, z: 0 };
 }
 
 function contextPresentationScale(context: VfxContext) {
@@ -134,6 +234,21 @@ function directionalRotation(step: VfxStep, context: VfxContext) {
   const source = resolveVfxAnchor('source', context).project(context.camera);
   const target = resolveVfxAnchor(step.targetAnchor ?? 'target', context).project(context.camera);
   return Math.atan2(target.y - source.y, target.x - source.x);
+}
+
+/**
+ * Projected screen-space delta between two world positions. AUTO mirror and
+ * path orientation are SCREEN-space concepts, so they must be evaluated after
+ * camera projection rather than on raw world axes.
+ */
+function projectedScreenDelta(
+  from: THREE.Vector3,
+  to: THREE.Vector3,
+  camera: THREE.Camera,
+): { x: number; y: number } {
+  const a = from.clone().project(camera);
+  const b = to.clone().project(camera);
+  return { x: b.x - a.x, y: b.y - a.y };
 }
 
 function cinematicAnchorToVfxAnchor(anchor: CinematicAnchor): VfxAnchor {
@@ -193,10 +308,6 @@ export function getCinematicPlayablePhases(descriptor: CinematicDescriptor, redu
   });
 }
 
-function unitBody(unit?: VfxUnitLike | null) {
-  return resolveVfxUnitMetrics(unit).center;
-}
-
 function contextTargetPoint(context: VfxContext) {
   if (context.targetPoint) {
     return new THREE.Vector3(context.targetPoint.x, context.targetPoint.y, context.targetPoint.z);
@@ -205,6 +316,15 @@ function contextTargetPoint(context: VfxContext) {
   return target ? unitGround(target) : unitGround(context.sourceUnit);
 }
 
+/**
+ * Resolves a semantic VFX anchor into concrete world positions.
+ *
+ * FRONT / BACK are ALWAYS derived from the caster→target ground direction:
+ *
+ *   CASTER -----> [ FRONT | TARGET | BACK ]
+ *
+ * They are never defined by fixed world X/Z or by screen left/right.
+ */
 export function resolveVfxAnchors(anchor: VfxAnchor, context: VfxContext): THREE.Vector3[] {
   const sourceMetrics = resolveVfxUnitMetrics(context.sourceUnit);
   const sourceGround = sourceMetrics.ground;
@@ -214,18 +334,31 @@ export function resolveVfxAnchors(anchor: VfxAnchor, context: VfxContext): THREE
   const targetGround = targetUnit ? targetMetrics.ground : contextTargetPoint(context);
   const target = targetUnit ? targetMetrics.center : contextTargetPoint(context).add(new THREE.Vector3(0, 0.7, 0));
 
-  // Caster→target ground-plane direction for FRONT/BACK
-  const dirX = targetGround.x - sourceGround.x;
-  const dirZ = targetGround.z - sourceGround.z;
-  const dirLen = Math.sqrt(dirX * dirX + dirZ * dirZ);
-  const ndirX = dirLen > 0.001 ? dirX / dirLen : 1;
-  const ndirZ = dirLen > 0.001 ? dirZ / dirLen : 0;
-  const targetRadius = targetMetrics.radius;
+  const direction = resolveVfxDirection(sourceGround, targetGround, context.sourceUnit);
+  const offset = (scalar: number) => new THREE.Vector3(direction.x * scalar, 0, direction.z * scalar);
 
   switch (anchor) {
     case 'source': return [source];
     case 'sourceGround': return [sourceGround.clone().add(new THREE.Vector3(0, 0.055, 0))];
+    // CASTER_FRONT: caster side facing the target. Ideal spawn point for
+    // flamethrower / breath / beam / projectile origins.
+    case 'sourceFront': return [source.clone().add(offset(sourceMetrics.radius))];
+    // CASTER_BACK: opposite side of the caster.
+    case 'sourceBack': return [source.clone().add(offset(-sourceMetrics.radius))];
     case 'target': return [target];
+    // FRONT: target side facing the caster.
+    case 'targetFront': return [target.clone().add(offset(-targetMetrics.radius))];
+    // BACK: target side away from the caster.
+    case 'targetBack': return [target.clone().add(offset(targetMetrics.radius))];
+    // TOP / BOTTOM: actual visual upper / lower edge of the target body.
+    case 'targetTop': return [targetUnit
+      ? targetMetrics.top.clone()
+      : target.clone().add(new THREE.Vector3(0, 0.7, 0))];
+    case 'targetBottom': return [targetUnit
+      ? targetMetrics.bottom.clone()
+      : target.clone().add(new THREE.Vector3(0, -0.7, 0))];
+    // Reusable semantic sky anchor above the resolved target position.
+    case 'sky': return [target.clone().add(new THREE.Vector3(0, VFX_SKY_ANCHOR_HEIGHT, 0))];
     case 'targetGround': return [targetGround.clone().add(new THREE.Vector3(0, 0.055, 0))];
     case 'groundTarget': return [contextTargetPoint(context).add(new THREE.Vector3(0, 0.055, 0))];
     case 'midpoint': return [source.clone().add(target).multiplyScalar(0.5)];
@@ -431,23 +564,7 @@ export class VfxSystem {
     sheetDef: VfxSpriteSheetDefinition,
     step: VfxStep,
     context: VfxContext,
-    overrides: {
-      scale?: number;
-      offsetX?: number;
-      offsetY?: number;
-      duration?: number;
-      opacity?: number;
-      layer?: 'ground' | 'impact';
-      blending?: 'normal' | 'additive';
-      fadeIn?: number;
-      fadeOut?: number;
-      mirrorX?: number;
-      mirrorY?: number;
-      pivotCenterX?: number;
-      pivotCenterY?: number;
-      rotationOffset?: number;
-      aimProfile?: string;
-    },
+    overrides: VfxLabPlaybackOverrides,
     options?: { strict?: boolean },
   ): VfxPlayResult {
     if (this.disposed) {
@@ -470,23 +587,7 @@ export class VfxSystem {
     sheetDef: VfxSpriteSheetDefinition,
     step: VfxStep,
     context: VfxContext,
-    overrides: {
-      scale?: number;
-      offsetX?: number;
-      offsetY?: number;
-      duration?: number;
-      opacity?: number;
-      layer?: 'ground' | 'impact';
-      blending?: 'normal' | 'additive';
-      fadeIn?: number;
-      fadeOut?: number;
-      mirrorX?: number;
-      mirrorY?: number;
-      pivotCenterX?: number;
-      pivotCenterY?: number;
-      rotationOffset?: number;
-      aimProfile?: string;
-    },
+    overrides: VfxLabPlaybackOverrides,
   ) {
     const texture = await loadLabCandidateTexture(candidateId);
     if (this.disposed) {
@@ -510,25 +611,61 @@ export class VfxSystem {
       fadeIn: effectiveFadeIn,
       fadeOut: effectiveFadeOut,
     };
-    // Transform: pivot (override sprite center)
+
+    // ---- POSITION: resolve FIXED anchor, or TRAVEL start/end world positions.
+    const applyOffsets = (position: THREE.Vector3) => {
+      position.y += step.heightOffset ?? 0;
+      position.x += overrides.offsetX ?? 0;
+      position.y += overrides.offsetY ?? 0;
+      return position;
+    };
+    const travelling = overrides.positionMode === 'TRAVEL'
+      && overrides.travelFromAnchor != null
+      && overrides.travelToAnchor != null;
+    const travelStart = travelling
+      ? applyOffsets(resolveVfxAnchor(overrides.travelFromAnchor!, context))
+      : null;
+    const travelEnd = travelling
+      ? applyOffsets(resolveVfxAnchor(overrides.travelToAnchor!, context))
+      : null;
+    const fixedAnchor = travelling ? null : applyOffsets(resolveVfxAnchor(step.anchor, context));
+
+    // ---- ORIGIN: which local point of the spritesheet is pinned to the world
+    // position. Applied through sprite.center so mirroring cannot break it.
     const pivotX = overrides.pivotCenterX ?? 0.5;
     const pivotY = overrides.pivotCenterY ?? (resolved.align === 'bottom' ? 0 : 0.5);
-    // Transform: mirror signs (default 1 = no mirror)
+
+    // ---- DIRECTION: FIXED keeps only the authored rotation. TO_TARGET adds the
+    // screen-space caster→target angle. ALONG_PATH adds the travel path angle.
+    const directionProfile = overrides.directionProfile ?? 'FIXED';
+    const rotationOffset = overrides.rotationOffset ?? 0;
+    let orientationDelta = { x: 1, y: 0 };
+    if (travelling && travelStart && travelEnd) {
+      orientationDelta = projectedScreenDelta(travelStart, travelEnd, context.camera);
+    } else {
+      orientationDelta = projectedScreenDelta(
+        resolveVfxAnchor('source', context),
+        resolveVfxAnchor(step.targetAnchor ?? 'target', context),
+        context.camera,
+      );
+    }
+    const pathAngle = Math.atan2(orientationDelta.y, orientationDelta.x);
+    let effectiveRotation = rotationOffset;
+    if (directionProfile === 'TO_TARGET') {
+      effectiveRotation = pathAngle + rotationOffset;
+    } else if (directionProfile === 'ALONG_PATH') {
+      effectiveRotation = travelling ? pathAngle + rotationOffset : rotationOffset;
+    }
+
+    // ---- MIRROR: explicit signs. AUTO is an explicit boolean, never encoded by
+    // abusing a numeric sign. The canonical authoring reference is
+    // CASTER LEFT ---> TARGET RIGHT, so a leftward screen direction flips X.
     const mirrorX = overrides.mirrorX ?? 1;
     const mirrorY = overrides.mirrorY ?? 1;
-    // Transform: rotation — combine directional rotation + authored offset
-    const dirRot = directionalRotation(step, context);
-    const rotationOffset = overrides.rotationOffset ?? 0;
-    const aimProfile = overrides.aimProfile ?? 'FIXED';
-    const effectiveRotation = aimProfile === 'TO_TARGET' ? dirRot + rotationOffset : rotationOffset;
-    // Transform: AUTO_HORIZONTAL — flip X based on screen-space direction
-    let effectiveMirrorX = mirrorX;
-    if (aimProfile === 'TO_TARGET' && mirrorX === -1) {
-      // AUTO_HORIZONTAL: check screen-space direction
-      const sourceProj = resolveVfxAnchor('source', context).project(context.camera);
-      const targetProj = resolveVfxAnchor('target', context).project(context.camera);
-      effectiveMirrorX = targetProj.x < sourceProj.x ? -1 : 1;
-    }
+    const effectiveMirrorX = overrides.autoMirrorHorizontal
+      ? (orientationDelta.x < 0 ? -1 : 1)
+      : mirrorX;
+
     const material = new THREE.SpriteMaterial({
       map: texture,
       color: asColor(step.color),
@@ -546,10 +683,6 @@ export class VfxSystem {
     sprite.center.set(pivotX, pivotY);
     this.track(sprite, context);
     const objects: THREE.Object3D[] = [sprite];
-    const anchor = resolveVfxAnchor(step.anchor, context);
-    anchor.y += step.heightOffset ?? 0;
-    anchor.x += overrides.offsetX ?? 0;
-    anchor.y += overrides.offsetY ?? 0;
     const intensity = clamp(context.intensity ?? 1, 0.35, 1.8);
     const baseHeight = (step.scale ?? 1)
       * effectiveScale
@@ -565,17 +698,30 @@ export class VfxSystem {
     sprite.renderOrder = effectiveLayer === 'ground'
       ? VFX_RENDER_ORDER.ground
       : contextImpactRenderOrder(context);
-    sprite.position.copy(anchor);
+    sprite.position.copy(travelling && travelStart ? travelStart : fixedAnchor ?? new THREE.Vector3());
+    // ONE timing system: the semantic slot duration drives BOTH the atlas frame
+    // cadence and the travel journey. There is no separate travel speed.
     const duration = overrides.duration ?? step.duration;
     try {
       await this.animate(duration, (progress) => {
         const frame = Math.min(sheetDef.frameCount - 1, Math.floor(progress * sheetDef.frameCount));
         const scale = baseHeight * spriteSheetScalePulse(progress, effectiveResolved);
         setVfxSpriteSheetFrame(texture, sheetDef, frame);
-        sprite.position.copy(anchor);
+        if (travelling && travelStart && travelEnd) {
+          // TRUE world-space travel: the sprite itself moves while its atlas
+          // frames continue animating. No offset animation, no anchor swapping,
+          // no teleport at completion.
+          sprite.position.lerpVectors(travelStart, travelEnd, progress);
+        } else if (fixedAnchor) {
+          sprite.position.copy(fixedAnchor);
+        }
         sprite.scale.set(scale * frameAspect * effectiveMirrorX, scale * mirrorY, 1);
         material.opacity = baseOpacity * spriteSheetEnvelope(progress, effectiveResolved);
       });
+      if (travelling && travelEnd) {
+        // Guarantee the effect reaches its exact destination.
+        sprite.position.copy(travelEnd);
+      }
     } finally {
       this.cleanup(objects);
       releaseLabCandidateTexture(candidateId, texture);

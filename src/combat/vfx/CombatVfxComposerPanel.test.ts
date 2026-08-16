@@ -183,13 +183,17 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
 
   // ---------------------------------------------------------- semantic profiles only
 
-  it('13. slot cards expose SIZE / TIMING / PLACEMENT / AIM / ROTATE / MIRROR / PIVOT controls', () => {
+  it('13. slot cards expose SIZE / SPEED / POSITION / AT / DIRECTION / ROTATE / MIRROR / ORIGIN / PHASE / IMPACT FX controls', () => {
     click(q('.cmp-add-slot'));
     click(q('.cmp-cat-add'));
     const card = qa('.cmp-slot-card')[0]!;
     const profiles = Array.from(card.querySelectorAll<HTMLElement>('.cmp-profile'))
       .map((el) => el.dataset.profile);
-    expect(profiles).toEqual(['size', 'timing', 'placement', 'aim', 'rotate', 'mirror', 'pivot']);
+    expect(profiles).toEqual([
+      'size', 'speed', 'position', 'at',
+      'direction', 'rotate', 'mirror', 'origin',
+      'phase', 'impact_fx',
+    ]);
   });
 
   it('14. SIZE exposes exactly LOW / MID / BIG / GIGA', () => {
@@ -200,20 +204,20 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
       .toEqual(['LOW', 'MID', 'BIG', 'GIGA']);
   });
 
-  it('15. TIMING exposes exactly QUICK / NORMAL / LONG', () => {
+  it('15. SPEED exposes exactly QUICK / NORMAL / LONG', () => {
     click(q('.cmp-add-slot'));
     click(q('.cmp-cat-add'));
-    const group = q('[data-profile="timing"] .cmp-profile-group')!;
+    const group = q('[data-profile="speed"] .cmp-profile-group')!;
     expect(Array.from(group.querySelectorAll('button')).map((b) => b.textContent))
       .toEqual(['QUICK', 'NORMAL', 'LONG']);
   });
 
-  it('16. PLACEMENT exposes exactly AUTO / TARGET / FRONT / BACK / TOP / CASTER / GROUND', () => {
+  it('16. AT exposes exactly AUTO / TARGET / FRONT / BACK / TOP / BOTTOM / CASTER / CASTER_FRONT / CASTER_BACK / GROUND', () => {
     click(q('.cmp-add-slot'));
     click(q('.cmp-cat-add'));
-    const group = q('[data-profile="placement"] .cmp-profile-group')!;
+    const group = q('[data-profile="at"] .cmp-profile-group')!;
     expect(Array.from(group.querySelectorAll('button')).map((b) => b.textContent))
-      .toEqual(['AUTO', 'TARGET', 'FRONT', 'BACK', 'TOP', 'CASTER', 'GROUND']);
+      .toEqual(['AUTO', 'TARGET', 'FRONT', 'BACK', 'TOP', 'BOTTOM', 'CASTER', 'C.F', 'C.B', 'GROUND']);
   });
 
   it('17. choosing SIZE=MID TIMING=NORMAL PLACEMENT=TARGET persists', () => {
@@ -223,8 +227,8 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     const inSlot = (selector: string) =>
       q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
     click(inSlot('[data-profile="size"] button[data-value="MID"]'));
-    click(inSlot('[data-profile="timing"] button[data-value="NORMAL"]'));
-    click(inSlot('[data-profile="placement"] button[data-value="TARGET"]'));
+    click(inSlot('[data-profile="speed"] button[data-value="NORMAL"]'));
+    click(inSlot('[data-profile="at"] button[data-value="TARGET"]'));
     const slot = Object.values(loadComposerStore(localStorage).drafts)[0]!
       .visualSlots.find((s) => s.id === slotId)!;
     expect(slot.sizeProfile).toBe('MID');
@@ -246,6 +250,150 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     slot = Object.values(loadComposerStore(localStorage).drafts)[0]!
       .visualSlots.find((s) => s.id === slotId)!;
     expect(slot.sizeProfile).toBe('GIGA');
+  });
+
+  // ---------------------------------------------------------- V2.5 controls
+
+  it('18a. POSITION exposes exactly FIXED / TRAVEL', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const group = q('[data-profile="position"] .cmp-profile-group')!;
+    expect(Array.from(group.querySelectorAll('button')).map((b) => b.textContent))
+      .toEqual(['FIXED', 'TRAVEL']);
+  });
+
+  it('18b. FIXED mode shows AT control, not FROM/TO', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
+    const inSlot = (selector: string) =>
+      q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
+    expect(inSlot('[data-profile="at"]')).not.toBeNull();
+    expect(inSlot('[data-profile="from"]')).toBeNull();
+    expect(inSlot('[data-profile="to"]')).toBeNull();
+  });
+
+  it('18c. TRAVEL mode shows FROM/TO controls, not AT', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
+    const inSlot = (selector: string) =>
+      q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
+    click(inSlot('[data-profile="position"] button[data-value="TRAVEL"]'));
+    expect(inSlot('[data-profile="at"]')).toBeNull();
+    expect(inSlot('[data-profile="from"]')).not.toBeNull();
+    expect(inSlot('[data-profile="to"]')).not.toBeNull();
+  });
+
+  it('18d. TRAVEL mode hides DIRECTION control (path orients automatically)', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
+    const inSlot = (selector: string) =>
+      q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
+    click(inSlot('[data-profile="position"] button[data-value="TRAVEL"]'));
+    expect(inSlot('[data-profile="direction"]')).toBeNull();
+  });
+
+  it('18e. switching to TRAVEL persists positionMode and travel endpoints', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
+    const inSlot = (selector: string) =>
+      q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
+    click(inSlot('[data-profile="position"] button[data-value="TRAVEL"]'));
+    const slot = Object.values(loadComposerStore(localStorage).drafts)[0]!
+      .visualSlots.find((s) => s.id === slotId)!;
+    expect(slot.positionMode).toBe('TRAVEL');
+    expect(slot.travelFrom).toBeDefined();
+    expect(slot.travelTo).toBeDefined();
+  });
+
+  it('18f. PHASE stepper exists with + and - buttons', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    expect(q('.cmp-phase')).not.toBeNull();
+    expect(q('.cmp-phase-dec')).not.toBeNull();
+    expect(q('.cmp-phase-inc')).not.toBeNull();
+    expect(q('.cmp-phase-value')).not.toBeNull();
+  });
+
+  it('18g. PHASE increment increases the displayed value', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
+    const inSlot = (selector: string) =>
+      q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
+    const before = inSlot('.cmp-phase-value')!.textContent;
+    click(inSlot('.cmp-phase-inc'));
+    const after = inSlot('.cmp-phase-value')!.textContent;
+    expect(Number(after)).toBeGreaterThan(Number(before));
+  });
+
+  it('18h. PHASE decrement is disabled at 0', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const dec = q('.cmp-phase-dec') as HTMLButtonElement;
+    expect(dec.disabled).toBe(true);
+  });
+
+  it('18i. IMPACT FX exposes FLASH / SHAKE / HITSTOP toggles', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const group = q('[data-profile="impact_fx"] .cmp-profile-group')!;
+    const labels = Array.from(group.querySelectorAll('button')).map((b) => b.textContent);
+    expect(labels).toEqual(['FLASH', 'SHAKE', 'HITSTOP']);
+  });
+
+  it('18j. toggling FLASH enables it and shows POWER control', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
+    const inSlot = (selector: string) =>
+      q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
+    click(inSlot('[data-profile="impact_fx"] button[data-value="flash"]'));
+    const flashBtn = inSlot('[data-profile="impact_fx"] button[data-value="flash"]')!;
+    expect(flashBtn.classList.contains('cmp-active')).toBe(true);
+    expect(q('[data-profile="power"]')).not.toBeNull();
+  });
+
+  it('18k. toggling FLASH off removes POWER control', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
+    const inSlot = (selector: string) =>
+      q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
+    click(inSlot('[data-profile="impact_fx"] button[data-value="flash"]'));
+    click(inSlot('[data-profile="impact_fx"] button[data-value="flash"]'));
+    expect(q('[data-profile="power"]')).toBeNull();
+  });
+
+  it('18l. IMPACT FX default is fully OFF (no active buttons)', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const fxBtns = qa('.cmp-fx-btn');
+    expect(fxBtns.every((b) => !b.classList.contains('cmp-active'))).toBe(true);
+  });
+
+  it('18m. legacy TECHNICAL POLISH is disabled when slot Impact FX is active', () => {
+    click(q('.cmp-add-slot'));
+    click(q('.cmp-cat-add'));
+    const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
+    const inSlot = (selector: string) =>
+      q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
+    click(inSlot('[data-profile="impact_fx"] button[data-value="shake"]'));
+    const polishBtns = qa('.cmp-polish-btn');
+    expect(polishBtns.every((b) => (b as HTMLButtonElement).disabled)).toBe(true);
+  });
+
+  it('18n. timeline rows include phase and impactTime data attributes', () => {
+    addSlotsFromCatalogue(2);
+    const rows = qa<HTMLElement>('.cmp-timeline-row');
+    expect(rows.length).toBeGreaterThanOrEqual(2);
+    for (const row of rows) {
+      expect(row.dataset.phase).toBeDefined();
+      expect(row.dataset.impactTime).toBeDefined();
+    }
   });
 
   it('18. standard UI never exposes raw fade/opacity/offset/startTime fields', () => {
