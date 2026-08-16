@@ -16,6 +16,10 @@ export const narrativeEffectSchema = z.discriminatedUnion('type', [
   baseEffectSchema.extend({ type: z.literal('addItem'), itemId: z.string(), quantity: z.number().int().positive() }),
   baseEffectSchema.extend({ type: z.literal('recruitUnit'), unitId: z.string() }),
   baseEffectSchema.extend({ type: z.literal('startCombat'), combatId: z.string() }),
+  baseEffectSchema.extend({
+    type: z.literal('resolveLionFinale'),
+    intent: z.enum(['claim_recognition', 'request_trial']),
+  }),
   baseEffectSchema.extend({ type: z.literal('finishChapter'), endingId: z.string() }),
 ]);
 export type NarrativeEffect = z.infer<typeof narrativeEffectSchema>;

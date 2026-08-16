@@ -83,15 +83,16 @@ export function createInitialState(): GameState {
 
 function hasCurrentLionRoute(state: GameState): boolean {
   const nodes = state.run.graph.nodes;
-  return nodes.length === 20
+  return nodes.length === 21
     && nodes.some((node) => node.id === 'lion-opening-ambush')
     && nodes.some((node) => node.id === 'lion-final-trial-event')
-    && Math.max(...nodes.map((node) => node.depth)) === 16;
+    && nodes.some((node) => node.id === 'lion-final-refuge' && node.contentId === 'final_refuge')
+    && Math.max(...nodes.map((node) => node.depth)) === 17;
 }
 
 function migrateCurrentLionRoute(previous: GameState): GameState {
   const previousNode = getRunNode(previous.run);
-  const targetDepth = Math.min(17, previousNode?.depth ?? previous.resolvedNodeIds.length);
+  const targetDepth = Math.min(18, previousNode?.depth ?? previous.resolvedNodeIds.length);
   const run = createRunState(previous.run.seed);
   for (let depth = 0; depth < targetDepth; depth += 1) {
     const next = getAvailableRunNodes(run)[0];

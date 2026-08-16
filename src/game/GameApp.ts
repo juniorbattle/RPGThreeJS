@@ -8,6 +8,11 @@ import {
   getRunNode, secureRunLoot,
 } from './runSystem';
 import { changeReputation, getReputationRule } from './reputation';
+import {
+  buildLionContextualDialogue,
+  lionBossVictoryFacts,
+  resolveLionFinaleExecution,
+} from './lionFinale';
 import { getRestCost, getWoundedUnitCount, restUnits } from './management';
 import { CombatBridge } from '../combat/CombatBridge';
 import { DialogueView } from '../ui/DialogueView';
@@ -469,7 +474,7 @@ export class GameApp {
   }
 
   private async playDialogue(dialogueId: string, fallbackLabel?: string): Promise<void> {
-    const sequence = dialogues.get(dialogueId);
+    const sequence = buildLionContextualDialogue(dialogueId, this.state) ?? dialogues.get(dialogueId);
     if (!sequence) throw new Error(`Missing dialogue '${dialogueId}'.`);
     let playPromise: Promise<void> | null = null;
     const interlude = this.cinematicInterlude({ hook: 'beforeDialogue', dialogueId });
@@ -563,6 +568,16 @@ export class GameApp {
         case 'startCombat':
           this.pendingCombatId = effect.combatId;
           break;
+        case 'resolveLionFinale':
+          {
+            const execution = resolveLionFinaleExecution(this.state, effect.intent);
+            Object.assign(this.state.flags, execution.flagChanges);
+            if (execution.reputationDelta !== 0) {
+              changeReputation(this.state, execution.reputationDelta, `lion-finale:${execution.trialCause ?? execution.route}`);
+            }
+            this.pendingCombatId = execution.combatId;
+          }
+          break;
         case 'finishChapter':
           this.state.endingId = effect.endingId;
           this.pendingChapterBeatId = effect.endingId;
@@ -647,6 +662,7 @@ export class GameApp {
       addTemporaryLoot(this.state.run, { category: 'materials', itemId, quantity });
     }
     changeReputation(this.state, rewards.reputation, `combat:${result.combatId}`);
+    Object.assign(this.state.flags, lionBossVictoryFacts(result.combatId));
     this.markResolved(node.id);
     if (node.type === 'boss') {
       this.state.run.status = 'completed';

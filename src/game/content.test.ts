@@ -11,6 +11,7 @@ import { prologuePanels } from './prologue';
 import characterQc from '../../public/assets/characters/pixel/canonical-character-qc.json';
 import { DialogueView } from '../ui/DialogueView';
 import { createInitialState } from './store';
+import { buildLionFinaleJudgement, resolveLionFinaleExecution } from './lionFinale';
 
 interface CharacterAssetProfile {
   full: string;
@@ -156,8 +157,18 @@ describe('campaign content integrity', () => {
     expect(combatIds.has('village_raid')).toBe(true);
   });
 
-  it('stages lion_finale_judgement with Alaric, Champion, Maelor, and Séraphine', () => {
-    const dialogue = dialogues.get('lion_finale_judgement')!;
+  it('stages contextual lion_finale_judgement with Alaric, Champion, Maelor, and Séraphine', () => {
+    const state = createInitialState();
+    Object.assign(state.flags, {
+      lionMandateAdvance: true,
+      helpedRefugees: true,
+      prioritizedLoot: true,
+      missionSuccess: true,
+      protectedWitnesses: true,
+      liedToAlaric: true,
+      shadowFragments: true,
+    });
+    const dialogue = buildLionFinaleJudgement(state);
     const speakers = new Set(dialogue.steps.map((step) => step.actorId));
     expect(speakers.has('alaric')).toBe(true);
     expect(speakers.has('lion_champion')).toBe(true);
@@ -165,18 +176,17 @@ describe('campaign content integrity', () => {
     expect(speakers.has('sage_seraphine')).toBe(true);
   });
 
-  it('preserves serpent_captain and lion_chief combat references in lion_finale_judgement', () => {
-    const dialogue = dialogues.get('lion_finale_judgement')!;
-    const combatIds = new Set<string>();
-    for (const step of dialogue.steps) {
-      for (const choice of step.choices ?? []) {
-        for (const effect of choice.effects) {
-          if (effect.type === 'startCombat') combatIds.add(effect.combatId);
-        }
-      }
-    }
-    expect(combatIds.has('serpent_captain')).toBe(true);
-    expect(combatIds.has('lion_chief')).toBe(true);
+  it('preserves serpent_captain and lion_chief through the semantic finale resolver', () => {
+    const accepted = resolveLionFinaleExecution({
+      flags: { helpedRefugees: true, missionSuccess: true, protectedWitnesses: true },
+      reputation: 20,
+    }, 'claim_recognition');
+    const voluntary = resolveLionFinaleExecution({
+      flags: { helpedRefugees: true, missionSuccess: true, protectedWitnesses: true },
+      reputation: 20,
+    }, 'request_trial');
+    expect(accepted.combatId).toBe('serpent_captain');
+    expect(voluntary.combatId).toBe('lion_chief');
   });
 
   it('uses explicit existing narrative art and dialogue actors', () => {
@@ -479,14 +489,17 @@ describe('campaign content integrity', () => {
     expect(() => dialogueChoiceSchema.parse(normal)).not.toThrow();
   });
 
-  it('uses contestable branches in lion_finale_judgement', () => {
+  it('uses deterministic semantic intents in lion_finale_judgement', () => {
     const dialogue = dialogues.get('lion_finale_judgement')!;
-    const contestChoices = dialogue.steps.flatMap((step) => step.choices ?? []).filter((choice) => choice.contest);
-    expect(contestChoices.length, 'contest choices').toBeGreaterThanOrEqual(3);
-    for (const choice of contestChoices) {
-      expect(choice.contest!.success.next, `${choice.text}:success.next`).toBeTruthy();
-      expect(choice.contest!.failure.next, `${choice.text}:failure.next`).toBeTruthy();
-    }
+    const finaleEffects = dialogue.steps
+      .flatMap((step) => step.choices ?? [])
+      .flatMap((choice) => choice.effects)
+      .filter((effect) => effect.type === 'resolveLionFinale');
+    expect(finaleEffects).toEqual([
+      expect.objectContaining({ type: 'resolveLionFinale', intent: 'claim_recognition' }),
+      expect.objectContaining({ type: 'resolveLionFinale', intent: 'request_trial' }),
+    ]);
+    expect(dialogue.steps.flatMap((step) => step.choices ?? []).some((choice) => choice.contest)).toBe(false);
   });
 
   it('validates all dialogue next targets point to existing step ids', () => {
@@ -530,41 +543,22 @@ describe('campaign content integrity', () => {
     }
   });
 
-  it('lion_finale_judgement still preserves serpent_captain and lion_chief combat paths', () => {
+  it('lion_finale_judgement delegates both combat paths to the semantic resolver', () => {
     const dialogue = dialogues.get('lion_finale_judgement')!;
-    const combatIds = new Set<string>();
-    for (const step of dialogue.steps) {
-      for (const choice of step.choices ?? []) {
-        for (const effect of choice.effects) {
-          if (effect.type === 'startCombat') combatIds.add(effect.combatId);
-        }
-        if (choice.contest) {
-          for (const effect of choice.contest.success.effects) {
-            if (effect.type === 'startCombat') combatIds.add(effect.combatId);
-          }
-          for (const effect of choice.contest.failure.effects) {
-            if (effect.type === 'startCombat') combatIds.add(effect.combatId);
-          }
-        }
-      }
-    }
-    expect(combatIds.has('serpent_captain'), 'serpent_captain path preserved').toBe(true);
-    expect(combatIds.has('lion_chief'), 'lion_chief path preserved').toBe(true);
+    const choices = dialogue.steps.flatMap((step) => step.choices ?? []);
+    expect(choices.flatMap((choice) => choice.effects).filter((effect) => effect.type === 'startCombat')).toHaveLength(0);
+    expect(choices.flatMap((choice) => choice.effects).filter((effect) => effect.type === 'resolveLionFinale')).toHaveLength(2);
+    expect(resolveLionFinaleExecution({ flags: { missionSuccess: true, helpedRefugees: true }, reputation: 20 }, 'claim_recognition').combatId).toBe('serpent_captain');
+    expect(resolveLionFinaleExecution({ flags: { missionGreed: true }, reputation: 80 }, 'claim_recognition').combatId).toBe('lion_chief');
   });
 
-  it('lionSealAcknowledged is set only on step 6 contest success path', () => {
-    const dialogue = dialogues.get('lion_finale_judgement')!;
-    for (const step of dialogue.steps) {
-      for (const choice of step.choices ?? []) {
-        const topLevelAck = choice.effects.some((e) => e.type === 'setFlag' && e.key === 'lionSealAcknowledged');
-        const successAck = choice.contest?.success.effects.some((e) => e.type === 'setFlag' && e.key === 'lionSealAcknowledged') ?? false;
-        const failureAck = choice.contest?.failure.effects.some((e) => e.type === 'setFlag' && e.key === 'lionSealAcknowledged') ?? false;
-        if (topLevelAck || successAck) {
-          expect(step.id, `lionSealAcknowledged only on step 6, found on ${step.id}`).toBe('6');
-        }
-        expect(failureAck, `${step.id}:failure must not set lionSealAcknowledged`).toBe(false);
-      }
-    }
+  it('lionSealAcknowledged is produced only by an accepted semantic claim before combat', () => {
+    const accepted = resolveLionFinaleExecution({ flags: { missionSuccess: true, helpedRefugees: true }, reputation: 20 }, 'claim_recognition');
+    const rejected = resolveLionFinaleExecution({ flags: { missionGreed: true }, reputation: 80 }, 'claim_recognition');
+    const voluntary = resolveLionFinaleExecution({ flags: { missionSuccess: true, helpedRefugees: true }, reputation: 20 }, 'request_trial');
+    expect(accepted.flagChanges.lionSealAcknowledged).toBe(true);
+    expect(rejected.flagChanges.lionSealAcknowledged).toBeUndefined();
+    expect(voluntary.flagChanges.lionSealAcknowledged).toBeUndefined();
   });
 
   it('witnesses_on_road protectedWitnesses choice has contest', () => {

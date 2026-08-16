@@ -23,10 +23,10 @@ describe('hybrid run system', () => {
     }
   });
 
-  it('creates a 19-node Lion braid with two refuges and three reconverging trials', () => {
+  it('creates a 21-node Lion braid with two management refuges, a final refuge, and three reconverging trials', () => {
     const graph = generateRunGraph(7);
-    expect(graph.nodes).toHaveLength(20);
-    expect(Math.max(...graph.nodes.map((node) => node.depth))).toBe(16);
+    expect(graph.nodes).toHaveLength(21);
+    expect(Math.max(...graph.nodes.map((node) => node.depth))).toBe(17);
     expect(graph.nodes.filter((node) => node.type === 'refuge')).toHaveLength(2);
     expect(graph.nodes.filter((node) => node.type === 'shop')).toHaveLength(0);
     expect(graph.nodes[0]!.id).toBe('lion-camp');
@@ -63,7 +63,7 @@ describe('hybrid run system', () => {
       node = graph.nodes.find((candidate) => candidate.id === node.links[0])!;
       path.push(node.id);
     }
-    expect(path).toHaveLength(17);
+    expect(path).toHaveLength(18);
   });
 
   it('describes route risk, reward and narrative hints for TravelView', () => {
@@ -162,10 +162,21 @@ describe('hybrid run system', () => {
     stale.currentNodeId = 'lion-reserve-trail';
 
     const migrated = migrateState(stale);
-    expect(migrated.run.graph.nodes).toHaveLength(20);
+    expect(migrated.run.graph.nodes).toHaveLength(21);
     expect(migrated.run.currentNodeId).toBe('lion-reserve-trail');
     expect(migrated.flags.helpedRefugees).toBe(true);
     expect(migrated.run.temporaryLoot.gold).toBe(75);
+  });
+
+  it('restores shadow-signs -> final-refuge -> final-judgement in the runtime route', () => {
+    const graph = generateRunGraph(31);
+    const shadow = graph.nodes.find((node) => node.id === 'lion-shadow-signs')!;
+    const refuge = graph.nodes.find((node) => node.id === 'lion-final-refuge')!;
+    expect(shadow.links).toEqual(['lion-final-refuge']);
+    expect(refuge.contentId).toBe('final_refuge');
+    expect(refuge.links).toEqual(['lion-final-judgement']);
+    expect(refuge.depth).toBe(16);
+    expect(graph.nodes.find((node) => node.id === 'lion-final-judgement')?.depth).toBe(17);
   });
 
   it('banks temporary loot at a refuge and drops it after defeat', () => {
