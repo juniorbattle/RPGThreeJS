@@ -176,6 +176,16 @@ export function handleResetAllPresetsRequest(): ResetAllResult {
 
 // ============================================================ V2.6.2 Batch Publish
 
+export interface VfxRegistryIo {
+  readRegistry(): PublishedVfxRegistry;
+  writeRegistryAtomic(registry: PublishedVfxRegistry): void;
+}
+
+const REAL_REGISTRY_IO: VfxRegistryIo = {
+  readRegistry,
+  writeRegistryAtomic,
+};
+
 export interface BatchPublishError {
   actionKey: string;
   reason: string;
@@ -205,7 +215,10 @@ export interface BatchPublishResult {
  * 7. If all valid: ONE atomic registry write (temp → rename).
  * 8. Return complete final registry and summary.
  */
-export function handlePublishAllPresetsRequest(body: string): BatchPublishResult {
+export function handlePublishAllPresetsRequest(
+  body: string,
+  io: VfxRegistryIo = REAL_REGISTRY_IO,
+): BatchPublishResult {
   let parsed: { drafts?: unknown };
   try {
     parsed = JSON.parse(body);
@@ -253,7 +266,7 @@ export function handlePublishAllPresetsRequest(body: string): BatchPublishResult
   }
 
   // Read current registry ONCE and build the resulting registry in memory
-  const currentRegistry = readRegistry();
+  const currentRegistry = io.readRegistry();
   let newRegistry = currentRegistry;
 
   const published: string[] = [];
@@ -299,7 +312,7 @@ export function handlePublishAllPresetsRequest(body: string): BatchPublishResult
 
   // ONE atomic write
   try {
-    writeRegistryAtomic(newRegistry);
+    io.writeRegistryAtomic(newRegistry);
   } catch (writeErr) {
     return { ok: false, errors: [{ actionKey: '_', reason: `Write failed: ${writeErr instanceof Error ? writeErr.message : 'unknown'}` }] };
   }

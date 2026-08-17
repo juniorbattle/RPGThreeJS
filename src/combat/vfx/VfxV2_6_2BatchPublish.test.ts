@@ -1,25 +1,6 @@
 // @vitest-environment happy-dom
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { installVfxComposerPanel } from './CombatVfxComposerPanel';
-import { readFileSync, writeFileSync } from 'node:fs';
-
-let _backupRegistry: string | null = null;
-const REGISTRY_PATH = 'src/combat/vfx/generated/published-vfx-presets.json';
-
-function backupRegistry(): void {
-  _backupRegistry = readFileSync(REGISTRY_PATH, 'utf-8');
-}
-
-function restoreRegistry(): void {
-  if (_backupRegistry !== null) {
-    writeFileSync(REGISTRY_PATH, _backupRegistry, 'utf-8');
-    _backupRegistry = null;
-  }
-}
-
-function setRegistry(registry: PublishedVfxRegistry): void {
-  writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2), 'utf-8');
-}
 
 import {
   createEmptyComposerStore,
@@ -30,7 +11,6 @@ import {
   clearSavedFingerprint,
   getSavedStatus,
   deserializeComposerStore,
-  type ComposerStore,
 } from './VfxComposerPlayback';
 import {
   computeFingerprint,
@@ -43,7 +23,30 @@ import {
   type VfxPresetDraft,
 } from './VfxPresetComposer';
 import { buildBatchPublishPlan } from './BatchPublishPlan';
-import { handlePublishAllPresetsRequest } from '../../dev/vfxPublishDevServer';
+import { handlePublishAllPresetsRequest, type VfxRegistryIo } from '../../dev/vfxPublishDevServer';
+
+// ============================================================ In-memory registry IO
+
+function deepClone<T>(value: T): T {
+  return JSON.parse(JSON.stringify(value)) as T;
+}
+
+function createMemoryRegistryIo(initial: PublishedVfxRegistry) {
+  let registry = deepClone(initial);
+  let writes = 0;
+  const io: VfxRegistryIo = {
+    readRegistry: () => deepClone(registry),
+    writeRegistryAtomic: (next: PublishedVfxRegistry) => {
+      writes++;
+      registry = deepClone(next);
+    },
+  };
+  return {
+    io,
+    getRegistry: () => deepClone(registry),
+    getWriteCount: () => writes,
+  };
+}
 
 // ============================================================ Helpers
 
@@ -291,16 +294,8 @@ describe('V2.6.2 — Batch Publish Plan', () => {
 // ============================================================ Section 32: Atomicity Tests
 
 describe('V2.6.2 — Batch Publish Atomicity (server handler)', () => {
-  beforeEach(() => {
-    backupRegistry();
-    setRegistry(emptyRegistry());
-  });
-
-  afterEach(() => {
-    restoreRegistry();
-  });
-
-  it('A valid, B valid, C invalid → ok=false, zero writes', () => {
+  it('A valid, B valid, C invalid → ok=false, zero writes, registry unchanged', () => {
+    const mem = createMemoryRegistryIo(emptyRegistry());
     const draftA = makeDraft('action_a');
     const draftB = makeDraft('action_b');
     const draftC_invalid = {
@@ -312,21 +307,24 @@ describe('V2.6.2 — Batch Publish Atomicity (server handler)', () => {
     };
 
     const body = JSON.stringify({ drafts: [draftA, draftB, draftC_invalid] });
-    const result = handlePublishAllPresetsRequest(body);
+    const result = handlePublishAllPresetsRequest(body, mem.io);
 
     expect(result.ok).toBe(false);
     expect(result.errors).toBeDefined();
     expect(result.errors!.length).toBeGreaterThan(0);
     expect(result.registry).toBeUndefined();
+    expect(mem.getWriteCount()).toBe(0);
+    expect(mem.getRegistry()).toEqual(emptyRegistry());
   });
 
-  it('A valid, B valid, C valid → ok=true, one atomic write, all three in registry', () => {
+  it('A valid, B valid, C valid → ok=true, exactly one write, all three in registry', () => {
+    const mem = createMemoryRegistryIo(emptyRegistry());
     const draftA = makeDraft('action_a');
     const draftB = makeDraft('action_b');
     const draftC = makeDraft('action_c');
 
     const body = JSON.stringify({ drafts: [draftA, draftB, draftC] });
-    const result = handlePublishAllPresetsRequest(body);
+    const result = handlePublishAllPresetsRequest(body, mem.io);
 
     expect(result.ok).toBe(true);
     expect(result.registry).toBeDefined();
@@ -335,29 +333,30 @@ describe('V2.6.2 — Batch Publish Atomicity (server handler)', () => {
     expect(result.registry!.actions['action_c']).toBeDefined();
     expect(result.publishedCount).toBe(3);
     expect(result.updatedCount).toBe(0);
+    expect(mem.getWriteCount()).toBe(1);
   });
 
-  it('invalid JSON returns error', () => {
-    const result = handlePublishAllPresetsRequest('not json');
+  it('invalid JSON returns error, zero writes', () => {
+    const mem = createMemoryRegistryIo(emptyRegistry());
+    const result = handlePublishAllPresetsRequest('not json', mem.io);
     expect(result.ok).toBe(false);
     expect(result.errors).toBeDefined();
+    expect(mem.getWriteCount()).toBe(0);
   });
 
-  it('missing drafts array returns error', () => {
-    const result = handlePublishAllPresetsRequest(JSON.stringify({}));
+  it('missing drafts array returns error, zero writes', () => {
+    const mem = createMemoryRegistryIo(emptyRegistry());
+    const result = handlePublishAllPresetsRequest(JSON.stringify({}), mem.io);
     expect(result.ok).toBe(false);
     expect(result.errors).toBeDefined();
+    expect(mem.getWriteCount()).toBe(0);
   });
 });
 
 // ============================================================ Section 33: Registry Preservation Test
 
 describe('V2.6.2 — Registry Preservation', () => {
-  afterEach(() => {
-    restoreRegistry();
-  });
-
-  it('batch updates only some actions, others unchanged', () => {
+  it('batch updates only some actions, others unchanged, exactly one write', () => {
     // Start with existing registry
     const existing1 = makeDraft('existing_action_1');
     const existing2 = makeDraftWithCandidate('existing_action_2', 'r1_0489');
@@ -368,16 +367,14 @@ describe('V2.6.2 — Registry Preservation', () => {
     registry = publishEntry(registry, existing2);
     registry = publishEntry(registry, existing3);
 
-    // Set mock fs to return this pre-populated registry
-    backupRegistry();
-    setRegistry(registry);
+    const mem = createMemoryRegistryIo(registry);
 
     // Batch: update existing_action_2 + add new_action_4
     const updated2 = makeDraftWithCandidate('existing_action_2', 'r1_1605');
     const new4 = makeDraft('new_action_4');
 
     const body = JSON.stringify({ drafts: [updated2, new4] });
-    const result = handlePublishAllPresetsRequest(body);
+    const result = handlePublishAllPresetsRequest(body, mem.io);
 
     expect(result.ok).toBe(true);
     expect(result.registry).toBeDefined();
@@ -391,21 +388,14 @@ describe('V2.6.2 — Registry Preservation', () => {
     expect(finalRegistry.actions['existing_action_3']?.fingerprint).toBe(computeFingerprint(existing3));
     // new_action_4 added
     expect(finalRegistry.actions['new_action_4']).toBeDefined();
+    // Exactly one atomic write
+    expect(mem.getWriteCount()).toBe(1);
   });
 });
 
 // ============================================================ Section 34: Fingerprint Parity Test
 
 describe('V2.6.2 — Fingerprint Parity (individual vs batch)', () => {
-  beforeEach(() => {
-    backupRegistry();
-    setRegistry(emptyRegistry());
-  });
-
-  afterEach(() => {
-    restoreRegistry();
-  });
-
   it('individual published fingerprint equals batch published fingerprint for same draft', () => {
     const draft = makeDraft('action_fp_test');
 
@@ -413,13 +403,15 @@ describe('V2.6.2 — Fingerprint Parity (individual vs batch)', () => {
     const individualRegistry = publishEntry(emptyRegistry(), draft);
     const individualFp = individualRegistry.actions['action_fp_test']?.fingerprint;
 
-    // Batch publish
+    // Batch publish via in-memory IO
+    const mem = createMemoryRegistryIo(emptyRegistry());
     const body = JSON.stringify({ drafts: [draft] });
-    const result = handlePublishAllPresetsRequest(body);
+    const result = handlePublishAllPresetsRequest(body, mem.io);
     expect(result.ok).toBe(true);
     const batchFp = result.registry!.actions['action_fp_test']?.fingerprint;
 
     expect(individualFp).toBe(batchFp);
+    expect(mem.getWriteCount()).toBe(1);
   });
 });
 
