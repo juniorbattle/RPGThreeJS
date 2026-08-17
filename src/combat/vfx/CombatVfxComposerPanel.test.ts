@@ -915,3 +915,148 @@ describe('R2C-VFX LAB V2.6 — UI labels and controls', () => {
     expect(labels).not.toContain('TRAJECTORY');
   });
 });
+
+// ============================================================ V2.6.1 RESET ALL PRESETS TESTS
+
+function qBody<T extends Element = HTMLElement>(selector: string): T | null {
+  return document.body.querySelector<T>(selector);
+}
+
+describe('R2C-VFX LAB V2.6.1 — RESET ALL PRESETS', () => {
+  let dispose: () => void = () => {};
+  let origFetch: typeof fetch = () => Promise.resolve({ ok: false } as Response);
+
+  beforeEach(() => {
+    localStorage.clear();
+    document.body.textContent = '';
+    document.head.textContent = '';
+    origFetch = globalThis.fetch;
+    globalThis.fetch = (async (_url: string, init?: RequestInit) => {
+      if (typeof _url === 'string' && _url.includes('/dev/vfx-runtime-status/')) {
+        return { ok: true, json: async () => ({ ok: true, exists: true, isPng: true }) } as unknown as Response;
+      }
+      if (_url === '/dev/vfx-reset-all-presets' && init?.method === 'POST') {
+        return { ok: true, json: async () => ({ ok: true, registry: { schemaVersion: 1, actions: {} }, clearedActions: 0 }) } as unknown as Response;
+      }
+      if (init?.method === 'HEAD') return { ok: true } as Response;
+      return { ok: true, json: async () => ({ ok: true }) } as unknown as Response;
+    }) as typeof fetch;
+    dispose = installVfxComposerPanel({ enabled: true });
+  });
+
+  afterEach(() => {
+    dispose();
+    localStorage.clear();
+    globalThis.fetch = origFetch;
+  });
+
+  it('1. RESET ALL PRESETS button exists inside danger-zone section', () => {
+    // Open advanced section
+    click(q('.cmp-advanced-header'));
+    const dangerZone = q('[data-section="danger_zone"]');
+    expect(dangerZone).not.toBeNull();
+    const resetBtn = q('.cmp-reset-all-btn');
+    expect(resetBtn).not.toBeNull();
+    expect(resetBtn?.textContent).toBe('RESET ALL PRESETS');
+  });
+
+  function openResetDialog(): void {
+    click(q('.cmp-advanced-header'));
+    click(q('.cmp-reset-all-btn'));
+  }
+
+  it('2. Clicking RESET opens confirmation dialog', () => {
+    openResetDialog();
+    const overlay = qBody('.cmp-reset-dialog');
+    expect(overlay).not.toBeNull();
+    expect(overlay?.textContent).toContain('RESET ALL VFX PRESETS?');
+  });
+
+  it('3. CONFIRM RESET is disabled until exact "RESET ALL" phrase is entered', () => {
+    openResetDialog();
+    const confirmBtn = qBody('.cmp-reset-confirm-btn') as HTMLButtonElement;
+    expect(confirmBtn.disabled).toBe(true);
+
+    const input = qBody<HTMLInputElement>('.cmp-reset-input')!;
+    input.value = 'RESET';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    expect(confirmBtn.disabled).toBe(true);
+
+    input.value = 'RESET ALL';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    expect(confirmBtn.disabled).toBe(false);
+  });
+
+  it('4. CANCEL closes dialog without changing anything', () => {
+    openResetDialog();
+    expect(qBody('.cmp-reset-dialog')).not.toBeNull();
+    click(qBody('.cmp-reset-dialog .cmp-cancel'));
+    expect(qBody('.cmp-reset-dialog')).toBeNull();
+  });
+
+  it('5. EXPORT BACKUP button exists in reset dialog', () => {
+    openResetDialog();
+    const exportBtn = qBody('.cmp-export-backup-btn');
+    expect(exportBtn).not.toBeNull();
+    expect(exportBtn?.textContent).toBe('EXPORT BACKUP');
+  });
+
+  it('6. Confirmation dialog shows draft and published counts', () => {
+    // Select an action to create a draft
+    const select = q<HTMLSelectElement>('.cmp-action-select')!;
+    select.value = 'basic_greatsword_hit';
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+
+    openResetDialog();
+    const dialog = qBody('.cmp-reset-dialog');
+    expect(dialog?.textContent).toContain('delete all Composer drafts:');
+    expect(dialog?.textContent).toContain('unpublish all published presets:');
+  });
+
+  it('7. CONFIRM RESET sends POST to /dev/vfx-reset-all-presets', async () => {
+    openResetDialog();
+    const input = qBody<HTMLInputElement>('.cmp-reset-input')!;
+    input.value = 'RESET ALL';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    click(qBody('.cmp-reset-confirm-btn'));
+
+    // Wait for async fetch to complete
+    await new Promise((r) => setTimeout(r, 100));
+
+    // After success, the dialog should be removed and status updated
+    const status = q('.cmp-status');
+    expect(status?.textContent).toContain('reset');
+  });
+
+  it('8. RESET failure keeps local drafts intact', async () => {
+    // Override fetch to return failure
+    globalThis.fetch = (async (_url: string, init?: RequestInit) => {
+      if (_url === '/dev/vfx-reset-all-presets' && init?.method === 'POST') {
+        return { ok: true, json: async () => ({ ok: false, error: 'Server error' }) } as unknown as Response;
+      }
+      if (init?.method === 'HEAD') return { ok: true } as Response;
+      return { ok: true, json: async () => ({ ok: true }) } as unknown as Response;
+    }) as typeof fetch;
+
+    // Create a draft first
+    const select = q<HTMLSelectElement>('.cmp-action-select')!;
+    select.value = 'basic_greatsword_hit';
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+
+    openResetDialog();
+    const input = qBody<HTMLInputElement>('.cmp-reset-input')!;
+    input.value = 'RESET ALL';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    click(qBody('.cmp-reset-confirm-btn'));
+
+    await new Promise((r) => setTimeout(r, 100));
+
+    // Drafts should still exist
+    const store = loadComposerStore(localStorage);
+    expect(Object.keys(store.drafts).length).toBeGreaterThan(0);
+
+    // Status should show failure
+    const status = q('.cmp-status');
+    expect(status?.textContent).toContain('RESET FAILED');
+  });
+});

@@ -135,3 +135,39 @@ export function handleUnpublishRequest(body: string): UnpublishResult {
     registry: newRegistry,
   };
 }
+
+export interface ResetAllResult {
+  ok: boolean;
+  error?: string;
+  registry?: PublishedVfxRegistry;
+  clearedActions?: number;
+}
+
+/**
+ * V2.6.1 — DEV-only global reset. Atomically writes the canonical empty
+ * registry: { schemaVersion: 1, actions: {} }.
+ *
+ * Uses the same atomic write temp → rename path as publish/unpublish.
+ * Does NOT delete the registry file itself.
+ */
+export function handleResetAllPresetsRequest(): ResetAllResult {
+  const currentRegistry = readRegistry();
+  const clearedActions = Object.keys(currentRegistry.actions).length;
+
+  const emptyRegistry: PublishedVfxRegistry = {
+    schemaVersion: 1,
+    actions: {},
+  };
+
+  try {
+    writeRegistryAtomic(emptyRegistry);
+  } catch (writeErr) {
+    return { ok: false, error: `Write failed: ${writeErr instanceof Error ? writeErr.message : 'unknown'}` };
+  }
+
+  return {
+    ok: true,
+    registry: emptyRegistry,
+    clearedActions,
+  };
+}

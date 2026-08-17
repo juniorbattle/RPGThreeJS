@@ -83,6 +83,40 @@ export function applyAdditiveCameraShake(position: CameraPoint, shake: ShakeSamp
   return { x: position.x + shake.x, y: position.y + shake.y, z: position.z };
 }
 
+/**
+ * V2.6.1 — Screen-space shake conversion constant.
+ *
+ * The CombatCameraFeedback envelope produces samples in the range [-magnitude, magnitude]
+ * where magnitude is authored in world units (LIGHT=0.10, STRONG=0.22).
+ *
+ * This constant converts world-unit samples to screen pixels:
+ *   LIGHT  → 0.10 * 22 = 2.2 pixels peak
+ *   STRONG → 0.22 * 22 = 4.8 pixels peak
+ *
+ * The UV offset is then resolution-adaptive: pixels / viewportDimension.
+ */
+export const SHAKE_PIXELS_PER_UNIT = 22;
+
+/**
+ * V2.6.1 — Converts a shake sample into a screen-space UV offset.
+ *
+ * The offset is resolution-adaptive: the same sample produces the same
+ * pixel-equivalent displacement regardless of viewport size.
+ *
+ * Returns {x: 0, y: 0} when the sample is inactive.
+ */
+export function shakeSampleToUvOffset(
+  sample: ShakeSample,
+  viewportWidth: number,
+  viewportHeight: number,
+): { x: number; y: number } {
+  if (!sample.active) return { x: 0, y: 0 };
+  return {
+    x: (sample.x * SHAKE_PIXELS_PER_UNIT) / Math.max(1, viewportWidth),
+    y: (sample.y * SHAKE_PIXELS_PER_UNIT) / Math.max(1, viewportHeight),
+  };
+}
+
 export class CombatCameraFeedback {
   private envelope: ShakeEnvelope | null = null;
 

@@ -24,7 +24,7 @@ import { getBasicAttackVfxPreset } from './vfx/VfxActionRegistry';
 import { ACTION_PRESENTATION_TIERS, getActionVisualTier, getActionPresentationTuning } from './combatVfxPresentation';
 import { UNIT_MOTION_PRESETS, beginUnitMotion, cancelUnitMotion, createCanonicalUnitMotionBaseline, isUnitMotionCurrent, onceAsync } from './unitMotion';
 import { resolveCombatFeel } from './combatFeel';
-import { CombatCameraFeedback, applyAdditiveCameraShake } from './combatCameraFeedback';
+import { CombatCameraFeedback, applyAdditiveCameraShake, shakeSampleToUvOffset } from './combatCameraFeedback';
 import { installUnitMotionWorkbench } from './UnitMotionWorkbench';
 import { COMBAT_RENDER_LAYERS } from './combatRenderLayers';
 import { resolveBossIntentVisualState } from './bossIntentPresentation';
@@ -151,8 +151,9 @@ const cam=Object.freeze({ yaw:0, dist:COMBAT_PRESENTATION.camera.baseDistance, h
 const cameraFeedback=new CombatCameraFeedback();
 function applyCam(){
   const x=Math.sin(cam.yaw)*cam.dist, z=Math.cos(cam.yaw)*cam.dist;
-  const position=applyAdditiveCameraShake({x:cam.tx+x,y:cam.ty+cam.height,z:cam.tz+z},cameraFeedback.sample());
-  camera.position.set(position.x,position.y,position.z);
+  // V2.6.1: Camera position is now immutable during shake. The visible
+  // impact shake comes from the screen-space post-process pass only.
+  camera.position.set(cam.tx+x,cam.ty+cam.height,cam.tz+z);
   camera.lookAt(cam.tx,cam.ty,cam.tz);
 }
 applyCam();
@@ -208,6 +209,21 @@ const Grade={ uniforms:{ tDiffuse:{value:null}, time:{value:0}, sat:{value:COMBA
     gl_FragColor=c;
   }`};
 const gradePass=new ShaderPass(Grade); composer.addPass(gradePass);
+
+// V2.6.1 — Screen-space impact shake pass. Offsets the entire rendered image
+// in UV space. Works regardless of which camera RenderPass uses (tactical or
+// CombatStage), because it operates on the already-rendered framebuffer.
+const ImpactShake={ uniforms:{ tDiffuse:{value:null}, shakeOffset:{value:new THREE.Vector2(0,0)} },
+  vertexShader:`varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+  fragmentShader:`uniform sampler2D tDiffuse; uniform vec2 shakeOffset; varying vec2 vUv;
+  void main(){
+    vec2 uv=vUv+shakeOffset;
+    // Clamp to edge to avoid wrapping artifacts at screen boundaries
+    uv=clamp(uv,vec2(0.0),vec2(1.0));
+    gl_FragColor=texture2D(tDiffuse,uv);
+  }`};
+const impactShakePass=new ShaderPass(ImpactShake); composer.addPass(impactShakePass);
+
 composer.addPass(new OutputPass());
 
 const combatStage=new CombatStage({renderPass,tacticalScene:scene,tacticalCamera:camera,tiltShiftStrength:TiltShift.uniforms.strength,width:innerWidth,height:innerHeight});
@@ -2215,6 +2231,10 @@ let _last=performance.now(), _t=0,_diagnosticsAt=0,_animationFrame=0,_runtimeDis
 function animate(){ if(_runtimeDisposed)return; _animationFrame=requestAnimationFrame(animate);
   const now=performance.now(); const dt=Math.min(0.05,(now-_last)/1000); _last=now; _t+=dt;
   updateTweens(dt); cameraFeedback.tick(dt); applyCam();
+  // V2.6.1: Feed shake sample into the screen-space post-process pass.
+  const _shakeSample=cameraFeedback.sample();
+  const _shakeOffset=shakeSampleToUvOffset(_shakeSample,innerWidth,innerHeight);
+  ImpactShake.uniforms.shakeOffset.value.set(_shakeOffset.x,_shakeOffset.y);
   for(const u of G.units){ const dx=camera.position.x-u.grp.position.x, dz=camera.position.z-u.grp.position.z; u.spr.rotation.y=Math.atan2(dx,dz); if(u.outline){ u.outline.rotation.y=u.spr.rotation.y; u.outline.material.opacity=Math.max(0.16,u.mat.opacity*0.44); }
     if(u.teamRing){ if(!u.alive){ u.teamRing.material.opacity=0; if(u.teamRingUnder)u.teamRingUnder.material.opacity=0; if(u.teamGlow)u.teamGlow.material.opacity=0; } else if(!u._motionPlaying){ const isActive=u===G.active&&!G.stage&&!G.over,isHover=G.hoverUnit===u,isTarget=G.mode==='target'&&G.pending&&G.pending.keys.has(cellKey(u.gx,u.gz))&&G.active&&u.team!==G.active.team; u.teamRing.material.opacity=Math.min(1,COMBAT_PRESENTATION.units.teamRingOpacity*(isActive?1.16:(isTarget?1.12:(isHover?1.08:0.94)))); if(u.teamRingUnder)u.teamRingUnder.material.opacity=isActive ? .68 : (isTarget ? .64 : (isHover ? .6 : .5)); if(u.teamGlow)u.teamGlow.material.opacity=isActive ? .28 : (isTarget ? .25 : (isHover ? .22 : (u.team==='player' ? .15 : .17))); } }
     syncBossIntentPresentation(u,_t);

@@ -8,7 +8,7 @@ import {
   formatStartupWarning,
   PREVIEW_DIR_NAME,
 } from './src/dev/vfxDevHelpers';
-import { handlePublishRequest, handleUnpublishRequest } from './src/dev/vfxPublishDevServer';
+import { handlePublishRequest, handleUnpublishRequest, handleResetAllPresetsRequest } from './src/dev/vfxPublishDevServer';
 
 interface VfxDevPluginOptions {
   megaPackRoot: string;
@@ -241,6 +241,20 @@ function vfxDevAcquisitionPlugin(options: VfxDevPluginOptions): Plugin {
         } else {
           res.statusCode = 400;
         }
+        res.end(JSON.stringify(result));
+      });
+
+      // ---- Reset all presets endpoint (V2.6.1) ----
+      server.middlewares.use('/dev/vfx-reset-all-presets', async (req, res) => {
+        if (req.method !== 'POST') {
+          res.statusCode = 405;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ ok: false, error: 'Method not allowed' }));
+          return;
+        }
+        const result = handleResetAllPresetsRequest();
+        res.setHeader('Content-Type', 'application/json');
+        res.statusCode = result.ok ? 200 : 500;
         res.end(JSON.stringify(result));
       });
     },

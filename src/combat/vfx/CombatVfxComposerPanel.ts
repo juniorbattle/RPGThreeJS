@@ -99,6 +99,7 @@ import {
   setSelectedActionKey,
   exportComposerDrafts,
   importComposerDrafts,
+  createEmptyComposerStore,
   getCandidateCadence,
   isSlotPlayable,
   unplayableSlotCandidates,
@@ -1196,6 +1197,112 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     document.body.appendChild(overlay);
   }
 
+  function showResetAllConfirmation(): void {
+    const overlay = document.createElement('div');
+    overlay.className = 'cmp-confirm-overlay';
+
+    const dialog = document.createElement('div');
+    dialog.className = 'cmp-confirm-dialog cmp-reset-dialog';
+
+    const title = document.createElement('div');
+    title.className = 'cmp-confirm-title cmp-danger-title';
+    title.textContent = 'RESET ALL VFX PRESETS?';
+    dialog.appendChild(title);
+
+    const draftCount = Object.keys(store.drafts).length;
+    const registry = getActiveRegistry();
+    const publishedCount = Object.keys(registry.actions).length;
+
+    const desc = document.createElement('div');
+    desc.className = 'cmp-confirm-summary';
+    desc.textContent = [
+      'This will permanently:',
+      `  • delete all Composer drafts: ${draftCount}`,
+      `  • unpublish all published presets: ${publishedCount}`,
+      '  • restore static fallback VFX',
+      '',
+      'VFX spritesheet assets will NOT be deleted.',
+      'Export your drafts first if you want a backup.',
+    ].join('\n');
+    dialog.appendChild(desc);
+
+    const inputLabel = document.createElement('div');
+    inputLabel.className = 'cmp-reset-input-label';
+    inputLabel.textContent = 'Type RESET ALL to confirm:';
+    dialog.appendChild(inputLabel);
+
+    const textInput = document.createElement('input');
+    textInput.type = 'text';
+    textInput.className = 'cmp-reset-input';
+    textInput.placeholder = 'RESET ALL';
+    dialog.appendChild(textInput);
+
+    const btnRow = document.createElement('div');
+    btnRow.className = 'cmp-confirm-buttons';
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.className = 'cmp-btn cmp-cancel';
+    cancelBtn.textContent = 'CANCEL';
+    cancelBtn.addEventListener('click', () => { overlay.remove(); });
+    btnRow.appendChild(cancelBtn);
+
+    const exportBtn = document.createElement('button');
+    exportBtn.className = 'cmp-btn cmp-export-backup-btn';
+    exportBtn.textContent = 'EXPORT BACKUP';
+    exportBtn.addEventListener('click', () => {
+      const json = exportComposerDrafts(store);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `r2c-vfx-composer-drafts-backup-${Date.now()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      statusLine.textContent = `Exported ${draftCount} draft(s) as backup`;
+    });
+    btnRow.appendChild(exportBtn);
+
+    const confirmBtn = document.createElement('button');
+    confirmBtn.className = 'cmp-btn cmp-reset-confirm-btn';
+    confirmBtn.textContent = 'CONFIRM RESET';
+    confirmBtn.disabled = true;
+    textInput.addEventListener('input', () => {
+      confirmBtn.disabled = textInput.value !== 'RESET ALL';
+    });
+    confirmBtn.addEventListener('click', async () => {
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = 'Resetting…';
+      try {
+        const res = await fetch('/dev/vfx-reset-all-presets', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        const data = await res.json() as { ok: boolean; error?: string; registry?: PublishedVfxRegistry; clearedActions?: number };
+        if (data.ok && data.registry) {
+          __devUpdateOverlay(data.registry);
+          store = createEmptyComposerStore();
+          saveComposerStore(localStorage, store);
+          statusLine.textContent = `All Composer drafts and published VFX presets were reset. Static fallback VFX restored.`;
+          overlay.remove();
+          render();
+        } else {
+          statusLine.textContent = `RESET FAILED: ${data.error ?? 'unknown'}`;
+          confirmBtn.disabled = false;
+          confirmBtn.textContent = 'CONFIRM RESET';
+        }
+      } catch (err) {
+        statusLine.textContent = `RESET FAILED: ${err instanceof Error ? err.message : 'unknown'}`;
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = 'CONFIRM RESET';
+      }
+    });
+    btnRow.appendChild(confirmBtn);
+
+    dialog.appendChild(btnRow);
+    overlay.appendChild(dialog);
+    document.body.appendChild(overlay);
+  }
+
   function renderAdvanced(draft: VfxPresetDraft): HTMLElement {
     const section = document.createElement('section');
     section.className = 'cmp-section cmp-advanced';
@@ -1300,6 +1407,23 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     portable.appendChild(buildButton('IMPORT DRAFTS...', 'cmp-import-drafts', () => fileInput.click()));
     portable.appendChild(fileInput);
     body.appendChild(portable);
+
+    // ---- DANGER ZONE: Reset all presets (V2.6.1)
+    const dangerZone = document.createElement('div');
+    dangerZone.className = 'cmp-danger-zone';
+    dangerZone.dataset.section = 'danger_zone';
+    const dangerTitle = document.createElement('div');
+    dangerTitle.className = 'cmp-danger-title';
+    dangerTitle.textContent = 'DANGER ZONE';
+    dangerZone.appendChild(dangerTitle);
+    const dangerDesc = document.createElement('div');
+    dangerDesc.className = 'cmp-danger-desc';
+    dangerDesc.textContent = 'Reset all Composer drafts and published VFX presets. Static fallback VFX will be restored. VFX spritesheet assets will NOT be deleted.';
+    dangerZone.appendChild(dangerDesc);
+    dangerZone.appendChild(buildButton('RESET ALL PRESETS', 'cmp-reset-all-btn', () => {
+      showResetAllConfirmation();
+    }));
+    body.appendChild(dangerZone);
 
     section.appendChild(body);
     return section;
@@ -1452,6 +1576,17 @@ function addComposerStyle(): void {
     .cmp-confirm-btn{border-color:#c47a2a;background:#3a2410;color:#ffd9a0}
     .cmp-unpublish-btn{border-color:#8c3a3a;background:#2f0d0d;color:#ff9a9a}
     .cmp-cancel{border-color:#3a5c70;background:#122b3c}
+    #${COMPOSER_ROOT_ID} .cmp-danger-zone{margin-top:12px;padding:10px;border:1px solid #5a1a1a;border-radius:6px;background:rgba(60,10,10,.3)}
+    #${COMPOSER_ROOT_ID} .cmp-danger-title{color:#ff6a5a;font-size:11px;font-weight:800;letter-spacing:.08em;margin-bottom:6px}
+    #${COMPOSER_ROOT_ID} .cmp-danger-desc{color:#c9a0a0;font-size:10px;line-height:1.4;margin-bottom:8px}
+    #${COMPOSER_ROOT_ID} .cmp-reset-all-btn{border-color:#8c3a3a;background:#2f0d0d;color:#ff9a9a;font-weight:800;padding:8px;letter-spacing:.05em}
+    .cmp-reset-dialog{border-color:#5a1a1a !important}
+    .cmp-reset-input-label{color:#ff9a9a;font-size:11px;font-weight:700;margin-bottom:4px}
+    .cmp-reset-input{width:100%;padding:6px 8px;border:1px solid #5a1a1a;border-radius:4px;background:#1a0808;color:#ffd9d9;font:12px 'Segoe UI',system-ui,sans-serif;margin-bottom:8px}
+    .cmp-reset-input:focus{outline:none;border-color:#8c3a3a}
+    .cmp-reset-confirm-btn{border-color:#8c3a3a;background:#2f0d0d;color:#ff9a9a}
+    .cmp-reset-confirm-btn:disabled{opacity:.4;cursor:not-allowed}
+    .cmp-export-backup-btn{border-color:#3a8c4a;background:#0d2f1a;color:#a0d9b0}
   `;
   document.head.appendChild(style);
 }

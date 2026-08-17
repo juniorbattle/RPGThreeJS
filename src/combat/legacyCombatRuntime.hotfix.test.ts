@@ -133,10 +133,19 @@ describe('V10F final hotfix runtime contracts', () => {
     expect(runtimeSource).not.toContain('camera.fov=cl(');
   });
 
-  it('keeps only bounded additive camera shake over the immutable composition', () => {
+  it('V2.6.1: screen-space shake replaces world-camera shake', () => {
+    // applyAdditiveCameraShake is still imported (backward compat) but NOT used in applyCam
     expect(runtimeSource).toContain('applyAdditiveCameraShake');
+    // cameraFeedback.sample() is used in the animate loop for the post-process pass
     expect(runtimeSource).toContain('cameraFeedback.sample()');
+    expect(runtimeSource).toContain('shakeSampleToUvOffset');
+    expect(runtimeSource).toContain('ImpactShake');
+    expect(runtimeSource).toContain('impactShakePass');
+    // Camera position is set directly from cam baseline, without applyAdditiveCameraShake
+    expect(runtimeSource).toContain('camera.position.set(cam.tx+x,cam.ty+cam.height,cam.tz+z)');
     expect(runtimeSource).toContain('camera.lookAt(cam.tx,cam.ty,cam.tz)');
+    // The old world-camera shake path is removed from applyCam
+    expect(runtimeSource).not.toContain('applyAdditiveCameraShake({x:cam.tx+x');
     expect(runtimeSource).not.toContain("if(k==='q')rotateCam");
     expect(runtimeSource).not.toContain("if(k==='e')rotateCam");
   });
