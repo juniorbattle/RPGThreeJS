@@ -89,6 +89,23 @@ export const DEFAULT_POSITION_MODE: VfxPositionMode = 'FIXED';
 export const DEFAULT_TRAVEL_FROM: VfxTravelEndpoint = 'CASTER_FRONT';
 export const DEFAULT_TRAVEL_TO: VfxTravelEndpoint = 'TARGET';
 
+// ============================================================ Trajectory
+
+/**
+ * V2.6 TRAJECTORY — selectable path shape for TRAVEL slots.
+ *
+ *   STRAIGHT  — linear lerp from FROM to TO (the V2.5 default).
+ *   ARC_LOW   — modest vertical parabolic lift.
+ *   ARC_HIGH  — large vertical parabolic lift.
+ *
+ * Only TRAVEL slots use this value. FIXED slots ignore it entirely.
+ * Missing field means STRAIGHT for backward compatibility.
+ */
+export type VfxTrajectoryProfile = 'STRAIGHT' | 'ARC_LOW' | 'ARC_HIGH';
+
+export const VFX_TRAJECTORY_PROFILES: readonly VfxTrajectoryProfile[] = ['STRAIGHT', 'ARC_LOW', 'ARC_HIGH'];
+export const DEFAULT_TRAJECTORY_PROFILE: VfxTrajectoryProfile = 'STRAIGHT';
+
 // ============================================================ Transform Profiles
 
 /**
@@ -238,6 +255,8 @@ export interface VfxVisualSlot {
   travelFrom?: VfxTravelEndpoint;
   /** TRAVEL destination. Only meaningful when positionMode is TRAVEL. */
   travelTo?: VfxTravelEndpoint;
+  /** V2.6 TRAJECTORY path shape. Only meaningful when positionMode is TRAVEL. Missing means STRAIGHT. */
+  trajectoryProfile?: VfxTrajectoryProfile;
   /** DIRECTION (user-facing). Stored as `aimProfile`. Defaults to FIXED. */
   aimProfile?: VfxAimProfile;
   /** ROTATION correction of the source's native angle, in degrees. Defaults to 0. */
@@ -862,6 +881,7 @@ export function createVisualSlot(
     ...(overrides.positionMode ? { positionMode: overrides.positionMode } : {}),
     ...(overrides.travelFrom ? { travelFrom: overrides.travelFrom } : {}),
     ...(overrides.travelTo ? { travelTo: overrides.travelTo } : {}),
+    ...(overrides.trajectoryProfile ? { trajectoryProfile: overrides.trajectoryProfile } : {}),
     ...(overrides.aimProfile ? { aimProfile: overrides.aimProfile } : {}),
     ...(overrides.rotationDegrees != null ? { rotationDegrees: overrides.rotationDegrees } : {}),
     ...(overrides.mirrorProfile ? { mirrorProfile: overrides.mirrorProfile } : {}),
@@ -911,7 +931,7 @@ export function updateSlotProfile(
   slotId: string,
   patch: Partial<Pick<VfxVisualSlot,
     | 'sizeProfile' | 'timingProfile' | 'placementProfile'
-    | 'travelFrom' | 'travelTo'
+    | 'travelFrom' | 'travelTo' | 'trajectoryProfile'
     | 'aimProfile' | 'rotationDegrees' | 'mirrorProfile' | 'pivotProfile'>>,
 ): VfxPresetDraft {
   return {
@@ -947,11 +967,32 @@ export function setSlotPositionMode(
         positionMode: 'TRAVEL',
         travelFrom: slot.travelFrom ?? DEFAULT_TRAVEL_FROM,
         travelTo: slot.travelTo ?? DEFAULT_TRAVEL_TO,
+        ...(slot.trajectoryProfile ? { trajectoryProfile: slot.trajectoryProfile } : {}),
       };
       // Seed direction/mirror only when the author has never touched them.
       if (slot.aimProfile == null) seeded.aimProfile = DEFAULT_TRAVEL_DIRECTION_PROFILE;
       if (slot.mirrorProfile == null) seeded.mirrorProfile = DEFAULT_TRAVEL_MIRROR_PROFILE;
       return seeded;
+    }),
+    updatedAt: Date.now(),
+  };
+}
+
+/** Sets the V2.6 TRAJECTORY profile on a slot. Only meaningful for TRAVEL slots. */
+export function setSlotTrajectoryProfile(
+  draft: VfxPresetDraft,
+  slotId: string,
+  profile: VfxTrajectoryProfile,
+): VfxPresetDraft {
+  return {
+    ...draft,
+    visualSlots: draft.visualSlots.map((slot) => {
+      if (slot.id !== slotId) return slot;
+      if (profile === DEFAULT_TRAJECTORY_PROFILE) {
+        const { trajectoryProfile: _cleared, ...rest } = slot;
+        return rest;
+      }
+      return { ...slot, trajectoryProfile: profile };
     }),
     updatedAt: Date.now(),
   };
@@ -1141,6 +1182,8 @@ export interface CompiledVfxSlot {
   travelFromAnchor?: VfxAnchor;
   /** Resolved travel destination anchor. Present only for TRAVEL slots. */
   travelToAnchor?: VfxAnchor;
+  /** Resolved V2.6 trajectory profile. Present only for TRAVEL slots. */
+  trajectoryProfile?: VfxTrajectoryProfile;
   /** Resolved DIRECTION mode (stored as aimProfile in the draft). */
   aimProfile: VfxAimProfile;
   /** Resolved authored ROTATION offset in radians. */
@@ -1228,6 +1271,7 @@ export function compileDraft(draft: VfxPresetDraft, options: CompileDraftOptions
     const travelling = positionMode === 'TRAVEL';
     const travelFrom = slot.travelFrom ?? DEFAULT_TRAVEL_FROM;
     const travelTo = slot.travelTo ?? DEFAULT_TRAVEL_TO;
+    const trajectoryProfile = slot.trajectoryProfile ?? DEFAULT_TRAJECTORY_PROFILE;
     // Slot-local impact point. Automatically follows PHASE, SPEED, and POSITION changes.
     const impactTime = Math.round((startTime + resolveSlotLocalImpactTime(duration, positionMode)) * 1000) / 1000;
     const technical = options.includeTechnical && slotFxAuthored
@@ -1251,6 +1295,7 @@ export function compileDraft(draft: VfxPresetDraft, options: CompileDraftOptions
       positionMode,
       ...(travelling ? { travelFromAnchor: resolveTravelAnchor(travelFrom) } : {}),
       ...(travelling ? { travelToAnchor: resolveTravelAnchor(travelTo) } : {}),
+      ...(travelling && trajectoryProfile !== DEFAULT_TRAJECTORY_PROFILE ? { trajectoryProfile } : {}),
       aimProfile: direction,
       rotation,
       mirrorX,
@@ -1344,6 +1389,7 @@ export function validateDraft(raw: unknown): raw is VfxPresetDraft {
     if (s.positionMode != null && !VALID_POSITION_MODES.has(s.positionMode as VfxPositionMode)) return false;
     if (s.travelFrom != null && !VALID_TRAVEL_FROM.has(s.travelFrom as VfxTravelEndpoint)) return false;
     if (s.travelTo != null && !VALID_TRAVEL_TO.has(s.travelTo as VfxTravelEndpoint)) return false;
+    if (s.trajectoryProfile != null && !VFX_TRAJECTORY_PROFILES.includes(s.trajectoryProfile as VfxTrajectoryProfile)) return false;
     if (s.aimProfile != null && !VALID_AIM.has(s.aimProfile as VfxAimProfile)) return false;
     if (s.rotationDegrees != null && typeof s.rotationDegrees !== 'number') return false;
     if (s.mirrorProfile != null && !VALID_MIRROR.has(s.mirrorProfile as VfxMirrorProfile)) return false;
@@ -1487,7 +1533,7 @@ export function createDraftFromAction(source: MigrationSource): VfxPresetDraft {
     presetId: source.presetId ?? `composer_${source.actionKey}`,
     visualSlots,
     choreography: visualSlots.length >= 3 ? 'SEQUENCE' : 'TOGETHER',
-    technicalPolish: 'AUTO',
+    technicalPolish: 'OFF',
     autoPlacement,
     ...(source.tier !== undefined ? { tier: source.tier } : {}),
     updatedAt: Date.now(),

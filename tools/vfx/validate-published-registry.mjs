@@ -25,6 +25,7 @@ const VALID_AIM = new Set(['FIXED', 'TO_TARGET', 'ALONG_PATH']);
 const VALID_MIRROR = new Set(['NONE', 'HORIZONTAL', 'VERTICAL', 'BOTH', 'AUTO_HORIZONTAL']);
 const VALID_PIVOT = new Set(['CENTER', 'LEFT', 'RIGHT', 'TOP', 'BOTTOM']);
 const VALID_IMPACT_POWERS = new Set(['LIGHT', 'STRONG']);
+const VALID_TRAJECTORY = new Set(['STRAIGHT', 'ARC_LOW', 'ARC_HIGH']);
 const MAX_PHASE = 15;
 const VALID_CHOREOGRAPHIES = new Set(['TOGETHER', 'SEQUENCE', 'PAIR_THEN_LAST']);
 const VALID_POLISH = new Set(['AUTO', 'OFF', 'LIGHT', 'STRONG']);
@@ -60,6 +61,7 @@ function validateRegistry(registry) {
       if (s.positionMode != null && !VALID_POSITION_MODES.has(s.positionMode)) errors.push(`[${actionKey}] Slot ${i}: positionMode invalid.`);
       if (s.travelFrom != null && !VALID_TRAVEL_FROM.has(s.travelFrom)) errors.push(`[${actionKey}] Slot ${i}: travelFrom invalid.`);
       if (s.travelTo != null && !VALID_TRAVEL_TO.has(s.travelTo)) errors.push(`[${actionKey}] Slot ${i}: travelTo invalid.`);
+      if (s.trajectoryProfile != null && !VALID_TRAJECTORY.has(s.trajectoryProfile)) errors.push(`[${actionKey}] Slot ${i}: trajectoryProfile invalid.`);
       if (s.positionMode === 'TRAVEL' && s.travelFrom == null && s.travelTo == null) errors.push(`[${actionKey}] Slot ${i}: TRAVEL requires travelFrom and/or travelTo.`);
       if (s.phase != null && (!Number.isInteger(s.phase) || s.phase < 0 || s.phase > MAX_PHASE)) errors.push(`[${actionKey}] Slot ${i}: phase must be an integer 0..${MAX_PHASE}.`);
       if (s.impactFx != null) {

@@ -44,7 +44,7 @@ const copyCameraState = (state: CameraState): CameraState => ({ ...state });
 export const STATIC_COMBAT_CAMERA_POLICY: Readonly<CombatCameraPolicy> = Object.freeze({
   staticCombatCamera: true,
   shakeEnabled: true,
-  maxShakeMagnitude: 0.035,
+  maxShakeMagnitude: 0.30,
 });
 
 export function snapshotCameraState(state: Omit<CameraState, 'fov'>, fov: number): CameraState {

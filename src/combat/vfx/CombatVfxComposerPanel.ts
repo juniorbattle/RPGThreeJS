@@ -53,14 +53,17 @@ import {
   VFX_TRAVEL_FROM_ENDPOINTS,
   VFX_TRAVEL_TO_ENDPOINTS,
   VFX_IMPACT_POWERS,
+  VFX_TRAJECTORY_PROFILES,
   DEFAULT_ROTATION_DEGREES,
   DEFAULT_PIVOT_PROFILE,
   DEFAULT_TRAVEL_FROM,
   DEFAULT_TRAVEL_TO,
+  DEFAULT_TRAJECTORY_PROFILE,
   DEFAULT_IMPACT_POWER,
   DEFAULT_PHASE,
   MAX_PHASE,
   setSlotPositionMode,
+  setSlotTrajectoryProfile,
   nudgeSlotPhase,
   toggleSlotImpactFx,
   setSlotImpactPower,
@@ -84,6 +87,7 @@ import type {
   VfxPositionMode,
   VfxTravelEndpoint,
   VfxImpactPower,
+  VfxTrajectoryProfile,
 } from './VfxPresetComposer';
 import {
   loadComposerStore,
@@ -246,7 +250,6 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     root.appendChild(renderVisualSlots(draft));
     if (catalogueOpen) root.appendChild(renderCataloguePicker(draft));
     root.appendChild(renderComposition(draft));
-    root.appendChild(renderTechnicalPolish(draft));
     root.appendChild(renderPrimaryActions(draft));
     root.appendChild(renderAdvanced(draft));
     root.appendChild(statusLine);
@@ -419,12 +422,15 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
 
   /** Compact labels used by the normal slot UI. */
   const AT_LABELS: Record<string, string> = {
-    AUTO: 'AUTO', TARGET: 'TARGET', FRONT: 'FRONT', BACK: 'BACK', TOP: 'TOP',
-    BOTTOM: 'BOTTOM', CASTER: 'CASTER', CASTER_FRONT: 'C.F', CASTER_BACK: 'C.B', GROUND: 'GROUND',
+    AUTO: 'AUTO', TARGET: 'TARGET', FRONT: 'T.FRONT', BACK: 'T.BACK', TOP: 'T.TOP',
+    BOTTOM: 'T.BOTTOM', CASTER: 'CASTER', CASTER_FRONT: 'C.FRONT', CASTER_BACK: 'C.BACK', GROUND: 'GROUND',
   };
   const TRAVEL_LABELS: Record<string, string> = {
-    CASTER: 'CASTER', CASTER_FRONT: 'C.F', CASTER_BACK: 'C.B', TARGET: 'TARGET',
-    FRONT: 'FRONT', BACK: 'BACK', TOP: 'TOP', BOTTOM: 'BOTTOM', GROUND: 'GROUND', SKY: 'SKY',
+    CASTER: 'CASTER', CASTER_FRONT: 'C.FRONT', CASTER_BACK: 'C.BACK', TARGET: 'TARGET',
+    FRONT: 'T.FRONT', BACK: 'T.BACK', TOP: 'T.TOP', BOTTOM: 'T.BOTTOM', GROUND: 'GROUND', SKY: 'SKY',
+  };
+  const TRAJECTORY_LABELS: Record<string, string> = {
+    STRAIGHT: 'STRAIGHT', ARC_LOW: 'ARC LOW', ARC_HIGH: 'ARC HIGH',
   };
   const DIRECTION_LABELS: Record<string, string> = {
     FIXED: 'FIXED', TO_TARGET: 'TO TARGET', ALONG_PATH: 'ALONG PATH',
@@ -464,7 +470,6 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
       const channels: string[] = [];
       if (slot.impactFx?.flash) channels.push('F');
       if (slot.impactFx?.shake) channels.push('S');
-      if (slot.impactFx?.hitStop) channels.push('H');
       badges.push(`FX: ${channels.join('+')}`);
     }
     return badges;
@@ -512,6 +517,11 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
         'TO', VFX_TRAVEL_TO_ENDPOINTS, slot.travelTo ?? DEFAULT_TRAVEL_TO,
         (value) => mutate(updateSlotProfile(draft, slot.id, { travelTo: value })),
         TRAVEL_LABELS,
+      ));
+      profiles.appendChild(buildProfileControl<VfxTrajectoryProfile>(
+        'TRAJECTORY', VFX_TRAJECTORY_PROFILES, slot.trajectoryProfile ?? DEFAULT_TRAJECTORY_PROFILE,
+        (value) => mutate(setSlotTrajectoryProfile(draft, slot.id, value)),
+        TRAJECTORY_LABELS,
       ));
     }
 
@@ -605,10 +615,9 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     row.appendChild(caption);
     const group = document.createElement('div');
     group.className = 'cmp-profile-group';
-    const channels: Array<{ key: 'flash' | 'shake' | 'hitStop'; label: string }> = [
+    const channels: Array<{ key: 'flash' | 'shake'; label: string }> = [
       { key: 'flash', label: 'FLASH' },
       { key: 'shake', label: 'SHAKE' },
-      { key: 'hitStop', label: 'HITSTOP' },
     ];
     for (const channel of channels) {
       const btn = buildButton(channel.label, 'cmp-profile-btn cmp-fx-btn', () => {
@@ -1028,6 +1037,8 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
       const parts: string[] = [`  SLOT ${i + 1} ${s.candidateId}`, s.sizeProfile, s.timingProfile];
       if (resolveSlotPositionMode(s) === 'TRAVEL') {
         parts.push(`${TRAVEL_LABELS[s.travelFrom ?? DEFAULT_TRAVEL_FROM]} -> ${TRAVEL_LABELS[s.travelTo ?? DEFAULT_TRAVEL_TO]}`);
+        const traj = s.trajectoryProfile ?? DEFAULT_TRAJECTORY_PROFILE;
+        if (traj !== DEFAULT_TRAJECTORY_PROFILE) parts.push(`TRJ ${TRAJECTORY_LABELS[traj] ?? traj}`);
       } else {
         parts.push(`AT ${AT_LABELS[s.placementProfile] ?? s.placementProfile}`);
       }
@@ -1044,7 +1055,6 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
         const channels: string[] = [];
         if (s.impactFx?.flash) channels.push('FLASH');
         if (s.impactFx?.shake) channels.push('SHAKE');
-        if (s.impactFx?.hitStop) channels.push('HITSTOP');
         parts.push(`FX ${channels.join('+')} ${s.impactFx?.power ?? DEFAULT_IMPACT_POWER}`);
       }
       return parts.join(' · ');

@@ -21,7 +21,7 @@ describe('combat camera feedback', () => {
     expect(STATIC_COMBAT_CAMERA_POLICY).toEqual({
       staticCombatCamera: true,
       shakeEnabled: true,
-      maxShakeMagnitude: 0.035,
+      maxShakeMagnitude: 0.30,
     });
   });
 

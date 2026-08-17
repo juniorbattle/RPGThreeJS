@@ -87,7 +87,6 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     expect(sections).toEqual([
       'visual_slots',
       'composition',
-      'technical_polish',
       'primary_actions',
       'advanced',
     ]);
@@ -212,12 +211,12 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
       .toEqual(['QUICK', 'NORMAL', 'LONG']);
   });
 
-  it('16. AT exposes exactly AUTO / TARGET / FRONT / BACK / TOP / BOTTOM / CASTER / CASTER_FRONT / CASTER_BACK / GROUND', () => {
+  it('16. AT exposes exactly AUTO / TARGET / T.FRONT / T.BACK / T.TOP / T.BOTTOM / CASTER / C.FRONT / C.BACK / GROUND', () => {
     click(q('.cmp-add-slot'));
     click(q('.cmp-cat-add'));
     const group = q('[data-profile="at"] .cmp-profile-group')!;
     expect(Array.from(group.querySelectorAll('button')).map((b) => b.textContent))
-      .toEqual(['AUTO', 'TARGET', 'FRONT', 'BACK', 'TOP', 'BOTTOM', 'CASTER', 'C.F', 'C.B', 'GROUND']);
+      .toEqual(['AUTO', 'TARGET', 'T.FRONT', 'T.BACK', 'T.TOP', 'T.BOTTOM', 'CASTER', 'C.FRONT', 'C.BACK', 'GROUND']);
   });
 
   it('17. choosing SIZE=MID TIMING=NORMAL PLACEMENT=TARGET persists', () => {
@@ -337,12 +336,12 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     expect(dec.disabled).toBe(true);
   });
 
-  it('18i. IMPACT FX exposes FLASH / SHAKE / HITSTOP toggles', () => {
+  it('18i. IMPACT FX exposes FLASH / SHAKE toggles (V2.6: HITSTOP removed)', () => {
     click(q('.cmp-add-slot'));
     click(q('.cmp-cat-add'));
     const group = q('[data-profile="impact_fx"] .cmp-profile-group')!;
     const labels = Array.from(group.querySelectorAll('button')).map((b) => b.textContent);
-    expect(labels).toEqual(['FLASH', 'SHAKE', 'HITSTOP']);
+    expect(labels).toEqual(['FLASH', 'SHAKE']);
   });
 
   it('18j. toggling FLASH enables it and shows POWER control', () => {
@@ -459,17 +458,18 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     expect(qa('.cmp-timeline input')).toHaveLength(0);
   });
 
-  // ---------------------------------------------------------- technical polish
+  // ---------------------------------------------------------- technical polish (V2.6: section removed from normal UI)
 
-  it('26. TECHNICAL POLISH exposes AUTO / OFF / LIGHT / STRONG', () => {
-    expect(qa('.cmp-polish-btn').map((b) => b.textContent)).toEqual(['AUTO', 'OFF', 'LIGHT', 'STRONG']);
+  it('26. TECHNICAL POLISH section is absent from normal UI (V2.6)', () => {
+    expect(q('[data-section="technical_polish"]')).toBeNull();
   });
 
-  it('27. selecting a polish level persists it', () => {
-    click(qa('.cmp-polish-btn')[3]);
+  it('27. new draft default technicalPolish is OFF (V2.6)', () => {
+    const select = q<HTMLSelectElement>('.cmp-action-select')!;
+    select.value = 'basic_greatsword_hit';
+    select.dispatchEvent(new Event('change', { bubbles: true }));
     const draft = Object.values(loadComposerStore(localStorage).drafts)[0]!;
-    expect(draft.technicalPolish).toBe('STRONG');
-    expect(qa('.cmp-polish-btn')[3]!.classList.contains('cmp-active')).toBe(true);
+    expect(draft.technicalPolish).toBe('OFF');
   });
 
   // ---------------------------------------------------------- primary actions
@@ -560,7 +560,6 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   it('36. draft composition survives a panel reinstall (reload)', () => {
     addSlotsFromCatalogue(1);
     click(qa('.cmp-choreo-btn')[1]);
-    click(qa('.cmp-polish-btn')[3]);
     const beforeSlots = qa('.cmp-slot-card').length;
 
     dispose();
@@ -570,7 +569,6 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
 
     expect(qa('.cmp-slot-card').length).toBe(beforeSlots);
     expect(qa('.cmp-choreo-btn')[1]!.classList.contains('cmp-active')).toBe(true);
-    expect(qa('.cmp-polish-btn')[3]!.classList.contains('cmp-active')).toBe(true);
   });
 
   it('37. the selected action survives a panel reinstall', () => {
@@ -812,7 +810,6 @@ describe('R2C-VFX LAB V2.1.2 — Expanded layout regression', () => {
     const sectionKeys = sections.map((s) => s.getAttribute('data-section'));
     expect(sectionKeys).toContain('visual_slots');
     expect(sectionKeys).toContain('composition');
-    expect(sectionKeys).toContain('technical_polish');
     expect(sectionKeys).toContain('primary_actions');
   });
 
@@ -827,5 +824,94 @@ describe('R2C-VFX LAB V2.1.2 — Expanded layout regression', () => {
     expect(q('.cmp-dock')).not.toBeNull();
     expect(q('.cmp-expand')).not.toBeNull();
     expect(q('.cmp-header')).toBeNull();
+  });
+});
+
+// ============================================================ V2.6 UI LABEL TESTS
+
+describe('R2C-VFX LAB V2.6 — UI labels and controls', () => {
+  let dispose: () => void = () => {};
+  let origFetch: typeof fetch = () => Promise.resolve({ ok: false } as Response);
+
+  beforeEach(() => {
+    localStorage.clear();
+    document.body.textContent = '';
+    document.head.textContent = '';
+    origFetch = globalThis.fetch;
+    globalThis.fetch = (async (_url: string, init?: RequestInit) => {
+      if (typeof _url === 'string' && _url.includes('/dev/vfx-runtime-status/')) {
+        return { ok: true, json: async () => ({ ok: true, exists: true, isPng: true }) } as unknown as Response;
+      }
+      if (init?.method === 'HEAD') return { ok: true } as Response;
+      return { ok: true, json: async () => ({ ok: true }) } as unknown as Response;
+    }) as typeof fetch;
+    dispose = installVfxComposerPanel({ enabled: true });
+  });
+
+  afterEach(() => {
+    dispose();
+    localStorage.clear();
+    globalThis.fetch = origFetch;
+  });
+
+  it('1. C.FRONT and C.BACK labels appear in AT options', () => {
+    const select = q<HTMLSelectElement>('.cmp-action-select')!;
+    select.value = 'basic_greatsword_hit';
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    const labels = qa('.cmp-profile-btn').map((b) => b.textContent);
+    expect(labels).toContain('C.FRONT');
+    expect(labels).toContain('C.BACK');
+  });
+
+  it('2. T.FRONT, T.BACK, T.TOP, T.BOTTOM labels appear in AT options', () => {
+    const select = q<HTMLSelectElement>('.cmp-action-select')!;
+    select.value = 'basic_greatsword_hit';
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    const labels = qa('.cmp-profile-btn').map((b) => b.textContent);
+    expect(labels).toContain('T.FRONT');
+    expect(labels).toContain('T.BACK');
+    expect(labels).toContain('T.TOP');
+    expect(labels).toContain('T.BOTTOM');
+  });
+
+  it('3. HITSTOP button is absent from IMPACT FX', () => {
+    const select = q<HTMLSelectElement>('.cmp-action-select')!;
+    select.value = 'basic_greatsword_hit';
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    const fxButtons = qa('[data-profile="impact_fx"] .cmp-fx-btn').map((b) => b.textContent);
+    expect(fxButtons).not.toContain('HITSTOP');
+    expect(fxButtons).toContain('FLASH');
+    expect(fxButtons).toContain('SHAKE');
+  });
+
+  it('4. Legacy Technical Polish section is absent from normal UI', () => {
+    const sections = qa('[data-section]').map((s) => s.getAttribute('data-section'));
+    expect(sections).not.toContain('technical_polish');
+  });
+
+  it('5. TRAJECTORY control appears when POSITION is set to TRAVEL', () => {
+    const select = q<HTMLSelectElement>('.cmp-action-select')!;
+    select.value = 'basic_greatsword_hit';
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+
+    // Click POSITION TRAVEL button
+    const travelBtn = qa('.cmp-profile-btn').find((b) => b.textContent === 'TRAVEL');
+    if (travelBtn) {
+      click(travelBtn);
+      const labels = qa('.cmp-profile-label').map((b) => b.textContent);
+      expect(labels).toContain('TRAJECTORY');
+      const trajButtons = qa('.cmp-profile-btn').map((b) => b.textContent);
+      expect(trajButtons).toContain('STRAIGHT');
+      expect(trajButtons).toContain('ARC LOW');
+      expect(trajButtons).toContain('ARC HIGH');
+    }
+  });
+
+  it('6. TRAJECTORY control is absent when POSITION is FIXED', () => {
+    const select = q<HTMLSelectElement>('.cmp-action-select')!;
+    select.value = 'basic_greatsword_hit';
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    const labels = qa('.cmp-profile-label').map((b) => b.textContent);
+    expect(labels).not.toContain('TRAJECTORY');
   });
 });

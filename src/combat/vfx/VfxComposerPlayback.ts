@@ -340,6 +340,7 @@ export function buildSlotOverrides(slot: CompiledVfxSlot): VfxLabPlaybackOverrid
     positionMode: slot.positionMode,
     ...(slot.travelFromAnchor ? { travelFromAnchor: slot.travelFromAnchor } : {}),
     ...(slot.travelToAnchor ? { travelToAnchor: slot.travelToAnchor } : {}),
+    ...(slot.trajectoryProfile ? { trajectoryProfile: slot.trajectoryProfile } : {}),
   };
 }
 

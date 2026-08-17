@@ -44,6 +44,7 @@ import type {
   VfxTravelEndpoint,
   VfxSlotImpactFx,
   VfxImpactPower,
+  VfxTrajectoryProfile,
 } from './VfxPresetComposer';
 import {
   VFX_SIZE_PROFILES,
@@ -58,6 +59,7 @@ import {
   VFX_TRAVEL_FROM_ENDPOINTS,
   VFX_TRAVEL_TO_ENDPOINTS,
   VFX_IMPACT_POWERS,
+  VFX_TRAJECTORY_PROFILES,
   DEFAULT_AIM_PROFILE,
   DEFAULT_ROTATION_DEGREES,
   DEFAULT_MIRROR_PROFILE,
@@ -65,6 +67,7 @@ import {
   DEFAULT_POSITION_MODE,
   DEFAULT_TRAVEL_FROM,
   DEFAULT_TRAVEL_TO,
+  DEFAULT_TRAJECTORY_PROFILE,
   DEFAULT_PHASE,
   DEFAULT_IMPACT_POWER,
   MAX_PHASE,
@@ -94,6 +97,7 @@ export interface PublishedVfxSlot {
   positionMode?: VfxPositionMode;
   travelFrom?: VfxTravelEndpoint;
   travelTo?: VfxTravelEndpoint;
+  trajectoryProfile?: VfxTrajectoryProfile;
   aimProfile?: VfxAimProfile;
   rotationDegrees?: number;
   mirrorProfile?: VfxMirrorProfile;
@@ -172,6 +176,10 @@ export function computeFingerprint(draft: VfxPresetDraft): string {
         slot.travelFrom ?? DEFAULT_TRAVEL_FROM,
         slot.travelTo ?? DEFAULT_TRAVEL_TO,
       );
+      const trajectory = slot.trajectoryProfile ?? DEFAULT_TRAJECTORY_PROFILE;
+      if (trajectory !== DEFAULT_TRAJECTORY_PROFILE) {
+        parts.push(`TRJ:${trajectory}`);
+      }
     }
     if (phaseAuthored) {
       parts.push(`P${slot.phase ?? DEFAULT_PHASE}`);
@@ -320,6 +328,7 @@ export function validatePublishedEntry(
   const VALID_TRAVEL_FROM = new Set(VFX_TRAVEL_FROM_ENDPOINTS);
   const VALID_TRAVEL_TO = new Set(VFX_TRAVEL_TO_ENDPOINTS);
   const VALID_IMPACT_POWERS = new Set(VFX_IMPACT_POWERS);
+  const VALID_TRAJECTORY_PROFILES = new Set(VFX_TRAJECTORY_PROFILES);
 
   if (!Array.isArray(e.visualSlots)) {
     errors.push('visualSlots must be an array.');
@@ -372,6 +381,9 @@ export function validatePublishedEntry(
       }
       if (slot.travelTo != null && !VALID_TRAVEL_TO.has(slot.travelTo as VfxTravelEndpoint)) {
         errors.push(`Slot ${i}: travelTo must be one of: ${VFX_TRAVEL_TO_ENDPOINTS.join(', ')}.`);
+      }
+      if (slot.trajectoryProfile != null && !VALID_TRAJECTORY_PROFILES.has(slot.trajectoryProfile as VfxTrajectoryProfile)) {
+        errors.push(`Slot ${i}: trajectoryProfile must be one of: ${VFX_TRAJECTORY_PROFILES.join(', ')}.`);
       }
       if (slot.positionMode === 'TRAVEL' && slot.travelFrom == null && slot.travelTo == null) {
         errors.push(`Slot ${i}: TRAVEL requires travelFrom and/or travelTo.`);

@@ -97,6 +97,8 @@ export interface VfxLabPlaybackOverrides {
   travelFromAnchor?: VfxAnchor;
   /** Resolved travel destination anchor. Only used when positionMode is TRAVEL. */
   travelToAnchor?: VfxAnchor;
+  /** V2.6 trajectory profile. Only used when positionMode is TRAVEL. */
+  trajectoryProfile?: string;
 }
 
 export const CINEMATIC_PHASE_TYPES: readonly CinematicPhaseType[] = Object.freeze([
@@ -234,6 +236,38 @@ function directionalRotation(step: VfxStep, context: VfxContext) {
   const source = resolveVfxAnchor('source', context).project(context.camera);
   const target = resolveVfxAnchor(step.targetAnchor ?? 'target', context).project(context.camera);
   return Math.atan2(target.y - source.y, target.x - source.x);
+}
+
+/**
+ * V2.6 TRAJECTORY arc heights in world units.
+ *
+ * The parabolic term is `4 * progress * (1 - progress) * height`, which is
+ * exactly 0 at progress=0 and progress=1 (endpoints are exact) and reaches
+ * its peak of `height` at progress=0.5.
+ */
+const ARC_LOW_HEIGHT = 0.8;
+const ARC_HIGH_HEIGHT = 2.0;
+
+/**
+ * Computes the world-space position along a travel path at a given progress.
+ *
+ * STRAIGHT: linear lerp from start to end.
+ * ARC_LOW / ARC_HIGH: lerp plus a parabolic vertical lift that is exactly 0
+ * at the endpoints and peaks at progress=0.5.
+ */
+function resolveTravelPosition(
+  start: THREE.Vector3,
+  end: THREE.Vector3,
+  progress: number,
+  trajectory: string,
+): THREE.Vector3 {
+  const pos = new THREE.Vector3().lerpVectors(start, end, progress);
+  if (trajectory === 'ARC_LOW') {
+    pos.y += ARC_LOW_HEIGHT * 4 * progress * (1 - progress);
+  } else if (trajectory === 'ARC_HIGH') {
+    pos.y += ARC_HIGH_HEIGHT * 4 * progress * (1 - progress);
+  }
+  return pos;
 }
 
 /**
@@ -622,6 +656,7 @@ export class VfxSystem {
     const travelling = overrides.positionMode === 'TRAVEL'
       && overrides.travelFromAnchor != null
       && overrides.travelToAnchor != null;
+    const trajectoryProfile = overrides.trajectoryProfile ?? 'STRAIGHT';
     const travelStart = travelling
       ? applyOffsets(resolveVfxAnchor(overrides.travelFromAnchor!, context))
       : null;
@@ -711,7 +746,22 @@ export class VfxSystem {
           // TRUE world-space travel: the sprite itself moves while its atlas
           // frames continue animating. No offset animation, no anchor swapping,
           // no teleport at completion.
-          sprite.position.lerpVectors(travelStart, travelEnd, progress);
+          sprite.position.copy(resolveTravelPosition(travelStart, travelEnd, progress, trajectoryProfile));
+          // V2.6: For arc trajectories with ALONG_PATH direction, update rotation
+          // from the local trajectory tangent rather than the global FROM→TO vector.
+          if (trajectoryProfile !== 'STRAIGHT' && directionProfile === 'ALONG_PATH') {
+            const eps = 0.01;
+            const p0 = Math.max(0, progress - eps);
+            const p1 = Math.min(1, progress + eps);
+            if (p1 > p0) {
+              const pos0 = resolveTravelPosition(travelStart, travelEnd, p0, trajectoryProfile);
+              const pos1 = resolveTravelPosition(travelStart, travelEnd, p1, trajectoryProfile);
+              const tangentDelta = projectedScreenDelta(pos0, pos1, context.camera);
+              if (Math.abs(tangentDelta.x) > 0.0001 || Math.abs(tangentDelta.y) > 0.0001) {
+                material.rotation = Math.atan2(tangentDelta.y, tangentDelta.x) + rotationOffset;
+              }
+            }
+          }
         } else if (fixedAnchor) {
           sprite.position.copy(fixedAnchor);
         }
