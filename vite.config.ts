@@ -8,7 +8,7 @@ import {
   formatStartupWarning,
   PREVIEW_DIR_NAME,
 } from './src/dev/vfxDevHelpers';
-import { handlePublishRequest, handleUnpublishRequest, handleResetAllPresetsRequest } from './src/dev/vfxPublishDevServer';
+import { handlePublishRequest, handleUnpublishRequest, handleResetAllPresetsRequest, handlePublishAllPresetsRequest } from './src/dev/vfxPublishDevServer';
 
 interface VfxDevPluginOptions {
   megaPackRoot: string;
@@ -241,6 +241,24 @@ function vfxDevAcquisitionPlugin(options: VfxDevPluginOptions): Plugin {
         } else {
           res.statusCode = 400;
         }
+        res.end(JSON.stringify(result));
+      });
+
+      // ---- Publish all presets endpoint (V2.6.2) ----
+      server.middlewares.use('/dev/vfx-publish-all-presets', async (req, res) => {
+        if (req.method !== 'POST') {
+          res.statusCode = 405;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ ok: false, errors: [{ actionKey: '_', reason: 'Method not allowed' }] }));
+          return;
+        }
+        let body = '';
+        for await (const chunk of req) {
+          body += chunk;
+        }
+        const result = handlePublishAllPresetsRequest(body);
+        res.setHeader('Content-Type', 'application/json');
+        res.statusCode = result.ok ? 200 : 400;
         res.end(JSON.stringify(result));
       });
 

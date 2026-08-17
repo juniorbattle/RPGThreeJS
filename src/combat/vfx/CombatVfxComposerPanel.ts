@@ -106,8 +106,11 @@ import {
   playDraftVisualsOnly,
   playDraftFull,
   playDraftInCombatStage,
+  recordSavedFingerprint,
+  getSavedStatus,
 } from './VfxComposerPlayback';
 import type { ComposerPlaybackContext, ComposerStore, ComposerDisplayMode } from './VfxComposerPlayback';
+import { buildBatchPublishPlan } from './BatchPublishPlan';
 import { ensureDraftRuntimeReady, ensureCandidateRuntimeReady } from './VfxRuntimeReadiness';
 import type { DraftReadinessResult } from './VfxRuntimeReadiness';
 import { resolvePreview } from './VfxPreviewResolver';
@@ -952,9 +955,27 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
 
     section.appendChild(buildButton('SAVE DRAFT', 'cmp-save-draft', () => {
       persist(draft);
+      store = recordSavedFingerprint(store, draft.actionKey, draft);
+      saveComposerStore(localStorage, store);
       statusLine.textContent = `Draft saved: ${draft.actionKey} (${draft.visualSlots.length} slots)`;
       render();
     }));
+
+    // ---- V2.6.2 Saved status for batch ----
+    const savedStatus = getSavedStatus(store, draft.actionKey, draft);
+    const savedBadge = document.createElement('div');
+    savedBadge.className = 'cmp-saved-badge';
+    if (savedStatus === 'NOT_SAVED') {
+      savedBadge.textContent = 'NOT SAVED FOR BATCH';
+      savedBadge.classList.add('cmp-saved-not');
+    } else if (savedStatus === 'READY') {
+      savedBadge.textContent = 'SAVED / READY FOR BATCH';
+      savedBadge.classList.add('cmp-saved-ready');
+    } else {
+      savedBadge.textContent = 'MODIFIED SINCE SAVE';
+      savedBadge.classList.add('cmp-saved-modified');
+    }
+    section.appendChild(savedBadge);
 
     // ---- Publication state ----
     const registry = getActiveRegistry();
@@ -990,6 +1011,16 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
       });
       section.appendChild(unpublishBtn);
     }
+
+    // ---- V2.6.2 PUBLISH ALL SAVED ----
+    const separator = document.createElement('hr');
+    separator.className = 'cmp-batch-sep';
+    section.appendChild(separator);
+
+    const batchBtn = buildButton('PUBLISH ALL SAVED', 'cmp-publish-all', () => {
+      showBatchPublishConfirmation();
+    });
+    section.appendChild(batchBtn);
 
     return section;
   }
@@ -1109,6 +1140,8 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
         const data = await res.json() as { ok: boolean; error?: string; fingerprint?: string; registry?: PublishedVfxRegistry };
         if (data.ok && data.registry) {
           __devUpdateOverlay(data.registry);
+          store = recordSavedFingerprint(store, draft.actionKey, draft);
+          saveComposerStore(localStorage, store);
           statusLine.textContent = `Published: ${draft.actionKey} (fingerprint ${data.fingerprint})`;
           overlay.remove();
           render();
@@ -1188,6 +1221,134 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
         statusLine.textContent = `UNPUBLISH ERROR: ${err instanceof Error ? err.message : 'unknown'}`;
         confirmBtn.disabled = false;
         confirmBtn.textContent = 'CONFIRM UNPUBLISH';
+      }
+    });
+    btnRow.appendChild(confirmBtn);
+
+    dialog.appendChild(btnRow);
+    overlay.appendChild(dialog);
+    document.body.appendChild(overlay);
+  }
+
+  function showBatchPublishConfirmation(): void {
+    const registry = getActiveRegistry();
+    const plan = buildBatchPublishPlan(store, registry);
+
+    const overlay = document.createElement('div');
+    overlay.className = 'cmp-confirm-overlay';
+
+    const dialog = document.createElement('div');
+    dialog.className = 'cmp-confirm-dialog cmp-batch-dialog';
+
+    const title = document.createElement('div');
+    title.className = 'cmp-confirm-title';
+    title.textContent = 'PUBLISH ALL SAVED PRESETS?';
+    dialog.appendChild(title);
+
+    if (!plan.hasEligible && !plan.hasBlocked) {
+      const emptyMsg = document.createElement('div');
+      emptyMsg.className = 'cmp-confirm-summary';
+      emptyMsg.textContent = 'Nothing to publish.\n\nPossible reasons:\n  • all saved presets are already published\n  • drafts were modified since save\n  • drafts have not been explicitly saved';
+      dialog.appendChild(emptyMsg);
+
+      const btnRow = document.createElement('div');
+      btnRow.className = 'cmp-confirm-buttons';
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'cmp-btn cmp-cancel';
+      closeBtn.textContent = 'CLOSE';
+      closeBtn.addEventListener('click', () => { overlay.remove(); });
+      btnRow.appendChild(closeBtn);
+      dialog.appendChild(btnRow);
+      overlay.appendChild(dialog);
+      document.body.appendChild(overlay);
+      return;
+    }
+
+    const summary = document.createElement('div');
+    summary.className = 'cmp-confirm-summary';
+    const savedReady = plan.readyNew.length + plan.readyUpdate.length + plan.readyAlreadyPublished.length;
+    summary.textContent = [
+      `Saved / ready drafts: ${savedReady}`,
+      '',
+      `New publications:        ${plan.readyNew.length}`,
+      `Updates:                   ${plan.readyUpdate.length}`,
+      `Already published:         ${plan.readyAlreadyPublished.length}  — skip`,
+      `Modified since save:       ${plan.modifiedSinceSave.length}  — skip`,
+      `Not explicitly saved:     ${plan.notSaved.length}  — skip`,
+      `Blocked:                   ${plan.blocked.length}`,
+      '',
+      'This will update the durable Published VFX Registry',
+      'in one atomic operation.',
+    ].join('\n');
+    dialog.appendChild(summary);
+
+    // Show blocked details
+    if (plan.hasBlocked) {
+      const blockedSection = document.createElement('div');
+      blockedSection.className = 'cmp-batch-blocked';
+      const blockedTitle = document.createElement('div');
+      blockedTitle.className = 'cmp-warn';
+      blockedTitle.textContent = 'BLOCKED:';
+      blockedSection.appendChild(blockedTitle);
+      for (const blocked of plan.blocked) {
+        const item = document.createElement('div');
+        item.className = 'cmp-batch-blocked-item';
+        item.textContent = `${blocked.actionKey}\n  ${blocked.blockReason ?? 'unknown'}`;
+        blockedSection.appendChild(item);
+      }
+      dialog.appendChild(blockedSection);
+    }
+
+    const btnRow = document.createElement('div');
+    btnRow.className = 'cmp-confirm-buttons';
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.className = 'cmp-btn cmp-cancel';
+    cancelBtn.textContent = 'CANCEL';
+    cancelBtn.addEventListener('click', () => { overlay.remove(); });
+    btnRow.appendChild(cancelBtn);
+
+    const confirmBtn = document.createElement('button');
+    confirmBtn.className = 'cmp-btn cmp-batch-confirm-btn';
+    confirmBtn.textContent = 'CONFIRM PUBLISH ALL';
+    confirmBtn.disabled = plan.hasBlocked || !plan.hasEligible;
+    confirmBtn.addEventListener('click', async () => {
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = 'Publishing…';
+      try {
+        const eligibleDrafts = plan.eligible.map((e) => e.draft);
+        const res = await fetch('/dev/vfx-publish-all-presets', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ drafts: eligibleDrafts }),
+        });
+        const data = await res.json() as {
+          ok: boolean;
+          registry?: PublishedVfxRegistry;
+          publishedCount?: number;
+          updatedCount?: number;
+          unchangedCount?: number;
+          errors?: { actionKey: string; reason: string }[];
+        };
+        if (data.ok && data.registry) {
+          __devUpdateOverlay(data.registry);
+          for (const entry of plan.eligible) {
+            store = recordSavedFingerprint(store, entry.actionKey, entry.draft);
+          }
+          saveComposerStore(localStorage, store);
+          statusLine.textContent = `Batch publish complete: ${data.publishedCount ?? 0} published · ${data.updatedCount ?? 0} updated · ${data.unchangedCount ?? 0} already current.`;
+          overlay.remove();
+          render();
+        } else {
+          const errorList = data.errors?.map((e) => `${e.actionKey}: ${e.reason}`).join('; ') ?? 'unknown';
+          statusLine.textContent = `BATCH PUBLISH FAILED: ${plan.blocked.length > 0 ? `${plan.blocked.length} blocked preset` : errorList}. Nothing was written.`;
+          confirmBtn.disabled = false;
+          confirmBtn.textContent = 'CONFIRM PUBLISH ALL';
+        }
+      } catch (err) {
+        statusLine.textContent = `BATCH PUBLISH ERROR: ${err instanceof Error ? err.message : 'unknown'}`;
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = 'CONFIRM PUBLISH ALL';
       }
     });
     btnRow.appendChild(confirmBtn);
@@ -1587,6 +1748,15 @@ function addComposerStyle(): void {
     .cmp-reset-confirm-btn{border-color:#8c3a3a;background:#2f0d0d;color:#ff9a9a}
     .cmp-reset-confirm-btn:disabled{opacity:.4;cursor:not-allowed}
     .cmp-export-backup-btn{border-color:#3a8c4a;background:#0d2f1a;color:#a0d9b0}
+    #${COMPOSER_ROOT_ID} .cmp-saved-badge{padding:3px 6px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.05em;text-align:center;margin-top:3px}
+    #${COMPOSER_ROOT_ID} .cmp-saved-not{background:rgba(120,120,120,.15);color:#999;border:1px solid #444}
+    #${COMPOSER_ROOT_ID} .cmp-saved-ready{background:rgba(58,140,74,.15);color:#5fd97a;border:1px solid #3a8c4a}
+    #${COMPOSER_ROOT_ID} .cmp-saved-modified{background:rgba(204,122,42,.15);color:#ff9a4a;border:1px solid #c47a2a}
+    #${COMPOSER_ROOT_ID} .cmp-batch-sep{border:none;border-top:1px solid #2a4a60;margin:6px 0}
+    #${COMPOSER_ROOT_ID} .cmp-publish-all{border-color:#3a8c4a;background:#0d2f1a;font-weight:800;padding:8px;letter-spacing:.05em;width:100%}
+    .cmp-batch-confirm-btn{border-color:#3a8c4a;background:#0d2f1a;color:#a0d9b0}
+    .cmp-batch-blocked{margin-top:8px;padding:6px;border:1px solid #8c3a3a;border-radius:4px;background:rgba(60,10,10,.2)}
+    .cmp-batch-blocked-item{color:#ff9a9a;font-size:10px;white-space:pre-wrap;margin-top:3px}
   `;
   document.head.appendChild(style);
 }

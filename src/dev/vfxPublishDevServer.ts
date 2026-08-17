@@ -10,6 +10,8 @@ import {
   validatePublishedEntry,
   serializeRegistry,
   publishedPresetId,
+  computeFingerprint,
+  getPublishedEntry,
   type PublishedVfxRegistry,
 } from '../combat/vfx/PublishedVfxRegistry';
 import { validateDraft, type VfxPresetDraft } from '../combat/vfx/VfxPresetComposer';
@@ -169,5 +171,147 @@ export function handleResetAllPresetsRequest(): ResetAllResult {
     ok: true,
     registry: emptyRegistry,
     clearedActions,
+  };
+}
+
+// ============================================================ V2.6.2 Batch Publish
+
+export interface BatchPublishError {
+  actionKey: string;
+  reason: string;
+}
+
+export interface BatchPublishResult {
+  ok: boolean;
+  registry?: PublishedVfxRegistry;
+  published?: string[];
+  updated?: string[];
+  unchanged?: string[];
+  publishedCount?: number;
+  updatedCount?: number;
+  unchangedCount?: number;
+  errors?: BatchPublishError[];
+}
+
+/**
+ * V2.6.2 — DEV-only atomic batch publication.
+ *
+ * 1. Parse entire batch from request body.
+ * 2. Read current registry ONCE.
+ * 3. Validate every draft independently.
+ * 4. Build the complete resulting registry IN MEMORY.
+ * 5. Validate every resulting PublishedVfxEntry.
+ * 6. If ANY error: return failure, ZERO writes.
+ * 7. If all valid: ONE atomic registry write (temp → rename).
+ * 8. Return complete final registry and summary.
+ */
+export function handlePublishAllPresetsRequest(body: string): BatchPublishResult {
+  let parsed: { drafts?: unknown };
+  try {
+    parsed = JSON.parse(body);
+  } catch {
+    return { ok: false, errors: [{ actionKey: '_', reason: 'Invalid JSON body' }] };
+  }
+
+  const rawDrafts = parsed.drafts;
+  if (!Array.isArray(rawDrafts)) {
+    return { ok: false, errors: [{ actionKey: '_', reason: 'Missing or invalid drafts array' }] };
+  }
+
+  // Parse and validate each draft
+  const drafts: VfxPresetDraft[] = [];
+  const errors: BatchPublishError[] = [];
+
+  for (let i = 0; i < rawDrafts.length; i++) {
+    const item = rawDrafts[i];
+    if (!item || typeof item !== 'object') {
+      errors.push({ actionKey: `index_${i}`, reason: 'Draft is not an object' });
+      continue;
+    }
+    if (!validateDraft(item)) {
+      errors.push({ actionKey: (item as { actionKey?: string }).actionKey ?? `index_${i}`, reason: 'Draft failed schema validation' });
+      continue;
+    }
+    const draft = item as VfxPresetDraft;
+
+    // Candidate validation
+    for (const slot of draft.visualSlots) {
+      if (!getCandidateInventoryRecord(slot.candidateId)) {
+        errors.push({ actionKey: draft.actionKey, reason: `Candidate ${slot.candidateId} not found in inventory` });
+        break;
+      }
+      if (!resolveCandidateSource(slot.candidateId)) {
+        errors.push({ actionKey: draft.actionKey, reason: `Candidate ${slot.candidateId} has unsupported atlas format` });
+        break;
+      }
+    }
+    drafts.push(draft);
+  }
+
+  if (errors.length > 0) {
+    return { ok: false, errors };
+  }
+
+  // Read current registry ONCE and build the resulting registry in memory
+  const currentRegistry = readRegistry();
+  let newRegistry = currentRegistry;
+
+  const published: string[] = [];
+  const updated: string[] = [];
+  const unchanged: string[] = [];
+
+  for (const draft of drafts) {
+    const existingEntry = getPublishedEntry(currentRegistry, draft.actionKey);
+    const draftFp = computeFingerprint(draft);
+
+    if (existingEntry && existingEntry.fingerprint === draftFp) {
+      // Already published with same fingerprint — skip
+      unchanged.push(draft.actionKey);
+      continue;
+    }
+
+    newRegistry = publishEntry(newRegistry, draft);
+
+    if (existingEntry) {
+      updated.push(draft.actionKey);
+    } else {
+      published.push(draft.actionKey);
+    }
+  }
+
+  // Validate every resulting entry that was touched
+  for (const draft of drafts) {
+    const entryValidation = validatePublishedEntry(
+      newRegistry.actions[draft.actionKey],
+      {
+        candidateExists: (id) => getCandidateInventoryRecord(id) !== null,
+        isSupportedFormat: (id) => resolveCandidateSource(id) !== null,
+      },
+    );
+    if (!entryValidation.ok) {
+      errors.push({ actionKey: draft.actionKey, reason: `Validation failed: ${entryValidation.errors.join('; ')}` });
+    }
+  }
+
+  if (errors.length > 0) {
+    return { ok: false, errors };
+  }
+
+  // ONE atomic write
+  try {
+    writeRegistryAtomic(newRegistry);
+  } catch (writeErr) {
+    return { ok: false, errors: [{ actionKey: '_', reason: `Write failed: ${writeErr instanceof Error ? writeErr.message : 'unknown'}` }] };
+  }
+
+  return {
+    ok: true,
+    registry: newRegistry,
+    published,
+    updated,
+    unchanged,
+    publishedCount: published.length,
+    updatedCount: updated.length,
+    unchangedCount: unchanged.length,
   };
 }

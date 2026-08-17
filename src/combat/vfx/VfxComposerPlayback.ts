@@ -35,6 +35,7 @@ import {
   validateDraft,
 } from './VfxPresetComposer';
 import { repairComposerDraftAssignments } from './VfxSourceSuitability';
+import { computeFingerprint } from './PublishedVfxRegistry';
 import {
   CARTOONCOFFEE_UNIVERSAL_FRAME_DELAY_MS,
 } from './VfxPresetComposer';
@@ -88,10 +89,12 @@ export function saveComposerUiPrefs(storage: Storage, prefs: ComposerUiPrefs): v
 export interface ComposerStore {
   drafts: Record<string, VfxPresetDraft>;
   selectedActionKey?: string;
+  /** V2.6.2 — Authoring workflow metadata: fingerprints recorded at explicit SAVE DRAFT time. */
+  savedFingerprints?: Record<string, string>;
 }
 
 export function createEmptyComposerStore(): ComposerStore {
-  return { drafts: {} };
+  return { drafts: {}, savedFingerprints: {} };
 }
 
 export function getDraft(store: ComposerStore, actionKey: string): VfxPresetDraft | undefined {
@@ -105,7 +108,9 @@ export function putDraft(store: ComposerStore, draft: VfxPresetDraft): ComposerS
 export function deleteDraft(store: ComposerStore, actionKey: string): ComposerStore {
   const drafts = { ...store.drafts };
   delete drafts[actionKey];
-  return { ...store, drafts };
+  const savedFingerprints = { ...(store.savedFingerprints ?? {}) };
+  delete savedFingerprints[actionKey];
+  return { ...store, drafts, savedFingerprints };
 }
 
 export function setSelectedActionKey(store: ComposerStore, actionKey: string): ComposerStore {
@@ -127,8 +132,16 @@ export function deserializeComposerStore(raw: string): ComposerStore | null {
       if (validateDraft(value)) drafts[actionKey] = repairComposerDraftAssignments(value);
     }
     const selected = (parsed as { selectedActionKey?: unknown }).selectedActionKey;
+    const rawSavedFps = (parsed as { savedFingerprints?: unknown }).savedFingerprints;
+    const savedFingerprints: Record<string, string> = {};
+    if (typeof rawSavedFps === 'object' && rawSavedFps !== null) {
+      for (const [k, v] of Object.entries(rawSavedFps as Record<string, unknown>)) {
+        if (typeof v === 'string') savedFingerprints[k] = v;
+      }
+    }
     return {
       drafts,
+      savedFingerprints,
       ...(typeof selected === 'string' ? { selectedActionKey: selected } : {}),
     };
   } catch {
@@ -183,6 +196,37 @@ export function importComposerDrafts(store: ComposerStore, raw: string): Compose
     imported: Object.keys(result.drafts).length,
     ...(result.skipped ? { skipped: result.skipped } : {}),
   };
+}
+
+// ============================================================ V2.6.2 Saved Fingerprint Helpers
+
+/** Records the fingerprint of a draft at explicit SAVE DRAFT time. */
+export function recordSavedFingerprint(store: ComposerStore, actionKey: string, draft: VfxPresetDraft): ComposerStore {
+  const savedFingerprints = { ...(store.savedFingerprints ?? {}) };
+  savedFingerprints[actionKey] = computeFingerprint(draft);
+  return { ...store, savedFingerprints };
+}
+
+/** Gets the saved fingerprint for an action, or undefined if not explicitly saved. */
+export function getSavedFingerprint(store: ComposerStore, actionKey: string): string | undefined {
+  return store.savedFingerprints?.[actionKey];
+}
+
+/** Clears the saved fingerprint for an action (e.g. after draft deletion). */
+export function clearSavedFingerprint(store: ComposerStore, actionKey: string): ComposerStore {
+  const savedFingerprints = { ...(store.savedFingerprints ?? {}) };
+  delete savedFingerprints[actionKey];
+  return { ...store, savedFingerprints };
+}
+
+/** Saved status for batch publication eligibility. */
+export type SavedStatus = 'NOT_SAVED' | 'READY' | 'MODIFIED_SINCE_SAVE';
+
+/** Derives the saved status of a draft by comparing its current fingerprint to the saved one. */
+export function getSavedStatus(store: ComposerStore, actionKey: string, draft: VfxPresetDraft): SavedStatus {
+  const savedFp = getSavedFingerprint(store, actionKey);
+  if (!savedFp) return 'NOT_SAVED';
+  return savedFp === computeFingerprint(draft) ? 'READY' : 'MODIFIED_SINCE_SAVE';
 }
 
 // ============================================================ Cadence Lookup
