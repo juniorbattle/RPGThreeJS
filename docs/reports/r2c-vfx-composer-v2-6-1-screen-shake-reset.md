@@ -129,6 +129,40 @@ Add a safe "RESET ALL PRESETS" workflow allowing the VFX Composer to return to a
 
 - No Composer redesign — only added DANGER ZONE section and screen-space shake pass
 - No gameplay, asset, or background changes
-- No commit or push performed
+- Committed and pushed as `0d024c7`
 - Camera lock and painted-background illusion preserved
 - `applyAdditiveCameraShake` retained as legacy but not used for screen presentation
+
+---
+
+## 7. Final Gates
+
+| Gate | Status |
+|---|---|
+| `BASELINE_CORRECT` | PASS — HEAD `50fb190...` |
+| `SCREEN_SPACE_SHAKE_PASS` | PASS — ImpactShakePass after gradePass, before outputPass |
+| `WORLD_CAMERA_SHAKE_REMOVED` | PASS — applyCam() no longer mutates camera for shake |
+| `SHAKE_CAMERA_AGNOSTIC` | PASS — works with tactical perspective and stage orthographic |
+| `SHAKE_DECAYS_TO_ZERO` | PASS — no permanent offset |
+| `SHAKE_PIXELS_PER_UNIT` | PASS — 22, verified at 720p/1080p/4K |
+| `REDUCED_GRAPHICS_SHAKE_VISIBLE` | PASS — 0.58 scale on 0.22 still visible |
+| `RESET_ALL_PRESETS_ENDPOINT` | PASS — POST /dev/vfx-reset-all-presets |
+| `RESET_CONFIRMATION_EXACT_PHRASE` | PASS — "RESET ALL" required |
+| `RESET_EXPORT_BACKUP` | PASS — EXPORT BACKUP button in dialog |
+| `RESET_CANCEL_SAFE` | PASS — CANCEL closes dialog, no changes |
+| `RESET_FAILURE_PRESERVES_DRAFTS` | PASS — local drafts intact on server error |
+| `RESET_ATOMIC_REGISTRY` | PASS — handleResetAllPresetsRequest writes empty registry atomically |
+| `NO_GAMEPLAY_CHANGES` | PASS |
+| `NO_ASSET_CHANGES` | PASS |
+| `NO_COMPOSER_REDESIGN` | PASS — only DANGER ZONE section added |
+| `FULL_TEST_SUITE` | PASS — 1531 tests (63 files) |
+| `TYPECHECK` | PASS — tsc --noEmit clean |
+| `BUILD` | PASS — vite build clean |
+| `REGISTRY_VALIDATOR` | PASS — basic_greatsword_hit fp=`9cac19ba`, w_break_guard fp=`4ea982bf` |
+| `GIT_DIFF_CHECK` | PASS — no whitespace errors |
+| `PUBLISHED_REGISTRY` | UNCHANGED — 2 actions, fingerprints stable |
+
+## 8. Commit/Push Status
+
+- **Commit:** `0d024c7` — R2C-VFX COMPOSER V2.6.1: Screen-Space Impact Shake + Global Reset
+- **Push:** YES — `main` → `origin/main` (`50fb190..0d024c7`)
