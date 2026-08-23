@@ -35,6 +35,7 @@ import {
   validateDraft,
 } from './VfxPresetComposer';
 import { repairComposerDraftAssignments } from './VfxSourceSuitability';
+import type { CompiledCasterMotion } from './CasterMotion';
 import { computeFingerprint } from './PublishedVfxRegistry';
 import {
   CARTOONCOFFEE_UNIVERSAL_FRAME_DELAY_MS,
@@ -42,6 +43,7 @@ import {
 import type {
   CompiledVfxDraft,
   CompiledVfxSlot,
+  CompiledBeat,
   VfxNativeCadence,
   VfxPresetDraft,
   VfxRuntimeScaleFactors,
@@ -63,23 +65,32 @@ export const COMPOSER_UI_PREFS_KEY = 'r2c-vfx-composer-ui-prefs';
 
 export type ComposerDisplayMode = 'expanded' | 'minimized';
 
+/** V2.6.3 — authoring scope is a UI preference only, never preset data. */
+export type ComposerAuthoringScope = 'DEMO' | 'UPCOMING';
+
 export interface ComposerUiPrefs {
   displayMode: ComposerDisplayMode;
+  authoringScope: ComposerAuthoringScope;
 }
 
 export function loadComposerUiPrefs(storage: Storage): ComposerUiPrefs {
+  let displayMode: ComposerDisplayMode = 'expanded';
+  let authoringScope: ComposerAuthoringScope = 'DEMO';
   try {
     const raw = storage.getItem(COMPOSER_UI_PREFS_KEY);
     if (raw) {
       const parsed = JSON.parse(raw) as Partial<ComposerUiPrefs>;
       if (parsed.displayMode === 'expanded' || parsed.displayMode === 'minimized') {
-        return { displayMode: parsed.displayMode };
+        displayMode = parsed.displayMode;
+      }
+      if (parsed.authoringScope === 'DEMO' || parsed.authoringScope === 'UPCOMING') {
+        authoringScope = parsed.authoringScope;
       }
     }
   } catch {
-    /* fall through to default */
+    /* fall through to defaults */
   }
-  return { displayMode: 'expanded' };
+  return { displayMode, authoringScope };
 }
 
 export function saveComposerUiPrefs(storage: Storage, prefs: ComposerUiPrefs): void {
@@ -327,6 +338,13 @@ export interface ComposerPlaybackContext {
   ) => Promise<boolean>;
   /** Runtime scale factors for the current action tier. Defaults to neutral. */
   scaleFactors?: VfxRuntimeScaleFactors;
+  /**
+   * Installs a compiled CASTER MOTION plan on the live Combat Stage.
+   *
+   * ADDITIVE and OPTIONAL: when the host does not provide it, caster motion is
+   * simply not presented and every existing playback path is unchanged.
+   */
+  applyCasterMotion?: (motion: CompiledCasterMotion) => void;
 }
 
 let _lastComposerSnapshot: ComposerPlaybackSnapshot | null = null;
@@ -422,6 +440,60 @@ export async function playCompiledVfxSlots(
   }));
 }
 
+/**
+ * V2.7 CHOREOGRAPHY BEAT SCHEDULER — the causal beat-by-beat runtime.
+ *
+ * For each beat:
+ *   1. Start ALL VFX participants simultaneously (no delay between them).
+ *   2. Wait for the beat duration (max of all participant durations, including
+ *      motion). This is the CAUSAL BARRIER — no participant in beat N+1 can
+ *      start before all participants in beat N have completed.
+ *   3. Proceed to the next beat.
+ *
+ * Motion is NOT started here — it is installed once at the beginning via
+ * `setCasterMotion` and runs in the Stage's frame loop. The motion steps have
+ * beat-assigned startTimes, so they naturally start at beat boundaries.
+ *
+ * When no explicit beats are authored, this function is not called — the
+ * legacy `playCompiledVfxSlots` path is used instead.
+ */
+export async function playCompiledBeats(
+  vfxSystem: VfxSystem,
+  compiled: CompiledVfxDraft,
+  context: VfxContext,
+  strict: boolean = false,
+): Promise<void> {
+  for (const beat of compiled.compiledBeats) {
+    // Start all VFX participants simultaneously at beat start.
+    const vfxPromises = beat.vfxSlots.map(async (slot) => {
+      const record = getCandidateInventoryRecord(slot.candidateId);
+      if (!record) {
+        if (strict) throw new Error(`Missing inventory record for candidate ${slot.candidateId}`);
+        console.warn(`[VFX] Missing inventory record for ${slot.candidateId}, skipping slot.`);
+        return;
+      }
+      const sheetDef = buildLabSheetDefinition(slot.candidateId, record);
+      const result = vfxSystem.playLabSpriteSheet(
+        slot.candidateId,
+        sheetDef,
+        buildSlotStep(slot),
+        context,
+        buildSlotOverrides(slot),
+        strict ? { strict: true } : undefined,
+      );
+      return result.completion;
+    });
+
+    // CAUSAL BARRIER: wait for the longest participant (VFX or motion).
+    // VFX promises resolve when their animation completes.
+    // wait(beat.duration) covers the motion duration (motion runs in the frame loop).
+    await Promise.all([
+      Promise.all(vfxPromises),
+      wait(beat.duration),
+    ]);
+  }
+}
+
 /** Applies compiled technical effects through the runtime helper hooks. */
 export async function playCompiledTechnical(
   compiled: CompiledVfxDraft,
@@ -501,7 +573,11 @@ export async function playDraftVisualsOnly(
   const snapshot = buildSnapshot('visuals_only', compiled);
   _lastComposerSnapshot = snapshot;
   try {
-    await playCompiledVfxSlots(ctx.vfxSystem, compiled, context, true);
+    if (compiled.hasExplicitBeats) {
+      await playCompiledBeats(ctx.vfxSystem, compiled, context, true);
+    } else {
+      await playCompiledVfxSlots(ctx.vfxSystem, compiled, context, true);
+    }
     return { played: true, snapshot };
   } catch (error) {
     return { played: false, snapshot, reason: error instanceof Error ? error.message : 'Playback failed' };
@@ -528,10 +604,10 @@ export async function playDraftFull(
   const snapshot = buildSnapshot('full_preset', compiled);
   _lastComposerSnapshot = snapshot;
   try {
-    await Promise.all([
-      playCompiledVfxSlots(ctx.vfxSystem, compiled, context, true),
-      playCompiledTechnical(compiled, context),
-    ]);
+    const vfxTask = compiled.hasExplicitBeats
+      ? playCompiledBeats(ctx.vfxSystem, compiled, context, true)
+      : playCompiledVfxSlots(ctx.vfxSystem, compiled, context, true);
+    await Promise.all([vfxTask, playCompiledTechnical(compiled, context)]);
     return { played: true, snapshot };
   } catch (error) {
     return { played: false, snapshot, reason: error instanceof Error ? error.message : 'Playback failed' };
@@ -555,13 +631,30 @@ export async function playDraftInCombatStage(
   _lastComposerSnapshot = snapshot;
 
   const playVfx = async (context: VfxContext): Promise<void> => {
-    if (mode === 'full_preset') {
-      await Promise.all([
-        playCompiledVfxSlots(ctx.vfxSystem, compiled, context, true),
-        playCompiledTechnical(compiled, context),
-      ]);
+    /**
+     * The motion clock starts HERE, at the same instant as the visual slot
+     * scheduler, so an authored "VFX → MOTION → VFX" sequence plays on one
+     * shared timeline. An empty plan is a no-op.
+     */
+    ctx.applyCasterMotion?.(compiled.casterMotion);
+    if (compiled.hasExplicitBeats) {
+      // V2.7 BEAT SCHEDULER — causal beat-by-beat execution.
+      const vfxTask = playCompiledBeats(ctx.vfxSystem, compiled, context, true);
+      if (mode === 'full_preset') {
+        await Promise.all([vfxTask, playCompiledTechnical(compiled, context)]);
+      } else {
+        await vfxTask;
+      }
     } else {
-      await playCompiledVfxSlots(ctx.vfxSystem, compiled, context, true);
+      // LEGACY PHASE SCHEDULER — independent slot startTimes. Unchanged.
+      if (mode === 'full_preset') {
+        await Promise.all([
+          playCompiledVfxSlots(ctx.vfxSystem, compiled, context, true),
+          playCompiledTechnical(compiled, context),
+        ]);
+      } else {
+        await playCompiledVfxSlots(ctx.vfxSystem, compiled, context, true);
+      }
     }
   };
 

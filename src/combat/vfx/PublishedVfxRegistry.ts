@@ -45,6 +45,7 @@ import type {
   VfxSlotImpactFx,
   VfxImpactPower,
   VfxTrajectoryProfile,
+  ChoreographyBeat,
 } from './VfxPresetComposer';
 import {
   VFX_SIZE_PROFILES,
@@ -75,6 +76,7 @@ import {
   resolveSlotDirectionProfile,
   resolveSlotMirrorProfile,
 } from './VfxPresetComposer';
+import { compileCasterMotion, validateCasterMotion, type CasterMotionStep } from './CasterMotion';
 
 // ============================================================ Registry Types
 
@@ -116,6 +118,17 @@ export interface PublishedVfxEntry {
   technicalPolish: VfxTechnicalPolish;
   autoPlacement?: Exclude<VfxPlacementProfile, 'AUTO'>;
   tier?: number;
+  /**
+   * Phase B CASTER MOTION. ADDITIVE OPTIONAL, so `schemaVersion` stays at 1 and
+   * every pre-motion publication keeps loading and playing byte-identically.
+   * Only written when the draft authors an effective motion.
+   */
+  casterMotion?: CasterMotionStep[];
+  /**
+   * V2.7 CHOREOGRAPHY BEATS. ADDITIVE OPTIONAL. Only written when the draft
+   * authors explicit beats. Absent means legacy phase scheduling.
+   */
+  beats?: ChoreographyBeat[];
 }
 
 export interface PublishedVfxRegistry {
@@ -212,6 +225,52 @@ export function computeFingerprint(draft: VfxPresetDraft): string {
     }
   }
 
+  /**
+   * PHASE B CASTER MOTION — additive contribution.
+   *
+   * Emitted ONLY when the draft authors a motion that can actually displace the
+   * caster. A missing field, an empty list, and a list of pure no-ops therefore
+   * all fingerprint identically to a pre-motion draft, which guarantees every
+   * existing publication keeps its stored fingerprint and never falsely reports
+   * "MODIFIED SINCE PUBLISH".
+   */
+  const motion = compileCasterMotion(draft.casterMotion);
+  if (motion.hasEffect) {
+    parts.push('CM');
+    for (const step of motion.steps) {
+      parts.push(
+        step.type,
+        String(step.startTime),
+        String(step.duration),
+        step.destination,
+        String(step.distance),
+        String(step.height),
+        step.easing,
+        step.returnToOrigin ? 'R1' : 'R0',
+      );
+    }
+  }
+
+  /**
+   * V2.7 CHOREOGRAPHY BEATS — additive contribution.
+   *
+   * Emitted ONLY when the draft authors explicit beats. A missing field
+   * fingerprints identically to a pre-beats draft, guaranteeing every existing
+   * publication keeps its stored fingerprint.
+   */
+  if (Array.isArray(draft.beats) && draft.beats.length > 0) {
+    parts.push('BEATS');
+    for (const beat of draft.beats) {
+      parts.push(
+        beat.id,
+        String(beat.startDelay ?? 0),
+        beat.composition ?? 'TOGETHER',
+        beat.vfxSlotIds.join(','),
+        beat.casterMotionIds.join(','),
+      );
+    }
+  }
+
   return simpleHash(parts.join('|'));
 }
 
@@ -242,7 +301,19 @@ export function publishedPresetId(actionKey: string): string {
  * Strips ephemeral fields (updatedAt) and assigns a deterministic presetId.
  */
 export function draftToPublishedEntry(draft: VfxPresetDraft): PublishedVfxEntry {
-  const { updatedAt: _discarded, ...rest } = draft;
+  const { updatedAt: _discarded, casterMotion: _motion, beats: _beats, ...rest } = draft;
+  /**
+   * CASTER MOTION is persisted only when it can actually displace the caster.
+   * An empty or all-no-op list is dropped, so publishing a motion-free preset
+   * produces a byte-identical entry to the pre-Phase-B output.
+   */
+  const motionEffective = compileCasterMotion(draft.casterMotion).hasEffect;
+  /**
+   * BEATS are persisted only when explicitly authored. An absent or empty
+   * beats list is dropped, so publishing a beat-free preset produces a
+   * byte-identical entry to the pre-V2.7 output.
+   */
+  const beatsEffective = Array.isArray(draft.beats) && draft.beats.length > 0;
   return {
     ...rest,
     presetId: publishedPresetId(draft.actionKey),
@@ -251,6 +322,8 @@ export function draftToPublishedEntry(draft: VfxPresetDraft): PublishedVfxEntry 
       const { ...slotRest } = slot;
       return { ...slotRest };
     }),
+    ...(motionEffective ? { casterMotion: draft.casterMotion!.map((step) => ({ ...step })) } : {}),
+    ...(beatsEffective ? { beats: draft.beats!.map((beat) => ({ ...beat, vfxSlotIds: [...beat.vfxSlotIds], casterMotionIds: [...beat.casterMotionIds] })) } : {}),
   };
 }
 
@@ -269,6 +342,8 @@ export function publishedEntryToDraft(entry: PublishedVfxEntry): VfxPresetDraft 
     technicalPolish: entry.technicalPolish,
     ...(entry.autoPlacement ? { autoPlacement: entry.autoPlacement } : {}),
     ...(entry.tier != null ? { tier: entry.tier } : {}),
+    ...(entry.casterMotion ? { casterMotion: entry.casterMotion } : {}),
+    ...(entry.beats ? { beats: entry.beats } : {}),
   };
 }
 
@@ -415,6 +490,44 @@ export function validatePublishedEntry(
   }
   if (e.tier != null && (typeof e.tier !== 'number' || e.tier < 1 || e.tier > 6)) {
     errors.push('tier must be a number between 1 and 6, or absent.');
+  }
+  // ADDITIVE: an absent casterMotion is valid, so pre-Phase-B entries all pass.
+  if (e.casterMotion != null) {
+    const motionResult = validateCasterMotion(e.casterMotion);
+    for (const error of motionResult.errors) errors.push(error);
+  }
+  // ADDITIVE: an absent beats field is valid, so pre-V2.7 entries all pass.
+  if (e.beats != null) {
+    if (!Array.isArray(e.beats)) {
+      errors.push('beats must be an array.');
+    } else {
+      for (let i = 0; i < e.beats.length; i++) {
+        const beat = e.beats[i] as Record<string, unknown>;
+        if (typeof beat !== 'object' || beat === null) {
+          errors.push(`Beat ${i} is not an object.`);
+          continue;
+        }
+        if (typeof beat.id !== 'string' || beat.id.length === 0) {
+          errors.push(`Beat ${i}: id must be a non-empty string.`);
+        }
+        if (!Array.isArray(beat.vfxSlotIds)) {
+          errors.push(`Beat ${i}: vfxSlotIds must be an array.`);
+        }
+        if (!Array.isArray(beat.casterMotionIds)) {
+          errors.push(`Beat ${i}: casterMotionIds must be an array.`);
+        }
+        if (beat.startDelay != null) {
+          if (typeof beat.startDelay !== 'number' || !Number.isFinite(beat.startDelay) || beat.startDelay < 0) {
+            errors.push(`Beat ${i}: startDelay must be a non-negative finite number.`);
+          }
+        }
+        if (beat.composition != null) {
+          if (!['TOGETHER', 'SEQUENCE', 'PAIR_THEN_LAST'].includes(beat.composition as string)) {
+            errors.push(`Beat ${i}: invalid composition "${beat.composition}".`);
+          }
+        }
+      }
+    }
   }
 
   return { ok: errors.length === 0, errors };

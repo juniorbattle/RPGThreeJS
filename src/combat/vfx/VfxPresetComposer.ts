@@ -19,6 +19,15 @@
 
 import type { VfxAnchor, VfxOrientation } from './VfxTypes';
 import { repairCandidateAssignment } from './VfxSourceSuitability';
+import {
+  compileCasterMotion,
+  createCasterMotionStep,
+  validateCasterMotion,
+  type CasterMotionStep,
+  type CasterMotionType,
+  type CompiledCasterMotion,
+  type CompiledCasterMotionStep,
+} from './CasterMotion';
 
 // ============================================================ Semantic Profiles
 
@@ -272,6 +281,36 @@ export interface VfxVisualSlot {
   advanced?: VfxSlotAdvancedOverride;
 }
 
+/**
+ * V2.7 CHOREOGRAPHY BEAT — the authoritative action choreography model.
+ *
+ * A Beat is a temporal unit. Inside one Beat, ALL participants (VFX slots and
+ * caster motion steps) START TOGETHER. Between Beats, the next Beat does NOT
+ * start until the previous Beat is complete. Beat completion is
+ * max(duration of all participants).
+ *
+ * `startDelay` is a RELATIVE DELAY before this beat activates (not an absolute
+ * timestamp). Beat 0 starts at `startDelay`; Beat N starts at
+ * `previousBeatEnd + startDelay`.
+ *
+ * `composition` controls the internal organization of VFX participants inside
+ * the beat (TOGETHER / SEQUENCE / PAIR_THEN_LAST). It is authoritative once
+ * explicit beats exist — the global draft `choreography` is no longer used.
+ *
+ * When absent, the legacy phase-based scheduling is used (backward compat).
+ * When present, this is the SINGLE timing authority — no independent VFX or
+ * motion scheduling can contradict it.
+ */
+export interface ChoreographyBeat {
+  id: string;
+  /** Relative delay (seconds) before this beat activates. Default 0. */
+  startDelay?: number;
+  /** Internal VFX composition within this beat. Default TOGETHER. */
+  composition?: VfxChoreography;
+  vfxSlotIds: string[];
+  casterMotionIds: string[];
+}
+
 export interface VfxPresetDraft {
   actionKey: string;
   presetId: string;
@@ -282,6 +321,17 @@ export interface VfxPresetDraft {
   autoPlacement?: Exclude<VfxPlacementProfile, 'AUTO'>;
   /** Action tier (1..6) used by TECHNICAL POLISH=AUTO. */
   tier?: number;
+  /**
+   * Phase B CASTER MOTION. Purely ADDITIVE: absent or empty means the preset
+   * behaves exactly as it did before caster motion existed.
+   */
+  casterMotion?: CasterMotionStep[];
+  /**
+   * V2.7 CHOREOGRAPHY BEATS. ADDITIVE and OPTIONAL: absent means the legacy
+   * phase-based scheduling is used. When present, this is the authoritative
+   * ordering/synchronization model.
+   */
+  beats?: ChoreographyBeat[];
   updatedAt?: number;
 }
 
@@ -633,6 +683,40 @@ export function choreographyToPhases(
 }
 
 /**
+ * Computes per-slot time offsets (seconds) within a single beat based on the
+ * beat's composition setting. These offsets are relative to the beat's start
+ * time.
+ *
+ * TOGETHER: all slots start at offset 0.
+ * SEQUENCE: each slot starts after the previous slot's duration.
+ * PAIR_THEN_LAST: first two slots start together, remaining are sequential.
+ *
+ * Slot durations are read from the `durations` array (parallel to slot order).
+ */
+function computeIntraBeatOffsets(
+  composition: VfxChoreography,
+  slotCount: number,
+  durations: number[] = [],
+): number[] {
+  if (slotCount <= 0) return [];
+  if (composition === 'TOGETHER') return Array.from({ length: slotCount }, () => 0);
+  if (composition === 'SEQUENCE') {
+    const offsets: number[] = [0];
+    for (let i = 1; i < slotCount; i += 1) {
+      offsets.push(Math.round((offsets[i - 1]! + (durations[i - 1] ?? 0)) * 1000) / 1000);
+    }
+    return offsets;
+  }
+  // PAIR_THEN_LAST: first two together, remaining sequential.
+  if (slotCount < 3) return Array.from({ length: slotCount }, () => 0);
+  const offsets: number[] = [0, 0];
+  for (let i = 2; i < slotCount; i += 1) {
+    offsets.push(Math.round((offsets[i - 1]! + (durations[i - 1] ?? 0)) * 1000) / 1000);
+  }
+  return offsets;
+}
+
+/**
  * Authoritative per-slot PHASE resolution.
  *
  * MIGRATION DOCTRINE: a draft is considered "phase-authored" as soon as ANY
@@ -711,6 +795,211 @@ export function nudgeSlotPhase(draft: VfxPresetDraft, slotId: string, delta: num
   const materialized = materializeSlotPhases(draft);
   const current = materialized.visualSlots.find((slot) => slot.id === slotId)?.phase ?? DEFAULT_PHASE;
   return setSlotPhase(materialized, slotId, current + delta);
+}
+
+// ============================================================ V2.7 Choreography Beats
+
+/**
+ * Derives ChoreographyBeat[] from phase data for backward compatibility.
+ *
+ * Each unique phase value becomes a Beat. VFX slots in that phase are grouped
+ * together. Motion steps are NOT placed in derived beats — they keep their
+ * independent scheduling when no explicit beats are authored.
+ */
+export function deriveBeatsFromPhases(
+  phases: readonly number[],
+  slots: readonly VfxVisualSlot[],
+  composition: VfxChoreography = 'TOGETHER',
+): ChoreographyBeat[] {
+  const uniquePhases = [...new Set(phases)].sort((a, b) => a - b);
+  return uniquePhases.map((phase, index) => ({
+    id: `beat_${phase}_${index}`,
+    startDelay: 0,
+    composition,
+    vfxSlotIds: slots.filter((_slot, i) => phases[i] === phase).map((slot) => slot.id),
+    casterMotionIds: [],
+  }));
+}
+
+/**
+ * Validates that a draft's explicit beats reference only existing participants,
+ * that every participant is referenced exactly once, that there are no orphan
+ * participants, and that startDelay and composition are valid.
+ */
+export function validateChoreographyBeats(draft: VfxPresetDraft): { ok: boolean; errors: string[] } {
+  const errors: string[] = [];
+  if (!draft.beats || draft.beats.length === 0) return { ok: true, errors };
+
+  const slotIds = new Set(draft.visualSlots.map((s) => s.id));
+  const motionIds = new Set((draft.casterMotion ?? []).map((m) => m.id));
+  const seenSlotIds = new Set<string>();
+  const seenMotionIds = new Set<string>();
+  const seenBeatIds = new Set<string>();
+
+  for (const beat of draft.beats) {
+    if (!beat.id || typeof beat.id !== 'string') {
+      errors.push('Beat missing id');
+      continue;
+    }
+    if (seenBeatIds.has(beat.id)) {
+      errors.push(`Duplicate beat id: ${beat.id}`);
+    }
+    seenBeatIds.add(beat.id);
+
+    if (!Array.isArray(beat.vfxSlotIds) || !Array.isArray(beat.casterMotionIds)) {
+      errors.push(`Beat ${beat.id}: vfxSlotIds and casterMotionIds must be arrays`);
+      continue;
+    }
+
+    // Validate startDelay
+    if (beat.startDelay != null) {
+      if (typeof beat.startDelay !== 'number' || !Number.isFinite(beat.startDelay) || beat.startDelay < 0) {
+        errors.push(`Beat ${beat.id}: startDelay must be a non-negative finite number`);
+      }
+    }
+
+    // Validate composition
+    if (beat.composition != null) {
+      if (!VFX_CHOREOGRAPHIES.includes(beat.composition)) {
+        errors.push(`Beat ${beat.id}: invalid composition "${beat.composition}"`);
+      }
+    }
+
+    for (const slotId of beat.vfxSlotIds) {
+      if (!slotIds.has(slotId)) {
+        errors.push(`Beat ${beat.id} references unknown VFX slot: ${slotId}`);
+      }
+      if (seenSlotIds.has(slotId)) {
+        errors.push(`VFX slot ${slotId} appears in multiple beats`);
+      }
+      seenSlotIds.add(slotId);
+    }
+    for (const motionId of beat.casterMotionIds) {
+      if (!motionIds.has(motionId)) {
+        errors.push(`Beat ${beat.id} references unknown motion: ${motionId}`);
+      }
+      if (seenMotionIds.has(motionId)) {
+        errors.push(`Motion ${motionId} appears in multiple beats`);
+      }
+      seenMotionIds.add(motionId);
+    }
+  }
+
+  // Check for orphan participants: every slot must be in exactly one beat.
+  for (const slot of draft.visualSlots) {
+    if (!seenSlotIds.has(slot.id)) {
+      errors.push(`VFX slot ${slot.id} is not assigned to any beat (orphan)`);
+    }
+  }
+  for (const motion of draft.casterMotion ?? []) {
+    if (!seenMotionIds.has(motion.id)) {
+      errors.push(`Motion ${motion.id} is not assigned to any beat (orphan)`);
+    }
+  }
+
+  return { ok: errors.length === 0, errors };
+}
+
+let _beatIdCounter = 0;
+function generateBeatId(): string {
+  _beatIdCounter += 1;
+  return `beat_${Date.now().toString(36)}_${_beatIdCounter}`;
+}
+
+/** Adds a new empty beat to the draft. */
+export function addBeat(draft: VfxPresetDraft): VfxPresetDraft {
+  const beats = draft.beats ?? [];
+  return {
+    ...draft,
+    beats: [...beats, { id: generateBeatId(), startDelay: 0, composition: 'TOGETHER', vfxSlotIds: [], casterMotionIds: [] }],
+    updatedAt: Date.now(),
+  };
+}
+
+/** Removes a beat by id. The beat must be empty (no participants). If it was the last beat, drops the field entirely. */
+export function removeBeat(draft: VfxPresetDraft, beatId: string): VfxPresetDraft {
+  const beats = draft.beats ?? [];
+  const beat = beats.find((b) => b.id === beatId);
+  if (!beat) return draft;
+  // Safety: refuse to remove a non-empty beat.
+  if (beat.vfxSlotIds.length > 0 || beat.casterMotionIds.length > 0) return draft;
+  const next = beats.filter((b) => b.id !== beatId);
+  if (next.length === 0) {
+    const { beats: _removed, ...rest } = draft;
+    return { ...rest, updatedAt: Date.now() };
+  }
+  return { ...draft, beats: next, updatedAt: Date.now() };
+}
+
+/** Sets the startDelay on a beat. */
+export function setBeatStartDelay(draft: VfxPresetDraft, beatId: string, startDelay: number): VfxPresetDraft {
+  const beats = draft.beats ?? [];
+  if (!beats.some((b) => b.id === beatId)) return draft;
+  return {
+    ...draft,
+    beats: beats.map((b) => b.id === beatId ? { ...b, startDelay: Math.max(0, Math.round(startDelay * 1000) / 1000) } : b),
+    updatedAt: Date.now(),
+  };
+}
+
+/** Sets the composition on a beat. */
+export function setBeatComposition(draft: VfxPresetDraft, beatId: string, composition: VfxChoreography): VfxPresetDraft {
+  const beats = draft.beats ?? [];
+  if (!beats.some((b) => b.id === beatId)) return draft;
+  return {
+    ...draft,
+    beats: beats.map((b) => b.id === beatId ? { ...b, composition } : b),
+    updatedAt: Date.now(),
+  };
+}
+
+/** Adds a VFX slot to a beat, removing it from any other beat first. */
+export function addVfxToBeat(draft: VfxPresetDraft, beatId: string, slotId: string): VfxPresetDraft {
+  const beats = draft.beats ?? [];
+  if (!beats.some((b) => b.id === beatId)) return draft;
+  const next = beats.map((b) => ({
+    ...b,
+    vfxSlotIds: b.id === beatId
+      ? [...b.vfxSlotIds.filter((id) => id !== slotId), slotId]
+      : b.vfxSlotIds.filter((id) => id !== slotId),
+  }));
+  return { ...draft, beats: next, updatedAt: Date.now() };
+}
+
+/** Removes a VFX slot from a beat. The beat remains even if it becomes empty. */
+export function removeVfxFromBeat(draft: VfxPresetDraft, beatId: string, slotId: string): VfxPresetDraft {
+  const beats = draft.beats ?? [];
+  const next = beats.map((b) => b.id === beatId
+    ? { ...b, vfxSlotIds: b.vfxSlotIds.filter((id) => id !== slotId) }
+    : b);
+  return { ...draft, beats: next, updatedAt: Date.now() };
+}
+
+/** Adds a caster motion to a beat, removing it from any other beat first. */
+export function addMotionToBeat(draft: VfxPresetDraft, beatId: string, motionId: string): VfxPresetDraft {
+  const beats = draft.beats ?? [];
+  if (!beats.some((b) => b.id === beatId)) return draft;
+  const next = beats.map((b) => ({
+    ...b,
+    casterMotionIds: b.id === beatId
+      ? [...b.casterMotionIds.filter((id) => id !== motionId), motionId]
+      : b.casterMotionIds.filter((id) => id !== motionId),
+  }));
+  return { ...draft, beats: next, updatedAt: Date.now() };
+}
+
+/** Removes a caster motion from a beat. The beat remains even if it becomes empty. */
+export function removeMotionFromBeat(draft: VfxPresetDraft, beatId: string, motionId: string): VfxPresetDraft {
+  const beats = draft.beats ?? [];
+  const next = beats.map((b) => b.id === beatId
+    ? { ...b, casterMotionIds: b.casterMotionIds.filter((id) => id !== motionId) }
+    : b);
+  return { ...draft, beats: next, updatedAt: Date.now() };
+}
+
+/** True when the draft authors explicit choreography beats. */
+export function hasExplicitBeats(draft: VfxPresetDraft): boolean {
+  return Array.isArray(draft.beats) && draft.beats.length > 0;
 }
 
 // ============================================================ Technical Polish
@@ -1070,6 +1359,56 @@ export function setTechnicalPolish(draft: VfxPresetDraft, polish: VfxTechnicalPo
   return { ...draft, technicalPolish: polish, updatedAt: Date.now() };
 }
 
+// ============================================================ Caster Motion Operations
+
+/**
+ * Appends a caster motion. A new step starts right after the current preset
+ * content so a freshly added motion never silently overlaps existing work.
+ */
+export function addCasterMotion(
+  draft: VfxPresetDraft,
+  type: CasterMotionType = 'DASH_SHORT',
+  overrides: Partial<Omit<CasterMotionStep, 'id' | 'type'>> = {},
+): VfxPresetDraft {
+  const existing = draft.casterMotion ?? [];
+  const suggestedStart = overrides.startTime
+    ?? Math.round(compileCasterMotion(existing).totalDuration * 1000) / 1000;
+  const step = createCasterMotionStep(type, { ...overrides, startTime: suggestedStart });
+  return { ...draft, casterMotion: [...existing, step], updatedAt: Date.now() };
+}
+
+export function removeCasterMotion(draft: VfxPresetDraft, motionId: string): VfxPresetDraft {
+  const existing = draft.casterMotion ?? [];
+  const next = existing.filter((step) => step.id !== motionId);
+  if (next.length === existing.length) return draft;
+  // Dropping the last motion removes the field entirely, restoring the exact
+  // pre-motion draft shape and therefore the pre-motion fingerprint.
+  if (next.length === 0) {
+    const { casterMotion: _removed, ...rest } = draft;
+    return { ...rest, updatedAt: Date.now() };
+  }
+  return { ...draft, casterMotion: next, updatedAt: Date.now() };
+}
+
+export function updateCasterMotion(
+  draft: VfxPresetDraft,
+  motionId: string,
+  patch: Partial<Omit<CasterMotionStep, 'id'>>,
+): VfxPresetDraft {
+  const existing = draft.casterMotion ?? [];
+  if (!existing.some((step) => step.id === motionId)) return draft;
+  return {
+    ...draft,
+    casterMotion: existing.map((step) => (step.id === motionId ? { ...step, ...patch } : step)),
+    updatedAt: Date.now(),
+  };
+}
+
+/** True when the draft authors at least one motion that can displace the caster. */
+export function hasCasterMotion(draft: VfxPresetDraft): boolean {
+  return compileCasterMotion(draft.casterMotion).hasEffect;
+}
+
 // ============================================================ Transform Resolution
 
 const PIVOT_CENTER_MAP: Readonly<Record<VfxPivotProfile, { x: number; y: number }>> = Object.freeze({
@@ -1208,6 +1547,22 @@ export interface CompiledVfxSlot {
   finalDisplayHeight: number;
 }
 
+/**
+ * V2.7 Compiled Beat — the runtime-facing choreography unit.
+ *
+ * All participants in a beat share the same `startTime`. The beat's `duration`
+ * is the max of all participant durations. The next beat starts at
+ * `startTime + duration`. This is the causal barrier: no participant in beat
+ * N+1 can start before all participants in beat N have completed.
+ */
+export interface CompiledBeat {
+  beatId: string;
+  startTime: number;
+  duration: number;
+  vfxSlots: CompiledVfxSlot[];
+  casterMotions: CompiledCasterMotionStep[];
+}
+
 export interface CompiledVfxDraft {
   actionKey: string;
   presetId: string;
@@ -1215,6 +1570,19 @@ export interface CompiledVfxDraft {
   totalDuration: number;
   impactTime: number;
   slots: CompiledVfxSlot[];
+  /**
+   * Compiled CASTER MOTION plan. Always present; empty for every preset that
+   * authors no motion, so downstream code needs no legacy branch.
+   */
+  casterMotion: CompiledCasterMotion;
+  /**
+   * V2.7 Compiled choreography beats. Always present — derived from phases
+   * when no explicit beats are authored, so the runtime can always consume
+   * beats uniformly. When explicit beats exist, they are the authority.
+   */
+  compiledBeats: CompiledBeat[];
+  /** True when the draft authors explicit beats (use beat scheduler). False = legacy phase path. */
+  hasExplicitBeats: boolean;
   /** Flattened per-slot technical events. Empty for visual-only playback. */
   technical: ResolvedTechnicalEffect[];
   /** True when the events came from per-slot Impact FX rather than legacy polish. */
@@ -1345,14 +1713,184 @@ export function compileDraft(draft: VfxPresetDraft, options: CompileDraftOptions
       : resolveTechnicalEffects(draft.technicalPolish, impactTime, draft.tier))
     : [];
 
+  /**
+   * CASTER MOTION shares the preset clock with the visual slots, so a motion
+   * scheduled after the last spritesheet legitimately extends the preset.
+   * Presets without motion compile to an empty plan and keep their exact
+   * previous totalDuration.
+   */
+  const casterMotion = compileCasterMotion(draft.casterMotion);
+
+  /**
+   * V2.7 CHOREOGRAPHY BEATS — the authoritative scheduling model.
+   *
+   * When the draft authors explicit beats, beat-based scheduling OVERRIDES the
+   * phase-based startTimes. Every participant in a beat shares the beat's
+   * startTime. Beat duration = max(participant durations). The next beat starts
+   * only after the previous beat completes. This is the causal barrier.
+   *
+   * When no explicit beats exist, beats are derived from phases for display.
+   * The legacy phase-based startTimes remain authoritative — zero regression.
+   */
+  const explicit = hasExplicitBeats(draft);
+  let compiledBeats: CompiledBeat[];
+  let finalSlots = slots;
+  let finalCasterMotion = casterMotion;
+  let beatTotalDuration: number;
+
+  if (explicit && draft.beats) {
+    const slotById = new Map(slots.map((s) => [s.slotId, s]));
+    const motionStepById = new Map((draft.casterMotion ?? []).map((m) => [m.id, m]));
+    const compiledMotionById = new Map(casterMotion.steps.map((s) => [s.motionId, s]));
+
+    // First pass: compute beat durations from participant durations and composition.
+    const beatDurations: number[] = [];
+    for (const beat of draft.beats) {
+      const beatComposition = beat.composition ?? 'TOGETHER';
+      const beatSlotDurations = beat.vfxSlotIds.map((id) => slotById.get(id)?.duration ?? 0);
+      const offsets = computeIntraBeatOffsets(beatComposition, beat.vfxSlotIds.length, beatSlotDurations);
+      // VFX duration: last slot offset + last slot duration (accounts for sequencing).
+      let vfxDuration = 0;
+      for (let si = 0; si < beat.vfxSlotIds.length; si += 1) {
+        const slot = slotById.get(beat.vfxSlotIds[si]!);
+        if (slot) {
+          vfxDuration = Math.max(vfxDuration, (offsets[si] ?? 0) + slot.duration);
+        }
+      }
+      // Motion duration: max of all motion durations (motions always start together at beat start).
+      let motionDuration = 0;
+      for (const motionId of beat.casterMotionIds) {
+        const compiled = compiledMotionById.get(motionId);
+        if (compiled) motionDuration = Math.max(motionDuration, compiled.endTime - compiled.startTime);
+      }
+      beatDurations.push(Math.max(vfxDuration, motionDuration));
+    }
+
+    // Compute beat startTimes sequentially using startDelay:
+    // Beat 0: startDelay. Beat N: previousBeatEnd + startDelay.
+    const beatStartTimes: number[] = [];
+    let cursor = 0;
+    for (let i = 0; i < draft.beats.length; i += 1) {
+      const delay = draft.beats[i]!.startDelay ?? 0;
+      cursor = Math.round((cursor + delay) * 1000) / 1000;
+      beatStartTimes.push(cursor);
+      cursor = Math.round((cursor + (beatDurations[i] ?? 0)) * 1000) / 1000;
+    }
+    beatTotalDuration = beatStartTimes.length > 0
+      ? Math.round((beatStartTimes[beatStartTimes.length - 1]! + (beatDurations[beatStartTimes.length - 1] ?? 0)) * 1000) / 1000
+      : 0;
+
+    // Build compiled beats and override slot/motion startTimes.
+    const slotStartTimeOverride = new Map<string, number>();
+    const motionStartTimeOverride = new Map<string, number>();
+    compiledBeats = draft.beats.map((beat, index) => {
+      const beatStart = beatStartTimes[index] ?? 0;
+      const beatComposition = beat.composition ?? 'TOGETHER';
+      const beatSlots: CompiledVfxSlot[] = [];
+      const beatSlotIds = beat.vfxSlotIds;
+      // Gather durations for intra-beat offset computation.
+      const beatSlotDurations = beatSlotIds.map((id) => slotById.get(id)?.duration ?? 0);
+      // Compute per-slot offsets within the beat based on composition.
+      const slotOffsets = computeIntraBeatOffsets(beatComposition, beatSlotIds.length, beatSlotDurations);
+      for (let si = 0; si < beatSlotIds.length; si += 1) {
+        const slotId = beatSlotIds[si]!;
+        const slot = slotById.get(slotId);
+        if (slot) {
+          const offset = slotOffsets[si] ?? 0;
+          const slotStart = Math.round((beatStart + offset) * 1000) / 1000;
+          slotStartTimeOverride.set(slotId, slotStart);
+          beatSlots.push(slot);
+        }
+      }
+      const beatMotions: CompiledCasterMotionStep[] = [];
+      for (const motionId of beat.casterMotionIds) {
+        const compiled = compiledMotionById.get(motionId);
+        if (compiled) {
+          motionStartTimeOverride.set(motionId, beatStart);
+          beatMotions.push(compiled);
+        }
+      }
+      return {
+        beatId: beat.id,
+        startTime: beatStart,
+        duration: beatDurations[index] ?? 0,
+        vfxSlots: beatSlots,
+        casterMotions: beatMotions,
+      };
+    });
+
+    // Override slot startTimes and recompute impactTimes.
+    finalSlots = slots.map((slot) => {
+      const override = slotStartTimeOverride.get(slot.slotId);
+      if (override === undefined) return slot;
+      const newImpactTime = Math.round((override + resolveSlotLocalImpactTime(slot.duration, slot.positionMode)) * 1000) / 1000;
+      const newTechnical = options.includeTechnical && slotFxAuthored
+        ? resolveSlotImpactEvents(
+            draft.visualSlots.find((s) => s.id === slot.slotId)?.impactFx,
+            newImpactTime,
+          )
+        : slot.technical;
+      return { ...slot, startTime: override, impactTime: newImpactTime, technical: newTechnical };
+    });
+
+    // Recompile motion with beat-assigned startTimes.
+    if (motionStartTimeOverride.size > 0) {
+      const overriddenRaw = (draft.casterMotion ?? []).map((step) => {
+        const override = motionStartTimeOverride.get(step.id);
+        return override !== undefined ? { ...step, startTime: override } : step;
+      });
+      finalCasterMotion = compileCasterMotion(overriddenRaw);
+    }
+  } else {
+    // Legacy path: derive beats from phases for display. No scheduling change.
+    compiledBeats = deriveBeatsFromPhases(phases, draft.visualSlots).map((beat) => {
+      const beatSlots = beat.vfxSlotIds
+        .map((id) => slots.find((s) => s.slotId === id))
+        .filter((s): s is CompiledVfxSlot => s !== undefined);
+      const beatDuration = beatSlots.length > 0
+        ? beatSlots.reduce((max, s) => Math.max(max, s.duration), 0)
+        : 0;
+      const beatStart = beatSlots[0]?.startTime ?? 0;
+      return {
+        beatId: beat.id,
+        startTime: beatStart,
+        duration: beatDuration,
+        vfxSlots: beatSlots,
+        casterMotions: [],
+      };
+    });
+    beatTotalDuration = totalDuration;
+  }
+
+  const combinedDuration = explicit
+    ? Math.max(beatTotalDuration, finalCasterMotion.totalDuration)
+    : Math.max(totalDuration, finalCasterMotion.totalDuration);
+
+  // Recompute impactTime from finalSlots (beat-overridden startTimes may have moved it).
+  const finalFirst = finalSlots[0];
+  const finalActiveFxSlots = finalSlots.filter((s) => s.technical.length > 0);
+  const finalImpactTime = finalActiveFxSlots.length > 0
+    ? finalActiveFxSlots.reduce((min, s) => Math.min(min, s.impactTime), Infinity)
+    : (finalFirst ? finalFirst.impactTime : 0);
+
+  // Recompute technical events with beat-overridden impact times.
+  const finalTechnical = options.includeTechnical
+    ? (slotFxAuthored
+      ? finalSlots.flatMap((slot) => slot.technical)
+      : resolveTechnicalEffects(draft.technicalPolish, finalImpactTime, draft.tier))
+    : [];
+
   return {
     actionKey: draft.actionKey,
     presetId: draft.presetId,
     choreography: draft.choreography,
-    totalDuration: Math.round(totalDuration * 1000) / 1000,
-    impactTime,
-    slots,
-    technical,
+    totalDuration: Math.round(combinedDuration * 1000) / 1000,
+    impactTime: finalImpactTime,
+    slots: finalSlots,
+    casterMotion: finalCasterMotion,
+    compiledBeats,
+    hasExplicitBeats: explicit,
+    technical: finalTechnical,
     usesSlotImpactFx: slotFxAuthored,
     compatibility,
   };
@@ -1403,6 +1941,14 @@ export function validateDraft(raw: unknown): raw is VfxPresetDraft {
       }
       if (fx.power != null && !VALID_POWERS.has(fx.power as VfxImpactPower)) return false;
     }
+  }
+  // ADDITIVE: absent casterMotion is always valid, so every legacy draft loads.
+  if (obj.casterMotion != null && !validateCasterMotion(obj.casterMotion).ok) return false;
+  // ADDITIVE: absent beats is always valid. Present beats must be structurally sound.
+  if (obj.beats != null) {
+    if (!Array.isArray(obj.beats)) return false;
+    const beatValidation = validateChoreographyBeats(obj as unknown as VfxPresetDraft);
+    if (!beatValidation.ok) return false;
   }
   return true;
 }

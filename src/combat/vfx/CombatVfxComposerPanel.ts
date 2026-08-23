@@ -27,13 +27,16 @@ import {
 } from './CombatVfxLab';
 import type { LabAction, LabCatalogueRecord } from './CombatVfxLab';
 import {
+  getGroupedActionsInScope,
+  getVfxActionScope,
+  getActionsInScope,
+} from './DemoVfxActionScope';
+import { buildDemoWorkloadSummary } from './DemoVfxWorkload';
+import {
   addSlot,
   removeSlot,
   replaceSlotCandidate,
-  moveSlotUp,
-  moveSlotDown,
   updateSlotProfile,
-  setChoreography,
   setTechnicalPolish,
   setSlotAdvancedOverride,
   clearSlotAdvancedOverride,
@@ -72,14 +75,32 @@ import {
   resolveSlotMirrorProfile,
   resolveSlotPhases,
   hasActiveImpactFx,
+  addCasterMotion,
+  removeCasterMotion,
+  updateCasterMotion,
+  addBeat,
+  removeBeat,
+  addVfxToBeat,
+  addMotionToBeat,
+  setBeatStartDelay,
+  setBeatComposition,
+  deriveBeatsFromPhases,
+  hasExplicitBeats,
 } from './VfxPresetComposer';
+import {
+  CASTER_MOTION_TYPES,
+  CASTER_MOTION_DESTINATIONS,
+  resolveCasterMotionStep,
+  type CasterMotionType,
+  type CasterMotionDestination,
+  type CasterMotionStep,
+} from './CasterMotion';
 import type {
   VfxPresetDraft,
   VfxVisualSlot,
   VfxSizeProfile,
   VfxTimingProfile,
   VfxPlacementProfile,
-  VfxChoreography,
   VfxTechnicalPolish,
   VfxAimProfile,
   VfxMirrorProfile,
@@ -109,7 +130,7 @@ import {
   recordSavedFingerprint,
   getSavedStatus,
 } from './VfxComposerPlayback';
-import type { ComposerPlaybackContext, ComposerStore, ComposerDisplayMode } from './VfxComposerPlayback';
+import type { ComposerPlaybackContext, ComposerStore, ComposerDisplayMode, ComposerAuthoringScope } from './VfxComposerPlayback';
 import { buildBatchPublishPlan } from './BatchPublishPlan';
 import { ensureDraftRuntimeReady, ensureCandidateRuntimeReady } from './VfxRuntimeReadiness';
 import type { DraftReadinessResult } from './VfxRuntimeReadiness';
@@ -143,6 +164,15 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
 
   const fullCatalogue = buildCatalogue(inventoryJson as never);
   const catalogue = filterDefaultComposerCatalogue(fullCatalogue);
+
+  // START delay presets for per-beat startDelay control.
+  const START_DELAY_PRESETS: ReadonlyArray<readonly [string, number]> = [
+    ['INSTANT', 0],
+    ['SHORT', 0.3],
+    ['MEDIUM', 0.6],
+    ['LONG', 1.0],
+  ];
+
   let store: ComposerStore = loadComposerStore(localStorage);
   const actions = getLabActions();
   let currentActionKey = store.selectedActionKey ?? actions[0]?.actionKey ?? '';
@@ -151,7 +181,14 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
   let cataloguePage = 1;
   let advancedOpen = false;
   let replaceTargetSlotId: string | null = null;
-  let displayMode: ComposerDisplayMode = loadComposerUiPrefs(localStorage).displayMode;
+  let addVfxToBeatId: string | null = null;
+  const uiPrefs = loadComposerUiPrefs(localStorage);
+  let displayMode: ComposerDisplayMode = uiPrefs.displayMode;
+  // V2.6.3 — the stored action always wins over the stored scope, so reloading
+  // never silently swaps the operator onto an unrelated DEMO action.
+  let authoringScope: ComposerAuthoringScope = currentActionKey
+    ? getVfxActionScope(currentActionKey)
+    : uiPrefs.authoringScope;
   let bridgeAvailable = true;
 
   async function checkBridgeHealth(): Promise<void> {
@@ -166,9 +203,35 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     if (!bridgeAvailable) render();
   }
 
+  function persistUiPrefs(): void {
+    saveComposerUiPrefs(localStorage, { displayMode, authoringScope });
+  }
+
   function setDisplayMode(mode: ComposerDisplayMode): void {
     displayMode = mode;
-    saveComposerUiPrefs(localStorage, { displayMode });
+    persistUiPrefs();
+    render();
+  }
+
+  /**
+   * V2.6.3 — switching scope only changes which actions the ACTION list shows.
+   * Drafts, saved fingerprints and publications are never touched.
+   */
+  function setAuthoringScope(scope: ComposerAuthoringScope): void {
+    if (authoringScope === scope) return;
+    authoringScope = scope;
+    if (getVfxActionScope(currentActionKey) !== scope) {
+      const first = getActionsInScope(scope)[0];
+      if (first) {
+        currentActionKey = first.actionKey;
+        store = setSelectedActionKey(store, currentActionKey);
+        saveComposerStore(localStorage, store);
+      }
+    }
+    catalogueOpen = false;
+    replaceTargetSlotId = null;
+    addVfxToBeatId = null;
+    persistUiPrefs();
     render();
   }
 
@@ -251,9 +314,9 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     root.appendChild(minBtn);
 
     root.appendChild(renderHeader(draft));
-    root.appendChild(renderVisualSlots(draft));
+    if (authoringScope === 'DEMO') root.appendChild(renderDemoWorkload());
+    root.appendChild(renderChoreography(draft));
     if (catalogueOpen) root.appendChild(renderCataloguePicker(draft));
-    root.appendChild(renderComposition(draft));
     root.appendChild(renderPrimaryActions(draft));
     root.appendChild(renderAdvanced(draft));
     root.appendChild(statusLine);
@@ -291,17 +354,39 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     title.textContent = 'VFX PRESET COMPOSER';
     header.appendChild(title);
 
+    // ---- V2.6.3 SCOPE selector ----
+    const scopeRow = document.createElement('div');
+    scopeRow.className = 'cmp-row cmp-scope-row';
+    const scopeLabel = document.createElement('span');
+    scopeLabel.className = 'cmp-scope-label';
+    scopeLabel.textContent = 'SCOPE';
+    scopeRow.appendChild(scopeLabel);
+
+    const demoBtn = buildButton('DEMO SCOPE', 'cmp-scope-demo', () => setAuthoringScope('DEMO'));
+    demoBtn.classList.toggle('is-active', authoringScope === 'DEMO');
+    scopeRow.appendChild(demoBtn);
+
+    const upcomingBtn = buildButton('À VENIR', 'cmp-scope-upcoming', () => setAuthoringScope('UPCOMING'));
+    upcomingBtn.classList.toggle('is-active', authoringScope === 'UPCOMING');
+    scopeRow.appendChild(upcomingBtn);
+    header.appendChild(scopeRow);
+
     const actionRow = document.createElement('div');
     actionRow.className = 'cmp-row';
     const actionLabel = document.createElement('label');
     actionLabel.textContent = 'ACTION';
     const select = document.createElement('select');
     select.className = 'cmp-action-select';
-    for (const action of actions) {
-      const opt = document.createElement('option');
-      opt.value = action.actionKey;
-      opt.textContent = `${action.displayName} (${action.actionKey})`;
-      select.appendChild(opt);
+    for (const bucket of getGroupedActionsInScope(authoringScope)) {
+      const optgroup = document.createElement('optgroup');
+      optgroup.label = bucket.label;
+      for (const action of bucket.actions) {
+        const opt = document.createElement('option');
+        opt.value = action.actionKey;
+        opt.textContent = `${action.displayName} (${action.actionKey})`;
+        optgroup.appendChild(opt);
+      }
+      select.appendChild(optgroup);
     }
     select.value = currentActionKey;
     select.addEventListener('change', () => {
@@ -309,6 +394,7 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
       store = setSelectedActionKey(store, currentActionKey);
       catalogueOpen = false;
       replaceTargetSlotId = null;
+      addVfxToBeatId = null;
       saveComposerStore(localStorage, store);
       render();
     });
@@ -324,100 +410,65 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     return header;
   }
 
-  function renderVisualSlots(draft: VfxPresetDraft): HTMLElement {
+  /**
+   * V2.6.3 — DEMO scope workload dashboard. Read-only authoring telemetry; it
+   * never gates SAVE, PUBLISH or playback.
+   */
+  function renderDemoWorkload(): HTMLElement {
     const section = document.createElement('section');
-    section.className = 'cmp-section';
-    section.dataset.section = 'visual_slots';
+    section.className = 'cmp-section cmp-workload';
+    section.dataset.section = 'demo_workload';
+
+    const summary = buildDemoWorkloadSummary(store, getActiveRegistry());
 
     const heading = document.createElement('div');
     heading.className = 'cmp-section-heading';
-    heading.textContent = `VISUAL SPRITESHEETS (${draft.visualSlots.length})`;
+    heading.textContent = `DEMO WORKLOAD (${summary.published}/${summary.actions} PUBLISHED)`;
     section.appendChild(heading);
 
-    if (draft.visualSlots.length === 0) {
-      const empty = document.createElement('div');
-      empty.className = 'cmp-empty';
-      empty.textContent = 'No spritesheets yet. Use + ADD SPRITESHEET below.';
-      section.appendChild(empty);
-    }
-
-    const phases = resolveSlotPhases(draft);
-
-    draft.visualSlots.forEach((slot, index) => {
-      const card = document.createElement('div');
-      card.className = 'cmp-slot-card';
-      card.dataset.slotId = slot.id;
-
-      const top = document.createElement('div');
-      top.className = 'cmp-slot-top';
+    const counters = document.createElement('div');
+    counters.className = 'cmp-workload-counters';
+    const cells: readonly [string, number, string][] = [
+      ['ACTIONS', summary.actions, 'total'],
+      ['PUBLISHED', summary.published, 'published'],
+      ['READY', summary.ready, 'ready'],
+      ['IN PROGRESS', summary.inProgress, 'progress'],
+      ['REMAINING', summary.remaining, 'remaining'],
+    ];
+    for (const [label, value, kind] of cells) {
+      const cell = document.createElement('div');
+      cell.className = 'cmp-workload-cell';
+      cell.dataset.counter = kind;
       const num = document.createElement('span');
-      num.className = 'cmp-slot-num';
-      num.textContent = `SLOT ${index + 1}`;
-      const cid = document.createElement('span');
-      cid.className = 'cmp-slot-cid';
-      cid.textContent = slot.candidateId;
-      top.append(num, cid);
-      card.appendChild(top);
+      num.className = 'cmp-workload-value';
+      num.textContent = String(value);
+      const cap = document.createElement('span');
+      cap.className = 'cmp-workload-caption';
+      cap.textContent = label;
+      cell.appendChild(num);
+      cell.appendChild(cap);
+      counters.appendChild(cell);
+    }
+    section.appendChild(counters);
 
-      const record = catalogue.find((r) => r.candidateId === slot.candidateId);
-      const preview = resolvePreview(slot.candidateId, undefined);
-      if (preview.hasPreview) {
-        const img = document.createElement('img');
-        img.className = 'cmp-slot-preview';
-        img.src = preview.previewUrl;
-        img.alt = slot.candidateId;
-        img.addEventListener('error', () => {
-          img.replaceWith(createPreviewErrorEl('cmp-slot-preview'));
-        });
-        card.appendChild(img);
-      } else if (!bridgeAvailable) {
-        card.appendChild(createPreviewErrorEl('cmp-slot-preview'));
-      }
-
-      const filename = document.createElement('div');
-      filename.className = 'cmp-slot-filename';
-      filename.textContent = record?.sourceFilename ?? '(source filename unavailable)';
-      card.appendChild(filename);
-
-      if (!isSlotPlayable(slot.candidateId)) {
-        card.classList.add('cmp-slot-unplayable');
-        const flag = document.createElement('div');
-        flag.className = 'cmp-slot-flag';
-        flag.textContent = 'NOT A CARTOONCOFFEE SOURCE — REPLACE TO PREVIEW';
-        card.appendChild(flag);
-      }
-
-      card.appendChild(buildSlotProfiles(draft, slot, phases[index] ?? DEFAULT_PHASE));
-
-      const actionsRow = document.createElement('div');
-      actionsRow.className = 'cmp-slot-actions';
-      actionsRow.appendChild(buildButton('REMOVE', 'cmp-slot-remove', () => {
-        mutate(removeSlot(draft, slot.id));
-      }));
-      actionsRow.appendChild(buildButton('REPLACE', 'cmp-slot-replace', () => {
-        replaceTargetSlotId = slot.id;
-        catalogueOpen = true;
-        cataloguePage = 1;
-        render();
-      }));
-      const up = buildButton('MOVE UP', 'cmp-slot-up', () => mutate(moveSlotUp(draft, slot.id)));
-      up.disabled = index === 0;
-      actionsRow.appendChild(up);
-      const down = buildButton('MOVE DOWN', 'cmp-slot-down', () => mutate(moveSlotDown(draft, slot.id)));
-      down.disabled = index === draft.visualSlots.length - 1;
-      actionsRow.appendChild(down);
-      card.appendChild(actionsRow);
-
-      section.appendChild(card);
-    });
-
-    const addBtn = buildButton('+ ADD SPRITESHEET', 'cmp-add-slot', () => {
-      replaceTargetSlotId = null;
-      catalogueOpen = !catalogueOpen;
-      cataloguePage = 1;
-      render();
-    });
-    section.appendChild(addBtn);
+    const groups = document.createElement('div');
+    groups.className = 'cmp-workload-groups';
+    for (const group of summary.groups) {
+      const row = document.createElement('div');
+      row.className = 'cmp-workload-group';
+      row.dataset.group = group.group;
+      const name = document.createElement('span');
+      name.className = 'cmp-workload-group-name';
+      name.textContent = group.label;
+      const count = document.createElement('span');
+      count.className = 'cmp-workload-group-count';
+      count.textContent = `${group.done}/${group.total}`;
+      if (group.done === group.total) row.classList.add('is-complete');
+      row.appendChild(name);
+      row.appendChild(count);
+      groups.appendChild(row);
+    }
+    section.appendChild(groups);
 
     return section;
   }
@@ -445,6 +496,24 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
   const ORIGIN_LABELS: Record<string, string> = {
     CENTER: 'C', LEFT: 'L', RIGHT: 'R', TOP: 'T', BOTTOM: 'B',
   };
+
+  /**
+   * CASTER MOTION labels. Phrased as intentions ("STEP IN", "CROSS THROUGH")
+   * rather than as engine identifiers, matching the Composer's semantic style.
+   */
+  const MOTION_TYPE_LABELS: Record<string, string> = {
+    IDLE: 'HOLD', DASH_SHORT: 'STEP IN', DASH_THROUGH: 'CROSS THROUGH',
+    JUMP_UP: 'JUMP UP', JUMP_DOWN: 'DROP DOWN', JUMP_ARC: 'LEAP',
+  };
+  const MOTION_DESTINATION_LABELS: Record<string, string> = {
+    ORIGIN: 'IN PLACE', TARGET: 'TARGET', TARGET_FRONT: 'T.FRONT', TARGET_BACK: 'T.BACK',
+  };
+  const MOTION_DURATION_LABELS: Record<string, string> = {
+    '0.12': 'FAST', '0.2': 'NORMAL', '0.35': 'SLOW', '0.6': 'VERY SLOW',
+  };
+  /** Semantic time presets — the author never types raw seconds. */
+  const MOTION_START_PRESETS: readonly number[] = [0, 0.15, 0.3, 0.5, 0.8, 1.2];
+  const MOTION_DURATION_PRESETS: readonly number[] = [0.12, 0.2, 0.35, 0.6];
 
   /**
    * Compact indicators for non-default configuration, so the author can read a
@@ -738,6 +807,18 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
         void ensureCandidateRuntimeReady(record.candidateId).then((r) => {
           if (r.ready) statusLine.textContent = `${record.candidateId} ready for playback`;
         });
+      } else if (addVfxToBeatId) {
+        const targetBeatId = addVfxToBeatId;
+        addVfxToBeatId = null;
+        catalogueOpen = false;
+        statusLine.textContent = `Preparing ${record.candidateId}…`;
+        const withSlot = addSlot(draft, record.candidateId);
+        const newSlotId = withSlot.visualSlots.at(-1)!.id;
+        const assigned = addVfxToBeat(withSlot, targetBeatId, newSlotId);
+        mutate(assigned);
+        void ensureCandidateRuntimeReady(record.candidateId).then((r) => {
+          if (r.ready) statusLine.textContent = `${record.candidateId} ready for playback`;
+        });
       } else {
         statusLine.textContent = `Preparing ${record.candidateId}…`;
         mutate(addSlot(draft, record.candidateId));
@@ -750,71 +831,455 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     return card;
   }
 
-  function renderComposition(draft: VfxPresetDraft): HTMLElement {
+  // ============================================================ V2.7 CHOREOGRAPHY BEATS
+
+  /**
+   * Materializes explicit beats from the current draft state if they don't
+   * already exist. This is called before any choreography edit to ensure the
+   * first edit preserves all existing VFX and motion assignments.
+   *
+   * Constraint 1: The first real choreography edit must materialize explicit
+   * beats from the current draft state before persisting the edit.
+   */
+  function materializeBeats(draft: VfxPresetDraft): VfxPresetDraft {
+    if (hasExplicitBeats(draft)) return draft;
+    const phases = resolveSlotPhases(draft);
+    const beats = deriveBeatsFromPhases(phases, draft.visualSlots, draft.choreography);
+    if (beats.length === 0 && draft.visualSlots.length === 0 && (draft.casterMotion ?? []).length === 0) {
+      return draft;
+    }
+    return { ...draft, beats, updatedAt: Date.now() };
+  }
+
+  /**
+   * V2.7 CHOREOGRAPHY — the single authoritative temporal UI.
+   *
+   * Shows beats as vertical cards. Each beat contains:
+   *   - BEAT N header
+   *   - START delay control (INSTANT/SHORT/MEDIUM/LONG)
+   *   - COMPOSITION control (TOGETHER/SEQUENCE/PAIR THEN LAST)
+   *   - Timing display (START DELAY, ABSOLUTE START, DURATION, END — read-only)
+   *   - VFX and CASTER MOTION participant cards
+   *   - + ADD VFX / + ADD CASTER MOTION / REMOVE BEAT (disabled if non-empty)
+   *
+   * No global VFX section. No global Motion section. No UNASSIGNED pool.
+   * No global Composition section. No second timeline.
+   */
+  function renderChoreography(draft: VfxPresetDraft): HTMLElement {
     const section = document.createElement('section');
-    section.className = 'cmp-section';
-    section.dataset.section = 'composition';
+    section.className = 'cmp-section cmp-choreography';
+    section.dataset.section = 'choreography';
 
     const heading = document.createElement('div');
     heading.className = 'cmp-section-heading';
-    heading.textContent = 'COMPOSITION';
+    heading.textContent = 'ACTION CHOREOGRAPHY';
     section.appendChild(heading);
 
-    const phaseHint = document.createElement('div');
-    phaseHint.className = 'cmp-hint';
-    phaseHint.textContent = 'Quick PHASE presets. Fine-tune per spritesheet with PHASE on each card.';
-    section.appendChild(phaseHint);
+    const compiled = compileDraft(draft, { includeTechnical: true, getCadence: getCandidateCadence });
+    const beats = draft.beats ?? deriveBeatsFromPhases(resolveSlotPhases(draft), draft.visualSlots, draft.choreography);
+    const explicit = hasExplicitBeats(draft);
 
-    const row = document.createElement('div');
-    row.className = 'cmp-choreo-row';
-    for (const choreography of VFX_CHOREOGRAPHIES) {
-      const compat = choreographyCompatibility(choreography, draft.visualSlots.length);
-      const btn = buildButton(choreography.replace(/_/g, ' '), 'cmp-choreo-btn', () => {
-        mutate(setChoreography(draft, choreography));
-      });
-      if (draft.choreography === choreography) btn.classList.add('cmp-active');
-      if (!compat.compatible) {
-        btn.disabled = true;
-        btn.title = compat.reason ?? '';
+    const phases = resolveSlotPhases(draft);
+
+    beats.forEach((beat, beatIndex) => {
+      const compiledBeat = compiled.compiledBeats[beatIndex];
+      const beatEl = document.createElement('div');
+      beatEl.className = 'cmp-beat-card';
+      beatEl.dataset.beatId = beat.id;
+      beatEl.dataset.beatIndex = String(beatIndex);
+
+      // --- Beat header ---
+      const beatHeader = document.createElement('div');
+      beatHeader.className = 'cmp-beat-header';
+      const beatNum = document.createElement('span');
+      beatNum.className = 'cmp-beat-num';
+      beatNum.textContent = `BEAT ${beatIndex}`;
+      beatHeader.appendChild(beatNum);
+
+      // REMOVE BEAT — disabled when non-empty
+      if (explicit) {
+        const isEmpty = beat.vfxSlotIds.length === 0 && beat.casterMotionIds.length === 0;
+        const removeBtn = buildButton('REMOVE BEAT', 'cmp-beat-remove', () => {
+          mutate(removeBeat(draft, beat.id));
+        });
+        removeBtn.disabled = !isEmpty;
+        removeBtn.title = isEmpty ? 'Remove this empty beat' : 'Beat must be empty to remove';
+        if (!isEmpty) removeBtn.classList.add('cmp-disabled');
+        beatHeader.appendChild(removeBtn);
       }
-      row.appendChild(btn);
-    }
-    section.appendChild(row);
+      beatEl.appendChild(beatHeader);
 
-    const compat = choreographyCompatibility(draft.choreography, draft.visualSlots.length);
-    if (!compat.compatible) {
-      const warn = document.createElement('div');
-      warn.className = 'cmp-warn';
-      warn.textContent = compat.reason ?? '';
-      section.appendChild(warn);
+      // --- START delay control ---
+      const startDelay = beat.startDelay ?? 0;
+      const startRow = document.createElement('div');
+      startRow.className = 'cmp-profile cmp-beat-start';
+      startRow.dataset.profile = 'start';
+      const startLabel = document.createElement('span');
+      startLabel.className = 'cmp-profile-label';
+      startLabel.textContent = 'START';
+      startRow.appendChild(startLabel);
+      const startGroup = document.createElement('div');
+      startGroup.className = 'cmp-profile-group';
+      for (const [presetLabel, presetVal] of START_DELAY_PRESETS) {
+        const btn = buildButton(presetLabel, 'cmp-profile-btn', () => {
+          const m = explicit ? draft : materializeBeats(draft);
+          const targetBeatId = explicit ? beat.id : (m.beats?.[beatIndex]?.id ?? beat.id);
+          mutate(setBeatStartDelay(m, targetBeatId, presetVal));
+        });
+        btn.dataset.value = String(presetVal);
+        if (Math.abs(startDelay - presetVal) < 0.001) btn.classList.add('cmp-active');
+        startGroup.appendChild(btn);
+      }
+      startRow.appendChild(startGroup);
+      beatEl.appendChild(startRow);
+
+      // --- COMPOSITION control (per-beat) ---
+      const beatComposition = beat.composition ?? draft.choreography ?? 'TOGETHER';
+      const compRow = document.createElement('div');
+      compRow.className = 'cmp-profile cmp-beat-composition';
+      compRow.dataset.profile = 'composition';
+      const compLabel = document.createElement('span');
+      compLabel.className = 'cmp-profile-label';
+      compLabel.textContent = 'COMPOSITION';
+      compRow.appendChild(compLabel);
+      const compGroup = document.createElement('div');
+      compGroup.className = 'cmp-profile-group';
+      for (const choreography of VFX_CHOREOGRAPHIES) {
+        const compat = choreographyCompatibility(choreography, beat.vfxSlotIds.length);
+        const btn = buildButton(choreography.replace(/_/g, ' '), 'cmp-choreo-btn', () => {
+          const m = explicit ? draft : materializeBeats(draft);
+          const targetBeatId = explicit ? beat.id : (m.beats?.[beatIndex]?.id ?? beat.id);
+          mutate(setBeatComposition(m, targetBeatId, choreography));
+        });
+        if (beatComposition === choreography) btn.classList.add('cmp-active');
+        if (!compat.compatible) {
+          btn.disabled = true;
+          btn.title = compat.reason ?? '';
+        }
+        compGroup.appendChild(btn);
+      }
+      compRow.appendChild(compGroup);
+      beatEl.appendChild(compRow);
+
+      // --- Timing display (read-only) ---
+      const timingRow = document.createElement('div');
+      timingRow.className = 'cmp-beat-timing';
+      if (compiledBeat) {
+        const absStart = compiledBeat.startTime;
+        const duration = compiledBeat.duration;
+        const endTime = Math.round((absStart + duration) * 1000) / 1000;
+        timingRow.textContent = `START +${startDelay.toFixed(2)}s · TIME ${absStart.toFixed(2)}s · DURATION ${duration.toFixed(2)}s · END ${endTime.toFixed(2)}s`;
+      } else {
+        timingRow.textContent = '—';
+      }
+      beatEl.appendChild(timingRow);
+
+      // --- Beat body: participants ---
+      const beatBody = document.createElement('div');
+      beatBody.className = 'cmp-beat-body';
+
+      const beatSlots = draft.visualSlots.filter((s) => beat.vfxSlotIds.includes(s.id));
+      for (const slot of beatSlots) {
+        const slotIndex = draft.visualSlots.indexOf(slot);
+        beatBody.appendChild(renderBeatVfxCard(draft, slot, slotIndex, beatIndex, beats.length, phases[slotIndex] ?? 0, explicit));
+      }
+
+      const beatMotions = (draft.casterMotion ?? []).filter((m) => beat.casterMotionIds.includes(m.id));
+      for (const motion of beatMotions) {
+        const motionIndex = (draft.casterMotion ?? []).indexOf(motion);
+        beatBody.appendChild(renderBeatMotionCard(draft, motion, motionIndex, beatIndex, beats.length, explicit));
+      }
+
+      if (beatSlots.length === 0 && beatMotions.length === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'cmp-beat-empty';
+        empty.textContent = 'Empty beat';
+        beatBody.appendChild(empty);
+      }
+
+      // --- Beat actions ---
+      const beatActions = document.createElement('div');
+      beatActions.className = 'cmp-beat-actions';
+      beatActions.appendChild(buildButton('+ ADD VFX', 'cmp-beat-add-vfx', () => {
+        const m = explicit ? draft : materializeBeats(draft);
+        const targetBeatId = explicit ? beat.id : (m.beats?.[beatIndex]?.id ?? beat.id);
+        addVfxToBeatId = targetBeatId;
+        replaceTargetSlotId = null;
+        catalogueOpen = true;
+        cataloguePage = 1;
+        if (!explicit) mutate(m);
+        else render();
+      }));
+      beatActions.appendChild(buildButton('+ ADD CASTER MOTION', 'cmp-beat-add-motion', () => {
+        const m = explicit ? draft : materializeBeats(draft);
+        const targetBeatId = explicit ? beat.id : (m.beats?.[beatIndex]?.id ?? beat.id);
+        const withMotion = addCasterMotion(m);
+        const assigned = addMotionToBeat(withMotion, targetBeatId, (withMotion.casterMotion ?? []).at(-1)!.id);
+        mutate(assigned);
+      }));
+      beatBody.appendChild(beatActions);
+
+      beatEl.appendChild(beatBody);
+      section.appendChild(beatEl);
+    });
+
+    // --- + ADD BEAT ---
+    section.appendChild(buildButton('+ ADD BEAT', 'cmp-add-beat', () => {
+      const m = explicit ? draft : materializeBeats(draft);
+      mutate(addBeat(m));
+    }));
+
+    if (beats.length === 0 && draft.visualSlots.length === 0 && (draft.casterMotion ?? []).length === 0) {
+      const hint = document.createElement('div');
+      hint.className = 'cmp-hint';
+      hint.textContent = 'No choreography yet. Use + ADD BEAT to begin.';
+      section.appendChild(hint);
     }
 
-    section.appendChild(renderTimeline(draft));
+    const total = document.createElement('div');
+    total.className = 'cmp-beat-total';
+    total.textContent = `TOTAL ${compiled.totalDuration.toFixed(2)}s`;
+    section.appendChild(total);
+
     return section;
   }
 
-  /** Shows the computed phase start times — read-only, never editable. */
-  function renderTimeline(draft: VfxPresetDraft): HTMLElement {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'cmp-timeline';
-    const compiled = compileDraft(draft, { includeTechnical: true, getCadence: getCandidateCadence });
-    compiled.slots.forEach((slot, index) => {
-      const line = document.createElement('div');
-      line.className = 'cmp-timeline-row';
-      line.dataset.slotId = slot.slotId;
-      line.dataset.startTime = String(slot.startTime);
-      line.dataset.duration = String(slot.duration);
-      line.dataset.phase = String(slot.phase);
-      line.dataset.impactTime = String(slot.impactTime);
-      const fx = slot.technical.length > 0 ? `  ·  fx@${slot.impactTime.toFixed(2)}s` : '';
-      line.textContent = `SLOT ${index + 1}  P${slot.phase}  start ${slot.startTime.toFixed(2)}s  ·  ${slot.duration.toFixed(2)}s  ·  h${slot.finalDisplayHeight.toFixed(2)}${fx}`;
-      wrapper.appendChild(line);
+  /**
+   * Renders a VFX slot card inside a beat. Includes all existing slot editing
+   * controls (profiles, phase, impact FX) plus beat-specific controls:
+   *   ◀ MOVE LEFT  — reassign to previous beat
+   *   MOVE RIGHT ▶ — reassign to next beat
+   *   DELETE — deletes the slot entirely (also removes from beat membership)
+   *   REPLACE — opens catalogue picker to swap candidate
+   */
+  function renderBeatVfxCard(
+    draft: VfxPresetDraft,
+    slot: VfxVisualSlot,
+    index: number,
+    beatIndex: number,
+    beatCount: number,
+    phase: number,
+    explicit: boolean,
+  ): HTMLElement {
+    const card = document.createElement('div');
+    card.className = 'cmp-slot-card';
+    card.dataset.slotId = slot.id;
+
+    const top = document.createElement('div');
+    top.className = 'cmp-slot-top';
+    const num = document.createElement('span');
+    num.className = 'cmp-slot-num';
+    num.textContent = `SLOT ${index + 1}`;
+    const cid = document.createElement('span');
+    cid.className = 'cmp-slot-cid';
+    cid.textContent = slot.candidateId;
+    top.append(num, cid);
+    card.appendChild(top);
+
+    const record = catalogue.find((r) => r.candidateId === slot.candidateId);
+    const preview = resolvePreview(slot.candidateId, undefined);
+    if (preview.hasPreview) {
+      const img = document.createElement('img');
+      img.className = 'cmp-slot-preview';
+      img.src = preview.previewUrl;
+      img.alt = slot.candidateId;
+      img.addEventListener('error', () => {
+        img.replaceWith(createPreviewErrorEl('cmp-slot-preview'));
+      });
+      card.appendChild(img);
+    } else if (!bridgeAvailable) {
+      card.appendChild(createPreviewErrorEl('cmp-slot-preview'));
+    }
+
+    const filename = document.createElement('div');
+    filename.className = 'cmp-slot-filename';
+    filename.textContent = record?.sourceFilename ?? '(source filename unavailable)';
+    card.appendChild(filename);
+
+    if (!isSlotPlayable(slot.candidateId)) {
+      card.classList.add('cmp-slot-unplayable');
+      const flag = document.createElement('div');
+      flag.className = 'cmp-slot-flag';
+      flag.textContent = 'NOT A CARTOONCOFFEE SOURCE — REPLACE TO PREVIEW';
+      card.appendChild(flag);
+    }
+
+    card.appendChild(buildSlotProfiles(draft, slot, phase));
+
+    const actionsRow = document.createElement('div');
+    actionsRow.className = 'cmp-slot-actions';
+    actionsRow.appendChild(buildButton('REPLACE', 'cmp-slot-replace', () => {
+      replaceTargetSlotId = slot.id;
+      catalogueOpen = true;
+      cataloguePage = 1;
+      render();
+    }));
+
+    if (beatIndex >= 0) {
+      const moveLeft = buildButton('◀', 'cmp-beat-move-left', () => {
+        const m = explicit ? draft : materializeBeats(draft);
+        const beats = m.beats!;
+        const targetBeat = beats[beatIndex - 1];
+        if (targetBeat) mutate(addVfxToBeat(m, targetBeat.id, slot.id));
+      });
+      moveLeft.disabled = beatIndex <= 0;
+      moveLeft.title = 'Move to previous beat';
+      actionsRow.appendChild(moveLeft);
+
+      const moveRight = buildButton('▶', 'cmp-beat-move-right', () => {
+        const m = explicit ? draft : materializeBeats(draft);
+        const beats = m.beats!;
+        const targetBeat = beats[beatIndex + 1];
+        if (targetBeat) mutate(addVfxToBeat(m, targetBeat.id, slot.id));
+      });
+      moveRight.disabled = beatIndex >= beatCount - 1;
+      moveRight.title = 'Move to next beat';
+      actionsRow.appendChild(moveRight);
+    }
+
+    actionsRow.appendChild(buildButton('DELETE', 'cmp-slot-remove', () => {
+      let next: VfxPresetDraft = removeSlot(draft, slot.id);
+      if (explicit && draft.beats) {
+        const cleanedBeats = draft.beats
+          .map((b) => ({ ...b, vfxSlotIds: b.vfxSlotIds.filter((id) => id !== slot.id) }));
+        next = { ...next, beats: cleanedBeats };
+      }
+      mutate(next);
+    }));
+
+    card.appendChild(actionsRow);
+    return card;
+  }
+
+  /**
+   * Renders a CASTER MOTION card inside a beat. Includes all existing motion
+   * editing controls (type, destination, speed, start, return) plus
+   * beat-specific controls:
+   *   ◀ MOVE LEFT  — reassign to previous beat
+   *   MOVE RIGHT ▶ — reassign to next beat
+   *   DELETE — deletes the motion entirely (also removes from beat membership)
+   */
+  function renderBeatMotionCard(
+    draft: VfxPresetDraft,
+    step: CasterMotionStep,
+    index: number,
+    beatIndex: number,
+    beatCount: number,
+    explicit: boolean,
+  ): HTMLElement {
+    const resolved = resolveCasterMotionStep(step);
+    const card = document.createElement('div');
+    card.className = 'cmp-motion-card';
+    card.dataset.motionId = step.id;
+
+    const title = document.createElement('div');
+    title.className = 'cmp-motion-title';
+    const label = MOTION_TYPE_LABELS[resolved.type] ?? resolved.type;
+    const dest = resolved.type !== 'IDLE' && resolved.type !== 'JUMP_UP'
+      ? ` → ${MOTION_DESTINATION_LABELS[resolved.destination] ?? resolved.destination}`
+      : '';
+    title.textContent = `CASTER MOTION: ${label}${dest}`;
+    card.appendChild(title);
+
+    card.appendChild(buildProfileControl<CasterMotionType>(
+      'MOVE', CASTER_MOTION_TYPES, resolved.type,
+      (value) => mutate(updateCasterMotion(draft, step.id, { type: value })),
+      MOTION_TYPE_LABELS,
+    ));
+
+    if (resolved.type !== 'IDLE' && resolved.type !== 'JUMP_UP') {
+      card.appendChild(buildProfileControl<CasterMotionDestination>(
+        'TO', CASTER_MOTION_DESTINATIONS, resolved.destination,
+        (value) => mutate(updateCasterMotion(draft, step.id, { destination: value })),
+        MOTION_DESTINATION_LABELS,
+      ));
+    }
+
+    card.appendChild(buildProfileControl<string>(
+      'START', MOTION_START_PRESETS.map(String), nearestPreset(MOTION_START_PRESETS, resolved.startTime),
+      (value) => mutate(updateCasterMotion(draft, step.id, { startTime: Number(value) })),
+    ));
+
+    card.appendChild(buildProfileControl<string>(
+      'SPEED', MOTION_DURATION_PRESETS.map(String), nearestPreset(MOTION_DURATION_PRESETS, resolved.duration),
+      (value) => mutate(updateCasterMotion(draft, step.id, { duration: Number(value) })),
+      MOTION_DURATION_LABELS,
+    ));
+
+    const returnRow = document.createElement('div');
+    returnRow.className = 'cmp-profile';
+    returnRow.dataset.profile = 'return';
+    const returnCaption = document.createElement('span');
+    returnCaption.className = 'cmp-profile-label';
+    returnCaption.textContent = 'AFTER';
+    returnRow.appendChild(returnCaption);
+    const returnGroup = document.createElement('div');
+    returnGroup.className = 'cmp-profile-group';
+    const stayBtn = buildButton('STAY', 'cmp-profile-btn', () => {
+      mutate(updateCasterMotion(draft, step.id, { returnToOrigin: false }));
     });
-    const total = document.createElement('div');
-    total.className = 'cmp-timeline-total';
-    total.textContent = `TOTAL ${compiled.totalDuration.toFixed(2)}s`;
-    wrapper.appendChild(total);
-    return wrapper;
+    stayBtn.dataset.value = 'stay';
+    if (!resolved.returnToOrigin) stayBtn.classList.add('cmp-active');
+    const backBtn = buildButton('COME BACK', 'cmp-profile-btn', () => {
+      mutate(updateCasterMotion(draft, step.id, { returnToOrigin: true }));
+    });
+    backBtn.dataset.value = 'return';
+    if (resolved.returnToOrigin) backBtn.classList.add('cmp-active');
+    returnGroup.append(stayBtn, backBtn);
+    returnRow.appendChild(returnGroup);
+    card.appendChild(returnRow);
+
+    const actions = document.createElement('div');
+    actions.className = 'cmp-motion-actions';
+
+    if (beatIndex >= 0) {
+      const moveLeft = buildButton('◀', 'cmp-beat-move-left', () => {
+        const m = explicit ? draft : materializeBeats(draft);
+        const beats = m.beats!;
+        const targetBeat = beats[beatIndex - 1];
+        if (targetBeat) mutate(addMotionToBeat(m, targetBeat.id, step.id));
+      });
+      moveLeft.disabled = beatIndex <= 0;
+      moveLeft.title = 'Move to previous beat';
+      actions.appendChild(moveLeft);
+
+      const moveRight = buildButton('▶', 'cmp-beat-move-right', () => {
+        const m = explicit ? draft : materializeBeats(draft);
+        const beats = m.beats!;
+        const targetBeat = beats[beatIndex + 1];
+        if (targetBeat) mutate(addMotionToBeat(m, targetBeat.id, step.id));
+      });
+      moveRight.disabled = beatIndex >= beatCount - 1;
+      moveRight.title = 'Move to next beat';
+      actions.appendChild(moveRight);
+    }
+
+    actions.appendChild(buildButton('DELETE', 'cmp-motion-remove', () => {
+      let next: VfxPresetDraft = removeCasterMotion(draft, step.id);
+      if (explicit && draft.beats) {
+        const cleanedBeats = draft.beats
+          .map((b) => ({ ...b, casterMotionIds: b.casterMotionIds.filter((id) => id !== step.id) }));
+        next = { ...next, beats: cleanedBeats };
+      }
+      mutate(next);
+    }));
+    card.appendChild(actions);
+
+    return card;
+  }
+
+  /** Picks the preset value closest to a resolved number, for button highlighting. */
+  function nearestPreset(presets: readonly number[], value: number): string {
+    let best = presets[0] ?? 0;
+    let bestDelta = Math.abs(best - value);
+    for (const preset of presets) {
+      const delta = Math.abs(preset - value);
+      if (delta < bestDelta) {
+        best = preset;
+        bestDelta = delta;
+      }
+    }
+    return String(best);
   }
 
   /**
@@ -1662,6 +2127,27 @@ function addComposerStyle(): void {
     #${COMPOSER_ROOT_ID} .cmp-section-heading{color:#9fe5ff;font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-bottom:6px}
     #${COMPOSER_ROOT_ID} .cmp-preset-id{color:#8fa5b2;font-size:10px;margin-top:5px}
     #${COMPOSER_ROOT_ID} .cmp-preset-id b{color:#f1c76c}
+    #${COMPOSER_ROOT_ID} .cmp-scope-row{display:flex;align-items:center;gap:5px;margin-bottom:6px}
+    #${COMPOSER_ROOT_ID} .cmp-scope-label{color:#8fa5b2;font-size:9px;font-weight:800;letter-spacing:.08em}
+    #${COMPOSER_ROOT_ID} .cmp-scope-row button{flex:1 1 auto}
+    #${COMPOSER_ROOT_ID} .cmp-scope-row button.is-active{border-color:#66cfea;background:#12506b;font-weight:800}
+    #${COMPOSER_ROOT_ID} .cmp-workload{border-color:#2f5468;background:rgba(12,34,50,.62)}
+    #${COMPOSER_ROOT_ID} .cmp-workload-counters{display:flex;gap:4px;margin-bottom:7px}
+    #${COMPOSER_ROOT_ID} .cmp-workload-cell{flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:1px;
+      padding:4px 2px;border:1px solid #2a4a60;border-radius:4px;background:rgba(8,20,30,.7)}
+    #${COMPOSER_ROOT_ID} .cmp-workload-value{color:#dfeef7;font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+    #${COMPOSER_ROOT_ID} .cmp-workload-caption{color:#7a96a6;font-size:7.5px;font-weight:700;letter-spacing:.05em;text-align:center}
+    #${COMPOSER_ROOT_ID} .cmp-workload-cell[data-counter="published"] .cmp-workload-value{color:#6ee7a8}
+    #${COMPOSER_ROOT_ID} .cmp-workload-cell[data-counter="ready"] .cmp-workload-value{color:#66cfea}
+    #${COMPOSER_ROOT_ID} .cmp-workload-cell[data-counter="progress"] .cmp-workload-value{color:#f1c76c}
+    #${COMPOSER_ROOT_ID} .cmp-workload-cell[data-counter="remaining"] .cmp-workload-value{color:#8fa5b2}
+    #${COMPOSER_ROOT_ID} .cmp-workload-groups{display:flex;flex-direction:column;gap:2px}
+    #${COMPOSER_ROOT_ID} .cmp-workload-group{display:flex;justify-content:space-between;align-items:baseline;
+      padding:2px 5px;border-radius:3px;background:rgba(8,20,30,.5)}
+    #${COMPOSER_ROOT_ID} .cmp-workload-group.is-complete{background:rgba(110,231,168,.12)}
+    #${COMPOSER_ROOT_ID} .cmp-workload-group-name{color:#8fa5b2;font-size:9px;font-weight:700;letter-spacing:.04em}
+    #${COMPOSER_ROOT_ID} .cmp-workload-group-count{color:#dfeef7;font-size:9.5px;font-weight:800;font-variant-numeric:tabular-nums}
+    #${COMPOSER_ROOT_ID} .cmp-workload-group.is-complete .cmp-workload-group-count{color:#6ee7a8}
     #${COMPOSER_ROOT_ID} .cmp-empty{color:#7a96a6;font-size:11px;font-style:italic;padding:4px 0}
     #${COMPOSER_ROOT_ID} .cmp-slot-card{margin-bottom:8px;padding:7px;border:1px solid #2f5468;border-radius:5px;background:rgba(20,42,58,.55)}
     #${COMPOSER_ROOT_ID} .cmp-slot-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
@@ -1686,6 +2172,28 @@ function addComposerStyle(): void {
     #${COMPOSER_ROOT_ID} .cmp-slot-actions{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:5px}
     #${COMPOSER_ROOT_ID} .cmp-slot-remove{border-color:#8c3a3a;background:#2f0d0d}
     #${COMPOSER_ROOT_ID} .cmp-add-slot{width:100%;border-color:#3a8c4a;background:#0d2f1a;font-weight:700;padding:6px}
+    #${COMPOSER_ROOT_ID} .cmp-timeline-motion{color:#9fe5ff;font-weight:700}
+    #${COMPOSER_ROOT_ID} .cmp-motion-card{margin-bottom:5px;padding:5px;border:1px solid #2f5468;border-radius:4px;background:#101c24}
+    #${COMPOSER_ROOT_ID} .cmp-motion-title{font-size:10px;font-weight:800;letter-spacing:.06em;color:#7fd0ff;margin-bottom:4px}
+    #${COMPOSER_ROOT_ID} .cmp-motion-actions{margin-top:5px}
+    #${COMPOSER_ROOT_ID} .cmp-motion-remove{width:100%;border-color:#8c3a3a;background:#2f0d0d}
+    #${COMPOSER_ROOT_ID} .cmp-add-motion{width:100%;border-color:#3a6a8c;background:#0d1f2f;font-weight:700;padding:6px}
+    #${COMPOSER_ROOT_ID} .cmp-beat-card{margin-bottom:6px;padding:6px;border:1px solid #3a5c70;border-radius:5px;background:rgba(18,38,54,.5)}
+    #${COMPOSER_ROOT_ID} .cmp-beat-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;padding-bottom:3px;border-bottom:1px solid #2f5468}
+    #${COMPOSER_ROOT_ID} .cmp-beat-num{color:#f1c76c;font-size:11px;font-weight:800;letter-spacing:.06em}
+    #${COMPOSER_ROOT_ID} .cmp-beat-timing{color:#8fa5b2;font-size:9px;font-variant-numeric:tabular-nums}
+    #${COMPOSER_ROOT_ID} .cmp-beat-body{display:flex;flex-direction:column;gap:4px}
+    #${COMPOSER_ROOT_ID} .cmp-beat-empty{color:#7a96a6;font-size:10px;font-style:italic;padding:2px 0}
+    #${COMPOSER_ROOT_ID} .cmp-beat-actions{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px}
+    #${COMPOSER_ROOT_ID} .cmp-beat-add-vfx{flex:1;border-color:#3a8c4a;background:#0d2f1a;font-size:10px;font-weight:700;padding:4px}
+    #${COMPOSER_ROOT_ID} .cmp-beat-add-motion{flex:1;border-color:#3a6a8c;background:#0d1f2f;font-size:10px;font-weight:700;padding:4px}
+    #${COMPOSER_ROOT_ID} .cmp-beat-remove{flex:1;border-color:#8c3a3a;background:#2f0d0d;font-size:10px;padding:4px}
+    #${COMPOSER_ROOT_ID} .cmp-beat-move-left,#${COMPOSER_ROOT_ID} .cmp-beat-move-right{width:28px;font-size:12px;font-weight:800;padding:3px 0;line-height:1}
+    #${COMPOSER_ROOT_ID} .cmp-beat-remove-vfx,#${COMPOSER_ROOT_ID} .cmp-beat-remove-motion{border-color:#8c5a3a;background:#2f1d0d;font-size:9px;padding:3px 4px}
+    #${COMPOSER_ROOT_ID} .cmp-add-beat{width:100%;border-color:#3a6a8c;background:#0d1f2f;font-weight:700;padding:6px;margin-bottom:6px}
+    #${COMPOSER_ROOT_ID} .cmp-beat-total{margin-top:4px;color:#f1c76c;font-size:10px;font-weight:700;font-variant-numeric:tabular-nums}
+    #${COMPOSER_ROOT_ID} .cmp-unassigned-pool{margin-top:6px;padding:6px;border:1px dashed #8c5a3a;border-radius:5px;background:rgba(60,30,10,.2)}
+    #${COMPOSER_ROOT_ID} .cmp-unassigned-heading{color:#ff9a4a;font-size:10px;font-weight:800;letter-spacing:.06em;margin-bottom:4px}
     #${COMPOSER_ROOT_ID} .cmp-search{margin-bottom:5px}
     #${COMPOSER_ROOT_ID} .cmp-cat-count{color:#8fa5b2;font-size:9px;margin-bottom:5px}
     #${COMPOSER_ROOT_ID} .cmp-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}

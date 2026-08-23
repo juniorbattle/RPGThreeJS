@@ -27,6 +27,20 @@ const CADENCE_64F_2120: VfxNativeCadence = { frameCount: 64, frameDurationMs: 21
 const CADENCE_16F_520: VfxNativeCadence = { frameCount: 16, frameDurationMs: 520 / 16 };
 const CADENCE_64F_2640: VfxNativeCadence = { frameCount: 64, frameDurationMs: 2640 / 64 };
 
+/**
+ * The durable registry is real authoring state and may legitimately contain any
+ * action. Tests that need an UNPUBLISHED action must therefore derive one at
+ * runtime instead of hard-coding a key that an operator may later publish.
+ */
+const UNPUBLISHED_ACTION_KEY = (() => {
+  __devClearOverlay();
+  const durable = getActiveRegistry();
+  let n = 0;
+  let key = 'never_published_action';
+  while (durable.actions[key]) key = `never_published_action_${(n += 1)}`;
+  return key;
+})();
+
 const mockGetCadence = (candidateId: string): VfxNativeCadence | null => {
   if (candidateId === 'r1_0489') return CADENCE_64F_2120;
   if (candidateId === 'r1_2561') return CADENCE_16F_520;
@@ -163,7 +177,8 @@ describe('R2C-VFX V2.3 — Action Override Resolver', () => {
 
   it('91. resolveActionVfxPresetId returns static fallback when not published', () => {
     __devClearOverlay();
-    expect(resolveActionVfxPresetId('basic_crosier_hit', 'basic_crosier_hit')).toBe('basic_crosier_hit');
+    expect(resolveActionVfxPresetId(UNPUBLISHED_ACTION_KEY, 'static_fallback_preset'))
+      .toBe('static_fallback_preset');
   });
 
   it('92. isActionPublished returns true for published action', () => {
@@ -177,7 +192,7 @@ describe('R2C-VFX V2.3 — Action Override Resolver', () => {
 
   it('93. isActionPublished returns false for unpublished action', () => {
     __devClearOverlay();
-    expect(isActionPublished('basic_crosier_hit')).toBe(false);
+    expect(isActionPublished(UNPUBLISHED_ACTION_KEY)).toBe(false);
   });
 
   it('94. getPublishedDraft returns draft for published action', () => {
@@ -194,17 +209,18 @@ describe('R2C-VFX V2.3 — Action Override Resolver', () => {
 
   it('95. getPublishedDraft returns null for unpublished action', () => {
     __devClearOverlay();
-    expect(getPublishedDraft('basic_crosier_hit')).toBeNull();
+    expect(getPublishedDraft(UNPUBLISHED_ACTION_KEY)).toBeNull();
   });
 
   it('96. dev overlay takes priority over durable registry', () => {
     __devClearOverlay();
-    const draft = makeDraft('basic_crosier_hit', 'r1_0489', 'LOW', 'QUICK');
+    const draft = makeDraft(UNPUBLISHED_ACTION_KEY, 'r1_0489', 'LOW', 'QUICK');
     const overlayRegistry = publishEntry(emptyRegistry(), draft);
     __devUpdateOverlay(overlayRegistry);
-    expect(isActionPublished('basic_crosier_hit')).toBe(true);
+    expect(isActionPublished(UNPUBLISHED_ACTION_KEY)).toBe(true);
     __devClearOverlay();
-    // After clearing overlay, should fall back to durable (empty)
-    expect(isActionPublished('basic_crosier_hit')).toBe(false);
+    // After clearing the overlay, resolution falls back to the durable registry,
+    // which provably does not contain this key.
+    expect(isActionPublished(UNPUBLISHED_ACTION_KEY)).toBe(false);
   });
 });

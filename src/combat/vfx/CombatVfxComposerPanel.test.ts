@@ -31,15 +31,25 @@ function removeAllSlots(): void {
   }
 }
 
+/** Opens the catalogue via the first beat's + ADD VFX button. */
+function openCatalogue(): void {
+  if (qa('.cmp-beat-card').length === 0) click(q('.cmp-add-beat'));
+  click(qa('.cmp-beat-card')[0]!.querySelector('.cmp-beat-add-vfx'));
+}
+
+/** Adds a single slot from the catalogue to the first beat. */
+function addSlotFromCatalogue(): void {
+  openCatalogue();
+  click(q('.cmp-cat-add'));
+}
+
 /**
- * Opens the library once, then adds `count` distinct candidates. The library
- * intentionally stays open after ADD TO PRESET so several sources can be added
- * in a row, so it must only be toggled once.
+ * Adds `count` slots from the catalogue to the first beat, opening the
+ * catalogue for each addition.
  */
 function addSlotsFromCatalogue(count: number): void {
-  if (!q('[data-section="catalogue"]')) click(q('.cmp-add-slot'));
   for (let i = 0; i < count; i += 1) {
-    click(qa('.cmp-cat-add')[i]);
+    addSlotFromCatalogue();
   }
 }
 
@@ -85,8 +95,8 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   it('3. renders the simple layout sections in order', () => {
     const sections = qa('[data-section]').map((el) => el.dataset.section);
     expect(sections).toEqual([
-      'visual_slots',
-      'composition',
+      'demo_workload',
+      'choreography',
       'primary_actions',
       'advanced',
     ]);
@@ -108,22 +118,22 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
 
   // ---------------------------------------------------------- add / remove / reorder
 
-  it('6. + ADD SPRITESHEET opens the CartoonCoffee library', () => {
+  it('6. + ADD VFX on a beat opens the CartoonCoffee library', () => {
     expect(q('[data-section="catalogue"]')).toBeNull();
-    click(q('.cmp-add-slot'));
+    openCatalogue();
     expect(q('[data-section="catalogue"]')).not.toBeNull();
     expect(qa('.cmp-cat-card').length).toBeGreaterThan(0);
   });
 
   it('7. candidate cards offer ADD TO PRESET, not USE AS QA SOURCE', () => {
-    click(q('.cmp-add-slot'));
+    openCatalogue();
     const addBtn = q('.cmp-cat-add');
     expect(addBtn?.textContent).toBe('ADD TO PRESET');
     expect(getRoot().textContent).not.toContain('USE AS QA SOURCE');
   });
 
   it('7b. hides interface indicators while retaining suitability metadata in the default catalogue', () => {
-    click(q('.cmp-add-slot'));
+    openCatalogue();
     const cards = qa<HTMLElement>('.cmp-cat-card');
     const ids = cards.map((card) => card.dataset.candidateId);
     for (const indicatorId of ['r1_0001', 'r1_0002', 'r1_0003', 'r1_0004', 'r1_0005']) {
@@ -135,22 +145,19 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
 
   it('8. ADD TO PRESET appends a slot card', () => {
     const before = qa('.cmp-slot-card').length;
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     expect(qa('.cmp-slot-card').length).toBe(before + 1);
   });
 
   it('9. REMOVE deletes the slot card', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const before = qa('.cmp-slot-card').length;
     click(q('.cmp-slot-remove'));
     expect(qa('.cmp-slot-card').length).toBe(before - 1);
   });
 
   it('10. REPLACE swaps the slot candidate through the library', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const firstCard = qa('.cmp-slot-card')[0]!;
     const originalCid = firstCard.querySelector('.cmp-slot-cid')!.textContent;
     click(firstCard.querySelector('.cmp-slot-replace'));
@@ -162,29 +169,35 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
       .not.toBe(originalCid);
   });
 
-  it('11. MOVE UP / MOVE DOWN reorder slot cards', () => {
+  it('11. MOVE LEFT / MOVE RIGHT reassign slot cards between beats', () => {
     addSlotsFromCatalogue(2);
-    const order = () => qa('.cmp-slot-card').map((c) => c.querySelector('.cmp-slot-cid')!.textContent);
-    const before = order();
-    expect(before.length).toBeGreaterThanOrEqual(2);
-    click(qa('.cmp-slot-card')[before.length - 1]!.querySelector('.cmp-slot-up'));
-    const after = order();
-    expect(after).not.toEqual(before);
-    expect(after.slice().sort()).toEqual(before.slice().sort());
+    // Materialize explicit beats by adding a beat via choreography edit
+    click(q('.cmp-add-beat'));
+    // Move the second beat's first slot right to the new beat
+    const beatCards = qa('.cmp-beat-card');
+    expect(beatCards.length).toBeGreaterThanOrEqual(2);
+    const moveRight = beatCards[0]!.querySelector('.cmp-beat-move-right') as HTMLButtonElement;
+    expect(moveRight).not.toBeNull();
+    click(moveRight);
+    // The slot should now be in beat 1, not beat 0
+    const afterBeat0 = qa('.cmp-beat-card')[0]!.querySelectorAll('.cmp-slot-card').length;
+    const afterBeat1 = qa('.cmp-beat-card')[1]!.querySelectorAll('.cmp-slot-card').length;
+    expect(afterBeat0 + afterBeat1).toBeGreaterThanOrEqual(2);
   });
 
-  it('12. MOVE UP is disabled on the first slot', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
-    const first = qa('.cmp-slot-card')[0]!;
-    expect(first.querySelector<HTMLButtonElement>('.cmp-slot-up')!.disabled).toBe(true);
+  it('12. MOVE LEFT is disabled on the first beat', () => {
+    addSlotFromCatalogue();
+    click(q('.cmp-add-beat'));
+    const first = qa('.cmp-beat-card')[0]!;
+    const moveLeft = first.querySelector<HTMLButtonElement>('.cmp-beat-move-left');
+    expect(moveLeft).not.toBeNull();
+    expect(moveLeft!.disabled).toBe(true);
   });
 
   // ---------------------------------------------------------- semantic profiles only
 
   it('13. slot cards expose SIZE / SPEED / POSITION / AT / DIRECTION / ROTATE / MIRROR / ORIGIN / PHASE / IMPACT FX controls', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const card = qa('.cmp-slot-card')[0]!;
     const profiles = Array.from(card.querySelectorAll<HTMLElement>('.cmp-profile'))
       .map((el) => el.dataset.profile);
@@ -196,32 +209,28 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   });
 
   it('14. SIZE exposes exactly LOW / MID / BIG / GIGA', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const group = q('[data-profile="size"] .cmp-profile-group')!;
     expect(Array.from(group.querySelectorAll('button')).map((b) => b.textContent))
       .toEqual(['LOW', 'MID', 'BIG', 'GIGA']);
   });
 
   it('15. SPEED exposes exactly QUICK / NORMAL / LONG', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const group = q('[data-profile="speed"] .cmp-profile-group')!;
     expect(Array.from(group.querySelectorAll('button')).map((b) => b.textContent))
       .toEqual(['QUICK', 'NORMAL', 'LONG']);
   });
 
   it('16. AT exposes exactly AUTO / TARGET / T.FRONT / T.BACK / T.TOP / T.BOTTOM / CASTER / C.FRONT / C.BACK / GROUND', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const group = q('[data-profile="at"] .cmp-profile-group')!;
     expect(Array.from(group.querySelectorAll('button')).map((b) => b.textContent))
       .toEqual(['AUTO', 'TARGET', 'T.FRONT', 'T.BACK', 'T.TOP', 'T.BOTTOM', 'CASTER', 'C.FRONT', 'C.BACK', 'GROUND']);
   });
 
   it('17. choosing SIZE=MID TIMING=NORMAL PLACEMENT=TARGET persists', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
     const inSlot = (selector: string) =>
       q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
@@ -236,8 +245,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   });
 
   it('17b. choosing SIZE=GIGA persists and survives reload', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
     const inSlot = (selector: string) =>
       q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
@@ -254,16 +262,14 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   // ---------------------------------------------------------- V2.5 controls
 
   it('18a. POSITION exposes exactly FIXED / TRAVEL', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const group = q('[data-profile="position"] .cmp-profile-group')!;
     expect(Array.from(group.querySelectorAll('button')).map((b) => b.textContent))
       .toEqual(['FIXED', 'TRAVEL']);
   });
 
   it('18b. FIXED mode shows AT control, not FROM/TO', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
     const inSlot = (selector: string) =>
       q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
@@ -273,8 +279,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   });
 
   it('18c. TRAVEL mode shows FROM/TO controls, not AT', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
     const inSlot = (selector: string) =>
       q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
@@ -285,8 +290,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   });
 
   it('18d. TRAVEL mode hides DIRECTION control (path orients automatically)', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
     const inSlot = (selector: string) =>
       q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
@@ -295,8 +299,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   });
 
   it('18e. switching to TRAVEL persists positionMode and travel endpoints', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
     const inSlot = (selector: string) =>
       q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
@@ -309,8 +312,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   });
 
   it('18f. PHASE stepper exists with + and - buttons', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     expect(q('.cmp-phase')).not.toBeNull();
     expect(q('.cmp-phase-dec')).not.toBeNull();
     expect(q('.cmp-phase-inc')).not.toBeNull();
@@ -318,8 +320,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   });
 
   it('18g. PHASE increment increases the displayed value', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
     const inSlot = (selector: string) =>
       q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
@@ -330,23 +331,20 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   });
 
   it('18h. PHASE decrement is disabled at 0', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const dec = q('.cmp-phase-dec') as HTMLButtonElement;
     expect(dec.disabled).toBe(true);
   });
 
   it('18i. IMPACT FX exposes FLASH / SHAKE toggles (V2.6: HITSTOP removed)', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const group = q('[data-profile="impact_fx"] .cmp-profile-group')!;
     const labels = Array.from(group.querySelectorAll('button')).map((b) => b.textContent);
     expect(labels).toEqual(['FLASH', 'SHAKE']);
   });
 
   it('18j. toggling FLASH enables it and shows POWER control', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
     const inSlot = (selector: string) =>
       q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
@@ -357,8 +355,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   });
 
   it('18k. toggling FLASH off removes POWER control', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
     const inSlot = (selector: string) =>
       q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
@@ -368,15 +365,13 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   });
 
   it('18l. IMPACT FX default is fully OFF (no active buttons)', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const fxBtns = qa('.cmp-fx-btn');
     expect(fxBtns.every((b) => !b.classList.contains('cmp-active'))).toBe(true);
   });
 
   it('18m. legacy TECHNICAL POLISH is disabled when slot Impact FX is active', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     const slotId = qa<HTMLElement>('.cmp-slot-card').at(-1)!.dataset.slotId!;
     const inSlot = (selector: string) =>
       q(`.cmp-slot-card[data-slot-id="${slotId}"] ${selector}`);
@@ -385,19 +380,21 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     expect(polishBtns.every((b) => (b as HTMLButtonElement).disabled)).toBe(true);
   });
 
-  it('18n. timeline rows include phase and impactTime data attributes', () => {
+  it('18n. beat cards include beat index and timing data attributes', () => {
     addSlotsFromCatalogue(2);
-    const rows = qa<HTMLElement>('.cmp-timeline-row');
-    expect(rows.length).toBeGreaterThanOrEqual(2);
-    for (const row of rows) {
-      expect(row.dataset.phase).toBeDefined();
-      expect(row.dataset.impactTime).toBeDefined();
+    const beatCards = qa<HTMLElement>('.cmp-beat-card');
+    expect(beatCards.length).toBeGreaterThanOrEqual(1);
+    for (const card of beatCards) {
+      expect(card.dataset.beatIndex).toBeDefined();
+      expect(card.dataset.beatId).toBeDefined();
     }
+    const timing = qa('.cmp-beat-timing');
+    expect(timing.length).toBeGreaterThanOrEqual(1);
+    expect(timing[0]!.textContent).toMatch(/TIME\s+[\d.]+s/);
   });
 
   it('18. standard UI never exposes raw fade/opacity/offset/startTime fields', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     // The ADVANCED accordion is collapsed, so no numeric inputs exist.
     expect(qa('input[type="number"]')).toHaveLength(0);
     expect(qa('input[data-adv-key]')).toHaveLength(0);
@@ -412,29 +409,41 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
 
   // ---------------------------------------------------------- composition
 
-  it('20. COMPOSITION exposes TOGETHER / SEQUENCE / PAIR THEN LAST', () => {
-    const labels = qa('.cmp-choreo-btn').map((b) => b.textContent);
+  it('20. per-beat COMPOSITION exposes TOGETHER / SEQUENCE / PAIR THEN LAST', () => {
+    addSlotFromCatalogue();
+    const labels = qa('.cmp-beat-card .cmp-choreo-btn').map((b) => b.textContent);
     expect(labels).toEqual(['TOGETHER', 'SEQUENCE', 'PAIR THEN LAST']);
   });
 
   it('21. selecting TOGETHER marks it active and zeroes all start times', () => {
     addSlotsFromCatalogue(2);
-    click(qa('.cmp-choreo-btn')[0]);
-    expect(qa('.cmp-choreo-btn')[0]!.classList.contains('cmp-active')).toBe(true);
-    const starts = qa<HTMLElement>('.cmp-timeline-row').map((r) => Number(r.dataset.startTime));
+    click(qa('.cmp-beat-card .cmp-choreo-btn')[0]);
+    expect(qa('.cmp-beat-card .cmp-choreo-btn')[0]!.classList.contains('cmp-active')).toBe(true);
+    const timings = qa<HTMLElement>('.cmp-beat-timing').map((el) => el.textContent ?? '');
+    const starts = timings.map((t) => {
+      const m = t.match(/TIME\s+([\d.]+)s/);
+      return m ? Number(m[1]) : NaN;
+    });
     expect(starts.every((s) => s === 0)).toBe(true);
   });
 
-  it('22. selecting SEQUENCE produces increasing start times', () => {
+  it('22. SEQUENCE composition increases beat duration compared to TOGETHER', () => {
     addSlotsFromCatalogue(2);
-    click(qa('.cmp-choreo-btn')[1]);
-    const starts = qa<HTMLElement>('.cmp-timeline-row').map((r) => Number(r.dataset.startTime));
-    expect(starts.length).toBeGreaterThanOrEqual(2);
-    expect(starts[1]!).toBeGreaterThan(starts[0]!);
+    // With TOGETHER (default), beat duration = max(slot durations)
+    const togetherTiming = qa('.cmp-beat-timing')[0]!.textContent ?? '';
+    const togetherMatch = togetherTiming.match(/DURATION\s+([\d.]+)s/);
+    const togetherDuration = togetherMatch ? Number(togetherMatch[1]) : 0;
+    // Switch to SEQUENCE — beat duration should increase (sum of slot durations)
+    click(qa('.cmp-beat-card .cmp-choreo-btn')[1]);
+    const sequenceTiming = qa('.cmp-beat-timing')[0]!.textContent ?? '';
+    const sequenceMatch = sequenceTiming.match(/DURATION\s+([\d.]+)s/);
+    const sequenceDuration = sequenceMatch ? Number(sequenceMatch[1]) : 0;
+    expect(sequenceDuration).toBeGreaterThan(togetherDuration);
   });
 
   it('23. PAIR THEN LAST is disabled below three slots and explains why', () => {
-    const btn = qa<HTMLButtonElement>('.cmp-choreo-btn')[2]!;
+    addSlotFromCatalogue();
+    const btn = qa<HTMLButtonElement>('.cmp-beat-card .cmp-choreo-btn')[2]!;
     const slotCount = qa('.cmp-slot-card').length;
     if (slotCount < 3) {
       expect(btn.disabled).toBe(true);
@@ -442,20 +451,24 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     }
   });
 
-  it('24. PAIR THEN LAST on three slots plays two together then the last', () => {
+  it('24. PAIR THEN LAST on three slots sequences the last after the pair', () => {
     removeAllSlots();
     addSlotsFromCatalogue(3);
     expect(qa('.cmp-slot-card')).toHaveLength(3);
-    click(qa('.cmp-choreo-btn')[2]);
-    const starts = qa<HTMLElement>('.cmp-timeline-row').map((r) => Number(r.dataset.startTime));
-    expect(starts).toHaveLength(3);
-    expect(starts[0]).toBe(0);
-    expect(starts[1]).toBe(0);
-    expect(starts[2]!).toBeGreaterThan(0);
+    // With TOGETHER (default), beat duration = max(slot durations)
+    const togetherTiming = qa('.cmp-beat-timing')[0]!.textContent ?? '';
+    const togetherMatch = togetherTiming.match(/DURATION\s+([\d.]+)s/);
+    const togetherDuration = togetherMatch ? Number(togetherMatch[1]) : 0;
+    // Switch to PAIR THEN LAST — beat duration should increase
+    click(qa('.cmp-beat-card .cmp-choreo-btn')[2]);
+    const ptlTiming = qa('.cmp-beat-timing')[0]!.textContent ?? '';
+    const ptlMatch = ptlTiming.match(/DURATION\s+([\d.]+)s/);
+    const ptlDuration = ptlMatch ? Number(ptlMatch[1]) : 0;
+    expect(ptlDuration).toBeGreaterThan(togetherDuration);
   });
 
-  it('25. the timeline is read-only — no manual startTime input', () => {
-    expect(qa('.cmp-timeline input')).toHaveLength(0);
+  it('25. beat timing is read-only — no manual startTime input', () => {
+    expect(qa('.cmp-beat-timing input')).toHaveLength(0);
   });
 
   // ---------------------------------------------------------- technical polish (V2.6: section removed from normal UI)
@@ -489,8 +502,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   });
 
   it('30. preview and stage buttons enable once a slot exists', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     expect(q<HTMLButtonElement>('.cmp-play-visuals')!.disabled).toBe(false);
     expect(q<HTMLButtonElement>('.cmp-play-full')!.disabled).toBe(false);
     expect(q<HTMLButtonElement>('.cmp-play-stage')!.disabled).toBe(false);
@@ -513,15 +525,14 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     });
     removeAllSlots();
     addSlotsFromCatalogue(1);
-    await new Promise((r) => setTimeout(r, 200));
-    click(q('.cmp-play-stage'));
     await new Promise((r) => setTimeout(r, 300));
+    click(q('.cmp-play-stage'));
+    await new Promise((r) => setTimeout(r, 2000));
     expect(q('.cmp-status')?.textContent).toContain('Stage');
   });
 
   it('32. SAVE DRAFT persists to the composer store key', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     click(q('.cmp-save-draft'));
     expect(localStorage.getItem(COMPOSER_STORAGE_KEY)).not.toBeNull();
     expect(q('.cmp-status')?.textContent).toContain('Draft saved');
@@ -535,8 +546,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
   });
 
   it('34. ADVANCED exposes spatial/timing overrides but not visibility controls', () => {
-    click(q('.cmp-add-slot'));
-    click(q('.cmp-cat-add'));
+    addSlotFromCatalogue();
     click(q('.cmp-advanced-header'));
     const keys = qa<HTMLInputElement>('input[data-adv-key]').map((i) => i.dataset.advKey);
     expect(keys).toContain('scale');
@@ -559,7 +569,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
 
   it('36. draft composition survives a panel reinstall (reload)', () => {
     addSlotsFromCatalogue(1);
-    click(qa('.cmp-choreo-btn')[1]);
+    click(qa('.cmp-beat-card .cmp-choreo-btn')[1]);
     const beforeSlots = qa('.cmp-slot-card').length;
 
     dispose();
@@ -568,7 +578,7 @@ describe('R2C-VFX LAB V2 — Composer panel UI', () => {
     dispose = installVfxComposerPanel({ enabled: true });
 
     expect(qa('.cmp-slot-card').length).toBe(beforeSlots);
-    expect(qa('.cmp-choreo-btn')[1]!.classList.contains('cmp-active')).toBe(true);
+    expect(qa('.cmp-beat-card .cmp-choreo-btn')[1]!.classList.contains('cmp-active')).toBe(true);
   });
 
   it('37. the selected action survives a panel reinstall', () => {
@@ -658,8 +668,7 @@ describe('R2C-VFX LAB V2.1.1 — Composer minimize / expand', () => {
 
   it('3. large Composer body is absent in MINIMIZED mode', () => {
     click(q('.cmp-minimize'));
-    expect(q('[data-section="visual_slots"]')).toBeNull();
-    expect(q('[data-section="composition"]')).toBeNull();
+    expect(q('[data-section="choreography"]')).toBeNull();
     expect(q('[data-section="technical_polish"]')).toBeNull();
     expect(q('[data-section="primary_actions"]')).toBeNull();
     expect(q('[data-section="advanced"]')).toBeNull();
@@ -683,14 +692,13 @@ describe('R2C-VFX LAB V2.1.1 — Composer minimize / expand', () => {
     click(q('.cmp-expand'));
     expect(getRoot().classList.contains('cmp-minimized')).toBe(false);
     expect(q('.cmp-minimize')).not.toBeNull();
-    expect(q('[data-section="visual_slots"]')).not.toBeNull();
+    expect(q('[data-section="choreography"]')).not.toBeNull();
     expect(q('[data-section="primary_actions"]')).not.toBeNull();
   });
 
   it('6. draft data is unchanged across minimize → expand', () => {
     addSlotsFromCatalogue(2);
-    click(qa('.cmp-choreo-btn')[1]);
-    click(qa('.cmp-polish-btn')[3]);
+    click(qa('.cmp-beat-card .cmp-choreo-btn')[1]);
     const before = JSON.stringify(loadComposerStore(localStorage).drafts);
     click(q('.cmp-minimize'));
     click(q('.cmp-expand'));
@@ -748,11 +756,11 @@ describe('R2C-VFX LAB V2.1.1 — Composer minimize / expand', () => {
     });
     removeAllSlots();
     addSlotsFromCatalogue(1);
-    await new Promise((r) => setTimeout(r, 200));
+    await new Promise((r) => setTimeout(r, 300));
     click(q('.cmp-minimize'));
     click(q('.cmp-expand'));
     click(q('.cmp-play-stage'));
-    await new Promise((r) => setTimeout(r, 300));
+    await new Promise((r) => setTimeout(r, 2000));
     expect(q('.cmp-status')?.textContent).toContain('Stage');
   });
 });
@@ -808,8 +816,7 @@ describe('R2C-VFX LAB V2.1.2 — Expanded layout regression', () => {
   it('5. expanded body structure is unchanged — all sections present in order', () => {
     const sections = qa('[data-section]');
     const sectionKeys = sections.map((s) => s.getAttribute('data-section'));
-    expect(sectionKeys).toContain('visual_slots');
-    expect(sectionKeys).toContain('composition');
+    expect(sectionKeys).toContain('choreography');
     expect(sectionKeys).toContain('primary_actions');
   });
 

@@ -19,12 +19,14 @@ import {
   getCandidateCadence,
   buildSlotOverrides,
   playCompiledVfxSlots,
+  playCompiledBeats,
   playCompiledTechnical,
 } from './VfxComposerPlayback';
 import {
   compileDraft,
 } from './VfxPresetComposer';
 import type { CompiledVfxDraft, VfxPresetDraft, VfxRuntimeScaleFactors } from './VfxPresetComposer';
+import type { CompiledCasterMotion } from './CasterMotion';
 import {
   getPublishedEntry,
   publishedEntryToDraft,
@@ -110,6 +112,12 @@ export interface PlayActionVfxOptions {
   context: VfxContext;
   vfxSystem: VfxSystem;
   scaleFactors?: VfxRuntimeScaleFactors;
+  /**
+   * Installs the published preset's compiled CASTER MOTION on the live Combat
+   * Stage. ADDITIVE and OPTIONAL — omitted by every existing caller, and
+   * never invoked for a preset that authors no motion.
+   */
+  applyCasterMotion?: (motion: CompiledCasterMotion) => void;
 }
 
 /**
@@ -123,7 +131,7 @@ export interface PlayActionVfxOptions {
  *   → VfxSystem.play(fallbackPresetId, context) (existing static path)
  */
 export function playActionVfx(options: PlayActionVfxOptions): VfxPlayResult {
-  const { actionKey, fallbackPresetId, context, vfxSystem, scaleFactors } = options;
+  const { actionKey, fallbackPresetId, context, vfxSystem, scaleFactors, applyCasterMotion } = options;
 
   const draft = getPublishedDraft(actionKey);
   if (!draft) {
@@ -136,6 +144,15 @@ export function playActionVfx(options: PlayActionVfxOptions): VfxPlayResult {
     getCadence: getCandidateCadence,
     ...(scaleFactors ? { scaleFactors } : {}),
   });
+
+  /**
+   * Motion is installed immediately before the slot scheduler starts, so the
+   * motion clock and the VFX clock share one origin — identical to Composer
+   * Stage playback. Guarded so motion-free presets never touch the Stage.
+   */
+  if (applyCasterMotion && compiled.casterMotion.hasEffect) {
+    applyCasterMotion(compiled.casterMotion);
+  }
 
   return playCompiledPublishedVfx(compiled, context, vfxSystem);
 }
@@ -152,9 +169,11 @@ function playCompiledPublishedVfx(
   context: VfxContext,
   vfxSystem: VfxSystem,
 ): VfxPlayResult {
-  const slotPromise = playCompiledVfxSlots(vfxSystem, compiled, context, false);
+  const vfxPromise = compiled.hasExplicitBeats
+    ? playCompiledBeats(vfxSystem, compiled, context, false)
+    : playCompiledVfxSlots(vfxSystem, compiled, context, false);
   const techPromise = playCompiledTechnical(compiled, context);
-  const completion = Promise.all([slotPromise, techPromise]).then(() => undefined);
+  const completion = Promise.all([vfxPromise, techPromise]).then(() => undefined);
 
   return {
     played: compiled.slots.length > 0,

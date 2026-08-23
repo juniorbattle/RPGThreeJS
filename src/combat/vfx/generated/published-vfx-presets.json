@@ -1,4 +1,972 @@
 {
   "schemaVersion": 1,
-  "actions": {}
+  "actions": {
+    "a_arrow_rain": {
+      "actionKey": "a_arrow_rain",
+      "presetId": "published_a_arrow_rain",
+      "visualSlots": [
+        {
+          "id": "slot_mt0poddq_7",
+          "candidateId": "r1_0104",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "CASTER_FRONT",
+          "phase": 0
+        },
+        {
+          "id": "slot_mszidixd_b",
+          "candidateId": "r1_1707",
+          "sizeProfile": "GIGA",
+          "timingProfile": "QUICK",
+          "placementProfile": "AUTO",
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL",
+          "phase": 1
+        },
+        {
+          "id": "slot_mt0mpq2s_1",
+          "candidateId": "r1_1708",
+          "sizeProfile": "BIG",
+          "timingProfile": "QUICK",
+          "placementProfile": "FRONT",
+          "phase": 2
+        },
+        {
+          "id": "slot_mt0mpxvh_2",
+          "candidateId": "r1_1708",
+          "sizeProfile": "BIG",
+          "timingProfile": "QUICK",
+          "placementProfile": "BACK",
+          "phase": 3
+        },
+        {
+          "id": "slot_mt0mq9t6_3",
+          "candidateId": "r1_1708",
+          "sizeProfile": "BIG",
+          "timingProfile": "QUICK",
+          "placementProfile": "TARGET",
+          "phase": 4
+        },
+        {
+          "id": "slot_mt0mqhta_4",
+          "candidateId": "r1_1708",
+          "sizeProfile": "BIG",
+          "timingProfile": "QUICK",
+          "placementProfile": "BOTTOM",
+          "phase": 5
+        },
+        {
+          "id": "slot_mt0mqkio_5",
+          "candidateId": "r1_1708",
+          "sizeProfile": "GIGA",
+          "timingProfile": "LONG",
+          "placementProfile": "TARGET",
+          "phase": 6
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 4,
+      "fingerprint": "1ffbc0c6"
+    },
+    "a_precise_shot": {
+      "actionKey": "a_precise_shot",
+      "presetId": "published_a_precise_shot",
+      "visualSlots": [
+        {
+          "id": "slot_mszcbpeg_2",
+          "candidateId": "r1_0145",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "TARGET"
+        },
+        {
+          "id": "slot_mszcm2ea_4",
+          "candidateId": "r1_1717",
+          "sizeProfile": "LOW",
+          "timingProfile": "QUICK",
+          "placementProfile": "AUTO",
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL"
+        },
+        {
+          "id": "slot_mszcg5e9_3",
+          "candidateId": "r1_1708",
+          "sizeProfile": "BIG",
+          "timingProfile": "QUICK",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 2,
+      "fingerprint": "70882b33"
+    },
+    "a_zenith_arrow": {
+      "actionKey": "a_zenith_arrow",
+      "presetId": "published_a_zenith_arrow",
+      "visualSlots": [
+        {
+          "id": "slot_mt0ock5o_6",
+          "candidateId": "r1_0104",
+          "sizeProfile": "GIGA",
+          "timingProfile": "NORMAL",
+          "placementProfile": "CASTER_FRONT",
+          "phase": 0
+        },
+        {
+          "id": "slot_mszialhy_7",
+          "candidateId": "r1_1704",
+          "sizeProfile": "GIGA",
+          "timingProfile": "QUICK",
+          "placementProfile": "AUTO",
+          "aimProfile": "TO_TARGET",
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "mirrorProfile": "AUTO_HORIZONTAL",
+          "phase": 1
+        },
+        {
+          "id": "slot_mt0tojlb_9",
+          "candidateId": "r1_0586",
+          "sizeProfile": "GIGA",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO",
+          "phase": 2
+        },
+        {
+          "id": "slot_mt0tp3hc_a",
+          "candidateId": "r1_0593",
+          "sizeProfile": "GIGA",
+          "timingProfile": "LONG",
+          "placementProfile": "AUTO",
+          "phase": 2
+        },
+        {
+          "id": "slot_mt0tpuwd_b",
+          "candidateId": "r1_1706",
+          "sizeProfile": "GIGA",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO",
+          "phase": 2
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 5,
+      "fingerprint": "94cd1846"
+    },
+    "basic_crosier_hit": {
+      "actionKey": "basic_crosier_hit",
+      "presetId": "published_basic_crosier_hit",
+      "visualSlots": [
+        {
+          "id": "slot_msy1svqk_e",
+          "candidateId": "r1_0484",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "TARGET"
+        },
+        {
+          "id": "slot_msy1uv1n_f",
+          "candidateId": "r1_0482",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "TARGET"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 1,
+      "fingerprint": "eaf33762"
+    },
+    "basic_dagger_hit": {
+      "actionKey": "basic_dagger_hit",
+      "presetId": "published_basic_dagger_hit",
+      "visualSlots": [
+        {
+          "id": "slot_mszaltx8_1",
+          "candidateId": "r1_1705",
+          "sizeProfile": "MID",
+          "timingProfile": "QUICK",
+          "placementProfile": "FRONT"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 1,
+      "fingerprint": "d692d829"
+    },
+    "basic_greatsword_hit": {
+      "actionKey": "basic_greatsword_hit",
+      "presetId": "published_basic_greatsword_hit",
+      "visualSlots": [
+        {
+          "id": "slot_msxsr55u_2",
+          "candidateId": "r1_1624",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "FRONT"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 1,
+      "fingerprint": "ed85193f"
+    },
+    "basic_grimoire_hit": {
+      "actionKey": "basic_grimoire_hit",
+      "presetId": "published_basic_grimoire_hit",
+      "visualSlots": [
+        {
+          "id": "slot_msy389zg_o",
+          "candidateId": "r1_0532",
+          "sizeProfile": "LOW",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 1,
+      "fingerprint": "06a12a98"
+    },
+    "basic_holy_mace_hit": {
+      "actionKey": "basic_holy_mace_hit",
+      "presetId": "published_basic_holy_mace_hit",
+      "visualSlots": [
+        {
+          "id": "slot_mt0wyc74_w",
+          "candidateId": "r1_0551",
+          "sizeProfile": "MID",
+          "timingProfile": "QUICK",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 1,
+      "fingerprint": "863356c2"
+    },
+    "basic_long_spear_hit": {
+      "actionKey": "basic_long_spear_hit",
+      "presetId": "published_basic_long_spear_hit",
+      "visualSlots": [
+        {
+          "id": "slot_mt0vd96c_h",
+          "candidateId": "r1_1722",
+          "sizeProfile": "LOW",
+          "timingProfile": "QUICK",
+          "placementProfile": "FRONT",
+          "positionMode": "FIXED",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "FRONT",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 1,
+      "fingerprint": "aa1d5a2f"
+    },
+    "basic_longbow_hit": {
+      "actionKey": "basic_longbow_hit",
+      "presetId": "published_basic_longbow_hit",
+      "visualSlots": [
+        {
+          "id": "slot_msy8z8eq_6",
+          "candidateId": "r1_1717",
+          "sizeProfile": "LOW",
+          "timingProfile": "QUICK",
+          "placementProfile": "FRONT",
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL"
+        },
+        {
+          "id": "slot_msy9453k_7",
+          "candidateId": "r1_1708",
+          "sizeProfile": "LOW",
+          "timingProfile": "QUICK",
+          "placementProfile": "TARGET"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 1,
+      "fingerprint": "96a7ecb6"
+    },
+    "l_firmament_lance": {
+      "actionKey": "l_firmament_lance",
+      "presetId": "published_l_firmament_lance",
+      "visualSlots": [
+        {
+          "id": "slot_mt0wl4ee_s",
+          "candidateId": "r1_1720",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "TOP",
+          "phase": 0
+        },
+        {
+          "id": "slot_mt0wmalq_t",
+          "candidateId": "r1_1720",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "BOTTOM",
+          "phase": 1
+        },
+        {
+          "id": "slot_mt0wnsjz_u",
+          "candidateId": "r1_1720",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "FRONT",
+          "phase": 2
+        },
+        {
+          "id": "slot_mt0vsnpz_n",
+          "candidateId": "r1_1720",
+          "sizeProfile": "GIGA",
+          "timingProfile": "LONG",
+          "placementProfile": "TARGET",
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL",
+          "phase": 3
+        },
+        {
+          "id": "slot_mt0wr9ac_v",
+          "candidateId": "r1_1276",
+          "sizeProfile": "GIGA",
+          "timingProfile": "LONG",
+          "placementProfile": "AUTO",
+          "phase": 3,
+          "impactFx": {
+            "flash": true,
+            "power": "LIGHT",
+            "shake": true
+          }
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 5,
+      "fingerprint": "22633b9b"
+    },
+    "l_griffon_jump": {
+      "actionKey": "l_griffon_jump",
+      "presetId": "published_l_griffon_jump",
+      "visualSlots": [
+        {
+          "id": "slot_mt0vrfia_m",
+          "candidateId": "r1_2600",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "GROUND",
+      "tier": 4,
+      "fingerprint": "d41ac249"
+    },
+    "l_haft_recoil": {
+      "actionKey": "l_haft_recoil",
+      "presetId": "published_l_haft_recoil",
+      "visualSlots": [
+        {
+          "id": "slot_mt0vquzg_l",
+          "candidateId": "r1_1274",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 3,
+      "fingerprint": "74d99c16"
+    },
+    "l_long_thrust": {
+      "actionKey": "l_long_thrust",
+      "presetId": "published_l_long_thrust",
+      "visualSlots": [
+        {
+          "id": "slot_mt0vnsxn_j",
+          "candidateId": "r1_1722",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "FRONT"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 2,
+      "fingerprint": "b875b4b4"
+    },
+    "n_dark_bolt": {
+      "actionKey": "n_dark_bolt",
+      "presetId": "published_n_dark_bolt",
+      "visualSlots": [
+        {
+          "id": "slot_msy3a6gh_p",
+          "candidateId": "r1_0225",
+          "sizeProfile": "LOW",
+          "timingProfile": "NORMAL",
+          "placementProfile": "CASTER",
+          "phase": 0
+        },
+        {
+          "id": "slot_msy3f824_s",
+          "candidateId": "r1_0621",
+          "sizeProfile": "GIGA",
+          "timingProfile": "NORMAL",
+          "placementProfile": "FRONT",
+          "mirrorProfile": "NONE",
+          "rotationDegrees": 90,
+          "positionMode": "FIXED",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "aimProfile": "TO_TARGET",
+          "pivotProfile": "CENTER",
+          "phase": 1
+        },
+        {
+          "id": "slot_msy3bkna_q",
+          "candidateId": "r1_0572",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO",
+          "phase": 1
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 2,
+      "fingerprint": "21524431"
+    },
+    "n_dark_meteor": {
+      "actionKey": "n_dark_meteor",
+      "presetId": "published_n_dark_meteor",
+      "visualSlots": [
+        {
+          "id": "slot_msy8n0iu_1",
+          "candidateId": "r1_0125",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "CASTER"
+        },
+        {
+          "id": "slot_msy8rb9r_3",
+          "candidateId": "r1_1377",
+          "sizeProfile": "GIGA",
+          "timingProfile": "LONG",
+          "placementProfile": "FRONT",
+          "positionMode": "TRAVEL",
+          "travelFrom": "SKY",
+          "travelTo": "FRONT",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL",
+          "impactFx": {
+            "shake": true,
+            "power": "STRONG",
+            "flash": false
+          }
+        },
+        {
+          "id": "slot_msy8pg7j_2",
+          "candidateId": "r1_0436",
+          "sizeProfile": "GIGA",
+          "timingProfile": "LONG",
+          "placementProfile": "TARGET",
+          "impactFx": {
+            "flash": true,
+            "power": "STRONG",
+            "shake": true
+          }
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "GROUND",
+      "tier": 5,
+      "fingerprint": "5d27b2a0"
+    },
+    "n_flame_wave": {
+      "actionKey": "n_flame_wave",
+      "presetId": "published_n_flame_wave",
+      "visualSlots": [
+        {
+          "id": "slot_msy7ofuh_10",
+          "candidateId": "r1_0156",
+          "sizeProfile": "LOW",
+          "timingProfile": "NORMAL",
+          "placementProfile": "CASTER_FRONT",
+          "positionMode": "FIXED",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "CASTER_FRONT",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL",
+          "trajectoryProfile": "ARC_HIGH"
+        },
+        {
+          "id": "slot_msy52wdt_y",
+          "candidateId": "r1_1392",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "TARGET",
+          "rotationDegrees": 0,
+          "mirrorProfile": "NONE",
+          "aimProfile": "FIXED",
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "BACK"
+        },
+        {
+          "id": "slot_msy7lher_z",
+          "candidateId": "r1_1358",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "TARGET"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "GROUND",
+      "tier": 4,
+      "fingerprint": "1c62a6b2"
+    },
+    "n_teleport": {
+      "actionKey": "n_teleport",
+      "presetId": "published_n_teleport",
+      "visualSlots": [
+        {
+          "id": "slot_msy4x9vn_w",
+          "candidateId": "r1_0777",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "CASTER"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "GROUND",
+      "tier": 3,
+      "fingerprint": "5782194f"
+    },
+    "p_holy_strike": {
+      "actionKey": "p_holy_strike",
+      "presetId": "published_p_holy_strike",
+      "visualSlots": [
+        {
+          "id": "slot_mt0x5b65_y",
+          "candidateId": "r1_0552",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "FRONT"
+        },
+        {
+          "id": "slot_mt0x5dlm_z",
+          "candidateId": "r1_0552",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "BACK"
+        },
+        {
+          "id": "slot_mt0x5q0c_10",
+          "candidateId": "r1_0552",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "BOTTOM"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 2,
+      "fingerprint": "cf092ca6"
+    },
+    "p_interpose": {
+      "actionKey": "p_interpose",
+      "presetId": "published_p_interpose",
+      "visualSlots": [
+        {
+          "id": "slot_mt0xiwjm_12",
+          "candidateId": "r1_0077",
+          "sizeProfile": "MID",
+          "timingProfile": "LONG",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "GROUND",
+      "tier": 3,
+      "fingerprint": "a5ced766"
+    },
+    "p_oathwall": {
+      "actionKey": "p_oathwall",
+      "presetId": "published_p_oathwall",
+      "visualSlots": [
+        {
+          "id": "slot_mt0xkgm2_13",
+          "candidateId": "r1_0971",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 4,
+      "fingerprint": "45bbc9d0"
+    },
+    "p_radiant_judgement": {
+      "actionKey": "p_radiant_judgement",
+      "presetId": "published_p_radiant_judgement",
+      "visualSlots": [
+        {
+          "id": "slot_mt0xktmm_14",
+          "candidateId": "r1_1257",
+          "sizeProfile": "GIGA",
+          "timingProfile": "LONG",
+          "placementProfile": "TARGET"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "GROUND",
+      "tier": 5,
+      "fingerprint": "5f1f6d7d"
+    },
+    "ro_fault_breaker": {
+      "actionKey": "ro_fault_breaker",
+      "presetId": "published_ro_fault_breaker",
+      "visualSlots": [
+        {
+          "id": "slot_mt0vcvxt_g",
+          "candidateId": "r1_0438",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 5,
+      "fingerprint": "9802cacb"
+    },
+    "ro_jaw_trap": {
+      "actionKey": "ro_jaw_trap",
+      "presetId": "published_ro_jaw_trap",
+      "visualSlots": [
+        {
+          "id": "slot_mt0uingt_f",
+          "candidateId": "r1_0300",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "GROUND",
+      "tier": 4,
+      "fingerprint": "59fb2681"
+    },
+    "ro_sneak_attack": {
+      "actionKey": "ro_sneak_attack",
+      "presetId": "published_ro_sneak_attack",
+      "visualSlots": [
+        {
+          "id": "slot_mt0uhaxh_d",
+          "candidateId": "r1_0175",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "TARGET"
+        },
+        {
+          "id": "slot_mt0ucv1b_c",
+          "candidateId": "r1_1705",
+          "sizeProfile": "MID",
+          "timingProfile": "QUICK",
+          "placementProfile": "TARGET"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 2,
+      "fingerprint": "794aa925"
+    },
+    "w_break_guard": {
+      "actionKey": "w_break_guard",
+      "presetId": "published_w_break_guard",
+      "visualSlots": [
+        {
+          "id": "slot_msxt43ip_3",
+          "candidateId": "r1_0061",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        },
+        {
+          "id": "slot_msxt6qi9_4",
+          "candidateId": "r1_0559",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 2,
+      "fingerprint": "6ea7e423"
+    },
+    "w_charge": {
+      "actionKey": "w_charge",
+      "presetId": "published_w_charge",
+      "visualSlots": [
+        {
+          "id": "slot_msy50xec_x",
+          "candidateId": "r1_2563",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "GROUND",
+      "tier": 3,
+      "fingerprint": "c7dc89f3"
+    },
+    "w_lion_surge": {
+      "actionKey": "w_lion_surge",
+      "presetId": "published_w_lion_surge",
+      "visualSlots": [
+        {
+          "id": "slot_msxu7sxf_d",
+          "candidateId": "r1_0104",
+          "sizeProfile": "LOW",
+          "timingProfile": "LONG",
+          "placementProfile": "CASTER_FRONT",
+          "phase": 1
+        },
+        {
+          "id": "slot_msxtoke2_b",
+          "candidateId": "r1_1606",
+          "sizeProfile": "LOW",
+          "timingProfile": "LONG",
+          "placementProfile": "AUTO",
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL",
+          "phase": 2
+        },
+        {
+          "id": "slot_msxtnljv_a",
+          "candidateId": "r1_1604",
+          "sizeProfile": "GIGA",
+          "timingProfile": "NORMAL",
+          "placementProfile": "TARGET",
+          "phase": 3
+        },
+        {
+          "id": "slot_msxtqo0g_c",
+          "candidateId": "r1_1604",
+          "sizeProfile": "GIGA",
+          "timingProfile": "LONG",
+          "placementProfile": "TARGET",
+          "phase": 3
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "GROUND",
+      "tier": 5,
+      "fingerprint": "e97cb7ab"
+    },
+    "w_miracle": {
+      "actionKey": "w_miracle",
+      "presetId": "published_w_miracle",
+      "visualSlots": [
+        {
+          "id": "slot_msy2tw4i_k",
+          "candidateId": "r1_0295",
+          "sizeProfile": "GIGA",
+          "timingProfile": "NORMAL",
+          "placementProfile": "CASTER",
+          "phase": 0
+        },
+        {
+          "id": "slot_msy2n258_j",
+          "candidateId": "r1_0494",
+          "sizeProfile": "GIGA",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO",
+          "phase": 1
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 5,
+      "fingerprint": "e117f114"
+    },
+    "w_purify": {
+      "actionKey": "w_purify",
+      "presetId": "published_w_purify",
+      "visualSlots": [
+        {
+          "id": "slot_msy33lrq_m",
+          "candidateId": "r1_0295",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "CASTER"
+        },
+        {
+          "id": "slot_msy250wd_h",
+          "candidateId": "r1_0485",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "TARGET"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "GROUND",
+      "tier": 3,
+      "fingerprint": "f030721c"
+    },
+    "w_salvation": {
+      "actionKey": "w_salvation",
+      "presetId": "published_w_salvation",
+      "visualSlots": [
+        {
+          "id": "slot_msy3512x_n",
+          "candidateId": "r1_0295",
+          "sizeProfile": "LOW",
+          "timingProfile": "NORMAL",
+          "placementProfile": "CASTER"
+        },
+        {
+          "id": "slot_msy1vye5_g",
+          "candidateId": "r1_0483",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "TARGET"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "GROUND",
+      "tier": 2,
+      "fingerprint": "9a6f5b2b"
+    },
+    "w_sanctuary": {
+      "actionKey": "w_sanctuary",
+      "presetId": "published_w_sanctuary",
+      "visualSlots": [
+        {
+          "id": "slot_msy32ajl_l",
+          "candidateId": "r1_0295",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "CASTER"
+        },
+        {
+          "id": "slot_msy26ec7_i",
+          "candidateId": "r1_0677",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "TARGET"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "GROUND",
+      "tier": 4,
+      "fingerprint": "eb2a346b"
+    },
+    "w_whirl": {
+      "actionKey": "w_whirl",
+      "presetId": "published_w_whirl",
+      "visualSlots": [
+        {
+          "id": "slot_msxt7st5_5",
+          "candidateId": "r1_1607",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "FRONT",
+          "aimProfile": "FIXED",
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "mirrorProfile": "AUTO_HORIZONTAL",
+          "phase": 0
+        },
+        {
+          "id": "slot_msxtbofn_6",
+          "candidateId": "r1_1607",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "BACK",
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "NONE",
+          "trajectoryProfile": "ARC_HIGH",
+          "phase": 0
+        },
+        {
+          "id": "slot_msxtiplp_7",
+          "candidateId": "r1_1709",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "TARGET",
+          "phase": 1
+        }
+      ],
+      "choreography": "PAIR_THEN_LAST",
+      "technicalPolish": "OFF",
+      "autoPlacement": "GROUND",
+      "tier": 4,
+      "fingerprint": "67016543"
+    }
+  }
 }

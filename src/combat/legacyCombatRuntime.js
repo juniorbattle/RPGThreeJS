@@ -1525,10 +1525,13 @@ function playActionVfx(spec,u,targets,cx,cz,visualContext={}){
   console.log('[VFX-QA] playActionVfx:',{specKey:spec.key,weaponType:spec.weaponType,staticPresetId:presetId,resolvedActionKey:actionKey,published,candidate:published?(getPublishedDraft(actionKey)?.visualSlots?.[0]?.candidateId||'??'):'N/A'});
   const perTarget=presetId==='heal_burst'||presetId==='bless_aura'||presetId==='guard_barrier'||presetId==='support_holy_aura'||presetId==='arrow_rain';
   const visualTargets=(perTarget&&targets.length>1)?targets.map(target=>[target]):[targets];
-  const results=visualTargets.map(group=>{
+  const results=visualTargets.map((group,groupIndex)=>{
     const context=makeActionVfxContext(u,group,cx,cz,spec,visualContext);
     if(published&&!presentation?.cinematic){
-      return playPublishedActionVfx({actionKey,fallbackPresetId:presetId,context,vfxSystem:combatVfxSystem});
+      // CASTER MOTION is presentation-only and lives on the Combat Stage, so it
+      // is installed once per action and only while the Stage is active.
+      const applyCasterMotion=(G.stage&&groupIndex===0)?(motion=>combatStage.setCasterMotion(motion)):undefined;
+      return playPublishedActionVfx({actionKey,fallbackPresetId:presetId,context,vfxSystem:combatVfxSystem,...(applyCasterMotion?{applyCasterMotion}:{})});
     }
     return presentation?.cinematic
       ?combatVfxSystem.playCinematic(presentation.cinematic,context,presetId)
@@ -2500,6 +2503,10 @@ function buildLabPlaybackContext(){
       const cx=target.size>1?bossCenterGX(target):target.gx, cz=target.size>1?bossCenterGZ(target):target.gz;
       return makeActionVfxContext(source,[target],cx,cz,{key:actionKey,ap:1});
     },
+    // Composer Stage playback installs CASTER MOTION on the live Stage. The
+    // Composer calls this at the start of playVfx, so the motion clock and the
+    // VFX clock share one origin.
+    applyCasterMotion:(motion)=>{ combatStage.setCasterMotion(motion); },
     buildStageContext:async(actionKey,playVfx)=>{
       const action=getLabAction(actionKey);
       if(!action)return false;
