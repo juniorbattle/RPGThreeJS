@@ -119,7 +119,7 @@ export interface CombatStageEnterOptions {
   profile?: CombatStageProfile;
   /** Acting unit's team ('player' or 'foe'). Determines faction-side assignment. */
   sourceTeam?: string;
-  /** When true, attacker stays anchored at its home slot (boss/elite). No approach/recoil motion. */
+  /** When true, attacker stays anchored at its home slot (boss/elite). */
   stationaryAttacker?: boolean;
 }
 
@@ -219,11 +219,11 @@ export class CombatStage {
   private impactAtMs: number | null = null;
 
   /**
-   * PHASE B CASTER MOTION.
+   * CASTER MOTION — the sole source of caster movement on the Stage.
    *
-   * Applied as a pure ADDITIVE OFFSET on top of the attacker proxy's existing
-   * approach/recoil position. An empty plan contributes exactly (0,0,0), so a
-   * preset without motion is bit-for-bit identical to pre-Phase-B behaviour.
+   * Applied as a pure ADDITIVE OFFSET on the attacker proxy's start-slot
+   * position. An empty plan contributes exactly (0,0,0), so a preset without
+   * motion leaves the proxy stationary at its start slot.
    *
    * The camera, the target proxies, the terrain and the scene graph are never
    * touched by this layer — by construction, not by convention.
@@ -811,29 +811,17 @@ export class CombatStage {
     const profile = this.activeProfile;
     if (!profile) return;
     const mirrorX = this.sideAssignment?.mirrorX ?? false;
-    const skipApproach = (this.reducedGraphics && Boolean(profile.reducedGraphicsSkipApproach)) || this.stationaryAttacker;
 
     if (this.attackerProxy) {
       const start = resolvedSlotVec(this.attackerProxy.startSlot, mirrorX);
-      const impact = this.stationaryAttacker ? start : resolvedSlotVec(this.attackerProxy.impactSlot, mirrorX);
       const height = this.attackerProxy.baseHeight;
-      let pos: THREE.Vector3;
-      if (this.impactAtMs === null) {
-        const approachMs = skipApproach ? 0 : profile.approachMs;
-        const p = approachMs > 0 ? easeOutCubic((now - this.motionStartedAtMs) / approachMs) : 1;
-        pos = start.clone().lerp(impact, p);
-      } else if (profile.recoilMs > 0 && !this.stationaryAttacker) {
-        const p = easeOutCubic((now - this.impactAtMs) / profile.recoilMs);
-        pos = impact.clone().lerp(start, p);
-      } else {
-        pos = this.stationaryAttacker ? start : impact;
-      }
+      const pos = start;
       const pulse = this.impactPulseFor(now, true);
       const faceSign = this.attackerProxy.faction === 'player' ? 1 : -1;
       /**
-       * CASTER MOTION is layered here as an additive offset on the CASTER only.
-       * With no authored motion the offset is exactly (0,0,0) and this line is
-       * arithmetically identical to the pre-Phase-B version.
+       * CASTER MOTION is the sole source of caster movement. With no authored
+       * motion the offset is exactly (0,0,0) and the proxy stays at its start
+       * slot for the entire session.
        */
       this.sampleCasterMotion(now, pos);
       this.attackerProxy.mesh.position.set(

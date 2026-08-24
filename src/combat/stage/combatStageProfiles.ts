@@ -188,9 +188,9 @@ export interface CombatStageProfile {
   extraHoldSeconds: number;
   /** Reduced expensive punctuation (e.g. skip approach dash) under reducedGraphics. */
   reducedGraphicsSkipApproach?: boolean;
-  /** Actor proxy windup/approach tween duration (actorStartSlot -> actorImpactSlot), ms. */
+  /** Legacy approach dash duration — now 0, movement is handled by caster motion. */
   approachMs: number;
-  /** Actor proxy recoil tween duration (actorImpactSlot -> actorStartSlot) after impact, ms. */
+  /** Legacy recoil duration — now 0, movement is handled by caster motion. */
   recoilMs: number;
   /** Impact/hit-reaction scale-punch duration, ms. */
   impactPulseMs: number;
@@ -250,9 +250,8 @@ const BASIC_MELEE: CombatStageProfile = {
   transitionInMs: 120,
   transitionOutMs: 100,
   extraHoldSeconds: 0.02,
-  reducedGraphicsSkipApproach: true,
-  approachMs: 190,
-  recoilMs: 130,
+  approachMs: 0,
+  recoilMs: 0,
   impactPulseMs: 140,
   phases: { settleMs: 60, releaseToImpactMs: 0, impactToReactionMs: 30, reactionToFeedbackMs: 0, recoveryMs: 80 },
 };
