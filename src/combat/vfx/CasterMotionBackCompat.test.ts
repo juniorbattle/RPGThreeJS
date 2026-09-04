@@ -183,7 +183,7 @@ describe('Phase B back-compat — serialization round-trips', () => {
 
   it('round-trips an authored motion without loss', () => {
     const draft = addCasterMotion(publishedEntryToDraft(entries[0]!), 'JUMP_ARC', {
-      startTime: 0.4, duration: 0.5, distance: 0.75, height: 1.25,
+      duration: 0.5, distance: 0.75, height: 1.25,
       destination: 'TARGET_BACK', easing: 'EASE_IN_OUT', returnToOrigin: true,
     });
     const restored = deserializeDraft(serializeDraft(draft));
@@ -249,8 +249,21 @@ describe('Phase B back-compat — draft operations are immutable', () => {
     let draft = publishedEntryToDraft(entries[0]!);
     draft = addCasterMotion(draft, 'DASH_SHORT');
     draft = addCasterMotion(draft, 'JUMP_UP');
-    const compiled = compileCasterMotion(draft.casterMotion);
-    const [first, second] = compiled.steps;
-    expect(second!.startTime).toBeGreaterThanOrEqual(first!.endTime);
+    const [first, second] = draft.casterMotion!;
+    const overrides = new Map([
+      [first!.id, 0],
+      [second!.id, compileCasterMotion([first!]).steps[0]!.endTime],
+    ]);
+    const compiled = compileCasterMotion(draft.casterMotion, overrides);
+    const [c1, c2] = compiled.steps;
+    expect(c2!.startTime).toBeGreaterThanOrEqual(c1!.endTime);
+  });
+});
+
+describe('V2.7.1 back-compat — legacy startTime is silently ignored', () => {
+  it('compiles a motion step carrying a legacy startTime field without using it', () => {
+    const legacy = { id: 'm', type: 'DASH_SHORT', startTime: 0.5, duration: 0.2 } as unknown;
+    const compiled = compileCasterMotion([legacy as never]);
+    expect(compiled.steps[0]!.startTime).toBe(0);
   });
 });

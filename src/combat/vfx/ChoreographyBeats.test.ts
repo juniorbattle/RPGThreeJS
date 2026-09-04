@@ -428,7 +428,307 @@ describe('V2.7 Causal Barrier — playCompiledBeats with fake timers', () => {
   });
 });
 
-// ============================================================ Backward Compatibility
+// ============================================================ V2.7 HOTFIX — START DELAY + STRICT NON-OVERLAP
+
+describe('V2.7 HOTFIX — START DELAY + STRICT NON-OVERLAP', () => {
+  beforeEach(() => { vi.useFakeTimers(); });
+  afterEach(() => { vi.useRealTimers(); });
+
+  // TEST A — START DELAY WHOLE BEAT
+  it('TEST A: startDelay delays the whole beat — nothing starts before the delay', async () => {
+    const slot = makeVfxSlot(0.5);
+    const motion = makeMotion('DASH_THROUGH');
+    const draft = makeDraft({
+      visualSlots: [slot],
+      casterMotion: [motion],
+      beats: [
+        { id: 'b0', startDelay: 0.5, vfxSlotIds: [slot.id], casterMotionIds: [motion.id] },
+      ],
+    });
+    const compiled = compileDraft(draft, { includeTechnical: false, getCadence: NOOP_CADENCE });
+    const { system, invocations } = makeFakeVfxSystem();
+    const context = makeFakeContext();
+
+    const playPromise = playCompiledBeats(system, compiled, context, false);
+
+    // t=0: nothing started
+    await vi.advanceTimersByTimeAsync(1);
+    expect(invocations).toHaveLength(0);
+
+    // t < 500ms: nothing started
+    await vi.advanceTimersByTimeAsync(400);
+    expect(invocations).toHaveLength(0);
+
+    // t = 500ms: VFX starts (motion starts at same absolute time via its startTime)
+    await vi.advanceTimersByTimeAsync(100);
+    expect(invocations).toHaveLength(1);
+
+    await vi.advanceTimersByTimeAsync(compiled.compiledBeats[0]!.duration * 1000);
+    await playPromise;
+  });
+
+  // TEST B — STRICT NON-OVERLAP
+  it('TEST B: Beat 1 does not start before or during Beat 0', async () => {
+    const s1 = makeVfxSlot(0.5);
+    const s2 = makeVfxSlot(0.3);
+    const draft = makeDraft({
+      visualSlots: [s1, s2],
+      beats: [
+        { id: 'b0', startDelay: 0.5, vfxSlotIds: [s1.id], casterMotionIds: [] },
+        { id: 'b1', startDelay: 0, vfxSlotIds: [s2.id], casterMotionIds: [] },
+      ],
+    });
+    const compiled = compileDraft(draft, { includeTechnical: false, getCadence: NOOP_CADENCE });
+    const { system, invocations } = makeFakeVfxSystem();
+    const context = makeFakeContext();
+
+    const playPromise = playCompiledBeats(system, compiled, context, false);
+    const b0 = compiled.compiledBeats[0]!;
+    const b0DelayMs = b0.startDelay * 1000;
+    const b0DurMs = b0.duration * 1000;
+
+    // Before Beat 0 starts: nothing
+    await vi.advanceTimersByTimeAsync(b0DelayMs - 50);
+    expect(invocations).toHaveLength(0);
+
+    // During Beat 0: only 1 VFX (Beat 0's slot)
+    await vi.advanceTimersByTimeAsync(50);
+    expect(invocations).toHaveLength(1);
+
+    // Still during Beat 0: Beat 1 must not start
+    await vi.advanceTimersByTimeAsync(b0DurMs - 100);
+    expect(invocations).toHaveLength(1);
+
+    // Beat 0 completes, Beat 1 starts
+    await vi.advanceTimersByTimeAsync(100);
+    expect(invocations).toHaveLength(2);
+
+    await vi.advanceTimersByTimeAsync(compiled.compiledBeats[1]!.duration * 1000);
+    await playPromise;
+  });
+
+  // TEST C — NEXT DELAY RELATIVE TO PREVIOUS END
+  it('TEST C: Beat 1 starts at previousBeatEnd + startDelay', async () => {
+    const s1 = makeVfxSlot(0.5);
+    const s2 = makeVfxSlot(0.3);
+    const draft = makeDraft({
+      visualSlots: [s1, s2],
+      beats: [
+        { id: 'b0', startDelay: 0, vfxSlotIds: [s1.id], casterMotionIds: [] },
+        { id: 'b1', startDelay: 0.2, vfxSlotIds: [s2.id], casterMotionIds: [] },
+      ],
+    });
+    const compiled = compileDraft(draft, { includeTechnical: false, getCadence: NOOP_CADENCE });
+
+    // Compile-time check: Beat 1 startTime = Beat 0 end + 0.2
+    const b0 = compiled.compiledBeats[0]!;
+    const b1 = compiled.compiledBeats[1]!;
+    expect(b1.startTime).toBeCloseTo(b0.startTime + b0.duration + 0.2, 3);
+
+    // Runtime check: VFX for Beat 1 invoked at ~700ms
+    const { system, invocations } = makeFakeVfxSystem();
+    const context = makeFakeContext();
+    const playPromise = playCompiledBeats(system, compiled, context, false);
+
+    // t=0: Beat 0 starts
+    await vi.advanceTimersByTimeAsync(1);
+    expect(invocations).toHaveLength(1);
+
+    // t=500ms: Beat 0 completes, but Beat 1 has 0.2s delay
+    await vi.advanceTimersByTimeAsync(499);
+    expect(invocations).toHaveLength(1);
+
+    // t=700ms: Beat 1 starts
+    await vi.advanceTimersByTimeAsync(200);
+    expect(invocations).toHaveLength(2);
+
+    await vi.advanceTimersByTimeAsync(compiled.compiledBeats[1]!.duration * 1000);
+    await playPromise;
+  });
+
+  // TEST D — LONG BEAT 0
+  it('TEST D: Beat 1 waits for Beat 0 delay + execution', async () => {
+    const s1 = makeVfxSlot(0.4);
+    const s2 = makeVfxSlot(0.3);
+    const draft = makeDraft({
+      visualSlots: [s1, s2],
+      beats: [
+        { id: 'b0', startDelay: 0.5, vfxSlotIds: [s1.id], casterMotionIds: [] },
+        { id: 'b1', startDelay: 0, vfxSlotIds: [s2.id], casterMotionIds: [] },
+      ],
+    });
+    const compiled = compileDraft(draft, { includeTechnical: false, getCadence: NOOP_CADENCE });
+    const { system, invocations } = makeFakeVfxSystem();
+    const context = makeFakeContext();
+
+    const playPromise = playCompiledBeats(system, compiled, context, false);
+    const b0 = compiled.compiledBeats[0]!;
+
+    // Before delay: nothing
+    await vi.advanceTimersByTimeAsync(b0.startDelay * 1000 - 10);
+    expect(invocations).toHaveLength(0);
+
+    // After delay, Beat 0 starts
+    await vi.advanceTimersByTimeAsync(20);
+    expect(invocations).toHaveLength(1);
+
+    // During Beat 0 execution: Beat 1 must not start
+    await vi.advanceTimersByTimeAsync(b0.duration * 1000 - 50);
+    expect(invocations).toHaveLength(1);
+
+    // Beat 0 completes, Beat 1 starts
+    await vi.advanceTimersByTimeAsync(50);
+    expect(invocations).toHaveLength(2);
+
+    await vi.advanceTimersByTimeAsync(compiled.compiledBeats[1]!.duration * 1000);
+    await playPromise;
+  });
+
+  // TEST E — SAME BEAT PARALLELISM
+  it('TEST E: VFX and motion in same beat start at identical timestamp', async () => {
+    const slot = makeVfxSlot(0.5);
+    const motion = makeMotion('DASH_THROUGH');
+    const draft = makeDraft({
+      visualSlots: [slot],
+      casterMotion: [motion],
+      beats: [
+        { id: 'b0', startDelay: 0.3, vfxSlotIds: [slot.id], casterMotionIds: [motion.id] },
+      ],
+    });
+    const compiled = compileDraft(draft, { includeTechnical: false, getCadence: NOOP_CADENCE });
+
+    // Compile-time: slot and motion share the same startTime (= beat startDelay)
+    const slotStart = compiled.slots.find((s) => s.slotId === slot.id)!.startTime;
+    const motionStart = compiled.casterMotion.steps.find((s) => s.motionId === motion.id)!.startTime;
+    expect(slotStart).toBe(0.3);
+    expect(motionStart).toBe(0.3);
+
+    // Runtime: VFX invoked after the delay
+    const { system, invocations } = makeFakeVfxSystem();
+    const context = makeFakeContext();
+    const playPromise = playCompiledBeats(system, compiled, context, false);
+
+    await vi.advanceTimersByTimeAsync(299);
+    expect(invocations).toHaveLength(0);
+
+    await vi.advanceTimersByTimeAsync(2);
+    expect(invocations).toHaveLength(1);
+
+    await vi.advanceTimersByTimeAsync(compiled.compiledBeats[0]!.duration * 1000);
+    await playPromise;
+  });
+
+  // TEST F — SEQUENCE COMPOSITION
+  it('TEST F: SEQUENCE composition — slots play sequentially, next beat waits for full sequence', async () => {
+    const sA = makeVfxSlot(0.3);
+    const sB = makeVfxSlot(0.2);
+    const sC = makeVfxSlot(0.15);
+    const sD = makeVfxSlot(0.4);
+    const draft = makeDraft({
+      visualSlots: [sA, sB, sC, sD],
+      beats: [
+        { id: 'b0', composition: 'SEQUENCE', vfxSlotIds: [sA.id, sB.id, sC.id], casterMotionIds: [] },
+        { id: 'b1', vfxSlotIds: [sD.id], casterMotionIds: [] },
+      ],
+    });
+    const compiled = compileDraft(draft, { includeTechnical: false, getCadence: NOOP_CADENCE });
+
+    // Beat 0 duration = 0.3 + 0.2 + 0.15 = 0.65
+    expect(compiled.compiledBeats[0]!.duration).toBeCloseTo(0.65, 3);
+
+    const { system, invocations } = makeFakeVfxSystem();
+    const context = makeFakeContext();
+    const playPromise = playCompiledBeats(system, compiled, context, false);
+
+    // t=0: slot A starts
+    await vi.advanceTimersByTimeAsync(1);
+    expect(invocations).toHaveLength(1);
+
+    // t=299ms: slot B not yet started
+    await vi.advanceTimersByTimeAsync(298);
+    expect(invocations).toHaveLength(1);
+    // t=301ms: slot B starts (timer at 300ms fires)
+    await vi.advanceTimersByTimeAsync(2);
+    expect(invocations).toHaveLength(2);
+
+    // t=499ms: slot C not yet started
+    await vi.advanceTimersByTimeAsync(198);
+    expect(invocations).toHaveLength(2);
+    // t=501ms: slot C starts (timer at 500ms fires)
+    await vi.advanceTimersByTimeAsync(2);
+    expect(invocations).toHaveLength(3);
+
+    // t=649ms: Beat 1 must not start (beat duration ends at 650ms)
+    await vi.advanceTimersByTimeAsync(148);
+    expect(invocations).toHaveLength(3);
+
+    // t=654ms: Beat 0 completes, Beat 1 starts
+    await vi.advanceTimersByTimeAsync(5);
+    expect(invocations).toHaveLength(4);
+
+    await vi.advanceTimersByTimeAsync(compiled.compiledBeats[1]!.duration * 1000);
+    await playPromise;
+  });
+
+  // TEST G — COMPLEX CHAIN
+  it('TEST G: complex chain — LONG delay → charge → SHORT delay → dash+trail → INSTANT → impact', async () => {
+    const sCharge = makeVfxSlot(0.4);
+    const sTrail = makeVfxSlot(0.3);
+    const sImpact = makeVfxSlot(0.2);
+    const motion = makeMotion('DASH_THROUGH');
+    const draft = makeDraft({
+      visualSlots: [sCharge, sTrail, sImpact],
+      casterMotion: [motion],
+      beats: [
+        { id: 'b0', startDelay: 0.5, vfxSlotIds: [sCharge.id], casterMotionIds: [] },
+        { id: 'b1', startDelay: 0.3, vfxSlotIds: [sTrail.id], casterMotionIds: [motion.id] },
+        { id: 'b2', startDelay: 0, vfxSlotIds: [sImpact.id], casterMotionIds: [] },
+      ],
+    });
+    const compiled = compileDraft(draft, { includeTechnical: false, getCadence: NOOP_CADENCE });
+    const { system, invocations } = makeFakeVfxSystem();
+    const context = makeFakeContext();
+
+    const playPromise = playCompiledBeats(system, compiled, context, false);
+    const b0 = compiled.compiledBeats[0]!;
+    const b1 = compiled.compiledBeats[1]!;
+
+    // Phase 1: wait LONG (500ms) — nothing starts
+    await vi.advanceTimersByTimeAsync(499);
+    expect(invocations).toHaveLength(0);
+
+    // Phase 2: Beat 0 starts (charge VFX)
+    await vi.advanceTimersByTimeAsync(2);
+    expect(invocations).toHaveLength(1);
+
+    // Beat 0 not yet complete
+    await vi.advanceTimersByTimeAsync(b0.duration * 1000 - 50);
+    expect(invocations).toHaveLength(1);
+
+    // Beat 0 completes at t=900, wait SHORT (300ms) for Beat 1
+    await vi.advanceTimersByTimeAsync(50);
+    expect(invocations).toHaveLength(1); // still waiting
+
+    // t=1199ms: Beat 1 not yet started (timer at 1200ms)
+    await vi.advanceTimersByTimeAsync(298);
+    expect(invocations).toHaveLength(1);
+
+    // Beat 1 starts (trail VFX + motion together)
+    await vi.advanceTimersByTimeAsync(2);
+    expect(invocations).toHaveLength(2);
+
+    // Beat 1 not yet complete
+    await vi.advanceTimersByTimeAsync(b1.duration * 1000 - 50);
+    expect(invocations).toHaveLength(2);
+
+    // Beat 1 completes, Beat 2 starts (impact VFX)
+    await vi.advanceTimersByTimeAsync(55);
+    expect(invocations).toHaveLength(3);
+
+    await vi.advanceTimersByTimeAsync(compiled.compiledBeats[2]!.duration * 1000);
+    await playPromise;
+  });
+});
 
 describe('V2.7 Backward Compatibility', () => {
   it('draft without beats has valid fingerprint', () => {

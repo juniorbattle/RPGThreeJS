@@ -77,8 +77,6 @@ export function resolveMotionAnchor(destination: CasterMotionDestination): VfxAn
 export interface CasterMotionStep {
   id: string;
   type: CasterMotionType;
-  /** Absolute seconds on the SHARED preset timeline (same clock as VFX slots). */
-  startTime?: number;
   /** Seconds of travel. Defaults per type. */
   duration?: number;
   /** Semantic destination. Defaults per type. */
@@ -143,7 +141,6 @@ export const CASTER_MOTION_DEFAULTS: Readonly<Record<CasterMotionType, Readonly<
   }),
 });
 
-export const MAX_MOTION_START_TIME = 10;
 export const MAX_MOTION_DURATION = 5;
 export const MIN_MOTION_DURATION = 0.01;
 
@@ -165,7 +162,6 @@ export function createCasterMotionStep(
   return {
     id: createMotionId(),
     type,
-    ...(overrides.startTime != null ? { startTime: overrides.startTime } : {}),
     ...(overrides.duration != null ? { duration: overrides.duration } : {}),
     ...(overrides.destination ? { destination: overrides.destination } : {}),
     ...(overrides.distance != null ? { distance: overrides.distance } : {}),
@@ -182,7 +178,6 @@ const round3 = (v: number) => Math.round(v * 1000) / 1000;
 export function resolveCasterMotionStep(step: CasterMotionStep): CasterMotionDefaults & {
   id: string;
   type: CasterMotionType;
-  startTime: number;
 } {
   const defaults = CASTER_MOTION_DEFAULTS[step.type] ?? CASTER_MOTION_DEFAULTS.IDLE;
   const numeric = (value: number | undefined, fallback: number) =>
@@ -190,7 +185,6 @@ export function resolveCasterMotionStep(step: CasterMotionStep): CasterMotionDef
   return {
     id: step.id,
     type: step.type,
-    startTime: clamp(numeric(step.startTime, 0), 0, MAX_MOTION_START_TIME),
     duration: clamp(numeric(step.duration, defaults.duration), MIN_MOTION_DURATION, MAX_MOTION_DURATION),
     destination: step.destination ?? defaults.destination,
     distance: clamp(numeric(step.distance, defaults.distance), 0, 1),
@@ -226,7 +220,7 @@ export function validateCasterMotionStep(raw: unknown): CasterMotionValidationRe
   if (s.easing !== undefined && !EASING_SET.has(String(s.easing))) {
     errors.push(`invalid motion easing: ${String(s.easing)}`);
   }
-  for (const field of ['startTime', 'duration', 'distance', 'height'] as const) {
+  for (const field of ['duration', 'distance', 'height'] as const) {
     const value = s[field];
     if (value === undefined) continue;
     if (typeof value !== 'number' || !Number.isFinite(value)) {
@@ -310,25 +304,36 @@ function isNoopMotion(resolved: CasterMotionDefaults & { type: CasterMotionType 
 /**
  * Compiles authored motions into a deterministic, time-ordered plan.
  *
- * Ordering is stable: primarily by resolved startTime, then by authored index,
- * so two motions sharing a startTime always compile in authoring order.
+ * `startTimeOverrides` is an optional map from motion id to absolute start time.
+ * When provided (by the beat scheduler), each motion compiles with its assigned
+ * start time. When absent, all motions start at t=0 and order by authored index.
+ *
+ * Legacy `startTime` fields on raw steps are silently ignored — beat assignment
+ * is the sole authority for motion timing.
  */
-export function compileCasterMotion(steps: readonly CasterMotionStep[] | undefined): CompiledCasterMotion {
+export function compileCasterMotion(
+  steps: readonly CasterMotionStep[] | undefined,
+  startTimeOverrides?: ReadonlyMap<string, number>,
+): CompiledCasterMotion {
   if (!steps || steps.length === 0) return EMPTY_COMPILED_CASTER_MOTION;
 
-  const resolved = steps.map((step, index) => ({ resolved: resolveCasterMotionStep(step), index }));
+  const resolved = steps.map((step, index) => ({
+    resolved: resolveCasterMotionStep(step),
+    startTime: startTimeOverrides?.get(step.id) ?? 0,
+    index,
+  }));
   resolved.sort((a, b) =>
-    a.resolved.startTime !== b.resolved.startTime
-      ? a.resolved.startTime - b.resolved.startTime
+    a.startTime !== b.startTime
+      ? a.startTime - b.startTime
       : a.index - b.index);
 
-  const compiled: CompiledCasterMotionStep[] = resolved.map(({ resolved: r }) => {
-    const motionEndTime = round3(r.startTime + r.duration);
+  const compiled: CompiledCasterMotionStep[] = resolved.map(({ resolved: r, startTime }) => {
+    const motionEndTime = round3(startTime + r.duration);
     const endTime = round3(r.returnToOrigin ? motionEndTime + r.duration : motionEndTime);
     return {
       motionId: r.id,
       type: r.type,
-      startTime: round3(r.startTime),
+      startTime: round3(startTime),
       duration: round3(r.duration),
       motionEndTime,
       endTime,

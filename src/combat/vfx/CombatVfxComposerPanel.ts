@@ -512,7 +512,6 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     '0.12': 'FAST', '0.2': 'NORMAL', '0.35': 'SLOW', '0.6': 'VERY SLOW',
   };
   /** Semantic time presets — the author never types raw seconds. */
-  const MOTION_START_PRESETS: readonly number[] = [0, 0.15, 0.3, 0.5, 0.8, 1.2];
   const MOTION_DURATION_PRESETS: readonly number[] = [0.12, 0.2, 0.35, 0.6];
 
   /**
@@ -856,9 +855,8 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
    *
    * Shows beats as vertical cards. Each beat contains:
    *   - BEAT N header
-   *   - START delay control (INSTANT/SHORT/MEDIUM/LONG)
    *   - COMPOSITION control (TOGETHER/SEQUENCE/PAIR THEN LAST)
-   *   - Timing display (START DELAY, ABSOLUTE START, DURATION, END — read-only)
+   *   - Timing display (ABSOLUTE START, DURATION, END — read-only)
    *   - VFX and CASTER MOTION participant cards
    *   - + ADD VFX / + ADD CASTER MOTION / REMOVE BEAT (disabled if non-empty)
    *
@@ -1153,7 +1151,7 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
 
   /**
    * Renders a CASTER MOTION card inside a beat. Includes all existing motion
-   * editing controls (type, destination, speed, start, return) plus
+   * editing controls (type, destination, speed, return) plus
    * beat-specific controls:
    *   ◀ MOVE LEFT  — reassign to previous beat
    *   MOVE RIGHT ▶ — reassign to next beat
@@ -1194,11 +1192,6 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
         MOTION_DESTINATION_LABELS,
       ));
     }
-
-    card.appendChild(buildProfileControl<string>(
-      'START', MOTION_START_PRESETS.map(String), nearestPreset(MOTION_START_PRESETS, resolved.startTime),
-      (value) => mutate(updateCasterMotion(draft, step.id, { startTime: Number(value) })),
-    ));
 
     card.appendChild(buildProfileControl<string>(
       'SPEED', MOTION_DURATION_PRESETS.map(String), nearestPreset(MOTION_DURATION_PRESETS, resolved.duration),

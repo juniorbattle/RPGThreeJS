@@ -93,7 +93,7 @@ describe('CombatStage — caster motion', () => {
   it('returns the offset to zero once a returning motion has fully settled', async () => {
     await stage.enter(attacker, [target], { key: 'attack' });
     stage.setCasterMotion(compileCasterMotion([
-      createCasterMotionStep('DASH_SHORT', { startTime: 0, duration: 0.02, returnToOrigin: true }),
+      createCasterMotionStep('DASH_SHORT', { duration: 0.02, returnToOrigin: true }),
     ]));
     await new Promise((resolve) => setTimeout(resolve, 120));
     stage.tick(0.016);
@@ -108,7 +108,7 @@ describe('CombatStage — caster motion', () => {
     stage.tick(0.016);
     const baseline = stage.attackerProxyPosition()!;
     stage.setCasterMotion(compileCasterMotion([
-      createCasterMotionStep('DASH_SHORT', { startTime: 0, duration: 5, distance: 1, returnToOrigin: false }),
+      createCasterMotionStep('DASH_SHORT', { duration: 5, distance: 1, returnToOrigin: false }),
     ]));
     await new Promise((resolve) => setTimeout(resolve, 60));
     stage.tick(0.016);
@@ -121,7 +121,7 @@ describe('CombatStage — caster motion', () => {
     stage.tick(0.016);
     const baseline = stage.attackerProxyPosition()!;
     stage.setCasterMotion(compileCasterMotion([
-      createCasterMotionStep('JUMP_UP', { startTime: 0, duration: 5, height: 2, returnToOrigin: false }),
+      createCasterMotionStep('JUMP_UP', { duration: 5, height: 2, returnToOrigin: false }),
     ]));
     await new Promise((resolve) => setTimeout(resolve, 60));
     stage.tick(0.016);
@@ -133,7 +133,7 @@ describe('CombatStage — caster motion', () => {
     stage.tick(0.016);
     const baseline = stage.targetProxyPosition(0)!;
     stage.setCasterMotion(compileCasterMotion([
-      createCasterMotionStep('DASH_THROUGH', { startTime: 0, duration: 5, returnToOrigin: false }),
+      createCasterMotionStep('DASH_THROUGH', { duration: 5, returnToOrigin: false }),
     ]));
     await new Promise((resolve) => setTimeout(resolve, 60));
     stage.tick(0.016);
@@ -148,7 +148,7 @@ describe('CombatStage — caster motion', () => {
     const cameraPosition = stage.camera.position.clone();
     const cameraZoom = stage.camera.zoom;
     stage.setCasterMotion(compileCasterMotion([
-      createCasterMotionStep('JUMP_ARC', { startTime: 0, duration: 5 }),
+      createCasterMotionStep('JUMP_ARC', { duration: 5 }),
     ]));
     await new Promise((resolve) => setTimeout(resolve, 60));
     stage.tick(0.016);
@@ -205,9 +205,9 @@ describe('CombatStage — caster motion', () => {
   it('keeps the attacker proxy position finite across a long tick sweep', async () => {
     await stage.enter(attacker, [target], { key: 'attack' });
     stage.setCasterMotion(compileCasterMotion([
-      createCasterMotionStep('DASH_THROUGH', { startTime: 0, duration: 0.05 }),
-      createCasterMotionStep('JUMP_ARC', { startTime: 0.05, duration: 0.05 }),
-    ]));
+      createCasterMotionStep('DASH_THROUGH', { duration: 0.05 }),
+      createCasterMotionStep('JUMP_ARC', { duration: 0.05 }),
+    ], new Map([['m1', 0], ['m2', 0.05]])));
     for (let i = 0; i < 40; i++) {
       stage.tick(0.016);
       const position = stage.attackerProxyPosition()!;

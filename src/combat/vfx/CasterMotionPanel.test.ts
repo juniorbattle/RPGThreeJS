@@ -158,13 +158,6 @@ describe('Composer panel — CASTER MOTION section', () => {
     expect(activeValue('speed')).toBe('0.6');
   });
 
-  it('offers START time presets on the shared preset clock', () => {
-    click(q('.cmp-beat-add-motion'));
-    expect(controlButtons('start').length).toBeGreaterThan(1);
-    click(controlButtons('start').find((b) => b.dataset.value === '0.5'));
-    expect(activeValue('start')).toBe('0.5');
-  });
-
   /**
    * STEP IN is a melee lunge, so it returns by default; CROSS THROUGH is a
    * repositioning dash, so it stays. The AFTER control makes both explicit and
@@ -245,15 +238,11 @@ describe('Composer panel — CASTER MOTION section', () => {
     expect(q('.cmp-motion-card')?.textContent).toContain('COME BACK');
   });
 
-  it('orders beat cards by start time on one shared clock', () => {
+  it('orders beat cards by beat index', () => {
     click(q('.cmp-beat-add-motion'));
-    click(controlButtons('start').find((b) => b.dataset.value === '0'));
-    const timings = qa('.cmp-beat-timing').map((el) => {
-      const m = (el.textContent ?? '').match(/TIME\s+([\d.]+)s/);
-      return m ? Number(m[1]) : NaN;
-    });
-    const sorted = [...timings].sort((a, b) => a - b);
-    expect(timings).toEqual(sorted);
+    const indices = qa('.cmp-beat-card').map((el) => el.dataset.beatIndex);
+    const sorted = [...indices].sort((a, b) => Number(a) - Number(b));
+    expect(indices).toEqual(sorted);
   });
 
   it('tags every beat card with its beat index', () => {

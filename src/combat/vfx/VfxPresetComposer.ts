@@ -1362,8 +1362,8 @@ export function setTechnicalPolish(draft: VfxPresetDraft, polish: VfxTechnicalPo
 // ============================================================ Caster Motion Operations
 
 /**
- * Appends a caster motion. A new step starts right after the current preset
- * content so a freshly added motion never silently overlaps existing work.
+ * Appends a caster motion. A new step is added at the end of the list —
+ * timing is controlled by beat assignment, not by the motion itself.
  */
 export function addCasterMotion(
   draft: VfxPresetDraft,
@@ -1371,9 +1371,7 @@ export function addCasterMotion(
   overrides: Partial<Omit<CasterMotionStep, 'id' | 'type'>> = {},
 ): VfxPresetDraft {
   const existing = draft.casterMotion ?? [];
-  const suggestedStart = overrides.startTime
-    ?? Math.round(compileCasterMotion(existing).totalDuration * 1000) / 1000;
-  const step = createCasterMotionStep(type, { ...overrides, startTime: suggestedStart });
+  const step = createCasterMotionStep(type, overrides);
   return { ...draft, casterMotion: [...existing, step], updatedAt: Date.now() };
 }
 
@@ -1558,6 +1556,8 @@ export interface CompiledVfxSlot {
 export interface CompiledBeat {
   beatId: string;
   startTime: number;
+  /** Relative delay (seconds) before this beat activates. Applied at runtime. */
+  startDelay: number;
   duration: number;
   vfxSlots: CompiledVfxSlot[];
   casterMotions: CompiledCasterMotionStep[];
@@ -1799,7 +1799,7 @@ export function compileDraft(draft: VfxPresetDraft, options: CompileDraftOptions
           const offset = slotOffsets[si] ?? 0;
           const slotStart = Math.round((beatStart + offset) * 1000) / 1000;
           slotStartTimeOverride.set(slotId, slotStart);
-          beatSlots.push(slot);
+          beatSlots.push({ ...slot, startTime: slotStart });
         }
       }
       const beatMotions: CompiledCasterMotionStep[] = [];
@@ -1813,6 +1813,7 @@ export function compileDraft(draft: VfxPresetDraft, options: CompileDraftOptions
       return {
         beatId: beat.id,
         startTime: beatStart,
+        startDelay: beat.startDelay ?? 0,
         duration: beatDurations[index] ?? 0,
         vfxSlots: beatSlots,
         casterMotions: beatMotions,
@@ -1835,11 +1836,7 @@ export function compileDraft(draft: VfxPresetDraft, options: CompileDraftOptions
 
     // Recompile motion with beat-assigned startTimes.
     if (motionStartTimeOverride.size > 0) {
-      const overriddenRaw = (draft.casterMotion ?? []).map((step) => {
-        const override = motionStartTimeOverride.get(step.id);
-        return override !== undefined ? { ...step, startTime: override } : step;
-      });
-      finalCasterMotion = compileCasterMotion(overriddenRaw);
+      finalCasterMotion = compileCasterMotion(draft.casterMotion, motionStartTimeOverride);
     }
   } else {
     // Legacy path: derive beats from phases for display. No scheduling change.
@@ -1854,6 +1851,7 @@ export function compileDraft(draft: VfxPresetDraft, options: CompileDraftOptions
       return {
         beatId: beat.id,
         startTime: beatStart,
+        startDelay: 0,
         duration: beatDuration,
         vfxSlots: beatSlots,
         casterMotions: [],

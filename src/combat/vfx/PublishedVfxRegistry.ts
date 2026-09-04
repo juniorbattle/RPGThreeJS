@@ -240,7 +240,6 @@ export function computeFingerprint(draft: VfxPresetDraft): string {
     for (const step of motion.steps) {
       parts.push(
         step.type,
-        String(step.startTime),
         String(step.duration),
         step.destination,
         String(step.distance),

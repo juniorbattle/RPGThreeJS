@@ -13,6 +13,7 @@ import {
   validateCasterMotionStep,
   type CasterMotionAnchorResolver,
   type CasterMotionStep,
+  type CompiledCasterMotion,
   type MutableVec3,
 } from './CasterMotion';
 
@@ -30,9 +31,12 @@ const resolver: CasterMotionAnchorResolver = (anchor, out) => {
   if (anchor === 'targetBack') out.x = 5;
 };
 
-function sampleAt(steps: CasterMotionStep[], t: number): MutableVec3 {
+function sampleAt(steps: CasterMotionStep[], t: number): MutableVec3;
+function sampleAt(compiled: CompiledCasterMotion, t: number): MutableVec3;
+function sampleAt(input: CasterMotionStep[] | CompiledCasterMotion, t: number): MutableVec3 {
   const out: MutableVec3 = { x: 0, y: 0, z: 0 };
-  sampleCasterMotionOffset(compileCasterMotion(steps), t, resolver, out);
+  const compiled = Array.isArray(input) ? compileCasterMotion(input) : input;
+  sampleCasterMotionOffset(compiled, t, resolver, out);
   return out;
 }
 
@@ -70,11 +74,10 @@ describe('CasterMotion — authoring model', () => {
 
   it('clamps hostile numeric input instead of throwing', () => {
     const resolved = resolveCasterMotionStep({
-      id: 'm', type: 'DASH_SHORT', distance: 99, duration: -5, startTime: 1e9, height: -3,
+      id: 'm', type: 'DASH_SHORT', distance: 99, duration: -5, height: -3,
     });
     expect(resolved.distance).toBe(1);
     expect(resolved.duration).toBeGreaterThan(0);
-    expect(resolved.startTime).toBeLessThanOrEqual(10);
     expect(resolved.height).toBe(0);
   });
 
@@ -121,22 +124,33 @@ describe('CasterMotion — compilation', () => {
     expect(compiled.totalDuration).toBe(0);
   });
 
-  it('orders steps by startTime, then by authoring order for ties', () => {
+  it('orders steps by authored index when no startTimeOverrides are given', () => {
     const compiled = compileCasterMotion([
-      { id: 'late', type: 'DASH_SHORT', startTime: 0.5 },
-      { id: 'tieB', type: 'DASH_SHORT', startTime: 0.1 },
-      { id: 'tieA', type: 'DASH_SHORT', startTime: 0.1 },
+      { id: 'a', type: 'DASH_SHORT' },
+      { id: 'b', type: 'DASH_SHORT' },
+      { id: 'c', type: 'DASH_SHORT' },
     ]);
+    expect(compiled.steps.map((s) => s.motionId)).toEqual(['a', 'b', 'c']);
+  });
+
+  it('orders steps by startTimeOverrides when provided', () => {
+    const overrides = new Map([['late', 0.5], ['tieB', 0.1], ['tieA', 0.1]]);
+    const compiled = compileCasterMotion([
+      { id: 'late', type: 'DASH_SHORT' },
+      { id: 'tieB', type: 'DASH_SHORT' },
+      { id: 'tieA', type: 'DASH_SHORT' },
+    ], overrides);
     expect(compiled.steps.map((s) => s.motionId)).toEqual(['tieB', 'tieA', 'late']);
   });
 
   it('extends endTime by the return leg only when returnToOrigin is set', () => {
+    const overrides = new Map([['a', 1], ['b', 1]]);
     const [held] = compileCasterMotion([
-      { id: 'a', type: 'DASH_SHORT', startTime: 1, duration: 0.2, returnToOrigin: false },
-    ]).steps;
+      { id: 'a', type: 'DASH_SHORT', duration: 0.2, returnToOrigin: false },
+    ], overrides).steps;
     const [returned] = compileCasterMotion([
-      { id: 'b', type: 'DASH_SHORT', startTime: 1, duration: 0.2, returnToOrigin: true },
-    ]).steps;
+      { id: 'b', type: 'DASH_SHORT', duration: 0.2, returnToOrigin: true },
+    ], overrides).steps;
     expect(held!.endTime).toBeCloseTo(1.2, 6);
     expect(returned!.endTime).toBeCloseTo(1.4, 6);
   });
@@ -150,8 +164,8 @@ describe('CasterMotion — compilation', () => {
 
   it('is deterministic — identical input compiles to identical output', () => {
     const steps: CasterMotionStep[] = [
-      { id: 'a', type: 'JUMP_ARC', startTime: 0.2 },
-      { id: 'b', type: 'DASH_THROUGH', startTime: 0.1 },
+      { id: 'a', type: 'JUMP_ARC' },
+      { id: 'b', type: 'DASH_THROUGH' },
     ];
     expect(JSON.stringify(compileCasterMotion(steps)))
       .toBe(JSON.stringify(compileCasterMotion(steps)));
@@ -160,7 +174,8 @@ describe('CasterMotion — compilation', () => {
 
 describe('CasterMotion — sampling', () => {
   it('produces exactly zero offset before the first motion starts', () => {
-    expect(sampleAt([step('DASH_SHORT', { startTime: 1, duration: 0.2 })], 0)).toEqual({ x: 0, y: 0, z: 0 });
+    const overrides = new Map([['m', 1]]);
+    expect(sampleAt(compileCasterMotion([step('DASH_SHORT', { duration: 0.2 })], overrides), 0)).toEqual({ x: 0, y: 0, z: 0 });
   });
 
   it('produces exactly zero offset for an empty plan at any time', () => {
@@ -170,24 +185,24 @@ describe('CasterMotion — sampling', () => {
   });
 
   it('DASH_SHORT travels only its authored fraction toward the target', () => {
-    const steps = [step('DASH_SHORT', { startTime: 0, duration: 0.2, distance: 0.5, returnToOrigin: false })];
+    const steps = [step('DASH_SHORT', { duration: 0.2, distance: 0.5, returnToOrigin: false })];
     // Target is +4 on X, so half the distance is +2.
     expect(sampleAt(steps, 0.2).x).toBeCloseTo(2, 6);
   });
 
   it('DASH_THROUGH ends past the target when aimed at TARGET_BACK', () => {
-    const steps = [step('DASH_THROUGH', { startTime: 0, duration: 0.3 })];
+    const steps = [step('DASH_THROUGH', { duration: 0.3 })];
     // TARGET_BACK resolves to +5, beyond the target's +4.
     expect(sampleAt(steps, 0.3).x).toBeCloseTo(5, 6);
   });
 
   it('holds the final position after the motion when returnToOrigin is false', () => {
-    const steps = [step('DASH_THROUGH', { startTime: 0, duration: 0.3, returnToOrigin: false })];
+    const steps = [step('DASH_THROUGH', { duration: 0.3, returnToOrigin: false })];
     expect(sampleAt(steps, 5).x).toBeCloseTo(5, 6);
   });
 
   it('returns exactly to origin after the return leg when returnToOrigin is true', () => {
-    const steps = [step('DASH_SHORT', { startTime: 0, duration: 0.2, returnToOrigin: true })];
+    const steps = [step('DASH_SHORT', { duration: 0.2, returnToOrigin: true })];
     const settled = sampleAt(steps, 10);
     expect(settled.x).toBeCloseTo(0, 6);
     expect(settled.y).toBeCloseTo(0, 6);
@@ -195,7 +210,7 @@ describe('CasterMotion — sampling', () => {
   });
 
   it('JUMP_UP moves vertically only and never horizontally', () => {
-    const steps = [step('JUMP_UP', { startTime: 0, duration: 0.25, height: 1, returnToOrigin: false })];
+    const steps = [step('JUMP_UP', { duration: 0.25, height: 1, returnToOrigin: false })];
     const at = sampleAt(steps, 0.25);
     expect(at.y).toBeCloseTo(1, 6);
     expect(at.x).toBeCloseTo(0, 6);
@@ -203,41 +218,43 @@ describe('CasterMotion — sampling', () => {
   });
 
   it('JUMP_DOWN starts elevated and lands at zero height', () => {
-    const steps = [step('JUMP_DOWN', { startTime: 0, duration: 0.2, height: 2, distance: 0 })];
+    const steps = [step('JUMP_DOWN', { duration: 0.2, height: 2, distance: 0 })];
     expect(sampleAt(steps, 0).y).toBeCloseTo(2, 6);
     expect(sampleAt(steps, 0.2).y).toBeCloseTo(0, 6);
   });
 
   it('JUMP_ARC peaks at mid-flight and lands flat at both ends', () => {
-    const steps = [step('JUMP_ARC', { startTime: 0, duration: 0.4, height: 1, distance: 1 })];
+    const steps = [step('JUMP_ARC', { duration: 0.4, height: 1, distance: 1 })];
     expect(sampleAt(steps, 0).y).toBeCloseTo(0, 6);
     expect(sampleAt(steps, 0.2).y).toBeCloseTo(1, 6);
     expect(sampleAt(steps, 0.4).y).toBeCloseTo(0, 6);
   });
 
   it('accumulates residuals so a later motion starts from where the previous ended', () => {
-    const steps = [
-      step('DASH_THROUGH', { startTime: 0, duration: 0.2, returnToOrigin: false }),
-      step('JUMP_UP', { startTime: 0.3, duration: 0.2, height: 1, returnToOrigin: false }),
-    ];
-    const airborne = sampleAt(steps, 0.5);
+    const overrides = new Map([['a', 0], ['b', 0.3]]);
+    const compiled = compileCasterMotion([
+      step('DASH_THROUGH', { duration: 0.2, returnToOrigin: false }),
+      step('JUMP_UP', { duration: 0.2, height: 1, returnToOrigin: false }),
+    ], overrides);
+    const airborne = sampleAt(compiled, 0.5);
     // Still behind the target from the dash, and now also elevated.
     expect(airborne.x).toBeCloseTo(5, 6);
     expect(airborne.y).toBeCloseTo(1, 6);
   });
 
   it('does not accumulate a residual for a motion that returned to origin', () => {
-    const steps = [
-      step('DASH_SHORT', { startTime: 0, duration: 0.1, returnToOrigin: true }),
-      step('JUMP_UP', { startTime: 0.5, duration: 0.1, height: 1, returnToOrigin: false }),
-    ];
-    const after = sampleAt(steps, 0.6);
+    const overrides = new Map([['a', 0], ['b', 0.5]]);
+    const compiled = compileCasterMotion([
+      step('DASH_SHORT', { duration: 0.1, returnToOrigin: true }),
+      step('JUMP_UP', { duration: 0.1, height: 1, returnToOrigin: false }),
+    ], overrides);
+    const after = sampleAt(compiled, 0.6);
     expect(after.x).toBeCloseTo(0, 6);
     expect(after.y).toBeCloseTo(1, 6);
   });
 
   it('never mutates the compiled plan while sampling', () => {
-    const compiled = compileCasterMotion([step('JUMP_ARC', { startTime: 0, duration: 0.4 })]);
+    const compiled = compileCasterMotion([step('JUMP_ARC', { duration: 0.4 })]);
     const before = JSON.stringify(compiled);
     const out: MutableVec3 = { x: 0, y: 0, z: 0 };
     for (let t = 0; t < 1; t += 0.05) sampleCasterMotionOffset(compiled, t, resolver, out);
@@ -252,7 +269,7 @@ describe('CasterMotion — sampling', () => {
 
   it('stays finite across a dense sweep of every motion type', () => {
     for (const type of CASTER_MOTION_TYPES) {
-      const compiled = compileCasterMotion([step(type, { startTime: 0.1 })]);
+      const compiled = compileCasterMotion([step(type, { duration: 0.1 })]);
       const out: MutableVec3 = { x: 0, y: 0, z: 0 };
       for (let t = -0.5; t <= 3; t += 0.017) {
         sampleCasterMotionOffset(compiled, t, resolver, out);
@@ -303,22 +320,22 @@ describe('CasterMotion — unified timeline', () => {
 
   it('interleaves VFX and MOTION on one shared clock in time order', () => {
     const motion = compileCasterMotion([
-      { id: 'm1', type: 'DASH_SHORT', startTime: 0.35, duration: 0.15, returnToOrigin: false },
-    ]);
+      { id: 'm1', type: 'DASH_SHORT', duration: 0.15, returnToOrigin: false },
+    ], new Map([['m1', 0.35]]));
     const timeline = buildUnifiedTimeline(slots, motion);
     expect(timeline.map((e) => e.kind)).toEqual(['VFX', 'MOTION', 'VFX']);
     expect(timeline.map((e) => e.id)).toEqual(['s1', 'm1', 's2']);
   });
 
   it('places VFX before MOTION deterministically at identical start times', () => {
-    const motion = compileCasterMotion([{ id: 'm1', type: 'DASH_SHORT', startTime: 0 }]);
+    const motion = compileCasterMotion([{ id: 'm1', type: 'DASH_SHORT' }], new Map([['m1', 0]]));
     const timeline = buildUnifiedTimeline(slots, motion);
     expect(timeline[0]!.kind).toBe('VFX');
     expect(timeline[1]!.kind).toBe('MOTION');
   });
 
   it('is stable across repeated builds', () => {
-    const motion = compileCasterMotion([{ id: 'm1', type: 'JUMP_ARC', startTime: 0.2 }]);
+    const motion = compileCasterMotion([{ id: 'm1', type: 'JUMP_ARC' }], new Map([['m1', 0.2]]));
     expect(JSON.stringify(buildUnifiedTimeline(slots, motion)))
       .toBe(JSON.stringify(buildUnifiedTimeline(slots, motion)));
   });

@@ -444,15 +444,18 @@ export async function playCompiledVfxSlots(
  * V2.7 CHOREOGRAPHY BEAT SCHEDULER — the causal beat-by-beat runtime.
  *
  * For each beat:
- *   1. Start ALL VFX participants simultaneously (no delay between them).
- *   2. Wait for the beat duration (max of all participant durations, including
+ *   1. wait(beat.startDelay) — the whole beat (VFX + motion) is delayed.
+ *   2. Start VFX participants at their intra-beat offsets (0 for TOGETHER,
+ *      cumulative for SEQUENCE/PAIR_THEN_LAST).
+ *   3. Wait for the beat duration (max of all participant durations, including
  *      motion). This is the CAUSAL BARRIER — no participant in beat N+1 can
  *      start before all participants in beat N have completed.
- *   3. Proceed to the next beat.
+ *   4. Proceed to the next beat.
  *
  * Motion is NOT started here — it is installed once at the beginning via
  * `setCasterMotion` and runs in the Stage's frame loop. The motion steps have
- * beat-assigned startTimes, so they naturally start at beat boundaries.
+ * beat-assigned startTimes that include startDelay, so they naturally start at
+ * beat boundaries in sync with VFX.
  *
  * When no explicit beats are authored, this function is not called — the
  * legacy `playCompiledVfxSlots` path is used instead.
@@ -464,8 +467,13 @@ export async function playCompiledBeats(
   strict: boolean = false,
 ): Promise<void> {
   for (const beat of compiled.compiledBeats) {
-    // Start all VFX participants simultaneously at beat start.
+    // START DELAY — applies to the whole beat (VFX + motion).
+    await wait(beat.startDelay);
+
+    // Start VFX participants at their intra-beat offsets.
     const vfxPromises = beat.vfxSlots.map(async (slot) => {
+      const intraBeatOffset = Math.max(0, Math.round((slot.startTime - beat.startTime) * 1000) / 1000);
+      if (intraBeatOffset > 0) await wait(intraBeatOffset);
       const record = getCandidateInventoryRecord(slot.candidateId);
       if (!record) {
         if (strict) throw new Error(`Missing inventory record for candidate ${slot.candidateId}`);
