@@ -11,7 +11,13 @@ export class CinematicOverlay {
   readonly skipButton = document.createElement('button');
   readonly muteButton = document.createElement('button');
   private readonly fallback = document.createElement('div');
+  private readonly posterSurface = document.createElement('div');
   private readonly previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+  // Journey freeze needs to know whether the element ever rendered a frame it can safely hold.
+  private readonly frameWatch = new AbortController();
+  private renderedFrame = false;
+  private frozen = false;
+  private disposed = false;
 
   constructor(
     private readonly descriptor: VideoCinematicDescriptor,
@@ -28,6 +34,11 @@ export class CinematicOverlay {
     this.video.playsInline = true;
     this.video.preload = 'auto';
     if (descriptor.poster) this.video.poster = descriptor.poster;
+    for (const type of ['loadeddata', 'playing', 'timeupdate', 'ended'] as const) {
+      this.video.addEventListener(type, () => { this.renderedFrame = true; }, { signal: this.frameWatch.signal });
+    }
+    this.posterSurface.className = 'cinematic-overlay__poster';
+    this.posterSurface.hidden = true;
     this.fallback.className = 'cinematic-overlay__fallback';
     this.fallback.hidden = true;
     this.fallback.innerHTML = `<span>✦</span><h2></h2><p></p>`;
@@ -44,7 +55,7 @@ export class CinematicOverlay {
     this.skipButton.hidden = !allowSkip;
     this.skipButton.addEventListener('click', callbacks.onSkip);
     controls.append(this.muteButton, this.skipButton);
-    this.element.append(this.video, this.fallback, controls);
+    this.element.append(this.video, this.posterSurface, this.fallback, controls);
   }
 
   mount(muted: boolean): void {
@@ -65,12 +76,46 @@ export class CinematicOverlay {
     this.muteButton.setAttribute('aria-pressed', String(!muted));
   }
 
+  /**
+   * Journey hold: keep this surface mounted after playback settled instead of disposing it.
+   * An element that rendered at least one frame holds that frame on its own, so no canvas
+   * extraction is needed. Anything else degrades to the poster, then to the text fallback.
+   */
+  freeze(): void {
+    if (this.frozen || this.disposed) return;
+    this.frozen = true;
+    this.element.classList.add('cinematic-overlay--frozen');
+    this.skipButton.hidden = true;
+    this.skipButton.disabled = true;
+    this.muteButton.hidden = true;
+    this.muteButton.disabled = true;
+    if (!this.renderedFrame) {
+      if (this.descriptor.poster) this.showPoster();
+      else this.showFallback();
+    }
+    this.video.pause();
+  }
+
+  get isFrozen(): boolean {
+    return this.frozen;
+  }
+
   dispose(): void {
+    if (this.disposed) return;
+    this.disposed = true;
+    this.frameWatch.abort();
     this.video.pause();
     this.video.removeAttribute('src');
     this.video.replaceChildren();
     try { this.video.load(); } catch {}
     this.element.remove();
     if (this.previousFocus?.isConnected) this.previousFocus.focus();
+  }
+
+  private showPoster(): void {
+    this.video.hidden = true;
+    this.fallback.hidden = true;
+    this.posterSurface.style.backgroundImage = `url("${this.descriptor.poster}")`;
+    this.posterSurface.hidden = false;
   }
 }

@@ -34,6 +34,11 @@ import { CinematicPlayer } from '../cinematics/CinematicPlayer';
 import { CinematicRegistry } from '../cinematics/CinematicRegistry';
 import { resolveVideoCinematicTrigger } from '../cinematics/CinematicTriggers';
 import type { VideoCinematicTrigger } from '../cinematics/CinematicTypes';
+import {
+  formatJourneyQaOutcome,
+  JOURNEY_QA_SCENARIOS,
+  runJourneyQaScenario,
+} from '../cinematics/JourneyQaScenarios';
 type AppMode = 'TITLE' | 'PROLOGUE' | 'TRAVEL' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT' | 'QA';
 
 type QaPartyMode = 'campaign' | 'full';
@@ -276,12 +281,20 @@ export class GameApp {
         </header>
         <p class="qa-lab__lead">Lecteur isolé : aucune donnée de chronique, de combat ou de sauvegarde n'est modifiée.</p>
         ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
+        <h2 class="qa-lab__section">Lecteur autonome</h2>
         <div class="cinematic-qa__grid">
           <button type="button" data-cinematic-qa="placeholder"><b>Placeholder</b><span>Lecture, Continuer et nettoyage</span></button>
           <button type="button" data-cinematic-qa="missing"><b>ID absent</b><span>Fallback immédiat sans blocage</span></button>
           <button type="button" data-cinematic-qa="reduced"><b>Mouvement réduit</b><span>Continuation immédiate</span></button>
           <button type="button" data-cinematic-qa="abort"><b>Annulation</b><span>Abort et règlement exact</span></button>
           <button type="button" data-cinematic-qa="transition"><b>Transition</b><span>Interlude couvert et interactif</span></button>
+        </div>
+        <h2 class="qa-lab__section">Runtime Cinematic Journey (CIN-1)</h2>
+        <p class="qa-lab__lead">Registre cinématique en mémoire, isolé du manifeste de production. Les scénarios interactifs attendent un vrai clic.</p>
+        <div class="cinematic-qa__grid">
+          ${JOURNEY_QA_SCENARIOS.map((scenario) => `
+            <button type="button" data-cinematic-qa="${scenario.id}"><b>${scenario.title}</b><span>${scenario.summary}</span></button>
+          `).join('')}
         </div>
       </section>
     `;
@@ -292,6 +305,11 @@ export class GameApp {
   }
 
   private async runCinematicQa(scenario: string): Promise<void> {
+    if (scenario.startsWith('journey-')) {
+      const outcome = await runJourneyQaScenario(scenario);
+      this.renderCinematicQa(`${scenario} — ${formatJourneyQaOutcome(outcome)}`);
+      return;
+    }
     let result: Awaited<ReturnType<CinematicPlayer['play']>> | undefined;
     if (scenario === 'missing') result = await this.cinematicPlayer.play('missing-cinematic', { reducedMotion: false });
     else if (scenario === 'reduced') result = await this.cinematicPlayer.play('qa-placeholder', { reducedMotion: true });

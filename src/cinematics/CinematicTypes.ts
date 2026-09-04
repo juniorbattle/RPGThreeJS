@@ -50,6 +50,12 @@ export interface VideoCinematicPlaybackOptions {
   reducedMotion?: boolean;
 }
 
+export interface HeldVideoCinematic {
+  result: VideoCinematicResult;
+  surface: HTMLElement | null;
+  release: () => void;
+}
+
 export type VideoCinematicTrigger =
   | { hook: 'beforeDialogue'; dialogueId: string }
   | { hook: 'beforeCombat'; combatId: string }

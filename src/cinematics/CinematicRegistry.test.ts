@@ -1,6 +1,8 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 import { CinematicRegistry, parseVideoCinematicManifest } from './CinematicRegistry';
-import { resolveVideoCinematicTrigger } from './CinematicTriggers';
+import { resolveVideoCinematicTrigger, VIDEO_CINEMATIC_TRIGGERS } from './CinematicTriggers';
 
 const manifest = {
   version: 1 as const,
@@ -48,5 +50,21 @@ describe('cinematic registry', () => {
     expect(resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId: 'intro' }, triggers)).toBe('opening');
     expect(resolveVideoCinematicTrigger({ hook: 'afterCombat', combatId: 'boss', outcome: 'victory' }, triggers)).toBe('boss-win');
     expect(resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId: 'missing' }, triggers)).toBeUndefined();
+  });
+
+  it('ships no production trigger mappings yet', () => {
+    expect(VIDEO_CINEMATIC_TRIGGERS.beforeDialogue).toEqual({});
+    expect(VIDEO_CINEMATIC_TRIGGERS.beforeCombat).toEqual({});
+    expect(VIDEO_CINEMATIC_TRIGGERS.afterCombat).toEqual({});
+    expect(VIDEO_CINEMATIC_TRIGGERS.chapterBeat).toEqual({});
+    expect(resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId: 'serpent_captain' })).toBeUndefined();
+    expect(resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId: 'lion_finale_judgement' })).toBeUndefined();
+  });
+
+  it('ships a production manifest that still holds only the QA placeholder', () => {
+    const raw = readFileSync(join(process.cwd(), 'public', 'assets', 'cinematics', 'manifest.json'), 'utf-8');
+    const parsed = parseVideoCinematicManifest(JSON.parse(raw));
+    expect(parsed?.cinematics.map((descriptor) => descriptor.id)).toEqual(['qa-placeholder']);
+    expect(parsed?.cinematics.every((descriptor) => descriptor.placeholderOnly === true)).toBe(true);
   });
 });

@@ -1,6 +1,7 @@
 import { CinematicOverlay } from './CinematicOverlay';
 import type { CinematicRegistry } from './CinematicRegistry';
 import type {
+  HeldVideoCinematic,
   VideoCinematicPlaybackOptions,
   VideoCinematicResult,
   VideoCinematicResultReason,
@@ -9,6 +10,10 @@ import type {
 interface ActivePlayback {
   id: string;
   abortController: AbortController;
+}
+
+function settledWithoutSurface(id: string, reason: VideoCinematicResultReason): Promise<HeldVideoCinematic> {
+  return Promise.resolve({ result: { id, reason, played: false }, surface: null, release: () => undefined });
 }
 
 export class CinematicPlayer {
@@ -24,16 +29,28 @@ export class CinematicPlayer {
   }
 
   play(id: string, options: VideoCinematicPlaybackOptions = {}): Promise<VideoCinematicResult> {
-    if (this.active) return Promise.resolve({ id, reason: 'busy', played: false });
+    return this.run(id, options, false).then((held) => held.result);
+  }
+
+  /**
+   * Journey hold: identical playback, except the settled presentation surface stays mounted so a
+   * Journey session can freeze on it and layer player agency over it. The caller owns `release`.
+   */
+  playHeld(id: string, options: VideoCinematicPlaybackOptions = {}): Promise<HeldVideoCinematic> {
+    return this.run(id, options, true);
+  }
+
+  private run(id: string, options: VideoCinematicPlaybackOptions, hold: boolean): Promise<HeldVideoCinematic> {
+    if (this.active) return settledWithoutSurface(id, 'busy');
     const descriptor = this.registry.get(id);
-    if (!descriptor) return Promise.resolve({ id, reason: 'unavailable', played: false });
-    if (options.signal?.aborted) return Promise.resolve({ id, reason: 'aborted', played: false });
+    if (!descriptor) return settledWithoutSurface(id, 'unavailable');
+    if (options.signal?.aborted) return settledWithoutSurface(id, 'aborted');
     const reducedMotion = options.reducedMotion ?? window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
-    if (reducedMotion) return Promise.resolve({ id, reason: 'reduced-motion', played: false });
+    if (reducedMotion) return settledWithoutSurface(id, 'reduced-motion');
 
     const abortController = new AbortController();
     this.active = { id, abortController };
-    return new Promise<VideoCinematicResult>((resolve) => {
+    return new Promise<HeldVideoCinematic>((resolve) => {
       let settled = false;
       let timeout: number | null = null;
       let stallTimeout: number | null = null;
@@ -48,9 +65,14 @@ export class CinematicPlayer {
         options.signal?.removeEventListener('abort', onExternalAbort);
         abortController.signal.removeEventListener('abort', onInternalAbort);
         mediaListeners.abort();
-        overlay.dispose();
+        if (hold) overlay.freeze();
+        else overlay.dispose();
         if (this.active?.abortController === abortController) this.active = null;
-        resolve({ id, reason, played: reason === 'ended' || reason === 'skipped', ...(error === undefined ? {} : { error }) });
+        resolve({
+          result: { id, reason, played: reason === 'ended' || reason === 'skipped', ...(error === undefined ? {} : { error }) },
+          surface: hold ? overlay.element : null,
+          release: () => overlay.dispose(),
+        });
       };
       const onSkip = () => finish(descriptor.placeholderOnly ? 'placeholder' : 'skipped');
       const onToggleMuted = () => {
