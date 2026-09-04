@@ -5,7 +5,7 @@ import { createUnitInstance, getItemCategory, toCombatant } from './catalog';
 import { applyCombatProgress } from './combatProgress';
 import {
   addTemporaryLoot, enterRunNode, failRunToCheckpoint,
-  getRunNode, secureRunLoot,
+  getAvailableRunNodes, getRunNode, secureRunLoot,
 } from './runSystem';
 import { changeReputation, getReputationRule } from './reputation';
 import {
@@ -39,7 +39,11 @@ import {
   JOURNEY_QA_SCENARIOS,
   runJourneyQaScenario,
 } from '../cinematics/JourneyQaScenarios';
-type AppMode = 'TITLE' | 'PROLOGUE' | 'TRAVEL' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT' | 'QA';
+import { JourneyCampaignBoundary } from '../journey/JourneyCampaignBoundary';
+import { resolveCampaignPresentation } from '../journey/JourneyPresentationPolicy';
+import { evaluateRouteCommit } from '../journey/RouteCommitGuard';
+import type { JourneySecondaryActionPresentation } from '../cinematics/JourneyTypes';
+type AppMode = 'TITLE' | 'PROLOGUE' | 'TRAVEL' | 'JOURNEY' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT' | 'QA';
 
 type QaPartyMode = 'campaign' | 'full';
 type QaSkillMode = 'normal' | 'all';
@@ -69,6 +73,17 @@ const QA_HERO_IDS = [
   'paladin', 'dark_knight', 'red_mage', 'enchanter', 'ninja', 'artillerist',
 ] as const;
 
+// Generic Journey secondary actions wired to the systems that already own them. CAMP is absent on
+// purpose: real refuge nodes own camp gameplay, so a fake generic entry point would be a lie.
+const JOURNEY_SECONDARY_ACTIONS: readonly JourneySecondaryActionPresentation[] = Object.freeze([
+  { id: 'COMPANY', label: 'Compagnie' },
+  { id: 'SAVE', label: 'Sauvegarder' },
+  { id: 'MENU', label: 'Menu' },
+]);
+
+/** Bounded re-presentations after a rejected commit, so a stale callback cannot spin forever. */
+const JOURNEY_MAX_REJECTIONS = 3;
+
 export class GameApp {
   private mode: AppMode = 'TITLE';
   private state: GameState = createInitialState();
@@ -84,6 +99,15 @@ export class GameApp {
   private readonly cinematicPlayer = new CinematicPlayer(this.cinematicRegistry);
   private pendingCombatId: string | null = null;
   private pendingChapterBeatId: string | null = null;
+  // Presentation policy only. TravelView stays the production default; Journey is DEV-selected.
+  private readonly campaignPresentation = resolveCampaignPresentation({
+    search: window.location.search,
+    dev: import.meta.env.DEV,
+  });
+  private journeyBoundary: JourneyCampaignBoundary | null = null;
+  // Latched after a catastrophic Journey failure so the fallback can never recurse into Journey.
+  private journeyUnavailable = false;
+  private routeCommitInFlight = false;
   private readonly qaEnabled = import.meta.env.DEV
     && new URLSearchParams(window.location.search).get('qa') === '1';
   private readonly cinematicQaEnabled = this.qaEnabled
@@ -128,6 +152,7 @@ export class GameApp {
   }
 
   dispose(): void {
+    this.disposeJourney();
     this.cinematicPlayer.dispose();
     this.combat.dispose();
     this.travel.close();
@@ -136,6 +161,7 @@ export class GameApp {
   }
 
   private renderTitle(): void {
+    this.disposeJourney();
     this.setMode('TITLE');
     this.travel.close();
     this.exploration.close();
@@ -184,6 +210,7 @@ export class GameApp {
       };
     }
     const p = this.qaParams;
+    this.disposeJourney();
     this.setMode('QA');
     this.travel.close();
     this.exploration.close();
@@ -267,6 +294,7 @@ export class GameApp {
       this.renderTitle();
       return;
     }
+    this.disposeJourney();
     this.setMode('QA');
     this.travel.close();
     this.exploration.close();
@@ -384,6 +412,24 @@ export class GameApp {
     }
   }
 
+  /**
+   * The single semantic campaign-presentation boundary.
+   *
+   * Every flow that used to return to TravelView returns here instead. It decides only HOW the
+   * current campaign boundary is presented — never what the campaign is.
+   */
+  private async enterCampaignPresentation(): Promise<void> {
+    if (this.usesJourneyPresentation()) {
+      await this.enterJourney();
+      return;
+    }
+    await this.enterTravel();
+  }
+
+  private usesJourneyPresentation(): boolean {
+    return this.campaignPresentation === 'journey' && !this.journeyUnavailable;
+  }
+
   private async enterTravel(): Promise<void> {
     await sceneTransition.run({
       variant: 'travel',
@@ -395,31 +441,159 @@ export class GameApp {
   }
 
   private showTravel(): void {
+    this.disposeJourney();
     this.setMode('TRAVEL');
     this.canvas.hidden = true;
     this.chrome.replaceChildren();
     this.travel.open();
   }
 
-  private async chooseRunNode(node: RunNode): Promise<void> {
-    if (this.mode !== 'TRAVEL') return;
-    this.travel.close();
-    this.setMode('RESULT');
-    const entered = enterRunNode(this.state.run, node.id);
-    if (!entered) {
-      await this.enterTravel();
+  private async enterJourney(): Promise<void> {
+    await sceneTransition.run({
+      variant: 'travel',
+      task: async () => {
+        this.travel.close();
+        this.setMode('JOURNEY');
+        this.canvas.hidden = true;
+        this.chrome.replaceChildren();
+        this.saves.saveAuto(this.state);
+      },
+    });
+    await this.runJourneyBoundary();
+  }
+
+  /**
+   * Presents the current campaign boundary through the Journey runtime until the player either
+   * commits a route, leaves for the title, or the presentation itself fails.
+   */
+  private async runJourneyBoundary(): Promise<void> {
+    let rejections = 0;
+    while (this.mode === 'JOURNEY') {
+      const current = getRunNode(this.state.run);
+      const available = getAvailableRunNodes(this.state);
+      let outcome;
+      try {
+        outcome = await this.ensureJourneyBoundary().present({
+          currentNodeId: current?.id ?? null,
+          currentContentId: current?.contentId ?? null,
+          ...(current?.label ? { currentLabel: current.label } : {}),
+          available,
+          secondary: JOURNEY_SECONDARY_ACTIONS,
+          reducedMotion: this.state.settings.reducedGraphics,
+        });
+      } catch (error) {
+        await this.failJourneyToTravel(error);
+        return;
+      }
+      if (outcome.kind === 'node' && outcome.id) {
+        if (await this.commitRunNodeChoice(outcome.id)) return;
+        rejections += 1;
+        if (rejections >= JOURNEY_MAX_REJECTIONS) {
+          await this.failJourneyToTravel(new Error('Journey route commit repeatedly rejected.'));
+          return;
+        }
+        continue;
+      }
+      if (outcome.kind === 'secondary' && outcome.id) {
+        if (await this.handleJourneySecondary(outcome.id)) continue;
+        return;
+      }
+      if (outcome.kind === 'terminal') {
+        this.renderTitle();
+        return;
+      }
       return;
     }
-    this.state.currentNodeId = entered.id;
-    this.state.visitedNodeIds = [...this.state.run.visitedNodeIds];
-    if (
-      ['event', 'mystery', 'recruitment'].includes(entered.type)
-      && !this.state.seenUniqueEvents.includes(entered.contentId)
-    ) {
-      this.state.seenUniqueEvents.push(entered.contentId);
+  }
+
+  /**
+   * Journey system failure — distinct from a missing clip, which CIN-1 already degrades safely.
+   * Journey is latched off for the rest of the session so the fallback cannot recurse.
+   */
+  private async failJourneyToTravel(error: unknown): Promise<void> {
+    console.error('[Journey] Presentation failed; falling back to TravelView.', error);
+    this.disposeJourney();
+    this.journeyUnavailable = true;
+    await this.enterTravel();
+  }
+
+  private ensureJourneyBoundary(): JourneyCampaignBoundary {
+    this.journeyBoundary ??= new JourneyCampaignBoundary({
+      player: this.cinematicPlayer,
+      registry: this.cinematicRegistry,
+    });
+    return this.journeyBoundary;
+  }
+
+  private disposeJourney(): void {
+    this.journeyBoundary?.dispose();
+    this.journeyBoundary = null;
+  }
+
+  /** Returns true when the same Journey boundary should be presented again. */
+  private async handleJourneySecondary(actionId: string): Promise<boolean> {
+    if (actionId === 'SAVE') {
+      this.saves.saveManual(this.state);
+      return true;
     }
-    this.state.stepCounter += 1;
-    await this.resolveRunNode(entered, false);
+    if (actionId === 'COMPANY') {
+      // Option B: the boundary is deterministically rebuilt from unchanged route state afterwards.
+      await this.openManagement('clan', undefined, 'temporary', false);
+      if (this.mode !== 'JOURNEY') this.setMode('JOURNEY');
+      return true;
+    }
+    if (actionId === 'MENU') {
+      this.renderTitle();
+      return false;
+    }
+    return true;
+  }
+
+  private async chooseRunNode(node: RunNode): Promise<void> {
+    await this.commitRunNodeChoice(node.id);
+  }
+
+  /**
+   * THE authoritative route commit path. TravelView and Journey both enter here, and neither may
+   * duplicate any of these operations. Returns true only when a node was actually entered.
+   */
+  private async commitRunNodeChoice(nodeId: string): Promise<boolean> {
+    // Re-verified against RunSystem, never against the DOM: a stale or unavailable node is refused.
+    const decision = evaluateRouteCommit({
+      mode: this.mode,
+      commitInFlight: this.routeCommitInFlight,
+      nodeId,
+      listAvailable: () => getAvailableRunNodes(this.state),
+    });
+    if (!decision.authorized) {
+      console.warn(`[Campaign] Refused route commit '${nodeId}' (${decision.rejection}).`);
+      return false;
+    }
+    const node = decision.node;
+    this.routeCommitInFlight = true;
+    try {
+      this.travel.close();
+      this.disposeJourney();
+      this.setMode('RESULT');
+      const entered = enterRunNode(this.state.run, node.id);
+      if (!entered) {
+        await this.enterCampaignPresentation();
+        return false;
+      }
+      this.state.currentNodeId = entered.id;
+      this.state.visitedNodeIds = [...this.state.run.visitedNodeIds];
+      if (
+        ['event', 'mystery', 'recruitment'].includes(entered.type)
+        && !this.state.seenUniqueEvents.includes(entered.contentId)
+      ) {
+        this.state.seenUniqueEvents.push(entered.contentId);
+      }
+      this.state.stepCounter += 1;
+      await this.resolveRunNode(entered, false);
+      return true;
+    } finally {
+      this.routeCommitInFlight = false;
+    }
   }
 
   private async resolveRunNode(node: RunNode, initial: boolean): Promise<void> {
@@ -463,13 +637,13 @@ export class GameApp {
       }
       this.markResolved(node.id);
       await this.playPostNodeNarrative(node.id);
-      await this.enterTravel();
+      await this.enterCampaignPresentation();
       return;
     }
     if (node.type === 'shop') {
       await this.openManagement('shop', node.contentId, 'temporary', false);
       this.markResolved(node.id);
-      await this.enterTravel();
+      await this.enterCampaignPresentation();
       return;
     }
     if (node.type === 'boss') {
@@ -486,7 +660,7 @@ export class GameApp {
         else {
           this.markResolved(node.id);
           await this.playPostNodeNarrative(node.id);
-          await this.enterTravel();
+          await this.enterCampaignPresentation();
         }
         return;
       }
@@ -494,7 +668,7 @@ export class GameApp {
       return;
     }
     if (!initial && this.state.resolvedNodeIds.includes(node.id)) {
-      await this.enterTravel();
+      await this.enterCampaignPresentation();
       return;
     }
     await this.playDialogue(node.contentId, node.label);
@@ -503,7 +677,7 @@ export class GameApp {
     } else {
       this.markResolved(node.id);
       await this.playPostNodeNarrative(node.id);
-      await this.enterTravel();
+      await this.enterCampaignPresentation();
     }
   }
 
@@ -625,7 +799,7 @@ export class GameApp {
     const combatId = this.pendingCombatId;
     this.pendingCombatId = null;
     if (combatId) await this.startCombat(combatId, node);
-    else await this.enterTravel();
+    else await this.enterCampaignPresentation();
   }
 
   private async startCombat(combatId: string, node: RunNode): Promise<void> {
@@ -686,7 +860,7 @@ export class GameApp {
         label: 'Défaite',
         task: async () => {},
       });
-      await this.enterTravel();
+      await this.enterCampaignPresentation();
       return;
     }
     const encounterLimit = combatConfigs.get(result.combatId)?.maxPlayerUnits ?? 4;
@@ -711,7 +885,7 @@ export class GameApp {
         }
       }
       await this.playDialogue('epilogue');
-      await this.enterTravel();
+      await this.enterCampaignPresentation();
       return;
     }
     const combatConfig = combatConfigs.get(result.combatId);
@@ -723,7 +897,7 @@ export class GameApp {
       }
     }
     await this.playPostNodeNarrative(node.id);
-    await this.enterTravel();
+    await this.enterCampaignPresentation();
   }
 
   private markResolved(nodeId: string): void {
@@ -736,11 +910,12 @@ export class GameApp {
     shopWallet: 'temporary' | 'permanent' = 'temporary',
     returnToTravel = true,
   ): Promise<void> {
-    if (this.mode !== 'RESULT' && this.mode !== 'TRAVEL') return;
+    if (this.mode !== 'RESULT' && this.mode !== 'TRAVEL' && this.mode !== 'JOURNEY') return;
     this.setMode('MANAGEMENT');
     await this.management.open(tab, shopId, shopWallet);
     this.saves.saveAuto(this.state);
     if (returnToTravel) {
+      // Only TravelView's own Company button reaches this branch; Journey rebuilds its boundary.
       this.showTravel();
       this.saves.saveAuto(this.state);
     }
@@ -769,7 +944,7 @@ export class GameApp {
     await prologuePromise;
     this.state.flags.prologueSeen = true;
     await this.playDialogue('acte_ouverture');
-    await this.enterTravel();
+    await this.enterCampaignPresentation();
   }
 
   private async continueChronicle(): Promise<void> {
@@ -782,7 +957,13 @@ export class GameApp {
         this.prologue.close();
         this.exploration.close();
         this.combat.close();
-        this.showTravel();
+        this.travel.close();
+        this.disposeJourney();
+        // Neutral holding mode: the presentation is chosen only after the resume profile is known,
+        // so a reload never mounts a campaign surface it is about to replace.
+        this.setMode('RESULT');
+        this.canvas.hidden = true;
+        this.chrome.replaceChildren();
         current = getRunNode(this.state.run);
       },
     });
@@ -792,8 +973,12 @@ export class GameApp {
       && current.depth > 0
       && (pendingFinaleCombat !== null || !this.state.resolvedNodeIds.includes(current.id))
     ) {
+      // Unresolved node or a durable pending finale boss: resume gameplay directly, never replay a
+      // committed route choice just to show a cinematic.
       await this.resolveRunNode(current, true);
+      return;
     }
+    await this.enterCampaignPresentation();
   }
 
   private setMode(mode: AppMode): void {

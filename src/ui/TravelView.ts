@@ -3,7 +3,8 @@ import { getAvailableRunNodes } from '../game/runSystem';
 import { getReputationRule } from '../game/reputation';
 import { assets } from '../render/assetManifest';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
-import type { GameState, RunNode, RunNodeType } from '../game/types';
+import { runNodePresentation } from './RunNodePresentation';
+import type { GameState, RunNode } from '../game/types';
 
 interface TravelViewOptions {
   root: HTMLElement;
@@ -32,36 +33,8 @@ interface TravelHeroPalette {
   head: 'helm' | 'hood-light' | 'hat' | 'hair' | 'bald' | 'darkhood';
 }
 
-// Presentation-only mapping. Risk/reward are derived from the node type so the
-// cards read clearly; this never alters RunSystem data or outcomes.
-const NODE_PRESENTATION: Record<RunNodeType, { label: string; risk: number; reward: number }> = {
-  combat: { label: 'Combat', risk: 2, reward: 3 },
-  event: { label: 'Événement', risk: 1, reward: 3 },
-  mystery: { label: 'Mystère', risk: 2, reward: 2 },
-  recruitment: { label: 'Recrutement', risk: 1, reward: 2 },
-  shop: { label: 'Marchand', risk: 0, reward: 1 },
-  refuge: { label: 'Refuge', risk: 0, reward: 1 },
-  story: { label: 'Récit', risk: 1, reward: 2 },
-  boss: { label: 'Boss', risk: 3, reward: 3 },
-};
-
-function routePresentation(node: RunNode): { label: string; risk: number; reward: number; hint: string; difficulty: string } {
-  const fallback = NODE_PRESENTATION[node.type];
-  const difficultyLabels: Record<NonNullable<RunNode['difficulty']>, string> = {
-    safe: 'Sûr',
-    standard: 'Standard',
-    dangerous: 'Dangereux',
-    decisive: 'Décisif',
-  };
-  return {
-    label: fallback.label,
-    risk: node.risk ?? fallback.risk,
-    reward: node.reward ?? fallback.reward,
-    hint: node.hint ?? 'Route inconnue.',
-    difficulty: node.difficulty ? difficultyLabels[node.difficulty] : fallback.label,
-  };
-}
-
+// Presentation-only mapping. Risk/reward/difficulty semantics live in RunNodePresentation so the
+// Cinematic Journey surface reads every route exactly the way TravelView does.
 const TRAVEL_PARTY_LAYOUT: readonly TravelPartySlot[] = [
   { left: 39, bottom: 28.4, scale: 1, z: 1 },
   { left: 47, bottom: 29.6, scale: 1, z: 3 },
@@ -223,7 +196,7 @@ function renderRoadmapStep(node: RunNode, state: GameState, choices: readonly Ru
   const status = current ? 'current' : completed ? 'completed' : visited ? 'visited' : branch ? 'branch' : 'known';
   const statusLabel = current ? 'Position actuelle' : completed ? 'Terminée' : visited ? 'Parcourue' : branch ? 'Embranchement connu' : 'Découverte';
   const marker = current ? '◆' : completed ? '✓' : visited ? '↗' : branch ? '◇' : '•';
-  const meta = routePresentation(node);
+  const meta = runNodePresentation(node);
   return `<li class="roadmap-step roadmap-step--${status}">
     <span class="roadmap-step__marker">${marker}</span>
     <span class="roadmap-step__content"><strong>${escapeHtml(node.label)}</strong><small>${meta.label} · ${laneLabel(node)}</small></span>
@@ -257,7 +230,7 @@ function renderRoadmap(state: GameState, choices: readonly RunNode[]): string {
     known.length > 0 ? renderRoadmapSection('Repères découverts', known, state, choices, 'Aucun repère découvert.') : '',
   ].join('');
   const branchList = choices.length > 0
-    ? choices.map((node) => `<li><span>${escapeHtml(node.icon)}</span><strong>${escapeHtml(node.label)}</strong><em>${routePresentation(node).label} · ${laneLabel(node)}</em></li>`).join('')
+    ? choices.map((node) => `<li><span>${escapeHtml(node.icon)}</span><strong>${escapeHtml(node.label)}</strong><em>${runNodePresentation(node).label} · ${laneLabel(node)}</em></li>`).join('')
     : '<li class="roadmap-branches__empty">Aucun embranchement connu.</li>';
   return `<div class="travel-roadmap" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="travel-roadmap-title" hidden tabindex="-1">
     <section class="travel-roadmap__panel">
@@ -277,7 +250,7 @@ function renderRoadmap(state: GameState, choices: readonly RunNode[]): string {
           <section class="travel-roadmap__card">
             <p class="travel-roadmap__kicker">Position actuelle</p>
             <strong>${escapeHtml(current?.label ?? 'Route inconnue')}</strong>
-            <span>${current ? `${routePresentation(current).label} · ${laneLabel(current)}` : 'Aucune position'}</span>
+            <span>${current ? `${runNodePresentation(current).label} · ${laneLabel(current)}` : 'Aucune position'}</span>
           </section>
           <section class="travel-roadmap__card">
             <p class="travel-roadmap__kicker">Prochains embranchements connus</p>
@@ -434,7 +407,7 @@ export class TravelView {
       </header>
       <div class="travel-view__choices">
         ${choices.map((node) => {
-          const meta = routePresentation(node);
+          const meta = runNodePresentation(node);
           return `
           <button type="button" class="route-choice route-choice--${node.type} ui-route-card" data-node="${escapeHtml(node.id)}">
             <span class="route-choice__type">${meta.label} · ${meta.difficulty}</span>
