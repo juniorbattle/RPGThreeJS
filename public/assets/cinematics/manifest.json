@@ -8,6 +8,45 @@
       "fallbackText": "Emplacement réservé à une future séquence animée.",
       "placeholderOnly": true,
       "durationMs": 1200
+    },
+    {
+      "id": "lion_judgement",
+      "title": "Le Jugement du Lion",
+      "sources": [
+        {
+          "src": "/assets/cinematics/lion_judgement.mp4",
+          "type": "video/mp4"
+        }
+      ],
+      "poster": "/assets/cinematics/source/lion_judgement_source.png",
+      "fallbackText": "Alaric rend son jugement devant la cour du Lion.",
+      "durationMs": 8000
+    },
+    {
+      "id": "serpent_general_reveal",
+      "title": "Le Général du Serpent",
+      "sources": [
+        {
+          "src": "/assets/cinematics/serpent_general_reveal.mp4",
+          "type": "video/mp4"
+        }
+      ],
+      "poster": "/assets/cinematics/source/serpent_general_reveal_source.png",
+      "fallbackText": "Le général du Serpent prend position avant l'affrontement.",
+      "durationMs": 8000
+    },
+    {
+      "id": "lion_champion_reveal",
+      "title": "Le Champion du Lion",
+      "sources": [
+        {
+          "src": "/assets/cinematics/lion_champion_reveal.mp4",
+          "type": "video/mp4"
+        }
+      ],
+      "poster": "/assets/cinematics/source/lion_champion_reveal_source.png",
+      "fallbackText": "Le champion du Lion avance pour défendre le sanctuaire.",
+      "durationMs": 8000
     }
   ]
 }

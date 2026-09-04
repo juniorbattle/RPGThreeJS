@@ -8,8 +8,13 @@ export interface VideoCinematicTriggerRegistry {
 }
 
 export const VIDEO_CINEMATIC_TRIGGERS: VideoCinematicTriggerRegistry = Object.freeze({
-  beforeDialogue: Object.freeze({}),
-  beforeCombat: Object.freeze({}),
+  beforeDialogue: Object.freeze({
+    lion_finale_judgement: 'lion_judgement',
+  }),
+  beforeCombat: Object.freeze({
+    serpent_captain: 'serpent_general_reveal',
+    lion_chief: 'lion_champion_reveal',
+  }),
   afterCombat: Object.freeze({}),
   chapterBeat: Object.freeze({}),
 });

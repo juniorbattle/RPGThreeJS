@@ -57,7 +57,9 @@ export class CinematicRegistry {
     if (this.loadPromise) return this.loadPromise;
     this.loadPromise = (async () => {
       try {
-        const response = await fetcher(url, { cache: 'force-cache' });
+        // The manifest keeps a stable URL across releases, so always revalidate it instead of
+        // allowing an older production mapping to survive a deploy in the browser cache.
+        const response = await fetcher(url, { cache: 'no-cache' });
         if (!response.ok) throw new Error(`Cinematic manifest request failed (${response.status}).`);
         const parsed = manifestSchema.safeParse(await response.json());
         if (!parsed.success) throw new Error(parsed.error.issues.map((issue) => issue.message).join(' '));

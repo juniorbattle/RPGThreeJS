@@ -54,4 +54,26 @@ describe('scene transition interlude', () => {
     expect(task).toHaveBeenCalledOnce();
     expect(document.querySelector('.scene-transition')).toBeNull();
   });
+
+  it.each(['ended', 'skipped', 'reduced-motion', 'unavailable', 'error'])(
+    'continues downstream gameplay after a %s cinematic result',
+    async (reason) => {
+      vi.useFakeTimers();
+      const transition = new SceneTransition();
+      const order: string[] = [];
+      const run = transition.run({
+        variant: 'dialogue',
+        interlude: async () => {
+          order.push(`cinematic:${reason}`);
+          return { reason };
+        },
+        task: async () => { order.push('downstream'); },
+        holdMs: 0,
+      });
+      await vi.advanceTimersByTimeAsync(1_200);
+      await run;
+      expect(order).toEqual([`cinematic:${reason}`, 'downstream']);
+      expect(document.querySelector('.scene-transition')).toBeNull();
+    },
+  );
 });

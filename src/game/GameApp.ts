@@ -308,6 +308,7 @@ export class GameApp {
           <button type="button" data-cinematic-back>Retour au titre</button>
         </header>
         <p class="qa-lab__lead">Lecteur isolé : aucune donnée de chronique, de combat ou de sauvegarde n'est modifiée.</p>
+        <p class="qa-lab__lead" data-cinematic-registry>Registre chargé : ${this.cinematicRegistry.values().map((entry) => entry.id).join(', ') || 'vide'}.</p>
         ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
         <h2 class="qa-lab__section">Lecteur autonome</h2>
         <div class="cinematic-qa__grid">
@@ -316,6 +317,10 @@ export class GameApp {
           <button type="button" data-cinematic-qa="reduced"><b>Mouvement réduit</b><span>Continuation immédiate</span></button>
           <button type="button" data-cinematic-qa="abort"><b>Annulation</b><span>Abort et règlement exact</span></button>
           <button type="button" data-cinematic-qa="transition"><b>Transition</b><span>Interlude couvert et interactif</span></button>
+          <button type="button" data-cinematic-qa="real-hold"><b>Vidéo réelle + hold</b><span>lion_judgement naturel, frame finale, Release et nettoyage</span></button>
+          <button type="button" data-cinematic-qa="real-dialogue"><b>Flux Lion réel</b><span>lion_judgement → lion_finale_judgement</span></button>
+          <button type="button" data-cinematic-qa="reduced-dialogue"><b>Flux Lion réduit</b><span>Bypass mouvement → lion_finale_judgement</span></button>
+          <button type="button" data-cinematic-qa="failure-dialogue"><b>Échec média + dialogue</b><span>ID absent → lion_finale_judgement</span></button>
         </div>
         <h2 class="qa-lab__section">Runtime Cinematic Journey (CIN-1)</h2>
         <p class="qa-lab__lead">Registre cinématique en mémoire, isolé du manifeste de production. Les scénarios interactifs attendent un vrai clic.</p>
@@ -338,8 +343,87 @@ export class GameApp {
       this.renderCinematicQa(`${scenario} — ${formatJourneyQaOutcome(outcome)}`);
       return;
     }
+    if (scenario === 'real-dialogue') {
+      await this.playDialogue('lion_finale_judgement');
+      return;
+    }
+    if (scenario === 'reduced-dialogue') {
+      const previous = this.state.settings.reducedGraphics;
+      this.state.settings.reducedGraphics = true;
+      try {
+        await this.playDialogue('lion_finale_judgement');
+      } finally {
+        this.state.settings.reducedGraphics = previous;
+      }
+      return;
+    }
+    if (scenario === 'failure-dialogue') {
+      const resolved = resolveGameDialogue('lion_finale_judgement', this.state);
+      if (!resolved) throw new Error("Missing dialogue 'lion_finale_judgement'.");
+      await sceneTransition.run({
+        variant: 'dialogue',
+        label: resolved.sequence.title ?? '',
+        interlude: () => this.cinematicPlayer.play('cin3-controlled-missing', { reducedMotion: false }),
+        task: async () => {
+          this.setMode('NARRATIVE');
+          void this.dialogue.play(resolved.sequence);
+        },
+        holdMs: 0,
+      });
+      return;
+    }
     let result: Awaited<ReturnType<CinematicPlayer['play']>> | undefined;
-    if (scenario === 'missing') result = await this.cinematicPlayer.play('missing-cinematic', { reducedMotion: false });
+    if (scenario === 'real-hold') {
+      const held = await this.cinematicPlayer.playHeld('lion_judgement', {
+        allowSkip: false,
+        muted: true,
+        reducedMotion: false,
+        timeoutMs: 12_000,
+        stallTimeoutMs: 5_000,
+      });
+      result = held.result;
+      if (held.surface) {
+        const video = held.surface.querySelector<HTMLVideoElement>('.cinematic-overlay__video');
+        if (video && held.result.reason === 'ended') {
+          const sample = document.createElement('canvas');
+          sample.width = 640;
+          sample.height = 360;
+          sample.dataset.cinematicFrameSample = 'true';
+          sample.setAttribute('aria-label', 'Échantillon Chromium de la frame finale décodée');
+          sample.style.cssText = 'position:absolute;left:clamp(18px,4vw,56px);bottom:clamp(18px,4vw,48px);width:min(40vw,640px);height:auto;z-index:5;border:1px solid rgba(226,193,112,.75);box-shadow:0 14px 50px rgba(0,0,0,.55)';
+          const context = sample.getContext('2d', { willReadFrequently: true });
+          context?.drawImage(video, 0, 0, sample.width, sample.height);
+          if (context) {
+            const pixels = context.getImageData(0, 0, sample.width, sample.height).data;
+            let minimum = 255;
+            let maximum = 0;
+            let total = 0;
+            for (let index = 0; index < pixels.length; index += 4) {
+              const luminance = Math.round((pixels[index]! + pixels[index + 1]! + pixels[index + 2]!) / 3);
+              minimum = Math.min(minimum, luminance);
+              maximum = Math.max(maximum, luminance);
+              total += luminance;
+            }
+            sample.dataset.luminance = `${minimum}/${Math.round(total / (pixels.length / 4))}/${maximum}`;
+          }
+          held.surface.append(sample);
+        }
+        const release = document.createElement('button');
+        release.type = 'button';
+        release.className = 'cinematic-overlay__control';
+        release.dataset.cinematicRelease = 'true';
+        release.textContent = 'Continuer / Release';
+        release.style.cssText = 'position:absolute;right:clamp(18px,4vw,56px);bottom:clamp(18px,4vw,48px);z-index:5';
+        release.addEventListener('click', () => {
+          held.release();
+          const residue = document.querySelectorAll('.cinematic-overlay, .cinematic-overlay__video, [data-cinematic-frame-sample]').length;
+          this.renderCinematicQa(`Vidéo réelle : ${held.result.reason} · played ${held.result.played} · résidu DOM ${residue}.`);
+        }, { once: true });
+        held.surface.append(release);
+        release.focus();
+        return;
+      }
+    } else if (scenario === 'missing') result = await this.cinematicPlayer.play('missing-cinematic', { reducedMotion: false });
     else if (scenario === 'reduced') result = await this.cinematicPlayer.play('qa-placeholder', { reducedMotion: true });
     else if (scenario === 'abort') {
       const controller = new AbortController();
@@ -380,6 +464,16 @@ export class GameApp {
     const config = combatConfigs.get(combatId);
     if (!config) return;
     const p = this.qaParams;
+    const cinematicId = resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId });
+    if (cinematicId) {
+      await sceneTransition.run({
+        variant: config.encounterRank === 'boss' ? 'boss' : 'combat',
+        label: config.encounterLabel,
+        interlude: () => this.cinematicPlayer.play(cinematicId, { reducedMotion: p.graphics === 'reduced' }),
+        task: async () => undefined,
+        holdMs: 0,
+      });
+    }
     this.setMode('COMBAT');
     this.chrome.replaceChildren();
     const squad = p.party === 'full'

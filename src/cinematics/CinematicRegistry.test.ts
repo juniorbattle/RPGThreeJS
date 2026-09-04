@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 import { CinematicRegistry, parseVideoCinematicManifest } from './CinematicRegistry';
@@ -31,6 +31,7 @@ describe('cinematic registry', () => {
     const registry = new CinematicRegistry();
     await Promise.all([registry.load('/manifest.json', fetcher), registry.load('/manifest.json', fetcher)]);
     expect(fetcher).toHaveBeenCalledTimes(1);
+    expect(fetcher).toHaveBeenCalledWith('/manifest.json', { cache: 'no-cache' });
     expect(registry.get('opening')?.sources[0]?.type).toBe('video/webm');
   });
 
@@ -52,19 +53,42 @@ describe('cinematic registry', () => {
     expect(resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId: 'missing' }, triggers)).toBeUndefined();
   });
 
-  it('ships no production trigger mappings yet', () => {
-    expect(VIDEO_CINEMATIC_TRIGGERS.beforeDialogue).toEqual({});
-    expect(VIDEO_CINEMATIC_TRIGGERS.beforeCombat).toEqual({});
+  it('ships exactly the three CIN-3 production trigger mappings', () => {
+    expect(VIDEO_CINEMATIC_TRIGGERS.beforeDialogue).toEqual({
+      lion_finale_judgement: 'lion_judgement',
+    });
+    expect(VIDEO_CINEMATIC_TRIGGERS.beforeCombat).toEqual({
+      serpent_captain: 'serpent_general_reveal',
+      lion_chief: 'lion_champion_reveal',
+    });
     expect(VIDEO_CINEMATIC_TRIGGERS.afterCombat).toEqual({});
     expect(VIDEO_CINEMATIC_TRIGGERS.chapterBeat).toEqual({});
-    expect(resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId: 'serpent_captain' })).toBeUndefined();
-    expect(resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId: 'lion_finale_judgement' })).toBeUndefined();
+    expect(resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId: 'serpent_captain' })).toBe('serpent_general_reveal');
+    expect(resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId: 'lion_chief' })).toBe('lion_champion_reveal');
+    expect(resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId: 'lion_finale_judgement' })).toBe('lion_judgement');
+    expect(resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId: 'serpent_ambush' })).toBeUndefined();
+    expect(Object.isFrozen(VIDEO_CINEMATIC_TRIGGERS)).toBe(true);
+    expect(Object.values(VIDEO_CINEMATIC_TRIGGERS).every(Object.isFrozen)).toBe(true);
+    expect(Reflect.set(VIDEO_CINEMATIC_TRIGGERS.beforeCombat, 'extra', 'not-allowed')).toBe(false);
   });
 
-  it('ships a production manifest that still holds only the QA placeholder', () => {
+  it('ships the QA placeholder plus exactly three local CIN-3 videos', () => {
     const raw = readFileSync(join(process.cwd(), 'public', 'assets', 'cinematics', 'manifest.json'), 'utf-8');
     const parsed = parseVideoCinematicManifest(JSON.parse(raw));
-    expect(parsed?.cinematics.map((descriptor) => descriptor.id)).toEqual(['qa-placeholder']);
-    expect(parsed?.cinematics.every((descriptor) => descriptor.placeholderOnly === true)).toBe(true);
+    expect(parsed?.cinematics.map((descriptor) => descriptor.id)).toEqual([
+      'qa-placeholder',
+      'lion_judgement',
+      'serpent_general_reveal',
+      'lion_champion_reveal',
+    ]);
+    expect(parsed?.cinematics[0]?.placeholderOnly).toBe(true);
+    const real = parsed?.cinematics.slice(1) ?? [];
+    expect(real).toHaveLength(3);
+    for (const descriptor of real) {
+      expect(descriptor.placeholderOnly).not.toBe(true);
+      expect(descriptor.sources).toEqual([{ src: `/assets/cinematics/${descriptor.id}.mp4`, type: 'video/mp4' }]);
+      const mediaPath = join(process.cwd(), 'public', descriptor.sources[0]!.src);
+      expect(statSync(mediaPath).size).toBeGreaterThan(0);
+    }
   });
 });

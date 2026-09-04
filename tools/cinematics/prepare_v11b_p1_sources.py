@@ -5,11 +5,12 @@ prepare_v11b_p1_sources.py
 Deterministic cinematic source-frame compositor for V11B-P1.
 
 Reads existing project assets (painted backgrounds + pixel character sprites)
-and composites two 1920x1080 PNG source frames for later image-to-video
+and composites three 1920x1080 PNG source frames for later image-to-video
 generation:
 
   1. serpent_general_reveal_source.png
   2. lion_judgement_source.png
+  3. lion_champion_reveal_source.png
 
 Constraints:
   - Offline only (no network calls).
@@ -26,6 +27,7 @@ from __future__ import annotations
 import math
 import os
 import sys
+import argparse
 
 import numpy as np
 from PIL import Image, ImageFilter
@@ -330,11 +332,68 @@ def build_lion_judgement() -> Image.Image:
 
 
 # ---------------------------------------------------------------------------
+# Composite 3: lion_champion_reveal
+# ---------------------------------------------------------------------------
+
+
+def build_lion_champion_reveal() -> Image.Image:
+    """
+    Formal Lion trial: the canonical Lion Champion awaits the company.
+
+    - Background: lion_sanctum.webp, the canonical lion_chief combat scene
+    - Character: lion_champion.png, full-brightness and centered as the sole subject
+    - Atmosphere: restrained ceremonial warmth, floor haze, and vignette
+    """
+    bg = load_rgb(ASSET_DEFINITIONS["lion_sanctum_bg"])
+    bg = fit_background(bg, FRAME_W, FRAME_H)
+
+    champion = load_rgba(ASSET_DEFINITIONS["lion_champion"])
+    champion_scaled = scale_sprite(champion, 840)
+    cw, ch = champion_scaled.size
+    cx = FRAME_W // 2 - cw // 2
+    cy = 1045 - int(ch * 735 / 768)
+    cy = max(0, cy)
+
+    canvas = bg.convert("RGBA")
+
+    # A narrow warm halo separates the blue-and-gold silhouette from the sanctum
+    # without inventing a spell effect or changing the canonical design.
+    champion_glow = create_aura_glow(
+        FRAME_W, FRAME_H,
+        cx + cw // 2, cy + int(ch * 0.42),
+        350,
+        color=(242, 194, 102), opacity=0.12,
+    )
+    canvas = Image.alpha_composite(canvas, champion_glow)
+    canvas = place_sprite(canvas, champion_scaled, cx, cy)
+
+    mist = create_floor_mist(FRAME_W, FRAME_H, mist_h=165, opacity=0.08)
+    canvas = Image.alpha_composite(canvas, mist)
+    warmth = create_warmth_overlay(FRAME_W, FRAME_H, opacity=0.045)
+    canvas = Image.alpha_composite(canvas, warmth)
+    vignette = create_vignette(FRAME_W, FRAME_H, strength=0.38)
+    canvas = Image.alpha_composite(canvas, vignette)
+
+    return canvas.convert("RGB")
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Build deterministic cinematic source frames.")
+    parser.add_argument(
+        "--only",
+        choices=("serpent_general_reveal", "lion_judgement", "lion_champion_reveal"),
+        help="Build only the named cinematic source frame.",
+    )
+    return parser.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
     verify_assets()
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -342,9 +401,12 @@ def main() -> None:
     composites = [
         ("serpent_general_reveal_source.png", build_serpent_general_reveal),
         ("lion_judgement_source.png", build_lion_judgement),
+        ("lion_champion_reveal_source.png", build_lion_champion_reveal),
     ]
 
     for filename, builder in composites:
+        if args.only and filename != f"{args.only}_source.png":
+            continue
         print(f"Building {filename} ...")
         img = builder()
         out_path = os.path.join(OUTPUT_DIR, filename)
@@ -353,7 +415,7 @@ def main() -> None:
         print(f"  -> {out_path}")
         print(f"     {img.size[0]}x{img.size[1]}, {size_bytes:,} bytes")
 
-    print("\nDone. Both source frames written to:")
+    print("\nDone. Source frame(s) written to:")
     print(f"  {OUTPUT_DIR}")
 
 

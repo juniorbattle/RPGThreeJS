@@ -206,18 +206,27 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(at('lion-final-judgement')).toHaveLength(0);
   });
 
-  it('keeps production cinematic data unpopulated in CIN-2', () => {
-    expect(VIDEO_CINEMATIC_TRIGGERS.beforeDialogue).toEqual({});
-    expect(VIDEO_CINEMATIC_TRIGGERS.beforeCombat).toEqual({});
+  it('keeps CIN-2 presentation separate from the three CIN-3 production triggers', () => {
+    expect(VIDEO_CINEMATIC_TRIGGERS.beforeDialogue).toEqual({
+      lion_finale_judgement: 'lion_judgement',
+    });
+    expect(VIDEO_CINEMATIC_TRIGGERS.beforeCombat).toEqual({
+      serpent_captain: 'serpent_general_reveal',
+      lion_chief: 'lion_champion_reveal',
+    });
     expect(VIDEO_CINEMATIC_TRIGGERS.afterCombat).toEqual({});
     expect(VIDEO_CINEMATIC_TRIGGERS.chapterBeat).toEqual({});
 
     const manifestPath = resolve(process.cwd(), 'public/assets/cinematics/manifest.json');
     const manifest = parseVideoCinematicManifest(JSON.parse(readFileSync(manifestPath, 'utf8')));
-    expect(manifest?.cinematics.map((descriptor) => descriptor.id)).toEqual(['qa-placeholder']);
-    expect(manifest?.cinematics.every((descriptor) => descriptor.placeholderOnly === true)).toBe(true);
+    expect(manifest?.cinematics.map((descriptor) => descriptor.id)).toEqual([
+      'qa-placeholder',
+      'lion_judgement',
+      'serpent_general_reveal',
+      'lion_champion_reveal',
+    ]);
 
-    // No shipped video binary may appear anywhere under public/.
+    // CIN-3 adds only its three explicitly approved production binaries.
     const videos: string[] = [];
     const walk = (dir: string) => {
       for (const entry of readdirSync(dir)) {
@@ -227,6 +236,10 @@ describe('CIN-2 campaign presentation bridge', () => {
       }
     };
     walk(resolve(process.cwd(), 'public'));
-    expect(videos).toEqual([]);
+    expect(videos.map((path) => path.replaceAll('\\', '/').split('/').at(-1)).sort()).toEqual([
+      'lion_champion_reveal.mp4',
+      'lion_judgement.mp4',
+      'serpent_general_reveal.mp4',
+    ]);
   });
 });
