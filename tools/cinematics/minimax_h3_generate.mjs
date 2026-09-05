@@ -6,7 +6,9 @@ import { basename, dirname, isAbsolute, relative, resolve } from 'node:path';
 import { Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 import { fileURLToPath } from 'node:url';
-import { CIN3_PILOTS, CIN3_PROMPT_VERSION, getCin3Pilot } from './cin3_config.mjs';
+import { CIN3_PROMPT_VERSION, getCin3Pilot } from './cin3_config.mjs';
+import { buildShotPrompt, sourcePathForShot, validateShotSpec } from './cin4_shot_spec.mjs';
+import { validateChainProof } from './cin4_media.mjs';
 
 const API_ORIGIN = 'https://api.minimax.io';
 const CREATE_ENDPOINT = `${API_ORIGIN}/v2/video_generation`;
@@ -116,27 +118,93 @@ async function writeMetadata(path, metadata) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const projectRoot = await findProjectRoot(dirname(fileURLToPath(import.meta.url)));
-  const id = args.id;
-  const pilot = getCin3Pilot(id);
-  const duration = parsePositiveInteger(args.duration ?? '8', '--duration');
-  if (duration < 4 || duration > 15) throw new Error('--duration must be between 4 and 15 seconds for MiniMax-H3.');
-  const resolution = args.resolution ?? '2K';
-  if (!['768P', '2K'].includes(resolution)) throw new Error('--resolution must be 768P or 2K.');
-  const attempt = parsePositiveInteger(args.attempt, '--attempt');
-  if (attempt > 3) throw new Error('CIN-3 allows at most three autonomous attempts per cinematic. Report the first three defects before a fourth attempt.');
+  let id;
+  let prompt;
+  let promptVersion;
+  let canonicalCharacterSources;
+  let environmentSource;
+  let expectedSource;
+  let candidateRoot;
+  let cin4Metadata;
+  let configuredDuration = 8;
+  let configuredResolution = '2K';
 
-  const expectedSource = resolve(projectRoot, pilot.source);
-  const source = resolve(projectRoot, args.source ?? pilot.source);
-  if (source !== expectedSource) throw new Error(`--source for ${id} must be the canonical CIN-3 source ${pilot.source}.`);
+  if (args.spec) {
+    const specPath = resolve(projectRoot, args.spec);
+    const spec = JSON.parse(await readFile(specPath, 'utf8'));
+    const validation = await validateShotSpec(spec, { projectRoot, requireSources: false });
+    if (!validation.valid) throw new Error(`CIN-4 shot spec is invalid: ${validation.errors.join(' ')}`);
+    const shot = spec.shots.find((entry) => entry.shotId === args.shot);
+    if (!shot) throw new Error(`--shot must identify a shot in ${args.spec}.`);
+    id = args.id ?? spec.cinematicId;
+    if (id !== spec.cinematicId) throw new Error(`--id must match spec cinematicId '${spec.cinematicId}'.`);
+    prompt = buildShotPrompt(spec, shot);
+    promptVersion = spec.promptVersion;
+    canonicalCharacterSources = shot.characters.map((character) => character.asset);
+    environmentSource = shot.environment;
+    expectedSource = resolve(projectRoot, sourcePathForShot(spec, shot));
+    candidateRoot = resolve(projectRoot, 'tmp', 'cinematics', 'cin4', spec.sequenceId, shot.shotId);
+    configuredDuration = shot.durationSeconds;
+    configuredResolution = spec.resolution;
+    cin4Metadata = {
+      pipeline: 'CIN-4',
+      sequenceId: spec.sequenceId,
+      shotId: shot.shotId,
+      tier: spec.tier,
+      sourceType: shot.source.type,
+      fromShotId: shot.source.fromShotId ?? null,
+      framing: shot.framing,
+      camera: shot.camera,
+      continuityOut: shot.continuityOut,
+      endIntent: shot.endIntent,
+      staging: shot.characters.map(({ id: characterId, facing, lookTarget, depth, role, action, mirrorPolicy }) => ({
+        id: characterId, facing, lookTarget, depth, role, action, mirrorPolicy,
+      })),
+      specPath: relative(projectRoot, specPath).replaceAll('\\', '/'),
+    };
+    if (shot.source.type === 'CHAIN_SOURCE') {
+      const chainMetadataPath = resolve(dirname(expectedSource), 'last_frame.metadata.json');
+      const chainMetadata = JSON.parse(await readFile(chainMetadataPath, 'utf8'));
+      const actualChainSha = createHash('sha256').update(await readFile(expectedSource)).digest('hex');
+      const chainErrors = validateChainProof(shot, chainMetadata, actualChainSha);
+      if (chainErrors.length) throw new Error(`CHAIN_SOURCE provenance failed: ${chainErrors.join('; ')}`);
+      cin4Metadata.chainSourceProof = {
+        metadataPath: relative(projectRoot, chainMetadataPath).replaceAll('\\', '/'),
+        outputSha256: actualChainSha,
+        sourceVideoSha256: chainMetadata.sourceVideoSha256,
+        exactFrameIndex: chainMetadata.exactFrameIndex,
+      };
+    }
+  } else {
+    id = args.id;
+    const pilot = getCin3Pilot(id);
+    prompt = pilot.prompt;
+    promptVersion = CIN3_PROMPT_VERSION;
+    canonicalCharacterSources = pilot.characters;
+    environmentSource = pilot.environment;
+    expectedSource = resolve(projectRoot, pilot.source);
+    candidateRoot = resolve(projectRoot, 'tmp', 'cinematics', 'cin3', id);
+  }
+
+  const duration = parsePositiveInteger(args.duration ?? String(configuredDuration), '--duration');
+  if (duration < 4 || duration > 15) throw new Error('--duration must be between 4 and 15 seconds for MiniMax-H3.');
+  if (args.spec && duration !== configuredDuration) throw new Error(`--duration must match the shot spec (${configuredDuration}).`);
+  const resolution = args.resolution ?? configuredResolution;
+  if (!['768P', '2K'].includes(resolution)) throw new Error('--resolution must be 768P or 2K.');
+  if (args.spec && resolution !== configuredResolution) throw new Error(`--resolution must match the shot spec (${configuredResolution}).`);
+  const attempt = parsePositiveInteger(args.attempt, '--attempt');
+  if (attempt > 3) throw new Error('The cinematic pipeline allows at most three autonomous attempts per shot. Report the first three defects before a fourth attempt.');
+
+  const source = resolve(projectRoot, args.source ?? expectedSource);
+  if (source !== expectedSource) throw new Error(`--source must match the configured first-frame source ${relative(projectRoot, expectedSource).replaceAll('\\', '/')}.`);
   const sourceBytes = await readFile(source);
   if (sourceBytes.length > 30 * 1024 * 1024) throw new Error('Source image exceeds the MiniMax-H3 30 MB image limit.');
   const pngSignature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
-  if (!sourceBytes.subarray(0, 8).equals(pngSignature)) throw new Error('CIN-3 source must be a valid PNG.');
+  if (!sourceBytes.subarray(0, 8).equals(pngSignature)) throw new Error('Cinematic source must be a valid PNG.');
   const width = sourceBytes.readUInt32BE(16);
   const height = sourceBytes.readUInt32BE(20);
-  if (width !== 1920 || height !== 1080) throw new Error(`CIN-3 source must be 1920x1080; received ${width}x${height}.`);
+  if (width !== 1920 || height !== 1080) throw new Error(`Cinematic source must be 1920x1080; received ${width}x${height}.`);
 
-  const candidateRoot = resolve(projectRoot, 'tmp', 'cinematics', 'cin3', id);
   const defaultName = `candidate_${String(attempt).padStart(2, '0')}_raw.mp4`;
   const output = resolve(projectRoot, args.output ?? resolve(candidateRoot, defaultName));
   assertWithin(candidateRoot, output, '--output');
@@ -155,14 +223,15 @@ async function main() {
 
   const apiKey = loadApiKey(await readFile(resolve(projectRoot, '.env.local'), 'utf8'));
   const sourceSha256 = createHash('sha256').update(sourceBytes).digest('hex');
-  const promptSha256 = createHash('sha256').update(pilot.prompt, 'utf8').digest('hex');
+  const promptSha256 = createHash('sha256').update(prompt, 'utf8').digest('hex');
   const startedAt = new Date().toISOString();
   const metadata = {
     cinematicId: id,
+    ...cin4Metadata,
     sourcePath: relative(projectRoot, source).replaceAll('\\', '/'),
     sourceSha256,
-    canonicalCharacterSources: pilot.characters,
-    environmentSource: pilot.environment,
+    canonicalCharacterSources,
+    environmentSource,
     provider: 'MiniMax Open Platform Direct API',
     apiEndpoint: '/v2/video_generation',
     model: MODEL,
@@ -171,7 +240,7 @@ async function main() {
     resolution,
     duration,
     attempt,
-    promptVersion: CIN3_PROMPT_VERSION,
+    promptVersion,
     promptSha256,
     outputCandidatePath: relative(projectRoot, output).replaceAll('\\', '/'),
     startedAt,
@@ -187,7 +256,7 @@ async function main() {
       body: JSON.stringify({
         model: MODEL,
         content: [
-          { type: 'text', text: pilot.prompt },
+          { type: 'text', text: prompt },
           { type: 'image_url', image_url: { url: `data:image/png;base64,${sourceBytes.toString('base64')}` }, role: 'first_frame' },
         ],
         resolution,

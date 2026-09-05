@@ -20,7 +20,7 @@
       ],
       "poster": "/assets/cinematics/source/lion_judgement_source.png",
       "fallbackText": "Alaric rend son jugement devant la cour du Lion.",
-      "durationMs": 8000
+      "durationMs": 17000
     },
     {
       "id": "serpent_general_reveal",

@@ -378,7 +378,7 @@ export class GameApp {
         allowSkip: false,
         muted: true,
         reducedMotion: false,
-        timeoutMs: 12_000,
+        timeoutMs: 22_000,
         stallTimeoutMs: 5_000,
       });
       result = held.result;

@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "lion_judgement_v2",
+  "cinematicId": "lion_judgement",
+  "tier": "HERO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin4-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG cinematic in the canonical Lion judgement hall, with ceremonial warm torchlight, restrained dust and atmospheric depth. The scene communicates arrival, Alaric's authority, the Lion Champion's presence, unresolved tension and formal gravity without deciding the verdict.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Establish the Lion judgement hall and readable confrontation geography as the company arrives.",
+      "framing": "WIDE",
+      "environment": "public/assets/generated/lion-phase/dialogue/lion_finale_judgement.webp",
+      "source": {
+        "type": "ROOT_SOURCE",
+        "output": "tmp/cinematics/cin4/lion_judgement_v2/shot_01/source.png"
+      },
+      "characters": [
+        {
+          "id": "alaric",
+          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "position": { "x": 0.31, "groundY": 0.97 },
+          "heightPx": 680,
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:lion_champion",
+          "depth": 20,
+          "role": "PRIMARY",
+          "action": "OBSERVE",
+          "mirrorPolicy": "ALLOW"
+        },
+        {
+          "id": "lion_champion",
+          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "position": { "x": 0.72, "groundY": 0.97 },
+          "heightPx": 620,
+          "facing": "SCREEN_LEFT",
+          "lookTarget": "CHARACTER:alaric",
+          "depth": 10,
+          "role": "SECONDARY",
+          "action": "IDLE_BREATH",
+          "mirrorPolicy": "ALLOW"
+        }
+      ],
+      "camera": { "mode": "WIDE_HOLD" },
+      "durationSeconds": 5,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "SETTLE",
+      "promptIntent": "Alaric and the Champion hold a formal static tableau. The Champion keeps the sword low at the right side for the entire shot: do not lift, raise, swing or reposition the sword, hands or arms. Only subtle breathing, warm torch flicker and sparse drifting dust move through the hall."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Advance to a medium confrontation and make Alaric's authority physically present without resolving the judgement.",
+      "framing": "MEDIUM_TWO_SHOT",
+      "environment": "public/assets/generated/lion-phase/dialogue/lion_finale_judgement.webp",
+      "source": {
+        "type": "CUT_SOURCE",
+        "output": "tmp/cinematics/cin4/lion_judgement_v2/shot_02/source.png"
+      },
+      "characters": [
+        {
+          "id": "alaric",
+          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "position": { "x": 0.32, "groundY": 0.98 },
+          "heightPx": 820,
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:lion_champion",
+          "depth": 20,
+          "role": "PRIMARY",
+          "action": "STEP_FORWARD",
+          "mirrorPolicy": "ALLOW"
+        },
+        {
+          "id": "lion_champion",
+          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "position": { "x": 0.73, "groundY": 0.98 },
+          "heightPx": 750,
+          "facing": "SCREEN_LEFT",
+          "lookTarget": "CHARACTER:alaric",
+          "depth": 10,
+          "role": "SECONDARY",
+          "action": "REACT_SMALL",
+          "mirrorPolicy": "ALLOW"
+        }
+      ],
+      "camera": { "mode": "TRACK_SMALL_RIGHT" },
+      "durationSeconds": 6,
+      "continuityOut": "LAST_FRAME",
+      "endIntent": "SETTLE_FOR_CHAIN",
+      "promptIntent": "Alaric takes one restrained half-step forward and settles, using his staff naturally; the Champion answers only with a slight tightening of posture. Preserve their separation and eye-line."
+    },
+    {
+      "shotId": "shot_03",
+      "purpose": "Shift dramatic attention toward Alaric immediately before deterministic DialogueView takes control.",
+      "framing": "ALARIC_FOCUS_FROM_TWO_SHOT",
+      "environment": "public/assets/generated/lion-phase/dialogue/lion_finale_judgement.webp",
+      "source": {
+        "type": "CHAIN_SOURCE",
+        "fromShotId": "shot_02",
+        "path": "tmp/cinematics/cin4/lion_judgement_v2/shot_02/last_frame.png"
+      },
+      "characters": [
+        {
+          "id": "alaric",
+          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "position": { "x": 0.32, "groundY": 0.98 },
+          "heightPx": 820,
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:lion_champion",
+          "depth": 20,
+          "role": "PRIMARY",
+          "action": "SMALL_HEAD_TURN",
+          "mirrorPolicy": "ALLOW"
+        },
+        {
+          "id": "lion_champion",
+          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "position": { "x": 0.73, "groundY": 0.98 },
+          "heightPx": 750,
+          "facing": "SCREEN_LEFT",
+          "lookTarget": "CHARACTER:alaric",
+          "depth": 10,
+          "role": "SECONDARY",
+          "action": "OBSERVE",
+          "mirrorPolicy": "ALLOW"
+        }
+      ],
+      "camera": { "mode": "SUBJECT_FOCUS_LEFT" },
+      "durationSeconds": 6,
+      "continuityOut": "END",
+      "endIntent": "DIALOGUE_READY_SETTLE",
+      "promptIntent": "Continue seamlessly from the supplied chained frame. Focus gradually toward Alaric as he makes only a tiny head movement and becomes still; the Champion remains fixed on the established right side."
+    }
+  ]
+}
