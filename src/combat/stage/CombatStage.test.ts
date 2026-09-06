@@ -119,10 +119,12 @@ describe('CombatStage', () => {
     };
     await stage.enter(attacker.source, [target.source], { key: 'attack' });
 
-    const proxyMesh = stage.scene.children.find(
-      (child): child is THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial> =>
-        child instanceof THREE.Mesh && (child.material as THREE.MeshBasicMaterial).map === attacker.texture,
-    );
+    let proxyMesh: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial> | undefined;
+    stage.scene.traverse((child) => {
+      if (child instanceof THREE.Mesh && (child.material as THREE.MeshBasicMaterial).map === attacker.texture) {
+        proxyMesh = child as THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>;
+      }
+    });
     expect(proxyMesh).toBeDefined();
     let geometryDisposed = false;
     let materialDisposed = false;

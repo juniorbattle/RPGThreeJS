@@ -19,6 +19,20 @@ import {
   type CompiledCasterMotion,
   type MutableVec3,
 } from '../vfx/CasterMotion';
+import {
+  COMBAT_POSES,
+  resolveCombatPoseSet,
+  resolveCombatPoseUnitId,
+  type CombatPose,
+  type CombatPoseSet,
+} from './CombatPoseRegistry';
+import {
+  disposeCombatPoseTextureCache,
+  disposeCombatPoseVisual,
+  preloadCombatPoseSet,
+  setCombatUnitPose as applyCombatUnitPose,
+  type CombatPoseVisualUnit,
+} from './CombatPoseVisual';
 
 /**
  * Combat Execution Stage (R0A).
@@ -86,6 +100,16 @@ export interface StageSpriteSource {
     material?: { map?: THREE.Texture | null } | null;
     geometry?: { parameters?: { width?: number; height?: number } } | null;
   } | null;
+  blob?: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial> | null;
+  /** Explicit canonical ID, when a caller already has one. */
+  combatPoseUnitId?: string | null;
+  /** Existing campaign/catalog identities; resolved only through explicit registry aliases. */
+  unitId?: string | null;
+  definitionId?: string | null;
+  visualProfileId?: string | null;
+  campaignId?: string | null;
+  portrait?: string | null;
+  name?: string;
   /** Authoritative gameplay team field ('player' or 'foe'). Read-only — never mutated. */
   team?: string;
   /** Authoritative alive status. Read-only — used to style KO target proxies. */
@@ -151,16 +175,26 @@ export interface StageAftermathSnapshot {
   isUltimate: boolean;
 }
 
-interface StageActorProxy {
+export interface CombatPoseQaState {
+  index: number;
+  total: number;
+  unitId: string;
+  unitName: string;
+  pose: CombatPose;
+}
+
+interface StageActorProxy extends CombatPoseVisualUnit {
+  /** Compatibility alias for the existing Stage sprite/KO presentation code. */
   mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>;
+  groundVisual: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial> | null;
+  source: StageSpriteSource;
+  poseUnitId: string | null;
   startSlot: StageSlotId;
   impactSlot: StageSlotId;
   isAttacker: boolean;
   baseHeight: number;
   faction: StageFactionSide;
   isKO: boolean;
-  /** Y offset applied to sink player sprites to match enemy grounding. */
-  groundOffset: number;
 }
 
 /** Faction-aware slot vector — mirrors X when source is enemy (RIGHT side). */
@@ -211,6 +245,7 @@ export class CombatStage {
   private targetProxies: StageActorProxy[] = [];
   private attackerUnitRef: unknown = null;
   private targetUnitRefs: unknown[] = [];
+  private poseQaSelection = 0;
 
   private vfxSourceProxy: VfxUnitLike | null = null;
   private vfxProxyMap = new Map<unknown, VfxUnitLike>();
@@ -337,6 +372,11 @@ export class CombatStage {
           this.targetUnitRefs.push(nonAttackerTargets[i]);
         }
       }
+
+      const actorProxies = this.actorProxies();
+      await Promise.all(actorProxies.filter((proxy) => proxy.poseSet).map((proxy) => applyCombatUnitPose(proxy, 'prepare')));
+      if (token !== this.sessionToken) return false;
+      this.poseQaSelection = 0;
 
       this.vfxProxyMap.clear();
       const sourceProxy = this.createVfxUnitProxy(profile.castAnchorSlot, mirrorX);
@@ -530,6 +570,48 @@ export class CombatStage {
     return this.active ? this.sideAssignment : null;
   }
 
+  async setCombatUnitPose(unit: unknown, pose: CombatPose): Promise<boolean> {
+    const proxy = this.findProxyForUnit(unit);
+    if (!proxy) {
+      if (import.meta.env.DEV) console.warn('[CombatPose] Unit is not present on the active Combat Stage.');
+      return false;
+    }
+    const result = await applyCombatUnitPose(proxy, pose);
+    return result.pose !== null;
+  }
+
+  getPoseQaState(): CombatPoseQaState | null {
+    const proxies = this.poseQaProxies();
+    if (!proxies.length) return null;
+    this.poseQaSelection %= proxies.length;
+    const proxy = proxies[this.poseQaSelection]!;
+    return {
+      index: this.poseQaSelection,
+      total: proxies.length,
+      unitId: proxy.poseUnitId!,
+      unitName: proxy.source.name ?? proxy.poseUnitId!,
+      pose: proxy.currentPose ?? 'prepare',
+    };
+  }
+
+  selectNextPoseQaUnit(direction = 1): CombatPoseQaState | null {
+    const proxies = this.poseQaProxies();
+    if (!proxies.length) return null;
+    this.poseQaSelection = (this.poseQaSelection + Math.sign(direction || 1) + proxies.length) % proxies.length;
+    return this.getPoseQaState();
+  }
+
+  async cycleSelectedPose(): Promise<CombatPoseQaState | null> {
+    const proxies = this.poseQaProxies();
+    if (!proxies.length) return null;
+    this.poseQaSelection %= proxies.length;
+    const proxy = proxies[this.poseQaSelection]!;
+    const currentIndex = COMBAT_POSES.indexOf(proxy.currentPose ?? 'prepare');
+    const nextPose = COMBAT_POSES[(currentIndex + 1) % COMBAT_POSES.length]!;
+    await applyCombatUnitPose(proxy, nextPose);
+    return this.getPoseQaState();
+  }
+
   /**
    * Installs a compiled CASTER MOTION plan for the current session and restarts
    * its clock. Presentation-only: it can never affect damage, AP or targeting.
@@ -557,17 +639,40 @@ export class CombatStage {
     return this.casterMotion.hasEffect;
   }
 
-  /** Test accessor: attacker proxy world position X, or null. */
+  /** Test accessor: attacker poseVisual world position, or null. */
   attackerProxyPosition(): THREE.Vector3 | null {
-    if (!this.attackerProxy) return null;
-    return this.attackerProxy.mesh.position.clone();
+    return this.attackerProxy ? this.proxyVisualWorldPosition(this.attackerProxy) : null;
   }
 
-  /** Test accessor: target proxy world position by index, or null. */
+  /** Test accessor: target poseVisual world position by index, or null. */
   targetProxyPosition(index: number): THREE.Vector3 | null {
     const proxy = this.targetProxies[index];
+    return proxy ? this.proxyVisualWorldPosition(proxy) : null;
+  }
+
+  attackerUnitRootTransform(): { position: THREE.Vector3; quaternion: THREE.Quaternion; scale: THREE.Vector3 } | null {
+    const root = this.attackerProxy?.unitRoot;
+    if (!root) return null;
+    return { position: root.position.clone(), quaternion: root.quaternion.clone(), scale: root.scale.clone() };
+  }
+
+  attackerPoseVisualSnapshot(): {
+    unitId: string | null;
+    pose: CombatPose | null;
+    localPosition: THREE.Vector3;
+    width: number;
+    height: number;
+  } | null {
+    const proxy = this.attackerProxy;
     if (!proxy) return null;
-    return proxy.mesh.position.clone();
+    const params = proxy.mesh.geometry.parameters;
+    return {
+      unitId: proxy.poseUnitId,
+      pose: proxy.currentPose,
+      localPosition: proxy.mesh.position.clone(),
+      width: params.width,
+      height: params.height,
+    };
   }
 
   /** Test accessor: true when aftermath presentation is in progress. */
@@ -615,11 +720,12 @@ export class CombatStage {
   getFloatTextAnchor(unit: unknown): THREE.Vector3 | null {
     if (!this.active || !this.activeProfile) return null;
     if (unit === this.attackerUnitRef && this.attackerProxy) {
-      return this.attackerProxy.mesh.position.clone().add(new THREE.Vector3(0, this.attackerProxy.baseHeight * 0.55, 0));
+      return this.proxyVisualWorldPosition(this.attackerProxy).add(new THREE.Vector3(0, this.attackerProxy.baseHeight * 0.55, 0));
     }
     const idx = this.targetUnitRefs.indexOf(unit);
-    if (idx >= 0 && this.targetProxies[idx]) {
-      return this.targetProxies[idx].mesh.position.clone().add(new THREE.Vector3(0, this.targetProxies[idx].baseHeight * 0.55, 0));
+    const proxy = idx >= 0 ? this.targetProxies[idx] : undefined;
+    if (proxy) {
+      return this.proxyVisualWorldPosition(proxy).add(new THREE.Vector3(0, proxy.baseHeight * 0.55, 0));
     }
     return null;
   }
@@ -689,6 +795,7 @@ export class CombatStage {
   dispose(): void {
     this.forceRestoreTactical();
     this.backgroundLayers.dispose();
+    disposeCombatPoseTextureCache();
     if (this.maskEl) this.maskEl.remove();
   }
 
@@ -733,6 +840,39 @@ export class CombatStage {
     await new Promise<void>((resolve) => setTimeout(resolve, ms));
   }
 
+  private actorProxies(): StageActorProxy[] {
+    return this.attackerProxy ? [this.attackerProxy, ...this.targetProxies] : [...this.targetProxies];
+  }
+
+  private proxyVisualWorldPosition(proxy: StageActorProxy): THREE.Vector3 {
+    proxy.unitRoot.updateMatrixWorld(true);
+    return proxy.poseVisual.getWorldPosition(new THREE.Vector3());
+  }
+
+  private poseQaProxies(): StageActorProxy[] {
+    return this.active ? this.actorProxies().filter((proxy) => proxy.poseSet !== null) : [];
+  }
+
+  private resolvePoseSetForSource(source: StageSpriteSource): CombatPoseSet | null {
+    const identities = [
+      source.combatPoseUnitId,
+      source.unitId,
+      source.definitionId,
+      source.visualProfileId,
+      source.campaignId,
+      source.portrait,
+    ];
+    for (const identity of identities) {
+      const unitId = resolveCombatPoseUnitId(identity);
+      if (unitId) return resolveCombatPoseSet(unitId) ?? null;
+    }
+    const suppliedIdentity = identities.find((identity): identity is string => Boolean(identity));
+    if (suppliedIdentity && import.meta.env.DEV) {
+      console.warn(`[CombatPose] No pose set for '${suppliedIdentity}'; using canonical Combat Stage sprite.`);
+    }
+    return null;
+  }
+
   private createProxy(
     source: StageSpriteSource | null | undefined,
     startSlot: StageSlotId,
@@ -740,14 +880,17 @@ export class CombatStage {
     isAttacker: boolean,
     faction: StageFactionSide,
   ): StageActorProxy | null {
-    const spr = source && source.spr;
-    const map = spr && spr.material && spr.material.map ? spr.material.map : null;
-    if (!map) return null;
-    const params = (spr && spr.geometry && spr.geometry.parameters) || {};
+    const spr = source?.spr;
+    const map = spr?.material?.map ?? null;
+    if (!source || !map) return null;
+    const params = spr?.geometry?.parameters ?? {};
     const width = typeof params.width === 'number' && params.width > 0 ? params.width : 1.4;
     const height = typeof params.height === 'number' && params.height > 0 ? params.height : 1.9;
 
-    // Owns geometry + material. Borrows (never disposes) the tactical texture.
+    // `unitRoot` owns the authoritative Stage transform. Texture, geometry and
+    // anchor offsets live only on its `poseVisual` child.
+    const unitRoot = new THREE.Group();
+    unitRoot.name = `CombatStageUnitRoot:${source.name ?? (isAttacker ? 'attacker' : 'target')}`;
     const material = new THREE.MeshBasicMaterial({
       map,
       transparent: true,
@@ -757,40 +900,81 @@ export class CombatStage {
       fog: false,
       toneMapped: false,
     });
-    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(width, height), material);
+    const canonicalGeometry = new THREE.PlaneGeometry(width, height);
+    const mesh = new THREE.Mesh(canonicalGeometry, material);
+    mesh.name = 'poseVisual';
     const mirrorX = this.sideAssignment?.mirrorX ?? false;
     const start = resolvedSlotVec(startSlot, mirrorX);
     const groundOffset = faction === 'player' ? height * STAGE_HERO_GROUND_OFFSET : 0;
-    mesh.position.set(start.x, start.y + height * 0.5 - groundOffset - STAGE_PROXY_Y_SINK, start.z);
-    // Player units face right (toward enemy), enemy units face left (toward player).
+    unitRoot.position.set(start.x, start.y, start.z);
+    mesh.position.set(0, height * 0.5 - groundOffset - STAGE_PROXY_Y_SINK, 0);
     const faceSign = faction === 'player' ? 1 : -1;
     mesh.scale.x = faceSign;
     mesh.renderOrder = isAttacker ? 10 : 11;
+    const groundVisual = source.blob ? new THREE.Mesh(source.blob.geometry.clone(), source.blob.material.clone()) : null;
+    if (groundVisual) {
+      groundVisual.name = 'groundVisual';
+      groundVisual.rotation.x = -Math.PI / 2;
+      groundVisual.position.y = 0.015;
+      groundVisual.scale.copy(source.blob!.scale);
+      groundVisual.renderOrder = isAttacker ? 8 : 9;
+      unitRoot.add(groundVisual);
+    }
+    unitRoot.add(mesh);
 
-    // P2: Already-KO targets enter Stage with KO visual appearance
-    const isKO = !isAttacker && source != null && source.alive === false && source.downed === true;
+    const poseSet = this.resolvePoseSetForSource(source);
+    const isKO = !isAttacker && source.alive === false && source.downed === true;
     if (isKO) {
       material.opacity = 0.34;
       material.color.set('#ff5a4a');
     }
 
-    this.scene.add(mesh);
-    return { mesh, startSlot, impactSlot, isAttacker, baseHeight: height, faction, isKO, groundOffset };
+    const proxy: StageActorProxy = {
+      unitRoot,
+      poseVisual: mesh,
+      poseSet,
+      canonicalVisual: Object.freeze({
+        geometry: canonicalGeometry,
+        texture: map,
+        position: mesh.position.clone(),
+      }),
+      poseGeometries: new Map(),
+      faceSign,
+      // Pose PNGs are tightly cropped and use explicit foot/root anchors, so
+      // only the global Stage sink applies; heroGroundOffset is portrait padding.
+      poseOriginYOffset: -STAGE_PROXY_Y_SINK,
+      poseBasePosition: mesh.position.clone(),
+      poseRequestId: 0,
+      currentPose: null,
+      mesh,
+      groundVisual,
+      source,
+      poseUnitId: poseSet?.unitId ?? null,
+      startSlot,
+      impactSlot,
+      isAttacker,
+      baseHeight: height,
+      faction,
+      isKO,
+    };
+    this.scene.add(unitRoot);
+    if (poseSet) void preloadCombatPoseSet(poseSet);
+    return proxy;
   }
 
   private disposeProxies(): void {
-    if (this.attackerProxy) {
-      this.scene.remove(this.attackerProxy.mesh);
-      this.attackerProxy.mesh.geometry.dispose();
-      this.attackerProxy.mesh.material.dispose();
-      this.attackerProxy = null;
-    }
-    for (const proxy of this.targetProxies) {
-      this.scene.remove(proxy.mesh);
-      proxy.mesh.geometry.dispose();
+    for (const proxy of this.actorProxies()) {
+      ++proxy.poseRequestId;
+      this.scene.remove(proxy.unitRoot);
+      disposeCombatPoseVisual(proxy);
+      proxy.canonicalVisual.geometry.dispose();
       proxy.mesh.material.dispose();
+      proxy.groundVisual?.geometry.dispose();
+      proxy.groundVisual?.material.dispose();
     }
+    this.attackerProxy = null;
     this.targetProxies = [];
+    this.poseQaSelection = 0;
   }
 
   private createVfxUnitProxy(slot: StageSlotId, mirrorX: boolean): VfxUnitLike {
@@ -814,22 +998,23 @@ export class CombatStage {
 
     if (this.attackerProxy) {
       const start = resolvedSlotVec(this.attackerProxy.startSlot, mirrorX);
-      const height = this.attackerProxy.baseHeight;
       const pos = start;
       const pulse = this.impactPulseFor(now, true);
-      const faceSign = this.attackerProxy.faction === 'player' ? 1 : -1;
+      const faceSign = this.attackerProxy.faceSign;
       /**
        * CASTER MOTION is the sole source of caster movement. With no authored
-       * motion the offset is exactly (0,0,0) and the proxy stays at its start
-       * slot for the entire session.
+       * motion the offset is exactly (0,0,0) and the unitRoot stays at its
+       * start slot. Pose swaps only mutate the child poseVisual.
        */
       this.sampleCasterMotion(now, pos);
-      this.attackerProxy.mesh.position.set(
+      this.attackerProxy.unitRoot.position.set(
         pos.x + this.casterMotionOffset.x,
-        pos.y + height * 0.5 - this.attackerProxy.groundOffset - STAGE_PROXY_Y_SINK + this.casterMotionOffset.y,
+        pos.y + this.casterMotionOffset.y,
         pos.z + this.casterMotionOffset.z,
       );
-      this.attackerProxy.mesh.scale.set(faceSign * pulse, pulse, pulse);
+      const poseBase = this.attackerProxy.poseBasePosition;
+      this.attackerProxy.poseVisual.position.set(poseBase.x * faceSign * pulse, poseBase.y * pulse, poseBase.z);
+      this.attackerProxy.poseVisual.scale.set(faceSign * pulse, pulse, pulse);
 
       /**
        * V2.7 CASTER ANCHOR TRACKING — the VFX source proxy must follow the
@@ -850,11 +1035,12 @@ export class CombatStage {
 
     for (const targetProxy of this.targetProxies) {
       const base = resolvedSlotVec(targetProxy.startSlot, mirrorX);
-      const height = targetProxy.baseHeight;
       const pulse = this.impactPulseFor(now, false);
-      const faceSign = targetProxy.faction === 'player' ? 1 : -1;
-      targetProxy.mesh.position.set(base.x, base.y + height * 0.5 - targetProxy.groundOffset - STAGE_PROXY_Y_SINK, base.z);
-      targetProxy.mesh.scale.set(faceSign * pulse, pulse, pulse);
+      const faceSign = targetProxy.faceSign;
+      targetProxy.unitRoot.position.set(base.x, base.y, base.z);
+      const poseBase = targetProxy.poseBasePosition;
+      targetProxy.poseVisual.position.set(poseBase.x * faceSign * pulse, poseBase.y * pulse, poseBase.z);
+      targetProxy.poseVisual.scale.set(faceSign * pulse, pulse, pulse);
       if (this.impactAtMs !== null) {
         const p = Math.min(1, (now - this.impactAtMs) / profile.impactPulseMs);
         const flash = 1 - easeOutCubic(p);

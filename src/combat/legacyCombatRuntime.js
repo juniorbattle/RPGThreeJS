@@ -78,7 +78,7 @@ const SCENE_AMBIENCE={
   lion_sanctum:{fog:0x4d445e,density:0.011,count:118,color:0xf7d98d,size:0.084,opacity:0.56,area:[9.1,5.2],y:[0.24,3.9],rise:[0.06,0.19],drift:0.28,glow:0.2,glowColor:0xd9b86a,mistColor:0xd3b978,mistOpacity:0.17,rayColor:0xffe1a1,rayOpacity:0.12},
 };
 let REDUCED_GRAPHICS=campaignParams.get('reduced')==='1';
-const STAGE_QA_ENABLED=campaignParams.get('stageqa')==='1';
+const STAGE_QA_ENABLED=import.meta.env.DEV&&campaignParams.get('stageqa')==='1';
 const VFX_LAB_ENABLED=campaignParams.get('vfxlab')==='1';
 let disposeVfxComposerPanel=()=>{};
 function campaignUnitHealth(){
@@ -670,7 +670,7 @@ function unitDefFromVisual(id,index,positions=ENEMY_VISUAL_POSITIONS){
   const base=VISUAL_UNIT_TEMPLATES[id];
   if(!base)return null;
   const [gx,gz]=positions[index%positions.length];
-  return {...base,gx,gz,weapons:base.weapons.map(weapon=>({...weapon})),skills:base.skills.slice()};
+  return {...base,combatPoseUnitId:id,gx,gz,weapons:base.weapons.map(weapon=>({...weapon})),skills:base.skills.slice()};
 }
 
 // ============================= STATUS EFFECTS =============================
@@ -927,7 +927,7 @@ function createUnit(def){
   scene.add(grp);
   const unitMaxAp=Number.isFinite(def.maxap)?def.maxap:Number.isFinite(def.maxAp)?def.maxAp:5;
   const u={
-    id:++UID, campaignId:def.campaignId||null, portrait:def.portrait||'', team:def.team, kind:def.kind, name:def.name, className:def.className||'',
+    id:++UID, campaignId:def.campaignId||null, combatPoseUnitId:def.combatPoseUnitId||null, portrait:def.portrait||'', team:def.team, kind:def.kind, name:def.name, className:def.className||'',
     maxhp:def.maxhp||def.hp, hp:Math.min(def.hp,def.maxhp||def.hp), str:def.str, mag:def.mag, end:def.end, dex:def.dex, cha:def.cha,
     mov:def.mov, weapons:def.weapons, skills:def.skills.slice(), skillUpgrades:def.skillUpgrades||{}, ai:def.ai||'aggressive',
     ap:QA_FULL_AP?unitMaxAp:0, maxap:unitMaxAp, gx:def.gx, gz:def.gz, alive:true, statuses:{}, gardeAP:0, _souffle:false, _ultCooldown:5,
@@ -1021,7 +1021,7 @@ function spawnUnits(){
         createUnit({...escort,gx,gz});
       });
     }
-    if(bossDef){ createUnit({...bossDef,portrait:BOSS_PORTRAITS[ENCOUNTER_BOSS_VISUAL_ID]||BOSS_PORTRAITS[COMBAT_ID]||bossDef.portrait,gx:6,gz:1,size:2,immobile:true,boss:true}); BOSS_SPAWNED=true; }
+    if(bossDef){ createUnit({...bossDef,combatPoseUnitId:ENCOUNTER_BOSS_VISUAL_ID||null,portrait:BOSS_PORTRAITS[ENCOUNTER_BOSS_VISUAL_ID]||BOSS_PORTRAITS[COMBAT_ID]||bossDef.portrait,gx:6,gz:1,size:2,immobile:true,boss:true}); BOSS_SPAWNED=true; }
   }
 }
 
@@ -2057,7 +2057,10 @@ function bindInput(){ const el=renderer.domElement;
   el.addEventListener('contextmenu',e=>{ e.preventDefault(); cancelToMenu(); });
   addEventListener('wheel',e=>e.preventDefault(),{passive:false});
   addEventListener('keydown',e=>{ const k=e.key.toLowerCase();
-    if(k==='escape')cancelToMenu();
+    if(STAGE_QA_ENABLED&&k==='o'){ e.preventDefault(); void togglePoseQaStage(); }
+    else if(STAGE_QA_ENABLED&&combatStage.isActive()&&(k==='['||k===']')){ e.preventDefault(); announcePoseQa(combatStage.selectNextPoseQaUnit(k==='['?-1:1)); }
+    else if(STAGE_QA_ENABLED&&combatStage.isActive()&&k==='p'){ e.preventDefault(); void cyclePoseQa(); }
+    else if(k==='escape')cancelToMenu();
     else if(k==='enter'&&G.mode==='menu'&&!G.busy)endTurn();
     else if(k==='m'&&G.mode==='menu')enterMove();
     else if(k==='u'&&G.mode==='menu')undoMove();
@@ -2425,6 +2428,7 @@ async function playQaMotionScenario(scenario){
   } finally { for(const unit of G.units)if(unit.alive)restoreUnitVisualBaseline(unit); G.busy=false; }
 }
 function resetQaMotion(){ clearQaBossIntentPreview(); for(const unit of G.units){ killSpriteMotion(unit); if(unit.alive)restoreUnitVisualBaseline(unit); } cameraFeedback.clear(); void restoreCam(); }
+let poseQaHoldActive=false;
 const STAGE_QA_ACTIONS=[
   {key:'attack',label:'Stage: Attaque'},
   {key:'n_flame_wave',label:'Stage: Vague de Flammes'},
@@ -2458,6 +2462,27 @@ async function playStageQaScenario(actionKey){
   if(spec.ap>owner.ap)owner.ap=spec.ap;
   await executeAction(owner,spec,spec.self?owner.gx:target.gx,spec.self?owner.gz:target.gz);
 }
+function announcePoseQa(state){
+  if(!state){ setHint('Pose QA — aucune unité avec poses sur la scène active'); return; }
+  const message='Pose QA '+(state.index+1)+'/'+state.total+' — '+state.unitName+' ['+state.unitId+'] — '+state.pose.toUpperCase();
+  console.log('[Combat Pose QA]',message);
+  setHint(message);
+}
+async function cyclePoseQa(){ announcePoseQa(await combatStage.cycleSelectedPose()); }
+async function togglePoseQaStage(){
+  if(poseQaHoldActive){ poseQaHoldActive=false; await combatStageExit(); G.busy=false; setHint('Pose QA — scène fermée'); return; }
+  if(G.busy||G.over)return;
+  qaPrepareCombat();
+  const source=G.pinnedUnit&&G.pinnedUnit.alive?G.pinnedUnit:qaMotionUnit();
+  const target=source&&(aliveUnits(source.team==='player'?'foe':'player')[0]||source);
+  if(!source||!target)return;
+  G.busy=true;
+  const spec={...getSpec(source,'attack',0,0),name:'Validation des poses'};
+  await combatStageEnter(source,[target],spec,{});
+  poseQaHoldActive=combatStage.isActive();
+  if(!poseQaHoldActive)G.busy=false;
+  announcePoseQa(combatStage.getPoseQaState());
+}
 function mountQaControls(){
   if((!QA_ENABLED&&!STAGE_QA_ENABLED)||byId('qa-combat-controls'))return;
   const controls=document.createElement('aside');
@@ -2465,7 +2490,8 @@ function mountQaControls(){
   controls.setAttribute('aria-label','Outils QA de combat');
   const legacyButtons=QA_ENABLED?'<div><button type="button" data-qa="prepare">Auto-déployer</button><button type="button" data-qa="victory">Victoire</button><button type="button" data-qa="defeat">Défaite</button></div>':'';
   const stageButtons=STAGE_QA_ENABLED?'<div>'+STAGE_QA_ACTIONS.map(a=>'<button type="button" data-stage-qa="'+a.key+'">'+a.label+'</button>').join('')+'</div>':'';
-  controls.innerHTML='<b>QA combat</b><span>Session isolée</span>'+legacyButtons+stageButtons;
+  const poseButtons=STAGE_QA_ENABLED?'<div><button type="button" data-pose-qa="hold">Pose: ouvrir / fermer O</button><button type="button" data-pose-qa="select">Pose: unité suivante [ / ]</button><button type="button" data-pose-qa="cycle">Pose: suivante P</button></div>':'';
+  controls.innerHTML='<b>QA combat</b><span>Session isolée</span>'+legacyButtons+stageButtons+poseButtons;
   if(QA_ENABLED){
     controls.querySelector('[data-qa="prepare"]').onclick=()=>qaPrepareCombat();
     controls.querySelector('[data-qa="victory"]').onclick=()=>{ if(!G.over){ qaPrepareCombat(); winWave(); } };
@@ -2473,6 +2499,9 @@ function mountQaControls(){
   }
   if(STAGE_QA_ENABLED){
     controls.querySelectorAll('[data-stage-qa]').forEach(btn=>{ btn.onclick=()=>playStageQaScenario(btn.dataset.stageQa); });
+    controls.querySelector('[data-pose-qa="hold"]').onclick=()=>void togglePoseQaStage();
+    controls.querySelector('[data-pose-qa="select"]').onclick=()=>announcePoseQa(combatStage.selectNextPoseQaUnit());
+    controls.querySelector('[data-pose-qa="cycle"]').onclick=()=>void cyclePoseQa();
   }
   document.body.appendChild(controls);
 }
