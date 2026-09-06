@@ -27,6 +27,7 @@ tmp/
 tools/qa-shots/
 
 # Playwright persistent browser profiles (QA only)
+.playwright/
 .playwright-*/
 
 # Local environment files (machine-local, never committed)
