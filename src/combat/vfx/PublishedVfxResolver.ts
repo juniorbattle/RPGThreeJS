@@ -26,7 +26,7 @@ import {
   compileDraft,
 } from './VfxPresetComposer';
 import type { CompiledVfxDraft, VfxPresetDraft, VfxRuntimeScaleFactors } from './VfxPresetComposer';
-import type { CompiledCasterMotion } from './CasterMotion';
+import type { CompiledCasterMotion, UnitMotionRuntimeHooks } from './CasterMotion';
 import {
   getPublishedEntry,
   publishedEntryToDraft,
@@ -117,6 +117,7 @@ export interface PlayActionVfxOptions {
    * Stage. ADDITIVE and OPTIONAL — omitted by every existing caller, and
    * never invoked for a preset that authors no motion.
    */
+  unitMotion?: UnitMotionRuntimeHooks;
   applyCasterMotion?: (motion: CompiledCasterMotion) => void;
 }
 
@@ -131,7 +132,7 @@ export interface PlayActionVfxOptions {
  *   → VfxSystem.play(fallbackPresetId, context) (existing static path)
  */
 export function playActionVfx(options: PlayActionVfxOptions): VfxPlayResult {
-  const { actionKey, fallbackPresetId, context, vfxSystem, scaleFactors, applyCasterMotion } = options;
+  const { actionKey, fallbackPresetId, context, vfxSystem, scaleFactors, unitMotion, applyCasterMotion } = options;
 
   const draft = getPublishedDraft(actionKey);
   if (!draft) {
@@ -150,11 +151,11 @@ export function playActionVfx(options: PlayActionVfxOptions): VfxPlayResult {
    * motion clock and the VFX clock share one origin — identical to Composer
    * Stage playback. Guarded so motion-free presets never touch the Stage.
    */
-  if (applyCasterMotion && compiled.casterMotion.hasEffect) {
+  if (!unitMotion && applyCasterMotion && compiled.casterMotion.hasEffect) {
     applyCasterMotion(compiled.casterMotion);
   }
 
-  return playCompiledPublishedVfx(compiled, context, vfxSystem);
+  return playCompiledPublishedVfx(compiled, context, vfxSystem, unitMotion);
 }
 
 /**
@@ -168,12 +169,26 @@ function playCompiledPublishedVfx(
   compiled: CompiledVfxDraft,
   context: VfxContext,
   vfxSystem: VfxSystem,
+  unitMotion?: UnitMotionRuntimeHooks,
 ): VfxPlayResult {
-  const vfxPromise = compiled.hasExplicitBeats
-    ? playCompiledBeats(vfxSystem, compiled, context, false)
-    : playCompiledVfxSlots(vfxSystem, compiled, context, false);
+  const linkedRuntime = compiled.casterMotion.hasPresentation ? unitMotion : undefined;
+  const vfxPromise = (async () => {
+    if (linkedRuntime) {
+      linkedRuntime.install(compiled.casterMotion);
+      if (!compiled.hasExplicitBeats) {
+        await Promise.all(compiled.casterMotion.steps.map((step) => Promise.resolve(linkedRuntime.applyStep(step))));
+      }
+    }
+    if (compiled.hasExplicitBeats) {
+      await playCompiledBeats(vfxSystem, compiled, context, false, linkedRuntime);
+    } else {
+      await playCompiledVfxSlots(vfxSystem, compiled, context, false);
+    }
+  })();
   const techPromise = playCompiledTechnical(compiled, context);
-  const completion = Promise.all([vfxPromise, techPromise]).then(() => undefined);
+  const completion = Promise.all([vfxPromise, techPromise])
+    .then(() => undefined)
+    .finally(() => linkedRuntime?.cleanup());
 
   return {
     played: compiled.slots.length > 0,

@@ -1528,10 +1528,12 @@ function playActionVfx(spec,u,targets,cx,cz,visualContext={}){
   const results=visualTargets.map((group,groupIndex)=>{
     const context=makeActionVfxContext(u,group,cx,cz,spec,visualContext);
     if(published&&!presentation?.cinematic){
-      // CASTER MOTION is presentation-only and lives on the Combat Stage, so it
-      // is installed once per action and only while the Stage is active.
-      const applyCasterMotion=(G.stage&&groupIndex===0)?(motion=>combatStage.setCasterMotion(motion)):undefined;
-      return playPublishedActionVfx({actionKey,fallbackPresetId:presetId,context,vfxSystem:combatVfxSystem,...(applyCasterMotion?{applyCasterMotion}:{})});
+      const unitMotion=(G.stage&&groupIndex===0)?{
+        install:motion=>combatStage.setUnitMotion(motion),
+        applyStep:step=>combatStage.applyUnitMotionStep(step),
+        cleanup:()=>combatStage.resetUnitMotionPresentation(),
+      }:undefined;
+      return playPublishedActionVfx({actionKey,fallbackPresetId:presetId,context,vfxSystem:combatVfxSystem,...(unitMotion?{unitMotion}:{})});
     }
     return presentation?.cinematic
       ?combatVfxSystem.playCinematic(presentation.cinematic,context,presetId)
@@ -2532,10 +2534,11 @@ function buildLabPlaybackContext(){
       const cx=target.size>1?bossCenterGX(target):target.gx, cz=target.size>1?bossCenterGZ(target):target.gz;
       return makeActionVfxContext(source,[target],cx,cz,{key:actionKey,ap:1});
     },
-    // Composer Stage playback installs CASTER MOTION on the live Stage. The
-    // Composer calls this at the start of playVfx, so the motion clock and the
-    // VFX clock share one origin.
-    applyCasterMotion:(motion)=>{ combatStage.setCasterMotion(motion); },
+    unitMotion:{
+      install:(motion)=>{ combatStage.setUnitMotion(motion); },
+      applyStep:(step)=>combatStage.applyUnitMotionStep(step),
+      cleanup:()=>combatStage.resetUnitMotionPresentation(),
+    },
     buildStageContext:async(actionKey,playVfx)=>{
       const action=getLabAction(actionKey);
       if(!action)return false;

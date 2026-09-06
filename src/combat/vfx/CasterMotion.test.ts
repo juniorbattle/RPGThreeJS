@@ -45,9 +45,9 @@ function step(type: Parameters<typeof createCasterMotionStep>[0], overrides = {}
 }
 
 describe('CasterMotion — authoring model', () => {
-  it('exposes exactly the V1 motion vocabulary and nothing more', () => {
+  it('exposes the canonical linked-motion vocabulary without legacy IDLE', () => {
     expect([...CASTER_MOTION_TYPES]).toEqual([
-      'IDLE', 'DASH_SHORT', 'DASH_THROUGH', 'JUMP_UP', 'JUMP_DOWN', 'JUMP_ARC',
+      'HOLD', 'DASH_SHORT', 'DASH_THROUGH', 'JUMP_UP', 'JUMP_DOWN', 'JUMP_ARC',
     ]);
   });
 

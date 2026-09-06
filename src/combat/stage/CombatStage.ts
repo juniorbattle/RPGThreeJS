@@ -15,8 +15,11 @@ import {
 import type { VfxAnchor, VfxUnitLike } from '../vfx/VfxTypes';
 import {
   EMPTY_COMPILED_CASTER_MOTION,
-  sampleCasterMotionOffset,
+  sampleUnitMotionOffset,
+  unitMotionHasEffectForActor,
+  type CombatActorRole,
   type CompiledCasterMotion,
+  type CompiledCasterMotionStep,
   type MutableVec3,
 } from '../vfx/CasterMotion';
 import {
@@ -253,21 +256,14 @@ export class CombatStage {
   private motionStartedAtMs = 0;
   private impactAtMs: number | null = null;
 
-  /**
-   * CASTER MOTION — the sole source of caster movement on the Stage.
-   *
-   * Applied as a pure ADDITIVE OFFSET on the attacker proxy's start-slot
-   * position. An empty plan contributes exactly (0,0,0), so a preset without
-   * motion leaves the proxy stationary at its start slot.
-   *
-   * The camera, the target proxies, the terrain and the scene graph are never
-   * touched by this layer — by construction, not by convention.
-   */
-  private casterMotion: CompiledCasterMotion = EMPTY_COMPILED_CASTER_MOTION;
-  private casterMotionStartedAtMs = 0;
-  /** Reused per frame so motion sampling allocates nothing. */
+  /** One actor-aware plan; CASTER and TARGET use the same sampler and clock. */
+  private unitMotion: CompiledCasterMotion = EMPTY_COMPILED_CASTER_MOTION;
+  private unitMotionStartedAtMs = 0;
+  private readonly activatedUnitMotionStepIds = new Set<string>();
+  /** Reused per frame so actor sampling allocates nothing. */
   private readonly casterMotionOffset: MutableVec3 = { x: 0, y: 0, z: 0 };
-  private readonly casterAnchorDelta = new THREE.Vector3();
+  private readonly targetMotionOffset: MutableVec3 = { x: 0, y: 0, z: 0 };
+  private readonly unitAnchorDelta = new THREE.Vector3();
   private koFadingProxies = new Set<StageActorProxy>();
   private koFadeStartMs = 0;
   private aftermathActive = false;
@@ -374,7 +370,9 @@ export class CombatStage {
       }
 
       const actorProxies = this.actorProxies();
-      await Promise.all(actorProxies.filter((proxy) => proxy.poseSet).map((proxy) => applyCombatUnitPose(proxy, 'prepare')));
+      const posedProxies = actorProxies.filter((proxy) => proxy.poseSet !== null);
+      await Promise.all(posedProxies.map((proxy) => preloadCombatPoseSet(proxy.poseSet!)));
+      await Promise.all(posedProxies.map((proxy) => applyCombatUnitPose(proxy, 'prepare')));
       if (token !== this.sessionToken) return false;
       this.poseQaSelection = 0;
 
@@ -396,10 +394,10 @@ export class CombatStage {
 
       this.motionStartedAtMs = performance.now();
       this.impactAtMs = null;
-      // Each session starts motion-free. A plan is installed only when the
-      // action's preset actually authors caster motion.
-      this.clearCasterMotion();
-      this.casterMotionStartedAtMs = this.motionStartedAtMs;
+      // Each session starts motion-free. A linked plan is installed only when
+      // the action authors Unit Motion + Pose steps.
+      this.clearUnitMotion();
+      this.unitMotionStartedAtMs = this.motionStartedAtMs;
       this.active = true;
     } catch (error) {
       console.warn('[CombatStage] enter() failed — restoring tactical view.', error);
@@ -612,31 +610,70 @@ export class CombatStage {
     return this.getPoseQaState();
   }
 
-  /**
-   * Installs a compiled CASTER MOTION plan for the current session and restarts
-   * its clock. Presentation-only: it can never affect damage, AP or targeting.
-   */
+  /** Installs one actor-aware Unit Motion + Pose plan and restarts its clock. */
+  setUnitMotion(motion: CompiledCasterMotion | null): void {
+    this.clearUnitMotion();
+    this.resetUnitRootsToSlots();
+    this.unitMotion = motion ?? EMPTY_COMPILED_CASTER_MOTION;
+    this.unitMotionStartedAtMs = performance.now();
+  }
+
+  /** Historical API retained for legacy CASTER-only playback hosts. */
   setCasterMotion(motion: CompiledCasterMotion | null): void {
-    this.casterMotion = motion ?? EMPTY_COMPILED_CASTER_MOTION;
-    this.casterMotionStartedAtMs = performance.now();
+    this.setUnitMotion(motion);
+    for (const step of this.unitMotion.steps) this.activatedUnitMotionStepIds.add(step.motionId);
   }
 
-  /** Removes any caster motion, restoring exact legacy proxy behaviour. */
+  async applyUnitMotionStep(step: CompiledCasterMotionStep): Promise<boolean> {
+    if (step.pose === null) {
+      this.activatedUnitMotionStepIds.add(step.motionId);
+      return true;
+    }
+    const proxy = step.actor === 'TARGET' ? this.targetProxies[0] : this.attackerProxy;
+    if (!proxy) return false;
+    const result = await applyCombatUnitPose(proxy, step.pose);
+    this.activatedUnitMotionStepIds.add(step.motionId);
+    return result.pose !== null;
+  }
+
+  clearUnitMotion(): void {
+    this.unitMotion = EMPTY_COMPILED_CASTER_MOTION;
+    this.activatedUnitMotionStepIds.clear();
+    for (const offset of [this.casterMotionOffset, this.targetMotionOffset]) {
+      offset.x = 0;
+      offset.y = 0;
+      offset.z = 0;
+    }
+  }
+
+  /** Historical API retained for legacy callers. */
   clearCasterMotion(): void {
-    this.casterMotion = EMPTY_COMPILED_CASTER_MOTION;
-    this.casterMotionOffset.x = 0;
-    this.casterMotionOffset.y = 0;
-    this.casterMotionOffset.z = 0;
+    this.clearUnitMotion();
   }
 
-  /** Test accessor: the caster motion offset applied on the last frame. */
+  async resetUnitMotionPresentation(): Promise<void> {
+    this.clearUnitMotion();
+    this.resetUnitRootsToSlots();
+    await Promise.all(this.actorProxies()
+      .filter((proxy) => proxy.poseSet !== null)
+      .map((proxy) => applyCombatUnitPose(proxy, 'prepare')));
+  }
+
+  /** Test accessors for actor-isolated motion offsets. */
   casterMotionOffsetSnapshot(): { x: number; y: number; z: number } {
     return { ...this.casterMotionOffset };
   }
 
-  /** Test accessor: true when an effective caster motion plan is installed. */
+  targetMotionOffsetSnapshot(): { x: number; y: number; z: number } {
+    return { ...this.targetMotionOffset };
+  }
+
   hasCasterMotion(): boolean {
-    return this.casterMotion.hasEffect;
+    return unitMotionHasEffectForActor(this.unitMotion, 'CASTER');
+  }
+
+  hasTargetMotion(): boolean {
+    return unitMotionHasEffectForActor(this.unitMotion, 'TARGET');
   }
 
   /** Test accessor: attacker poseVisual world position, or null. */
@@ -656,6 +693,12 @@ export class CombatStage {
     return { position: root.position.clone(), quaternion: root.quaternion.clone(), scale: root.scale.clone() };
   }
 
+  targetUnitRootTransform(index = 0): { position: THREE.Vector3; quaternion: THREE.Quaternion; scale: THREE.Vector3 } | null {
+    const root = this.targetProxies[index]?.unitRoot;
+    if (!root) return null;
+    return { position: root.position.clone(), quaternion: root.quaternion.clone(), scale: root.scale.clone() };
+  }
+
   attackerPoseVisualSnapshot(): {
     unitId: string | null;
     pose: CombatPose | null;
@@ -663,16 +706,17 @@ export class CombatStage {
     width: number;
     height: number;
   } | null {
-    const proxy = this.attackerProxy;
-    if (!proxy) return null;
-    const params = proxy.mesh.geometry.parameters;
-    return {
-      unitId: proxy.poseUnitId,
-      pose: proxy.currentPose,
-      localPosition: proxy.mesh.position.clone(),
-      width: params.width,
-      height: params.height,
-    };
+    return this.poseVisualSnapshot(this.attackerProxy);
+  }
+
+  targetPoseVisualSnapshot(index = 0): {
+    unitId: string | null;
+    pose: CombatPose | null;
+    localPosition: THREE.Vector3;
+    width: number;
+    height: number;
+  } | null {
+    return this.poseVisualSnapshot(this.targetProxies[index] ?? null);
   }
 
   /** Test accessor: true when aftermath presentation is in progress. */
@@ -775,7 +819,7 @@ export class CombatStage {
     }
     this.disposeProxies();
     this.backgroundLayers.setVisible(false);
-    this.clearCasterMotion();
+    this.clearUnitMotion();
     this.active = false;
     this.activeProfile = null;
     this.sideAssignment = null;
@@ -847,6 +891,24 @@ export class CombatStage {
   private proxyVisualWorldPosition(proxy: StageActorProxy): THREE.Vector3 {
     proxy.unitRoot.updateMatrixWorld(true);
     return proxy.poseVisual.getWorldPosition(new THREE.Vector3());
+  }
+
+  private poseVisualSnapshot(proxy: StageActorProxy | null): {
+    unitId: string | null;
+    pose: CombatPose | null;
+    localPosition: THREE.Vector3;
+    width: number;
+    height: number;
+  } | null {
+    if (!proxy) return null;
+    const params = proxy.mesh.geometry.parameters;
+    return {
+      unitId: proxy.poseUnitId,
+      pose: proxy.currentPose,
+      localPosition: proxy.mesh.position.clone(),
+      width: params.width,
+      height: params.height,
+    };
   }
 
   private poseQaProxies(): StageActorProxy[] {
@@ -1006,7 +1068,7 @@ export class CombatStage {
        * motion the offset is exactly (0,0,0) and the unitRoot stays at its
        * start slot. Pose swaps only mutate the child poseVisual.
        */
-      this.sampleCasterMotion(now, pos);
+      this.sampleUnitMotion('CASTER', now, pos, this.casterMotionOffset);
       this.attackerProxy.unitRoot.position.set(
         pos.x + this.casterMotionOffset.x,
         pos.y + this.casterMotionOffset.y,
@@ -1033,14 +1095,26 @@ export class CombatStage {
       }
     }
 
-    for (const targetProxy of this.targetProxies) {
+    for (let targetIndex = 0; targetIndex < this.targetProxies.length; targetIndex += 1) {
+      const targetProxy = this.targetProxies[targetIndex]!;
       const base = resolvedSlotVec(targetProxy.startSlot, mirrorX);
+      if (targetIndex === 0) this.sampleUnitMotion('TARGET', now, base, this.targetMotionOffset);
+      const offset = targetIndex === 0 ? this.targetMotionOffset : null;
       const pulse = this.impactPulseFor(now, false);
       const faceSign = targetProxy.faceSign;
-      targetProxy.unitRoot.position.set(base.x, base.y, base.z);
+      targetProxy.unitRoot.position.set(
+        base.x + (offset?.x ?? 0),
+        base.y + (offset?.y ?? 0),
+        base.z + (offset?.z ?? 0),
+      );
       const poseBase = targetProxy.poseBasePosition;
       targetProxy.poseVisual.position.set(poseBase.x * faceSign * pulse, poseBase.y * pulse, poseBase.z);
       targetProxy.poseVisual.scale.set(faceSign * pulse, pulse, pulse);
+      const targetRef = this.targetUnitRefs[targetIndex];
+      const vfxTarget = targetRef ? this.vfxProxyMap.get(targetRef) : null;
+      if (vfxTarget?.grp && vfxTarget !== this.vfxSourceProxy) {
+        vfxTarget.grp.position.copy(targetProxy.unitRoot.position);
+      }
       if (this.impactAtMs !== null) {
         const p = Math.min(1, (now - this.impactAtMs) / profile.impactPulseMs);
         const flash = 1 - easeOutCubic(p);
@@ -1069,72 +1143,83 @@ export class CombatStage {
     }
   }
 
-  /**
-   * Samples the caster motion offset for this frame into `casterMotionOffset`.
-   *
-   * `casterBase` is the attacker's un-offset ground position, which is the
-   * origin every semantic destination is measured from. Nothing here allocates:
-   * the resolver writes into a single reused THREE.Vector3.
-   */
-  private sampleCasterMotion(now: number, casterBase: THREE.Vector3): void {
-    if (!this.casterMotion.hasEffect) {
-      this.casterMotionOffset.x = 0;
-      this.casterMotionOffset.y = 0;
-      this.casterMotionOffset.z = 0;
+  private sampleUnitMotion(
+    actor: CombatActorRole,
+    now: number,
+    actorBase: THREE.Vector3,
+    out: MutableVec3,
+  ): void {
+    if (!unitMotionHasEffectForActor(this.unitMotion, actor)) {
+      out.x = 0;
+      out.y = 0;
+      out.z = 0;
       return;
     }
-    const t = (now - this.casterMotionStartedAtMs) / 1000;
-    sampleCasterMotionOffset(
-      this.casterMotion,
+    const t = (now - this.unitMotionStartedAtMs) / 1000;
+    sampleUnitMotionOffset(
+      this.unitMotion,
       t,
-      (anchor, out) => this.resolveCasterMotionAnchor(anchor, casterBase, out),
-      this.casterMotionOffset,
+      actor,
+      (anchor, destination) => this.resolveUnitMotionAnchor(actor, anchor, actorBase, destination),
+      out,
+      this.activatedUnitMotionStepIds,
     );
   }
 
-  /**
-   * Writes the vector FROM the caster's base position TO a semantic anchor.
-   *
-   * Destinations are resolved from the live Stage composition (the primary
-   * target proxy's ground position), never from the camera and never from
-   * tactical grid geometry. FRONT/BACK are offset along the caster→target
-   * axis, so they stay correct for both faction sides automatically.
-   */
-  private resolveCasterMotionAnchor(
+  /** Resolves ORIGIN and actor-relative counterpart anchors from Stage slots. */
+  private resolveUnitMotionAnchor(
+    actor: CombatActorRole,
     anchor: VfxAnchor,
-    casterBase: THREE.Vector3,
+    actorBase: THREE.Vector3,
     out: MutableVec3,
   ): void {
     out.x = 0;
     out.y = 0;
     out.z = 0;
-    if (anchor === 'source') return;
+    const ownAnchor = actor === 'CASTER' ? 'source' : 'target';
+    if (anchor === ownAnchor) return;
 
     const mirrorX = this.sideAssignment?.mirrorX ?? false;
-    const targetProxy = this.targetProxies[0];
-    const targetSlot = targetProxy?.startSlot ?? 'primaryTarget';
-    const targetPoint = resolveStageSlotCoordinate(targetSlot, mirrorX);
-    this.casterAnchorDelta.set(
-      targetPoint.x - casterBase.x,
+    const counterpart = actor === 'CASTER' ? this.targetProxies[0] : this.attackerProxy;
+    const counterpartSlot = counterpart?.startSlot ?? (actor === 'CASTER' ? 'primaryTarget' : null);
+    if (!counterpartSlot) return;
+    const counterpartPoint = resolveStageSlotCoordinate(counterpartSlot, mirrorX);
+    this.unitAnchorDelta.set(
+      counterpartPoint.x - actorBase.x,
       0,
-      targetPoint.z - casterBase.z,
+      counterpartPoint.z - actorBase.z,
     );
 
-    // FRONT stops short of the target; BACK overshoots past it. Both are
-    // expressed along the caster→target axis so no new nomenclature is needed.
-    if (anchor === 'targetFront' || anchor === 'targetBack') {
-      const axisLength = this.casterAnchorDelta.length();
+    const frontAnchor = actor === 'CASTER' ? 'targetFront' : 'sourceFront';
+    const backAnchor = actor === 'CASTER' ? 'targetBack' : 'sourceBack';
+    if (anchor === frontAnchor || anchor === backAnchor) {
+      const axisLength = this.unitAnchorDelta.length();
       if (axisLength > 1e-6) {
-        const sign = anchor === 'targetFront' ? -1 : 1;
+        const sign = anchor === frontAnchor ? -1 : 1;
         const shift = Math.min(CASTER_MOTION_FLANK_OFFSET, axisLength * 0.5);
-        // The shift is collinear with the axis, so scaling is equivalent to
-        // adding a scaled unit vector — and allocates nothing.
-        this.casterAnchorDelta.multiplyScalar(1 + (sign * shift) / axisLength);
+        this.unitAnchorDelta.multiplyScalar(1 + (sign * shift) / axisLength);
       }
     }
 
-    out.x = this.casterAnchorDelta.x;
-    out.z = this.casterAnchorDelta.z;
+    out.x = this.unitAnchorDelta.x;
+    out.z = this.unitAnchorDelta.z;
+  }
+
+  private resetUnitRootsToSlots(): void {
+    const mirrorX = this.sideAssignment?.mirrorX ?? false;
+    if (this.attackerProxy) {
+      const base = resolvedSlotVec(this.attackerProxy.startSlot, mirrorX);
+      this.attackerProxy.unitRoot.position.copy(base);
+      if (this.vfxSourceProxy?.grp) this.vfxSourceProxy.grp.position.copy(base);
+    }
+    for (let index = 0; index < this.targetProxies.length; index += 1) {
+      const proxy = this.targetProxies[index]!;
+      const base = resolvedSlotVec(proxy.startSlot, mirrorX);
+      proxy.unitRoot.position.copy(base);
+      const targetRef = this.targetUnitRefs[index];
+      const vfxTarget = targetRef ? this.vfxProxyMap.get(targetRef) : null;
+      if (vfxTarget?.grp && vfxTarget !== this.vfxSourceProxy) vfxTarget.grp.position.copy(base);
+    }
   }
 
   private impactPulseFor(now: number, isAttacker: boolean): number {

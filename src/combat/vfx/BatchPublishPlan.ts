@@ -9,7 +9,7 @@
 import type { ComposerStore } from './VfxComposerPlayback';
 import { getSavedFingerprint } from './VfxComposerPlayback';
 import type { VfxPresetDraft } from './VfxPresetComposer';
-import { validateDraft } from './VfxPresetComposer';
+import { validateDraftForPublication } from './VfxPresetComposer';
 import {
   computeFingerprint,
   getPublishedEntry,
@@ -85,7 +85,7 @@ export function buildBatchPublishPlan(
       classification = 'MODIFIED_SINCE_SAVE';
     } else {
       // Saved fingerprint matches current — check validity for BLOCKED
-      if (!validateDraft(draft)) {
+      if (!validateDraftForPublication(draft)) {
         classification = 'BLOCKED';
         blockReason = 'Draft failed schema validation';
       } else {

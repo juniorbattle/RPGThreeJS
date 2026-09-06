@@ -14,7 +14,7 @@ import {
   getPublishedEntry,
   type PublishedVfxRegistry,
 } from '../combat/vfx/PublishedVfxRegistry';
-import { validateDraft, type VfxPresetDraft } from '../combat/vfx/VfxPresetComposer';
+import { validateDraftForPublication, type VfxPresetDraft } from '../combat/vfx/VfxPresetComposer';
 import { getCandidateInventoryRecord, resolveCandidateSource } from '../combat/vfx/VfxResourceManager';
 
 const PUBLISHED_REGISTRY_PATH = join(process.cwd(), 'src', 'combat', 'vfx', 'generated', 'published-vfx-presets.json');
@@ -53,7 +53,7 @@ export function handlePublishRequest(body: string): PublishResult {
     return { ok: false, error: 'Missing draft in request body' };
   }
 
-  if (!validateDraft(draft)) {
+  if (!validateDraftForPublication(draft)) {
     return { ok: false, error: 'Invalid draft: failed schema validation' };
   }
 
@@ -241,7 +241,7 @@ export function handlePublishAllPresetsRequest(
       errors.push({ actionKey: `index_${i}`, reason: 'Draft is not an object' });
       continue;
     }
-    if (!validateDraft(item)) {
+    if (!validateDraftForPublication(item)) {
       errors.push({ actionKey: (item as { actionKey?: string }).actionKey ?? `index_${i}`, reason: 'Draft failed schema validation' });
       continue;
     }

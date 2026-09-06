@@ -86,15 +86,22 @@ import {
   setBeatComposition,
   deriveBeatsFromPhases,
   hasExplicitBeats,
+  validateDraftForPublication,
 } from './VfxPresetComposer';
 import {
-  CASTER_MOTION_TYPES,
-  CASTER_MOTION_DESTINATIONS,
-  resolveCasterMotionStep,
-  type CasterMotionType,
-  type CasterMotionDestination,
+  UNIT_MOTION_ACTORS,
+  UNIT_MOTION_EASINGS,
+  UNIT_MOTION_TYPES,
+  normalizeUnitMotionDestination,
+  resolveUnitMotionStep,
+  unitMotionDestinationsForActor,
   type CasterMotionStep,
+  type CombatActorRole,
+  type UnitMotionDestination,
+  type UnitMotionEasing,
+  type UnitMotionType,
 } from './CasterMotion';
+import { COMBAT_POSES, type CombatPose } from '../stage/CombatPoseRegistry';
 import type {
   VfxPresetDraft,
   VfxVisualSlot,
@@ -497,22 +504,33 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     CENTER: 'C', LEFT: 'L', RIGHT: 'R', TOP: 'T', BOTTOM: 'B',
   };
 
-  /**
-   * CASTER MOTION labels. Phrased as intentions ("STEP IN", "CROSS THROUGH")
-   * rather than as engine identifiers, matching the Composer's semantic style.
-   */
   const MOTION_TYPE_LABELS: Record<string, string> = {
-    IDLE: 'HOLD', DASH_SHORT: 'STEP IN', DASH_THROUGH: 'CROSS THROUGH',
-    JUMP_UP: 'JUMP UP', JUMP_DOWN: 'DROP DOWN', JUMP_ARC: 'LEAP',
+    HOLD: 'HOLD', DASH_SHORT: 'DASH SHORT', DASH_THROUGH: 'DASH THROUGH',
+    JUMP_UP: 'JUMP UP', JUMP_DOWN: 'JUMP DOWN', JUMP_ARC: 'JUMP ARC',
+  };
+  const ACTOR_LABELS: Record<string, string> = { CASTER: 'CASTER', TARGET: 'TARGET' };
+  const POSE_LABELS: Record<string, string> = {
+    prepare: 'PREPARE', dash: 'DASH', attack: 'ATTACK', cast: 'CAST',
   };
   const MOTION_DESTINATION_LABELS: Record<string, string> = {
-    ORIGIN: 'IN PLACE', TARGET: 'TARGET', TARGET_FRONT: 'T.FRONT', TARGET_BACK: 'T.BACK',
+    ORIGIN: 'ORIGIN', TARGET: 'TARGET', TARGET_FRONT: 'TARGET FRONT', TARGET_BACK: 'TARGET BACK',
+    CASTER: 'CASTER', CASTER_FRONT: 'CASTER FRONT', CASTER_BACK: 'CASTER BACK',
   };
   const MOTION_DURATION_LABELS: Record<string, string> = {
     '0.12': 'FAST', '0.2': 'NORMAL', '0.35': 'SLOW', '0.6': 'VERY SLOW',
   };
-  /** Semantic time presets — the author never types raw seconds. */
+  const MOTION_DISTANCE_LABELS: Record<string, string> = {
+    '0.25': '25%', '0.5': '50%', '0.8': '80%', '1': '100%',
+  };
+  const MOTION_HEIGHT_LABELS: Record<string, string> = {
+    '0.5': 'LOW', '0.9': 'MID', '1.4': 'HIGH', '2': 'VERY HIGH',
+  };
+  const MOTION_EASING_LABELS: Record<string, string> = {
+    LINEAR: 'LINEAR', EASE_IN: 'EASE IN', EASE_OUT: 'EASE OUT', EASE_IN_OUT: 'EASE IN/OUT',
+  };
   const MOTION_DURATION_PRESETS: readonly number[] = [0.12, 0.2, 0.35, 0.6];
+  const MOTION_DISTANCE_PRESETS: readonly number[] = [0.25, 0.5, 0.8, 1];
+  const MOTION_HEIGHT_PRESETS: readonly number[] = [0.5, 0.9, 1.4, 2];
 
   /**
    * Compact indicators for non-default configuration, so the author can read a
@@ -857,8 +875,8 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
    *   - BEAT N header
    *   - COMPOSITION control (TOGETHER/SEQUENCE/PAIR THEN LAST)
    *   - Timing display (ABSOLUTE START, DURATION, END — read-only)
-   *   - VFX and CASTER MOTION participant cards
-   *   - + ADD VFX / + ADD CASTER MOTION / REMOVE BEAT (disabled if non-empty)
+   *   - VFX and linked UNIT MOTION + POSE participant cards
+   *   - + ADD VFX / + ADD UNIT MOTION + POSE / REMOVE BEAT
    *
    * No global VFX section. No global Motion section. No UNASSIGNED pool.
    * No global Composition section. No second timeline.
@@ -1008,13 +1026,21 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
         if (!explicit) mutate(m);
         else render();
       }));
-      beatActions.appendChild(buildButton('+ ADD CASTER MOTION', 'cmp-beat-add-motion', () => {
+      const occupiedActors = new Set(beatMotions.map((motion) => resolveUnitMotionStep(motion).actor));
+      const defaultActor: CombatActorRole | null = !occupiedActors.has('CASTER')
+        ? 'CASTER'
+        : !occupiedActors.has('TARGET') ? 'TARGET' : null;
+      const addMotionButton = buildButton('+ ADD UNIT MOTION + POSE', 'cmp-beat-add-motion', () => {
+        if (!defaultActor) return;
         const m = explicit ? draft : materializeBeats(draft);
         const targetBeatId = explicit ? beat.id : (m.beats?.[beatIndex]?.id ?? beat.id);
-        const withMotion = addCasterMotion(m);
+        const withMotion = addCasterMotion(m, 'HOLD', { actor: defaultActor, pose: 'prepare' });
         const assigned = addMotionToBeat(withMotion, targetBeatId, (withMotion.casterMotion ?? []).at(-1)!.id);
         mutate(assigned);
-      }));
+      });
+      addMotionButton.disabled = defaultActor === null;
+      addMotionButton.title = defaultActor ? `Add ${defaultActor} step` : 'One CASTER and one TARGET step maximum per Beat';
+      beatActions.appendChild(addMotionButton);
       beatBody.appendChild(beatActions);
 
       beatEl.appendChild(beatBody);
@@ -1150,7 +1176,7 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
   }
 
   /**
-   * Renders a CASTER MOTION card inside a beat. Includes all existing motion
+   * Renders one linked UNIT MOTION + POSE card inside a beat. Includes motion
    * editing controls (type, destination, speed, return) plus
    * beat-specific controls:
    *   ◀ MOVE LEFT  — reassign to previous beat
@@ -1165,62 +1191,114 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     beatCount: number,
     explicit: boolean,
   ): HTMLElement {
-    const resolved = resolveCasterMotionStep(step);
+    const resolved = resolveUnitMotionStep(step);
     const card = document.createElement('div');
     card.className = 'cmp-motion-card';
     card.dataset.motionId = step.id;
 
     const title = document.createElement('div');
     title.className = 'cmp-motion-title';
-    const label = MOTION_TYPE_LABELS[resolved.type] ?? resolved.type;
-    const dest = resolved.type !== 'IDLE' && resolved.type !== 'JUMP_UP'
+    const poseLabel = resolved.pose ? POSE_LABELS[resolved.pose] : 'INHERIT (LEGACY)';
+    const motionLabel = MOTION_TYPE_LABELS[resolved.type] ?? resolved.type;
+    const destinationLabel = resolved.type !== 'HOLD' && resolved.destination !== 'ORIGIN'
       ? ` → ${MOTION_DESTINATION_LABELS[resolved.destination] ?? resolved.destination}`
       : '';
-    title.textContent = `CASTER MOTION: ${label}${dest}`;
+    title.textContent = `${resolved.actor} — ${poseLabel} — ${motionLabel}${destinationLabel}`;
     card.appendChild(title);
 
-    card.appendChild(buildProfileControl<CasterMotionType>(
-      'MOVE', CASTER_MOTION_TYPES, resolved.type,
-      (value) => mutate(updateCasterMotion(draft, step.id, { type: value })),
+    const beat = draft.beats?.[beatIndex];
+    const otherActors = new Set((beat?.casterMotionIds ?? [])
+      .filter((id) => id !== step.id)
+      .map((id) => (draft.casterMotion ?? []).find((motion) => motion.id === id))
+      .filter((motion): motion is CasterMotionStep => motion !== undefined)
+      .map((motion) => resolveUnitMotionStep(motion).actor));
+
+    card.appendChild(buildProfileControl<CombatActorRole>(
+      'UNIT', UNIT_MOTION_ACTORS, resolved.actor,
+      (actor) => {
+        if (otherActors.has(actor)) return;
+        mutate(updateCasterMotion(draft, step.id, {
+          actor,
+          destination: normalizeUnitMotionDestination(resolved.destination, actor),
+        }));
+      },
+      ACTOR_LABELS,
+    ));
+    card.appendChild(buildProfileControl<CombatPose>(
+      'POSE', COMBAT_POSES, resolved.pose,
+      (pose) => mutate(updateCasterMotion(draft, step.id, { actor: resolved.actor, pose })),
+      POSE_LABELS,
+    ));
+    if (resolved.pose === null) {
+      const legacy = document.createElement('div');
+      legacy.className = 'cmp-motion-legacy';
+      legacy.textContent = 'LEGACY: no pose override — choose a pose before publishing';
+      card.appendChild(legacy);
+    }
+    card.appendChild(buildProfileControl<UnitMotionType>(
+      'MOTION', UNIT_MOTION_TYPES, resolved.type,
+      (type) => mutate(updateCasterMotion(draft, step.id, type === 'HOLD'
+        ? { type, destination: undefined, distance: undefined, height: undefined, returnToOrigin: undefined }
+        : { type })),
       MOTION_TYPE_LABELS,
     ));
 
-    if (resolved.type !== 'IDLE' && resolved.type !== 'JUMP_UP') {
-      card.appendChild(buildProfileControl<CasterMotionDestination>(
-        'TO', CASTER_MOTION_DESTINATIONS, resolved.destination,
-        (value) => mutate(updateCasterMotion(draft, step.id, { destination: value })),
-        MOTION_DESTINATION_LABELS,
+    if (resolved.type !== 'HOLD') {
+      if (resolved.type !== 'JUMP_UP') {
+        card.appendChild(buildProfileControl<UnitMotionDestination>(
+          'DESTINATION', unitMotionDestinationsForActor(resolved.actor), resolved.destination,
+          (destination) => mutate(updateCasterMotion(draft, step.id, { destination })),
+          MOTION_DESTINATION_LABELS,
+        ));
+      }
+      if (resolved.destination !== 'ORIGIN' && resolved.type !== 'JUMP_UP') {
+        card.appendChild(buildProfileControl<string>(
+          'DISTANCE', MOTION_DISTANCE_PRESETS.map(String), nearestPreset(MOTION_DISTANCE_PRESETS, resolved.distance),
+          (value) => mutate(updateCasterMotion(draft, step.id, { distance: Number(value) })),
+          MOTION_DISTANCE_LABELS,
+        ));
+      }
+      if (resolved.type === 'JUMP_UP' || resolved.type === 'JUMP_DOWN' || resolved.type === 'JUMP_ARC') {
+        card.appendChild(buildProfileControl<string>(
+          'HEIGHT', MOTION_HEIGHT_PRESETS.map(String), nearestPreset(MOTION_HEIGHT_PRESETS, resolved.height),
+          (value) => mutate(updateCasterMotion(draft, step.id, { height: Number(value) })),
+          MOTION_HEIGHT_LABELS,
+        ));
+      }
+      card.appendChild(buildProfileControl<string>(
+        'DURATION', MOTION_DURATION_PRESETS.map(String), nearestPreset(MOTION_DURATION_PRESETS, resolved.duration),
+        (value) => mutate(updateCasterMotion(draft, step.id, { duration: Number(value) })),
+        MOTION_DURATION_LABELS,
       ));
+      card.appendChild(buildProfileControl<UnitMotionEasing>(
+        'EASING', UNIT_MOTION_EASINGS, resolved.easing,
+        (easing) => mutate(updateCasterMotion(draft, step.id, { easing })),
+        MOTION_EASING_LABELS,
+      ));
+
+      const returnRow = document.createElement('div');
+      returnRow.className = 'cmp-profile';
+      returnRow.dataset.profile = 'return';
+      const returnCaption = document.createElement('span');
+      returnCaption.className = 'cmp-profile-label';
+      returnCaption.textContent = 'RETURN TO ORIGIN';
+      returnRow.appendChild(returnCaption);
+      const returnGroup = document.createElement('div');
+      returnGroup.className = 'cmp-profile-group';
+      const stayBtn = buildButton('STAY', 'cmp-profile-btn', () => {
+        mutate(updateCasterMotion(draft, step.id, { returnToOrigin: false }));
+      });
+      stayBtn.dataset.value = 'stay';
+      if (!resolved.returnToOrigin) stayBtn.classList.add('cmp-active');
+      const backBtn = buildButton('RETURN', 'cmp-profile-btn', () => {
+        mutate(updateCasterMotion(draft, step.id, { returnToOrigin: true }));
+      });
+      backBtn.dataset.value = 'return';
+      if (resolved.returnToOrigin) backBtn.classList.add('cmp-active');
+      returnGroup.append(stayBtn, backBtn);
+      returnRow.appendChild(returnGroup);
+      card.appendChild(returnRow);
     }
-
-    card.appendChild(buildProfileControl<string>(
-      'SPEED', MOTION_DURATION_PRESETS.map(String), nearestPreset(MOTION_DURATION_PRESETS, resolved.duration),
-      (value) => mutate(updateCasterMotion(draft, step.id, { duration: Number(value) })),
-      MOTION_DURATION_LABELS,
-    ));
-
-    const returnRow = document.createElement('div');
-    returnRow.className = 'cmp-profile';
-    returnRow.dataset.profile = 'return';
-    const returnCaption = document.createElement('span');
-    returnCaption.className = 'cmp-profile-label';
-    returnCaption.textContent = 'AFTER';
-    returnRow.appendChild(returnCaption);
-    const returnGroup = document.createElement('div');
-    returnGroup.className = 'cmp-profile-group';
-    const stayBtn = buildButton('STAY', 'cmp-profile-btn', () => {
-      mutate(updateCasterMotion(draft, step.id, { returnToOrigin: false }));
-    });
-    stayBtn.dataset.value = 'stay';
-    if (!resolved.returnToOrigin) stayBtn.classList.add('cmp-active');
-    const backBtn = buildButton('COME BACK', 'cmp-profile-btn', () => {
-      mutate(updateCasterMotion(draft, step.id, { returnToOrigin: true }));
-    });
-    backBtn.dataset.value = 'return';
-    if (resolved.returnToOrigin) backBtn.classList.add('cmp-active');
-    returnGroup.append(stayBtn, backBtn);
-    returnRow.appendChild(returnGroup);
-    card.appendChild(returnRow);
 
     const actions = document.createElement('div');
     actions.className = 'cmp-motion-actions';
@@ -1458,7 +1536,9 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
       const publishBtn = buildButton(publishLabel, 'cmp-publish', () => {
         showPublishConfirmation(draft, pubState);
       });
-      publishBtn.disabled = draft.visualSlots.length === 0;
+      const publicationValid = validateDraftForPublication(draft);
+      publishBtn.disabled = draft.visualSlots.length === 0 || !publicationValid;
+      if (!publicationValid) publishBtn.title = 'Resolve legacy/incomplete Unit Motion + Pose steps before publishing';
       section.appendChild(publishBtn);
     }
 
@@ -2068,7 +2148,7 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
   function buildProfileControl<T extends string>(
     label: string,
     values: readonly T[],
-    current: T,
+    current: T | null,
     onChange: (value: T) => void,
     displayLabels?: Record<string, string>,
   ): HTMLElement {
@@ -2168,6 +2248,7 @@ function addComposerStyle(): void {
     #${COMPOSER_ROOT_ID} .cmp-timeline-motion{color:#9fe5ff;font-weight:700}
     #${COMPOSER_ROOT_ID} .cmp-motion-card{margin-bottom:5px;padding:5px;border:1px solid #2f5468;border-radius:4px;background:#101c24}
     #${COMPOSER_ROOT_ID} .cmp-motion-title{font-size:10px;font-weight:800;letter-spacing:.06em;color:#7fd0ff;margin-bottom:4px}
+    #${COMPOSER_ROOT_ID} .cmp-motion-legacy{margin:4px 0;padding:4px;border:1px solid #8d7440;color:#ffd98c;font-size:10px}
     #${COMPOSER_ROOT_ID} .cmp-motion-actions{margin-top:5px}
     #${COMPOSER_ROOT_ID} .cmp-motion-remove{width:100%;border-color:#8c3a3a;background:#2f0d0d}
     #${COMPOSER_ROOT_ID} .cmp-add-motion{width:100%;border-color:#3a6a8c;background:#0d1f2f;font-weight:700;padding:6px}

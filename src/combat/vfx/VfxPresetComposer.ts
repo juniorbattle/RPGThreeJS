@@ -21,10 +21,14 @@ import type { VfxAnchor, VfxOrientation } from './VfxTypes';
 import { repairCandidateAssignment } from './VfxSourceSuitability';
 import {
   compileCasterMotion,
-  createCasterMotionStep,
+  createUnitMotionStep,
+  resolveUnitMotionStep,
   validateCasterMotion,
+  validateLinkedUnitMotion,
   type CasterMotionStep,
-  type CasterMotionType,
+  type CombatActorRole,
+  type UnitMotionStep,
+  type UnitMotionType,
   type CompiledCasterMotion,
   type CompiledCasterMotionStep,
 } from './CasterMotion';
@@ -321,10 +325,7 @@ export interface VfxPresetDraft {
   autoPlacement?: Exclude<VfxPlacementProfile, 'AUTO'>;
   /** Action tier (1..6) used by TECHNICAL POLISH=AUTO. */
   tier?: number;
-  /**
-   * Phase B CASTER MOTION. Purely ADDITIVE: absent or empty means the preset
-   * behaves exactly as it did before caster motion existed.
-   */
+  /** Linked Unit Motion + Pose steps; historical field name retained on disk. */
   casterMotion?: CasterMotionStep[];
   /**
    * V2.7 CHOREOGRAPHY BEATS. ADDITIVE and OPTIONAL: absent means the legacy
@@ -826,12 +827,16 @@ export function deriveBeatsFromPhases(
  * that every participant is referenced exactly once, that there are no orphan
  * participants, and that startDelay and composition are valid.
  */
-export function validateChoreographyBeats(draft: VfxPresetDraft): { ok: boolean; errors: string[] } {
+export function validateChoreographyBeats(
+  draft: VfxPresetDraft,
+  options: { allowLegacyActorDuplicates?: boolean } = {},
+): { ok: boolean; errors: string[] } {
   const errors: string[] = [];
   if (!draft.beats || draft.beats.length === 0) return { ok: true, errors };
 
   const slotIds = new Set(draft.visualSlots.map((s) => s.id));
-  const motionIds = new Set((draft.casterMotion ?? []).map((m) => m.id));
+  const motionById = new Map((draft.casterMotion ?? []).map((m) => [m.id, m]));
+  const motionIds = new Set(motionById.keys());
   const seenSlotIds = new Set<string>();
   const seenMotionIds = new Set<string>();
   const seenBeatIds = new Set<string>();
@@ -874,9 +879,22 @@ export function validateChoreographyBeats(draft: VfxPresetDraft): { ok: boolean;
       }
       seenSlotIds.add(slotId);
     }
+    const actorSteps = new Map<CombatActorRole, CasterMotionStep>();
     for (const motionId of beat.casterMotionIds) {
-      if (!motionIds.has(motionId)) {
+      const motion = motionById.get(motionId);
+      if (!motion) {
         errors.push(`Beat ${beat.id} references unknown motion: ${motionId}`);
+      } else {
+        const actor = resolveUnitMotionStep(motion).actor;
+        const existing = actorSteps.get(actor);
+        const bothLegacy = existing
+          && existing.actor === undefined && existing.pose === undefined
+          && motion.actor === undefined && motion.pose === undefined;
+        if (existing && (!options.allowLegacyActorDuplicates || !bothLegacy)) {
+          errors.push(`Beat ${beat.id} has multiple ${actor} motion steps`);
+        } else if (!existing) {
+          actorSteps.set(actor, motion);
+        }
       }
       if (seenMotionIds.has(motionId)) {
         errors.push(`Motion ${motionId} appears in multiple beats`);
@@ -978,7 +996,15 @@ export function removeVfxFromBeat(draft: VfxPresetDraft, beatId: string, slotId:
 /** Adds a caster motion to a beat, removing it from any other beat first. */
 export function addMotionToBeat(draft: VfxPresetDraft, beatId: string, motionId: string): VfxPresetDraft {
   const beats = draft.beats ?? [];
-  if (!beats.some((b) => b.id === beatId)) return draft;
+  const targetBeat = beats.find((b) => b.id === beatId);
+  const motion = (draft.casterMotion ?? []).find((step) => step.id === motionId);
+  if (!targetBeat || !motion) return draft;
+  const actor = resolveUnitMotionStep(motion).actor;
+  const conflict = targetBeat.casterMotionIds
+    .filter((id) => id !== motionId)
+    .map((id) => (draft.casterMotion ?? []).find((step) => step.id === id))
+    .some((step) => step && resolveUnitMotionStep(step).actor === actor);
+  if (conflict) return draft;
   const next = beats.map((b) => ({
     ...b,
     casterMotionIds: b.id === beatId
@@ -1359,19 +1385,16 @@ export function setTechnicalPolish(draft: VfxPresetDraft, polish: VfxTechnicalPo
   return { ...draft, technicalPolish: polish, updatedAt: Date.now() };
 }
 
-// ============================================================ Caster Motion Operations
+// ============================================================ Linked Unit Motion + Pose Operations
 
-/**
- * Appends a caster motion. A new step is added at the end of the list —
- * timing is controlled by beat assignment, not by the motion itself.
- */
+/** Appends a safe linked step; Beat assignment remains the timing authority. */
 export function addCasterMotion(
   draft: VfxPresetDraft,
-  type: CasterMotionType = 'DASH_SHORT',
-  overrides: Partial<Omit<CasterMotionStep, 'id' | 'type'>> = {},
+  type: UnitMotionType = 'HOLD',
+  overrides: Partial<Omit<UnitMotionStep, 'id' | 'type'>> = {},
 ): VfxPresetDraft {
   const existing = draft.casterMotion ?? [];
-  const step = createCasterMotionStep(type, overrides);
+  const step = createUnitMotionStep(type, overrides);
   return { ...draft, casterMotion: [...existing, step], updatedAt: Date.now() };
 }
 
@@ -1405,6 +1428,10 @@ export function updateCasterMotion(
 /** True when the draft authors at least one motion that can displace the caster. */
 export function hasCasterMotion(draft: VfxPresetDraft): boolean {
   return compileCasterMotion(draft.casterMotion).hasEffect;
+}
+
+export function hasUnitMotionPresentation(draft: VfxPresetDraft): boolean {
+  return compileCasterMotion(draft.casterMotion).hasPresentation;
 }
 
 // ============================================================ Transform Resolution
@@ -1570,10 +1597,7 @@ export interface CompiledVfxDraft {
   totalDuration: number;
   impactTime: number;
   slots: CompiledVfxSlot[];
-  /**
-   * Compiled CASTER MOTION plan. Always present; empty for every preset that
-   * authors no motion, so downstream code needs no legacy branch.
-   */
+  /** Unified actor-aware Unit Motion + Pose plan; historical key retained. */
   casterMotion: CompiledCasterMotion;
   /**
    * V2.7 Compiled choreography beats. Always present — derived from phases
@@ -1714,10 +1738,8 @@ export function compileDraft(draft: VfxPresetDraft, options: CompileDraftOptions
     : [];
 
   /**
-   * CASTER MOTION shares the preset clock with the visual slots, so a motion
-   * scheduled after the last spritesheet legitimately extends the preset.
-   * Presets without motion compile to an empty plan and keep their exact
-   * previous totalDuration.
+   * Linked Unit Motion + Pose shares the Beat clock with visual slots.
+   * Presets without linked steps keep their previous totalDuration.
    */
   const casterMotion = compileCasterMotion(draft.casterMotion);
 
@@ -1837,6 +1859,13 @@ export function compileDraft(draft: VfxPresetDraft, options: CompileDraftOptions
     // Recompile motion with beat-assigned startTimes.
     if (motionStartTimeOverride.size > 0) {
       finalCasterMotion = compileCasterMotion(draft.casterMotion, motionStartTimeOverride);
+      const finalMotionById = new Map(finalCasterMotion.steps.map((step) => [step.motionId, step]));
+      compiledBeats = compiledBeats.map((beat) => ({
+        ...beat,
+        casterMotions: beat.casterMotions
+          .map((step) => finalMotionById.get(step.motionId))
+          .filter((step): step is CompiledCasterMotionStep => step !== undefined),
+      }));
     }
   } else {
     // Legacy path: derive beats from phases for display. No scheduling change.
@@ -1945,10 +1974,23 @@ export function validateDraft(raw: unknown): raw is VfxPresetDraft {
   // ADDITIVE: absent beats is always valid. Present beats must be structurally sound.
   if (obj.beats != null) {
     if (!Array.isArray(obj.beats)) return false;
-    const beatValidation = validateChoreographyBeats(obj as unknown as VfxPresetDraft);
+    const beatValidation = validateChoreographyBeats(
+      obj as unknown as VfxPresetDraft,
+      { allowLegacyActorDuplicates: true },
+    );
     if (!beatValidation.ok) return false;
   }
   return true;
+}
+
+export function validateDraftForPublication(raw: unknown): raw is VfxPresetDraft {
+  if (!validateDraft(raw)) return false;
+  const draft = raw as VfxPresetDraft;
+  if ((draft.casterMotion ?? []).length > 0) {
+    if (!validateLinkedUnitMotion(draft.casterMotion).ok) return false;
+    if (!draft.beats || draft.beats.length === 0) return false;
+  }
+  return validateChoreographyBeats(draft).ok;
 }
 
 export function deserializeDraft(raw: string): VfxPresetDraft | null {

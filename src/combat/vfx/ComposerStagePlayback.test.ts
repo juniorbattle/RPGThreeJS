@@ -4,6 +4,7 @@ import { playDraftInCombatStage } from './VfxComposerPlayback';
 import type { ComposerPlaybackContext } from './VfxComposerPlayback';
 import type { VfxPresetDraft } from './VfxPresetComposer';
 import { createVisualSlot } from './VfxPresetComposer';
+import { createUnitMotionStep } from './CasterMotion';
 
 function makeDraft(slotCount: number): VfxPresetDraft {
   const ids = ['r1_0001', 'r1_0002', 'r1_0003'];
@@ -97,5 +98,73 @@ describe('R2C-VFX LAB V2.1 — Combat Stage playback', () => {
     const before = JSON.stringify(draft);
     await playDraftInCombatStage(ctx, draft, 'full_preset');
     expect(JSON.stringify(draft)).toBe(before);
+  });
+
+  it('9. applies same-Beat CASTER and TARGET poses before VFX activation', async () => {
+    const caster = createUnitMotionStep('HOLD', { actor: 'CASTER', pose: 'attack' });
+    const target = createUnitMotionStep('JUMP_ARC', { actor: 'TARGET', pose: 'dash', destination: 'CASTER_FRONT' });
+    const draft: VfxPresetDraft = {
+      ...makeDraft(1),
+      casterMotion: [caster, target],
+      beats: [{ id: 'beat', startDelay: 0, vfxSlotIds: [makeDraft(1).visualSlots[0]!.id], casterMotionIds: [caster.id, target.id] }],
+    };
+    draft.beats![0]!.vfxSlotIds = [draft.visualSlots[0]!.id];
+    const events: string[] = [];
+    const ctx = makeCtx(mockStageContext());
+    ctx.unitMotion = {
+      applyStep: (step) => { events.push(`pose:${step.actor}:${step.pose}`); },
+      install: () => { events.push('install'); },
+      cleanup: () => { events.push('cleanup'); },
+    };
+    ctx.vfxSystem = {
+      playLabSpriteSheet: vi.fn(() => {
+        events.push('vfx');
+        return { completion: Promise.resolve() };
+      }),
+    } as unknown as ComposerPlaybackContext['vfxSystem'];
+
+    const result = await playDraftInCombatStage(ctx, draft, 'visuals_only');
+
+    expect(result.played).toBe(true);
+    expect(events.slice(0, 4)).toEqual(['install', 'pose:CASTER:attack', 'pose:TARGET:dash', 'vfx']);
+    expect(events.at(-1)).toBe('cleanup');
+  });
+
+  it('10. previews a pose-only HOLD Beat without requiring fake VFX', async () => {
+    const hold = createUnitMotionStep('HOLD', { actor: 'CASTER', pose: 'cast' });
+    const draft: VfxPresetDraft = {
+      ...makeDraft(0),
+      casterMotion: [hold],
+      beats: [{ id: 'beat', startDelay: 0, vfxSlotIds: [], casterMotionIds: [hold.id] }],
+    };
+    const applyStep = vi.fn();
+    const ctx = makeCtx(mockStageContext());
+    ctx.unitMotion = { applyStep, install: vi.fn(), cleanup: vi.fn() };
+
+    const result = await playDraftInCombatStage(ctx, draft, 'visuals_only');
+
+    expect(result.played).toBe(true);
+    expect(applyStep).toHaveBeenCalledWith(expect.objectContaining({ actor: 'CASTER', pose: 'cast', type: 'HOLD' }));
+  });
+
+  it('11. cleans linked presentation when Stage playback fails', async () => {
+    const hold = createUnitMotionStep('HOLD', { pose: 'attack' });
+    const draft: VfxPresetDraft = {
+      ...makeDraft(1),
+      casterMotion: [hold],
+      beats: [{ id: 'beat', vfxSlotIds: [], casterMotionIds: [hold.id] }],
+    };
+    draft.beats![0]!.vfxSlotIds = [draft.visualSlots[0]!.id];
+    const cleanup = vi.fn();
+    const ctx = makeCtx(mockStageContext());
+    ctx.unitMotion = { applyStep: vi.fn(), install: vi.fn(), cleanup };
+    ctx.vfxSystem = {
+      playLabSpriteSheet: vi.fn(() => { throw new Error('playback failed'); }),
+    } as unknown as ComposerPlaybackContext['vfxSystem'];
+
+    const result = await playDraftInCombatStage(ctx, draft, 'visuals_only');
+
+    expect(result.played).toBe(false);
+    expect(cleanup).toHaveBeenCalledTimes(1);
   });
 });

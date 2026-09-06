@@ -73,6 +73,7 @@ import {
   DEFAULT_IMPACT_POWER,
   MAX_PHASE,
   hasActiveImpactFx,
+  validateChoreographyBeats,
   resolveSlotDirectionProfile,
   resolveSlotMirrorProfile,
 } from './VfxPresetComposer';
@@ -119,9 +120,8 @@ export interface PublishedVfxEntry {
   autoPlacement?: Exclude<VfxPlacementProfile, 'AUTO'>;
   tier?: number;
   /**
-   * Phase B CASTER MOTION. ADDITIVE OPTIONAL, so `schemaVersion` stays at 1 and
-   * every pre-motion publication keeps loading and playing byte-identically.
-   * Only written when the draft authors an effective motion.
+   * Linked Unit Motion + Pose steps. ADDITIVE OPTIONAL, so `schemaVersion`
+   * stays at 1 and legacy publications remain readable without migration.
    */
   casterMotion?: CasterMotionStep[];
   /**
@@ -228,16 +228,15 @@ export function computeFingerprint(draft: VfxPresetDraft): string {
   /**
    * PHASE B CASTER MOTION — additive contribution.
    *
-   * Emitted ONLY when the draft authors a motion that can actually displace the
-   * caster. A missing field, an empty list, and a list of pure no-ops therefore
-   * all fingerprint identically to a pre-motion draft, which guarantees every
-   * existing publication keeps its stored fingerprint and never falsely reports
-   * "MODIFIED SINCE PUBLISH".
+   * Emitted when a step moves either actor or authors a semantic pose. Legacy
+   * no-pose IDLE remains fingerprint-neutral, preserving pre-Phase-B entries.
    */
   const motion = compileCasterMotion(draft.casterMotion);
-  if (motion.hasEffect) {
+  if (motion.hasPresentation) {
+    const authoredById = new Map((draft.casterMotion ?? []).map((step) => [step.id, step]));
     parts.push('CM');
     for (const step of motion.steps) {
+      const authored = authoredById.get(step.motionId);
       parts.push(
         step.type,
         String(step.duration),
@@ -247,6 +246,8 @@ export function computeFingerprint(draft: VfxPresetDraft): string {
         step.easing,
         step.returnToOrigin ? 'R1' : 'R0',
       );
+      if (authored?.actor !== undefined) parts.push(`A:${step.actor}`);
+      if (authored?.pose !== undefined) parts.push(`P:${step.pose}`);
     }
   }
 
@@ -302,11 +303,10 @@ export function publishedPresetId(actionKey: string): string {
 export function draftToPublishedEntry(draft: VfxPresetDraft): PublishedVfxEntry {
   const { updatedAt: _discarded, casterMotion: _motion, beats: _beats, ...rest } = draft;
   /**
-   * CASTER MOTION is persisted only when it can actually displace the caster.
-   * An empty or all-no-op list is dropped, so publishing a motion-free preset
-   * produces a byte-identical entry to the pre-Phase-B output.
+   * Linked motion is persisted when it moves either actor or overrides a pose.
+   * Empty lists and legacy no-pose IDLE remain byte-compatible and are dropped.
    */
-  const motionEffective = compileCasterMotion(draft.casterMotion).hasEffect;
+  const motionEffective = compileCasterMotion(draft.casterMotion).hasPresentation;
   /**
    * BEATS are persisted only when explicitly authored. An absent or empty
    * beats list is dropped, so publishing a beat-free preset produces a
@@ -336,13 +336,19 @@ export function publishedEntryToDraft(entry: PublishedVfxEntry): VfxPresetDraft 
   return {
     actionKey: entry.actionKey,
     presetId: entry.presetId,
-    visualSlots: entry.visualSlots as VfxVisualSlot[],
+    visualSlots: entry.visualSlots.map((slot) => ({ ...slot })) as VfxVisualSlot[],
     choreography: entry.choreography,
     technicalPolish: entry.technicalPolish,
     ...(entry.autoPlacement ? { autoPlacement: entry.autoPlacement } : {}),
     ...(entry.tier != null ? { tier: entry.tier } : {}),
-    ...(entry.casterMotion ? { casterMotion: entry.casterMotion } : {}),
-    ...(entry.beats ? { beats: entry.beats } : {}),
+    ...(entry.casterMotion ? { casterMotion: entry.casterMotion.map((step) => ({ ...step })) } : {}),
+    ...(entry.beats ? {
+      beats: entry.beats.map((beat) => ({
+        ...beat,
+        vfxSlotIds: [...beat.vfxSlotIds],
+        casterMotionIds: [...beat.casterMotionIds],
+      })),
+    } : {}),
   };
 }
 
@@ -527,6 +533,19 @@ export function validatePublishedEntry(
         }
       }
     }
+  }
+
+  if (Array.isArray(e.beats) && Array.isArray(e.visualSlots) && (e.casterMotion == null || Array.isArray(e.casterMotion))) {
+    const beatResult = validateChoreographyBeats({
+      actionKey: typeof e.actionKey === 'string' ? e.actionKey : '',
+      presetId: typeof e.presetId === 'string' ? e.presetId : '',
+      visualSlots: e.visualSlots as VfxVisualSlot[],
+      choreography: e.choreography as VfxChoreography,
+      technicalPolish: e.technicalPolish as VfxTechnicalPolish,
+      casterMotion: (e.casterMotion ?? []) as CasterMotionStep[],
+      beats: e.beats as ChoreographyBeat[],
+    }, { allowLegacyActorDuplicates: true });
+    for (const error of beatResult.errors) errors.push(error);
   }
 
   return { ok: errors.length === 0, errors };

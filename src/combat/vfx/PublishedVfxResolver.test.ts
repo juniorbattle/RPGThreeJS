@@ -13,11 +13,13 @@ import {
   type PublishedVfxRegistry,
   PUBLISHED_REGISTRY_SCHEMA_VERSION,
 } from './PublishedVfxRegistry';
+import { createUnitMotionStep } from './CasterMotion';
 import {
   isActionPublished,
   resolveActionVfxPresetId,
   getPublishedDraft,
   getActiveRegistry,
+  playActionVfx,
   __devUpdateOverlay,
   __devClearOverlay,
 } from './PublishedVfxResolver';
@@ -222,5 +224,39 @@ describe('R2C-VFX V2.3 — Action Override Resolver', () => {
     // After clearing the overlay, resolution falls back to the durable registry,
     // which provably does not contain this key.
     expect(isActionPublished(UNPUBLISHED_ACTION_KEY)).toBe(false);
+  });
+
+  it('97. published playback applies linked pose before VFX and spatial activation', async () => {
+    __devClearOverlay();
+    const motion = createUnitMotionStep('HOLD', { actor: 'TARGET', pose: 'cast' });
+    const draft = makeDraft(UNPUBLISHED_ACTION_KEY, 'r1_0489', 'LOW', 'QUICK');
+    draft.casterMotion = [motion];
+    draft.beats = [{
+      id: 'beat', startDelay: 0, vfxSlotIds: [draft.visualSlots[0]!.id], casterMotionIds: [motion.id],
+    }];
+    __devUpdateOverlay(publishEntry(emptyRegistry(), draft));
+    const events: string[] = [];
+    const result = playActionVfx({
+      actionKey: UNPUBLISHED_ACTION_KEY,
+      fallbackPresetId: 'fallback',
+      context: {} as never,
+      vfxSystem: {
+        play: vi.fn(),
+        playLabSpriteSheet: vi.fn(() => {
+          events.push('vfx');
+          return { completion: Promise.resolve() };
+        }),
+      } as never,
+      unitMotion: {
+        applyStep: (step) => { events.push(`pose:${step.actor}:${step.pose}`); },
+        install: () => { events.push('install'); },
+        cleanup: () => { events.push('cleanup'); },
+      },
+    });
+
+    await result.completion;
+    expect(events.slice(0, 3)).toEqual(['install', 'pose:TARGET:cast', 'vfx']);
+    expect(events.at(-1)).toBe('cleanup');
+    __devClearOverlay();
   });
 });

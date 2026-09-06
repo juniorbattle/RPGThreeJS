@@ -35,7 +35,7 @@ import {
   validateDraft,
 } from './VfxPresetComposer';
 import { repairComposerDraftAssignments } from './VfxSourceSuitability';
-import type { CompiledCasterMotion } from './CasterMotion';
+import type { CompiledCasterMotion, UnitMotionRuntimeHooks } from './CasterMotion';
 import { computeFingerprint } from './PublishedVfxRegistry';
 import {
   CARTOONCOFFEE_UNIVERSAL_FRAME_DELAY_MS,
@@ -338,12 +338,9 @@ export interface ComposerPlaybackContext {
   ) => Promise<boolean>;
   /** Runtime scale factors for the current action tier. Defaults to neutral. */
   scaleFactors?: VfxRuntimeScaleFactors;
-  /**
-   * Installs a compiled CASTER MOTION plan on the live Combat Stage.
-   *
-   * ADDITIVE and OPTIONAL: when the host does not provide it, caster motion is
-   * simply not presented and every existing playback path is unchanged.
-   */
+  /** Linked actor-aware Unit Motion + Pose runtime. */
+  unitMotion?: UnitMotionRuntimeHooks;
+  /** Historical install-only bridge retained for legacy hosts. */
   applyCasterMotion?: (motion: CompiledCasterMotion) => void;
 }
 
@@ -452,10 +449,9 @@ export async function playCompiledVfxSlots(
  *      start before all participants in beat N have completed.
  *   4. Proceed to the next beat.
  *
- * Motion is NOT started here — it is installed once at the beginning via
- * `setCasterMotion` and runs in the Stage's frame loop. The motion steps have
- * beat-assigned startTimes that include startDelay, so they naturally start at
- * beat boundaries in sync with VFX.
+ * The unified plan runs in the Stage frame loop. At each Beat boundary this
+ * scheduler first applies every linked semantic pose, then starts Beat VFX;
+ * compiled motion startTimes use that same Beat.startDelay authority.
  *
  * When no explicit beats are authored, this function is not called — the
  * legacy `playCompiledVfxSlots` path is used instead.
@@ -465,10 +461,16 @@ export async function playCompiledBeats(
   compiled: CompiledVfxDraft,
   context: VfxContext,
   strict: boolean = false,
+  unitMotion?: Pick<UnitMotionRuntimeHooks, 'applyStep'>,
 ): Promise<void> {
   for (const beat of compiled.compiledBeats) {
-    // START DELAY — applies to the whole beat (VFX + motion).
+    // START DELAY — applies to the whole beat (VFX + linked Unit Motion + Pose).
     await wait(beat.startDelay);
+
+    // Pose is applied at the Beat boundary before motion sampling and VFX start.
+    if (unitMotion) {
+      await Promise.all(beat.casterMotions.map((step) => Promise.resolve(unitMotion.applyStep(step))));
+    }
 
     // Start VFX participants at their intra-beat offsets.
     const vfxPromises = beat.vfxSlots.map(async (slot) => {
@@ -628,8 +630,8 @@ export async function playDraftInCombatStage(
   draft: VfxPresetDraft,
   mode: ComposerPlaybackMode,
 ): Promise<ComposerPlaybackResult> {
-  if (draft.visualSlots.length === 0) {
-    return { played: false, snapshot: null, reason: 'Draft has no visual spritesheets.' };
+  if (draft.visualSlots.length === 0 && !(draft.casterMotion?.length)) {
+    return { played: false, snapshot: null, reason: 'Draft has no visual or Unit Motion + Pose steps.' };
   }
   if (!ctx.buildStageContext) {
     return { played: false, snapshot: null, reason: 'Combat Stage unavailable.' };
@@ -639,23 +641,25 @@ export async function playDraftInCombatStage(
   _lastComposerSnapshot = snapshot;
 
   const playVfx = async (context: VfxContext): Promise<void> => {
-    /**
-     * The motion clock starts HERE, at the same instant as the visual slot
-     * scheduler, so an authored "VFX → MOTION → VFX" sequence plays on one
-     * shared timeline. An empty plan is a no-op.
-     */
-    ctx.applyCasterMotion?.(compiled.casterMotion);
-    if (compiled.hasExplicitBeats) {
-      // V2.7 BEAT SCHEDULER — causal beat-by-beat execution.
-      const vfxTask = playCompiledBeats(ctx.vfxSystem, compiled, context, true);
-      if (mode === 'full_preset') {
-        await Promise.all([vfxTask, playCompiledTechnical(compiled, context)]);
-      } else {
-        await vfxTask;
+    const linkedRuntime = compiled.casterMotion.hasPresentation ? ctx.unitMotion : undefined;
+    if (linkedRuntime) {
+      linkedRuntime.install(compiled.casterMotion);
+      if (!compiled.hasExplicitBeats) {
+        await Promise.all(compiled.casterMotion.steps.map((step) => Promise.resolve(linkedRuntime.applyStep(step))));
       }
-    } else {
-      // LEGACY PHASE SCHEDULER — independent slot startTimes. Unchanged.
-      if (mode === 'full_preset') {
+    } else if (compiled.casterMotion.hasEffect) {
+      ctx.applyCasterMotion?.(compiled.casterMotion);
+    }
+
+    try {
+      if (compiled.hasExplicitBeats) {
+        const vfxTask = playCompiledBeats(ctx.vfxSystem, compiled, context, true, linkedRuntime);
+        if (mode === 'full_preset') {
+          await Promise.all([vfxTask, playCompiledTechnical(compiled, context)]);
+        } else {
+          await vfxTask;
+        }
+      } else if (mode === 'full_preset') {
         await Promise.all([
           playCompiledVfxSlots(ctx.vfxSystem, compiled, context, true),
           playCompiledTechnical(compiled, context),
@@ -663,6 +667,8 @@ export async function playDraftInCombatStage(
       } else {
         await playCompiledVfxSlots(ctx.vfxSystem, compiled, context, true);
       }
+    } finally {
+      if (linkedRuntime) await linkedRuntime.cleanup();
     }
   };
 

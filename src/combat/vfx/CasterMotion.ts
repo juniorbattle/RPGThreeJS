@@ -1,108 +1,152 @@
 /**
- * R2C-VFX Composer — CASTER MOTION TIMELINE (Phase B).
+ * R2C-VFX Composer — linked UNIT MOTION + POSE.
  *
- * A deliberately small, deterministic authoring layer that lets a preset insert
- * CASTER movements between its VFX steps:
+ * Every current authored step binds one semantic actor (CASTER or TARGET), one
+ * Phase A CombatPose, and one spatial motion. Legacy caster-only records remain
+ * readable through optional compatibility fields and IDLE normalization.
  *
- *     VFX → CASTER MOTION → VFX → CASTER MOTION → VFX
- *
- * DESIGN BOUNDARIES (intentional, do not widen without a new mission):
- *   - This is NOT a skeletal/bone animation system.
- *   - This is NOT a general tween engine and adds no dependency.
- *   - It only ever produces a positional OFFSET for the CASTER.
- *   - It never touches the camera, the target, the terrain or the scene.
- *
- * The module is pure and framework-free: it knows nothing about Three.js and
- * resolves nothing to world coordinates. Like every other Composer primitive
- * since V2.4 it stores SEMANTIC ANCHORS and lets the runtime resolve them from
- * the live combat context at playback time.
+ * The module stays pure and framework-free: it produces actor-filtered offsets
+ * against semantic anchors and never mutates Three.js objects, gameplay state,
+ * cameras, terrain, or pose assets.
  */
 
+import { COMBAT_POSES, type CombatPose } from '../stage/CombatPoseRegistry';
 import type { VfxAnchor } from './VfxTypes';
 
 // ============================================================ Motion Types
 
-/**
- * V1 motion vocabulary. Strictly limited — additional types must not be added
- * without an explicit follow-up mission.
- */
-export type CasterMotionType =
-  | 'IDLE'
+export type CombatActorRole = 'CASTER' | 'TARGET';
+
+export const UNIT_MOTION_ACTORS: readonly CombatActorRole[] = ['CASTER', 'TARGET'];
+
+export type UnitMotionType =
+  | 'HOLD'
   | 'DASH_SHORT'
   | 'DASH_THROUGH'
   | 'JUMP_UP'
   | 'JUMP_DOWN'
   | 'JUMP_ARC';
 
-export const CASTER_MOTION_TYPES: readonly CasterMotionType[] = [
-  'IDLE', 'DASH_SHORT', 'DASH_THROUGH', 'JUMP_UP', 'JUMP_DOWN', 'JUMP_ARC',
+export type CasterMotionType = UnitMotionType | 'IDLE';
+
+export const UNIT_MOTION_TYPES: readonly UnitMotionType[] = [
+  'HOLD', 'DASH_SHORT', 'DASH_THROUGH', 'JUMP_UP', 'JUMP_DOWN', 'JUMP_ARC',
 ];
 
-/**
- * Semantic movement destination. Deliberately mirrors the existing V2.5/V2.6
- * position vocabulary rather than inventing a parallel nomenclature.
- */
-export type CasterMotionDestination = 'ORIGIN' | 'TARGET' | 'TARGET_FRONT' | 'TARGET_BACK';
+/** Historical export retained for callers; new authoring no longer exposes IDLE. */
+export const CASTER_MOTION_TYPES: readonly UnitMotionType[] = UNIT_MOTION_TYPES;
 
-export const CASTER_MOTION_DESTINATIONS: readonly CasterMotionDestination[] = [
+export type UnitMotionDestination =
+  | 'ORIGIN'
+  | 'TARGET'
+  | 'TARGET_FRONT'
+  | 'TARGET_BACK'
+  | 'CASTER'
+  | 'CASTER_FRONT'
+  | 'CASTER_BACK';
+
+export type CasterMotionDestination = UnitMotionDestination;
+
+const CASTER_DESTINATIONS: readonly UnitMotionDestination[] = [
   'ORIGIN', 'TARGET', 'TARGET_FRONT', 'TARGET_BACK',
 ];
+const TARGET_DESTINATIONS: readonly UnitMotionDestination[] = [
+  'ORIGIN', 'CASTER', 'CASTER_FRONT', 'CASTER_BACK',
+];
+
+export const UNIT_MOTION_DESTINATIONS: readonly UnitMotionDestination[] = [
+  ...CASTER_DESTINATIONS,
+  'CASTER', 'CASTER_FRONT', 'CASTER_BACK',
+];
+
+/** Historical export retained for compatibility; UI must filter by actor. */
+export const CASTER_MOTION_DESTINATIONS = UNIT_MOTION_DESTINATIONS;
 
 export type CasterMotionEasing = 'LINEAR' | 'EASE_IN' | 'EASE_OUT' | 'EASE_IN_OUT';
+export type UnitMotionEasing = CasterMotionEasing;
 
 export const CASTER_MOTION_EASINGS: readonly CasterMotionEasing[] = [
   'LINEAR', 'EASE_IN', 'EASE_OUT', 'EASE_IN_OUT',
 ];
+export const UNIT_MOTION_EASINGS = CASTER_MOTION_EASINGS;
 
-/** Destination → existing semantic anchor. No new nomenclature is introduced. */
-const DESTINATION_ANCHORS: Readonly<Record<CasterMotionDestination, VfxAnchor>> = Object.freeze({
-  ORIGIN: 'source',
+const DESTINATION_ANCHORS: Readonly<Record<Exclude<UnitMotionDestination, 'ORIGIN'>, VfxAnchor>> = Object.freeze({
   TARGET: 'target',
   TARGET_FRONT: 'targetFront',
   TARGET_BACK: 'targetBack',
+  CASTER: 'source',
+  CASTER_FRONT: 'sourceFront',
+  CASTER_BACK: 'sourceBack',
 });
 
-export function resolveMotionAnchor(destination: CasterMotionDestination): VfxAnchor {
+export function unitMotionDestinationsForActor(actor: CombatActorRole): readonly UnitMotionDestination[] {
+  return actor === 'TARGET' ? TARGET_DESTINATIONS : CASTER_DESTINATIONS;
+}
+
+export function normalizeUnitMotionDestination(
+  destination: UnitMotionDestination,
+  actor: CombatActorRole,
+): UnitMotionDestination {
+  if (destination === 'ORIGIN') return destination;
+  if (actor === 'TARGET') {
+    if (destination === 'TARGET') return 'CASTER';
+    if (destination === 'TARGET_FRONT') return 'CASTER_FRONT';
+    if (destination === 'TARGET_BACK') return 'CASTER_BACK';
+  } else {
+    if (destination === 'CASTER') return 'TARGET';
+    if (destination === 'CASTER_FRONT') return 'TARGET_FRONT';
+    if (destination === 'CASTER_BACK') return 'TARGET_BACK';
+  }
+  return destination;
+}
+
+export function resolveMotionAnchor(
+  destination: UnitMotionDestination,
+  actor: CombatActorRole = 'CASTER',
+): VfxAnchor {
+  if (destination === 'ORIGIN') return actor === 'TARGET' ? 'target' : 'source';
   return DESTINATION_ANCHORS[destination];
 }
 
 // ============================================================ Authoring Model
 
 /**
- * One authored caster movement.
- *
- * Every numeric field is optional and falls back to a per-type default, so the
- * author only has to state what they actually want to change.
+ * Compatibility shape for persisted motion records. Current Composer-created
+ * entries materialize actor + pose; legacy entries may omit both.
  */
 export interface CasterMotionStep {
   id: string;
+  /** Absent only for legacy data; compatibility resolves it as CASTER. */
+  actor?: CombatActorRole;
+  /** Absent only for legacy data; compatibility preserves the current visual. */
+  pose?: CombatPose;
   type: CasterMotionType;
   /** Seconds of travel. Defaults per type. */
   duration?: number;
-  /** Semantic destination. Defaults per type. */
-  destination?: CasterMotionDestination;
-  /**
-   * Fraction (0..1) of the caster→destination vector actually travelled.
-   * 1 means "all the way to the destination anchor".
-   */
+  /** Actor-aware semantic destination. Defaults per type. */
+  destination?: UnitMotionDestination;
+  /** Fraction (0..1) of the actor→destination vector actually travelled. */
   distance?: number;
   /** Vertical amplitude in world units. Only used by the JUMP_* types. */
   height?: number;
-  easing?: CasterMotionEasing;
-  /**
-   * true  — the caster animates back to its original position after the motion.
-   * false — the caster remains at the motion's final position.
-   */
+  easing?: UnitMotionEasing;
+  /** Controls spatial return only; it never selects a pose. */
   returnToOrigin?: boolean;
+}
+
+export interface UnitMotionStep extends CasterMotionStep {
+  actor: CombatActorRole;
+  pose: CombatPose;
+  type: UnitMotionType;
 }
 
 /** Fully resolved defaults for one motion type. */
 export interface CasterMotionDefaults {
   duration: number;
-  destination: CasterMotionDestination;
+  destination: UnitMotionDestination;
   distance: number;
   height: number;
-  easing: CasterMotionEasing;
+  easing: UnitMotionEasing;
   returnToOrigin: boolean;
 }
 
@@ -114,8 +158,8 @@ export interface CasterMotionDefaults {
  *   DASH_THROUGH — rogue/ninja: cross the target and stay behind it.
  *   JUMP_ARC     — lancer: leap, land on the target, come back.
  */
-export const CASTER_MOTION_DEFAULTS: Readonly<Record<CasterMotionType, Readonly<CasterMotionDefaults>>> = Object.freeze({
-  IDLE: Object.freeze({
+export const UNIT_MOTION_DEFAULTS: Readonly<Record<UnitMotionType, Readonly<CasterMotionDefaults>>> = Object.freeze({
+  HOLD: Object.freeze({
     duration: 0.10, destination: 'ORIGIN' as const, distance: 0, height: 0,
     easing: 'LINEAR' as const, returnToOrigin: false,
   }),
@@ -141,6 +185,11 @@ export const CASTER_MOTION_DEFAULTS: Readonly<Record<CasterMotionType, Readonly<
   }),
 });
 
+export const CASTER_MOTION_DEFAULTS: Readonly<Record<CasterMotionType, Readonly<CasterMotionDefaults>>> = Object.freeze({
+  ...UNIT_MOTION_DEFAULTS,
+  IDLE: UNIT_MOTION_DEFAULTS.HOLD,
+});
+
 export const MAX_MOTION_DURATION = 5;
 export const MIN_MOTION_DURATION = 0.01;
 
@@ -162,6 +211,8 @@ export function createCasterMotionStep(
   return {
     id: createMotionId(),
     type,
+    ...(overrides.actor ? { actor: overrides.actor } : {}),
+    ...(overrides.pose ? { pose: overrides.pose } : {}),
     ...(overrides.duration != null ? { duration: overrides.duration } : {}),
     ...(overrides.destination ? { destination: overrides.destination } : {}),
     ...(overrides.distance != null ? { distance: overrides.distance } : {}),
@@ -171,28 +222,58 @@ export function createCasterMotionStep(
   };
 }
 
+export function createUnitMotionStep(
+  type: UnitMotionType = 'HOLD',
+  overrides: Partial<Omit<UnitMotionStep, 'id' | 'type'>> = {},
+): UnitMotionStep {
+  return createCasterMotionStep(type, {
+    ...overrides,
+    actor: overrides.actor ?? 'CASTER',
+    pose: overrides.pose ?? 'prepare',
+  }) as UnitMotionStep;
+}
+
 const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
 const round3 = (v: number) => Math.round(v * 1000) / 1000;
+const COMBAT_POSE_SET = new Set<string>(COMBAT_POSES);
+const UNIT_MOTION_TYPE_SET = new Set<string>(UNIT_MOTION_TYPES);
 
-/** Resolves one authored step against its type defaults. Never throws. */
-export function resolveCasterMotionStep(step: CasterMotionStep): CasterMotionDefaults & {
+export interface ResolvedUnitMotionStep extends CasterMotionDefaults {
   id: string;
-  type: CasterMotionType;
-} {
-  const defaults = CASTER_MOTION_DEFAULTS[step.type] ?? CASTER_MOTION_DEFAULTS.IDLE;
+  actor: CombatActorRole;
+  pose: CombatPose | null;
+  type: UnitMotionType;
+  legacy: boolean;
+}
+
+/** Resolves legacy and current authored steps without ever throwing. */
+export function resolveUnitMotionStep(step: CasterMotionStep): ResolvedUnitMotionStep {
+  const type: UnitMotionType = step.type === 'IDLE' || !UNIT_MOTION_TYPE_SET.has(step.type)
+    ? 'HOLD'
+    : step.type as UnitMotionType;
+  const defaults = UNIT_MOTION_DEFAULTS[type];
+  const actor: CombatActorRole = step.actor === 'TARGET' ? 'TARGET' : 'CASTER';
   const numeric = (value: number | undefined, fallback: number) =>
     (typeof value === 'number' && Number.isFinite(value) ? value : fallback);
+  const defaultDestination = normalizeUnitMotionDestination(defaults.destination, actor);
+  const authoredDestination = step.destination ?? defaultDestination;
   return {
     id: step.id,
-    type: step.type,
+    actor,
+    pose: step.pose && COMBAT_POSE_SET.has(step.pose) ? step.pose : null,
+    type,
     duration: clamp(numeric(step.duration, defaults.duration), MIN_MOTION_DURATION, MAX_MOTION_DURATION),
-    destination: step.destination ?? defaults.destination,
-    distance: clamp(numeric(step.distance, defaults.distance), 0, 1),
-    height: clamp(numeric(step.height, defaults.height), 0, 6),
+    destination: normalizeUnitMotionDestination(authoredDestination, actor),
+    distance: type === 'HOLD' ? 0 : clamp(numeric(step.distance, defaults.distance), 0, 1),
+    height: type === 'HOLD' ? 0 : clamp(numeric(step.height, defaults.height), 0, 6),
     easing: step.easing ?? defaults.easing,
-    returnToOrigin: step.returnToOrigin ?? defaults.returnToOrigin,
+    returnToOrigin: type === 'HOLD' ? false : step.returnToOrigin ?? defaults.returnToOrigin,
+    legacy: step.actor === undefined || step.pose === undefined || step.type === 'IDLE',
   };
 }
+
+/** Historical name retained for source compatibility. */
+export const resolveCasterMotionStep = resolveUnitMotionStep;
 
 // ============================================================ Validation
 
@@ -201,11 +282,12 @@ export interface CasterMotionValidationResult {
   errors: string[];
 }
 
-const MOTION_TYPE_SET = new Set<string>(CASTER_MOTION_TYPES);
-const DESTINATION_SET = new Set<string>(CASTER_MOTION_DESTINATIONS);
+const COMPAT_MOTION_TYPE_SET = new Set<string>([...UNIT_MOTION_TYPES, 'IDLE']);
+const DESTINATION_SET = new Set<string>(UNIT_MOTION_DESTINATIONS);
+const ACTOR_SET = new Set<string>(UNIT_MOTION_ACTORS);
 const EASING_SET = new Set<string>(CASTER_MOTION_EASINGS);
 
-/** Structural validation of a single authored step. */
+/** Compatibility validation accepts actor/pose absence and legacy IDLE. */
 export function validateCasterMotionStep(raw: unknown): CasterMotionValidationResult {
   const errors: string[] = [];
   if (typeof raw !== 'object' || raw === null) {
@@ -213,7 +295,9 @@ export function validateCasterMotionStep(raw: unknown): CasterMotionValidationRe
   }
   const s = raw as Record<string, unknown>;
   if (typeof s.id !== 'string' || s.id.length === 0) errors.push('motion step requires a non-empty id');
-  if (typeof s.type !== 'string' || !MOTION_TYPE_SET.has(s.type)) errors.push(`invalid motion type: ${String(s.type)}`);
+  if (typeof s.type !== 'string' || !COMPAT_MOTION_TYPE_SET.has(s.type)) errors.push(`invalid motion type: ${String(s.type)}`);
+  if (s.actor !== undefined && !ACTOR_SET.has(String(s.actor))) errors.push(`invalid motion actor: ${String(s.actor)}`);
+  if (s.pose !== undefined && !COMBAT_POSE_SET.has(String(s.pose))) errors.push(`invalid combat pose: ${String(s.pose)}`);
   if (s.destination !== undefined && !DESTINATION_SET.has(String(s.destination))) {
     errors.push(`invalid motion destination: ${String(s.destination)}`);
   }
@@ -235,14 +319,40 @@ export function validateCasterMotionStep(raw: unknown): CasterMotionValidationRe
   return { ok: errors.length === 0, errors };
 }
 
-/** Validates a whole authored motion list, including duplicate-id detection. */
-export function validateCasterMotion(raw: unknown): CasterMotionValidationResult {
+/** Strict validation for newly authored linked Unit Motion + Pose steps. */
+export function validateUnitMotionStep(raw: unknown): CasterMotionValidationResult {
+  const compatibility = validateCasterMotionStep(raw);
+  const errors = [...compatibility.errors];
+  if (typeof raw !== 'object' || raw === null) return { ok: false, errors };
+  const s = raw as Record<string, unknown>;
+  if (!ACTOR_SET.has(String(s.actor))) errors.push('linked motion step requires a valid actor');
+  if (!COMBAT_POSE_SET.has(String(s.pose))) errors.push('linked motion step requires a valid CombatPose');
+  if (!UNIT_MOTION_TYPE_SET.has(String(s.type))) errors.push('linked motion step requires a canonical motion type');
+  if (ACTOR_SET.has(String(s.actor)) && s.destination !== undefined) {
+    const allowed = unitMotionDestinationsForActor(s.actor as CombatActorRole);
+    if (!allowed.includes(s.destination as UnitMotionDestination)) {
+      errors.push(`${String(s.actor)} cannot use destination ${String(s.destination)}`);
+    }
+  }
+  if (s.type === 'HOLD') {
+    if (s.destination !== undefined && s.destination !== 'ORIGIN') errors.push('HOLD destination must be ORIGIN');
+    if (s.distance !== undefined && s.distance !== 0) errors.push('HOLD distance must be 0');
+    if (s.height !== undefined && s.height !== 0) errors.push('HOLD height must be 0');
+    if (s.returnToOrigin !== undefined && s.returnToOrigin !== false) errors.push('HOLD cannot return to origin');
+  }
+  return { ok: errors.length === 0, errors };
+}
+
+function validateMotionList(
+  raw: unknown,
+  validateStep: (step: unknown) => CasterMotionValidationResult,
+): CasterMotionValidationResult {
   if (raw === undefined || raw === null) return { ok: true, errors: [] };
   if (!Array.isArray(raw)) return { ok: false, errors: ['casterMotion must be an array'] };
   const errors: string[] = [];
   const seen = new Set<string>();
   raw.forEach((step, index) => {
-    const result = validateCasterMotionStep(step);
+    const result = validateStep(step);
     for (const error of result.errors) errors.push(`motion[${index}]: ${error}`);
     const id = (step as { id?: unknown } | null)?.id;
     if (typeof id === 'string') {
@@ -253,48 +363,75 @@ export function validateCasterMotion(raw: unknown): CasterMotionValidationResult
   return { ok: errors.length === 0, errors };
 }
 
+export function validateCasterMotion(raw: unknown): CasterMotionValidationResult {
+  return validateMotionList(raw, (step) => {
+    if (typeof step !== 'object' || step === null) return validateCasterMotionStep(step);
+    const value = step as Record<string, unknown>;
+    const linked = value.actor !== undefined || value.pose !== undefined || value.type === 'HOLD';
+    return linked ? validateUnitMotionStep(step) : validateCasterMotionStep(step);
+  });
+}
+
+export function validateLinkedUnitMotion(raw: unknown): CasterMotionValidationResult {
+  return validateMotionList(raw, validateUnitMotionStep);
+}
+
 // ============================================================ Compilation
 
-/** One compiled motion. Semantic anchors only — never world coordinates. */
+/** One compiled linked Unit Motion + Pose step. Semantic anchors only. */
 export interface CompiledCasterMotionStep {
   motionId: string;
-  type: CasterMotionType;
+  actor: CombatActorRole;
+  /** null is the compatibility-only legacy "inherit current visual" state. */
+  pose: CombatPose | null;
+  type: UnitMotionType;
   startTime: number;
   duration: number;
   /** Absolute end of the outbound travel. */
   motionEndTime: number;
-  /**
-   * Absolute end of the whole step, including the return leg when
-   * `returnToOrigin` is set. The return leg mirrors the outbound duration.
-   */
+  /** Absolute end including the optional return leg. */
   endTime: number;
-  destination: CasterMotionDestination;
+  destination: UnitMotionDestination;
   /** Resolved semantic anchor, resolved to a position only by the runtime. */
   destinationAnchor: VfxAnchor;
   distance: number;
   height: number;
-  easing: CasterMotionEasing;
+  easing: UnitMotionEasing;
   returnToOrigin: boolean;
   /** True when this step can never produce any displacement. */
   isNoop: boolean;
 }
 
+export type CompiledUnitMotionStep = CompiledCasterMotionStep;
+
 export interface CompiledCasterMotion {
   steps: CompiledCasterMotionStep[];
-  /** Latest absolute time at which the caster is still moving. */
+  /** Latest absolute time at which either actor is still moving. */
   totalDuration: number;
-  /** True when at least one step can actually displace the caster. */
+  /** True when at least one step can actually displace its actor. */
   hasEffect: boolean;
+  /** True for spatial movement or an authored semantic pose override. */
+  hasPresentation: boolean;
+}
+
+export type CompiledUnitMotion = CompiledCasterMotion;
+
+export interface UnitMotionRuntimeHooks {
+  install: (motion: CompiledUnitMotion) => void;
+  applyStep: (step: CompiledUnitMotionStep) => void | Promise<unknown>;
+  cleanup: () => void | Promise<unknown>;
 }
 
 export const EMPTY_COMPILED_CASTER_MOTION: CompiledCasterMotion = Object.freeze({
   steps: Object.freeze([]) as unknown as CompiledCasterMotionStep[],
   totalDuration: 0,
   hasEffect: false,
+  hasPresentation: false,
 });
+export const EMPTY_COMPILED_UNIT_MOTION = EMPTY_COMPILED_CASTER_MOTION;
 
-function isNoopMotion(resolved: CasterMotionDefaults & { type: CasterMotionType }): boolean {
-  if (resolved.type === 'IDLE') return true;
+function isNoopMotion(resolved: CasterMotionDefaults & { type: UnitMotionType }): boolean {
+  if (resolved.type === 'HOLD') return true;
   const vertical = resolved.type === 'JUMP_UP' || resolved.type === 'JUMP_DOWN' || resolved.type === 'JUMP_ARC';
   const horizontalMoves = resolved.distance > 0 && resolved.destination !== 'ORIGIN';
   const verticalMoves = vertical && resolved.height > 0;
@@ -302,23 +439,18 @@ function isNoopMotion(resolved: CasterMotionDefaults & { type: CasterMotionType 
 }
 
 /**
- * Compiles authored motions into a deterministic, time-ordered plan.
- *
- * `startTimeOverrides` is an optional map from motion id to absolute start time.
- * When provided (by the beat scheduler), each motion compiles with its assigned
- * start time. When absent, all motions start at t=0 and order by authored index.
- *
- * Legacy `startTime` fields on raw steps are silently ignored — beat assignment
- * is the sole authority for motion timing.
+ * Compiles linked steps into one deterministic actor-aware plan. Beat-provided
+ * start times remain the sole motion/pose timing authority; legacy raw
+ * `startTime` fields are ignored.
  */
-export function compileCasterMotion(
+export function compileUnitMotion(
   steps: readonly CasterMotionStep[] | undefined,
   startTimeOverrides?: ReadonlyMap<string, number>,
 ): CompiledCasterMotion {
   if (!steps || steps.length === 0) return EMPTY_COMPILED_CASTER_MOTION;
 
   const resolved = steps.map((step, index) => ({
-    resolved: resolveCasterMotionStep(step),
+    resolved: resolveUnitMotionStep(step),
     startTime: startTimeOverrides?.get(step.id) ?? 0,
     index,
   }));
@@ -332,13 +464,15 @@ export function compileCasterMotion(
     const endTime = round3(r.returnToOrigin ? motionEndTime + r.duration : motionEndTime);
     return {
       motionId: r.id,
+      actor: r.actor,
+      pose: r.pose,
       type: r.type,
       startTime: round3(startTime),
       duration: round3(r.duration),
       motionEndTime,
       endTime,
       destination: r.destination,
-      destinationAnchor: resolveMotionAnchor(r.destination),
+      destinationAnchor: resolveMotionAnchor(r.destination, r.actor),
       distance: r.distance,
       height: r.height,
       easing: r.easing,
@@ -351,8 +485,12 @@ export function compileCasterMotion(
     steps: compiled,
     totalDuration: compiled.reduce((max, s) => Math.max(max, s.endTime), 0),
     hasEffect: compiled.some((s) => !s.isNoop),
+    hasPresentation: compiled.some((s) => !s.isNoop || s.pose !== null),
   };
 }
+
+/** Historical function name retained for compatibility. */
+export const compileCasterMotion = compileUnitMotion;
 
 // ============================================================ Easing
 
@@ -381,8 +519,8 @@ export interface MutableVec3 {
 }
 
 /**
- * Runtime bridge. The runtime writes into `out` the vector going FROM the
- * caster's own base position TO the requested semantic anchor.
+ * Runtime bridge. The runtime writes the vector from the selected actor's base
+ * position to the requested semantic anchor into `out`.
  *
  * Keeping this a callback is what lets the motion layer stay free of Three.js
  * and of any knowledge about the Stage layout.
@@ -393,7 +531,7 @@ export type CasterMotionAnchorResolver = (anchor: VfxAnchor, out: MutableVec3) =
 const _scratchDelta: MutableVec3 = { x: 0, y: 0, z: 0 };
 
 function horizontalFactor(step: CompiledCasterMotionStep, p: number): number {
-  if (step.type === 'IDLE' || step.type === 'JUMP_UP') return 0;
+  if (step.type === 'HOLD' || step.type === 'JUMP_UP') return 0;
   return step.distance * ease(step.easing, p);
 }
 
@@ -449,7 +587,7 @@ function sampleResidual(
 const _scratchStep: MutableVec3 = { x: 0, y: 0, z: 0 };
 
 /**
- * Samples the caster's total displacement at absolute time `t`.
+ * Samples one actor's total displacement at absolute time `t`.
  *
  * SEMANTICS (deterministic and fully tested):
  *   - Steps that have completely finished contribute their RESIDUAL: their
@@ -462,11 +600,13 @@ const _scratchStep: MutableVec3 = { x: 0, y: 0, z: 0 };
  *
  * Zero allocation: everything is written into `out` using module scratch.
  */
-export function sampleCasterMotionOffset(
+export function sampleUnitMotionOffset(
   motion: CompiledCasterMotion,
   t: number,
+  actor: CombatActorRole,
   resolveAnchor: CasterMotionAnchorResolver,
   out: MutableVec3,
+  enabledMotionIds?: ReadonlySet<string>,
 ): MutableVec3 {
   out.x = 0;
   out.y = 0;
@@ -476,7 +616,7 @@ export function sampleCasterMotionOffset(
   let active: CompiledCasterMotionStep | null = null;
   for (let i = 0; i < motion.steps.length; i += 1) {
     const step = motion.steps[i]!;
-    if (t < step.startTime) continue;
+    if (step.actor !== actor || t < step.startTime || (enabledMotionIds && !enabledMotionIds.has(step.motionId))) continue;
     if (t >= step.endTime) {
       sampleResidual(step, resolveAnchor, _scratchStep);
       out.x += _scratchStep.x;
@@ -507,6 +647,23 @@ export function sampleCasterMotionOffset(
   return out;
 }
 
+/** Historical CASTER-only sampler retained for existing callers. */
+export function sampleCasterMotionOffset(
+  motion: CompiledCasterMotion,
+  t: number,
+  resolveAnchor: CasterMotionAnchorResolver,
+  out: MutableVec3,
+): MutableVec3 {
+  return sampleUnitMotionOffset(motion, t, 'CASTER', resolveAnchor, out);
+}
+
+export function unitMotionHasEffectForActor(
+  motion: CompiledCasterMotion,
+  actor: CombatActorRole,
+): boolean {
+  return motion.steps.some((step) => step.actor === actor && !step.isNoop);
+}
+
 // ============================================================ Unified Timeline
 
 export type VfxTimelineEventKind = 'VFX' | 'MOTION';
@@ -524,8 +681,10 @@ export interface VfxTimelineEvent {
   endTime: number;
   /** Candidate spritesheet for VFX events. */
   candidateId?: string;
-  /** Motion type for MOTION events. */
-  motionType?: CasterMotionType;
+  /** Linked Unit Motion + Pose metadata for MOTION events. */
+  motionType?: UnitMotionType;
+  actor?: CombatActorRole;
+  pose?: CombatPose | null;
 }
 
 export interface TimelineSlotLike {
@@ -566,6 +725,8 @@ export function buildUnifiedTimeline(
         startTime: step.startTime,
         endTime: step.endTime,
         motionType: step.type,
+        actor: step.actor,
+        pose: step.pose,
       },
       rank: 1,
       index,
