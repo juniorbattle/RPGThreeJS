@@ -59,4 +59,11 @@ describe('CIN-4 shot specification', () => {
     expect(prompt).toContain('Preserve the exact facing direction already shown in the first frame.');
     expect(prompt).toContain('last-frame chaining');
   });
+
+  it('validates and prompts an optional deterministic sealed-artefact overlay', async () => {
+    const spec = await loadSpec();
+    spec.shots[0].props = [{ id: 'recovered_seal', kind: 'SEALED_ARTEFACT', position: { x: 0.5, groundY: 0.9 }, sizePx: 96 }];
+    expect((await validateShotSpec(spec, { projectRoot })).valid).toBe(true);
+    expect(buildShotPrompt(spec, spec.shots[0])).toContain('authored SEALED_ARTEFACT');
+  });
 });

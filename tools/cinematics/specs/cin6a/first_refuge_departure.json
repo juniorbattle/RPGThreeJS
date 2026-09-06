@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6a_first_refuge_departure",
+  "cinematicId": "first_refuge_departure",
+  "tier": "JOURNEY",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6a-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG departure from refuge into the canonical reserve-trail landscape. Restore forward motion, reveal a vulnerable convoy and distant smoke toward Bois-Clair, but leave the reserve dilemma unresolved.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Establish the company leaving refuge and reading the troubled road ahead.",
+      "framing": "WIDE_RESERVE_TRAIL",
+      "environment": "public/assets/generated/lion-phase/dialogue/reserve_trail.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_first_refuge_departure/shot_01/source.png" },
+      "characters": [
+        { "id": "kestrel", "asset": "public/assets/characters/pixel/full/kestrel.png", "position": { "x": 0.25, "groundY": 0.97 }, "heightPx": 590, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:smoke_horizon", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.73, "groundY": 0.97 }, "heightPx": 580, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:convoy", "depth": 10, "role": "SECONDARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SLOW_PULL" },
+      "durationSeconds": 4,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "ROAD_AND_SMOKE_ESTABLISHED",
+      "promptIntent": "Maelor takes only a few measured steps while Kestrel remains screen-right-facing toward the smoke horizon. Preserve their sides and do not make Kestrel fire or threaten anyone. Show subtle wagon, dust, smoke, and cloth movement without resolving the convoy dilemma."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Bring the convoy pressure and the smoke toward Bois-Clair into a more immediate two-shot.",
+      "framing": "MEDIUM_CONVOY_APPROACH",
+      "environment": "public/assets/generated/lion-phase/dialogue/reserve_trail.webp",
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_first_refuge_departure/shot_02/source.png" },
+      "characters": [
+        { "id": "kestrel", "asset": "public/assets/characters/pixel/full/kestrel.png", "position": { "x": 0.31, "groundY": 0.98 }, "heightPx": 760, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:smoke_horizon", "depth": 20, "role": "PRIMARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" },
+        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 730, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:convoy", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "PAN_SMALL_RIGHT" },
+      "durationSeconds": 4,
+      "continuityOut": "LAST_FRAME",
+      "endIntent": "CONVOY_PRESSURE_SETTLED",
+      "promptIntent": "Kestrel registers the distant smoke with a small head movement while Maelor studies the convoy to his screen-left. Lock Kestrel to screen-right. Lock Maelor's head, shoulders, torso, hips, feet, book, and dagger to screen-left for the entire shot; he must never rotate or look toward screen-right. Keep bow, arrow, hands, book, and dagger stable. No supplies change hands, no attack begins, and no route or moral choice is made."
+    },
+    {
+      "shotId": "shot_03",
+      "purpose": "Continue the reviewed convoy frame into a neutral dialogue-ready hold.",
+      "framing": "STABLE_RESERVE_DILEMMA_CONTEXT",
+      "environment": "public/assets/generated/lion-phase/dialogue/reserve_trail.webp",
+      "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_02", "path": "tmp/cinematics/cin4/cin6a_first_refuge_departure/shot_02/last_frame.png" },
+      "characters": [
+        { "id": "kestrel", "asset": "public/assets/characters/pixel/full/kestrel.png", "position": { "x": 0.31, "groundY": 0.98 }, "heightPx": 760, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:smoke_horizon", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 730, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:convoy", "depth": 10, "role": "SECONDARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "STATIC" },
+      "durationSeconds": 4,
+      "continuityOut": "END",
+      "endIntent": "RESERVE_TRAIL_DIALOGUE_READY",
+      "promptIntent": "Continue from the reviewed last frame with restrained breathing, dust, smoke, wagon canvas, and cloth movement. Lock the camera completely: no zoom, push, pull, pan, track, crop, reframing, parallax, or subject-scale change. Preserve identity, weapons, sides, and facing. End sharp and neutral; do not show a transaction, threat, selection, victory, or consequence."
+    }
+  ]
+}

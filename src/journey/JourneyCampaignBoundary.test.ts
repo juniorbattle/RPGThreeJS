@@ -72,7 +72,7 @@ describe('journey campaign boundary', () => {
     click(`[data-journey-choice="${available[0]!.id}"]`);
     const outcome = await pending;
     expect(outcome).toMatchObject({ kind: 'node', id: available[0]!.id, boundary: 'branch' });
-    expect(outcome.cinematicId).toBeUndefined();
+    expect(outcome.cinematicId).toBe('refugees_approach');
     expect(outcome.presentationKey).toBe('node:lion-refugees:arrival');
     expect(outcome.surfaceReason).toBe('unavailable');
     expect(outcome.trace).toContain('AGENCY');
@@ -223,6 +223,29 @@ describe('journey campaign boundary', () => {
     expect(outcome.cinematicId).toBe('clip-arrival');
     expect(outcome.surfaceReason).toBe('reduced-motion');
     expect(outcome.kind).toBe('node');
+  });
+
+  it('does not replay the same mapped clip after a secondary-action re-presentation', async () => {
+    const registry = new CinematicRegistry({
+      version: 1,
+      cinematics: [{ id: 'clip-arrival', title: 'Arrival', sources: [], placeholderOnly: true }],
+    });
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-refugees');
+    const boundary = createBoundary({
+      registry,
+      presentationMap: { [nodeArrivalKey('lion-refugees')]: 'clip-arrival' },
+    });
+
+    const first = boundary.present({ currentNodeId: 'lion-refugees', available, secondary: SECONDARY, reducedMotion: true });
+    await flush();
+    click('[data-journey-secondary="COMPANY"]');
+    await expect(first).resolves.toMatchObject({ cinematicId: 'clip-arrival', surfaceReason: 'reduced-motion' });
+
+    const second = boundary.present({ currentNodeId: 'lion-refugees', available, secondary: SECONDARY, reducedMotion: false });
+    await flush();
+    click(`[data-journey-choice="${available[0]!.id}"]`);
+    await expect(second).resolves.toMatchObject({ cinematicId: 'clip-arrival', surfaceReason: 'unavailable', kind: 'node' });
   });
 
   it('propagates catastrophic session failure to the caller', async () => {

@@ -1,3 +1,5 @@
+import { readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { analyzeRgb, assertWithin, compareRgb, technicalErrors, validateAssemblyEvidence, validateChainProof, validateLastFrameEvidence } from './cin4_media.mjs';
 
@@ -44,5 +46,13 @@ describe('CIN-4 media invariants', () => {
     const metadata = { editorialOrder: ['shot_01', 'shot_02', 'shot_03'], expectedDurationSeconds: 17, shots: spec.shots, outputSha256: 'd'.repeat(64) };
     expect(validateAssemblyEvidence(spec, metadata)).toEqual([]);
     expect(validateAssemblyEvidence(spec, { ...metadata, editorialOrder: [...metadata.editorialOrder].reverse() })).toContain('editorialOrder must match spec shot order');
+  });
+
+  it('supports two-shot sequence assembly without a fixed three-shot assumption', async () => {
+    const source = await readFile(resolve(process.cwd(), 'tools/cinematics/assemble_sequence.mjs'), 'utf8');
+    expect(source).toContain("if (spec.shots.length < 2)");
+    expect(source).toContain("concat=n=${inputs.length}");
+    expect(source).toContain("Array(spec.shots.length - 1).fill('CUT')");
+    expect(source).not.toContain('requires exactly three ordered shots');
   });
 });

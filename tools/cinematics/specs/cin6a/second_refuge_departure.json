@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6a_second_refuge_departure",
+  "cinematicId": "second_refuge_departure",
+  "tier": "JOURNEY",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6a-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG dawn departure from the Bois-Clair region. Restore neutral forward momentum after the interactive refuge and remain equally valid after either saved or sacrificed aftermath. Do not resolve Garen's later choice.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Establish Marian and Alistair leaving the refuge area at neutral dawn.",
+      "framing": "WIDE_NEUTRAL_DAWN_DEPARTURE",
+      "environment": "public/assets/generated/lion-phase/dialogue/village_choice.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_second_refuge_departure/shot_01/source.png" },
+      "characters": [
+        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.27, "groundY": 0.98 }, "heightPx": 590, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:onward_road", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.72, "groundY": 0.98 }, "heightPx": 590, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "SECONDARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "TRACK_SMALL_RIGHT" },
+      "durationSeconds": 5,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "FORWARD_MOMENTUM_RESTORED",
+      "promptIntent": "At neutral dawn, Marian and Alistair travel together a short distance forward in depth along the central onward road. Keep their lateral spacing fixed: Marian remains on the left and Alistair remains on the right, with no drifting apart, crossing sides, or moving toward opposite screen edges. Use subtle road/environment parallax to make shared departure readable while preserving their authored opposite facing. Marian's palm-light stays a small passive travel light and is never cast. Alistair's canonical sword stays low and stable and is never aimed or swung toward Marian. Keep both canonical identities, armor, weapons, hands, and anatomy intact. Show no rescued families, abandoned families, secured stores, celebration, raid consequence, threat between companions, or Garen decision."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Settle the company on the onward road toward the witness region without encoding either Bois-Clair state.",
+      "framing": "MEDIUM_ONWARD_ROAD_COMPANY",
+      "environment": "public/assets/generated/lion-phase/dialogue/village_choice.webp",
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_second_refuge_departure/shot_02/source.png" },
+      "characters": [
+        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.31, "groundY": 0.98 }, "heightPx": 730, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:onward_road", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.69, "groundY": 0.98 }, "heightPx": 730, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "SECONDARY", "action": "STOP", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SLOW_PULL" },
+      "durationSeconds": 5,
+      "continuityOut": "END",
+      "endIntent": "JOURNEY_CONTINUATION_READY",
+      "promptIntent": "Marian scans the road ahead while Alistair completes one controlled stop on the right, remaining screen-left-facing toward the company. Marian's palm-light remains passive with no spell-cast; Alistair's sword remains low and stable with no aim or swing. Preserve exact identities, sides, weapons, hands, and anatomy. Use neutral dawn light and subtle cloth or vegetation motion; add no threat between companions, witness encounter, route choice, refuge action, saved-specific detail, or sacrificed-specific detail."
+    }
+  ]
+}

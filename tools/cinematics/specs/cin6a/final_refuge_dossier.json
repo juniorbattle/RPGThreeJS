@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6a_final_refuge_dossier",
+  "cinematicId": "final_refuge_dossier",
+  "tier": "HERO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6a-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG story sequence at the approach to Alaric's Lion audience. Maelor, Seraphine, and Alistair gather the route's weight, review their dossier, and prepare to march. This is a story-only node: show no shop, rest, healing, camp management, evidence disclosure, verdict, route selection, or finale result.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Establish the company pausing before the Lion audience approach with the judgement architecture ahead.",
+      "framing": "WIDE_FINAL_DOSSIER_MUSTER",
+      "environment": "public/assets/generated/lion-phase/dialogue/lion_finale_judgement.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_final_refuge_dossier/shot_01/source.png" },
+      "characters": [
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.16, "groundY": 0.98 }, "heightPx": 500, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_gates", "depth": 30, "role": "SECONDARY", "action": "STOP", "mirrorPolicy": "ALLOW" },
+        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.36, "groundY": 0.98 }, "heightPx": 620, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_gates", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.76, "groundY": 0.98 }, "heightPx": 570, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:maelor", "depth": 10, "role": "SECONDARY", "action": "STAND", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SLOW_PULL" },
+      "durationSeconds": 6,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "FINAL_MUSTER_ESTABLISHED",
+      "promptIntent": "The company completes one restrained stop before the Lion gates. Alistair and Maelor remain on the left facing screen-right toward the approach; Seraphine remains on the right facing screen-left toward Maelor. Preserve their canonical faces, armor, book, dagger, sword, staff, lantern, anatomy, depth, and scale. Let banners, firelight, leaves, and cloth move slightly as the camera eases back. No refuge UI, supplies, healing, evidence transfer, Alaric, judgement, verdict, or route outcome."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Cut closer as Maelor reviews the open dossier and the company absorbs the route's consequences.",
+      "framing": "MEDIUM_DOSSIER_REVIEW",
+      "environment": "public/assets/generated/lion-phase/dialogue/lion_finale_judgement.webp",
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_final_refuge_dossier/shot_02/source.png" },
+      "characters": [
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.13, "groundY": 0.99 }, "heightPx": 520, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:maelor", "depth": 30, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.36, "groundY": 0.99 }, "heightPx": 680, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:sage_seraphine", "depth": 20, "role": "PRIMARY", "action": "SMALL_HEAD_TURN", "mirrorPolicy": "ALLOW" },
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.76, "groundY": 0.99 }, "heightPx": 630, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:maelor", "depth": 10, "role": "SECONDARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "WIDE_HOLD" },
+      "durationSeconds": 6,
+      "continuityOut": "LAST_FRAME",
+      "endIntent": "DOSSIER_WEIGHT_READABLE",
+      "promptIntent": "LOCKED WIDE GROUP COMPOSITION. Keep Alistair, Maelor, and Seraphine fully visible inside the frame from first frame through last frame, at the same pixel positions and subject scale. Zero push-in, zoom, crop, pan, reframe, or subject enlargement. Maelor keeps his canonical book open and makes one small head turn toward Seraphine; she responds with one restrained acknowledgement while Alistair observes from behind. Preserve all three canonical identities, props, hands, anatomy, sides, facing, and scale. Do not invent readable book text, hand over evidence, show Alaric, decide disclosure, announce a verdict, expose management UI, or resolve the route."
+    },
+    {
+      "shotId": "shot_03",
+      "purpose": "Continue from the reviewed dossier frame into a restrained readiness to march toward judgement.",
+      "framing": "STABLE_MARCH_TO_JUDGEMENT_HANDOFF",
+      "environment": "public/assets/generated/lion-phase/dialogue/lion_finale_judgement.webp",
+      "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_02", "path": "tmp/cinematics/cin4/cin6a_final_refuge_dossier/shot_02/last_frame.png" },
+      "characters": [
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.13, "groundY": 0.99 }, "heightPx": 520, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_gates", "depth": 30, "role": "SECONDARY", "action": "READY_STANCE", "mirrorPolicy": "ALLOW" },
+        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.36, "groundY": 0.99 }, "heightPx": 680, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_gates", "depth": 20, "role": "PRIMARY", "action": "LOWER_HAND", "mirrorPolicy": "ALLOW" },
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.76, "groundY": 0.99 }, "heightPx": 630, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:maelor", "depth": 10, "role": "SECONDARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "WIDE_HOLD" },
+      "durationSeconds": 6,
+      "continuityOut": "END",
+      "endIntent": "FINAL_STORY_DIALOGUE_READY",
+      "promptIntent": "Continue from the reviewed chained frame. Maelor lowers only his book hand a little without closing, dropping, or transferring the book; Alistair settles into a restrained ready stance and Seraphine shifts weight once. Preserve exact identities, props, hands, sides, facing, and screen geography. Hold a sharp final state ready for deterministic story dialogue. No walking through the gate, Alaric, evidence disclosure, verdict, route decision, refuge management, combat, reward, or ending."
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import {
   deriveCombatTruth,
   deriveRunSystemTruth,
   loadCampaignCinematicCensus,
+  plannedProductionVideoFiles,
   validateCampaignCinematicCensus,
 } from './validate_campaign_cinematic_census.mjs';
 
@@ -223,6 +224,37 @@ describe('CIN-5 campaign cinematic census contract', () => {
     expect(census.priorityAccounting.orderedTargetsIncludingReuse).toEqual(derived);
   });
 
+  it('locks the CIN-6A vertical batch to exactly 17 targets, 15 productions, and 2 verifications', () => {
+    const batch = census.productionBatches.find((candidate) => candidate.id === 'CIN-6A');
+    expect(batch?.targets).toHaveLength(17);
+    expect(batch?.targets.filter((target) => ['PRODUCE', 'QUALITY_GATE_PRODUCE'].includes(target.action))).toHaveLength(15);
+    expect(batch?.targets.filter((target) => target.action === 'VERIFY_ONLY')).toHaveLength(2);
+    expect(batch?.targets.map((target) => target.target)).toEqual([
+      'family:forest_journey_tension',
+      'node:lion-camp:departure',
+      'node:lion-audience:arrival',
+      'node:lion-refugees:approach',
+      'node:lion-first-refuge:arrival',
+      'edge:lion-first-refuge>lion-reserve-trail',
+      'node:lion-valmir-road:route-choice-freeze',
+      'node:lion-village-choice:arrival',
+      'state:bois_clair:saved',
+      'edge:lion-second-refuge>lion-lancer-recruit',
+      'node:lion-witnesses:encounter',
+      'family:ruins_approach_context',
+      'node:lion-shadow-signs:arrival',
+      'node:lion-final-refuge:dossier',
+      'node:lion-final-judgement:judgement',
+      'content:serpent_captain:reveal',
+      'state:serpent_pursuit:ending',
+    ]);
+  });
+
+  it('does not promote either deferred CIN-6B master during CIN-6A', () => {
+    expect(existsSync(resolve(projectRoot, 'public/assets/cinematics/bois_clair_sacrificed.mp4'))).toBe(false);
+    expect(existsSync(resolve(projectRoot, 'public/assets/cinematics/lion_trial_route_ending.mp4'))).toBe(false);
+  });
+
   it('explains the P0 target expansion as one state target plus two reuse families', () => {
     expect(census.priorityAccounting.orderedTargetComposition.P0).toEqual({
       primaryMediaEntries: 17,
@@ -385,14 +417,22 @@ describe('CIN-5 campaign cinematic census contract', () => {
     });
   });
 
-  it('keeps the Journey production presentation map empty', () => {
-    expect(JOURNEY_PRESENTATION_MAP).toEqual({});
+  it('keeps the Journey production presentation map on the exact reviewed CIN-6A allowlist', () => {
+    expect(JOURNEY_PRESENTATION_MAP).toEqual({
+      'node:lion-camp:arrival': 'camp_departure',
+      'node:lion-refugees:arrival': 'refugees_approach',
+      'node:lion-valmir-road:arrival': 'valmir_route_fork',
+      'node:lion-witnesses:arrival': 'witnesses_encounter',
+    });
   });
 
-  it('keeps exactly the three approved production video files', () => {
-    expect(readdirSync(resolve(projectRoot, 'public/assets/cinematics')).filter((name) => /\.(?:mp4|webm|mov)$/i.test(name)).sort()).toEqual([
+  it('keeps production video files inside the census-planned set', () => {
+    const planned = new Set(plannedProductionVideoFiles(census));
+    const actual = readdirSync(resolve(projectRoot, 'public/assets/cinematics')).filter((name) => /\.(?:mp4|webm|mov)$/i.test(name));
+    expect(actual.every((name) => planned.has(name))).toBe(true);
+    expect(actual).toEqual(expect.arrayContaining([
       'lion_champion_reveal.mp4', 'lion_judgement.mp4', 'serpent_general_reveal.mp4',
-    ]);
+    ]));
   });
 
   it('records exact current approved duration and byte totals', () => {
@@ -423,8 +463,10 @@ describe('CIN-5 campaign cinematic census contract', () => {
     expect(changed).not.toMatch(/src\/game\/(?:types|store)\.ts/);
   });
 
-  it('does not introduce new production media in the worktree', () => {
+  it('allows only census-planned production media in the worktree', () => {
+    const planned = new Set(plannedProductionVideoFiles(census));
     const changed = execFileSync('git', ['status', '--short'], { cwd: projectRoot, encoding: 'utf8' });
-    expect(changed).not.toMatch(/public\/assets\/cinematics\/.*\.(?:mp4|webm|mov|png)/i);
+    const changedMedia = [...changed.matchAll(/public\/assets\/cinematics\/([^\s]+\.(?:mp4|webm|mov))/gi)].map((match) => match[1]);
+    expect(changedMedia.every((name) => planned.has(name))).toBe(true);
   });
 });

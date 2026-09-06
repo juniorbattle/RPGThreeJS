@@ -72,7 +72,7 @@ describe('cinematic registry', () => {
     expect(Reflect.set(VIDEO_CINEMATIC_TRIGGERS.beforeCombat, 'extra', 'not-allowed')).toBe(false);
   });
 
-  it('ships the QA placeholder plus exactly three local CIN-3 videos', () => {
+  it('ships the QA placeholder, three preserved CIN-3 videos and fifteen CIN-6A videos', () => {
     const raw = readFileSync(join(process.cwd(), 'public', 'assets', 'cinematics', 'manifest.json'), 'utf-8');
     const parsed = parseVideoCinematicManifest(JSON.parse(raw));
     expect(parsed?.cinematics.map((descriptor) => descriptor.id)).toEqual([
@@ -80,10 +80,25 @@ describe('cinematic registry', () => {
       'lion_judgement',
       'serpent_general_reveal',
       'lion_champion_reveal',
+      'forest_journey_tension',
+      'camp_departure',
+      'alaric_audience_arrival',
+      'refugees_approach',
+      'first_refuge_arrival',
+      'first_refuge_departure',
+      'valmir_route_fork',
+      'bois_clair_arrival',
+      'bois_clair_saved',
+      'second_refuge_departure',
+      'witnesses_encounter',
+      'ruins_approach_context',
+      'shadow_signs',
+      'final_refuge_dossier',
+      'serpent_route_ending',
     ]);
     expect(parsed?.cinematics[0]?.placeholderOnly).toBe(true);
     const real = parsed?.cinematics.slice(1) ?? [];
-    expect(real).toHaveLength(3);
+    expect(real).toHaveLength(18);
     for (const descriptor of real) {
       expect(descriptor.placeholderOnly).not.toBe(true);
       expect(descriptor.sources).toEqual([{ src: `/assets/cinematics/${descriptor.id}.mp4`, type: 'video/mp4' }]);

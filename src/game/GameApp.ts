@@ -35,6 +35,13 @@ import { CinematicRegistry } from '../cinematics/CinematicRegistry';
 import { resolveVideoCinematicTrigger } from '../cinematics/CinematicTriggers';
 import type { VideoCinematicTrigger } from '../cinematics/CinematicTypes';
 import {
+  resolveCin6aBoisClairAftermath,
+  resolveCin6aJourneyTrigger,
+  resolveCin6aRefugeArrival,
+  resolveCin6aRefugeDeparture,
+  resolveCin6aSerpentEnding,
+} from '../cinematics/Cin6aPresentation';
+import {
   formatJourneyQaOutcome,
   JOURNEY_QA_SCENARIOS,
   runJourneyQaScenario,
@@ -112,6 +119,11 @@ export class GameApp {
     && new URLSearchParams(window.location.search).get('qa') === '1';
   private readonly cinematicQaEnabled = this.qaEnabled
     && new URLSearchParams(window.location.search).get('cinematic') === '1';
+  // Explicit DEV-only end-to-end fixture: it only exposes the existing combat QA controls while
+  // the real campaign/Journey controller continues to own route, dialogue and state progression.
+  private readonly cin6aGoldenQaEnabled = this.qaEnabled
+    && this.campaignPresentation === 'journey'
+    && new URLSearchParams(window.location.search).get('cin6a') === 'golden';
   private qaParams: QaParams | null = null;
 
   constructor(
@@ -301,6 +313,8 @@ export class GameApp {
     this.prologue.close();
     this.combat.close();
     this.canvas.hidden = true;
+    const requestedRealId = new URLSearchParams(window.location.search).get('real') ?? 'forest_journey_tension';
+    const selectedRealId = this.cinematicRegistry.get(requestedRealId) ? requestedRealId : 'forest_journey_tension';
     this.chrome.innerHTML = `
       <section class="qa-lab cinematic-qa ui-screen" aria-label="Laboratoire QA cinématique">
         <header class="qa-lab__header">
@@ -317,6 +331,8 @@ export class GameApp {
           <button type="button" data-cinematic-qa="reduced"><b>Mouvement réduit</b><span>Continuation immédiate</span></button>
           <button type="button" data-cinematic-qa="abort"><b>Annulation</b><span>Abort et règlement exact</span></button>
           <button type="button" data-cinematic-qa="transition"><b>Transition</b><span>Interlude couvert et interactif</span></button>
+          <button type="button" data-cinematic-qa="real-selected"><b>Vidéo CIN-6A sélectionnée</b><span>${selectedRealId} — fin naturelle, Skip et nettoyage</span></button>
+          <button type="button" data-cinematic-qa="real-selected-hold"><b>Hold CIN-6A sélectionné</b><span>${selectedRealId} — frame finale Chromium, Release et nettoyage</span></button>
           <button type="button" data-cinematic-qa="real-hold"><b>Vidéo réelle + hold</b><span>lion_judgement naturel, frame finale, Release et nettoyage</span></button>
           <button type="button" data-cinematic-qa="real-dialogue"><b>Flux Lion réel</b><span>lion_judgement → lion_finale_judgement</span></button>
           <button type="button" data-cinematic-qa="reduced-dialogue"><b>Flux Lion réduit</b><span>Bypass mouvement → lion_finale_judgement</span></button>
@@ -373,12 +389,17 @@ export class GameApp {
       return;
     }
     let result: Awaited<ReturnType<CinematicPlayer['play']>> | undefined;
-    if (scenario === 'real-hold') {
-      const held = await this.cinematicPlayer.playHeld('lion_judgement', {
+    const requestedRealId = new URLSearchParams(window.location.search).get('real') ?? 'forest_journey_tension';
+    const selectedRealId = this.cinematicRegistry.get(requestedRealId) ? requestedRealId : 'forest_journey_tension';
+    const selectedDuration = this.cinematicRegistry.get(selectedRealId)?.durationMs ?? 0;
+    if (scenario === 'real-hold' || scenario === 'real-selected-hold') {
+      const heldId = scenario === 'real-hold' ? 'lion_judgement' : selectedRealId;
+      const heldDuration = this.cinematicRegistry.get(heldId)?.durationMs ?? 0;
+      const held = await this.cinematicPlayer.playHeld(heldId, {
         allowSkip: false,
         muted: true,
         reducedMotion: false,
-        timeoutMs: 22_000,
+        timeoutMs: Math.max(12_000, heldDuration + 5_000),
         stallTimeoutMs: 5_000,
       });
       result = held.result;
@@ -417,13 +438,19 @@ export class GameApp {
         release.addEventListener('click', () => {
           held.release();
           const residue = document.querySelectorAll('.cinematic-overlay, .cinematic-overlay__video, [data-cinematic-frame-sample]').length;
-          this.renderCinematicQa(`Vidéo réelle : ${held.result.reason} · played ${held.result.played} · résidu DOM ${residue}.`);
+          this.renderCinematicQa(`Vidéo réelle ${heldId} : ${held.result.reason} · played ${held.result.played} · résidu DOM ${residue}.`);
         }, { once: true });
         held.surface.append(release);
         release.focus();
         return;
       }
-    } else if (scenario === 'missing') result = await this.cinematicPlayer.play('missing-cinematic', { reducedMotion: false });
+    } else if (scenario === 'real-selected') result = await this.cinematicPlayer.play(selectedRealId, {
+      muted: true,
+      reducedMotion: false,
+      timeoutMs: Math.max(12_000, selectedDuration + 5_000),
+      stallTimeoutMs: 5_000,
+    });
+    else if (scenario === 'missing') result = await this.cinematicPlayer.play('missing-cinematic', { reducedMotion: false });
     else if (scenario === 'reduced') result = await this.cinematicPlayer.play('qa-placeholder', { reducedMotion: true });
     else if (scenario === 'abort') {
       const controller = new AbortController();
@@ -444,9 +471,21 @@ export class GameApp {
   }
 
   private cinematicInterlude(trigger: VideoCinematicTrigger): (() => Promise<unknown>) | undefined {
-    const id = resolveVideoCinematicTrigger(trigger);
+    const id = resolveVideoCinematicTrigger(trigger)
+      ?? (this.usesJourneyPresentation() ? resolveCin6aJourneyTrigger(trigger) : undefined);
     if (!id) return undefined;
     return () => this.cinematicPlayer.play(id, { reducedMotion: this.state.settings.reducedGraphics });
+  }
+
+  private async playJourneyCinematic(id: string | undefined, label = ''): Promise<void> {
+    if (!id || !this.usesJourneyPresentation()) return;
+    await sceneTransition.run({
+      variant: 'fade',
+      label,
+      interlude: () => this.cinematicPlayer.play(id, { reducedMotion: this.state.settings.reducedGraphics }),
+      task: async () => undefined,
+      holdMs: 0,
+    });
   }
 
   private async playStandaloneCinematic(trigger: VideoCinematicTrigger, label = ''): Promise<void> {
@@ -664,35 +703,43 @@ export class GameApp {
       return false;
     }
     const node = decision.node;
+    let entered: RunNode | null = null;
     this.routeCommitInFlight = true;
     try {
       this.travel.close();
       this.disposeJourney();
       this.setMode('RESULT');
-      const entered = enterRunNode(this.state.run, node.id);
-      if (!entered) {
-        await this.enterCampaignPresentation();
-        return false;
+      entered = enterRunNode(this.state.run, node.id);
+      if (entered) {
+        this.state.currentNodeId = entered.id;
+        this.state.visitedNodeIds = [...this.state.run.visitedNodeIds];
+        if (
+          ['event', 'mystery', 'recruitment'].includes(entered.type)
+          && !this.state.seenUniqueEvents.includes(entered.contentId)
+        ) {
+          this.state.seenUniqueEvents.push(entered.contentId);
+        }
+        this.state.stepCounter += 1;
       }
-      this.state.currentNodeId = entered.id;
-      this.state.visitedNodeIds = [...this.state.run.visitedNodeIds];
-      if (
-        ['event', 'mystery', 'recruitment'].includes(entered.type)
-        && !this.state.seenUniqueEvents.includes(entered.contentId)
-      ) {
-        this.state.seenUniqueEvents.push(entered.contentId);
-      }
-      this.state.stepCounter += 1;
-      await this.resolveRunNode(entered, false);
-      return true;
     } finally {
+      // The mutex protects only the single authoritative RunSystem mutation. Holding it while
+      // `resolveRunNode` awaits the next Journey boundary would reject that legitimate next choice.
       this.routeCommitInFlight = false;
     }
+    if (!entered) {
+      await this.enterCampaignPresentation();
+      return false;
+    }
+    await this.resolveRunNode(entered, false);
+    return true;
   }
 
   private async resolveRunNode(node: RunNode, initial: boolean): Promise<void> {
     if (node.type === 'refuge') {
       const securedFlag = `refugeSecured:${node.id}`;
+      if (!this.state.flags[securedFlag]) {
+        await this.playJourneyCinematic(resolveCin6aRefugeArrival(node.id), node.label);
+      }
       let securedGold = 0;
       if (!this.state.flags[securedFlag]) {
         if (getReputationRule(this.state.reputation).min >= 60) {
@@ -729,6 +776,7 @@ export class GameApp {
         if (action === 'clan') await this.openManagement('clan', undefined, 'temporary', false);
         if (action === 'skills') await this.openManagement('skills', undefined, 'temporary', false);
       }
+      await this.playJourneyCinematic(resolveCin6aRefugeDeparture(node.id), node.label);
       this.markResolved(node.id);
       await this.playPostNodeNarrative(node.id);
       await this.enterCampaignPresentation();
@@ -928,7 +976,7 @@ export class GameApp {
           inventory: this.state.inventory.consumables,
           preferredUnitIds: this.state.deployment.unitIds,
           reducedGraphics: this.state.settings.reducedGraphics,
-          devQa: false,
+          devQa: this.cin6aGoldenQaEnabled,
         });
         resolveCombatStart(combatSession);
         await combatSession.ready;
@@ -967,6 +1015,10 @@ export class GameApp {
     changeReputation(this.state, rewards.reputation, `combat:${result.combatId}`);
     Object.assign(this.state.flags, lionBossVictoryFacts(result.combatId));
     this.markResolved(node.id);
+    await this.playJourneyCinematic(
+      resolveCin6aBoisClairAftermath(result.combatId, result.victory, this.state.flags),
+      result.victory ? 'Conséquence' : 'Défaite',
+    );
     if (node.type === 'boss') {
       this.state.run.status = 'completed';
       secureRunLoot(this.state);
@@ -978,6 +1030,10 @@ export class GameApp {
           return;
         }
       }
+      await this.playJourneyCinematic(
+        resolveCin6aSerpentEnding(result.combatId, result.victory, this.state.flags),
+        'Épilogue',
+      );
       await this.playDialogue('epilogue');
       await this.enterCampaignPresentation();
       return;

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6a_ruins_approach_context",
+  "cinematicId": "ruins_approach_context",
+  "tier": "JOURNEY",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6a-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG approach to the canonical Lion sanctum ruins. Keep this shared context neutral before guardians or Shadow Signs interpretation: disturbed stone, old Lion architecture, faint weather and unease, but no creature reveal, combat outcome, Shadow conclusion, evidence choice, or disclosure state.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Establish a cautious company approach to the disturbed sanctum without revealing what waits there.",
+      "framing": "WIDE_DISTURBED_SANCTUM_APPROACH",
+      "environment": "public/assets/generated/lion-phase/combat-stage/lion_sanctum_stage.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_ruins_approach_context/shot_01/source.png" },
+      "characters": [
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.23, "groundY": 0.98 }, "heightPx": 560, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:sanctum_threshold", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "TRACK_SMALL_RIGHT" },
+      "durationSeconds": 5,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "SANCTUM_THRESHOLD_REVEALED",
+      "promptIntent": "Seraphine advances only a few measured steps screen-right toward the sanctum threshold and stops. Keep her canonical face, hood, staff, lantern, anatomy, and screen-right facing exact. Animate only restrained foliage, mist, and old braziers. Show no guardian, monster, attack, artifact claim, Shadow interpretation, evidence, fragments, or result."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Read the disturbed Lion ruins and environmental traces while preserving every later interpretation.",
+      "framing": "MEDIUM_SANCTUM_CLUE_HOLD",
+      "environment": "public/assets/generated/lion-phase/combat/lion_sanctum.webp",
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_ruins_approach_context/shot_02/source.png" },
+      "characters": [
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.3, "groundY": 0.98 }, "heightPx": 680, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:disturbed_stone", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SLOW_PULL" },
+      "durationSeconds": 5,
+      "continuityOut": "END",
+      "endIntent": "NEUTRAL_RUINS_CONTEXT_READY",
+      "promptIntent": "Seraphine makes one restrained observational head movement toward disturbed stone while remaining on the left and facing screen-right. Preserve her canonical identity, staff, lantern, anatomy, and scale. Let leaves, mist, and firelight move subtly as the camera pulls back a little. Do not reveal a guardian, specific enemy, artifact, Shadow truth, Serpent conclusion, evidence decision, disclosure, or combat outcome."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6a_valmir_route_fork",
+  "cinematicId": "valmir_route_fork",
+  "tier": "JOURNEY",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6a-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG road-choice context in the canonical forest fork after combat. Reveal two plausible onward directions without choosing, labeling, or privileging either route.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Reveal the cleared road opening onto the shrine-road and guarded-road alternatives.",
+      "framing": "WIDE_VALMIR_FORK",
+      "environment": "public/assets/generated/lion-phase/dialogue/forest_fork.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_valmir_route_fork/shot_01/source.png" },
+      "characters": [
+        { "id": "kestrel", "asset": "public/assets/characters/pixel/full/kestrel.png", "position": { "x": 0.39, "groundY": 0.97 }, "heightPx": 620, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:forked_road", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "PAN_SMALL_RIGHT" },
+      "durationSeconds": 5,
+      "continuityOut": "LAST_FRAME",
+      "endIntent": "BOTH_ROADS_READABLE",
+      "promptIntent": "Kestrel advances a few careful steps screen-right after the resolved road fight and stops where both branches can be read. Preserve bow, hands, identity, and screen-right facing. Keep both routes neutral; add no enemies, signs, labels, markers, shrine conclusion, or selection."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Continue the reviewed fork view and settle into a clean frame for the real route overlay.",
+      "framing": "STABLE_VALMIR_ROUTE_FREEZE",
+      "environment": "public/assets/generated/lion-phase/dialogue/forest_fork.webp",
+      "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_01", "path": "tmp/cinematics/cin4/cin6a_valmir_route_fork/shot_01/last_frame.png" },
+      "characters": [
+        { "id": "kestrel", "asset": "public/assets/characters/pixel/full/kestrel.png", "position": { "x": 0.39, "groundY": 0.97 }, "heightPx": 620, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:forked_road", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "STATIC" },
+      "durationSeconds": 5,
+      "continuityOut": "END",
+      "endIntent": "REAL_ROUTE_OVERLAY_READY",
+      "promptIntent": "Continue from the reviewed chained frame using only breathing, leaves, mist, and distant atmospheric motion. Lock the camera and preserve the exact framing and subject scale: no push-in, pull-back, pan, zoom, crop, or reframing. Keep Kestrel and bow stable and screen-right-facing. End sharp with both road branches readable; never add UI, arrows, text, route markers, a chosen direction, or a new combat threat."
+    }
+  ]
+}

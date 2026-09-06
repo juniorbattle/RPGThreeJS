@@ -5,7 +5,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from compose_shot import compose_shot, orient_character, placement_box, scale_to_height, sha256
+from compose_shot import _sealed_artefact, compose_shot, orient_character, placement_box, scale_to_height, sha256
 
 
 class ComposeShotTests(unittest.TestCase):
@@ -26,6 +26,12 @@ class ComposeShotTests(unittest.TestCase):
         self.assertEqual(scaled.size, (200, 400))
         character = {"position": {"x": 0.25, "groundY": 0.9}}
         self.assertEqual(placement_box(character, scaled.size, (1920, 1080)), (380, 572, 580, 972))
+
+    def test_sealed_artefact_overlay_is_deterministic_and_visible(self):
+        first = _sealed_artefact(96)
+        second = _sealed_artefact(96)
+        self.assertEqual(first.tobytes(), second.tobytes())
+        self.assertIsNotNone(first.getchannel("A").getbbox())
 
     def test_composite_sorts_depth_back_to_front_and_preserves_assets(self):
         with tempfile.TemporaryDirectory() as directory:

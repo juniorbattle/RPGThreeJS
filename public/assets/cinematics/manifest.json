@@ -47,6 +47,111 @@
       "poster": "/assets/cinematics/source/lion_champion_reveal_source.png",
       "fallbackText": "Le champion du Lion avance pour défendre le sanctuaire.",
       "durationMs": 8000
+    },
+    {
+      "id": "forest_journey_tension",
+      "title": "Pression sous les frondaisons",
+      "sources": [{ "src": "/assets/cinematics/forest_journey_tension.mp4", "type": "video/mp4" }],
+      "fallbackText": "La compagnie progresse sous une pression invisible.",
+      "durationMs": 9000
+    },
+    {
+      "id": "camp_departure",
+      "title": "Le départ du camp",
+      "sources": [{ "src": "/assets/cinematics/camp_departure.mp4", "type": "video/mp4" }],
+      "fallbackText": "La compagnie quitte le camp et prend la route.",
+      "durationMs": 12000
+    },
+    {
+      "id": "alaric_audience_arrival",
+      "title": "L’audience d’Alaric",
+      "sources": [{ "src": "/assets/cinematics/alaric_audience_arrival.mp4", "type": "video/mp4" }],
+      "fallbackText": "La compagnie entre dans la salle d’audience du Lion.",
+      "durationMs": 9000
+    },
+    {
+      "id": "refugees_approach",
+      "title": "Les réfugiés sur la route",
+      "sources": [{ "src": "/assets/cinematics/refugees_approach.mp4", "type": "video/mp4" }],
+      "fallbackText": "Des familles épuisées apparaissent sur la route.",
+      "durationMs": 12000
+    },
+    {
+      "id": "first_refuge_arrival",
+      "title": "Le premier refuge",
+      "sources": [{ "src": "/assets/cinematics/first_refuge_arrival.mp4", "type": "video/mp4" }],
+      "fallbackText": "La compagnie atteint un refuge stable.",
+      "durationMs": 10000
+    },
+    {
+      "id": "first_refuge_departure",
+      "title": "Vers la piste de la réserve",
+      "sources": [{ "src": "/assets/cinematics/first_refuge_departure.mp4", "type": "video/mp4" }],
+      "fallbackText": "La compagnie reprend la route vers les fumées de Bois-Clair.",
+      "durationMs": 12000
+    },
+    {
+      "id": "valmir_route_fork",
+      "title": "La route de Valmir",
+      "sources": [{ "src": "/assets/cinematics/valmir_route_fork.mp4", "type": "video/mp4" }],
+      "fallbackText": "Deux chemins s’ouvrent après la route de Valmir.",
+      "durationMs": 10000
+    },
+    {
+      "id": "bois_clair_arrival",
+      "title": "Bois-Clair sous les flammes",
+      "sources": [{ "src": "/assets/cinematics/bois_clair_arrival.mp4", "type": "video/mp4" }],
+      "fallbackText": "La compagnie découvre Bois-Clair sous la pression du Serpent.",
+      "durationMs": 20000
+    },
+    {
+      "id": "bois_clair_saved",
+      "title": "Bois-Clair sauvée",
+      "sources": [{ "src": "/assets/cinematics/bois_clair_saved.mp4", "type": "video/mp4" }],
+      "fallbackText": "Les survivants reprennent souffle au milieu des dégâts.",
+      "durationMs": 18000
+    },
+    {
+      "id": "second_refuge_departure",
+      "title": "La marche reprend",
+      "sources": [{ "src": "/assets/cinematics/second_refuge_departure.mp4", "type": "video/mp4" }],
+      "fallbackText": "La compagnie quitte le second refuge.",
+      "durationMs": 10000
+    },
+    {
+      "id": "witnesses_encounter",
+      "title": "Les témoins de la route",
+      "sources": [{ "src": "/assets/cinematics/witnesses_encounter.mp4", "type": "video/mp4" }],
+      "fallbackText": "Des témoins apparaissent avant la prochaine bifurcation.",
+      "durationMs": 12000
+    },
+    {
+      "id": "ruins_approach_context",
+      "title": "L’approche des ruines",
+      "sources": [{ "src": "/assets/cinematics/ruins_approach_context.mp4", "type": "video/mp4" }],
+      "fallbackText": "La compagnie approche de ruines anciennes et troublées.",
+      "durationMs": 10000
+    },
+    {
+      "id": "shadow_signs",
+      "title": "Les signes des Ombres",
+      "sources": [{ "src": "/assets/cinematics/shadow_signs.mp4", "type": "video/mp4" }],
+      "fallbackText": "Des traces inhabituelles exigent une interprétation prudente.",
+      "durationMs": 20000
+    },
+    {
+      "id": "final_refuge_dossier",
+      "title": "Le dernier dossier",
+      "sources": [{ "src": "/assets/cinematics/final_refuge_dossier.mp4", "type": "video/mp4" }],
+      "fallbackText": "La compagnie rassemble son dossier avant le jugement final.",
+      "durationMs": 18000
+    },
+    {
+      "id": "serpent_route_ending",
+      "title": "La chute du Général Serpent",
+      "sources": [{ "src": "/assets/cinematics/serpent_route_ending.mp4", "type": "video/mp4" }],
+      "fallbackText": "Le général est vaincu et l’artefact reste avec la compagnie.",
+      "durationMs": 18000
     }
   ]
 }

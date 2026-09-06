@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6a_serpent_route_ending",
+  "cinematicId": "serpent_route_ending",
+  "tier": "HERO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6a-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG chapter-ending aftermath in the canonical Lion campaign epilogue valley. The Serpent General is already defeated and the recovered seal-like artefact remains with Seraphine and the company. Show aftermath, recovery, and closing movement without deciding what is disclosed to Alaric, what anyone concludes about the Shadows, or any Lion Trial outcome.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Establish the defeated Serpent General and Seraphine's cautious approach after authoritative combat victory.",
+      "framing": "WIDE_SERPENT_GENERAL_AFTERMATH",
+      "environment": "public/assets/generated/lion-phase/dialogue/epilogue.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_serpent_route_ending/shot_01/source.png" },
+      "characters": [
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.25, "groundY": 0.98 }, "heightPx": 590, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:serpent_general_boss", "depth": 20, "role": "PRIMARY", "action": "STEP_FORWARD", "mirrorPolicy": "ALLOW" },
+        { "id": "serpent_general_boss", "asset": "public/assets/characters/pixel/full/serpent_general_boss.png", "position": { "x": 0.74, "groundY": 0.98 }, "heightPx": 650, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:ground", "depth": 10, "role": "SECONDARY", "action": "LOWER_WEAPON", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "WIDE_HOLD" },
+      "durationSeconds": 6,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "DEFEATED_GENERAL_AND_COMPANY_GEOGRAPHY_CLEAR",
+      "promptIntent": "Seraphine takes one cautious step screen-right and stops. By midpoint, the already-defeated General visibly sinks into one stable knee with shoulders slumped and helmet bowed while lowering his polearm tip toward the ground; he holds that unambiguously defeated pose through the final frame. He remains on the right facing screen-left and never attacks, advances, rises, stands triumphant, collapses violently, or dies on screen. Preserve both canonical identities, armor, staff, lantern, polearm, anatomy, sides, and facing. Animate distant banners, cloth, dust, and restrained breathing only."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Reveal the recovered seal-like artefact on the ground between Seraphine and the defeated General without assigning disclosure or ownership beyond the company.",
+      "framing": "MEDIUM_RECOVERED_ARTEFACT",
+      "environment": "public/assets/generated/lion-phase/dialogue/epilogue.webp",
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_serpent_route_ending/shot_02/source.png" },
+      "props": [
+        { "id": "recovered_seal", "kind": "SEALED_ARTEFACT", "position": { "x": 0.5, "groundY": 0.91 }, "sizePx": 104 }
+      ],
+      "characters": [
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.29, "groundY": 0.99 }, "heightPx": 710, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:recovered_seal", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "serpent_general_boss", "asset": "public/assets/characters/pixel/full/serpent_general_boss.png", "position": { "x": 0.78, "groundY": 0.99 }, "heightPx": 700, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:ground", "depth": 10, "role": "SECONDARY", "action": "STAND", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "CLOSE_FOCUS" },
+      "durationSeconds": 6,
+      "continuityOut": "LAST_FRAME",
+      "endIntent": "ARTEFACT_RECOVERED_WITHOUT_DISCLOSURE_DECISION",
+      "promptIntent": "The small authored gold-and-green sealed artefact already resting at center-ground emits only one faint contained pulse while remaining fixed and intact. Seraphine observes it without picking it up, handing it over, speaking, or casting. During the first third, the already-defeated General visibly settles to one stable knee on the right, helmet and shoulders bowed, polearm tip grounded; he holds that passive defeated posture through the final frame and never rises. Preserve exact canonical identities, props, hands, anatomy, sides, facing, and the authored artefact. Do not add symbols, writing, visions, Alaric, transfer, revelation, concealment, or a verdict."
+    },
+    {
+      "shotId": "shot_03",
+      "purpose": "Pull back from the secured aftermath into a clean chapter-ending vista while preserving the unresolved disclosure choice.",
+      "framing": "WIDE_CHAPTER_ENDING_SETTLE",
+      "environment": "public/assets/generated/lion-phase/dialogue/epilogue.webp",
+      "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_02", "path": "tmp/cinematics/cin4/cin6a_serpent_route_ending/shot_02/last_frame.png" },
+      "props": [
+        { "id": "recovered_seal", "kind": "SEALED_ARTEFACT", "position": { "x": 0.5, "groundY": 0.91 }, "sizePx": 104 }
+      ],
+      "characters": [
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.29, "groundY": 0.99 }, "heightPx": 710, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:recovered_seal", "depth": 20, "role": "PRIMARY", "action": "STOP", "mirrorPolicy": "ALLOW" },
+        { "id": "serpent_general_boss", "asset": "public/assets/characters/pixel/full/serpent_general_boss.png", "position": { "x": 0.78, "groundY": 0.99 }, "heightPx": 700, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:ground", "depth": 10, "role": "SECONDARY", "action": "STAND", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SLOW_PULL" },
+      "durationSeconds": 6,
+      "continuityOut": "END",
+      "endIntent": "SERPENT_ROUTE_CHAPTER_END_READY",
+      "promptIntent": "Continue from the reviewed chained frame. Make one very slow restrained pull-back that reveals more of the valley and distant company banners while Seraphine, the defeated General, and the recovered seal remain in the same left-center-right geography. The artefact stays with the company and pulses no more than once. End sharp, calm, and conclusive only about the already-won battle. Do not show Alaric, any handoff, explanation, disclosure choice, political consequence, Lion Trial, celebration, execution, resurrection, or further combat."
+    }
+  ]
+}

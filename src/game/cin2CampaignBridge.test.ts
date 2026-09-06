@@ -38,6 +38,8 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(commit).toContain('await this.resolveRunNode(entered, false)');
     expect(commit).toContain('this.routeCommitInFlight = true');
     expect(commit).toContain('this.routeCommitInFlight = false');
+    expect(commit.indexOf('this.routeCommitInFlight = false'))
+      .toBeLessThan(commit.indexOf('await this.resolveRunNode(entered, false)'));
 
     // TravelView selection delegates instead of duplicating the sequence.
     const choose = method('private async chooseRunNode');
@@ -206,7 +208,7 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(at('lion-final-judgement')).toHaveLength(0);
   });
 
-  it('keeps CIN-2 presentation separate from the three CIN-3 production triggers', () => {
+  it('keeps CIN-6A Journey media separate from the three global CIN-3 production triggers', () => {
     expect(VIDEO_CINEMATIC_TRIGGERS.beforeDialogue).toEqual({
       lion_finale_judgement: 'lion_judgement',
     });
@@ -224,9 +226,24 @@ describe('CIN-2 campaign presentation bridge', () => {
       'lion_judgement',
       'serpent_general_reveal',
       'lion_champion_reveal',
+      'forest_journey_tension',
+      'camp_departure',
+      'alaric_audience_arrival',
+      'refugees_approach',
+      'first_refuge_arrival',
+      'first_refuge_departure',
+      'valmir_route_fork',
+      'bois_clair_arrival',
+      'bois_clair_saved',
+      'second_refuge_departure',
+      'witnesses_encounter',
+      'ruins_approach_context',
+      'shadow_signs',
+      'final_refuge_dossier',
+      'serpent_route_ending',
     ]);
 
-    // CIN-3 adds only its three explicitly approved production binaries.
+    // CIN-6A adds its fifteen approved local masters and preserves all three CIN-3 binaries.
     const videos: string[] = [];
     const walk = (dir: string) => {
       for (const entry of readdirSync(dir)) {
@@ -237,9 +254,24 @@ describe('CIN-2 campaign presentation bridge', () => {
     };
     walk(resolve(process.cwd(), 'public'));
     expect(videos.map((path) => path.replaceAll('\\', '/').split('/').at(-1)).sort()).toEqual([
+      'alaric_audience_arrival.mp4',
+      'bois_clair_arrival.mp4',
+      'bois_clair_saved.mp4',
+      'camp_departure.mp4',
+      'final_refuge_dossier.mp4',
+      'first_refuge_arrival.mp4',
+      'first_refuge_departure.mp4',
+      'forest_journey_tension.mp4',
       'lion_champion_reveal.mp4',
       'lion_judgement.mp4',
+      'refugees_approach.mp4',
+      'ruins_approach_context.mp4',
+      'second_refuge_departure.mp4',
       'serpent_general_reveal.mp4',
+      'serpent_route_ending.mp4',
+      'shadow_signs.mp4',
+      'valmir_route_fork.mp4',
+      'witnesses_encounter.mp4',
     ]);
   });
 });

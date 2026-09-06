@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6a_witnesses_encounter",
+  "cinematicId": "witnesses_encounter",
+  "tier": "JOURNEY",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6a-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG roadside witness encounter. Present the witnesses as autonomous people meeting the company, then settle into neutral context for the real third route fork. Never encode protected, unprotected, supportive, or silenced witness state.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Reveal Marian approaching an autonomous roadside survivor without deciding the encounter.",
+      "framing": "WIDE_WITNESS_ROADSIDE_ENCOUNTER",
+      "environment": "public/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_witnesses_encounter/shot_01/source.png" },
+      "characters": [
+        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.27, "groundY": 0.98 }, "heightPx": 580, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:survivor", "depth": 20, "role": "SECONDARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
+        { "id": "survivor", "asset": "public/assets/characters/pixel/full/survivor.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 580, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "PRIMARY", "action": "STAND", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SLOW_PULL" },
+      "durationSeconds": 4,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "WITNESSES_AS_PEOPLE_ESTABLISHED",
+      "promptIntent": "Marian approaches only a few careful steps screen-right and stops at respectful distance. Her canonical palm-light remains a passive steady glow and is never cast toward the survivor. The survivor remains self-possessed on the right, screen-left-facing, with the walking staff stable and non-threatening. Preserve canonical identities, props, hands, anatomy, sides, and eyeline. Show no protection promise, threat, coercion, testimony, attack, death, or agreement."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Bring the encounter into a readable two-shot while preserving unresolved witness agency.",
+      "framing": "MEDIUM_WITNESS_TWO_SHOT",
+      "environment": "public/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_witnesses_encounter/shot_02/source.png" },
+      "characters": [
+        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.31, "groundY": 0.98 }, "heightPx": 740, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:survivor", "depth": 20, "role": "SECONDARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" },
+        { "id": "survivor", "asset": "public/assets/characters/pixel/full/survivor.png", "position": { "x": 0.69, "groundY": 0.98 }, "heightPx": 740, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "PRIMARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "PAN_SMALL_RIGHT" },
+      "durationSeconds": 4,
+      "continuityOut": "LAST_FRAME",
+      "endIntent": "NEUTRAL_FORK_CONTEXT_SETTLED",
+      "promptIntent": "The survivor makes one limited autonomous stance adjustment while Marian gives a restrained acknowledgement. Marian's palm-light stays passive and is never cast; the survivor's staff remains a walking support and is never raised as a weapon. Preserve their sides, facing, identities, props, hands, anatomy, and eyeline. Add no escort, weapon threat, hostile move, bargain, testimony outcome, or route selection."
+    },
+    {
+      "shotId": "shot_03",
+      "purpose": "Hold neutral witness context for the real final event/combat route overlay.",
+      "framing": "STABLE_THIRD_ROUTE_FREEZE",
+      "environment": "public/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+      "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_02", "path": "tmp/cinematics/cin4/cin6a_witnesses_encounter/shot_02/last_frame.png" },
+      "characters": [
+        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.31, "groundY": 0.98 }, "heightPx": 740, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:survivor", "depth": 20, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "survivor", "asset": "public/assets/characters/pixel/full/survivor.png", "position": { "x": 0.69, "groundY": 0.98 }, "heightPx": 740, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "PRIMARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "STATIC" },
+      "durationSeconds": 4,
+      "continuityOut": "END",
+      "endIntent": "REAL_THIRD_ROUTE_OVERLAY_READY",
+      "promptIntent": "Continue from the reviewed chained frame with a locked camera and exact framing: no push-in, pull-back, pan, zoom, crop, or reframing. Preserve both identities, scales, sides, facing, and the open road context while only breathing, cloth, leaves, and mist move. End sharp and neutral for the real route overlay; add no UI, labels, arrows, chosen route, protection, betrayal, or silencing outcome."
+    }
+  ]
+}

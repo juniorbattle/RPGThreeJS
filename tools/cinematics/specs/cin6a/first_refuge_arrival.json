@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6a_first_refuge_arrival",
+  "cinematicId": "first_refuge_arrival",
+  "tier": "JOURNEY",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6a-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG arrival at the canonical Lion refuge. Communicate safety after hardship without making the camp pristine or replacing any interactive refuge system.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Show the company entering the established refuge and settling at its threshold.",
+      "framing": "WIDE_REFUGE_ARRIVAL",
+      "environment": "public/assets/generated/lion-phase/dialogue/lion_refuge.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_first_refuge_arrival/shot_01/source.png" },
+      "characters": [
+        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.27, "groundY": 0.97 }, "heightPx": 590, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:refuge_gate", "depth": 20, "role": "SECONDARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.73, "groundY": 0.97 }, "heightPx": 620, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "TRACK_SMALL_RIGHT" },
+      "durationSeconds": 5,
+      "continuityOut": "LAST_FRAME",
+      "endIntent": "REFUGE_THRESHOLD_SETTLED",
+      "promptIntent": "Marian advances only a few calm steps toward the refuge gate while Alistair acknowledges the arriving company with a restrained posture change. Preserve their opposite facing and sides. Campfires, pennants, and canvas move gently; show no shopping, healing, loot, rest menu, training, or management action."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Continue from the reviewed arrival and settle on a clean frame for the real refuge interface.",
+      "framing": "STABLE_REFUGE_HANDOFF",
+      "environment": "public/assets/generated/lion-phase/dialogue/lion_refuge.webp",
+      "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_01", "path": "tmp/cinematics/cin4/cin6a_first_refuge_arrival/shot_01/last_frame.png" },
+      "characters": [
+        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.27, "groundY": 0.97 }, "heightPx": 590, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:refuge_gate", "depth": 20, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.73, "groundY": 0.97 }, "heightPx": 620, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "PRIMARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "WIDE_HOLD" },
+      "durationSeconds": 5,
+      "continuityOut": "END",
+      "endIntent": "REFUGE_UI_READY",
+      "promptIntent": "Continue the reviewed frame with only breathing, firelight, cloth, and atmospheric movement. Keep Marian facing screen-right and Alistair facing screen-left. Settle sharp and stable for the real refuge UI; do not add labels, menus, trade, healing, rewards, or dialogue outcomes."
+    }
+  ]
+}

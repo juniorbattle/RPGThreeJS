@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6a_alaric_audience_arrival",
+  "cinematicId": "alaric_audience_arrival",
+  "tier": "JOURNEY",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6a-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG arrival at the canonical early Lion briefing pavilion. Establish Alaric's authority and the audience geography without resembling the final judgement, deciding the mandate, or foreshadowing a verdict.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Establish the early council pavilion and the audience receiving the offscreen company.",
+      "framing": "WIDE_EARLY_AUDIENCE",
+      "environment": "public/assets/generated/lion-phase/dialogue/lion_briefing.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_alaric_audience_arrival/shot_01/source.png" },
+      "characters": [
+        { "id": "alaric", "asset": "public/assets/characters/pixel/full/alaric.png", "position": { "x": 0.30, "groundY": 0.97 }, "heightPx": 650, "facing": "SCREEN_RIGHT", "lookTarget": "OFFSCREEN_RIGHT", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "lion_champion", "asset": "public/assets/characters/pixel/full/lion_champion.png", "position": { "x": 0.72, "groundY": 0.97 }, "heightPx": 600, "facing": "SCREEN_LEFT", "lookTarget": "OFFSCREEN_LEFT", "depth": 10, "role": "SECONDARY", "action": "STAND", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "WIDE_HOLD" },
+      "durationSeconds": 4,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "AUDIENCE_GEOGRAPHY_ESTABLISHED",
+      "promptIntent": "Alaric and the Champion hold an orderly early-campaign reception tableau as warm pavilion light and banners move subtly. Keep weapons low and ceremonial; no judgement, accusation, verdict, or confrontation."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Bring measured attention to Alaric immediately before lion_briefing begins.",
+      "framing": "MEDIUM_COUNCIL_RECEPTION",
+      "environment": "public/assets/generated/lion-phase/dialogue/lion_briefing.webp",
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_alaric_audience_arrival/shot_02/source.png" },
+      "characters": [
+        { "id": "alaric", "asset": "public/assets/characters/pixel/full/alaric.png", "position": { "x": 0.33, "groundY": 0.98 }, "heightPx": 820, "facing": "SCREEN_RIGHT", "lookTarget": "OFFSCREEN_RIGHT", "depth": 20, "role": "PRIMARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" },
+        { "id": "lion_champion", "asset": "public/assets/characters/pixel/full/lion_champion.png", "position": { "x": 0.74, "groundY": 0.98 }, "heightPx": 750, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alaric", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SUBJECT_FOCUS_LEFT" },
+      "durationSeconds": 5,
+      "continuityOut": "END",
+      "endIntent": "BRIEFING_DIALOGUE_READY_SETTLE",
+      "promptIntent": "Alaric makes one restrained welcoming shift and becomes still while the Champion remains disciplined at screen right. Finish neutral and ready for the mandate briefing; no final-court severity or outcome."
+    }
+  ]
+}

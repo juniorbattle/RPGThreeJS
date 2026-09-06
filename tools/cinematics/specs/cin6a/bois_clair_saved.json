@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6a_bois_clair_saved",
+  "cinematicId": "bois_clair_saved",
+  "tier": "HERO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6a-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG post-combat consequence in damaged Bois-Clair. This state-specific sequence is valid only for missionSuccess=true and missionGreed!=true. Show rescued people, burned reserves, surviving inhabited structures, exhaustion, and reduced immediate threat; saved never means pristine.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Reveal rescued families still present among the burned but surviving village.",
+      "framing": "WIDE_SAVED_VILLAGE_SURVIVORS",
+      "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_bois_clair_saved/shot_01/source.png" },
+      "characters": [
+        { "id": "refugee_mother", "asset": "public/assets/characters/pixel/full/refugee_mother.png", "position": { "x": 0.27, "groundY": 0.98 }, "heightPx": 610, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:villageoise", "depth": 20, "role": "SECONDARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
+        { "id": "villageoise", "asset": "public/assets/characters/pixel/full/villageoise.png", "position": { "x": 0.72, "groundY": 0.98 }, "heightPx": 620, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:refugee_mother", "depth": 10, "role": "PRIMARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SLOW_PULL" },
+      "durationSeconds": 6,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "SURVIVORS_AND_DAMAGE_READABLE",
+      "promptIntent": "The refugee mother takes only two tired steps toward the villageoise, who answers with restrained relief. Preserve both canonical identities, hands, anatomy, sides, and facing. Keep damaged structures and burned stores visible while immediate flames diminish into smoke and embers. Show no pristine rebuild, celebration crowd, loot transfer, enemy, or new choice."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Show the company assessing the costly rescue without replacing the consequence dialogue or refuge gameplay.",
+      "framing": "MEDIUM_MAELOR_AND_SURVIVOR_ASSESSMENT",
+      "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_bois_clair_saved/shot_02/source.png" },
+      "characters": [
+        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.29, "groundY": 0.98 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:villageoise", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "villageoise", "asset": "public/assets/characters/pixel/full/villageoise.png", "position": { "x": 0.71, "groundY": 0.98 }, "heightPx": 680, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:maelor", "depth": 10, "role": "SECONDARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SUBJECT_FOCUS_LEFT" },
+      "durationSeconds": 6,
+      "continuityOut": "LAST_FRAME",
+      "endIntent": "COSTLY_RESCUE_ASSESSMENT_SETTLED",
+      "promptIntent": "Maelor remains screen-right-facing and quietly assesses the visible damage while the villageoise stands safely present on the right, screen-left-facing. Use only a small acknowledgement and environmental smoke motion. Preserve Maelor's canonical book and dagger, both identities, hands, anatomy, sides, and eyeline. No shop, healing, rest menu, rewards, triumphal celebration, raid imagery, or dialogue conclusion."
+    },
+    {
+      "shotId": "shot_03",
+      "purpose": "Settle the saved-state consequence into a stable handoff to the real interactive second refuge.",
+      "framing": "STABLE_SAVED_STATE_REFUGE_HANDOFF",
+      "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
+      "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_02", "path": "tmp/cinematics/cin4/cin6a_bois_clair_saved/shot_02/last_frame.png" },
+      "characters": [
+        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.29, "groundY": 0.98 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:villageoise", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "villageoise", "asset": "public/assets/characters/pixel/full/villageoise.png", "position": { "x": 0.71, "groundY": 0.98 }, "heightPx": 680, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:maelor", "depth": 10, "role": "SECONDARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "STATIC" },
+      "durationSeconds": 6,
+      "continuityOut": "END",
+      "endIntent": "INTERACTIVE_SECOND_REFUGE_READY",
+      "promptIntent": "Continue from the reviewed chained frame with a locked camera and exact framing: no push-in, pull-back, pan, zoom, crop, or reframing. Preserve character scale, Maelor's book and dagger, both identities, sides, facing, and the damaged inhabited village. Only breathing, cloth, low smoke, and embers move. End sharp for the real refuge UI; add no interface, management action, reward, new decision, enemy, or sacrificed-state imagery."
+    }
+  ]
+}

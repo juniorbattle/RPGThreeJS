@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6a_shadow_signs",
+  "cinematicId": "shadow_signs",
+  "tier": "HERO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6a-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG mystery sequence in the canonical Shadow Signs ruins. Progress from investigation to unusual marks, ambiguous Serpent traces, and party concern, then settle before deterministic dialogue. Preserve mystery: never state whether evidence or fragments are chosen, whether anything is revealed or concealed, or what Alaric knows.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Establish Seraphine and Elara investigating the unusual ruin field from opposing sides.",
+      "framing": "WIDE_SHADOW_RUIN_INVESTIGATION",
+      "environment": "public/assets/generated/lion-phase/dialogue/shadow_signs.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_shadow_signs/shot_01/source.png" },
+      "characters": [
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.23, "groundY": 0.98 }, "heightPx": 570, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:shadow_marks", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
+        { "id": "elara", "asset": "public/assets/characters/pixel/full/elara.png", "position": { "x": 0.77, "groundY": 0.98 }, "heightPx": 600, "facing": "SCREEN_LEFT", "lookTarget": "EVENT_FOCUS:artifact_edge", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "WIDE_HOLD" },
+      "durationSeconds": 5,
+      "continuityOut": "LAST_FRAME",
+      "endIntent": "INVESTIGATION_GEOGRAPHY_ESTABLISHED",
+      "promptIntent": "Seraphine takes only two cautious steps screen-right and stops while Elara remains on the right facing screen-left toward the central marks. Preserve both canonical identities, Seraphine's staff and lantern, Elara's book and blue orb, anatomy, sides, and eyelines. Animate mist, leaves, and a faint irregular purple shimmer only. No speech, transfer, conclusion, enemy reveal, evidence selection, or disclosure."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Continue into the unusual sign as its connection feels ominous but remains uninterpreted.",
+      "framing": "CONTROLLED_MARK_REVEAL",
+      "environment": "public/assets/generated/lion-phase/dialogue/shadow_signs.webp",
+      "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_01", "path": "tmp/cinematics/cin4/cin6a_shadow_signs/shot_01/last_frame.png" },
+      "characters": [
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.23, "groundY": 0.98 }, "heightPx": 570, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:shadow_marks", "depth": 20, "role": "PRIMARY", "action": "STOP", "mirrorPolicy": "ALLOW" },
+        { "id": "elara", "asset": "public/assets/characters/pixel/full/elara.png", "position": { "x": 0.77, "groundY": 0.98 }, "heightPx": 600, "facing": "SCREEN_LEFT", "lookTarget": "EVENT_FOCUS:artifact_edge", "depth": 10, "role": "SECONDARY", "action": "SMALL_HEAD_TURN", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SLOW_PUSH" },
+      "durationSeconds": 5,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "UNUSUAL_SIGN_RECOGNIZED_NOT_INTERPRETED",
+      "promptIntent": "Continue from the reviewed chained frame. The camera advances only slightly toward the central marks as their existing purple light pulses irregularly; Seraphine stops and Elara makes one small concerned turn without changing sides or facing. Preserve every canonical garment, face, hand, staff, lantern, book, orb, and silhouette. Do not create a new symbol, readable writing, serpent creature, conclusion, evidence choice, fragments choice, reveal, concealment, or transfer."
+    },
+    {
+      "shotId": "shot_03",
+      "purpose": "Cut to a closer party reaction that implies a deeper ancient threat without resolving its meaning.",
+      "framing": "MEDIUM_PARTY_CONCERN_AND_MARKS",
+      "environment": "public/assets/generated/lion-phase/dialogue/shadow_signs.webp",
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_shadow_signs/shot_03/source.png" },
+      "characters": [
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.28, "groundY": 0.99 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:shadow_marks", "depth": 20, "role": "PRIMARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" },
+        { "id": "elara", "asset": "public/assets/characters/pixel/full/elara.png", "position": { "x": 0.73, "groundY": 0.99 }, "heightPx": 720, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:sage_seraphine", "depth": 10, "role": "SECONDARY", "action": "LOWER_HAND", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SUBJECT_FOCUS_LEFT" },
+      "durationSeconds": 5,
+      "continuityOut": "LAST_FRAME",
+      "endIntent": "PARTY_CONCERN_READABLE",
+      "promptIntent": "Seraphine makes one restrained recognition reaction while Elara lowers only her orb hand slightly and looks toward Seraphine, maintaining deliberate left-right geography. Keep Elara's book open and all props passive; preserve canonical identity, anatomy, hands, facing, and scale. Existing ruin light and mist may shift subtly. No spoken conclusion, evidence handoff, destroyed artifact, Alaric, disclosure, or chosen state."
+    },
+    {
+      "shotId": "shot_04",
+      "purpose": "Settle the unresolved discovery into a sharp neutral handoff for the existing Shadow Signs dialogue.",
+      "framing": "STABLE_SHADOW_DIALOGUE_HANDOFF",
+      "environment": "public/assets/generated/lion-phase/dialogue/shadow_signs.webp",
+      "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_03", "path": "tmp/cinematics/cin4/cin6a_shadow_signs/shot_03/last_frame.png" },
+      "characters": [
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.28, "groundY": 0.99 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:shadow_marks", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "elara", "asset": "public/assets/characters/pixel/full/elara.png", "position": { "x": 0.73, "groundY": 0.99 }, "heightPx": 720, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:sage_seraphine", "depth": 10, "role": "SECONDARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "STATIC" },
+      "durationSeconds": 5,
+      "continuityOut": "END",
+      "endIntent": "NEUTRAL_SHADOW_DIALOGUE_READY",
+      "promptIntent": "ABSOLUTELY LOCKED TRIPOD SHOT. Continue from the reviewed chained frame with identical framing for the entire clip: keep both characters at the same pixel coordinates and exactly the same subject scale from first frame through last frame. Zero camera movement and zero virtual lens movement: no push-in, pull-back, dolly, pan, track, zoom, crop, drift, stabilization reframe, or subject enlargement. Preserve both identities, props, hands, sides, facing, scale, and eyelines while only breathing, cloth, thin mist, foliage, and the existing faint mark-light move. End sharp and neutral. Add no words, UI, evidence/fragments choice, reveal/conceal state, Alaric knowledge, or conclusion."
+    }
+  ]
+}

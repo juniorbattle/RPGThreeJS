@@ -94,7 +94,12 @@ export class CinematicPlayer {
       window.addEventListener('keydown', onKeyDown);
       options.signal?.addEventListener('abort', onExternalAbort, { once: true });
       abortController.signal.addEventListener('abort', onInternalAbort, { once: true });
-      timeout = window.setTimeout(() => finish('timeout'), options.timeoutMs ?? Math.max(12_000, descriptor.durationMs ?? 0));
+      // Give local media enough time to load and dispatch `ended` after its declared duration.
+      // The timeout remains a hard non-blocking guard; it must not race a healthy long clip.
+      timeout = window.setTimeout(
+        () => finish('timeout'),
+        options.timeoutMs ?? Math.max(12_000, (descriptor.durationMs ?? 0) + 5_000),
+      );
 
       if (descriptor.placeholderOnly) {
         overlay.showFallback();

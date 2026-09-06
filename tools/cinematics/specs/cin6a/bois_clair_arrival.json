@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6a_bois_clair_arrival",
+  "cinematicId": "bois_clair_arrival",
+  "tier": "HERO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6a-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG siege-arrival scene using the canonical burning Bois-Clair stage and canonical character art. Progress from road approach and smoke to threatened civilians and visible Serpent pressure, then hold before the real village_choice. Preserve uncertainty about every player objective and combat outcome.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Establish the company's geographical approach and the first view of smoke over threatened Bois-Clair.",
+      "framing": "WIDE_BOIS_CLAIR_APPROACH",
+      "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_bois_clair_arrival/shot_01/source.png" },
+      "characters": [
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.25, "groundY": 0.98 }, "heightPx": 570, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:burning_village", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "TRACK_SMALL_RIGHT" },
+      "durationSeconds": 5,
+      "continuityOut": "LAST_FRAME",
+      "endIntent": "BURNING_SETTLEMENT_REVEALED",
+      "promptIntent": "Alistair advances only a few controlled steps screen-right toward the burning settlement, then stops as smoke thickens and firelight moves in the distance. Preserve his canonical armor, sword, anatomy, identity, and screen-right facing. Reveal danger without showing an objective, victory, raid, rescue, or combat outcome."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Continue the approach into a restrained company reaction as the settlement threat becomes legible.",
+      "framing": "MEDIUM_COMPANY_REACTION_TO_FIRE",
+      "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
+      "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_01", "path": "tmp/cinematics/cin4/cin6a_bois_clair_arrival/shot_01/last_frame.png" },
+      "characters": [
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.25, "groundY": 0.98 }, "heightPx": 570, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:burning_village", "depth": 20, "role": "PRIMARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SUBJECT_FOCUS_RIGHT" },
+      "durationSeconds": 5,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "COMPANY_REACTION_ESTABLISHED",
+      "promptIntent": "Continue from the reviewed chained frame. Alistair makes one restrained recognition reaction while staying on the left and facing screen-right; fire, drifting embers, and smoke animate the threatened village. Keep the movement controlled and identity exact. Do not show a tactical attack, chosen objective, saved state, sacrificed state, supplies outcome, or victory."
+    },
+    {
+      "shotId": "shot_03",
+      "purpose": "Cut to the threatened civilian and Serpent pressure with deliberate confrontation geography.",
+      "framing": "MEDIUM_SERPENT_PRESSURE_AND_CIVILIAN",
+      "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_bois_clair_arrival/shot_03/source.png" },
+      "characters": [
+        { "id": "serpent_raider", "asset": "public/assets/characters/pixel/full/serpent_raider.png", "position": { "x": 0.28, "groundY": 0.98 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:villageoise", "depth": 20, "role": "PRIMARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" },
+        { "id": "villageoise", "asset": "public/assets/characters/pixel/full/villageoise.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 670, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:serpent_raider", "depth": 10, "role": "PRIMARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "PAN_SMALL_RIGHT" },
+      "durationSeconds": 5,
+      "continuityOut": "LAST_FRAME",
+      "endIntent": "THREAT_AND_CIVILIAN_GEOGRAPHY_STABLE",
+      "promptIntent": "The Serpent raider takes one limited pressure step screen-right and stops; the villageoise recoils only slightly while remaining screen-left-facing. Preserve the raider's canonical weapon and armor, both identities, hands, anatomy, sides, and eyeline. No strike, injury, capture, rescue, loot transfer, or outcome."
+    },
+    {
+      "shotId": "shot_04",
+      "purpose": "Hold the unresolved siege tableau as a stable handoff to the real village-choice dialogue.",
+      "framing": "STABLE_VILLAGE_CHOICE_HANDOFF",
+      "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
+      "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_03", "path": "tmp/cinematics/cin4/cin6a_bois_clair_arrival/shot_03/last_frame.png" },
+      "characters": [
+        { "id": "serpent_raider", "asset": "public/assets/characters/pixel/full/serpent_raider.png", "position": { "x": 0.28, "groundY": 0.98 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:villageoise", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "villageoise", "asset": "public/assets/characters/pixel/full/villageoise.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 670, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:serpent_raider", "depth": 10, "role": "PRIMARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "STATIC" },
+      "durationSeconds": 5,
+      "continuityOut": "END",
+      "endIntent": "REAL_VILLAGE_CHOICE_READY",
+      "promptIntent": "Continue from the reviewed chained frame with a locked camera and exact framing: no push-in, pull-back, pan, zoom, crop, or reframing. Keep both characters, weapon, sides, facing, and subject scale stable while only breathing, cloth, embers, smoke, and fire move. End sharp and unresolved for the real village_choice. Add no UI, words, objective markers, attack, rescue, raid, success, greed, or combat result."
+    }
+  ]
+}

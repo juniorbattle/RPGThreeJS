@@ -40,6 +40,7 @@ export const ACTION_RISK = Object.freeze({
   ENTER_FRAME: 'MODERATE',
   EXIT_FRAME: 'MODERATE',
 });
+export const PROP_KINDS = Object.freeze(['SEALED_ARTEFACT']);
 
 const CHARACTER_ROOT = 'public/assets/characters/pixel/full/';
 const LOOK_TARGETS = new Set(['NONE', 'CAMERA', 'PLAYER_PARTY', 'OFFSCREEN_LEFT', 'OFFSCREEN_RIGHT']);
@@ -118,6 +119,18 @@ export async function validateShotSpec(input, options = {}) {
       errors.push(`${prefix}.characters must be non-empty.`);
       continue;
     }
+    if (shot.props !== undefined && !Array.isArray(shot.props)) errors.push(`${prefix}.props must be an array when present.`);
+    const propIds = new Set();
+    for (const prop of (Array.isArray(shot.props) ? shot.props : [])) {
+      const label = `${prefix}.${prop?.id ?? 'prop'}`;
+      if (!/^[a-z0-9_-]+$/u.test(prop?.id ?? '')) errors.push(`${label}.id is invalid.`);
+      else if (propIds.has(prop.id)) errors.push(`${prefix} duplicates prop '${prop.id}'.`);
+      else propIds.add(prop.id);
+      if (!PROP_KINDS.includes(prop?.kind)) errors.push(`${label}.kind is invalid.`);
+      if (!Number.isFinite(prop?.position?.x) || prop.position.x < 0 || prop.position.x > 1) errors.push(`${label}.position.x must be normalized from 0 to 1.`);
+      if (!Number.isFinite(prop?.position?.groundY) || prop.position.groundY < 0 || prop.position.groundY > 1) errors.push(`${label}.position.groundY must be normalized from 0 to 1.`);
+      if (!Number.isInteger(prop?.sizePx) || prop.sizePx < 24 || prop.sizePx > 256) errors.push(`${label}.sizePx must be an integer from 24 to 256.`);
+    }
     const characterIds = new Set();
     for (const character of shot.characters) {
       if (!/^[a-z0-9_-]+$/u.test(character?.id ?? '')) errors.push(`${prefix} contains an invalid character id.`);
@@ -179,11 +192,13 @@ export function buildShotPrompt(spec, shot) {
     .sort((left, right) => right.depth - left.depth || left.id.localeCompare(right.id))
     .map((character) => `${character.id} is ${character.role}, already facing ${character.facing}, attending to ${character.lookTarget}, with action ${character.action} (${ACTION_RISK[character.action]} risk)`)
     .join('; ');
+  const props = (shot.props ?? []).map((prop) => `${prop.id} is an authored ${prop.kind} fixed at (${prop.position.x}, ${prop.position.groundY})`).join('; ');
   return [
     spec.artDirection,
     `Shot ${shot.shotId}: ${shot.purpose}`,
     `Framing: ${shot.framing}. Camera intent: ${shot.camera.mode} with conservative amplitude.`,
     `Staging: ${characters}.`,
+    ...(props ? [`Deterministic props already present in the source: ${props}. Preserve their identity, position, and ownership ambiguity.`] : []),
     `Action intent: ${shot.promptIntent}`,
     'The supplied first frame is authoritative. Preserve exactly every character identity, face or head, hair or helmet, armor, clothing, cape or tabard, weapon, body proportions, color palette, facing direction, spatial relationship, and environment identity. Animate the existing composition; do not redesign it.',
     'Preserve the exact facing direction already shown in the first frame. Do not turn either character around, reverse screen direction, rotate a body 180 degrees, cross the established axis, or swap character sides.',

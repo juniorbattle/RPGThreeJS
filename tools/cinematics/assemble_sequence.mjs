@@ -12,7 +12,7 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const projectRoot = await findProjectRoot();
   const { spec } = await loadSpecShot(projectRoot, args.spec, null, true);
-  if (spec.shots.length !== 3) throw new Error('CIN-4 pilot assembly requires exactly three ordered shots.');
+  if (spec.shots.length < 2) throw new Error('Sequence assembly requires at least two ordered shots.');
   const root = sequenceRoot(projectRoot, spec);
   const inputs = [];
   const shotEvidence = [];
@@ -62,7 +62,7 @@ async function main() {
   if (errors.length) throw new Error(`Assembly validation failed: ${errors.join('; ')}`);
   const metadata = {
     schemaVersion: 1, sequenceId: spec.sequenceId, cinematicId: spec.cinematicId, tier: spec.tier,
-    editorialOrder: spec.shots.map((shot) => shot.shotId), transitions: ['CUT', 'CUT'], expectedDurationSeconds: duration,
+    editorialOrder: spec.shots.map((shot) => shot.shotId), transitions: Array(spec.shots.length - 1).fill('CUT'), expectedDurationSeconds: duration,
     shots: shotEvidence, outputPath: relative(projectRoot, output).replaceAll('\\', '/'), outputSha256: await sha256(output), report, boundaryFrameStatistics: boundaries,
   };
   const evidenceErrors = validateAssemblyEvidence(spec, metadata);

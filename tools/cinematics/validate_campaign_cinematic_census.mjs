@@ -130,6 +130,28 @@ function targetAccountingDetails(census, target) {
   return parent ? { targetKind: 'STATE_VARIANT', priority: parent.priority } : null;
 }
 
+function runtimeIdForTarget(census, target) {
+  if (typeof target !== 'string') return null;
+  if (target.startsWith('family:')) {
+    return census.reuseFamilies.find((candidate) => `family:${candidate.id}` === target)?.runtimeId ?? null;
+  }
+  const direct = census.cinematics.find((entry) => entry.identity === target);
+  if (direct) return direct.runtimeId ?? null;
+  for (const entry of census.cinematics) {
+    const variant = (entry.variants ?? []).find((candidate) => candidate.identity === target);
+    if (variant) return variant.runtimeId ?? null;
+  }
+  return null;
+}
+
+export function plannedProductionVideoFiles(census) {
+  return sortedUnique(census.productionBatches
+    .flatMap((batch) => batch.targets)
+    .map((item) => runtimeIdForTarget(census, item.target))
+    .filter(Boolean)
+    .map((runtimeId) => `${runtimeId}.mp4`));
+}
+
 function expectedOrderedTargets(census, priority) {
   const primaryTargets = census.cinematics
     .filter((entry) => entry.priority === priority && PRIMARY_MEDIA_COVERAGE_SET.has(entry.coverage))
@@ -449,7 +471,9 @@ export function validateCampaignCinematicCensus({
   const productionVideoFiles = readdirSync(resolve(projectRoot, 'public/assets/cinematics'))
     .filter((name) => /\.(?:mp4|webm|mov)$/i.test(name))
     .sort();
-  assert(arrayEqual(productionVideoFiles, ['lion_champion_reveal.mp4', 'lion_judgement.mp4', 'serpent_general_reveal.mp4']), `Unexpected production video file set: ${productionVideoFiles.join(', ')}.`, errors);
+  const plannedVideoFiles = new Set(plannedProductionVideoFiles(census));
+  const unplannedVideoFiles = productionVideoFiles.filter((name) => !plannedVideoFiles.has(name));
+  assert(unplannedVideoFiles.length === 0, `Unplanned production video files: ${unplannedVideoFiles.join(', ')}.`, errors);
 
   const p0NewSeconds = mediaSecondsFor(census, 'P0');
   const p1NewSeconds = mediaSecondsFor(census, 'P1');
@@ -471,7 +495,25 @@ export function validateCampaignCinematicCensus({
   assert(/serpent_captain: 'serpent_general_reveal'/.test(triggerSource) && /lion_chief: 'lion_champion_reveal'/.test(triggerSource), 'Production beforeCombat triggers changed.', errors);
   assert(/afterCombat: Object\.freeze\(\{\}\)/.test(triggerSource) && /chapterBeat: Object\.freeze\(\{\}\)/.test(triggerSource), 'Production afterCombat/chapterBeat registry is not empty.', errors);
   const journeySource = readFileSync(resolve(projectRoot, 'src/journey/JourneyPresentationResolver.ts'), 'utf8');
-  assert(/JOURNEY_PRESENTATION_MAP[^=]*= Object\.freeze\(\{\}\)/.test(journeySource), 'Journey production map is not empty.', errors);
+  const journeyMapRegion = between(
+    journeySource,
+    'export const JOURNEY_PRESENTATION_MAP',
+    '});',
+  );
+  const actualJourneyMappings = [...journeyMapRegion.matchAll(/\[nodeArrivalKey\('([^']+)'\)\]: '([^']+)'/g)]
+    .map((match) => `${match[1]}=${match[2]}`)
+    .sort();
+  const expectedJourneyMappings = [
+    'lion-camp=camp_departure',
+    'lion-refugees=refugees_approach',
+    'lion-valmir-road=valmir_route_fork',
+    'lion-witnesses=witnesses_encounter',
+  ].sort();
+  assert(
+    arrayEqual(actualJourneyMappings, expectedJourneyMappings),
+    `Journey production map differs from the reviewed CIN-6A allowlist: ${actualJourneyMappings.join(', ') || '<empty>'}.`,
+    errors,
+  );
 
   return { ok: errors.length === 0, errors, summary: summaryFor(census) };
 }

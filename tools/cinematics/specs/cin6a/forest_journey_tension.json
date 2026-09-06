@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6a_forest_journey_tension",
+  "cinematicId": "forest_journey_tension",
+  "tier": "JOURNEY",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6a-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG journey in the canonical forest route. Keep the scene creature-neutral: only wind, disturbed vegetation, tracks, distant pressure, and restrained company concern. Never reveal, silhouette, name, or imply a specific monster species or combat composition.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Establish forward travel through the forest route without identifying the encounter ahead.",
+      "framing": "WIDE_FOREST_TRAVEL",
+      "environment": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_forest_journey_tension/shot_01/source.png" },
+      "characters": [
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.27, "groundY": 0.96 }, "heightPx": 610, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:forest_trail", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "TRACK_SMALL_RIGHT" },
+      "durationSeconds": 4,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "FORWARD_TRAVEL_CONTINUES",
+      "promptIntent": "Seraphine advances only a few measured steps toward screen right while leaves and grass shift in a light wind. Keep the distant path empty and show no creature, eyes, claws, weapon strike, or attack."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Turn neutral travel into unease through a company reaction and subtle vegetation movement.",
+      "framing": "MEDIUM_ENVIRONMENTAL_REACTION",
+      "environment": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_forest_journey_tension/shot_02/source.png" },
+      "characters": [
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.35, "groundY": 0.97 }, "heightPx": 760, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:disturbed_brush", "depth": 20, "role": "PRIMARY", "action": "STOP", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SUBJECT_FOCUS_LEFT" },
+      "durationSeconds": 5,
+      "continuityOut": "END",
+      "endIntent": "COMBAT_CONTEXT_READY_SETTLE",
+      "promptIntent": "Seraphine stops and makes one restrained glance toward brush offscreen right as foliage stirs and then settles. The cause remains completely unseen and species-neutral; finish on a sharp, readable reaction frame."
+    }
+  ]
+}

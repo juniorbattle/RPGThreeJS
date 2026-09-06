@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6a_camp_departure",
+  "cinematicId": "camp_departure",
+  "tier": "JOURNEY",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6a-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG departure at the canonical Lion field camp. This is the first forward-moving campaign beat after the chronicle, not a replay of the prologue. Preserve subdued dawn light, camp geography, Lion identity, and restrained resolve.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Establish the company at the edge of the fallen camp preparing to leave.",
+      "framing": "WIDE_CAMP_DEPARTURE",
+      "environment": "public/assets/generated/lion-phase/dialogue/camp_departure.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_camp_departure/shot_01/source.png" },
+      "characters": [
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.29, "groundY": 0.97 }, "heightPx": 650, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 20, "role": "PRIMARY", "action": "READY_STANCE", "mirrorPolicy": "ALLOW" },
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.70, "groundY": 0.97 }, "heightPx": 610, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "WIDE_HOLD" },
+      "durationSeconds": 6,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "DEPARTURE_DECISION_HELD",
+      "promptIntent": "Alistair settles his stance toward the road while Seraphine acknowledges him with only a slight posture change. Camp banners and tent cloth move gently; do not replay battles, casualties, or prologue exposition."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Show the company beginning the march and hand cleanly to existing dialogue and journey progression.",
+      "framing": "MEDIUM_FORWARD_MARCH",
+      "environment": "public/assets/generated/lion-phase/dialogue/camp_departure.webp",
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_camp_departure/shot_02/source.png" },
+      "characters": [
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.38, "groundY": 0.98 }, "heightPx": 790, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.72, "groundY": 0.98 }, "heightPx": 720, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "TRACK_SMALL_RIGHT" },
+      "durationSeconds": 6,
+      "continuityOut": "END",
+      "endIntent": "DIALOGUE_READY_SETTLE",
+      "promptIntent": "Alistair takes two slow steps toward screen right and comes to a stable stop. Seraphine stays planted on the established right side, continuously looking screen-left at Alistair; lock her head, shoulders, torso, feet, and staff to that screen-left orientation for the entire shot. She must not turn toward screen-right or follow the camera. End with the road and camp exit readable."
+    }
+  ]
+}

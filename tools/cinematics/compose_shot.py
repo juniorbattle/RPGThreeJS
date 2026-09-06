@@ -92,6 +92,20 @@ def _atmosphere(frame: Image.Image) -> Image.Image:
     return Image.alpha_composite(result, dark)
 
 
+def _sealed_artefact(size_px: int) -> Image.Image:
+    """Draw a deterministic neutral seal marker; it encodes existence, not interpretation."""
+    width = size_px
+    height = max(24, round(size_px * 0.58))
+    layer = Image.new("RGBA", (width + 24, height + 24), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(layer)
+    box = (12, 12, 12 + width - 1, 12 + height - 1)
+    draw.ellipse(box, fill=(24, 50, 43, 255), outline=(211, 153, 66, 255), width=max(3, size_px // 18))
+    inset = max(8, size_px // 7)
+    draw.ellipse((box[0] + inset, box[1] + inset // 2, box[2] - inset, box[3] - inset // 2), outline=(109, 178, 137, 255), width=max(2, size_px // 24))
+    draw.line((width // 2 + 12, box[1] + inset, width // 2 + 12, box[3] - inset), fill=(211, 153, 66, 255), width=max(2, size_px // 24))
+    return layer.filter(ImageFilter.GaussianBlur(0.35))
+
+
 def compose_shot(spec: dict[str, Any], shot: dict[str, Any], project_root: Path) -> tuple[Image.Image, dict[str, Any]]:
     if shot["source"]["type"] not in {"ROOT_SOURCE", "CUT_SOURCE"}:
         raise ValueError("Only ROOT_SOURCE and CUT_SOURCE shots can be composited.")
@@ -100,6 +114,21 @@ def compose_shot(spec: dict[str, Any], shot: dict[str, Any], project_root: Path)
     with Image.open(environment_path) as environment:
         frame = cover_background(environment, (spec["frame"]["width"], spec["frame"]["height"]))
     frame = _atmosphere(frame)
+
+    prop_placements: list[dict[str, Any]] = []
+    for prop in sorted(shot.get("props", []), key=lambda item: item["id"]):
+        if prop["kind"] != "SEALED_ARTEFACT":
+            raise ValueError(f"Unsupported deterministic prop kind: {prop['kind']}")
+        rendered = _sealed_artefact(int(prop["sizePx"]))
+        center_x = round(float(prop["position"]["x"]) * frame.width)
+        ground_y = round(float(prop["position"]["groundY"]) * frame.height)
+        left = center_x - rendered.width // 2
+        top = ground_y - rendered.height
+        frame.alpha_composite(rendered, (left, top))
+        prop_placements.append({
+            "id": prop["id"], "kind": prop["kind"], "position": prop["position"],
+            "sizePx": prop["sizePx"], "box": [left, top, left + rendered.width, top + rendered.height],
+        })
 
     placements: list[dict[str, Any]] = []
     prepared: list[tuple[dict[str, Any], Image.Image, tuple[int, int, int, int]]] = []
@@ -147,6 +176,7 @@ def compose_shot(spec: dict[str, Any], shot: dict[str, Any], project_root: Path)
         "environmentSha256": sha256(environment_path),
         "canonicalFacing": CANONICAL_FACING,
         "placementsBackToFront": placements,
+        "deterministicProps": prop_placements,
     }
     return frame.convert("RGB"), metadata
 

@@ -17,8 +17,9 @@ import {
  * the campaign, a save, or the shipped `public/assets/cinematics/manifest.json`. The same functions
  * back the browser QA lab and the automated test suite, so what is asserted is what is clicked.
  *
- * The candidate descriptors below point at paths that intentionally do not exist: no real cinematic
- * is integrated in CIN-1, and the preloader must stay non-fatal when local media is missing.
+ * The candidate descriptors below point at paths that intentionally do not exist so the preloader
+ * remains non-fatal when local media is missing. The dedicated skip descriptor uses one reviewed
+ * CIN-6A local source under a QA-only ID to prove a real video Skip reaches the same agency seam.
  */
 export const JOURNEY_QA_MANIFEST: VideoCinematicManifest = Object.freeze({
   version: 1 as const,
@@ -40,6 +41,12 @@ export const JOURNEY_QA_MANIFEST: VideoCinematicManifest = Object.freeze({
       id: 'journey-qa-candidate-b',
       title: 'Candidat B (QA)',
       sources: [{ src: '/assets/cinematics/qa/journey-qa-candidate-b.webm', type: 'video/webm' as const }],
+    },
+    {
+      id: 'journey-qa-real-skip',
+      title: 'Voyage réel à passer (QA)',
+      sources: [{ src: '/assets/cinematics/forest_journey_tension.mp4', type: 'video/mp4' as const }],
+      durationMs: 9_000,
     },
   ]),
 });
@@ -219,8 +226,11 @@ async function runSecondary(context: JourneyQaScenarioContext): Promise<JourneyQ
 
 async function runSkip(context: JourneyQaScenarioContext): Promise<JourneyQaScenarioOutcome> {
   const harness = createHarness('journey-skip', context);
-  const presentPromise = harness.session.presentCinematic('journey-qa-hold', {
+  const presentPromise = harness.session.presentCinematic('journey-qa-real-skip', {
     placeholderDurationMs: context.holdDurationMs ?? SKIP_HOLD_MS,
+    // This scenario proves the explicit Skip control even on a host whose OS/browser prefers
+    // reduced motion. Reduced-motion bypass has its own dedicated scenario below.
+    reducedMotion: false,
   });
   context.onInteractive?.(harness.root);
   const result = await presentPromise;

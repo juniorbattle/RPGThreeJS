@@ -103,6 +103,7 @@ describe('journey QA scenarios', () => {
 
   it('5 · reaches the same agency boundary after a skip', async () => {
     const outcome = await run('journey-skip');
+    expect(outcome.result?.reason).toBe('skipped');
     expect(outcome.details).toMatchObject({ reachedFreeze: true, reachedAgency: true });
     expect(outcome.commit).toEqual({ kind: 'choice', id: 'qa-route-onward' });
     expect(outcome.trace).toEqual(['IDLE', 'PLAYING', 'FREEZE', 'AGENCY', 'TRANSITIONING', 'DISPOSED']);
@@ -162,6 +163,6 @@ describe('journey QA scenarios', () => {
       expect(formatJourneyQaOutcome(outcome)).toContain('résidu DOM : cinematic=0');
       expect(document.body.querySelectorAll('.cinematic-overlay, .journey-overlay, .journey-surface')).toHaveLength(0);
     }
-    expect(JOURNEY_QA_MANIFEST.cinematics).toHaveLength(3);
+    expect(JOURNEY_QA_MANIFEST.cinematics).toHaveLength(4);
   });
 });

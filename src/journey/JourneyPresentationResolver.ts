@@ -7,8 +7,8 @@ import type { RunNode } from '../game/types';
  * game truth — a missing mapping simply means the Journey surface degrades, never that progression
  * is blocked.
  *
- * CIN-2 ships the production map EMPTY on purpose. Real reviewed pilot media is a CIN-3 gate, so no
- * campaign boundary claims cinematic coverage yet.
+ * CIN-6A populates only reviewed local Journey-node presentation seams. TravelView never reads
+ * this map, and lifecycle clips (dialogue/combat/refuge/ending) remain in their own resolvers.
  */
 export type JourneyPresentationCategory = 'node' | 'edge' | 'content' | 'state';
 
@@ -35,12 +35,17 @@ export function stateKey(fact: string, variant: string): string {
 }
 
 /**
- * PRODUCTION MAPPINGS — intentionally empty in CIN-2.
+ * REVIEWED CIN-6A JOURNEY BOUNDARIES.
  *
- * Populating this belongs to CIN-3, once real reviewed clips exist and ship locally. Nothing here
- * may reference a cinematic that is not already present in the shipped manifest.
+ * These are the moving/frozen contexts used by the initial continuation and three real route
+ * choices. Every ID is local and present in the shipped manifest; missing media still degrades.
  */
-export const JOURNEY_PRESENTATION_MAP: JourneyPresentationMap = Object.freeze({});
+export const JOURNEY_PRESENTATION_MAP: JourneyPresentationMap = Object.freeze({
+  [nodeArrivalKey('lion-camp')]: 'camp_departure',
+  [nodeArrivalKey('lion-refugees')]: 'refugees_approach',
+  [nodeArrivalKey('lion-valmir-road')]: 'valmir_route_fork',
+  [nodeArrivalKey('lion-witnesses')]: 'witnesses_encounter',
+});
 
 export function resolveJourneyPresentation(
   key: string,
@@ -78,7 +83,7 @@ export function resolveBoundaryCinematic(
 /**
  * Candidate clips worth preparing while the player decides: the edge to each available successor,
  * then that successor's arrival. Only mapped local IDs are returned, deduplicated in order, so an
- * empty production map preloads nothing at all.
+ * unmapped successor preloads nothing at all.
  */
 export function resolveCandidateCinematicIds(
   context: JourneyBoundaryPresentationContext,

@@ -58,6 +58,7 @@ export class JourneyCampaignBoundary {
   private readonly presentationMap: JourneyPresentationMap;
   private readonly createSession: () => JourneySession;
   private session: JourneySession | null = null;
+  private readonly presentedKeys = new Set<string>();
 
   constructor(options: JourneyCampaignBoundaryOptions) {
     this.presentationMap = options.presentationMap ?? JOURNEY_PRESENTATION_MAP;
@@ -80,13 +81,15 @@ export class JourneyCampaignBoundary {
       available: request.available,
     };
     const { key, cinematicId } = resolveBoundaryCinematic(context, this.presentationMap);
+    const playId = cinematicId && !this.presentedKeys.has(key) ? cinematicId : undefined;
     const session = this.createSession();
     this.session = session;
 
     // An unmapped boundary resolves to no descriptor, so CIN-1 degrades to its neutral safe surface.
-    const result = await session.presentCinematic(cinematicId ?? key, {
+    const result = await session.presentCinematic(playId ?? key, {
       ...(request.reducedMotion === undefined ? {} : { reducedMotion: request.reducedMotion }),
     });
+    if (cinematicId) this.presentedKeys.add(key);
     session.preloadCandidates(resolveCandidateCinematicIds(context, this.presentationMap));
 
     const plan = planJourneyBoundary(request.available, {

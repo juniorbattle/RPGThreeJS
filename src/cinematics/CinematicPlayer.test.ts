@@ -94,6 +94,30 @@ describe('cinematic player', () => {
     expect(document.querySelector('.cinematic-overlay')).toBeNull();
   });
 
+  it('keeps a five-second completion grace beyond declared duration', async () => {
+    vi.useFakeTimers();
+    vi.spyOn(HTMLMediaElement.prototype, 'canPlayType').mockReturnValue('probably');
+    vi.spyOn(HTMLMediaElement.prototype, 'play').mockResolvedValue(undefined);
+    const timedRegistry = new CinematicRegistry({
+      version: 1,
+      cinematics: [{
+        id: 'long-video',
+        title: 'Long video',
+        sources: [{ src: '/long.mp4', type: 'video/mp4' }],
+        durationMs: 20_000,
+      }],
+    });
+    const player = new CinematicPlayer(timedRegistry);
+    const resultPromise = player.play('long-video', { reducedMotion: false });
+    let settled = false;
+    void resultPromise.then(() => { settled = true; });
+
+    await vi.advanceTimersByTimeAsync(20_000);
+    expect(settled).toBe(false);
+    await vi.advanceTimersByTimeAsync(5_000);
+    await expect(resultPromise).resolves.toMatchObject({ reason: 'timeout', played: false });
+  });
+
   it('accepts only one active playback owner', async () => {
     const player = new CinematicPlayer(registry());
     const first = player.play('placeholder', { reducedMotion: false, placeholderDurationMs: 5_000 });
