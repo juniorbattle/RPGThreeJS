@@ -33,12 +33,23 @@ function clickChoice(id: string): void {
   document.querySelector<HTMLButtonElement>(`[data-journey-choice="${id}"]`)?.click();
 }
 
+function prepareDecodedFrame(): void {
+  const video = document.querySelector('video');
+  if (!video) throw new Error('Expected a mounted cinematic video.');
+  Object.defineProperties(video, {
+    videoWidth: { configurable: true, value: 1920 },
+    videoHeight: { configurable: true, value: 1080 },
+    readyState: { configurable: true, value: 2 },
+  });
+}
+
 describe('journey session', () => {
   beforeEach(() => {
     vi.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(() => undefined);
     vi.spyOn(HTMLMediaElement.prototype, 'load').mockImplementation(() => undefined);
     vi.spyOn(HTMLMediaElement.prototype, 'canPlayType').mockReturnValue('probably');
     vi.spyOn(HTMLMediaElement.prototype, 'play').mockResolvedValue(undefined);
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({ drawImage: vi.fn() } as unknown as CanvasRenderingContext2D);
     vi.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
 
@@ -96,12 +107,14 @@ describe('journey session', () => {
   it('keeps the ended presentation mounted and disposes it when the freeze is released', async () => {
     const { session } = createSession();
     const present = session.presentCinematic('clip', { reducedMotion: false });
-    document.querySelector('video')?.dispatchEvent(new Event('loadeddata'));
+    prepareDecodedFrame();
     document.querySelector('video')?.dispatchEvent(new Event('ended'));
     await expect(present).resolves.toMatchObject({ reason: 'ended', played: true });
     expect(session.state).toBe('FREEZE');
     expect(session.frozenSurface).toBe(document.querySelector('.cinematic-overlay'));
     expect(document.querySelector('.cinematic-overlay--frozen')).not.toBeNull();
+    expect(document.querySelector<HTMLCanvasElement>('.cinematic-overlay__freeze-frame')?.hidden).toBe(false);
+    expect(session.frozenSurface?.dataset.cinematicFreezeSurface).toBe('canvas');
     session.releaseFreeze();
     expect(session.frozenSurface).toBeNull();
     expect(document.querySelector('.cinematic-overlay')).toBeNull();
@@ -111,10 +124,11 @@ describe('journey session', () => {
   it('reaches the same agency boundary after a skipped clip', async () => {
     const { session } = createSession();
     const present = session.presentCinematic('clip', { reducedMotion: false });
-    document.querySelector('video')?.dispatchEvent(new Event('loadeddata'));
+    prepareDecodedFrame();
     document.querySelector<HTMLButtonElement>('.cinematic-overlay__skip')?.click();
     await expect(present).resolves.toMatchObject({ reason: 'skipped' });
     expect(session.state).toBe('FREEZE');
+    expect(document.querySelector<HTMLCanvasElement>('.cinematic-overlay__freeze-frame')?.hidden).toBe(false);
     const commit = session.requestAgency({ choices: [{ id: 'onward', label: 'Onward' }] });
     expect(session.state).toBe('AGENCY');
     clickChoice('onward');

@@ -317,6 +317,8 @@ export class GameApp {
     this.canvas.hidden = true;
     const requestedRealId = new URLSearchParams(window.location.search).get('real') ?? 'forest_journey_tension';
     const selectedRealId = this.cinematicRegistry.get(requestedRealId) ? requestedRealId : 'forest_journey_tension';
+    const selectedDialogueId = ['lion_briefing', 'village_choice', 'shadow_signs', 'final_refuge']
+      .find((dialogueId) => resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId }) === selectedRealId);
     this.chrome.innerHTML = `
       <section class="qa-lab cinematic-qa ui-screen" aria-label="Laboratoire QA cinématique">
         <header class="qa-lab__header">
@@ -335,6 +337,7 @@ export class GameApp {
           <button type="button" data-cinematic-qa="transition"><b>Transition</b><span>Interlude couvert et interactif</span></button>
           <button type="button" data-cinematic-qa="real-selected"><b>Vidéo CIN-6A sélectionnée</b><span>${selectedRealId} — fin naturelle, Skip et nettoyage</span></button>
           <button type="button" data-cinematic-qa="real-selected-hold"><b>Hold CIN-6A sélectionné</b><span>${selectedRealId} — frame finale Chromium, Release et nettoyage</span></button>
+          ${selectedDialogueId ? `<button type="button" data-cinematic-qa="real-selected-dialogue"><b>Dialogue CIN-6.5 sélectionné</b><span>${selectedRealId} → ${selectedDialogueId}</span></button>` : ''}
           <button type="button" data-cinematic-qa="real-hold"><b>Vidéo réelle + hold</b><span>lion_judgement naturel, frame finale, Release et nettoyage</span></button>
           <button type="button" data-cinematic-qa="real-dialogue"><b>Flux Lion réel</b><span>lion_judgement → lion_finale_judgement</span></button>
           <button type="button" data-cinematic-qa="reduced-dialogue"><b>Flux Lion réduit</b><span>Bypass mouvement → lion_finale_judgement</span></button>
@@ -363,6 +366,17 @@ export class GameApp {
     }
     if (scenario === 'real-dialogue') {
       await this.playDialogue('lion_finale_judgement');
+      return;
+    }
+    if (scenario === 'real-selected-dialogue') {
+      const requestedRealId = new URLSearchParams(window.location.search).get('real') ?? '';
+      const selectedDialogueId = ['lion_briefing', 'village_choice', 'shadow_signs', 'final_refuge']
+        .find((dialogueId) => resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId }) === requestedRealId);
+      if (!selectedDialogueId) {
+        this.renderCinematicQa(`Aucun dialogue Journey CIN-6.5 n'est associé à ${requestedRealId || '<absent>'}.`);
+        return;
+      }
+      await this.playDialogue(selectedDialogueId);
       return;
     }
     if (scenario === 'reduced-dialogue') {
@@ -406,18 +420,11 @@ export class GameApp {
       });
       result = held.result;
       if (held.surface) {
-        const video = held.surface.querySelector<HTMLVideoElement>('.cinematic-overlay__video');
-        if (video && held.result.reason === 'ended') {
-          const sample = document.createElement('canvas');
-          sample.width = 640;
-          sample.height = 360;
-          sample.dataset.cinematicFrameSample = 'true';
-          sample.setAttribute('aria-label', 'Échantillon Chromium de la frame finale décodée');
-          sample.style.cssText = 'position:absolute;left:clamp(18px,4vw,56px);bottom:clamp(18px,4vw,48px);width:min(40vw,640px);height:auto;z-index:5;border:1px solid rgba(226,193,112,.75);box-shadow:0 14px 50px rgba(0,0,0,.55)';
-          const context = sample.getContext('2d', { willReadFrequently: true });
-          context?.drawImage(video, 0, 0, sample.width, sample.height);
+        const freezeFrame = held.surface.querySelector<HTMLCanvasElement>('.cinematic-overlay__freeze-frame');
+        if (freezeFrame && held.result.reason === 'ended' && !freezeFrame.hidden) {
+          const context = freezeFrame.getContext('2d', { willReadFrequently: true });
           if (context) {
-            const pixels = context.getImageData(0, 0, sample.width, sample.height).data;
+            const pixels = context.getImageData(0, 0, freezeFrame.width, freezeFrame.height).data;
             let minimum = 255;
             let maximum = 0;
             let total = 0;
@@ -427,22 +434,25 @@ export class GameApp {
               maximum = Math.max(maximum, luminance);
               total += luminance;
             }
-            sample.dataset.luminance = `${minimum}/${Math.round(total / (pixels.length / 4))}/${maximum}`;
+            freezeFrame.dataset.luminance = `${minimum}/${Math.round(total / (pixels.length / 4))}/${maximum}`;
           }
-          held.surface.append(sample);
         }
         const release = document.createElement('button');
         release.type = 'button';
         release.className = 'cinematic-overlay__control';
         release.dataset.cinematicRelease = 'true';
         release.textContent = 'Continuer / Release';
-        release.style.cssText = 'position:absolute;right:clamp(18px,4vw,56px);bottom:clamp(18px,4vw,48px);z-index:5';
+        // The frozen cinematic is deliberately inert. Keep this DEV-only QA affordance as a
+        // sibling above it so a human can exercise the real release path without weakening the
+        // production surface's passive accessibility contract.
+        release.style.cssText = 'position:fixed;right:clamp(18px,4vw,56px);bottom:clamp(18px,4vw,48px);z-index:9300';
         release.addEventListener('click', () => {
+          release.remove();
           held.release();
-          const residue = document.querySelectorAll('.cinematic-overlay, .cinematic-overlay__video, [data-cinematic-frame-sample]').length;
+          const residue = document.querySelectorAll('.cinematic-overlay, .cinematic-overlay__video, .cinematic-overlay__freeze-frame, [data-cinematic-release]').length;
           this.renderCinematicQa(`Vidéo réelle ${heldId} : ${held.result.reason} · played ${held.result.played} · résidu DOM ${residue}.`);
         }, { once: true });
-        held.surface.append(release);
+        document.body.append(release);
         release.focus();
         return;
       }

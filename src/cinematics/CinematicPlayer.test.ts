@@ -12,6 +12,16 @@ const registry = () => new CinematicRegistry({
   ],
 });
 
+function prepareDecodedFrame(width = 1920, height = 1080): void {
+  const video = document.querySelector('video');
+  if (!video) throw new Error('Expected a mounted cinematic video.');
+  Object.defineProperties(video, {
+    videoWidth: { configurable: true, value: width },
+    videoHeight: { configurable: true, value: height },
+    readyState: { configurable: true, value: 2 },
+  });
+}
+
 describe('cinematic player', () => {
   beforeEach(() => {
     vi.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(() => undefined);
@@ -133,6 +143,7 @@ describe('cinematic player hold', () => {
     vi.spyOn(HTMLMediaElement.prototype, 'load').mockImplementation(() => undefined);
     vi.spyOn(HTMLMediaElement.prototype, 'canPlayType').mockReturnValue('probably');
     vi.spyOn(HTMLMediaElement.prototype, 'play').mockResolvedValue(undefined);
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({ drawImage: vi.fn() } as unknown as CanvasRenderingContext2D);
   });
 
   afterEach(() => {
@@ -145,13 +156,18 @@ describe('cinematic player hold', () => {
     const player = new CinematicPlayer(registry());
     const pending = player.playHeld('video', { reducedMotion: false });
     const video = document.querySelector('video');
-    video?.dispatchEvent(new Event('loadeddata'));
+    prepareDecodedFrame();
     video?.dispatchEvent(new Event('ended'));
     const held = await pending;
     expect(held.result).toMatchObject({ reason: 'ended', played: true });
     expect(held.surface).toBe(document.querySelector('.cinematic-overlay'));
     expect(document.querySelector('.cinematic-overlay--frozen')).not.toBeNull();
     expect(document.querySelector<HTMLElement>('.cinematic-overlay__video')?.hidden).toBe(false);
+    expect(document.querySelector('.cinematic-overlay__video--decoder')).not.toBeNull();
+    expect(document.querySelector<HTMLCanvasElement>('.cinematic-overlay__freeze-frame')?.hidden).toBe(false);
+    expect(document.querySelector<HTMLCanvasElement>('.cinematic-overlay__freeze-frame')?.width).toBe(1920);
+    expect(document.querySelector<HTMLCanvasElement>('.cinematic-overlay__freeze-frame')?.height).toBe(1080);
+    expect(held.surface?.dataset.cinematicFreezeSurface).toBe('canvas');
     expect(document.querySelector<HTMLElement>('.cinematic-overlay__fallback')?.hidden).toBe(true);
     expect(document.querySelector<HTMLElement>('.cinematic-overlay__skip')?.hidden).toBe(true);
     expect(held.surface?.getAttribute('role')).toBe('presentation');
@@ -175,12 +191,29 @@ describe('cinematic player hold', () => {
   it('holds a skipped presentation at the same boundary as an ended one', async () => {
     const player = new CinematicPlayer(registry());
     const pending = player.playHeld('video', { reducedMotion: false });
-    document.querySelector('video')?.dispatchEvent(new Event('loadeddata'));
+    prepareDecodedFrame();
     document.querySelector<HTMLButtonElement>('.cinematic-overlay__skip')?.click();
     const held = await pending;
     expect(held.result.reason).toBe('skipped');
     expect(held.surface).not.toBeNull();
     expect(document.querySelector('.cinematic-overlay--frozen')).not.toBeNull();
+    expect(document.querySelector<HTMLCanvasElement>('.cinematic-overlay__freeze-frame')?.hidden).toBe(false);
+    expect(held.surface?.dataset.cinematicFreezeSurface).toBe('canvas');
+  });
+
+  it('keeps mute controls targeting the decoder video after canvas ownership begins', async () => {
+    const player = new CinematicPlayer(registry());
+    const pending = player.playHeld('video', { reducedMotion: false });
+    const video = document.querySelector<HTMLVideoElement>('.cinematic-overlay__video');
+    expect(video?.muted).toBe(true);
+    document.querySelector<HTMLButtonElement>('.cinematic-overlay__control:not(.cinematic-overlay__skip)')?.click();
+    expect(video?.muted).toBe(false);
+    prepareDecodedFrame();
+    video?.dispatchEvent(new Event('ended'));
+    const held = await pending;
+    expect(held.result.reason).toBe('ended');
+    expect(document.querySelector('.cinematic-overlay__video--decoder')).toBe(video);
+    held.release();
   });
 
   it('degrades a frameless hold to the descriptor poster', async () => {
@@ -214,13 +247,19 @@ describe('cinematic player hold', () => {
 
   it('holds a timed-out presentation without leaving playback active', async () => {
     vi.useFakeTimers();
+    const drawImage = vi.fn();
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({ drawImage } as unknown as CanvasRenderingContext2D);
     const player = new CinematicPlayer(registry());
     const pending = player.playHeld('video', { reducedMotion: false, stallTimeoutMs: 50 });
+    prepareDecodedFrame();
     document.querySelector('video')?.dispatchEvent(new Event('stalled'));
     await vi.advanceTimersByTimeAsync(50);
     const held = await pending;
     expect(held.result.reason).toBe('timeout');
     expect(held.surface).not.toBeNull();
+    expect(drawImage).not.toHaveBeenCalled();
+    expect(document.querySelector<HTMLCanvasElement>('.cinematic-overlay__freeze-frame')?.hidden).toBe(true);
+    expect(held.surface?.dataset.cinematicFreezeSurface).toBe('fallback');
     expect(document.querySelector<HTMLElement>('.cinematic-overlay__fallback')?.hidden).toBe(false);
     expect(player.isPlaying).toBe(false);
     held.release();

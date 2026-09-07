@@ -1,5 +1,14 @@
 import type { VideoCinematicDescriptor } from './CinematicTypes';
 
+// HTMLMediaElement.HAVE_CURRENT_DATA. Kept local because lightweight DOM test hosts do not all
+// expose the browser's static media constants even though they implement numeric readyState.
+const HAVE_CURRENT_DECODED_FRAME = 2;
+
+interface VideoFramePumpElement {
+  requestVideoFrameCallback?: (callback: (now: number, metadata: unknown) => void) => number;
+  cancelVideoFrameCallback?: (handle: number) => void;
+}
+
 export interface CinematicOverlayCallbacks {
   onSkip: () => void;
   onToggleMuted: () => void;
@@ -8,14 +17,17 @@ export interface CinematicOverlayCallbacks {
 export class CinematicOverlay {
   readonly element = document.createElement('section');
   readonly video = document.createElement('video');
+  readonly freezeFrame = document.createElement('canvas');
   readonly skipButton = document.createElement('button');
   readonly muteButton = document.createElement('button');
   private readonly fallback = document.createElement('div');
   private readonly posterSurface = document.createElement('div');
   private readonly previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-  // Journey freeze needs to know whether the element ever rendered a frame it can safely hold.
-  private readonly frameWatch = new AbortController();
-  private renderedFrame = false;
+  private framePumpActive = false;
+  private videoFrameCallbackHandle: number | null = null;
+  private animationFrameHandle: number | null = null;
+  private canvasHasFrame = false;
+  private fallbackSelected = false;
   private frozen = false;
   private disposed = false;
 
@@ -34,9 +46,12 @@ export class CinematicOverlay {
     this.video.playsInline = true;
     this.video.preload = 'auto';
     if (descriptor.poster) this.video.poster = descriptor.poster;
-    for (const type of ['loadeddata', 'playing', 'timeupdate', 'ended'] as const) {
-      this.video.addEventListener(type, () => { this.renderedFrame = true; }, { signal: this.frameWatch.signal });
-    }
+    this.freezeFrame.className = 'cinematic-overlay__freeze-frame';
+    this.freezeFrame.setAttribute('aria-hidden', 'true');
+    this.freezeFrame.hidden = true;
+    // Avoid retaining the browser's default 300x150 backing buffer before a snapshot is needed.
+    this.freezeFrame.width = 0;
+    this.freezeFrame.height = 0;
     this.posterSurface.className = 'cinematic-overlay__poster';
     this.posterSurface.hidden = true;
     this.fallback.className = 'cinematic-overlay__fallback';
@@ -55,7 +70,7 @@ export class CinematicOverlay {
     this.skipButton.hidden = !allowSkip;
     this.skipButton.addEventListener('click', callbacks.onSkip);
     controls.append(this.muteButton, this.skipButton);
-    this.element.append(this.video, this.posterSurface, this.fallback, controls);
+    this.element.append(this.video, this.freezeFrame, this.posterSurface, this.fallback, controls);
   }
 
   mount(muted: boolean): void {
@@ -65,7 +80,11 @@ export class CinematicOverlay {
   }
 
   showFallback(): void {
-    this.video.hidden = true;
+    this.fallbackSelected = true;
+    this.stopFramePump();
+    this.makeVideoDecoderOnly();
+    this.clearFreezeFrame();
+    this.posterSurface.hidden = true;
     this.muteButton.hidden = true;
     this.fallback.hidden = false;
   }
@@ -77,13 +96,47 @@ export class CinematicOverlay {
   }
 
   /**
+   * Keep the video alive as decoder/clock/audio source while presenting every decoded frame on
+   * the one canvas owned by this overlay. Chromium's video-frame callback is preferred because it
+   * follows decoded frame delivery; RAF is a defensive fallback for older engines.
+   */
+  startFramePump(): void {
+    if (this.framePumpActive || this.frozen || this.disposed) return;
+    this.framePumpActive = true;
+    const videoFramePump = this.video as HTMLVideoElement & VideoFramePumpElement;
+    if (
+      typeof videoFramePump.requestVideoFrameCallback === 'function'
+      && typeof videoFramePump.cancelVideoFrameCallback === 'function'
+    ) {
+      this.element.dataset.cinematicFramePump = 'video-frame';
+      this.scheduleVideoFrame();
+      return;
+    }
+    this.element.dataset.cinematicFramePump = 'animation-frame';
+    this.scheduleAnimationFrame();
+  }
+
+  /**
    * Journey hold: keep this surface mounted after playback settled instead of disposing it.
-   * An element that rendered at least one frame holds that frame on its own, so no canvas
-   * extraction is needed. Anything else degrades to the poster, then to the text fallback.
+   * A successful decoded-frame canvas snapshot becomes the authoritative visual. Lifecycle
+   * events alone do not prove that an ended video remains browser-composited. Capture therefore
+   * happens before pause/hide, then degrades safely to the poster or text fallback.
    */
   freeze(): void {
     if (this.frozen || this.disposed) return;
     this.frozen = true;
+    const capturedLatestFrame = !this.fallbackSelected && this.drawCurrentFrame();
+    this.stopFramePump();
+    if (capturedLatestFrame || this.canvasHasFrame) {
+      this.element.dataset.cinematicFreezeSurface = 'canvas';
+    } else if (this.descriptor.poster) {
+      this.showPoster();
+      this.element.dataset.cinematicFreezeSurface = 'poster';
+    } else {
+      this.showFallback();
+      this.element.dataset.cinematicFreezeSurface = 'fallback';
+    }
+    this.video.pause();
     if (this.element.contains(document.activeElement)) {
       (document.activeElement as HTMLElement).blur();
     }
@@ -97,11 +150,6 @@ export class CinematicOverlay {
     this.skipButton.disabled = true;
     this.muteButton.hidden = true;
     this.muteButton.disabled = true;
-    if (!this.renderedFrame) {
-      if (this.descriptor.poster) this.showPoster();
-      else this.showFallback();
-    }
-    this.video.pause();
   }
 
   get isFrozen(): boolean {
@@ -111,19 +159,101 @@ export class CinematicOverlay {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
-    this.frameWatch.abort();
+    this.stopFramePump();
     this.video.pause();
     this.video.removeAttribute('src');
     this.video.replaceChildren();
     try { this.video.load(); } catch {}
+    this.clearFreezeFrame();
     this.element.remove();
     if (this.previousFocus?.isConnected) this.previousFocus.focus();
   }
 
+  private drawCurrentFrame(): boolean {
+    if (
+      this.video.videoWidth <= 0
+      || this.video.videoHeight <= 0
+      || !Number.isFinite(this.video.readyState)
+      || this.video.readyState < HAVE_CURRENT_DECODED_FRAME
+    ) return false;
+
+    const context = this.freezeFrame.getContext('2d');
+    if (!context) return false;
+
+    try {
+      if (
+        this.freezeFrame.width !== this.video.videoWidth
+        || this.freezeFrame.height !== this.video.videoHeight
+      ) {
+        this.freezeFrame.width = this.video.videoWidth;
+        this.freezeFrame.height = this.video.videoHeight;
+        this.canvasHasFrame = false;
+      }
+      context.drawImage(this.video, 0, 0, this.freezeFrame.width, this.freezeFrame.height);
+      this.canvasHasFrame = true;
+      this.posterSurface.hidden = true;
+      this.fallback.hidden = true;
+      this.freezeFrame.hidden = false;
+      this.makeVideoDecoderOnly();
+      this.element.dataset.cinematicVisualSurface = 'canvas';
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  private clearFreezeFrame(): void {
+    this.freezeFrame.hidden = true;
+    this.freezeFrame.width = 0;
+    this.freezeFrame.height = 0;
+    this.canvasHasFrame = false;
+  }
+
   private showPoster(): void {
-    this.video.hidden = true;
+    this.stopFramePump();
+    this.makeVideoDecoderOnly();
+    this.clearFreezeFrame();
     this.fallback.hidden = true;
     this.posterSurface.style.backgroundImage = `url("${this.descriptor.poster}")`;
     this.posterSurface.hidden = false;
+  }
+
+  private scheduleVideoFrame(): void {
+    const videoFramePump = this.video as HTMLVideoElement & Required<VideoFramePumpElement>;
+    this.videoFrameCallbackHandle = videoFramePump.requestVideoFrameCallback(() => {
+      this.videoFrameCallbackHandle = null;
+      if (!this.framePumpActive || this.frozen || this.disposed) return;
+      if (!this.video.paused && !this.video.ended) this.drawCurrentFrame();
+      if (this.framePumpActive && !this.frozen && !this.disposed && !this.video.ended) this.scheduleVideoFrame();
+    });
+  }
+
+  private scheduleAnimationFrame(): void {
+    this.animationFrameHandle = window.requestAnimationFrame(() => {
+      this.animationFrameHandle = null;
+      if (!this.framePumpActive || this.frozen || this.disposed) return;
+      if (!this.video.paused && !this.video.ended) this.drawCurrentFrame();
+      if (this.framePumpActive && !this.frozen && !this.disposed && !this.video.ended) this.scheduleAnimationFrame();
+    });
+  }
+
+  private stopFramePump(): void {
+    this.framePumpActive = false;
+    if (this.videoFrameCallbackHandle !== null) {
+      const videoFramePump = this.video as HTMLVideoElement & VideoFramePumpElement;
+      videoFramePump.cancelVideoFrameCallback?.(this.videoFrameCallbackHandle);
+      this.videoFrameCallbackHandle = null;
+    }
+    if (this.animationFrameHandle !== null) {
+      window.cancelAnimationFrame(this.animationFrameHandle);
+      this.animationFrameHandle = null;
+    }
+    if (this.element.dataset.cinematicFramePump) this.element.dataset.cinematicFramePump = 'stopped';
+  }
+
+  private makeVideoDecoderOnly(): void {
+    this.video.hidden = false;
+    this.video.classList.add('cinematic-overlay__video--decoder');
+    this.video.setAttribute('aria-hidden', 'true');
   }
 }

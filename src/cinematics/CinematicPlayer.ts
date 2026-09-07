@@ -65,8 +65,13 @@ export class CinematicPlayer {
         options.signal?.removeEventListener('abort', onExternalAbort);
         abortController.signal.removeEventListener('abort', onInternalAbort);
         mediaListeners.abort();
-        if (hold) overlay.freeze();
-        else overlay.dispose();
+        if (hold) {
+          // Only a healthy natural completion or an intentional skip may snapshot the decoded
+          // video. Error/timeout surfaces are not trustworthy even when stale media dimensions
+          // remain available, so force the normal poster/text hierarchy before freezing.
+          if (reason !== 'ended' && reason !== 'skipped') overlay.showFallback();
+          overlay.freeze();
+        } else overlay.dispose();
         if (this.active?.abortController === abortController) this.active = null;
         resolve({
           result: { id, reason, played: reason === 'ended' || reason === 'skipped', ...(error === undefined ? {} : { error }) },
@@ -136,6 +141,7 @@ export class CinematicPlayer {
         stallTimeout = null;
       }, { signal: mediaListeners.signal });
       try {
+        overlay.startFramePump();
         overlay.video.load();
         void Promise.resolve(overlay.video.play()).catch((error) => {
           overlay.showFallback();
