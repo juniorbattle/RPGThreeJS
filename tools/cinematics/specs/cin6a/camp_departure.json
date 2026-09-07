@@ -4,7 +4,7 @@
   "cinematicId": "camp_departure",
   "tier": "JOURNEY",
   "canonicalFacing": "SCREEN_RIGHT",
-  "promptVersion": "cin6a-v1",
+  "promptVersion": "cin6.5-remaster-v1",
   "resolution": "2K",
   "frame": { "width": 1920, "height": 1080 },
   "artDirection": "Premium painted HD-2D fantasy tactical RPG departure at the canonical Lion field camp. This is the first forward-moving campaign beat after the chronicle, not a replay of the prologue. Preserve subdued dawn light, camp geography, Lion identity, and restrained resolve.",
@@ -28,18 +28,18 @@
     {
       "shotId": "shot_02",
       "purpose": "Show the company beginning the march and hand cleanly to existing dialogue and journey progression.",
-      "framing": "MEDIUM_FORWARD_MARCH",
+      "framing": "WIDE_LATERAL_MARCH",
       "environment": "public/assets/generated/lion-phase/dialogue/camp_departure.webp",
       "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_camp_departure/shot_02/source.png" },
       "characters": [
-        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.38, "groundY": 0.98 }, "heightPx": 790, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
-        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.72, "groundY": 0.98 }, "heightPx": 720, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.34, "groundY": 0.97 }, "heightPx": 650, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.69, "groundY": 0.97 }, "heightPx": 610, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "TRACK_SMALL_RIGHT" },
       "durationSeconds": 6,
       "continuityOut": "END",
       "endIntent": "DIALOGUE_READY_SETTLE",
-      "promptIntent": "Alistair takes two slow steps toward screen right and comes to a stable stop. Seraphine stays planted on the established right side, continuously looking screen-left at Alistair; lock her head, shoulders, torso, feet, and staff to that screen-left orientation for the entire shot. She must not turn toward screen-right or follow the camera. End with the road and camp exit readable."
+      "promptIntent": "Locked wide lateral-tracking shot with no push-in, pull-in, dolly toward camera, zoom, or foreground approach. Alistair takes two slow steps only toward screen-right on the same ground plane and comes to a stable stop; his apparent pixel height and body scale must remain constant from the supplied first frame through the final frame, and he must never grow relative to Seraphine. Seraphine stays planted at the same depth on the established right side, continuously looking screen-left at Alistair; lock her head, shoulders, torso, feet, staff, apparent height, and ground contact for the entire shot. Preserve the shot-1 scale relationship and end with both characters fully readable beside the road and camp exit."
     }
   ]
 }

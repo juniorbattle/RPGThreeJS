@@ -497,6 +497,17 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .dialogue-outcome--risk { border-color: rgba(255,174,83,.56); color: #ffd7aa; background: rgba(61,34,14,.48); }
 .dialogue-outcome--help { border-color: rgba(114,199,255,.5); color: #d6efff; background: rgba(15,38,61,.48); }
 .dialogue-outcome--neutral { border-color: rgba(244,217,139,.42); color: #eee3c6; background: rgba(49,39,18,.42); }
+
+/* CIN-6.5 Journey dialogue: the frozen cinematic remains the visual scene. */
+.dialogue--cinematic { z-index:9200; background:transparent; }
+.dialogue--cinematic::before { content:''; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(180deg,transparent 0 42%,rgba(2,4,10,.18) 58%,rgba(2,4,10,.82) 100%); }
+.dialogue--cinematic .dialogue__painted,
+.dialogue--cinematic .dialogue__backdrop,
+.dialogue--cinematic .ui-environment-layer,
+.dialogue--cinematic .dialogue__brand,
+.dialogue--cinematic .dialogue__stage { display:none; }
+.dialogue--cinematic .dialogue__box { background:linear-gradient(115deg,rgba(5,9,20,.82),rgba(11,17,31,.88)); backdrop-filter:blur(9px); }
+.dialogue--cinematic .dialogue-choice { background:linear-gradient(135deg,rgba(8,13,24,.84),rgba(5,9,18,.9)); backdrop-filter:blur(9px); }
 .combat-frame { position: fixed; inset: 0; z-index: 100; width: 100%; height: 100%; border: 0; background: #05060a; }
 
 .travel-view {
@@ -2553,14 +2564,16 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .cinematic-qa__grid b { color:#fff0c8; font:700 18px Cinzel,serif; }
 .cinematic-qa__grid span { color:#aebed3; font:500 12px/1.45 Inter,sans-serif; }
 .cinematic-overlay__poster { position:absolute; inset:0; z-index:1; background-color:#02050c; background-position:center; background-repeat:no-repeat; background-size:cover; }
+.cinematic-overlay--frozen { pointer-events:none; }
 .cinematic-overlay--frozen .cinematic-overlay__controls { display:none; }
 
 /* Journey presentation: frozen cinematic surface + generic player-agency overlay. */
 .journey-surface { position:fixed; inset:0; z-index:9090; pointer-events:none; }
 .journey-surface--neutral { background:radial-gradient(circle at 50% 30%,rgba(97,138,194,.16),transparent 55%),#02050c; }
 .journey-overlay { position:fixed; inset:0; z-index:9200; display:grid; place-items:end center; padding:clamp(18px,4vw,52px); pointer-events:auto; }
+.journey-overlay::before { content:''; position:absolute; inset:36% 0 0; z-index:0; pointer-events:none; background:linear-gradient(180deg,transparent,rgba(2,5,12,.58)); }
 .journey-overlay--standalone { background:linear-gradient(180deg,rgba(2,5,12,.72),rgba(2,5,12,.94)); }
-.journey-overlay__panel { width:min(880px,100%); padding:clamp(18px,3vw,30px); border:1px solid rgba(244,217,139,.4); background:linear-gradient(180deg,rgba(6,12,24,.9),rgba(3,6,13,.97)); box-shadow:0 26px 70px rgba(0,0,0,.7),inset 0 1px rgba(255,245,210,.1); backdrop-filter:blur(10px); }
+.journey-overlay__panel { position:relative; z-index:1; width:min(880px,100%); padding:clamp(18px,3vw,30px); border:1px solid rgba(244,217,139,.4); background:linear-gradient(180deg,rgba(6,12,24,.76),rgba(3,6,13,.9)); box-shadow:0 26px 70px rgba(0,0,0,.7),inset 0 1px rgba(255,245,210,.1); backdrop-filter:blur(10px); }
 .journey-overlay__title { margin:0; color:#fff0c8; font:700 clamp(18px,2.6vw,28px)/1.15 Cinzel,serif; letter-spacing:.05em; text-transform:uppercase; }
 .journey-overlay__caption { margin:8px 0 0; color:#b9c7da; font:500 13px/1.6 Inter,sans-serif; }
 .journey-overlay__choices { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; margin:18px 0 0; padding:0; list-style:none; }

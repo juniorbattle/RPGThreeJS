@@ -84,7 +84,15 @@ export class CinematicOverlay {
   freeze(): void {
     if (this.frozen || this.disposed) return;
     this.frozen = true;
+    if (this.element.contains(document.activeElement)) {
+      (document.activeElement as HTMLElement).blur();
+    }
     this.element.classList.add('cinematic-overlay--frozen');
+    this.element.removeAttribute('aria-modal');
+    this.element.removeAttribute('aria-label');
+    this.element.setAttribute('role', 'presentation');
+    this.element.setAttribute('aria-hidden', 'true');
+    this.element.inert = true;
     this.skipButton.hidden = true;
     this.skipButton.disabled = true;
     this.muteButton.hidden = true;

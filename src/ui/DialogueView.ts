@@ -9,6 +9,12 @@ interface DialogueViewOptions {
   applyEffects: (effects: NarrativeEffect[]) => Promise<void>;
 }
 
+export type DialoguePresentationMode = 'default' | 'cinematic-overlay';
+
+export interface DialoguePlayOptions {
+  mode?: DialoguePresentationMode;
+}
+
 type OutcomeTone = 'gain' | 'loss' | 'risk' | 'help' | 'neutral';
 
 interface CharacterAssetProfile {
@@ -70,15 +76,18 @@ export class DialogueView {
 
   constructor(private readonly options: DialogueViewOptions) {}
 
-  play(sequence: DialogueSequence): Promise<void> {
+  play(sequence: DialogueSequence, options: DialoguePlayOptions = {}): Promise<void> {
     this.close();
     this.sequence = sequence;
     this.overlay = document.createElement('section');
-    this.overlay.className = 'dialogue ui-screen';
-    applyScreenEnvironment(this.overlay, 'dialogue');
+    const cinematicOverlay = options.mode === 'cinematic-overlay';
+    this.overlay.className = `dialogue ui-screen${cinematicOverlay ? ' dialogue--cinematic' : ''}`;
+    if (!cinematicOverlay) applyScreenEnvironment(this.overlay, 'dialogue');
     this.overlay.setAttribute('role', 'dialog');
     this.overlay.setAttribute('aria-modal', 'true');
-    this.overlay.style.setProperty('--dialogue-bg-image', `url("${dialogueBackdrop(sequence)}")`);
+    if (!cinematicOverlay) {
+      this.overlay.style.setProperty('--dialogue-bg-image', `url("${dialogueBackdrop(sequence)}")`);
+    }
     const brandText = sequence.title ?? "Chroniques d'Élyndra";
     const brandClass = sequence.title ? 'dialogue__brand dialogue__brand--ate' : 'dialogue__brand';
     this.overlay.innerHTML = `
@@ -141,8 +150,9 @@ export class DialogueView {
     const continueLabel = this.overlay.querySelector<HTMLElement>('.dialogue__continue');
     if (!left || !right || !center || !speaker || !tag || !text || !outcomes || !choices || !continueLabel) return;
 
-    const portrait = dialoguePortrait(step);
-    const profile = dialogueActorProfile(step);
+    const cinematicOverlay = this.overlay.classList.contains('dialogue--cinematic');
+    const portrait = cinematicOverlay ? '' : dialoguePortrait(step);
+    const profile = cinematicOverlay ? undefined : dialogueActorProfile(step);
     this.overlay.dataset.speakerSide = step.side;
     this.overlay.classList.toggle('dialogue--has-choices', Boolean(step.choices?.length));
     this.setPortrait(left, step.side === 'left' ? portrait : '', step.expression, step.side === 'left' ? profile : undefined);
@@ -163,6 +173,11 @@ export class DialogueView {
     if (step.effects.length) void this.options.applyEffects(step.effects);
     for (const choice of step.choices ?? []) {
       choices.append(this.createChoice(choice));
+    }
+    if (cinematicOverlay) {
+      const target = choices.querySelector<HTMLButtonElement>('button:not([disabled])')
+        ?? this.overlay.querySelector<HTMLButtonElement>('.dialogue__box');
+      target?.focus();
     }
   }
 

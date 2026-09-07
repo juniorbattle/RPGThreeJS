@@ -1,6 +1,6 @@
 import { combatConfigs } from './content';
 import { createInitialState, SaveRepository } from './store';
-import type { CombatConfig, CombatResult, GameState, NarrativeEffect, RunNode, UnitInstance } from './types';
+import type { CombatConfig, CombatResult, DialogueSequence, GameState, NarrativeEffect, RunNode, UnitInstance } from './types';
 import { createUnitInstance, getItemCategory, toCombatant } from './catalog';
 import { applyCombatProgress } from './combatProgress';
 import {
@@ -34,6 +34,7 @@ import { CinematicPlayer } from '../cinematics/CinematicPlayer';
 import { CinematicRegistry } from '../cinematics/CinematicRegistry';
 import { resolveVideoCinematicTrigger } from '../cinematics/CinematicTriggers';
 import type { VideoCinematicTrigger } from '../cinematics/CinematicTypes';
+import { presentCinematicDialogue } from '../cinematics/CinematicDialogueSession';
 import {
   resolveCin6aBoisClairAftermath,
   resolveCin6aJourneyTrigger,
@@ -828,8 +829,40 @@ export class GameApp {
     const resolved = resolveGameDialogue(dialogueId, this.state);
     if (!resolved) throw new Error(`Missing dialogue '${dialogueId}'.`);
     const { sequence } = resolved;
+    const journeyCinematicId = this.usesJourneyPresentation()
+      ? resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId })
+      : undefined;
+
+    if (journeyCinematicId) {
+      await presentCinematicDialogue({
+        player: this.cinematicPlayer,
+        cinematicId: journeyCinematicId,
+        playback: { reducedMotion: this.state.settings.reducedGraphics },
+        openHeldDialogue: async () => {
+          this.setMode('NARRATIVE');
+          await this.dialogue.play(sequence, { mode: 'cinematic-overlay' });
+        },
+        openFallbackDialogue: () => this.playClassicDialogue(sequence, fallbackLabel),
+      });
+    } else {
+      await this.playClassicDialogue(
+        sequence,
+        fallbackLabel,
+        this.cinematicInterlude({ hook: 'beforeDialogue', dialogueId }),
+      );
+    }
+
+    const chapterBeatId = this.pendingChapterBeatId;
+    this.pendingChapterBeatId = null;
+    if (chapterBeatId) await this.playStandaloneCinematic({ hook: 'chapterBeat', beatId: chapterBeatId }, sequence.title ?? fallbackLabel ?? '');
+  }
+
+  private async playClassicDialogue(
+    sequence: DialogueSequence,
+    fallbackLabel?: string,
+    interlude?: () => Promise<unknown>,
+  ): Promise<void> {
     let playPromise: Promise<void> | null = null;
-    const interlude = this.cinematicInterlude({ hook: 'beforeDialogue', dialogueId });
     await sceneTransition.run({
       variant: 'dialogue',
       label: sequence.title ?? fallbackLabel ?? '',
@@ -841,9 +874,6 @@ export class GameApp {
       },
     });
     await playPromise;
-    const chapterBeatId = this.pendingChapterBeatId;
-    this.pendingChapterBeatId = null;
-    if (chapterBeatId) await this.playStandaloneCinematic({ hook: 'chapterBeat', beatId: chapterBeatId }, sequence.title ?? fallbackLabel ?? '');
   }
 
   private async maybePlayATEs(nodeId: string): Promise<void> {

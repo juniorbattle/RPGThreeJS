@@ -154,6 +154,10 @@ describe('cinematic player hold', () => {
     expect(document.querySelector<HTMLElement>('.cinematic-overlay__video')?.hidden).toBe(false);
     expect(document.querySelector<HTMLElement>('.cinematic-overlay__fallback')?.hidden).toBe(true);
     expect(document.querySelector<HTMLElement>('.cinematic-overlay__skip')?.hidden).toBe(true);
+    expect(held.surface?.getAttribute('role')).toBe('presentation');
+    expect(held.surface?.getAttribute('aria-hidden')).toBe('true');
+    expect(held.surface?.hasAttribute('aria-modal')).toBe(false);
+    expect(held.surface?.inert).toBe(true);
     expect(player.isPlaying).toBe(false);
   });
 
