@@ -1,4 +1,5 @@
 import type { VideoCinematicTrigger } from './CinematicTypes';
+import { resolveCompletedLionRoute } from '../game/lionFinale';
 
 type TruthFlags = Readonly<Record<string, boolean | undefined>>;
 
@@ -48,12 +49,20 @@ export function resolveCin6aBoisClairAftermath(
   victory: boolean,
   flags: TruthFlags,
 ): string | undefined {
-  return victory
-    && combatId === 'village_defense'
-    && flags.missionSuccess === true
-    && flags.missionGreed !== true
-    ? 'bois_clair_saved'
-    : undefined;
+  if (!victory) return undefined;
+  if (combatId === 'village_raid' && flags.missionGreed === true) return 'bois_clair_sacrificed';
+  if (combatId === 'village_defense' && flags.missionSuccess === true && flags.missionGreed !== true) {
+    return 'bois_clair_saved';
+  }
+  return undefined;
+}
+
+function completedLionRoute(flags: TruthFlags): ReturnType<typeof resolveCompletedLionRoute> {
+  return resolveCompletedLionRoute({
+    serpentGeneralDefeated: flags.serpentGeneralDefeated === true,
+    lionTrialWon: flags.lionTrialWon === true,
+    lionTrialRequested: flags.lionTrialRequested === true,
+  });
 }
 
 export function resolveCin6aSerpentEnding(
@@ -61,7 +70,23 @@ export function resolveCin6aSerpentEnding(
   victory: boolean,
   flags: TruthFlags,
 ): string | undefined {
-  return victory && combatId === 'serpent_captain' && flags.serpentGeneralDefeated === true
+  return victory
+    && combatId === 'serpent_captain'
+    && flags.serpentGeneralDefeated === true
+    && completedLionRoute(flags) === 'serpent_pursuit'
     ? 'serpent_route_ending'
+    : undefined;
+}
+
+export function resolveCin6bLionTrialEnding(
+  combatId: string,
+  victory: boolean,
+  flags: TruthFlags,
+): string | undefined {
+  return victory
+    && combatId === 'lion_chief'
+    && flags.lionTrialWon === true
+    && completedLionRoute(flags) === 'lion_trial'
+    ? 'lion_trial_route_ending'
     : undefined;
 }

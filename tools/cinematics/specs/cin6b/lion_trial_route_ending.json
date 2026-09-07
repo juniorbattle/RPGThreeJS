@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6b_lion_trial_route_ending",
+  "cinematicId": "lion_trial_route_ending",
+  "tier": "HERO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6b-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG Lion Trial aftermath using the canonical epilogue environment and the same Alaric and Lion Champion designs, relative physical scale, facing logic, Lion palette, weapon identity, and ceremonial restraint established by Lion Judgement and Lion Champion Reveal. The Champion has been lawfully defeated and yields; Alaric acknowledges the result and the Seal under Lion law. The Serpent General remains alive and offscreen, and no Serpent artefact or disclosure outcome exists in this sequence.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Establish the completed ritual confrontation with the Champion weary but alive and Alaric holding lawful authority.",
+      "framing": "WIDE_LION_TRIAL_AFTERMATH",
+      "environment": "public/assets/generated/lion-phase/dialogue/epilogue.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6b_lion_trial_route_ending/shot_01/source.png" },
+      "characters": [
+        { "id": "alaric", "asset": "public/assets/characters/pixel/full/alaric.png", "position": { "x": 0.31, "groundY": 0.97 }, "heightPx": 680, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:lion_champion", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "lion_champion", "asset": "public/assets/characters/pixel/full/lion_champion.png", "position": { "x": 0.72, "groundY": 0.97 }, "heightPx": 620, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alaric", "depth": 10, "role": "SECONDARY", "action": "LOWER_WEAPON", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "WIDE_HOLD" },
+      "durationSeconds": 6,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "LAWFUL_TRIAL_RESULT_ESTABLISHED",
+      "promptIntent": "Alaric remains composed on the left while the Lion Champion on the right keeps the sword low and settles into a weary yielding stance. Preserve both canonical identities, Lion armor, crown, staff, sword, hands, anatomy, sides, facing, and the established Alaric-to-Champion body-height ratio. Only restrained breathing, cloth, distant banners, and light atmosphere move. No death, attack, kneeling redesign, Serpent General, Serpent artefact, army victory, or disclosure."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Make the Champion's lawful yield readable while Alaric witnesses rather than fights or receives an invented object.",
+      "framing": "MEDIUM_CHAMPION_YIELDS_TO_ALARIC",
+      "environment": "public/assets/generated/lion-phase/dialogue/epilogue.webp",
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6b_lion_trial_route_ending/shot_02/source.png" },
+      "characters": [
+        { "id": "alaric", "asset": "public/assets/characters/pixel/full/alaric.png", "position": { "x": 0.32, "groundY": 0.98 }, "heightPx": 820, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:lion_champion", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "lion_champion", "asset": "public/assets/characters/pixel/full/lion_champion.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 750, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alaric", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "STATIC" },
+      "durationSeconds": 7,
+      "continuityOut": "LAST_FRAME",
+      "endIntent": "CHAMPION_YIELD_STABLE_FOR_CHAIN",
+      "promptIntent": "Use a completely locked camera and exact source framing: no zoom, crop, pan, push, pull, or focus move. The Lion Champion keeps the single sword motionless in the exact low diagonal source pose for the entire shot. Lock both Champion arms, both hands, the sword grip, blade angle, and blade position; never lift, raise, rotate, plant, duplicate, or reposition the weapon. The Champion shows yield only by a tiny downward eye and head movement, then becomes still. Alaric observes without stepping or taking anything. Preserve staff, crown, armor, hands, identities, facing, sides, exact same-plane relative scale, and grounded feet. No collapse, death, object transfer, triumph, Serpent enemy, or route-cause detail."
+    },
+    {
+      "shotId": "shot_03",
+      "purpose": "Settle Alaric's restrained acknowledgement of the lawful result into the existing epilogue and terminal completion.",
+      "framing": "STABLE_LION_SEAL_ACKNOWLEDGEMENT",
+      "environment": "public/assets/generated/lion-phase/dialogue/epilogue.webp",
+      "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_02", "path": "tmp/cinematics/cin4/cin6b_lion_trial_route_ending/shot_02/last_frame.png" },
+      "characters": [
+        { "id": "alaric", "asset": "public/assets/characters/pixel/full/alaric.png", "position": { "x": 0.32, "groundY": 0.98 }, "heightPx": 820, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:lion_champion", "depth": 20, "role": "PRIMARY", "action": "SMALL_HEAD_TURN", "mirrorPolicy": "ALLOW" },
+        { "id": "lion_champion", "asset": "public/assets/characters/pixel/full/lion_champion.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 750, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alaric", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "STATIC" },
+      "durationSeconds": 7,
+      "continuityOut": "END",
+      "endIntent": "LION_TRIAL_EPILOGUE_READY",
+      "promptIntent": "Continue from the reviewed chained frame with a completely locked camera and exact framing: no zoom, crop, pan, push, pull, or focus move. Alaric gives only a restrained acknowledgement by a tiny downward eye and head movement. The yielded Champion is fully motionless below the neck. Freeze both Champion arms, both hands, the single sword grip, low diagonal blade angle, and blade position exactly as supplied for the entire shot; never lift, raise, rotate, plant, swing, duplicate, or reposition the sword. Preserve character scale, ground contact, identities, staff, crown, armor, hands, sides, facing, and Lion visual language. Only subtle breathing, cloth edges, distant banners, and atmosphere move. End sharp and ceremonial for the existing epilogue. Add no visible Seal object, Serpent artefact, Serpent General, death, embrace, speech, disclosure, or new political outcome."
+    }
+  ]
+}

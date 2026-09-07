@@ -40,6 +40,7 @@ import {
   resolveCin6aRefugeArrival,
   resolveCin6aRefugeDeparture,
   resolveCin6aSerpentEnding,
+  resolveCin6bLionTrialEnding,
 } from '../cinematics/Cin6aPresentation';
 import {
   formatJourneyQaOutcome,
@@ -451,7 +452,7 @@ export class GameApp {
       stallTimeoutMs: 5_000,
     });
     else if (scenario === 'missing') result = await this.cinematicPlayer.play('missing-cinematic', { reducedMotion: false });
-    else if (scenario === 'reduced') result = await this.cinematicPlayer.play('qa-placeholder', { reducedMotion: true });
+    else if (scenario === 'reduced') result = await this.cinematicPlayer.play(selectedRealId, { reducedMotion: true });
     else if (scenario === 'abort') {
       const controller = new AbortController();
       window.setTimeout(() => controller.abort(), 180);
@@ -1031,7 +1032,8 @@ export class GameApp {
         }
       }
       await this.playJourneyCinematic(
-        resolveCin6aSerpentEnding(result.combatId, result.victory, this.state.flags),
+        resolveCin6bLionTrialEnding(result.combatId, result.victory, this.state.flags)
+          ?? resolveCin6aSerpentEnding(result.combatId, result.victory, this.state.flags),
         'Épilogue',
       );
       await this.playDialogue('epilogue');

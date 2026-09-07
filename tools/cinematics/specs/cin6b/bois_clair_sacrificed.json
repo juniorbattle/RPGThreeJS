@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6b_bois_clair_sacrificed",
+  "cinematicId": "bois_clair_sacrificed",
+  "tier": "HERO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6b-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG post-combat consequence in the same canonical damaged Bois-Clair geography used by the arrival and saved sequences. This state-specific sequence is valid only after an authoritative village_raid victory with missionGreed=true. Show secured material stores, sparse or displaced families, visible exhaustion, and no rescue celebration; do not invent casualties, landmarks, political outcomes, or later-route truth.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "Reveal the same burned village with the family presence absent and the road left conspicuously empty around one wounded resident.",
+      "framing": "WIDE_SACRIFICED_VILLAGE_DISPLACEMENT",
+      "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6b_bois_clair_sacrificed/shot_01/source.png" },
+      "characters": [
+        { "id": "villageoise", "asset": "public/assets/characters/pixel/full/villageoise.png", "position": { "x": 0.72, "groundY": 0.98 }, "heightPx": 620, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:empty_road", "depth": 10, "role": "PRIMARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SLOW_PULL" },
+      "durationSeconds": 6,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "DISPLACEMENT_AND_EMPTY_ROAD_READABLE",
+      "promptIntent": "The wounded villageoise remains alone on the right and looks across the broad empty road where the families were previously present. Preserve her canonical identity, hands, anatomy, position, facing, ground contact, and the same wide-shot displayed height used by the saved counterpart. Let smoke, embers, and cloth move subtly. Keep the visible settlement damaged and sparsely inhabited. Do not add any person, reunion, rescue celebration, corpse, attack, enemy, or new casualty."
+    },
+    {
+      "shotId": "shot_02",
+      "purpose": "Contrast Maelor's secured-resource focus with the villageoise's visible human cost without resolving the existing aftermath dialogue.",
+      "framing": "MEDIUM_MAELOR_SECURED_STORES_CONSEQUENCE",
+      "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6b_bois_clair_sacrificed/shot_02/source.png" },
+      "characters": [
+        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.29, "groundY": 0.98 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:secured_stores", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "villageoise", "asset": "public/assets/characters/pixel/full/villageoise.png", "position": { "x": 0.71, "groundY": 0.98 }, "heightPx": 680, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:secured_stores", "depth": 10, "role": "SECONDARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "STATIC" },
+      "durationSeconds": 6,
+      "continuityOut": "LAST_FRAME",
+      "endIntent": "SECURED_RESOURCES_AND_HUMAN_COST_SETTLED",
+      "promptIntent": "Use a completely locked camera and exact source framing: no zoom, crop, pan, push, pull, or focus move. Maelor quietly surveys the still-intact supply cart, barrels, and stored material already visible at the frame edges. Lock Maelor's head, shoulders, torso, hips, and feet in the authored SCREEN_RIGHT orientation for the entire shot; he must never turn toward camera or screen-left. Keep his book open at the exact source angle and his dagger fixed in the same hand. The villageoise remains SCREEN_LEFT-facing and registers the cost without celebration. Preserve both identities, hands, anatomy, sides, ground contact, and exact relative scale. Use only subtle breathing, a tiny downcast eye movement, smoke, and ember motion. Do not add coins, treasure piles, handover, victory gesture, rescued crowd, Serpent General, or dialogue conclusion."
+    },
+    {
+      "shotId": "shot_03",
+      "purpose": "Hold the negative consequence in a stable state-specific handoff to the existing post-combat dialogue and second-refuge progression.",
+      "framing": "STABLE_SACRIFICED_STATE_HANDOFF",
+      "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
+      "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_02", "path": "tmp/cinematics/cin4/cin6b_bois_clair_sacrificed/shot_02/last_frame.png" },
+      "characters": [
+        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.29, "groundY": 0.98 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:secured_stores", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "villageoise", "asset": "public/assets/characters/pixel/full/villageoise.png", "position": { "x": 0.71, "groundY": 0.98 }, "heightPx": 680, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:secured_stores", "depth": 10, "role": "SECONDARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "STATIC" },
+      "durationSeconds": 6,
+      "continuityOut": "END",
+      "endIntent": "POST_COMBAT_DIALOGUE_AND_SECOND_REFUGE_READY",
+      "promptIntent": "Continue from the reviewed chained frame with a locked camera and exact framing: no push-in, pull-back, pan, zoom, crop, or reframing. Preserve both identities, character scale, ground contact, Maelor's book and dagger, sides, facing, secured-material context, and damaged village. Only breathing, cloth, low smoke, and embers move. End sharp and somber; add no interface, reward, shop, rest action, rescue celebration, massacre, enemy, or later-route outcome."
+    }
+  ]
+}

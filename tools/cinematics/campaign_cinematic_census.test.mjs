@@ -250,9 +250,12 @@ describe('CIN-5 campaign cinematic census contract', () => {
     ]);
   });
 
-  it('does not promote either deferred CIN-6B master during CIN-6A', () => {
-    expect(existsSync(resolve(projectRoot, 'public/assets/cinematics/bois_clair_sacrificed.mp4'))).toBe(false);
-    expect(existsSync(resolve(projectRoot, 'public/assets/cinematics/lion_trial_route_ending.mp4'))).toBe(false);
+  it('keeps both later CIN-6B targets out of the CIN-6A batch', () => {
+    const cin6aTargets = new Set(
+      census.productionBatches.find((candidate) => candidate.id === 'CIN-6A')?.targets.map((target) => target.target),
+    );
+    expect(cin6aTargets.has('state:bois_clair:sacrificed')).toBe(false);
+    expect(cin6aTargets.has('state:lion_trial:ending')).toBe(false);
   });
 
   it('explains the P0 target expansion as one state target plus two reuse families', () => {

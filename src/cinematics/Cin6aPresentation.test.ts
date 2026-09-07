@@ -6,6 +6,7 @@ import {
   resolveCin6aRefugeArrival,
   resolveCin6aRefugeDeparture,
   resolveCin6aSerpentEnding,
+  resolveCin6bLionTrialEnding,
 } from './Cin6aPresentation';
 
 describe('CIN-6A Journey-only presentation selection', () => {
@@ -32,11 +33,14 @@ describe('CIN-6A Journey-only presentation selection', () => {
     expect(resolveCin6aRefugeDeparture('lion-final-refuge')).toBeUndefined();
   });
 
-  it('selects Bois-Clair saved only from compatible deterministic truth', () => {
+  it('selects Bois-Clair state media only after the matching authoritative victory', () => {
     expect(resolveCin6aBoisClairAftermath('village_defense', true, { missionSuccess: true })).toBe('bois_clair_saved');
     expect(resolveCin6aBoisClairAftermath('village_defense', true, { missionSuccess: true, missionGreed: true })).toBeUndefined();
-    expect(resolveCin6aBoisClairAftermath('village_raid', true, { missionGreed: true })).toBeUndefined();
+    expect(resolveCin6aBoisClairAftermath('village_raid', true, { missionGreed: true })).toBe('bois_clair_sacrificed');
+    expect(resolveCin6aBoisClairAftermath('village_raid', true, { missionSuccess: true, missionGreed: true })).toBe('bois_clair_sacrificed');
+    expect(resolveCin6aBoisClairAftermath('village_raid', true, {})).toBeUndefined();
     expect(resolveCin6aBoisClairAftermath('village_defense', false, { missionSuccess: true })).toBeUndefined();
+    expect(resolveCin6aBoisClairAftermath('village_raid', false, { missionGreed: true })).toBeUndefined();
   });
 
   it('selects the Serpent ending only after authoritative Serpent victory', () => {
@@ -44,5 +48,14 @@ describe('CIN-6A Journey-only presentation selection', () => {
     expect(resolveCin6aSerpentEnding('serpent_captain', true, {})).toBeUndefined();
     expect(resolveCin6aSerpentEnding('lion_chief', true, { lionTrialWon: true })).toBeUndefined();
     expect(resolveCin6aSerpentEnding('serpent_captain', false, { serpentGeneralDefeated: true })).toBeUndefined();
+  });
+
+  it('mutually excludes completed Lion endings using authoritative finale precedence', () => {
+    expect(resolveCin6bLionTrialEnding('lion_chief', true, { lionTrialWon: true })).toBe('lion_trial_route_ending');
+    expect(resolveCin6bLionTrialEnding('lion_chief', true, { lionTrialWon: true, lionTrialRequested: true })).toBe('lion_trial_route_ending');
+    expect(resolveCin6bLionTrialEnding('lion_chief', false, { lionTrialWon: true })).toBeUndefined();
+    expect(resolveCin6bLionTrialEnding('serpent_captain', true, { serpentGeneralDefeated: true })).toBeUndefined();
+    expect(resolveCin6aSerpentEnding('serpent_captain', true, { serpentGeneralDefeated: true, lionTrialWon: true })).toBe('serpent_route_ending');
+    expect(resolveCin6bLionTrialEnding('lion_chief', true, { serpentGeneralDefeated: true, lionTrialWon: true })).toBeUndefined();
   });
 });

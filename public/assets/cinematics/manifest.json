@@ -112,6 +112,13 @@
       "durationMs": 18000
     },
     {
+      "id": "bois_clair_sacrificed",
+      "title": "Le prix de Bois-Clair",
+      "sources": [{ "src": "/assets/cinematics/bois_clair_sacrificed.mp4", "type": "video/mp4" }],
+      "fallbackText": "Les réserves sont sécurisées, mais les familles quittent un village meurtri.",
+      "durationMs": 18000
+    },
+    {
       "id": "second_refuge_departure",
       "title": "La marche reprend",
       "sources": [{ "src": "/assets/cinematics/second_refuge_departure.mp4", "type": "video/mp4" }],
@@ -152,6 +159,13 @@
       "sources": [{ "src": "/assets/cinematics/serpent_route_ending.mp4", "type": "video/mp4" }],
       "fallbackText": "Le général est vaincu et l’artefact reste avec la compagnie.",
       "durationMs": 18000
+    },
+    {
+      "id": "lion_trial_route_ending",
+      "title": "Le Sceau par l’épreuve",
+      "sources": [{ "src": "/assets/cinematics/lion_trial_route_ending.mp4", "type": "video/mp4" }],
+      "fallbackText": "Le Champion s’incline et Alaric reconnaît le Sceau gagné sous la loi du Lion.",
+      "durationMs": 20000
     }
   ]
 }

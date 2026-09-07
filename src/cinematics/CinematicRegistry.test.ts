@@ -72,7 +72,7 @@ describe('cinematic registry', () => {
     expect(Reflect.set(VIDEO_CINEMATIC_TRIGGERS.beforeCombat, 'extra', 'not-allowed')).toBe(false);
   });
 
-  it('ships the QA placeholder, three preserved CIN-3 videos and fifteen CIN-6A videos', () => {
+  it('ships the QA placeholder and all twenty approved P0 production videos through CIN-6B', () => {
     const raw = readFileSync(join(process.cwd(), 'public', 'assets', 'cinematics', 'manifest.json'), 'utf-8');
     const parsed = parseVideoCinematicManifest(JSON.parse(raw));
     expect(parsed?.cinematics.map((descriptor) => descriptor.id)).toEqual([
@@ -89,16 +89,18 @@ describe('cinematic registry', () => {
       'valmir_route_fork',
       'bois_clair_arrival',
       'bois_clair_saved',
+      'bois_clair_sacrificed',
       'second_refuge_departure',
       'witnesses_encounter',
       'ruins_approach_context',
       'shadow_signs',
       'final_refuge_dossier',
       'serpent_route_ending',
+      'lion_trial_route_ending',
     ]);
     expect(parsed?.cinematics[0]?.placeholderOnly).toBe(true);
     const real = parsed?.cinematics.slice(1) ?? [];
-    expect(real).toHaveLength(18);
+    expect(real).toHaveLength(20);
     for (const descriptor of real) {
       expect(descriptor.placeholderOnly).not.toBe(true);
       expect(descriptor.sources).toEqual([{ src: `/assets/cinematics/${descriptor.id}.mp4`, type: 'video/mp4' }]);

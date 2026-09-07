@@ -235,15 +235,17 @@ describe('CIN-2 campaign presentation bridge', () => {
       'valmir_route_fork',
       'bois_clair_arrival',
       'bois_clair_saved',
+      'bois_clair_sacrificed',
       'second_refuge_departure',
       'witnesses_encounter',
       'ruins_approach_context',
       'shadow_signs',
       'final_refuge_dossier',
       'serpent_route_ending',
+      'lion_trial_route_ending',
     ]);
 
-    // CIN-6A adds its fifteen approved local masters and preserves all three CIN-3 binaries.
+    // CIN-6B adds the two remaining P0 state/route masters and preserves every approved binary.
     const videos: string[] = [];
     const walk = (dir: string) => {
       for (const entry of readdirSync(dir)) {
@@ -256,6 +258,7 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(videos.map((path) => path.replaceAll('\\', '/').split('/').at(-1)).sort()).toEqual([
       'alaric_audience_arrival.mp4',
       'bois_clair_arrival.mp4',
+      'bois_clair_sacrificed.mp4',
       'bois_clair_saved.mp4',
       'camp_departure.mp4',
       'final_refuge_dossier.mp4',
@@ -264,6 +267,7 @@ describe('CIN-2 campaign presentation bridge', () => {
       'forest_journey_tension.mp4',
       'lion_champion_reveal.mp4',
       'lion_judgement.mp4',
+      'lion_trial_route_ending.mp4',
       'refugees_approach.mp4',
       'ruins_approach_context.mp4',
       'second_refuge_departure.mp4',

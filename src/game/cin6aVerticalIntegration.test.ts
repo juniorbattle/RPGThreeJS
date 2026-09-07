@@ -51,7 +51,7 @@ describe('CIN-6A vertical integration seams', () => {
     }
   });
 
-  it('selects saved aftermath after deterministic victory facts and before consequence dialogue', () => {
+  it('selects state-specific aftermath after deterministic victory facts and before consequence dialogue', () => {
     const combat = method('private async resolveCombat');
     const facts = combat.indexOf('Object.assign(this.state.flags, lionBossVictoryFacts(result.combatId))');
     const aftermath = combat.indexOf('resolveCin6aBoisClairAftermath');
@@ -63,14 +63,17 @@ describe('CIN-6A vertical integration seams', () => {
     expect(postDialogue).toBeGreaterThan(aftermath);
   });
 
-  it('places the Serpent ending after existing aftermath and before deterministic epilogue', () => {
+  it('places the mutually exclusive route ending after existing aftermath and before deterministic epilogue', () => {
     const combat = method('private async resolveCombat');
     const bossAftermath = combat.indexOf('bossConfig.postCombatDialogueId');
     const ending = combat.indexOf('resolveCin6aSerpentEnding');
+    const lionEnding = combat.indexOf('resolveCin6bLionTrialEnding');
     const epilogue = combat.indexOf("await this.playDialogue('epilogue')");
     expect(bossAftermath).toBeGreaterThan(-1);
     expect(ending).toBeGreaterThan(bossAftermath);
+    expect(lionEnding).toBeGreaterThan(bossAftermath);
     expect(epilogue).toBeGreaterThan(ending);
+    expect(epilogue).toBeGreaterThan(lionEnding);
   });
 
   it('does not add a second route commit or game-truth mutation path', () => {
