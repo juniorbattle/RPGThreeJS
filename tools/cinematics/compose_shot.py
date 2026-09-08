@@ -14,6 +14,7 @@ from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageOps
 
 CANONICAL_FACING = "SCREEN_RIGHT"
 FRAME_SIZE = (1920, 1080)
+SCALE_METADATA = Path("tools/cinematics/specs/cinematic_character_scale.json")
 
 
 def sha256(path: Path) -> str:
@@ -46,6 +47,37 @@ def scale_to_height(image: Image.Image, height_px: int) -> Image.Image:
         raise ValueError("heightPx must be positive.")
     width_px = max(1, round(image.width * height_px / image.height))
     return image.resize((width_px, height_px), Image.Resampling.LANCZOS)
+
+
+def load_scale_registry(project_root: Path) -> dict[str, Any]:
+    path = project_root / SCALE_METADATA
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return {
+        "framingProfiles": data["framingProfiles"],
+        "characters": {entry["id"]: entry for entry in data["characters"]},
+    }
+
+
+def resolve_character_height(character: dict[str, Any], project_root: Path) -> tuple[int, dict[str, Any]]:
+    if "scale" not in character:
+        height = int(character["heightPx"])
+        return height, {"mode": "LEGACY_HEIGHT_PX", "resolvedVisibleBodyHeightPx": height}
+    registry = load_scale_registry(project_root)
+    profile = registry["characters"].get(character["id"])
+    if profile is None:
+        raise ValueError(f"Missing cinematic scale profile for {character['id']}.")
+    framing = character["scale"]["framing"]
+    perspective = float(character["scale"]["perspective"])
+    reference = int(registry["framingProfiles"][framing]["referenceVisibleBodyHeightPx"])
+    height = round(reference * float(profile["relativeStature"]) * perspective)
+    return height, {
+        "mode": "PROFILE",
+        "framing": framing,
+        "perspective": perspective,
+        "relativeStature": profile["relativeStature"],
+        "referenceVisibleBodyHeightPx": reference,
+        "resolvedVisibleBodyHeightPx": height,
+    }
 
 
 def placement_box(character: dict[str, Any], image_size: tuple[int, int], frame_size: tuple[int, int]) -> tuple[int, int, int, int]:
@@ -138,7 +170,8 @@ def compose_shot(spec: dict[str, Any], shot: dict[str, Any], project_root: Path)
         with Image.open(asset_path) as asset:
             oriented = orient_character(asset, character["facing"])
         oriented = trim_alpha(oriented)
-        scaled = scale_to_height(oriented, int(character["heightPx"]))
+        resolved_height, scale_metadata = resolve_character_height(character, project_root)
+        scaled = scale_to_height(oriented, resolved_height)
         box = placement_box(character, scaled.size, frame.size)
         prepared.append((character, scaled, box))
         placements.append({
@@ -151,6 +184,10 @@ def compose_shot(spec: dict[str, Any], shot: dict[str, Any], project_root: Path)
             "role": character["role"],
             "action": character["action"],
             "lookTarget": character["lookTarget"],
+            "factionRole": character.get("factionRole"),
+            "screenRole": character.get("screenRole", character["role"]),
+            "requiredForNarrativeRead": character.get("requiredForNarrativeRead"),
+            "scale": scale_metadata,
             "box": list(box),
         })
 
@@ -177,6 +214,8 @@ def compose_shot(spec: dict[str, Any], shot: dict[str, Any], project_root: Path)
         "canonicalFacing": CANONICAL_FACING,
         "placementsBackToFront": placements,
         "deterministicProps": prop_placements,
+        "dialogueSafeZone": shot.get("dialogueSafeZone"),
+        "agencySafeZone": shot.get("agencySafeZone"),
     }
     return frame.convert("RGB"), metadata
 

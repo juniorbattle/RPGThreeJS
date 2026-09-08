@@ -67,7 +67,7 @@
       "title": "L’audience d’Alaric",
       "sources": [{ "src": "/assets/cinematics/alaric_audience_arrival.mp4", "type": "video/mp4" }],
       "fallbackText": "La compagnie entre dans la salle d’audience du Lion.",
-      "durationMs": 9000
+      "durationMs": 12000
     },
     {
       "id": "refugees_approach",

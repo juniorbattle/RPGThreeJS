@@ -78,7 +78,9 @@ describe('journey RunNode adapter', () => {
     expect(plan.singleNodeId).toBe(available[0]!.id);
     expect(plan.presentation.choices).toEqual([]);
     expect(plan.presentation.continueLabel).toBe(JOURNEY_CONTINUE_LABEL);
-    expect(plan.presentation.caption).toContain(available[0]!.label);
+    expect(plan.presentation.mode).toBe('single');
+    expect(plan.presentation.eyebrow).toBe('Prochaine étape');
+    expect(plan.presentation.title).toBe(available[0]!.label);
   });
 
   it('presents a terminal boundary without fabricating a route', () => {
@@ -102,8 +104,17 @@ describe('journey RunNode adapter', () => {
     for (const available of [[], availableAt(createInitialState(), 'lion-refugees')]) {
       const plan = planJourneyBoundary(available, { secondary, currentLabel: 'Camp' });
       expect(plan.presentation.secondary).toEqual(secondary);
-      expect(plan.presentation.title).toBe('Camp');
+      expect(plan.presentation.context).toBe('Depuis : Camp');
     }
+  });
+
+  it('uses compact single and branch modes while keeping the completed node secondary', () => {
+    const state = createInitialState();
+    const single = planJourneyBoundary(availableAt(state, 'lion-nomad-crossroads'), { currentLabel: 'Croisée nomade' });
+    expect(single.presentation).toMatchObject({ mode: 'single', context: 'Depuis : Croisée nomade' });
+    expect(single.presentation.title).not.toBe('Croisée nomade');
+    const branch = planJourneyBoundary(availableAt(state, 'lion-refugees'), { currentLabel: 'Réfugiés' });
+    expect(branch.presentation).toMatchObject({ mode: 'branch', title: 'La route se divise', context: 'Depuis : Réfugiés' });
   });
 
   it('shares one presentation interpretation with TravelView', () => {

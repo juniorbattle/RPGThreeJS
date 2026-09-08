@@ -7,6 +7,7 @@ export interface CinematicDialogueSessionOptions {
   playback: VideoCinematicPlaybackOptions;
   openHeldDialogue: () => Promise<void>;
   openFallbackDialogue: () => Promise<void>;
+  preserveBackdrop?: (surface: HTMLElement) => void;
 }
 
 export interface CinematicDialogueSessionResult {
@@ -46,7 +47,13 @@ export async function presentCinematicDialogue(
   try {
     await options.openHeldDialogue();
   } finally {
-    held.release();
+    try {
+      options.preserveBackdrop?.(held.surface!);
+    } catch {
+      // A passive backdrop is optional presentation; capture failure must not undo dialogue.
+    } finally {
+      held.release();
+    }
   }
   return { presentation: 'held', reason: held.result.reason };
 }

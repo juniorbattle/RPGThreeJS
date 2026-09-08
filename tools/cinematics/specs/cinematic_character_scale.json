@@ -1,0 +1,1901 @@
+{
+  "schemaVersion": 1,
+  "canonicalRoot": "public/assets/characters/pixel/full/",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "measurementConvention": "alpha bounding box, centered foot anchor at last visible alpha row",
+  "reviewConvention": {
+    "canvasWidth": 520,
+    "canvasHeight": 700,
+    "footBaselineY": 650,
+    "referenceBodyHeightPx": 470,
+    "physicalHeightPolicy": "character-specific relativeStature; never uniform body height"
+  },
+  "framingProfiles": {
+    "WIDE": {
+      "referenceVisibleBodyHeightPx": 500,
+      "description": "Two-to-four subject establishing geography."
+    },
+    "MEDIUM": {
+      "referenceVisibleBodyHeightPx": 640,
+      "description": "Two-subject conversational or reaction staging."
+    },
+    "CLOSE": {
+      "referenceVisibleBodyHeightPx": 790,
+      "description": "Restrained character focus; not a default framing."
+    }
+  },
+  "characters": [
+    {
+      "id": "alaric",
+      "asset": "public/assets/characters/pixel/full/alaric.png",
+      "sourceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b",
+      "category": "HUMAN",
+      "relativeStature": 1.08,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 74,
+        "top": 84,
+        "right": 565,
+        "bottom": 735
+      },
+      "visibleBodyWidth": 491,
+      "visibleBodyHeight": 651,
+      "footAnchor": {
+        "sourceX": 319.0,
+        "sourceY": 734,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.955729
+      },
+      "visualCenter": {
+        "sourceX": 319.0,
+        "sourceY": 409.0,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.532552
+      },
+      "transparentMargins": {
+        "left": 74,
+        "top": 84,
+        "right": 75,
+        "bottom": 33
+      },
+      "reviewBodyHeightPx": 508
+    },
+    {
+      "id": "aldric",
+      "asset": "public/assets/characters/pixel/full/aldric.png",
+      "sourceSha256": "f7f6613eb5df339831a55331c5c2a6f1512b5a794b9452776498d96bd554bb12",
+      "category": "HUMAN",
+      "relativeStature": 1.01,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 53,
+        "top": 84,
+        "right": 586,
+        "bottom": 734
+      },
+      "visibleBodyWidth": 533,
+      "visibleBodyHeight": 650,
+      "footAnchor": {
+        "sourceX": 319.0,
+        "sourceY": 733,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.954427
+      },
+      "visualCenter": {
+        "sourceX": 319.0,
+        "sourceY": 408.5,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.531901
+      },
+      "transparentMargins": {
+        "left": 53,
+        "top": 84,
+        "right": 54,
+        "bottom": 34
+      },
+      "reviewBodyHeightPx": 475
+    },
+    {
+      "id": "alistair",
+      "asset": "public/assets/characters/pixel/full/alistair.png",
+      "sourceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+      "category": "HUMAN",
+      "relativeStature": 1.02,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 57,
+        "top": 84,
+        "right": 581,
+        "bottom": 735
+      },
+      "visibleBodyWidth": 524,
+      "visibleBodyHeight": 651,
+      "footAnchor": {
+        "sourceX": 318.5,
+        "sourceY": 734,
+        "normalizedX": 0.497656,
+        "normalizedY": 0.955729
+      },
+      "visualCenter": {
+        "sourceX": 318.5,
+        "sourceY": 409.0,
+        "normalizedX": 0.497656,
+        "normalizedY": 0.532552
+      },
+      "transparentMargins": {
+        "left": 57,
+        "top": 84,
+        "right": 59,
+        "bottom": 33
+      },
+      "reviewBodyHeightPx": 479
+    },
+    {
+      "id": "cave_bat",
+      "asset": "public/assets/characters/pixel/full/cave_bat.png",
+      "sourceSha256": "727a221bb1c2f3a076c4f18bb84fdfd6c5fc83ee32ec1f36817ac067eaed52ca",
+      "category": "BEAST_SMALL",
+      "relativeStature": 0.34,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 59,
+        "top": 262,
+        "right": 581,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 522,
+      "visibleBodyHeight": 474,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 735,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 498.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.649089
+      },
+      "transparentMargins": {
+        "left": 59,
+        "top": 262,
+        "right": 59,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 160
+    },
+    {
+      "id": "cave_rat",
+      "asset": "public/assets/characters/pixel/full/cave_rat.png",
+      "sourceSha256": "88a393e4a837ce84342a8e984e315ebfbba8d78f6454b725225e059d1b34f3f3",
+      "category": "BEAST_SMALL",
+      "relativeStature": 0.32,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 32,
+        "top": 360,
+        "right": 608,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 576,
+      "visibleBodyHeight": 376,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 735,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 547.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.712891
+      },
+      "transparentMargins": {
+        "left": 32,
+        "top": 360,
+        "right": 32,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 150
+    },
+    {
+      "id": "cedric",
+      "asset": "public/assets/characters/pixel/full/cedric.png",
+      "sourceSha256": "ed71da3f7bd7ac94596bd4d20ef62047940d4457fbae7d6898f54ba221f6972f",
+      "category": "HUMAN",
+      "relativeStature": 0.99,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 74,
+        "top": 86,
+        "right": 565,
+        "bottom": 734
+      },
+      "visibleBodyWidth": 491,
+      "visibleBodyHeight": 648,
+      "footAnchor": {
+        "sourceX": 319.0,
+        "sourceY": 733,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.954427
+      },
+      "visualCenter": {
+        "sourceX": 319.0,
+        "sourceY": 409.5,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 74,
+        "top": 86,
+        "right": 75,
+        "bottom": 34
+      },
+      "reviewBodyHeightPx": 465
+    },
+    {
+      "id": "chroniqueur",
+      "asset": "public/assets/characters/pixel/full/chroniqueur.png",
+      "sourceSha256": "3a23e4c0fb6e5f765dd4d69f2f216b16793e7bee056de2d38f257424eef3ce9c",
+      "category": "HUMAN",
+      "relativeStature": 0.98,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 143,
+        "top": 83,
+        "right": 497,
+        "bottom": 737
+      },
+      "visibleBodyWidth": 354,
+      "visibleBodyHeight": 654,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 736,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.958333
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 409.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 143,
+        "top": 83,
+        "right": 143,
+        "bottom": 31
+      },
+      "reviewBodyHeightPx": 461
+    },
+    {
+      "id": "elara",
+      "asset": "public/assets/characters/pixel/full/elara.png",
+      "sourceSha256": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74",
+      "category": "HUMAN",
+      "relativeStature": 1.01,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 50,
+        "top": 99,
+        "right": 590,
+        "bottom": 735
+      },
+      "visibleBodyWidth": 540,
+      "visibleBodyHeight": 636,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 734,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.955729
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 416.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.542318
+      },
+      "transparentMargins": {
+        "left": 50,
+        "top": 99,
+        "right": 50,
+        "bottom": 33
+      },
+      "reviewBodyHeightPx": 475
+    },
+    {
+      "id": "eldwin",
+      "asset": "public/assets/characters/pixel/full/eldwin.png",
+      "sourceSha256": "b29568751a1a7195ca116054d5b4b77073f9ae6bd7d0ab7f29db535d370cab16",
+      "category": "HUMAN",
+      "relativeStature": 1.0,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 72,
+        "top": 84,
+        "right": 567,
+        "bottom": 737
+      },
+      "visibleBodyWidth": 495,
+      "visibleBodyHeight": 653,
+      "footAnchor": {
+        "sourceX": 319.0,
+        "sourceY": 736,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.958333
+      },
+      "visualCenter": {
+        "sourceX": 319.0,
+        "sourceY": 410.0,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.533854
+      },
+      "transparentMargins": {
+        "left": 72,
+        "top": 84,
+        "right": 73,
+        "bottom": 31
+      },
+      "reviewBodyHeightPx": 470
+    },
+    {
+      "id": "forest_badger",
+      "asset": "public/assets/characters/pixel/full/forest_badger.png",
+      "sourceSha256": "1f8c055bcebb7fc2cbacc6e121542fb0f1a04dea9bf9b81f830e72da2e34ba26",
+      "category": "BEAST_SMALL",
+      "relativeStature": 0.42,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 33,
+        "top": 314,
+        "right": 607,
+        "bottom": 735
+      },
+      "visibleBodyWidth": 574,
+      "visibleBodyHeight": 421,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 734,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.955729
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 524.0,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.682292
+      },
+      "transparentMargins": {
+        "left": 33,
+        "top": 314,
+        "right": 33,
+        "bottom": 33
+      },
+      "reviewBodyHeightPx": 197
+    },
+    {
+      "id": "forest_spider",
+      "asset": "public/assets/characters/pixel/full/forest_spider.png",
+      "sourceSha256": "3c4b3ec8ab3fa17bed62208ad4af78eaf5d19273d4c66d081fe1d7d71ae04e42",
+      "category": "BEAST_MEDIUM",
+      "relativeStature": 0.56,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 42,
+        "top": 262,
+        "right": 599,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 557,
+      "visibleBodyHeight": 474,
+      "footAnchor": {
+        "sourceX": 320.0,
+        "sourceY": 735,
+        "normalizedX": 0.5,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 320.0,
+        "sourceY": 498.5,
+        "normalizedX": 0.5,
+        "normalizedY": 0.649089
+      },
+      "transparentMargins": {
+        "left": 42,
+        "top": 262,
+        "right": 41,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 263
+    },
+    {
+      "id": "forest_troll_elite",
+      "asset": "public/assets/characters/pixel/full/forest_troll_elite.png",
+      "sourceSha256": "288964b0b9ebb17758498d3b9808c147526d6cb08ffcac753124f0b729e1e45f",
+      "category": "BEAST_LARGE",
+      "relativeStature": 1.22,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 28,
+        "top": 140,
+        "right": 612,
+        "bottom": 735
+      },
+      "visibleBodyWidth": 584,
+      "visibleBodyHeight": 595,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 734,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.955729
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 437.0,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.56901
+      },
+      "transparentMargins": {
+        "left": 28,
+        "top": 140,
+        "right": 28,
+        "bottom": 33
+      },
+      "reviewBodyHeightPx": 573
+    },
+    {
+      "id": "forest_viper",
+      "asset": "public/assets/characters/pixel/full/forest_viper.png",
+      "sourceSha256": "29efeb39e1b49b213ecd4ad560c6482e7a7605cabefdf161081a7435b82cbc13",
+      "category": "BEAST_SMALL",
+      "relativeStature": 0.36,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 82,
+        "top": 217,
+        "right": 559,
+        "bottom": 733
+      },
+      "visibleBodyWidth": 477,
+      "visibleBodyHeight": 516,
+      "footAnchor": {
+        "sourceX": 320.0,
+        "sourceY": 732,
+        "normalizedX": 0.5,
+        "normalizedY": 0.953125
+      },
+      "visualCenter": {
+        "sourceX": 320.0,
+        "sourceY": 474.5,
+        "normalizedX": 0.5,
+        "normalizedY": 0.617839
+      },
+      "transparentMargins": {
+        "left": 82,
+        "top": 217,
+        "right": 81,
+        "bottom": 35
+      },
+      "reviewBodyHeightPx": 169
+    },
+    {
+      "id": "future_herbalist",
+      "asset": "public/assets/characters/pixel/full/future_herbalist.png",
+      "sourceSha256": "e9af0c25df2a661e7865140ce5f37b075a080411d0766b5ef614b95559ca7d41",
+      "category": "HUMAN",
+      "relativeStature": 0.98,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 85,
+        "top": 84,
+        "right": 554,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 469,
+      "visibleBodyHeight": 652,
+      "footAnchor": {
+        "sourceX": 319.0,
+        "sourceY": 735,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.0,
+        "sourceY": 409.5,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 85,
+        "top": 84,
+        "right": 86,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 461
+    },
+    {
+      "id": "future_lion_scribe",
+      "asset": "public/assets/characters/pixel/full/future_lion_scribe.png",
+      "sourceSha256": "edc13eb9bb48c7d1e4a5e07046adb4e4ecbe4ba431100761f7e88f64b19e31f6",
+      "category": "HUMAN",
+      "relativeStature": 0.96,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 115,
+        "top": 85,
+        "right": 526,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 411,
+      "visibleBodyHeight": 651,
+      "footAnchor": {
+        "sourceX": 320.0,
+        "sourceY": 735,
+        "normalizedX": 0.5,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 320.0,
+        "sourceY": 410.0,
+        "normalizedX": 0.5,
+        "normalizedY": 0.533854
+      },
+      "transparentMargins": {
+        "left": 115,
+        "top": 85,
+        "right": 114,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 451
+    },
+    {
+      "id": "future_lion_spearman",
+      "asset": "public/assets/characters/pixel/full/future_lion_spearman.png",
+      "sourceSha256": "ed7b77a983384169bc5c4173d8c5ca61d7ae84a83c8ce3a3194f0aec7312c59f",
+      "category": "HUMAN",
+      "relativeStature": 1.02,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 97,
+        "top": 84,
+        "right": 542,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 445,
+      "visibleBodyHeight": 652,
+      "footAnchor": {
+        "sourceX": 319.0,
+        "sourceY": 735,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.0,
+        "sourceY": 409.5,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 97,
+        "top": 84,
+        "right": 98,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 479
+    },
+    {
+      "id": "future_shadow_envoy",
+      "asset": "public/assets/characters/pixel/full/future_shadow_envoy.png",
+      "sourceSha256": "5ed28820cde17b508cb35b907ddb2ebf286129ddc8c5656775fbd456a7aeb418",
+      "category": "HUMAN",
+      "relativeStature": 1.03,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 71,
+        "top": 84,
+        "right": 569,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 498,
+      "visibleBodyHeight": 652,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 735,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 409.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 71,
+        "top": 84,
+        "right": 71,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 484
+    },
+    {
+      "id": "giant_mygale",
+      "asset": "public/assets/characters/pixel/full/giant_mygale.png",
+      "sourceSha256": "6f7a70970029be63cca1771030a1f6cf4abe3dc06ed8354ea7757d61c5ce265d",
+      "category": "BEAST_LARGE",
+      "relativeStature": 0.86,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 33,
+        "top": 284,
+        "right": 608,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 575,
+      "visibleBodyHeight": 452,
+      "footAnchor": {
+        "sourceX": 320.0,
+        "sourceY": 735,
+        "normalizedX": 0.5,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 320.0,
+        "sourceY": 509.5,
+        "normalizedX": 0.5,
+        "normalizedY": 0.663411
+      },
+      "transparentMargins": {
+        "left": 33,
+        "top": 284,
+        "right": 32,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 404
+    },
+    {
+      "id": "goblin",
+      "asset": "public/assets/characters/pixel/full/goblin.png",
+      "sourceSha256": "7291bc9702181cb0e3b789f4cbe4bee89d79c4718ecf2cd904b624dd56ea9840",
+      "category": "HUMANOID",
+      "relativeStature": 0.76,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 51,
+        "top": 195,
+        "right": 589,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 538,
+      "visibleBodyHeight": 541,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 735,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 465.0,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.605469
+      },
+      "transparentMargins": {
+        "left": 51,
+        "top": 195,
+        "right": 51,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 357
+    },
+    {
+      "id": "gunnar",
+      "asset": "public/assets/characters/pixel/full/gunnar.png",
+      "sourceSha256": "4d10124f7292e1245688f7489f178d239b7c66950f423b8587bd406e656a4c87",
+      "category": "HUMAN",
+      "relativeStature": 1.05,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 51,
+        "top": 85,
+        "right": 590,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 539,
+      "visibleBodyHeight": 651,
+      "footAnchor": {
+        "sourceX": 320.0,
+        "sourceY": 735,
+        "normalizedX": 0.5,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 320.0,
+        "sourceY": 410.0,
+        "normalizedX": 0.5,
+        "normalizedY": 0.533854
+      },
+      "transparentMargins": {
+        "left": 51,
+        "top": 85,
+        "right": 50,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 494
+    },
+    {
+      "id": "kestrel",
+      "asset": "public/assets/characters/pixel/full/kestrel.png",
+      "sourceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+      "category": "HUMAN",
+      "relativeStature": 0.98,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 87,
+        "top": 84,
+        "right": 552,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 465,
+      "visibleBodyHeight": 652,
+      "footAnchor": {
+        "sourceX": 319.0,
+        "sourceY": 735,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.0,
+        "sourceY": 409.5,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 87,
+        "top": 84,
+        "right": 88,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 461
+    },
+    {
+      "id": "lancer",
+      "asset": "public/assets/characters/pixel/full/lancer.png",
+      "sourceSha256": "3c1761e087a00f8079ee423e6b513494569566fe75b43fc30e69560ba7a6f012",
+      "category": "HUMAN",
+      "relativeStature": 1.01,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 52,
+        "top": 117,
+        "right": 588,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 536,
+      "visibleBodyHeight": 619,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 735,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 426.0,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.554688
+      },
+      "transparentMargins": {
+        "left": 52,
+        "top": 117,
+        "right": 52,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 475
+    },
+    {
+      "id": "lion_champion",
+      "asset": "public/assets/characters/pixel/full/lion_champion.png",
+      "sourceSha256": "344ef692bdbc16defe4de640104222274601f36a268e4fe73f2fbb11f720fc95",
+      "category": "HUMAN",
+      "relativeStature": 1.09,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 65,
+        "top": 84,
+        "right": 575,
+        "bottom": 735
+      },
+      "visibleBodyWidth": 510,
+      "visibleBodyHeight": 651,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 734,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.955729
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 409.0,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.532552
+      },
+      "transparentMargins": {
+        "left": 65,
+        "top": 84,
+        "right": 65,
+        "bottom": 33
+      },
+      "reviewBodyHeightPx": 512
+    },
+    {
+      "id": "lyra",
+      "asset": "public/assets/characters/pixel/full/lyra.png",
+      "sourceSha256": "bc6ea819babe9160744406afe235614cb737cd32f5b7a6de274b8204bc550bfd",
+      "category": "HUMAN",
+      "relativeStature": 0.99,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 50,
+        "top": 92,
+        "right": 590,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 540,
+      "visibleBodyHeight": 644,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 735,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 413.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.538411
+      },
+      "transparentMargins": {
+        "left": 50,
+        "top": 92,
+        "right": 50,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 465
+    },
+    {
+      "id": "maelor",
+      "asset": "public/assets/characters/pixel/full/maelor.png",
+      "sourceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215",
+      "category": "HUMAN",
+      "relativeStature": 1.0,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 87,
+        "top": 84,
+        "right": 553,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 466,
+      "visibleBodyHeight": 652,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 735,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 409.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 87,
+        "top": 84,
+        "right": 87,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 470
+    },
+    {
+      "id": "marian",
+      "asset": "public/assets/characters/pixel/full/marian.png",
+      "sourceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191",
+      "category": "HUMAN",
+      "relativeStature": 1.0,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 57,
+        "top": 84,
+        "right": 583,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 526,
+      "visibleBodyHeight": 652,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 735,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 409.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 57,
+        "top": 84,
+        "right": 57,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 470
+    },
+    {
+      "id": "marsh_toad",
+      "asset": "public/assets/characters/pixel/full/marsh_toad.png",
+      "sourceSha256": "28827f9b0068ac132bbe0a42bda9722ea78bc58b112f0c430ca3793a01ca721e",
+      "category": "BEAST_SMALL",
+      "relativeStature": 0.4,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 39,
+        "top": 263,
+        "right": 602,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 563,
+      "visibleBodyHeight": 473,
+      "footAnchor": {
+        "sourceX": 320.0,
+        "sourceY": 735,
+        "normalizedX": 0.5,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 320.0,
+        "sourceY": 499.0,
+        "normalizedX": 0.5,
+        "normalizedY": 0.64974
+      },
+      "transparentMargins": {
+        "left": 39,
+        "top": 263,
+        "right": 38,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 188
+    },
+    {
+      "id": "morvan",
+      "asset": "public/assets/characters/pixel/full/morvan.png",
+      "sourceSha256": "d318169144b2113835597c68e478a3ab9aeb412dba243b03e768ab2839b1a212",
+      "category": "HUMAN",
+      "relativeStature": 1.0,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 63,
+        "top": 84,
+        "right": 577,
+        "bottom": 735
+      },
+      "visibleBodyWidth": 514,
+      "visibleBodyHeight": 651,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 734,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.955729
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 409.0,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.532552
+      },
+      "transparentMargins": {
+        "left": 63,
+        "top": 84,
+        "right": 63,
+        "bottom": 33
+      },
+      "reviewBodyHeightPx": 470
+    },
+    {
+      "id": "mountain_ram",
+      "asset": "public/assets/characters/pixel/full/mountain_ram.png",
+      "sourceSha256": "bd2a143583cb7a1b00411474dca7593f97c35e1bdef05e9ce6e109b52c3a4131",
+      "category": "BEAST_MEDIUM",
+      "relativeStature": 0.72,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 33,
+        "top": 274,
+        "right": 607,
+        "bottom": 735
+      },
+      "visibleBodyWidth": 574,
+      "visibleBodyHeight": 461,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 734,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.955729
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 504.0,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.65625
+      },
+      "transparentMargins": {
+        "left": 33,
+        "top": 274,
+        "right": 33,
+        "bottom": 33
+      },
+      "reviewBodyHeightPx": 338
+    },
+    {
+      "id": "refugee_mother",
+      "asset": "public/assets/characters/pixel/full/refugee_mother.png",
+      "sourceSha256": "819f5348ff22f1c6a6503a9e4186b2f61c1fff68b8cd16c90f4aa5eda1219e13",
+      "category": "HUMAN",
+      "relativeStature": 0.98,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 160,
+        "top": 84,
+        "right": 480,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 320,
+      "visibleBodyHeight": 652,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 735,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 409.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 160,
+        "top": 84,
+        "right": 160,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 461
+    },
+    {
+      "id": "river_crab",
+      "asset": "public/assets/characters/pixel/full/river_crab.png",
+      "sourceSha256": "3e66270cdc139282226d61542d3f0d76f32b2a076a871897b41bf32ebe73713b",
+      "category": "BEAST_SMALL",
+      "relativeStature": 0.34,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 34,
+        "top": 360,
+        "right": 607,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 573,
+      "visibleBodyHeight": 376,
+      "footAnchor": {
+        "sourceX": 320.0,
+        "sourceY": 735,
+        "normalizedX": 0.5,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 320.0,
+        "sourceY": 547.5,
+        "normalizedX": 0.5,
+        "normalizedY": 0.712891
+      },
+      "transparentMargins": {
+        "left": 34,
+        "top": 360,
+        "right": 33,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 160
+    },
+    {
+      "id": "sage_seraphine",
+      "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+      "sourceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
+      "category": "HUMAN",
+      "relativeStature": 1.0,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 96,
+        "top": 84,
+        "right": 544,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 448,
+      "visibleBodyHeight": 652,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 735,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 409.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 96,
+        "top": 84,
+        "right": 96,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 470
+    },
+    {
+      "id": "seal_guardian",
+      "asset": "public/assets/characters/pixel/full/seal_guardian.png",
+      "sourceSha256": "fae5ac576d866bf526d6bea20c0952c4a681cff2d8b0b51eacae65cff0a4c4ab",
+      "category": "HUMANOID",
+      "relativeStature": 1.13,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 48,
+        "top": 149,
+        "right": 590,
+        "bottom": 734
+      },
+      "visibleBodyWidth": 542,
+      "visibleBodyHeight": 585,
+      "footAnchor": {
+        "sourceX": 318.5,
+        "sourceY": 733,
+        "normalizedX": 0.497656,
+        "normalizedY": 0.954427
+      },
+      "visualCenter": {
+        "sourceX": 318.5,
+        "sourceY": 441.0,
+        "normalizedX": 0.497656,
+        "normalizedY": 0.574219
+      },
+      "transparentMargins": {
+        "left": 48,
+        "top": 149,
+        "right": 50,
+        "bottom": 34
+      },
+      "reviewBodyHeightPx": 531
+    },
+    {
+      "id": "seraphine",
+      "asset": "public/assets/characters/pixel/full/seraphine.png",
+      "sourceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
+      "category": "HUMAN",
+      "relativeStature": 1.0,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 96,
+        "top": 84,
+        "right": 544,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 448,
+      "visibleBodyHeight": 652,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 735,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 409.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 96,
+        "top": 84,
+        "right": 96,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 470
+    },
+    {
+      "id": "serpent_brute",
+      "asset": "public/assets/characters/pixel/full/serpent_brute.png",
+      "sourceSha256": "deb9bff683847720f82bdea4312a2b481f9173ab321292005a59ad656c4eb65a",
+      "category": "HUMAN",
+      "relativeStature": 1.13,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 51,
+        "top": 122,
+        "right": 587,
+        "bottom": 735
+      },
+      "visibleBodyWidth": 536,
+      "visibleBodyHeight": 613,
+      "footAnchor": {
+        "sourceX": 318.5,
+        "sourceY": 734,
+        "normalizedX": 0.497656,
+        "normalizedY": 0.955729
+      },
+      "visualCenter": {
+        "sourceX": 318.5,
+        "sourceY": 428.0,
+        "normalizedX": 0.497656,
+        "normalizedY": 0.557292
+      },
+      "transparentMargins": {
+        "left": 51,
+        "top": 122,
+        "right": 53,
+        "bottom": 33
+      },
+      "reviewBodyHeightPx": 531
+    },
+    {
+      "id": "serpent_duelist_elite",
+      "asset": "public/assets/characters/pixel/full/serpent_duelist_elite.png",
+      "sourceSha256": "040f306678984338223c53ff67a2edff11141361fc00a56ff9c4fc62a2810c96",
+      "category": "HUMAN",
+      "relativeStature": 1.04,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 58,
+        "top": 64,
+        "right": 581,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 523,
+      "visibleBodyHeight": 672,
+      "footAnchor": {
+        "sourceX": 319.0,
+        "sourceY": 735,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.0,
+        "sourceY": 399.5,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.520182
+      },
+      "transparentMargins": {
+        "left": 58,
+        "top": 64,
+        "right": 59,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 489
+    },
+    {
+      "id": "serpent_general_boss",
+      "asset": "public/assets/characters/pixel/full/serpent_general_boss.png",
+      "sourceSha256": "15306dc49386b0f6297cb922cb886e22357aca756ca8e0a5e11d706c641a33c7",
+      "category": "HUMAN",
+      "relativeStature": 1.18,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 75,
+        "top": 63,
+        "right": 566,
+        "bottom": 737
+      },
+      "visibleBodyWidth": 491,
+      "visibleBodyHeight": 674,
+      "footAnchor": {
+        "sourceX": 320.0,
+        "sourceY": 736,
+        "normalizedX": 0.5,
+        "normalizedY": 0.958333
+      },
+      "visualCenter": {
+        "sourceX": 320.0,
+        "sourceY": 399.5,
+        "normalizedX": 0.5,
+        "normalizedY": 0.520182
+      },
+      "transparentMargins": {
+        "left": 75,
+        "top": 63,
+        "right": 74,
+        "bottom": 31
+      },
+      "reviewBodyHeightPx": 555
+    },
+    {
+      "id": "serpent_oracle",
+      "asset": "public/assets/characters/pixel/full/serpent_oracle.png",
+      "sourceSha256": "85c885c64f479b8579430e60c6616f5bc0905106a6ce0d2b1a8c5bacb9a48f3a",
+      "category": "HUMAN",
+      "relativeStature": 1.01,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 135,
+        "top": 84,
+        "right": 505,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 370,
+      "visibleBodyHeight": 652,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 735,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 409.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 135,
+        "top": 84,
+        "right": 135,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 475
+    },
+    {
+      "id": "serpent_raider",
+      "asset": "public/assets/characters/pixel/full/serpent_raider.png",
+      "sourceSha256": "e62eca489417bc626f77abd4269e54d370af32dd399436e6e834f5c6f577aaed",
+      "category": "HUMAN",
+      "relativeStature": 1.03,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 76,
+        "top": 84,
+        "right": 564,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 488,
+      "visibleBodyHeight": 652,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 735,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 409.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 76,
+        "top": 84,
+        "right": 76,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 484
+    },
+    {
+      "id": "shrine_apparition",
+      "asset": "public/assets/characters/pixel/full/shrine_apparition.png",
+      "sourceSha256": "91d675b9112acc147ebdaa0713bbd524ef54a1994439218a84b058740d303729",
+      "category": "SPECTRAL",
+      "relativeStature": 1.06,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 79,
+        "top": 83,
+        "right": 561,
+        "bottom": 737
+      },
+      "visibleBodyWidth": 482,
+      "visibleBodyHeight": 654,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 736,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.958333
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 409.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 79,
+        "top": 83,
+        "right": 79,
+        "bottom": 31
+      },
+      "reviewBodyHeightPx": 498
+    },
+    {
+      "id": "skeleton",
+      "asset": "public/assets/characters/pixel/full/skeleton.png",
+      "sourceSha256": "a4f074041a574be16c6099de56cf2f6262c667c892a24a85d3b0a14378d5bcd5",
+      "category": "UNDEAD",
+      "relativeStature": 1.0,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 52,
+        "top": 110,
+        "right": 589,
+        "bottom": 735
+      },
+      "visibleBodyWidth": 537,
+      "visibleBodyHeight": 625,
+      "footAnchor": {
+        "sourceX": 320.0,
+        "sourceY": 734,
+        "normalizedX": 0.5,
+        "normalizedY": 0.955729
+      },
+      "visualCenter": {
+        "sourceX": 320.0,
+        "sourceY": 422.0,
+        "normalizedX": 0.5,
+        "normalizedY": 0.549479
+      },
+      "transparentMargins": {
+        "left": 52,
+        "top": 110,
+        "right": 51,
+        "bottom": 33
+      },
+      "reviewBodyHeightPx": 470
+    },
+    {
+      "id": "survivor",
+      "asset": "public/assets/characters/pixel/full/survivor.png",
+      "sourceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47",
+      "category": "HUMAN",
+      "relativeStature": 0.98,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 104,
+        "top": 84,
+        "right": 535,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 431,
+      "visibleBodyHeight": 652,
+      "footAnchor": {
+        "sourceX": 319.0,
+        "sourceY": 735,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.0,
+        "sourceY": 409.5,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 104,
+        "top": 84,
+        "right": 105,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 461
+    },
+    {
+      "id": "swamp_crocodile",
+      "asset": "public/assets/characters/pixel/full/swamp_crocodile.png",
+      "sourceSha256": "317f0436f1c7b70a0240c4cebd044c94c805b8175dd4c9755319fa43d0a38f77",
+      "category": "BEAST_LARGE",
+      "relativeStature": 0.76,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 33,
+        "top": 389,
+        "right": 607,
+        "bottom": 734
+      },
+      "visibleBodyWidth": 574,
+      "visibleBodyHeight": 345,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 733,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.954427
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 561.0,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.730469
+      },
+      "transparentMargins": {
+        "left": 33,
+        "top": 389,
+        "right": 33,
+        "bottom": 34
+      },
+      "reviewBodyHeightPx": 357
+    },
+    {
+      "id": "talon",
+      "asset": "public/assets/characters/pixel/full/talon.png",
+      "sourceSha256": "e27a6d2daca531c2a112875094bf91cc36cde056fa46d8bb64cfbc739fd0440f",
+      "category": "HUMAN",
+      "relativeStature": 1.0,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 50,
+        "top": 152,
+        "right": 590,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 540,
+      "visibleBodyHeight": 584,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 735,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 443.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.577474
+      },
+      "transparentMargins": {
+        "left": 50,
+        "top": 152,
+        "right": 50,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 470
+    },
+    {
+      "id": "troll",
+      "asset": "public/assets/characters/pixel/full/troll.png",
+      "sourceSha256": "0a07e663af2195724d6e1836a24b3e5c769342087d14f756145d95ecb95cd97a",
+      "category": "BEAST_LARGE",
+      "relativeStature": 1.18,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 29,
+        "top": 85,
+        "right": 612,
+        "bottom": 734
+      },
+      "visibleBodyWidth": 583,
+      "visibleBodyHeight": 649,
+      "footAnchor": {
+        "sourceX": 320.0,
+        "sourceY": 733,
+        "normalizedX": 0.5,
+        "normalizedY": 0.954427
+      },
+      "visualCenter": {
+        "sourceX": 320.0,
+        "sourceY": 409.0,
+        "normalizedX": 0.5,
+        "normalizedY": 0.532552
+      },
+      "transparentMargins": {
+        "left": 29,
+        "top": 85,
+        "right": 28,
+        "bottom": 34
+      },
+      "reviewBodyHeightPx": 555
+    },
+    {
+      "id": "undead_champion",
+      "asset": "public/assets/characters/pixel/full/undead_champion.png",
+      "sourceSha256": "931e9b14cf08adc40ca09b1bc95a76d26f6b681206288fd1173b112c4dbafec5",
+      "category": "UNDEAD",
+      "relativeStature": 1.09,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 29,
+        "top": 99,
+        "right": 610,
+        "bottom": 735
+      },
+      "visibleBodyWidth": 581,
+      "visibleBodyHeight": 636,
+      "footAnchor": {
+        "sourceX": 319.0,
+        "sourceY": 734,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.955729
+      },
+      "visualCenter": {
+        "sourceX": 319.0,
+        "sourceY": 416.5,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.542318
+      },
+      "transparentMargins": {
+        "left": 29,
+        "top": 99,
+        "right": 30,
+        "bottom": 33
+      },
+      "reviewBodyHeightPx": 512
+    },
+    {
+      "id": "venom_serpent",
+      "asset": "public/assets/characters/pixel/full/venom_serpent.png",
+      "sourceSha256": "f0b87a9b4b5c791006d25cbdb454e57d4efde0c30ca382902e77f3ec765ff615",
+      "category": "BEAST_MEDIUM",
+      "relativeStature": 0.62,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 81,
+        "top": 212,
+        "right": 559,
+        "bottom": 734
+      },
+      "visibleBodyWidth": 478,
+      "visibleBodyHeight": 522,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 733,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.954427
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 472.5,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.615234
+      },
+      "transparentMargins": {
+        "left": 81,
+        "top": 212,
+        "right": 81,
+        "bottom": 34
+      },
+      "reviewBodyHeightPx": 291
+    },
+    {
+      "id": "villageoise",
+      "asset": "public/assets/characters/pixel/full/villageoise.png",
+      "sourceSha256": "25a253fa81b72629087fd1701636ddbfe20347bdf8500a194092e19d1f8a9dd2",
+      "category": "HUMAN",
+      "relativeStature": 0.97,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 171,
+        "top": 84,
+        "right": 468,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 297,
+      "visibleBodyHeight": 652,
+      "footAnchor": {
+        "sourceX": 319.0,
+        "sourceY": 735,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.0,
+        "sourceY": 409.5,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.533203
+      },
+      "transparentMargins": {
+        "left": 171,
+        "top": 84,
+        "right": 172,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 456
+    },
+    {
+      "id": "wild_boar",
+      "asset": "public/assets/characters/pixel/full/wild_boar.png",
+      "sourceSha256": "fa8a6101094ef5e4eb133a06d98ddacde9669a368985cb86a76a6b803dc452b2",
+      "category": "BEAST_MEDIUM",
+      "relativeStature": 0.68,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 33,
+        "top": 274,
+        "right": 607,
+        "bottom": 735
+      },
+      "visibleBodyWidth": 574,
+      "visibleBodyHeight": 461,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 734,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.955729
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 504.0,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.65625
+      },
+      "transparentMargins": {
+        "left": 33,
+        "top": 274,
+        "right": 33,
+        "bottom": 33
+      },
+      "reviewBodyHeightPx": 320
+    },
+    {
+      "id": "wolf",
+      "asset": "public/assets/characters/pixel/full/wolf.png",
+      "sourceSha256": "342dacc6d203c7fb9505725dd381598d9eb188570cadf5587099989e77a653d8",
+      "category": "BEAST_MEDIUM",
+      "relativeStature": 0.66,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 33,
+        "top": 342,
+        "right": 607,
+        "bottom": 735
+      },
+      "visibleBodyWidth": 574,
+      "visibleBodyHeight": 393,
+      "footAnchor": {
+        "sourceX": 319.5,
+        "sourceY": 734,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.955729
+      },
+      "visualCenter": {
+        "sourceX": 319.5,
+        "sourceY": 538.0,
+        "normalizedX": 0.499219,
+        "normalizedY": 0.700521
+      },
+      "transparentMargins": {
+        "left": 33,
+        "top": 342,
+        "right": 33,
+        "bottom": 33
+      },
+      "reviewBodyHeightPx": 310
+    },
+    {
+      "id": "wounded_merchant",
+      "asset": "public/assets/characters/pixel/full/wounded_merchant.png",
+      "sourceSha256": "94ba6f08220e501d1f5a744b877670ca4902fdaf8ece3bd31db5b01f176a1d78",
+      "category": "HUMAN",
+      "relativeStature": 1.0,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 104,
+        "top": 86,
+        "right": 535,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 431,
+      "visibleBodyHeight": 650,
+      "footAnchor": {
+        "sourceX": 319.0,
+        "sourceY": 735,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.0,
+        "sourceY": 410.5,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.534505
+      },
+      "transparentMargins": {
+        "left": 104,
+        "top": 86,
+        "right": 105,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 470
+    },
+    {
+      "id": "young_dragon_elite",
+      "asset": "public/assets/characters/pixel/full/young_dragon_elite.png",
+      "sourceSha256": "2715cdd69c265b18cbd1d221f44af9f8b665b14c7c80509a646066d57f6641d7",
+      "category": "BEAST_LARGE",
+      "relativeStature": 1.24,
+      "sourceWidth": 640,
+      "sourceHeight": 768,
+      "alphaBounds": {
+        "left": 27,
+        "top": 118,
+        "right": 612,
+        "bottom": 736
+      },
+      "visibleBodyWidth": 585,
+      "visibleBodyHeight": 618,
+      "footAnchor": {
+        "sourceX": 319.0,
+        "sourceY": 735,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.957031
+      },
+      "visualCenter": {
+        "sourceX": 319.0,
+        "sourceY": 426.5,
+        "normalizedX": 0.498437,
+        "normalizedY": 0.555339
+      },
+      "transparentMargins": {
+        "left": 27,
+        "top": 118,
+        "right": 28,
+        "bottom": 32
+      },
+      "reviewBodyHeightPx": 583
+    }
+  ]
+}

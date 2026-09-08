@@ -5,7 +5,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from compose_shot import _sealed_artefact, compose_shot, orient_character, placement_box, scale_to_height, sha256
+from compose_shot import _sealed_artefact, compose_shot, orient_character, placement_box, resolve_character_height, scale_to_height, sha256
 
 
 class ComposeShotTests(unittest.TestCase):
@@ -26,6 +26,14 @@ class ComposeShotTests(unittest.TestCase):
         self.assertEqual(scaled.size, (200, 400))
         character = {"position": {"x": 0.25, "groundY": 0.9}}
         self.assertEqual(placement_box(character, scaled.size, (1920, 1080)), (380, 572, 580, 972))
+
+    def test_profile_scale_combines_stature_framing_and_perspective(self):
+        root = Path(__file__).resolve().parents[2]
+        height, metadata = resolve_character_height(
+            {"id": "lion_champion", "scale": {"framing": "WIDE", "perspective": 0.9}}, root
+        )
+        self.assertEqual(height, round(500 * 1.09 * 0.9))
+        self.assertEqual(metadata["mode"], "PROFILE")
 
     def test_sealed_artefact_overlay_is_deterministic_and_visible(self):
         first = _sealed_artefact(96)

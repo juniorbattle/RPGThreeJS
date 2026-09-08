@@ -1,45 +1,55 @@
 {
   "schemaVersion": 1,
-  "sequenceId": "cin6a_camp_departure",
+  "sequenceId": "cin66_camp_departure",
   "cinematicId": "camp_departure",
   "tier": "JOURNEY",
   "canonicalFacing": "SCREEN_RIGHT",
-  "promptVersion": "cin6.5-remaster-v1",
+  "promptVersion": "cin66-camp-v1",
   "resolution": "2K",
   "frame": { "width": 1920, "height": 1080 },
-  "artDirection": "Premium painted HD-2D fantasy tactical RPG departure at the canonical Lion field camp. This is the first forward-moving campaign beat after the chronicle, not a replay of the prologue. Preserve subdued dawn light, camp geography, Lion identity, and restrained resolve.",
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG departure at the canonical Lion field camp. Alistair and Seraphine are grounded inside a living dawn environment with subtle depth, cloth movement, firelight, dust and foreground parallax. This is the first forward campaign beat after the chronicle, not a replay of the prologue.",
+  "cast": {
+    "sceneType": "JOURNEY_DEPARTURE",
+    "playerFaction": { "id": "OUR_COMPANY", "representatives": ["alistair"] },
+    "externalFaction": { "id": "LION_ALLY", "representatives": ["sage_seraphine"] },
+    "optionalCharactersExcluded": ["cedric", "lancer"],
+    "truthBasis": "Alistair is a guaranteed core hero; Seraphine is the authored camp adviser in the existing cinematic plan."
+  },
   "shots": [
     {
       "shotId": "shot_01",
-      "purpose": "Establish the company at the edge of the fallen camp preparing to leave.",
-      "framing": "WIDE_CAMP_DEPARTURE",
+      "purpose": "Establish the company at the camp-road threshold preparing to depart.",
+      "framing": "WIDE_LIVING_CAMP",
       "environment": "public/assets/generated/lion-phase/dialogue/camp_departure.webp",
-      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_camp_departure/shot_01/source.png" },
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin66_camp_departure/shot_01/source.png" },
       "characters": [
-        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.29, "groundY": 0.97 }, "heightPx": 650, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 20, "role": "PRIMARY", "action": "READY_STANCE", "mirrorPolicy": "ALLOW" },
-        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.70, "groundY": 0.97 }, "heightPx": 610, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.31, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.88 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 20, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "PLAYER_REPRESENTATIVE", "requiredForNarrativeRead": true, "action": "READY_STANCE", "mirrorPolicy": "ALLOW" },
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.68, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.85 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 10, "role": "SECONDARY", "screenRole": "SECONDARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "WIDE_HOLD" },
+      "mastering": { "overscanPercent": 4 },
       "durationSeconds": 6,
       "continuityOut": "DELIBERATE_CUT",
-      "endIntent": "DEPARTURE_DECISION_HELD",
-      "promptIntent": "Alistair settles his stance toward the road while Seraphine acknowledges him with only a slight posture change. Camp banners and tent cloth move gently; do not replay battles, casualties, or prologue exposition."
+      "endIntent": "DEPARTURE_INTENT_ESTABLISHED",
+      "promptIntent": "Alistair settles his weight toward the road while Seraphine gives a small acknowledgement. Keep both feet anchored and scale constant. Make the world breathe through restrained banner and tent-cloth movement, distant smoke, warm fire flicker, drifting dust, and a slow foreground-layer parallax; never move the whole painted background as one flat sheet."
     },
     {
       "shotId": "shot_02",
-      "purpose": "Show the company beginning the march and hand cleanly to existing dialogue and journey progression.",
-      "framing": "WIDE_LATERAL_MARCH",
+      "purpose": "Show a short grounded first step, then stop ready for the next Journey boundary.",
+      "framing": "WIDE_GROUNDED_DEPARTURE_STEP",
       "environment": "public/assets/generated/lion-phase/dialogue/camp_departure.webp",
-      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_camp_departure/shot_02/source.png" },
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin66_camp_departure/shot_02/source.png" },
+      "agencySafeZone": { "x": 0.07, "y": 0.69, "width": 0.86, "height": 0.27 },
       "characters": [
-        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.34, "groundY": 0.97 }, "heightPx": 650, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
-        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.69, "groundY": 0.97 }, "heightPx": 610, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.33, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.88 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 20, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "PLAYER_REPRESENTATIVE", "requiredForNarrativeRead": true, "action": "STEP_FORWARD", "mirrorPolicy": "ALLOW" },
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.68, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.85 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 10, "role": "SECONDARY", "screenRole": "SECONDARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" }
       ],
-      "camera": { "mode": "TRACK_SMALL_RIGHT" },
+      "camera": { "mode": "PAN_SMALL_RIGHT" },
+      "mastering": { "overscanPercent": 4 },
       "durationSeconds": 6,
       "continuityOut": "END",
-      "endIntent": "DIALOGUE_READY_SETTLE",
-      "promptIntent": "Locked wide lateral-tracking shot with no push-in, pull-in, dolly toward camera, zoom, or foreground approach. Alistair takes two slow steps only toward screen-right on the same ground plane and comes to a stable stop; his apparent pixel height and body scale must remain constant from the supplied first frame through the final frame, and he must never grow relative to Seraphine. Seraphine stays planted at the same depth on the established right side, continuously looking screen-left at Alistair; lock her head, shoulders, torso, feet, staff, apparent height, and ground contact for the entire shot. Preserve the shot-1 scale relationship and end with both characters fully readable beside the road and camp exit."
+      "endIntent": "AGENCY_READY_GROUNDED_STOP",
+      "promptIntent": "Alistair performs one short believable planted step toward screen-right, with clear weight transfer, foot lift, heel-to-ground contact, matching root motion under four percent of frame width, then stops. Do not produce a long walk or sliding glide. Seraphine only shifts her stance and remains at the same depth. Lock apparent character scale and camera distance. Use independent subtle banner, tent cloth, smoke, dust, firelight, and foreground parallax motion so the camp feels alive rather than a moving wallpaper. End stable with important faces above the lower agency-safe zone."
     }
   ]
 }

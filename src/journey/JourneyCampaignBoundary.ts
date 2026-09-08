@@ -2,6 +2,7 @@ import type { CinematicPlayer } from '../cinematics/CinematicPlayer';
 import type { CinematicRegistry } from '../cinematics/CinematicRegistry';
 import type { VideoCinematicResultReason } from '../cinematics/CinematicTypes';
 import { JourneySession } from '../cinematics/JourneySession';
+import { copyJourneyBackdrop } from '../cinematics/JourneyBackdrop';
 import type {
   JourneySecondaryActionPresentation,
   JourneySessionState,
@@ -58,6 +59,7 @@ export class JourneyCampaignBoundary {
   private readonly presentationMap: JourneyPresentationMap;
   private readonly createSession: () => JourneySession;
   private session: JourneySession | null = null;
+  private pendingBackdrop: HTMLCanvasElement | null = null;
   private readonly presentedKeys = new Set<string>();
 
   constructor(options: JourneyCampaignBoundaryOptions) {
@@ -74,7 +76,7 @@ export class JourneyCampaignBoundary {
   }
 
   async present(request: JourneyBoundaryRequest): Promise<JourneyBoundaryOutcome> {
-    this.dispose();
+    this.disposeSession();
     const context = {
       currentNodeId: request.currentNodeId,
       currentContentId: request.currentContentId ?? null,
@@ -84,11 +86,13 @@ export class JourneyCampaignBoundary {
     const playId = cinematicId && !this.presentedKeys.has(key) ? cinematicId : undefined;
     const session = this.createSession();
     this.session = session;
+    const fallbackBackdrop = this.pendingBackdrop;
+    this.pendingBackdrop = null;
 
     // An unmapped boundary resolves to no descriptor, so CIN-1 degrades to its neutral safe surface.
     const result = await session.presentCinematic(playId ?? key, {
       ...(request.reducedMotion === undefined ? {} : { reducedMotion: request.reducedMotion }),
-    });
+    }, fallbackBackdrop);
     if (cinematicId) this.presentedKeys.add(key);
     session.preloadCandidates(resolveCandidateCinematicIds(context, this.presentationMap));
 
@@ -98,7 +102,7 @@ export class JourneyCampaignBoundary {
     });
     const commit = await session.requestAgency(plan.presentation);
     const trace = [...session.stateTrace];
-    this.dispose();
+    this.disposeSession();
 
     const base = {
       boundary: plan.kind,
@@ -119,6 +123,21 @@ export class JourneyCampaignBoundary {
 
   /** Releases the Journey surface, overlay, listeners and every preloaded candidate. */
   dispose(): void {
+    this.disposeSession();
+    this.pendingBackdrop?.remove();
+    this.pendingBackdrop = null;
+  }
+
+  /** Captures a passive decoder-free copy of the held cinematic for the next boundary. */
+  captureBackdrop(surface: HTMLElement): boolean {
+    const snapshot = copyJourneyBackdrop(surface);
+    if (!snapshot) return false;
+    this.pendingBackdrop?.remove();
+    this.pendingBackdrop = snapshot;
+    return true;
+  }
+
+  private disposeSession(): void {
     this.session?.dispose();
     this.session = null;
   }

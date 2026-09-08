@@ -66,8 +66,11 @@ export const JOURNEY_SECONDARY_ACTION_IDS = Object.freeze([
 export type JourneyWellKnownSecondaryActionId = typeof JOURNEY_SECONDARY_ACTION_IDS[number];
 
 export interface JourneyAgencyPresentation {
+  mode?: 'single' | 'branch' | 'terminal';
+  eyebrow?: string;
   title?: string;
   caption?: string;
+  context?: string;
   /** Zero choices renders a single continuation affordance; one or more renders route buttons. */
   choices: readonly JourneyChoicePresentation[];
   secondary?: readonly JourneySecondaryActionPresentation[];

@@ -853,6 +853,9 @@ export class GameApp {
           await this.dialogue.play(sequence, { mode: 'cinematic-overlay' });
         },
         openFallbackDialogue: () => this.playClassicDialogue(sequence, fallbackLabel),
+        preserveBackdrop: (surface) => {
+          this.ensureJourneyBoundary().captureBackdrop(surface);
+        },
       });
     } else {
       await this.playClassicDialogue(
@@ -986,6 +989,8 @@ export class GameApp {
   }
 
   private async startCombat(combatId: string, node: RunNode): Promise<void> {
+    // A dialogue may have prepared a passive Journey snapshot. Combat never owns that backdrop.
+    this.disposeJourney();
     const config = combatConfigs.get(combatId);
     if (!config) throw new Error(`Missing combat '${combatId}'.`);
     if (config.preCombatDialogueId) {

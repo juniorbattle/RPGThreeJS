@@ -4,6 +4,11 @@ import { isAbsolute, relative, resolve } from 'node:path';
 export const CANONICAL_FACING = 'SCREEN_RIGHT';
 export const FACINGS = Object.freeze(['SCREEN_LEFT', 'SCREEN_RIGHT']);
 export const ROLES = Object.freeze(['PRIMARY', 'SECONDARY', 'BACKGROUND']);
+export const FACTION_ROLES = Object.freeze([
+  'PLAYER_REPRESENTATIVE', 'ADVISER', 'HERO', 'ALLY', 'NPC', 'ANTAGONIST',
+  'FACTION_LEADER', 'FACTION_CHAMPION',
+]);
+export const SCALE_FRAMINGS = Object.freeze(['WIDE', 'MEDIUM', 'CLOSE']);
 export const MIRROR_POLICIES = Object.freeze(['ALLOW', 'WARN', 'FORBID']);
 export const TIERS = Object.freeze(['MICRO', 'JOURNEY', 'HERO']);
 export const SOURCE_TYPES = Object.freeze(['ROOT_SOURCE', 'CHAIN_SOURCE', 'CUT_SOURCE']);
@@ -44,6 +49,7 @@ export const PROP_KINDS = Object.freeze(['SEALED_ARTEFACT']);
 
 const CHARACTER_ROOT = 'public/assets/characters/pixel/full/';
 const LOOK_TARGETS = new Set(['NONE', 'CAMERA', 'PLAYER_PARTY', 'OFFSCREEN_LEFT', 'OFFSCREEN_RIGHT']);
+const OPTIONAL_EARLY_RECRUITS = new Set(['cedric', 'lancer']);
 
 function isRecord(value) {
   return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
@@ -66,6 +72,18 @@ function validateLookTarget(value, characterIds, ownerId) {
   return 'must use an approved lookTarget value';
 }
 
+function validateSafeZone(zone, label, errors) {
+  if (!isRecord(zone)) {
+    errors.push(`${label} must be an object.`);
+    return;
+  }
+  for (const key of ['x', 'y', 'width', 'height']) {
+    if (!Number.isFinite(zone[key]) || zone[key] < 0 || zone[key] > 1) errors.push(`${label}.${key} must be normalized from 0 to 1.`);
+  }
+  if (Number.isFinite(zone.x) && Number.isFinite(zone.width) && zone.x + zone.width > 1) errors.push(`${label} must remain inside the frame horizontally.`);
+  if (Number.isFinite(zone.y) && Number.isFinite(zone.height) && zone.y + zone.height > 1) errors.push(`${label} must remain inside the frame vertically.`);
+}
+
 export function sourcePathForShot(spec, shot) {
   if (shot.source.type === 'CHAIN_SOURCE') return shot.source.path;
   return shot.source.output;
@@ -84,6 +102,22 @@ export async function validateShotSpec(input, options = {}) {
   if (!isRecord(input.frame) || input.frame.width !== 1920 || input.frame.height !== 1080) errors.push('frame must be 1920x1080.');
   if (!Array.isArray(input.shots) || input.shots.length === 0) errors.push('shots must be a non-empty array.');
   if (errors.length && !Array.isArray(input.shots)) return { valid: false, errors, warnings };
+
+  if (input.cast !== undefined) {
+    if (!isRecord(input.cast)) errors.push('cast must be an object when present.');
+    else {
+      const playerRepresentatives = input.cast.playerFaction?.representatives;
+      const externalRepresentatives = input.cast.externalFaction?.representatives;
+      if (!Array.isArray(playerRepresentatives)) errors.push('cast.playerFaction.representatives must be an array.');
+      if (!Array.isArray(externalRepresentatives)) errors.push('cast.externalFaction.representatives must be an array.');
+      if (input.cast.sceneType === 'FORMAL_AUDIENCE' && !playerRepresentatives?.length && !input.cast.playerRepresentationWaiver?.reason) {
+        errors.push('FORMAL_AUDIENCE requires a player representative or a documented waiver.');
+      }
+      for (const id of playerRepresentatives ?? []) {
+        if (OPTIONAL_EARLY_RECRUITS.has(id)) errors.push(`Optional early recruit '${id}' cannot be a required player representative.`);
+      }
+    }
+  }
 
   const shotIds = new Set();
   const sequenceRoot = options.projectRoot && input.sequenceId
@@ -113,8 +147,16 @@ export async function validateShotSpec(input, options = {}) {
     if (!CONTINUITY_OUT.includes(shot.continuityOut)) errors.push(`${prefix}.continuityOut is invalid.`);
     if (shotIndex === input.shots.length - 1 && shot.continuityOut !== 'END') errors.push(`${prefix} final shot continuityOut must be END.`);
     if (!CAMERA_MODES.includes(shot.camera?.mode)) errors.push(`${prefix}.camera.mode is invalid.`);
+    if (shot.mastering !== undefined) {
+      if (!isRecord(shot.mastering)) errors.push(`${prefix}.mastering must be an object.`);
+      else if (!Number.isFinite(shot.mastering.overscanPercent) || shot.mastering.overscanPercent < 0 || shot.mastering.overscanPercent > 5) {
+        errors.push(`${prefix}.mastering.overscanPercent must be from 0 to 5.`);
+      }
+    }
     if (!Number.isInteger(shot.durationSeconds) || shot.durationSeconds < 4 || shot.durationSeconds > 15) errors.push(`${prefix}.durationSeconds must be an integer from 4 to 15.`);
     if (typeof shot.environment !== 'string' || !shot.environment) errors.push(`${prefix}.environment is required.`);
+    if (shot.dialogueSafeZone !== undefined) validateSafeZone(shot.dialogueSafeZone, `${prefix}.dialogueSafeZone`, errors);
+    if (shot.agencySafeZone !== undefined) validateSafeZone(shot.agencySafeZone, `${prefix}.agencySafeZone`, errors);
     if (!Array.isArray(shot.characters) || shot.characters.length === 0) {
       errors.push(`${prefix}.characters must be non-empty.`);
       continue;
@@ -143,11 +185,25 @@ export async function validateShotSpec(input, options = {}) {
       if (typeof character?.asset !== 'string' || !character.asset.startsWith(CHARACTER_ROOT)) errors.push(`${label}.asset must be under ${CHARACTER_ROOT}.`);
       if (!FACINGS.includes(character?.facing)) errors.push(`${label}.facing is invalid.`);
       if (!ROLES.includes(character?.role)) errors.push(`${label}.role is invalid.`);
+      if (input.cast !== undefined) {
+        if (!FACTION_ROLES.includes(character?.factionRole)) errors.push(`${label}.factionRole is invalid.`);
+        if (!ROLES.includes(character?.screenRole)) errors.push(`${label}.screenRole is invalid.`);
+        if (character?.screenRole !== character?.role) errors.push(`${label}.screenRole must match the legacy role used by the compositor.`);
+        if (typeof character?.requiredForNarrativeRead !== 'boolean') errors.push(`${label}.requiredForNarrativeRead must be boolean.`);
+      }
       if (!MIRROR_POLICIES.includes(character?.mirrorPolicy)) errors.push(`${label}.mirrorPolicy is invalid.`);
       if (!(character?.action in ACTION_RISK)) errors.push(`${label}.action is invalid.`);
       if (!Number.isFinite(character?.position?.x) || character.position.x < 0 || character.position.x > 1) errors.push(`${label}.position.x must be normalized from 0 to 1.`);
       if (!Number.isFinite(character?.position?.groundY) || character.position.groundY < 0 || character.position.groundY > 1) errors.push(`${label}.position.groundY must be normalized from 0 to 1.`);
-      if (!Number.isInteger(character?.heightPx) || character.heightPx < 64 || character.heightPx > 1400) errors.push(`${label}.heightPx must be an integer from 64 to 1400.`);
+      const hasLegacyHeight = Number.isInteger(character?.heightPx) && character.heightPx >= 64 && character.heightPx <= 1400;
+      const hasScale = isRecord(character?.scale)
+        && SCALE_FRAMINGS.includes(character.scale.framing)
+        && Number.isFinite(character.scale.perspective)
+        && character.scale.perspective >= 0.5
+        && character.scale.perspective <= 1.5;
+      if (!hasLegacyHeight && !hasScale) errors.push(`${label} requires legacy heightPx or scale { framing, perspective }.`);
+      if (character?.heightPx !== undefined && !hasLegacyHeight) errors.push(`${label}.heightPx must be an integer from 64 to 1400.`);
+      if (character?.scale !== undefined && !hasScale) errors.push(`${label}.scale must use ${SCALE_FRAMINGS.join(', ')} and perspective from 0.5 to 1.5.`);
       if (!Number.isInteger(character?.depth)) errors.push(`${label}.depth must be an integer.`);
       else if (depths.has(character.depth)) warnings.push(`${prefix} reuses depth ${character.depth}; ordering falls back to character ID.`);
       else depths.add(character.depth);
@@ -184,13 +240,22 @@ export async function validateShotSpec(input, options = {}) {
       }
     }
   }
+  if (isRecord(input.cast)) {
+    const visible = new Set((input.shots ?? []).flatMap((shot) => (shot.characters ?? []).map((character) => character.id)));
+    for (const [side, ids] of [
+      ['playerFaction', input.cast.playerFaction?.representatives],
+      ['externalFaction', input.cast.externalFaction?.representatives],
+    ]) {
+      for (const id of ids ?? []) if (!visible.has(id)) errors.push(`cast.${side} representative '${id}' never appears in a shot.`);
+    }
+  }
   return { valid: errors.length === 0, errors, warnings };
 }
 
 export function buildShotPrompt(spec, shot) {
   const characters = [...shot.characters]
     .sort((left, right) => right.depth - left.depth || left.id.localeCompare(right.id))
-    .map((character) => `${character.id} is ${character.role}, already facing ${character.facing}, attending to ${character.lookTarget}, with action ${character.action} (${ACTION_RISK[character.action]} risk)`)
+    .map((character) => `${character.id} is ${character.factionRole ?? character.role}/${character.role}, already facing ${character.facing}, attending to ${character.lookTarget}, with action ${character.action} (${ACTION_RISK[character.action]} risk)`)
     .join('; ');
   const props = (shot.props ?? []).map((prop) => `${prop.id} is an authored ${prop.kind} fixed at (${prop.position.x}, ${prop.position.groundY})`).join('; ');
   return [
@@ -198,8 +263,11 @@ export function buildShotPrompt(spec, shot) {
     `Shot ${shot.shotId}: ${shot.purpose}`,
     `Framing: ${shot.framing}. Camera intent: ${shot.camera.mode} with conservative amplitude.`,
     `Staging: ${characters}.`,
+    ...(spec.cast ? [`Casting geography: player company [${spec.cast.playerFaction?.representatives?.join(', ') || 'waived'}] versus ${spec.cast.externalFaction?.id ?? 'external faction'} [${spec.cast.externalFaction?.representatives?.join(', ') || 'none'}]. Preserve both authored factions and never add an invented player avatar.`] : []),
     ...(props ? [`Deterministic props already present in the source: ${props}. Preserve their identity, position, and ownership ambiguity.`] : []),
     `Action intent: ${shot.promptIntent}`,
+    ...(shot.dialogueSafeZone ? [`Dialogue-safe zone is normalized rectangle (${shot.dialogueSafeZone.x}, ${shot.dialogueSafeZone.y}, ${shot.dialogueSafeZone.width}, ${shot.dialogueSafeZone.height}); keep important faces, weapons, and evidence outside it.`] : []),
+    ...(shot.agencySafeZone ? [`Agency-safe zone is normalized rectangle (${shot.agencySafeZone.x}, ${shot.agencySafeZone.y}, ${shot.agencySafeZone.width}, ${shot.agencySafeZone.height}); keep important faces, weapons, and evidence outside it.`] : []),
     'The supplied first frame is authoritative. Preserve exactly every character identity, face or head, hair or helmet, armor, clothing, cape or tabard, weapon, body proportions, color palette, facing direction, spatial relationship, and environment identity. Animate the existing composition; do not redesign it.',
     'Preserve the exact facing direction already shown in the first frame. Do not turn either character around, reverse screen direction, rotate a body 180 degrees, cross the established axis, or swap character sides.',
     `End-state intent: ${shot.endIntent}. Finish stable, sharp, nonblank, nonverdict, and suitable for ${shot.continuityOut === 'LAST_FRAME' ? 'last-frame chaining' : 'an editorial cut or deterministic dialogue handoff'}.`,

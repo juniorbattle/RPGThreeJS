@@ -1,45 +1,76 @@
 {
   "schemaVersion": 1,
-  "sequenceId": "cin6a_alaric_audience_arrival",
+  "sequenceId": "cin66_alaric_audience_arrival",
   "cinematicId": "alaric_audience_arrival",
   "tier": "JOURNEY",
   "canonicalFacing": "SCREEN_RIGHT",
-  "promptVersion": "cin6a-v1",
+  "promptVersion": "cin66-audience-v1",
   "resolution": "2K",
   "frame": { "width": 1920, "height": 1080 },
-  "artDirection": "Premium painted HD-2D fantasy tactical RPG arrival at the canonical early Lion briefing pavilion. Establish Alaric's authority and the audience geography without resembling the final judgement, deciding the mandate, or foreshadowing a verdict.",
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG arrival at the canonical early Lion briefing pavilion. The company delegation and Lion authority occupy one coherent living space. Establish diplomatic geography without resembling the final judgement, deciding the mandate, or foreshadowing a verdict.",
+  "cast": {
+    "sceneType": "FORMAL_AUDIENCE",
+    "playerFaction": { "id": "OUR_COMPANY", "representatives": ["alistair", "marian"] },
+    "externalFaction": { "id": "LION", "representatives": ["alaric", "lion_champion"] },
+    "optionalCharactersExcluded": ["cedric", "lancer"],
+    "truthBasis": "Alistair and Marian are core recruitTier characters in the initial clan before lion_briefing."
+  },
   "shots": [
     {
       "shotId": "shot_01",
-      "purpose": "Establish the early council pavilion and the audience receiving the offscreen company.",
-      "framing": "WIDE_EARLY_AUDIENCE",
+      "purpose": "Establish our minimal delegation facing the Lion ruler and Champion across the audience pavilion.",
+      "framing": "WIDE_TWO_FACTION_GEOGRAPHY",
       "environment": "public/assets/generated/lion-phase/dialogue/lion_briefing.webp",
-      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_alaric_audience_arrival/shot_01/source.png" },
+      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin66_alaric_audience_arrival/shot_01/source.png" },
       "characters": [
-        { "id": "alaric", "asset": "public/assets/characters/pixel/full/alaric.png", "position": { "x": 0.30, "groundY": 0.97 }, "heightPx": 650, "facing": "SCREEN_RIGHT", "lookTarget": "OFFSCREEN_RIGHT", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
-        { "id": "lion_champion", "asset": "public/assets/characters/pixel/full/lion_champion.png", "position": { "x": 0.72, "groundY": 0.97 }, "heightPx": 600, "facing": "SCREEN_LEFT", "lookTarget": "OFFSCREEN_LEFT", "depth": 10, "role": "SECONDARY", "action": "STAND", "mirrorPolicy": "ALLOW" }
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.25, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.82 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "PLAYER_REPRESENTATIVE", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.12, "groundY": 0.92 }, "scale": { "framing": "WIDE", "perspective": 0.76 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 10, "role": "SECONDARY", "screenRole": "SECONDARY", "factionRole": "ADVISER", "requiredForNarrativeRead": false, "action": "STAND", "mirrorPolicy": "ALLOW" },
+        { "id": "alaric", "asset": "public/assets/characters/pixel/full/alaric.png", "position": { "x": 0.70, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.84 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 40, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "FACTION_LEADER", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "lion_champion", "asset": "public/assets/characters/pixel/full/lion_champion.png", "position": { "x": 0.87, "groundY": 0.92 }, "scale": { "framing": "WIDE", "perspective": 0.78 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 20, "role": "SECONDARY", "screenRole": "SECONDARY", "factionRole": "FACTION_CHAMPION", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "WIDE_HOLD" },
       "durationSeconds": 4,
       "continuityOut": "DELIBERATE_CUT",
-      "endIntent": "AUDIENCE_GEOGRAPHY_ESTABLISHED",
-      "promptIntent": "Alaric and the Champion hold an orderly early-campaign reception tableau as warm pavilion light and banners move subtly. Keep weapons low and ceremonial; no judgement, accusation, verdict, or confrontation."
+      "endIntent": "BOTH_FACTIONS_ESTABLISHED",
+      "promptIntent": "Keep all four authored characters on their established sides. Use a restrained slow pavilion reveal with subtle banner movement, soft torch flicker, drifting dust, and shallow foreground parallax. Everyone remains grounded; no walking, side swaps, approach toward camera, judgement, accusation, or combat."
     },
     {
       "shotId": "shot_02",
-      "purpose": "Bring measured attention to Alaric immediately before lion_briefing begins.",
-      "framing": "MEDIUM_COUNCIL_RECEPTION",
+      "purpose": "Let Lion authority acknowledge the visibly present company without turning the audience into a verdict scene.",
+      "framing": "MEDIUM_BALANCED_RECEPTION",
       "environment": "public/assets/generated/lion-phase/dialogue/lion_briefing.webp",
-      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_alaric_audience_arrival/shot_02/source.png" },
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin66_alaric_audience_arrival/shot_02/source.png" },
       "characters": [
-        { "id": "alaric", "asset": "public/assets/characters/pixel/full/alaric.png", "position": { "x": 0.33, "groundY": 0.98 }, "heightPx": 820, "facing": "SCREEN_RIGHT", "lookTarget": "OFFSCREEN_RIGHT", "depth": 20, "role": "PRIMARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" },
-        { "id": "lion_champion", "asset": "public/assets/characters/pixel/full/lion_champion.png", "position": { "x": 0.74, "groundY": 0.98 }, "heightPx": 750, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alaric", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.27, "groundY": 0.94 }, "scale": { "framing": "MEDIUM", "perspective": 0.82 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 20, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "PLAYER_REPRESENTATIVE", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "alaric", "asset": "public/assets/characters/pixel/full/alaric.png", "position": { "x": 0.66, "groundY": 0.94 }, "scale": { "framing": "MEDIUM", "perspective": 0.84 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "FACTION_LEADER", "requiredForNarrativeRead": true, "action": "RAISE_HAND", "mirrorPolicy": "ALLOW" },
+        { "id": "lion_champion", "asset": "public/assets/characters/pixel/full/lion_champion.png", "position": { "x": 0.84, "groundY": 0.93 }, "scale": { "framing": "MEDIUM", "perspective": 0.70 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 10, "role": "BACKGROUND", "screenRole": "BACKGROUND", "factionRole": "FACTION_CHAMPION", "requiredForNarrativeRead": false, "action": "STAND", "mirrorPolicy": "ALLOW" }
       ],
-      "camera": { "mode": "SUBJECT_FOCUS_LEFT" },
-      "durationSeconds": 5,
+      "camera": { "mode": "SUBJECT_FOCUS_RIGHT" },
+      "mastering": { "overscanPercent": 4 },
+      "durationSeconds": 4,
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "RESTRAINED_WELCOME_ACKNOWLEDGED",
+      "promptIntent": "Alaric makes one small open-handed acknowledgement, then lowers and settles the gesture. Alistair remains still and attentive: lock his sword, hands, arms, shoulders, and stance to the exact source-frame angle for the entire shot. He must not lower, raise, rotate, aim, swing, or point the sword toward Alaric. Keep the Champion disciplined behind Alaric. Preserve the established axis, physical scale, foot contact, camera distance, and living pavilion ambience."
+    },
+    {
+      "shotId": "shot_03",
+      "purpose": "Return to a balanced two-faction tableau that can hold beneath lion_briefing dialogue.",
+      "framing": "WIDE_DIALOGUE_SETTLE",
+      "environment": "public/assets/generated/lion-phase/dialogue/lion_briefing.webp",
+      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin66_alaric_audience_arrival/shot_03/source.png" },
+      "dialogueSafeZone": { "x": 0.07, "y": 0.69, "width": 0.86, "height": 0.27 },
+      "characters": [
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.27, "groundY": 0.92 }, "scale": { "framing": "WIDE", "perspective": 0.84 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "PLAYER_REPRESENTATIVE", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.13, "groundY": 0.91 }, "scale": { "framing": "WIDE", "perspective": 0.76 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 10, "role": "SECONDARY", "screenRole": "SECONDARY", "factionRole": "ADVISER", "requiredForNarrativeRead": false, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "alaric", "asset": "public/assets/characters/pixel/full/alaric.png", "position": { "x": 0.69, "groundY": 0.92 }, "scale": { "framing": "WIDE", "perspective": 0.85 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 40, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "FACTION_LEADER", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" },
+        { "id": "lion_champion", "asset": "public/assets/characters/pixel/full/lion_champion.png", "position": { "x": 0.85, "groundY": 0.91 }, "scale": { "framing": "WIDE", "perspective": 0.77 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 20, "role": "SECONDARY", "screenRole": "SECONDARY", "factionRole": "FACTION_CHAMPION", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" }
+      ],
+      "camera": { "mode": "SLOW_PULL" },
+      "mastering": { "overscanPercent": 4 },
+      "durationSeconds": 4,
       "continuityOut": "END",
       "endIntent": "BRIEFING_DIALOGUE_READY_SETTLE",
-      "promptIntent": "Alaric makes one restrained welcoming shift and becomes still while the Champion remains disciplined at screen right. Finish neutral and ready for the mandate briefing; no final-court severity or outcome."
+      "promptIntent": "Settle into the exact balanced delegation-versus-Lion geography. Keep every face and weapon readable above or outside the authored lower dialogue-safe zone. Use only subtle torch, banner, dust, and depth-layer motion. End sharp and still enough for the deterministic lion_briefing overlay; no speech, verdict, route, or mandate outcome."
     }
   ]
 }

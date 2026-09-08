@@ -38,6 +38,34 @@ describe('cinematic dialogue session', () => {
     expect(release).toHaveBeenCalledTimes(1);
   });
 
+  it('copies presentation context before releasing the held owner', async () => {
+    const { player, release } = heldResult('ended');
+    const preserveBackdrop = vi.fn();
+    await presentCinematicDialogue({
+      player,
+      cinematicId: 'pilot',
+      playback: {},
+      openHeldDialogue: async () => undefined,
+      openFallbackDialogue: async () => undefined,
+      preserveBackdrop,
+    });
+    expect(preserveBackdrop).toHaveBeenCalledTimes(1);
+    expect(preserveBackdrop.mock.invocationCallOrder[0]).toBeLessThan(release.mock.invocationCallOrder[0]!);
+  });
+
+  it('still releases the held owner if passive backdrop capture fails unexpectedly', async () => {
+    const { player, release } = heldResult('ended');
+    await expect(presentCinematicDialogue({
+      player,
+      cinematicId: 'pilot',
+      playback: {},
+      openHeldDialogue: async () => undefined,
+      openFallbackDialogue: async () => undefined,
+      preserveBackdrop: () => { throw new Error('snapshot copy failed'); },
+    })).resolves.toEqual({ presentation: 'held', reason: 'ended' });
+    expect(release).toHaveBeenCalledTimes(1);
+  });
+
   it('uses the held presentation immediately after skip', async () => {
     const { player, release } = heldResult('skipped');
     const openHeldDialogue = vi.fn(async () => undefined);

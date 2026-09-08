@@ -77,7 +77,11 @@ export class JourneySession {
    * playback all still land in FREEZE, on a poster, on the descriptor fallback, or on a neutral
    * surface — the same boundary a fully played clip reaches.
    */
-  async presentCinematic(id: string, options: VideoCinematicPlaybackOptions = {}): Promise<VideoCinematicResult> {
+  async presentCinematic(
+    id: string,
+    options: VideoCinematicPlaybackOptions = {},
+    fallbackBackdrop: HTMLCanvasElement | null = null,
+  ): Promise<VideoCinematicResult> {
     if (!this.transition('PLAYING')) {
       return { id, reason: this.currentState === 'DISPOSED' ? 'aborted' : 'busy', played: false };
     }
@@ -90,7 +94,9 @@ export class JourneySession {
       previous?.release();
       return held.result;
     }
-    this.surface = held.surface ? held : this.createNeutralSurface(held.result);
+    this.surface = held.surface ? held : (fallbackBackdrop
+      ? this.createBackdropSurface(held.result, fallbackBackdrop)
+      : this.createNeutralSurface(held.result));
     previous?.release();
     return held.result;
   }
@@ -165,6 +171,12 @@ export class JourneySession {
     neutral.setAttribute('aria-hidden', 'true');
     this.root.append(neutral);
     return { result, surface: neutral, release: () => neutral.remove() };
+  }
+
+  private createBackdropSurface(result: VideoCinematicResult, backdrop: HTMLCanvasElement): HeldVideoCinematic {
+    backdrop.dataset.journeyFallback = result.reason;
+    this.root.append(backdrop);
+    return { result, surface: backdrop, release: () => backdrop.remove() };
   }
 
   private disposeOverlay(): void {

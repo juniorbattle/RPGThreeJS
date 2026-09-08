@@ -54,6 +54,18 @@ describe('journey overlay', () => {
     overlay.dispose();
   });
 
+  it('renders compact hierarchy metadata in mode-scoped markup', () => {
+    const { overlay } = createOverlay({
+      mode: 'single', eyebrow: 'Prochaine étape', title: 'Audience d’Alaric',
+      caption: 'Histoire · Modérée', context: 'Depuis : Camp du Lion', choices: [],
+    });
+    expect(document.querySelector('.journey-overlay--single')).not.toBeNull();
+    expect(document.querySelector('.journey-overlay__eyebrow')?.textContent).toBe('Prochaine étape');
+    expect(document.querySelector('.journey-overlay__title')?.textContent).toBe('Audience d’Alaric');
+    expect(document.querySelector('.journey-overlay__context')?.textContent).toBe('Depuis : Camp du Lion');
+    overlay.dispose();
+  });
+
   it('never commits a disabled choice', () => {
     const { overlay, commits } = createOverlay({ choices: [{ id: 'sealed', label: 'Scellé', disabled: true }] });
     document.querySelector<HTMLButtonElement>('[data-journey-choice="sealed"]')?.click();

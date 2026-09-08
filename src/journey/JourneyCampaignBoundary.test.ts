@@ -44,6 +44,7 @@ describe('journey campaign boundary', () => {
     vi.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(() => undefined);
     vi.spyOn(HTMLMediaElement.prototype, 'load').mockImplementation(() => undefined);
     vi.spyOn(HTMLMediaElement.prototype, 'canPlayType').mockReturnValue('probably');
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({ drawImage: vi.fn() } as unknown as CanvasRenderingContext2D);
     vi.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
 
@@ -246,6 +247,32 @@ describe('journey campaign boundary', () => {
     await flush();
     click(`[data-journey-choice="${available[0]!.id}"]`);
     await expect(second).resolves.toMatchObject({ cinematicId: 'clip-arrival', surfaceReason: 'unavailable', kind: 'node' });
+  });
+
+  it('uses a passive prior cinematic snapshot instead of a black neutral boundary', async () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-nomad-crossroads');
+    const boundary = createBoundary();
+    const held = document.createElement('section');
+    const canvas = document.createElement('canvas');
+    canvas.className = 'cinematic-overlay__freeze-frame';
+    canvas.width = 1920;
+    canvas.height = 1080;
+    held.append(canvas, document.createElement('video'));
+    expect(boundary.captureBackdrop(held)).toBe(true);
+    held.remove();
+
+    const pending = boundary.present({
+      currentNodeId: 'lion-nomad-crossroads', currentLabel: 'Croisée nomade', available, reducedMotion: false,
+    });
+    await flush();
+    expect(document.querySelector('.journey-surface--snapshot')).not.toBeNull();
+    expect(document.querySelector('.journey-surface--neutral')).toBeNull();
+    expect(document.querySelector('.journey-surface video')).toBeNull();
+    expect(document.querySelector('.journey-overlay--single')).not.toBeNull();
+    click('[data-journey-continue]');
+    await pending;
+    expect(document.querySelector('.journey-surface--snapshot')).toBeNull();
   });
 
   it('propagates catastrophic session failure to the caller', async () => {

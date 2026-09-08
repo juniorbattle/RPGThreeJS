@@ -22,11 +22,14 @@ async function main() {
   await Promise.all([output, partial, metadataPath].map(refuse));
   const ffmpeg = await findMediaTool('ffmpeg', projectRoot, args.ffmpeg);
   const duration = shot.durationSeconds;
+  const overscan = Number(shot.mastering?.overscanPercent ?? 0);
+  const retained = Number((1 - overscan / 100 * 2).toFixed(4));
+  const crop = overscan > 0 ? `crop=iw*${retained}:ih*${retained}:(iw-ow)/2:(ih-oh)/2,` : '';
   try {
     await run(ffmpeg, [
       '-hide_banner', '-nostdin', '-i', input,
       '-map', '0:v:0', '-an', '-map_metadata', '-1',
-      '-vf', `scale=1920:1080:force_original_aspect_ratio=decrease:flags=lanczos,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=black,setsar=1,fps=24,tpad=stop_mode=clone:stop_duration=${duration},trim=duration=${duration},setpts=PTS-STARTPTS`,
+      '-vf', `${crop}scale=1920:1080:force_original_aspect_ratio=decrease:flags=lanczos,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=black,setsar=1,fps=24,tpad=stop_mode=clone:stop_duration=${duration},trim=duration=${duration},setpts=PTS-STARTPTS`,
       '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-g', '48', '-movflags', '+faststart', partial,
     ]);
     await rename(partial, output);
@@ -40,7 +43,8 @@ async function main() {
   const metadata = {
     schemaVersion: 1, sequenceId: spec.sequenceId, cinematicId: spec.cinematicId, tier: spec.tier, shotId: shot.shotId,
     sourceCandidatePath: relative(projectRoot, input).replaceAll('\\', '/'), sourceCandidateSha256: await sha256(input),
-    outputPath: relative(projectRoot, output).replaceAll('\\', '/'), outputSha256: await sha256(output), report,
+    outputPath: relative(projectRoot, output).replaceAll('\\', '/'), outputSha256: await sha256(output),
+    mastering: { overscanPercent: overscan }, report,
   };
   await writeFile(metadataPath, `${JSON.stringify(metadata, null, 2)}\n`, 'utf8');
   console.log(JSON.stringify({ validation: 'PASS', ...metadata }, null, 2));

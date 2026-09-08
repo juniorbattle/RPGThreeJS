@@ -42,11 +42,19 @@ export class JourneyOverlay {
     options: JourneyOverlayOptions = {},
   ) {
     this.root = options.root ?? document.body;
-    this.element.className = `journey-overlay${options.standalone ? ' journey-overlay--standalone' : ''}`;
+    const mode = presentation.mode ?? (presentation.choices.length ? 'branch' : 'single');
+    this.element.className = `journey-overlay journey-overlay--${mode}${options.standalone ? ' journey-overlay--standalone' : ''}`;
     this.element.setAttribute('role', 'dialog');
     this.element.setAttribute('aria-modal', 'true');
     this.element.setAttribute('aria-label', presentation.title ?? DEFAULT_TITLE);
     this.panel.className = 'journey-overlay__panel';
+
+    if (presentation.eyebrow) {
+      const eyebrow = document.createElement('p');
+      eyebrow.className = 'journey-overlay__eyebrow';
+      eyebrow.textContent = presentation.eyebrow;
+      this.panel.append(eyebrow);
+    }
 
     const title = document.createElement('h2');
     title.className = 'journey-overlay__title';
@@ -57,6 +65,12 @@ export class JourneyOverlay {
       caption.className = 'journey-overlay__caption';
       caption.textContent = presentation.caption;
       this.panel.append(caption);
+    }
+    if (presentation.context) {
+      const context = document.createElement('p');
+      context.className = 'journey-overlay__context';
+      context.textContent = presentation.context;
+      this.panel.append(context);
     }
 
     this.choiceList.className = 'journey-overlay__choices';
