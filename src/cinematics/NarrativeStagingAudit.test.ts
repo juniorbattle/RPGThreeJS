@@ -5,9 +5,10 @@ describe('Narrative dialogue staging audit', () => {
   it('maps every reachable Lion-demo dialogue and step', () => {
     const audit = createNarrativeStagingAudit();
     expect(validateNarrativeStagingAudit(audit)).toEqual([]);
-    expect(audit.summary.totalReachableDialogues).toBeGreaterThan(40);
+    expect(audit.summary.totalReachableDialogues).toBe(71);
     expect(audit.summary.stagedDialogues).toBe(audit.summary.totalReachableDialogues);
     expect(audit.summary.stagedDialogueSteps).toBe(audit.summary.totalDialogueSteps);
+    expect(audit.summary.totalDialogueSteps).toBe(247);
     expect(audit.summary.unmappedDialogues).toEqual([]);
     expect(audit.summary.unmappedDialogueSteps).toEqual([]);
     expect(audit.summary.totalStagingRecords).toBe(audit.summary.totalDialogueSteps);
@@ -30,6 +31,9 @@ describe('Narrative dialogue staging audit', () => {
     expect(audit.summary.normalDialogueScrollViolations).toBe(0);
     expect(audit.summary.accidentalFullWidthFallbacks).toBe(0);
     expect(audit.summary.arbitraryCenterFallbacks).toBe(0);
+    expect(audit.summary.unresolvedMediaSpeakerConflicts).toBe(0);
+    expect(audit.summary.unresolvedStaticScaleOutliers).toBe(0);
+    expect(audit.summary.unresolvedDialogueSpeakerAssociations).toBe(0);
   });
 
   it('keeps composition phases stable while cards may move and owns each canonical step exactly once', () => {
@@ -39,6 +43,7 @@ describe('Narrative dialogue staging audit', () => {
       expect(entry.steps.every((step) => step.effectOwnerCount === 1)).toBe(true);
       expect(entry.steps.every((step) => step.maxCharactersPerSegment === 0 || step.maxDisplaySegmentCharacters <= step.maxCharactersPerSegment)).toBe(true);
       expect(entry.steps.filter((step) => step.choiceCount > 0).every((step) => step.speakerCardPolicy === 'SETUP_THEN_CHOICES_ONLY')).toBe(true);
+      expect(entry.steps.every((step) => step.dialogueSpeakerAssociationResolved && !step.staticScaleOutlier)).toBe(true);
       expect(entry.visualPhases.length).toBeLessThanOrEqual(entry.steps.length);
     }
   });

@@ -1,6 +1,6 @@
 import type { DialogueSequence } from '../game/types';
 import { assets } from '../render/assetManifest';
-import { createGenericNarrativeTableau, type NarrativeStagedActorSpec, type NarrativeTableauSpec, type NarrativeVisualPhaseSpec } from './NarrativeTableau';
+import { createGenericNarrativeTableau, type NarrativeLayoutPlacement, type NarrativeStagedActorSpec, type NarrativeTableauSpec, type NarrativeVisualPhaseSpec } from './NarrativeTableau';
 
 interface DialogueAssetProfile {
   full: string;
@@ -26,6 +26,7 @@ function applyActorState(actor: HTMLElement, spec: NarrativeStagedActorSpec, spe
   actor.dataset.narrativeRole = spec.actorId === speakerId ? 'CURRENT_SPEAKER' : spec.narrativeRole;
   actor.dataset.castState = state;
   actor.dataset.facing = spec.facing;
+  actor.dataset.physicalScale = `${spec.scale}`;
   actor.classList.toggle('is-speaking', state === 'ACTIVE');
   actor.classList.toggle('is-listening', state === 'LISTENING');
   actor.classList.toggle('is-background', state === 'BACKGROUND');
@@ -102,12 +103,12 @@ export class NarrativeSceneSurface {
     }));
   }
 
-  setPhase(phaseId: string, speakerId?: string): void {
+  setPhase(phaseId: string, speakerId?: string, layoutPlacement?: NarrativeLayoutPlacement): void {
     const phase = this.phases.find((candidate) => candidate.id === phaseId);
     if (!phase) return;
     this.element.dataset.visualPhase = phase.id;
     this.element.dataset.layoutProfile = phase.layoutProfile;
-    this.element.dataset.layoutPlacement = phase.layoutPlacement;
+    this.element.dataset.layoutPlacement = layoutPlacement ?? phase.layoutPlacement;
     this.element.dataset.negativeSpaceIntent = phase.negativeSpaceIntent;
     const existing = new Map(
       Array.from(this.castLayer.querySelectorAll<HTMLElement>('.narrative-cast__actor'))
@@ -121,6 +122,8 @@ export class NarrativeSceneSurface {
     this.castLayer.dataset.castCount = `${actors.length}`;
     this.castLayer.replaceChildren(...actors);
     this.focusLayer.dataset.speaker = speakerId ?? '';
+    const stagedSpeaker = phase.staticCast.find((actor) => actor.actorId === speakerId);
+    this.element.dataset.speakerPosition = stagedSpeaker?.screenPosition ?? '';
   }
 
   dispose(): void {

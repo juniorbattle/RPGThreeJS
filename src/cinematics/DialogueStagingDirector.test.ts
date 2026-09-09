@@ -28,7 +28,8 @@ describe('DialogueStagingDirector', () => {
     expect(audiencePlan.decisions.find((decision) => decision.stepId === '2')).toMatchObject({ layoutProfile: 'ADVISER_EXCHANGE' });
     expect(audiencePlan.decisions.find((decision) => decision.stepId === '3')).toMatchObject({
       layoutProfile: 'CHOICE_TWO_PATH_SPATIAL',
-      layoutPlacement: 'SPATIAL',
+      layoutPlacement: 'RIGHT',
+      speakerAssociation: 'SPEAKER_RIGHT_LOWER',
       speakerCardPolicy: 'SETUP_THEN_CHOICES_ONLY',
     });
 

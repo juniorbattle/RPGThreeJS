@@ -2,12 +2,15 @@ import type { DialogueSequence, DialogueStep } from '../game/types';
 import {
   createGenericNarrativeTableau,
   NARRATIVE_LAYOUT_PROFILE_RULES,
+  resolveNarrativeSpeakerAssociation,
   resolveNarrativeStepLayout,
   resolveNarrativeStepPlacement,
   type NarrativeLayoutPlacement,
   type NarrativeLayoutProfile,
   type NarrativePresentationStrategy,
   type NarrativeRole,
+  type NarrativeScreenPosition,
+  type NarrativeSpeakerAssociation,
   type NarrativeTableauSpec,
   type NarrativeVisualPhaseSpec,
 } from './NarrativeTableau';
@@ -18,6 +21,9 @@ export interface DialogueStagingDecision {
   stepId: string;
   speakerId: string;
   speakerRole: NarrativeRole;
+  speakerScreenPosition: NarrativeScreenPosition;
+  speakerAssociation: NarrativeSpeakerAssociation;
+  speakerPhysicalScale: number;
   currentVisualState: string;
   currentMediaSubjects: readonly string[];
   visibleStaticCast: readonly string[];
@@ -134,16 +140,17 @@ export class DialogueStagingDirector {
     const knownVideoSubjects = KNOWN_VIDEO_SUBJECTS[sequence.id];
     const decisions = sequence.steps.map((step): DialogueStagingDecision => {
       const phase = phaseForStep(phases, step.id);
+      const speakerId = step.actorId ?? `speaker:${step.speaker}`;
+      const stagedSpeaker = phase.staticCast.find((actor) => actor.actorId === speakerId);
+      if (!stagedSpeaker) throw new Error(`No staged speaker geometry for ${sequence.id}:${step.id} (${speakerId}).`);
       let layoutProfile = phase.stepIds.length === sequence.steps.length
         ? resolveNarrativeStepLayout(sequence, step, tableau.family ?? 'FALLBACK')
         : phase.layoutProfile;
       const heldBeat = tableau.beats.find((beat) => beat.dialogueStepId === step.id)?.kind === 'HELD_DIALOGUE';
       if (!step.choices?.length && heldBeat) layoutProfile = 'HELD_VIDEO_DIALOGUE';
-      const layoutPlacement = phase.stepIds.length === sequence.steps.length || layoutProfile !== phase.layoutProfile
-        ? resolveNarrativeStepPlacement(layoutProfile, step)
-        : phase.layoutPlacement;
+      const layoutPlacement = resolveNarrativeStepPlacement(layoutProfile, step, stagedSpeaker);
+      const speakerAssociation = resolveNarrativeSpeakerAssociation(layoutPlacement);
       const layoutRule = NARRATIVE_LAYOUT_PROFILE_RULES[layoutProfile];
-      const speakerId = step.actorId ?? `speaker:${step.speaker}`;
       const staticCast = phase.staticCast.map((actor) => actor.actorId);
       const visibleStaticCast = options.mediaMode === 'VIDEO' && options.hasMovingMedia ? [] : staticCast;
       const castOwnership: DialogueStagingDecision['castOwnership'] = options.mediaMode === 'VIDEO' && options.hasMovingMedia
@@ -177,6 +184,9 @@ export class DialogueStagingDirector {
         stepId: step.id,
         speakerId,
         speakerRole: speakerRole(step),
+        speakerScreenPosition: stagedSpeaker.screenPosition,
+        speakerAssociation,
+        speakerPhysicalScale: stagedSpeaker.scale,
         currentVisualState: phase.id,
         currentMediaSubjects,
         visibleStaticCast,

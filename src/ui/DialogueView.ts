@@ -187,6 +187,8 @@ export class DialogueView {
     this.overlay.dataset.dialogueActor = step.actorId ?? '';
     this.overlay.dataset.narrativeLayout = presentation.layoutProfile ?? '';
     this.overlay.dataset.narrativePlacement = presentation.layoutPlacement ?? '';
+    this.overlay.dataset.narrativeSpeakerPosition = presentation.speakerScreenPosition ?? '';
+    this.overlay.dataset.narrativeSpeakerAssociation = presentation.speakerAssociation ?? '';
     this.overlay.dataset.narrativeStrategy = presentation.presentationStrategy ?? '';
     this.overlay.dataset.narrativePhase = presentation.phaseId ?? '';
     this.overlay.dataset.narrativeCastOwnership = presentation.castOwnership ?? '';

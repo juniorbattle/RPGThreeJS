@@ -1,6 +1,6 @@
 import type { DialogueSequence, DialogueStep } from '../game/types';
 import { DialogueStagingDirector } from './DialogueStagingDirector';
-import { createGenericNarrativeTableau, type NarrativeDialogueMode, type NarrativeLayoutPlacement, type NarrativeLayoutProfile, type NarrativePresentationStrategy, type NarrativeTableauSpec } from './NarrativeTableau';
+import { createGenericNarrativeTableau, type NarrativeDialogueMode, type NarrativeLayoutPlacement, type NarrativeLayoutProfile, type NarrativePresentationStrategy, type NarrativeScreenPosition, type NarrativeSpeakerAssociation, type NarrativeTableauSpec } from './NarrativeTableau';
 import type { NarrativeAuthoringMedia } from './NarrativePresentationPolicy';
 
 export type NarrativeTextClassification = 'AGENCY_DIALOGUE' | 'CINEMATIC_DIALOGUE' | 'VISUAL_REPLACEABLE' | 'REDUNDANT_EXPOSITION';
@@ -15,6 +15,8 @@ export interface NarrativeDialogueStepPresentation {
   phaseId?: string;
   layoutProfile?: NarrativeLayoutProfile;
   layoutPlacement?: NarrativeLayoutPlacement;
+  speakerScreenPosition?: NarrativeScreenPosition;
+  speakerAssociation?: NarrativeSpeakerAssociation;
   speakerCardPolicy?: 'VISIBLE' | 'SETUP_THEN_CHOICES_ONLY';
   presentationStrategy?: NarrativePresentationStrategy;
   mediaSubjects?: readonly string[];
@@ -143,6 +145,8 @@ export function createNarrativeDialogueResolver(
         : defaultMode(step);
     const anchorId = decision.layoutPlacement === 'LEFT'
       ? 'card-left'
+      : decision.layoutPlacement === 'CENTER_LOWER'
+        ? 'card-center'
       : decision.layoutPlacement === 'TOP_CENTER'
         ? 'card-top'
         : decision.layoutPlacement === 'BOTTOM_CENTER'
@@ -158,6 +162,8 @@ export function createNarrativeDialogueResolver(
       phaseId: decision.currentVisualState,
       layoutProfile: decision.layoutProfile,
       layoutPlacement: decision.layoutPlacement,
+      speakerScreenPosition: decision.speakerScreenPosition,
+      speakerAssociation: decision.speakerAssociation,
       speakerCardPolicy: decision.speakerCardPolicy,
       presentationStrategy: decision.presentationStrategy,
       mediaSubjects: decision.currentMediaSubjects,

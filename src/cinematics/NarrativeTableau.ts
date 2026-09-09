@@ -34,6 +34,7 @@ export const NARRATIVE_LAYOUT_PROFILES = Object.freeze([
 export type NarrativeLayoutProfile = typeof NARRATIVE_LAYOUT_PROFILES[number];
 export const NARRATIVE_LAYOUT_PLACEMENTS = Object.freeze([
   'LEFT',
+  'CENTER_LOWER',
   'RIGHT',
   'TOP_CENTER',
   'BOTTOM_CENTER',
@@ -41,6 +42,16 @@ export const NARRATIVE_LAYOUT_PLACEMENTS = Object.freeze([
   'LOWER_RIGHT',
 ] as const);
 export type NarrativeLayoutPlacement = typeof NARRATIVE_LAYOUT_PLACEMENTS[number];
+export const NARRATIVE_SPEAKER_ASSOCIATIONS = Object.freeze([
+  'SPEAKER_LEFT_LOWER',
+  'SPEAKER_CENTER_LOWER',
+  'SPEAKER_RIGHT_LOWER',
+  'SPECIAL_TOP_CENTER',
+  'SPECIAL_BOTTOM_BAND',
+  'ROUTE_SPATIAL',
+  'SINGLE_ROUTE_EDGE',
+] as const);
+export type NarrativeSpeakerAssociation = typeof NARRATIVE_SPEAKER_ASSOCIATIONS[number];
 
 export interface NarrativeLayoutProfileRule {
   maxCharactersPerSegment: number;
@@ -173,6 +184,7 @@ export interface DialogueCastAlignment {
 }
 
 const SAFE_LEFT = Object.freeze({ x: 0.04, y: 0.48, width: 0.34, height: 0.43 });
+const SAFE_CENTER_LOWER = Object.freeze({ x: 0.33, y: 0.48, width: 0.34, height: 0.43 });
 const SAFE_RIGHT = Object.freeze({ x: 0.62, y: 0.48, width: 0.34, height: 0.43 });
 const SAFE_LOW_LEFT = Object.freeze({ x: 0.04, y: 0.68, width: 0.42, height: 0.27 });
 const SAFE_LOW_RIGHT = Object.freeze({ x: 0.54, y: 0.68, width: 0.42, height: 0.27 });
@@ -185,8 +197,8 @@ function narrativeRoleFor(actorId: string, speakerId?: string): NarrativeRole {
   return 'LISTENER';
 }
 
-function stageActors(actorIds: readonly string[], speakerId?: string): NarrativeStagedActorSpec[] {
-  const unique = [...new Set(actorIds)].slice(0, 6);
+export function stageActors(actorIds: readonly string[], speakerId?: string): NarrativeStagedActorSpec[] {
+  const unique = [...new Set(actorIds)].slice(0, 7);
   const positions: NarrativeScreenPosition[][] = [
     ['CENTER'],
     ['CENTER_LEFT', 'CENTER_RIGHT'],
@@ -194,12 +206,13 @@ function stageActors(actorIds: readonly string[], speakerId?: string): Narrative
     ['FAR_LEFT', 'CENTER_LEFT', 'CENTER_RIGHT', 'FAR_RIGHT'],
     ['FAR_LEFT', 'LEFT', 'CENTER', 'RIGHT', 'FAR_RIGHT'],
     ['FAR_LEFT', 'LEFT', 'CENTER_LEFT', 'CENTER_RIGHT', 'RIGHT', 'FAR_RIGHT'],
+    ['FAR_LEFT', 'LEFT', 'CENTER_LEFT', 'CENTER', 'CENTER_RIGHT', 'RIGHT', 'FAR_RIGHT'],
   ];
-  const selected = positions[Math.max(0, unique.length - 1)] ?? positions[5]!;
+  const selected = positions[Math.max(0, unique.length - 1)] ?? positions[6]!;
   return unique.map((actorId, index) => ({
     actorId,
     screenPosition: selected[index]!,
-    scale: actorId === speakerId ? 1.04 : 0.94,
+    scale: 1,
     facing: index < unique.length / 2 ? 'RIGHT' : index > unique.length / 2 ? 'LEFT' : 'FORWARD',
     depth: actorId === speakerId ? 3 : 2,
     narrativeRole: narrativeRoleFor(actorId, speakerId),
@@ -228,24 +241,41 @@ export function resolveNarrativeStepLayout(
     if (step.actorId === 'sage_seraphine' || step.actorId === 'maelor') return 'ADVISER_EXCHANGE';
     return 'DIALOGUE_SPEAKER_FOCUS';
   }
-  const speakerCount = new Set(sequence.steps.map((candidate) => candidate.actorId).filter(Boolean)).size;
-  if (speakerCount >= 5) return 'DIALOGUE_TOP_CENTER';
   return 'DIALOGUE_SIDE_COMPACT';
 }
 
 export function resolveNarrativeStepPlacement(
   profile: NarrativeLayoutProfile,
   step?: DialogueSequence['steps'][number],
+  stagedSpeaker?: NarrativeStagedActorSpec,
 ): NarrativeLayoutPlacement {
-  if (profile === 'CHOICE_TWO_PATH_SPATIAL') return 'SPATIAL';
+  if (profile === 'CHOICE_TWO_PATH_SPATIAL' && !step) return 'SPATIAL';
   if (profile === 'CHOICE_SINGLE_ROUTE_CONTINUE') return 'LOWER_RIGHT';
   if (profile === 'INTRO_CAST_PRESENTATION' || profile === 'DIALOGUE_TOP_CENTER') return 'TOP_CENTER';
   if (profile === 'DIALOGUE_BOTTOM_BAND_RESERVED') return 'BOTTOM_CENTER';
-  return step?.side === 'right' ? 'LEFT' : 'RIGHT';
+  if (stagedSpeaker) {
+    if (['FAR_LEFT', 'LEFT', 'CENTER_LEFT'].includes(stagedSpeaker.screenPosition)) return 'LEFT';
+    if (stagedSpeaker.screenPosition === 'CENTER') return 'CENTER_LOWER';
+    return 'RIGHT';
+  }
+  return step?.side === 'left' ? 'LEFT' : 'RIGHT';
+}
+
+export function resolveNarrativeSpeakerAssociation(
+  placement: NarrativeLayoutPlacement,
+): NarrativeSpeakerAssociation {
+  if (placement === 'LEFT') return 'SPEAKER_LEFT_LOWER';
+  if (placement === 'CENTER_LOWER') return 'SPEAKER_CENTER_LOWER';
+  if (placement === 'RIGHT') return 'SPEAKER_RIGHT_LOWER';
+  if (placement === 'TOP_CENTER') return 'SPECIAL_TOP_CENTER';
+  if (placement === 'BOTTOM_CENTER') return 'SPECIAL_BOTTOM_BAND';
+  if (placement === 'LOWER_RIGHT') return 'SINGLE_ROUTE_EDGE';
+  return 'ROUTE_SPATIAL';
 }
 
 function safeZoneForPlacement(placement: NarrativeLayoutPlacement): NarrativeSafeRegionSpec {
   if (placement === 'LEFT') return SAFE_LEFT;
+  if (placement === 'CENTER_LOWER') return SAFE_CENTER_LOWER;
   if (placement === 'TOP_CENTER') return { x: 0.31, y: 0.08, width: 0.38, height: 0.28 };
   if (placement === 'BOTTOM_CENTER') return { x: 0.28, y: 0.72, width: 0.44, height: 0.23 };
   if (placement === 'SPATIAL') return { x: 0.04, y: 0.68, width: 0.92, height: 0.27 };
@@ -260,14 +290,16 @@ function phaseForStep(
 ): NarrativeVisualPhaseSpec {
   const actorId = step.actorId;
   const layoutProfile = resolveNarrativeStepLayout(sequence, step, family);
-  const layoutPlacement = resolveNarrativeStepPlacement(layoutProfile, step);
+  const staticCast = stageActors(allActors, actorId);
+  const stagedSpeaker = staticCast.find((actor) => actor.actorId === actorId);
+  const layoutPlacement = resolveNarrativeStepPlacement(layoutProfile, step, stagedSpeaker);
   const choice = Boolean(step.choices?.length);
   return {
     id: `${sequence.id}:${step.id}:${choice ? 'agency' : 'dialogue'}`,
     stepIds: [step.id],
     layoutProfile,
     layoutPlacement,
-    staticCast: stageActors(allActors, actorId),
+    staticCast,
     mediaSubjects: actorId ? [actorId] : [],
     actorRegions: [SAFE_CENTER_WORLD],
     dialogueSafeZone: safeZoneForPlacement(layoutPlacement),
@@ -287,11 +319,12 @@ export function createGenericNarrativeTableau(sequence: DialogueSequence): Narra
   const speakers = [...new Set(sequence.steps.map((step) => step.actorId).filter((id): id is string => Boolean(id)))];
   const firstStep = sequence.steps[0];
   const phase = firstStep ? phaseForStep(sequence, firstStep, speakers, family) : undefined;
+  const stableCast = stageActors(speakers);
   const phases = phase ? [{
     ...phase,
     id: `${sequence.id}:tableau`,
     stepIds: sequence.steps.map((step) => step.id),
-    staticCast: stageActors(speakers),
+    staticCast: stableCast,
     mediaSubjects: speakers,
     negativeSpaceIntent: 'Keep one stable illustrated composition while cards and speaker emphasis change within it.',
     cameraIntent: family === 'PRE_COMBAT'
@@ -303,8 +336,10 @@ export function createGenericNarrativeTableau(sequence: DialogueSequence): Narra
     kind: step.choices?.length ? 'SPATIAL_CHOICE' : family === 'PRE_COMBAT' ? 'CINEMATIC_SUBTITLE' : 'SPEAKER_CARD',
     dialogueStepId: step.id,
     anchorId: (() => {
-      const placement = resolveNarrativeStepPlacement(resolveNarrativeStepLayout(sequence, step, family), step);
+      const stagedSpeaker = stableCast.find((actor) => actor.actorId === step.actorId);
+      const placement = resolveNarrativeStepPlacement(resolveNarrativeStepLayout(sequence, step, family), step, stagedSpeaker);
       if (placement === 'LEFT') return 'card-left';
+      if (placement === 'CENTER_LOWER') return 'card-center';
       if (placement === 'TOP_CENTER') return 'card-top';
       if (placement === 'BOTTOM_CENTER') return 'card-bottom';
       if (placement === 'SPATIAL') return 'choice-left';
@@ -327,6 +362,7 @@ export function createGenericNarrativeTableau(sequence: DialogueSequence): Narra
     },
     anchors: [
       { id: 'card-left', placement: 'LOWER_LEFT', safeRegion: SAFE_LEFT },
+      { id: 'card-center', placement: 'LOWER_CENTER', safeRegion: SAFE_CENTER_LOWER },
       { id: 'card-right', placement: 'LOWER_RIGHT', safeRegion: SAFE_RIGHT },
       { id: 'card-top', placement: 'CENTER', safeRegion: { x: 0.31, y: 0.08, width: 0.38, height: 0.28 } },
       { id: 'card-bottom', placement: 'LOWER_CENTER', safeRegion: { x: 0.28, y: 0.72, width: 0.44, height: 0.23 } },
@@ -477,21 +513,21 @@ export const ALARIC_AUDIENCE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
     {
       id: 'AUDIENCE_ADVISERS',
       stepIds: ['2'],
-      layoutProfile: 'ADVISER_EXCHANGE', layoutPlacement: 'RIGHT',
+      layoutProfile: 'ADVISER_EXCHANGE', layoutPlacement: 'LEFT',
       staticCast: stageActors(['alistair', 'sage_seraphine', 'maelor', 'alaric'], 'sage_seraphine'),
       mediaSubjects: ['sage_seraphine', 'maelor'],
-      actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_RIGHT, choiceSafeZones: [], criticalVisualRegions: [SAFE_CENTER_WORLD],
-      negativeSpaceIntent: 'Both advisers remain legible while the active counsel receives only a small focus lift.',
+      actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_LEFT, choiceSafeZones: [], criticalVisualRegions: [SAFE_CENTER_WORLD],
+      negativeSpaceIntent: 'Both advisers remain legible while Seraphine receives focus above her compact lower-left card.',
       cameraIntent: 'Stable adviser grouping inside the established audience geography.',
     },
     {
       id: 'AUDIENCE_AGENCY',
       stepIds: ['3'],
-      layoutProfile: 'CHOICE_TWO_PATH_SPATIAL', layoutPlacement: 'SPATIAL',
-      staticCast: stageActors(['sage_seraphine', 'maelor', 'alaric'], 'maelor'),
-      mediaSubjects: ['sage_seraphine', 'maelor', 'alaric'],
+      layoutProfile: 'CHOICE_TWO_PATH_SPATIAL', layoutPlacement: 'RIGHT',
+      staticCast: stageActors(['alistair', 'sage_seraphine', 'maelor', 'alaric'], 'maelor'),
+      mediaSubjects: ['alistair', 'sage_seraphine', 'maelor', 'alaric'],
       actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_RIGHT, choiceSafeZones: [SAFE_LOW_LEFT, SAFE_LOW_RIGHT], criticalVisualRegions: [SAFE_CENTER_WORLD],
-      negativeSpaceIntent: 'The open centre preserves audience geography while the two canonical options occupy the lower left and lower right lanes.',
+      negativeSpaceIntent: 'Maelor owns the lower-right setup card; after setup, the two canonical options occupy the unchanged lower edge lanes.',
       cameraIntent: 'Wide choice hold; no invented adviser ownership is implied by option placement.',
     },
     {

@@ -68,6 +68,8 @@ async function sampleMotion(page, scope) {
 }
 
 async function capture(page, viewport, name) {
+  await page.mouse.move(viewport.width / 2, 8);
+  await page.waitForTimeout(30);
   const file = `${viewport.width}x${viewport.height}-${name}.png`;
   await page.screenshot({ path: resolve(OUTPUT_DIR, file), fullPage: false });
   return file;
@@ -252,6 +254,8 @@ async function layoutMetrics(page, selector) {
       bodyOverflowY: document.documentElement.scrollHeight > innerHeight,
       layout: dialogue?.getAttribute('data-narrative-layout') ?? element.getAttribute('data-narrative-layout-profile'),
       placement: dialogue?.getAttribute('data-narrative-placement') ?? element.getAttribute('data-narrative-layout-placement'),
+      speakerPosition: dialogue?.getAttribute('data-narrative-speaker-position') ?? '',
+      speakerAssociation: dialogue?.getAttribute('data-narrative-speaker-association') ?? '',
       agencyState: dialogue?.getAttribute('data-narrative-agency-state') ?? 'NONE',
       speakerCardPolicy: dialogue?.getAttribute('data-narrative-speaker-card-policy') ?? 'NONE',
       card: cardRect ? {
@@ -276,6 +280,14 @@ function assertLayoutProfile(metrics, label, layout, placement) {
   const cardWidthLimit = metrics.layout === 'DIALOGUE_BOTTOM_BAND_RESERVED' ? 0.55 : 0.46;
   if (metrics.card?.visible && metrics.card.widthRatio > cardWidthLimit) throw new Error(`${label}: dialogue card fell back to full width.`);
   if (metrics.choiceCount && (metrics.card?.visible || metrics.agencyState !== 'ACTIVE')) throw new Error(`${label}: active choices retained a speaker card or invalid agency state.`);
+  const placementByAssociation = {
+    SPEAKER_LEFT_LOWER: 'LEFT',
+    SPEAKER_CENTER_LOWER: 'CENTER_LOWER',
+    SPEAKER_RIGHT_LOWER: 'RIGHT',
+  };
+  if (metrics.speakerAssociation.startsWith('SPEAKER_') && placementByAssociation[metrics.speakerAssociation] !== metrics.placement) {
+    throw new Error(`${label}: held-video dialogue is not associated with its staged speaker.`);
+  }
 }
 
 async function startChronicle(page, viewport) {
@@ -340,17 +352,23 @@ async function runCampaignRoundTrip(page, viewport) {
   await page.locator('[data-narrative-tableau="ALARIC_AUDIENCE_TABLEAU"] .cinematic-overlay__skip').click();
   await advanceDialogueTo(page, '1a');
   const heldDialogueMetrics = await layoutMetrics(page, '.narrative-stage');
-  assertLayoutProfile(heldDialogueMetrics, 'video-held-dialogue', 'HELD_VIDEO_DIALOGUE', 'LEFT');
+  assertLayoutProfile(heldDialogueMetrics, 'video-held-dialogue', 'HELD_VIDEO_DIALOGUE', 'RIGHT');
+  await advanceDialogueTo(page, '1b');
+  const audienceHeldLeft = await capture(page, viewport, '02a-audience-held-left-speaker');
+  const heldLeftMetrics = await layoutMetrics(page, '.narrative-stage');
+  assertLayoutProfile(heldLeftMetrics, 'video-held-left-speaker', 'DIALOGUE_SPEAKER_FOCUS', 'LEFT');
+  const heldLeftComposition = await videoCompositionMetrics(page, '[data-narrative-tableau="ALARIC_AUDIENCE_TABLEAU"]');
+  assertNoVideoCastDuplication(heldLeftComposition, 'audience-held-left');
   await advanceDialogueTo(page, '3');
   const choiceSetupMetrics = await layoutMetrics(page, '.narrative-stage');
-  assertLayoutProfile(choiceSetupMetrics, 'video-audience-choice-setup', 'CHOICE_TWO_PATH_SPATIAL', 'SPATIAL');
+  assertLayoutProfile(choiceSetupMetrics, 'video-audience-choice-setup', 'CHOICE_TWO_PATH_SPATIAL', 'RIGHT');
   if (choiceSetupMetrics.agencyState !== 'SETUP' || !choiceSetupMetrics.card?.visible || choiceSetupMetrics.choiceCount) throw new Error('Video audience choice setup is not isolated.');
   await page.locator('.dialogue__box').click();
   await page.locator('.dialogue--spatial-choice .dialogue-choice').first().waitFor({ state: 'visible' });
   await page.waitForTimeout(350);
   const audienceHeld = await capture(page, viewport, '02-audience-held-interactive');
   const audienceMetrics = await layoutMetrics(page, '.narrative-stage');
-  assertLayoutProfile(audienceMetrics, 'video-audience-choice', 'CHOICE_TWO_PATH_SPATIAL', 'SPATIAL');
+  assertLayoutProfile(audienceMetrics, 'video-audience-choice', 'CHOICE_TWO_PATH_SPATIAL', 'RIGHT');
   const audienceSurface = await page.locator('[data-narrative-tableau="ALARIC_AUDIENCE_TABLEAU"] .cinematic-overlay').getAttribute('data-cinematic-freeze-surface');
   const audienceHeldComposition = await videoCompositionMetrics(page, '[data-narrative-tableau="ALARIC_AUDIENCE_TABLEAU"]');
   assertNoVideoCastDuplication(audienceHeldComposition, 'audience-held');
@@ -403,7 +421,7 @@ async function runCampaignRoundTrip(page, viewport) {
   assertHandoffDiagnostics(combatToNarrative, 'combat-to-narrative');
   const postCombat = await capture(page, viewport, '06-post-combat-narrative');
   const postCombatMetrics = await layoutMetrics(page, '.narrative-stage');
-  assertLayoutProfile(postCombatMetrics, 'video-post-combat', 'DIALOGUE_SIDE_COMPACT', 'RIGHT');
+  assertLayoutProfile(postCombatMetrics, 'video-post-combat', 'DIALOGUE_SIDE_COMPACT', 'LEFT');
   const postCombatIsolation = {
     travelViews: await page.locator('.travel-view').count(),
     journeyOverlays: await page.locator('.journey-overlay').count(),
@@ -417,9 +435,9 @@ async function runCampaignRoundTrip(page, viewport) {
   return {
     opening,
     motion: { camp: campMotion, audience: audienceMotion },
-    captures: { audienceTransition: audienceTransitionCapture, audienceMoving, audienceHeld, singleRoute, combat, postCombat },
-    metrics: { audience: audienceMetrics, audienceMoving: audienceMovingMetrics, heldDialogue: heldDialogueMetrics, choiceSetup: choiceSetupMetrics, singleRoute: singleMetrics, postCombat: postCombatMetrics },
-    audience: { heldSurface: audienceSurface, modalOwners: audienceModalOwners, movingComposition: audienceMovingComposition, heldComposition: audienceHeldComposition },
+      captures: { audienceTransition: audienceTransitionCapture, audienceMoving, audienceHeldLeft, audienceHeld, singleRoute, combat, postCombat },
+      metrics: { audience: audienceMetrics, audienceMoving: audienceMovingMetrics, heldDialogue: heldDialogueMetrics, heldLeft: heldLeftMetrics, choiceSetup: choiceSetupMetrics, singleRoute: singleMetrics, postCombat: postCombatMetrics },
+      audience: { heldSurface: audienceSurface, modalOwners: audienceModalOwners, movingComposition: audienceMovingComposition, heldLeftComposition, heldComposition: audienceHeldComposition },
     startup: { audience: audienceStartup, forest: forestStartup },
     handoffs: { narrativeToCombat, combatToNarrative },
     forestComposition,

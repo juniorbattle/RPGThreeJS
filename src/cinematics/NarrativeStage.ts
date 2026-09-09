@@ -6,7 +6,7 @@ import type { VideoCinematicMediaEvent, VideoCinematicPlaybackOptions, VideoCine
 import type { DialogueSequence } from '../game/types';
 import { JourneySession } from './JourneySession';
 import type { JourneyAgencyPresentation, JourneyCommit, JourneySessionState } from './JourneyTypes';
-import { isNarrativeBeatInteractive, type NarrativeDialogueMode, type NarrativeMediaPhase, type NarrativeTableauSpec, type NarrativeTransitionKind } from './NarrativeTableau';
+import { isNarrativeBeatInteractive, type NarrativeDialogueMode, type NarrativeLayoutPlacement, type NarrativeMediaPhase, type NarrativeTableauSpec, type NarrativeTransitionKind } from './NarrativeTableau';
 import { NarrativeUtilityDock } from './NarrativeUtilityDock';
 import { NarrativeSceneSurface } from './NarrativeSceneSurface';
 import type { NarrativeAuthoringMedia } from './NarrativePresentationPolicy';
@@ -309,7 +309,7 @@ export class NarrativeStage {
     this.element.dataset.narrativeDialogueStep = stepId;
     if (phaseId) {
       this.element.dataset.narrativeVisualPhase = phaseId;
-      this.sceneSurface?.setPhase(phaseId, speakerId);
+      this.sceneSurface?.setPhase(phaseId, speakerId, layoutPlacement as NarrativeLayoutPlacement | undefined);
     }
     if (speakerId) this.element.dataset.narrativeSpeaker = speakerId;
     if (strategy) this.element.dataset.narrativePresentationStrategy = strategy;

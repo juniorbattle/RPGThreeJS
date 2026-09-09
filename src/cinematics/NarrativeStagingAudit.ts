@@ -37,6 +37,12 @@ export interface NarrativeDialogueStagingEntry {
     videoCastOwnership: DialogueStagingDecision['castOwnership'];
     layoutProfile: DialogueStagingDecision['layoutProfile'];
     layoutPlacement: DialogueStagingDecision['layoutPlacement'];
+    speakerScreenPosition: DialogueStagingDecision['speakerScreenPosition'];
+    speakerAssociation: DialogueStagingDecision['speakerAssociation'];
+    speakerPhysicalScale: number;
+    dialogueSpeakerAssociationResolved: boolean;
+    staticScaleOutlier: boolean;
+    unresolvedMediaSpeakerConflict: boolean;
     speakerCardPolicy: DialogueStagingDecision['speakerCardPolicy'];
     maxCharactersPerSegment: number;
     maxLines: number;
@@ -58,7 +64,7 @@ export interface NarrativeDialogueStagingEntry {
 }
 
 export interface NarrativeStagingAudit {
-  schemaVersion: 1;
+  schemaVersion: 2;
   source: 'CANONICAL_DIALOGUE_SEQUENCE_DATA';
   entries: readonly NarrativeDialogueStagingEntry[];
   summary: {
@@ -81,6 +87,9 @@ export interface NarrativeStagingAudit {
     accidentalFullWidthFallbacks: number;
     arbitraryCenterFallbacks: number;
     intentionalOffscreenSteps: number;
+    unresolvedMediaSpeakerConflicts: number;
+    unresolvedStaticScaleOutliers: number;
+    unresolvedDialogueSpeakerAssociations: number;
   };
 }
 
@@ -125,6 +134,12 @@ function entryFor(sequence: DialogueSequence, tableau: NarrativeTableauSpec, con
       videoCastOwnership: videoDecision.castOwnership,
       layoutProfile: decision.layoutProfile,
       layoutPlacement: decision.layoutPlacement,
+      speakerScreenPosition: decision.speakerScreenPosition,
+      speakerAssociation: decision.speakerAssociation,
+      speakerPhysicalScale: decision.speakerPhysicalScale,
+      dialogueSpeakerAssociationResolved: Boolean(decision.speakerScreenPosition && decision.speakerAssociation),
+      staticScaleOutlier: decision.speakerPhysicalScale < 0.85 || decision.speakerPhysicalScale > 1.15,
+      unresolvedMediaSpeakerConflict: videoDecision.presentationStrategy === 'OFFSCREEN_CONTEXTUAL' && !videoDecision.offscreenReason,
       speakerCardPolicy: decision.speakerCardPolicy,
       maxCharactersPerSegment: decision.maxCharactersPerSegment,
       maxLines: decision.maxLines,
@@ -175,7 +190,7 @@ export function createNarrativeStagingAudit(): NarrativeStagingAudit {
   }
   const totalDialogueSteps = [...dialogues.values()].reduce((total, sequence) => total + sequence.steps.length, 0);
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     source: 'CANONICAL_DIALOGUE_SEQUENCE_DATA',
     entries,
     summary: {
@@ -204,6 +219,9 @@ export function createNarrativeStagingAudit(): NarrativeStagingAudit {
       accidentalFullWidthFallbacks: entries.reduce((total, entry) => total + entry.steps.filter((step) => step.accidentalFullWidthFallback).length, 0),
       arbitraryCenterFallbacks: entries.reduce((total, entry) => total + entry.steps.filter((step) => step.arbitraryCenterFallback).length, 0),
       intentionalOffscreenSteps: entries.reduce((total, entry) => total + entry.steps.filter((step) => step.videoPresentationStrategy === 'OFFSCREEN_CONTEXTUAL').length, 0),
+      unresolvedMediaSpeakerConflicts: entries.reduce((total, entry) => total + entry.steps.filter((step) => step.unresolvedMediaSpeakerConflict).length, 0),
+      unresolvedStaticScaleOutliers: entries.reduce((total, entry) => total + entry.steps.filter((step) => step.staticScaleOutlier).length, 0),
+      unresolvedDialogueSpeakerAssociations: entries.reduce((total, entry) => total + entry.steps.filter((step) => !step.dialogueSpeakerAssociationResolved).length, 0),
     },
   };
 }
@@ -223,6 +241,11 @@ export function validateNarrativeStagingAudit(audit: NarrativeStagingAudit): str
       if (!step.layoutProfile) errors.push(`${entry.dialogueId}:${step.stepId}: undefined layout`);
       if (!NARRATIVE_LAYOUT_PROFILES.includes(step.layoutProfile)) errors.push(`${entry.dialogueId}:${step.stepId}: unapproved layout profile`);
       if (!step.layoutPlacement) errors.push(`${entry.dialogueId}:${step.stepId}: undefined placement`);
+      if (!step.speakerScreenPosition || !step.speakerAssociation || !step.dialogueSpeakerAssociationResolved) {
+        errors.push(`${entry.dialogueId}:${step.stepId}: unresolved dialogue/speaker association`);
+      }
+      if (step.staticScaleOutlier) errors.push(`${entry.dialogueId}:${step.stepId}: unresolved static scale outlier`);
+      if (step.unresolvedMediaSpeakerConflict) errors.push(`${entry.dialogueId}:${step.stepId}: unresolved media/speaker conflict`);
       if (!step.presentationStrategy || !step.videoPresentationStrategy) errors.push(`${entry.dialogueId}:${step.stepId}: undefined strategy`);
       if (!step.stillCastOwnership || !step.videoCastOwnership) errors.push(`${entry.dialogueId}:${step.stepId}: undefined media/cast ownership`);
       if (step.effectOwnerCount !== 1) errors.push(`${entry.dialogueId}:${step.stepId}: duplicate effect owner`);
