@@ -62,19 +62,21 @@ A tableau contains presentation references rather than copied game state:
 - `exit`: a presentation description of the authoritative completion boundary.
 - `next`: always the next tableau resolved from campaign truth.
 
-The initial mappings prove Camp Departure, Alaric’s Audience, the first forest threat, its post-combat aftermath, and the Valmir Fork. They do not manually duplicate the full campaign.
+Reviewed bespoke mappings define Camp Departure, Alaric’s Audience, the first forest threat, its post-combat aftermath, and the Valmir Fork. The staging director derives an explicit visual phase, cast plan, layout profile, safe zone, and speaker strategy for every other reachable dialogue step and campaign boundary from canonical content. The generated staging specification makes that coverage auditable without copying game truth into presentation data.
 
-## MiniMax as the living visual page
+## Static-first authoring and video replacement
 
-Storylight does not replace RPGThreeJS video. Existing production MiniMax MP4s remain the premium living visual surface.
+The authoritative composition surface is a fixed illustrated tableau. It establishes the scene family, cast, visual hierarchy, safe zones, negative space, dialogue layout, spatial agency, and declared visual phases before any video is considered. This static-first contract keeps the entire campaign coherent with existing art and makes composition review deterministic.
+
+Existing MiniMax MP4s remain a supported compatibility surface. They do not own dialogue, choices, route truth, effects, or cast injection. A current video is used only when its visible subjects honestly align with the active speaker plan. Speakers outside its composition use explicit compact contextual or offscreen staging; NarrativeStage never adds a full-body sprite merely to repair a moving-media mismatch.
 
 The runtime contract remains:
 
 `LOCAL MP4 → hidden decoder/timing video → requestVideoFrameCallback → authoritative live canvas → NarrativeStage → dialogue/agency layers`
 
-The same authoritative canvas becomes the held frame. A passive decoder-free copy may carry context into the next tableau. Missing or broken media degrades through a valid held/passive frame, poster or environment reference, painted scene, then lightweight text presentation. Campaign progression must never depend on media success, and black is not an accepted fallback.
+The same video canvas becomes the held frame. A passive decoder-free copy may carry context into the next tableau. Missing or broken media degrades through a valid held/passive frame, authored still or environment reference, then the composed painted fallback. Campaign progression must never depend on media success, and black is not an accepted fallback.
 
-No new MiniMax media is generated for CIN-6.7.
+Future video is a drop-in replacement for the still visual layer. It must use the same shot metadata: required subjects, speaking subject, camera intent, safe zones, negative-space target, phase boundary, and first/last-frame continuity. Replacing a still must not require changes to DialogueSequence, DialogueStagingDirector decisions, route callbacks, effect ownership, or save state. No new MiniMax media is generated for CIN-6.7.1.
 
 ## Dialogue beat philosophy
 

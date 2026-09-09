@@ -175,7 +175,12 @@ describe('DialogueView narrative boundaries', () => {
     expect(overlay?.classList.contains('dialogue--held-dialogue')).toBe(true);
     root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
     expect(overlay?.classList.contains('dialogue--spatial-choice')).toBe(true);
+    expect(root.querySelectorAll('.dialogue-choice')).toHaveLength(0);
+    root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
     const choice = root.querySelector<HTMLButtonElement>('.dialogue-choice');
+    expect(overlay?.dataset.narrativeAgencyState).toBe('ACTIVE');
+    expect(overlay?.classList.contains('dialogue--choice-active')).toBe(true);
+    expect(root.querySelector<HTMLButtonElement>('.dialogue__box')?.hidden).toBe(true);
     choice?.click();
     choice?.click();
     await completion;
@@ -183,5 +188,83 @@ describe('DialogueView narrative boundaries', () => {
     expect(onStepChange).toHaveBeenCalledTimes(4);
     expect(sequence.steps[0]!.text).toBe('Canonical card.');
     expect(document.querySelectorAll('[aria-modal="true"]')).toHaveLength(0);
+  });
+
+  it('paginates one canonical step while applying its effects and choice exactly once', async () => {
+    const root = document.createElement('div');
+    document.body.append(root);
+    const applyEffects = vi.fn(async () => undefined);
+    const view = new DialogueView({ root, getState: createInitialState, applyEffects });
+    const sequence: DialogueSequence = {
+      id: 'segmented-step',
+      steps: [{
+        id: '1', speaker: 'Alaric', actorId: 'alaric', tag: 'Mandat', text: 'Phrase canonique une. Phrase canonique deux.',
+        portrait: '', expression: 'stern', side: 'right', next: null,
+        effects: [{ type: 'setFlag', key: 'step-once', value: true }],
+        choices: [{ text: 'Choix canonique', next: null, effects: [{ type: 'setFlag', key: 'choice-once', value: true }] }],
+      }],
+    };
+    const completion = view.play(sequence, {
+      mode: 'narrative-stage',
+      reducedMotion: true,
+      stepPresentation: () => ({
+        mode: 'SPATIAL_CHOICE',
+        displaySegments: ['Phrase canonique une.', 'Phrase canonique deux.'],
+        showPortrait: false,
+      }),
+    });
+    expect(root.querySelectorAll('.dialogue-choice')).toHaveLength(0);
+    root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
+    expect(root.querySelectorAll('.dialogue-choice')).toHaveLength(0);
+    expect(root.querySelector('.dialogue__text')?.textContent).toBe('Phrase canonique deux.');
+    root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
+    expect(root.querySelectorAll('.dialogue-choice')).toHaveLength(1);
+    root.querySelector<HTMLButtonElement>('.dialogue-choice')?.click();
+    root.querySelector<HTMLButtonElement>('.dialogue-choice')?.click();
+    await completion;
+    expect(applyEffects).toHaveBeenCalledTimes(2);
+    expect(sequence.steps[0]!.text).toBe('Phrase canonique une. Phrase canonique deux.');
+  });
+
+  it('reserves final text before progressive reveal and keeps active choices free of a speaker card', () => {
+    vi.useFakeTimers();
+    const root = document.createElement('div');
+    document.body.append(root);
+    const view = new DialogueView({ root, getState: createInitialState, applyEffects: async () => undefined });
+    const sequence: DialogueSequence = {
+      id: 'stable-reveal',
+      steps: [{
+        id: 'choice', speaker: 'Séraphine', actorId: 'sage_seraphine', tag: 'Conseil',
+        text: 'Le texte final réserve toute sa géométrie avant que la première lettre ne soit révélée.',
+        portrait: '', expression: 'mystical', side: 'left', next: null, effects: [],
+        choices: [
+          { text: 'Première voie', next: null, effects: [] },
+          { text: 'Seconde voie', next: null, effects: [] },
+        ],
+      }],
+    };
+    void view.play(sequence, {
+      mode: 'narrative-stage',
+      reducedMotion: false,
+      stepPresentation: () => ({
+        mode: 'SPATIAL_CHOICE',
+        showPortrait: false,
+        layoutProfile: 'CHOICE_TWO_PATH_SPATIAL',
+        layoutPlacement: 'SPATIAL',
+        speakerCardPolicy: 'SETUP_THEN_CHOICES_ONLY',
+      }),
+    });
+    const text = root.querySelector<HTMLElement>('.dialogue__text')!;
+    expect(text.dataset.finalText).toBe(sequence.steps[0]!.text);
+    expect(text.querySelector('.dialogue__text-reveal')?.textContent).toBe('');
+    vi.advanceTimersByTime(30);
+    expect(text.querySelector('.dialogue__text-reveal')?.textContent?.length).toBeGreaterThan(0);
+    root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
+    const overlay = root.querySelector<HTMLElement>('.dialogue--narrative')!;
+    expect(overlay.dataset.narrativeAgencyState).toBe('ACTIVE');
+    expect(root.querySelector<HTMLButtonElement>('.dialogue__box')?.hidden).toBe(true);
+    expect(root.querySelectorAll('.dialogue-choice')).toHaveLength(2);
+    view.close();
+    vi.useRealTimers();
   });
 });

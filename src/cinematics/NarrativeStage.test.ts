@@ -3,6 +3,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { dialogues } from '../game/content';
 import { CinematicPlayer } from './CinematicPlayer';
 import { CinematicRegistry } from './CinematicRegistry';
 import { NarrativeStage } from './NarrativeStage';
@@ -16,10 +17,10 @@ const manifest = {
   ],
 };
 
-function createStage(tableau: NarrativeTableauSpec = CAMP_DEPARTURE_TABLEAU) {
+function createStage(tableau: NarrativeTableauSpec = CAMP_DEPARTURE_TABLEAU, mediaMode: 'STILL' | 'VIDEO' = 'VIDEO') {
   const registry = new CinematicRegistry(manifest);
   const player = new CinematicPlayer(registry);
-  const stage = new NarrativeStage({ player, registry });
+  const stage = new NarrativeStage({ player, registry, mediaMode });
   stage.setTableau(tableau);
   return { player, registry, stage };
 }
@@ -57,30 +58,44 @@ describe('NarrativeStage', () => {
     expect([...stage.element.querySelectorAll('[data-narrative-layer]')].map((layer) => (layer as HTMLElement).dataset.narrativeLayer)).toEqual([
       'media', 'dialogue', 'agency', 'transition', 'utility',
     ]);
-    expect(stage.currentMediaSurfaceKind).toBe('PAINTED_FALLBACK');
+    expect(stage.currentMediaSurfaceKind).toBe('FALLBACK');
     stage.dispose();
     expect(document.querySelector('.narrative-stage')).toBeNull();
   });
 
   it('owns the live canvas and settles the same surface to a held frame', async () => {
     const { stage } = createStage(ALARIC_AUDIENCE_TABLEAU);
+    stage.bindDialogue(dialogues.get('lion_briefing')!);
     const pending = stage.presentCinematic('intro', { reducedMotion: false, passive: true });
-    expect(stage.currentMediaSurfaceKind).toBe('LIVE_CANVAS');
+    expect(stage.currentMediaSurfaceKind).toBe('VIDEO');
     expect(document.querySelectorAll('.narrative-stage video')).toHaveLength(1);
     expect(document.querySelectorAll('.narrative-stage canvas')).toHaveLength(1);
+    expect(document.querySelectorAll('.narrative-scene-surface, .narrative-cast__actor')).toHaveLength(0);
     expect(document.querySelector('.cinematic-overlay--passive')?.getAttribute('aria-modal')).toBeNull();
     prepareDecodedFrame().dispatchEvent(new Event('ended'));
     await expect(pending).resolves.toMatchObject({ reason: 'ended', played: true });
-    expect(stage.currentMediaSurfaceKind).toBe('HELD_FRAME');
+    expect(stage.currentMediaSurfaceKind).toBe('HELD_VIDEO');
     expect(stage.frozenSurface?.dataset.cinematicFreezeSurface).toBe('canvas');
     expect(document.querySelectorAll('.narrative-stage canvas')).toHaveLength(1);
+    expect(document.querySelectorAll('.narrative-scene-surface, .narrative-cast__actor')).toHaveLength(0);
+  });
+
+  it('uses a composed static tableau as the primary still authoring surface', async () => {
+    const { stage } = createStage(ALARIC_AUDIENCE_TABLEAU, 'STILL');
+    stage.bindDialogue({ id: 'test', steps: [] });
+    await stage.presentCinematic('intro');
+    expect(stage.currentMediaSurfaceKind).toBe('STILL');
+    expect(stage.element.dataset.narrativeAuthoringMedia).toBe('STILL');
+    expect(document.querySelector('.narrative-scene-surface__environment')).not.toBeNull();
+    expect(document.querySelector('video')).toBeNull();
   });
 
   it('uses a painted scene when media is unavailable and still reaches agency', async () => {
     const { stage } = createStage();
     await expect(stage.presentPaintedFallback('Forest', '/forest.webp')).resolves.toMatchObject({ reason: 'unavailable' });
-    expect(stage.currentMediaSurfaceKind).toBe('PAINTED_FALLBACK');
-    expect(document.querySelector<HTMLElement>('.narrative-media-surface--painted')?.style.backgroundImage).toContain('/forest.webp');
+    expect(stage.currentMediaSurfaceKind).toBe('FALLBACK');
+    expect(document.querySelector<HTMLElement>('.narrative-scene-surface__environment')?.style.backgroundImage).toContain('/forest.webp');
+    expect(stage.element.dataset.narrativeCastOwnership).toBe('STAGE_OWNS_CAST');
     const commit = stage.requestAgency({ mode: 'single', choices: [], continueLabel: 'Continuer' });
     document.querySelector<HTMLButtonElement>('[data-journey-continue]')?.click();
     await expect(commit).resolves.toEqual({ kind: 'continue', id: null });
@@ -157,7 +172,7 @@ describe('NarrativeStage', () => {
     const { stage } = createStage();
     await expect(stage.presentCinematic('intro', { reducedMotion: true })).resolves.toMatchObject({ reason: 'reduced-motion' });
     expect(stage.state).toBe('FREEZE');
-    expect(stage.currentMediaSurfaceKind).toBe('PAINTED_FALLBACK');
+    expect(stage.currentMediaSurfaceKind).toBe('FALLBACK');
     expect(document.querySelector('video')).toBeNull();
   });
 
@@ -166,7 +181,8 @@ describe('NarrativeStage', () => {
     const pending = stage.presentCinematic('intro', { reducedMotion: false });
     prepareDecodedFrame();
     stage.skipPresentation();
-    await expect(pending).resolves.toMatchObject({ reason: 'skipped' });
+    await expect(pending).resolves.toMatchObject({ reason: 'aborted' });
+    expect(stage.currentMediaSurfaceKind).toBe('FALLBACK');
     expect(stage.element.dataset.narrativeBeat).toBe('departure-continue');
     stage.skipPresentation();
     expect(stage.element.dataset.narrativeBeat).toBe('departure-continue');
@@ -194,6 +210,20 @@ describe('NarrativeStage', () => {
     expect(stage.transitionLayer.dataset.transition).toBe('ATMOSPHERIC_DISSOLVE');
   });
 
+  it('blocks stale agency while a new surface is preparing and lowers only for a covered handoff', async () => {
+    const { stage } = createStage(ALARIC_AUDIENCE_TABLEAU);
+    const media = stage.presentCinematic('intro', { reducedMotion: false });
+    expect(stage.element.dataset.narrativeInteraction).toBe('LOCKED');
+    await expect(stage.requestAgency({ mode: 'single', choices: [] })).resolves.toEqual({ kind: 'aborted', id: null });
+    expect(stage.element.dataset.narrativeInteractionBlocked).toBe('agency-before-surface-ready');
+    prepareDecodedFrame().dispatchEvent(new Event('ended'));
+    await media;
+    stage.prepareGlobalHandoff();
+    expect(stage.element.classList.contains('narrative-stage--handoff')).toBe(true);
+    expect(stage.dialogueLayer.inert).toBe(true);
+    expect(stage.agencyLayer.inert).toBe(true);
+  });
+
   it('has explicit responsive and reduced-motion presentation rules', () => {
     const css = readFileSync(resolve(process.cwd(), 'src/styles/app.css'), 'utf8');
     expect(css).toContain('@media (max-width:900px),(max-height:780px)');
@@ -201,6 +231,9 @@ describe('NarrativeStage', () => {
     expect(css).toMatch(/@media \(prefers-reduced-motion: reduce\)[\s\S]*\.narrative-stage,\.narrative-stage \*/);
     expect(css).toContain('.dialogue--spatial-choice .dialogue__choices');
     expect(css).toContain('.narrative-utility-dock');
+    expect(css).toContain('.dialogue--narrative.dialogue--choice-active .dialogue__box { display:none; }');
+    expect(css).toMatch(/\.dialogue--narrative \.dialogue__box \{[^}]*overflow:hidden;/);
+    expect(css).toContain('content:attr(data-final-text)');
   });
 
   it('repeated lifecycle leaves no media, canvas, listener-owned surface, or modal residue', async () => {

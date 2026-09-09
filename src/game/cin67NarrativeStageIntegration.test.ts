@@ -64,11 +64,14 @@ describe('CIN-6.7 NarrativeStage campaign integration', () => {
 
   it('layers authoritative dialogue over moving media with one modal owner', () => {
     const dialogue = method('private async playNarrativeDialogue');
-    expect(dialogue).toContain('createNarrativeDialogueResolver(sequence, options.tableau)');
+    expect(dialogue).toContain('createNarrativeDialogueResolver(sequence, options.tableau, {');
+    expect(dialogue).toContain('mediaMode: this.narrativeMediaMode');
+    expect(dialogue).toContain('hasMovingMedia: Boolean(options.cinematicId)');
     expect(dialogue).toContain('validateDialogueCast(');
     expect(dialogue).toContain('await presentCinematicDialogue({');
     expect(dialogue).toContain('stage,');
     expect(dialogue).toContain('openLiveDialogue: openDialogue');
+    expect(readFileSync(resolve(process.cwd(), 'src/cinematics/CinematicDialogueSession.ts'), 'utf8')).toContain('awaitMediaVisibleReady()');
     expect(dialogue).toContain("mode: 'narrative-stage'");
     expect(dialogue).toContain('root: stage.dialogueLayer');
     expect(STAGE).not.toMatch(/GameState|enterRunNode|combatConfigs|applyEffects|changeReputation|SaveRepository/);
@@ -84,10 +87,20 @@ describe('CIN-6.7 NarrativeStage campaign integration', () => {
     expect(start).toContain("resolveCin6aJourneyTrigger({ hook: 'beforeCombat', combatId })");
     expect(start).toContain('await this.playDialogue(config.preCombatDialogueId, node.label, {');
     expect(start).toContain('preserveBackdrop: false');
+    expect(start).toContain('this.activeNarrativeStage?.prepareGlobalHandoff()');
     const task = start.slice(start.indexOf('task: async () => {'));
     expect(task.indexOf('this.disposeJourney()')).toBeLessThan(task.indexOf("this.setMode('COMBAT')"));
     expect(task.indexOf('this.disposeNarrativeStage()')).toBeLessThan(task.indexOf("this.setMode('COMBAT')"));
     expect(task).toContain('this.chrome.replaceChildren()');
+  });
+
+  it('keeps the prior narrative surface under the shared transition for journey and combat handoffs', () => {
+    const journey = method('private async enterJourney');
+    expect(journey.indexOf('this.activeNarrativeStage?.prepareGlobalHandoff()')).toBeLessThan(journey.indexOf('await sceneTransition.run({'));
+    const task = journey.slice(journey.indexOf('task: async () => {'));
+    expect(task.indexOf('this.disposeNarrativeStage()')).toBeLessThan(task.indexOf("this.setMode('NARRATIVE')"));
+    expect(STAGE).toContain("this.element.classList.add('narrative-stage--handoff')");
+    expect(STAGE).toContain("this.element.dataset.narrativeInteraction = 'LOCKED'");
   });
 
   it('returns victory immediately to canonical aftermath and then NarrativeStage', () => {

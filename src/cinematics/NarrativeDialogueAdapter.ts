@@ -1,5 +1,7 @@
 import type { DialogueSequence, DialogueStep } from '../game/types';
-import type { NarrativeDialogueMode, NarrativeTableauSpec } from './NarrativeTableau';
+import { DialogueStagingDirector } from './DialogueStagingDirector';
+import { createGenericNarrativeTableau, type NarrativeDialogueMode, type NarrativeLayoutPlacement, type NarrativeLayoutProfile, type NarrativePresentationStrategy, type NarrativeTableauSpec } from './NarrativeTableau';
+import type { NarrativeAuthoringMedia } from './NarrativePresentationPolicy';
 
 export type NarrativeTextClassification = 'AGENCY_DIALOGUE' | 'CINEMATIC_DIALOGUE' | 'VISUAL_REPLACEABLE' | 'REDUNDANT_EXPOSITION';
 
@@ -7,8 +9,17 @@ export interface NarrativeDialogueStepPresentation {
   mode: NarrativeDialogueMode;
   anchorId?: string;
   displayText?: string;
+  displaySegments?: readonly string[];
   classification?: NarrativeTextClassification;
   showPortrait: boolean;
+  phaseId?: string;
+  layoutProfile?: NarrativeLayoutProfile;
+  layoutPlacement?: NarrativeLayoutPlacement;
+  speakerCardPolicy?: 'VISIBLE' | 'SETUP_THEN_CHOICES_ONLY';
+  presentationStrategy?: NarrativePresentationStrategy;
+  mediaSubjects?: readonly string[];
+  visibleStaticCast?: readonly string[];
+  castOwnership?: 'VIDEO_OWNS_CAST' | 'STAGE_OWNS_CAST' | 'ENVIRONMENT_ONLY';
 }
 
 export interface NarrativeTextReduction {
@@ -103,24 +114,55 @@ const TEXT_REDUCTION_BY_STEP = new Map(
 
 function defaultMode(step: DialogueStep): NarrativeDialogueMode {
   if (step.choices?.length) return step.choices.length === 2 ? 'SPATIAL_CHOICE' : 'HELD_DIALOGUE';
-  return step.text.length > 190 ? 'HELD_DIALOGUE' : 'SPEAKER_CARD';
+  return 'SPEAKER_CARD';
+}
+
+export interface NarrativeDialogueResolverOptions {
+  mediaMode?: NarrativeAuthoringMedia;
+  hasMovingMedia?: boolean;
 }
 
 export function createNarrativeDialogueResolver(
   sequence: DialogueSequence,
   tableau?: NarrativeTableauSpec,
+  options: NarrativeDialogueResolverOptions = {},
 ): NarrativeDialogueResolver {
-  const visuallyCovered = new Set(tableau?.cast.visualActors ?? []);
-  const presets = STEP_PRESETS[sequence.id] ?? {};
+  const resolvedTableau = tableau ?? createGenericNarrativeTableau(sequence);
+  const director = new DialogueStagingDirector(sequence, resolvedTableau, {
+    mediaMode: options.mediaMode ?? 'STILL',
+    hasMovingMedia: options.hasMovingMedia ?? false,
+  });
   return (step) => {
-    const preset = presets[step.id];
-    const reduction = TEXT_REDUCTION_BY_STEP.get(`${sequence.id}:${step.id}`);
-    const actorId = step.actorId;
+    const decision = director.resolve(step);
+    const mode: NarrativeDialogueMode = step.choices?.length
+      ? 'SPATIAL_CHOICE'
+      : decision.layoutProfile === 'DIALOGUE_BOTTOM_BAND_RESERVED'
+        ? 'CINEMATIC_SUBTITLE'
+        : decision.layoutProfile === 'HELD_VIDEO_DIALOGUE'
+          ? 'HELD_DIALOGUE'
+        : defaultMode(step);
+    const anchorId = decision.layoutPlacement === 'LEFT'
+      ? 'card-left'
+      : decision.layoutPlacement === 'TOP_CENTER'
+        ? 'card-top'
+        : decision.layoutPlacement === 'BOTTOM_CENTER'
+          ? 'card-bottom'
+          : decision.layoutPlacement === 'SPATIAL'
+            ? 'choice-left'
+            : 'card-right';
     return {
-      mode: preset?.mode ?? defaultMode(step),
-      ...(preset?.anchorId ? { anchorId: preset.anchorId } : {}),
-      ...(reduction ? { displayText: reduction.displayText, classification: reduction.classification } : preset?.classification ? { classification: preset.classification } : {}),
-      showPortrait: Boolean(actorId && !visuallyCovered.has(actorId)),
+      mode,
+      anchorId,
+      displaySegments: decision.displaySegments,
+      showPortrait: false,
+      phaseId: decision.currentVisualState,
+      layoutProfile: decision.layoutProfile,
+      layoutPlacement: decision.layoutPlacement,
+      speakerCardPolicy: decision.speakerCardPolicy,
+      presentationStrategy: decision.presentationStrategy,
+      mediaSubjects: decision.currentMediaSubjects,
+      visibleStaticCast: decision.visibleStaticCast,
+      castOwnership: decision.castOwnership,
     };
   };
 }
@@ -129,7 +171,15 @@ export function resolveRepresentedDialogueActors(
   sequence: DialogueSequence,
   resolver: NarrativeDialogueResolver,
 ): string[] {
-  return [...new Set(sequence.steps.filter((step) => resolver(step).showPortrait).map((step) => step.actorId).filter((id): id is string => Boolean(id)))];
+  const represented = new Set<string>();
+  for (const step of sequence.steps) {
+    const presentation = resolver(step);
+    for (const actorId of presentation.visibleStaticCast ?? []) represented.add(actorId);
+    for (const actorId of presentation.mediaSubjects ?? []) represented.add(actorId);
+    if (presentation.showPortrait && step.actorId) represented.add(step.actorId);
+    if (presentation.presentationStrategy === 'OFFSCREEN_CONTEXTUAL' && step.actorId) represented.add(step.actorId);
+  }
+  return [...represented];
 }
 
 export function getNarrativeTextReduction(dialogueId: string, stepId: string): NarrativeTextReduction | undefined {

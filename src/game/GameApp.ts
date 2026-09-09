@@ -53,6 +53,7 @@ import { resolveCampaignPresentation } from '../journey/JourneyPresentationPolic
 import { evaluateRouteCommit } from '../journey/RouteCommitGuard';
 import type { JourneySecondaryActionPresentation } from '../cinematics/JourneyTypes';
 import { NarrativeStage } from '../cinematics/NarrativeStage';
+import { resolveNarrativeAuthoringMedia } from '../cinematics/NarrativePresentationPolicy';
 import { createNarrativeDialogueResolver, resolveRepresentedDialogueActors } from '../cinematics/NarrativeDialogueAdapter';
 import {
   resolveNarrativeCombatTableau,
@@ -124,6 +125,10 @@ export class GameApp {
   private pendingChapterBeatId: string | null = null;
   // Presentation policy only. TravelView stays the production default; Journey is DEV-selected.
   private readonly campaignPresentation = resolveCampaignPresentation({
+    search: window.location.search,
+    dev: import.meta.env.DEV,
+  });
+  private readonly narrativeMediaMode = resolveNarrativeAuthoringMedia({
     search: window.location.search,
     dev: import.meta.env.DEV,
   });
@@ -606,6 +611,7 @@ export class GameApp {
   }
 
   private async enterTravel(): Promise<void> {
+    this.activeNarrativeStage?.prepareGlobalHandoff();
     await sceneTransition.run({
       variant: 'travel',
       task: async () => {
@@ -625,9 +631,11 @@ export class GameApp {
   }
 
   private async enterJourney(): Promise<void> {
+    this.activeNarrativeStage?.prepareGlobalHandoff();
     await sceneTransition.run({
       variant: 'travel',
       task: async () => {
+        this.disposeNarrativeStage();
         this.travel.close();
         this.setMode('NARRATIVE');
         this.canvas.hidden = true;
@@ -697,6 +705,7 @@ export class GameApp {
     this.journeyBoundary ??= new JourneyCampaignBoundary({
       player: this.cinematicPlayer,
       registry: this.cinematicRegistry,
+      mediaMode: this.narrativeMediaMode,
     });
     return this.journeyBoundary;
   }
@@ -708,7 +717,11 @@ export class GameApp {
 
   private createNarrativeStage(tableau?: NarrativeTableauSpec): NarrativeStage {
     this.disposeNarrativeStage();
-    const stage = new NarrativeStage({ player: this.cinematicPlayer, registry: this.cinematicRegistry });
+    const stage = new NarrativeStage({
+      player: this.cinematicPlayer,
+      registry: this.cinematicRegistry,
+      mediaMode: this.narrativeMediaMode,
+    });
     if (tableau) stage.setTableau(tableau);
     this.activeNarrativeStage = stage;
     return stage;
@@ -895,7 +908,7 @@ export class GameApp {
         cinematicId: narrativeOptions.cinematicId
           ?? resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId })
           ?? resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId }),
-        tableau: narrativeOptions.tableau ?? resolveNarrativeDialogueTableau(dialogueId),
+        tableau: narrativeOptions.tableau ?? resolveNarrativeDialogueTableau(dialogueId, sequence),
       });
     } else {
       await this.playClassicDialogue(
@@ -916,7 +929,11 @@ export class GameApp {
     options: NarrativeDialogueOptions,
   ): Promise<void> {
     const stage = this.createNarrativeStage(options.tableau);
-    const stepPresentation = createNarrativeDialogueResolver(sequence, options.tableau);
+    stage.bindDialogue(sequence);
+    const stepPresentation = createNarrativeDialogueResolver(sequence, options.tableau, {
+      mediaMode: this.narrativeMediaMode,
+      hasMovingMedia: Boolean(options.cinematicId),
+    });
     if (options.tableau) {
       const alignment = validateDialogueCast(
         options.tableau,
@@ -937,12 +954,25 @@ export class GameApp {
         mode: 'narrative-stage',
         root: stage.dialogueLayer,
         stepPresentation,
-        onStepChange: (step, presentation) => stage.activateDialogueStep(step.id, presentation.mode, presentation.anchorId),
+        onStepChange: (step, presentation) => stage.activateDialogueStep(
+          step.id,
+          presentation.mode,
+          presentation.anchorId,
+          presentation.phaseId,
+          step.actorId,
+          presentation.presentationStrategy,
+          presentation.layoutProfile,
+          presentation.layoutPlacement,
+        ),
         reducedMotion: this.state.settings.reducedGraphics,
       });
     };
+    let completed = false;
     try {
-      if (options.cinematicId) {
+      if (this.narrativeMediaMode === 'STILL') {
+        await stage.presentStill(resolveDialogueBackdrop(sequence));
+        await openDialogue();
+      } else if (options.cinematicId) {
         await presentCinematicDialogue({
           player: this.cinematicPlayer,
           stage,
@@ -960,8 +990,9 @@ export class GameApp {
         await openDialogue();
         if (options.preserveBackdrop !== false && stage.frozenSurface) this.ensureJourneyBoundary().captureBackdrop(stage.frozenSurface);
       }
+      completed = true;
     } finally {
-      this.disposeNarrativeStage(stage);
+      if (!completed) this.disposeNarrativeStage(stage);
     }
   }
 
@@ -1114,6 +1145,7 @@ export class GameApp {
     const interlude = narrativeCinematicId && config.preCombatDialogueId
       ? undefined
       : this.cinematicInterlude({ hook: 'beforeCombat', combatId });
+    this.activeNarrativeStage?.prepareGlobalHandoff();
     await sceneTransition.run({
       variant,
       label: config.encounterLabel,

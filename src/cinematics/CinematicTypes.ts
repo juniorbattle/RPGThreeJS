@@ -40,6 +40,15 @@ export interface VideoCinematicResult {
   error?: unknown;
 }
 
+export type VideoCinematicMediaEvent =
+  | 'VIDEO_ELEMENT_CREATED'
+  | 'METADATA'
+  | 'LOADED_DATA'
+  | 'PLAY_PROMISE_RESOLVED'
+  | 'PLAYING'
+  | 'FIRST_VIDEO_FRAME'
+  | 'FIRST_CANVAS_DRAW';
+
 export interface VideoCinematicPlaybackOptions {
   signal?: AbortSignal;
   allowSkip?: boolean;
@@ -50,6 +59,8 @@ export interface VideoCinematicPlaybackOptions {
   reducedMotion?: boolean;
   root?: HTMLElement;
   passive?: boolean;
+  /** Presentation diagnostics only. No lifecycle event except FIRST_CANVAS_DRAW proves visibility. */
+  onMediaEvent?: (event: VideoCinematicMediaEvent) => void;
 }
 
 export interface HeldVideoCinematic {

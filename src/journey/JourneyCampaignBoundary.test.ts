@@ -26,6 +26,7 @@ function createBoundary(options: { registry?: CinematicRegistry; presentationMap
   return new JourneyCampaignBoundary({
     player,
     registry,
+    transitionRevealMs: 0,
     ...(options.presentationMap ? { presentationMap: options.presentationMap } : {}),
   });
 }

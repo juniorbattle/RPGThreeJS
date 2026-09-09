@@ -12,6 +12,8 @@ interface VideoFramePumpElement {
 export interface CinematicOverlayCallbacks {
   onSkip: () => void;
   onToggleMuted: () => void;
+  onVideoFrameDecoded?: () => void;
+  onFirstFramePainted?: () => void;
 }
 
 export class CinematicOverlay {
@@ -27,13 +29,15 @@ export class CinematicOverlay {
   private videoFrameCallbackHandle: number | null = null;
   private animationFrameHandle: number | null = null;
   private canvasHasFrame = false;
+  private firstVideoFrameObserved = false;
+  private firstFramePainted = false;
   private fallbackSelected = false;
   private frozen = false;
   private disposed = false;
 
   constructor(
     private readonly descriptor: VideoCinematicDescriptor,
-    callbacks: CinematicOverlayCallbacks,
+    private readonly callbacks: CinematicOverlayCallbacks,
     allowSkip = true,
     private readonly root: HTMLElement = document.body,
     private readonly passive = false,
@@ -200,6 +204,11 @@ export class CinematicOverlay {
       this.freezeFrame.hidden = false;
       this.makeVideoDecoderOnly();
       this.element.dataset.cinematicVisualSurface = 'canvas';
+      if (!this.firstFramePainted) {
+        this.firstFramePainted = true;
+        this.element.dataset.cinematicFirstFramePainted = 'true';
+        this.callbacks.onFirstFramePainted?.();
+      }
       return true;
     } catch {
       return false;
@@ -227,6 +236,11 @@ export class CinematicOverlay {
     this.videoFrameCallbackHandle = videoFramePump.requestVideoFrameCallback(() => {
       this.videoFrameCallbackHandle = null;
       if (!this.framePumpActive || this.frozen || this.disposed) return;
+      if (!this.firstVideoFrameObserved) {
+        this.firstVideoFrameObserved = true;
+        this.element.dataset.cinematicFirstVideoFrame = 'true';
+        this.callbacks.onVideoFrameDecoded?.();
+      }
       if (!this.video.paused && !this.video.ended) this.drawCurrentFrame();
       if (this.framePumpActive && !this.frozen && !this.disposed && !this.video.ended) this.scheduleVideoFrame();
     });
@@ -236,7 +250,14 @@ export class CinematicOverlay {
     this.animationFrameHandle = window.requestAnimationFrame(() => {
       this.animationFrameHandle = null;
       if (!this.framePumpActive || this.frozen || this.disposed) return;
-      if (!this.video.paused && !this.video.ended) this.drawCurrentFrame();
+      if (!this.video.paused && !this.video.ended) {
+        const painted = this.drawCurrentFrame();
+        if (painted && !this.firstVideoFrameObserved) {
+          this.firstVideoFrameObserved = true;
+          this.element.dataset.cinematicFirstVideoFrame = 'true';
+          this.callbacks.onVideoFrameDecoded?.();
+        }
+      }
       if (this.framePumpActive && !this.frozen && !this.disposed && !this.video.ended) this.scheduleAnimationFrame();
     });
   }

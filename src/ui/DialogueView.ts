@@ -81,6 +81,8 @@ export class DialogueView {
   private readonly appliedStepIds = new Set<string>();
   private choiceLocked = false;
   private typingTimer = 0;
+  private displaySegments: readonly string[] = [];
+  private displaySegmentIndex = 0;
 
   constructor(private readonly options: DialogueViewOptions) {}
 
@@ -94,6 +96,7 @@ export class DialogueView {
     const cinematicOverlay = options.mode === 'cinematic-overlay' || options.mode === 'narrative-stage';
     const narrativeStage = options.mode === 'narrative-stage';
     this.overlay.className = `dialogue ui-screen${cinematicOverlay ? ' dialogue--cinematic' : ''}${narrativeStage ? ' dialogue--narrative' : ''}`;
+    this.overlay.dataset.dialogueSequence = sequence.id;
     if (!cinematicOverlay) applyScreenEnvironment(this.overlay, 'dialogue');
     this.overlay.setAttribute('role', 'dialog');
     this.overlay.setAttribute('aria-modal', 'true');
@@ -120,14 +123,14 @@ export class DialogueView {
           <span class="dialogue__tag"></span>
         </span>
         <span class="dialogue__divider" aria-hidden="true"></span>
-        <span class="dialogue__text"></span>
+        <span class="dialogue__text"><span class="dialogue__text-reveal"></span></span>
         <span class="dialogue__outcomes" aria-label="Conséquences"></span>
         <span class="dialogue__continue">Continuer ◆</span>
       </button>
     `;
     (options.root ?? this.options.root).append(this.overlay);
     this.overlay.querySelector<HTMLButtonElement>('.dialogue__box')?.addEventListener('click', () => {
-      if (!this.current?.choices?.length) void this.advance(this.current?.next ?? null);
+      void this.advancePresentation();
     });
     this.showStep(sequence.steps[0]!.id);
     return new Promise<void>((resolve) => {
@@ -144,6 +147,8 @@ export class DialogueView {
     this.playOptions = {};
     this.appliedStepIds.clear();
     this.choiceLocked = false;
+    this.displaySegments = [];
+    this.displaySegmentIndex = 0;
     this.resolvePlay?.();
     this.resolvePlay = null;
   }
@@ -165,7 +170,8 @@ export class DialogueView {
     const outcomes = this.overlay.querySelector<HTMLElement>('.dialogue__outcomes');
     const choices = this.overlay.querySelector<HTMLElement>('.dialogue__choices');
     const continueLabel = this.overlay.querySelector<HTMLElement>('.dialogue__continue');
-    if (!left || !right || !center || !speaker || !tag || !text || !outcomes || !choices || !continueLabel) return;
+    const box = this.overlay.querySelector<HTMLButtonElement>('.dialogue__box');
+    if (!left || !right || !center || !speaker || !tag || !text || !outcomes || !choices || !continueLabel || !box) return;
 
     const cinematicOverlay = this.overlay.classList.contains('dialogue--cinematic');
     const narrativeStage = this.overlay.classList.contains('dialogue--narrative');
@@ -179,12 +185,21 @@ export class DialogueView {
     this.overlay.dataset.dialogueMode = presentation.mode;
     this.overlay.dataset.dialogueStep = step.id;
     this.overlay.dataset.dialogueActor = step.actorId ?? '';
+    this.overlay.dataset.narrativeLayout = presentation.layoutProfile ?? '';
+    this.overlay.dataset.narrativePlacement = presentation.layoutPlacement ?? '';
+    this.overlay.dataset.narrativeStrategy = presentation.presentationStrategy ?? '';
+    this.overlay.dataset.narrativePhase = presentation.phaseId ?? '';
+    this.overlay.dataset.narrativeCastOwnership = presentation.castOwnership ?? '';
     if (presentation.anchorId) this.overlay.dataset.narrativeAnchor = presentation.anchorId;
     else delete this.overlay.dataset.narrativeAnchor;
     for (const mode of ['SPEAKER_CARD', 'CINEMATIC_SUBTITLE', 'HELD_DIALOGUE', 'SPATIAL_CHOICE'] as const) {
       this.overlay.classList.toggle(`dialogue--${mode.toLowerCase().replace('_', '-')}`, narrativeStage && presentation.mode === mode);
     }
     this.overlay.classList.toggle('dialogue--has-choices', Boolean(step.choices?.length));
+    this.overlay.classList.remove('dialogue--choice-active');
+    this.overlay.dataset.narrativeAgencyState = step.choices?.length ? 'SETUP' : 'NONE';
+    this.overlay.dataset.narrativeSpeakerCardPolicy = presentation.speakerCardPolicy ?? 'VISIBLE';
+    box.hidden = false;
     this.overlay.classList.toggle('dialogue--portrait-beat', narrativeStage && presentation.showPortrait);
     this.setPortrait(left, step.side === 'left' ? portrait : '', step.expression, step.side === 'left' ? profile : undefined);
     this.setPortrait(right, step.side === 'right' ? portrait : '', step.expression, step.side === 'right' ? profile : undefined);
@@ -198,19 +213,31 @@ export class DialogueView {
     choices.replaceChildren();
     outcomes.replaceChildren(...this.createOutcomeBadges(this.describeEffects(step.effects)));
     outcomes.hidden = outcomes.childElementCount === 0;
-    continueLabel.hidden = Boolean(step.choices?.length);
-    this.typeText(text, presentation.displayText ?? step.text);
+    this.displaySegments = presentation.displaySegments?.length
+      ? presentation.displaySegments
+      : [presentation.displayText ?? step.text];
+    this.displaySegmentIndex = 0;
+    this.overlay.dataset.dialogueSegment = `1/${this.displaySegments.length}`;
+    const stagedChoiceSequence = narrativeStage && Boolean(step.choices?.length);
+    continueLabel.hidden = Boolean(step.choices?.length) && !stagedChoiceSequence;
+    continueLabel.textContent = this.displaySegments.length > 1
+      ? 'Lire la suite ◆'
+      : stagedChoiceSequence
+        ? 'Choisir ◆'
+        : 'Continuer ◆';
+    this.typeText(text, this.displaySegments[0]!);
     this.playOptions.onStepChange?.(step, presentation);
 
     if (step.effects.length && !this.appliedStepIds.has(step.id)) {
       this.appliedStepIds.add(step.id);
       void this.options.applyEffects(step.effects);
     }
-    for (const choice of step.choices ?? []) choices.append(this.createChoice(choice));
+    if (!stagedChoiceSequence) {
+      choices.replaceChildren(...(step.choices ?? []).map((choice) => this.createChoice(choice)));
+    }
     if (cinematicOverlay) {
-      const target = choices.querySelector<HTMLButtonElement>('button:not([disabled])')
-        ?? this.overlay.querySelector<HTMLButtonElement>('.dialogue__box');
-      target?.focus();
+      const target = choices.querySelector<HTMLButtonElement>('button:not([disabled])') ?? box;
+      target.focus();
     }
   }
 
@@ -416,20 +443,60 @@ export class DialogueView {
     this.showStep(next);
   }
 
+  private async advancePresentation(): Promise<void> {
+    if (!this.current || !this.overlay) return;
+    if (this.displaySegmentIndex < this.displaySegments.length - 1) {
+      this.displaySegmentIndex += 1;
+      const text = this.overlay.querySelector<HTMLElement>('.dialogue__text');
+      const choices = this.overlay.querySelector<HTMLElement>('.dialogue__choices');
+      const continueLabel = this.overlay.querySelector<HTMLElement>('.dialogue__continue');
+      if (!text || !choices || !continueLabel) return;
+      this.typeText(text, this.displaySegments[this.displaySegmentIndex]!);
+      const finalSegment = this.displaySegmentIndex === this.displaySegments.length - 1;
+      this.overlay.dataset.dialogueSegment = `${this.displaySegmentIndex + 1}/${this.displaySegments.length}`;
+      continueLabel.hidden = false;
+      continueLabel.textContent = finalSegment
+        ? this.current.choices?.length ? 'Choisir ◆' : 'Continuer ◆'
+        : 'Lire la suite ◆';
+      return;
+    }
+    if (this.current.choices?.length) {
+      if (!this.overlay.classList.contains('dialogue--narrative')) return;
+      this.activateChoices();
+      return;
+    }
+    await this.advance(this.current.next ?? null);
+  }
+
+  private activateChoices(): void {
+    if (!this.current?.choices?.length || !this.overlay) return;
+    const choices = this.overlay.querySelector<HTMLElement>('.dialogue__choices');
+    const box = this.overlay.querySelector<HTMLButtonElement>('.dialogue__box');
+    if (!choices || !box) return;
+    choices.replaceChildren(...this.current.choices.map((choice) => this.createChoice(choice)));
+    box.hidden = true;
+    this.overlay.classList.add('dialogue--choice-active');
+    this.overlay.dataset.narrativeAgencyState = 'ACTIVE';
+    choices.querySelector<HTMLButtonElement>('button:not([disabled])')?.focus();
+  }
+
   private typeText(element: HTMLElement, value: string): void {
     window.clearInterval(this.typingTimer);
+    const reveal = element.querySelector<HTMLElement>('.dialogue__text-reveal');
+    if (!reveal) return;
+    element.dataset.finalText = value;
     const reducedMotion = this.playOptions.reducedMotion
       ?? window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
       ?? false;
     if (reducedMotion) {
-      element.textContent = value;
+      reveal.textContent = value;
       return;
     }
     let index = 0;
-    element.textContent = '';
+    reveal.textContent = '';
     this.typingTimer = window.setInterval(() => {
       index += 1;
-      element.textContent = value.slice(0, index);
+      reveal.textContent = value.slice(0, index);
       if (index >= value.length) window.clearInterval(this.typingTimer);
     }, 15);
   }

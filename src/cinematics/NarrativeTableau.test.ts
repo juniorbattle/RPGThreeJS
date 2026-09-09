@@ -6,6 +6,8 @@ import {
   FOREST_AFTERMATH_TABLEAU,
   FOREST_THREAT_TABLEAU,
   NARRATIVE_BEAT_KINDS,
+  NARRATIVE_LAYOUT_PROFILES,
+  NARRATIVE_LAYOUT_PROFILE_RULES,
   resolveNarrativeBoundaryTableau,
   resolveNarrativeCombatTableau,
   resolveNarrativeDialogueTableau,
@@ -35,6 +37,23 @@ describe('Narrative Tableau presentation data', () => {
       'VISUAL', 'SPEAKER_CARD', 'CINEMATIC_SUBTITLE', 'HELD_DIALOGUE', 'SPATIAL_CHOICE',
       'ROUTE_CHOICE', 'CONTEXT_ACTION', 'TRANSITION', 'COMBAT_HANDOFF', 'WAIT_FOR_INPUT',
     ]);
+  });
+
+  it('locks the nine approved staging profiles and forbids card scrolling', () => {
+    expect(NARRATIVE_LAYOUT_PROFILES).toEqual([
+      'DIALOGUE_SIDE_COMPACT',
+      'DIALOGUE_TOP_CENTER',
+      'DIALOGUE_BOTTOM_BAND_RESERVED',
+      'DIALOGUE_SPEAKER_FOCUS',
+      'INTRO_CAST_PRESENTATION',
+      'ADVISER_EXCHANGE',
+      'CHOICE_TWO_PATH_SPATIAL',
+      'CHOICE_SINGLE_ROUTE_CONTINUE',
+      'HELD_VIDEO_DIALOGUE',
+    ]);
+    expect(NARRATIVE_LAYOUT_PROFILES.every((profile) => NARRATIVE_LAYOUT_PROFILE_RULES[profile].allowsScroll === false)).toBe(true);
+    expect(CAMP_DEPARTURE_TABLEAU.phases?.[0]).toMatchObject({ layoutProfile: 'CHOICE_SINGLE_ROUTE_CONTINUE', layoutPlacement: 'LOWER_RIGHT' });
+    expect(VALMIR_FORK_TABLEAU.phases?.[0]).toMatchObject({ layoutProfile: 'CHOICE_TWO_PATH_SPATIAL', layoutPlacement: 'SPATIAL' });
   });
 
   it('derives all four Audience speakers from dialogue truth', () => {

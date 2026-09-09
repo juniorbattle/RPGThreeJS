@@ -118,9 +118,12 @@ describe('cinematic dialogue session', () => {
   it('opens live NarrativeStage dialogue while moving media has one passive owner', async () => {
     const surface = document.createElement('section');
     let finishMedia!: (result: VideoCinematicResult) => void;
+    let revealMedia!: () => void;
     const presentCinematic = vi.fn(() => new Promise<VideoCinematicResult>((resolve) => { finishMedia = resolve; }));
+    const awaitMediaVisibleReady = vi.fn(() => new Promise<'VIDEO'>((resolve) => { revealMedia = () => resolve('VIDEO'); }));
     const stage = {
       presentCinematic,
+      awaitMediaVisibleReady,
       get frozenSurface() { return surface; },
     } as unknown as NarrativeStage;
     const openLiveDialogue = vi.fn(async () => undefined);
@@ -138,7 +141,11 @@ describe('cinematic dialogue session', () => {
       preserveBackdrop,
     });
     await Promise.resolve();
+    expect(openLiveDialogue).not.toHaveBeenCalled();
+    revealMedia();
+    await Promise.resolve();
     expect(openLiveDialogue).toHaveBeenCalledTimes(1);
+    expect(awaitMediaVisibleReady).toHaveBeenCalledTimes(1);
     expect(presentCinematic).toHaveBeenCalledWith('pilot', { reducedMotion: false, passive: true });
     expect(openHeldDialogue).not.toHaveBeenCalled();
     expect(openFallbackDialogue).not.toHaveBeenCalled();

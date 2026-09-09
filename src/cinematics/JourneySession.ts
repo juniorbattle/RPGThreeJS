@@ -100,9 +100,15 @@ export class JourneySession {
       previous?.release();
       return held.result;
     }
-    this.surface = held.surface ? held : (fallbackBackdrop
-      ? this.createBackdropSurface(held.result, fallbackBackdrop)
-      : this.createNeutralSurface(held.result));
+    const heldHasPaintedFrame = held.surface?.dataset.cinematicFreezeSurface === 'canvas';
+    if (fallbackBackdrop && !heldHasPaintedFrame) {
+      held.release();
+      this.surface = this.createBackdropSurface(held.result, fallbackBackdrop);
+    } else {
+      this.surface = held.surface ? held : (fallbackBackdrop
+        ? this.createBackdropSurface(held.result, fallbackBackdrop)
+        : this.createNeutralSurface(held.result));
+    }
     previous?.release();
     return held.result;
   }
@@ -181,6 +187,7 @@ export class JourneySession {
   }
 
   private createBackdropSurface(result: VideoCinematicResult, backdrop: HTMLElement): HeldVideoCinematic {
+    backdrop.classList.add('journey-surface');
     backdrop.dataset.journeyFallback = result.reason;
     this.mediaRoot.append(backdrop);
     return {

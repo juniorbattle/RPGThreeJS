@@ -92,7 +92,12 @@ export class CinematicPlayer {
       };
       const overlay = new CinematicOverlay(
         descriptor,
-        { onSkip, onToggleMuted },
+        {
+          onSkip,
+          onToggleMuted,
+          onVideoFrameDecoded: () => options.onMediaEvent?.('FIRST_VIDEO_FRAME'),
+          onFirstFramePainted: () => options.onMediaEvent?.('FIRST_CANVAS_DRAW'),
+        },
         options.allowSkip ?? true,
         options.root ?? this.root,
         options.passive ?? false,
@@ -108,6 +113,7 @@ export class CinematicPlayer {
       };
 
       overlay.mount(muted);
+      options.onMediaEvent?.('VIDEO_ELEMENT_CREATED');
       window.addEventListener('keydown', onKeyDown);
       options.signal?.addEventListener('abort', onExternalAbort, { once: true });
       abortController.signal.addEventListener('abort', onInternalAbort, { once: true });
@@ -146,19 +152,25 @@ export class CinematicPlayer {
       }
       overlay.video.addEventListener('ended', () => finish('ended'), { once: true, signal: mediaListeners.signal });
       overlay.video.addEventListener('error', (event) => finish('error', event), { once: true, signal: mediaListeners.signal });
+      overlay.video.addEventListener('loadedmetadata', () => options.onMediaEvent?.('METADATA'), { once: true, signal: mediaListeners.signal });
+      overlay.video.addEventListener('loadeddata', () => options.onMediaEvent?.('LOADED_DATA'), { once: true, signal: mediaListeners.signal });
       overlay.video.addEventListener('stalled', resetStallTimeout, { signal: mediaListeners.signal });
       overlay.video.addEventListener('waiting', resetStallTimeout, { signal: mediaListeners.signal });
       overlay.video.addEventListener('playing', () => {
+        options.onMediaEvent?.('PLAYING');
         if (stallTimeout !== null) window.clearTimeout(stallTimeout);
         stallTimeout = null;
       }, { signal: mediaListeners.signal });
       try {
         overlay.startFramePump();
         overlay.video.load();
-        void Promise.resolve(overlay.video.play()).catch((error) => {
-          overlay.showFallback();
-          finish('autoplay-rejected', error);
-        });
+        void Promise.resolve(overlay.video.play()).then(
+          () => options.onMediaEvent?.('PLAY_PROMISE_RESOLVED'),
+          (error) => {
+            overlay.showFallback();
+            finish('autoplay-rejected', error);
+          },
+        );
       } catch (error) {
         overlay.showFallback();
         finish('error', error);

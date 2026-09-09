@@ -34,7 +34,9 @@ export async function presentCinematicDialogue(
 ): Promise<CinematicDialogueSessionResult> {
   if (options.stage && options.openLiveDialogue) {
     const mediaPromise = options.stage.presentCinematic(options.cinematicId, { ...options.playback, passive: true });
-    const dialoguePromise = Promise.resolve().then(options.openLiveDialogue);
+    const dialoguePromise = options.stage.awaitMediaVisibleReady().then((surface) => (
+      surface === 'NONE' ? undefined : options.openLiveDialogue!()
+    ));
     const [mediaOutcome, dialogueOutcome] = await Promise.allSettled([mediaPromise, dialoguePromise]);
     const result: VideoCinematicResult = mediaOutcome.status === 'fulfilled'
       ? mediaOutcome.value

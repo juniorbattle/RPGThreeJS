@@ -1,10 +1,10 @@
 import type { CinematicPlayer } from '../cinematics/CinematicPlayer';
 import type { CinematicRegistry } from '../cinematics/CinematicRegistry';
-import type { VideoCinematicResultReason } from '../cinematics/CinematicTypes';
+import type { VideoCinematicResult, VideoCinematicResultReason } from '../cinematics/CinematicTypes';
 import type { JourneySession } from '../cinematics/JourneySession';
 import { copyNarrativeBackdrop, releaseNarrativeBackdrop } from '../cinematics/JourneyBackdrop';
 import { NarrativeStage } from '../cinematics/NarrativeStage';
-import { resolveNarrativeBoundaryTableau, type NarrativeTableauSpec } from '../cinematics/NarrativeTableau';
+import { createGenericBoundaryTableau, resolveNarrativeBoundaryTableau, type NarrativeTableauSpec } from '../cinematics/NarrativeTableau';
 import type {
   JourneySecondaryActionPresentation,
   JourneySessionState,
@@ -17,6 +17,7 @@ import {
 } from './JourneyPresentationResolver';
 import { planJourneyBoundary, type JourneyBoundaryKind } from './JourneyRunNodeAdapter';
 import type { RunNode } from '../game/types';
+import type { NarrativeAuthoringMedia } from '../cinematics/NarrativePresentationPolicy';
 
 /**
  * Presents one campaign boundary through the CIN-1 Journey runtime and reports what the player
@@ -51,7 +52,10 @@ export interface JourneyBoundaryRequest {
 type JourneyPresentationSession = Pick<
   JourneySession,
   'state' | 'stateTrace' | 'frozenSurface' | 'presentCinematic' | 'requestAgency' | 'preloadCandidates' | 'dispose'
-> & { setTableau?: (tableau: NarrativeTableauSpec) => void };
+> & {
+  setTableau?: (tableau: NarrativeTableauSpec) => void;
+  presentPassiveBackdrop?: (backdrop: HTMLElement) => Promise<VideoCinematicResult>;
+};
 
 export interface JourneyCampaignBoundaryOptions {
   player: CinematicPlayer;
@@ -60,6 +64,9 @@ export interface JourneyCampaignBoundaryOptions {
   presentationMap?: JourneyPresentationMap;
   /** Injectable so tests can prove catastrophic Journey failure drops back to TravelView. */
   createSession?: () => JourneyPresentationSession;
+  mediaMode?: NarrativeAuthoringMedia;
+  /** Test/host timing override; production keeps NarrativeStage's campaign reveal duration. */
+  transitionRevealMs?: number;
 }
 
 export class JourneyCampaignBoundary {
@@ -74,6 +81,8 @@ export class JourneyCampaignBoundary {
     this.createSession = options.createSession ?? (() => new NarrativeStage({
       player: options.player,
       registry: options.registry,
+      mediaMode: options.mediaMode ?? 'VIDEO',
+      ...(options.transitionRevealMs === undefined ? {} : { transitionRevealMs: options.transitionRevealMs }),
       ...(options.root ? { root: options.root } : {}),
     }));
   }
@@ -90,25 +99,27 @@ export class JourneyCampaignBoundary {
       available: request.available,
     };
     const { key, cinematicId } = resolveBoundaryCinematic(context, this.presentationMap);
+    const plan = planJourneyBoundary(request.available, {
+      ...(request.currentLabel ? { currentLabel: request.currentLabel } : {}),
+      ...(request.secondary ? { secondary: request.secondary } : {}),
+    });
     const playId = cinematicId && !this.presentedKeys.has(key) ? cinematicId : undefined;
     const session = this.createSession();
     this.session = session;
-    const tableau = resolveNarrativeBoundaryTableau(key);
+    const tableau = resolveNarrativeBoundaryTableau(key) ?? createGenericBoundaryTableau(key, plan.kind);
     if (tableau) session.setTableau?.(tableau);
     const fallbackBackdrop = this.pendingBackdrop;
     this.pendingBackdrop = null;
 
     // An unmapped boundary resolves to no descriptor, so CIN-1 degrades to its neutral safe surface.
-    const result = await session.presentCinematic(playId ?? key, {
-      ...(request.reducedMotion === undefined ? {} : { reducedMotion: request.reducedMotion }),
-    }, fallbackBackdrop);
+    const result = !playId && fallbackBackdrop && session.presentPassiveBackdrop
+      ? await session.presentPassiveBackdrop(fallbackBackdrop)
+      : await session.presentCinematic(playId ?? key, {
+        ...(request.reducedMotion === undefined ? {} : { reducedMotion: request.reducedMotion }),
+      }, fallbackBackdrop);
     if (cinematicId) this.presentedKeys.add(key);
     session.preloadCandidates(resolveCandidateCinematicIds(context, this.presentationMap));
 
-    const plan = planJourneyBoundary(request.available, {
-      ...(request.currentLabel ? { currentLabel: request.currentLabel } : {}),
-      ...(request.secondary ? { secondary: request.secondary } : {}),
-    });
     const commit = await session.requestAgency(plan.presentation);
     if (commit.kind === 'secondary' && session.frozenSurface) this.captureBackdrop(session.frozenSurface);
     const trace = [...session.stateTrace];

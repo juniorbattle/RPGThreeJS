@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "policy": "PLAN_ONLY_NO_MEDIA_GENERATION",
+  "classifications": {
+    "DROP_IN_READY": [
+      "alaric_audience_arrival",
+      "bois_clair_saved",
+      "bois_clair_sacrificed",
+      "camp_departure",
+      "first_refuge_arrival",
+      "first_refuge_departure",
+      "lion_champion_reveal",
+      "lion_trial_route_ending",
+      "second_refuge_departure",
+      "serpent_general_reveal",
+      "serpent_route_ending",
+      "valmir_route_fork"
+    ],
+    "USABLE_WITH_OFFSCREEN_STAGING": [
+      "refugees_approach",
+      "ruins_approach_context",
+      "shadow_signs",
+      "witnesses_encounter"
+    ],
+    "NEEDS_FUTURE_REMASTER": [
+      "bois_clair_arrival",
+      "final_refuge_dossier",
+      "forest_journey_tension",
+      "lion_judgement"
+    ],
+    "REPLACE_WITH_FAMILY_LATER": []
+  },
+  "queue": [
+    {
+      "cinematicId": "forest_journey_tension",
+      "tableauId": "FOREST_THREAT_TABLEAU",
+      "dialogueId": "pre_opening_trail",
+      "currentProblem": "The existing shot visually concentrates on Seraphine while Kestrel and Alistair own earlier canonical threat beats.",
+      "missingActorCoverage": ["kestrel", "alistair"],
+      "requiredMediaSubjects": ["kestrel", "alistair", "sage_seraphine", "unresolved_forest_threat"],
+      "recommendedShotCount": 2,
+      "recommendedCameraAngles": ["WIDE_COMPANY_THREAT", "THREE_QUARTER_COMPANY_REACTION"],
+      "negativeSpaceTarget": "Upper and central forest threat remain open; compact dialogue lane at lower right.",
+      "dialogueSafeRegion": { "x": 0.62, "y": 0.48, "width": 0.34, "height": 0.43 },
+      "choiceSafeRegions": [],
+      "futureVideoRole": "THREAT",
+      "priority": "P0"
+    },
+    {
+      "cinematicId": "bois_clair_arrival",
+      "tableauId": "VILLAGE_CHOICE_TABLEAU",
+      "dialogueId": "village_choice",
+      "currentProblem": "The arrival media does not cover the full canonical multi-speaker exchange or both adviser perspectives at the choice hold.",
+      "missingActorCoverage": ["marian", "kestrel", "sage_seraphine", "maelor"],
+      "requiredMediaSubjects": ["villageoise", "serpent_raider", "alistair", "sage_seraphine", "maelor", "bois_clair_split_objectives"],
+      "recommendedShotCount": 3,
+      "recommendedCameraAngles": ["VILLAGE_APPROACH_WIDE", "ADVISER_REACTION_PAIR", "SPLIT_OBJECTIVE_CHOICE_HOLD"],
+      "negativeSpaceTarget": "Keep captives and reserves readable on opposite sides with an open centre and two lower choice lanes.",
+      "dialogueSafeRegion": { "x": 0.62, "y": 0.48, "width": 0.34, "height": 0.38 },
+      "choiceSafeRegions": [
+        { "x": 0.04, "y": 0.68, "width": 0.42, "height": 0.27 },
+        { "x": 0.54, "y": 0.68, "width": 0.42, "height": 0.27 }
+      ],
+      "futureVideoRole": "DIALOGUE_PHASE",
+      "priority": "P1"
+    },
+    {
+      "cinematicId": "lion_judgement",
+      "tableauId": "LION_FINALE_JUDGEMENT_TABLEAU",
+      "dialogueId": "lion_finale_judgement",
+      "currentProblem": "The current judgement emphasizes Alaric and the Champion without a readable receiving company or adviser pair.",
+      "missingActorCoverage": ["sage_seraphine", "maelor", "player_company"],
+      "requiredMediaSubjects": ["alaric", "sage_seraphine", "maelor", "player_company"],
+      "recommendedShotCount": 2,
+      "recommendedCameraAngles": ["JUDGEMENT_WIDE", "COMPANY_RECEIVES_VERDICT"],
+      "negativeSpaceTarget": "Preserve Alaric's authority axis and two lower decision lanes without hiding the receiving company.",
+      "dialogueSafeRegion": { "x": 0.62, "y": 0.48, "width": 0.34, "height": 0.38 },
+      "choiceSafeRegions": [
+        { "x": 0.04, "y": 0.68, "width": 0.42, "height": 0.27 },
+        { "x": 0.54, "y": 0.68, "width": 0.42, "height": 0.27 }
+      ],
+      "futureVideoRole": "REACTION",
+      "priority": "P1"
+    },
+    {
+      "cinematicId": "final_refuge_dossier",
+      "tableauId": "FINAL_REFUGE_TABLEAU",
+      "dialogueId": "final_refuge",
+      "currentProblem": "Marian speaks in the canonical dossier exchange but has no current visual coverage.",
+      "missingActorCoverage": ["marian"],
+      "requiredMediaSubjects": ["maelor", "sage_seraphine", "marian", "alistair", "lion_dossier"],
+      "recommendedShotCount": 2,
+      "recommendedCameraAngles": ["DOSSIER_GROUP_WIDE", "MARIAN_COUNTERSHOT"],
+      "negativeSpaceTarget": "Keep the dossier and group readable with a stable compact dialogue lane at right.",
+      "dialogueSafeRegion": { "x": 0.62, "y": 0.48, "width": 0.34, "height": 0.43 },
+      "choiceSafeRegions": [],
+      "futureVideoRole": "DIALOGUE_PHASE",
+      "priority": "P2"
+    }
+  ]
+}

@@ -28,9 +28,9 @@ export function copyJourneyBackdrop(surface: HTMLElement): HTMLCanvasElement | n
 export function copyNarrativeBackdrop(surface: HTMLElement): HTMLElement | null {
   const canvas = copyJourneyBackdrop(surface);
   if (canvas) return canvas;
-  const source = surface.matches('.narrative-media-surface--painted')
+  const source = surface.matches('.narrative-media-surface--painted, .narrative-media-surface--still')
     ? surface
-    : surface.querySelector<HTMLElement>('.narrative-media-surface--painted');
+    : surface.querySelector<HTMLElement>('.narrative-media-surface--painted, .narrative-media-surface--still');
   if (!source) return null;
   const snapshot = source.cloneNode(true) as HTMLElement;
   snapshot.classList.add('journey-surface', 'narrative-media-surface--passive');

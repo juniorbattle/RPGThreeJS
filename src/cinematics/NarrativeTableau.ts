@@ -19,6 +19,97 @@ export type NarrativeMediaPhase = 'INTRO_MEDIA' | 'REACTION_MEDIA';
 export type NarrativeJourneyGrammar = 'SINGLE_ROUTE' | 'TWO_PATH_FORK' | 'APPROACH' | 'DEPARTURE' | 'THREAT' | 'AFTERMATH';
 export type NarrativeTransitionKind = 'CROSSFADE' | 'FOREGROUND_WIPE' | 'DEPTH_SHIFT' | 'LIGHT_FADE' | 'ATMOSPHERIC_DISSOLVE' | 'CAMERA_REVEAL';
 
+export const NARRATIVE_LAYOUT_PROFILES = Object.freeze([
+  'DIALOGUE_SIDE_COMPACT',
+  'DIALOGUE_TOP_CENTER',
+  'DIALOGUE_BOTTOM_BAND_RESERVED',
+  'DIALOGUE_SPEAKER_FOCUS',
+  'INTRO_CAST_PRESENTATION',
+  'ADVISER_EXCHANGE',
+  'CHOICE_TWO_PATH_SPATIAL',
+  'CHOICE_SINGLE_ROUTE_CONTINUE',
+  'HELD_VIDEO_DIALOGUE',
+] as const);
+
+export type NarrativeLayoutProfile = typeof NARRATIVE_LAYOUT_PROFILES[number];
+export const NARRATIVE_LAYOUT_PLACEMENTS = Object.freeze([
+  'LEFT',
+  'RIGHT',
+  'TOP_CENTER',
+  'BOTTOM_CENTER',
+  'SPATIAL',
+  'LOWER_RIGHT',
+] as const);
+export type NarrativeLayoutPlacement = typeof NARRATIVE_LAYOUT_PLACEMENTS[number];
+
+export interface NarrativeLayoutProfileRule {
+  maxCharactersPerSegment: number;
+  maxLines: number;
+  choiceOnly: boolean;
+  allowsScroll: false;
+}
+
+export const NARRATIVE_LAYOUT_PROFILE_RULES: Readonly<Record<NarrativeLayoutProfile, NarrativeLayoutProfileRule>> = Object.freeze({
+  DIALOGUE_SIDE_COMPACT: { maxCharactersPerSegment: 168, maxLines: 6, choiceOnly: false, allowsScroll: false },
+  DIALOGUE_TOP_CENTER: { maxCharactersPerSegment: 220, maxLines: 5, choiceOnly: false, allowsScroll: false },
+  DIALOGUE_BOTTOM_BAND_RESERVED: { maxCharactersPerSegment: 240, maxLines: 4, choiceOnly: false, allowsScroll: false },
+  DIALOGUE_SPEAKER_FOCUS: { maxCharactersPerSegment: 190, maxLines: 6, choiceOnly: false, allowsScroll: false },
+  INTRO_CAST_PRESENTATION: { maxCharactersPerSegment: 200, maxLines: 5, choiceOnly: false, allowsScroll: false },
+  ADVISER_EXCHANGE: { maxCharactersPerSegment: 180, maxLines: 6, choiceOnly: false, allowsScroll: false },
+  CHOICE_TWO_PATH_SPATIAL: { maxCharactersPerSegment: 190, maxLines: 5, choiceOnly: true, allowsScroll: false },
+  CHOICE_SINGLE_ROUTE_CONTINUE: { maxCharactersPerSegment: 0, maxLines: 0, choiceOnly: true, allowsScroll: false },
+  HELD_VIDEO_DIALOGUE: { maxCharactersPerSegment: 210, maxLines: 6, choiceOnly: false, allowsScroll: false },
+});
+export type NarrativePresentationStrategy =
+  | 'IN_SCENE'
+  | 'OFFSCREEN_CONTEXTUAL'
+  | 'SPEAKER_FOCUS'
+  | 'GROUP_SCENE'
+  | 'STATIC_RESTAGE'
+  | 'MEDIA_PHASE_SWITCH'
+  | 'FALLBACK';
+export type NarrativeRole =
+  | 'CURRENT_SPEAKER'
+  | 'LISTENER'
+  | 'ADVISER'
+  | 'PLAYER_REPRESENTATIVE'
+  | 'EVENT_SUBJECT'
+  | 'AUTHORITY'
+  | 'ESCORT'
+  | 'BACKGROUND';
+export type NarrativeScreenPosition = 'FAR_LEFT' | 'LEFT' | 'CENTER_LEFT' | 'CENTER' | 'CENTER_RIGHT' | 'RIGHT' | 'FAR_RIGHT';
+
+export interface NarrativeStagedActorSpec {
+  actorId: string;
+  screenPosition: NarrativeScreenPosition;
+  scale: number;
+  facing: 'LEFT' | 'RIGHT' | 'FORWARD';
+  depth: number;
+  narrativeRole: NarrativeRole;
+}
+
+export interface NarrativeSafeRegionSpec {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+export interface NarrativeVisualPhaseSpec {
+  id: string;
+  stepIds: readonly string[];
+  layoutProfile: NarrativeLayoutProfile;
+  layoutPlacement: NarrativeLayoutPlacement;
+  staticCast: readonly NarrativeStagedActorSpec[];
+  mediaSubjects: readonly string[];
+  actorRegions: readonly NarrativeSafeRegionSpec[];
+  dialogueSafeZone: NarrativeSafeRegionSpec;
+  choiceSafeZones: readonly NarrativeSafeRegionSpec[];
+  criticalVisualRegions: readonly NarrativeSafeRegionSpec[];
+  negativeSpaceIntent: string;
+  cameraIntent: string;
+}
+
 export interface NarrativeAnchorSpec {
   id: string;
   placement: 'LEFT' | 'CENTER' | 'RIGHT' | 'LOWER_LEFT' | 'LOWER_CENTER' | 'LOWER_RIGHT';
@@ -65,6 +156,9 @@ export interface NarrativeTableauSpec {
   cast: NarrativeCastSpec;
   anchors: readonly NarrativeAnchorSpec[];
   beats: readonly NarrativeBeatSpec[];
+  phases?: readonly NarrativeVisualPhaseSpec[];
+  family?: 'AUDIENCE' | 'JOURNEY' | 'EVENT' | 'ATE' | 'PRE_COMBAT' | 'AFTERMATH' | 'FINALE' | 'FALLBACK';
+  stillImage?: string;
   exit: 'DIALOGUE_SEQUENCE_COMPLETE' | 'ROUTE_COMMIT' | 'COMBAT_HANDOFF' | 'COMBAT_RESULT' | 'RESOLVED_CAMPAIGN_BOUNDARY';
   next: 'RESOLVED_CAMPAIGN_TABLEAU';
   mediaRemasterNeeded?: boolean;
@@ -78,10 +172,232 @@ export interface DialogueCastAlignment {
   unresolved: readonly string[];
 }
 
+const SAFE_LEFT = Object.freeze({ x: 0.04, y: 0.48, width: 0.34, height: 0.43 });
+const SAFE_RIGHT = Object.freeze({ x: 0.62, y: 0.48, width: 0.34, height: 0.43 });
+const SAFE_LOW_LEFT = Object.freeze({ x: 0.04, y: 0.68, width: 0.42, height: 0.27 });
+const SAFE_LOW_RIGHT = Object.freeze({ x: 0.54, y: 0.68, width: 0.42, height: 0.27 });
+const SAFE_CENTER_WORLD = Object.freeze({ x: 0.34, y: 0.08, width: 0.32, height: 0.62 });
+
+function narrativeRoleFor(actorId: string, speakerId?: string): NarrativeRole {
+  if (actorId === speakerId) return 'CURRENT_SPEAKER';
+  if (actorId === 'sage_seraphine' || actorId === 'maelor') return 'ADVISER';
+  if (actorId === 'alaric') return 'AUTHORITY';
+  return 'LISTENER';
+}
+
+function stageActors(actorIds: readonly string[], speakerId?: string): NarrativeStagedActorSpec[] {
+  const unique = [...new Set(actorIds)].slice(0, 6);
+  const positions: NarrativeScreenPosition[][] = [
+    ['CENTER'],
+    ['CENTER_LEFT', 'CENTER_RIGHT'],
+    ['LEFT', 'CENTER', 'RIGHT'],
+    ['FAR_LEFT', 'CENTER_LEFT', 'CENTER_RIGHT', 'FAR_RIGHT'],
+    ['FAR_LEFT', 'LEFT', 'CENTER', 'RIGHT', 'FAR_RIGHT'],
+    ['FAR_LEFT', 'LEFT', 'CENTER_LEFT', 'CENTER_RIGHT', 'RIGHT', 'FAR_RIGHT'],
+  ];
+  const selected = positions[Math.max(0, unique.length - 1)] ?? positions[5]!;
+  return unique.map((actorId, index) => ({
+    actorId,
+    screenPosition: selected[index]!,
+    scale: actorId === speakerId ? 1.04 : 0.94,
+    facing: index < unique.length / 2 ? 'RIGHT' : index > unique.length / 2 ? 'LEFT' : 'FORWARD',
+    depth: actorId === speakerId ? 3 : 2,
+    narrativeRole: narrativeRoleFor(actorId, speakerId),
+  }));
+}
+
+function inferTableauFamily(sequence: DialogueSequence): NonNullable<NarrativeTableauSpec['family']> {
+  const id = `${sequence.id} ${sequence.title ?? ''} ${sequence.sceneArtId ?? ''}`.toLowerCase();
+  if (sequence.id === 'lion_briefing') return 'AUDIENCE';
+  if (sequence.id === 'lion_finale_judgement' || /finale|judgement|trial_aftermath|serpent_general_aftermath|epilogue/.test(id)) return 'FINALE';
+  if (sequence.id.startsWith('ate_')) return 'ATE';
+  if (sequence.id.startsWith('pre_') || sequence.id.endsWith('_pre_combat')) return 'PRE_COMBAT';
+  if (sequence.id.startsWith('post_') || sequence.id.endsWith('_aftermath')) return 'AFTERMATH';
+  return 'EVENT';
+}
+
+export function resolveNarrativeStepLayout(
+  sequence: DialogueSequence,
+  step: DialogueSequence['steps'][number],
+  family: NonNullable<NarrativeTableauSpec['family']>,
+): NarrativeLayoutProfile {
+  if (step.choices?.length) return 'CHOICE_TWO_PATH_SPATIAL';
+  if (sequence.id === 'acte_ouverture') return 'INTRO_CAST_PRESENTATION';
+  if (family === 'PRE_COMBAT') return 'DIALOGUE_BOTTOM_BAND_RESERVED';
+  if (family === 'AUDIENCE' || family === 'FINALE') {
+    if (step.actorId === 'sage_seraphine' || step.actorId === 'maelor') return 'ADVISER_EXCHANGE';
+    return 'DIALOGUE_SPEAKER_FOCUS';
+  }
+  const speakerCount = new Set(sequence.steps.map((candidate) => candidate.actorId).filter(Boolean)).size;
+  if (speakerCount >= 5) return 'DIALOGUE_TOP_CENTER';
+  return 'DIALOGUE_SIDE_COMPACT';
+}
+
+export function resolveNarrativeStepPlacement(
+  profile: NarrativeLayoutProfile,
+  step?: DialogueSequence['steps'][number],
+): NarrativeLayoutPlacement {
+  if (profile === 'CHOICE_TWO_PATH_SPATIAL') return 'SPATIAL';
+  if (profile === 'CHOICE_SINGLE_ROUTE_CONTINUE') return 'LOWER_RIGHT';
+  if (profile === 'INTRO_CAST_PRESENTATION' || profile === 'DIALOGUE_TOP_CENTER') return 'TOP_CENTER';
+  if (profile === 'DIALOGUE_BOTTOM_BAND_RESERVED') return 'BOTTOM_CENTER';
+  return step?.side === 'right' ? 'LEFT' : 'RIGHT';
+}
+
+function safeZoneForPlacement(placement: NarrativeLayoutPlacement): NarrativeSafeRegionSpec {
+  if (placement === 'LEFT') return SAFE_LEFT;
+  if (placement === 'TOP_CENTER') return { x: 0.31, y: 0.08, width: 0.38, height: 0.28 };
+  if (placement === 'BOTTOM_CENTER') return { x: 0.28, y: 0.72, width: 0.44, height: 0.23 };
+  if (placement === 'SPATIAL') return { x: 0.04, y: 0.68, width: 0.92, height: 0.27 };
+  return SAFE_RIGHT;
+}
+
+function phaseForStep(
+  sequence: DialogueSequence,
+  step: DialogueSequence['steps'][number],
+  allActors: readonly string[],
+  family: NonNullable<NarrativeTableauSpec['family']>,
+): NarrativeVisualPhaseSpec {
+  const actorId = step.actorId;
+  const layoutProfile = resolveNarrativeStepLayout(sequence, step, family);
+  const layoutPlacement = resolveNarrativeStepPlacement(layoutProfile, step);
+  const choice = Boolean(step.choices?.length);
+  return {
+    id: `${sequence.id}:${step.id}:${choice ? 'agency' : 'dialogue'}`,
+    stepIds: [step.id],
+    layoutProfile,
+    layoutPlacement,
+    staticCast: stageActors(allActors, actorId),
+    mediaSubjects: actorId ? [actorId] : [],
+    actorRegions: [SAFE_CENTER_WORLD],
+    dialogueSafeZone: safeZoneForPlacement(layoutPlacement),
+    choiceSafeZones: choice ? [SAFE_LOW_LEFT, SAFE_LOW_RIGHT] : [],
+    criticalVisualRegions: [SAFE_CENTER_WORLD],
+    negativeSpaceIntent: layoutPlacement === 'LEFT'
+      ? 'Protect the left card lane while the speaking group remains readable at centre and right.'
+      : layoutPlacement === 'RIGHT'
+        ? 'Protect the right card lane while the speaking group remains readable at centre and left.'
+        : 'Use the declared composition-safe region without obscuring the primary cast cluster.',
+    cameraIntent: family === 'PRE_COMBAT' ? 'Wide threat hold with the danger and company both readable.' : 'Stable illustrated tableau with restrained speaker emphasis.',
+  };
+}
+
+export function createGenericNarrativeTableau(sequence: DialogueSequence): NarrativeTableauSpec {
+  const family = inferTableauFamily(sequence);
+  const speakers = [...new Set(sequence.steps.map((step) => step.actorId).filter((id): id is string => Boolean(id)))];
+  const firstStep = sequence.steps[0];
+  const phase = firstStep ? phaseForStep(sequence, firstStep, speakers, family) : undefined;
+  const phases = phase ? [{
+    ...phase,
+    id: `${sequence.id}:tableau`,
+    stepIds: sequence.steps.map((step) => step.id),
+    staticCast: stageActors(speakers),
+    mediaSubjects: speakers,
+    negativeSpaceIntent: 'Keep one stable illustrated composition while cards and speaker emphasis change within it.',
+    cameraIntent: family === 'PRE_COMBAT'
+      ? 'One stable wide threat composition until the combat handoff.'
+      : 'One stable animated-book composition for the complete dialogue exchange.',
+  }] : [];
+  const beats: NarrativeBeatSpec[] = sequence.steps.map((step) => ({
+    id: `${sequence.id}:${step.id}`,
+    kind: step.choices?.length ? 'SPATIAL_CHOICE' : family === 'PRE_COMBAT' ? 'CINEMATIC_SUBTITLE' : 'SPEAKER_CARD',
+    dialogueStepId: step.id,
+    anchorId: (() => {
+      const placement = resolveNarrativeStepPlacement(resolveNarrativeStepLayout(sequence, step, family), step);
+      if (placement === 'LEFT') return 'card-left';
+      if (placement === 'TOP_CENTER') return 'card-top';
+      if (placement === 'BOTTOM_CENTER') return 'card-bottom';
+      if (placement === 'SPATIAL') return 'choice-left';
+      return 'card-right';
+    })(),
+    skippable: false,
+  }));
+  const tableau: NarrativeTableauSpec = {
+    id: `${sequence.id.toUpperCase()}_TABLEAU`,
+    grammar: family === 'PRE_COMBAT' ? 'THREAT' : family === 'AFTERMATH' ? 'AFTERMATH' : 'APPROACH',
+    dialogueId: sequence.id,
+    family,
+    media: [],
+    cast: {
+      visualActors: speakers,
+      eventActors: speakers,
+      playerRepresentatives: speakers.filter((id) => id === 'sage_seraphine' || id === 'maelor'),
+      optionalActors: [],
+      justifiedOffscreen: [],
+    },
+    anchors: [
+      { id: 'card-left', placement: 'LOWER_LEFT', safeRegion: SAFE_LEFT },
+      { id: 'card-right', placement: 'LOWER_RIGHT', safeRegion: SAFE_RIGHT },
+      { id: 'card-top', placement: 'CENTER', safeRegion: { x: 0.31, y: 0.08, width: 0.38, height: 0.28 } },
+      { id: 'card-bottom', placement: 'LOWER_CENTER', safeRegion: { x: 0.28, y: 0.72, width: 0.44, height: 0.23 } },
+      { id: 'choice-left', placement: 'LOWER_LEFT', safeRegion: SAFE_LOW_LEFT, routeIndex: 0 },
+      { id: 'choice-right', placement: 'LOWER_RIGHT', safeRegion: SAFE_LOW_RIGHT, routeIndex: 1 },
+    ],
+    beats,
+    phases,
+    exit: family === 'PRE_COMBAT' ? 'COMBAT_HANDOFF' : family === 'AFTERMATH' ? 'COMBAT_RESULT' : 'DIALOGUE_SEQUENCE_COMPLETE',
+    next: 'RESOLVED_CAMPAIGN_TABLEAU',
+  };
+  return Object.freeze(tableau);
+}
+
+export function createGenericBoundaryTableau(
+  presentationKey: string,
+  boundary: 'single' | 'branch' | 'terminal',
+): NarrativeTableauSpec {
+  const branch = boundary === 'branch';
+  const phase: NarrativeVisualPhaseSpec = {
+    id: `${presentationKey}:journey`,
+    stepIds: [],
+    layoutProfile: branch ? 'CHOICE_TWO_PATH_SPATIAL' : 'CHOICE_SINGLE_ROUTE_CONTINUE',
+    layoutPlacement: branch ? 'SPATIAL' : 'LOWER_RIGHT',
+    staticCast: stageActors(['alistair', 'sage_seraphine', 'maelor']),
+    mediaSubjects: ['alistair', 'sage_seraphine', 'maelor'],
+    actorRegions: [SAFE_CENTER_WORLD],
+    dialogueSafeZone: SAFE_LOW_RIGHT,
+    choiceSafeZones: branch ? [SAFE_LOW_LEFT, SAFE_LOW_RIGHT] : [SAFE_LOW_RIGHT],
+    criticalVisualRegions: [SAFE_CENTER_WORLD],
+    negativeSpaceIntent: branch
+      ? 'Keep both route directions readable with the company in the open centre.'
+      : 'Keep the destination and company readable while the next-step cue occupies the lower right.',
+    cameraIntent: branch ? 'Wide spatial fork.' : 'Wide journey tableau with one onward direction.',
+  };
+  const tableau: NarrativeTableauSpec = {
+    id: `BOUNDARY_${presentationKey.replace(/[^a-z0-9]+/gi, '_').toUpperCase()}_TABLEAU`,
+    grammar: branch ? 'TWO_PATH_FORK' : 'SINGLE_ROUTE',
+    family: 'JOURNEY',
+    presentationKey,
+    stillImage: '/assets/backdrops/travel_default.png',
+    media: [],
+    cast: {
+      visualActors: ['alistair', 'sage_seraphine', 'maelor'],
+      eventActors: [],
+      playerRepresentatives: ['sage_seraphine', 'maelor'],
+      optionalActors: [],
+      justifiedOffscreen: [],
+    },
+    anchors: branch
+      ? [
+        { id: 'route-left', placement: 'LOWER_LEFT', safeRegion: SAFE_LOW_LEFT, routeIndex: 0 },
+        { id: 'route-right', placement: 'LOWER_RIGHT', safeRegion: SAFE_LOW_RIGHT, routeIndex: 1 },
+      ]
+      : [{ id: 'next-step', placement: 'LOWER_RIGHT', safeRegion: SAFE_LOW_RIGHT }],
+    beats: branch
+      ? [{ id: `${presentationKey}:routes`, kind: 'ROUTE_CHOICE', anchorId: 'route-left', skippable: false }]
+      : [{ id: `${presentationKey}:continue`, kind: 'CONTEXT_ACTION', anchorId: 'next-step', skippable: false }],
+    phases: [phase],
+    exit: boundary === 'terminal' ? 'RESOLVED_CAMPAIGN_BOUNDARY' : 'ROUTE_COMMIT',
+    next: 'RESOLVED_CAMPAIGN_TABLEAU',
+  };
+  return Object.freeze(tableau);
+}
+
 export const CAMP_DEPARTURE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   id: 'CAMP_DEPARTURE_TABLEAU',
   grammar: 'SINGLE_ROUTE',
   presentationKey: 'node:lion-camp:arrival',
+  family: 'JOURNEY',
+  stillImage: '/assets/generated/lion-phase/dialogue/camp_departure.webp',
   media: [{ phase: 'INTRO_MEDIA', cinematicId: 'camp_departure' }],
   cast: {
     visualActors: ['maelor', 'alistair', 'marian'],
@@ -95,6 +411,13 @@ export const CAMP_DEPARTURE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
     { id: 'departure-visual', kind: 'VISUAL', mediaPhase: 'INTRO_MEDIA', skippable: true },
     { id: 'departure-continue', kind: 'CONTEXT_ACTION', anchorId: 'next-step', skippable: false },
   ],
+  phases: [{
+    id: 'CAMP_DEPARTURE', stepIds: [], layoutProfile: 'CHOICE_SINGLE_ROUTE_CONTINUE', layoutPlacement: 'LOWER_RIGHT',
+    staticCast: stageActors(['alistair', 'marian', 'maelor']), mediaSubjects: ['alistair', 'marian', 'maelor'],
+    actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_LOW_RIGHT, choiceSafeZones: [SAFE_LOW_RIGHT], criticalVisualRegions: [SAFE_CENTER_WORLD],
+    negativeSpaceIntent: 'The company owns the central road while the next destination remains clear at lower right.',
+    cameraIntent: 'Wide departure tableau with a single onward direction.',
+  }],
   exit: 'ROUTE_COMMIT',
   next: 'RESOLVED_CAMPAIGN_TABLEAU',
 });
@@ -103,6 +426,8 @@ export const ALARIC_AUDIENCE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   id: 'ALARIC_AUDIENCE_TABLEAU',
   grammar: 'APPROACH',
   dialogueId: 'lion_briefing',
+  family: 'AUDIENCE',
+  stillImage: '/assets/generated/lion-phase/dialogue/lion_briefing.webp',
   media: [{ phase: 'INTRO_MEDIA', cinematicId: 'alaric_audience_arrival' }],
   cast: {
     visualActors: ['alaric', 'alistair', 'sage_seraphine', 'maelor'],
@@ -128,6 +453,58 @@ export const ALARIC_AUDIENCE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
     { id: 'alaric-response-advance', kind: 'CINEMATIC_SUBTITLE', dialogueStepId: '5', anchorId: 'lion-side', skippable: false },
     { id: 'audience-transition', kind: 'TRANSITION', transition: 'ATMOSPHERIC_DISSOLVE', skippable: true },
   ],
+  phases: [
+    {
+      id: 'AUDIENCE_AUTHORITY',
+      stepIds: ['1', '1a'],
+      layoutProfile: 'DIALOGUE_SPEAKER_FOCUS', layoutPlacement: 'RIGHT',
+      staticCast: stageActors(['alistair', 'sage_seraphine', 'maelor', 'alaric'], 'alaric'),
+      mediaSubjects: ['alaric'],
+      actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_RIGHT, choiceSafeZones: [], criticalVisualRegions: [SAFE_CENTER_WORLD],
+      negativeSpaceIntent: 'Alaric holds the authority axis while the delegation remains readable opposite a compact right card.',
+      cameraIntent: 'Wide audience hold, then restrained Alaric emphasis.',
+    },
+    {
+      id: 'AUDIENCE_COMPANY_RESPONSE',
+      stepIds: ['1b'],
+      layoutProfile: 'DIALOGUE_SPEAKER_FOCUS', layoutPlacement: 'LEFT',
+      staticCast: stageActors(['alistair', 'sage_seraphine', 'maelor', 'alaric'], 'alistair'),
+      mediaSubjects: ['alistair'],
+      actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_LEFT, choiceSafeZones: [], criticalVisualRegions: [SAFE_CENTER_WORLD],
+      negativeSpaceIntent: 'The company response reads on the left without displacing Alaric from the authority axis.',
+      cameraIntent: 'Same room geography with the company subtly promoted.',
+    },
+    {
+      id: 'AUDIENCE_ADVISERS',
+      stepIds: ['2'],
+      layoutProfile: 'ADVISER_EXCHANGE', layoutPlacement: 'RIGHT',
+      staticCast: stageActors(['alistair', 'sage_seraphine', 'maelor', 'alaric'], 'sage_seraphine'),
+      mediaSubjects: ['sage_seraphine', 'maelor'],
+      actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_RIGHT, choiceSafeZones: [], criticalVisualRegions: [SAFE_CENTER_WORLD],
+      negativeSpaceIntent: 'Both advisers remain legible while the active counsel receives only a small focus lift.',
+      cameraIntent: 'Stable adviser grouping inside the established audience geography.',
+    },
+    {
+      id: 'AUDIENCE_AGENCY',
+      stepIds: ['3'],
+      layoutProfile: 'CHOICE_TWO_PATH_SPATIAL', layoutPlacement: 'SPATIAL',
+      staticCast: stageActors(['sage_seraphine', 'maelor', 'alaric'], 'maelor'),
+      mediaSubjects: ['sage_seraphine', 'maelor', 'alaric'],
+      actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_RIGHT, choiceSafeZones: [SAFE_LOW_LEFT, SAFE_LOW_RIGHT], criticalVisualRegions: [SAFE_CENTER_WORLD],
+      negativeSpaceIntent: 'The open centre preserves audience geography while the two canonical options occupy the lower left and lower right lanes.',
+      cameraIntent: 'Wide choice hold; no invented adviser ownership is implied by option placement.',
+    },
+    {
+      id: 'AUDIENCE_RESPONSE',
+      stepIds: ['4', '5'],
+      layoutProfile: 'DIALOGUE_SPEAKER_FOCUS', layoutPlacement: 'RIGHT',
+      staticCast: stageActors(['alistair', 'sage_seraphine', 'maelor', 'alaric'], 'alaric'),
+      mediaSubjects: ['alaric'],
+      actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_RIGHT, choiceSafeZones: [], criticalVisualRegions: [SAFE_CENTER_WORLD],
+      negativeSpaceIntent: 'Alaric closes the audience from the same authority axis and card lane used by the mandate.',
+      cameraIntent: 'Return to the established Alaric emphasis without a geometry jump.',
+    },
+  ],
   exit: 'DIALOGUE_SEQUENCE_COMPLETE',
   next: 'RESOLVED_CAMPAIGN_TABLEAU',
 });
@@ -136,6 +513,8 @@ export const FOREST_THREAT_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   id: 'FOREST_THREAT_TABLEAU',
   grammar: 'THREAT',
   dialogueId: 'pre_opening_trail',
+  family: 'PRE_COMBAT',
+  stillImage: '/assets/generated/lion-phase/dialogue/forest_fork.webp',
   combatIds: ['forest_ambush', 'wolf_pack'],
   media: [{ phase: 'INTRO_MEDIA', cinematicId: 'forest_journey_tension' }],
   cast: {
@@ -165,6 +544,8 @@ export const FOREST_AFTERMATH_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   id: 'FOREST_AFTERMATH_TABLEAU',
   grammar: 'AFTERMATH',
   dialogueId: 'post_opening_trail',
+  family: 'AFTERMATH',
+  stillImage: '/assets/generated/lion-phase/dialogue/forest_fork.webp',
   media: [],
   cast: {
     visualActors: [],
@@ -192,6 +573,8 @@ export const VALMIR_FORK_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   id: 'VALMIR_FORK_TABLEAU',
   grammar: 'TWO_PATH_FORK',
   presentationKey: 'node:lion-valmir-road:arrival',
+  family: 'JOURNEY',
+  stillImage: '/assets/generated/lion-phase/dialogue/forest_fork.webp',
   media: [{ phase: 'INTRO_MEDIA', cinematicId: 'valmir_route_fork' }],
   cast: {
     visualActors: ['sage_seraphine', 'alistair', 'maelor'],
@@ -209,6 +592,13 @@ export const VALMIR_FORK_TABLEAU = Object.freeze<NarrativeTableauSpec>({
     { id: 'valmir-routes', kind: 'ROUTE_CHOICE', anchorId: 'route-left', skippable: false },
     { id: 'valmir-transition', kind: 'TRANSITION', transition: 'DEPTH_SHIFT', skippable: true },
   ],
+  phases: [{
+    id: 'VALMIR_ROUTE_FORK', stepIds: [], layoutProfile: 'CHOICE_TWO_PATH_SPATIAL', layoutPlacement: 'SPATIAL',
+    staticCast: stageActors(['sage_seraphine', 'alistair', 'maelor']), mediaSubjects: ['sage_seraphine', 'alistair', 'maelor'],
+    actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_LOW_RIGHT, choiceSafeZones: [SAFE_LOW_LEFT, SAFE_LOW_RIGHT], criticalVisualRegions: [SAFE_CENTER_WORLD],
+    negativeSpaceIntent: 'The company holds the open centre while each route control sits beside its visible path.',
+    cameraIntent: 'Wide symmetrical fork without implying a selected route.',
+  }],
   exit: 'ROUTE_COMMIT',
   next: 'RESOLVED_CAMPAIGN_TABLEAU',
 });
@@ -228,8 +618,11 @@ export function resolveNarrativeBoundaryTableau(presentationKey: string): Narrat
   return TABLEAUX_BY_PRESENTATION_KEY.get(presentationKey);
 }
 
-export function resolveNarrativeDialogueTableau(dialogueId: string): NarrativeTableauSpec | undefined {
-  return TABLEAUX_BY_DIALOGUE_ID.get(dialogueId);
+export function resolveNarrativeDialogueTableau(
+  dialogueId: string,
+  sequence?: DialogueSequence,
+): NarrativeTableauSpec | undefined {
+  return TABLEAUX_BY_DIALOGUE_ID.get(dialogueId) ?? (sequence ? createGenericNarrativeTableau(sequence) : undefined);
 }
 
 export function resolveNarrativeCombatTableau(combatId: string): NarrativeTableauSpec | undefined {

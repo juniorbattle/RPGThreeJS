@@ -18,22 +18,22 @@ describe('Narrative dialogue presentation adapter', () => {
       '1b': 'SPEAKER_CARD',
       '2': 'SPEAKER_CARD',
       '3': 'SPATIAL_CHOICE',
-      '4': 'CINEMATIC_SUBTITLE',
-      '5': 'CINEMATIC_SUBTITLE',
+      '4': 'SPEAKER_CARD',
+      '5': 'SPEAKER_CARD',
     });
   });
 
-  it('uses media cast before adding a contextual portrait', () => {
+  it('never patches NarrativeStage media with an automatic full-body portrait', () => {
     const audience = dialogues.get('lion_briefing')!;
     const audienceResolver = createNarrativeDialogueResolver(audience, ALARIC_AUDIENCE_TABLEAU);
     expect(audience.steps.every((step) => audienceResolver(step).showPortrait === false)).toBe(true);
 
     const threat = dialogues.get('pre_opening_trail')!;
     const threatResolver = createNarrativeDialogueResolver(threat, FOREST_THREAT_TABLEAU);
-    expect(threatResolver(threat.steps[0]!).showPortrait).toBe(true);
-    expect(threatResolver(threat.steps[1]!).showPortrait).toBe(true);
+    expect(threatResolver(threat.steps[0]!).showPortrait).toBe(false);
+    expect(threatResolver(threat.steps[1]!).showPortrait).toBe(false);
     expect(threatResolver(threat.steps[2]!).showPortrait).toBe(false);
-    expect(resolveRepresentedDialogueActors(threat, threatResolver)).toEqual(['kestrel', 'alistair']);
+    expect(resolveRepresentedDialogueActors(threat, threatResolver)).toEqual(['kestrel', 'alistair', 'sage_seraphine']);
   });
 
   it('records exactly four reviewed display-only reductions', () => {
@@ -46,14 +46,14 @@ describe('Narrative dialogue presentation adapter', () => {
     expect(NARRATIVE_TEXT_REDUCTIONS.every((entry) => entry.reviewed && entry.sourceTextPreserved && entry.rationale.length > 0)).toBe(true);
   });
 
-  it('does not change canonical DialogueSequence text', () => {
+  it('paginates canonical DialogueSequence text without display-only rewriting', () => {
     const village = dialogues.get('village_choice')!;
     const step = village.steps.find((candidate) => candidate.id === '1a')!;
     const canonical = step.text;
     const resolver = createNarrativeDialogueResolver(village);
-    expect(resolver(step).displayText).toBe('Les flammes divisent la place : captifs au nord, réserves et puits menacés au sud.');
+    expect(resolver(step).displayText).toBeUndefined();
+    expect(resolver(step).displaySegments?.join(' ')).toBe(canonical);
     expect(step.text).toBe(canonical);
-    expect(step.text).not.toBe(resolver(step).displayText);
   });
 
   it('preserves factual anchors in every reduction', () => {
