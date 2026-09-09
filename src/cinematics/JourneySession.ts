@@ -18,6 +18,8 @@ export interface JourneySessionOptions {
   player: CinematicPlayer;
   registry: CinematicRegistry;
   root?: HTMLElement;
+  mediaRoot?: HTMLElement;
+  agencyRoot?: HTMLElement;
   preloader?: CinematicPreloader;
   onStateChange?: (state: JourneySessionState, previous: JourneySessionState) => void;
 }
@@ -34,6 +36,8 @@ const TRACE_LIMIT = 64;
 export class JourneySession {
   private readonly player: CinematicPlayer;
   private readonly root: HTMLElement;
+  private readonly mediaRoot: HTMLElement;
+  private readonly agencyRoot: HTMLElement;
   private readonly preloader: CinematicPreloader;
   private readonly onStateChange: JourneySessionOptions['onStateChange'];
   private readonly trace: JourneySessionState[] = ['IDLE'];
@@ -45,6 +49,8 @@ export class JourneySession {
   constructor(options: JourneySessionOptions) {
     this.player = options.player;
     this.root = options.root ?? document.body;
+    this.mediaRoot = options.mediaRoot ?? this.root;
+    this.agencyRoot = options.agencyRoot ?? this.root;
     this.preloader = options.preloader ?? new CinematicPreloader(options.registry);
     this.onStateChange = options.onStateChange;
   }
@@ -80,14 +86,14 @@ export class JourneySession {
   async presentCinematic(
     id: string,
     options: VideoCinematicPlaybackOptions = {},
-    fallbackBackdrop: HTMLCanvasElement | null = null,
+    fallbackBackdrop: HTMLElement | null = null,
   ): Promise<VideoCinematicResult> {
     if (!this.transition('PLAYING')) {
       return { id, reason: this.currentState === 'DISPOSED' ? 'aborted' : 'busy', played: false };
     }
     const previous = this.surface;
     this.surface = null;
-    const held = await this.player.playHeld(id, options);
+    const held = await this.player.playHeld(id, { ...options, root: options.root ?? this.mediaRoot });
     if (!this.transition('FREEZE')) {
       // Disposed while the clip was playing: own nothing, leave nothing mounted.
       held.release();
@@ -124,7 +130,7 @@ export class JourneySession {
       this.pendingAgency = settle;
       this.overlay = new JourneyOverlay(presentation, { onCommit: settle }, {
         standalone: this.surface === null,
-        root: this.root,
+        root: this.agencyRoot,
       });
       this.overlay.mount();
       this.transition('AGENCY');
@@ -139,6 +145,7 @@ export class JourneySession {
 
   /** Drops the frozen presentation surface. */
   releaseFreeze(): void {
+    if (this.currentState === 'AGENCY') return;
     this.surface?.release();
     this.surface = null;
     if (this.currentState === 'FREEZE' || this.currentState === 'TRANSITIONING') this.transition('IDLE');
@@ -166,17 +173,27 @@ export class JourneySession {
 
   private createNeutralSurface(result: VideoCinematicResult): HeldVideoCinematic {
     const neutral = document.createElement('div');
-    neutral.className = 'journey-surface journey-surface--neutral';
+    neutral.className = 'journey-surface journey-surface--neutral narrative-media-surface narrative-media-surface--painted';
     neutral.dataset.journeyFallback = result.reason;
     neutral.setAttribute('aria-hidden', 'true');
-    this.root.append(neutral);
+    this.mediaRoot.append(neutral);
     return { result, surface: neutral, release: () => neutral.remove() };
   }
 
-  private createBackdropSurface(result: VideoCinematicResult, backdrop: HTMLCanvasElement): HeldVideoCinematic {
+  private createBackdropSurface(result: VideoCinematicResult, backdrop: HTMLElement): HeldVideoCinematic {
     backdrop.dataset.journeyFallback = result.reason;
-    this.root.append(backdrop);
-    return { result, surface: backdrop, release: () => backdrop.remove() };
+    this.mediaRoot.append(backdrop);
+    return {
+      result,
+      surface: backdrop,
+      release: () => {
+        if (backdrop instanceof HTMLCanvasElement) {
+          backdrop.width = 0;
+          backdrop.height = 0;
+        }
+        backdrop.remove();
+      },
+    };
   }
 
   private disposeOverlay(): void {

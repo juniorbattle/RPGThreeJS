@@ -12,15 +12,15 @@ function availableAt(nodeId: string): RunNode[] {
 }
 
 describe('route commit guard', () => {
-  it('authorizes route commitment only from TRAVEL and JOURNEY', () => {
-    expect([...ROUTE_COMMIT_MODES]).toEqual(['TRAVEL', 'JOURNEY']);
+  it('authorizes route commitment only from TRAVEL, JOURNEY, and NARRATIVE', () => {
+    expect([...ROUTE_COMMIT_MODES]).toEqual(['TRAVEL', 'JOURNEY', 'NARRATIVE']);
     const available = availableAt('lion-refugees');
     const nodeId = available[0]!.id;
-    for (const mode of ['TRAVEL', 'JOURNEY']) {
+    for (const mode of ['TRAVEL', 'JOURNEY', 'NARRATIVE']) {
       expect(evaluateRouteCommit({ mode, commitInFlight: false, nodeId, listAvailable: () => available }))
         .toEqual({ authorized: true, node: available[0] });
     }
-    for (const mode of ['NARRATIVE', 'COMBAT', 'MANAGEMENT', 'TITLE', 'PROLOGUE', 'QA', 'RESULT', 'journey', 'travel', '']) {
+    for (const mode of ['COMBAT', 'MANAGEMENT', 'TITLE', 'PROLOGUE', 'QA', 'RESULT', 'journey', 'travel', '']) {
       expect(evaluateRouteCommit({ mode, commitInFlight: false, nodeId, listAvailable: () => available }))
         .toEqual({ authorized: false, rejection: 'unauthorized-mode' });
     }
@@ -44,7 +44,7 @@ describe('route commit guard', () => {
 
   it('never queries RunSystem for an unauthorized or duplicated commit', () => {
     const listAvailable = vi.fn(() => availableAt('lion-refugees'));
-    evaluateRouteCommit({ mode: 'NARRATIVE', commitInFlight: false, nodeId: 'x', listAvailable });
+    evaluateRouteCommit({ mode: 'COMBAT', commitInFlight: false, nodeId: 'x', listAvailable });
     evaluateRouteCommit({ mode: 'TRAVEL', commitInFlight: true, nodeId: 'x', listAvailable });
     evaluateRouteCommit({ mode: 'TRAVEL', commitInFlight: false, nodeId: '', listAvailable });
     expect(listAvailable).not.toHaveBeenCalled();
@@ -62,6 +62,7 @@ describe('route commit guard', () => {
   it('exposes a narrow mode predicate', () => {
     expect(isRouteCommitMode('TRAVEL')).toBe(true);
     expect(isRouteCommitMode('JOURNEY')).toBe(true);
+    expect(isRouteCommitMode('NARRATIVE')).toBe(true);
     expect(isRouteCommitMode('RESULT')).toBe(false);
   });
 });

@@ -4,7 +4,9 @@ import { describe, expect, it } from 'vitest';
 import {
   isTravelForced,
   JOURNEY_SELECTOR_PARAM,
+  PRESENTATION_SELECTOR_PARAM,
   readJourneySelector,
+  readPresentationSelector,
   resolveCampaignPresentation,
 } from './JourneyPresentationPolicy';
 
@@ -21,6 +23,7 @@ describe('campaign presentation policy', () => {
     expect(resolveCampaignPresentation({ search: '?journey=travel', dev: false })).toBe('travel');
     expect(isTravelForced('?journey=travel')).toBe(true);
     expect(isTravelForced('?journey=cinematic')).toBe(false);
+    expect(isTravelForced('?presentation=travel')).toBe(true);
     expect(isTravelForced('')).toBe(false);
   });
 
@@ -30,8 +33,16 @@ describe('campaign presentation policy', () => {
     expect(resolveCampaignPresentation({ search: '?qa=1&journey=cinematic', dev: true })).toBe('journey');
   });
 
+  it('accepts the backward-compatible DEV NarrativeStage alias', () => {
+    expect(resolveCampaignPresentation({ search: '?presentation=narrative', dev: true })).toBe('journey');
+    expect(resolveCampaignPresentation({ search: '?qa=1&presentation=narrative', dev: true })).toBe('journey');
+    expect(resolveCampaignPresentation({ search: '?presentation=narrative', dev: false })).toBe('travel');
+    expect(readPresentationSelector('?presentation=narrative')).toBe('narrative');
+    expect(PRESENTATION_SELECTOR_PARAM).toBe('presentation');
+  });
+
   it('never exposes Journey outside a DEV build', () => {
-    for (const search of ['?journey=cinematic', '?journey=CINEMATIC', '?journey=cinematic&qa=1']) {
+    for (const search of ['?journey=cinematic', '?journey=CINEMATIC', '?journey=cinematic&qa=1', '?presentation=narrative']) {
       expect(resolveCampaignPresentation({ search, dev: false })).toBe('travel');
     }
   });

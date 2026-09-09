@@ -245,8 +245,11 @@ describe('journey campaign boundary', () => {
 
     const second = boundary.present({ currentNodeId: 'lion-refugees', available, secondary: SECONDARY, reducedMotion: false });
     await flush();
+    expect(document.querySelector('.narrative-stage')).not.toBeNull();
+    expect(document.querySelector('.narrative-media-surface--passive')).not.toBeNull();
     click(`[data-journey-choice="${available[0]!.id}"]`);
     await expect(second).resolves.toMatchObject({ cinematicId: 'clip-arrival', surfaceReason: 'unavailable', kind: 'node' });
+    expect(document.querySelector('.narrative-stage')).toBeNull();
   });
 
   it('uses a passive prior cinematic snapshot instead of a black neutral boundary', async () => {

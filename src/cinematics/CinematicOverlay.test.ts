@@ -143,6 +143,25 @@ describe('cinematic overlay decoded-frame freeze', () => {
     expect(document.querySelector<HTMLElement>('.cinematic-overlay__fallback')?.hidden).toBe(false);
   });
 
+  it('keeps live media passive while a dialogue layer owns interaction', () => {
+    callbacks.onSkip.mockClear();
+    const focus = document.createElement('button');
+    document.body.append(focus);
+    focus.focus();
+    const root = document.createElement('div');
+    document.body.append(root);
+    const overlay = new CinematicOverlay(posterDescriptor, callbacks, true, root, true);
+    overlay.mount(true);
+    expect(overlay.element.classList.contains('cinematic-overlay--passive')).toBe(true);
+    expect(overlay.element.getAttribute('role')).toBe('presentation');
+    expect(overlay.element.hasAttribute('aria-modal')).toBe(false);
+    expect(document.activeElement).toBe(focus);
+    expect(overlay.skipButton.disabled).toBe(false);
+    overlay.skipButton.click();
+    expect(callbacks.onSkip).toHaveBeenCalledTimes(1);
+    overlay.dispose();
+  });
+
   it('keeps video and canvas crop/layer styling equivalent and noninteractive', () => {
     const css = readFileSync(resolve(process.cwd(), 'src/styles/app.css'), 'utf8');
     expect(css).toMatch(/\.cinematic-overlay__video\s*\{[^}]*position:absolute;[^}]*inset:0;[^}]*z-index:1;[^}]*width:100%;[^}]*height:100%;[^}]*object-fit:cover;/s);

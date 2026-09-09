@@ -7,7 +7,7 @@ import type { RunNode } from '../game/types';
  * overlay, a duplicated click or a call from an unauthorized presentation mode can therefore never
  * advance the campaign, even if every UI protection fails at once.
  */
-export const ROUTE_COMMIT_MODES = Object.freeze(['TRAVEL', 'JOURNEY'] as const);
+export const ROUTE_COMMIT_MODES = Object.freeze(['TRAVEL', 'JOURNEY', 'NARRATIVE'] as const);
 
 export type RouteCommitMode = typeof ROUTE_COMMIT_MODES[number];
 

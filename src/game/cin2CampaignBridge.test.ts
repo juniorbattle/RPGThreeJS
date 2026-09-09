@@ -54,7 +54,7 @@ describe('CIN-2 campaign presentation bridge', () => {
 
   it('guards route commitment by mode through the shared pure guard', () => {
     const guard = readFileSync(resolve(process.cwd(), 'src/journey/RouteCommitGuard.ts'), 'utf8');
-    expect(guard).toContain("['TRAVEL', 'JOURNEY']");
+    expect(guard).toContain("['TRAVEL', 'JOURNEY', 'NARRATIVE']");
     expect(SOURCE).toContain("import { evaluateRouteCommit } from '../journey/RouteCommitGuard'");
     // No scattered ad-hoc travel-only mode check remains in the commit path.
     expect(method('private async commitRunNodeChoice')).not.toContain("this.mode !== 'TRAVEL'");

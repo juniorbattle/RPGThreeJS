@@ -1,5 +1,6 @@
 import type { CinematicPlayer } from './CinematicPlayer';
-import type { HeldVideoCinematic, VideoCinematicPlaybackOptions, VideoCinematicResultReason } from './CinematicTypes';
+import type { HeldVideoCinematic, VideoCinematicPlaybackOptions, VideoCinematicResult, VideoCinematicResultReason } from './CinematicTypes';
+import type { NarrativeStage } from './NarrativeStage';
 
 export interface CinematicDialogueSessionOptions {
   player: Pick<CinematicPlayer, 'playHeld'>;
@@ -7,6 +8,8 @@ export interface CinematicDialogueSessionOptions {
   playback: VideoCinematicPlaybackOptions;
   openHeldDialogue: () => Promise<void>;
   openFallbackDialogue: () => Promise<void>;
+  stage?: NarrativeStage;
+  openLiveDialogue?: () => Promise<void>;
   preserveBackdrop?: (surface: HTMLElement) => void;
 }
 
@@ -29,6 +32,21 @@ const HELD_DIALOGUE_REASONS: ReadonlySet<VideoCinematicResultReason> = new Set([
 export async function presentCinematicDialogue(
   options: CinematicDialogueSessionOptions,
 ): Promise<CinematicDialogueSessionResult> {
+  if (options.stage && options.openLiveDialogue) {
+    const mediaPromise = options.stage.presentCinematic(options.cinematicId, { ...options.playback, passive: true });
+    const dialoguePromise = Promise.resolve().then(options.openLiveDialogue);
+    const [mediaOutcome, dialogueOutcome] = await Promise.allSettled([mediaPromise, dialoguePromise]);
+    const result: VideoCinematicResult = mediaOutcome.status === 'fulfilled'
+      ? mediaOutcome.value
+      : { id: options.cinematicId, reason: 'error', played: false, error: mediaOutcome.reason };
+    const surface = options.stage.frozenSurface;
+    if (surface) {
+      try { options.preserveBackdrop?.(surface); } catch {}
+    }
+    if (dialogueOutcome.status === 'rejected') throw dialogueOutcome.reason;
+    return { presentation: surface && HELD_DIALOGUE_REASONS.has(result.reason) ? 'held' : 'fallback', reason: result.reason };
+  }
+
   let held: HeldVideoCinematic;
   try {
     held = await options.player.playHeld(options.cinematicId, options.playback);

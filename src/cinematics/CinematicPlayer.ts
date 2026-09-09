@@ -10,6 +10,7 @@ import type {
 interface ActivePlayback {
   id: string;
   abortController: AbortController;
+  skip: () => void;
 }
 
 function settledWithoutSurface(id: string, reason: VideoCinematicResultReason): Promise<HeldVideoCinematic> {
@@ -26,6 +27,10 @@ export class CinematicPlayer {
 
   get isPlaying(): boolean {
     return this.active !== null;
+  }
+
+  get activeId(): string | null {
+    return this.active?.id ?? null;
   }
 
   play(id: string, options: VideoCinematicPlaybackOptions = {}): Promise<VideoCinematicResult> {
@@ -49,7 +54,7 @@ export class CinematicPlayer {
     if (reducedMotion) return settledWithoutSurface(id, 'reduced-motion');
 
     const abortController = new AbortController();
-    this.active = { id, abortController };
+    this.active = { id, abortController, skip: () => abortController.abort() };
     return new Promise<HeldVideoCinematic>((resolve) => {
       let settled = false;
       let timeout: number | null = null;
@@ -80,11 +85,18 @@ export class CinematicPlayer {
         });
       };
       const onSkip = () => finish(descriptor.placeholderOnly ? 'placeholder' : 'skipped');
+      if (this.active?.abortController === abortController) this.active.skip = onSkip;
       const onToggleMuted = () => {
         overlay.setMuted(!overlay.video.muted);
         if (!overlay.video.muted) void Promise.resolve(overlay.video.play()).catch(() => overlay.setMuted(true));
       };
-      const overlay = new CinematicOverlay(descriptor, { onSkip, onToggleMuted }, options.allowSkip ?? true, this.root);
+      const overlay = new CinematicOverlay(
+        descriptor,
+        { onSkip, onToggleMuted },
+        options.allowSkip ?? true,
+        options.root ?? this.root,
+        options.passive ?? false,
+      );
       const onKeyDown = (event: KeyboardEvent) => {
         if (event.key === 'Escape' && (options.allowSkip ?? true)) onSkip();
       };
@@ -152,6 +164,10 @@ export class CinematicPlayer {
         finish('error', error);
       }
     });
+  }
+
+  skip(): void {
+    this.active?.skip();
   }
 
   abort(): void {

@@ -237,6 +237,19 @@ describe('journey session', () => {
     session.dispose();
   });
 
+  it('does not release the media surface while agency owns interaction', async () => {
+    const { session } = createSession();
+    await session.presentCinematic('hold', HOLD);
+    const surface = session.frozenSurface;
+    const pending = session.requestAgency({ choices: [{ id: 'route-a', label: 'Route A' }] });
+    session.releaseFreeze();
+    expect(session.state).toBe('AGENCY');
+    expect(session.frozenSurface).toBe(surface);
+    clickChoice('route-a');
+    await pending;
+    session.dispose();
+  });
+
   it('notifies state changes exactly once per transition', async () => {
     const registry = new CinematicRegistry(manifest);
     const player = new CinematicPlayer(registry);

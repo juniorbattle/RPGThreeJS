@@ -1,7 +1,8 @@
 // @vitest-environment happy-dom
 
 import { describe, expect, it, vi } from 'vitest';
-import type { HeldVideoCinematic, VideoCinematicResultReason } from './CinematicTypes';
+import type { HeldVideoCinematic, VideoCinematicResult, VideoCinematicResultReason } from './CinematicTypes';
+import type { NarrativeStage } from './NarrativeStage';
 import { presentCinematicDialogue } from './CinematicDialogueSession';
 
 function heldResult(reason: VideoCinematicResultReason, withSurface = true) {
@@ -112,6 +113,38 @@ describe('cinematic dialogue session', () => {
       openFallbackDialogue: async () => undefined,
     })).rejects.toThrow('dialogue failed');
     expect(release).toHaveBeenCalledTimes(1);
+  });
+
+  it('opens live NarrativeStage dialogue while moving media has one passive owner', async () => {
+    const surface = document.createElement('section');
+    let finishMedia!: (result: VideoCinematicResult) => void;
+    const presentCinematic = vi.fn(() => new Promise<VideoCinematicResult>((resolve) => { finishMedia = resolve; }));
+    const stage = {
+      presentCinematic,
+      get frozenSurface() { return surface; },
+    } as unknown as NarrativeStage;
+    const openLiveDialogue = vi.fn(async () => undefined);
+    const openHeldDialogue = vi.fn(async () => undefined);
+    const openFallbackDialogue = vi.fn(async () => undefined);
+    const preserveBackdrop = vi.fn();
+    const pending = presentCinematicDialogue({
+      player: { playHeld: vi.fn() },
+      stage,
+      cinematicId: 'pilot',
+      playback: { reducedMotion: false },
+      openLiveDialogue,
+      openHeldDialogue,
+      openFallbackDialogue,
+      preserveBackdrop,
+    });
+    await Promise.resolve();
+    expect(openLiveDialogue).toHaveBeenCalledTimes(1);
+    expect(presentCinematic).toHaveBeenCalledWith('pilot', { reducedMotion: false, passive: true });
+    expect(openHeldDialogue).not.toHaveBeenCalled();
+    expect(openFallbackDialogue).not.toHaveBeenCalled();
+    finishMedia({ id: 'pilot', reason: 'ended', played: true });
+    await expect(pending).resolves.toEqual({ presentation: 'held', reason: 'ended' });
+    expect(preserveBackdrop).toHaveBeenCalledWith(surface);
   });
 
   it('opens classic dialogue if the player rejects unexpectedly', async () => {

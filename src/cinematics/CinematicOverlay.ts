@@ -36,11 +36,15 @@ export class CinematicOverlay {
     callbacks: CinematicOverlayCallbacks,
     allowSkip = true,
     private readonly root: HTMLElement = document.body,
+    private readonly passive = false,
   ) {
-    this.element.className = 'cinematic-overlay';
-    this.element.setAttribute('role', 'dialog');
-    this.element.setAttribute('aria-modal', 'true');
-    this.element.setAttribute('aria-label', descriptor.title);
+    this.element.className = `cinematic-overlay${passive ? ' cinematic-overlay--passive' : ''}`;
+    if (passive) this.element.setAttribute('role', 'presentation');
+    else {
+      this.element.setAttribute('role', 'dialog');
+      this.element.setAttribute('aria-modal', 'true');
+      this.element.setAttribute('aria-label', descriptor.title);
+    }
     this.video.className = 'cinematic-overlay__video';
     this.video.autoplay = true;
     this.video.playsInline = true;
@@ -76,7 +80,7 @@ export class CinematicOverlay {
   mount(muted: boolean): void {
     this.setMuted(muted);
     this.root.append(this.element);
-    (this.skipButton.hidden ? this.muteButton : this.skipButton).focus();
+    if (!this.passive) (this.skipButton.hidden ? this.muteButton : this.skipButton).focus();
   }
 
   showFallback(): void {

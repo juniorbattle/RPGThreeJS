@@ -10,6 +10,7 @@
 export type CampaignPresentationMode = 'travel' | 'journey';
 
 export const JOURNEY_SELECTOR_PARAM = 'journey';
+export const PRESENTATION_SELECTOR_PARAM = 'presentation';
 
 export interface CampaignPresentationPolicyInput {
   /** `window.location.search` (with or without the leading `?`). */
@@ -24,15 +25,20 @@ export interface CampaignPresentationPolicyInput {
  */
 export function resolveCampaignPresentation(input: CampaignPresentationPolicyInput): CampaignPresentationMode {
   const selector = readJourneySelector(input.search);
+  const presentation = readPresentationSelector(input.search);
   if (!input.dev) return 'travel';
-  return selector === 'cinematic' ? 'journey' : 'travel';
+  return selector === 'cinematic' || presentation === 'narrative' ? 'journey' : 'travel';
 }
 
 export function readJourneySelector(search: string): string | null {
   return new URLSearchParams(search.startsWith('?') ? search.slice(1) : search).get(JOURNEY_SELECTOR_PARAM);
 }
 
+export function readPresentationSelector(search: string): string | null {
+  return new URLSearchParams(search.startsWith('?') ? search.slice(1) : search).get(PRESENTATION_SELECTOR_PARAM);
+}
+
 /** True when the selector explicitly demands the TravelView fallback. */
 export function isTravelForced(search: string): boolean {
-  return readJourneySelector(search) === 'travel';
+  return readJourneySelector(search) === 'travel' || readPresentationSelector(search) === 'travel';
 }

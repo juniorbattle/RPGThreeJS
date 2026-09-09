@@ -98,6 +98,10 @@ export class JourneyOverlay {
     return this.committed;
   }
 
+  get utilityElement(): HTMLElement {
+    return this.secondaryBar;
+  }
+
   mount(): void {
     this.root.append(this.element);
     this.panel.querySelector<HTMLButtonElement>('button:not([disabled])')?.focus();
@@ -106,6 +110,7 @@ export class JourneyOverlay {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    this.secondaryBar.remove();
     this.element.remove();
     if (this.previousFocus?.isConnected) this.previousFocus.focus();
   }
@@ -180,7 +185,7 @@ export class JourneyOverlay {
     if (this.committed || this.disposed) return;
     this.committed = true;
     this.element.classList.add('journey-overlay--committed');
-    for (const button of this.element.querySelectorAll('button')) button.disabled = true;
+    for (const button of [...this.element.querySelectorAll('button'), ...this.secondaryBar.querySelectorAll('button')]) button.disabled = true;
     this.callbacks.onCommit({ kind, id });
   }
 }

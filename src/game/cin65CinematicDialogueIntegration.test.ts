@@ -24,13 +24,17 @@ describe('CIN-6.5 cinematic dialogue integration', () => {
     });
   });
 
-  it('gives a mapped Journey dialogue one exclusive held cinematic owner', () => {
+  it('gives a mapped NarrativeStage dialogue one live-canvas owner', () => {
     const playDialogue = method('private async playDialogue');
+    const narrativeDialogue = method('private async playNarrativeDialogue');
+    expect(playDialogue).toContain("resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId })");
     expect(playDialogue).toContain("resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId })");
-    expect(playDialogue).toContain('await presentCinematicDialogue({');
-    expect(playDialogue).toContain("mode: 'cinematic-overlay'");
-    expect(playDialogue).toContain('openFallbackDialogue: () => this.playClassicDialogue(sequence, fallbackLabel)');
-    expect(playDialogue.match(/presentCinematicDialogue\(/g)).toHaveLength(1);
+    expect(playDialogue).toContain('await this.playNarrativeDialogue');
+    expect(narrativeDialogue).toContain('await presentCinematicDialogue({');
+    expect(narrativeDialogue).toContain("mode: 'narrative-stage'");
+    expect(narrativeDialogue).toContain('openLiveDialogue: openDialogue');
+    expect(narrativeDialogue).toContain('openFallbackDialogue: openDialogue');
+    expect(narrativeDialogue.match(/presentCinematicDialogue\(/g)).toHaveLength(1);
     expect(method('private async playClassicDialogue')).not.toContain('resolveCin6aJourneyTrigger');
   });
 

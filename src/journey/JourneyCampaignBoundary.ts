@@ -1,8 +1,10 @@
 import type { CinematicPlayer } from '../cinematics/CinematicPlayer';
 import type { CinematicRegistry } from '../cinematics/CinematicRegistry';
 import type { VideoCinematicResultReason } from '../cinematics/CinematicTypes';
-import { JourneySession } from '../cinematics/JourneySession';
-import { copyJourneyBackdrop } from '../cinematics/JourneyBackdrop';
+import type { JourneySession } from '../cinematics/JourneySession';
+import { copyNarrativeBackdrop, releaseNarrativeBackdrop } from '../cinematics/JourneyBackdrop';
+import { NarrativeStage } from '../cinematics/NarrativeStage';
+import { resolveNarrativeBoundaryTableau, type NarrativeTableauSpec } from '../cinematics/NarrativeTableau';
 import type {
   JourneySecondaryActionPresentation,
   JourneySessionState,
@@ -46,25 +48,30 @@ export interface JourneyBoundaryRequest {
   reducedMotion?: boolean;
 }
 
+type JourneyPresentationSession = Pick<
+  JourneySession,
+  'state' | 'stateTrace' | 'frozenSurface' | 'presentCinematic' | 'requestAgency' | 'preloadCandidates' | 'dispose'
+> & { setTableau?: (tableau: NarrativeTableauSpec) => void };
+
 export interface JourneyCampaignBoundaryOptions {
   player: CinematicPlayer;
   registry: CinematicRegistry;
   root?: HTMLElement;
   presentationMap?: JourneyPresentationMap;
   /** Injectable so tests can prove catastrophic Journey failure drops back to TravelView. */
-  createSession?: () => JourneySession;
+  createSession?: () => JourneyPresentationSession;
 }
 
 export class JourneyCampaignBoundary {
   private readonly presentationMap: JourneyPresentationMap;
-  private readonly createSession: () => JourneySession;
-  private session: JourneySession | null = null;
-  private pendingBackdrop: HTMLCanvasElement | null = null;
+  private readonly createSession: () => JourneyPresentationSession;
+  private session: JourneyPresentationSession | null = null;
+  private pendingBackdrop: HTMLElement | null = null;
   private readonly presentedKeys = new Set<string>();
 
   constructor(options: JourneyCampaignBoundaryOptions) {
     this.presentationMap = options.presentationMap ?? JOURNEY_PRESENTATION_MAP;
-    this.createSession = options.createSession ?? (() => new JourneySession({
+    this.createSession = options.createSession ?? (() => new NarrativeStage({
       player: options.player,
       registry: options.registry,
       ...(options.root ? { root: options.root } : {}),
@@ -86,6 +93,8 @@ export class JourneyCampaignBoundary {
     const playId = cinematicId && !this.presentedKeys.has(key) ? cinematicId : undefined;
     const session = this.createSession();
     this.session = session;
+    const tableau = resolveNarrativeBoundaryTableau(key);
+    if (tableau) session.setTableau?.(tableau);
     const fallbackBackdrop = this.pendingBackdrop;
     this.pendingBackdrop = null;
 
@@ -101,6 +110,7 @@ export class JourneyCampaignBoundary {
       ...(request.secondary ? { secondary: request.secondary } : {}),
     });
     const commit = await session.requestAgency(plan.presentation);
+    if (commit.kind === 'secondary' && session.frozenSurface) this.captureBackdrop(session.frozenSurface);
     const trace = [...session.stateTrace];
     this.disposeSession();
 
@@ -124,15 +134,15 @@ export class JourneyCampaignBoundary {
   /** Releases the Journey surface, overlay, listeners and every preloaded candidate. */
   dispose(): void {
     this.disposeSession();
-    this.pendingBackdrop?.remove();
+    releaseNarrativeBackdrop(this.pendingBackdrop);
     this.pendingBackdrop = null;
   }
 
   /** Captures a passive decoder-free copy of the held cinematic for the next boundary. */
   captureBackdrop(surface: HTMLElement): boolean {
-    const snapshot = copyJourneyBackdrop(surface);
+    const snapshot = copyNarrativeBackdrop(surface);
     if (!snapshot) return false;
-    this.pendingBackdrop?.remove();
+    releaseNarrativeBackdrop(this.pendingBackdrop);
     this.pendingBackdrop = snapshot;
     return true;
   }

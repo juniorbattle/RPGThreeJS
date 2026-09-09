@@ -48,6 +48,8 @@ export interface VideoCinematicPlaybackOptions {
   stallTimeoutMs?: number;
   placeholderDurationMs?: number;
   reducedMotion?: boolean;
+  root?: HTMLElement;
+  passive?: boolean;
 }
 
 export interface HeldVideoCinematic {

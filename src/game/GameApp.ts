@@ -23,7 +23,7 @@ import {
 } from './reputationEventDirector';
 import { getRestCost, getWoundedUnitCount, restUnits } from './management';
 import { CombatBridge } from '../combat/CombatBridge';
-import { DialogueView } from '../ui/DialogueView';
+import { DialogueView, resolveDialogueBackdrop } from '../ui/DialogueView';
 import { ManagementView } from '../ui/ManagementView';
 import { TravelView } from '../ui/TravelView';
 import { ExplorationView } from '../ui/ExplorationView';
@@ -52,6 +52,14 @@ import { JourneyCampaignBoundary } from '../journey/JourneyCampaignBoundary';
 import { resolveCampaignPresentation } from '../journey/JourneyPresentationPolicy';
 import { evaluateRouteCommit } from '../journey/RouteCommitGuard';
 import type { JourneySecondaryActionPresentation } from '../cinematics/JourneyTypes';
+import { NarrativeStage } from '../cinematics/NarrativeStage';
+import { createNarrativeDialogueResolver, resolveRepresentedDialogueActors } from '../cinematics/NarrativeDialogueAdapter';
+import {
+  resolveNarrativeCombatTableau,
+  resolveNarrativeDialogueTableau,
+  validateDialogueCast,
+  type NarrativeTableauSpec,
+} from '../cinematics/NarrativeTableau';
 type AppMode = 'TITLE' | 'PROLOGUE' | 'TRAVEL' | 'JOURNEY' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT' | 'QA';
 
 type QaPartyMode = 'campaign' | 'full';
@@ -61,6 +69,12 @@ type QaHpMode = 'normal' | 'restored';
 type QaInventoryMode = 'campaign' | 'qa';
 type QaGraphicsMode = 'normal' | 'reduced';
 type QaDeployMode = 'normal' | 'full';
+
+interface NarrativeDialogueOptions {
+  cinematicId?: string;
+  tableau?: NarrativeTableauSpec;
+  preserveBackdrop?: boolean;
+}
 
 interface QaParams {
   party: QaPartyMode;
@@ -114,6 +128,7 @@ export class GameApp {
     dev: import.meta.env.DEV,
   });
   private journeyBoundary: JourneyCampaignBoundary | null = null;
+  private activeNarrativeStage: NarrativeStage | null = null;
   // Latched after a catastrophic Journey failure so the fallback can never recurse into Journey.
   private journeyUnavailable = false;
   private routeCommitInFlight = false;
@@ -167,6 +182,7 @@ export class GameApp {
 
   dispose(): void {
     this.disposeJourney();
+    this.disposeNarrativeStage();
     this.cinematicPlayer.dispose();
     this.combat.dispose();
     this.travel.close();
@@ -176,6 +192,7 @@ export class GameApp {
 
   private renderTitle(): void {
     this.disposeJourney();
+    this.disposeNarrativeStage();
     this.setMode('TITLE');
     this.travel.close();
     this.exploration.close();
@@ -486,7 +503,20 @@ export class GameApp {
     const id = resolveVideoCinematicTrigger(trigger)
       ?? (this.usesJourneyPresentation() ? resolveCin6aJourneyTrigger(trigger) : undefined);
     if (!id) return undefined;
+    if (this.usesJourneyPresentation()) {
+      const tableau = trigger.hook === 'beforeCombat' ? resolveNarrativeCombatTableau(trigger.combatId) : undefined;
+      return () => this.playNarrativeCinematic(id, tableau);
+    }
     return () => this.cinematicPlayer.play(id, { reducedMotion: this.state.settings.reducedGraphics });
+  }
+
+  private async playNarrativeCinematic(id: string, tableau?: NarrativeTableauSpec): Promise<unknown> {
+    const stage = this.createNarrativeStage(tableau);
+    try {
+      return await stage.presentCinematic(id, { reducedMotion: this.state.settings.reducedGraphics });
+    } finally {
+      this.disposeNarrativeStage(stage);
+    }
   }
 
   private async playJourneyCinematic(id: string | undefined, label = ''): Promise<void> {
@@ -494,7 +524,7 @@ export class GameApp {
     await sceneTransition.run({
       variant: 'fade',
       label,
-      interlude: () => this.cinematicPlayer.play(id, { reducedMotion: this.state.settings.reducedGraphics }),
+      interlude: () => this.playNarrativeCinematic(id),
       task: async () => undefined,
       holdMs: 0,
     });
@@ -587,6 +617,7 @@ export class GameApp {
 
   private showTravel(): void {
     this.disposeJourney();
+    this.disposeNarrativeStage();
     this.setMode('TRAVEL');
     this.canvas.hidden = true;
     this.chrome.replaceChildren();
@@ -598,7 +629,7 @@ export class GameApp {
       variant: 'travel',
       task: async () => {
         this.travel.close();
-        this.setMode('JOURNEY');
+        this.setMode('NARRATIVE');
         this.canvas.hidden = true;
         this.chrome.replaceChildren();
         this.saves.saveAuto(this.state);
@@ -613,7 +644,7 @@ export class GameApp {
    */
   private async runJourneyBoundary(): Promise<void> {
     let rejections = 0;
-    while (this.mode === 'JOURNEY') {
+    while (this.mode === 'NARRATIVE') {
       const current = getRunNode(this.state.run);
       const available = getAvailableRunNodes(this.state);
       let outcome;
@@ -675,6 +706,20 @@ export class GameApp {
     this.journeyBoundary = null;
   }
 
+  private createNarrativeStage(tableau?: NarrativeTableauSpec): NarrativeStage {
+    this.disposeNarrativeStage();
+    const stage = new NarrativeStage({ player: this.cinematicPlayer, registry: this.cinematicRegistry });
+    if (tableau) stage.setTableau(tableau);
+    this.activeNarrativeStage = stage;
+    return stage;
+  }
+
+  private disposeNarrativeStage(stage: NarrativeStage | null = this.activeNarrativeStage): void {
+    if (!stage) return;
+    stage.dispose();
+    if (this.activeNarrativeStage === stage) this.activeNarrativeStage = null;
+  }
+
   /** Returns true when the same Journey boundary should be presented again. */
   private async handleJourneySecondary(actionId: string): Promise<boolean> {
     if (actionId === 'SAVE') {
@@ -684,7 +729,7 @@ export class GameApp {
     if (actionId === 'COMPANY') {
       // Option B: the boundary is deterministically rebuilt from unchanged route state afterwards.
       await this.openManagement('clan', undefined, 'temporary', false);
-      if (this.mode !== 'JOURNEY') this.setMode('JOURNEY');
+      if (this.mode !== 'NARRATIVE') this.setMode('NARRATIVE');
       return true;
     }
     if (actionId === 'MENU') {
@@ -835,27 +880,22 @@ export class GameApp {
     }
   }
 
-  private async playDialogue(dialogueId: string, fallbackLabel?: string): Promise<void> {
+  private async playDialogue(
+    dialogueId: string,
+    fallbackLabel?: string,
+    narrativeOptions: NarrativeDialogueOptions = {},
+  ): Promise<void> {
     const resolved = resolveGameDialogue(dialogueId, this.state);
     if (!resolved) throw new Error(`Missing dialogue '${dialogueId}'.`);
     const { sequence } = resolved;
-    const journeyCinematicId = this.usesJourneyPresentation()
-      ? resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId })
-      : undefined;
 
-    if (journeyCinematicId) {
-      await presentCinematicDialogue({
-        player: this.cinematicPlayer,
-        cinematicId: journeyCinematicId,
-        playback: { reducedMotion: this.state.settings.reducedGraphics },
-        openHeldDialogue: async () => {
-          this.setMode('NARRATIVE');
-          await this.dialogue.play(sequence, { mode: 'cinematic-overlay' });
-        },
-        openFallbackDialogue: () => this.playClassicDialogue(sequence, fallbackLabel),
-        preserveBackdrop: (surface) => {
-          this.ensureJourneyBoundary().captureBackdrop(surface);
-        },
+    if (this.usesJourneyPresentation()) {
+      await this.playNarrativeDialogue(sequence, fallbackLabel, {
+        ...narrativeOptions,
+        cinematicId: narrativeOptions.cinematicId
+          ?? resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId })
+          ?? resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId }),
+        tableau: narrativeOptions.tableau ?? resolveNarrativeDialogueTableau(dialogueId),
       });
     } else {
       await this.playClassicDialogue(
@@ -868,6 +908,61 @@ export class GameApp {
     const chapterBeatId = this.pendingChapterBeatId;
     this.pendingChapterBeatId = null;
     if (chapterBeatId) await this.playStandaloneCinematic({ hook: 'chapterBeat', beatId: chapterBeatId }, sequence.title ?? fallbackLabel ?? '');
+  }
+
+  private async playNarrativeDialogue(
+    sequence: DialogueSequence,
+    fallbackLabel: string | undefined,
+    options: NarrativeDialogueOptions,
+  ): Promise<void> {
+    const stage = this.createNarrativeStage(options.tableau);
+    const stepPresentation = createNarrativeDialogueResolver(sequence, options.tableau);
+    if (options.tableau) {
+      const alignment = validateDialogueCast(
+        options.tableau,
+        sequence,
+        resolveRepresentedDialogueActors(sequence, stepPresentation),
+      );
+      stage.element.dataset.dialogueCastAlignment = alignment.status;
+      if (alignment.status === 'FAIL') {
+        console.error(`[NarrativeStage] Dialogue/cast mismatch in ${options.tableau.id}: ${alignment.unresolved.join(', ')}`);
+        this.disposeNarrativeStage(stage);
+        await this.playClassicDialogue(sequence, fallbackLabel);
+        return;
+      }
+    }
+    const openDialogue = async () => {
+      this.setMode('NARRATIVE');
+      await this.dialogue.play(sequence, {
+        mode: 'narrative-stage',
+        root: stage.dialogueLayer,
+        stepPresentation,
+        onStepChange: (step, presentation) => stage.activateDialogueStep(step.id, presentation.mode, presentation.anchorId),
+        reducedMotion: this.state.settings.reducedGraphics,
+      });
+    };
+    try {
+      if (options.cinematicId) {
+        await presentCinematicDialogue({
+          player: this.cinematicPlayer,
+          stage,
+          cinematicId: options.cinematicId,
+          playback: { reducedMotion: this.state.settings.reducedGraphics },
+          openLiveDialogue: openDialogue,
+          openHeldDialogue: openDialogue,
+          openFallbackDialogue: openDialogue,
+          ...(options.preserveBackdrop === false ? {} : {
+            preserveBackdrop: (surface) => { this.ensureJourneyBoundary().captureBackdrop(surface); },
+          }),
+        });
+      } else {
+        await stage.presentPaintedFallback(sequence.title ?? fallbackLabel ?? sequence.id, resolveDialogueBackdrop(sequence));
+        await openDialogue();
+        if (options.preserveBackdrop !== false && stage.frozenSurface) this.ensureJourneyBoundary().captureBackdrop(stage.frozenSurface);
+      }
+    } finally {
+      this.disposeNarrativeStage(stage);
+    }
   }
 
   private async playClassicDialogue(
@@ -991,10 +1086,20 @@ export class GameApp {
   private async startCombat(combatId: string, node: RunNode): Promise<void> {
     // A dialogue may have prepared a passive Journey snapshot. Combat never owns that backdrop.
     this.disposeJourney();
+    this.disposeNarrativeStage();
     const config = combatConfigs.get(combatId);
     if (!config) throw new Error(`Missing combat '${combatId}'.`);
+    const narrativeTableau = this.usesJourneyPresentation() ? resolveNarrativeCombatTableau(combatId) : undefined;
+    const narrativeCinematicId = this.usesJourneyPresentation()
+      ? resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId })
+        ?? resolveCin6aJourneyTrigger({ hook: 'beforeCombat', combatId })
+      : undefined;
     if (config.preCombatDialogueId) {
-      await this.playDialogue(config.preCombatDialogueId, node.label);
+      await this.playDialogue(config.preCombatDialogueId, node.label, {
+        ...(narrativeCinematicId ? { cinematicId: narrativeCinematicId } : {}),
+        ...(narrativeTableau ? { tableau: narrativeTableau } : {}),
+        preserveBackdrop: false,
+      });
       if (this.pendingCombatId) {
         await this.flushPendingCombat(node);
         return;
@@ -1006,13 +1111,17 @@ export class GameApp {
     const combatStarted = new Promise<ReturnType<CombatBridge['start']>>((resolve) => {
       resolveCombatStart = resolve;
     });
-    const interlude = this.cinematicInterlude({ hook: 'beforeCombat', combatId });
+    const interlude = narrativeCinematicId && config.preCombatDialogueId
+      ? undefined
+      : this.cinematicInterlude({ hook: 'beforeCombat', combatId });
     await sceneTransition.run({
       variant,
       label: config.encounterLabel,
       interlude,
       ...(interlude ? { holdMs: 0 } : {}),
       task: async () => {
+        this.disposeJourney();
+        this.disposeNarrativeStage();
         this.setMode('COMBAT');
         this.travel.close();
         this.chrome.replaceChildren();
@@ -1107,7 +1216,7 @@ export class GameApp {
     shopWallet: 'temporary' | 'permanent' = 'temporary',
     returnToTravel = true,
   ): Promise<void> {
-    if (this.mode !== 'RESULT' && this.mode !== 'TRAVEL' && this.mode !== 'JOURNEY') return;
+    if (this.mode !== 'RESULT' && this.mode !== 'TRAVEL' && this.mode !== 'JOURNEY' && this.mode !== 'NARRATIVE') return;
     this.setMode('MANAGEMENT');
     await this.management.open(tab, shopId, shopWallet);
     this.saves.saveAuto(this.state);

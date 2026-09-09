@@ -188,6 +188,22 @@ describe('cinematic player hold', () => {
     expect(document.querySelector('.cinematic-overlay')).toBeNull();
   });
 
+  it('mounts passive playback in a stage root and exposes presentation-only skip', async () => {
+    const root = document.createElement('div');
+    document.body.append(root);
+    const player = new CinematicPlayer(registry());
+    const pending = player.playHeld('video', { reducedMotion: false, root, passive: true });
+    expect(root.querySelector('.cinematic-overlay--passive')).not.toBeNull();
+    expect(root.querySelector('.cinematic-overlay')?.hasAttribute('aria-modal')).toBe(false);
+    prepareDecodedFrame();
+    player.skip();
+    const held = await pending;
+    expect(held.result.reason).toBe('skipped');
+    expect(held.surface?.parentElement).toBe(root);
+    held.release();
+    expect(root.querySelector('.cinematic-overlay')).toBeNull();
+  });
+
   it('holds a skipped presentation at the same boundary as an ended one', async () => {
     const player = new CinematicPlayer(registry());
     const pending = player.playHeld('video', { reducedMotion: false });

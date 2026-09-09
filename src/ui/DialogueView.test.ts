@@ -2,7 +2,7 @@
 
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { dialogues } from '../game/content';
 import { createInitialState } from '../game/store';
 import type { DialogueSequence, NarrativeEffect } from '../game/types';
@@ -117,6 +117,7 @@ describe('DialogueView narrative boundaries', () => {
     const choice = root.querySelector<HTMLButtonElement>('.dialogue-choice');
     expect(document.activeElement).toBe(choice);
     choice?.click();
+    choice?.click();
     await completion;
 
     expect(applied).toEqual([
@@ -130,5 +131,57 @@ describe('DialogueView narrative boundaries', () => {
       ],
     ]);
     expect(root.querySelector('.dialogue')).toBeNull();
+  });
+
+  it('switches NarrativeStage speaker, subtitle, held, and spatial modes without copying effects', async () => {
+    const root = document.createElement('div');
+    document.body.append(root);
+    const applyEffects = vi.fn(async () => undefined);
+    const onStepChange = vi.fn();
+    const view = new DialogueView({ root, getState: createInitialState, applyEffects });
+    const sequence: DialogueSequence = {
+      id: 'narrative-modes',
+      steps: [
+        { id: 'card', speaker: 'Séraphine', actorId: 'sage_seraphine', tag: 'Sage', text: 'Canonical card.', portrait: '/seraphine.png', expression: 'mystical', side: 'left', next: 'subtitle', effects: [], choices: [] },
+        { id: 'subtitle', speaker: 'Alaric', actorId: 'alaric', tag: 'Lion', text: 'Canonical subtitle.', portrait: '', expression: 'stern', side: 'right', next: 'held', effects: [], choices: [] },
+        { id: 'held', speaker: 'Maelor', actorId: 'maelor', tag: 'Intendant', text: 'Canonical held.', portrait: '', expression: 'neutral', side: 'left', next: 'choice', effects: [], choices: [] },
+        { id: 'choice', speaker: 'Alistair', actorId: 'alistair', tag: 'Décision', text: 'Canonical choice.', portrait: '', expression: 'stern', side: 'left', next: null, effects: [], choices: [{ text: 'Continue', next: null, effects: [{ type: 'setFlag', key: 'once', value: true }] }] },
+      ],
+    };
+    const modes: Record<string, 'SPEAKER_CARD' | 'CINEMATIC_SUBTITLE' | 'HELD_DIALOGUE' | 'SPATIAL_CHOICE'> = {
+      card: 'SPEAKER_CARD',
+      subtitle: 'CINEMATIC_SUBTITLE',
+      held: 'HELD_DIALOGUE',
+      choice: 'SPATIAL_CHOICE',
+    };
+    const completion = view.play(sequence, {
+      mode: 'narrative-stage',
+      reducedMotion: true,
+      stepPresentation: (step) => ({
+        mode: modes[step.id]!,
+        displayText: step.id === 'card' ? 'Condensed card.' : undefined,
+        showPortrait: step.id === 'card',
+      }),
+      onStepChange,
+    });
+    const overlay = root.querySelector<HTMLElement>('.dialogue--narrative');
+    expect(overlay?.classList.contains('dialogue--speaker-card')).toBe(true);
+    expect(overlay?.dataset.dialogueMode).toBe('SPEAKER_CARD');
+    expect(root.querySelector('.dialogue__text')?.textContent).toBe('Condensed card.');
+    expect(root.querySelector<HTMLElement>('.dialogue__portrait--left')?.style.backgroundImage).toContain('/seraphine.png');
+    root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
+    expect(overlay?.classList.contains('dialogue--cinematic-subtitle')).toBe(true);
+    root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
+    expect(overlay?.classList.contains('dialogue--held-dialogue')).toBe(true);
+    root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
+    expect(overlay?.classList.contains('dialogue--spatial-choice')).toBe(true);
+    const choice = root.querySelector<HTMLButtonElement>('.dialogue-choice');
+    choice?.click();
+    choice?.click();
+    await completion;
+    expect(applyEffects).toHaveBeenCalledTimes(1);
+    expect(onStepChange).toHaveBeenCalledTimes(4);
+    expect(sequence.steps[0]!.text).toBe('Canonical card.');
+    expect(document.querySelectorAll('[aria-modal="true"]')).toHaveLength(0);
   });
 });
