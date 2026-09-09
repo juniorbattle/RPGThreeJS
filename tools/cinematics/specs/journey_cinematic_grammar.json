@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "doctrine": "FUNCTIONAL_REUSABLE_JOURNEY_CINEMATICS",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "guaranteedCoreCast": {
+    "advisers": ["sage_seraphine", "maelor"],
+    "heroes": ["alistair", "marian", "elara", "kestrel"],
+    "optionalExcludedByDefault": ["cedric", "lancer"]
+  },
+  "safeZoneSemantics": {
+    "NEXT_STEP_UI_SAFE_ZONE": "A lower-right or lower-third area intentionally clear for one compact continuation unit.",
+    "DIALOGUE_SAFE_ZONE": "A lower band clear of faces, weapons, evidence and required environmental landmarks.",
+    "LEFT_ROUTE_SAFE_ZONE": "A bounded left-side control area aligned with the left visible route.",
+    "RIGHT_ROUTE_SAFE_ZONE": "A bounded right-side control area aligned with the right visible route.",
+    "CENTER_GROUP_SAFE_ZONE": "A protected central subject area that route controls must not cover."
+  },
+  "families": [
+    {
+      "id": "JOURNEY_SINGLE_ROUTE",
+      "authoritativeRouteCount": 1,
+      "castExpectation": "Two to four guaranteed advisers or heroes moving or orienting together; no conditional recruit unless state-guaranteed.",
+      "cameraIntent": ["WIDE_HOLD", "TRACK_SMALL_LEFT", "TRACK_SMALL_RIGHT", "SLOW_PULL"],
+      "motionIntent": ["SHORT_WALK", "STEP_FORWARD", "FORMATION_SHIFT", "ORIENT", "LOOK_FORWARD", "STOP"],
+      "safeZoneExpectations": ["NEXT_STEP_UI_SAFE_ZONE", "CENTER_GROUP_SAFE_ZONE"],
+      "reuseConstraints": "Reuse only inside the same environment family and one-route situation; destination identity must remain credible.",
+      "environmentRequirements": ["one readable path or destination", "foreground depth plane", "independent atmosphere or foliage motion"],
+      "finalFrameSemantics": "The company and one onward direction remain readable beneath a compact continuation unit."
+    },
+    {
+      "id": "JOURNEY_TWO_PATH_FORK",
+      "authoritativeRouteCount": 2,
+      "castExpectation": "Guaranteed company group viewed from rear or three-quarter where useful, stopped together before the fork.",
+      "cameraIntent": ["WIDE_HOLD", "SLOW_PUSH", "STATIC"],
+      "motionIntent": ["SHORT_WALK", "ORIENT", "LOOK", "STOP"],
+      "safeZoneExpectations": ["LEFT_ROUTE_SAFE_ZONE", "RIGHT_ROUTE_SAFE_ZONE", "CENTER_GROUP_SAFE_ZONE"],
+      "reuseConstraints": "Both routes must remain narratively neutral and preserve their authoritative RunNode order; no fake route or selected direction.",
+      "environmentRequirements": ["two visibly divergent paths", "left and right geography", "depth beyond both paths", "unobscured central company"],
+      "finalFrameSemantics": "Left and right route cards align with their paths while the company stays visible at center."
+    },
+    {
+      "id": "JOURNEY_APPROACH",
+      "authoritativeRouteCount": 1,
+      "castExpectation": "Guaranteed company representation plus event actors required by dialogue or destination truth.",
+      "cameraIntent": ["WIDE_HOLD", "SLOW_PUSH", "SUBJECT_FOCUS_LEFT", "SUBJECT_FOCUS_RIGHT"],
+      "motionIntent": ["SHORT_WALK", "ORIENT", "LOOK_FORWARD", "STOP"],
+      "safeZoneExpectations": ["DIALOGUE_SAFE_ZONE", "NEXT_STEP_UI_SAFE_ZONE"],
+      "reuseConstraints": "Reuse only for the same destination family; village, refuge, ruins, shrine and faction sites are not interchangeable.",
+      "environmentRequirements": ["destination visibly ahead", "meaningful company orientation", "preserved landmark family"],
+      "finalFrameSemantics": "The destination and required actors remain readable for dialogue or next-step handoff."
+    },
+    {
+      "id": "JOURNEY_DEPARTURE",
+      "authoritativeRouteCount": 1,
+      "castExpectation": "Small guaranteed company formation; dialogue speakers take priority when a departure dialogue is linked.",
+      "cameraIntent": ["WIDE_HOLD", "TRACK_SMALL_RIGHT", "TRACK_SMALL_LEFT", "SLOW_PULL"],
+      "motionIntent": ["FORMATION_SHIFT", "ORIENT", "STEP_FORWARD", "SHORT_WALK", "STOP"],
+      "safeZoneExpectations": ["NEXT_STEP_UI_SAFE_ZONE", "CENTER_GROUP_SAFE_ZONE"],
+      "reuseConstraints": "The place being left and the onward environment family must both remain credible.",
+      "environmentRequirements": ["place receding or left behind", "one future direction", "independent world motion and parallax"],
+      "finalFrameSemantics": "Departure is legible without a long walk cycle; one next direction is ready for continuation."
+    },
+    {
+      "id": "JOURNEY_THREAT",
+      "authoritativeRouteCount": 1,
+      "castExpectation": "Guaranteed company members notice or prepare for an unresolved threat; creature identity stays neutral for reuse families.",
+      "cameraIntent": ["WIDE_HOLD", "SUBJECT_FOCUS_LEFT", "SUBJECT_FOCUS_RIGHT", "CLOSE_FOCUS"],
+      "motionIntent": ["LOOK", "REACT_SMALL", "READY_STANCE", "STOP"],
+      "safeZoneExpectations": ["CENTER_GROUP_SAFE_ZONE"],
+      "reuseConstraints": "Reuse only when the clip does not pre-resolve combat composition, enemy identity or outcome.",
+      "environmentRequirements": ["readable environmental pressure", "company reaction", "no combat outcome"],
+      "finalFrameSemantics": "The company has noticed danger and is ready to cut to authoritative CombatStage."
+    }
+  ]
+}

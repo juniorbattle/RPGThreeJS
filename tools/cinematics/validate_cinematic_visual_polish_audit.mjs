@@ -6,11 +6,12 @@ import { probeMedia } from './cin4_media.mjs';
 
 export const VISUAL_POLISH_AUDIT_PATH = 'tools/cinematics/specs/cinematic_visual_polish_audit.json';
 export const VISUAL_POLISH_CRITERIA = Object.freeze([
-  'CASTING', 'PLAYER_REPRESENTATION', 'IDENTITY', 'FACING', 'SCALE', 'RELATIVE_HEIGHT',
-  'CAMERA_DISTANCE', 'STAGING', 'GROUNDING', 'LOCOMOTION', 'SLIDING', 'ENVIRONMENT_MOTION',
-  'PARALLAX', 'WORLD_INTEGRATION', 'CROSS_VIDEO_CONTINUITY', 'SAFE_ZONE', 'FINAL_FRAME', 'GAME_TRUTH',
+  'NARRATIVE_CLARITY', 'DIALOGUE_CAST_ALIGNMENT', 'PLAYER_GROUP_PRESENCE', 'TRAVEL_GRAMMAR',
+  'INTEGRATED_SCENE', 'NO_COLLAGE_LOOK', 'CAMERA_DISTANCE', 'CHARACTER_SCALE', 'GROUNDING',
+  'LOCOMOTION', 'ENVIRONMENT_MOTION', 'PARALLAX', 'WORLD_INTEGRATION', 'SAFE_ZONE',
+  'FINAL_FRAME', 'CROSS_VIDEO_CONTINUITY',
 ]);
-const CLASSIFICATIONS = new Set(['KEEP', 'POLISH_RUNTIME', 'REMASTER_MEDIA']);
+const CLASSIFICATIONS = new Set(['KEEP', 'RUNTIME_POLISH', 'REMASTER', 'REPLACE_WITH_FAMILY']);
 const SEVERITIES = new Set(['LOW', 'MEDIUM', 'HIGH']);
 const SCORES = new Set(['PASS', 'WARN', 'FAIL', 'NOT_APPLICABLE']);
 
@@ -22,7 +23,7 @@ export async function validateCinematicVisualPolishAudit(input, options = {}) {
   const projectRoot = resolve(options.projectRoot ?? process.cwd());
   const errors = [];
   if (!input || typeof input !== 'object' || Array.isArray(input)) return { valid: false, errors: ['Audit must be an object.'], entryCount: 0 };
-  if (input.schemaVersion !== 1) errors.push('schemaVersion must be 1.');
+  if (input.schemaVersion !== 2) errors.push('schemaVersion must be 2.');
   if (JSON.stringify(input.criteriaOrder) !== JSON.stringify(VISUAL_POLISH_CRITERIA)) errors.push('criteriaOrder must match the CIN-6.6 review contract.');
   if (!Array.isArray(input.entries)) errors.push('entries must be an array.');
 
@@ -30,7 +31,7 @@ export async function validateCinematicVisualPolishAudit(input, options = {}) {
   const production = manifest.cinematics.filter((entry) => entry.sources?.[0]?.src?.endsWith('.mp4'));
   const expectedIds = production.map((entry) => entry.id);
   const ids = new Set();
-  const counts = { KEEP: 0, POLISH_RUNTIME: 0, REMASTER_MEDIA: 0 };
+  const counts = { KEEP: 0, RUNTIME_POLISH: 0, REMASTER: 0, REPLACE_WITH_FAMILY: 0 };
   let blockerCount = 0;
   for (const [index, entry] of (input.entries ?? []).entries()) {
     const label = `entries[${index}]`;
@@ -48,7 +49,9 @@ export async function validateCinematicVisualPolishAudit(input, options = {}) {
     if (typeof entry?.cin6cBlocker !== 'boolean') errors.push(`${label}.cin6cBlocker must be boolean.`);
     else if (entry.cin6cBlocker) blockerCount += 1;
     if (entry?.classification === 'KEEP' && ((entry.issues?.length ?? 0) !== 0 || entry.criteriaScores?.includes('FAIL'))) errors.push(`${label} KEEP entries cannot contain media failure findings.`);
-    if (entry?.classification === 'REMASTER_MEDIA' && (!(entry.issues?.length > 0) || !entry.criteriaScores?.includes('FAIL'))) errors.push(`${label} REMASTER_MEDIA entries require an exact issue and failed criterion.`);
+    if (['REMASTER', 'REPLACE_WITH_FAMILY'].includes(entry?.classification) && (!(entry.issues?.length > 0) || !entry.criteriaScores?.includes('FAIL'))) {
+      errors.push(`${label} ${entry.classification} entries require an exact issue and failed criterion.`);
+    }
 
     const manifestEntry = production.find((candidate) => candidate.id === entry?.runtimeId);
     if (manifestEntry) {
@@ -63,8 +66,9 @@ export async function validateCinematicVisualPolishAudit(input, options = {}) {
   const expectedSummary = {
     totalProductionMasters: production.length,
     keep: counts.KEEP,
-    polishRuntime: counts.POLISH_RUNTIME,
-    remasterMedia: counts.REMASTER_MEDIA,
+    runtimePolish: counts.RUNTIME_POLISH,
+    remaster: counts.REMASTER,
+    replaceWithFamily: counts.REPLACE_WITH_FAMILY,
     cin6cBlockers: blockerCount,
   };
   if (JSON.stringify(input.summary) !== JSON.stringify(expectedSummary)) errors.push('summary does not match the audited entries.');
@@ -83,6 +87,6 @@ if (invokedPath === fileURLToPath(import.meta.url)) {
     for (const error of result.errors) console.error(`ERROR: ${error}`);
     process.exitCode = 1;
   } else {
-    console.log(`PASS: ${result.entryCount} production masters audited (${result.summary.keep} KEEP, ${result.summary.polishRuntime} POLISH_RUNTIME, ${result.summary.remasterMedia} REMASTER_MEDIA; ${result.summary.cin6cBlockers} CIN-6C blockers).`);
+    console.log(`PASS: ${result.entryCount} production masters audited (${result.summary.keep} KEEP, ${result.summary.runtimePolish} RUNTIME_POLISH, ${result.summary.remaster} REMASTER, ${result.summary.replaceWithFamily} REPLACE_WITH_FAMILY; ${result.summary.cin6cBlockers} CIN-6C blockers).`);
   }
 }

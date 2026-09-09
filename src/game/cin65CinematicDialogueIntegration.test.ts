@@ -47,23 +47,27 @@ describe('CIN-6.5 cinematic dialogue integration', () => {
     expect(SESSION).toContain('held.release()');
   });
 
-  it('keeps 21 manifest IDs while carrying the two reviewed CIN-6.6 remasters', () => {
+  it('keeps 21 manifest IDs while carrying the three authorized CIN-6.6 finalization pilots', () => {
     const manifest = JSON.parse(readFileSync(resolve(process.cwd(), 'public/assets/cinematics/manifest.json'), 'utf8'));
     const ids = manifest.cinematics.map((entry: { id: string }) => entry.id);
     expect(ids).toHaveLength(21);
     expect(new Set(ids).size).toBe(21);
     expect(manifest.cinematics.find((entry: { id: string }) => entry.id === 'camp_departure')?.durationMs).toBe(12_000);
     expect(manifest.cinematics.find((entry: { id: string }) => entry.id === 'alaric_audience_arrival')?.durationMs).toBe(12_000);
+    expect(manifest.cinematics.find((entry: { id: string }) => entry.id === 'valmir_route_fork')?.durationMs).toBe(10_000);
     const campMedia = readFileSync(resolve(process.cwd(), 'public/assets/cinematics/camp_departure.mp4'));
-    expect(createHash('sha256').update(campMedia).digest('hex')).toBe('fedff433adaa69d15f10b40bd5ae8be0a52fd3f3eeabf35db6a035e25f1af279');
+    expect(createHash('sha256').update(campMedia).digest('hex')).toBe('a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3');
     const audienceMedia = readFileSync(resolve(process.cwd(), 'public/assets/cinematics/alaric_audience_arrival.mp4'));
-    expect(createHash('sha256').update(audienceMedia).digest('hex')).toBe('958d5e9a8f6b52a9defb1d3ebfd39af49c71cf84a90c50753b829adf5db82715');
+    expect(createHash('sha256').update(audienceMedia).digest('hex')).toBe('b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629');
+    const valmirMedia = readFileSync(resolve(process.cwd(), 'public/assets/cinematics/valmir_route_fork.mp4'));
+    expect(createHash('sha256').update(valmirMedia).digest('hex')).toBe('63a4a0c3793d6e29ce8fd94b1478dfab59e40f856d53a01915e47fb9a6343261');
 
     const spec = JSON.parse(readFileSync(resolve(process.cwd(), 'tools/cinematics/specs/cin6a/camp_departure.json'), 'utf8'));
-    expect(spec.promptVersion).toBe('cin66-camp-v1');
+    expect(spec.promptVersion).toBe('cin66-final-camp-v3');
     expect(spec.shots.map((shot: { durationSeconds: number }) => shot.durationSeconds)).toEqual([6, 6]);
     expect(spec.shots.flatMap((shot: { characters: Array<{ heightPx?: number }> }) => shot.characters).every((character: { heightPx?: number }) => character.heightPx === undefined)).toBe(true);
-    expect(spec.shots[1].characters[0].action).toBe('STEP_FORWARD');
-    expect(spec.shots[1].camera.mode).toBe('PAN_SMALL_RIGHT');
+    expect(spec.shots.every((shot: { source: { integration?: { method?: string } } }) => shot.source.integration?.method === 'OPENAI_BUILT_IN_IMAGE_GEN_EDIT')).toBe(true);
+    expect(spec.shots[1].characters[0].action).toBe('SHIFT_STANCE');
+    expect(spec.shots[1].camera.mode).toBe('TRACK_SMALL_RIGHT');
   });
 });

@@ -54,6 +54,18 @@ describe('journey overlay', () => {
     overlay.dispose();
   });
 
+  it('maps exactly two authoritative choices to left and right presentation geography', () => {
+    const { overlay } = createOverlay({
+      mode: 'branch',
+      choices: [{ id: 'shrine', label: 'Vieux sanctuaire' }, { id: 'road', label: 'Barrage renforcé' }],
+    });
+    expect(document.querySelector('[data-journey-choice="shrine"]')?.classList).toContain('journey-overlay__choice--route-left');
+    expect(document.querySelector('[data-journey-choice="road"]')?.classList).toContain('journey-overlay__choice--route-right');
+    expect(document.querySelector('[data-route-geography="LEFT"] [data-journey-choice="shrine"]')).not.toBeNull();
+    expect(document.querySelector('[data-route-geography="RIGHT"] [data-journey-choice="road"]')).not.toBeNull();
+    overlay.dispose();
+  });
+
   it('renders compact hierarchy metadata in mode-scoped markup', () => {
     const { overlay } = createOverlay({
       mode: 'single', eyebrow: 'Prochaine étape', title: 'Audience d’Alaric',

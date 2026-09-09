@@ -10,12 +10,18 @@ describe('CIN-6.6 pilot casting, scale and safe-zone specs', () => {
   it('makes the guaranteed company and Lion factions readable in the Audience', async () => {
     const spec = await load('alaric_audience_arrival');
     expect((await validateShotSpec(spec, { projectRoot: root })).valid).toBe(true);
-    expect(spec.cast.sceneType).toBe('FORMAL_AUDIENCE');
-    expect(spec.cast.playerFaction.representatives).toEqual(['alistair', 'marian']);
-    expect(spec.cast.externalFaction.representatives).toEqual(['alaric', 'lion_champion']);
+    expect(spec.cast.sceneType).toBe('HIGH_STAKES_DIPLOMACY');
+    expect(spec.cast.playerFaction.representatives).toEqual(['sage_seraphine', 'maelor']);
+    expect(spec.cast.supportingPlayerCast).toEqual(['alistair']);
+    expect(spec.cast.externalFaction.representatives).toEqual(['alaric']);
+    expect(spec.cast.justifiedOffscreenActors).toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: 'lion_champion' }),
+    ]));
     expect(spec.cast.optionalCharactersExcluded).toEqual(['cedric', 'lancer']);
-    expect(spec.shots.flatMap((shot) => shot.characters).some((character) => character.factionRole === 'PLAYER_REPRESENTATIVE' && character.requiredForNarrativeRead)).toBe(true);
-    expect(spec.shots.at(-1).dialogueSafeZone).toEqual({ x: 0.07, y: 0.69, width: 0.86, height: 0.27 });
+    expect(new Set(spec.shots.at(-1).characters.filter((character) => character.requiredForNarrativeRead).map((character) => character.id))).toEqual(
+      new Set(['sage_seraphine', 'maelor', 'alistair', 'alaric']),
+    );
+    expect(spec.shots.at(-1).dialogueSafeZone).toEqual({ x: 0.08, y: 0.74, width: 0.84, height: 0.22 });
   });
 
   it('uses structured scale profiles instead of hand-authored pilot pixel heights', async () => {
@@ -35,24 +41,30 @@ describe('CIN-6.6 pilot casting, scale and safe-zone specs', () => {
     const final = spec.shots.at(-1);
     expect(final.characters.find((character) => character.id === 'alistair').action).toBe('STEP_FORWARD');
     expect(final.characters.some((character) => character.action === 'WALK_SLOW')).toBe(false);
-    expect(final.promptIntent).toContain('root motion under four percent');
-    expect(final.agencySafeZone).toEqual({ x: 0.07, y: 0.69, width: 0.86, height: 0.27 });
+    expect(final.promptIntent).toContain('under four percent of frame width');
+    expect(final.nextStepUiSafeZone).toEqual({ x: 0.73, y: 0.73, width: 0.24, height: 0.23 });
   });
 
-  it('rejects formal-audience omission and invalid safe zones', async () => {
+  it('rejects high-stakes adviser omission and invalid safe zones', async () => {
     const spec = await load('alaric_audience_arrival');
     spec.cast.playerFaction.representatives = [];
     spec.shots[2].dialogueSafeZone.x = 0.9;
     expect((await validateShotSpec(spec, { projectRoot: root })).errors).toEqual(expect.arrayContaining([
-      'FORMAL_AUDIENCE requires a player representative or a documented waiver.',
+      'HIGH_STAKES_DIPLOMACY requires a player representative or a documented waiver.',
+      'HIGH_STAKES_DIPLOMACY requires exactly two player advisers.',
       'shots[2].dialogueSafeZone must remain inside the frame horizontally.',
     ]));
   });
 
-  it('bounds optional mastering overscan to a small non-semantic correction', async () => {
+  it('requires integrated source-generation contracts on every V3 shot', async () => {
     const spec = await load('alaric_audience_arrival');
-    expect(spec.shots[1].mastering.overscanPercent).toBe(4);
-    spec.shots[1].mastering.overscanPercent = 6;
-    expect((await validateShotSpec(spec, { projectRoot: root })).errors).toContain('shots[1].mastering.overscanPercent must be from 0 to 5.');
+    for (const shot of spec.shots) {
+      expect(shot.source.integration.method).toBe('OPENAI_BUILT_IN_IMAGE_GEN_EDIT');
+      expect(shot.source.integration.qualityGates).toEqual(expect.arrayContaining(['NO_COLLAGE_LOOK', 'WORLD_INTEGRATION']));
+    }
+    delete spec.shots[1].source.integration;
+    expect((await validateShotSpec(spec, { projectRoot: root })).errors).toContain(
+      'shots[1].source.integration must declare OPENAI_BUILT_IN_IMAGE_GEN_EDIT.',
+    );
   });
 });

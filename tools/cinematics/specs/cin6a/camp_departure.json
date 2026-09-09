@@ -1,55 +1,79 @@
 {
   "schemaVersion": 1,
-  "sequenceId": "cin66_camp_departure",
+  "sequenceId": "cin66f_camp_departure",
   "cinematicId": "camp_departure",
   "tier": "JOURNEY",
+  "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
+  "journeyGrammar": "JOURNEY_DEPARTURE",
   "canonicalFacing": "SCREEN_RIGHT",
-  "promptVersion": "cin66-camp-v1",
+  "promptVersion": "cin66-final-camp-v3",
   "resolution": "2K",
   "frame": { "width": 1920, "height": 1080 },
-  "artDirection": "Premium painted HD-2D fantasy tactical RPG departure at the canonical Lion field camp. Alistair and Seraphine are grounded inside a living dawn environment with subtle depth, cloth movement, firelight, dust and foreground parallax. This is the first forward campaign beat after the chronicle, not a replay of the prologue.",
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG departure from the Lion field camp at dawn. Reinterpret the canonical camp reference as a living unified space: three guaranteed company representatives share the same sunrise, ground plane, dust, contact shadows, fabric motion and atmospheric depth. The image must read as our company leaving together, never as isolated cut-outs over a wallpaper.",
   "cast": {
     "sceneType": "JOURNEY_DEPARTURE",
-    "playerFaction": { "id": "OUR_COMPANY", "representatives": ["alistair"] },
-    "externalFaction": { "id": "LION_ALLY", "representatives": ["sage_seraphine"] },
+    "dialogueId": "camp_departure",
+    "requiredSpeakers": ["maelor", "alistair", "marian"],
+    "playerFaction": { "id": "OUR_COMPANY", "representatives": ["maelor"] },
+    "supportingPlayerCast": ["alistair", "marian"],
+    "externalFaction": { "id": "NONE", "representatives": [] },
     "optionalCharactersExcluded": ["cedric", "lancer"],
-    "truthBasis": "Alistair is a guaranteed core hero; Seraphine is the authored camp adviser in the existing cinematic plan."
+    "truthBasis": "camp_departure is spoken by Maelor, Alistair and Marian. Maelor is a persistent adviser; Alistair and Marian are guaranteed core heroes."
   },
   "shots": [
     {
       "shotId": "shot_01",
-      "purpose": "Establish the company at the camp-road threshold preparing to depart.",
-      "framing": "WIDE_LIVING_CAMP",
+      "purpose": "Establish the camp being left behind and the three-person company formation orienting toward one readable road.",
+      "framing": "WIDE_GROUP_DEPARTURE_ORIENTATION",
       "environment": "public/assets/generated/lion-phase/dialogue/camp_departure.webp",
-      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin66_camp_departure/shot_01/source.png" },
+      "source": {
+        "type": "ROOT_SOURCE",
+        "output": "tmp/cinematics/cin4/cin66f_camp_departure/shot_01/source.png",
+        "integration": {
+          "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+          "layoutReference": "tmp/cinematics/cin4/cin66f_camp_departure/shot_01/layout_reference.png",
+          "referenceAssets": ["public/assets/characters/pixel/full/marian.png", "public/assets/characters/pixel/full/maelor.png", "public/assets/characters/pixel/full/alistair.png"],
+          "qualityGates": ["NO_COLLAGE_LOOK", "GROUND_CONTACT", "CONTACT_SHADOW", "FORMATION_COHERENCE", "WORLD_INTEGRATION"]
+        }
+      },
+      "nextStepUiSafeZone": { "x": 0.73, "y": 0.73, "width": 0.24, "height": 0.23 },
       "characters": [
-        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.31, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.88 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 20, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "PLAYER_REPRESENTATIVE", "requiredForNarrativeRead": true, "action": "READY_STANCE", "mirrorPolicy": "ALLOW" },
-        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.68, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.85 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 10, "role": "SECONDARY", "screenRole": "SECONDARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.23, "groundY": 0.94 }, "scale": { "framing": "WIDE", "perspective": 0.76 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "HERO", "requiredForNarrativeRead": true, "action": "ORIENT", "mirrorPolicy": "ALLOW" },
+        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.36, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.80 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 20, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "ORIENT", "mirrorPolicy": "ALLOW" },
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.50, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.85 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 10, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "HERO", "requiredForNarrativeRead": true, "action": "READY_STANCE", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "WIDE_HOLD" },
-      "mastering": { "overscanPercent": 4 },
       "durationSeconds": 6,
       "continuityOut": "DELIBERATE_CUT",
-      "endIntent": "DEPARTURE_INTENT_ESTABLISHED",
-      "promptIntent": "Alistair settles his weight toward the road while Seraphine gives a small acknowledgement. Keep both feet anchored and scale constant. Make the world breathe through restrained banner and tent-cloth movement, distant smoke, warm fire flicker, drifting dust, and a slow foreground-layer parallax; never move the whole painted background as one flat sheet."
+      "endIntent": "COMPANY_ORIENTED_TO_SINGLE_ROUTE",
+      "promptIntent": "The three companions form one coherent travelling group and orient toward the single road. Use small posture adjustments only. Preserve constant scale and foot contact. Make the camp breathe through independent flags, tent cloth, smoke, embers, dust, mist and shallow foreground parallax; never slide the whole background."
     },
     {
       "shotId": "shot_02",
-      "purpose": "Show a short grounded first step, then stop ready for the next Journey boundary.",
-      "framing": "WIDE_GROUNDED_DEPARTURE_STEP",
+      "purpose": "Show one short collective departure beat, then a grounded stop with the single route still readable.",
+      "framing": "WIDE_SHORT_WALK_FORMATION",
       "environment": "public/assets/generated/lion-phase/dialogue/camp_departure.webp",
-      "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin66_camp_departure/shot_02/source.png" },
-      "agencySafeZone": { "x": 0.07, "y": 0.69, "width": 0.86, "height": 0.27 },
+      "source": {
+        "type": "CUT_SOURCE",
+        "output": "tmp/cinematics/cin4/cin66f_camp_departure/shot_02/source.png",
+        "integration": {
+          "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+          "layoutReference": "tmp/cinematics/cin4/cin66f_camp_departure/shot_02/layout_reference.png",
+          "referenceAssets": ["public/assets/characters/pixel/full/marian.png", "public/assets/characters/pixel/full/maelor.png", "public/assets/characters/pixel/full/alistair.png"],
+          "qualityGates": ["NO_COLLAGE_LOOK", "FOOT_CONTACT", "ROOT_MOTION_MATCH", "FORMATION_COHERENCE", "NEXT_STEP_UI_SAFE_ZONE", "WORLD_INTEGRATION"]
+        }
+      },
+      "nextStepUiSafeZone": { "x": 0.73, "y": 0.73, "width": 0.24, "height": 0.23 },
       "characters": [
-        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.33, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.88 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 20, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "PLAYER_REPRESENTATIVE", "requiredForNarrativeRead": true, "action": "STEP_FORWARD", "mirrorPolicy": "ALLOW" },
-        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.68, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.85 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alistair", "depth": 10, "role": "SECONDARY", "screenRole": "SECONDARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" }
+        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.25, "groundY": 0.94 }, "scale": { "framing": "WIDE", "perspective": 0.76 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "HERO", "requiredForNarrativeRead": true, "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" },
+        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.38, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.80 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 20, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "STEP_FORWARD", "mirrorPolicy": "ALLOW" },
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.52, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.85 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:departure_road", "depth": 10, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "HERO", "requiredForNarrativeRead": true, "action": "STEP_FORWARD", "mirrorPolicy": "ALLOW" }
       ],
-      "camera": { "mode": "PAN_SMALL_RIGHT" },
-      "mastering": { "overscanPercent": 4 },
+      "camera": { "mode": "TRACK_SMALL_RIGHT" },
       "durationSeconds": 6,
       "continuityOut": "END",
-      "endIntent": "AGENCY_READY_GROUNDED_STOP",
-      "promptIntent": "Alistair performs one short believable planted step toward screen-right, with clear weight transfer, foot lift, heel-to-ground contact, matching root motion under four percent of frame width, then stops. Do not produce a long walk or sliding glide. Seraphine only shifts her stance and remains at the same depth. Lock apparent character scale and camera distance. Use independent subtle banner, tent cloth, smoke, dust, firelight, and foreground parallax motion so the camp feels alive rather than a moving wallpaper. End stable with important faces above the lower agency-safe zone."
+      "endIntent": "SINGLE_ROUTE_AGENCY_READY",
+      "promptIntent": "The group takes only one short plausible step together, under four percent of frame width, then settles. Feet lift and replant with matching root motion; no skating, long walk cycle, approach toward camera or scale inflation. Keep formation spacing coherent and the road ahead readable. End with characters clear of the lower-right next-step UI safe zone."
     }
   ]
 }

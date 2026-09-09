@@ -29,6 +29,7 @@ const DEFAULT_TITLE = 'La route se poursuit';
 export class JourneyOverlay {
   readonly element = document.createElement('section');
   private readonly panel = document.createElement('div');
+  private readonly header = document.createElement('header');
   private readonly choiceList = document.createElement('ul');
   private readonly secondaryBar = document.createElement('div');
   private readonly previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -48,34 +49,38 @@ export class JourneyOverlay {
     this.element.setAttribute('aria-modal', 'true');
     this.element.setAttribute('aria-label', presentation.title ?? DEFAULT_TITLE);
     this.panel.className = 'journey-overlay__panel';
+    this.header.className = 'journey-overlay__header';
 
     if (presentation.eyebrow) {
       const eyebrow = document.createElement('p');
       eyebrow.className = 'journey-overlay__eyebrow';
       eyebrow.textContent = presentation.eyebrow;
-      this.panel.append(eyebrow);
+      this.header.append(eyebrow);
     }
 
     const title = document.createElement('h2');
     title.className = 'journey-overlay__title';
     title.textContent = presentation.title ?? DEFAULT_TITLE;
-    this.panel.append(title);
+    this.header.append(title);
     if (presentation.caption) {
       const caption = document.createElement('p');
       caption.className = 'journey-overlay__caption';
       caption.textContent = presentation.caption;
-      this.panel.append(caption);
+      this.header.append(caption);
     }
     if (presentation.context) {
       const context = document.createElement('p');
       context.className = 'journey-overlay__context';
       context.textContent = presentation.context;
-      this.panel.append(context);
+      this.header.append(context);
     }
+    this.panel.append(this.header);
 
     this.choiceList.className = 'journey-overlay__choices';
     if (presentation.choices.length) {
-      for (const choice of presentation.choices) this.choiceList.append(this.buildChoice(choice));
+      for (const [index, choice] of presentation.choices.entries()) {
+        this.choiceList.append(this.buildChoice(choice, index, presentation.choices.length));
+      }
     } else {
       this.choiceList.append(this.buildContinue(presentation.continueLabel ?? DEFAULT_CONTINUE_LABEL));
     }
@@ -105,11 +110,16 @@ export class JourneyOverlay {
     if (this.previousFocus?.isConnected) this.previousFocus.focus();
   }
 
-  private buildChoice(choice: JourneyChoicePresentation): HTMLLIElement {
+  private buildChoice(choice: JourneyChoicePresentation, index: number, choiceCount: number): HTMLLIElement {
     const item = document.createElement('li');
+    if (choiceCount === 2) {
+      const geography = index === 0 ? 'left' : 'right';
+      item.className = `journey-overlay__route journey-overlay__route--${geography}`;
+      item.dataset.routeGeography = geography.toUpperCase();
+    }
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'journey-overlay__choice';
+    button.className = `journey-overlay__choice${choiceCount === 2 ? ` journey-overlay__choice--route-${index === 0 ? 'left' : 'right'}` : ''}`;
     button.dataset.journeyChoice = choice.id;
     button.disabled = choice.disabled === true;
 

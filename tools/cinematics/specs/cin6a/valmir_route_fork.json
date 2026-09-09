@@ -1,43 +1,86 @@
 {
   "schemaVersion": 1,
-  "sequenceId": "cin6a_valmir_route_fork",
+  "sequenceId": "cin66f_valmir_route_fork",
   "cinematicId": "valmir_route_fork",
   "tier": "JOURNEY",
+  "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
+  "journeyGrammar": "JOURNEY_TWO_PATH_FORK",
   "canonicalFacing": "SCREEN_RIGHT",
-  "promptVersion": "cin6a-v1",
+  "promptVersion": "cin66-final-valmir-fork-v3",
   "resolution": "2K",
   "frame": { "width": 1920, "height": 1080 },
-  "artDirection": "Premium painted HD-2D fantasy tactical RPG road-choice context in the canonical forest fork after combat. Reveal two plausible onward directions without choosing, labeling, or privileging either route.",
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG route fork after the authoritative Valmir road combat. Reinterpret the canonical forest reference into a deep, coherent junction with two unmistakable neutral routes: the left path bends toward old shrine stones and the right path toward a distant fortified road, without labels, enemies or outcome clues. The guaranteed company shares one ground plane, forest light, mist and contact shadows.",
+  "cast": {
+    "sceneType": "JOURNEY_TWO_PATH_FORK",
+    "sourceNodeId": "lion-valmir-road",
+    "authoritativeRoutes": [
+      { "nodeId": "lion-second-trial-event", "geography": "LEFT", "label": "Vieux sanctuaire" },
+      { "nodeId": "lion-second-trial-combat", "geography": "RIGHT", "label": "Barrage renforcé" }
+    ],
+    "playerFaction": { "id": "OUR_COMPANY", "representatives": ["sage_seraphine", "maelor"] },
+    "supportingPlayerCast": ["alistair"],
+    "externalFaction": { "id": "NONE", "representatives": [] },
+    "optionalCharactersExcluded": ["cedric", "lancer"],
+    "truthBasis": "The real RunNode lion-valmir-road has exactly two authoritative successors. Both advisers and Alistair are guaranteed before this boundary; no optional recruit is required."
+  },
   "shots": [
     {
       "shotId": "shot_01",
-      "purpose": "Reveal the cleared road opening onto the shrine-road and guarded-road alternatives.",
-      "framing": "WIDE_VALMIR_FORK",
+      "purpose": "Approach behind and beside the guaranteed company as the road visibly divides into two directions.",
+      "framing": "REAR_THREE_QUARTER_COMPANY_APPROACH_FORK",
       "environment": "public/assets/generated/lion-phase/dialogue/forest_fork.webp",
-      "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_valmir_route_fork/shot_01/source.png" },
+      "source": {
+        "type": "ROOT_SOURCE",
+        "output": "tmp/cinematics/cin4/cin66f_valmir_route_fork/shot_01/source.png",
+        "integration": {
+          "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+          "layoutReference": "tmp/cinematics/cin4/cin66f_valmir_route_fork/shot_01/layout_reference.png",
+          "referenceAssets": ["public/assets/characters/pixel/full/sage_seraphine.png", "public/assets/characters/pixel/full/maelor.png", "public/assets/characters/pixel/full/alistair.png"],
+          "qualityGates": ["NO_COLLAGE_LOOK", "TWO_PATH_GEOGRAPHY", "GROUND_CONTACT", "DEPTH_INTEGRATION", "WORLD_INTEGRATION"]
+        }
+      },
+      "leftRouteSafeZone": { "x": 0.03, "y": 0.66, "width": 0.29, "height": 0.28 },
+      "rightRouteSafeZone": { "x": 0.68, "y": 0.66, "width": 0.29, "height": 0.28 },
+      "centerGroupSafeZone": { "x": 0.37, "y": 0.54, "width": 0.26, "height": 0.42 },
       "characters": [
-        { "id": "kestrel", "asset": "public/assets/characters/pixel/full/kestrel.png", "position": { "x": 0.39, "groundY": 0.97 }, "heightPx": 620, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:forked_road", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.40, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.68 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:left_route", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.50, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.75 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:fork_center", "depth": 20, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "HERO", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" },
+        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.60, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.70 }, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:right_route", "depth": 10, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
       ],
-      "camera": { "mode": "PAN_SMALL_RIGHT" },
+      "camera": { "mode": "WIDE_HOLD" },
       "durationSeconds": 5,
-      "continuityOut": "LAST_FRAME",
-      "endIntent": "BOTH_ROADS_READABLE",
-      "promptIntent": "Kestrel advances a few careful steps screen-right after the resolved road fight and stops where both branches can be read. Preserve bow, hands, identity, and screen-right facing. Keep both routes neutral; add no enemies, signs, labels, markers, shrine conclusion, or selection."
+      "continuityOut": "DELIBERATE_CUT",
+      "endIntent": "COMPANY_REACHES_READABLE_FORK",
+      "promptIntent": "Hold the exact source poses, positions, screen facing, visible faces, relative scale and formation throughout. The characters do not walk, turn around, reface, swap sides or move toward either path; only subtle breathing and cloth settling are allowed. Alistair keeps the greatsword visibly in both hands, Maelor keeps the open grimoire and dagger visible, and Seraphine keeps her censer staff visible for the entire shot. Do not hide, drop, transform or remove equipment. Let layered forest depth, independent foliage, mist, water reflections and distant torchlight carry the motion while both routes remain equally readable. Neither route is chosen, marked or privileged."
     },
     {
       "shotId": "shot_02",
-      "purpose": "Continue the reviewed fork view and settle into a clean frame for the real route overlay.",
-      "framing": "STABLE_VALMIR_ROUTE_FREEZE",
+      "purpose": "Hold the company at the center-bottom while both authoritative route directions remain open for geographically aligned UI.",
+      "framing": "SYMMETRIC_TWO_PATH_AGENCY_HOLD",
       "environment": "public/assets/generated/lion-phase/dialogue/forest_fork.webp",
-      "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_01", "path": "tmp/cinematics/cin4/cin6a_valmir_route_fork/shot_01/last_frame.png" },
+      "source": {
+        "type": "CUT_SOURCE",
+        "output": "tmp/cinematics/cin4/cin66f_valmir_route_fork/shot_02/source.png",
+        "integration": {
+          "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+          "layoutReference": "tmp/cinematics/cin4/cin66f_valmir_route_fork/shot_02/layout_reference.png",
+          "referenceAssets": ["public/assets/characters/pixel/full/sage_seraphine.png", "public/assets/characters/pixel/full/maelor.png", "public/assets/characters/pixel/full/alistair.png"],
+          "qualityGates": ["NO_COLLAGE_LOOK", "LEFT_ROUTE_SAFE_ZONE", "RIGHT_ROUTE_SAFE_ZONE", "CENTER_GROUP_SAFE_ZONE", "FINAL_FRAME", "WORLD_INTEGRATION"]
+        }
+      },
+      "leftRouteSafeZone": { "x": 0.03, "y": 0.66, "width": 0.29, "height": 0.28 },
+      "rightRouteSafeZone": { "x": 0.68, "y": 0.66, "width": 0.29, "height": 0.28 },
+      "centerGroupSafeZone": { "x": 0.37, "y": 0.54, "width": 0.26, "height": 0.42 },
       "characters": [
-        { "id": "kestrel", "asset": "public/assets/characters/pixel/full/kestrel.png", "position": { "x": 0.39, "groundY": 0.97 }, "heightPx": 620, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:forked_road", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.40, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.68 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:left_route", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "LOOK", "mirrorPolicy": "ALLOW" },
+        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.50, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.75 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:fork_center", "depth": 20, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "HERO", "requiredForNarrativeRead": true, "action": "STOP", "mirrorPolicy": "ALLOW" },
+        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.60, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.70 }, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:right_route", "depth": 10, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "LOOK", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "STATIC" },
       "durationSeconds": 5,
       "continuityOut": "END",
-      "endIntent": "REAL_ROUTE_OVERLAY_READY",
-      "promptIntent": "Continue from the reviewed chained frame using only breathing, leaves, mist, and distant atmospheric motion. Lock the camera and preserve the exact framing and subject scale: no push-in, pull-back, pan, zoom, crop, or reframing. Keep Kestrel and bow stable and screen-right-facing. End sharp with both road branches readable; never add UI, arrows, text, route markers, a chosen direction, or a new combat threat."
+      "endIntent": "AUTHORITATIVE_TWO_ROUTE_UI_READY",
+      "promptIntent": "The company remains stopped and centered low in frame. Seraphine attends left and Maelor right while Alistair anchors the middle. Only breathing, cloth, leaves, mist and distant light move. Lock camera and route geography. End sharp with left and right paths readable above their matching UI-safe zones and the company unobscured at center. No labels, arrows, text, enemies or selected route."
     }
   ]
 }

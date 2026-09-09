@@ -14,17 +14,22 @@ describe('CIN-6.6 production visual polish audit', () => {
     expect(input.entries.every((entry) => entry.criteriaScores.length === VISUAL_POLISH_CRITERIA.length)).toBe(true);
   });
 
-  it('keeps the two authorized remasters promoted and starts no P1 production', () => {
+  it('keeps exactly the three authorized V3 pilots promoted and starts no P1 production', () => {
     expect(input.entries.find((entry) => entry.runtimeId === 'camp_departure')?.classification).toBe('KEEP');
     expect(input.entries.find((entry) => entry.runtimeId === 'alaric_audience_arrival')?.classification).toBe('KEEP');
+    expect(input.entries.find((entry) => entry.runtimeId === 'valmir_route_fork')?.classification).toBe('KEEP');
+    expect(input.entries.filter((entry) => entry.classification === 'KEEP').map((entry) => entry.runtimeId)).toEqual([
+      'camp_departure', 'alaric_audience_arrival', 'valmir_route_fork',
+    ]);
     expect(input.entries.map((entry) => entry.runtimeId)).not.toContain('bois_clair_road_tension');
     expect(input.summary.totalProductionMasters).toBe(20);
   });
 
-  it('requires exact media defects for the future remaster queue', () => {
-    const remasters = input.entries.filter((entry) => entry.classification === 'REMASTER_MEDIA');
-    expect(remasters.map((entry) => entry.runtimeId)).toEqual(['lion_judgement', 'forest_journey_tension', 'lion_trial_route_ending']);
-    expect(remasters.every((entry) => entry.issues.length > 0 && entry.criteriaScores.includes('FAIL'))).toBe(true);
+  it('requires exact media defects for the future remaster and family queues', () => {
+    const queued = input.entries.filter((entry) => ['REMASTER', 'REPLACE_WITH_FAMILY'].includes(entry.classification));
+    expect(queued).toHaveLength(17);
+    expect(queued.every((entry) => entry.issues.length > 0 && entry.criteriaScores.includes('FAIL'))).toBe(true);
+    expect(input.summary).toMatchObject({ keep: 3, runtimePolish: 0, remaster: 12, replaceWithFamily: 5 });
     expect(input.summary.cin6cBlockers).toBe(0);
   });
 

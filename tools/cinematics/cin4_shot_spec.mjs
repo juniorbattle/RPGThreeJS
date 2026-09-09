@@ -31,6 +31,8 @@ export const ACTION_RISK = Object.freeze({
   IDLE_BREATH: 'SAFE',
   OBSERVE: 'SAFE',
   LOOK: 'SAFE',
+  ORIENT: 'SAFE',
+  FORMATION_SHIFT: 'SAFE',
   SMALL_HEAD_TURN: 'SAFE',
   SHIFT_STANCE: 'SAFE',
   REACT_SMALL: 'SAFE',
@@ -110,8 +112,11 @@ export async function validateShotSpec(input, options = {}) {
       const externalRepresentatives = input.cast.externalFaction?.representatives;
       if (!Array.isArray(playerRepresentatives)) errors.push('cast.playerFaction.representatives must be an array.');
       if (!Array.isArray(externalRepresentatives)) errors.push('cast.externalFaction.representatives must be an array.');
-      if (input.cast.sceneType === 'FORMAL_AUDIENCE' && !playerRepresentatives?.length && !input.cast.playerRepresentationWaiver?.reason) {
-        errors.push('FORMAL_AUDIENCE requires a player representative or a documented waiver.');
+      if (['FORMAL_AUDIENCE', 'HIGH_STAKES_DIPLOMACY'].includes(input.cast.sceneType) && !playerRepresentatives?.length && !input.cast.playerRepresentationWaiver?.reason) {
+        errors.push(`${input.cast.sceneType} requires a player representative or a documented waiver.`);
+      }
+      if (input.cast.sceneType === 'HIGH_STAKES_DIPLOMACY' && playerRepresentatives?.length !== 2) {
+        errors.push('HIGH_STAKES_DIPLOMACY requires exactly two player advisers.');
       }
       for (const id of playerRepresentatives ?? []) {
         if (OPTIONAL_EARLY_RECRUITS.has(id)) errors.push(`Optional early recruit '${id}' cannot be a required player representative.`);
@@ -157,6 +162,22 @@ export async function validateShotSpec(input, options = {}) {
     if (typeof shot.environment !== 'string' || !shot.environment) errors.push(`${prefix}.environment is required.`);
     if (shot.dialogueSafeZone !== undefined) validateSafeZone(shot.dialogueSafeZone, `${prefix}.dialogueSafeZone`, errors);
     if (shot.agencySafeZone !== undefined) validateSafeZone(shot.agencySafeZone, `${prefix}.agencySafeZone`, errors);
+    if (shot.nextStepUiSafeZone !== undefined) validateSafeZone(shot.nextStepUiSafeZone, `${prefix}.nextStepUiSafeZone`, errors);
+    if (shot.leftRouteSafeZone !== undefined) validateSafeZone(shot.leftRouteSafeZone, `${prefix}.leftRouteSafeZone`, errors);
+    if (shot.rightRouteSafeZone !== undefined) validateSafeZone(shot.rightRouteSafeZone, `${prefix}.rightRouteSafeZone`, errors);
+    if (shot.centerGroupSafeZone !== undefined) validateSafeZone(shot.centerGroupSafeZone, `${prefix}.centerGroupSafeZone`, errors);
+    if (input.productionDoctrine === 'INTEGRATED_KEYFRAME_V3') {
+      const integration = shot.source?.integration;
+      if (!isRecord(integration) || integration.method !== 'OPENAI_BUILT_IN_IMAGE_GEN_EDIT') {
+        errors.push(`${prefix}.source.integration must declare OPENAI_BUILT_IN_IMAGE_GEN_EDIT.`);
+      } else {
+        if (typeof integration.layoutReference !== 'string' || !integration.layoutReference) errors.push(`${prefix}.source.integration.layoutReference is required.`);
+        if (!Array.isArray(integration.referenceAssets) || integration.referenceAssets.length === 0) errors.push(`${prefix}.source.integration.referenceAssets must be non-empty.`);
+        if (!Array.isArray(integration.qualityGates) || !integration.qualityGates.includes('NO_COLLAGE_LOOK') || !integration.qualityGates.includes('WORLD_INTEGRATION')) {
+          errors.push(`${prefix}.source.integration.qualityGates must include NO_COLLAGE_LOOK and WORLD_INTEGRATION.`);
+        }
+      }
+    }
     if (!Array.isArray(shot.characters) || shot.characters.length === 0) {
       errors.push(`${prefix}.characters must be non-empty.`);
       continue;
