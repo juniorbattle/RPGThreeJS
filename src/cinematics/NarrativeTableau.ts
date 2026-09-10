@@ -34,8 +34,11 @@ export const NARRATIVE_LAYOUT_PROFILES = Object.freeze([
 export type NarrativeLayoutProfile = typeof NARRATIVE_LAYOUT_PROFILES[number];
 export const NARRATIVE_LAYOUT_PLACEMENTS = Object.freeze([
   'LEFT',
+  'LEFT_UPPER',
   'CENTER_LOWER',
+  'CENTER_UPPER',
   'RIGHT',
+  'RIGHT_UPPER',
   'TOP_CENTER',
   'BOTTOM_CENTER',
   'SPATIAL',
@@ -44,14 +47,19 @@ export const NARRATIVE_LAYOUT_PLACEMENTS = Object.freeze([
 export type NarrativeLayoutPlacement = typeof NARRATIVE_LAYOUT_PLACEMENTS[number];
 export const NARRATIVE_SPEAKER_ASSOCIATIONS = Object.freeze([
   'SPEAKER_LEFT_LOWER',
+  'SPEAKER_LEFT_UPPER',
   'SPEAKER_CENTER_LOWER',
+  'SPEAKER_CENTER_UPPER',
   'SPEAKER_RIGHT_LOWER',
+  'SPEAKER_RIGHT_UPPER',
   'SPECIAL_TOP_CENTER',
   'SPECIAL_BOTTOM_BAND',
   'ROUTE_SPATIAL',
   'SINGLE_ROUTE_EDGE',
 ] as const);
 export type NarrativeSpeakerAssociation = typeof NARRATIVE_SPEAKER_ASSOCIATIONS[number];
+export type NarrativeDialogueSurfaceMode = 'STATIC_TABLEAU' | 'VIDEO_CUTSCENE';
+export type NarrativeChoiceScreenLane = 'LEFT' | 'RIGHT';
 
 export interface NarrativeLayoutProfileRule {
   maxCharactersPerSegment: number;
@@ -175,6 +183,20 @@ export interface NarrativeTableauSpec {
   mediaRemasterNeeded?: boolean;
 }
 
+export function resolveNarrativeChoiceScreenLanes(
+  tableau: NarrativeTableauSpec,
+  choiceCount: number,
+): readonly NarrativeChoiceScreenLane[] | undefined {
+  if (choiceCount < 1) return undefined;
+  const lanes = Array.from<NarrativeChoiceScreenLane | undefined>({ length: choiceCount });
+  for (const anchor of tableau.anchors) {
+    if (anchor.routeIndex === undefined || anchor.routeIndex < 0 || anchor.routeIndex >= choiceCount) continue;
+    if (anchor.placement === 'LEFT' || anchor.placement === 'LOWER_LEFT') lanes[anchor.routeIndex] = 'LEFT';
+    if (anchor.placement === 'RIGHT' || anchor.placement === 'LOWER_RIGHT') lanes[anchor.routeIndex] = 'RIGHT';
+  }
+  return lanes.every((lane): lane is NarrativeChoiceScreenLane => Boolean(lane)) ? lanes : undefined;
+}
+
 export interface DialogueCastAlignment {
   status: 'PASS' | 'PASS_WITH_JUSTIFIED_OFFSCREEN' | 'FAIL';
   requiredSpeakers: readonly string[];
@@ -261,12 +283,31 @@ export function resolveNarrativeStepPlacement(
   return step?.side === 'left' ? 'LEFT' : 'RIGHT';
 }
 
+/** Static tableaux use the same authored horizontal lane as video, lifted above the enlarged cast. */
+export function resolveStaticNarrativeStepPlacement(
+  profile: NarrativeLayoutProfile,
+  step?: DialogueSequence['steps'][number],
+  stagedSpeaker?: NarrativeStagedActorSpec,
+): NarrativeLayoutPlacement {
+  const speakerAlignedProfile = profile === 'DIALOGUE_BOTTOM_BAND_RESERVED' || profile === 'INTRO_CAST_PRESENTATION';
+  const placement = speakerAlignedProfile && stagedSpeaker
+    ? resolveNarrativeStepPlacement('DIALOGUE_SIDE_COMPACT', step, stagedSpeaker)
+    : resolveNarrativeStepPlacement(profile, step, stagedSpeaker);
+  if (placement === 'LEFT') return 'LEFT_UPPER';
+  if (placement === 'CENTER_LOWER') return 'CENTER_UPPER';
+  if (placement === 'RIGHT') return 'RIGHT_UPPER';
+  return placement;
+}
+
 export function resolveNarrativeSpeakerAssociation(
   placement: NarrativeLayoutPlacement,
 ): NarrativeSpeakerAssociation {
   if (placement === 'LEFT') return 'SPEAKER_LEFT_LOWER';
+  if (placement === 'LEFT_UPPER') return 'SPEAKER_LEFT_UPPER';
   if (placement === 'CENTER_LOWER') return 'SPEAKER_CENTER_LOWER';
+  if (placement === 'CENTER_UPPER') return 'SPEAKER_CENTER_UPPER';
   if (placement === 'RIGHT') return 'SPEAKER_RIGHT_LOWER';
+  if (placement === 'RIGHT_UPPER') return 'SPEAKER_RIGHT_UPPER';
   if (placement === 'TOP_CENTER') return 'SPECIAL_TOP_CENTER';
   if (placement === 'BOTTOM_CENTER') return 'SPECIAL_BOTTOM_BAND';
   if (placement === 'LOWER_RIGHT') return 'SINGLE_ROUTE_EDGE';
@@ -275,7 +316,10 @@ export function resolveNarrativeSpeakerAssociation(
 
 function safeZoneForPlacement(placement: NarrativeLayoutPlacement): NarrativeSafeRegionSpec {
   if (placement === 'LEFT') return SAFE_LEFT;
+  if (placement === 'LEFT_UPPER') return { x: 0.04, y: 0.08, width: 0.34, height: 0.34 };
   if (placement === 'CENTER_LOWER') return SAFE_CENTER_LOWER;
+  if (placement === 'CENTER_UPPER') return { x: 0.33, y: 0.08, width: 0.34, height: 0.34 };
+  if (placement === 'RIGHT_UPPER') return { x: 0.62, y: 0.08, width: 0.34, height: 0.34 };
   if (placement === 'TOP_CENTER') return { x: 0.31, y: 0.08, width: 0.38, height: 0.28 };
   if (placement === 'BOTTOM_CENTER') return { x: 0.28, y: 0.72, width: 0.44, height: 0.23 };
   if (placement === 'SPATIAL') return { x: 0.04, y: 0.68, width: 0.92, height: 0.27 };
@@ -475,8 +519,8 @@ export const ALARIC_AUDIENCE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   anchors: [
     { id: 'clan-side', placement: 'LOWER_LEFT', safeRegion: { x: 0.08, y: 0.70, width: 0.38, height: 0.25 } },
     { id: 'lion-side', placement: 'LOWER_RIGHT', safeRegion: { x: 0.54, y: 0.70, width: 0.38, height: 0.25 } },
-    { id: 'audience-choice-left', placement: 'LOWER_LEFT', routeIndex: 0 },
-    { id: 'audience-choice-right', placement: 'LOWER_RIGHT', routeIndex: 1 },
+    { id: 'audience-choice-left', placement: 'LOWER_LEFT', routeIndex: 1 },
+    { id: 'audience-choice-right', placement: 'LOWER_RIGHT', routeIndex: 0 },
   ],
   beats: [
     { id: 'audience-arrival', kind: 'VISUAL', mediaPhase: 'INTRO_MEDIA', skippable: true },
@@ -494,7 +538,7 @@ export const ALARIC_AUDIENCE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
       id: 'AUDIENCE_AUTHORITY',
       stepIds: ['1', '1a'],
       layoutProfile: 'DIALOGUE_SPEAKER_FOCUS', layoutPlacement: 'RIGHT',
-      staticCast: stageActors(['alistair', 'sage_seraphine', 'maelor', 'alaric'], 'alaric'),
+      staticCast: stageActors(['sage_seraphine', 'maelor', 'alistair', 'alaric'], 'alaric'),
       mediaSubjects: ['alaric'],
       actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_RIGHT, choiceSafeZones: [], criticalVisualRegions: [SAFE_CENTER_WORLD],
       negativeSpaceIntent: 'Alaric holds the authority axis while the delegation remains readable opposite a compact right card.',
@@ -504,7 +548,7 @@ export const ALARIC_AUDIENCE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
       id: 'AUDIENCE_COMPANY_RESPONSE',
       stepIds: ['1b'],
       layoutProfile: 'DIALOGUE_SPEAKER_FOCUS', layoutPlacement: 'LEFT',
-      staticCast: stageActors(['alistair', 'sage_seraphine', 'maelor', 'alaric'], 'alistair'),
+      staticCast: stageActors(['sage_seraphine', 'maelor', 'alistair', 'alaric'], 'alistair'),
       mediaSubjects: ['alistair'],
       actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_LEFT, choiceSafeZones: [], criticalVisualRegions: [SAFE_CENTER_WORLD],
       negativeSpaceIntent: 'The company response reads on the left without displacing Alaric from the authority axis.',
@@ -514,7 +558,7 @@ export const ALARIC_AUDIENCE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
       id: 'AUDIENCE_ADVISERS',
       stepIds: ['2'],
       layoutProfile: 'ADVISER_EXCHANGE', layoutPlacement: 'LEFT',
-      staticCast: stageActors(['alistair', 'sage_seraphine', 'maelor', 'alaric'], 'sage_seraphine'),
+      staticCast: stageActors(['sage_seraphine', 'maelor', 'alistair', 'alaric'], 'sage_seraphine'),
       mediaSubjects: ['sage_seraphine', 'maelor'],
       actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_LEFT, choiceSafeZones: [], criticalVisualRegions: [SAFE_CENTER_WORLD],
       negativeSpaceIntent: 'Both advisers remain legible while Seraphine receives focus above her compact lower-left card.',
@@ -524,17 +568,17 @@ export const ALARIC_AUDIENCE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
       id: 'AUDIENCE_AGENCY',
       stepIds: ['3'],
       layoutProfile: 'CHOICE_TWO_PATH_SPATIAL', layoutPlacement: 'RIGHT',
-      staticCast: stageActors(['alistair', 'sage_seraphine', 'maelor', 'alaric'], 'maelor'),
+      staticCast: stageActors(['sage_seraphine', 'maelor', 'alistair', 'alaric'], 'maelor'),
       mediaSubjects: ['alistair', 'sage_seraphine', 'maelor', 'alaric'],
       actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_RIGHT, choiceSafeZones: [SAFE_LOW_LEFT, SAFE_LOW_RIGHT], criticalVisualRegions: [SAFE_CENTER_WORLD],
-      negativeSpaceIntent: 'Maelor owns the lower-right setup card; after setup, the two canonical options occupy the unchanged lower edge lanes.',
-      cameraIntent: 'Wide choice hold; no invented adviser ownership is implied by option placement.',
+      negativeSpaceIntent: 'Maelor owns the clan-side setup card; the mission follows Alaric on the right while the cautious advance request remains with Maelor on the left.',
+      cameraIntent: 'Wide choice hold with semantic option placement and unchanged canonical choice truth.',
     },
     {
       id: 'AUDIENCE_RESPONSE',
       stepIds: ['4', '5'],
       layoutProfile: 'DIALOGUE_SPEAKER_FOCUS', layoutPlacement: 'RIGHT',
-      staticCast: stageActors(['alistair', 'sage_seraphine', 'maelor', 'alaric'], 'alaric'),
+      staticCast: stageActors(['sage_seraphine', 'maelor', 'alistair', 'alaric'], 'alaric'),
       mediaSubjects: ['alaric'],
       actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_RIGHT, choiceSafeZones: [], criticalVisualRegions: [SAFE_CENTER_WORLD],
       negativeSpaceIntent: 'Alaric closes the audience from the same authority axis and card lane used by the mandate.',

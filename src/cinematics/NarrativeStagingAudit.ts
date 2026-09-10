@@ -37,10 +37,15 @@ export interface NarrativeDialogueStagingEntry {
     videoCastOwnership: DialogueStagingDecision['castOwnership'];
     layoutProfile: DialogueStagingDecision['layoutProfile'];
     layoutPlacement: DialogueStagingDecision['layoutPlacement'];
+    videoLayoutPlacement: DialogueStagingDecision['layoutPlacement'];
     speakerScreenPosition: DialogueStagingDecision['speakerScreenPosition'];
     speakerAssociation: DialogueStagingDecision['speakerAssociation'];
+    videoSpeakerAssociation: DialogueStagingDecision['speakerAssociation'];
     speakerPhysicalScale: number;
+    dialogueSurfaceMode: DialogueStagingDecision['dialogueSurfaceMode'];
+    videoDialogueSurfaceMode: DialogueStagingDecision['dialogueSurfaceMode'];
     dialogueSpeakerAssociationResolved: boolean;
+    videoDialogueSpeakerAssociationResolved: boolean;
     staticScaleOutlier: boolean;
     unresolvedMediaSpeakerConflict: boolean;
     speakerCardPolicy: DialogueStagingDecision['speakerCardPolicy'];
@@ -64,7 +69,7 @@ export interface NarrativeDialogueStagingEntry {
 }
 
 export interface NarrativeStagingAudit {
-  schemaVersion: 2;
+  schemaVersion: 3;
   source: 'CANONICAL_DIALOGUE_SEQUENCE_DATA';
   entries: readonly NarrativeDialogueStagingEntry[];
   summary: {
@@ -90,6 +95,8 @@ export interface NarrativeStagingAudit {
     unresolvedMediaSpeakerConflicts: number;
     unresolvedStaticScaleOutliers: number;
     unresolvedDialogueSpeakerAssociations: number;
+    staticUpperPlacementViolations: number;
+    videoPlacementRegressions: number;
   };
 }
 
@@ -134,10 +141,15 @@ function entryFor(sequence: DialogueSequence, tableau: NarrativeTableauSpec, con
       videoCastOwnership: videoDecision.castOwnership,
       layoutProfile: decision.layoutProfile,
       layoutPlacement: decision.layoutPlacement,
+      videoLayoutPlacement: videoDecision.layoutPlacement,
       speakerScreenPosition: decision.speakerScreenPosition,
       speakerAssociation: decision.speakerAssociation,
+      videoSpeakerAssociation: videoDecision.speakerAssociation,
       speakerPhysicalScale: decision.speakerPhysicalScale,
+      dialogueSurfaceMode: decision.dialogueSurfaceMode,
+      videoDialogueSurfaceMode: videoDecision.dialogueSurfaceMode,
       dialogueSpeakerAssociationResolved: Boolean(decision.speakerScreenPosition && decision.speakerAssociation),
+      videoDialogueSpeakerAssociationResolved: Boolean(videoDecision.speakerScreenPosition && videoDecision.speakerAssociation),
       staticScaleOutlier: decision.speakerPhysicalScale < 0.85 || decision.speakerPhysicalScale > 1.15,
       unresolvedMediaSpeakerConflict: videoDecision.presentationStrategy === 'OFFSCREEN_CONTEXTUAL' && !videoDecision.offscreenReason,
       speakerCardPolicy: decision.speakerCardPolicy,
@@ -190,7 +202,7 @@ export function createNarrativeStagingAudit(): NarrativeStagingAudit {
   }
   const totalDialogueSteps = [...dialogues.values()].reduce((total, sequence) => total + sequence.steps.length, 0);
   return {
-    schemaVersion: 2,
+    schemaVersion: 3,
     source: 'CANONICAL_DIALOGUE_SEQUENCE_DATA',
     entries,
     summary: {
@@ -222,6 +234,8 @@ export function createNarrativeStagingAudit(): NarrativeStagingAudit {
       unresolvedMediaSpeakerConflicts: entries.reduce((total, entry) => total + entry.steps.filter((step) => step.unresolvedMediaSpeakerConflict).length, 0),
       unresolvedStaticScaleOutliers: entries.reduce((total, entry) => total + entry.steps.filter((step) => step.staticScaleOutlier).length, 0),
       unresolvedDialogueSpeakerAssociations: entries.reduce((total, entry) => total + entry.steps.filter((step) => !step.dialogueSpeakerAssociationResolved).length, 0),
+      staticUpperPlacementViolations: entries.reduce((total, entry) => total + entry.steps.filter((step) => !['LEFT_UPPER', 'CENTER_UPPER', 'RIGHT_UPPER', 'TOP_CENTER'].includes(step.layoutPlacement)).length, 0),
+      videoPlacementRegressions: entries.reduce((total, entry) => total + entry.steps.filter((step) => step.videoDialogueSurfaceMode === 'VIDEO_CUTSCENE' && ['LEFT_UPPER', 'CENTER_UPPER', 'RIGHT_UPPER'].includes(step.videoLayoutPlacement)).length, 0),
     },
   };
 }
@@ -243,6 +257,15 @@ export function validateNarrativeStagingAudit(audit: NarrativeStagingAudit): str
       if (!step.layoutPlacement) errors.push(`${entry.dialogueId}:${step.stepId}: undefined placement`);
       if (!step.speakerScreenPosition || !step.speakerAssociation || !step.dialogueSpeakerAssociationResolved) {
         errors.push(`${entry.dialogueId}:${step.stepId}: unresolved dialogue/speaker association`);
+      }
+      if (!step.videoSpeakerAssociation || !step.videoDialogueSpeakerAssociationResolved) {
+        errors.push(`${entry.dialogueId}:${step.stepId}: unresolved video dialogue/speaker association`);
+      }
+      if (step.dialogueSurfaceMode !== 'STATIC_TABLEAU' || !['LEFT_UPPER', 'CENTER_UPPER', 'RIGHT_UPPER', 'TOP_CENTER'].includes(step.layoutPlacement)) {
+        errors.push(`${entry.dialogueId}:${step.stepId}: static dialogue is not in the upper tableau grammar`);
+      }
+      if (step.videoDialogueSurfaceMode === 'VIDEO_CUTSCENE' && ['LEFT_UPPER', 'CENTER_UPPER', 'RIGHT_UPPER'].includes(step.videoLayoutPlacement)) {
+        errors.push(`${entry.dialogueId}:${step.stepId}: video dialogue moved into the static upper grammar`);
       }
       if (step.staticScaleOutlier) errors.push(`${entry.dialogueId}:${step.stepId}: unresolved static scale outlier`);
       if (step.unresolvedMediaSpeakerConflict) errors.push(`${entry.dialogueId}:${step.stepId}: unresolved media/speaker conflict`);

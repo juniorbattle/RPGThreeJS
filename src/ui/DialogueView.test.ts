@@ -250,8 +250,12 @@ describe('DialogueView narrative boundaries', () => {
         mode: 'SPATIAL_CHOICE',
         showPortrait: false,
         layoutProfile: 'CHOICE_TWO_PATH_SPATIAL',
-        layoutPlacement: 'SPATIAL',
+        layoutPlacement: 'LEFT_UPPER',
+        speakerScreenPosition: 'LEFT',
+        speakerAssociation: 'SPEAKER_LEFT_UPPER',
+        dialogueSurfaceMode: 'STATIC_TABLEAU',
         speakerCardPolicy: 'SETUP_THEN_CHOICES_ONLY',
+        choiceScreenLanes: ['RIGHT', 'LEFT'],
       }),
     });
     const text = root.querySelector<HTMLElement>('.dialogue__text')!;
@@ -261,9 +265,16 @@ describe('DialogueView narrative boundaries', () => {
     expect(text.querySelector('.dialogue__text-reveal')?.textContent?.length).toBeGreaterThan(0);
     root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
     const overlay = root.querySelector<HTMLElement>('.dialogue--narrative')!;
+    expect(overlay.dataset.narrativeSceneMode).toBe('STATIC_TABLEAU');
+    expect(overlay.dataset.narrativePlacement).toBe('LEFT_UPPER');
     expect(overlay.dataset.narrativeAgencyState).toBe('ACTIVE');
     expect(root.querySelector<HTMLButtonElement>('.dialogue__box')?.hidden).toBe(true);
     expect(root.querySelectorAll('.dialogue-choice')).toHaveLength(2);
+    const [firstChoice, secondChoice] = [...root.querySelectorAll<HTMLButtonElement>('.dialogue-choice')];
+    expect(firstChoice?.textContent).toContain('Première voie');
+    expect(firstChoice?.dataset.narrativeChoiceLane).toBe('RIGHT');
+    expect(secondChoice?.textContent).toContain('Seconde voie');
+    expect(secondChoice?.dataset.narrativeChoiceLane).toBe('LEFT');
     view.close();
     vi.useRealTimers();
   });

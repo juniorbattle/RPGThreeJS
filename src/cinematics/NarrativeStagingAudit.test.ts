@@ -34,6 +34,8 @@ describe('Narrative dialogue staging audit', () => {
     expect(audit.summary.unresolvedMediaSpeakerConflicts).toBe(0);
     expect(audit.summary.unresolvedStaticScaleOutliers).toBe(0);
     expect(audit.summary.unresolvedDialogueSpeakerAssociations).toBe(0);
+    expect(audit.summary.staticUpperPlacementViolations).toBe(0);
+    expect(audit.summary.videoPlacementRegressions).toBe(0);
   });
 
   it('keeps composition phases stable while cards may move and owns each canonical step exactly once', () => {
@@ -43,7 +45,8 @@ describe('Narrative dialogue staging audit', () => {
       expect(entry.steps.every((step) => step.effectOwnerCount === 1)).toBe(true);
       expect(entry.steps.every((step) => step.maxCharactersPerSegment === 0 || step.maxDisplaySegmentCharacters <= step.maxCharactersPerSegment)).toBe(true);
       expect(entry.steps.filter((step) => step.choiceCount > 0).every((step) => step.speakerCardPolicy === 'SETUP_THEN_CHOICES_ONLY')).toBe(true);
-      expect(entry.steps.every((step) => step.dialogueSpeakerAssociationResolved && !step.staticScaleOutlier)).toBe(true);
+      expect(entry.steps.every((step) => step.dialogueSpeakerAssociationResolved && step.videoDialogueSpeakerAssociationResolved && !step.staticScaleOutlier)).toBe(true);
+      expect(entry.steps.every((step) => step.dialogueSurfaceMode === 'STATIC_TABLEAU')).toBe(true);
       expect(entry.visualPhases.length).toBeLessThanOrEqual(entry.steps.length);
     }
   });

@@ -6,7 +6,7 @@ import type { VideoCinematicMediaEvent, VideoCinematicPlaybackOptions, VideoCine
 import type { DialogueSequence } from '../game/types';
 import { JourneySession } from './JourneySession';
 import type { JourneyAgencyPresentation, JourneyCommit, JourneySessionState } from './JourneyTypes';
-import { isNarrativeBeatInteractive, type NarrativeDialogueMode, type NarrativeLayoutPlacement, type NarrativeMediaPhase, type NarrativeTableauSpec, type NarrativeTransitionKind } from './NarrativeTableau';
+import { isNarrativeBeatInteractive, type NarrativeDialogueMode, type NarrativeDialogueSurfaceMode, type NarrativeLayoutPlacement, type NarrativeMediaPhase, type NarrativeTableauSpec, type NarrativeTransitionKind } from './NarrativeTableau';
 import { NarrativeUtilityDock } from './NarrativeUtilityDock';
 import { NarrativeSceneSurface } from './NarrativeSceneSurface';
 import type { NarrativeAuthoringMedia } from './NarrativePresentationPolicy';
@@ -297,6 +297,7 @@ export class NarrativeStage {
     strategy?: string,
     layoutProfile?: string,
     layoutPlacement?: string,
+    dialogueSurfaceMode?: NarrativeDialogueSurfaceMode,
   ): void {
     this.ensureMounted();
     if (this.readiness && this.readiness.status !== 'VISIBLE') {
@@ -315,6 +316,7 @@ export class NarrativeStage {
     if (strategy) this.element.dataset.narrativePresentationStrategy = strategy;
     if (layoutProfile) this.element.dataset.narrativeLayoutProfile = layoutProfile;
     if (layoutPlacement) this.element.dataset.narrativeLayoutPlacement = layoutPlacement;
+    if (dialogueSurfaceMode) this.element.dataset.narrativeDialogueSurfaceMode = dialogueSurfaceMode;
     if (anchorId) this.element.dataset.narrativeAnchor = anchorId;
     else delete this.element.dataset.narrativeAnchor;
   }

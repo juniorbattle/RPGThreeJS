@@ -66,8 +66,10 @@ export class NarrativeSceneSurface {
     this.phases = tableau.phases ?? [];
     this.element.className = 'narrative-scene-surface narrative-media-surface narrative-media-surface--still';
     this.element.dataset.narrativeScene = tableau.id;
+    this.element.dataset.dialogueSurfaceMode = 'STATIC_TABLEAU';
     this.environmentLayer.className = 'narrative-scene-surface__environment';
     this.castLayer.className = 'narrative-scene-surface__cast narrative-cast';
+    this.castLayer.dataset.cropPolicy = 'BOTTOM_INTENTIONAL';
     this.castLayer.setAttribute('aria-hidden', 'true');
     this.atmosphereLayer.className = 'narrative-scene-surface__atmosphere';
     this.focusLayer.className = 'narrative-scene-surface__focus';

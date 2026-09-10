@@ -20,7 +20,7 @@ describe('DialogueStagingDirector', () => {
   it('locks opening, adviser, choice, pre-combat and held-video beats to approved profiles', () => {
     const opening = dialogues.get('acte_ouverture')!;
     const openingPlan = new DialogueStagingDirector(opening, createGenericNarrativeTableau(opening), { mediaMode: 'STILL' }).plan;
-    expect(openingPlan.decisions.every((decision) => decision.layoutProfile === 'INTRO_CAST_PRESENTATION' && decision.layoutPlacement === 'TOP_CENTER')).toBe(true);
+    expect(openingPlan.decisions.every((decision) => decision.layoutProfile === 'INTRO_CAST_PRESENTATION' && decision.layoutPlacement.endsWith('_UPPER'))).toBe(true);
 
     const audience = dialogues.get('lion_briefing')!;
     const audiencePlan = new DialogueStagingDirector(audience, ALARIC_AUDIENCE_TABLEAU, { mediaMode: 'STILL' }).plan;
@@ -28,15 +28,25 @@ describe('DialogueStagingDirector', () => {
     expect(audiencePlan.decisions.find((decision) => decision.stepId === '2')).toMatchObject({ layoutProfile: 'ADVISER_EXCHANGE' });
     expect(audiencePlan.decisions.find((decision) => decision.stepId === '3')).toMatchObject({
       layoutProfile: 'CHOICE_TWO_PATH_SPATIAL',
+      layoutPlacement: 'LEFT_UPPER',
+      speakerAssociation: 'SPEAKER_LEFT_UPPER',
+      dialogueSurfaceMode: 'STATIC_TABLEAU',
+      speakerCardPolicy: 'SETUP_THEN_CHOICES_ONLY',
+      choiceScreenLanes: ['RIGHT', 'LEFT'],
+    });
+
+    const audienceVideoPlan = new DialogueStagingDirector(audience, ALARIC_AUDIENCE_TABLEAU, { mediaMode: 'VIDEO', hasMovingMedia: true }).plan;
+    expect(audienceVideoPlan.decisions.find((decision) => decision.stepId === '3')).toMatchObject({
       layoutPlacement: 'RIGHT',
       speakerAssociation: 'SPEAKER_RIGHT_LOWER',
-      speakerCardPolicy: 'SETUP_THEN_CHOICES_ONLY',
+      dialogueSurfaceMode: 'VIDEO_CUTSCENE',
     });
 
     const preCombat = dialogues.get('pre_opening_trail')!;
     const preCombatPlan = new DialogueStagingDirector(preCombat, FOREST_THREAT_TABLEAU, { mediaMode: 'STILL' }).plan;
     expect(preCombatPlan.decisions.filter((decision) => decision.stepId !== '2').every((decision) => decision.layoutProfile === 'DIALOGUE_BOTTOM_BAND_RESERVED')).toBe(true);
     expect(preCombatPlan.decisions.find((decision) => decision.stepId === '2')).toMatchObject({ layoutProfile: 'HELD_VIDEO_DIALOGUE' });
+    expect(preCombatPlan.decisions.map((decision) => decision.layoutPlacement)).toEqual(['LEFT_UPPER', 'CENTER_UPPER', 'RIGHT_UPPER']);
   });
 
   it('makes the known forest video mismatch explicitly offscreen without sprite patching', () => {

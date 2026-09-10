@@ -963,6 +963,7 @@ export class GameApp {
           presentation.presentationStrategy,
           presentation.layoutProfile,
           presentation.layoutPlacement,
+          presentation.dialogueSurfaceMode,
         ),
         reducedMotion: this.state.settings.reducedGraphics,
       });

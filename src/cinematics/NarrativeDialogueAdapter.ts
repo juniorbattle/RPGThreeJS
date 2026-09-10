@@ -1,6 +1,6 @@
 import type { DialogueSequence, DialogueStep } from '../game/types';
 import { DialogueStagingDirector } from './DialogueStagingDirector';
-import { createGenericNarrativeTableau, type NarrativeDialogueMode, type NarrativeLayoutPlacement, type NarrativeLayoutProfile, type NarrativePresentationStrategy, type NarrativeScreenPosition, type NarrativeSpeakerAssociation, type NarrativeTableauSpec } from './NarrativeTableau';
+import { createGenericNarrativeTableau, type NarrativeChoiceScreenLane, type NarrativeDialogueMode, type NarrativeDialogueSurfaceMode, type NarrativeLayoutPlacement, type NarrativeLayoutProfile, type NarrativePresentationStrategy, type NarrativeScreenPosition, type NarrativeSpeakerAssociation, type NarrativeTableauSpec } from './NarrativeTableau';
 import type { NarrativeAuthoringMedia } from './NarrativePresentationPolicy';
 
 export type NarrativeTextClassification = 'AGENCY_DIALOGUE' | 'CINEMATIC_DIALOGUE' | 'VISUAL_REPLACEABLE' | 'REDUNDANT_EXPOSITION';
@@ -17,7 +17,9 @@ export interface NarrativeDialogueStepPresentation {
   layoutPlacement?: NarrativeLayoutPlacement;
   speakerScreenPosition?: NarrativeScreenPosition;
   speakerAssociation?: NarrativeSpeakerAssociation;
+  dialogueSurfaceMode?: NarrativeDialogueSurfaceMode;
   speakerCardPolicy?: 'VISIBLE' | 'SETUP_THEN_CHOICES_ONLY';
+  choiceScreenLanes?: readonly NarrativeChoiceScreenLane[];
   presentationStrategy?: NarrativePresentationStrategy;
   mediaSubjects?: readonly string[];
   visibleStaticCast?: readonly string[];
@@ -143,9 +145,9 @@ export function createNarrativeDialogueResolver(
         : decision.layoutProfile === 'HELD_VIDEO_DIALOGUE'
           ? 'HELD_DIALOGUE'
         : defaultMode(step);
-    const anchorId = decision.layoutPlacement === 'LEFT'
+    const anchorId = decision.layoutPlacement === 'LEFT' || decision.layoutPlacement === 'LEFT_UPPER'
       ? 'card-left'
-      : decision.layoutPlacement === 'CENTER_LOWER'
+      : decision.layoutPlacement === 'CENTER_LOWER' || decision.layoutPlacement === 'CENTER_UPPER'
         ? 'card-center'
       : decision.layoutPlacement === 'TOP_CENTER'
         ? 'card-top'
@@ -164,7 +166,9 @@ export function createNarrativeDialogueResolver(
       layoutPlacement: decision.layoutPlacement,
       speakerScreenPosition: decision.speakerScreenPosition,
       speakerAssociation: decision.speakerAssociation,
+      dialogueSurfaceMode: decision.dialogueSurfaceMode,
       speakerCardPolicy: decision.speakerCardPolicy,
+      choiceScreenLanes: decision.choiceScreenLanes,
       presentationStrategy: decision.presentationStrategy,
       mediaSubjects: decision.currentMediaSubjects,
       visibleStaticCast: decision.visibleStaticCast,

@@ -202,10 +202,11 @@ describe('NarrativeStage', () => {
   it('exposes dialogue beat and restrained transition state', async () => {
     const { stage } = createStage(ALARIC_AUDIENCE_TABLEAU);
     await stage.presentPaintedFallback('Audience');
-    stage.activateDialogueStep('3', 'SPATIAL_CHOICE', 'clan-side');
+    stage.activateDialogueStep('3', 'SPATIAL_CHOICE', 'clan-side', undefined, undefined, undefined, undefined, undefined, 'STATIC_TABLEAU');
     expect(stage.element.dataset.narrativeBeat).toBe('maelor-agency');
     expect(stage.element.dataset.narrativeDialogueMode).toBe('SPATIAL_CHOICE');
     expect(stage.element.dataset.narrativeAnchor).toBe('clan-side');
+    expect(stage.element.dataset.narrativeDialogueSurfaceMode).toBe('STATIC_TABLEAU');
     stage.beginTransition('ATMOSPHERIC_DISSOLVE');
     expect(stage.transitionLayer.dataset.transition).toBe('ATMOSPHERIC_DISSOLVE');
   });

@@ -23,6 +23,36 @@ describe('Narrative dialogue presentation adapter', () => {
     });
   });
 
+  it('keeps static upper placement separate from the current video lower placement', () => {
+    const sequence = dialogues.get('lion_briefing')!;
+    const step = sequence.steps.find((candidate) => candidate.id === '1')!;
+    const still = createNarrativeDialogueResolver(sequence, ALARIC_AUDIENCE_TABLEAU, { mediaMode: 'STILL' })(step);
+    const video = createNarrativeDialogueResolver(sequence, ALARIC_AUDIENCE_TABLEAU, { mediaMode: 'VIDEO', hasMovingMedia: true })(step);
+    expect(still).toMatchObject({
+      layoutPlacement: 'RIGHT_UPPER',
+      speakerAssociation: 'SPEAKER_RIGHT_UPPER',
+      dialogueSurfaceMode: 'STATIC_TABLEAU',
+    });
+    expect(video).toMatchObject({
+      layoutPlacement: 'RIGHT',
+      speakerAssociation: 'SPEAKER_RIGHT_LOWER',
+      dialogueSurfaceMode: 'VIDEO_CUTSCENE',
+    });
+  });
+
+  it('maps the Audience choices to their semantic screen sides without reordering canonical truth', () => {
+    const sequence = dialogues.get('lion_briefing')!;
+    const step = sequence.steps.find((candidate) => candidate.id === '3')!;
+    const canonicalChoices = structuredClone(step.choices);
+    const presentation = createNarrativeDialogueResolver(sequence, ALARIC_AUDIENCE_TABLEAU)(step);
+    expect(presentation).toMatchObject({
+      layoutPlacement: 'LEFT_UPPER',
+      speakerScreenPosition: 'CENTER_LEFT',
+      choiceScreenLanes: ['RIGHT', 'LEFT'],
+    });
+    expect(step.choices).toEqual(canonicalChoices);
+  });
+
   it('never patches NarrativeStage media with an automatic full-body portrait', () => {
     const audience = dialogues.get('lion_briefing')!;
     const audienceResolver = createNarrativeDialogueResolver(audience, ALARIC_AUDIENCE_TABLEAU);

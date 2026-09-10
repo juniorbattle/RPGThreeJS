@@ -256,6 +256,7 @@ async function layoutMetrics(page, selector) {
       placement: dialogue?.getAttribute('data-narrative-placement') ?? element.getAttribute('data-narrative-layout-placement'),
       speakerPosition: dialogue?.getAttribute('data-narrative-speaker-position') ?? '',
       speakerAssociation: dialogue?.getAttribute('data-narrative-speaker-association') ?? '',
+      dialogueSurfaceMode: dialogue?.getAttribute('data-narrative-scene-mode') ?? '',
       agencyState: dialogue?.getAttribute('data-narrative-agency-state') ?? 'NONE',
       speakerCardPolicy: dialogue?.getAttribute('data-narrative-speaker-card-policy') ?? 'NONE',
       card: cardRect ? {
@@ -282,11 +283,17 @@ function assertLayoutProfile(metrics, label, layout, placement) {
   if (metrics.choiceCount && (metrics.card?.visible || metrics.agencyState !== 'ACTIVE')) throw new Error(`${label}: active choices retained a speaker card or invalid agency state.`);
   const placementByAssociation = {
     SPEAKER_LEFT_LOWER: 'LEFT',
+    SPEAKER_LEFT_UPPER: 'LEFT_UPPER',
     SPEAKER_CENTER_LOWER: 'CENTER_LOWER',
+    SPEAKER_CENTER_UPPER: 'CENTER_UPPER',
     SPEAKER_RIGHT_LOWER: 'RIGHT',
+    SPEAKER_RIGHT_UPPER: 'RIGHT_UPPER',
   };
   if (metrics.speakerAssociation.startsWith('SPEAKER_') && placementByAssociation[metrics.speakerAssociation] !== metrics.placement) {
     throw new Error(`${label}: held-video dialogue is not associated with its staged speaker.`);
+  }
+  if (metrics.dialogueSurfaceMode === 'VIDEO_CUTSCENE' && ['LEFT_UPPER', 'CENTER_UPPER', 'RIGHT_UPPER'].includes(metrics.placement)) {
+    throw new Error(`${label}: video dialogue moved into the static upper-card grammar.`);
   }
 }
 
@@ -316,7 +323,7 @@ async function startChronicle(page, viewport) {
   if (opening.castOwnership !== 'STAGE_OWNS_CAST' || opening.actorIds.length < 6 || opening.active !== 1 || opening.listeners < 5) {
     throw new Error(`Opening company tableau did not preserve its full stable cast: ${JSON.stringify(opening)}`);
   }
-  if (opening.layout !== 'INTRO_CAST_PRESENTATION' || opening.placement !== 'TOP_CENTER') throw new Error(`Video opening used ${opening.layout}/${opening.placement}.`);
+  if (opening.layout !== 'INTRO_CAST_PRESENTATION' || opening.placement !== 'LEFT_UPPER') throw new Error(`Non-video opening used ${opening.layout}/${opening.placement}.`);
   await page.locator('.dialogue__box').click();
   await page.waitForTimeout(50);
   const actorNodeStable = await page.locator('.narrative-stage').evaluate((stage) => Boolean(stage.querySelector('[data-qa-stable-actor="opening"]')));
@@ -421,7 +428,7 @@ async function runCampaignRoundTrip(page, viewport) {
   assertHandoffDiagnostics(combatToNarrative, 'combat-to-narrative');
   const postCombat = await capture(page, viewport, '06-post-combat-narrative');
   const postCombatMetrics = await layoutMetrics(page, '.narrative-stage');
-  assertLayoutProfile(postCombatMetrics, 'video-post-combat', 'DIALOGUE_SIDE_COMPACT', 'LEFT');
+  assertLayoutProfile(postCombatMetrics, 'video-post-combat', 'DIALOGUE_SIDE_COMPACT', 'LEFT_UPPER');
   const postCombatIsolation = {
     travelViews: await page.locator('.travel-view').count(),
     journeyOverlays: await page.locator('.journey-overlay').count(),

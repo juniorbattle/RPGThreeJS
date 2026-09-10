@@ -10,6 +10,7 @@ import {
   NARRATIVE_LAYOUT_PROFILE_RULES,
   resolveNarrativeBoundaryTableau,
   resolveNarrativeCombatTableau,
+  resolveNarrativeChoiceScreenLanes,
   resolveNarrativeDialogueTableau,
   validateDialogueCast,
   VALMIR_FORK_TABLEAU,
@@ -103,6 +104,14 @@ describe('Narrative Tableau presentation data', () => {
     expect(VALMIR_FORK_TABLEAU.cast.playerRepresentatives).toEqual(['sage_seraphine', 'maelor']);
     expect(VALMIR_FORK_TABLEAU.anchors.map((anchor) => anchor.routeIndex)).toEqual([0, 1]);
     expect(VALMIR_FORK_TABLEAU.mediaRemasterNeeded).not.toBe(true);
+  });
+
+  it('stages Maelor with the clan and maps each Audience choice to its semantic side', () => {
+    const phases = ALARIC_AUDIENCE_TABLEAU.phases!;
+    expect(phases.every((phase) => phase.staticCast.map((actor) => actor.actorId).join('|') === 'sage_seraphine|maelor|alistair|alaric')).toBe(true);
+    expect(phases.find((phase) => phase.id === 'AUDIENCE_AGENCY')?.staticCast.find((actor) => actor.actorId === 'maelor')?.screenPosition).toBe('CENTER_LEFT');
+    expect(phases.find((phase) => phase.id === 'AUDIENCE_AUTHORITY')?.staticCast.find((actor) => actor.actorId === 'alaric')?.screenPosition).toBe('FAR_RIGHT');
+    expect(resolveNarrativeChoiceScreenLanes(ALARIC_AUDIENCE_TABLEAU, 2)).toEqual(['RIGHT', 'LEFT']);
   });
 
   it('stores references rather than dialogue or route-choice copies', () => {

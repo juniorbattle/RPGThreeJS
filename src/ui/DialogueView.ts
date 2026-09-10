@@ -3,6 +3,7 @@ import { assets } from '../render/assetManifest';
 import type { Contest, DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../game/types';
 import { resolveContestOutcome } from '../game/contestResolution';
 import type { NarrativeDialogueResolver, NarrativeDialogueStepPresentation } from '../cinematics/NarrativeDialogueAdapter';
+import type { NarrativeChoiceScreenLane } from '../cinematics/NarrativeTableau';
 
 interface DialogueViewOptions {
   root: HTMLElement;
@@ -83,6 +84,7 @@ export class DialogueView {
   private typingTimer = 0;
   private displaySegments: readonly string[] = [];
   private displaySegmentIndex = 0;
+  private choiceScreenLanes: readonly NarrativeChoiceScreenLane[] = [];
 
   constructor(private readonly options: DialogueViewOptions) {}
 
@@ -149,6 +151,7 @@ export class DialogueView {
     this.choiceLocked = false;
     this.displaySegments = [];
     this.displaySegmentIndex = 0;
+    this.choiceScreenLanes = [];
     this.resolvePlay?.();
     this.resolvePlay = null;
   }
@@ -179,6 +182,7 @@ export class DialogueView {
       mode: 'HELD_DIALOGUE',
       showPortrait: !cinematicOverlay,
     };
+    this.choiceScreenLanes = presentation.choiceScreenLanes ?? [];
     const portrait = presentation.showPortrait ? dialoguePortrait(step) : '';
     const profile = presentation.showPortrait ? dialogueActorProfile(step) : undefined;
     this.overlay.dataset.speakerSide = step.side;
@@ -189,6 +193,7 @@ export class DialogueView {
     this.overlay.dataset.narrativePlacement = presentation.layoutPlacement ?? '';
     this.overlay.dataset.narrativeSpeakerPosition = presentation.speakerScreenPosition ?? '';
     this.overlay.dataset.narrativeSpeakerAssociation = presentation.speakerAssociation ?? '';
+    this.overlay.dataset.narrativeSceneMode = presentation.dialogueSurfaceMode ?? '';
     this.overlay.dataset.narrativeStrategy = presentation.presentationStrategy ?? '';
     this.overlay.dataset.narrativePhase = presentation.phaseId ?? '';
     this.overlay.dataset.narrativeCastOwnership = presentation.castOwnership ?? '';
@@ -235,7 +240,7 @@ export class DialogueView {
       void this.options.applyEffects(step.effects);
     }
     if (!stagedChoiceSequence) {
-      choices.replaceChildren(...(step.choices ?? []).map((choice) => this.createChoice(choice)));
+      choices.replaceChildren(...(step.choices ?? []).map((choice, index) => this.createChoice(choice, this.choiceScreenLanes[index])));
     }
     if (cinematicOverlay) {
       const target = choices.querySelector<HTMLButtonElement>('button:not([disabled])') ?? box;
@@ -253,11 +258,12 @@ export class DialogueView {
     element.classList.toggle('has-image', isImage);
   }
 
-  private createChoice(choice: DialogueChoice): HTMLButtonElement {
+  private createChoice(choice: DialogueChoice, screenLane?: NarrativeChoiceScreenLane): HTMLButtonElement {
     const button = document.createElement('button');
     button.className = 'dialogue-choice ui-panel ui-panel--dense';
     button.classList.add(this.choiceToneClass(choice));
     button.type = 'button';
+    if (screenLane) button.dataset.narrativeChoiceLane = screenLane;
     const state = this.options.getState();
     const availableGold = state.gold + state.run.temporaryLoot.gold;
     const blockedByGold = choice.requiresGold !== undefined && availableGold < choice.requiresGold;
@@ -475,7 +481,7 @@ export class DialogueView {
     const choices = this.overlay.querySelector<HTMLElement>('.dialogue__choices');
     const box = this.overlay.querySelector<HTMLButtonElement>('.dialogue__box');
     if (!choices || !box) return;
-    choices.replaceChildren(...this.current.choices.map((choice) => this.createChoice(choice)));
+    choices.replaceChildren(...this.current.choices.map((choice, index) => this.createChoice(choice, this.choiceScreenLanes[index])));
     box.hidden = true;
     this.overlay.classList.add('dialogue--choice-active');
     this.overlay.dataset.narrativeAgencyState = 'ACTIVE';

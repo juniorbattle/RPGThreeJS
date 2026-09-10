@@ -20,6 +20,9 @@ describe('NarrativeSceneSurface', () => {
     expect(root.querySelector('[data-actor-id="alistair"]')?.classList).toContain('is-speaking');
     expect(root.querySelector('.narrative-scene-surface')?.getAttribute('data-layout-profile')).toBe('DIALOGUE_SPEAKER_FOCUS');
     expect(root.querySelector('.narrative-scene-surface')?.getAttribute('data-layout-placement')).toBe('LEFT');
+    expect(root.querySelector('.narrative-scene-surface')?.getAttribute('data-dialogue-surface-mode')).toBe('STATIC_TABLEAU');
+    expect(root.querySelector('.narrative-scene-surface__cast')?.getAttribute('data-crop-policy')).toBe('BOTTOM_INTENTIONAL');
+    expect(root.querySelectorAll('.narrative-cast__actor figcaption, .narrative-cast__actor [data-actor-label]')).toHaveLength(0);
   });
 
   it('keeps the full opening company cast and actor nodes stable while speaker emphasis changes', () => {

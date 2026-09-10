@@ -133,7 +133,15 @@ async function sceneMetrics(page) {
       }) : false;
     const choiceButtons = [...stage.querySelectorAll('.dialogue-choice')].map((button) => {
       const rect = button.getBoundingClientRect();
-      return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, visible: rect.width > 0 && rect.height > 0 };
+      return {
+        text: button.querySelector('strong')?.textContent?.trim() ?? '',
+        lane: button.getAttribute('data-narrative-choice-lane') ?? '',
+        left: rect.left,
+        right: rect.right,
+        top: rect.top,
+        bottom: rect.bottom,
+        visible: rect.width > 0 && rect.height > 0,
+      };
     });
     const actors = [...stage.querySelectorAll('.narrative-cast__actor')].map((actor) => {
       const actorId = actor.getAttribute('data-actor-id') ?? '';
@@ -143,7 +151,7 @@ async function sceneMetrics(page) {
       const naturalHeight = image instanceof HTMLImageElement && image.naturalHeight ? image.naturalHeight : 768;
       const contentScale = Math.min(rect.width / naturalWidth, rect.height / naturalHeight);
       const contentLeft = rect.left + (rect.width - naturalWidth * contentScale) / 2;
-      const contentTop = rect.top + (rect.height - naturalHeight * contentScale) / 2;
+      const contentTop = rect.bottom - naturalHeight * contentScale;
       const alphaBox = alphaBoxes[actorId] ?? [0, 0, naturalWidth, naturalHeight];
       const visibleBody = {
         left: contentLeft + alphaBox[0] * contentScale,
@@ -151,16 +159,37 @@ async function sceneMetrics(page) {
         right: contentLeft + alphaBox[2] * contentScale,
         bottom: contentTop + alphaBox[3] * contentScale,
       };
+      const scaledBodyHeightBeforeViewportCrop = visibleBody.bottom - visibleBody.top;
+      const visibleBodyHeightOnScreen = Math.max(0, Math.min(innerHeight, visibleBody.bottom) - Math.max(0, visibleBody.top));
+      const cropPixelsBottom = Math.max(0, visibleBody.bottom - innerHeight);
       return {
         actorId,
         screenPosition: actor.getAttribute('data-screen-position'),
         role: actor.getAttribute('data-cast-state'),
         physicalScale: Number(actor.getAttribute('data-physical-scale')),
+        opacity: Number(getComputedStyle(actor).opacity),
+        zIndex: Number(getComputedStyle(actor).zIndex),
+        actorBox: {
+          top: rect.top,
+          bottom: rect.bottom,
+          width: rect.width,
+          height: rect.height,
+          computedBottom: getComputedStyle(actor).bottom,
+        },
         visibleBody: {
           ...visibleBody,
           width: visibleBody.right - visibleBody.left,
-          height: visibleBody.bottom - visibleBody.top,
-          heightRatio: (visibleBody.bottom - visibleBody.top) / innerHeight,
+          height: scaledBodyHeightBeforeViewportCrop,
+          heightRatio: scaledBodyHeightBeforeViewportCrop / innerHeight,
+          visibleHeightRatio: visibleBodyHeightOnScreen / innerHeight,
+          cropBottom: cropPixelsBottom,
+          scaledBodyHeightBeforeViewportCrop,
+          visibleBodyHeightOnScreen,
+          cropPixelsBottom,
+          cropRatioBottom: cropPixelsBottom / scaledBodyHeightBeforeViewportCrop,
+          visibleHeadY: Math.max(0, visibleBody.top),
+          visibleCenterX: (visibleBody.left + visibleBody.right) / 2,
+          touchesBottomEdge: visibleBody.bottom >= innerHeight - 4,
         },
       };
     });
@@ -173,6 +202,7 @@ async function sceneMetrics(page) {
       placement: dialogue?.getAttribute('data-narrative-placement') ?? stage.getAttribute('data-narrative-layout-placement'),
       speakerPosition: dialogue?.getAttribute('data-narrative-speaker-position') ?? '',
       speakerAssociation: dialogue?.getAttribute('data-narrative-speaker-association') ?? '',
+      dialogueSurfaceMode: dialogue?.getAttribute('data-narrative-scene-mode') ?? '',
       agencyState: dialogue?.getAttribute('data-narrative-agency-state') ?? 'NONE',
       speakerCardPolicy: dialogue?.getAttribute('data-narrative-speaker-card-policy') ?? 'NONE',
       strategy: stage.getAttribute('data-narrative-presentation-strategy'),
@@ -198,6 +228,7 @@ async function sceneMetrics(page) {
       } : null,
       choices: choiceButtons,
       actors,
+      underSpriteLabelCount: stage.querySelectorAll('.narrative-cast__actor figcaption, .narrative-cast__actor [data-actor-label]').length,
       viewport: { width: innerWidth, height: innerHeight },
       overflowX: document.documentElement.scrollWidth > innerWidth,
       overflowY: document.documentElement.scrollHeight > innerHeight,
@@ -220,14 +251,35 @@ function assertNarrativeMetrics(metrics, label) {
   if (metrics.choices.length && metrics.agencyState !== 'ACTIVE') throw new Error(`${label}: choices are visible outside the declared ACTIVE agency state.`);
   const speaker = metrics.actors.find((actor) => actor.role === 'ACTIVE');
   if (metrics.staticActorCount && metrics.speaker && !speaker) throw new Error(`${label}: static tableau has no active staged speaker.`);
+  const presenceRange = metrics.staticActorCount <= 2
+    ? [0.65, 0.78]
+    : metrics.staticActorCount <= 4
+      ? [0.58, 0.70]
+      : metrics.staticActorCount <= 6
+        ? [0.52, 0.64]
+        : [0.48, 0.58];
+  const weakPresence = metrics.actors.find((actor) => actor.visibleBody.heightRatio < presenceRange[0] || actor.visibleBody.heightRatio > presenceRange[1]);
+  if (weakPresence) throw new Error(`${label}: ${weakPresence.actorId} alpha-visible body scale ${weakPresence.visibleBody.heightRatio.toFixed(3)} is outside ${presenceRange[0]}-${presenceRange[1]} for ${metrics.staticActorCount} actors.`);
+  const invalidCrop = metrics.actors.find((actor) => actor.visibleBody.cropRatioBottom < 0.10 || actor.visibleBody.cropRatioBottom > 0.36);
+  if (invalidCrop) throw new Error(`${label}: ${invalidCrop.actorId} bottom crop ratio ${invalidCrop.visibleBody.cropRatioBottom.toFixed(3)} is outside the intentional runtime crop band (${JSON.stringify({ actorBox: invalidCrop.actorBox, visibleBody: invalidCrop.visibleBody })}).`);
+  const invalidHead = metrics.actors.find((actor) => actor.visibleBody.visibleHeadY < -3 || actor.visibleBody.visibleHeadY > metrics.viewport.height * 0.60);
+  if (invalidHead) throw new Error(`${label}: ${invalidHead.actorId} upper-body framing is outside the visible foreground band.`);
   if (speaker) {
     if (speaker.physicalScale !== 1) throw new Error(`${label}: active speaker physical scale changed to ${speaker.physicalScale}.`);
-    if (speaker.visibleBody.heightRatio < 0.23) throw new Error(`${label}: active speaker is too small (${speaker.visibleBody.heightRatio}).`);
-    const clipped = speaker.visibleBody.left < -3 || speaker.visibleBody.right > metrics.viewport.width + 3
-      || speaker.visibleBody.top < -3 || speaker.visibleBody.bottom > metrics.viewport.height + 3;
-    if (clipped) throw new Error(`${label}: active speaker visible body is clipped.`);
+    const unintendedClip = speaker.visibleBody.left < -3 || speaker.visibleBody.right > metrics.viewport.width + 3
+      || speaker.visibleBody.top < -3 || speaker.visibleBody.cropRatioBottom > 0.36;
+    if (unintendedClip) throw new Error(`${label}: active speaker has unintended top/side/excessive clipping.`);
   }
   if (metrics.actors.some((actor) => actor.physicalScale !== 1)) throw new Error(`${label}: tableau contains a speaker-dependent physical scale.`);
+  if (metrics.staticActorCount && !metrics.actors.some((actor) => actor.visibleBody.touchesBottomEdge)) {
+    throw new Error(`${label}: static tableau does not use the intentional bottom crop (${metrics.actors.map((actor) => `${actor.actorId}:${actor.visibleBody.bottom.toFixed(1)}`).join(', ')} / ${metrics.viewport.height}).`);
+  }
+  if (metrics.underSpriteLabelCount) throw new Error(`${label}: static cast rendered an under-sprite label.`);
+  if (speaker) {
+    const listeners = metrics.actors.filter((actor) => actor.role === 'LISTENING');
+    if (listeners.some((actor) => actor.opacity >= speaker.opacity || actor.zIndex >= speaker.zIndex)) throw new Error(`${label}: listener prominence competes with the active speaker.`);
+    if (listeners.some((actor) => actor.opacity < 0.48 || actor.opacity > 0.60)) throw new Error(`${label}: listener dimming falls outside the readable 0.48-0.60 band.`);
+  }
   if (metrics.actors.length > 1) {
     const baselines = metrics.actors.map((actor) => actor.visibleBody.bottom);
     if (Math.max(...baselines) - Math.min(...baselines) > 3) throw new Error(`${label}: cast ground baselines diverge.`);
@@ -235,17 +287,41 @@ function assertNarrativeMetrics(metrics, label) {
   if (metrics.card?.visible && metrics.speakerAssociation.startsWith('SPEAKER_')) {
     const placementByAssociation = {
       SPEAKER_LEFT_LOWER: 'LEFT',
+      SPEAKER_LEFT_UPPER: 'LEFT_UPPER',
       SPEAKER_CENTER_LOWER: 'CENTER_LOWER',
+      SPEAKER_CENTER_UPPER: 'CENTER_UPPER',
       SPEAKER_RIGHT_LOWER: 'RIGHT',
+      SPEAKER_RIGHT_UPPER: 'RIGHT_UPPER',
     };
     if (placementByAssociation[metrics.speakerAssociation] !== metrics.placement) throw new Error(`${label}: speaker association does not match card placement.`);
-    if (speaker && metrics.card.top < speaker.visibleBody.top + speaker.visibleBody.height * 0.42) throw new Error(`${label}: card is not in the speaker's lower visual region.`);
+    if (metrics.speakerAssociation.endsWith('_UPPER')) {
+      if (metrics.dialogueSurfaceMode !== 'STATIC_TABLEAU') throw new Error(`${label}: upper placement escaped the static tableau mode.`);
+      const cardTopRatio = metrics.card.top / metrics.viewport.height;
+      const cardBottomRatio = metrics.card.bottom / metrics.viewport.height;
+      if (cardTopRatio < 0.12 || cardTopRatio > 0.18 || cardBottomRatio < 0.27 || cardBottomRatio > 0.37) throw new Error(`${label}: static dialogue card is outside the 12-18% top / 27-37% bottom composition band.`);
+      if (metrics.card.widthRatio < 0.38 || metrics.card.widthRatio > 0.48) throw new Error(`${label}: static dialogue card width ${metrics.card.widthRatio.toFixed(3)} lacks the required visual weight.`);
+      const cardCenter = (metrics.card.left + metrics.card.right) / 2;
+      const speakerCenter = speaker?.visibleBody.visibleCenterX ?? cardCenter;
+      if (Math.abs(cardCenter - speakerCenter) > metrics.viewport.width * 0.25) throw new Error(`${label}: upper dialogue card is detached from the speaker lane.`);
+      if (speaker && metrics.card.bottom > speaker.visibleBody.visibleHeadY - 8) throw new Error(`${label}: static dialogue card obstructs the speaker's head or upper-body silhouette.`);
+    } else if (speaker && metrics.card.top < speaker.visibleBody.top + speaker.visibleBody.height * 0.42) {
+      throw new Error(`${label}: video dialogue card is not in the speaker's lower visual region.`);
+    }
   }
 }
 
 function assertProfile(metrics, label, layout, placement) {
   if (metrics.layout !== layout || metrics.placement !== placement) {
     throw new Error(`${label}: expected ${layout}/${placement}, received ${metrics.layout}/${metrics.placement}.`);
+  }
+}
+
+function assertStableActorFraming(sequenceMetrics, label) {
+  const first = sequenceMetrics[0];
+  for (const actor of first.actors) {
+    const heights = sequenceMetrics.map((metrics) => metrics.actors.find((candidate) => candidate.actorId === actor.actorId)?.visibleBody.scaledBodyHeightBeforeViewportCrop);
+    if (heights.some((height) => typeof height !== 'number')) throw new Error(`${label}: ${actor.actorId} disappeared during a speaker handoff.`);
+    if (Math.max(...heights) - Math.min(...heights) > 0.1) throw new Error(`${label}: ${actor.actorId} framing scale changed during a speaker handoff.`);
   }
 }
 
@@ -282,7 +358,7 @@ async function startChronicle(page, viewport) {
   const openingCapture = await capture(page, viewport, '00-opening-company-cast');
   const openingMetrics = await sceneMetrics(page);
   assertNarrativeMetrics(openingMetrics, 'opening-company');
-  assertProfile(openingMetrics, 'opening-company', 'INTRO_CAST_PRESENTATION', 'TOP_CENTER');
+  assertProfile(openingMetrics, 'opening-company', 'INTRO_CAST_PRESENTATION', 'LEFT_UPPER');
   const openingCast = await page.locator('.narrative-stage').evaluate((stage) => {
     const actors = [...stage.querySelectorAll('.narrative-cast__actor')];
     const first = actors[0];
@@ -319,25 +395,40 @@ async function runCoreCampaign(page, viewport) {
   const audience = {};
   audience.alaric = await capture(page, viewport, '01-audience-alaric');
   audience.alaricMetrics = await sceneMetrics(page);
-  assertProfile(audience.alaricMetrics, 'audience-alaric', 'DIALOGUE_SPEAKER_FOCUS', 'RIGHT');
+  assertProfile(audience.alaricMetrics, 'audience-alaric', 'DIALOGUE_SPEAKER_FOCUS', 'RIGHT_UPPER');
   await advanceDialogueTo(page, '1b');
   audience.alistair = await capture(page, viewport, '02-audience-alistair');
   audience.alistairMetrics = await sceneMetrics(page);
-  assertProfile(audience.alistairMetrics, 'audience-alistair', 'DIALOGUE_SPEAKER_FOCUS', 'LEFT');
+  assertProfile(audience.alistairMetrics, 'audience-alistair', 'DIALOGUE_SPEAKER_FOCUS', 'RIGHT_UPPER');
   await advanceDialogueTo(page, '2');
   audience.seraphine = await capture(page, viewport, '03-audience-seraphine');
   audience.seraphineMetrics = await sceneMetrics(page);
-  assertProfile(audience.seraphineMetrics, 'audience-seraphine', 'ADVISER_EXCHANGE', 'LEFT');
+  assertProfile(audience.seraphineMetrics, 'audience-seraphine', 'ADVISER_EXCHANGE', 'LEFT_UPPER');
   await advanceDialogueTo(page, '3');
   audience.maelor = await capture(page, viewport, '04-audience-maelor-setup');
   audience.maelorMetrics = await sceneMetrics(page);
-  assertProfile(audience.maelorMetrics, 'audience-maelor-setup', 'CHOICE_TWO_PATH_SPATIAL', 'RIGHT');
+  assertProfile(audience.maelorMetrics, 'audience-maelor-setup', 'CHOICE_TWO_PATH_SPATIAL', 'LEFT_UPPER');
   if (audience.maelorMetrics.agencyState !== 'SETUP' || !audience.maelorMetrics.card?.visible || audience.maelorMetrics.choices.length) throw new Error('Audience choice setup is not isolated from active choices.');
   await page.locator('.dialogue__box').click();
   await page.locator('.dialogue-choice').first().waitFor({ state: 'visible' });
   audience.choice = await capture(page, viewport, '05-audience-choice');
   audience.choiceMetrics = await sceneMetrics(page);
-  assertProfile(audience.choiceMetrics, 'audience-choice', 'CHOICE_TWO_PATH_SPATIAL', 'RIGHT');
+  assertProfile(audience.choiceMetrics, 'audience-choice', 'CHOICE_TWO_PATH_SPATIAL', 'LEFT_UPPER');
+  const alaricChoice = audience.choiceMetrics.choices.find((choice) => choice.text.includes('mission d’Alaric'));
+  const maelorChoice = audience.choiceMetrics.choices.find((choice) => choice.text.includes('avance'));
+  if (!alaricChoice || alaricChoice.lane !== 'RIGHT' || (alaricChoice.left + alaricChoice.right) / 2 <= viewport.width / 2) {
+    throw new Error(`Audience Alaric choice is not on Alaric's right lane: ${JSON.stringify(alaricChoice)}`);
+  }
+  if (!maelorChoice || maelorChoice.lane !== 'LEFT' || (maelorChoice.left + maelorChoice.right) / 2 >= viewport.width / 2) {
+    throw new Error(`Audience cautious choice is not on Maelor's left lane: ${JSON.stringify(maelorChoice)}`);
+  }
+  assertStableActorFraming([
+    audience.alaricMetrics,
+    audience.alistairMetrics,
+    audience.seraphineMetrics,
+    audience.maelorMetrics,
+    audience.choiceMetrics,
+  ], 'audience');
   for (const [label, metrics] of Object.entries(audience).filter(([, value]) => typeof value === 'object')) assertNarrativeMetrics(metrics, `audience-${label}`);
   await page.locator('.dialogue-choice:not([disabled])').first().click();
   await finishDialogue(page);
@@ -348,7 +439,7 @@ async function runCoreCampaign(page, viewport) {
   const preCombat = await capture(page, viewport, '10-pre-combat-threat');
   const preCombatMetrics = await sceneMetrics(page);
   assertNarrativeMetrics(preCombatMetrics, 'pre-combat');
-  assertProfile(preCombatMetrics, 'pre-combat', 'DIALOGUE_BOTTOM_BAND_RESERVED', 'BOTTOM_CENTER');
+  assertProfile(preCombatMetrics, 'pre-combat', 'DIALOGUE_BOTTOM_BAND_RESERVED', 'LEFT_UPPER');
   await finishDialogue(page);
 
   const combatFrame = page.locator('iframe.combat-frame');
@@ -375,13 +466,13 @@ async function runCoreCampaign(page, viewport) {
   const postCombat = await capture(page, viewport, '12-post-combat-aftermath');
   const postCombatMetrics = await sceneMetrics(page);
   assertNarrativeMetrics(postCombatMetrics, 'post-combat');
-  assertProfile(postCombatMetrics, 'post-combat', 'DIALOGUE_SIDE_COMPACT', 'LEFT');
+  assertProfile(postCombatMetrics, 'post-combat', 'DIALOGUE_SIDE_COMPACT', 'LEFT_UPPER');
   if (await page.locator('.travel-view').count()) throw new Error('TravelView appeared between combat and aftermath.');
   await advanceDialogueTo(page, '2');
   const postCombatCenter = await capture(page, viewport, '15-post-combat-center-speaker');
   const postCombatCenterMetrics = await sceneMetrics(page);
   assertNarrativeMetrics(postCombatCenterMetrics, 'post-combat-center');
-  assertProfile(postCombatCenterMetrics, 'post-combat-center', 'DIALOGUE_SIDE_COMPACT', 'CENTER_LOWER');
+  assertProfile(postCombatCenterMetrics, 'post-combat-center', 'DIALOGUE_SIDE_COMPACT', 'CENTER_UPPER');
   return { opening, singleRoute, singleMetrics, audience, preCombat, preCombatMetrics, combat, combatIsolation, postCombat, postCombatMetrics, postCombatCenter, postCombatCenterMetrics };
 }
 
@@ -394,7 +485,7 @@ async function runEventsAndAte(page, viewport) {
   const multiSpeaker = await capture(page, viewport, '06-event-multi-speaker-choice');
   const multiSpeakerMetrics = await sceneMetrics(page);
   assertNarrativeMetrics(multiSpeakerMetrics, 'multi-speaker-event');
-  if (!['LEFT', 'CENTER_LOWER', 'RIGHT'].includes(multiSpeakerMetrics.placement)) throw new Error('Multi-speaker choice setup is not speaker-relative.');
+  if (!['LEFT_UPPER', 'CENTER_UPPER', 'RIGHT_UPPER'].includes(multiSpeakerMetrics.placement)) throw new Error('Multi-speaker choice setup is not speaker-relative.');
   assertProfile(multiSpeakerMetrics, 'multi-speaker-event', 'CHOICE_TWO_PATH_SPATIAL', multiSpeakerMetrics.placement);
   await finishDialogue(page, true);
   await page.locator('.dialogue[data-dialogue-sequence="ate_serpent_scout_report"]').waitFor({ state: 'visible', timeout: 20_000 });
@@ -409,7 +500,7 @@ async function runEventsAndAte(page, viewport) {
   const refugee = await capture(page, viewport, '07-refugee-choice');
   const refugeeMetrics = await sceneMetrics(page);
   assertNarrativeMetrics(refugeeMetrics, 'refugee-event');
-  if (!['LEFT', 'CENTER_LOWER', 'RIGHT'].includes(refugeeMetrics.placement)) throw new Error('Refugee choice setup is not speaker-relative.');
+  if (!['LEFT_UPPER', 'CENTER_UPPER', 'RIGHT_UPPER'].includes(refugeeMetrics.placement)) throw new Error('Refugee choice setup is not speaker-relative.');
   assertProfile(refugeeMetrics, 'refugee-event', 'CHOICE_TWO_PATH_SPATIAL', refugeeMetrics.placement);
   await finishDialogue(page, true);
   await page.locator('.dialogue[data-dialogue-sequence="ate_village_fear"]').waitFor({ state: 'visible', timeout: 20_000 });
@@ -447,6 +538,50 @@ async function runValmirFork(page, viewport) {
   return { fork, forkMetrics, routes };
 }
 
+async function runReducedMotionOpening(browser, viewport) {
+  const context = await browser.newContext({ viewport, reducedMotion: 'reduce' });
+  const page = await context.newPage();
+  const consoleErrors = [];
+  const pageErrors = [];
+  page.on('console', (message) => { if (message.type() === 'error') consoleErrors.push(message.text()); });
+  page.on('pageerror', (error) => pageErrors.push(error.message));
+  try {
+    await page.goto(qaUrl(), { waitUntil: 'domcontentloaded' });
+    await page.getByRole('button', { name: 'Nouvelle chronique' }).click();
+    await page.locator('[data-prologue-skip]').waitFor({ state: 'visible', timeout: 20_000 });
+    await page.locator('[data-prologue-skip]').click();
+    await page.locator('.dialogue').waitFor({ state: 'visible', timeout: 20_000 });
+    const reducedMotion = await page.locator('.narrative-stage').evaluate((stage) => {
+      const environment = stage.querySelector('.narrative-scene-surface__environment');
+      const atmosphere = stage.querySelector('.narrative-scene-surface__atmosphere');
+      const actor = stage.querySelector('.narrative-cast__actor');
+      const card = stage.querySelector('.dialogue__box');
+      return {
+        mediaQueryMatches: matchMedia('(prefers-reduced-motion: reduce)').matches,
+        environmentAnimation: environment ? getComputedStyle(environment).animationName : '',
+        atmosphereAnimation: atmosphere ? getComputedStyle(atmosphere).animationName : '',
+        actorTransitionDuration: actor ? getComputedStyle(actor).transitionDuration : '',
+        cardTransitionDuration: card ? getComputedStyle(card).transitionDuration : '',
+      };
+    });
+    if (!reducedMotion.mediaQueryMatches
+      || reducedMotion.environmentAnimation !== 'none'
+      || reducedMotion.atmosphereAnimation !== 'none'
+      || reducedMotion.actorTransitionDuration !== '0s'
+      || reducedMotion.cardTransitionDuration !== '0s') {
+      throw new Error(`Reduced-motion static tableau retained motion: ${JSON.stringify(reducedMotion)}`);
+    }
+    const reducedCapture = await capture(page, viewport, '16-reduced-motion-opening');
+    const reducedMetrics = await sceneMetrics(page);
+    assertNarrativeMetrics(reducedMetrics, 'reduced-motion-opening');
+    assertProfile(reducedMetrics, 'reduced-motion-opening', 'INTRO_CAST_PRESENTATION', 'LEFT_UPPER');
+    if (consoleErrors.length || pageErrors.length) throw new Error(`Reduced-motion browser errors: ${JSON.stringify({ consoleErrors, pageErrors })}`);
+    return { capture: reducedCapture, metrics: reducedMetrics, styles: reducedMotion, consoleErrors, pageErrors, pass: true };
+  } finally {
+    await context.close();
+  }
+}
+
 await mkdir(OUTPUT_DIR, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const results = [];
@@ -467,7 +602,8 @@ try {
       await context.clearCookies();
       await page.evaluate(() => localStorage.clear());
       const fork = await runValmirFork(page, viewport);
-      results.push({ viewport, campaign, events, fork, consoleErrors, pageErrors, pass: true });
+      const reducedMotion = await runReducedMotionOpening(browser, viewport);
+      results.push({ viewport, campaign, events, fork, reducedMotion, consoleErrors, pageErrors, pass: true });
     } catch (error) {
       failed = true;
       results.push({ viewport, consoleErrors, pageErrors, pass: false, error: error instanceof Error ? error.stack : String(error) });
