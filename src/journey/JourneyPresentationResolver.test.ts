@@ -35,6 +35,7 @@ describe('journey presentation resolver', () => {
   it('ships exactly the reviewed CIN-6A Journey boundary mappings', () => {
     expect(JOURNEY_PRESENTATION_MAP).toEqual({
       'node:lion-camp:arrival': 'camp_departure',
+      'edge:lion-audience>lion-opening-ambush': null,
       'node:lion-refugees:arrival': 'refugees_approach',
       'node:lion-valmir-road:arrival': 'valmir_route_fork',
       'node:lion-witnesses:arrival': 'witnesses_encounter',
@@ -43,6 +44,17 @@ describe('journey presentation resolver', () => {
     for (const id of ['serpent_general_reveal', 'lion_judgement', 'lion_champion_reveal']) {
       expect(Object.values(JOURNEY_PRESENTATION_MAP)).not.toContain(id);
     }
+  });
+
+  it('selects the static-only audience-to-road edge without inventing a cinematic ID', () => {
+    expect(resolveBoundaryCinematic({
+      currentNodeId: 'lion-audience',
+      currentContentId: 'lion_briefing',
+      available: [{ id: 'lion-opening-ambush', contentId: 'forest_ambush' } as RunNode],
+    })).toEqual({
+      key: 'edge:lion-audience>lion-opening-ambush',
+      cinematicId: undefined,
+    });
   });
 
   it('resolves the reviewed first-fork cinematic from the real current RunNode', () => {

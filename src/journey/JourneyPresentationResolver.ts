@@ -13,7 +13,8 @@ import { resolveCin6cContentCandidateId } from '../cinematics/Cin6aPresentation'
  */
 export type JourneyPresentationCategory = 'node' | 'edge' | 'content' | 'state';
 
-export type JourneyPresentationMap = Readonly<Record<string, string>>;
+/** `null` registers an authored static-only boundary without inventing a runtime media ID. */
+export type JourneyPresentationMap = Readonly<Record<string, string | null>>;
 
 /** `node:<nodeId>:arrival` — arriving at a campaign boundary. */
 export function nodeArrivalKey(nodeId: string): string {
@@ -43,6 +44,7 @@ export function stateKey(fact: string, variant: string): string {
  */
 export const JOURNEY_PRESENTATION_MAP: JourneyPresentationMap = Object.freeze({
   [nodeArrivalKey('lion-camp')]: 'camp_departure',
+  [edgeKey('lion-audience', 'lion-opening-ambush')]: null,
   [nodeArrivalKey('lion-refugees')]: 'refugees_approach',
   [nodeArrivalKey('lion-valmir-road')]: 'valmir_route_fork',
   [nodeArrivalKey('lion-witnesses')]: 'witnesses_encounter',
@@ -52,7 +54,7 @@ export function resolveJourneyPresentation(
   key: string,
   map: JourneyPresentationMap = JOURNEY_PRESENTATION_MAP,
 ): string | undefined {
-  return map[key];
+  return map[key] ?? undefined;
 }
 
 export interface JourneyBoundaryPresentationContext {
@@ -64,8 +66,8 @@ export interface JourneyBoundaryPresentationContext {
 }
 
 /**
- * Ordered lookup for the current boundary: arrival first, then the resolved content reveal.
- * The first mapped key wins; an unmapped boundary resolves to `undefined`.
+ * Ordered lookup for the current boundary: arrival first, then the resolved content reveal, then
+ * an authored sole-successor edge. A `null` map entry intentionally selects a static-only beat.
  */
 export function resolveBoundaryCinematic(
   context: JourneyBoundaryPresentationContext,
@@ -74,9 +76,12 @@ export function resolveBoundaryCinematic(
   const keys: string[] = [];
   if (context.currentNodeId) keys.push(nodeArrivalKey(context.currentNodeId));
   if (context.currentContentId) keys.push(contentRevealKey(context.currentContentId));
+  if (context.currentNodeId && context.available.length === 1) {
+    keys.push(edgeKey(context.currentNodeId, context.available[0]!.id));
+  }
   for (const key of keys) {
     const cinematicId = map[key];
-    if (cinematicId) return { key, cinematicId };
+    if (Object.prototype.hasOwnProperty.call(map, key)) return { key, cinematicId: cinematicId ?? undefined };
   }
   return { key: keys[0] ?? 'node:unknown:arrival', cinematicId: undefined };
 }

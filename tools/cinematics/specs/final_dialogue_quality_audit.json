@@ -1,0 +1,1890 @@
+{
+  "schemaVersion": 1,
+  "source": "canonical dialogue registry plus NarrativeStagingAudit reachable contexts",
+  "classificationVocabulary": [
+    "KEEP",
+    "POLISH",
+    "MOVE",
+    "CONDITIONALIZE",
+    "CHANGE_SPEAKER",
+    "REMOVE_REDUNDANT_LINE",
+    "ADD_TRANSITION_LINE",
+    "PRESENTATION_FIX_ONLY",
+    "CONTENT_BUG",
+    "REVIEW"
+  ],
+  "summary": {
+    "dialogues": 71,
+    "steps": 247,
+    "actionableChoiceStates": 28,
+    "KEEP": 243,
+    "POLISH": 4,
+    "MOVE": 0,
+    "CONDITIONALIZE": 0,
+    "CHANGE_SPEAKER": 0,
+    "REMOVE_REDUNDANT_LINE": 0,
+    "ADD_TRANSITION_LINE": 0,
+    "PRESENTATION_FIX_ONLY": 0,
+    "CONTENT_BUG": 0,
+    "REVIEW": 0
+  },
+  "exactPolish": [
+    {
+      "dialogueId": "village_choice",
+      "stepId": "1a",
+      "classification": "VISUAL_REPLACEABLE",
+      "displayText": "Les flammes divisent la place : captifs au nord, réserves et puits menacés au sud.",
+      "rationale": "The living scene carries the divided-place geography while the concise line retains both objectives.",
+      "sourceTextPreserved": true,
+      "reviewed": true,
+      "canonicalTextPreserved": true
+    },
+    {
+      "dialogueId": "village_choice",
+      "stepId": "2a",
+      "classification": "VISUAL_REPLACEABLE",
+      "displayText": "Ils attendent notre division : captifs par le vieux pont, coffres par la porte basse. Nous ne pouvons tenir les deux.",
+      "rationale": "The presentation removes repeated staging prose while retaining the two routes and tactical limit.",
+      "sourceTextPreserved": true,
+      "reviewed": true,
+      "canonicalTextPreserved": true
+    },
+    {
+      "dialogueId": "final_refuge",
+      "stepId": "1",
+      "classification": "REDUNDANT_EXPOSITION",
+      "displayText": "Le camp du Lion est en vue. Avant les portes, mesurez ce que nous portons et risquons : le Sceau ne se donne pas, Alaric ne pardonne pas.",
+      "rationale": "The dossier tableau already establishes the approach; every mandate fact remains in the displayed line.",
+      "sourceTextPreserved": true,
+      "reviewed": true,
+      "canonicalTextPreserved": true
+    },
+    {
+      "dialogueId": "final_refuge",
+      "stepId": "3",
+      "classification": "REDUNDANT_EXPOSITION",
+      "displayText": "Alaric pèsera tout le dossier — Bois-Clair, réfugiés, témoins, convoi, conduite et preuves. La renommée n’en changera aucun fait.",
+      "rationale": "Earlier tableaux carry the chronology while the complete evidence list and consequence remain explicit.",
+      "sourceTextPreserved": true,
+      "reviewed": true,
+      "canonicalTextPreserved": true
+    }
+  ],
+  "entries": [
+    {
+      "dialogueId": "acte_ouverture",
+      "contexts": [
+        "campaign:new-game-prologue"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "4",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "5",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "6",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "7",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "8",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "9",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "ate_alaric_reports",
+      "contexts": [
+        "ate-after:lion-opening-ambush"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "ate_bois_clair_night_watch",
+      "contexts": [
+        "ate-after:lion-second-refuge"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "4",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "ate_first_refuge_watch",
+      "contexts": [
+        "ate-after:lion-first-refuge"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "4",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "ate_lion_council_doubt",
+      "contexts": [
+        "ate-after:lion-witnesses"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "ate_maelor_seal_analysis",
+      "contexts": [
+        "ate-after:lion-village-choice"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "ate_ruins_awaken",
+      "contexts": [
+        "ate-after:lion-shadow-signs"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "ate_serpent_general_warning",
+      "contexts": [
+        "ate-after:lion-valmir-road"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "ate_serpent_retreat_order",
+      "contexts": [
+        "ate-after:lion-shadow-signs"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "ate_serpent_scout_report",
+      "contexts": [
+        "ate-after:lion-nomad-crossroads"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "ate_village_fear",
+      "contexts": [
+        "ate-after:lion-refugees"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "camp_departure",
+      "contexts": [
+        "node:lion-camp"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "1a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "1b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "4",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "5",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "epilogue",
+      "contexts": [
+        "campaign:lion-route-ending"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "final_refuge",
+      "contexts": [
+        "campaign-node:lion-final-refuge"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "POLISH",
+          "intent": "The dossier tableau already establishes the approach; every mandate fact remains in the displayed line.",
+          "displayText": "Le camp du Lion est en vue. Avant les portes, mesurez ce que nous portons et risquons : le Sceau ne se donne pas, Alaric ne pardonne pas.",
+          "canonicalTextPreserved": true
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "POLISH",
+          "intent": "Earlier tableaux carry the chronology while the complete evidence list and consequence remain explicit.",
+          "displayText": "Alaric pèsera tout le dossier — Bois-Clair, réfugiés, témoins, convoi, conduite et preuves. La renommée n’en changera aucun fait.",
+          "canonicalTextPreserved": true
+        },
+        {
+          "stepId": "4",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "5",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "6",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "lion_briefing",
+      "contexts": [
+        "campaign-node:lion-audience"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "1a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "1b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "4",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "5",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "contexts": [
+        "campaign-node:lion-final-judgement"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "lion_trial_aftermath",
+      "contexts": [
+        "post-combat:lion_chief"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "mystery_ambush",
+      "contexts": [
+        "campaign:reachable-content-pool"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "mystery_dragon_roost",
+      "contexts": [
+        "campaign-node:lion-final-trial-event"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "mystery_help",
+      "contexts": [
+        "campaign-node:lion-first-trial-event"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "mystery_lancer_recruit",
+      "contexts": [
+        "campaign:reachable-content-pool"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "4",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "mystery_recruit",
+      "contexts": [
+        "campaign-node:lion-nomad-crossroads"
+      ],
+      "classifications": [
+        {
+          "stepId": "0a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "0b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "mystery_shrine",
+      "contexts": [
+        "campaign:reachable-content-pool"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "mystery_treasure",
+      "contexts": [
+        "campaign:reachable-content-pool"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "mystery_troll_crossing",
+      "contexts": [
+        "campaign:reachable-content-pool"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "old_shrine_event",
+      "contexts": [
+        "campaign-node:lion-second-trial-event"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "post_opening_trail",
+      "contexts": [
+        "post-combat:forest_ambush",
+        "post-combat:wolf_pack"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "post_ruins_guardians",
+      "contexts": [
+        "post-combat:ruins_guardians"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "post_serpent_checkpoint",
+      "contexts": [
+        "post-combat:serpent_checkpoint"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "post_serpent_duelist_trial",
+      "contexts": [
+        "post-combat:serpent_duelist_trial"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "post_serpent_hunters",
+      "contexts": [
+        "post-combat:serpent_hunters"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "post_serpent_patrol",
+      "contexts": [
+        "post-combat:forest_patrol"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "post_serpent_reprisals",
+      "contexts": [
+        "post-combat:serpent_reprisals"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "post_spider_nest",
+      "contexts": [
+        "post-combat:spider_nest"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "post_troll_crossing",
+      "contexts": [
+        "post-combat:troll_crossing"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "post_valmir_road",
+      "contexts": [
+        "post-combat:marsh_crossing",
+        "post-combat:road_to_valmir"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "post_young_dragon_roost",
+      "contexts": [
+        "post-combat:young_dragon_roost"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "pre_lion_chief",
+      "contexts": [
+        "pre-combat:lion_chief"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "4",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "pre_opening_trail",
+      "contexts": [
+        "pre-combat:forest_ambush",
+        "pre-combat:wolf_pack"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "pre_ruins_guardians",
+      "contexts": [
+        "pre-combat:ruins_guardians"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "pre_serpent_checkpoint",
+      "contexts": [
+        "pre-combat:serpent_checkpoint"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "pre_serpent_duelist_trial",
+      "contexts": [
+        "pre-combat:serpent_duelist_trial"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "pre_serpent_hunters",
+      "contexts": [
+        "pre-combat:serpent_hunters"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "pre_serpent_patrol",
+      "contexts": [
+        "pre-combat:forest_patrol"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "pre_serpent_reprisals",
+      "contexts": [
+        "pre-combat:serpent_reprisals"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "pre_spider_nest",
+      "contexts": [
+        "pre-combat:spider_nest"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "pre_troll_crossing",
+      "contexts": [
+        "pre-combat:troll_crossing"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "pre_valmir_road",
+      "contexts": [
+        "pre-combat:marsh_crossing",
+        "pre-combat:road_to_valmir"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "pre_village_defense",
+      "contexts": [
+        "pre-combat:village_defense"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "pre_village_raid",
+      "contexts": [
+        "pre-combat:village_raid"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "pre_young_dragon_roost",
+      "contexts": [
+        "pre-combat:young_dragon_roost"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "refugee_trial",
+      "contexts": [
+        "campaign-node:lion-refugees"
+      ],
+      "classifications": [
+        {
+          "stepId": "0a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "0b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "rep_event_bois_clair_denunciation",
+      "contexts": [
+        "reputation-event:bois-clair-denunciation"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "rep_event_brokered_information",
+      "contexts": [
+        "reputation-event:brokered-information"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "rep_event_displaced_family_demand",
+      "contexts": [
+        "reputation-event:displaced-family-demand"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "rep_event_fallen_banner_claimant",
+      "contexts": [
+        "reputation-event:fallen-banner-claimant"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "rep_event_public_petition",
+      "contexts": [
+        "reputation-event:public-petition"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "rep_event_refuge_supply_offer",
+      "contexts": [
+        "reputation-event:refuge-supply-offer"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "rep_event_roadside_intimidation",
+      "contexts": [
+        "reputation-event:roadside-intimidation"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "rep_event_serpent_rumour_market",
+      "contexts": [
+        "reputation-event:serpent-rumour-market"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "rep_event_village_memorial_request",
+      "contexts": [
+        "reputation-event:village-memorial-request"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "reserve_trail",
+      "contexts": [
+        "campaign-node:lion-reserve-trail"
+      ],
+      "classifications": [
+        {
+          "stepId": "0a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "0b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "serpent_duelist_trial",
+      "contexts": [
+        "campaign:reachable-content-pool"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "serpent_general_aftermath",
+      "contexts": [
+        "post-combat:serpent_captain"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "serpent_informant",
+      "contexts": [
+        "campaign:reachable-content-pool"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "serpent_pursuit_pre_combat",
+      "contexts": [
+        "pre-combat:serpent_captain"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "shadow_signs",
+      "contexts": [
+        "campaign-node:lion-shadow-signs"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "village_choice",
+      "contexts": [
+        "campaign-node:lion-village-choice"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "1a",
+          "classification": "POLISH",
+          "intent": "The living scene carries the divided-place geography while the concise line retains both objectives.",
+          "displayText": "Les flammes divisent la place : captifs au nord, réserves et puits menacés au sud.",
+          "canonicalTextPreserved": true
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2a",
+          "classification": "POLISH",
+          "intent": "The presentation removes repeated staging prose while retaining the two routes and tactical limit.",
+          "displayText": "Ils attendent notre division : captifs par le vieux pont, coffres par la porte basse. Nous ne pouvons tenir les deux.",
+          "canonicalTextPreserved": true
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "4",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "4a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "5",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "6",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "6a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "6b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "7",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "7a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "7b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "village_defense_aftermath",
+      "contexts": [
+        "post-combat:village_defense"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "village_raid_aftermath",
+      "contexts": [
+        "post-combat:village_raid"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "contexts": [
+        "campaign-node:lion-witnesses"
+      ],
+      "classifications": [
+        {
+          "stepId": "0a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "0b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "2b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "3b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "4",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "4a",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        },
+        {
+          "stepId": "4b",
+          "classification": "KEEP",
+          "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    }
+  ]
+}

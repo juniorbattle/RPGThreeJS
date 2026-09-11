@@ -420,9 +420,10 @@ describe('CIN-5 campaign cinematic census contract', () => {
     });
   });
 
-  it('keeps the Journey production presentation map on the exact reviewed CIN-6A allowlist', () => {
+  it('keeps the reviewed production map plus the CIN-6D static-only audience-road edge', () => {
     expect(JOURNEY_PRESENTATION_MAP).toEqual({
       'node:lion-camp:arrival': 'camp_departure',
+      'edge:lion-audience>lion-opening-ambush': null,
       'node:lion-refugees:arrival': 'refugees_approach',
       'node:lion-valmir-road:arrival': 'valmir_route_fork',
       'node:lion-witnesses:arrival': 'witnesses_encounter',

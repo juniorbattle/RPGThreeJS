@@ -27,9 +27,10 @@ describe('CIN-6A vertical integration seams', () => {
     expect(method('private async playJourneyCinematic')).toContain('if (!id || !this.usesJourneyPresentation()) return');
   });
 
-  it('maps the initial continuation and all three real route-freeze boundaries from RunNode identity', () => {
+  it('maps the reviewed CIN-6A boundaries plus the CIN-6D static audience-road release', () => {
     expect(JOURNEY_PRESENTATION_MAP).toEqual({
       'node:lion-camp:arrival': 'camp_departure',
+      'edge:lion-audience>lion-opening-ambush': null,
       'node:lion-refugees:arrival': 'refugees_approach',
       'node:lion-valmir-road:arrival': 'valmir_route_fork',
       'node:lion-witnesses:arrival': 'witnesses_encounter',

@@ -1,0 +1,1330 @@
+{
+  "schemaVersion": 1,
+  "baseline": "84eb25a19fc1fad4ad77f4db5a1ac85d3fd0cb5a",
+  "sourceOfTruth": [
+    "RunSystem",
+    "content.ts",
+    "dialogue definitions",
+    "combat definitions",
+    "derived Lion narrative state"
+  ],
+  "presentationOnly": true,
+  "beatTaxonomy": [
+    "ARRIVAL",
+    "ENCOUNTER",
+    "DIALOGUE",
+    "DECISION",
+    "DEPARTURE",
+    "TRAVEL",
+    "THREAT",
+    "PRE_COMBAT",
+    "COMBAT",
+    "POST_COMBAT",
+    "AFTERMATH",
+    "REFUGE_ARRIVAL",
+    "REFUGE_MANAGEMENT",
+    "REFUGE_DEPARTURE",
+    "REVELATION",
+    "JUDGEMENT",
+    "ENDING",
+    "EPILOGUE"
+  ],
+  "summary": {
+    "nodes": 21,
+    "edges": 23,
+    "maxDepth": 17
+  },
+  "nodes": [
+    {
+      "nodeId": "lion-camp",
+      "depth": 0,
+      "nodeType": "story",
+      "authoritativeConditions": [
+        "RunSystem node reachability and canonical content effects"
+      ],
+      "contentIds": [
+        "camp_departure"
+      ],
+      "beatKinds": [
+        "DEPARTURE",
+        "DIALOGUE",
+        "TRAVEL"
+      ],
+      "location": "Lion camp",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [
+        "camp_departure"
+      ],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "camp_departure"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "DEPARTURE",
+      "exit": "TRAVEL",
+      "nextNodeIds": [
+        "lion-audience"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-audience",
+      "depth": 1,
+      "nodeType": "story",
+      "authoritativeConditions": [
+        "RunSystem node reachability and canonical content effects"
+      ],
+      "contentIds": [
+        "lion_briefing"
+      ],
+      "beatKinds": [
+        "ARRIVAL",
+        "DIALOGUE",
+        "DECISION",
+        "DEPARTURE",
+        "TRAVEL"
+      ],
+      "location": "Alaric audience chamber",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [
+          "alaric"
+        ],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [
+        "alaric_audience_arrival"
+      ],
+      "staticFallback": "AUDIENCE_ROAD_DEPARTURE_TABLEAU on edge:lion-audience>lion-opening-ambush",
+      "dialogueIds": [
+        "lion_briefing"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "ARRIVAL",
+      "exit": "TRAVEL",
+      "nextNodeIds": [
+        "lion-opening-ambush"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": true
+    },
+    {
+      "nodeId": "lion-opening-ambush",
+      "depth": 2,
+      "nodeType": "combat",
+      "authoritativeConditions": [
+        "seed selects forest_ambush or wolf_pack"
+      ],
+      "contentIds": [
+        "forest_ambush",
+        "wolf_pack"
+      ],
+      "beatKinds": [
+        "THREAT",
+        "PRE_COMBAT",
+        "COMBAT",
+        "POST_COMBAT",
+        "AFTERMATH",
+        "DEPARTURE"
+      ],
+      "location": "forest road",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [
+        "forest_journey_tension"
+      ],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "pre_opening_trail",
+        "post_opening_trail"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [
+        "forest_ambush",
+        "wolf_pack"
+      ],
+      "entry": "THREAT",
+      "exit": "DEPARTURE",
+      "nextNodeIds": [
+        "lion-nomad-crossroads"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-nomad-crossroads",
+      "depth": 3,
+      "nodeType": "event",
+      "authoritativeConditions": [
+        "RunSystem node reachability and canonical content effects"
+      ],
+      "contentIds": [
+        "mystery_recruit"
+      ],
+      "beatKinds": [
+        "ARRIVAL",
+        "ENCOUNTER",
+        "DIALOGUE",
+        "DECISION",
+        "DEPARTURE"
+      ],
+      "location": "forest crossroads",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [
+        "cedric_encounter"
+      ],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "mystery_recruit"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "ARRIVAL",
+      "exit": "DEPARTURE",
+      "nextNodeIds": [
+        "lion-refugees"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-refugees",
+      "depth": 4,
+      "nodeType": "event",
+      "authoritativeConditions": [
+        "RunSystem node reachability and canonical content effects"
+      ],
+      "contentIds": [
+        "refugee_trial"
+      ],
+      "beatKinds": [
+        "ARRIVAL",
+        "ENCOUNTER",
+        "DIALOGUE",
+        "DECISION",
+        "DEPARTURE"
+      ],
+      "location": "refugee road",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [
+        "refugees_approach"
+      ],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "refugee_trial"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "ARRIVAL",
+      "exit": "DEPARTURE",
+      "nextNodeIds": [
+        "lion-first-trial-event",
+        "lion-first-trial-combat"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-first-trial-event",
+      "depth": 5,
+      "nodeType": "event",
+      "authoritativeConditions": [
+        "Lion conduct and audience mandate select help or abandoned-cart truth"
+      ],
+      "contentIds": [
+        "mystery_help",
+        "mystery_treasure"
+      ],
+      "beatKinds": [
+        "ARRIVAL",
+        "ENCOUNTER",
+        "DIALOGUE",
+        "DECISION",
+        "AFTERMATH",
+        "DEPARTURE"
+      ],
+      "location": "first trial road",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "mystery_help",
+        "mystery_treasure"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "ARRIVAL",
+      "exit": "DEPARTURE",
+      "nextNodeIds": [
+        "lion-first-refuge"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-first-trial-combat",
+      "depth": 5,
+      "nodeType": "combat",
+      "authoritativeConditions": [
+        "Lion conduct and audience mandate select spider, patrol or reprisals truth"
+      ],
+      "contentIds": [
+        "spider_nest",
+        "forest_patrol",
+        "serpent_reprisals"
+      ],
+      "beatKinds": [
+        "ARRIVAL",
+        "THREAT",
+        "PRE_COMBAT",
+        "COMBAT",
+        "POST_COMBAT",
+        "AFTERMATH",
+        "DEPARTURE"
+      ],
+      "location": "contested forest path",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "pre_spider_nest",
+        "post_spider_nest",
+        "pre_serpent_patrol",
+        "post_serpent_patrol",
+        "pre_serpent_reprisals",
+        "post_serpent_reprisals"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [
+        "spider_nest",
+        "forest_patrol",
+        "serpent_reprisals"
+      ],
+      "entry": "ARRIVAL",
+      "exit": "DEPARTURE",
+      "nextNodeIds": [
+        "lion-first-refuge"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-first-refuge",
+      "depth": 6,
+      "nodeType": "refuge",
+      "authoritativeConditions": [
+        "RunSystem node reachability and canonical content effects"
+      ],
+      "contentIds": [
+        "forest_refuge"
+      ],
+      "beatKinds": [
+        "REFUGE_ARRIVAL",
+        "REFUGE_MANAGEMENT",
+        "REFUGE_DEPARTURE"
+      ],
+      "location": "first Lion refuge",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [
+        "first_refuge_arrival",
+        "first_refuge_departure"
+      ],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "REFUGE_ARRIVAL",
+      "exit": "REFUGE_DEPARTURE",
+      "nextNodeIds": [
+        "lion-reserve-trail"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-reserve-trail",
+      "depth": 7,
+      "nodeType": "event",
+      "authoritativeConditions": [
+        "RunSystem node reachability and canonical content effects"
+      ],
+      "contentIds": [
+        "reserve_trail"
+      ],
+      "beatKinds": [
+        "TRAVEL",
+        "ENCOUNTER",
+        "DIALOGUE",
+        "DECISION",
+        "DEPARTURE"
+      ],
+      "location": "reserve trail",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "reserve_trail"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "TRAVEL",
+      "exit": "DEPARTURE",
+      "nextNodeIds": [
+        "lion-valmir-road"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-valmir-road",
+      "depth": 8,
+      "nodeType": "combat",
+      "authoritativeConditions": [
+        "seed selects road_to_valmir or marsh_crossing"
+      ],
+      "contentIds": [
+        "road_to_valmir",
+        "marsh_crossing"
+      ],
+      "beatKinds": [
+        "TRAVEL",
+        "THREAT",
+        "PRE_COMBAT",
+        "COMBAT",
+        "POST_COMBAT",
+        "AFTERMATH",
+        "DECISION"
+      ],
+      "location": "Valmir road fork",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [
+        "valmir_route_fork"
+      ],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "pre_valmir_road",
+        "post_valmir_road"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [
+        "road_to_valmir",
+        "marsh_crossing"
+      ],
+      "entry": "TRAVEL",
+      "exit": "DECISION",
+      "nextNodeIds": [
+        "lion-second-trial-event",
+        "lion-second-trial-combat"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-second-trial-event",
+      "depth": 9,
+      "nodeType": "event",
+      "authoritativeConditions": [
+        "RunSystem node reachability and canonical content effects"
+      ],
+      "contentIds": [
+        "old_shrine_event"
+      ],
+      "beatKinds": [
+        "ARRIVAL",
+        "REVELATION",
+        "DIALOGUE",
+        "DECISION",
+        "DEPARTURE"
+      ],
+      "location": "old shrine",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "old_shrine_event"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "ARRIVAL",
+      "exit": "DEPARTURE",
+      "nextNodeIds": [
+        "lion-village-choice"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-second-trial-combat",
+      "depth": 9,
+      "nodeType": "combat",
+      "authoritativeConditions": [
+        "Lion conduct and audience mandate select troll, checkpoint or duelist truth"
+      ],
+      "contentIds": [
+        "troll_crossing",
+        "serpent_checkpoint",
+        "serpent_duelist_trial"
+      ],
+      "beatKinds": [
+        "ARRIVAL",
+        "THREAT",
+        "PRE_COMBAT",
+        "COMBAT",
+        "POST_COMBAT",
+        "AFTERMATH",
+        "DEPARTURE"
+      ],
+      "location": "Bois-Clair approach",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "pre_troll_crossing",
+        "post_troll_crossing",
+        "pre_serpent_checkpoint",
+        "post_serpent_checkpoint",
+        "pre_serpent_duelist_trial",
+        "post_serpent_duelist_trial"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [
+        "troll_crossing",
+        "serpent_checkpoint",
+        "serpent_duelist_trial"
+      ],
+      "entry": "ARRIVAL",
+      "exit": "DEPARTURE",
+      "nextNodeIds": [
+        "lion-village-choice"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-village-choice",
+      "depth": 10,
+      "nodeType": "story",
+      "authoritativeConditions": [
+        "RunSystem node reachability and canonical content effects"
+      ],
+      "contentIds": [
+        "village_choice"
+      ],
+      "beatKinds": [
+        "ARRIVAL",
+        "DIALOGUE",
+        "DECISION",
+        "COMBAT",
+        "POST_COMBAT",
+        "AFTERMATH"
+      ],
+      "location": "Bois-Clair",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [
+        "bois_clair_arrival",
+        "bois_clair_saved",
+        "bois_clair_sacrificed"
+      ],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "village_choice"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "ARRIVAL",
+      "exit": "AFTERMATH",
+      "nextNodeIds": [
+        "lion-second-refuge"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-second-refuge",
+      "depth": 11,
+      "nodeType": "refuge",
+      "authoritativeConditions": [
+        "RunSystem node reachability and canonical content effects"
+      ],
+      "contentIds": [
+        "forest_refuge"
+      ],
+      "beatKinds": [
+        "REFUGE_ARRIVAL",
+        "REFUGE_MANAGEMENT",
+        "REFUGE_DEPARTURE"
+      ],
+      "location": "second Lion refuge",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [
+        "second_refuge_departure"
+      ],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "REFUGE_ARRIVAL",
+      "exit": "REFUGE_DEPARTURE",
+      "nextNodeIds": [
+        "lion-lancer-recruit"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-lancer-recruit",
+      "depth": 12,
+      "nodeType": "event",
+      "authoritativeConditions": [
+        "RunSystem node reachability and canonical content effects"
+      ],
+      "contentIds": [
+        "mystery_lancer_recruit"
+      ],
+      "beatKinds": [
+        "ARRIVAL",
+        "ENCOUNTER",
+        "DIALOGUE",
+        "DECISION",
+        "DEPARTURE"
+      ],
+      "location": "road outside Bois-Clair",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [
+        "garen_encounter"
+      ],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "mystery_lancer_recruit"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "ARRIVAL",
+      "exit": "DEPARTURE",
+      "nextNodeIds": [
+        "lion-witnesses"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-witnesses",
+      "depth": 13,
+      "nodeType": "event",
+      "authoritativeConditions": [
+        "RunSystem node reachability and canonical content effects"
+      ],
+      "contentIds": [
+        "witnesses_on_road"
+      ],
+      "beatKinds": [
+        "ARRIVAL",
+        "ENCOUNTER",
+        "DIALOGUE",
+        "DECISION",
+        "DEPARTURE"
+      ],
+      "location": "witness road",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [
+        "witnesses_encounter"
+      ],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "witnesses_on_road"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "ARRIVAL",
+      "exit": "DEPARTURE",
+      "nextNodeIds": [
+        "lion-final-trial-event",
+        "lion-final-trial-combat"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-final-trial-event",
+      "depth": 14,
+      "nodeType": "event",
+      "authoritativeConditions": [
+        "Lion conduct and prior elite completion select dragon, shrine or informant truth"
+      ],
+      "contentIds": [
+        "mystery_dragon_roost",
+        "mystery_shrine",
+        "serpent_informant"
+      ],
+      "beatKinds": [
+        "ARRIVAL",
+        "ENCOUNTER",
+        "REVELATION",
+        "DIALOGUE",
+        "DECISION",
+        "AFTERMATH",
+        "DEPARTURE"
+      ],
+      "location": "last trial site",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "mystery_dragon_roost",
+        "mystery_shrine",
+        "serpent_informant"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "ARRIVAL",
+      "exit": "DEPARTURE",
+      "nextNodeIds": [
+        "lion-shadow-signs"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-final-trial-combat",
+      "depth": 14,
+      "nodeType": "combat",
+      "authoritativeConditions": [
+        "Lion conduct selects ruins guardians or Serpent hunters truth"
+      ],
+      "contentIds": [
+        "ruins_guardians",
+        "serpent_hunters"
+      ],
+      "beatKinds": [
+        "ARRIVAL",
+        "THREAT",
+        "PRE_COMBAT",
+        "COMBAT",
+        "POST_COMBAT",
+        "AFTERMATH",
+        "DEPARTURE"
+      ],
+      "location": "Shadow ruins approach",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "pre_ruins_guardians",
+        "post_ruins_guardians",
+        "pre_serpent_hunters",
+        "post_serpent_hunters"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [
+        "ruins_guardians",
+        "serpent_hunters"
+      ],
+      "entry": "ARRIVAL",
+      "exit": "DEPARTURE",
+      "nextNodeIds": [
+        "lion-shadow-signs"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-shadow-signs",
+      "depth": 15,
+      "nodeType": "mystery",
+      "authoritativeConditions": [
+        "RunSystem node reachability and canonical content effects"
+      ],
+      "contentIds": [
+        "shadow_signs"
+      ],
+      "beatKinds": [
+        "ARRIVAL",
+        "REVELATION",
+        "DIALOGUE",
+        "DEPARTURE"
+      ],
+      "location": "Shadow ruins",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [
+        "shadow_signs"
+      ],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "shadow_signs"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "ARRIVAL",
+      "exit": "DEPARTURE",
+      "nextNodeIds": [
+        "lion-final-refuge"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-final-refuge",
+      "depth": 16,
+      "nodeType": "story",
+      "authoritativeConditions": [
+        "RunSystem node reachability and canonical content effects"
+      ],
+      "contentIds": [
+        "final_refuge"
+      ],
+      "beatKinds": [
+        "REFUGE_ARRIVAL",
+        "DIALOGUE",
+        "REFUGE_DEPARTURE"
+      ],
+      "location": "final refuge",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [
+        "final_refuge_dossier"
+      ],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "final_refuge"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "REFUGE_ARRIVAL",
+      "exit": "REFUGE_DEPARTURE",
+      "nextNodeIds": [
+        "lion-final-judgement"
+      ],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    },
+    {
+      "nodeId": "lion-final-judgement",
+      "depth": 17,
+      "nodeType": "boss",
+      "authoritativeConditions": [
+        "derived Lion verdict and player judgement choice select Serpent or Lion Trial finale"
+      ],
+      "contentIds": [
+        "lion_finale_judgement"
+      ],
+      "beatKinds": [
+        "ARRIVAL",
+        "JUDGEMENT",
+        "DIALOGUE",
+        "DECISION",
+        "PRE_COMBAT",
+        "COMBAT",
+        "POST_COMBAT",
+        "ENDING",
+        "EPILOGUE"
+      ],
+      "location": "Lion judgement hall and final battlefield",
+      "castDirection": {
+        "hero": "alistair",
+        "advisers": [
+          "sage_seraphine",
+          "maelor"
+        ],
+        "externalCast": [],
+        "rule": "Video owns moving cast; static tableau owns enlarged canonical sprites facing the current situation."
+      },
+      "cinematicIds": [
+        "lion_judgement",
+        "serpent_general_reveal",
+        "lion_champion_reveal",
+        "serpent_route_ending",
+        "lion_trial_route_ending"
+      ],
+      "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
+      "dialogueIds": [
+        "lion_finale_judgement"
+      ],
+      "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
+      "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
+      "combatIds": [],
+      "entry": "ARRIVAL",
+      "exit": "EPILOGUE",
+      "nextNodeIds": [],
+      "releaseRule": "Release the current hold before a change of place, time, activity, objective or encounter.",
+      "needsNewMediaCin6e": false
+    }
+  ],
+  "edges": [
+    {
+      "edgeId": "lion-camp>lion-audience",
+      "fromNodeId": "lion-camp",
+      "toNodeId": "lion-audience",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-audience>lion-opening-ambush",
+      "fromNodeId": "lion-audience",
+      "toNodeId": "lion-opening-ambush",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "AUDIENCE_ROAD_DEPARTURE_TABLEAU",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-opening-ambush>lion-nomad-crossroads",
+      "fromNodeId": "lion-opening-ambush",
+      "toNodeId": "lion-nomad-crossroads",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-nomad-crossroads>lion-refugees",
+      "fromNodeId": "lion-nomad-crossroads",
+      "toNodeId": "lion-refugees",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-refugees>lion-first-trial-event",
+      "fromNodeId": "lion-refugees",
+      "toNodeId": "lion-first-trial-event",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-refugees>lion-first-trial-combat",
+      "fromNodeId": "lion-refugees",
+      "toNodeId": "lion-first-trial-combat",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-first-trial-event>lion-first-refuge",
+      "fromNodeId": "lion-first-trial-event",
+      "toNodeId": "lion-first-refuge",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-first-trial-combat>lion-first-refuge",
+      "fromNodeId": "lion-first-trial-combat",
+      "toNodeId": "lion-first-refuge",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-first-refuge>lion-reserve-trail",
+      "fromNodeId": "lion-first-refuge",
+      "toNodeId": "lion-reserve-trail",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-reserve-trail>lion-valmir-road",
+      "fromNodeId": "lion-reserve-trail",
+      "toNodeId": "lion-valmir-road",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-valmir-road>lion-second-trial-event",
+      "fromNodeId": "lion-valmir-road",
+      "toNodeId": "lion-second-trial-event",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-valmir-road>lion-second-trial-combat",
+      "fromNodeId": "lion-valmir-road",
+      "toNodeId": "lion-second-trial-combat",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-second-trial-event>lion-village-choice",
+      "fromNodeId": "lion-second-trial-event",
+      "toNodeId": "lion-village-choice",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-second-trial-combat>lion-village-choice",
+      "fromNodeId": "lion-second-trial-combat",
+      "toNodeId": "lion-village-choice",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-village-choice>lion-second-refuge",
+      "fromNodeId": "lion-village-choice",
+      "toNodeId": "lion-second-refuge",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-second-refuge>lion-lancer-recruit",
+      "fromNodeId": "lion-second-refuge",
+      "toNodeId": "lion-lancer-recruit",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-lancer-recruit>lion-witnesses",
+      "fromNodeId": "lion-lancer-recruit",
+      "toNodeId": "lion-witnesses",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-witnesses>lion-final-trial-event",
+      "fromNodeId": "lion-witnesses",
+      "toNodeId": "lion-final-trial-event",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-witnesses>lion-final-trial-combat",
+      "fromNodeId": "lion-witnesses",
+      "toNodeId": "lion-final-trial-combat",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-final-trial-event>lion-shadow-signs",
+      "fromNodeId": "lion-final-trial-event",
+      "toNodeId": "lion-shadow-signs",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-final-trial-combat>lion-shadow-signs",
+      "fromNodeId": "lion-final-trial-combat",
+      "toNodeId": "lion-shadow-signs",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-shadow-signs>lion-final-refuge",
+      "fromNodeId": "lion-shadow-signs",
+      "toNodeId": "lion-final-refuge",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    },
+    {
+      "edgeId": "lion-final-refuge>lion-final-judgement",
+      "fromNodeId": "lion-final-refuge",
+      "toNodeId": "lion-final-judgement",
+      "samePlace": false,
+      "sameTime": true,
+      "sameActivity": false,
+      "sameObjective": false,
+      "sameEncounter": false,
+      "requiresExplicitPresentation": true,
+      "presentation": "mapped cinematic or current-context NarrativeStage static boundary",
+      "stalePriorHoldAllowed": false
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { dialogues } from '../game/content';
 import {
   ALARIC_AUDIENCE_TABLEAU,
+  AUDIENCE_ROAD_DEPARTURE_TABLEAU,
   CAMP_DEPARTURE_TABLEAU,
   FOREST_AFTERMATH_TABLEAU,
   FOREST_THREAT_TABLEAU,
@@ -21,7 +22,20 @@ describe('Narrative Tableau presentation data', () => {
   it('maps only the reviewed prototype boundaries', () => {
     expect(resolveNarrativeBoundaryTableau('node:lion-camp:arrival')).toBe(CAMP_DEPARTURE_TABLEAU);
     expect(resolveNarrativeBoundaryTableau('node:lion-valmir-road:arrival')).toBe(VALMIR_FORK_TABLEAU);
+    expect(resolveNarrativeBoundaryTableau('edge:lion-audience>lion-opening-ambush')).toBe(AUDIENCE_ROAD_DEPARTURE_TABLEAU);
     expect(resolveNarrativeBoundaryTableau('node:lion-refugees:arrival')).toBeUndefined();
+  });
+
+  it('locks the post-audience company departure as a static CIN-6E placeholder', () => {
+    expect(AUDIENCE_ROAD_DEPARTURE_TABLEAU).toMatchObject({
+      grammar: 'DEPARTURE',
+      staticFallbackOnly: true,
+      needsNewMediaCin6e: true,
+      media: [],
+    });
+    expect(AUDIENCE_ROAD_DEPARTURE_TABLEAU.cast.visualActors).toEqual(['sage_seraphine', 'alistair', 'maelor']);
+    expect(AUDIENCE_ROAD_DEPARTURE_TABLEAU.cast.playerRepresentatives).toEqual(['alistair']);
+    expect(AUDIENCE_ROAD_DEPARTURE_TABLEAU.cast.visualActors).not.toContain('alaric');
   });
 
   it('maps Audience, threat, and aftermath from authoritative IDs', () => {

@@ -1,0 +1,1949 @@
+{
+  "schemaVersion": 1,
+  "policy": "PLAN_ONLY_NO_MEDIA_GENERATION",
+  "baseline": "84eb25a19fc1fad4ad77f4db5a1ac85d3fd0cb5a",
+  "goldReferences": [
+    "alaric_audience_arrival",
+    "camp_departure",
+    "valmir_route_fork"
+  ],
+  "classificationVocabulary": [
+    "KEEP_AS_IS",
+    "REMASTER_VISUAL",
+    "TRIM_OR_REASSEMBLE",
+    "PRESENTATION_FIX_ONLY",
+    "REMOVE_FROM_RUNTIME",
+    "REPLACE_BY_REUSE",
+    "REVIEW",
+    "NEW_MEDIA_REQUIRED"
+  ],
+  "summary": {
+    "KEEP_AS_IS": 14,
+    "REMASTER_VISUAL": 12,
+    "TRIM_OR_REASSEMBLE": 0,
+    "PRESENTATION_FIX_ONLY": 0,
+    "REMOVE_FROM_RUNTIME": 0,
+    "REPLACE_BY_REUSE": 5,
+    "REVIEW": 0,
+    "NEW_MEDIA_REQUIRED": 1
+  },
+  "existingProductionMasters": [
+    {
+      "runtimeId": "lion_judgement",
+      "currentHash": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9",
+      "currentDuration": 17,
+      "narrativeBeat": "Alaric's judgement",
+      "nodeContent": [
+        "lion-final-judgement",
+        "lion_finale_judgement"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/cinematics/source/lion_judgement_source.png",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "alaric",
+          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "counterpart"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "alaric",
+          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "counterpart"
+          }
+        }
+      ],
+      "textBefore": "Neutral court approach before deterministic verdict, disclosure and final route intent.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "DIALOGUE",
+      "entryState": [
+        "before final route selection"
+      ],
+      "exitState": "DIALOGUE",
+      "visualClassification": "REMASTER_VISUAL",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Future authorized integrated remaster should preserve Alaric and Lion authority while representing the guaranteed company side at judgement.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P0"
+    },
+    {
+      "runtimeId": "serpent_general_reveal",
+      "currentHash": "e8c918d292693e4bc7f612fc6f4fbcdb283c6d2f8095c805db287692e561a682",
+      "currentDuration": 8,
+      "narrativeBeat": "Serpent Pursuit boss reveal",
+      "nodeContent": [
+        "lion-final-judgement",
+        "serpent_captain",
+        "serpent_pursuit_pre_combat"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/cinematics/source/serpent_general_reveal_source.png",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "serpent_general_boss",
+          "asset": "public/assets/characters/pixel/full/serpent_general_boss.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "challenger"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "serpent_general_boss",
+          "asset": "public/assets/characters/pixel/full/serpent_general_boss.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "challenger"
+          }
+        }
+      ],
+      "textBefore": "Reveal the selected Serpent boss after route-correct pre-combat dialogue.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "COMBAT",
+      "entryState": [
+        "lionFinaleSerpentPursuitSelected=true"
+      ],
+      "exitState": "COMBAT",
+      "visualClassification": "REMASTER_VISUAL",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Retain the reveal semantics but integrate the Serpent General into the ruin light, ground and atmosphere in a future media pass.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P1"
+    },
+    {
+      "runtimeId": "lion_champion_reveal",
+      "currentHash": "2d581e76e5cc0a37d4633fd6d7166210780da55475f54abadfd90aedaf30b04c",
+      "currentDuration": 8,
+      "narrativeBeat": "Lion Trial boss reveal",
+      "nodeContent": [
+        "lion-final-judgement",
+        "lion_chief",
+        "pre_lion_chief"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/cinematics/source/lion_champion_reveal_source.png",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "lion_champion",
+          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "challenger"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "lion_champion",
+          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "challenger"
+          }
+        }
+      ],
+      "textBefore": "Reveal the champion after voluntary or rejected-claim trial selection.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "COMBAT",
+      "entryState": [
+        "lionFinaleTrialSelected=true"
+      ],
+      "exitState": "COMBAT",
+      "visualClassification": "REMASTER_VISUAL",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Retain the focused champion reveal but rebuild it from an integrated Lion-ruin keyframe when that route is next remastered.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P1"
+    },
+    {
+      "runtimeId": "forest_journey_tension",
+      "currentHash": "385f5f9b99b22d9710ef1ef7a89fd21a8b59e392664a51a2480eab6167511fac",
+      "currentDuration": 9,
+      "narrativeBeat": "Pression sous les frondaisons",
+      "nodeContent": [],
+      "location": null,
+      "cast": [],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [],
+      "textBefore": "La compagnie progresse sous une pression invisible.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": null,
+      "entryState": [],
+      "exitState": "continue",
+      "visualClassification": "REPLACE_BY_REUSE",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Replace with an integrated forest-threat family showing a guaranteed company group, short grounded motion and creature-neutral pressure.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P0"
+    },
+    {
+      "runtimeId": "camp_departure",
+      "currentHash": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3",
+      "currentDuration": 12,
+      "narrativeBeat": "Company leaves the fallen camp",
+      "nodeContent": [
+        "lion-camp",
+        "camp_departure"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/camp_departure.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "alistair",
+          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "road"
+          }
+        },
+        {
+          "id": "sage_seraphine",
+          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "alistair",
+          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "road"
+          }
+        },
+        {
+          "id": "sage_seraphine",
+          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        }
+      ],
+      "textBefore": "Convert the post-prologue departure into the first moving campaign beat without replaying the prologue.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "DIALOGUE",
+      "entryState": [
+        "new chronicle opening complete"
+      ],
+      "exitState": "DIALOGUE",
+      "visualClassification": "KEEP_AS_IS",
+      "narrativeCorrect": true,
+      "needsRemaster": false,
+      "needsNewMedia": false,
+      "reason": "Retain the integrated V3 departure grammar and Maelor, Marian, Alistair cast.",
+      "qualityReference": "camp_departure",
+      "priority": "P2"
+    },
+    {
+      "runtimeId": "alaric_audience_arrival",
+      "currentHash": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629",
+      "currentDuration": 12,
+      "narrativeBeat": "Approach to Alaric's audience",
+      "nodeContent": [
+        "lion-audience",
+        "lion_briefing"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/lion_briefing.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "alaric",
+          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "arriving company"
+          }
+        },
+        {
+          "id": "lion_champion",
+          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "alaric",
+          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "arriving company"
+          }
+        },
+        {
+          "id": "lion_champion",
+          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        }
+      ],
+      "textBefore": "Establish Lion authority and geography, then hand cleanly to lion_briefing.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "DIALOGUE",
+      "entryState": [
+        "before mandate choice"
+      ],
+      "exitState": "DIALOGUE",
+      "visualClassification": "KEEP_AS_IS",
+      "narrativeCorrect": true,
+      "needsRemaster": false,
+      "needsNewMedia": false,
+      "reason": "Retain the integrated V3 diplomatic staging with both advisers, Alistair and Alaric.",
+      "qualityReference": "alaric_audience_arrival",
+      "priority": "P2"
+    },
+    {
+      "runtimeId": "refugees_approach",
+      "currentHash": "5f1d76f8686c2bf2f9775576da6d50649cb33e1c5157b46e6d3f9d5b719e5a28",
+      "currentDuration": 12,
+      "narrativeBeat": "Refugees and first route-choice freeze",
+      "nodeContent": [
+        "lion-refugees",
+        "refugee_trial"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/refugee_trial.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "refugee_mother",
+          "asset": "public/assets/characters/pixel/full/refugee_mother.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        },
+        {
+          "id": "marian",
+          "asset": "public/assets/characters/pixel/full/marian.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "refugees"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "refugee_mother",
+          "asset": "public/assets/characters/pixel/full/refugee_mother.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        },
+        {
+          "id": "marian",
+          "asset": "public/assets/characters/pixel/full/marian.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "refugees"
+          }
+        }
+      ],
+      "textBefore": "Introduce the families, preserve the moral decision in dialogue, and end on a stable two-road composition for the real node choice.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "ROUTE_CHOICE",
+      "entryState": [
+        "before helpedRefugees/exploitedRefugees"
+      ],
+      "exitState": "ROUTE_CHOICE",
+      "visualClassification": "REMASTER_VISUAL",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Rebuild as an integrated company-and-refugee approach that preserves the unresolved help/exploit agency.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P1"
+    },
+    {
+      "runtimeId": "first_refuge_arrival",
+      "currentHash": "31b4a50f678d6d7431a855d7056bbcee66f44f8a623081be972b79986a55c56e",
+      "currentDuration": 10,
+      "narrativeBeat": "First interactive refuge arrival",
+      "nodeContent": [
+        "lion-first-refuge",
+        "forest_refuge"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/lion_refuge.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "marian",
+          "asset": "public/assets/characters/pixel/full/marian.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "refuge gate"
+          }
+        },
+        {
+          "id": "alistair",
+          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "marian",
+          "asset": "public/assets/characters/pixel/full/marian.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "refuge gate"
+          }
+        },
+        {
+          "id": "alistair",
+          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        }
+      ],
+      "textBefore": "Arrive, settle to a stable camp frame, then preserve shop/rest/management agency.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "REFUGE",
+      "entryState": [],
+      "exitState": "REFUGE",
+      "visualClassification": "REPLACE_BY_REUSE",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Replace with an integrated refuge-arrival family that leaves management gameplay authoritative.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P1"
+    },
+    {
+      "runtimeId": "first_refuge_departure",
+      "currentHash": "a3078c6e149c02f78be58063d9f884004a7d3b0265ba29481506fe138d194425",
+      "currentDuration": 12,
+      "narrativeBeat": "Leave first refuge and approach the reserve convoy",
+      "nodeContent": [
+        "lion-first-refuge",
+        "lion-reserve-trail",
+        "forest_refuge",
+        "reserve_trail"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/reserve_trail.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "kestrel",
+          "asset": "public/assets/characters/pixel/full/kestrel.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "smoke horizon"
+          }
+        },
+        {
+          "id": "maelor",
+          "asset": "public/assets/characters/pixel/full/maelor.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "convoy"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "kestrel",
+          "asset": "public/assets/characters/pixel/full/kestrel.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "smoke horizon"
+          }
+        },
+        {
+          "id": "maelor",
+          "asset": "public/assets/characters/pixel/full/maelor.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "convoy"
+          }
+        }
+      ],
+      "textBefore": "Bridge interactive refuge to the reserve-trail dilemma and establish smoke toward Bois-Clair.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "DIALOGUE",
+      "entryState": [
+        "after refuge continue"
+      ],
+      "exitState": "DIALOGUE",
+      "visualClassification": "REPLACE_BY_REUSE",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Replace with a guaranteed-core forest single-route family; do not encode optional recruits in reusable travel media.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P0"
+    },
+    {
+      "runtimeId": "valmir_route_fork",
+      "currentHash": "63a4a0c3793d6e29ce8fd94b1478dfab59e40f856d53a01915e47fb9a6343261",
+      "currentDuration": 10,
+      "narrativeBeat": "Road cleared; second route-choice freeze",
+      "nodeContent": [
+        "lion-valmir-road",
+        "road_to_valmir",
+        "marsh_crossing"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/forest_fork.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "kestrel",
+          "asset": "public/assets/characters/pixel/full/kestrel.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "CENTER",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "forked road"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "kestrel",
+          "asset": "public/assets/characters/pixel/full/kestrel.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "CENTER",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "forked road"
+          }
+        }
+      ],
+      "textBefore": "After the seeded road combat, reveal the shrine road and guarded road as real selectable successors.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "ROUTE_CHOICE",
+      "entryState": [
+        "road combat resolved"
+      ],
+      "exitState": "ROUTE_CHOICE",
+      "visualClassification": "KEEP_AS_IS",
+      "narrativeCorrect": true,
+      "needsRemaster": false,
+      "needsNewMedia": false,
+      "reason": "Retain the integrated V3 two-path grammar, stable guaranteed cast and left-shrine/right-roadblock geography.",
+      "qualityReference": "valmir_route_fork",
+      "priority": "P2"
+    },
+    {
+      "runtimeId": "bois_clair_arrival",
+      "currentHash": "a37d397665960f8f6749d8f1ece69eaf91c7160cec68fc581ed26ea78042a699",
+      "currentDuration": 20,
+      "narrativeBeat": "Bois-Clair siege reveal",
+      "nodeContent": [
+        "lion-village-choice",
+        "village_choice",
+        "village_defense",
+        "village_raid"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "villageoise",
+          "asset": "public/assets/characters/pixel/full/villageoise.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "approaching company"
+          }
+        },
+        {
+          "id": "serpent_raider",
+          "asset": "public/assets/characters/pixel/full/serpent_raider.png",
+          "assetStatus": "READY",
+          "role": "THREAT",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "village gate"
+          }
+        },
+        {
+          "id": "alistair",
+          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "assetStatus": "READY",
+          "role": "REACTION",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "burning village"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "villageoise",
+          "asset": "public/assets/characters/pixel/full/villageoise.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "approaching company"
+          }
+        },
+        {
+          "id": "serpent_raider",
+          "asset": "public/assets/characters/pixel/full/serpent_raider.png",
+          "assetStatus": "READY",
+          "role": "THREAT",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "village gate"
+          }
+        },
+        {
+          "id": "alistair",
+          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "assetStatus": "READY",
+          "role": "REACTION",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "burning village"
+          }
+        }
+      ],
+      "textBefore": "Road approach, smoke, threatened families and Serpent pressure, then a stable handoff to the real village_choice.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "DIALOGUE",
+      "entryState": [
+        "before missionSuccess/missionGreed is chosen"
+      ],
+      "exitState": "DIALOGUE",
+      "visualClassification": "REMASTER_VISUAL",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Preserve the approach-to-threat progression but integrate the company, civilians and Serpent pressure into coherent shared shots.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P0"
+    },
+    {
+      "runtimeId": "bois_clair_saved",
+      "currentHash": "a57d9ef8ff2fbb26084066b057f89948bdfe59de22dc7f7770d6576900223b1f",
+      "currentDuration": 18,
+      "narrativeBeat": "Bois-Clair sauvée",
+      "nodeContent": [],
+      "location": null,
+      "cast": [],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [],
+      "textBefore": "Les survivants reprennent souffle au milieu des dégâts.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": null,
+      "entryState": [],
+      "exitState": "continue",
+      "visualClassification": "REMASTER_VISUAL",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Rebuild the saved aftermath as one integrated damaged-but-surviving scene while retaining state-conditional selection.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P1"
+    },
+    {
+      "runtimeId": "bois_clair_sacrificed",
+      "currentHash": "db07031a3105fb31280abe3aca026cb74e4612e2aa44f7023b5401847322f1a4",
+      "currentDuration": 18,
+      "narrativeBeat": "Le prix de Bois-Clair",
+      "nodeContent": [],
+      "location": null,
+      "cast": [],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [],
+      "textBefore": "Les réserves sont sécurisées, mais les familles quittent un village meurtri.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": null,
+      "entryState": [],
+      "exitState": "continue",
+      "visualClassification": "REMASTER_VISUAL",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Rebuild the sacrificed aftermath as an integrated loss scene paired compositionally with the saved variant.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P1"
+    },
+    {
+      "runtimeId": "second_refuge_departure",
+      "currentHash": "a7d4210b8223a6ef3946fc63bdb138310ed61168f6d902bfc0eb4f74dbe9be3d",
+      "currentDuration": 10,
+      "narrativeBeat": "Leave the Bois-Clair night refuge",
+      "nodeContent": [
+        "lion-second-refuge",
+        "forest_refuge"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/village_choice.webp",
+        "status": "REUSE"
+      },
+      "cast": [
+        {
+          "id": "marian",
+          "asset": "public/assets/characters/pixel/full/marian.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "road from Bois-Clair"
+          }
+        },
+        {
+          "id": "alistair",
+          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "marian",
+          "asset": "public/assets/characters/pixel/full/marian.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "road from Bois-Clair"
+          }
+        },
+        {
+          "id": "alistair",
+          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        }
+      ],
+      "textBefore": "Restore forward movement after consequence dialogue and lead toward witnesses without resolving Garen's choice.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "JOURNEY",
+      "entryState": [
+        "after interactive refuge continue"
+      ],
+      "exitState": "JOURNEY",
+      "visualClassification": "REPLACE_BY_REUSE",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Replace with a neutral guaranteed-cast single-route family compatible with either Bois-Clair outcome.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P1"
+    },
+    {
+      "runtimeId": "witnesses_encounter",
+      "currentHash": "de8f577bb18dc4ce30e0ec3d902fe7f27c4778154ade2e6e1a14eeec99ac4b98",
+      "currentDuration": 12,
+      "narrativeBeat": "Witness camp and third route-choice freeze",
+      "nodeContent": [
+        "lion-witnesses",
+        "witnesses_on_road"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "survivor",
+          "asset": "public/assets/characters/pixel/full/survivor.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        },
+        {
+          "id": "marian",
+          "asset": "public/assets/characters/pixel/full/marian.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "witnesses"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "survivor",
+          "asset": "public/assets/characters/pixel/full/survivor.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        },
+        {
+          "id": "marian",
+          "asset": "public/assets/characters/pixel/full/marian.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "witnesses"
+          }
+        }
+      ],
+      "textBefore": "Show witnesses as autonomous people, then end on the real final event/combat fork.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "ROUTE_CHOICE",
+      "entryState": [
+        "before protectedWitnesses/silencedWitnesses choice"
+      ],
+      "exitState": "ROUTE_CHOICE",
+      "visualClassification": "REMASTER_VISUAL",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Use integrated company/witness staging and a final frame that prepares the real witness route agency without deciding it.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P1"
+    },
+    {
+      "runtimeId": "ruins_approach_context",
+      "currentHash": "adf235b6d84889cf80059ae314e7472f2c07e9dcd2f7e9cf99cf7f936bebe525",
+      "currentDuration": 10,
+      "narrativeBeat": "L’approche des ruines",
+      "nodeContent": [],
+      "location": null,
+      "cast": [],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [],
+      "textBefore": "La compagnie approche de ruines anciennes et troublées.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": null,
+      "entryState": [],
+      "exitState": "continue",
+      "visualClassification": "REPLACE_BY_REUSE",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Replace with a reusable integrated ruins-approach family using guaranteed company members and neutral ancient unease.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P1"
+    },
+    {
+      "runtimeId": "shadow_signs",
+      "currentHash": "141d5e04d3573a1827cff7dbdc9efacb024d8a3ecab32a985b700da75a56f4c2",
+      "currentDuration": 20,
+      "narrativeBeat": "Shadow Signs discovery",
+      "nodeContent": [
+        "lion-shadow-signs",
+        "shadow_signs"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/shadow_signs.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "sage_seraphine",
+          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "Shadow marks"
+          }
+        },
+        {
+          "id": "elara",
+          "asset": "public/assets/characters/pixel/full/elara.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "artifact edge"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "sage_seraphine",
+          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "Shadow marks"
+          }
+        },
+        {
+          "id": "elara",
+          "asset": "public/assets/characters/pixel/full/elara.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "artifact edge"
+          }
+        }
+      ],
+      "textBefore": "Reveal ruins, alien marks and Serpent traces before the player chooses evidence or fragments.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "DIALOGUE",
+      "entryState": [
+        "before shadowEvidence/shadowFragments",
+        "neutral to shadowRevealed/shadowConcealed"
+      ],
+      "exitState": "DIALOGUE",
+      "visualClassification": "REMASTER_VISUAL",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Retain mystery and disclosure neutrality but integrate Seraphine, Elara and the Shadow evidence into one coherent ruin world.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P1"
+    },
+    {
+      "runtimeId": "final_refuge_dossier",
+      "currentHash": "fa821768883d1afd897216c60c81f979c998db0b1437e1c7eb74f098b58f5ca2",
+      "currentDuration": 18,
+      "narrativeBeat": "Final dossier and march to Alaric",
+      "nodeContent": [
+        "lion-final-refuge",
+        "final_refuge"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/lion_finale_judgement.webp",
+        "status": "REUSE"
+      },
+      "cast": [
+        {
+          "id": "maelor",
+          "asset": "public/assets/characters/pixel/full/maelor.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "Alaric's camp"
+          }
+        },
+        {
+          "id": "sage_seraphine",
+          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        },
+        {
+          "id": "alistair",
+          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "camp gates"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "maelor",
+          "asset": "public/assets/characters/pixel/full/maelor.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "Alaric's camp"
+          }
+        },
+        {
+          "id": "sage_seraphine",
+          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        },
+        {
+          "id": "alistair",
+          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "camp gates"
+          }
+        }
+      ],
+      "textBefore": "Accumulate the route's weight and prepare the judgement while preserving this node's story-only semantics.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "DIALOGUE",
+      "entryState": [
+        "story node; no shop/rest agency",
+        "neutral to evidence disclosure"
+      ],
+      "exitState": "DIALOGUE",
+      "visualClassification": "REMASTER_VISUAL",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Future dossier remaster should include Marian or justify her counter-shot while preserving story-only final-refuge behavior.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P0"
+    },
+    {
+      "runtimeId": "serpent_route_ending",
+      "currentHash": "f1de1f29ccc98ca66f97da94c21060d100687e4fef39b2d0378bcdea36db395c",
+      "currentDuration": 18,
+      "narrativeBeat": "Serpent General aftermath and chapter ending",
+      "nodeContent": [
+        "lion-final-judgement",
+        "serpent_general_aftermath",
+        "epilogue"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/epilogue.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "sage_seraphine",
+          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "recovered artefact kept within company"
+          }
+        },
+        {
+          "id": "serpent_general_boss",
+          "asset": "public/assets/characters/pixel/full/serpent_general_boss.png",
+          "assetStatus": "READY",
+          "role": "DEFEATED",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "ground"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "sage_seraphine",
+          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "recovered artefact kept within company"
+          }
+        },
+        {
+          "id": "serpent_general_boss",
+          "asset": "public/assets/characters/pixel/full/serpent_general_boss.png",
+          "assetStatus": "READY",
+          "role": "DEFEATED",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "ground"
+          }
+        }
+      ],
+      "textBefore": "Show the defeated General and recovered Seal/artefact without deciding whether its nature is revealed to Alaric.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "ENDING",
+      "entryState": [
+        "serpentGeneralDefeated=true"
+      ],
+      "exitState": "ENDING",
+      "visualClassification": "REMASTER_VISUAL",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Retain the recovered-object truth but stage the company aftermath as an integrated route-ending composition.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P1"
+    },
+    {
+      "runtimeId": "lion_trial_route_ending",
+      "currentHash": "34f023ac0313e622a82d53c955e63e1e56a62eb4bd3bfdef9580196fcff178b2",
+      "currentDuration": 20,
+      "narrativeBeat": "Lion Trial aftermath and chapter ending",
+      "nodeContent": [
+        "lion-final-judgement",
+        "lion_trial_aftermath",
+        "epilogue"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/epilogue.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "lion_champion",
+          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "assetStatus": "READY",
+          "role": "DEFEATED",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "Alaric"
+          }
+        },
+        {
+          "id": "alaric",
+          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "victor"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "lion_champion",
+          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "assetStatus": "READY",
+          "role": "DEFEATED",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "Alaric"
+          }
+        },
+        {
+          "id": "alaric",
+          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "victor"
+          }
+        }
+      ],
+      "textBefore": "Show the champion yielding and the Seal won while the General remains visibly unresolved/offscreen.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "ENDING",
+      "entryState": [
+        "lionTrialWon=true"
+      ],
+      "exitState": "ENDING",
+      "visualClassification": "REMASTER_VISUAL",
+      "narrativeCorrect": true,
+      "needsRemaster": true,
+      "needsNewMedia": false,
+      "reason": "Future integrated ending should preserve Lion recognition while showing a guaranteed company representative owning the earned outcome.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P0"
+    },
+    {
+      "runtimeId": "cedric_encounter",
+      "currentHash": "aa41a28e8b8829eb9c1c4122184ace9756f01676c2bbc903899e2f366e819a82",
+      "currentDuration": 5,
+      "narrativeBeat": "Cedric at the crossroads",
+      "nodeContent": [
+        "lion-nomad-crossroads",
+        "mystery_recruit"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/mystery_recruit.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "cedric",
+          "asset": "public/assets/characters/pixel/full/cedric.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "Kestrel"
+          }
+        },
+        {
+          "id": "kestrel",
+          "asset": "public/assets/characters/pixel/full/kestrel.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "Cedric"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "cedric",
+          "asset": "public/assets/characters/pixel/full/cedric.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "Kestrel"
+          }
+        },
+        {
+          "id": "kestrel",
+          "asset": "public/assets/characters/pixel/full/kestrel.png",
+          "assetStatus": "READY",
+          "role": "SECONDARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "Cedric"
+          }
+        }
+      ],
+      "textBefore": "Reveal the possible recruit before the player accepts or declines him.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "DIALOGUE",
+      "entryState": [
+        "before recruitedCedric is decided"
+      ],
+      "exitState": "DIALOGUE",
+      "visualClassification": "KEEP_AS_IS",
+      "narrativeCorrect": true,
+      "needsRemaster": false,
+      "needsNewMedia": false,
+      "reason": "Retain the unresolved Cedric and Kestrel encounter staging before the recruitment choice.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P2"
+    },
+    {
+      "runtimeId": "garen_encounter",
+      "currentHash": "2d9bb62eba5bc8c17a84beebe81ffd916d805a9063398054d424865fff5646a7",
+      "currentDuration": 5,
+      "narrativeBeat": "Garen offers his lance",
+      "nodeContent": [
+        "lion-lancer-recruit",
+        "lion-final-trial-event",
+        "mystery_lancer_recruit"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+        "status": "REUSE"
+      },
+      "cast": [
+        {
+          "id": "lancer",
+          "asset": "public/assets/characters/pixel/full/lancer.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company banner"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "lancer",
+          "asset": "public/assets/characters/pixel/full/lancer.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company banner"
+          }
+        }
+      ],
+      "textBefore": "Reveal Garen before persuasion; never imply he joined before effects commit.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "DIALOGUE",
+      "entryState": [
+        "before recruitedLancer is decided",
+        "also valid for legacy final-event assignment"
+      ],
+      "exitState": "DIALOGUE",
+      "visualClassification": "KEEP_AS_IS",
+      "narrativeCorrect": true,
+      "needsRemaster": false,
+      "needsNewMedia": false,
+      "reason": "Retain the stable Garen reveal and restrained lance pose before the recruitment decision.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P2"
+    },
+    {
+      "runtimeId": "serpent_road_tension",
+      "currentHash": "33be67338637de8413738789b8a0fa067007ff65bae06081b229870817f56412",
+      "currentDuration": 8,
+      "narrativeBeat": "Pression des Serpents",
+      "nodeContent": [],
+      "location": null,
+      "cast": [],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [],
+      "textBefore": "Une patrouille Serpent tient la route avant l’affrontement.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": null,
+      "entryState": [],
+      "exitState": "continue",
+      "visualClassification": "KEEP_AS_IS",
+      "narrativeCorrect": true,
+      "needsRemaster": false,
+      "needsNewMedia": false,
+      "reason": "Retain this neutral Serpent-road family reveal for the four census-approved combat IDs.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P2"
+    },
+    {
+      "runtimeId": "shrine_reveal_context",
+      "currentHash": "e28a9ceb996e16291594f99e2905b25da35b316b0aafe1c058dfe5818d09f48c",
+      "currentDuration": 5,
+      "narrativeBeat": "Le sanctuaire intact",
+      "nodeContent": [],
+      "location": null,
+      "cast": [],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [],
+      "textBefore": "Séraphine découvre un sanctuaire encore intact avant toute décision.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": null,
+      "entryState": [],
+      "exitState": "continue",
+      "visualClassification": "KEEP_AS_IS",
+      "narrativeCorrect": true,
+      "needsRemaster": false,
+      "needsNewMedia": false,
+      "reason": "Retain the intact shrine and Seraphine reveal before any preserve or desecrate outcome.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P2"
+    },
+    {
+      "runtimeId": "injured_merchant_encounter",
+      "currentHash": "a1e6de8c63d1d83d5ee51c5de6548a62b068392fdcd746a948f231d253405892",
+      "currentDuration": 5,
+      "narrativeBeat": "Injured merchant",
+      "nodeContent": [
+        "lion-first-trial-event",
+        "mystery_help"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/mystery_help.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "survivor",
+          "asset": "public/assets/characters/pixel/full/survivor.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "approaching company"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "survivor",
+          "asset": "public/assets/characters/pixel/full/survivor.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "approaching company"
+          }
+        }
+      ],
+      "textBefore": "Show a wounded traveler and broken cart before help/abandon agency.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "DIALOGUE",
+      "entryState": [
+        "before helpedMerchant/abandonedMerchant"
+      ],
+      "exitState": "DIALOGUE",
+      "visualClassification": "KEEP_AS_IS",
+      "narrativeCorrect": true,
+      "needsRemaster": false,
+      "needsNewMedia": false,
+      "reason": "Retain the living injured merchant and broken-cart staging before the aid decision.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P2"
+    },
+    {
+      "runtimeId": "abandoned_cart_reveal",
+      "currentHash": "535b70307fa5aebadd846dc91f1bbcebbc8ad8f845c7c4d61823808def7a57f8",
+      "currentDuration": 5,
+      "narrativeBeat": "Abandoned refugee cart",
+      "nodeContent": [
+        "lion-first-trial-event",
+        "mystery_treasure"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/mystery_treasure.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "maelor",
+          "asset": "public/assets/characters/pixel/full/maelor.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "abandoned cart"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "maelor",
+          "asset": "public/assets/characters/pixel/full/maelor.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "LEFT",
+            "facing": "SCREEN_RIGHT",
+            "lookTarget": "abandoned cart"
+          }
+        }
+      ],
+      "textBefore": "Reveal the marked cart before return/claim agency.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "DIALOGUE",
+      "entryState": [
+        "before returnedLostTreasure/claimedLostTreasure"
+      ],
+      "exitState": "DIALOGUE",
+      "visualClassification": "KEEP_AS_IS",
+      "narrativeCorrect": true,
+      "needsRemaster": false,
+      "needsNewMedia": false,
+      "reason": "Retain the current-truth chariot composition and unresolved ownership of its provisions.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P2"
+    },
+    {
+      "runtimeId": "spider_nest_reveal",
+      "currentHash": "7f98991ba6ae91f7904355736875d822c70b5af48ebeeef64598730405e57b0b",
+      "currentDuration": 5,
+      "narrativeBeat": "Venomous nest",
+      "nodeContent": [
+        "lion-first-trial-combat",
+        "spider_nest"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "forest_spider",
+          "asset": "public/assets/characters/pixel/full/forest_spider.png",
+          "assetStatus": "READY",
+          "role": "THREAT",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "party approach"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "forest_spider",
+          "asset": "public/assets/characters/pixel/full/forest_spider.png",
+          "assetStatus": "READY",
+          "role": "THREAT",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "party approach"
+          }
+        }
+      ],
+      "textBefore": "Differentiate the creature hazard from Serpent road pressure without choreographing the fight.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "COMBAT",
+      "entryState": [
+        "before combat"
+      ],
+      "exitState": "COMBAT",
+      "visualClassification": "KEEP_AS_IS",
+      "narrativeCorrect": true,
+      "needsRemaster": false,
+      "needsNewMedia": false,
+      "reason": "Retain the grounded spider reveal as the unique pre-combat presentation for spider_nest.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P2"
+    },
+    {
+      "runtimeId": "troll_crossing_reveal",
+      "currentHash": "6ddb0044b5259870bbad78d31a57ab77dc7d47268310514ef8d7e00a2a6d3281",
+      "currentDuration": 5,
+      "narrativeBeat": "Troll bridge reveal",
+      "nodeContent": [
+        "lion-second-trial-combat",
+        "troll_crossing"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
+        "status": "REUSE"
+      },
+      "cast": [
+        {
+          "id": "forest_troll_elite",
+          "asset": "public/assets/characters/pixel/full/forest_troll_elite.png",
+          "assetStatus": "READY",
+          "role": "THREAT",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "party"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "forest_troll_elite",
+          "asset": "public/assets/characters/pixel/full/forest_troll_elite.png",
+          "assetStatus": "READY",
+          "role": "THREAT",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "party"
+          }
+        }
+      ],
+      "textBefore": "Show the named elite and stolen Bois-Clair sacks; combat supplies action.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "COMBAT",
+      "entryState": [
+        "before combat"
+      ],
+      "exitState": "COMBAT",
+      "visualClassification": "KEEP_AS_IS",
+      "narrativeCorrect": true,
+      "needsRemaster": false,
+      "needsNewMedia": false,
+      "reason": "Retain the unique troll roadblock reveal before the confrontation handoff.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P2"
+    },
+    {
+      "runtimeId": "serpent_duelist_reveal",
+      "currentHash": "9bf2e927a0940b5b0b3d116a7dbb692bf00c1371b19fa985f154bf08527c2560",
+      "currentDuration": 5,
+      "narrativeBeat": "Serpent duelist",
+      "nodeContent": [
+        "lion-second-trial-combat",
+        "serpent_duelist_trial"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
+        "status": "REUSE"
+      },
+      "cast": [
+        {
+          "id": "serpent_duelist_elite",
+          "asset": "public/assets/characters/pixel/full/serpent_duelist_elite.png",
+          "assetStatus": "READY",
+          "role": "THREAT",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "challenger"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "serpent_duelist_elite",
+          "asset": "public/assets/characters/pixel/full/serpent_duelist_elite.png",
+          "assetStatus": "READY",
+          "role": "THREAT",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "challenger"
+          }
+        }
+      ],
+      "textBefore": "Named elite reveal before tactical combat or authored bypass choice.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "DIALOGUE",
+      "entryState": [
+        "before duel resolution"
+      ],
+      "exitState": "DIALOGUE",
+      "visualClassification": "KEEP_AS_IS",
+      "narrativeCorrect": true,
+      "needsRemaster": false,
+      "needsNewMedia": false,
+      "reason": "Retain the dedicated duelist reveal so unique presentation continues to win over Serpent-family reuse.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P2"
+    },
+    {
+      "runtimeId": "young_dragon_encounter",
+      "currentHash": "a9cf74c8372981aeb7afdde9efa2a8e5222284fe098b6be5f03223d2d22bdc91",
+      "currentDuration": 5,
+      "narrativeBeat": "Young dragon roost",
+      "nodeContent": [
+        "lion-final-trial-event",
+        "mystery_dragon_roost",
+        "young_dragon_roost"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/combat-stage/lion_sanctum_stage.webp",
+        "status": "REUSE"
+      },
+      "cast": [
+        {
+          "id": "young_dragon_elite",
+          "asset": "public/assets/characters/pixel/full/young_dragon_elite.png",
+          "assetStatus": "READY",
+          "role": "THREAT",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "party"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "young_dragon_elite",
+          "asset": "public/assets/characters/pixel/full/young_dragon_elite.png",
+          "assetStatus": "READY",
+          "role": "THREAT",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "party"
+          }
+        }
+      ],
+      "textBefore": "Reveal the creature and nest before fight/seal agency.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "DIALOGUE",
+      "entryState": [
+        "before challengedYoungDragon/sparedYoungDragon"
+      ],
+      "exitState": "DIALOGUE",
+      "visualClassification": "KEEP_AS_IS",
+      "narrativeCorrect": true,
+      "needsRemaster": false,
+      "needsNewMedia": false,
+      "reason": "Retain the living young dragon and neutral nest framing before the final adaptive choice.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P2"
+    },
+    {
+      "runtimeId": "serpent_informant_encounter",
+      "currentHash": "5a1a79ed2c9c07f1da13aa2ed872be8823de7223324dba6faa2c7dc60507c069",
+      "currentDuration": 5,
+      "narrativeBeat": "Hunted informant",
+      "nodeContent": [
+        "lion-final-trial-event",
+        "serpent_informant"
+      ],
+      "location": {
+        "preferredAsset": "public/assets/generated/lion-phase/dialogue/mystery_ambush.webp",
+        "status": "READY"
+      },
+      "cast": [
+        {
+          "id": "serpent_oracle",
+          "asset": "public/assets/characters/pixel/full/serpent_oracle.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        }
+      ],
+      "hero": null,
+      "advisers": [],
+      "externalCast": [
+        {
+          "id": "serpent_oracle",
+          "asset": "public/assets/characters/pixel/full/serpent_oracle.png",
+          "assetStatus": "READY",
+          "role": "PRIMARY",
+          "stagingIntent": {
+            "side": "RIGHT",
+            "facing": "SCREEN_LEFT",
+            "lookTarget": "company"
+          }
+        }
+      ],
+      "textBefore": "Show a vulnerable Oracle before protect/betray agency.",
+      "textDuring": "NarrativeStage staging audit owns any dialogue presentation.",
+      "textAfter": "DIALOGUE",
+      "entryState": [
+        "before protectedInformant/betrayedInformant"
+      ],
+      "exitState": "DIALOGUE",
+      "visualClassification": "KEEP_AS_IS",
+      "narrativeCorrect": true,
+      "needsRemaster": false,
+      "needsNewMedia": false,
+      "reason": "Retain candidate 2 as the most restrained informant presentation within the three-attempt ceiling.",
+      "qualityReference": "INTEGRATED_KEYFRAME_V3",
+      "priority": "P2"
+    }
+  ],
+  "missingRequiredMedia": [
+    {
+      "runtimeId": "audience_road_departure",
+      "narrativeBeat": "DEPARTURE/TRAVEL",
+      "nodeContent": "edge:lion-audience>lion-opening-ambush",
+      "location": "forest road outside Alaric audience",
+      "cast": [
+        "sage_seraphine",
+        "alistair",
+        "maelor"
+      ],
+      "hero": "alistair",
+      "advisers": [
+        "sage_seraphine",
+        "maelor"
+      ],
+      "externalCast": [],
+      "textBefore": "lion_briefing mission decision",
+      "textDuring": "none; single Continue agency only",
+      "textAfter": "pre_opening_trail",
+      "entryState": "audience resolved; chosen mission truth already applied",
+      "exitState": "company visibly travelling; opening threat may begin",
+      "visualClassification": "NEW_MEDIA_REQUIRED",
+      "narrativeCorrect": true,
+      "needsRemaster": false,
+      "needsNewMedia": true,
+      "reason": "The audience chamber must be released before forest threat; CIN-6D supplies AUDIENCE_ROAD_DEPARTURE_TABLEAU.",
+      "qualityReference": "camp_departure",
+      "priority": "P0"
+    }
+  ]
+}

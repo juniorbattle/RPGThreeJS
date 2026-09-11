@@ -20,7 +20,7 @@ function availableAt(state: GameState, nodeId: string): RunNode[] {
   return getAvailableRunNodes(state);
 }
 
-function createBoundary(options: { registry?: CinematicRegistry; presentationMap?: Record<string, string> } = {}) {
+function createBoundary(options: { registry?: CinematicRegistry; presentationMap?: Record<string, string | null> } = {}) {
   const registry = options.registry ?? new CinematicRegistry();
   const player = new CinematicPlayer(registry);
   return new JourneyCampaignBoundary({
@@ -91,6 +91,34 @@ describe('journey campaign boundary', () => {
     expect(document.querySelectorAll('[data-journey-continue]')).toHaveLength(1);
     click('[data-journey-continue]');
     await expect(pending).resolves.toMatchObject({ kind: 'node', id: available[0]!.id, boundary: 'single' });
+  });
+
+  it('releases the audience context into the authored road tableau before opening combat', async () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-audience');
+    const boundary = createBoundary();
+    const pending = boundary.present({
+      currentNodeId: 'lion-audience',
+      currentContentId: 'lion_briefing',
+      available,
+      reducedMotion: false,
+    });
+    await flush();
+    const stage = document.querySelector<HTMLElement>('.narrative-stage');
+    expect(stage?.dataset.narrativeTableau).toBe('AUDIENCE_ROAD_DEPARTURE_TABLEAU');
+    expect(stage?.dataset.narrativeGrammar).toBe('DEPARTURE');
+    expect(stage?.dataset.narrativeCastOwnership).toBe('STAGE_OWNS_CAST');
+    expect(document.querySelector('[data-actor-id="alaric"]')).toBeNull();
+    expect([...document.querySelectorAll<HTMLElement>('[data-actor-id]')].map((actor) => actor.dataset.actorId))
+      .toEqual(['sage_seraphine', 'alistair', 'maelor']);
+    click('[data-journey-continue]');
+    await expect(pending).resolves.toMatchObject({
+      kind: 'node',
+      id: 'lion-opening-ambush',
+      presentationKey: 'edge:lion-audience>lion-opening-ambush',
+      cinematicId: undefined,
+      surfaceReason: 'unavailable',
+    });
   });
 
   it('presents a terminal boundary that can never commit a route', async () => {

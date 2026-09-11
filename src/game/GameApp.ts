@@ -1013,14 +1013,14 @@ export class GameApp {
           openLiveDialogue: openDialogue,
           openHeldDialogue: openDialogue,
           openFallbackDialogue: openDialogue,
-          ...(options.preserveBackdrop === false ? {} : {
+          ...(options.preserveBackdrop === true ? {
             preserveBackdrop: (surface) => { this.ensureJourneyBoundary().captureBackdrop(surface); },
-          }),
+          } : {}),
         });
       } else {
         await stage.presentPaintedFallback(sequence.title ?? fallbackLabel ?? sequence.id, resolveDialogueBackdrop(sequence));
         await openDialogue();
-        if (options.preserveBackdrop !== false && stage.frozenSurface) this.ensureJourneyBoundary().captureBackdrop(stage.frozenSurface);
+        if (options.preserveBackdrop === true && stage.frozenSurface) this.ensureJourneyBoundary().captureBackdrop(stage.frozenSurface);
       }
       completed = true;
     } finally {

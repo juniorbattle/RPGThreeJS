@@ -181,6 +181,9 @@ export interface NarrativeTableauSpec {
   exit: 'DIALOGUE_SEQUENCE_COMPLETE' | 'ROUTE_COMMIT' | 'COMBAT_HANDOFF' | 'COMBAT_RESULT' | 'RESOLVED_CAMPAIGN_BOUNDARY';
   next: 'RESOLVED_CAMPAIGN_TABLEAU';
   mediaRemasterNeeded?: boolean;
+  /** This authored beat intentionally uses its current tableau until CIN-6E produces media. */
+  staticFallbackOnly?: boolean;
+  needsNewMediaCin6e?: boolean;
 }
 
 export function resolveNarrativeChoiceScreenLanes(
@@ -502,6 +505,48 @@ export const CAMP_DEPARTURE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   next: 'RESOLVED_CAMPAIGN_TABLEAU',
 });
 
+/** Releases Alaric's chamber and establishes the company back on the road before the first threat. */
+export const AUDIENCE_ROAD_DEPARTURE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
+  id: 'AUDIENCE_ROAD_DEPARTURE_TABLEAU',
+  grammar: 'DEPARTURE',
+  presentationKey: 'edge:lion-audience>lion-opening-ambush',
+  family: 'JOURNEY',
+  stillImage: '/assets/generated/lion-phase/dialogue/forest_fork.webp',
+  media: [],
+  staticFallbackOnly: true,
+  needsNewMediaCin6e: true,
+  mediaRemasterNeeded: true,
+  cast: {
+    visualActors: ['sage_seraphine', 'alistair', 'maelor'],
+    eventActors: ['sage_seraphine', 'alistair', 'maelor'],
+    playerRepresentatives: ['alistair'],
+    optionalActors: [],
+    justifiedOffscreen: [],
+  },
+  anchors: [{ id: 'road-continue', placement: 'LOWER_RIGHT', safeRegion: SAFE_LOW_RIGHT }],
+  beats: [
+    { id: 'audience-hold-release', kind: 'TRANSITION', transition: 'ATMOSPHERIC_DISSOLVE', skippable: true },
+    { id: 'company-road-departure', kind: 'VISUAL', skippable: true },
+    { id: 'road-continue', kind: 'CONTEXT_ACTION', anchorId: 'road-continue', skippable: false },
+  ],
+  phases: [{
+    id: 'AUDIENCE_ROAD_DEPARTURE',
+    stepIds: [],
+    layoutProfile: 'CHOICE_SINGLE_ROUTE_CONTINUE',
+    layoutPlacement: 'LOWER_RIGHT',
+    staticCast: stageActors(['sage_seraphine', 'alistair', 'maelor']),
+    mediaSubjects: ['sage_seraphine', 'alistair', 'maelor'],
+    actorRegions: [SAFE_CENTER_WORLD],
+    dialogueSafeZone: SAFE_LOW_RIGHT,
+    choiceSafeZones: [SAFE_LOW_RIGHT],
+    criticalVisualRegions: [SAFE_CENTER_WORLD],
+    negativeSpaceIntent: 'The advisers and Alistair own the road; Alaric and the audience chamber are absent.',
+    cameraIntent: 'Wide company departure toward the forest with one onward direction.',
+  }],
+  exit: 'ROUTE_COMMIT',
+  next: 'RESOLVED_CAMPAIGN_TABLEAU',
+});
+
 export const ALARIC_AUDIENCE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   id: 'ALARIC_AUDIENCE_TABLEAU',
   grammar: 'APPROACH',
@@ -685,6 +730,7 @@ export const VALMIR_FORK_TABLEAU = Object.freeze<NarrativeTableauSpec>({
 
 const TABLEAUX_BY_PRESENTATION_KEY = new Map([
   [CAMP_DEPARTURE_TABLEAU.presentationKey!, CAMP_DEPARTURE_TABLEAU],
+  [AUDIENCE_ROAD_DEPARTURE_TABLEAU.presentationKey!, AUDIENCE_ROAD_DEPARTURE_TABLEAU],
   [VALMIR_FORK_TABLEAU.presentationKey!, VALMIR_FORK_TABLEAU],
 ]);
 

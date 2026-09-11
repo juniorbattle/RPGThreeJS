@@ -54,6 +54,7 @@ type JourneyPresentationSession = Pick<
   'state' | 'stateTrace' | 'frozenSurface' | 'presentCinematic' | 'requestAgency' | 'preloadCandidates' | 'dispose'
 > & {
   setTableau?: (tableau: NarrativeTableauSpec) => void;
+  presentStill?: (image?: string, id?: string) => Promise<VideoCinematicResult>;
   presentPassiveBackdrop?: (backdrop: HTMLElement) => Promise<VideoCinematicResult>;
 };
 
@@ -112,9 +113,11 @@ export class JourneyCampaignBoundary {
     this.pendingBackdrop = null;
 
     // An unmapped boundary resolves to no descriptor, so CIN-1 degrades to its neutral safe surface.
-    const result = !playId && fallbackBackdrop && session.presentPassiveBackdrop
-      ? await session.presentPassiveBackdrop(fallbackBackdrop)
-      : await session.presentCinematic(playId ?? key, {
+    const result = !playId && tableau.staticFallbackOnly && session.presentStill
+      ? await session.presentStill(tableau.stillImage, `narrative-static:${tableau.id}`)
+      : !playId && fallbackBackdrop && session.presentPassiveBackdrop
+        ? await session.presentPassiveBackdrop(fallbackBackdrop)
+        : await session.presentCinematic(playId ?? key, {
         ...(request.reducedMotion === undefined ? {} : { reducedMotion: request.reducedMotion }),
       }, fallbackBackdrop);
     if (cinematicId) this.presentedKeys.add(key);
