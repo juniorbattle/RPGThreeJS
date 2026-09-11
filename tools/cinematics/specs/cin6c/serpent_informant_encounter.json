@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6c_serpent_informant_encounter",
+  "cinematicId": "serpent_informant_encounter",
+  "tier": "MICRO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6c-p1-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG hunted-informant encounter. Show the canonical Serpent Oracle isolated under patrol pressure before the company chooses protection or betrayal. Keep agency unresolved and the informant alive.",
+  "shots": [{
+    "shotId": "shot_01",
+    "purpose": "Reveal the pressured Serpent informant watching the approaching company before agency.",
+    "framing": "MEDIUM_HUNTED_ORACLE",
+    "environment": "public/assets/generated/lion-phase/dialogue/mystery_ambush.webp",
+    "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_serpent_informant_encounter/shot_01/source.png" },
+    "characters": [
+      { "id": "serpent_oracle", "asset": "public/assets/characters/pixel/full/serpent_oracle.png", "position": { "x": 0.7, "groundY": 0.98 }, "scale": { "framing": "MEDIUM", "perspective": 0.95 }, "facing": "SCREEN_LEFT", "lookTarget": "OFFSCREEN_LEFT", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+    ],
+    "camera": { "mode": "STATIC" },
+    "durationSeconds": 5,
+    "continuityOut": "END",
+    "endIntent": "INFORMANT_CHOICE_READY_UNRESOLVED",
+    "promptIntent": "The Oracle remains alive, pressured, and completely frozen on the right like an unchanged painted character cel facing the offscreen company. Preserve every Oracle pixel position, canonical face, hood, staff, orb, grip, hands, anatomy, silhouette, scale, facing, and ground contact. Lock the staff and orb at their exact source angles and coordinates. Treat the entire right half of the source image, including the two dark patrol silhouettes behind the Oracle, as a perfectly static painted plate: do not change, erase, hide, fade, move, redraw, or occlude a single figure there. Freeze every existing background silhouette everywhere at its exact source position, scale, count, shape, and opacity from first frame through final frame. No silhouette may walk, approach, enlarge, multiply, disappear, or enter the road. Add no people, patrols, creatures, or characters. Animate only low mist on the empty left side of the road, distant torchlight, and tree leaves away from every figure. No rescue, escort, capture, betrayal, payment, death, attack, speech, text, or UI. End sharp at unchanged scale and with every source figure still present."
+  }]
+}

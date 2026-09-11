@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6c_serpent_duelist_reveal",
+  "cinematicId": "serpent_duelist_reveal",
+  "tier": "MICRO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6c-p1-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG controlled duel challenge. Reveal the canonical Serpent duelist intact on the forest route before precombat dialogue and resolution. Preserve the elite identity and never show aftermath.",
+  "shots": [{
+    "shotId": "shot_01",
+    "purpose": "Reveal the masked Serpent duelist holding a disciplined challenge stance.",
+    "framing": "MEDIUM_DUELIST_CHALLENGE",
+    "environment": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
+    "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_serpent_duelist_reveal/shot_01/source.png" },
+    "characters": [
+      { "id": "serpent_duelist_elite", "asset": "public/assets/characters/pixel/full/serpent_duelist_elite.png", "position": { "x": 0.69, "groundY": 0.98 }, "scale": { "framing": "MEDIUM", "perspective": 1.0 }, "facing": "SCREEN_LEFT", "lookTarget": "OFFSCREEN_LEFT", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+    ],
+    "camera": { "mode": "STATIC" },
+    "durationSeconds": 5,
+    "continuityOut": "END",
+    "endIntent": "DUELIST_PRECOMBAT_DIALOGUE_READY",
+    "promptIntent": "The duelist remains completely frozen on the right facing the offscreen challenger, like an unchanged painted character cel, without attacking or approaching. Preserve every character pixel position, canonical mask, armor, both weapons, grips, hands, anatomy, silhouette, scale, facing, and ground contact. Lock both weapons at their exact source angles and coordinates. Animate only foliage, waterfall mist, atmospheric light, and extremely subtle cloth flutter that cannot alter the silhouette. No strike, shattered mask, damaged equipment, defeat, victory, party character, speech, text, or UI. End sharp at unchanged scale."
+  }]
+}

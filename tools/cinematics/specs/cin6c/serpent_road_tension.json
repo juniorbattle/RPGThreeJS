@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6c_serpent_road_tension",
+  "cinematicId": "serpent_road_tension",
+  "tier": "JOURNEY",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6c-p1-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG forest-road pressure. Present an ordinary Serpent patrol holding a route in a neutral reusable way. No named elite, boss, adaptive variant, player party, specific outcome, or combat result may be shown.",
+  "shots": [{
+    "shotId": "shot_01",
+    "purpose": "Establish ordinary Serpent patrol pressure before an eligible adaptive combat.",
+    "framing": "WIDE_SERPENT_ROAD_HOLD",
+    "environment": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
+    "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_serpent_road_tension/shot_01/source.png" },
+    "characters": [
+      { "id": "serpent_raider", "asset": "public/assets/characters/pixel/full/serpent_raider.png", "position": { "x": 0.38, "groundY": 0.97 }, "scale": { "framing": "WIDE", "perspective": 1.05 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:serpent_brute", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+      { "id": "serpent_brute", "asset": "public/assets/characters/pixel/full/serpent_brute.png", "position": { "x": 0.67, "groundY": 0.97 }, "scale": { "framing": "WIDE", "perspective": 1.0 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:serpent_raider", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+    ],
+    "camera": { "mode": "WIDE_HOLD" },
+    "durationSeconds": 8,
+    "continuityOut": "END",
+    "endIntent": "NEUTRAL_SERPENT_PRECOMBAT_PRESSURE",
+    "promptIntent": "Locked restrained patrol tableau. Both Serpents remain completely frozen like unchanged painted character cels; neither approaches the camera or changes side. Preserve every character pixel position, both canonical identities, armor, weapons, grips, hands, anatomy, silhouettes, relative scale, facing, and ground contact. Lock every weapon at its exact source angle and coordinates. Animate only leaves, distant waterfall, atmospheric light, and extremely subtle cloth flutter that cannot alter either silhouette. No attack, victory, defeat, named elite, general, duelist, player hero, speech, text, UI, corpse, or resolved checkpoint. End sharp with unchanged subject scale."
+  }]
+}

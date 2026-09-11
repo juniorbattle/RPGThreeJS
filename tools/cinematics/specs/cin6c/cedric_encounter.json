@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6c_cedric_encounter",
+  "cinematicId": "cedric_encounter",
+  "tier": "MICRO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6c-p1-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG crossroads encounter. Reveal Cedric and Kestrel as wary equals on a forest road while preserving the existing painterly environment and both canonical character identities. This occurs before recruitment is decided and must remain unresolved.",
+  "shots": [{
+    "shotId": "shot_01",
+    "purpose": "Establish Cedric and Kestrel reading one another across the crossroads without completing recruitment.",
+    "framing": "WIDE_CROSSROADS_TWO_SHOT",
+    "environment": "public/assets/generated/lion-phase/dialogue/mystery_recruit.webp",
+    "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_cedric_encounter/shot_01/source.png" },
+    "characters": [
+      { "id": "kestrel", "asset": "public/assets/characters/pixel/full/kestrel.png", "position": { "x": 0.27, "groundY": 0.98 }, "scale": { "framing": "WIDE", "perspective": 1.1 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:cedric", "depth": 20, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+      { "id": "cedric", "asset": "public/assets/characters/pixel/full/cedric.png", "position": { "x": 0.72, "groundY": 0.98 }, "scale": { "framing": "WIDE", "perspective": 1.1 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:kestrel", "depth": 10, "role": "PRIMARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" }
+    ],
+    "camera": { "mode": "WIDE_HOLD" },
+    "durationSeconds": 5,
+    "continuityOut": "END",
+    "endIntent": "CEDRIC_DIALOGUE_READY_UNRESOLVED",
+    "promptIntent": "Locked wide encounter. Cedric makes one small guarded stance adjustment while Kestrel watches without raising her bow. Preserve both faces, garments, weapons, hands, body scale, ground contact, facing, and sides. Animate only breathing, cloth, leaves, and thin forest mist. No handshake, oath, joining gesture, shared banner, attack, speech, text, UI, reward, or confirmed recruitment. End sharp with both figures at their original scale and positions."
+  }]
+}

@@ -23,7 +23,7 @@ describe('CIN-6A vertical integration seams', () => {
     });
     const interlude = method('private cinematicInterlude');
     expect(interlude).toContain('resolveVideoCinematicTrigger(trigger)');
-    expect(interlude).toContain('this.usesJourneyPresentation() ? resolveCin6aJourneyTrigger(trigger) : undefined');
+    expect(interlude).toContain('resolveCin6aJourneyTrigger(trigger) ?? resolveCin6cJourneyTrigger(trigger, { flags: this.state.flags })');
     expect(method('private async playJourneyCinematic')).toContain('if (!id || !this.usesJourneyPresentation()) return');
   });
 

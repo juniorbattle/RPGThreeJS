@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6c_garen_encounter",
+  "cinematicId": "garen_encounter",
+  "tier": "MICRO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6c-p1-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG roadside recruitment encounter near Bois-Clair witnesses. Reveal Garen as a disciplined lancer offering an unresolved audience to the company. Preserve the canonical lancer identity and never imply that recruitment has succeeded.",
+  "shots": [{
+    "shotId": "shot_01",
+    "purpose": "Reveal Garen waiting beside the refugee road before the persuasion decision.",
+    "framing": "MEDIUM_LANCER_OFFER",
+    "environment": "public/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+    "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_garen_encounter/shot_01/source.png" },
+    "characters": [
+      { "id": "lancer", "asset": "public/assets/characters/pixel/full/lancer.png", "position": { "x": 0.7, "groundY": 0.98 }, "scale": { "framing": "MEDIUM", "perspective": 1.0 }, "facing": "SCREEN_LEFT", "lookTarget": "OFFSCREEN_LEFT", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+    ],
+    "camera": { "mode": "STATIC" },
+    "durationSeconds": 5,
+    "continuityOut": "END",
+    "endIntent": "GAREN_RECRUITMENT_DIALOGUE_READY",
+    "promptIntent": "Garen remains completely frozen on the right facing the offscreen company, like an unchanged painted character cel. Preserve every character pixel position and the entire pose for the full shot. Lock the lance at the exact diagonal angle, grip, and screen coordinates shown in the source frame: zero raise, lower, rotation, thrust, sweep, hand shift, arm motion, body shift, or scale change. Keep his canonical face, armor, lance, hands, silhouette, and ground contact exact. Animate only distant travelers, foliage, atmospheric light, and extremely subtle cloth flutter that cannot alter the silhouette. No handshake, oath, salute of allegiance, joined formation, speech, text, UI, acceptance, refusal, or recruitment result. End sharp at unchanged scale."
+  }]
+}

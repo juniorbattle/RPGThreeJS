@@ -29,9 +29,9 @@ describe('CIN-6B P0 completion production contract', () => {
     expect(batch.targets.filter((target) => target.action === 'VERIFY_ONLY')).toHaveLength(1);
   });
 
-  it('ships exactly two new local production descriptors with no duplicate runtime ID', () => {
+  it('keeps both CIN-6B descriptors while later local production IDs remain unique', () => {
     const ids = manifest.cinematics.map((descriptor) => descriptor.id);
-    expect(ids).toHaveLength(21);
+    expect(ids).toHaveLength(32);
     expect(new Set(ids).size).toBe(ids.length);
     expect(ids).toContain('bois_clair_sacrificed');
     expect(ids).toContain('lion_trial_route_ending');

@@ -3,6 +3,11 @@ import { resolveCompletedLionRoute } from '../game/lionFinale';
 
 type TruthFlags = Readonly<Record<string, boolean | undefined>>;
 
+export interface JourneyPresentationContext {
+  flags?: TruthFlags;
+  boundaryResolved?: boolean;
+}
+
 /**
  * CIN-6A lifecycle mappings are Journey-only until CIN-7 changes the production default.
  * They consume already-authoritative node/content/state facts and never mutate them.
@@ -21,6 +26,54 @@ export const CIN6A_JOURNEY_TRIGGERS = Object.freeze({
   }),
 });
 
+export const CIN6C_P1_RUNTIME_IDS = Object.freeze([
+  'cedric_encounter',
+  'garen_encounter',
+  'serpent_road_tension',
+  'shrine_reveal_context',
+  'injured_merchant_encounter',
+  'abandoned_cart_reveal',
+  'spider_nest_reveal',
+  'troll_crossing_reveal',
+  'serpent_duelist_reveal',
+  'young_dragon_encounter',
+  'serpent_informant_encounter',
+] as const);
+
+/** Unique P1 content wins before the two census-approved reuse families. */
+export const CIN6C_P1_JOURNEY_TRIGGERS = Object.freeze({
+  beforeDialogue: Object.freeze({
+    mystery_recruit: 'cedric_encounter',
+    mystery_lancer_recruit: 'garen_encounter',
+    mystery_help: 'injured_merchant_encounter',
+    mystery_treasure: 'abandoned_cart_reveal',
+    old_shrine_event: 'shrine_reveal_context',
+    mystery_shrine: 'shrine_reveal_context',
+    mystery_dragon_roost: 'young_dragon_encounter',
+    serpent_informant: 'serpent_informant_encounter',
+  }),
+  beforeCombat: Object.freeze({
+    spider_nest: 'spider_nest_reveal',
+    troll_crossing: 'troll_crossing_reveal',
+    serpent_duelist_trial: 'serpent_duelist_reveal',
+    forest_patrol: 'serpent_road_tension',
+    serpent_reprisals: 'serpent_road_tension',
+    serpent_checkpoint: 'serpent_road_tension',
+    serpent_hunters: 'serpent_road_tension',
+  }),
+});
+
+const CIN6C_DIALOGUE_RESOLUTION_FLAGS = Object.freeze({
+  mystery_recruit: Object.freeze(['recruitedCedric']),
+  mystery_lancer_recruit: Object.freeze(['recruitedLancer']),
+  mystery_help: Object.freeze(['helpedMerchant', 'abandonedMerchant']),
+  mystery_treasure: Object.freeze(['returnedLostTreasure', 'claimedLostTreasure']),
+  old_shrine_event: Object.freeze(['shrineRested', 'shrineLooted']),
+  mystery_shrine: Object.freeze(['preservedShrine', 'desecratedShrine']),
+  mystery_dragon_roost: Object.freeze(['challengedYoungDragon', 'sparedYoungDragon']),
+  serpent_informant: Object.freeze(['protectedInformant', 'betrayedInformant']),
+});
+
 export const CIN6A_REFUGE_ARRIVALS = Object.freeze({
   'lion-first-refuge': 'first_refuge_arrival',
 });
@@ -34,6 +87,38 @@ export function resolveCin6aJourneyTrigger(trigger: VideoCinematicTrigger): stri
   if (trigger.hook === 'beforeDialogue') return CIN6A_JOURNEY_TRIGGERS.beforeDialogue[trigger.dialogueId as keyof typeof CIN6A_JOURNEY_TRIGGERS.beforeDialogue];
   if (trigger.hook === 'beforeCombat') return CIN6A_JOURNEY_TRIGGERS.beforeCombat[trigger.combatId as keyof typeof CIN6A_JOURNEY_TRIGGERS.beforeCombat];
   return undefined;
+}
+
+export function resolveCin6cJourneyTrigger(
+  trigger: VideoCinematicTrigger,
+  context: JourneyPresentationContext = {},
+): string | undefined {
+  if (context.boundaryResolved === true) return undefined;
+
+  if (trigger.hook === 'beforeDialogue') {
+    const dialogueId = trigger.dialogueId as keyof typeof CIN6C_P1_JOURNEY_TRIGGERS.beforeDialogue;
+    const cinematicId = CIN6C_P1_JOURNEY_TRIGGERS.beforeDialogue[dialogueId];
+    if (!cinematicId) return undefined;
+    const resolvedFlags = CIN6C_DIALOGUE_RESOLUTION_FLAGS[dialogueId] ?? [];
+    return resolvedFlags.some((flag) => context.flags?.[flag] === true) ? undefined : cinematicId;
+  }
+
+  if (trigger.hook === 'beforeCombat') {
+    return CIN6C_P1_JOURNEY_TRIGGERS.beforeCombat[
+      trigger.combatId as keyof typeof CIN6C_P1_JOURNEY_TRIGGERS.beforeCombat
+    ];
+  }
+
+  return undefined;
+}
+
+/** Resolves only an already-selected content ID for immediate-candidate preloading. */
+export function resolveCin6cContentCandidateId(contentId: string): string | undefined {
+  return CIN6C_P1_JOURNEY_TRIGGERS.beforeDialogue[
+    contentId as keyof typeof CIN6C_P1_JOURNEY_TRIGGERS.beforeDialogue
+  ] ?? CIN6C_P1_JOURNEY_TRIGGERS.beforeCombat[
+    contentId as keyof typeof CIN6C_P1_JOURNEY_TRIGGERS.beforeCombat
+  ];
 }
 
 export function resolveCin6aRefugeArrival(nodeId: string): string | undefined {

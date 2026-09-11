@@ -1,4 +1,5 @@
 import type { RunNode } from '../game/types';
+import { resolveCin6cContentCandidateId } from '../cinematics/Cin6aPresentation';
 
 /**
  * PURE presentation resolver: "which cinematic corresponds to this campaign boundary?"
@@ -98,6 +99,8 @@ export function resolveCandidateCinematicIds(
       const cinematicId = map[key];
       if (cinematicId && !ids.includes(cinematicId)) ids.push(cinematicId);
     }
+    const contentCinematicId = resolveCin6cContentCandidateId(node.contentId);
+    if (contentCinematicId && !ids.includes(contentCinematicId)) ids.push(contentCinematicId);
   }
   return ids;
 }

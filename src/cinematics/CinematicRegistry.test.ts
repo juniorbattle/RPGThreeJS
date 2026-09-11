@@ -72,7 +72,7 @@ describe('cinematic registry', () => {
     expect(Reflect.set(VIDEO_CINEMATIC_TRIGGERS.beforeCombat, 'extra', 'not-allowed')).toBe(false);
   });
 
-  it('ships the QA placeholder and all twenty approved P0 production videos through CIN-6B', () => {
+  it('ships the QA placeholder and all thirty-one approved production videos through CIN-6C P1', () => {
     const raw = readFileSync(join(process.cwd(), 'public', 'assets', 'cinematics', 'manifest.json'), 'utf-8');
     const parsed = parseVideoCinematicManifest(JSON.parse(raw));
     expect(parsed?.cinematics.map((descriptor) => descriptor.id)).toEqual([
@@ -97,10 +97,21 @@ describe('cinematic registry', () => {
       'final_refuge_dossier',
       'serpent_route_ending',
       'lion_trial_route_ending',
+      'cedric_encounter',
+      'garen_encounter',
+      'serpent_road_tension',
+      'shrine_reveal_context',
+      'injured_merchant_encounter',
+      'abandoned_cart_reveal',
+      'spider_nest_reveal',
+      'troll_crossing_reveal',
+      'serpent_duelist_reveal',
+      'young_dragon_encounter',
+      'serpent_informant_encounter',
     ]);
     expect(parsed?.cinematics[0]?.placeholderOnly).toBe(true);
     const real = parsed?.cinematics.slice(1) ?? [];
-    expect(real).toHaveLength(20);
+    expect(real).toHaveLength(31);
     for (const descriptor of real) {
       expect(descriptor.placeholderOnly).not.toBe(true);
       expect(descriptor.sources).toEqual([{ src: `/assets/cinematics/${descriptor.id}.mp4`, type: 'video/mp4' }]);

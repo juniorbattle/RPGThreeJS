@@ -87,11 +87,11 @@ describe('CIN-6.6 finalization contracts', () => {
     expect(css).toContain('justify-content:space-between');
   });
 
-  it('changes at most the three authorized production masters and adds no ID', async () => {
+  it('preserves every CIN-6.6 production master while later batches add distinct IDs', async () => {
     for (const [id, expected] of Object.entries(PRESERVED_MEDIA)) expect(await sha256(`public/assets/cinematics/${id}.mp4`)).toBe(expected);
     const manifest = await readJson('public/assets/cinematics/manifest.json');
-    expect(manifest.cinematics).toHaveLength(21);
-    expect(new Set(manifest.cinematics.map((entry) => entry.id)).size).toBe(21);
+    expect(manifest.cinematics).toHaveLength(32);
+    expect(new Set(manifest.cinematics.map((entry) => entry.id)).size).toBe(32);
     expect(manifest.cinematics.some((entry) => /^cin6[cp]-/u.test(entry.id))).toBe(false);
   });
 

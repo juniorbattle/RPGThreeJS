@@ -38,6 +38,7 @@ import { presentCinematicDialogue } from '../cinematics/CinematicDialogueSession
 import {
   resolveCin6aBoisClairAftermath,
   resolveCin6aJourneyTrigger,
+  resolveCin6cJourneyTrigger,
   resolveCin6aRefugeArrival,
   resolveCin6aRefugeDeparture,
   resolveCin6aSerpentEnding,
@@ -339,8 +340,14 @@ export class GameApp {
     this.canvas.hidden = true;
     const requestedRealId = new URLSearchParams(window.location.search).get('real') ?? 'forest_journey_tension';
     const selectedRealId = this.cinematicRegistry.get(requestedRealId) ? requestedRealId : 'forest_journey_tension';
-    const selectedDialogueId = ['lion_briefing', 'village_choice', 'shadow_signs', 'final_refuge']
-      .find((dialogueId) => resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId }) === selectedRealId);
+    const selectedDialogueId = [
+      'lion_briefing', 'village_choice', 'shadow_signs', 'final_refuge',
+      'mystery_recruit', 'mystery_lancer_recruit', 'mystery_help', 'mystery_treasure',
+      'old_shrine_event', 'mystery_shrine', 'mystery_dragon_roost', 'serpent_informant',
+    ].find((dialogueId) => (
+      resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId })
+        ?? resolveCin6cJourneyTrigger({ hook: 'beforeDialogue', dialogueId }, { flags: this.state.flags })
+    ) === selectedRealId);
     this.chrome.innerHTML = `
       <section class="qa-lab cinematic-qa ui-screen" aria-label="Laboratoire QA cinématique">
         <header class="qa-lab__header">
@@ -392,8 +399,14 @@ export class GameApp {
     }
     if (scenario === 'real-selected-dialogue') {
       const requestedRealId = new URLSearchParams(window.location.search).get('real') ?? '';
-      const selectedDialogueId = ['lion_briefing', 'village_choice', 'shadow_signs', 'final_refuge']
-        .find((dialogueId) => resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId }) === requestedRealId);
+      const selectedDialogueId = [
+        'lion_briefing', 'village_choice', 'shadow_signs', 'final_refuge',
+        'mystery_recruit', 'mystery_lancer_recruit', 'mystery_help', 'mystery_treasure',
+        'old_shrine_event', 'mystery_shrine', 'mystery_dragon_roost', 'serpent_informant',
+      ].find((dialogueId) => (
+        resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId })
+          ?? resolveCin6cJourneyTrigger({ hook: 'beforeDialogue', dialogueId }, { flags: this.state.flags })
+      ) === requestedRealId);
       if (!selectedDialogueId) {
         this.renderCinematicQa(`Aucun dialogue Journey CIN-6.5 n'est associé à ${requestedRealId || '<absent>'}.`);
         return;
@@ -506,7 +519,9 @@ export class GameApp {
 
   private cinematicInterlude(trigger: VideoCinematicTrigger): (() => Promise<unknown>) | undefined {
     const id = resolveVideoCinematicTrigger(trigger)
-      ?? (this.usesJourneyPresentation() ? resolveCin6aJourneyTrigger(trigger) : undefined);
+      ?? (this.usesJourneyPresentation()
+        ? resolveCin6aJourneyTrigger(trigger) ?? resolveCin6cJourneyTrigger(trigger, { flags: this.state.flags })
+        : undefined);
     if (!id) return undefined;
     if (this.usesJourneyPresentation()) {
       const tableau = trigger.hook === 'beforeCombat' ? resolveNarrativeCombatTableau(trigger.combatId) : undefined;
@@ -550,16 +565,31 @@ export class GameApp {
     const config = combatConfigs.get(combatId);
     if (!config) return;
     const p = this.qaParams;
-    const cinematicId = resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId });
-    if (cinematicId) {
-      await sceneTransition.run({
-        variant: config.encounterRank === 'boss' ? 'boss' : 'combat',
-        label: config.encounterLabel,
-        interlude: () => this.cinematicPlayer.play(cinematicId, { reducedMotion: p.graphics === 'reduced' }),
-        task: async () => undefined,
-        holdMs: 0,
+    const narrativeCinematicId = this.usesJourneyPresentation()
+      ? resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId })
+        ?? resolveCin6aJourneyTrigger({ hook: 'beforeCombat', combatId })
+        ?? resolveCin6cJourneyTrigger({ hook: 'beforeCombat', combatId }, { flags: this.state.flags })
+      : undefined;
+    if (narrativeCinematicId && config.preCombatDialogueId) {
+      await this.playDialogue(config.preCombatDialogueId, config.encounterLabel, {
+        cinematicId: narrativeCinematicId,
+        tableau: resolveNarrativeCombatTableau(combatId),
+        preserveBackdrop: false,
       });
+    } else {
+      const cinematicInterlude = this.cinematicInterlude({ hook: 'beforeCombat', combatId });
+      if (cinematicInterlude) {
+        await sceneTransition.run({
+          variant: config.encounterRank === 'boss' ? 'boss' : 'combat',
+          label: config.encounterLabel,
+          interlude: cinematicInterlude,
+          task: async () => undefined,
+          holdMs: 0,
+        });
+      }
     }
+    this.activeNarrativeStage?.prepareGlobalHandoff();
+    this.disposeNarrativeStage();
     this.setMode('COMBAT');
     this.chrome.replaceChildren();
     const squad = p.party === 'full'
@@ -907,7 +937,8 @@ export class GameApp {
         ...narrativeOptions,
         cinematicId: narrativeOptions.cinematicId
           ?? resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId })
-          ?? resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId }),
+          ?? resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId })
+          ?? resolveCin6cJourneyTrigger({ hook: 'beforeDialogue', dialogueId }, { flags: this.state.flags }),
         tableau: narrativeOptions.tableau ?? resolveNarrativeDialogueTableau(dialogueId, sequence),
       });
     } else {
@@ -1125,6 +1156,10 @@ export class GameApp {
     const narrativeCinematicId = this.usesJourneyPresentation()
       ? resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId })
         ?? resolveCin6aJourneyTrigger({ hook: 'beforeCombat', combatId })
+        ?? resolveCin6cJourneyTrigger(
+          { hook: 'beforeCombat', combatId },
+          { flags: this.state.flags, boundaryResolved: this.state.resolvedNodeIds.includes(node.id) },
+        )
       : undefined;
     if (config.preCombatDialogueId) {
       await this.playDialogue(config.preCombatDialogueId, node.label, {

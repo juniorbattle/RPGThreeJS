@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import type { RunNode } from '../game/types';
 import { getAvailableRunNodes } from '../game/runSystem';
 import { createInitialState } from '../game/store';
 import {
@@ -48,7 +49,10 @@ describe('journey presentation resolver', () => {
     const context = branchContext();
     const resolved = resolveBoundaryCinematic(context);
     expect(resolved).toEqual({ key: 'node:lion-refugees:arrival', cinematicId: 'refugees_approach' });
-    expect(resolveCandidateCinematicIds(context)).toEqual([]);
+    expect(resolveCandidateCinematicIds(context)).toEqual([
+      'injured_merchant_encounter',
+      'serpent_road_tension',
+    ]);
     expect(resolveJourneyPresentation('node:lion-refugees:arrival')).toBe('refugees_approach');
     expect(resolveBoundaryCinematic(context, {}).cinematicId).toBeUndefined();
   });
@@ -76,13 +80,30 @@ describe('journey presentation resolver', () => {
       [edgeKey('lion-refugees', first!.id)]: 'clip-edge-a',
       [nodeArrivalKey(first!.id)]: 'clip-arrival-a',
       [nodeArrivalKey(second!.id)]: 'clip-edge-a',
-    })).toEqual(['clip-edge-a', 'clip-arrival-a']);
+    })).toEqual([
+      'clip-edge-a',
+      'clip-arrival-a',
+      'injured_merchant_encounter',
+      'serpent_road_tension',
+    ]);
   });
 
   it('never derives candidates from unavailable nodes', () => {
     const context = branchContext();
-    expect(resolveCandidateCinematicIds(context, {
+    const ids = resolveCandidateCinematicIds(context, {
       'node:lion-final-judgement:arrival': 'clip-finale',
-    })).toEqual([]);
+    });
+    expect(ids).toEqual(['injured_merchant_encounter', 'serpent_road_tension']);
+    expect(ids).not.toContain('clip-finale');
+  });
+
+  it('deduplicates a shared P1 reuse family across reachable successors', () => {
+    expect(resolveCandidateCinematicIds({
+      currentNodeId: 'fork',
+      available: [
+        { id: 'a', contentId: 'forest_patrol' },
+        { id: 'b', contentId: 'serpent_reprisals' },
+      ] as RunNode[],
+    })).toEqual(['serpent_road_tension']);
   });
 });

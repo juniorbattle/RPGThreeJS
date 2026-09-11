@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6c_abandoned_cart_reveal",
+  "cinematicId": "abandoned_cart_reveal",
+  "tier": "MICRO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6c-p1-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG abandoned refugee-cart discovery. Use the current dialogue truth: Maelor sees an unclaimed broken cart and supplies before the company chooses return or theft. Ownership and outcome remain unresolved.",
+  "shots": [{
+    "shotId": "shot_01",
+    "purpose": "Reveal Maelor assessing the abandoned marked cart without taking anything.",
+    "framing": "MEDIUM_CART_DISCOVERY",
+    "environment": "public/assets/generated/lion-phase/dialogue/mystery_help.webp",
+    "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_abandoned_cart_reveal/shot_01/source.png" },
+    "characters": [
+      { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.22, "groundY": 0.98 }, "scale": { "framing": "MEDIUM", "perspective": 0.92 }, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:abandoned_cart", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+    ],
+    "camera": { "mode": "STATIC" },
+    "durationSeconds": 5,
+    "continuityOut": "END",
+    "endIntent": "CART_OWNERSHIP_CHOICE_READY",
+    "promptIntent": "Maelor remains on the left and visually assesses the abandoned cart from a respectful distance without touching the cart or supplies. Preserve his canonical face, book, clothing, hands, anatomy, scale, facing, and ground contact. Move only breathing, cloth, leaves, and thin mist. No lifting loot, opened inventory, transfer, payment, refugee return, ownership resolution, greed outcome, speech, text, or UI. End sharp and neutral."
+  }]
+}

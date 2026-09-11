@@ -3,18 +3,29 @@
   "policy": "PLAN_ONLY_NO_MEDIA_GENERATION",
   "classifications": {
     "DROP_IN_READY": [
+      "abandoned_cart_reveal",
       "alaric_audience_arrival",
       "bois_clair_saved",
       "bois_clair_sacrificed",
       "camp_departure",
+      "cedric_encounter",
       "first_refuge_arrival",
       "first_refuge_departure",
+      "garen_encounter",
+      "injured_merchant_encounter",
       "lion_champion_reveal",
       "lion_trial_route_ending",
       "second_refuge_departure",
+      "serpent_duelist_reveal",
       "serpent_general_reveal",
+      "serpent_informant_encounter",
+      "serpent_road_tension",
       "serpent_route_ending",
-      "valmir_route_fork"
+      "shrine_reveal_context",
+      "spider_nest_reveal",
+      "troll_crossing_reveal",
+      "valmir_route_fork",
+      "young_dragon_encounter"
     ],
     "USABLE_WITH_OFFSCREEN_STAGING": [
       "refugees_approach",

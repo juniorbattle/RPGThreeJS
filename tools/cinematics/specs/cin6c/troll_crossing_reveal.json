@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6c_troll_crossing_reveal",
+  "cinematicId": "troll_crossing_reveal",
+  "tier": "MICRO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6c-p1-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG forest crossing threat. Present one canonical mossy forest troll blocking the route before the player chooses payment or combat. The troll remains alive and the passage unresolved.",
+  "shots": [{
+    "shotId": "shot_01",
+    "purpose": "Reveal the troll controlling the forest crossing without deciding the encounter.",
+    "framing": "MEDIUM_TROLL_BLOCKADE",
+    "environment": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
+    "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_troll_crossing_reveal/shot_01/source.png" },
+    "characters": [
+      { "id": "forest_troll_elite", "asset": "public/assets/characters/pixel/full/forest_troll_elite.png", "position": { "x": 0.68, "groundY": 0.98 }, "scale": { "framing": "MEDIUM", "perspective": 0.9 }, "facing": "SCREEN_LEFT", "lookTarget": "OFFSCREEN_LEFT", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+    ],
+    "camera": { "mode": "STATIC" },
+    "durationSeconds": 5,
+    "continuityOut": "END",
+    "endIntent": "TROLL_CHOICE_AND_COMBAT_READY",
+    "promptIntent": "The troll remains completely frozen on the right side of the crossing facing the offscreen company, like an unchanged painted creature cel. Preserve every creature pixel position, canonical face, moss, armor, club or weapon, grip, hands, anatomy, silhouette, physical scale, facing, and ground contact. Lock the weapon at its exact source angle and coordinates. Animate only foliage, waterfall mist, atmospheric light, and extremely subtle cloth flutter that cannot alter the silhouette. No charge, attack, death, fallen troll, payment, recovered sacks, party character, combat outcome, speech, text, or UI. End sharp at unchanged scale."
+  }]
+}

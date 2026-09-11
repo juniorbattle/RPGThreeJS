@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6c_young_dragon_encounter",
+  "cinematicId": "young_dragon_encounter",
+  "tier": "MICRO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6c-p1-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG young-dragon discovery at an old Lion sanctum. Reveal the canonical living young dragon guarding the unresolved roost before fight or mercy agency. No result, alliance, flight, reward, or defeat is shown.",
+  "shots": [{
+    "shotId": "shot_01",
+    "purpose": "Reveal the living young dragon guarding the sanctum approach before the choice.",
+    "framing": "MEDIUM_DRAGON_ROOST_GUARD",
+    "environment": "public/assets/generated/lion-phase/combat-stage/lion_sanctum_stage.webp",
+    "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_young_dragon_encounter/shot_01/source.png" },
+    "characters": [
+      { "id": "young_dragon_elite", "asset": "public/assets/characters/pixel/full/young_dragon_elite.png", "position": { "x": 0.68, "groundY": 0.98 }, "scale": { "framing": "MEDIUM", "perspective": 0.9 }, "facing": "SCREEN_LEFT", "lookTarget": "OFFSCREEN_LEFT", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+    ],
+    "camera": { "mode": "STATIC" },
+    "durationSeconds": 5,
+    "continuityOut": "END",
+    "endIntent": "DRAGON_CHOICE_READY_UNRESOLVED",
+    "promptIntent": "The young dragon stays alive and completely frozen on the right guarding the sanctum, like an unchanged painted creature cel, while watching the offscreen party. Preserve every creature pixel position, canonical head, wings, limbs, tail, scales, anatomy, silhouette, physical size, facing, and ground contact. Animate only existing firelight, foliage, and atmospheric light. No body, wing, tail, or head motion, attack, flame blast, defeat, wound, flight, alliance, seal, acquired gem, party character, speech, text, or UI. End sharp at unchanged scale."
+  }]
+}

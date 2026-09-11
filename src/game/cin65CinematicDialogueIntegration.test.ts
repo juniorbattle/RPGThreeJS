@@ -29,6 +29,7 @@ describe('CIN-6.5 cinematic dialogue integration', () => {
     const narrativeDialogue = method('private async playNarrativeDialogue');
     expect(playDialogue).toContain("resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId })");
     expect(playDialogue).toContain("resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId })");
+    expect(playDialogue).toContain("resolveCin6cJourneyTrigger({ hook: 'beforeDialogue', dialogueId }, { flags: this.state.flags })");
     expect(playDialogue).toContain('await this.playNarrativeDialogue');
     expect(narrativeDialogue).toContain('await presentCinematicDialogue({');
     expect(narrativeDialogue).toContain("mode: 'narrative-stage'");
@@ -51,11 +52,11 @@ describe('CIN-6.5 cinematic dialogue integration', () => {
     expect(SESSION).toContain('held.release()');
   });
 
-  it('keeps 21 manifest IDs while carrying the three authorized CIN-6.6 finalization pilots', () => {
+  it('keeps the 21 approved IDs and adds the eleven CIN-6C production IDs', () => {
     const manifest = JSON.parse(readFileSync(resolve(process.cwd(), 'public/assets/cinematics/manifest.json'), 'utf8'));
     const ids = manifest.cinematics.map((entry: { id: string }) => entry.id);
-    expect(ids).toHaveLength(21);
-    expect(new Set(ids).size).toBe(21);
+    expect(ids).toHaveLength(32);
+    expect(new Set(ids).size).toBe(32);
     expect(manifest.cinematics.find((entry: { id: string }) => entry.id === 'camp_departure')?.durationMs).toBe(12_000);
     expect(manifest.cinematics.find((entry: { id: string }) => entry.id === 'alaric_audience_arrival')?.durationMs).toBe(12_000);
     expect(manifest.cinematics.find((entry: { id: string }) => entry.id === 'valmir_route_fork')?.durationMs).toBe(10_000);

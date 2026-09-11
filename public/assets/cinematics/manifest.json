@@ -166,6 +166,83 @@
       "sources": [{ "src": "/assets/cinematics/lion_trial_route_ending.mp4", "type": "video/mp4" }],
       "fallbackText": "Le Champion s’incline et Alaric reconnaît le Sceau gagné sous la loi du Lion.",
       "durationMs": 20000
+    },
+    {
+      "id": "cedric_encounter",
+      "title": "Cedric au carrefour",
+      "sources": [{ "src": "/assets/cinematics/cedric_encounter.mp4", "type": "video/mp4" }],
+      "fallbackText": "Cedric et Kestrel s’observent avant la décision de recrutement.",
+      "durationMs": 5000
+    },
+    {
+      "id": "garen_encounter",
+      "title": "La lance de Garen",
+      "sources": [{ "src": "/assets/cinematics/garen_encounter.mp4", "type": "video/mp4" }],
+      "fallbackText": "Garen attend la décision de la compagnie sur la route de Bois-Clair.",
+      "durationMs": 5000
+    },
+    {
+      "id": "serpent_road_tension",
+      "title": "Pression des Serpents",
+      "sources": [{ "src": "/assets/cinematics/serpent_road_tension.mp4", "type": "video/mp4" }],
+      "fallbackText": "Une patrouille Serpent tient la route avant l’affrontement.",
+      "durationMs": 8000
+    },
+    {
+      "id": "shrine_reveal_context",
+      "title": "Le sanctuaire intact",
+      "sources": [{ "src": "/assets/cinematics/shrine_reveal_context.mp4", "type": "video/mp4" }],
+      "fallbackText": "Séraphine découvre un sanctuaire encore intact avant toute décision.",
+      "durationMs": 5000
+    },
+    {
+      "id": "injured_merchant_encounter",
+      "title": "Le marchand blessé",
+      "sources": [{ "src": "/assets/cinematics/injured_merchant_encounter.mp4", "type": "video/mp4" }],
+      "fallbackText": "Un marchand blessé attend près de son chariot brisé.",
+      "durationMs": 5000
+    },
+    {
+      "id": "abandoned_cart_reveal",
+      "title": "Le chariot abandonné",
+      "sources": [{ "src": "/assets/cinematics/abandoned_cart_reveal.mp4", "type": "video/mp4" }],
+      "fallbackText": "Maelor examine un chariot marqué par les réfugiés.",
+      "durationMs": 5000
+    },
+    {
+      "id": "spider_nest_reveal",
+      "title": "Le nid venimeux",
+      "sources": [{ "src": "/assets/cinematics/spider_nest_reveal.mp4", "type": "video/mp4" }],
+      "fallbackText": "Une araignée garde la piste avant le combat.",
+      "durationMs": 5000
+    },
+    {
+      "id": "troll_crossing_reveal",
+      "title": "Le passage du troll",
+      "sources": [{ "src": "/assets/cinematics/troll_crossing_reveal.mp4", "type": "video/mp4" }],
+      "fallbackText": "Un troll bloque le passage avant la confrontation.",
+      "durationMs": 5000
+    },
+    {
+      "id": "serpent_duelist_reveal",
+      "title": "Le duelliste Serpent",
+      "sources": [{ "src": "/assets/cinematics/serpent_duelist_reveal.mp4", "type": "video/mp4" }],
+      "fallbackText": "Le duelliste Serpent attend le défi sans engager le combat.",
+      "durationMs": 5000
+    },
+    {
+      "id": "young_dragon_encounter",
+      "title": "Le jeune dragon",
+      "sources": [{ "src": "/assets/cinematics/young_dragon_encounter.mp4", "type": "video/mp4" }],
+      "fallbackText": "Un jeune dragon vivant garde le sanctuaire et son nid.",
+      "durationMs": 5000
+    },
+    {
+      "id": "serpent_informant_encounter",
+      "title": "L’informateur traqué",
+      "sources": [{ "src": "/assets/cinematics/serpent_informant_encounter.mp4", "type": "video/mp4" }],
+      "fallbackText": "Un Oracle Serpent traqué attend la décision de la compagnie.",
+      "durationMs": 5000
     }
   ]
 }

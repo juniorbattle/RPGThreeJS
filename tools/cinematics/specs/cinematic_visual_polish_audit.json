@@ -8,7 +8,7 @@
   },
   "criteriaOrder": ["NARRATIVE_CLARITY", "DIALOGUE_CAST_ALIGNMENT", "PLAYER_GROUP_PRESENCE", "TRAVEL_GRAMMAR", "INTEGRATED_SCENE", "NO_COLLAGE_LOOK", "CAMERA_DISTANCE", "CHARACTER_SCALE", "GROUNDING", "LOCOMOTION", "ENVIRONMENT_MOTION", "PARALLAX", "WORLD_INTEGRATION", "SAFE_ZONE", "FINAL_FRAME", "CROSS_VIDEO_CONTINUITY"],
   "scoreLegend": ["PASS", "WARN", "FAIL", "NOT_APPLICABLE"],
-  "summary": { "totalProductionMasters": 20, "keep": 3, "runtimePolish": 0, "remaster": 12, "replaceWithFamily": 5, "cin6cBlockers": 0 },
+  "summary": { "totalProductionMasters": 31, "keep": 14, "runtimePolish": 0, "remaster": 12, "replaceWithFamily": 5, "cin6cBlockers": 0 },
   "entries": [
     {
       "runtimeId": "lion_judgement", "sha256": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9", "durationSeconds": 17,
@@ -129,6 +129,72 @@
       "classification": "REMASTER", "issues": ["DIALOGUE_CAST_ALIGNMENT", "PLAYER_GROUP_MISSING", "NO_COLLAGE_LOOK"], "severity": "HIGH",
       "criteriaScores": ["PASS", "FAIL", "FAIL", "NOT_APPLICABLE", "FAIL", "FAIL", "PASS", "PASS", "WARN", "PASS", "PASS", "WARN", "FAIL", "PASS", "PASS", "WARN"],
       "recommendedAction": "Future integrated ending should preserve Lion recognition while showing a guaranteed company representative owning the earned outcome.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "cedric_encounter", "sha256": "aa41a28e8b8829eb9c1c4122184ace9756f01676c2bbc903899e2f366e819a82", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "PASS", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the unresolved Cedric and Kestrel encounter staging before the recruitment choice.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "garen_encounter", "sha256": "2d9bb62eba5bc8c17a84beebe81ffd916d805a9063398054d424865fff5646a7", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the stable Garen reveal and restrained lance pose before the recruitment decision.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "serpent_road_tension", "sha256": "33be67338637de8413738789b8a0fa067007ff65bae06081b229870817f56412", "durationSeconds": 8,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain this neutral Serpent-road family reveal for the four census-approved combat IDs.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "shrine_reveal_context", "sha256": "e28a9ceb996e16291594f99e2905b25da35b316b0aafe1c058dfe5818d09f48c", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the intact shrine and Seraphine reveal before any preserve or desecrate outcome.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "injured_merchant_encounter", "sha256": "a1e6de8c63d1d83d5ee51c5de6548a62b068392fdcd746a948f231d253405892", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the living injured merchant and broken-cart staging before the aid decision.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "abandoned_cart_reveal", "sha256": "535b70307fa5aebadd846dc91f1bbcebbc8ad8f845c7c4d61823808def7a57f8", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the current-truth chariot composition and unresolved ownership of its provisions.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "spider_nest_reveal", "sha256": "7f98991ba6ae91f7904355736875d822c70b5af48ebeeef64598730405e57b0b", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the grounded spider reveal as the unique pre-combat presentation for spider_nest.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "troll_crossing_reveal", "sha256": "6ddb0044b5259870bbad78d31a57ab77dc7d47268310514ef8d7e00a2a6d3281", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the unique troll roadblock reveal before the confrontation handoff.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "serpent_duelist_reveal", "sha256": "9bf2e927a0940b5b0b3d116a7dbb692bf00c1371b19fa985f154bf08527c2560", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the dedicated duelist reveal so unique presentation continues to win over Serpent-family reuse.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "young_dragon_encounter", "sha256": "a9cf74c8372981aeb7afdde9efa2a8e5222284fe098b6be5f03223d2d22bdc91", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain the living young dragon and neutral nest framing before the final adaptive choice.", "cin6cBlocker": false
+    },
+    {
+      "runtimeId": "serpent_informant_encounter", "sha256": "5a1a79ed2c9c07f1da13aa2ed872be8823de7223324dba6faa2c7dc60507c069", "durationSeconds": 5,
+      "classification": "KEEP", "issues": [], "severity": "LOW",
+      "criteriaScores": ["PASS", "PASS", "NOT_APPLICABLE", "NOT_APPLICABLE", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS", "PASS"],
+      "recommendedAction": "Retain candidate 2 as the most restrained informant presentation within the three-attempt ceiling.", "cin6cBlocker": false
     }
   ]
 }

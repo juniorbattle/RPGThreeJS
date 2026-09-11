@@ -208,7 +208,7 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(at('lion-final-judgement')).toHaveLength(0);
   });
 
-  it('keeps CIN-6A Journey media separate from the three global CIN-3 production triggers', () => {
+  it('keeps Journey media through CIN-6C separate from the three global CIN-3 production triggers', () => {
     expect(VIDEO_CINEMATIC_TRIGGERS.beforeDialogue).toEqual({
       lion_finale_judgement: 'lion_judgement',
     });
@@ -243,9 +243,20 @@ describe('CIN-2 campaign presentation bridge', () => {
       'final_refuge_dossier',
       'serpent_route_ending',
       'lion_trial_route_ending',
+      'cedric_encounter',
+      'garen_encounter',
+      'serpent_road_tension',
+      'shrine_reveal_context',
+      'injured_merchant_encounter',
+      'abandoned_cart_reveal',
+      'spider_nest_reveal',
+      'troll_crossing_reveal',
+      'serpent_duelist_reveal',
+      'young_dragon_encounter',
+      'serpent_informant_encounter',
     ]);
 
-    // CIN-6B adds the two remaining P0 state/route masters and preserves every approved binary.
+    // CIN-6C adds eleven Journey-only P1 masters and preserves every approved P0 binary.
     const videos: string[] = [];
     const walk = (dir: string) => {
       for (const entry of readdirSync(dir)) {
@@ -256,26 +267,37 @@ describe('CIN-2 campaign presentation bridge', () => {
     };
     walk(resolve(process.cwd(), 'public'));
     expect(videos.map((path) => path.replaceAll('\\', '/').split('/').at(-1)).sort()).toEqual([
+      'abandoned_cart_reveal.mp4',
       'alaric_audience_arrival.mp4',
       'bois_clair_arrival.mp4',
       'bois_clair_sacrificed.mp4',
       'bois_clair_saved.mp4',
       'camp_departure.mp4',
+      'cedric_encounter.mp4',
       'final_refuge_dossier.mp4',
       'first_refuge_arrival.mp4',
       'first_refuge_departure.mp4',
       'forest_journey_tension.mp4',
+      'garen_encounter.mp4',
+      'injured_merchant_encounter.mp4',
       'lion_champion_reveal.mp4',
       'lion_judgement.mp4',
       'lion_trial_route_ending.mp4',
       'refugees_approach.mp4',
       'ruins_approach_context.mp4',
       'second_refuge_departure.mp4',
+      'serpent_duelist_reveal.mp4',
       'serpent_general_reveal.mp4',
+      'serpent_informant_encounter.mp4',
+      'serpent_road_tension.mp4',
       'serpent_route_ending.mp4',
       'shadow_signs.mp4',
+      'shrine_reveal_context.mp4',
+      'spider_nest_reveal.mp4',
+      'troll_crossing_reveal.mp4',
       'valmir_route_fork.mp4',
       'witnesses_encounter.mp4',
+      'young_dragon_encounter.mp4',
     ]);
   });
 });

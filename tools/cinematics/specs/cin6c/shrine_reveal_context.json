@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6c_shrine_reveal_context",
+  "cinematicId": "shrine_reveal_context",
+  "tier": "MICRO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6c-p1-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "Premium painted HD-2D fantasy tactical RPG shrine discovery. Show an ancient untouched forest shrine as a neutral unresolved place before either current choice sequence. Preserve mystery without activation, desecration, reward, artifact transfer, or decided outcome.",
+  "shots": [{
+    "shotId": "shot_01",
+    "purpose": "Reveal Seraphine observing the untouched shrine before player agency.",
+    "framing": "WIDE_UNTOUCHED_SHRINE_DISCOVERY",
+    "environment": "public/assets/generated/lion-phase/dialogue/mystery_shrine.webp",
+    "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_shrine_reveal_context/shot_01/source.png" },
+    "characters": [
+      { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.22, "groundY": 0.98 }, "scale": { "framing": "WIDE", "perspective": 0.92 }, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:untouched_shrine", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+    ],
+    "camera": { "mode": "STATIC" },
+    "durationSeconds": 5,
+    "continuityOut": "END",
+    "endIntent": "SHRINE_CHOICE_READY_UNRESOLVED",
+    "promptIntent": "Seraphine remains at respectful distance on the left and studies the untouched central shrine without touching it. Preserve her canonical face, hood, staff, lantern, hands, scale, facing, and ground contact. Only breathing, cloth, mist, foliage, and faint existing ambient light may move. The shrine stays intact and dormant. No apparition, activation, desecration, opened reliquary, collected offering, reward, speech, text, UI, or decision. End sharp and neutral."
+  }]
+}
