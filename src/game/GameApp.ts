@@ -34,13 +34,11 @@ import { CinematicPlayer } from '../cinematics/CinematicPlayer';
 import { CinematicRegistry } from '../cinematics/CinematicRegistry';
 import { resolveVideoCinematicTrigger } from '../cinematics/CinematicTriggers';
 import type { VideoCinematicTrigger } from '../cinematics/CinematicTypes';
-import { presentCinematicDialogue } from '../cinematics/CinematicDialogueSession';
 import {
   resolveCin6aBoisClairAftermath,
   resolveCin6aJourneyTrigger,
   resolveCin6cJourneyTrigger,
   resolveCin6aRefugeArrival,
-  resolveCin6aRefugeDeparture,
   resolveCin6aSerpentEnding,
   resolveCin6bLionTrialEnding,
 } from '../cinematics/Cin6aPresentation';
@@ -54,6 +52,9 @@ import { resolveCampaignPresentation } from '../journey/JourneyPresentationPolic
 import { evaluateRouteCommit } from '../journey/RouteCommitGuard';
 import type { JourneySecondaryActionPresentation } from '../cinematics/JourneyTypes';
 import { NarrativeStage } from '../cinematics/NarrativeStage';
+import { resolveCinematicPresentation, resolveDialoguePresentation } from '../cinematics/NarrativePresentationResolver';
+import { isEpilogueHoldContinuityValid } from '../cinematics/NarrativePresentationTransition';
+import type { ResolvedPresentationBeat } from '../cinematics/NarrativePresentationMode';
 import { resolveNarrativeAuthoringMedia } from '../cinematics/NarrativePresentationPolicy';
 import { createNarrativeDialogueResolver, resolveRepresentedDialogueActors } from '../cinematics/NarrativeDialogueAdapter';
 import {
@@ -134,6 +135,7 @@ export class GameApp {
     dev: import.meta.env.DEV,
   });
   private journeyBoundary: JourneyCampaignBoundary | null = null;
+  private lastNarrativeCinematicBeat: ResolvedPresentationBeat | undefined;
   private activeNarrativeStage: NarrativeStage | null = null;
   // Latched after a catastrophic Journey failure so the fallback can never recurse into Journey.
   private journeyUnavailable = false;
@@ -533,7 +535,13 @@ export class GameApp {
   private async playNarrativeCinematic(id: string, tableau?: NarrativeTableauSpec): Promise<unknown> {
     const stage = this.createNarrativeStage(tableau);
     try {
-      return await stage.presentCinematic(id, { reducedMotion: this.state.settings.reducedGraphics });
+      const beat = resolveCinematicPresentation(id);
+      const result = beat
+        ? await stage.presentCinematicBeat(beat, { reducedMotion: this.state.settings.reducedGraphics })
+        : await stage.presentCinematic(id, { reducedMotion: this.state.settings.reducedGraphics });
+      this.lastNarrativeCinematicBeat = beat;
+      this.ensureJourneyBoundary().markCinematicPresented(id);
+      return result;
     } finally {
       this.disposeNarrativeStage(stage);
     }
@@ -662,6 +670,7 @@ export class GameApp {
 
   private async enterJourney(): Promise<void> {
     this.activeNarrativeStage?.prepareGlobalHandoff();
+    let boundaryPromise: Promise<void> | null = null;
     await sceneTransition.run({
       variant: 'travel',
       task: async () => {
@@ -671,9 +680,12 @@ export class GameApp {
         this.canvas.hidden = true;
         this.chrome.replaceChildren();
         this.saves.saveAuto(this.state);
+        const boundary = this.ensureJourneyBoundary();
+        boundaryPromise = this.runJourneyBoundary();
+        await Promise.race([boundary.waitUntilSurfaceReady(), boundaryPromise]);
       },
     });
-    await this.runJourneyBoundary();
+    await boundaryPromise;
   }
 
   /**
@@ -736,6 +748,7 @@ export class GameApp {
       player: this.cinematicPlayer,
       registry: this.cinematicRegistry,
       mediaMode: this.narrativeMediaMode,
+      dev: import.meta.env.DEV,
     });
     return this.journeyBoundary;
   }
@@ -751,6 +764,7 @@ export class GameApp {
       player: this.cinematicPlayer,
       registry: this.cinematicRegistry,
       mediaMode: this.narrativeMediaMode,
+      dev: import.meta.env.DEV,
     });
     if (tableau) stage.setTableau(tableau);
     this.activeNarrativeStage = stage;
@@ -876,7 +890,6 @@ export class GameApp {
         if (action === 'clan') await this.openManagement('clan', undefined, 'temporary', false);
         if (action === 'skills') await this.openManagement('skills', undefined, 'temporary', false);
       }
-      await this.playJourneyCinematic(resolveCin6aRefugeDeparture(node.id), node.label);
       this.markResolved(node.id);
       await this.playPostNodeNarrative(node.id);
       await this.enterCampaignPresentation();
@@ -961,9 +974,10 @@ export class GameApp {
   ): Promise<void> {
     const stage = this.createNarrativeStage(options.tableau);
     stage.bindDialogue(sequence);
+    const presentationBeat = resolveDialoguePresentation(sequence.id);
     const stepPresentation = createNarrativeDialogueResolver(sequence, options.tableau, {
       mediaMode: this.narrativeMediaMode,
-      hasMovingMedia: Boolean(options.cinematicId),
+      hasMovingMedia: presentationBeat?.mode === 'CINEMATIC_HOLD',
     });
     if (options.tableau) {
       const alignment = validateDialogueCast(
@@ -1001,23 +1015,39 @@ export class GameApp {
     };
     let completed = false;
     try {
-      if (this.narrativeMediaMode === 'STILL') {
+      if (presentationBeat?.mode === 'STATIC_TABLEAU') {
+        if (options.cinematicId && this.narrativeMediaMode === 'VIDEO') {
+          const videoBeat = resolveCinematicPresentation(options.cinematicId);
+          if (videoBeat) await stage.presentCinematicBeat(videoBeat, { reducedMotion: this.state.settings.reducedGraphics, passive: true });
+          else await stage.presentCinematic(options.cinematicId, { reducedMotion: this.state.settings.reducedGraphics, passive: true });
+          this.ensureJourneyBoundary().markCinematicPresented(options.cinematicId);
+          this.lastNarrativeCinematicBeat = videoBeat;
+          stage.releaseFreeze();
+        }
+        stage.setPresentationBeat(presentationBeat);
         await stage.presentStill(resolveDialogueBackdrop(sequence));
         await openDialogue();
-      } else if (options.cinematicId) {
-        await presentCinematicDialogue({
-          player: this.cinematicPlayer,
-          stage,
-          cinematicId: options.cinematicId,
-          playback: { reducedMotion: this.state.settings.reducedGraphics },
-          openLiveDialogue: openDialogue,
-          openHeldDialogue: openDialogue,
-          openFallbackDialogue: openDialogue,
-          ...(options.preserveBackdrop === true ? {
-            preserveBackdrop: (surface) => { this.ensureJourneyBoundary().captureBackdrop(surface); },
-          } : {}),
-        });
+      } else if (presentationBeat?.mode === 'CINEMATIC_HOLD') {
+        const epilogueContinuityValid = presentationBeat.dialogueId === 'epilogue'
+          ? isEpilogueHoldContinuityValid(this.lastNarrativeCinematicBeat, presentationBeat)
+          : true;
+        if (presentationBeat.dialogueId === 'epilogue') {
+          stage.element.dataset.epilogueHoldContinuityValid = `${epilogueContinuityValid}`;
+        }
+        if (options.cinematicId && this.narrativeMediaMode === 'VIDEO') {
+          const videoBeat = resolveCinematicPresentation(options.cinematicId);
+          if (videoBeat) await stage.presentCinematicBeat(videoBeat, { reducedMotion: this.state.settings.reducedGraphics, passive: true });
+          else await stage.presentCinematic(options.cinematicId, { reducedMotion: this.state.settings.reducedGraphics, passive: true });
+          this.ensureJourneyBoundary().markCinematicPresented(options.cinematicId);
+          this.lastNarrativeCinematicBeat = videoBeat;
+        }
+        await stage.enterCinematicHold(presentationBeat, resolveDialogueBackdrop(sequence));
+        await openDialogue();
+        if (options.preserveBackdrop === true && stage.frozenSurface) {
+          this.ensureJourneyBoundary().captureBackdrop(stage.frozenSurface);
+        }
       } else {
+        if (presentationBeat) stage.setPresentationBeat(presentationBeat);
         await stage.presentPaintedFallback(sequence.title ?? fallbackLabel ?? sequence.id, resolveDialogueBackdrop(sequence));
         await openDialogue();
         if (options.preserveBackdrop === true && stage.frozenSurface) this.ensureJourneyBoundary().captureBackdrop(stage.frozenSurface);
@@ -1318,6 +1348,9 @@ export class GameApp {
     await prologuePromise;
     this.state.flags.prologueSeen = true;
     await this.playDialogue('acte_ouverture');
+    if (this.usesJourneyPresentation()) {
+      await this.playDialogue('camp_departure', 'Camp du Lion', { cinematicId: 'camp_departure' });
+    }
     await this.enterCampaignPresentation();
   }
 

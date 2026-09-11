@@ -2637,6 +2637,11 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .narrative-media-surface::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(2,5,12,.2),transparent 34%,rgba(2,5,12,.58)),radial-gradient(ellipse at center,transparent 48%,rgba(0,0,0,.4)); }
 .narrative-media-surface--painted { filter:saturate(.94) contrast(1.04); }
 .narrative-media-surface--passive { filter:saturate(.9) brightness(.9); }
+.narrative-media-surface--travel-still { overflow:hidden; background:#07101c; }
+.narrative-travel-still__image,.narrative-travel-still__fallback { position:absolute; inset:0; width:100%; height:100%; }
+.narrative-travel-still__image { display:block; object-fit:cover; object-position:center; }
+.narrative-travel-still__fallback { background-position:center; background-repeat:no-repeat; background-size:cover; }
+.narrative-media-surface--travel-still::after { background:linear-gradient(180deg,rgba(2,5,12,.16),transparent 36%,rgba(2,5,12,.48)),radial-gradient(ellipse at center,transparent 52%,rgba(0,0,0,.34)); }
 .cinematic-overlay--passive { pointer-events:none; }
 .cinematic-overlay--passive .cinematic-overlay__controls { top:clamp(14px,2vw,28px); right:auto; bottom:auto; left:clamp(14px,2vw,28px); pointer-events:auto; opacity:.72; }
 .cinematic-overlay--passive .cinematic-overlay__control { min-height:34px; padding-inline:12px; border-color:rgba(244,217,139,.3); background:rgba(3,7,14,.62); font-size:8px; }

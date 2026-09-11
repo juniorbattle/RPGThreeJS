@@ -62,16 +62,15 @@ describe('CIN-6.7 NarrativeStage campaign integration', () => {
     expect(TABLEAUX).not.toContain("label: 'Barrage renforcé'");
   });
 
-  it('layers authoritative dialogue over moving media with one modal owner', () => {
+  it('separates reveal video, held dialogue and static tableau ownership', () => {
     const dialogue = method('private async playNarrativeDialogue');
     expect(dialogue).toContain('createNarrativeDialogueResolver(sequence, options.tableau, {');
     expect(dialogue).toContain('mediaMode: this.narrativeMediaMode');
-    expect(dialogue).toContain('hasMovingMedia: Boolean(options.cinematicId)');
+    expect(dialogue).toContain("hasMovingMedia: presentationBeat?.mode === 'CINEMATIC_HOLD'");
     expect(dialogue).toContain('validateDialogueCast(');
-    expect(dialogue).toContain('await presentCinematicDialogue({');
-    expect(dialogue).toContain('stage,');
-    expect(dialogue).toContain('openLiveDialogue: openDialogue');
-    expect(readFileSync(resolve(process.cwd(), 'src/cinematics/CinematicDialogueSession.ts'), 'utf8')).toContain('awaitMediaVisibleReady()');
+    expect(dialogue).toContain('await stage.presentCinematicBeat(videoBeat');
+    expect(dialogue).toContain('await stage.enterCinematicHold(presentationBeat');
+    expect(dialogue).toContain('stage.releaseFreeze()');
     expect(dialogue).toContain("mode: 'narrative-stage'");
     expect(dialogue).toContain('root: stage.dialogueLayer');
     expect(STAGE).not.toMatch(/GameState|enterRunNode|combatConfigs|applyEffects|changeReputation|SaveRepository/);

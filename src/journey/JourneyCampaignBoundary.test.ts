@@ -107,17 +107,17 @@ describe('journey campaign boundary', () => {
     const stage = document.querySelector<HTMLElement>('.narrative-stage');
     expect(stage?.dataset.narrativeTableau).toBe('AUDIENCE_ROAD_DEPARTURE_TABLEAU');
     expect(stage?.dataset.narrativeGrammar).toBe('DEPARTURE');
-    expect(stage?.dataset.narrativeCastOwnership).toBe('STAGE_OWNS_CAST');
+    expect(stage?.dataset.presentationMode).toBe('TRAVEL_STILL');
+    expect(stage?.dataset.narrativeCastOwnership).toBe('TRAVEL_SURFACE_OWNS_ENVIRONMENT');
     expect(document.querySelector('[data-actor-id="alaric"]')).toBeNull();
-    expect([...document.querySelectorAll<HTMLElement>('[data-actor-id]')].map((actor) => actor.dataset.actorId))
-      .toEqual(['sage_seraphine', 'alistair', 'maelor']);
+    expect(document.querySelectorAll<HTMLElement>('[data-actor-id]')).toHaveLength(0);
     click('[data-journey-continue]');
     await expect(pending).resolves.toMatchObject({
       kind: 'node',
       id: 'lion-opening-ambush',
       presentationKey: 'edge:lion-audience>lion-opening-ambush',
       cinematicId: undefined,
-      surfaceReason: 'unavailable',
+      surfaceReason: 'ended',
     });
   });
 
@@ -281,7 +281,7 @@ describe('journey campaign boundary', () => {
     expect(document.querySelector('.narrative-stage')).toBeNull();
   });
 
-  it('uses a passive prior cinematic snapshot instead of a black neutral boundary', async () => {
+  it('releases a prior cinematic snapshot before mounting a Travel Still boundary', async () => {
     const state = createInitialState();
     const available = availableAt(state, 'lion-nomad-crossroads');
     const boundary = createBoundary();
@@ -298,13 +298,15 @@ describe('journey campaign boundary', () => {
       currentNodeId: 'lion-nomad-crossroads', currentLabel: 'Croisée nomade', available, reducedMotion: false,
     });
     await flush();
-    expect(document.querySelector('.journey-surface--snapshot')).not.toBeNull();
+    expect(document.querySelector('.journey-surface--snapshot')).toBeNull();
     expect(document.querySelector('.journey-surface--neutral')).toBeNull();
-    expect(document.querySelector('.journey-surface video')).toBeNull();
+    expect(document.querySelector('.narrative-media-surface--travel-still')).not.toBeNull();
+    expect(document.querySelector<HTMLElement>('.narrative-stage')?.dataset.fallbackActive).toBe('true');
+    expect(document.querySelector('video')).toBeNull();
     expect(document.querySelector('.journey-overlay--single')).not.toBeNull();
     click('[data-journey-continue]');
     await pending;
-    expect(document.querySelector('.journey-surface--snapshot')).toBeNull();
+    expect(document.querySelector('.narrative-media-surface--travel-still')).toBeNull();
   });
 
   it('propagates catastrophic session failure to the caller', async () => {

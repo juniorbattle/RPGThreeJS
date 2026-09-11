@@ -11,8 +11,11 @@ import { NarrativeUtilityDock } from './NarrativeUtilityDock';
 import { NarrativeSceneSurface } from './NarrativeSceneSurface';
 import type { NarrativeAuthoringMedia } from './NarrativePresentationPolicy';
 import { NarrativeSurfaceReadiness, type NarrativeSurfaceReadinessStatus, type NarrativeSurfaceTimelineRecord } from './NarrativeSurfaceReadiness';
+import type { ResolvedPresentationBeat, TravelStillSource } from './NarrativePresentationMode';
+import { TravelStillSurface } from './TravelStillSurface';
+import { validatePrimarySurface } from './NarrativePresentationTransition';
 
-export type NarrativeMediaSurfaceKind = 'STILL' | 'VIDEO' | 'HELD_VIDEO' | 'PASSIVE_BACKDROP' | 'FALLBACK' | 'NONE';
+export type NarrativeMediaSurfaceKind = 'STILL' | 'STATIC_TABLEAU' | 'TRAVEL_STILL' | 'VIDEO' | 'HELD_VIDEO' | 'PASSIVE_BACKDROP' | 'FALLBACK' | 'NONE';
 
 export interface NarrativeStageOptions {
   player: CinematicPlayer;
@@ -24,6 +27,7 @@ export interface NarrativeStageOptions {
   loadingIndicatorDelayMs?: number;
   videoStartupTimeoutMs?: number;
   transitionRevealMs?: number;
+  dev?: boolean;
 }
 
 const DEFAULT_LOADING_INDICATOR_DELAY_MS = 450;
@@ -52,6 +56,7 @@ export class NarrativeStage {
   private readonly loadingIndicatorDelayMs: number;
   private readonly videoStartupTimeoutMs: number;
   private readonly transitionRevealMs: number;
+  private readonly dev: boolean;
   private director: NarrativeBeatDirector | null = null;
   private tableau: NarrativeTableauSpec | null = null;
   private mounted = false;
@@ -59,11 +64,14 @@ export class NarrativeStage {
   private activeMediaId: string | null = null;
   private mediaSurfaceKind: NarrativeMediaSurfaceKind = 'NONE';
   private sceneSurface: NarrativeSceneSurface | null = null;
+  private travelStillSurface: TravelStillSurface | null = null;
+  private resolvedBeat: ResolvedPresentationBeat | null = null;
   private boundDialogue: DialogueSequence | null = null;
   private readiness: NarrativeSurfaceReadiness | null = null;
   private loadingIndicatorTimer: number | null = null;
   private videoStartupTimer: number | null = null;
   private revealPromise: Promise<void> | null = null;
+  private readonly imagePreloads = new Map<string, HTMLImageElement>();
 
   constructor(options: NarrativeStageOptions) {
     this.root = options.root ?? document.body;
@@ -72,6 +80,7 @@ export class NarrativeStage {
     this.loadingIndicatorDelayMs = options.loadingIndicatorDelayMs ?? DEFAULT_LOADING_INDICATOR_DELAY_MS;
     this.videoStartupTimeoutMs = options.videoStartupTimeoutMs ?? DEFAULT_VIDEO_STARTUP_TIMEOUT_MS;
     this.transitionRevealMs = options.transitionRevealMs ?? DEFAULT_TRANSITION_REVEAL_MS;
+    this.dev = options.dev ?? false;
     this.element.className = 'narrative-stage';
     this.element.setAttribute('aria-label', 'Scène narrative');
     this.element.dataset.narrativeAuthoringMedia = this.mediaMode;
@@ -114,6 +123,23 @@ export class NarrativeStage {
 
   get currentMediaSurfaceKind(): NarrativeMediaSurfaceKind {
     return this.mediaSurfaceKind;
+  }
+
+  get currentPresentationBeat(): ResolvedPresentationBeat | null {
+    return this.resolvedBeat;
+  }
+
+  setPresentationBeat(beat: ResolvedPresentationBeat): void {
+    if (this.disposed) return;
+    this.resolvedBeat = beat;
+    this.element.dataset.presentationMode = beat.mode;
+    this.element.dataset.presentationBeat = beat.beatId;
+    this.element.dataset.visualFamily = beat.visualFamily;
+    this.element.dataset.presentationAssetRole = beat.assetRole;
+    this.element.dataset.fallbackActive = 'false';
+    this.element.dataset.narrativeCastOwnership = beat.castOwnership;
+    if (beat.tableauBackgroundId) this.element.dataset.tableauBackgroundId = beat.tableauBackgroundId;
+    else delete this.element.dataset.tableauBackgroundId;
   }
 
   get mediaReadinessStatus(): NarrativeSurfaceReadinessStatus | 'IDLE' {
@@ -174,8 +200,12 @@ export class NarrativeStage {
     this.setMediaSurfaceKind('VIDEO');
     this.element.dataset.narrativeCastOwnership = 'VIDEO_OWNS_CAST';
     this.activeMediaId = id;
-    const stageFallback = this.createPreparedSceneSurface(this.tableau?.stillImage);
-    const resolvedFallback = stageFallback?.element ?? fallbackBackdrop;
+    const explicitVideoBeat = this.resolvedBeat?.mode === 'CINEMATIC_VIDEO';
+    const stageFallback = explicitVideoBeat ? null : this.createPreparedSceneSurface(this.tableau?.stillImage);
+    const environmentFallback = explicitVideoBeat && !fallbackBackdrop
+      ? this.createEnvironmentFallback(this.resolvedBeat?.fallbackAsset ?? this.tableau?.stillImage)
+      : null;
+    const resolvedFallback = stageFallback?.element ?? fallbackBackdrop ?? environmentFallback;
     this.videoStartupTimer = window.setTimeout(() => {
       if (this.readiness !== readiness || readiness.status !== 'PREPARING') return;
       this.recordReadinessEvent(readiness, 'MEDIA_TIMEOUT');
@@ -206,22 +236,105 @@ export class NarrativeStage {
           await stageFallback.whenRenderable();
         }
         this.setMediaSurfaceKind('FALLBACK');
+        this.element.dataset.fallbackActive = 'true';
         this.element.dataset.narrativeCastOwnership = stageFallback ? 'STAGE_OWNS_CAST' : 'ENVIRONMENT_ONLY';
         await this.revealPreparedSurface(readiness, 'FALLBACK');
       } else if (this.session.frozenSurface?.matches('.narrative-scene-surface')) {
         this.sceneSurface = stageFallback;
         this.setMediaSurfaceKind('FALLBACK');
+        this.element.dataset.fallbackActive = 'true';
         this.element.dataset.narrativeCastOwnership = stageFallback ? 'STAGE_OWNS_CAST' : 'ENVIRONMENT_ONLY';
       } else {
         stageFallback?.dispose();
         if (this.sceneSurface === stageFallback) this.sceneSurface = null;
+        if (this.session.frozenSurface !== environmentFallback) environmentFallback?.remove();
         this.updateSettledMediaKind();
+        this.element.dataset.fallbackActive = `${Boolean(
+          this.session.frozenSurface?.dataset.journeyFallback
+          && this.session.frozenSurface.dataset.cinematicFreezeSurface !== 'canvas',
+        )}`;
       }
       return result;
     } finally {
       this.clearVideoStartupTimer();
       if (this.activeMediaId === id) this.activeMediaId = null;
     }
+  }
+
+  async presentCinematicBeat(
+    beat: ResolvedPresentationBeat,
+    options: VideoCinematicPlaybackOptions = {},
+    fallbackBackdrop: HTMLElement | null = null,
+  ): Promise<VideoCinematicResult> {
+    if (beat.mode !== 'CINEMATIC_VIDEO' || !beat.cinematicId) {
+      throw new Error(`Cinematic beat '${beat.beatId}' has no CINEMATIC_VIDEO source.`);
+    }
+    this.setPresentationBeat(beat);
+    return this.presentCinematic(beat.cinematicId, options, fallbackBackdrop);
+  }
+
+  /** Promotes an already frozen video endpoint to the explicit hold mode, or mounts its safe context fallback. */
+  async enterCinematicHold(
+    beat: ResolvedPresentationBeat,
+    fallbackAsset?: string,
+  ): Promise<VideoCinematicResult> {
+    if (beat.mode !== 'CINEMATIC_HOLD') throw new Error(`Hold beat '${beat.beatId}' is not CINEMATIC_HOLD.`);
+    this.setPresentationBeat(beat);
+    const frozen = this.session.frozenSurface;
+    if (frozen) {
+      const heldVideo = frozen.matches('.cinematic-overlay') && frozen.dataset.cinematicFreezeSurface === 'canvas';
+      this.setMediaSurfaceKind(heldVideo ? 'HELD_VIDEO' : 'FALLBACK');
+      this.element.dataset.fallbackActive = `${!heldVideo}`;
+      this.element.dataset.narrativeCastOwnership = 'VIDEO_OWNS_CAST';
+      return { id: beat.holdSourceCinematicId ?? beat.beatId, reason: 'ended', played: heldVideo };
+    }
+
+    const readiness = this.beginSurfacePreparation();
+    this.sceneSurface?.dispose();
+    this.sceneSurface = null;
+    this.travelStillSurface?.dispose();
+    this.travelStillSurface = null;
+    const fallback = document.createElement('div');
+    fallback.className = 'narrative-media-surface narrative-media-surface--painted narrative-media-surface--hold-fallback';
+    const selected = fallbackAsset ?? beat.fallbackAsset;
+    if (selected) fallback.style.backgroundImage = `url("${selected}")`;
+    fallback.dataset.presentationMode = 'CINEMATIC_HOLD';
+    fallback.dataset.presentationBeat = beat.beatId;
+    fallback.dataset.fallbackActive = 'true';
+    const result = this.session.presentStaticSurface(`hold-fallback:${beat.beatId}`, fallback);
+    this.setMediaSurfaceKind('FALLBACK');
+    this.element.dataset.fallbackActive = 'true';
+    this.element.dataset.narrativeCastOwnership = 'VIDEO_OWNS_CAST';
+    await this.revealPreparedSurface(readiness, 'FALLBACK');
+    return result;
+  }
+
+  async presentTravelStill(
+    beat: ResolvedPresentationBeat,
+    options: { source?: TravelStillSource; fallbackAsset?: string; reducedMotion?: boolean } = {},
+  ): Promise<VideoCinematicResult> {
+    if (beat.mode !== 'TRAVEL_STILL') throw new Error(`Travel beat '${beat.beatId}' is not TRAVEL_STILL.`);
+    if (this.session.state === 'FREEZE' || this.session.state === 'TRANSITIONING') this.session.releaseFreeze();
+    const readiness = this.beginSurfacePreparation();
+    this.setPresentationBeat(beat);
+    this.sceneSurface?.dispose();
+    this.sceneSurface = null;
+    this.travelStillSurface?.dispose();
+    const surface = new TravelStillSurface(this.mediaLayer, beat, {
+      ...(options.source ? { source: options.source } : {}),
+      fallbackAsset: options.fallbackAsset ?? beat.fallbackAsset,
+      reducedMotion: options.reducedMotion,
+      dev: this.dev,
+    });
+    this.travelStillSurface = surface;
+    surface.mount();
+    await surface.whenRenderable();
+    const result = this.session.presentStaticSurface(`travel-still:${beat.beatId}`, surface.element);
+    this.setMediaSurfaceKind('TRAVEL_STILL');
+    this.element.dataset.fallbackActive = `${surface.fallbackActive}`;
+    this.element.dataset.narrativeCastOwnership = 'TRAVEL_SURFACE_OWNS_ENVIRONMENT';
+    await this.revealPreparedSurface(readiness, 'TRAVEL_STILL');
+    return result;
   }
 
   async presentPaintedFallback(title: string, image?: string): Promise<VideoCinematicResult> {
@@ -268,7 +381,7 @@ export class NarrativeStage {
     surface.mount(image ?? tableau.stillImage);
     await surface.whenRenderable();
     const result = await this.session.presentCinematic(id, { reducedMotion: false, passive: true }, surface.element);
-    this.setMediaSurfaceKind(kind);
+    this.setMediaSurfaceKind(this.resolvedBeat?.mode === 'STATIC_TABLEAU' ? 'STATIC_TABLEAU' : kind);
     this.element.dataset.narrativeCastOwnership = surface.castLayer.childElementCount ? 'STAGE_OWNS_CAST' : 'ENVIRONMENT_ONLY';
     await this.revealPreparedSurface(readiness, kind);
     return result;
@@ -341,6 +454,18 @@ export class NarrativeStage {
     this.session.preloadCandidates(ids);
   }
 
+  preloadPresentationCandidates(beats: readonly ResolvedPresentationBeat[]): void {
+    const refs = [...new Set(beats.flatMap((beat) => beat.preloadRefs))];
+    const cinematicIds = refs.filter((ref) => !ref.startsWith('/') && !ref.includes('.'));
+    this.session.preloadCandidates(cinematicIds);
+    for (const ref of refs) {
+      if (!ref.startsWith('/') || this.imagePreloads.has(ref)) continue;
+      const image = new Image();
+      image.src = ref;
+      this.imagePreloads.set(ref, image);
+    }
+  }
+
   releaseCandidates(ids: readonly string[]): void {
     this.session.releaseCandidates(ids);
   }
@@ -348,6 +473,7 @@ export class NarrativeStage {
   releaseFreeze(): void {
     this.session.releaseFreeze();
     this.setMediaSurfaceKind('NONE');
+    this.element.dataset.fallbackActive = 'false';
   }
 
   skipPresentation(): void {
@@ -370,7 +496,11 @@ export class NarrativeStage {
     this.director = null;
     this.sceneSurface?.dispose();
     this.sceneSurface = null;
+    this.travelStillSurface?.dispose();
+    this.travelStillSurface = null;
     this.session.dispose();
+    for (const image of this.imagePreloads.values()) image.removeAttribute('src');
+    this.imagePreloads.clear();
     this.activeMediaId = null;
     this.mediaLayer.replaceChildren();
     this.dialogueLayer.replaceChildren();
@@ -382,6 +512,7 @@ export class NarrativeStage {
     this.tableau = null;
     this.boundDialogue = null;
     this.mediaSurfaceKind = 'NONE';
+    this.resolvedBeat = null;
   }
 
   private ensureMounted(): void {
@@ -446,6 +577,7 @@ export class NarrativeStage {
       this.agencyLayer.inert = false;
       readiness.markVisible();
       this.syncReadinessTimeline();
+      this.syncPrimarySurfaceInvariant();
     })();
     return this.revealPromise;
   }
@@ -456,6 +588,15 @@ export class NarrativeStage {
     if (this.boundDialogue) surface.bindDialogue(this.boundDialogue);
     surface.prepare(image ?? this.tableau.stillImage);
     return surface;
+  }
+
+  private createEnvironmentFallback(image?: string): HTMLElement {
+    const fallback = document.createElement('div');
+    fallback.className = 'narrative-media-surface narrative-media-surface--painted narrative-media-surface--video-fallback';
+    fallback.setAttribute('aria-hidden', 'true');
+    fallback.dataset.fallbackActive = 'true';
+    if (image) fallback.style.backgroundImage = `url("${image}")`;
+    return fallback;
   }
 
   private clearLoadingIndicatorTimer(): void {
@@ -522,5 +663,14 @@ export class NarrativeStage {
   private setMediaSurfaceKind(kind: NarrativeMediaSurfaceKind): void {
     this.mediaSurfaceKind = kind;
     this.element.dataset.narrativeMediaSurface = kind;
+  }
+
+  private syncPrimarySurfaceInvariant(): void {
+    if (!this.resolvedBeat) return;
+    const count = this.mediaLayer.querySelectorAll(':scope > .narrative-media-surface, :scope > .cinematic-overlay').length;
+    const diagnostic = validatePrimarySurface(this.resolvedBeat.mode, count);
+    this.element.dataset.primarySurfaceCount = `${count}`;
+    this.element.dataset.primarySurfaceInvariant = diagnostic ? 'FAIL' : 'PASS';
+    if (diagnostic && this.dev) console.warn(`[NarrativeStage] ${diagnostic}`);
   }
 }

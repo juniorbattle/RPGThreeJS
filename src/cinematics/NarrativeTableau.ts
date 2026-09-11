@@ -167,6 +167,8 @@ export interface NarrativeBeatSpec {
 
 export interface NarrativeTableauSpec {
   id: string;
+  /** Production background slot; independent from dialogue and authored tableau identity. */
+  tableauBackgroundId?: string;
   grammar: NarrativeJourneyGrammar;
   presentationKey?: string;
   dialogueId?: string;
@@ -396,6 +398,7 @@ export function createGenericNarrativeTableau(sequence: DialogueSequence): Narra
   }));
   const tableau: NarrativeTableauSpec = {
     id: `${sequence.id.toUpperCase()}_TABLEAU`,
+    tableauBackgroundId: `${sequence.id}_tableau_bg`,
     grammar: family === 'PRE_COMBAT' ? 'THREAT' : family === 'AFTERMATH' ? 'AFTERMATH' : 'APPROACH',
     dialogueId: sequence.id,
     family,

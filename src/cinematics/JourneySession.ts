@@ -113,6 +113,35 @@ export class JourneySession {
     return held.result;
   }
 
+  /** Mounts an image-owned presentation without routing it through CinematicPlayer. */
+  presentStaticSurface(id: string, surface: HTMLElement): VideoCinematicResult {
+    if (!this.transition('PLAYING')) {
+      return { id, reason: this.currentState === 'DISPOSED' ? 'aborted' : 'busy', played: false };
+    }
+    const previous = this.surface;
+    this.surface = null;
+    surface.remove();
+    this.mediaRoot.append(surface);
+    const result: VideoCinematicResult = { id, reason: 'ended', played: false };
+    const held: HeldVideoCinematic = {
+      result,
+      surface,
+      release: () => {
+        const image = surface.querySelector<HTMLImageElement>('img');
+        image?.removeAttribute('src');
+        surface.remove();
+      },
+    };
+    if (!this.transition('FREEZE')) {
+      held.release();
+      previous?.release();
+      return { id, reason: 'aborted', played: false };
+    }
+    this.surface = held;
+    previous?.release();
+    return result;
+  }
+
   /**
    * Shows the Journey agency overlay over the frozen presentation and resolves with the single
    * committed affordance. Disposal or an unavailable state resolves `aborted`, which carries no

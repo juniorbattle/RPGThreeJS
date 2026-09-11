@@ -24,18 +24,19 @@ describe('CIN-6.5 cinematic dialogue integration', () => {
     });
   });
 
-  it('gives a mapped NarrativeStage dialogue one live-canvas owner', () => {
+  it('gives a mapped NarrativeStage dialogue an explicit video/hold owner', () => {
     const playDialogue = method('private async playDialogue');
     const narrativeDialogue = method('private async playNarrativeDialogue');
     expect(playDialogue).toContain("resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId })");
     expect(playDialogue).toContain("resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId })");
     expect(playDialogue).toContain("resolveCin6cJourneyTrigger({ hook: 'beforeDialogue', dialogueId }, { flags: this.state.flags })");
     expect(playDialogue).toContain('await this.playNarrativeDialogue');
-    expect(narrativeDialogue).toContain('await presentCinematicDialogue({');
+    expect(narrativeDialogue).toContain('resolveDialoguePresentation(sequence.id)');
     expect(narrativeDialogue).toContain("mode: 'narrative-stage'");
-    expect(narrativeDialogue).toContain('openLiveDialogue: openDialogue');
-    expect(narrativeDialogue).toContain('openFallbackDialogue: openDialogue');
-    expect(narrativeDialogue.match(/presentCinematicDialogue\(/g)).toHaveLength(1);
+    expect(narrativeDialogue).toContain("presentationBeat?.mode === 'CINEMATIC_HOLD'");
+    expect(narrativeDialogue).toContain('await stage.presentCinematicBeat(videoBeat');
+    expect(narrativeDialogue).toContain('await stage.enterCinematicHold(presentationBeat');
+    expect(narrativeDialogue).toContain("presentationBeat?.mode === 'STATIC_TABLEAU'");
     expect(method('private async playClassicDialogue')).not.toContain('resolveCin6aJourneyTrigger');
   });
 

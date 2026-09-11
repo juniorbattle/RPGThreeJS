@@ -12,12 +12,15 @@ import type {
 import {
   JOURNEY_PRESENTATION_MAP,
   resolveBoundaryCinematic,
+  resolveBoundaryPresentationCandidates,
+  resolveBoundaryPrimaryPresentation,
   resolveCandidateCinematicIds,
   type JourneyPresentationMap,
 } from './JourneyPresentationResolver';
 import { planJourneyBoundary, type JourneyBoundaryKind } from './JourneyRunNodeAdapter';
 import type { RunNode } from '../game/types';
 import type { NarrativeAuthoringMedia } from '../cinematics/NarrativePresentationPolicy';
+import type { PlayerFacingSurfaceMode } from '../cinematics/NarrativePresentationMode';
 
 /**
  * Presents one campaign boundary through the CIN-1 Journey runtime and reports what the player
@@ -38,6 +41,9 @@ export interface JourneyBoundaryOutcome {
   /** How the cinematic surface settled (`unavailable` when nothing is mapped). */
   surfaceReason: VideoCinematicResultReason;
   trace: readonly JourneySessionState[];
+  presentationMode?: PlayerFacingSurfaceMode;
+  presentationBeatId?: string;
+  fallbackActive: boolean;
 }
 
 export interface JourneyBoundaryRequest {
@@ -56,6 +62,11 @@ type JourneyPresentationSession = Pick<
   setTableau?: (tableau: NarrativeTableauSpec) => void;
   presentStill?: (image?: string, id?: string) => Promise<VideoCinematicResult>;
   presentPassiveBackdrop?: (backdrop: HTMLElement) => Promise<VideoCinematicResult>;
+  presentCinematicBeat?: NarrativeStage['presentCinematicBeat'];
+  enterCinematicHold?: NarrativeStage['enterCinematicHold'];
+  presentTravelStill?: NarrativeStage['presentTravelStill'];
+  setPresentationBeat?: NarrativeStage['setPresentationBeat'];
+  preloadPresentationCandidates?: NarrativeStage['preloadPresentationCandidates'];
 };
 
 export interface JourneyCampaignBoundaryOptions {
@@ -68,6 +79,7 @@ export interface JourneyCampaignBoundaryOptions {
   mediaMode?: NarrativeAuthoringMedia;
   /** Test/host timing override; production keeps NarrativeStage's campaign reveal duration. */
   transitionRevealMs?: number;
+  dev?: boolean;
 }
 
 export class JourneyCampaignBoundary {
@@ -76,6 +88,8 @@ export class JourneyCampaignBoundary {
   private session: JourneyPresentationSession | null = null;
   private pendingBackdrop: HTMLElement | null = null;
   private readonly presentedKeys = new Set<string>();
+  private surfaceReady: Promise<void> = Promise.resolve();
+  private resolveSurfaceReady: (() => void) | null = null;
 
   constructor(options: JourneyCampaignBoundaryOptions) {
     this.presentationMap = options.presentationMap ?? JOURNEY_PRESENTATION_MAP;
@@ -83,6 +97,7 @@ export class JourneyCampaignBoundary {
       player: options.player,
       registry: options.registry,
       mediaMode: options.mediaMode ?? 'VIDEO',
+      dev: options.dev ?? false,
       ...(options.transitionRevealMs === undefined ? {} : { transitionRevealMs: options.transitionRevealMs }),
       ...(options.root ? { root: options.root } : {}),
     }));
@@ -92,7 +107,12 @@ export class JourneyCampaignBoundary {
     return this.session?.state ?? null;
   }
 
+  waitUntilSurfaceReady(): Promise<void> {
+    return this.surfaceReady;
+  }
+
   async present(request: JourneyBoundaryRequest): Promise<JourneyBoundaryOutcome> {
+    this.surfaceReady = new Promise<void>((resolve) => { this.resolveSurfaceReady = resolve; });
     this.disposeSession();
     const context = {
       currentNodeId: request.currentNodeId,
@@ -105,6 +125,8 @@ export class JourneyCampaignBoundary {
       ...(request.secondary ? { secondary: request.secondary } : {}),
     });
     const playId = cinematicId && !this.presentedKeys.has(key) ? cinematicId : undefined;
+    const presentationBeat = resolveBoundaryPrimaryPresentation(context, playId);
+    const presentationCandidates = resolveBoundaryPresentationCandidates(context);
     const session = this.createSession();
     this.session = session;
     const tableau = resolveNarrativeBoundaryTableau(key) ?? createGenericBoundaryTableau(key, plan.kind);
@@ -112,17 +134,65 @@ export class JourneyCampaignBoundary {
     const fallbackBackdrop = this.pendingBackdrop;
     this.pendingBackdrop = null;
 
-    // An unmapped boundary resolves to no descriptor, so CIN-1 degrades to its neutral safe surface.
-    const result = !playId && tableau.staticFallbackOnly && session.presentStill
-      ? await session.presentStill(tableau.stillImage, `narrative-static:${tableau.id}`)
-      : !playId && fallbackBackdrop && session.presentPassiveBackdrop
-        ? await session.presentPassiveBackdrop(fallbackBackdrop)
-        : await session.presentCinematic(playId ?? key, {
-        ...(request.reducedMotion === undefined ? {} : { reducedMotion: request.reducedMotion }),
-      }, fallbackBackdrop);
+    let result: VideoCinematicResult;
+    try {
+      if (playId) {
+        const videoBeat = resolveBoundaryPrimaryPresentation({ ...context, available: [] }, playId);
+        result = videoBeat?.mode === 'CINEMATIC_VIDEO' && session.presentCinematicBeat
+          ? await session.presentCinematicBeat(videoBeat, {
+            ...(request.reducedMotion === undefined ? {} : { reducedMotion: request.reducedMotion }),
+          }, fallbackBackdrop)
+          : await session.presentCinematic(playId, {
+            ...(request.reducedMotion === undefined ? {} : { reducedMotion: request.reducedMotion }),
+          }, fallbackBackdrop);
+        if (presentationBeat?.mode === 'CINEMATIC_HOLD' && session.enterCinematicHold) {
+          await session.enterCinematicHold(presentationBeat, tableau.stillImage);
+        } else if (presentationBeat?.mode === 'TRAVEL_STILL' && session.presentTravelStill) {
+          result = await session.presentTravelStill(presentationBeat, {
+            fallbackAsset: tableau.stillImage,
+            reducedMotion: request.reducedMotion,
+          });
+        }
+      } else if (presentationBeat?.mode === 'TRAVEL_STILL' && session.presentTravelStill) {
+        result = await session.presentTravelStill(presentationBeat, {
+          fallbackAsset: tableau.stillImage,
+          reducedMotion: request.reducedMotion,
+        });
+      } else if (presentationBeat?.mode === 'CINEMATIC_HOLD' && fallbackBackdrop && session.presentPassiveBackdrop) {
+        result = await session.presentPassiveBackdrop(fallbackBackdrop);
+        session.setPresentationBeat?.(presentationBeat);
+      } else if (presentationBeat?.mode === 'CINEMATIC_HOLD' && session.enterCinematicHold) {
+        result = await session.enterCinematicHold(presentationBeat, tableau.stillImage);
+      } else if (presentationBeat?.mode === 'STATIC_TABLEAU' && session.presentStill) {
+        session.setPresentationBeat?.(presentationBeat);
+        result = await session.presentStill(tableau.stillImage, `narrative-static:${tableau.id}`);
+      } else if (tableau.staticFallbackOnly && session.presentStill) {
+        result = await session.presentStill(tableau.stillImage, `narrative-static:${tableau.id}`);
+      } else if (fallbackBackdrop && session.presentPassiveBackdrop) {
+        result = await session.presentPassiveBackdrop(fallbackBackdrop);
+      } else {
+        result = await session.presentCinematic(playId ?? key, {
+          ...(request.reducedMotion === undefined ? {} : { reducedMotion: request.reducedMotion }),
+        }, fallbackBackdrop);
+      }
+    } catch (error) {
+      this.signalSurfaceReady();
+      throw error;
+    }
+    this.signalSurfaceReady();
     if (cinematicId) this.presentedKeys.add(key);
+    session.preloadPresentationCandidates?.(presentationCandidates);
     session.preloadCandidates(resolveCandidateCinematicIds(context, this.presentationMap));
 
+    const frozenSurface = session.frozenSurface;
+    const fallbackActive = frozenSurface?.dataset.fallbackActive === 'true'
+      || Boolean(
+        frozenSurface
+        && (presentationBeat?.mode === 'CINEMATIC_VIDEO' || presentationBeat?.mode === 'CINEMATIC_HOLD')
+        && frozenSurface.dataset.cinematicFreezeSurface !== 'canvas',
+      )
+      || (presentationBeat?.mode === 'TRAVEL_STILL' && !presentationBeat.travelStillSource)
+      || (presentationBeat?.mode === 'CINEMATIC_HOLD' && !playId && !fallbackBackdrop);
     const commit = await session.requestAgency(plan.presentation);
     if (commit.kind === 'secondary' && session.frozenSurface) this.captureBackdrop(session.frozenSurface);
     const trace = [...session.stateTrace];
@@ -134,6 +204,9 @@ export class JourneyCampaignBoundary {
       cinematicId,
       surfaceReason: result.reason,
       trace,
+      presentationMode: presentationBeat?.mode,
+      presentationBeatId: presentationBeat?.beatId,
+      fallbackActive,
     };
     if (commit.kind === 'choice' && commit.id) return { kind: 'node', id: commit.id, ...base };
     if (commit.kind === 'secondary' && commit.id) return { kind: 'secondary', id: commit.id, ...base };
@@ -147,6 +220,7 @@ export class JourneyCampaignBoundary {
 
   /** Releases the Journey surface, overlay, listeners and every preloaded candidate. */
   dispose(): void {
+    this.signalSurfaceReady();
     this.disposeSession();
     releaseNarrativeBackdrop(this.pendingBackdrop);
     this.pendingBackdrop = null;
@@ -161,8 +235,19 @@ export class JourneyCampaignBoundary {
     return true;
   }
 
+  markCinematicPresented(cinematicId: string): void {
+    for (const [key, mappedId] of Object.entries(this.presentationMap)) {
+      if (mappedId === cinematicId) this.presentedKeys.add(key);
+    }
+  }
+
   private disposeSession(): void {
     this.session?.dispose();
     this.session = null;
+  }
+
+  private signalSurfaceReady(): void {
+    this.resolveSurfaceReady?.();
+    this.resolveSurfaceReady = null;
   }
 }

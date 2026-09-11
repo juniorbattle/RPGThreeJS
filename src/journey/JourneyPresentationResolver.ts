@@ -1,5 +1,7 @@
 import type { RunNode } from '../game/types';
 import { resolveCin6cContentCandidateId } from '../cinematics/Cin6aPresentation';
+import { resolveCinematicPresentation, resolveEdgePresentation } from '../cinematics/NarrativePresentationResolver';
+import type { ResolvedPresentationBeat } from '../cinematics/NarrativePresentationMode';
 
 /**
  * PURE presentation resolver: "which cinematic corresponds to this campaign boundary?"
@@ -108,4 +110,27 @@ export function resolveCandidateCinematicIds(
     if (contentCinematicId && !ids.includes(contentCinematicId)) ids.push(contentCinematicId);
   }
   return ids;
+}
+
+/** Exact runtime modes for only the successors that RunSystem has already made available. */
+export function resolveBoundaryPresentationCandidates(
+  context: JourneyBoundaryPresentationContext,
+): readonly ResolvedPresentationBeat[] {
+  if (!context.currentNodeId) return [];
+  return context.available
+    .map((node) => resolveEdgePresentation(context.currentNodeId!, node.id))
+    .filter((beat): beat is ResolvedPresentationBeat => Boolean(beat));
+}
+
+export function resolveBoundaryPrimaryPresentation(
+  context: JourneyBoundaryPresentationContext,
+  cinematicId?: string,
+): ResolvedPresentationBeat | undefined {
+  const candidates = resolveBoundaryPresentationCandidates(context);
+  if (candidates.length) {
+    const modes = new Set(candidates.map((beat) => beat.mode));
+    const families = new Set(candidates.map((beat) => beat.visualFamily));
+    if (modes.size === 1 && families.size === 1) return candidates[0];
+  }
+  return cinematicId ? resolveCinematicPresentation(cinematicId) : undefined;
 }
