@@ -1,0 +1,1776 @@
+{
+  "schemaVersion": 1,
+  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "model": "gpt-image-2.5-sunburst-2026-09-08",
+  "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+  "quality": "max",
+  "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE",
+  "generatedOutputs": 1,
+  "selectedCandidates": 0,
+  "rejectedCandidates": 0,
+  "summary": {
+    "totalJobs": 45,
+    "familyMasterJobs": 26,
+    "pilotJobs": 18,
+    "jobsWithCompleteReferenceHashes": 45,
+    "cin6ea3RepairJobs": 1
+  },
+  "jobs": [
+    {
+      "assetCandidateId": "alaric_audience_master_a",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "ALARIC_AUDIENCE",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/alaric_audience_master_a.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: ALARIC_AUDIENCE. Physical location: Alaric audience chamber inside the Lion command pavilion.\nNarrative purpose: formal mandate, opposed counsel and player agency. Architecture: central Lion banner, raised authority lane, timber-and-cloth royal hall, ordered torch rows. Signature landmarks: central Lion banner, dais, torch rows.\nTerrain and ground: interior pavilion; patterned woven carpet over timber and stone. Palette: deep Lion blue, aged gold, warm amber, dark umber.\nLight: high central warm shafts with side torch fill; warm torch and candle gold; ambient fill cool blue cloth bounce.\nAtmosphere and depth: dust motes and restrained smoke; foreground furniture blur, cast plane, dais and banner wall.\nForeground: dark soft occluders at frame corners. Midground: unbroken actor ground plane with clear speaker lanes. Background: symmetrical banners, long table, candles and guard-depth suggestions.\nCamera: formal symmetrical authority frame. Time and weather: interior timeless; interior. Materials: rich cloth, carved dark timber, brass, wax and grounded carpet.\nUse the strongest canonical establishing composition with clear three-plane depth and a grounded narrative path.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: stone cathedral, empty throne-room scale, red Serpent heraldry, flat pasted party lineup. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "585293dcf9caea6507b15508915c05ae1fe792ad579e05c2941310d0e55e03be",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png": "eb239cbd62a10dc48776ab65cfe80fba73f37b5642c92cddc8d5ffab072e2097"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:alaric_audience_arrival"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "alaric_audience_master_b",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "ALARIC_AUDIENCE",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/alaric_audience_master_b.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: ALARIC_AUDIENCE. Physical location: Alaric audience chamber inside the Lion command pavilion.\nNarrative purpose: formal mandate, opposed counsel and player agency. Architecture: central Lion banner, raised authority lane, timber-and-cloth royal hall, ordered torch rows. Signature landmarks: central Lion banner, dais, torch rows.\nTerrain and ground: interior pavilion; patterned woven carpet over timber and stone. Palette: deep Lion blue, aged gold, warm amber, dark umber.\nLight: high central warm shafts with side torch fill; warm torch and candle gold; ambient fill cool blue cloth bounce.\nAtmosphere and depth: dust motes and restrained smoke; foreground furniture blur, cast plane, dais and banner wall.\nForeground: dark soft occluders at frame corners. Midground: unbroken actor ground plane with clear speaker lanes. Background: symmetrical banners, long table, candles and guard-depth suggestions.\nCamera: formal symmetrical authority frame. Time and weather: interior timeless; interior. Materials: rich cloth, carved dark timber, brass, wax and grounded carpet.\nUse an alternate but fully compatible eye-level composition with different foreground framing and the same physical identity.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: stone cathedral, empty throne-room scale, red Serpent heraldry, flat pasted party lineup. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "a31411d9fc456b463a9ba7cbc799d1bd5e08eeb84ba7df36e3384750cc18a98c",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png": "eb239cbd62a10dc48776ab65cfe80fba73f37b5642c92cddc8d5ffab072e2097"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:alaric_audience_arrival"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "bois_clair_master_a",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "BOIS_CLAIR",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/bois_clair_master_a.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: BOIS_CLAIR. Physical location: threatened village of Bois-Clair at the forest edge.\nNarrative purpose: civilian consequence, defence or sacrifice. Architecture: chapel, timber houses, north captive route, south reserve route. Signature landmarks: chapel, north captives route, south reserves route.\nTerrain and ground: village basin below wooded ridges; muddy lane, cobbles, ash and timber debris. Palette: smoke umber, ember orange, weathered plaster, cool recovery blue.\nLight: side firelight balanced by sky light; warm fire with outcome-specific cool or dawn relief; ambient fill smoke-softened sky.\nAtmosphere and depth: layered smoke with readable silhouettes; near props, square staging plane, roofs and ridge.\nForeground: low debris that does not interfere with sprite feet. Midground: open village square. Background: chapel, roofs, smoke and split roads.\nCamera: village square and split objective geography. Time and weather: late day into night; smoky late day. Materials: soot, timber, stone, plaster and damp earth.\nUse the strongest canonical establishing composition with clear three-plane depth and a grounded narrative path.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: pristine fairy village, modern town, identifiable baked party, indiscriminate inferno. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "dbc22f762e28fd0cbbea89b8701417221c9dfcbc532055312356a106104481ad",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:camp_departure",
+        "gold:valmir_route_fork"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "bois_clair_master_b",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "BOIS_CLAIR",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/bois_clair_master_b.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: BOIS_CLAIR. Physical location: threatened village of Bois-Clair at the forest edge.\nNarrative purpose: civilian consequence, defence or sacrifice. Architecture: chapel, timber houses, north captive route, south reserve route. Signature landmarks: chapel, north captives route, south reserves route.\nTerrain and ground: village basin below wooded ridges; muddy lane, cobbles, ash and timber debris. Palette: smoke umber, ember orange, weathered plaster, cool recovery blue.\nLight: side firelight balanced by sky light; warm fire with outcome-specific cool or dawn relief; ambient fill smoke-softened sky.\nAtmosphere and depth: layered smoke with readable silhouettes; near props, square staging plane, roofs and ridge.\nForeground: low debris that does not interfere with sprite feet. Midground: open village square. Background: chapel, roofs, smoke and split roads.\nCamera: village square and split objective geography. Time and weather: late day into night; smoky late day. Materials: soot, timber, stone, plaster and damp earth.\nUse an alternate but fully compatible eye-level composition with different foreground framing and the same physical identity.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: pristine fairy village, modern town, identifiable baked party, indiscriminate inferno. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "68e8c875a34679fc8392393f4e1ebce788949d193d606a39662759017e34f092",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:camp_departure",
+        "gold:valmir_route_fork"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "final_refuge_master_a",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "FINAL_REFUGE",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/final_refuge_master_a.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: FINAL_REFUGE. Physical location: last Lion shelter before judgement.\nNarrative purpose: reflection, dossier review and route-ending preparation. Architecture: final campfire, dossier table, Lion road, sparse tents. Signature landmarks: final campfire, Lion road, dossier table.\nTerrain and ground: high wooded overlook; packed soil, flat stone and pine needles. Palette: quiet dusk blue, warm shelter amber, muted Lion gold, violet-grey distance.\nLight: low warm fire from one side with dusk rim; warm shelter edge against cool dusk; ambient fill soft sky blue.\nAtmosphere and depth: still haze and distant mountain air; intimate foreground table, open company plane and long road beyond.\nForeground: dossier props confined to low corner. Midground: reflective camp staging. Background: road toward Lion territory and distant peaks.\nCamera: reflective camp frame with dossier-safe negative space. Time and weather: dusk; clear dusk. Materials: paper, leather, timber, stone and soft cloth.\nUse the strongest canonical establishing composition with clear three-plane depth and a grounded narrative path.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: busy refugee camp, battlefield, bright noon, baked route outcome. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "42404bcef5ae995b7c339a398df1287e5cb664bb610e4d7105ed43927ec53084",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:camp_departure"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "final_refuge_master_b",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "FINAL_REFUGE",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/final_refuge_master_b.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: FINAL_REFUGE. Physical location: last Lion shelter before judgement.\nNarrative purpose: reflection, dossier review and route-ending preparation. Architecture: final campfire, dossier table, Lion road, sparse tents. Signature landmarks: final campfire, Lion road, dossier table.\nTerrain and ground: high wooded overlook; packed soil, flat stone and pine needles. Palette: quiet dusk blue, warm shelter amber, muted Lion gold, violet-grey distance.\nLight: low warm fire from one side with dusk rim; warm shelter edge against cool dusk; ambient fill soft sky blue.\nAtmosphere and depth: still haze and distant mountain air; intimate foreground table, open company plane and long road beyond.\nForeground: dossier props confined to low corner. Midground: reflective camp staging. Background: road toward Lion territory and distant peaks.\nCamera: reflective camp frame with dossier-safe negative space. Time and weather: dusk; clear dusk. Materials: paper, leather, timber, stone and soft cloth.\nUse an alternate but fully compatible eye-level composition with different foreground framing and the same physical identity.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: busy refugee camp, battlefield, bright noon, baked route outcome. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "8d540c05fff239553c51e038411a6763485637a3fae86d67ec87de9ade6a1bdb",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:camp_departure"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "first_refuge_master_a",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "FIRST_REFUGE",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/first_refuge_master_a.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: FIRST_REFUGE. Physical location: first palisade refuge hidden in the forest.\nNarrative purpose: earned safety and fragile civilian shelter. Architecture: rough palisade, watch fires, supply shelter, visible exit road. Signature landmarks: palisade, watch fires, supply shelter.\nTerrain and ground: wooded enclosure; packed earth, plank paths and straw. Palette: ember amber, cool pine green, weathered brown, smoke grey.\nLight: low firelight from the interior-left; warm fire against cool dusk; ambient fill cool forest twilight.\nAtmosphere and depth: sheltered smoke and light mist; gate framing, open staging yard and tree-walled distance.\nForeground: supplies kept below face and UI zones. Midground: clear refuge yard and ground band. Background: palisade, watch tower and exit road.\nCamera: safe enclosure with visible exit road. Time and weather: dusk; cool dusk. Materials: rough timber, worn canvas, earth and firelit metal.\nUse the strongest canonical establishing composition with clear three-plane depth and a grounded narrative path.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: stone city, luxury camp, crowded baked civilians, daylight mismatch. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "ba2a54c34c041b8973a3e50e184ceec955e15160979556f27a1778255777a72a",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:camp_departure"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "first_refuge_master_b",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "FIRST_REFUGE",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/first_refuge_master_b.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: FIRST_REFUGE. Physical location: first palisade refuge hidden in the forest.\nNarrative purpose: earned safety and fragile civilian shelter. Architecture: rough palisade, watch fires, supply shelter, visible exit road. Signature landmarks: palisade, watch fires, supply shelter.\nTerrain and ground: wooded enclosure; packed earth, plank paths and straw. Palette: ember amber, cool pine green, weathered brown, smoke grey.\nLight: low firelight from the interior-left; warm fire against cool dusk; ambient fill cool forest twilight.\nAtmosphere and depth: sheltered smoke and light mist; gate framing, open staging yard and tree-walled distance.\nForeground: supplies kept below face and UI zones. Midground: clear refuge yard and ground band. Background: palisade, watch tower and exit road.\nCamera: safe enclosure with visible exit road. Time and weather: dusk; cool dusk. Materials: rough timber, worn canvas, earth and firelit metal.\nUse an alternate but fully compatible eye-level composition with different foreground framing and the same physical identity.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: stone city, luxury camp, crowded baked civilians, daylight mismatch. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "ce2fab2b649ac0b7d79e6454f7a0d4194ae70c86095775abaf1bec292bb52090",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:camp_departure"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "forest_road_master_a",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "FOREST_ROAD",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/forest_road_master_a.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: FOREST_ROAD. Physical location: old woodland roads linking the Lion territories.\nNarrative purpose: travel, uncertainty, encounter and aftermath. Architecture: weathered waystones, small timber markers, occasional ruined masonry. Signature landmarks: forked road, forest ridge, travel markers.\nTerrain and ground: rolling temperate forest; rutted wet earth, roots and scattered stone. Palette: moss green, wet bark brown, cool slate, filtered warm daylight.\nLight: broken upper-left canopy light; neutral daylight with warm breaks; ambient fill cool green woodland bounce.\nAtmosphere and depth: layered mist and suspended moisture; foreground foliage, readable road stage, receding trunks and ridges.\nForeground: soft foliage framing outside UI zones. Midground: broad grounded road for cast or integrated travellers. Background: road bend, ridge and travel marker.\nCamera: grounded road perspective with open lower staging plane. Time and weather: day; recent rain. Materials: wet bark, mossy stone, earth and matte cloth.\nUse the strongest canonical establishing composition with clear three-plane depth and a grounded narrative path.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: enchanted neon forest, tropical jungle, flat meadow, unmotivated castle skyline. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "0f94ffbf331a442bd96433c63fd72439e38643fc1db648f0b40caf9b4dc0cbd7",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:valmir_route_fork",
+        "gold:camp_departure"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "forest_road_master_b",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "FOREST_ROAD",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/forest_road_master_b.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: FOREST_ROAD. Physical location: old woodland roads linking the Lion territories.\nNarrative purpose: travel, uncertainty, encounter and aftermath. Architecture: weathered waystones, small timber markers, occasional ruined masonry. Signature landmarks: forked road, forest ridge, travel markers.\nTerrain and ground: rolling temperate forest; rutted wet earth, roots and scattered stone. Palette: moss green, wet bark brown, cool slate, filtered warm daylight.\nLight: broken upper-left canopy light; neutral daylight with warm breaks; ambient fill cool green woodland bounce.\nAtmosphere and depth: layered mist and suspended moisture; foreground foliage, readable road stage, receding trunks and ridges.\nForeground: soft foliage framing outside UI zones. Midground: broad grounded road for cast or integrated travellers. Background: road bend, ridge and travel marker.\nCamera: grounded road perspective with open lower staging plane. Time and weather: day; recent rain. Materials: wet bark, mossy stone, earth and matte cloth.\nUse an alternate but fully compatible eye-level composition with different foreground framing and the same physical identity.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: enchanted neon forest, tropical jungle, flat meadow, unmotivated castle skyline. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "958db696e1a0e75fed3a05d7c22f2ee8e8cdf4a3db032968dd464483f41095ca",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:valmir_route_fork",
+        "gold:camp_departure"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "lion_camp_master_a",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "LION_CAMP",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/lion_camp_master_a.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: LION_CAMP. Physical location: fortified Lion expedition camp at a mountain-road threshold.\nNarrative purpose: origin, duty and company departure. Architecture: blue-and-gold command tents, timber palisade, watch platforms. Signature landmarks: Lion banners, camp palisade, mountain road.\nTerrain and ground: rocky alpine valley; mud, trampled grass and rain-dark stone. Palette: Lion blue, burnished gold, warm ember orange, cool mountain grey.\nLight: low rear three-quarter dawn light from the valley; warm sunrise; ambient fill cool open-sky fill.\nAtmosphere and depth: thin mist, banked smoke and dawn haze; framing tent edges, company plane, layered camp and mountain distance.\nForeground: soft tent or supply silhouettes without blocking feet. Midground: clear company staging road. Background: palisade, flags, pines and mountain pass.\nCamera: wide low eye-level departure frame. Time and weather: dawn; calm after rain. Materials: painted cloth, wet earth, weathered timber and restrained metal highlights.\nUse the strongest canonical establishing composition with clear three-plane depth and a grounded narrative path.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: desert camp, bright tournament pavilion, modern military camp, flat character cutouts. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "fe813649f174ad5e2e693838ae06f832c369d5ea026749a2b5d7bd14e662bef4",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:camp_departure"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "lion_camp_master_b",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "LION_CAMP",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/lion_camp_master_b.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: LION_CAMP. Physical location: fortified Lion expedition camp at a mountain-road threshold.\nNarrative purpose: origin, duty and company departure. Architecture: blue-and-gold command tents, timber palisade, watch platforms. Signature landmarks: Lion banners, camp palisade, mountain road.\nTerrain and ground: rocky alpine valley; mud, trampled grass and rain-dark stone. Palette: Lion blue, burnished gold, warm ember orange, cool mountain grey.\nLight: low rear three-quarter dawn light from the valley; warm sunrise; ambient fill cool open-sky fill.\nAtmosphere and depth: thin mist, banked smoke and dawn haze; framing tent edges, company plane, layered camp and mountain distance.\nForeground: soft tent or supply silhouettes without blocking feet. Midground: clear company staging road. Background: palisade, flags, pines and mountain pass.\nCamera: wide low eye-level departure frame. Time and weather: dawn; calm after rain. Materials: painted cloth, wet earth, weathered timber and restrained metal highlights.\nUse an alternate but fully compatible eye-level composition with different foreground framing and the same physical identity.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: desert camp, bright tournament pavilion, modern military camp, flat character cutouts. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "53b0b968d57cd94fa718519f4f569e432122dc0529facb429f028bbfe001eaba",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:camp_departure"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "lion_judgement_master_a",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "LION_JUDGEMENT",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/lion_judgement_master_a.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: LION_JUDGEMENT. Physical location: formal Lion judgement hall.\nNarrative purpose: verdict, disclosure and final route authority. Architecture: Lion dais, central seal, court banners, judgement terrace. Signature landmarks: Lion dais, central seal, court banners.\nTerrain and ground: interior ceremonial hall; dark polished stone and formal carpet. Palette: deep blue, hard gold, dark red accents, charcoal.\nLight: high central authority light; formal warm gold; ambient fill cool deep-blue fill.\nAtmosphere and depth: controlled haze and torch smoke; opposed lanes, central seal and receding court.\nForeground: restrained dark court framing. Midground: clear judgement axis. Background: dais, seal and banner symmetry.\nCamera: symmetrical judgement frame with opposed lanes. Time and weather: interior timeless; interior. Materials: stone, heavy cloth, gold metal and dark timber.\nUse the strongest canonical establishing composition with clear three-plane depth and a grounded narrative path.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: audience arrival replay, casual camp, Serpent-dominant heraldry, crowded throne room. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "bd2ee86f2fcb85cdc232aecba8f998bdd57475a89ee121d1c157113908aa62c3",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png": "eb239cbd62a10dc48776ab65cfe80fba73f37b5642c92cddc8d5ffab072e2097"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:alaric_audience_arrival"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "lion_judgement_master_b",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "LION_JUDGEMENT",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/lion_judgement_master_b.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: LION_JUDGEMENT. Physical location: formal Lion judgement hall.\nNarrative purpose: verdict, disclosure and final route authority. Architecture: Lion dais, central seal, court banners, judgement terrace. Signature landmarks: Lion dais, central seal, court banners.\nTerrain and ground: interior ceremonial hall; dark polished stone and formal carpet. Palette: deep blue, hard gold, dark red accents, charcoal.\nLight: high central authority light; formal warm gold; ambient fill cool deep-blue fill.\nAtmosphere and depth: controlled haze and torch smoke; opposed lanes, central seal and receding court.\nForeground: restrained dark court framing. Midground: clear judgement axis. Background: dais, seal and banner symmetry.\nCamera: symmetrical judgement frame with opposed lanes. Time and weather: interior timeless; interior. Materials: stone, heavy cloth, gold metal and dark timber.\nUse an alternate but fully compatible eye-level composition with different foreground framing and the same physical identity.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: audience arrival replay, casual camp, Serpent-dominant heraldry, crowded throne room. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "2663c4ef9a144376418bb11fc923a963a078bfd1de47d0153090cbdf83697390",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png": "eb239cbd62a10dc48776ab65cfe80fba73f37b5642c92cddc8d5ffab072e2097"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:alaric_audience_arrival"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "lion_trial_master_a",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "LION_TRIAL",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/lion_trial_master_a.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: LION_TRIAL. Physical location: Lion ritual trial terrace.\nNarrative purpose: voluntary or imposed martial judgement. Architecture: trial circle, Lion standard, judgement terrace. Signature landmarks: trial circle, Lion standard, judgement terrace.\nTerrain and ground: exposed mountain stone court; weathered flagstone with engraved circle. Palette: hard Lion gold, storm blue, weathered grey, controlled red.\nLight: hard low side light across the duel axis; warm gold against cool twilight; ambient fill cold open sky.\nAtmosphere and depth: wind, dust and high-altitude haze; foreground circle edge, duel plane and authority terrace.\nForeground: engraved stone without face-level clutter. Midground: clean ritual axis. Background: Alaric authority geography, standards and mountain depth.\nCamera: ritual duel axis with Alaric authority visible in geography. Time and weather: twilight; windy twilight. Materials: stone, steel, heavy cloth and aged gold.\nUse the strongest canonical establishing composition with clear three-plane depth and a grounded narrative path.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: colosseum spectacle, anonymous arena, Serpent heraldry, combat VFX baked into plate. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "ac950ec3bc42feb6c435d95f4a871efceebc6503cf26ad354718e2d3b20ed60c",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png": "eb239cbd62a10dc48776ab65cfe80fba73f37b5642c92cddc8d5ffab072e2097",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:alaric_audience_arrival",
+        "gold:valmir_route_fork"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "lion_trial_master_b",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "LION_TRIAL",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/lion_trial_master_b.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: LION_TRIAL. Physical location: Lion ritual trial terrace.\nNarrative purpose: voluntary or imposed martial judgement. Architecture: trial circle, Lion standard, judgement terrace. Signature landmarks: trial circle, Lion standard, judgement terrace.\nTerrain and ground: exposed mountain stone court; weathered flagstone with engraved circle. Palette: hard Lion gold, storm blue, weathered grey, controlled red.\nLight: hard low side light across the duel axis; warm gold against cool twilight; ambient fill cold open sky.\nAtmosphere and depth: wind, dust and high-altitude haze; foreground circle edge, duel plane and authority terrace.\nForeground: engraved stone without face-level clutter. Midground: clean ritual axis. Background: Alaric authority geography, standards and mountain depth.\nCamera: ritual duel axis with Alaric authority visible in geography. Time and weather: twilight; windy twilight. Materials: stone, steel, heavy cloth and aged gold.\nUse an alternate but fully compatible eye-level composition with different foreground framing and the same physical identity.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: colosseum spectacle, anonymous arena, Serpent heraldry, combat VFX baked into plate. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "2285cd253f62c222ad8e9b9381a8d513219af2ab19f645b88bceb0c3bf5c97a8",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png": "eb239cbd62a10dc48776ab65cfe80fba73f37b5642c92cddc8d5ffab072e2097",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:alaric_audience_arrival",
+        "gold:valmir_route_fork"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_a_static_tableau_background_a",
+      "semanticMode": "STATIC_TABLEAU_BACKGROUND",
+      "assetType": "STATIC_TABLEAU_BACKGROUND",
+      "beatId": "dialogue:lion_briefing",
+      "dialogueId": "lion_briefing",
+      "visualFamily": "ALARIC_AUDIENCE",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_a_static_tableau_background_a.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A STATIC_TABLEAU_BACKGROUND pilot candidate for RPGThreeJS.\nPilot A: ROYAL_AUDIENCE_TABLEAU. Beat truth: media:alaric_audience_arrival, dialogue:lion_briefing.\nVisual family ALARIC_AUDIENCE: Alaric audience chamber inside the Lion command pavilion. Purpose: formal mandate, opposed counsel and player agency.\nCamera and world: formal symmetrical authority frame; foreground furniture blur, cast plane, dais and banner wall; ground patterned woven carpet over timber and stone.\nLighting and palette: high central warm shafts with side torch fill; warm torch and candle gold; deep Lion blue, aged gold, warm amber, dark umber; atmosphere dust motes and restrained smoke.\nReserve clean actor lanes and dialogue/choice safe areas from the supplied layout guide. Keep the ground plane readable behind canonical full sprites.\nCharacter-free reverse-composed environment plate. Do not paint any canonical character, party member, named NPC, route-dependent actor or recruit. The runtime owns all foreground actors.\nNo character-card content is baked into this plate.\nThe runtime will supply unchanged canonical full sprites; keep the generated plate character-free.\nUse the strongest direct narrative composition.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: runtime geometry guide only; obey its actor and UI safe zones but do not render its colored overlays, labels, lines or borders into the candidate.",
+      "promptSha256": "d1400cae49d671f5809d5fdf6bbaa37174be15392033c73aa1434572500b219b",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png": "eb239cbd62a10dc48776ab65cfe80fba73f37b5642c92cddc8d5ffab072e2097",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:dialogue:lion_briefing",
+      "dependencies": [
+        "family-master:ALARIC_AUDIENCE",
+        "cast:dialogue:lion_briefing"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_a_static_tableau_background_b",
+      "semanticMode": "STATIC_TABLEAU_BACKGROUND",
+      "assetType": "STATIC_TABLEAU_BACKGROUND",
+      "beatId": "dialogue:lion_briefing",
+      "dialogueId": "lion_briefing",
+      "visualFamily": "ALARIC_AUDIENCE",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_a_static_tableau_background_b.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A STATIC_TABLEAU_BACKGROUND pilot candidate for RPGThreeJS.\nPilot A: ROYAL_AUDIENCE_TABLEAU. Beat truth: media:alaric_audience_arrival, dialogue:lion_briefing.\nVisual family ALARIC_AUDIENCE: Alaric audience chamber inside the Lion command pavilion. Purpose: formal mandate, opposed counsel and player agency.\nCamera and world: formal symmetrical authority frame; foreground furniture blur, cast plane, dais and banner wall; ground patterned woven carpet over timber and stone.\nLighting and palette: high central warm shafts with side torch fill; warm torch and candle gold; deep Lion blue, aged gold, warm amber, dark umber; atmosphere dust motes and restrained smoke.\nReserve clean actor lanes and dialogue/choice safe areas from the supplied layout guide. Keep the ground plane readable behind canonical full sprites.\nCharacter-free reverse-composed environment plate. Do not paint any canonical character, party member, named NPC, route-dependent actor or recruit. The runtime owns all foreground actors.\nNo character-card content is baked into this plate.\nThe runtime will supply unchanged canonical full sprites; keep the generated plate character-free.\nUse a compatible alternate camera treatment while preserving the same location, cast, scale, light, ground and story truth.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: runtime geometry guide only; obey its actor and UI safe zones but do not render its colored overlays, labels, lines or borders into the candidate.",
+      "promptSha256": "ad059350d62c79d57e5c5c8cc9bdff7d2e6428b00476d60bd04376fa057af4f6",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png": "eb239cbd62a10dc48776ab65cfe80fba73f37b5642c92cddc8d5ffab072e2097",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:dialogue:lion_briefing",
+      "dependencies": [
+        "family-master:ALARIC_AUDIENCE",
+        "cast:dialogue:lion_briefing"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_b_static_tableau_background_a",
+      "semanticMode": "STATIC_TABLEAU_BACKGROUND",
+      "assetType": "STATIC_TABLEAU_BACKGROUND",
+      "beatId": "dialogue:post_opening_trail",
+      "dialogueId": "post_opening_trail",
+      "visualFamily": "FOREST_ROAD",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_b_static_tableau_background_a.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A STATIC_TABLEAU_BACKGROUND pilot candidate for RPGThreeJS.\nPilot B: FOREST_ROAD_CROSS_MODE. Beat truth: edge:lion-audience>lion-opening-ambush, dialogue:post_opening_trail.\nVisual family FOREST_ROAD: old woodland roads linking the Lion territories. Purpose: travel, uncertainty, encounter and aftermath.\nCamera and world: grounded road perspective with open lower staging plane; foreground foliage, readable road stage, receding trunks and ridges; ground rutted wet earth, roots and scattered stone.\nLighting and palette: broken upper-left canopy light; neutral daylight with warm breaks; moss green, wet bark brown, cool slate, filtered warm daylight; atmosphere layered mist and suspended moisture.\nReserve clean actor lanes and dialogue/choice safe areas from the supplied layout guide. Keep the ground plane readable behind canonical full sprites.\nCharacter-free reverse-composed environment plate. Do not paint any canonical character, party member, named NPC, route-dependent actor or recruit. The runtime owns all foreground actors.\nNo character-card content is baked into this plate.\nThe runtime will supply unchanged canonical full sprites; keep the generated plate character-free.\nUse the strongest direct narrative composition.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 3: runtime geometry guide only; obey its actor and UI safe zones but do not render its colored overlays, labels, lines or borders into the candidate.",
+      "promptSha256": "55cc1930f3990c7f0c6c6c0f45108d462219a2f0f22761b1dd66b82d640785c6",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:dialogue:post_opening_trail",
+      "dependencies": [
+        "family-master:FOREST_ROAD",
+        "cast:dialogue:post_opening_trail"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_b_static_tableau_background_b",
+      "semanticMode": "STATIC_TABLEAU_BACKGROUND",
+      "assetType": "STATIC_TABLEAU_BACKGROUND",
+      "beatId": "dialogue:post_opening_trail",
+      "dialogueId": "post_opening_trail",
+      "visualFamily": "FOREST_ROAD",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_b_static_tableau_background_b.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A STATIC_TABLEAU_BACKGROUND pilot candidate for RPGThreeJS.\nPilot B: FOREST_ROAD_CROSS_MODE. Beat truth: edge:lion-audience>lion-opening-ambush, dialogue:post_opening_trail.\nVisual family FOREST_ROAD: old woodland roads linking the Lion territories. Purpose: travel, uncertainty, encounter and aftermath.\nCamera and world: grounded road perspective with open lower staging plane; foreground foliage, readable road stage, receding trunks and ridges; ground rutted wet earth, roots and scattered stone.\nLighting and palette: broken upper-left canopy light; neutral daylight with warm breaks; moss green, wet bark brown, cool slate, filtered warm daylight; atmosphere layered mist and suspended moisture.\nReserve clean actor lanes and dialogue/choice safe areas from the supplied layout guide. Keep the ground plane readable behind canonical full sprites.\nCharacter-free reverse-composed environment plate. Do not paint any canonical character, party member, named NPC, route-dependent actor or recruit. The runtime owns all foreground actors.\nNo character-card content is baked into this plate.\nThe runtime will supply unchanged canonical full sprites; keep the generated plate character-free.\nUse a compatible alternate camera treatment while preserving the same location, cast, scale, light, ground and story truth.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 3: runtime geometry guide only; obey its actor and UI safe zones but do not render its colored overlays, labels, lines or borders into the candidate.",
+      "promptSha256": "99577d9aee922a49afa5811220b78b9f4ba18c8bcd4c395db28b3400d3c263d6",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:dialogue:post_opening_trail",
+      "dependencies": [
+        "family-master:FOREST_ROAD",
+        "cast:dialogue:post_opening_trail"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_b_travel_still_a",
+      "semanticMode": "TRAVEL_STILL",
+      "assetType": "TRAVEL_STILL",
+      "beatId": "edge:lion-audience>lion-opening-ambush",
+      "dialogueId": null,
+      "visualFamily": "FOREST_ROAD",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_b_travel_still_a.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A TRAVEL_STILL pilot candidate for RPGThreeJS.\nPilot B: FOREST_ROAD_CROSS_MODE. Beat truth: edge:lion-audience>lion-opening-ambush, dialogue:post_opening_trail.\nVisual family FOREST_ROAD: old woodland roads linking the Lion territories. Purpose: travel, uncertainty, encounter and aftermath.\nCamera and world: grounded road perspective with open lower staging plane; foreground foliage, readable road stage, receding trunks and ridges; ground rutted wet earth, roots and scattered stone.\nLighting and palette: broken upper-left canopy light; neutral daylight with warm breaks; moss green, wet bark brown, cool slate, filtered warm daylight; atmosphere layered mist and suspended moisture.\nProduce one complete integrated 16:9 travel frame. No dialogue card and no separate theatrical sprite cast will appear.\nRequired cast, each physically present and identity-faithful: alistair, sage_seraphine, maelor. Forbidden cast: cedric, lancer. Speaker sequence context: none.\nCanonical identity constraints: alistair: face visibility CONCEALED_BY_CLOSED_HELM; preserve closed dark helm with red plume, face normally concealed by canonical helm, dark plate armor with red scarf and cape, charcoal steel, red, brown leather, large two-handed greatsword, red plume, red cloak, broad armored build | sage_seraphine: face visibility VISIBLE; preserve cream hood framing brown hair, soft oval face and calm expression, cream, teal and gold sage robes, cream, teal, gold, ornate censer staff, hood, satchel, hanging censer, slender ceremonial build | maelor: face visibility VISIBLE; preserve dark swept hair, angular clean-shaven face, purple long coat and robes with gold linework, royal purple, dark red, gold, dagger and open grimoire, grimoire, belt ornaments, lean court mage\nTreat every uploaded canonical full-body character image as immutable design authority. Match face visibility or concealment, helmet, mask, hood, hat, hair, silhouette, proportions, palette, costume or armor family, weapons, accessories and distinctive shapes character by character. Do not invent, remove, expose, cover, recolor, transfer or redesign any of these identity features.\nUse the strongest direct narrative composition.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 3: canonical full-body identity reference for alistair; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.\nImage 4: canonical full-body identity reference for sage_seraphine; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.\nImage 5: canonical full-body identity reference for maelor; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.",
+      "promptSha256": "9e18417745976055db1764367d92c722414f93ca78d24094888c8fa85011d5b1",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "public/assets/characters/pixel/full/alistair.png",
+        "public/assets/characters/pixel/full/sage_seraphine.png",
+        "public/assets/characters/pixel/full/maelor.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "public/assets/characters/pixel/full/alistair.png": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+        "public/assets/characters/pixel/full/sage_seraphine.png": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
+        "public/assets/characters/pixel/full/maelor.png": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:edge:lion-audience>lion-opening-ambush",
+      "dependencies": [
+        "family-master:FOREST_ROAD",
+        "cast:edge:lion-audience>lion-opening-ambush"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_b_travel_still_b",
+      "semanticMode": "TRAVEL_STILL",
+      "assetType": "TRAVEL_STILL",
+      "beatId": "edge:lion-audience>lion-opening-ambush",
+      "dialogueId": null,
+      "visualFamily": "FOREST_ROAD",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_b_travel_still_b.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A TRAVEL_STILL pilot candidate for RPGThreeJS.\nPilot B: FOREST_ROAD_CROSS_MODE. Beat truth: edge:lion-audience>lion-opening-ambush, dialogue:post_opening_trail.\nVisual family FOREST_ROAD: old woodland roads linking the Lion territories. Purpose: travel, uncertainty, encounter and aftermath.\nCamera and world: grounded road perspective with open lower staging plane; foreground foliage, readable road stage, receding trunks and ridges; ground rutted wet earth, roots and scattered stone.\nLighting and palette: broken upper-left canopy light; neutral daylight with warm breaks; moss green, wet bark brown, cool slate, filtered warm daylight; atmosphere layered mist and suspended moisture.\nProduce one complete integrated 16:9 travel frame. No dialogue card and no separate theatrical sprite cast will appear.\nRequired cast, each physically present and identity-faithful: alistair, sage_seraphine, maelor. Forbidden cast: cedric, lancer. Speaker sequence context: none.\nCanonical identity constraints: alistair: face visibility CONCEALED_BY_CLOSED_HELM; preserve closed dark helm with red plume, face normally concealed by canonical helm, dark plate armor with red scarf and cape, charcoal steel, red, brown leather, large two-handed greatsword, red plume, red cloak, broad armored build | sage_seraphine: face visibility VISIBLE; preserve cream hood framing brown hair, soft oval face and calm expression, cream, teal and gold sage robes, cream, teal, gold, ornate censer staff, hood, satchel, hanging censer, slender ceremonial build | maelor: face visibility VISIBLE; preserve dark swept hair, angular clean-shaven face, purple long coat and robes with gold linework, royal purple, dark red, gold, dagger and open grimoire, grimoire, belt ornaments, lean court mage\nTreat every uploaded canonical full-body character image as immutable design authority. Match face visibility or concealment, helmet, mask, hood, hat, hair, silhouette, proportions, palette, costume or armor family, weapons, accessories and distinctive shapes character by character. Do not invent, remove, expose, cover, recolor, transfer or redesign any of these identity features.\nUse a compatible alternate camera treatment while preserving the same location, cast, scale, light, ground and story truth.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 3: canonical full-body identity reference for alistair; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.\nImage 4: canonical full-body identity reference for sage_seraphine; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.\nImage 5: canonical full-body identity reference for maelor; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.",
+      "promptSha256": "7e051ec55b7172f740554df5b57961e57d04fce80643fc22e5a0b63de2c959a7",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "public/assets/characters/pixel/full/alistair.png",
+        "public/assets/characters/pixel/full/sage_seraphine.png",
+        "public/assets/characters/pixel/full/maelor.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "public/assets/characters/pixel/full/alistair.png": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+        "public/assets/characters/pixel/full/sage_seraphine.png": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
+        "public/assets/characters/pixel/full/maelor.png": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:edge:lion-audience>lion-opening-ambush",
+      "dependencies": [
+        "family-master:FOREST_ROAD",
+        "cast:edge:lion-audience>lion-opening-ambush"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_c_cinematic_keyframe_a",
+      "semanticMode": "CINEMATIC_VIDEO",
+      "assetType": "CINEMATIC_KEYFRAME",
+      "beatId": "media:camp_departure",
+      "dialogueId": null,
+      "visualFamily": "LION_CAMP",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_c_cinematic_keyframe_a.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A CINEMATIC_KEYFRAME pilot candidate for RPGThreeJS.\nPilot C: CAMP_CONTINUOUS_SHOT. Beat truth: media:camp_departure, dialogue:camp_departure.\nVisual family LION_CAMP: fortified Lion expedition camp at a mountain-road threshold. Purpose: origin, duty and company departure.\nCamera and world: wide low eye-level departure frame; framing tent edges, company plane, layered camp and mountain distance; ground mud, trampled grass and rain-dark stone.\nLighting and palette: low rear three-quarter dawn light from the valley; warm sunrise; Lion blue, burnished gold, warm ember orange, cool mountain grey; atmosphere thin mist, banked smoke and dawn haze.\nProduce one integrated starting keyframe for a silent, zero-cut MiniMax-H3 shot whose cast remains physically continuous and whose final state can become a clean hold.\nRequired cast, each physically present and identity-faithful: maelor, alistair, marian. Forbidden cast: cedric, lancer. Speaker sequence context: maelor, alistair, marian.\nCanonical identity constraints: maelor: face visibility VISIBLE; preserve dark swept hair, angular clean-shaven face, purple long coat and robes with gold linework, royal purple, dark red, gold, dagger and open grimoire, grimoire, belt ornaments, lean court mage | alistair: face visibility CONCEALED_BY_CLOSED_HELM; preserve closed dark helm with red plume, face normally concealed by canonical helm, dark plate armor with red scarf and cape, charcoal steel, red, brown leather, large two-handed greatsword, red plume, red cloak, broad armored build | marian: face visibility CONCEALED_BY_CLOSED_HELM; preserve white hood over a closed gold-trimmed white face helm, face fully concealed by the canonical white-and-gold slit helm, white and pale-blue ceremonial robes, white, pale blue, gold, star-topped staff and light magic, hood, gold halo motifs, slender robed caster\nTreat every uploaded canonical full-body character image as immutable design authority. Match face visibility or concealment, helmet, mask, hood, hat, hair, silhouette, proportions, palette, costume or armor family, weapons, accessories and distinctive shapes character by character. Do not invent, remove, expose, cover, recolor, transfer or redesign any of these identity features.\nUse the strongest direct narrative composition.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: canonical full-body identity reference for maelor; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.\nImage 3: canonical full-body identity reference for alistair; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.\nImage 4: canonical full-body identity reference for marian; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.",
+      "promptSha256": "ba1f93b1b2180bb1c64699cd85b88042f382b346b0b5e2bb27facf31eab0325b",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "public/assets/characters/pixel/full/maelor.png",
+        "public/assets/characters/pixel/full/alistair.png",
+        "public/assets/characters/pixel/full/marian.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "public/assets/characters/pixel/full/maelor.png": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215",
+        "public/assets/characters/pixel/full/alistair.png": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+        "public/assets/characters/pixel/full/marian.png": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:media:camp_departure",
+      "dependencies": [
+        "family-master:LION_CAMP",
+        "cast:media:camp_departure"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_c_cinematic_keyframe_b",
+      "semanticMode": "CINEMATIC_VIDEO",
+      "assetType": "CINEMATIC_KEYFRAME",
+      "beatId": "media:camp_departure",
+      "dialogueId": null,
+      "visualFamily": "LION_CAMP",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_c_cinematic_keyframe_b.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A CINEMATIC_KEYFRAME pilot candidate for RPGThreeJS.\nPilot C: CAMP_CONTINUOUS_SHOT. Beat truth: media:camp_departure, dialogue:camp_departure.\nVisual family LION_CAMP: fortified Lion expedition camp at a mountain-road threshold. Purpose: origin, duty and company departure.\nCamera and world: wide low eye-level departure frame; framing tent edges, company plane, layered camp and mountain distance; ground mud, trampled grass and rain-dark stone.\nLighting and palette: low rear three-quarter dawn light from the valley; warm sunrise; Lion blue, burnished gold, warm ember orange, cool mountain grey; atmosphere thin mist, banked smoke and dawn haze.\nProduce one integrated starting keyframe for a silent, zero-cut MiniMax-H3 shot whose cast remains physically continuous and whose final state can become a clean hold.\nRequired cast, each physically present and identity-faithful: maelor, alistair, marian. Forbidden cast: cedric, lancer. Speaker sequence context: maelor, alistair, marian.\nCanonical identity constraints: maelor: face visibility VISIBLE; preserve dark swept hair, angular clean-shaven face, purple long coat and robes with gold linework, royal purple, dark red, gold, dagger and open grimoire, grimoire, belt ornaments, lean court mage | alistair: face visibility CONCEALED_BY_CLOSED_HELM; preserve closed dark helm with red plume, face normally concealed by canonical helm, dark plate armor with red scarf and cape, charcoal steel, red, brown leather, large two-handed greatsword, red plume, red cloak, broad armored build | marian: face visibility CONCEALED_BY_CLOSED_HELM; preserve white hood over a closed gold-trimmed white face helm, face fully concealed by the canonical white-and-gold slit helm, white and pale-blue ceremonial robes, white, pale blue, gold, star-topped staff and light magic, hood, gold halo motifs, slender robed caster\nTreat every uploaded canonical full-body character image as immutable design authority. Match face visibility or concealment, helmet, mask, hood, hat, hair, silhouette, proportions, palette, costume or armor family, weapons, accessories and distinctive shapes character by character. Do not invent, remove, expose, cover, recolor, transfer or redesign any of these identity features.\nUse a compatible alternate camera treatment while preserving the same location, cast, scale, light, ground and story truth.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: canonical full-body identity reference for maelor; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.\nImage 3: canonical full-body identity reference for alistair; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.\nImage 4: canonical full-body identity reference for marian; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.",
+      "promptSha256": "4393e01dbd2d11d853f3be044e8ea521de09510949fa927cc685cf8a3f62004a",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "public/assets/characters/pixel/full/maelor.png",
+        "public/assets/characters/pixel/full/alistair.png",
+        "public/assets/characters/pixel/full/marian.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "public/assets/characters/pixel/full/maelor.png": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215",
+        "public/assets/characters/pixel/full/alistair.png": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+        "public/assets/characters/pixel/full/marian.png": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:media:camp_departure",
+      "dependencies": [
+        "family-master:LION_CAMP",
+        "cast:media:camp_departure"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_d_static_tableau_background_a",
+      "semanticMode": "STATIC_TABLEAU_BACKGROUND",
+      "assetType": "STATIC_TABLEAU_BACKGROUND",
+      "beatId": "dialogue:ate_bois_clair_night_watch",
+      "dialogueId": "ate_bois_clair_night_watch",
+      "visualFamily": "SECOND_REFUGE",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_d_static_tableau_background_a.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A STATIC_TABLEAU_BACKGROUND pilot candidate for RPGThreeJS.\nPilot D: SECOND_REFUGE_TABLEAU. Beat truth: dialogue:ate_bois_clair_night_watch.\nVisual family SECOND_REFUGE: second roadside refuge after Bois-Clair. Purpose: night recovery, new ally encounter and renewed departure.\nCamera and world: intimate refuge staging opening onto the road; near camp objects, open meeting ground, dark tree boundary and exit road; ground packed earth, grass and ash.\nLighting and palette: low central firelight transitioning to right-side dawn; warm local fire, cool ambient night; deep blue night, low amber fire, cool morning grey, muted canvas; atmosphere thin smoke and cool haze.\nReserve clean actor lanes and dialogue/choice safe areas from the supplied layout guide. Keep the ground plane readable behind canonical full sprites.\nCharacter-free reverse-composed environment plate. Do not paint any canonical character, party member, named NPC, route-dependent actor or recruit. The runtime owns all foreground actors.\nNo character-card content is baked into this plate.\nThe runtime will supply unchanged canonical full sprites; keep the generated plate character-free.\nUse the strongest direct narrative composition.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 3: runtime geometry guide only; obey its actor and UI safe zones but do not render its colored overlays, labels, lines or borders into the candidate.",
+      "promptSha256": "c3bf3ec336fc8ce96b5e030626c2c16a18c39a8ba537000dcb90c2ad992e102e",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:dialogue:ate_bois_clair_night_watch",
+      "dependencies": [
+        "family-master:SECOND_REFUGE",
+        "cast:dialogue:ate_bois_clair_night_watch"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_d_static_tableau_background_b",
+      "semanticMode": "STATIC_TABLEAU_BACKGROUND",
+      "assetType": "STATIC_TABLEAU_BACKGROUND",
+      "beatId": "dialogue:ate_bois_clair_night_watch",
+      "dialogueId": "ate_bois_clair_night_watch",
+      "visualFamily": "SECOND_REFUGE",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_d_static_tableau_background_b.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A STATIC_TABLEAU_BACKGROUND pilot candidate for RPGThreeJS.\nPilot D: SECOND_REFUGE_TABLEAU. Beat truth: dialogue:ate_bois_clair_night_watch.\nVisual family SECOND_REFUGE: second roadside refuge after Bois-Clair. Purpose: night recovery, new ally encounter and renewed departure.\nCamera and world: intimate refuge staging opening onto the road; near camp objects, open meeting ground, dark tree boundary and exit road; ground packed earth, grass and ash.\nLighting and palette: low central firelight transitioning to right-side dawn; warm local fire, cool ambient night; deep blue night, low amber fire, cool morning grey, muted canvas; atmosphere thin smoke and cool haze.\nReserve clean actor lanes and dialogue/choice safe areas from the supplied layout guide. Keep the ground plane readable behind canonical full sprites.\nCharacter-free reverse-composed environment plate. Do not paint any canonical character, party member, named NPC, route-dependent actor or recruit. The runtime owns all foreground actors.\nNo character-card content is baked into this plate.\nThe runtime will supply unchanged canonical full sprites; keep the generated plate character-free.\nUse a compatible alternate camera treatment while preserving the same location, cast, scale, light, ground and story truth.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 3: runtime geometry guide only; obey its actor and UI safe zones but do not render its colored overlays, labels, lines or borders into the candidate.",
+      "promptSha256": "6de79f40f7848caba4d91d293fdaf4ec4316cd2041ca3eed09e57a5b2be2119c",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:dialogue:ate_bois_clair_night_watch",
+      "dependencies": [
+        "family-master:SECOND_REFUGE",
+        "cast:dialogue:ate_bois_clair_night_watch"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_e_cinematic_keyframe_a",
+      "semanticMode": "CINEMATIC_VIDEO",
+      "assetType": "CINEMATIC_KEYFRAME",
+      "beatId": "media:cedric_encounter",
+      "dialogueId": null,
+      "visualFamily": "FOREST_ROAD",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_e_cinematic_keyframe_a.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A CINEMATIC_KEYFRAME pilot candidate for RPGThreeJS.\nPilot E: CEDRIC_ENCOUNTER_TRANSITION. Beat truth: media:cedric_encounter, dialogue:mystery_recruit.\nVisual family FOREST_ROAD: old woodland roads linking the Lion territories. Purpose: travel, uncertainty, encounter and aftermath.\nCamera and world: grounded road perspective with open lower staging plane; foreground foliage, readable road stage, receding trunks and ridges; ground rutted wet earth, roots and scattered stone.\nLighting and palette: broken upper-left canopy light; neutral daylight with warm breaks; moss green, wet bark brown, cool slate, filtered warm daylight; atmosphere layered mist and suspended moisture.\nProduce one integrated starting keyframe for a silent, zero-cut MiniMax-H3 shot whose cast remains physically continuous and whose final state can become a clean hold.\nRequired cast, each physically present and identity-faithful: cedric, kestrel. Forbidden cast: lancer. Speaker sequence context: none.\nCanonical identity constraints: cedric: face visibility CONCEALED_BY_METAL_MASK; preserve deep purple hood over a closed dark metal face mask, face fully concealed by a dark metal mask with narrow eye and vertical mouth slits, purple hooded leather scout armor, purple, brown leather, muted gold, paired short blades, hood, belts, lean agile build | kestrel: face visibility CONCEALED_BY_HOOD_AND_CLOTH_MASK; preserve green hood and green cloth face mask, face concealed by hood shadow and green cloth mask; no exposed mouth or jaw, green layered ranger leathers, forest green, brown, muted gold, longbow, quiver, hood, compact agile archer\nTreat every uploaded canonical full-body character image as immutable design authority. Match face visibility or concealment, helmet, mask, hood, hat, hair, silhouette, proportions, palette, costume or armor family, weapons, accessories and distinctive shapes character by character. Do not invent, remove, expose, cover, recolor, transfer or redesign any of these identity features.\nUse the strongest direct narrative composition.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 3: canonical full-body identity reference for cedric; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.\nImage 4: canonical full-body identity reference for kestrel; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.",
+      "promptSha256": "066ef4ff1640f819cc893ac4a0a4dd56026e706428d13c3ede226f89a63bcf28",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "public/assets/characters/pixel/full/cedric.png",
+        "public/assets/characters/pixel/full/kestrel.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "public/assets/characters/pixel/full/cedric.png": "ed71da3f7bd7ac94596bd4d20ef62047940d4457fbae7d6898f54ba221f6972f",
+        "public/assets/characters/pixel/full/kestrel.png": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:media:cedric_encounter",
+      "dependencies": [
+        "family-master:FOREST_ROAD",
+        "cast:media:cedric_encounter"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_e_cinematic_keyframe_b",
+      "semanticMode": "CINEMATIC_VIDEO",
+      "assetType": "CINEMATIC_KEYFRAME",
+      "beatId": "media:cedric_encounter",
+      "dialogueId": null,
+      "visualFamily": "FOREST_ROAD",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_e_cinematic_keyframe_b.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A CINEMATIC_KEYFRAME pilot candidate for RPGThreeJS.\nPilot E: CEDRIC_ENCOUNTER_TRANSITION. Beat truth: media:cedric_encounter, dialogue:mystery_recruit.\nVisual family FOREST_ROAD: old woodland roads linking the Lion territories. Purpose: travel, uncertainty, encounter and aftermath.\nCamera and world: grounded road perspective with open lower staging plane; foreground foliage, readable road stage, receding trunks and ridges; ground rutted wet earth, roots and scattered stone.\nLighting and palette: broken upper-left canopy light; neutral daylight with warm breaks; moss green, wet bark brown, cool slate, filtered warm daylight; atmosphere layered mist and suspended moisture.\nProduce one integrated starting keyframe for a silent, zero-cut MiniMax-H3 shot whose cast remains physically continuous and whose final state can become a clean hold.\nRequired cast, each physically present and identity-faithful: cedric, kestrel. Forbidden cast: lancer. Speaker sequence context: none.\nCanonical identity constraints: cedric: face visibility CONCEALED_BY_METAL_MASK; preserve deep purple hood over a closed dark metal face mask, face fully concealed by a dark metal mask with narrow eye and vertical mouth slits, purple hooded leather scout armor, purple, brown leather, muted gold, paired short blades, hood, belts, lean agile build | kestrel: face visibility CONCEALED_BY_HOOD_AND_CLOTH_MASK; preserve green hood and green cloth face mask, face concealed by hood shadow and green cloth mask; no exposed mouth or jaw, green layered ranger leathers, forest green, brown, muted gold, longbow, quiver, hood, compact agile archer\nTreat every uploaded canonical full-body character image as immutable design authority. Match face visibility or concealment, helmet, mask, hood, hat, hair, silhouette, proportions, palette, costume or armor family, weapons, accessories and distinctive shapes character by character. Do not invent, remove, expose, cover, recolor, transfer or redesign any of these identity features.\nUse a compatible alternate camera treatment while preserving the same location, cast, scale, light, ground and story truth.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 3: canonical full-body identity reference for cedric; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.\nImage 4: canonical full-body identity reference for kestrel; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.",
+      "promptSha256": "1ea6e5490d2a51cf276077b5a35ada1c06699ce73b00c3e1f345e81a06765605",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "public/assets/characters/pixel/full/cedric.png",
+        "public/assets/characters/pixel/full/kestrel.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "public/assets/characters/pixel/full/cedric.png": "ed71da3f7bd7ac94596bd4d20ef62047940d4457fbae7d6898f54ba221f6972f",
+        "public/assets/characters/pixel/full/kestrel.png": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:media:cedric_encounter",
+      "dependencies": [
+        "family-master:FOREST_ROAD",
+        "cast:media:cedric_encounter"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_e_static_tableau_background_a",
+      "semanticMode": "STATIC_TABLEAU_BACKGROUND",
+      "assetType": "STATIC_TABLEAU_BACKGROUND",
+      "beatId": "dialogue:mystery_recruit",
+      "dialogueId": "mystery_recruit",
+      "visualFamily": "FOREST_ROAD",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_e_static_tableau_background_a.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A STATIC_TABLEAU_BACKGROUND pilot candidate for RPGThreeJS.\nPilot E: CEDRIC_ENCOUNTER_TRANSITION. Beat truth: media:cedric_encounter, dialogue:mystery_recruit.\nVisual family FOREST_ROAD: old woodland roads linking the Lion territories. Purpose: travel, uncertainty, encounter and aftermath.\nCamera and world: grounded road perspective with open lower staging plane; foreground foliage, readable road stage, receding trunks and ridges; ground rutted wet earth, roots and scattered stone.\nLighting and palette: broken upper-left canopy light; neutral daylight with warm breaks; moss green, wet bark brown, cool slate, filtered warm daylight; atmosphere layered mist and suspended moisture.\nReserve clean actor lanes and dialogue/choice safe areas from the supplied layout guide. Keep the ground plane readable behind canonical full sprites.\nCharacter-free reverse-composed environment plate. Do not paint any canonical character, party member, named NPC, route-dependent actor or recruit. The runtime owns all foreground actors.\nNo character-card content is baked into this plate.\nThe runtime will supply unchanged canonical full sprites; keep the generated plate character-free.\nUse the strongest direct narrative composition.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 3: runtime geometry guide only; obey its actor and UI safe zones but do not render its colored overlays, labels, lines or borders into the candidate.",
+      "promptSha256": "45025b3ef5a09977d329537031fb20cb0169885b6664536b4f9ceca8148047b9",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:dialogue:mystery_recruit",
+      "dependencies": [
+        "family-master:FOREST_ROAD",
+        "cast:dialogue:mystery_recruit"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_e_static_tableau_background_b",
+      "semanticMode": "STATIC_TABLEAU_BACKGROUND",
+      "assetType": "STATIC_TABLEAU_BACKGROUND",
+      "beatId": "dialogue:mystery_recruit",
+      "dialogueId": "mystery_recruit",
+      "visualFamily": "FOREST_ROAD",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_e_static_tableau_background_b.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A STATIC_TABLEAU_BACKGROUND pilot candidate for RPGThreeJS.\nPilot E: CEDRIC_ENCOUNTER_TRANSITION. Beat truth: media:cedric_encounter, dialogue:mystery_recruit.\nVisual family FOREST_ROAD: old woodland roads linking the Lion territories. Purpose: travel, uncertainty, encounter and aftermath.\nCamera and world: grounded road perspective with open lower staging plane; foreground foliage, readable road stage, receding trunks and ridges; ground rutted wet earth, roots and scattered stone.\nLighting and palette: broken upper-left canopy light; neutral daylight with warm breaks; moss green, wet bark brown, cool slate, filtered warm daylight; atmosphere layered mist and suspended moisture.\nReserve clean actor lanes and dialogue/choice safe areas from the supplied layout guide. Keep the ground plane readable behind canonical full sprites.\nCharacter-free reverse-composed environment plate. Do not paint any canonical character, party member, named NPC, route-dependent actor or recruit. The runtime owns all foreground actors.\nNo character-card content is baked into this plate.\nThe runtime will supply unchanged canonical full sprites; keep the generated plate character-free.\nUse a compatible alternate camera treatment while preserving the same location, cast, scale, light, ground and story truth.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 3: runtime geometry guide only; obey its actor and UI safe zones but do not render its colored overlays, labels, lines or borders into the candidate.",
+      "promptSha256": "92463c9106d6a429c1c1f881651bc4e7ca751aeb1f5ac48decb4ca1681bfdfa6",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:dialogue:mystery_recruit",
+      "dependencies": [
+        "family-master:FOREST_ROAD",
+        "cast:dialogue:mystery_recruit"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_f_cinematic_keyframe_a",
+      "semanticMode": "CINEMATIC_VIDEO",
+      "assetType": "CINEMATIC_KEYFRAME",
+      "beatId": "media:shadow_signs",
+      "dialogueId": null,
+      "visualFamily": "SHADOW_RUINS",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_f_cinematic_keyframe_a.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A CINEMATIC_KEYFRAME pilot candidate for RPGThreeJS.\nPilot F: SHADOW_SIGNS_LOW_LIGHT. Beat truth: media:shadow_signs, dialogue:shadow_signs.\nVisual family SHADOW_RUINS: ancient ruins marked by restrained Shadow corruption. Purpose: evidence, dread, supernatural warning and final trial aftermath.\nCamera and world: monumental ruin depth with readable evidence foreground; evidence foreground, actor plane, monumental arch and obscured depth; ground wet flagstone, moss, roots and fine violet fissures.\nLighting and palette: cool high side light through broken canopy; cold blue-grey; cold slate, moon blue, desaturated moss, restrained violet, small warm lantern accents; atmosphere mist, dust and faint corruption haze.\nProduce one integrated starting keyframe for a silent, zero-cut MiniMax-H3 shot whose cast remains physically continuous and whose final state can become a clean hold.\nRequired cast, each physically present and identity-faithful: sage_seraphine, elara. Forbidden cast: cedric, lancer. Speaker sequence context: sage_seraphine, elara, alistair, maelor.\nCanonical identity constraints: sage_seraphine: face visibility VISIBLE; preserve cream hood framing brown hair, soft oval face and calm expression, cream, teal and gold sage robes, cream, teal, gold, ornate censer staff, hood, satchel, hanging censer, slender ceremonial build | elara: face visibility CONCEALED_IN_SHADOW_EXCEPT_BLUE_EYES; preserve pointed wide-brim hat over a featureless shadow face, face fully concealed in black shadow; only two luminous blue eyes are visible, dark blue arcane robes with gold geometry, midnight blue, electric blue, gold, arcane focus and blue flame, wide-brim hat, glowing orb, slender robed build\nTreat every uploaded canonical full-body character image as immutable design authority. Match face visibility or concealment, helmet, mask, hood, hat, hair, silhouette, proportions, palette, costume or armor family, weapons, accessories and distinctive shapes character by character. Do not invent, remove, expose, cover, recolor, transfer or redesign any of these identity features.\nUse the strongest direct narrative composition.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: canonical full-body identity reference for sage_seraphine; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.\nImage 3: canonical full-body identity reference for elara; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.",
+      "promptSha256": "82aee037281ea3049db023d4003f3a3f1bd80855f06cf9a2b5c7978387c8d663",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "public/assets/characters/pixel/full/sage_seraphine.png",
+        "public/assets/characters/pixel/full/elara.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "public/assets/characters/pixel/full/sage_seraphine.png": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
+        "public/assets/characters/pixel/full/elara.png": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:media:shadow_signs",
+      "dependencies": [
+        "family-master:SHADOW_RUINS",
+        "cast:media:shadow_signs"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_f_cinematic_keyframe_b",
+      "semanticMode": "CINEMATIC_VIDEO",
+      "assetType": "CINEMATIC_KEYFRAME",
+      "beatId": "media:shadow_signs",
+      "dialogueId": null,
+      "visualFamily": "SHADOW_RUINS",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_f_cinematic_keyframe_b.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A CINEMATIC_KEYFRAME pilot candidate for RPGThreeJS.\nPilot F: SHADOW_SIGNS_LOW_LIGHT. Beat truth: media:shadow_signs, dialogue:shadow_signs.\nVisual family SHADOW_RUINS: ancient ruins marked by restrained Shadow corruption. Purpose: evidence, dread, supernatural warning and final trial aftermath.\nCamera and world: monumental ruin depth with readable evidence foreground; evidence foreground, actor plane, monumental arch and obscured depth; ground wet flagstone, moss, roots and fine violet fissures.\nLighting and palette: cool high side light through broken canopy; cold blue-grey; cold slate, moon blue, desaturated moss, restrained violet, small warm lantern accents; atmosphere mist, dust and faint corruption haze.\nProduce one integrated starting keyframe for a silent, zero-cut MiniMax-H3 shot whose cast remains physically continuous and whose final state can become a clean hold.\nRequired cast, each physically present and identity-faithful: sage_seraphine, elara. Forbidden cast: cedric, lancer. Speaker sequence context: sage_seraphine, elara, alistair, maelor.\nCanonical identity constraints: sage_seraphine: face visibility VISIBLE; preserve cream hood framing brown hair, soft oval face and calm expression, cream, teal and gold sage robes, cream, teal, gold, ornate censer staff, hood, satchel, hanging censer, slender ceremonial build | elara: face visibility CONCEALED_IN_SHADOW_EXCEPT_BLUE_EYES; preserve pointed wide-brim hat over a featureless shadow face, face fully concealed in black shadow; only two luminous blue eyes are visible, dark blue arcane robes with gold geometry, midnight blue, electric blue, gold, arcane focus and blue flame, wide-brim hat, glowing orb, slender robed build\nTreat every uploaded canonical full-body character image as immutable design authority. Match face visibility or concealment, helmet, mask, hood, hat, hair, silhouette, proportions, palette, costume or armor family, weapons, accessories and distinctive shapes character by character. Do not invent, remove, expose, cover, recolor, transfer or redesign any of these identity features.\nUse a compatible alternate camera treatment while preserving the same location, cast, scale, light, ground and story truth.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: canonical full-body identity reference for sage_seraphine; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.\nImage 3: canonical full-body identity reference for elara; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.",
+      "promptSha256": "d766aa9230945cf1dbf2b3fc50ee181cfbddf8f839f5de9cbb759f843f289938",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "public/assets/characters/pixel/full/sage_seraphine.png",
+        "public/assets/characters/pixel/full/elara.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "public/assets/characters/pixel/full/sage_seraphine.png": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
+        "public/assets/characters/pixel/full/elara.png": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:media:shadow_signs",
+      "dependencies": [
+        "family-master:SHADOW_RUINS",
+        "cast:media:shadow_signs"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_f_static_tableau_background_a",
+      "semanticMode": "STATIC_TABLEAU_BACKGROUND",
+      "assetType": "STATIC_TABLEAU_BACKGROUND",
+      "beatId": "dialogue:shadow_signs",
+      "dialogueId": "shadow_signs",
+      "visualFamily": "SHADOW_RUINS",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_f_static_tableau_background_a.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A STATIC_TABLEAU_BACKGROUND pilot candidate for RPGThreeJS.\nPilot F: SHADOW_SIGNS_LOW_LIGHT. Beat truth: media:shadow_signs, dialogue:shadow_signs.\nVisual family SHADOW_RUINS: ancient ruins marked by restrained Shadow corruption. Purpose: evidence, dread, supernatural warning and final trial aftermath.\nCamera and world: monumental ruin depth with readable evidence foreground; evidence foreground, actor plane, monumental arch and obscured depth; ground wet flagstone, moss, roots and fine violet fissures.\nLighting and palette: cool high side light through broken canopy; cold blue-grey; cold slate, moon blue, desaturated moss, restrained violet, small warm lantern accents; atmosphere mist, dust and faint corruption haze.\nReserve clean actor lanes and dialogue/choice safe areas from the supplied layout guide. Keep the ground plane readable behind canonical full sprites.\nCharacter-free reverse-composed environment plate. Do not paint any canonical character, party member, named NPC, route-dependent actor or recruit. The runtime owns all foreground actors.\nNo character-card content is baked into this plate.\nThe runtime will supply unchanged canonical full sprites; keep the generated plate character-free.\nUse the strongest direct narrative composition.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: runtime geometry guide only; obey its actor and UI safe zones but do not render its colored overlays, labels, lines or borders into the candidate.",
+      "promptSha256": "4ac0a42a0d0b662fcf8dadcbf702b9307da1716e3255b282faaf11738613bfb9",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:dialogue:shadow_signs",
+      "dependencies": [
+        "family-master:SHADOW_RUINS",
+        "cast:dialogue:shadow_signs"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_f_static_tableau_background_b",
+      "semanticMode": "STATIC_TABLEAU_BACKGROUND",
+      "assetType": "STATIC_TABLEAU_BACKGROUND",
+      "beatId": "dialogue:shadow_signs",
+      "dialogueId": "shadow_signs",
+      "visualFamily": "SHADOW_RUINS",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_f_static_tableau_background_b.json",
+      "prompt": "Create a 1920x1080 CIN-6E-A STATIC_TABLEAU_BACKGROUND pilot candidate for RPGThreeJS.\nPilot F: SHADOW_SIGNS_LOW_LIGHT. Beat truth: media:shadow_signs, dialogue:shadow_signs.\nVisual family SHADOW_RUINS: ancient ruins marked by restrained Shadow corruption. Purpose: evidence, dread, supernatural warning and final trial aftermath.\nCamera and world: monumental ruin depth with readable evidence foreground; evidence foreground, actor plane, monumental arch and obscured depth; ground wet flagstone, moss, roots and fine violet fissures.\nLighting and palette: cool high side light through broken canopy; cold blue-grey; cold slate, moon blue, desaturated moss, restrained violet, small warm lantern accents; atmosphere mist, dust and faint corruption haze.\nReserve clean actor lanes and dialogue/choice safe areas from the supplied layout guide. Keep the ground plane readable behind canonical full sprites.\nCharacter-free reverse-composed environment plate. Do not paint any canonical character, party member, named NPC, route-dependent actor or recruit. The runtime owns all foreground actors.\nNo character-card content is baked into this plate.\nThe runtime will supply unchanged canonical full sprites; keep the generated plate character-free.\nUse a compatible alternate camera treatment while preserving the same location, cast, scale, light, ground and story truth.\nCharacters and environment must share perspective, ground plane, contact, occlusion, light temperature, atmosphere, depth, scale and material response. NO_COLLAGE_LOOK is mandatory.\nNo baked text, subtitles, speech, dialogue UI, choice UI, watermarks, editorial cuts, alternate-shot reset, unrequested VFX or character redesign.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: runtime geometry guide only; obey its actor and UI safe zones but do not render its colored overlays, labels, lines or borders into the candidate.",
+      "promptSha256": "200f9816144187d186c13ab23412d78dce0862d6252b86241bb6eb66ed183375",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": "cast:dialogue:shadow_signs",
+      "dependencies": [
+        "family-master:SHADOW_RUINS",
+        "cast:dialogue:shadow_signs"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "second_refuge_master_a",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "SECOND_REFUGE",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/second_refuge_master_a.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: SECOND_REFUGE. Physical location: second roadside refuge after Bois-Clair.\nNarrative purpose: night recovery, new ally encounter and renewed departure. Architecture: tent line, low palisade, campfire circle, departure gate. Signature landmarks: campfire, tent line, departure gate.\nTerrain and ground: forest clearing beside the road; packed earth, grass and ash. Palette: deep blue night, low amber fire, cool morning grey, muted canvas.\nLight: low central firelight transitioning to right-side dawn; warm local fire, cool ambient night; ambient fill soft blue nocturnal fill.\nAtmosphere and depth: thin smoke and cool haze; near camp objects, open meeting ground, dark tree boundary and exit road.\nForeground: low bedroll or crate silhouettes. Midground: clear NPC-compatible meeting space. Background: tents, gate and forest road.\nCamera: intimate refuge staging opening onto the road. Time and weather: night to morning; still night to morning. Materials: canvas, timber, ash, leather and damp soil.\nUse the strongest canonical establishing composition with clear three-plane depth and a grounded narrative path.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: bright royal camp, baked Garen in tableau plate, dense crowd, flat black shadows. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "8112f58ccded6aa19bafff6d6344cc78b9ac198646272a3ff655d93c2b62046c",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:camp_departure",
+        "gold:valmir_route_fork"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "second_refuge_master_b",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "SECOND_REFUGE",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/second_refuge_master_b.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: SECOND_REFUGE. Physical location: second roadside refuge after Bois-Clair.\nNarrative purpose: night recovery, new ally encounter and renewed departure. Architecture: tent line, low palisade, campfire circle, departure gate. Signature landmarks: campfire, tent line, departure gate.\nTerrain and ground: forest clearing beside the road; packed earth, grass and ash. Palette: deep blue night, low amber fire, cool morning grey, muted canvas.\nLight: low central firelight transitioning to right-side dawn; warm local fire, cool ambient night; ambient fill soft blue nocturnal fill.\nAtmosphere and depth: thin smoke and cool haze; near camp objects, open meeting ground, dark tree boundary and exit road.\nForeground: low bedroll or crate silhouettes. Midground: clear NPC-compatible meeting space. Background: tents, gate and forest road.\nCamera: intimate refuge staging opening onto the road. Time and weather: night to morning; still night to morning. Materials: canvas, timber, ash, leather and damp soil.\nUse an alternate but fully compatible eye-level composition with different foreground framing and the same physical identity.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: bright royal camp, baked Garen in tableau plate, dense crowd, flat black shadows. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "c81fedda2f11c0909b6acf26789cd1693b51ff0b15ec7b179de033429c56f7f5",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:camp_departure",
+        "gold:valmir_route_fork"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "serpent_finale_master_a",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "SERPENT_FINALE",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/serpent_finale_master_a.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: SERPENT_FINALE. Physical location: ruined arena under Serpent occupation and Shadow pressure.\nNarrative purpose: hostile reveal, final confrontation and aftermath. Architecture: ruin arena, Serpent standard, Shadow artefact. Signature landmarks: ruin arena, Serpent standard, Shadow artefact.\nTerrain and ground: weathered stone terrace; cracked stone, ash and sparse moss. Palette: cold ruin grey, hostile Serpent red, dark green, restrained violet.\nLight: cold lateral sky light cut by red practicals; cold ambient with hostile warm accents; ambient fill low storm-blue fill.\nAtmosphere and depth: windblown ash and distant mist; arena foreground, confrontation axis and artefact depth.\nForeground: broken stone framing outside combat/readability lanes. Midground: clear boss and party plane. Background: standards, ruined wall and artefact landmark.\nCamera: boss reveal and aftermath axis toward the artefact. Time and weather: twilight; twilight wind. Materials: weathered stone, dark steel, torn cloth and subtle corruption.\nUse the strongest canonical establishing composition with clear three-plane depth and a grounded narrative path.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: lava arena, bright heroic parade, generic demon realm, purple overload. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "a5deacac7e296cba94087a2ba16cbd9e9457ad4d1f5f5ede975830bec32c6208",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png": "eb239cbd62a10dc48776ab65cfe80fba73f37b5642c92cddc8d5ffab072e2097"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:valmir_route_fork",
+        "gold:alaric_audience_arrival"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "serpent_finale_master_b",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "SERPENT_FINALE",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/serpent_finale_master_b.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: SERPENT_FINALE. Physical location: ruined arena under Serpent occupation and Shadow pressure.\nNarrative purpose: hostile reveal, final confrontation and aftermath. Architecture: ruin arena, Serpent standard, Shadow artefact. Signature landmarks: ruin arena, Serpent standard, Shadow artefact.\nTerrain and ground: weathered stone terrace; cracked stone, ash and sparse moss. Palette: cold ruin grey, hostile Serpent red, dark green, restrained violet.\nLight: cold lateral sky light cut by red practicals; cold ambient with hostile warm accents; ambient fill low storm-blue fill.\nAtmosphere and depth: windblown ash and distant mist; arena foreground, confrontation axis and artefact depth.\nForeground: broken stone framing outside combat/readability lanes. Midground: clear boss and party plane. Background: standards, ruined wall and artefact landmark.\nCamera: boss reveal and aftermath axis toward the artefact. Time and weather: twilight; twilight wind. Materials: weathered stone, dark steel, torn cloth and subtle corruption.\nUse an alternate but fully compatible eye-level composition with different foreground framing and the same physical identity.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: lava arena, bright heroic parade, generic demon realm, purple overload. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.\nImage 2: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "10157d7f0b4e376e1110e8a09799c34f7f3133a1b4db2798719bd1b459ff4136",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
+        "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png": "eb239cbd62a10dc48776ab65cfe80fba73f37b5642c92cddc8d5ffab072e2097"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:valmir_route_fork",
+        "gold:alaric_audience_arrival"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "shadow_ruins_master_a",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "SHADOW_RUINS",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/shadow_ruins_master_a.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: SHADOW_RUINS. Physical location: ancient ruins marked by restrained Shadow corruption.\nNarrative purpose: evidence, dread, supernatural warning and final trial aftermath. Architecture: inscribed monoliths, broken arch, shrine stones, buried terrace. Signature landmarks: inscribed stones, ruin arch, shadow veins.\nTerrain and ground: rocky forest ruins; wet flagstone, moss, roots and fine violet fissures. Palette: cold slate, moon blue, desaturated moss, restrained violet, small warm lantern accents.\nLight: cool high side light through broken canopy; cold blue-grey; ambient fill low violet-neutral stone bounce.\nAtmosphere and depth: mist, dust and faint corruption haze; evidence foreground, actor plane, monumental arch and obscured depth.\nForeground: readable relic fragments outside dialogue-safe zones. Midground: flat stone staging plane with controlled contrast. Background: ruin arch, forest depth and subtle shadow veins.\nCamera: monumental ruin depth with readable evidence foreground. Time and weather: overcast day; overcast or night. Materials: wet stone, moss, aged metal and restrained emissive corruption.\nUse the strongest canonical establishing composition with clear three-plane depth and a grounded narrative path.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: neon purple fantasy, black unreadable frame, lava, generic gothic cathedral. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "e4eea894899721a6cc0bd2c2b5b006bfdc81e2f05705bfbe5116694509cec0e1",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:valmir_route_fork"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "shadow_ruins_master_b",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "SHADOW_RUINS",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/shadow_ruins_master_b.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: SHADOW_RUINS. Physical location: ancient ruins marked by restrained Shadow corruption.\nNarrative purpose: evidence, dread, supernatural warning and final trial aftermath. Architecture: inscribed monoliths, broken arch, shrine stones, buried terrace. Signature landmarks: inscribed stones, ruin arch, shadow veins.\nTerrain and ground: rocky forest ruins; wet flagstone, moss, roots and fine violet fissures. Palette: cold slate, moon blue, desaturated moss, restrained violet, small warm lantern accents.\nLight: cool high side light through broken canopy; cold blue-grey; ambient fill low violet-neutral stone bounce.\nAtmosphere and depth: mist, dust and faint corruption haze; evidence foreground, actor plane, monumental arch and obscured depth.\nForeground: readable relic fragments outside dialogue-safe zones. Midground: flat stone staging plane with controlled contrast. Background: ruin arch, forest depth and subtle shadow veins.\nCamera: monumental ruin depth with readable evidence foreground. Time and weather: overcast day; overcast or night. Materials: wet stone, moss, aged metal and restrained emissive corruption.\nUse an alternate but fully compatible eye-level composition with different foreground framing and the same physical identity.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: neon purple fantasy, black unreadable frame, lava, generic gothic cathedral. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "a37b8b672d26805efc1650961395260cfb3867a4af49f691ee469616e18cd2fd",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:valmir_route_fork"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "valmir_road_master_a",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "VALMIR_ROAD",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/valmir_road_master_a.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: VALMIR_ROAD. Physical location: mountain forest junction on the road to Valmir.\nNarrative purpose: route geography, choice and rising military pressure. Architecture: fork marker, old shrine stones, distant fortified road. Signature landmarks: road fork, Valmir ridge, shrine stones.\nTerrain and ground: highland conifer road; wet stone, dark soil and shallow reflective ruts. Palette: moonlit blue-grey, pine black-green, warm watch-fire orange, weathered stone.\nLight: cool high-left celestial light; cool moon or late-day mountain light; ambient fill misty blue forest fill.\nAtmosphere and depth: low mist with warm distant fire contrast; foreground branch frame, two readable route corridors and mountain layers.\nForeground: dark foliage vignette outside route-safe zones. Midground: symmetric fork and company rest plane. Background: left shrine and right fortification with equal narrative weight.\nCamera: wide route geography and readable directional depth. Time and weather: late day; humid and still. Materials: wet earth, mossy stone, dark timber and controlled torchlight.\nUse the strongest canonical establishing composition with clear three-plane depth and a grounded narrative path.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: single dominant route, labels or arrows, bright pastoral day, selected destination cues. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "5b35f97f4423a9bbbedabebc9dd1d3d4dd06b4828a57e0b92b586713ac01ab8b",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:valmir_route_fork"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "valmir_road_master_b",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "VALMIR_ROAD",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/valmir_road_master_b.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: VALMIR_ROAD. Physical location: mountain forest junction on the road to Valmir.\nNarrative purpose: route geography, choice and rising military pressure. Architecture: fork marker, old shrine stones, distant fortified road. Signature landmarks: road fork, Valmir ridge, shrine stones.\nTerrain and ground: highland conifer road; wet stone, dark soil and shallow reflective ruts. Palette: moonlit blue-grey, pine black-green, warm watch-fire orange, weathered stone.\nLight: cool high-left celestial light; cool moon or late-day mountain light; ambient fill misty blue forest fill.\nAtmosphere and depth: low mist with warm distant fire contrast; foreground branch frame, two readable route corridors and mountain layers.\nForeground: dark foliage vignette outside route-safe zones. Midground: symmetric fork and company rest plane. Background: left shrine and right fortification with equal narrative weight.\nCamera: wide route geography and readable directional depth. Time and weather: late day; humid and still. Materials: wet earth, mossy stone, dark timber and controlled torchlight.\nUse an alternate but fully compatible eye-level composition with different foreground framing and the same physical identity.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: single dominant route, labels or arrows, bright pastoral day, selected destination cues. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "c3be0555c82ffd272688669e848baf16dc99c3f56ae45990789419828c6cfe9c",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:valmir_route_fork"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "witness_road_master_a",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "WITNESS_ROAD",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "A",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/witness_road_master_a.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: WITNESS_ROAD. Physical location: open road where witnesses meet the company.\nNarrative purpose: testimony, social evidence and consequence. Architecture: road marker, distant settlement smoke, simple verge fencing. Signature landmarks: road marker, distant Bois-Clair smoke, wooded verge.\nTerrain and ground: open woodland verge; drying earth and pale road stone. Palette: neutral daylight, muted green, dust tan, distant smoke blue.\nLight: broad upper-left daylight; neutral warm day; ambient fill open-sky blue.\nAtmosphere and depth: long clear depth with distant haze; open encounter lanes and long road recession.\nForeground: sparse grasses and verge stones. Midground: separate witness and party lanes. Background: road, wooded verge and distant smoke.\nCamera: social encounter frame with witness lane and party lane. Time and weather: day; clear day. Materials: dust, worn timber, cloth and natural stone.\nUse the strongest canonical establishing composition with clear three-plane depth and a grounded narrative path.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: court interior, dense dark forest, combat staging, crowd without narrative basis. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "afc2ad193befde9aa9e39d86c80e362c9a8c436b63b5e3354b109f5ef978b59b",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:camp_departure"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "witness_road_master_b",
+      "semanticMode": "VISUAL_FAMILY_MASTER",
+      "assetType": "FAMILY_MASTER",
+      "beatId": null,
+      "dialogueId": null,
+      "visualFamily": "WITNESS_ROAD",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "B",
+      "generationTimestamp": null,
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/witness_road_master_b.json",
+      "prompt": "Create a 1920x1080 preproduction visual-family master for RPGThreeJS.\nPremium hand-painted HD-2D cinematic rendering; the result must belong to one coherent game world.\nVisual family: WITNESS_ROAD. Physical location: open road where witnesses meet the company.\nNarrative purpose: testimony, social evidence and consequence. Architecture: road marker, distant settlement smoke, simple verge fencing. Signature landmarks: road marker, distant Bois-Clair smoke, wooded verge.\nTerrain and ground: open woodland verge; drying earth and pale road stone. Palette: neutral daylight, muted green, dust tan, distant smoke blue.\nLight: broad upper-left daylight; neutral warm day; ambient fill open-sky blue.\nAtmosphere and depth: long clear depth with distant haze; open encounter lanes and long road recession.\nForeground: sparse grasses and verge stones. Midground: separate witness and party lanes. Background: road, wooded verge and distant smoke.\nCamera: social encounter frame with witness lane and party lane. Time and weather: day; clear day. Materials: dust, worn timber, cloth and natural stone.\nUse an alternate but fully compatible eye-level composition with different foreground framing and the same physical identity.\nEnvironment-only family master. No canonical characters, party members, route-dependent actors, text, logos, subtitles, dialogue UI, choice UI, frames, borders, or watermarks.\nNever introduce: court interior, dense dark forest, combat staging, crowd without narrative basis. Preserve the reference lineage without copying its editorial continuity defects.\n\nInput reference roles, in upload order:\nImage 1: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.",
+      "promptSha256": "a382ec5e87aa1dec569b6d77e48ff66042be7ba31358cd9c6336d415f358f7fb",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137"
+      },
+      "outputPath": null,
+      "outputSha256": null,
+      "castManifestId": null,
+      "dependencies": [
+        "gold:camp_departure"
+      ],
+      "selection": "NOT_GENERATED",
+      "rejectionReasons": [],
+      "parentCandidate": null,
+      "sourceVideo": null,
+      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
+      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+    },
+    {
+      "assetCandidateId": "pilot_e_cinematic_keyframe_c",
+      "mission": "CIN-6E-A.3",
+      "semanticMode": "CINEMATIC_VIDEO",
+      "assetType": "CINEMATIC_KEYFRAME",
+      "beatId": "media:cedric_encounter",
+      "dialogueId": null,
+      "visualFamily": "FOREST_ROAD",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+      "quality": "max",
+      "attempt": "C",
+      "generationTimestamp": "2026-09-12T21:35:32.674Z",
+      "generationType": "edit",
+      "endpoint": "/v1/images/edits",
+      "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_e_cinematic_keyframe_c.json",
+      "prompt": "Precision edit for RPGThreeJS CIN-6E-A.3. Edit Image 1 only and preserve its approved Pilot E-A Forest Road composition.\n\nImage 1 is the edit target. Keep its camera, framing, character positions and scale, action poses, forest-road environment, road and ground plane, depth, lighting, palette, atmosphere, foreground foliage, distant architecture, material response, and integrated cinematic appearance unchanged wherever possible.\n\nMake one targeted identity correction: restore Kestrel's canonical opaque GREEN CLOTH FACE MASK exactly as shown in Image 3. The green cloth must cover and conceal Kestrel's nose, mouth, jaw, chin, cheeks, and every other piece of lower-face skin. Only the eyes may remain visible within deep green hood shadow. No human nose, lips, mouth, jaw, chin, beard, or exposed lower-face anatomy may be visible.\n\nPreserve Cedric exactly as staged in Image 1 and as defined by Image 2: deep-purple hood, closed dark metallic face mask, fully concealed human face, agile armored silhouette, canonical purple and brown palette, and paired curved blades. Do not expose any Cedric facial anatomy.\n\nPreserve Kestrel's green hood, green and brown palette, longbow, drawn arrow, quiver, compact ranger silhouette, pose, scale, and grounding. The cloth mask belongs under the hood and must read clearly as green fabric rather than skin, metal, beard, or shadow alone.\n\nRequired result: both characters physically integrated into the existing environment with shared perspective, ground contact, occlusion, lighting, atmosphere, and depth. No collage look. No redesign, extra character, removed character, changed weapon, changed costume, changed pose, changed environment, text, UI, logo, watermark, or editorial framing.\n\nInput roles in upload order:\nImage 1: exact E-A edit target and composition authority.\nImage 2: immutable canonical full-body identity authority for Cedric.\nImage 3: immutable canonical full-body identity authority for Kestrel, especially the green cloth face mask.",
+      "promptSha256": "aea7e77885a8d40c3489941ba337eec5a9e439c357c399ea2ff301200a293602",
+      "referencePaths": [
+        "tmp/cinematics/cin6ea/execution/images/pilot_e_cinematic_keyframe_a/pilot_e_cinematic_keyframe_a.png",
+        "public/assets/characters/pixel/full/cedric.png",
+        "public/assets/characters/pixel/full/kestrel.png"
+      ],
+      "referenceSha256": {
+        "tmp/cinematics/cin6ea/execution/images/pilot_e_cinematic_keyframe_a/pilot_e_cinematic_keyframe_a.png": "b40f6b16f6a588386d58d2e5dd35f9ade21a8c38d67455d03f49c678508ebdef",
+        "public/assets/characters/pixel/full/cedric.png": "ed71da3f7bd7ac94596bd4d20ef62047940d4457fbae7d6898f54ba221f6972f",
+        "public/assets/characters/pixel/full/kestrel.png": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+      },
+      "outputPath": "tmp/cinematics/cin6ea/execution/images/pilot_e_cinematic_keyframe_c/pilot_e_cinematic_keyframe_c.png",
+      "outputSha256": "d2943e0349c22ea7045f1b8e0a5b0571e1a8c0bacdb8496a3799fce70ad0317a",
+      "castManifestId": "cast:media:cedric_encounter",
+      "dependencies": [
+        "pilot_e_cinematic_keyframe_a",
+        "canonical:cedric",
+        "canonical:kestrel"
+      ],
+      "selection": "OPERATOR_APPROVED",
+      "rejectionReasons": [],
+      "parentCandidate": "pilot_e_cinematic_keyframe_a",
+      "repairTarget": "Restore Kestrel canonical green cloth face mask while preserving the E-A composition.",
+      "sourceVideo": null,
+      "finalApprovalState": "OPERATOR_APPROVED",
+      "executionStatus": "GENERATED_AND_OPERATOR_APPROVED"
+    }
+  ]
+}

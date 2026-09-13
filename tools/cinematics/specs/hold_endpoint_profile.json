@@ -1,0 +1,295 @@
+{
+  "schemaVersion": 1,
+  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "role": "CINEMATIC_HOLD",
+  "preferredSource": "approved exact final video frame",
+  "extraction": {
+    "mode": "lossless deterministic exact-frame extraction",
+    "batchAllowedInCin6ea": false
+  },
+  "targetEndStateRequired": [
+    "final camera position",
+    "final framing",
+    "required visible cast",
+    "actor positions",
+    "facing",
+    "relative scale",
+    "scene context",
+    "dialogue or choice safe area",
+    "stable motion state",
+    "hold continuity identity"
+  ],
+  "rejection": [
+    "motion blur",
+    "morph artifact",
+    "cast error",
+    "identity break",
+    "location reset",
+    "unsafe dialogue/choice overlap"
+  ],
+  "currentSlots": [
+    {
+      "assetId": "lion_judgement_hold",
+      "beatIds": [
+        "dialogue:lion_finale_judgement"
+      ],
+      "family": "LION_JUDGEMENT",
+      "currentSource": "lion_judgement",
+      "sourceVideoHash": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9",
+      "exactFinalFrameSuitable": "NO_REMASTER_OR_REGENERATION_REQUIRED",
+      "futureRemasterMustImproveEndpoint": true
+    },
+    {
+      "assetId": "serpent_general_reveal_hold",
+      "beatIds": [
+        "dialogue:serpent_pursuit_pre_combat"
+      ],
+      "family": "SERPENT_FINALE",
+      "currentSource": "serpent_general_reveal",
+      "sourceVideoHash": "e8c918d292693e4bc7f612fc6f4fbcdb283c6d2f8095c805db287692e561a682",
+      "exactFinalFrameSuitable": "NO_REMASTER_OR_REGENERATION_REQUIRED",
+      "futureRemasterMustImproveEndpoint": true
+    },
+    {
+      "assetId": "lion_champion_reveal_hold",
+      "beatIds": [
+        "dialogue:pre_lion_chief"
+      ],
+      "family": "LION_TRIAL",
+      "currentSource": "lion_champion_reveal",
+      "sourceVideoHash": "2d581e76e5cc0a37d4633fd6d7166210780da55475f54abadfd90aedaf30b04c",
+      "exactFinalFrameSuitable": "NO_REMASTER_OR_REGENERATION_REQUIRED",
+      "futureRemasterMustImproveEndpoint": true
+    },
+    {
+      "assetId": "forest_journey_tension_hold",
+      "beatIds": [
+        "dialogue:pre_opening_trail"
+      ],
+      "family": "FOREST_ROAD",
+      "currentSource": "forest_journey_tension",
+      "sourceVideoHash": "385f5f9b99b22d9710ef1ef7a89fd21a8b59e392664a51a2480eab6167511fac",
+      "exactFinalFrameSuitable": "NO_REMASTER_OR_REGENERATION_REQUIRED",
+      "futureRemasterMustImproveEndpoint": true
+    },
+    {
+      "assetId": "camp_departure_hold",
+      "beatIds": [
+        "dialogue:camp_departure"
+      ],
+      "family": "LION_CAMP",
+      "currentSource": "camp_departure",
+      "sourceVideoHash": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3",
+      "exactFinalFrameSuitable": "HUMAN_REVIEW_REQUIRED",
+      "futureRemasterMustImproveEndpoint": false
+    },
+    {
+      "assetId": "alaric_audience_arrival_hold",
+      "beatIds": [
+        "dialogue:lion_briefing"
+      ],
+      "family": "ALARIC_AUDIENCE",
+      "currentSource": "alaric_audience_arrival",
+      "sourceVideoHash": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629",
+      "exactFinalFrameSuitable": "HUMAN_REVIEW_REQUIRED",
+      "futureRemasterMustImproveEndpoint": false
+    },
+    {
+      "assetId": "refugees_approach_hold",
+      "beatIds": [],
+      "family": "FOREST_ROAD",
+      "currentSource": "refugees_approach",
+      "sourceVideoHash": "5f1d76f8686c2bf2f9775576da6d50649cb33e1c5157b46e6d3f9d5b719e5a28",
+      "exactFinalFrameSuitable": "NO_REMASTER_OR_REGENERATION_REQUIRED",
+      "futureRemasterMustImproveEndpoint": true
+    },
+    {
+      "assetId": "first_refuge_arrival_hold",
+      "beatIds": [],
+      "family": "FIRST_REFUGE",
+      "currentSource": "first_refuge_arrival",
+      "sourceVideoHash": "31b4a50f678d6d7431a855d7056bbcee66f44f8a623081be972b79986a55c56e",
+      "exactFinalFrameSuitable": "NO_REMASTER_OR_REGENERATION_REQUIRED",
+      "futureRemasterMustImproveEndpoint": true
+    },
+    {
+      "assetId": "valmir_route_fork_hold",
+      "beatIds": [],
+      "family": "VALMIR_ROAD",
+      "currentSource": "valmir_route_fork",
+      "sourceVideoHash": "63a4a0c3793d6e29ce8fd94b1478dfab59e40f856d53a01915e47fb9a6343261",
+      "exactFinalFrameSuitable": "HUMAN_REVIEW_REQUIRED",
+      "futureRemasterMustImproveEndpoint": false
+    },
+    {
+      "assetId": "bois_clair_arrival_hold",
+      "beatIds": [
+        "dialogue:village_choice"
+      ],
+      "family": "BOIS_CLAIR",
+      "currentSource": "bois_clair_arrival",
+      "sourceVideoHash": "a37d397665960f8f6749d8f1ece69eaf91c7160cec68fc581ed26ea78042a699",
+      "exactFinalFrameSuitable": "NO_REMASTER_OR_REGENERATION_REQUIRED",
+      "futureRemasterMustImproveEndpoint": true
+    },
+    {
+      "assetId": "bois_clair_saved_hold",
+      "beatIds": [],
+      "family": "BOIS_CLAIR",
+      "currentSource": "bois_clair_saved",
+      "sourceVideoHash": "a57d9ef8ff2fbb26084066b057f89948bdfe59de22dc7f7770d6576900223b1f",
+      "exactFinalFrameSuitable": "NO_REMASTER_OR_REGENERATION_REQUIRED",
+      "futureRemasterMustImproveEndpoint": true
+    },
+    {
+      "assetId": "bois_clair_sacrificed_hold",
+      "beatIds": [],
+      "family": "BOIS_CLAIR",
+      "currentSource": "bois_clair_sacrificed",
+      "sourceVideoHash": "db07031a3105fb31280abe3aca026cb74e4612e2aa44f7023b5401847322f1a4",
+      "exactFinalFrameSuitable": "NO_REMASTER_OR_REGENERATION_REQUIRED",
+      "futureRemasterMustImproveEndpoint": true
+    },
+    {
+      "assetId": "witnesses_encounter_hold",
+      "beatIds": [],
+      "family": "WITNESS_ROAD",
+      "currentSource": "witnesses_encounter",
+      "sourceVideoHash": "de8f577bb18dc4ce30e0ec3d902fe7f27c4778154ade2e6e1a14eeec99ac4b98",
+      "exactFinalFrameSuitable": "NO_REMASTER_OR_REGENERATION_REQUIRED",
+      "futureRemasterMustImproveEndpoint": true
+    },
+    {
+      "assetId": "ruins_approach_context_hold",
+      "beatIds": [
+        "dialogue:pre_ruins_guardians"
+      ],
+      "family": "SHADOW_RUINS",
+      "currentSource": "ruins_approach_context",
+      "sourceVideoHash": "adf235b6d84889cf80059ae314e7472f2c07e9dcd2f7e9cf99cf7f936bebe525",
+      "exactFinalFrameSuitable": "NO_REMASTER_OR_REGENERATION_REQUIRED",
+      "futureRemasterMustImproveEndpoint": true
+    },
+    {
+      "assetId": "serpent_route_ending_hold",
+      "beatIds": [],
+      "family": "SERPENT_FINALE",
+      "currentSource": "serpent_route_ending",
+      "sourceVideoHash": "f1de1f29ccc98ca66f97da94c21060d100687e4fef39b2d0378bcdea36db395c",
+      "exactFinalFrameSuitable": "NO_REMASTER_OR_REGENERATION_REQUIRED",
+      "futureRemasterMustImproveEndpoint": true
+    },
+    {
+      "assetId": "lion_trial_route_ending_hold",
+      "beatIds": [],
+      "family": "LION_TRIAL",
+      "currentSource": "lion_trial_route_ending",
+      "sourceVideoHash": "34f023ac0313e622a82d53c955e63e1e56a62eb4bd3bfdef9580196fcff178b2",
+      "exactFinalFrameSuitable": "NO_REMASTER_OR_REGENERATION_REQUIRED",
+      "futureRemasterMustImproveEndpoint": true
+    },
+    {
+      "assetId": "serpent_road_tension_hold",
+      "beatIds": [
+        "dialogue:pre_serpent_checkpoint",
+        "dialogue:pre_serpent_hunters",
+        "dialogue:pre_serpent_patrol",
+        "dialogue:pre_serpent_reprisals"
+      ],
+      "family": "VALMIR_ROAD",
+      "currentSource": "serpent_road_tension",
+      "sourceVideoHash": "33be67338637de8413738789b8a0fa067007ff65bae06081b229870817f56412",
+      "exactFinalFrameSuitable": "HUMAN_REVIEW_REQUIRED",
+      "futureRemasterMustImproveEndpoint": false
+    },
+    {
+      "assetId": "shrine_reveal_context_hold",
+      "beatIds": [
+        "dialogue:mystery_shrine",
+        "dialogue:old_shrine_event"
+      ],
+      "family": "SHADOW_RUINS",
+      "currentSource": "shrine_reveal_context",
+      "sourceVideoHash": "e28a9ceb996e16291594f99e2905b25da35b316b0aafe1c058dfe5818d09f48c",
+      "exactFinalFrameSuitable": "HUMAN_REVIEW_REQUIRED",
+      "futureRemasterMustImproveEndpoint": false
+    },
+    {
+      "assetId": "injured_merchant_encounter_hold",
+      "beatIds": [
+        "dialogue:mystery_help"
+      ],
+      "family": "FOREST_ROAD",
+      "currentSource": "injured_merchant_encounter",
+      "sourceVideoHash": "a1e6de8c63d1d83d5ee51c5de6548a62b068392fdcd746a948f231d253405892",
+      "exactFinalFrameSuitable": "HUMAN_REVIEW_REQUIRED",
+      "futureRemasterMustImproveEndpoint": false
+    },
+    {
+      "assetId": "abandoned_cart_reveal_hold",
+      "beatIds": [
+        "dialogue:mystery_treasure"
+      ],
+      "family": "FOREST_ROAD",
+      "currentSource": "abandoned_cart_reveal",
+      "sourceVideoHash": "535b70307fa5aebadd846dc91f1bbcebbc8ad8f845c7c4d61823808def7a57f8",
+      "exactFinalFrameSuitable": "HUMAN_REVIEW_REQUIRED",
+      "futureRemasterMustImproveEndpoint": false
+    },
+    {
+      "assetId": "spider_nest_reveal_hold",
+      "beatIds": [
+        "dialogue:pre_spider_nest"
+      ],
+      "family": "FOREST_ROAD",
+      "currentSource": "spider_nest_reveal",
+      "sourceVideoHash": "7f98991ba6ae91f7904355736875d822c70b5af48ebeeef64598730405e57b0b",
+      "exactFinalFrameSuitable": "HUMAN_REVIEW_REQUIRED",
+      "futureRemasterMustImproveEndpoint": false
+    },
+    {
+      "assetId": "troll_crossing_reveal_hold",
+      "beatIds": [
+        "dialogue:pre_troll_crossing"
+      ],
+      "family": "VALMIR_ROAD",
+      "currentSource": "troll_crossing_reveal",
+      "sourceVideoHash": "6ddb0044b5259870bbad78d31a57ab77dc7d47268310514ef8d7e00a2a6d3281",
+      "exactFinalFrameSuitable": "HUMAN_REVIEW_REQUIRED",
+      "futureRemasterMustImproveEndpoint": false
+    },
+    {
+      "assetId": "serpent_duelist_reveal_hold",
+      "beatIds": [
+        "dialogue:pre_serpent_duelist_trial"
+      ],
+      "family": "VALMIR_ROAD",
+      "currentSource": "serpent_duelist_reveal",
+      "sourceVideoHash": "9bf2e927a0940b5b0b3d116a7dbb692bf00c1371b19fa985f154bf08527c2560",
+      "exactFinalFrameSuitable": "HUMAN_REVIEW_REQUIRED",
+      "futureRemasterMustImproveEndpoint": false
+    },
+    {
+      "assetId": "young_dragon_encounter_hold",
+      "beatIds": [
+        "dialogue:mystery_dragon_roost"
+      ],
+      "family": "SHADOW_RUINS",
+      "currentSource": "young_dragon_encounter",
+      "sourceVideoHash": "a9cf74c8372981aeb7afdde9efa2a8e5222284fe098b6be5f03223d2d22bdc91",
+      "exactFinalFrameSuitable": "HUMAN_REVIEW_REQUIRED",
+      "futureRemasterMustImproveEndpoint": false
+    },
+    {
+      "assetId": "serpent_informant_encounter_hold",
+      "beatIds": [
+        "dialogue:serpent_informant"
+      ],
+      "family": "SHADOW_RUINS",
+      "currentSource": "serpent_informant_encounter",
+      "sourceVideoHash": "5a1a79ed2c9c07f1da13aa2ed872be8823de7223324dba6faa2c7dc60507c069",
+      "exactFinalFrameSuitable": "HUMAN_REVIEW_REQUIRED",
+      "futureRemasterMustImproveEndpoint": false
+    }
+  ]
+}

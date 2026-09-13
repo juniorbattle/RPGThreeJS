@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "reviewTitle": "CIN-6E-A.1 Exact Image Fidelity Gate",
+  "referencePolicy": {
+    "sourceOfTruth": "public/assets/characters/pixel/full/*.png",
+    "rule": "Judge every character independently against the canonical full sprite. Preserve face visibility or concealment, headwear, silhouette, proportions, palette, costume or armor family, weapons, accessories, and distinctive shapes. A character is masked only when the matching canonical sprite is masked.",
+    "staticTableauRule": "Static tableaux use the canonical runtime full sprites unchanged. Generated tableau assets are character-free backgrounds.",
+    "operatorGate": "Operator image review complete. H3 is authorized only from C-B, E-A and F-A; new image generation remains forbidden."
+  },
+  "executionState": {
+    "imageGeneration": "FORBIDDEN_ZERO_NEW_IMAGES",
+    "videoGeneration": "AUTHORIZED_SELECTED_H3_C_E_F_ONLY",
+    "commit": "NOT_CREATED",
+    "push": "NOT_PERFORMED",
+    "notes": [
+      "Pilot E H3 completed before the image-fidelity correction and is quarantined from selection.",
+      "Pilot F H3 monitoring was stopped; no local MP4 is part of this review."
+    ]
+  },
+  "pilots": [
+    {
+      "id": "A",
+      "name": "Royal Audience Tableau",
+      "summary": "Character-free audience backgrounds composited with unchanged canonical runtime sprites.",
+      "assets": [
+        {
+          "id": "pilot_a_background_a",
+          "kind": "STATIC_TABLEAU_BACKGROUND",
+          "status": "NOT_SELECTED",
+          "image": "tmp/cinematics/cin6ea/execution/pilot_a/smoke/pilot_a_static_tableau_background_a.png",
+          "characters": [],
+          "reason": "Character-free and compatible with the safe zones. Candidate B has a cleaner ground plane and stronger audience depth."
+        },
+        {
+          "id": "pilot_a_background_b",
+          "kind": "STATIC_TABLEAU_BACKGROUND",
+          "status": "OPERATOR_APPROVED",
+          "image": "tmp/cinematics/cin6ea/execution/pilot_a/candidate-b/pilot_a_static_tableau_background_b.png",
+          "characters": [],
+          "reason": "Character-free, coherent royal pavilion, clean foreground stage, and compatible with the canonical audience tableau."
+        },
+        {
+          "id": "pilot_a_runtime_composite_b_1920",
+          "kind": "RUNTIME_COMPOSITE_1920X1080",
+          "status": "OPERATOR_APPROVED",
+          "image": "tmp/cinematics/cin6ea/execution/pilot_a/runtime-composite-b/1920x1080-pilot-a-static-tableau-background-a.png",
+          "characters": ["sage_seraphine", "maelor", "alistair", "alaric"],
+          "reason": "Foreground cast comes directly from canonical full sprites; no generated character interpretation is present."
+        },
+        {
+          "id": "pilot_a_runtime_composite_b_1366",
+          "kind": "RUNTIME_COMPOSITE_1366X768",
+          "status": "OPERATOR_APPROVED",
+          "image": "tmp/cinematics/cin6ea/execution/pilot_a/runtime-composite-b/1366x768-pilot-a-static-tableau-background-a.png",
+          "characters": ["sage_seraphine", "maelor", "alistair", "alaric"],
+          "reason": "Responsive proof using the same unchanged canonical sprites."
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "name": "Forest Road Cross-mode",
+      "summary": "Forest family master, integrated Travel Still, and canonical-sprite tableau share one location identity.",
+      "assets": [
+        {
+          "id": "forest_road_master_a",
+          "kind": "VISUAL_FAMILY_MASTER",
+          "status": "OPERATOR_APPROVED",
+          "image": "tmp/cinematics/cin6ea/execution/images/forest_road_master_a/forest_road_master_a.png",
+          "characters": [],
+          "reason": "Character-free forest-road identity suitable for cross-mode lineage."
+        },
+        {
+          "id": "pilot_b_travel_still_a",
+          "kind": "TRAVEL_STILL",
+          "status": "OPERATOR_APPROVED",
+          "image": "tmp/cinematics/cin6ea/execution/images/pilot_b_travel_still_a/pilot_b_travel_still_a.png",
+          "characters": ["sage_seraphine", "alistair", "maelor"],
+          "reason": "Alistair retains the closed dark helm, red plume, greatsword, charcoal plate and red cape. Seraphine retains her visible face, cream hood, teal-and-gold robes and censer staff. Maelor retains his visible face, purple-and-gold court coat, book and dagger."
+        },
+        {
+          "id": "pilot_b_runtime_composite_a_1920",
+          "kind": "RUNTIME_COMPOSITE_1920X1080",
+          "status": "OPERATOR_APPROVED",
+          "image": "tmp/cinematics/cin6ea/execution/pilot_b/runtime-composite-a/1920x1080-pilot_b_static_tableau_background_a.png",
+          "characters": ["kestrel", "alistair", "maelor"],
+          "reason": "Static tableau uses unchanged canonical full sprites over a character-free background."
+        },
+        {
+          "id": "pilot_b_runtime_composite_a_1366",
+          "kind": "RUNTIME_COMPOSITE_1366X768",
+          "status": "OPERATOR_APPROVED",
+          "image": "tmp/cinematics/cin6ea/execution/pilot_b/runtime-composite-a/1366x768-pilot_b_static_tableau_background_a.png",
+          "characters": ["kestrel", "alistair", "maelor"],
+          "reason": "Responsive proof using the same unchanged canonical sprites."
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "name": "Camp Continuous Shot",
+      "summary": "Both integrated keyframes retain Marian's canonical closed white-and-gold face helm; they remain available for operator selection.",
+      "assets": [
+        {
+          "id": "pilot_c_cinematic_keyframe_a",
+          "kind": "CINEMATIC_KEYFRAME",
+          "status": "APPROVED_ALTERNATE_NOT_SELECTED",
+          "image": "tmp/cinematics/cin6ea/execution/images/pilot_c_cinematic_keyframe_a/pilot_c_cinematic_keyframe_a.png",
+          "characters": ["marian", "maelor", "alistair"],
+          "reason": "Marian correctly retains the closed white-and-gold slit helm, white and pale-blue ceremonial armor-robes, star-topped staff and light magic. Maelor and Alistair also retain their canonical identity features."
+        },
+        {
+          "id": "pilot_c_cinematic_keyframe_b",
+          "kind": "CINEMATIC_KEYFRAME",
+          "status": "OPERATOR_SELECTED_FOR_H3",
+          "image": "tmp/cinematics/cin6ea/execution/images/pilot_c_cinematic_keyframe_b/pilot_c_cinematic_keyframe_b.png",
+          "characters": ["marian", "maelor", "alistair"],
+          "reason": "Marian's fully concealed face is faithful to full/marian.png. The alternate composition preserves the same three canonical identities and remains pending operator choice."
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "name": "Second Refuge Tableau",
+      "summary": "Character-free night refuge background with unchanged canonical runtime cast.",
+      "assets": [
+        {
+          "id": "pilot_d_runtime_composite_a_1920",
+          "kind": "RUNTIME_COMPOSITE_1920X1080",
+          "status": "OPERATOR_APPROVED",
+          "image": "tmp/cinematics/cin6ea/execution/pilot_d/runtime-composite-a/1920x1080-pilot_d_static_tableau_background_a.png",
+          "characters": ["villageoise", "marian", "alistair", "maelor"],
+          "reason": "Generated layer is character-free; foreground identity is the canonical full-sprite cast."
+        },
+        {
+          "id": "pilot_d_runtime_composite_a_1366",
+          "kind": "RUNTIME_COMPOSITE_1366X768",
+          "status": "OPERATOR_APPROVED",
+          "image": "tmp/cinematics/cin6ea/execution/pilot_d/runtime-composite-a/1366x768-pilot_d_static_tableau_background_a.png",
+          "characters": ["villageoise", "marian", "alistair", "maelor"],
+          "reason": "Responsive proof using the same unchanged canonical sprites."
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "name": "Cedric Encounter Transition",
+      "summary": "Candidate A was operator-selected for H3; dynamic review proves Cedric stable but reveals that Kestrel's canonical green cloth mask is absent from the immutable source. Candidate B remains permanently rejected for Cedric mask loss.",
+      "assets": [
+        {
+          "id": "pilot_e_cinematic_keyframe_a",
+          "kind": "CINEMATIC_KEYFRAME",
+          "status": "OPERATOR_SELECTED_FOR_H3",
+          "image": "tmp/cinematics/cin6ea/execution/images/pilot_e_cinematic_keyframe_a/pilot_e_cinematic_keyframe_a.png",
+          "characters": ["cedric", "kestrel"],
+          "reason": "Cedric retains the deep-purple hood, metal face mask, agile armored silhouette and paired curved blades. CIN-6E-A.2 found that Kestrel's source rendering exposes a human nose, mouth and jaw instead of the canonical green cloth mask; this selected source now requires operator revisit."
+        },
+        {
+          "id": "pilot_e_cinematic_keyframe_b",
+          "kind": "CINEMATIC_KEYFRAME",
+          "status": "PERMANENTLY_REJECTED_CHARACTER_FIDELITY",
+          "image": "tmp/cinematics/cin6ea/execution/images/pilot_e_cinematic_keyframe_b/pilot_e_cinematic_keyframe_b.png",
+          "characters": ["cedric", "kestrel"],
+          "reason": "Cedric's canonical metal face mask disappears and a visible human lower face is introduced. This identity change is disqualifying."
+        },
+        {
+          "id": "pilot_e_runtime_composite_a_1920",
+          "kind": "RUNTIME_COMPOSITE_1920X1080",
+          "status": "OPERATOR_APPROVED",
+          "image": "tmp/cinematics/cin6ea/execution/pilot_e/runtime-composite-a/1920x1080-pilot_e_static_tableau_background_a.png",
+          "characters": ["kestrel", "cedric"],
+          "reason": "Static tableau uses the exact canonical Kestrel and Cedric full sprites."
+        },
+        {
+          "id": "pilot_e_runtime_composite_a_1366",
+          "kind": "RUNTIME_COMPOSITE_1366X768",
+          "status": "OPERATOR_APPROVED",
+          "image": "tmp/cinematics/cin6ea/execution/pilot_e/runtime-composite-a/1366x768-pilot_e_static_tableau_background_a.png",
+          "characters": ["kestrel", "cedric"],
+          "reason": "Responsive proof using the same unchanged canonical sprites."
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "name": "Shadow Signs Low Light",
+      "summary": "Integrated keyframe preserves Seraphine's visible face and Elara's concealed face under her wide-brim hat.",
+      "assets": [
+        {
+          "id": "pilot_f_cinematic_keyframe_a",
+          "kind": "CINEMATIC_KEYFRAME",
+          "status": "OPERATOR_SELECTED_FOR_H3",
+          "image": "tmp/cinematics/cin6ea/execution/images/pilot_f_cinematic_keyframe_a/pilot_f_cinematic_keyframe_a.png",
+          "characters": ["sage_seraphine", "elara"],
+          "reason": "Seraphine retains her visible face, cream hood, teal-and-gold robes, satchel and censer staff. Elara retains the pointed wide-brim hat, fully shadowed face with blue eyes, blue-gold robes, book and blue magic."
+        },
+        {
+          "id": "pilot_f_runtime_composite_a_1920",
+          "kind": "RUNTIME_COMPOSITE_1920X1080",
+          "status": "OPERATOR_APPROVED",
+          "image": "tmp/cinematics/cin6ea/execution/pilot_f/runtime-composite-a/1920x1080-pilot_f_static_tableau_background_a.png",
+          "characters": ["sage_seraphine", "elara", "alistair", "maelor"],
+          "reason": "Static tableau uses unchanged canonical full sprites over a character-free background."
+        },
+        {
+          "id": "pilot_f_runtime_composite_a_1366",
+          "kind": "RUNTIME_COMPOSITE_1366X768",
+          "status": "OPERATOR_APPROVED",
+          "image": "tmp/cinematics/cin6ea/execution/pilot_f/runtime-composite-a/1366x768-pilot_f_static_tableau_background_a.png",
+          "characters": ["sage_seraphine", "elara", "alistair", "maelor"],
+          "reason": "Responsive proof using the same unchanged canonical sprites."
+        }
+      ]
+    }
+  ]
+}

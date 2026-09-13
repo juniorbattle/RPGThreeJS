@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "role": "TRAVEL_STILL",
+  "frame": {
+    "aspect": "16:9",
+    "productionSize": [
+      1920,
+      1080
+    ],
+    "cropViewports": [
+      [
+        1920,
+        1080
+      ],
+      [
+        1366,
+        768
+      ]
+    ]
+  },
+  "composition": "complete integrated cinematic frame",
+  "castPolicy": "integrated cast only; resolve from SceneCastManifest",
+  "uiPolicy": {
+    "dialogueCard": false,
+    "theatricalCast": false,
+    "speakerFocus": false,
+    "listenerDimming": false
+  },
+  "continuity": [
+    "same family landmarks",
+    "same perspective and ground",
+    "same light direction and material response",
+    "route and recruitment state from runtime truth"
+  ],
+  "cropSafe": {
+    "keepRequiredFacesWithin": {
+      "x": [
+        0.08,
+        0.92
+      ],
+      "y": [
+        0.12,
+        0.82
+      ]
+    },
+    "keepRequiredRouteLandmarksWithin": {
+      "x": [
+        0.05,
+        0.95
+      ],
+      "y": [
+        0.08,
+        0.86
+      ]
+    }
+  },
+  "livingStill": {
+    "semanticModeRemains": "TRAVEL_STILL",
+    "allowed": [
+      "foliage",
+      "smoke",
+      "fire",
+      "water",
+      "weather",
+      "dust",
+      "cloth",
+      "subtle light",
+      "very subtle camera drift"
+    ],
+    "forbidden": [
+      "new action",
+      "dialogue performance",
+      "major camera move",
+      "combat",
+      "reveal"
+    ],
+    "reducedMotion": "use static source"
+  }
+}

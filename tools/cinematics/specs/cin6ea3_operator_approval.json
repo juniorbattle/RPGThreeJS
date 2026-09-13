@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "mission": "CIN-6E-A.3",
+  "approvedOn": "2026-09-12",
+  "operatorDecision": "E-C_OPERATOR_APPROVED",
+  "approvedCandidateId": "pilot_e_cinematic_keyframe_c",
+  "approvedSourcePath": "tmp/cinematics/cin6ea/execution/images/pilot_e_cinematic_keyframe_c/pilot_e_cinematic_keyframe_c.png",
+  "approvedSourceSha256": "d2943e0349c22ea7045f1b8e0a5b0571e1a8c0bacdb8496a3799fce70ad0317a",
+  "externalUploadAuthorization": {
+    "authorized": true,
+    "service": "MiniMax H3 I2V",
+    "authorizedPayload": [
+      "tmp/cinematics/cin6ea/execution/images/pilot_e_cinematic_keyframe_c/pilot_e_cinematic_keyframe_c.png"
+    ],
+    "purpose": "One non-production Pilot E dynamic video regate only",
+    "pilotsCAndFExcluded": true
+  },
+  "constraints": {
+    "productionUse": false,
+    "modifyPilotsCOrF": false,
+    "modifyProductionMedia": false,
+    "commit": false,
+    "push": false
+  }
+}

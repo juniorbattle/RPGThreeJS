@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6ea2_pilot_e_cedric_continuous",
+  "cinematicId": "cin6ea2_pilot_e_cedric_continuous",
+  "tier": "MICRO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6ea-2-selected-h3-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "CIN-6E-A.2 non-production dynamic validation. Animate only the operator-selected E-A keyframe as one continuous forest-road encounter with exact canonical Cedric and Kestrel identity and no recruitment outcome.",
+  "shots": [{
+    "shotId": "shot_01",
+    "purpose": "Validate Cedric and Kestrel mask, weapon, cast and forest-road continuity.",
+    "framing": "WIDE_FOREST_TWO_SHOT",
+    "environment": "public/assets/generated/lion-phase/dialogue/mystery_recruit.webp",
+    "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6ea2_pilot_e_cedric_continuous/shot_01/source.png" },
+    "characters": [
+      { "id": "cedric", "asset": "public/assets/characters/pixel/full/cedric.png", "position": { "x": 0.36, "groundY": 0.91 }, "scale": { "framing": "WIDE", "perspective": 1.1 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:kestrel", "depth": 20, "role": "PRIMARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" },
+      { "id": "kestrel", "asset": "public/assets/characters/pixel/full/kestrel.png", "position": { "x": 0.63, "groundY": 0.89 }, "scale": { "framing": "WIDE", "perspective": 1.0 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:cedric", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+    ],
+    "camera": { "mode": "STATIC" },
+    "durationSeconds": 5,
+    "continuityOut": "END",
+    "endIntent": "CEDRIC_ENCOUNTER_HOLD_UNRESOLVED",
+    "promptIntent": "ONE PHYSICAL SCENE, ONE CONTINUOUS SHOT, ZERO CUTS. Starting from the exact E-A frame, Cedric makes one restrained weight-settling motion while Kestrel keeps her drawn bow stable in the same forest-road space. Cedric must retain the deep-purple hood, CLOSED DARK METAL FACE MASK with narrow eye and vertical mouth slits, fully concealed face, agile armored silhouette, canonical purple-brown-gold palette and both curved blades. CEDRIC MASK LOSS or any exposed human face is a disqualifying failure. Kestrel must retain the green hood, green cloth face mask with no exposed mouth or jaw, longbow, quiver, green-brown-gold palette and compact archer silhouette. Preserve both actors continuously with the same sides, relative scale, ground contact, weapons, hands, lighting, road, shrine, castle and landmarks. Animate only breathing, tiny cloth response, leaves and thin mist. No new person, no disappearance, no recruitment gesture, no attack, no arrow release, no teleport, no scene reset, no hard or hidden cut, no camera move. End sharp in the original guarded tableau with both characters fully readable and HOLD-safe."
+  }]
+}

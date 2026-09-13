@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6ea2_pilot_c_camp_continuous",
+  "cinematicId": "cin6ea2_pilot_c_camp_continuous",
+  "tier": "MICRO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6ea-2-selected-h3-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "CIN-6E-A.2 non-production dynamic validation. Animate only the operator-selected C-B integrated keyframe as one physical Lion camp scene, one continuous shot, with exact canonical character identity and a clean stable HOLD endpoint.",
+  "shots": [{
+    "shotId": "shot_01",
+    "purpose": "Validate Marian, Maelor and Alistair identity, cast and camp continuity through restrained company movement.",
+    "framing": "WIDE_CAMP_COMPANY_THREE_SHOT",
+    "environment": "public/assets/generated/lion-phase/dialogue/camp_departure.webp",
+    "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6ea2_pilot_c_camp_continuous/shot_01/source.png" },
+    "characters": [
+      { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.27, "groundY": 0.85 }, "scale": { "framing": "WIDE", "perspective": 0.95 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_road", "depth": 30, "role": "SECONDARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
+      { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.50, "groundY": 0.86 }, "scale": { "framing": "WIDE", "perspective": 1.0 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alistair", "depth": 20, "role": "PRIMARY", "action": "STEP_FORWARD", "mirrorPolicy": "ALLOW" },
+      { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.71, "groundY": 0.87 }, "scale": { "framing": "WIDE", "perspective": 1.08 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_road", "depth": 10, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
+    ],
+    "camera": { "mode": "SLOW_PUSH" },
+    "durationSeconds": 5,
+    "continuityOut": "END",
+    "endIntent": "CAMP_DEPARTURE_CLEAN_HOLD",
+    "promptIntent": "ONE PHYSICAL SCENE, ONE CONTINUOUS SHOT, ZERO CUTS. Starting from the exact C-B frame, Marian, Maelor and Alistair make one restrained coherent forward movement through the same Lion camp while the camera performs only a very slow continuous push. Preserve all three people continuously with no disappearance, addition, side swap, teleport, reconstruction or world reset. Marian keeps her closed white-and-gold slit helm and fully concealed face, white and pale-blue ceremonial armor-robes, star-topped staff and light magic. Maelor keeps his visible face, black swept hair, purple-gold coat, open grimoire and dagger. Alistair keeps his closed dark helm, red plume, charcoal plate, red cape and two-handed greatsword. Preserve exact masks, faces, silhouettes, proportions, colors, costumes, weapons, hands, relative heights, scale, ground contact, camp layout and light direction. Animate only one restrained step, breathing, minor cloth, smoke, flags and distant camp activity. No combat, no new people, no montage, no hard cut, no hidden cut, no angle reset, no occlusion transition, no flash transition. Slow motion to a sharp stable final composition containing Marian, Maelor and Alistair, suitable as a HOLD."
+  }]
+}

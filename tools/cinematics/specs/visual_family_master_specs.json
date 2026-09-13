@@ -1,0 +1,1221 @@
+{
+  "schemaVersion": 1,
+  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "count": 13,
+  "generationModel": "gpt-image-2.5-sunburst-2026-09-08",
+  "quality": "max",
+  "candidatePolicy": "A and B; C only after diagnosed failure; fourth only for documented defect",
+  "generationStatus": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+  "families": [
+    {
+      "visualFamilyId": "LION_CAMP",
+      "nodesAndEvents": [
+        "lion-camp"
+      ],
+      "narrativePurpose": "origin, duty and company departure",
+      "physicalLocationIdentity": "fortified Lion expedition camp at a mountain-road threshold",
+      "architecture": [
+        "blue-and-gold command tents",
+        "timber palisade",
+        "watch platforms"
+      ],
+      "terrain": "rocky alpine valley",
+      "groundMaterial": "mud, trampled grass and rain-dark stone",
+      "palette": [
+        "Lion blue",
+        "burnished gold",
+        "warm ember orange",
+        "cool mountain grey"
+      ],
+      "keyLightDirection": "low rear three-quarter dawn light from the valley",
+      "keyLightTemperature": "warm sunrise",
+      "ambientFill": "cool open-sky fill",
+      "atmosphere": "thin mist, banked smoke and dawn haze",
+      "depthLanguage": "framing tent edges, company plane, layered camp and mountain distance",
+      "foregroundLanguage": "soft tent or supply silhouettes without blocking feet",
+      "midgroundLanguage": "clear company staging road",
+      "backgroundLanguage": "palisade, flags, pines and mountain pass",
+      "weather": "calm after rain",
+      "materialLanguage": "painted cloth, wet earth, weathered timber and restrained metal highlights",
+      "environmentalMotionCandidates": [
+        "banner drift",
+        "smoke",
+        "embers",
+        "distant cloth"
+      ],
+      "forbiddenVisualDrift": [
+        "desert camp",
+        "bright tournament pavilion",
+        "modern military camp",
+        "flat character cutouts"
+      ],
+      "goldReferenceLineage": [
+        "camp_departure"
+      ],
+      "signatureLandmarks": [
+        "Lion banners",
+        "camp palisade",
+        "mountain road"
+      ],
+      "cameraLanguage": "wide low eye-level departure frame",
+      "timeOfDay": "dawn",
+      "continuityAcrossModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD",
+        "TRAVEL_STILL",
+        "STATIC_TABLEAU_BACKGROUND"
+      ],
+      "currentVideoMasters": [
+        "camp_departure"
+      ],
+      "futureHoldFrames": [
+        "camp_departure_hold"
+      ],
+      "requiredTravelStills": [
+        "camp_to_audience"
+      ],
+      "requiredTableauBackgrounds": [
+        "acte_ouverture_tableau_bg"
+      ],
+      "familyMasterCandidates": [
+        {
+          "id": "lion_camp_master_a",
+          "attempt": "A",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        },
+        {
+          "id": "lion_camp_master_b",
+          "attempt": "B",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        }
+      ],
+      "provisionalPreferredCandidate": null,
+      "humanApproval": "REQUIRED"
+    },
+    {
+      "visualFamilyId": "ALARIC_AUDIENCE",
+      "nodesAndEvents": [
+        "lion-audience"
+      ],
+      "narrativePurpose": "formal mandate, opposed counsel and player agency",
+      "physicalLocationIdentity": "Alaric audience chamber inside the Lion command pavilion",
+      "architecture": [
+        "central Lion banner",
+        "raised authority lane",
+        "timber-and-cloth royal hall",
+        "ordered torch rows"
+      ],
+      "terrain": "interior pavilion",
+      "groundMaterial": "patterned woven carpet over timber and stone",
+      "palette": [
+        "deep Lion blue",
+        "aged gold",
+        "warm amber",
+        "dark umber"
+      ],
+      "keyLightDirection": "high central warm shafts with side torch fill",
+      "keyLightTemperature": "warm torch and candle gold",
+      "ambientFill": "cool blue cloth bounce",
+      "atmosphere": "dust motes and restrained smoke",
+      "depthLanguage": "foreground furniture blur, cast plane, dais and banner wall",
+      "foregroundLanguage": "dark soft occluders at frame corners",
+      "midgroundLanguage": "unbroken actor ground plane with clear speaker lanes",
+      "backgroundLanguage": "symmetrical banners, long table, candles and guard-depth suggestions",
+      "weather": "interior",
+      "materialLanguage": "rich cloth, carved dark timber, brass, wax and grounded carpet",
+      "environmentalMotionCandidates": [
+        "torch flicker",
+        "banner settling",
+        "dust"
+      ],
+      "forbiddenVisualDrift": [
+        "stone cathedral",
+        "empty throne-room scale",
+        "red Serpent heraldry",
+        "flat pasted party lineup"
+      ],
+      "goldReferenceLineage": [
+        "alaric_audience_arrival"
+      ],
+      "signatureLandmarks": [
+        "central Lion banner",
+        "dais",
+        "torch rows"
+      ],
+      "cameraLanguage": "formal symmetrical authority frame",
+      "timeOfDay": "interior timeless",
+      "continuityAcrossModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD",
+        "TRAVEL_STILL",
+        "STATIC_TABLEAU_BACKGROUND"
+      ],
+      "currentVideoMasters": [
+        "alaric_audience_arrival"
+      ],
+      "futureHoldFrames": [
+        "alaric_audience_arrival_hold"
+      ],
+      "requiredTravelStills": [],
+      "requiredTableauBackgrounds": [],
+      "familyMasterCandidates": [
+        {
+          "id": "alaric_audience_master_a",
+          "attempt": "A",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        },
+        {
+          "id": "alaric_audience_master_b",
+          "attempt": "B",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        }
+      ],
+      "provisionalPreferredCandidate": null,
+      "humanApproval": "REQUIRED"
+    },
+    {
+      "visualFamilyId": "FOREST_ROAD",
+      "nodesAndEvents": [
+        "lion-opening-ambush",
+        "lion-nomad-crossroads",
+        "lion-refugees",
+        "lion-first-trial-event",
+        "lion-first-trial-combat"
+      ],
+      "narrativePurpose": "travel, uncertainty, encounter and aftermath",
+      "physicalLocationIdentity": "old woodland roads linking the Lion territories",
+      "architecture": [
+        "weathered waystones",
+        "small timber markers",
+        "occasional ruined masonry"
+      ],
+      "terrain": "rolling temperate forest",
+      "groundMaterial": "rutted wet earth, roots and scattered stone",
+      "palette": [
+        "moss green",
+        "wet bark brown",
+        "cool slate",
+        "filtered warm daylight"
+      ],
+      "keyLightDirection": "broken upper-left canopy light",
+      "keyLightTemperature": "neutral daylight with warm breaks",
+      "ambientFill": "cool green woodland bounce",
+      "atmosphere": "layered mist and suspended moisture",
+      "depthLanguage": "foreground foliage, readable road stage, receding trunks and ridges",
+      "foregroundLanguage": "soft foliage framing outside UI zones",
+      "midgroundLanguage": "broad grounded road for cast or integrated travellers",
+      "backgroundLanguage": "road bend, ridge and travel marker",
+      "weather": "recent rain",
+      "materialLanguage": "wet bark, mossy stone, earth and matte cloth",
+      "environmentalMotionCandidates": [
+        "foliage",
+        "mist",
+        "water",
+        "dust motes"
+      ],
+      "forbiddenVisualDrift": [
+        "enchanted neon forest",
+        "tropical jungle",
+        "flat meadow",
+        "unmotivated castle skyline"
+      ],
+      "goldReferenceLineage": [
+        "valmir_route_fork",
+        "camp_departure"
+      ],
+      "signatureLandmarks": [
+        "forked road",
+        "forest ridge",
+        "travel markers"
+      ],
+      "cameraLanguage": "grounded road perspective with open lower staging plane",
+      "timeOfDay": "day",
+      "continuityAcrossModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD",
+        "TRAVEL_STILL",
+        "STATIC_TABLEAU_BACKGROUND"
+      ],
+      "currentVideoMasters": [
+        "forest_journey_tension",
+        "refugees_approach",
+        "cedric_encounter",
+        "injured_merchant_encounter",
+        "abandoned_cart_reveal",
+        "spider_nest_reveal"
+      ],
+      "futureHoldFrames": [
+        "forest_journey_tension_hold",
+        "refugees_approach_hold",
+        "injured_merchant_encounter_hold",
+        "abandoned_cart_reveal_hold",
+        "spider_nest_reveal_hold"
+      ],
+      "requiredTravelStills": [
+        "audience_road_departure",
+        "forest_road_after_opening",
+        "crossroads_to_refugees"
+      ],
+      "requiredTableauBackgrounds": [
+        "ate_alaric_reports_tableau_bg",
+        "ate_serpent_scout_report_tableau_bg",
+        "ate_village_fear_tableau_bg",
+        "mystery_ambush_tableau_bg",
+        "mystery_recruit_tableau_bg",
+        "post_opening_trail_tableau_bg",
+        "post_serpent_patrol_tableau_bg",
+        "post_serpent_reprisals_tableau_bg",
+        "post_spider_nest_tableau_bg",
+        "refugee_trial_tableau_bg",
+        "rep_event_brokered_information_tableau_bg",
+        "rep_event_displaced_family_demand_tableau_bg",
+        "rep_event_fallen_banner_claimant_tableau_bg",
+        "rep_event_public_petition_tableau_bg",
+        "rep_event_roadside_intimidation_tableau_bg",
+        "rep_event_serpent_rumour_market_tableau_bg"
+      ],
+      "familyMasterCandidates": [
+        {
+          "id": "forest_road_master_a",
+          "attempt": "A",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        },
+        {
+          "id": "forest_road_master_b",
+          "attempt": "B",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        }
+      ],
+      "provisionalPreferredCandidate": null,
+      "humanApproval": "REQUIRED"
+    },
+    {
+      "visualFamilyId": "FIRST_REFUGE",
+      "nodesAndEvents": [
+        "lion-first-refuge"
+      ],
+      "narrativePurpose": "earned safety and fragile civilian shelter",
+      "physicalLocationIdentity": "first palisade refuge hidden in the forest",
+      "architecture": [
+        "rough palisade",
+        "watch fires",
+        "supply shelter",
+        "visible exit road"
+      ],
+      "terrain": "wooded enclosure",
+      "groundMaterial": "packed earth, plank paths and straw",
+      "palette": [
+        "ember amber",
+        "cool pine green",
+        "weathered brown",
+        "smoke grey"
+      ],
+      "keyLightDirection": "low firelight from the interior-left",
+      "keyLightTemperature": "warm fire against cool dusk",
+      "ambientFill": "cool forest twilight",
+      "atmosphere": "sheltered smoke and light mist",
+      "depthLanguage": "gate framing, open staging yard and tree-walled distance",
+      "foregroundLanguage": "supplies kept below face and UI zones",
+      "midgroundLanguage": "clear refuge yard and ground band",
+      "backgroundLanguage": "palisade, watch tower and exit road",
+      "weather": "cool dusk",
+      "materialLanguage": "rough timber, worn canvas, earth and firelit metal",
+      "environmentalMotionCandidates": [
+        "fire",
+        "smoke",
+        "cloth",
+        "foliage"
+      ],
+      "forbiddenVisualDrift": [
+        "stone city",
+        "luxury camp",
+        "crowded baked civilians",
+        "daylight mismatch"
+      ],
+      "goldReferenceLineage": [
+        "camp_departure"
+      ],
+      "signatureLandmarks": [
+        "palisade",
+        "watch fires",
+        "supply shelter"
+      ],
+      "cameraLanguage": "safe enclosure with visible exit road",
+      "timeOfDay": "dusk",
+      "continuityAcrossModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD",
+        "TRAVEL_STILL",
+        "STATIC_TABLEAU_BACKGROUND"
+      ],
+      "currentVideoMasters": [
+        "first_refuge_arrival",
+        "first_refuge_departure"
+      ],
+      "futureHoldFrames": [
+        "first_refuge_arrival_hold"
+      ],
+      "requiredTravelStills": [
+        "first_trial_to_refuge",
+        "first_refuge_departure"
+      ],
+      "requiredTableauBackgrounds": [
+        "ate_first_refuge_watch_tableau_bg",
+        "rep_event_refuge_supply_offer_tableau_bg"
+      ],
+      "familyMasterCandidates": [
+        {
+          "id": "first_refuge_master_a",
+          "attempt": "A",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        },
+        {
+          "id": "first_refuge_master_b",
+          "attempt": "B",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        }
+      ],
+      "provisionalPreferredCandidate": null,
+      "humanApproval": "REQUIRED"
+    },
+    {
+      "visualFamilyId": "VALMIR_ROAD",
+      "nodesAndEvents": [
+        "lion-reserve-trail",
+        "lion-valmir-road",
+        "lion-second-trial-event",
+        "lion-second-trial-combat"
+      ],
+      "narrativePurpose": "route geography, choice and rising military pressure",
+      "physicalLocationIdentity": "mountain forest junction on the road to Valmir",
+      "architecture": [
+        "fork marker",
+        "old shrine stones",
+        "distant fortified road"
+      ],
+      "terrain": "highland conifer road",
+      "groundMaterial": "wet stone, dark soil and shallow reflective ruts",
+      "palette": [
+        "moonlit blue-grey",
+        "pine black-green",
+        "warm watch-fire orange",
+        "weathered stone"
+      ],
+      "keyLightDirection": "cool high-left celestial light",
+      "keyLightTemperature": "cool moon or late-day mountain light",
+      "ambientFill": "misty blue forest fill",
+      "atmosphere": "low mist with warm distant fire contrast",
+      "depthLanguage": "foreground branch frame, two readable route corridors and mountain layers",
+      "foregroundLanguage": "dark foliage vignette outside route-safe zones",
+      "midgroundLanguage": "symmetric fork and company rest plane",
+      "backgroundLanguage": "left shrine and right fortification with equal narrative weight",
+      "weather": "humid and still",
+      "materialLanguage": "wet earth, mossy stone, dark timber and controlled torchlight",
+      "environmentalMotionCandidates": [
+        "mist",
+        "leaves",
+        "water reflections",
+        "torchlight"
+      ],
+      "forbiddenVisualDrift": [
+        "single dominant route",
+        "labels or arrows",
+        "bright pastoral day",
+        "selected destination cues"
+      ],
+      "goldReferenceLineage": [
+        "valmir_route_fork"
+      ],
+      "signatureLandmarks": [
+        "road fork",
+        "Valmir ridge",
+        "shrine stones"
+      ],
+      "cameraLanguage": "wide route geography and readable directional depth",
+      "timeOfDay": "late day",
+      "continuityAcrossModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD",
+        "TRAVEL_STILL",
+        "STATIC_TABLEAU_BACKGROUND"
+      ],
+      "currentVideoMasters": [
+        "valmir_route_fork",
+        "serpent_road_tension",
+        "troll_crossing_reveal",
+        "serpent_duelist_reveal"
+      ],
+      "futureHoldFrames": [
+        "valmir_route_fork_hold",
+        "serpent_road_tension_hold",
+        "troll_crossing_reveal_hold",
+        "serpent_duelist_reveal_hold"
+      ],
+      "requiredTravelStills": [
+        "reserve_to_valmir"
+      ],
+      "requiredTableauBackgrounds": [
+        "ate_serpent_general_warning_tableau_bg",
+        "mystery_troll_crossing_tableau_bg",
+        "post_serpent_checkpoint_tableau_bg",
+        "post_serpent_duelist_trial_tableau_bg",
+        "post_troll_crossing_tableau_bg",
+        "post_valmir_road_tableau_bg",
+        "pre_valmir_road_tableau_bg",
+        "reserve_trail_tableau_bg",
+        "serpent_duelist_trial_tableau_bg"
+      ],
+      "familyMasterCandidates": [
+        {
+          "id": "valmir_road_master_a",
+          "attempt": "A",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        },
+        {
+          "id": "valmir_road_master_b",
+          "attempt": "B",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        }
+      ],
+      "provisionalPreferredCandidate": null,
+      "humanApproval": "REQUIRED"
+    },
+    {
+      "visualFamilyId": "BOIS_CLAIR",
+      "nodesAndEvents": [
+        "lion-village-choice"
+      ],
+      "narrativePurpose": "civilian consequence, defence or sacrifice",
+      "physicalLocationIdentity": "threatened village of Bois-Clair at the forest edge",
+      "architecture": [
+        "chapel",
+        "timber houses",
+        "north captive route",
+        "south reserve route"
+      ],
+      "terrain": "village basin below wooded ridges",
+      "groundMaterial": "muddy lane, cobbles, ash and timber debris",
+      "palette": [
+        "smoke umber",
+        "ember orange",
+        "weathered plaster",
+        "cool recovery blue"
+      ],
+      "keyLightDirection": "side firelight balanced by sky light",
+      "keyLightTemperature": "warm fire with outcome-specific cool or dawn relief",
+      "ambientFill": "smoke-softened sky",
+      "atmosphere": "layered smoke with readable silhouettes",
+      "depthLanguage": "near props, square staging plane, roofs and ridge",
+      "foregroundLanguage": "low debris that does not interfere with sprite feet",
+      "midgroundLanguage": "open village square",
+      "backgroundLanguage": "chapel, roofs, smoke and split roads",
+      "weather": "smoky late day",
+      "materialLanguage": "soot, timber, stone, plaster and damp earth",
+      "environmentalMotionCandidates": [
+        "smoke",
+        "embers",
+        "cloth",
+        "distant fire"
+      ],
+      "forbiddenVisualDrift": [
+        "pristine fairy village",
+        "modern town",
+        "identifiable baked party",
+        "indiscriminate inferno"
+      ],
+      "goldReferenceLineage": [
+        "camp_departure",
+        "valmir_route_fork"
+      ],
+      "signatureLandmarks": [
+        "chapel",
+        "north captives route",
+        "south reserves route"
+      ],
+      "cameraLanguage": "village square and split objective geography",
+      "timeOfDay": "late day into night",
+      "continuityAcrossModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD",
+        "TRAVEL_STILL",
+        "STATIC_TABLEAU_BACKGROUND"
+      ],
+      "currentVideoMasters": [
+        "bois_clair_arrival",
+        "bois_clair_saved",
+        "bois_clair_sacrificed"
+      ],
+      "futureHoldFrames": [
+        "bois_clair_arrival_hold",
+        "bois_clair_saved_hold",
+        "bois_clair_sacrificed_hold"
+      ],
+      "requiredTravelStills": [
+        "second_trial_to_bois_clair",
+        "bois_clair_to_second_refuge"
+      ],
+      "requiredTableauBackgrounds": [
+        "ate_maelor_seal_analysis_tableau_bg",
+        "pre_village_defense_tableau_bg",
+        "pre_village_raid_tableau_bg",
+        "rep_event_bois_clair_denunciation_tableau_bg",
+        "rep_event_village_memorial_request_tableau_bg",
+        "village_defense_aftermath_tableau_bg",
+        "village_raid_aftermath_tableau_bg"
+      ],
+      "familyMasterCandidates": [
+        {
+          "id": "bois_clair_master_a",
+          "attempt": "A",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        },
+        {
+          "id": "bois_clair_master_b",
+          "attempt": "B",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        }
+      ],
+      "provisionalPreferredCandidate": null,
+      "humanApproval": "REQUIRED"
+    },
+    {
+      "visualFamilyId": "SECOND_REFUGE",
+      "nodesAndEvents": [
+        "lion-second-refuge",
+        "lion-lancer-recruit"
+      ],
+      "narrativePurpose": "night recovery, new ally encounter and renewed departure",
+      "physicalLocationIdentity": "second roadside refuge after Bois-Clair",
+      "architecture": [
+        "tent line",
+        "low palisade",
+        "campfire circle",
+        "departure gate"
+      ],
+      "terrain": "forest clearing beside the road",
+      "groundMaterial": "packed earth, grass and ash",
+      "palette": [
+        "deep blue night",
+        "low amber fire",
+        "cool morning grey",
+        "muted canvas"
+      ],
+      "keyLightDirection": "low central firelight transitioning to right-side dawn",
+      "keyLightTemperature": "warm local fire, cool ambient night",
+      "ambientFill": "soft blue nocturnal fill",
+      "atmosphere": "thin smoke and cool haze",
+      "depthLanguage": "near camp objects, open meeting ground, dark tree boundary and exit road",
+      "foregroundLanguage": "low bedroll or crate silhouettes",
+      "midgroundLanguage": "clear NPC-compatible meeting space",
+      "backgroundLanguage": "tents, gate and forest road",
+      "weather": "still night to morning",
+      "materialLanguage": "canvas, timber, ash, leather and damp soil",
+      "environmentalMotionCandidates": [
+        "fire",
+        "smoke",
+        "tent cloth",
+        "morning mist"
+      ],
+      "forbiddenVisualDrift": [
+        "bright royal camp",
+        "baked Garen in tableau plate",
+        "dense crowd",
+        "flat black shadows"
+      ],
+      "goldReferenceLineage": [
+        "camp_departure",
+        "valmir_route_fork"
+      ],
+      "signatureLandmarks": [
+        "campfire",
+        "tent line",
+        "departure gate"
+      ],
+      "cameraLanguage": "intimate refuge staging opening onto the road",
+      "timeOfDay": "night to morning",
+      "continuityAcrossModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD",
+        "TRAVEL_STILL",
+        "STATIC_TABLEAU_BACKGROUND"
+      ],
+      "currentVideoMasters": [
+        "second_refuge_departure",
+        "garen_encounter"
+      ],
+      "futureHoldFrames": [],
+      "requiredTravelStills": [
+        "second_refuge_departure"
+      ],
+      "requiredTableauBackgrounds": [
+        "ate_bois_clair_night_watch_tableau_bg",
+        "mystery_lancer_recruit_tableau_bg"
+      ],
+      "familyMasterCandidates": [
+        {
+          "id": "second_refuge_master_a",
+          "attempt": "A",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        },
+        {
+          "id": "second_refuge_master_b",
+          "attempt": "B",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        }
+      ],
+      "provisionalPreferredCandidate": null,
+      "humanApproval": "REQUIRED"
+    },
+    {
+      "visualFamilyId": "WITNESS_ROAD",
+      "nodesAndEvents": [
+        "lion-witnesses"
+      ],
+      "narrativePurpose": "testimony, social evidence and consequence",
+      "physicalLocationIdentity": "open road where witnesses meet the company",
+      "architecture": [
+        "road marker",
+        "distant settlement smoke",
+        "simple verge fencing"
+      ],
+      "terrain": "open woodland verge",
+      "groundMaterial": "drying earth and pale road stone",
+      "palette": [
+        "neutral daylight",
+        "muted green",
+        "dust tan",
+        "distant smoke blue"
+      ],
+      "keyLightDirection": "broad upper-left daylight",
+      "keyLightTemperature": "neutral warm day",
+      "ambientFill": "open-sky blue",
+      "atmosphere": "long clear depth with distant haze",
+      "depthLanguage": "open encounter lanes and long road recession",
+      "foregroundLanguage": "sparse grasses and verge stones",
+      "midgroundLanguage": "separate witness and party lanes",
+      "backgroundLanguage": "road, wooded verge and distant smoke",
+      "weather": "clear day",
+      "materialLanguage": "dust, worn timber, cloth and natural stone",
+      "environmentalMotionCandidates": [
+        "grass",
+        "dust",
+        "distant smoke"
+      ],
+      "forbiddenVisualDrift": [
+        "court interior",
+        "dense dark forest",
+        "combat staging",
+        "crowd without narrative basis"
+      ],
+      "goldReferenceLineage": [
+        "camp_departure"
+      ],
+      "signatureLandmarks": [
+        "road marker",
+        "distant Bois-Clair smoke",
+        "wooded verge"
+      ],
+      "cameraLanguage": "social encounter frame with witness lane and party lane",
+      "timeOfDay": "day",
+      "continuityAcrossModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD",
+        "TRAVEL_STILL",
+        "STATIC_TABLEAU_BACKGROUND"
+      ],
+      "currentVideoMasters": [
+        "witnesses_encounter"
+      ],
+      "futureHoldFrames": [
+        "witnesses_encounter_hold"
+      ],
+      "requiredTravelStills": [
+        "garen_to_witness_road"
+      ],
+      "requiredTableauBackgrounds": [
+        "ate_lion_council_doubt_tableau_bg",
+        "witnesses_on_road_tableau_bg"
+      ],
+      "familyMasterCandidates": [
+        {
+          "id": "witness_road_master_a",
+          "attempt": "A",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        },
+        {
+          "id": "witness_road_master_b",
+          "attempt": "B",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        }
+      ],
+      "provisionalPreferredCandidate": null,
+      "humanApproval": "REQUIRED"
+    },
+    {
+      "visualFamilyId": "SHADOW_RUINS",
+      "nodesAndEvents": [
+        "lion-final-trial-event",
+        "lion-final-trial-combat",
+        "lion-shadow-signs"
+      ],
+      "narrativePurpose": "evidence, dread, supernatural warning and final trial aftermath",
+      "physicalLocationIdentity": "ancient ruins marked by restrained Shadow corruption",
+      "architecture": [
+        "inscribed monoliths",
+        "broken arch",
+        "shrine stones",
+        "buried terrace"
+      ],
+      "terrain": "rocky forest ruins",
+      "groundMaterial": "wet flagstone, moss, roots and fine violet fissures",
+      "palette": [
+        "cold slate",
+        "moon blue",
+        "desaturated moss",
+        "restrained violet",
+        "small warm lantern accents"
+      ],
+      "keyLightDirection": "cool high side light through broken canopy",
+      "keyLightTemperature": "cold blue-grey",
+      "ambientFill": "low violet-neutral stone bounce",
+      "atmosphere": "mist, dust and faint corruption haze",
+      "depthLanguage": "evidence foreground, actor plane, monumental arch and obscured depth",
+      "foregroundLanguage": "readable relic fragments outside dialogue-safe zones",
+      "midgroundLanguage": "flat stone staging plane with controlled contrast",
+      "backgroundLanguage": "ruin arch, forest depth and subtle shadow veins",
+      "weather": "overcast or night",
+      "materialLanguage": "wet stone, moss, aged metal and restrained emissive corruption",
+      "environmentalMotionCandidates": [
+        "mist",
+        "dust",
+        "subtle violet pulse",
+        "foliage"
+      ],
+      "forbiddenVisualDrift": [
+        "neon purple fantasy",
+        "black unreadable frame",
+        "lava",
+        "generic gothic cathedral"
+      ],
+      "goldReferenceLineage": [
+        "valmir_route_fork"
+      ],
+      "signatureLandmarks": [
+        "inscribed stones",
+        "ruin arch",
+        "shadow veins"
+      ],
+      "cameraLanguage": "monumental ruin depth with readable evidence foreground",
+      "timeOfDay": "overcast day",
+      "continuityAcrossModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD",
+        "TRAVEL_STILL",
+        "STATIC_TABLEAU_BACKGROUND"
+      ],
+      "currentVideoMasters": [
+        "ruins_approach_context",
+        "shadow_signs",
+        "shrine_reveal_context",
+        "young_dragon_encounter",
+        "serpent_informant_encounter"
+      ],
+      "futureHoldFrames": [
+        "ruins_approach_context_hold",
+        "shrine_reveal_context_hold",
+        "young_dragon_encounter_hold",
+        "serpent_informant_encounter_hold"
+      ],
+      "requiredTravelStills": [
+        "final_trial_to_shadow"
+      ],
+      "requiredTableauBackgrounds": [
+        "ate_ruins_awaken_tableau_bg",
+        "ate_serpent_retreat_order_tableau_bg",
+        "post_ruins_guardians_tableau_bg",
+        "post_serpent_hunters_tableau_bg",
+        "post_young_dragon_roost_tableau_bg",
+        "pre_young_dragon_roost_tableau_bg",
+        "shadow_signs_tableau_bg"
+      ],
+      "familyMasterCandidates": [
+        {
+          "id": "shadow_ruins_master_a",
+          "attempt": "A",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        },
+        {
+          "id": "shadow_ruins_master_b",
+          "attempt": "B",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        }
+      ],
+      "provisionalPreferredCandidate": null,
+      "humanApproval": "REQUIRED"
+    },
+    {
+      "visualFamilyId": "FINAL_REFUGE",
+      "nodesAndEvents": [
+        "lion-final-refuge"
+      ],
+      "narrativePurpose": "reflection, dossier review and route-ending preparation",
+      "physicalLocationIdentity": "last Lion shelter before judgement",
+      "architecture": [
+        "final campfire",
+        "dossier table",
+        "Lion road",
+        "sparse tents"
+      ],
+      "terrain": "high wooded overlook",
+      "groundMaterial": "packed soil, flat stone and pine needles",
+      "palette": [
+        "quiet dusk blue",
+        "warm shelter amber",
+        "muted Lion gold",
+        "violet-grey distance"
+      ],
+      "keyLightDirection": "low warm fire from one side with dusk rim",
+      "keyLightTemperature": "warm shelter edge against cool dusk",
+      "ambientFill": "soft sky blue",
+      "atmosphere": "still haze and distant mountain air",
+      "depthLanguage": "intimate foreground table, open company plane and long road beyond",
+      "foregroundLanguage": "dossier props confined to low corner",
+      "midgroundLanguage": "reflective camp staging",
+      "backgroundLanguage": "road toward Lion territory and distant peaks",
+      "weather": "clear dusk",
+      "materialLanguage": "paper, leather, timber, stone and soft cloth",
+      "environmentalMotionCandidates": [
+        "fire",
+        "paper edge",
+        "smoke",
+        "distant cloth"
+      ],
+      "forbiddenVisualDrift": [
+        "busy refugee camp",
+        "battlefield",
+        "bright noon",
+        "baked route outcome"
+      ],
+      "goldReferenceLineage": [
+        "camp_departure"
+      ],
+      "signatureLandmarks": [
+        "final campfire",
+        "Lion road",
+        "dossier table"
+      ],
+      "cameraLanguage": "reflective camp frame with dossier-safe negative space",
+      "timeOfDay": "dusk",
+      "continuityAcrossModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD",
+        "TRAVEL_STILL",
+        "STATIC_TABLEAU_BACKGROUND"
+      ],
+      "currentVideoMasters": [
+        "final_refuge_dossier"
+      ],
+      "futureHoldFrames": [],
+      "requiredTravelStills": [
+        "shadow_to_final_refuge"
+      ],
+      "requiredTableauBackgrounds": [
+        "final_refuge_tableau_bg"
+      ],
+      "familyMasterCandidates": [
+        {
+          "id": "final_refuge_master_a",
+          "attempt": "A",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        },
+        {
+          "id": "final_refuge_master_b",
+          "attempt": "B",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        }
+      ],
+      "provisionalPreferredCandidate": null,
+      "humanApproval": "REQUIRED"
+    },
+    {
+      "visualFamilyId": "LION_JUDGEMENT",
+      "nodesAndEvents": [
+        "lion-final-judgement"
+      ],
+      "narrativePurpose": "verdict, disclosure and final route authority",
+      "physicalLocationIdentity": "formal Lion judgement hall",
+      "architecture": [
+        "Lion dais",
+        "central seal",
+        "court banners",
+        "judgement terrace"
+      ],
+      "terrain": "interior ceremonial hall",
+      "groundMaterial": "dark polished stone and formal carpet",
+      "palette": [
+        "deep blue",
+        "hard gold",
+        "dark red accents",
+        "charcoal"
+      ],
+      "keyLightDirection": "high central authority light",
+      "keyLightTemperature": "formal warm gold",
+      "ambientFill": "cool deep-blue fill",
+      "atmosphere": "controlled haze and torch smoke",
+      "depthLanguage": "opposed lanes, central seal and receding court",
+      "foregroundLanguage": "restrained dark court framing",
+      "midgroundLanguage": "clear judgement axis",
+      "backgroundLanguage": "dais, seal and banner symmetry",
+      "weather": "interior",
+      "materialLanguage": "stone, heavy cloth, gold metal and dark timber",
+      "environmentalMotionCandidates": [
+        "torch",
+        "banner",
+        "dust"
+      ],
+      "forbiddenVisualDrift": [
+        "audience arrival replay",
+        "casual camp",
+        "Serpent-dominant heraldry",
+        "crowded throne room"
+      ],
+      "goldReferenceLineage": [
+        "alaric_audience_arrival"
+      ],
+      "signatureLandmarks": [
+        "Lion dais",
+        "central seal",
+        "court banners"
+      ],
+      "cameraLanguage": "symmetrical judgement frame with opposed lanes",
+      "timeOfDay": "interior timeless",
+      "continuityAcrossModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD",
+        "TRAVEL_STILL",
+        "STATIC_TABLEAU_BACKGROUND"
+      ],
+      "currentVideoMasters": [
+        "lion_judgement"
+      ],
+      "futureHoldFrames": [
+        "lion_judgement_hold"
+      ],
+      "requiredTravelStills": [
+        "final_refuge_to_judgement"
+      ],
+      "requiredTableauBackgrounds": [],
+      "familyMasterCandidates": [
+        {
+          "id": "lion_judgement_master_a",
+          "attempt": "A",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        },
+        {
+          "id": "lion_judgement_master_b",
+          "attempt": "B",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        }
+      ],
+      "provisionalPreferredCandidate": null,
+      "humanApproval": "REQUIRED"
+    },
+    {
+      "visualFamilyId": "SERPENT_FINALE",
+      "nodesAndEvents": [
+        "lion-final-judgement"
+      ],
+      "narrativePurpose": "hostile reveal, final confrontation and aftermath",
+      "physicalLocationIdentity": "ruined arena under Serpent occupation and Shadow pressure",
+      "architecture": [
+        "ruin arena",
+        "Serpent standard",
+        "Shadow artefact"
+      ],
+      "terrain": "weathered stone terrace",
+      "groundMaterial": "cracked stone, ash and sparse moss",
+      "palette": [
+        "cold ruin grey",
+        "hostile Serpent red",
+        "dark green",
+        "restrained violet"
+      ],
+      "keyLightDirection": "cold lateral sky light cut by red practicals",
+      "keyLightTemperature": "cold ambient with hostile warm accents",
+      "ambientFill": "low storm-blue fill",
+      "atmosphere": "windblown ash and distant mist",
+      "depthLanguage": "arena foreground, confrontation axis and artefact depth",
+      "foregroundLanguage": "broken stone framing outside combat/readability lanes",
+      "midgroundLanguage": "clear boss and party plane",
+      "backgroundLanguage": "standards, ruined wall and artefact landmark",
+      "weather": "twilight wind",
+      "materialLanguage": "weathered stone, dark steel, torn cloth and subtle corruption",
+      "environmentalMotionCandidates": [
+        "standards",
+        "ash",
+        "mist",
+        "subtle artefact pulse"
+      ],
+      "forbiddenVisualDrift": [
+        "lava arena",
+        "bright heroic parade",
+        "generic demon realm",
+        "purple overload"
+      ],
+      "goldReferenceLineage": [
+        "valmir_route_fork",
+        "alaric_audience_arrival"
+      ],
+      "signatureLandmarks": [
+        "ruin arena",
+        "Serpent standard",
+        "Shadow artefact"
+      ],
+      "cameraLanguage": "boss reveal and aftermath axis toward the artefact",
+      "timeOfDay": "twilight",
+      "continuityAcrossModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD",
+        "TRAVEL_STILL",
+        "STATIC_TABLEAU_BACKGROUND"
+      ],
+      "currentVideoMasters": [
+        "serpent_general_reveal",
+        "serpent_route_ending"
+      ],
+      "futureHoldFrames": [
+        "serpent_general_reveal_hold",
+        "serpent_route_ending_hold"
+      ],
+      "requiredTravelStills": [],
+      "requiredTableauBackgrounds": [
+        "serpent_general_aftermath_tableau_bg"
+      ],
+      "familyMasterCandidates": [
+        {
+          "id": "serpent_finale_master_a",
+          "attempt": "A",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        },
+        {
+          "id": "serpent_finale_master_b",
+          "attempt": "B",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        }
+      ],
+      "provisionalPreferredCandidate": null,
+      "humanApproval": "REQUIRED"
+    },
+    {
+      "visualFamilyId": "LION_TRIAL",
+      "nodesAndEvents": [
+        "lion-final-judgement"
+      ],
+      "narrativePurpose": "voluntary or imposed martial judgement",
+      "physicalLocationIdentity": "Lion ritual trial terrace",
+      "architecture": [
+        "trial circle",
+        "Lion standard",
+        "judgement terrace"
+      ],
+      "terrain": "exposed mountain stone court",
+      "groundMaterial": "weathered flagstone with engraved circle",
+      "palette": [
+        "hard Lion gold",
+        "storm blue",
+        "weathered grey",
+        "controlled red"
+      ],
+      "keyLightDirection": "hard low side light across the duel axis",
+      "keyLightTemperature": "warm gold against cool twilight",
+      "ambientFill": "cold open sky",
+      "atmosphere": "wind, dust and high-altitude haze",
+      "depthLanguage": "foreground circle edge, duel plane and authority terrace",
+      "foregroundLanguage": "engraved stone without face-level clutter",
+      "midgroundLanguage": "clean ritual axis",
+      "backgroundLanguage": "Alaric authority geography, standards and mountain depth",
+      "weather": "windy twilight",
+      "materialLanguage": "stone, steel, heavy cloth and aged gold",
+      "environmentalMotionCandidates": [
+        "standards",
+        "dust",
+        "cape edges"
+      ],
+      "forbiddenVisualDrift": [
+        "colosseum spectacle",
+        "anonymous arena",
+        "Serpent heraldry",
+        "combat VFX baked into plate"
+      ],
+      "goldReferenceLineage": [
+        "alaric_audience_arrival",
+        "valmir_route_fork"
+      ],
+      "signatureLandmarks": [
+        "trial circle",
+        "Lion standard",
+        "judgement terrace"
+      ],
+      "cameraLanguage": "ritual duel axis with Alaric authority visible in geography",
+      "timeOfDay": "twilight",
+      "continuityAcrossModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD",
+        "TRAVEL_STILL",
+        "STATIC_TABLEAU_BACKGROUND"
+      ],
+      "currentVideoMasters": [
+        "lion_champion_reveal",
+        "lion_trial_route_ending"
+      ],
+      "futureHoldFrames": [
+        "lion_champion_reveal_hold",
+        "lion_trial_route_ending_hold"
+      ],
+      "requiredTravelStills": [],
+      "requiredTableauBackgrounds": [
+        "lion_trial_aftermath_tableau_bg"
+      ],
+      "familyMasterCandidates": [
+        {
+          "id": "lion_trial_master_a",
+          "attempt": "A",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        },
+        {
+          "id": "lion_trial_master_b",
+          "attempt": "B",
+          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "selected": false
+        }
+      ],
+      "provisionalPreferredCandidate": null,
+      "humanApproval": "REQUIRED"
+    }
+  ]
+}

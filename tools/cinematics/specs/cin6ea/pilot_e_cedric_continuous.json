@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6ea_pilot_e_cedric_continuous",
+  "cinematicId": "cin6ea_pilot_e_cedric_continuous",
+  "tier": "MICRO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6ea-1-pilot-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "CIN-6E-A non-production validation shot. Premium painted HD-2D fantasy tactical RPG forest encounter. Animate the selected exact-model integrated keyframe as one continuous physical scene with no editorial cut and no recruitment verdict.",
+  "shots": [{
+    "shotId": "shot_01",
+    "purpose": "Validate Cedric and Kestrel identity continuity in one guarded forest encounter hold.",
+    "framing": "WIDE_FOREST_TWO_SHOT",
+    "environment": "public/assets/generated/lion-phase/dialogue/mystery_recruit.webp",
+    "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6ea_pilot_e_cedric_continuous/shot_01/source.png" },
+    "characters": [
+      { "id": "cedric", "asset": "public/assets/characters/pixel/full/cedric.png", "position": { "x": 0.36, "groundY": 0.91 }, "scale": { "framing": "WIDE", "perspective": 1.1 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:kestrel", "depth": 20, "role": "PRIMARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" },
+      { "id": "kestrel", "asset": "public/assets/characters/pixel/full/kestrel.png", "position": { "x": 0.63, "groundY": 0.89 }, "scale": { "framing": "WIDE", "perspective": 1.0 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:cedric", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+    ],
+    "camera": { "mode": "STATIC" },
+    "durationSeconds": 5,
+    "continuityOut": "END",
+    "endIntent": "CEDRIC_ENCOUNTER_HOLD_UNRESOLVED",
+    "promptIntent": "ABSOLUTELY LOCKED CONTINUOUS SHOT. Cedric makes one restrained breathing and weight-settling motion while Kestrel keeps her drawn bow stable. Preserve exact faces, hoods, garments, blades, bow, hands, sides, scale and ground contact. Animate only breathing, tiny cloth response, leaves and thin mist. Zero camera movement, zero cut, zero side swap, no attack, no release of the arrow, no handshake, no recruitment gesture. End sharp in the original guarded tableau."
+  }]
+}

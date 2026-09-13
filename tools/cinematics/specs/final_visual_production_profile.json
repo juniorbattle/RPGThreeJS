@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "productionDefault": "TravelView",
+  "narrativeStageStatus": "DEV_SELECTABLE",
+  "runtimeAi": false,
+  "productionMediaMutationAllowed": false,
+  "imagePipeline": {
+    "requiredModel": "gpt-image-2.5-sunburst-2026-09-08",
+    "requiredQuality": "max",
+    "acceptanceEndpoint": "explicit OpenAI Image API/CLI or a built-in surface that exposes and confirms the exact snapshot",
+    "available": false,
+    "blocker": "OPENAI_API_KEY absent and built-in image tool exposes no model or quality selector",
+    "substitutionAllowed": false
+  },
+  "videoPipeline": {
+    "provider": "MiniMax Open Platform Direct API",
+    "model": "MiniMax-H3",
+    "keySource": ".env.local",
+    "keyAvailable": true,
+    "mode": "offline image-to-video",
+    "sequencing": "one request at a time",
+    "attempted": false,
+    "blockedBy": "no accepted exact-model keyframe"
+  },
+  "goldReferences": [
+    "alaric_audience_arrival",
+    "camp_departure",
+    "valmir_route_fork"
+  ],
+  "visualFamilies": [
+    "LION_CAMP",
+    "ALARIC_AUDIENCE",
+    "FOREST_ROAD",
+    "FIRST_REFUGE",
+    "VALMIR_ROAD",
+    "BOIS_CLAIR",
+    "SECOND_REFUGE",
+    "WITNESS_ROAD",
+    "SHADOW_RUINS",
+    "FINAL_REFUGE",
+    "LION_JUDGEMENT",
+    "SERPENT_FINALE",
+    "LION_TRIAL"
+  ],
+  "modes": [
+    "CINEMATIC_VIDEO",
+    "CINEMATIC_HOLD",
+    "TRAVEL_STILL",
+    "STATIC_TABLEAU"
+  ],
+  "productionStages": [
+    "truth resolution",
+    "reference lineage",
+    "prompt compilation",
+    "integrated keyframe generation",
+    "image QA and human review",
+    "sequential H3 generation",
+    "video QA and human review",
+    "hold extraction",
+    "runtime composite QA",
+    "human approval"
+  ],
+  "rejectionRules": [
+    "wrong cast or state",
+    "character identity drift",
+    "collage look",
+    "perspective or grounding failure",
+    "lighting mismatch",
+    "internal cut",
+    "cast disappearance or addition",
+    "world reset",
+    "unsafe final frame",
+    "different-game family drift"
+  ],
+  "provenanceRequired": true,
+  "humanApprovalRequired": true
+}

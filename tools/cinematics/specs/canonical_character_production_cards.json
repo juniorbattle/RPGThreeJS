@@ -1,0 +1,1673 @@
+{
+  "schemaVersion": 1,
+  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "source": "runtime presentation beats plus canonical full sprites and QC",
+  "count": 22,
+  "characters": [
+    {
+      "characterId": "alaric",
+      "displayName": "Alaric",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/alaric.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/alaric.png"
+      ],
+      "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b",
+      "canonicalAlphaBoundingBox": [
+        27,
+        56,
+        612,
+        742
+      ],
+      "approvedExistingCinematicAppearances": [
+        "lion_judgement",
+        "alaric_audience_arrival",
+        "lion_trial_route_ending"
+      ],
+      "silhouetteInvariants": [
+        "tall courtly build",
+        "short white hair and full white beard",
+        "gold-topped cane or authority staff"
+      ],
+      "apparentAge": "older adult",
+      "bodyProportions": "tall courtly build",
+      "relativeHeight": 1.05,
+      "faceVisibility": "VISIBLE",
+      "hairHeadIdentity": "short white hair and full white beard",
+      "faceIdentityCues": "stern older face, strong brows",
+      "costumeArmor": "deep blue and red Lion court robes with gold trim",
+      "primarySecondaryColors": [
+        "Lion blue",
+        "red",
+        "gold"
+      ],
+      "weapon": "gold-topped cane or authority staff",
+      "accessories": [
+        "sealed scroll",
+        "Lion medallion"
+      ],
+      "factionIdentity": "LION",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "short white hair and full white beard",
+        "stern older face, strong brows",
+        "deep blue and red Lion court robes with gold trim",
+        "Lion blue",
+        "red",
+        "gold",
+        "gold-topped cane or authority staff",
+        "sealed scroll",
+        "Lion medallion",
+        "tall courtly build"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "alistair",
+      "displayName": "Alistair",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/alistair.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/alistair.png"
+      ],
+      "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+      "canonicalAlphaBoundingBox": [
+        86,
+        190,
+        581,
+        736
+      ],
+      "approvedExistingCinematicAppearances": [
+        "camp_departure",
+        "first_refuge_arrival",
+        "bois_clair_arrival",
+        "second_refuge_departure",
+        "final_refuge_dossier"
+      ],
+      "silhouetteInvariants": [
+        "broad armored build",
+        "closed dark helm with red plume",
+        "large two-handed greatsword"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "broad armored build",
+      "relativeHeight": 1.08,
+      "faceVisibility": "CONCEALED_BY_CLOSED_HELM",
+      "hairHeadIdentity": "closed dark helm with red plume",
+      "faceIdentityCues": "face normally concealed by canonical helm",
+      "costumeArmor": "dark plate armor with red scarf and cape",
+      "primarySecondaryColors": [
+        "charcoal steel",
+        "red",
+        "brown leather"
+      ],
+      "weapon": "large two-handed greatsword",
+      "accessories": [
+        "red plume",
+        "red cloak"
+      ],
+      "factionIdentity": "OUR_COMPANY",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "closed dark helm with red plume",
+        "face normally concealed by canonical helm",
+        "dark plate armor with red scarf and cape",
+        "charcoal steel",
+        "red",
+        "brown leather",
+        "large two-handed greatsword",
+        "red plume",
+        "red cloak",
+        "broad armored build"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "cedric",
+      "displayName": "Cedric",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/cedric.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/cedric.png"
+      ],
+      "referenceSha256": "ed71da3f7bd7ac94596bd4d20ef62047940d4457fbae7d6898f54ba221f6972f",
+      "canonicalAlphaBoundingBox": [
+        36,
+        210,
+        602,
+        734
+      ],
+      "approvedExistingCinematicAppearances": [
+        "cedric_encounter"
+      ],
+      "silhouetteInvariants": [
+        "lean agile build",
+        "deep purple hood over a closed dark metal face mask",
+        "paired short blades"
+      ],
+      "apparentAge": "young adult",
+      "bodyProportions": "lean agile build",
+      "relativeHeight": 0.98,
+      "faceVisibility": "CONCEALED_BY_METAL_MASK",
+      "hairHeadIdentity": "deep purple hood over a closed dark metal face mask",
+      "faceIdentityCues": "face fully concealed by a dark metal mask with narrow eye and vertical mouth slits",
+      "costumeArmor": "purple hooded leather scout armor",
+      "primarySecondaryColors": [
+        "purple",
+        "brown leather",
+        "muted gold"
+      ],
+      "weapon": "paired short blades",
+      "accessories": [
+        "hood",
+        "belts"
+      ],
+      "factionIdentity": "OPTIONAL_COMPANY_RECRUIT",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "deep purple hood over a closed dark metal face mask",
+        "face fully concealed by a dark metal mask with narrow eye and vertical mouth slits",
+        "purple hooded leather scout armor",
+        "purple",
+        "brown leather",
+        "muted gold",
+        "paired short blades",
+        "hood",
+        "belts",
+        "lean agile build"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "elara",
+      "displayName": "Elara",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/elara.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/elara.png"
+      ],
+      "referenceSha256": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74",
+      "canonicalAlphaBoundingBox": [
+        89,
+        148,
+        550,
+        733
+      ],
+      "approvedExistingCinematicAppearances": [
+        "shadow_signs"
+      ],
+      "silhouetteInvariants": [
+        "slender robed build",
+        "pointed wide-brim hat over a featureless shadow face with two luminous blue eyes",
+        "arcane focus and blue flame"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "slender robed build",
+      "relativeHeight": 1,
+      "faceVisibility": "CONCEALED_IN_SHADOW_EXCEPT_BLUE_EYES",
+      "hairHeadIdentity": "pointed wide-brim hat over a featureless shadow face",
+      "faceIdentityCues": "face fully concealed in black shadow; only two luminous blue eyes are visible",
+      "costumeArmor": "dark blue arcane robes with gold geometry",
+      "primarySecondaryColors": [
+        "midnight blue",
+        "electric blue",
+        "gold"
+      ],
+      "weapon": "arcane focus and blue flame",
+      "accessories": [
+        "wide-brim hat",
+        "glowing orb"
+      ],
+      "factionIdentity": "OUR_COMPANY",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "pointed wide-brim hat over a featureless shadow face",
+        "face fully concealed in black shadow; only two luminous blue eyes are visible",
+        "dark blue arcane robes with gold geometry",
+        "midnight blue",
+        "electric blue",
+        "gold",
+        "arcane focus and blue flame",
+        "wide-brim hat",
+        "glowing orb",
+        "slender robed build"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "forest_spider",
+      "displayName": "Forest Spider",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/forest_spider.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/forest_spider.png"
+      ],
+      "referenceSha256": "3c4b3ec8ab3fa17bed62208ad4af78eaf5d19273d4c66d081fe1d7d71ae04e42",
+      "canonicalAlphaBoundingBox": [
+        27,
+        243,
+        612,
+        740
+      ],
+      "approvedExistingCinematicAppearances": [
+        "spider_nest_reveal"
+      ],
+      "silhouetteInvariants": [
+        "low wide arachnid",
+        "small armored cephalothorax",
+        "fangs"
+      ],
+      "apparentAge": "creature",
+      "bodyProportions": "low wide arachnid",
+      "relativeHeight": 0.45,
+      "hairHeadIdentity": "small armored cephalothorax",
+      "faceIdentityCues": "clustered eyes and mandibles",
+      "costumeArmor": "natural chitin",
+      "primarySecondaryColors": [
+        "ochre",
+        "olive",
+        "dark brown"
+      ],
+      "weapon": "fangs",
+      "accessories": [],
+      "factionIdentity": "WILDLIFE",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "small armored cephalothorax",
+        "clustered eyes and mandibles",
+        "natural chitin",
+        "ochre",
+        "olive",
+        "dark brown",
+        "fangs",
+        "low wide arachnid"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "forest_troll_elite",
+      "displayName": "Forest Troll Elite",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/forest_troll_elite.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/forest_troll_elite.png"
+      ],
+      "referenceSha256": "288964b0b9ebb17758498d3b9808c147526d6cb08ffcac753124f0b729e1e45f",
+      "canonicalAlphaBoundingBox": [
+        20,
+        131,
+        620,
+        742
+      ],
+      "approvedExistingCinematicAppearances": [
+        "troll_crossing_reveal"
+      ],
+      "silhouetteInvariants": [
+        "massive hunched humanoid",
+        "broad stony brow with sparse mossy hair",
+        "large boulder"
+      ],
+      "apparentAge": "adult creature",
+      "bodyProportions": "massive hunched humanoid",
+      "relativeHeight": 1.35,
+      "hairHeadIdentity": "broad stony brow with sparse mossy hair",
+      "faceIdentityCues": "heavy jaw and tusks",
+      "costumeArmor": "mossy hide and crude wrappings",
+      "primarySecondaryColors": [
+        "moss green",
+        "earth brown",
+        "stone grey"
+      ],
+      "weapon": "large boulder",
+      "accessories": [
+        "rope belt",
+        "moss growth"
+      ],
+      "factionIdentity": "WILDLIFE",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "broad stony brow with sparse mossy hair",
+        "heavy jaw and tusks",
+        "mossy hide and crude wrappings",
+        "moss green",
+        "earth brown",
+        "stone grey",
+        "large boulder",
+        "rope belt",
+        "moss growth",
+        "massive hunched humanoid"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "kestrel",
+      "displayName": "Kestrel",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/kestrel.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/kestrel.png"
+      ],
+      "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+      "canonicalAlphaBoundingBox": [
+        29,
+        188,
+        610,
+        734
+      ],
+      "approvedExistingCinematicAppearances": [
+        "first_refuge_departure",
+        "valmir_route_fork",
+        "cedric_encounter"
+      ],
+      "silhouetteInvariants": [
+        "compact agile archer",
+        "green hood and green cloth face mask",
+        "longbow"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "compact agile archer",
+      "relativeHeight": 0.97,
+      "faceVisibility": "CONCEALED_BY_HOOD_AND_CLOTH_MASK",
+      "hairHeadIdentity": "green hood and green cloth face mask",
+      "faceIdentityCues": "face concealed by hood shadow and green cloth mask; no exposed mouth or jaw",
+      "costumeArmor": "green layered ranger leathers",
+      "primarySecondaryColors": [
+        "forest green",
+        "brown",
+        "muted gold"
+      ],
+      "weapon": "longbow",
+      "accessories": [
+        "quiver",
+        "hood"
+      ],
+      "factionIdentity": "OUR_COMPANY",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "green hood and green cloth face mask",
+        "face concealed by hood shadow and green cloth mask; no exposed mouth or jaw",
+        "green layered ranger leathers",
+        "forest green",
+        "brown",
+        "muted gold",
+        "longbow",
+        "quiver",
+        "hood",
+        "compact agile archer"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "lancer",
+      "displayName": "Garen",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/lancer.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/lancer.png"
+      ],
+      "referenceSha256": "3c1761e087a00f8079ee423e6b513494569566fe75b43fc30e69560ba7a6f012",
+      "canonicalAlphaBoundingBox": [
+        78,
+        188,
+        562,
+        735
+      ],
+      "approvedExistingCinematicAppearances": [
+        "garen_encounter"
+      ],
+      "silhouetteInvariants": [
+        "tall athletic armored build",
+        "teal-crested closed helm",
+        "long spear"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "tall athletic armored build",
+      "relativeHeight": 1.08,
+      "hairHeadIdentity": "teal-crested closed helm",
+      "faceIdentityCues": "face concealed by canonical helm",
+      "costumeArmor": "silver and teal lancer armor",
+      "primarySecondaryColors": [
+        "silver",
+        "teal",
+        "dark navy"
+      ],
+      "weapon": "long spear",
+      "accessories": [
+        "teal cloth panels",
+        "helm crest"
+      ],
+      "factionIdentity": "OPTIONAL_COMPANY_RECRUIT",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "teal-crested closed helm",
+        "face concealed by canonical helm",
+        "silver and teal lancer armor",
+        "silver",
+        "teal",
+        "dark navy",
+        "long spear",
+        "teal cloth panels",
+        "helm crest",
+        "tall athletic armored build"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "lion_champion",
+      "displayName": "Lion Champion",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/lion_champion.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/lion_champion.png"
+      ],
+      "referenceSha256": "344ef692bdbc16defe4de640104222274601f36a268e4fe73f2fbb11f720fc95",
+      "canonicalAlphaBoundingBox": [
+        27,
+        97,
+        612,
+        742
+      ],
+      "approvedExistingCinematicAppearances": [
+        "lion_champion_reveal",
+        "alaric_audience_arrival",
+        "lion_trial_route_ending"
+      ],
+      "silhouetteInvariants": [
+        "large heroic armored build",
+        "golden lion-crested helm",
+        "long sword"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "large heroic armored build",
+      "relativeHeight": 1.13,
+      "hairHeadIdentity": "golden lion-crested helm",
+      "faceIdentityCues": "helmet-framed mature face",
+      "costumeArmor": "blue and gold ceremonial heavy armor",
+      "primarySecondaryColors": [
+        "Lion blue",
+        "gold",
+        "silver"
+      ],
+      "weapon": "long sword",
+      "accessories": [
+        "lion pelt mantle",
+        "Lion shield"
+      ],
+      "factionIdentity": "LION",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "golden lion-crested helm",
+        "helmet-framed mature face",
+        "blue and gold ceremonial heavy armor",
+        "Lion blue",
+        "gold",
+        "silver",
+        "long sword",
+        "lion pelt mantle",
+        "Lion shield",
+        "large heroic armored build"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "maelor",
+      "displayName": "Intendant Maelor",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/maelor.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/maelor.png"
+      ],
+      "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215",
+      "canonicalAlphaBoundingBox": [
+        134,
+        191,
+        504,
+        734
+      ],
+      "approvedExistingCinematicAppearances": [
+        "first_refuge_departure",
+        "final_refuge_dossier",
+        "abandoned_cart_reveal"
+      ],
+      "silhouetteInvariants": [
+        "lean court mage",
+        "dark swept hair",
+        "dagger and open grimoire"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "lean court mage",
+      "relativeHeight": 1.01,
+      "faceVisibility": "VISIBLE",
+      "hairHeadIdentity": "dark swept hair",
+      "faceIdentityCues": "angular clean-shaven face",
+      "costumeArmor": "purple long coat and robes with gold linework",
+      "primarySecondaryColors": [
+        "royal purple",
+        "dark red",
+        "gold"
+      ],
+      "weapon": "dagger and open grimoire",
+      "accessories": [
+        "grimoire",
+        "belt ornaments"
+      ],
+      "factionIdentity": "OUR_COMPANY",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "dark swept hair",
+        "angular clean-shaven face",
+        "purple long coat and robes with gold linework",
+        "royal purple",
+        "dark red",
+        "gold",
+        "dagger and open grimoire",
+        "grimoire",
+        "belt ornaments",
+        "lean court mage"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "marian",
+      "displayName": "Marian",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/marian.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/marian.png"
+      ],
+      "referenceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191",
+      "canonicalAlphaBoundingBox": [
+        61,
+        163,
+        580,
+        738
+      ],
+      "approvedExistingCinematicAppearances": [
+        "refugees_approach",
+        "first_refuge_arrival",
+        "second_refuge_departure",
+        "witnesses_encounter"
+      ],
+      "silhouetteInvariants": [
+        "slender robed caster",
+        "white hood over a closed gold-trimmed white face helm",
+        "star-topped staff and light magic"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "slender robed caster",
+      "relativeHeight": 0.99,
+      "faceVisibility": "CONCEALED_BY_CLOSED_HELM",
+      "hairHeadIdentity": "white hood over a closed gold-trimmed white face helm",
+      "faceIdentityCues": "face fully concealed by the canonical white-and-gold slit helm",
+      "costumeArmor": "white and pale-blue ceremonial robes",
+      "primarySecondaryColors": [
+        "white",
+        "pale blue",
+        "gold"
+      ],
+      "weapon": "star-topped staff and light magic",
+      "accessories": [
+        "hood",
+        "gold halo motifs"
+      ],
+      "factionIdentity": "OUR_COMPANY",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "white hood over a closed gold-trimmed white face helm",
+        "face fully concealed by the canonical white-and-gold slit helm",
+        "white and pale-blue ceremonial robes",
+        "white",
+        "pale blue",
+        "gold",
+        "star-topped staff and light magic",
+        "hood",
+        "gold halo motifs",
+        "slender robed caster"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "refugee_mother",
+      "displayName": "Refugee Mother",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/refugee_mother.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/refugee_mother.png"
+      ],
+      "referenceSha256": "819f5348ff22f1c6a6503a9e4186b2f61c1fff68b8cd16c90f4aa5eda1219e13",
+      "canonicalAlphaBoundingBox": [
+        171,
+        213,
+        467,
+        734
+      ],
+      "approvedExistingCinematicAppearances": [
+        "refugees_approach"
+      ],
+      "silhouetteInvariants": [
+        "average civilian build",
+        "brown headscarf",
+        "none"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "average civilian build",
+      "relativeHeight": 0.95,
+      "hairHeadIdentity": "brown headscarf",
+      "faceIdentityCues": "tired concerned face",
+      "costumeArmor": "brown hood and blue civilian dress",
+      "primarySecondaryColors": [
+        "brown",
+        "blue",
+        "cream"
+      ],
+      "weapon": "none",
+      "accessories": [
+        "wrapped bundle"
+      ],
+      "factionIdentity": "CIVILIAN",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "brown headscarf",
+        "tired concerned face",
+        "brown hood and blue civilian dress",
+        "brown",
+        "blue",
+        "cream",
+        "none",
+        "wrapped bundle",
+        "average civilian build"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "sage_seraphine",
+      "displayName": "Sage Seraphine",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/sage_seraphine.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/sage_seraphine.png"
+      ],
+      "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
+      "canonicalAlphaBoundingBox": [
+        127,
+        188,
+        512,
+        734
+      ],
+      "approvedExistingCinematicAppearances": [
+        "camp_departure",
+        "shadow_signs",
+        "final_refuge_dossier",
+        "serpent_route_ending"
+      ],
+      "silhouetteInvariants": [
+        "slender ceremonial build",
+        "cream hood framing brown hair",
+        "ornate censer staff"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "slender ceremonial build",
+      "relativeHeight": 0.98,
+      "faceVisibility": "VISIBLE",
+      "hairHeadIdentity": "cream hood framing brown hair",
+      "faceIdentityCues": "soft oval face and calm expression",
+      "costumeArmor": "cream, teal and gold sage robes",
+      "primarySecondaryColors": [
+        "cream",
+        "teal",
+        "gold"
+      ],
+      "weapon": "ornate censer staff",
+      "accessories": [
+        "hood",
+        "satchel",
+        "hanging censer"
+      ],
+      "factionIdentity": "OUR_COMPANY",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "cream hood framing brown hair",
+        "soft oval face and calm expression",
+        "cream, teal and gold sage robes",
+        "cream",
+        "teal",
+        "gold",
+        "ornate censer staff",
+        "hood",
+        "satchel",
+        "hanging censer",
+        "slender ceremonial build"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "serpent_brute",
+      "displayName": "Serpent Brute",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/serpent_brute.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/serpent_brute.png"
+      ],
+      "referenceSha256": "deb9bff683847720f82bdea4312a2b481f9173ab321292005a59ad656c4eb65a",
+      "canonicalAlphaBoundingBox": [
+        87,
+        150,
+        552,
+        710
+      ],
+      "approvedExistingCinematicAppearances": [],
+      "silhouetteInvariants": [
+        "very broad armored build",
+        "dark hood and face covering",
+        "spiked mace"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "very broad armored build",
+      "relativeHeight": 1.12,
+      "hairHeadIdentity": "dark hood and face covering",
+      "faceIdentityCues": "concealed",
+      "costumeArmor": "black and green heavy Serpent armor",
+      "primarySecondaryColors": [
+        "black",
+        "dark green",
+        "rust red"
+      ],
+      "weapon": "spiked mace",
+      "accessories": [
+        "heavy pauldrons"
+      ],
+      "factionIdentity": "SERPENT",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "dark hood and face covering",
+        "concealed",
+        "black and green heavy Serpent armor",
+        "black",
+        "dark green",
+        "rust red",
+        "spiked mace",
+        "heavy pauldrons",
+        "very broad armored build"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "serpent_duelist_elite",
+      "displayName": "Serpent Duelist Elite",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/serpent_duelist_elite.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/serpent_duelist_elite.png"
+      ],
+      "referenceSha256": "040f306678984338223c53ff67a2edff11141361fc00a56ff9c4fc62a2810c96",
+      "canonicalAlphaBoundingBox": [
+        48,
+        42,
+        592,
+        742
+      ],
+      "approvedExistingCinematicAppearances": [
+        "serpent_duelist_reveal"
+      ],
+      "silhouetteInvariants": [
+        "lean athletic build",
+        "green-and-red masked hood",
+        "paired curved blades"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "lean athletic build",
+      "relativeHeight": 1.03,
+      "hairHeadIdentity": "green-and-red masked hood",
+      "faceIdentityCues": "masked",
+      "costumeArmor": "green elite duelist armor with red trim",
+      "primarySecondaryColors": [
+        "dark green",
+        "red",
+        "gold"
+      ],
+      "weapon": "paired curved blades",
+      "accessories": [
+        "hood",
+        "light cape"
+      ],
+      "factionIdentity": "SERPENT",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "green-and-red masked hood",
+        "masked",
+        "green elite duelist armor with red trim",
+        "dark green",
+        "red",
+        "gold",
+        "paired curved blades",
+        "hood",
+        "light cape",
+        "lean athletic build"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "serpent_general_boss",
+      "displayName": "Serpent General",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/serpent_general_boss.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/serpent_general_boss.png"
+      ],
+      "referenceSha256": "15306dc49386b0f6297cb922cb886e22357aca756ca8e0a5e11d706c641a33c7",
+      "canonicalAlphaBoundingBox": [
+        65,
+        42,
+        574,
+        742
+      ],
+      "approvedExistingCinematicAppearances": [
+        "serpent_general_reveal",
+        "serpent_route_ending"
+      ],
+      "silhouetteInvariants": [
+        "tall commanding armored build",
+        "red-plumed dark helm",
+        "large curved glaive"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "tall commanding armored build",
+      "relativeHeight": 1.14,
+      "hairHeadIdentity": "red-plumed dark helm",
+      "faceIdentityCues": "masked or helmet-shadowed",
+      "costumeArmor": "dark green general armor and long cloak",
+      "primarySecondaryColors": [
+        "dark green",
+        "black",
+        "red"
+      ],
+      "weapon": "large curved glaive",
+      "accessories": [
+        "command cloak",
+        "red plume"
+      ],
+      "factionIdentity": "SERPENT",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "red-plumed dark helm",
+        "masked or helmet-shadowed",
+        "dark green general armor and long cloak",
+        "dark green",
+        "black",
+        "red",
+        "large curved glaive",
+        "command cloak",
+        "red plume",
+        "tall commanding armored build"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "serpent_oracle",
+      "displayName": "Serpent Oracle",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/serpent_oracle.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/serpent_oracle.png"
+      ],
+      "referenceSha256": "85c885c64f479b8579430e60c6616f5bc0905106a6ce0d2b1a8c5bacb9a48f3a",
+      "canonicalAlphaBoundingBox": [
+        51,
+        157,
+        588,
+        710
+      ],
+      "approvedExistingCinematicAppearances": [
+        "serpent_informant_encounter"
+      ],
+      "silhouetteInvariants": [
+        "slender hooded caster",
+        "deep green hood",
+        "serpentine staff"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "slender hooded caster",
+      "relativeHeight": 1,
+      "hairHeadIdentity": "deep green hood",
+      "faceIdentityCues": "shadowed face with glowing eyes",
+      "costumeArmor": "green and red ritual robes",
+      "primarySecondaryColors": [
+        "dark green",
+        "rust red",
+        "gold"
+      ],
+      "weapon": "serpentine staff",
+      "accessories": [
+        "hood",
+        "ritual trim"
+      ],
+      "factionIdentity": "SERPENT",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "deep green hood",
+        "shadowed face with glowing eyes",
+        "green and red ritual robes",
+        "dark green",
+        "rust red",
+        "gold",
+        "serpentine staff",
+        "hood",
+        "ritual trim",
+        "slender hooded caster"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "serpent_raider",
+      "displayName": "Serpent Raider",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/serpent_raider.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/serpent_raider.png"
+      ],
+      "referenceSha256": "e62eca489417bc626f77abd4269e54d370af32dd399436e6e834f5c6f577aaed",
+      "canonicalAlphaBoundingBox": [
+        51,
+        229,
+        588,
+        710
+      ],
+      "approvedExistingCinematicAppearances": [
+        "bois_clair_arrival"
+      ],
+      "silhouetteInvariants": [
+        "lean combat build",
+        "dark green hood and mask",
+        "paired short blades"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "lean combat build",
+      "relativeHeight": 1,
+      "hairHeadIdentity": "dark green hood and mask",
+      "faceIdentityCues": "masked",
+      "costumeArmor": "dark leather raider armor with green cloth",
+      "primarySecondaryColors": [
+        "black",
+        "dark green",
+        "rust red"
+      ],
+      "weapon": "paired short blades",
+      "accessories": [
+        "hood",
+        "mask"
+      ],
+      "factionIdentity": "SERPENT",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "dark green hood and mask",
+        "masked",
+        "dark leather raider armor with green cloth",
+        "black",
+        "dark green",
+        "rust red",
+        "paired short blades",
+        "hood",
+        "mask",
+        "lean combat build"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "shrine_apparition",
+      "displayName": "Shrine Apparition",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/shrine_apparition.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/shrine_apparition.png"
+      ],
+      "referenceSha256": "91d675b9112acc147ebdaa0713bbd524ef54a1994439218a84b058740d303729",
+      "canonicalAlphaBoundingBox": [
+        41,
+        126,
+        598,
+        743
+      ],
+      "approvedExistingCinematicAppearances": [],
+      "silhouetteInvariants": [
+        "tall floating robed silhouette",
+        "white hood and radiant halo",
+        "radiant staff"
+      ],
+      "apparentAge": "ageless apparition",
+      "bodyProportions": "tall floating robed silhouette",
+      "relativeHeight": 1.1,
+      "hairHeadIdentity": "white hood and radiant halo",
+      "faceIdentityCues": "serene luminous face",
+      "costumeArmor": "white and gold spectral vestments",
+      "primarySecondaryColors": [
+        "white",
+        "gold",
+        "pale blue"
+      ],
+      "weapon": "radiant staff",
+      "accessories": [
+        "halo",
+        "light motes"
+      ],
+      "factionIdentity": "SHRINE",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "white hood and radiant halo",
+        "serene luminous face",
+        "white and gold spectral vestments",
+        "white",
+        "gold",
+        "pale blue",
+        "radiant staff",
+        "halo",
+        "light motes",
+        "tall floating robed silhouette"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "survivor",
+      "displayName": "Survivor",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/survivor.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/survivor.png"
+      ],
+      "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47",
+      "canonicalAlphaBoundingBox": [
+        157,
+        228,
+        511,
+        737
+      ],
+      "approvedExistingCinematicAppearances": [
+        "witnesses_encounter",
+        "injured_merchant_encounter"
+      ],
+      "silhouetteInvariants": [
+        "worn average build",
+        "dark hair and green headband",
+        "walking staff"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "worn average build",
+      "relativeHeight": 0.98,
+      "hairHeadIdentity": "dark hair and green headband",
+      "faceIdentityCues": "weathered bearded face",
+      "costumeArmor": "patched green and brown travel clothes",
+      "primarySecondaryColors": [
+        "olive green",
+        "brown",
+        "grey"
+      ],
+      "weapon": "walking staff",
+      "accessories": [
+        "bandage",
+        "small pack"
+      ],
+      "factionIdentity": "CIVILIAN",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "dark hair and green headband",
+        "weathered bearded face",
+        "patched green and brown travel clothes",
+        "olive green",
+        "brown",
+        "grey",
+        "walking staff",
+        "bandage",
+        "small pack",
+        "worn average build"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "villageoise",
+      "displayName": "Villageoise",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/villageoise.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/villageoise.png"
+      ],
+      "referenceSha256": "25a253fa81b72629087fd1701636ddbfe20347bdf8500a194092e19d1f8a9dd2",
+      "canonicalAlphaBoundingBox": [
+        188,
+        228,
+        444,
+        734
+      ],
+      "approvedExistingCinematicAppearances": [
+        "bois_clair_arrival"
+      ],
+      "silhouetteInvariants": [
+        "average civilian build",
+        "brown hair under blue-grey shawl",
+        "none"
+      ],
+      "apparentAge": "adult",
+      "bodyProportions": "average civilian build",
+      "relativeHeight": 0.94,
+      "hairHeadIdentity": "brown hair under blue-grey shawl",
+      "faceIdentityCues": "plain worried face",
+      "costumeArmor": "cream apron and muted blue dress",
+      "primarySecondaryColors": [
+        "cream",
+        "muted blue",
+        "brown"
+      ],
+      "weapon": "none",
+      "accessories": [
+        "shawl"
+      ],
+      "factionIdentity": "CIVILIAN",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "brown hair under blue-grey shawl",
+        "plain worried face",
+        "cream apron and muted blue dress",
+        "cream",
+        "muted blue",
+        "brown",
+        "none",
+        "shawl",
+        "average civilian build"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    },
+    {
+      "characterId": "young_dragon_elite",
+      "displayName": "Young Dragon Elite",
+      "canonicalFullBodyReferences": [
+        "public/assets/characters/pixel/full/young_dragon_elite.png"
+      ],
+      "canonicalPortraitReferences": [
+        "public/assets/characters/pixel/full/young_dragon_elite.png"
+      ],
+      "referenceSha256": "2715cdd69c265b18cbd1d221f44af9f8b665b14c7c80509a646066d57f6641d7",
+      "canonicalAlphaBoundingBox": [
+        20,
+        109,
+        620,
+        742
+      ],
+      "approvedExistingCinematicAppearances": [
+        "young_dragon_encounter"
+      ],
+      "silhouetteInvariants": [
+        "compact winged dragon",
+        "horned teal dragon head",
+        "claws and breath"
+      ],
+      "apparentAge": "young creature",
+      "bodyProportions": "compact winged dragon",
+      "relativeHeight": 0.85,
+      "hairHeadIdentity": "horned teal dragon head",
+      "faceIdentityCues": "reptilian with bright eyes",
+      "costumeArmor": "natural scales",
+      "primarySecondaryColors": [
+        "teal",
+        "emerald",
+        "cream"
+      ],
+      "weapon": "claws and breath",
+      "accessories": [
+        "wings",
+        "horns"
+      ],
+      "factionIdentity": "WILDLIFE",
+      "approvedVariants": [
+        "canonical full sprite; runtime crop/scale only"
+      ],
+      "stateDependentAppearance": "none encoded unless a future authoritative state manifest explicitly adds one",
+      "mustPreserve": [
+        "horned teal dragon head",
+        "reptilian with bright eyes",
+        "natural scales",
+        "teal",
+        "emerald",
+        "cream",
+        "claws and breath",
+        "wings",
+        "horns",
+        "compact winged dragon"
+      ],
+      "mayVary": [
+        "pose within beat intent",
+        "camera-relative facing",
+        "physically coherent light response",
+        "minor cloth and environmental interaction"
+      ],
+      "mustNotChange": [
+        "identity",
+        "apparent age",
+        "gender presentation",
+        "armor or costume family",
+        "principal colors",
+        "defining weapon",
+        "defining accessories",
+        "class silhouette"
+      ],
+      "staticTableauRule": "USE_CANONICAL_RUNTIME_FOREGROUND_SPRITE_UNCHANGED"
+    }
+  ]
+}

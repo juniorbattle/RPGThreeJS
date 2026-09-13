@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "count": 3,
+  "specs": [
+    {
+      "pilotId": "C",
+      "cinematicBeatId": "media:camp_departure",
+      "castManifestId": "cast:media:camp_departure",
+      "justifiedOffscreenActors": [],
+      "targetEndState": {
+        "finalCameraPosition": "end of one continuous restrained camera move from the approved starting keyframe",
+        "finalFraming": "stable 16:9 family composition with a clear upper dialogue-safe band",
+        "requiredFinalVisibleCast": [
+          "maelor",
+          "alistair",
+          "marian"
+        ],
+        "finalSceneContext": "fortified Lion expedition camp at a mountain-road threshold",
+        "motionStateExpectation": "settled motion, sharp faces and equipment, no morphing or motion blur",
+        "holdContinuityIdentity": "camp_departure_hold"
+      },
+      "characters": [
+        {
+          "characterId": "maelor",
+          "startSpatialZone": "LEFT",
+          "relativeDepth": "MIDGROUND_ACTOR_PLANE",
+          "facing": "INTO_SCENE_OR_TOWARD_NARRATIVE_FOCUS",
+          "lookTarget": "maelor",
+          "relativePhysicalScale": 1.01,
+          "expectedAction": "subtle departure readiness and environmental response; preserve formation without a reset",
+          "remainsInScene": true,
+          "allowedExitReentry": false,
+          "finalSpatialRequirement": "LEFT with unchanged relative ordering and plausible continuous displacement only",
+          "mustBeVisibleAtEnd": true
+        },
+        {
+          "characterId": "alistair",
+          "startSpatialZone": "CENTER",
+          "relativeDepth": "MIDGROUND_ACTOR_PLANE",
+          "facing": "INTO_SCENE_OR_TOWARD_NARRATIVE_FOCUS",
+          "lookTarget": "maelor",
+          "relativePhysicalScale": 1.08,
+          "expectedAction": "subtle departure readiness and environmental response; preserve formation without a reset",
+          "remainsInScene": true,
+          "allowedExitReentry": false,
+          "finalSpatialRequirement": "CENTER with unchanged relative ordering and plausible continuous displacement only",
+          "mustBeVisibleAtEnd": true
+        },
+        {
+          "characterId": "marian",
+          "startSpatialZone": "RIGHT",
+          "relativeDepth": "MIDGROUND_ACTOR_PLANE",
+          "facing": "INTO_SCENE_OR_TOWARD_NARRATIVE_FOCUS",
+          "lookTarget": "maelor",
+          "relativePhysicalScale": 0.99,
+          "expectedAction": "subtle departure readiness and environmental response; preserve formation without a reset",
+          "remainsInScene": true,
+          "allowedExitReentry": false,
+          "finalSpatialRequirement": "RIGHT with unchanged relative ordering and plausible continuous displacement only",
+          "mustBeVisibleAtEnd": true
+        }
+      ],
+      "acceptance": {
+        "internalCutCount": 0,
+        "unexplainedDisappearance": 0,
+        "unexplainedAddition": 0,
+        "scaleDrift": 0,
+        "identityBreaks": 0,
+        "worldReset": 0,
+        "targetEndState": "PASS_REQUIRED"
+      },
+      "status": "PLANNED_BLOCKED_IMAGE_MODEL_UNAVAILABLE"
+    },
+    {
+      "pilotId": "E",
+      "cinematicBeatId": "media:cedric_encounter",
+      "castManifestId": "cast:media:cedric_encounter",
+      "justifiedOffscreenActors": [],
+      "targetEndState": {
+        "finalCameraPosition": "end of one continuous restrained camera move from the approved starting keyframe",
+        "finalFraming": "stable 16:9 family composition with a clear upper dialogue-safe band",
+        "requiredFinalVisibleCast": [
+          "cedric",
+          "kestrel"
+        ],
+        "finalSceneContext": "old woodland roads linking the Lion territories",
+        "motionStateExpectation": "settled motion, sharp faces and equipment, no morphing or motion blur",
+        "holdContinuityIdentity": "cedric_encounter_hold"
+      },
+      "characters": [
+        {
+          "characterId": "cedric",
+          "startSpatialZone": "LEFT_CENTER",
+          "relativeDepth": "MIDGROUND_ACTOR_PLANE",
+          "facing": "INTO_SCENE_OR_TOWARD_NARRATIVE_FOCUS",
+          "lookTarget": "PRIMARY_SCENE_EVIDENCE_OR_ROUTE",
+          "relativePhysicalScale": 0.98,
+          "expectedAction": "measured first-encounter posture; Cedric remains unrecruited and no acceptance is implied",
+          "remainsInScene": true,
+          "allowedExitReentry": false,
+          "finalSpatialRequirement": "LEFT_CENTER with unchanged relative ordering and plausible continuous displacement only",
+          "mustBeVisibleAtEnd": true
+        },
+        {
+          "characterId": "kestrel",
+          "startSpatialZone": "RIGHT_CENTER",
+          "relativeDepth": "MIDGROUND_ACTOR_PLANE",
+          "facing": "INTO_SCENE_OR_TOWARD_NARRATIVE_FOCUS",
+          "lookTarget": "PRIMARY_SCENE_EVIDENCE_OR_ROUTE",
+          "relativePhysicalScale": 0.97,
+          "expectedAction": "measured first-encounter posture; Cedric remains unrecruited and no acceptance is implied",
+          "remainsInScene": true,
+          "allowedExitReentry": false,
+          "finalSpatialRequirement": "RIGHT_CENTER with unchanged relative ordering and plausible continuous displacement only",
+          "mustBeVisibleAtEnd": true
+        }
+      ],
+      "acceptance": {
+        "internalCutCount": 0,
+        "unexplainedDisappearance": 0,
+        "unexplainedAddition": 0,
+        "scaleDrift": 0,
+        "identityBreaks": 0,
+        "worldReset": 0,
+        "targetEndState": "PASS_REQUIRED"
+      },
+      "status": "PLANNED_BLOCKED_IMAGE_MODEL_UNAVAILABLE"
+    },
+    {
+      "pilotId": "F",
+      "cinematicBeatId": "media:shadow_signs",
+      "castManifestId": "cast:media:shadow_signs",
+      "justifiedOffscreenActors": [
+        {
+          "id": "alistair",
+          "reason": "Only speaks after the preserve-evidence branch is selected; the neutral pre-choice cinematic cannot preselect it."
+        },
+        {
+          "id": "maelor",
+          "reason": "Only speaks after the take-fragments branch is selected; the neutral pre-choice cinematic cannot preselect it."
+        }
+      ],
+      "targetEndState": {
+        "finalCameraPosition": "end of one continuous restrained camera move from the approved starting keyframe",
+        "finalFraming": "stable 16:9 family composition with a clear upper dialogue-safe band",
+        "requiredFinalVisibleCast": [
+          "sage_seraphine",
+          "elara"
+        ],
+        "finalSceneContext": "ancient ruins marked by restrained Shadow corruption",
+        "motionStateExpectation": "settled motion, sharp faces and equipment, no morphing or motion blur",
+        "holdContinuityIdentity": "shadow_signs_hold"
+      },
+      "characters": [
+        {
+          "characterId": "sage_seraphine",
+          "startSpatialZone": "LEFT_CENTER",
+          "relativeDepth": "MIDGROUND_ACTOR_PLANE",
+          "facing": "INTO_SCENE_OR_TOWARD_NARRATIVE_FOCUS",
+          "lookTarget": "sage_seraphine",
+          "relativePhysicalScale": 0.98,
+          "expectedAction": "inspect the shadow evidence with restrained gestures; branch-dependent responders remain off-camera until selected dialogue",
+          "remainsInScene": true,
+          "allowedExitReentry": false,
+          "finalSpatialRequirement": "LEFT_CENTER with unchanged relative ordering and plausible continuous displacement only",
+          "mustBeVisibleAtEnd": true
+        },
+        {
+          "characterId": "elara",
+          "startSpatialZone": "RIGHT_CENTER",
+          "relativeDepth": "MIDGROUND_ACTOR_PLANE",
+          "facing": "INTO_SCENE_OR_TOWARD_NARRATIVE_FOCUS",
+          "lookTarget": "sage_seraphine",
+          "relativePhysicalScale": 1,
+          "expectedAction": "inspect the shadow evidence with restrained gestures; branch-dependent responders remain off-camera until selected dialogue",
+          "remainsInScene": true,
+          "allowedExitReentry": false,
+          "finalSpatialRequirement": "RIGHT_CENTER with unchanged relative ordering and plausible continuous displacement only",
+          "mustBeVisibleAtEnd": true
+        }
+      ],
+      "acceptance": {
+        "internalCutCount": 0,
+        "unexplainedDisappearance": 0,
+        "unexplainedAddition": 0,
+        "scaleDrift": 0,
+        "identityBreaks": 0,
+        "worldReset": 0,
+        "targetEndState": "PASS_REQUIRED"
+      },
+      "status": "PLANNED_BLOCKED_IMAGE_MODEL_UNAVAILABLE"
+    }
+  ]
+}

@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 1,
+  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "pilots": [
+    {
+      "id": "A",
+      "name": "ROYAL_AUDIENCE_TABLEAU",
+      "families": [
+        "ALARIC_AUDIENCE"
+      ],
+      "beatIds": [
+        "media:alaric_audience_arrival",
+        "dialogue:lion_briefing"
+      ],
+      "authoritativeModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD"
+      ],
+      "validationSurface": "DEV_ONLY_STATIC_TABLEAU_BACKGROUND_COMPOSITE_WITH_EXISTING_ALARIC_AUDIENCE_TABLEAU",
+      "outputs": [
+        "tableau family reference",
+        "two background candidates",
+        "NarrativeStage composite at two viewports"
+      ],
+      "references": [
+        "alaric_audience_arrival"
+      ],
+      "purpose": [
+        "complex interior",
+        "multiple actors",
+        "dialogue UI",
+        "choice geometry"
+      ],
+      "note": "The canonical lion_briefing mode remains CINEMATIC_HOLD; the tableau composite is a preproduction background-fit harness only.",
+      "castManifestIds": [
+        "cast:media:alaric_audience_arrival",
+        "cast:dialogue:lion_briefing"
+      ],
+      "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+      "imageAttempts": 0,
+      "videoAttempts": 0,
+      "retries": 0,
+      "pass": false,
+      "blocker": "Exact acceptance model gpt-image-2.5-sunburst-2026-09-08 with quality=max cannot be selected by the built-in tool and OPENAI_API_KEY is unavailable for the explicit CLI path."
+    },
+    {
+      "id": "B",
+      "name": "FOREST_ROAD_CROSS_MODE",
+      "families": [
+        "FOREST_ROAD"
+      ],
+      "beatIds": [
+        "edge:lion-audience>lion-opening-ambush",
+        "dialogue:post_opening_trail"
+      ],
+      "authoritativeModes": [
+        "TRAVEL_STILL",
+        "STATIC_TABLEAU"
+      ],
+      "outputs": [
+        "family master",
+        "two travel-still candidates",
+        "two tableau-background candidates",
+        "runtime composite",
+        "continuity board"
+      ],
+      "references": [
+        "valmir_route_fork",
+        "camp_departure"
+      ],
+      "purpose": [
+        "cross-mode family continuity",
+        "responsive crop",
+        "reverse-composed tableau"
+      ],
+      "castManifestIds": [
+        "cast:edge:lion-audience>lion-opening-ambush",
+        "cast:dialogue:post_opening_trail"
+      ],
+      "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+      "imageAttempts": 0,
+      "videoAttempts": 0,
+      "retries": 0,
+      "pass": false,
+      "blocker": "Exact acceptance model gpt-image-2.5-sunburst-2026-09-08 with quality=max cannot be selected by the built-in tool and OPENAI_API_KEY is unavailable for the explicit CLI path."
+    },
+    {
+      "id": "C",
+      "name": "CAMP_CONTINUOUS_SHOT",
+      "families": [
+        "LION_CAMP"
+      ],
+      "beatIds": [
+        "media:camp_departure",
+        "dialogue:camp_departure"
+      ],
+      "authoritativeModes": [
+        "CINEMATIC_VIDEO",
+        "CINEMATIC_HOLD"
+      ],
+      "outputs": [
+        "two integrated keyframes",
+        "one sequential H3 pilot",
+        "final-frame hold extraction",
+        "contact sheet"
+      ],
+      "references": [
+        "camp_departure"
+      ],
+      "purpose": [
+        "multi-character identity",
+        "relative height",
+        "zero cuts",
+        "clean endpoint"
+      ],
+      "castManifestIds": [
+        "cast:media:camp_departure",
+        "cast:dialogue:camp_departure"
+      ],
+      "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+      "imageAttempts": 0,
+      "videoAttempts": 0,
+      "retries": 0,
+      "pass": false,
+      "blocker": "Exact acceptance model gpt-image-2.5-sunburst-2026-09-08 with quality=max cannot be selected by the built-in tool and OPENAI_API_KEY is unavailable for the explicit CLI path."
+    },
+    {
+      "id": "D",
+      "name": "SECOND_REFUGE_TABLEAU",
+      "families": [
+        "SECOND_REFUGE"
+      ],
+      "beatIds": [
+        "dialogue:ate_bois_clair_night_watch"
+      ],
+      "authoritativeModes": [
+        "STATIC_TABLEAU"
+      ],
+      "outputs": [
+        "two character-free backgrounds",
+        "NarrativeStage composite at two viewports"
+      ],
+      "references": [
+        "camp_departure",
+        "valmir_route_fork"
+      ],
+      "purpose": [
+        "human-built environment",
+        "props",
+        "NPC-compatible space",
+        "UI safe zones"
+      ],
+      "castManifestIds": [
+        "cast:dialogue:ate_bois_clair_night_watch"
+      ],
+      "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+      "imageAttempts": 0,
+      "videoAttempts": 0,
+      "retries": 0,
+      "pass": false,
+      "blocker": "Exact acceptance model gpt-image-2.5-sunburst-2026-09-08 with quality=max cannot be selected by the built-in tool and OPENAI_API_KEY is unavailable for the explicit CLI path."
+    },
+    {
+      "id": "E",
+      "name": "CEDRIC_ENCOUNTER_TRANSITION",
+      "families": [
+        "FOREST_ROAD"
+      ],
+      "beatIds": [
+        "media:cedric_encounter",
+        "dialogue:mystery_recruit"
+      ],
+      "authoritativeModes": [
+        "CINEMATIC_VIDEO",
+        "STATIC_TABLEAU"
+      ],
+      "outputs": [
+        "two integrated keyframes",
+        "one sequential H3 pilot",
+        "two tableau backgrounds",
+        "transition board"
+      ],
+      "references": [
+        "valmir_route_fork"
+      ],
+      "purpose": [
+        "external identity",
+        "VIDEO to TABLEAU continuity",
+        "recruit state",
+        "future recruit exclusion"
+      ],
+      "chosenOver": "Garen; Cedric requires a larger authoritative party/dialogue cast and therefore stresses continuity more strongly.",
+      "castManifestIds": [
+        "cast:media:cedric_encounter",
+        "cast:dialogue:mystery_recruit"
+      ],
+      "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+      "imageAttempts": 0,
+      "videoAttempts": 0,
+      "retries": 0,
+      "pass": false,
+      "blocker": "Exact acceptance model gpt-image-2.5-sunburst-2026-09-08 with quality=max cannot be selected by the built-in tool and OPENAI_API_KEY is unavailable for the explicit CLI path."
+    },
+    {
+      "id": "F",
+      "name": "SHADOW_SIGNS_LOW_LIGHT",
+      "families": [
+        "SHADOW_RUINS"
+      ],
+      "beatIds": [
+        "media:shadow_signs",
+        "dialogue:shadow_signs"
+      ],
+      "authoritativeModes": [
+        "CINEMATIC_VIDEO",
+        "STATIC_TABLEAU"
+      ],
+      "outputs": [
+        "two integrated low-light keyframes",
+        "one sequential H3 pilot",
+        "two tableau backgrounds",
+        "low-light continuity board"
+      ],
+      "references": [
+        "valmir_route_fork"
+      ],
+      "purpose": [
+        "night readability",
+        "identity under low light",
+        "foreground/background separation",
+        "controlled corruption"
+      ],
+      "castManifestIds": [
+        "cast:media:shadow_signs",
+        "cast:dialogue:shadow_signs"
+      ],
+      "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+      "imageAttempts": 0,
+      "videoAttempts": 0,
+      "retries": 0,
+      "pass": false,
+      "blocker": "Exact acceptance model gpt-image-2.5-sunburst-2026-09-08 with quality=max cannot be selected by the built-in tool and OPENAI_API_KEY is unavailable for the explicit CLI path."
+    }
+  ],
+  "summary": {
+    "planned": 6,
+    "executed": 0,
+    "passed": 0,
+    "blocked": 6,
+    "imageAttempts": 0,
+    "miniMaxAttempts": 0
+  }
+}

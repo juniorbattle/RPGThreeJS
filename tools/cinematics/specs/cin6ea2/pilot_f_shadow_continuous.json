@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "cin6ea2_pilot_f_shadow_continuous",
+  "cinematicId": "cin6ea2_pilot_f_shadow_continuous",
+  "tier": "MICRO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "cin6ea-2-selected-h3-v1",
+  "resolution": "2K",
+  "frame": { "width": 1920, "height": 1080 },
+  "artDirection": "CIN-6E-A.2 non-production dynamic validation. Animate only the operator-selected F-A keyframe as one continuous low-light Shadow-ruin investigation with exact canonical Seraphine and Elara identity.",
+  "shots": [{
+    "shotId": "shot_01",
+    "purpose": "Validate Seraphine and Elara face, cast and ruin continuity under subtle low-light motion.",
+    "framing": "WIDE_SHADOW_INVESTIGATION_TWO_SHOT",
+    "environment": "public/assets/generated/lion-phase/dialogue/shadow_signs.webp",
+    "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6ea2_pilot_f_shadow_continuous/shot_01/source.png" },
+    "characters": [
+      { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.31, "groundY": 0.83 }, "scale": { "framing": "WIDE", "perspective": 1.0 }, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:shadow_marks", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+      { "id": "elara", "asset": "public/assets/characters/pixel/full/elara.png", "position": { "x": 0.53, "groundY": 0.84 }, "scale": { "framing": "WIDE", "perspective": 1.0 }, "facing": "SCREEN_LEFT", "lookTarget": "EVENT_FOCUS:shadow_marks", "depth": 10, "role": "SECONDARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
+    ],
+    "camera": { "mode": "SLOW_PUSH" },
+    "durationSeconds": 5,
+    "continuityOut": "END",
+    "endIntent": "SHADOW_EVIDENCE_HOLD_UNRESOLVED",
+    "promptIntent": "ONE PHYSICAL SCENE, ONE CONTINUOUS SHOT, ZERO CUTS. Starting from the exact F-A frame, Seraphine and Elara remain around the same Shadow mark during an extremely slow continuous push. Seraphine must retain her VISIBLE human face, cream hood, brown hair, cream-teal-gold robes, satchel and ornate censer staff. Do not mask Seraphine. Elara must retain the pointed wide-brim hat, featureless fully shadowed face with ONLY two luminous blue eyes, midnight-blue and gold robes, book and controlled blue magic. DO NOT generate a visible human face for Elara. Preserve both characters continuously with the same sides, proportions, scale, ground contact, garments, hands, props, ruin architecture, violet fissures and light direction. Animate only breathing, tiny cloth and censer movement, faint blue flame, restrained violet pulse, mist and wet reflections. No new person, no disappearance, no face reveal, no teleport, no world reset, no hard or hidden cut, no flash transition, no full-frame occlusion. End sharp, stable, readable and HOLD-safe with Seraphine and Elara both complete."
+  }]
+}

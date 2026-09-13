@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "videoModel": "MiniMax-H3",
+  "doctrine": "ONE_VIDEO_ONE_PHYSICAL_SCENE_ONE_CONTINUOUS_SHOT_ZERO_EDITORIAL_CUTS",
+  "requiredSpecFields": [
+    "characterId",
+    "startSpatialZone",
+    "relativeDepth",
+    "facing",
+    "lookTarget",
+    "relativePhysicalScale",
+    "expectedAction",
+    "remainsInScene",
+    "allowedExitReentry",
+    "finalSpatialRequirement",
+    "mustBeVisibleAtEnd"
+  ],
+  "generationConstraints": [
+    "no cuts",
+    "no angle reset",
+    "no new characters",
+    "no disappearing characters",
+    "no costume or weapon change",
+    "no scale jump",
+    "no location or lighting reset",
+    "controlled camera and actor motion"
+  ],
+  "automatedSignals": [
+    "ffmpeg scene change at 0.35",
+    "sampled frame difference",
+    "histogram discontinuity",
+    "time-sequenced contact sheet"
+  ],
+  "humanOnlyGates": [
+    "character identity over time",
+    "costume stability",
+    "cast continuity",
+    "world reset classification",
+    "false-positive cut classification"
+  ],
+  "targetFormat": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "codec": "H.264 High",
+    "pixelFormat": "yuv420p",
+    "silent": true
+  }
+}
