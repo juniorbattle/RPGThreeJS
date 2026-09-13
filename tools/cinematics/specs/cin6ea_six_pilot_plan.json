@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "baseline": "57ba69cf718ea630cc9306c4122666fd6b58420f",
   "pilots": [
     {
       "id": "A",
@@ -36,12 +36,15 @@
         "cast:media:alaric_audience_arrival",
         "cast:dialogue:lion_briefing"
       ],
-      "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
-      "imageAttempts": 0,
+      "status": "OPERATOR_APPROVED",
+      "imageAttempts": 2,
       "videoAttempts": 0,
       "retries": 0,
-      "pass": false,
-      "blocker": "Exact acceptance model gpt-image-2.5-sunburst-2026-09-08 with quality=max cannot be selected by the built-in tool and OPENAI_API_KEY is unavailable for the explicit CLI path."
+      "pass": true,
+      "operatorDecision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "pilot_a_static_tableau_background_b"
+      ]
     },
     {
       "id": "B",
@@ -77,12 +80,17 @@
         "cast:edge:lion-audience>lion-opening-ambush",
         "cast:dialogue:post_opening_trail"
       ],
-      "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
-      "imageAttempts": 0,
+      "status": "OPERATOR_APPROVED",
+      "imageAttempts": 3,
       "videoAttempts": 0,
       "retries": 0,
-      "pass": false,
-      "blocker": "Exact acceptance model gpt-image-2.5-sunburst-2026-09-08 with quality=max cannot be selected by the built-in tool and OPENAI_API_KEY is unavailable for the explicit CLI path."
+      "pass": true,
+      "operatorDecision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "forest_road_master_a",
+        "pilot_b_travel_still_a",
+        "pilot_b_static_tableau_background_a"
+      ]
     },
     {
       "id": "C",
@@ -117,12 +125,15 @@
         "cast:media:camp_departure",
         "cast:dialogue:camp_departure"
       ],
-      "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
-      "imageAttempts": 0,
-      "videoAttempts": 0,
+      "status": "OPERATOR_APPROVED",
+      "imageAttempts": 2,
+      "videoAttempts": 1,
       "retries": 0,
-      "pass": false,
-      "blocker": "Exact acceptance model gpt-image-2.5-sunburst-2026-09-08 with quality=max cannot be selected by the built-in tool and OPENAI_API_KEY is unavailable for the explicit CLI path."
+      "pass": true,
+      "operatorDecision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "pilot_c_cinematic_keyframe_b"
+      ]
     },
     {
       "id": "D",
@@ -153,12 +164,15 @@
       "castManifestIds": [
         "cast:dialogue:ate_bois_clair_night_watch"
       ],
-      "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
-      "imageAttempts": 0,
+      "status": "OPERATOR_APPROVED",
+      "imageAttempts": 1,
       "videoAttempts": 0,
       "retries": 0,
-      "pass": false,
-      "blocker": "Exact acceptance model gpt-image-2.5-sunburst-2026-09-08 with quality=max cannot be selected by the built-in tool and OPENAI_API_KEY is unavailable for the explicit CLI path."
+      "pass": true,
+      "operatorDecision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "pilot_d_static_tableau_background_a"
+      ]
     },
     {
       "id": "E",
@@ -194,12 +208,16 @@
         "cast:media:cedric_encounter",
         "cast:dialogue:mystery_recruit"
       ],
-      "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
-      "imageAttempts": 0,
-      "videoAttempts": 0,
-      "retries": 0,
-      "pass": false,
-      "blocker": "Exact acceptance model gpt-image-2.5-sunburst-2026-09-08 with quality=max cannot be selected by the built-in tool and OPENAI_API_KEY is unavailable for the explicit CLI path."
+      "status": "OPERATOR_APPROVED",
+      "imageAttempts": 4,
+      "videoAttempts": 2,
+      "retries": 1,
+      "pass": true,
+      "operatorDecision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "pilot_e_cinematic_keyframe_c",
+        "pilot_e_static_tableau_background_a"
+      ]
     },
     {
       "id": "F",
@@ -234,20 +252,34 @@
         "cast:media:shadow_signs",
         "cast:dialogue:shadow_signs"
       ],
-      "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
-      "imageAttempts": 0,
-      "videoAttempts": 0,
+      "status": "OPERATOR_APPROVED",
+      "imageAttempts": 2,
+      "videoAttempts": 1,
       "retries": 0,
-      "pass": false,
-      "blocker": "Exact acceptance model gpt-image-2.5-sunburst-2026-09-08 with quality=max cannot be selected by the built-in tool and OPENAI_API_KEY is unavailable for the explicit CLI path."
+      "pass": true,
+      "operatorDecision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "pilot_f_cinematic_keyframe_a",
+        "pilot_f_static_tableau_background_a"
+      ]
     }
   ],
   "summary": {
     "planned": 6,
-    "executed": 0,
-    "passed": 0,
-    "blocked": 6,
-    "imageAttempts": 0,
-    "miniMaxAttempts": 0
+    "executed": 6,
+    "passed": 6,
+    "blocked": 0,
+    "imageAttempts": 14,
+    "miniMaxAttempts": 4,
+    "retries": 1
+  },
+  "preproductionBaseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "finalDecision": {
+    "SAME_GAME_VISUAL_IDENTITY": "PASS",
+    "DYNAMIC_VIDEO_GATE": "YES",
+    "VISUAL_PRODUCTION_LOCK": "YES",
+    "HUMAN_VISUAL_REVIEW": "APPROVED",
+    "READY_FOR_CIN_6E_B": "YES",
+    "CIN_6E_B_STARTED": false
   }
 }

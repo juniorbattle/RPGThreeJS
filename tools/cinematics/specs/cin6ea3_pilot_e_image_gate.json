@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "mission": "CIN-6E-A.3",
-  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "baseline": "57ba69cf718ea630cc9306c4122666fd6b58420f",
   "scope": "PILOT_E_SOURCE_REPAIR_ONLY",
   "candidate": {
     "id": "pilot_e_cinematic_keyframe_c",
@@ -107,8 +107,8 @@
     }
   ],
   "agentImageVerdict": "OPERATOR_APPROVED",
-  "h3Submission": "AUTHORIZED_FOR_E_ONLY_DYNAMIC_REGATE",
-  "videoGenerationStarted": false,
+  "h3Submission": "COMPLETED_OPERATOR_APPROVED",
+  "videoGenerationStarted": true,
   "protectedState": {
     "pilotsCAndF": "OPERATOR_APPROVED_UNCHANGED",
     "productionMediaChanged": false,
@@ -124,5 +124,15 @@
     "approvedOn": "2026-09-12",
     "approvalRecord": "tools/cinematics/specs/cin6ea3_operator_approval.json",
     "approvedSourceSha256": "d2943e0349c22ea7045f1b8e0a5b0571e1a8c0bacdb8496a3799fce70ad0317a"
+  },
+  "preproductionBaseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "videoGenerationStatus": "OPERATOR_APPROVED",
+  "finalDecision": {
+    "SAME_GAME_VISUAL_IDENTITY": "PASS",
+    "DYNAMIC_VIDEO_GATE": "YES",
+    "VISUAL_PRODUCTION_LOCK": "YES",
+    "HUMAN_VISUAL_REVIEW": "APPROVED",
+    "READY_FOR_CIN_6E_B": "YES",
+    "CIN_6E_B_STARTED": false
   }
 }

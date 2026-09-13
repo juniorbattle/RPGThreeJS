@@ -12,18 +12,18 @@ describe('CIN-6E-A.2 selected H3 dynamic gate', () => {
   it('locks the operator image decisions exactly', () => {
     const selections = readJson('tools/cinematics/specs/cin6ea2_operator_selections.json');
     expect(selections.branch).toBe('main');
-    expect(selections.baseline).toBe('6683c6d3898db0216549c43f7d25c7d8fd46d70d');
+    expect(selections.baseline).toBe('57ba69cf718ea630cc9306c4122666fd6b58420f');
     expect(selections.newImageGenerationAllowed).toBe(false);
     expect(selections.productionMediaMutationAllowed).toBe(false);
     expect(selections.operatorDecisions).toEqual({
       'A-B': 'OPERATOR_APPROVED',
       B_SELECTED_SET: 'OPERATOR_APPROVED',
-      'C-B': 'OPERATOR_SELECTED_FOR_H3',
+      'C-B': 'OPERATOR_APPROVED',
       'C-A': 'APPROVED_ALTERNATE_NOT_SELECTED',
       D_SELECTED_SET: 'OPERATOR_APPROVED',
-      'E-A': 'OPERATOR_SELECTED_FOR_H3',
+      'E-A': 'REJECTED_CHARACTER_FIDELITY',
       'E-B': 'PERMANENTLY_REJECTED_CHARACTER_FIDELITY',
-      'F-A': 'OPERATOR_SELECTED_FOR_H3',
+      'F-A': 'OPERATOR_APPROVED',
     });
     expect(selections.selectedH3Sources.map((entry) => entry.assetCandidateId)).toEqual([
       'pilot_c_cinematic_keyframe_b',
@@ -97,16 +97,17 @@ describe('CIN-6E-A.2 selected H3 dynamic gate', () => {
       expect(existsSync(resolve(root, selected.dynamicResult.analysisPath))).toBe(true);
       expect(existsSync(resolve(root, selected.dynamicResult.verdictPath))).toBe(true);
     }
-    expect(byPilot.get('C').dynamicResult.agentVerdict).toBe('AGENT_VIDEO_PASS_PENDING_OPERATOR');
+    expect(byPilot.get('C').dynamicResult.agentVerdict).toBe('OPERATOR_APPROVED');
     expect(byPilot.get('C').dynamicResult.selectedAttempt).toBe(1);
     expect(byPilot.get('E').dynamicResult.agentVerdict).toBe('REJECTED');
     expect(byPilot.get('E').dynamicResult.selectedAttempt).toBeNull();
     expect(byPilot.get('E').dynamicResult.sourceDisposition).toBe('SOURCE_REQUIRES_REVISIT');
-    expect(byPilot.get('F').dynamicResult.agentVerdict).toBe('AGENT_VIDEO_PASS_PENDING_OPERATOR');
+    expect(byPilot.get('F').dynamicResult.agentVerdict).toBe('OPERATOR_APPROVED');
     expect(byPilot.get('F').dynamicResult.selectedAttempt).toBe(1);
-    expect(selections.dynamicGate.dynamicVideoGate).toBe('NO');
-    expect(selections.dynamicGate.visualProductionLock).toBe('NO');
-    expect(selections.dynamicGate.readyForCin6eB).toBe('PENDING_HUMAN_VISUAL_APPROVAL');
+    expect(selections.dynamicGate.dynamicVideoGate).toBe('YES');
+    expect(selections.dynamicGate.visualProductionLock).toBe('YES');
+    expect(selections.dynamicGate.humanVisualReview).toBe('APPROVED');
+    expect(selections.dynamicGate.readyForCin6eB).toBe('YES');
   });
 
   it('requires zero cuts and resets, while preserving the exact Pilot E identity blocker', () => {

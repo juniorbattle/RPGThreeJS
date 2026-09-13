@@ -1,19 +1,20 @@
 {
   "schemaVersion": 1,
-  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "baseline": "57ba69cf718ea630cc9306c4122666fd6b58420f",
   "model": "gpt-image-2.5-sunburst-2026-09-08",
   "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
   "quality": "max",
-  "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE",
-  "generatedOutputs": 1,
-  "selectedCandidates": 0,
-  "rejectedCandidates": 0,
+  "executionStatus": "EXACT_MODEL_EXECUTION_PROVEN_SELECTED_PIPELINE_COMPLETE",
+  "generatedOutputs": 14,
+  "selectedCandidates": 10,
+  "rejectedCandidates": 2,
   "summary": {
     "totalJobs": 45,
     "familyMasterJobs": 26,
     "pilotJobs": 18,
     "jobsWithCompleteReferenceHashes": 45,
-    "cin6ea3RepairJobs": 1
+    "cin6ea3RepairJobs": 1,
+    "generatedOutputs": 14
   },
   "jobs": [
     {
@@ -45,12 +46,12 @@
       "dependencies": [
         "gold:alaric_audience_arrival"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "alaric_audience_master_b",
@@ -81,12 +82,12 @@
       "dependencies": [
         "gold:alaric_audience_arrival"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "bois_clair_master_a",
@@ -120,12 +121,12 @@
         "gold:camp_departure",
         "gold:valmir_route_fork"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "bois_clair_master_b",
@@ -159,12 +160,12 @@
         "gold:camp_departure",
         "gold:valmir_route_fork"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "final_refuge_master_a",
@@ -195,12 +196,12 @@
       "dependencies": [
         "gold:camp_departure"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "final_refuge_master_b",
@@ -231,12 +232,12 @@
       "dependencies": [
         "gold:camp_departure"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "first_refuge_master_a",
@@ -267,12 +268,12 @@
       "dependencies": [
         "gold:camp_departure"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "first_refuge_master_b",
@@ -303,12 +304,12 @@
       "dependencies": [
         "gold:camp_departure"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "forest_road_master_a",
@@ -321,7 +322,7 @@
       "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
       "quality": "max",
       "attempt": "A",
-      "generationTimestamp": null,
+      "generationTimestamp": "2026-09-12T15:28:18.964Z",
       "generationType": "edit",
       "endpoint": "/v1/images/edits",
       "promptSpecPath": "tmp/cinematics/cin6ea/prompts/forest_road_master_a.json",
@@ -335,19 +336,19 @@
         "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
         "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137"
       },
-      "outputPath": null,
-      "outputSha256": null,
+      "outputPath": "tmp/cinematics/cin6ea/execution/images/forest_road_master_a/forest_road_master_a.png",
+      "outputSha256": "013960e805af751bf72f87d51bf0d5800f810c1fcfc1630b8b5b143e7fc27cd6",
       "castManifestId": null,
       "dependencies": [
         "gold:valmir_route_fork",
         "gold:camp_departure"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "OPERATOR_APPROVED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "OPERATOR_APPROVED",
+      "executionStatus": "GENERATED"
     },
     {
       "assetCandidateId": "forest_road_master_b",
@@ -381,12 +382,12 @@
         "gold:valmir_route_fork",
         "gold:camp_departure"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "lion_camp_master_a",
@@ -417,12 +418,12 @@
       "dependencies": [
         "gold:camp_departure"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "lion_camp_master_b",
@@ -453,12 +454,12 @@
       "dependencies": [
         "gold:camp_departure"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "lion_judgement_master_a",
@@ -489,12 +490,12 @@
       "dependencies": [
         "gold:alaric_audience_arrival"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "lion_judgement_master_b",
@@ -525,12 +526,12 @@
       "dependencies": [
         "gold:alaric_audience_arrival"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "lion_trial_master_a",
@@ -564,12 +565,12 @@
         "gold:alaric_audience_arrival",
         "gold:valmir_route_fork"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "lion_trial_master_b",
@@ -603,12 +604,12 @@
         "gold:alaric_audience_arrival",
         "gold:valmir_route_fork"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "pilot_a_static_tableau_background_a",
@@ -621,7 +622,7 @@
       "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
       "quality": "max",
       "attempt": "A",
-      "generationTimestamp": null,
+      "generationTimestamp": "2026-09-12T15:13:02.2854015Z",
       "generationType": "edit",
       "endpoint": "/v1/images/edits",
       "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_a_static_tableau_background_a.json",
@@ -635,19 +636,19 @@
         "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png": "eb239cbd62a10dc48776ab65cfe80fba73f37b5642c92cddc8d5ffab072e2097",
         "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
       },
-      "outputPath": null,
-      "outputSha256": null,
+      "outputPath": "tmp/cinematics/cin6ea/execution/pilot_a/smoke/pilot_a_static_tableau_background_a.png",
+      "outputSha256": "c718579f663a2c8321bdc9ac760e59b461747a9e51e27f6d551ff972c4ed2929",
       "castManifestId": "cast:dialogue:lion_briefing",
       "dependencies": [
         "family-master:ALARIC_AUDIENCE",
         "cast:dialogue:lion_briefing"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_SELECTED",
+      "executionStatus": "GENERATED"
     },
     {
       "assetCandidateId": "pilot_a_static_tableau_background_b",
@@ -660,7 +661,7 @@
       "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
       "quality": "max",
       "attempt": "B",
-      "generationTimestamp": null,
+      "generationTimestamp": "2026-09-12T15:23:03.0513353Z",
       "generationType": "edit",
       "endpoint": "/v1/images/edits",
       "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_a_static_tableau_background_b.json",
@@ -674,19 +675,19 @@
         "tmp/cinematics/cin6ea/gold/alaric_audience_arrival/frames/integration.png": "eb239cbd62a10dc48776ab65cfe80fba73f37b5642c92cddc8d5ffab072e2097",
         "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
       },
-      "outputPath": null,
-      "outputSha256": null,
+      "outputPath": "tmp/cinematics/cin6ea/execution/pilot_a/candidate-b/pilot_a_static_tableau_background_b.png",
+      "outputSha256": "811202559e2c308afa0664f3f0e4093b19ba2d94d7a031314623d855ae7d9261",
       "castManifestId": "cast:dialogue:lion_briefing",
       "dependencies": [
         "family-master:ALARIC_AUDIENCE",
         "cast:dialogue:lion_briefing"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "OPERATOR_APPROVED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "OPERATOR_APPROVED",
+      "executionStatus": "GENERATED"
     },
     {
       "assetCandidateId": "pilot_b_static_tableau_background_a",
@@ -699,7 +700,7 @@
       "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
       "quality": "max",
       "attempt": "A",
-      "generationTimestamp": null,
+      "generationTimestamp": "2026-09-12T15:31:59.618Z",
       "generationType": "edit",
       "endpoint": "/v1/images/edits",
       "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_b_static_tableau_background_a.json",
@@ -715,19 +716,19 @@
         "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
         "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
       },
-      "outputPath": null,
-      "outputSha256": null,
+      "outputPath": "tmp/cinematics/cin6ea/execution/images/pilot_b_static_tableau_background_a/pilot_b_static_tableau_background_a.png",
+      "outputSha256": "e5fea12cd97feec8ffd4054275a118cf06dea85264207c33e7bf896a94bef5a9",
       "castManifestId": "cast:dialogue:post_opening_trail",
       "dependencies": [
         "family-master:FOREST_ROAD",
         "cast:dialogue:post_opening_trail"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "OPERATOR_APPROVED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "OPERATOR_APPROVED",
+      "executionStatus": "GENERATED"
     },
     {
       "assetCandidateId": "pilot_b_static_tableau_background_b",
@@ -763,12 +764,12 @@
         "family-master:FOREST_ROAD",
         "cast:dialogue:post_opening_trail"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "pilot_b_travel_still_a",
@@ -781,7 +782,7 @@
       "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
       "quality": "max",
       "attempt": "A",
-      "generationTimestamp": null,
+      "generationTimestamp": "2026-09-12T15:30:05.610Z",
       "generationType": "edit",
       "endpoint": "/v1/images/edits",
       "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_b_travel_still_a.json",
@@ -801,19 +802,19 @@
         "public/assets/characters/pixel/full/sage_seraphine.png": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
         "public/assets/characters/pixel/full/maelor.png": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
       },
-      "outputPath": null,
-      "outputSha256": null,
+      "outputPath": "tmp/cinematics/cin6ea/execution/images/pilot_b_travel_still_a/pilot_b_travel_still_a.png",
+      "outputSha256": "2889673cdf291f99df215825c720dea92318ca7d518223796b23c284a5bafd15",
       "castManifestId": "cast:edge:lion-audience>lion-opening-ambush",
       "dependencies": [
         "family-master:FOREST_ROAD",
         "cast:edge:lion-audience>lion-opening-ambush"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "OPERATOR_APPROVED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "OPERATOR_APPROVED",
+      "executionStatus": "GENERATED"
     },
     {
       "assetCandidateId": "pilot_b_travel_still_b",
@@ -853,12 +854,12 @@
         "family-master:FOREST_ROAD",
         "cast:edge:lion-audience>lion-opening-ambush"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "pilot_c_cinematic_keyframe_a",
@@ -871,7 +872,7 @@
       "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
       "quality": "max",
       "attempt": "A",
-      "generationTimestamp": null,
+      "generationTimestamp": "2026-09-12T15:37:10.569Z",
       "generationType": "edit",
       "endpoint": "/v1/images/edits",
       "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_c_cinematic_keyframe_a.json",
@@ -889,19 +890,19 @@
         "public/assets/characters/pixel/full/alistair.png": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
         "public/assets/characters/pixel/full/marian.png": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
       },
-      "outputPath": null,
-      "outputSha256": null,
+      "outputPath": "tmp/cinematics/cin6ea/execution/images/pilot_c_cinematic_keyframe_a/pilot_c_cinematic_keyframe_a.png",
+      "outputSha256": "b682502ac1f22f50a39d08946da642e18fafa9376f59b7fed5760fdedab2aa85",
       "castManifestId": "cast:media:camp_departure",
       "dependencies": [
         "family-master:LION_CAMP",
         "cast:media:camp_departure"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "APPROVED_ALTERNATE_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "APPROVED_ALTERNATE_NOT_SELECTED",
+      "executionStatus": "GENERATED"
     },
     {
       "assetCandidateId": "pilot_c_cinematic_keyframe_b",
@@ -914,7 +915,7 @@
       "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
       "quality": "max",
       "attempt": "B",
-      "generationTimestamp": null,
+      "generationTimestamp": "2026-09-12T15:39:40.133Z",
       "generationType": "edit",
       "endpoint": "/v1/images/edits",
       "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_c_cinematic_keyframe_b.json",
@@ -932,19 +933,19 @@
         "public/assets/characters/pixel/full/alistair.png": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
         "public/assets/characters/pixel/full/marian.png": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
       },
-      "outputPath": null,
-      "outputSha256": null,
+      "outputPath": "tmp/cinematics/cin6ea/execution/images/pilot_c_cinematic_keyframe_b/pilot_c_cinematic_keyframe_b.png",
+      "outputSha256": "b34a1097681fcf5e02204339c6bc330a9976562f64c91172115988de04cbf071",
       "castManifestId": "cast:media:camp_departure",
       "dependencies": [
         "family-master:LION_CAMP",
         "cast:media:camp_departure"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "OPERATOR_APPROVED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "OPERATOR_APPROVED",
+      "executionStatus": "GENERATED"
     },
     {
       "assetCandidateId": "pilot_d_static_tableau_background_a",
@@ -957,7 +958,7 @@
       "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
       "quality": "max",
       "attempt": "A",
-      "generationTimestamp": null,
+      "generationTimestamp": "2026-09-12T15:42:36.939Z",
       "generationType": "edit",
       "endpoint": "/v1/images/edits",
       "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_d_static_tableau_background_a.json",
@@ -973,19 +974,19 @@
         "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
         "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
       },
-      "outputPath": null,
-      "outputSha256": null,
+      "outputPath": "tmp/cinematics/cin6ea/execution/images/pilot_d_static_tableau_background_a/pilot_d_static_tableau_background_a.png",
+      "outputSha256": "2c41b03f46d29e1d37241fd6e907d1fe57bf5330b686045ceed182cdadd3dca3",
       "castManifestId": "cast:dialogue:ate_bois_clair_night_watch",
       "dependencies": [
         "family-master:SECOND_REFUGE",
         "cast:dialogue:ate_bois_clair_night_watch"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "OPERATOR_APPROVED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "OPERATOR_APPROVED",
+      "executionStatus": "GENERATED"
     },
     {
       "assetCandidateId": "pilot_d_static_tableau_background_b",
@@ -1021,12 +1022,12 @@
         "family-master:SECOND_REFUGE",
         "cast:dialogue:ate_bois_clair_night_watch"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "pilot_e_cinematic_keyframe_a",
@@ -1039,7 +1040,7 @@
       "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
       "quality": "max",
       "attempt": "A",
-      "generationTimestamp": null,
+      "generationTimestamp": "2026-09-12T15:44:24.575Z",
       "generationType": "edit",
       "endpoint": "/v1/images/edits",
       "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_e_cinematic_keyframe_a.json",
@@ -1057,19 +1058,19 @@
         "public/assets/characters/pixel/full/cedric.png": "ed71da3f7bd7ac94596bd4d20ef62047940d4457fbae7d6898f54ba221f6972f",
         "public/assets/characters/pixel/full/kestrel.png": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
       },
-      "outputPath": null,
-      "outputSha256": null,
+      "outputPath": "tmp/cinematics/cin6ea/execution/images/pilot_e_cinematic_keyframe_a/pilot_e_cinematic_keyframe_a.png",
+      "outputSha256": "b40f6b16f6a588386d58d2e5dd35f9ade21a8c38d67455d03f49c678508ebdef",
       "castManifestId": "cast:media:cedric_encounter",
       "dependencies": [
         "family-master:FOREST_ROAD",
         "cast:media:cedric_encounter"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "REJECTED_CHARACTER_FIDELITY",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "REJECTED_CHARACTER_FIDELITY",
+      "executionStatus": "GENERATED"
     },
     {
       "assetCandidateId": "pilot_e_cinematic_keyframe_b",
@@ -1082,7 +1083,7 @@
       "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
       "quality": "max",
       "attempt": "B",
-      "generationTimestamp": null,
+      "generationTimestamp": "2026-09-12T15:52:54.940Z",
       "generationType": "edit",
       "endpoint": "/v1/images/edits",
       "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_e_cinematic_keyframe_b.json",
@@ -1100,19 +1101,19 @@
         "public/assets/characters/pixel/full/cedric.png": "ed71da3f7bd7ac94596bd4d20ef62047940d4457fbae7d6898f54ba221f6972f",
         "public/assets/characters/pixel/full/kestrel.png": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
       },
-      "outputPath": null,
-      "outputSha256": null,
+      "outputPath": "tmp/cinematics/cin6ea/execution/images/pilot_e_cinematic_keyframe_b/pilot_e_cinematic_keyframe_b.png",
+      "outputSha256": "ffd968735c32cf065ef7be405081cf9ab6c8d43450467ffb7617f9e265ed4a29",
       "castManifestId": "cast:media:cedric_encounter",
       "dependencies": [
         "family-master:FOREST_ROAD",
         "cast:media:cedric_encounter"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "REJECTED_CHARACTER_FIDELITY",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "REJECTED_CHARACTER_FIDELITY",
+      "executionStatus": "GENERATED"
     },
     {
       "assetCandidateId": "pilot_e_static_tableau_background_a",
@@ -1125,7 +1126,7 @@
       "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
       "quality": "max",
       "attempt": "A",
-      "generationTimestamp": null,
+      "generationTimestamp": "2026-09-12T15:46:13.021Z",
       "generationType": "edit",
       "endpoint": "/v1/images/edits",
       "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_e_static_tableau_background_a.json",
@@ -1141,19 +1142,19 @@
         "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
         "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
       },
-      "outputPath": null,
-      "outputSha256": null,
+      "outputPath": "tmp/cinematics/cin6ea/execution/images/pilot_e_static_tableau_background_a/pilot_e_static_tableau_background_a.png",
+      "outputSha256": "9310cb7e88eedb3f305b4b14e3a97c3a7423ab9b88d8f4f6f1c39972776e65da",
       "castManifestId": "cast:dialogue:mystery_recruit",
       "dependencies": [
         "family-master:FOREST_ROAD",
         "cast:dialogue:mystery_recruit"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "OPERATOR_APPROVED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "OPERATOR_APPROVED",
+      "executionStatus": "GENERATED"
     },
     {
       "assetCandidateId": "pilot_e_static_tableau_background_b",
@@ -1189,12 +1190,12 @@
         "family-master:FOREST_ROAD",
         "cast:dialogue:mystery_recruit"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "pilot_f_cinematic_keyframe_a",
@@ -1207,7 +1208,7 @@
       "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
       "quality": "max",
       "attempt": "A",
-      "generationTimestamp": null,
+      "generationTimestamp": "2026-09-12T15:47:53.333Z",
       "generationType": "edit",
       "endpoint": "/v1/images/edits",
       "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_f_cinematic_keyframe_a.json",
@@ -1223,19 +1224,19 @@
         "public/assets/characters/pixel/full/sage_seraphine.png": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
         "public/assets/characters/pixel/full/elara.png": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74"
       },
-      "outputPath": null,
-      "outputSha256": null,
+      "outputPath": "tmp/cinematics/cin6ea/execution/images/pilot_f_cinematic_keyframe_a/pilot_f_cinematic_keyframe_a.png",
+      "outputSha256": "0dd58fa46da5400249b9d7756dfd92396f3c11f93f0e5380bb8fdad714099e57",
       "castManifestId": "cast:media:shadow_signs",
       "dependencies": [
         "family-master:SHADOW_RUINS",
         "cast:media:shadow_signs"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "OPERATOR_APPROVED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "OPERATOR_APPROVED",
+      "executionStatus": "GENERATED"
     },
     {
       "assetCandidateId": "pilot_f_cinematic_keyframe_b",
@@ -1271,12 +1272,12 @@
         "family-master:SHADOW_RUINS",
         "cast:media:shadow_signs"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "pilot_f_static_tableau_background_a",
@@ -1289,7 +1290,7 @@
       "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
       "quality": "max",
       "attempt": "A",
-      "generationTimestamp": null,
+      "generationTimestamp": "2026-09-12T15:49:35.285Z",
       "generationType": "edit",
       "endpoint": "/v1/images/edits",
       "promptSpecPath": "tmp/cinematics/cin6ea/prompts/pilot_f_static_tableau_background_a.json",
@@ -1303,19 +1304,19 @@
         "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
         "tmp/cinematics/cin6ea/review/layout-guides/tableau-layout-1920x1080.png": "3c6707f930a576476926297b699978320b4e28581f6e16147175533153627de8"
       },
-      "outputPath": null,
-      "outputSha256": null,
+      "outputPath": "tmp/cinematics/cin6ea/execution/images/pilot_f_static_tableau_background_a/pilot_f_static_tableau_background_a.png",
+      "outputSha256": "d2002bd65ecb32e01be638c12ebf2440853780d0dab4c67d8c14ddfe25da48c7",
       "castManifestId": "cast:dialogue:shadow_signs",
       "dependencies": [
         "family-master:SHADOW_RUINS",
         "cast:dialogue:shadow_signs"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "OPERATOR_APPROVED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "OPERATOR_APPROVED",
+      "executionStatus": "GENERATED"
     },
     {
       "assetCandidateId": "pilot_f_static_tableau_background_b",
@@ -1349,12 +1350,12 @@
         "family-master:SHADOW_RUINS",
         "cast:dialogue:shadow_signs"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "second_refuge_master_a",
@@ -1388,12 +1389,12 @@
         "gold:camp_departure",
         "gold:valmir_route_fork"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "second_refuge_master_b",
@@ -1427,12 +1428,12 @@
         "gold:camp_departure",
         "gold:valmir_route_fork"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "serpent_finale_master_a",
@@ -1466,12 +1467,12 @@
         "gold:valmir_route_fork",
         "gold:alaric_audience_arrival"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "serpent_finale_master_b",
@@ -1505,12 +1506,12 @@
         "gold:valmir_route_fork",
         "gold:alaric_audience_arrival"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "shadow_ruins_master_a",
@@ -1541,12 +1542,12 @@
       "dependencies": [
         "gold:valmir_route_fork"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "shadow_ruins_master_b",
@@ -1577,12 +1578,12 @@
       "dependencies": [
         "gold:valmir_route_fork"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "valmir_road_master_a",
@@ -1613,12 +1614,12 @@
       "dependencies": [
         "gold:valmir_route_fork"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "valmir_road_master_b",
@@ -1649,12 +1650,12 @@
       "dependencies": [
         "gold:valmir_route_fork"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "witness_road_master_a",
@@ -1685,12 +1686,12 @@
       "dependencies": [
         "gold:camp_departure"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "witness_road_master_b",
@@ -1721,12 +1722,12 @@
       "dependencies": [
         "gold:camp_departure"
       ],
-      "selection": "NOT_GENERATED",
+      "selection": "NOT_EXECUTED_NOT_SELECTED",
       "rejectionReasons": [],
       "parentCandidate": null,
       "sourceVideo": null,
-      "finalApprovalState": "BLOCKED_MODEL_UNAVAILABLE",
-      "executionStatus": "BLOCKED_NO_CLI_CREDENTIAL_AND_BUILT_IN_MODEL_NOT_SELECTABLE"
+      "finalApprovalState": "NOT_EXECUTED_NOT_SELECTED",
+      "executionStatus": "NOT_EXECUTED_NOT_SELECTED"
     },
     {
       "assetCandidateId": "pilot_e_cinematic_keyframe_c",
@@ -1770,7 +1771,36 @@
       "repairTarget": "Restore Kestrel canonical green cloth face mask while preserving the E-A composition.",
       "sourceVideo": null,
       "finalApprovalState": "OPERATOR_APPROVED",
-      "executionStatus": "GENERATED_AND_OPERATOR_APPROVED"
+      "executionStatus": "GENERATED"
     }
-  ]
+  ],
+  "preproductionBaseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "selectedCandidateIds": [
+    "pilot_a_static_tableau_background_b",
+    "forest_road_master_a",
+    "pilot_b_travel_still_a",
+    "pilot_b_static_tableau_background_a",
+    "pilot_c_cinematic_keyframe_b",
+    "pilot_d_static_tableau_background_a",
+    "pilot_e_cinematic_keyframe_c",
+    "pilot_e_static_tableau_background_a",
+    "pilot_f_cinematic_keyframe_a",
+    "pilot_f_static_tableau_background_a"
+  ],
+  "approvedAlternates": 1,
+  "approvedAlternateIds": [
+    "pilot_c_cinematic_keyframe_a"
+  ],
+  "rejectedCandidateIds": [
+    "pilot_e_cinematic_keyframe_a",
+    "pilot_e_cinematic_keyframe_b"
+  ],
+  "finalDecision": {
+    "SAME_GAME_VISUAL_IDENTITY": "PASS",
+    "DYNAMIC_VIDEO_GATE": "YES",
+    "VISUAL_PRODUCTION_LOCK": "YES",
+    "HUMAN_VISUAL_REVIEW": "APPROVED",
+    "READY_FOR_CIN_6E_B": "YES",
+    "CIN_6E_B_STARTED": false
+  }
 }

@@ -58,7 +58,7 @@ const verdict = {
   sourceCandidateId: 'pilot_e_cinematic_keyframe_c',
   attempt: 1,
   sourceDecision: 'OPERATOR_APPROVED',
-  agentVerdict: 'AGENT_VIDEO_PASS_PENDING_OPERATOR',
+  agentVerdict: 'OPERATOR_APPROVED',
   reviewScope: {
     masterVideo: MASTER_PATH,
     analysis: ANALYSIS_PATH,
@@ -139,7 +139,8 @@ await writeFile(resolve(ROOT, VERDICT_PATH), `${JSON.stringify(verdict, null, 2)
 const regate = {
   schemaVersion: 1,
   mission: 'CIN-6E-A.3',
-  baseline: '6683c6d3898db0216549c43f7d25c7d8fd46d70d',
+  baseline: '57ba69cf718ea630cc9306c4122666fd6b58420f',
+  preproductionBaseline: '6683c6d3898db0216549c43f7d25c7d8fd46d70d',
   scope: 'PILOT_E_ONLY',
   priorOperatorApprovals: { pilotC: 'OPERATOR_APPROVED_UNCHANGED', pilotF: 'OPERATOR_APPROVED_UNCHANGED' },
   source: {
@@ -178,20 +179,25 @@ const regate = {
     FINAL_FRAME_HOLD_SAFE: 'PASS',
   },
   decision: {
-    PILOT_E: 'AGENT_VIDEO_PASS_PENDING_OPERATOR',
-    DYNAMIC_VIDEO_GATE: 'YES_PENDING_OPERATOR',
-    VISUAL_PRODUCTION_LOCK: 'YES_PENDING_OPERATOR',
+    PILOT_E: 'OPERATOR_APPROVED',
+    DYNAMIC_VIDEO_GATE: 'YES',
+    VISUAL_PRODUCTION_LOCK: 'YES',
     AGENT_VISUAL_QA: 'PASS',
-    HUMAN_VISUAL_REVIEW: 'REQUIRED',
-    READY_FOR_CIN_6E_B: 'PENDING_HUMAN_VISUAL_APPROVAL',
+    HUMAN_VISUAL_REVIEW: 'APPROVED',
+    SAME_GAME_VISUAL_IDENTITY: 'PASS',
+    READY_FOR_CIN_6E_B: 'YES',
   },
   protectedState: {
     pilotsCAndFChanged: false,
     productionMediaChanged: false,
     productionManifestChanged: false,
     canonicalSpritesChanged: false,
-    commit: false,
-    push: false,
+    finalizationRestrictedToReportsAndSpecs: true,
+  },
+  operatorApproval: {
+    status: 'APPROVED',
+    approvedOn: '2026-09-12',
+    authority: 'tools/cinematics/specs/cin6ea_final_operator_lock.json',
   },
 };
 await writeFile(resolve(ROOT, REGATE_PATH), `${JSON.stringify(regate, null, 2)}\n`, 'utf8');

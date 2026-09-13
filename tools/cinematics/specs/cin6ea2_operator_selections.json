@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "mission": "CIN-6E-A.2",
-  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "baseline": "57ba69cf718ea630cc9306c4122666fd6b58420f",
   "branch": "main",
   "lockedOn": "2026-09-12",
   "absoluteCharacterIdentitySource": "public/assets/characters/pixel/full/*.png",
@@ -21,18 +21,18 @@
   "operatorDecisions": {
     "A-B": "OPERATOR_APPROVED",
     "B_SELECTED_SET": "OPERATOR_APPROVED",
-    "C-B": "OPERATOR_SELECTED_FOR_H3",
+    "C-B": "OPERATOR_APPROVED",
     "C-A": "APPROVED_ALTERNATE_NOT_SELECTED",
     "D_SELECTED_SET": "OPERATOR_APPROVED",
-    "E-A": "OPERATOR_SELECTED_FOR_H3",
+    "E-A": "REJECTED_CHARACTER_FIDELITY",
     "E-B": "PERMANENTLY_REJECTED_CHARACTER_FIDELITY",
-    "F-A": "OPERATOR_SELECTED_FOR_H3"
+    "F-A": "OPERATOR_APPROVED"
   },
   "selectedH3Sources": [
     {
       "pilotId": "C",
       "assetCandidateId": "pilot_c_cinematic_keyframe_b",
-      "operatorDecision": "OPERATOR_SELECTED_FOR_H3",
+      "operatorDecision": "OPERATOR_APPROVED",
       "sourcePath": "tmp/cinematics/cin6ea/execution/images/pilot_c_cinematic_keyframe_b/pilot_c_cinematic_keyframe_b.png",
       "sourceSha256": "b34a1097681fcf5e02204339c6bc330a9976562f64c91172115988de04cbf071",
       "h3SourceCopyPath": "tmp/cinematics/cin4/cin6ea2_pilot_c_camp_continuous/shot_01/source.png",
@@ -43,14 +43,17 @@
       "visualFamily": "LION_CAMP",
       "beatId": "media:camp_departure",
       "castManifestId": "cast:media:camp_departure",
-      "requiredCast": ["maelor", "alistair", "marian"],
+      "requiredCast": [
+        "maelor",
+        "alistair",
+        "marian"
+      ],
       "characterReferenceSha256": {
         "maelor": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215",
         "alistair": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
         "marian": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
       },
-      "h3SpecPath": "tools/cinematics/specs/cin6ea2/pilot_c_camp_continuous.json"
-      ,
+      "h3SpecPath": "tools/cinematics/specs/cin6ea2/pilot_c_camp_continuous.json",
       "dynamicResult": {
         "attempts": 1,
         "selectedAttempt": 1,
@@ -60,7 +63,7 @@
         "finalFrameSha256": "ab07710eb33277d91e04ef0b20415ddc51c8848ca220443a0cf742223492ffdd",
         "analysisPath": "tmp/cinematics/cin6ea/dynamic/pilot_c_attempt_1/analysis.json",
         "verdictPath": "tmp/cinematics/cin6ea/dynamic/pilot_c_attempt_1/verdict.json",
-        "agentVerdict": "AGENT_VIDEO_PASS_PENDING_OPERATOR"
+        "agentVerdict": "OPERATOR_APPROVED"
       }
     },
     {
@@ -77,7 +80,10 @@
       "visualFamily": "FOREST_ROAD",
       "beatId": "media:cedric_encounter",
       "castManifestId": "cast:media:cedric_encounter",
-      "requiredCast": ["cedric", "kestrel"],
+      "requiredCast": [
+        "cedric",
+        "kestrel"
+      ],
       "characterReferenceSha256": {
         "cedric": "ed71da3f7bd7ac94596bd4d20ef62047940d4457fbae7d6898f54ba221f6972f",
         "kestrel": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
@@ -101,7 +107,7 @@
     {
       "pilotId": "F",
       "assetCandidateId": "pilot_f_cinematic_keyframe_a",
-      "operatorDecision": "OPERATOR_SELECTED_FOR_H3",
+      "operatorDecision": "OPERATOR_APPROVED",
       "sourcePath": "tmp/cinematics/cin6ea/execution/images/pilot_f_cinematic_keyframe_a/pilot_f_cinematic_keyframe_a.png",
       "sourceSha256": "0dd58fa46da5400249b9d7756dfd92396f3c11f93f0e5380bb8fdad714099e57",
       "h3SourceCopyPath": "tmp/cinematics/cin4/cin6ea2_pilot_f_shadow_continuous/shot_01/source.png",
@@ -112,7 +118,10 @@
       "visualFamily": "SHADOW_RUINS",
       "beatId": "media:shadow_signs",
       "castManifestId": "cast:media:shadow_signs",
-      "requiredCast": ["sage_seraphine", "elara"],
+      "requiredCast": [
+        "sage_seraphine",
+        "elara"
+      ],
       "characterReferenceSha256": {
         "sage_seraphine": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
         "elara": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74"
@@ -128,20 +137,23 @@
         "finalFrameSha256": "076a2bd4c4d7ff2d3634ae4df4331df5df4534378959f81ee6b55e43eef7281c",
         "analysisPath": "tmp/cinematics/cin6ea/dynamic/pilot_f_attempt_1/analysis.json",
         "verdictPath": "tmp/cinematics/cin6ea/dynamic/pilot_f_attempt_1/verdict.json",
-        "agentVerdict": "AGENT_VIDEO_PASS_PENDING_OPERATOR"
+        "agentVerdict": "OPERATOR_APPROVED"
       }
     }
   ],
   "dynamicGate": {
-    "status": "COMPLETE_WITH_PILOT_E_SOURCE_BLOCKER",
-    "requiredOrder": ["C", "E", "F"],
-    "maximumAttemptsPerPilot": 3,
-    "attemptsMustBeSequentialAndDefectDriven": true,
-    "dynamicVideoGate": "NO",
-    "visualProductionLock": "NO",
-    "agentVisualQa": "MIXED",
-    "sameGameVisualIdentity": "HUMAN_REVIEW_REQUIRED",
-    "readyForCin6eB": "PENDING_HUMAN_VISUAL_APPROVAL",
-    "blocker": "Pilot E fails canonical Kestrel identity because the operator-selected E-A source itself exposes a human face instead of the canonical green cloth mask."
-  }
+    "status": "SUPERSEDED_BY_FINAL_OPERATOR_LOCK",
+    "historicalRejectedSource": "pilot_e_cinematic_keyframe_a",
+    "replacementSource": "pilot_e_cinematic_keyframe_c",
+    "dynamicVideoGate": "YES",
+    "visualProductionLock": "YES",
+    "agentVisualQa": "PASS",
+    "humanVisualReview": "APPROVED",
+    "sameGameVisualIdentity": "PASS",
+    "readyForCin6eB": "YES",
+    "blocker": null,
+    "note": "The A.2 E-A failure remains historical evidence; the A.3 E-C replacement passed and was operator-approved."
+  },
+  "preproductionBaseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "supersededBy": "tools/cinematics/specs/cin6ea_final_operator_lock.json"
 }

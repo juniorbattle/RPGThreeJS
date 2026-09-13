@@ -1,16 +1,14 @@
 # CIN-6E-A Six Pilot Validation
 
-Baseline: `6683c6d3898db0216549c43f7d25c7d8fd46d70d`
+Finalization baseline: `57ba69cf718ea630cc9306c4122666fd6b58420f`
 
-CIN-6E-A remains preproduction-only. TravelView is still production default; NarrativeStage remains DEV/selectable. No production media, canonical sprite, game truth, save, combat or VFX file is changed.
-
-| Pilot | Scope | Image attempts | MiniMax attempts | Result |
+| Pilot | Approved image selection | Image attempts | MiniMax attempts | Final result |
 |---|---|---:|---:|---|
-| A | ROYAL_AUDIENCE_TABLEAU | 0 | 0 | BLOCKED: exact image model unavailable |
-| B | FOREST_ROAD_CROSS_MODE | 0 | 0 | BLOCKED: exact image model unavailable |
-| C | CAMP_CONTINUOUS_SHOT | 0 | 0 | BLOCKED: exact image model unavailable |
-| D | SECOND_REFUGE_TABLEAU | 0 | 0 | BLOCKED: exact image model unavailable |
-| E | CEDRIC_ENCOUNTER_TRANSITION | 0 | 0 | BLOCKED: exact image model unavailable |
-| F | SHADOW_SIGNS_LOW_LIGHT | 0 | 0 | BLOCKED: exact image model unavailable |
+| A | background B | 2 | 0 | OPERATOR_APPROVED |
+| B | selected Forest Road set | 3 | 0 | OPERATOR_APPROVED |
+| C | C-B | 2 | 1 | OPERATOR_APPROVED |
+| D | selected Second Refuge set | 1 | 0 | OPERATOR_APPROVED |
+| E | E-C | 4 | 2 | OPERATOR_APPROVED |
+| F | F-A | 2 | 1 | OPERATOR_APPROVED |
 
-No pilot is falsely marked executed or passed. The exact beats, canonical modes, cast manifests, references, outputs and acceptance purposes are recorded in `cin6ea_six_pilot_plan.json`. MiniMax was not called because no keyframe could satisfy the locked source-frame gate.
+Totals: **6/6 executed**, **6/6 approved**, **14 image attempts**, and **4 MiniMax-H3 attempts**. E-A and E-B remain explicit rejected identity evidence; E-C is the approved replacement. The selected dynamic pilots C, E-C, and F pass every continuity and final-frame gate.

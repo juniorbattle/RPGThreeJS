@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "baseline": "57ba69cf718ea630cc9306c4122666fd6b58420f",
   "productionDefault": "TravelView",
   "narrativeStageStatus": "DEV_SELECTABLE",
   "runtimeAi": false,
@@ -9,9 +9,13 @@
     "requiredModel": "gpt-image-2.5-sunburst-2026-09-08",
     "requiredQuality": "max",
     "acceptanceEndpoint": "explicit OpenAI Image API/CLI or a built-in surface that exposes and confirms the exact snapshot",
-    "available": false,
-    "blocker": "OPENAI_API_KEY absent and built-in image tool exposes no model or quality selector",
-    "substitutionAllowed": false
+    "available": true,
+    "blocker": null,
+    "substitutionAllowed": false,
+    "exactModelExecution": "PROVEN",
+    "executedModel": "gpt-image-2.5-sunburst-2026-09-08",
+    "executedQuality": "max",
+    "imageAttempts": 14
   },
   "videoPipeline": {
     "provider": "MiniMax Open Platform Direct API",
@@ -20,8 +24,14 @@
     "keyAvailable": true,
     "mode": "offline image-to-video",
     "sequencing": "one request at a time",
-    "attempted": false,
-    "blockedBy": "no accepted exact-model keyframe"
+    "attempted": true,
+    "blockedBy": null,
+    "totalAttempts": 4,
+    "selectedPilotsOperatorApproved": [
+      "C",
+      "E-C",
+      "F"
+    ]
   },
   "goldReferences": [
     "alaric_audience_arrival",
@@ -74,5 +84,15 @@
     "different-game family drift"
   ],
   "provenanceRequired": true,
-  "humanApprovalRequired": true
+  "humanApprovalRequired": true,
+  "preproductionBaseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "canonicalCharacterAuthority": "public/assets/characters/pixel/full/*.png",
+  "finalDecision": {
+    "SAME_GAME_VISUAL_IDENTITY": "PASS",
+    "DYNAMIC_VIDEO_GATE": "YES",
+    "VISUAL_PRODUCTION_LOCK": "YES",
+    "HUMAN_VISUAL_REVIEW": "APPROVED",
+    "READY_FOR_CIN_6E_B": "YES",
+    "CIN_6E_B_STARTED": false
+  }
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "baseline": "57ba69cf718ea630cc9306c4122666fd6b58420f",
   "count": 3,
   "specs": [
     {
@@ -70,7 +70,24 @@
         "worldReset": 0,
         "targetEndState": "PASS_REQUIRED"
       },
-      "status": "PLANNED_BLOCKED_IMAGE_MODEL_UNAVAILABLE"
+      "status": "OPERATOR_APPROVED",
+      "result": {
+        "sourceCandidateId": "pilot_c_cinematic_keyframe_b",
+        "masterVideoPath": "tmp/cinematics/cin4/cin6ea2_pilot_c_camp_continuous/shot_01/shot_master.mp4",
+        "masterVideoSha256": "2b14e77cd26a4449c638b21bb8852862c49f3c87d13ea14fd7849b1041f3d347",
+        "finalFramePath": "tmp/cinematics/cin4/cin6ea2_pilot_c_camp_continuous/shot_01/last_frame.png",
+        "finalFrameSha256": "ab07710eb33277d91e04ef0b20415ddc51c8848ca220443a0cf742223492ffdd",
+        "gates": {
+          "INTERNAL_CUT_COUNT": 0,
+          "CHARACTER_IDENTITY_BREAKS": 0,
+          "MASK_BREAKS": 0,
+          "CAST_DISAPPEARANCE": 0,
+          "CAST_ADDITIONS": 0,
+          "WORLD_RESET": 0,
+          "SPATIAL_RESET": 0,
+          "FINAL_FRAME_HOLD_SAFE": "PASS"
+        }
+      }
     },
     {
       "pilotId": "E",
@@ -125,7 +142,24 @@
         "worldReset": 0,
         "targetEndState": "PASS_REQUIRED"
       },
-      "status": "PLANNED_BLOCKED_IMAGE_MODEL_UNAVAILABLE"
+      "status": "OPERATOR_APPROVED",
+      "result": {
+        "sourceCandidateId": "pilot_e_cinematic_keyframe_c",
+        "masterVideoPath": "tmp/cinematics/cin4/cin6ea3_pilot_e_cedric_continuous/shot_01/shot_master.mp4",
+        "masterVideoSha256": "e541d4683a5feb1a8ee60c75ee49c31bf4fd89e8c720f4edfbf2f74582d93cfa",
+        "finalFramePath": "tmp/cinematics/cin4/cin6ea3_pilot_e_cedric_continuous/shot_01/last_frame.png",
+        "finalFrameSha256": "8c367ee7d6ca1642f0299a40c65eb19c8fd8519f2adabf244780498c2662e088",
+        "gates": {
+          "INTERNAL_CUT_COUNT": 0,
+          "CHARACTER_IDENTITY_BREAKS": 0,
+          "MASK_BREAKS": 0,
+          "CAST_DISAPPEARANCE": 0,
+          "CAST_ADDITIONS": 0,
+          "WORLD_RESET": 0,
+          "SPATIAL_RESET": 0,
+          "FINAL_FRAME_HOLD_SAFE": "PASS"
+        }
+      }
     },
     {
       "pilotId": "F",
@@ -189,7 +223,33 @@
         "worldReset": 0,
         "targetEndState": "PASS_REQUIRED"
       },
-      "status": "PLANNED_BLOCKED_IMAGE_MODEL_UNAVAILABLE"
+      "status": "OPERATOR_APPROVED",
+      "result": {
+        "sourceCandidateId": "pilot_f_cinematic_keyframe_a",
+        "masterVideoPath": "tmp/cinematics/cin4/cin6ea2_pilot_f_shadow_continuous/shot_01/shot_master.mp4",
+        "masterVideoSha256": "a9975cc55551f5e2eaac129fc1512ba592fc938eb223d796dd44bf3e2f3a3bdb",
+        "finalFramePath": "tmp/cinematics/cin4/cin6ea2_pilot_f_shadow_continuous/shot_01/last_frame.png",
+        "finalFrameSha256": "076a2bd4c4d7ff2d3634ae4df4331df5df4534378959f81ee6b55e43eef7281c",
+        "gates": {
+          "INTERNAL_CUT_COUNT": 0,
+          "CHARACTER_IDENTITY_BREAKS": 0,
+          "MASK_BREAKS": 0,
+          "CAST_DISAPPEARANCE": 0,
+          "CAST_ADDITIONS": 0,
+          "WORLD_RESET": 0,
+          "SPATIAL_RESET": 0,
+          "FINAL_FRAME_HOLD_SAFE": "PASS"
+        }
+      }
     }
-  ]
+  ],
+  "preproductionBaseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "finalDecision": {
+    "SAME_GAME_VISUAL_IDENTITY": "PASS",
+    "DYNAMIC_VIDEO_GATE": "YES",
+    "VISUAL_PRODUCTION_LOCK": "YES",
+    "HUMAN_VISUAL_REVIEW": "APPROVED",
+    "READY_FOR_CIN_6E_B": "YES",
+    "CIN_6E_B_STARTED": false
+  }
 }

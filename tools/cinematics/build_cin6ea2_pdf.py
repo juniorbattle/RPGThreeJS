@@ -133,7 +133,7 @@ def panel(c: canvas.Canvas, x: float, y: float, width: float, height: float, *, 
 
 def evidence_page(c: canvas.Canvas, page: int, source: dict, verdict: dict) -> None:
     pilot = source["pilotId"]
-    passed = verdict["agentVerdict"] == "AGENT_VIDEO_PASS_PENDING_OPERATOR"
+    passed = verdict["agentVerdict"] in {"AGENT_VIDEO_PASS_PENDING_OPERATOR", "OPERATOR_APPROVED"}
     color = PASS if passed else REJECT
     draw_title(c, "Temporal and cut evidence", f"Pilot {pilot} - Attempt 1",
                "Representative intervals, exact final decoded frame, cut analysis, cast continuity and HOLD decision.")
@@ -191,7 +191,7 @@ def evidence_page(c: canvas.Canvas, page: int, source: dict, verdict: dict) -> N
 
 def source_page(c: canvas.Canvas, page: int, source: dict, verdict: dict) -> None:
     pilot = source["pilotId"]
-    passed = verdict["agentVerdict"] == "AGENT_VIDEO_PASS_PENDING_OPERATOR"
+    passed = verdict["agentVerdict"] in {"AGENT_VIDEO_PASS_PENDING_OPERATOR", "OPERATOR_APPROVED"}
     color = PASS if passed else REJECT
     draw_title(c, "Source and canonical identity", f"Pilot {pilot} - {source['assetCandidateId']}",
                f"Source SHA-256 {source['sourceSha256']} | canonical identity source: public/assets/characters/pixel/full/*.png")
@@ -218,7 +218,7 @@ def source_page(c: canvas.Canvas, page: int, source: dict, verdict: dict) -> Non
         draw_text(c, verdict["rejectionReason"], 614, 98, PAGE_W - 658, size=7.5, color=TEXT,
                   leading=9.2, max_lines=5)
     else:
-        draw_text(c, "The source and animated result preserve the authoritative cast identities. Operator visual approval remains required.",
+        draw_text(c, "The source and animated result preserve the authoritative cast identities. Final operator visual approval is recorded.",
                   614, 98, PAGE_W - 658, size=7.5, color=MUTED, leading=9.2, max_lines=5)
     draw_footer(c, page)
     c.showPage()
@@ -232,18 +232,19 @@ def build() -> None:
     c.setAuthor("RPGThreeJS cinematic QA")
 
     draw_title(c, "RPGThreeJS", "CIN-6E-A.2 Continuous Video Fidelity Gate",
-               "Selected H3 pilots C-B, E-A and F-A | non-production dynamic validation | operator review package")
-    draw_badge(c, "DYNAMIC_VIDEO_GATE: NO", 30, PAGE_H - 120, REJECT, 190)
-    draw_badge(c, "VISUAL_PRODUCTION_LOCK: NO", 232, PAGE_H - 120, REJECT, 215)
+               "Historical A.2 evidence | E-A rejection preserved | final lock completed by approved E-C regate")
+    draw_badge(c, "DYNAMIC_VIDEO_GATE: YES", 30, PAGE_H - 120, PASS, 190)
+    draw_badge(c, "VISUAL_PRODUCTION_LOCK: YES", 232, PAGE_H - 120, PASS, 215)
     c.setFillColor(TEXT)
     c.setFont("Helvetica-Bold", 15)
     c.drawString(30, PAGE_H - 166, "Decision")
-    draw_text(c, selections["dynamicGate"]["blocker"], 30, PAGE_H - 188, 765, size=11,
-              color=REJECT, leading=14, max_lines=4)
+    draw_text(c, selections["dynamicGate"]["note"], 30, PAGE_H - 188, 765, size=11,
+              color=PASS, leading=14, max_lines=4)
     y = PAGE_H - 275
     for source in selections["selectedH3Sources"]:
         verdict = load_json(ROOT / source["dynamicResult"]["verdictPath"])
-        passed = verdict["agentVerdict"] == "AGENT_VIDEO_PASS_PENDING_OPERATOR"
+        verdict["agentVerdict"] = source["dynamicResult"]["agentVerdict"]
+        passed = verdict["agentVerdict"] in {"AGENT_VIDEO_PASS_PENDING_OPERATOR", "OPERATOR_APPROVED"}
         color = PASS if passed else REJECT
         panel(c, 30, y - 66, PAGE_W - 60, 58, border=color)
         c.setFillColor(GOLD)
@@ -256,7 +257,7 @@ def build() -> None:
         c.setFont("Helvetica", 8)
         c.drawString(44, y - 48, f"5.000 s | 1920x1080 | 24 fps | silent | cuts {verdict['cutAnalysis']['INTERNAL_CUT_COUNT']} | HOLD {verdict['finalFrame']['FINAL_FRAME_HOLD_SAFE']}")
         y -= 72
-    draw_text(c, "NEW IMAGE GENERATIONS: 0 | PRODUCTION MEDIA CHANGED: NO | COMMIT: NO | PUSH: NO",
+    draw_text(c, "FINAL PIPELINE: 14 IMAGE ATTEMPTS | 4 MINIMAX ATTEMPTS | PRODUCTION MEDIA CHANGED: NO",
               30, 58, PAGE_W - 60, size=9, color=GOLD)
     draw_footer(c, 1)
     c.showPage()
@@ -264,6 +265,7 @@ def build() -> None:
     page = 2
     for source in selections["selectedH3Sources"]:
         verdict = load_json(ROOT / source["dynamicResult"]["verdictPath"])
+        verdict["agentVerdict"] = source["dynamicResult"]["agentVerdict"]
         source_page(c, page, source, verdict)
         page += 1
         evidence_page(c, page, source, verdict)
@@ -274,7 +276,7 @@ def build() -> None:
     draw_image_fit(c, ROOT / "tmp/cinematics/cin6ea/review/global-continuity-board.png", 30, 56, PAGE_W - 60, PAGE_H - 154)
     c.setFillColor(GOLD)
     c.setFont("Helvetica-Bold", 10)
-    c.drawString(30, 38, "SAME_GAME_VISUAL_IDENTITY: HUMAN_REVIEW_REQUIRED")
+    c.drawString(30, 38, "SAME_GAME_VISUAL_IDENTITY: PASS | HUMAN VISUAL REVIEW: APPROVED")
     draw_footer(c, page)
     c.showPage()
 

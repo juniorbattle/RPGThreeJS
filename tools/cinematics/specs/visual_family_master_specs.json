@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "baseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "baseline": "57ba69cf718ea630cc9306c4122666fd6b58420f",
   "count": 13,
   "generationModel": "gpt-image-2.5-sunburst-2026-09-08",
   "quality": "max",
   "candidatePolicy": "A and B; C only after diagnosed failure; fourth only for documented defect",
-  "generationStatus": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+  "generationStatus": "EXACT_MODEL_EXECUTION_PROVEN_FOR_OPERATOR_VALIDATION_SET",
   "families": [
     {
       "visualFamilyId": "LION_CAMP",
@@ -81,18 +81,18 @@
         {
           "id": "lion_camp_master_a",
           "attempt": "A",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         },
         {
           "id": "lion_camp_master_b",
           "attempt": "B",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         }
       ],
       "provisionalPreferredCandidate": null,
-      "humanApproval": "REQUIRED"
+      "humanApproval": "VISUAL_LANGUAGE_LOCK_APPROVED"
     },
     {
       "visualFamilyId": "ALARIC_AUDIENCE",
@@ -164,18 +164,18 @@
         {
           "id": "alaric_audience_master_a",
           "attempt": "A",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         },
         {
           "id": "alaric_audience_master_b",
           "attempt": "B",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         }
       ],
       "provisionalPreferredCandidate": null,
-      "humanApproval": "REQUIRED"
+      "humanApproval": "VISUAL_LANGUAGE_LOCK_APPROVED"
     },
     {
       "visualFamilyId": "FOREST_ROAD",
@@ -282,18 +282,20 @@
         {
           "id": "forest_road_master_a",
           "attempt": "A",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
-          "selected": false
+          "status": "OPERATOR_APPROVED",
+          "selected": true,
+          "outputPath": "tmp/cinematics/cin6ea/execution/images/forest_road_master_a/forest_road_master_a.png",
+          "outputSha256": "013960e805af751bf72f87d51bf0d5800f810c1fcfc1630b8b5b143e7fc27cd6"
         },
         {
           "id": "forest_road_master_b",
           "attempt": "B",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         }
       ],
-      "provisionalPreferredCandidate": null,
-      "humanApproval": "REQUIRED"
+      "provisionalPreferredCandidate": "forest_road_master_a",
+      "humanApproval": "OPERATOR_APPROVED"
     },
     {
       "visualFamilyId": "FIRST_REFUGE",
@@ -373,18 +375,18 @@
         {
           "id": "first_refuge_master_a",
           "attempt": "A",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         },
         {
           "id": "first_refuge_master_b",
           "attempt": "B",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         }
       ],
       "provisionalPreferredCandidate": null,
-      "humanApproval": "REQUIRED"
+      "humanApproval": "VISUAL_LANGUAGE_LOCK_APPROVED"
     },
     {
       "visualFamilyId": "VALMIR_ROAD",
@@ -477,18 +479,18 @@
         {
           "id": "valmir_road_master_a",
           "attempt": "A",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         },
         {
           "id": "valmir_road_master_b",
           "attempt": "B",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         }
       ],
       "provisionalPreferredCandidate": null,
-      "humanApproval": "REQUIRED"
+      "humanApproval": "VISUAL_LANGUAGE_LOCK_APPROVED"
     },
     {
       "visualFamilyId": "BOIS_CLAIR",
@@ -577,18 +579,18 @@
         {
           "id": "bois_clair_master_a",
           "attempt": "A",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         },
         {
           "id": "bois_clair_master_b",
           "attempt": "B",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         }
       ],
       "provisionalPreferredCandidate": null,
-      "humanApproval": "REQUIRED"
+      "humanApproval": "VISUAL_LANGUAGE_LOCK_APPROVED"
     },
     {
       "visualFamilyId": "SECOND_REFUGE",
@@ -667,18 +669,18 @@
         {
           "id": "second_refuge_master_a",
           "attempt": "A",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         },
         {
           "id": "second_refuge_master_b",
           "attempt": "B",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         }
       ],
       "provisionalPreferredCandidate": null,
-      "humanApproval": "REQUIRED"
+      "humanApproval": "VISUAL_LANGUAGE_LOCK_APPROVED"
     },
     {
       "visualFamilyId": "WITNESS_ROAD",
@@ -754,18 +756,18 @@
         {
           "id": "witness_road_master_a",
           "attempt": "A",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         },
         {
           "id": "witness_road_master_b",
           "attempt": "B",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         }
       ],
       "provisionalPreferredCandidate": null,
-      "humanApproval": "REQUIRED"
+      "humanApproval": "VISUAL_LANGUAGE_LOCK_APPROVED"
     },
     {
       "visualFamilyId": "SHADOW_RUINS",
@@ -858,18 +860,18 @@
         {
           "id": "shadow_ruins_master_a",
           "attempt": "A",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         },
         {
           "id": "shadow_ruins_master_b",
           "attempt": "B",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         }
       ],
       "provisionalPreferredCandidate": null,
-      "humanApproval": "REQUIRED"
+      "humanApproval": "VISUAL_LANGUAGE_LOCK_APPROVED"
     },
     {
       "visualFamilyId": "FINAL_REFUGE",
@@ -944,18 +946,18 @@
         {
           "id": "final_refuge_master_a",
           "attempt": "A",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         },
         {
           "id": "final_refuge_master_b",
           "attempt": "B",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         }
       ],
       "provisionalPreferredCandidate": null,
-      "humanApproval": "REQUIRED"
+      "humanApproval": "VISUAL_LANGUAGE_LOCK_APPROVED"
     },
     {
       "visualFamilyId": "LION_JUDGEMENT",
@@ -1029,18 +1031,18 @@
         {
           "id": "lion_judgement_master_a",
           "attempt": "A",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         },
         {
           "id": "lion_judgement_master_b",
           "attempt": "B",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         }
       ],
       "provisionalPreferredCandidate": null,
-      "humanApproval": "REQUIRED"
+      "humanApproval": "VISUAL_LANGUAGE_LOCK_APPROVED"
     },
     {
       "visualFamilyId": "SERPENT_FINALE",
@@ -1117,18 +1119,18 @@
         {
           "id": "serpent_finale_master_a",
           "attempt": "A",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         },
         {
           "id": "serpent_finale_master_b",
           "attempt": "B",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         }
       ],
       "provisionalPreferredCandidate": null,
-      "humanApproval": "REQUIRED"
+      "humanApproval": "VISUAL_LANGUAGE_LOCK_APPROVED"
     },
     {
       "visualFamilyId": "LION_TRIAL",
@@ -1204,18 +1206,23 @@
         {
           "id": "lion_trial_master_a",
           "attempt": "A",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         },
         {
           "id": "lion_trial_master_b",
           "attempt": "B",
-          "status": "BLOCKED_IMAGE_MODEL_UNAVAILABLE",
+          "status": "NOT_EXECUTED_NOT_SELECTED",
           "selected": false
         }
       ],
       "provisionalPreferredCandidate": null,
-      "humanApproval": "REQUIRED"
+      "humanApproval": "VISUAL_LANGUAGE_LOCK_APPROVED"
     }
-  ]
+  ],
+  "preproductionBaseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "sameGameVisualIdentity": "PASS",
+  "visualProductionLock": "YES",
+  "operatorDecision": "APPROVED",
+  "note": "The 13 family definitions are locked. Family-master candidates not used by the six-pilot validation remain future production work, without a model-capability blocker."
 }

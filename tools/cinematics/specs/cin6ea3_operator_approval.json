@@ -21,5 +21,21 @@
     "modifyProductionMedia": false,
     "commit": false,
     "push": false
+  },
+  "baseline": "57ba69cf718ea630cc9306c4122666fd6b58420f",
+  "preproductionBaseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "finalVideoOperatorApproval": {
+    "status": "OPERATOR_APPROVED",
+    "approvedOn": "2026-09-12",
+    "masterVideoSha256": "e541d4683a5feb1a8ee60c75ee49c31bf4fd89e8c720f4edfbf2f74582d93cfa",
+    "finalFrameSha256": "8c367ee7d6ca1642f0299a40c65eb19c8fd8519f2adabf244780498c2662e088"
+  },
+  "finalDecision": {
+    "SAME_GAME_VISUAL_IDENTITY": "PASS",
+    "DYNAMIC_VIDEO_GATE": "YES",
+    "VISUAL_PRODUCTION_LOCK": "YES",
+    "HUMAN_VISUAL_REVIEW": "APPROVED",
+    "READY_FOR_CIN_6E_B": "YES",
+    "CIN_6E_B_STARTED": false
   }
 }

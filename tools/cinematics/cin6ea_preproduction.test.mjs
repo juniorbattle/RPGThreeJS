@@ -5,7 +5,7 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 const root = process.cwd();
-const baseline = '6683c6d3898db0216549c43f7d25c7d8fd46d70d';
+const baseline = '57ba69cf718ea630cc9306c4122666fd6b58420f';
 const model = 'gpt-image-2.5-sunburst-2026-09-08';
 const readJson = (path) => JSON.parse(readFileSync(resolve(root, path), 'utf8'));
 const sha256 = (path) => createHash('sha256').update(readFileSync(path)).digest('hex');
@@ -23,10 +23,13 @@ describe('CIN-6E-A final visual preproduction system', () => {
     expect(profile.imagePipeline).toMatchObject({
       requiredModel: model,
       requiredQuality: 'max',
-      available: false,
+      available: true,
+      exactModelExecution: 'PROVEN',
+      imageAttempts: 14,
       substitutionAllowed: false,
     });
-    expect(profile.videoPipeline).toMatchObject({ model: 'MiniMax-H3', attempted: false });
+    expect(profile.videoPipeline).toMatchObject({ model: 'MiniMax-H3', attempted: true, totalAttempts: 4 });
+    expect(profile.finalDecision).toMatchObject({ VISUAL_PRODUCTION_LOCK: 'YES', READY_FOR_CIN_6E_B: 'YES' });
   });
 
   it('defines all 13 committed visual families with A/B candidate slots', () => {
@@ -44,9 +47,10 @@ describe('CIN-6E-A final visual preproduction system', () => {
     for (const family of data.families) {
       for (const field of required) expect(family[field], `${family.visualFamilyId}.${field}`).toBeTruthy();
       expect(family.familyMasterCandidates.map((entry) => entry.attempt)).toEqual(['A', 'B']);
-      expect(family.familyMasterCandidates.every((entry) => entry.status === 'BLOCKED_IMAGE_MODEL_UNAVAILABLE')).toBe(true);
-      expect(family.provisionalPreferredCandidate).toBeNull();
+      expect(family.familyMasterCandidates.every((entry) => !entry.status.includes('BLOCKED'))).toBe(true);
     }
+    expect(data.sameGameVisualIdentity).toBe('PASS');
+    expect(data.visualProductionLock).toBe('YES');
   });
 
   it('hashes canonical references for all 22 character cards and never replaces tableau sprites', () => {
@@ -109,10 +113,10 @@ describe('CIN-6E-A final visual preproduction system', () => {
 
   it('preserves 44 exact-model A/B jobs and records the approved E-C repair with complete provenance', () => {
     const data = readJson('tools/cinematics/specs/cin6ea_compiled_prompt_manifest.json');
-    expect(data.summary).toEqual({ totalJobs: 45, familyMasterJobs: 26, pilotJobs: 18, jobsWithCompleteReferenceHashes: 45, cin6ea3RepairJobs: 1 });
+    expect(data.summary).toEqual({ totalJobs: 45, familyMasterJobs: 26, pilotJobs: 18, jobsWithCompleteReferenceHashes: 45, cin6ea3RepairJobs: 1, generatedOutputs: 14 });
     expect(data.exactModelSnapshot).toBe(model);
     expect(data.quality).toBe('max');
-    expect(data.generatedOutputs).toBe(1);
+    expect(data.generatedOutputs).toBe(14);
     const historicalJobs = data.jobs.filter((job) => ['A', 'B'].includes(job.attempt));
     expect(historicalJobs).toHaveLength(44);
     for (const job of historicalJobs) {
@@ -121,9 +125,9 @@ describe('CIN-6E-A final visual preproduction system', () => {
       expect(job.promptSha256).toBe(sha256Text(job.prompt));
       expect(job.referencePaths.length).toBeGreaterThan(0);
       for (const reference of job.referencePaths) expect(job.referenceSha256[reference]).toBe(sha256(assetPath(reference)));
-      expect(job.outputPath).toBeNull();
-      expect(job.outputSha256).toBeNull();
-      expect(job.finalApprovalState).toBe('BLOCKED_MODEL_UNAVAILABLE');
+      expect(job.finalApprovalState).not.toContain('BLOCKED');
+      if (job.outputPath) expect(sha256(assetPath(job.outputPath))).toBe(job.outputSha256);
+      else expect(job.executionStatus).toBe('NOT_EXECUTED_NOT_SELECTED');
     }
     const repair = data.jobs.find((job) => job.assetCandidateId === 'pilot_e_cinematic_keyframe_c');
     expect(repair).toMatchObject({
@@ -136,7 +140,7 @@ describe('CIN-6E-A final visual preproduction system', () => {
       outputSha256: 'd2943e0349c22ea7045f1b8e0a5b0571e1a8c0bacdb8496a3799fce70ad0317a',
       selection: 'OPERATOR_APPROVED',
       finalApprovalState: 'OPERATOR_APPROVED',
-      executionStatus: 'GENERATED_AND_OPERATOR_APPROVED',
+      executionStatus: 'GENERATED',
     });
     expect(repair.promptSha256).toBe(sha256Text(repair.prompt));
     expect(repair.referencePaths).toHaveLength(3);
@@ -144,11 +148,12 @@ describe('CIN-6E-A final visual preproduction system', () => {
     expect(sha256(assetPath(repair.outputPath))).toBe(repair.outputSha256);
   });
 
-  it('keeps all six stress tests explicit and unexecuted while the source-frame gate is blocked', () => {
+  it('records all six operator-approved pilots and the three approved dynamic results', () => {
     const data = readJson('tools/cinematics/specs/cin6ea_six_pilot_plan.json');
-    expect(data.summary).toEqual({ planned: 6, executed: 0, passed: 0, blocked: 6, imageAttempts: 0, miniMaxAttempts: 0 });
+    expect(data.summary).toEqual({ planned: 6, executed: 6, passed: 6, blocked: 0, imageAttempts: 14, miniMaxAttempts: 4, retries: 1 });
     expect(data.pilots.map((pilot) => pilot.id)).toEqual(['A', 'B', 'C', 'D', 'E', 'F']);
-    expect(data.pilots.every((pilot) => pilot.status === 'BLOCKED_IMAGE_MODEL_UNAVAILABLE' && pilot.pass === false)).toBe(true);
+    expect(data.pilots.every((pilot) => pilot.status === 'OPERATOR_APPROVED' && pilot.pass === true)).toBe(true);
+    expect(data.finalDecision).toMatchObject({ DYNAMIC_VIDEO_GATE: 'YES', VISUAL_PRODUCTION_LOCK: 'YES', HUMAN_VISUAL_REVIEW: 'APPROVED' });
     const continuity = readJson('tools/cinematics/specs/cin6ea_video_pilot_continuity_specs.json');
     expect(continuity.count).toBe(3);
     expect(continuity.specs.map((entry) => entry.pilotId)).toEqual(['C', 'E', 'F']);
@@ -157,6 +162,8 @@ describe('CIN-6E-A final visual preproduction system', () => {
       expect(spec.characters.every((character) => character.remainsInScene && character.allowedExitReentry === false && character.mustBeVisibleAtEnd)).toBe(true);
       expect(spec.targetEndState.requiredFinalVisibleCast).toEqual(spec.characters.map((character) => character.characterId));
       expect(spec.acceptance.internalCutCount).toBe(0);
+      expect(spec.status).toBe('OPERATOR_APPROVED');
+      expect(spec.result.gates).toMatchObject({ INTERNAL_CUT_COUNT: 0, MASK_BREAKS: 0, FINAL_FRAME_HOLD_SAFE: 'PASS' });
     }
   });
 

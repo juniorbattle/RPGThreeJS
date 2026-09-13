@@ -96,7 +96,7 @@ describe('CIN-6E-A.3 Pilot E fidelity and dynamic regate', () => {
     expect(analysis.sampledContinuitySignals.candidatePairs).toEqual([]);
   });
 
-  it('publishes the complete PASS-pending-operator verdict without altering C or F', () => {
+  it('publishes the complete operator-approved verdict without altering C or F', () => {
     const regate = readJson('tools/cinematics/specs/cin6ea3_pilot_e_regate.json');
     const verdict = readJson(regate.h3.verdictPath);
     expect(regate.h3.attempts).toBe(1);
@@ -117,12 +117,13 @@ describe('CIN-6E-A.3 Pilot E fidelity and dynamic regate', () => {
     expect(verdict.characters.kestrel.verdict).toBe('PASS');
     expect(verdict.retryRequired).toBe(false);
     expect(regate.decision).toEqual({
-      PILOT_E: 'AGENT_VIDEO_PASS_PENDING_OPERATOR',
-      DYNAMIC_VIDEO_GATE: 'YES_PENDING_OPERATOR',
-      VISUAL_PRODUCTION_LOCK: 'YES_PENDING_OPERATOR',
+      PILOT_E: 'OPERATOR_APPROVED',
+      DYNAMIC_VIDEO_GATE: 'YES',
+      VISUAL_PRODUCTION_LOCK: 'YES',
       AGENT_VISUAL_QA: 'PASS',
-      HUMAN_VISUAL_REVIEW: 'REQUIRED',
-      READY_FOR_CIN_6E_B: 'PENDING_HUMAN_VISUAL_APPROVAL',
+      HUMAN_VISUAL_REVIEW: 'APPROVED',
+      SAME_GAME_VISUAL_IDENTITY: 'PASS',
+      READY_FOR_CIN_6E_B: 'YES',
     });
     expect(regate.priorOperatorApprovals).toEqual({
       pilotC: 'OPERATOR_APPROVED_UNCHANGED',
@@ -133,8 +134,7 @@ describe('CIN-6E-A.3 Pilot E fidelity and dynamic regate', () => {
       productionMediaChanged: false,
       productionManifestChanged: false,
       canonicalSpritesChanged: false,
-      commit: false,
-      push: false,
+      finalizationRestrictedToReportsAndSpecs: true,
     });
   });
 });

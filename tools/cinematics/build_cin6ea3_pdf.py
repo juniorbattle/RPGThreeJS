@@ -142,9 +142,9 @@ def build() -> None:
     # Page 1: decision and the approved source/final comparison.
     title(c, "RPGThreeJS", "CIN-6E-A.3 Pilot E Fidelity Regate",
           "Operator-approved E-C source | one MiniMax-H3 continuous-shot attempt | complete E-only dynamic validation")
-    badge(c, "PILOT E: AGENT VIDEO PASS", 30, PAGE_H - 116, PASS, 200)
-    badge(c, "DYNAMIC VIDEO GATE: YES PENDING OPERATOR", 242, PAGE_H - 116, PASS, 285)
-    badge(c, "VISUAL PRODUCTION LOCK: YES PENDING OPERATOR", 539, PAGE_H - 116, PASS, 272)
+    badge(c, "PILOT E: OPERATOR APPROVED", 30, PAGE_H - 116, PASS, 200)
+    badge(c, "DYNAMIC VIDEO GATE: YES", 242, PAGE_H - 116, PASS, 285)
+    badge(c, "VISUAL PRODUCTION LOCK: YES", 539, PAGE_H - 116, PASS, 272)
     image_fit(c, ROOT / regate["source"]["path"], 30, 188, 378, 213)
     image_fit(c, ROOT / regate["h3"]["finalFramePath"], 426, 188, 378, 213)
     c.setFillColor(MUTED)
@@ -238,7 +238,7 @@ def build() -> None:
               30, 60, PAGE_W - 60, PAGE_H - 155)
     c.setFillColor(PASS)
     c.setFont("Helvetica-Bold", 9)
-    c.drawString(30, 42, "AGENT VISUAL QA: PASS | HUMAN VISUAL REVIEW: REQUIRED | READY FOR CIN-6E-B: PENDING HUMAN VISUAL APPROVAL")
+    c.drawString(30, 42, "AGENT VISUAL QA: PASS | HUMAN VISUAL REVIEW: APPROVED | READY FOR CIN-6E-B: YES")
     footer(c, 5)
     c.showPage()
 

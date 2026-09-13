@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "mission": "CIN-6E-A FINALIZATION",
+  "authority": "FINAL_OPERATOR_DECISION",
+  "baseline": "57ba69cf718ea630cc9306c4122666fd6b58420f",
+  "preproductionBaseline": "6683c6d3898db0216549c43f7d25c7d8fd46d70d",
+  "approvedOn": "2026-09-12",
+  "imagePipeline": {
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "exactModelSnapshot": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "max",
+    "exactModelExecution": "PROVEN",
+    "imageAttempts": 14,
+    "canonicalCharacterAuthority": "public/assets/characters/pixel/full/*.png",
+    "authorityAppliedIndependentlyPerCharacter": true
+  },
+  "operatorImageSelections": {
+    "A": {
+      "decision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "pilot_a_static_tableau_background_b"
+      ]
+    },
+    "B": {
+      "decision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "forest_road_master_a",
+        "pilot_b_travel_still_a",
+        "pilot_b_static_tableau_background_a"
+      ]
+    },
+    "C": {
+      "decision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "pilot_c_cinematic_keyframe_b"
+      ]
+    },
+    "D": {
+      "decision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "pilot_d_static_tableau_background_a"
+      ]
+    },
+    "E": {
+      "decision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "pilot_e_cinematic_keyframe_c",
+        "pilot_e_static_tableau_background_a"
+      ]
+    },
+    "F": {
+      "decision": "OPERATOR_APPROVED",
+      "selectedAssets": [
+        "pilot_f_cinematic_keyframe_a",
+        "pilot_f_static_tableau_background_a"
+      ]
+    }
+  },
+  "rejections": {
+    "E-A": {
+      "candidateId": "pilot_e_cinematic_keyframe_a",
+      "sourceSha256": "b40f6b16f6a588386d58d2e5dd35f9ade21a8c38d67455d03f49c678508ebdef",
+      "decision": "REJECTED",
+      "reason": "Kestrel canonical green cloth face mask absent."
+    },
+    "E-B": {
+      "candidateId": "pilot_e_cinematic_keyframe_b",
+      "sourceSha256": "ffd968735c32cf065ef7be405081cf9ab6c8d43450467ffb7617f9e265ed4a29",
+      "decision": "REJECTED",
+      "reason": "Cedric canonical metal face mask absent."
+    }
+  },
+  "executionSummary": {
+    "pilotsPlanned": 6,
+    "pilotsExecuted": 6,
+    "pilotsApproved": 6,
+    "imageAttempts": 14,
+    "miniMaxAttempts": 4,
+    "approvedDynamicPilots": 3,
+    "rejectedHistoricalDynamicAttempts": 1
+  },
+  "dynamicVideoValidation": {
+    "selectedPilots": [
+      {
+        "pilotId": "C",
+        "sourceCandidateId": "pilot_c_cinematic_keyframe_b",
+        "sourcePath": "tmp/cinematics/cin6ea/execution/images/pilot_c_cinematic_keyframe_b/pilot_c_cinematic_keyframe_b.png",
+        "sourceSha256": "b34a1097681fcf5e02204339c6bc330a9976562f64c91172115988de04cbf071",
+        "provider": "MiniMax-H3",
+        "taskId": "441068449874026",
+        "attempts": 1,
+        "selectedAttempt": 1,
+        "masterVideoPath": "tmp/cinematics/cin4/cin6ea2_pilot_c_camp_continuous/shot_01/shot_master.mp4",
+        "masterVideoSha256": "2b14e77cd26a4449c638b21bb8852862c49f3c87d13ea14fd7849b1041f3d347",
+        "finalFramePath": "tmp/cinematics/cin4/cin6ea2_pilot_c_camp_continuous/shot_01/last_frame.png",
+        "finalFrameSha256": "ab07710eb33277d91e04ef0b20415ddc51c8848ca220443a0cf742223492ffdd",
+        "analysisPath": "tmp/cinematics/cin6ea/dynamic/pilot_c_attempt_1/analysis.json",
+        "verdictPath": "tmp/cinematics/cin6ea/dynamic/pilot_c_attempt_1/verdict.json",
+        "operatorDecision": "OPERATOR_APPROVED",
+        "gates": {
+          "INTERNAL_CUT_COUNT": 0,
+          "CHARACTER_IDENTITY_BREAKS": 0,
+          "MASK_BREAKS": 0,
+          "CAST_DISAPPEARANCE": 0,
+          "CAST_ADDITIONS": 0,
+          "WORLD_RESET": 0,
+          "SPATIAL_RESET": 0,
+          "FINAL_FRAME_HOLD_SAFE": "PASS"
+        }
+      },
+      {
+        "pilotId": "E",
+        "sourceCandidateId": "pilot_e_cinematic_keyframe_c",
+        "sourcePath": "tmp/cinematics/cin6ea/execution/images/pilot_e_cinematic_keyframe_c/pilot_e_cinematic_keyframe_c.png",
+        "sourceSha256": "d2943e0349c22ea7045f1b8e0a5b0571e1a8c0bacdb8496a3799fce70ad0317a",
+        "provider": "MiniMax-H3",
+        "taskId": "441161587110008",
+        "attempts": 1,
+        "selectedAttempt": 1,
+        "masterVideoPath": "tmp/cinematics/cin4/cin6ea3_pilot_e_cedric_continuous/shot_01/shot_master.mp4",
+        "masterVideoSha256": "e541d4683a5feb1a8ee60c75ee49c31bf4fd89e8c720f4edfbf2f74582d93cfa",
+        "finalFramePath": "tmp/cinematics/cin4/cin6ea3_pilot_e_cedric_continuous/shot_01/last_frame.png",
+        "finalFrameSha256": "8c367ee7d6ca1642f0299a40c65eb19c8fd8519f2adabf244780498c2662e088",
+        "analysisPath": "tmp/cinematics/cin6ea/dynamic/pilot_e_regate_attempt_1/analysis.json",
+        "verdictPath": "tmp/cinematics/cin6ea/dynamic/pilot_e_regate_attempt_1/verdict.json",
+        "operatorDecision": "OPERATOR_APPROVED",
+        "gates": {
+          "INTERNAL_CUT_COUNT": 0,
+          "CHARACTER_IDENTITY_BREAKS": 0,
+          "MASK_BREAKS": 0,
+          "CAST_DISAPPEARANCE": 0,
+          "CAST_ADDITIONS": 0,
+          "WORLD_RESET": 0,
+          "SPATIAL_RESET": 0,
+          "FINAL_FRAME_HOLD_SAFE": "PASS"
+        }
+      },
+      {
+        "pilotId": "F",
+        "sourceCandidateId": "pilot_f_cinematic_keyframe_a",
+        "sourcePath": "tmp/cinematics/cin6ea/execution/images/pilot_f_cinematic_keyframe_a/pilot_f_cinematic_keyframe_a.png",
+        "sourceSha256": "0dd58fa46da5400249b9d7756dfd92396f3c11f93f0e5380bb8fdad714099e57",
+        "provider": "MiniMax-H3",
+        "taskId": "441074276900971",
+        "attempts": 1,
+        "selectedAttempt": 1,
+        "masterVideoPath": "tmp/cinematics/cin4/cin6ea2_pilot_f_shadow_continuous/shot_01/shot_master.mp4",
+        "masterVideoSha256": "a9975cc55551f5e2eaac129fc1512ba592fc938eb223d796dd44bf3e2f3a3bdb",
+        "finalFramePath": "tmp/cinematics/cin4/cin6ea2_pilot_f_shadow_continuous/shot_01/last_frame.png",
+        "finalFrameSha256": "076a2bd4c4d7ff2d3634ae4df4331df5df4534378959f81ee6b55e43eef7281c",
+        "analysisPath": "tmp/cinematics/cin6ea/dynamic/pilot_f_attempt_1/analysis.json",
+        "verdictPath": "tmp/cinematics/cin6ea/dynamic/pilot_f_attempt_1/verdict.json",
+        "operatorDecision": "OPERATOR_APPROVED",
+        "gates": {
+          "INTERNAL_CUT_COUNT": 0,
+          "CHARACTER_IDENTITY_BREAKS": 0,
+          "MASK_BREAKS": 0,
+          "CAST_DISAPPEARANCE": 0,
+          "CAST_ADDITIONS": 0,
+          "WORLD_RESET": 0,
+          "SPATIAL_RESET": 0,
+          "FINAL_FRAME_HOLD_SAFE": "PASS"
+        }
+      }
+    ],
+    "historicalRejectedAttempt": {
+      "pilotId": "E",
+      "sourceCandidateId": "pilot_e_cinematic_keyframe_a",
+      "taskId": "441071801028925",
+      "decision": "REJECTED_SOURCE_FIDELITY",
+      "reason": "Kestrel canonical green cloth face mask absent from the immutable E-A source."
+    },
+    "gates": {
+      "INTERNAL_CUT_COUNT": 0,
+      "CHARACTER_IDENTITY_BREAKS": 0,
+      "MASK_BREAKS": 0,
+      "CAST_DISAPPEARANCE": 0,
+      "CAST_ADDITIONS": 0,
+      "WORLD_RESET": 0,
+      "SPATIAL_RESET": 0,
+      "FINAL_FRAME_HOLD_SAFE": "PASS"
+    }
+  },
+  "finalDecision": {
+    "SAME_GAME_VISUAL_IDENTITY": "PASS",
+    "DYNAMIC_VIDEO_GATE": "YES",
+    "VISUAL_PRODUCTION_LOCK": "YES",
+    "HUMAN_VISUAL_REVIEW": "APPROVED",
+    "READY_FOR_CIN_6E_B": "YES",
+    "CIN_6E_B_STARTED": false
+  },
+  "protectedState": {
+    "productionMediaChanged": false,
+    "productionManifestChanged": false,
+    "travelViewProductionDefault": true,
+    "runSystemChanged": false,
+    "saveSchemaChanged": false,
+    "dialogueTruthChanged": false,
+    "choicesOrRoutesChanged": false,
+    "combatChanged": false,
+    "vfxChanged": false,
+    "canonicalSpritesChanged": false
+  },
+  "validationRecord": "tools/cinematics/specs/cin6ea_final_validation.json"
+}

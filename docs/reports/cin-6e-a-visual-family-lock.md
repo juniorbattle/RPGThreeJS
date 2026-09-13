@@ -1,9 +1,7 @@
 # CIN-6E-A Visual Family Lock
 
-Baseline: `6683c6d3898db0216549c43f7d25c7d8fd46d70d`
+Finalization baseline: `57ba69cf718ea630cc9306c4122666fd6b58420f`
 
-CIN-6E-A remains preproduction-only. TravelView is still production default; NarrativeStage remains DEV/selectable. No production media, canonical sprite, game truth, save, combat or VFX file is changed.
+The 13 visual-family definitions remain the production grammar for location identity, architecture, landmarks, ground, palette, light, atmosphere, depth, material, camera, weather, motion, and forbidden drift. Exact-model execution was proven at `max` quality, and the six-pilot operator review establishes **SAME_GAME_VISUAL_IDENTITY = PASS**.
 
-All 13 committed families now have complete master specifications for physical location, purpose, architecture, landmarks, terrain, ground, palette, light, fill, atmosphere, depth, foreground/midground/background, camera, time, weather, material, ambient motion, forbidden drift and GOLD lineage.
-
-Candidate A/B slots exist for every family, but selected family masters remain 0/13 because the exact locked image model is unavailable. Therefore `SAME_GAME_VISUAL_IDENTITY` is `HUMAN_REVIEW_REQUIRED` and `VISUAL_PRODUCTION_LOCK` is `NO`.
+Family-master candidates outside the six-pilot validation set remain future CIN-6E-B production work. They are unexecuted and unselected, with no model-capability blocker. **VISUAL_PRODUCTION_LOCK = YES** and **READY_FOR_CIN_6E_B = YES**.
