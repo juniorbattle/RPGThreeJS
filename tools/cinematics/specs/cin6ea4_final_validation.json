@@ -1,0 +1,736 @@
+{
+  "schemaVersion": 3,
+  "mission": "CIN-6E-A.4R STATIC-TABLEAU-FIRST FINAL RECONCILIATION",
+  "doctrine": "STATIC_TABLEAU_FIRST",
+  "baseline": "ff743b08fb239d55e11ac5cd682950032a06e2e1",
+  "auditedAt": "2026-09-13T09:09:15.442Z",
+  "repository": {
+    "branch": "main",
+    "head": "ff743b08fb239d55e11ac5cd682950032a06e2e1",
+    "originMain": "ff743b08fb239d55e11ac5cd682950032a06e2e1",
+    "exactPreflight": true,
+    "resetPerformed": false,
+    "commitPerformed": false,
+    "pushPerformed": false
+  },
+  "worktreeContinuation": {
+    "changedTrackedPaths": [
+      "src/cinematics/Cin673SpatialCoherence.test.ts",
+      "src/cinematics/DialogueStagingDirector.test.ts",
+      "src/cinematics/DialogueStagingDirector.ts",
+      "src/cinematics/NarrativeDialogueAdapter.test.ts",
+      "src/cinematics/NarrativeDialogueAdapter.ts",
+      "src/cinematics/NarrativeSceneSurface.test.ts",
+      "src/cinematics/NarrativeSceneSurface.ts",
+      "src/cinematics/NarrativeStage.test.ts",
+      "src/cinematics/NarrativeStage.ts",
+      "src/cinematics/NarrativeStagingAudit.ts",
+      "src/cinematics/NarrativeTableau.ts",
+      "src/game/GameApp.ts",
+      "src/game/cin65CinematicDialogueIntegration.test.ts",
+      "src/game/cin67NarrativeStageIntegration.test.ts",
+      "src/styles/app.css",
+      "src/ui/DialogueView.test.ts",
+      "src/ui/DialogueView.ts",
+      "tools/cinematics/cin6ea_finalization.test.mjs",
+      "tools/cinematics/cin6ea_preproduction.test.mjs",
+      "tools/cinematics/specs/final_future_production_manifest.json",
+      "tools/cinematics/specs/narrative_dialogue_staging.json"
+    ],
+    "untrackedPaths": [
+      "docs/reports/cin-6e-a-4-dialogue-pacing-lock.md",
+      "docs/reports/cin-6e-a-4-dialogue-review.html",
+      "docs/reports/cin-6e-a-4-hold-dialogue-coherence.md",
+      "docs/reports/cin-6e-a-4-narrative-preservation.md",
+      "docs/reports/cin-6e-a-4-speaker-cast-coherence.md",
+      "docs/reports/cin-6e-a-4-static-tableau-staging.md",
+      "docs/reports/cin-6e-a-4r-cinematic-reduction.md",
+      "docs/reports/cin-6e-a-4r-dialogue-review.html",
+      "docs/reports/cin-6e-a-4r-final-reconciliation.md",
+      "src/cinematics/CinematicReductionPolicy.ts",
+      "src/cinematics/DialoguePresentationSegments.ts",
+      "src/cinematics/FinalDialoguePresentation.generated.ts",
+      "src/cinematics/FinalDialoguePresentation.test.ts",
+      "tools/cinematics/audit_cin6ea4.mjs",
+      "tools/cinematics/generate_cin6ea4_dialogue_lock.ts",
+      "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+      "tools/cinematics/specs/cin6ea4_final_validation.json",
+      "tools/cinematics/specs/cin6ea4r_final_validation.json",
+      "tools/cinematics/specs/final_cinematic_reduction_audit.json",
+      "tools/cinematics/specs/final_dialogue_pacing_audit.json",
+      "tools/cinematics/specs/final_dialogue_speaker_ownership.json",
+      "tools/cinematics/specs/final_dialogue_staging_plan.json",
+      "tools/cinematics/specs/final_dialogue_text_migration.json",
+      "tools/cinematics/specs/final_dialogue_visual_segments.json",
+      "tools/cinematics/vite-node.config.ts"
+    ],
+    "inheritedWorkPreserved": true,
+    "resetPerformed": false
+  },
+  "presentationDoctrine": {
+    "CINEMATIC_VIDEO": "MAJOR_STORY_EVENT_ONLY",
+    "STATIC_TABLEAU": "PRIMARY_DIALOGUE_PRESENTATION_SYSTEM",
+    "HOLD": "DIALOGUE_FREE_CHOICE_FREE_SCENIC_TRANSITION_OR_PUNCTUATION",
+    "TRAVEL_STILL": "CONNECTIVE_JOURNEY_PRESENTATION",
+    "postCinematicFlow": [
+      "CINEMATIC_VIDEO",
+      "CLEAN_TRANSITION",
+      "STATIC_TABLEAU",
+      "DIALOGUE"
+    ]
+  },
+  "dialogueAudit": {
+    "dialogues": 71,
+    "originalSteps": 247,
+    "finalSteps": 247,
+    "choiceStates": 28,
+    "beforeWords": 5713,
+    "afterWords": 5662,
+    "textOperations": {
+      "KEEP": 243,
+      "TRIM": 4,
+      "POLISH": 0,
+      "MERGE": 0,
+      "REASSIGN_SPEAKER": 0
+    },
+    "invariants": {
+      "DIALOGUES_ACCOUNTED": "71/71",
+      "ORIGINAL_STEPS_ACCOUNTED": "247/247",
+      "CHOICES_ACCOUNTED": "28/28",
+      "HIDDEN_SPEAKER": 0,
+      "NORMAL_DIALOGUE_DURING_VIDEO": 0,
+      "DIALOGUE_STEPS_ON_VIDEO": 0,
+      "DIALOGUE_STEPS_ON_HOLD": 0,
+      "CHOICE_STEPS_ON_HOLD": 0,
+      "WRONG_HOLD_CAST": 0,
+      "STATIC_SPEAKER_NOT_VISIBLE": 0,
+      "HEAD_OVERLAP": 0,
+      "FACE_UI_COLLISION": 0,
+      "EXCESSIVE_BODY_OVERLAP": 0,
+      "UNINTENTIONAL_ALL_FACE_SAME_DIRECTION": 0,
+      "UNJUSTIFIED_FACING_FLIPS": 0,
+      "ACTOR_FACTION_SIDE_VIOLATIONS": 0,
+      "UNJUSTIFIED_NARRATIVE_EXIT": 0,
+      "TRANSITION_FLASHES": 0,
+      "EFFECT_OWNER_LOSS": 0,
+      "DUPLICATE_EFFECT_EXECUTION": 0,
+      "CHOICE_GEOMETRY_DELTA": 0,
+      "NARRATIVE_FACT_LOSS": 0,
+      "CHARACTER_INTENT_BREAK": 0,
+      "EMOTIONAL_FUNCTION_LOSS": 0,
+      "CHOICE_CONTEXT_LOSS": 0,
+      "ROUTE_CHANGE": 0,
+      "CHOICE_EFFECT_CHANGE": 0,
+      "RECRUITMENT_TRUTH_CHANGE": 0
+    },
+    "requiredZeroInvariants": {
+      "DIALOGUE_STEPS_ON_VIDEO": 0,
+      "DIALOGUE_STEPS_ON_HOLD": 0,
+      "CHOICE_STEPS_ON_HOLD": 0,
+      "STATIC_SPEAKER_NOT_VISIBLE": 0,
+      "HIDDEN_SPEAKER": 0,
+      "ACTOR_FACTION_SIDE_VIOLATIONS": 0,
+      "UNJUSTIFIED_FACING_FLIPS": 0,
+      "UNJUSTIFIED_NARRATIVE_EXIT": 0,
+      "HEAD_OVERLAP": 0,
+      "FACE_UI_COLLISION": 0,
+      "EXCESSIVE_BODY_OVERLAP": 0,
+      "TRANSITION_FLASHES": 0,
+      "CHOICE_GEOMETRY_DELTA": 0,
+      "EFFECT_OWNER_LOSS": 0,
+      "DUPLICATE_EFFECT_EXECUTION": 0,
+      "NARRATIVE_FACT_LOSS": 0,
+      "CHARACTER_INTENT_BREAK": 0,
+      "EMOTIONAL_FUNCTION_LOSS": 0,
+      "CHOICE_CONTEXT_LOSS": 0,
+      "ROUTE_CHANGE": 0,
+      "CHOICE_EFFECT_CHANGE": 0,
+      "RECRUITMENT_TRUTH_CHANGE": 0
+    },
+    "doctrineStatus": "PASS"
+  },
+  "staticTableau": {
+    "visualSegments": 78,
+    "actorCountDistribution": {
+      "oneActor": 22,
+      "twoActor": 31,
+      "threeActor": 11,
+      "fourActor": 14,
+      "fivePlus": 0
+    },
+    "maxSimultaneousActors": 4,
+    "stageIns": 164,
+    "stageOuts": 19,
+    "narrativeExits": 0,
+    "canonicalScale": 1
+  },
+  "factionGeography": {
+    "violations": 0,
+    "AUDIENCE_FACTION_GEOGRAPHY": "PASS",
+    "MAELOR_COMPANY_SIDE": "PASS"
+  },
+  "facing": {
+    "MIRRORED_ACTOR_STATES": 64,
+    "TURN_TO_TARGET_COUNT": 198,
+    "EXPLICIT_ADDRESSEE_COUNT": 8,
+    "AUTHORED_CONVERSATION_TARGET_COUNT": 84,
+    "PREVIOUS_SPEAKER_REACTION_COUNT": 76,
+    "GROUP_TARGET_COUNT": 14,
+    "DEFAULT_TARGET_COUNT": 65,
+    "EXPLICIT_FACING_OVERRIDE_COUNT": 8,
+    "UNJUSTIFIED_FACING_FLIPS": 0,
+    "priority": [
+      "EXPLICIT_ADDRESSEE",
+      "AUTHORED_CONVERSATION_TARGET",
+      "DIRECT_RESPONSE",
+      "OPPOSING_GROUP",
+      "SCENE_DEFAULT"
+    ]
+  },
+  "visibility": {
+    "HIDDEN_SPEAKER": 0,
+    "STATIC_SPEAKER_NOT_VISIBLE": 0,
+    "HEAD_OVERLAP": 0,
+    "FACE_UI_COLLISION": 0,
+    "EXCESSIVE_BODY_OVERLAP": 0
+  },
+  "transitions": {
+    "testedTransitionProbes": 8,
+    "videoToTableauPlanned": 17,
+    "travelToTableauPlanned": 1,
+    "holdToTableauPlanned": 1,
+    "DIALOGUE_STEPS_ON_VIDEO": 0,
+    "DIALOGUE_STEPS_ON_HOLD": 0,
+    "TRANSITION_FLASHES": 0
+  },
+  "hold": {
+    "semanticRole": "SHORT_DIALOGUE_FREE_CHOICE_FREE_PREFERABLY_CHARACTER_FREE_SCENIC_TRANSITION_OR_PUNCTUATION",
+    "HOLD_DIALOGUE_STEPS": 0,
+    "HOLD_CHOICE_STEPS": 0,
+    "reusableEnvironmentPlates": [
+      {
+        "assetId": "acte_ouverture_tableau_bg",
+        "sourceReferences": [
+          "/assets/generated/lion-phase/dialogue/camp_departure.webp",
+          "camp_departure"
+        ]
+      },
+      {
+        "assetId": "post_opening_trail_tableau_bg",
+        "sourceReferences": [
+          "/assets/generated/lion-phase/dialogue/forest_fork.webp",
+          "valmir_route_fork",
+          "camp_departure"
+        ]
+      }
+    ]
+  },
+  "travel": {
+    "travelToTableauTransitions": 1,
+    "testedTravelToTableauProbes": 2,
+    "testedTableauToHoldProbes": 2,
+    "conversationBoundary": "TRAVEL_STILL_TO_STATIC_TABLEAU"
+  },
+  "audienceCase": {
+    "cinematicPortion": "alaric_audience_arrival ENDS_BEFORE_NORMAL_DIALOGUE",
+    "tableauBeginsAtStep": "1",
+    "activeCast": [
+      "alistair",
+      "sage_seraphine",
+      "maelor",
+      "alaric"
+    ],
+    "companyGeography": [
+      {
+        "actorId": "alistair",
+        "screenPosition": "FAR_LEFT",
+        "scale": 1,
+        "facing": "RIGHT",
+        "lookTarget": "sage_seraphine",
+        "group": "PLAYER_COMPANY",
+        "dramaticSide": "LEFT",
+        "depth": 3,
+        "narrativeRole": "LISTENER",
+        "entryEffect": "FADE_IN"
+      },
+      {
+        "actorId": "sage_seraphine",
+        "screenPosition": "LEFT",
+        "scale": 1,
+        "facing": "RIGHT",
+        "lookTarget": "maelor",
+        "group": "PLAYER_COMPANY",
+        "dramaticSide": "LEFT",
+        "depth": 3,
+        "narrativeRole": "ADVISER",
+        "entryEffect": "FADE_IN"
+      },
+      {
+        "actorId": "maelor",
+        "screenPosition": "CENTER_LEFT",
+        "scale": 1,
+        "facing": "RIGHT",
+        "lookTarget": "sage_seraphine",
+        "group": "PLAYER_COMPANY",
+        "dramaticSide": "LEFT",
+        "depth": 3,
+        "narrativeRole": "ADVISER",
+        "entryEffect": "FADE_IN"
+      }
+    ],
+    "alaricGeography": {
+      "actorId": "alaric",
+      "screenPosition": "FAR_RIGHT",
+      "scale": 1,
+      "facing": "LEFT",
+      "lookTarget": "maelor",
+      "group": "LION_COURT",
+      "dramaticSide": "RIGHT",
+      "depth": 3,
+      "narrativeRole": "AUTHORITY",
+      "entryEffect": "FADE_IN"
+    },
+    "maelorGeography": {
+      "actorId": "maelor",
+      "screenPosition": "CENTER_LEFT",
+      "scale": 1,
+      "facing": "RIGHT",
+      "lookTarget": "sage_seraphine",
+      "group": "PLAYER_COMPANY",
+      "dramaticSide": "LEFT",
+      "depth": 3,
+      "narrativeRole": "ADVISER",
+      "entryEffect": "FADE_IN"
+    },
+    "maelorToAlaric": {
+      "stepId": "3",
+      "speakerId": "maelor",
+      "addressedTo": "alaric",
+      "lookTarget": "alaric",
+      "facing": "RIGHT",
+      "resolution": "EXPLICIT_ADDRESSEE"
+    },
+    "maelorToCompany": {
+      "actor": {
+        "actorId": "maelor",
+        "screenPosition": "CENTER_LEFT",
+        "scale": 1,
+        "facing": "RIGHT",
+        "lookTarget": "alistair",
+        "group": "PLAYER_COMPANY",
+        "dramaticSide": "LEFT",
+        "depth": 3,
+        "narrativeRole": "ADVISER",
+        "entryEffect": "FADE_IN"
+      },
+      "direction": {
+        "stepId": "2",
+        "speakerId": "maelor",
+        "addressedTo": "sage_seraphine",
+        "lookTarget": "sage_seraphine",
+        "facing": "LEFT",
+        "resolution": "EXPLICIT_ADDRESSEE"
+      }
+    },
+    "choiceGeometry": 0,
+    "status": "PASS"
+  },
+  "cinematicAudit": {
+    "currentManifestSlots": 32,
+    "currentVideoSlots": 31,
+    "classifications": {
+      "LEGACY_UNUSED": 1,
+      "KEEP_MAJOR_VIDEO": 8,
+      "COMBAT_OWNED": 6,
+      "CONVERT_TO_TRAVEL_STILL": 4,
+      "OPTIONAL_VIDEO": 5,
+      "CONVERT_TO_STATIC_TABLEAU": 7,
+      "CONVERT_TO_HOLD_STILL": 1
+    },
+    "proposedCin6eBVideoCount": 13,
+    "runtimeVideoSlotsAfterWithCombat": 19,
+    "existingMediaDeleted": 0,
+    "status": "PASS"
+  },
+  "majorCinematicWhitelist": [
+    {
+      "cinematicId": "lion_judgement",
+      "criterion": "CLIMAX",
+      "justification": "Major judgement and route-climax ceremony."
+    },
+    {
+      "cinematicId": "camp_departure",
+      "criterion": "IMPORTANT_ENTRANCE",
+      "justification": "Opening departure establishes the company and begins the Lion chapter."
+    },
+    {
+      "cinematicId": "alaric_audience_arrival",
+      "criterion": "IMPORTANT_ENTRANCE",
+      "justification": "Major court entrance and Audience ceremony; all dialogue starts afterward."
+    },
+    {
+      "cinematicId": "bois_clair_arrival",
+      "criterion": "WORLD_CHANGE",
+      "justification": "Bois-Clair burning is a major physical event and world-state reveal."
+    },
+    {
+      "cinematicId": "bois_clair_saved",
+      "criterion": "MAJOR_RESCUE_FAILURE",
+      "justification": "Major rescue outcome visibly changes the village state."
+    },
+    {
+      "cinematicId": "bois_clair_sacrificed",
+      "criterion": "MAJOR_RESCUE_FAILURE",
+      "justification": "Major failure outcome visibly changes the village and refugee state."
+    },
+    {
+      "cinematicId": "serpent_route_ending",
+      "criterion": "CLIMAX",
+      "justification": "Route climax and ending-state spectacle."
+    },
+    {
+      "cinematicId": "lion_trial_route_ending",
+      "criterion": "CLIMAX",
+      "justification": "Route climax and Lion recognition ceremony."
+    }
+  ],
+  "narrativePreservation": {
+    "NARRATIVE_FACT_LOSS": 0,
+    "CHARACTER_INTENT_BREAK": 0,
+    "EMOTIONAL_FUNCTION_LOSS": 0,
+    "CHOICE_CONTEXT_LOSS": 0,
+    "ROUTE_CHANGE": 0,
+    "CHOICE_EFFECT_CHANGE": 0,
+    "RECRUITMENT_TRUTH_CHANGE": 0,
+    "EFFECT_OWNER_LOSS": 0,
+    "DUPLICATE_EFFECT_EXECUTION": 0
+  },
+  "cin6eBRevisedRequirements": {
+    "VIDEOS_BEFORE": 31,
+    "VIDEOS_AFTER": 13,
+    "PROPOSED_CIN6EB_VIDEO_COUNT": 13,
+    "RUNTIME_VIDEO_SLOTS_AFTER_WITH_COMBAT": 19,
+    "COMBAT_OWNED_OUTSIDE_CIN6EB": 6,
+    "STATIC_TABLEAU_BACKGROUND_REQUIREMENTS": {
+      "dialogueContexts": 71,
+      "visualSegments": 78,
+      "existingPlanningRecords": 49,
+      "reusableWithoutNewProduction": 2,
+      "adaptationOrProductionRequired": 69,
+      "characterPolicy": "CHARACTER_FREE_ENVIRONMENT_PLATE_WITH_CANONICAL_RUNTIME_SPRITES"
+    },
+    "HOLD_STILL_REQUIREMENTS": {
+      "scenicDialogueFreeSlots": 1,
+      "sourceSlots": [
+        "ruins_approach_context"
+      ],
+      "legacyDialogueHoldEndpointRecords": 25,
+      "dialogueSteps": 0,
+      "choiceSteps": 0,
+      "preferredCharacterPolicy": "CHARACTER_FREE"
+    },
+    "TRAVEL_STILL_REQUIREMENTS": {
+      "connectiveAssetsAlreadyPlanned": 14,
+      "convertedVideoSlots": 4,
+      "sourceSlots": [
+        "forest_journey_tension",
+        "first_refuge_departure",
+        "valmir_route_fork",
+        "second_refuge_departure"
+      ],
+      "conversationBoundary": "TRAVEL_STILL_TO_STATIC_TABLEAU"
+    },
+    "REUSABLE_ENVIRONMENT_PLATES": [
+      {
+        "assetId": "acte_ouverture_tableau_bg",
+        "sourceReferences": [
+          "/assets/generated/lion-phase/dialogue/camp_departure.webp",
+          "camp_departure"
+        ]
+      },
+      {
+        "assetId": "post_opening_trail_tableau_bg",
+        "sourceReferences": [
+          "/assets/generated/lion-phase/dialogue/forest_fork.webp",
+          "valmir_route_fork",
+          "camp_departure"
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "focusedTests": {
+      "status": "PASS",
+      "passed": 74,
+      "failed": 0
+    },
+    "browserQa": {
+      "status": "PASS",
+      "representativeScenarios": 22,
+      "targetedScenarios": 5,
+      "viewports": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "pass": true,
+          "transitionProbes": 4,
+          "consoleErrors": 0,
+          "pageErrors": 0
+        },
+        {
+          "width": 1366,
+          "height": 768,
+          "pass": true,
+          "transitionProbes": 4,
+          "consoleErrors": 0,
+          "pageErrors": 0
+        }
+      ]
+    },
+    "typecheck": "PASS",
+    "build": "PASS",
+    "fullSuite": {
+      "status": "PASS_WITH_HISTORICAL_EXCEPTION",
+      "passed": 2347,
+      "failed": 11,
+      "allowedFailure": {
+        "file": "src/combat/vfx/CasterMotionBackCompat.test.ts",
+        "count": 11,
+        "classification": "HISTORICAL_ALLOWED_IDENTICAL",
+        "cause": "protected published VFX registry has 0 entries while this legacy suite expects 33"
+      },
+      "newRegressions": 0
+    },
+    "gitDiffCheck": "PASS"
+  },
+  "knownVfxException": {
+    "file": "src/combat/vfx/CasterMotionBackCompat.test.ts",
+    "count": 11,
+    "classification": "HISTORICAL_ALLOWED_IDENTICAL",
+    "cause": "protected published VFX registry has 0 entries while this legacy suite expects 33"
+  },
+  "protectedPathAudit": {
+    "status": "PASS",
+    "changes": []
+  },
+  "secretAudit": {
+    "status": "PASS",
+    "scannedFiles": 57,
+    "leaks": []
+  },
+  "productionMediaHashAudit": {
+    "status": "PASS",
+    "unchanged": 31,
+    "total": 31,
+    "entries": [
+      {
+        "path": "public/assets/cinematics/abandoned_cart_reveal.mp4",
+        "currentSha256": "535b70307fa5aebadd846dc91f1bbcebbc8ad8f845c7c4d61823808def7a57f8",
+        "baselineSha256": "535b70307fa5aebadd846dc91f1bbcebbc8ad8f845c7c4d61823808def7a57f8",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/alaric_audience_arrival.mp4",
+        "currentSha256": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629",
+        "baselineSha256": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/bois_clair_arrival.mp4",
+        "currentSha256": "a37d397665960f8f6749d8f1ece69eaf91c7160cec68fc581ed26ea78042a699",
+        "baselineSha256": "a37d397665960f8f6749d8f1ece69eaf91c7160cec68fc581ed26ea78042a699",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/bois_clair_sacrificed.mp4",
+        "currentSha256": "db07031a3105fb31280abe3aca026cb74e4612e2aa44f7023b5401847322f1a4",
+        "baselineSha256": "db07031a3105fb31280abe3aca026cb74e4612e2aa44f7023b5401847322f1a4",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/bois_clair_saved.mp4",
+        "currentSha256": "a57d9ef8ff2fbb26084066b057f89948bdfe59de22dc7f7770d6576900223b1f",
+        "baselineSha256": "a57d9ef8ff2fbb26084066b057f89948bdfe59de22dc7f7770d6576900223b1f",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/camp_departure.mp4",
+        "currentSha256": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3",
+        "baselineSha256": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/cedric_encounter.mp4",
+        "currentSha256": "aa41a28e8b8829eb9c1c4122184ace9756f01676c2bbc903899e2f366e819a82",
+        "baselineSha256": "aa41a28e8b8829eb9c1c4122184ace9756f01676c2bbc903899e2f366e819a82",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/final_refuge_dossier.mp4",
+        "currentSha256": "fa821768883d1afd897216c60c81f979c998db0b1437e1c7eb74f098b58f5ca2",
+        "baselineSha256": "fa821768883d1afd897216c60c81f979c998db0b1437e1c7eb74f098b58f5ca2",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/first_refuge_arrival.mp4",
+        "currentSha256": "31b4a50f678d6d7431a855d7056bbcee66f44f8a623081be972b79986a55c56e",
+        "baselineSha256": "31b4a50f678d6d7431a855d7056bbcee66f44f8a623081be972b79986a55c56e",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/first_refuge_departure.mp4",
+        "currentSha256": "a3078c6e149c02f78be58063d9f884004a7d3b0265ba29481506fe138d194425",
+        "baselineSha256": "a3078c6e149c02f78be58063d9f884004a7d3b0265ba29481506fe138d194425",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/forest_journey_tension.mp4",
+        "currentSha256": "385f5f9b99b22d9710ef1ef7a89fd21a8b59e392664a51a2480eab6167511fac",
+        "baselineSha256": "385f5f9b99b22d9710ef1ef7a89fd21a8b59e392664a51a2480eab6167511fac",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/garen_encounter.mp4",
+        "currentSha256": "2d9bb62eba5bc8c17a84beebe81ffd916d805a9063398054d424865fff5646a7",
+        "baselineSha256": "2d9bb62eba5bc8c17a84beebe81ffd916d805a9063398054d424865fff5646a7",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/injured_merchant_encounter.mp4",
+        "currentSha256": "a1e6de8c63d1d83d5ee51c5de6548a62b068392fdcd746a948f231d253405892",
+        "baselineSha256": "a1e6de8c63d1d83d5ee51c5de6548a62b068392fdcd746a948f231d253405892",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/lion_champion_reveal.mp4",
+        "currentSha256": "2d581e76e5cc0a37d4633fd6d7166210780da55475f54abadfd90aedaf30b04c",
+        "baselineSha256": "2d581e76e5cc0a37d4633fd6d7166210780da55475f54abadfd90aedaf30b04c",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/lion_judgement.mp4",
+        "currentSha256": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9",
+        "baselineSha256": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/lion_trial_route_ending.mp4",
+        "currentSha256": "34f023ac0313e622a82d53c955e63e1e56a62eb4bd3bfdef9580196fcff178b2",
+        "baselineSha256": "34f023ac0313e622a82d53c955e63e1e56a62eb4bd3bfdef9580196fcff178b2",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/refugees_approach.mp4",
+        "currentSha256": "5f1d76f8686c2bf2f9775576da6d50649cb33e1c5157b46e6d3f9d5b719e5a28",
+        "baselineSha256": "5f1d76f8686c2bf2f9775576da6d50649cb33e1c5157b46e6d3f9d5b719e5a28",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/ruins_approach_context.mp4",
+        "currentSha256": "adf235b6d84889cf80059ae314e7472f2c07e9dcd2f7e9cf99cf7f936bebe525",
+        "baselineSha256": "adf235b6d84889cf80059ae314e7472f2c07e9dcd2f7e9cf99cf7f936bebe525",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/second_refuge_departure.mp4",
+        "currentSha256": "a7d4210b8223a6ef3946fc63bdb138310ed61168f6d902bfc0eb4f74dbe9be3d",
+        "baselineSha256": "a7d4210b8223a6ef3946fc63bdb138310ed61168f6d902bfc0eb4f74dbe9be3d",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/serpent_duelist_reveal.mp4",
+        "currentSha256": "9bf2e927a0940b5b0b3d116a7dbb692bf00c1371b19fa985f154bf08527c2560",
+        "baselineSha256": "9bf2e927a0940b5b0b3d116a7dbb692bf00c1371b19fa985f154bf08527c2560",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/serpent_general_reveal.mp4",
+        "currentSha256": "e8c918d292693e4bc7f612fc6f4fbcdb283c6d2f8095c805db287692e561a682",
+        "baselineSha256": "e8c918d292693e4bc7f612fc6f4fbcdb283c6d2f8095c805db287692e561a682",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/serpent_informant_encounter.mp4",
+        "currentSha256": "5a1a79ed2c9c07f1da13aa2ed872be8823de7223324dba6faa2c7dc60507c069",
+        "baselineSha256": "5a1a79ed2c9c07f1da13aa2ed872be8823de7223324dba6faa2c7dc60507c069",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/serpent_road_tension.mp4",
+        "currentSha256": "33be67338637de8413738789b8a0fa067007ff65bae06081b229870817f56412",
+        "baselineSha256": "33be67338637de8413738789b8a0fa067007ff65bae06081b229870817f56412",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/serpent_route_ending.mp4",
+        "currentSha256": "f1de1f29ccc98ca66f97da94c21060d100687e4fef39b2d0378bcdea36db395c",
+        "baselineSha256": "f1de1f29ccc98ca66f97da94c21060d100687e4fef39b2d0378bcdea36db395c",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/shadow_signs.mp4",
+        "currentSha256": "141d5e04d3573a1827cff7dbdc9efacb024d8a3ecab32a985b700da75a56f4c2",
+        "baselineSha256": "141d5e04d3573a1827cff7dbdc9efacb024d8a3ecab32a985b700da75a56f4c2",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/shrine_reveal_context.mp4",
+        "currentSha256": "e28a9ceb996e16291594f99e2905b25da35b316b0aafe1c058dfe5818d09f48c",
+        "baselineSha256": "e28a9ceb996e16291594f99e2905b25da35b316b0aafe1c058dfe5818d09f48c",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/spider_nest_reveal.mp4",
+        "currentSha256": "7f98991ba6ae91f7904355736875d822c70b5af48ebeeef64598730405e57b0b",
+        "baselineSha256": "7f98991ba6ae91f7904355736875d822c70b5af48ebeeef64598730405e57b0b",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/troll_crossing_reveal.mp4",
+        "currentSha256": "6ddb0044b5259870bbad78d31a57ab77dc7d47268310514ef8d7e00a2a6d3281",
+        "baselineSha256": "6ddb0044b5259870bbad78d31a57ab77dc7d47268310514ef8d7e00a2a6d3281",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/valmir_route_fork.mp4",
+        "currentSha256": "63a4a0c3793d6e29ce8fd94b1478dfab59e40f856d53a01915e47fb9a6343261",
+        "baselineSha256": "63a4a0c3793d6e29ce8fd94b1478dfab59e40f856d53a01915e47fb9a6343261",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/witnesses_encounter.mp4",
+        "currentSha256": "de8f577bb18dc4ce30e0ec3d902fe7f27c4778154ade2e6e1a14eeec99ac4b98",
+        "baselineSha256": "de8f577bb18dc4ce30e0ec3d902fe7f27c4778154ade2e6e1a14eeec99ac4b98",
+        "unchanged": true
+      },
+      {
+        "path": "public/assets/cinematics/young_dragon_encounter.mp4",
+        "currentSha256": "a9cf74c8372981aeb7afdde9efa2a8e5222284fe098b6be5f03223d2d22bdc91",
+        "baselineSha256": "a9cf74c8372981aeb7afdde9efa2a8e5222284fe098b6be5f03223d2d22bdc91",
+        "unchanged": true
+      }
+    ]
+  },
+  "productionManifestHashAudit": {
+    "status": "PASS",
+    "currentSha256": "85942a074b2b39f8c391482a936687682e3d4ac346601b0e5309b1a1050dc321",
+    "baselineSha256": "85942a074b2b39f8c391482a936687682e3d4ac346601b0e5309b1a1050dc321",
+    "unchanged": true
+  },
+  "generationAttempts": {
+    "GPT_IMAGE_ATTEMPTS": 0,
+    "MINIMAX_ATTEMPTS": 0
+  },
+  "finalGates": {
+    "DIALOGUE_DIRECTION_LOCK": "YES",
+    "STATIC_TABLEAU_FIRST_LOCK": "YES",
+    "CINEMATIC_SCOPE_LOCK": "YES",
+    "AGENT_NARRATIVE_QA": "PASS",
+    "HUMAN_REVIEW": "REQUIRED",
+    "READY_FOR_CIN_6E_B": "YES_PENDING_OPERATOR_A4R_REVIEW",
+    "CIN_6E_B_STARTED": false,
+    "ART_DIRECTION_PRODUCTION_STARTED": false,
+    "COMMIT": "NO",
+    "PUSH": "NO"
+  }
+}

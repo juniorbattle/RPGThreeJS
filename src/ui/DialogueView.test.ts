@@ -226,6 +226,41 @@ describe('DialogueView narrative boundaries', () => {
     expect(sequence.steps[0]!.text).toBe('Phrase canonique une. Phrase canonique deux.');
   });
 
+  it('waits for visual staging before exposing the next line and ignores fast advance during the handoff', async () => {
+    let releaseStage: (() => void) | undefined;
+    const firstStaged = Promise.resolve();
+    const secondStaged = new Promise<void>((resolveStage) => { releaseStage = resolveStage; });
+    const root = document.createElement('div');
+    document.body.append(root);
+    const view = new DialogueView({ root, getState: createInitialState, applyEffects: async () => undefined });
+    const sequence: DialogueSequence = {
+      id: 'staging-barrier',
+      steps: [
+        { id: '1', speaker: 'Alaric', actorId: 'alaric', tag: 'Mandat', text: 'Première ligne.', portrait: '', expression: 'stern', side: 'right', next: '2', effects: [], choices: [] },
+        { id: '2', speaker: 'Maelor', actorId: 'maelor', tag: 'Conseil', text: 'Deuxième ligne.', portrait: '', expression: 'neutral', side: 'left', next: null, effects: [], choices: [] },
+      ],
+    };
+    const completion = view.play(sequence, {
+      mode: 'narrative-stage',
+      reducedMotion: true,
+      beforeStepChange: (step) => step.id === '1' ? firstStaged : secondStaged,
+    });
+    await firstStaged;
+    await Promise.resolve();
+    const box = root.querySelector<HTMLButtonElement>('.dialogue__box')!;
+    expect(root.querySelector('.dialogue__text')?.textContent).toBe('Première ligne.');
+    box.click();
+    box.click();
+    expect(root.querySelector('.dialogue')?.classList).toContain('dialogue--preparing-step');
+    expect(root.querySelector('.dialogue__text')?.textContent).toBe('Première ligne.');
+    releaseStage?.();
+    await Promise.resolve();
+    await Promise.resolve();
+    expect(root.querySelector('.dialogue__text')?.textContent).toBe('Deuxième ligne.');
+    box.click();
+    await completion;
+  });
+
   it('reserves final text before progressive reveal and keeps active choices free of a speaker card', () => {
     vi.useFakeTimers();
     const root = document.createElement('div');

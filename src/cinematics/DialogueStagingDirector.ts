@@ -6,10 +6,12 @@ import {
   resolveNarrativeSpeakerAssociation,
   resolveStaticNarrativeStepPlacement,
   resolveNarrativeStepLayout,
-  resolveNarrativeStepPlacement,
   type NarrativeLayoutPlacement,
   type NarrativeLayoutProfile,
   type NarrativeChoiceScreenLane,
+  type NarrativeAddressResolution,
+  type NarrativeActorEntryEffect,
+  type NarrativeStagedActorExitSpec,
   type NarrativeDialogueSurfaceMode,
   type NarrativePresentationStrategy,
   type NarrativeRole,
@@ -46,6 +48,15 @@ export interface DialogueStagingDecision {
   displaySegments: readonly string[];
   mediaRemasterLater: boolean;
   offscreenReason?: string;
+  segmentMode: 'STATIC_TABLEAU';
+  transitionFromPrevious: 'NONE' | 'VIDEO_TO_TABLEAU' | 'TRAVEL_TO_TABLEAU' | 'HOLD_TO_TABLEAU' | 'TABLEAU_RESTAGE';
+  speakerVisibleBeforeLine: boolean;
+  speakerFacing: 'LEFT' | 'RIGHT' | 'FORWARD';
+  speakerLookTarget?: string | null;
+  addressedTo: string | null;
+  addressResolution: NarrativeAddressResolution;
+  speakerEntryEffect: NarrativeActorEntryEffect;
+  actorExits: readonly NarrativeStagedActorExitSpec[];
 }
 
 export interface DialogueStagingPlan {
@@ -59,15 +70,6 @@ export interface DialogueStagingDirectorOptions {
   mediaMode: NarrativeAuthoringMedia;
   hasMovingMedia?: boolean;
 }
-
-const KNOWN_VIDEO_SUBJECTS: Readonly<Record<string, readonly string[]>> = Object.freeze({
-  lion_briefing: ['alaric', 'alistair', 'sage_seraphine', 'maelor'],
-  pre_opening_trail: ['sage_seraphine'],
-  village_choice: ['villageoise', 'serpent_raider', 'alistair'],
-  shadow_signs: ['sage_seraphine', 'elara'],
-  final_refuge: ['maelor', 'sage_seraphine', 'alistair'],
-  lion_finale_judgement: ['alaric', 'lion_champion'],
-});
 
 function sentencePieces(text: string): string[] {
   const matches = text.match(/[^.!?…]+(?:[.!?…]+[”»]?|$)/gu);
@@ -143,54 +145,34 @@ export class DialogueStagingDirector {
     options: DialogueStagingDirectorOptions,
   ) {
     const phases = tableau.phases ?? createGenericNarrativeTableau(sequence).phases ?? [];
-    const knownVideoSubjects = KNOWN_VIDEO_SUBJECTS[sequence.id];
-    const videoOwnsScene = options.mediaMode === 'VIDEO' && Boolean(options.hasMovingMedia);
     const decisions = sequence.steps.map((step): DialogueStagingDecision => {
       const phase = phaseForStep(phases, step.id);
       const speakerId = step.actorId ?? `speaker:${step.speaker}`;
       const stagedSpeaker = phase.staticCast.find((actor) => actor.actorId === speakerId);
       if (!stagedSpeaker) throw new Error(`No staged speaker geometry for ${sequence.id}:${step.id} (${speakerId}).`);
-      let layoutProfile = phase.stepIds.length === sequence.steps.length
-        ? resolveNarrativeStepLayout(sequence, step, tableau.family ?? 'FALLBACK')
-        : phase.layoutProfile;
-      const heldBeat = tableau.beats.find((beat) => beat.dialogueStepId === step.id)?.kind === 'HELD_DIALOGUE';
-      if (!step.choices?.length && heldBeat) layoutProfile = 'HELD_VIDEO_DIALOGUE';
-      const dialogueSurfaceMode: NarrativeDialogueSurfaceMode = videoOwnsScene ? 'VIDEO_CUTSCENE' : 'STATIC_TABLEAU';
-      const layoutPlacement = videoOwnsScene
-        ? tableau.id === 'ALARIC_AUDIENCE_TABLEAU'
-          ? phase.layoutPlacement
-          : resolveNarrativeStepPlacement(layoutProfile, step, stagedSpeaker)
-        : resolveStaticNarrativeStepPlacement(layoutProfile, step, stagedSpeaker);
+      const stepDirection = phase.stepDirections?.find((direction) => direction.stepId === step.id);
+      const layoutProfile = resolveNarrativeStepLayout(sequence, step, tableau.family ?? 'FALLBACK');
+      const dialogueSurfaceMode: NarrativeDialogueSurfaceMode = 'STATIC_TABLEAU';
+      const layoutPlacement = resolveStaticNarrativeStepPlacement(layoutProfile, step, stagedSpeaker);
       const speakerAssociation = resolveNarrativeSpeakerAssociation(layoutPlacement);
       const layoutRule = NARRATIVE_LAYOUT_PROFILE_RULES[layoutProfile];
       const staticCast = phase.staticCast.map((actor) => actor.actorId);
-      const visibleStaticCast = videoOwnsScene ? [] : staticCast;
-      const castOwnership: DialogueStagingDecision['castOwnership'] = videoOwnsScene
-        ? 'VIDEO_OWNS_CAST'
-        : staticCast.length
-          ? 'STAGE_OWNS_CAST'
-          : 'ENVIRONMENT_ONLY';
-      const videoSubjects = knownVideoSubjects ?? phase.mediaSubjects;
-      const currentMediaSubjects = videoOwnsScene
-        ? videoSubjects
-        : phase.mediaSubjects;
+      const visibleStaticCast = staticCast;
+      const castOwnership: DialogueStagingDecision['castOwnership'] = staticCast.length
+        ? 'STAGE_OWNS_CAST'
+        : 'ENVIRONMENT_ONLY';
+      const currentMediaSubjects: readonly string[] = Object.freeze([]);
       let presentationStrategy: NarrativePresentationStrategy;
-      let offscreenReason: string | undefined;
-      if (videoOwnsScene) {
-        if (currentMediaSubjects.includes(speakerId)) presentationStrategy = 'IN_SCENE';
-        else {
-          presentationStrategy = 'OFFSCREEN_CONTEXTUAL';
-          offscreenReason = `Existing moving media for ${sequence.id} does not visually cover ${speakerId}; compact contextual dialogue preserves the canonical exchange without a sprite overlay.`;
-        }
-      } else if (staticCast.includes(speakerId)) {
+      if (staticCast.includes(speakerId)) {
         presentationStrategy = staticCast.length > 1 ? 'SPEAKER_FOCUS' : 'IN_SCENE';
       } else {
         presentationStrategy = 'STATIC_RESTAGE';
       }
-      const mediaRemasterLater = Boolean(
-        tableau.mediaRemasterNeeded
-        || (videoOwnsScene && !currentMediaSubjects.includes(speakerId)),
-      );
+      const mediaRemasterLater = Boolean(tableau.mediaRemasterNeeded);
+      const phaseIndex = phases.indexOf(phase);
+      const segmentMode = 'STATIC_TABLEAU' as const;
+      const transitionFromPrevious = phase.precedingTransition ?? (phaseIndex <= 0 ? 'NONE' : 'TABLEAU_RESTAGE');
+      const speakerVisibleBeforeLine = staticCast.includes(speakerId);
       return {
         dialogueId: sequence.id,
         stepId: step.id,
@@ -218,7 +200,15 @@ export class DialogueStagingDirector {
         presentationStrategy,
         displaySegments: segmentNarrativeText(step.text, layoutRule.maxCharactersPerSegment || 168),
         mediaRemasterLater,
-        ...(offscreenReason ? { offscreenReason } : {}),
+        segmentMode,
+        transitionFromPrevious,
+        speakerVisibleBeforeLine,
+        speakerFacing: stepDirection?.facing ?? stagedSpeaker.facing,
+        speakerLookTarget: stepDirection?.lookTarget ?? stagedSpeaker.lookTarget,
+        addressedTo: stepDirection?.addressedTo ?? null,
+        addressResolution: stepDirection?.resolution ?? 'SCENE_DEFAULT',
+        speakerEntryEffect: stagedSpeaker.entryEffect ?? 'NONE',
+        actorExits: phase.exits ?? [],
       };
     });
     this.plan = Object.freeze({

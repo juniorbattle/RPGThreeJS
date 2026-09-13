@@ -6,7 +6,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { dialogues } from '../game/content';
 import { CinematicPlayer } from './CinematicPlayer';
 import { CinematicRegistry } from './CinematicRegistry';
+import { applyFinalDialoguePresentationPlan } from './DialoguePresentationSegments';
 import { NarrativeStage } from './NarrativeStage';
+import { getResolvedPresentationBeat } from './NarrativePresentationResolver';
 import { ALARIC_AUDIENCE_TABLEAU, CAMP_DEPARTURE_TABLEAU, type NarrativeTableauSpec } from './NarrativeTableau';
 
 const manifest = {
@@ -78,6 +80,48 @@ describe('NarrativeStage', () => {
     expect(stage.frozenSurface?.dataset.cinematicFreezeSurface).toBe('canvas');
     expect(document.querySelectorAll('.narrative-stage canvas')).toHaveLength(1);
     expect(document.querySelectorAll('.narrative-scene-surface, .narrative-cast__actor')).toHaveLength(0);
+  });
+
+  it('releases a completed video and makes the tableau primary before dialogue', async () => {
+    const sequence = dialogues.get('lion_briefing')!;
+    const tableau = applyFinalDialoguePresentationPlan(sequence, ALARIC_AUDIENCE_TABLEAU);
+    const { stage } = createStage(tableau);
+    stage.bindDialogue(sequence);
+    const video = stage.presentCinematic('intro', { reducedMotion: false, passive: true });
+    prepareDecodedFrame().dispatchEvent(new Event('ended'));
+    await video;
+    expect(stage.currentMediaSurfaceKind).toBe('HELD_VIDEO');
+
+    await stage.presentDialogueTableau('/audience.webp', tableau.phases![0]!.id, 'VIDEO');
+    expect(stage.currentMediaSurfaceKind).toBe('STATIC_TABLEAU');
+    expect(stage.element.dataset.narrativePreludeTransition).toBe('VIDEO_TO_TABLEAU');
+    expect(stage.element.dataset.normalDialogueDuringVideo).toBe('0');
+    expect(document.querySelector('.cinematic-overlay')).toBeNull();
+    expect(document.querySelectorAll('.narrative-cast__actor')).toHaveLength(4);
+    expect(stage.element.dataset.narrativeCastOwnership).toBe('STAGE_OWNS_CAST');
+  });
+
+  it('records travel and HOLD transitions into a dialogue tableau and keeps scenic HOLD dialogue-free', async () => {
+    const sequence = dialogues.get('lion_briefing')!;
+    const tableau = applyFinalDialoguePresentationPlan(sequence, ALARIC_AUDIENCE_TABLEAU);
+    const { stage } = createStage(tableau, 'STILL');
+    stage.bindDialogue(sequence);
+    await stage.presentDialogueTableau('/audience.webp', tableau.phases![0]!.id, 'TRAVEL');
+    expect(stage.element.dataset.narrativePreludeTransition).toBe('TRAVEL_TO_TABLEAU');
+    await stage.presentDialogueTableau('/audience.webp', tableau.phases![0]!.id, 'HOLD');
+    expect(stage.element.dataset.narrativePreludeTransition).toBe('HOLD_TO_TABLEAU');
+
+    const hold = getResolvedPresentationBeat('dialogue:lion_briefing')!;
+    const dialogueResidue = document.createElement('p');
+    dialogueResidue.textContent = 'must clear';
+    stage.dialogueLayer.append(dialogueResidue);
+    await stage.enterCinematicHold(hold, '/audience.webp');
+    expect(stage.element.dataset.narrativeHoldSemantics).toBe('DIALOGUE_FREE');
+    expect(stage.element.dataset.dialogueStepsOnHold).toBe('0');
+    expect(stage.element.dataset.choiceStepsOnHold).toBe('0');
+    expect(stage.dialogueLayer.childElementCount).toBe(0);
+    expect(stage.dialogueLayer.inert).toBe(true);
+    expect(document.querySelector('.narrative-cast__actor')).toBeNull();
   });
 
   it('uses a composed static tableau as the primary still authoring surface', async () => {

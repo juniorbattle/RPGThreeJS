@@ -24,7 +24,7 @@ describe('CIN-6.5 cinematic dialogue integration', () => {
     });
   });
 
-  it('gives a mapped NarrativeStage dialogue an explicit video/hold owner', () => {
+  it('ends an approved mapped video before static-tableau dialogue begins', () => {
     const playDialogue = method('private async playDialogue');
     const narrativeDialogue = method('private async playNarrativeDialogue');
     expect(playDialogue).toContain("resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId })");
@@ -33,10 +33,12 @@ describe('CIN-6.5 cinematic dialogue integration', () => {
     expect(playDialogue).toContain('await this.playNarrativeDialogue');
     expect(narrativeDialogue).toContain('resolveDialoguePresentation(sequence.id)');
     expect(narrativeDialogue).toContain("mode: 'narrative-stage'");
-    expect(narrativeDialogue).toContain("presentationBeat?.mode === 'CINEMATIC_HOLD'");
+    expect(narrativeDialogue).toContain("mediaMode: 'STILL'");
+    expect(narrativeDialogue).toContain('hasMovingMedia: false');
     expect(narrativeDialogue).toContain('await stage.presentCinematicBeat(videoBeat');
-    expect(narrativeDialogue).toContain('await stage.enterCinematicHold(presentationBeat');
-    expect(narrativeDialogue).toContain("presentationBeat?.mode === 'STATIC_TABLEAU'");
+    expect(narrativeDialogue).toContain('shouldPlayDialoguePreludeVideo(options.cinematicId)');
+    expect(narrativeDialogue).toContain('await stage.presentDialogueTableau(');
+    expect(narrativeDialogue).not.toContain('enterCinematicHold');
     expect(method('private async playClassicDialogue')).not.toContain('resolveCin6aJourneyTrigger');
   });
 

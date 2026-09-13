@@ -14,7 +14,7 @@ describe('Narrative dialogue presentation adapter', () => {
     const resolver = createNarrativeDialogueResolver(sequence, ALARIC_AUDIENCE_TABLEAU);
     expect(Object.fromEntries(sequence.steps.map((step) => [step.id, resolver(step).mode]))).toEqual({
       '1': 'SPEAKER_CARD',
-      '1a': 'HELD_DIALOGUE',
+      '1a': 'SPEAKER_CARD',
       '1b': 'SPEAKER_CARD',
       '2': 'SPEAKER_CARD',
       '3': 'SPATIAL_CHOICE',
@@ -23,7 +23,7 @@ describe('Narrative dialogue presentation adapter', () => {
     });
   });
 
-  it('keeps static upper placement separate from the current video lower placement', () => {
+  it('uses the same static upper placement even when a video prelude was requested', () => {
     const sequence = dialogues.get('lion_briefing')!;
     const step = sequence.steps.find((candidate) => candidate.id === '1')!;
     const still = createNarrativeDialogueResolver(sequence, ALARIC_AUDIENCE_TABLEAU, { mediaMode: 'STILL' })(step);
@@ -34,9 +34,11 @@ describe('Narrative dialogue presentation adapter', () => {
       dialogueSurfaceMode: 'STATIC_TABLEAU',
     });
     expect(video).toMatchObject({
-      layoutPlacement: 'RIGHT',
-      speakerAssociation: 'SPEAKER_RIGHT_LOWER',
-      dialogueSurfaceMode: 'VIDEO_CUTSCENE',
+      layoutPlacement: 'RIGHT_UPPER',
+      speakerAssociation: 'SPEAKER_RIGHT_UPPER',
+      dialogueSurfaceMode: 'STATIC_TABLEAU',
+      segmentMode: 'STATIC_TABLEAU',
+      castOwnership: 'STAGE_OWNS_CAST',
     });
   });
 
@@ -49,6 +51,9 @@ describe('Narrative dialogue presentation adapter', () => {
       layoutPlacement: 'LEFT_UPPER',
       speakerScreenPosition: 'CENTER_LEFT',
       choiceScreenLanes: ['RIGHT', 'LEFT'],
+      addressedTo: 'alaric',
+      speakerLookTarget: 'alaric',
+      speakerFacing: 'RIGHT',
     });
     expect(step.choices).toEqual(canonicalChoices);
   });
@@ -76,13 +81,14 @@ describe('Narrative dialogue presentation adapter', () => {
     expect(NARRATIVE_TEXT_REDUCTIONS.every((entry) => entry.reviewed && entry.sourceTextPreserved && entry.rationale.length > 0)).toBe(true);
   });
 
-  it('paginates canonical DialogueSequence text without display-only rewriting', () => {
+  it('uses the reviewed display-only trim while preserving canonical DialogueSequence text', () => {
     const village = dialogues.get('village_choice')!;
     const step = village.steps.find((candidate) => candidate.id === '1a')!;
     const canonical = step.text;
     const resolver = createNarrativeDialogueResolver(village);
-    expect(resolver(step).displayText).toBeUndefined();
-    expect(resolver(step).displaySegments?.join(' ')).toBe(canonical);
+    const reviewed = getNarrativeTextReduction('village_choice', '1a')!.displayText;
+    expect(resolver(step).displayText).toBe(reviewed);
+    expect(resolver(step).displaySegments?.join(' ')).toBe(reviewed);
     expect(step.text).toBe(canonical);
   });
 
@@ -94,12 +100,16 @@ describe('Narrative dialogue presentation adapter', () => {
     expect(getNarrativeTextReduction('lion_briefing', '1')).toBeUndefined();
   });
 
-  it('keeps authoritative choices in held or spatial modes', () => {
+  it('keeps every authoritative choice on a spatial static tableau', () => {
     const village = dialogues.get('village_choice')!;
     const resolver = createNarrativeDialogueResolver(village);
     const choice = village.steps.find((step) => step.id === '5')!;
     expect(choice.choices).toHaveLength(2);
     expect(resolver(choice).mode).toBe('SPATIAL_CHOICE');
+    expect(resolver(choice)).toMatchObject({
+      dialogueSurfaceMode: 'STATIC_TABLEAU',
+      segmentMode: 'STATIC_TABLEAU',
+    });
     expect(choice.choices?.map((entry) => entry.text)).toEqual(['Sauver les habitants.', 'Sécuriser les réserves.']);
   });
 });

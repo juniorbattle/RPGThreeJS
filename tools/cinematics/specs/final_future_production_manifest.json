@@ -31,7 +31,56 @@
       "REPLACE_BY_REUSE": 5,
       "REVIEW": 0,
       "NEW_MEDIA_REQUIRED": 1
-    }
+    },
+    "VIDEOS_BEFORE": 31,
+    "VIDEOS_AFTER": 13,
+    "STATIC_TABLEAU_BACKGROUND_REQUIREMENTS": {
+      "dialogueContexts": 71,
+      "visualSegments": 78,
+      "existingPlanningRecords": 49,
+      "reusableWithoutNewProduction": 2,
+      "adaptationOrProductionRequired": 69,
+      "characterPolicy": "CHARACTER_FREE_ENVIRONMENT_PLATE_WITH_CANONICAL_RUNTIME_SPRITES"
+    },
+    "HOLD_STILL_REQUIREMENTS": {
+      "scenicDialogueFreeSlots": 1,
+      "sourceSlots": [
+        "ruins_approach_context"
+      ],
+      "legacyDialogueHoldEndpointRecords": 25,
+      "dialogueSteps": 0,
+      "choiceSteps": 0,
+      "preferredCharacterPolicy": "CHARACTER_FREE"
+    },
+    "TRAVEL_STILL_REQUIREMENTS": {
+      "connectiveAssetsAlreadyPlanned": 14,
+      "convertedVideoSlots": 4,
+      "sourceSlots": [
+        "forest_journey_tension",
+        "first_refuge_departure",
+        "valmir_route_fork",
+        "second_refuge_departure"
+      ],
+      "conversationBoundary": "TRAVEL_STILL_TO_STATIC_TABLEAU"
+    },
+    "REUSABLE_ENVIRONMENT_PLATES": [
+      {
+        "assetId": "acte_ouverture_tableau_bg",
+        "sourceReferences": [
+          "/assets/generated/lion-phase/dialogue/camp_departure.webp",
+          "camp_departure"
+        ]
+      },
+      {
+        "assetId": "post_opening_trail_tableau_bg",
+        "sourceReferences": [
+          "/assets/generated/lion-phase/dialogue/forest_fork.webp",
+          "valmir_route_fork",
+          "camp_departure"
+        ]
+      }
+    ],
+    "legacyHoldEndpointRecords": 25
   },
   "assets": [
     {
@@ -3571,5 +3620,5187 @@
     "HUMAN_VISUAL_REVIEW": "APPROVED",
     "READY_FOR_CIN_6E_B": "YES",
     "CIN_6E_B_STARTED": false
+  },
+  "cin6ea4DialoguePacingBaseline": "ff743b08fb239d55e11ac5cd682950032a06e2e1",
+  "cin6ea4DialogueHandoffPolicy": "STATIC_TABLEAU_DIALOGUE_SEGMENTS_AND_CAST_ONLY_NO_MEDIA_GENERATION",
+  "dialogueProductionHandoff": [
+    {
+      "dialogueId": "acte_ouverture",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "acte_ouverture:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "requiredCast": [
+            "sage_seraphine",
+            "maelor",
+            "alistair",
+            "marian"
+          ],
+          "forbiddenCast": [
+            "kestrel",
+            "elara"
+          ]
+        },
+        {
+          "id": "acte_ouverture:segment-2",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "requiredCast": [
+            "kestrel",
+            "elara",
+            "maelor",
+            "sage_seraphine"
+          ],
+          "forbiddenCast": [
+            "alistair",
+            "marian"
+          ]
+        },
+        {
+          "id": "acte_ouverture:segment-3",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "9"
+          ],
+          "requiredCast": [
+            "alistair"
+          ],
+          "forbiddenCast": [
+            "sage_seraphine",
+            "maelor",
+            "marian",
+            "kestrel",
+            "elara"
+          ]
+        }
+      ],
+      "targetDialogueDurationSeconds": 84.33,
+      "speakerOrder": [
+        "sage_seraphine",
+        "maelor",
+        "alistair",
+        "marian",
+        "kestrel",
+        "elara",
+        "maelor",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        },
+        {
+          "actorId": "marian",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/marian.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            61,
+            163,
+            580,
+            738
+          ],
+          "referenceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
+        },
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        },
+        {
+          "actorId": "elara",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/elara.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            89,
+            148,
+            550,
+            733
+          ],
+          "referenceSha256": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "ate_alaric_reports",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "ate_alaric_reports:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "lion_champion",
+            "alaric"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 26,
+      "speakerOrder": [
+        "lion_champion",
+        "alaric",
+        "alaric"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "lion_champion",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/lion_champion.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            27,
+            97,
+            612,
+            742
+          ],
+          "referenceSha256": "344ef692bdbc16defe4de640104222274601f36a268e4fe73f2fbb11f720fc95"
+        },
+        {
+          "actorId": "alaric",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alaric.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            27,
+            56,
+            612,
+            742
+          ],
+          "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "ate_bois_clair_night_watch",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "ate_bois_clair_night_watch:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "requiredCast": [
+            "marian",
+            "alistair",
+            "maelor",
+            "villageoise"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 43,
+      "speakerOrder": [
+        "villageoise",
+        "marian",
+        "alistair",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "marian",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/marian.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            61,
+            163,
+            580,
+            738
+          ],
+          "referenceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
+        },
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "villageoise",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/villageoise.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            188,
+            228,
+            444,
+            734
+          ],
+          "referenceSha256": "25a253fa81b72629087fd1701636ddbfe20347bdf8500a194092e19d1f8a9dd2"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "ate_first_refuge_watch",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "ate_first_refuge_watch:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "requiredCast": [
+            "marian",
+            "alistair",
+            "kestrel",
+            "maelor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 38,
+      "speakerOrder": [
+        "marian",
+        "alistair",
+        "kestrel",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "marian",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/marian.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            61,
+            163,
+            580,
+            738
+          ],
+          "referenceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
+        },
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        },
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "ate_lion_council_doubt",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "ate_lion_council_doubt:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "lion_champion",
+            "alaric"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 26,
+      "speakerOrder": [
+        "lion_champion",
+        "alaric",
+        "lion_champion"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "lion_champion",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/lion_champion.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            27,
+            97,
+            612,
+            742
+          ],
+          "referenceSha256": "344ef692bdbc16defe4de640104222274601f36a268e4fe73f2fbb11f720fc95"
+        },
+        {
+          "actorId": "alaric",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alaric.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            27,
+            56,
+            612,
+            742
+          ],
+          "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "ate_maelor_seal_analysis",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "ate_maelor_seal_analysis:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "maelor",
+            "sage_seraphine"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 26.67,
+      "speakerOrder": [
+        "maelor",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "ate_ruins_awaken",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "ate_ruins_awaken:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "maelor",
+            "sage_seraphine"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 23.33,
+      "speakerOrder": [
+        "maelor",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "ate_serpent_general_warning",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "ate_serpent_general_warning:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "serpent_oracle",
+            "serpent_general_boss"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 24,
+      "speakerOrder": [
+        "serpent_oracle",
+        "serpent_general_boss",
+        "serpent_general_boss"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "serpent_oracle",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_oracle.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            51,
+            157,
+            588,
+            710
+          ],
+          "referenceSha256": "85c885c64f479b8579430e60c6616f5bc0905106a6ce0d2b1a8c5bacb9a48f3a"
+        },
+        {
+          "actorId": "serpent_general_boss",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_general_boss.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            65,
+            42,
+            574,
+            742
+          ],
+          "referenceSha256": "15306dc49386b0f6297cb922cb886e22357aca756ca8e0a5e11d706c641a33c7"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "ate_serpent_retreat_order",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "ate_serpent_retreat_order:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "serpent_general_boss",
+            "serpent_oracle"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 23.67,
+      "speakerOrder": [
+        "serpent_general_boss",
+        "serpent_oracle",
+        "serpent_general_boss"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "serpent_general_boss",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_general_boss.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            65,
+            42,
+            574,
+            742
+          ],
+          "referenceSha256": "15306dc49386b0f6297cb922cb886e22357aca756ca8e0a5e11d706c641a33c7"
+        },
+        {
+          "actorId": "serpent_oracle",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_oracle.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            51,
+            157,
+            588,
+            710
+          ],
+          "referenceSha256": "85c885c64f479b8579430e60c6616f5bc0905106a6ce0d2b1a8c5bacb9a48f3a"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "ate_serpent_scout_report",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "ate_serpent_scout_report:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "serpent_raider",
+            "serpent_oracle",
+            "serpent_general_boss"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 20.33,
+      "speakerOrder": [
+        "serpent_raider",
+        "serpent_oracle",
+        "serpent_general_boss"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "serpent_raider",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_raider.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            51,
+            229,
+            588,
+            710
+          ],
+          "referenceSha256": "e62eca489417bc626f77abd4269e54d370af32dd399436e6e834f5c6f577aaed"
+        },
+        {
+          "actorId": "serpent_oracle",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_oracle.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            51,
+            157,
+            588,
+            710
+          ],
+          "referenceSha256": "85c885c64f479b8579430e60c6616f5bc0905106a6ce0d2b1a8c5bacb9a48f3a"
+        },
+        {
+          "actorId": "serpent_general_boss",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_general_boss.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            65,
+            42,
+            574,
+            742
+          ],
+          "referenceSha256": "15306dc49386b0f6297cb922cb886e22357aca756ca8e0a5e11d706c641a33c7"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "ate_village_fear",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "ate_village_fear:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "villageoise",
+            "refugee_mother"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 25,
+      "speakerOrder": [
+        "villageoise",
+        "refugee_mother",
+        "villageoise"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "villageoise",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/villageoise.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            188,
+            228,
+            444,
+            734
+          ],
+          "referenceSha256": "25a253fa81b72629087fd1701636ddbfe20347bdf8500a194092e19d1f8a9dd2"
+        },
+        {
+          "actorId": "refugee_mother",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/refugee_mother.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            171,
+            213,
+            467,
+            734
+          ],
+          "referenceSha256": "819f5348ff22f1c6a6503a9e4186b2f61c1fff68b8cd16c90f4aa5eda1219e13"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "camp_departure",
+      "sourceVideo": "camp_departure",
+      "sourceVideoClassification": "KEEP_MAJOR_VIDEO",
+      "finalFrameCast": [
+        "sage_seraphine",
+        "maelor",
+        "alistair"
+      ],
+      "segments": [
+        {
+          "id": "camp_departure:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "1a",
+            "1b",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "maelor",
+            "alistair",
+            "marian",
+            "sage_seraphine"
+          ],
+          "forbiddenCast": [
+            "kestrel"
+          ]
+        },
+        {
+          "id": "camp_departure:segment-2",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "4",
+            "5"
+          ],
+          "requiredCast": [
+            "kestrel",
+            "sage_seraphine"
+          ],
+          "forbiddenCast": [
+            "maelor",
+            "alistair",
+            "marian"
+          ]
+        }
+      ],
+      "targetDialogueDurationSeconds": 61.33,
+      "speakerOrder": [
+        "maelor",
+        "alistair",
+        "marian",
+        "sage_seraphine",
+        "maelor",
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        },
+        {
+          "actorId": "marian",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/marian.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            61,
+            163,
+            580,
+            738
+          ],
+          "referenceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        },
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "epilogue",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "epilogue:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1"
+          ],
+          "requiredCast": [
+            "sage_seraphine"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 7,
+      "speakerOrder": [
+        "sage_seraphine"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "final_refuge",
+      "sourceVideo": "final_refuge_dossier",
+      "sourceVideoClassification": "CONVERT_TO_STATIC_TABLEAU",
+      "finalFrameCast": [
+        "maelor",
+        "sage_seraphine",
+        "alistair"
+      ],
+      "segments": [
+        {
+          "id": "final_refuge:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "requiredCast": [
+            "maelor",
+            "sage_seraphine",
+            "marian",
+            "alistair"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 60,
+      "speakerOrder": [
+        "maelor",
+        "sage_seraphine",
+        "maelor",
+        "marian",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        },
+        {
+          "actorId": "marian",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/marian.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            61,
+            163,
+            580,
+            738
+          ],
+          "referenceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
+        },
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "lion_briefing",
+      "sourceVideo": "alaric_audience_arrival",
+      "sourceVideoClassification": "KEEP_MAJOR_VIDEO",
+      "finalFrameCast": [
+        "sage_seraphine",
+        "maelor",
+        "alistair",
+        "alaric"
+      ],
+      "segments": [
+        {
+          "id": "lion_briefing:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "1a",
+            "1b",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "requiredCast": [
+            "alistair",
+            "sage_seraphine",
+            "maelor",
+            "alaric"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 51.67,
+      "speakerOrder": [
+        "alaric",
+        "alaric",
+        "alistair",
+        "sage_seraphine",
+        "maelor",
+        "alaric",
+        "alaric"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "alaric",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alaric.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            27,
+            56,
+            612,
+            742
+          ],
+          "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "sourceVideo": "lion_judgement",
+      "sourceVideoClassification": "KEEP_MAJOR_VIDEO",
+      "finalFrameCast": [
+        "alaric",
+        "lion_champion"
+      ],
+      "segments": [
+        {
+          "id": "lion_finale_judgement:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1"
+          ],
+          "requiredCast": [
+            "alaric"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 8,
+      "speakerOrder": [
+        "alaric"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "alaric",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alaric.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            27,
+            56,
+            612,
+            742
+          ],
+          "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "lion_trial_aftermath",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "lion_trial_aftermath:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1"
+          ],
+          "requiredCast": [
+            "alaric"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 7,
+      "speakerOrder": [
+        "alaric"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "alaric",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alaric.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            27,
+            56,
+            612,
+            742
+          ],
+          "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "mystery_ambush",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "mystery_ambush:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1"
+          ],
+          "requiredCast": [
+            "serpent_raider"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 3.33,
+      "speakerOrder": [
+        "serpent_raider"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "serpent_raider",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_raider.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            51,
+            229,
+            588,
+            710
+          ],
+          "referenceSha256": "e62eca489417bc626f77abd4269e54d370af32dd399436e6e834f5c6f577aaed"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "mystery_dragon_roost",
+      "sourceVideo": "young_dragon_encounter",
+      "sourceVideoClassification": "OPTIONAL_VIDEO",
+      "finalFrameCast": [
+        "young_dragon_elite"
+      ],
+      "segments": [
+        {
+          "id": "mystery_dragon_roost:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "sage_seraphine",
+            "maelor",
+            "young_dragon_elite"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 16.67,
+      "speakerOrder": [
+        "young_dragon_elite",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "young_dragon_elite",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/young_dragon_elite.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            20,
+            109,
+            620,
+            742
+          ],
+          "referenceSha256": "2715cdd69c265b18cbd1d221f44af9f8b665b14c7c80509a646066d57f6641d7"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "mystery_help",
+      "sourceVideo": "injured_merchant_encounter",
+      "sourceVideoClassification": "CONVERT_TO_STATIC_TABLEAU",
+      "finalFrameCast": [
+        "survivor"
+      ],
+      "segments": [
+        {
+          "id": "mystery_help:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "survivor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 10.67,
+      "speakerOrder": [
+        "survivor",
+        "survivor",
+        "survivor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "survivor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/survivor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            157,
+            228,
+            511,
+            737
+          ],
+          "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "mystery_lancer_recruit",
+      "sourceVideo": "garen_encounter",
+      "sourceVideoClassification": "CONVERT_TO_STATIC_TABLEAU",
+      "finalFrameCast": [
+        "lancer"
+      ],
+      "segments": [
+        {
+          "id": "mystery_lancer_recruit:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "requiredCast": [
+            "lancer"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 26.33,
+      "speakerOrder": [
+        "lancer",
+        "lancer",
+        "lancer",
+        "lancer"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "lancer",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/lancer.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            78,
+            188,
+            562,
+            735
+          ],
+          "referenceSha256": "3c1761e087a00f8079ee423e6b513494569566fe75b43fc30e69560ba7a6f012"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "mystery_recruit",
+      "sourceVideo": "cedric_encounter",
+      "sourceVideoClassification": "CONVERT_TO_STATIC_TABLEAU",
+      "finalFrameCast": [
+        "cedric",
+        "kestrel"
+      ],
+      "segments": [
+        {
+          "id": "mystery_recruit:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "0a",
+            "0b",
+            "1",
+            "2",
+            "2a",
+            "2b",
+            "3",
+            "3a",
+            "3b"
+          ],
+          "requiredCast": [
+            "kestrel",
+            "cedric"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 73.67,
+      "speakerOrder": [
+        "kestrel",
+        "cedric",
+        "cedric",
+        "cedric",
+        "kestrel",
+        "cedric",
+        "cedric",
+        "cedric",
+        "kestrel"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        },
+        {
+          "actorId": "cedric",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/cedric.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            36,
+            210,
+            602,
+            734
+          ],
+          "referenceSha256": "ed71da3f7bd7ac94596bd4d20ef62047940d4457fbae7d6898f54ba221f6972f"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "mystery_shrine",
+      "sourceVideo": "shrine_reveal_context",
+      "sourceVideoClassification": "OPTIONAL_VIDEO",
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "mystery_shrine:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "shrine_apparition",
+            "sage_seraphine",
+            "maelor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 18,
+      "speakerOrder": [
+        "shrine_apparition",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "shrine_apparition",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/shrine_apparition.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            41,
+            126,
+            598,
+            743
+          ],
+          "referenceSha256": "91d675b9112acc147ebdaa0713bbd524ef54a1994439218a84b058740d303729"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "mystery_treasure",
+      "sourceVideo": "abandoned_cart_reveal",
+      "sourceVideoClassification": "OPTIONAL_VIDEO",
+      "finalFrameCast": [
+        "maelor"
+      ],
+      "segments": [
+        {
+          "id": "mystery_treasure:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "maelor",
+            "sage_seraphine"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 17.67,
+      "speakerOrder": [
+        "maelor",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "mystery_troll_crossing",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "mystery_troll_crossing:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "forest_troll_elite",
+            "sage_seraphine",
+            "maelor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 15.67,
+      "speakerOrder": [
+        "forest_troll_elite",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "forest_troll_elite",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/forest_troll_elite.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            20,
+            131,
+            620,
+            742
+          ],
+          "referenceSha256": "288964b0b9ebb17758498d3b9808c147526d6cb08ffcac753124f0b729e1e45f"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "old_shrine_event",
+      "sourceVideo": "shrine_reveal_context",
+      "sourceVideoClassification": "OPTIONAL_VIDEO",
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "old_shrine_event:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "sage_seraphine",
+            "maelor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 19.67,
+      "speakerOrder": [
+        "sage_seraphine",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "post_opening_trail",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "post_opening_trail:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "kestrel",
+            "alistair",
+            "maelor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 27.33,
+      "speakerOrder": [
+        "kestrel",
+        "alistair",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        },
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "post_ruins_guardians",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "post_ruins_guardians:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "elara",
+            "sage_seraphine"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 16.67,
+      "speakerOrder": [
+        "elara",
+        "sage_seraphine"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "elara",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/elara.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            89,
+            148,
+            550,
+            733
+          ],
+          "referenceSha256": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "post_serpent_checkpoint",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "post_serpent_checkpoint:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "kestrel",
+            "sage_seraphine"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 16,
+      "speakerOrder": [
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "post_serpent_duelist_trial",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "post_serpent_duelist_trial:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "alistair",
+            "serpent_duelist_elite"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 15.33,
+      "speakerOrder": [
+        "serpent_duelist_elite",
+        "alistair"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        },
+        {
+          "actorId": "serpent_duelist_elite",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_duelist_elite.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            48,
+            42,
+            592,
+            742
+          ],
+          "referenceSha256": "040f306678984338223c53ff67a2edff11141361fc00a56ff9c4fc62a2810c96"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "post_serpent_hunters",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "post_serpent_hunters:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "sage_seraphine",
+            "serpent_oracle"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 16.67,
+      "speakerOrder": [
+        "serpent_oracle",
+        "sage_seraphine"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        },
+        {
+          "actorId": "serpent_oracle",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_oracle.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            51,
+            157,
+            588,
+            710
+          ],
+          "referenceSha256": "85c885c64f479b8579430e60c6616f5bc0905106a6ce0d2b1a8c5bacb9a48f3a"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "post_serpent_patrol",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "post_serpent_patrol:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "kestrel",
+            "sage_seraphine"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 15.67,
+      "speakerOrder": [
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "post_serpent_reprisals",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "post_serpent_reprisals:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "alistair",
+            "kestrel"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 14,
+      "speakerOrder": [
+        "alistair",
+        "kestrel"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        },
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "post_spider_nest",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "post_spider_nest:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "elara",
+            "maelor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 15,
+      "speakerOrder": [
+        "elara",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "elara",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/elara.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            89,
+            148,
+            550,
+            733
+          ],
+          "referenceSha256": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "post_troll_crossing",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "post_troll_crossing:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "marian",
+            "maelor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 16.67,
+      "speakerOrder": [
+        "marian",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "marian",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/marian.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            61,
+            163,
+            580,
+            738
+          ],
+          "referenceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "post_valmir_road",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "post_valmir_road:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "marian",
+            "kestrel",
+            "sage_seraphine"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 29,
+      "speakerOrder": [
+        "marian",
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "marian",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/marian.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            61,
+            163,
+            580,
+            738
+          ],
+          "referenceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
+        },
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "post_young_dragon_roost",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "post_young_dragon_roost:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "elara",
+            "sage_seraphine"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 16.67,
+      "speakerOrder": [
+        "elara",
+        "sage_seraphine"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "elara",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/elara.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            89,
+            148,
+            550,
+            733
+          ],
+          "referenceSha256": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "pre_lion_chief",
+      "sourceVideo": "lion_champion_reveal",
+      "sourceVideoClassification": "COMBAT_OWNED",
+      "finalFrameCast": [
+        "lion_champion"
+      ],
+      "segments": [
+        {
+          "id": "pre_lion_chief:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "requiredCast": [
+            "alaric",
+            "lion_champion"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 28,
+      "speakerOrder": [
+        "alaric",
+        "alaric",
+        "lion_champion",
+        "lion_champion"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "alaric",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alaric.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            27,
+            56,
+            612,
+            742
+          ],
+          "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b"
+        },
+        {
+          "actorId": "lion_champion",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/lion_champion.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            27,
+            97,
+            612,
+            742
+          ],
+          "referenceSha256": "344ef692bdbc16defe4de640104222274601f36a268e4fe73f2fbb11f720fc95"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "pre_opening_trail",
+      "sourceVideo": "forest_journey_tension",
+      "sourceVideoClassification": "CONVERT_TO_TRAVEL_STILL",
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "pre_opening_trail:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "kestrel",
+            "alistair",
+            "sage_seraphine"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 30,
+      "speakerOrder": [
+        "kestrel",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        },
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "pre_ruins_guardians",
+      "sourceVideo": "ruins_approach_context",
+      "sourceVideoClassification": "CONVERT_TO_HOLD_STILL",
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "pre_ruins_guardians:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "elara",
+            "sage_seraphine"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 15.67,
+      "speakerOrder": [
+        "elara",
+        "sage_seraphine"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "elara",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/elara.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            89,
+            148,
+            550,
+            733
+          ],
+          "referenceSha256": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "pre_serpent_checkpoint",
+      "sourceVideo": "serpent_road_tension",
+      "sourceVideoClassification": "COMBAT_OWNED",
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "pre_serpent_checkpoint:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "kestrel",
+            "maelor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 14.67,
+      "speakerOrder": [
+        "kestrel",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "pre_serpent_duelist_trial",
+      "sourceVideo": "serpent_duelist_reveal",
+      "sourceVideoClassification": "COMBAT_OWNED",
+      "finalFrameCast": [
+        "serpent_duelist_elite"
+      ],
+      "segments": [
+        {
+          "id": "pre_serpent_duelist_trial:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "serpent_duelist_elite"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 14,
+      "speakerOrder": [
+        "serpent_duelist_elite",
+        "serpent_duelist_elite",
+        "serpent_duelist_elite"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "serpent_duelist_elite",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_duelist_elite.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            48,
+            42,
+            592,
+            742
+          ],
+          "referenceSha256": "040f306678984338223c53ff67a2edff11141361fc00a56ff9c4fc62a2810c96"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "pre_serpent_hunters",
+      "sourceVideo": "serpent_road_tension",
+      "sourceVideoClassification": "COMBAT_OWNED",
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "pre_serpent_hunters:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "sage_seraphine",
+            "serpent_raider"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 23,
+      "speakerOrder": [
+        "serpent_raider",
+        "sage_seraphine",
+        "serpent_raider"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        },
+        {
+          "actorId": "serpent_raider",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_raider.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            51,
+            229,
+            588,
+            710
+          ],
+          "referenceSha256": "e62eca489417bc626f77abd4269e54d370af32dd399436e6e834f5c6f577aaed"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "pre_serpent_patrol",
+      "sourceVideo": "serpent_road_tension",
+      "sourceVideoClassification": "COMBAT_OWNED",
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "pre_serpent_patrol:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "kestrel",
+            "alistair"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 15.67,
+      "speakerOrder": [
+        "kestrel",
+        "alistair"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        },
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "pre_serpent_reprisals",
+      "sourceVideo": "serpent_road_tension",
+      "sourceVideoClassification": "COMBAT_OWNED",
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "pre_serpent_reprisals:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "alistair",
+            "serpent_raider"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 16,
+      "speakerOrder": [
+        "serpent_raider",
+        "alistair"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        },
+        {
+          "actorId": "serpent_raider",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_raider.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            51,
+            229,
+            588,
+            710
+          ],
+          "referenceSha256": "e62eca489417bc626f77abd4269e54d370af32dd399436e6e834f5c6f577aaed"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "pre_spider_nest",
+      "sourceVideo": "spider_nest_reveal",
+      "sourceVideoClassification": "COMBAT_OWNED",
+      "finalFrameCast": [
+        "forest_spider"
+      ],
+      "segments": [
+        {
+          "id": "pre_spider_nest:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "elara",
+            "marian"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 17.33,
+      "speakerOrder": [
+        "elara",
+        "marian"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "elara",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/elara.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            89,
+            148,
+            550,
+            733
+          ],
+          "referenceSha256": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74"
+        },
+        {
+          "actorId": "marian",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/marian.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            61,
+            163,
+            580,
+            738
+          ],
+          "referenceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "pre_troll_crossing",
+      "sourceVideo": "troll_crossing_reveal",
+      "sourceVideoClassification": "COMBAT_OWNED",
+      "finalFrameCast": [
+        "forest_troll_elite"
+      ],
+      "segments": [
+        {
+          "id": "pre_troll_crossing:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "forest_troll_elite"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 6.33,
+      "speakerOrder": [
+        "forest_troll_elite",
+        "forest_troll_elite"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "forest_troll_elite",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/forest_troll_elite.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            20,
+            131,
+            620,
+            742
+          ],
+          "referenceSha256": "288964b0b9ebb17758498d3b9808c147526d6cb08ffcac753124f0b729e1e45f"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "pre_valmir_road",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "pre_valmir_road:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "kestrel",
+            "marian",
+            "maelor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 30,
+      "speakerOrder": [
+        "kestrel",
+        "marian",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        },
+        {
+          "actorId": "marian",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/marian.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            61,
+            163,
+            580,
+            738
+          ],
+          "referenceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "pre_village_defense",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "pre_village_defense:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "serpent_raider"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 8.67,
+      "speakerOrder": [
+        "serpent_raider",
+        "serpent_raider"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "serpent_raider",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_raider.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            51,
+            229,
+            588,
+            710
+          ],
+          "referenceSha256": "e62eca489417bc626f77abd4269e54d370af32dd399436e6e834f5c6f577aaed"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "pre_village_raid",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "pre_village_raid:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "serpent_brute"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 9.33,
+      "speakerOrder": [
+        "serpent_brute",
+        "serpent_brute"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "serpent_brute",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_brute.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            87,
+            150,
+            552,
+            710
+          ],
+          "referenceSha256": "deb9bff683847720f82bdea4312a2b481f9173ab321292005a59ad656c4eb65a"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "pre_young_dragon_roost",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "pre_young_dragon_roost:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "young_dragon_elite"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 10,
+      "speakerOrder": [
+        "young_dragon_elite",
+        "young_dragon_elite"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "young_dragon_elite",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/young_dragon_elite.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            20,
+            109,
+            620,
+            742
+          ],
+          "referenceSha256": "2715cdd69c265b18cbd1d221f44af9f8b665b14c7c80509a646066d57f6641d7"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "refugee_trial",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "refugee_trial:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "0a",
+            "0b",
+            "1",
+            "2",
+            "2a",
+            "2b"
+          ],
+          "requiredCast": [
+            "kestrel",
+            "marian",
+            "alistair",
+            "refugee_mother"
+          ],
+          "forbiddenCast": [
+            "maelor"
+          ]
+        },
+        {
+          "id": "refugee_trial:segment-2",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "3",
+            "3a",
+            "3b"
+          ],
+          "requiredCast": [
+            "maelor",
+            "marian",
+            "kestrel"
+          ],
+          "forbiddenCast": [
+            "refugee_mother",
+            "alistair"
+          ]
+        }
+      ],
+      "targetDialogueDurationSeconds": 70.67,
+      "speakerOrder": [
+        "kestrel",
+        "marian",
+        "refugee_mother",
+        "refugee_mother",
+        "marian",
+        "alistair",
+        "maelor",
+        "marian",
+        "kestrel"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        },
+        {
+          "actorId": "marian",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/marian.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            61,
+            163,
+            580,
+            738
+          ],
+          "referenceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
+        },
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        },
+        {
+          "actorId": "refugee_mother",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/refugee_mother.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            171,
+            213,
+            467,
+            734
+          ],
+          "referenceSha256": "819f5348ff22f1c6a6503a9e4186b2f61c1fff68b8cd16c90f4aa5eda1219e13"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "rep_event_bois_clair_denunciation",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "rep_event_bois_clair_denunciation:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "refugee_mother"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 19.33,
+      "speakerOrder": [
+        "refugee_mother",
+        "refugee_mother",
+        "refugee_mother"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "refugee_mother",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/refugee_mother.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            171,
+            213,
+            467,
+            734
+          ],
+          "referenceSha256": "819f5348ff22f1c6a6503a9e4186b2f61c1fff68b8cd16c90f4aa5eda1219e13"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "rep_event_brokered_information",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "rep_event_brokered_information:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "survivor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 22.33,
+      "speakerOrder": [
+        "survivor",
+        "survivor",
+        "survivor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "survivor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/survivor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            157,
+            228,
+            511,
+            737
+          ],
+          "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "rep_event_displaced_family_demand",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "rep_event_displaced_family_demand:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "survivor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 28.67,
+      "speakerOrder": [
+        "survivor",
+        "survivor",
+        "survivor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "survivor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/survivor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            157,
+            228,
+            511,
+            737
+          ],
+          "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "rep_event_fallen_banner_claimant",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "rep_event_fallen_banner_claimant:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "maelor",
+            "survivor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 25.33,
+      "speakerOrder": [
+        "survivor",
+        "survivor",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "survivor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/survivor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            157,
+            228,
+            511,
+            737
+          ],
+          "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "rep_event_public_petition",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "rep_event_public_petition:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "refugee_mother"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 21.33,
+      "speakerOrder": [
+        "refugee_mother",
+        "refugee_mother",
+        "refugee_mother"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "refugee_mother",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/refugee_mother.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            171,
+            213,
+            467,
+            734
+          ],
+          "referenceSha256": "819f5348ff22f1c6a6503a9e4186b2f61c1fff68b8cd16c90f4aa5eda1219e13"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "rep_event_refuge_supply_offer",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "rep_event_refuge_supply_offer:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "survivor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 27,
+      "speakerOrder": [
+        "survivor",
+        "survivor",
+        "survivor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "survivor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/survivor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            157,
+            228,
+            511,
+            737
+          ],
+          "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "rep_event_roadside_intimidation",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "rep_event_roadside_intimidation:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "maelor",
+            "serpent_raider"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 20.67,
+      "speakerOrder": [
+        "serpent_raider",
+        "maelor",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "serpent_raider",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_raider.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            51,
+            229,
+            588,
+            710
+          ],
+          "referenceSha256": "e62eca489417bc626f77abd4269e54d370af32dd399436e6e834f5c6f577aaed"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "rep_event_serpent_rumour_market",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "rep_event_serpent_rumour_market:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "survivor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 30,
+      "speakerOrder": [
+        "survivor",
+        "survivor",
+        "survivor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "survivor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/survivor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            157,
+            228,
+            511,
+            737
+          ],
+          "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "rep_event_village_memorial_request",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "rep_event_village_memorial_request:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "refugee_mother"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 25.67,
+      "speakerOrder": [
+        "refugee_mother",
+        "refugee_mother",
+        "refugee_mother"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "refugee_mother",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/refugee_mother.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            171,
+            213,
+            467,
+            734
+          ],
+          "referenceSha256": "819f5348ff22f1c6a6503a9e4186b2f61c1fff68b8cd16c90f4aa5eda1219e13"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "reserve_trail",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "reserve_trail:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "0a",
+            "0b",
+            "1",
+            "2",
+            "2a",
+            "2b",
+            "3",
+            "3a",
+            "3b"
+          ],
+          "requiredCast": [
+            "kestrel",
+            "alistair",
+            "maelor",
+            "sage_seraphine"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 66,
+      "speakerOrder": [
+        "kestrel",
+        "alistair",
+        "maelor",
+        "maelor",
+        "kestrel",
+        "sage_seraphine",
+        "sage_seraphine",
+        "kestrel",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        },
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "serpent_duelist_trial",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "serpent_duelist_trial:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "sage_seraphine",
+            "maelor",
+            "serpent_duelist_elite"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 16.67,
+      "speakerOrder": [
+        "serpent_duelist_elite",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "serpent_duelist_elite",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_duelist_elite.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            48,
+            42,
+            592,
+            742
+          ],
+          "referenceSha256": "040f306678984338223c53ff67a2edff11141361fc00a56ff9c4fc62a2810c96"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "serpent_general_aftermath",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "serpent_general_aftermath:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1"
+          ],
+          "requiredCast": [
+            "sage_seraphine"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 5.33,
+      "speakerOrder": [
+        "sage_seraphine"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "serpent_informant",
+      "sourceVideo": "serpent_informant_encounter",
+      "sourceVideoClassification": "CONVERT_TO_STATIC_TABLEAU",
+      "finalFrameCast": [
+        "serpent_oracle"
+      ],
+      "segments": [
+        {
+          "id": "serpent_informant:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "sage_seraphine",
+            "maelor",
+            "serpent_oracle"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 17,
+      "speakerOrder": [
+        "serpent_oracle",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "serpent_oracle",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_oracle.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            51,
+            157,
+            588,
+            710
+          ],
+          "referenceSha256": "85c885c64f479b8579430e60c6616f5bc0905106a6ce0d2b1a8c5bacb9a48f3a"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "serpent_pursuit_pre_combat",
+      "sourceVideo": "serpent_general_reveal",
+      "sourceVideoClassification": "COMBAT_OWNED",
+      "finalFrameCast": [
+        "serpent_general_boss"
+      ],
+      "segments": [
+        {
+          "id": "serpent_pursuit_pre_combat:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2"
+          ],
+          "requiredCast": [
+            "alaric",
+            "serpent_general_boss"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 9,
+      "speakerOrder": [
+        "alaric",
+        "serpent_general_boss"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "alaric",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alaric.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            27,
+            56,
+            612,
+            742
+          ],
+          "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b"
+        },
+        {
+          "actorId": "serpent_general_boss",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_general_boss.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            65,
+            42,
+            574,
+            742
+          ],
+          "referenceSha256": "15306dc49386b0f6297cb922cb886e22357aca756ca8e0a5e11d706c641a33c7"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "shadow_signs",
+      "sourceVideo": "shadow_signs",
+      "sourceVideoClassification": "CONVERT_TO_STATIC_TABLEAU",
+      "finalFrameCast": [
+        "sage_seraphine",
+        "elara"
+      ],
+      "segments": [
+        {
+          "id": "shadow_signs:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "2a",
+            "2b",
+            "3",
+            "3a",
+            "3b"
+          ],
+          "requiredCast": [
+            "sage_seraphine",
+            "elara",
+            "alistair",
+            "maelor"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 58,
+      "speakerOrder": [
+        "sage_seraphine",
+        "sage_seraphine",
+        "elara",
+        "alistair",
+        "maelor",
+        "elara",
+        "sage_seraphine"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        },
+        {
+          "actorId": "elara",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/elara.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            89,
+            148,
+            550,
+            733
+          ],
+          "referenceSha256": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74"
+        },
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "village_choice",
+      "sourceVideo": "bois_clair_arrival",
+      "sourceVideoClassification": "KEEP_MAJOR_VIDEO",
+      "finalFrameCast": [
+        "villageoise",
+        "serpent_raider",
+        "alistair"
+      ],
+      "segments": [
+        {
+          "id": "village_choice:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "1a",
+            "2",
+            "2a"
+          ],
+          "requiredCast": [
+            "marian",
+            "kestrel",
+            "villageoise",
+            "serpent_raider"
+          ],
+          "forbiddenCast": [
+            "sage_seraphine",
+            "maelor",
+            "alistair"
+          ]
+        },
+        {
+          "id": "village_choice:segment-2",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "3",
+            "4",
+            "4a",
+            "5",
+            "6",
+            "6a",
+            "6b",
+            "7",
+            "7a",
+            "7b"
+          ],
+          "requiredCast": [
+            "sage_seraphine",
+            "maelor",
+            "alistair",
+            "villageoise"
+          ],
+          "forbiddenCast": [
+            "marian",
+            "serpent_raider",
+            "kestrel"
+          ]
+        }
+      ],
+      "targetDialogueDurationSeconds": 92.33,
+      "speakerOrder": [
+        "villageoise",
+        "marian",
+        "serpent_raider",
+        "kestrel",
+        "sage_seraphine",
+        "maelor",
+        "alistair",
+        "villageoise",
+        "villageoise",
+        "alistair",
+        "maelor",
+        "villageoise",
+        "maelor",
+        "sage_seraphine"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "marian",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/marian.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            61,
+            163,
+            580,
+            738
+          ],
+          "referenceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
+        },
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        },
+        {
+          "actorId": "villageoise",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/villageoise.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            188,
+            228,
+            444,
+            734
+          ],
+          "referenceSha256": "25a253fa81b72629087fd1701636ddbfe20347bdf8500a194092e19d1f8a9dd2"
+        },
+        {
+          "actorId": "serpent_raider",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/serpent_raider.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            51,
+            229,
+            588,
+            710
+          ],
+          "referenceSha256": "e62eca489417bc626f77abd4269e54d370af32dd399436e6e834f5c6f577aaed"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "village_defense_aftermath",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "village_defense_aftermath:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "villageoise"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 19.67,
+      "speakerOrder": [
+        "villageoise",
+        "villageoise",
+        "villageoise"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "villageoise",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/villageoise.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            188,
+            228,
+            444,
+            734
+          ],
+          "referenceSha256": "25a253fa81b72629087fd1701636ddbfe20347bdf8500a194092e19d1f8a9dd2"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "village_raid_aftermath",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "village_raid_aftermath:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "1",
+            "2",
+            "3"
+          ],
+          "requiredCast": [
+            "maelor",
+            "villageoise"
+          ],
+          "forbiddenCast": []
+        }
+      ],
+      "targetDialogueDurationSeconds": 23.33,
+      "speakerOrder": [
+        "maelor",
+        "villageoise",
+        "maelor"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "villageoise",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/villageoise.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            188,
+            228,
+            444,
+            734
+          ],
+          "referenceSha256": "25a253fa81b72629087fd1701636ddbfe20347bdf8500a194092e19d1f8a9dd2"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "sourceVideo": null,
+      "sourceVideoClassification": null,
+      "finalFrameCast": [],
+      "segments": [
+        {
+          "id": "witnesses_on_road:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "0a",
+            "0b",
+            "1",
+            "2",
+            "2a",
+            "2b"
+          ],
+          "requiredCast": [
+            "kestrel",
+            "marian",
+            "alistair",
+            "survivor"
+          ],
+          "forbiddenCast": [
+            "maelor",
+            "sage_seraphine"
+          ]
+        },
+        {
+          "id": "witnesses_on_road:segment-2",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "3",
+            "3a",
+            "3b",
+            "4",
+            "4a"
+          ],
+          "requiredCast": [
+            "maelor",
+            "marian",
+            "kestrel",
+            "survivor"
+          ],
+          "forbiddenCast": [
+            "alistair",
+            "sage_seraphine"
+          ]
+        },
+        {
+          "id": "witnesses_on_road:segment-3",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "4b"
+          ],
+          "requiredCast": [
+            "sage_seraphine"
+          ],
+          "forbiddenCast": [
+            "kestrel",
+            "marian",
+            "survivor",
+            "alistair",
+            "maelor"
+          ]
+        }
+      ],
+      "targetDialogueDurationSeconds": 94.33,
+      "speakerOrder": [
+        "kestrel",
+        "marian",
+        "survivor",
+        "survivor",
+        "alistair",
+        "survivor",
+        "maelor",
+        "marian",
+        "survivor",
+        "survivor",
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "canonicalCharacterRefs": [
+        {
+          "actorId": "kestrel",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/kestrel.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            29,
+            188,
+            610,
+            734
+          ],
+          "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        },
+        {
+          "actorId": "marian",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/marian.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            61,
+            163,
+            580,
+            738
+          ],
+          "referenceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
+        },
+        {
+          "actorId": "alistair",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/alistair.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            86,
+            190,
+            581,
+            736
+          ],
+          "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+        },
+        {
+          "actorId": "survivor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/survivor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            157,
+            228,
+            511,
+            737
+          ],
+          "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47"
+        },
+        {
+          "actorId": "maelor",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/maelor.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            134,
+            191,
+            504,
+            734
+          ],
+          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        },
+        {
+          "actorId": "sage_seraphine",
+          "canonicalFullBodyReferences": [
+            "public/assets/characters/pixel/full/sage_seraphine.png"
+          ],
+          "canonicalAlphaBoundingBox": [
+            127,
+            188,
+            512,
+            734
+          ],
+          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+        }
+      ],
+      "futureVideoCastRequirements": []
+    }
+  ],
+  "cin6ea4rDialogueDoctrine": "CINEMATIC_VIDEO_THEN_STATIC_TABLEAU_DIALOGUE_HOLD_IS_DIALOGUE_FREE",
+  "cinematicReductionHandoff": {
+    "schemaVersion": 2,
+    "baseline": "ff743b08fb239d55e11ac5cd682950032a06e2e1",
+    "policy": "Video is reserved for physical action, major reveals, world change, important entrances, rescue/failure outcomes, climaxes and spectacle. Talking begins only after transition to STATIC_TABLEAU.",
+    "summary": {
+      "manifestSlots": 32,
+      "productionVideoSlots": 31,
+      "classifiedProductionVideoSlots": 31,
+      "classifications": {
+        "LEGACY_UNUSED": 1,
+        "KEEP_MAJOR_VIDEO": 8,
+        "COMBAT_OWNED": 6,
+        "CONVERT_TO_TRAVEL_STILL": 4,
+        "OPTIONAL_VIDEO": 5,
+        "CONVERT_TO_STATIC_TABLEAU": 7,
+        "CONVERT_TO_HOLD_STILL": 1
+      },
+      "CURRENT_VIDEO_SLOT_COUNT": 31,
+      "PROPOSED_CIN6EB_VIDEO_COUNT": 13,
+      "RUNTIME_VIDEO_SLOTS_AFTER_WITH_COMBAT": 19,
+      "normalDialogueDuringVideo": 0,
+      "dialogueStepsOnHold": 0,
+      "choiceStepsOnHold": 0,
+      "existingMediaDeleted": 0
+    },
+    "revisedCin6eBRequirements": {
+      "VIDEOS_BEFORE": 31,
+      "VIDEOS_AFTER": 13,
+      "PROPOSED_CIN6EB_VIDEO_COUNT": 13,
+      "RUNTIME_VIDEO_SLOTS_AFTER_WITH_COMBAT": 19,
+      "COMBAT_OWNED_OUTSIDE_CIN6EB": 6,
+      "STATIC_TABLEAU_BACKGROUND_REQUIREMENTS": {
+        "dialogueContexts": 71,
+        "visualSegments": 78,
+        "existingPlanningRecords": 49,
+        "reusableWithoutNewProduction": 2,
+        "adaptationOrProductionRequired": 69,
+        "characterPolicy": "CHARACTER_FREE_ENVIRONMENT_PLATE_WITH_CANONICAL_RUNTIME_SPRITES"
+      },
+      "HOLD_STILL_REQUIREMENTS": {
+        "scenicDialogueFreeSlots": 1,
+        "sourceSlots": [
+          "ruins_approach_context"
+        ],
+        "legacyDialogueHoldEndpointRecords": 25,
+        "dialogueSteps": 0,
+        "choiceSteps": 0,
+        "preferredCharacterPolicy": "CHARACTER_FREE"
+      },
+      "TRAVEL_STILL_REQUIREMENTS": {
+        "connectiveAssetsAlreadyPlanned": 14,
+        "convertedVideoSlots": 4,
+        "sourceSlots": [
+          "forest_journey_tension",
+          "first_refuge_departure",
+          "valmir_route_fork",
+          "second_refuge_departure"
+        ],
+        "conversationBoundary": "TRAVEL_STILL_TO_STATIC_TABLEAU"
+      },
+      "REUSABLE_ENVIRONMENT_PLATES": [
+        {
+          "assetId": "acte_ouverture_tableau_bg",
+          "sourceReferences": [
+            "/assets/generated/lion-phase/dialogue/camp_departure.webp",
+            "camp_departure"
+          ]
+        },
+        {
+          "assetId": "post_opening_trail_tableau_bg",
+          "sourceReferences": [
+            "/assets/generated/lion-phase/dialogue/forest_fork.webp",
+            "valmir_route_fork",
+            "camp_departure"
+          ]
+        }
+      ]
+    },
+    "entries": [
+      {
+        "cinematicId": "qa-placeholder",
+        "title": "Chronique cinématique",
+        "sources": [],
+        "hasProductionVideo": false,
+        "classification": "LEGACY_UNUSED",
+        "criterion": "LEGACY",
+        "justification": "Manifest-only QA placeholder with no production video source.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "lion_judgement",
+        "title": "Le Jugement du Lion",
+        "sources": [
+          "/assets/cinematics/lion_judgement.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "KEEP_MAJOR_VIDEO",
+        "criterion": "CLIMAX",
+        "justification": "Major judgement and route-climax ceremony.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "serpent_general_reveal",
+        "title": "Le Général du Serpent",
+        "sources": [
+          "/assets/cinematics/serpent_general_reveal.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "COMBAT_OWNED",
+        "criterion": "IMPORTANT_ENTRANCE",
+        "justification": "Boss entrance belongs to the combat handoff, never to dialogue.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "lion_champion_reveal",
+        "title": "Le Champion du Lion",
+        "sources": [
+          "/assets/cinematics/lion_champion_reveal.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "COMBAT_OWNED",
+        "criterion": "IMPORTANT_ENTRANCE",
+        "justification": "Champion entrance belongs to the combat handoff, never to dialogue.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "forest_journey_tension",
+        "title": "Pression sous les frondaisons",
+        "sources": [
+          "/assets/cinematics/forest_journey_tension.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "CONVERT_TO_TRAVEL_STILL",
+        "criterion": "TRAVEL",
+        "justification": "Atmospheric movement is route texture rather than a major story action.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "camp_departure",
+        "title": "Le départ du camp",
+        "sources": [
+          "/assets/cinematics/camp_departure.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "KEEP_MAJOR_VIDEO",
+        "criterion": "IMPORTANT_ENTRANCE",
+        "justification": "Opening departure establishes the company and begins the Lion chapter.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "alaric_audience_arrival",
+        "title": "L’audience d’Alaric",
+        "sources": [
+          "/assets/cinematics/alaric_audience_arrival.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "KEEP_MAJOR_VIDEO",
+        "criterion": "IMPORTANT_ENTRANCE",
+        "justification": "Major court entrance and Audience ceremony; all dialogue starts afterward.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "refugees_approach",
+        "title": "Les réfugiés sur la route",
+        "sources": [
+          "/assets/cinematics/refugees_approach.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "OPTIONAL_VIDEO",
+        "criterion": "IMPORTANT_ENTRANCE",
+        "justification": "The refugee arrival can retain motion as a brief encounter reveal before tableau dialogue.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "first_refuge_arrival",
+        "title": "Le premier refuge",
+        "sources": [
+          "/assets/cinematics/first_refuge_arrival.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "OPTIONAL_VIDEO",
+        "criterion": "WORLD_CHANGE",
+        "justification": "Arrival establishes a new refuge location before management and dialogue.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "first_refuge_departure",
+        "title": "Vers la piste de la réserve",
+        "sources": [
+          "/assets/cinematics/first_refuge_departure.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "CONVERT_TO_TRAVEL_STILL",
+        "criterion": "TRAVEL",
+        "justification": "Route departure is travel continuity, not a dramatic action beat.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "valmir_route_fork",
+        "title": "La route de Valmir",
+        "sources": [
+          "/assets/cinematics/valmir_route_fork.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "CONVERT_TO_TRAVEL_STILL",
+        "criterion": "TRAVEL",
+        "justification": "The fork is persistent route geography best held as a travel still.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "bois_clair_arrival",
+        "title": "Bois-Clair sous les flammes",
+        "sources": [
+          "/assets/cinematics/bois_clair_arrival.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "KEEP_MAJOR_VIDEO",
+        "criterion": "WORLD_CHANGE",
+        "justification": "Bois-Clair burning is a major physical event and world-state reveal.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "bois_clair_saved",
+        "title": "Bois-Clair sauvée",
+        "sources": [
+          "/assets/cinematics/bois_clair_saved.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "KEEP_MAJOR_VIDEO",
+        "criterion": "MAJOR_RESCUE_FAILURE",
+        "justification": "Major rescue outcome visibly changes the village state.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "bois_clair_sacrificed",
+        "title": "Le prix de Bois-Clair",
+        "sources": [
+          "/assets/cinematics/bois_clair_sacrificed.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "KEEP_MAJOR_VIDEO",
+        "criterion": "MAJOR_RESCUE_FAILURE",
+        "justification": "Major failure outcome visibly changes the village and refugee state.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "second_refuge_departure",
+        "title": "La marche reprend",
+        "sources": [
+          "/assets/cinematics/second_refuge_departure.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "CONVERT_TO_TRAVEL_STILL",
+        "criterion": "TRAVEL",
+        "justification": "Route departure is travel continuity, not a major dramatic action.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "witnesses_encounter",
+        "title": "Les témoins de la route",
+        "sources": [
+          "/assets/cinematics/witnesses_encounter.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "CONVERT_TO_STATIC_TABLEAU",
+        "criterion": "TALKING",
+        "justification": "The beat is witness testimony and decision context.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "ruins_approach_context",
+        "title": "L’approche des ruines",
+        "sources": [
+          "/assets/cinematics/ruins_approach_context.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "CONVERT_TO_HOLD_STILL",
+        "criterion": "SCENIC_PUNCTUATION",
+        "justification": "The ruins approach is dialogue-free environmental punctuation before danger.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "shadow_signs",
+        "title": "Les signes des Ombres",
+        "sources": [
+          "/assets/cinematics/shadow_signs.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "CONVERT_TO_STATIC_TABLEAU",
+        "criterion": "TALKING",
+        "justification": "The core content is Seraphine and Elara interpreting evidence.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "final_refuge_dossier",
+        "title": "Le dernier dossier",
+        "sources": [
+          "/assets/cinematics/final_refuge_dossier.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "CONVERT_TO_STATIC_TABLEAU",
+        "criterion": "TALKING",
+        "justification": "The dossier is a sustained company discussion and evidence review.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "serpent_route_ending",
+        "title": "La chute du Général Serpent",
+        "sources": [
+          "/assets/cinematics/serpent_route_ending.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "KEEP_MAJOR_VIDEO",
+        "criterion": "CLIMAX",
+        "justification": "Route climax and ending-state spectacle.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "lion_trial_route_ending",
+        "title": "Le Sceau par l’épreuve",
+        "sources": [
+          "/assets/cinematics/lion_trial_route_ending.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "KEEP_MAJOR_VIDEO",
+        "criterion": "CLIMAX",
+        "justification": "Route climax and Lion recognition ceremony.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "cedric_encounter",
+        "title": "Cedric au carrefour",
+        "sources": [
+          "/assets/cinematics/cedric_encounter.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "CONVERT_TO_STATIC_TABLEAU",
+        "criterion": "TALKING",
+        "justification": "Recruitment negotiation is character dialogue.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "garen_encounter",
+        "title": "La lance de Garen",
+        "sources": [
+          "/assets/cinematics/garen_encounter.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "CONVERT_TO_STATIC_TABLEAU",
+        "criterion": "TALKING",
+        "justification": "Recruitment negotiation is character dialogue.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "serpent_road_tension",
+        "title": "Pression des Serpents",
+        "sources": [
+          "/assets/cinematics/serpent_road_tension.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "COMBAT_OWNED",
+        "criterion": "IMPORTANT_ENTRANCE",
+        "justification": "Enemy reveal belongs to the following tactical-combat handoff.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "shrine_reveal_context",
+        "title": "Le sanctuaire intact",
+        "sources": [
+          "/assets/cinematics/shrine_reveal_context.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "OPTIONAL_VIDEO",
+        "criterion": "MAJOR_REVEAL",
+        "justification": "The intact shrine is a compact environmental reveal before a tableau choice.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "injured_merchant_encounter",
+        "title": "Le marchand blessé",
+        "sources": [
+          "/assets/cinematics/injured_merchant_encounter.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "CONVERT_TO_STATIC_TABLEAU",
+        "criterion": "TALKING",
+        "justification": "The player-facing content is a conversation and aid decision.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "abandoned_cart_reveal",
+        "title": "Le chariot abandonné",
+        "sources": [
+          "/assets/cinematics/abandoned_cart_reveal.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "OPTIONAL_VIDEO",
+        "criterion": "MAJOR_REVEAL",
+        "justification": "The marked cart is a compact physical clue reveal before inspection dialogue.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "spider_nest_reveal",
+        "title": "Le nid venimeux",
+        "sources": [
+          "/assets/cinematics/spider_nest_reveal.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "COMBAT_OWNED",
+        "criterion": "SPECTACLE",
+        "justification": "Creature reveal belongs to the tactical-combat setup.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "troll_crossing_reveal",
+        "title": "Le passage du troll",
+        "sources": [
+          "/assets/cinematics/troll_crossing_reveal.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "COMBAT_OWNED",
+        "criterion": "IMPORTANT_ENTRANCE",
+        "justification": "Blocking creature entrance belongs to the tactical-combat setup.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "serpent_duelist_reveal",
+        "title": "Le duelliste Serpent",
+        "sources": [
+          "/assets/cinematics/serpent_duelist_reveal.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "COMBAT_OWNED",
+        "criterion": "IMPORTANT_ENTRANCE",
+        "justification": "Duelist entrance belongs to the tactical-combat setup.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "young_dragon_encounter",
+        "title": "Le jeune dragon",
+        "sources": [
+          "/assets/cinematics/young_dragon_encounter.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "OPTIONAL_VIDEO",
+        "criterion": "MAJOR_REVEAL",
+        "justification": "The living dragon and nest are an important reveal before the choice tableau.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      },
+      {
+        "cinematicId": "serpent_informant_encounter",
+        "title": "L’informateur traqué",
+        "sources": [
+          "/assets/cinematics/serpent_informant_encounter.mp4"
+        ],
+        "hasProductionVideo": true,
+        "classification": "CONVERT_TO_STATIC_TABLEAU",
+        "criterion": "TALKING",
+        "justification": "The informant beat is interrogation and protection/betrayal dialogue.",
+        "existingMediaPreserved": true,
+        "normalDialogueDuringVideo": 0
+      }
+    ]
+  },
+  "revisedCin6eBRequirements": {
+    "VIDEOS_BEFORE": 31,
+    "VIDEOS_AFTER": 13,
+    "PROPOSED_CIN6EB_VIDEO_COUNT": 13,
+    "RUNTIME_VIDEO_SLOTS_AFTER_WITH_COMBAT": 19,
+    "COMBAT_OWNED_OUTSIDE_CIN6EB": 6,
+    "STATIC_TABLEAU_BACKGROUND_REQUIREMENTS": {
+      "dialogueContexts": 71,
+      "visualSegments": 78,
+      "existingPlanningRecords": 49,
+      "reusableWithoutNewProduction": 2,
+      "adaptationOrProductionRequired": 69,
+      "characterPolicy": "CHARACTER_FREE_ENVIRONMENT_PLATE_WITH_CANONICAL_RUNTIME_SPRITES"
+    },
+    "HOLD_STILL_REQUIREMENTS": {
+      "scenicDialogueFreeSlots": 1,
+      "sourceSlots": [
+        "ruins_approach_context"
+      ],
+      "legacyDialogueHoldEndpointRecords": 25,
+      "dialogueSteps": 0,
+      "choiceSteps": 0,
+      "preferredCharacterPolicy": "CHARACTER_FREE"
+    },
+    "TRAVEL_STILL_REQUIREMENTS": {
+      "connectiveAssetsAlreadyPlanned": 14,
+      "convertedVideoSlots": 4,
+      "sourceSlots": [
+        "forest_journey_tension",
+        "first_refuge_departure",
+        "valmir_route_fork",
+        "second_refuge_departure"
+      ],
+      "conversationBoundary": "TRAVEL_STILL_TO_STATIC_TABLEAU"
+    },
+    "REUSABLE_ENVIRONMENT_PLATES": [
+      {
+        "assetId": "acte_ouverture_tableau_bg",
+        "sourceReferences": [
+          "/assets/generated/lion-phase/dialogue/camp_departure.webp",
+          "camp_departure"
+        ]
+      },
+      {
+        "assetId": "post_opening_trail_tableau_bg",
+        "sourceReferences": [
+          "/assets/generated/lion-phase/dialogue/forest_fork.webp",
+          "valmir_route_fork",
+          "camp_departure"
+        ]
+      }
+    ]
+  },
+  "audienceProof": {
+    "cinematicId": "alaric_audience_arrival",
+    "cinematicEndsBeforeNormalDialogue": true,
+    "tableauBeginsAtStep": "1",
+    "activeCast": [
+      "alistair",
+      "sage_seraphine",
+      "maelor",
+      "alaric"
+    ],
+    "companyGeography": [
+      {
+        "actorId": "alistair",
+        "screenPosition": "FAR_LEFT",
+        "dramaticSide": "LEFT"
+      },
+      {
+        "actorId": "sage_seraphine",
+        "screenPosition": "LEFT",
+        "dramaticSide": "LEFT"
+      },
+      {
+        "actorId": "maelor",
+        "screenPosition": "CENTER_LEFT",
+        "dramaticSide": "LEFT"
+      }
+    ],
+    "alaricGeography": [
+      {
+        "actorId": "alaric",
+        "screenPosition": "FAR_RIGHT",
+        "dramaticSide": "RIGHT"
+      }
+    ],
+    "maelorToAlaric": {
+      "screenPosition": "CENTER_LEFT",
+      "dramaticSide": "LEFT",
+      "stepId": "3",
+      "speakerId": "maelor",
+      "addressedTo": "alaric",
+      "lookTarget": "alaric",
+      "facing": "RIGHT",
+      "resolution": "EXPLICIT_ADDRESSEE"
+    },
+    "maelorToCompany": {
+      "screenPosition": "CENTER_LEFT",
+      "dramaticSide": "LEFT",
+      "stepId": "2",
+      "speakerId": "maelor",
+      "addressedTo": "sage_seraphine",
+      "lookTarget": "sage_seraphine",
+      "facing": "LEFT",
+      "resolution": "EXPLICIT_ADDRESSEE"
+    },
+    "choiceGeometry": "UNCHANGED",
+    "AUDIENCE_FACTION_GEOGRAPHY": "PASS",
+    "MAELOR_COMPANY_SIDE": "PASS"
   }
 }

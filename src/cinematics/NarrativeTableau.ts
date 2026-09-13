@@ -97,14 +97,39 @@ export type NarrativeRole =
   | 'ESCORT'
   | 'BACKGROUND';
 export type NarrativeScreenPosition = 'FAR_LEFT' | 'LEFT' | 'CENTER_LEFT' | 'CENTER' | 'CENTER_RIGHT' | 'RIGHT' | 'FAR_RIGHT';
+export type NarrativeActorEntryEffect = 'NONE' | 'FADE_IN' | 'SLIDE_IN_LEFT' | 'SLIDE_IN_RIGHT' | 'CUT_IN';
+export type NarrativeActorExitEffect = 'NONE' | 'FADE_OUT' | 'SLIDE_OUT_LEFT' | 'SLIDE_OUT_RIGHT' | 'CUT_OUT';
+export type NarrativeActorGroup = 'PLAYER_COMPANY' | 'LION_COURT' | 'LOCAL_CIVILIAN' | 'REFUGEE' | 'ANTAGONIST' | 'RECRUIT_CANDIDATE' | 'NEUTRAL';
+export type NarrativeDramaticSide = 'LEFT' | 'CENTER' | 'RIGHT';
+export type NarrativeAddressResolution = 'EXPLICIT_ADDRESSEE' | 'AUTHORED_CONVERSATION_TARGET' | 'DIRECT_RESPONSE' | 'OPPOSING_GROUP' | 'SCENE_DEFAULT';
 
 export interface NarrativeStagedActorSpec {
   actorId: string;
   screenPosition: NarrativeScreenPosition;
   scale: number;
   facing: 'LEFT' | 'RIGHT' | 'FORWARD';
+  lookTarget?: string | null;
+  entryEffect?: NarrativeActorEntryEffect;
+  group?: NarrativeActorGroup;
+  dramaticSide?: NarrativeDramaticSide;
   depth: number;
   narrativeRole: NarrativeRole;
+}
+
+export interface NarrativeStepDirectionSpec {
+  stepId: string;
+  speakerId: string;
+  addressedTo: string | null;
+  lookTarget: string | null;
+  facing: 'LEFT' | 'RIGHT' | 'FORWARD';
+  resolution: NarrativeAddressResolution;
+}
+
+export interface NarrativeStagedActorExitSpec {
+  actorId: string;
+  kind: 'STAGE_OUT' | 'NARRATIVE_EXIT';
+  effect: NarrativeActorExitEffect;
+  reason: string;
 }
 
 export interface NarrativeSafeRegionSpec {
@@ -117,6 +142,7 @@ export interface NarrativeSafeRegionSpec {
 export interface NarrativeVisualPhaseSpec {
   id: string;
   stepIds: readonly string[];
+  surfaceMode?: 'CINEMATIC_HOLD' | 'STATIC_TABLEAU';
   layoutProfile: NarrativeLayoutProfile;
   layoutPlacement: NarrativeLayoutPlacement;
   staticCast: readonly NarrativeStagedActorSpec[];
@@ -127,6 +153,9 @@ export interface NarrativeVisualPhaseSpec {
   criticalVisualRegions: readonly NarrativeSafeRegionSpec[];
   negativeSpaceIntent: string;
   cameraIntent: string;
+  exits?: readonly NarrativeStagedActorExitSpec[];
+  stepDirections?: readonly NarrativeStepDirectionSpec[];
+  precedingTransition?: 'NONE' | 'VIDEO_TO_TABLEAU' | 'TRAVEL_TO_TABLEAU' | 'HOLD_TO_TABLEAU' | 'TABLEAU_RESTAGE';
 }
 
 export interface NarrativeAnchorSpec {
@@ -228,22 +257,34 @@ export function stageActors(actorIds: readonly string[], speakerId?: string): Na
   const unique = [...new Set(actorIds)].slice(0, 7);
   const positions: NarrativeScreenPosition[][] = [
     ['CENTER'],
-    ['CENTER_LEFT', 'CENTER_RIGHT'],
-    ['LEFT', 'CENTER', 'RIGHT'],
+    ['LEFT', 'RIGHT'],
+    ['FAR_LEFT', 'CENTER', 'FAR_RIGHT'],
     ['FAR_LEFT', 'CENTER_LEFT', 'CENTER_RIGHT', 'FAR_RIGHT'],
     ['FAR_LEFT', 'LEFT', 'CENTER', 'RIGHT', 'FAR_RIGHT'],
     ['FAR_LEFT', 'LEFT', 'CENTER_LEFT', 'CENTER_RIGHT', 'RIGHT', 'FAR_RIGHT'],
     ['FAR_LEFT', 'LEFT', 'CENTER_LEFT', 'CENTER', 'CENTER_RIGHT', 'RIGHT', 'FAR_RIGHT'],
   ];
   const selected = positions[Math.max(0, unique.length - 1)] ?? positions[6]!;
-  return unique.map((actorId, index) => ({
-    actorId,
-    screenPosition: selected[index]!,
-    scale: 1,
-    facing: index < unique.length / 2 ? 'RIGHT' : index > unique.length / 2 ? 'LEFT' : 'FORWARD',
-    depth: actorId === speakerId ? 3 : 2,
-    narrativeRole: narrativeRoleFor(actorId, speakerId),
-  }));
+  return unique.map((actorId, index) => {
+    const screenPosition = selected[index]!;
+    const left = ['FAR_LEFT', 'LEFT', 'CENTER_LEFT'].includes(screenPosition);
+    const right = ['FAR_RIGHT', 'RIGHT', 'CENTER_RIGHT'].includes(screenPosition);
+    const lookTarget = unique.length <= 1
+      ? null
+      : index < unique.length / 2
+        ? unique[Math.min(unique.length - 1, index + 1)]!
+        : unique[Math.max(0, index - 1)]!;
+    return {
+      actorId,
+      screenPosition,
+      scale: 1,
+      facing: left ? 'RIGHT' : right ? 'LEFT' : 'FORWARD',
+      lookTarget,
+      entryEffect: 'NONE',
+      depth: actorId === speakerId ? 3 : 2,
+      narrativeRole: narrativeRoleFor(actorId, speakerId),
+    };
+  });
 }
 
 function inferTableauFamily(sequence: DialogueSequence): NonNullable<NarrativeTableauSpec['family']> {

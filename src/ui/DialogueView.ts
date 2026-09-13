@@ -17,6 +17,7 @@ export interface DialoguePlayOptions {
   mode?: DialoguePresentationMode;
   root?: HTMLElement;
   stepPresentation?: NarrativeDialogueResolver;
+  beforeStepChange?: (step: DialogueStep, presentation: NarrativeDialogueStepPresentation) => Promise<void> | void;
   onStepChange?: (step: DialogueStep, presentation: NarrativeDialogueStepPresentation) => void;
   reducedMotion?: boolean;
 }
@@ -85,10 +86,11 @@ export class DialogueView {
   private displaySegments: readonly string[] = [];
   private displaySegmentIndex = 0;
   private choiceScreenLanes: readonly NarrativeChoiceScreenLane[] = [];
+  private stepTransitionInFlight = false;
 
   constructor(private readonly options: DialogueViewOptions) {}
 
-  play(sequence: DialogueSequence, options: DialoguePlayOptions = {}): Promise<void> {
+  async play(sequence: DialogueSequence, options: DialoguePlayOptions = {}): Promise<void> {
     this.close();
     this.sequence = sequence;
     this.playOptions = options;
@@ -134,10 +136,11 @@ export class DialogueView {
     this.overlay.querySelector<HTMLButtonElement>('.dialogue__box')?.addEventListener('click', () => {
       void this.advancePresentation();
     });
-    this.showStep(sequence.steps[0]!.id);
-    return new Promise<void>((resolve) => {
+    const completion = new Promise<void>((resolve) => {
       this.resolvePlay = resolve;
     });
+    await this.showStep(sequence.steps[0]!.id);
+    return completion;
   }
 
   close(): void {
@@ -152,16 +155,37 @@ export class DialogueView {
     this.displaySegments = [];
     this.displaySegmentIndex = 0;
     this.choiceScreenLanes = [];
+    this.stepTransitionInFlight = false;
     this.resolvePlay?.();
     this.resolvePlay = null;
   }
 
-  private showStep(id: string): void {
+  private async showStep(id: string): Promise<void> {
     const step = this.sequence?.steps.find((candidate) => candidate.id === id);
     if (!step || !this.overlay) {
       this.close();
       return;
     }
+    const overlay = this.overlay;
+    const presentation = this.playOptions.stepPresentation?.(step) ?? {
+      mode: 'HELD_DIALOGUE',
+      showPortrait: !overlay.classList.contains('dialogue--cinematic'),
+    };
+    if (this.playOptions.beforeStepChange) {
+      this.stepTransitionInFlight = true;
+      overlay.classList.add('dialogue--preparing-step');
+      overlay.dataset.dialoguePreparingStep = step.id;
+      try {
+        await this.playOptions.beforeStepChange(step, presentation);
+      } finally {
+        if (this.overlay === overlay) {
+          overlay.classList.remove('dialogue--preparing-step');
+          delete overlay.dataset.dialoguePreparingStep;
+          this.stepTransitionInFlight = false;
+        }
+      }
+    }
+    if (this.overlay !== overlay || this.sequence?.steps.find((candidate) => candidate.id === id) !== step) return;
     this.current = step;
     this.choiceLocked = false;
     const left = this.overlay.querySelector<HTMLElement>('.dialogue__portrait--left');
@@ -178,10 +202,6 @@ export class DialogueView {
 
     const cinematicOverlay = this.overlay.classList.contains('dialogue--cinematic');
     const narrativeStage = this.overlay.classList.contains('dialogue--narrative');
-    const presentation = this.playOptions.stepPresentation?.(step) ?? {
-      mode: 'HELD_DIALOGUE',
-      showPortrait: !cinematicOverlay,
-    };
     this.choiceScreenLanes = presentation.choiceScreenLanes ?? [];
     const portrait = presentation.showPortrait ? dialoguePortrait(step) : '';
     const profile = presentation.showPortrait ? dialogueActorProfile(step) : undefined;
@@ -448,11 +468,11 @@ export class DialogueView {
       this.close();
       return;
     }
-    this.showStep(next);
+    await this.showStep(next);
   }
 
   private async advancePresentation(): Promise<void> {
-    if (!this.current || !this.overlay) return;
+    if (!this.current || !this.overlay || this.stepTransitionInFlight) return;
     if (this.displaySegmentIndex < this.displaySegments.length - 1) {
       this.displaySegmentIndex += 1;
       const text = this.overlay.querySelector<HTMLElement>('.dialogue__text');

@@ -1,7 +1,9 @@
 import type { DialogueSequence, DialogueStep } from '../game/types';
-import { DialogueStagingDirector } from './DialogueStagingDirector';
-import { createGenericNarrativeTableau, type NarrativeChoiceScreenLane, type NarrativeDialogueMode, type NarrativeDialogueSurfaceMode, type NarrativeLayoutPlacement, type NarrativeLayoutProfile, type NarrativePresentationStrategy, type NarrativeScreenPosition, type NarrativeSpeakerAssociation, type NarrativeTableauSpec } from './NarrativeTableau';
+import { DialogueStagingDirector, segmentNarrativeText } from './DialogueStagingDirector';
+import { createGenericNarrativeTableau, type NarrativeAddressResolution, type NarrativeChoiceScreenLane, type NarrativeDialogueMode, type NarrativeDialogueSurfaceMode, type NarrativeLayoutPlacement, type NarrativeLayoutProfile, type NarrativePresentationStrategy, type NarrativeScreenPosition, type NarrativeSpeakerAssociation, type NarrativeTableauSpec } from './NarrativeTableau';
 import type { NarrativeAuthoringMedia } from './NarrativePresentationPolicy';
+import { applyFinalDialoguePresentationPlan, type DialoguePresentationSegmentMode } from './DialoguePresentationSegments';
+import type { NarrativeActorEntryEffect, NarrativeStagedActorExitSpec } from './NarrativeTableau';
 
 export type NarrativeTextClassification = 'AGENCY_DIALOGUE' | 'CINEMATIC_DIALOGUE' | 'VISUAL_REPLACEABLE' | 'REDUNDANT_EXPOSITION';
 
@@ -24,6 +26,15 @@ export interface NarrativeDialogueStepPresentation {
   mediaSubjects?: readonly string[];
   visibleStaticCast?: readonly string[];
   castOwnership?: 'VIDEO_OWNS_CAST' | 'STAGE_OWNS_CAST' | 'ENVIRONMENT_ONLY';
+  segmentMode?: DialoguePresentationSegmentMode;
+  transitionFromPrevious?: 'NONE' | 'VIDEO_TO_TABLEAU' | 'TRAVEL_TO_TABLEAU' | 'HOLD_TO_TABLEAU' | 'TABLEAU_RESTAGE';
+  speakerVisibleBeforeLine?: boolean;
+  speakerFacing?: 'LEFT' | 'RIGHT' | 'FORWARD';
+  speakerLookTarget?: string | null;
+  addressedTo?: string | null;
+  addressResolution?: NarrativeAddressResolution;
+  speakerEntryEffect?: NarrativeActorEntryEffect;
+  actorExits?: readonly NarrativeStagedActorExitSpec[];
 }
 
 export interface NarrativeTextReduction {
@@ -37,41 +48,6 @@ export interface NarrativeTextReduction {
 }
 
 export type NarrativeDialogueResolver = (step: DialogueStep) => NarrativeDialogueStepPresentation;
-
-type StepPreset = Omit<NarrativeDialogueStepPresentation, 'showPortrait'>;
-
-const STEP_PRESETS: Readonly<Record<string, Readonly<Record<string, StepPreset>>>> = Object.freeze({
-  lion_briefing: Object.freeze<Record<string, StepPreset>>({
-    '1': { mode: 'SPEAKER_CARD', anchorId: 'lion-side', classification: 'CINEMATIC_DIALOGUE' },
-    '1a': { mode: 'HELD_DIALOGUE', anchorId: 'lion-side', classification: 'CINEMATIC_DIALOGUE' },
-    '1b': { mode: 'SPEAKER_CARD', anchorId: 'clan-side', classification: 'CINEMATIC_DIALOGUE' },
-    '2': { mode: 'SPEAKER_CARD', anchorId: 'clan-side', classification: 'CINEMATIC_DIALOGUE' },
-    '3': { mode: 'SPATIAL_CHOICE', anchorId: 'clan-side', classification: 'AGENCY_DIALOGUE' },
-    '4': { mode: 'CINEMATIC_SUBTITLE', anchorId: 'lion-side', classification: 'CINEMATIC_DIALOGUE' },
-    '5': { mode: 'CINEMATIC_SUBTITLE', anchorId: 'lion-side', classification: 'CINEMATIC_DIALOGUE' },
-  }),
-  pre_opening_trail: Object.freeze<Record<string, StepPreset>>({
-    '1': { mode: 'SPEAKER_CARD', anchorId: 'forest-left', classification: 'CINEMATIC_DIALOGUE' },
-    '2': { mode: 'HELD_DIALOGUE', anchorId: 'forest-left', classification: 'CINEMATIC_DIALOGUE' },
-    '3': { mode: 'SPEAKER_CARD', anchorId: 'forest-left', classification: 'CINEMATIC_DIALOGUE' },
-  }),
-  post_opening_trail: Object.freeze<Record<string, StepPreset>>({
-    '1': { mode: 'SPEAKER_CARD', anchorId: 'aftermath-left', classification: 'CINEMATIC_DIALOGUE' },
-    '2': { mode: 'SPEAKER_CARD', anchorId: 'aftermath-left', classification: 'CINEMATIC_DIALOGUE' },
-    '3': { mode: 'CINEMATIC_SUBTITLE', anchorId: 'aftermath-left', classification: 'CINEMATIC_DIALOGUE' },
-  }),
-  village_choice: Object.freeze<Record<string, StepPreset>>({
-    '1a': { mode: 'SPEAKER_CARD', anchorId: 'village-left', classification: 'VISUAL_REPLACEABLE' },
-    '2a': { mode: 'SPEAKER_CARD', anchorId: 'village-right', classification: 'VISUAL_REPLACEABLE' },
-    '3': { mode: 'SPEAKER_CARD', anchorId: 'village-left', classification: 'AGENCY_DIALOGUE' },
-    '4': { mode: 'SPEAKER_CARD', anchorId: 'village-right', classification: 'AGENCY_DIALOGUE' },
-    '5': { mode: 'SPATIAL_CHOICE', anchorId: 'village-center', classification: 'AGENCY_DIALOGUE' },
-  }),
-  final_refuge: Object.freeze<Record<string, StepPreset>>({
-    '1': { mode: 'SPEAKER_CARD', anchorId: 'refuge-left', classification: 'REDUNDANT_EXPOSITION' },
-    '3': { mode: 'SPEAKER_CARD', anchorId: 'refuge-left', classification: 'REDUNDANT_EXPOSITION' },
-  }),
-});
 
 export const NARRATIVE_TEXT_REDUCTIONS = Object.freeze<NarrativeTextReduction[]>([
   {
@@ -117,7 +93,7 @@ const TEXT_REDUCTION_BY_STEP = new Map(
 );
 
 function defaultMode(step: DialogueStep): NarrativeDialogueMode {
-  if (step.choices?.length) return step.choices.length === 2 ? 'SPATIAL_CHOICE' : 'HELD_DIALOGUE';
+  if (step.choices?.length) return 'SPATIAL_CHOICE';
   return 'SPEAKER_CARD';
 }
 
@@ -131,20 +107,19 @@ export function createNarrativeDialogueResolver(
   tableau?: NarrativeTableauSpec,
   options: NarrativeDialogueResolverOptions = {},
 ): NarrativeDialogueResolver {
-  const resolvedTableau = tableau ?? createGenericNarrativeTableau(sequence);
+  const resolvedTableau = applyFinalDialoguePresentationPlan(
+    sequence,
+    tableau ?? createGenericNarrativeTableau(sequence),
+  );
   const director = new DialogueStagingDirector(sequence, resolvedTableau, {
     mediaMode: options.mediaMode ?? 'STILL',
     hasMovingMedia: options.hasMovingMedia ?? false,
   });
   return (step) => {
     const decision = director.resolve(step);
-    const mode: NarrativeDialogueMode = step.choices?.length
-      ? 'SPATIAL_CHOICE'
-      : decision.layoutProfile === 'DIALOGUE_BOTTOM_BAND_RESERVED'
-        ? 'CINEMATIC_SUBTITLE'
-        : decision.layoutProfile === 'HELD_VIDEO_DIALOGUE'
-          ? 'HELD_DIALOGUE'
-        : defaultMode(step);
+    const reduction = getNarrativeTextReduction(sequence.id, step.id);
+    const displayText = reduction?.displayText ?? step.text;
+    const mode: NarrativeDialogueMode = step.choices?.length ? 'SPATIAL_CHOICE' : defaultMode(step);
     const anchorId = decision.layoutPlacement === 'LEFT' || decision.layoutPlacement === 'LEFT_UPPER'
       ? 'card-left'
       : decision.layoutPlacement === 'CENTER_LOWER' || decision.layoutPlacement === 'CENTER_UPPER'
@@ -159,7 +134,8 @@ export function createNarrativeDialogueResolver(
     return {
       mode,
       anchorId,
-      displaySegments: decision.displaySegments,
+      displayText,
+      displaySegments: segmentNarrativeText(displayText, decision.maxCharactersPerSegment || 168),
       showPortrait: false,
       phaseId: decision.currentVisualState,
       layoutProfile: decision.layoutProfile,
@@ -173,6 +149,15 @@ export function createNarrativeDialogueResolver(
       mediaSubjects: decision.currentMediaSubjects,
       visibleStaticCast: decision.visibleStaticCast,
       castOwnership: decision.castOwnership,
+      segmentMode: decision.segmentMode,
+      transitionFromPrevious: decision.transitionFromPrevious,
+      speakerVisibleBeforeLine: decision.speakerVisibleBeforeLine,
+      speakerFacing: decision.speakerFacing,
+      speakerLookTarget: decision.speakerLookTarget,
+      addressedTo: decision.addressedTo,
+      addressResolution: decision.addressResolution,
+      speakerEntryEffect: decision.speakerEntryEffect,
+      actorExits: decision.actorExits,
     };
   };
 }
@@ -187,7 +172,6 @@ export function resolveRepresentedDialogueActors(
     for (const actorId of presentation.visibleStaticCast ?? []) represented.add(actorId);
     for (const actorId of presentation.mediaSubjects ?? []) represented.add(actorId);
     if (presentation.showPortrait && step.actorId) represented.add(step.actorId);
-    if (presentation.presentationStrategy === 'OFFSCREEN_CONTEXTUAL' && step.actorId) represented.add(step.actorId);
   }
   return [...represented];
 }

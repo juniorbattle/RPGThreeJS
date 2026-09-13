@@ -3,6 +3,7 @@ import { REPUTATION_EVENT_DEFINITIONS } from '../game/reputationEventContent';
 import { resolveGameDialogue } from '../game/contextualDialogueContent';
 import { createInitialState } from '../game/store';
 import type { DialogueSequence } from '../game/types';
+import { applyFinalDialoguePresentationPlan } from './DialoguePresentationSegments';
 import { DialogueStagingDirector, type DialogueStagingDecision } from './DialogueStagingDirector';
 import {
   NARRATIVE_LAYOUT_PROFILES,
@@ -189,12 +190,13 @@ export function createNarrativeStagingAudit(): NarrativeStagingAudit {
   const unmappedDialogues: string[] = [];
   const unmappedDialogueSteps: string[] = [];
   for (const sequence of [...dialogues.values()].sort((a, b) => a.id.localeCompare(b.id))) {
-    const tableau = resolveNarrativeDialogueTableau(sequence.id, sequence);
-    if (!tableau) {
+    const baseTableau = resolveNarrativeDialogueTableau(sequence.id, sequence);
+    if (!baseTableau) {
       unmappedDialogues.push(sequence.id);
       unmappedDialogueSteps.push(...sequence.steps.map((step) => `${sequence.id}:${step.id}`));
       continue;
     }
+    const tableau = applyFinalDialoguePresentationPlan(sequence, baseTableau);
     const entry = entryFor(sequence, tableau, [...(contexts.get(sequence.id) ?? [])]);
     entries.push(entry);
     const mappedSteps = new Set(entry.steps.map((step) => step.stepId));

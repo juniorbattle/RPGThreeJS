@@ -1,0 +1,3528 @@
+{
+  "schemaVersion": 1,
+  "baseline": "ff743b08fb239d55e11ac5cd682950032a06e2e1",
+  "classifications": [
+    "LOCKED_SPEAKER",
+    "PREFERRED_SPEAKER",
+    "FLEXIBLE_SPEAKER"
+  ],
+  "summary": {
+    "PREFERRED_SPEAKER": 61,
+    "LOCKED_SPEAKER": 186,
+    "reassigned": 0,
+    "total": 247
+  },
+  "entries": [
+    {
+      "dialogueId": "acte_ouverture",
+      "stepId": "1",
+      "speaker": "sage_seraphine",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "acte_ouverture:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "acte_ouverture",
+      "stepId": "2",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "acte_ouverture:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "acte_ouverture",
+      "stepId": "3",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "acte_ouverture:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "acte_ouverture",
+      "stepId": "4",
+      "speaker": "marian",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "acte_ouverture:4",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "acte_ouverture",
+      "stepId": "5",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "acte_ouverture:5",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "acte_ouverture",
+      "stepId": "6",
+      "speaker": "elara",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "acte_ouverture:6",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "acte_ouverture",
+      "stepId": "7",
+      "speaker": "maelor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "acte_ouverture:7",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "acte_ouverture",
+      "stepId": "8",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "acte_ouverture:8",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "acte_ouverture",
+      "stepId": "9",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "acte_ouverture:9",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_alaric_reports",
+      "stepId": "1",
+      "speaker": "lion_champion",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_alaric_reports:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_alaric_reports",
+      "stepId": "2",
+      "speaker": "alaric",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_alaric_reports:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_alaric_reports",
+      "stepId": "3",
+      "speaker": "alaric",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_alaric_reports:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_bois_clair_night_watch",
+      "stepId": "1",
+      "speaker": "villageoise",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_bois_clair_night_watch:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_bois_clair_night_watch",
+      "stepId": "2",
+      "speaker": "marian",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_bois_clair_night_watch:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_bois_clair_night_watch",
+      "stepId": "3",
+      "speaker": "alistair",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_bois_clair_night_watch:3",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_bois_clair_night_watch",
+      "stepId": "4",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_bois_clair_night_watch:4",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_first_refuge_watch",
+      "stepId": "1",
+      "speaker": "marian",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_first_refuge_watch:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_first_refuge_watch",
+      "stepId": "2",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_first_refuge_watch:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_first_refuge_watch",
+      "stepId": "3",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_first_refuge_watch:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_first_refuge_watch",
+      "stepId": "4",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_first_refuge_watch:4",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_lion_council_doubt",
+      "stepId": "1",
+      "speaker": "lion_champion",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_lion_council_doubt:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_lion_council_doubt",
+      "stepId": "2",
+      "speaker": "alaric",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_lion_council_doubt:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_lion_council_doubt",
+      "stepId": "3",
+      "speaker": "lion_champion",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_lion_council_doubt:3",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_maelor_seal_analysis",
+      "stepId": "1",
+      "speaker": "maelor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_maelor_seal_analysis:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_maelor_seal_analysis",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_maelor_seal_analysis:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_maelor_seal_analysis",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_maelor_seal_analysis:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_ruins_awaken",
+      "stepId": "1",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_ruins_awaken:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_ruins_awaken",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_ruins_awaken:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_ruins_awaken",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_ruins_awaken:3",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_serpent_general_warning",
+      "stepId": "1",
+      "speaker": "serpent_oracle",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_serpent_general_warning:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_serpent_general_warning",
+      "stepId": "2",
+      "speaker": "serpent_general_boss",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_serpent_general_warning:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_serpent_general_warning",
+      "stepId": "3",
+      "speaker": "serpent_general_boss",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_serpent_general_warning:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_serpent_retreat_order",
+      "stepId": "1",
+      "speaker": "serpent_general_boss",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_serpent_retreat_order:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_serpent_retreat_order",
+      "stepId": "2",
+      "speaker": "serpent_oracle",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_serpent_retreat_order:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_serpent_retreat_order",
+      "stepId": "3",
+      "speaker": "serpent_general_boss",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_serpent_retreat_order:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_serpent_scout_report",
+      "stepId": "1",
+      "speaker": "serpent_raider",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_serpent_scout_report:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_serpent_scout_report",
+      "stepId": "2",
+      "speaker": "serpent_oracle",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_serpent_scout_report:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_serpent_scout_report",
+      "stepId": "3",
+      "speaker": "serpent_general_boss",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_serpent_scout_report:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_village_fear",
+      "stepId": "1",
+      "speaker": "villageoise",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_village_fear:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_village_fear",
+      "stepId": "2",
+      "speaker": "refugee_mother",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_village_fear:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "ate_village_fear",
+      "stepId": "3",
+      "speaker": "villageoise",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "ate_village_fear:3",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "camp_departure",
+      "stepId": "1",
+      "speaker": "maelor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "camp_departure:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "camp_departure",
+      "stepId": "1a",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "camp_departure:1a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "camp_departure",
+      "stepId": "1b",
+      "speaker": "marian",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "camp_departure:1b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "camp_departure",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "camp_departure:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "camp_departure",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "camp_departure:3",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "camp_departure",
+      "stepId": "4",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "camp_departure:4",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "camp_departure",
+      "stepId": "5",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "camp_departure:5",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "epilogue",
+      "stepId": "1",
+      "speaker": "sage_seraphine",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "epilogue:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "final_refuge",
+      "stepId": "1",
+      "speaker": "maelor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "final_refuge:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "final_refuge",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "final_refuge:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "final_refuge",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "final_refuge:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "final_refuge",
+      "stepId": "4",
+      "speaker": "marian",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "final_refuge:4",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "final_refuge",
+      "stepId": "5",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "final_refuge:5",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "final_refuge",
+      "stepId": "6",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "final_refuge:6",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "lion_briefing",
+      "stepId": "1",
+      "speaker": "alaric",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "lion_briefing:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "lion_briefing",
+      "stepId": "1a",
+      "speaker": "alaric",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "lion_briefing:1a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "lion_briefing",
+      "stepId": "1b",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "lion_briefing:1b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "lion_briefing",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "lion_briefing:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "lion_briefing",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "lion_briefing:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "lion_briefing",
+      "stepId": "4",
+      "speaker": "alaric",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "lion_briefing:4",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "lion_briefing",
+      "stepId": "5",
+      "speaker": "alaric",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "lion_briefing:5",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "stepId": "1",
+      "speaker": "alaric",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "lion_finale_judgement:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "lion_trial_aftermath",
+      "stepId": "1",
+      "speaker": "alaric",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "lion_trial_aftermath:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_ambush",
+      "stepId": "1",
+      "speaker": "serpent_raider",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONSEQUENCE",
+        "CONFLICT",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_ambush:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_dragon_roost",
+      "stepId": "1",
+      "speaker": "young_dragon_elite",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "CONFLICT",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_dragon_roost:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_dragon_roost",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_dragon_roost:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_dragon_roost",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_dragon_roost:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_help",
+      "stepId": "1",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_help:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_help",
+      "stepId": "2",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONSEQUENCE",
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_help:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_help",
+      "stepId": "3",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_help:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_lancer_recruit",
+      "stepId": "1",
+      "speaker": "lancer",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_lancer_recruit:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_lancer_recruit",
+      "stepId": "2",
+      "speaker": "lancer",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_lancer_recruit:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_lancer_recruit",
+      "stepId": "3",
+      "speaker": "lancer",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_lancer_recruit:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_lancer_recruit",
+      "stepId": "4",
+      "speaker": "lancer",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_lancer_recruit:4",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_recruit",
+      "stepId": "0a",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_recruit:0a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_recruit",
+      "stepId": "0b",
+      "speaker": "cedric",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_recruit:0b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_recruit",
+      "stepId": "1",
+      "speaker": "cedric",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_recruit:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_recruit",
+      "stepId": "2",
+      "speaker": "cedric",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_recruit:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_recruit",
+      "stepId": "2a",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_recruit:2a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_recruit",
+      "stepId": "2b",
+      "speaker": "cedric",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_recruit:2b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_recruit",
+      "stepId": "3",
+      "speaker": "cedric",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_recruit:3",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_recruit",
+      "stepId": "3a",
+      "speaker": "cedric",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_recruit:3a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_recruit",
+      "stepId": "3b",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_recruit:3b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_shrine",
+      "stepId": "1",
+      "speaker": "shrine_apparition",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_shrine:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_shrine",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_shrine:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_shrine",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_shrine:3",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_treasure",
+      "stepId": "1",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_treasure:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_treasure",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_treasure:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_treasure",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_treasure:3",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_troll_crossing",
+      "stepId": "1",
+      "speaker": "forest_troll_elite",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_troll_crossing:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_troll_crossing",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_troll_crossing:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "mystery_troll_crossing",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "mystery_troll_crossing:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "old_shrine_event",
+      "stepId": "1",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "old_shrine_event:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "old_shrine_event",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "old_shrine_event:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "old_shrine_event",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "old_shrine_event:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_opening_trail",
+      "stepId": "1",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_opening_trail:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_opening_trail",
+      "stepId": "2",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_opening_trail:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_opening_trail",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_opening_trail:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_ruins_guardians",
+      "stepId": "1",
+      "speaker": "elara",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_ruins_guardians:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_ruins_guardians",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_ruins_guardians:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_serpent_checkpoint",
+      "stepId": "1",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_serpent_checkpoint:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_serpent_checkpoint",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_serpent_checkpoint:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_serpent_duelist_trial",
+      "stepId": "1",
+      "speaker": "serpent_duelist_elite",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_serpent_duelist_trial:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_serpent_duelist_trial",
+      "stepId": "2",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_serpent_duelist_trial:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_serpent_hunters",
+      "stepId": "1",
+      "speaker": "serpent_oracle",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_serpent_hunters:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_serpent_hunters",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_serpent_hunters:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_serpent_patrol",
+      "stepId": "1",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_serpent_patrol:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_serpent_patrol",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_serpent_patrol:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_serpent_reprisals",
+      "stepId": "1",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_serpent_reprisals:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_serpent_reprisals",
+      "stepId": "2",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_serpent_reprisals:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_spider_nest",
+      "stepId": "1",
+      "speaker": "elara",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_spider_nest:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_spider_nest",
+      "stepId": "2",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_spider_nest:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_troll_crossing",
+      "stepId": "1",
+      "speaker": "marian",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_troll_crossing:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_troll_crossing",
+      "stepId": "2",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_troll_crossing:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_valmir_road",
+      "stepId": "1",
+      "speaker": "marian",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_valmir_road:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_valmir_road",
+      "stepId": "2",
+      "speaker": "kestrel",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_valmir_road:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_valmir_road",
+      "stepId": "3",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_valmir_road:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_young_dragon_roost",
+      "stepId": "1",
+      "speaker": "elara",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_young_dragon_roost:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "post_young_dragon_roost",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "post_young_dragon_roost:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_lion_chief",
+      "stepId": "1",
+      "speaker": "alaric",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_lion_chief:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_lion_chief",
+      "stepId": "2",
+      "speaker": "alaric",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_lion_chief:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_lion_chief",
+      "stepId": "3",
+      "speaker": "lion_champion",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_lion_chief:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_lion_chief",
+      "stepId": "4",
+      "speaker": "lion_champion",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_lion_chief:4",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_opening_trail",
+      "stepId": "1",
+      "speaker": "kestrel",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_opening_trail:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_opening_trail",
+      "stepId": "2",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_opening_trail:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_opening_trail",
+      "stepId": "3",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_opening_trail:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_ruins_guardians",
+      "stepId": "1",
+      "speaker": "elara",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_ruins_guardians:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_ruins_guardians",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_ruins_guardians:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_serpent_checkpoint",
+      "stepId": "1",
+      "speaker": "kestrel",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_serpent_checkpoint:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_serpent_checkpoint",
+      "stepId": "2",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_serpent_checkpoint:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_serpent_duelist_trial",
+      "stepId": "1",
+      "speaker": "serpent_duelist_elite",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_serpent_duelist_trial:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_serpent_duelist_trial",
+      "stepId": "2",
+      "speaker": "serpent_duelist_elite",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_serpent_duelist_trial:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_serpent_duelist_trial",
+      "stepId": "3",
+      "speaker": "serpent_duelist_elite",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_serpent_duelist_trial:3",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_serpent_hunters",
+      "stepId": "1",
+      "speaker": "serpent_raider",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_serpent_hunters:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_serpent_hunters",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_serpent_hunters:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_serpent_hunters",
+      "stepId": "3",
+      "speaker": "serpent_raider",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_serpent_hunters:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_serpent_patrol",
+      "stepId": "1",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_serpent_patrol:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_serpent_patrol",
+      "stepId": "2",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_serpent_patrol:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_serpent_reprisals",
+      "stepId": "1",
+      "speaker": "serpent_raider",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_serpent_reprisals:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_serpent_reprisals",
+      "stepId": "2",
+      "speaker": "alistair",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_serpent_reprisals:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_spider_nest",
+      "stepId": "1",
+      "speaker": "elara",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_spider_nest:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_spider_nest",
+      "stepId": "2",
+      "speaker": "marian",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_spider_nest:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_troll_crossing",
+      "stepId": "1",
+      "speaker": "forest_troll_elite",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_troll_crossing:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_troll_crossing",
+      "stepId": "2",
+      "speaker": "forest_troll_elite",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_troll_crossing:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_valmir_road",
+      "stepId": "1",
+      "speaker": "kestrel",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_valmir_road:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_valmir_road",
+      "stepId": "2",
+      "speaker": "marian",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_valmir_road:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_valmir_road",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_valmir_road:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_village_defense",
+      "stepId": "1",
+      "speaker": "serpent_raider",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_village_defense:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_village_defense",
+      "stepId": "2",
+      "speaker": "serpent_raider",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_village_defense:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_village_raid",
+      "stepId": "1",
+      "speaker": "serpent_brute",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_village_raid:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_village_raid",
+      "stepId": "2",
+      "speaker": "serpent_brute",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_village_raid:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_young_dragon_roost",
+      "stepId": "1",
+      "speaker": "young_dragon_elite",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_young_dragon_roost:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "pre_young_dragon_roost",
+      "stepId": "2",
+      "speaker": "young_dragon_elite",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "pre_young_dragon_roost:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "refugee_trial",
+      "stepId": "0a",
+      "speaker": "kestrel",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "refugee_trial:0a",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "refugee_trial",
+      "stepId": "0b",
+      "speaker": "marian",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "refugee_trial:0b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "refugee_trial",
+      "stepId": "1",
+      "speaker": "refugee_mother",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "refugee_trial:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "refugee_trial",
+      "stepId": "2",
+      "speaker": "refugee_mother",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONSEQUENCE",
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "refugee_trial:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "refugee_trial",
+      "stepId": "2a",
+      "speaker": "marian",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "refugee_trial:2a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "refugee_trial",
+      "stepId": "2b",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "refugee_trial:2b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "refugee_trial",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "refugee_trial:3",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "refugee_trial",
+      "stepId": "3a",
+      "speaker": "marian",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "refugee_trial:3a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "refugee_trial",
+      "stepId": "3b",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "refugee_trial:3b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_bois_clair_denunciation",
+      "stepId": "1",
+      "speaker": "refugee_mother",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_bois_clair_denunciation:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_bois_clair_denunciation",
+      "stepId": "2",
+      "speaker": "refugee_mother",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_bois_clair_denunciation:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_bois_clair_denunciation",
+      "stepId": "3",
+      "speaker": "refugee_mother",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_bois_clair_denunciation:3",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_brokered_information",
+      "stepId": "1",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_brokered_information:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_brokered_information",
+      "stepId": "2",
+      "speaker": "survivor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_brokered_information:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_brokered_information",
+      "stepId": "3",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_brokered_information:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_displaced_family_demand",
+      "stepId": "1",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_displaced_family_demand:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_displaced_family_demand",
+      "stepId": "2",
+      "speaker": "survivor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_displaced_family_demand:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_displaced_family_demand",
+      "stepId": "3",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_displaced_family_demand:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_fallen_banner_claimant",
+      "stepId": "1",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_fallen_banner_claimant:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_fallen_banner_claimant",
+      "stepId": "2",
+      "speaker": "survivor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_fallen_banner_claimant:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_fallen_banner_claimant",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_fallen_banner_claimant:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_public_petition",
+      "stepId": "1",
+      "speaker": "refugee_mother",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_public_petition:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_public_petition",
+      "stepId": "2",
+      "speaker": "refugee_mother",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_public_petition:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_public_petition",
+      "stepId": "3",
+      "speaker": "refugee_mother",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_public_petition:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_refuge_supply_offer",
+      "stepId": "1",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_refuge_supply_offer:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_refuge_supply_offer",
+      "stepId": "2",
+      "speaker": "survivor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_refuge_supply_offer:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_refuge_supply_offer",
+      "stepId": "3",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_refuge_supply_offer:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_roadside_intimidation",
+      "stepId": "1",
+      "speaker": "serpent_raider",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_roadside_intimidation:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_roadside_intimidation",
+      "stepId": "2",
+      "speaker": "maelor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_roadside_intimidation:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_roadside_intimidation",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_roadside_intimidation:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_serpent_rumour_market",
+      "stepId": "1",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_serpent_rumour_market:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_serpent_rumour_market",
+      "stepId": "2",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_serpent_rumour_market:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_serpent_rumour_market",
+      "stepId": "3",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_serpent_rumour_market:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_village_memorial_request",
+      "stepId": "1",
+      "speaker": "refugee_mother",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_village_memorial_request:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_village_memorial_request",
+      "stepId": "2",
+      "speaker": "refugee_mother",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_village_memorial_request:2",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "rep_event_village_memorial_request",
+      "stepId": "3",
+      "speaker": "refugee_mother",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "rep_event_village_memorial_request:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "reserve_trail",
+      "stepId": "0a",
+      "speaker": "kestrel",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "reserve_trail:0a",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "reserve_trail",
+      "stepId": "0b",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "reserve_trail:0b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "reserve_trail",
+      "stepId": "1",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "reserve_trail:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "reserve_trail",
+      "stepId": "2",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONSEQUENCE",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "reserve_trail:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "reserve_trail",
+      "stepId": "2a",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "reserve_trail:2a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "reserve_trail",
+      "stepId": "2b",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "reserve_trail:2b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "reserve_trail",
+      "stepId": "3",
+      "speaker": "sage_seraphine",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "reserve_trail:3",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "reserve_trail",
+      "stepId": "3a",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "reserve_trail:3a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "reserve_trail",
+      "stepId": "3b",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "reserve_trail:3b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "serpent_duelist_trial",
+      "stepId": "1",
+      "speaker": "serpent_duelist_elite",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "serpent_duelist_trial:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "serpent_duelist_trial",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "serpent_duelist_trial:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "serpent_duelist_trial",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "serpent_duelist_trial:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "serpent_general_aftermath",
+      "stepId": "1",
+      "speaker": "sage_seraphine",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "serpent_general_aftermath:1",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "serpent_informant",
+      "stepId": "1",
+      "speaker": "serpent_oracle",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "serpent_informant:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "serpent_informant",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "serpent_informant:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "serpent_informant",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "serpent_informant:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "serpent_pursuit_pre_combat",
+      "stepId": "1",
+      "speaker": "alaric",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "serpent_pursuit_pre_combat:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "serpent_pursuit_pre_combat",
+      "stepId": "2",
+      "speaker": "serpent_general_boss",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "serpent_pursuit_pre_combat:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "shadow_signs",
+      "stepId": "1",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "shadow_signs:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "shadow_signs",
+      "stepId": "2",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "shadow_signs:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "shadow_signs",
+      "stepId": "2a",
+      "speaker": "elara",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "shadow_signs:2a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "shadow_signs",
+      "stepId": "2b",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "shadow_signs:2b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "shadow_signs",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "shadow_signs:3",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "shadow_signs",
+      "stepId": "3a",
+      "speaker": "elara",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "shadow_signs:3a",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "shadow_signs",
+      "stepId": "3b",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "shadow_signs:3b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_choice",
+      "stepId": "1",
+      "speaker": "villageoise",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_choice:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_choice",
+      "stepId": "1a",
+      "speaker": "marian",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_choice:1a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_choice",
+      "stepId": "2",
+      "speaker": "serpent_raider",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CONFLICT",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_choice:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_choice",
+      "stepId": "2a",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_choice:2a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_choice",
+      "stepId": "3",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_choice:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_choice",
+      "stepId": "4",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_choice:4",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_choice",
+      "stepId": "4a",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_choice:4a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_choice",
+      "stepId": "5",
+      "speaker": "villageoise",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_choice:5",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_choice",
+      "stepId": "6",
+      "speaker": "villageoise",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_choice:6",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_choice",
+      "stepId": "6a",
+      "speaker": "alistair",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_choice:6a",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_choice",
+      "stepId": "6b",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_choice:6b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_choice",
+      "stepId": "7",
+      "speaker": "villageoise",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_choice:7",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_choice",
+      "stepId": "7a",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_choice:7a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_choice",
+      "stepId": "7b",
+      "speaker": "sage_seraphine",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_choice:7b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_defense_aftermath",
+      "stepId": "1",
+      "speaker": "villageoise",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_defense_aftermath:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_defense_aftermath",
+      "stepId": "2",
+      "speaker": "villageoise",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_defense_aftermath:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_defense_aftermath",
+      "stepId": "3",
+      "speaker": "villageoise",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_defense_aftermath:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_raid_aftermath",
+      "stepId": "1",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_raid_aftermath:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_raid_aftermath",
+      "stepId": "2",
+      "speaker": "villageoise",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_raid_aftermath:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "village_raid_aftermath",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "village_raid_aftermath:3",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "stepId": "0a",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "witnesses_on_road:0a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "stepId": "0b",
+      "speaker": "marian",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "witnesses_on_road:0b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "stepId": "1",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "CHOICE_CLARITY",
+        "CONSEQUENCE",
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "witnesses_on_road:1",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "stepId": "2",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "witnesses_on_road:2",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "stepId": "2a",
+      "speaker": "alistair",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "witnesses_on_road:2a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "stepId": "2b",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "witnesses_on_road:2b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "stepId": "3",
+      "speaker": "maelor",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "witnesses_on_road:3",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "stepId": "3a",
+      "speaker": "marian",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "witnesses_on_road:3a",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "stepId": "3b",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "witnesses_on_road:3b",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "stepId": "4",
+      "speaker": "survivor",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "EMOTION",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "witnesses_on_road:4",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "stepId": "4a",
+      "speaker": "kestrel",
+      "classification": "LOCKED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "witnesses_on_road:4a",
+      "reason": "This line owns a decision, consequence, personal statement, order, threat, testimony or speaker-specific fact.",
+      "reassigned": false
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "stepId": "4b",
+      "speaker": "sage_seraphine",
+      "classification": "PREFERRED_SPEAKER",
+      "narrativeFunction": [
+        "WORLD_BUILDING_REQUIRED_NOW",
+        "NARRATIVE_INFORMATION",
+        "CHARACTERIZATION"
+      ],
+      "effectsOwner": "witnesses_on_road:4b",
+      "reason": "The line is best carried by the existing character function and voice.",
+      "reassigned": false
+    }
+  ]
+}

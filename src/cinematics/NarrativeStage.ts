@@ -6,7 +6,7 @@ import type { VideoCinematicMediaEvent, VideoCinematicPlaybackOptions, VideoCine
 import type { DialogueSequence } from '../game/types';
 import { JourneySession } from './JourneySession';
 import type { JourneyAgencyPresentation, JourneyCommit, JourneySessionState } from './JourneyTypes';
-import { isNarrativeBeatInteractive, type NarrativeDialogueMode, type NarrativeDialogueSurfaceMode, type NarrativeLayoutPlacement, type NarrativeMediaPhase, type NarrativeTableauSpec, type NarrativeTransitionKind } from './NarrativeTableau';
+import { isNarrativeBeatInteractive, type NarrativeAddressResolution, type NarrativeDialogueMode, type NarrativeDialogueSurfaceMode, type NarrativeLayoutPlacement, type NarrativeMediaPhase, type NarrativeTableauSpec, type NarrativeTransitionKind } from './NarrativeTableau';
 import { NarrativeUtilityDock } from './NarrativeUtilityDock';
 import { NarrativeSceneSurface } from './NarrativeSceneSurface';
 import type { NarrativeAuthoringMedia } from './NarrativePresentationPolicy';
@@ -28,6 +28,7 @@ export interface NarrativeStageOptions {
   videoStartupTimeoutMs?: number;
   transitionRevealMs?: number;
   dev?: boolean;
+  reducedMotion?: boolean;
 }
 
 const DEFAULT_LOADING_INDICATOR_DELAY_MS = 450;
@@ -57,6 +58,7 @@ export class NarrativeStage {
   private readonly videoStartupTimeoutMs: number;
   private readonly transitionRevealMs: number;
   private readonly dev: boolean;
+  private readonly reducedMotion: boolean;
   private director: NarrativeBeatDirector | null = null;
   private tableau: NarrativeTableauSpec | null = null;
   private mounted = false;
@@ -81,6 +83,7 @@ export class NarrativeStage {
     this.videoStartupTimeoutMs = options.videoStartupTimeoutMs ?? DEFAULT_VIDEO_STARTUP_TIMEOUT_MS;
     this.transitionRevealMs = options.transitionRevealMs ?? DEFAULT_TRANSITION_REVEAL_MS;
     this.dev = options.dev ?? false;
+    this.reducedMotion = options.reducedMotion ?? false;
     this.element.className = 'narrative-stage';
     this.element.setAttribute('aria-label', 'Scène narrative');
     this.element.dataset.narrativeAuthoringMedia = this.mediaMode;
@@ -273,19 +276,28 @@ export class NarrativeStage {
     return this.presentCinematic(beat.cinematicId, options, fallbackBackdrop);
   }
 
-  /** Promotes an already frozen video endpoint to the explicit hold mode, or mounts its safe context fallback. */
+  /** HOLD is dialogue-free scenic punctuation; it never owns a speaker or choice. */
   async enterCinematicHold(
     beat: ResolvedPresentationBeat,
     fallbackAsset?: string,
   ): Promise<VideoCinematicResult> {
     if (beat.mode !== 'CINEMATIC_HOLD') throw new Error(`Hold beat '${beat.beatId}' is not CINEMATIC_HOLD.`);
     this.setPresentationBeat(beat);
+    this.element.dataset.narrativeHoldSemantics = 'DIALOGUE_FREE';
+    this.element.dataset.dialogueStepsOnHold = '0';
+    this.element.dataset.choiceStepsOnHold = '0';
+    this.dialogueLayer.replaceChildren();
+    this.dialogueLayer.inert = true;
     const frozen = this.session.frozenSurface;
     if (frozen) {
       const heldVideo = frozen.matches('.cinematic-overlay') && frozen.dataset.cinematicFreezeSurface === 'canvas';
+      frozen.querySelector<HTMLElement>('.narrative-scene-surface__cast')?.replaceChildren();
+      frozen.querySelector<HTMLElement>('.narrative-scene-surface__focus')?.replaceChildren();
+      frozen.dataset.presentationMode = 'CINEMATIC_HOLD';
+      this.sceneSurface = null;
       this.setMediaSurfaceKind(heldVideo ? 'HELD_VIDEO' : 'FALLBACK');
       this.element.dataset.fallbackActive = `${!heldVideo}`;
-      this.element.dataset.narrativeCastOwnership = 'VIDEO_OWNS_CAST';
+      this.element.dataset.narrativeCastOwnership = 'ENVIRONMENT_ONLY';
       return { id: beat.holdSourceCinematicId ?? beat.beatId, reason: 'ended', played: heldVideo };
     }
 
@@ -304,8 +316,9 @@ export class NarrativeStage {
     const result = this.session.presentStaticSurface(`hold-fallback:${beat.beatId}`, fallback);
     this.setMediaSurfaceKind('FALLBACK');
     this.element.dataset.fallbackActive = 'true';
-    this.element.dataset.narrativeCastOwnership = 'VIDEO_OWNS_CAST';
+    this.element.dataset.narrativeCastOwnership = 'ENVIRONMENT_ONLY';
     await this.revealPreparedSurface(readiness, 'FALLBACK');
+    this.dialogueLayer.inert = true;
     return result;
   }
 
@@ -359,7 +372,8 @@ export class NarrativeStage {
   async presentStill(
     image?: string,
     id = `narrative-still:${this.tableau?.id ?? 'fallback'}`,
-    kind: 'STILL' | 'FALLBACK' = 'STILL',
+    kind: 'STILL' | 'FALLBACK' | 'STATIC_TABLEAU' = 'STILL',
+    phaseId?: string,
   ): Promise<VideoCinematicResult> {
     if (this.disposed) return { id, reason: 'aborted', played: false };
     const readiness = this.beginSurfacePreparation();
@@ -375,16 +389,34 @@ export class NarrativeStage {
       await this.revealPreparedSurface(readiness, 'FALLBACK');
       return result;
     }
-    const surface = new NarrativeSceneSurface(this.mediaLayer, tableau);
+    const surface = new NarrativeSceneSurface(this.mediaLayer, tableau, { reducedMotion: this.reducedMotion });
     this.sceneSurface = surface;
     if (this.boundDialogue) surface.bindDialogue(this.boundDialogue);
-    surface.mount(image ?? tableau.stillImage);
+    surface.mount(image ?? tableau.stillImage, phaseId);
     await surface.whenRenderable();
     const result = await this.session.presentCinematic(id, { reducedMotion: false, passive: true }, surface.element);
-    this.setMediaSurfaceKind(this.resolvedBeat?.mode === 'STATIC_TABLEAU' ? 'STATIC_TABLEAU' : kind);
+    this.setMediaSurfaceKind(kind === 'STATIC_TABLEAU' || this.resolvedBeat?.mode === 'STATIC_TABLEAU' ? 'STATIC_TABLEAU' : kind);
     this.element.dataset.narrativeCastOwnership = surface.castLayer.childElementCount ? 'STAGE_OWNS_CAST' : 'ENVIRONMENT_ONLY';
     await this.revealPreparedSurface(readiness, kind);
     return result;
+  }
+
+  async presentDialogueTableau(
+    image?: string,
+    phaseId?: string,
+    from: 'NONE' | 'VIDEO' | 'TRAVEL' | 'HOLD' = 'NONE',
+  ): Promise<VideoCinematicResult> {
+    if (this.session.state === 'FREEZE' || this.session.state === 'TRANSITIONING') this.session.releaseFreeze();
+    this.element.dataset.narrativePreludeTransition = from === 'NONE' ? 'NONE' : `${from}_TO_TABLEAU`;
+    this.element.dataset.normalDialogueDuringVideo = '0';
+    this.element.dataset.dialogueStepsOnHold = '0';
+    this.element.dataset.choiceStepsOnHold = '0';
+    return this.presentStill(
+      image,
+      `dialogue-tableau:${this.tableau?.id ?? this.boundDialogue?.id ?? 'fallback'}`,
+      'STATIC_TABLEAU',
+      phaseId,
+    );
   }
 
   requestAgency(presentation: JourneyAgencyPresentation): Promise<JourneyCommit> {
@@ -401,7 +433,7 @@ export class NarrativeStage {
     return result.finally(() => this.utilityDock.dispose());
   }
 
-  activateDialogueStep(
+  async activateDialogueStep(
     stepId: string,
     mode: NarrativeDialogueMode,
     anchorId?: string,
@@ -411,8 +443,15 @@ export class NarrativeStage {
     layoutProfile?: string,
     layoutPlacement?: string,
     dialogueSurfaceMode?: NarrativeDialogueSurfaceMode,
-  ): void {
+    speakerFacing?: 'LEFT' | 'RIGHT' | 'FORWARD',
+    speakerLookTarget?: string | null,
+    addressedTo?: string | null,
+    addressResolution?: NarrativeAddressResolution,
+  ): Promise<void> {
     this.ensureMounted();
+    if (dialogueSurfaceMode === 'STATIC_TABLEAU' && !this.sceneSurface) {
+      await this.presentDialogueTableau(this.tableau?.stillImage, phaseId);
+    }
     if (this.readiness && this.readiness.status !== 'VISIBLE') {
       this.element.dataset.narrativeInteractionBlocked = 'dialogue-before-surface-ready';
       return;
@@ -423,13 +462,24 @@ export class NarrativeStage {
     this.element.dataset.narrativeDialogueStep = stepId;
     if (phaseId) {
       this.element.dataset.narrativeVisualPhase = phaseId;
-      this.sceneSurface?.setPhase(phaseId, speakerId, layoutPlacement as NarrativeLayoutPlacement | undefined);
+      await this.sceneSurface?.setPhase(
+        phaseId,
+        speakerId,
+        layoutPlacement as NarrativeLayoutPlacement | undefined,
+        speakerFacing,
+        speakerLookTarget,
+        addressedTo,
+        addressResolution,
+      );
     }
     if (speakerId) this.element.dataset.narrativeSpeaker = speakerId;
     if (strategy) this.element.dataset.narrativePresentationStrategy = strategy;
     if (layoutProfile) this.element.dataset.narrativeLayoutProfile = layoutProfile;
     if (layoutPlacement) this.element.dataset.narrativeLayoutPlacement = layoutPlacement;
     if (dialogueSurfaceMode) this.element.dataset.narrativeDialogueSurfaceMode = dialogueSurfaceMode;
+    this.element.dataset.narrativeAddressedTo = addressedTo ?? '';
+    this.element.dataset.narrativeLookTarget = speakerLookTarget ?? '';
+    this.element.dataset.narrativeAddressResolution = addressResolution ?? 'SCENE_DEFAULT';
     if (anchorId) this.element.dataset.narrativeAnchor = anchorId;
     else delete this.element.dataset.narrativeAnchor;
   }
@@ -584,7 +634,7 @@ export class NarrativeStage {
 
   private createPreparedSceneSurface(image?: string): NarrativeSceneSurface | null {
     if (!this.tableau) return null;
-    const surface = new NarrativeSceneSurface(this.mediaLayer, this.tableau);
+    const surface = new NarrativeSceneSurface(this.mediaLayer, this.tableau, { reducedMotion: this.reducedMotion });
     if (this.boundDialogue) surface.bindDialogue(this.boundDialogue);
     surface.prepare(image ?? this.tableau.stillImage);
     return surface;

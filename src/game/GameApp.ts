@@ -53,10 +53,11 @@ import { evaluateRouteCommit } from '../journey/RouteCommitGuard';
 import type { JourneySecondaryActionPresentation } from '../cinematics/JourneyTypes';
 import { NarrativeStage } from '../cinematics/NarrativeStage';
 import { resolveCinematicPresentation, resolveDialoguePresentation } from '../cinematics/NarrativePresentationResolver';
-import { isEpilogueHoldContinuityValid } from '../cinematics/NarrativePresentationTransition';
 import type { ResolvedPresentationBeat } from '../cinematics/NarrativePresentationMode';
 import { resolveNarrativeAuthoringMedia } from '../cinematics/NarrativePresentationPolicy';
 import { createNarrativeDialogueResolver, resolveRepresentedDialogueActors } from '../cinematics/NarrativeDialogueAdapter';
+import { applyFinalDialoguePresentationPlan } from '../cinematics/DialoguePresentationSegments';
+import { resolveCinematicReduction, shouldPlayDialoguePreludeVideo } from '../cinematics/CinematicReductionPolicy';
 import {
   resolveNarrativeCombatTableau,
   resolveNarrativeDialogueTableau,
@@ -765,6 +766,7 @@ export class GameApp {
       registry: this.cinematicRegistry,
       mediaMode: this.narrativeMediaMode,
       dev: import.meta.env.DEV,
+      reducedMotion: this.state.settings.reducedGraphics,
     });
     if (tableau) stage.setTableau(tableau);
     this.activeNarrativeStage = stage;
@@ -972,22 +974,23 @@ export class GameApp {
     fallbackLabel: string | undefined,
     options: NarrativeDialogueOptions,
   ): Promise<void> {
-    const stage = this.createNarrativeStage(options.tableau);
+    const tableau = applyFinalDialoguePresentationPlan(sequence, options.tableau);
+    const stage = this.createNarrativeStage(tableau);
     stage.bindDialogue(sequence);
     const presentationBeat = resolveDialoguePresentation(sequence.id);
-    const stepPresentation = createNarrativeDialogueResolver(sequence, options.tableau, {
-      mediaMode: this.narrativeMediaMode,
-      hasMovingMedia: presentationBeat?.mode === 'CINEMATIC_HOLD',
+    const stepPresentation = createNarrativeDialogueResolver(sequence, tableau, {
+      mediaMode: 'STILL',
+      hasMovingMedia: false,
     });
-    if (options.tableau) {
+    if (tableau) {
       const alignment = validateDialogueCast(
-        options.tableau,
+        tableau,
         sequence,
         resolveRepresentedDialogueActors(sequence, stepPresentation),
       );
       stage.element.dataset.dialogueCastAlignment = alignment.status;
       if (alignment.status === 'FAIL') {
-        console.error(`[NarrativeStage] Dialogue/cast mismatch in ${options.tableau.id}: ${alignment.unresolved.join(', ')}`);
+        console.error(`[NarrativeStage] Dialogue/cast mismatch in ${tableau.id}: ${alignment.unresolved.join(', ')}`);
         this.disposeNarrativeStage(stage);
         await this.playClassicDialogue(sequence, fallbackLabel);
         return;
@@ -999,7 +1002,7 @@ export class GameApp {
         mode: 'narrative-stage',
         root: stage.dialogueLayer,
         stepPresentation,
-        onStepChange: (step, presentation) => stage.activateDialogueStep(
+        beforeStepChange: (step, presentation) => stage.activateDialogueStep(
           step.id,
           presentation.mode,
           presentation.anchorId,
@@ -1009,48 +1012,41 @@ export class GameApp {
           presentation.layoutProfile,
           presentation.layoutPlacement,
           presentation.dialogueSurfaceMode,
+          presentation.speakerFacing,
+          presentation.speakerLookTarget,
+          presentation.addressedTo,
+          presentation.addressResolution,
         ),
         reducedMotion: this.state.settings.reducedGraphics,
       });
     };
     let completed = false;
     try {
-      if (presentationBeat?.mode === 'STATIC_TABLEAU') {
-        if (options.cinematicId && this.narrativeMediaMode === 'VIDEO') {
-          const videoBeat = resolveCinematicPresentation(options.cinematicId);
-          if (videoBeat) await stage.presentCinematicBeat(videoBeat, { reducedMotion: this.state.settings.reducedGraphics, passive: true });
-          else await stage.presentCinematic(options.cinematicId, { reducedMotion: this.state.settings.reducedGraphics, passive: true });
-          this.ensureJourneyBoundary().markCinematicPresented(options.cinematicId);
-          this.lastNarrativeCinematicBeat = videoBeat;
-          stage.releaseFreeze();
-        }
-        stage.setPresentationBeat(presentationBeat);
-        await stage.presentStill(resolveDialogueBackdrop(sequence));
-        await openDialogue();
-      } else if (presentationBeat?.mode === 'CINEMATIC_HOLD') {
-        const epilogueContinuityValid = presentationBeat.dialogueId === 'epilogue'
-          ? isEpilogueHoldContinuityValid(this.lastNarrativeCinematicBeat, presentationBeat)
-          : true;
-        if (presentationBeat.dialogueId === 'epilogue') {
-          stage.element.dataset.epilogueHoldContinuityValid = `${epilogueContinuityValid}`;
-        }
-        if (options.cinematicId && this.narrativeMediaMode === 'VIDEO') {
-          const videoBeat = resolveCinematicPresentation(options.cinematicId);
-          if (videoBeat) await stage.presentCinematicBeat(videoBeat, { reducedMotion: this.state.settings.reducedGraphics, passive: true });
-          else await stage.presentCinematic(options.cinematicId, { reducedMotion: this.state.settings.reducedGraphics, passive: true });
-          this.ensureJourneyBoundary().markCinematicPresented(options.cinematicId);
-          this.lastNarrativeCinematicBeat = videoBeat;
-        }
-        await stage.enterCinematicHold(presentationBeat, resolveDialogueBackdrop(sequence));
-        await openDialogue();
-        if (options.preserveBackdrop === true && stage.frozenSurface) {
-          this.ensureJourneyBoundary().captureBackdrop(stage.frozenSurface);
-        }
-      } else {
-        if (presentationBeat) stage.setPresentationBeat(presentationBeat);
-        await stage.presentPaintedFallback(sequence.title ?? fallbackLabel ?? sequence.id, resolveDialogueBackdrop(sequence));
-        await openDialogue();
-        if (options.preserveBackdrop === true && stage.frozenSurface) this.ensureJourneyBoundary().captureBackdrop(stage.frozenSurface);
+      let tableauTransitionSource: 'NONE' | 'VIDEO' = 'NONE';
+      const cinematicDecision = options.cinematicId ? resolveCinematicReduction(options.cinematicId) : undefined;
+      if (cinematicDecision) stage.element.dataset.cinematicReduction = cinematicDecision.classification;
+      if (
+        options.cinematicId
+        && this.narrativeMediaMode === 'VIDEO'
+        && shouldPlayDialoguePreludeVideo(options.cinematicId)
+      ) {
+        const videoBeat = resolveCinematicPresentation(options.cinematicId);
+        if (videoBeat) await stage.presentCinematicBeat(videoBeat, { reducedMotion: this.state.settings.reducedGraphics, passive: true });
+        else await stage.presentCinematic(options.cinematicId, { reducedMotion: this.state.settings.reducedGraphics, passive: true });
+        this.ensureJourneyBoundary().markCinematicPresented(options.cinematicId);
+        this.lastNarrativeCinematicBeat = videoBeat;
+        tableauTransitionSource = 'VIDEO';
+      }
+      if (presentationBeat) stage.setPresentationBeat(presentationBeat);
+      const firstPresentation = stepPresentation(sequence.steps[0]!);
+      await stage.presentDialogueTableau(
+        resolveDialogueBackdrop(sequence),
+        firstPresentation.phaseId,
+        tableauTransitionSource,
+      );
+      await openDialogue();
+      if (options.preserveBackdrop === true && stage.frozenSurface) {
+        this.ensureJourneyBoundary().captureBackdrop(stage.frozenSurface);
       }
       completed = true;
     } finally {

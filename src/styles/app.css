@@ -2735,7 +2735,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .narrative-scene-surface__environment { position:absolute; inset:-1.5%; background-color:#07101c; background-position:center; background-repeat:no-repeat; background-size:cover; filter:saturate(.9) contrast(1.05) brightness(.84); transform:scale(1.03); animation:narrative-still-breathe 18s ease-in-out infinite alternate; }
 .narrative-scene-surface__environment::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(2,4,9,.18),transparent 35%,rgba(2,4,9,.56) 90%),radial-gradient(ellipse at center,transparent 42%,rgba(0,0,0,.38)); }
 .narrative-scene-surface__cast { position:absolute; inset:0 1.5%; z-index:3; pointer-events:none; }
-.narrative-cast__actor { --narrative-actor-scale:1; --narrative-actor-depth:2; position:absolute; bottom:-17vh; left:50%; z-index:var(--narrative-actor-depth); width:min(46vw,74vh,800px); height:120vh; margin:0; opacity:.5; filter:saturate(.65) brightness(.62) contrast(.97) blur(.15px) drop-shadow(0 24px 28px rgba(0,0,0,.82)); transform:translateX(-50%) scale(var(--narrative-actor-scale)); transform-origin:50% 100%; transition:filter .28s ease,opacity .28s ease; }
+.narrative-cast__actor { --narrative-actor-scale:1; --narrative-actor-depth:2; position:absolute; bottom:-14vh; left:50%; z-index:var(--narrative-actor-depth); width:min(36vw,66vh,700px); height:120vh; margin:0; opacity:.5; filter:saturate(.65) brightness(.62) contrast(.97) blur(.15px) drop-shadow(0 24px 28px rgba(0,0,0,.82)); transform:translateX(-50%) scale(var(--narrative-actor-scale)); transform-origin:50% 100%; transition:filter .28s ease,opacity .28s ease; }
 .narrative-cast__actor img { width:100%; height:100%; object-fit:contain; object-position:center bottom; image-rendering:auto; }
 .narrative-cast__actor[data-facing="LEFT"] img { transform:scaleX(-1); }
 .narrative-cast__actor[data-screen-position="FAR_LEFT"] { left:13%; }
@@ -2748,16 +2748,10 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .narrative-cast__actor.is-speaking { z-index:6; opacity:1; filter:saturate(1.06) brightness(1.1) contrast(1.12) drop-shadow(0 28px 34px rgba(0,0,0,.88)); }
 .narrative-cast__actor.is-listening { opacity:.5; }
 .narrative-cast__actor.is-background { opacity:.26; filter:saturate(.45) brightness(.42) contrast(.9) blur(.35px) drop-shadow(0 20px 24px rgba(0,0,0,.78)); }
-.narrative-scene-surface__cast[data-cast-count="2"] .narrative-cast__actor { bottom:-17vh; width:min(42vw,73vh,800px); }
-.narrative-scene-surface__cast[data-cast-count="3"] .narrative-cast__actor { bottom:-15.5vh; width:min(37vw,67vh,720px); }
-.narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor { bottom:-14vh; width:min(36vw,66vh,700px); }
 .narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor[data-screen-position="FAR_LEFT"] { left:16%; }
 .narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor[data-screen-position="CENTER_LEFT"] { left:38%; }
 .narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor[data-screen-position="CENTER_RIGHT"] { left:62%; }
 .narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor[data-screen-position="FAR_RIGHT"] { left:84%; }
-.narrative-scene-surface__cast[data-cast-count="5"] .narrative-cast__actor { bottom:-13vh; width:min(33vw,60vh,640px); }
-.narrative-scene-surface__cast[data-cast-count="6"] .narrative-cast__actor { bottom:-12vh; width:min(34vw,61vh,660px); }
-.narrative-scene-surface__cast[data-cast-count="7"] .narrative-cast__actor { bottom:-11vh; width:min(29vw,53vh,560px); }
 .narrative-scene-surface__cast[data-cast-count="7"] .narrative-cast__actor[data-screen-position="FAR_LEFT"] { left:12.5%; }
 .narrative-scene-surface__cast[data-cast-count="7"] .narrative-cast__actor[data-screen-position="LEFT"] { left:25%; }
 .narrative-scene-surface__cast[data-cast-count="7"] .narrative-cast__actor[data-screen-position="CENTER_LEFT"] { left:37.5%; }
@@ -2766,6 +2760,19 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .narrative-scene-surface__cast[data-cast-count="7"] .narrative-cast__actor[data-screen-position="FAR_RIGHT"] { left:87.5%; }
 .narrative-scene-surface__atmosphere { position:absolute; inset:0; z-index:7; pointer-events:none; opacity:.34; background:linear-gradient(105deg,transparent 8%,rgba(244,217,139,.09) 46%,transparent 72%); mix-blend-mode:screen; animation:narrative-atmosphere-drift 12s ease-in-out infinite alternate; }
 .narrative-scene-surface__focus { position:absolute; inset:0; z-index:8; pointer-events:none; background:linear-gradient(180deg,transparent 55%,rgba(1,4,10,.22)); }
+.narrative-cast__actor.is-entering[data-entry-effect="FADE_IN"] { animation:narrative-actor-fade-in .18s ease-out both; }
+.narrative-cast__actor.is-entering[data-entry-effect="SLIDE_IN_LEFT"] { animation:narrative-actor-slide-in-left .18s ease-out both; }
+.narrative-cast__actor.is-entering[data-entry-effect="SLIDE_IN_RIGHT"] { animation:narrative-actor-slide-in-right .18s ease-out both; }
+.narrative-cast__actor.is-exiting[data-exit-effect="FADE_OUT"] { animation:narrative-actor-fade-out .18s ease-in both; }
+.narrative-cast__actor.is-exiting[data-exit-effect="SLIDE_OUT_LEFT"] { animation:narrative-actor-slide-out-left .18s ease-in both; }
+.narrative-cast__actor.is-exiting[data-exit-effect="SLIDE_OUT_RIGHT"] { animation:narrative-actor-slide-out-right .18s ease-in both; }
+.dialogue--preparing-step .dialogue__box,.dialogue--preparing-step .dialogue__choices { opacity:0; pointer-events:none; }
+@keyframes narrative-actor-fade-in { from { opacity:0; } }
+@keyframes narrative-actor-fade-out { to { opacity:0; } }
+@keyframes narrative-actor-slide-in-left { from { opacity:0; translate:-5vw 0; } }
+@keyframes narrative-actor-slide-in-right { from { opacity:0; translate:5vw 0; } }
+@keyframes narrative-actor-slide-out-left { to { opacity:0; translate:-5vw 0; } }
+@keyframes narrative-actor-slide-out-right { to { opacity:0; translate:5vw 0; } }
 
 .dialogue--narrative .dialogue__painted,.dialogue--narrative .dialogue__backdrop,.dialogue--narrative .ui-environment-layer,.dialogue--narrative .dialogue__stage { display:none; }
 .dialogue--narrative .dialogue__brand { top:clamp(18px,2.2vw,34px); left:clamp(18px,2.4vw,38px); opacity:.72; }
@@ -2832,5 +2839,6 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 
 @media (prefers-reduced-motion: reduce) {
   .narrative-scene-surface__environment,.narrative-scene-surface__atmosphere { animation:none !important; transform:none; translate:none; }
+  .narrative-cast__actor { animation:none !important; translate:none !important; }
   .narrative-media-transition,.narrative-media-transition * { animation:none !important; transition:none !important; }
 }

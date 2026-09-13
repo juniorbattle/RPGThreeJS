@@ -1,0 +1,3817 @@
+{
+  "schemaVersion": 1,
+  "baseline": "ff743b08fb239d55e11ac5cd682950032a06e2e1",
+  "canonicalSpriteAuthority": "public/assets/characters/pixel/full/*.png",
+  "physicalScalePolicy": "Stable scale 1.0; spacing and staged subsets solve crowding.",
+  "summary": {
+    "staticSegments": 78,
+    "oneActor": 22,
+    "twoActor": 31,
+    "threeActor": 11,
+    "fourActor": 14,
+    "fivePlus": 0,
+    "mirroredActorStates": 64,
+    "turnToTargetCount": 198,
+    "explicitAddresseeCount": 8,
+    "authoredConversationTargetCount": 84,
+    "previousSpeakerReactionCount": 76,
+    "groupTargetCount": 14,
+    "defaultTargetCount": 65,
+    "explicitFacingOverrides": 8,
+    "addressResolutionCounts": {
+      "EXPLICIT_ADDRESSEE": 8,
+      "AUTHORED_CONVERSATION_TARGET": 84,
+      "DIRECT_RESPONSE": 76,
+      "OPPOSING_GROUP": 14,
+      "SCENE_DEFAULT": 65
+    },
+    "dynamicStepDirections": 247,
+    "actorFactionSideViolations": 0,
+    "actorGroups": {
+      "PLAYER_COMPANY": 6,
+      "LION_COURT": 2,
+      "LOCAL_CIVILIAN": 2,
+      "REFUGEE": 1,
+      "ANTAGONIST": 5,
+      "RECRUIT_CANDIDATE": 2,
+      "NEUTRAL": 3
+    },
+    "stageIns": 164,
+    "stageOuts": 19,
+    "narrativeExits": 0
+  },
+  "entries": [
+    {
+      "dialogueId": "acte_ouverture",
+      "narrativeCast": [
+        "sage_seraphine",
+        "maelor",
+        "alistair",
+        "marian",
+        "kestrel",
+        "elara"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "acte_ouverture:segment-1",
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alistair",
+              "screenPosition": "CENTER_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "marian",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [
+            {
+              "actorId": "alistair",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_RIGHT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            },
+            {
+              "actorId": "marian",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_RIGHT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            }
+          ],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        },
+        {
+          "segmentId": "acte_ouverture:segment-2",
+          "actors": [
+            {
+              "actorId": "kestrel",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "elara",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "SLIDE_IN_LEFT"
+            },
+            {
+              "actorId": "elara",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "SLIDE_IN_LEFT"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "CENTER_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "elara",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "NONE"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "NONE"
+            }
+          ],
+          "exits": [
+            {
+              "actorId": "kestrel",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_LEFT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            },
+            {
+              "actorId": "elara",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_LEFT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            },
+            {
+              "actorId": "maelor",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_RIGHT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            },
+            {
+              "actorId": "sage_seraphine",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_RIGHT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            }
+          ],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        },
+        {
+          "segmentId": "acte_ouverture:segment-3",
+          "actors": [
+            {
+              "actorId": "alistair",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 4,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "ate_alaric_reports",
+      "narrativeCast": [
+        "lion_champion",
+        "alaric"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "ate_alaric_reports:segment-1",
+          "actors": [
+            {
+              "actorId": "lion_champion",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alaric",
+              "group": "LION_COURT",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alaric",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "lion_champion",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "AUTHORITY",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "ate_bois_clair_night_watch",
+      "narrativeCast": [
+        "villageoise",
+        "marian",
+        "alistair",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "ate_bois_clair_night_watch:segment-1",
+          "actors": [
+            {
+              "actorId": "marian",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alistair",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "villageoise",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "LOCAL_CIVILIAN",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 4,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "ate_first_refuge_watch",
+      "narrativeCast": [
+        "marian",
+        "alistair",
+        "kestrel",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "ate_first_refuge_watch:segment-1",
+          "actors": [
+            {
+              "actorId": "marian",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alistair",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "kestrel",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "kestrel",
+              "screenPosition": "CENTER_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "kestrel",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 4,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "ate_lion_council_doubt",
+      "narrativeCast": [
+        "lion_champion",
+        "alaric"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "ate_lion_council_doubt:segment-1",
+          "actors": [
+            {
+              "actorId": "lion_champion",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alaric",
+              "group": "LION_COURT",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alaric",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "lion_champion",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "AUTHORITY",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "ate_maelor_seal_analysis",
+      "narrativeCast": [
+        "maelor",
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "ate_maelor_seal_analysis:segment-1",
+          "actors": [
+            {
+              "actorId": "maelor",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "ate_ruins_awaken",
+      "narrativeCast": [
+        "maelor",
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "ate_ruins_awaken:segment-1",
+          "actors": [
+            {
+              "actorId": "maelor",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "ate_serpent_general_warning",
+      "narrativeCast": [
+        "serpent_oracle",
+        "serpent_general_boss"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "ate_serpent_general_warning:segment-1",
+          "actors": [
+            {
+              "actorId": "serpent_oracle",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "serpent_general_boss",
+              "group": "ANTAGONIST",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "serpent_general_boss",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "serpent_oracle",
+              "group": "ANTAGONIST",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "ate_serpent_retreat_order",
+      "narrativeCast": [
+        "serpent_general_boss",
+        "serpent_oracle"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "ate_serpent_retreat_order:segment-1",
+          "actors": [
+            {
+              "actorId": "serpent_general_boss",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "serpent_oracle",
+              "group": "ANTAGONIST",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "serpent_oracle",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "serpent_general_boss",
+              "group": "ANTAGONIST",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "ate_serpent_scout_report",
+      "narrativeCast": [
+        "serpent_raider",
+        "serpent_oracle",
+        "serpent_general_boss"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "ate_serpent_scout_report:segment-1",
+          "actors": [
+            {
+              "actorId": "serpent_raider",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "serpent_oracle",
+              "group": "ANTAGONIST",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "serpent_oracle",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": "serpent_general_boss",
+              "group": "ANTAGONIST",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "serpent_general_boss",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "serpent_oracle",
+              "group": "ANTAGONIST",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 3,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "ate_village_fear",
+      "narrativeCast": [
+        "villageoise",
+        "refugee_mother"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "ate_village_fear:segment-1",
+          "actors": [
+            {
+              "actorId": "villageoise",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "refugee_mother",
+              "group": "LOCAL_CIVILIAN",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "refugee_mother",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "villageoise",
+              "group": "REFUGEE",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "camp_departure",
+      "narrativeCast": [
+        "maelor",
+        "alistair",
+        "marian",
+        "sage_seraphine",
+        "kestrel"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "camp_departure:segment-1",
+          "actors": [
+            {
+              "actorId": "maelor",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alistair",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "marian",
+              "screenPosition": "CENTER_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [
+            {
+              "actorId": "maelor",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_LEFT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            },
+            {
+              "actorId": "alistair",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_LEFT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            },
+            {
+              "actorId": "marian",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_RIGHT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            }
+          ],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        },
+        {
+          "segmentId": "camp_departure:segment-2",
+          "actors": [
+            {
+              "actorId": "kestrel",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "SLIDE_IN_LEFT"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "kestrel",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "NONE"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 4,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "epilogue",
+      "narrativeCast": [
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "epilogue:segment-1",
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "final_refuge",
+      "narrativeCast": [
+        "maelor",
+        "sage_seraphine",
+        "marian",
+        "alistair"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "final_refuge:segment-1",
+          "actors": [
+            {
+              "actorId": "maelor",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "marian",
+              "screenPosition": "CENTER_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alistair",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 4,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "lion_briefing",
+      "narrativeCast": [
+        "alaric",
+        "alistair",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "lion_briefing:segment-1",
+          "actors": [
+            {
+              "actorId": "alistair",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alaric",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "AUTHORITY",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 4,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "lion_finale_judgement",
+      "narrativeCast": [
+        "alaric"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "lion_finale_judgement:segment-1",
+          "actors": [
+            {
+              "actorId": "alaric",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "LION_COURT",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "AUTHORITY",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "lion_trial_aftermath",
+      "narrativeCast": [
+        "alaric"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "lion_trial_aftermath:segment-1",
+          "actors": [
+            {
+              "actorId": "alaric",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "LION_COURT",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "AUTHORITY",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "mystery_ambush",
+      "narrativeCast": [
+        "serpent_raider"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "mystery_ambush:segment-1",
+          "actors": [
+            {
+              "actorId": "serpent_raider",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "ANTAGONIST",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "mystery_dragon_roost",
+      "narrativeCast": [
+        "young_dragon_elite",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "mystery_dragon_roost:segment-1",
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "young_dragon_elite",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "young_dragon_elite",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "ANTAGONIST",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 3,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "mystery_help",
+      "narrativeCast": [
+        "survivor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "mystery_help:segment-1",
+          "actors": [
+            {
+              "actorId": "survivor",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "LOCAL_CIVILIAN",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "mystery_lancer_recruit",
+      "narrativeCast": [
+        "lancer"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "mystery_lancer_recruit:segment-1",
+          "actors": [
+            {
+              "actorId": "lancer",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "RECRUIT_CANDIDATE",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "mystery_recruit",
+      "narrativeCast": [
+        "kestrel",
+        "cedric"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "mystery_recruit:segment-1",
+          "actors": [
+            {
+              "actorId": "kestrel",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "cedric",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "cedric",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "kestrel",
+              "group": "RECRUIT_CANDIDATE",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "mystery_shrine",
+      "narrativeCast": [
+        "shrine_apparition",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "mystery_shrine:segment-1",
+          "actors": [
+            {
+              "actorId": "shrine_apparition",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "sage_seraphine",
+              "group": "NEUTRAL",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 3,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "mystery_treasure",
+      "narrativeCast": [
+        "maelor",
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "mystery_treasure:segment-1",
+          "actors": [
+            {
+              "actorId": "maelor",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "mystery_troll_crossing",
+      "narrativeCast": [
+        "forest_troll_elite",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "mystery_troll_crossing:segment-1",
+          "actors": [
+            {
+              "actorId": "forest_troll_elite",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "sage_seraphine",
+              "group": "NEUTRAL",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 3,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "old_shrine_event",
+      "narrativeCast": [
+        "sage_seraphine",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "old_shrine_event:segment-1",
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "post_opening_trail",
+      "narrativeCast": [
+        "kestrel",
+        "alistair",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "post_opening_trail:segment-1",
+          "actors": [
+            {
+              "actorId": "kestrel",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alistair",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 3,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "post_ruins_guardians",
+      "narrativeCast": [
+        "elara",
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "post_ruins_guardians:segment-1",
+          "actors": [
+            {
+              "actorId": "elara",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "elara",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "post_serpent_checkpoint",
+      "narrativeCast": [
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "post_serpent_checkpoint:segment-1",
+          "actors": [
+            {
+              "actorId": "kestrel",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "kestrel",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "post_serpent_duelist_trial",
+      "narrativeCast": [
+        "serpent_duelist_elite",
+        "alistair"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "post_serpent_duelist_trial:segment-1",
+          "actors": [
+            {
+              "actorId": "alistair",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "serpent_duelist_elite",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "serpent_duelist_elite",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alistair",
+              "group": "ANTAGONIST",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "post_serpent_hunters",
+      "narrativeCast": [
+        "serpent_oracle",
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "post_serpent_hunters:segment-1",
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "serpent_oracle",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "serpent_oracle",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "sage_seraphine",
+              "group": "ANTAGONIST",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "post_serpent_patrol",
+      "narrativeCast": [
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "post_serpent_patrol:segment-1",
+          "actors": [
+            {
+              "actorId": "kestrel",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "kestrel",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "post_serpent_reprisals",
+      "narrativeCast": [
+        "alistair",
+        "kestrel"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "post_serpent_reprisals:segment-1",
+          "actors": [
+            {
+              "actorId": "alistair",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "kestrel",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "kestrel",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "post_spider_nest",
+      "narrativeCast": [
+        "elara",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "post_spider_nest:segment-1",
+          "actors": [
+            {
+              "actorId": "elara",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "elara",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "post_troll_crossing",
+      "narrativeCast": [
+        "marian",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "post_troll_crossing:segment-1",
+          "actors": [
+            {
+              "actorId": "marian",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "post_valmir_road",
+      "narrativeCast": [
+        "marian",
+        "kestrel",
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "post_valmir_road:segment-1",
+          "actors": [
+            {
+              "actorId": "marian",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "kestrel",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "kestrel",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "kestrel",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 3,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "post_young_dragon_roost",
+      "narrativeCast": [
+        "elara",
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "post_young_dragon_roost:segment-1",
+          "actors": [
+            {
+              "actorId": "elara",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "elara",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "pre_lion_chief",
+      "narrativeCast": [
+        "alaric",
+        "lion_champion"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "pre_lion_chief:segment-1",
+          "actors": [
+            {
+              "actorId": "alaric",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "lion_champion",
+              "group": "LION_COURT",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "AUTHORITY",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "lion_champion",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alaric",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "pre_opening_trail",
+      "narrativeCast": [
+        "kestrel",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "pre_opening_trail:segment-1",
+          "actors": [
+            {
+              "actorId": "kestrel",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alistair",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 3,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "pre_ruins_guardians",
+      "narrativeCast": [
+        "elara",
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "pre_ruins_guardians:segment-1",
+          "actors": [
+            {
+              "actorId": "elara",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "elara",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "pre_serpent_checkpoint",
+      "narrativeCast": [
+        "kestrel",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "pre_serpent_checkpoint:segment-1",
+          "actors": [
+            {
+              "actorId": "kestrel",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "kestrel",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "pre_serpent_duelist_trial",
+      "narrativeCast": [
+        "serpent_duelist_elite"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "pre_serpent_duelist_trial:segment-1",
+          "actors": [
+            {
+              "actorId": "serpent_duelist_elite",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "ANTAGONIST",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "pre_serpent_hunters",
+      "narrativeCast": [
+        "serpent_raider",
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "pre_serpent_hunters:segment-1",
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "serpent_raider",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "serpent_raider",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "sage_seraphine",
+              "group": "ANTAGONIST",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "pre_serpent_patrol",
+      "narrativeCast": [
+        "kestrel",
+        "alistair"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "pre_serpent_patrol:segment-1",
+          "actors": [
+            {
+              "actorId": "kestrel",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alistair",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "kestrel",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "pre_serpent_reprisals",
+      "narrativeCast": [
+        "serpent_raider",
+        "alistair"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "pre_serpent_reprisals:segment-1",
+          "actors": [
+            {
+              "actorId": "alistair",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "serpent_raider",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "serpent_raider",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alistair",
+              "group": "ANTAGONIST",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "pre_spider_nest",
+      "narrativeCast": [
+        "elara",
+        "marian"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "pre_spider_nest:segment-1",
+          "actors": [
+            {
+              "actorId": "elara",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "marian",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "elara",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "pre_troll_crossing",
+      "narrativeCast": [
+        "forest_troll_elite"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "pre_troll_crossing:segment-1",
+          "actors": [
+            {
+              "actorId": "forest_troll_elite",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "NEUTRAL",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "pre_valmir_road",
+      "narrativeCast": [
+        "kestrel",
+        "marian",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "pre_valmir_road:segment-1",
+          "actors": [
+            {
+              "actorId": "kestrel",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "marian",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 3,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "pre_village_defense",
+      "narrativeCast": [
+        "serpent_raider"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "pre_village_defense:segment-1",
+          "actors": [
+            {
+              "actorId": "serpent_raider",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "ANTAGONIST",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "pre_village_raid",
+      "narrativeCast": [
+        "serpent_brute"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "pre_village_raid:segment-1",
+          "actors": [
+            {
+              "actorId": "serpent_brute",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "NEUTRAL",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "pre_young_dragon_roost",
+      "narrativeCast": [
+        "young_dragon_elite"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "pre_young_dragon_roost:segment-1",
+          "actors": [
+            {
+              "actorId": "young_dragon_elite",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "ANTAGONIST",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "refugee_trial",
+      "narrativeCast": [
+        "kestrel",
+        "marian",
+        "refugee_mother",
+        "alistair",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "refugee_trial:segment-1",
+          "actors": [
+            {
+              "actorId": "kestrel",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "marian",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alistair",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "refugee_mother",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alistair",
+              "group": "REFUGEE",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [
+            {
+              "actorId": "alistair",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_LEFT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            },
+            {
+              "actorId": "refugee_mother",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_RIGHT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            }
+          ],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        },
+        {
+          "segmentId": "refugee_trial:segment-2",
+          "actors": [
+            {
+              "actorId": "maelor",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "SLIDE_IN_LEFT"
+            },
+            {
+              "actorId": "marian",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": "kestrel",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "NONE"
+            },
+            {
+              "actorId": "kestrel",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "NONE"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 4,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "rep_event_bois_clair_denunciation",
+      "narrativeCast": [
+        "refugee_mother"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "rep_event_bois_clair_denunciation:segment-1",
+          "actors": [
+            {
+              "actorId": "refugee_mother",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "REFUGEE",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "rep_event_brokered_information",
+      "narrativeCast": [
+        "survivor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "rep_event_brokered_information:segment-1",
+          "actors": [
+            {
+              "actorId": "survivor",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "LOCAL_CIVILIAN",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "rep_event_displaced_family_demand",
+      "narrativeCast": [
+        "survivor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "rep_event_displaced_family_demand:segment-1",
+          "actors": [
+            {
+              "actorId": "survivor",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "LOCAL_CIVILIAN",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "rep_event_fallen_banner_claimant",
+      "narrativeCast": [
+        "survivor",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "rep_event_fallen_banner_claimant:segment-1",
+          "actors": [
+            {
+              "actorId": "maelor",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "survivor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "survivor",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "LOCAL_CIVILIAN",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "rep_event_public_petition",
+      "narrativeCast": [
+        "refugee_mother"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "rep_event_public_petition:segment-1",
+          "actors": [
+            {
+              "actorId": "refugee_mother",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "REFUGEE",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "rep_event_refuge_supply_offer",
+      "narrativeCast": [
+        "survivor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "rep_event_refuge_supply_offer:segment-1",
+          "actors": [
+            {
+              "actorId": "survivor",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "LOCAL_CIVILIAN",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "rep_event_roadside_intimidation",
+      "narrativeCast": [
+        "serpent_raider",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "rep_event_roadside_intimidation:segment-1",
+          "actors": [
+            {
+              "actorId": "maelor",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "serpent_raider",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "serpent_raider",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "ANTAGONIST",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "rep_event_serpent_rumour_market",
+      "narrativeCast": [
+        "survivor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "rep_event_serpent_rumour_market:segment-1",
+          "actors": [
+            {
+              "actorId": "survivor",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "LOCAL_CIVILIAN",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "rep_event_village_memorial_request",
+      "narrativeCast": [
+        "refugee_mother"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "rep_event_village_memorial_request:segment-1",
+          "actors": [
+            {
+              "actorId": "refugee_mother",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "REFUGEE",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "reserve_trail",
+      "narrativeCast": [
+        "kestrel",
+        "alistair",
+        "maelor",
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "reserve_trail:segment-1",
+          "actors": [
+            {
+              "actorId": "kestrel",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alistair",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "CENTER_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 4,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "serpent_duelist_trial",
+      "narrativeCast": [
+        "serpent_duelist_elite",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "serpent_duelist_trial:segment-1",
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "serpent_duelist_elite",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "serpent_duelist_elite",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "ANTAGONIST",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 3,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "serpent_general_aftermath",
+      "narrativeCast": [
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "serpent_general_aftermath:segment-1",
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "serpent_informant",
+      "narrativeCast": [
+        "serpent_oracle",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "serpent_informant:segment-1",
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "serpent_oracle",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "serpent_oracle",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "ANTAGONIST",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 3,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "serpent_pursuit_pre_combat",
+      "narrativeCast": [
+        "alaric",
+        "serpent_general_boss"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "serpent_pursuit_pre_combat:segment-1",
+          "actors": [
+            {
+              "actorId": "alaric",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "serpent_general_boss",
+              "group": "LION_COURT",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "AUTHORITY",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "serpent_general_boss",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alaric",
+              "group": "ANTAGONIST",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "shadow_signs",
+      "narrativeCast": [
+        "sage_seraphine",
+        "elara",
+        "alistair",
+        "maelor"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "shadow_signs:segment-1",
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "elara",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "elara",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alistair",
+              "screenPosition": "CENTER_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "elara",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 4,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "village_choice",
+      "narrativeCast": [
+        "villageoise",
+        "marian",
+        "serpent_raider",
+        "kestrel",
+        "sage_seraphine",
+        "maelor",
+        "alistair"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "village_choice:segment-1",
+          "actors": [
+            {
+              "actorId": "marian",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "kestrel",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "kestrel",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "villageoise",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "villageoise",
+              "screenPosition": "CENTER_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "kestrel",
+              "group": "LOCAL_CIVILIAN",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "serpent_raider",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "villageoise",
+              "group": "ANTAGONIST",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [
+            {
+              "actorId": "marian",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_LEFT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            },
+            {
+              "actorId": "kestrel",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_LEFT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            },
+            {
+              "actorId": "serpent_raider",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_RIGHT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            }
+          ],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        },
+        {
+          "segmentId": "village_choice:segment-2",
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "SLIDE_IN_LEFT"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "SLIDE_IN_LEFT"
+            },
+            {
+              "actorId": "alistair",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "SLIDE_IN_LEFT"
+            },
+            {
+              "actorId": "villageoise",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alistair",
+              "group": "LOCAL_CIVILIAN",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "NONE"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 4,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "village_defense_aftermath",
+      "narrativeCast": [
+        "villageoise"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "village_defense_aftermath:segment-1",
+          "actors": [
+            {
+              "actorId": "villageoise",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "LOCAL_CIVILIAN",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 1,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "village_raid_aftermath",
+      "narrativeCast": [
+        "maelor",
+        "villageoise"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "village_raid_aftermath:segment-1",
+          "actors": [
+            {
+              "actorId": "maelor",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "villageoise",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "villageoise",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "LOCAL_CIVILIAN",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 2,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    },
+    {
+      "dialogueId": "witnesses_on_road",
+      "narrativeCast": [
+        "kestrel",
+        "marian",
+        "survivor",
+        "alistair",
+        "maelor",
+        "sage_seraphine"
+      ],
+      "activeVisualSegments": [
+        {
+          "segmentId": "witnesses_on_road:segment-1",
+          "actors": [
+            {
+              "actorId": "kestrel",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "marian",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alistair",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alistair",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "survivor",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alistair",
+              "group": "LOCAL_CIVILIAN",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [
+            {
+              "actorId": "alistair",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_LEFT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            }
+          ],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        },
+        {
+          "segmentId": "witnesses_on_road:segment-2",
+          "actors": [
+            {
+              "actorId": "maelor",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "SLIDE_IN_LEFT"
+            },
+            {
+              "actorId": "marian",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "kestrel",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "NONE"
+            },
+            {
+              "actorId": "kestrel",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "marian",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "NONE"
+            },
+            {
+              "actorId": "survivor",
+              "screenPosition": "RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "kestrel",
+              "group": "LOCAL_CIVILIAN",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "NONE"
+            }
+          ],
+          "exits": [
+            {
+              "actorId": "maelor",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_LEFT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            },
+            {
+              "actorId": "marian",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_LEFT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            },
+            {
+              "actorId": "kestrel",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_LEFT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            },
+            {
+              "actorId": "survivor",
+              "kind": "STAGE_OUT",
+              "effect": "SLIDE_OUT_RIGHT",
+              "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
+            }
+          ],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        },
+        {
+          "segmentId": "witnesses_on_road:segment-3",
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "CENTER",
+              "scale": 1,
+              "facing": "FORWARD",
+              "lookTarget": null,
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "CENTER",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stablePhysicalScale": true,
+          "headOverlap": false,
+          "faceUiCollision": false
+        }
+      ],
+      "maxSimultaneousStaticActors": 4,
+      "narrativeExits": [],
+      "choiceGeometry": "UNCHANGED"
+    }
+  ]
+}

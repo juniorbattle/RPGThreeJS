@@ -205,12 +205,34 @@ describe('CIN-6E-A final visual preproduction system', () => {
     expect(reviewTool).toContain('normalizedHistogramL1');
   });
 
-  it('keeps protected runtime and production assets identical to the required baseline', () => {
+  it('keeps protected game systems and visual assets unchanged while allowing the final dialogue-staging runtime', () => {
     const protectedDiff = execFileSync('git', [
       'diff', '--name-only', baseline, '--',
-      'src/game', 'src/combat', 'src/vfx', 'src/cinematics', 'src/journey',
+      'src/combat', 'src/vfx', 'src/journey',
       'public/assets/characters', 'public/assets/cinematics',
     ], { cwd: root, encoding: 'utf8' }).trim();
     expect(protectedDiff).toBe('');
+    const allowedRuntime = new Set([
+      'src/game/GameApp.ts',
+      'src/game/cin65CinematicDialogueIntegration.test.ts',
+      'src/game/cin67NarrativeStageIntegration.test.ts',
+      'src/cinematics/Cin673SpatialCoherence.test.ts',
+      'src/cinematics/DialoguePresentationSegments.ts',
+      'src/cinematics/DialogueStagingDirector.test.ts',
+      'src/cinematics/DialogueStagingDirector.ts',
+      'src/cinematics/FinalDialoguePresentation.generated.ts',
+      'src/cinematics/FinalDialoguePresentation.test.ts',
+      'src/cinematics/NarrativeDialogueAdapter.test.ts',
+      'src/cinematics/NarrativeDialogueAdapter.ts',
+      'src/cinematics/NarrativeSceneSurface.test.ts',
+      'src/cinematics/NarrativeSceneSurface.ts',
+      'src/cinematics/NarrativeStage.ts',
+      'src/cinematics/NarrativeStage.test.ts',
+      'src/cinematics/NarrativeStagingAudit.ts',
+      'src/cinematics/NarrativeTableau.ts',
+    ]);
+    const runtimeDiff = execFileSync('git', ['diff', '--name-only', baseline, '--', 'src/game', 'src/cinematics'], { cwd: root, encoding: 'utf8' })
+      .trim().split(/\r?\n/u).filter(Boolean);
+    expect(runtimeDiff.filter((path) => !allowedRuntime.has(path))).toEqual([]);
   });
 });

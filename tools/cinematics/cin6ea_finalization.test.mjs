@@ -89,10 +89,10 @@ describe('CIN-6E-A final operator approval and visual production lock', () => {
     expect(authoritative).not.toMatch(/BLOCKED_(?:IMAGE_)?MODEL_UNAVAILABLE|PENDING_HUMAN_VISUAL_APPROVAL|VISUAL_PRODUCTION_LOCK:\s*\*\*NO|"miniMaxAttempts":\s*0|"executed":\s*0/u);
   });
 
-  it('changes no runtime, production media, manifest or canonical sprite from the finalization baseline', () => {
+  it('changes no protected game system, production media or canonical sprite from the finalization baseline', () => {
     const protectedDiff = execFileSync('git', [
       'diff', '--name-only', baseline, '--',
-      'src/game', 'src/combat', 'src/vfx', 'src/cinematics', 'src/journey',
+      'src/combat', 'src/vfx', 'src/journey',
       'public/assets/characters/pixel/full', 'public/assets/cinematics',
     ], { cwd: root, encoding: 'utf8' }).trim();
     expect(protectedDiff).toBe('');

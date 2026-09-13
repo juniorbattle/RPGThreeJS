@@ -62,15 +62,18 @@ describe('CIN-6.7 NarrativeStage campaign integration', () => {
     expect(TABLEAUX).not.toContain("label: 'Barrage renforcé'");
   });
 
-  it('separates reveal video, held dialogue and static tableau ownership', () => {
+  it('ends an approved video prelude before static-tableau dialogue begins', () => {
     const dialogue = method('private async playNarrativeDialogue');
-    expect(dialogue).toContain('createNarrativeDialogueResolver(sequence, options.tableau, {');
-    expect(dialogue).toContain('mediaMode: this.narrativeMediaMode');
-    expect(dialogue).toContain("hasMovingMedia: presentationBeat?.mode === 'CINEMATIC_HOLD'");
+    expect(dialogue).toContain('const tableau = applyFinalDialoguePresentationPlan(sequence, options.tableau)');
+    expect(dialogue).toContain('createNarrativeDialogueResolver(sequence, tableau, {');
+    expect(dialogue).toContain("mediaMode: 'STILL'");
+    expect(dialogue).toContain('hasMovingMedia: false');
+    expect(dialogue).toContain('beforeStepChange: (step, presentation) => stage.activateDialogueStep(');
     expect(dialogue).toContain('validateDialogueCast(');
     expect(dialogue).toContain('await stage.presentCinematicBeat(videoBeat');
-    expect(dialogue).toContain('await stage.enterCinematicHold(presentationBeat');
-    expect(dialogue).toContain('stage.releaseFreeze()');
+    expect(dialogue).toContain('shouldPlayDialoguePreludeVideo(options.cinematicId)');
+    expect(dialogue).toContain('await stage.presentDialogueTableau(');
+    expect(dialogue).not.toContain('enterCinematicHold');
     expect(dialogue).toContain("mode: 'narrative-stage'");
     expect(dialogue).toContain('root: stage.dialogueLayer');
     expect(STAGE).not.toMatch(/GameState|enterRunNode|combatConfigs|applyEffects|changeReputation|SaveRepository/);
