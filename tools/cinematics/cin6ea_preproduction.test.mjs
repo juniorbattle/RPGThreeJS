@@ -217,6 +217,7 @@ describe('CIN-6E-A final visual preproduction system', () => {
       'src/game/cin65CinematicDialogueIntegration.test.ts',
       'src/game/cin67NarrativeStageIntegration.test.ts',
       'src/cinematics/Cin673SpatialCoherence.test.ts',
+      'src/cinematics/CinematicReductionPolicy.ts',
       'src/cinematics/DialoguePresentationSegments.ts',
       'src/cinematics/DialogueStagingDirector.test.ts',
       'src/cinematics/DialogueStagingDirector.ts',
