@@ -9,7 +9,6 @@ const execFile = promisify(execFileCallback);
 const root = process.cwd();
 const baseline = 'ff743b08fb239d55e11ac5cd682950032a06e2e1';
 const outputPath = resolve(root, 'tools/cinematics/specs/cin6ea4r_final_validation.json');
-const compatibilityOutputPath = resolve(root, 'tools/cinematics/specs/cin6ea4_final_validation.json');
 const requiredZeroInvariantNames = [
   'DIALOGUE_STEPS_ON_VIDEO',
   'DIALOGUE_STEPS_ON_HOLD',
@@ -437,7 +436,6 @@ async function main() {
 
   const serialized = `${JSON.stringify(report, null, 2)}\n`;
   await writeFile(outputPath, serialized, 'utf8');
-  await writeFile(compatibilityOutputPath, serialized, 'utf8');
   console.log(JSON.stringify({
     output: normalize(relative(root, outputPath)),
     repository: report.repository,

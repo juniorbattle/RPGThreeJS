@@ -1,0 +1,329 @@
+{
+  "schemaVersion": 1,
+  "mission": "REPO-CLEAN-2 SAFE REPOSITORY CONSOLIDATION + LOCAL SUPERFLUOUS OUTPUT CLEANUP",
+  "baseline": "d974d63b0123c177865e389bc335a2b4aff868cd",
+  "capturedAt": "2026-09-13T13:30:48.8332616-04:00",
+  "preflight": {
+    "branch": "main",
+    "head": "d974d63b0123c177865e389bc335a2b4aff868cd",
+    "originMain": "d974d63b0123c177865e389bc335a2b4aff868cd",
+    "worktreeClean": true,
+    "status": "PASS"
+  },
+  "preCleanInventory": {
+    "trackedFiles": 1306,
+    "trackedBytes": 875905510,
+    "ignoredLocalFiles": 25711,
+    "ignoredLocalBytes": 6719526050,
+    "productionMediaCount": 31,
+    "canonicalFullSpriteCount": 52,
+    "combatPoseCount": 76,
+    "testFileCount": 125,
+    "normalizedProductionManifestSha256": "85942a074b2b39f8c391482a936687682e3d4ac346601b0e5309b1a1050dc321",
+    "productionMedia": [
+      { "path": "public/assets/cinematics/abandoned_cart_reveal.mp4", "sha256": "535b70307fa5aebadd846dc91f1bbcebbc8ad8f845c7c4d61823808def7a57f8" },
+      { "path": "public/assets/cinematics/alaric_audience_arrival.mp4", "sha256": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629" },
+      { "path": "public/assets/cinematics/bois_clair_arrival.mp4", "sha256": "a37d397665960f8f6749d8f1ece69eaf91c7160cec68fc581ed26ea78042a699" },
+      { "path": "public/assets/cinematics/bois_clair_sacrificed.mp4", "sha256": "db07031a3105fb31280abe3aca026cb74e4612e2aa44f7023b5401847322f1a4" },
+      { "path": "public/assets/cinematics/bois_clair_saved.mp4", "sha256": "a57d9ef8ff2fbb26084066b057f89948bdfe59de22dc7f7770d6576900223b1f" },
+      { "path": "public/assets/cinematics/camp_departure.mp4", "sha256": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3" },
+      { "path": "public/assets/cinematics/cedric_encounter.mp4", "sha256": "aa41a28e8b8829eb9c1c4122184ace9756f01676c2bbc903899e2f366e819a82" },
+      { "path": "public/assets/cinematics/final_refuge_dossier.mp4", "sha256": "fa821768883d1afd897216c60c81f979c998db0b1437e1c7eb74f098b58f5ca2" },
+      { "path": "public/assets/cinematics/first_refuge_arrival.mp4", "sha256": "31b4a50f678d6d7431a855d7056bbcee66f44f8a623081be972b79986a55c56e" },
+      { "path": "public/assets/cinematics/first_refuge_departure.mp4", "sha256": "a3078c6e149c02f78be58063d9f884004a7d3b0265ba29481506fe138d194425" },
+      { "path": "public/assets/cinematics/forest_journey_tension.mp4", "sha256": "385f5f9b99b22d9710ef1ef7a89fd21a8b59e392664a51a2480eab6167511fac" },
+      { "path": "public/assets/cinematics/garen_encounter.mp4", "sha256": "2d9bb62eba5bc8c17a84beebe81ffd916d805a9063398054d424865fff5646a7" },
+      { "path": "public/assets/cinematics/injured_merchant_encounter.mp4", "sha256": "a1e6de8c63d1d83d5ee51c5de6548a62b068392fdcd746a948f231d253405892" },
+      { "path": "public/assets/cinematics/lion_champion_reveal.mp4", "sha256": "2d581e76e5cc0a37d4633fd6d7166210780da55475f54abadfd90aedaf30b04c" },
+      { "path": "public/assets/cinematics/lion_judgement.mp4", "sha256": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9" },
+      { "path": "public/assets/cinematics/lion_trial_route_ending.mp4", "sha256": "34f023ac0313e622a82d53c955e63e1e56a62eb4bd3bfdef9580196fcff178b2" },
+      { "path": "public/assets/cinematics/refugees_approach.mp4", "sha256": "5f1d76f8686c2bf2f9775576da6d50649cb33e1c5157b46e6d3f9d5b719e5a28" },
+      { "path": "public/assets/cinematics/ruins_approach_context.mp4", "sha256": "adf235b6d84889cf80059ae314e7472f2c07e9dcd2f7e9cf99cf7f936bebe525" },
+      { "path": "public/assets/cinematics/second_refuge_departure.mp4", "sha256": "a7d4210b8223a6ef3946fc63bdb138310ed61168f6d902bfc0eb4f74dbe9be3d" },
+      { "path": "public/assets/cinematics/serpent_duelist_reveal.mp4", "sha256": "9bf2e927a0940b5b0b3d116a7dbb692bf00c1371b19fa985f154bf08527c2560" },
+      { "path": "public/assets/cinematics/serpent_general_reveal.mp4", "sha256": "e8c918d292693e4bc7f612fc6f4fbcdb283c6d2f8095c805db287692e561a682" },
+      { "path": "public/assets/cinematics/serpent_informant_encounter.mp4", "sha256": "5a1a79ed2c9c07f1da13aa2ed872be8823de7223324dba6faa2c7dc60507c069" },
+      { "path": "public/assets/cinematics/serpent_road_tension.mp4", "sha256": "33be67338637de8413738789b8a0fa067007ff65bae06081b229870817f56412" },
+      { "path": "public/assets/cinematics/serpent_route_ending.mp4", "sha256": "f1de1f29ccc98ca66f97da94c21060d100687e4fef39b2d0378bcdea36db395c" },
+      { "path": "public/assets/cinematics/shadow_signs.mp4", "sha256": "141d5e04d3573a1827cff7dbdc9efacb024d8a3ecab32a985b700da75a56f4c2" },
+      { "path": "public/assets/cinematics/shrine_reveal_context.mp4", "sha256": "e28a9ceb996e16291594f99e2905b25da35b316b0aafe1c058dfe5818d09f48c" },
+      { "path": "public/assets/cinematics/spider_nest_reveal.mp4", "sha256": "7f98991ba6ae91f7904355736875d822c70b5af48ebeeef64598730405e57b0b" },
+      { "path": "public/assets/cinematics/troll_crossing_reveal.mp4", "sha256": "6ddb0044b5259870bbad78d31a57ab77dc7d47268310514ef8d7e00a2a6d3281" },
+      { "path": "public/assets/cinematics/valmir_route_fork.mp4", "sha256": "63a4a0c3793d6e29ce8fd94b1478dfab59e40f856d53a01915e47fb9a6343261" },
+      { "path": "public/assets/cinematics/witnesses_encounter.mp4", "sha256": "de8f577bb18dc4ce30e0ec3d902fe7f27c4778154ade2e6e1a14eeec99ac4b98" },
+      { "path": "public/assets/cinematics/young_dragon_encounter.mp4", "sha256": "a9cf74c8372981aeb7afdde9efa2a8e5222284fe098b6be5f03223d2d22bdc91" }
+    ]
+  },
+  "batches": [
+    {
+      "id": 1,
+      "name": "SAFE_IGNORED_CACHES_PROFILES_LOGS",
+      "status": "PASS",
+      "filesRemovedGross": 3935,
+      "bytesRemovedGross": 1644296575,
+      "records": [
+        {
+          "path": ".playwright/**",
+          "tracked": false,
+          "classification": "DELETE_CANDIDATE",
+          "fileCount": 2985,
+          "sizeBytes": 386846317,
+          "bytesBefore": 386846317,
+          "bytesAfter": 0,
+          "sha256": null,
+          "reason": "Stale ignored Playwright browser profiles; no active QA session.",
+          "auditEvidence": "REPO-CLEAN-1 deletion plan Phase 1",
+          "replacementPath": null,
+          "referencesBefore": [],
+          "referencesAfter": [],
+          "restorableFromGit": false,
+          "validationStatus": "PASS"
+        },
+        {
+          "path": "tools/cinematics/__pycache__/**",
+          "tracked": false,
+          "classification": "DELETE_CANDIDATE",
+          "fileCount": 2,
+          "sizeBytes": 28025,
+          "bytesBefore": 28025,
+          "bytesAfter": 0,
+          "sha256": null,
+          "reason": "Ignored Python bytecode cache.",
+          "auditEvidence": "REPO-CLEAN-1 deletion plan Phase 1",
+          "replacementPath": null,
+          "referencesBefore": [],
+          "referencesAfter": [],
+          "restorableFromGit": false,
+          "validationStatus": "PASS"
+        },
+        {
+          "path": "tools/vfx/__pycache__/**",
+          "tracked": false,
+          "classification": "DELETE_CANDIDATE",
+          "fileCount": 2,
+          "sizeBytes": 76818,
+          "bytesBefore": 76818,
+          "bytesAfter": 0,
+          "sha256": null,
+          "reason": "Ignored Python bytecode cache.",
+          "auditEvidence": "REPO-CLEAN-1 deletion plan Phase 1",
+          "replacementPath": null,
+          "referencesBefore": [],
+          "referencesAfter": [],
+          "restorableFromGit": false,
+          "validationStatus": "PASS"
+        },
+        {
+          "path": "debug.log",
+          "tracked": false,
+          "classification": "DELETE_CANDIDATE",
+          "fileCount": 1,
+          "sizeBytes": 3076,
+          "bytesBefore": 3076,
+          "bytesAfter": 0,
+          "sha256": null,
+          "reason": "Stale ignored diagnostic log.",
+          "auditEvidence": "REPO-CLEAN-1 deletion plan Phase 1",
+          "replacementPath": null,
+          "referencesBefore": [],
+          "referencesAfter": [],
+          "restorableFromGit": false,
+          "validationStatus": "PASS"
+        },
+        {
+          "path": "dist/**",
+          "tracked": false,
+          "classification": "REGENERABLE_OUTPUT",
+          "fileCount": 887,
+          "sizeBytes": 1217850373,
+          "bytesBefore": 1217850373,
+          "bytesAfter": 1217850373,
+          "sha256": null,
+          "reason": "Removed stale ignored build output before validation; the required production build regenerated it.",
+          "auditEvidence": "REPO-CLEAN-1 deletion plan Phase 1 and REPO-CLEAN-2 section 7",
+          "replacementPath": "dist/** regenerated by npm run build",
+          "referencesBefore": ["Vite production build output"],
+          "referencesAfter": ["Vite production build output"],
+          "restorableFromGit": false,
+          "validationStatus": "PASS_REGENERATED"
+        },
+        {
+          "path": "tmp/pdfs/**",
+          "tracked": false,
+          "classification": "REGENERABLE_OUTPUT",
+          "fileCount": 58,
+          "sizeBytes": 39491966,
+          "bytesBefore": 39491966,
+          "bytesAfter": 0,
+          "sha256": null,
+          "reason": "Ignored PDF build cache; tracked final PDFs and source reports remain.",
+          "auditEvidence": "REPO-CLEAN-1 deletion plan Phase 1",
+          "replacementPath": "output/pdf/*.pdf remains tracked",
+          "referencesBefore": ["PDF build cache only"],
+          "referencesAfter": ["Tracked final PDFs and source reports"],
+          "restorableFromGit": false,
+          "validationStatus": "PASS"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "SAFE_OBSOLETE_LOCAL_QA_DERIVATIVES",
+      "status": "PASS_NO_DELETION",
+      "filesRemovedGross": 0,
+      "bytesRemovedGross": 0,
+      "records": [],
+      "preserved": [
+        {
+          "path": "tmp/cinematics/**",
+          "classification": "KEEP_HISTORY_ARCHIVE_CANDIDATE_MIXED",
+          "reason": "Contains current A.4R evidence, GOLD/approval lineage, Option C references, and older evidence not proven disposable file-by-file."
+        },
+        {
+          "path": "docs/reports/evidence/**",
+          "classification": "ARCHIVE_CANDIDATE",
+          "reason": "VFX evidence requires operator archive/rejection triage."
+        },
+        {
+          "path": "tools/qa-shots/**",
+          "classification": "ARCHIVE_CANDIDATE",
+          "reason": "Unique historical proof was not disproven."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "PROVEN_TRACKED_REVIEW_DUPLICATES",
+      "status": "PASS",
+      "filesRemovedGross": 2,
+      "bytesRemovedGross": 52917,
+      "records": [
+        {
+          "path": "docs/reports/cin-6e-a-4-dialogue-review.html",
+          "tracked": true,
+          "classification": "CONSOLIDATE_CANDIDATE",
+          "fileCount": 1,
+          "sizeBytes": 26703,
+          "sha256": "83ce3039c8269130d5b625acb62e7f2e06f677d9304b27543e7e2d1decf644e0",
+          "reason": "Exact duplicate compatibility output; A.4R-suffixed review is canonical.",
+          "auditEvidence": "REPO-CLEAN-1 exact duplicate audit",
+          "replacementPath": "docs/reports/cin-6e-a-4r-dialogue-review.html",
+          "referencesBefore": [
+            "tools/cinematics/generate_cin6ea4_dialogue_lock.ts",
+            "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+            "tools/cinematics/specs/cin6ea4r_final_validation.json"
+          ],
+          "referencesAfter": [
+            "tools/cinematics/generate_cin6ea4_dialogue_lock.ts -> canonical A.4R output only",
+            "tools/cinematics/run_cin6ea4_dialogue_qa.mjs -> canonical A.4R URL",
+            "tools/cinematics/specs/cin6ea4r_final_validation.json -> canonical A.4R path"
+          ],
+          "restorableFromGit": true,
+          "validationStatus": "PASS"
+        },
+        {
+          "path": "tools/cinematics/specs/cin6ea4_final_validation.json",
+          "tracked": true,
+          "classification": "CONSOLIDATE_CANDIDATE",
+          "fileCount": 1,
+          "sizeBytes": 26214,
+          "sha256": "b970072e26e96d2ad11eeb06c4d4fc4ed393ad5092a5993394f8da337ffd4629",
+          "reason": "Exact duplicate compatibility output; A.4R-suffixed validation is canonical.",
+          "auditEvidence": "REPO-CLEAN-1 exact duplicate audit",
+          "replacementPath": "tools/cinematics/specs/cin6ea4r_final_validation.json",
+          "referencesBefore": [
+            "tools/cinematics/audit_cin6ea4.mjs",
+            "tools/cinematics/specs/cin6ea4r_final_validation.json"
+          ],
+          "referencesAfter": [
+            "tools/cinematics/audit_cin6ea4.mjs -> canonical A.4R output only",
+            "tools/cinematics/specs/cin6ea4r_final_validation.json -> canonical A.4R path"
+          ],
+          "restorableFromGit": true,
+          "validationStatus": "PASS"
+        }
+      ],
+      "preserved": [
+        {
+          "path": "docs/reports/hero60_p0_1_calibrated_lab.png + docs/reports/hero60_p0_1b_lab_screenshot.png",
+          "classification": "ARCHIVE_CANDIDATE",
+          "reason": "Distinct milestone filenames encode historical state; byte identity alone does not prove semantic redundancy."
+        }
+      ]
+    }
+  ],
+  "postCleanInventory": {
+    "trackedFiles": 1306,
+    "trackedBytes": 875873510,
+    "ignoredLocalFiles": 22663,
+    "ignoredLocalBytes": 6293079825,
+    "trackedFilesRemoved": 2,
+    "trackedBytesRemovedGross": 52917,
+    "newTrackedArtifacts": 2,
+    "localFilesRemovedNet": 3048,
+    "localBytesRemovedNet": 426446225,
+    "localFilesRemovedGross": 3935,
+    "localBytesRemovedGross": 1644296575,
+    "regeneratedDistFiles": 887,
+    "regeneratedDistBytes": 1217850373,
+    "productionMediaCount": 31,
+    "canonicalFullSpriteCount": 52,
+    "combatPoseCount": 76,
+    "testFileCount": 125
+  },
+  "validation": {
+    "status": "PASS_WITH_HISTORICAL_EXCEPTION",
+    "targetedGeneratorAndArtifactChecks": "PASS",
+    "a4rFocusedTests": { "status": "PASS", "files": 7, "passed": 61, "failed": 0 },
+    "preproductionTests": { "status": "PASS", "files": 1, "passed": 10, "failed": 0 },
+    "presentationTests": { "status": "PASS", "files": 3, "passed": 40, "failed": 0 },
+    "narrativeStaging": {
+      "status": "PASS",
+      "dialogues": "71/71",
+      "steps": "247/247",
+      "choiceSteps": 28,
+      "visualPhases": 78,
+      "violations": 0
+    },
+    "typecheck": "PASS",
+    "build": {
+      "status": "PASS",
+      "entries": ["index.html", "legacy-combat.html"],
+      "warning": "Existing large-chunk warning only"
+    },
+    "fullSuite": {
+      "status": "PASS_WITH_11_HISTORICAL_EXCEPTIONS",
+      "testFilesPassed": 124,
+      "testFilesFailed": 1,
+      "passed": 2347,
+      "failed": 11,
+      "total": 2358,
+      "knownExceptionFile": "src/combat/vfx/CasterMotionBackCompat.test.ts",
+      "newRegressions": 0
+    },
+    "brokenActiveReferences": 0,
+    "productionMedia": "PASS_31_OF_31_UNCHANGED",
+    "normalizedProductionManifestSha256": "85942a074b2b39f8c391482a936687682e3d4ac346601b0e5309b1a1050dc321",
+    "canonicalFullSprites": "PASS_52_UNCHANGED",
+    "combatPoses": "PASS_76_UNCHANGED",
+    "gitDiffCheck": "PASS"
+  },
+  "invariants": {
+    "PRODUCTION_MEDIA_DELETED": 0,
+    "PRODUCTION_MEDIA_MODIFIED": 0,
+    "PRODUCTION_MEDIA_RENAMED": 0,
+    "RUNTIME_CHANGED": "NO",
+    "NARRATIVE_CHANGED": "NO",
+    "OPTION_C_REFERENCE_SET_PRESERVED": "YES",
+    "GPT_IMAGE_ATTEMPTS": 0,
+    "MINIMAX_ATTEMPTS": 0,
+    "COMMIT": "NO",
+    "PUSH": "NO"
+  },
+  "locks": {
+    "REPO_CLEAN_2_SAFE_LOCAL_LOCK": "YES",
+    "REPO_CLEAN_2_TRACKED_LOCK": "YES",
+    "REPO_CLEAN_2_VALIDATION_LOCK": "YES",
+    "READY_FOR_REPO_CLEAN_2_COMMIT": "YES_PENDING_OPERATOR_REVIEW"
+  }
+}

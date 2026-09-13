@@ -39,7 +39,6 @@
     ],
     "untrackedPaths": [
       "docs/reports/cin-6e-a-4-dialogue-pacing-lock.md",
-      "docs/reports/cin-6e-a-4-dialogue-review.html",
       "docs/reports/cin-6e-a-4-hold-dialogue-coherence.md",
       "docs/reports/cin-6e-a-4-narrative-preservation.md",
       "docs/reports/cin-6e-a-4-speaker-cast-coherence.md",
@@ -54,7 +53,6 @@
       "tools/cinematics/audit_cin6ea4.mjs",
       "tools/cinematics/generate_cin6ea4_dialogue_lock.ts",
       "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
-      "tools/cinematics/specs/cin6ea4_final_validation.json",
       "tools/cinematics/specs/cin6ea4r_final_validation.json",
       "tools/cinematics/specs/final_cinematic_reduction_audit.json",
       "tools/cinematics/specs/final_dialogue_pacing_audit.json",

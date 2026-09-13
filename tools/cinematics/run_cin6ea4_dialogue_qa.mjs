@@ -52,7 +52,7 @@ function selectedStep(scenario) {
 }
 
 async function loadHarness(page) {
-  await page.goto(`${BASE_URL}/docs/reports/cin-6e-a-4-dialogue-review.html`, { waitUntil: 'domcontentloaded' });
+  await page.goto(`${BASE_URL}/docs/reports/cin-6e-a-4r-dialogue-review.html`, { waitUntil: 'domcontentloaded' });
   await page.evaluate(async () => {
     if (!document.querySelector('link[data-cin6ea4-runtime-css]')) {
       const css = document.createElement('link');

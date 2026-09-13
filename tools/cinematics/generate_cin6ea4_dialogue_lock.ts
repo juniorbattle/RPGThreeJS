@@ -1146,10 +1146,7 @@ async function main(): Promise<void> {
   </style></head><body><main><h1>CIN-6E-A.4R Dialogue Review</h1><p class="summary">STATIC-TABLEAU-FIRST · ${dialogues.size}/71 dialogues · ${originalSteps}/247 steps · ${choiceStates}/28 choice states · ${beforeWords} → ${afterWords} words · zero dialogue on video/HOLD · zero speaker reassignments · zero choice/effect changes</p>${operatorReviewIndex}${screenshotReview}${reviewCards}</main></body></html>`;
   const reviewPath = resolve(REPORT_ROOT, 'cin-6e-a-4r-dialogue-review.html');
   await mkdir(dirname(reviewPath), { recursive: true });
-  await Promise.all([
-    writeFile(reviewPath, reviewHtml),
-    writeFile(resolve(REPORT_ROOT, 'cin-6e-a-4-dialogue-review.html'), reviewHtml),
-  ]);
+  await writeFile(reviewPath, reviewHtml);
 
   console.log(JSON.stringify({
     ok: true,
