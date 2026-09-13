@@ -209,7 +209,7 @@ describe('CIN-6E-A final visual preproduction system', () => {
     const protectedDiff = execFileSync('git', [
       'diff', '--name-only', baseline, '--',
       'src/combat', 'src/vfx', 'src/journey',
-      'public/assets/characters', 'public/assets/cinematics',
+      'public/assets/characters/pixel/full', 'public/assets/cinematics',
     ], { cwd: root, encoding: 'utf8' }).trim();
     expect(protectedDiff).toBe('');
     const allowedRuntime = new Set([

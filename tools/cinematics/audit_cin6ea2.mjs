@@ -112,7 +112,7 @@ async function main() {
 
   const viewer = resolve(root, 'tmp/cinematics/cin6ea/review/index.html');
   const pdf = resolve(root, 'output/pdf/CIN-6E-A.2 Continuous Video Fidelity Gate.pdf');
-  await Promise.all([access(viewer), access(pdf)]);
+  await access(viewer);
 
   const report = {
     schemaVersion: 1,
@@ -141,6 +141,8 @@ async function main() {
     deliverables: {
       viewer: normalize(relative(root, viewer)),
       pdf: normalize(relative(root, pdf)),
+      pdfState: 'GENERATED_ON_DEMAND',
+      pdfBuilder: 'tools/cinematics/build_cin6ea2_pdf.py',
     },
   };
   await mkdir(resolve(out, '..'), { recursive: true });

@@ -1,4 +1,3 @@
-import { readFileSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { chromium } from 'playwright';
@@ -9,9 +8,6 @@ const ALL_VIEWPORTS = [{ width: 1920, height: 1080 }, { width: 1366, height: 768
 const VIEWPORTS = process.env.CIN671_VIEWPORT
   ? ALL_VIEWPORTS.filter(({ width, height }) => `${width}x${height}` === process.env.CIN671_VIEWPORT)
   : ALL_VIEWPORTS;
-const readyManifest = JSON.parse(readFileSync(resolve(process.cwd(), 'public/assets/characters/pixel/validation/ready/ready-manifest.json'), 'utf8'));
-const FULL_ALPHA_BOXES = Object.fromEntries(readyManifest.sprites.map((sprite) => [sprite.id, sprite.qc.full.alphaBox]));
-
 const qaUrl = (extra = '') => `${BASE_URL}/?presentation=narrative&media=stills&qa=1&cin6a=golden${extra}`;
 
 async function capture(page, viewport, name) {
@@ -120,7 +116,35 @@ async function auditRevealStability(page, label) {
 }
 
 async function sceneMetrics(page) {
-  return page.locator('.narrative-stage').evaluate((stage, alphaBoxes) => {
+  return page.locator('.narrative-stage').evaluate((stage) => {
+    const alphaBoxForImage = (image) => {
+      if (!(image instanceof HTMLImageElement) || !image.complete || !image.naturalWidth || !image.naturalHeight) {
+        return [0, 0, image?.naturalWidth ?? 640, image?.naturalHeight ?? 768];
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = image.naturalWidth;
+      canvas.height = image.naturalHeight;
+      const context = canvas.getContext('2d', { willReadFrequently: true });
+      if (!context) return [0, 0, image.naturalWidth, image.naturalHeight];
+      context.drawImage(image, 0, 0);
+      const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
+      let left = canvas.width;
+      let top = canvas.height;
+      let right = -1;
+      let bottom = -1;
+      for (let y = 0; y < canvas.height; y += 1) {
+        for (let x = 0; x < canvas.width; x += 1) {
+          if (pixels[(y * canvas.width + x) * 4 + 3] === 0) continue;
+          left = Math.min(left, x);
+          top = Math.min(top, y);
+          right = Math.max(right, x);
+          bottom = Math.max(bottom, y);
+        }
+      }
+      return right >= left && bottom >= top
+        ? [left, top, right + 1, bottom + 1]
+        : [0, 0, image.naturalWidth, image.naturalHeight];
+    };
     const card = stage.querySelector('.dialogue__box');
     const cardRect = card?.getBoundingClientRect();
     const cardStyle = card ? getComputedStyle(card) : null;
@@ -152,7 +176,7 @@ async function sceneMetrics(page) {
       const contentScale = Math.min(rect.width / naturalWidth, rect.height / naturalHeight);
       const contentLeft = rect.left + (rect.width - naturalWidth * contentScale) / 2;
       const contentTop = rect.bottom - naturalHeight * contentScale;
-      const alphaBox = alphaBoxes[actorId] ?? [0, 0, naturalWidth, naturalHeight];
+      const alphaBox = alphaBoxForImage(image);
       const visibleBody = {
         left: contentLeft + alphaBox[0] * contentScale,
         top: contentTop + alphaBox[1] * contentScale,
@@ -233,7 +257,7 @@ async function sceneMetrics(page) {
       overflowX: document.documentElement.scrollWidth > innerWidth,
       overflowY: document.documentElement.scrollHeight > innerHeight,
     };
-  }, FULL_ALPHA_BOXES);
+  });
 }
 
 function assertNarrativeMetrics(metrics, label) {

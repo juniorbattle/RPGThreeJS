@@ -59,7 +59,7 @@ Mission report:
 
 Canonical `full` sprite files remain the runtime inputs and remain byte-for-byte untouched. The new presentation scales their existing transparent canvases by cast count, anchors each canvas below the viewport, and lets the viewport crop the lower body. The source PNG is never cropped or rewritten.
 
-The browser QA now derives geometry from the ready-manifest alpha bounds and the actual `object-fit: contain; object-position: center bottom` rendering. This corrects the previous measurement error that vertically centered image content inside the taller figure element. Every sampled actor records these player-visible fields:
+The browser QA now derives geometry directly from each canonical runtime image's alpha bounds and the actual `object-fit: contain; object-position: center bottom` rendering. This removes the obsolete validation-manifest dependency and corrects the previous measurement error that vertically centered image content inside the taller figure element. Every sampled actor records these player-visible fields:
 
 - `scaledBodyHeightBeforeViewportCrop`
 - `visibleBodyHeightOnScreen`
