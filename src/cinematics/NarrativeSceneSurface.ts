@@ -44,12 +44,16 @@ function applyActorState(
   actor.style.setProperty('--narrative-actor-depth', `${spec.depth}`);
 }
 
-function actorElement(spec: NarrativeStagedActorSpec, speakerId?: string): HTMLElement {
+function actorElement(
+  spec: NarrativeStagedActorSpec,
+  speakerId?: string,
+  actorImages: Readonly<Record<string, string>> = {},
+): HTMLElement {
   const actor = document.createElement('figure');
   actor.className = 'narrative-cast__actor';
   actor.dataset.actorId = spec.actorId;
   applyActorState(actor, spec, speakerId);
-  const image = actorImage(spec.actorId);
+  const image = actorImages[spec.actorId] ?? actorImage(spec.actorId);
   if (image) {
     const img = document.createElement('img');
     img.src = image;
@@ -71,13 +75,15 @@ export class NarrativeSceneSurface {
   private activePhaseId: string | undefined;
   private phasePreparation: Promise<void> = Promise.resolve();
   private readonly reducedMotion: boolean;
+  private readonly actorImages: Readonly<Record<string, string>>;
 
   constructor(
     private readonly root: HTMLElement,
     private readonly tableau: NarrativeTableauSpec,
-    options: { reducedMotion?: boolean } = {},
+    options: { reducedMotion?: boolean; actorImages?: Readonly<Record<string, string>> } = {},
   ) {
     this.reducedMotion = options.reducedMotion ?? false;
+    this.actorImages = options.actorImages ?? {};
     this.phases = tableau.phases ?? [];
     this.element.className = 'narrative-scene-surface narrative-media-surface narrative-media-surface--still';
     this.element.dataset.narrativeScene = tableau.id;
@@ -157,7 +163,7 @@ export class NarrativeSceneSurface {
     }
     const actors = phase.staticCast.map((spec) => {
       const alreadyStaged = existing.get(spec.actorId);
-      const actor = alreadyStaged ?? actorElement(spec, speakerId);
+      const actor = alreadyStaged ?? actorElement(spec, speakerId, this.actorImages);
       applyActorState(actor, spec, speakerId, { facing: speakerFacing, lookTarget: speakerLookTarget });
       const effect = this.reducedMotion ? reducedEntryEffect(spec.entryEffect) : spec.entryEffect ?? 'NONE';
       actor.dataset.entryEffect = alreadyStaged ? 'NONE' : effect;

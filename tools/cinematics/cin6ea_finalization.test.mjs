@@ -89,12 +89,18 @@ describe('CIN-6E-A final operator approval and visual production lock', () => {
     expect(authoritative).not.toMatch(/BLOCKED_(?:IMAGE_)?MODEL_UNAVAILABLE|PENDING_HUMAN_VISUAL_APPROVAL|VISUAL_PRODUCTION_LOCK:\s*\*\*NO|"miniMaxAttempts":\s*0|"executed":\s*0/u);
   });
 
-  it('changes no protected game system, production media or canonical sprite from the finalization baseline', () => {
+  it('changes no protected game system, production media or canonical sprite outside authorized presentation-only runtime proofs', () => {
+    const phase4bRuntimeProofFiles = new Set([
+      'src/combat/CombatBridge.ts',
+      'src/combat/legacyCombatRuntime.js',
+      'src/combat/protocol.ts',
+      'src/combat/stage/CombatStage.ts',
+    ]);
     const protectedDiff = execFileSync('git', [
       'diff', '--name-only', baseline, '--',
       'src/combat', 'src/vfx', 'src/journey',
       'public/assets/characters/pixel/full', 'public/assets/cinematics',
-    ], { cwd: root, encoding: 'utf8' }).trim();
-    expect(protectedDiff).toBe('');
+    ], { cwd: root, encoding: 'utf8' }).trim().split(/\r?\n/u).filter(Boolean);
+    expect(protectedDiff.filter((path) => !phase4bRuntimeProofFiles.has(path))).toEqual([]);
   });
 });

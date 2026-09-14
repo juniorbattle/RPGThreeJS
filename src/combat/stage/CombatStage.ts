@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { BackgroundLayerSystem } from '../../render/BackgroundLayerSystem';
+import { BackgroundLayerSystem, type BackgroundSceneConfig } from '../../render/BackgroundLayerSystem';
 import { combatStageBackgroundFor } from './combatStageBackgrounds';
 import {
   resolveCombatStageProfile,
@@ -119,6 +119,8 @@ export interface StageSpriteSource {
   alive?: boolean;
   /** Authoritative downed status. Read-only — used to style KO target proxies. */
   downed?: boolean;
+  /** Runtime frame animation owns this source's texture; static pose swaps must not compete with it. */
+  runtimeFrameAnimation?: boolean;
 }
 
 /** The subset of EffectComposer's RenderPass this module needs to mutate. */
@@ -148,6 +150,8 @@ export interface CombatStageEnterOptions {
   sourceTeam?: string;
   /** When true, attacker stays anchored at its home slot (boss/elite). */
   stationaryAttacker?: boolean;
+  /** Optional isolated presentation plate; gameplay environment routing remains authoritative by default. */
+  backgroundOverride?: BackgroundSceneConfig;
 }
 
 export interface StageVfxContextOverride {
@@ -349,7 +353,7 @@ export class CombatStage {
       this.renderPassSwapped = true;
       this.applyFrustum(profile.cameraFrustumHalfHeight);
 
-      await this.backgroundLayers.load(combatStageBackgroundFor(options.environmentId));
+      await this.backgroundLayers.load(options.backgroundOverride ?? combatStageBackgroundFor(options.environmentId));
 
       this.disposeProxies();
       this.attackerUnitRef = attacker;
@@ -576,6 +580,16 @@ export class CombatStage {
     }
     const result = await applyCombatUnitPose(proxy, pose);
     return result.pose !== null;
+  }
+
+  /** Updates a staged proxy from a renderer-owned frame animation without moving its semantic root anchor. */
+  setCombatUnitTexture(unit: unknown, texture: THREE.Texture): boolean {
+    const proxy = this.findProxyForUnit(unit);
+    if (!proxy) return false;
+    if (proxy.mesh.material.map === texture) return true;
+    proxy.mesh.material.map = texture;
+    proxy.mesh.material.needsUpdate = true;
+    return true;
   }
 
   getPoseQaState(): CombatPoseQaState | null {
@@ -916,6 +930,7 @@ export class CombatStage {
   }
 
   private resolvePoseSetForSource(source: StageSpriteSource): CombatPoseSet | null {
+    if (source.runtimeFrameAnimation) return null;
     const identities = [
       source.combatPoseUnitId,
       source.unitId,

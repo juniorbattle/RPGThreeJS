@@ -5,6 +5,7 @@ import {
   toCombatResult,
   type CombatInitializeMessage,
 } from './protocol';
+import type { OptionCAnimationState, OptionCProofSurface } from '../dev/optionCPhase4b/OptionCPhase4bAssets';
 
 interface CombatSession {
   config: CombatConfig;
@@ -15,6 +16,7 @@ interface CombatSession {
   devQa?: boolean;
   qaFullAp?: boolean;
   qaDeployAll?: boolean;
+  devOptionCProof?: boolean;
 }
 
 interface CombatStart {
@@ -57,7 +59,8 @@ export class CombatBridge {
     const devR2ca = devQa && params.get('r2ca') === '1';
     const devVfxLab = devQa && params.get('vfxlab') === '1';
     const devStageQa = devQa && params.get('stageqa') === '1';
-    iframe.src = `/legacy-combat.html?campaign=1${devQa ? '&qa=1' : ''}${devVfx ? '&vfx=1' : ''}${devMotion ? '&motion=1' : ''}${devGrid ? '&grid=1' : ''}${devR2ca ? '&r2ca=1' : ''}${devVfxLab ? '&vfxlab=1' : ''}${devStageQa ? '&stageqa=1' : ''}`;
+    const devOptionCProof = Boolean(session.devOptionCProof && import.meta.env.DEV);
+    iframe.src = `/legacy-combat.html?campaign=1${devQa ? '&qa=1' : ''}${devVfx ? '&vfx=1' : ''}${devMotion ? '&motion=1' : ''}${devGrid ? '&grid=1' : ''}${devR2ca ? '&r2ca=1' : ''}${devVfxLab ? '&vfxlab=1' : ''}${devStageQa ? '&stageqa=1' : ''}${devOptionCProof ? '&optionc=forest-road' : ''}`;
     this.root.append(iframe);
     this.iframe = iframe;
     const ready = new Promise<void>((resolve) => {
@@ -86,6 +89,15 @@ export class CombatBridge {
     this.close();
   }
 
+  sendDevOptionCProofCommand(surface: OptionCProofSurface, animation: OptionCAnimationState): void {
+    if (!import.meta.env.DEV || !this.session?.devOptionCProof) return;
+    this.iframe?.contentWindow?.postMessage({
+      type: 'rpg-threejs:option-c-proof-command',
+      surface,
+      animation,
+    }, window.location.origin);
+  }
+
   private onMessage = (event: MessageEvent): void => {
     if (event.source !== this.iframe?.contentWindow || event.origin !== window.location.origin) return;
 
@@ -100,6 +112,7 @@ export class CombatBridge {
         devQa: Boolean(this.session.devQa && import.meta.env.DEV),
         qaFullAp: Boolean(this.session.qaFullAp && import.meta.env.DEV),
         qaDeployAll: Boolean(this.session.qaDeployAll && import.meta.env.DEV),
+        devOptionCProof: Boolean(this.session.devOptionCProof && import.meta.env.DEV),
       };
       this.iframe?.contentWindow?.postMessage(message, window.location.origin);
       return;

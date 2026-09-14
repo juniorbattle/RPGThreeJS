@@ -1,0 +1,3950 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-14T05:56:46.391Z",
+  "baseUrl": "http://127.0.0.1:5173/",
+  "results": [
+    {
+      "kind": "PRIMARY_SURFACE",
+      "surface": "travel",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "label": "1920x1080"
+      },
+      "file": "docs/art-direction/option-c/phase4b-runtime-proof/screenshots/1920x1080/travel.png",
+      "outerMetrics": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "width": 1920,
+          "height": 1080,
+          "x": 0,
+          "y": 0
+        },
+        "bodyDataset": {
+          "optionCProofReady": "true",
+          "optionCProofSurface": "travel"
+        },
+        "controls": {
+          "x": 12,
+          "y": 12,
+          "width": 760,
+          "height": 93.25,
+          "visible": true
+        },
+        "travel": {
+          "root": {
+            "x": 0,
+            "y": 0.07751352339982986,
+            "width": 1920,
+            "height": 1080,
+            "visible": true
+          },
+          "menu": {
+            "x": 1487.578125,
+            "y": 7.077513694763184,
+            "width": 418.421875,
+            "height": 52,
+            "visible": true
+          },
+          "nextStep": {
+            "x": 1283,
+            "y": 132.0775146484375,
+            "width": 390,
+            "height": 840,
+            "visible": true
+          },
+          "partyVisible": false
+        },
+        "tableau": {
+          "root": null,
+          "dialogue": null,
+          "kestrel": null,
+          "kestrelImageRendering": "auto",
+          "kestrelFacing": null,
+          "kestrelClasses": null
+        }
+      },
+      "innerMetrics": null,
+      "attackCaptureState": null,
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-tableau.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-travel.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-strategic.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-combat-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-07.png",
+          "status": 200
+        }
+      ],
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        }
+      ],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "kind": "PRIMARY_SURFACE",
+      "surface": "tableau",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "label": "1920x1080"
+      },
+      "file": "docs/art-direction/option-c/phase4b-runtime-proof/screenshots/1920x1080/tableau.png",
+      "outerMetrics": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "width": 1920,
+          "height": 1080,
+          "x": 0,
+          "y": 0
+        },
+        "bodyDataset": {
+          "optionCProofReady": "true",
+          "optionCProofSurface": "tableau",
+          "optionCAnimationState": "idle",
+          "optionCAnimationFrame": "2"
+        },
+        "controls": {
+          "x": 12,
+          "y": 12,
+          "width": 760,
+          "height": 123.25,
+          "visible": true
+        },
+        "travel": {
+          "root": null,
+          "menu": null,
+          "nextStep": null,
+          "partyVisible": false
+        },
+        "tableau": {
+          "root": {
+            "x": 0,
+            "y": 0,
+            "width": 1920,
+            "height": 1080,
+            "visible": true
+          },
+          "dialogue": null,
+          "kestrel": {
+            "x": 200.66561889648438,
+            "y": -4.320068359375,
+            "width": 699.199951171875,
+            "height": 1192.320068359375,
+            "visible": true
+          },
+          "kestrelImageRendering": "pixelated",
+          "kestrelFacing": "RIGHT",
+          "kestrelClasses": "narrative-cast__actor is-speaking"
+        }
+      },
+      "innerMetrics": null,
+      "attackCaptureState": null,
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-travel.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-tableau.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-strategic.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-combat-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-08.png",
+          "status": 200
+        }
+      ],
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        }
+      ],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "kind": "PRIMARY_SURFACE",
+      "surface": "strategic",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "label": "1920x1080"
+      },
+      "file": "docs/art-direction/option-c/phase4b-runtime-proof/screenshots/1920x1080/strategic.png",
+      "outerMetrics": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "width": 1920,
+          "height": 1080,
+          "x": 0,
+          "y": 0
+        },
+        "bodyDataset": {
+          "optionCProofReady": "true",
+          "optionCProofSurface": "strategic"
+        },
+        "controls": {
+          "x": 12,
+          "y": 12,
+          "width": 760,
+          "height": 93.25,
+          "visible": true
+        },
+        "travel": {
+          "root": null,
+          "menu": null,
+          "nextStep": null,
+          "partyVisible": false
+        },
+        "tableau": {
+          "root": null,
+          "dialogue": null,
+          "kestrel": null,
+          "kestrelImageRendering": "auto",
+          "kestrelFacing": null,
+          "kestrelClasses": null
+        }
+      },
+      "innerMetrics": {
+        "bodyDataset": {
+          "optionCProofReady": "true",
+          "optionCProofSurface": "strategic",
+          "optionCAnimationState": "idle",
+          "optionCAnimationFrame": "4",
+          "optionCCombatStageActive": "false",
+          "optionCRequestedAnimation": "idle"
+        },
+        "diagnostics": {
+          "drawCalls": 1,
+          "triangles": 1,
+          "geometries": 55,
+          "textures": 37,
+          "reducedGraphics": false,
+          "units": 7,
+          "activeTweens": 0,
+          "activeVfxObjects": 0,
+          "grid": {
+            "width": 8,
+            "depth": 4,
+            "walkable": 32,
+            "blocked": 0
+          }
+        },
+        "stageHeader": null,
+        "stageHeaderVisible": false,
+        "objectiveVisible": true,
+        "actionBarVisible": true,
+        "selectedUnitVisible": true,
+        "combatStageActive": false,
+        "fps": {
+          "frames": 4,
+          "durationMs": 1241.0999999523156,
+          "fps": 3.222947385507763
+        }
+      },
+      "attackCaptureState": null,
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-travel.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-tableau.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-strategic.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-combat-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-strategic.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        }
+      ],
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "warning",
+          "text": "[.WebGL-0x4a2400b6a400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+          "url": "http://127.0.0.1:5173/legacy-combat.html?campaign=1&optionc=forest-road"
+        },
+        {
+          "type": "warning",
+          "text": "[.WebGL-0x4a2400b6a400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+          "url": "http://127.0.0.1:5173/legacy-combat.html?campaign=1&optionc=forest-road"
+        },
+        {
+          "type": "warning",
+          "text": "[.WebGL-0x4a2400b6a400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+          "url": "http://127.0.0.1:5173/legacy-combat.html?campaign=1&optionc=forest-road"
+        },
+        {
+          "type": "warning",
+          "text": "[.WebGL-0x4a2400b6a400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)",
+          "url": "http://127.0.0.1:5173/legacy-combat.html?campaign=1&optionc=forest-road"
+        }
+      ],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "kind": "PRIMARY_SURFACE",
+      "surface": "combat-stage",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "label": "1920x1080"
+      },
+      "file": "docs/art-direction/option-c/phase4b-runtime-proof/screenshots/1920x1080/combat-stage.png",
+      "outerMetrics": {
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "width": 1920,
+          "height": 1080,
+          "x": 0,
+          "y": 0
+        },
+        "bodyDataset": {
+          "optionCProofReady": "true",
+          "optionCProofSurface": "combat-stage"
+        },
+        "controls": {
+          "x": 12,
+          "y": 12,
+          "width": 760,
+          "height": 93.25,
+          "visible": true
+        },
+        "travel": {
+          "root": null,
+          "menu": null,
+          "nextStep": null,
+          "partyVisible": false
+        },
+        "tableau": {
+          "root": null,
+          "dialogue": null,
+          "kestrel": null,
+          "kestrelImageRendering": "auto",
+          "kestrelFacing": null,
+          "kestrelClasses": null
+        }
+      },
+      "innerMetrics": {
+        "bodyDataset": {
+          "optionCProofReady": "true",
+          "optionCProofSurface": "combat-stage",
+          "optionCAnimationState": "idle",
+          "optionCAnimationFrame": "4",
+          "optionCCombatStageActive": "true",
+          "optionCRequestedAnimation": "attack"
+        },
+        "diagnostics": {
+          "drawCalls": 1,
+          "triangles": 1,
+          "geometries": 61,
+          "textures": 40,
+          "reducedGraphics": false,
+          "units": 7,
+          "activeTweens": 0,
+          "activeVfxObjects": 0,
+          "grid": {
+            "width": 8,
+            "depth": 4,
+            "walkable": 32,
+            "blocked": 0
+          }
+        },
+        "stageHeader": "AttaqueKestrel → Pillard Serpent",
+        "stageHeaderVisible": true,
+        "objectiveVisible": true,
+        "actionBarVisible": false,
+        "selectedUnitVisible": true,
+        "combatStageActive": true,
+        "fps": {
+          "frames": 5,
+          "durationMs": 1462.699999988079,
+          "fps": 3.418335954085424
+        }
+      },
+      "attackCaptureState": {
+        "state": "attack",
+        "frame": 5,
+        "header": "AttaqueKestrel → Pillard Serpent"
+      },
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-travel.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-tableau.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-strategic.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-combat-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-strategic.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-combat-stage.png",
+          "status": 200
+        }
+      ],
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "log",
+          "text": "[VFX-QA] playActionVfx: {specKey: attack, weaponType: longbow, staticPresetId: basic_longbow_hit, resolvedActionKey: basic_longbow_hit, published: false}",
+          "url": "http://127.0.0.1:5173/src/combat/legacyCombatRuntime.js?t=1789364375592"
+        },
+        {
+          "type": "warning",
+          "text": "[VFX] Unresolved sprite sheet: basic_arrow_hit_small — skipping (legacy asset deleted)",
+          "url": "http://127.0.0.1:5173/src/combat/vfx/VfxSystem.ts"
+        }
+      ],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "kind": "COMBAT_STAGE_DAMAGE_EVIDENCE",
+      "surface": "combat-stage",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "label": "1920x1080"
+      },
+      "file": "docs/art-direction/option-c/phase4b-runtime-proof/screenshots/1920x1080/combat-stage-damage.png",
+      "captureState": {
+        "header": "AttaqueKestrel → Pillard Serpent",
+        "damageText": "-18",
+        "damageOpacity": 0.883296
+      },
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "log",
+          "text": "[VFX-QA] playActionVfx: {specKey: attack, weaponType: longbow, staticPresetId: basic_longbow_hit, resolvedActionKey: basic_longbow_hit, published: false}",
+          "url": "http://127.0.0.1:5173/src/combat/legacyCombatRuntime.js?t=1789364375592"
+        },
+        {
+          "type": "warning",
+          "text": "[VFX] Unresolved sprite sheet: basic_arrow_hit_small — skipping (legacy asset deleted)",
+          "url": "http://127.0.0.1:5173/src/combat/vfx/VfxSystem.ts"
+        }
+      ],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "kind": "TABLEAU_AND_ANIMATION_EVIDENCE",
+      "surface": "tableau",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "label": "1920x1080"
+      },
+      "sequences": {
+        "idle": [
+          {
+            "elapsedMs": 0,
+            "state": "idle",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 60,
+            "state": "idle",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 120,
+            "state": "idle",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 180,
+            "state": "idle",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 240,
+            "state": "idle",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 300,
+            "state": "idle",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 360,
+            "state": "idle",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 420,
+            "state": "idle",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 480,
+            "state": "idle",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 540,
+            "state": "idle",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 600,
+            "state": "idle",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 660,
+            "state": "idle",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 720,
+            "state": "idle",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 780,
+            "state": "idle",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 840,
+            "state": "idle",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 900,
+            "state": "idle",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 960,
+            "state": "idle",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 1020,
+            "state": "idle",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 1080,
+            "state": "idle",
+            "frame": 7
+          },
+          {
+            "elapsedMs": 1140,
+            "state": "idle",
+            "frame": 7
+          },
+          {
+            "elapsedMs": 1200,
+            "state": "idle",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 1260,
+            "state": "idle",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 1320,
+            "state": "idle",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 1380,
+            "state": "idle",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 1440,
+            "state": "idle",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 1500,
+            "state": "idle",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 1560,
+            "state": "idle",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 1620,
+            "state": "idle",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 1680,
+            "state": "idle",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 1740,
+            "state": "idle",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 1800,
+            "state": "idle",
+            "frame": 3
+          }
+        ],
+        "dash": [
+          {
+            "elapsedMs": 0,
+            "state": "idle",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 60,
+            "state": "idle",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 120,
+            "state": "dash",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 180,
+            "state": "dash",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 240,
+            "state": "dash",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 300,
+            "state": "dash",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 360,
+            "state": "dash",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 420,
+            "state": "dash",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 480,
+            "state": "dash",
+            "frame": 7
+          },
+          {
+            "elapsedMs": 540,
+            "state": "dash",
+            "frame": 7
+          },
+          {
+            "elapsedMs": 600,
+            "state": "dash",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 660,
+            "state": "dash",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 720,
+            "state": "idle",
+            "frame": 1
+          }
+        ],
+        "attack": [
+          {
+            "elapsedMs": 0,
+            "state": "idle",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 60,
+            "state": "idle",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 120,
+            "state": "attack",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 180,
+            "state": "attack",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 240,
+            "state": "attack",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 300,
+            "state": "attack",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 360,
+            "state": "attack",
+            "frame": 4
+          },
+          {
+            "elapsedMs": 420,
+            "state": "attack",
+            "frame": 4
+          },
+          {
+            "elapsedMs": 480,
+            "state": "attack",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 540,
+            "state": "attack",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 600,
+            "state": "attack",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 660,
+            "state": "attack",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 720,
+            "state": "attack",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 780,
+            "state": "attack",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 840,
+            "state": "idle",
+            "frame": 1
+          }
+        ],
+        "skill": [
+          {
+            "elapsedMs": 0,
+            "state": "idle",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 60,
+            "state": "skill",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 120,
+            "state": "skill",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 180,
+            "state": "skill",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 240,
+            "state": "skill",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 300,
+            "state": "skill",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 360,
+            "state": "skill",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 420,
+            "state": "skill",
+            "frame": 4
+          },
+          {
+            "elapsedMs": 480,
+            "state": "skill",
+            "frame": 4
+          },
+          {
+            "elapsedMs": 540,
+            "state": "skill",
+            "frame": 4
+          },
+          {
+            "elapsedMs": 600,
+            "state": "skill",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 660,
+            "state": "skill",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 720,
+            "state": "skill",
+            "frame": 7
+          },
+          {
+            "elapsedMs": 780,
+            "state": "skill",
+            "frame": 7
+          },
+          {
+            "elapsedMs": 840,
+            "state": "skill",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 900,
+            "state": "skill",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 960,
+            "state": "idle",
+            "frame": 1
+          }
+        ]
+      },
+      "tableauStates": {
+        "listening": {
+          "viewport": {
+            "width": 1920,
+            "height": 1080,
+            "devicePixelRatio": 1
+          },
+          "scroll": {
+            "width": 1920,
+            "height": 1080,
+            "x": 0,
+            "y": 0
+          },
+          "bodyDataset": {
+            "optionCProofReady": "true",
+            "optionCProofSurface": "tableau",
+            "optionCAnimationState": "idle",
+            "optionCAnimationFrame": "7"
+          },
+          "controls": {
+            "x": 12,
+            "y": 12,
+            "width": 760,
+            "height": 123.25,
+            "visible": true
+          },
+          "travel": {
+            "root": null,
+            "menu": null,
+            "nextStep": null,
+            "partyVisible": false
+          },
+          "tableau": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "width": 1920,
+              "height": 1080,
+              "visible": true
+            },
+            "dialogue": null,
+            "kestrel": {
+              "x": 200.66561889648438,
+              "y": -4.320068359375,
+              "width": 699.199951171875,
+              "height": 1192.320068359375,
+              "visible": true
+            },
+            "kestrelImageRendering": "pixelated",
+            "kestrelFacing": "RIGHT",
+            "kestrelClasses": "narrative-cast__actor is-listening"
+          }
+        },
+        "mirrored": {
+          "viewport": {
+            "width": 1920,
+            "height": 1080,
+            "devicePixelRatio": 1
+          },
+          "scroll": {
+            "width": 1920,
+            "height": 1080,
+            "x": 0,
+            "y": 0
+          },
+          "bodyDataset": {
+            "optionCProofReady": "true",
+            "optionCProofSurface": "tableau",
+            "optionCAnimationState": "idle",
+            "optionCAnimationFrame": "8"
+          },
+          "controls": {
+            "x": 12,
+            "y": 12,
+            "width": 760,
+            "height": 123.25,
+            "visible": true
+          },
+          "travel": {
+            "root": null,
+            "menu": null,
+            "nextStep": null,
+            "partyVisible": false
+          },
+          "tableau": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "width": 1920,
+              "height": 1080,
+              "visible": true
+            },
+            "dialogue": null,
+            "kestrel": {
+              "x": 200.66561889648438,
+              "y": -4.320068359375,
+              "width": 699.199951171875,
+              "height": 1192.320068359375,
+              "visible": true
+            },
+            "kestrelImageRendering": "pixelated",
+            "kestrelFacing": "LEFT",
+            "kestrelClasses": "narrative-cast__actor is-speaking"
+          }
+        },
+        "center": {
+          "viewport": {
+            "width": 1920,
+            "height": 1080,
+            "devicePixelRatio": 1
+          },
+          "scroll": {
+            "width": 1920,
+            "height": 1080,
+            "x": 0,
+            "y": 0
+          },
+          "bodyDataset": {
+            "optionCProofReady": "true",
+            "optionCProofSurface": "tableau",
+            "optionCAnimationState": "idle",
+            "optionCAnimationFrame": "7"
+          },
+          "controls": {
+            "x": 12,
+            "y": 12,
+            "width": 760,
+            "height": 123.25,
+            "visible": true
+          },
+          "travel": {
+            "root": null,
+            "menu": null,
+            "nextStep": null,
+            "partyVisible": false
+          },
+          "tableau": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "width": 1920,
+              "height": 1080,
+              "visible": true
+            },
+            "dialogue": null,
+            "kestrel": {
+              "x": 610.4000244140625,
+              "y": -4.320068359375,
+              "width": 699.2000732421875,
+              "height": 1192.320068359375,
+              "visible": true
+            },
+            "kestrelImageRendering": "pixelated",
+            "kestrelFacing": "RIGHT",
+            "kestrelClasses": "narrative-cast__actor is-speaking"
+          }
+        },
+        "right": {
+          "viewport": {
+            "width": 1920,
+            "height": 1080,
+            "devicePixelRatio": 1
+          },
+          "scroll": {
+            "width": 1920,
+            "height": 1080,
+            "x": 0,
+            "y": 0
+          },
+          "bodyDataset": {
+            "optionCProofReady": "true",
+            "optionCProofSurface": "tableau",
+            "optionCAnimationState": "idle",
+            "optionCAnimationFrame": "8"
+          },
+          "controls": {
+            "x": 12,
+            "y": 12,
+            "width": 760,
+            "height": 123.25,
+            "visible": true
+          },
+          "travel": {
+            "root": null,
+            "menu": null,
+            "nextStep": null,
+            "partyVisible": false
+          },
+          "tableau": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "width": 1920,
+              "height": 1080,
+              "visible": true
+            },
+            "dialogue": null,
+            "kestrel": {
+              "x": 1020.1187744140625,
+              "y": -4.320068359375,
+              "width": 699.2000732421875,
+              "height": 1192.320068359375,
+              "visible": true
+            },
+            "kestrelImageRendering": "pixelated",
+            "kestrelFacing": "LEFT",
+            "kestrelClasses": "narrative-cast__actor is-speaking"
+          }
+        }
+      },
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        }
+      ],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "kind": "COMBAT_PERFORMANCE_BASELINE",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "label": "1920x1080"
+      },
+      "diagnostics": {
+        "drawCalls": 1,
+        "triangles": 1,
+        "geometries": 33,
+        "textures": 26,
+        "reducedGraphics": false,
+        "units": 4,
+        "activeTweens": 0,
+        "activeVfxObjects": 0,
+        "grid": {
+          "width": 8,
+          "depth": 4,
+          "walkable": 32,
+          "blocked": 0
+        }
+      },
+      "fps": {
+        "frames": 4,
+        "durationMs": 1368.299999988079,
+        "fps": 2.9233355258604465
+      },
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        }
+      ],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "kind": "PRIMARY_SURFACE",
+      "surface": "travel",
+      "viewport": {
+        "width": 1366,
+        "height": 768,
+        "label": "1366x768"
+      },
+      "file": "docs/art-direction/option-c/phase4b-runtime-proof/screenshots/1366x768/travel.png",
+      "outerMetrics": {
+        "viewport": {
+          "width": 1366,
+          "height": 768,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "width": 1366,
+          "height": 768,
+          "x": 0,
+          "y": 0
+        },
+        "bodyDataset": {
+          "optionCProofReady": "true",
+          "optionCProofSurface": "travel"
+        },
+        "controls": {
+          "x": 12,
+          "y": 12,
+          "width": 760,
+          "height": 93.25,
+          "visible": true
+        },
+        "travel": {
+          "root": {
+            "x": 0,
+            "y": 0,
+            "width": 1366,
+            "height": 768,
+            "visible": true
+          },
+          "menu": {
+            "x": 933.578125,
+            "y": 7,
+            "width": 418.421875,
+            "height": 52,
+            "visible": true
+          },
+          "nextStep": {
+            "x": 740.03125,
+            "y": 107.515625,
+            "width": 390,
+            "height": 582.484375,
+            "visible": true
+          },
+          "partyVisible": false
+        },
+        "tableau": {
+          "root": null,
+          "dialogue": null,
+          "kestrel": null,
+          "kestrelImageRendering": "auto",
+          "kestrelFacing": null,
+          "kestrelClasses": null
+        }
+      },
+      "innerMetrics": null,
+      "attackCaptureState": null,
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-travel.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-tableau.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-strategic.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-combat-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-08.png",
+          "status": 200
+        }
+      ],
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        }
+      ],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "kind": "PRIMARY_SURFACE",
+      "surface": "tableau",
+      "viewport": {
+        "width": 1366,
+        "height": 768,
+        "label": "1366x768"
+      },
+      "file": "docs/art-direction/option-c/phase4b-runtime-proof/screenshots/1366x768/tableau.png",
+      "outerMetrics": {
+        "viewport": {
+          "width": 1366,
+          "height": 768,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "width": 1366,
+          "height": 768,
+          "x": 0,
+          "y": 0
+        },
+        "bodyDataset": {
+          "optionCProofReady": "true",
+          "optionCProofSurface": "tableau",
+          "optionCAnimationState": "idle",
+          "optionCAnimationFrame": "2"
+        },
+        "controls": {
+          "x": 12,
+          "y": 12,
+          "width": 760,
+          "height": 123.25,
+          "visible": true
+        },
+        "travel": {
+          "root": null,
+          "menu": null,
+          "nextStep": null,
+          "partyVisible": false
+        },
+        "tableau": {
+          "root": {
+            "x": 0,
+            "y": 0,
+            "width": 1366,
+            "height": 768,
+            "visible": true
+          },
+          "dialogue": null,
+          "kestrel": {
+            "x": 137.1259307861328,
+            "y": -3.06939697265625,
+            "width": 508.7169189453125,
+            "height": 847.8662719726562,
+            "visible": true
+          },
+          "kestrelImageRendering": "pixelated",
+          "kestrelFacing": "RIGHT",
+          "kestrelClasses": "narrative-cast__actor is-speaking"
+        }
+      },
+      "innerMetrics": null,
+      "attackCaptureState": null,
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-travel.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-tableau.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-strategic.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-combat-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-07.png",
+          "status": 200
+        }
+      ],
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        }
+      ],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "kind": "PRIMARY_SURFACE",
+      "surface": "strategic",
+      "viewport": {
+        "width": 1366,
+        "height": 768,
+        "label": "1366x768"
+      },
+      "file": "docs/art-direction/option-c/phase4b-runtime-proof/screenshots/1366x768/strategic.png",
+      "outerMetrics": {
+        "viewport": {
+          "width": 1366,
+          "height": 768,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "width": 1366,
+          "height": 768,
+          "x": 0,
+          "y": 0
+        },
+        "bodyDataset": {
+          "optionCProofReady": "true",
+          "optionCProofSurface": "strategic"
+        },
+        "controls": {
+          "x": 12,
+          "y": 12,
+          "width": 760,
+          "height": 93.25,
+          "visible": true
+        },
+        "travel": {
+          "root": null,
+          "menu": null,
+          "nextStep": null,
+          "partyVisible": false
+        },
+        "tableau": {
+          "root": null,
+          "dialogue": null,
+          "kestrel": null,
+          "kestrelImageRendering": "auto",
+          "kestrelFacing": null,
+          "kestrelClasses": null
+        }
+      },
+      "innerMetrics": {
+        "bodyDataset": {
+          "optionCProofReady": "true",
+          "optionCProofSurface": "strategic",
+          "optionCAnimationState": "idle",
+          "optionCAnimationFrame": "8",
+          "optionCCombatStageActive": "false",
+          "optionCRequestedAnimation": "idle"
+        },
+        "diagnostics": {
+          "drawCalls": 1,
+          "triangles": 1,
+          "geometries": 55,
+          "textures": 36,
+          "reducedGraphics": false,
+          "units": 7,
+          "activeTweens": 0,
+          "activeVfxObjects": 0,
+          "grid": {
+            "width": 8,
+            "depth": 4,
+            "walkable": 32,
+            "blocked": 0
+          }
+        },
+        "stageHeader": null,
+        "stageHeaderVisible": false,
+        "objectiveVisible": true,
+        "actionBarVisible": true,
+        "selectedUnitVisible": true,
+        "combatStageActive": false,
+        "fps": {
+          "frames": 7,
+          "durationMs": 1257.9000000357628,
+          "fps": 5.564830272518472
+        }
+      },
+      "attackCaptureState": null,
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-tableau.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-strategic.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-travel.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-combat-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-strategic.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        }
+      ],
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        }
+      ],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "kind": "PRIMARY_SURFACE",
+      "surface": "combat-stage",
+      "viewport": {
+        "width": 1366,
+        "height": 768,
+        "label": "1366x768"
+      },
+      "file": "docs/art-direction/option-c/phase4b-runtime-proof/screenshots/1366x768/combat-stage.png",
+      "outerMetrics": {
+        "viewport": {
+          "width": 1366,
+          "height": 768,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "width": 1366,
+          "height": 768,
+          "x": 0,
+          "y": 0
+        },
+        "bodyDataset": {
+          "optionCProofReady": "true",
+          "optionCProofSurface": "combat-stage"
+        },
+        "controls": {
+          "x": 12,
+          "y": 12,
+          "width": 760,
+          "height": 93.25,
+          "visible": true
+        },
+        "travel": {
+          "root": null,
+          "menu": null,
+          "nextStep": null,
+          "partyVisible": false
+        },
+        "tableau": {
+          "root": null,
+          "dialogue": null,
+          "kestrel": null,
+          "kestrelImageRendering": "auto",
+          "kestrelFacing": null,
+          "kestrelClasses": null
+        }
+      },
+      "innerMetrics": {
+        "bodyDataset": {
+          "optionCProofReady": "true",
+          "optionCProofSurface": "combat-stage",
+          "optionCAnimationState": "attack",
+          "optionCAnimationFrame": "1",
+          "optionCCombatStageActive": "true",
+          "optionCRequestedAnimation": "attack"
+        },
+        "diagnostics": {
+          "drawCalls": 1,
+          "triangles": 1,
+          "geometries": 61,
+          "textures": 40,
+          "reducedGraphics": false,
+          "units": 7,
+          "activeTweens": 1,
+          "activeVfxObjects": 0,
+          "grid": {
+            "width": 8,
+            "depth": 4,
+            "walkable": 32,
+            "blocked": 0
+          }
+        },
+        "stageHeader": "AttaqueKestrel → Pillard Serpent",
+        "stageHeaderVisible": true,
+        "objectiveVisible": true,
+        "actionBarVisible": false,
+        "selectedUnitVisible": true,
+        "combatStageActive": true,
+        "fps": {
+          "frames": 8,
+          "durationMs": 1330.3999999761581,
+          "fps": 6.0132291041366255
+        }
+      },
+      "attackCaptureState": {
+        "state": "attack",
+        "frame": 3,
+        "header": "AttaqueKestrel → Pillard Serpent"
+      },
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-travel.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-tableau.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-strategic.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-combat-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/dash/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-05.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/attack/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-02.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-03.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-04.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-06.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-07.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/skill/frame-08.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-strategic.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/dev/option-c/phase4b/environment/forest-road-combat-stage.png",
+          "status": 200
+        }
+      ],
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "log",
+          "text": "[VFX-QA] playActionVfx: {specKey: attack, weaponType: longbow, staticPresetId: basic_longbow_hit, resolvedActionKey: basic_longbow_hit, published: false}",
+          "url": "http://127.0.0.1:5173/src/combat/legacyCombatRuntime.js?t=1789364375592"
+        },
+        {
+          "type": "warning",
+          "text": "[VFX] Unresolved sprite sheet: basic_arrow_hit_small — skipping (legacy asset deleted)",
+          "url": "http://127.0.0.1:5173/src/combat/vfx/VfxSystem.ts"
+        }
+      ],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "kind": "COMBAT_STAGE_DAMAGE_EVIDENCE",
+      "surface": "combat-stage",
+      "viewport": {
+        "width": 1366,
+        "height": 768,
+        "label": "1366x768"
+      },
+      "file": "docs/art-direction/option-c/phase4b-runtime-proof/screenshots/1366x768/combat-stage-damage.png",
+      "captureState": {
+        "header": "AttaqueKestrel → Pillard Serpent",
+        "damageText": "-18",
+        "damageOpacity": 0.9639
+      },
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "log",
+          "text": "[VFX-QA] playActionVfx: {specKey: attack, weaponType: longbow, staticPresetId: basic_longbow_hit, resolvedActionKey: basic_longbow_hit, published: false}",
+          "url": "http://127.0.0.1:5173/src/combat/legacyCombatRuntime.js?t=1789364375592"
+        },
+        {
+          "type": "warning",
+          "text": "[VFX] Unresolved sprite sheet: basic_arrow_hit_small — skipping (legacy asset deleted)",
+          "url": "http://127.0.0.1:5173/src/combat/vfx/VfxSystem.ts"
+        }
+      ],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "kind": "TABLEAU_AND_ANIMATION_EVIDENCE",
+      "surface": "tableau",
+      "viewport": {
+        "width": 1366,
+        "height": 768,
+        "label": "1366x768"
+      },
+      "sequences": {
+        "idle": [
+          {
+            "elapsedMs": 0,
+            "state": "idle",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 60,
+            "state": "idle",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 120,
+            "state": "idle",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 180,
+            "state": "idle",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 240,
+            "state": "idle",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 300,
+            "state": "idle",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 360,
+            "state": "idle",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 420,
+            "state": "idle",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 480,
+            "state": "idle",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 540,
+            "state": "idle",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 600,
+            "state": "idle",
+            "frame": 4
+          },
+          {
+            "elapsedMs": 660,
+            "state": "idle",
+            "frame": 4
+          },
+          {
+            "elapsedMs": 720,
+            "state": "idle",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 780,
+            "state": "idle",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 840,
+            "state": "idle",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 900,
+            "state": "idle",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 960,
+            "state": "idle",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 1020,
+            "state": "idle",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 1080,
+            "state": "idle",
+            "frame": 7
+          },
+          {
+            "elapsedMs": 1140,
+            "state": "idle",
+            "frame": 7
+          },
+          {
+            "elapsedMs": 1200,
+            "state": "idle",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 1260,
+            "state": "idle",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 1320,
+            "state": "idle",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 1380,
+            "state": "idle",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 1440,
+            "state": "idle",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 1500,
+            "state": "idle",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 1560,
+            "state": "idle",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 1620,
+            "state": "idle",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 1680,
+            "state": "idle",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 1740,
+            "state": "idle",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 1800,
+            "state": "idle",
+            "frame": 3
+          }
+        ],
+        "dash": [
+          {
+            "elapsedMs": 0,
+            "state": "idle",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 60,
+            "state": "dash",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 120,
+            "state": "dash",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 180,
+            "state": "dash",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 240,
+            "state": "dash",
+            "frame": 4
+          },
+          {
+            "elapsedMs": 300,
+            "state": "dash",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 360,
+            "state": "dash",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 420,
+            "state": "dash",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 480,
+            "state": "dash",
+            "frame": 7
+          },
+          {
+            "elapsedMs": 540,
+            "state": "dash",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 600,
+            "state": "idle",
+            "frame": 1
+          }
+        ],
+        "attack": [
+          {
+            "elapsedMs": 0,
+            "state": "idle",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 60,
+            "state": "attack",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 120,
+            "state": "attack",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 180,
+            "state": "attack",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 240,
+            "state": "attack",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 300,
+            "state": "attack",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 360,
+            "state": "attack",
+            "frame": 4
+          },
+          {
+            "elapsedMs": 420,
+            "state": "attack",
+            "frame": 4
+          },
+          {
+            "elapsedMs": 480,
+            "state": "attack",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 540,
+            "state": "attack",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 600,
+            "state": "attack",
+            "frame": 7
+          },
+          {
+            "elapsedMs": 660,
+            "state": "attack",
+            "frame": 7
+          },
+          {
+            "elapsedMs": 720,
+            "state": "attack",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 780,
+            "state": "idle",
+            "frame": 1
+          }
+        ],
+        "skill": [
+          {
+            "elapsedMs": 0,
+            "state": "skill",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 60,
+            "state": "skill",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 120,
+            "state": "skill",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 180,
+            "state": "skill",
+            "frame": 1
+          },
+          {
+            "elapsedMs": 240,
+            "state": "skill",
+            "frame": 2
+          },
+          {
+            "elapsedMs": 300,
+            "state": "skill",
+            "frame": 3
+          },
+          {
+            "elapsedMs": 360,
+            "state": "skill",
+            "frame": 4
+          },
+          {
+            "elapsedMs": 420,
+            "state": "skill",
+            "frame": 4
+          },
+          {
+            "elapsedMs": 480,
+            "state": "skill",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 540,
+            "state": "skill",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 600,
+            "state": "skill",
+            "frame": 5
+          },
+          {
+            "elapsedMs": 660,
+            "state": "skill",
+            "frame": 6
+          },
+          {
+            "elapsedMs": 720,
+            "state": "skill",
+            "frame": 7
+          },
+          {
+            "elapsedMs": 780,
+            "state": "skill",
+            "frame": 7
+          },
+          {
+            "elapsedMs": 840,
+            "state": "skill",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 900,
+            "state": "skill",
+            "frame": 8
+          },
+          {
+            "elapsedMs": 960,
+            "state": "idle",
+            "frame": 1
+          }
+        ]
+      },
+      "tableauStates": {
+        "listening": {
+          "viewport": {
+            "width": 1366,
+            "height": 768,
+            "devicePixelRatio": 1
+          },
+          "scroll": {
+            "width": 1366,
+            "height": 768,
+            "x": 0,
+            "y": 0
+          },
+          "bodyDataset": {
+            "optionCProofReady": "true",
+            "optionCProofSurface": "tableau",
+            "optionCAnimationState": "idle",
+            "optionCAnimationFrame": "3"
+          },
+          "controls": {
+            "x": 12,
+            "y": 12,
+            "width": 760,
+            "height": 123.25,
+            "visible": true
+          },
+          "travel": {
+            "root": null,
+            "menu": null,
+            "nextStep": null,
+            "partyVisible": false
+          },
+          "tableau": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "width": 1366,
+              "height": 768,
+              "visible": true
+            },
+            "dialogue": null,
+            "kestrel": {
+              "x": 137.1259307861328,
+              "y": -3.06939697265625,
+              "width": 508.7169189453125,
+              "height": 847.8662719726562,
+              "visible": true
+            },
+            "kestrelImageRendering": "pixelated",
+            "kestrelFacing": "RIGHT",
+            "kestrelClasses": "narrative-cast__actor is-listening"
+          }
+        },
+        "mirrored": {
+          "viewport": {
+            "width": 1366,
+            "height": 768,
+            "devicePixelRatio": 1
+          },
+          "scroll": {
+            "width": 1366,
+            "height": 768,
+            "x": 0,
+            "y": 0
+          },
+          "bodyDataset": {
+            "optionCProofReady": "true",
+            "optionCProofSurface": "tableau",
+            "optionCAnimationState": "idle",
+            "optionCAnimationFrame": "4"
+          },
+          "controls": {
+            "x": 12,
+            "y": 12,
+            "width": 760,
+            "height": 123.25,
+            "visible": true
+          },
+          "travel": {
+            "root": null,
+            "menu": null,
+            "nextStep": null,
+            "partyVisible": false
+          },
+          "tableau": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "width": 1366,
+              "height": 768,
+              "visible": true
+            },
+            "dialogue": null,
+            "kestrel": {
+              "x": 137.1259307861328,
+              "y": -3.06939697265625,
+              "width": 508.7169189453125,
+              "height": 847.8662719726562,
+              "visible": true
+            },
+            "kestrelImageRendering": "pixelated",
+            "kestrelFacing": "LEFT",
+            "kestrelClasses": "narrative-cast__actor is-speaking"
+          }
+        },
+        "center": {
+          "viewport": {
+            "width": 1366,
+            "height": 768,
+            "devicePixelRatio": 1
+          },
+          "scroll": {
+            "width": 1366,
+            "height": 768,
+            "x": 0,
+            "y": 0
+          },
+          "bodyDataset": {
+            "optionCProofReady": "true",
+            "optionCProofSurface": "tableau",
+            "optionCAnimationState": "idle",
+            "optionCAnimationFrame": "5"
+          },
+          "controls": {
+            "x": 12,
+            "y": 12,
+            "width": 760,
+            "height": 123.25,
+            "visible": true
+          },
+          "travel": {
+            "root": null,
+            "menu": null,
+            "nextStep": null,
+            "partyVisible": false
+          },
+          "tableau": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "width": 1366,
+              "height": 768,
+              "visible": true
+            },
+            "dialogue": null,
+            "kestrel": {
+              "x": 428.64154052734375,
+              "y": -3.06939697265625,
+              "width": 508.71685791015625,
+              "height": 847.8662719726562,
+              "visible": true
+            },
+            "kestrelImageRendering": "pixelated",
+            "kestrelFacing": "RIGHT",
+            "kestrelClasses": "narrative-cast__actor is-speaking"
+          }
+        },
+        "right": {
+          "viewport": {
+            "width": 1366,
+            "height": 768,
+            "devicePixelRatio": 1
+          },
+          "scroll": {
+            "width": 1366,
+            "height": 768,
+            "x": 0,
+            "y": 0
+          },
+          "bodyDataset": {
+            "optionCProofReady": "true",
+            "optionCProofSurface": "tableau",
+            "optionCAnimationState": "idle",
+            "optionCAnimationFrame": "4"
+          },
+          "controls": {
+            "x": 12,
+            "y": 12,
+            "width": 760,
+            "height": 123.25,
+            "visible": true
+          },
+          "travel": {
+            "root": null,
+            "menu": null,
+            "nextStep": null,
+            "partyVisible": false
+          },
+          "tableau": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "width": 1366,
+              "height": 768,
+              "visible": true
+            },
+            "dialogue": null,
+            "kestrel": {
+              "x": 720.1415405273438,
+              "y": -3.06939697265625,
+              "width": 508.71685791015625,
+              "height": 847.8662719726562,
+              "visible": true
+            },
+            "kestrelImageRendering": "pixelated",
+            "kestrelFacing": "LEFT",
+            "kestrelClasses": "narrative-cast__actor is-speaking"
+          }
+        }
+      },
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        }
+      ],
+      "pageErrors": [],
+      "failedRequests": []
+    },
+    {
+      "kind": "COMBAT_PERFORMANCE_BASELINE",
+      "viewport": {
+        "width": 1366,
+        "height": 768,
+        "label": "1366x768"
+      },
+      "diagnostics": {
+        "drawCalls": 1,
+        "triangles": 1,
+        "geometries": 33,
+        "textures": 26,
+        "reducedGraphics": false,
+        "units": 4,
+        "activeTweens": 0,
+        "activeVfxObjects": 0,
+        "grid": {
+          "width": 8,
+          "depth": 4,
+          "walkable": 32,
+          "blocked": 0
+        }
+      },
+      "fps": {
+        "frames": 7,
+        "durationMs": 1399.1,
+        "fps": 5.003216353370024
+      },
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting...",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected.",
+          "url": "http://127.0.0.1:5173/@vite/client"
+        }
+      ],
+      "pageErrors": [],
+      "failedRequests": []
+    }
+  ]
+}

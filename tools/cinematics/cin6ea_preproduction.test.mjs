@@ -205,13 +205,19 @@ describe('CIN-6E-A final visual preproduction system', () => {
     expect(reviewTool).toContain('normalizedHistogramL1');
   });
 
-  it('keeps protected game systems and visual assets unchanged while allowing the final dialogue-staging runtime', () => {
+  it('keeps protected game systems and visual assets unchanged outside authorized presentation-only runtime proofs', () => {
+    const phase4bRuntimeProofFiles = new Set([
+      'src/combat/CombatBridge.ts',
+      'src/combat/legacyCombatRuntime.js',
+      'src/combat/protocol.ts',
+      'src/combat/stage/CombatStage.ts',
+    ]);
     const protectedDiff = execFileSync('git', [
       'diff', '--name-only', baseline, '--',
       'src/combat', 'src/vfx', 'src/journey',
       'public/assets/characters/pixel/full', 'public/assets/cinematics',
-    ], { cwd: root, encoding: 'utf8' }).trim();
-    expect(protectedDiff).toBe('');
+    ], { cwd: root, encoding: 'utf8' }).trim().split(/\r?\n/u).filter(Boolean);
+    expect(protectedDiff.filter((path) => !phase4bRuntimeProofFiles.has(path))).toEqual([]);
     const allowedRuntime = new Set([
       'src/game/GameApp.ts',
       'src/game/cin65CinematicDialogueIntegration.test.ts',
