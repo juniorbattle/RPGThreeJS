@@ -514,14 +514,53 @@ export function buildLionContextualDialogue(
   dialogueId: string,
   state: Readonly<GameState>,
 ): DialogueSequence | null {
-  switch (dialogueId) {
-    case 'lion_finale_judgement': return buildLionFinaleJudgement(state);
-    case 'serpent_pursuit_pre_combat':
-    case 'serpent_general_pre_combat': return buildSerpentPursuitPreCombat(state);
-    case 'pre_lion_chief': return buildLionTrialPreCombat(state);
-    case 'serpent_general_aftermath': return buildSerpentGeneralAftermath(state);
-    case 'lion_trial_aftermath': return buildLionTrialAftermath(state);
-    case 'epilogue': return buildLionEpilogue(state);
-    default: return null;
-  }
+  const canonicalDialogueId = LION_CONTEXTUAL_DIALOGUE_ALIASES[dialogueId] ?? dialogueId;
+  const builder = LION_CONTEXTUAL_DIALOGUE_BUILDERS[canonicalDialogueId];
+  return builder?.(state) ?? null;
 }
+
+type LionContextualDialogueBuilder = (state: Readonly<GameState>) => DialogueSequence;
+
+/**
+ * Authoritative registry for state-built dialogue sequences. Keeping resolver
+ * ownership and presentation reachability in one keyed registry prevents a
+ * new dynamic dialogue from bypassing the campaign-wide coverage census.
+ */
+export const LION_CONTEXTUAL_DIALOGUE_BUILDERS: Readonly<Record<string, LionContextualDialogueBuilder>> = Object.freeze({
+  lion_finale_judgement: buildLionFinaleJudgement,
+  serpent_pursuit_pre_combat: buildSerpentPursuitPreCombat,
+  pre_lion_chief: buildLionTrialPreCombat,
+  serpent_general_aftermath: buildSerpentGeneralAftermath,
+  lion_trial_aftermath: buildLionTrialAftermath,
+  epilogue: buildLionEpilogue,
+});
+
+/** Resolver-input aliases never create a distinct runtime presentation ID. */
+export const LION_CONTEXTUAL_DIALOGUE_ALIASES: Readonly<Record<string, string>> = Object.freeze({
+  serpent_general_pre_combat: 'serpent_pursuit_pre_combat',
+});
+
+/**
+ * Declared step envelope for every state-built sequence. The census must find
+ * every declared step in a real resolved state and rejects any resolved step
+ * that is absent from this contract.
+ */
+export const LION_CONTEXTUAL_DIALOGUE_STEP_CONTRACTS: Readonly<Record<string, readonly string[]>> = Object.freeze({
+  lion_finale_judgement: Object.freeze([
+    'open',
+    'record',
+    'lie-rebuked',
+    'outcome',
+    'merits',
+    'breaches',
+    'stains',
+    'witnesses',
+    'shadow',
+    'intent',
+  ]),
+  serpent_pursuit_pre_combat: Object.freeze(['1', '2', '3']),
+  pre_lion_chief: Object.freeze(['1', '2', '3']),
+  serpent_general_aftermath: Object.freeze(['1', '2', '3']),
+  lion_trial_aftermath: Object.freeze(['1', '2']),
+  epilogue: Object.freeze(['1', '2', '3']),
+});

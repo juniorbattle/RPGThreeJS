@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "mission": "OPTION_C_RUNTIME_ART_DIRECTION_PHASES_1_TO_3",
+  "baseline": "678a37ac6f1b9320a94e4c4571ab2e069d6e237b",
+  "authority": "DIRECTIONAL_REFERENCE_ONLY",
+  "canonicalCharacterAuthority": "public/assets/characters/pixel/full/*.png",
+  "productionUseAllowed": false,
+  "commonFrame": {
+    "width": 1448,
+    "height": 1086,
+    "aspect": "4:3 moodboard",
+    "productionCropApproved": false
+  },
+  "references": [
+    {
+      "path": "references/surface-board-a.png",
+      "sha256": "20497b620e1681fb787de181d8e3da9d576be9d0043d05e0c4767a964987924d",
+      "bytes": 3329693,
+      "use": ["surface separation", "navy-gold UI", "forest/castle light", "combat-stage title"],
+      "neverAuthorityFor": ["game text", "cast", "routes", "runtime geometry"]
+    },
+    {
+      "path": "references/surface-board-b.png",
+      "sha256": "0629895927ad00e82129ed9d03ddec5fb6ffe90dd0b074580d85522d8ddd5aac",
+      "bytes": 3201117,
+      "use": ["same-game cohesion", "actor-environment integration", "surface hierarchy"],
+      "neverAuthorityFor": ["travel cast", "brand", "baked UI"]
+    },
+    {
+      "path": "references/surface-board-c.png",
+      "sha256": "f4a22de38e700a85c64064d0b28d139e031340b998f9f2992f754acfd37e0c0e",
+      "bytes": 3116385,
+      "use": ["two-character tableau", "cinematic negative space", "panel proportions"],
+      "neverAuthorityFor": ["lore", "character assignment", "combat camera replacement"]
+    },
+    {
+      "path": "references/motion-lightcaster-reference.png",
+      "sha256": "aff219d319ef9fd722220da8267b853d19c33d1443f973a0656448ccd4a008d8",
+      "bytes": 2918244,
+      "use": ["lightcaster material", "staff silhouette", "idle-dash-attack-cast separation"],
+      "canonicalMappingNote": "Visual identity resembles canonical Marian, not the board label Sage Seraphine."
+    },
+    {
+      "path": "references/motion-armored-vanguard-reference.png",
+      "sha256": "949e2b2901af3ce1da69d43721c627979da4bcba879db1aeaf372a013aca4cfd",
+      "bytes": 3050630,
+      "use": ["armored silhouette", "red cloth motion", "sword follow-through"],
+      "canonicalMappingNote": "Visual identity resembles canonical Alistair, not the board label Marian."
+    },
+    {
+      "path": "references/motion-kestrel-reference.png",
+      "sha256": "ca19ef08416fef9620f98f7ea1aef5bdb09258ab11b768eecc29a3ee26f2fc96",
+      "bytes": 2995144,
+      "use": ["Kestrel pose language", "mask and hood", "bow/quiver continuity", "leaf motion motif"],
+      "canonicalMappingNote": "High-confidence directional mapping; canonical PNG still overrides every detail."
+    }
+  ],
+  "generation": {
+    "gptImageAttempts": 0,
+    "miniMaxAttempts": 0,
+    "reason": "The supplied references were sufficient to lock phases 1-3; phase 4 requires operator authorization."
+  }
+}

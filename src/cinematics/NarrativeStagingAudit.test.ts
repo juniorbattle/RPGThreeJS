@@ -36,6 +36,12 @@ describe('Narrative dialogue staging audit', () => {
     expect(audit.summary.unresolvedDialogueSpeakerAssociations).toBe(0);
     expect(audit.summary.staticUpperPlacementViolations).toBe(0);
     expect(audit.summary.videoPlacementRegressions).toBe(0);
+    expect(audit.summary.runtimeReachablePresentationSteps).toBe(270);
+    expect(audit.summary.plannedRuntimePresentationSteps).toBe(270);
+    expect(audit.summary.explicitLegitimateRuntimeOnlySteps).toBe(0);
+    expect(audit.summary.missingRuntimePresentationSteps).toBe(0);
+    expect(audit.summary.deadOrUnreachablePresentationSteps).toBe(2);
+    expect(audit.summary.unknownRuntimePresentationSteps).toBe(0);
   });
 
   it('keeps composition phases stable while cards may move and owns each canonical step exactly once', () => {

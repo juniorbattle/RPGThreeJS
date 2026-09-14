@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 3,
-  "source": "CANONICAL_DIALOGUE_SEQUENCE_DATA",
+  "schemaVersion": 4,
+  "source": "CANONICAL_DIALOGUE_SEQUENCE_DATA_WITH_RUNTIME_REACHABILITY",
   "entries": [
     {
       "dialogueId": "acte_ouverture",
@@ -10242,6 +10242,1119 @@
       "futureMediaNeed": "NONE"
     }
   ],
+  "runtimePresentationCoverage": {
+    "schemaVersion": 1,
+    "contract": "RUNTIME_REACHABLE_PRESENTATION_STEPS == PLANNED_PRESENTATION_STEPS + EXPLICIT_LEGITIMATE_RUNTIME_ONLY_STEPS",
+    "summary": {
+      "stateScenarios": 320,
+      "runtimePresentationVariants": 123,
+      "canonicalDialogueSteps": 247,
+      "runtimeReachablePresentationSteps": 270,
+      "plannedRuntimePresentationSteps": 270,
+      "explicitLegitimateRuntimeOnlySteps": 0,
+      "missingFromPlan": 0,
+      "deadOrUnreachable": 2,
+      "unknown": 0,
+      "missingVariantPlans": 0,
+      "invalidVariantPlans": 0
+    },
+    "entries": [
+      {
+        "key": "acte_ouverture:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "acte_ouverture:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "acte_ouverture:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "acte_ouverture:4",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "acte_ouverture:5",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "acte_ouverture:6",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "acte_ouverture:7",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "acte_ouverture:8",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "acte_ouverture:9",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_alaric_reports:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_alaric_reports:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_alaric_reports:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_bois_clair_night_watch:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_bois_clair_night_watch:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_bois_clair_night_watch:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_bois_clair_night_watch:4",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_first_refuge_watch:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_first_refuge_watch:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_first_refuge_watch:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_first_refuge_watch:4",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_first_refuge_watch:r5-cedric-first-watch",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_lion_council_doubt:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_lion_council_doubt:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_lion_council_doubt:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_maelor_seal_analysis:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_maelor_seal_analysis:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_maelor_seal_analysis:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_ruins_awaken:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_ruins_awaken:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_ruins_awaken:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_serpent_general_warning:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_serpent_general_warning:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_serpent_general_warning:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_serpent_retreat_order:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_serpent_retreat_order:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_serpent_retreat_order:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_serpent_scout_report:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_serpent_scout_report:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_serpent_scout_report:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_village_fear:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_village_fear:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "ate_village_fear:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "camp_departure:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "camp_departure:1a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "camp_departure:1b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "camp_departure:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "camp_departure:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "camp_departure:4",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "camp_departure:5",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "epilogue:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "epilogue:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "epilogue:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "final_refuge:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "final_refuge:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "final_refuge:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "final_refuge:4",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "final_refuge:5",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "final_refuge:6",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "final_refuge:r3-cedric-continuity",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "final_refuge:r5-garen-final-pledge",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_briefing:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_briefing:1a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_briefing:1b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_briefing:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_briefing:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_briefing:4",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_briefing:5",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_finale_judgement:1",
+        "classification": "DEAD_OR_UNREACHABLE",
+        "reason": "Static registry placeholder superseded by the state-built Lion judgement sequence."
+      },
+      {
+        "key": "lion_finale_judgement:breaches",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_finale_judgement:intent",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_finale_judgement:lie-rebuked",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_finale_judgement:merits",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_finale_judgement:open",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_finale_judgement:outcome",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_finale_judgement:record",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_finale_judgement:shadow",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_finale_judgement:stains",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_finale_judgement:witnesses",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_trial_aftermath:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "lion_trial_aftermath:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_ambush:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_dragon_roost:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_dragon_roost:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_dragon_roost:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_help:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_help:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_help:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_lancer_recruit:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_lancer_recruit:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_lancer_recruit:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_lancer_recruit:4",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_recruit:0a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_recruit:0b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_recruit:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_recruit:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_recruit:2a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_recruit:2b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_recruit:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_recruit:3a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_recruit:3b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_shrine:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_shrine:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_shrine:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_treasure:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_treasure:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_treasure:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_troll_crossing:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_troll_crossing:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "mystery_troll_crossing:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "old_shrine_event:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "old_shrine_event:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "old_shrine_event:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_opening_trail:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_opening_trail:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_opening_trail:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_ruins_guardians:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_ruins_guardians:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_serpent_checkpoint:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_serpent_checkpoint:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_serpent_duelist_trial:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_serpent_duelist_trial:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_serpent_hunters:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_serpent_hunters:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_serpent_patrol:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_serpent_patrol:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_serpent_reprisals:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_serpent_reprisals:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_spider_nest:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_spider_nest:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_troll_crossing:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_troll_crossing:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_valmir_road:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_valmir_road:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_valmir_road:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_young_dragon_roost:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "post_young_dragon_roost:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_lion_chief:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_lion_chief:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_lion_chief:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_lion_chief:4",
+        "classification": "DEAD_OR_UNREACHABLE",
+        "reason": "Legacy static registry tail superseded by the state-built three-step Lion Trial sequence."
+      },
+      {
+        "key": "pre_opening_trail:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_opening_trail:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_opening_trail:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_ruins_guardians:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_ruins_guardians:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_serpent_checkpoint:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_serpent_checkpoint:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_serpent_duelist_trial:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_serpent_duelist_trial:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_serpent_duelist_trial:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_serpent_hunters:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_serpent_hunters:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_serpent_hunters:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_serpent_patrol:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_serpent_patrol:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_serpent_reprisals:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_serpent_reprisals:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_spider_nest:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_spider_nest:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_troll_crossing:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_troll_crossing:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_valmir_road:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_valmir_road:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_valmir_road:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_village_defense:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_village_defense:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_village_raid:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_village_raid:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_young_dragon_roost:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "pre_young_dragon_roost:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "refugee_trial:0a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "refugee_trial:0b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "refugee_trial:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "refugee_trial:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "refugee_trial:2a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "refugee_trial:2b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "refugee_trial:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "refugee_trial:3a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "refugee_trial:3b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "refugee_trial:r5-cedric-refugee-route",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_bois_clair_denunciation:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_bois_clair_denunciation:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_bois_clair_denunciation:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_brokered_information:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_brokered_information:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_brokered_information:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_displaced_family_demand:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_displaced_family_demand:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_displaced_family_demand:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_fallen_banner_claimant:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_fallen_banner_claimant:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_fallen_banner_claimant:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_public_petition:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_public_petition:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_public_petition:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_refuge_supply_offer:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_refuge_supply_offer:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_refuge_supply_offer:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_roadside_intimidation:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_roadside_intimidation:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_roadside_intimidation:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_serpent_rumour_market:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_serpent_rumour_market:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_serpent_rumour_market:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_village_memorial_request:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_village_memorial_request:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "rep_event_village_memorial_request:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "reserve_trail:0a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "reserve_trail:0b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "reserve_trail:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "reserve_trail:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "reserve_trail:2a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "reserve_trail:2b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "reserve_trail:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "reserve_trail:3a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "reserve_trail:3b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "reserve_trail:r5-cedric-convoy-reading",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "serpent_duelist_trial:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "serpent_duelist_trial:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "serpent_duelist_trial:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "serpent_general_aftermath:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "serpent_general_aftermath:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "serpent_general_aftermath:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "serpent_informant:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "serpent_informant:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "serpent_informant:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "serpent_pursuit_pre_combat:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "serpent_pursuit_pre_combat:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "serpent_pursuit_pre_combat:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "shadow_signs:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "shadow_signs:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "shadow_signs:2a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "shadow_signs:2b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "shadow_signs:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "shadow_signs:3a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "shadow_signs:3b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "shadow_signs:r5-cedric-shadow-evidence",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "shadow_signs:r5-cedric-shadow-fragments",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "shadow_signs:r5-garen-shadow-evidence",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "shadow_signs:r5-garen-shadow-fragments",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_choice:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_choice:1a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_choice:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_choice:2a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_choice:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_choice:4",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_choice:4a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_choice:5",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_choice:6",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_choice:6a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_choice:6b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_choice:7",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_choice:7a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_choice:7b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_defense_aftermath:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_defense_aftermath:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_defense_aftermath:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_raid_aftermath:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_raid_aftermath:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "village_raid_aftermath:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "witnesses_on_road:0a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "witnesses_on_road:0b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "witnesses_on_road:1",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "witnesses_on_road:2",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "witnesses_on_road:2a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "witnesses_on_road:2b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "witnesses_on_road:3",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "witnesses_on_road:3a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "witnesses_on_road:3b",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "witnesses_on_road:4",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "witnesses_on_road:4a",
+        "classification": "VALID_PLANNED"
+      },
+      {
+        "key": "witnesses_on_road:4b",
+        "classification": "VALID_PLANNED"
+      }
+    ],
+    "missingRuntimeStepKeys": [],
+    "missingVariantSignatures": [],
+    "invalidVariantPlanErrors": [],
+    "contractErrors": []
+  },
   "summary": {
     "totalReachableDialogues": 71,
     "stagedDialogues": 71,
@@ -10283,6 +11396,12 @@
     "unresolvedStaticScaleOutliers": 0,
     "unresolvedDialogueSpeakerAssociations": 0,
     "staticUpperPlacementViolations": 0,
-    "videoPlacementRegressions": 0
+    "videoPlacementRegressions": 0,
+    "runtimeReachablePresentationSteps": 270,
+    "plannedRuntimePresentationSteps": 270,
+    "explicitLegitimateRuntimeOnlySteps": 0,
+    "missingRuntimePresentationSteps": 0,
+    "deadOrUnreachablePresentationSteps": 2,
+    "unknownRuntimePresentationSteps": 0
   }
 }

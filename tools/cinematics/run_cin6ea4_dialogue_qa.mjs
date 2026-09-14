@@ -24,11 +24,68 @@ const REPRESENTATIVE_SCENARIOS = [
   ['ruins aftermath', 'post_ruins_guardians'],
   ['shadow evidence', 'shadow_signs'],
   ['final refuge', 'final_refuge'],
-  ['Serpent pursuit', 'serpent_pursuit_pre_combat'],
-  ['Serpent aftermath', 'serpent_general_aftermath'],
-  ['Lion finale', 'lion_finale_judgement'],
-  ['epilogue', 'epilogue'],
 ].map(([label, dialogueId]) => ({ label, dialogueId }));
+
+const HONOUR_FLAGS = {
+  helpedRefugees: true,
+  prioritizedVillage: true,
+  missionSuccess: true,
+  protectedWitnesses: true,
+};
+
+const FINALE_SCENARIOS = [
+  {
+    label: 'Lion finale dynamic opening',
+    dialogueId: 'lion_finale_judgement',
+    stepId: 'open',
+    flags: HONOUR_FLAGS,
+    expectedActor: 'alaric',
+  },
+  {
+    label: 'Serpent finale pursuit',
+    dialogueId: 'serpent_pursuit_pre_combat',
+    stepId: '3',
+    flags: { ...HONOUR_FLAGS, shadowEvidence: true, shadowRevealed: true },
+    expectedActor: 'sage_seraphine',
+  },
+  {
+    label: 'Serpent finale aftermath',
+    dialogueId: 'serpent_general_aftermath',
+    stepId: '1',
+    flags: { ...HONOUR_FLAGS, serpentGeneralDefeated: true, shadowEvidence: true },
+    expectedActor: 'sage_seraphine',
+  },
+  {
+    label: 'voluntary Lion Trial',
+    dialogueId: 'pre_lion_chief',
+    stepId: '1',
+    flags: { ...HONOUR_FLAGS, lionTrialRequested: true },
+    expectedActor: 'alaric',
+    expectedTag: 'Épreuve demandée',
+  },
+  {
+    label: 'non-voluntary Lion Trial',
+    dialogueId: 'pre_lion_chief',
+    stepId: '1',
+    flags: { missionGreed: true, silencedWitnesses: true, lionTrialRequested: false },
+    expectedActor: 'alaric',
+    expectedTag: 'Reconnaissance refusée',
+  },
+  {
+    label: 'final refuge recruited company',
+    dialogueId: 'final_refuge',
+    stepId: 'r5-garen-final-pledge',
+    flags: { ...HONOUR_FLAGS, recruitedCedric: true, recruitedLancer: true },
+    expectedActor: 'lancer',
+  },
+  {
+    label: 'epilogue terminal presentation',
+    dialogueId: 'epilogue',
+    stepId: '3',
+    flags: { ...HONOUR_FLAGS, serpentGeneralDefeated: true, shadowEvidence: true, shadowRevealed: true },
+    expectedActor: 'sage_seraphine',
+  },
+];
 
 const TARGETED_SCENARIOS = [
   { label: 'direct-response facing', dialogueId: 'acte_ouverture', stepId: '3', expectedResolution: 'DIRECT_RESPONSE', expectedTarget: 'maelor' },
@@ -65,8 +122,9 @@ async function loadHarness(page) {
         css.addEventListener('error', rejectLoad, { once: true });
       });
     }
-    const [content, tableaux, segments, surfaceModule, adapter, dialogueModule, store, stageModule, playerModule, registryModule, presentationResolver] = await Promise.all([
+    const [content, contextual, tableaux, segments, surfaceModule, adapter, dialogueModule, store, stageModule, playerModule, registryModule, presentationResolver] = await Promise.all([
       import('/src/game/content.ts'),
+      import('/src/game/contextualDialogueContent.ts'),
       import('/src/cinematics/NarrativeTableau.ts'),
       import('/src/cinematics/DialoguePresentationSegments.ts'),
       import('/src/cinematics/NarrativeSceneSurface.ts'),
@@ -78,20 +136,23 @@ async function loadHarness(page) {
       import('/src/cinematics/CinematicRegistry.ts'),
       import('/src/cinematics/NarrativePresentationResolver.ts'),
     ]);
-    window.__cin6ea4 = { content, tableaux, segments, surfaceModule, adapter, dialogueModule, store, stageModule, playerModule, registryModule, presentationResolver };
+    window.__cin6ea4 = { content, contextual, tableaux, segments, surfaceModule, adapter, dialogueModule, store, stageModule, playerModule, registryModule, presentationResolver };
   });
 }
 
 async function renderScenario(page, scenario) {
   const stepId = selectedStep(scenario);
-  await page.evaluate(async ({ dialogueId, stepId }) => {
+  await page.evaluate(async ({ dialogueId, stepId, flags = {} }) => {
     const modules = window.__cin6ea4;
     window.__cin6ea4View?.close();
     window.__cin6ea4Surface?.dispose();
     document.body.replaceChildren();
     document.body.style.margin = '0';
     document.body.style.overflow = 'hidden';
-    const sequence = modules.content.dialogues.get(dialogueId);
+    const state = modules.store.createInitialState();
+    state.flags = { ...flags };
+    const resolved = modules.contextual.resolveGameDialogue(dialogueId, state);
+    const sequence = resolved?.sequence;
     if (!sequence) throw new Error(`Missing runtime dialogue ${dialogueId}.`);
     const base = modules.tableaux.resolveNarrativeDialogueTableau(dialogueId, sequence)
       ?? modules.tableaux.createGenericNarrativeTableau(sequence);
@@ -152,7 +213,7 @@ async function renderScenario(page, scenario) {
     });
     window.__cin6ea4View = view;
     window.__cin6ea4Surface = sceneSurface;
-  }, { dialogueId: scenario.dialogueId, stepId });
+  }, { dialogueId: scenario.dialogueId, stepId, flags: scenario.flags ?? {} });
   const dialogue = page.locator(`.dialogue[data-dialogue-step="${stepId}"]`);
   await dialogue.waitFor({ state: 'visible', timeout: 10_000 });
   if (await dialogue.getAttribute('data-narrative-agency-state') === 'SETUP') {
@@ -179,6 +240,7 @@ async function renderScenario(page, scenario) {
       label,
       stepId: dialogue?.getAttribute('data-dialogue-step'),
       actorId: dialogue?.getAttribute('data-dialogue-actor'),
+      stepTag: dialogue?.querySelector('.dialogue__tag')?.textContent?.trim(),
       phaseId: dialogue?.getAttribute('data-narrative-phase'),
       segmentMode: dialogue?.getAttribute('data-narrative-scene-mode'),
       actorIds: actors.map((actor) => actor.getAttribute('data-actor-id')),
@@ -232,6 +294,43 @@ function assertMetrics(metrics, scenario) {
   if (metrics.missingActorImages.length) throw new Error(`${scenario.label}: missing canonical images for ${metrics.missingActorImages.join(', ')}.`);
   if (metrics.cardOverflow || !metrics.buttonsInViewport || metrics.bodyOverflow) throw new Error(`${scenario.label}: dialogue UI overflow or viewport collision: ${JSON.stringify({ cardOverflow: metrics.cardOverflow, buttonsInViewport: metrics.buttonsInViewport, bodyOverflow: metrics.bodyOverflow, viewport: metrics.viewport, buttonRects: metrics.buttonRects })}.`);
   if (metrics.modalOwners !== 1) throw new Error(`${scenario.label}: expected one modal owner, found ${metrics.modalOwners}.`);
+  if (scenario.expectedActor && metrics.actorId !== scenario.expectedActor) throw new Error(`${scenario.label}: expected speaker ${scenario.expectedActor}, received ${metrics.actorId}.`);
+  if (scenario.expectedTag && metrics.stepTag !== scenario.expectedTag) throw new Error(`${scenario.label}: expected tag ${scenario.expectedTag}, received ${metrics.stepTag}.`);
+}
+
+async function runLiveLionOpeningProbe(page) {
+  await page.goto(`${BASE_URL}/?qa=1&cinematic=1&presentation=narrative&media=stills`, { waitUntil: 'domcontentloaded' });
+  await page.locator('[data-cinematic-qa="real-dialogue"]').click();
+  await page.locator('.dialogue[data-dialogue-step="open"]').waitFor({ state: 'visible', timeout: 10_000 });
+  return page.locator('.narrative-stage').evaluate((stage) => {
+    const dialogue = stage.querySelector('.dialogue');
+    const actors = [...stage.querySelectorAll('.narrative-cast__actor')];
+    const visible = (element) => {
+      const rect = element.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0 && getComputedStyle(element).visibility !== 'hidden';
+    };
+    return {
+      stepId: dialogue?.getAttribute('data-dialogue-step'),
+      actorId: dialogue?.getAttribute('data-dialogue-actor'),
+      surfaceMode: dialogue?.getAttribute('data-narrative-scene-mode'),
+      stageStepId: stage.dataset.narrativeDialogueStep,
+      castOwnership: stage.dataset.narrativeCastOwnership,
+      fallbackActive: stage.dataset.fallbackActive,
+      activeActors: actors.filter((actor) => actor.getAttribute('data-cast-state') === 'ACTIVE').map((actor) => actor.getAttribute('data-actor-id')),
+      missingActorImages: actors.filter((actor) => !actor.querySelector('img')).map((actor) => actor.getAttribute('data-actor-id')),
+      travelViewVisible: [...document.querySelectorAll('.travel-view')].some(visible),
+      cinematicOverlayVisible: [...document.querySelectorAll('.cinematic-overlay')].some(visible),
+      bodyOverflow: document.documentElement.scrollWidth > innerWidth || document.documentElement.scrollHeight > innerHeight,
+    };
+  });
+}
+
+function assertLiveLionOpeningProbe(probe) {
+  if (probe.stepId !== 'open' || probe.stageStepId !== 'open') throw new Error(`Live Lion opening did not resolve open: ${JSON.stringify(probe)}.`);
+  if (probe.actorId !== 'alaric' || !probe.activeActors.includes('alaric')) throw new Error(`Live Lion opening did not stage active Alaric: ${JSON.stringify(probe)}.`);
+  if (probe.surfaceMode !== 'STATIC_TABLEAU' || probe.castOwnership !== 'STAGE_OWNS_CAST') throw new Error(`Live Lion opening ownership mismatch: ${JSON.stringify(probe)}.`);
+  if (probe.fallbackActive !== 'false' || probe.travelViewVisible || probe.cinematicOverlayVisible) throw new Error(`Live Lion opening retained an unexpected fallback/Travel/video surface: ${JSON.stringify(probe)}.`);
+  if (probe.missingActorImages.length || probe.bodyOverflow) throw new Error(`Live Lion opening cast/viewport failure: ${JSON.stringify(probe)}.`);
 }
 
 async function runTransitionProbe(page) {
@@ -313,8 +412,11 @@ try {
     page.on('console', (message) => { if (message.type() === 'error') consoleErrors.push(message.text()); });
     page.on('pageerror', (error) => pageErrors.push(error.message));
     try {
-      await loadHarness(page);
+      const liveLionOpeningProbe = await runLiveLionOpeningProbe(page);
+      assertLiveLionOpeningProbe(liveLionOpeningProbe);
       const prefix = `${viewport.width}x${viewport.height}`;
+      await page.screenshot({ path: resolve(OUTPUT_DIR, `${prefix}-live-lion-open.png`) });
+      await loadHarness(page);
       await page.screenshot({ path: resolve(OUTPUT_DIR, `${prefix}-review-overview.png`) });
       const metrics = [];
       for (const scenario of REPRESENTATIVE_SCENARIOS) {
@@ -323,6 +425,15 @@ try {
         metrics.push({ ...scenario, ...scenarioMetrics });
         if (['acte_ouverture', 'lion_briefing', 'village_defense_aftermath', 'lion_finale_judgement'].includes(scenario.dialogueId)) {
           await page.screenshot({ path: resolve(OUTPUT_DIR, `${prefix}-${scenario.dialogueId}.png`) });
+        }
+      }
+      const finaleMetrics = [];
+      for (const scenario of FINALE_SCENARIOS) {
+        const scenarioMetrics = await renderScenario(page, scenario);
+        assertMetrics(scenarioMetrics, scenario);
+        finaleMetrics.push({ ...scenario, ...scenarioMetrics });
+        if (['lion_finale_judgement', 'pre_lion_chief', 'final_refuge', 'epilogue'].includes(scenario.dialogueId)) {
+          await page.screenshot({ path: resolve(OUTPUT_DIR, `${prefix}-finale-${scenario.dialogueId}-${scenario.stepId}.png`) });
         }
       }
       const targetedMetrics = [];
@@ -337,7 +448,7 @@ try {
       const transitionProbe = await runTransitionProbe(page);
       assertTransitionProbe(transitionProbe);
       if (consoleErrors.length || pageErrors.length) throw new Error(`Browser errors: ${JSON.stringify({ consoleErrors, pageErrors })}`);
-      results.push({ viewport, representativeScenarios: metrics, targetedScenarios: targetedMetrics, transitionProbe, fivePlusCastSplit: { uniqueCast: openingUniqueCast.size, maxActorsPerTableau: Math.max(...openingAudit.segments.map((segment) => segment.visibleCast.length)) }, screenshots: 5, consoleErrors, pageErrors, pass: true });
+      results.push({ viewport, liveLionOpeningProbe, representativeScenarios: metrics, finaleScenarios: finaleMetrics, targetedScenarios: targetedMetrics, transitionProbe, fivePlusCastSplit: { uniqueCast: openingUniqueCast.size, maxActorsPerTableau: Math.max(...openingAudit.segments.map((segment) => segment.visibleCast.length)) }, screenshots: 10, consoleErrors, pageErrors, pass: true });
     } catch (error) {
       failed = true;
       results.push({ viewport, consoleErrors, pageErrors, pass: false, error: error instanceof Error ? error.stack : String(error) });
@@ -348,6 +459,6 @@ try {
 } finally {
   await browser.close();
 }
-await writeFile(resolve(OUTPUT_DIR, 'results.json'), `${JSON.stringify({ baseline: visualAudit.baseline, doctrine: 'STATIC_TABLEAU_FIRST', representativeScenarioCount: REPRESENTATIVE_SCENARIOS.length, targetedScenarioCount: TARGETED_SCENARIOS.length, results }, null, 2)}\n`);
-console.log(JSON.stringify(results.map((result) => ({ viewport: result.viewport, pass: result.pass, representativeScenarios: result.representativeScenarios?.length ?? 0, targetedScenarios: result.targetedScenarios?.length ?? 0, transitions: result.transitionProbe ? 4 : 0, error: result.error })), null, 2));
+await writeFile(resolve(OUTPUT_DIR, 'results.json'), `${JSON.stringify({ baseline: visualAudit.baseline, doctrine: 'STATIC_TABLEAU_FIRST', representativeScenarioCount: REPRESENTATIVE_SCENARIOS.length, finaleScenarioCount: FINALE_SCENARIOS.length, targetedScenarioCount: TARGETED_SCENARIOS.length, results }, null, 2)}\n`);
+console.log(JSON.stringify(results.map((result) => ({ viewport: result.viewport, pass: result.pass, liveLionOpen: result.liveLionOpeningProbe?.stepId ?? null, representativeScenarios: result.representativeScenarios?.length ?? 0, finaleScenarios: result.finaleScenarios?.length ?? 0, targetedScenarios: result.targetedScenarios?.length ?? 0, transitions: result.transitionProbe ? 4 : 0, error: result.error })), null, 2));
 if (failed) process.exitCode = 1;

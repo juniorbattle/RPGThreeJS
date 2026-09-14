@@ -1,5 +1,10 @@
 import type { DialogueSequence } from '../game/types';
-import { FINAL_DIALOGUE_PRESENTATION_PLANS } from './FinalDialoguePresentation.generated';
+import { dialoguePresentationShapeSignature } from '../game/dialoguePresentationShape';
+import {
+  FINAL_DIALOGUE_CANONICAL_PRESENTATION_SHAPES,
+  FINAL_DIALOGUE_PRESENTATION_PLANS,
+  FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS,
+} from './FinalDialoguePresentation.generated';
 import {
   createGenericNarrativeTableau,
   resolveNarrativeStepLayout,
@@ -73,8 +78,24 @@ export interface FinalDialoguePresentationPlan {
 }
 
 const PLANS = FINAL_DIALOGUE_PRESENTATION_PLANS as unknown as Readonly<Record<string, FinalDialoguePresentationPlan>>;
+const CANONICAL_SHAPES = FINAL_DIALOGUE_CANONICAL_PRESENTATION_SHAPES as unknown as Readonly<Record<string, string>>;
+const RUNTIME_PLANS = FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS as unknown as Readonly<
+  Record<string, Readonly<Record<string, FinalDialoguePresentationPlan>>>
+>;
 
-export function resolveFinalDialoguePresentationPlan(dialogueId: string): FinalDialoguePresentationPlan | undefined {
+export function resolveFinalDialoguePresentationPlan(
+  dialogueId: string,
+  sequence?: Readonly<DialogueSequence>,
+): FinalDialoguePresentationPlan | undefined {
+  if (sequence) {
+    const signature = dialoguePresentationShapeSignature(sequence);
+    const runtimePlan = RUNTIME_PLANS[dialogueId]?.[signature]
+      ?? (CANONICAL_SHAPES[dialogueId] === signature ? PLANS[dialogueId] : undefined);
+    if (!runtimePlan) {
+      throw new Error(`No authoritative runtime presentation plan for ${dialogueId} shape '${signature}'.`);
+    }
+    return runtimePlan;
+  }
   return PLANS[dialogueId];
 }
 
@@ -114,7 +135,7 @@ export function applyFinalDialoguePresentationPlan(
   tableau?: NarrativeTableauSpec,
 ): NarrativeTableauSpec {
   const base = tableau ?? createGenericNarrativeTableau(sequence);
-  const plan = resolveFinalDialoguePresentationPlan(sequence.id);
+  const plan = resolveFinalDialoguePresentationPlan(sequence.id, sequence);
   if (!plan) return base;
   const phases = plan.segments.map((segment) => phaseForSegment(sequence, base, segment));
   const beats = base.beats.map((beat) => {

@@ -3,6 +3,11 @@ import { REPUTATION_EVENT_DEFINITIONS } from '../game/reputationEventContent';
 import { resolveGameDialogue } from '../game/contextualDialogueContent';
 import { createInitialState } from '../game/store';
 import type { DialogueSequence } from '../game/types';
+import {
+  createRuntimePresentationStepCensus,
+  validateRuntimePresentationStepCensus,
+  type RuntimePresentationStepCensus,
+} from './RuntimePresentationStepCensus';
 import { applyFinalDialoguePresentationPlan } from './DialoguePresentationSegments';
 import { DialogueStagingDirector, type DialogueStagingDecision } from './DialogueStagingDirector';
 import {
@@ -70,9 +75,10 @@ export interface NarrativeDialogueStagingEntry {
 }
 
 export interface NarrativeStagingAudit {
-  schemaVersion: 3;
-  source: 'CANONICAL_DIALOGUE_SEQUENCE_DATA';
+  schemaVersion: 4;
+  source: 'CANONICAL_DIALOGUE_SEQUENCE_DATA_WITH_RUNTIME_REACHABILITY';
   entries: readonly NarrativeDialogueStagingEntry[];
+  runtimePresentationCoverage: RuntimePresentationStepCensus;
   summary: {
     totalReachableDialogues: number;
     stagedDialogues: number;
@@ -98,6 +104,12 @@ export interface NarrativeStagingAudit {
     unresolvedDialogueSpeakerAssociations: number;
     staticUpperPlacementViolations: number;
     videoPlacementRegressions: number;
+    runtimeReachablePresentationSteps: number;
+    plannedRuntimePresentationSteps: number;
+    explicitLegitimateRuntimeOnlySteps: number;
+    missingRuntimePresentationSteps: number;
+    deadOrUnreachablePresentationSteps: number;
+    unknownRuntimePresentationSteps: number;
   };
 }
 
@@ -186,6 +198,7 @@ function entryFor(sequence: DialogueSequence, tableau: NarrativeTableauSpec, con
 
 export function createNarrativeStagingAudit(): NarrativeStagingAudit {
   const contexts = contextsByDialogueId();
+  const runtimePresentationCoverage = createRuntimePresentationStepCensus();
   const entries: NarrativeDialogueStagingEntry[] = [];
   const unmappedDialogues: string[] = [];
   const unmappedDialogueSteps: string[] = [];
@@ -204,9 +217,10 @@ export function createNarrativeStagingAudit(): NarrativeStagingAudit {
   }
   const totalDialogueSteps = [...dialogues.values()].reduce((total, sequence) => total + sequence.steps.length, 0);
   return {
-    schemaVersion: 3,
-    source: 'CANONICAL_DIALOGUE_SEQUENCE_DATA',
+    schemaVersion: 4,
+    source: 'CANONICAL_DIALOGUE_SEQUENCE_DATA_WITH_RUNTIME_REACHABILITY',
     entries,
+    runtimePresentationCoverage,
     summary: {
       totalReachableDialogues: dialogues.size,
       stagedDialogues: entries.length,
@@ -238,12 +252,18 @@ export function createNarrativeStagingAudit(): NarrativeStagingAudit {
       unresolvedDialogueSpeakerAssociations: entries.reduce((total, entry) => total + entry.steps.filter((step) => !step.dialogueSpeakerAssociationResolved).length, 0),
       staticUpperPlacementViolations: entries.reduce((total, entry) => total + entry.steps.filter((step) => !['LEFT_UPPER', 'CENTER_UPPER', 'RIGHT_UPPER', 'TOP_CENTER'].includes(step.layoutPlacement)).length, 0),
       videoPlacementRegressions: entries.reduce((total, entry) => total + entry.steps.filter((step) => step.videoDialogueSurfaceMode === 'VIDEO_CUTSCENE' && ['LEFT_UPPER', 'CENTER_UPPER', 'RIGHT_UPPER'].includes(step.videoLayoutPlacement)).length, 0),
+      runtimeReachablePresentationSteps: runtimePresentationCoverage.summary.runtimeReachablePresentationSteps,
+      plannedRuntimePresentationSteps: runtimePresentationCoverage.summary.plannedRuntimePresentationSteps,
+      explicitLegitimateRuntimeOnlySteps: runtimePresentationCoverage.summary.explicitLegitimateRuntimeOnlySteps,
+      missingRuntimePresentationSteps: runtimePresentationCoverage.summary.missingFromPlan,
+      deadOrUnreachablePresentationSteps: runtimePresentationCoverage.summary.deadOrUnreachable,
+      unknownRuntimePresentationSteps: runtimePresentationCoverage.summary.unknown,
     },
   };
 }
 
 export function validateNarrativeStagingAudit(audit: NarrativeStagingAudit): string[] {
-  const errors: string[] = [];
+  const errors: string[] = validateRuntimePresentationStepCensus(audit.runtimePresentationCoverage);
   if (audit.summary.unmappedDialogues.length) errors.push(`Unmapped dialogues: ${audit.summary.unmappedDialogues.join(', ')}`);
   if (audit.summary.unmappedDialogueSteps.length) errors.push(`Unmapped steps: ${audit.summary.unmappedDialogueSteps.join(', ')}`);
   for (const entry of audit.entries) {

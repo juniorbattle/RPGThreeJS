@@ -4,6 +4,9 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { dialogues } from '../../src/game/content';
+import { dialoguePresentationShapeSignature } from '../../src/game/dialoguePresentationShape';
+import { createRuntimeDialogueReachability } from '../../src/game/RuntimeDialogueReachability';
+import { DEAD_OR_UNREACHABLE_PRESENTATION_STEP_REASONS } from '../../src/game/RuntimeDialogueReachability';
 import { NARRATIVE_TEXT_REDUCTIONS } from '../../src/cinematics/NarrativeDialogueAdapter';
 import { CINEMATIC_REDUCTION_POLICY, type CinematicReductionClassification } from '../../src/cinematics/CinematicReductionPolicy';
 import type { DialogueChoice, DialogueSequence, DialogueStep, NarrativeEffect } from '../../src/game/types';
@@ -652,6 +655,116 @@ async function main(): Promise<void> {
     originalSteps += sequence.steps.length;
   }
 
+  const runtimeReachability = createRuntimeDialogueReachability();
+  if (runtimeReachability.contractErrors.length || runtimeReachability.unknownStepKeys.length) {
+    throw new Error([
+      ...runtimeReachability.contractErrors,
+      ...runtimeReachability.unknownStepKeys.map((key) => `Unknown runtime presentation step: ${key}`),
+    ].join('\n'));
+  }
+  const canonicalPresentationShapes = Object.fromEntries(
+    [...dialogues.entries()].map(([dialogueId, sequence]) => [dialogueId, dialoguePresentationShapeSignature(sequence)]),
+  ) as Record<string, string>;
+  const runtimePlans: Record<string, Record<string, unknown>> = {};
+  for (const variant of runtimeReachability.variants) {
+    const sequence = variant.sequence;
+    const originalMode = modeById.get(sequence.id) ?? 'STATIC_TABLEAU';
+    const beat = beatByDialogue.get(sequence.id);
+    const auditedCast = castAuditByDialogue.get(sequence.id);
+    const sourceVideo = auditedCast?.cinematicId
+      ?? (typeof beat?.currentAsset === 'string' && !beat.currentAsset.startsWith('/') ? beat.currentAsset : null);
+    const mediaCast = sourceVideo ? castManifestByBeat.get(`media:${sourceVideo}`)?.requiredCharacters ?? [] : [];
+    const finalFrameCast = unique(
+      (sourceVideo ? EXACT_FINAL_FRAME_CAST[sourceVideo] : undefined)
+      ?? (auditedCast?.visibleCinematicCast?.length ? auditedCast.visibleCinematicCast : mediaCast),
+    );
+    const mediaDecision = sourceVideo ? CINEMATIC_REDUCTION_POLICY[sourceVideo] : undefined;
+    if (sourceVideo && !mediaDecision) throw new Error(`Missing cinematic reduction decision for runtime dialogue source ${sourceVideo}.`);
+    const runtimePlan = {
+      dialogueId: sequence.id,
+      originalMode,
+      sourceVideo,
+      sourceVideoClassification: mediaDecision?.classification ?? null,
+      dialogueStartsAfterMedia: true,
+      normalDialogueDuringVideo: 0,
+      dialogueStepsOnHold: 0,
+      choiceStepsOnHold: 0,
+      finalFrameCast,
+      finalFrameCastReferenceOnly: true,
+      allowedHoldSpeakers: [],
+      forbiddenHoldSpeakers: unique(sequence.steps.map(actorId)),
+      segments: makeSegments(sequence, originalMode, sourceVideo, mediaDecision?.classification ?? null),
+    };
+    if (variant.signature !== canonicalPresentationShapes[variant.dialogueId]) {
+      (runtimePlans[variant.dialogueId] ??= {})[variant.signature] = runtimePlan;
+    }
+  }
+
+  const plannedRuntimeStepKeys = new Set<string>();
+  for (const variant of runtimeReachability.variants) {
+    const plan = runtimePlans[variant.dialogueId]?.[variant.signature]
+      ?? (canonicalPresentationShapes[variant.dialogueId] === variant.signature ? plans[variant.dialogueId] : undefined);
+    if (!plan) throw new Error(`No generated presentation plan for runtime variant ${variant.dialogueId}::${variant.signature}.`);
+    for (const stepId of (plan as any).segments.flatMap((segment: DialogueSegment) => segment.stepIds)) {
+      plannedRuntimeStepKeys.add(`${variant.dialogueId}:${stepId}`);
+    }
+  }
+  const runtimeReachableStepKeys = new Set(runtimeReachability.runtimeReachableStepKeys);
+  const explicitRuntimeOnlyStepKeys = new Set(runtimeReachability.explicitLegitimateRuntimeOnlyStepKeys);
+  const missingRuntimeStepKeys = [...runtimeReachableStepKeys]
+    .filter((key) => !plannedRuntimeStepKeys.has(key) && !explicitRuntimeOnlyStepKeys.has(key))
+    .sort();
+  const classificationKeys = new Set([
+    ...runtimeReachability.runtimeReachableStepKeys,
+    ...runtimeReachability.deadOrUnreachableStepKeys,
+    ...runtimeReachability.unknownStepKeys,
+  ]);
+  const runtimePresentationStepCensus = {
+    schemaVersion: 1,
+    baseline: BASELINE,
+    contract: 'RUNTIME_REACHABLE_PRESENTATION_STEPS == PLANNED_PRESENTATION_STEPS + EXPLICIT_LEGITIMATE_RUNTIME_ONLY_STEPS',
+    summary: {
+      stateScenarios: runtimeReachability.scenarios,
+      runtimePresentationVariants: runtimeReachability.variants.length,
+      canonicalDialogueSteps: runtimeReachability.canonicalStepKeys.length,
+      runtimeReachablePresentationSteps: runtimeReachability.runtimeReachableStepKeys.length,
+      plannedRuntimePresentationSteps: [...plannedRuntimeStepKeys].filter((key) => runtimeReachableStepKeys.has(key)).length,
+      explicitLegitimateRuntimeOnlySteps: runtimeReachability.explicitLegitimateRuntimeOnlyStepKeys.length,
+      missingFromPlan: missingRuntimeStepKeys.length,
+      deadOrUnreachable: runtimeReachability.deadOrUnreachableStepKeys.length,
+      unknown: runtimeReachability.unknownStepKeys.length,
+    },
+    explicitLegitimateRuntimeOnlyStepKeys: runtimeReachability.explicitLegitimateRuntimeOnlyStepKeys,
+    missingRuntimeStepKeys,
+    deadOrUnreachableStepKeys: runtimeReachability.deadOrUnreachableStepKeys,
+    deadOrUnreachableStepReasons: DEAD_OR_UNREACHABLE_PRESENTATION_STEP_REASONS,
+    unknownStepKeys: runtimeReachability.unknownStepKeys,
+    entries: [...classificationKeys].sort().map((key) => ({
+      key,
+      classification: runtimeReachability.unknownStepKeys.includes(key)
+        ? 'UNKNOWN'
+        : runtimeReachability.deadOrUnreachableStepKeys.includes(key)
+          ? 'DEAD_OR_UNREACHABLE'
+          : explicitRuntimeOnlyStepKeys.has(key)
+            ? 'VALID_RUNTIME_ONLY'
+            : plannedRuntimeStepKeys.has(key)
+              ? 'VALID_PLANNED'
+              : 'BUG_MISSING_FROM_PLAN',
+    })),
+    variants: runtimeReachability.variants.map((variant) => ({
+      dialogueId: variant.dialogueId,
+      signature: variant.signature,
+      stepIds: variant.sequence.steps.map((step) => step.id),
+      speakers: variant.sequence.steps.map(actorId),
+      choiceCounts: variant.sequence.steps.map((step) => step.choices?.length ?? 0),
+      witnessScenarioCount: variant.witnessScenarioIds.length,
+      witnessScenario: variant.witnessScenarioIds[0],
+    })),
+  };
+  if (missingRuntimeStepKeys.length) {
+    throw new Error(`Missing runtime presentation steps: ${missingRuntimeStepKeys.join(', ')}`);
+  }
+
   const planValues = Object.values(plans) as Array<any>;
   const allSegments = planValues.flatMap((plan) => plan.segments as DialogueSegment[]);
   const holdSegments: DialogueSegment[] = [];
@@ -933,9 +1046,10 @@ async function main(): Promise<void> {
     writeFile(resolve(SPEC_ROOT, 'final_dialogue_staging_plan.json'), `${JSON.stringify(stagingPlan, null, 2)}\n`),
     writeFile(resolve(SPEC_ROOT, 'final_dialogue_text_migration.json'), `${JSON.stringify(migrationAudit, null, 2)}\n`),
     writeFile(resolve(SPEC_ROOT, 'final_cinematic_reduction_audit.json'), `${JSON.stringify(cinematicReductionAudit, null, 2)}\n`),
+    writeFile(resolve(SPEC_ROOT, 'runtime_presentation_step_census.json'), `${JSON.stringify(runtimePresentationStepCensus, null, 2)}\n`),
   ]);
 
-  const generated = `/* eslint-disable */\n/* AUTO-GENERATED by tools/cinematics/generate_cin6ea4_dialogue_lock.ts. */\nexport const FINAL_DIALOGUE_PACING_BASELINE = '${BASELINE}' as const;\nexport const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze(${JSON.stringify(plans, null, 2)} as const);\n`;
+  const generated = `/* eslint-disable */\n/* AUTO-GENERATED by tools/cinematics/generate_cin6ea4_dialogue_lock.ts. */\nexport const FINAL_DIALOGUE_PACING_BASELINE = '${BASELINE}' as const;\nexport const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze(${JSON.stringify(plans, null, 2)} as const);\nexport const FINAL_DIALOGUE_CANONICAL_PRESENTATION_SHAPES = Object.freeze(${JSON.stringify(canonicalPresentationShapes, null, 2)} as const);\nexport const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze(${JSON.stringify(runtimePlans, null, 2)} as const);\n`;
   await writeFile(resolve(ROOT, 'src/cinematics/FinalDialoguePresentation.generated.ts'), generated);
 
   const audience = (visualEntries as Array<any>).find((entry) => entry.dialogueId === 'lion_briefing');
@@ -1168,6 +1282,7 @@ async function main(): Promise<void> {
       'tools/cinematics/specs/final_dialogue_staging_plan.json',
       'tools/cinematics/specs/final_dialogue_text_migration.json',
       'tools/cinematics/specs/final_cinematic_reduction_audit.json',
+      'tools/cinematics/specs/runtime_presentation_step_census.json',
       'src/cinematics/FinalDialoguePresentation.generated.ts',
       'docs/reports/cin-6e-a-4r-dialogue-review.html',
       'docs/reports/cin-6e-a-4r-final-reconciliation.md',

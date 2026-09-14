@@ -229,8 +229,14 @@ describe('CIN-6E-A final visual preproduction system', () => {
       'src/cinematics/NarrativeSceneSurface.ts',
       'src/cinematics/NarrativeStage.ts',
       'src/cinematics/NarrativeStage.test.ts',
+      'src/cinematics/NarrativeStagingAudit.test.ts',
       'src/cinematics/NarrativeStagingAudit.ts',
       'src/cinematics/NarrativeTableau.ts',
+      'src/cinematics/RuntimePresentationStepCensus.test.ts',
+      'src/cinematics/RuntimePresentationStepCensus.ts',
+      'src/game/RuntimeDialogueReachability.ts',
+      'src/game/dialoguePresentationShape.ts',
+      'src/game/lionFinale.ts',
     ]);
     const runtimeDiff = execFileSync('git', ['diff', '--name-only', baseline, '--', 'src/game', 'src/cinematics'], { cwd: root, encoding: 'utf8' })
       .trim().split(/\r?\n/u).filter(Boolean);
