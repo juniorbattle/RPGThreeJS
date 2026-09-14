@@ -1,0 +1,10 @@
+Use case: identity-preserve
+Asset type: replacement KESTREL_DASH_REFERENCE, single DEV gameplay pose
+Primary request: Create one full-body Kestrel tactical dash pose moving to the right. Correct only the rejected airborne dash concept: this must be a low grounded battlefield relocation with one boot visibly planted on the shared imaginary baseline and the other leg driving behind, torso leaning forward, cloak trailing in a contained directional wedge, and bow carried securely low-forward. It must read instantly as fast tactical movement, not jumping or flying.
+Input images: Image 1 is the approved Kestrel Option C character master and fixes identity. Image 2 is canonical authority. Image 3 is the four-pose sheet; match its pixel density, scale, costume and lighting but do not repeat its airborne top-right pose.
+Identity invariants: identical deep forest-green pointed gold-embroidered hood; fully covered green cloth face with no skin; layered ragged green cloak; green stitched torso; crossed brown harness, pouches and round brass buckle; dark trousers; leather bracers, guards and boots; same warm-brown recurved longbow with intact string; same rear-left quiver and white-feather arrows.
+Style/medium: modern high-density pixel-stylized HD-2D, crisp deliberate pixel clusters, controlled colored outline, matte cloth, selective bronze highlights, project-native tactical sprite.
+Composition/framing: exactly one figure, side-facing three-quarter profile toward the right, full body and full bow visible, generous padding, grounded foot baseline, no shadow or floor.
+Background: 100% solid flat #FF00FF magenta, no gradient, no checkerboard.
+Constraints: no airborne pose, no leap, no platformer run, no extra weapon, no duplicate limbs, no broken bowstring, no face exposure, no costume or scale drift, no environment, VFX, dust, motion particles, text, label, border, UI, logo, or watermark.
+Avoid: heroic jump, flying cloak filling the frame, anime sprint, painterly blur, smooth 3D, chunky retro pixels.

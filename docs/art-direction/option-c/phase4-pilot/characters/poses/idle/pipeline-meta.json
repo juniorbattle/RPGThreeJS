@@ -1,0 +1,59 @@
+{
+  "target": "asset",
+  "mode": "sheet",
+  "prompt": "",
+  "role": "",
+  "input": "docs\\art-direction\\option-c\\phase4-pilot\\characters\\kestrel-idle-reference-raw.png",
+  "threshold": 180,
+  "edge_threshold": 245,
+  "duration": 200,
+  "rows": 1,
+  "cols": 1,
+  "cell_size": 768,
+  "fit_scale": 0.86,
+  "trim_border": 8,
+  "edge_clean_depth": 6,
+  "align": "feet",
+  "shared_scale": true,
+  "component_mode": "all",
+  "component_padding": 0,
+  "min_component_area": 20,
+  "edge_touch_margin": 3,
+  "frame_labels": [
+    "kestrel-idle-1"
+  ],
+  "frames": [
+    {
+      "grid": [
+        0,
+        0
+      ],
+      "source_box": [
+        0,
+        0,
+        1374,
+        1145
+      ],
+      "component_mode": "all",
+      "component_count": 13,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        290,
+        87,
+        1083,
+        1045
+      ],
+      "edge_touch": false,
+      "output_size": [
+        546,
+        660
+      ],
+      "paste_position": [
+        111,
+        55
+      ]
+    }
+  ],
+  "edge_touch_frames": []
+}

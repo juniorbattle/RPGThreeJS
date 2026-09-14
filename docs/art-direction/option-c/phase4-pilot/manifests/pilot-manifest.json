@@ -1,0 +1,2515 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-14T03:41:58.979009+00:00",
+  "baseline": "8265b071ea28569562017d621fbe1f124e0d0995",
+  "scope": "docs/art-direction/option-c/phase4-pilot",
+  "pilotStatus": "APPROVED_DEV_PILOT",
+  "operatorDecision": "APPROVED_DEV_PILOT",
+  "operatorDecisionDate": "2026-09-13",
+  "devPilotApproved": true,
+  "productionApproved": false,
+  "productionPromotions": 0,
+  "hashPolicy": {
+    "binary": "SHA256_RAW_BYTES",
+    "text": "SHA256 after CRLF and CR normalization to LF"
+  },
+  "inventoryExclusions": [
+    "manifests/pilot-manifest.json",
+    "manifests/pilot-manifest.sha256"
+  ],
+  "classificationCounts": {
+    "ACCEPTED_DEV_CANDIDATE": 66,
+    "REVISE": 0,
+    "REJECTED": 91,
+    "SUPPORT_FILE": 77
+  },
+  "files": [
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/processed-retry/animation.gif",
+      "classification": "SUPPORT_FILE",
+      "bytes": 523332,
+      "sha256": "1d542b2cf3a7eb21770a8dd5f3f1d91f0dd5e3f9c6376b59a8e5b192a20025fe",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/processed-retry/kestrel-attack-1.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 179673,
+      "sha256": "a398ffafcfa0017547b778a0fe56905e1ec4f8d2d92d6118855852a0dfb10312",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/processed-retry/kestrel-attack-2.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 189642,
+      "sha256": "a14ff99a18f5f690b479fa96a68f4fbe42d6b0325638e1598974b86cdfb0b8c8",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/processed-retry/kestrel-attack-3.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 185235,
+      "sha256": "d8060a8d1e1d745b8ec26b5664bde87b1c0ea8e128bb569cf66866fa6e1d3fb1",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/processed-retry/kestrel-attack-4.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 183974,
+      "sha256": "e6589d5dc1d06bdc69b40d2427df7bd6b8e79ccad5658f25d4b7f5338bda9d1f",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/processed-retry/kestrel-attack-5.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 206439,
+      "sha256": "68b04870e7ae57203d579356816ecdc7dd0ce7ff68d951f681bf713bc885b8aa",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/processed-retry/kestrel-attack-6.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 204135,
+      "sha256": "cb61c6b6d249c5a137896dc1b6c137cb61d7e89ccbb3f23978955a4fb718696a",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/processed-retry/kestrel-attack-7.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 203007,
+      "sha256": "a33f6d51fd0e658039b3c63b57cdecd09dda6ac8f1c88eee936a3d3753a0919d",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/processed-retry/kestrel-attack-8.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 182419,
+      "sha256": "7e90e32d510939b28518dc4391c2f7ab7a6392bd447b5556c8f5f4eee7f14ec5",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/processed-retry/pipeline-meta.json",
+      "classification": "SUPPORT_FILE",
+      "bytes": 5086,
+      "sha256": "acdce93b29908e8a54f298b72524f69a183f2567d4a00d81a1a6a1961672c9b3",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/processed-retry/prompt-used.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 992,
+      "sha256": "b045fb9c2ddf05b776a409f2795ebe5bc7e84c61943fc038699945eca9cac5df",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/processed-retry/raw-sheet-clean.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1355600,
+      "sha256": "502195d865bee8b75523e414b842957911451462b2d7dc5c453728b936637903",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/processed-retry/raw-sheet.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 2307814,
+      "sha256": "c3c353f1d6ffd74d3a95e35a65c09c1e9189e788212929eadb634ebc52ebf1a0",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/processed-retry/sheet-transparent.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 1479875,
+      "sha256": "8ea87ea134e35258edb01b09c3b62a95a3cd5875d0d08498409c271fe822582c",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        2048,
+        1024
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/raw-generated-retry.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 2213873,
+      "sha256": "3fcc4737ab0f1e53894e15978ec98197bea808dbb181f94135ac1f154692788c",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/raw-generated.png",
+      "classification": "REJECTED",
+      "bytes": 2613625,
+      "sha256": "aec88778090146a3c3d84956c7e88cd2aca6566473c53d7de903ddaf11f68792",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "First animation source failed edge-touch rejection."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-diagnostic/animation.gif",
+      "classification": "REJECTED",
+      "bytes": 568056,
+      "sha256": "b275a6756f832d5e5ebb3731f94455029f5ba4159b5f8a57a8c6f5741da1e0e7",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-diagnostic/kestrel-attack-1.png",
+      "classification": "REJECTED",
+      "bytes": 192909,
+      "sha256": "aa949fb155a71746a57bf857a1581eeb53076f9bb04bb1ad6807e82f4e5d1945",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-diagnostic/kestrel-attack-2.png",
+      "classification": "REJECTED",
+      "bytes": 203903,
+      "sha256": "373efadf65b36543f0841df29d966332d898ef5eaba82d9d3b762cab4dbbeb1b",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-diagnostic/kestrel-attack-3.png",
+      "classification": "REJECTED",
+      "bytes": 200705,
+      "sha256": "537756956111943c965f7b4b5e236f351f626b226809c4d408a5c4b2e0ad18b0",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-diagnostic/kestrel-attack-4.png",
+      "classification": "REJECTED",
+      "bytes": 197207,
+      "sha256": "aad713cb65ab8487c45e86e1886cc429d83f42939adce86ea731f2dbda307eee",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-diagnostic/kestrel-attack-5.png",
+      "classification": "REJECTED",
+      "bytes": 218781,
+      "sha256": "812b319cc7efd3cc92adfa0a252e24847057b281075b9d6015ba9cc06311046a",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-diagnostic/kestrel-attack-6.png",
+      "classification": "REJECTED",
+      "bytes": 216574,
+      "sha256": "109d8feb3d77237011a49643588628d03440c6780d5b7b9a7955ac8ea1fec34d",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-diagnostic/kestrel-attack-7.png",
+      "classification": "REJECTED",
+      "bytes": 220947,
+      "sha256": "f2dd96121c523ae52599760f5067b98cd1d16596f4b048574ef3bfd3beca947e",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-diagnostic/kestrel-attack-8.png",
+      "classification": "REJECTED",
+      "bytes": 190379,
+      "sha256": "d5427cde3cd54c1258be312ce2928ff7828de12942e2ceee375e31af75f16c43",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-diagnostic/pipeline-meta.json",
+      "classification": "REJECTED",
+      "bytes": 5206,
+      "sha256": "9bc39d6ec2b85bc30f216c471f7310c3e1643e6d59761d53b916f9e28e7dae7b",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-diagnostic/prompt-used.txt",
+      "classification": "REJECTED",
+      "bytes": 992,
+      "sha256": "b045fb9c2ddf05b776a409f2795ebe5bc7e84c61943fc038699945eca9cac5df",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-diagnostic/raw-sheet-clean.png",
+      "classification": "REJECTED",
+      "bytes": 1868723,
+      "sha256": "da1f0ee34af9018d838b26a7fdb784a5bcf87a9540a496fe2c241a8771d9dad4",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-diagnostic/raw-sheet.png",
+      "classification": "REJECTED",
+      "bytes": 2753986,
+      "sha256": "7d15c791a3817ed917c1f5749b8a12d57e94dd8ea8b8d8d2e960e3ca06c2a193",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-diagnostic/sheet-transparent.png",
+      "classification": "REJECTED",
+      "bytes": 1580959,
+      "sha256": "9275d4b8c47950ddfd73d1950d20e8c9f47602476787fae4fa47f1e70ffc93e8",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        2048,
+        1024
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-partial/animation.gif",
+      "classification": "REJECTED",
+      "bytes": 568056,
+      "sha256": "b275a6756f832d5e5ebb3731f94455029f5ba4159b5f8a57a8c6f5741da1e0e7",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-partial/kestrel-attack-1.png",
+      "classification": "REJECTED",
+      "bytes": 192909,
+      "sha256": "aa949fb155a71746a57bf857a1581eeb53076f9bb04bb1ad6807e82f4e5d1945",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-partial/kestrel-attack-2.png",
+      "classification": "REJECTED",
+      "bytes": 203903,
+      "sha256": "373efadf65b36543f0841df29d966332d898ef5eaba82d9d3b762cab4dbbeb1b",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-partial/kestrel-attack-3.png",
+      "classification": "REJECTED",
+      "bytes": 200705,
+      "sha256": "537756956111943c965f7b4b5e236f351f626b226809c4d408a5c4b2e0ad18b0",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-partial/kestrel-attack-4.png",
+      "classification": "REJECTED",
+      "bytes": 197207,
+      "sha256": "aad713cb65ab8487c45e86e1886cc429d83f42939adce86ea731f2dbda307eee",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-partial/kestrel-attack-5.png",
+      "classification": "REJECTED",
+      "bytes": 218781,
+      "sha256": "812b319cc7efd3cc92adfa0a252e24847057b281075b9d6015ba9cc06311046a",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-partial/kestrel-attack-6.png",
+      "classification": "REJECTED",
+      "bytes": 216574,
+      "sha256": "109d8feb3d77237011a49643588628d03440c6780d5b7b9a7955ac8ea1fec34d",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-partial/kestrel-attack-7.png",
+      "classification": "REJECTED",
+      "bytes": 220947,
+      "sha256": "f2dd96121c523ae52599760f5067b98cd1d16596f4b048574ef3bfd3beca947e",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-partial/kestrel-attack-8.png",
+      "classification": "REJECTED",
+      "bytes": 190379,
+      "sha256": "d5427cde3cd54c1258be312ce2928ff7828de12942e2ceee375e31af75f16c43",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-partial/raw-sheet-clean.png",
+      "classification": "REJECTED",
+      "bytes": 1868723,
+      "sha256": "da1f0ee34af9018d838b26a7fdb784a5bcf87a9540a496fe2c241a8771d9dad4",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-partial/raw-sheet.png",
+      "classification": "REJECTED",
+      "bytes": 2753986,
+      "sha256": "7d15c791a3817ed917c1f5749b8a12d57e94dd8ea8b8d8d2e960e3ca06c2a193",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/rejected-edge-touch-partial/sheet-transparent.png",
+      "classification": "REJECTED",
+      "bytes": 1580959,
+      "sha256": "9275d4b8c47950ddfd73d1950d20e8c9f47602476787fae4fa47f1e70ffc93e8",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        2048,
+        1024
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/processed-retry/animation.gif",
+      "classification": "SUPPORT_FILE",
+      "bytes": 464054,
+      "sha256": "33a5f03fc82d901a4b7eff893573afbe19848b6409e751eb000bbae16c3b7654",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/processed-retry/kestrel-dash-1.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 148313,
+      "sha256": "8bf6ac56eebc70813e9e5bde2975afb27bb9ea6f18a0d99baecaaaec150e5608",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/processed-retry/kestrel-dash-2.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 168713,
+      "sha256": "60df60b027abb0ffbbb28da5632abc91d1c1d4471f8dc8b2758d336c8befd84c",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/processed-retry/kestrel-dash-3.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 165174,
+      "sha256": "5f069d17750835235e53ebf4fbfcd256544d4f5b18526648eb08a35478fea415",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/processed-retry/kestrel-dash-4.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 167151,
+      "sha256": "2c2ae36e27399e85b4254cb0677e1b77835e5048c5d617c0a3d711d3a8cf838f",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/processed-retry/kestrel-dash-5.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 179050,
+      "sha256": "298a3a540175e037d4ed539942caecf6aad3acf53e81ad21a71c998632985090",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/processed-retry/kestrel-dash-6.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 191756,
+      "sha256": "87f37098faf4bcefd2faf0c1fb390ddd8f495a75683144e42079a008e0c6e469",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/processed-retry/kestrel-dash-7.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 180408,
+      "sha256": "61669ed8018b98e96f9d085069884d77c664297e3ff82f83a8d7b147cbe350ad",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/processed-retry/kestrel-dash-8.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 171529,
+      "sha256": "ec73899c98988753215cf66afeaa36cd378fe1597e6172c5c50a8188fdd75bb0",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/processed-retry/pipeline-meta.json",
+      "classification": "SUPPORT_FILE",
+      "bytes": 5068,
+      "sha256": "14043d9fdaf1ba6c9224b443c486bb50fee31e5289921d2d39677ad6bc7eacdb",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/processed-retry/prompt-used.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1079,
+      "sha256": "ce432b5ade4bd858b2c74495bbc87becee994cef61e372ba2ef8190106982e50",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/processed-retry/raw-sheet-clean.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1087434,
+      "sha256": "64d866a408be174b83df83c6f55ba71e80bfc62bd016954676c98160de1dce65",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/processed-retry/raw-sheet.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 2066121,
+      "sha256": "cfd08db1a8c6314d2c19806eb326b2617b74734303652d98f2844cc281fefffa",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/processed-retry/sheet-transparent.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 1313823,
+      "sha256": "36db9a18a5ada4736662a603658dcb7af02ff12c501e12fa36d6b018c1dc5c52",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        2048,
+        1024
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/raw-generated-retry.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 1803479,
+      "sha256": "7c7a4d150b3c5ce14c099f3f24a288da7a4eb2243b309ded3882911b89d9b727",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1774,
+        887
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/raw-generated.png",
+      "classification": "REJECTED",
+      "bytes": 2055026,
+      "sha256": "47224f34cba445186c56939fcbf66b90cf5f620bea9bfe513cf1600912f03f52",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "classificationReason": "First animation source failed edge-touch rejection."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-diagnostic/animation.gif",
+      "classification": "REJECTED",
+      "bytes": 535877,
+      "sha256": "5df82c45086db2be17c6783897d487d9e430045aeb9118e206e06d91f86ffbce",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-diagnostic/kestrel-dash-1.png",
+      "classification": "REJECTED",
+      "bytes": 184251,
+      "sha256": "7cdf08bd8121f72da41b26cef3a495021b7b5e046ad97f15aae23dec0cc1da33",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-diagnostic/kestrel-dash-2.png",
+      "classification": "REJECTED",
+      "bytes": 190749,
+      "sha256": "7c6f1a5a0107f7d3d42e2ec410924cace4aa4b94952e437a0a4fd61e1c186a39",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-diagnostic/kestrel-dash-3.png",
+      "classification": "REJECTED",
+      "bytes": 190324,
+      "sha256": "f8132482205fab9de89c20bd212fa70765bd5840de10891af29f9ae0dbd05330",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-diagnostic/kestrel-dash-4.png",
+      "classification": "REJECTED",
+      "bytes": 194576,
+      "sha256": "d22f6661c73fb28847b44c0698ce816d6260e0a4ac34b5fd89a43041845b8443",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-diagnostic/kestrel-dash-5.png",
+      "classification": "REJECTED",
+      "bytes": 196004,
+      "sha256": "6fc0724e81af6499ee194927597fba8c25c913fa54e923fe1f8f7b788bb8bf8e",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-diagnostic/kestrel-dash-6.png",
+      "classification": "REJECTED",
+      "bytes": 202099,
+      "sha256": "04ff8beb497ffa7908b34eedd2b260de33070516a669d213cff42d1b3165e749",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-diagnostic/kestrel-dash-7.png",
+      "classification": "REJECTED",
+      "bytes": 194656,
+      "sha256": "aa6bbb38b96d3ee440f2b6739918e2f2f1ffec01cc094cefdf87f788597c500c",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-diagnostic/kestrel-dash-8.png",
+      "classification": "REJECTED",
+      "bytes": 193471,
+      "sha256": "666b0ad15b388417985d3f323c39a858b12a83433a8fb1b04b088d563aeaec60",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-diagnostic/pipeline-meta.json",
+      "classification": "REJECTED",
+      "bytes": 5091,
+      "sha256": "74b7b46498ee3473ab8541141418d25acaca2856027b97a9ba984aef7637d95e",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-diagnostic/prompt-used.txt",
+      "classification": "REJECTED",
+      "bytes": 1079,
+      "sha256": "ce432b5ade4bd858b2c74495bbc87becee994cef61e372ba2ef8190106982e50",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-diagnostic/raw-sheet-clean.png",
+      "classification": "REJECTED",
+      "bytes": 1440241,
+      "sha256": "adcddd94bef9050d35cc09bd6b8ecea64c6eb3101acf10796848751a13abf437",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-diagnostic/raw-sheet.png",
+      "classification": "REJECTED",
+      "bytes": 2356898,
+      "sha256": "165b786ed3b54b2f8b3294fd006e8903e5d54e75180091c66b738fe937501237",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-diagnostic/sheet-transparent.png",
+      "classification": "REJECTED",
+      "bytes": 1488723,
+      "sha256": "adcc7c119721fb9c4612530b04471e95889f855ed6d6d6bd0da6b51714a2888a",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        2048,
+        1024
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-partial/animation.gif",
+      "classification": "REJECTED",
+      "bytes": 535877,
+      "sha256": "5df82c45086db2be17c6783897d487d9e430045aeb9118e206e06d91f86ffbce",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-partial/kestrel-dash-1.png",
+      "classification": "REJECTED",
+      "bytes": 184251,
+      "sha256": "7cdf08bd8121f72da41b26cef3a495021b7b5e046ad97f15aae23dec0cc1da33",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-partial/kestrel-dash-2.png",
+      "classification": "REJECTED",
+      "bytes": 190749,
+      "sha256": "7c6f1a5a0107f7d3d42e2ec410924cace4aa4b94952e437a0a4fd61e1c186a39",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-partial/kestrel-dash-3.png",
+      "classification": "REJECTED",
+      "bytes": 190324,
+      "sha256": "f8132482205fab9de89c20bd212fa70765bd5840de10891af29f9ae0dbd05330",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-partial/kestrel-dash-4.png",
+      "classification": "REJECTED",
+      "bytes": 194576,
+      "sha256": "d22f6661c73fb28847b44c0698ce816d6260e0a4ac34b5fd89a43041845b8443",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-partial/kestrel-dash-5.png",
+      "classification": "REJECTED",
+      "bytes": 196004,
+      "sha256": "6fc0724e81af6499ee194927597fba8c25c913fa54e923fe1f8f7b788bb8bf8e",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-partial/kestrel-dash-6.png",
+      "classification": "REJECTED",
+      "bytes": 202099,
+      "sha256": "04ff8beb497ffa7908b34eedd2b260de33070516a669d213cff42d1b3165e749",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-partial/kestrel-dash-7.png",
+      "classification": "REJECTED",
+      "bytes": 194656,
+      "sha256": "aa6bbb38b96d3ee440f2b6739918e2f2f1ffec01cc094cefdf87f788597c500c",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-partial/kestrel-dash-8.png",
+      "classification": "REJECTED",
+      "bytes": 193471,
+      "sha256": "666b0ad15b388417985d3f323c39a858b12a83433a8fb1b04b088d563aeaec60",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-partial/raw-sheet-clean.png",
+      "classification": "REJECTED",
+      "bytes": 1440241,
+      "sha256": "adcddd94bef9050d35cc09bd6b8ecea64c6eb3101acf10796848751a13abf437",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-partial/raw-sheet.png",
+      "classification": "REJECTED",
+      "bytes": 2356898,
+      "sha256": "165b786ed3b54b2f8b3294fd006e8903e5d54e75180091c66b738fe937501237",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/rejected-edge-touch-partial/sheet-transparent.png",
+      "classification": "REJECTED",
+      "bytes": 1488723,
+      "sha256": "adcc7c119721fb9c4612530b04471e95889f855ed6d6d6bd0da6b51714a2888a",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        2048,
+        1024
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/idle/processed/animation.gif",
+      "classification": "SUPPORT_FILE",
+      "bytes": 628676,
+      "sha256": "1d41f03014d38b7d3c5f980ad3bd758eed80cbf15e82b923d31f029e914f3a65",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/idle/processed/kestrel-idle-1.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 221705,
+      "sha256": "8e7a9bd2096c15d1c3b3335f83926b66d30860865d1c2c7c21e6eec8744674df",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/idle/processed/kestrel-idle-2.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 223209,
+      "sha256": "02e38dc5818727f4c1aa1b1a4ac038ea108435f8a775ae210cc000ef11e1440d",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/idle/processed/kestrel-idle-3.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 225527,
+      "sha256": "d6f4d3e8abbaedb1811bc52dc6ca78f5504cffd7ff2937b04f188611d592b797",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/idle/processed/kestrel-idle-4.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 223709,
+      "sha256": "7fc42ed3dcc78cf65477c63bee3d99726f13139a73d15e83b7fca438215c3e6a",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/idle/processed/kestrel-idle-5.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 223441,
+      "sha256": "ab3fcd469354d952291ef9b35f4b7758bf2c9f5fd57020484a41ff3326281fdf",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/idle/processed/kestrel-idle-6.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 224672,
+      "sha256": "f9078855ec6a83ee93a764e399a4934fedb259d23a853611c7b814afe0c84ca4",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/idle/processed/kestrel-idle-7.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 229280,
+      "sha256": "27f2b35ad96887b7dedc1594eab6961f7f4dd5e548dfe66a4077aedebf4c8f5f",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/idle/processed/kestrel-idle-8.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 224837,
+      "sha256": "0f320d9f2e23429384ea53e94369e7047869960ccd47a61243879dedccbaec95",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/idle/processed/pipeline-meta.json",
+      "classification": "SUPPORT_FILE",
+      "bytes": 5060,
+      "sha256": "d892dcf580a9fb230487499f06450b2e93c412152ea4b08086c191af0c12ceb6",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/idle/processed/prompt-used.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1057,
+      "sha256": "8488503793cc24491654c4a5a3b211f240893013771e14d21fcf528a43618d2f",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/idle/processed/raw-sheet-clean.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1912207,
+      "sha256": "2856e84c55dd36997e3bcdf3a59e0d1255d7d8868c7dd97493288c8319e6f034",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/idle/processed/raw-sheet.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 2764619,
+      "sha256": "a6203a5ac4a556cb8b4a8bc9a5881b4dc200878831d7fff7eae7757e938cb69e",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/idle/processed/sheet-transparent.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 1727355,
+      "sha256": "57dbdc4292afe9a14032e57709aaff2a8b5d24845a69503418b40cd7301eb7ef",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        2048,
+        1024
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/idle/raw-generated.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 2601445,
+      "sha256": "bacc6d5158cb9e710efcac7bb260a4661fafafc23f84dcc606ee416fc1fd3bea",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/processed-retry/animation.gif",
+      "classification": "SUPPORT_FILE",
+      "bytes": 482960,
+      "sha256": "8e8bf43b08f0575b176b2d5db745e01b32078c673f5c264820c3b0a773c326ea",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/processed-retry/kestrel-skill-1.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 176885,
+      "sha256": "3576c56274ac2fb3c614d8db0ce8af5ebaacc54d01f1b6dc4bd560da59fa583f",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/processed-retry/kestrel-skill-2.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 178349,
+      "sha256": "a87e065354864ee04adae79e5389c2daa55ea839a8fd9e5958e47014124620ea",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/processed-retry/kestrel-skill-3.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 173504,
+      "sha256": "825be8aef3076f3f953851bd3e5b5fec6cd935ff48e4674e5222a4dd408bfee4",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/processed-retry/kestrel-skill-4.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 186892,
+      "sha256": "8f1b70a8acd4ee3892dee2ced95f620c885d711e402965a6a5f6bba065d64828",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/processed-retry/kestrel-skill-5.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 182216,
+      "sha256": "551daaab095aff9df79b7402bb8ff1f4eeceb7ee2f2136c9b3d70f83855fa80e",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/processed-retry/kestrel-skill-6.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 186406,
+      "sha256": "458108116abaa372704529b0799f012e27e13de777fb55e5a46704c64824ad06",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/processed-retry/kestrel-skill-7.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 190582,
+      "sha256": "9443b80a3daa41a5da340570be132f86da0edfe89a2850d59470cd77d85a1142",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/processed-retry/kestrel-skill-8.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 188308,
+      "sha256": "5e3b0041cc05a93f5bd292b5a7d5a22d79feeefeda8b1bc0584ebb144e771af3",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/processed-retry/pipeline-meta.json",
+      "classification": "SUPPORT_FILE",
+      "bytes": 5076,
+      "sha256": "f77562441a373f70b7c3524d6db0b67170178bf83300c800f94a706e6b094820",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/processed-retry/prompt-used.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1089,
+      "sha256": "0e83af1388a16d229d4a951bf4bb5ea80d0c2537b56990175cf2054df13391f5",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/processed-retry/raw-sheet-clean.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1378072,
+      "sha256": "5b09ad70ca7072f5adc5ff024598e273f24df8adef9d694423e36448c83fea32",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/processed-retry/raw-sheet.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 2349192,
+      "sha256": "9629ff7416b9ebaa5c9ec133fdb723d151d82567c1fd4d9f5b6a9c80eff99968",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/processed-retry/sheet-transparent.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 1402084,
+      "sha256": "6453dcf317f94086564c6190332fc96482ca5f65bae9bc246fb11a08ed7c10c7",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        2048,
+        1024
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/raw-generated-retry.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 2238418,
+      "sha256": "51696238684e9a3e943ed6d5619498a91812fc2bff9523ab4465ea774dcfb5d8",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/raw-generated.png",
+      "classification": "REJECTED",
+      "bytes": 2535239,
+      "sha256": "bee517cac2c08ac233bbcff81b7a17ab1695ea5f63d3536cc506bc667ccc4a83",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "First animation source failed edge-touch rejection."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-diagnostic/animation.gif",
+      "classification": "REJECTED",
+      "bytes": 534375,
+      "sha256": "5c919afa175e3ad74b6c96c24cc41809b016b90d6c52724b3359fd3220457816",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-diagnostic/kestrel-skill-1.png",
+      "classification": "REJECTED",
+      "bytes": 191444,
+      "sha256": "d8e84e225274fbf7ffbe975c93a0b78740d4398366471d4a8b810333d2822c33",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-diagnostic/kestrel-skill-2.png",
+      "classification": "REJECTED",
+      "bytes": 195629,
+      "sha256": "57577dec3f24539baa722f23fb8558bed5c3fb1e022eabfd7d80e40f3c546df5",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-diagnostic/kestrel-skill-3.png",
+      "classification": "REJECTED",
+      "bytes": 182196,
+      "sha256": "1e3eef09975e337e18de9f467e7aa4f38c4062b68df87071f9c3ccdc8dbb8190",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-diagnostic/kestrel-skill-4.png",
+      "classification": "REJECTED",
+      "bytes": 198991,
+      "sha256": "9163bd3e66bc36ea914065dfb6ffdc2557f9092ecae3c98135094baa618a9f9a",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-diagnostic/kestrel-skill-5.png",
+      "classification": "REJECTED",
+      "bytes": 193724,
+      "sha256": "a1cefb514b45fb5178a5a459eadfb7b757d953442826ab803185f06efa176a0d",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-diagnostic/kestrel-skill-6.png",
+      "classification": "REJECTED",
+      "bytes": 201527,
+      "sha256": "74b3d2afaad6944920d5fbb49692fc63909de81eadb96cd8c6dbc34eed82ee7d",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-diagnostic/kestrel-skill-7.png",
+      "classification": "REJECTED",
+      "bytes": 206921,
+      "sha256": "36ad04cb26e505a5a00cb7b27e113e671a4ae6c1273ad616b78054f72470334e",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-diagnostic/kestrel-skill-8.png",
+      "classification": "REJECTED",
+      "bytes": 209543,
+      "sha256": "44860458a1a556cc8099637999b06880f6286758d373a654e9c5cb196e9bc25e",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-diagnostic/pipeline-meta.json",
+      "classification": "REJECTED",
+      "bytes": 5230,
+      "sha256": "4f7258037213de6eab9fbf00eb51f19ab914efd56bdb8d3280a3bfc6bb87f4e4",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-diagnostic/prompt-used.txt",
+      "classification": "REJECTED",
+      "bytes": 1089,
+      "sha256": "0e83af1388a16d229d4a951bf4bb5ea80d0c2537b56990175cf2054df13391f5",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-diagnostic/raw-sheet-clean.png",
+      "classification": "REJECTED",
+      "bytes": 1756668,
+      "sha256": "4f2b40a6f8818f4d77b5219a24296483f781b2c4ec077ba0dd5460c54e7701d0",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-diagnostic/raw-sheet.png",
+      "classification": "REJECTED",
+      "bytes": 2673161,
+      "sha256": "b1ad0b9a4429ae615a6c1260dab9fb1095412515f048e713f4b8e8828073c73f",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-diagnostic/sheet-transparent.png",
+      "classification": "REJECTED",
+      "bytes": 1516682,
+      "sha256": "3f4d7edec3e2078536d57cdc56fb19afbf44b7c5ab57cac6e6d2120e40c6c255",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        2048,
+        1024
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-partial/animation.gif",
+      "classification": "REJECTED",
+      "bytes": 534375,
+      "sha256": "5c919afa175e3ad74b6c96c24cc41809b016b90d6c52724b3359fd3220457816",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-partial/kestrel-skill-1.png",
+      "classification": "REJECTED",
+      "bytes": 191444,
+      "sha256": "d8e84e225274fbf7ffbe975c93a0b78740d4398366471d4a8b810333d2822c33",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-partial/kestrel-skill-2.png",
+      "classification": "REJECTED",
+      "bytes": 195629,
+      "sha256": "57577dec3f24539baa722f23fb8558bed5c3fb1e022eabfd7d80e40f3c546df5",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-partial/kestrel-skill-3.png",
+      "classification": "REJECTED",
+      "bytes": 182196,
+      "sha256": "1e3eef09975e337e18de9f467e7aa4f38c4062b68df87071f9c3ccdc8dbb8190",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-partial/kestrel-skill-4.png",
+      "classification": "REJECTED",
+      "bytes": 198991,
+      "sha256": "9163bd3e66bc36ea914065dfb6ffdc2557f9092ecae3c98135094baa618a9f9a",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-partial/kestrel-skill-5.png",
+      "classification": "REJECTED",
+      "bytes": 193724,
+      "sha256": "a1cefb514b45fb5178a5a459eadfb7b757d953442826ab803185f06efa176a0d",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-partial/kestrel-skill-6.png",
+      "classification": "REJECTED",
+      "bytes": 201527,
+      "sha256": "74b3d2afaad6944920d5fbb49692fc63909de81eadb96cd8c6dbc34eed82ee7d",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-partial/kestrel-skill-7.png",
+      "classification": "REJECTED",
+      "bytes": 206921,
+      "sha256": "36ad04cb26e505a5a00cb7b27e113e671a4ae6c1273ad616b78054f72470334e",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-partial/kestrel-skill-8.png",
+      "classification": "REJECTED",
+      "bytes": 209543,
+      "sha256": "44860458a1a556cc8099637999b06880f6286758d373a654e9c5cb196e9bc25e",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        512,
+        512
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-partial/raw-sheet-clean.png",
+      "classification": "REJECTED",
+      "bytes": 1756668,
+      "sha256": "4f2b40a6f8818f4d77b5219a24296483f781b2c4ec077ba0dd5460c54e7701d0",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-partial/raw-sheet.png",
+      "classification": "REJECTED",
+      "bytes": 2673161,
+      "sha256": "b1ad0b9a4429ae615a6c1260dab9fb1095412515f048e713f4b8e8828073c73f",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/rejected-edge-touch-partial/sheet-transparent.png",
+      "classification": "REJECTED",
+      "bytes": 1516682,
+      "sha256": "3f4d7edec3e2078536d57cdc56fb19afbf44b7c5ab57cac6e6d2120e40c6c255",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        2048,
+        1024
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-attack-reference-raw.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 1673876,
+      "sha256": "e3dfdcc6c9bd690c1982faf66f804d04026f7bb7d34e56b69a594d8f98bf7940",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-dash-reference-raw.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 1605644,
+      "sha256": "2551803761e640475ed4675c2f3d8d5ae054375c53e9fd62f447f1f6c5ea9f91",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-four-pose-reference-raw.png",
+      "classification": "REJECTED",
+      "bytes": 1886027,
+      "sha256": "7ffd51e20251bc7b354d354a68347d0db5dbf163d3f3a0450761c0381072d5c8",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "classificationReason": "Initial pose board has inter-cell overlap and an airborne dash read."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-identity-sheet.md",
+      "classification": "SUPPORT_FILE",
+      "bytes": 2608,
+      "sha256": "beb8029de25d771ab2540cb86b9fb51eb2be3bf5939b943df745e5ecfa3e4687",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-idle-reference-raw.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 1601483,
+      "sha256": "c9c83b15a5dab53dc6a91501af19dd491139b50f71e34df3e7bbb2c748ae5ae0",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-option-c-character-master-dev.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 2304254,
+      "sha256": "8a385d0e0cca07e0675b47926beed43b1ca7c39be768a89506f7bbcad9a4c18f",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-skill-reference-raw.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 1589138,
+      "sha256": "1147eebf6c125f46e0f608b26801ca89e38c8f9331767e5af1113996c0377129",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/attack/animation.gif",
+      "classification": "SUPPORT_FILE",
+      "bytes": 177632,
+      "sha256": "9e3787e9ae75b2cbb2b6fa5cd18afc569295312f4bf81f6ea72523224ee0b5dc",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/attack/kestrel-attack-1.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 490232,
+      "sha256": "baa03d26a7a920681d61a0ed074b026bc4a6fe0b9e4f1165df9db2d9cffb19ae",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/attack/pipeline-meta.json",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1152,
+      "sha256": "904070936c64dd3b7baec4f1fce35d9c4efafd423968b0abd74517ea713a79d6",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/attack/prompt-used.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1541,
+      "sha256": "80190b064e0c48468334f659ae1fc98e7359859a4457090248fe64773c8ba418",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/attack/raw-sheet-clean.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1002666,
+      "sha256": "0ed00df532ef27f2fb53150b7a7a3f745eb8b77a7855aaf623ae8ff10f32b072",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/attack/raw-sheet.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1929970,
+      "sha256": "188788252a7c87a618b2a0fe8c639c734866e648550a3efd624b81af9d5514c4",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/attack/sheet-transparent.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 473941,
+      "sha256": "fb02a17ecfeb1073e336a118264348a730055b05186e0ce874a02d6a1862f96b",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/dash/animation.gif",
+      "classification": "SUPPORT_FILE",
+      "bytes": 129573,
+      "sha256": "bccbcd83374a7732c6bf8c54e4bf84c6224e2058fe7ad842759dbfa93faa2727",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/dash/kestrel-dash-1.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 352664,
+      "sha256": "c6b29fa2eb079b9df97a93964644a18b98a0dbf2b98d753b83481bfac90d113c",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/dash/pipeline-meta.json",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1148,
+      "sha256": "c58e70bcb4755ca7ae6311737f9c54015b3ab83e8a17bd8d2e3fae177d1ee58e",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/dash/prompt-used.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 2033,
+      "sha256": "fc14d2c7603a005f86f0eaf26a754de1f0563e40d0b4f75fa6b6417763d39871",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/dash/raw-sheet-clean.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 972662,
+      "sha256": "da5d25605e88148f669e55ca7ef71373839ade9a70babd670b90bee4cbedefa2",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/dash/raw-sheet.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1850579,
+      "sha256": "3682db8325381a118837350658e30c48581c38e58b61e72a7c53718c43c92fb5",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/dash/sheet-transparent.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 340830,
+      "sha256": "78beee9d9b7ec332802ca1f68d44e647a748e3d0a777932cab1a5584281c5a90",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/idle/animation.gif",
+      "classification": "SUPPORT_FILE",
+      "bytes": 188651,
+      "sha256": "15559d3f5c2d2c2f8c7859e82f7203f80a554f067181992bae697d76e2f9aaa1",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/idle/kestrel-idle-1.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 496973,
+      "sha256": "4021bb98c12f4308d43c2178c85eb3deae8141abd2d98b9866d991f6d665e148",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/idle/pipeline-meta.json",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1150,
+      "sha256": "7efa4cd608cd2fa5ca92b976321e9db1b00df4e0d0922145746478bc7fe55a93",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/idle/prompt-used.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1547,
+      "sha256": "a3c1602f999057630c06d21d4f7c024fd1826c764d37705d0cece8a7c08c812d",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/idle/raw-sheet-clean.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 908627,
+      "sha256": "4c22b6480e09899ca0baa18afb8086b7a04f99740bc074430ac9228954b3922a",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/idle/raw-sheet.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1846924,
+      "sha256": "cc87a4a0e1ffb5e9436b11d559b98a1ecf9be7200568973aa5d69e95e189dc04",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/idle/sheet-transparent.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 483294,
+      "sha256": "da5b0afaba920bf1f541f51c3e7b518508b765723584bbbcf926f1195fd06ecf",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/skill/animation.gif",
+      "classification": "SUPPORT_FILE",
+      "bytes": 153052,
+      "sha256": "b4a9ecb354f0be20abc18c7f3ff0e73c2127b773dad19668e719a825b8236bfd",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/skill/kestrel-skill-1.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 427097,
+      "sha256": "0fb8aac947e3a5f686d4ee8c4bd14dbfdecf7a54e32ec32902fe697d4a3ea5e7",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/skill/pipeline-meta.json",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1152,
+      "sha256": "eb72ac9000401691c65ac44630a11c8120b2809e788eaaab15a4fbb75eaf62af",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/skill/prompt-used.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1578,
+      "sha256": "57f60566f5a42d1e845f444d1f244b2b8c688902bc867ef570a948b4f8c15ba1",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/skill/raw-sheet-clean.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 876355,
+      "sha256": "51c5f499534b1cdbd9d46030f4bb6fdec043eae958e06c3f741571b5aae996fb",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/skill/raw-sheet.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1833978,
+      "sha256": "47ed41a489212012d295fb816561c51f634b16878ae6103960939dd39f91ceaa",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/skill/sheet-transparent.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 411207,
+      "sha256": "66967a593900c1c7ad936751ec7558bd73bc9192391b4b5197543eb70edcba49",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/rejected-four-pose-edge-touch/animation.gif",
+      "classification": "REJECTED",
+      "bytes": 550380,
+      "sha256": "79c7522acd200fb4047ab075b6e88d3f10a28c916f6678212c1c4f3812914df2",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/rejected-four-pose-edge-touch/kestrel-pose-1.png",
+      "classification": "REJECTED",
+      "bytes": 389349,
+      "sha256": "e338ce7c4d4ba35bfba983f6e79172bad693ae57d2a2e702d4190d14db4e7f0f",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/rejected-four-pose-edge-touch/kestrel-pose-2.png",
+      "classification": "REJECTED",
+      "bytes": 383137,
+      "sha256": "b830cb2c855070df481b2af44bfd52c639d62d1002efd6004080823aeea53fe1",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/rejected-four-pose-edge-touch/kestrel-pose-3.png",
+      "classification": "REJECTED",
+      "bytes": 433653,
+      "sha256": "a29447b246ce6674c7ede7315950ff0c734c0a0b3cebeead65126ae4231176ce",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/rejected-four-pose-edge-touch/kestrel-pose-4.png",
+      "classification": "REJECTED",
+      "bytes": 415926,
+      "sha256": "72115b3da70d74ba99f0db0cb66ba5d3be01b236f957c4347cffb047c0bac9c8",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/rejected-four-pose-edge-touch/raw-sheet-clean.png",
+      "classification": "REJECTED",
+      "bytes": 1166927,
+      "sha256": "994f1f8674cc15e3ece0683eae4b81c17bc3364454036a6dff407e0f89d61ecc",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/rejected-four-pose-edge-touch/raw-sheet.png",
+      "classification": "REJECTED",
+      "bytes": 2158334,
+      "sha256": "77a389ae3423fd1dc50bd6ec30d6ce2de7e3ad8450e54267c2cbbb5adead167e",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/rejected-four-pose-edge-touch/sheet-transparent.png",
+      "classification": "REJECTED",
+      "bytes": 1570598,
+      "sha256": "081cd61ee17572e75ef01bfd9cfa5d0d8df1269b0e88ba8d0ef22ed1597ae20e",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/superseded-dash-single-mode/clean.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 380491,
+      "sha256": "24b279c0c06c81dbee539e42378d2c2947011b6e919bb225233f048cd2263417",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        768,
+        768
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/superseded-dash-single-mode/pipeline-meta.json",
+      "classification": "SUPPORT_FILE",
+      "bytes": 271,
+      "sha256": "f7836cb1d57c2585790c19b2dd59a61be7bd85c1a8b7b306783492dfb9676b36",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/superseded-dash-single-mode/prompt-used.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 2033,
+      "sha256": "fc14d2c7603a005f86f0eaf26a754de1f0563e40d0b4f75fa6b6417763d39871",
+      "hashMode": "SHA256_LF_NORMALIZED",
+      "classificationReason": "Processing preview or pipeline evidence; transparent frames and sheet are the accepted animation assets."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/characters/superseded-dash-single-mode/raw.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1850579,
+      "sha256": "3682db8325381a118837350658e30c48581c38e58b61e72a7c53718c43c92fb5",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1374,
+        1145
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/composites/1366x768-stage.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 1994548,
+      "sha256": "66c7a417347ad72f28db862bf922b2061a461d1f251de50c7c58306956eb352a",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1366,
+        768
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/composites/1366x768-strategic.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 1922170,
+      "sha256": "2d49d4496c603ea7baaaf33f4473aeee489ee5a3f76206afebbfa246a050e15f",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1366,
+        768
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/composites/1366x768-tableau.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 1877340,
+      "sha256": "a0c34a2438c30c74c78609e4de2fd282eb6466f0ea15d626b8b2421aa1fb298b",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1366,
+        768
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/composites/1366x768-travel.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 1907098,
+      "sha256": "adf489ade2506ce5507b76a13f3ade6965fe052751f3d60856edb19da5f9e0d4",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1366,
+        768
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/composites/1920x1080-stage.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 3554333,
+      "sha256": "af1edadd8aac47959a9e3545c26999a09ecedde05559e3e2ae557c37fa65d801",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/composites/1920x1080-strategic.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 3404997,
+      "sha256": "5b2c6158b2695fcef10ffa3ce9da84253e60a77693c4e3fbdb5bf9709d5439e6",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/composites/1920x1080-tableau.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 3328850,
+      "sha256": "989013f6f62509147f9ff7ec1be27a66af21e4bc731c5b9f9ae13ea658377954",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/composites/1920x1080-travel.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 3429389,
+      "sha256": "ad288a8c5e19563f41c08afd49653e16f0d937ceed677c770d0087abd6664df4",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/composites/operator-review-board.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 3018679,
+      "sha256": "6b635095128cb1c6da89df19d58226d8681c889db88ad285c85b86d916adf1d2",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1920,
+        2076
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-combat-stage-dev.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 3079404,
+      "sha256": "365ae7b3f857d5bb5586519207315b542dc0c03e3aa4e4ca0aa72e8c2a6b03c3",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-strategic-dev.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 3223836,
+      "sha256": "6a105a3f9bfd64a2ccdb6113a1ebdebe24656c72facb4623ff914c8105cd33ee",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-tableau-dev.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 2986901,
+      "sha256": "6388e592c5b96e29b5588e69646ce826cac11fc8b4b0a78328a69fa3f7598a32",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-travel-dev.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 3070625,
+      "sha256": "5c6f8d8f406fe4ec26a259fbaae72c480dbd55a480a9d76361ce7f72709e5635",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/manifests/build_pilot_manifest.py",
+      "classification": "SUPPORT_FILE",
+      "bytes": 22185,
+      "sha256": "4bacfbc8c9253cb2f2db64078a7f17c1ed939ad67ba44a0c043a7fb981d10f63",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/manifests/generation-lineage.json",
+      "classification": "SUPPORT_FILE",
+      "bytes": 83903,
+      "sha256": "d6ca7d2dd1ba887cfe216c87339e9f372255ec9d309c4178c5b962755fd4b565",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/masters/forest-road-visual-master-dev.png",
+      "classification": "ACCEPTED_DEV_CANDIDATE",
+      "bytes": 3108153,
+      "sha256": "6a9e2c81ce323d4733d5b019a5a415edc7cc45ca81979f97432be933194da254",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/forest-road-combat-stage.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 503,
+      "sha256": "faf9c273554ea9eef4e1dab7204e4597303ddd288565d25a310bd07bfd3c3706",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/forest-road-master.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 846,
+      "sha256": "2dcb84687733799a19fdec2de3f15dd6109c98576da3127e91cd48ae57245b9e",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/forest-road-strategic.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 561,
+      "sha256": "2e5f1c6bed065dc75a926761a2517ce10bb288016929ac11207613395258c274",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/forest-road-tableau.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 481,
+      "sha256": "3f2868bd661f6e289720e99f93f09582f6bcd83caae6249350eee6a813fce8d1",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/forest-road-travel.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 536,
+      "sha256": "921ab4b2a1f654a1a286395ff9041060a45e2a3bce2a663565ad75259c699b77",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-attack-animation-retry.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 648,
+      "sha256": "db3601086fae5a87896e8487d4eddeb1d0f6a1bf8038670cd1bcde8fe938780f",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-attack-animation.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 989,
+      "sha256": "b045fb9c2ddf05b776a409f2795ebe5bc7e84c61943fc038699945eca9cac5df",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-attack-reference.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1532,
+      "sha256": "80190b064e0c48468334f659ae1fc98e7359859a4457090248fe64773c8ba418",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-character-master.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 861,
+      "sha256": "0bcb2de7d4a774e1b048f63f26a8881da150ffbef45a5c8cdca9c88063ceccb4",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-dash-animation-retry.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 698,
+      "sha256": "704ce716a84802d4c8e025464595e93d1688ebacf99cb91a897cfeadc638a1ee",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-dash-animation.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1076,
+      "sha256": "ce432b5ade4bd858b2c74495bbc87becee994cef61e372ba2ef8190106982e50",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-dash-reference.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 2023,
+      "sha256": "fc14d2c7603a005f86f0eaf26a754de1f0563e40d0b4f75fa6b6417763d39871",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-four-pose-reference.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 2968,
+      "sha256": "ec5317fd10b3a73767eb1d62002c2b3c1b6ccbcd3e7ab9ec1a24720171d75507",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-idle-animation.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1054,
+      "sha256": "8488503793cc24491654c4a5a3b211f240893013771e14d21fcf528a43618d2f",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-idle-reference.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1538,
+      "sha256": "a3c1602f999057630c06d21d4f7c024fd1826c764d37705d0cece8a7c08c812d",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-master-checkerboard-rejected.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 354,
+      "sha256": "0efadf627266c5b9ff3b53413b8a176d8baa9c4daec421c510f45fdbe8fe0ba9",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-skill-animation-retry.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 690,
+      "sha256": "4ebdeb4e4ff5e68ccf28555ecb0d3b341f076e35d782b58f2fa06ee2f2b54231",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-skill-animation.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1086,
+      "sha256": "0e83af1388a16d229d4a951bf4bb5ea80d0c2537b56990175cf2054df13391f5",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-skill-reference.prompt.txt",
+      "classification": "SUPPORT_FILE",
+      "bytes": 1569,
+      "sha256": "57f60566f5a42d1e845f444d1f244b2b8c688902bc867ef570a948b4f8c15ba1",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/qa/audit-pilot.py",
+      "classification": "SUPPORT_FILE",
+      "bytes": 8284,
+      "sha256": "9e925dc8fccb9f7051d9e0605afc62d08a4832edd8c24d1b97e7c5bb9e53712d",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/qa/capture-composites.mjs",
+      "classification": "SUPPORT_FILE",
+      "bytes": 2964,
+      "sha256": "b9fe7a413d916183f5a87f8927b613620673c8ec8fef8afa58bcea4b0b21d1c1",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/qa/capture-review-board.mjs",
+      "classification": "SUPPORT_FILE",
+      "bytes": 929,
+      "sha256": "4080d92c438de7abbfcc55ce4461a6dc757bf1f56fa5c571e3833dcb58d86737",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/qa/composite-results.json",
+      "classification": "SUPPORT_FILE",
+      "bytes": 8309,
+      "sha256": "43b616d9ff8bf207c83516b9ec0882de2af679b3528a95e2bbeb8b9f7d69733d",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/qa/operator-review.html",
+      "classification": "SUPPORT_FILE",
+      "bytes": 8256,
+      "sha256": "21477cedb54f27d0bdb15466c273f8d029b46b6aee7e328f0d786f9811e4782f",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/qa/operator-review.md",
+      "classification": "SUPPORT_FILE",
+      "bytes": 4818,
+      "sha256": "e436840227eb0194316f4dab70165e997fda2384196da328872f73447d59799f",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/qa/pilot-machine-qa.json",
+      "classification": "SUPPORT_FILE",
+      "bytes": 138773,
+      "sha256": "a2782d9629cec86e4fb4660c513e39d9d1a92842d42dcc4cdb53b4733031f7a9",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/qa/pilot-validation-report.md",
+      "classification": "SUPPORT_FILE",
+      "bytes": 13831,
+      "sha256": "28ac7cbd27b49be10efcf719f102492150580b8bf89d36fc84cc0cbf0257bdf2",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/qa/rejected-kestrel-master-checkerboard.png",
+      "classification": "REJECTED",
+      "bytes": 2661707,
+      "sha256": "b72a559b9253299bde6f6e254ec3ddea2f0f5e5878b5d97175f28bd7594e444f",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "classificationReason": "Retained rejection evidence."
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/qa/surface-preview.html",
+      "classification": "SUPPORT_FILE",
+      "bytes": 10816,
+      "sha256": "3164cf5c8a4c85ff2edba126597db5b15fd3485d34419cfd3677fed73cd30837",
+      "hashMode": "SHA256_LF_NORMALIZED"
+    },
+    {
+      "path": "docs/art-direction/option-c/phase4-pilot/references/2x4-animation-layout-guide.png",
+      "classification": "SUPPORT_FILE",
+      "bytes": 6374,
+      "sha256": "52673da7d53fd064cc0aebd5d7e9171852c7fd4652c45eb71126a0f716727b3e",
+      "hashMode": "SHA256_RAW_BYTES",
+      "dimensions": [
+        1536,
+        768
+      ]
+    }
+  ]
+}

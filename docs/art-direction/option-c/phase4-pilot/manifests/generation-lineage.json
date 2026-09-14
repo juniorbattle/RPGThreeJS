@@ -1,0 +1,1621 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-14T03:41:58.383052+00:00",
+  "baseline": "8265b071ea28569562017d621fbe1f124e0d0995",
+  "pilotStatus": "APPROVED_DEV_PILOT",
+  "operatorDecision": "APPROVED_DEV_PILOT",
+  "operatorDecisionDate": "2026-09-13",
+  "generatorModelPolicy": {
+    "generator": "OpenAI built-in image_gen tool",
+    "exactModelProvenance": "UNKNOWN",
+    "note": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred."
+  },
+  "imageGeneration": [
+    {
+      "assetId": "FOREST_ROAD_VISUAL_MASTER",
+      "filename": "docs/art-direction/option-c/phase4-pilot/masters/forest-road-visual-master-dev.png",
+      "category": "environment_master",
+      "purpose": "Single environmental visual authority for the Forest Road pilot family.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": null,
+      "visualReferenceInputs": [
+        {
+          "path": "public/assets/generated/lion-phase/dialogue/forest_fork.webp",
+          "exists": true,
+          "sha256": "c2db5505504bc062bbeccd97a31100299ef47fe025b1077799f3dfb95943bdd0",
+          "dimensions": [
+            1920,
+            1080
+          ]
+        },
+        {
+          "path": "public/assets/generated/lion-phase/combat/forest_route.webp",
+          "exists": true,
+          "sha256": "d2e37d8f43f6b5fbb0448da970ea13b85a8604a0028ae3b17303387a481fd41d",
+          "dimensions": [
+            2048,
+            1152
+          ]
+        },
+        {
+          "path": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
+          "exists": true,
+          "sha256": "f5bdc9936c6c3424683cf40a1ae5d761876b9ff3c952dbdbea8b59985ef09a84",
+          "dimensions": [
+            2048,
+            1152
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/surface-board-b.png",
+          "exists": true,
+          "sha256": "0629895927ad00e82129ed9d03ddec5fb6ffe90dd0b074580d85522d8ddd5aac",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/forest-road-master.prompt.txt",
+      "prompt": "Generate one DEV-only Forest Road visual master for RPGThreeJS Option C, using the Option C surface board as style/composition direction and the three current Forest Road runtime backgrounds only as semantic references. Establish a single reusable environment family: dense old-growth conifers, a broad ancient flagstone road, a broken moss-covered carved waystone and ruin mass on the left, a narrow stream on the right, and a pale distant mountain notch with waterfalls. Cool navy and pine ambient palette, restrained old-gold sunlight shafts, strong near/mid/far depth, readable dark silhouettes, crisp high-density pixel-stylized HD-2D clusters. Leave broad uncluttered staging ground and UI-safe negative space. No people, creatures, UI, text, branching routes, free-roam cues, grid, visible square tiles, painterly blur, or modern objects.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-60963997-124e-43c8-9978-a0aaefd5b2a2.png",
+      "generationTimestamp": "2026-09-14T01:53:16.252701+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "6a9e2c81ce323d4733d5b019a5a415edc7cc45ca81979f97432be933194da254"
+    },
+    {
+      "assetId": "FOREST_ROAD_TRAVEL",
+      "filename": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-travel-dev.png",
+      "category": "environment_variant",
+      "purpose": "Character-free guided Travel Still treatment with existing UI-safe zones.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": null,
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/masters/forest-road-visual-master-dev.png",
+          "exists": true,
+          "sha256": "6a9e2c81ce323d4733d5b019a5a415edc7cc45ca81979f97432be933194da254",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "public/assets/generated/lion-phase/dialogue/forest_fork.webp",
+          "exists": true,
+          "sha256": "c2db5505504bc062bbeccd97a31100299ef47fe025b1077799f3dfb95943bdd0",
+          "dimensions": [
+            1920,
+            1080
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/surface-board-b.png",
+          "exists": true,
+          "sha256": "0629895927ad00e82129ed9d03ddec5fb6ffe90dd0b074580d85522d8ddd5aac",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/forest-road-travel.prompt.txt",
+      "prompt": "Derive a DEV-only TravelView candidate from the Forest Road master. Preserve exactly the same landmark family, palette, material language and lighting: carved ruin/waystone left, single old flagstone road leading forward, stream right, mountain notch and waterfalls in the distance. Emphasize guided forward depth and a calm transition beat with lower-right UI-safe space. Crisp pixel-stylized HD-2D, no painterly blur. Character-free and UI-free. No forks, side routes, navigation markers, free-roam affordances, grid, text, or icons.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-5be6f8d6-d95f-4291-a7e4-9f694d3fabea.png",
+      "generationTimestamp": "2026-09-14T01:55:17.053549+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "5c6f8d8f406fe4ec26a259fbaae72c480dbd55a480a9d76361ce7f72709e5635"
+    },
+    {
+      "assetId": "FOREST_ROAD_TABLEAU",
+      "filename": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-tableau-dev.png",
+      "category": "environment_variant",
+      "purpose": "Character-free Static Tableau plate for runtime actor staging.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": null,
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/masters/forest-road-visual-master-dev.png",
+          "exists": true,
+          "sha256": "6a9e2c81ce323d4733d5b019a5a415edc7cc45ca81979f97432be933194da254",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "public/assets/generated/lion-phase/dialogue/forest_fork.webp",
+          "exists": true,
+          "sha256": "c2db5505504bc062bbeccd97a31100299ef47fe025b1077799f3dfb95943bdd0",
+          "dimensions": [
+            1920,
+            1080
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/surface-board-b.png",
+          "exists": true,
+          "sha256": "0629895927ad00e82129ed9d03ddec5fb6ffe90dd0b074580d85522d8ddd5aac",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/forest-road-tableau.prompt.txt",
+      "prompt": "Derive a DEV-only static dialogue tableau background from the Forest Road master. Preserve exactly the same landmark family, palette, materials and lighting. Use a frontal cinematic composition with broad empty foreground ground for later actor staging, clear subject separation and a quiet upper dialogue-card safe area. Crisp pixel-stylized HD-2D, no painterly blur. Background only: no people, silhouettes, creatures, baked actors, portraits, UI, text, grid, or free-roam cues.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-a99a03a8-79c0-4b21-9998-2cf930dbb949.png",
+      "generationTimestamp": "2026-09-14T01:55:49.330996+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "6388e592c5b96e29b5588e69646ce826cac11fc8b4b0a78328a69fa3f7598a32"
+    },
+    {
+      "assetId": "FOREST_ROAD_STRATEGIC",
+      "filename": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-strategic-dev.png",
+      "category": "environment_variant",
+      "purpose": "Existing-camera tactical battlefield treatment with readable UI zones.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": null,
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/masters/forest-road-visual-master-dev.png",
+          "exists": true,
+          "sha256": "6a9e2c81ce323d4733d5b019a5a415edc7cc45ca81979f97432be933194da254",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "public/assets/generated/lion-phase/combat/forest_route.webp",
+          "exists": true,
+          "sha256": "d2e37d8f43f6b5fbb0448da970ea13b85a8604a0028ae3b17303387a481fd41d",
+          "dimensions": [
+            2048,
+            1152
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/surface-board-b.png",
+          "exists": true,
+          "sha256": "0629895927ad00e82129ed9d03ddec5fb6ffe90dd0b074580d85522d8ddd5aac",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/forest-road-strategic.prompt.txt",
+      "prompt": "Derive a DEV-only tactical combat background from the Forest Road master. Preserve exactly the same landmark family, palette, materials and lighting while adopting the current strategic surface semantics: elevated oblique overview, broad readable battlefield floor, clean unit placement zones, and peripheral UI-safe areas. The stone rhythm may support positioning but must not become a visible game grid. Crisp pixel-stylized HD-2D, no painterly blur. Background only: no units, rings, HUD, UI, labels, text, free-roam cues, or camera conversion to side view.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-abdebb33-2709-4b0c-8445-dce25b106e8d.png",
+      "generationTimestamp": "2026-09-14T01:56:31.360935+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "6a105a3f9bfd64a2ccdb6113a1ebdebe24656c72facb4623ff914c8105cd33ee"
+    },
+    {
+      "assetId": "FOREST_ROAD_COMBAT_STAGE",
+      "filename": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-combat-stage-dev.png",
+      "category": "environment_variant",
+      "purpose": "Side-on Combat Stage treatment with attacker, target and feedback lanes.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": null,
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/masters/forest-road-visual-master-dev.png",
+          "exists": true,
+          "sha256": "6a9e2c81ce323d4733d5b019a5a415edc7cc45ca81979f97432be933194da254",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
+          "exists": true,
+          "sha256": "f5bdc9936c6c3424683cf40a1ae5d761876b9ff3c952dbdbea8b59985ef09a84",
+          "dimensions": [
+            2048,
+            1152
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/surface-board-b.png",
+          "exists": true,
+          "sha256": "0629895927ad00e82129ed9d03ddec5fb6ffe90dd0b074580d85522d8ddd5aac",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/forest-road-combat-stage.prompt.txt",
+      "prompt": "Derive a DEV-only side-on Combat Stage background from the Forest Road master. Preserve exactly the same landmark family, palette, materials and lighting. Use a frontal theatrical lane with wide clean ground for one hero on the left and one enemy on the right, readable center impact space, left waystone/ruin anchor and right stream anchor. Crisp pixel-stylized HD-2D, no painterly blur. Background only: no actors, creatures, projectiles, VFX, damage numbers, UI, text, grid, or tactical-camera cues.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-67ce71e8-f4fc-4826-8ce8-c926f870b4aa.png",
+      "generationTimestamp": "2026-09-14T01:57:00.932939+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "365ae7b3f857d5bb5586519207315b542dc0c03e3aa4e4ca0aa72e8c2a6b03c3"
+    },
+    {
+      "assetId": "KESTREL_OPTION_C_CHARACTER_MASTER",
+      "filename": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-option-c-character-master-dev.png",
+      "category": "character_master",
+      "purpose": "Three-view transparent DEV authority for the canonical Kestrel identity.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "public/assets/characters/pixel/full/kestrel.png",
+          "exists": true,
+          "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+          "dimensions": [
+            640,
+            768
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/archer_sheet_4x1/archer_sheet_4x1_01_pose1.png",
+          "exists": true,
+          "sha256": "57f33cd2d11475a313beb50a47aa0cf86541a8d64540cbe6d73764a0a9692a83",
+          "dimensions": [
+            544,
+            653
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/motion-kestrel-reference.png",
+          "exists": true,
+          "sha256": "ca19ef08416fef9620f98f7ea1aef5bdb09258ab11b768eecc29a3ee26f2fc96",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-character-master.prompt.txt",
+      "prompt": "Create a DEV-only Option C Kestrel character master from the canonical Kestrel full-body art, the approved Option C motion reference and the existing neutral combat-stage pose. Show exactly three complete full-body views at the same scale: front three-quarter, right-side profile and opposite three-quarter. Identity is strict: face fully hidden in a deep green hood and dark mask; layered feather-like ragged green cloak; crossed brown leather chest harness; bronze and old-gold trim; ornate recurved wooden bow; hip quiver with white-fletched arrows; fitted dark leather armor and bronze knee/forearm plates. Modern high-density pixel-stylized HD-2D with crisp clusters, not painterly. Transparent background. No text, UI, labels, scenery, glow, spell effects, costume variants, exposed skin, facial features, scale drift, cropped limbs or overlapping views.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-9861bb43-9e83-406d-afde-b7f860a40fae.png",
+      "generationTimestamp": "2026-09-14T01:58:27.634982+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "8a385d0e0cca07e0675b47926beed43b1ca7c39be768a89506f7bbcad9a4c18f"
+    },
+    {
+      "assetId": "KESTREL_MASTER_CHECKERBOARD_CORRECTION",
+      "filename": "docs/art-direction/option-c/phase4-pilot/qa/rejected-kestrel-master-checkerboard.png",
+      "category": "rejected_character_master",
+      "purpose": "Attempted transparency correction retained only as rejected evidence.",
+      "status": "REJECTED",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-option-c-character-master-dev.png",
+          "exists": true,
+          "sha256": "8a385d0e0cca07e0675b47926beed43b1ca7c39be768a89506f7bbcad9a4c18f",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-master-checkerboard-rejected.prompt.txt",
+      "prompt": "Extract the Kestrel character master to a transparent background while preserving every character pixel and all three views exactly. Replace only the dark backdrop with genuine alpha transparency. Do not redraw, restyle, relight, crop or add text. This output was rejected because the generated checkerboard was baked RGB rather than alpha transparency.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-76700826-e05e-49bd-a6eb-bf78789d3d94.png",
+      "generationTimestamp": "2026-09-14T01:59:29.044894+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "b72a559b9253299bde6f6e254ec3ddea2f0f5e5878b5d97175f28bd7594e444f",
+      "rejectionReason": "Checkerboard is baked RGB (opaque Format24bppRgb), not real alpha transparency."
+    },
+    {
+      "assetId": "KESTREL_FOUR_POSE_BOARD_V1",
+      "filename": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-four-pose-reference-raw.png",
+      "category": "rejected_pose_board",
+      "purpose": "Initial four-pose authority attempt retained as rejected evidence.",
+      "status": "REJECTED",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-option-c-character-master-dev.png",
+          "exists": true,
+          "sha256": "8a385d0e0cca07e0675b47926beed43b1ca7c39be768a89506f7bbcad9a4c18f",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "public/assets/characters/pixel/full/kestrel.png",
+          "exists": true,
+          "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+          "dimensions": [
+            640,
+            768
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/motion-kestrel-reference.png",
+          "exists": true,
+          "sha256": "ca19ef08416fef9620f98f7ea1aef5bdb09258ab11b768eecc29a3ee26f2fc96",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-four-pose-reference.prompt.txt",
+      "prompt": "Use case: identity-preserve\nAsset type: Kestrel four-pose gameplay reference sheet for a tactical RPG\nPrimary request: Create exactly four coherent full-body Kestrel pose references in an exact 2x2 grid, read left-to-right top row then left-to-right bottom row.\nInput images: Image 1 is the approved DEV Kestrel Option C character master and fixes all proportions, costume, palette, mask, hood, bow, quiver, materials, and pixel density. Image 2 is the authoritative canonical Kestrel identity and overrides any conflict. Image 3 is directional only for action readability.\nGrid/action order: top-left IDLE - grounded side-facing three-quarter ready stance, subtle breathing potential, bow readable, feet planted. Top-right DASH - low fast tactical relocation toward the right, intentional forward lean, one foot driving, cloak trailing but contained, bow controlled; not airborne platformer running. Bottom-left ATTACK - credible archer release moment facing right, bow fully drawn or just released, hands and bow mechanics clear, anticipation/action/recovery readable from silhouette without VFX. Bottom-right CAST/SKILL - Kestrel-specific precision technique: grounded special-shot preparation, bow angled upward-right, one arrow intentionally nocked or being marked, focused tactical posture; no generic spellcasting and no magic effects.\nIdentity invariants in every cell: same athletic adult body proportions; same deep forest-green pointed embroidered hood; fully covered green cloth mask with no skin or face; same ragged layered green cloak; same green stitched torso; same crossed brown harness, belt, round brass buckle, pouches; same dark trousers, leather bracers, knee guards and boots; same ornate warm-brown recurved longbow, bowstring, and rear-left quiver of white-feather arrows.\nStyle/medium: modern high-density pixel-stylized HD-2D, crisp deliberate pixel clusters, colored outlines, matte cloth and selective bronze highlights; consistent project-native gameplay sprite language.\nComposition/framing: exact 2 columns x 2 rows with four equal invisible cells. Full body, hood, cloak, bow, bowstring, quiver, hands and feet entirely inside each cell. Same foot baseline, same body height and same pixel scale in all cells; subject fills about 65% of cell height. Leave generous magenta margin on all four sides of every cell.\nBackground: 100% solid flat #FF00FF magenta, no gradient, no checkerboard, no shadow, no floor, no glow.\nConstraints: exactly one Kestrel per cell, exactly four figures total; no visible grid boxes, no borders, no labels, no text, no UI, no logo, no watermark, no environment, no VFX, no projectile impact, no detached particles. No body part, weapon, arrow, cloak tip, or bow limb may cross any cell edge.\nAvoid: costume drift, scale drift, face exposure, extra weapon, duplicated limb, broken bowstring, ambiguous archery mechanics, mage pose, platformer dash, painterly blur, smooth 3D rendering, giant chunky pixels.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-293cd3e9-0c17-41b5-9b62-58dde8c18b0c.png",
+      "generationTimestamp": "2026-09-14T02:04:33.637203+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "sha256": "7ffd51e20251bc7b354d354a68347d0db5dbf163d3f3a0450761c0381072d5c8",
+      "rejectionReason": "Inter-cell overlap and edge touch; dash also reads as airborne/platformer-like."
+    },
+    {
+      "assetId": "KESTREL_DASH_REFERENCE_RAW",
+      "filename": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-dash-reference-raw.png",
+      "category": "pose_source",
+      "purpose": "Grounded replacement source for the normalized dash pose.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-option-c-character-master-dev.png",
+          "exists": true,
+          "sha256": "8a385d0e0cca07e0675b47926beed43b1ca7c39be768a89506f7bbcad9a4c18f",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "public/assets/characters/pixel/full/kestrel.png",
+          "exists": true,
+          "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+          "dimensions": [
+            640,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-four-pose-reference-raw.png",
+          "exists": true,
+          "sha256": "7ffd51e20251bc7b354d354a68347d0db5dbf163d3f3a0450761c0381072d5c8",
+          "dimensions": [
+            1374,
+            1145
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/motion-kestrel-reference.png",
+          "exists": true,
+          "sha256": "ca19ef08416fef9620f98f7ea1aef5bdb09258ab11b768eecc29a3ee26f2fc96",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-dash-reference.prompt.txt",
+      "prompt": "Use case: identity-preserve\nAsset type: replacement KESTREL_DASH_REFERENCE, single DEV gameplay pose\nPrimary request: Create one full-body Kestrel tactical dash pose moving to the right. Correct only the rejected airborne dash concept: this must be a low grounded battlefield relocation with one boot visibly planted on the shared imaginary baseline and the other leg driving behind, torso leaning forward, cloak trailing in a contained directional wedge, and bow carried securely low-forward. It must read instantly as fast tactical movement, not jumping or flying.\nInput images: Image 1 is the approved Kestrel Option C character master and fixes identity. Image 2 is canonical authority. Image 3 is the four-pose sheet; match its pixel density, scale, costume and lighting but do not repeat its airborne top-right pose.\nIdentity invariants: identical deep forest-green pointed gold-embroidered hood; fully covered green cloth face with no skin; layered ragged green cloak; green stitched torso; crossed brown harness, pouches and round brass buckle; dark trousers; leather bracers, guards and boots; same warm-brown recurved longbow with intact string; same rear-left quiver and white-feather arrows.\nStyle/medium: modern high-density pixel-stylized HD-2D, crisp deliberate pixel clusters, controlled colored outline, matte cloth, selective bronze highlights, project-native tactical sprite.\nComposition/framing: exactly one figure, side-facing three-quarter profile toward the right, full body and full bow visible, generous padding, grounded foot baseline, no shadow or floor.\nBackground: 100% solid flat #FF00FF magenta, no gradient, no checkerboard.\nConstraints: no airborne pose, no leap, no platformer run, no extra weapon, no duplicate limbs, no broken bowstring, no face exposure, no costume or scale drift, no environment, VFX, dust, motion particles, text, label, border, UI, logo, or watermark.\nAvoid: heroic jump, flying cloak filling the frame, anime sprint, painterly blur, smooth 3D, chunky retro pixels.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-d32c1f4f-5cd3-4917-8cee-87dcacea75c4.png",
+      "generationTimestamp": "2026-09-14T02:05:50.376591+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "sha256": "2551803761e640475ed4675c2f3d8d5ae054375c53e9fd62f447f1f6c5ea9f91"
+    },
+    {
+      "assetId": "KESTREL_IDLE_REFERENCE_RAW",
+      "filename": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-idle-reference-raw.png",
+      "category": "pose_source",
+      "purpose": "Source for the normalized idle pose.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-option-c-character-master-dev.png",
+          "exists": true,
+          "sha256": "8a385d0e0cca07e0675b47926beed43b1ca7c39be768a89506f7bbcad9a4c18f",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "public/assets/characters/pixel/full/kestrel.png",
+          "exists": true,
+          "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+          "dimensions": [
+            640,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-four-pose-reference-raw.png",
+          "exists": true,
+          "sha256": "7ffd51e20251bc7b354d354a68347d0db5dbf163d3f3a0450761c0381072d5c8",
+          "dimensions": [
+            1374,
+            1145
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/motion-kestrel-reference.png",
+          "exists": true,
+          "sha256": "ca19ef08416fef9620f98f7ea1aef5bdb09258ab11b768eecc29a3ee26f2fc96",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-idle-reference.prompt.txt",
+      "prompt": "Use case: identity-preserve\nAsset type: KESTREL_IDLE_REFERENCE, single DEV gameplay pose\nPrimary request: Create one calm combat-ready Kestrel idle reference. Both boots planted, balanced low-amplitude readiness, subtle breathing potential, shoulders relaxed but alert. Hold the bow diagonally down-forward with the full weapon and string readable. The silhouette must loop naturally without a large motion.\nInput hierarchy: the approved Kestrel Option C character master fixes proportions, costume, palette, mask, hood, bow, quiver, materials and pixel density; the canonical full Kestrel PNG overrides every conflict; the rejected 2x2 sheet informs pose language only.\nIdentity invariants: deep forest-green pointed gold-embroidered hood; fully covered green cloth face with no skin; layered ragged green cloak; stitched torso; crossed brown harness, pouches and round brass buckle; dark trousers; leather bracers, knee guards and boots; warm-brown recurved longbow with intact string; rear-left quiver and white-feather arrows.\nStyle: modern high-density pixel-stylized HD-2D, crisp deliberate clusters, controlled colored outlines, matte cloth and selective bronze highlights.\nComposition: exactly one full-body figure, three-quarter profile toward the right, all gear contained with at least 12% margin, grounded baseline.\nBackground: 100% solid flat #FF00FF magenta.\nConstraints: no attack draw, run, jump, magic, environment, VFX, text, UI, border, logo, watermark, face exposure, duplicate limb, extra weapon or broken bowstring.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-5984c7e7-4ba3-46a9-9577-843f049c5c82.png",
+      "generationTimestamp": "2026-09-14T02:14:57.980844+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "sha256": "c9c83b15a5dab53dc6a91501af19dd491139b50f71e34df3e7bbb2c748ae5ae0"
+    },
+    {
+      "assetId": "KESTREL_ATTACK_REFERENCE_RAW",
+      "filename": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-attack-reference-raw.png",
+      "category": "pose_source",
+      "purpose": "Source for the normalized bow-attack pose.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-option-c-character-master-dev.png",
+          "exists": true,
+          "sha256": "8a385d0e0cca07e0675b47926beed43b1ca7c39be768a89506f7bbcad9a4c18f",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "public/assets/characters/pixel/full/kestrel.png",
+          "exists": true,
+          "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+          "dimensions": [
+            640,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-four-pose-reference-raw.png",
+          "exists": true,
+          "sha256": "7ffd51e20251bc7b354d354a68347d0db5dbf163d3f3a0450761c0381072d5c8",
+          "dimensions": [
+            1374,
+            1145
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/motion-kestrel-reference.png",
+          "exists": true,
+          "sha256": "ca19ef08416fef9620f98f7ea1aef5bdb09258ab11b768eecc29a3ee26f2fc96",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-attack-reference.prompt.txt",
+      "prompt": "Use case: identity-preserve\nAsset type: KESTREL_ATTACK_REFERENCE, single DEV gameplay pose\nPrimary request: Create one mechanically credible archer attack release reference facing right. Grounded wide stance, bow arm fully extended, draw hand at the masked cheek, one arrow correctly nocked on the string, bow under believable tension. Clear action silhouette without VFX.\nInput hierarchy: the approved Kestrel Option C character master fixes proportions, costume, palette, mask, hood, bow, quiver, materials and pixel density; the canonical full Kestrel PNG overrides every conflict; the rejected 2x2 sheet informs pose language only.\nIdentity invariants: deep forest-green pointed gold-embroidered hood; fully covered green cloth face with no skin; layered ragged green cloak; stitched torso; crossed brown harness, pouches and round brass buckle; dark trousers; leather bracers, knee guards and boots; warm-brown recurved longbow with intact string; rear-left quiver and white-feather arrows.\nStyle: modern high-density pixel-stylized HD-2D, crisp deliberate clusters, controlled colored outlines, matte cloth and selective bronze highlights.\nComposition: exactly one full-body figure, three-quarter profile toward the right, full bow and arrow contained with at least 12% margin, grounded baseline.\nBackground: 100% solid flat #FF00FF magenta.\nConstraints: mechanically plausible bow/string/arrow, no extra arrow or weapon, duplicate limb, face exposure, environment, VFX, projectile trail, text, UI, border, logo or watermark.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-430d69df-7be0-4a39-898f-106690a9a1e5.png",
+      "generationTimestamp": "2026-09-14T02:15:30.781443+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "sha256": "e3dfdcc6c9bd690c1982faf66f804d04026f7bb7d34e56b69a594d8f98bf7940"
+    },
+    {
+      "assetId": "KESTREL_CAST_SKILL_REFERENCE_RAW",
+      "filename": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-skill-reference-raw.png",
+      "category": "pose_source",
+      "purpose": "Source for the normalized precision/zenith-shot skill pose.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-option-c-character-master-dev.png",
+          "exists": true,
+          "sha256": "8a385d0e0cca07e0675b47926beed43b1ca7c39be768a89506f7bbcad9a4c18f",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "public/assets/characters/pixel/full/kestrel.png",
+          "exists": true,
+          "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+          "dimensions": [
+            640,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-four-pose-reference-raw.png",
+          "exists": true,
+          "sha256": "7ffd51e20251bc7b354d354a68347d0db5dbf163d3f3a0450761c0381072d5c8",
+          "dimensions": [
+            1374,
+            1145
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/motion-kestrel-reference.png",
+          "exists": true,
+          "sha256": "ca19ef08416fef9620f98f7ea1aef5bdb09258ab11b768eecc29a3ee26f2fc96",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-skill-reference.prompt.txt",
+      "prompt": "Use case: identity-preserve\nAsset type: KESTREL_CAST_OR_SKILL_REFERENCE, single DEV gameplay pose\nPrimary request: Create one Kestrel-specific precision technique pose, not spellcasting. Grounded focused stance, body turned right, bow angled upward-right, one arrow deliberately nocked while Kestrel sights a distant elevated target; communicate Tir de Precision / Fleche zenith through weapon mechanics alone.\nInput hierarchy: the approved Kestrel Option C character master fixes proportions, costume, palette, mask, hood, bow, quiver, materials and pixel density; the canonical full Kestrel PNG overrides every conflict; the rejected 2x2 sheet informs pose language only.\nIdentity invariants: deep forest-green pointed gold-embroidered hood; fully covered green cloth face with no skin; layered ragged green cloak; stitched torso; crossed brown harness, pouches and round brass buckle; dark trousers; leather bracers, knee guards and boots; warm-brown recurved longbow with intact string; rear-left quiver and white-feather arrows.\nStyle: modern high-density pixel-stylized HD-2D, crisp deliberate clusters, controlled colored outlines, matte cloth and selective bronze highlights.\nComposition: exactly one full-body figure, three-quarter profile toward the right, full bow and arrow contained with at least 12% margin, grounded baseline.\nBackground: 100% solid flat #FF00FF magenta.\nConstraints: no magic aura, leaves, runes, spell circle, empty casting hand, projectile, impact, duplicate limb, face exposure, environment, VFX, text, UI, border, logo or watermark.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-0eb53906-a14d-48b8-a9ff-85ba9fdd05db.png",
+      "generationTimestamp": "2026-09-14T02:16:00.683400+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1374,
+        1145
+      ],
+      "sha256": "1147eebf6c125f46e0f608b26801ca89e38c8f9331767e5af1113996c0377129"
+    },
+    {
+      "assetId": "KESTREL_IDLE_ANIMATION_RAW_V1",
+      "filename": "docs/art-direction/option-c/phase4-pilot/animations/idle/raw-generated.png",
+      "category": "animation_source",
+      "purpose": "Eight-frame restrained idle loop source.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-option-c-character-master-dev.png",
+          "exists": true,
+          "sha256": "8a385d0e0cca07e0675b47926beed43b1ca7c39be768a89506f7bbcad9a4c18f",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "public/assets/characters/pixel/full/kestrel.png",
+          "exists": true,
+          "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+          "dimensions": [
+            640,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/idle/kestrel-idle-1.png",
+          "exists": true,
+          "sha256": "4021bb98c12f4308d43c2178c85eb3deae8141abd2d98b9866d991f6d665e148",
+          "dimensions": [
+            768,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/references/2x4-animation-layout-guide.png",
+          "exists": true,
+          "sha256": "52673da7d53fd064cc0aebd5d7e9171852c7fd4652c45eb71126a0f716727b3e",
+          "dimensions": [
+            1536,
+            768
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/motion-kestrel-reference.png",
+          "exists": true,
+          "sha256": "ca19ef08416fef9620f98f7ea1aef5bdb09258ab11b768eecc29a3ee26f2fc96",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-idle-animation.prompt.txt",
+      "prompt": "Create a DEV-only animation sprite-sheet candidate for Kestrel. Input hierarchy: the Option C Kestrel master is primary, the canonical Kestrel portrait is identity truth, the approved idle pose fixes silhouette and proportions, and the 2x4 guide is layout-only. Preserve the closed masked face, deep green hood, layered feather-like ragged cloak, crossed leather harness, bronze-and-old-gold trim, ornate recurved bow, quiver, and white-fletched arrows. Modern high-density pixel-stylized HD-2D, crisp clusters, no painterly blur.\n\nExactly eight equal cells in two rows by four columns, reading left-to-right then top-to-bottom: neutral; small inhale; shoulders lift; cloak tips move subtly; settle; exhale; near neutral; return. Feet remain fixed on one common baseline and the bow remains stable. Full body in every cell with consistent scale and costume. Background must be uniformly solid #FF00FF. No grid, labels, borders, UI, scenery, shadows outside the character, particles, magic, projectile, impact, motion trail, or cropped/overlapping cells.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-94efbd5a-acc7-4006-9c0b-531628832817.png",
+      "generationTimestamp": "2026-09-14T02:22:12.837593+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "bacc6d5158cb9e710efcac7bb260a4661fafafc23f84dcc606ee416fc1fd3bea"
+    },
+    {
+      "assetId": "KESTREL_DASH_ANIMATION_RAW_V1",
+      "filename": "docs/art-direction/option-c/phase4-pilot/animations/dash/raw-generated.png",
+      "category": "rejected_animation_source",
+      "purpose": "First eight-frame grounded dash source.",
+      "status": "REJECTED",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-option-c-character-master-dev.png",
+          "exists": true,
+          "sha256": "8a385d0e0cca07e0675b47926beed43b1ca7c39be768a89506f7bbcad9a4c18f",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "public/assets/characters/pixel/full/kestrel.png",
+          "exists": true,
+          "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+          "dimensions": [
+            640,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/dash/kestrel-dash-1.png",
+          "exists": true,
+          "sha256": "c6b29fa2eb079b9df97a93964644a18b98a0dbf2b98d753b83481bfac90d113c",
+          "dimensions": [
+            768,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/references/2x4-animation-layout-guide.png",
+          "exists": true,
+          "sha256": "52673da7d53fd064cc0aebd5d7e9171852c7fd4652c45eb71126a0f716727b3e",
+          "dimensions": [
+            1536,
+            768
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/motion-kestrel-reference.png",
+          "exists": true,
+          "sha256": "ca19ef08416fef9620f98f7ea1aef5bdb09258ab11b768eecc29a3ee26f2fc96",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-dash-animation.prompt.txt",
+      "prompt": "Create a DEV-only animation sprite-sheet candidate for Kestrel. Input hierarchy: the Option C Kestrel master is primary, the canonical Kestrel portrait is identity truth, the approved grounded dash pose fixes silhouette and proportions, and the 2x4 guide is layout-only. Preserve the closed masked face, deep green hood, layered feather-like ragged cloak, crossed leather harness, bronze-and-old-gold trim, ornate recurved bow, quiver, and white-fletched arrows. Modern high-density pixel-stylized HD-2D, crisp clusters, no painterly blur.\n\nExactly eight equal cells in two rows by four columns, reading left-to-right then top-to-bottom: compress; push; first stride; passing; second drive; extension; braking; recover. This is a grounded tactical burst: at least one foot touches the shared baseline in every frame, never airborne or platformer-like. Full body in every cell with consistent scale and costume. Background must be uniformly solid #FF00FF. No grid, labels, borders, UI, scenery, particles, magic, projectile, impact, motion trail, or cropped/overlapping cells.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-ada33a27-3aac-4c4d-894b-dd8c774737ad.png",
+      "generationTimestamp": "2026-09-14T02:23:07.492516+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "sha256": "47224f34cba445186c56939fcbf66b90cf5f620bea9bfe513cf1600912f03f52",
+      "rejectionReason": "Frame [1,2] touched the left cell edge; corrected version required."
+    },
+    {
+      "assetId": "KESTREL_ATTACK_ANIMATION_RAW_V1",
+      "filename": "docs/art-direction/option-c/phase4-pilot/animations/attack/raw-generated.png",
+      "category": "rejected_animation_source",
+      "purpose": "First eight-frame bow-attack source.",
+      "status": "REJECTED",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-option-c-character-master-dev.png",
+          "exists": true,
+          "sha256": "8a385d0e0cca07e0675b47926beed43b1ca7c39be768a89506f7bbcad9a4c18f",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "public/assets/characters/pixel/full/kestrel.png",
+          "exists": true,
+          "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+          "dimensions": [
+            640,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/attack/kestrel-attack-1.png",
+          "exists": true,
+          "sha256": "baa03d26a7a920681d61a0ed074b026bc4a6fe0b9e4f1165df9db2d9cffb19ae",
+          "dimensions": [
+            768,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/references/2x4-animation-layout-guide.png",
+          "exists": true,
+          "sha256": "52673da7d53fd064cc0aebd5d7e9171852c7fd4652c45eb71126a0f716727b3e",
+          "dimensions": [
+            1536,
+            768
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/motion-kestrel-reference.png",
+          "exists": true,
+          "sha256": "ca19ef08416fef9620f98f7ea1aef5bdb09258ab11b768eecc29a3ee26f2fc96",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-attack-animation.prompt.txt",
+      "prompt": "Create a DEV-only animation sprite-sheet candidate for Kestrel. Input hierarchy: the Option C Kestrel master is primary, the canonical Kestrel portrait is identity truth, the approved bow-attack pose fixes silhouette and proportions, and the 2x4 guide is layout-only. Preserve the closed masked face, deep green hood, layered feather-like ragged cloak, crossed leather harness, bronze-and-old-gold trim, ornate recurved bow, quiver, and white-fletched arrows. Modern high-density pixel-stylized HD-2D, crisp clusters, no painterly blur.\n\nExactly eight equal cells in two rows by four columns, reading left-to-right then top-to-bottom: ready; reach quiver; bring arrow forward; nock; raise bow; full draw; release; recovery. Feet share one stable baseline. Full body in every cell with consistent scale and costume. Background must be uniformly solid #FF00FF. No grid, labels, borders, UI, scenery, particles, magic, detached projectile, impact, motion trail, or cropped/overlapping cells.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-612f3c6d-38d5-4df4-ba60-2135c3cf246f.png",
+      "generationTimestamp": "2026-09-14T02:24:05.373389+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "aec88778090146a3c3d84956c7e88cd2aca6566473c53d7de903ddaf11f68792",
+      "rejectionReason": "Frames [0,2], [1,0], [1,1], [1,2] touched cell edges; corrected version required."
+    },
+    {
+      "assetId": "KESTREL_CAST_SKILL_ANIMATION_RAW_V1",
+      "filename": "docs/art-direction/option-c/phase4-pilot/animations/skill/raw-generated.png",
+      "category": "rejected_animation_source",
+      "purpose": "First eight-frame precision-shot skill source.",
+      "status": "REJECTED",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-option-c-character-master-dev.png",
+          "exists": true,
+          "sha256": "8a385d0e0cca07e0675b47926beed43b1ca7c39be768a89506f7bbcad9a4c18f",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "public/assets/characters/pixel/full/kestrel.png",
+          "exists": true,
+          "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+          "dimensions": [
+            640,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/skill/kestrel-skill-1.png",
+          "exists": true,
+          "sha256": "0fb8aac947e3a5f686d4ee8c4bd14dbfdecf7a54e32ec32902fe697d4a3ea5e7",
+          "dimensions": [
+            768,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/references/2x4-animation-layout-guide.png",
+          "exists": true,
+          "sha256": "52673da7d53fd064cc0aebd5d7e9171852c7fd4652c45eb71126a0f716727b3e",
+          "dimensions": [
+            1536,
+            768
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/motion-kestrel-reference.png",
+          "exists": true,
+          "sha256": "ca19ef08416fef9620f98f7ea1aef5bdb09258ab11b768eecc29a3ee26f2fc96",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-skill-animation.prompt.txt",
+      "prompt": "Create a DEV-only animation sprite-sheet candidate for Kestrel. Input hierarchy: the Option C Kestrel master is primary, the canonical Kestrel portrait is identity truth, the approved upward precision-shot pose fixes silhouette and proportions, and the 2x4 guide is layout-only. Preserve the closed masked face, deep green hood, layered feather-like ragged cloak, crossed leather harness, bronze-and-old-gold trim, ornate recurved bow, quiver, and white-fletched arrows. Modern high-density pixel-stylized HD-2D, crisp clusters, no painterly blur.\n\nExactly eight equal cells in two rows by four columns, reading left-to-right then top-to-bottom: ready; select arrow; nock; lift bow upward-right; sight; deepen draw; full precision hold; release-ready recovery. The skill must read as mastery and timing, not magic. Feet share one stable baseline. Full body in every cell with consistent scale and costume. Background must be uniformly solid #FF00FF. No grid, labels, borders, UI, scenery, particles, glow, magic, detached projectile, impact, motion trail, or cropped/overlapping cells.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-8aff0042-b16c-4573-a686-5d8c93b441b1.png",
+      "generationTimestamp": "2026-09-14T02:24:59.342905+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "bee517cac2c08ac233bbcff81b7a17ab1695ea5f63d3536cc506bc667ccc4a83",
+      "rejectionReason": "Frames [0,3], [1,0], [1,1], [1,2], [1,3] touched cell edges; corrected version required."
+    },
+    {
+      "assetId": "KESTREL_DASH_ANIMATION_RAW_V2",
+      "filename": "docs/art-direction/option-c/phase4-pilot/animations/dash/raw-generated-retry.png",
+      "category": "animation_source",
+      "purpose": "Corrected eight-frame grounded dash source with safe cell margins.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/animations/dash/raw-generated.png",
+          "exists": true,
+          "sha256": "47224f34cba445186c56939fcbf66b90cf5f620bea9bfe513cf1600912f03f52",
+          "dimensions": [
+            1774,
+            887
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-option-c-character-master-dev.png",
+          "exists": true,
+          "sha256": "8a385d0e0cca07e0675b47926beed43b1ca7c39be768a89506f7bbcad9a4c18f",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "public/assets/characters/pixel/full/kestrel.png",
+          "exists": true,
+          "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+          "dimensions": [
+            640,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/dash/kestrel-dash-1.png",
+          "exists": true,
+          "sha256": "c6b29fa2eb079b9df97a93964644a18b98a0dbf2b98d753b83481bfac90d113c",
+          "dimensions": [
+            768,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/references/2x4-animation-layout-guide.png",
+          "exists": true,
+          "sha256": "52673da7d53fd064cc0aebd5d7e9171852c7fd4652c45eb71126a0f716727b3e",
+          "dimensions": [
+            1536,
+            768
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/motion-kestrel-reference.png",
+          "exists": true,
+          "sha256": "ca19ef08416fef9620f98f7ea1aef5bdb09258ab11b768eecc29a3ee26f2fc96",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-dash-animation-retry.prompt.txt",
+      "prompt": "Targeted DEV-only correction of the first Kestrel dash animation sheet. Preserve identity and grounded dash timing, but fix measured cell bleed. Exactly eight equal cells in two rows by four columns: compress; push; first grounded stride; passing; second grounded drive; extension; braking; recover. Leave at least 8% empty solid #FF00FF padding on all four sides of every cell; no character, bow, arrow, quiver or cloak pixel may touch or cross a cell boundary. At least one foot remains on a shared baseline in every frame. Identical scale and costume, crisp high-density pixel-stylized HD-2D. No grid, text, borders, scenery, VFX, trails, detached projectile, airborne pose or cropped elements.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-0dcce236-b2d2-4729-b383-d0e2dfb72b36.png",
+      "generationTimestamp": "2026-09-14T02:39:08.657666+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "sha256": "7c7a4d150b3c5ce14c099f3f24a288da7a4eb2243b309ded3882911b89d9b727"
+    },
+    {
+      "assetId": "KESTREL_ATTACK_ANIMATION_RAW_V2",
+      "filename": "docs/art-direction/option-c/phase4-pilot/animations/attack/raw-generated-retry.png",
+      "category": "animation_source",
+      "purpose": "Corrected eight-frame bow-attack source with safe cell margins.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/animations/attack/raw-generated.png",
+          "exists": true,
+          "sha256": "aec88778090146a3c3d84956c7e88cd2aca6566473c53d7de903ddaf11f68792",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-option-c-character-master-dev.png",
+          "exists": true,
+          "sha256": "8a385d0e0cca07e0675b47926beed43b1ca7c39be768a89506f7bbcad9a4c18f",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "public/assets/characters/pixel/full/kestrel.png",
+          "exists": true,
+          "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+          "dimensions": [
+            640,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/attack/kestrel-attack-1.png",
+          "exists": true,
+          "sha256": "baa03d26a7a920681d61a0ed074b026bc4a6fe0b9e4f1165df9db2d9cffb19ae",
+          "dimensions": [
+            768,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/references/2x4-animation-layout-guide.png",
+          "exists": true,
+          "sha256": "52673da7d53fd064cc0aebd5d7e9171852c7fd4652c45eb71126a0f716727b3e",
+          "dimensions": [
+            1536,
+            768
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/motion-kestrel-reference.png",
+          "exists": true,
+          "sha256": "ca19ef08416fef9620f98f7ea1aef5bdb09258ab11b768eecc29a3ee26f2fc96",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-attack-animation-retry.prompt.txt",
+      "prompt": "Targeted DEV-only correction of the first Kestrel attack animation sheet. Preserve identity and bow-attack timing, but fix measured cell bleed. Exactly eight equal cells in two rows by four columns: ready; reach quiver; bring arrow forward; nock; raise bow; full draw; release; recovery. Leave at least 8% empty solid #FF00FF padding on all four sides of every cell; no character, bow, arrow, quiver or cloak pixel may touch or cross a cell boundary. Feet share one stable baseline. Identical scale and costume, crisp high-density pixel-stylized HD-2D. No grid, text, borders, scenery, VFX, trails, detached projectile, impact or cropped elements.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-22dd0e98-3350-46a9-84f6-363732db7774.png",
+      "generationTimestamp": "2026-09-14T02:39:56.539059+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "3fcc4737ab0f1e53894e15978ec98197bea808dbb181f94135ac1f154692788c"
+    },
+    {
+      "assetId": "KESTREL_CAST_SKILL_ANIMATION_RAW_V2",
+      "filename": "docs/art-direction/option-c/phase4-pilot/animations/skill/raw-generated-retry.png",
+      "category": "animation_source",
+      "purpose": "Corrected eight-frame precision-shot source with safe cell margins.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/animations/skill/raw-generated.png",
+          "exists": true,
+          "sha256": "bee517cac2c08ac233bbcff81b7a17ab1695ea5f63d3536cc506bc667ccc4a83",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/kestrel-option-c-character-master-dev.png",
+          "exists": true,
+          "sha256": "8a385d0e0cca07e0675b47926beed43b1ca7c39be768a89506f7bbcad9a4c18f",
+          "dimensions": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "path": "public/assets/characters/pixel/full/kestrel.png",
+          "exists": true,
+          "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+          "dimensions": [
+            640,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/characters/poses/skill/kestrel-skill-1.png",
+          "exists": true,
+          "sha256": "0fb8aac947e3a5f686d4ee8c4bd14dbfdecf7a54e32ec32902fe697d4a3ea5e7",
+          "dimensions": [
+            768,
+            768
+          ]
+        },
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/references/2x4-animation-layout-guide.png",
+          "exists": true,
+          "sha256": "52673da7d53fd064cc0aebd5d7e9171852c7fd4652c45eb71126a0f716727b3e",
+          "dimensions": [
+            1536,
+            768
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [
+        {
+          "path": "docs/art-direction/option-c/references/motion-kestrel-reference.png",
+          "exists": true,
+          "sha256": "ca19ef08416fef9620f98f7ea1aef5bdb09258ab11b768eecc29a3ee26f2fc96",
+          "dimensions": [
+            1448,
+            1086
+          ]
+        }
+      ],
+      "promptFile": "docs/art-direction/option-c/phase4-pilot/prompts/kestrel-skill-animation-retry.prompt.txt",
+      "prompt": "Targeted DEV-only correction of the first Kestrel skill animation sheet. Preserve identity and precision-shot timing, but fix measured cell bleed. Exactly eight equal cells in two rows by four columns: ready; select arrow; nock; lift bow upward-right; sight; deepen draw; full precision hold; release-ready recovery. Leave at least 8% empty solid #FF00FF padding on all four sides of every cell; no character, bow, arrow, quiver or cloak pixel may touch or cross a cell boundary. Feet share one stable baseline. Identical scale and costume, crisp high-density pixel-stylized HD-2D. No grid, text, borders, scenery, glow, magic, VFX, trails, detached projectile, impact or cropped elements.",
+      "generator": "OpenAI built-in image_gen tool",
+      "modelProvenance": "UNKNOWN",
+      "modelProvenanceNote": "The image_gen tool response and PNG metadata exposed no exact model identifier; no model name is inferred.",
+      "sourceGeneratorArtifactId": "exec-69a788a8-f599-4e08-9f41-6503dbdd7e5e.png",
+      "generationTimestamp": "2026-09-14T02:40:39.483116+00:00",
+      "generationTimestampSource": "repository-copy filesystem mtime",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "51696238684e9a3e943ed6d5619498a91812fc2bff9523ab4465ea774dcfb5d8"
+    }
+  ],
+  "deterministicRenders": [
+    {
+      "assetId": "DEV_COMPOSITE_TRAVEL_1920X1080",
+      "filename": "docs/art-direction/option-c/phase4-pilot/composites/1920x1080-travel.png",
+      "category": "cross_surface_composite",
+      "purpose": "Deterministic travel layout/crop/UI-safe-zone evidence at 1920x1080.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-travel-dev.png",
+          "exists": true,
+          "sha256": "5c6f8d8f406fe4ec26a259fbaae72c480dbd55a480a9d76361ce7f72709e5635",
+          "dimensions": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [],
+      "promptFile": null,
+      "promptApplicability": "NOT_APPLICABLE_DETERMINISTIC_BROWSER_RENDER",
+      "renderSource": "docs/art-direction/option-c/phase4-pilot/qa/surface-preview.html",
+      "generator": "Playwright Chromium screenshot",
+      "modelProvenance": "NOT_APPLICABLE",
+      "generationTimestamp": "2026-09-14T03:26:01.859401+00:00",
+      "generationTimestampSource": "filesystem mtime",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "sha256": "ad288a8c5e19563f41c08afd49653e16f0d937ceed677c770d0087abd6664df4"
+    },
+    {
+      "assetId": "DEV_COMPOSITE_TABLEAU_1920X1080",
+      "filename": "docs/art-direction/option-c/phase4-pilot/composites/1920x1080-tableau.png",
+      "category": "cross_surface_composite",
+      "purpose": "Deterministic tableau layout/crop/UI-safe-zone evidence at 1920x1080.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-tableau-dev.png",
+          "exists": true,
+          "sha256": "6388e592c5b96e29b5588e69646ce826cac11fc8b4b0a78328a69fa3f7598a32",
+          "dimensions": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [],
+      "promptFile": null,
+      "promptApplicability": "NOT_APPLICABLE_DETERMINISTIC_BROWSER_RENDER",
+      "renderSource": "docs/art-direction/option-c/phase4-pilot/qa/surface-preview.html",
+      "generator": "Playwright Chromium screenshot",
+      "modelProvenance": "NOT_APPLICABLE",
+      "generationTimestamp": "2026-09-14T03:26:02.481561+00:00",
+      "generationTimestampSource": "filesystem mtime",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "sha256": "989013f6f62509147f9ff7ec1be27a66af21e4bc731c5b9f9ae13ea658377954"
+    },
+    {
+      "assetId": "DEV_COMPOSITE_STRATEGIC_1920X1080",
+      "filename": "docs/art-direction/option-c/phase4-pilot/composites/1920x1080-strategic.png",
+      "category": "cross_surface_composite",
+      "purpose": "Deterministic strategic layout/crop/UI-safe-zone evidence at 1920x1080.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-strategic-dev.png",
+          "exists": true,
+          "sha256": "6a105a3f9bfd64a2ccdb6113a1ebdebe24656c72facb4623ff914c8105cd33ee",
+          "dimensions": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [],
+      "promptFile": null,
+      "promptApplicability": "NOT_APPLICABLE_DETERMINISTIC_BROWSER_RENDER",
+      "renderSource": "docs/art-direction/option-c/phase4-pilot/qa/surface-preview.html",
+      "generator": "Playwright Chromium screenshot",
+      "modelProvenance": "NOT_APPLICABLE",
+      "generationTimestamp": "2026-09-14T03:26:03.018047+00:00",
+      "generationTimestampSource": "filesystem mtime",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "sha256": "5b2c6158b2695fcef10ffa3ce9da84253e60a77693c4e3fbdb5bf9709d5439e6"
+    },
+    {
+      "assetId": "DEV_COMPOSITE_STAGE_1920X1080",
+      "filename": "docs/art-direction/option-c/phase4-pilot/composites/1920x1080-stage.png",
+      "category": "cross_surface_composite",
+      "purpose": "Deterministic stage layout/crop/UI-safe-zone evidence at 1920x1080.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-combat-stage-dev.png",
+          "exists": true,
+          "sha256": "365ae7b3f857d5bb5586519207315b542dc0c03e3aa4e4ca0aa72e8c2a6b03c3",
+          "dimensions": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [],
+      "promptFile": null,
+      "promptApplicability": "NOT_APPLICABLE_DETERMINISTIC_BROWSER_RENDER",
+      "renderSource": "docs/art-direction/option-c/phase4-pilot/qa/surface-preview.html",
+      "generator": "Playwright Chromium screenshot",
+      "modelProvenance": "NOT_APPLICABLE",
+      "generationTimestamp": "2026-09-14T03:26:03.642436+00:00",
+      "generationTimestampSource": "filesystem mtime",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "sha256": "af1edadd8aac47959a9e3545c26999a09ecedde05559e3e2ae557c37fa65d801"
+    },
+    {
+      "assetId": "DEV_COMPOSITE_TRAVEL_1366X768",
+      "filename": "docs/art-direction/option-c/phase4-pilot/composites/1366x768-travel.png",
+      "category": "cross_surface_composite",
+      "purpose": "Deterministic travel layout/crop/UI-safe-zone evidence at 1366x768.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-travel-dev.png",
+          "exists": true,
+          "sha256": "5c6f8d8f406fe4ec26a259fbaae72c480dbd55a480a9d76361ce7f72709e5635",
+          "dimensions": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [],
+      "promptFile": null,
+      "promptApplicability": "NOT_APPLICABLE_DETERMINISTIC_BROWSER_RENDER",
+      "renderSource": "docs/art-direction/option-c/phase4-pilot/qa/surface-preview.html",
+      "generator": "Playwright Chromium screenshot",
+      "modelProvenance": "NOT_APPLICABLE",
+      "generationTimestamp": "2026-09-14T03:26:03.968713+00:00",
+      "generationTimestampSource": "filesystem mtime",
+      "dimensions": [
+        1366,
+        768
+      ],
+      "sha256": "adf489ade2506ce5507b76a13f3ade6965fe052751f3d60856edb19da5f9e0d4"
+    },
+    {
+      "assetId": "DEV_COMPOSITE_TABLEAU_1366X768",
+      "filename": "docs/art-direction/option-c/phase4-pilot/composites/1366x768-tableau.png",
+      "category": "cross_surface_composite",
+      "purpose": "Deterministic tableau layout/crop/UI-safe-zone evidence at 1366x768.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-tableau-dev.png",
+          "exists": true,
+          "sha256": "6388e592c5b96e29b5588e69646ce826cac11fc8b4b0a78328a69fa3f7598a32",
+          "dimensions": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [],
+      "promptFile": null,
+      "promptApplicability": "NOT_APPLICABLE_DETERMINISTIC_BROWSER_RENDER",
+      "renderSource": "docs/art-direction/option-c/phase4-pilot/qa/surface-preview.html",
+      "generator": "Playwright Chromium screenshot",
+      "modelProvenance": "NOT_APPLICABLE",
+      "generationTimestamp": "2026-09-14T03:26:04.326927+00:00",
+      "generationTimestampSource": "filesystem mtime",
+      "dimensions": [
+        1366,
+        768
+      ],
+      "sha256": "a0c34a2438c30c74c78609e4de2fd282eb6466f0ea15d626b8b2421aa1fb298b"
+    },
+    {
+      "assetId": "DEV_COMPOSITE_STRATEGIC_1366X768",
+      "filename": "docs/art-direction/option-c/phase4-pilot/composites/1366x768-strategic.png",
+      "category": "cross_surface_composite",
+      "purpose": "Deterministic strategic layout/crop/UI-safe-zone evidence at 1366x768.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-strategic-dev.png",
+          "exists": true,
+          "sha256": "6a105a3f9bfd64a2ccdb6113a1ebdebe24656c72facb4623ff914c8105cd33ee",
+          "dimensions": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [],
+      "promptFile": null,
+      "promptApplicability": "NOT_APPLICABLE_DETERMINISTIC_BROWSER_RENDER",
+      "renderSource": "docs/art-direction/option-c/phase4-pilot/qa/surface-preview.html",
+      "generator": "Playwright Chromium screenshot",
+      "modelProvenance": "NOT_APPLICABLE",
+      "generationTimestamp": "2026-09-14T03:26:04.660461+00:00",
+      "generationTimestampSource": "filesystem mtime",
+      "dimensions": [
+        1366,
+        768
+      ],
+      "sha256": "2d49d4496c603ea7baaaf33f4473aeee489ee5a3f76206afebbfa246a050e15f"
+    },
+    {
+      "assetId": "DEV_COMPOSITE_STAGE_1366X768",
+      "filename": "docs/art-direction/option-c/phase4-pilot/composites/1366x768-stage.png",
+      "category": "cross_surface_composite",
+      "purpose": "Deterministic stage layout/crop/UI-safe-zone evidence at 1366x768.",
+      "status": "DEV_CANDIDATE",
+      "canonicalReferenceSource": {
+        "path": "public/assets/characters/pixel/full/kestrel.png",
+        "exists": true,
+        "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+        "dimensions": [
+          640,
+          768
+        ]
+      },
+      "visualReferenceInputs": [
+        {
+          "path": "docs/art-direction/option-c/phase4-pilot/environment/forest-road-combat-stage-dev.png",
+          "exists": true,
+          "sha256": "365ae7b3f857d5bb5586519207315b542dc0c03e3aa4e4ca0aa72e8c2a6b03c3",
+          "dimensions": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "optionCPreviewReferencesUsed": [],
+      "promptFile": null,
+      "promptApplicability": "NOT_APPLICABLE_DETERMINISTIC_BROWSER_RENDER",
+      "renderSource": "docs/art-direction/option-c/phase4-pilot/qa/surface-preview.html",
+      "generator": "Playwright Chromium screenshot",
+      "modelProvenance": "NOT_APPLICABLE",
+      "generationTimestamp": "2026-09-14T03:26:05.003510+00:00",
+      "generationTimestampSource": "filesystem mtime",
+      "dimensions": [
+        1366,
+        768
+      ],
+      "sha256": "66c7a417347ad72f28db862bf922b2061a461d1f251de50c7c58306956eb352a"
+    }
+  ]
+}

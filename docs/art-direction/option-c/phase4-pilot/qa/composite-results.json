@@ -1,0 +1,365 @@
+{
+  "generatedAt": "2026-09-14T03:26:05.540Z",
+  "results": [
+    {
+      "surface": "travel",
+      "size": {
+        "width": 1920,
+        "height": 1080
+      },
+      "filename": "1920x1080-travel.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "loadedImages": [],
+      "uiBoxes": [
+        {
+          "tag": "NAV",
+          "className": "menu panel smallcaps",
+          "x": 1501.078125,
+          "y": 35.625,
+          "width": 357.484375,
+          "height": 40.03125
+        },
+        {
+          "tag": "ASIDE",
+          "className": "next panel",
+          "x": 1321.28125,
+          "y": 832.65625,
+          "width": 520,
+          "height": 191.1875
+        }
+      ],
+      "outside": [],
+      "overlaps": [],
+      "pass": true
+    },
+    {
+      "surface": "tableau",
+      "size": {
+        "width": 1920,
+        "height": 1080
+      },
+      "filename": "1920x1080-tableau.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "loadedImages": [
+        {
+          "src": "../characters/poses/idle/kestrel-idle-1.png",
+          "width": 768,
+          "height": 768
+        }
+      ],
+      "uiBoxes": [
+        {
+          "tag": "ARTICLE",
+          "className": "dialogue panel",
+          "x": 595.1875,
+          "y": 49.671875,
+          "width": 1036.796875,
+          "height": 216
+        }
+      ],
+      "outside": [],
+      "overlaps": [],
+      "pass": true
+    },
+    {
+      "surface": "strategic",
+      "size": {
+        "width": 1920,
+        "height": 1080
+      },
+      "filename": "1920x1080-strategic.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "loadedImages": [
+        {
+          "src": "../characters/poses/idle/kestrel-idle-1.png",
+          "width": 768,
+          "height": 768
+        },
+        {
+          "src": "../../../../../public/assets/characters/pixel/full/forest_badger.png",
+          "width": 640,
+          "height": 768
+        }
+      ],
+      "uiBoxes": [
+        {
+          "tag": "HEADER",
+          "className": "turn panel",
+          "x": 403.1875,
+          "y": 23.75,
+          "width": 1094.390625,
+          "height": 90.71875
+        },
+        {
+          "tag": "ASIDE",
+          "className": "unit-panel panel",
+          "x": 40.3125,
+          "y": 843.21875,
+          "width": 311.03125,
+          "height": 181.703125
+        },
+        {
+          "tag": "ASIDE",
+          "className": "objectives panel smallcaps",
+          "x": 1601.296875,
+          "y": 131.75,
+          "width": 278.390625,
+          "height": 61.71875
+        },
+        {
+          "tag": "DIV",
+          "className": "actions panel",
+          "x": 537.59375,
+          "y": 921.25,
+          "width": 921.59375,
+          "height": 129.59375
+        }
+      ],
+      "outside": [],
+      "overlaps": [],
+      "pass": true
+    },
+    {
+      "surface": "stage",
+      "size": {
+        "width": 1920,
+        "height": 1080
+      },
+      "filename": "1920x1080-stage.png",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "loadedImages": [
+        {
+          "src": "../characters/poses/attack/kestrel-attack-1.png",
+          "width": 768,
+          "height": 768
+        },
+        {
+          "src": "../../../../../public/assets/characters/pixel/full/forest_badger.png",
+          "width": 640,
+          "height": 768
+        }
+      ],
+      "uiBoxes": [
+        {
+          "tag": "HEADER",
+          "className": "attack-card panel",
+          "x": 691.1875,
+          "y": 45.359375,
+          "width": 537.59375,
+          "height": 81.390625
+        },
+        {
+          "tag": "DIV",
+          "className": "phase panel",
+          "x": 1663.09375,
+          "y": 1008.984375,
+          "width": 199.3125,
+          "height": 34.296875
+        }
+      ],
+      "outside": [],
+      "overlaps": [],
+      "pass": true
+    },
+    {
+      "surface": "travel",
+      "size": {
+        "width": 1366,
+        "height": 768
+      },
+      "filename": "1366x768-travel.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "loadedImages": [],
+      "uiBoxes": [
+        {
+          "tag": "NAV",
+          "className": "menu panel smallcaps",
+          "x": 1039.046875,
+          "y": 25.34375,
+          "width": 283.25,
+          "height": 36.03125
+        },
+        {
+          "tag": "ASIDE",
+          "className": "next panel",
+          "x": 886.546875,
+          "y": 562.015625,
+          "width": 423.453125,
+          "height": 166.0625
+        }
+      ],
+      "outside": [],
+      "overlaps": [],
+      "pass": true
+    },
+    {
+      "surface": "tableau",
+      "size": {
+        "width": 1366,
+        "height": 768
+      },
+      "filename": "1366x768-tableau.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "loadedImages": [
+        {
+          "src": "../characters/poses/idle/kestrel-idle-1.png",
+          "width": 768,
+          "height": 768
+        }
+      ],
+      "uiBoxes": [
+        {
+          "tag": "ARTICLE",
+          "className": "dialogue panel",
+          "x": 423.453125,
+          "y": 35.3125,
+          "width": 737.625,
+          "height": 153.59375
+        }
+      ],
+      "outside": [],
+      "overlaps": [],
+      "pass": true
+    },
+    {
+      "surface": "strategic",
+      "size": {
+        "width": 1366,
+        "height": 768
+      },
+      "filename": "1366x768-strategic.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "loadedImages": [
+        {
+          "src": "../characters/poses/idle/kestrel-idle-1.png",
+          "width": 768,
+          "height": 768
+        },
+        {
+          "src": "../../../../../public/assets/characters/pixel/full/forest_badger.png",
+          "width": 640,
+          "height": 768
+        }
+      ],
+      "uiBoxes": [
+        {
+          "tag": "HEADER",
+          "className": "turn panel",
+          "x": 286.859375,
+          "y": 16.890625,
+          "width": 778.609375,
+          "height": 64.5
+        },
+        {
+          "tag": "ASIDE",
+          "className": "unit-panel panel",
+          "x": 28.671875,
+          "y": 567.171875,
+          "width": 221.28125,
+          "height": 161.671875
+        },
+        {
+          "tag": "ASIDE",
+          "className": "objectives panel smallcaps",
+          "x": 1139.265625,
+          "y": 93.6875,
+          "width": 198.0625,
+          "height": 51.40625
+        },
+        {
+          "tag": "DIV",
+          "className": "actions panel",
+          "x": 382.46875,
+          "y": 655.109375,
+          "width": 655.671875,
+          "height": 92.15625
+        }
+      ],
+      "outside": [],
+      "overlaps": [],
+      "pass": true
+    },
+    {
+      "surface": "stage",
+      "size": {
+        "width": 1366,
+        "height": 768
+      },
+      "filename": "1366x768-stage.png",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "scrollWidth": 1366,
+      "scrollHeight": 768,
+      "loadedImages": [
+        {
+          "src": "../characters/poses/attack/kestrel-attack-1.png",
+          "width": 768,
+          "height": 768
+        },
+        {
+          "src": "../../../../../public/assets/characters/pixel/full/forest_badger.png",
+          "width": 640,
+          "height": 768
+        }
+      ],
+      "uiBoxes": [
+        {
+          "tag": "HEADER",
+          "className": "attack-card panel",
+          "x": 491.75,
+          "y": 32.25,
+          "width": 382.46875,
+          "height": 66.796875
+        },
+        {
+          "tag": "DIV",
+          "className": "phase panel",
+          "x": 1173.015625,
+          "y": 710.90625,
+          "width": 152.015625,
+          "height": 30.984375
+        }
+      ],
+      "outside": [],
+      "overlaps": [],
+      "pass": true
+    }
+  ]
+}
