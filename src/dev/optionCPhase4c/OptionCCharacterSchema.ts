@@ -6,10 +6,25 @@
  * that new characters can be added without inventing new conventions.
  *
  * GLM owns structure, not final art.  New characters remain at most
- * SCALING_DRAFT or DEV_PRODUCTION_CANDIDATE — never PRODUCTION_APPROVED.
+ * SCALING_DRAFT or DEV_PRODUCTION_CANDIDATE — never PRODUCTION_APPROVED
+ * unless explicitly promoted through the operator-authorized path.
  */
 
 import type { SpriteFrameAnimationDefinition } from '../../render/SpriteFrameAnimation';
+
+// ---------------------------------------------------------------------------
+// Validation authority (production promotion gate)
+// ---------------------------------------------------------------------------
+
+/**
+ * The authority performing the validation. This controls whether
+ * PRODUCTION_APPROVED is a valid art status for the given definition.
+ *
+ * - GLM:      may set at most DEV_PRODUCTION_CANDIDATE
+ * - CODEX:    may set at most FINAL_PRODUCTION_CANDIDATE
+ * - OPERATOR: may set PRODUCTION_APPROVED (explicit operator-authorized promotion)
+ */
+export type OptionCValidationAuthority = 'GLM' | 'CODEX' | 'OPERATOR';
 
 // ---------------------------------------------------------------------------
 // Semantic enums
@@ -19,9 +34,23 @@ export type OptionCArtStatus =
   | 'GOLD_REFERENCE' // Kestrel / Forest Road
   | 'SCALING_DRAFT' // early GLM-derived runtime representation
   | 'DEV_PRODUCTION_CANDIDATE' // structurally mature GLM output
+  | 'FINAL_PRODUCTION_CANDIDATE' // Codex output ready for operator review
   | 'ART_PENDING_CODEX' // final art remains missing
   | 'REJECTED' // structurally invalid
-  | 'PRODUCTION_APPROVED'; // only set by Codex — GLM never sets this
+  | 'PRODUCTION_APPROVED'; // ONLY set by operator approval — never by GLM or Codex
+
+/**
+ * Production promotion state machine (authority model):
+ *
+ *   GLM      → SCALING_DRAFT → DEV_PRODUCTION_CANDIDATE
+ *   CODEX    → FINAL_PRODUCTION_CANDIDATE
+ *   OPERATOR → PRODUCTION_APPROVED   (operator-only gate)
+ *
+ * A Codex generation mission MUST NOT self-promote its output directly to
+ * PRODUCTION_APPROVED. Only operator approval may set PRODUCTION_APPROVED.
+ * GOLD_REFERENCE is a fixed structural/runtime reference status (Kestrel,
+ * Forest Road) and is never the result of a promotion step.
+ */
 
 export type OptionCSurface = 'travel' | 'tableau' | 'strategic' | 'combat-stage';
 
@@ -138,11 +167,29 @@ export interface OptionCAnchorContract {
 // ---------------------------------------------------------------------------
 
 export interface OptionCScaleContract {
-  /** Tableau scale (0-1 relative to canvas). */
+  /**
+   * Tableau narrative actor scale (0-1 relative to the tableau canvas).
+   * This is an ABSOLUTE narrative scale applied to the actor on the tableau
+   * stage (e.g. 0.92 for Kestrel). It is NOT a world-plane size.
+   */
   readonly tableau: number;
-  /** Strategic combat scale. */
+  /**
+   * Strategic combat scale. This is a RELATIVE ASSET MULTIPLIER against the
+   * native 512×512 Option C frame (1.0 = native frame size). It is NOT the
+   * strategic runtime Three.js proxy plane size (that plane is a fixed
+   * 2.08×2.08 world unit geometry owned by the runtime, separate from this
+   * multiplier). Do not confuse this normalized multiplier with a world
+   * plane size.
+   */
   readonly strategic: number;
-  /** Combat stage scale. */
+  /**
+   * Combat stage scale. This is a RELATIVE ASSET MULTIPLIER against the
+   * native 512×512 Option C frame (1.0 = native frame size). It is NOT the
+   * combat-stage runtime Three.js proxy plane size (that plane is a fixed
+   * 2.08×2.08 world unit geometry owned by the runtime, separate from this
+   * multiplier). Do not confuse this normalized multiplier with a world
+   * plane size.
+   */
   readonly combatStage: number;
   /** Whether these values are DRAFT_SCALE (GLM-selected) or final. */
   readonly draftScale: boolean;
@@ -231,6 +278,7 @@ export function isOptionCArtStatus(value: string | null): value is OptionCArtSta
   return value === 'GOLD_REFERENCE'
     || value === 'SCALING_DRAFT'
     || value === 'DEV_PRODUCTION_CANDIDATE'
+    || value === 'FINAL_PRODUCTION_CANDIDATE'
     || value === 'ART_PENDING_CODEX'
     || value === 'REJECTED'
     || value === 'PRODUCTION_APPROVED';
@@ -299,7 +347,18 @@ export function validateAnimationMetadata(meta: OptionCAnimationMetadata): strin
  * Validate a full character definition.
  * Returns null on success, error message on failure.
  */
-export function validateCharacterDefinition(def: OptionCCharacterDefinition): string | null {
+/**
+ * Validate a character definition. The `authority` parameter controls whether
+ * PRODUCTION_APPROVED is permitted (operator-only). Defaults to `'GLM'` which
+ * is the most restrictive — autonomous GLM/Codex missions cannot self-promote.
+ *
+ * For operator-authorized promotion, call with `authority: 'OPERATOR'` or use
+ * the dedicated `validateOperatorPromotion` wrapper.
+ */
+export function validateCharacterDefinition(
+  def: OptionCCharacterDefinition,
+  authority: OptionCValidationAuthority = 'GLM',
+): string | null {
   if (!def.identity.id) return 'Character identity.id is empty.';
   if (!def.identity.canonicalSource) return `Character '${def.identity.id}' has no canonicalSource.`;
   if (def.animations.length === 0) return `Character '${def.identity.id}' has no animations.`;
@@ -316,9 +375,26 @@ export function validateCharacterDefinition(def: OptionCCharacterDefinition): st
   if (def.anchors.footCenter.x < 0 || def.anchors.footCenter.y < 0) {
     return `Character '${def.identity.id}' has negative foot anchor.`;
   }
-  // GLM must never set PRODUCTION_APPROVED
-  if (def.masterStatus === 'PRODUCTION_APPROVED' || def.runtimeStatus === 'PRODUCTION_APPROVED') {
-    return `Character '${def.identity.id}' must not be PRODUCTION_APPROVED during GLM phase.`;
+  // Production promotion gate: PRODUCTION_APPROVED is operator-only.
+  // GLM tops out at DEV_PRODUCTION_CANDIDATE; Codex tops out at
+  // FINAL_PRODUCTION_CANDIDATE. Only OPERATOR authority permits
+  // PRODUCTION_APPROVED.
+  if (authority !== 'OPERATOR') {
+    if (def.masterStatus === 'PRODUCTION_APPROVED' || def.runtimeStatus === 'PRODUCTION_APPROVED') {
+      return `Character '${def.identity.id}' must not be PRODUCTION_APPROVED without operator authorization (authority=${authority}).`;
+    }
   }
   return null;
+}
+
+/**
+ * Validate a character definition for operator-authorized promotion to
+ * PRODUCTION_APPROVED. This is the explicit operator gate — it permits
+ * PRODUCTION_APPROVED only when called through this dedicated path.
+ *
+ * The definition must still pass all structural validation. The caller is
+ * asserting that an operator has explicitly authorized this promotion.
+ */
+export function validateOperatorPromotion(def: OptionCCharacterDefinition): string | null {
+  return validateCharacterDefinition(def, 'OPERATOR');
 }

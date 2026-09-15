@@ -1,6 +1,72 @@
 # Option C — runtime art-direction lock
 
-Status: **phases 1–3 complete; phase 4 not started; operator gate required**
+## CURRENT STATUS
+
+```
+INTEGRITY_PASS_INPUT_BASELINE =
+3a6330fc79661f895c01ae7d43dc9e2b1a918b7c
+
+STRUCTURAL_PREPRODUCTION =
+COMPLETE
+
+NEXT_PHASE =
+CODEX VISUAL PRODUCTION
+```
+
+### P0 active batch (CODEX_P0_ACTIVE_BATCH)
+
+| Character | ID | Role |
+|---|---|---|
+| Alistair | warrior | greatsword knight |
+| Marian | white_mage | crosier cleric |
+| Elara | dark_mage | grimoire mage |
+
+### Kestrel
+
+```
+STRUCTURAL_GOLD_REFERENCE   = YES
+RUNTIME_REFERENCE           = YES
+VISUAL_REMASTER_ALLOWED     = YES
+ANIMATION_REMASTER_ALLOWED = YES
+REDESIGN_ALLOWED            = NO
+```
+
+### Forest Road
+
+```
+STRUCTURAL_GOLD_REFERENCE   = YES
+COMPOSITION_REFERENCE       = YES
+CAMERA_SEMANTICS_REFERENCE  = YES
+VISUAL_REMASTER_ALLOWED     = YES
+GAMEPLAY_GEOMETRY_CHANGE    = NO
+```
+
+### Required image production config
+
+```
+REQUIRED_IMAGE_MODEL    = gpt-image-2.5-sunburst-2026-09-08
+REQUIRED_IMAGE_QUALITY  = max
+FALLBACK_MODEL          = NONE
+AUTO_DOWNGRADE          = FORBIDDEN
+```
+
+See `phase4c-glm/production-config.md` for the authoritative reference.
+
+### Production promotion authority
+
+```
+GLM      → SCALING_DRAFT → DEV_PRODUCTION_CANDIDATE
+CODEX    → FINAL_PRODUCTION_CANDIDATE
+OPERATOR → PRODUCTION_APPROVED   (operator-only gate)
+```
+
+---
+
+## HISTORICAL — original phase 1–3 authorization boundary
+
+> The sections below are the original phase 1–3 documentation, retained as
+> archived historical reference. The current state is above and in the
+> `phase4-pilot/`, `phase4b-runtime-proof/`, and `phase4c-glm/` subdirectories.
 
 Audit baseline: `678a37ac6f1b9320a94e4c4571ab2e069d6e237b` (`main == origin/main`)
 

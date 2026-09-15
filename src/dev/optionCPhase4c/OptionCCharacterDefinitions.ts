@@ -5,7 +5,12 @@
  *   1. Kestrel (GOLD_REFERENCE) — mirrors Phase 4B exactly
  *   2. Alistair (SCALING_DRAFT) — greatsword knight
  *   3. Marian (SCALING_DRAFT) — crosier cleric
- *   4. Morvan (SCALING_DRAFT) — scythe dark knight
+ *   4. Elara (SCALING_DRAFT) — grimoire dark mage
+ *   5. Morvan (SCALING_DRAFT, DEFERRED_POST_DEMO) — scythe dark knight
+ *
+ * SELECTED_BATCH (CODEX_P0_ACTIVE_BATCH) = Alistair, Marian, Elara.
+ * Morvan's structural definition is preserved for future use but is NOT in
+ * the active batch (DEFERRED_POST_DEMO).
  *
  * Draft characters use canonical pixel art as SCALING_DRAFT placeholders.
  * They do NOT have real Option C animation sheets — those are ART_PENDING_CODEX.
@@ -55,9 +60,9 @@ const kestrelIdleMeta: OptionCAnimationMetadata = {
   frameDurationMs: 190,
   loop: true,
   oneShot: false,
-  footBaseline: 460,
+  footBaseline: 466,
   pivotX: 256,
-  pivotY: 460,
+  pivotY: 466,
   mirrorAllowed: true,
   surfaceScale: 1,
   preloadPolicy: 'withSurface',
@@ -73,9 +78,9 @@ const kestrelDashMeta: OptionCAnimationMetadata = {
   loop: false,
   oneShot: true,
   returnState: 'idle',
-  footBaseline: 460,
+  footBaseline: 466,
   pivotX: 256,
-  pivotY: 460,
+  pivotY: 466,
   mirrorAllowed: true,
   surfaceScale: 1,
   preloadPolicy: 'onDemand',
@@ -91,9 +96,9 @@ const kestrelAttackMeta: OptionCAnimationMetadata = {
   loop: false,
   oneShot: true,
   returnState: 'idle',
-  footBaseline: 460,
+  footBaseline: 466,
   pivotX: 256,
-  pivotY: 460,
+  pivotY: 466,
   mirrorAllowed: true,
   surfaceScale: 1,
   preloadPolicy: 'onDemand',
@@ -109,9 +114,9 @@ const kestrelSkillMeta: OptionCAnimationMetadata = {
   loop: false,
   oneShot: true,
   returnState: 'idle',
-  footBaseline: 460,
+  footBaseline: 466,
   pivotX: 256,
-  pivotY: 460,
+  pivotY: 466,
   mirrorAllowed: true,
   surfaceScale: 1,
   preloadPolicy: 'onDemand',
@@ -135,8 +140,8 @@ export const KESTREL_DEFINITION: OptionCCharacterDefinition = Object.freeze({
     archetype: 'archer',
     silhouetteClass: 'lithe_ranged',
     bodyClass: 'lithe',
-    headProfile: 'Forest hood, sharp eyes',
-    maskProfile: 'Hood, no mask',
+    headProfile: 'Deep forest-green pointed hood with old-gold trim',
+    maskProfile: 'Closed green cloth mask beneath hood; no exposed face',
     paletteFamily: ['forest green', 'leather brown', 'night blue'],
     equipmentProfile: 'Longbow, quiver, light leather armor',
     tableauRequirements: 'LEFT/RIGHT/CENTER, hooded silhouette, bow visible',
@@ -156,7 +161,7 @@ export const KESTREL_DEFINITION: OptionCCharacterDefinition = Object.freeze({
   },
   animations: [kestrelIdleMeta, kestrelDashMeta, kestrelAttackMeta, kestrelSkillMeta],
   anchors: {
-    footCenter: { x: 256, y: 460 },
+    footCenter: { x: 256, y: 466 },
     bodyCenter: { x: 256, y: 256 },
     headReference: { x: 256, y: 120 },
     weaponReference: { x: 320, y: 280 },
@@ -405,7 +410,7 @@ export const MARIAN_DEFINITION: OptionCCharacterDefinition = Object.freeze({
     silhouetteClass: 'robed_caster',
     bodyClass: 'robed',
     headProfile: 'White hood/veil with gold circlet, serene expression',
-    maskProfile: 'Veil/hood, no mask',
+    maskProfile: 'White/gold lightcaster mask; masked identity',
     paletteFamily: ['white', 'gold', 'silver'],
     equipmentProfile: 'Crosier staff, flowing white robes',
     tableauRequirements: 'LEFT or RIGHT standing pose, staff visible, calm posture',
@@ -447,7 +452,141 @@ export const MARIAN_DEFINITION: OptionCCharacterDefinition = Object.freeze({
 });
 
 // ---------------------------------------------------------------------------
-// 4. Morvan (dark_knight) — SCALING_DRAFT
+// 4. Elara (dark_mage) — SCALING_DRAFT
+// ---------------------------------------------------------------------------
+
+const elaraIdleMeta: OptionCAnimationMetadata = {
+  state: 'idle',
+  frameWidth: 512,
+  frameHeight: 512,
+  frameCount: 1, // ART_PENDING_CODEX — single canonical placeholder
+  frameDurationMs: 190,
+  loop: true,
+  oneShot: false,
+  footBaseline: 465,
+  pivotX: 256,
+  pivotY: 465,
+  mirrorAllowed: true,
+  surfaceScale: 1,
+  preloadPolicy: 'withSurface',
+  frames: draftIdleFrames('elara'),
+};
+
+const elaraAttackMeta: OptionCAnimationMetadata = {
+  state: 'attack',
+  frameWidth: 512,
+  frameHeight: 512,
+  frameCount: 1,
+  frameDurationMs: 105,
+  loop: false,
+  oneShot: true,
+  returnState: 'idle',
+  footBaseline: 465,
+  pivotX: 256,
+  pivotY: 465,
+  mirrorAllowed: true,
+  surfaceScale: 1,
+  preloadPolicy: 'onDemand',
+  frames: draftIdleFrames('elara'),
+};
+
+const elaraCastMeta: OptionCAnimationMetadata = {
+  state: 'cast',
+  frameWidth: 512,
+  frameHeight: 512,
+  frameCount: 1,
+  frameDurationMs: 125,
+  loop: false,
+  oneShot: true,
+  returnState: 'idle',
+  footBaseline: 465,
+  pivotX: 256,
+  pivotY: 465,
+  mirrorAllowed: true,
+  surfaceScale: 1,
+  preloadPolicy: 'onDemand',
+  frames: draftIdleFrames('elara'),
+};
+
+const elaraDashMeta: OptionCAnimationMetadata = {
+  state: 'dash',
+  frameWidth: 512,
+  frameHeight: 512,
+  frameCount: 1,
+  frameDurationMs: 82,
+  loop: false,
+  oneShot: true,
+  returnState: 'idle',
+  footBaseline: 465,
+  pivotX: 256,
+  pivotY: 465,
+  mirrorAllowed: true,
+  surfaceScale: 1,
+  preloadPolicy: 'onDemand',
+  frames: draftIdleFrames('elara'),
+};
+
+const elaraCodexSlots: readonly OptionCCodexHandoffSlot[] = [
+  { slotName: 'characterMaster', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static master', canonicalReference: '/assets/characters/pixel/full/elara.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png', fileDestination: 'public/assets/dev/option-c/phase4c/elara/master.png', runtimeSemanticKey: 'character:dark_mage:master' },
+  { slotName: 'idleSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 8], timingMetadata: '190ms/frame, loop', canonicalReference: '/assets/characters/pixel/full/elara.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/', fileDestination: 'public/assets/dev/option-c/phase4c/elara/idle/', runtimeSemanticKey: 'character:dark_mage:surface:*:state:idle' },
+  { slotName: 'dashSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 10], timingMetadata: '82ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/elara.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/dash/', fileDestination: 'public/assets/dev/option-c/phase4c/elara/dash/', runtimeSemanticKey: 'character:dark_mage:surface:*:state:dash' },
+  { slotName: 'attackSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '105ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/elara.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/attack/', fileDestination: 'public/assets/dev/option-c/phase4c/elara/attack/', runtimeSemanticKey: 'character:dark_mage:surface:*:state:attack' },
+  { slotName: 'skillSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '125ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/elara.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/skill/', fileDestination: 'public/assets/dev/option-c/phase4c/elara/cast/', runtimeSemanticKey: 'character:dark_mage:surface:*:state:cast' },
+];
+
+export const ELARA_DEFINITION: OptionCCharacterDefinition = Object.freeze({
+  identity: {
+    id: 'dark_mage',
+    displayName: 'Elara',
+    canonicalSource: '/assets/characters/pixel/full/elara.png',
+    weapon: 'grimoire',
+    archetype: 'mage',
+    silhouetteClass: 'robed_arcane',
+    bodyClass: 'robed',
+    headProfile: 'Pointed wizard hat, arcane glow',
+    maskProfile: 'Hat shadow, no mask',
+    paletteFamily: ['arcane blue', 'cyan', 'gold'],
+    equipmentProfile: 'Grimoire tome, glowing staff',
+    tableauRequirements: 'LEFT or RIGHT standing pose, staff glowing, hat readable',
+    strategicRequirements: 'Backline grid position, pointed hat distinguishes from Marian',
+    combatStageRequirements: 'Grimoire open cast animation, magic VFX from tome',
+    animationStates: ['idle', 'dash', 'attack', 'cast'] as const,
+  },
+  sources: {
+    canonical: '/assets/characters/pixel/full/elara.png',
+  },
+  masterStatus: 'SCALING_DRAFT',
+  surfaceAssets: {
+    tableau: '/assets/characters/pixel/full/elara.png',
+    strategic: '/assets/characters/pixel/full/elara.png',
+    combatStage: '/assets/characters/pixel/full/elara.png',
+  },
+  animations: [elaraIdleMeta, elaraDashMeta, elaraAttackMeta, elaraCastMeta],
+  anchors: {
+    footCenter: { x: 256, y: 465 },
+    bodyCenter: { x: 256, y: 256 },
+    headReference: { x: 256, y: 110 },
+    weaponReference: { x: 320, y: 250 },
+  },
+  scales: { tableau: 0.86, strategic: 1, combatStage: 1, draftScale: true },
+  mirrorPolicy: 'runtime',
+  loadingPolicy: 'lazy',
+  runtimeStatus: 'ART_PENDING_CODEX',
+  qaStatus: {
+    registryValidated: true,
+    manifestResolved: true,
+    animationValidated: false,
+    anchorValidated: true,
+    scaleValidated: true,
+    selectiveLoadingValidated: true,
+    labWired: false,
+    backwardCompatible: true,
+  },
+  codexHandoffSlots: elaraCodexSlots,
+});
+
+// ---------------------------------------------------------------------------
+// 5. Morvan (dark_knight) — SCALING_DRAFT (DEFERRED_POST_DEMO)
 // ---------------------------------------------------------------------------
 
 const morvanIdleMeta: OptionCAnimationMetadata = {
@@ -581,19 +720,21 @@ export const MORVAN_DEFINITION: OptionCCharacterDefinition = Object.freeze({
 });
 
 // ---------------------------------------------------------------------------
-// Selected batch (Section 32)
+// Selected batch (CODEX_P0_ACTIVE_BATCH = Alistair, Marian, Elara)
+// Morvan is DEFERRED_POST_DEMO — structural definition preserved but not active.
 // ---------------------------------------------------------------------------
 
 export const SELECTED_BATCH: readonly OptionCCharacterDefinition[] = Object.freeze([
   ALISTAIR_DEFINITION,
   MARIAN_DEFINITION,
-  MORVAN_DEFINITION,
+  ELARA_DEFINITION,
 ]);
 
 export const ALL_PHASE4C_DEFINITIONS: readonly OptionCCharacterDefinition[] = Object.freeze([
   KESTREL_DEFINITION,
   ALISTAIR_DEFINITION,
   MARIAN_DEFINITION,
+  ELARA_DEFINITION,
   MORVAN_DEFINITION,
 ]);
 

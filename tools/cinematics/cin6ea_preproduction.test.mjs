@@ -231,6 +231,8 @@ describe('CIN-6E-A final visual preproduction system', () => {
       'src/cinematics/FinalDialoguePresentation.test.ts',
       'src/cinematics/NarrativeDialogueAdapter.test.ts',
       'src/cinematics/NarrativeDialogueAdapter.ts',
+      'src/cinematics/NarrativePresentationDoctrine.ts',
+      'src/cinematics/NarrativePresentationDoctrine.test.ts',
       'src/cinematics/NarrativeSceneSurface.test.ts',
       'src/cinematics/NarrativeSceneSurface.ts',
       'src/cinematics/NarrativeStage.ts',

@@ -18,7 +18,7 @@ Each gate is scored 1-5. Minimum required: 4/5 for each gate.
 | J. Cache/memory architecture | LRU, reuse, no thrash, memory report | 4/5 |
 | K. Codex handoff readiness | 5 slots per character, semantic keys | 5/5 |
 | L. DEV/prod isolation | Vite DEV gate, dynamic import, no prod import | 5/5 |
-| M. Test coverage | 79 tests across 14 categories | 5/5 |
+| M. Test coverage | 118 tests across 18 categories | 5/5 |
 | N. Kestrel backward compat | Phase 4B assets/timing/tests preserved | 5/5 |
 
 **Overall: 67/70 — PASS**
@@ -26,7 +26,7 @@ Each gate is scored 1-5. Minimum required: 4/5 for each gate.
 ## Browser QA Evidence (QA Closeout)
 
 ### 1920x1080 — PASS
-- Character Lab: All 4 characters (Kestrel, Alistair, Marian, Morvan) load correctly
+- Character Lab: All 5 characters (Kestrel, Alistair, Marian, Elara, Morvan) load correctly
 - Animation states switch correctly (idle/dash/attack/skill/cast)
 - Mirror toggle works (CSS scaleX(-1))
 - Anchor overlays display correctly (foot/body/head/weapon)
@@ -60,6 +60,14 @@ Each gate is scored 1-5. Minimum required: 4/5 for each gate.
 - PAGE_ERRORS = 0
 - FAILED_REQUESTS = 0
 - Verified across all 4 labs at both resolutions
+
+> NOTE: Browser QA evidence above was captured during the prior 4-character
+> roster (Kestrel, Alistair, Marian, Morvan). The current roster is 5
+> characters (Kestrel, Alistair, Marian, Elara, Morvan). Browser QA for the
+> updated roster is OPERATOR_REVIEW_REQUIRED — labs are DEV inspection
+> tools, not final runtime acceptance. Final visual acceptance still
+> requires the real runtime surfaces: STATIC_TABLEAU, STRATEGIC COMBAT,
+> and COMBAT STAGE.
 
 ### Network QA
 - Character Lab: Only character images requested, no environment plates

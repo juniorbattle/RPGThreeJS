@@ -9,6 +9,11 @@
  *
  * All labs are DEV-only.  Production never imports this module.
  * Uses real staging/combat components — no fake parallel implementations.
+ *
+ * LABS ARE INSPECTION / DIAGNOSTIC TOOLS, NOT FINAL PROOF OF PRODUCTION
+ * INTEGRATION. Final visual acceptance still requires the real runtime
+ * surfaces: STATIC_TABLEAU, STRATEGIC COMBAT, and COMBAT STAGE. Do not
+ * treat the labs as a second runtime.
  */
 
 import { SpriteFrameAnimationController } from '../../render/SpriteFrameAnimation';
@@ -238,7 +243,7 @@ export class OptionCCharacterLab {
                 <dt>Display Name</dt><dd>${def.identity.displayName}</dd>
                 <dt>State</dt><dd data-lab-state>${this.state.selectedAnimation}</dd>
                 <dt>Frame</dt><dd data-lab-frame>1</dd>
-                <dt>Scale</dt><dd>tableau=${def.scales.tableau} strategic=${def.scales.strategic} combat=${def.scales.combatStage} ${def.scales.draftScale ? '(DRAFT_SCALE)' : ''}</dd>
+                <dt>Scale (asset multiplier)</dt><dd>tableau=${def.scales.tableau} (narrative) strategic=${def.scales.strategic} (×512 frame) combat=${def.scales.combatStage} (×512 frame) ${def.scales.draftScale ? '(DRAFT_SCALE)' : ''}</dd>
                 <dt>Anchor</dt><dd>foot=(${def.anchors.footCenter.x},${def.anchors.footCenter.y}) body=(${def.anchors.bodyCenter.x},${def.anchors.bodyCenter.y})</dd>
                 <dt>Source</dt><dd>${def.identity.canonicalSource}</dd>
                 <dt>Status</dt><dd>${def.masterStatus} / ${def.runtimeStatus}</dd>
@@ -597,7 +602,7 @@ export class OptionCCombatLab {
                 <dt>Character</dt><dd>${def?.identity.displayName ?? '?'}</dd>
                 <dt>Animation</dt><dd data-lab-state>${this.animationState}</dd>
                 <dt>Frame</dt><dd data-lab-frame>1</dd>
-                <dt>Scale</dt><dd>${scale} ${def?.scales.draftScale ? '(DRAFT_SCALE)' : ''}</dd>
+                <dt>Scale (asset multiplier)</dt><dd>${scale} (×512 frame; runtime proxy plane is 2.08×2.08 world units) ${def?.scales.draftScale ? '(DRAFT_SCALE)' : ''}</dd>
                 <dt>Environment</dt><dd>${envAsset.semanticKey}</dd>
                 <dt>NO_GLOBAL_PRELOAD</dt><dd>${NO_GLOBAL_OPTION_C_PRELOAD ? 'YES' : 'NO'}</dd>
                 <dt>Cache Entries</dt><dd>${this.loader.getCacheSize()}</dd>

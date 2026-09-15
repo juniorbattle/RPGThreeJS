@@ -27,20 +27,22 @@ interface OptionCCharacterDefinition {
 ### Art status lifecycle
 
 ```
-GOLD_REFERENCE (Kestrel only)
+GOLD_REFERENCE (Kestrel only — fixed structural/runtime reference)
   ↓
 SCALING_DRAFT (GLM structural draft)
   ↓
-DEV_PRODUCTION_CANDIDATE (structurally mature)
+DEV_PRODUCTION_CANDIDATE (structurally mature — GLM ceiling)
   ↓
 ART_PENDING_CODEX (awaiting Codex final art)
   ↓
-PRODUCTION_APPROVED (Codex only — GLM never sets this)
+FINAL_PRODUCTION_CANDIDATE (Codex output ready for operator review — Codex ceiling)
+  ↓
+PRODUCTION_APPROVED (OPERATOR ONLY — never set by GLM or Codex)
 ```
 
 ### Validation
 
-`validateCharacterDefinition(def)` returns null on success, error string on failure:
+`validateCharacterDefinition(def, authority)` returns null on success, error string on failure:
 - identity.id must be non-empty
 - canonicalSource must be non-empty
 - animations must be non-empty
@@ -48,4 +50,5 @@ PRODUCTION_APPROVED (Codex only — GLM never sets this)
 - all animation metadata must be internally consistent
 - scales must be positive
 - anchors must be non-negative
-- GLM must never set PRODUCTION_APPROVED
+- PRODUCTION_APPROVED is rejected unless `authority === 'OPERATOR'` (operator-only gate)
+- Use `validateOperatorPromotion(def)` for the explicit operator-authorized promotion path

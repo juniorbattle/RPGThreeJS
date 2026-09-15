@@ -11,6 +11,7 @@ import type { OptionCSurface, OptionCAnimationState } from './OptionCCharacterSc
 import {
   resolveCharacterSurfaceFrames,
   resolveEnvironmentAsset,
+  getCharacterDefinition,
   type ResolvedAsset,
 } from './OptionCManifestResolver';
 
@@ -139,6 +140,10 @@ export class OptionCSelectiveLoader {
   /**
    * Load only the assets required for a strategic combat surface.
    * (Section 26: battlefield + participating units + tactical states)
+   *
+   * Strategic surface needs the character's idle + dash (movement) states.
+   * Frame counts and state assignment come from explicit animation metadata
+   * — never inferred from a fixed frame-block assumption (e.g. i >= 8).
    */
   async loadStrategic(
     environmentFamily: string,
@@ -149,18 +154,24 @@ export class OptionCSelectiveLoader {
       resolveEnvironmentAsset({ family: environmentFamily, surface: 'strategic' }),
     ];
     for (const charId of participatingCharacterIds) {
-      const frames = resolveCharacterSurfaceFrames(charId, 'strategic');
-      for (let i = 0; i < frames.length; i++) {
-        const state = frames.length > 8 && i >= 8 ? 'dash' : 'idle';
-        assets.push({
-          url: frames[i]!,
-          semanticKey: `character:${charId}:surface:strategic:state:${state}:frame:${i % 8}`,
-          characterId: charId,
-          surface: 'strategic',
-          state: state as OptionCAnimationState,
-          frameIndex: i % 8,
-          exists: true,
-        });
+      const def = getCharacterDefinition(charId);
+      if (!def) continue;
+      // Explicit per-state loading: idle + dash, using each animation's real
+      // frame count. No fixed 8-frame block assumption.
+      for (const state of ['idle', 'dash'] as const) {
+        const anim = def.animations.find((a) => a.state === state);
+        if (!anim) continue;
+        for (let i = 0; i < anim.frames.length; i++) {
+          assets.push({
+            url: anim.frames[i]!,
+            semanticKey: `character:${charId}:surface:strategic:state:${state}:frame:${i}`,
+            characterId: charId,
+            surface: 'strategic',
+            state,
+            frameIndex: i,
+            exists: true,
+          });
+        }
       }
     }
     return this.loadAssets(assets, environmentFamily, participatingCharacterIds);
@@ -169,6 +180,11 @@ export class OptionCSelectiveLoader {
   /**
    * Load only the assets required for a combat stage surface.
    * (Section 27: stage + attacker + target + required animation + VFX)
+   *
+   * Combat Stage loading respects the character's actual action state. The
+   * attacker loads ONLY the requiredState (e.g. skill for Kestrel/Alistair,
+   * cast for Marian/Elara); the target loads ONLY idle. Frame counts come
+   * from explicit animation metadata — never a fixed 8-frame cap.
    */
   async loadCombatStage(
     environmentFamily: string,
@@ -180,29 +196,37 @@ export class OptionCSelectiveLoader {
     const assets: ResolvedAsset[] = [
       resolveEnvironmentAsset({ family: environmentFamily, surface: 'combat-stage' }),
     ];
-    // Load only the required action state for the attacker, idle for target
-    const attackerFrames = resolveCharacterSurfaceFrames(attackerId, 'combat-stage');
-    for (let i = 0; i < attackerFrames.length; i++) {
-      assets.push({
-        url: attackerFrames[i]!,
-        semanticKey: `character:${attackerId}:surface:combat-stage:frame:${i}`,
-        characterId: attackerId,
-        surface: 'combat-stage',
-        frameIndex: i,
-        exists: true,
-      });
+    // Attacker: load only the required action state
+    const attackerDef = getCharacterDefinition(attackerId);
+    const attackerAnim = attackerDef?.animations.find((a) => a.state === requiredState);
+    if (attackerAnim) {
+      for (let i = 0; i < attackerAnim.frames.length; i++) {
+        assets.push({
+          url: attackerAnim.frames[i]!,
+          semanticKey: `character:${attackerId}:surface:combat-stage:state:${requiredState}:frame:${i}`,
+          characterId: attackerId,
+          surface: 'combat-stage',
+          state: requiredState,
+          frameIndex: i,
+          exists: true,
+        });
+      }
     }
-    const targetFrames = resolveCharacterSurfaceFrames(targetId, 'combat-stage');
-    for (let i = 0; i < Math.min(8, targetFrames.length); i++) {
-      assets.push({
-        url: targetFrames[i]!,
-        semanticKey: `character:${targetId}:surface:combat-stage:state:idle:frame:${i}`,
-        characterId: targetId,
-        surface: 'combat-stage',
-        state: 'idle',
-        frameIndex: i,
-        exists: true,
-      });
+    // Target: load only idle
+    const targetDef = getCharacterDefinition(targetId);
+    const targetAnim = targetDef?.animations.find((a) => a.state === 'idle');
+    if (targetAnim) {
+      for (let i = 0; i < targetAnim.frames.length; i++) {
+        assets.push({
+          url: targetAnim.frames[i]!,
+          semanticKey: `character:${targetId}:surface:combat-stage:state:idle:frame:${i}`,
+          characterId: targetId,
+          surface: 'combat-stage',
+          state: 'idle',
+          frameIndex: i,
+          exists: true,
+        });
+      }
     }
     return this.loadAssets(assets, environmentFamily, [attackerId, targetId]);
   }

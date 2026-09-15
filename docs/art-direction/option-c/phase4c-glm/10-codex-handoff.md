@@ -31,9 +31,23 @@ Each slot includes:
 1. Read the slot contract from `OptionCCharacterDefinitions.ts`
 2. Generate art matching `expectedDimensions` and `frameCountRange`
 3. Write files to `fileDestination`
-4. Update the character definition's `masterStatus` to `PRODUCTION_APPROVED`
-5. Update `runtimeStatus` to `PRODUCTION_APPROVED`
+4. Update the character definition's `masterStatus` to `FINAL_PRODUCTION_CANDIDATE`
+5. Update `runtimeStatus` to `FINAL_PRODUCTION_CANDIDATE`
 6. Set `qaStatus.animationValidated` to true
+
+### Production promotion authority model
+
+```
+GLM      → SCALING_DRAFT → DEV_PRODUCTION_CANDIDATE
+CODEX    → FINAL_PRODUCTION_CANDIDATE
+OPERATOR → PRODUCTION_APPROVED   (operator-only gate)
+```
+
+A Codex generation mission MUST NOT self-promote its output directly to
+`PRODUCTION_APPROVED`. Only operator approval may set `PRODUCTION_APPROVED`.
+The `validateCharacterDefinition` validator enforces this: it rejects any
+definition whose `masterStatus` or `runtimeStatus` is `PRODUCTION_APPROVED`
+during the GLM/Codex phase.
 
 ## What Codex does NOT need to do
 
@@ -43,5 +57,6 @@ Each slot includes:
 - Modify the cache policy
 - Modify the labs
 - Modify the tests (except to update expected frame counts)
+- Set `PRODUCTION_APPROVED` (operator-only)
 
 The architecture is designed so Codex drops in art without structural changes.

@@ -76,7 +76,7 @@
                          "artPendingCodex":  11
                      },
     "selectedBatch":  {
-                          "size":  2,
+                          "size":  3,
                           "characters":  [
                                              {
                                                  "id":  "warrior",
@@ -104,6 +104,23 @@
                                                  "archetype":  "cleric",
                                                  "silhouetteClass":  "robed_caster",
                                                  "canonicalSource":  "/assets/characters/pixel/full/marian.png",
+                                                 "animationStates":  [
+                                                                         "idle",
+                                                                         "dash",
+                                                                         "attack",
+                                                                         "cast"
+                                                                     ],
+                                                 "codexSlots":  5
+                                             },
+                                             {
+                                                 "id":  "dark_mage",
+                                                 "displayName":  "Elara",
+                                                 "masterStatus":  "SCALING_DRAFT",
+                                                 "runtimeStatus":  "ART_PENDING_CODEX",
+                                                 "weapon":  "grimoire",
+                                                 "archetype":  "mage",
+                                                 "silhouetteClass":  "robed_caster",
+                                                 "canonicalSource":  "/assets/characters/pixel/full/elara.png",
                                                  "animationStates":  [
                                                                          "idle",
                                                                          "dash",
@@ -150,15 +167,22 @@
                             "operatorReviewRequired":  "YES"
                         },
     "demoScopeLock":  {
-                          "codexArtBatch":  [
+                          "codexP0ActiveBatch":  [
                                                 "warrior",
                                                 "white_mage",
-                                                "dark_mage",
+                                                "dark_mage"
+                                            ],
+                          "codexP1DeferredBatch":  [
                                                 "rogue",
                                                 "lancer"
                                             ],
+                          "demoArtBacklogRemaining":  5,
                           "demoTerminal":  "lion-final-judgement",
                           "kestrelRegeneration":  false,
+                          "kestrelStructuralGoldReference":  true,
+                          "kestrelVisualRemasterAllowed":  true,
+                          "forestRoadStructuralGoldReference":  true,
+                          "forestRoadVisualRemasterAllowed":  true,
                           "demoPlayableRoster":  [
                                                      "warrior",
                                                      "white_mage",
@@ -167,6 +191,14 @@
                                                      "rogue",
                                                      "lancer"
                                                  ],
-                          "morvanStatus":  "DEFERRED_POST_DEMO"
+                          "morvanStatus":  "DEFERRED_POST_DEMO",
+                          "historicalCodexArtBatch":  [
+                                                "warrior",
+                                                "white_mage",
+                                                "dark_mage",
+                                                "rogue",
+                                                "lancer"
+                                            ],
+                          "historicalCodexArtBatchNote":  "SUPERSEDED — split into codexP0ActiveBatch (P0) and codexP1DeferredBatch (P1). Kept for provenance."
                       }
 }

@@ -17,6 +17,7 @@ import {
   toSpriteFrameAnimationDefinition,
   validateAnimationMetadata,
   validateCharacterDefinition,
+  validateOperatorPromotion,
   type OptionCAnimationMetadata,
 } from './OptionCCharacterSchema';
 import {
@@ -44,6 +45,7 @@ import {
   KESTREL_DEFINITION,
   ALISTAIR_DEFINITION,
   MARIAN_DEFINITION,
+  ELARA_DEFINITION,
   MORVAN_DEFINITION,
   SELECTED_BATCH,
   ALL_PHASE4C_DEFINITIONS,
@@ -212,8 +214,8 @@ describe('Phase 4C manifest resolution', () => {
     expect(frames.length).toBe(24); // 3 states x 8 frames
   });
 
-  it('has 4 registered character definitions', () => {
-    expect(getRegisteredCharacterIds()).toHaveLength(4);
+  it('has 5 registered character definitions', () => {
+    expect(getRegisteredCharacterIds()).toHaveLength(5);
   });
 });
 
@@ -271,8 +273,8 @@ describe('Phase 4C animation schema', () => {
   it('validates animation metadata consistency', () => {
     const valid: OptionCAnimationMetadata = {
       state: 'idle', frameWidth: 512, frameHeight: 512, frameCount: 8,
-      frameDurationMs: 190, loop: true, oneShot: false, footBaseline: 460,
-      pivotX: 256, pivotY: 460, mirrorAllowed: true, surfaceScale: 1,
+      frameDurationMs: 190, loop: true, oneShot: false, footBaseline: 466,
+      pivotX: 256, pivotY: 466, mirrorAllowed: true, surfaceScale: 1,
       preloadPolicy: 'withSurface', frames: Array.from({ length: 8 }, (_, i) => `f${i}.png`),
     };
     expect(validateAnimationMetadata(valid)).toBeNull();
@@ -281,8 +283,8 @@ describe('Phase 4C animation schema', () => {
   it('rejects animation with mismatched frameCount and frames.length', () => {
     const bad: OptionCAnimationMetadata = {
       state: 'idle', frameWidth: 512, frameHeight: 512, frameCount: 8,
-      frameDurationMs: 190, loop: true, oneShot: false, footBaseline: 460,
-      pivotX: 256, pivotY: 460, mirrorAllowed: true, surfaceScale: 1,
+      frameDurationMs: 190, loop: true, oneShot: false, footBaseline: 466,
+      pivotX: 256, pivotY: 466, mirrorAllowed: true, surfaceScale: 1,
       preloadPolicy: 'withSurface', frames: ['f0.png'],
     };
     expect(validateAnimationMetadata(bad)).toContain('frameCount');
@@ -321,8 +323,8 @@ describe('Phase 4C animation schema', () => {
 // ---------------------------------------------------------------------------
 
 describe('Phase 4C anchor and scale contracts', () => {
-  it('Kestrel has foot anchor at (256, 460)', () => {
-    expect(KESTREL_DEFINITION.anchors.footCenter).toEqual({ x: 256, y: 460 });
+  it('Kestrel has foot anchor at (256, 466) — Phase 4A/4B gold contract', () => {
+    expect(KESTREL_DEFINITION.anchors.footCenter).toEqual({ x: 256, y: 466 });
   });
 
   it('all characters have positive anchors', () => {
@@ -696,5 +698,294 @@ describe('Phase 4C selected batch diversity', () => {
     for (const def of SELECTED_BATCH) {
       expect(def.runtimeStatus).toBe('ART_PENDING_CODEX');
     }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// O. P0 selected batch scope (CODEX_P0_ACTIVE_BATCH)
+// ---------------------------------------------------------------------------
+
+describe('Phase 4C P0 selected batch scope', () => {
+  it('SELECTED_BATCH contains Alistair, Marian, Elara (not Morvan)', () => {
+    const ids = SELECTED_BATCH.map((d) => d.identity.id);
+    expect(ids).toEqual(['warrior', 'white_mage', 'dark_mage']);
+    expect(ids).not.toContain('dark_knight');
+  });
+
+  it('Elara is in the selected batch', () => {
+    expect(ELARA_DEFINITION.identity.id).toBe('dark_mage');
+    expect(ELARA_DEFINITION.identity.displayName).toBe('Elara');
+    expect(SELECTED_BATCH).toContain(ELARA_DEFINITION);
+  });
+
+  it('Morvan is NOT in the selected batch (DEFERRED_POST_DEMO)', () => {
+    expect(SELECTED_BATCH).not.toContain(MORVAN_DEFINITION);
+  });
+
+  it('Morvan structural definition is preserved in ALL_PHASE4C_DEFINITIONS', () => {
+    expect(ALL_PHASE4C_DEFINITIONS).toContain(MORVAN_DEFINITION);
+  });
+
+  it('ALL_PHASE4C_DEFINITIONS has 5 definitions (Kestrel + 3 P0 + Morvan)', () => {
+    expect(ALL_PHASE4C_DEFINITIONS).toHaveLength(5);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// P. Elara structural definition completeness
+// ---------------------------------------------------------------------------
+
+describe('Phase 4C Elara structural definition', () => {
+  it('Elara has canonical source', () => {
+    expect(ELARA_DEFINITION.identity.canonicalSource).toBe('/assets/characters/pixel/full/elara.png');
+  });
+
+  it('Elara has 4 animation states (idle, dash, attack, cast)', () => {
+    const states = ELARA_DEFINITION.animations.map((a) => a.state);
+    expect(states).toEqual(['idle', 'dash', 'attack', 'cast']);
+  });
+
+  it('Elara has 5 Codex handoff slots', () => {
+    expect(ELARA_DEFINITION.codexHandoffSlots).toHaveLength(5);
+  });
+
+  it('Elara cast slot points to cast destination', () => {
+    const castSlot = ELARA_DEFINITION.codexHandoffSlots.find((s) => s.slotName === 'skillSheet')!;
+    expect(castSlot.fileDestination).toContain('/elara/cast/');
+    expect(castSlot.runtimeSemanticKey).toContain(':state:cast');
+  });
+
+  it('Elara canonical source file exists on disk', () => {
+    const path = resolve(process.cwd(), 'public/assets/characters/pixel/full/elara.png');
+    expect(existsSync(path)).toBe(true);
+  });
+
+  it('Elara validates without error', () => {
+    expect(validateCharacterDefinition(ELARA_DEFINITION)).toBeNull();
+  });
+
+  it('Elara has distinct silhouette from Marian', () => {
+    expect(ELARA_DEFINITION.identity.silhouetteClass).not.toBe(MARIAN_DEFINITION.identity.silhouetteClass);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Q. Canonical identity corrections
+// ---------------------------------------------------------------------------
+
+describe('Phase 4C canonical identity corrections', () => {
+  it('Kestrel maskProfile reflects closed green cloth mask (not "no mask")', () => {
+    expect(KESTREL_DEFINITION.identity.maskProfile).not.toContain('no mask');
+    expect(KESTREL_DEFINITION.identity.maskProfile.toLowerCase()).toContain('mask');
+  });
+
+  it('Kestrel headProfile does not expose eyes/face', () => {
+    expect(KESTREL_DEFINITION.identity.headProfile.toLowerCase()).not.toContain('sharp eyes');
+  });
+
+  it('Marian maskProfile reflects masked lightcaster identity (not "no mask")', () => {
+    expect(MARIAN_DEFINITION.identity.maskProfile).not.toContain('no mask');
+    expect(MARIAN_DEFINITION.identity.maskProfile.toLowerCase()).toContain('mask');
+  });
+
+  it('registry identity specs match definition identity for Kestrel mask', () => {
+    const spec = getIdentitySpec('archer')!;
+    expect(spec.maskProfile).toBe(KESTREL_DEFINITION.identity.maskProfile);
+  });
+
+  it('registry identity specs match definition identity for Marian mask', () => {
+    const spec = getIdentitySpec('white_mage')!;
+    expect(spec.maskProfile).toBe(MARIAN_DEFINITION.identity.maskProfile);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// R. Kestrel baseline contract reconciliation (y=466)
+// ---------------------------------------------------------------------------
+
+describe('Phase 4C Kestrel baseline contract (y=466)', () => {
+  it('Kestrel footBaseline is 466 (Phase 4A/4B gold contract)', () => {
+    for (const anim of KESTREL_DEFINITION.animations) {
+      expect(anim.footBaseline).toBe(466);
+      expect(anim.pivotY).toBe(466);
+    }
+  });
+
+  it('Kestrel foot anchor y is 466', () => {
+    expect(KESTREL_DEFINITION.anchors.footCenter.y).toBe(466);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// S. Scale semantics (relative asset multiplier vs world plane)
+// ---------------------------------------------------------------------------
+
+describe('Phase 4C scale semantics', () => {
+  it('strategic scale is a relative asset multiplier (1.0 = native 512 frame)', () => {
+    for (const def of ALL_PHASE4C_DEFINITIONS) {
+      expect(def.scales.strategic).toBeGreaterThan(0);
+      // 1.0 means native frame; it is NOT the 2.08 world plane size
+      expect(def.scales.strategic).toBeLessThanOrEqual(2);
+    }
+  });
+
+  it('combatStage scale is a relative asset multiplier (1.0 = native 512 frame)', () => {
+    for (const def of ALL_PHASE4C_DEFINITIONS) {
+      expect(def.scales.combatStage).toBeGreaterThan(0);
+      expect(def.scales.combatStage).toBeLessThanOrEqual(2);
+    }
+  });
+
+  it('tableau scale is a narrative actor scale (0-1 relative to canvas)', () => {
+    for (const def of ALL_PHASE4C_DEFINITIONS) {
+      expect(def.scales.tableau).toBeGreaterThan(0);
+      expect(def.scales.tableau).toBeLessThanOrEqual(1);
+    }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// T. Variable frame count / state-aware loading
+// ---------------------------------------------------------------------------
+
+describe('Phase 4C variable frame count loading', () => {
+  it('strategic loader uses explicit per-state metadata (no 8-frame assumption)', async () => {
+    const loader = new OptionCSelectiveLoader();
+    await loader.loadStrategic('forest-road', ['archer']);
+    const report = loader.getMemoryReport();
+    // Kestrel idle (8) + dash (8) = 16 character frames + 1 env = 17
+    expect(report.totalEntries).toBe(17);
+    loader.clear();
+  });
+
+  it('combat stage loader loads only the required action state for attacker', async () => {
+    const loader = new OptionCSelectiveLoader();
+    await loader.loadCombatStage('forest-road', 'archer', 'warrior', 'skill');
+    const report = loader.getMemoryReport();
+    // Kestrel skill (8) + Alistair idle (1) + 1 env = 10
+    expect(report.totalEntries).toBe(10);
+    loader.clear();
+  });
+
+  it('combat stage loader loads cast state for Marian', async () => {
+    const loader = new OptionCSelectiveLoader();
+    await loader.loadCombatStage('forest-road', 'white_mage', 'warrior', 'cast');
+    const report = loader.getMemoryReport();
+    // Marian cast (1) + Alistair idle (1) + 1 env = 3
+    expect(report.totalEntries).toBe(3);
+    loader.clear();
+  });
+
+  it('combat stage loader loads cast state for Elara', async () => {
+    const loader = new OptionCSelectiveLoader();
+    await loader.loadCombatStage('forest-road', 'dark_mage', 'warrior', 'cast');
+    const report = loader.getMemoryReport();
+    // Elara cast (1) + Alistair idle (1) + 1 env = 3
+    expect(report.totalEntries).toBe(3);
+    loader.clear();
+  });
+
+  it('combat stage attacker semantic key includes the required state', async () => {
+    const loader = new OptionCSelectiveLoader();
+    const entries = await loader.loadCombatStage('forest-road', 'archer', 'warrior', 'attack');
+    const attackerEntry = entries.find((e) => e.characterId === 'archer');
+    expect(attackerEntry).toBeDefined();
+    loader.clear();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// U. Production promotion state machine
+// ---------------------------------------------------------------------------
+
+describe('Phase 4C production promotion state machine', () => {
+  it('FINAL_PRODUCTION_CANDIDATE is a valid art status', () => {
+    expect(isOptionCArtStatus('FINAL_PRODUCTION_CANDIDATE')).toBe(true);
+  });
+
+  it('PRODUCTION_APPROVED is a valid art status (operator-only)', () => {
+    expect(isOptionCArtStatus('PRODUCTION_APPROVED')).toBe(true);
+  });
+
+  it('GLM cannot self-promote to PRODUCTION_APPROVED (default authority)', () => {
+    const bad = { ...ALISTAIR_DEFINITION, masterStatus: 'PRODUCTION_APPROVED' as const };
+    expect(validateCharacterDefinition(bad)).toContain('PRODUCTION_APPROVED');
+  });
+
+  it('GLM cannot self-promote to PRODUCTION_APPROVED (explicit GLM authority)', () => {
+    const bad = { ...ALISTAIR_DEFINITION, masterStatus: 'PRODUCTION_APPROVED' as const };
+    expect(validateCharacterDefinition(bad, 'GLM')).toContain('PRODUCTION_APPROVED');
+  });
+
+  it('Codex cannot self-promote to PRODUCTION_APPROVED (CODEX authority)', () => {
+    const bad = { ...ALISTAIR_DEFINITION, masterStatus: 'PRODUCTION_APPROVED' as const, runtimeStatus: 'PRODUCTION_APPROVED' as const };
+    expect(validateCharacterDefinition(bad, 'CODEX')).toContain('PRODUCTION_APPROVED');
+  });
+
+  it('validator rejects PRODUCTION_APPROVED runtimeStatus without operator authorization', () => {
+    const bad = { ...ALISTAIR_DEFINITION, runtimeStatus: 'PRODUCTION_APPROVED' as const };
+    expect(validateCharacterDefinition(bad)).toContain('PRODUCTION_APPROVED');
+  });
+
+  it('FINAL_PRODUCTION_CANDIDATE is valid for Codex', () => {
+    const candidate = { ...ALISTAIR_DEFINITION, masterStatus: 'FINAL_PRODUCTION_CANDIDATE' as const, runtimeStatus: 'FINAL_PRODUCTION_CANDIDATE' as const };
+    expect(validateCharacterDefinition(candidate, 'CODEX')).toBeNull();
+  });
+
+  it('DEV_PRODUCTION_CANDIDATE is valid for GLM', () => {
+    const candidate = { ...ALISTAIR_DEFINITION, masterStatus: 'DEV_PRODUCTION_CANDIDATE' as const };
+    expect(validateCharacterDefinition(candidate, 'GLM')).toBeNull();
+  });
+
+  it('explicit operator-authorized PRODUCTION_APPROVED is valid', () => {
+    const approved = { ...ALISTAIR_DEFINITION, masterStatus: 'PRODUCTION_APPROVED' as const, runtimeStatus: 'PRODUCTION_APPROVED' as const };
+    expect(validateCharacterDefinition(approved, 'OPERATOR')).toBeNull();
+  });
+
+  it('validateOperatorPromotion accepts PRODUCTION_APPROVED', () => {
+    const approved = { ...ALISTAIR_DEFINITION, masterStatus: 'PRODUCTION_APPROVED' as const, runtimeStatus: 'PRODUCTION_APPROVED' as const };
+    expect(validateOperatorPromotion(approved)).toBeNull();
+  });
+
+  it('validateOperatorPromotion still rejects structural errors', () => {
+    const bad = { ...ALISTAIR_DEFINITION, identity: { ...ALISTAIR_DEFINITION.identity, id: '' } };
+    expect(validateOperatorPromotion(bad)).toContain('identity.id');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// V. Demo metadata scope (phase4c-glm.json)
+// ---------------------------------------------------------------------------
+
+describe('Phase 4C demo metadata scope', () => {
+  const meta = JSON.parse(
+    readFileSync(resolve(process.cwd(), 'public/assets/dev/option-c/phase4c/phase4c-glm.json'), 'utf8').replace(/^\uFEFF/, ''),
+  );
+
+  it('selectedBatch has 3 characters (Alistair, Marian, Elara)', () => {
+    expect(meta.selectedBatch.size).toBe(3);
+    const ids = meta.selectedBatch.characters.map((c: { id: string }) => c.id);
+    expect(ids).toEqual(['warrior', 'white_mage', 'dark_mage']);
+  });
+
+  it('demoArtBacklogRemaining is 5 (3 P0 + 2 P1)', () => {
+    expect(meta.demoScopeLock.demoArtBacklogRemaining).toBe(5);
+  });
+
+  it('codexP0ActiveBatch is warrior, white_mage, dark_mage', () => {
+    expect(meta.demoScopeLock.codexP0ActiveBatch).toEqual(['warrior', 'white_mage', 'dark_mage']);
+  });
+
+  it('codexP1DeferredBatch is rogue, lancer', () => {
+    expect(meta.demoScopeLock.codexP1DeferredBatch).toEqual(['rogue', 'lancer']);
+  });
+
+  it('morvanStatus is DEFERRED_POST_DEMO', () => {
+    expect(meta.demoScopeLock.morvanStatus).toBe('DEFERRED_POST_DEMO');
+  });
+
+  it('historical codexArtBatch is preserved as superseded provenance', () => {
+    expect(meta.demoScopeLock.historicalCodexArtBatch).toBeDefined();
+    expect(meta.demoScopeLock.historicalCodexArtBatchNote).toContain('SUPERSEDED');
   });
 });
