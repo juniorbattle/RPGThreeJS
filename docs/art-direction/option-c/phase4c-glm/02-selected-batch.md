@@ -1,6 +1,19 @@
-# 02 — Selected Batch (3 Characters)
+# 02 — Selected Batch (Demo Scope Lock)
 
-## Selection criteria
+## Demo Scope Lock
+
+After runtime truth verification, the demo playable roster is:
+- warrior (Alistair) — core, always playable
+- white_mage (Marian) — core, always playable
+- dark_mage (Elara) — core, always playable
+- archer (Kestrel) — core, always playable (GOLD_REFERENCE)
+- rogue (Cedric) — optional recruit, depth 3, conditional
+- lancer (Garen) — optional recruit, depth 12, conditional
+
+Morvan (dark_knight) is NOT demo playable — no recruitUnit effect exists.
+Morvan's GLM structural definition is preserved as DEFERRED_POST_DEMO.
+
+## Original GLM selection criteria (superseded by demo scope lock)
 
 1. Maximum silhouette diversity (heavy/robed/lithe)
 2. Maximum weapon diversity (greatsword/crosier/scythe)

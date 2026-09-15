@@ -1,1 +1,172 @@
-﻿{"schemaVersion":1,"phase":"4C-GLM","sourcePilot":"KESTREL_FOREST_ROAD_PHASE4B","createdAt":"2025-01-17T17:15:00.000Z","createdBy":"GLM","status":"SCALING_DRAFT","recommendation":"APPROVE_GLM_FOUNDATION_FOR_CODEX","goldenReferences":{"character":{"id":"archer","displayName":"Kestrel","canonicalSource":"/assets/characters/pixel/full/kestrel.png","phase4bRoot":"/assets/dev/option-c/phase4b/kestrel","animationStates":["idle","dash","attack","skill"],"frameCount":8,"timing":{"idle":{"frameDurationMs":190,"loop":true},"dash":{"frameDurationMs":82,"loop":false,"returnState":"idle"},"attack":{"frameDurationMs":105,"loop":false,"returnState":"idle"},"skill":{"frameDurationMs":125,"loop":false,"returnState":"idle"}}},"environment":{"familyId":"forest-road","displayName":"Forest Road","surfaces":{"travel":"/assets/dev/option-c/phase4b/environment/forest-road-travel.png","tableau":"/assets/dev/option-c/phase4b/environment/forest-road-tableau.png","strategic":"/assets/dev/option-c/phase4b/environment/forest-road-strategic.png","combat-stage":"/assets/dev/option-c/phase4b/environment/forest-road-combat-stage.png"}}},"rosterCensus":{"totalPlayableHeroes":12,"core":["warrior","white_mage","dark_mage","archer"],"optional":["rogue","lancer","paladin"],"late":["dark_knight","red_mage","enchanter","ninja","artillerist"],"goldReference":"archer","artPendingCodex":11},"selectedBatch":{"size":3,"characters":[{"id":"warrior","displayName":"Alistair","masterStatus":"SCALING_DRAFT","runtimeStatus":"ART_PENDING_CODEX","weapon":"greatsword","archetype":"knight","silhouetteClass":"heavy_frontline","canonicalSource":"/assets/characters/pixel/full/alistair.png","animationStates":["idle","dash","attack","skill"],"codexSlots":5},{"id":"white_mage","displayName":"Marian","masterStatus":"SCALING_DRAFT","runtimeStatus":"ART_PENDING_CODEX","weapon":"crosier","archetype":"cleric","silhouetteClass":"robed_caster","canonicalSource":"/assets/characters/pixel/full/marian.png","animationStates":["idle","dash","attack","cast"],"codexSlots":5},{"id":"dark_knight","displayName":"Morvan","masterStatus":"SCALING_DRAFT","runtimeStatus":"ART_PENDING_CODEX","weapon":"scythe","archetype":"knight","silhouetteClass":"heavy_dark","canonicalSource":"/assets/characters/pixel/full/morvan.png","animationStates":["idle","dash","attack","cast"],"codexSlots":5}]},"noGlobalOptionCPreload":true,"devEntryRoute":"?devOptionC=phase4c-labs","devGate":"import.meta.env.DEV","productionIsolated":true,"tests":{"total":79,"categories":14,"passing":79,"failing":0},"preExistingFailures":{"file":"src/combat/vfx/CasterMotionBackCompat.test.ts","count":11,"relatedToPhase4C":false,"note":"Pre-existing on clean baseline; VFX registry expects 33 published actions but registry is empty"},"qualityGates":{"overall":"67/70","result":"PASS","minimumRequired":"4/5 per gate"},"hardConstraints":{"imageGenerationAttempts":0,"videoGenerationAttempts":0,"gameTruthChanged":false,"combatLogicChanged":false,"vfxChanged":false,"saveSchemaChanged":false,"productionMediaChanged":false,"liveProductionAssetsReplaced":false,"productionPromotions":0,"commit":"NO","push":"NO","operatorReviewRequired":"YES"}}
+﻿{
+    "schemaVersion":  1,
+    "phase":  "4C-GLM",
+    "sourcePilot":  "KESTREL_FOREST_ROAD_PHASE4B",
+    "createdAt":  "2025-01-17T17:15:00.000Z",
+    "createdBy":  "GLM",
+    "status":  "SCALING_DRAFT",
+    "recommendation":  "APPROVE_GLM_FOUNDATION_FOR_CODEX",
+    "goldenReferences":  {
+                             "character":  {
+                                               "id":  "archer",
+                                               "displayName":  "Kestrel",
+                                               "canonicalSource":  "/assets/characters/pixel/full/kestrel.png",
+                                               "phase4bRoot":  "/assets/dev/option-c/phase4b/kestrel",
+                                               "animationStates":  [
+                                                                       "idle",
+                                                                       "dash",
+                                                                       "attack",
+                                                                       "skill"
+                                                                   ],
+                                               "frameCount":  8,
+                                               "timing":  {
+                                                              "idle":  {
+                                                                           "frameDurationMs":  190,
+                                                                           "loop":  true
+                                                                       },
+                                                              "dash":  {
+                                                                           "frameDurationMs":  82,
+                                                                           "loop":  false,
+                                                                           "returnState":  "idle"
+                                                                       },
+                                                              "attack":  {
+                                                                             "frameDurationMs":  105,
+                                                                             "loop":  false,
+                                                                             "returnState":  "idle"
+                                                                         },
+                                                              "skill":  {
+                                                                            "frameDurationMs":  125,
+                                                                            "loop":  false,
+                                                                            "returnState":  "idle"
+                                                                        }
+                                                          }
+                                           },
+                             "environment":  {
+                                                 "familyId":  "forest-road",
+                                                 "displayName":  "Forest Road",
+                                                 "surfaces":  {
+                                                                  "travel":  "/assets/dev/option-c/phase4b/environment/forest-road-travel.png",
+                                                                  "tableau":  "/assets/dev/option-c/phase4b/environment/forest-road-tableau.png",
+                                                                  "strategic":  "/assets/dev/option-c/phase4b/environment/forest-road-strategic.png",
+                                                                  "combat-stage":  "/assets/dev/option-c/phase4b/environment/forest-road-combat-stage.png"
+                                                              }
+                                             }
+                         },
+    "rosterCensus":  {
+                         "totalPlayableHeroes":  12,
+                         "core":  [
+                                      "warrior",
+                                      "white_mage",
+                                      "dark_mage",
+                                      "archer"
+                                  ],
+                         "optional":  [
+                                          "rogue",
+                                          "lancer",
+                                          "paladin"
+                                      ],
+                         "late":  [
+                                      "dark_knight",
+                                      "red_mage",
+                                      "enchanter",
+                                      "ninja",
+                                      "artillerist"
+                                  ],
+                         "goldReference":  "archer",
+                         "artPendingCodex":  11
+                     },
+    "selectedBatch":  {
+                          "size":  2,
+                          "characters":  [
+                                             {
+                                                 "id":  "warrior",
+                                                 "displayName":  "Alistair",
+                                                 "masterStatus":  "SCALING_DRAFT",
+                                                 "runtimeStatus":  "ART_PENDING_CODEX",
+                                                 "weapon":  "greatsword",
+                                                 "archetype":  "knight",
+                                                 "silhouetteClass":  "heavy_frontline",
+                                                 "canonicalSource":  "/assets/characters/pixel/full/alistair.png",
+                                                 "animationStates":  [
+                                                                         "idle",
+                                                                         "dash",
+                                                                         "attack",
+                                                                         "skill"
+                                                                     ],
+                                                 "codexSlots":  5
+                                             },
+                                             {
+                                                 "id":  "white_mage",
+                                                 "displayName":  "Marian",
+                                                 "masterStatus":  "SCALING_DRAFT",
+                                                 "runtimeStatus":  "ART_PENDING_CODEX",
+                                                 "weapon":  "crosier",
+                                                 "archetype":  "cleric",
+                                                 "silhouetteClass":  "robed_caster",
+                                                 "canonicalSource":  "/assets/characters/pixel/full/marian.png",
+                                                 "animationStates":  [
+                                                                         "idle",
+                                                                         "dash",
+                                                                         "attack",
+                                                                         "cast"
+                                                                     ],
+                                                 "codexSlots":  5
+                                             }
+                                         ]
+                      },
+    "noGlobalOptionCPreload":  true,
+    "devEntryRoute":  "?devOptionC=phase4c-labs",
+    "devGate":  "import.meta.env.DEV",
+    "productionIsolated":  true,
+    "tests":  {
+                  "total":  79,
+                  "categories":  14,
+                  "passing":  79,
+                  "failing":  0
+              },
+    "preExistingFailures":  {
+                                "file":  "src/combat/vfx/CasterMotionBackCompat.test.ts",
+                                "count":  11,
+                                "relatedToPhase4C":  false,
+                                "note":  "Pre-existing on clean baseline; VFX registry expects 33 published actions but registry is empty"
+                            },
+    "qualityGates":  {
+                         "overall":  "67/70",
+                         "result":  "PASS",
+                         "minimumRequired":  "4/5 per gate"
+                     },
+    "hardConstraints":  {
+                            "imageGenerationAttempts":  0,
+                            "videoGenerationAttempts":  0,
+                            "gameTruthChanged":  false,
+                            "combatLogicChanged":  false,
+                            "vfxChanged":  false,
+                            "saveSchemaChanged":  false,
+                            "productionMediaChanged":  false,
+                            "liveProductionAssetsReplaced":  false,
+                            "productionPromotions":  0,
+                            "commit":  "NO",
+                            "push":  "NO",
+                            "operatorReviewRequired":  "YES"
+                        },
+    "demoScopeLock":  {
+                          "codexArtBatch":  [
+                                                "warrior",
+                                                "white_mage",
+                                                "dark_mage",
+                                                "rogue",
+                                                "lancer"
+                                            ],
+                          "demoTerminal":  "lion-final-judgement",
+                          "kestrelRegeneration":  false,
+                          "demoPlayableRoster":  [
+                                                     "warrior",
+                                                     "white_mage",
+                                                     "dark_mage",
+                                                     "archer",
+                                                     "rogue",
+                                                     "lancer"
+                                                 ],
+                          "morvanStatus":  "DEFERRED_POST_DEMO"
+                      }
+}

@@ -1,9 +1,20 @@
 # Option C — Phase 4C-GLM Scaling Foundation
 
-**Status:** GLM structural draft — awaiting operator review
+**Status:** GLM structural draft — operator approved (doctrine lock)
 **Golden reference:** Kestrel + Forest Road (Phase 4B)
-**Batch size:** 3 new characters (Alistair, Marian, Morvan)
+**Demo art backlog remaining:** 5 characters
+**Codex P0 active batch:** 3 (Alistair, Marian, Elara)
+**Codex P1 deferred batch:** 2 (Cedric, Garen)
+**Kestrel:** GOLD_REFERENCE, NO_REGENERATION
 **Recommendation:** APPROVE_GLM_FOUNDATION_FOR_CODEX
+
+## Narrative presentation doctrine
+
+The authoritative narrative presentation doctrine is documented at:
+[../narrative-presentation-doctrine.md](../narrative-presentation-doctrine.md)
+
+Machine contract: `src/cinematics/NarrativePresentationDoctrine.ts`
+Demo matrix: [./demo-presentation-matrix.md](./demo-presentation-matrix.md)
 
 ## Purpose
 
