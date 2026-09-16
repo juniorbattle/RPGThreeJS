@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "alistair-dash-key-pose-a003-orthographic-proportion-lock",
+  "selection": {
+    "status": "SELECTED",
+    "reason": "Sunburst/max orthographic correction preserves the master-sized helmet and armor modules, restores long readable legs, and limits vertical compression to explicit joint bending."
+  },
+  "parentCandidate": "alistair-master-candidate-a003-chroma",
+  "timestampStarted": "2026-09-15T07:48:36.119266Z",
+  "mode": "edit",
+  "request": {
+    "endpoint": "/v1/images/edits",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "max",
+    "size": "2048x2048",
+    "background": "opaque",
+    "output_format": "png",
+    "n": 1,
+    "prompt": "Use case: precise identity-preserving character edit\nAsset type: DEV-only Option C Alistair DASH key-pose proportion lock\n\nImage authority:\n- Image 1 is the approved Alistair Character Master and is the sole authority for anatomy, absolute apparent body-module sizes, head-to-body ratio, helmet size, shoulder width, torso length, pelvis width, limb length and thickness, armor construction, palette, cloth construction, and greatsword geometry.\n- Image 2 is the original canonical Alistair source and may resolve identity details only. It must not change the approved master's anatomy or equipment.\n\nPrimary request: repose the exact Image 1 character into a grounded dash toward screen-right. Preserve the master's anatomy and apparent scale as if the same orthographic game camera photographed the same physical model one moment later.\n\nCritical proportion lock:\n- Use a near-orthographic three-quarter game-sprite view with minimal perspective and minimal foreshortening.\n- Keep the helmet's apparent width and height, shoulder armor span, torso armor length, pelvis width, upper-arm length, forearm length, thigh length, shin length, hand size, boot size, and sword width within roughly 3 percent of Image 1.\n- Do not enlarge the head, helmet, shoulders, torso, gauntlets, thighs, knees, or boots.\n- Do not shorten the legs or thicken the body to create speed.\n- The dash may become shorter only through clearly readable joint bending and forward lean, never through anatomical compression or perspective distortion.\n- Preserve long readable thighs and shins. Show both complete feet contacting the same ground plane.\n- The helmet must remain visibly small relative to the full armored body, matching Image 1.\n\nAction: a readable running lunge toward screen-right, not a deep squat. The torso leans forward about 20 degrees. The leading leg reaches forward with a moderate knee bend; the rear leg extends backward and pushes from the ground. Both legs remain fully readable and retain the master's long armored proportions. Both hands control the greatsword, which trails diagonally behind the body. Cape and plume stream backward from momentum without becoming effects. This is dash anticipation/travel, not a jump and not an attack release.\n\nIdentity invariants from Image 1: fully enclosed angular helmet with dark eye slit and vented face plate; swept burgundy plume; blackened articulated plate and mail; asymmetrical layered/spiked pauldron; burgundy/crimson scarf, mantle, cape and tabard; brown cross-body harness; restrained radial brass/old-gold ornaments; identical oversized two-handed greatsword length, blade width, guard, grip and pommel; exactly two hands and two complete armored feet.\n\nComposition: exactly one full-body Alistair on the same 2048x2048 canvas. Center by body mass. Keep the complete plume, sword, cape, tabard, hands and feet inside the frame with at least 8 percent uninterrupted background clearance on every edge. The vertical body span from helmet/plume base to lowest foot should remain approximately 88 to 92 percent of the standing master's body span; do not make a compact chibi or compressed silhouette.\n\nBackground: exactly flat fully opaque RGB #FF00FF across the entire canvas; no gradient, texture, floor, shadow, halo, haze, glow, scenery, checkerboard, or antialiased color spill.\n\nStyle: match Image 1 exactly: premium modern HD-2D high-density pixel-art RPG character, crisp intentional clusters, controlled colored outlines, strong material separation, selective metal highlights, matte cloth and leather, no painterly softness, no generic 3D render look.\n\nConstraints: change only the pose; preserve all identity and proportion invariants. Exactly one Alistair and one greatsword; no shield; no exposed face; no emerald; no VFX; no speed lines; no dust; no particles; no text, UI, label, logo or watermark; no duplicate limbs or weapon; no crop; no edge contact.",
+    "promptSha256": "23abd1e040198f38966f1c84d0b23dcca0b3067e854862bb896c575a704dbce1",
+    "sourceImages": [
+      {
+        "path": "public/assets/dev/option-c/phase4c/alistair/master/alistair-master-candidate-a003-chroma-raw.png",
+        "sha256": "d18e80380398f1cbc70a9514ec26e1199e6c430c1d173f5f5f5e3fc92582dd27",
+        "bytes": 4654883
+      },
+      {
+        "path": "public/assets/characters/pixel/full/alistair.png",
+        "sha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+        "bytes": 438093
+      }
+    ]
+  },
+  "response": {
+    "requestId": "req_6d7c4013ff8642cea65a623972121a63",
+    "processingMs": "114943",
+    "date": "Tue, 15 Sep 2026 07:50:33 GMT",
+    "modelReported": null,
+    "created": 1789458633,
+    "usage": {
+      "input_tokens": 3226,
+      "input_tokens_details": {
+        "image_tokens": 2385,
+        "text_tokens": 841
+      },
+      "output_tokens": 14272,
+      "total_tokens": 17498,
+      "output_tokens_details": {
+        "image_tokens": 14272,
+        "text_tokens": 0
+      }
+    },
+    "outputFormat": "png",
+    "quality": "max",
+    "size": "2048x2048"
+  },
+  "output": {
+    "path": "public/assets/dev/option-c/phase4c/alistair/poses/dash/alistair-dash-key-pose-a003-chroma-raw.png",
+    "sha256": "fed56ccd80f30883c71644af2eb4e89426b1014e63e4c9f3515b4e435a809947",
+    "bytes": 4592432,
+    "rawDimensions": [
+      2048,
+      2048
+    ],
+    "mode": "RGB",
+    "normalizedDimensions": null
+  },
+  "status": "SUCCEEDED",
+  "timestampCompleted": "2026-09-15T07:50:33.403986Z",
+  "elapsedSeconds": 117.285,
+  "normalization": {
+    "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-dash.png",
+    "sha256": "f98f75345b09b8668b1a0d8236fef225d8d5e46a79a83555b2dd924d09562040",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      70,
+      150,
+      431,
+      471
+    ],
+    "visibleWidth": 361,
+    "bodyHeight": 293,
+    "expectedBodyHeightAtSharedScale": 292,
+    "poseCompressionRatio": 0.901073,
+    "footBaseline": 470,
+    "pivotX": 255.94,
+    "headTop": 177,
+    "headCenter": [
+      294.37,
+      196.03
+    ],
+    "bodyCenter": [
+      263.47,
+      306.09
+    ],
+    "weapon": {
+      "tip": [
+        60.72,
+        306.09
+      ],
+      "grip": [
+        213.27,
+        271.34
+      ],
+      "pommel": [
+        248.03,
+        271.34
+      ]
+    },
+    "edgeClearance": {
+      "left": 70,
+      "top": 150,
+      "right": 81,
+      "bottom": 41
+    },
+    "alpha": {
+      "minimum": 0,
+      "maximum": 255,
+      "transparentPixels": 206529,
+      "partialPixels": 9267,
+      "opaquePixels": 46348,
+      "edgeNonzeroPixels": 0
+    }
+  }
+}

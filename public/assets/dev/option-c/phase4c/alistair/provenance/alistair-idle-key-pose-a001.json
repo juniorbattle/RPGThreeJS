@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "alistair-idle-key-pose-a001-chroma",
+  "selection": {
+    "status": "SELECTED",
+    "reason": "Grounded neutral combat readiness with accepted identity, weapon, armor, palette, and shared-scale geometry."
+  },
+  "parentCandidate": "alistair-master-candidate-a003-isolated",
+  "timestampStarted": "2026-09-15T06:35:39.210621Z",
+  "mode": "edit",
+  "request": {
+    "endpoint": "/v1/images/edits",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "max",
+    "size": "2048x2048",
+    "background": "opaque",
+    "output_format": "png",
+    "n": 1,
+    "prompt": "Use case: precise-object-edit\nAsset type: DEV-only Option C Alistair IDLE key pose\nPrimary request: Repose the exact Alistair from Image 1 into his canonical combat-ready idle. Preserve his identity, anatomy, armor construction, weapon construction, palette, proportions, pixel density, and rendering language exactly. Image 2 is the original canonical source and resolves any identity ambiguity.\nAction: stable grounded rest stance, three-quarter gameplay-friendly orientation, weight balanced between both planted feet, knees slightly flexed, shoulders ready but not tense. Both gauntleted hands hold the same oversized greatsword securely across the front of the body with the blade angled upward and fully readable. The pose must feel ready to enter an animation loop, not like a splash-art flourish.\nSubject invariants: fully enclosed angular helmet with dark eye slit and vented face plate; swept burgundy plume; blackened articulated plate and mail; asymmetrical layered/spiked pauldron; burgundy/crimson scarf, mantle, cape and tabard; brown cross-body harness; restrained radial brass/old-gold ornaments; identical greatsword length, width, guard, grip and pommel; two hands and two complete armored feet.\nComposition: one full-body character, centered by body mass. Keep the complete plume, sword, cape, tabard, hands and feet inside the frame with at least 8 percent uninterrupted background clearance from every edge. Preserve approximately the same body scale and head-to-body ratio as Image 1.\nBackground: exactly flat fully opaque RGB #FF00FF over the entire canvas; no gradient, texture, floor, shadow, halo, haze, glow, scenery or checkerboard.\nStyle: premium modern HD-2D high-density pixel-art RPG character, crisp intentional clusters and controlled colored outlines, strong material separation, selective metal highlights, matte cloth/leather, no painterly softness and no generic 3D render look.\nConstraints: exactly one Alistair and one greatsword; no shield; no exposed face; no emerald; no VFX; no particles; no motion trail; no text, UI, label, logo or watermark; no duplicate limbs or weapon; no crop; no edge contact.",
+    "promptSha256": "bbf5f6c6377ebe9147f639e39e63967b590001ffc660a2669d807454c07a147b",
+    "sourceImages": [
+      {
+        "path": "public/assets/dev/option-c/phase4c/alistair/master/alistair-master-candidate-a003-isolated.png",
+        "sha256": "c7e2696d33ed5338f2ad1a27eb06ca93a574d0690ed15ad9595edbd062ab4877",
+        "bytes": 3215173
+      },
+      {
+        "path": "public/assets/characters/pixel/full/alistair.png",
+        "sha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+        "bytes": 438093
+      }
+    ]
+  },
+  "response": {
+    "requestId": "req_371688a436a7450b831cc7b29eeeb105",
+    "processingMs": "117763",
+    "date": "Tue, 15 Sep 2026 06:37:39 GMT",
+    "modelReported": null,
+    "created": 1789454259,
+    "usage": {
+      "input_tokens": 2860,
+      "input_tokens_details": {
+        "image_tokens": 2385,
+        "text_tokens": 475
+      },
+      "output_tokens": 14272,
+      "total_tokens": 17132,
+      "output_tokens_details": {
+        "image_tokens": 14272,
+        "text_tokens": 0
+      }
+    },
+    "outputFormat": "png",
+    "quality": "max",
+    "size": "2048x2048"
+  },
+  "output": {
+    "path": "public/assets/dev/option-c/phase4c/alistair/poses/idle/alistair-idle-key-pose-a001-chroma-raw.png",
+    "sha256": "a7eefaa38e8e6a0fb4e21aff4e4ca36157c66ad53f035c69c724c524b8200bcb",
+    "bytes": 4382337,
+    "rawDimensions": [
+      2048,
+      2048
+    ],
+    "mode": "RGB",
+    "normalizedDimensions": null
+  },
+  "status": "SUCCEEDED",
+  "timestampCompleted": "2026-09-15T06:37:39.493123Z",
+  "elapsedSeconds": 120.283,
+  "normalization": {
+    "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-idle.png",
+    "sha256": "bd113a1bfb1bd8269a8a7ea40ad7924c395ad09fd784400eae803dfdc46db308",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      108,
+      110,
+      417,
+      471
+    ],
+    "visibleWidth": 309,
+    "bodyHeight": 333,
+    "expectedBodyHeightAtSharedScale": 332,
+    "poseCompressionRatio": 1.023242,
+    "footBaseline": 470,
+    "pivotX": 256.36,
+    "headTop": 137,
+    "headCenter": [
+      229.13,
+      179.89
+    ],
+    "bodyCenter": [
+      246.51,
+      295.75
+    ],
+    "weapon": {
+      "tip": [
+        412.57,
+        114.24
+      ],
+      "grip": [
+        221.41,
+        259.06
+      ],
+      "pommel": [
+        173.13,
+        295.75
+      ]
+    },
+    "edgeClearance": {
+      "left": 108,
+      "top": 110,
+      "right": 95,
+      "bottom": 41
+    },
+    "alpha": {
+      "minimum": 0,
+      "maximum": 255,
+      "transparentPixels": 209028,
+      "partialPixels": 9532,
+      "opaquePixels": 43584,
+      "edgeNonzeroPixels": 0
+    }
+  }
+}

@@ -1,0 +1,21 @@
+Use case: precise identity-preserving character edit
+Asset type: DEV-only Option C Alistair DASH key-pose correction
+
+Image authority:
+- Image 1 is the approved Alistair Character Master and is the absolute authority for anatomy, body scale, head-to-body ratio, helmet size, shoulder width, torso thickness, limb thickness, armor construction, palette, ornaments, cloth construction, and greatsword geometry.
+- Image 2 is the rejected dash candidate. Preserve only its readable grounded screen-right dash gesture and broad composition. It is NOT authoritative for anatomy, proportions, equipment scale, or costume details.
+- Image 3 is the original canonical Alistair source and resolves any identity ambiguity.
+
+Exact defect to correct: the rejected dash enlarged Alistair's helmet, torso, shoulders, arms, thighs, boots, and apparent overall mass relative to the approved master. Rebuild the dash with the exact same anatomical proportions and equipment scale as Image 1. Do not compensate by merely shrinking the whole rejected dash. Repose the master faithfully so the helmet, torso, limbs, armor plates, hands, boots, cape, and sword all retain the master construction and relative dimensions under foreshortening.
+
+Action: committed grounded battlefield dash toward screen-right. Torso leans into the movement, leading knee bends and advances, rear armored leg pushes from the ground, both feet remain readable, and the center of mass is compressed naturally. The greatsword is controlled in both hands and trails diagonally behind the movement. The pose must read as a dash, never as a jump or an attack release. Cape and plume stream backward from momentum without becoming effects.
+
+Identity invariants from Image 1: fully enclosed angular helmet with dark eye slit and vented face plate; swept burgundy plume; blackened articulated plate and mail; asymmetrical layered/spiked pauldron; burgundy/crimson scarf, mantle, cape and tabard; brown cross-body harness; restrained radial brass/old-gold ornaments; identical oversized two-handed greatsword length, blade width, guard, grip and pommel; exactly two hands and two complete armored feet.
+
+Composition: one full-body Alistair, centered by body mass, with the complete plume, sword, cape, tabard, hands and feet inside the frame and at least 8 percent uninterrupted background clearance on every edge. Maintain the native character scale of Image 1 on this same 2048x2048 canvas.
+
+Background: exactly flat fully opaque RGB #FF00FF across the entire canvas; no gradient, texture, floor, shadow, halo, haze, glow, scenery, checkerboard, or antialiased color spill.
+
+Style: match Image 1 exactly: premium modern HD-2D high-density pixel-art RPG character, crisp intentional clusters, controlled colored outlines, strong material separation, selective metal highlights, matte cloth and leather, no painterly softness, no generic 3D render look.
+
+Constraints: exactly one Alistair and one greatsword; no shield; no exposed face; no emerald; no VFX; no speed lines; no dust; no particles; no text, UI, label, logo or watermark; no duplicate limbs or weapon; no crop; no edge contact. Do not alter the approved master design.

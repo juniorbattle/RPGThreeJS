@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "alistair-dash-key-pose-a002-proportion-correction",
+  "selection": {
+    "status": "REJECTED",
+    "reason": "Superseded after operator review: shared canvas scale was correct, but the deeply crouched perspective still made the upper body read too large relative to the legs."
+  },
+  "parentCandidate": "alistair-dash-key-pose-a001-chroma",
+  "timestampStarted": "2026-09-15T07:16:04.397885Z",
+  "mode": "edit",
+  "request": {
+    "endpoint": "/v1/images/edits",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "max",
+    "size": "2048x2048",
+    "background": "opaque",
+    "output_format": "png",
+    "n": 1,
+    "prompt": "Use case: precise identity-preserving character edit\nAsset type: DEV-only Option C Alistair DASH key-pose correction\n\nImage authority:\n- Image 1 is the approved Alistair Character Master and is the absolute authority for anatomy, body scale, head-to-body ratio, helmet size, shoulder width, torso thickness, limb thickness, armor construction, palette, ornaments, cloth construction, and greatsword geometry.\n- Image 2 is the rejected dash candidate. Preserve only its readable grounded screen-right dash gesture and broad composition. It is NOT authoritative for anatomy, proportions, equipment scale, or costume details.\n- Image 3 is the original canonical Alistair source and resolves any identity ambiguity.\n\nExact defect to correct: the rejected dash enlarged Alistair's helmet, torso, shoulders, arms, thighs, boots, and apparent overall mass relative to the approved master. Rebuild the dash with the exact same anatomical proportions and equipment scale as Image 1. Do not compensate by merely shrinking the whole rejected dash. Repose the master faithfully so the helmet, torso, limbs, armor plates, hands, boots, cape, and sword all retain the master construction and relative dimensions under foreshortening.\n\nAction: committed grounded battlefield dash toward screen-right. Torso leans into the movement, leading knee bends and advances, rear armored leg pushes from the ground, both feet remain readable, and the center of mass is compressed naturally. The greatsword is controlled in both hands and trails diagonally behind the movement. The pose must read as a dash, never as a jump or an attack release. Cape and plume stream backward from momentum without becoming effects.\n\nIdentity invariants from Image 1: fully enclosed angular helmet with dark eye slit and vented face plate; swept burgundy plume; blackened articulated plate and mail; asymmetrical layered/spiked pauldron; burgundy/crimson scarf, mantle, cape and tabard; brown cross-body harness; restrained radial brass/old-gold ornaments; identical oversized two-handed greatsword length, blade width, guard, grip and pommel; exactly two hands and two complete armored feet.\n\nComposition: one full-body Alistair, centered by body mass, with the complete plume, sword, cape, tabard, hands and feet inside the frame and at least 8 percent uninterrupted background clearance on every edge. Maintain the native character scale of Image 1 on this same 2048x2048 canvas.\n\nBackground: exactly flat fully opaque RGB #FF00FF across the entire canvas; no gradient, texture, floor, shadow, halo, haze, glow, scenery, checkerboard, or antialiased color spill.\n\nStyle: match Image 1 exactly: premium modern HD-2D high-density pixel-art RPG character, crisp intentional clusters, controlled colored outlines, strong material separation, selective metal highlights, matte cloth and leather, no painterly softness, no generic 3D render look.\n\nConstraints: exactly one Alistair and one greatsword; no shield; no exposed face; no emerald; no VFX; no speed lines; no dust; no particles; no text, UI, label, logo or watermark; no duplicate limbs or weapon; no crop; no edge contact. Do not alter the approved master design.",
+    "promptSha256": "618ec201c84cc5fa85bd3a3f6777e12f59090051b448b1fdfe4fe17e371b7df0",
+    "sourceImages": [
+      {
+        "path": "public/assets/dev/option-c/phase4c/alistair/master/alistair-master-candidate-a003-chroma-raw.png",
+        "sha256": "d18e80380398f1cbc70a9514ec26e1199e6c430c1d173f5f5f5e3fc92582dd27",
+        "bytes": 4654883
+      },
+      {
+        "path": "public/assets/dev/option-c/phase4c/alistair/poses/dash/alistair-dash-key-pose-a001-chroma-raw.png",
+        "sha256": "a02c8b95c3c4885f1023be3fb0a52522e103d560f02f9eace87fb38eae905a9e",
+        "bytes": 4596147
+      },
+      {
+        "path": "public/assets/characters/pixel/full/alistair.png",
+        "sha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+        "bytes": 438093
+      }
+    ]
+  },
+  "response": {
+    "requestId": "req_5183703e941941238039f6a77cae3dbe",
+    "processingMs": "108807",
+    "date": "Tue, 15 Sep 2026 07:17:55 GMT",
+    "modelReported": null,
+    "created": 1789456675,
+    "usage": {
+      "input_tokens": 4607,
+      "input_tokens_details": {
+        "image_tokens": 3906,
+        "text_tokens": 701
+      },
+      "output_tokens": 14272,
+      "total_tokens": 18879,
+      "output_tokens_details": {
+        "image_tokens": 14272,
+        "text_tokens": 0
+      }
+    },
+    "outputFormat": "png",
+    "quality": "max",
+    "size": "2048x2048"
+  },
+  "output": {
+    "path": "public/assets/dev/option-c/phase4c/alistair/poses/dash/alistair-dash-key-pose-a002-chroma-raw.png",
+    "sha256": "a4faa40ed5c99293d010cfa4ad999da8e7137fde33a5fc49bd77153557f1872e",
+    "bytes": 4327938,
+    "rawDimensions": [
+      2048,
+      2048
+    ],
+    "mode": "RGB",
+    "normalizedDimensions": null
+  },
+  "status": "SUCCEEDED",
+  "timestampCompleted": "2026-09-15T07:17:55.158509Z",
+  "elapsedSeconds": 110.761,
+  "normalization": {
+    "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-dash.png",
+    "sha256": "d8133953c4e456b3b0fb7dcda9bffab96e1945a95b2f08b51e62e02bd42426f3",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      54,
+      168,
+      415,
+      471
+    ],
+    "visibleWidth": 361,
+    "bodyHeight": 271,
+    "expectedBodyHeightAtSharedScale": 270,
+    "poseCompressionRatio": 0.832539,
+    "footBaseline": 470,
+    "pivotX": 256.26,
+    "headTop": 199,
+    "headCenter": [
+      277.4,
+      231.1
+    ],
+    "bodyCenter": [
+      241.68,
+      320.89
+    ],
+    "weapon": {
+      "tip": [
+        58.24,
+        225.31
+      ],
+      "grip": [
+        229.13,
+        301.58
+      ],
+      "pommel": [
+        260.99,
+        315.09
+      ]
+    },
+    "edgeClearance": {
+      "left": 54,
+      "top": 168,
+      "right": 97,
+      "bottom": 41
+    },
+    "alpha": {
+      "minimum": 0,
+      "maximum": 255,
+      "transparentPixels": 204775,
+      "partialPixels": 10055,
+      "opaquePixels": 47314,
+      "edgeNonzeroPixels": 0
+    }
+  }
+}

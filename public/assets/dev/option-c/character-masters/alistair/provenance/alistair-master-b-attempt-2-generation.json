@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "ALISTAIR_MASTER_B_ATTEMPT_2",
+  "parentCandidate": null,
+  "timestampStarted": "2026-09-15T22:49:35.031243Z",
+  "mode": "edit",
+  "request": {
+    "endpoint": "/v1/images/edits",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "max",
+    "size": "2048x2048",
+    "background": "opaque",
+    "output_format": "png",
+    "n": 1,
+    "prompt": "INTENDED USE\nCreate one from-scratch playable Character Master for Alistair, a modern premium tactical RPG sprite. This corrected Candidate B must be an original tactical character design, not a variation of the example Knight in Image 1.\n\nREFERENCE ROLES\nImage 1 is only an abstract artistic-quality reference: use its modern pixel sharpness, adult heroic anatomy, material separation, clean value grouping, and premium finish. Ignore its Knight's costume, composition, cape, tabard, helmet, ornaments, sword pose, and silhouette completely.\nImage 2 is only the selected technical production reference: use its 128x128-compatible cluster density, tactical readability, shared-scale discipline, and animation-friendly complexity. Do not copy its Knight.\n\nSUBJECT\nExactly one original Alistair: a broad heavy frontline knight and martial anchor. Dark neutral steel armor, restrained deep red cloth, fully closed helmet, no visible skin, large two-handed greatsword close to body height. Stable authoritative adult heroic proportions, approximately 7 to 7.5 heads tall beneath armor. No shield.\n\nCORRECTED CANDIDATE B DESIGN\nUse a smooth LOW DOMED closed sallet with a continuous horizontal black visor slit and two small rear neck plates. The helmet crown must be round and low: no point, no central ridge, no vertical crest, no face grill, no gold forehead frame. Use a broad dark-steel cuirass with three subtle vertical flutes, compact rounded shoulder shells without layered fan plates, large articulated forearms, clean oval knee cops, and straight greaves. Keep antique brass limited to tiny functional rivets only.\n\nDo not use a cloak or shoulder mantle. Deep red identity cloth appears as a fitted sleeveless ARMORED SURCOAT beneath the cuirass, visible only as two wide side panels at the ribs and two short split skirt panels from the belt to mid-thigh. No cloth across the shoulders. No central hanging tabard. No long fabric behind the legs. No brooches, medallions, heraldry, animal symbols, pale-gold embroidery, torn cape, or fur.\n\nThe original greatsword has a long broad taper, shallow central fuller, compact T-shaped dark-steel guard, leather grip, and octagonal pommel. Both gauntlets hold it in a low diagonal guard across the thighs, the blade pointing down toward viewer-right, with the entire blade and tip visible above the boot line. Do not raise the blade beside the head and do not plant it vertically.\n\nPOSE AND CAMERA\nFull-body neutral combat-ready stance, near-orthographic three-quarter front view, minimal perspective distortion. Feet planted wide but natural on one horizontal foot plane. Upright torso, level shoulders, neutral head. Entire helmet, all red cloth panels, sword, both hands, and both boots visible. No dramatic action, no foreshortening, no crop.\n\nPIXEL CONSTRUCTION\nTrue modern pixel art for later 128x128 logical reconstruction. Deliberate coherent pixel clusters, controlled stair-step contours, discrete value bands, compact highlights, no painterly gradients, isolated noise, global dithering, or fake pixel filter. Use large readable armor planes, 4-6 metal values, 3-5 cloth values, and clear animation-ready joint separations. Premium yet tactical, crisp at 400% nearest-neighbor inspection.\n\nGEOMETRY TARGET\nSquare 2048x2048 source. Center the body on x=1024. Put the foot plane at y=1856. Helmet top to boot soles approximately 1344 px. Keep all equipment at least 128 px from the edge. Do not enlarge merely to fill.\n\nBACKGROUND AND OUTPUT\nPerfectly flat solid #FF00FF magenta background, edge-to-edge. No floor, shadow, horizon, gradient, texture, glow, particles, text, border, labels, duplicates, extra weapons, or scenery. One complete isolated character only.\n\nHARD EXCLUSIONS\nNo legacy RPGThreeJS imagery. No old sprite reconstruction. No Image 1 Knight geometry: no peaked helmet, fur mantle, red shoulder cape, round chest brooch, central red tabard, long symmetrical cloak, pale-gold heraldic motif, vertical/high sword, copied belt, or copied plate arrangement. No painted concept art, retro/chibi anatomy, exposed face, shield, or cropped equipment.",
+    "promptSha256": "4f39033a36dd042d4de71dfe9b9dd6f4990bc6a2b7ef232a531e10b488cb3d72",
+    "sourceImages": [
+      {
+        "path": "docs/art-direction/option-c/character-style-lock/references/character-style-reference-v1.png",
+        "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+        "bytes": 2379980
+      },
+      {
+        "path": "public/assets/dev/option-c/style-seed/runtime-512/style-seed-b-lineup.png",
+        "sha256": "d5ba51cb46f3589dfab4433ed2ceeabe2fbc803514b7e5bdbff6aa7fb46014cd",
+        "bytes": 51783
+      }
+    ]
+  },
+  "response": {
+    "requestId": "req_edc9cd54057e4df4b2d9524d24a3261d",
+    "processingMs": "96773",
+    "date": "Tue, 15 Sep 2026 22:51:14 GMT",
+    "modelReported": null,
+    "created": 1789512674,
+    "usage": {
+      "input_tokens": 3775,
+      "input_tokens_details": {
+        "image_tokens": 2860,
+        "text_tokens": 915
+      },
+      "output_tokens": 14272,
+      "total_tokens": 18047,
+      "output_tokens_details": {
+        "image_tokens": 14272,
+        "text_tokens": 0
+      }
+    },
+    "outputFormat": "png",
+    "quality": "max",
+    "size": "2048x2048"
+  },
+  "output": {
+    "path": "public/assets/dev/option-c/character-masters/alistair/raw/alistair-master-b-attempt-2-sunburst-raw.png",
+    "sha256": "7809cf32fa78a5e99b2e8a1607dcb20b7b9488a3a1111afd2049999970f967d6",
+    "bytes": 3457464,
+    "rawDimensions": [
+      2048,
+      2048
+    ],
+    "mode": "RGB",
+    "normalizedDimensions": null
+  },
+  "status": "SUCCEEDED",
+  "timestampCompleted": "2026-09-15T22:51:13.935670Z",
+  "elapsedSeconds": 98.904
+}

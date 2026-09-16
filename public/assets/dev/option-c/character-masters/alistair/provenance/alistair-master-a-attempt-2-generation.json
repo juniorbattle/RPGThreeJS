@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "ALISTAIR_MASTER_A_ATTEMPT_2",
+  "parentCandidate": null,
+  "timestampStarted": "2026-09-15T22:44:07.543554Z",
+  "mode": "edit",
+  "request": {
+    "endpoint": "/v1/images/edits",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "max",
+    "size": "2048x2048",
+    "background": "opaque",
+    "output_format": "png",
+    "n": 1,
+    "prompt": "INTENDED USE\nCreate one from-scratch playable Character Master for Alistair, a modern premium tactical RPG sprite. This is a new visual interpretation, not a remake of an existing game sprite. This corrected Candidate A must be visibly original and must not inherit the composition or costume of the example Knight in Image 1.\n\nREFERENCE ROLES\nImage 1 is CHARACTER_STYLE_REFERENCE_V1. Use only its abstract artistic language: modern stylized pixel-art sharpness, adult heroic proportions, premium readable materials, discrete value clusters, and clean silhouette hierarchy. It is not a design template. Do not copy any exact character, costume, weapon, ornament, pose, silhouette, garment arrangement, or composition from it.\nImage 2 is STYLE_SEED_B. Use only its technical construction language: 128x128-compatible cluster density, common body-scale discipline, tactical readability, animation-friendly complexity, and restrained detail. Do not copy its Knight.\n\nSUBJECT\nExactly one original Alistair: heavy frontline knight, broad, powerful, stable, authoritative, defensive. Adult heroic anatomy, approximately 7 to 7.5 heads tall beneath armor. Dark neutral steel armor; restrained deep red as a secondary identity accent. Fully closed helmet and visor, no visible skin or face. Large two-handed heavy greatsword, close to standing body height, clearly readable and held plausibly with both gauntlets. No shield.\n\nCORRECTED CANDIDATE A DESIGN\nBuild a distinct fortress-vanguard silhouette. Use a compact low BOX-FACETED closed helmet with a flat chamfered crown, a single narrow horizontal visor slit, and broad side cheek plates. Absolutely no pointed or peaked crown, no central helmet ridge, no plume, no face grill resembling Image 1. Use one large squared viewer-left pauldron and one lower compact viewer-right shoulder guard, with a simple barrel cuirass formed from three large horizontal dark-steel bands. Use broad articulated vambraces, blocky knee plates, and sturdy greaves with few large pieces.\n\nDeep red cloth must NOT form a long symmetrical cape or a central heraldic tabard. Instead use a SHORT structured half-cape attached only behind the viewer-left shoulder, ending around the upper thigh, plus a plain deep-red waist sash with two short side flaps. Keep the center front armor visible. No pale-gold motif, no lion, no animal, no long tattered cloak.\n\nThe greatsword is an original broad slab weapon with a clipped angular tip, short straight guard, dark wrapped grip, and square pommel. Hold it in a calm LOW diagonal guard across the hips, blade extending down toward viewer-right, not raised beside the head and not planted vertically. Keep the tip above the boot soles and the complete sword inside the canvas.\n\nPOSE AND CAMERA\nFull-body neutral combat-ready stance, near-orthographic three-quarter front view, minimal perspective distortion. Feet planted wide but natural on one horizontal foot plane. Torso upright, shoulders level, head neutral. Entire helmet, half-cape, sword, both hands, and both boots visible. No dramatic action, no foreshortening, no crop.\n\nPIXEL CONSTRUCTION\nTrue modern pixel art designed natively for later reconstruction on a 128x128 logical canvas. Deliberate coherent pixel clusters, intentional stepped diagonals, controlled colored contours, discrete value bands, no smooth painterly gradients, no isolated noise, no global dithering. Use 4-6 meaningful values for metal and 3-5 for cloth. Preserve large readable armor planes and animation-ready joints. Premium but restrained, crisp at 400% nearest-neighbor inspection.\n\nGEOMETRY TARGET\nSquare 2048x2048 source. Center the body on x=1024. Put the common foot plane at y=1856. Keep the armored body from helmet top to boot soles approximately 1344 px tall. Keep every visible element at least 128 px from the edge. Do not enlarge the subject merely to fill the canvas.\n\nBACKGROUND AND OUTPUT\nPerfectly flat solid #FF00FF magenta background, edge-to-edge. No texture, gradient, shadow, floor, horizon, glow, particles, text, border, labels, duplicate figure, extra weapons, or scenery. One complete isolated character only.\n\nHARD EXCLUSIONS\nNo legacy RPGThreeJS imagery. No tracing or reconstruction of old sprites. No Image 1 Knight costume structure: no pointed helmet, no fur, no circular chest brooch, no lion emblem, no centered long red tabard, no long symmetrical red cloak, no sword held vertically or high beside the head, no copied belt or plate layout. No painted concept art, no pseudo-pixel filter, no retro/chibi proportions, no exposed face, no shield, no cropped equipment.",
+    "promptSha256": "8b6e3b96a061fdc6542e9d69ce6fc0ef25962ecfc77f2beec784406f1e0ef99a",
+    "sourceImages": [
+      {
+        "path": "docs/art-direction/option-c/character-style-lock/references/character-style-reference-v1.png",
+        "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+        "bytes": 2379980
+      },
+      {
+        "path": "public/assets/dev/option-c/style-seed/runtime-512/style-seed-b-lineup.png",
+        "sha256": "d5ba51cb46f3589dfab4433ed2ceeabe2fbc803514b7e5bdbff6aa7fb46014cd",
+        "bytes": 51783
+      }
+    ]
+  },
+  "response": {
+    "requestId": "req_9ba6af506abc4b8fbc549426cae29882",
+    "processingMs": "99514",
+    "date": "Tue, 15 Sep 2026 22:45:49 GMT",
+    "modelReported": null,
+    "created": 1789512349,
+    "usage": {
+      "input_tokens": 3861,
+      "input_tokens_details": {
+        "image_tokens": 2860,
+        "text_tokens": 1001
+      },
+      "output_tokens": 14272,
+      "total_tokens": 18133,
+      "output_tokens_details": {
+        "image_tokens": 14272,
+        "text_tokens": 0
+      }
+    },
+    "outputFormat": "png",
+    "quality": "max",
+    "size": "2048x2048"
+  },
+  "output": {
+    "path": "public/assets/dev/option-c/character-masters/alistair/raw/alistair-master-a-attempt-2-sunburst-raw.png",
+    "sha256": "62e5b23472f942d7c0dc2f02780d0d971b161840bd6ded67cad422ef62000c59",
+    "bytes": 3812032,
+    "rawDimensions": [
+      2048,
+      2048
+    ],
+    "mode": "RGB",
+    "normalizedDimensions": null
+  },
+  "status": "SUCCEEDED",
+  "timestampCompleted": "2026-09-15T22:45:49.559207Z",
+  "elapsedSeconds": 102.016
+}

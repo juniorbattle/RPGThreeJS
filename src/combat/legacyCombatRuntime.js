@@ -33,13 +33,14 @@ import { resolveCombatStageProfileUniversal, getStageProfileInfo, forceResolveCo
 import { isActionPublished, playActionVfx as playPublishedActionVfx, getPublishedDraft, __devUpdateOverlay, __devClearOverlay, getActiveRegistry } from './vfx/PublishedVfxResolver';
 import { SpriteFrameAnimationController } from '../render/SpriteFrameAnimation';
 import {
-  OPTION_C_ANIMATION_DEFINITIONS,
   OPTION_C_COMBAT_STAGE_BACKGROUND,
-  OPTION_C_PHASE4B_ASSETS,
-  OPTION_C_REQUIRED_IMAGE_URLS,
   OPTION_C_STRATEGIC_BACKGROUND,
+  optionCAnimationDefinitionsFor,
+  optionCProofAssetsFor,
+  optionCRequiredImageUrlsFor,
   isOptionCAnimationState,
 } from '../dev/optionCPhase4b/OptionCPhase4bAssets';
+import { optionCEnvironmentBackground } from '../dev/optionCPhase4b/OptionCEnvironmentRuntime';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
@@ -70,6 +71,10 @@ let QA_FULL_AP=false;
 let QA_DEPLOY_ALL=false;
 let OPTION_C_PROOF_ACTIVE=false;
 let OPTION_C_PROOF_SURFACE='strategic';
+let OPTION_C_PROOF_CHARACTER='kestrel';
+let OPTION_C_PROOF_STRATEGIC_BACKGROUND=OPTION_C_STRATEGIC_BACKGROUND;
+let OPTION_C_PROOF_STAGE_BACKGROUND=OPTION_C_COMBAT_STAGE_BACKGROUND;
+let OPTION_C_PROOF_ENVIRONMENT=null;
 let optionCStageReplayToken=0;
 let COMBAT_ID='standalone';
 let COMBAT_SCENE_ID='forest_route';
@@ -323,6 +328,8 @@ const EXTERNAL_SPRITE_HEIGHTS={
   '/assets/characters/pixel/full/lancer.png':2.12
 };
 async function preloadExternalSprites(){
+  const optionCAssets=optionCProofAssetsFor(OPTION_C_PROOF_CHARACTER);
+  const optionCUrls=optionCRequiredImageUrlsFor(OPTION_C_PROOF_CHARACTER);
   const urls=[...new Set([
     ...CAMPAIGN_SQUAD.map(unit=>unit&&unit.portrait),
     ...DEFS.map(unit=>unit&&unit.portrait),
@@ -330,19 +337,19 @@ async function preloadExternalSprites(){
     ...Object.values(BOSS_PORTRAITS),
     ...Object.values(BOSS_ESCORTS).flat().map(unit=>unit&&unit.portrait),
     ...Object.values(VISUAL_UNIT_TEMPLATES).map(unit=>unit&&unit.portrait),
-    ...(OPTION_C_PROOF_ACTIVE?OPTION_C_REQUIRED_IMAGE_URLS.filter(url=>url.includes('/kestrel/')):[])
-  ].filter(url=>typeof url==='string'&&(url.startsWith('/assets/characters/pixel/full/')||(OPTION_C_PROOF_ACTIVE&&url.startsWith(OPTION_C_PHASE4B_ASSETS.root+'/kestrel/')))))];
+    ...(OPTION_C_PROOF_ACTIVE?optionCUrls:[])
+  ].filter(url=>typeof url==='string'&&(url.startsWith('/assets/characters/pixel/full/')||(OPTION_C_PROOF_ACTIVE&&url.startsWith(optionCAssets.root)))))];
   if(!urls.length)return;
   await Promise.all(urls.map(async url=>{
     if(externalSpriteCache.has(url))return;
     try{
       const tex=await new THREE.TextureLoader().loadAsync(url);
-      tex.colorSpace=THREE.SRGBColorSpace; tex.magFilter=THREE.NearestFilter; tex.minFilter=OPTION_C_PROOF_ACTIVE&&url.startsWith(OPTION_C_PHASE4B_ASSETS.root)?THREE.NearestFilter:THREE.LinearFilter; tex.generateMipmaps=false;
+      tex.colorSpace=THREE.SRGBColorSpace; tex.magFilter=THREE.NearestFilter; tex.minFilter=OPTION_C_PROOF_ACTIVE&&url.startsWith(optionCAssets.root)?THREE.NearestFilter:THREE.LinearFilter; tex.generateMipmaps=false;
       const img=tex.image||{width:640,height:768},h=EXTERNAL_SPRITE_HEIGHTS[url]||2.08,w=Math.min(2.18,Math.max(1.08,img.width/img.height*h));
       externalSpriteCache.set(url,{tex,w,h,ar:w/h,portrait:url,external:true});
     }catch(err){
       console.warn('Sprite externe indisponible',url,err);
-      if(OPTION_C_PROOF_ACTIVE&&url.startsWith(OPTION_C_PHASE4B_ASSETS.root)){
+      if(OPTION_C_PROOF_ACTIVE&&url.startsWith(optionCAssets.root)){
         document.body.dataset.optionCAssetFailure=url;
         window.parent.postMessage({type:'rpg-threejs:option-c-proof-error',asset:url},location.origin);
       }
@@ -961,9 +968,12 @@ function createUnit(def){
     runtimeFrameAnimation:false, frameAnimation:null, frameAnimationUrl:'',
     cell(){ return cellAt(this.gx,this.gz); }
   };
-  if(OPTION_C_PROOF_ACTIVE&&(u.campaignId==='archer'||u.name==='Kestrel')){
+  const optionCFocusMatches=OPTION_C_PROOF_CHARACTER==='alistair'
+    ? (u.campaignId==='warrior'||u.name==='Alistair')
+    : (u.campaignId==='archer'||u.name==='Kestrel');
+  if(OPTION_C_PROOF_ACTIVE&&optionCFocusMatches){
     u.runtimeFrameAnimation=true;
-    u.frameAnimation=new SpriteFrameAnimationController(OPTION_C_ANIMATION_DEFINITIONS,'idle',performance.now());
+    u.frameAnimation=new SpriteFrameAnimationController(optionCAnimationDefinitionsFor(OPTION_C_PROOF_CHARACTER),'idle',performance.now());
   }
   const spriteScale=largeUnitSpriteScale(u);
   u.visualHeight=s.h*spriteScale;
@@ -2016,7 +2026,8 @@ async function combatStageEnter(att,targets,spec,opts){ const presentation=getSk
   const stationaryAttacker=Boolean(att.boss||att.elite);
   if(STAGE_QA_ENABLED){ const info=getStageProfileInfo(spec,presentation); const isSupport=info&&(info.layout==='support_single'||info.layout==='support_group'||info.layout==='self_target'); const dir=att.team==='player'?(isSupport?'L→L':'L→R'):(isSupport?'R→R':'R→L'); if(info)console.log('[Stage QA] '+spec.key+' → '+info.id+(info.explicit?' (explicit)':' (generic)')+' layout='+info.layout+' impact='+info.impactAnchor+' source='+(att.team||'?')+' dir='+dir+(stationaryAttacker?' [stationary]':'')); }
   if(att.runtimeFrameAnimation&&att.frameAnimation)att.frameAnimation.play('attack',performance.now());
-  await Promise.all([wait(feel.stageLeadIn),combatStage.enter(att,targets,spec,{reducedGraphics:REDUCED_GRAPHICS,environmentId:COMBAT_SCENE_ID,profile:stageProfile,sourceTeam:att.team,stationaryAttacker,...(OPTION_C_PROOF_ACTIVE?{backgroundOverride:OPTION_C_COMBAT_STAGE_BACKGROUND}:{})})]); }
+  await Promise.all([wait(feel.stageLeadIn),combatStage.enter(att,targets,spec,{reducedGraphics:REDUCED_GRAPHICS,environmentId:COMBAT_SCENE_ID,profile:stageProfile,sourceTeam:att.team,stationaryAttacker,...(OPTION_C_PROOF_ACTIVE?{backgroundOverride:OPTION_C_PROOF_STAGE_BACKGROUND}:{})})]);
+  if(OPTION_C_PROOF_ACTIVE&&OPTION_C_PROOF_SURFACE==='combat-stage')markOptionCEnvironmentReady(); }
 async function combatStageExit(){
   killTweens(Grade.uniforms.vig); tween(Grade.uniforms.vig,{value:COMBAT_PRESENTATION.grade.vignette},0.5,easeInOut);
   if(stageVigEl)stageVigEl.classList.remove('on'); if(stageTitleEl)stageTitleEl.classList.remove('on'); if(dom.ui)dom.ui.classList.remove('staging');
@@ -2460,24 +2471,28 @@ function qaPrepareCombat(){
   autoDeploy();
   beginBattle();
 }
-function optionCKestrelUnit(){return G.units.find(unit=>unit.alive&&(unit.campaignId==='archer'||unit.name==='Kestrel'))||null;}
+function optionCFocusUnit(){
+  return G.units.find(unit=>unit.alive&&(OPTION_C_PROOF_CHARACTER==='alistair'
+    ? (unit.campaignId==='warrior'||unit.name==='Alistair')
+    : (unit.campaignId==='archer'||unit.name==='Kestrel')))||null;
+}
 function setOptionCAnimation(state){
-  const kestrel=optionCKestrelUnit();
-  if(!kestrel||!kestrel.frameAnimation||!isOptionCAnimationState(state))return false;
-  kestrel.frameAnimation.play(state,performance.now());
+  const focus=optionCFocusUnit();
+  if(!focus||!focus.frameAnimation||!isOptionCAnimationState(state))return false;
+  focus.frameAnimation.play(state,performance.now());
   document.body.dataset.optionCRequestedAnimation=state;
   return true;
 }
 function prepareOptionCStrategicProof(){
   qaPrepareCombat();
-  const kestrel=optionCKestrelUnit();
-  if(kestrel)selectUnit(kestrel);
+  const focus=optionCFocusUnit();
+  if(focus)selectUnit(focus);
   dom.tutorial?.classList.add('hidden'); dom.bossTutorial?.classList.add('hidden');
   document.body.dataset.optionCProofSurface='strategic';
 }
 async function playOptionCStageProof(replayToken){
   qaPrepareCombat();
-  const owner=optionCKestrelUnit();
+  const owner=optionCFocusUnit();
   const target=aliveUnits('foe')[0];
   if(!owner||!target||OPTION_C_PROOF_SURFACE!=='combat-stage'||replayToken!==optionCStageReplayToken)return;
   const gx=inBounds(target.gx-1,target.gz)?target.gx-1:owner.gx;
@@ -2493,14 +2508,67 @@ async function playOptionCStageProof(replayToken){
     window.setTimeout(()=>void playOptionCStageProof(replayToken),650);
   }
 }
-function handleOptionCProofCommand(message){
+function optionCEnvironmentFromMessage(surface,message){
+  const environment=message&&message.environment;
+  const expectedRole=surface==='strategic'?'STRATEGIC_COMBAT':'COMBAT_STAGE';
+  if(!environment||typeof environment!=='object')return null;
+  if(environment.surfaceRole!==expectedRole)return null;
+  if(typeof environment.contextId!=='string'||!environment.contextId.startsWith('combat:'))return null;
+  if(typeof environment.assetId!=='string'||!/^[a-z0-9_]+$/.test(environment.assetId))return null;
+  if(typeof environment.visualFamily!=='string')return null;
+  if(typeof environment.url!=='string'||!environment.url.startsWith('/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/'))return null;
+  return {...environment,surface};
+}
+function markOptionCEnvironmentReady(){
+  const environment=OPTION_C_PROOF_ENVIRONMENT;
+  if(!environment)return;
+  document.body.dataset.optionCEnvironmentReady='true';
+  document.body.dataset.optionCEnvironmentContext=environment.contextId;
+  document.body.dataset.optionCEnvironmentAsset=environment.assetId;
+  document.body.dataset.optionCEnvironmentFamily=environment.visualFamily;
+  document.body.dataset.optionCEnvironmentUrl=environment.url;
+  window.parent.postMessage({
+    type:'rpg-threejs:option-c-environment-ready',
+    contextId:environment.contextId,
+    assetId:environment.assetId,
+    url:environment.url
+  },location.origin);
+}
+function reportOptionCEnvironmentFailure(environment,error){
+  document.body.dataset.optionCEnvironmentReady='false';
+  window.parent.postMessage({type:'rpg-threejs:option-c-proof-error',asset:environment.url,error:String(error)},location.origin);
+}
+async function handleOptionCProofCommand(message){
   if(!OPTION_C_PROOF_ACTIVE||!message||message.type!=='rpg-threejs:option-c-proof-command')return;
   if(message.surface!=='strategic'&&message.surface!=='combat-stage')return;
+  const environment=optionCEnvironmentFromMessage(message.surface,message);
+  if(!environment){
+    window.parent.postMessage({type:'rpg-threejs:option-c-proof-error',asset:'invalid-environment-mapping'},location.origin);
+    return;
+  }
   OPTION_C_PROOF_SURFACE=message.surface;
+  OPTION_C_PROOF_ENVIRONMENT=environment;
   optionCStageReplayToken++;
+  document.body.dataset.optionCEnvironmentReady='false';
   setOptionCAnimation(isOptionCAnimationState(message.animation)?message.animation:'idle');
-  if(message.surface==='strategic')prepareOptionCStrategicProof();
-  else void playOptionCStageProof(optionCStageReplayToken);
+  try{
+    const background=optionCEnvironmentBackground(environment);
+    if(message.surface==='strategic'){
+      OPTION_C_PROOF_STRATEGIC_BACKGROUND=background;
+      await G.backgroundLayers.load(OPTION_C_PROOF_STRATEGIC_BACKGROUND);
+      prepareOptionCStrategicProof();
+      markOptionCEnvironmentReady();
+    }else{
+      OPTION_C_PROOF_STAGE_BACKGROUND=background;
+      const layer=background.layers&&background.layers[0];
+      const grounding=background.combatStageGrounding;
+      document.body.dataset.optionCCombatStageFit=layer?JSON.stringify({position:layer.position,size:layer.size}):'';
+      document.body.dataset.optionCCombatStageGrounding=grounding?JSON.stringify(grounding):'';
+      void playOptionCStageProof(optionCStageReplayToken).catch(error=>reportOptionCEnvironmentFailure(environment,error));
+    }
+  }catch(error){
+    reportOptionCEnvironmentFailure(environment,error);
+  }
 }
 function qaMotionUnit(preferBoss=false){ return (preferBoss?aliveUnits().find(unit=>unit.boss||unit.elite):null)||G.active&&G.active.alive&&G.active||aliveUnits('foe')[0]||aliveUnits('player')[0]||aliveUnits()[0]||null; }
 function clearQaBossIntentPreview(){ for(const unit of G.units){ unit._bossIntentPreview=undefined; clearBossIntentPresentation(unit); } }
@@ -2659,7 +2727,7 @@ function buildLabPlaybackContext(){
   };
 }
 async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); document.body.classList.toggle('option-c-phase4b-combat',OPTION_C_PROOF_ACTIVE); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); disposeVfxComposerPanel=installVfxComposerPanel({enabled:VFX_LAB_ENABLED,playback:VFX_LAB_ENABLED?buildLabPlaybackContext():undefined}); installUnitMotionWorkbench({enabled:MOTION_QA_ENABLED,play:playQaMotionScenario,reset:resetQaMotion}); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none';
-  if(OPTION_C_PROOF_ACTIVE){document.body.dataset.optionCProofReady='true';prepareOptionCStrategicProof();addEventListener('message',event=>{if(event.source===window.parent&&event.origin===location.origin)handleOptionCProofCommand(event.data);});}
+  if(OPTION_C_PROOF_ACTIVE){document.body.dataset.optionCProofCharacter=OPTION_C_PROOF_CHARACTER;document.body.dataset.optionCProofReady='true';prepareOptionCStrategicProof();addEventListener('message',event=>{if(event.source===window.parent&&event.origin===location.origin)handleOptionCProofCommand(event.data);});}
   // DEV QA: expose published VFX resolver functions for Playwright testing
   // Read-only helpers are always available; mutation helpers are DEV-gated.
   const _DEV_QA=VFX_LAB_ENABLED||QA_ENABLED||STAGE_QA_ENABLED;
@@ -2779,6 +2847,7 @@ function bootCampaign(message){
   QA_FULL_AP=QA_ENABLED&&message.qaFullAp===true;
   QA_DEPLOY_ALL=QA_ENABLED&&message.qaDeployAll===true;
   OPTION_C_PROOF_ACTIVE=OPTION_C_PROOF_ROUTE&&message.devOptionCProof===true;
+  OPTION_C_PROOF_CHARACTER=message.devOptionCProofCharacter==='alistair'?'alistair':'kestrel';
   IS_BOSS_COMBAT=!!message.config.isBoss; BOSS_SPAWNED=false;
   ENCOUNTER_ENEMY_VISUAL_IDS=Array.isArray(message.config.enemyVisualIds)?message.config.enemyVisualIds:[];
   ENCOUNTER_BOSS_VISUAL_ID=message.config.bossVisualId||'';

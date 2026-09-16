@@ -5,7 +5,8 @@ import {
   toCombatResult,
   type CombatInitializeMessage,
 } from './protocol';
-import type { OptionCAnimationState, OptionCProofSurface } from '../dev/optionCPhase4b/OptionCPhase4bAssets';
+import type { OptionCAnimationState, OptionCProofCharacter, OptionCProofSurface } from '../dev/optionCPhase4b/OptionCPhase4bAssets';
+import type { ResolvedOptionCEnvironment } from '../dev/optionCPhase4b/OptionCEnvironmentRuntime';
 
 interface CombatSession {
   config: CombatConfig;
@@ -17,6 +18,7 @@ interface CombatSession {
   qaFullAp?: boolean;
   qaDeployAll?: boolean;
   devOptionCProof?: boolean;
+  devOptionCProofCharacter?: OptionCProofCharacter;
 }
 
 interface CombatStart {
@@ -89,12 +91,23 @@ export class CombatBridge {
     this.close();
   }
 
-  sendDevOptionCProofCommand(surface: OptionCProofSurface, animation: OptionCAnimationState): void {
+  sendDevOptionCProofCommand(
+    surface: OptionCProofSurface,
+    animation: OptionCAnimationState,
+    environment?: ResolvedOptionCEnvironment,
+  ): void {
     if (!import.meta.env.DEV || !this.session?.devOptionCProof) return;
     this.iframe?.contentWindow?.postMessage({
       type: 'rpg-threejs:option-c-proof-command',
       surface,
       animation,
+      environment: environment ? {
+        contextId: environment.contextId,
+        visualFamily: environment.visualFamily,
+        surfaceRole: environment.surfaceRole,
+        assetId: environment.assetId,
+        url: environment.url,
+      } : undefined,
     }, window.location.origin);
   }
 
@@ -113,6 +126,7 @@ export class CombatBridge {
         qaFullAp: Boolean(this.session.qaFullAp && import.meta.env.DEV),
         qaDeployAll: Boolean(this.session.qaDeployAll && import.meta.env.DEV),
         devOptionCProof: Boolean(this.session.devOptionCProof && import.meta.env.DEV),
+        devOptionCProofCharacter: this.session.devOptionCProofCharacter ?? 'kestrel',
       };
       this.iframe?.contentWindow?.postMessage(message, window.location.origin);
       return;

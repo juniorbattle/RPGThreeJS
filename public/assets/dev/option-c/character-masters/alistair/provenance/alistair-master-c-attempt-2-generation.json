@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "ALISTAIR_MASTER_C_ATTEMPT_2",
+  "parentCandidate": null,
+  "timestampStarted": "2026-09-15T22:54:56.330090Z",
+  "mode": "edit",
+  "request": {
+    "endpoint": "/v1/images/edits",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "max",
+    "size": "2048x2048",
+    "background": "opaque",
+    "output_format": "png",
+    "n": 1,
+    "prompt": "INTENDED USE\nCreate one from-scratch playable Character Master for Alistair, a modern premium tactical RPG sprite. This corrected Candidate C must be a visibly original knight design and must not reproduce any example character from Image 1.\n\nREFERENCE ROLES\nImage 1 supplies only abstract artistic standards: premium modern pixel sharpness, adult heroic proportions, clean silhouette, readable materials, disciplined value clusters, and controlled sophistication. Ignore all literal Knight design information in Image 1.\nImage 2 supplies only technical standards: 128x128-compatible cluster density, shared-scale discipline, tactical readability, and animation-friendly construction. Do not copy its Knight.\n\nSUBJECT\nExactly one original Alistair: heavy frontline knight, broad, powerful, stable, authoritative. Dark neutral steel, restrained deep red, fully closed helmet with no visible skin, and one large two-handed heavy greatsword close to standing body height. Adult heroic anatomy, approximately 7 to 7.5 heads tall beneath armor. No shield.\n\nCORRECTED CANDIDATE C DESIGN\nCreate a refined segmented vanguard. Helmet: a LOW WIDE FACETED BARREL HELM with a flat polygonal crown, flared neck collar, rectangular black letterbox visor, and two tiny horizontal breathing slots low on each cheek. No point, peak, ridge, crest, horns, fins, plume, face grill, or gold face frame.\n\nArmor: overlapping dark-steel CHEVRON chest plates, compact hexagonal shoulder caps, broad articulated forearms, large trapezoid knee cops, and straight greaves. Add restrained premium detail as three narrow muted-brass inlay lines on the cuirass and matching geometric corner accents on knees and guard. No medallions, round brooches, animal symbols, lion motif, chains, tassels, or excessive rivets.\n\nTextile: absolutely NO cape, mantle, scarf across shoulders, or fabric behind the legs. Deep-red identity cloth is a sleeveless under-tunic visible at the upper arms and waist, then four structured tabard panels attached below the belt: two front-side panels and two rear-side panels, all ending above the knees. The central front remains open, exposing the armored fauld. Panels use one simple dark border with no pale-gold heraldry.\n\nWeapon: a broad leaf-taper two-handed greatsword with a shallow central ridge, compact angular dark-steel guard with small brass corner inlays, long wrapped grip, and heavy disk pommel. Hold it in a low diagonal guard across the thighs, blade extending down toward viewer-left, with its tip above the boot soles. Entire weapon visible and mechanically held by both gauntlets. Never raise it beside the head or plant it vertically.\n\nPOSE AND CAMERA\nFull-body neutral combat-ready stance, near-orthographic three-quarter front, minimal perspective distortion. Feet planted wide but natural on one horizontal plane. Upright torso, level shoulders, neutral head. Entire helmet, textile panels, sword, both hands, and both boots visible. No dramatic action, foreshortening, or crop.\n\nPIXEL CONSTRUCTION\nTrue modern pixel art for later 128x128 logical reconstruction. Deliberate coherent pixel clusters, controlled stepped contours, discrete value bands, compact selective highlights, no painterly gradients, isolated noise, global dithering, or fake pixel filter. Use 4-6 metal values and 3-5 cloth values. Readable large armor planes, clear material boundaries, animation-ready joint separation, premium but tactically legible at small scale and crisp at 400% nearest-neighbor inspection.\n\nGEOMETRY TARGET\nSquare 2048x2048 source. Center the body on x=1024. Put the foot plane at y=1856. Helmet top to boot soles approximately 1344 px. Keep every element at least 128 px from the edge. Do not enlarge merely to fill.\n\nBACKGROUND AND OUTPUT\nPerfectly flat solid #FF00FF magenta background, edge-to-edge. No texture, gradient, shadow, floor, horizon, glow, particles, text, border, labels, duplicate, extra weapons, or scenery. One complete isolated character only.\n\nHARD EXCLUSIONS\nNo legacy RPGThreeJS imagery. No old sprite reconstruction. No Image 1 Knight geometry: no pointed helmet, fur, shoulder cape, long cloak, circular chest brooches, central red heraldic tabard, gold animal emblem, raised/vertical sword, copied belt, or copied plate layout. No painted concept art, retro/chibi proportions, exposed face, shield, or cropped equipment.",
+    "promptSha256": "1296b9ef7349fb18a1c1a6c7438f8f477a981d9f9880b0be5c9bb0437a77f850",
+    "sourceImages": [
+      {
+        "path": "docs/art-direction/option-c/character-style-lock/references/character-style-reference-v1.png",
+        "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+        "bytes": 2379980
+      },
+      {
+        "path": "public/assets/dev/option-c/style-seed/runtime-512/style-seed-b-lineup.png",
+        "sha256": "d5ba51cb46f3589dfab4433ed2ceeabe2fbc803514b7e5bdbff6aa7fb46014cd",
+        "bytes": 51783
+      }
+    ]
+  },
+  "response": {
+    "requestId": "req_28dbd6a395da427a8ca00c97f92893e3",
+    "processingMs": "97851",
+    "date": "Tue, 15 Sep 2026 22:56:37 GMT",
+    "modelReported": null,
+    "created": 1789512996,
+    "usage": {
+      "input_tokens": 3818,
+      "input_tokens_details": {
+        "image_tokens": 2860,
+        "text_tokens": 958
+      },
+      "output_tokens": 14272,
+      "total_tokens": 18090,
+      "output_tokens_details": {
+        "image_tokens": 14272,
+        "text_tokens": 0
+      }
+    },
+    "outputFormat": "png",
+    "quality": "max",
+    "size": "2048x2048"
+  },
+  "output": {
+    "path": "public/assets/dev/option-c/character-masters/alistair/raw/alistair-master-c-attempt-2-sunburst-raw.png",
+    "sha256": "b708c5fea36309da2df75d53f88bfb36beec8e187c9ae70bc9011be734877667",
+    "bytes": 3702434,
+    "rawDimensions": [
+      2048,
+      2048
+    ],
+    "mode": "RGB",
+    "normalizedDimensions": null
+  },
+  "status": "SUCCEEDED",
+  "timestampCompleted": "2026-09-15T22:56:37.069333Z",
+  "elapsedSeconds": 100.739
+}

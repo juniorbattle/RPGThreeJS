@@ -6,6 +6,10 @@ import { combatInitializeMessageSchema } from '../../combat/protocol';
 import { toCombatant } from '../../game/catalog';
 import { combatConfigs } from '../../game/content';
 import { createInitialState } from '../../game/store';
+import {
+  configureTravelProofState,
+  OPTION_C_TABLEAU_PROOF_CASES,
+} from './OptionCPhase4bProof';
 
 interface RuntimeAssetEntry {
   source: string;
@@ -73,5 +77,31 @@ describe('Option C Phase 4B runtime proof integration', () => {
       reducedGraphics: false,
     });
     expect(parsed.devOptionCProof).toBe(false);
+  });
+
+  it('drives TravelView proof content from real production graph edges', () => {
+    const cases = [
+      ['edge:lion-camp>lion-audience', 'lion-camp', 'lion-audience'],
+      ['edge:lion-audience>lion-opening-ambush', 'lion-audience', 'lion-opening-ambush'],
+      ['edge:lion-second-trial-event>lion-village-choice', 'lion-second-trial-event', 'lion-village-choice'],
+      ['edge:lion-final-refuge>lion-final-judgement', 'lion-final-refuge', 'lion-final-judgement'],
+    ] as const;
+    for (const [contextId, currentNodeId, destinationId] of cases) {
+      const state = createInitialState();
+      const result = configureTravelProofState(state, contextId);
+      expect(result.currentNodeId).toBe(currentNodeId);
+      expect(result.destinationNodeIds).toContain(destinationId);
+      expect(state.run.currentNodeId).toBe(currentNodeId);
+      expect(state.run.revealedNodeIds).toContain(destinationId);
+    }
+  });
+
+  it('pins authored one-through-four actor tableau proof cases', () => {
+    expect(OPTION_C_TABLEAU_PROOF_CASES).toEqual({
+      '1-actor': { dialogueId: 'lion_finale_judgement', expectedCastCount: 1 },
+      '2-actors': { dialogueId: 'ate_alaric_reports', expectedCastCount: 2 },
+      '3-actors': { dialogueId: 'post_opening_trail', expectedCastCount: 3 },
+      '4-actors': { dialogueId: 'lion_briefing', expectedCastCount: 4 },
+    });
   });
 });

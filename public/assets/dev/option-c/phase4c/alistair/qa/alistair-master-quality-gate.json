@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "artStatus": "FINAL_PRODUCTION_CANDIDATE",
+  "productionApproved": false,
+  "requiredModel": "gpt-image-2.5-sunburst-2026-09-08",
+  "requiredQuality": "max",
+  "fallbackUsed": false,
+  "masterGenerationAttempts": 3,
+  "selectedMasterCandidate": "alistair-master-candidate-a003-chroma",
+  "selectedMasterSource": "public/assets/dev/option-c/phase4c/alistair/master/alistair-master-candidate-a003-isolated.png",
+  "selectedMasterSourceSha256": "c7e2696d33ed5338f2ad1a27eb06ca93a574d0690ed15ad9595edbd062ab4877",
+  "selectedMasterNormalized": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-master.png",
+  "selectedMasterNormalizedSha256": "39b856e297221f8df514173b9e741d943c522a0ed557c13ceaaf27573a1ed4d9",
+  "masterAttempts": [
+    {
+      "candidateId": "alistair-master-sunburst-max-a001",
+      "status": "REJECTED",
+      "defect": "Black/red semi-transparent vignette and haze; alpha touched left and bottom edges.",
+      "cause": "Native transparent generation retained backdrop matte content.",
+      "correctionIntent": "Target alpha isolation and margin only."
+    },
+    {
+      "candidateId": "alistair-master-candidate-a002",
+      "status": "REJECTED",
+      "defect": "Semi-transparent backdrop and halo remained; no fully opaque subject pixels.",
+      "cause": "Second native-alpha edit still did not yield trustworthy isolation.",
+      "correctionIntent": "Use an exact flat magenta source for deterministic local isolation."
+    },
+    {
+      "candidateId": "alistair-master-candidate-a003-chroma",
+      "status": "SELECTED",
+      "defect": null,
+      "cause": null,
+      "correctionIntent": "Deterministic chroma isolation and one bounded magenta-edge cleanup ring."
+    }
+  ],
+  "hardGates": {
+    "IDENTITY_FIDELITY": "PASS",
+    "SILHOUETTE": "PASS",
+    "WEAPON": "PASS",
+    "ARMOR": "PASS",
+    "PALETTE": "PASS",
+    "PROPORTIONS": "PASS",
+    "HANDS": "PASS",
+    "FEET": "PASS",
+    "ALPHA": "PASS",
+    "PIXEL_LANGUAGE": "PASS",
+    "OPTION_C_STYLE": "PASS"
+  },
+  "alphaEvidence": {
+    "mode": "RGBA",
+    "dimensions": [512, 512],
+    "alphaBoundingBox": [92, 110, 417, 471],
+    "edgeNonzeroPixels": 0,
+    "minimumEdgeClearance": 41,
+    "partialAlphaPixels": 10042,
+    "opaquePixels": 45623,
+    "status": "PASS"
+  },
+  "notes": [
+    "The native alpha path was rejected twice; solid-magenta generation plus deterministic local isolation was selected.",
+    "The master retains the canonical closed helmet, burgundy plume/cloth, blackened plate/mail, brown harness, restrained brass ornaments, and oversized two-handed greatsword with no shield."
+  ]
+}
+

@@ -1,0 +1,11 @@
+{
+  "target": "asset",
+  "mode": "single",
+  "prompt": "",
+  "role": "",
+  "input": "public\\assets\\dev\\option-c\\phase4c\\alistair\\poses\\dash\\alistair-dash-key-pose-a003-chroma-raw.png",
+  "threshold": 80,
+  "edge_threshold": 180,
+  "duration": 200,
+  "single_size": 2048
+}

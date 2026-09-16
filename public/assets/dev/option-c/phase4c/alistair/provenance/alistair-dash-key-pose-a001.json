@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "alistair-dash-key-pose-a001-chroma",
+  "selection": {
+    "status": "REJECTED",
+    "defect": "Helmet, torso, shoulders, arms, thighs, and boots read materially larger than the other poses after one shared scale was applied.",
+    "cause": "Source-generation anatomical drift was hidden by the first per-pose height normalizer.",
+    "correctionIntent": "Repose the approved master with the rejected image used for motion only; enforce master anatomy and equipment scale."
+  },
+  "parentCandidate": "alistair-master-candidate-a003-isolated",
+  "timestampStarted": "2026-09-15T06:35:39.139884Z",
+  "mode": "edit",
+  "request": {
+    "endpoint": "/v1/images/edits",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "max",
+    "size": "2048x2048",
+    "background": "opaque",
+    "output_format": "png",
+    "n": 1,
+    "prompt": "Use case: precise-object-edit\nAsset type: DEV-only Option C Alistair DASH key pose\nPrimary request: Repose the exact Alistair from Image 1 into a committed grounded battlefield dash toward screen-right. Preserve his identity, anatomy, armor construction, weapon construction, palette, proportions, pixel density, and rendering language exactly. Image 2 is the original canonical source and resolves identity ambiguity. If Image 3 is present, use it only for heavy grounded motion and cloth-response lessons, never for identity or equipment.\nAction: strong forward body compression and drive, torso leaning into screen-right, leading knee bent and clearly advancing, rear armored leg pushing from the ground, feet readable and movement direction unmistakable. Keep the same oversized two-handed greatsword controlled close to the body and trailing diagonally behind the movement so it cannot be mistaken for a jump or attack release. Cape and plume respond backward to momentum without becoming effects.\nSubject invariants: fully enclosed angular helmet with dark eye slit and vented face plate; swept burgundy plume; blackened articulated plate and mail; asymmetrical layered/spiked pauldron; burgundy/crimson scarf, mantle, cape and tabard; brown cross-body harness; restrained radial brass/old-gold ornaments; identical greatsword length, width, guard, grip and pommel; two hands and two complete armored feet.\nComposition: one full-body character, clear screen-right travel silhouette, centered by body mass. Keep the complete plume, sword, cape, tabard, hands and feet inside the frame with at least 8 percent uninterrupted background clearance from every edge. Preserve the master body scale and head-to-body ratio.\nBackground: exactly flat fully opaque RGB #FF00FF over the entire canvas; no gradient, texture, floor, shadow, halo, haze, glow, scenery or checkerboard.\nStyle: premium modern HD-2D high-density pixel-art RPG character, crisp intentional clusters and controlled colored outlines, strong material separation, selective metal highlights, matte cloth/leather, no painterly softness and no generic 3D render look.\nConstraints: this is a grounded dash, not a platformer jump; exactly one Alistair and one greatsword; two hands remain plausibly related to the weapon; no shield; no exposed face; no emerald; no VFX; no speed lines; no dust; no particles; no text, UI, label, logo or watermark; no duplicate limbs or weapon; no crop; no edge contact.",
+    "promptSha256": "091455dac4a314dceb06598c9f40a386f57fef528e03b2eb4d6faa12b14d5675",
+    "sourceImages": [
+      {
+        "path": "public/assets/dev/option-c/phase4c/alistair/master/alistair-master-candidate-a003-isolated.png",
+        "sha256": "c7e2696d33ed5338f2ad1a27eb06ca93a574d0690ed15ad9595edbd062ab4877",
+        "bytes": 3215173
+      },
+      {
+        "path": "public/assets/characters/pixel/full/alistair.png",
+        "sha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+        "bytes": 438093
+      }
+    ]
+  },
+  "response": {
+    "requestId": "req_8b61d10e0fe34324b7f338efeb769ad6",
+    "processingMs": "121524",
+    "date": "Tue, 15 Sep 2026 06:37:42 GMT",
+    "modelReported": null,
+    "created": 1789454262,
+    "usage": {
+      "input_tokens": 2917,
+      "input_tokens_details": {
+        "image_tokens": 2385,
+        "text_tokens": 532
+      },
+      "output_tokens": 14272,
+      "total_tokens": 17189,
+      "output_tokens_details": {
+        "image_tokens": 14272,
+        "text_tokens": 0
+      }
+    },
+    "outputFormat": "png",
+    "quality": "max",
+    "size": "2048x2048"
+  },
+  "output": {
+    "path": "public/assets/dev/option-c/phase4c/alistair/poses/dash/alistair-dash-key-pose-a001-chroma-raw.png",
+    "sha256": "a02c8b95c3c4885f1023be3fb0a52522e103d560f02f9eace87fb38eae905a9e",
+    "bytes": 4596147,
+    "rawDimensions": [
+      2048,
+      2048
+    ],
+    "mode": "RGB",
+    "normalizedDimensions": null
+  },
+  "status": "SUCCEEDED",
+  "timestampCompleted": "2026-09-15T06:37:43.011639Z",
+  "elapsedSeconds": 123.872,
+  "normalization": {
+    "status": "SUPERSEDED",
+    "note": "Historical A001 measurements; the referenced normalized output path now contains selected A002.",
+    "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-dash.png",
+    "sha256": "9a0041fc68da0a132533a63be021e7042b38ebf40d639d65323cfa5ef1fef8b5",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      61,
+      158,
+      422,
+      471
+    ],
+    "visibleWidth": 361,
+    "bodyHeight": 269,
+    "expectedBodyHeightAtSharedScale": 267,
+    "poseCompressionRatio": 0.824195,
+    "footBaseline": 470,
+    "pivotX": 255.53,
+    "headTop": 201,
+    "headCenter": [
+      298.88,
+      230.93
+    ],
+    "bodyCenter": [
+      269.92,
+      329.4
+    ],
+    "weapon": {
+      "tip": [
+        65.24,
+        228.99
+      ],
+      "grip": [
+        233.23,
+        290.78
+      ],
+      "pommel": [
+        260.27,
+        308.16
+      ]
+    },
+    "edgeClearance": {
+      "left": 61,
+      "top": 158,
+      "right": 90,
+      "bottom": 41
+    },
+    "alpha": {
+      "minimum": 0,
+      "maximum": 255,
+      "transparentPixels": 199969,
+      "partialPixels": 10210,
+      "opaquePixels": 51965,
+      "edgeNonzeroPixels": 0
+    }
+  }
+}

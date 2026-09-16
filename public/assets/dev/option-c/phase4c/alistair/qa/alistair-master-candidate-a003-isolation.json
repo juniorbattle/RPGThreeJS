@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "method": "bounded-magenta-edge-ring-removal",
+  "input": "public/assets/dev/option-c/phase4c/alistair/master/alistair-master-candidate-a003-key180/clean.png",
+  "inputSha256": "50ac7b36befa4086a03bbf6a5c16d6e38b855872c363608c8a58b1ff9bbe5483",
+  "output": "public/assets/dev/option-c/phase4c/alistair/master/alistair-master-candidate-a003-isolated.png",
+  "outputSha256": "c7e2696d33ed5338f2ad1a27eb06ca93a574d0690ed15ad9595edbd062ab4877",
+  "distanceThreshold": 220.0,
+  "rings": 1,
+  "removedPixelsByRing": [
+    12632
+  ],
+  "alphaBBoxBefore": [
+    194,
+    102,
+    1854,
+    1945
+  ],
+  "alphaBBoxAfter": [
+    194,
+    102,
+    1854,
+    1945
+  ],
+  "alphaPixelsBefore": 1395656,
+  "alphaPixelsAfter": 1383024
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "method": "bounded-magenta-edge-ring-removal",
+  "input": "public/assets/dev/option-c/phase4c/alistair/poses/dash/a001-processed/clean.png",
+  "inputSha256": "24a7829c2f95d3b86807f48f6d51cb9d6662cf11f8b48ccc9fa6398c7a1ee267",
+  "output": "public/assets/dev/option-c/phase4c/alistair/poses/dash/alistair-dash-key-pose-a001-isolated.png",
+  "outputSha256": "7b82b48deaa629dd46ee99c55e5b908aed1ca298e87884e20c10217b03d19cdd",
+  "distanceThreshold": 220.0,
+  "rings": 1,
+  "removedPixelsByRing": [
+    14742
+  ],
+  "alphaBBoxBefore": [
+    102,
+    227,
+    1945,
+    1821
+  ],
+  "alphaBBoxAfter": [
+    102,
+    227,
+    1945,
+    1821
+  ],
+  "alphaPixelsBefore": 1571921,
+  "alphaPixelsAfter": 1557179
+}

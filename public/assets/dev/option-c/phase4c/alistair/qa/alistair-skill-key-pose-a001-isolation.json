@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "method": "bounded-magenta-edge-ring-removal",
+  "input": "public/assets/dev/option-c/phase4c/alistair/poses/skill/a001-processed/clean.png",
+  "inputSha256": "e11ea2b07443c559dd7ba94daacceb7e5347621c5ea9bc243d36a3f5e5d20932",
+  "output": "public/assets/dev/option-c/phase4c/alistair/poses/skill/alistair-skill-key-pose-a001-isolated.png",
+  "outputSha256": "8296eb6d88335661f3cfbcdd96ebf2b436489a2dc8304dcbea3b3f68f869726f",
+  "distanceThreshold": 220.0,
+  "rings": 1,
+  "removedPixelsByRing": [
+    16112
+  ],
+  "alphaBBoxBefore": [
+    102,
+    261,
+    1945,
+    1787
+  ],
+  "alphaBBoxAfter": [
+    102,
+    261,
+    1945,
+    1787
+  ],
+  "alphaPixelsBefore": 1080658,
+  "alphaPixelsAfter": 1064546
+}

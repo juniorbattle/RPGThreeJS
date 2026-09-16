@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "alistair-master-candidate-a002",
+  "parentCandidate": "alistair-master-sunburst-max-a001",
+  "selection": {
+    "status": "REJECTED",
+    "defect": "Semi-transparent backdrop and halo remained; no fully opaque subject pixels.",
+    "cause": "A second native-alpha edit still did not produce trustworthy isolation.",
+    "correctionIntent": "Switch to a flat #FF00FF source and deterministic local chroma isolation."
+  },
+  "timestampStarted": "2026-09-15T06:08:19.872410Z",
+  "mode": "edit",
+  "request": {
+    "endpoint": "/v1/images/edits",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "max",
+    "size": "2048x2048",
+    "background": "transparent",
+    "output_format": "png",
+    "n": 1,
+    "prompt": "Use case: precise-object-edit\nAsset type: targeted correction of the DEV-only Option C Alistair character master\nPrimary request: Correct only the transparent isolation and canvas margin of Image 1. Preserve the Alistair character design and rendering exactly. Remove every background pixel, vignette, red haze, aura, glow, floor, and contact shadow. The space outside the character must have alpha 0. Uniformly scale the complete character down just enough to create a clean minimum margin on all four sides while keeping the body centered by mass. Do not redesign, repaint, simplify, or change the pose.\nInput images: Image 1 is the A001 edit target; Image 2 is the canonical identity authority used only to prevent identity drift.\nScene/backdrop: genuinely empty transparent RGBA canvas; no visible or semi-transparent backdrop content.\nSubject invariants: exactly the same fully enclosed helmet, dark eye slit, vented face plate, swept burgundy plume, blackened articulated plate and mail, asymmetrical layered/spiked pauldron, red mantle/cape/tabard, brown cross-body harness, radial brass/old-gold ornaments, two gauntleted hands, oversized two-handed greatsword, wide grounded stance, and complete articulated boots as Image 1.\nComposition/framing: retain the same three-quarter full-body pose and orientation. Fit the entire plume, sword tip, cape, tabard, gauntlets, and both feet inside the frame with at least 7 percent transparent clearance from every canvas edge. No crop and no edge contact.\nStyle/medium: preserve the existing premium modern HD-2D high-density pixel-art rendering, crisp controlled clusters and outlines, selective metal response, matte cloth/leather, and current lighting on the character.\nColor palette: unchanged canonical blackened steel, silver highlights, burgundy/crimson cloth, dark brown leather, restrained brass/old-gold. No emerald.\nConstraints: change only background isolation and uniform subject scale/placement; transparent PNG; keep exactly one character and one greatsword; no new content.\nAvoid: any backdrop, gradient, haze, aura, glow, shadow, floor, particles, checkerboard pixels, matte fringe, edge contact, crop, shield, exposed face, identity drift, pose drift, armor change, weapon change, palette change, added ornament, removed ornament, duplicate limb, duplicate weapon, text, UI, label, logo, watermark.",
+    "promptSha256": "e21ce11eb63a5c821a3f8962a1caaba7ab11f3801b43733982125d3838ac0a4b",
+    "sourceImages": [
+      {
+        "path": "public/assets/dev/option-c/phase4c/alistair/master/alistair-master-candidate-a001-raw.png",
+        "sha256": "b82a503bc68acdd8f48eb7773c7803a915386b62062fbe65d533e709e68cc7c6",
+        "bytes": 4784337
+      },
+      {
+        "path": "public/assets/characters/pixel/full/alistair.png",
+        "sha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+        "bytes": 438093
+      }
+    ]
+  },
+  "response": {
+    "requestId": "req_15f6054181ca45b39a170efef8a24130",
+    "processingMs": "114046",
+    "date": "Tue, 15 Sep 2026 06:10:18 GMT",
+    "modelReported": null,
+    "created": 1789452618,
+    "usage": {
+      "input_tokens": 2902,
+      "input_tokens_details": {
+        "image_tokens": 2385,
+        "text_tokens": 517
+      },
+      "output_tokens": 14272,
+      "total_tokens": 17174,
+      "output_tokens_details": {
+        "image_tokens": 14272,
+        "text_tokens": 0
+      }
+    },
+    "outputFormat": "png",
+    "quality": "max",
+    "size": "2048x2048"
+  },
+  "output": {
+    "path": "public/assets/dev/option-c/phase4c/alistair/master/alistair-master-candidate-a002-raw.png",
+    "sha256": "e6aeed570506cf6acddc892cb485ee57a8cdc01d1cb07f103726668b692a2355",
+    "bytes": 4259292,
+    "rawDimensions": [
+      2048,
+      2048
+    ],
+    "mode": "RGBA",
+    "normalizedDimensions": null
+  },
+  "status": "SUCCEEDED",
+  "timestampCompleted": "2026-09-15T06:10:19.237823Z",
+  "elapsedSeconds": 119.365
+}

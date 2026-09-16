@@ -176,7 +176,7 @@ describe('Phase 4C manifest resolution', () => {
 
   it('resolves Alistair surface asset', () => {
     const asset = resolveCharacterAsset({ characterId: 'warrior', surface: 'strategic' });
-    expect(asset.url).toContain('alistair.png');
+    expect(asset.url).toBe('/assets/dev/option-c/phase4c/alistair/normalized/alistair-idle.png');
   });
 
   it('resolves Forest Road environment for all 4 surfaces', () => {
@@ -342,8 +342,9 @@ describe('Phase 4C anchor and scale contracts', () => {
     expect(KESTREL_DEFINITION.scales.draftScale).toBe(false);
   });
 
-  it('draft characters have draftScale = true', () => {
-    for (const def of SELECTED_BATCH) {
+  it('unproduced characters retain draftScale while Alistair uses validated scale', () => {
+    expect(ALISTAIR_DEFINITION.scales.draftScale).toBe(false);
+    for (const def of [MARIAN_DEFINITION, ELARA_DEFINITION]) {
       expect(def.scales.draftScale).toBe(true);
     }
   });
@@ -688,14 +689,16 @@ describe('Phase 4C selected batch diversity', () => {
     expect(new Set(archetypes).size).toBeGreaterThanOrEqual(2);
   });
 
-  it('all are SCALING_DRAFT', () => {
-    for (const def of SELECTED_BATCH) {
+  it('promotes only Alistair to FINAL_PRODUCTION_CANDIDATE', () => {
+    expect(ALISTAIR_DEFINITION.masterStatus).toBe('FINAL_PRODUCTION_CANDIDATE');
+    for (const def of [MARIAN_DEFINITION, ELARA_DEFINITION]) {
       expect(def.masterStatus).toBe('SCALING_DRAFT');
     }
   });
 
-  it('all have ART_PENDING_CODEX runtime status', () => {
-    for (const def of SELECTED_BATCH) {
+  it('keeps unproduced runtime art pending and Alistair as final candidate', () => {
+    expect(ALISTAIR_DEFINITION.runtimeStatus).toBe('FINAL_PRODUCTION_CANDIDATE');
+    for (const def of [MARIAN_DEFINITION, ELARA_DEFINITION]) {
       expect(def.runtimeStatus).toBe('ART_PENDING_CODEX');
     }
   });

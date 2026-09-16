@@ -1,5 +1,7 @@
 # Option C — runtime art-direction lock
 
+> **Current character-rendering authority:** the stricter [modern tactical pixel-art character lock](character-style-lock/README.md) supersedes older high-density illustrative guidance for Alistair, Marian, Elara, and any future Kestrel visual remaster. It is a preproduction contract only; no production deployment is authorized.
+
 ## CURRENT STATUS
 
 ```

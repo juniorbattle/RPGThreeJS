@@ -1,0 +1,120 @@
+{
+  "sourceBbox": [
+    425,
+    148,
+    1870,
+    1946
+  ],
+  "sourceExtent": [
+    1445,
+    1798
+  ],
+  "sourceFootSupportBandStart": 1730,
+  "sourceFootCenterX": 1026.5,
+  "sourceToLogicalScale": 0.046718576,
+  "normalizationRule": "per-candidate source correction to one shared 84px body-height target; never scaled to fill canvas",
+  "independentFillScaling": false,
+  "logicalBbox": [
+    36,
+    32,
+    104,
+    116
+  ],
+  "logicalExtent": [
+    68,
+    84
+  ],
+  "logicalBodyHeight": 84,
+  "pivotLogicalX": 64,
+  "footBaselineLogical": 116,
+  "edgeClearance": [
+    36,
+    32,
+    24,
+    12
+  ],
+  "minimumEdgeClearance": 12,
+  "paletteColorCeiling": 64,
+  "rawToLogicalResampling": "nearest-neighbor",
+  "dithering": "none",
+  "schemaVersion": 1,
+  "candidate": "A",
+  "status": "MASTER_CANDIDATE",
+  "rawPath": "public/assets/dev/option-c/character-masters/alistair/raw/alistair-master-a-attempt-2-sunburst-raw.png",
+  "rawSha256": "62e5b23472f942d7c0dc2f02780d0d971b161840bd6ded67cad422ef62000c59",
+  "isolatedPath": "public/assets/dev/option-c/character-masters/alistair/raw/alistair-master-a-accepted-isolated.png",
+  "isolatedSha256": "afb9a192df1da220fce82e83ab61660e2e59e3d7d7cf70f9012e25f2ad9d8f93",
+  "chroma": {
+    "method": "euclidean-magenta-distance-binary-alpha",
+    "threshold": 150,
+    "sourceBbox": [
+      425,
+      148,
+      1870,
+      1946
+    ],
+    "foregroundPixels": 1184697,
+    "removedPixels": 3009607
+  },
+  "logicalPath": "public/assets/dev/option-c/character-masters/alistair/logical-128/alistair-master-a.png",
+  "logicalSha256": "02fa70f68f133c5074c5b18cbb0f550312da92e0c180d09c7056718ffd627727",
+  "runtimePath": "public/assets/dev/option-c/character-masters/alistair/runtime-512/alistair-master-a.png",
+  "runtimeSha256": "face3f5632290432f961e93769bf9a17fc12f99c668be4e2d45b179417cf6cc0",
+  "runtimeCanvas": [
+    512,
+    512
+  ],
+  "exactNearestNeighborX4": true,
+  "reviews": [
+    {
+      "kind": "dark-background",
+      "path": "public/assets/dev/option-c/character-masters/alistair/reviews/alistair-master-a-dark-background.png",
+      "sha256": "7e515c500d20f3776e00563459718ef6069b2c47bea31362ff881d4f86b7a5ca"
+    },
+    {
+      "kind": "light-background",
+      "path": "public/assets/dev/option-c/character-masters/alistair/reviews/alistair-master-a-light-background.png",
+      "sha256": "0704beb6b1ba73ef3ffbcd58a4dd500d2ceb46c516721eca3d5e7e7632be63ac"
+    },
+    {
+      "kind": "silhouette",
+      "path": "public/assets/dev/option-c/character-masters/alistair/reviews/alistair-master-a-silhouette.png",
+      "sha256": "a7ad52a86cf5e5808d711fb16e5c6406c8a6c648f9623455d09bbabf9d633396"
+    },
+    {
+      "kind": "grayscale-value",
+      "path": "public/assets/dev/option-c/character-masters/alistair/reviews/alistair-master-a-grayscale-value.png",
+      "sha256": "53deb2d959794bed1bdef0ce1079fa32512fc6a07394aa649773018deb46efb4"
+    },
+    {
+      "kind": "pixel-inspection-400",
+      "path": "public/assets/dev/option-c/character-masters/alistair/reviews/alistair-master-a-pixel-inspection-400.png",
+      "sha256": "69862bda912073ea88337afcc68d4652c0d23f7c062ba9c0ddc2920ae10766b1"
+    },
+    {
+      "kind": "armor-detail",
+      "path": "public/assets/dev/option-c/character-masters/alistair/reviews/alistair-master-a-armor-detail.png",
+      "sha256": "ec1017639454c6b82e6e455d32af504714de12fd6a411aaa086006b41ef47363"
+    },
+    {
+      "kind": "helmet-detail",
+      "path": "public/assets/dev/option-c/character-masters/alistair/reviews/alistair-master-a-helmet-detail.png",
+      "sha256": "dfb8c9fa5141f311af08c1169be2d1ac7e04fcea1d38dff7e8406e9564d44959"
+    },
+    {
+      "kind": "sword-detail",
+      "path": "public/assets/dev/option-c/character-masters/alistair/reviews/alistair-master-a-sword-detail.png",
+      "sha256": "ba5c942afae8cfbd63bb7ed2098df43b7a30b3c51f5ad0aeb9bc32a576f7421e"
+    },
+    {
+      "kind": "geometry-overlay",
+      "path": "public/assets/dev/option-c/character-masters/alistair/reviews/alistair-master-a-geometry-overlay.png",
+      "sha256": "6f60802cfbd91131e0a6ac2a6cc44de1c3396e0efdf5eb5fe70beb44f2f82408"
+    },
+    {
+      "kind": "pivot-baseline-overlay",
+      "path": "public/assets/dev/option-c/character-masters/alistair/reviews/alistair-master-a-pivot-baseline-overlay.png",
+      "sha256": "f56c4bbc129b9180bb919f46eb64020363b62aa200fddb3263b3a2ecb8d58aee"
+    }
+  ]
+}

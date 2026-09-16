@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "alistair-attack-key-pose-a001-chroma",
+  "selection": {
+    "status": "SELECTED",
+    "reason": "Grounded two-handed basic melee strike with clear impact corridor and no baked VFX."
+  },
+  "parentCandidate": "alistair-master-candidate-a003-isolated",
+  "timestampStarted": "2026-09-15T06:35:39.190347Z",
+  "mode": "edit",
+  "request": {
+    "endpoint": "/v1/images/edits",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "max",
+    "size": "2048x2048",
+    "background": "opaque",
+    "output_format": "png",
+    "n": 1,
+    "prompt": "Use case: precise-object-edit\nAsset type: DEV-only Option C Alistair ATTACK key pose\nPrimary request: Repose the exact Alistair from Image 1 into the decisive key pose of his canonical basic greatsword melee attack. Preserve his identity, anatomy, armor construction, weapon construction, palette, proportions, pixel density, and rendering language exactly. Image 2 is the original canonical source and resolves identity ambiguity. If Image 3 is present, use it only for readable greatsword anticipation, weight and follow-through, never for identity or equipment.\nAction: a powerful grounded two-handed greatsword cut toward screen-right at the committed strike moment. Hips and torso rotate behind the blade, front foot plants into the strike, rear foot anchors the weight transfer, elbows and wrists remain anatomically plausible, and the complete blade describes a clear melee trajectory through its pose alone. Show readable impact intent while leaving the center-right impact corridor empty for runtime VFX.\nSubject invariants: fully enclosed angular helmet with dark eye slit and vented face plate; swept burgundy plume; blackened articulated plate and mail; asymmetrical layered/spiked pauldron; burgundy/crimson scarf, mantle, cape and tabard; brown cross-body harness; restrained radial brass/old-gold ornaments; identical greatsword length, width, guard, grip and pommel; two hands and two complete armored feet.\nComposition: one full-body character, strong side/semi-side gameplay silhouette, centered by body mass with clean space beyond the blade. Keep the complete plume, sword, cape, tabard, hands and feet inside the frame with at least 8 percent uninterrupted background clearance from every edge. Preserve the master body scale and head-to-body ratio.\nBackground: exactly flat fully opaque RGB #FF00FF over the entire canvas; no gradient, texture, floor, shadow, halo, haze, glow, scenery or checkerboard.\nStyle: premium modern HD-2D high-density pixel-art RPG character, crisp intentional clusters and controlled colored outlines, strong material separation, selective metal highlights, matte cloth/leather, no painterly softness and no generic 3D render look.\nConstraints: exactly one Alistair and one greatsword; no shield; no exposed face; no emerald; no baked VFX; no slash arc; no impact spark; no particles; no text, UI, label, logo or watermark; no duplicate limb or weapon; no crop; no edge contact.",
+    "promptSha256": "104c82626205b9975be10201bed89e9eead520435c0809f4971a208ba9462501",
+    "sourceImages": [
+      {
+        "path": "public/assets/dev/option-c/phase4c/alistair/master/alistair-master-candidate-a003-isolated.png",
+        "sha256": "c7e2696d33ed5338f2ad1a27eb06ca93a574d0690ed15ad9595edbd062ab4877",
+        "bytes": 3215173
+      },
+      {
+        "path": "public/assets/characters/pixel/full/alistair.png",
+        "sha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+        "bytes": 438093
+      }
+    ]
+  },
+  "response": {
+    "requestId": "req_622718d275ac480f80e317e60c9be19a",
+    "processingMs": "122470",
+    "date": "Tue, 15 Sep 2026 06:37:43 GMT",
+    "modelReported": null,
+    "created": 1789454263,
+    "usage": {
+      "input_tokens": 2914,
+      "input_tokens_details": {
+        "image_tokens": 2385,
+        "text_tokens": 529
+      },
+      "output_tokens": 14272,
+      "total_tokens": 17186,
+      "output_tokens_details": {
+        "image_tokens": 14272,
+        "text_tokens": 0
+      }
+    },
+    "outputFormat": "png",
+    "quality": "max",
+    "size": "2048x2048"
+  },
+  "output": {
+    "path": "public/assets/dev/option-c/phase4c/alistair/poses/attack/alistair-attack-key-pose-a001-chroma-raw.png",
+    "sha256": "f85aa563118cbd4966af8dc93b7ce6cba1f5f0533b192e81edb7c725fc03f64f",
+    "bytes": 4431310,
+    "rawDimensions": [
+      2048,
+      2048
+    ],
+    "mode": "RGB",
+    "normalizedDimensions": null
+  },
+  "status": "SUCCEEDED",
+  "timestampCompleted": "2026-09-15T06:37:46.760102Z",
+  "elapsedSeconds": 127.57,
+  "normalization": {
+    "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-attack.png",
+    "sha256": "3382c89c349883a7137e54c6535378eb1de7c4ba8d85847451ebd030273ec24d",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      111,
+      166,
+      471,
+      471
+    ],
+    "visibleWidth": 360,
+    "bodyHeight": 296,
+    "expectedBodyHeightAtSharedScale": 294,
+    "poseCompressionRatio": 0.906436,
+    "footBaseline": 470,
+    "pivotX": 256.01,
+    "headTop": 174,
+    "headCenter": [
+      242.68,
+      215.62
+    ],
+    "bodyCenter": [
+      248.48,
+      314.09
+    ],
+    "weapon": {
+      "tip": [
+        467.64,
+        229.13
+      ],
+      "grip": [
+        229.17,
+        271.61
+      ],
+      "pommel": [
+        180.89,
+        275.48
+      ]
+    },
+    "edgeClearance": {
+      "left": 111,
+      "top": 166,
+      "right": 41,
+      "bottom": 41
+    },
+    "alpha": {
+      "minimum": 0,
+      "maximum": 255,
+      "transparentPixels": 218660,
+      "partialPixels": 9729,
+      "opaquePixels": 33755,
+      "edgeNonzeroPixels": 0
+    }
+  }
+}

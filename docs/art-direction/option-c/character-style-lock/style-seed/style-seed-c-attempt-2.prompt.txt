@@ -1,0 +1,26 @@
+Use case: style-transfer
+Asset type: Option C common character style seed, anonymous tactical-RPG sprite probes
+
+INPUT IMAGE 1 ROLE — HARD LIMIT
+Image 1 is CHARACTER_STYLE_REFERENCE_V1 and is the sole approved visual input. Learn only its general modern premium pixel-art language: adult heroic proportions, authentic visible pixel construction, coherent material abstraction, concealed faces, class readability, and roster-wide consistency. Do not copy exact costumes, symbols, accessories, poses, labels, composition, or individual designs. Do not reproduce any RPGThreeJS hero. Create original anonymous archetypes from scratch.
+
+TARGETED CORRECTION
+This is a geometry retry. Produce a single horizontal four-class lineup, not a 2×2 grid. All four characters must stand on exactly the same horizontal foot baseline and have the same anatomical body height. Do not make the Priestess or Mage larger than the Ranger or Knight. Do not vary camera distance, zoom, head scale, torso scale, leg length, hand scale, or foot scale by class.
+
+PRIMARY REQUEST AND LAYOUT
+Create exactly four original full-body archetypes in one 2048×1152 landscape image on a perfectly flat opaque #FF00FF background. Use four equal invisible vertical slots, each 512×1152. From left to right: Ranger, Knight, Priestess/Lightcaster, Mage. Center each character on its slot center x. Place every foot plane at the same image y=1044. Use the same approximately 756px anatomical body height from foot plane to head or helmet crown for all four, excluding arrows, staff head, hat tip, and other external silhouette features. Keep the full subject and all equipment at least 24px inside its slot edges and 48px inside the image edges. Nothing may overlap or cross a slot boundary. No visible cells, guide lines, labels, ground, or shadows.
+
+SHARED ARCHETYPE BLUEPRINT — KEEP IDENTICAL ACROSS A/B/C
+- Ranger: deep triangular hood, cloth half-mask and face shadow, short asymmetric mantle, layered olive/pine cloth and warm brown leather, readable curved longbow, compact quiver.
+- Knight: fully closed angular visor helmet, broad practical layered plate, dark gunmetal and steel, restrained oxblood cape/tabard, readable two-handed greatsword, no shield.
+- Priestess/Lightcaster: layered ivory ceremonial veil and high collar concealing the upper face, pale-gold accents, large simple robe masses, readable tall forked-lantern staff, no portrait-like face.
+- Mage: broad irregular indigo hat, high collar and deep shadow concealing the face, deep blue-violet robes, readable compact grimoire and one restrained geometric focus, no loose particle field.
+
+PIXEL CONSTRUCTION
+Native modern tactical pixel art, not an illustration later filtered into pixels. Use intentional hard-edged clusters, coherent shadow groups, structured midtones, selective highlights, clean diagonal stair-stepping, controlled colored outlines, and clear material separation. No anti-aliased edges, subpixel softness, smooth gradients, airbrush, painterly brushwork, fake pixel filter, noisy dithering, sparkle noise, photoreal reflections, or micro-scratches. Class identity comes from silhouette, equipment, palette, weapon, posture, and accessories; faces remain secondary and concealed.
+
+STYLE_SEED_C — RICHER PREMIUM
+Use slightly higher but disciplined cluster density, richer material treatment, and slightly more elaborate ornamentation than B. Group extra detail into purposeful clusters and identity-bearing motifs. Cloth and leather use four to five meaningful values; metal five to six. Preserve clean silhouettes, tactical readability, and practical idle/dash/attack/cast animation. Do not drift toward smooth illustration, dense jewelry, fragile chains, floating accessories, impossible cloth complexity, or decorative micro-noise.
+
+OUTPUT CONSTRAINTS
+Exactly four anonymous archetypes, one row, one common baseline, one common anatomical scale. Solid uniform #FF00FF only: no gradient, texture, scenery, UI, text, labels, watermark, border, halo, ambient shadow, cast shadow, or baked VFX. No copied reference costume, no chibi/anime proportions, no smooth concept-art cutout, no fifth figure.

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "ALISTAIR_MASTER_V2_C",
+  "parentCandidate": null,
+  "timestampStarted": "2026-09-16T00:34:08.731872Z",
+  "mode": "edit",
+  "request": {
+    "endpoint": "/v1/images/edits",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "max",
+    "size": "2048x2048",
+    "background": "opaque",
+    "output_format": "png",
+    "n": 1,
+    "prompt": "INTENDED USE\nCreate ALISTAIR_MASTER_V2_C from scratch: one production-grade Character Master for a modern premium tactical RPG. This candidate explores the richest controlled material treatment while remaining sprite-native and animation-feasible.\n\nIMAGE AUTHORITY\nImage 1 is CHARACTER_STYLE_REFERENCE_V1, the sole image input and primary artistic-quality authority. Learn its sharp modern stylized pixel-art finish, elegant adult heroic proportions, refined silhouette control, clean material hierarchy, sophisticated discrete shading, controlled fine pixel clusters, and premium fantasy presentation. Do not copy any exact character, costume, weapon, ornament, pose, emblem, or silhouette from Image 1. The anonymous Knight is not Alistair and must not be reproduced.\n\nTEXTUAL TECHNICAL AUTHORITY\nUse STYLE_SEED_B and the previous rejected Alistair B only as textual structural lessons: neutral readable stance, broad heavy silhouette, stable adult anatomy, clear animation modules, restrained ornament, and tactical readability. No rejected Alistair image is supplied or available as a visual source.\n\nSUBJECT\nExactly one original Alistair, a heavy frontline knight and martial anchor. Broad, powerful, stable, authoritative, defensive. Dark neutral steel armor with restrained deep-red cloth. Fully closed original helmet and visor; no face or skin visible. One large two-handed heavy greatsword close to standing body height, held mechanically with both gauntlets. No shield.\n\nV2 C VARIATION — SWORD-ANGLE AND MATERIAL-SEPARATION REFINEMENT\nKeep the same shared Alistair design used across all three candidates: a low flattened pentagonal closed helmet with a straight narrow visor slit, chamfered temples, layered neck guard, and no crest; broad sculpted pauldrons with one clean bevel each; a fluted cuirass with large readable planes; articulated elbows; layered faulds; strong knee cops; and elegant long greaves. Keep the same short asymmetric deep-red half-cape attached behind the viewer-left shoulder and the same two restrained split waist panels, with the center cuirass visible. Keep the same broad straight greatsword with shallow fuller, clipped diamond point, compact blackened-steel guard, wrapped grip, and octagonal pommel. Muted brass remains limited to a few functional fasteners. Candidate C varies only by opening the half-cape folds slightly behind the shoulder for a clearer arm silhouette, strengthening dark-versus-light separation at armor joints, and refining the sword angle. Do not introduce a different helmet, armor family, cloth layout, weapon family, emblem, or concept.\n\nPOSE AND CAMERA\nFull body, neutral combat-ready three-quarter front view, near-orthographic, minimal perspective. Upright torso, level shoulders, planted natural stance, both boots on one horizontal foot plane. Hold the sword in the same controlled low diagonal guard toward viewer-right, refined only to a slightly steeper angle than the shared base pose; entire blade and tip remain visible above the boot line. Entire helmet, half-cape, waist panels, hands, sword, and boots visible. No action pose, foreshortening, crop, ground shadow, or floating accessory.\n\nMODERN HIGH-DENSITY PIXEL CONSTRUCTION\nNative modern premium pixel art intended for a 256x256 logical canvas, not a 128x128 sprite enlarged. Use fine intentional clusters, elegant 1-3 logical-pixel contour steps, crisp colored outlines, clean stair-stepped diagonals, controlled sub-clusters, and discrete value bands. Large armor planes remain readable while selective fine highlights, subtle plane transitions, and precise cloth folds reach the Reference V1 sharpness family. Metal uses 5-7 controlled values; cloth 4-6; leather 3-5. No continuous gradients, painterly brush texture, airbrush, fake pixel filter, random isolated pixels, global dithering, retro chunkiness, or glossy 3D rendering.\n\nGEOMETRY TARGET\nSquare 2048x2048 raw source. Center body support on x=1024. Foot plane y=1856. Helmet top to boot soles approximately 1344px, corresponding to 168px on a 256 logical grid. Keep all visible elements at least 128px from the source edge, preferably 160px. Runtime physical body size remains approximately 336px after exact nearest-neighbor x2 from 256 to 512.\n\nBACKGROUND\nPerfect flat opaque #FF00FF magenta edge-to-edge. No gradient, texture, floor, horizon, shadow, glow, VFX, particles, text, UI, label, watermark, border, duplicate figure, extra weapon, scenery, or detached object.\n\nHARD EXCLUSIONS\nNo legacy RPGThreeJS character input or reconstruction. No prior Alistair A/B/C visual inheritance. Do not copy the Image 1 Knight's pointed helmet, fur mantle, lion tabard, circular brooch, long symmetric cloak, planted vertical sword, belt layout, or plate arrangement. No retro tactical-sprite appearance, coarse 128-style clusters, noisy micro-pixels, painterly illustration, exposed face, shield, or cropped equipment.",
+    "promptSha256": "1ecb401aa63427d80f154469f97891b3d25838332638a11400f051862236f91f",
+    "sourceImages": [
+      {
+        "path": "docs/art-direction/option-c/character-style-lock/references/character-style-reference-v1.png",
+        "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+        "bytes": 2379980
+      }
+    ]
+  },
+  "response": {
+    "requestId": "req_d6d8993040c14628927c313dd69fa0d1",
+    "processingMs": "96070",
+    "date": "Wed, 16 Sep 2026 00:35:47 GMT",
+    "modelReported": null,
+    "created": 1789518947,
+    "usage": {
+      "input_tokens": 2506,
+      "input_tokens_details": {
+        "image_tokens": 1452,
+        "text_tokens": 1054
+      },
+      "output_tokens": 14272,
+      "total_tokens": 16778,
+      "output_tokens_details": {
+        "image_tokens": 14272,
+        "text_tokens": 0
+      }
+    },
+    "outputFormat": "png",
+    "quality": "max",
+    "size": "2048x2048"
+  },
+  "output": {
+    "path": "public/assets/dev/option-c/character-masters/alistair-v2/raw/alistair-master-v2-c-sunburst-raw.png",
+    "sha256": "e3f20f6ea7b47acb90ff85777a68e12afa4846fac66f38f4849097d5cc68cdf8",
+    "bytes": 3739437,
+    "rawDimensions": [
+      2048,
+      2048
+    ],
+    "mode": "RGB",
+    "normalizedDimensions": null
+  },
+  "status": "SUCCEEDED",
+  "timestampCompleted": "2026-09-16T00:35:47.488952Z",
+  "elapsedSeconds": 98.757
+}

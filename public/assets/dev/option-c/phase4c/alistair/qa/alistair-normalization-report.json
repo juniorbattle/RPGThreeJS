@@ -1,0 +1,609 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "config": "docs/art-direction/option-c/production/alistair/alistair-normalization-config.json",
+  "configSha256": "15c08951d74469d0f1486ff97cab406ea8e3b1250a20453443b8851d547ec29d",
+  "contract": {
+    "frameSize": 512,
+    "pivotX": 256,
+    "footBaseline": 470,
+    "targetBodyHeight": 326,
+    "scaleAuthorityPose": "master",
+    "minimumEdgeMargin": 16,
+    "resamplingPositionTolerancePx": 2,
+    "footBandFraction": 0.25,
+    "resampling": "premultiplied-alpha Lanczos",
+    "sharedScale": 0.19309427599639523,
+    "sharedScaleIterations": 2,
+    "targetHeadReference": [
+      215.34,
+      176.03
+    ],
+    "bodyCenter": [
+      242.37,
+      293.82
+    ],
+    "weaponReference": [
+      211.48,
+      257.13
+    ]
+  },
+  "poses": {
+    "master": {
+      "source": {
+        "path": "public/assets/dev/option-c/phase4c/alistair/master/alistair-master-candidate-a003-isolated.png",
+        "sha256": "c7e2696d33ed5338f2ad1a27eb06ca93a574d0690ed15ad9595edbd062ab4877",
+        "dimensions": [
+          2048,
+          2048
+        ],
+        "alphaBBox": [
+          194,
+          102,
+          1854,
+          1945
+        ],
+        "headTop": 266,
+        "footBaseline": 1944,
+        "bodyHeight": 1678,
+        "pivotX": 1030.0,
+        "headCenter": [
+          820,
+          430
+        ],
+        "bodyCenter": [
+          960,
+          1040
+        ],
+        "weapon": {
+          "tip": [
+            1840,
+            110
+          ],
+          "grip": [
+            800,
+            850
+          ],
+          "pommel": [
+            550,
+            1050
+          ]
+        }
+      },
+      "normalization": {
+        "scale": 0.19309427599639523,
+        "scaleIterations": 2,
+        "scaledDimensions": [
+          395,
+          395
+        ],
+        "pastePosition": [
+          57,
+          93
+        ],
+        "rule": "one master-derived scale for every pose; translation-only baseline and pivot alignment"
+      },
+      "normalized": {
+        "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-master.png",
+        "sha256": "39b856e297221f8df514173b9e741d943c522a0ed557c13ceaaf27573a1ed4d9",
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBBox": [
+          92,
+          110,
+          417,
+          471
+        ],
+        "visibleWidth": 325,
+        "bodyHeight": 326,
+        "expectedBodyHeightAtSharedScale": 324,
+        "poseCompressionRatio": 1.0,
+        "footBaseline": 470,
+        "pivotX": 255.89,
+        "headTop": 144,
+        "headCenter": [
+          215.34,
+          176.03
+        ],
+        "bodyCenter": [
+          242.37,
+          293.82
+        ],
+        "weapon": {
+          "tip": [
+            412.29,
+            114.24
+          ],
+          "grip": [
+            211.48,
+            257.13
+          ],
+          "pommel": [
+            163.2,
+            295.75
+          ]
+        },
+        "edgeClearance": {
+          "left": 92,
+          "top": 110,
+          "right": 95,
+          "bottom": 41
+        },
+        "alpha": {
+          "minimum": 0,
+          "maximum": 255,
+          "transparentPixels": 206479,
+          "partialPixels": 10042,
+          "opaquePixels": 45623,
+          "edgeNonzeroPixels": 0
+        }
+      }
+    },
+    "idle": {
+      "source": {
+        "path": "public/assets/dev/option-c/phase4c/alistair/poses/idle/alistair-idle-key-pose-a001-isolated.png",
+        "sha256": "67d4939b9043bdd69d80feca63cf59fc727f428150bca7c252a399b5e76ed089",
+        "dimensions": [
+          2048,
+          2048
+        ],
+        "alphaBBox": [
+          238,
+          102,
+          1810,
+          1945
+        ],
+        "headTop": 227,
+        "footBaseline": 1944,
+        "bodyHeight": 1717,
+        "pivotX": 991.0,
+        "headCenter": [
+          850,
+          450
+        ],
+        "bodyCenter": [
+          940,
+          1050
+        ],
+        "weapon": {
+          "tip": [
+            1800,
+            110
+          ],
+          "grip": [
+            810,
+            860
+          ],
+          "pommel": [
+            560,
+            1050
+          ]
+        }
+      },
+      "normalization": {
+        "scale": 0.19309427599639523,
+        "scaleIterations": 0,
+        "scaledDimensions": [
+          395,
+          395
+        ],
+        "pastePosition": [
+          65,
+          93
+        ],
+        "rule": "one master-derived scale for every pose; translation-only baseline and pivot alignment"
+      },
+      "normalized": {
+        "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-idle.png",
+        "sha256": "bd113a1bfb1bd8269a8a7ea40ad7924c395ad09fd784400eae803dfdc46db308",
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBBox": [
+          108,
+          110,
+          417,
+          471
+        ],
+        "visibleWidth": 309,
+        "bodyHeight": 333,
+        "expectedBodyHeightAtSharedScale": 332,
+        "poseCompressionRatio": 1.023242,
+        "footBaseline": 470,
+        "pivotX": 256.36,
+        "headTop": 137,
+        "headCenter": [
+          229.13,
+          179.89
+        ],
+        "bodyCenter": [
+          246.51,
+          295.75
+        ],
+        "weapon": {
+          "tip": [
+            412.57,
+            114.24
+          ],
+          "grip": [
+            221.41,
+            259.06
+          ],
+          "pommel": [
+            173.13,
+            295.75
+          ]
+        },
+        "edgeClearance": {
+          "left": 108,
+          "top": 110,
+          "right": 95,
+          "bottom": 41
+        },
+        "alpha": {
+          "minimum": 0,
+          "maximum": 255,
+          "transparentPixels": 209028,
+          "partialPixels": 9532,
+          "opaquePixels": 43584,
+          "edgeNonzeroPixels": 0
+        }
+      }
+    },
+    "dash": {
+      "source": {
+        "path": "public/assets/dev/option-c/phase4c/alistair/poses/dash/alistair-dash-key-pose-a003-isolated.png",
+        "sha256": "51b2b64785b8dced3c4e0eca8b4d87ab0c3b585ad7a9503360e91737e8e55148",
+        "dimensions": [
+          2048,
+          2048
+        ],
+        "alphaBBox": [
+          103,
+          204,
+          1945,
+          1843
+        ],
+        "headTop": 330,
+        "footBaseline": 1842,
+        "bodyHeight": 1512,
+        "pivotX": 1051.0,
+        "headCenter": [
+          1250,
+          430
+        ],
+        "bodyCenter": [
+          1090,
+          1000
+        ],
+        "weapon": {
+          "tip": [
+            40,
+            1000
+          ],
+          "grip": [
+            830,
+            820
+          ],
+          "pommel": [
+            1010,
+            820
+          ]
+        }
+      },
+      "normalization": {
+        "scale": 0.19309427599639523,
+        "scaleIterations": 0,
+        "scaledDimensions": [
+          395,
+          395
+        ],
+        "pastePosition": [
+          53,
+          113
+        ],
+        "rule": "one master-derived scale for every pose; translation-only baseline and pivot alignment"
+      },
+      "normalized": {
+        "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-dash.png",
+        "sha256": "f98f75345b09b8668b1a0d8236fef225d8d5e46a79a83555b2dd924d09562040",
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBBox": [
+          70,
+          150,
+          431,
+          471
+        ],
+        "visibleWidth": 361,
+        "bodyHeight": 293,
+        "expectedBodyHeightAtSharedScale": 292,
+        "poseCompressionRatio": 0.901073,
+        "footBaseline": 470,
+        "pivotX": 255.94,
+        "headTop": 177,
+        "headCenter": [
+          294.37,
+          196.03
+        ],
+        "bodyCenter": [
+          263.47,
+          306.09
+        ],
+        "weapon": {
+          "tip": [
+            60.72,
+            306.09
+          ],
+          "grip": [
+            213.27,
+            271.34
+          ],
+          "pommel": [
+            248.03,
+            271.34
+          ]
+        },
+        "edgeClearance": {
+          "left": 70,
+          "top": 150,
+          "right": 81,
+          "bottom": 41
+        },
+        "alpha": {
+          "minimum": 0,
+          "maximum": 255,
+          "transparentPixels": 206529,
+          "partialPixels": 9267,
+          "opaquePixels": 46348,
+          "edgeNonzeroPixels": 0
+        }
+      }
+    },
+    "attack": {
+      "source": {
+        "path": "public/assets/dev/option-c/phase4c/alistair/poses/attack/alistair-attack-key-pose-a001-isolated.png",
+        "sha256": "e5a4d61eb3e4e39003a7e60167ff7b15c6f353d670cbb85861ca71572959a216",
+        "dimensions": [
+          2048,
+          2048
+        ],
+        "alphaBBox": [
+          102,
+          248,
+          1945,
+          1799
+        ],
+        "headTop": 277,
+        "footBaseline": 1798,
+        "bodyHeight": 1521,
+        "pivotX": 839.0,
+        "headCenter": [
+          770,
+          490
+        ],
+        "bodyCenter": [
+          800,
+          1000
+        ],
+        "weapon": {
+          "tip": [
+            1935,
+            560
+          ],
+          "grip": [
+            700,
+            780
+          ],
+          "pommel": [
+            450,
+            800
+          ]
+        }
+      },
+      "normalization": {
+        "scale": 0.19309427599639523,
+        "scaleIterations": 0,
+        "scaledDimensions": [
+          395,
+          395
+        ],
+        "pastePosition": [
+          94,
+          121
+        ],
+        "rule": "one master-derived scale for every pose; translation-only baseline and pivot alignment"
+      },
+      "normalized": {
+        "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-attack.png",
+        "sha256": "3382c89c349883a7137e54c6535378eb1de7c4ba8d85847451ebd030273ec24d",
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBBox": [
+          111,
+          166,
+          471,
+          471
+        ],
+        "visibleWidth": 360,
+        "bodyHeight": 296,
+        "expectedBodyHeightAtSharedScale": 294,
+        "poseCompressionRatio": 0.906436,
+        "footBaseline": 470,
+        "pivotX": 256.01,
+        "headTop": 174,
+        "headCenter": [
+          242.68,
+          215.62
+        ],
+        "bodyCenter": [
+          248.48,
+          314.09
+        ],
+        "weapon": {
+          "tip": [
+            467.64,
+            229.13
+          ],
+          "grip": [
+            229.17,
+            271.61
+          ],
+          "pommel": [
+            180.89,
+            275.48
+          ]
+        },
+        "edgeClearance": {
+          "left": 111,
+          "top": 166,
+          "right": 41,
+          "bottom": 41
+        },
+        "alpha": {
+          "minimum": 0,
+          "maximum": 255,
+          "transparentPixels": 218660,
+          "partialPixels": 9729,
+          "opaquePixels": 33755,
+          "edgeNonzeroPixels": 0
+        }
+      }
+    },
+    "skill": {
+      "source": {
+        "path": "public/assets/dev/option-c/phase4c/alistair/poses/skill/alistair-skill-key-pose-a001-isolated.png",
+        "sha256": "8296eb6d88335661f3cfbcdd96ebf2b436489a2dc8304dcbea3b3f68f869726f",
+        "dimensions": [
+          2048,
+          2048
+        ],
+        "alphaBBox": [
+          102,
+          261,
+          1945,
+          1787
+        ],
+        "headTop": 313,
+        "footBaseline": 1786,
+        "bodyHeight": 1473,
+        "pivotX": 1031.0,
+        "headCenter": [
+          840,
+          500
+        ],
+        "bodyCenter": [
+          900,
+          1000
+        ],
+        "weapon": {
+          "tip": [
+            1935,
+            720
+          ],
+          "grip": [
+            720,
+            670
+          ],
+          "pommel": [
+            340,
+            650
+          ]
+        }
+      },
+      "normalization": {
+        "scale": 0.19309427599639523,
+        "scaleIterations": 0,
+        "scaledDimensions": [
+          395,
+          395
+        ],
+        "pastePosition": [
+          57,
+          124
+        ],
+        "rule": "one master-derived scale for every pose; translation-only baseline and pivot alignment"
+      },
+      "normalized": {
+        "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-skill.png",
+        "sha256": "880aa5f7b3efb94207ede56346cfe41b2bba322c0f42b0a6d448e6d9941d007f",
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBBox": [
+          74,
+          172,
+          435,
+          471
+        ],
+        "visibleWidth": 361,
+        "bodyHeight": 286,
+        "expectedBodyHeightAtSharedScale": 284,
+        "poseCompressionRatio": 0.877831,
+        "footBaseline": 470,
+        "pivotX": 256.08,
+        "headTop": 184,
+        "headCenter": [
+          219.2,
+          220.55
+        ],
+        "bodyCenter": [
+          230.78,
+          317.09
+        ],
+        "weapon": {
+          "tip": [
+            430.64,
+            263.03
+          ],
+          "grip": [
+            196.03,
+            253.37
+          ],
+          "pommel": [
+            122.65,
+            249.51
+          ]
+        },
+        "edgeClearance": {
+          "left": 74,
+          "top": 172,
+          "right": 77,
+          "bottom": 41
+        },
+        "alpha": {
+          "minimum": 0,
+          "maximum": 255,
+          "transparentPixels": 218262,
+          "partialPixels": 9926,
+          "opaquePixels": 33956,
+          "edgeNonzeroPixels": 0
+        }
+      }
+    }
+  },
+  "summary": {
+    "maxBodyHeightDeviation": 2,
+    "maxScaleDeviation": 0.0,
+    "normalizedBodyHeightRange": [
+      286,
+      333
+    ],
+    "minimumObservedEdgeClearance": 41,
+    "sizeConsistencyStatus": "PASS",
+    "alphaContainmentStatus": "PASS"
+  }
+}

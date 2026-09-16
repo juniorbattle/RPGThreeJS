@@ -4,6 +4,7 @@ import type { SpriteFrameAnimationDefinition } from '../../render/SpriteFrameAni
 export type OptionCAnimationState = 'idle' | 'dash' | 'attack' | 'skill';
 export type OptionCProofSurface = 'travel' | 'tableau' | 'strategic' | 'combat-stage';
 export type OptionCTableauState = 'active' | 'listening' | 'mirrored' | 'center' | 'right';
+export type OptionCProofCharacter = 'kestrel' | 'alistair';
 
 const ROOT = '/assets/dev/option-c/phase4b';
 
@@ -36,6 +37,43 @@ export const OPTION_C_ANIMATION_DEFINITIONS: readonly SpriteFrameAnimationDefini
   { state: 'attack', frames: OPTION_C_PHASE4B_ASSETS.animations.attack, frameDurationMs: 105, loop: false, returnState: 'idle' },
   { state: 'skill', frames: OPTION_C_PHASE4B_ASSETS.animations.skill, frameDurationMs: 125, loop: false, returnState: 'idle' },
 ]);
+
+const ALISTAIR_ROOT = '/assets/dev/option-c/phase4c/alistair';
+
+export const OPTION_C_ALISTAIR_ASSETS = Object.freeze({
+  root: ALISTAIR_ROOT,
+  master: `${ALISTAIR_ROOT}/normalized/alistair-master.png`,
+  animations: Object.freeze({
+    idle: Object.freeze([`${ALISTAIR_ROOT}/normalized/alistair-idle.png`]),
+    dash: Object.freeze([`${ALISTAIR_ROOT}/normalized/alistair-dash.png`]),
+    attack: Object.freeze([`${ALISTAIR_ROOT}/normalized/alistair-attack.png`]),
+    skill: Object.freeze([`${ALISTAIR_ROOT}/normalized/alistair-skill.png`]),
+  }),
+});
+
+export const OPTION_C_ALISTAIR_ANIMATION_DEFINITIONS: readonly SpriteFrameAnimationDefinition<OptionCAnimationState>[] = Object.freeze([
+  { state: 'idle', frames: OPTION_C_ALISTAIR_ASSETS.animations.idle, frameDurationMs: 190, loop: true },
+  { state: 'dash', frames: OPTION_C_ALISTAIR_ASSETS.animations.dash, frameDurationMs: 1_200, loop: false, returnState: 'idle' },
+  { state: 'attack', frames: OPTION_C_ALISTAIR_ASSETS.animations.attack, frameDurationMs: 1_600, loop: false, returnState: 'idle' },
+  { state: 'skill', frames: OPTION_C_ALISTAIR_ASSETS.animations.skill, frameDurationMs: 1_600, loop: false, returnState: 'idle' },
+]);
+
+export const OPTION_C_ALISTAIR_REQUIRED_IMAGE_URLS = Object.freeze([
+  OPTION_C_ALISTAIR_ASSETS.master,
+  ...Object.values(OPTION_C_ALISTAIR_ASSETS.animations).flat(),
+]);
+
+export function optionCProofAssetsFor(character: OptionCProofCharacter) {
+  return character === 'alistair' ? OPTION_C_ALISTAIR_ASSETS : OPTION_C_PHASE4B_ASSETS;
+}
+
+export function optionCAnimationDefinitionsFor(character: OptionCProofCharacter) {
+  return character === 'alistair' ? OPTION_C_ALISTAIR_ANIMATION_DEFINITIONS : OPTION_C_ANIMATION_DEFINITIONS;
+}
+
+export function optionCRequiredImageUrlsFor(character: OptionCProofCharacter): readonly string[] {
+  return character === 'alistair' ? OPTION_C_ALISTAIR_REQUIRED_IMAGE_URLS : OPTION_C_REQUIRED_IMAGE_URLS;
+}
 
 export const OPTION_C_REQUIRED_IMAGE_URLS = Object.freeze([
   ...Object.values(OPTION_C_PHASE4B_ASSETS.environments),
@@ -79,6 +117,10 @@ export const OPTION_C_COMBAT_STAGE_BACKGROUND = paintedBackground(
 
 export function isOptionCAnimationState(value: string | null): value is OptionCAnimationState {
   return value === 'idle' || value === 'dash' || value === 'attack' || value === 'skill';
+}
+
+export function isOptionCProofCharacter(value: string | null): value is OptionCProofCharacter {
+  return value === 'kestrel' || value === 'alistair';
 }
 
 export function isOptionCProofSurface(value: string | null): value is OptionCProofSurface {

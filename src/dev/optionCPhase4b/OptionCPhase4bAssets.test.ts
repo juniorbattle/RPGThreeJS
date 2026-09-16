@@ -1,11 +1,23 @@
 import { describe, expect, it } from 'vitest';
 import {
+  OPTION_C_ALISTAIR_ANIMATION_DEFINITIONS,
+  OPTION_C_ALISTAIR_ASSETS,
+  OPTION_C_ALISTAIR_REQUIRED_IMAGE_URLS,
   OPTION_C_ANIMATION_DEFINITIONS,
   OPTION_C_PHASE4B_ASSETS,
   OPTION_C_REQUIRED_IMAGE_URLS,
 } from './OptionCPhase4bAssets';
 
 describe('Option C Phase 4B runtime asset contract', () => {
+  it('exposes Alistair static key poses only through the DEV candidate root', () => {
+    expect(OPTION_C_ALISTAIR_REQUIRED_IMAGE_URLS).toHaveLength(5);
+    expect(OPTION_C_ALISTAIR_ANIMATION_DEFINITIONS).toHaveLength(4);
+    for (const definition of OPTION_C_ALISTAIR_ANIMATION_DEFINITIONS) {
+      expect(definition.frames).toHaveLength(1);
+      expect(definition.frames[0]).toContain('/assets/dev/option-c/phase4c/alistair/normalized/');
+    }
+    expect(OPTION_C_ALISTAIR_ASSETS.master).toContain('/assets/dev/');
+  });
   it('keeps four eight-frame states in the isolated DEV namespace', () => {
     expect(OPTION_C_ANIMATION_DEFINITIONS).toHaveLength(4);
     for (const definition of OPTION_C_ANIMATION_DEFINITIONS) {

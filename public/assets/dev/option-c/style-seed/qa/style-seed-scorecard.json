@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "maximumCandidateStatus": "SELECTED_STYLE_AUTHORITY",
+  "characterStyleSeedV1": "B",
+  "recommendedCandidate": "B",
+  "finalStyleSeedSelected": true,
+  "candidates": {
+    "A": {
+      "status": "VALID_ALTERNATE_NOT_SELECTED",
+      "scorecard": {
+        "TRUE_PIXEL_ART_CONSTRUCTION": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "MODERNITY": {
+          "scoreOutOf5": 4,
+          "status": "PASS"
+        },
+        "TACTICAL_READABILITY": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "SILHOUETTE_DIFFERENTIATION": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "PROPORTION_COHERENCE": {
+          "scoreOutOf5": 4,
+          "status": "PASS"
+        },
+        "FACE_CONCEALMENT": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "PIXEL_CLUSTER_DISCIPLINE": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "MATERIAL_READABILITY": {
+          "scoreOutOf5": 4,
+          "status": "PASS"
+        },
+        "ANIMATION_FEASIBILITY": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "HD2D_ENVIRONMENT_COMPATIBILITY": {
+          "scoreOutOf5": 4,
+          "status": "PASS"
+        },
+        "ROSTER_COHERENCE": {
+          "scoreOutOf5": 4,
+          "status": "PASS"
+        },
+        "NO_PAINTERLY_DRIFT": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        }
+      },
+      "criticalFailures": []
+    },
+    "B": {
+      "status": "SELECTED_STYLE_AUTHORITY",
+      "scorecard": {
+        "TRUE_PIXEL_ART_CONSTRUCTION": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "MODERNITY": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "TACTICAL_READABILITY": {
+          "scoreOutOf5": 4,
+          "status": "PASS"
+        },
+        "SILHOUETTE_DIFFERENTIATION": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "PROPORTION_COHERENCE": {
+          "scoreOutOf5": 4,
+          "status": "PASS"
+        },
+        "FACE_CONCEALMENT": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "PIXEL_CLUSTER_DISCIPLINE": {
+          "scoreOutOf5": 4,
+          "status": "PASS"
+        },
+        "MATERIAL_READABILITY": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "ANIMATION_FEASIBILITY": {
+          "scoreOutOf5": 4,
+          "status": "PASS"
+        },
+        "HD2D_ENVIRONMENT_COMPATIBILITY": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "ROSTER_COHERENCE": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "NO_PAINTERLY_DRIFT": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        }
+      },
+      "criticalFailures": []
+    },
+    "C": {
+      "status": "VALID_ALTERNATE_NOT_SELECTED",
+      "scorecard": {
+        "TRUE_PIXEL_ART_CONSTRUCTION": {
+          "scoreOutOf5": 4,
+          "status": "PASS"
+        },
+        "MODERNITY": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "TACTICAL_READABILITY": {
+          "scoreOutOf5": 4,
+          "status": "PASS"
+        },
+        "SILHOUETTE_DIFFERENTIATION": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "PROPORTION_COHERENCE": {
+          "scoreOutOf5": 4,
+          "status": "PASS"
+        },
+        "FACE_CONCEALMENT": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "PIXEL_CLUSTER_DISCIPLINE": {
+          "scoreOutOf5": 4,
+          "status": "PASS"
+        },
+        "MATERIAL_READABILITY": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "ANIMATION_FEASIBILITY": {
+          "scoreOutOf5": 3,
+          "status": "PASS"
+        },
+        "HD2D_ENVIRONMENT_COMPATIBILITY": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "ROSTER_COHERENCE": {
+          "scoreOutOf5": 5,
+          "status": "PASS"
+        },
+        "NO_PAINTERLY_DRIFT": {
+          "scoreOutOf5": 4,
+          "status": "PASS"
+        }
+      },
+      "criticalFailures": []
+    }
+  },
+  "comparisonBoard": "public/assets/dev/option-c/style-seed/reviews/style-seed-abc-comparison.png",
+  "reviewNote": "Scores evaluate normalized logical sprites. The operator selected B as CHARACTER_STYLE_SEED_V1; A and C remain preserved valid alternates."
+}

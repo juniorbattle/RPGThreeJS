@@ -1,0 +1,418 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "checksPassed": 18,
+  "checksFailed": 0,
+  "checks": [
+    {
+      "name": "style-reference-v1-byte-lock",
+      "status": "PASS",
+      "evidence": {
+        "path": "docs/art-direction/option-c/character-style-lock/references/character-style-reference-v1.png",
+        "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7"
+      }
+    },
+    {
+      "name": "manifest-generation-lock",
+      "status": "PASS",
+      "evidence": {
+        "model": "gpt-image-2.5-sunburst-2026-09-08",
+        "quality": "max",
+        "fallbackUsed": false,
+        "attempts": 6
+      }
+    },
+    {
+      "name": "operator-final-selection",
+      "status": "PASS",
+      "evidence": {
+        "characterStyleSeedV1": "B",
+        "finalStyleSeedSelected": true,
+        "candidateStatus": {
+          "A": "VALID_ALTERNATE_NOT_SELECTED",
+          "B": "SELECTED_STYLE_AUTHORITY",
+          "C": "VALID_ALTERNATE_NOT_SELECTED"
+        }
+      }
+    },
+    {
+      "name": "six-generation-provenance-records",
+      "status": "PASS",
+      "evidence": [
+        {
+          "candidate": "A",
+          "attempt": 1,
+          "status": "REJECTED_PROPORTIONS",
+          "valid": true,
+          "requestId": "req_a42a0bf3cc8d484390918d6d0bc12834",
+          "sourceCount": 1
+        },
+        {
+          "candidate": "A",
+          "attempt": 2,
+          "status": "VALID_ALTERNATE_NOT_SELECTED",
+          "valid": true,
+          "requestId": "req_40c3b44805ee4aaabbd334c2a177960f",
+          "sourceCount": 1
+        },
+        {
+          "candidate": "B",
+          "attempt": 1,
+          "status": "REJECTED_PROPORTIONS",
+          "valid": true,
+          "requestId": "req_878e9e9e924d4bc696eeb9db27d10b10",
+          "sourceCount": 1
+        },
+        {
+          "candidate": "B",
+          "attempt": 2,
+          "status": "SELECTED_STYLE_AUTHORITY",
+          "valid": true,
+          "requestId": "req_40fdb03056f44335bd2bb5c20cc18fdf",
+          "sourceCount": 1
+        },
+        {
+          "candidate": "C",
+          "attempt": 1,
+          "status": "REJECTED_PROPORTIONS",
+          "valid": true,
+          "requestId": "req_0c0544cc3a5a41b887b02d3b679bceb6",
+          "sourceCount": 1
+        },
+        {
+          "candidate": "C",
+          "attempt": 2,
+          "status": "VALID_ALTERNATE_NOT_SELECTED",
+          "valid": true,
+          "requestId": "req_5da26567be28447ab70f8a96dc6c3613",
+          "sourceCount": 1
+        }
+      ]
+    },
+    {
+      "name": "a-candidate-contract",
+      "status": "PASS",
+      "evidence": {
+        "status": "VALID_ALTERNATE_NOT_SELECTED",
+        "selectedAttempt": 2,
+        "commonScale": 0.095238095,
+        "criticalFailures": []
+      }
+    },
+    {
+      "name": "a-shared-scale-baseline-edge-clearance",
+      "status": "PASS",
+      "evidence": {
+        "ranger": {
+          "scale": 0.095238095,
+          "bbox": [
+            39,
+            26,
+            89,
+            116
+          ],
+          "minimumEdgeClearance": 12
+        },
+        "knight": {
+          "scale": 0.095238095,
+          "bbox": [
+            39,
+            22,
+            89,
+            116
+          ],
+          "minimumEdgeClearance": 12
+        },
+        "priestess": {
+          "scale": 0.095238095,
+          "bbox": [
+            43,
+            21,
+            86,
+            116
+          ],
+          "minimumEdgeClearance": 12
+        },
+        "mage": {
+          "scale": 0.095238095,
+          "bbox": [
+            41,
+            22,
+            87,
+            116
+          ],
+          "minimumEdgeClearance": 12
+        }
+      }
+    },
+    {
+      "name": "a-exact-logical-runtime-exports",
+      "status": "PASS",
+      "evidence": [
+        {
+          "class": "ranger",
+          "logicalSha256": "b502075b6ae5e0978d0163780bb9308166de21719c09763e1838887f89faca42",
+          "runtimeSha256": "cc6c619a85d3c12ae5470381d0460732d28092e4167e3e076eca44eaaf98bf65",
+          "exactNearestNeighborX4": true
+        },
+        {
+          "class": "knight",
+          "logicalSha256": "60645a42b68c3c60cd34797f34dc2faa4b7a81b4fdc17368ef219f447fb266f9",
+          "runtimeSha256": "c1c245b80dc19078514f5d4ba1be780e27099c27523f99989f9bdc1eb9f74625",
+          "exactNearestNeighborX4": true
+        },
+        {
+          "class": "priestess",
+          "logicalSha256": "cea4ace2dd371944ad59ab17176b292c2cf55fd2459be7140013ed79057e3146",
+          "runtimeSha256": "070433e0ef20b1bdaa0ca8973c8d3ceeaacfdb8abacdbe41a7a428685595470a",
+          "exactNearestNeighborX4": true
+        },
+        {
+          "class": "mage",
+          "logicalSha256": "1be3844b18e2e2763d44faaa9fabeeff2f675f9cc555a214d5d252b90a69a4e0",
+          "runtimeSha256": "d924f68cc5db849d41db4bdc72fa6f33388eed5e1f34556ded95c3af6241b880",
+          "exactNearestNeighborX4": true
+        }
+      ]
+    },
+    {
+      "name": "a-complete-review-matrix",
+      "status": "PASS",
+      "evidence": [
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-a-four-class-lineup.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-a-dark-background.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-a-light-background.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-a-silhouette.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-a-grayscale-value.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-a-pixel-inspection-400.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-a-material-detail-crops.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-a-geometry-overlay.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-a-baseline-overlay.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-a-body-scale-comparison.png"
+      ]
+    },
+    {
+      "name": "b-candidate-contract",
+      "status": "PASS",
+      "evidence": {
+        "status": "SELECTED_STYLE_AUTHORITY",
+        "selectedAttempt": 2,
+        "commonScale": 0.091341579,
+        "criticalFailures": []
+      }
+    },
+    {
+      "name": "b-shared-scale-baseline-edge-clearance",
+      "status": "PASS",
+      "evidence": {
+        "ranger": {
+          "scale": 0.091341579,
+          "bbox": [
+            42,
+            28,
+            87,
+            116
+          ],
+          "minimumEdgeClearance": 12
+        },
+        "knight": {
+          "scale": 0.091341579,
+          "bbox": [
+            41,
+            23,
+            88,
+            116
+          ],
+          "minimumEdgeClearance": 12
+        },
+        "priestess": {
+          "scale": 0.091341579,
+          "bbox": [
+            45,
+            20,
+            83,
+            116
+          ],
+          "minimumEdgeClearance": 12
+        },
+        "mage": {
+          "scale": 0.091341579,
+          "bbox": [
+            41,
+            25,
+            88,
+            116
+          ],
+          "minimumEdgeClearance": 12
+        }
+      }
+    },
+    {
+      "name": "b-exact-logical-runtime-exports",
+      "status": "PASS",
+      "evidence": [
+        {
+          "class": "ranger",
+          "logicalSha256": "781a59894dd720bd602efa67b4211a51b9ea3f213d1577cf4976c5c6fa5d4096",
+          "runtimeSha256": "8d27a6e76d40989a9b269d3891979720eb644a3da75ae80ebc38653bc46e6595",
+          "exactNearestNeighborX4": true
+        },
+        {
+          "class": "knight",
+          "logicalSha256": "4f6283d81705fe2fc469736e07d6fafc1ac78f2517d6417b2a705d1869b36ace",
+          "runtimeSha256": "c83c38878f587ba6bcea25dd014b63cc6b94dc8218d2b7e2e5e5a578ec9cab0c",
+          "exactNearestNeighborX4": true
+        },
+        {
+          "class": "priestess",
+          "logicalSha256": "f231355d43621bff2bb852441640ace46a2d975e95b1c661f8827c7cf0b795a1",
+          "runtimeSha256": "6d962c07bc44a6f36283f2656cbe6e082964c80e540bcdf827113febb554cdee",
+          "exactNearestNeighborX4": true
+        },
+        {
+          "class": "mage",
+          "logicalSha256": "0e1d6b1dd539908388d0e26cb2e629728ce88908ffef8bad6238996394585ca6",
+          "runtimeSha256": "faf68844d7c3ce8d95dc9020ff6c121687c55c03decd217b2844bcfce584e5f3",
+          "exactNearestNeighborX4": true
+        }
+      ]
+    },
+    {
+      "name": "b-complete-review-matrix",
+      "status": "PASS",
+      "evidence": [
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-b-four-class-lineup.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-b-dark-background.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-b-light-background.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-b-silhouette.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-b-grayscale-value.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-b-pixel-inspection-400.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-b-material-detail-crops.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-b-geometry-overlay.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-b-baseline-overlay.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-b-body-scale-comparison.png"
+      ]
+    },
+    {
+      "name": "c-candidate-contract",
+      "status": "PASS",
+      "evidence": {
+        "status": "VALID_ALTERNATE_NOT_SELECTED",
+        "selectedAttempt": 2,
+        "commonScale": 0.093113482,
+        "criticalFailures": []
+      }
+    },
+    {
+      "name": "c-shared-scale-baseline-edge-clearance",
+      "status": "PASS",
+      "evidence": {
+        "ranger": {
+          "scale": 0.093113482,
+          "bbox": [
+            40,
+            27,
+            88,
+            116
+          ],
+          "minimumEdgeClearance": 12
+        },
+        "knight": {
+          "scale": 0.093113482,
+          "bbox": [
+            40,
+            23,
+            89,
+            116
+          ],
+          "minimumEdgeClearance": 12
+        },
+        "priestess": {
+          "scale": 0.093113482,
+          "bbox": [
+            44,
+            20,
+            85,
+            116
+          ],
+          "minimumEdgeClearance": 12
+        },
+        "mage": {
+          "scale": 0.093113482,
+          "bbox": [
+            41,
+            24,
+            87,
+            116
+          ],
+          "minimumEdgeClearance": 12
+        }
+      }
+    },
+    {
+      "name": "c-exact-logical-runtime-exports",
+      "status": "PASS",
+      "evidence": [
+        {
+          "class": "ranger",
+          "logicalSha256": "200b1c557c5b78d9ec477856eb745c505f0153252f8ca6da27e93c4d4b9242bd",
+          "runtimeSha256": "140c39cb78f5ee3887c41f6ac118a84649737c576abfb4b133bc54b945f6a7fc",
+          "exactNearestNeighborX4": true
+        },
+        {
+          "class": "knight",
+          "logicalSha256": "4f8796a5ec47c043fa57e63da1c0bf971dcbfda38bf42213de0926475c94e409",
+          "runtimeSha256": "42620b8fd71c4b67952fdaa5be754b0d4b7e6261655b281f1c3f53af95ddf879",
+          "exactNearestNeighborX4": true
+        },
+        {
+          "class": "priestess",
+          "logicalSha256": "ce945860a25c400337bc2eb7fb19a805911486bd47b368149d3efd03345d3a10",
+          "runtimeSha256": "620feffee4a029d5b0153e5c8b4a4abf396fa9e6c450b26721cfd920224d9174",
+          "exactNearestNeighborX4": true
+        },
+        {
+          "class": "mage",
+          "logicalSha256": "723aeb1f2e65f00a2f1d0cbd2cd3c1c1d7e6f09aab90c90362ea5d46585b2ae9",
+          "runtimeSha256": "fe597148138919153e178f1c4640b084a2a8299251c0c9b3624a6b73b98656f1",
+          "exactNearestNeighborX4": true
+        }
+      ]
+    },
+    {
+      "name": "c-complete-review-matrix",
+      "status": "PASS",
+      "evidence": [
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-c-four-class-lineup.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-c-dark-background.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-c-light-background.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-c-silhouette.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-c-grayscale-value.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-c-pixel-inspection-400.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-c-material-detail-crops.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-c-geometry-overlay.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-c-baseline-overlay.png",
+        "public/assets/dev/option-c/style-seed/reviews/style-seed-c-body-scale-comparison.png"
+      ]
+    },
+    {
+      "name": "scorecard-critical-pass-and-final-selection",
+      "status": "PASS",
+      "evidence": {
+        "recommendedCandidate": "B",
+        "finalStyleSeedSelected": true
+      }
+    },
+    {
+      "name": "protected-state-declarations",
+      "status": "PASS",
+      "evidence": {
+        "canonicalAssetsChanged": false,
+        "runtimeChanged": false,
+        "gameplayChanged": false,
+        "combatLogicChanged": false,
+        "vfxChanged": false
+      }
+    }
+  ]
+}

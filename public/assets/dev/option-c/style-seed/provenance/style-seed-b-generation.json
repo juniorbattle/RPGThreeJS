@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "STYLE_SEED_B",
+  "parentCandidate": null,
+  "timestampStarted": "2026-09-15T21:41:44.593414Z",
+  "mode": "edit",
+  "request": {
+    "endpoint": "/v1/images/edits",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "max",
+    "size": "2048x2048",
+    "background": "opaque",
+    "output_format": "png",
+    "n": 1,
+    "prompt": "Use case: style-transfer\nAsset type: Option C common character style seed, anonymous tactical-RPG sprite probes\n\nINPUT IMAGE 1 ROLE — HARD LIMIT\nImage 1 is CHARACTER_STYLE_REFERENCE_V1 and is the sole approved visual input. Use it only to learn the general modern premium pixel-art language: adult heroic proportions, authentic visible pixel construction, coherent material abstraction, concealed faces, class readability, and roster-wide consistency. Do not copy its exact costumes, symbols, accessories, poses, composition, labels, or individual designs. Do not infer or reproduce any RPGThreeJS hero. Create original anonymous archetypes from scratch.\n\nPRIMARY REQUEST\nCreate exactly four original full-body fantasy class probes in one square 2048×2048 image, arranged in an invisible 2×2 grid on a perfectly flat opaque #FF00FF background. Top-left is Ranger. Top-right is Knight. Bottom-left is Priestess/Lightcaster. Bottom-right is Mage. No fifth figure. No visible cell boxes or dividers. Each figure must remain completely inside its own 1024×1024 cell with generous magenta separation and no overlap.\n\nSHARED ARCHETYPE BLUEPRINT — KEEP IDENTICAL ACROSS A/B/C\n- Ranger: light mobile silhouette, deep triangular hood, cloth half-mask and face shadow, short asymmetric mantle, layered olive/pine cloth and warm brown leather, readable curved longbow, compact quiver.\n- Knight: broad armored silhouette, fully closed angular visor helmet, practical layered plate, dark gunmetal and steel, restrained oxblood cape/tabard, readable two-handed greatsword, no shield.\n- Priestess/Lightcaster: upright vertical silhouette, layered ivory ceremonial veil and high collar concealing the upper face, pale-gold accents, large simple robe masses, readable tall forked-lantern sacred staff, no exposed portrait-like face.\n- Mage: layered arcane silhouette, broad irregular indigo hat, high collar and deep shadow concealing the face, deep blue-violet robes, readable compact grimoire and one restrained geometric focus, no large loose particle field.\n\nCOMMON ANATOMY AND GEOMETRY — HARD LOCK\nAll four belong to one adult heroic anatomical system. Same apparent head scale, torso length, limb modules, hand scale, foot scale, and approximate physical body height. Differences come only from armor bulk, robe/cape volume, stance, and equipment. Neutral combat-ready 3/4-front pose, full body visible, feet grounded. In every 1024×1024 cell, treat the cell as a 128×128 logical grid shown at exact nearest-neighbor 8×. Align the body pivot to logical x=64 and the foot plane to logical y=116. Upright anatomical body height is approximately 84 logical pixels, acceptable 82–86. Leave at least 6 logical pixels of clear magenta at every cell edge, preferably 8 or more. No body part, weapon, staff head, bow, book, cape, ornament, or glow may cross a cell edge.\n\nPIXEL CONSTRUCTION\nNative modern tactical pixel art, not an illustration later filtered into pixels. Every visible logical pixel must read as an intentional hard-edged cluster. Use coherent shadow clusters, structured midtones, selective highlights, clean diagonal stair-stepping, controlled colored outlines, and clear material grouping. No anti-aliased edges, subpixel softness, smooth gradients, airbrush, painterly brushwork, fake pixel filter, noisy dithering, one-pixel sparkle everywhere, photorealistic reflection, or micro-scratch noise. Materials must remain readable at tactical scale. Identity must come from silhouette, equipment, palette, weapon, posture, and accessories; facial detail is secondary.\n\nSTYLE_SEED_B — BALANCED PREMIUM\nUse medium logical pixel-cluster density, moderate ornamentation, controlled premium material readability, strong tactical clarity, and modern fantasy richness. This candidate should sit closest to the reference's overall richness while improving cluster discipline, tactical-scale readability, anatomical consistency, weapon-scale consistency, clean silhouette edges, and animation feasibility. Cloth has three to five meaningful values; leather three to five; metal four to six. Every decorative accent must survive at 96px or be removed.\n\nOUTPUT CONSTRAINTS\nExactly four anonymous archetypes in the required cells. Solid uniform #FF00FF background only, no gradient, texture, ground, cast shadow, ambient shadow, scenery, halo, UI, text, labels, symbols outside the costumes, watermark, or border. No RPGThreeJS hero, no copied reference costume, no chibi anatomy, no anime head enlargement, no retro 16-bit chunkiness, no smooth concept-art cutout, and no baked combat VFX.",
+    "promptSha256": "0b0a13b997fc11fa23045426ca7c7cd5b0e0c2c8186d9a529f58aae9b7f73971",
+    "sourceImages": [
+      {
+        "path": "docs/art-direction/option-c/character-style-lock/references/character-style-reference-v1.png",
+        "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+        "bytes": 2379980
+      }
+    ]
+  },
+  "response": {
+    "requestId": "req_878e9e9e924d4bc696eeb9db27d10b10",
+    "processingMs": "106712",
+    "date": "Tue, 15 Sep 2026 21:43:33 GMT",
+    "modelReported": null,
+    "created": 1789508613,
+    "usage": {
+      "input_tokens": 2424,
+      "input_tokens_details": {
+        "image_tokens": 1452,
+        "text_tokens": 972
+      },
+      "output_tokens": 14272,
+      "total_tokens": 16696,
+      "output_tokens_details": {
+        "image_tokens": 14272,
+        "text_tokens": 0
+      }
+    },
+    "outputFormat": "png",
+    "quality": "max",
+    "size": "2048x2048"
+  },
+  "output": {
+    "path": "public/assets/dev/option-c/style-seed/raw/style-seed-b-sunburst-raw.png",
+    "sha256": "32e73c41e31f8a2d3ba34b45585c92237baaf10054be9a38c7f7fe8fa28fbee7",
+    "bytes": 4316400,
+    "rawDimensions": [
+      2048,
+      2048
+    ],
+    "mode": "RGB",
+    "normalizedDimensions": null
+  },
+  "status": "SUCCEEDED",
+  "timestampCompleted": "2026-09-15T21:43:33.958194Z",
+  "elapsedSeconds": 109.365
+}

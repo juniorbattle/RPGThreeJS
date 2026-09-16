@@ -3,7 +3,7 @@
  *
  * Contains:
  *   1. Kestrel (GOLD_REFERENCE) — mirrors Phase 4B exactly
- *   2. Alistair (SCALING_DRAFT) — greatsword knight
+ *   2. Alistair (FINAL_PRODUCTION_CANDIDATE key-pose authority) — greatsword knight
  *   3. Marian (SCALING_DRAFT) — crosier cleric
  *   4. Elara (SCALING_DRAFT) — grimoire dark mage
  *   5. Morvan (SCALING_DRAFT, DEFERRED_POST_DEMO) — scythe dark knight
@@ -12,8 +12,9 @@
  * Morvan's structural definition is preserved for future use but is NOT in
  * the active batch (DEFERRED_POST_DEMO).
  *
- * Draft characters use canonical pixel art as SCALING_DRAFT placeholders.
- * They do NOT have real Option C animation sheets — those are ART_PENDING_CODEX.
+ * Unproduced characters use canonical pixel art as SCALING_DRAFT placeholders.
+ * Alistair has a DEV-only Sunburst/max master and four static key-pose authorities;
+ * these are not full animation sheets.
  * The runtime may use a documented temporary canonical/draft representation.
  */
 
@@ -29,6 +30,7 @@ import { registerCharacterDefinition } from './OptionCManifestResolver';
 // ---------------------------------------------------------------------------
 
 const PHASE4B_ROOT = '/assets/dev/option-c/phase4b';
+const ALISTAIR_CANDIDATE_ROOT = '/assets/dev/option-c/phase4c/alistair/normalized';
 const CANONICAL_ROOT = '/assets/characters/pixel/full';
 
 function kestrelFrames(state: 'idle' | 'dash' | 'attack' | 'skill'): readonly string[] {
@@ -46,6 +48,10 @@ function kestrelFrames(state: 'idle' | 'dash' | 'attack' | 'skill'): readonly st
  */
 function draftIdleFrames(characterId: string): readonly string[] {
   return [`${CANONICAL_ROOT}/${characterId}.png`];
+}
+
+function alistairKeyPose(state: 'idle' | 'dash' | 'attack' | 'skill'): readonly string[] {
+  return [`${ALISTAIR_CANDIDATE_ROOT}/alistair-${state}.png`];
 }
 
 // ---------------------------------------------------------------------------
@@ -184,14 +190,14 @@ export const KESTREL_DEFINITION: OptionCCharacterDefinition = Object.freeze({
 });
 
 // ---------------------------------------------------------------------------
-// 2. Alistair (warrior) — SCALING_DRAFT
+// 2. Alistair (warrior) — FINAL_PRODUCTION_CANDIDATE key-pose authority
 // ---------------------------------------------------------------------------
 
 const alistairIdleMeta: OptionCAnimationMetadata = {
   state: 'idle',
   frameWidth: 512,
   frameHeight: 512,
-  frameCount: 1, // ART_PENDING_CODEX — single canonical placeholder
+  frameCount: 1, // Static key pose only; full animation generation is out of scope.
   frameDurationMs: 190,
   loop: true,
   oneShot: false,
@@ -201,7 +207,7 @@ const alistairIdleMeta: OptionCAnimationMetadata = {
   mirrorAllowed: true,
   surfaceScale: 1,
   preloadPolicy: 'withSurface',
-  frames: draftIdleFrames('alistair'),
+  frames: alistairKeyPose('idle'),
 };
 
 const alistairAttackMeta: OptionCAnimationMetadata = {
@@ -219,7 +225,7 @@ const alistairAttackMeta: OptionCAnimationMetadata = {
   mirrorAllowed: true,
   surfaceScale: 1,
   preloadPolicy: 'onDemand',
-  frames: draftIdleFrames('alistair'),
+  frames: alistairKeyPose('attack'),
 };
 
 const alistairSkillMeta: OptionCAnimationMetadata = {
@@ -237,7 +243,7 @@ const alistairSkillMeta: OptionCAnimationMetadata = {
   mirrorAllowed: true,
   surfaceScale: 1,
   preloadPolicy: 'onDemand',
-  frames: draftIdleFrames('alistair'),
+  frames: alistairKeyPose('skill'),
 };
 
 const alistairDashMeta: OptionCAnimationMetadata = {
@@ -255,15 +261,15 @@ const alistairDashMeta: OptionCAnimationMetadata = {
   mirrorAllowed: true,
   surfaceScale: 1,
   preloadPolicy: 'onDemand',
-  frames: draftIdleFrames('alistair'),
+  frames: alistairKeyPose('dash'),
 };
 
 const alistairCodexSlots: readonly OptionCCodexHandoffSlot[] = [
-  { slotName: 'characterMaster', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static master', canonicalReference: '/assets/characters/pixel/full/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/master.png', runtimeSemanticKey: 'character:warrior:master' },
-  { slotName: 'idleSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 8], timingMetadata: '190ms/frame, loop', canonicalReference: '/assets/characters/pixel/full/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/idle/', runtimeSemanticKey: 'character:warrior:surface:*:state:idle' },
-  { slotName: 'dashSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 10], timingMetadata: '82ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/dash/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/dash/', runtimeSemanticKey: 'character:warrior:surface:*:state:dash' },
-  { slotName: 'attackSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '105ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/attack/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/attack/', runtimeSemanticKey: 'character:warrior:surface:*:state:attack' },
-  { slotName: 'skillSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '125ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/skill/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/skill/', runtimeSemanticKey: 'character:warrior:surface:*:state:skill' },
+  { slotName: 'characterMaster', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static master', canonicalReference: '/assets/characters/pixel/full/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/normalized/alistair-master.png', runtimeSemanticKey: 'character:warrior:master' },
+  { slotName: 'idleKeyPose', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static key-pose authority; no animation sequence', canonicalReference: '/assets/characters/pixel/full/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/normalized/alistair-idle.png', runtimeSemanticKey: 'character:warrior:surface:*:state:idle' },
+  { slotName: 'dashKeyPose', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static key-pose authority; no animation sequence', canonicalReference: '/assets/characters/pixel/full/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/dash/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/normalized/alistair-dash.png', runtimeSemanticKey: 'character:warrior:surface:*:state:dash' },
+  { slotName: 'attackKeyPose', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static key-pose authority; no animation sequence', canonicalReference: '/assets/characters/pixel/full/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/attack/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/normalized/alistair-attack.png', runtimeSemanticKey: 'character:warrior:surface:*:state:attack' },
+  { slotName: 'skillKeyPose', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static Tourbillon d’Acier key-pose authority; no animation sequence', canonicalReference: '/assets/characters/pixel/full/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/skill/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/normalized/alistair-skill.png', runtimeSemanticKey: 'character:warrior:surface:*:state:skill' },
 ];
 
 export const ALISTAIR_DEFINITION: OptionCCharacterDefinition = Object.freeze({
@@ -275,43 +281,43 @@ export const ALISTAIR_DEFINITION: OptionCCharacterDefinition = Object.freeze({
     archetype: 'knight',
     silhouetteClass: 'heavy_frontline',
     bodyClass: 'heavy',
-    headProfile: 'Steel helm with Lion crest, broad shoulders',
-    maskProfile: 'Open-faced helm, no mask',
-    paletteFamily: ['emerald', 'steel', 'gold'],
-    equipmentProfile: 'Heavy plate armor, greatsword, tower shield',
+    headProfile: 'Closed angular vented steel helm with burgundy plume; face fully concealed',
+    maskProfile: 'Closed faceplate; no skin, hair, or eyes visible',
+    paletteFamily: ['burgundy', 'gunmetal', 'silver', 'restrained gold'],
+    equipmentProfile: 'Heavy blackened plate and mail, crimson scarf/cape/tabard, two-handed greatsword; no shield',
     tableauRequirements: 'LEFT or RIGHT standing pose, wide stance, facing speaker',
     strategicRequirements: 'Frontline grid position, heavy silhouette readable at distance',
-    combatStageRequirements: 'Melee range 1, heavy swing arc, shield block pose',
+    combatStageRequirements: 'Melee range 1, readable two-handed greatsword arc, clean center impact corridor',
     animationStates: ['idle', 'dash', 'attack', 'skill'] as const,
   },
   sources: {
     canonical: '/assets/characters/pixel/full/alistair.png',
   },
-  masterStatus: 'SCALING_DRAFT',
+  masterStatus: 'FINAL_PRODUCTION_CANDIDATE',
   surfaceAssets: {
-    tableau: '/assets/characters/pixel/full/alistair.png',
-    strategic: '/assets/characters/pixel/full/alistair.png',
-    combatStage: '/assets/characters/pixel/full/alistair.png',
+    tableau: `${ALISTAIR_CANDIDATE_ROOT}/alistair-idle.png`,
+    strategic: `${ALISTAIR_CANDIDATE_ROOT}/alistair-idle.png`,
+    combatStage: `${ALISTAIR_CANDIDATE_ROOT}/alistair-idle.png`,
   },
   animations: [alistairIdleMeta, alistairDashMeta, alistairAttackMeta, alistairSkillMeta],
   anchors: {
     footCenter: { x: 256, y: 470 },
-    bodyCenter: { x: 256, y: 256 },
-    headReference: { x: 256, y: 120 },
-    weaponReference: { x: 320, y: 300 },
+    bodyCenter: { x: 242, y: 294 },
+    headReference: { x: 215, y: 176 },
+    weaponReference: { x: 211, y: 257 },
   },
-  scales: { tableau: 0.86, strategic: 1, combatStage: 1, draftScale: true },
+  scales: { tableau: 0.99, strategic: 1.16, combatStage: 1.16, draftScale: false },
   mirrorPolicy: 'runtime',
   loadingPolicy: 'lazy',
-  runtimeStatus: 'ART_PENDING_CODEX',
+  runtimeStatus: 'FINAL_PRODUCTION_CANDIDATE',
   qaStatus: {
     registryValidated: true,
     manifestResolved: true,
-    animationValidated: false,
+    animationValidated: false, // Key poses only; full animation validation intentionally remains false.
     anchorValidated: true,
     scaleValidated: true,
     selectiveLoadingValidated: true,
-    labWired: false,
+    labWired: true,
     backwardCompatible: true,
   },
   codexHandoffSlots: alistairCodexSlots,

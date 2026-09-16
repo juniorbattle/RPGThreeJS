@@ -1,0 +1,382 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "artStatus": "FINAL_PRODUCTION_CANDIDATE",
+  "productionApproved": false,
+  "requiredModel": "gpt-image-2.5-sunburst-2026-09-08",
+  "requiredQuality": "max",
+  "fallbackUsed": false,
+  "generationRequests": 9,
+  "masterGenerationAttempts": 3,
+  "poseGenerationAttempts": 6,
+  "normalized": {
+    "master": {
+      "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-master.png",
+      "sha256": "39b856e297221f8df514173b9e741d943c522a0ed557c13ceaaf27573a1ed4d9",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        92,
+        110,
+        417,
+        471
+      ],
+      "edgeNonzeroPixels": 0,
+      "footBaseline": 470
+    },
+    "idle": {
+      "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-idle.png",
+      "sha256": "bd113a1bfb1bd8269a8a7ea40ad7924c395ad09fd784400eae803dfdc46db308",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        108,
+        110,
+        417,
+        471
+      ],
+      "edgeNonzeroPixels": 0,
+      "footBaseline": 470
+    },
+    "dash": {
+      "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-dash.png",
+      "sha256": "f98f75345b09b8668b1a0d8236fef225d8d5e46a79a83555b2dd924d09562040",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        70,
+        150,
+        431,
+        471
+      ],
+      "edgeNonzeroPixels": 0,
+      "footBaseline": 470
+    },
+    "attack": {
+      "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-attack.png",
+      "sha256": "3382c89c349883a7137e54c6535378eb1de7c4ba8d85847451ebd030273ec24d",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        111,
+        166,
+        471,
+        471
+      ],
+      "edgeNonzeroPixels": 0,
+      "footBaseline": 470
+    },
+    "skill": {
+      "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-skill.png",
+      "sha256": "880aa5f7b3efb94207ede56346cfe41b2bba322c0f42b0a6d448e6d9941d007f",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        74,
+        172,
+        435,
+        471
+      ],
+      "edgeNonzeroPixels": 0,
+      "footBaseline": 470
+    }
+  },
+  "checks": [
+    {
+      "name": "canonical-sha-unchanged",
+      "status": "PASS",
+      "evidence": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942"
+    },
+    {
+      "name": "normalization-report",
+      "status": "PASS",
+      "evidence": {
+        "maxBodyHeightDeviation": 2,
+        "maxScaleDeviation": 0.0,
+        "normalizedBodyHeightRange": [
+          286,
+          333
+        ],
+        "minimumObservedEdgeClearance": 41,
+        "sizeConsistencyStatus": "PASS",
+        "alphaContainmentStatus": "PASS"
+      }
+    },
+    {
+      "name": "one-master-derived-scale",
+      "status": "PASS",
+      "evidence": {
+        "authority": "master",
+        "sharedScale": 0.19309427599639523,
+        "maxScaleDeviation": 0.0
+      }
+    },
+    {
+      "name": "normalized-master",
+      "status": "PASS",
+      "evidence": {
+        "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-master.png",
+        "sha256": "39b856e297221f8df514173b9e741d943c522a0ed557c13ceaaf27573a1ed4d9",
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBBox": [
+          92,
+          110,
+          417,
+          471
+        ],
+        "edgeNonzeroPixels": 0,
+        "footBaseline": 470
+      }
+    },
+    {
+      "name": "normalized-idle",
+      "status": "PASS",
+      "evidence": {
+        "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-idle.png",
+        "sha256": "bd113a1bfb1bd8269a8a7ea40ad7924c395ad09fd784400eae803dfdc46db308",
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBBox": [
+          108,
+          110,
+          417,
+          471
+        ],
+        "edgeNonzeroPixels": 0,
+        "footBaseline": 470
+      }
+    },
+    {
+      "name": "normalized-dash",
+      "status": "PASS",
+      "evidence": {
+        "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-dash.png",
+        "sha256": "f98f75345b09b8668b1a0d8236fef225d8d5e46a79a83555b2dd924d09562040",
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBBox": [
+          70,
+          150,
+          431,
+          471
+        ],
+        "edgeNonzeroPixels": 0,
+        "footBaseline": 470
+      }
+    },
+    {
+      "name": "normalized-attack",
+      "status": "PASS",
+      "evidence": {
+        "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-attack.png",
+        "sha256": "3382c89c349883a7137e54c6535378eb1de7c4ba8d85847451ebd030273ec24d",
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBBox": [
+          111,
+          166,
+          471,
+          471
+        ],
+        "edgeNonzeroPixels": 0,
+        "footBaseline": 470
+      }
+    },
+    {
+      "name": "normalized-skill",
+      "status": "PASS",
+      "evidence": {
+        "path": "public/assets/dev/option-c/phase4c/alistair/normalized/alistair-skill.png",
+        "sha256": "880aa5f7b3efb94207ede56346cfe41b2bba322c0f42b0a6d448e6d9941d007f",
+        "dimensions": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBBox": [
+          74,
+          172,
+          435,
+          471
+        ],
+        "edgeNonzeroPixels": 0,
+        "footBaseline": 470
+      }
+    },
+    {
+      "name": "all-generation-provenance-locked",
+      "status": "PASS",
+      "evidence": [
+        {
+          "file": "alistair-attack-key-pose-a001.json",
+          "candidateId": "alistair-attack-key-pose-a001-chroma",
+          "status": "SUCCEEDED",
+          "model": "gpt-image-2.5-sunburst-2026-09-08",
+          "quality": "max",
+          "requestId": "req_622718d275ac480f80e317e60c9be19a",
+          "modelReported": null,
+          "selection": "SELECTED",
+          "pass": true
+        },
+        {
+          "file": "alistair-dash-key-pose-a001.json",
+          "candidateId": "alistair-dash-key-pose-a001-chroma",
+          "status": "SUCCEEDED",
+          "model": "gpt-image-2.5-sunburst-2026-09-08",
+          "quality": "max",
+          "requestId": "req_8b61d10e0fe34324b7f338efeb769ad6",
+          "modelReported": null,
+          "selection": "REJECTED",
+          "pass": true
+        },
+        {
+          "file": "alistair-dash-key-pose-a002.json",
+          "candidateId": "alistair-dash-key-pose-a002-proportion-correction",
+          "status": "SUCCEEDED",
+          "model": "gpt-image-2.5-sunburst-2026-09-08",
+          "quality": "max",
+          "requestId": "req_5183703e941941238039f6a77cae3dbe",
+          "modelReported": null,
+          "selection": "REJECTED",
+          "pass": true
+        },
+        {
+          "file": "alistair-dash-key-pose-a003.json",
+          "candidateId": "alistair-dash-key-pose-a003-orthographic-proportion-lock",
+          "status": "SUCCEEDED",
+          "model": "gpt-image-2.5-sunburst-2026-09-08",
+          "quality": "max",
+          "requestId": "req_6d7c4013ff8642cea65a623972121a63",
+          "modelReported": null,
+          "selection": "SELECTED",
+          "pass": true
+        },
+        {
+          "file": "alistair-idle-key-pose-a001.json",
+          "candidateId": "alistair-idle-key-pose-a001-chroma",
+          "status": "SUCCEEDED",
+          "model": "gpt-image-2.5-sunburst-2026-09-08",
+          "quality": "max",
+          "requestId": "req_371688a436a7450b831cc7b29eeeb105",
+          "modelReported": null,
+          "selection": "SELECTED",
+          "pass": true
+        },
+        {
+          "file": "alistair-master-candidate-a001.json",
+          "candidateId": "alistair-master-sunburst-max-a001",
+          "status": "SUCCEEDED",
+          "model": "gpt-image-2.5-sunburst-2026-09-08",
+          "quality": "max",
+          "requestId": "req_a8379ccac2d24905a6e0f754048f1a23",
+          "modelReported": null,
+          "selection": "REJECTED",
+          "pass": true
+        },
+        {
+          "file": "alistair-master-candidate-a002.json",
+          "candidateId": "alistair-master-candidate-a002",
+          "status": "SUCCEEDED",
+          "model": "gpt-image-2.5-sunburst-2026-09-08",
+          "quality": "max",
+          "requestId": "req_15f6054181ca45b39a170efef8a24130",
+          "modelReported": null,
+          "selection": "REJECTED",
+          "pass": true
+        },
+        {
+          "file": "alistair-master-candidate-a003-chroma.json",
+          "candidateId": "alistair-master-candidate-a003-chroma",
+          "status": "SUCCEEDED",
+          "model": "gpt-image-2.5-sunburst-2026-09-08",
+          "quality": "max",
+          "requestId": "req_1d688a38a8284c4db14210f5f354010b",
+          "modelReported": null,
+          "selection": "SELECTED",
+          "pass": true
+        },
+        {
+          "file": "alistair-skill-key-pose-a001.json",
+          "candidateId": "alistair-skill-key-pose-a001-chroma",
+          "status": "SUCCEEDED",
+          "model": "gpt-image-2.5-sunburst-2026-09-08",
+          "quality": "max",
+          "requestId": "req_2eec88a7416e4ca8b759480db40168f7",
+          "modelReported": null,
+          "selection": "SELECTED",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "selected-provenance-accounted",
+      "status": "PASS",
+      "evidence": [
+        "alistair-attack-key-pose-a001.json",
+        "alistair-dash-key-pose-a003.json",
+        "alistair-idle-key-pose-a001.json",
+        "alistair-master-candidate-a003-chroma.json",
+        "alistair-skill-key-pose-a001.json"
+      ]
+    },
+    {
+      "name": "human-review-artifacts",
+      "status": "PASS",
+      "evidence": [
+        "alistair-4-pose-contact-sheet.png",
+        "alistair-4-pose-dark-background.png",
+        "alistair-4-pose-light-background.png",
+        "alistair-alpha-bounding-box-review.png",
+        "alistair-character-master-review.png",
+        "alistair-silhouette-comparison.png",
+        "alistair-size-baseline-overlay.png"
+      ]
+    },
+    {
+      "name": "real-runtime-proof",
+      "status": "PASS",
+      "evidence": {
+        "status": "PASS",
+        "surfaces": {
+          "STATIC_TABLEAU": "PASS",
+          "STRATEGIC": "PASS",
+          "COMBAT_STAGE": "PASS"
+        },
+        "viewports": [
+          "1920x1080",
+          "1366x768"
+        ],
+        "captureCount": 8,
+        "errorCount": 0
+      }
+    }
+  ]
+}

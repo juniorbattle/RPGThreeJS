@@ -1,0 +1,107 @@
+{
+  "sourceBbox": [
+    292,
+    92,
+    1831,
+    1963
+  ],
+  "sourceExtent": [
+    1539,
+    1871
+  ],
+  "sharedSourceToLogicalScale": 0.088983051,
+  "sourceFootCenterXWithinCrop": 886.5,
+  "logicalPasteOrigin": [
+    49,
+    66
+  ],
+  "logicalBbox": [
+    49,
+    66,
+    186,
+    232
+  ],
+  "logicalExtent": [
+    137,
+    166
+  ],
+  "logicalBodyHeight": 166,
+  "pivotLogicalX": 128,
+  "footBaselineLogical": 232,
+  "edgeClearance": [
+    49,
+    66,
+    70,
+    24
+  ],
+  "minimumEdgeClearance": 24,
+  "visibleMagentaLikePixelCount": 0,
+  "paletteColorCeiling": 128,
+  "rawToLogicalResampling": "nearest-neighbor",
+  "dithering": "none",
+  "schemaVersion": 1,
+  "candidate": "A",
+  "status": "MASTER_CANDIDATE",
+  "rawPath": "public/assets/dev/option-c/character-masters/alistair-v2/raw/alistair-master-v2-a-sunburst-raw.png",
+  "rawSha256": "b117c3a45c2efc6e0efa9ded7d76a86dff6a175c2de82ee277f278fee096ea21",
+  "isolatedPath": "public/assets/dev/option-c/character-masters/alistair-v2/isolated/alistair-master-v2-a-isolated.png",
+  "isolatedSha256": "bcec37c1ae3fc4acca7228fc88c8c4d74dede966fffa21a0b624bed7e6627c94",
+  "chroma": {
+    "method": "bounded-magenta-chroma-key",
+    "sourceBbox": [
+      292,
+      92,
+      1831,
+      1963
+    ],
+    "foregroundPixels": 1298621,
+    "removedPixels": 2895683
+  },
+  "logicalPath": "public/assets/dev/option-c/character-masters/alistair-v2/logical-256/alistair-master-v2-a.png",
+  "logicalSha256": "4160784d899b7cea9847126988cf34279656a8ccc0d3fed4883fb7003b15ece3",
+  "runtimePath": "public/assets/dev/option-c/character-masters/alistair-v2/runtime-512/alistair-master-v2-a.png",
+  "runtimeSha256": "8f141aad0483cf1490854f830ee09165749ca82d08809e0f0db2fdccc8a36054",
+  "runtimeCanvas": [
+    512,
+    512
+  ],
+  "exactNearestNeighborX2": true,
+  "sharedScaleAcrossCandidates": true,
+  "reviews": [
+    {
+      "kind": "dark-background",
+      "path": "public/assets/dev/option-c/character-masters/alistair-v2/reviews/alistair-master-v2-a-dark-background.png",
+      "sha256": "6835330c7ae69a677fffe0d111141dfdd9c0f4fb03f202a44ae9d2c45fbfac7a"
+    },
+    {
+      "kind": "light-background",
+      "path": "public/assets/dev/option-c/character-masters/alistair-v2/reviews/alistair-master-v2-a-light-background.png",
+      "sha256": "cb6207206bbaf2f48b54bcbd890b298f5d20bd54a9931126de2c3f71b981b298"
+    },
+    {
+      "kind": "geometry-overlay",
+      "path": "public/assets/dev/option-c/character-masters/alistair-v2/reviews/alistair-master-v2-a-geometry-overlay.png",
+      "sha256": "e25084e3ba8bc41148968f25a802c525258faadeb6a9bb4f074401f187b48f51"
+    },
+    {
+      "kind": "silhouette",
+      "path": "public/assets/dev/option-c/character-masters/alistair-v2/reviews/alistair-master-v2-a-silhouette.png",
+      "sha256": "d6f970c55aa4c6d85a2164e1595a99683f13fbfa35142de84f57057a628449d3"
+    },
+    {
+      "kind": "grayscale-value",
+      "path": "public/assets/dev/option-c/character-masters/alistair-v2/reviews/alistair-master-v2-a-grayscale-value.png",
+      "sha256": "80f791c80b99e136f265ea169856c2de0aae4494f823ec476d990e8d8e3d15a7"
+    },
+    {
+      "kind": "tactical-96",
+      "path": "public/assets/dev/option-c/character-masters/alistair-v2/reviews/alistair-master-v2-a-tactical-96.png",
+      "sha256": "0e9a6d9cd991586844289c022e9c4fdb6cecf4dd91af76195922e671ac0f225e"
+    },
+    {
+      "kind": "pixel-inspection-4x",
+      "path": "public/assets/dev/option-c/character-masters/alistair-v2/reviews/alistair-master-v2-a-pixel-inspection-4x.png",
+      "sha256": "cc0952a1e9004192f35222373798ebad5f6ca40872049a1c64e808b76b2a1d0f"
+    }
+  ]
+}
