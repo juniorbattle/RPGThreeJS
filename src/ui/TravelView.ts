@@ -2,6 +2,7 @@ import { unitById } from '../game/catalog';
 import { getAvailableRunNodes } from '../game/runSystem';
 import { getReputationRule } from '../game/reputation';
 import { assets } from '../render/assetManifest';
+import { demoTravelEnvironment } from '../render/demoEnvironmentPack';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
 import { runNodePresentation } from './RunNodePresentation';
 import type { GameState, RunNode } from '../game/types';
@@ -119,8 +120,6 @@ const TRAVEL_ADVISORS: readonly TravelPartyMember[] = [
 
 const travelHeroSpriteCache = new Map<string, string>();
 
-type TravelBackdropKey = keyof typeof assets.screens.travel.backdrops;
-
 function escapeHtml(value: string): string {
   return value.replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char] ?? char);
 }
@@ -144,20 +143,6 @@ function particleLayer(count = 10): string {
     motes += `<i style="--x:${left}%;--delay:${delay}s;--dur:${duration}s;--drift:${drift}px;--scale:${scale};--alpha:${alpha}"></i>`;
   }
   return motes;
-}
-
-function travelBackdropForNode(node: RunNode): TravelBackdropKey {
-  const context = `${node.type} ${node.contentId} ${node.label}`.toLocaleLowerCase('fr-FR');
-  if (node.type === 'boss' || node.type === 'refuge' || /château|chateau|forteresse|fort|citadelle|ruine|ruines|vestige|vestiges|sceau|porte|refuge/.test(context)) return 'castle';
-  if (node.type === 'shop' || node.type === 'recruitment' || /ville|village|bourg|marchand|valmir/.test(context)) return 'city';
-  return 'default';
-}
-
-function chooseTravelBackdrop(choices: readonly RunNode[]): TravelBackdropKey {
-  const contexts = choices.map((node) => travelBackdropForNode(node));
-  if (contexts.includes('castle')) return 'castle';
-  if (contexts.includes('city')) return 'city';
-  return 'default';
 }
 
 function currentRunNode(state: GameState): RunNode | undefined {
@@ -359,7 +344,10 @@ export class TravelView {
     this.close();
     const state = this.options.getState();
     const choices = getAvailableRunNodes(state);
-    const backdropKey = chooseTravelBackdrop(choices);
+    const travelEnvironment = demoTravelEnvironment(
+      state.run.currentNodeId,
+      choices.map((choice) => choice.id),
+    );
     const roadmap = renderRoadmap(state, choices);
     const current = currentRunNode(state);
     const reputation = getReputationRule(state.reputation);
@@ -373,9 +361,11 @@ export class TravelView {
     const partyLayout = computeTravelPartyLayout(party.length);
     const section = document.createElement('section');
     section.className = 'travel-view ui-screen';
-    section.dataset.travelBackdrop = backdropKey;
+    section.dataset.travelBackdrop = travelEnvironment.assetId;
+    section.dataset.travelContext = travelEnvironment.contextId;
+    section.dataset.travelVisualFamily = travelEnvironment.visualFamily;
     applyScreenEnvironment(section, 'travel');
-    section.style.setProperty('--travel-sky', `url('${assets.screens.travel.backdrops[backdropKey]}')`);
+    section.style.setProperty('--travel-sky', `url('${travelEnvironment.publicUrl}')`);
     section.style.setProperty('--travel-mist', `url('${assets.screens.travel.mist}')`);
     section.innerHTML = `
       <div class="travel-view__sky"></div>

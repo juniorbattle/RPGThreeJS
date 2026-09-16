@@ -42,9 +42,12 @@ describe('CIN-6.5 cinematic dialogue integration', () => {
     expect(method('private async playClassicDialogue')).not.toContain('resolveCin6aJourneyTrigger');
   });
 
-  it('leaves non-Journey and unmapped dialogue on the classic interlude path', () => {
+  it('uses static-tableau dialogue in production while retaining the classic safety path', () => {
     const playDialogue = method('private async playDialogue');
-    expect(playDialogue).toContain("this.cinematicInterlude({ hook: 'beforeDialogue', dialogueId })");
+    const narrativeDialogue = method('private async playNarrativeDialogue');
+    expect(playDialogue).toContain('await this.playNarrativeDialogue');
+    expect(narrativeDialogue).toContain('tableau?.stillImage ?? resolveDialogueBackdrop(sequence)');
+    expect(narrativeDialogue).toContain('await this.playClassicDialogue(sequence, fallbackLabel)');
     expect(method('private async playClassicDialogue')).toContain("variant: 'dialogue'");
     expect(method('private async playClassicDialogue')).toContain('this.dialogue.play(sequence)');
   });

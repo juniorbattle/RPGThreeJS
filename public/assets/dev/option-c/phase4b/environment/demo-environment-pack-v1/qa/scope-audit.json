@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "missionWriteScope": [
+    "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/**",
+    "tools/option-c/build_demo_environment_pack.py"
+  ],
+  "localWorktreeWasDirtyAtStart": true,
+  "preExistingDirtyWorktreePreserved": true,
+  "historicalPhase4bEvidenceOverwritten": false,
+  "operatorSelectedForestRoadV2Overwritten": false,
+  "canonicalAssetsChangedByMission": false,
+  "characterAssetsChangedByMission": false,
+  "runtimeChangedByMission": false,
+  "gameplayChangedByMission": false,
+  "combatLogicChangedByMission": false,
+  "narrativeTruthChangedByMission": false,
+  "saveSchemaChangedByMission": false,
+  "vfxChangedByMission": false,
+  "commitCreated": false,
+  "pushPerformed": false,
+  "protectedPaths": [
+    "src/game/**",
+    "src/render/**",
+    "src/combat/**",
+    "src/cinematics/**",
+    "public/assets/characters/**",
+    "public/assets/generated/**",
+    "public/assets/vfx/**"
+  ],
+  "note": "Protected paths may already be dirty from concurrent or earlier local work; this mission did not write to them."
+}
+

@@ -1,0 +1,2257 @@
+{
+  "schemaVersion": 1,
+  "packId": "demo-environment-pack-v1",
+  "status": "PRODUCTION_APPROVED",
+  "promotedAt": "2026-09-16",
+  "sourcePackRoot": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/",
+  "productionPackRoot": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/",
+  "productionPublicRoot": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/",
+  "summary": {
+    "visualFamilyCount": 13,
+    "approvedAssetCount": 44,
+    "promotedAssetCount": 44,
+    "totalContexts": 165,
+    "mappedContexts": 165,
+    "unmappedContexts": 0,
+    "fallbackContexts": 0,
+    "byteIdenticalAssets": 44
+  },
+  "visualFamilies": [
+    "ALARIC_AUDIENCE",
+    "BOIS_CLAIR",
+    "FINAL_REFUGE",
+    "FIRST_REFUGE",
+    "FOREST_ROAD",
+    "LION_CAMP",
+    "LION_JUDGEMENT",
+    "LION_TRIAL",
+    "SECOND_REFUGE",
+    "SERPENT_FINALE",
+    "SHADOW_RUINS",
+    "VALMIR_ROAD",
+    "WITNESS_ROAD"
+  ],
+  "assets": [
+    {
+      "assetId": "lion_camp_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/lion-camp-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-camp-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-camp-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "LION_CAMP",
+      "sha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "lion_camp_travel",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/travel/lion-camp-travel.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/lion-camp-travel.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/lion-camp-travel.png",
+      "surfaceRole": "TRAVEL",
+      "visualFamily": "LION_CAMP",
+      "sha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "lion_camp_cinematic_source",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "visualFamily": "LION_CAMP",
+      "sha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "alaric_audience_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/alaric-audience-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "ALARIC_AUDIENCE",
+      "sha256": "1214cc5627b41456f8540e9c0f043fb45edda7ddd502cf01cebc4c4f8325f13b",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "alaric_audience_cinematic_source",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "visualFamily": "ALARIC_AUDIENCE",
+      "sha256": "1214cc5627b41456f8540e9c0f043fb45edda7ddd502cf01cebc4c4f8325f13b",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "forest_road_main",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/forest-road-main.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-main.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-main.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "FOREST_ROAD",
+      "sha256": "c2d4de1a437f815c4c36cf7bf51994de9c63a2bbe4b222bcc0efdfae88df1008",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "forest_road_travel",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/travel/forest-road-travel.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/forest-road-travel.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/forest-road-travel.png",
+      "surfaceRole": "TRAVEL",
+      "visualFamily": "FOREST_ROAD",
+      "sha256": "c2d4de1a437f815c4c36cf7bf51994de9c63a2bbe4b222bcc0efdfae88df1008",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "forest_road_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/forest-road-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "FOREST_ROAD",
+      "sha256": "ce0bfde862cab19bca16ae4408112e5b9885a28190b2a0c49de475cf9135f377",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "forest_route_strategic",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/strategic/forest-route-strategic.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/forest-route-strategic.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/forest-route-strategic.png",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "visualFamily": "FOREST_ROAD",
+      "sha256": "74415c020350c7761230b0ca320a223b5530ddcd1e7e1756c3c89f884b1b77fc",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "forest_route_stage",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/combat-stage/forest-route-stage.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/forest-route-stage.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/forest-route-stage.png",
+      "surfaceRole": "COMBAT_STAGE",
+      "visualFamily": "FOREST_ROAD",
+      "sha256": "db4328615aa3d627fb9193a73347afe0ccf47148900b40141d221db206ef878e",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "forest_crossroads_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/forest-crossroads-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-crossroads-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-crossroads-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "FOREST_ROAD",
+      "sha256": "a3673bfbd9aba9548d9cea95b2ffb71389ed102443ac20c395e4b23b7f0236d8",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "refugee_road_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/refugee-road-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/refugee-road-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/refugee-road-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "FOREST_ROAD",
+      "sha256": "7ec6e28636a01b939f9a35e37a11e4bcddedbd84b92040b028d8e66ecc7784e4",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "roadside_event_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/roadside-event-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/roadside-event-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/roadside-event-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "FOREST_ROAD",
+      "sha256": "40e11e236b98632e3d28f2a4c19b984c0102b0e26e034e809b10619084589088",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "abandoned_cart_area_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/abandoned-cart-area-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/abandoned-cart-area-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/abandoned-cart-area-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "FOREST_ROAD",
+      "sha256": "4fcea67ef10e236c77c3e5dc10108cc1f546378f57986373712e48969c6c1e73",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "forest_ambush_area_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/forest-ambush-area-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-ambush-area-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-ambush-area-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "FOREST_ROAD",
+      "sha256": "67064a180d50e3d910b87a48897d7531c85b624a3e812cae50b10fa77cc371b0",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "first_refuge_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "FIRST_REFUGE",
+      "sha256": "3103897cabf43ef86ba370a8de0c97d827878967e340c8d34231cee08a273c62",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "first_refuge_travel",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/travel/first-refuge-travel.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/first-refuge-travel.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/first-refuge-travel.png",
+      "surfaceRole": "TRAVEL",
+      "visualFamily": "FIRST_REFUGE",
+      "sha256": "821406e83fd0a15a35378314781246eb12ae959f60e4ddfad85bb7b3160f2713",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "valmir_road_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/valmir-road-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/valmir-road-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/valmir-road-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "VALMIR_ROAD",
+      "sha256": "5737747948c67c7f50c8db4cb5456ab73ddfddc71d527119209e160c2336a136",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "valmir_road_travel",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/travel/valmir-road-travel.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/valmir-road-travel.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/valmir-road-travel.png",
+      "surfaceRole": "TRAVEL",
+      "visualFamily": "VALMIR_ROAD",
+      "sha256": "5737747948c67c7f50c8db4cb5456ab73ddfddc71d527119209e160c2336a136",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "old_shrine_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/old-shrine-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/old-shrine-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/old-shrine-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "VALMIR_ROAD",
+      "sha256": "4b4c06899d2eb0a7fdfe5a49de969f2638ba73d2aa78045d9ab199b2059ba21e",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "bois_clair_tableau_burning",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "BOIS_CLAIR",
+      "sha256": "a3e69c055552b41f4c6c8f13196bb1500d6781a79533d45aab7410f6b67af7ec",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "bois_clair_travel",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/travel/bois-clair-travel.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/bois-clair-travel.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/bois-clair-travel.png",
+      "surfaceRole": "TRAVEL",
+      "visualFamily": "BOIS_CLAIR",
+      "sha256": "a3e69c055552b41f4c6c8f13196bb1500d6781a79533d45aab7410f6b67af7ec",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "bois_clair_tableau_aftermath_saved",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-saved.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-saved.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-saved.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "BOIS_CLAIR",
+      "sha256": "09485b94cb0f4e4b56386a2fcb4e02d0ecae8fbfb0dca1a6309cb6f97cd1444b",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "bois_clair_tableau_aftermath_sacrificed",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "BOIS_CLAIR",
+      "sha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "bois_clair_burning_strategic",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/strategic/bois-clair-burning-strategic.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/bois-clair-burning-strategic.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/bois-clair-burning-strategic.png",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "visualFamily": "BOIS_CLAIR",
+      "sha256": "31b4890b83067eaed7ddb011fe0dc2821441d4371f715bf5aa19a3a568209e96",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "bois_clair_burning_stage",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/combat-stage/bois-clair-burning-stage.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/bois-clair-burning-stage.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/bois-clair-burning-stage.png",
+      "surfaceRole": "COMBAT_STAGE",
+      "visualFamily": "BOIS_CLAIR",
+      "sha256": "46ab66e93735896808a485d119547d202eddb490cf68598c481ebefd263cf06f",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "second_refuge_night_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "SECOND_REFUGE",
+      "sha256": "9bf15371ee5837bb56ebdf01d8392a88b9f91fe3531025d034600d1077b83e26",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "second_refuge_morning_travel",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/travel/second-refuge-morning-travel.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/second-refuge-morning-travel.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/second-refuge-morning-travel.png",
+      "surfaceRole": "TRAVEL",
+      "visualFamily": "SECOND_REFUGE",
+      "sha256": "6ca3f288b2df8eb5433aec190415d72c603485d2e066f54c45a21fa9826ad8b7",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "witness_road_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/witness-road-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "WITNESS_ROAD",
+      "sha256": "6226da6d389a846698eb638e05916fa1ef02536b9f5bf8d345f4dea4a6f2ee5f",
+      "width": 1671,
+      "height": 941
+    },
+    {
+      "assetId": "witness_road_travel",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/travel/witness-road-travel.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/witness-road-travel.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/witness-road-travel.png",
+      "surfaceRole": "TRAVEL",
+      "visualFamily": "WITNESS_ROAD",
+      "sha256": "6226da6d389a846698eb638e05916fa1ef02536b9f5bf8d345f4dea4a6f2ee5f",
+      "width": 1671,
+      "height": 941
+    },
+    {
+      "assetId": "shadow_ruins_approach",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/travel/shadow-ruins-approach.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/shadow-ruins-approach.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/shadow-ruins-approach.png",
+      "surfaceRole": "TRAVEL",
+      "visualFamily": "SHADOW_RUINS",
+      "sha256": "6b889711b71c75c039117dd275351ca3e6093abcfe399d45cc4041e678a924e8",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "shadow_ruins_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "SHADOW_RUINS",
+      "sha256": "79b62812616e699c07c9c5f2967cc981cc006eda61087dd0721491a7df3436e8",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "dragon_roost_area",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/dragon-roost-area.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/dragon-roost-area.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/dragon-roost-area.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "SHADOW_RUINS",
+      "sha256": "e2f96863fd05d74b5b0f8de05b044086c2b7e584196710dd0e4170fc3937c12b",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "lion_sanctum_strategic",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/strategic/lion-sanctum-strategic.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/lion-sanctum-strategic.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/lion-sanctum-strategic.png",
+      "surfaceRole": "STRATEGIC_COMBAT",
+      "visualFamily": "SHADOW_RUINS",
+      "sha256": "477842da271404cc6b456e247083907c6c08e8db4135df8eccc69b0e95b7f25d",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "lion_sanctum_stage",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/combat-stage/lion-sanctum-stage.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/lion-sanctum-stage.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/lion-sanctum-stage.png",
+      "surfaceRole": "COMBAT_STAGE",
+      "visualFamily": "SHADOW_RUINS",
+      "sha256": "6f665a54d473b9103019b2d578b3dd3f5a7887e73ca817d81027acf0c5c04fad",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "final_refuge_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/final-refuge-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/final-refuge-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/final-refuge-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "FINAL_REFUGE",
+      "sha256": "511af56c991af9136a38e861fbd90bc1b0ff5df11113c60a75f70e0b6e6aaf92",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "final_refuge_travel",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/travel/final-refuge-travel.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/final-refuge-travel.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/final-refuge-travel.png",
+      "surfaceRole": "TRAVEL",
+      "visualFamily": "FINAL_REFUGE",
+      "sha256": "511af56c991af9136a38e861fbd90bc1b0ff5df11113c60a75f70e0b6e6aaf92",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "lion_judgement_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/lion-judgement-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "LION_JUDGEMENT",
+      "sha256": "280361d3b73ba06753562c8fe73009c48dbda7db592d65ef891ae8ec323e3ebf",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "lion_judgement_epilogue_tableau",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/lion-judgement-epilogue-tableau.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-epilogue-tableau.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-epilogue-tableau.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "LION_JUDGEMENT",
+      "sha256": "280361d3b73ba06753562c8fe73009c48dbda7db592d65ef891ae8ec323e3ebf",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "lion_judgement_travel_or_approach",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/travel/lion-judgement-approach.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/lion-judgement-approach.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/lion-judgement-approach.png",
+      "surfaceRole": "TRAVEL",
+      "visualFamily": "LION_JUDGEMENT",
+      "sha256": "2eb6b3587b3720778f46055e4122798fb1e554bbe8077ba87454336c26b00e92",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "serpent_finale_tableau_aftermath",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/serpent-finale-tableau-aftermath.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/serpent-finale-tableau-aftermath.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/serpent-finale-tableau-aftermath.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "SERPENT_FINALE",
+      "sha256": "1b804263ddf29b5ff7a75628beca9eb8188a4e7205d8e5d439ef9c4b0bffd762",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "serpent_finale_cinematic_source",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "visualFamily": "SERPENT_FINALE",
+      "sha256": "1b804263ddf29b5ff7a75628beca9eb8188a4e7205d8e5d439ef9c4b0bffd762",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "lion_trial_tableau_aftermath",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/tableau/lion-trial-tableau-aftermath.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-trial-tableau-aftermath.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-trial-tableau-aftermath.png",
+      "surfaceRole": "STATIC_TABLEAU",
+      "visualFamily": "LION_TRIAL",
+      "sha256": "a6111e975110dd070b9f54ea276d9d7499e44efefcd36676f7cb95a740f1aec1",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "assetId": "lion_trial_cinematic_source",
+      "sourceDevPath": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+      "productionPath": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+      "publicUrl": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+      "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+      "visualFamily": "LION_TRIAL",
+      "sha256": "a6111e975110dd070b9f54ea276d9d7499e44efefcd36676f7cb95a740f1aec1",
+      "width": 1672,
+      "height": 941
+    }
+  ],
+  "mappings": {
+    "media:camp_departure": {
+      "visualFamily": "LION_CAMP",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "lion_camp_cinematic_source",
+          "runtimeCandidatePath": "cinematic-source/lion-camp-cinematic-source.png"
+        }
+      ]
+    },
+    "dialogue:acte_ouverture": {
+      "visualFamily": "LION_CAMP",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "lion_camp_tableau",
+          "runtimeCandidatePath": "tableau/lion-camp-tableau.png"
+        }
+      ]
+    },
+    "dialogue:camp_departure": {
+      "visualFamily": "LION_CAMP",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "lion_camp_tableau",
+          "runtimeCandidatePath": "tableau/lion-camp-tableau.png"
+        }
+      ]
+    },
+    "media:alaric_audience_arrival": {
+      "visualFamily": "ALARIC_AUDIENCE",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "alaric_audience_cinematic_source",
+          "runtimeCandidatePath": "cinematic-source/alaric-audience-cinematic-source.png"
+        }
+      ]
+    },
+    "dialogue:lion_briefing": {
+      "visualFamily": "ALARIC_AUDIENCE",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "alaric_audience_tableau",
+          "runtimeCandidatePath": "tableau/alaric-audience-tableau.png"
+        }
+      ]
+    },
+    "media:forest_journey_tension": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "forest_road_travel",
+          "runtimeCandidatePath": "travel/forest-road-travel.png"
+        }
+      ]
+    },
+    "combat:forest_ambush": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "forest_route_strategic",
+          "runtimeCandidatePath": "strategic/forest-route-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "forest_route_stage",
+          "runtimeCandidatePath": "combat-stage/forest-route-stage.png"
+        }
+      ]
+    },
+    "combat:wolf_pack": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "forest_route_strategic",
+          "runtimeCandidatePath": "strategic/forest-route-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "forest_route_stage",
+          "runtimeCandidatePath": "combat-stage/forest-route-stage.png"
+        }
+      ]
+    },
+    "dialogue:post_opening_trail": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "media:cedric_encounter": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "forest_crossroads_tableau",
+          "runtimeCandidatePath": "tableau/forest-crossroads-tableau.png"
+        }
+      ]
+    },
+    "dialogue:mystery_recruit": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_crossroads_tableau",
+          "runtimeCandidatePath": "tableau/forest-crossroads-tableau.png"
+        }
+      ]
+    },
+    "media:refugees_approach": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "refugee_road_tableau",
+          "runtimeCandidatePath": "tableau/refugee-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:refugee_trial": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "refugee_road_tableau",
+          "runtimeCandidatePath": "tableau/refugee-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:mystery_help": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "roadside_event_tableau",
+          "runtimeCandidatePath": "tableau/roadside-event-tableau.png"
+        }
+      ]
+    },
+    "media:injured_merchant_encounter": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "roadside_event_tableau",
+          "runtimeCandidatePath": "tableau/roadside-event-tableau.png"
+        }
+      ]
+    },
+    "dialogue:mystery_treasure": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "abandoned_cart_area_tableau",
+          "runtimeCandidatePath": "tableau/abandoned-cart-area-tableau.png"
+        }
+      ]
+    },
+    "media:abandoned_cart_reveal": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "abandoned_cart_area_tableau",
+          "runtimeCandidatePath": "tableau/abandoned-cart-area-tableau.png"
+        }
+      ]
+    },
+    "combat:forest_patrol": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "forest_route_strategic",
+          "runtimeCandidatePath": "strategic/forest-route-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "forest_route_stage",
+          "runtimeCandidatePath": "combat-stage/forest-route-stage.png"
+        }
+      ]
+    },
+    "combat:spider_nest": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "forest_route_strategic",
+          "runtimeCandidatePath": "strategic/forest-route-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "forest_route_stage",
+          "runtimeCandidatePath": "combat-stage/forest-route-stage.png"
+        }
+      ]
+    },
+    "media:spider_nest_reveal": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "forest_ambush_area_tableau",
+          "runtimeCandidatePath": "tableau/forest-ambush-area-tableau.png"
+        }
+      ]
+    },
+    "dialogue:post_spider_nest": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "combat:serpent_reprisals": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "forest_route_strategic",
+          "runtimeCandidatePath": "strategic/forest-route-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "forest_route_stage",
+          "runtimeCandidatePath": "combat-stage/forest-route-stage.png"
+        }
+      ]
+    },
+    "dialogue:post_serpent_reprisals": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:post_serpent_patrol": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "media:first_refuge_arrival": {
+      "visualFamily": "FIRST_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "first_refuge_tableau",
+          "runtimeCandidatePath": "tableau/first-refuge-tableau.png"
+        }
+      ]
+    },
+    "media:first_refuge_departure": {
+      "visualFamily": "FIRST_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "first_refuge_travel",
+          "runtimeCandidatePath": "travel/first-refuge-travel.png"
+        }
+      ]
+    },
+    "dialogue:forest_refuge": {
+      "visualFamily": "FIRST_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "first_refuge_tableau",
+          "runtimeCandidatePath": "tableau/first-refuge-tableau.png"
+        }
+      ]
+    },
+    "media:valmir_route_fork": {
+      "visualFamily": "VALMIR_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "valmir_road_travel",
+          "runtimeCandidatePath": "travel/valmir-road-travel.png"
+        }
+      ]
+    },
+    "combat:marsh_crossing": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "forest_route_strategic",
+          "runtimeCandidatePath": "strategic/forest-route-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "forest_route_stage",
+          "runtimeCandidatePath": "combat-stage/forest-route-stage.png"
+        }
+      ]
+    },
+    "combat:road_to_valmir": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "forest_route_strategic",
+          "runtimeCandidatePath": "strategic/forest-route-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "forest_route_stage",
+          "runtimeCandidatePath": "combat-stage/forest-route-stage.png"
+        }
+      ]
+    },
+    "media:bois_clair_arrival": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "bois_clair_tableau_burning",
+          "runtimeCandidatePath": "tableau/bois-clair-tableau-burning.png"
+        }
+      ]
+    },
+    "dialogue:village_choice": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "bois_clair_tableau_burning",
+          "runtimeCandidatePath": "tableau/bois-clair-tableau-burning.png"
+        }
+      ]
+    },
+    "combat:village_defense": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "bois_clair_burning_strategic",
+          "runtimeCandidatePath": "strategic/bois-clair-burning-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "bois_clair_burning_stage",
+          "runtimeCandidatePath": "combat-stage/bois-clair-burning-stage.png"
+        }
+      ]
+    },
+    "combat:village_raid": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "bois_clair_burning_strategic",
+          "runtimeCandidatePath": "strategic/bois-clair-burning-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "bois_clair_burning_stage",
+          "runtimeCandidatePath": "combat-stage/bois-clair-burning-stage.png"
+        }
+      ]
+    },
+    "media:bois_clair_saved": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "bois_clair_tableau_aftermath_saved",
+          "runtimeCandidatePath": "tableau/bois-clair-tableau-aftermath-saved.png"
+        }
+      ]
+    },
+    "media:bois_clair_sacrificed": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "bois_clair_tableau_aftermath_sacrificed",
+          "runtimeCandidatePath": "tableau/bois-clair-tableau-aftermath-sacrificed.png"
+        }
+      ]
+    },
+    "combat:serpent_checkpoint": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "forest_route_strategic",
+          "runtimeCandidatePath": "strategic/forest-route-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "forest_route_stage",
+          "runtimeCandidatePath": "combat-stage/forest-route-stage.png"
+        }
+      ]
+    },
+    "dialogue:post_serpent_checkpoint": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "combat:serpent_duelist_trial": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "forest_route_strategic",
+          "runtimeCandidatePath": "strategic/forest-route-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "forest_route_stage",
+          "runtimeCandidatePath": "combat-stage/forest-route-stage.png"
+        }
+      ]
+    },
+    "media:serpent_duelist_reveal": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "forest_ambush_area_tableau",
+          "runtimeCandidatePath": "tableau/forest-ambush-area-tableau.png"
+        }
+      ]
+    },
+    "dialogue:post_serpent_duelist_trial": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_ambush_area_tableau",
+          "runtimeCandidatePath": "tableau/forest-ambush-area-tableau.png"
+        }
+      ]
+    },
+    "combat:troll_crossing": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "forest_route_strategic",
+          "runtimeCandidatePath": "strategic/forest-route-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "forest_route_stage",
+          "runtimeCandidatePath": "combat-stage/forest-route-stage.png"
+        }
+      ]
+    },
+    "media:troll_crossing_reveal": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "forest_ambush_area_tableau",
+          "runtimeCandidatePath": "tableau/forest-ambush-area-tableau.png"
+        }
+      ]
+    },
+    "dialogue:mystery_troll_crossing": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_ambush_area_tableau",
+          "runtimeCandidatePath": "tableau/forest-ambush-area-tableau.png"
+        }
+      ]
+    },
+    "media:garen_encounter": {
+      "visualFamily": "WITNESS_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "witness_road_tableau",
+          "runtimeCandidatePath": "tableau/witness-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:mystery_lancer_recruit": {
+      "visualFamily": "WITNESS_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "witness_road_tableau",
+          "runtimeCandidatePath": "tableau/witness-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:mystery_shrine": {
+      "visualFamily": "VALMIR_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "old_shrine_tableau",
+          "runtimeCandidatePath": "tableau/old-shrine-tableau.png"
+        }
+      ]
+    },
+    "media:shrine_reveal_context": {
+      "visualFamily": "VALMIR_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "old_shrine_tableau",
+          "runtimeCandidatePath": "tableau/old-shrine-tableau.png"
+        }
+      ]
+    },
+    "dialogue:old_shrine_event": {
+      "visualFamily": "VALMIR_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "old_shrine_tableau",
+          "runtimeCandidatePath": "tableau/old-shrine-tableau.png"
+        }
+      ]
+    },
+    "dialogue:mystery_dragon_roost": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "dragon_roost_area",
+          "runtimeCandidatePath": "tableau/dragon-roost-area.png"
+        }
+      ]
+    },
+    "media:young_dragon_encounter": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "dragon_roost_area",
+          "runtimeCandidatePath": "tableau/dragon-roost-area.png"
+        }
+      ]
+    },
+    "combat:young_dragon_roost": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "lion_sanctum_strategic",
+          "runtimeCandidatePath": "strategic/lion-sanctum-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "lion_sanctum_stage",
+          "runtimeCandidatePath": "combat-stage/lion-sanctum-stage.png"
+        }
+      ]
+    },
+    "combat:ruins_guardians": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "lion_sanctum_strategic",
+          "runtimeCandidatePath": "strategic/lion-sanctum-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "lion_sanctum_stage",
+          "runtimeCandidatePath": "combat-stage/lion-sanctum-stage.png"
+        }
+      ]
+    },
+    "dialogue:post_ruins_guardians": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "shadow_ruins_tableau",
+          "runtimeCandidatePath": "tableau/shadow-ruins-tableau.png"
+        }
+      ]
+    },
+    "combat:serpent_hunters": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "lion_sanctum_strategic",
+          "runtimeCandidatePath": "strategic/lion-sanctum-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "lion_sanctum_stage",
+          "runtimeCandidatePath": "combat-stage/lion-sanctum-stage.png"
+        }
+      ]
+    },
+    "dialogue:post_serpent_hunters": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "media:shadow_signs": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "shadow_ruins_tableau",
+          "runtimeCandidatePath": "tableau/shadow-ruins-tableau.png"
+        }
+      ]
+    },
+    "media:witnesses_encounter": {
+      "visualFamily": "WITNESS_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "witness_road_tableau",
+          "runtimeCandidatePath": "tableau/witness-road-tableau.png"
+        }
+      ]
+    },
+    "media:ruins_approach_context": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "shadow_ruins_approach",
+          "runtimeCandidatePath": "travel/shadow-ruins-approach.png"
+        }
+      ]
+    },
+    "media:final_refuge_dossier": {
+      "visualFamily": "FINAL_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "final_refuge_tableau",
+          "runtimeCandidatePath": "tableau/final-refuge-tableau.png"
+        }
+      ]
+    },
+    "dialogue:final_refuge": {
+      "visualFamily": "FINAL_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "final_refuge_tableau",
+          "runtimeCandidatePath": "tableau/final-refuge-tableau.png"
+        }
+      ]
+    },
+    "media:lion_judgement": {
+      "visualFamily": "LION_JUDGEMENT",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "lion_judgement_tableau",
+          "runtimeCandidatePath": "tableau/lion-judgement-tableau.png"
+        }
+      ]
+    },
+    "dialogue:lion_finale_judgement": {
+      "visualFamily": "LION_JUDGEMENT",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "lion_judgement_tableau",
+          "runtimeCandidatePath": "tableau/lion-judgement-tableau.png"
+        }
+      ]
+    },
+    "media:serpent_general_reveal": {
+      "visualFamily": "SERPENT_FINALE",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "serpent_finale_cinematic_source",
+          "runtimeCandidatePath": "cinematic-source/serpent-finale-cinematic-source.png"
+        }
+      ]
+    },
+    "media:lion_champion_reveal": {
+      "visualFamily": "LION_TRIAL",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "lion_trial_cinematic_source",
+          "runtimeCandidatePath": "cinematic-source/lion-trial-cinematic-source.png"
+        }
+      ]
+    },
+    "combat:serpent_captain": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "lion_sanctum_strategic",
+          "runtimeCandidatePath": "strategic/lion-sanctum-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "lion_sanctum_stage",
+          "runtimeCandidatePath": "combat-stage/lion-sanctum-stage.png"
+        }
+      ]
+    },
+    "combat:lion_chief": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "STRATEGIC_COMBAT",
+          "assetId": "lion_sanctum_strategic",
+          "runtimeCandidatePath": "strategic/lion-sanctum-strategic.png"
+        },
+        {
+          "surfaceRole": "COMBAT_STAGE",
+          "assetId": "lion_sanctum_stage",
+          "runtimeCandidatePath": "combat-stage/lion-sanctum-stage.png"
+        }
+      ]
+    },
+    "media:serpent_route_ending": {
+      "visualFamily": "SERPENT_FINALE",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "serpent_finale_cinematic_source",
+          "runtimeCandidatePath": "cinematic-source/serpent-finale-cinematic-source.png"
+        }
+      ]
+    },
+    "media:lion_trial_route_ending": {
+      "visualFamily": "LION_TRIAL",
+      "plates": [
+        {
+          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
+          "assetId": "lion_trial_cinematic_source",
+          "runtimeCandidatePath": "cinematic-source/lion-trial-cinematic-source.png"
+        }
+      ]
+    },
+    "dialogue:lion_trial_aftermath": {
+      "visualFamily": "LION_TRIAL",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "lion_trial_tableau_aftermath",
+          "runtimeCandidatePath": "tableau/lion-trial-tableau-aftermath.png"
+        }
+      ]
+    },
+    "dialogue:serpent_general_aftermath": {
+      "visualFamily": "SERPENT_FINALE",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "serpent_finale_tableau_aftermath",
+          "runtimeCandidatePath": "tableau/serpent-finale-tableau-aftermath.png"
+        }
+      ]
+    },
+    "dialogue:epilogue": {
+      "visualFamily": "LION_JUDGEMENT",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "lion_judgement_epilogue_tableau",
+          "runtimeCandidatePath": "tableau/lion-judgement-epilogue-tableau.png"
+        }
+      ]
+    },
+    "dialogue:ate_alaric_reports": {
+      "visualFamily": "LION_JUDGEMENT",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "lion_judgement_tableau",
+          "runtimeCandidatePath": "tableau/lion-judgement-tableau.png"
+        }
+      ]
+    },
+    "dialogue:ate_bois_clair_night_watch": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "bois_clair_tableau_burning",
+          "runtimeCandidatePath": "tableau/bois-clair-tableau-burning.png"
+        }
+      ]
+    },
+    "dialogue:ate_first_refuge_watch": {
+      "visualFamily": "FIRST_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "first_refuge_tableau",
+          "runtimeCandidatePath": "tableau/first-refuge-tableau.png"
+        }
+      ]
+    },
+    "dialogue:ate_lion_council_doubt": {
+      "visualFamily": "LION_JUDGEMENT",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "lion_judgement_tableau",
+          "runtimeCandidatePath": "tableau/lion-judgement-tableau.png"
+        }
+      ]
+    },
+    "dialogue:ate_maelor_seal_analysis": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "shadow_ruins_tableau",
+          "runtimeCandidatePath": "tableau/shadow-ruins-tableau.png"
+        }
+      ]
+    },
+    "dialogue:ate_ruins_awaken": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "shadow_ruins_tableau",
+          "runtimeCandidatePath": "tableau/shadow-ruins-tableau.png"
+        }
+      ]
+    },
+    "dialogue:ate_serpent_general_warning": {
+      "visualFamily": "SERPENT_FINALE",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "serpent_finale_tableau_aftermath",
+          "runtimeCandidatePath": "tableau/serpent-finale-tableau-aftermath.png"
+        }
+      ]
+    },
+    "dialogue:ate_serpent_retreat_order": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:ate_serpent_scout_report": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:ate_village_fear": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "bois_clair_tableau_burning",
+          "runtimeCandidatePath": "tableau/bois-clair-tableau-burning.png"
+        }
+      ]
+    },
+    "dialogue:rep_event_bois_clair_denunciation": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "bois_clair_tableau_burning",
+          "runtimeCandidatePath": "tableau/bois-clair-tableau-burning.png"
+        }
+      ]
+    },
+    "dialogue:rep_event_brokered_information": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:rep_event_displaced_family_demand": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:rep_event_fallen_banner_claimant": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:rep_event_public_petition": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:rep_event_refuge_supply_offer": {
+      "visualFamily": "SECOND_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "second_refuge_night_tableau",
+          "runtimeCandidatePath": "tableau/second-refuge-night-tableau.png"
+        }
+      ]
+    },
+    "dialogue:rep_event_roadside_intimidation": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:rep_event_serpent_rumour_market": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:rep_event_village_memorial_request": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "bois_clair_tableau_burning",
+          "runtimeCandidatePath": "tableau/bois-clair-tableau-burning.png"
+        }
+      ]
+    },
+    "edge:lion-camp>lion-audience": {
+      "visualFamily": "LION_CAMP",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "lion_camp_travel",
+          "runtimeCandidatePath": "travel/lion-camp-travel.png"
+        }
+      ]
+    },
+    "edge:lion-audience>lion-opening-ambush": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "forest_road_travel",
+          "runtimeCandidatePath": "travel/forest-road-travel.png"
+        }
+      ]
+    },
+    "edge:lion-opening-ambush>lion-nomad-crossroads": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "forest_road_travel",
+          "runtimeCandidatePath": "travel/forest-road-travel.png"
+        }
+      ]
+    },
+    "edge:lion-nomad-crossroads>lion-refugees": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "forest_road_travel",
+          "runtimeCandidatePath": "travel/forest-road-travel.png"
+        }
+      ]
+    },
+    "edge:lion-refugees>lion-first-trial-event": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "forest_crossroads_tableau",
+          "runtimeCandidatePath": "tableau/forest-crossroads-tableau.png"
+        }
+      ]
+    },
+    "edge:lion-refugees>lion-first-trial-combat": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "forest_crossroads_tableau",
+          "runtimeCandidatePath": "tableau/forest-crossroads-tableau.png"
+        }
+      ]
+    },
+    "edge:lion-first-trial-event>lion-first-refuge": {
+      "visualFamily": "FIRST_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "first_refuge_travel",
+          "runtimeCandidatePath": "travel/first-refuge-travel.png"
+        }
+      ]
+    },
+    "edge:lion-first-trial-combat>lion-first-refuge": {
+      "visualFamily": "FIRST_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "first_refuge_travel",
+          "runtimeCandidatePath": "travel/first-refuge-travel.png"
+        }
+      ]
+    },
+    "edge:lion-first-refuge>lion-reserve-trail": {
+      "visualFamily": "FIRST_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "first_refuge_travel",
+          "runtimeCandidatePath": "travel/first-refuge-travel.png"
+        }
+      ]
+    },
+    "edge:lion-reserve-trail>lion-valmir-road": {
+      "visualFamily": "VALMIR_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "valmir_road_travel",
+          "runtimeCandidatePath": "travel/valmir-road-travel.png"
+        }
+      ]
+    },
+    "media:serpent_road_tension": {
+      "visualFamily": "VALMIR_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "valmir_road_tableau",
+          "runtimeCandidatePath": "tableau/valmir-road-tableau.png"
+        }
+      ]
+    },
+    "media:second_refuge_departure": {
+      "visualFamily": "SECOND_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "second_refuge_morning_travel",
+          "runtimeCandidatePath": "travel/second-refuge-morning-travel.png"
+        }
+      ]
+    },
+    "media:serpent_informant_encounter": {
+      "visualFamily": "WITNESS_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "witness_road_tableau",
+          "runtimeCandidatePath": "tableau/witness-road-tableau.png"
+        }
+      ]
+    },
+    "media:qa-placeholder": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:mystery_ambush": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_ambush_area_tableau",
+          "runtimeCandidatePath": "tableau/forest-ambush-area-tableau.png"
+        }
+      ]
+    },
+    "dialogue:mystery_troll_crossing_legacy": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_ambush_area_tableau",
+          "runtimeCandidatePath": "tableau/forest-ambush-area-tableau.png"
+        }
+      ]
+    },
+    "dialogue:serpent_duelist_trial_legacy": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_ambush_area_tableau",
+          "runtimeCandidatePath": "tableau/forest-ambush-area-tableau.png"
+        }
+      ]
+    },
+    "dialogue:witnesses_on_road": {
+      "visualFamily": "WITNESS_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "witness_road_tableau",
+          "runtimeCandidatePath": "tableau/witness-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:shadow_signs": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "shadow_ruins_tableau",
+          "runtimeCandidatePath": "tableau/shadow-ruins-tableau.png"
+        }
+      ]
+    },
+    "dialogue:reserve_trail": {
+      "visualFamily": "VALMIR_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "valmir_road_tableau",
+          "runtimeCandidatePath": "tableau/valmir-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:serpent_duelist_trial": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_ambush_area_tableau",
+          "runtimeCandidatePath": "tableau/forest-ambush-area-tableau.png"
+        }
+      ]
+    },
+    "dialogue:serpent_informant": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:pre_serpent_hunters": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:serpent_pursuit_pre_combat": {
+      "visualFamily": "SERPENT_FINALE",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "serpent_finale_tableau_aftermath",
+          "runtimeCandidatePath": "tableau/serpent-finale-tableau-aftermath.png"
+        }
+      ]
+    },
+    "dialogue:village_defense_aftermath": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "bois_clair_tableau_aftermath_saved",
+          "runtimeCandidatePath": "tableau/bois-clair-tableau-aftermath-saved.png"
+        }
+      ]
+    },
+    "dialogue:village_raid_aftermath": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "bois_clair_tableau_aftermath_sacrificed",
+          "runtimeCandidatePath": "tableau/bois-clair-tableau-aftermath-sacrificed.png"
+        }
+      ]
+    },
+    "dialogue:pre_village_defense": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "bois_clair_tableau_burning",
+          "runtimeCandidatePath": "tableau/bois-clair-tableau-burning.png"
+        }
+      ]
+    },
+    "dialogue:pre_village_raid": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "bois_clair_tableau_burning",
+          "runtimeCandidatePath": "tableau/bois-clair-tableau-burning.png"
+        }
+      ]
+    },
+    "dialogue:pre_serpent_duelist_trial": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_ambush_area_tableau",
+          "runtimeCandidatePath": "tableau/forest-ambush-area-tableau.png"
+        }
+      ]
+    },
+    "dialogue:pre_troll_crossing": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_ambush_area_tableau",
+          "runtimeCandidatePath": "tableau/forest-ambush-area-tableau.png"
+        }
+      ]
+    },
+    "dialogue:pre_young_dragon_roost": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "shadow_ruins_tableau",
+          "runtimeCandidatePath": "tableau/shadow-ruins-tableau.png"
+        }
+      ]
+    },
+    "dialogue:pre_lion_chief": {
+      "visualFamily": "LION_TRIAL",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "lion_trial_tableau_aftermath",
+          "runtimeCandidatePath": "tableau/lion-trial-tableau-aftermath.png"
+        }
+      ]
+    },
+    "dialogue:pre_opening_trail": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:pre_valmir_road": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:post_valmir_road": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:pre_serpent_patrol": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:pre_spider_nest": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:pre_serpent_reprisals": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:pre_serpent_checkpoint": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:pre_ruins_guardians": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "shadow_ruins_tableau",
+          "runtimeCandidatePath": "tableau/shadow-ruins-tableau.png"
+        }
+      ]
+    },
+    "dialogue:post_troll_crossing": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "forest_ambush_area_tableau",
+          "runtimeCandidatePath": "tableau/forest-ambush-area-tableau.png"
+        }
+      ]
+    },
+    "dialogue:post_young_dragon_roost": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "shadow_ruins_tableau",
+          "runtimeCandidatePath": "tableau/shadow-ruins-tableau.png"
+        }
+      ]
+    },
+    "edge:lion-valmir-road>lion-second-trial-event": {
+      "visualFamily": "VALMIR_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "valmir_road_travel",
+          "runtimeCandidatePath": "travel/valmir-road-travel.png"
+        }
+      ]
+    },
+    "edge:lion-valmir-road>lion-second-trial-combat": {
+      "visualFamily": "VALMIR_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "valmir_road_travel",
+          "runtimeCandidatePath": "travel/valmir-road-travel.png"
+        }
+      ]
+    },
+    "edge:lion-second-trial-event>lion-village-choice": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "bois_clair_travel",
+          "runtimeCandidatePath": "travel/bois-clair-travel.png"
+        }
+      ]
+    },
+    "edge:lion-second-trial-combat>lion-village-choice": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "bois_clair_travel",
+          "runtimeCandidatePath": "travel/bois-clair-travel.png"
+        }
+      ]
+    },
+    "edge:lion-village-choice>lion-second-refuge": {
+      "visualFamily": "SECOND_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "second_refuge_morning_travel",
+          "runtimeCandidatePath": "travel/second-refuge-morning-travel.png"
+        }
+      ]
+    },
+    "edge:lion-second-refuge>lion-witnesses": {
+      "visualFamily": "SECOND_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "second_refuge_morning_travel",
+          "runtimeCandidatePath": "travel/second-refuge-morning-travel.png"
+        }
+      ]
+    },
+    "edge:lion-witnesses>lion-final-trial-event": {
+      "visualFamily": "WITNESS_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "witness_road_travel",
+          "runtimeCandidatePath": "travel/witness-road-travel.png"
+        }
+      ]
+    },
+    "edge:lion-witnesses>lion-final-trial-combat": {
+      "visualFamily": "WITNESS_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "witness_road_travel",
+          "runtimeCandidatePath": "travel/witness-road-travel.png"
+        }
+      ]
+    },
+    "edge:lion-final-trial-event>lion-shadow-signs": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "shadow_ruins_approach",
+          "runtimeCandidatePath": "travel/shadow-ruins-approach.png"
+        }
+      ]
+    },
+    "edge:lion-final-trial-combat>lion-shadow-signs": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "shadow_ruins_approach",
+          "runtimeCandidatePath": "travel/shadow-ruins-approach.png"
+        }
+      ]
+    },
+    "edge:lion-shadow-signs>lion-final-refuge": {
+      "visualFamily": "FINAL_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "final_refuge_travel",
+          "runtimeCandidatePath": "travel/final-refuge-travel.png"
+        }
+      ]
+    },
+    "edge:lion-final-refuge>lion-final-judgement": {
+      "visualFamily": "LION_JUDGEMENT",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "lion_judgement_travel_or_approach",
+          "runtimeCandidatePath": "travel/lion-judgement-approach.png"
+        }
+      ]
+    },
+    "node:lion-camp": {
+      "visualFamily": "LION_CAMP",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "lion_camp_tableau",
+          "runtimeCandidatePath": "tableau/lion-camp-tableau.png"
+        }
+      ]
+    },
+    "node:lion-audience": {
+      "visualFamily": "ALARIC_AUDIENCE",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "alaric_audience_tableau",
+          "runtimeCandidatePath": "tableau/alaric-audience-tableau.png"
+        }
+      ]
+    },
+    "node:lion-opening-ambush": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "node:lion-nomad-crossroads": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "node:lion-refugees": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "node:lion-first-trial-event": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "node:lion-first-trial-combat": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "node:lion-first-refuge": {
+      "visualFamily": "FIRST_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "first_refuge_tableau",
+          "runtimeCandidatePath": "tableau/first-refuge-tableau.png"
+        }
+      ]
+    },
+    "node:lion-reserve-trail": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "node:lion-valmir-road": {
+      "visualFamily": "VALMIR_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "valmir_road_tableau",
+          "runtimeCandidatePath": "tableau/valmir-road-tableau.png"
+        }
+      ]
+    },
+    "node:lion-second-trial-event": {
+      "visualFamily": "VALMIR_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "old_shrine_tableau",
+          "runtimeCandidatePath": "tableau/old-shrine-tableau.png"
+        }
+      ]
+    },
+    "node:lion-second-trial-combat": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "node:lion-village-choice": {
+      "visualFamily": "BOIS_CLAIR",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "bois_clair_tableau_burning",
+          "runtimeCandidatePath": "tableau/bois-clair-tableau-burning.png"
+        }
+      ]
+    },
+    "node:lion-second-refuge": {
+      "visualFamily": "SECOND_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "second_refuge_night_tableau",
+          "runtimeCandidatePath": "tableau/second-refuge-night-tableau.png"
+        }
+      ]
+    },
+    "node:lion-witnesses": {
+      "visualFamily": "WITNESS_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "witness_road_tableau",
+          "runtimeCandidatePath": "tableau/witness-road-tableau.png"
+        }
+      ]
+    },
+    "node:lion-final-trial-event": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "dragon_roost_area",
+          "runtimeCandidatePath": "tableau/dragon-roost-area.png"
+        }
+      ]
+    },
+    "node:lion-final-trial-combat": {
+      "visualFamily": "FOREST_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "forest_road_tableau",
+          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+        }
+      ]
+    },
+    "node:lion-shadow-signs": {
+      "visualFamily": "SHADOW_RUINS",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "shadow_ruins_tableau",
+          "runtimeCandidatePath": "tableau/shadow-ruins-tableau.png"
+        }
+      ]
+    },
+    "node:lion-final-refuge": {
+      "visualFamily": "FINAL_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "final_refuge_tableau",
+          "runtimeCandidatePath": "tableau/final-refuge-tableau.png"
+        }
+      ]
+    },
+    "node:lion-final-judgement": {
+      "visualFamily": "LION_JUDGEMENT",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "lion_judgement_tableau",
+          "runtimeCandidatePath": "tableau/lion-judgement-tableau.png"
+        }
+      ]
+    }
+  }
+}

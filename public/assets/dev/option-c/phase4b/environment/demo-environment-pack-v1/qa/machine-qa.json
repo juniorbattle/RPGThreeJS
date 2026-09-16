@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "checks": {
+    "all13Families": true,
+    "allFilesPresent": true,
+    "allLandscape": true,
+    "all16x9WithinTolerance": true,
+    "characterFreeDeclared": true,
+    "uiSafeDeclared": true,
+    "surfaceRolesPresent": true,
+    "strategicCount3": true,
+    "combatStageCount3": true
+  },
+  "result": "PASS",
+  "qualityGateStatus": "HUMAN_REVIEW_REQUIRED",
+  "qualityGates": [
+    "STYLE_REFERENCE_MATCH",
+    "MODERN_PIXEL_ART_QUALITY",
+    "LOCATION_IDENTITY",
+    "GEOGRAPHIC_CONTINUITY",
+    "LANDMARK_READABILITY",
+    "COMPOSITION",
+    "DEPTH",
+    "LIGHTING",
+    "MATERIAL_READABILITY",
+    "UI_COMPATIBILITY",
+    "GAMEPLAY_READABILITY",
+    "NO_PAINTERLY_DRIFT",
+    "NO_GENERIC_AI_LOOK"
+  ]
+}

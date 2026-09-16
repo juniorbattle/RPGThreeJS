@@ -1,5 +1,9 @@
 import * as THREE from 'three';
-import { BackgroundLayerSystem, type BackgroundSceneConfig } from '../../render/BackgroundLayerSystem';
+import {
+  BackgroundLayerSystem,
+  type BackgroundSceneConfig,
+  type CombatStageGroundingConfig,
+} from '../../render/BackgroundLayerSystem';
 import { combatStageBackgroundFor } from './combatStageBackgrounds';
 import {
   resolveCombatStageProfile,
@@ -247,6 +251,7 @@ export class CombatStage {
   private renderPassSwapped = false;
   private reducedGraphics = false;
   private sessionToken = 0;
+  private grounding: CombatStageGroundingConfig | null = null;
 
   private attackerProxy: StageActorProxy | null = null;
   private targetProxies: StageActorProxy[] = [];
@@ -353,7 +358,9 @@ export class CombatStage {
       this.renderPassSwapped = true;
       this.applyFrustum(profile.cameraFrustumHalfHeight);
 
-      await this.backgroundLayers.load(options.backgroundOverride ?? combatStageBackgroundFor(options.environmentId));
+      const background = options.backgroundOverride ?? combatStageBackgroundFor(options.environmentId);
+      this.grounding = background.combatStageGrounding ?? null;
+      await this.backgroundLayers.load(background);
 
       this.disposeProxies();
       this.attackerUnitRef = attacker;
@@ -991,9 +998,13 @@ export class CombatStage {
     const groundVisual = source.blob ? new THREE.Mesh(source.blob.geometry.clone(), source.blob.material.clone()) : null;
     if (groundVisual) {
       groundVisual.name = 'groundVisual';
-      groundVisual.rotation.x = -Math.PI / 2;
+      groundVisual.rotation.x = this.grounding?.contactShadowPitch ?? -Math.PI / 2;
       groundVisual.position.y = 0.015;
       groundVisual.scale.copy(source.blob!.scale);
+      groundVisual.scale.multiplyScalar(this.grounding?.contactShadowScale ?? 1);
+      if (this.grounding?.contactShadowOpacity !== undefined) {
+        groundVisual.material.opacity = Math.min(1, Math.max(0, this.grounding.contactShadowOpacity));
+      }
       groundVisual.renderOrder = isAttacker ? 8 : 9;
       unitRoot.add(groundVisual);
     }

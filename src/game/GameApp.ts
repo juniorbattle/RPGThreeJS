@@ -947,22 +947,17 @@ export class GameApp {
     if (!resolved) throw new Error(`Missing dialogue '${dialogueId}'.`);
     const { sequence } = resolved;
 
-    if (this.usesJourneyPresentation()) {
-      await this.playNarrativeDialogue(sequence, fallbackLabel, {
-        ...narrativeOptions,
-        cinematicId: narrativeOptions.cinematicId
-          ?? resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId })
-          ?? resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId })
-          ?? resolveCin6cJourneyTrigger({ hook: 'beforeDialogue', dialogueId }, { flags: this.state.flags }),
-        tableau: narrativeOptions.tableau ?? resolveNarrativeDialogueTableau(dialogueId, sequence),
-      });
-    } else {
-      await this.playClassicDialogue(
-        sequence,
-        fallbackLabel,
-        this.cinematicInterlude({ hook: 'beforeDialogue', dialogueId }),
-      );
-    }
+    // Travel remains the production campaign boundary. Dialogue presentation is
+    // independently owned by NarrativeStage so approved static tableaux are the
+    // production background while dialogue truth and route semantics stay intact.
+    await this.playNarrativeDialogue(sequence, fallbackLabel, {
+      ...narrativeOptions,
+      cinematicId: narrativeOptions.cinematicId
+        ?? resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId })
+        ?? resolveCin6aJourneyTrigger({ hook: 'beforeDialogue', dialogueId })
+        ?? resolveCin6cJourneyTrigger({ hook: 'beforeDialogue', dialogueId }, { flags: this.state.flags }),
+      tableau: narrativeOptions.tableau ?? resolveNarrativeDialogueTableau(dialogueId, sequence),
+    });
 
     const chapterBeatId = this.pendingChapterBeatId;
     this.pendingChapterBeatId = null;
@@ -1040,7 +1035,7 @@ export class GameApp {
       if (presentationBeat) stage.setPresentationBeat(presentationBeat);
       const firstPresentation = stepPresentation(sequence.steps[0]!);
       await stage.presentDialogueTableau(
-        resolveDialogueBackdrop(sequence),
+        tableau?.stillImage ?? resolveDialogueBackdrop(sequence),
         firstPresentation.phaseId,
         tableauTransitionSource,
       );

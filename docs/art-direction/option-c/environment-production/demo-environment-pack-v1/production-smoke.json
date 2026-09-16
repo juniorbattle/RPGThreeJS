@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "packId": "demo-environment-pack-v1",
+  "status": "PRODUCTION_APPROVED",
+  "baseUrl": "http://127.0.0.1:4173",
+  "generatedAt": "2026-09-16T09:43:21.613Z",
+  "travelAndTableau": {
+    "travel": {
+      "contextId": "edge:lion-camp>lion-audience",
+      "assetId": "lion_camp_travel",
+      "visualFamily": "LION_CAMP",
+      "background": "url('/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/lion-camp-travel.png')",
+      "destinationLabels": [
+        "Audience d’Alaric"
+      ]
+    },
+    "tableau": {
+      "tableauId": "ALARIC_AUDIENCE_TABLEAU",
+      "castOwnership": "STAGE_OWNS_CAST",
+      "actors": [
+        "alistair",
+        "sage_seraphine",
+        "maelor",
+        "alaric"
+      ],
+      "background": "background-image: url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png\");"
+    },
+    "failedEnvironmentRequests": []
+  },
+  "combat": [
+    {
+      "combatId": "forest_ambush",
+      "sceneId": "forest_route",
+      "strategicUrl": "http://127.0.0.1:4173/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/forest-route-strategic.png",
+      "stageUrl": "http://127.0.0.1:4173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/forest-route-stage.png",
+      "environmentResponses": [
+        {
+          "url": "http://127.0.0.1:4173/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/forest-route-strategic.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/forest-route-stage.png",
+          "status": 200
+        }
+      ],
+      "failedEnvironmentRequests": []
+    },
+    {
+      "combatId": "village_defense",
+      "sceneId": "bois_clair_burning",
+      "strategicUrl": "http://127.0.0.1:4173/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/bois-clair-burning-strategic.png",
+      "stageUrl": "http://127.0.0.1:4173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/bois-clair-burning-stage.png",
+      "environmentResponses": [
+        {
+          "url": "http://127.0.0.1:4173/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/bois-clair-burning-strategic.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/bois-clair-burning-stage.png",
+          "status": 200
+        }
+      ],
+      "failedEnvironmentRequests": []
+    },
+    {
+      "combatId": "lion_chief",
+      "sceneId": "lion_sanctum",
+      "strategicUrl": "http://127.0.0.1:4173/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/lion-sanctum-strategic.png",
+      "stageUrl": "http://127.0.0.1:4173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/lion-sanctum-stage.png",
+      "environmentResponses": [
+        {
+          "url": "http://127.0.0.1:4173/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/lion-sanctum-strategic.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/lion-sanctum-stage.png",
+          "status": 200
+        }
+      ],
+      "failedEnvironmentRequests": []
+    }
+  ],
+  "summary": {
+    "pass": true,
+    "travelContexts": 1,
+    "fourActorTableaux": 1,
+    "strategicEnvironments": 3,
+    "combatStageEnvironments": 3,
+    "failedEnvironmentRequests": 0,
+    "devEnvironmentOverrideUsed": false
+  }
+}

@@ -217,14 +217,14 @@ export const assets = {
     prologue_departure: '/assets/generated/lion-phase/dialogue/camp_departure.webp',
   },
   combatScenes: {
-    forest_route: '/assets/generated/lion-phase/combat/forest_route.webp',
-    bois_clair_burning: '/assets/generated/lion-phase/combat/bois_clair_burning.webp',
-    lion_sanctum: '/assets/generated/lion-phase/combat/lion_sanctum.webp',
+    forest_route: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/forest-route-strategic.png',
+    bois_clair_burning: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/bois-clair-burning-strategic.png',
+    lion_sanctum: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/lion-sanctum-strategic.png',
   },
   combatStageScenes: {
-    forest_route: '/assets/generated/lion-phase/combat-stage/forest_route_stage.webp',
-    bois_clair_burning: '/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp',
-    lion_sanctum: '/assets/generated/lion-phase/combat-stage/lion_sanctum_stage.webp',
+    forest_route: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/forest-route-stage.png',
+    bois_clair_burning: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/bois-clair-burning-stage.png',
+    lion_sanctum: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/lion-sanctum-stage.png',
   },
   // Named per-screen background slots.
   screens: {

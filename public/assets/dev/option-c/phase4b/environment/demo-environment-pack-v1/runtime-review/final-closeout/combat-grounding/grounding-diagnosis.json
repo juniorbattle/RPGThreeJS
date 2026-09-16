@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "stage": "forest_route_stage",
+      "viewport": "1366x768",
+      "visiblePlayableGroundBandBeforePx": 207,
+      "visiblePlayableGroundBandAfterPx": 238,
+      "actorFootBaselinePx": 541,
+      "targetFootBaselinePx": 551,
+      "inferredGroundPlaneBeforePx": 570,
+      "inferredGroundPlaneAfterPx": 548,
+      "emptyVerticalSpaceAboveActorLinePx": 292,
+      "cropPushedFloorTooLowBefore": "YES",
+      "cropPushedFloorTooLowAfter": "NO",
+      "commonGroundPlaneBefore": "PARTIAL",
+      "commonGroundPlaneAfter": "PASS",
+      "contactShadowBefore": "WEAK",
+      "contactShadowAfter": "PASS",
+      "safeActionLane": {
+        "x": [
+          0.29,
+          0.7
+        ],
+        "y": [
+          0.22,
+          0.714
+        ]
+      },
+      "diagnosis": "The former crop held the first convincing masonry contact band below both feet. The reviewed fit exposes more foreground stone and the pitched, enlarged contact shadows close the residual quadruped/hero gap without narrowing the VFX lane.",
+      "beforeScreenshot": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/before/1366x768/combat-stage_forest-route.png",
+      "afterScreenshot": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/after/1366x768/combat-grounding_forest-route.png",
+      "afterOverlay": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/annotated/after/1366x768/forest-route-grounding-overlay.png",
+      "comparison": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/comparisons/1366x768/forest-route-before-after.png"
+    },
+    {
+      "stage": "bois_clair_burning_stage",
+      "viewport": "1366x768",
+      "visiblePlayableGroundBandBeforePx": 399,
+      "visiblePlayableGroundBandAfterPx": 376,
+      "actorFootBaselinePx": 541,
+      "targetFootBaselinePx": 551,
+      "inferredGroundPlaneBeforePx": 545,
+      "inferredGroundPlaneAfterPx": 548,
+      "emptyVerticalSpaceAboveActorLinePx": 253,
+      "cropPushedFloorTooLowBefore": "NO",
+      "cropPushedFloorTooLowAfter": "NO",
+      "commonGroundPlaneBefore": "PASS",
+      "commonGroundPlaneAfter": "PASS",
+      "contactShadowBefore": "WEAK",
+      "contactShadowAfter": "PASS",
+      "safeActionLane": {
+        "x": [
+          0.29,
+          0.7
+        ],
+        "y": [
+          0.22,
+          0.714
+        ]
+      },
+      "diagnosis": "The road perspective was already usable, so the correction preserves it. The brighter wet surface needed the strongest contact-shadow opacity; the reviewed fit keeps a broad, clean center lane and makes both silhouettes read as weight-bearing.",
+      "beforeScreenshot": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/before/1366x768/combat-stage_bois-clair-burning.png",
+      "afterScreenshot": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/after/1366x768/combat-grounding_bois-clair-burning.png",
+      "afterOverlay": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/annotated/after/1366x768/bois-clair-burning-grounding-overlay.png",
+      "comparison": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/comparisons/1366x768/bois-clair-burning-before-after.png"
+    },
+    {
+      "stage": "lion_sanctum_stage",
+      "viewport": "1366x768",
+      "visiblePlayableGroundBandBeforePx": 146,
+      "visiblePlayableGroundBandAfterPx": 253,
+      "actorFootBaselinePx": 541,
+      "targetFootBaselinePx": 548,
+      "inferredGroundPlaneBeforePx": 622,
+      "inferredGroundPlaneAfterPx": 548,
+      "emptyVerticalSpaceAboveActorLinePx": 223,
+      "cropPushedFloorTooLowBefore": "YES",
+      "cropPushedFloorTooLowAfter": "NO",
+      "commonGroundPlaneBefore": "FAIL",
+      "commonGroundPlaneAfter": "PASS",
+      "contactShadowBefore": "INSUFFICIENT",
+      "contactShadowAfter": "PASS",
+      "safeActionLane": {
+        "x": [
+          0.29,
+          0.7
+        ],
+        "y": [
+          0.22,
+          0.714
+        ]
+      },
+      "diagnosis": "The former fit placed the Stage baseline against midground vegetation roughly one tenth of the frame above the terrace. The per-plate vertical fit now meets the shared foot line, reveals one third of the frame as floor, and retains clear overhead VFX space.",
+      "beforeScreenshot": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/before/1366x768/combat-stage_lion-sanctum.png",
+      "afterScreenshot": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/after/1366x768/combat-grounding_lion-sanctum.png",
+      "afterOverlay": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/annotated/after/1366x768/lion-sanctum-grounding-overlay.png",
+      "comparison": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/comparisons/1366x768/lion-sanctum-before-after.png"
+    },
+    {
+      "stage": "forest_route_stage",
+      "viewport": "1920x1080",
+      "visiblePlayableGroundBandBeforePx": 292,
+      "visiblePlayableGroundBandAfterPx": 335,
+      "actorFootBaselinePx": 760,
+      "targetFootBaselinePx": 774,
+      "inferredGroundPlaneBeforePx": 801,
+      "inferredGroundPlaneAfterPx": 771,
+      "emptyVerticalSpaceAboveActorLinePx": 410,
+      "cropPushedFloorTooLowBefore": "YES",
+      "cropPushedFloorTooLowAfter": "NO",
+      "commonGroundPlaneBefore": "PARTIAL",
+      "commonGroundPlaneAfter": "PASS",
+      "contactShadowBefore": "WEAK",
+      "contactShadowAfter": "PASS",
+      "safeActionLane": {
+        "x": [
+          0.29,
+          0.7
+        ],
+        "y": [
+          0.22,
+          0.714
+        ]
+      },
+      "diagnosis": "The former crop held the first convincing masonry contact band below both feet. The reviewed fit exposes more foreground stone and the pitched, enlarged contact shadows close the residual quadruped/hero gap without narrowing the VFX lane.",
+      "beforeScreenshot": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/before/1920x1080/combat-stage_forest-route.png",
+      "afterScreenshot": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/after/1920x1080/combat-grounding_forest-route.png",
+      "afterOverlay": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/annotated/after/1920x1080/forest-route-grounding-overlay.png",
+      "comparison": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/comparisons/1920x1080/forest-route-before-after.png"
+    },
+    {
+      "stage": "bois_clair_burning_stage",
+      "viewport": "1920x1080",
+      "visiblePlayableGroundBandBeforePx": 562,
+      "visiblePlayableGroundBandAfterPx": 529,
+      "actorFootBaselinePx": 760,
+      "targetFootBaselinePx": 774,
+      "inferredGroundPlaneBeforePx": 767,
+      "inferredGroundPlaneAfterPx": 771,
+      "emptyVerticalSpaceAboveActorLinePx": 356,
+      "cropPushedFloorTooLowBefore": "NO",
+      "cropPushedFloorTooLowAfter": "NO",
+      "commonGroundPlaneBefore": "PASS",
+      "commonGroundPlaneAfter": "PASS",
+      "contactShadowBefore": "WEAK",
+      "contactShadowAfter": "PASS",
+      "safeActionLane": {
+        "x": [
+          0.29,
+          0.7
+        ],
+        "y": [
+          0.22,
+          0.714
+        ]
+      },
+      "diagnosis": "The road perspective was already usable, so the correction preserves it. The brighter wet surface needed the strongest contact-shadow opacity; the reviewed fit keeps a broad, clean center lane and makes both silhouettes read as weight-bearing.",
+      "beforeScreenshot": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/before/1920x1080/combat-stage_bois-clair-burning.png",
+      "afterScreenshot": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/after/1920x1080/combat-grounding_bois-clair-burning.png",
+      "afterOverlay": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/annotated/after/1920x1080/bois-clair-burning-grounding-overlay.png",
+      "comparison": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/comparisons/1920x1080/bois-clair-burning-before-after.png"
+    },
+    {
+      "stage": "lion_sanctum_stage",
+      "viewport": "1920x1080",
+      "visiblePlayableGroundBandBeforePx": 205,
+      "visiblePlayableGroundBandAfterPx": 356,
+      "actorFootBaselinePx": 760,
+      "targetFootBaselinePx": 771,
+      "inferredGroundPlaneBeforePx": 875,
+      "inferredGroundPlaneAfterPx": 771,
+      "emptyVerticalSpaceAboveActorLinePx": 313,
+      "cropPushedFloorTooLowBefore": "YES",
+      "cropPushedFloorTooLowAfter": "NO",
+      "commonGroundPlaneBefore": "FAIL",
+      "commonGroundPlaneAfter": "PASS",
+      "contactShadowBefore": "INSUFFICIENT",
+      "contactShadowAfter": "PASS",
+      "safeActionLane": {
+        "x": [
+          0.29,
+          0.7
+        ],
+        "y": [
+          0.22,
+          0.714
+        ]
+      },
+      "diagnosis": "The former fit placed the Stage baseline against midground vegetation roughly one tenth of the frame above the terrace. The per-plate vertical fit now meets the shared foot line, reveals one third of the frame as floor, and retains clear overhead VFX space.",
+      "beforeScreenshot": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/before/1920x1080/combat-stage_lion-sanctum.png",
+      "afterScreenshot": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/after/1920x1080/combat-grounding_lion-sanctum.png",
+      "afterOverlay": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/annotated/after/1920x1080/lion-sanctum-grounding-overlay.png",
+      "comparison": "public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/runtime-review/final-closeout/combat-grounding/comparisons/1920x1080/lion-sanctum-before-after.png"
+    }
+  ]
+}

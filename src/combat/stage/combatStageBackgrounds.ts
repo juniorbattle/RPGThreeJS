@@ -1,5 +1,8 @@
 import { assets } from '../../render/assetManifest';
-import type { BackgroundSceneConfig } from '../../render/BackgroundLayerSystem';
+import type {
+  BackgroundSceneConfig,
+  CombatStageGroundingConfig,
+} from '../../render/BackgroundLayerSystem';
 
 /** Paired tactical and frontal painted backgrounds for one environment. */
 export interface CombatStageEnvironmentBackgrounds {
@@ -16,19 +19,24 @@ function paintedStageBackground(
   id: string,
   texture: string,
   fallback: [string, string],
+  positionY: number,
+  size: [number, number],
+  grounding: CombatStageGroundingConfig,
 ): BackgroundSceneConfig {
   return {
     id: `${id}-stage-painted`,
     enabled: true,
+    combatStageGrounding: grounding,
     layers: [
       {
         id: `${id}-stage-painted-backdrop`,
         texture,
-        position: [0, 0.35, -8],
-        size: [17.8, 10],
+        position: [0, positionY, -8],
+        size,
         parallax: 0,
         opacity: 1,
         fallback,
+        failOnError: true,
       },
     ],
   };
@@ -43,6 +51,9 @@ const STAGE_ENVIRONMENTS: Readonly<Record<string, CombatStageEnvironmentBackgrou
       'forest-route',
       assets.combatStageScenes.forest_route,
       ['#2c3c33', '#0d1712'],
+      0.18,
+      [13.17, 7.4],
+      { contactShadowOpacity: 0.76, contactShadowScale: 1.2, contactShadowPitch: -1.2 },
     ),
   },
   bois_clair_burning: {
@@ -51,6 +62,9 @@ const STAGE_ENVIRONMENTS: Readonly<Record<string, CombatStageEnvironmentBackgrou
       'bois-clair-burning',
       assets.combatStageScenes.bois_clair_burning,
       ['#4a2219', '#160b09'],
+      -0.04,
+      [13.17, 7.4],
+      { contactShadowOpacity: 0.82, contactShadowScale: 1.2, contactShadowPitch: -1.2 },
     ),
   },
   lion_sanctum: {
@@ -59,6 +73,9 @@ const STAGE_ENVIRONMENTS: Readonly<Record<string, CombatStageEnvironmentBackgrou
       'lion-sanctum',
       assets.combatStageScenes.lion_sanctum,
       ['#2f3228', '#0b100d'],
+      0.6,
+      [13.17, 7.4],
+      { contactShadowOpacity: 0.76, contactShadowScale: 1.28, contactShadowPitch: -1.2 },
     ),
   },
 });

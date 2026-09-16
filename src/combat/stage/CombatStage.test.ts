@@ -82,6 +82,34 @@ describe('CombatStage', () => {
     expect(tiltShiftStrength.value).toBe(0.22);
   });
 
+  it('applies reviewed per-plate contact-shadow metadata without moving gameplay units', async () => {
+    const attacker = makeSpriteSource();
+    const target = makeSpriteSource();
+    attacker.source.blob = new THREE.Mesh(
+      new THREE.PlaneGeometry(1.32, 0.66),
+      new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.2 }),
+    );
+    attacker.source.blob.scale.setScalar(2);
+    await stage.enter(attacker.source, [target.source], { key: 'attack' }, {
+      backgroundOverride: {
+        id: 'reviewed-stage-plate',
+        enabled: false,
+        layers: [],
+        combatStageGrounding: {
+          contactShadowOpacity: 0.78,
+          contactShadowScale: 1.25,
+          contactShadowPitch: -1.2,
+        },
+      },
+    });
+    const shadow = stage.scene.getObjectByName('groundVisual') as THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>;
+    expect(shadow).toBeDefined();
+    expect(shadow.rotation.x).toBeCloseTo(-1.2, 6);
+    expect(shadow.material.opacity).toBeCloseTo(0.78, 6);
+    expect(shadow.scale.x).toBeCloseTo(2.5, 6);
+    expect(stage.attackerProxyPosition()?.y).toBeCloseTo(1.9 * 0.5 - 1.9 * 0.05 - 0.08, 6);
+  });
+
   it('restores the tactical render pass and the exact previous tilt-shift value on exit', async () => {
     const attacker = makeSpriteSource();
     const target = makeSpriteSource();

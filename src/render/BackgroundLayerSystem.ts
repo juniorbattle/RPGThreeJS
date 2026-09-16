@@ -8,12 +8,26 @@ export interface BackgroundLayerConfig {
   parallax?: number;
   opacity?: number;
   fallback?: [string, string];
+  /** Throw on authored texture failure instead of substituting the decorative fallback. */
+  failOnError?: boolean;
+}
+
+/**
+ * Optional presentation-only grounding metadata consumed by CombatStage.
+ * BackgroundLayerSystem deliberately ignores it: the plate remains a passive
+ * image while the Stage uses these values to tune its existing contact shadow.
+ */
+export interface CombatStageGroundingConfig {
+  contactShadowOpacity?: number;
+  contactShadowScale?: number;
+  contactShadowPitch?: number;
 }
 
 export interface BackgroundSceneConfig {
   id: string;
   enabled: boolean;
   layers: BackgroundLayerConfig[];
+  combatStageGrounding?: CombatStageGroundingConfig;
 }
 
 interface Layer {
@@ -38,7 +52,11 @@ function fallbackTexture(colors: [string, string]): THREE.CanvasTexture {
   return texture;
 }
 
-async function loadTexture(url: string | undefined, fallback: [string, string]): Promise<THREE.Texture> {
+async function loadTexture(
+  url: string | undefined,
+  fallback: [string, string],
+  failOnError = false,
+): Promise<THREE.Texture> {
   if (!url) return fallbackTexture(fallback);
 
   // happy-dom does not complete TextureLoader image requests. Keep the visual
@@ -61,7 +79,8 @@ async function loadTexture(url: string | undefined, fallback: [string, string]):
     texture.wrapS = THREE.ClampToEdgeWrapping;
     texture.wrapT = THREE.ClampToEdgeWrapping;
     return texture;
-  } catch {
+  } catch (error) {
+    if (failOnError) throw error;
     return fallbackTexture(fallback);
   }
 }
@@ -86,7 +105,11 @@ export class BackgroundLayerSystem {
   }
 
   async createLayer(config: BackgroundLayerConfig): Promise<THREE.Mesh> {
-    const texture = await loadTexture(config.texture, config.fallback ?? ['#65828b', '#31483d']);
+    const texture = await loadTexture(
+      config.texture,
+      config.fallback ?? ['#65828b', '#31483d'],
+      config.failOnError ?? false,
+    );
     const material = new THREE.MeshBasicMaterial({
       map: texture,
       transparent: (config.opacity ?? 1) < 1,

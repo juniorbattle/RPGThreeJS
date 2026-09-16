@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "packageId": "OPTION_C_FOREST_ROAD_V2_PREINTEGRATION",
+  "existingDevRoute": "/?devOptionC=forest-road",
+  "targetsPrepared": true,
+  "targetsWired": false,
+  "wiringAuthorization": "PENDING_OPERATOR_AUTHORIZATION",
+  "loaderArchitecture": "EXISTING_OPTION_C_PHASE4B_ASSETS",
+  "newLoaderRequired": false,
+  "targets": {
+    "TRAVEL": {
+      "url": "/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-travel.png",
+      "existingAdapter": "TravelView",
+      "fit": "COVER",
+      "position": "CENTER_BOTTOM",
+      "sourceAspectRatio": 1.776833156,
+      "targetAspectRatio": 1.777777778,
+      "expectedCoverCropAt1920x1080Px": {
+        "horizontalTotal": 0.0,
+        "verticalTotal": 0.574163
+      },
+      "assumption": "Keep the current fixed TravelView painted backdrop; do not add pan, navigation, or exploration controls."
+    },
+    "STATIC_TABLEAU": {
+      "url": "/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "existingAdapter": "NarrativeSceneSurface",
+      "fit": "COVER",
+      "position": "CENTER",
+      "currentSurfaceOverscan": {
+        "insetPercentPerEdge": 1.5,
+        "transformScale": 1.03,
+        "approximateVisualCropPercentPerEdge": 3.045
+      },
+      "assumption": "The environment remains character-free; the existing narrative stage owns all runtime cast and dialogue composition."
+    },
+    "STRATEGIC_COMBAT": {
+      "url": "/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-strategic.png",
+      "existingAdapter": "BackgroundLayerSystem",
+      "fit": "FULL_TEXTURE_ON_PLANE",
+      "planePosition": [0.0, -0.28, -30.0],
+      "planeSize": [36.0, 20.25],
+      "approximateAspectStretchPercent": 0.0532,
+      "assumption": "Keep existing combat camera, HUD, unit placement, actions, objective surface, and gameplay semantics unchanged."
+    },
+    "COMBAT_STAGE": {
+      "url": "/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-combat-stage.png",
+      "existingAdapter": "BackgroundLayerSystem",
+      "fit": "FULL_TEXTURE_ON_PLANE",
+      "planePosition": [0.0, 0.35, -8.0],
+      "planeSize": [17.8, 10.0],
+      "approximateAspectStretchPercent": 0.1782,
+      "assumption": "Keep attacker left, target right, and all existing VFX/runtime action ownership unchanged."
+    }
+  }
+}

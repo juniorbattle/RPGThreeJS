@@ -95,6 +95,9 @@ describe('CIN-6E-A final operator approval and visual production lock', () => {
       'src/combat/legacyCombatRuntime.js',
       'src/combat/protocol.ts',
       'src/combat/stage/CombatStage.ts',
+      'src/combat/stage/CombatStage.test.ts',
+      'src/combat/stage/combatStageBackgrounds.ts',
+      'src/combat/stage/combatStageBackgrounds.test.ts',
     ]);
     const protectedDiff = execFileSync('git', [
       'diff', '--name-only', baseline, '--',

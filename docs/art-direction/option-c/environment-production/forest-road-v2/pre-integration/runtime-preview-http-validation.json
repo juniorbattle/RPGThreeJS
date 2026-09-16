@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "packageId": "OPTION_C_FOREST_ROAD_V2_PREINTEGRATION",
+  "server": "Vite DEV static asset server",
+  "runtimeRouteSwitched": false,
+  "status": "PASS",
+  "targets": [
+    {
+      "surfaceId": "TRAVEL",
+      "url": "/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-travel.png",
+      "httpStatus": 200,
+      "contentType": "image/png",
+      "contentLength": 3141040
+    },
+    {
+      "surfaceId": "STATIC_TABLEAU",
+      "url": "/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "httpStatus": 200,
+      "contentType": "image/png",
+      "contentLength": 3059996
+    },
+    {
+      "surfaceId": "STRATEGIC_COMBAT",
+      "url": "/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-strategic.png",
+      "httpStatus": 200,
+      "contentType": "image/png",
+      "contentLength": 3305044
+    },
+    {
+      "surfaceId": "COMBAT_STAGE",
+      "url": "/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-combat-stage.png",
+      "httpStatus": 200,
+      "contentType": "image/png",
+      "contentLength": 3274662
+    }
+  ]
+}

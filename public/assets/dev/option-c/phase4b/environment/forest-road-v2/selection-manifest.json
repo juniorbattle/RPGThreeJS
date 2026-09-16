@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "packageId": "OPTION_C_FOREST_ROAD_V2_PREINTEGRATION",
+  "environmentFamily": "FOREST_ROAD_V2",
+  "sharedLocationId": "forest-road-v2",
+  "familyStatus": "OPERATOR_SELECTED",
+  "familyCoherence": "APPROVED",
+  "candidateClassification": "SELECTED_ENVIRONMENT_CANDIDATE",
+  "productionApproved": false,
+  "runtimeIntegrationAuthorized": false,
+  "devRuntimePreviewTargetsReady": true,
+  "processing": "BYTE_IDENTICAL_COPY",
+  "canvas": {
+    "width": 1672,
+    "height": 941,
+    "aspectRatio": 1.776833156,
+    "colorMode": "RGB",
+    "format": "PNG"
+  },
+  "metadata": {
+    "provenance": "provenance.json",
+    "staging": "staging-metadata.json",
+    "runtimePreview": "runtime-preview-targets.json",
+    "hashManifest": "asset-manifest.sha256"
+  },
+  "surfaces": [
+    {
+      "surfaceId": "TRAVEL",
+      "selectedCandidate": "B",
+      "status": "SELECTED_ENVIRONMENT_CANDIDATE",
+      "source": "public/assets/dev/option-c/environments/forest-road-v2/travel/forest-road-v2-travel-b.png",
+      "packageAsset": "forest-road-travel.png",
+      "runtimeUrl": "/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-travel.png",
+      "bytes": 3141040,
+      "sha256": "c2d4de1a437f815c4c36cf7bf51994de9c63a2bbe4b222bcc0efdfae88df1008",
+      "characterFree": true,
+      "semanticLock": "DETERMINISTIC_PRESENTATION"
+    },
+    {
+      "surfaceId": "STATIC_TABLEAU",
+      "selectedCandidate": "B",
+      "status": "SELECTED_ENVIRONMENT_CANDIDATE",
+      "source": "public/assets/dev/option-c/environments/forest-road-v2/tableau/forest-road-v2-tableau-b.png",
+      "packageAsset": "forest-road-tableau.png",
+      "runtimeUrl": "/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-tableau.png",
+      "bytes": 3059996,
+      "sha256": "ce0bfde862cab19bca16ae4408112e5b9885a28190b2a0c49de475cf9135f377",
+      "characterFree": true,
+      "semanticLock": "PLAYER_COMPANY_LEFT_LION_COURT_RIGHT"
+    },
+    {
+      "surfaceId": "STRATEGIC_COMBAT",
+      "selectedCandidate": "B",
+      "status": "SELECTED_ENVIRONMENT_CANDIDATE",
+      "source": "public/assets/dev/option-c/environments/forest-road-v2/strategic/forest-road-v2-strategic-b.png",
+      "packageAsset": "forest-road-strategic.png",
+      "runtimeUrl": "/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-strategic.png",
+      "bytes": 3305044,
+      "sha256": "74415c020350c7761230b0ca320a223b5530ddcd1e7e1756c3c89f884b1b77fc",
+      "characterFree": true,
+      "semanticLock": "SLIGHTLY_ELEVATED_FRONTAL"
+    },
+    {
+      "surfaceId": "COMBAT_STAGE",
+      "selectedCandidate": "C",
+      "status": "SELECTED_ENVIRONMENT_CANDIDATE",
+      "source": "public/assets/dev/option-c/environments/forest-road-v2/combat-stage/forest-road-v2-combat-stage-c.png",
+      "packageAsset": "forest-road-combat-stage.png",
+      "runtimeUrl": "/assets/dev/option-c/phase4b/environment/forest-road-v2/forest-road-combat-stage.png",
+      "bytes": 3274662,
+      "sha256": "db4328615aa3d627fb9193a73347afe0ccf47148900b40141d221db206ef878e",
+      "characterFree": true,
+      "semanticLock": "ATTACKER_LEFT_TARGET_RIGHT"
+    }
+  ],
+  "invariants": {
+    "canonicalEnvironmentAssetsChanged": false,
+    "existingPhase4BAssetsOverwritten": false,
+    "runtimeChanged": false,
+    "gameplayChanged": false,
+    "narrativeChanged": false,
+    "combatLogicChanged": false,
+    "vfxChanged": false,
+    "characterAssetsChanged": false
+  }
+}

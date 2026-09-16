@@ -1,4 +1,8 @@
 import type { DialogueSequence } from '../game/types';
+import {
+  demoBoundaryEnvironmentUrl,
+  demoEnvironmentUrlForContext,
+} from '../render/demoEnvironmentPack';
 
 export const NARRATIVE_BEAT_KINDS = Object.freeze([
   'VISUAL',
@@ -443,6 +447,7 @@ export function createGenericNarrativeTableau(sequence: DialogueSequence): Narra
     grammar: family === 'PRE_COMBAT' ? 'THREAT' : family === 'AFTERMATH' ? 'AFTERMATH' : 'APPROACH',
     dialogueId: sequence.id,
     family,
+    stillImage: demoEnvironmentUrlForContext(`dialogue:${sequence.id}`, 'STATIC_TABLEAU'),
     media: [],
     cast: {
       visualActors: speakers,
@@ -524,7 +529,7 @@ export const CAMP_DEPARTURE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   grammar: 'SINGLE_ROUTE',
   presentationKey: 'node:lion-camp:arrival',
   family: 'JOURNEY',
-  stillImage: '/assets/generated/lion-phase/dialogue/camp_departure.webp',
+  stillImage: demoBoundaryEnvironmentUrl('node:lion-camp:arrival'),
   media: [{ phase: 'INTRO_MEDIA', cinematicId: 'camp_departure' }],
   cast: {
     visualActors: ['maelor', 'alistair', 'marian'],
@@ -555,7 +560,7 @@ export const AUDIENCE_ROAD_DEPARTURE_TABLEAU = Object.freeze<NarrativeTableauSpe
   grammar: 'DEPARTURE',
   presentationKey: 'edge:lion-audience>lion-opening-ambush',
   family: 'JOURNEY',
-  stillImage: '/assets/generated/lion-phase/dialogue/forest_fork.webp',
+  stillImage: demoBoundaryEnvironmentUrl('edge:lion-audience>lion-opening-ambush'),
   media: [],
   staticFallbackOnly: true,
   needsNewMediaCin6e: true,
@@ -596,7 +601,7 @@ export const ALARIC_AUDIENCE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   grammar: 'APPROACH',
   dialogueId: 'lion_briefing',
   family: 'AUDIENCE',
-  stillImage: '/assets/generated/lion-phase/dialogue/lion_briefing.webp',
+  stillImage: demoEnvironmentUrlForContext('dialogue:lion_briefing', 'STATIC_TABLEAU'),
   media: [{ phase: 'INTRO_MEDIA', cinematicId: 'alaric_audience_arrival' }],
   cast: {
     visualActors: ['alaric', 'alistair', 'sage_seraphine', 'maelor'],
@@ -683,7 +688,7 @@ export const FOREST_THREAT_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   grammar: 'THREAT',
   dialogueId: 'pre_opening_trail',
   family: 'PRE_COMBAT',
-  stillImage: '/assets/generated/lion-phase/dialogue/forest_fork.webp',
+  stillImage: demoEnvironmentUrlForContext('dialogue:pre_opening_trail', 'STATIC_TABLEAU'),
   combatIds: ['forest_ambush', 'wolf_pack'],
   media: [{ phase: 'INTRO_MEDIA', cinematicId: 'forest_journey_tension' }],
   cast: {
@@ -714,7 +719,7 @@ export const FOREST_AFTERMATH_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   grammar: 'AFTERMATH',
   dialogueId: 'post_opening_trail',
   family: 'AFTERMATH',
-  stillImage: '/assets/generated/lion-phase/dialogue/forest_fork.webp',
+  stillImage: demoEnvironmentUrlForContext('dialogue:post_opening_trail', 'STATIC_TABLEAU'),
   media: [],
   cast: {
     visualActors: [],
@@ -743,7 +748,7 @@ export const VALMIR_FORK_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   grammar: 'TWO_PATH_FORK',
   presentationKey: 'node:lion-valmir-road:arrival',
   family: 'JOURNEY',
-  stillImage: '/assets/generated/lion-phase/dialogue/forest_fork.webp',
+  stillImage: demoBoundaryEnvironmentUrl('node:lion-valmir-road:arrival'),
   media: [{ phase: 'INTRO_MEDIA', cinematicId: 'valmir_route_fork' }],
   cast: {
     visualActors: ['sage_seraphine', 'alistair', 'maelor'],

@@ -14,6 +14,7 @@ function paintedCombatScene(id: string, texture: string, fallback: [string, stri
         parallax: 0,
         opacity: 1,
         fallback,
+        failOnError: true,
       },
     ],
   };
