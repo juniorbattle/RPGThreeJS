@@ -1,0 +1,295 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 static pose library pilot",
+  "status": "PILOT_REVIEW_READY",
+  "productionPromotion": false,
+  "unit": {
+    "id": "lion-champion",
+    "displayName": "Lion Champion",
+    "scaleClass": "boss_elite",
+    "weapon": "royal two-handed greatsword",
+    "canonicalReference": "public/assets/characters/pixel/full/lion_champion.png"
+  },
+  "artDirection": {
+    "primaryAuthority": "user-supplied approved four-class reference image",
+    "family": "Option C clean modern premium HD-2D pixel art",
+    "boardGenerationPolicy": "all four poses generated together in one 2x2 board"
+  },
+  "master": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/masters/lion-champion-master.png",
+    "sha256": "82a6527a424229ccf86fd910654f72a4570031ce310e7606e9db179343983a0a",
+    "dimensionsPx": [
+      512,
+      512
+    ],
+    "alphaBBoxPx": [
+      49,
+      26,
+      463,
+      486
+    ],
+    "status": "PILOT_CHARACTER_MASTER",
+    "source": "generated from the approved four-class style authority plus canonical Lion Champion identity"
+  },
+  "board": {
+    "sourcePath": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/lion-champion-board-source.png",
+    "sourceSha256": "39055e64c081a1a33622d465d7d63c696e3be1fa7989a040bc9607c2831c01a2",
+    "transparentPath": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/lion-champion-board.png",
+    "transparentSha256": "34a87b5681a06af544074485d0c00f990ea1f645b827d5dfb97766f76442f7d3",
+    "dimensionsPx": [
+      1024,
+      1024
+    ],
+    "grid": [
+      2,
+      2
+    ],
+    "poseOrder": [
+      "idle",
+      "dash",
+      "attack",
+      "skill"
+    ],
+    "edgeTouchFrames": []
+  },
+  "poses": [
+    {
+      "pose": "idle",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/lion-champion/lion-champion-idle.png",
+      "sha256": "647222bc2c578a7326b25f72886fda9e38a0287fee997f98fb201d6c39d8f834",
+      "dimensionsPx": [
+        512,
+        512
+      ],
+      "alphaBBoxPx": [
+        121,
+        157,
+        390,
+        446
+      ],
+      "transparentMarginsPx": {
+        "left": 121,
+        "top": 157,
+        "right": 122,
+        "bottom": 66
+      },
+      "footBaselinePx": 446,
+      "pivotPx": [
+        256,
+        446
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        0
+      ],
+      "sourceCropBBoxPx": [
+        234,
+        334,
+        725,
+        862
+      ],
+      "commonScaleOutputSizePx": [
+        269,
+        289
+      ],
+      "pastePositionPx": [
+        121,
+        157
+      ]
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/lion-champion/lion-champion-dash.png",
+      "sha256": "7e5d2e54dc359ddf291863ed6dbb28b4ce9eb2e7b5eb9c3459cad57317df8216",
+      "dimensionsPx": [
+        512,
+        512
+      ],
+      "alphaBBoxPx": [
+        102,
+        217,
+        410,
+        446
+      ],
+      "transparentMarginsPx": {
+        "left": 102,
+        "top": 217,
+        "right": 102,
+        "bottom": 66
+      },
+      "footBaselinePx": 446,
+      "pivotPx": [
+        256,
+        446
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        1
+      ],
+      "sourceCropBBoxPx": [
+        167,
+        443,
+        729,
+        861
+      ],
+      "commonScaleOutputSizePx": [
+        308,
+        229
+      ],
+      "pastePositionPx": [
+        102,
+        217
+      ]
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/lion-champion/lion-champion-attack.png",
+      "sha256": "d2a06df620a5aaf4023c5732633a1c21d078e5d360e50eb87e29b6ef3372508c",
+      "dimensionsPx": [
+        512,
+        512
+      ],
+      "alphaBBoxPx": [
+        67,
+        233,
+        445,
+        446
+      ],
+      "transparentMarginsPx": {
+        "left": 67,
+        "top": 233,
+        "right": 67,
+        "bottom": 66
+      },
+      "footBaselinePx": 446,
+      "pivotPx": [
+        256,
+        446
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        0
+      ],
+      "sourceCropBBoxPx": [
+        134,
+        441,
+        824,
+        830
+      ],
+      "commonScaleOutputSizePx": [
+        378,
+        213
+      ],
+      "pastePositionPx": [
+        67,
+        233
+      ]
+    },
+    {
+      "pose": "skill",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/lion-champion/lion-champion-skill.png",
+      "sha256": "6d31a3b75df0931f43ac5910b5faf5a3839e030e755775b84c1a2494302532cc",
+      "dimensionsPx": [
+        512,
+        512
+      ],
+      "alphaBBoxPx": [
+        123,
+        180,
+        388,
+        446
+      ],
+      "transparentMarginsPx": {
+        "left": 123,
+        "top": 180,
+        "right": 124,
+        "bottom": 66
+      },
+      "footBaselinePx": 446,
+      "pivotPx": [
+        256,
+        446
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        1
+      ],
+      "sourceCropBBoxPx": [
+        205,
+        344,
+        689,
+        830
+      ],
+      "commonScaleOutputSizePx": [
+        265,
+        266
+      ],
+      "pastePositionPx": [
+        123,
+        180
+      ]
+    }
+  ],
+  "scaleData": {
+    "canvasPx": [
+      512,
+      512
+    ],
+    "equivalentPoseCanvasFormat": true,
+    "targetWorldHeight": 2.8,
+    "deliveryFitScale": 0.74,
+    "worldUnitsPerPixel": 0.0096885813,
+    "sharedSourceToOutputScale": 0.547666,
+    "sharedScaleAcrossPoses": true,
+    "perPoseFitToContent": false,
+    "scaleCorrection": 1.0,
+    "footBaselinePx": 446,
+    "pivotPx": [
+      256,
+      446
+    ]
+  },
+  "qa": {
+    "boardBoundaryCheck": "PASS",
+    "transparentRgbaCheck": "PASS",
+    "poseCountCheck": "PASS",
+    "commonScaleCheck": "PASS",
+    "minimumTransparentMarginPx": 66,
+    "identityConsistency": "REVIEW_READY",
+    "headHelmetStability": "REVIEW_READY",
+    "shoulderTorsoConsistency": "REVIEW_READY",
+    "limbLengthConsistency": "REVIEW_READY",
+    "weaponGeometry": {
+      "status": "PASS_REVIEW_READY",
+      "note": "The master-derived royal sword length, width, hooked gold guard, blue gem, grip, and pommel now read as one canonical weapon across all four poses while boss mass remains stable. Operator acceptance remains pending."
+    },
+    "latestRepair": {
+      "scope": "canonical royal sword geometry while preserving boss mass",
+      "status": "PASS_REVIEW_READY"
+    },
+    "silhouetteAtCombatScale": "REVIEW_READY",
+    "vfxClearance": "PASS_MACHINE_BOUNDS",
+    "operatorVisualApproval": "PENDING",
+    "qaBoardPath": "public/assets/dev/option-c/combat-poses-v2/qa/lion-champion-qa-board.png"
+  },
+  "runtimeIntegration": {
+    "possibleWithoutGameplayChanges": true,
+    "possibleWithoutVfxChanges": true,
+    "semanticMap": {
+      "prepare": "idle",
+      "dash": "dash",
+      "attack": "attack",
+      "cast": "skill"
+    },
+    "integrationPerformed": false
+  },
+  "provenance": {
+    "processorMetaPath": "public/assets/dev/option-c/combat-poses-v2/manifests/lion-champion-processor-meta.json",
+    "promptPath": "public/assets/dev/option-c/combat-poses-v2/manifests/lion-champion-board-prompt.txt",
+    "generatedOffline": true
+  }
+}

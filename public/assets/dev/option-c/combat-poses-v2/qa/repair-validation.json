@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "repairScope": [
+    "alistair",
+    "lion-champion"
+  ],
+  "status": "PASS",
+  "units": [
+    {
+      "unit": "alistair",
+      "status": "PASS",
+      "checks": {
+        "canvas512Preserved": true,
+        "baselinePreserved": true,
+        "pivotPreserved": true,
+        "deliveryFitScalePreserved": true,
+        "sharedScalePreserved": true,
+        "scaleCorrectionsRemainOne": true,
+        "noCellEdgeTouches": true,
+        "idlePerceivedAreaIncreased": true
+      },
+      "idleBefore": {
+        "path": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/alistair-concentration-process/pose-1.png",
+        "dimensionsPx": [
+          512,
+          512
+        ],
+        "alphaBBoxPx": [
+          135,
+          194,
+          377,
+          431
+        ],
+        "alphaBBoxAreaPx": 57354,
+        "nonTransparentPixels": 27283,
+        "sha256": "892d2d526d1f4938182ecb61d3fea7c47724c0136af1940239db7cd46a5bef78"
+      },
+      "idleAfter": {
+        "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/alistair/alistair-idle.png",
+        "dimensionsPx": [
+          512,
+          512
+        ],
+        "alphaBBoxPx": [
+          129,
+          185,
+          382,
+          431
+        ],
+        "alphaBBoxAreaPx": 62238,
+        "nonTransparentPixels": 29831,
+        "sha256": "47b96a17c4712a6c8b1095f02f47097def1adb46170919355be0a4ba16701fa3"
+      },
+      "idleAlphaBBoxAreaRatio": 1.085155,
+      "idleNonTransparentPixelRatio": 1.093391,
+      "canonicalWeaponGeometry": "PASS_REVIEW_READY",
+      "attackSkillPosingLogic": "PRESERVED_REVIEW_READY"
+    },
+    {
+      "unit": "lion-champion",
+      "status": "PASS",
+      "checks": {
+        "canvas512Preserved": true,
+        "baselinePreserved": true,
+        "pivotPreserved": true,
+        "deliveryFitScalePreserved": true,
+        "sharedScalePreserved": true,
+        "scaleCorrectionsRemainOne": true,
+        "noCellEdgeTouches": true,
+        "bossIdleMassPreservedWithinFivePercent": true
+      },
+      "idleBefore": {
+        "path": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/lion-champion-concentration-process/pose-1.png",
+        "dimensionsPx": [
+          512,
+          512
+        ],
+        "alphaBBoxPx": [
+          122,
+          154,
+          389,
+          446
+        ],
+        "alphaBBoxAreaPx": 77964,
+        "nonTransparentPixels": 44334,
+        "sha256": "6f20d2f810d3a985df118aa7ad99624a0e64b2937d4f86b8a8300cb07662e8b1"
+      },
+      "idleAfter": {
+        "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/lion-champion/lion-champion-idle.png",
+        "dimensionsPx": [
+          512,
+          512
+        ],
+        "alphaBBoxPx": [
+          121,
+          157,
+          390,
+          446
+        ],
+        "alphaBBoxAreaPx": 77741,
+        "nonTransparentPixels": 44094,
+        "sha256": "647222bc2c578a7326b25f72886fda9e38a0287fee997f98fb201d6c39d8f834"
+      },
+      "idleAlphaBBoxAreaRatio": 0.99714,
+      "idleNonTransparentPixelRatio": 0.994587,
+      "canonicalWeaponGeometry": "PASS_REVIEW_READY",
+      "attackSkillPosingLogic": "PRESERVED_REVIEW_READY"
+    }
+  ],
+  "goblinSet": {
+    "status": "UNCHANGED",
+    "hashChecks": {
+      "masters/goblin-master.png": true,
+      "boards-2x2/goblin-board-source.png": true,
+      "boards-2x2/goblin-board.png": true,
+      "split-poses/goblin/goblin-idle.png": true,
+      "split-poses/goblin/goblin-dash.png": true,
+      "split-poses/goblin/goblin-attack.png": true,
+      "split-poses/goblin/goblin-skill.png": true,
+      "manifests/goblin-board-prompt.txt": true,
+      "manifests/goblin-processor-meta.json": true,
+      "manifests/goblin-manifest.json": true,
+      "qa/goblin-qa-board.png": true
+    }
+  },
+  "artDirectionChanged": false,
+  "attackSkillPosingLogicChanged": false,
+  "runtimeChanged": false,
+  "gameplayChanged": false,
+  "vfxChanged": false,
+  "productionPromotion": false,
+  "operatorVisualApproval": "PENDING",
+  "comparisonQaPath": "public/assets/dev/option-c/combat-poses-v2/qa/repair-comparison.png"
+}

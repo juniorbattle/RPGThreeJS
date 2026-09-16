@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "scope": "Option C Combat Poses V2 pilot outputs only",
+  "counts": {
+    "finalMasters": 3,
+    "finalBoards": 3,
+    "splitPoses": 12,
+    "unitManifests": 3
+  },
+  "expectedCounts": {
+    "finalMasters": 3,
+    "finalBoards": 3,
+    "splitPoses": 12,
+    "unitManifests": 3
+  },
+  "units": [
+    {
+      "unit": "alistair",
+      "status": "PASS",
+      "checks": {
+        "exactMagentaSourceCorners": true,
+        "magentaBackgroundMajority": true,
+        "boardBoundary": true,
+        "sharedScaleEnabled": true,
+        "observedSharedScaleSpreadAtMost0_005": true,
+        "fourTransparent512Poses": true,
+        "allScaleCorrectionsOne": true,
+        "deliveryFitScaleMatchesUnitClass": true,
+        "minimumTransparentMarginAtLeast60": true
+      },
+      "exactMagentaPixelRatio": 0.874822,
+      "observedSharedScaleSpread": 0.001762
+    },
+    {
+      "unit": "goblin",
+      "status": "PASS",
+      "checks": {
+        "exactMagentaSourceCorners": true,
+        "magentaBackgroundMajority": true,
+        "boardBoundary": true,
+        "sharedScaleEnabled": true,
+        "observedSharedScaleSpreadAtMost0_005": true,
+        "fourTransparent512Poses": true,
+        "allScaleCorrectionsOne": true,
+        "deliveryFitScaleMatchesUnitClass": true,
+        "minimumTransparentMarginAtLeast60": true
+      },
+      "exactMagentaPixelRatio": 0.890608,
+      "observedSharedScaleSpread": 0.002078
+    },
+    {
+      "unit": "lion-champion",
+      "status": "PASS",
+      "checks": {
+        "exactMagentaSourceCorners": true,
+        "magentaBackgroundMajority": true,
+        "boardBoundary": true,
+        "sharedScaleEnabled": true,
+        "observedSharedScaleSpreadAtMost0_005": true,
+        "fourTransparent512Poses": true,
+        "allScaleCorrectionsOne": true,
+        "deliveryFitScaleMatchesUnitClass": true,
+        "minimumTransparentMarginAtLeast60": true
+      },
+      "exactMagentaPixelRatio": 0.838923,
+      "observedSharedScaleSpread": 0.000718
+    }
+  ],
+  "operatorVisualApproval": "PENDING",
+  "productionPromotion": false,
+  "countsPass": true
+}

@@ -1,0 +1,155 @@
+{
+  "target": "player",
+  "mode": "combat-pose-v2",
+  "prompt": "",
+  "role": "",
+  "input": "public\\assets\\dev\\option-c\\combat-poses-v2\\boards-2x2\\alistair-board-source.png",
+  "threshold": 100,
+  "edge_threshold": 150,
+  "duration": 200,
+  "rows": 2,
+  "cols": 2,
+  "cell_size": 512,
+  "fit_scale": 0.68,
+  "trim_border": 0,
+  "edge_clean_depth": 3,
+  "align": "feet",
+  "shared_scale": true,
+  "component_mode": "all",
+  "component_padding": 0,
+  "min_component_area": 1,
+  "edge_touch_margin": 4,
+  "frame_labels": [
+    "pose-1",
+    "pose-2",
+    "pose-3",
+    "pose-4"
+  ],
+  "frames": [
+    {
+      "grid": [
+        0,
+        0
+      ],
+      "source_box": [
+        0,
+        0,
+        928,
+        928
+      ],
+      "component_mode": "all",
+      "component_count": 2,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        240,
+        396,
+        717,
+        860
+      ],
+      "edge_touch": false,
+      "output_size": [
+        253,
+        246
+      ],
+      "paste_position": [
+        129,
+        185
+      ]
+    },
+    {
+      "grid": [
+        0,
+        1
+      ],
+      "source_box": [
+        928,
+        0,
+        1856,
+        928
+      ],
+      "component_mode": "all",
+      "component_count": 9,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        189,
+        466,
+        706,
+        860
+      ],
+      "edge_touch": false,
+      "output_size": [
+        274,
+        209
+      ],
+      "paste_position": [
+        119,
+        222
+      ]
+    },
+    {
+      "grid": [
+        1,
+        0
+      ],
+      "source_box": [
+        0,
+        928,
+        928,
+        1856
+      ],
+      "component_mode": "all",
+      "component_count": 8,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        152,
+        441,
+        807,
+        830
+      ],
+      "edge_touch": false,
+      "output_size": [
+        348,
+        206
+      ],
+      "paste_position": [
+        82,
+        225
+      ]
+    },
+    {
+      "grid": [
+        1,
+        1
+      ],
+      "source_box": [
+        928,
+        928,
+        1856,
+        1856
+      ],
+      "component_mode": "all",
+      "component_count": 17,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        211,
+        314,
+        685,
+        830
+      ],
+      "edge_touch": false,
+      "output_size": [
+        251,
+        274
+      ],
+      "paste_position": [
+        130,
+        157
+      ]
+    }
+  ],
+  "edge_touch_frames": []
+}

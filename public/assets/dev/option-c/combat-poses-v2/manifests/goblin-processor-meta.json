@@ -1,0 +1,155 @@
+{
+  "target": "creature",
+  "mode": "combat-pose-v2",
+  "prompt": "",
+  "role": "",
+  "input": "public\\assets\\dev\\option-c\\combat-poses-v2\\boards-2x2\\goblin-board-source.png",
+  "threshold": 100,
+  "edge_threshold": 150,
+  "duration": 200,
+  "rows": 2,
+  "cols": 2,
+  "cell_size": 512,
+  "fit_scale": 0.5,
+  "trim_border": 0,
+  "edge_clean_depth": 3,
+  "align": "feet",
+  "shared_scale": true,
+  "component_mode": "all",
+  "component_padding": 0,
+  "min_component_area": 1,
+  "edge_touch_margin": 4,
+  "frame_labels": [
+    "pose-1",
+    "pose-2",
+    "pose-3",
+    "pose-4"
+  ],
+  "frames": [
+    {
+      "grid": [
+        0,
+        0
+      ],
+      "source_box": [
+        0,
+        0,
+        928,
+        928
+      ],
+      "component_mode": "all",
+      "component_count": 1,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        276,
+        413,
+        685,
+        862
+      ],
+      "edge_touch": false,
+      "output_size": [
+        188,
+        207
+      ],
+      "paste_position": [
+        162,
+        177
+      ]
+    },
+    {
+      "grid": [
+        0,
+        1
+      ],
+      "source_box": [
+        928,
+        0,
+        1856,
+        928
+      ],
+      "component_mode": "all",
+      "component_count": 2,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        179,
+        530,
+        714,
+        863
+      ],
+      "edge_touch": false,
+      "output_size": [
+        246,
+        153
+      ],
+      "paste_position": [
+        133,
+        231
+      ]
+    },
+    {
+      "grid": [
+        1,
+        0
+      ],
+      "source_box": [
+        0,
+        928,
+        928,
+        1856
+      ],
+      "component_mode": "all",
+      "component_count": 1,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        202,
+        476,
+        757,
+        830
+      ],
+      "edge_touch": false,
+      "output_size": [
+        256,
+        163
+      ],
+      "paste_position": [
+        128,
+        221
+      ]
+    },
+    {
+      "grid": [
+        1,
+        1
+      ],
+      "source_box": [
+        928,
+        928,
+        1856,
+        1856
+      ],
+      "component_mode": "all",
+      "component_count": 1,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        186,
+        438,
+        710,
+        830
+      ],
+      "edge_touch": false,
+      "output_size": [
+        241,
+        180
+      ],
+      "paste_position": [
+        135,
+        204
+      ]
+    }
+  ],
+  "edge_touch_frames": []
+}
