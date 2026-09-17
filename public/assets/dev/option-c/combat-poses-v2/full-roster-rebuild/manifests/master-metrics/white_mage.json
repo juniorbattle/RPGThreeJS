@@ -1,0 +1,63 @@
+{
+  "unitId": "white_mage",
+  "family": "STANDARD_HUMANOID",
+  "weaponOrAnatomy": "solar holy staff",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 456,
+  "pivot": [
+    256,
+    456
+  ],
+  "airborneOffset": 0,
+  "targetCoreExtentPx": 336,
+  "sourceDimensions": [
+    1024,
+    1536
+  ],
+  "sourceAlphaBBox": [
+    187,
+    53,
+    832,
+    1475
+  ],
+  "sourceCoreBBox": [
+    194,
+    176,
+    826,
+    1450
+  ],
+  "authoredBodyMassScale": 0.26373626373626374,
+  "appliedScale": 0.26373626373626374,
+  "scaleLimitedByExtremeAppendage": false,
+  "normalizedAlphaBBox": [
+    171,
+    88,
+    341,
+    463
+  ],
+  "normalizedCoreBBox": [
+    173,
+    120,
+    340,
+    456
+  ],
+  "normalizedCoreExtentPx": 336,
+  "transparentMargins": [
+    171,
+    88,
+    171,
+    49
+  ],
+  "safeMarginsPass": true,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/white_mage-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/white_mage-clean.png",
+  "masterPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/white_mage-master.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/white_mage.txt",
+  "rawSha256": "ff395b6d1878020b6e4276cd2045ecb07eb5f85f6425879ab3e97da21961bec5",
+  "masterSha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda",
+  "perPoseAutoScaling": false,
+  "fitToContent": false
+}

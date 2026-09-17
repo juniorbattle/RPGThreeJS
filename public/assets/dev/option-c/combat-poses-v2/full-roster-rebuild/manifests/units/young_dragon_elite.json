@@ -1,0 +1,429 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C full 25-unit roster rebuild",
+  "unitId": "young_dragon_elite",
+  "category": "ELITE_BOSS",
+  "scaleFamily": "LARGE_ELITE_BOSS",
+  "weaponOrAnatomyLock": "claws, maw, wings, and breath",
+  "artStyleAuthority": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/art-style-authority.png",
+    "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+    "sourcePath": "C:\\Users\\miche\\AppData\\Local\\Temp\\codex-clipboard-21f24758-8fb5-4e50-97ee-7ad521b05315.png",
+    "role": "PRIMARY_AND_ONLY_ART_STYLE_AUTHORITY"
+  },
+  "canonicalIdentityReference": {
+    "unitId": "young_dragon_elite",
+    "category": "ELITE_BOSS",
+    "family": "LARGE_ELITE_BOSS",
+    "weaponOrAnatomy": "claws, maw, wings, and breath",
+    "canonicalFolder": "public/assets/combat-stage/poses/bosses/enemy_dragon_elite_4x1_2560x768",
+    "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/canonical/young_dragon_elite.png",
+    "sources": [
+      {
+        "path": "public/assets/combat-stage/poses/bosses/enemy_dragon_elite_4x1_2560x768/enemy_dragon_elite_4x1_2560x768_01_pose1.png",
+        "sha256": "2ae759da2dd899951247af9805c16c6524413c1f75fd0429b579e80e02646795",
+        "dimensions": [
+          595,
+          557
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/bosses/enemy_dragon_elite_4x1_2560x768/enemy_dragon_elite_4x1_2560x768_02_pose2.png",
+        "sha256": "c75c49f1c9f8eafe348a7e33df59f830a378b97e66aba214b54d5f2758dca7e6",
+        "dimensions": [
+          685,
+          542
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/bosses/enemy_dragon_elite_4x1_2560x768/enemy_dragon_elite_4x1_2560x768_03_pose3.png",
+        "sha256": "68665edb9bfc9f04d71197e71ee04afca038a9fd690ec0e4e76fbbb17ab50302",
+        "dimensions": [
+          633,
+          590
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/bosses/enemy_dragon_elite_4x1_2560x768/enemy_dragon_elite_4x1_2560x768_04_pose4.png",
+        "sha256": "0c06e49a687bdab4148bbcc3fc24158b28cb6db1b867aa8232a4e09f2a61a582",
+        "dimensions": [
+          568,
+          620
+        ]
+      }
+    ]
+  },
+  "master": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/young_dragon_elite-master.png",
+    "sha256": "4e74cda450e9f934884f1cb927fd50a760757d4a5c62de68b6eeb14ba6ab7158",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA"
+  },
+  "board2x2": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/young_dragon_elite-board.png",
+    "sha256": "2b0875291681a8ef18cd253da7edb6f65dc53e4f783aa6883f7d178e15613d99",
+    "dimensions": [
+      1280,
+      1024
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      100,
+      76,
+      1187,
+      979
+    ],
+    "safeMarginMin": 45
+  },
+  "poses": {
+    "idle": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/young_dragon_elite/young_dragon_elite-idle.png",
+      "sha256": "7e18d87bd031b4b740827017f8f53a67656badff53ba5846a4fdd5cdc793f2a6",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        46,
+        76,
+        464,
+        464
+      ],
+      "safeMarginMin": 46,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "dash": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/young_dragon_elite/young_dragon_elite-dash.png",
+      "sha256": "45a5eeab01db06a7069524cb510eec20864cde38d889295fc37ced57b37fb46b",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        30,
+        210,
+        483,
+        463
+      ],
+      "safeMarginMin": 29,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "attack": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/young_dragon_elite/young_dragon_elite-attack.png",
+      "sha256": "3e13cffa84c49fb608db73c3ab74e29599090933da4a556a63940e11b3106ea9",
+      "dimensions": [
+        640,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        100,
+        97,
+        547,
+        467
+      ],
+      "safeMarginMin": 45,
+      "canvasWidth": 640,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        320,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "skill": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/young_dragon_elite/young_dragon_elite-skill.png",
+      "sha256": "3b8dd469f26deebf168dd0413b1424cb3b0b4c05895604853f4f433bcbcebe1c",
+      "dimensions": [
+        640,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        120,
+        98,
+        501,
+        465
+      ],
+      "safeMarginMin": 47,
+      "canvasWidth": 640,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": true,
+      "pivot": [
+        320,
+        456
+      ],
+      "poseRegenerated": true
+    }
+  },
+  "prompts": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/young_dragon_elite.txt",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/young_dragon_elite.txt"
+  },
+  "metrics": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-metrics/young_dragon_elite.json",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-metrics/young_dragon_elite.json"
+  },
+  "qaBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/young_dragon_elite-qa.png",
+  "pipelineDoctrine": {
+    "masterNormalizedBeforePoses": true,
+    "commonMasterCanvas": [
+      512,
+      512
+    ],
+    "commonBaseline": 456,
+    "commonPivotX": 256,
+    "perPoseAutoScalingUsed": false,
+    "fitToContentUsed": false,
+    "sharedBoardToMasterScale": 0.7495429616087751,
+    "scaleCorrectionOverride": 0,
+    "bodyScaleLocked": true,
+    "pixelDensityLocked": true,
+    "flexiblePoseCanvasEnabled": true
+  },
+  "machineValidation": {
+    "masterDimensionsPass": true,
+    "boardDimensionsPass": true,
+    "poseDimensionsPass": true,
+    "outputCropFlags": [],
+    "allOutputsNonEmpty": true
+  },
+  "operatorClassification": {
+    "category": "PASS_CANDIDATE",
+    "reason": "Skill pose regenerated only; fire is contained in the mouth with no released breath cone.",
+    "issues": {
+      "cropping": [],
+      "scale": [],
+      "weapon": [],
+      "pose": [],
+      "other": []
+    }
+  },
+  "finalCleanup": {
+    "status": "PASS",
+    "poseRecords": {
+      "idle": {
+        "unitId": "young_dragon_elite",
+        "pose": "idle",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/young_dragon_elite/young_dragon_elite-idle.png",
+        "sourceSha256": "7e18d87bd031b4b740827017f8f53a67656badff53ba5846a4fdd5cdc793f2a6",
+        "finalSha256": "7e18d87bd031b4b740827017f8f53a67656badff53ba5846a4fdd5cdc793f2a6",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          46,
+          76,
+          464,
+          464
+        ],
+        "transparentMargins": [
+          46,
+          76,
+          48,
+          48
+        ],
+        "safeMarginMin": 46,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "dash": {
+        "unitId": "young_dragon_elite",
+        "pose": "dash",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/young_dragon_elite/young_dragon_elite-dash.png",
+        "sourceSha256": "45a5eeab01db06a7069524cb510eec20864cde38d889295fc37ced57b37fb46b",
+        "finalSha256": "45a5eeab01db06a7069524cb510eec20864cde38d889295fc37ced57b37fb46b",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          30,
+          210,
+          483,
+          463
+        ],
+        "transparentMargins": [
+          30,
+          210,
+          29,
+          49
+        ],
+        "safeMarginMin": 29,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "attack": {
+        "unitId": "young_dragon_elite",
+        "pose": "attack",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/young_dragon_elite/young_dragon_elite-attack.png",
+        "sourceSha256": "220ee7c898560322e5854b361a32bb4bf3fb05cc0c32e31ab1c2d4a5d9c69bbe",
+        "finalSha256": "3e13cffa84c49fb608db73c3ab74e29599090933da4a556a63940e11b3106ea9",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 640,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          100,
+          97,
+          547,
+          467
+        ],
+        "transparentMargins": [
+          100,
+          97,
+          93,
+          45
+        ],
+        "safeMarginMin": 45,
+        "targetMargin": 32,
+        "pivot": [
+          320,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "skill": {
+        "unitId": "young_dragon_elite",
+        "pose": "skill",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/young_dragon_elite/young_dragon_elite-skill.png",
+        "sourceSha256": "709309aa88eda320d45a09b7520b1e1c574ede3b8b7dfeb56d490d0df3f168c9",
+        "finalSha256": "3b8dd469f26deebf168dd0413b1424cb3b0b4c05895604853f4f433bcbcebe1c",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 640,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          120,
+          98,
+          501,
+          465
+        ],
+        "transparentMargins": [
+          120,
+          98,
+          139,
+          47
+        ],
+        "safeMarginMin": 47,
+        "targetMargin": 32,
+        "pivot": [
+          320,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": true,
+        "releasedFxDescription": "full released breath stream",
+        "restoration": null,
+        "poseRegenerated": true,
+        "regeneration": {
+          "prompt": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/regenerated-pose-prompts/young-dragon-elite-skill.txt",
+          "reason": "compact mouth-bound fire charge with no released breath cone",
+          "normalization": {
+            "candidateSource": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/regenerated-pose-candidates/young_dragon_elite-skill/clean.png",
+            "candidateSourceBBox": [
+              51,
+              68,
+              972,
+              956
+            ],
+            "lockedAlphaHeight": 367,
+            "normalizationScale": 0.4132882882882883,
+            "normalizationFilter": "NEAREST",
+            "placement": [
+              120,
+              98
+            ],
+            "transparentMargins": [
+              120,
+              98,
+              139,
+              47
+            ],
+            "method": "regenerated pose normalized to prior alpha height and pivot; no surviving pose was rescaled"
+          },
+          "pivot": [
+            320,
+            456
+          ]
+        }
+      }
+    }
+  }
+}

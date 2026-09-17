@@ -29,6 +29,7 @@ import { installUnitMotionWorkbench } from './UnitMotionWorkbench';
 import { COMBAT_RENDER_LAYERS } from './combatRenderLayers';
 import { resolveBossIntentVisualState } from './bossIntentPresentation';
 import { CombatStage } from './stage/CombatStage';
+import { resolveStrategicUnitVisual } from './stage/CombatPoseRegistry';
 import { resolveCombatStageProfileUniversal, getStageProfileInfo, forceResolveCombatStageProfile } from './stage/combatStageProfiles';
 import { isActionPublished, playActionVfx as playPublishedActionVfx, getPublishedDraft, __devUpdateOverlay, __devClearOverlay, getActiveRegistry } from './vfx/PublishedVfxResolver';
 import { SpriteFrameAnimationController } from '../render/SpriteFrameAnimation';
@@ -63,6 +64,7 @@ const dom={ ui:byId('ui'), turnbar:byId('turnbar'), hint:byId('hint'), panel:byI
   fx:byId('fx'), banner:byId('banner'), loading:byId('loading'), tutorial:byId('tutorial'), bossTutorial:byId('boss-tutorial') };
 const campaignParams=new URLSearchParams(location.search);
 const CAMPAIGN_MODE=campaignParams.get('campaign')==='1'&&window.parent!==window;
+const CHARACTER_SYSTEM_V2_QA=import.meta.env.DEV&&campaignParams.get('charv2qa')==='1';
 const OPTION_C_PROOF_ROUTE=import.meta.env.DEV&&campaignParams.get('optionc')==='forest-road';
 let QA_ENABLED=false;
 let MOTION_QA_ENABLED=false;
@@ -303,6 +305,15 @@ function drawUnit(kind){
 }
 function texFromCanvas(cv){ const t=new THREE.CanvasTexture(cv); t.magFilter=THREE.NearestFilter; t.minFilter=THREE.NearestFilter; t.colorSpace=THREE.SRGBColorSpace; t.generateMipmaps=false; return t; }
 function uiPortraitFor(path){ return path; }
+function strategicVisualFor(def){
+  if(!def)return null;
+  const identities=[def.combatPoseUnitId,def.unitId,def.definitionId,def.visualProfileId,def.campaignId,def.id,def.portrait];
+  for(const identity of identities){
+    const visual=resolveStrategicUnitVisual(identity);
+    if(visual)return visual;
+  }
+  return null;
+}
 const EXTERNAL_SPRITE_HEIGHTS={
   '/assets/characters/pixel/full/serpent_raider.png':1.76,
   '/assets/characters/pixel/full/serpent_brute.png':1.76,
@@ -330,23 +341,43 @@ const EXTERNAL_SPRITE_HEIGHTS={
 async function preloadExternalSprites(){
   const optionCAssets=optionCProofAssetsFor(OPTION_C_PROOF_CHARACTER);
   const optionCUrls=optionCRequiredImageUrlsFor(OPTION_C_PROOF_CHARACTER);
+  const strategicDefinitions=[
+    ...CAMPAIGN_SQUAD,
+    ...DEFS,
+    ...BOSS_DEFS,
+    ...Object.values(BOSS_ESCORTS).flat(),
+    ...Object.values(VISUAL_UNIT_TEMPLATES),
+  ].filter(Boolean);
+  const strategicVisuals=new Map();
+  for(const definition of strategicDefinitions){
+    const visual=strategicVisualFor(definition);
+    if(visual)strategicVisuals.set(visual.src,visual);
+  }
+  for(const portrait of Object.values(BOSS_PORTRAITS)){
+    const visual=resolveStrategicUnitVisual(portrait);
+    if(visual)strategicVisuals.set(visual.src,visual);
+  }
   const urls=[...new Set([
-    ...CAMPAIGN_SQUAD.map(unit=>unit&&unit.portrait),
-    ...DEFS.map(unit=>unit&&unit.portrait),
-    ...BOSS_DEFS.map(unit=>unit&&unit.portrait),
-    ...Object.values(BOSS_PORTRAITS),
-    ...Object.values(BOSS_ESCORTS).flat().map(unit=>unit&&unit.portrait),
-    ...Object.values(VISUAL_UNIT_TEMPLATES).map(unit=>unit&&unit.portrait),
+    ...strategicDefinitions.map(unit=>strategicVisualFor(unit)?.src||unit.portrait),
+    ...Object.values(BOSS_PORTRAITS).map(portrait=>resolveStrategicUnitVisual(portrait)?.src||portrait),
     ...(OPTION_C_PROOF_ACTIVE?optionCUrls:[])
-  ].filter(url=>typeof url==='string'&&(url.startsWith('/assets/characters/pixel/full/')||(OPTION_C_PROOF_ACTIVE&&url.startsWith(optionCAssets.root)))))];
+  ].filter(url=>typeof url==='string'&&(url.startsWith('/assets/characters/pixel/combat/')||url.startsWith('/assets/characters/pixel/full/')||(OPTION_C_PROOF_ACTIVE&&url.startsWith(optionCAssets.root)))))];
   if(!urls.length)return;
   await Promise.all(urls.map(async url=>{
     if(externalSpriteCache.has(url))return;
     try{
       const tex=await new THREE.TextureLoader().loadAsync(url);
       tex.colorSpace=THREE.SRGBColorSpace; tex.magFilter=THREE.NearestFilter; tex.minFilter=OPTION_C_PROOF_ACTIVE&&url.startsWith(optionCAssets.root)?THREE.NearestFilter:THREE.LinearFilter; tex.generateMipmaps=false;
-      const img=tex.image||{width:640,height:768},h=EXTERNAL_SPRITE_HEIGHTS[url]||2.08,w=Math.min(2.18,Math.max(1.08,img.width/img.height*h));
-      externalSpriteCache.set(url,{tex,w,h,ar:w/h,portrait:url,external:true});
+      const strategic=strategicVisuals.get(url);
+      if(strategic){
+        const scale=strategic.worldUnitsPerPixel*strategic.scaleCorrection;
+        const w=strategic.sourceSizePx.width*scale,h=strategic.sourceSizePx.height*scale;
+        const baseY=(strategic.anchor.y-strategic.sourceSizePx.height*0.5)*scale;
+        externalSpriteCache.set(url,{tex,w,h,baseY,ar:w/h,portrait:url,external:true,authoritativePhysicalScale:true,strategicVisual:strategic});
+      }else{
+        const img=tex.image||{width:640,height:768},h=EXTERNAL_SPRITE_HEIGHTS[url]||2.08,w=Math.min(2.18,Math.max(1.08,img.width/img.height*h));
+        externalSpriteCache.set(url,{tex,w,h,baseY:h*0.5,ar:w/h,portrait:url,external:true,authoritativePhysicalScale:false});
+      }
     }catch(err){
       console.warn('Sprite externe indisponible',url,err);
       if(OPTION_C_PROOF_ACTIVE&&url.startsWith(optionCAssets.root)){
@@ -918,6 +949,7 @@ function bossCenterGZ(u){ return u.gz+(u.size||1)/2-0.5; }
 function occupyBossCells(u){ for(const c of bossCells(u)){ c.occupant=u; c.walkable=false; } }
 function clearBossCells(u){ for(const c of bossCells(u)){ if(c.occupant===u)c.occupant=null; c.walkable=true; } }
 function largeUnitSpriteScale(u){
+  if(u.authoritativePhysicalScale)return 1;
   if((u.size||1)>1) return u.boss
     ? COMBAT_PRESENTATION.units.twoByTwoBossSpriteScale
     : COMBAT_PRESENTATION.units.twoByTwoEliteSpriteScale;
@@ -932,7 +964,8 @@ function resetUnitSpriteScale(u){
   if(u.outline)u.outline.scale.set(scaleX<0?-outlineScale:outlineScale,outlineScale,1);
 }
 function createUnit(def){
-  const s=externalSpriteCache.get(def.portrait)||SPR[def.kind];
+  const strategicVisual=strategicVisualFor(def);
+  const s=externalSpriteCache.get(strategicVisual?.src||def.portrait)||externalSpriteCache.get(def.portrait)||SPR[def.kind];
   const grp=new THREE.Group();
   const shadowScale=COMBAT_PRESENTATION.units.shadowScale;
   const blob=new THREE.Mesh(new THREE.PlaneGeometry(1.32*shadowScale,1.32*0.5*shadowScale),new THREE.MeshBasicMaterial({map:blobTex,transparent:true,depthWrite:false,opacity:COMBAT_PRESENTATION.units.shadowOpacity,fog:false,toneMapped:false}));
@@ -946,10 +979,10 @@ function createUnit(def){
   teamRing.rotation.x=-Math.PI/2; teamRing.position.y=0.058; teamRing.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SHADOW+3; grp.add(teamRing);
   const outlineMat=new THREE.MeshBasicMaterial({map:s.tex,color:0x03050a,transparent:true,opacity:0.44,alphaTest:0.05,depthWrite:false,side:THREE.DoubleSide,fog:false,toneMapped:false});
   const outline=new THREE.Mesh(new THREE.PlaneGeometry(s.w,s.h),outlineMat);
-  outline.position.y=s.h*0.5; outline.scale.set(1.1,1.1,1); outline.renderOrder=COMBAT_RENDER_LAYERS.UNIT_OUTLINE; grp.add(outline);
+  outline.position.y=s.baseY??s.h*0.5; outline.scale.set(1.1,1.1,1); outline.renderOrder=COMBAT_RENDER_LAYERS.UNIT_OUTLINE; grp.add(outline);
   const mat=new THREE.MeshBasicMaterial({map:s.tex,transparent:true,alphaTest:0.05,depthWrite:false,side:THREE.DoubleSide,fog:false,toneMapped:false});
   const spr=new THREE.Mesh(new THREE.PlaneGeometry(s.w,s.h),mat);
-  spr.position.y=s.h*0.5; spr.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SPRITE; grp.add(spr);
+  spr.position.y=s.baseY??s.h*0.5; spr.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SPRITE; grp.add(spr);
   const statusIndicatorGroup=new THREE.Group(); statusIndicatorGroup.name='status-indicators'; statusIndicatorGroup.renderOrder=STATUS_BADGE_RENDER_ORDER; grp.add(statusIndicatorGroup);
   scene.add(grp);
   const unitMaxAp=Number.isFinite(def.maxap)?def.maxap:Number.isFinite(def.maxAp)?def.maxAp:5;
@@ -964,7 +997,8 @@ function createUnit(def){
     spriteFacing:def.spriteFacing??1,
     facing:def.team==='player'?{dx:1,dz:0}:{dx:-1,dz:0},
     visualFacingX:def.team==='player'?1:-1,
-    grp, spr, outline, mat, blob, teamGlow, teamRingUnder, teamRing, statusIndicatorGroup, spriteHeight:s.h, baseY:s.h*0.5,
+    grp, spr, outline, mat, blob, teamGlow, teamRingUnder, teamRing, statusIndicatorGroup, spriteHeight:s.h, baseY:s.baseY??s.h*0.5,
+    authoritativePhysicalScale:!!s.authoritativePhysicalScale,strategicVisualUnitId:strategicVisual?.unitId||null,strategicVisual:strategicVisual||null,
     runtimeFrameAnimation:false, frameAnimation:null, frameAnimationUrl:'',
     cell(){ return cellAt(this.gx,this.gz); }
   };
@@ -978,7 +1012,9 @@ function createUnit(def){
   const spriteScale=largeUnitSpriteScale(u);
   u.visualHeight=s.h*spriteScale;
   u.visualWidth=s.w*spriteScale;
-  if(u.size>1){ blob.scale.set(u.size,u.size,1); teamGlow.scale.set(u.size,u.size,1); teamRing.scale.set(u.size,u.size,1); if(teamRingUnder)teamRingUnder.scale.set(u.size,u.size,1); u.baseY=s.h*0.5*spriteScale-s.h*COMBAT_PRESENTATION.units.largeUnitGroundOffset; spr.position.y=u.baseY; outline.position.y=u.baseY; }
+  if(u.size>1){ blob.scale.set(u.size,u.size,1); teamGlow.scale.set(u.size,u.size,1); teamRing.scale.set(u.size,u.size,1); if(teamRingUnder)teamRingUnder.scale.set(u.size,u.size,1); }
+  if(u.authoritativePhysicalScale){ u.baseY=s.baseY; spr.position.y=u.baseY; outline.position.y=u.baseY; }
+  else if(u.size>1){ u.baseY=s.h*0.5*spriteScale-s.h*COMBAT_PRESENTATION.units.largeUnitGroundOffset; spr.position.y=u.baseY; outline.position.y=u.baseY; }
   else if(u.team==='player'){ u.baseY=s.h*0.5-s.h*COMBAT_PRESENTATION.units.heroGroundOffset; spr.position.y=u.baseY; outline.position.y=u.baseY; }
   resetUnitSpriteScale(u);
   placeUnit(u,def.gx,def.gz,true);
@@ -1020,6 +1056,16 @@ function setFacing(u,tx,tz){ const dx=tx-u.gx, dz=tz-u.gz; if(dx===0&&dz===0)ret
   resetUnitSpriteScale(u); }
 
 function spawnUnits(){
+  if(CHARACTER_SYSTEM_V2_QA){
+    const hero=DEFS.find(def=>def.portrait==='/assets/characters/pixel/full/alistair.png');
+    const goblin=VISUAL_UNIT_TEMPLATES.goblin;
+    const boss=BOSS_DEFS.find(def=>def.portrait==='/assets/characters/pixel/full/lion_champion.png');
+    if(hero)createUnit({...hero,combatPoseUnitId:'alistair',gx:1,gz:1});
+    if(goblin)createUnit({...goblin,combatPoseUnitId:'goblin',gx:4,gz:2,weapons:goblin.weapons.map(weapon=>({...weapon})),skills:goblin.skills.slice()});
+    if(boss)createUnit({...boss,combatPoseUnitId:'lion_champion',gx:6,gz:1,size:2,immobile:true,boss:true});
+    BOSS_SPAWNED=true;
+    return;
+  }
   if(!IS_BOSS_COMBAT){
     if(ENCOUNTER_ENEMY_VISUAL_IDS.length){
       const eliteIds=ENCOUNTER_ENEMY_VISUAL_IDS.filter(id=>VISUAL_UNIT_TEMPLATES[id]?.elite);
@@ -2668,10 +2714,21 @@ async function initGame(){
   await buildWorld(); makeBlobTex(); makeBaseTex(); makeTileTex(); buildSelectors(); buildCursor(); spawnUnits();
   initHud();
   logMsg(CAMPAIGN_MODE?COMBAT_OBJECTIVE:'Préparez votre formation, puis lancez la bataille.');
-  startDeployment();
+  if(CHARACTER_SYSTEM_V2_QA){
+    G.mode='idle'; G.deployedUnits=G.units.filter(unit=>unit.team==='player'); refreshTurnbar();
+    const units=G.units.map(unit=>{
+      const visual=unit.strategicVisual;
+      const visibleHeight=visual?(visual.alphaBoundsPx.bottom-visual.alphaBoundsPx.top)*visual.worldUnitsPerPixel:0;
+      const baselineError=visual?Math.abs(unit.spr.position.y+unit.spriteHeight*(0.5-visual.anchor.y/visual.sourceSizePx.height)):null;
+      return {unitId:unit.strategicVisualUnitId,src:visual?.src||null,scaleFamily:visual?.scaleFamily||null,worldUnitsPerPixel:visual?.worldUnitsPerPixel||null,scaleCorrection:visual?.scaleCorrection||null,visibleWorldHeight:visibleHeight,baselineError,spriteScaleY:unit.spr.scale.y,usesFullPortraitAsMapSprite:Boolean(visual&&visual.src===unit.portrait)};
+    });
+    window.__CHARACTER_SYSTEM_V2_STRATEGIC_PROOF__={status:units.length===3&&units.every(unit=>unit.src&&unit.scaleCorrection===1&&unit.baselineError<=0.000001&&!unit.usesFullPortraitAsMapSprite)?'PASS':'FAIL',units};
+    document.body.dataset.characterSystemV2StrategicReady='true';
+  }else{
+    startDeployment();
+  }
   mountQaControls();
-  showTutorial();
-  showBossTutorial();
+  if(!CHARACTER_SYSTEM_V2_QA){showTutorial();showBossTutorial();}
 }
 
 

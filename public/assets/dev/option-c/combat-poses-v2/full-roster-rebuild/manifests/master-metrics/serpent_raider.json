@@ -1,0 +1,63 @@
+{
+  "unitId": "serpent_raider",
+  "family": "STANDARD_HUMANOID",
+  "weaponOrAnatomy": "dagger or short blade",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 456,
+  "pivot": [
+    256,
+    456
+  ],
+  "airborneOffset": 0,
+  "targetCoreExtentPx": 326,
+  "sourceDimensions": [
+    1199,
+    1312
+  ],
+  "sourceAlphaBBox": [
+    256,
+    53,
+    901,
+    1241
+  ],
+  "sourceCoreBBox": [
+    272,
+    57,
+    892,
+    1241
+  ],
+  "authoredBodyMassScale": 0.27533783783783783,
+  "appliedScale": 0.27533783783783783,
+  "scaleLimitedByExtremeAppendage": false,
+  "normalizedAlphaBBox": [
+    166,
+    130,
+    344,
+    456
+  ],
+  "normalizedCoreBBox": [
+    171,
+    131,
+    342,
+    456
+  ],
+  "normalizedCoreExtentPx": 325,
+  "transparentMargins": [
+    166,
+    130,
+    168,
+    56
+  ],
+  "safeMarginsPass": true,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/serpent_raider-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/serpent_raider-clean.png",
+  "masterPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/serpent_raider-master.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/serpent_raider.txt",
+  "rawSha256": "0db5b6b1df74ce115e6332294b7fce5daf4c8536c7d557332bb69cb4a34aea70",
+  "masterSha256": "4f4bfb55016f325544a598a34213567657d43159c895bff57ac740ed4892ed9f",
+  "perPoseAutoScaling": false,
+  "fitToContent": false
+}

@@ -1,0 +1,429 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C full 25-unit roster rebuild",
+  "unitId": "alistair",
+  "category": "HERO",
+  "scaleFamily": "STANDARD_HUMANOID",
+  "weaponOrAnatomyLock": "greatsword",
+  "artStyleAuthority": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/art-style-authority.png",
+    "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+    "sourcePath": "C:\\Users\\miche\\AppData\\Local\\Temp\\codex-clipboard-21f24758-8fb5-4e50-97ee-7ad521b05315.png",
+    "role": "PRIMARY_AND_ONLY_ART_STYLE_AUTHORITY"
+  },
+  "canonicalIdentityReference": {
+    "unitId": "alistair",
+    "category": "HERO",
+    "family": "STANDARD_HUMANOID",
+    "weaponOrAnatomy": "greatsword",
+    "canonicalFolder": "public/assets/combat-stage/poses/heroes/warrior_sheet_4x1",
+    "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/canonical/alistair.png",
+    "sources": [
+      {
+        "path": "public/assets/combat-stage/poses/heroes/warrior_sheet_4x1/warrior_sheet_4x1_01_pose1.png",
+        "sha256": "0d9a83d25945932de465cfc231ccc4e689851501f6cb18727074a7ddde7cccb4",
+        "dimensions": [
+          629,
+          553
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/heroes/warrior_sheet_4x1/warrior_sheet_4x1_02_pose2.png",
+        "sha256": "b1f235070a147ce77c076e4ce622c350ca6319c79effa18878bb483d2a97ced9",
+        "dimensions": [
+          573,
+          599
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/heroes/warrior_sheet_4x1/warrior_sheet_4x1_03_pose3.png",
+        "sha256": "c95d825b44e1ca3d2b407fd92d21810b242d1e6bcd2af1b54cc84b61a79b0adb",
+        "dimensions": [
+          500,
+          654
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/heroes/warrior_sheet_4x1/warrior_sheet_4x1_04_pose4.png",
+        "sha256": "bc1e235ea7bf00896f208a5fcb6d0edbca96d08d2e777a94ca120e8b1ccd41fb",
+        "dimensions": [
+          455,
+          632
+        ]
+      }
+    ]
+  },
+  "master": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/alistair-master.png",
+    "sha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA"
+  },
+  "board2x2": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/alistair-board.png",
+    "sha256": "8f790e35c23850164912dc11b33682e0e46d1f2ab90511abc4eafbd759f5a895",
+    "dimensions": [
+      1280,
+      1024
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      86,
+      111,
+      1145,
+      972
+    ],
+    "safeMarginMin": 52
+  },
+  "poses": {
+    "idle": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/alistair/alistair-idle.png",
+      "sha256": "e824e2f939d377594449f15c1f78e0408291cef281478b9d6e25a8531f670f54",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        151,
+        111,
+        362,
+        458
+      ],
+      "safeMarginMin": 54,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "dash": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/alistair/alistair-dash.png",
+      "sha256": "00aff34643abcda4909befa5c731062655a4424e4119c603b4af98d4149c554e",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        70,
+        149,
+        434,
+        457
+      ],
+      "safeMarginMin": 55,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "attack": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/alistair/alistair-attack.png",
+      "sha256": "6fa0116994812bf7cea5a8debb34676c1c4a2f6ef98b46b1c2084fbf6c8ae84e",
+      "dimensions": [
+        640,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        86,
+        176,
+        548,
+        456
+      ],
+      "safeMarginMin": 56,
+      "canvasWidth": 640,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": false,
+      "pivot": [
+        320,
+        456
+      ],
+      "poseRegenerated": true
+    },
+    "skill": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/alistair/alistair-skill.png",
+      "sha256": "9e78a2bacd4fd18d0a1e4f07e7c542b642205935aad0f693f074ad35bfbad220",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        102,
+        118,
+        441,
+        460
+      ],
+      "safeMarginMin": 52,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    }
+  },
+  "prompts": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/alistair.txt",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/alistair.txt"
+  },
+  "metrics": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-metrics/alistair.json",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-metrics/alistair.json"
+  },
+  "qaBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/alistair-qa.png",
+  "pipelineDoctrine": {
+    "masterNormalizedBeforePoses": true,
+    "commonMasterCanvas": [
+      512,
+      512
+    ],
+    "commonBaseline": 456,
+    "commonPivotX": 256,
+    "perPoseAutoScalingUsed": false,
+    "fitToContentUsed": false,
+    "sharedBoardToMasterScale": 0.6321626617375231,
+    "scaleCorrectionOverride": 0,
+    "bodyScaleLocked": true,
+    "pixelDensityLocked": true,
+    "flexiblePoseCanvasEnabled": true
+  },
+  "machineValidation": {
+    "masterDimensionsPass": true,
+    "boardDimensionsPass": true,
+    "poseDimensionsPass": true,
+    "outputCropFlags": [],
+    "allOutputsNonEmpty": true
+  },
+  "operatorClassification": {
+    "category": "PASS_CANDIDATE",
+    "reason": "Attack pose regenerated from the locked master; complete greatsword and slash arc now taper inside a 640x512 safe canvas.",
+    "issues": {
+      "cropping": [],
+      "scale": [],
+      "weapon": [],
+      "pose": [],
+      "other": []
+    }
+  },
+  "finalCleanup": {
+    "status": "PASS",
+    "poseRecords": {
+      "idle": {
+        "unitId": "alistair",
+        "pose": "idle",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/alistair/alistair-idle.png",
+        "sourceSha256": "e824e2f939d377594449f15c1f78e0408291cef281478b9d6e25a8531f670f54",
+        "finalSha256": "e824e2f939d377594449f15c1f78e0408291cef281478b9d6e25a8531f670f54",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          151,
+          111,
+          362,
+          458
+        ],
+        "transparentMargins": [
+          151,
+          111,
+          150,
+          54
+        ],
+        "safeMarginMin": 54,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "dash": {
+        "unitId": "alistair",
+        "pose": "dash",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/alistair/alistair-dash.png",
+        "sourceSha256": "00aff34643abcda4909befa5c731062655a4424e4119c603b4af98d4149c554e",
+        "finalSha256": "00aff34643abcda4909befa5c731062655a4424e4119c603b4af98d4149c554e",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          70,
+          149,
+          434,
+          457
+        ],
+        "transparentMargins": [
+          70,
+          149,
+          78,
+          55
+        ],
+        "safeMarginMin": 55,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "attack": {
+        "unitId": "alistair",
+        "pose": "attack",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/alistair/alistair-attack.png",
+        "sourceSha256": "9c3bf11379fc7a34d3985344121c319fefd804067a175504ee47da8c09e41ab7",
+        "finalSha256": "6fa0116994812bf7cea5a8debb34676c1c4a2f6ef98b46b1c2084fbf6c8ae84e",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 640,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          86,
+          176,
+          548,
+          456
+        ],
+        "transparentMargins": [
+          86,
+          176,
+          92,
+          56
+        ],
+        "safeMarginMin": 56,
+        "targetMargin": 32,
+        "pivot": [
+          320,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": true,
+        "regeneration": {
+          "prompt": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/regenerated-pose-prompts/alistair-attack.txt",
+          "reason": "complete greatsword and naturally tapered character-bound slash arc",
+          "normalization": {
+            "candidateSource": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/regenerated-pose-candidates/alistair-attack/clean.png",
+            "candidateSourceBBox": [
+              51,
+              233,
+              972,
+              791
+            ],
+            "lockedAlphaHeight": 280,
+            "normalizationScale": 0.5017921146953405,
+            "normalizationFilter": "NEAREST",
+            "placement": [
+              86,
+              176
+            ],
+            "transparentMargins": [
+              86,
+              176,
+              92,
+              56
+            ],
+            "method": "regenerated pose normalized to prior alpha height and pivot; no surviving pose was rescaled"
+          },
+          "pivot": [
+            320,
+            456
+          ]
+        }
+      },
+      "skill": {
+        "unitId": "alistair",
+        "pose": "skill",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/alistair/alistair-skill.png",
+        "sourceSha256": "9e78a2bacd4fd18d0a1e4f07e7c542b642205935aad0f693f074ad35bfbad220",
+        "finalSha256": "9e78a2bacd4fd18d0a1e4f07e7c542b642205935aad0f693f074ad35bfbad220",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          102,
+          118,
+          441,
+          460
+        ],
+        "transparentMargins": [
+          102,
+          118,
+          71,
+          52
+        ],
+        "safeMarginMin": 52,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      }
+    }
+  }
+}

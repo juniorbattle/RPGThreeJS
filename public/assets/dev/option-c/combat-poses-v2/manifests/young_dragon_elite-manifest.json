@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 remaining 22 units production",
+  "productionPromotion": false,
+  "unitId": "young_dragon_elite",
+  "category": "ELITE_BOSS",
+  "canonicalReferenceFolder": "public/assets/combat-stage/poses/bosses/enemy_dragon_elite_4x1_2560x768",
+  "master": "public/assets/dev/option-c/combat-poses-v2/masters/young_dragon_elite-master.png",
+  "board": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/young_dragon_elite-board.png",
+  "prepare": "public/assets/dev/option-c/combat-poses-v2/split-poses/young_dragon_elite/young_dragon_elite-idle.png",
+  "dash": "public/assets/dev/option-c/combat-poses-v2/split-poses/young_dragon_elite/young_dragon_elite-dash.png",
+  "attack": "public/assets/dev/option-c/combat-poses-v2/split-poses/young_dragon_elite/young_dragon_elite-attack.png",
+  "cast": "public/assets/dev/option-c/combat-poses-v2/split-poses/young_dragon_elite/young_dragon_elite-skill.png",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 443,
+  "pivot": [
+    256,
+    443
+  ],
+  "targetWorldSize": 2.7,
+  "deliveryFactor": 0.73,
+  "scaleCorrection": 1.0,
+  "sizeClass": "large_dragon_elite",
+  "weaponType": "fangs, claws and emerald breath",
+  "qaStatus": "PASS_CANDIDATE",
+  "knownIssues": [],
+  "generationProvenance": {
+    "model": "UNKNOWN",
+    "modelProvenance": "UNKNOWN",
+    "canonicalIdentityReference": "public/assets/combat-stage/poses/bosses/enemy_dragon_elite_4x1_2560x768",
+    "styleReferences": [
+      "approved Option C four-class reference",
+      "Alistair V2 pilot",
+      "Goblin V2 pilot",
+      "Lion Champion V2 pilot"
+    ],
+    "masterSource": "public/assets/dev/option-c/combat-poses-v2/masters/young_dragon_elite-master-source.png",
+    "boardSource": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/young_dragon_elite-board-source.png",
+    "boardPrompt": "public/assets/dev/option-c/combat-poses-v2/manifests/young_dragon_elite-board-prompt.txt",
+    "processorMeta": "public/assets/dev/option-c/combat-poses-v2/manifests/young_dragon_elite-processor-meta.json",
+    "boardGeneratedAsOne2x2Family": true
+  },
+  "scaleDoctrine": {
+    "sharedScaleAcrossPoses": true,
+    "perPoseAutoScaling": false,
+    "fitToContentPerPose": false,
+    "scaleCorrectionOverrides": 0
+  },
+  "poses": [
+    {
+      "pose": "prepare",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/young_dragon_elite/young_dragon_elite-idle.png",
+      "sha256": "93bc49ccdd03f68f821e6fa90be59b548e28c5b676cb210c35a04f1fcde46d45",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        78,
+        150,
+        433,
+        443
+      ],
+      "transparentMargins": {
+        "left": 78,
+        "top": 150,
+        "right": 79,
+        "bottom": 69
+      },
+      "baseline": 443,
+      "pivot": [
+        256,
+        443
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        0
+      ],
+      "sourceCropBBox": [
+        47,
+        102,
+        619,
+        575
+      ],
+      "commonScaleOutputSize": [
+        355,
+        293
+      ],
+      "pastePosition": [
+        78,
+        150
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/young_dragon_elite/young_dragon_elite-dash.png",
+      "sha256": "5db209340f132a091028944fe24f0eebf2930c001366750d259806485af729dd",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        73,
+        214,
+        439,
+        443
+      ],
+      "transparentMargins": {
+        "left": 73,
+        "top": 214,
+        "right": 73,
+        "bottom": 69
+      },
+      "baseline": 443,
+      "pivot": [
+        256,
+        443
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        1
+      ],
+      "sourceCropBBox": [
+        0,
+        151,
+        591,
+        521
+      ],
+      "commonScaleOutputSize": [
+        366,
+        229
+      ],
+      "pastePosition": [
+        73,
+        214
+      ],
+      "sourceEdgeTouch": true
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/young_dragon_elite/young_dragon_elite-attack.png",
+      "sha256": "c35106c5fdfa87ffbe230b230d301280dc4ad56e9d177224d782e4effda29b4e",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        75,
+        181,
+        436,
+        443
+      ],
+      "transparentMargins": {
+        "left": 75,
+        "top": 181,
+        "right": 76,
+        "bottom": 69
+      },
+      "baseline": 443,
+      "pivot": [
+        256,
+        443
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        0
+      ],
+      "sourceCropBBox": [
+        26,
+        33,
+        609,
+        456
+      ],
+      "commonScaleOutputSize": [
+        361,
+        262
+      ],
+      "pastePosition": [
+        75,
+        181
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "cast",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/young_dragon_elite/young_dragon_elite-skill.png",
+      "sha256": "b73931ff18fee8de57929659704e75fa5ccf20ec9cff16916421a93e493f89d7",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        69,
+        132,
+        442,
+        443
+      ],
+      "transparentMargins": {
+        "left": 69,
+        "top": 132,
+        "right": 70,
+        "bottom": 69
+      },
+      "baseline": 443,
+      "pivot": [
+        256,
+        443
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        1
+      ],
+      "sourceCropBBox": [
+        0,
+        33,
+        602,
+        535
+      ],
+      "commonScaleOutputSize": [
+        373,
+        311
+      ],
+      "pastePosition": [
+        69,
+        132
+      ],
+      "sourceEdgeTouch": true
+    }
+  ],
+  "qa": {
+    "identity": "OPERATOR_REVIEW_PENDING",
+    "style": "OPERATOR_REVIEW_PENDING",
+    "physicalScale": "PASS_MACHINE_SHARED_SCALE",
+    "morphology": "OPERATOR_REVIEW_PENDING",
+    "poseSemantics": "PASS_CANDIDATE",
+    "weapon": "PASS_CANDIDATE",
+    "pixelDensity": "PASS_MACHINE_SHARED_SCALE",
+    "vfxClearance": "SOURCE_EDGE_RISK",
+    "groundingRisk": "PASS_MACHINE_BASELINE",
+    "operatorApproval": "PENDING",
+    "qaBoard": "public/assets/dev/option-c/combat-poses-v2/qa/young_dragon_elite-qa-board.png"
+  }
+}

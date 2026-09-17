@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 remaining 22 units production",
+  "productionPromotion": false,
+  "unitId": "marsh_toad",
+  "category": "ENEMY",
+  "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_marsh_toad_4x1_2560x768",
+  "master": "public/assets/dev/option-c/combat-poses-v2/masters/marsh_toad-master.png",
+  "board": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/marsh_toad-board.png",
+  "prepare": "public/assets/dev/option-c/combat-poses-v2/split-poses/marsh_toad/marsh_toad-idle.png",
+  "dash": "public/assets/dev/option-c/combat-poses-v2/split-poses/marsh_toad/marsh_toad-dash.png",
+  "attack": "public/assets/dev/option-c/combat-poses-v2/split-poses/marsh_toad/marsh_toad-attack.png",
+  "cast": "public/assets/dev/option-c/combat-poses-v2/split-poses/marsh_toad/marsh_toad-skill.png",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 379,
+  "pivot": [
+    256,
+    379
+  ],
+  "targetWorldSize": 1.5,
+  "deliveryFactor": 0.48,
+  "scaleCorrection": 1.0,
+  "sizeClass": "small_broad_amphibian",
+  "weaponType": "heavy tongue and toxic body",
+  "qaStatus": "PASS_CANDIDATE",
+  "knownIssues": [],
+  "generationProvenance": {
+    "model": "UNKNOWN",
+    "modelProvenance": "UNKNOWN",
+    "canonicalIdentityReference": "public/assets/combat-stage/poses/enemies/enemy_marsh_toad_4x1_2560x768",
+    "styleReferences": [
+      "approved Option C four-class reference",
+      "Alistair V2 pilot",
+      "Goblin V2 pilot",
+      "Lion Champion V2 pilot"
+    ],
+    "masterSource": "public/assets/dev/option-c/combat-poses-v2/masters/marsh_toad-master-source.png",
+    "boardSource": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/marsh_toad-board-source.png",
+    "boardPrompt": "public/assets/dev/option-c/combat-poses-v2/manifests/marsh_toad-board-prompt.txt",
+    "processorMeta": "public/assets/dev/option-c/combat-poses-v2/manifests/marsh_toad-processor-meta.json",
+    "boardGeneratedAsOne2x2Family": true
+  },
+  "scaleDoctrine": {
+    "sharedScaleAcrossPoses": true,
+    "perPoseAutoScaling": false,
+    "fitToContentPerPose": false,
+    "scaleCorrectionOverrides": 0
+  },
+  "poses": [
+    {
+      "pose": "prepare",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/marsh_toad/marsh_toad-idle.png",
+      "sha256": "4194e832eed9b74758aad8e387cff0660986497e823a1128ee22807ab57bbb09",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        154,
+        216,
+        358,
+        379
+      ],
+      "transparentMargins": {
+        "left": 154,
+        "top": 216,
+        "right": 154,
+        "bottom": 133
+      },
+      "baseline": 379,
+      "pivot": [
+        256,
+        379
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        0
+      ],
+      "sourceCropBBox": [
+        58,
+        146,
+        564,
+        550
+      ],
+      "commonScaleOutputSize": [
+        204,
+        163
+      ],
+      "pastePosition": [
+        154,
+        216
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/marsh_toad/marsh_toad-dash.png",
+      "sha256": "b25e8d305e1a3ba18c8b3c82392c623627d0eb6aefa3bb273cc57536c5bbb348",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        141,
+        225,
+        371,
+        379
+      ],
+      "transparentMargins": {
+        "left": 141,
+        "top": 225,
+        "right": 141,
+        "bottom": 133
+      },
+      "baseline": 379,
+      "pivot": [
+        256,
+        379
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        1
+      ],
+      "sourceCropBBox": [
+        27,
+        121,
+        597,
+        505
+      ],
+      "commonScaleOutputSize": [
+        230,
+        154
+      ],
+      "pastePosition": [
+        141,
+        225
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/marsh_toad/marsh_toad-attack.png",
+      "sha256": "38a24323992e5eb91a1e672b3ade330b0abc5be6939ed37552a391c14bfe0a03",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        135,
+        239,
+        377,
+        379
+      ],
+      "transparentMargins": {
+        "left": 135,
+        "top": 239,
+        "right": 135,
+        "bottom": 133
+      },
+      "baseline": 379,
+      "pivot": [
+        256,
+        379
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        0
+      ],
+      "sourceCropBBox": [
+        18,
+        137,
+        619,
+        486
+      ],
+      "commonScaleOutputSize": [
+        242,
+        140
+      ],
+      "pastePosition": [
+        135,
+        239
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "cast",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/marsh_toad/marsh_toad-skill.png",
+      "sha256": "4ec0ad929a0d84d595fc0e85b54eb616e2bc2477a4d6ad99866fe65da1251291",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        133,
+        197,
+        378,
+        379
+      ],
+      "transparentMargins": {
+        "left": 133,
+        "top": 197,
+        "right": 134,
+        "bottom": 133
+      },
+      "baseline": 379,
+      "pivot": [
+        256,
+        379
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        1
+      ],
+      "sourceCropBBox": [
+        0,
+        49,
+        609,
+        501
+      ],
+      "commonScaleOutputSize": [
+        245,
+        182
+      ],
+      "pastePosition": [
+        133,
+        197
+      ],
+      "sourceEdgeTouch": true
+    }
+  ],
+  "qa": {
+    "identity": "OPERATOR_REVIEW_PENDING",
+    "style": "OPERATOR_REVIEW_PENDING",
+    "physicalScale": "PASS_MACHINE_SHARED_SCALE",
+    "morphology": "OPERATOR_REVIEW_PENDING",
+    "poseSemantics": "PASS_CANDIDATE",
+    "weapon": "PASS_CANDIDATE",
+    "pixelDensity": "PASS_MACHINE_SHARED_SCALE",
+    "vfxClearance": "SOURCE_EDGE_RISK",
+    "groundingRisk": "PASS_MACHINE_BASELINE",
+    "operatorApproval": "PENDING",
+    "qaBoard": "public/assets/dev/option-c/combat-poses-v2/qa/marsh_toad-qa-board.png"
+  }
+}

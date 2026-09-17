@@ -1,0 +1,63 @@
+{
+  "unitId": "serpent_oracle",
+  "family": "STANDARD_HUMANOID",
+  "weaponOrAnatomy": "ritual staff",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 456,
+  "pivot": [
+    256,
+    456
+  ],
+  "airborneOffset": 0,
+  "targetCoreExtentPx": 332,
+  "sourceDimensions": [
+    1024,
+    1536
+  ],
+  "sourceAlphaBBox": [
+    149,
+    64,
+    856,
+    1464
+  ],
+  "sourceCoreBBox": [
+    152,
+    67,
+    841,
+    1464
+  ],
+  "authoredBodyMassScale": 0.2376521116678597,
+  "appliedScale": 0.2376521116678597,
+  "scaleLimitedByExtremeAppendage": false,
+  "normalizedAlphaBBox": [
+    173,
+    123,
+    341,
+    456
+  ],
+  "normalizedCoreBBox": [
+    174,
+    124,
+    337,
+    456
+  ],
+  "normalizedCoreExtentPx": 332,
+  "transparentMargins": [
+    173,
+    123,
+    171,
+    56
+  ],
+  "safeMarginsPass": true,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/serpent_oracle-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/serpent_oracle-clean.png",
+  "masterPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/serpent_oracle-master.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/serpent_oracle.txt",
+  "rawSha256": "17e9e274ba8c89d111bb8d76bc937d7d86be69542aefc0d76d1712a4854ae897",
+  "masterSha256": "f5010088c0a84be38522905929910f389124b1ed3ff76e7f998bfc1ca3773175",
+  "perPoseAutoScaling": false,
+  "fitToContent": false
+}

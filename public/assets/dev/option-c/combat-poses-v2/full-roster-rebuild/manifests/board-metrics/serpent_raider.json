@@ -1,0 +1,201 @@
+{
+  "unitId": "serpent_raider",
+  "canvasPerPose": [
+    512,
+    512
+  ],
+  "boardCanvas": [
+    1024,
+    1024
+  ],
+  "masterCoreExtentPx": 325,
+  "boardIdleCoreExtentPx": 493,
+  "sharedBoardToMasterScale": 0.6592292089249493,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "scaleCorrectionOverride": 0,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/serpent_raider-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/serpent_raider-clean.png",
+  "boardPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/serpent_raider-board.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/serpent_raider.txt",
+  "rawSha256": "90b00f57e0dd672ec33bf66cd84f4f0f7f5a94663a9974ffea2b6d8001309f0c",
+  "boardSha256": "57c96d1af92266ade3c52e3feb7cd134c5a8d6aa4a51798716354bd6af0d2ea5",
+  "poses": [
+    {
+      "pose": "idle",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_raider/serpent_raider-idle.png",
+      "sha256": "6193dcb36d615686f115154a7f48994581aeb057a9ff2e368607166cb7ebeb74",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        108,
+        96,
+        463,
+        589
+      ],
+      "sourceCoreBBox": [
+        115,
+        96,
+        462,
+        589
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.6592292089249493,
+      "outputAlphaBBox": [
+        137,
+        131,
+        371,
+        456
+      ],
+      "outputCoreBBox": [
+        142,
+        131,
+        370,
+        456
+      ],
+      "outputCoreExtentPx": 325,
+      "transparentMargins": [
+        137,
+        131,
+        141,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_raider/serpent_raider-dash.png",
+      "sha256": "ac7fc263f9bef974933bf580138a3f4ffb45481adc70a2543290b95034f71dd4",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        41,
+        143,
+        568,
+        577
+      ],
+      "sourceCoreBBox": [
+        59,
+        143,
+        566,
+        577
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.6592292089249493,
+      "outputAlphaBBox": [
+        77,
+        170,
+        424,
+        456
+      ],
+      "outputCoreBBox": [
+        90,
+        170,
+        423,
+        456
+      ],
+      "outputCoreExtentPx": 333,
+      "transparentMargins": [
+        77,
+        170,
+        88,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_raider/serpent_raider-attack.png",
+      "sha256": "fc1c7fd387c3ee5ded8ac4f14349e837f04bccc0da2fcd68473167786f9ea5b8",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        29,
+        93,
+        621,
+        558
+      ],
+      "sourceCoreBBox": [
+        47,
+        93,
+        618,
+        558
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.6592292089249493,
+      "outputAlphaBBox": [
+        55,
+        149,
+        445,
+        456
+      ],
+      "outputCoreBBox": [
+        68,
+        149,
+        443,
+        456
+      ],
+      "outputCoreExtentPx": 375,
+      "transparentMargins": [
+        55,
+        149,
+        67,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "skill",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_raider/serpent_raider-skill.png",
+      "sha256": "4b893f3059ba1bf84dcb27b941bcaba25d20eb5024f8c0ff98f7025eb5c46fc2",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        62,
+        71,
+        581,
+        558
+      ],
+      "sourceCoreBBox": [
+        73,
+        79,
+        568,
+        558
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.6592292089249493,
+      "outputAlphaBBox": [
+        87,
+        135,
+        429,
+        456
+      ],
+      "outputCoreBBox": [
+        94,
+        140,
+        419,
+        456
+      ],
+      "outputCoreExtentPx": 325,
+      "transparentMargins": [
+        87,
+        135,
+        83,
+        56
+      ],
+      "cropped": false
+    }
+  ]
+}

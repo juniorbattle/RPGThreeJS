@@ -1,0 +1,240 @@
+{
+  "unitId": "lancer",
+  "canvasPerPose": [
+    512,
+    512
+  ],
+  "boardCanvas": [
+    1024,
+    1024
+  ],
+  "masterCoreExtentPx": 349,
+  "boardIdleCoreExtentPx": 530,
+  "sharedBoardToMasterScale": 0.6584905660377358,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "scaleCorrectionOverride": 0,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/lancer-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/lancer-clean.png",
+  "boardPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/lancer-board.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/lancer.txt",
+  "rawSha256": "2cf442541d45e7bc9f2cde519e9830b5fa9dba5928bc62f2c922e52aad890e89",
+  "boardSha256": "651c0cb26e1b75ee3b6fb964548b326da35349032947ca4d1a712f7b9923116b",
+  "poses": [
+    {
+      "pose": "idle",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/lancer/lancer-idle.png",
+      "sha256": "4b9a2a407e42494c943b1eb3a0710d541502ebd14dbf5a0be38c837d5bd86776",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        107,
+        56,
+        411,
+        608
+      ],
+      "sourceCoreBBox": [
+        117,
+        78,
+        405,
+        608
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [
+        {
+          "bbox": [
+            591,
+            357,
+            627,
+            397
+          ],
+          "alphaPixels": 612
+        }
+      ],
+      "sharedScale": 0.6584905660377358,
+      "outputAlphaBBox": [
+        154,
+        93,
+        355,
+        456
+      ],
+      "outputCoreBBox": [
+        160,
+        105,
+        352,
+        456
+      ],
+      "outputCoreExtentPx": 351,
+      "transparentMargins": [
+        154,
+        93,
+        157,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/lancer/lancer-dash.png",
+      "sha256": "7e5f986c6c16b03b18389662096e2ab2894641ed588222bc3604b3b98e0d95ba",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        0,
+        227,
+        602,
+        594
+      ],
+      "sourceCoreBBox": [
+        0,
+        234,
+        572,
+        594
+      ],
+      "sourceEdgeTouch": true,
+      "removedEdgeFragments": [
+        {
+          "bbox": [
+            539,
+            614,
+            549,
+            627
+          ],
+          "alphaPixels": 60
+        }
+      ],
+      "sharedScale": 0.6584905660377358,
+      "outputAlphaBBox": [
+        68,
+        215,
+        465,
+        456
+      ],
+      "outputCoreBBox": [
+        68,
+        219,
+        444,
+        456
+      ],
+      "outputCoreExtentPx": 376,
+      "transparentMargins": [
+        68,
+        215,
+        47,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/lancer/lancer-attack.png",
+      "sha256": "beda46cc2bf76d8b3ea02940c07c799d803b02391e2516cdbbf87a7cbe5c87a4",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        17,
+        160,
+        627,
+        511
+      ],
+      "sourceCoreBBox": [
+        36,
+        163,
+        627,
+        511
+      ],
+      "sourceEdgeTouch": true,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.6584905660377358,
+      "outputAlphaBBox": [
+        49,
+        224,
+        451,
+        456
+      ],
+      "outputCoreBBox": [
+        62,
+        227,
+        451,
+        456
+      ],
+      "outputCoreExtentPx": 389,
+      "transparentMargins": [
+        49,
+        224,
+        61,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "skill",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/lancer/lancer-skill.png",
+      "sha256": "c018ee5e0b31d3f6d5c7d30881b354855b1646a6bb00aa03fa72fe5c71e991ba",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        90,
+        5,
+        587,
+        540
+      ],
+      "sourceCoreBBox": [
+        90,
+        16,
+        569,
+        540
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [
+        {
+          "bbox": [
+            0,
+            248,
+            78,
+            285
+          ],
+          "alphaPixels": 1598
+        },
+        {
+          "bbox": [
+            543,
+            0,
+            546,
+            3
+          ],
+          "alphaPixels": 8
+        }
+      ],
+      "sharedScale": 0.6584905660377358,
+      "outputAlphaBBox": [
+        98,
+        103,
+        426,
+        456
+      ],
+      "outputCoreBBox": [
+        98,
+        111,
+        414,
+        456
+      ],
+      "outputCoreExtentPx": 345,
+      "transparentMargins": [
+        98,
+        103,
+        86,
+        56
+      ],
+      "cropped": false
+    }
+  ]
+}

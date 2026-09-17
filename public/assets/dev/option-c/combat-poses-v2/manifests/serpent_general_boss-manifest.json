@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 remaining 22 units production",
+  "productionPromotion": false,
+  "unitId": "serpent_general_boss",
+  "category": "ELITE_BOSS",
+  "canonicalReferenceFolder": "public/assets/combat-stage/poses/bosses/enemy_serpent_champion_4x1_2560x768",
+  "master": "public/assets/dev/option-c/combat-poses-v2/masters/serpent_general_boss-master.png",
+  "board": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/serpent_general_boss-board.png",
+  "prepare": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_general_boss/serpent_general_boss-idle.png",
+  "dash": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_general_boss/serpent_general_boss-dash.png",
+  "attack": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_general_boss/serpent_general_boss-attack.png",
+  "cast": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_general_boss/serpent_general_boss-skill.png",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 451,
+  "pivot": [
+    256,
+    451
+  ],
+  "targetWorldSize": 2.9,
+  "deliveryFactor": 0.76,
+  "scaleCorrection": 1.0,
+  "sizeClass": "boss_humanoid",
+  "weaponType": "huge single-edged curved sword and serpent shield",
+  "qaStatus": "REGENERATE",
+  "knownIssues": [
+    "The single allowed board correction preserved the curved sword in SKILL, but the ATTACK blade still crosses the source quadrant boundary and produces a clipped/foreign fragment after deterministic split; regenerate the complete 2x2 board after review."
+  ],
+  "generationProvenance": {
+    "model": "UNKNOWN",
+    "modelProvenance": "UNKNOWN",
+    "canonicalIdentityReference": "public/assets/combat-stage/poses/bosses/enemy_serpent_champion_4x1_2560x768",
+    "styleReferences": [
+      "approved Option C four-class reference",
+      "Alistair V2 pilot",
+      "Goblin V2 pilot",
+      "Lion Champion V2 pilot"
+    ],
+    "masterSource": "public/assets/dev/option-c/combat-poses-v2/masters/serpent_general_boss-master-source.png",
+    "boardSource": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/serpent_general_boss-board-source.png",
+    "boardPrompt": "public/assets/dev/option-c/combat-poses-v2/manifests/serpent_general_boss-board-prompt.txt",
+    "processorMeta": "public/assets/dev/option-c/combat-poses-v2/manifests/serpent_general_boss-processor-meta.json",
+    "boardGeneratedAsOne2x2Family": true
+  },
+  "scaleDoctrine": {
+    "sharedScaleAcrossPoses": true,
+    "perPoseAutoScaling": false,
+    "fitToContentPerPose": false,
+    "scaleCorrectionOverrides": 0
+  },
+  "poses": [
+    {
+      "pose": "prepare",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_general_boss/serpent_general_boss-idle.png",
+      "sha256": "a4c5655be2770a0bd16d38349f3cf919765ceba3a054bda325a2030b5758e0ca",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        64,
+        75,
+        447,
+        451
+      ],
+      "transparentMargins": {
+        "left": 64,
+        "top": 75,
+        "right": 65,
+        "bottom": 61
+      },
+      "baseline": 451,
+      "pivot": [
+        256,
+        451
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        0
+      ],
+      "sourceCropBBox": [
+        12,
+        13,
+        619,
+        609
+      ],
+      "commonScaleOutputSize": [
+        383,
+        376
+      ],
+      "pastePosition": [
+        64,
+        75
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_general_boss/serpent_general_boss-dash.png",
+      "sha256": "741f9176fc4422f6263980b429caffd5983510922c5f60bca8e90c67b29e04aa",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        61,
+        88,
+        450,
+        451
+      ],
+      "transparentMargins": {
+        "left": 61,
+        "top": 88,
+        "right": 62,
+        "bottom": 61
+      },
+      "baseline": 451,
+      "pivot": [
+        256,
+        451
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        1
+      ],
+      "sourceCropBBox": [
+        0,
+        19,
+        616,
+        594
+      ],
+      "commonScaleOutputSize": [
+        389,
+        363
+      ],
+      "pastePosition": [
+        61,
+        88
+      ],
+      "sourceEdgeTouch": true
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_general_boss/serpent_general_boss-attack.png",
+      "sha256": "492073b9917808e08091e1ccee87a5391586c0cf43bb4c34301d48057474444e",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        61,
+        137,
+        450,
+        451
+      ],
+      "transparentMargins": {
+        "left": 61,
+        "top": 137,
+        "right": 62,
+        "bottom": 61
+      },
+      "baseline": 451,
+      "pivot": [
+        256,
+        451
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        0
+      ],
+      "sourceCropBBox": [
+        3,
+        75,
+        619,
+        573
+      ],
+      "commonScaleOutputSize": [
+        389,
+        314
+      ],
+      "pastePosition": [
+        61,
+        137
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "cast",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_general_boss/serpent_general_boss-skill.png",
+      "sha256": "44ee29690649d8dea507b339c6ccff6b096741a37320f346790edbc9ed6470de",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        65,
+        98,
+        447,
+        451
+      ],
+      "transparentMargins": {
+        "left": 65,
+        "top": 98,
+        "right": 65,
+        "bottom": 61
+      },
+      "baseline": 451,
+      "pivot": [
+        256,
+        451
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        1
+      ],
+      "sourceCropBBox": [
+        0,
+        15,
+        605,
+        575
+      ],
+      "commonScaleOutputSize": [
+        382,
+        353
+      ],
+      "pastePosition": [
+        65,
+        98
+      ],
+      "sourceEdgeTouch": true
+    }
+  ],
+  "qa": {
+    "identity": "OPERATOR_REVIEW_PENDING",
+    "style": "OPERATOR_REVIEW_PENDING",
+    "physicalScale": "PASS_MACHINE_SHARED_SCALE",
+    "morphology": "OPERATOR_REVIEW_PENDING",
+    "poseSemantics": "REVIEW",
+    "weapon": "REVIEW",
+    "pixelDensity": "PASS_MACHINE_SHARED_SCALE",
+    "vfxClearance": "SOURCE_EDGE_RISK",
+    "groundingRisk": "PASS_MACHINE_BASELINE",
+    "operatorApproval": "PENDING",
+    "qaBoard": "public/assets/dev/option-c/combat-poses-v2/qa/serpent_general_boss-qa-board.png"
+  }
+}

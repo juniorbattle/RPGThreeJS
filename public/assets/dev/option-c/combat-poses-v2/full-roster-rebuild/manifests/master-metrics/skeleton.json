@@ -1,0 +1,63 @@
+{
+  "unitId": "skeleton",
+  "family": "STANDARD_HUMANOID",
+  "weaponOrAnatomy": "sword and shield",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 456,
+  "pivot": [
+    256,
+    456
+  ],
+  "airborneOffset": 0,
+  "targetCoreExtentPx": 334,
+  "sourceDimensions": [
+    1199,
+    1312
+  ],
+  "sourceAlphaBBox": [
+    293,
+    100,
+    884,
+    1216
+  ],
+  "sourceCoreBBox": [
+    297,
+    100,
+    884,
+    1211
+  ],
+  "authoredBodyMassScale": 0.30063006300630063,
+  "appliedScale": 0.30063006300630063,
+  "scaleLimitedByExtremeAppendage": false,
+  "normalizedAlphaBBox": [
+    167,
+    122,
+    344,
+    457
+  ],
+  "normalizedCoreBBox": [
+    168,
+    122,
+    344,
+    456
+  ],
+  "normalizedCoreExtentPx": 334,
+  "transparentMargins": [
+    167,
+    122,
+    168,
+    55
+  ],
+  "safeMarginsPass": true,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/skeleton-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/skeleton-clean.png",
+  "masterPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/skeleton-master.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/skeleton.txt",
+  "rawSha256": "98fc97d43a8f54b019ba8c3f4d4c99ae6d257ca6d6e8b6cbfb1bb4805ad6f156",
+  "masterSha256": "4e88e9697ac00f4130851eed8967655c9218edb13af212b3a20ded0b0d3f8d41",
+  "perPoseAutoScaling": false,
+  "fitToContent": false
+}

@@ -1,0 +1,201 @@
+{
+  "unitId": "forest_spider",
+  "canvasPerPose": [
+    512,
+    512
+  ],
+  "boardCanvas": [
+    1024,
+    1024
+  ],
+  "masterCoreExtentPx": 192,
+  "boardIdleCoreExtentPx": 411,
+  "sharedBoardToMasterScale": 0.46715328467153283,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "scaleCorrectionOverride": 0,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/forest_spider-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/forest_spider-clean.png",
+  "boardPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/forest_spider-board.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/forest_spider.txt",
+  "rawSha256": "a5606ce50f2d400845cd86abcb4f8aee71defc3ffeaeaec8f3cf24c4191ab1a8",
+  "boardSha256": "aba903d3b16fe0775a41a405ef2dfc480b2b32b0640b69e2cfe36a8b3e067434",
+  "poses": [
+    {
+      "pose": "idle",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_spider/forest_spider-idle.png",
+      "sha256": "35451f9f9ed6da8e15e9bb8f92961d5e083463b88e9121fba0126062d4fe7b37",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        115,
+        211,
+        527,
+        499
+      ],
+      "sourceCoreBBox": [
+        115,
+        216,
+        526,
+        494
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.46715328467153283,
+      "outputAlphaBBox": [
+        160,
+        324,
+        352,
+        458
+      ],
+      "outputCoreBBox": [
+        160,
+        326,
+        352,
+        456
+      ],
+      "outputCoreExtentPx": 192,
+      "transparentMargins": [
+        160,
+        324,
+        160,
+        54
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_spider/forest_spider-dash.png",
+      "sha256": "4670b6e1960bf502fe570287c817bb216781d347916c5551d79851017884db01",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        76,
+        213,
+        554,
+        510
+      ],
+      "sourceCoreBBox": [
+        76,
+        219,
+        551,
+        501
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.46715328467153283,
+      "outputAlphaBBox": [
+        146,
+        323,
+        369,
+        461
+      ],
+      "outputCoreBBox": [
+        146,
+        325,
+        367,
+        456
+      ],
+      "outputCoreExtentPx": 221,
+      "transparentMargins": [
+        146,
+        323,
+        143,
+        51
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_spider/forest_spider-attack.png",
+      "sha256": "ac9a7a5b75c2fa317aa537122f9145a6d90a43d0e92a9a780eb3c13a66244cb1",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        78,
+        159,
+        570,
+        444
+      ],
+      "sourceCoreBBox": [
+        81,
+        163,
+        567,
+        432
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.46715328467153283,
+      "outputAlphaBBox": [
+        140,
+        328,
+        370,
+        461
+      ],
+      "outputCoreBBox": [
+        142,
+        331,
+        369,
+        456
+      ],
+      "outputCoreExtentPx": 227,
+      "transparentMargins": [
+        140,
+        328,
+        142,
+        51
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "skill",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_spider/forest_spider-skill.png",
+      "sha256": "f078a47eceb725bda353394d30b37d75dcbec627485ecc263a391562d1c9ddff",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        62,
+        163,
+        554,
+        455
+      ],
+      "sourceCoreBBox": [
+        62,
+        165,
+        553,
+        452
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.46715328467153283,
+      "outputAlphaBBox": [
+        141,
+        321,
+        371,
+        458
+      ],
+      "outputCoreBBox": [
+        141,
+        322,
+        370,
+        456
+      ],
+      "outputCoreExtentPx": 229,
+      "transparentMargins": [
+        141,
+        321,
+        141,
+        54
+      ],
+      "cropped": false
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "unitId": "serpent_duelist_elite",
+  "canvasPerPose": [
+    512,
+    512
+  ],
+  "boardCanvas": [
+    1024,
+    1024
+  ],
+  "masterCoreExtentPx": 385,
+  "boardIdleCoreExtentPx": 520,
+  "sharedBoardToMasterScale": 0.7403846153846154,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "scaleCorrectionOverride": 0,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/serpent_duelist_elite-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/serpent_duelist_elite-clean.png",
+  "boardPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/serpent_duelist_elite-board.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/serpent_duelist_elite.txt",
+  "rawSha256": "5dd02a027d332e802cae7cb1208f153b99fe05b92d0f545d0ead27e1c76ce5f4",
+  "boardSha256": "c5c4c9cf0f00bbc88152d6570f6d53ec2e7de7247ca6f9053a01a695c2a4ccf6",
+  "poses": [
+    {
+      "pose": "idle",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_duelist_elite/serpent_duelist_elite-idle.png",
+      "sha256": "35b067ea0d29bb171ecf89ccd350b8e9dcd15032c9924ef4217954b3d4e7056c",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        38,
+        72,
+        571,
+        603
+      ],
+      "sourceCoreBBox": [
+        59,
+        83,
+        546,
+        603
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.7403846153846154,
+      "outputAlphaBBox": [
+        61,
+        63,
+        455,
+        456
+      ],
+      "outputCoreBBox": [
+        82,
+        74,
+        429,
+        456
+      ],
+      "outputCoreExtentPx": 382,
+      "transparentMargins": [
+        61,
+        63,
+        57,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_duelist_elite/serpent_duelist_elite-dash.png",
+      "sha256": "cc7146d3b7c9cd42cc898f75326621af786e35496b3b3457665ac77108bd5a85",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        48,
+        149,
+        587,
+        583
+      ],
+      "sourceCoreBBox": [
+        65,
+        160,
+        573,
+        583
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.7403846153846154,
+      "outputAlphaBBox": [
+        56,
+        135,
+        454,
+        456
+      ],
+      "outputCoreBBox": [
+        70,
+        146,
+        443,
+        456
+      ],
+      "outputCoreExtentPx": 373,
+      "transparentMargins": [
+        56,
+        135,
+        58,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_duelist_elite/serpent_duelist_elite-attack.png",
+      "sha256": "f048360cb97581a041e1043ec90ee50143cf5d2b16d83d2eb0063c26d008227c",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        61,
+        77,
+        604,
+        538
+      ],
+      "sourceCoreBBox": [
+        65,
+        90,
+        595,
+        538
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.7403846153846154,
+      "outputAlphaBBox": [
+        57,
+        115,
+        459,
+        456
+      ],
+      "outputCoreBBox": [
+        60,
+        125,
+        452,
+        456
+      ],
+      "outputCoreExtentPx": 392,
+      "transparentMargins": [
+        57,
+        115,
+        53,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "skill",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_duelist_elite/serpent_duelist_elite-skill.png",
+      "sha256": "5fcb131457d85e816e5703b2c742410e2f57ef752cbbb37ba699616155700c5b",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        4,
+        70,
+        615,
+        547
+      ],
+      "sourceCoreBBox": [
+        5,
+        84,
+        612,
+        546
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.7403846153846154,
+      "outputAlphaBBox": [
+        31,
+        104,
+        483,
+        457
+      ],
+      "outputCoreBBox": [
+        32,
+        114,
+        481,
+        456
+      ],
+      "outputCoreExtentPx": 449,
+      "transparentMargins": [
+        31,
+        104,
+        29,
+        55
+      ],
+      "cropped": false
+    }
+  ]
+}

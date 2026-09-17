@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C full 25-unit roster rebuild",
+  "unitId": "cave_bat",
+  "category": "ENEMY",
+  "scaleFamily": "SMALL_CREATURE",
+  "weaponOrAnatomyLock": "fangs and wing-assisted dive",
+  "artStyleAuthority": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/art-style-authority.png",
+    "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+    "sourcePath": "C:\\Users\\miche\\AppData\\Local\\Temp\\codex-clipboard-21f24758-8fb5-4e50-97ee-7ad521b05315.png",
+    "role": "PRIMARY_AND_ONLY_ART_STYLE_AUTHORITY"
+  },
+  "canonicalIdentityReference": {
+    "unitId": "cave_bat",
+    "category": "ENEMY",
+    "family": "SMALL_CREATURE",
+    "weaponOrAnatomy": "fangs and wing-assisted dive",
+    "canonicalFolder": "public/assets/combat-stage/poses/enemies/enemy_bat_4x1_2560x768",
+    "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/canonical/cave_bat.png",
+    "sources": [
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_bat_4x1_2560x768/enemy_bat_4x1_2560x768_01_pose1.png",
+        "sha256": "9e7dca8c208a4cad7f787edde102c3be4d1e99ab3516b03b53fb7cf8ad8a95d1",
+        "dimensions": [
+          503,
+          454
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_bat_4x1_2560x768/enemy_bat_4x1_2560x768_02_pose2.png",
+        "sha256": "d3dcd776c9feb0b69766e3c2c5112de6c31ef4ba4d8b16f54adc8d7c5b5587ba",
+        "dimensions": [
+          599,
+          505
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_bat_4x1_2560x768/enemy_bat_4x1_2560x768_03_pose3.png",
+        "sha256": "e934e4b615d5de26eb9947b83137e785726d3ee9288b7da32a742f7578cc8633",
+        "dimensions": [
+          498,
+          576
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_bat_4x1_2560x768/enemy_bat_4x1_2560x768_04_pose4.png",
+        "sha256": "1282e82a1258f06eba0b757ce59b28499f731400c3f852b385ab067544ec1138",
+        "dimensions": [
+          544,
+          634
+        ]
+      }
+    ]
+  },
+  "master": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/cave_bat-master.png",
+    "sha256": "93d3d672f6ccb18cfef68313206ae393123641e4e0ec0db3eaa8d463ec6d4c18",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA"
+  },
+  "board2x2": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/cave_bat-board.png",
+    "sha256": "2389748ba5b9bfb19eb268b961d96a455b91d3f33e83c4a6fbf8455b1afd6f9a",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      135,
+      168,
+      895,
+      873
+    ],
+    "safeMarginMin": 129
+  },
+  "poses": {
+    "idle": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_bat/cave_bat-idle.png",
+      "sha256": "0f8d2f677a502f1e09c229d3785c8d1348708b4330239eb3a4a7f320106a3c2f",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        156,
+        168,
+        357,
+        356
+      ],
+      "safeMarginMin": 155,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "dash": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_bat/cave_bat-dash.png",
+      "sha256": "f0bf6056cae7d00c0e922b06cd34bed44152ffe8af629045f6d9834ea24572d8",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        126,
+        195,
+        374,
+        363
+      ],
+      "safeMarginMin": 126,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "attack": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_bat/cave_bat-attack.png",
+      "sha256": "807bd25e4ba5c18aadd4b3123de2e72f493dc433cd8558842a642f1c8a58a5eb",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        135,
+        168,
+        370,
+        360
+      ],
+      "safeMarginMin": 135,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "skill": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_bat/cave_bat-skill.png",
+      "sha256": "121e8106387ab83eada13900e9de336dc94face5145132699b70af51d7208c11",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        126,
+        164,
+        383,
+        361
+      ],
+      "safeMarginMin": 126,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    }
+  },
+  "prompts": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/cave_bat.txt",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/cave_bat.txt"
+  },
+  "metrics": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-metrics/cave_bat.json",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-metrics/cave_bat.json"
+  },
+  "qaBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/cave_bat-qa.png",
+  "pipelineDoctrine": {
+    "masterNormalizedBeforePoses": true,
+    "commonMasterCanvas": [
+      512,
+      512
+    ],
+    "commonBaseline": 456,
+    "commonPivotX": 256,
+    "perPoseAutoScalingUsed": false,
+    "fitToContentUsed": false,
+    "sharedBoardToMasterScale": 0.4519906323185012,
+    "scaleCorrectionOverride": 0,
+    "bodyScaleLocked": true,
+    "pixelDensityLocked": true,
+    "flexiblePoseCanvasEnabled": true
+  },
+  "machineValidation": {
+    "masterDimensionsPass": true,
+    "boardDimensionsPass": true,
+    "poseDimensionsPass": true,
+    "outputCropFlags": [],
+    "allOutputsNonEmpty": true
+  },
+  "operatorClassification": {
+    "category": "PASS_CANDIDATE",
+    "reason": "Airborne baseline, wing anatomy, dive locomotion, claw attack, and sonic skill remain coherent.",
+    "issues": {
+      "cropping": [],
+      "scale": [],
+      "weapon": [],
+      "pose": [],
+      "other": []
+    }
+  },
+  "finalCleanup": {
+    "status": "PASS",
+    "poseRecords": {
+      "idle": {
+        "unitId": "cave_bat",
+        "pose": "idle",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_bat/cave_bat-idle.png",
+        "sourceSha256": "0f8d2f677a502f1e09c229d3785c8d1348708b4330239eb3a4a7f320106a3c2f",
+        "finalSha256": "0f8d2f677a502f1e09c229d3785c8d1348708b4330239eb3a4a7f320106a3c2f",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          156,
+          168,
+          357,
+          356
+        ],
+        "transparentMargins": [
+          156,
+          168,
+          155,
+          156
+        ],
+        "safeMarginMin": 155,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "dash": {
+        "unitId": "cave_bat",
+        "pose": "dash",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_bat/cave_bat-dash.png",
+        "sourceSha256": "f0bf6056cae7d00c0e922b06cd34bed44152ffe8af629045f6d9834ea24572d8",
+        "finalSha256": "f0bf6056cae7d00c0e922b06cd34bed44152ffe8af629045f6d9834ea24572d8",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          126,
+          195,
+          374,
+          363
+        ],
+        "transparentMargins": [
+          126,
+          195,
+          138,
+          149
+        ],
+        "safeMarginMin": 126,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "attack": {
+        "unitId": "cave_bat",
+        "pose": "attack",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_bat/cave_bat-attack.png",
+        "sourceSha256": "807bd25e4ba5c18aadd4b3123de2e72f493dc433cd8558842a642f1c8a58a5eb",
+        "finalSha256": "807bd25e4ba5c18aadd4b3123de2e72f493dc433cd8558842a642f1c8a58a5eb",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          135,
+          168,
+          370,
+          360
+        ],
+        "transparentMargins": [
+          135,
+          168,
+          142,
+          152
+        ],
+        "safeMarginMin": 135,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "skill": {
+        "unitId": "cave_bat",
+        "pose": "skill",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_bat/cave_bat-skill.png",
+        "sourceSha256": "121e8106387ab83eada13900e9de336dc94face5145132699b70af51d7208c11",
+        "finalSha256": "121e8106387ab83eada13900e9de336dc94face5145132699b70af51d7208c11",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          126,
+          164,
+          383,
+          361
+        ],
+        "transparentMargins": [
+          126,
+          164,
+          129,
+          151
+        ],
+        "safeMarginMin": 126,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      }
+    }
+  }
+}

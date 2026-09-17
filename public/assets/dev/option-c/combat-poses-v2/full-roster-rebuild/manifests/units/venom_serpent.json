@@ -1,0 +1,429 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C full 25-unit roster rebuild",
+  "unitId": "venom_serpent",
+  "category": "ENEMY",
+  "scaleFamily": "SMALL_CREATURE",
+  "weaponOrAnatomyLock": "fangs, venom, and bite",
+  "artStyleAuthority": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/art-style-authority.png",
+    "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+    "sourcePath": "C:\\Users\\miche\\AppData\\Local\\Temp\\codex-clipboard-21f24758-8fb5-4e50-97ee-7ad521b05315.png",
+    "role": "PRIMARY_AND_ONLY_ART_STYLE_AUTHORITY"
+  },
+  "canonicalIdentityReference": {
+    "unitId": "venom_serpent",
+    "category": "ENEMY",
+    "family": "SMALL_CREATURE",
+    "weaponOrAnatomy": "fangs, venom, and bite",
+    "canonicalFolder": "public/assets/combat-stage/poses/enemies/enemy_venom_serpent_4x1_2560x768",
+    "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/canonical/venom_serpent.png",
+    "sources": [
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_venom_serpent_4x1_2560x768/enemy_venom_serpent_4x1_2560x768_01_pose1.png",
+        "sha256": "b1024086c666298e68c22d0cfef4c32778f3bcc4445e46372f0e750d11fd6e87",
+        "dimensions": [
+          597,
+          405
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_venom_serpent_4x1_2560x768/enemy_venom_serpent_4x1_2560x768_02_pose2.png",
+        "sha256": "91b50c6c62957087565b024ec30efeee350c5cce128e69436b3cb483869a9d72",
+        "dimensions": [
+          428,
+          513
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_venom_serpent_4x1_2560x768/enemy_venom_serpent_4x1_2560x768_03_pose3.png",
+        "sha256": "d396024ae032d66ef27bd7a522df80232704ad8bb5f89988d58476bca7f5edea",
+        "dimensions": [
+          688,
+          407
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_venom_serpent_4x1_2560x768/enemy_venom_serpent_4x1_2560x768_04_pose4.png",
+        "sha256": "fd3b82b9ed520b07485bd007859c5db6e9c30f31fef11834b2bb923d77e0f010",
+        "dimensions": [
+          411,
+          442
+        ]
+      }
+    ]
+  },
+  "master": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/venom_serpent-master.png",
+    "sha256": "bdab8a100d1a79247618690518b54a6828e3d64eb83c7e0fb735c7bfa7c79591",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA"
+  },
+  "board2x2": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/venom_serpent-board.png",
+    "sha256": "d0d8310f5c77eba8e6908d9c4aa1b625adb4ed3f672af348e8b337f48084a406",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      113,
+      262,
+      921,
+      968
+    ],
+    "safeMarginMin": 56
+  },
+  "poses": {
+    "idle": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/venom_serpent/venom_serpent-idle.png",
+      "sha256": "208834e9ca0db24a3664fadd13b5bd0615353cff7637e46a23fb96e46e884c93",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        162,
+        262,
+        349,
+        456
+      ],
+      "safeMarginMin": 56,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "dash": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/venom_serpent/venom_serpent-dash.png",
+      "sha256": "dc75935258f816a2ef5d4fa09b54da306953360b351ac3a276eb5c08387fb0d1",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        80,
+        341,
+        409,
+        456
+      ],
+      "safeMarginMin": 56,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "attack": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/venom_serpent/venom_serpent-attack.png",
+      "sha256": "0d53d73b1d4c73cbef0b67312074dfc280d06e0f2152536d2f48511da10853e4",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        113,
+        262,
+        433,
+        456
+      ],
+      "safeMarginMin": 56,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "skill": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/venom_serpent/venom_serpent-skill.png",
+      "sha256": "8b265bb1ba854acde02db8596d78d007bc6b67113f4047909ee27c8d7396be8c",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        160,
+        260,
+        348,
+        456
+      ],
+      "safeMarginMin": 56,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": true,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": true
+    }
+  },
+  "prompts": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/venom_serpent.txt",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/venom_serpent.txt"
+  },
+  "metrics": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-metrics/venom_serpent.json",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-metrics/venom_serpent.json"
+  },
+  "qaBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/venom_serpent-qa.png",
+  "pipelineDoctrine": {
+    "masterNormalizedBeforePoses": true,
+    "commonMasterCanvas": [
+      512,
+      512
+    ],
+    "commonBaseline": 456,
+    "commonPivotX": 256,
+    "perPoseAutoScalingUsed": false,
+    "fitToContentUsed": false,
+    "sharedBoardToMasterScale": 0.6043613707165109,
+    "scaleCorrectionOverride": 0,
+    "bodyScaleLocked": true,
+    "pixelDensityLocked": true,
+    "flexiblePoseCanvasEnabled": true
+  },
+  "machineValidation": {
+    "masterDimensionsPass": true,
+    "boardDimensionsPass": true,
+    "poseDimensionsPass": true,
+    "outputCropFlags": [],
+    "allOutputsNonEmpty": true
+  },
+  "operatorClassification": {
+    "category": "PASS_CANDIDATE",
+    "reason": "Skill pose regenerated only; poison is contained at the fangs with no projected stream.",
+    "issues": {
+      "cropping": [],
+      "scale": [],
+      "weapon": [],
+      "pose": [],
+      "other": []
+    }
+  },
+  "finalCleanup": {
+    "status": "PASS",
+    "poseRecords": {
+      "idle": {
+        "unitId": "venom_serpent",
+        "pose": "idle",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/venom_serpent/venom_serpent-idle.png",
+        "sourceSha256": "208834e9ca0db24a3664fadd13b5bd0615353cff7637e46a23fb96e46e884c93",
+        "finalSha256": "208834e9ca0db24a3664fadd13b5bd0615353cff7637e46a23fb96e46e884c93",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          162,
+          262,
+          349,
+          456
+        ],
+        "transparentMargins": [
+          162,
+          262,
+          163,
+          56
+        ],
+        "safeMarginMin": 56,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "dash": {
+        "unitId": "venom_serpent",
+        "pose": "dash",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/venom_serpent/venom_serpent-dash.png",
+        "sourceSha256": "dc75935258f816a2ef5d4fa09b54da306953360b351ac3a276eb5c08387fb0d1",
+        "finalSha256": "dc75935258f816a2ef5d4fa09b54da306953360b351ac3a276eb5c08387fb0d1",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          80,
+          341,
+          409,
+          456
+        ],
+        "transparentMargins": [
+          80,
+          341,
+          103,
+          56
+        ],
+        "safeMarginMin": 56,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "attack": {
+        "unitId": "venom_serpent",
+        "pose": "attack",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/venom_serpent/venom_serpent-attack.png",
+        "sourceSha256": "0d53d73b1d4c73cbef0b67312074dfc280d06e0f2152536d2f48511da10853e4",
+        "finalSha256": "0d53d73b1d4c73cbef0b67312074dfc280d06e0f2152536d2f48511da10853e4",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          113,
+          262,
+          433,
+          456
+        ],
+        "transparentMargins": [
+          113,
+          262,
+          79,
+          56
+        ],
+        "safeMarginMin": 56,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "skill": {
+        "unitId": "venom_serpent",
+        "pose": "skill",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/venom_serpent/venom_serpent-skill.png",
+        "sourceSha256": "c75e148c856eea162f540d7eea2e334560665614f650defd15c5f99b9c01b906",
+        "finalSha256": "8b265bb1ba854acde02db8596d78d007bc6b67113f4047909ee27c8d7396be8c",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          160,
+          260,
+          348,
+          456
+        ],
+        "transparentMargins": [
+          160,
+          260,
+          164,
+          56
+        ],
+        "safeMarginMin": 56,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": true,
+        "releasedFxDescription": "projected poison stream",
+        "restoration": null,
+        "poseRegenerated": true,
+        "regeneration": {
+          "prompt": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/regenerated-pose-prompts/venom-serpent-skill.txt",
+          "reason": "compact mouth-bound poison charge with no projected stream",
+          "normalization": {
+            "candidateSource": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/regenerated-pose-candidates/venom_serpent-skill/clean.png",
+            "candidateSourceBBox": [
+              71,
+              51,
+              953,
+              972
+            ],
+            "lockedAlphaHeight": 196,
+            "normalizationScale": 0.21281216069489686,
+            "normalizationFilter": "NEAREST",
+            "placement": [
+              160,
+              260
+            ],
+            "transparentMargins": [
+              160,
+              260,
+              164,
+              56
+            ],
+            "method": "regenerated pose normalized to prior alpha height and pivot; no surviving pose was rescaled"
+          },
+          "pivot": [
+            256,
+            456
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "unitId": "serpent_brute",
+  "canvasPerPose": [
+    512,
+    512
+  ],
+  "boardCanvas": [
+    1024,
+    1024
+  ],
+  "masterCoreExtentPx": 352,
+  "boardIdleCoreExtentPx": 539,
+  "sharedBoardToMasterScale": 0.6530612244897959,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "scaleCorrectionOverride": 0,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/serpent_brute-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/serpent_brute-clean.png",
+  "boardPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/serpent_brute-board.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/serpent_brute.txt",
+  "rawSha256": "b9afee75a875fea7e0ff3dea4ca2fc2a3c2498619d6f62049623eac0c2d8b2fc",
+  "boardSha256": "e665bbb9fbd8b66ef913b645c19b2bcba5224cca93b6c13e9c3e3f73ef0bd303",
+  "poses": [
+    {
+      "pose": "idle",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_brute/serpent_brute-idle.png",
+      "sha256": "34b37204ececc4c3830f5f473bcaed1315cf94dd2461aa998263144f845c8bcb",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        145,
+        61,
+        513,
+        600
+      ],
+      "sourceCoreBBox": [
+        148,
+        61,
+        502,
+        600
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.6530612244897959,
+      "outputAlphaBBox": [
+        139,
+        105,
+        379,
+        456
+      ],
+      "outputCoreBBox": [
+        141,
+        105,
+        371,
+        456
+      ],
+      "outputCoreExtentPx": 351,
+      "transparentMargins": [
+        139,
+        105,
+        133,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_brute/serpent_brute-dash.png",
+      "sha256": "c65c2afc6cd6f756dcf8a18118c77bb2a7ed5430bdbfae0afd716a587c26821d",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        42,
+        129,
+        578,
+        592
+      ],
+      "sourceCoreBBox": [
+        52,
+        129,
+        578,
+        590
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.6530612244897959,
+      "outputAlphaBBox": [
+        77,
+        155,
+        427,
+        457
+      ],
+      "outputCoreBBox": [
+        84,
+        155,
+        427,
+        456
+      ],
+      "outputCoreExtentPx": 343,
+      "transparentMargins": [
+        77,
+        155,
+        85,
+        55
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_brute/serpent_brute-attack.png",
+      "sha256": "ccd05573dfd968378d73d0d878b1f2e27525fdc1ae83921eda28f9222d8ab6e3",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        66,
+        59,
+        624,
+        538
+      ],
+      "sourceCoreBBox": [
+        74,
+        79,
+        603,
+        537
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.6530612244897959,
+      "outputAlphaBBox": [
+        79,
+        144,
+        443,
+        457
+      ],
+      "outputCoreBBox": [
+        84,
+        158,
+        429,
+        456
+      ],
+      "outputCoreExtentPx": 345,
+      "transparentMargins": [
+        79,
+        144,
+        69,
+        55
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "skill",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_brute/serpent_brute-skill.png",
+      "sha256": "389747e0c61c0e1fc6f12d4ab31ccac10d7fbd648c2a27ef984c541b2cbfa6a8",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        59,
+        42,
+        562,
+        558
+      ],
+      "sourceCoreBBox": [
+        67,
+        44,
+        543,
+        553
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.6530612244897959,
+      "outputAlphaBBox": [
+        95,
+        122,
+        424,
+        459
+      ],
+      "outputCoreBBox": [
+        101,
+        124,
+        411,
+        456
+      ],
+      "outputCoreExtentPx": 332,
+      "transparentMargins": [
+        95,
+        122,
+        88,
+        53
+      ],
+      "cropped": false
+    }
+  ]
+}

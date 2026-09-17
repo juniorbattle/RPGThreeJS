@@ -1,0 +1,201 @@
+{
+  "unitId": "wild_boar",
+  "canvasPerPose": [
+    512,
+    512
+  ],
+  "boardCanvas": [
+    1024,
+    1024
+  ],
+  "masterCoreExtentPx": 222,
+  "boardIdleCoreExtentPx": 413,
+  "sharedBoardToMasterScale": 0.5375302663438256,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "scaleCorrectionOverride": 0,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/wild_boar-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/wild_boar-clean.png",
+  "boardPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/wild_boar-board.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/wild_boar.txt",
+  "rawSha256": "8b2d420395131fa9511455a51e8a9ffa7f1bf0d171bfd54a7abd17553b4c65ef",
+  "boardSha256": "f37e3a9ec3b0617336831a41a0d0a022cd19caab91aeb07c6827bccfa230d1b4",
+  "poses": [
+    {
+      "pose": "idle",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/wild_boar/wild_boar-idle.png",
+      "sha256": "a3f7cbf41c2677d12d86c1ee0453fe9a860046da1995177a6dd90ad493dad449",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        90,
+        199,
+        513,
+        490
+      ],
+      "sourceCoreBBox": [
+        100,
+        210,
+        513,
+        490
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.5375302663438256,
+      "outputAlphaBBox": [
+        141,
+        300,
+        368,
+        456
+      ],
+      "outputCoreBBox": [
+        145,
+        306,
+        368,
+        456
+      ],
+      "outputCoreExtentPx": 223,
+      "transparentMargins": [
+        141,
+        300,
+        144,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/wild_boar/wild_boar-dash.png",
+      "sha256": "79c0c6a72a3a3f372e7951e8cf5d270a4839e34207112b2e09dec315915dbae6",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        66,
+        207,
+        565,
+        506
+      ],
+      "sourceCoreBBox": [
+        72,
+        219,
+        565,
+        506
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.5375302663438256,
+      "outputAlphaBBox": [
+        120,
+        295,
+        388,
+        456
+      ],
+      "outputCoreBBox": [
+        123,
+        302,
+        388,
+        456
+      ],
+      "outputCoreExtentPx": 265,
+      "transparentMargins": [
+        120,
+        295,
+        124,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/wild_boar/wild_boar-attack.png",
+      "sha256": "f1fe8aafe089fe50b0d0ce570c9b918ab5a3090dd349444549a2ff2a057ba413",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        53,
+        136,
+        587,
+        447
+      ],
+      "sourceCoreBBox": [
+        68,
+        153,
+        568,
+        447
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.5375302663438256,
+      "outputAlphaBBox": [
+        114,
+        289,
+        402,
+        456
+      ],
+      "outputCoreBBox": [
+        121,
+        297,
+        391,
+        456
+      ],
+      "outputCoreExtentPx": 270,
+      "transparentMargins": [
+        114,
+        289,
+        110,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "skill",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/wild_boar/wild_boar-skill.png",
+      "sha256": "97c05b5874d6b6a0243add0a3953c423adca7f4fe75538b5df80dbb369c1c4a0",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        33,
+        86,
+        592,
+        477
+      ],
+      "sourceCoreBBox": [
+        35,
+        97,
+        581,
+        474
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.5375302663438256,
+      "outputAlphaBBox": [
+        108,
+        247,
+        408,
+        457
+      ],
+      "outputCoreBBox": [
+        109,
+        253,
+        402,
+        456
+      ],
+      "outputCoreExtentPx": 293,
+      "transparentMargins": [
+        108,
+        247,
+        104,
+        55
+      ],
+      "cropped": false
+    }
+  ]
+}

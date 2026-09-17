@@ -1,0 +1,155 @@
+{
+  "target": "player",
+  "mode": "combat-poses-v2",
+  "prompt": "",
+  "role": "",
+  "input": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\public\\assets\\dev\\option-c\\combat-poses-v2\\boards-2x2\\archer-board-source.png",
+  "threshold": 70,
+  "edge_threshold": 140,
+  "duration": 200,
+  "rows": 2,
+  "cols": 2,
+  "cell_size": 512,
+  "fit_scale": 0.66,
+  "trim_border": 4,
+  "edge_clean_depth": 3,
+  "align": "feet",
+  "shared_scale": true,
+  "component_mode": "all",
+  "component_padding": 0,
+  "min_component_area": 1,
+  "edge_touch_margin": 0,
+  "frame_labels": [
+    "archer-1",
+    "archer-2",
+    "archer-3",
+    "archer-4"
+  ],
+  "frames": [
+    {
+      "grid": [
+        0,
+        0
+      ],
+      "source_box": [
+        0,
+        0,
+        627,
+        627
+      ],
+      "component_mode": "all",
+      "component_count": 397,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        3,
+        23,
+        616,
+        616
+      ],
+      "edge_touch": false,
+      "output_size": [
+        337,
+        326
+      ],
+      "paste_position": [
+        87,
+        99
+      ]
+    },
+    {
+      "grid": [
+        0,
+        1
+      ],
+      "source_box": [
+        627,
+        0,
+        1254,
+        627
+      ],
+      "component_mode": "all",
+      "component_count": 408,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        3,
+        17,
+        591,
+        616
+      ],
+      "edge_touch": false,
+      "output_size": [
+        324,
+        330
+      ],
+      "paste_position": [
+        94,
+        95
+      ]
+    },
+    {
+      "grid": [
+        1,
+        0
+      ],
+      "source_box": [
+        0,
+        627,
+        627,
+        1254
+      ],
+      "component_mode": "all",
+      "component_count": 226,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        17,
+        3,
+        615,
+        605
+      ],
+      "edge_touch": false,
+      "output_size": [
+        329,
+        331
+      ],
+      "paste_position": [
+        91,
+        94
+      ]
+    },
+    {
+      "grid": [
+        1,
+        1
+      ],
+      "source_box": [
+        627,
+        627,
+        1254,
+        1254
+      ],
+      "component_mode": "all",
+      "component_count": 324,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        3,
+        3,
+        609,
+        615
+      ],
+      "edge_touch": false,
+      "output_size": [
+        334,
+        337
+      ],
+      "paste_position": [
+        89,
+        88
+      ]
+    }
+  ],
+  "edge_touch_frames": []
+}

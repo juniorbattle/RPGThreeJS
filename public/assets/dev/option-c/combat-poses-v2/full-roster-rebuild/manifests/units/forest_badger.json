@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C full 25-unit roster rebuild",
+  "unitId": "forest_badger",
+  "category": "ENEMY",
+  "scaleFamily": "SMALL_CREATURE",
+  "weaponOrAnatomyLock": "claws and bite",
+  "artStyleAuthority": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/art-style-authority.png",
+    "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+    "sourcePath": "C:\\Users\\miche\\AppData\\Local\\Temp\\codex-clipboard-21f24758-8fb5-4e50-97ee-7ad521b05315.png",
+    "role": "PRIMARY_AND_ONLY_ART_STYLE_AUTHORITY"
+  },
+  "canonicalIdentityReference": {
+    "unitId": "forest_badger",
+    "category": "ENEMY",
+    "family": "SMALL_CREATURE",
+    "weaponOrAnatomy": "claws and bite",
+    "canonicalFolder": "public/assets/combat-stage/poses/enemies/enemy_badger_4x1_2560x768",
+    "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/canonical/forest_badger.png",
+    "sources": [
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_badger_4x1_2560x768/enemy_badger_4x1_2560x768_01_pose1.png",
+        "sha256": "d0b5c33080da957cfab7fe9aa7a9a3248cd7ed64d4f7353d9cf3aa37e0bf2c18",
+        "dimensions": [
+          484,
+          333
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_badger_4x1_2560x768/enemy_badger_4x1_2560x768_02_pose2.png",
+        "sha256": "bc50e1d749ca342f817b6f7426b062ebb7234ce2bed44a71f9926265c95412c8",
+        "dimensions": [
+          672,
+          311
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_badger_4x1_2560x768/enemy_badger_4x1_2560x768_03_pose3.png",
+        "sha256": "f55f45ae2373567dcb8d719f72fc7c7527892e5552c480dd7e8210b1e10cf6f5",
+        "dimensions": [
+          524,
+          439
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_badger_4x1_2560x768/enemy_badger_4x1_2560x768_04_pose4.png",
+        "sha256": "0598c525377db55a9b81dddb43e571125ba151045a44c6a9c9cbe9478082ddf6",
+        "dimensions": [
+          483,
+          468
+        ]
+      }
+    ]
+  },
+  "master": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/forest_badger-master.png",
+    "sha256": "f67efb06acb6e3cc714ff1991c38a6b6229596ede468998308a4658d6609400c",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA"
+  },
+  "board2x2": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/forest_badger-board.png",
+    "sha256": "8ccdddcee7bc5d7fd0b137cb38e60b50b82eb2b7b549d94bb1716e7c76f99563",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      135,
+      340,
+      905,
+      971
+    ],
+    "safeMarginMin": 53
+  },
+  "poses": {
+    "idle": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_badger/forest_badger-idle.png",
+      "sha256": "355b4d963291508f5552a40588f65b620b239b06fa84d9d9b87efacaa2ca2287",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        156,
+        340,
+        352,
+        457
+      ],
+      "safeMarginMin": 55,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "dash": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_badger/forest_badger-dash.png",
+      "sha256": "8725437eff99a2419c89081a1b7913bddd8a26e0183311273511b27d42521695",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        148,
+        346,
+        359,
+        459
+      ],
+      "safeMarginMin": 53,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "attack": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_badger/forest_badger-attack.png",
+      "sha256": "e64e653a75eadb9a7c4ede13b5b4712978b2f1d2b24c40d77e3b2658d0dcf6e8",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        135,
+        330,
+        371,
+        457
+      ],
+      "safeMarginMin": 55,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "skill": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_badger/forest_badger-skill.png",
+      "sha256": "8cf736d48ad19b9a02c691e784e0e2900e50c8e06f27bf3988494756d80a4798",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        122,
+        292,
+        393,
+        459
+      ],
+      "safeMarginMin": 53,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    }
+  },
+  "prompts": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/forest_badger.txt",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/forest_badger.txt"
+  },
+  "metrics": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-metrics/forest_badger.json",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-metrics/forest_badger.json"
+  },
+  "qaBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/forest_badger-qa.png",
+  "pipelineDoctrine": {
+    "masterNormalizedBeforePoses": true,
+    "commonMasterCanvas": [
+      512,
+      512
+    ],
+    "commonBaseline": 456,
+    "commonPivotX": 256,
+    "perPoseAutoScalingUsed": false,
+    "fitToContentUsed": false,
+    "sharedBoardToMasterScale": 0.4884318766066838,
+    "scaleCorrectionOverride": 0,
+    "bodyScaleLocked": true,
+    "pixelDensityLocked": true,
+    "flexiblePoseCanvasEnabled": true
+  },
+  "machineValidation": {
+    "masterDimensionsPass": true,
+    "boardDimensionsPass": true,
+    "poseDimensionsPass": true,
+    "outputCropFlags": [],
+    "allOutputsNonEmpty": true
+  },
+  "operatorClassification": {
+    "category": "PASS_CANDIDATE",
+    "reason": "Full-resolution audit confirms a committed forward bite with extended foreclaws rather than a static snarl.",
+    "issues": {
+      "cropping": [],
+      "scale": [],
+      "weapon": [],
+      "pose": [],
+      "other": []
+    }
+  },
+  "finalCleanup": {
+    "status": "PASS",
+    "poseRecords": {
+      "idle": {
+        "unitId": "forest_badger",
+        "pose": "idle",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_badger/forest_badger-idle.png",
+        "sourceSha256": "355b4d963291508f5552a40588f65b620b239b06fa84d9d9b87efacaa2ca2287",
+        "finalSha256": "355b4d963291508f5552a40588f65b620b239b06fa84d9d9b87efacaa2ca2287",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          156,
+          340,
+          352,
+          457
+        ],
+        "transparentMargins": [
+          156,
+          340,
+          160,
+          55
+        ],
+        "safeMarginMin": 55,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "dash": {
+        "unitId": "forest_badger",
+        "pose": "dash",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_badger/forest_badger-dash.png",
+        "sourceSha256": "8725437eff99a2419c89081a1b7913bddd8a26e0183311273511b27d42521695",
+        "finalSha256": "8725437eff99a2419c89081a1b7913bddd8a26e0183311273511b27d42521695",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          148,
+          346,
+          359,
+          459
+        ],
+        "transparentMargins": [
+          148,
+          346,
+          153,
+          53
+        ],
+        "safeMarginMin": 53,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "attack": {
+        "unitId": "forest_badger",
+        "pose": "attack",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_badger/forest_badger-attack.png",
+        "sourceSha256": "e64e653a75eadb9a7c4ede13b5b4712978b2f1d2b24c40d77e3b2658d0dcf6e8",
+        "finalSha256": "e64e653a75eadb9a7c4ede13b5b4712978b2f1d2b24c40d77e3b2658d0dcf6e8",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          135,
+          330,
+          371,
+          457
+        ],
+        "transparentMargins": [
+          135,
+          330,
+          141,
+          55
+        ],
+        "safeMarginMin": 55,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "skill": {
+        "unitId": "forest_badger",
+        "pose": "skill",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_badger/forest_badger-skill.png",
+        "sourceSha256": "8cf736d48ad19b9a02c691e784e0e2900e50c8e06f27bf3988494756d80a4798",
+        "finalSha256": "8cf736d48ad19b9a02c691e784e0e2900e50c8e06f27bf3988494756d80a4798",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          122,
+          292,
+          393,
+          459
+        ],
+        "transparentMargins": [
+          122,
+          292,
+          119,
+          53
+        ],
+        "safeMarginMin": 53,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      }
+    }
+  }
+}

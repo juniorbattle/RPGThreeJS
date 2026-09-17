@@ -1,0 +1,48 @@
+{
+  "status": "FINAL_CLEANUP_COMPLETE_AWAITING_OPERATOR_REVIEW",
+  "roster": 25,
+  "masters": 25,
+  "boards": 25,
+  "poses": 100,
+  "regeneratedPoses": [
+    "alistair/attack",
+    "cave_rat/skill",
+    "venom_serpent/skill",
+    "young_dragon_elite/skill"
+  ],
+  "reviewBoards": {
+    "fourPose": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/four-pose-roster-board.png",
+    "attack": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/attack-roster-board.png",
+    "skill": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/skill-roster-board.png",
+    "weaponAnatomy": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/weapon-anatomy-review-board.png",
+    "canvasSafety": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/canvas-safety-board.png",
+    "fxClassification": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/fx-classification-board.png"
+  },
+  "perUnitQaBoards": {
+    "alistair": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/alistair-qa.png",
+    "archer": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/archer-qa.png",
+    "white_mage": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/white_mage-qa.png",
+    "dark_mage": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/dark_mage-qa.png",
+    "rogue": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/rogue-qa.png",
+    "lancer": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/lancer-qa.png",
+    "goblin": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/goblin-qa.png",
+    "forest_badger": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/forest_badger-qa.png",
+    "cave_bat": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/cave_bat-qa.png",
+    "wild_boar": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/wild_boar-qa.png",
+    "cave_rat": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/cave_rat-qa.png",
+    "forest_spider": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/forest_spider-qa.png",
+    "marsh_toad": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/marsh_toad-qa.png",
+    "serpent_raider": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/serpent_raider-qa.png",
+    "serpent_brute": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/serpent_brute-qa.png",
+    "serpent_oracle": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/serpent_oracle-qa.png",
+    "skeleton": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/skeleton-qa.png",
+    "venom_serpent": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/venom_serpent-qa.png",
+    "wolf": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/wolf-qa.png",
+    "lion_champion": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/lion_champion-qa.png",
+    "young_dragon_elite": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/young_dragon_elite-qa.png",
+    "forest_troll_elite": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/forest_troll_elite-qa.png",
+    "serpent_general_boss": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/serpent_general_boss-qa.png",
+    "serpent_duelist_elite": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/serpent_duelist_elite-qa.png",
+    "serpent_elite_brute": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/serpent_elite_brute-qa.png"
+  }
+}

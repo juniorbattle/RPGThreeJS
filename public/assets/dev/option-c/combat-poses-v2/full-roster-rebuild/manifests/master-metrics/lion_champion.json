@@ -1,0 +1,63 @@
+{
+  "unitId": "lion_champion",
+  "family": "LARGE_ELITE_BOSS",
+  "weaponOrAnatomy": "regal greatsword and lion-themed helmet or mask",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 456,
+  "pivot": [
+    256,
+    456
+  ],
+  "airborneOffset": 0,
+  "targetCoreExtentPx": 404,
+  "sourceDimensions": [
+    1199,
+    1312
+  ],
+  "sourceAlphaBBox": [
+    175,
+    20,
+    1015,
+    1260
+  ],
+  "sourceCoreBBox": [
+    179,
+    61,
+    1010,
+    1244
+  ],
+  "authoredBodyMassScale": 0.3415046491969569,
+  "appliedScale": 0.3415046491969569,
+  "scaleLimitedByExtremeAppendage": false,
+  "normalizedAlphaBBox": [
+    113,
+    38,
+    399,
+    461
+  ],
+  "normalizedCoreBBox": [
+    114,
+    51,
+    398,
+    456
+  ],
+  "normalizedCoreExtentPx": 405,
+  "transparentMargins": [
+    113,
+    38,
+    113,
+    51
+  ],
+  "safeMarginsPass": true,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/lion_champion-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/lion_champion-clean.png",
+  "masterPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/lion_champion-master.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/lion_champion.txt",
+  "rawSha256": "77e156d9931164b4252844f8409cb14ed8fc820407e687266ca9fd343d945906",
+  "masterSha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc",
+  "perPoseAutoScaling": false,
+  "fitToContent": false
+}

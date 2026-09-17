@@ -197,6 +197,6 @@ describe('CombatPoseVisual', () => {
     const corrected = resolveCombatPoseLayout(source, asset);
     const normal = resolveCombatPoseLayout(source, source.poses.prepare);
     expect(corrected.width).toBeCloseTo(normal.width * 0.5, 10);
-    expect(source.worldUnitsPerPixel).toBe(0.00338608);
+    expect(source.worldUnitsPerPixel).toBe(0.00625);
   });
 });

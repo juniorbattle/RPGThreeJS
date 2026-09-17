@@ -1,0 +1,160 @@
+{
+  "target": "creature",
+  "mode": "combat-poses-v2",
+  "prompt": "",
+  "role": "",
+  "input": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\public\\assets\\dev\\option-c\\combat-poses-v2\\boards-2x2\\wild_boar-board-source.png",
+  "threshold": 70,
+  "edge_threshold": 140,
+  "duration": 200,
+  "rows": 2,
+  "cols": 2,
+  "cell_size": 512,
+  "fit_scale": 0.52,
+  "trim_border": 4,
+  "edge_clean_depth": 3,
+  "align": "feet",
+  "shared_scale": true,
+  "component_mode": "all",
+  "component_padding": 0,
+  "min_component_area": 1,
+  "edge_touch_margin": 0,
+  "frame_labels": [
+    "wild_boar-1",
+    "wild_boar-2",
+    "wild_boar-3",
+    "wild_boar-4"
+  ],
+  "frames": [
+    {
+      "grid": [
+        0,
+        0
+      ],
+      "source_box": [
+        0,
+        0,
+        627,
+        627
+      ],
+      "component_mode": "all",
+      "component_count": 3,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        20,
+        185,
+        593,
+        530
+      ],
+      "edge_touch": false,
+      "output_size": [
+        251,
+        151
+      ],
+      "paste_position": [
+        130,
+        239
+      ]
+    },
+    {
+      "grid": [
+        0,
+        1
+      ],
+      "source_box": [
+        627,
+        0,
+        1254,
+        627
+      ],
+      "component_mode": "all",
+      "component_count": 1,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        8,
+        213,
+        615,
+        542
+      ],
+      "edge_touch": false,
+      "output_size": [
+        266,
+        144
+      ],
+      "paste_position": [
+        123,
+        246
+      ]
+    },
+    {
+      "grid": [
+        1,
+        0
+      ],
+      "source_box": [
+        0,
+        627,
+        627,
+        1254
+      ],
+      "component_mode": "all",
+      "component_count": 5,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        21,
+        130,
+        619,
+        446
+      ],
+      "edge_touch": false,
+      "output_size": [
+        262,
+        138
+      ],
+      "paste_position": [
+        125,
+        252
+      ]
+    },
+    {
+      "grid": [
+        1,
+        1
+      ],
+      "source_box": [
+        627,
+        627,
+        1254,
+        1254
+      ],
+      "component_mode": "all",
+      "component_count": 5,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        0,
+        117,
+        592,
+        466
+      ],
+      "edge_touch": true,
+      "output_size": [
+        259,
+        153
+      ],
+      "paste_position": [
+        126,
+        237
+      ]
+    }
+  ],
+  "edge_touch_frames": [
+    [
+      1,
+      1
+    ]
+  ]
+}

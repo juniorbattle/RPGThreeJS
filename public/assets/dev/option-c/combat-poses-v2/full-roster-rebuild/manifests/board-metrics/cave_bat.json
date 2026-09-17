@@ -1,0 +1,201 @@
+{
+  "unitId": "cave_bat",
+  "canvasPerPose": [
+    512,
+    512
+  ],
+  "boardCanvas": [
+    1024,
+    1024
+  ],
+  "masterCoreExtentPx": 193,
+  "boardIdleCoreExtentPx": 427,
+  "sharedBoardToMasterScale": 0.4519906323185012,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "scaleCorrectionOverride": 0,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/cave_bat-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/cave_bat-clean.png",
+  "boardPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/cave_bat-board.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/cave_bat.txt",
+  "rawSha256": "075d06f3d5de7d7f99efa43a380f0c1e348b11c239be1a3bb21e0bfbe638110a",
+  "boardSha256": "2389748ba5b9bfb19eb268b961d96a455b91d3f33e83c4a6fbf8455b1afd6f9a",
+  "poses": [
+    {
+      "pose": "idle",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_bat/cave_bat-idle.png",
+      "sha256": "0f8d2f677a502f1e09c229d3785c8d1348708b4330239eb3a4a7f320106a3c2f",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        88,
+        148,
+        534,
+        564
+      ],
+      "sourceCoreBBox": [
+        99,
+        149,
+        526,
+        557
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.4519906323185012,
+      "outputAlphaBBox": [
+        156,
+        168,
+        357,
+        356
+      ],
+      "outputCoreBBox": [
+        159,
+        168,
+        354,
+        352
+      ],
+      "outputCoreExtentPx": 195,
+      "transparentMargins": [
+        156,
+        168,
+        155,
+        156
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_bat/cave_bat-dash.png",
+      "sha256": "f0bf6056cae7d00c0e922b06cd34bed44152ffe8af629045f6d9834ea24572d8",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        0,
+        187,
+        550,
+        558
+      ],
+      "sourceCoreBBox": [
+        34,
+        187,
+        545,
+        534
+      ],
+      "sourceEdgeTouch": true,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.4519906323185012,
+      "outputAlphaBBox": [
+        126,
+        195,
+        374,
+        363
+      ],
+      "outputCoreBBox": [
+        141,
+        195,
+        372,
+        352
+      ],
+      "outputCoreExtentPx": 231,
+      "transparentMargins": [
+        126,
+        195,
+        138,
+        149
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_bat/cave_bat-attack.png",
+      "sha256": "807bd25e4ba5c18aadd4b3123de2e72f493dc433cd8558842a642f1c8a58a5eb",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        64,
+        74,
+        586,
+        499
+      ],
+      "sourceCoreBBox": [
+        86,
+        74,
+        577,
+        486
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.4519906323185012,
+      "outputAlphaBBox": [
+        135,
+        168,
+        370,
+        360
+      ],
+      "outputCoreBBox": [
+        147,
+        169,
+        366,
+        352
+      ],
+      "outputCoreExtentPx": 219,
+      "transparentMargins": [
+        135,
+        168,
+        142,
+        152
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "skill",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_bat/cave_bat-skill.png",
+      "sha256": "121e8106387ab83eada13900e9de336dc94face5145132699b70af51d7208c11",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        17,
+        60,
+        588,
+        497
+      ],
+      "sourceCoreBBox": [
+        37,
+        63,
+        575,
+        477
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.4519906323185012,
+      "outputAlphaBBox": [
+        126,
+        164,
+        383,
+        361
+      ],
+      "outputCoreBBox": [
+        134,
+        165,
+        378,
+        352
+      ],
+      "outputCoreExtentPx": 244,
+      "transparentMargins": [
+        126,
+        164,
+        129,
+        151
+      ],
+      "cropped": false
+    }
+  ]
+}

@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C full 25-unit roster rebuild",
+  "unitId": "skeleton",
+  "category": "ENEMY",
+  "scaleFamily": "STANDARD_HUMANOID",
+  "weaponOrAnatomyLock": "sword and shield",
+  "artStyleAuthority": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/art-style-authority.png",
+    "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+    "sourcePath": "C:\\Users\\miche\\AppData\\Local\\Temp\\codex-clipboard-21f24758-8fb5-4e50-97ee-7ad521b05315.png",
+    "role": "PRIMARY_AND_ONLY_ART_STYLE_AUTHORITY"
+  },
+  "canonicalIdentityReference": {
+    "unitId": "skeleton",
+    "category": "ENEMY",
+    "family": "STANDARD_HUMANOID",
+    "weaponOrAnatomy": "sword and shield",
+    "canonicalFolder": "public/assets/combat-stage/poses/enemies/enemy_skeleton_4x1_2560x768",
+    "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/canonical/skeleton.png",
+    "sources": [
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_skeleton_4x1_2560x768/enemy_skeleton_4x1_2560x768_01_pose1.png",
+        "sha256": "4722bb846d283af44296af4c036ebc0ad4b1626021a82aec6873527be3050b1a",
+        "dimensions": [
+          563,
+          507
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_skeleton_4x1_2560x768/enemy_skeleton_4x1_2560x768_02_pose2.png",
+        "sha256": "9a4990205b867986c1ca44e4a9fe6881dc87840b265d1ea6ba8843f8e02fbd71",
+        "dimensions": [
+          619,
+          498
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_skeleton_4x1_2560x768/enemy_skeleton_4x1_2560x768_03_pose3.png",
+        "sha256": "84c02d4fbde435c2232f1266a47297266ce8e0717ab28ba1e5bf7e54881dff3e",
+        "dimensions": [
+          730,
+          477
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_skeleton_4x1_2560x768/enemy_skeleton_4x1_2560x768_04_pose4.png",
+        "sha256": "b09a001a60018abc157cc5a8f0153be3aeda14076717954d903c80a48befafd7",
+        "dimensions": [
+          553,
+          661
+        ]
+      }
+    ]
+  },
+  "master": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/skeleton-master.png",
+    "sha256": "4e88e9697ac00f4130851eed8967655c9218edb13af212b3a20ded0b0d3f8d41",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA"
+  },
+  "board2x2": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/skeleton-board.png",
+    "sha256": "4f02d14f9887006596fbd4fea3bbe37b7884ec63e40f23c4dd5f57f8cc6c7835",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      72,
+      122,
+      951,
+      969
+    ],
+    "safeMarginMin": 55
+  },
+  "poses": {
+    "idle": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/skeleton/skeleton-idle.png",
+      "sha256": "918b35716cd366514466848ddb0506f1af05d1c400169689c9bf483c521984c4",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        158,
+        122,
+        354,
+        457
+      ],
+      "safeMarginMin": 55,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "dash": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/skeleton/skeleton-dash.png",
+      "sha256": "af4684a506e38a35cf81d6b46755805be362fa279a5b2f2421a3367460ea0723",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        96,
+        155,
+        410,
+        457
+      ],
+      "safeMarginMin": 55,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "attack": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/skeleton/skeleton-attack.png",
+      "sha256": "770ebea7da9eac4ee180a6d9bf5e4d5e062826f8745455ee1c197c08e8c642ff",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        72,
+        151,
+        438,
+        457
+      ],
+      "safeMarginMin": 55,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "skill": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/skeleton/skeleton-skill.png",
+      "sha256": "f22cd8720f3b800d5e537e9668360e1d56355e4645d321679728c978ce4865ed",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        83,
+        111,
+        439,
+        457
+      ],
+      "safeMarginMin": 55,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    }
+  },
+  "prompts": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/skeleton.txt",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/skeleton.txt"
+  },
+  "metrics": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-metrics/skeleton.json",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-metrics/skeleton.json"
+  },
+  "qaBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/skeleton-qa.png",
+  "pipelineDoctrine": {
+    "masterNormalizedBeforePoses": true,
+    "commonMasterCanvas": [
+      512,
+      512
+    ],
+    "commonBaseline": 456,
+    "commonPivotX": 256,
+    "perPoseAutoScalingUsed": false,
+    "fitToContentUsed": false,
+    "sharedBoardToMasterScale": 0.6666666666666666,
+    "scaleCorrectionOverride": 0,
+    "bodyScaleLocked": true,
+    "pixelDensityLocked": true,
+    "flexiblePoseCanvasEnabled": true
+  },
+  "machineValidation": {
+    "masterDimensionsPass": true,
+    "boardDimensionsPass": true,
+    "poseDimensionsPass": true,
+    "outputCropFlags": [],
+    "allOutputsNonEmpty": true
+  },
+  "operatorClassification": {
+    "category": "PASS_CANDIDATE",
+    "reason": "Sword, shield, skeletal anatomy, dash, slash, and graveward skill remain coherent.",
+    "issues": {
+      "cropping": [],
+      "scale": [],
+      "weapon": [],
+      "pose": [],
+      "other": []
+    }
+  },
+  "finalCleanup": {
+    "status": "PASS",
+    "poseRecords": {
+      "idle": {
+        "unitId": "skeleton",
+        "pose": "idle",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/skeleton/skeleton-idle.png",
+        "sourceSha256": "918b35716cd366514466848ddb0506f1af05d1c400169689c9bf483c521984c4",
+        "finalSha256": "918b35716cd366514466848ddb0506f1af05d1c400169689c9bf483c521984c4",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          158,
+          122,
+          354,
+          457
+        ],
+        "transparentMargins": [
+          158,
+          122,
+          158,
+          55
+        ],
+        "safeMarginMin": 55,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "dash": {
+        "unitId": "skeleton",
+        "pose": "dash",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/skeleton/skeleton-dash.png",
+        "sourceSha256": "af4684a506e38a35cf81d6b46755805be362fa279a5b2f2421a3367460ea0723",
+        "finalSha256": "af4684a506e38a35cf81d6b46755805be362fa279a5b2f2421a3367460ea0723",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          96,
+          155,
+          410,
+          457
+        ],
+        "transparentMargins": [
+          96,
+          155,
+          102,
+          55
+        ],
+        "safeMarginMin": 55,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "attack": {
+        "unitId": "skeleton",
+        "pose": "attack",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/skeleton/skeleton-attack.png",
+        "sourceSha256": "770ebea7da9eac4ee180a6d9bf5e4d5e062826f8745455ee1c197c08e8c642ff",
+        "finalSha256": "770ebea7da9eac4ee180a6d9bf5e4d5e062826f8745455ee1c197c08e8c642ff",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          72,
+          151,
+          438,
+          457
+        ],
+        "transparentMargins": [
+          72,
+          151,
+          74,
+          55
+        ],
+        "safeMarginMin": 55,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "skill": {
+        "unitId": "skeleton",
+        "pose": "skill",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/skeleton/skeleton-skill.png",
+        "sourceSha256": "f22cd8720f3b800d5e537e9668360e1d56355e4645d321679728c978ce4865ed",
+        "finalSha256": "f22cd8720f3b800d5e537e9668360e1d56355e4645d321679728c978ce4865ed",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          83,
+          111,
+          439,
+          457
+        ],
+        "transparentMargins": [
+          83,
+          111,
+          73,
+          55
+        ],
+        "safeMarginMin": 55,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      }
+    }
+  }
+}

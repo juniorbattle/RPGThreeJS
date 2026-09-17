@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 remaining 22 units production",
+  "productionPromotion": false,
+  "unitId": "venom_serpent",
+  "category": "ENEMY",
+  "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_venom_serpent_4x1_2560x768",
+  "master": "public/assets/dev/option-c/combat-poses-v2/masters/venom_serpent-master.png",
+  "board": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/venom_serpent-board.png",
+  "prepare": "public/assets/dev/option-c/combat-poses-v2/split-poses/venom_serpent/venom_serpent-idle.png",
+  "dash": "public/assets/dev/option-c/combat-poses-v2/split-poses/venom_serpent/venom_serpent-dash.png",
+  "attack": "public/assets/dev/option-c/combat-poses-v2/split-poses/venom_serpent/venom_serpent-attack.png",
+  "cast": "public/assets/dev/option-c/combat-poses-v2/split-poses/venom_serpent/venom_serpent-skill.png",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 381,
+  "pivot": [
+    256,
+    381
+  ],
+  "targetWorldSize": 1.55,
+  "deliveryFactor": 0.49,
+  "scaleCorrection": 1.0,
+  "sizeClass": "small_serpent",
+  "weaponType": "long ivory fangs and venom bite",
+  "qaStatus": "PASS_CANDIDATE",
+  "knownIssues": [],
+  "generationProvenance": {
+    "model": "UNKNOWN",
+    "modelProvenance": "UNKNOWN",
+    "canonicalIdentityReference": "public/assets/combat-stage/poses/enemies/enemy_venom_serpent_4x1_2560x768",
+    "styleReferences": [
+      "approved Option C four-class reference",
+      "Alistair V2 pilot",
+      "Goblin V2 pilot",
+      "Lion Champion V2 pilot"
+    ],
+    "masterSource": "public/assets/dev/option-c/combat-poses-v2/masters/venom_serpent-master-source.png",
+    "boardSource": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/venom_serpent-board-source.png",
+    "boardPrompt": "public/assets/dev/option-c/combat-poses-v2/manifests/venom_serpent-board-prompt.txt",
+    "processorMeta": "public/assets/dev/option-c/combat-poses-v2/manifests/venom_serpent-processor-meta.json",
+    "boardGeneratedAsOne2x2Family": true
+  },
+  "scaleDoctrine": {
+    "sharedScaleAcrossPoses": true,
+    "perPoseAutoScaling": false,
+    "fitToContentPerPose": false,
+    "scaleCorrectionOverrides": 0
+  },
+  "poses": [
+    {
+      "pose": "prepare",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/venom_serpent/venom_serpent-idle.png",
+      "sha256": "11cccbb3a92fd3bf6c26c116284def6da4086710de58de8b74fe121819573a9d",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        139,
+        207,
+        373,
+        382
+      ],
+      "transparentMargins": {
+        "left": 139,
+        "top": 207,
+        "right": 139,
+        "bottom": 130
+      },
+      "baseline": 381,
+      "pivot": [
+        256,
+        381
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        0
+      ],
+      "sourceCropBBox": [
+        65,
+        135,
+        619,
+        548
+      ],
+      "commonScaleOutputSize": [
+        234,
+        175
+      ],
+      "pastePosition": [
+        139,
+        207
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/venom_serpent/venom_serpent-dash.png",
+      "sha256": "112024ef8c9f8e23f6ce214f565291c1bbf4008f0c3aa7c9b800d188c2e75d92",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        131,
+        239,
+        381,
+        382
+      ],
+      "transparentMargins": {
+        "left": 131,
+        "top": 239,
+        "right": 131,
+        "bottom": 130
+      },
+      "baseline": 381,
+      "pivot": [
+        256,
+        381
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        1
+      ],
+      "sourceCropBBox": [
+        0,
+        280,
+        592,
+        619
+      ],
+      "commonScaleOutputSize": [
+        250,
+        143
+      ],
+      "pastePosition": [
+        131,
+        239
+      ],
+      "sourceEdgeTouch": true
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/venom_serpent/venom_serpent-attack.png",
+      "sha256": "1be9f74b457abdc98b01e5258ffaa5905a9a56c0a575f124568e9fd2beb71464",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        134,
+        288,
+        377,
+        382
+      ],
+      "transparentMargins": {
+        "left": 134,
+        "top": 288,
+        "right": 135,
+        "bottom": 130
+      },
+      "baseline": 381,
+      "pivot": [
+        256,
+        381
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        0
+      ],
+      "sourceCropBBox": [
+        45,
+        190,
+        619,
+        413
+      ],
+      "commonScaleOutputSize": [
+        243,
+        94
+      ],
+      "pastePosition": [
+        134,
+        288
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "cast",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/venom_serpent/venom_serpent-skill.png",
+      "sha256": "045cda918206d676407389b12bfe20b921d9dceed5d7871de493f78c1adbcbcf",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        134,
+        158,
+        377,
+        382
+      ],
+      "transparentMargins": {
+        "left": 134,
+        "top": 158,
+        "right": 135,
+        "bottom": 130
+      },
+      "baseline": 381,
+      "pivot": [
+        256,
+        381
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        1
+      ],
+      "sourceCropBBox": [
+        0,
+        0,
+        574,
+        530
+      ],
+      "commonScaleOutputSize": [
+        243,
+        224
+      ],
+      "pastePosition": [
+        134,
+        158
+      ],
+      "sourceEdgeTouch": true
+    }
+  ],
+  "qa": {
+    "identity": "OPERATOR_REVIEW_PENDING",
+    "style": "OPERATOR_REVIEW_PENDING",
+    "physicalScale": "PASS_MACHINE_SHARED_SCALE",
+    "morphology": "OPERATOR_REVIEW_PENDING",
+    "poseSemantics": "PASS_CANDIDATE",
+    "weapon": "PASS_CANDIDATE",
+    "pixelDensity": "PASS_MACHINE_SHARED_SCALE",
+    "vfxClearance": "SOURCE_EDGE_RISK",
+    "groundingRisk": "PASS_MACHINE_BASELINE",
+    "operatorApproval": "PENDING",
+    "qaBoard": "public/assets/dev/option-c/combat-poses-v2/qa/venom_serpent-qa-board.png"
+  }
+}

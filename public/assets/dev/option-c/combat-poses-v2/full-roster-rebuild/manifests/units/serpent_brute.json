@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C full 25-unit roster rebuild",
+  "unitId": "serpent_brute",
+  "category": "ENEMY",
+  "scaleFamily": "STANDARD_HUMANOID",
+  "weaponOrAnatomyLock": "heavy mace",
+  "artStyleAuthority": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/art-style-authority.png",
+    "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+    "sourcePath": "C:\\Users\\miche\\AppData\\Local\\Temp\\codex-clipboard-21f24758-8fb5-4e50-97ee-7ad521b05315.png",
+    "role": "PRIMARY_AND_ONLY_ART_STYLE_AUTHORITY"
+  },
+  "canonicalIdentityReference": {
+    "unitId": "serpent_brute",
+    "category": "ENEMY",
+    "family": "STANDARD_HUMANOID",
+    "weaponOrAnatomy": "heavy mace",
+    "canonicalFolder": "public/assets/combat-stage/poses/enemies/enemy_serpent_mace_knight_4x1_2560x768",
+    "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/canonical/serpent_brute.png",
+    "sources": [
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_serpent_mace_knight_4x1_2560x768/enemy_serpent_mace_knight_4x1_2560x768_01_pose1.png",
+        "sha256": "e28cf4366d20f7ff6af21a671df73b5d51b377f1d8079eb8a2abc4693413b4d4",
+        "dimensions": [
+          480,
+          579
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_serpent_mace_knight_4x1_2560x768/enemy_serpent_mace_knight_4x1_2560x768_02_pose2.png",
+        "sha256": "c546440c46b9bd9d2ad9f8fba07ff889de2fe248a7f9045e6a9f9cd98bd35908",
+        "dimensions": [
+          566,
+          497
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_serpent_mace_knight_4x1_2560x768/enemy_serpent_mace_knight_4x1_2560x768_03_pose3.png",
+        "sha256": "b9950b0f482542a6bf22a7f9ebd0a6d1a3f906f141939e5eff9dada8ace0d845",
+        "dimensions": [
+          685,
+          522
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_serpent_mace_knight_4x1_2560x768/enemy_serpent_mace_knight_4x1_2560x768_04_pose4.png",
+        "sha256": "7842de02d1f82471a817900be26294d8b009345ef79017a3ee8813a3ff554521",
+        "dimensions": [
+          475,
+          729
+        ]
+      }
+    ]
+  },
+  "master": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/serpent_brute-master.png",
+    "sha256": "07e1e98a2404bdb553ec27b93a623a1c5c0f8190778c1771f2eb90c773cb3eab",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA"
+  },
+  "board2x2": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/serpent_brute-board.png",
+    "sha256": "e665bbb9fbd8b66ef913b645c19b2bcba5224cca93b6c13e9c3e3f73ef0bd303",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      79,
+      105,
+      939,
+      971
+    ],
+    "safeMarginMin": 53
+  },
+  "poses": {
+    "idle": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_brute/serpent_brute-idle.png",
+      "sha256": "34b37204ececc4c3830f5f473bcaed1315cf94dd2461aa998263144f845c8bcb",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        139,
+        105,
+        379,
+        456
+      ],
+      "safeMarginMin": 56,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "dash": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_brute/serpent_brute-dash.png",
+      "sha256": "c65c2afc6cd6f756dcf8a18118c77bb2a7ed5430bdbfae0afd716a587c26821d",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        77,
+        155,
+        427,
+        457
+      ],
+      "safeMarginMin": 55,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "attack": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_brute/serpent_brute-attack.png",
+      "sha256": "ccd05573dfd968378d73d0d878b1f2e27525fdc1ae83921eda28f9222d8ab6e3",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        79,
+        144,
+        443,
+        457
+      ],
+      "safeMarginMin": 55,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "skill": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_brute/serpent_brute-skill.png",
+      "sha256": "389747e0c61c0e1fc6f12d4ab31ccac10d7fbd648c2a27ef984c541b2cbfa6a8",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        95,
+        122,
+        424,
+        459
+      ],
+      "safeMarginMin": 53,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    }
+  },
+  "prompts": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/serpent_brute.txt",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/serpent_brute.txt"
+  },
+  "metrics": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-metrics/serpent_brute.json",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-metrics/serpent_brute.json"
+  },
+  "qaBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/serpent_brute-qa.png",
+  "pipelineDoctrine": {
+    "masterNormalizedBeforePoses": true,
+    "commonMasterCanvas": [
+      512,
+      512
+    ],
+    "commonBaseline": 456,
+    "commonPivotX": 256,
+    "perPoseAutoScalingUsed": false,
+    "fitToContentUsed": false,
+    "sharedBoardToMasterScale": 0.6530612244897959,
+    "scaleCorrectionOverride": 0,
+    "bodyScaleLocked": true,
+    "pixelDensityLocked": true,
+    "flexiblePoseCanvasEnabled": true
+  },
+  "machineValidation": {
+    "masterDimensionsPass": true,
+    "boardDimensionsPass": true,
+    "poseDimensionsPass": true,
+    "outputCropFlags": [],
+    "allOutputsNonEmpty": true
+  },
+  "operatorClassification": {
+    "category": "PASS_CANDIDATE",
+    "reason": "Heavy mace identity, armored mass, crushing attack, and ground skill remain coherent.",
+    "issues": {
+      "cropping": [],
+      "scale": [],
+      "weapon": [],
+      "pose": [],
+      "other": []
+    }
+  },
+  "finalCleanup": {
+    "status": "PASS",
+    "poseRecords": {
+      "idle": {
+        "unitId": "serpent_brute",
+        "pose": "idle",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_brute/serpent_brute-idle.png",
+        "sourceSha256": "34b37204ececc4c3830f5f473bcaed1315cf94dd2461aa998263144f845c8bcb",
+        "finalSha256": "34b37204ececc4c3830f5f473bcaed1315cf94dd2461aa998263144f845c8bcb",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          139,
+          105,
+          379,
+          456
+        ],
+        "transparentMargins": [
+          139,
+          105,
+          133,
+          56
+        ],
+        "safeMarginMin": 56,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "dash": {
+        "unitId": "serpent_brute",
+        "pose": "dash",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_brute/serpent_brute-dash.png",
+        "sourceSha256": "c65c2afc6cd6f756dcf8a18118c77bb2a7ed5430bdbfae0afd716a587c26821d",
+        "finalSha256": "c65c2afc6cd6f756dcf8a18118c77bb2a7ed5430bdbfae0afd716a587c26821d",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          77,
+          155,
+          427,
+          457
+        ],
+        "transparentMargins": [
+          77,
+          155,
+          85,
+          55
+        ],
+        "safeMarginMin": 55,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "attack": {
+        "unitId": "serpent_brute",
+        "pose": "attack",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_brute/serpent_brute-attack.png",
+        "sourceSha256": "ccd05573dfd968378d73d0d878b1f2e27525fdc1ae83921eda28f9222d8ab6e3",
+        "finalSha256": "ccd05573dfd968378d73d0d878b1f2e27525fdc1ae83921eda28f9222d8ab6e3",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          79,
+          144,
+          443,
+          457
+        ],
+        "transparentMargins": [
+          79,
+          144,
+          69,
+          55
+        ],
+        "safeMarginMin": 55,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "skill": {
+        "unitId": "serpent_brute",
+        "pose": "skill",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_brute/serpent_brute-skill.png",
+        "sourceSha256": "389747e0c61c0e1fc6f12d4ab31ccac10d7fbd648c2a27ef984c541b2cbfa6a8",
+        "finalSha256": "389747e0c61c0e1fc6f12d4ab31ccac10d7fbd648c2a27ef984c541b2cbfa6a8",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          95,
+          122,
+          424,
+          459
+        ],
+        "transparentMargins": [
+          95,
+          122,
+          88,
+          53
+        ],
+        "safeMarginMin": 53,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      }
+    }
+  }
+}

@@ -1,0 +1,1367 @@
+{
+  "schemaVersion": 1,
+  "status": "COMPLETE",
+  "scope": "Current full-character assets and logical character profiles; full assets remain unchanged.",
+  "fullAssetsReplaced": false,
+  "counts": {
+    "fullPngFiles": 52,
+    "logicalCharacters": 55,
+    "withNewMaster": 27,
+    "needsNewMaster": 19
+  },
+  "characters": [
+    {
+      "characterId": "alaric",
+      "currentFullPath": "/assets/characters/pixel/full/alaric.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT",
+        "UI"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/DialogueStagingDirector.ts",
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/cinematics/NarrativeTableau.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/game/content.ts",
+        "src/game/lionFinale.ts",
+        "src/render/assetManifest.ts",
+        "src/render/data/demo-environment-pack-v1.production.json",
+        "src/ui/DialogueView.ts"
+      ]
+    },
+    {
+      "characterId": "aldric",
+      "currentFullPath": "/assets/characters/pixel/full/aldric.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "alistair",
+      "currentFullPath": "/assets/characters/pixel/full/alistair.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "alistair",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/cinematics/NarrativeTableau.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/protocol.ts",
+        "src/dev/optionCCombatPosesV2/CombatPosesV2RuntimeProof.ts",
+        "src/dev/optionCCombatPosesV2/runtimeProofConfig.ts",
+        "src/dev/optionCPhase4b/OptionCPhase4bAssets.ts",
+        "src/dev/optionCPhase4b/OptionCPhase4bProof.ts",
+        "src/dev/optionCPhase4c/OptionCCharacterDefinitions.ts",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/game/content.ts",
+        "src/game/r5NarrativeContent.ts",
+        "src/render/CharacterVisualRegistry.ts",
+        "src/render/assetManifest.ts",
+        "src/styles/app.css"
+      ]
+    },
+    {
+      "characterId": "cave_bat",
+      "currentFullPath": "/assets/characters/pixel/full/cave_bat.png",
+      "runtimeSurfaces": [],
+      "dialogueUsage": false,
+      "uiUsage": false,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "cave_bat",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": false,
+      "runtimeReferences": []
+    },
+    {
+      "characterId": "cave_rat",
+      "currentFullPath": "/assets/characters/pixel/full/cave_rat.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "cave_rat",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/game/content.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "cedric",
+      "currentFullPath": "/assets/characters/pixel/full/cedric.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "GAME_CONTENT",
+        "UI"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "rogue",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/cinematics/NarrativeStagingAudit.ts",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/RuntimeDialogueReachability.ts",
+        "src/game/catalog.ts",
+        "src/game/content.ts",
+        "src/game/contextualDialogueContent.ts",
+        "src/game/reputationEventContent.ts",
+        "src/game/store.ts",
+        "src/qa/r7LionSimulation.ts",
+        "src/render/CharacterVisualRegistry.ts",
+        "src/render/assetManifest.ts",
+        "src/ui/DialogueView.ts"
+      ]
+    },
+    {
+      "characterId": "chroniqueur",
+      "currentFullPath": "/assets/characters/pixel/full/chroniqueur.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "UI"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/render/assetManifest.ts",
+        "src/ui/DialogueView.ts"
+      ]
+    },
+    {
+      "characterId": "elara",
+      "currentFullPath": "/assets/characters/pixel/full/elara.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "dark_mage",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterDefinitions.ts",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/game/content.ts",
+        "src/game/r5NarrativeContent.ts",
+        "src/render/CharacterVisualRegistry.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "eldwin",
+      "currentFullPath": "/assets/characters/pixel/full/eldwin.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "forest_badger",
+      "currentFullPath": "/assets/characters/pixel/full/forest_badger.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "forest_badger",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/game/content.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "forest_spider",
+      "currentFullPath": "/assets/characters/pixel/full/forest_spider.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "forest_spider",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/game/content.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "forest_troll_elite",
+      "currentFullPath": "/assets/characters/pixel/full/forest_troll_elite.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "forest_troll_elite",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/dev/optionCCombatPosesV2/runtimeProofConfig.ts",
+        "src/game/content.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "forest_viper",
+      "currentFullPath": "/assets/characters/pixel/full/forest_viper.png",
+      "runtimeSurfaces": [],
+      "dialogueUsage": false,
+      "uiUsage": false,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": false,
+      "runtimeReferences": []
+    },
+    {
+      "characterId": "future_herbalist",
+      "currentFullPath": "/assets/characters/pixel/full/future_herbalist.png",
+      "runtimeSurfaces": [],
+      "dialogueUsage": false,
+      "uiUsage": false,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": false,
+      "runtimeReferences": []
+    },
+    {
+      "characterId": "future_lion_scribe",
+      "currentFullPath": "/assets/characters/pixel/full/future_lion_scribe.png",
+      "runtimeSurfaces": [],
+      "dialogueUsage": false,
+      "uiUsage": false,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": false,
+      "runtimeReferences": []
+    },
+    {
+      "characterId": "future_lion_spearman",
+      "currentFullPath": "/assets/characters/pixel/full/future_lion_spearman.png",
+      "runtimeSurfaces": [],
+      "dialogueUsage": false,
+      "uiUsage": false,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": false,
+      "runtimeReferences": []
+    },
+    {
+      "characterId": "future_shadow_envoy",
+      "currentFullPath": "/assets/characters/pixel/full/future_shadow_envoy.png",
+      "runtimeSurfaces": [],
+      "dialogueUsage": false,
+      "uiUsage": false,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": false,
+      "runtimeReferences": []
+    },
+    {
+      "characterId": "giant_mygale",
+      "currentFullPath": "/assets/characters/pixel/full/giant_mygale.png",
+      "runtimeSurfaces": [],
+      "dialogueUsage": false,
+      "uiUsage": false,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": false,
+      "runtimeReferences": []
+    },
+    {
+      "characterId": "goblin",
+      "currentFullPath": "/assets/characters/pixel/full/goblin.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "goblin",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/dev/optionCCombatPosesV2/CombatPosesV2RuntimeProof.ts",
+        "src/dev/optionCCombatPosesV2/runtimeProofConfig.ts",
+        "src/game/content.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "gunnar",
+      "currentFullPath": "/assets/characters/pixel/full/gunnar.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "kestrel",
+      "currentFullPath": "/assets/characters/pixel/full/kestrel.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "archer",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/cinematics/NarrativeTableau.ts",
+        "src/combat/CombatBridge.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/protocol.ts",
+        "src/dev/optionCPhase4b/OptionCPhase4bAssets.ts",
+        "src/dev/optionCPhase4b/OptionCPhase4bProof.ts",
+        "src/dev/optionCPhase4c/OptionCCharacterDefinitions.ts",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/game/content.ts",
+        "src/game/r5NarrativeContent.ts",
+        "src/render/CharacterVisualRegistry.ts",
+        "src/render/assetManifest.ts",
+        "src/styles/app.css"
+      ]
+    },
+    {
+      "characterId": "lancer",
+      "currentFullPath": "/assets/characters/pixel/full/lancer.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "lancer",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/cinematics/NarrativeStagingAudit.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/CasterMotion.ts",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/GameApp.ts",
+        "src/game/catalog.ts",
+        "src/game/content.ts",
+        "src/game/contextualDialogueContent.ts",
+        "src/game/runSystem.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "lion_champion",
+      "currentFullPath": "/assets/characters/pixel/full/lion_champion.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "lion_champion",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/dev/optionCCombatPosesV2/runtimeProofConfig.ts",
+        "src/game/content.ts",
+        "src/game/lionFinale.ts",
+        "src/render/CharacterVisualRegistry.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "lyra",
+      "currentFullPath": "/assets/characters/pixel/full/lyra.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "maelor",
+      "currentFullPath": "/assets/characters/pixel/full/maelor.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "GAME_CONTENT",
+        "UI"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/DialogueStagingDirector.ts",
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/cinematics/NarrativeTableau.ts",
+        "src/game/content.ts",
+        "src/game/lionFinale.ts",
+        "src/game/r5NarrativeContent.ts",
+        "src/render/assetManifest.ts",
+        "src/ui/TravelView.ts"
+      ]
+    },
+    {
+      "characterId": "marian",
+      "currentFullPath": "/assets/characters/pixel/full/marian.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "white_mage",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/cinematics/NarrativeTableau.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterDefinitions.ts",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/game/content.ts",
+        "src/game/r5NarrativeContent.ts",
+        "src/render/CharacterVisualRegistry.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "marsh_toad",
+      "currentFullPath": "/assets/characters/pixel/full/marsh_toad.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "marsh_toad",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/game/content.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "morvan",
+      "currentFullPath": "/assets/characters/pixel/full/morvan.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterDefinitions.ts",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "mountain_ram",
+      "currentFullPath": "/assets/characters/pixel/full/mountain_ram.png",
+      "runtimeSurfaces": [],
+      "dialogueUsage": false,
+      "uiUsage": false,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": false,
+      "runtimeReferences": []
+    },
+    {
+      "characterId": "refugee_mother",
+      "currentFullPath": "/assets/characters/pixel/full/refugee_mother.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/game/content.ts",
+        "src/game/r5NarrativeContent.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "river_crab",
+      "currentFullPath": "/assets/characters/pixel/full/river_crab.png",
+      "runtimeSurfaces": [],
+      "dialogueUsage": false,
+      "uiUsage": false,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": false,
+      "runtimeReferences": []
+    },
+    {
+      "characterId": "sage_seraphine",
+      "currentFullPath": "/assets/characters/pixel/full/sage_seraphine.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/DialogueStagingDirector.ts",
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/cinematics/NarrativeTableau.ts",
+        "src/game/content.ts",
+        "src/game/lionFinale.ts",
+        "src/game/r5NarrativeContent.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "sage_seraphine",
+      "currentFullPath": "/assets/characters/pixel/full/seraphine.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": "seraphine",
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/DialogueStagingDirector.ts",
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/cinematics/NarrativeTableau.ts",
+        "src/game/content.ts",
+        "src/game/lionFinale.ts",
+        "src/game/r5NarrativeContent.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "seal_guardian",
+      "currentFullPath": "/assets/characters/pixel/full/seal_guardian.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "serpent_brute",
+      "currentFullPath": "/assets/characters/pixel/full/serpent_brute.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "serpent_brute",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/game/content.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "serpent_captain",
+      "currentFullPath": "/assets/characters/pixel/full/serpent_general_boss.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "serpent_general_boss",
+      "needsNewMaster": false,
+      "aliasOf": "serpent_general_boss",
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/Cin6aPresentation.ts",
+        "src/cinematics/CinematicTriggers.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/cinematics/NarrativePresentationDoctrine.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/game/content.ts",
+        "src/game/lionFinale.ts",
+        "src/qa/r7LionSimulation.ts",
+        "src/render/CharacterVisualRegistry.ts",
+        "src/render/assetManifest.ts",
+        "src/render/data/demo-environment-pack-v1.production.json"
+      ]
+    },
+    {
+      "characterId": "serpent_duelist_elite",
+      "currentFullPath": "/assets/characters/pixel/full/serpent_duelist_elite.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "serpent_duelist_elite",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/game/content.ts",
+        "src/game/r5NarrativeContent.ts",
+        "src/render/CharacterVisualRegistry.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "serpent_elite_brute",
+      "currentFullPath": "/assets/characters/pixel/full/serpent_brute.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "serpent_elite_brute",
+      "needsNewMaster": false,
+      "aliasOf": "serpent_brute",
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "serpent_elite_raider",
+      "currentFullPath": "/assets/characters/pixel/full/serpent_duelist_elite.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "serpent_duelist_elite",
+      "needsNewMaster": false,
+      "aliasOf": "serpent_duelist_elite",
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/render/CharacterVisualRegistry.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "serpent_general_boss",
+      "currentFullPath": "/assets/characters/pixel/full/serpent_general_boss.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "serpent_general_boss",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/game/content.ts",
+        "src/game/lionFinale.ts",
+        "src/render/CharacterVisualRegistry.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "serpent_oracle",
+      "currentFullPath": "/assets/characters/pixel/full/serpent_oracle.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "serpent_oracle",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/game/content.ts",
+        "src/game/r5NarrativeContent.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "serpent_raider",
+      "currentFullPath": "/assets/characters/pixel/full/serpent_raider.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "serpent_raider",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/game/content.ts",
+        "src/game/r5NarrativeContent.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "shrine_apparition",
+      "currentFullPath": "/assets/characters/pixel/full/shrine_apparition.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/game/content.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "skeleton",
+      "currentFullPath": "/assets/characters/pixel/full/skeleton.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "skeleton",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/game/content.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "survivor",
+      "currentFullPath": "/assets/characters/pixel/full/survivor.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/game/content.ts",
+        "src/game/r5NarrativeContent.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "swamp_crocodile",
+      "currentFullPath": "/assets/characters/pixel/full/swamp_crocodile.png",
+      "runtimeSurfaces": [],
+      "dialogueUsage": false,
+      "uiUsage": false,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": false,
+      "runtimeReferences": []
+    },
+    {
+      "characterId": "talon",
+      "currentFullPath": "/assets/characters/pixel/full/talon.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "troll",
+      "currentFullPath": "/assets/characters/pixel/full/troll.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/game/content.ts",
+        "src/game/r5NarrativeContent.ts",
+        "src/game/runSystem.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "undead_champion",
+      "currentFullPath": "/assets/characters/pixel/full/undead_champion.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "venom_serpent",
+      "currentFullPath": "/assets/characters/pixel/full/venom_serpent.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "venom_serpent",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/game/content.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "villageoise",
+      "currentFullPath": "/assets/characters/pixel/full/villageoise.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/game/content.ts",
+        "src/game/r5NarrativeContent.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "wild_boar",
+      "currentFullPath": "/assets/characters/pixel/full/wild_boar.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "wild_boar",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/game/content.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "wolf",
+      "currentFullPath": "/assets/characters/pixel/full/wolf.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "wolf",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/game/content.ts",
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "wounded_merchant",
+      "currentFullPath": "/assets/characters/pixel/full/wounded_merchant.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": false,
+      "newMasterAlreadyExists": false,
+      "masterId": null,
+      "needsNewMaster": true,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/render/assetManifest.ts"
+      ]
+    },
+    {
+      "characterId": "young_dragon_elite",
+      "currentFullPath": "/assets/characters/pixel/full/young_dragon_elite.png",
+      "runtimeSurfaces": [
+        "ASSET_MANIFEST",
+        "CINEMATIC",
+        "COMBAT_UI_OR_FALLBACK",
+        "GAME_CONTENT"
+      ],
+      "dialogueUsage": true,
+      "uiUsage": true,
+      "cinematicReferenceUsage": true,
+      "combatUnit": true,
+      "newMasterAlreadyExists": true,
+      "masterId": "young_dragon_elite",
+      "needsNewMaster": false,
+      "aliasOf": null,
+      "demoRelevant": true,
+      "runtimeReferences": [
+        "src/cinematics/FinalDialoguePresentation.generated.ts",
+        "src/cinematics/FinalPresentationRegistry.generated.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/combat/vfx/DemoVfxActionScope.ts",
+        "src/game/content.ts",
+        "src/render/CharacterVisualRegistry.ts",
+        "src/render/assetManifest.ts"
+      ]
+    }
+  ]
+}

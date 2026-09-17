@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 remaining 22 units production",
+  "productionPromotion": false,
+  "unitId": "serpent_brute",
+  "category": "ENEMY",
+  "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_serpent_mace_knight_4x1_2560x768",
+  "master": "public/assets/dev/option-c/combat-poses-v2/masters/serpent_brute-master.png",
+  "board": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/serpent_brute-board.png",
+  "prepare": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_brute/serpent_brute-idle.png",
+  "dash": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_brute/serpent_brute-dash.png",
+  "attack": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_brute/serpent_brute-attack.png",
+  "cast": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_brute/serpent_brute-skill.png",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 435,
+  "pivot": [
+    256,
+    435
+  ],
+  "targetWorldSize": 2.2,
+  "deliveryFactor": 0.7,
+  "scaleCorrection": 1.0,
+  "sizeClass": "large_humanoid_enemy",
+  "weaponType": "short-shafted round spiked mace",
+  "qaStatus": "PASS_CANDIDATE",
+  "knownIssues": [],
+  "generationProvenance": {
+    "model": "UNKNOWN",
+    "modelProvenance": "UNKNOWN",
+    "canonicalIdentityReference": "public/assets/combat-stage/poses/enemies/enemy_serpent_mace_knight_4x1_2560x768",
+    "styleReferences": [
+      "approved Option C four-class reference",
+      "Alistair V2 pilot",
+      "Goblin V2 pilot",
+      "Lion Champion V2 pilot"
+    ],
+    "masterSource": "public/assets/dev/option-c/combat-poses-v2/masters/serpent_brute-master-source.png",
+    "boardSource": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/serpent_brute-board-source.png",
+    "boardPrompt": "public/assets/dev/option-c/combat-poses-v2/manifests/serpent_brute-board-prompt.txt",
+    "processorMeta": "public/assets/dev/option-c/combat-poses-v2/manifests/serpent_brute-processor-meta.json",
+    "boardGeneratedAsOne2x2Family": true
+  },
+  "scaleDoctrine": {
+    "sharedScaleAcrossPoses": true,
+    "perPoseAutoScaling": false,
+    "fitToContentPerPose": false,
+    "scaleCorrectionOverrides": 0
+  },
+  "poses": [
+    {
+      "pose": "prepare",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_brute/serpent_brute-idle.png",
+      "sha256": "54ed024278f44f8d1d53bb8f068ca74c646540fbd6e7af0ad65cf81b47852f6b",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        96,
+        116,
+        416,
+        436
+      ],
+      "transparentMargins": {
+        "left": 96,
+        "top": 116,
+        "right": 96,
+        "bottom": 76
+      },
+      "baseline": 435,
+      "pivot": [
+        256,
+        435
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        0
+      ],
+      "sourceCropBBox": [
+        77,
+        47,
+        605,
+        574
+      ],
+      "commonScaleOutputSize": [
+        320,
+        320
+      ],
+      "pastePosition": [
+        96,
+        116
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_brute/serpent_brute-dash.png",
+      "sha256": "5d9c969bce09522c987334ea05c83a0b91a7e5db1807f0059383ccc8ffb6f463",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        78,
+        120,
+        433,
+        436
+      ],
+      "transparentMargins": {
+        "left": 78,
+        "top": 120,
+        "right": 79,
+        "bottom": 76
+      },
+      "baseline": 435,
+      "pivot": [
+        256,
+        435
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        1
+      ],
+      "sourceCropBBox": [
+        5,
+        98,
+        591,
+        619
+      ],
+      "commonScaleOutputSize": [
+        355,
+        316
+      ],
+      "pastePosition": [
+        78,
+        120
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_brute/serpent_brute-attack.png",
+      "sha256": "016d4dd2e8d0b5a211ceede8577032434208011a588737a4549a100a5c81a06a",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        77,
+        142,
+        435,
+        436
+      ],
+      "transparentMargins": {
+        "left": 77,
+        "top": 142,
+        "right": 77,
+        "bottom": 76
+      },
+      "baseline": 435,
+      "pivot": [
+        256,
+        435
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        0
+      ],
+      "sourceCropBBox": [
+        29,
+        66,
+        619,
+        550
+      ],
+      "commonScaleOutputSize": [
+        358,
+        294
+      ],
+      "pastePosition": [
+        77,
+        142
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "cast",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_brute/serpent_brute-skill.png",
+      "sha256": "e13e4191357e3a6c5da47dd0bbf6e11a5ea85b634922d02c41da9549a9e14a44",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        77,
+        97,
+        435,
+        436
+      ],
+      "transparentMargins": {
+        "left": 77,
+        "top": 97,
+        "right": 77,
+        "bottom": 76
+      },
+      "baseline": 435,
+      "pivot": [
+        256,
+        435
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        1
+      ],
+      "sourceCropBBox": [
+        0,
+        0,
+        590,
+        559
+      ],
+      "commonScaleOutputSize": [
+        358,
+        339
+      ],
+      "pastePosition": [
+        77,
+        97
+      ],
+      "sourceEdgeTouch": true
+    }
+  ],
+  "qa": {
+    "identity": "OPERATOR_REVIEW_PENDING",
+    "style": "OPERATOR_REVIEW_PENDING",
+    "physicalScale": "PASS_MACHINE_SHARED_SCALE",
+    "morphology": "OPERATOR_REVIEW_PENDING",
+    "poseSemantics": "PASS_CANDIDATE",
+    "weapon": "PASS_CANDIDATE",
+    "pixelDensity": "PASS_MACHINE_SHARED_SCALE",
+    "vfxClearance": "SOURCE_EDGE_RISK",
+    "groundingRisk": "PASS_MACHINE_BASELINE",
+    "operatorApproval": "PENDING",
+    "qaBoard": "public/assets/dev/option-c/combat-poses-v2/qa/serpent_brute-qa-board.png"
+  }
+}

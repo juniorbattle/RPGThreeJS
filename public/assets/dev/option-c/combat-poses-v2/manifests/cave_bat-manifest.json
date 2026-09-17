@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 remaining 22 units production",
+  "productionPromotion": false,
+  "unitId": "cave_bat",
+  "category": "ENEMY",
+  "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_bat_4x1_2560x768",
+  "master": "public/assets/dev/option-c/combat-poses-v2/masters/cave_bat-master.png",
+  "board": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/cave_bat-board.png",
+  "prepare": "public/assets/dev/option-c/combat-poses-v2/split-poses/cave_bat/cave_bat-idle.png",
+  "dash": "public/assets/dev/option-c/combat-poses-v2/split-poses/cave_bat/cave_bat-dash.png",
+  "attack": "public/assets/dev/option-c/combat-poses-v2/split-poses/cave_bat/cave_bat-attack.png",
+  "cast": "public/assets/dev/option-c/combat-poses-v2/split-poses/cave_bat/cave_bat-skill.png",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 384,
+  "pivot": [
+    256,
+    384
+  ],
+  "targetWorldSize": 1.4,
+  "deliveryFactor": 0.46,
+  "scaleCorrection": 1.0,
+  "sizeClass": "small_airborne",
+  "weaponType": "fangs and foreclaws",
+  "qaStatus": "PASS_CANDIDATE",
+  "knownIssues": [],
+  "generationProvenance": {
+    "model": "UNKNOWN",
+    "modelProvenance": "UNKNOWN",
+    "canonicalIdentityReference": "public/assets/combat-stage/poses/enemies/enemy_bat_4x1_2560x768",
+    "styleReferences": [
+      "approved Option C four-class reference",
+      "Alistair V2 pilot",
+      "Goblin V2 pilot",
+      "Lion Champion V2 pilot"
+    ],
+    "masterSource": "public/assets/dev/option-c/combat-poses-v2/masters/cave_bat-master-source.png",
+    "boardSource": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/cave_bat-board-source.png",
+    "boardPrompt": "public/assets/dev/option-c/combat-poses-v2/manifests/cave_bat-board-prompt.txt",
+    "processorMeta": "public/assets/dev/option-c/combat-poses-v2/manifests/cave_bat-processor-meta.json",
+    "boardGeneratedAsOne2x2Family": true
+  },
+  "scaleDoctrine": {
+    "sharedScaleAcrossPoses": true,
+    "perPoseAutoScaling": false,
+    "fitToContentPerPose": false,
+    "scaleCorrectionOverrides": 0
+  },
+  "poses": [
+    {
+      "pose": "prepare",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/cave_bat/cave_bat-idle.png",
+      "sha256": "e4a621626ee3769b5a856b4df4a14cca9ce48e684a05be316203e40cd7e9da70",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        151,
+        218,
+        361,
+        374
+      ],
+      "transparentMargins": {
+        "left": 151,
+        "top": 218,
+        "right": 151,
+        "bottom": 138
+      },
+      "baseline": 384,
+      "pivot": [
+        256,
+        384
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        0
+      ],
+      "sourceCropBBox": [
+        64,
+        140,
+        599,
+        538
+      ],
+      "commonScaleOutputSize": [
+        210,
+        156
+      ],
+      "pastePosition": [
+        151,
+        218
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/cave_bat/cave_bat-dash.png",
+      "sha256": "75f5945bc2c9c671576719badaed4a8341407d43b3a2bfa1d6f1fbb45991c424",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        154,
+        244,
+        358,
+        374
+      ],
+      "transparentMargins": {
+        "left": 154,
+        "top": 244,
+        "right": 154,
+        "bottom": 138
+      },
+      "baseline": 384,
+      "pivot": [
+        256,
+        384
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        1
+      ],
+      "sourceCropBBox": [
+        39,
+        198,
+        559,
+        529
+      ],
+      "commonScaleOutputSize": [
+        204,
+        130
+      ],
+      "pastePosition": [
+        154,
+        244
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/cave_bat/cave_bat-attack.png",
+      "sha256": "3f81f0d9f44a01c2a473cba33bdd518b139f3ba2be0096eb95cb6ddbd5fc9e4a",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        158,
+        207,
+        353,
+        374
+      ],
+      "transparentMargins": {
+        "left": 158,
+        "top": 207,
+        "right": 159,
+        "bottom": 138
+      },
+      "baseline": 384,
+      "pivot": [
+        256,
+        384
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        0
+      ],
+      "sourceCropBBox": [
+        60,
+        27,
+        558,
+        453
+      ],
+      "commonScaleOutputSize": [
+        195,
+        167
+      ],
+      "pastePosition": [
+        158,
+        207
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "cast",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/cave_bat/cave_bat-skill.png",
+      "sha256": "8f3c2fc53cf98af0909bc50f728f3504817d7637f64a8dec66cd6830157a136a",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        138,
+        215,
+        373,
+        374
+      ],
+      "transparentMargins": {
+        "left": 138,
+        "top": 215,
+        "right": 139,
+        "bottom": 138
+      },
+      "baseline": 384,
+      "pivot": [
+        256,
+        384
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        1
+      ],
+      "sourceCropBBox": [
+        0,
+        85,
+        599,
+        491
+      ],
+      "commonScaleOutputSize": [
+        235,
+        159
+      ],
+      "pastePosition": [
+        138,
+        215
+      ],
+      "sourceEdgeTouch": true
+    }
+  ],
+  "qa": {
+    "identity": "OPERATOR_REVIEW_PENDING",
+    "style": "OPERATOR_REVIEW_PENDING",
+    "physicalScale": "PASS_MACHINE_SHARED_SCALE",
+    "morphology": "OPERATOR_REVIEW_PENDING",
+    "poseSemantics": "PASS_CANDIDATE",
+    "weapon": "PASS_CANDIDATE",
+    "pixelDensity": "PASS_MACHINE_SHARED_SCALE",
+    "vfxClearance": "SOURCE_EDGE_RISK",
+    "groundingRisk": "AIRBORNE_ROOT_REVIEW",
+    "operatorApproval": "PENDING",
+    "qaBoard": "public/assets/dev/option-c/combat-poses-v2/qa/cave_bat-qa-board.png"
+  }
+}

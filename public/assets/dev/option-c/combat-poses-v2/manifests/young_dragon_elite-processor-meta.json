@@ -1,0 +1,164 @@
+{
+  "target": "creature",
+  "mode": "combat-poses-v2",
+  "prompt": "",
+  "role": "",
+  "input": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\public\\assets\\dev\\option-c\\combat-poses-v2\\boards-2x2\\young_dragon_elite-board-source.png",
+  "threshold": 70,
+  "edge_threshold": 140,
+  "duration": 200,
+  "rows": 2,
+  "cols": 2,
+  "cell_size": 512,
+  "fit_scale": 0.73,
+  "trim_border": 4,
+  "edge_clean_depth": 3,
+  "align": "feet",
+  "shared_scale": true,
+  "component_mode": "all",
+  "component_padding": 0,
+  "min_component_area": 1,
+  "edge_touch_margin": 0,
+  "frame_labels": [
+    "young_dragon_elite-1",
+    "young_dragon_elite-2",
+    "young_dragon_elite-3",
+    "young_dragon_elite-4"
+  ],
+  "frames": [
+    {
+      "grid": [
+        0,
+        0
+      ],
+      "source_box": [
+        0,
+        0,
+        627,
+        627
+      ],
+      "component_mode": "all",
+      "component_count": 3,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        47,
+        102,
+        619,
+        575
+      ],
+      "edge_touch": false,
+      "output_size": [
+        355,
+        293
+      ],
+      "paste_position": [
+        78,
+        150
+      ]
+    },
+    {
+      "grid": [
+        0,
+        1
+      ],
+      "source_box": [
+        627,
+        0,
+        1254,
+        627
+      ],
+      "component_mode": "all",
+      "component_count": 3,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        0,
+        151,
+        591,
+        521
+      ],
+      "edge_touch": true,
+      "output_size": [
+        366,
+        229
+      ],
+      "paste_position": [
+        73,
+        214
+      ]
+    },
+    {
+      "grid": [
+        1,
+        0
+      ],
+      "source_box": [
+        0,
+        627,
+        627,
+        1254
+      ],
+      "component_mode": "all",
+      "component_count": 2,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        26,
+        33,
+        609,
+        456
+      ],
+      "edge_touch": false,
+      "output_size": [
+        361,
+        262
+      ],
+      "paste_position": [
+        75,
+        181
+      ]
+    },
+    {
+      "grid": [
+        1,
+        1
+      ],
+      "source_box": [
+        627,
+        627,
+        1254,
+        1254
+      ],
+      "component_mode": "all",
+      "component_count": 4,
+      "selected_component_area": null,
+      "selected_component_bbox": null,
+      "crop_bbox": [
+        0,
+        33,
+        602,
+        535
+      ],
+      "edge_touch": true,
+      "output_size": [
+        373,
+        311
+      ],
+      "paste_position": [
+        69,
+        132
+      ]
+    }
+  ],
+  "edge_touch_frames": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      1
+    ]
+  ]
+}

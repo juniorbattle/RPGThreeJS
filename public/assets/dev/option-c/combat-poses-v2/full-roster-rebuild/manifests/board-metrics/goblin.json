@@ -1,0 +1,201 @@
+{
+  "unitId": "goblin",
+  "canvasPerPose": [
+    512,
+    512
+  ],
+  "boardCanvas": [
+    1024,
+    1024
+  ],
+  "masterCoreExtentPx": 228,
+  "boardIdleCoreExtentPx": 390,
+  "sharedBoardToMasterScale": 0.5846153846153846,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "scaleCorrectionOverride": 0,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/goblin-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/goblin-clean.png",
+  "boardPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/goblin-board.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/goblin.txt",
+  "rawSha256": "ffbba77ac1ae1f211494a9996610a0dcd4e3ae6a3307554b42e3979ec8eb3454",
+  "boardSha256": "36d59531f249d762249a8b1501c4d9d8024dff84ee8b852f0841f3e851724724",
+  "poses": [
+    {
+      "pose": "idle",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/goblin/goblin-idle.png",
+      "sha256": "63f4386efc1880d0282dd1e5f93e4ab7802791df6ddf69bbfc5db9ef1ce14602",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        154,
+        161,
+        511,
+        552
+      ],
+      "sourceCoreBBox": [
+        154,
+        162,
+        511,
+        552
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.5846153846153846,
+      "outputAlphaBBox": [
+        152,
+        227,
+        361,
+        456
+      ],
+      "outputCoreBBox": [
+        152,
+        228,
+        361,
+        456
+      ],
+      "outputCoreExtentPx": 228,
+      "transparentMargins": [
+        152,
+        227,
+        151,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/goblin/goblin-dash.png",
+      "sha256": "78c8b3e2c54bbc7e7abbb55ffc1958a6075f70ce417a6bcf210ea526e8433ba5",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        91,
+        193,
+        528,
+        545
+      ],
+      "sourceCoreBBox": [
+        92,
+        193,
+        528,
+        545
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.5846153846153846,
+      "outputAlphaBBox": [
+        127,
+        250,
+        383,
+        456
+      ],
+      "outputCoreBBox": [
+        128,
+        250,
+        383,
+        456
+      ],
+      "outputCoreExtentPx": 255,
+      "transparentMargins": [
+        127,
+        250,
+        129,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/goblin/goblin-attack.png",
+      "sha256": "d03d5aa154246ba41cb35ff6af8797654a796aaaafef178be544f74902834719",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        67,
+        112,
+        601,
+        499
+      ],
+      "sourceCoreBBox": [
+        68,
+        144,
+        584,
+        499
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.5846153846153846,
+      "outputAlphaBBox": [
+        104,
+        230,
+        417,
+        456
+      ],
+      "outputCoreBBox": [
+        105,
+        248,
+        407,
+        456
+      ],
+      "outputCoreExtentPx": 302,
+      "transparentMargins": [
+        104,
+        230,
+        95,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "skill",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/goblin/goblin-skill.png",
+      "sha256": "1f1377c7df50c24dbbb9a271d3e45c4ed938e10b2e82d707fae4ee97d0e5fd43",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        55,
+        53,
+        521,
+        516
+      ],
+      "sourceCoreBBox": [
+        58,
+        85,
+        521,
+        516
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.5846153846153846,
+      "outputAlphaBBox": [
+        118,
+        185,
+        391,
+        456
+      ],
+      "outputCoreBBox": [
+        120,
+        203,
+        391,
+        456
+      ],
+      "outputCoreExtentPx": 271,
+      "transparentMargins": [
+        118,
+        185,
+        121,
+        56
+      ],
+      "cropped": false
+    }
+  ]
+}

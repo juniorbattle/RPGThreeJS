@@ -1,0 +1,63 @@
+{
+  "unitId": "archer",
+  "family": "STANDARD_HUMANOID",
+  "weaponOrAnatomy": "bow and coherent arrow",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 456,
+  "pivot": [
+    256,
+    456
+  ],
+  "airborneOffset": 0,
+  "targetCoreExtentPx": 334,
+  "sourceDimensions": [
+    1182,
+    1330
+  ],
+  "sourceAlphaBBox": [
+    243,
+    95,
+    887,
+    1234
+  ],
+  "sourceCoreBBox": [
+    247,
+    99,
+    884,
+    1234
+  ],
+  "authoredBodyMassScale": 0.29427312775330394,
+  "appliedScale": 0.29427312775330394,
+  "scaleLimitedByExtremeAppendage": false,
+  "normalizedAlphaBBox": [
+    162,
+    121,
+    351,
+    456
+  ],
+  "normalizedCoreBBox": [
+    163,
+    122,
+    350,
+    456
+  ],
+  "normalizedCoreExtentPx": 334,
+  "transparentMargins": [
+    162,
+    121,
+    161,
+    56
+  ],
+  "safeMarginsPass": true,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/archer-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/archer-clean.png",
+  "masterPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/archer-master.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/archer.txt",
+  "rawSha256": "2c5c22840c270fbefa5fa90153f050ee8698499a8414c567bad5b62478eaadab",
+  "masterSha256": "cf9f50e30fe534ea9637857be43774ad19a39dbb721b0834a9bec54dd9e0c022",
+  "perPoseAutoScaling": false,
+  "fitToContent": false
+}

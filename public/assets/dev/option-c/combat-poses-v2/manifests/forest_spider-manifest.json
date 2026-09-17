@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 remaining 22 units production",
+  "productionPromotion": false,
+  "unitId": "forest_spider",
+  "category": "ENEMY",
+  "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_forest_spider_4x1_2560x768",
+  "master": "public/assets/dev/option-c/combat-poses-v2/masters/forest_spider-master.png",
+  "board": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/forest_spider-board.png",
+  "prepare": "public/assets/dev/option-c/combat-poses-v2/split-poses/forest_spider/forest_spider-idle.png",
+  "dash": "public/assets/dev/option-c/combat-poses-v2/split-poses/forest_spider/forest_spider-dash.png",
+  "attack": "public/assets/dev/option-c/combat-poses-v2/split-poses/forest_spider/forest_spider-attack.png",
+  "cast": "public/assets/dev/option-c/combat-poses-v2/split-poses/forest_spider/forest_spider-skill.png",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 374,
+  "pivot": [
+    256,
+    374
+  ],
+  "targetWorldSize": 1.45,
+  "deliveryFactor": 0.46,
+  "scaleCorrection": 1.0,
+  "sizeClass": "small_wide_arachnid",
+  "weaponType": "fangs and forward legs",
+  "qaStatus": "PASS_CANDIDATE",
+  "knownIssues": [],
+  "generationProvenance": {
+    "model": "UNKNOWN",
+    "modelProvenance": "UNKNOWN",
+    "canonicalIdentityReference": "public/assets/combat-stage/poses/enemies/enemy_forest_spider_4x1_2560x768",
+    "styleReferences": [
+      "approved Option C four-class reference",
+      "Alistair V2 pilot",
+      "Goblin V2 pilot",
+      "Lion Champion V2 pilot"
+    ],
+    "masterSource": "public/assets/dev/option-c/combat-poses-v2/masters/forest_spider-master-source.png",
+    "boardSource": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/forest_spider-board-source.png",
+    "boardPrompt": "public/assets/dev/option-c/combat-poses-v2/manifests/forest_spider-board-prompt.txt",
+    "processorMeta": "public/assets/dev/option-c/combat-poses-v2/manifests/forest_spider-processor-meta.json",
+    "boardGeneratedAsOne2x2Family": true
+  },
+  "scaleDoctrine": {
+    "sharedScaleAcrossPoses": true,
+    "perPoseAutoScaling": false,
+    "fitToContentPerPose": false,
+    "scaleCorrectionOverrides": 0
+  },
+  "poses": [
+    {
+      "pose": "prepare",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/forest_spider/forest_spider-idle.png",
+      "sha256": "62cb63d2d6f157963b0eb33455584842e278a78f81f05d98785b9cdcfa5e564b",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        140,
+        202,
+        372,
+        374
+      ],
+      "transparentMargins": {
+        "left": 140,
+        "top": 202,
+        "right": 140,
+        "bottom": 138
+      },
+      "baseline": 374,
+      "pivot": [
+        256,
+        374
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        0
+      ],
+      "sourceCropBBox": [
+        15,
+        141,
+        609,
+        581
+      ],
+      "commonScaleOutputSize": [
+        232,
+        172
+      ],
+      "pastePosition": [
+        140,
+        202
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/forest_spider/forest_spider-dash.png",
+      "sha256": "9e548dc97cef1d4b090c0e47320e3e5388e4e1dce0d85733d9587e25f49f10a5",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        138,
+        228,
+        373,
+        374
+      ],
+      "transparentMargins": {
+        "left": 138,
+        "top": 228,
+        "right": 139,
+        "bottom": 138
+      },
+      "baseline": 374,
+      "pivot": [
+        256,
+        374
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        1
+      ],
+      "sourceCropBBox": [
+        4,
+        196,
+        605,
+        569
+      ],
+      "commonScaleOutputSize": [
+        235,
+        146
+      ],
+      "pastePosition": [
+        138,
+        228
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/forest_spider/forest_spider-attack.png",
+      "sha256": "1314e3a6d6cbf0906e1dd7c927fb429b81a8a1dabe35184b8e2683568e561d66",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        140,
+        217,
+        371,
+        374
+      ],
+      "transparentMargins": {
+        "left": 140,
+        "top": 217,
+        "right": 141,
+        "bottom": 138
+      },
+      "baseline": 374,
+      "pivot": [
+        256,
+        374
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        0
+      ],
+      "sourceCropBBox": [
+        23,
+        118,
+        614,
+        519
+      ],
+      "commonScaleOutputSize": [
+        231,
+        157
+      ],
+      "pastePosition": [
+        140,
+        217
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "cast",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/forest_spider/forest_spider-skill.png",
+      "sha256": "0d7d039c70dcebeb34fc49b456890e976a8fa95ca519b7a81424a460dd32a1cf",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        142,
+        174,
+        369,
+        374
+      ],
+      "transparentMargins": {
+        "left": 142,
+        "top": 174,
+        "right": 143,
+        "bottom": 138
+      },
+      "baseline": 374,
+      "pivot": [
+        256,
+        374
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        1
+      ],
+      "sourceCropBBox": [
+        10,
+        35,
+        590,
+        546
+      ],
+      "commonScaleOutputSize": [
+        227,
+        200
+      ],
+      "pastePosition": [
+        142,
+        174
+      ],
+      "sourceEdgeTouch": false
+    }
+  ],
+  "qa": {
+    "identity": "OPERATOR_REVIEW_PENDING",
+    "style": "OPERATOR_REVIEW_PENDING",
+    "physicalScale": "PASS_MACHINE_SHARED_SCALE",
+    "morphology": "OPERATOR_REVIEW_PENDING",
+    "poseSemantics": "PASS_CANDIDATE",
+    "weapon": "PASS_CANDIDATE",
+    "pixelDensity": "PASS_MACHINE_SHARED_SCALE",
+    "vfxClearance": "PASS_MACHINE_BOUNDS",
+    "groundingRisk": "PASS_MACHINE_BASELINE",
+    "operatorApproval": "PENDING",
+    "qaBoard": "public/assets/dev/option-c/combat-poses-v2/qa/forest_spider-qa-board.png"
+  }
+}

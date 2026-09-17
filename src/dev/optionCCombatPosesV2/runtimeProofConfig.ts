@@ -1,71 +1,101 @@
+import type { CombatPose } from '../../combat/stage/CombatPoseRegistry';
 import type { CombatStageProfile, StageSlotId } from '../../combat/stage/combatStageProfiles';
+import manifestJson from '../../render/generated/characterSystemV2Manifest.json';
 
-export type PilotUnitId = 'alistair' | 'goblin' | 'lion-champion';
-export type RuntimeProofScenarioId = 'alistair-vs-goblin' | 'alistair-vs-lion-champion' | 'all-three';
+export type PilotUnitId =
+  | 'alistair'
+  | 'goblin'
+  | 'lion-champion'
+  | 'canvas-512'
+  | 'canvas-640x512'
+  | 'canvas-512x640'
+  | 'canvas-640x640';
+export type RuntimeProofScenarioId =
+  | 'alistair-vs-goblin'
+  | 'alistair-vs-lion-champion'
+  | 'all-three'
+  | 'canvas-512'
+  | 'canvas-640x512'
+  | 'canvas-512x640'
+  | 'canvas-640x640';
 export type RuntimeProofEnvironmentId = 'forest_route' | 'bois_clair_burning' | 'lion_sanctum';
 
 export interface PilotRuntimeUnit {
   id: PilotUnitId;
+  combatPoseUnitId: string;
+  pose: CombatPose;
   displayName: string;
   imageUrl: string;
   manifestUrl: string;
-  deliveryFitScale: number;
   scaleCorrection: 1;
   targetWorldHeight: number;
-  canvasPx: 512;
+  sourceSizePx: readonly [number, number];
   footBaselinePx: number;
   pivotPx: readonly [number, number];
-  idleAlphaBBoxPx: readonly [number, number, number, number];
+  alphaBBoxPx: readonly [number, number, number, number];
+  worldUnitsPerPixel: number;
   team: 'player' | 'foe';
   contactShadowSize: readonly [number, number];
 }
 
+interface ManifestPose {
+  src: string;
+  sourceSizePx: { width: number; height: number };
+  alphaBoundsPx: { left: number; top: number; right: number; bottom: number };
+  anchor: { x: number; y: number };
+  scaleCorrection: number;
+}
+
+interface ManifestUnit {
+  unitId: string;
+  worldUnitsPerPixel: number;
+  poses: Record<CombatPose, ManifestPose>;
+}
+
+const manifest = manifestJson as unknown as { units: ManifestUnit[] };
+const unitById = new Map(manifest.units.map((unit) => [unit.unitId, unit]));
+
+function proofUnit(
+  id: PilotUnitId,
+  combatPoseUnitId: string,
+  pose: CombatPose,
+  displayName: string,
+  team: 'player' | 'foe',
+  contactShadowSize: readonly [number, number],
+): PilotRuntimeUnit {
+  const unit = unitById.get(combatPoseUnitId);
+  const asset = unit?.poses[pose];
+  if (!unit || !asset || asset.scaleCorrection !== 1) {
+    throw new Error(`Missing promoted runtime-proof asset ${combatPoseUnitId}:${pose}.`);
+  }
+  const bounds = asset.alphaBoundsPx;
+  return Object.freeze({
+    id,
+    combatPoseUnitId,
+    pose,
+    displayName,
+    imageUrl: asset.src,
+    manifestUrl: '/assets/characters/pixel/character-system-v2-manifest.json',
+    scaleCorrection: 1,
+    targetWorldHeight: (asset.anchor.y - bounds.top) * unit.worldUnitsPerPixel,
+    sourceSizePx: [asset.sourceSizePx.width, asset.sourceSizePx.height] as const,
+    footBaselinePx: asset.anchor.y,
+    pivotPx: [asset.anchor.x, asset.anchor.y] as const,
+    alphaBBoxPx: [bounds.left, bounds.top, bounds.right, bounds.bottom] as const,
+    worldUnitsPerPixel: unit.worldUnitsPerPixel,
+    team,
+    contactShadowSize,
+  });
+}
+
 export const PILOT_RUNTIME_UNITS: Readonly<Record<PilotUnitId, PilotRuntimeUnit>> = Object.freeze({
-  alistair: Object.freeze({
-    id: 'alistair',
-    displayName: 'Alistair',
-    imageUrl: '/assets/dev/option-c/combat-poses-v2/split-poses/alistair/alistair-idle.png',
-    manifestUrl: '/assets/dev/option-c/combat-poses-v2/manifests/alistair-manifest.json',
-    deliveryFitScale: 0.68,
-    scaleCorrection: 1,
-    targetWorldHeight: 2.1,
-    canvasPx: 512,
-    footBaselinePx: 431,
-    pivotPx: [256, 431] as const,
-    idleAlphaBBoxPx: [129, 185, 382, 431] as const,
-    team: 'player',
-    contactShadowSize: [1.42, 0.58] as const,
-  }),
-  goblin: Object.freeze({
-    id: 'goblin',
-    displayName: 'Goblin',
-    imageUrl: '/assets/dev/option-c/combat-poses-v2/split-poses/goblin/goblin-idle.png',
-    manifestUrl: '/assets/dev/option-c/combat-poses-v2/manifests/goblin-manifest.json',
-    deliveryFitScale: 0.5,
-    scaleCorrection: 1,
-    targetWorldHeight: 1.6,
-    canvasPx: 512,
-    footBaselinePx: 384,
-    pivotPx: [256, 384] as const,
-    idleAlphaBBoxPx: [162, 177, 350, 384] as const,
-    team: 'foe',
-    contactShadowSize: [1.05, 0.44] as const,
-  }),
-  'lion-champion': Object.freeze({
-    id: 'lion-champion',
-    displayName: 'Lion Champion',
-    imageUrl: '/assets/dev/option-c/combat-poses-v2/split-poses/lion-champion/lion-champion-idle.png',
-    manifestUrl: '/assets/dev/option-c/combat-poses-v2/manifests/lion-champion-manifest.json',
-    deliveryFitScale: 0.74,
-    scaleCorrection: 1,
-    targetWorldHeight: 2.8,
-    canvasPx: 512,
-    footBaselinePx: 446,
-    pivotPx: [256, 446] as const,
-    idleAlphaBBoxPx: [121, 157, 390, 446] as const,
-    team: 'foe',
-    contactShadowSize: [1.86, 0.76] as const,
-  }),
+  alistair: proofUnit('alistair', 'alistair', 'prepare', 'Alistair', 'player', [1.42, 0.58]),
+  goblin: proofUnit('goblin', 'goblin', 'prepare', 'Goblin', 'foe', [1.05, 0.44]),
+  'lion-champion': proofUnit('lion-champion', 'lion_champion', 'prepare', 'Lion Champion', 'foe', [1.86, 0.76]),
+  'canvas-512': proofUnit('canvas-512', 'archer', 'prepare', '512×512 Prepare', 'player', [1.42, 0.58]),
+  'canvas-640x512': proofUnit('canvas-640x512', 'alistair', 'attack', '640×512 Attack', 'foe', [1.42, 0.58]),
+  'canvas-512x640': proofUnit('canvas-512x640', 'forest_troll_elite', 'cast', '512×640 Cast', 'foe', [1.86, 0.76]),
+  'canvas-640x640': proofUnit('canvas-640x640', 'lion_champion', 'cast', '640×640 Cast', 'foe', [1.86, 0.76]),
 });
 
 export interface RuntimeProofScenario {
@@ -84,7 +114,7 @@ function proofProfile(
 ): CombatStageProfile {
   return Object.freeze({
     id: targetSlots.length > 1 ? 'QA_MULTI_TARGET' : 'BASIC_MELEE',
-    actionKeys: ['__option_c_combat_poses_v2_runtime_proof'],
+    actionKeys: ['__character_system_v2_runtime_proof'],
     layout: targetSlots.length > 1 ? 'multi_target_offensive' : 'single_target',
     cameraFrustumHalfHeight,
     impactAnchorSlot: targetSlots[0] ?? 'primaryTarget',
@@ -131,28 +161,64 @@ export const RUNTIME_PROOF_SCENARIOS: Readonly<Record<RuntimeProofScenarioId, Ru
   }),
   'all-three': Object.freeze({
     id: 'all-three',
-    label: 'Pilot comparison — actual runtime scale',
+    label: 'Production scale hierarchy',
     environmentId: 'bois_clair_burning',
     environmentAssetId: 'bois_clair_burning_stage',
     attacker: 'alistair',
     targets: ['goblin', 'lion-champion'] as const,
-    // Existing semantic Stage slots, spread across the frontal camera for an
-    // unobstructed three-unit scale comparison. No production profile changes.
-    profile: proofProfile(['arenaCenter', 'primaryTarget'], 3.1),
+    profile: proofProfile(['secondaryTargetLeft', 'secondaryTargetRight'], 3.1),
+  }),
+  'canvas-512': Object.freeze({
+    id: 'canvas-512',
+    label: '512×512 prepare production proof',
+    environmentId: 'forest_route',
+    environmentAssetId: 'forest_route_stage',
+    attacker: 'canvas-512',
+    targets: [] as const,
+    profile: proofProfile([], 2.8),
+  }),
+  'canvas-640x512': Object.freeze({
+    id: 'canvas-640x512',
+    label: '640×512 attack production proof',
+    environmentId: 'forest_route',
+    environmentAssetId: 'forest_route_stage',
+    attacker: 'canvas-640x512',
+    targets: [] as const,
+    profile: proofProfile([], 2.8),
+  }),
+  'canvas-512x640': Object.freeze({
+    id: 'canvas-512x640',
+    label: '512×640 cast production proof',
+    environmentId: 'bois_clair_burning',
+    environmentAssetId: 'bois_clair_burning_stage',
+    attacker: 'canvas-512x640',
+    targets: [] as const,
+    profile: proofProfile([], 3.2),
+  }),
+  'canvas-640x640': Object.freeze({
+    id: 'canvas-640x640',
+    label: '640×640 cast production proof',
+    environmentId: 'lion_sanctum',
+    environmentAssetId: 'lion_sanctum_stage',
+    attacker: 'canvas-640x640',
+    targets: [] as const,
+    profile: proofProfile([], 3.2),
   }),
 });
 
 export function visibleAlphaHeightPx(unit: PilotRuntimeUnit): number {
-  return unit.idleAlphaBBoxPx[3] - unit.idleAlphaBBoxPx[1];
+  return unit.footBaselinePx - unit.alphaBBoxPx[1];
 }
 
 export function worldUnitsPerSourcePixel(unit: PilotRuntimeUnit): number {
-  return unit.targetWorldHeight / visibleAlphaHeightPx(unit);
+  return unit.worldUnitsPerPixel;
 }
 
 export function runtimePlaneSize(unit: PilotRuntimeUnit): readonly [number, number] {
-  const side = unit.canvasPx * worldUnitsPerSourcePixel(unit);
-  return [side, side];
+  return [
+    unit.sourceSizePx[0] * unit.worldUnitsPerPixel,
+    unit.sourceSizePx[1] * unit.worldUnitsPerPixel,
+  ];
 }
 
 export function parseRuntimeProofScenario(value: string | null): RuntimeProofScenario {

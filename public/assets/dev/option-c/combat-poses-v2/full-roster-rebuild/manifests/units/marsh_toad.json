@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C full 25-unit roster rebuild",
+  "unitId": "marsh_toad",
+  "category": "ENEMY",
+  "scaleFamily": "SMALL_CREATURE",
+  "weaponOrAnatomyLock": "tongue and poison projection",
+  "artStyleAuthority": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/art-style-authority.png",
+    "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+    "sourcePath": "C:\\Users\\miche\\AppData\\Local\\Temp\\codex-clipboard-21f24758-8fb5-4e50-97ee-7ad521b05315.png",
+    "role": "PRIMARY_AND_ONLY_ART_STYLE_AUTHORITY"
+  },
+  "canonicalIdentityReference": {
+    "unitId": "marsh_toad",
+    "category": "ENEMY",
+    "family": "SMALL_CREATURE",
+    "weaponOrAnatomy": "tongue and poison projection",
+    "canonicalFolder": "public/assets/combat-stage/poses/enemies/enemy_marsh_toad_4x1_2560x768",
+    "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/canonical/marsh_toad.png",
+    "sources": [
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_marsh_toad_4x1_2560x768/enemy_marsh_toad_4x1_2560x768_01_pose1.png",
+        "sha256": "b437b58a5f990b56f5c6c3e2ca2beceb48aa5351da918f9a2d1ed64f2efd9718",
+        "dimensions": [
+          528,
+          453
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_marsh_toad_4x1_2560x768/enemy_marsh_toad_4x1_2560x768_02_pose2.png",
+        "sha256": "a539b9f4b08b902c4deefdc6d961b0d949e414c450ed77c2df2c23540078b1a6",
+        "dimensions": [
+          604,
+          576
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_marsh_toad_4x1_2560x768/enemy_marsh_toad_4x1_2560x768_03_pose3.png",
+        "sha256": "fe231fca5529b5e5b132eca1342d40e9b61017e42fbfd3faddd684fab4c4a26c",
+        "dimensions": [
+          487,
+          455
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_marsh_toad_4x1_2560x768/enemy_marsh_toad_4x1_2560x768_04_pose4.png",
+        "sha256": "6eac681c5c7d0a5e0388c434e0cdc22aacb470469820ff2f4239ea59499307c7",
+        "dimensions": [
+          649,
+          402
+        ]
+      }
+    ]
+  },
+  "master": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/marsh_toad-master.png",
+    "sha256": "448de71310beb868ba3e7d3211ecaac20cd1a9c2bef13369c2ab05a1a5587d0e",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA"
+  },
+  "board2x2": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/marsh_toad-board.png",
+    "sha256": "4bde37902227ed07f4049f7e4a92d30cac73778183cbf83789398530dee3c0fe",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      116,
+      297,
+      901,
+      970
+    ],
+    "safeMarginMin": 54
+  },
+  "poses": {
+    "idle": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/marsh_toad/marsh_toad-idle.png",
+      "sha256": "a83053cfea9add42290b237d3e7771ee9855015c3b50f2da1a437c90e69c99f9",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        167,
+        297,
+        345,
+        456
+      ],
+      "safeMarginMin": 56,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "dash": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/marsh_toad/marsh_toad-dash.png",
+      "sha256": "c216f5927bc0d1914382675dee01f5c8bf00b6fd1068b6104afb5181f57ad403",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        123,
+        305,
+        389,
+        458
+      ],
+      "safeMarginMin": 54,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "attack": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/marsh_toad/marsh_toad-attack.png",
+      "sha256": "4f9d36bbf103182cb0757a21acc143d15cf306c837eba32e7c799f5eed316760",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        116,
+        296,
+        395,
+        457
+      ],
+      "safeMarginMin": 55,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "skill": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/marsh_toad/marsh_toad-skill.png",
+      "sha256": "b38ba863c80de666bd5a68fc948cfb333bdf794f0f71a209e8cf5fec69c72d32",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        139,
+        291,
+        373,
+        458
+      ],
+      "safeMarginMin": 54,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    }
+  },
+  "prompts": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/marsh_toad.txt",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/marsh_toad.txt"
+  },
+  "metrics": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-metrics/marsh_toad.json",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-metrics/marsh_toad.json"
+  },
+  "qaBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/marsh_toad-qa.png",
+  "pipelineDoctrine": {
+    "masterNormalizedBeforePoses": true,
+    "commonMasterCanvas": [
+      512,
+      512
+    ],
+    "commonBaseline": 456,
+    "commonPivotX": 256,
+    "perPoseAutoScalingUsed": false,
+    "fitToContentUsed": false,
+    "sharedBoardToMasterScale": 0.5115606936416185,
+    "scaleCorrectionOverride": 0,
+    "bodyScaleLocked": true,
+    "pixelDensityLocked": true,
+    "flexiblePoseCanvasEnabled": true
+  },
+  "machineValidation": {
+    "masterDimensionsPass": true,
+    "boardDimensionsPass": true,
+    "poseDimensionsPass": true,
+    "outputCropFlags": [],
+    "allOutputsNonEmpty": true
+  },
+  "operatorClassification": {
+    "category": "PASS_CANDIDATE",
+    "reason": "Small-creature scale, hop, tongue contact, and poison cast are clear and complete.",
+    "issues": {
+      "cropping": [],
+      "scale": [],
+      "weapon": [],
+      "pose": [],
+      "other": []
+    }
+  },
+  "finalCleanup": {
+    "status": "PASS",
+    "poseRecords": {
+      "idle": {
+        "unitId": "marsh_toad",
+        "pose": "idle",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/marsh_toad/marsh_toad-idle.png",
+        "sourceSha256": "a83053cfea9add42290b237d3e7771ee9855015c3b50f2da1a437c90e69c99f9",
+        "finalSha256": "a83053cfea9add42290b237d3e7771ee9855015c3b50f2da1a437c90e69c99f9",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          167,
+          297,
+          345,
+          456
+        ],
+        "transparentMargins": [
+          167,
+          297,
+          167,
+          56
+        ],
+        "safeMarginMin": 56,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "dash": {
+        "unitId": "marsh_toad",
+        "pose": "dash",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/marsh_toad/marsh_toad-dash.png",
+        "sourceSha256": "c216f5927bc0d1914382675dee01f5c8bf00b6fd1068b6104afb5181f57ad403",
+        "finalSha256": "c216f5927bc0d1914382675dee01f5c8bf00b6fd1068b6104afb5181f57ad403",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          123,
+          305,
+          389,
+          458
+        ],
+        "transparentMargins": [
+          123,
+          305,
+          123,
+          54
+        ],
+        "safeMarginMin": 54,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "attack": {
+        "unitId": "marsh_toad",
+        "pose": "attack",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/marsh_toad/marsh_toad-attack.png",
+        "sourceSha256": "4f9d36bbf103182cb0757a21acc143d15cf306c837eba32e7c799f5eed316760",
+        "finalSha256": "4f9d36bbf103182cb0757a21acc143d15cf306c837eba32e7c799f5eed316760",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          116,
+          296,
+          395,
+          457
+        ],
+        "transparentMargins": [
+          116,
+          296,
+          117,
+          55
+        ],
+        "safeMarginMin": 55,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "skill": {
+        "unitId": "marsh_toad",
+        "pose": "skill",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/marsh_toad/marsh_toad-skill.png",
+        "sourceSha256": "b38ba863c80de666bd5a68fc948cfb333bdf794f0f71a209e8cf5fec69c72d32",
+        "finalSha256": "b38ba863c80de666bd5a68fc948cfb333bdf794f0f71a209e8cf5fec69c72d32",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          139,
+          291,
+          373,
+          458
+        ],
+        "transparentMargins": [
+          139,
+          291,
+          139,
+          54
+        ],
+        "safeMarginMin": 54,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      }
+    }
+  }
+}

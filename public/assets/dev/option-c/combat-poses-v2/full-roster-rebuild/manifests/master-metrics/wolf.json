@@ -1,0 +1,63 @@
+{
+  "unitId": "wolf",
+  "family": "SMALL_CREATURE",
+  "weaponOrAnatomy": "fangs and pounce",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 456,
+  "pivot": [
+    256,
+    456
+  ],
+  "airborneOffset": 0,
+  "targetCoreExtentPx": 220,
+  "sourceDimensions": [
+    1536,
+    1024
+  ],
+  "sourceAlphaBBox": [
+    240,
+    130,
+    1204,
+    899
+  ],
+  "sourceCoreBBox": [
+    246,
+    140,
+    1196,
+    894
+  ],
+  "authoredBodyMassScale": 0.23157894736842105,
+  "appliedScale": 0.23157894736842105,
+  "scaleLimitedByExtremeAppendage": false,
+  "normalizedAlphaBBox": [
+    145,
+    279,
+    368,
+    457
+  ],
+  "normalizedCoreBBox": [
+    146,
+    282,
+    366,
+    456
+  ],
+  "normalizedCoreExtentPx": 220,
+  "transparentMargins": [
+    145,
+    279,
+    144,
+    55
+  ],
+  "safeMarginsPass": true,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/wolf-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/wolf-clean.png",
+  "masterPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/wolf-master.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/wolf.txt",
+  "rawSha256": "4dfaf74ee6c03478f2e28f94bb30cbaa475ff331a7c52d35d3b10fbbd0531e3a",
+  "masterSha256": "90680e41acdb6275ec145e3e9c2e6211fd722b7e71edb1227fdca7dcfab54d07",
+  "perPoseAutoScaling": false,
+  "fitToContent": false
+}

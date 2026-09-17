@@ -1,0 +1,221 @@
+{
+  "unitId": "serpent_oracle",
+  "canvasPerPose": [
+    512,
+    512
+  ],
+  "boardCanvas": [
+    1024,
+    1024
+  ],
+  "masterCoreExtentPx": 332,
+  "boardIdleCoreExtentPx": 575,
+  "sharedBoardToMasterScale": 0.577391304347826,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "scaleCorrectionOverride": 0,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/serpent_oracle-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/serpent_oracle-clean.png",
+  "boardPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/serpent_oracle-board.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/serpent_oracle.txt",
+  "rawSha256": "875c5bd39a83f28837050b68cea84f766eee79f32f58a3a8077643f01bdc1efd",
+  "boardSha256": "fb0050d8c6862b2fa0a11b48adb633d168281818e065aaf4561783b38d1a9541",
+  "poses": [
+    {
+      "pose": "idle",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_oracle/serpent_oracle-idle.png",
+      "sha256": "ffd9aa77472b6d4a1ba816cf4accbcd39704ad2dd6549ec0ebbeff7e2359166a",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        140,
+        32,
+        451,
+        607
+      ],
+      "sourceCoreBBox": [
+        142,
+        32,
+        445,
+        607
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.577391304347826,
+      "outputAlphaBBox": [
+        167,
+        124,
+        346,
+        456
+      ],
+      "outputCoreBBox": [
+        168,
+        124,
+        343,
+        456
+      ],
+      "outputCoreExtentPx": 332,
+      "transparentMargins": [
+        167,
+        124,
+        166,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_oracle/serpent_oracle-dash.png",
+      "sha256": "4018bb2f442e48eb8ce1d578987807e3a2291265ac24b0a57195255c0591a386",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        13,
+        67,
+        515,
+        589
+      ],
+      "sourceCoreBBox": [
+        16,
+        68,
+        508,
+        588
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [
+        {
+          "bbox": [
+            488,
+            619,
+            492,
+            627
+          ],
+          "alphaPixels": 28
+        }
+      ],
+      "sharedScale": 0.577391304347826,
+      "outputAlphaBBox": [
+        112,
+        156,
+        401,
+        457
+      ],
+      "outputCoreBBox": [
+        114,
+        156,
+        397,
+        456
+      ],
+      "outputCoreExtentPx": 300,
+      "transparentMargins": [
+        112,
+        156,
+        111,
+        55
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_oracle/serpent_oracle-attack.png",
+      "sha256": "71e3ba616eba7dfde0455012d52cbe4bcfcf3b2c4fdd6c888993e795aa5e6f79",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        43,
+        100,
+        627,
+        552
+      ],
+      "sourceCoreBBox": [
+        45,
+        100,
+        627,
+        552
+      ],
+      "sourceEdgeTouch": true,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.577391304347826,
+      "outputAlphaBBox": [
+        87,
+        195,
+        424,
+        456
+      ],
+      "outputCoreBBox": [
+        88,
+        195,
+        424,
+        456
+      ],
+      "outputCoreExtentPx": 336,
+      "transparentMargins": [
+        87,
+        195,
+        88,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "skill",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_oracle/serpent_oracle-skill.png",
+      "sha256": "a4a7418de51756f0f3f085d497379a51b830f5ae53c8dd63c8ce0af022e1cd39",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        62,
+        0,
+        551,
+        576
+      ],
+      "sourceCoreBBox": [
+        66,
+        9,
+        509,
+        575
+      ],
+      "sourceEdgeTouch": true,
+      "removedEdgeFragments": [
+        {
+          "bbox": [
+            0,
+            144,
+            26,
+            191
+          ],
+          "alphaPixels": 837
+        }
+      ],
+      "sharedScale": 0.577391304347826,
+      "outputAlphaBBox": [
+        126,
+        124,
+        408,
+        456
+      ],
+      "outputCoreBBox": [
+        128,
+        129,
+        384,
+        456
+      ],
+      "outputCoreExtentPx": 327,
+      "transparentMargins": [
+        126,
+        124,
+        104,
+        56
+      ],
+      "cropped": false
+    }
+  ]
+}

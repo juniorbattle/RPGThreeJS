@@ -1,0 +1,27 @@
+{
+  "status": "PASS_WITH_TRIAGE",
+  "counts": {
+    "APPROVED_PILOT": 3,
+    "PASS_CANDIDATE": 19,
+    "TARGETED_REPAIR": 0,
+    "MASTER_REPAIR": 0,
+    "WEAPON_REPAIR": 1,
+    "POSE_REPAIR": 1,
+    "SCALE_REVIEW": 0,
+    "REGENERATE": 1
+  },
+  "pilotFilesChanged": [],
+  "canonicalAssetsChanged": [],
+  "expected": {
+    "masters": 25,
+    "boards": 25,
+    "poses": 100,
+    "manifests": 25
+  },
+  "actual": {
+    "masters": 25,
+    "boards": 25,
+    "poses": 100,
+    "manifests": 25
+  }
+}

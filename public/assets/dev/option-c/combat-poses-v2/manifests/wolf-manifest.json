@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 remaining 22 units production",
+  "productionPromotion": false,
+  "unitId": "wolf",
+  "category": "ENEMY",
+  "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_wolf_4x1_2560x768",
+  "master": "public/assets/dev/option-c/combat-poses-v2/masters/wolf-master.png",
+  "board": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/wolf-board.png",
+  "prepare": "public/assets/dev/option-c/combat-poses-v2/split-poses/wolf/wolf-idle.png",
+  "dash": "public/assets/dev/option-c/combat-poses-v2/split-poses/wolf/wolf-dash.png",
+  "attack": "public/assets/dev/option-c/combat-poses-v2/split-poses/wolf/wolf-attack.png",
+  "cast": "public/assets/dev/option-c/combat-poses-v2/split-poses/wolf/wolf-skill.png",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 384,
+  "pivot": [
+    256,
+    384
+  ],
+  "targetWorldSize": 1.6,
+  "deliveryFactor": 0.5,
+  "scaleCorrection": 1.0,
+  "sizeClass": "medium_quadruped",
+  "weaponType": "fangs and claws",
+  "qaStatus": "PASS_CANDIDATE",
+  "knownIssues": [],
+  "generationProvenance": {
+    "model": "UNKNOWN",
+    "modelProvenance": "UNKNOWN",
+    "canonicalIdentityReference": "public/assets/combat-stage/poses/enemies/enemy_wolf_4x1_2560x768",
+    "styleReferences": [
+      "approved Option C four-class reference",
+      "Alistair V2 pilot",
+      "Goblin V2 pilot",
+      "Lion Champion V2 pilot"
+    ],
+    "masterSource": "public/assets/dev/option-c/combat-poses-v2/masters/wolf-master-source.png",
+    "boardSource": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/wolf-board-source.png",
+    "boardPrompt": "public/assets/dev/option-c/combat-poses-v2/manifests/wolf-board-prompt.txt",
+    "processorMeta": "public/assets/dev/option-c/combat-poses-v2/manifests/wolf-processor-meta.json",
+    "boardGeneratedAsOne2x2Family": true
+  },
+  "scaleDoctrine": {
+    "sharedScaleAcrossPoses": true,
+    "perPoseAutoScaling": false,
+    "fitToContentPerPose": false,
+    "scaleCorrectionOverrides": 0
+  },
+  "poses": [
+    {
+      "pose": "prepare",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/wolf/wolf-idle.png",
+      "sha256": "7eb7ecfd04b3738452f0c190862d57f8df06e938593e43c5e468979fec5489c9",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        135,
+        232,
+        376,
+        384
+      ],
+      "transparentMargins": {
+        "left": 135,
+        "top": 232,
+        "right": 136,
+        "bottom": 128
+      },
+      "baseline": 384,
+      "pivot": [
+        256,
+        384
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        0
+      ],
+      "sourceCropBBox": [
+        34,
+        191,
+        590,
+        543
+      ],
+      "commonScaleOutputSize": [
+        241,
+        152
+      ],
+      "pastePosition": [
+        135,
+        232
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/wolf/wolf-dash.png",
+      "sha256": "36b6b905fda3fa5dd01f56d401ebde79c3905adf473bc912abb7d68c91ff205a",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        128,
+        256,
+        384,
+        384
+      ],
+      "transparentMargins": {
+        "left": 128,
+        "top": 256,
+        "right": 128,
+        "bottom": 128
+      },
+      "baseline": 384,
+      "pivot": [
+        256,
+        384
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        1
+      ],
+      "sourceCropBBox": [
+        0,
+        214,
+        590,
+        511
+      ],
+      "commonScaleOutputSize": [
+        256,
+        128
+      ],
+      "pastePosition": [
+        128,
+        256
+      ],
+      "sourceEdgeTouch": true
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/wolf/wolf-attack.png",
+      "sha256": "0ea877734650e7dbf4d53ad7eabc6377c42866615b6c8fae0048c436ed9c53b1",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        128,
+        226,
+        383,
+        384
+      ],
+      "transparentMargins": {
+        "left": 128,
+        "top": 226,
+        "right": 129,
+        "bottom": 128
+      },
+      "baseline": 384,
+      "pivot": [
+        256,
+        384
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        0
+      ],
+      "sourceCropBBox": [
+        31,
+        38,
+        619,
+        403
+      ],
+      "commonScaleOutputSize": [
+        255,
+        158
+      ],
+      "pastePosition": [
+        128,
+        226
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "cast",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/wolf/wolf-skill.png",
+      "sha256": "14b4f1bfcd510c24c60c46d9ec502533ff646c8ab4e07d49e97b054107eaf675",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        135,
+        173,
+        377,
+        384
+      ],
+      "transparentMargins": {
+        "left": 135,
+        "top": 173,
+        "right": 135,
+        "bottom": 128
+      },
+      "baseline": 384,
+      "pivot": [
+        256,
+        384
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        1
+      ],
+      "sourceCropBBox": [
+        28,
+        17,
+        587,
+        504
+      ],
+      "commonScaleOutputSize": [
+        242,
+        211
+      ],
+      "pastePosition": [
+        135,
+        173
+      ],
+      "sourceEdgeTouch": false
+    }
+  ],
+  "qa": {
+    "identity": "OPERATOR_REVIEW_PENDING",
+    "style": "OPERATOR_REVIEW_PENDING",
+    "physicalScale": "PASS_MACHINE_SHARED_SCALE",
+    "morphology": "OPERATOR_REVIEW_PENDING",
+    "poseSemantics": "PASS_CANDIDATE",
+    "weapon": "PASS_CANDIDATE",
+    "pixelDensity": "PASS_MACHINE_SHARED_SCALE",
+    "vfxClearance": "SOURCE_EDGE_RISK",
+    "groundingRisk": "PASS_MACHINE_BASELINE",
+    "operatorApproval": "PENDING",
+    "qaBoard": "public/assets/dev/option-c/combat-poses-v2/qa/wolf-qa-board.png"
+  }
+}

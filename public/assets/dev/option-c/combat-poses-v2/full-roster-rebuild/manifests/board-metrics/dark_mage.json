@@ -1,0 +1,211 @@
+{
+  "unitId": "dark_mage",
+  "canvasPerPose": [
+    512,
+    512
+  ],
+  "boardCanvas": [
+    1024,
+    1024
+  ],
+  "masterCoreExtentPx": 336,
+  "boardIdleCoreExtentPx": 541,
+  "sharedBoardToMasterScale": 0.6210720887245841,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "scaleCorrectionOverride": 0,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/dark_mage-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/dark_mage-clean.png",
+  "boardPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/dark_mage-board.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/dark_mage.txt",
+  "rawSha256": "8bba7311790288df7937e8dd9484eefaea77b607f48161537b3c47d5d2e45daf",
+  "boardSha256": "d728518dc11864bb7ab5ab2df0e3fb63fd2bce4c415588a92d437432dd8d3275",
+  "poses": [
+    {
+      "pose": "idle",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/dark_mage/dark_mage-idle.png",
+      "sha256": "87fd9e23e511b840a0ddc1e4d038076d9a488961ac8bbd16c4f0dc9574947cac",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        178,
+        63,
+        468,
+        607
+      ],
+      "sourceCoreBBox": [
+        180,
+        66,
+        462,
+        607
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.6210720887245841,
+      "outputAlphaBBox": [
+        166,
+        118,
+        346,
+        456
+      ],
+      "outputCoreBBox": [
+        168,
+        119,
+        343,
+        456
+      ],
+      "outputCoreExtentPx": 337,
+      "transparentMargins": [
+        166,
+        118,
+        166,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/dark_mage/dark_mage-dash.png",
+      "sha256": "24b9a408415c201d8dd2d44f4c9f82c15411858fe2f8b01a5a61aedd2d718ab4",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        51,
+        98,
+        526,
+        595
+      ],
+      "sourceCoreBBox": [
+        62,
+        99,
+        512,
+        591
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [
+        {
+          "bbox": [
+            310,
+            625,
+            313,
+            627
+          ],
+          "alphaPixels": 6
+        }
+      ],
+      "sharedScale": 0.6210720887245841,
+      "outputAlphaBBox": [
+        110,
+        151,
+        404,
+        459
+      ],
+      "outputCoreBBox": [
+        116,
+        151,
+        396,
+        456
+      ],
+      "outputCoreExtentPx": 305,
+      "transparentMargins": [
+        110,
+        151,
+        108,
+        53
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/dark_mage/dark_mage-attack.png",
+      "sha256": "e040bc31efe22b9ab5eb0df4b4304e3007c38c18358f824fbe00174d34f9130e",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        50,
+        93,
+        616,
+        568
+      ],
+      "sourceCoreBBox": [
+        50,
+        95,
+        613,
+        568
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.6210720887245841,
+      "outputAlphaBBox": [
+        81,
+        162,
+        432,
+        456
+      ],
+      "outputCoreBBox": [
+        81,
+        162,
+        430,
+        456
+      ],
+      "outputCoreExtentPx": 349,
+      "transparentMargins": [
+        81,
+        162,
+        80,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "skill",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/dark_mage/dark_mage-skill.png",
+      "sha256": "e9d138c84781c642e49c53bd1ff42235916c1e4f4a654b2fb19bfb812c10907d",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        55,
+        0,
+        558,
+        593
+      ],
+      "sourceCoreBBox": [
+        96,
+        19,
+        539,
+        593
+      ],
+      "sourceEdgeTouch": true,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.6210720887245841,
+      "outputAlphaBBox": [
+        93,
+        88,
+        401,
+        456
+      ],
+      "outputCoreBBox": [
+        119,
+        100,
+        393,
+        456
+      ],
+      "outputCoreExtentPx": 356,
+      "transparentMargins": [
+        93,
+        88,
+        111,
+        56
+      ],
+      "cropped": false
+    }
+  ]
+}

@@ -10,13 +10,14 @@ const qaRoot = path.join(
   'dev',
   'option-c',
   'combat-poses-v2',
+  'full-roster-rebuild',
   'qa',
-  'runtime-scale-proof',
+  'production-runtime-proof',
 );
 const screenshotRoot = path.join(qaRoot, 'screenshots');
 const reportPath = path.join(qaRoot, 'runtime-scale-report.json');
 const baseUrl = process.env.OPTION_C_BASE_URL ?? 'http://127.0.0.1:5173/';
-const pilotAssetMarker = '/assets/dev/option-c/combat-poses-v2/';
+const pilotAssetMarker = '/assets/characters/pixel/combat/';
 const stageAssetMarker = '/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/';
 
 const viewports = [
@@ -39,6 +40,26 @@ const compositions = [
     scenario: 'all-three',
     environment: 'bois_clair_burning_stage',
     proof: 'ALL_THREE_COMPARISON_BOARD',
+  },
+  {
+    scenario: 'canvas-512',
+    environment: 'forest_route_stage',
+    proof: 'CANVAS_512_PREPARE',
+  },
+  {
+    scenario: 'canvas-640x512',
+    environment: 'forest_route_stage',
+    proof: 'CANVAS_640X512_ATTACK',
+  },
+  {
+    scenario: 'canvas-512x640',
+    environment: 'bois_clair_burning_stage',
+    proof: 'CANVAS_512X640_CAST',
+  },
+  {
+    scenario: 'canvas-640x640',
+    environment: 'lion_sanctum_stage',
+    proof: 'CANVAS_640X640_CAST',
   },
 ];
 
@@ -126,9 +147,10 @@ const allErrors = captures.flatMap((capture) => [
 const failedAssetResponses = captures
   .flatMap((capture) => capture.assetResponses)
   .filter((response) => response.status !== 200);
-const unitResults = Object.fromEntries(['alistair', 'goblin', 'lion-champion'].map((unitId) => {
+const unitIds = [...new Set(captures.flatMap((capture) => capture.runtime.units.map((unit) => unit.id)))];
+const unitResults = Object.fromEntries(unitIds.map((unitId) => {
   const appearances = captures.flatMap((capture) => capture.runtime.units.filter((unit) => unit.id === unitId));
-  const pass = appearances.length >= 4 && appearances.every((unit) => (
+  const pass = appearances.length >= 2 && appearances.every((unit) => (
     unit.scaleCorrection === 1
     && Math.abs(unit.measuredVisibleWorldHeight - unit.targetWorldHeight) <= 0.000001
     && allPass(Object.values(unit.checks))
@@ -150,12 +172,21 @@ const globalChecks = {
     && capture.runtime.checks.backgroundContrast === 'PASS'
     && capture.runtime.checks.vfxSafeSpace === 'PASS'
   )) ? 'PASS' : 'FAIL',
+  VARIABLE_CANVAS_SUPPORT: (() => {
+    const variableCaptures = captures.filter((capture) => capture.scenario.startsWith('canvas-'));
+    const dimensions = new Set(variableCaptures.flatMap((capture) =>
+      capture.runtime.units.map((unit) => unit.planeWorldSize.join('x'))));
+    return variableCaptures.length === 8
+      && variableCaptures.every((capture) => capture.runtime.units.length === 1)
+      && dimensions.size === 4 ? 'PASS' : 'FAIL';
+  })(),
 };
 const proofCoverage = captures.length === viewports.length * compositions.length
   && viewports.every((viewport) => captures.filter((capture) => capture.viewport.label === viewport.label).length === compositions.length)
   && compositions.every((composition) => captures.some((capture) => capture.environment === composition.environment));
 const protections = {
-  CANONICAL_ASSETS_CHANGED: 'NO',
+  PRODUCTION_CHARACTER_ASSETS_PROMOTED: 'YES',
+  FULL_ASSETS_REPLACED: 'NO',
   GAMEPLAY_CHANGED: 'NO',
   COMBAT_LOGIC_CHANGED: 'NO',
   VFX_CHANGED: 'NO',
@@ -170,7 +201,7 @@ const pilotGatePass = proofCoverage
   && captures.every((capture) => (
     capture.runtime.status === 'PASS'
     && capture.runtime.devOnly === true
-    && capture.runtime.canonicalAssetsPromoted === false
+    && capture.runtime.canonicalAssetsPromoted === true
     && capture.runtime.gameplayChanged === false
     && capture.runtime.combatLogicChanged === false
     && capture.runtime.vfxChanged === false
@@ -178,7 +209,7 @@ const pilotGatePass = proofCoverage
   ));
 const report = {
   schemaVersion: 1,
-  mission: 'Option C Combat Poses V2 — Pilot Runtime Scale Proof',
+  mission: 'Character System V2 — Production Combat Stage Runtime Proof',
   generatedAt: new Date().toISOString(),
   baseUrl,
   status: pilotGatePass ? 'PASS' : 'FAIL',

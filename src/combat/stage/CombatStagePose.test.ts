@@ -63,7 +63,7 @@ describe('CombatStage pose integration', () => {
     const profile = { ...baseProfile, transitionInMs: 0, transitionOutMs: 0 };
 
     expect(await stage.enter(attacker, [target], { key: 'attack' }, { profile })).toBe(true);
-    expect(stage.attackerPoseVisualSnapshot()).toMatchObject({ unitId: 'warrior', pose: 'prepare' });
+    expect(stage.attackerPoseVisualSnapshot()).toMatchObject({ unitId: 'alistair', pose: 'prepare' });
 
     const root = stage.scene.children.find((child) => child.name.startsWith('CombatStageUnitRoot:'));
     expect(root).toBeInstanceOf(THREE.Group);
@@ -76,20 +76,20 @@ describe('CombatStage pose integration', () => {
     const warriorSet = resolveCombatPoseSet('warrior')!;
     const prepareLayout = resolveCombatPoseLayout(warriorSet, warriorSet.poses.prepare);
     expect(prepareVisual.localPosition.y).toBeCloseTo(prepareLayout.offsetY - 0.08, 10);
-    expect(await stage.setCombatUnitPose(attacker, 'dash')).toBe(true);
-    const dashVisual = stage.attackerPoseVisualSnapshot()!;
-    const afterDash = stage.attackerUnitRootTransform()!;
+    expect(await stage.setCombatUnitPose(attacker, 'attack')).toBe(true);
+    const attackVisual = stage.attackerPoseVisualSnapshot()!;
+    const afterAttack = stage.attackerUnitRootTransform()!;
 
-    expect(dashVisual.pose).toBe('dash');
-    expect({ width: dashVisual.width, height: dashVisual.height }).not.toEqual({
+    expect(attackVisual.pose).toBe('attack');
+    expect({ width: attackVisual.width, height: attackVisual.height }).not.toEqual({
       width: prepareVisual.width,
       height: prepareVisual.height,
     });
-    expect(afterDash.position.equals(originalTransform.position)).toBe(true);
-    expect(afterDash.quaternion.equals(originalTransform.quaternion)).toBe(true);
-    expect(afterDash.scale.equals(originalTransform.scale)).toBe(true);
+    expect(afterAttack.position.equals(originalTransform.position)).toBe(true);
+    expect(afterAttack.quaternion.equals(originalTransform.quaternion)).toBe(true);
+    expect(afterAttack.scale.equals(originalTransform.scale)).toBe(true);
 
-    await stage.setCombatUnitPose(attacker, 'attack');
+    await stage.setCombatUnitPose(attacker, 'dash');
     await stage.setCombatUnitPose(attacker, 'cast');
     const afterAllPoses = stage.attackerUnitRootTransform()!;
     expect(afterAllPoses.position.equals(originalTransform.position)).toBe(true);

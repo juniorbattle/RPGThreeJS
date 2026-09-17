@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C full 25-unit roster rebuild",
+  "unitId": "goblin",
+  "category": "ENEMY",
+  "scaleFamily": "SMALL_CREATURE",
+  "weaponOrAnatomyLock": "short cleaver",
+  "artStyleAuthority": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/art-style-authority.png",
+    "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+    "sourcePath": "C:\\Users\\miche\\AppData\\Local\\Temp\\codex-clipboard-21f24758-8fb5-4e50-97ee-7ad521b05315.png",
+    "role": "PRIMARY_AND_ONLY_ART_STYLE_AUTHORITY"
+  },
+  "canonicalIdentityReference": {
+    "unitId": "goblin",
+    "category": "ENEMY",
+    "family": "SMALL_CREATURE",
+    "weaponOrAnatomy": "short cleaver",
+    "canonicalFolder": "public/assets/combat-stage/poses/enemies/enemy_goblin_4x1_2560x768",
+    "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/canonical/goblin.png",
+    "sources": [
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_goblin_4x1_2560x768/enemy_goblin_4x1_2560x768_01_pose1.png",
+        "sha256": "ef3f4234f56bf0235c77f35c9b33464b8ceb257cc2fa3ad90c8c653ab37931ff",
+        "dimensions": [
+          699,
+          490
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_goblin_4x1_2560x768/enemy_goblin_4x1_2560x768_02_pose2.png",
+        "sha256": "cfcb28e056557fbac400800f79482516ae86257610f0f967faf8d12c537e0a48",
+        "dimensions": [
+          529,
+          520
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_goblin_4x1_2560x768/enemy_goblin_4x1_2560x768_03_pose3.png",
+        "sha256": "414ed1dd2cc85738d7822b04c1c94d5846483dba15589b212193bb78d8238585",
+        "dimensions": [
+          634,
+          491
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_goblin_4x1_2560x768/enemy_goblin_4x1_2560x768_04_pose4.png",
+        "sha256": "e82459baf9c5409add23cc01350b8657bb7dc1ff61af377da869f67178d738f8",
+        "dimensions": [
+          497,
+          472
+        ]
+      }
+    ]
+  },
+  "master": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/goblin-master.png",
+    "sha256": "0afee27c875ad0552c7a5e68d500af2a4b5c9876b9f4d6c331e4e2fb9aba41f0",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA"
+  },
+  "board2x2": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/goblin-board.png",
+    "sha256": "36d59531f249d762249a8b1501c4d9d8024dff84ee8b852f0841f3e851724724",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      104,
+      227,
+      903,
+      968
+    ],
+    "safeMarginMin": 56
+  },
+  "poses": {
+    "idle": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/goblin/goblin-idle.png",
+      "sha256": "63f4386efc1880d0282dd1e5f93e4ab7802791df6ddf69bbfc5db9ef1ce14602",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        152,
+        227,
+        361,
+        456
+      ],
+      "safeMarginMin": 56,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "dash": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/goblin/goblin-dash.png",
+      "sha256": "78c8b3e2c54bbc7e7abbb55ffc1958a6075f70ce417a6bcf210ea526e8433ba5",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        127,
+        250,
+        383,
+        456
+      ],
+      "safeMarginMin": 56,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "attack": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/goblin/goblin-attack.png",
+      "sha256": "d03d5aa154246ba41cb35ff6af8797654a796aaaafef178be544f74902834719",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        104,
+        230,
+        417,
+        456
+      ],
+      "safeMarginMin": 56,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "skill": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/goblin/goblin-skill.png",
+      "sha256": "1f1377c7df50c24dbbb9a271d3e45c4ed938e10b2e82d707fae4ee97d0e5fd43",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        118,
+        185,
+        391,
+        456
+      ],
+      "safeMarginMin": 56,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    }
+  },
+  "prompts": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/goblin.txt",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/goblin.txt"
+  },
+  "metrics": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-metrics/goblin.json",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-metrics/goblin.json"
+  },
+  "qaBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/goblin-qa.png",
+  "pipelineDoctrine": {
+    "masterNormalizedBeforePoses": true,
+    "commonMasterCanvas": [
+      512,
+      512
+    ],
+    "commonBaseline": 456,
+    "commonPivotX": 256,
+    "perPoseAutoScalingUsed": false,
+    "fitToContentUsed": false,
+    "sharedBoardToMasterScale": 0.5846153846153846,
+    "scaleCorrectionOverride": 0,
+    "bodyScaleLocked": true,
+    "pixelDensityLocked": true,
+    "flexiblePoseCanvasEnabled": true
+  },
+  "machineValidation": {
+    "masterDimensionsPass": true,
+    "boardDimensionsPass": true,
+    "poseDimensionsPass": true,
+    "outputCropFlags": [],
+    "allOutputsNonEmpty": true
+  },
+  "operatorClassification": {
+    "category": "PASS_CANDIDATE",
+    "reason": "Small-creature hierarchy, cleaver identity, strike, and skill are clean and readable.",
+    "issues": {
+      "cropping": [],
+      "scale": [],
+      "weapon": [],
+      "pose": [],
+      "other": []
+    }
+  },
+  "finalCleanup": {
+    "status": "PASS",
+    "poseRecords": {
+      "idle": {
+        "unitId": "goblin",
+        "pose": "idle",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/goblin/goblin-idle.png",
+        "sourceSha256": "63f4386efc1880d0282dd1e5f93e4ab7802791df6ddf69bbfc5db9ef1ce14602",
+        "finalSha256": "63f4386efc1880d0282dd1e5f93e4ab7802791df6ddf69bbfc5db9ef1ce14602",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          152,
+          227,
+          361,
+          456
+        ],
+        "transparentMargins": [
+          152,
+          227,
+          151,
+          56
+        ],
+        "safeMarginMin": 56,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "dash": {
+        "unitId": "goblin",
+        "pose": "dash",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/goblin/goblin-dash.png",
+        "sourceSha256": "78c8b3e2c54bbc7e7abbb55ffc1958a6075f70ce417a6bcf210ea526e8433ba5",
+        "finalSha256": "78c8b3e2c54bbc7e7abbb55ffc1958a6075f70ce417a6bcf210ea526e8433ba5",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          127,
+          250,
+          383,
+          456
+        ],
+        "transparentMargins": [
+          127,
+          250,
+          129,
+          56
+        ],
+        "safeMarginMin": 56,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "attack": {
+        "unitId": "goblin",
+        "pose": "attack",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/goblin/goblin-attack.png",
+        "sourceSha256": "d03d5aa154246ba41cb35ff6af8797654a796aaaafef178be544f74902834719",
+        "finalSha256": "d03d5aa154246ba41cb35ff6af8797654a796aaaafef178be544f74902834719",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          104,
+          230,
+          417,
+          456
+        ],
+        "transparentMargins": [
+          104,
+          230,
+          95,
+          56
+        ],
+        "safeMarginMin": 56,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "skill": {
+        "unitId": "goblin",
+        "pose": "skill",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/goblin/goblin-skill.png",
+        "sourceSha256": "1f1377c7df50c24dbbb9a271d3e45c4ed938e10b2e82d707fae4ee97d0e5fd43",
+        "finalSha256": "1f1377c7df50c24dbbb9a271d3e45c4ed938e10b2e82d707fae4ee97d0e5fd43",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          118,
+          185,
+          391,
+          456
+        ],
+        "transparentMargins": [
+          118,
+          185,
+          121,
+          56
+        ],
+        "safeMarginMin": 56,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      }
+    }
+  }
+}

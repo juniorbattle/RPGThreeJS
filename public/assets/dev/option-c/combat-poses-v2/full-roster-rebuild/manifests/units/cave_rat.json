@@ -1,0 +1,429 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C full 25-unit roster rebuild",
+  "unitId": "cave_rat",
+  "category": "ENEMY",
+  "scaleFamily": "SMALL_CREATURE",
+  "weaponOrAnatomyLock": "fangs and bite",
+  "artStyleAuthority": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/art-style-authority.png",
+    "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+    "sourcePath": "C:\\Users\\miche\\AppData\\Local\\Temp\\codex-clipboard-21f24758-8fb5-4e50-97ee-7ad521b05315.png",
+    "role": "PRIMARY_AND_ONLY_ART_STYLE_AUTHORITY"
+  },
+  "canonicalIdentityReference": {
+    "unitId": "cave_rat",
+    "category": "ENEMY",
+    "family": "SMALL_CREATURE",
+    "weaponOrAnatomy": "fangs and bite",
+    "canonicalFolder": "public/assets/combat-stage/poses/enemies/enemy_cave_rat_4x1_2560x768",
+    "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/canonical/cave_rat.png",
+    "sources": [
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_cave_rat_4x1_2560x768/enemy_cave_rat_4x1_2560x768_01_pose1.png",
+        "sha256": "39af179708cd1a95c57d944d344745842736923a0df2c854924b74fbb71de16f",
+        "dimensions": [
+          573,
+          390
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_cave_rat_4x1_2560x768/enemy_cave_rat_4x1_2560x768_02_pose2.png",
+        "sha256": "8597903409c4e84e1bdfade817432bcdfa17f5d2d45d7f4ec179592f25b37253",
+        "dimensions": [
+          728,
+          309
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_cave_rat_4x1_2560x768/enemy_cave_rat_4x1_2560x768_03_pose3.png",
+        "sha256": "e4e5ae98ac193fe6f3edbe944ec6b2cdf0d0a02191165116df1d02b579bf4067",
+        "dimensions": [
+          494,
+          491
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/enemies/enemy_cave_rat_4x1_2560x768/enemy_cave_rat_4x1_2560x768_04_pose4.png",
+        "sha256": "16ebc967203099d8c1b79ac2a3d9a869b21152867f0934be0a15a0e82f8e6f21",
+        "dimensions": [
+          405,
+          489
+        ]
+      }
+    ]
+  },
+  "master": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/cave_rat-master.png",
+    "sha256": "042787f3f3081fc155d416c91d5d67347486e6a1f8cda95498f31bc4400fe3d1",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA"
+  },
+  "board2x2": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/cave_rat-board.png",
+    "sha256": "9243821d1051b1cb68dbd8b2b5926495bab21ec13aa3168e711b315992e569ea",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      121,
+      341,
+      891,
+      971
+    ],
+    "safeMarginMin": 53
+  },
+  "poses": {
+    "idle": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_rat/cave_rat-idle.png",
+      "sha256": "4960de3bfee9093660a84311478a08fb98c5a5b65d08fd1047e645aad3f0988d",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        162,
+        341,
+        359,
+        457
+      ],
+      "safeMarginMin": 55,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "dash": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_rat/cave_rat-dash.png",
+      "sha256": "ea2290ec65f80addf805055534e6b3388f3b3d6807dd6ab70f2df949efde3a74",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        125,
+        357,
+        379,
+        460
+      ],
+      "safeMarginMin": 52,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "attack": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_rat/cave_rat-attack.png",
+      "sha256": "8279308458863d3a1a0ec8af0d66756b374cf9287caf379bed8f6f0f8b046430",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        121,
+        333,
+        375,
+        456
+      ],
+      "safeMarginMin": 56,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "skill": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_rat/cave_rat-skill.png",
+      "sha256": "61829da625b633c9002a1c924a3cce266c23e1ca2ac816a5b9257a2f96295982",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        117,
+        337,
+        322,
+        459
+      ],
+      "safeMarginMin": 53,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": true,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": true
+    }
+  },
+  "prompts": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/cave_rat.txt",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/cave_rat.txt"
+  },
+  "metrics": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-metrics/cave_rat.json",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-metrics/cave_rat.json"
+  },
+  "qaBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/cave_rat-qa.png",
+  "pipelineDoctrine": {
+    "masterNormalizedBeforePoses": true,
+    "commonMasterCanvas": [
+      512,
+      512
+    ],
+    "commonBaseline": 456,
+    "commonPivotX": 256,
+    "perPoseAutoScalingUsed": false,
+    "fitToContentUsed": false,
+    "sharedBoardToMasterScale": 0.513595166163142,
+    "scaleCorrectionOverride": 0,
+    "bodyScaleLocked": true,
+    "pixelDensityLocked": true,
+    "flexiblePoseCanvasEnabled": true
+  },
+  "machineValidation": {
+    "masterDimensionsPass": true,
+    "boardDimensionsPass": true,
+    "poseDimensionsPass": true,
+    "outputCropFlags": [],
+    "allOutputsNonEmpty": true
+  },
+  "operatorClassification": {
+    "category": "PASS_CANDIDATE",
+    "reason": "Skill pose regenerated only; toxic energy is contained at the mouth with no released projectile.",
+    "issues": {
+      "cropping": [],
+      "scale": [],
+      "weapon": [],
+      "pose": [],
+      "other": []
+    }
+  },
+  "finalCleanup": {
+    "status": "PASS",
+    "poseRecords": {
+      "idle": {
+        "unitId": "cave_rat",
+        "pose": "idle",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_rat/cave_rat-idle.png",
+        "sourceSha256": "4960de3bfee9093660a84311478a08fb98c5a5b65d08fd1047e645aad3f0988d",
+        "finalSha256": "4960de3bfee9093660a84311478a08fb98c5a5b65d08fd1047e645aad3f0988d",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          162,
+          341,
+          359,
+          457
+        ],
+        "transparentMargins": [
+          162,
+          341,
+          153,
+          55
+        ],
+        "safeMarginMin": 55,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "dash": {
+        "unitId": "cave_rat",
+        "pose": "dash",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_rat/cave_rat-dash.png",
+        "sourceSha256": "ea2290ec65f80addf805055534e6b3388f3b3d6807dd6ab70f2df949efde3a74",
+        "finalSha256": "ea2290ec65f80addf805055534e6b3388f3b3d6807dd6ab70f2df949efde3a74",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          125,
+          357,
+          379,
+          460
+        ],
+        "transparentMargins": [
+          125,
+          357,
+          133,
+          52
+        ],
+        "safeMarginMin": 52,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "attack": {
+        "unitId": "cave_rat",
+        "pose": "attack",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_rat/cave_rat-attack.png",
+        "sourceSha256": "8279308458863d3a1a0ec8af0d66756b374cf9287caf379bed8f6f0f8b046430",
+        "finalSha256": "8279308458863d3a1a0ec8af0d66756b374cf9287caf379bed8f6f0f8b046430",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          121,
+          333,
+          375,
+          456
+        ],
+        "transparentMargins": [
+          121,
+          333,
+          137,
+          56
+        ],
+        "safeMarginMin": 56,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "skill": {
+        "unitId": "cave_rat",
+        "pose": "skill",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/cave_rat/cave_rat-skill.png",
+        "sourceSha256": "e34b4be37e8cff79f0e639104da3f4428008a137c85ee9630f56d69a9575fae1",
+        "finalSha256": "61829da625b633c9002a1c924a3cce266c23e1ca2ac816a5b9257a2f96295982",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          117,
+          337,
+          322,
+          459
+        ],
+        "transparentMargins": [
+          117,
+          337,
+          190,
+          53
+        ],
+        "safeMarginMin": 53,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": true,
+        "releasedFxDescription": "detached toxic spit/cloud",
+        "restoration": null,
+        "poseRegenerated": true,
+        "regeneration": {
+          "prompt": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/regenerated-pose-prompts/cave_rat-skill.txt",
+          "reason": "compact mouth-bound toxic charge with no released spit projectile",
+          "normalization": {
+            "candidateSource": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/regenerated-pose-candidates/cave_rat-skill/clean.png",
+            "candidateSourceBBox": [
+              51,
+              237,
+              972,
+              786
+            ],
+            "lockedAlphaHeight": 122,
+            "normalizationScale": 0.2222222222222222,
+            "normalizationFilter": "NEAREST",
+            "placement": [
+              117,
+              337
+            ],
+            "transparentMargins": [
+              117,
+              337,
+              190,
+              53
+            ],
+            "method": "regenerated pose normalized to prior alpha height and pivot; no surviving pose was rescaled"
+          },
+          "pivot": [
+            256,
+            456
+          ]
+        }
+      }
+    }
+  }
+}

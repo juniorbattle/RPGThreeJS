@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 remaining 22 units production",
+  "productionPromotion": false,
+  "unitId": "wild_boar",
+  "category": "ENEMY",
+  "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_boar_4x1_2560x768",
+  "master": "public/assets/dev/option-c/combat-poses-v2/masters/wild_boar-master.png",
+  "board": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/wild_boar-board.png",
+  "prepare": "public/assets/dev/option-c/combat-poses-v2/split-poses/wild_boar/wild_boar-idle.png",
+  "dash": "public/assets/dev/option-c/combat-poses-v2/split-poses/wild_boar/wild_boar-dash.png",
+  "attack": "public/assets/dev/option-c/combat-poses-v2/split-poses/wild_boar/wild_boar-attack.png",
+  "cast": "public/assets/dev/option-c/combat-poses-v2/split-poses/wild_boar/wild_boar-skill.png",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 389,
+  "pivot": [
+    256,
+    389
+  ],
+  "targetWorldSize": 1.65,
+  "deliveryFactor": 0.52,
+  "scaleCorrection": 1.0,
+  "sizeClass": "heavy_quadruped",
+  "weaponType": "tusks and body charge",
+  "qaStatus": "PASS_CANDIDATE",
+  "knownIssues": [],
+  "generationProvenance": {
+    "model": "UNKNOWN",
+    "modelProvenance": "UNKNOWN",
+    "canonicalIdentityReference": "public/assets/combat-stage/poses/enemies/enemy_boar_4x1_2560x768",
+    "styleReferences": [
+      "approved Option C four-class reference",
+      "Alistair V2 pilot",
+      "Goblin V2 pilot",
+      "Lion Champion V2 pilot"
+    ],
+    "masterSource": "public/assets/dev/option-c/combat-poses-v2/masters/wild_boar-master-source.png",
+    "boardSource": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/wild_boar-board-source.png",
+    "boardPrompt": "public/assets/dev/option-c/combat-poses-v2/manifests/wild_boar-board-prompt.txt",
+    "processorMeta": "public/assets/dev/option-c/combat-poses-v2/manifests/wild_boar-processor-meta.json",
+    "boardGeneratedAsOne2x2Family": true
+  },
+  "scaleDoctrine": {
+    "sharedScaleAcrossPoses": true,
+    "perPoseAutoScaling": false,
+    "fitToContentPerPose": false,
+    "scaleCorrectionOverrides": 0
+  },
+  "poses": [
+    {
+      "pose": "prepare",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/wild_boar/wild_boar-idle.png",
+      "sha256": "26713fa389c9d8bca44e1083a6d0dd6d1cc532e2028167482bfd4acaa33cc1ab",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        130,
+        239,
+        381,
+        390
+      ],
+      "transparentMargins": {
+        "left": 130,
+        "top": 239,
+        "right": 131,
+        "bottom": 122
+      },
+      "baseline": 389,
+      "pivot": [
+        256,
+        389
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        0
+      ],
+      "sourceCropBBox": [
+        20,
+        185,
+        593,
+        530
+      ],
+      "commonScaleOutputSize": [
+        251,
+        151
+      ],
+      "pastePosition": [
+        130,
+        239
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/wild_boar/wild_boar-dash.png",
+      "sha256": "1776780154ebde8b4f1cee99caef595179aa812d43ef66c21ce95a2ba3cbb4c1",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        123,
+        246,
+        389,
+        390
+      ],
+      "transparentMargins": {
+        "left": 123,
+        "top": 246,
+        "right": 123,
+        "bottom": 122
+      },
+      "baseline": 389,
+      "pivot": [
+        256,
+        389
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        1
+      ],
+      "sourceCropBBox": [
+        8,
+        213,
+        615,
+        542
+      ],
+      "commonScaleOutputSize": [
+        266,
+        144
+      ],
+      "pastePosition": [
+        123,
+        246
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/wild_boar/wild_boar-attack.png",
+      "sha256": "292d7343e021448eaa712c96638d54ae638da7513cccec91d52927cdd34e7ebc",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        125,
+        252,
+        387,
+        390
+      ],
+      "transparentMargins": {
+        "left": 125,
+        "top": 252,
+        "right": 125,
+        "bottom": 122
+      },
+      "baseline": 389,
+      "pivot": [
+        256,
+        389
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        0
+      ],
+      "sourceCropBBox": [
+        21,
+        130,
+        619,
+        446
+      ],
+      "commonScaleOutputSize": [
+        262,
+        138
+      ],
+      "pastePosition": [
+        125,
+        252
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "cast",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/wild_boar/wild_boar-skill.png",
+      "sha256": "a656320656bc81ed07e883bcba2b7a71b43e7cf9ec776fecbd2f818628ef75e2",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        126,
+        237,
+        385,
+        390
+      ],
+      "transparentMargins": {
+        "left": 126,
+        "top": 237,
+        "right": 127,
+        "bottom": 122
+      },
+      "baseline": 389,
+      "pivot": [
+        256,
+        389
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        1
+      ],
+      "sourceCropBBox": [
+        0,
+        117,
+        592,
+        466
+      ],
+      "commonScaleOutputSize": [
+        259,
+        153
+      ],
+      "pastePosition": [
+        126,
+        237
+      ],
+      "sourceEdgeTouch": true
+    }
+  ],
+  "qa": {
+    "identity": "OPERATOR_REVIEW_PENDING",
+    "style": "OPERATOR_REVIEW_PENDING",
+    "physicalScale": "PASS_MACHINE_SHARED_SCALE",
+    "morphology": "OPERATOR_REVIEW_PENDING",
+    "poseSemantics": "PASS_CANDIDATE",
+    "weapon": "PASS_CANDIDATE",
+    "pixelDensity": "PASS_MACHINE_SHARED_SCALE",
+    "vfxClearance": "SOURCE_EDGE_RISK",
+    "groundingRisk": "PASS_MACHINE_BASELINE",
+    "operatorApproval": "PENDING",
+    "qaBoard": "public/assets/dev/option-c/combat-poses-v2/qa/wild_boar-qa-board.png"
+  }
+}

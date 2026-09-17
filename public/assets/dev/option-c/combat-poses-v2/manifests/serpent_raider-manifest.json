@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 remaining 22 units production",
+  "productionPromotion": false,
+  "unitId": "serpent_raider",
+  "category": "ENEMY",
+  "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_masked_assassin_4x1_2560x768",
+  "master": "public/assets/dev/option-c/combat-poses-v2/masters/serpent_raider-master.png",
+  "board": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/serpent_raider-board.png",
+  "prepare": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_raider/serpent_raider-idle.png",
+  "dash": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_raider/serpent_raider-dash.png",
+  "attack": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_raider/serpent_raider-attack.png",
+  "cast": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_raider/serpent_raider-skill.png",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 420,
+  "pivot": [
+    256,
+    420
+  ],
+  "targetWorldSize": 2.0,
+  "deliveryFactor": 0.64,
+  "scaleCorrection": 1.0,
+  "sizeClass": "humanoid_enemy",
+  "weaponType": "single short curved dagger",
+  "qaStatus": "PASS_CANDIDATE",
+  "knownIssues": [],
+  "generationProvenance": {
+    "model": "UNKNOWN",
+    "modelProvenance": "UNKNOWN",
+    "canonicalIdentityReference": "public/assets/combat-stage/poses/enemies/enemy_masked_assassin_4x1_2560x768",
+    "styleReferences": [
+      "approved Option C four-class reference",
+      "Alistair V2 pilot",
+      "Goblin V2 pilot",
+      "Lion Champion V2 pilot"
+    ],
+    "masterSource": "public/assets/dev/option-c/combat-poses-v2/masters/serpent_raider-master-source.png",
+    "boardSource": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/serpent_raider-board-source.png",
+    "boardPrompt": "public/assets/dev/option-c/combat-poses-v2/manifests/serpent_raider-board-prompt.txt",
+    "processorMeta": "public/assets/dev/option-c/combat-poses-v2/manifests/serpent_raider-processor-meta.json",
+    "boardGeneratedAsOne2x2Family": true
+  },
+  "scaleDoctrine": {
+    "sharedScaleAcrossPoses": true,
+    "perPoseAutoScaling": false,
+    "fitToContentPerPose": false,
+    "scaleCorrectionOverrides": 0
+  },
+  "poses": [
+    {
+      "pose": "prepare",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_raider/serpent_raider-idle.png",
+      "sha256": "384d0c3ec9f7b515d7a81871dbfa555b6aa9aa29569850663e70af4de90ead34",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        115,
+        128,
+        396,
+        420
+      ],
+      "transparentMargins": {
+        "left": 115,
+        "top": 128,
+        "right": 116,
+        "bottom": 92
+      },
+      "baseline": 420,
+      "pivot": [
+        256,
+        420
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        0
+      ],
+      "sourceCropBBox": [
+        48,
+        73,
+        559,
+        603
+      ],
+      "commonScaleOutputSize": [
+        281,
+        292
+      ],
+      "pastePosition": [
+        115,
+        128
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_raider/serpent_raider-dash.png",
+      "sha256": "9c36c4054c0f47c195e66ff202cc8805dc2347a5a683d9942b77a16ca16f5460",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        106,
+        148,
+        406,
+        420
+      ],
+      "transparentMargins": {
+        "left": 106,
+        "top": 148,
+        "right": 106,
+        "bottom": 92
+      },
+      "baseline": 420,
+      "pivot": [
+        256,
+        420
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        1
+      ],
+      "sourceCropBBox": [
+        29,
+        102,
+        574,
+        596
+      ],
+      "commonScaleOutputSize": [
+        300,
+        272
+      ],
+      "pastePosition": [
+        106,
+        148
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_raider/serpent_raider-attack.png",
+      "sha256": "b86366f2eff6e61c27074daf3b683ead0c36d9c7f2f0d162068ca41102889e35",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        92,
+        156,
+        419,
+        420
+      ],
+      "transparentMargins": {
+        "left": 92,
+        "top": 156,
+        "right": 93,
+        "bottom": 92
+      },
+      "baseline": 420,
+      "pivot": [
+        256,
+        420
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        0
+      ],
+      "sourceCropBBox": [
+        25,
+        53,
+        619,
+        532
+      ],
+      "commonScaleOutputSize": [
+        327,
+        264
+      ],
+      "pastePosition": [
+        92,
+        156
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "cast",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_raider/serpent_raider-skill.png",
+      "sha256": "625c9502893246b1136efd16efa2068d06fd87f4497bacbfdcb64baf7e12dde5",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        95,
+        158,
+        416,
+        420
+      ],
+      "transparentMargins": {
+        "left": 95,
+        "top": 158,
+        "right": 96,
+        "bottom": 92
+      },
+      "baseline": 420,
+      "pivot": [
+        256,
+        420
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        1
+      ],
+      "sourceCropBBox": [
+        0,
+        53,
+        582,
+        528
+      ],
+      "commonScaleOutputSize": [
+        321,
+        262
+      ],
+      "pastePosition": [
+        95,
+        158
+      ],
+      "sourceEdgeTouch": true
+    }
+  ],
+  "qa": {
+    "identity": "OPERATOR_REVIEW_PENDING",
+    "style": "OPERATOR_REVIEW_PENDING",
+    "physicalScale": "PASS_MACHINE_SHARED_SCALE",
+    "morphology": "OPERATOR_REVIEW_PENDING",
+    "poseSemantics": "PASS_CANDIDATE",
+    "weapon": "PASS_CANDIDATE",
+    "pixelDensity": "PASS_MACHINE_SHARED_SCALE",
+    "vfxClearance": "SOURCE_EDGE_RISK",
+    "groundingRisk": "PASS_MACHINE_BASELINE",
+    "operatorApproval": "PENDING",
+    "qaBoard": "public/assets/dev/option-c/combat-poses-v2/qa/serpent_raider-qa-board.png"
+  }
+}

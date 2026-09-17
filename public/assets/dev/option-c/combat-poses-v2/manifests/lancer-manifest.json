@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 remaining 22 units production",
+  "productionPromotion": false,
+  "unitId": "lancer",
+  "category": "HERO",
+  "canonicalReferenceFolder": "public/assets/combat-stage/poses/heroes/lancer_sheet_4x1",
+  "master": "public/assets/dev/option-c/combat-poses-v2/masters/lancer-master.png",
+  "board": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/lancer-board.png",
+  "prepare": "public/assets/dev/option-c/combat-poses-v2/split-poses/lancer/lancer-idle.png",
+  "dash": "public/assets/dev/option-c/combat-poses-v2/split-poses/lancer/lancer-dash.png",
+  "attack": "public/assets/dev/option-c/combat-poses-v2/split-poses/lancer/lancer-attack.png",
+  "cast": "public/assets/dev/option-c/combat-poses-v2/split-poses/lancer/lancer-skill.png",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 435,
+  "pivot": [
+    256,
+    435
+  ],
+  "targetWorldSize": 2.2,
+  "deliveryFactor": 0.7,
+  "scaleCorrection": 1.0,
+  "sizeClass": "large_humanoid_hero",
+  "weaponType": "long teal-shafted spear with broad white-and-gold leaf blade",
+  "qaStatus": "PASS_CANDIDATE",
+  "knownIssues": [],
+  "generationProvenance": {
+    "model": "UNKNOWN",
+    "modelProvenance": "UNKNOWN",
+    "canonicalIdentityReference": "public/assets/combat-stage/poses/heroes/lancer_sheet_4x1",
+    "styleReferences": [
+      "approved Option C four-class reference",
+      "Alistair V2 pilot",
+      "Goblin V2 pilot",
+      "Lion Champion V2 pilot"
+    ],
+    "masterSource": "public/assets/dev/option-c/combat-poses-v2/masters/lancer-master-source.png",
+    "boardSource": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/lancer-board-source.png",
+    "boardPrompt": "public/assets/dev/option-c/combat-poses-v2/manifests/lancer-board-prompt.txt",
+    "processorMeta": "public/assets/dev/option-c/combat-poses-v2/manifests/lancer-processor-meta.json",
+    "boardGeneratedAsOne2x2Family": true
+  },
+  "scaleDoctrine": {
+    "sharedScaleAcrossPoses": true,
+    "perPoseAutoScaling": false,
+    "fitToContentPerPose": false,
+    "scaleCorrectionOverrides": 0
+  },
+  "poses": [
+    {
+      "pose": "prepare",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/lancer/lancer-idle.png",
+      "sha256": "28983a7b285a2cc2c0fb5edaacd0f02b833a78e830064253c24c1dc0165ec8bd",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        82,
+        85,
+        429,
+        436
+      ],
+      "transparentMargins": {
+        "left": 82,
+        "top": 85,
+        "right": 83,
+        "bottom": 76
+      },
+      "baseline": 435,
+      "pivot": [
+        256,
+        435
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        0
+      ],
+      "sourceCropBBox": [
+        33,
+        19,
+        615,
+        607
+      ],
+      "commonScaleOutputSize": [
+        347,
+        351
+      ],
+      "pastePosition": [
+        82,
+        85
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/lancer/lancer-dash.png",
+      "sha256": "5747b19a9e74d1913733eb2df82379d172e913f875eab7e02bd1258cbf112f71",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        77,
+        90,
+        435,
+        436
+      ],
+      "transparentMargins": {
+        "left": 77,
+        "top": 90,
+        "right": 77,
+        "bottom": 76
+      },
+      "baseline": 435,
+      "pivot": [
+        256,
+        435
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        1
+      ],
+      "sourceCropBBox": [
+        3,
+        17,
+        603,
+        597
+      ],
+      "commonScaleOutputSize": [
+        358,
+        346
+      ],
+      "pastePosition": [
+        77,
+        90
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/lancer/lancer-attack.png",
+      "sha256": "b9d676086d9d39ad938b663aa36c397e21ee6c205114d3e4c80ae5cfcf69dba8",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        85,
+        96,
+        427,
+        436
+      ],
+      "transparentMargins": {
+        "left": 85,
+        "top": 96,
+        "right": 85,
+        "bottom": 76
+      },
+      "baseline": 435,
+      "pivot": [
+        256,
+        435
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        0
+      ],
+      "sourceCropBBox": [
+        41,
+        3,
+        615,
+        573
+      ],
+      "commonScaleOutputSize": [
+        342,
+        340
+      ],
+      "pastePosition": [
+        85,
+        96
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "cast",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/lancer/lancer-skill.png",
+      "sha256": "73e5ce9dfcef5fb786ce0f9d23473e8e46704507d0ff22d217d55edefd1deb72",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        81,
+        88,
+        431,
+        436
+      ],
+      "transparentMargins": {
+        "left": 81,
+        "top": 88,
+        "right": 81,
+        "bottom": 76
+      },
+      "baseline": 435,
+      "pivot": [
+        256,
+        435
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        1
+      ],
+      "sourceCropBBox": [
+        19,
+        15,
+        607,
+        598
+      ],
+      "commonScaleOutputSize": [
+        351,
+        348
+      ],
+      "pastePosition": [
+        80,
+        88
+      ],
+      "sourceEdgeTouch": false
+    }
+  ],
+  "qa": {
+    "identity": "OPERATOR_REVIEW_PENDING",
+    "style": "OPERATOR_REVIEW_PENDING",
+    "physicalScale": "PASS_MACHINE_SHARED_SCALE",
+    "morphology": "OPERATOR_REVIEW_PENDING",
+    "poseSemantics": "PASS_CANDIDATE",
+    "weapon": "PASS_CANDIDATE",
+    "pixelDensity": "PASS_MACHINE_SHARED_SCALE",
+    "vfxClearance": "PASS_MACHINE_BOUNDS",
+    "groundingRisk": "PASS_MACHINE_BASELINE",
+    "operatorApproval": "PENDING",
+    "qaBoard": "public/assets/dev/option-c/combat-poses-v2/qa/lancer-qa-board.png"
+  }
+}

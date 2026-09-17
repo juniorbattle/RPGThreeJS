@@ -1,0 +1,2515 @@
+{
+  "schemaVersion": 1,
+  "mission": "Character System V2 — Production Combat Stage Runtime Proof",
+  "generatedAt": "2026-09-17T07:29:46.639Z",
+  "baseUrl": "http://127.0.0.1:5173/",
+  "status": "PASS",
+  "requiredViewports": [
+    "1366x768",
+    "1920x1080"
+  ],
+  "requiredEnvironments": [
+    "forest_route_stage",
+    "lion_sanctum_stage",
+    "bois_clair_burning_stage",
+    "forest_route_stage",
+    "forest_route_stage",
+    "bois_clair_burning_stage",
+    "lion_sanctum_stage"
+  ],
+  "proofCoverage": "PASS",
+  "errorCount": 0,
+  "failedAssetResponseCount": 0,
+  "checks": {
+    "ALISTAIR_RUNTIME_SCALE": "PASS",
+    "GOBLIN_RUNTIME_SCALE": "PASS",
+    "LION_CHAMPION_RUNTIME_SCALE": "PASS",
+    "RELATIVE_SIZE_HIERARCHY": "PASS",
+    "GROUNDING": "PASS",
+    "PIXEL_DENSITY_COHERENCE": "PASS",
+    "COMBAT_STAGE_READABILITY": "PASS",
+    "VARIABLE_CANVAS_SUPPORT": "PASS",
+    "PILOT_RUNTIME_GATE": "PASS",
+    "AUTHORIZED_FOR_FULL_ROSTER_PRODUCTION": "YES"
+  },
+  "protections": {
+    "PRODUCTION_CHARACTER_ASSETS_PROMOTED": "YES",
+    "FULL_ASSETS_REPLACED": "NO",
+    "GAMEPLAY_CHANGED": "NO",
+    "COMBAT_LOGIC_CHANGED": "NO",
+    "VFX_CHANGED": "NO",
+    "ENVIRONMENT_CHANGED": "NO",
+    "COMMIT": "NO",
+    "PUSH": "NO"
+  },
+  "unitResults": {
+    "alistair": {
+      "status": "PASS",
+      "appearances": 6
+    },
+    "goblin": {
+      "status": "PASS",
+      "appearances": 4
+    },
+    "lion-champion": {
+      "status": "PASS",
+      "appearances": 4
+    },
+    "canvas-512": {
+      "status": "PASS",
+      "appearances": 2
+    },
+    "canvas-640x512": {
+      "status": "PASS",
+      "appearances": 2
+    },
+    "canvas-512x640": {
+      "status": "PASS",
+      "appearances": 2
+    },
+    "canvas-640x640": {
+      "status": "PASS",
+      "appearances": 2
+    }
+  },
+  "captures": [
+    {
+      "viewport": {
+        "label": "1366x768",
+        "width": 1366,
+        "height": 768
+      },
+      "scenario": "alistair-vs-goblin",
+      "environment": "forest_route_stage",
+      "proof": "ALISTAIR_VS_GOBLIN",
+      "screenshot": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/production-runtime-proof/screenshots/1366x768/alistair-vs-goblin__forest_route_stage.png",
+      "runtime": {
+        "schemaVersion": 1,
+        "status": "PASS",
+        "devOnly": true,
+        "canonicalAssetsPromoted": true,
+        "gameplayChanged": false,
+        "combatLogicChanged": false,
+        "vfxChanged": false,
+        "environmentChanged": false,
+        "camera": "CombatStage.OrthographicCamera",
+        "grounding": "CombatStage proxy root + manifest baseline",
+        "viewport": {
+          "width": 1366,
+          "height": 768,
+          "devicePixelRatio": 1
+        },
+        "scenario": {
+          "id": "alistair-vs-goblin",
+          "label": "Alistair vs Goblin"
+        },
+        "environment": {
+          "requestedAssetId": "forest_route_stage",
+          "runtimeEnvironmentId": "forest_route"
+        },
+        "profile": {
+          "id": "BASIC_MELEE",
+          "cameraFrustumHalfHeight": 2.6,
+          "targetSlots": [
+            "primaryTarget"
+          ]
+        },
+        "units": [
+          {
+            "id": "alistair",
+            "displayName": "Alistair",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.15625,
+            "measuredVisibleWorldHeight": 2.15625,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              151,
+              111,
+              362,
+              458
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 128.231,
+              "top": 238.096,
+              "right": 323,
+              "bottom": 556.281,
+              "width": 194.769,
+              "height": 318.185
+            },
+            "screenBaselinePx": {
+              "x": 225.154,
+              "y": 558.126
+            },
+            "screenPixelsPerWorldUnit": 147.5643,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 238.096,
+            "sideClearancePx": 128.231,
+            "foregroundBackgroundDelta": 60.44,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          },
+          {
+            "id": "goblin",
+            "displayName": "Goblin",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 1.4312500000000001,
+            "measuredVisibleWorldHeight": 1.43125,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              152,
+              227,
+              361,
+              456
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 955.308,
+              "top": 346.924,
+              "right": 1148.231,
+              "bottom": 558.126,
+              "width": 192.923,
+              "height": 211.201
+            },
+            "screenBaselinePx": {
+              "x": 1052.231,
+              "y": 558.126
+            },
+            "screenPixelsPerWorldUnit": 147.5643,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 346.924,
+            "sideClearancePx": 217.769,
+            "foregroundBackgroundDelta": 63.748,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          }
+        ],
+        "checks": {
+          "assetManifestLock": "PASS",
+          "relativeSizeHierarchy": "PASS",
+          "grounding": "PASS",
+          "pixelDensityCoherence": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        },
+        "pixelDensityRatio": 1,
+        "minimumInterUnitGapPx": 632.308
+      },
+      "bodyDataset": {
+        "optionCCombatPosesV2Ready": "true",
+        "optionCCombatPosesV2Scenario": "alistair-vs-goblin",
+        "optionCCombatPosesV2Environment": "forest_route_stage",
+        "optionCCombatPosesV2CanonicalPromotion": "false",
+        "optionCCombatPosesV2Status": "PASS"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/forest-route-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/cast.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/cast.png",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "label": "1366x768",
+        "width": 1366,
+        "height": 768
+      },
+      "scenario": "alistair-vs-lion-champion",
+      "environment": "lion_sanctum_stage",
+      "proof": "ALISTAIR_VS_LION_CHAMPION",
+      "screenshot": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/production-runtime-proof/screenshots/1366x768/alistair-vs-lion-champion__lion_sanctum_stage.png",
+      "runtime": {
+        "schemaVersion": 1,
+        "status": "PASS",
+        "devOnly": true,
+        "canonicalAssetsPromoted": true,
+        "gameplayChanged": false,
+        "combatLogicChanged": false,
+        "vfxChanged": false,
+        "environmentChanged": false,
+        "camera": "CombatStage.OrthographicCamera",
+        "grounding": "CombatStage proxy root + manifest baseline",
+        "viewport": {
+          "width": 1366,
+          "height": 768,
+          "devicePixelRatio": 1
+        },
+        "scenario": {
+          "id": "alistair-vs-lion-champion",
+          "label": "Alistair vs Lion Champion"
+        },
+        "environment": {
+          "requestedAssetId": "lion_sanctum_stage",
+          "runtimeEnvironmentId": "lion_sanctum"
+        },
+        "profile": {
+          "id": "BASIC_MELEE",
+          "cameraFrustumHalfHeight": 2.6,
+          "targetSlots": [
+            "primaryTarget"
+          ]
+        },
+        "units": [
+          {
+            "id": "alistair",
+            "displayName": "Alistair",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.15625,
+            "measuredVisibleWorldHeight": 2.15625,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              151,
+              111,
+              362,
+              458
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 128.231,
+              "top": 238.096,
+              "right": 323,
+              "bottom": 556.281,
+              "width": 194.769,
+              "height": 318.185
+            },
+            "screenBaselinePx": {
+              "x": 225.154,
+              "y": 558.126
+            },
+            "screenPixelsPerWorldUnit": 147.5643,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 238.096,
+            "sideClearancePx": 128.231,
+            "foregroundBackgroundDelta": 57.462,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          },
+          {
+            "id": "lion-champion",
+            "displayName": "Lion Champion",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.63125,
+            "measuredVisibleWorldHeight": 2.63125,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              115,
+              35,
+              396,
+              461
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 923,
+              "top": 165.236,
+              "right": 1182.385,
+              "bottom": 553.514,
+              "width": 259.385,
+              "height": 388.278
+            },
+            "screenBaselinePx": {
+              "x": 1052.231,
+              "y": 558.126
+            },
+            "screenPixelsPerWorldUnit": 147.5643,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 165.236,
+            "sideClearancePx": 183.615,
+            "foregroundBackgroundDelta": 74.055,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          }
+        ],
+        "checks": {
+          "assetManifestLock": "PASS",
+          "relativeSizeHierarchy": "PASS",
+          "grounding": "PASS",
+          "pixelDensityCoherence": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        },
+        "pixelDensityRatio": 1,
+        "minimumInterUnitGapPx": 600
+      },
+      "bodyDataset": {
+        "optionCCombatPosesV2Ready": "true",
+        "optionCCombatPosesV2Scenario": "alistair-vs-lion-champion",
+        "optionCCombatPosesV2Environment": "lion_sanctum_stage",
+        "optionCCombatPosesV2CanonicalPromotion": "false",
+        "optionCCombatPosesV2Status": "PASS"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/lion-sanctum-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/cast.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/cast.png",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "label": "1366x768",
+        "width": 1366,
+        "height": 768
+      },
+      "scenario": "all-three",
+      "environment": "bois_clair_burning_stage",
+      "proof": "ALL_THREE_COMPARISON_BOARD",
+      "screenshot": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/production-runtime-proof/screenshots/1366x768/all-three__bois_clair_burning_stage.png",
+      "runtime": {
+        "schemaVersion": 1,
+        "status": "PASS",
+        "devOnly": true,
+        "canonicalAssetsPromoted": true,
+        "gameplayChanged": false,
+        "combatLogicChanged": false,
+        "vfxChanged": false,
+        "environmentChanged": false,
+        "camera": "CombatStage.OrthographicCamera",
+        "grounding": "CombatStage proxy root + manifest baseline",
+        "viewport": {
+          "width": 1366,
+          "height": 768,
+          "devicePixelRatio": 1
+        },
+        "scenario": {
+          "id": "all-three",
+          "label": "Production scale hierarchy"
+        },
+        "environment": {
+          "requestedAssetId": "bois_clair_burning_stage",
+          "runtimeEnvironmentId": "bois_clair_burning"
+        },
+        "profile": {
+          "id": "QA_MULTI_TARGET",
+          "cameraFrustumHalfHeight": 3.1,
+          "targetSlots": [
+            "secondaryTargetLeft",
+            "secondaryTargetRight"
+          ]
+        },
+        "units": [
+          {
+            "id": "alistair",
+            "displayName": "Alistair",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.15625,
+            "measuredVisibleWorldHeight": 2.15625,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              151,
+              111,
+              362,
+              458
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 217.71,
+              "top": 261.629,
+              "right": 381.065,
+              "bottom": 528.494,
+              "width": 163.355,
+              "height": 266.865
+            },
+            "screenBaselinePx": {
+              "x": 299,
+              "y": 530.041
+            },
+            "screenPixelsPerWorldUnit": 123.7636,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 261.629,
+            "sideClearancePx": 217.71,
+            "foregroundBackgroundDelta": 50.962,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          },
+          {
+            "id": "goblin",
+            "displayName": "Goblin",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 1.4312500000000001,
+            "measuredVisibleWorldHeight": 1.43125,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              152,
+              227,
+              361,
+              456
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 787.516,
+              "top": 348.263,
+              "right": 949.323,
+              "bottom": 525.4,
+              "width": 161.806,
+              "height": 177.137
+            },
+            "screenBaselinePx": {
+              "x": 868.806,
+              "y": 525.4
+            },
+            "screenPixelsPerWorldUnit": 123.7636,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 348.263,
+            "sideClearancePx": 416.677,
+            "foregroundBackgroundDelta": 68.714,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          },
+          {
+            "id": "lion-champion",
+            "displayName": "Lion Champion",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.63125,
+            "measuredVisibleWorldHeight": 2.63125,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              115,
+              35,
+              396,
+              461
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 760.419,
+              "top": 205.162,
+              "right": 977.968,
+              "bottom": 530.815,
+              "width": 217.548,
+              "height": 325.653
+            },
+            "screenBaselinePx": {
+              "x": 868.806,
+              "y": 534.682
+            },
+            "screenPixelsPerWorldUnit": 123.7636,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 205.162,
+            "sideClearancePx": 388.032,
+            "foregroundBackgroundDelta": 70.674,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          }
+        ],
+        "checks": {
+          "assetManifestLock": "PASS",
+          "relativeSizeHierarchy": "PASS",
+          "grounding": "PASS",
+          "pixelDensityCoherence": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        },
+        "pixelDensityRatio": 1,
+        "minimumInterUnitGapPx": -190.452
+      },
+      "bodyDataset": {
+        "optionCCombatPosesV2Ready": "true",
+        "optionCCombatPosesV2Scenario": "all-three",
+        "optionCCombatPosesV2Environment": "bois_clair_burning_stage",
+        "optionCCombatPosesV2CanonicalPromotion": "false",
+        "optionCCombatPosesV2Status": "PASS"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/bois-clair-burning-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/cast.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/cast.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/cast.png",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "label": "1366x768",
+        "width": 1366,
+        "height": 768
+      },
+      "scenario": "canvas-512",
+      "environment": "forest_route_stage",
+      "proof": "CANVAS_512_PREPARE",
+      "screenshot": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/production-runtime-proof/screenshots/1366x768/canvas-512__forest_route_stage.png",
+      "runtime": {
+        "schemaVersion": 1,
+        "status": "PASS",
+        "devOnly": true,
+        "canonicalAssetsPromoted": true,
+        "gameplayChanged": false,
+        "combatLogicChanged": false,
+        "vfxChanged": false,
+        "environmentChanged": false,
+        "camera": "CombatStage.OrthographicCamera",
+        "grounding": "CombatStage proxy root + manifest baseline",
+        "viewport": {
+          "width": 1366,
+          "height": 768,
+          "devicePixelRatio": 1
+        },
+        "scenario": {
+          "id": "canvas-512",
+          "label": "512×512 prepare production proof"
+        },
+        "environment": {
+          "requestedAssetId": "forest_route_stage",
+          "runtimeEnvironmentId": "forest_route"
+        },
+        "profile": {
+          "id": "BASIC_MELEE",
+          "cameraFrustumHalfHeight": 2.8,
+          "targetSlots": []
+        },
+        "units": [
+          {
+            "id": "canvas-512",
+            "displayName": "512×512 Prepare",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.09375,
+            "measuredVisibleWorldHeight": 2.09375,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              157,
+              121,
+              356,
+              456
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 173,
+              "top": 258.794,
+              "right": 343.571,
+              "bottom": 545.688,
+              "width": 170.571,
+              "height": 286.894
+            },
+            "screenBaselinePx": {
+              "x": 257.857,
+              "y": 545.688
+            },
+            "screenPixelsPerWorldUnit": 137.024,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 258.794,
+            "sideClearancePx": 173,
+            "foregroundBackgroundDelta": 54.627,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          }
+        ],
+        "checks": {
+          "assetManifestLock": "PASS",
+          "relativeSizeHierarchy": "PASS",
+          "grounding": "PASS",
+          "pixelDensityCoherence": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        },
+        "pixelDensityRatio": 1,
+        "minimumInterUnitGapPx": null
+      },
+      "bodyDataset": {
+        "optionCCombatPosesV2Ready": "true",
+        "optionCCombatPosesV2Scenario": "canvas-512",
+        "optionCCombatPosesV2Environment": "forest_route_stage",
+        "optionCCombatPosesV2CanonicalPromotion": "false",
+        "optionCCombatPosesV2Status": "PASS"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/archer/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/forest-route-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/archer/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/archer/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/archer/cast.png",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "label": "1366x768",
+        "width": 1366,
+        "height": 768
+      },
+      "scenario": "canvas-640x512",
+      "environment": "forest_route_stage",
+      "proof": "CANVAS_640X512_ATTACK",
+      "screenshot": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/production-runtime-proof/screenshots/1366x768/canvas-640x512__forest_route_stage.png",
+      "runtime": {
+        "schemaVersion": 1,
+        "status": "PASS",
+        "devOnly": true,
+        "canonicalAssetsPromoted": true,
+        "gameplayChanged": false,
+        "combatLogicChanged": false,
+        "vfxChanged": false,
+        "environmentChanged": false,
+        "camera": "CombatStage.OrthographicCamera",
+        "grounding": "CombatStage proxy root + manifest baseline",
+        "viewport": {
+          "width": 1366,
+          "height": 768,
+          "devicePixelRatio": 1
+        },
+        "scenario": {
+          "id": "canvas-640x512",
+          "label": "640×512 attack production proof"
+        },
+        "environment": {
+          "requestedAssetId": "forest_route_stage",
+          "runtimeEnvironmentId": "forest_route"
+        },
+        "profile": {
+          "id": "BASIC_MELEE",
+          "cameraFrustumHalfHeight": 2.8,
+          "targetSlots": []
+        },
+        "units": [
+          {
+            "id": "canvas-640x512",
+            "displayName": "640×512 Attack",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 1.75,
+            "measuredVisibleWorldHeight": 1.75,
+            "planeWorldSize": [
+              4,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              320,
+              456
+            ],
+            "alphaBBoxPx": [
+              86,
+              176,
+              548,
+              456
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 57.286,
+              "top": 305.896,
+              "right": 453.286,
+              "bottom": 545.688,
+              "width": 396,
+              "height": 239.792
+            },
+            "screenBaselinePx": {
+              "x": 257.857,
+              "y": 545.688
+            },
+            "screenPixelsPerWorldUnit": 137.024,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 305.896,
+            "sideClearancePx": 57.286,
+            "foregroundBackgroundDelta": 74.109,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          }
+        ],
+        "checks": {
+          "assetManifestLock": "PASS",
+          "relativeSizeHierarchy": "PASS",
+          "grounding": "PASS",
+          "pixelDensityCoherence": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        },
+        "pixelDensityRatio": 1,
+        "minimumInterUnitGapPx": null
+      },
+      "bodyDataset": {
+        "optionCCombatPosesV2Ready": "true",
+        "optionCCombatPosesV2Scenario": "canvas-640x512",
+        "optionCCombatPosesV2Environment": "forest_route_stage",
+        "optionCCombatPosesV2CanonicalPromotion": "false",
+        "optionCCombatPosesV2Status": "PASS"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/forest-route-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/cast.png",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "label": "1366x768",
+        "width": 1366,
+        "height": 768
+      },
+      "scenario": "canvas-512x640",
+      "environment": "bois_clair_burning_stage",
+      "proof": "CANVAS_512X640_CAST",
+      "screenshot": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/production-runtime-proof/screenshots/1366x768/canvas-512x640__bois_clair_burning_stage.png",
+      "runtime": {
+        "schemaVersion": 1,
+        "status": "PASS",
+        "devOnly": true,
+        "canonicalAssetsPromoted": true,
+        "gameplayChanged": false,
+        "combatLogicChanged": false,
+        "vfxChanged": false,
+        "environmentChanged": false,
+        "camera": "CombatStage.OrthographicCamera",
+        "grounding": "CombatStage proxy root + manifest baseline",
+        "viewport": {
+          "width": 1366,
+          "height": 768,
+          "devicePixelRatio": 1
+        },
+        "scenario": {
+          "id": "canvas-512x640",
+          "label": "512×640 cast production proof"
+        },
+        "environment": {
+          "requestedAssetId": "bois_clair_burning_stage",
+          "runtimeEnvironmentId": "bois_clair_burning"
+        },
+        "profile": {
+          "id": "BASIC_MELEE",
+          "cameraFrustumHalfHeight": 3.2,
+          "targetSlots": []
+        },
+        "units": [
+          {
+            "id": "canvas-512x640",
+            "displayName": "512×640 Cast",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.7,
+            "measuredVisibleWorldHeight": 2.7,
+            "planeWorldSize": [
+              3.2,
+              4
+            ],
+            "footBaselinePx": 520,
+            "pivotPx": [
+              256,
+              520
+            ],
+            "alphaBBoxPx": [
+              33,
+              88,
+              473,
+              520
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 143.75,
+              "top": 201.758,
+              "right": 473.75,
+              "bottom": 525.477,
+              "width": 330,
+              "height": 323.719
+            },
+            "screenBaselinePx": {
+              "x": 311,
+              "y": 525.477
+            },
+            "screenPixelsPerWorldUnit": 119.896,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 201.758,
+            "sideClearancePx": 143.75,
+            "foregroundBackgroundDelta": 51.934,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          }
+        ],
+        "checks": {
+          "assetManifestLock": "PASS",
+          "relativeSizeHierarchy": "PASS",
+          "grounding": "PASS",
+          "pixelDensityCoherence": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        },
+        "pixelDensityRatio": 1,
+        "minimumInterUnitGapPx": null
+      },
+      "bodyDataset": {
+        "optionCCombatPosesV2Ready": "true",
+        "optionCCombatPosesV2Scenario": "canvas-512x640",
+        "optionCCombatPosesV2Environment": "bois_clair_burning_stage",
+        "optionCCombatPosesV2CanonicalPromotion": "false",
+        "optionCCombatPosesV2Status": "PASS"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/forest_troll_elite/cast.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/bois-clair-burning-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/forest_troll_elite/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/forest_troll_elite/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/forest_troll_elite/attack.png",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "label": "1366x768",
+        "width": 1366,
+        "height": 768
+      },
+      "scenario": "canvas-640x640",
+      "environment": "lion_sanctum_stage",
+      "proof": "CANVAS_640X640_CAST",
+      "screenshot": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/production-runtime-proof/screenshots/1366x768/canvas-640x640__lion_sanctum_stage.png",
+      "runtime": {
+        "schemaVersion": 1,
+        "status": "PASS",
+        "devOnly": true,
+        "canonicalAssetsPromoted": true,
+        "gameplayChanged": false,
+        "combatLogicChanged": false,
+        "vfxChanged": false,
+        "environmentChanged": false,
+        "camera": "CombatStage.OrthographicCamera",
+        "grounding": "CombatStage proxy root + manifest baseline",
+        "viewport": {
+          "width": 1366,
+          "height": 768,
+          "devicePixelRatio": 1
+        },
+        "scenario": {
+          "id": "canvas-640x640",
+          "label": "640×640 cast production proof"
+        },
+        "environment": {
+          "requestedAssetId": "lion_sanctum_stage",
+          "runtimeEnvironmentId": "lion_sanctum"
+        },
+        "profile": {
+          "id": "BASIC_MELEE",
+          "cameraFrustumHalfHeight": 3.2,
+          "targetSlots": []
+        },
+        "units": [
+          {
+            "id": "canvas-640x640",
+            "displayName": "640×640 Cast",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.71875,
+            "measuredVisibleWorldHeight": 2.71875,
+            "planeWorldSize": [
+              4,
+              4
+            ],
+            "footBaselinePx": 520,
+            "pivotPx": [
+              320,
+              520
+            ],
+            "alphaBBoxPx": [
+              72,
+              85,
+              556,
+              541
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 125,
+              "top": 183.774,
+              "right": 488,
+              "bottom": 509.741,
+              "width": 363,
+              "height": 325.967
+            },
+            "screenBaselinePx": {
+              "x": 311,
+              "y": 525.477
+            },
+            "screenPixelsPerWorldUnit": 119.896,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 183.774,
+            "sideClearancePx": 125,
+            "foregroundBackgroundDelta": 94.353,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          }
+        ],
+        "checks": {
+          "assetManifestLock": "PASS",
+          "relativeSizeHierarchy": "PASS",
+          "grounding": "PASS",
+          "pixelDensityCoherence": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        },
+        "pixelDensityRatio": 1,
+        "minimumInterUnitGapPx": null
+      },
+      "bodyDataset": {
+        "optionCCombatPosesV2Ready": "true",
+        "optionCCombatPosesV2Scenario": "canvas-640x640",
+        "optionCCombatPosesV2Environment": "lion_sanctum_stage",
+        "optionCCombatPosesV2CanonicalPromotion": "false",
+        "optionCCombatPosesV2Status": "PASS"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/cast.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/lion-sanctum-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/attack.png",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "label": "1920x1080",
+        "width": 1920,
+        "height": 1080
+      },
+      "scenario": "alistair-vs-goblin",
+      "environment": "forest_route_stage",
+      "proof": "ALISTAIR_VS_GOBLIN",
+      "screenshot": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/production-runtime-proof/screenshots/1920x1080/alistair-vs-goblin__forest_route_stage.png",
+      "runtime": {
+        "schemaVersion": 1,
+        "status": "PASS",
+        "devOnly": true,
+        "canonicalAssetsPromoted": true,
+        "gameplayChanged": false,
+        "combatLogicChanged": false,
+        "vfxChanged": false,
+        "environmentChanged": false,
+        "camera": "CombatStage.OrthographicCamera",
+        "grounding": "CombatStage proxy root + manifest baseline",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "devicePixelRatio": 1
+        },
+        "scenario": {
+          "id": "alistair-vs-goblin",
+          "label": "Alistair vs Goblin"
+        },
+        "environment": {
+          "requestedAssetId": "forest_route_stage",
+          "runtimeEnvironmentId": "forest_route"
+        },
+        "profile": {
+          "id": "BASIC_MELEE",
+          "cameraFrustumHalfHeight": 2.6,
+          "targetSlots": [
+            "primaryTarget"
+          ]
+        },
+        "units": [
+          {
+            "id": "alistair",
+            "displayName": "Alistair",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.15625,
+            "measuredVisibleWorldHeight": 2.15625,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              151,
+              111,
+              362,
+              458
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 179.856,
+              "top": 334.822,
+              "right": 453.75,
+              "bottom": 782.271,
+              "width": 273.894,
+              "height": 447.448
+            },
+            "screenBaselinePx": {
+              "x": 316.154,
+              "y": 784.864
+            },
+            "screenPixelsPerWorldUnit": 207.5123,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 334.822,
+            "sideClearancePx": 179.856,
+            "foregroundBackgroundDelta": 61.554,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          },
+          {
+            "id": "goblin",
+            "displayName": "Goblin",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 1.4312500000000001,
+            "measuredVisibleWorldHeight": 1.43125,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              152,
+              227,
+              361,
+              456
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 1342.933,
+              "top": 487.863,
+              "right": 1614.231,
+              "bottom": 784.864,
+              "width": 271.298,
+              "height": 297.002
+            },
+            "screenBaselinePx": {
+              "x": 1479.231,
+              "y": 784.864
+            },
+            "screenPixelsPerWorldUnit": 207.5123,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 487.863,
+            "sideClearancePx": 305.769,
+            "foregroundBackgroundDelta": 67.687,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          }
+        ],
+        "checks": {
+          "assetManifestLock": "PASS",
+          "relativeSizeHierarchy": "PASS",
+          "grounding": "PASS",
+          "pixelDensityCoherence": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        },
+        "pixelDensityRatio": 1,
+        "minimumInterUnitGapPx": 889.183
+      },
+      "bodyDataset": {
+        "optionCCombatPosesV2Ready": "true",
+        "optionCCombatPosesV2Scenario": "alistair-vs-goblin",
+        "optionCCombatPosesV2Environment": "forest_route_stage",
+        "optionCCombatPosesV2CanonicalPromotion": "false",
+        "optionCCombatPosesV2Status": "PASS"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/forest-route-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/cast.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/cast.png",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "label": "1920x1080",
+        "width": 1920,
+        "height": 1080
+      },
+      "scenario": "alistair-vs-lion-champion",
+      "environment": "lion_sanctum_stage",
+      "proof": "ALISTAIR_VS_LION_CHAMPION",
+      "screenshot": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/production-runtime-proof/screenshots/1920x1080/alistair-vs-lion-champion__lion_sanctum_stage.png",
+      "runtime": {
+        "schemaVersion": 1,
+        "status": "PASS",
+        "devOnly": true,
+        "canonicalAssetsPromoted": true,
+        "gameplayChanged": false,
+        "combatLogicChanged": false,
+        "vfxChanged": false,
+        "environmentChanged": false,
+        "camera": "CombatStage.OrthographicCamera",
+        "grounding": "CombatStage proxy root + manifest baseline",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "devicePixelRatio": 1
+        },
+        "scenario": {
+          "id": "alistair-vs-lion-champion",
+          "label": "Alistair vs Lion Champion"
+        },
+        "environment": {
+          "requestedAssetId": "lion_sanctum_stage",
+          "runtimeEnvironmentId": "lion_sanctum"
+        },
+        "profile": {
+          "id": "BASIC_MELEE",
+          "cameraFrustumHalfHeight": 2.6,
+          "targetSlots": [
+            "primaryTarget"
+          ]
+        },
+        "units": [
+          {
+            "id": "alistair",
+            "displayName": "Alistair",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.15625,
+            "measuredVisibleWorldHeight": 2.15625,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              151,
+              111,
+              362,
+              458
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 179.856,
+              "top": 334.822,
+              "right": 453.75,
+              "bottom": 782.271,
+              "width": 273.894,
+              "height": 447.448
+            },
+            "screenBaselinePx": {
+              "x": 316.154,
+              "y": 784.864
+            },
+            "screenPixelsPerWorldUnit": 207.5123,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 334.822,
+            "sideClearancePx": 179.856,
+            "foregroundBackgroundDelta": 57.942,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          },
+          {
+            "id": "lion-champion",
+            "displayName": "Lion Champion",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.63125,
+            "measuredVisibleWorldHeight": 2.63125,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              115,
+              35,
+              396,
+              461
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 1297.5,
+              "top": 232.363,
+              "right": 1662.26,
+              "bottom": 778.38,
+              "width": 364.76,
+              "height": 546.017
+            },
+            "screenBaselinePx": {
+              "x": 1479.231,
+              "y": 784.864
+            },
+            "screenPixelsPerWorldUnit": 207.5123,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 232.363,
+            "sideClearancePx": 257.74,
+            "foregroundBackgroundDelta": 75.201,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          }
+        ],
+        "checks": {
+          "assetManifestLock": "PASS",
+          "relativeSizeHierarchy": "PASS",
+          "grounding": "PASS",
+          "pixelDensityCoherence": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        },
+        "pixelDensityRatio": 1,
+        "minimumInterUnitGapPx": 843.75
+      },
+      "bodyDataset": {
+        "optionCCombatPosesV2Ready": "true",
+        "optionCCombatPosesV2Scenario": "alistair-vs-lion-champion",
+        "optionCCombatPosesV2Environment": "lion_sanctum_stage",
+        "optionCCombatPosesV2CanonicalPromotion": "false",
+        "optionCCombatPosesV2Status": "PASS"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/lion-sanctum-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/cast.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/cast.png",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "label": "1920x1080",
+        "width": 1920,
+        "height": 1080
+      },
+      "scenario": "all-three",
+      "environment": "bois_clair_burning_stage",
+      "proof": "ALL_THREE_COMPARISON_BOARD",
+      "screenshot": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/production-runtime-proof/screenshots/1920x1080/all-three__bois_clair_burning_stage.png",
+      "runtime": {
+        "schemaVersion": 1,
+        "status": "PASS",
+        "devOnly": true,
+        "canonicalAssetsPromoted": true,
+        "gameplayChanged": false,
+        "combatLogicChanged": false,
+        "vfxChanged": false,
+        "environmentChanged": false,
+        "camera": "CombatStage.OrthographicCamera",
+        "grounding": "CombatStage proxy root + manifest baseline",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "devicePixelRatio": 1
+        },
+        "scenario": {
+          "id": "all-three",
+          "label": "Production scale hierarchy"
+        },
+        "environment": {
+          "requestedAssetId": "bois_clair_burning_stage",
+          "runtimeEnvironmentId": "bois_clair_burning"
+        },
+        "profile": {
+          "id": "QA_MULTI_TARGET",
+          "cameraFrustumHalfHeight": 3.1,
+          "targetSlots": [
+            "secondaryTargetLeft",
+            "secondaryTargetRight"
+          ]
+        },
+        "units": [
+          {
+            "id": "alistair",
+            "displayName": "Alistair",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.15625,
+            "measuredVisibleWorldHeight": 2.15625,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              151,
+              111,
+              362,
+              458
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 305.685,
+              "top": 367.915,
+              "right": 535.403,
+              "bottom": 743.195,
+              "width": 229.718,
+              "height": 375.279
+            },
+            "screenBaselinePx": {
+              "x": 420,
+              "y": 745.37
+            },
+            "screenPixelsPerWorldUnit": 174.0425,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 367.915,
+            "sideClearancePx": 305.685,
+            "foregroundBackgroundDelta": 52.075,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          },
+          {
+            "id": "goblin",
+            "displayName": "Goblin",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 1.4312500000000001,
+            "measuredVisibleWorldHeight": 1.43125,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              152,
+              227,
+              361,
+              456
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 1106.976,
+              "top": 489.745,
+              "right": 1334.516,
+              "bottom": 738.844,
+              "width": 227.54,
+              "height": 249.098
+            },
+            "screenBaselinePx": {
+              "x": 1221.29,
+              "y": 738.844
+            },
+            "screenPixelsPerWorldUnit": 174.0425,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 489.745,
+            "sideClearancePx": 585.484,
+            "foregroundBackgroundDelta": 70.543,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          },
+          {
+            "id": "lion-champion",
+            "displayName": "Lion Champion",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.63125,
+            "measuredVisibleWorldHeight": 2.63125,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              115,
+              35,
+              396,
+              461
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 1068.871,
+              "top": 288.509,
+              "right": 1374.798,
+              "bottom": 746.458,
+              "width": 305.927,
+              "height": 457.949
+            },
+            "screenBaselinePx": {
+              "x": 1221.29,
+              "y": 751.897
+            },
+            "screenPixelsPerWorldUnit": 174.0425,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 288.509,
+            "sideClearancePx": 545.202,
+            "foregroundBackgroundDelta": 72.533,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          }
+        ],
+        "checks": {
+          "assetManifestLock": "PASS",
+          "relativeSizeHierarchy": "PASS",
+          "grounding": "PASS",
+          "pixelDensityCoherence": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        },
+        "pixelDensityRatio": 1,
+        "minimumInterUnitGapPx": -267.822
+      },
+      "bodyDataset": {
+        "optionCCombatPosesV2Ready": "true",
+        "optionCCombatPosesV2Scenario": "all-three",
+        "optionCCombatPosesV2Environment": "bois_clair_burning_stage",
+        "optionCCombatPosesV2CanonicalPromotion": "false",
+        "optionCCombatPosesV2Status": "PASS"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/bois-clair-burning-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/cast.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/cast.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/cast.png",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "label": "1920x1080",
+        "width": 1920,
+        "height": 1080
+      },
+      "scenario": "canvas-512",
+      "environment": "forest_route_stage",
+      "proof": "CANVAS_512_PREPARE",
+      "screenshot": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/production-runtime-proof/screenshots/1920x1080/canvas-512__forest_route_stage.png",
+      "runtime": {
+        "schemaVersion": 1,
+        "status": "PASS",
+        "devOnly": true,
+        "canonicalAssetsPromoted": true,
+        "gameplayChanged": false,
+        "combatLogicChanged": false,
+        "vfxChanged": false,
+        "environmentChanged": false,
+        "camera": "CombatStage.OrthographicCamera",
+        "grounding": "CombatStage proxy root + manifest baseline",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "devicePixelRatio": 1
+        },
+        "scenario": {
+          "id": "canvas-512",
+          "label": "512×512 prepare production proof"
+        },
+        "environment": {
+          "requestedAssetId": "forest_route_stage",
+          "runtimeEnvironmentId": "forest_route"
+        },
+        "profile": {
+          "id": "BASIC_MELEE",
+          "cameraFrustumHalfHeight": 2.8,
+          "targetSlots": []
+        },
+        "units": [
+          {
+            "id": "canvas-512",
+            "displayName": "512×512 Prepare",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.09375,
+            "measuredVisibleWorldHeight": 2.09375,
+            "planeWorldSize": [
+              3.2,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              256,
+              456
+            ],
+            "alphaBBoxPx": [
+              157,
+              121,
+              356,
+              456
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 242.812,
+              "top": 363.93,
+              "right": 482.679,
+              "bottom": 767.374,
+              "width": 239.866,
+              "height": 403.445
+            },
+            "screenBaselinePx": {
+              "x": 362.143,
+              "y": 767.374
+            },
+            "screenPixelsPerWorldUnit": 192.6899,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 363.93,
+            "sideClearancePx": 242.812,
+            "foregroundBackgroundDelta": 56.046,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          }
+        ],
+        "checks": {
+          "assetManifestLock": "PASS",
+          "relativeSizeHierarchy": "PASS",
+          "grounding": "PASS",
+          "pixelDensityCoherence": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        },
+        "pixelDensityRatio": 1,
+        "minimumInterUnitGapPx": null
+      },
+      "bodyDataset": {
+        "optionCCombatPosesV2Ready": "true",
+        "optionCCombatPosesV2Scenario": "canvas-512",
+        "optionCCombatPosesV2Environment": "forest_route_stage",
+        "optionCCombatPosesV2CanonicalPromotion": "false",
+        "optionCCombatPosesV2Status": "PASS"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/archer/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/forest-route-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/archer/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/archer/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/archer/cast.png",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "label": "1920x1080",
+        "width": 1920,
+        "height": 1080
+      },
+      "scenario": "canvas-640x512",
+      "environment": "forest_route_stage",
+      "proof": "CANVAS_640X512_ATTACK",
+      "screenshot": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/production-runtime-proof/screenshots/1920x1080/canvas-640x512__forest_route_stage.png",
+      "runtime": {
+        "schemaVersion": 1,
+        "status": "PASS",
+        "devOnly": true,
+        "canonicalAssetsPromoted": true,
+        "gameplayChanged": false,
+        "combatLogicChanged": false,
+        "vfxChanged": false,
+        "environmentChanged": false,
+        "camera": "CombatStage.OrthographicCamera",
+        "grounding": "CombatStage proxy root + manifest baseline",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "devicePixelRatio": 1
+        },
+        "scenario": {
+          "id": "canvas-640x512",
+          "label": "640×512 attack production proof"
+        },
+        "environment": {
+          "requestedAssetId": "forest_route_stage",
+          "runtimeEnvironmentId": "forest_route"
+        },
+        "profile": {
+          "id": "BASIC_MELEE",
+          "cameraFrustumHalfHeight": 2.8,
+          "targetSlots": []
+        },
+        "units": [
+          {
+            "id": "canvas-640x512",
+            "displayName": "640×512 Attack",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 1.75,
+            "measuredVisibleWorldHeight": 1.75,
+            "planeWorldSize": [
+              4,
+              3.2
+            ],
+            "footBaselinePx": 456,
+            "pivotPx": [
+              320,
+              456
+            ],
+            "alphaBBoxPx": [
+              86,
+              176,
+              548,
+              456
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 80.089,
+              "top": 430.167,
+              "right": 636.964,
+              "bottom": 767.374,
+              "width": 556.875,
+              "height": 337.207
+            },
+            "screenBaselinePx": {
+              "x": 362.143,
+              "y": 767.374
+            },
+            "screenPixelsPerWorldUnit": 192.6899,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 430.167,
+            "sideClearancePx": 80.089,
+            "foregroundBackgroundDelta": 76.831,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          }
+        ],
+        "checks": {
+          "assetManifestLock": "PASS",
+          "relativeSizeHierarchy": "PASS",
+          "grounding": "PASS",
+          "pixelDensityCoherence": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        },
+        "pixelDensityRatio": 1,
+        "minimumInterUnitGapPx": null
+      },
+      "bodyDataset": {
+        "optionCCombatPosesV2Ready": "true",
+        "optionCCombatPosesV2Scenario": "canvas-640x512",
+        "optionCCombatPosesV2Environment": "forest_route_stage",
+        "optionCCombatPosesV2CanonicalPromotion": "false",
+        "optionCCombatPosesV2Status": "PASS"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/forest-route-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/cast.png",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "label": "1920x1080",
+        "width": 1920,
+        "height": 1080
+      },
+      "scenario": "canvas-512x640",
+      "environment": "bois_clair_burning_stage",
+      "proof": "CANVAS_512X640_CAST",
+      "screenshot": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/production-runtime-proof/screenshots/1920x1080/canvas-512x640__bois_clair_burning_stage.png",
+      "runtime": {
+        "schemaVersion": 1,
+        "status": "PASS",
+        "devOnly": true,
+        "canonicalAssetsPromoted": true,
+        "gameplayChanged": false,
+        "combatLogicChanged": false,
+        "vfxChanged": false,
+        "environmentChanged": false,
+        "camera": "CombatStage.OrthographicCamera",
+        "grounding": "CombatStage proxy root + manifest baseline",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "devicePixelRatio": 1
+        },
+        "scenario": {
+          "id": "canvas-512x640",
+          "label": "512×640 cast production proof"
+        },
+        "environment": {
+          "requestedAssetId": "bois_clair_burning_stage",
+          "runtimeEnvironmentId": "bois_clair_burning"
+        },
+        "profile": {
+          "id": "BASIC_MELEE",
+          "cameraFrustumHalfHeight": 3.2,
+          "targetSlots": []
+        },
+        "units": [
+          {
+            "id": "canvas-512x640",
+            "displayName": "512×640 Cast",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.7,
+            "measuredVisibleWorldHeight": 2.7,
+            "planeWorldSize": [
+              3.2,
+              4
+            ],
+            "footBaselinePx": 520,
+            "pivotPx": [
+              256,
+              520
+            ],
+            "alphaBBoxPx": [
+              33,
+              88,
+              473,
+              520
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 201.68,
+              "top": 283.722,
+              "right": 665.742,
+              "bottom": 738.952,
+              "width": 464.063,
+              "height": 455.23
+            },
+            "screenBaselinePx": {
+              "x": 436.875,
+              "y": 738.952
+            },
+            "screenPixelsPerWorldUnit": 168.6037,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 283.722,
+            "sideClearancePx": 201.68,
+            "foregroundBackgroundDelta": 54.331,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          }
+        ],
+        "checks": {
+          "assetManifestLock": "PASS",
+          "relativeSizeHierarchy": "PASS",
+          "grounding": "PASS",
+          "pixelDensityCoherence": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        },
+        "pixelDensityRatio": 1,
+        "minimumInterUnitGapPx": null
+      },
+      "bodyDataset": {
+        "optionCCombatPosesV2Ready": "true",
+        "optionCCombatPosesV2Scenario": "canvas-512x640",
+        "optionCCombatPosesV2Environment": "bois_clair_burning_stage",
+        "optionCCombatPosesV2CanonicalPromotion": "false",
+        "optionCCombatPosesV2Status": "PASS"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/forest_troll_elite/cast.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/bois-clair-burning-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/forest_troll_elite/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/forest_troll_elite/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/forest_troll_elite/attack.png",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "label": "1920x1080",
+        "width": 1920,
+        "height": 1080
+      },
+      "scenario": "canvas-640x640",
+      "environment": "lion_sanctum_stage",
+      "proof": "CANVAS_640X640_CAST",
+      "screenshot": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/production-runtime-proof/screenshots/1920x1080/canvas-640x640__lion_sanctum_stage.png",
+      "runtime": {
+        "schemaVersion": 1,
+        "status": "PASS",
+        "devOnly": true,
+        "canonicalAssetsPromoted": true,
+        "gameplayChanged": false,
+        "combatLogicChanged": false,
+        "vfxChanged": false,
+        "environmentChanged": false,
+        "camera": "CombatStage.OrthographicCamera",
+        "grounding": "CombatStage proxy root + manifest baseline",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "devicePixelRatio": 1
+        },
+        "scenario": {
+          "id": "canvas-640x640",
+          "label": "640×640 cast production proof"
+        },
+        "environment": {
+          "requestedAssetId": "lion_sanctum_stage",
+          "runtimeEnvironmentId": "lion_sanctum"
+        },
+        "profile": {
+          "id": "BASIC_MELEE",
+          "cameraFrustumHalfHeight": 3.2,
+          "targetSlots": []
+        },
+        "units": [
+          {
+            "id": "canvas-640x640",
+            "displayName": "640×640 Cast",
+            "scaleCorrection": 1,
+            "targetWorldHeight": 2.71875,
+            "measuredVisibleWorldHeight": 2.71875,
+            "planeWorldSize": [
+              4,
+              4
+            ],
+            "footBaselinePx": 520,
+            "pivotPx": [
+              320,
+              520
+            ],
+            "alphaBBoxPx": [
+              72,
+              85,
+              556,
+              541
+            ],
+            "sourcePixelsPerWorldUnit": 160,
+            "screenRectPx": {
+              "left": 175.312,
+              "top": 258.432,
+              "right": 685.781,
+              "bottom": 716.823,
+              "width": 510.469,
+              "height": 458.391
+            },
+            "screenBaselinePx": {
+              "x": 436.875,
+              "y": 738.952
+            },
+            "screenPixelsPerWorldUnit": 168.6037,
+            "groundContactErrorWorld": 6.938893903907228e-17,
+            "topClearancePx": 258.432,
+            "sideClearancePx": 175.312,
+            "foregroundBackgroundDelta": 96.519,
+            "checks": {
+              "manifestLock": "PASS",
+              "scaleCorrection": "PASS",
+              "groundContact": "PASS",
+              "silhouetteReadability": "PASS",
+              "weaponReadability": "PASS",
+              "backgroundContrast": "PASS",
+              "vfxSafeSpace": "PASS"
+            }
+          }
+        ],
+        "checks": {
+          "assetManifestLock": "PASS",
+          "relativeSizeHierarchy": "PASS",
+          "grounding": "PASS",
+          "pixelDensityCoherence": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        },
+        "pixelDensityRatio": 1,
+        "minimumInterUnitGapPx": null
+      },
+      "bodyDataset": {
+        "optionCCombatPosesV2Ready": "true",
+        "optionCCombatPosesV2Scenario": "canvas-640x640",
+        "optionCCombatPosesV2Environment": "lion_sanctum_stage",
+        "optionCCombatPosesV2CanonicalPromotion": "false",
+        "optionCCombatPosesV2Status": "PASS"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "assetResponses": [
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/cast.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/generated/lion-phase/environments/demo-environment-pack-v1/combat-stage/lion-sanctum-stage.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/dash.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/attack.png",
+          "status": 200
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,893 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 remaining 22 units",
+  "canonicalReferenceAuditCount": 22,
+  "canonicalReferencePolicy": "READ_ONLY_IDENTITY_AUTHORITY_NOT_STYLE_AUTHORITY",
+  "audits": [
+    {
+      "unitId": "white_mage",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/heroes/white_mage_sheet_4x1",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/white_mage-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/heroes/white_mage_sheet_4x1/white_mage_sheet_4x1_01_pose1.png",
+          "sha256": "1cb0dd1a219c2d4a11a662e909a930087a422bfe0830c2229766def7798dd508",
+          "dimensionsPx": [
+            614,
+            510
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/white_mage_sheet_4x1/white_mage_sheet_4x1_02_pose2.png",
+          "sha256": "679b3d79abd0a56b2516dc4bf3d8e68b91b2e4666a2a6763fe33427d340a547e",
+          "dimensionsPx": [
+            611,
+            610
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/white_mage_sheet_4x1/white_mage_sheet_4x1_03_pose3.png",
+          "sha256": "1e5f3cabf26c10c1a04d30c0237389f89bbc7ac77efe90a5ca40588d05026180",
+          "dimensionsPx": [
+            447,
+            648
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/white_mage_sheet_4x1/white_mage_sheet_4x1_04_pose4.png",
+          "sha256": "59b71649e0785758c30f18c046a7771efc63ae8e80f932dbd7bdbddb4a9e904f",
+          "dimensionsPx": [
+            385,
+            598
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "dark_mage",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/heroes/dark_mage_sheet_4x1",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/dark_mage-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/heroes/dark_mage_sheet_4x1/dark_mage_sheet_4x1_01_pose1.png",
+          "sha256": "9f791eed38131dee98ea7714e4b7154d52058291020a889d2b0beecad97b0058",
+          "dimensionsPx": [
+            557,
+            541
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/dark_mage_sheet_4x1/dark_mage_sheet_4x1_02_pose2.png",
+          "sha256": "a74e54c30777a579fc892025a2a12eb7df4590a31958b3e66544cb318d05c29c",
+          "dimensionsPx": [
+            566,
+            476
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/dark_mage_sheet_4x1/dark_mage_sheet_4x1_03_pose3.png",
+          "sha256": "39025ece86229664293b6d11e776a0e229d9e94e09c2f08ea442da93f24eb589",
+          "dimensionsPx": [
+            479,
+            599
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/dark_mage_sheet_4x1/dark_mage_sheet_4x1_04_pose4.png",
+          "sha256": "07a1c527cf2cea7866d01d15414a235d97412811d3b2e595aa617504d93725a5",
+          "dimensionsPx": [
+            376,
+            597
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "archer",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/heroes/archer_sheet_4x1",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/archer-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/heroes/archer_sheet_4x1/archer_sheet_4x1_01_pose1.png",
+          "sha256": "57f33cd2d11475a313beb50a47aa0cf86541a8d64540cbe6d73764a0a9692a83",
+          "dimensionsPx": [
+            544,
+            653
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/archer_sheet_4x1/archer_sheet_4x1_02_pose2.png",
+          "sha256": "df32f874d2c759ac49f3c3eb6ca4621ca9421efc381f73ae5343d135761fb914",
+          "dimensionsPx": [
+            590,
+            509
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/archer_sheet_4x1/archer_sheet_4x1_03_pose3.png",
+          "sha256": "87516061079e180178c727222c351ca9b7446b0006bd531bf5ce5de8def3cbf2",
+          "dimensionsPx": [
+            468,
+            653
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/archer_sheet_4x1/archer_sheet_4x1_04_pose4.png",
+          "sha256": "71debffa3299881b49bfb09aec286cb826b148f0b1758e8047ee4d2890eb566a",
+          "dimensionsPx": [
+            428,
+            580
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "rogue",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/heroes/rogue_sheet_4x1",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/rogue-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/heroes/rogue_sheet_4x1/rogue_sheet_4x1_01_pose1.png",
+          "sha256": "649d1c32bc5bb2858b928a8ec181c2e613f30f0f621e0fdc3e5cb6a9ebebf424",
+          "dimensionsPx": [
+            583,
+            525
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/rogue_sheet_4x1/rogue_sheet_4x1_02_pose2.png",
+          "sha256": "9676ffcfbc22222f4458b9c227fe982e2e6aa9a858d811d629fab032fdd2b42d",
+          "dimensionsPx": [
+            561,
+            571
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/rogue_sheet_4x1/rogue_sheet_4x1_03_pose3.png",
+          "sha256": "ca3dac0a257e1522dd0a4658d6eedd31edb02ccd66bbbfa42149535e05499631",
+          "dimensionsPx": [
+            495,
+            578
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/rogue_sheet_4x1/rogue_sheet_4x1_04_pose4.png",
+          "sha256": "eacfadb0103afe258b1f70ee5e8e58e0b3eed3b2a9049d871eb843de96c1d2fd",
+          "dimensionsPx": [
+            447,
+            634
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "lancer",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/heroes/lancer_sheet_4x1",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/lancer-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/heroes/lancer_sheet_4x1/lancer_sheet_4x1_01_pose1.png",
+          "sha256": "038a535de5d9c587fbaf70f046fe8f5973bbe963ad1d0fd0f922f7fe21184b35",
+          "dimensionsPx": [
+            652,
+            496
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/lancer_sheet_4x1/lancer_sheet_4x1_02_pose2.png",
+          "sha256": "39281404f71b30ad2d11ec592f3f20f34bd16b9e9028ec4de29c25bb1d859e1c",
+          "dimensionsPx": [
+            641,
+            508
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/lancer_sheet_4x1/lancer_sheet_4x1_03_pose3.png",
+          "sha256": "3055e96d26347f6e3d75fc956305250df67dcfb48aee9a3e3989ea083f36c5ab",
+          "dimensionsPx": [
+            446,
+            633
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/heroes/lancer_sheet_4x1/lancer_sheet_4x1_04_pose4.png",
+          "sha256": "c1bce93e002258e6b303425bef8fbb146f92d937de132f341f34c7bb2024ea45",
+          "dimensionsPx": [
+            429,
+            591
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "forest_badger",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_badger_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/forest_badger-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_badger_4x1_2560x768/enemy_badger_4x1_2560x768_01_pose1.png",
+          "sha256": "d0b5c33080da957cfab7fe9aa7a9a3248cd7ed64d4f7353d9cf3aa37e0bf2c18",
+          "dimensionsPx": [
+            484,
+            333
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_badger_4x1_2560x768/enemy_badger_4x1_2560x768_02_pose2.png",
+          "sha256": "bc50e1d749ca342f817b6f7426b062ebb7234ce2bed44a71f9926265c95412c8",
+          "dimensionsPx": [
+            672,
+            311
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_badger_4x1_2560x768/enemy_badger_4x1_2560x768_03_pose3.png",
+          "sha256": "f55f45ae2373567dcb8d719f72fc7c7527892e5552c480dd7e8210b1e10cf6f5",
+          "dimensionsPx": [
+            524,
+            439
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_badger_4x1_2560x768/enemy_badger_4x1_2560x768_04_pose4.png",
+          "sha256": "0598c525377db55a9b81dddb43e571125ba151045a44c6a9c9cbe9478082ddf6",
+          "dimensionsPx": [
+            483,
+            468
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "cave_bat",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_bat_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/cave_bat-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_bat_4x1_2560x768/enemy_bat_4x1_2560x768_01_pose1.png",
+          "sha256": "9e7dca8c208a4cad7f787edde102c3be4d1e99ab3516b03b53fb7cf8ad8a95d1",
+          "dimensionsPx": [
+            503,
+            454
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_bat_4x1_2560x768/enemy_bat_4x1_2560x768_02_pose2.png",
+          "sha256": "d3dcd776c9feb0b69766e3c2c5112de6c31ef4ba4d8b16f54adc8d7c5b5587ba",
+          "dimensionsPx": [
+            599,
+            505
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_bat_4x1_2560x768/enemy_bat_4x1_2560x768_03_pose3.png",
+          "sha256": "e934e4b615d5de26eb9947b83137e785726d3ee9288b7da32a742f7578cc8633",
+          "dimensionsPx": [
+            498,
+            576
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_bat_4x1_2560x768/enemy_bat_4x1_2560x768_04_pose4.png",
+          "sha256": "1282e82a1258f06eba0b757ce59b28499f731400c3f852b385ab067544ec1138",
+          "dimensionsPx": [
+            544,
+            634
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "wild_boar",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_boar_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/wild_boar-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_boar_4x1_2560x768/enemy_boar_4x1_2560x768_01_pose1.png",
+          "sha256": "86a137a73c1a314915c53fc956b2e46a2c8167b2f913964f72f6b41041ee9cbb",
+          "dimensionsPx": [
+            608,
+            356
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_boar_4x1_2560x768/enemy_boar_4x1_2560x768_02_pose2.png",
+          "sha256": "a2064b7d91a87f8f73a32fe0c90f066a2256bf7cd86f87612371cfe55ebcc124",
+          "dimensionsPx": [
+            557,
+            438
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_boar_4x1_2560x768/enemy_boar_4x1_2560x768_03_pose3.png",
+          "sha256": "d49538a4c1f1a989fdddbaa345eaff766539db518e1c6e7d6c4c56b8ac6f1e01",
+          "dimensionsPx": [
+            600,
+            337
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_boar_4x1_2560x768/enemy_boar_4x1_2560x768_04_pose4.png",
+          "sha256": "9be815066ec1be73dcd8b4eeee4ab499049d418a4ad59868ce014f1dd69585bd",
+          "dimensionsPx": [
+            502,
+            370
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "cave_rat",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_cave_rat_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/cave_rat-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_cave_rat_4x1_2560x768/enemy_cave_rat_4x1_2560x768_01_pose1.png",
+          "sha256": "39af179708cd1a95c57d944d344745842736923a0df2c854924b74fbb71de16f",
+          "dimensionsPx": [
+            573,
+            390
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_cave_rat_4x1_2560x768/enemy_cave_rat_4x1_2560x768_02_pose2.png",
+          "sha256": "8597903409c4e84e1bdfade817432bcdfa17f5d2d45d7f4ec179592f25b37253",
+          "dimensionsPx": [
+            728,
+            309
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_cave_rat_4x1_2560x768/enemy_cave_rat_4x1_2560x768_03_pose3.png",
+          "sha256": "e4e5ae98ac193fe6f3edbe944ec6b2cdf0d0a02191165116df1d02b579bf4067",
+          "dimensionsPx": [
+            494,
+            491
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_cave_rat_4x1_2560x768/enemy_cave_rat_4x1_2560x768_04_pose4.png",
+          "sha256": "16ebc967203099d8c1b79ac2a3d9a869b21152867f0934be0a15a0e82f8e6f21",
+          "dimensionsPx": [
+            405,
+            489
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "forest_spider",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_forest_spider_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/forest_spider-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_forest_spider_4x1_2560x768/enemy_forest_spider_4x1_2560x768_01_pose1.png",
+          "sha256": "f92bcd541cc97b79c61baf2adcb6644fd5f979686477f1372af210ecd43842a1",
+          "dimensionsPx": [
+            528,
+            558
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_forest_spider_4x1_2560x768/enemy_forest_spider_4x1_2560x768_02_pose2.png",
+          "sha256": "db41cd4f8cf9b27fa2e598e40d1fa78f24a4fcade2a925cdf25c1d7e9ec3f236",
+          "dimensionsPx": [
+            554,
+            482
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_forest_spider_4x1_2560x768/enemy_forest_spider_4x1_2560x768_03_pose3.png",
+          "sha256": "b7b5f2d125a1282028f32ab1bfa8f4fb2459b30485f4f652866dbe73ffe78e04",
+          "dimensionsPx": [
+            610,
+            464
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_forest_spider_4x1_2560x768/enemy_forest_spider_4x1_2560x768_04_pose4.png",
+          "sha256": "23b281318541c10026f84fcbe92bfaced8f60d75e6b5cfbf41b260ddbc684dfd",
+          "dimensionsPx": [
+            498,
+            492
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "marsh_toad",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_marsh_toad_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/marsh_toad-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_marsh_toad_4x1_2560x768/enemy_marsh_toad_4x1_2560x768_01_pose1.png",
+          "sha256": "b437b58a5f990b56f5c6c3e2ca2beceb48aa5351da918f9a2d1ed64f2efd9718",
+          "dimensionsPx": [
+            528,
+            453
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_marsh_toad_4x1_2560x768/enemy_marsh_toad_4x1_2560x768_02_pose2.png",
+          "sha256": "a539b9f4b08b902c4deefdc6d961b0d949e414c450ed77c2df2c23540078b1a6",
+          "dimensionsPx": [
+            604,
+            576
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_marsh_toad_4x1_2560x768/enemy_marsh_toad_4x1_2560x768_03_pose3.png",
+          "sha256": "fe231fca5529b5e5b132eca1342d40e9b61017e42fbfd3faddd684fab4c4a26c",
+          "dimensionsPx": [
+            487,
+            455
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_marsh_toad_4x1_2560x768/enemy_marsh_toad_4x1_2560x768_04_pose4.png",
+          "sha256": "6eac681c5c7d0a5e0388c434e0cdc22aacb470469820ff2f4239ea59499307c7",
+          "dimensionsPx": [
+            649,
+            402
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "serpent_raider",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_masked_assassin_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/serpent_raider-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_masked_assassin_4x1_2560x768/enemy_masked_assassin_4x1_2560x768_01_pose1.png",
+          "sha256": "c1094fa685d2b64a55d682d432b9de94398d4a4fdabbe289bd4f4b8849f87fc0",
+          "dimensionsPx": [
+            471,
+            580
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_masked_assassin_4x1_2560x768/enemy_masked_assassin_4x1_2560x768_02_pose2.png",
+          "sha256": "353cb132dced80235634bf799dff5ef3b4f35d3e981a5ab5df41f69f7a85a661",
+          "dimensionsPx": [
+            541,
+            515
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_masked_assassin_4x1_2560x768/enemy_masked_assassin_4x1_2560x768_03_pose3.png",
+          "sha256": "68c0570991c72f2ddc3cbed26ce14ce79f58a543cdea61c389bfe088ad72381c",
+          "dimensionsPx": [
+            471,
+            597
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_masked_assassin_4x1_2560x768/enemy_masked_assassin_4x1_2560x768_04_pose4.png",
+          "sha256": "a343d2156e4a5ed8c10a9b32506eaf42ff12337ff901fe031e83247de8a7d42a",
+          "dimensionsPx": [
+            662,
+            462
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "serpent_brute",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_serpent_mace_knight_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/serpent_brute-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_serpent_mace_knight_4x1_2560x768/enemy_serpent_mace_knight_4x1_2560x768_01_pose1.png",
+          "sha256": "e28cf4366d20f7ff6af21a671df73b5d51b377f1d8079eb8a2abc4693413b4d4",
+          "dimensionsPx": [
+            480,
+            579
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_serpent_mace_knight_4x1_2560x768/enemy_serpent_mace_knight_4x1_2560x768_02_pose2.png",
+          "sha256": "c546440c46b9bd9d2ad9f8fba07ff889de2fe248a7f9045e6a9f9cd98bd35908",
+          "dimensionsPx": [
+            566,
+            497
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_serpent_mace_knight_4x1_2560x768/enemy_serpent_mace_knight_4x1_2560x768_03_pose3.png",
+          "sha256": "b9950b0f482542a6bf22a7f9ebd0a6d1a3f906f141939e5eff9dada8ace0d845",
+          "dimensionsPx": [
+            685,
+            522
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_serpent_mace_knight_4x1_2560x768/enemy_serpent_mace_knight_4x1_2560x768_04_pose4.png",
+          "sha256": "7842de02d1f82471a817900be26294d8b009345ef79017a3ee8813a3ff554521",
+          "dimensionsPx": [
+            475,
+            729
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "serpent_oracle",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_serpent_mage_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/serpent_oracle-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_serpent_mage_4x1_2560x768/enemy_serpent_mage_4x1_2560x768_01_pose1.png",
+          "sha256": "022e0c88f7be987d0f338e1a7a1fb3f37e40bf4e34de76602447b57b24e429be",
+          "dimensionsPx": [
+            374,
+            635
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_serpent_mage_4x1_2560x768/enemy_serpent_mage_4x1_2560x768_02_pose2.png",
+          "sha256": "3ab7228b7912aa8a7ea1313ed5593bba1de0f2387acf195e14ad6e941ef89fe8",
+          "dimensionsPx": [
+            442,
+            560
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_serpent_mage_4x1_2560x768/enemy_serpent_mage_4x1_2560x768_03_pose3.png",
+          "sha256": "1502ea3738d36e9decb95e2b13a63969dd189ddeaafa55e88e46420975c172ee",
+          "dimensionsPx": [
+            659,
+            472
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_serpent_mage_4x1_2560x768/enemy_serpent_mage_4x1_2560x768_04_pose4.png",
+          "sha256": "abe0a3ecc80d37300b7160e7ac9552af652daca9edc1f428346db14f0c8f9a9e",
+          "dimensionsPx": [
+            427,
+            709
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "skeleton",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_skeleton_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/skeleton-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_skeleton_4x1_2560x768/enemy_skeleton_4x1_2560x768_01_pose1.png",
+          "sha256": "4722bb846d283af44296af4c036ebc0ad4b1626021a82aec6873527be3050b1a",
+          "dimensionsPx": [
+            563,
+            507
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_skeleton_4x1_2560x768/enemy_skeleton_4x1_2560x768_02_pose2.png",
+          "sha256": "9a4990205b867986c1ca44e4a9fe6881dc87840b265d1ea6ba8843f8e02fbd71",
+          "dimensionsPx": [
+            619,
+            498
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_skeleton_4x1_2560x768/enemy_skeleton_4x1_2560x768_03_pose3.png",
+          "sha256": "84c02d4fbde435c2232f1266a47297266ce8e0717ab28ba1e5bf7e54881dff3e",
+          "dimensionsPx": [
+            730,
+            477
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_skeleton_4x1_2560x768/enemy_skeleton_4x1_2560x768_04_pose4.png",
+          "sha256": "b09a001a60018abc157cc5a8f0153be3aeda14076717954d903c80a48befafd7",
+          "dimensionsPx": [
+            553,
+            661
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "venom_serpent",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_venom_serpent_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/venom_serpent-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_venom_serpent_4x1_2560x768/enemy_venom_serpent_4x1_2560x768_01_pose1.png",
+          "sha256": "b1024086c666298e68c22d0cfef4c32778f3bcc4445e46372f0e750d11fd6e87",
+          "dimensionsPx": [
+            597,
+            405
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_venom_serpent_4x1_2560x768/enemy_venom_serpent_4x1_2560x768_02_pose2.png",
+          "sha256": "91b50c6c62957087565b024ec30efeee350c5cce128e69436b3cb483869a9d72",
+          "dimensionsPx": [
+            428,
+            513
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_venom_serpent_4x1_2560x768/enemy_venom_serpent_4x1_2560x768_03_pose3.png",
+          "sha256": "d396024ae032d66ef27bd7a522df80232704ad8bb5f89988d58476bca7f5edea",
+          "dimensionsPx": [
+            688,
+            407
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_venom_serpent_4x1_2560x768/enemy_venom_serpent_4x1_2560x768_04_pose4.png",
+          "sha256": "fd3b82b9ed520b07485bd007859c5db6e9c30f31fef11834b2bb923d77e0f010",
+          "dimensionsPx": [
+            411,
+            442
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "wolf",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_wolf_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/wolf-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_wolf_4x1_2560x768/enemy_wolf_4x1_2560x768_01_pose1.png",
+          "sha256": "8be733a91d664a33f14364a25c7d74260c839759dbd558c52a9788d6d52d34c9",
+          "dimensionsPx": [
+            526,
+            433
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_wolf_4x1_2560x768/enemy_wolf_4x1_2560x768_02_pose2.png",
+          "sha256": "75fc657e6e440538feb86c35bffea64346d518ee481d58f9282b14634579dfc1",
+          "dimensionsPx": [
+            546,
+            434
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_wolf_4x1_2560x768/enemy_wolf_4x1_2560x768_03_pose3.png",
+          "sha256": "203b31f031126d1b0e6bf343060156207f5c82aa87d01b5480ea49d51bfd3354",
+          "dimensionsPx": [
+            625,
+            352
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/enemies/enemy_wolf_4x1_2560x768/enemy_wolf_4x1_2560x768_04_pose4.png",
+          "sha256": "f3e788d8cb9a9eae62a7765a20bb234abfba0d6b7ebf79bd81255ee0e300ed7f",
+          "dimensionsPx": [
+            489,
+            348
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "young_dragon_elite",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/bosses/enemy_dragon_elite_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/young_dragon_elite-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_dragon_elite_4x1_2560x768/enemy_dragon_elite_4x1_2560x768_01_pose1.png",
+          "sha256": "2ae759da2dd899951247af9805c16c6524413c1f75fd0429b579e80e02646795",
+          "dimensionsPx": [
+            595,
+            557
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_dragon_elite_4x1_2560x768/enemy_dragon_elite_4x1_2560x768_02_pose2.png",
+          "sha256": "c75c49f1c9f8eafe348a7e33df59f830a378b97e66aba214b54d5f2758dca7e6",
+          "dimensionsPx": [
+            685,
+            542
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_dragon_elite_4x1_2560x768/enemy_dragon_elite_4x1_2560x768_03_pose3.png",
+          "sha256": "68665edb9bfc9f04d71197e71ee04afca038a9fd690ec0e4e76fbbb17ab50302",
+          "dimensionsPx": [
+            633,
+            590
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_dragon_elite_4x1_2560x768/enemy_dragon_elite_4x1_2560x768_04_pose4.png",
+          "sha256": "0c06e49a687bdab4148bbcc3fc24158b28cb6db1b867aa8232a4e09f2a61a582",
+          "dimensionsPx": [
+            568,
+            620
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "forest_troll_elite",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/bosses/enemy_ogre_elite_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/forest_troll_elite-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_ogre_elite_4x1_2560x768/enemy_ogre_elite_4x1_2560x768_01_pose1.png",
+          "sha256": "29415e4057c964c42c7fda3220d89b63bfb9ed58ce30f582081c69bb9d120ae1",
+          "dimensionsPx": [
+            584,
+            594
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_ogre_elite_4x1_2560x768/enemy_ogre_elite_4x1_2560x768_02_pose2.png",
+          "sha256": "100c3c08343980967b697b4fd75808ad36c07daba58e6519d7715aa6857bdefb",
+          "dimensionsPx": [
+            688,
+            625
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_ogre_elite_4x1_2560x768/enemy_ogre_elite_4x1_2560x768_03_pose3.png",
+          "sha256": "8af2dac636909482e4c959154708ec10c1dd38981fe3464feba834d4c9257937",
+          "dimensionsPx": [
+            562,
+            706
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_ogre_elite_4x1_2560x768/enemy_ogre_elite_4x1_2560x768_04_pose4.png",
+          "sha256": "297e33a6dd4f0c95a30b7334ce207af8f5ac9fe1c023704dedafdbaa0f4239b8",
+          "dimensionsPx": [
+            641,
+            709
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "serpent_general_boss",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/bosses/enemy_serpent_champion_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/serpent_general_boss-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_champion_4x1_2560x768/enemy_serpent_champion_4x1_2560x768_01_pose1.png",
+          "sha256": "0fd88beaa0058a3f3d2122956ec952c3610e5cf6b1c3dd7c04a8db2af877c15d",
+          "dimensionsPx": [
+            536,
+            561
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_champion_4x1_2560x768/enemy_serpent_champion_4x1_2560x768_02_pose2.png",
+          "sha256": "2cd45780bf3116833444cf563e2ca6782a6e4397fe6d9e539eb38bab64326be4",
+          "dimensionsPx": [
+            618,
+            519
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_champion_4x1_2560x768/enemy_serpent_champion_4x1_2560x768_03_pose3.png",
+          "sha256": "6259224e09383c2afd7bc5c8b8d1022a976ddcd4c8eec512ccd4da8c36a55ff3",
+          "dimensionsPx": [
+            505,
+            639
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_champion_4x1_2560x768/enemy_serpent_champion_4x1_2560x768_04_pose4.png",
+          "sha256": "1f12198ff583e93298343e331ebb479642df1bedb0195a0755ebdc7f74c2321d",
+          "dimensionsPx": [
+            570,
+            486
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "serpent_duelist_elite",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/bosses/enemy_serpent_duelist_elite_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/serpent_duelist_elite-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_duelist_elite_4x1_2560x768/enemy_serpent_duelist_elite_4x1_2560x768_01_pose1.png",
+          "sha256": "bdc96e7e775a7a4af1b568a404b4f432c0a401af6db4fb4be850a551c953bb7f",
+          "dimensionsPx": [
+            607,
+            648
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_duelist_elite_4x1_2560x768/enemy_serpent_duelist_elite_4x1_2560x768_02_pose2.png",
+          "sha256": "3f032e195a7fc8fc9e4413c9a3b313ebf30d9ee6364be6fbc454fad71f6fc548",
+          "dimensionsPx": [
+            678,
+            559
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_duelist_elite_4x1_2560x768/enemy_serpent_duelist_elite_4x1_2560x768_03_pose3.png",
+          "sha256": "2296c130074d6ba67d370a031775ee3048e52951238cc4eebf60ce118a5d28fe",
+          "dimensionsPx": [
+            584,
+            688
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_duelist_elite_4x1_2560x768/enemy_serpent_duelist_elite_4x1_2560x768_04_pose4.png",
+          "sha256": "72d6d278df2324e7fdfb2bc4139858298f557674a77ccbd705f0c05ec83fec1a",
+          "dimensionsPx": [
+            547,
+            653
+          ]
+        }
+      ]
+    },
+    {
+      "unitId": "serpent_elite_brute",
+      "canonicalReferenceFolder": "public/assets/combat-stage/poses/bosses/enemy_serpent_halberd_elite_4x1_2560x768",
+      "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/audits/serpent_elite_brute-canonical-reference.png",
+      "sourceFiles": [
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_halberd_elite_4x1_2560x768/enemy_serpent_halberd_elite_4x1_2560x768_01_pose1.png",
+          "sha256": "0ba56e9e8f6dc83cc1f36368d9fd60195be85f5288d84406cc932664bd1c5668",
+          "dimensionsPx": [
+            472,
+            645
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_halberd_elite_4x1_2560x768/enemy_serpent_halberd_elite_4x1_2560x768_02_pose2.png",
+          "sha256": "9efe1422fb931bb35c63db445778aac2f3da1570e705a4344f963a90d6beae94",
+          "dimensionsPx": [
+            856,
+            484
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_halberd_elite_4x1_2560x768/enemy_serpent_halberd_elite_4x1_2560x768_03_pose3.png",
+          "sha256": "c1f7cc4fdd6a8c3322a5a597a07c4481d2d52402821e6efc336e3f4179221947",
+          "dimensionsPx": [
+            624,
+            642
+          ]
+        },
+        {
+          "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_halberd_elite_4x1_2560x768/enemy_serpent_halberd_elite_4x1_2560x768_04_pose4.png",
+          "sha256": "9d2e9b3bbc88ecd06563e868c06ec429bc0bbb2041c706162ed701e8daae68e0",
+          "dimensionsPx": [
+            544,
+            643
+          ]
+        }
+      ]
+    }
+  ],
+  "pilotProtectionSnapshot": {
+    "expectedFiles": 21,
+    "capturedFiles": 21,
+    "sha256": {
+      "masters/alistair-master.png": "39b856e297221f8df514173b9e741d943c522a0ed557c13ceaaf27573a1ed4d9",
+      "masters/goblin-master.png": "9fed91ccab3c15625427b8788dc89d101d4ce5307a60609b9770efb7dd887b00",
+      "masters/lion-champion-master.png": "82a6527a424229ccf86fd910654f72a4570031ce310e7606e9db179343983a0a",
+      "boards-2x2/alistair-board.png": "0904fa21bf9b90dd19f6c5032c09431ea740f13b88ba310ec994c6191691a0d9",
+      "boards-2x2/goblin-board.png": "b7cb7d8b934f76dbfe6aeb8e1ceaecf5c45e9cd03ada09d009efd3a6d954284b",
+      "boards-2x2/lion-champion-board.png": "34a87b5681a06af544074485d0c00f990ea1f645b827d5dfb97766f76442f7d3",
+      "split-poses/alistair/alistair-idle.png": "47b96a17c4712a6c8b1095f02f47097def1adb46170919355be0a4ba16701fa3",
+      "split-poses/alistair/alistair-dash.png": "9d7914cb222151b8a847971c7006cf91a15615bc970d61809ff7a35c210f27e7",
+      "split-poses/alistair/alistair-attack.png": "bd801cb5fa4b069668d2acdb91eff95692c62e5c73972b653a3510bad42364b9",
+      "split-poses/alistair/alistair-skill.png": "d887d5e6006568f19ab6ad507bc81b7ac0f8fed72eae6143279f536b0667c55f",
+      "split-poses/goblin/goblin-idle.png": "61bad28fd309871e8ed50d5100a98f161a3ffd1334cbf1417cb3a46486456e48",
+      "split-poses/goblin/goblin-dash.png": "fdb1f314272f793fd490540a57604c5c1436a0682999973f96c5f47a0825d1b2",
+      "split-poses/goblin/goblin-attack.png": "8a85500fd493406c27c5aa0e96dcb619307d5cdc1ba340cecd73d4f909d41576",
+      "split-poses/goblin/goblin-skill.png": "9139179b210b26a089c2dabb5cc1d087aaefbdba7df85ec44fbbcb5901faca68",
+      "split-poses/lion-champion/lion-champion-idle.png": "647222bc2c578a7326b25f72886fda9e38a0287fee997f98fb201d6c39d8f834",
+      "split-poses/lion-champion/lion-champion-dash.png": "7e5d2e54dc359ddf291863ed6dbb28b4ce9eb2e7b5eb9c3459cad57317df8216",
+      "split-poses/lion-champion/lion-champion-attack.png": "d2a06df620a5aaf4023c5732633a1c21d078e5d360e50eb87e29b6ef3372508c",
+      "split-poses/lion-champion/lion-champion-skill.png": "6d31a3b75df0931f43ac5910b5faf5a3839e030e755775b84c1a2494302532cc",
+      "manifests/alistair-manifest.json": "84a1c62e8cd314d9a56c2440e76f95e768f011a957a6a326f73b437504a874fa",
+      "manifests/goblin-manifest.json": "8f166854d323391e85fcf65d200ceb77afe7310e636cd8790a541c5271898e86",
+      "manifests/lion-champion-manifest.json": "694fb3f3d6abc083e85d9296f82ba50cc88b0b7bb9c9e7bc16ea6217091d4cb5"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "unitId": "rogue",
+  "family": "STANDARD_HUMANOID",
+  "weaponOrAnatomy": "matched dual daggers",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 456,
+  "pivot": [
+    256,
+    456
+  ],
+  "airborneOffset": 0,
+  "targetCoreExtentPx": 326,
+  "sourceDimensions": [
+    1199,
+    1312
+  ],
+  "sourceAlphaBBox": [
+    138,
+    102,
+    1044,
+    1205
+  ],
+  "sourceCoreBBox": [
+    159,
+    107,
+    994,
+    1205
+  ],
+  "authoredBodyMassScale": 0.29690346083788705,
+  "appliedScale": 0.29690346083788705,
+  "scaleLimitedByExtremeAppendage": false,
+  "normalizedAlphaBBox": [
+    127,
+    128,
+    396,
+    456
+  ],
+  "normalizedCoreBBox": [
+    134,
+    130,
+    377,
+    456
+  ],
+  "normalizedCoreExtentPx": 326,
+  "transparentMargins": [
+    127,
+    128,
+    116,
+    56
+  ],
+  "safeMarginsPass": true,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/rogue-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/rogue-clean.png",
+  "masterPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/rogue-master.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/rogue.txt",
+  "rawSha256": "0ff89d79e531f8247dc896b93a774ac42d726dcd6a839974046ab10eeebb32de",
+  "masterSha256": "8216c95d16aec061331a212b0717ba155f7ff32b32bfaca1decbb27f788c3c14",
+  "perPoseAutoScaling": false,
+  "fitToContent": false
+}

@@ -21,24 +21,18 @@ const PIXEL_DENSITY_MAX_RATIO = 1.3;
 const BACKGROUND_DELTA_MIN = 28;
 
 interface PilotManifest {
-  unit: { id: string };
-  poses: Array<{
-    pose: string;
-    alphaBBoxPx: [number, number, number, number];
-    footBaselinePx: number;
-    pivotPx: [number, number];
-    scaleCorrection: number;
+  status: string;
+  units: Array<{
+    unitId: string;
+    worldUnitsPerPixel: number;
+    poses: Record<string, {
+      src: string;
+      sourceSizePx: { width: number; height: number };
+      alphaBoundsPx: { left: number; top: number; right: number; bottom: number };
+      anchor: { x: number; y: number };
+      scaleCorrection: number;
+    }>;
   }>;
-  scaleData: {
-    canvasPx: [number, number];
-    targetWorldHeight: number;
-    deliveryFitScale: number;
-    scaleCorrection: number;
-    footBaselinePx: number;
-    pivotPx: [number, number];
-    sharedScaleAcrossPoses: boolean;
-    perPoseFitToContent: boolean;
-  };
 }
 
 interface UnitRuntimeRecord {
@@ -67,7 +61,6 @@ interface ScreenRect {
 interface UnitProofMetrics {
   id: PilotUnitId;
   displayName: string;
-  deliveryFitScale: number;
   scaleCorrection: number;
   targetWorldHeight: number;
   measuredVisibleWorldHeight: number;
@@ -98,7 +91,7 @@ export interface CombatPosesV2RuntimeProofResult {
   schemaVersion: 1;
   status: 'PASS' | 'FAIL';
   devOnly: true;
-  canonicalAssetsPromoted: false;
+  canonicalAssetsPromoted: true;
   gameplayChanged: false;
   combatLogicChanged: false;
   vfxChanged: false;
@@ -138,21 +131,18 @@ async function validateManifest(unit: PilotRuntimeUnit): Promise<void> {
   const response = await fetch(unit.manifestUrl, { cache: 'no-store' });
   if (!response.ok) throw new Error(`Manifest request failed for ${unit.id}: HTTP ${response.status}`);
   const manifest = await response.json() as PilotManifest;
-  const idle = manifest.poses.find((pose) => pose.pose === 'idle');
-  const valid = manifest.unit.id === unit.id
-    && manifest.scaleData.canvasPx[0] === unit.canvasPx
-    && manifest.scaleData.canvasPx[1] === unit.canvasPx
-    && manifest.scaleData.targetWorldHeight === unit.targetWorldHeight
-    && manifest.scaleData.deliveryFitScale === unit.deliveryFitScale
-    && manifest.scaleData.scaleCorrection === unit.scaleCorrection
-    && manifest.scaleData.sharedScaleAcrossPoses === true
-    && manifest.scaleData.perPoseFitToContent === false
-    && manifest.scaleData.footBaselinePx === unit.footBaselinePx
-    && sameNumbers(manifest.scaleData.pivotPx, unit.pivotPx)
-    && idle?.scaleCorrection === 1
-    && idle.footBaselinePx === unit.footBaselinePx
-    && sameNumbers(idle.pivotPx, unit.pivotPx)
-    && sameNumbers(idle.alphaBBoxPx, unit.idleAlphaBBoxPx);
+  const manifestUnit = manifest.units.find((candidate) => candidate.unitId === unit.combatPoseUnitId);
+  const pose = manifestUnit?.poses[unit.pose];
+  const bounds = pose?.alphaBoundsPx;
+  const valid = manifest.status === 'PROMOTED'
+    && manifestUnit?.worldUnitsPerPixel === unit.worldUnitsPerPixel
+    && pose?.src === unit.imageUrl
+    && pose.scaleCorrection === unit.scaleCorrection
+    && pose.sourceSizePx.width === unit.sourceSizePx[0]
+    && pose.sourceSizePx.height === unit.sourceSizePx[1]
+    && sameNumbers([pose.anchor.x, pose.anchor.y], unit.pivotPx)
+    && Boolean(bounds)
+    && sameNumbers([bounds!.left, bounds!.top, bounds!.right, bounds!.bottom], unit.alphaBBoxPx);
   if (!valid) throw new Error(`Runtime proof config drifted from ${unit.id} manifest metadata.`);
 }
 
@@ -217,7 +207,7 @@ function screenRectFor(
   root.updateMatrixWorld(true);
   const unit = record.config;
   const unitsPerPixel = worldUnitsPerSourcePixel(unit);
-  const [leftPx, topPx, rightPx, bottomPx] = unit.idleAlphaBBoxPx;
+  const [leftPx, topPx, rightPx, bottomPx] = unit.alphaBBoxPx;
   const pivotX = unit.pivotPx[0];
   const facing = Math.sign(mesh.scale.x) || 1;
   const xA = root.position.x + (leftPx - pivotX) * unitsPerPixel * facing;
@@ -398,9 +388,14 @@ export class CombatPosesV2RuntimeProof {
       );
       if (!entered) throw new Error('CombatStage refused the DEV runtime proof composition.');
 
+      await Promise.all(this.records.map((record) => this.stage!.setCombatUnitPose(
+        record.source,
+        record.config.pose,
+      )));
+
       // One production tick installs the camera-local environment transform.
-      // The static proof then applies the authored manifest baseline once; no
-      // per-pose scaling or motion is involved.
+      // The static proof uses the production registry's authored anchors and
+      // one shared pixel scale; no per-pose fitting or body scaling is involved.
       this.stage.tick(0);
       this.bindAndGroundProxies();
       this.renderer.render(this.stage.scene, this.stage.camera);
@@ -462,7 +457,7 @@ export class CombatPosesV2RuntimeProof {
     const source: StageSpriteSource = {
       name: config.displayName,
       team: config.team,
-      runtimeFrameAnimation: true,
+      combatPoseUnitId: config.combatPoseUnitId,
       spr: {
         material: { map: texture },
         geometry: { parameters: { width: planeWidth, height: planeHeight } },
@@ -483,8 +478,6 @@ export class CombatPosesV2RuntimeProof {
         throw new Error(`CombatStage proxy lookup failed for ${record.config.displayName}.`);
       }
       const mesh = poseVisual as THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>;
-      const [, planeHeight] = runtimePlaneSize(record.config);
-      mesh.position.y = planeHeight * (record.config.footBaselinePx / record.config.canvasPx - 0.5) - STAGE_PROXY_Y_SINK;
       record.root = root;
       record.poseVisual = mesh;
     }
@@ -511,20 +504,19 @@ export class CombatPosesV2RuntimeProof {
       const [, planeHeight] = runtimePlaneSize(config);
       const actualBaselineWorldY = record.root!.position.y
         + record.poseVisual!.position.y
-        + planeHeight * (0.5 - config.footBaselinePx / config.canvasPx);
+        + planeHeight * (0.5 - config.footBaselinePx / config.sourceSizePx[1]);
       const expectedBaselineWorldY = record.root!.position.y - STAGE_PROXY_Y_SINK;
       const groundContactErrorWorld = Math.abs(actualBaselineWorldY - expectedBaselineWorldY);
       return {
         id: config.id,
         displayName: config.displayName,
-        deliveryFitScale: config.deliveryFitScale,
         scaleCorrection: config.scaleCorrection,
         targetWorldHeight: config.targetWorldHeight,
         measuredVisibleWorldHeight: round(measuredWorldHeight, 6),
         planeWorldSize: runtimePlaneSize(config).map((value) => round(value, 6)) as [number, number],
         footBaselinePx: config.footBaselinePx,
         pivotPx: config.pivotPx,
-        alphaBBoxPx: config.idleAlphaBBoxPx,
+        alphaBBoxPx: config.alphaBBoxPx,
         sourcePixelsPerWorldUnit: round(1 / worldUnitsPerSourcePixel(config), 4),
         screenRectPx: roundRect(rect),
         screenBaselinePx: { x: round(baseline.x), y: round(baseline.y) },
@@ -569,7 +561,7 @@ export class CombatPosesV2RuntimeProof {
       schemaVersion: 1,
       status,
       devOnly: true,
-      canonicalAssetsPromoted: false,
+      canonicalAssetsPromoted: true,
       gameplayChanged: false,
       combatLogicChanged: false,
       vfxChanged: false,
@@ -608,12 +600,12 @@ export class CombatPosesV2RuntimeProof {
     for (const unit of result.units) {
       const item = document.createElement('div');
       item.className = 'option-c-v2-proof__unit';
-      item.innerHTML = `<strong>${unit.displayName}</strong><span>${unit.targetWorldHeight.toFixed(1)}u · fit ${unit.deliveryFitScale.toFixed(2)} · correction ${unit.scaleCorrection.toFixed(1)}</span>`;
+      item.innerHTML = `<strong>${unit.displayName}</strong><span>${unit.targetWorldHeight.toFixed(2)}u · ${this.records.find((record) => record.config.id === unit.id)?.config.pose.toUpperCase()} · correction ${unit.scaleCorrection.toFixed(1)}</span>`;
       legend.appendChild(item);
     }
     const status = document.createElement('div');
     status.className = 'option-c-v2-proof__status';
-    status.textContent = `${result.status} · canonical untouched`;
+    status.textContent = `${result.status} · full assets untouched`;
     overlay.append(header, legend, status);
     this.root.appendChild(overlay);
   }

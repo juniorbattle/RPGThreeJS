@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 remaining 22 units production",
+  "productionPromotion": false,
+  "unitId": "dark_mage",
+  "category": "HERO",
+  "canonicalReferenceFolder": "public/assets/combat-stage/poses/heroes/dark_mage_sheet_4x1",
+  "master": "public/assets/dev/option-c/combat-poses-v2/masters/dark_mage-master.png",
+  "board": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/dark_mage-board.png",
+  "prepare": "public/assets/dev/option-c/combat-poses-v2/split-poses/dark_mage/dark_mage-idle.png",
+  "dash": "public/assets/dev/option-c/combat-poses-v2/split-poses/dark_mage/dark_mage-dash.png",
+  "attack": "public/assets/dev/option-c/combat-poses-v2/split-poses/dark_mage/dark_mage-attack.png",
+  "cast": "public/assets/dev/option-c/combat-poses-v2/split-poses/dark_mage/dark_mage-skill.png",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 431,
+  "pivot": [
+    256,
+    431
+  ],
+  "targetWorldSize": 2.1,
+  "deliveryFactor": 0.68,
+  "scaleCorrection": 1.0,
+  "sizeClass": "humanoid_hero",
+  "weaponType": "black-and-gold grimoire with cyan arcane sigil",
+  "qaStatus": "PASS_CANDIDATE",
+  "knownIssues": [],
+  "generationProvenance": {
+    "model": "UNKNOWN",
+    "modelProvenance": "UNKNOWN",
+    "canonicalIdentityReference": "public/assets/combat-stage/poses/heroes/dark_mage_sheet_4x1",
+    "styleReferences": [
+      "approved Option C four-class reference",
+      "Alistair V2 pilot",
+      "Goblin V2 pilot",
+      "Lion Champion V2 pilot"
+    ],
+    "masterSource": "public/assets/dev/option-c/combat-poses-v2/masters/dark_mage-master-source.png",
+    "boardSource": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/dark_mage-board-source.png",
+    "boardPrompt": "public/assets/dev/option-c/combat-poses-v2/manifests/dark_mage-board-prompt.txt",
+    "processorMeta": "public/assets/dev/option-c/combat-poses-v2/manifests/dark_mage-processor-meta.json",
+    "boardGeneratedAsOne2x2Family": true
+  },
+  "scaleDoctrine": {
+    "sharedScaleAcrossPoses": true,
+    "perPoseAutoScaling": false,
+    "fitToContentPerPose": false,
+    "scaleCorrectionOverrides": 0
+  },
+  "poses": [
+    {
+      "pose": "prepare",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/dark_mage/dark_mage-idle.png",
+      "sha256": "5a8e45803320d3f8b485cdc702c4e08dc103d88812127f7a53c27065645c9457",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        129,
+        98,
+        383,
+        431
+      ],
+      "transparentMargins": {
+        "left": 129,
+        "top": 98,
+        "right": 129,
+        "bottom": 81
+      },
+      "baseline": 431,
+      "pivot": [
+        256,
+        431
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        0
+      ],
+      "sourceCropBBox": [
+        87,
+        36,
+        532,
+        619
+      ],
+      "commonScaleOutputSize": [
+        254,
+        333
+      ],
+      "pastePosition": [
+        129,
+        98
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/dark_mage/dark_mage-dash.png",
+      "sha256": "47aedef25890d7e26db21a5f03a3562b9e6ab13ff2548f5ee791c2be8486bee9",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        88,
+        140,
+        424,
+        431
+      ],
+      "transparentMargins": {
+        "left": 88,
+        "top": 140,
+        "right": 88,
+        "bottom": 81
+      },
+      "baseline": 431,
+      "pivot": [
+        256,
+        431
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        1
+      ],
+      "sourceCropBBox": [
+        21,
+        77,
+        609,
+        587
+      ],
+      "commonScaleOutputSize": [
+        336,
+        291
+      ],
+      "pastePosition": [
+        88,
+        140
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/dark_mage/dark_mage-attack.png",
+      "sha256": "bbdc452412676c4683d04c2dee807633e894598397e0cf5759c79e3672d8c3a0",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        87,
+        148,
+        424,
+        431
+      ],
+      "transparentMargins": {
+        "left": 87,
+        "top": 148,
+        "right": 88,
+        "bottom": 81
+      },
+      "baseline": 431,
+      "pivot": [
+        256,
+        431
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        0
+      ],
+      "sourceCropBBox": [
+        28,
+        61,
+        619,
+        557
+      ],
+      "commonScaleOutputSize": [
+        337,
+        283
+      ],
+      "pastePosition": [
+        87,
+        148
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "cast",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/dark_mage/dark_mage-skill.png",
+      "sha256": "ae3205fbdae2d181c64fa3311749db5d688be1f55c8881c7a0fb2468bf090db7",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        82,
+        114,
+        430,
+        431
+      ],
+      "transparentMargins": {
+        "left": 82,
+        "top": 114,
+        "right": 82,
+        "bottom": 81
+      },
+      "baseline": 431,
+      "pivot": [
+        256,
+        431
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        1
+      ],
+      "sourceCropBBox": [
+        0,
+        9,
+        609,
+        564
+      ],
+      "commonScaleOutputSize": [
+        348,
+        317
+      ],
+      "pastePosition": [
+        82,
+        114
+      ],
+      "sourceEdgeTouch": true
+    }
+  ],
+  "qa": {
+    "identity": "OPERATOR_REVIEW_PENDING",
+    "style": "OPERATOR_REVIEW_PENDING",
+    "physicalScale": "PASS_MACHINE_SHARED_SCALE",
+    "morphology": "OPERATOR_REVIEW_PENDING",
+    "poseSemantics": "PASS_CANDIDATE",
+    "weapon": "PASS_CANDIDATE",
+    "pixelDensity": "PASS_MACHINE_SHARED_SCALE",
+    "vfxClearance": "SOURCE_EDGE_RISK",
+    "groundingRisk": "PASS_MACHINE_BASELINE",
+    "operatorApproval": "PENDING",
+    "qaBoard": "public/assets/dev/option-c/combat-poses-v2/qa/dark_mage-qa-board.png"
+  }
+}

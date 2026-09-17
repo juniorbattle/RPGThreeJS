@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C full 25-unit roster rebuild",
+  "unitId": "forest_troll_elite",
+  "category": "ELITE_BOSS",
+  "scaleFamily": "LARGE_ELITE_BOSS",
+  "weaponOrAnatomyLock": "massive wooden club",
+  "artStyleAuthority": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/art-style-authority.png",
+    "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+    "sourcePath": "C:\\Users\\miche\\AppData\\Local\\Temp\\codex-clipboard-21f24758-8fb5-4e50-97ee-7ad521b05315.png",
+    "role": "PRIMARY_AND_ONLY_ART_STYLE_AUTHORITY"
+  },
+  "canonicalIdentityReference": {
+    "unitId": "forest_troll_elite",
+    "category": "ELITE_BOSS",
+    "family": "LARGE_ELITE_BOSS",
+    "weaponOrAnatomy": "massive wooden club",
+    "canonicalFolder": "public/assets/combat-stage/poses/bosses/enemy_ogre_elite_4x1_2560x768",
+    "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/canonical/forest_troll_elite.png",
+    "sources": [
+      {
+        "path": "public/assets/combat-stage/poses/bosses/enemy_ogre_elite_4x1_2560x768/enemy_ogre_elite_4x1_2560x768_01_pose1.png",
+        "sha256": "29415e4057c964c42c7fda3220d89b63bfb9ed58ce30f582081c69bb9d120ae1",
+        "dimensions": [
+          584,
+          594
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/bosses/enemy_ogre_elite_4x1_2560x768/enemy_ogre_elite_4x1_2560x768_02_pose2.png",
+        "sha256": "100c3c08343980967b697b4fd75808ad36c07daba58e6519d7715aa6857bdefb",
+        "dimensions": [
+          688,
+          625
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/bosses/enemy_ogre_elite_4x1_2560x768/enemy_ogre_elite_4x1_2560x768_03_pose3.png",
+        "sha256": "8af2dac636909482e4c959154708ec10c1dd38981fe3464feba834d4c9257937",
+        "dimensions": [
+          562,
+          706
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/bosses/enemy_ogre_elite_4x1_2560x768/enemy_ogre_elite_4x1_2560x768_04_pose4.png",
+        "sha256": "297e33a6dd4f0c95a30b7334ce207af8f5ac9fe1c023704dedafdbaa0f4239b8",
+        "dimensions": [
+          641,
+          709
+        ]
+      }
+    ]
+  },
+  "master": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/forest_troll_elite-master.png",
+    "sha256": "f35a43b5acc0111c5ca8530263f708a9edc384052903269312f370e7eddce9dd",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA"
+  },
+  "board2x2": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/forest_troll_elite-board.png",
+    "sha256": "c6545ba34da458fc295fd5549e3032afa6a6ef2c575d0bfc2c25d1bf73a55f6d",
+    "dimensions": [
+      1280,
+      1280
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      85,
+      98,
+      1195,
+      1161
+    ],
+    "safeMarginMin": 85
+  },
+  "poses": {
+    "idle": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_troll_elite/forest_troll_elite-idle.png",
+      "sha256": "187207c2c3c9681c14e61e888b51836bc08667263c79672a7c00b025f1b23d71",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        63,
+        34,
+        449,
+        456
+      ],
+      "safeMarginMin": 34,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "dash": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_troll_elite/forest_troll_elite-dash.png",
+      "sha256": "4ea0bac388d82e7099caeb3a2d823d6b874b419382098da29816b9d88630ffab",
+      "dimensions": [
+        640,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        91,
+        61,
+        555,
+        456
+      ],
+      "safeMarginMin": 56,
+      "canvasWidth": 640,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        320,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "attack": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_troll_elite/forest_troll_elite-attack.png",
+      "sha256": "68cb01dfb0f8a990a737eeb00739e5a3619f1bb38ad88c49696930c9e45417ac",
+      "dimensions": [
+        640,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        85,
+        83,
+        553,
+        457
+      ],
+      "safeMarginMin": 55,
+      "canvasWidth": 640,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        320,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "skill": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_troll_elite/forest_troll_elite-skill.png",
+      "sha256": "084cb1a9391d8d40dda41d3b522913530e3650f96c5f38146214df58fe0107bb",
+      "dimensions": [
+        512,
+        640
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        33,
+        88,
+        473,
+        520
+      ],
+      "safeMarginMin": 33,
+      "canvasWidth": 512,
+      "canvasHeight": 640,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        520
+      ],
+      "poseRegenerated": false
+    }
+  },
+  "prompts": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/forest_troll_elite.txt",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/forest_troll_elite.txt"
+  },
+  "metrics": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-metrics/forest_troll_elite.json",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-metrics/forest_troll_elite.json"
+  },
+  "qaBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/forest_troll_elite-qa.png",
+  "pipelineDoctrine": {
+    "masterNormalizedBeforePoses": true,
+    "commonMasterCanvas": [
+      512,
+      512
+    ],
+    "commonBaseline": 456,
+    "commonPivotX": 256,
+    "perPoseAutoScalingUsed": false,
+    "fitToContentUsed": false,
+    "sharedBoardToMasterScale": 0.7634011090573013,
+    "scaleCorrectionOverride": 0,
+    "bodyScaleLocked": true,
+    "pixelDensityLocked": true,
+    "flexiblePoseCanvasEnabled": true
+  },
+  "machineValidation": {
+    "masterDimensionsPass": true,
+    "boardDimensionsPass": true,
+    "poseDimensionsPass": true,
+    "outputCropFlags": [],
+    "allOutputsNonEmpty": true
+  },
+  "operatorClassification": {
+    "category": "PASS_CANDIDATE",
+    "reason": "Large-elite mass and the same totem-club remain coherent through charge, impact, and forest skill.",
+    "issues": {
+      "cropping": [],
+      "scale": [],
+      "weapon": [],
+      "pose": [],
+      "other": []
+    }
+  },
+  "finalCleanup": {
+    "status": "PASS",
+    "poseRecords": {
+      "idle": {
+        "unitId": "forest_troll_elite",
+        "pose": "idle",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_troll_elite/forest_troll_elite-idle.png",
+        "sourceSha256": "187207c2c3c9681c14e61e888b51836bc08667263c79672a7c00b025f1b23d71",
+        "finalSha256": "187207c2c3c9681c14e61e888b51836bc08667263c79672a7c00b025f1b23d71",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          63,
+          34,
+          449,
+          456
+        ],
+        "transparentMargins": [
+          63,
+          34,
+          63,
+          56
+        ],
+        "safeMarginMin": 34,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "dash": {
+        "unitId": "forest_troll_elite",
+        "pose": "dash",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_troll_elite/forest_troll_elite-dash.png",
+        "sourceSha256": "21586cbaf649a302bac56ea45caa65602e3cecbf789867e99287ee2bde2c474c",
+        "finalSha256": "4ea0bac388d82e7099caeb3a2d823d6b874b419382098da29816b9d88630ffab",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 640,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          91,
+          61,
+          555,
+          456
+        ],
+        "transparentMargins": [
+          91,
+          61,
+          85,
+          56
+        ],
+        "safeMarginMin": 56,
+        "targetMargin": 24,
+        "pivot": [
+          320,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "attack": {
+        "unitId": "forest_troll_elite",
+        "pose": "attack",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_troll_elite/forest_troll_elite-attack.png",
+        "sourceSha256": "d4546da9118b66d7a33d5ff1d3d682340a6cda10f895513792fa79e169d931fb",
+        "finalSha256": "68cb01dfb0f8a990a737eeb00739e5a3619f1bb38ad88c49696930c9e45417ac",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 640,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          85,
+          83,
+          553,
+          457
+        ],
+        "transparentMargins": [
+          85,
+          83,
+          87,
+          55
+        ],
+        "safeMarginMin": 55,
+        "targetMargin": 32,
+        "pivot": [
+          320,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "skill": {
+        "unitId": "forest_troll_elite",
+        "pose": "skill",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/forest_troll_elite/forest_troll_elite-skill.png",
+        "sourceSha256": "b140fec2f4ad3072fbe5f57c9ba3ec6cd49ddb27e6cc6e57fa94f867da9f3a0a",
+        "finalSha256": "084cb1a9391d8d40dda41d3b522913530e3650f96c5f38146214df58fe0107bb",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 640,
+        "alphaBBox": [
+          33,
+          88,
+          473,
+          520
+        ],
+        "transparentMargins": [
+          33,
+          88,
+          39,
+          120
+        ],
+        "safeMarginMin": 33,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          520
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      }
+    }
+  }
+}

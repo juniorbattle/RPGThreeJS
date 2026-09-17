@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 remaining 22 units production",
+  "productionPromotion": false,
+  "unitId": "serpent_oracle",
+  "category": "ENEMY",
+  "canonicalReferenceFolder": "public/assets/combat-stage/poses/enemies/enemy_serpent_mage_4x1_2560x768",
+  "master": "public/assets/dev/option-c/combat-poses-v2/masters/serpent_oracle-master.png",
+  "board": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/serpent_oracle-board.png",
+  "prepare": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_oracle/serpent_oracle-idle.png",
+  "dash": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_oracle/serpent_oracle-dash.png",
+  "attack": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_oracle/serpent_oracle-attack.png",
+  "cast": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_oracle/serpent_oracle-skill.png",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 425,
+  "pivot": [
+    256,
+    425
+  ],
+  "targetWorldSize": 2.05,
+  "deliveryFactor": 0.66,
+  "scaleCorrection": 1.0,
+  "sizeClass": "humanoid_enemy",
+  "weaponType": "tall wooden staff crowned by a coiled serpent and green crystal",
+  "qaStatus": "PASS_CANDIDATE",
+  "knownIssues": [],
+  "generationProvenance": {
+    "model": "UNKNOWN",
+    "modelProvenance": "UNKNOWN",
+    "canonicalIdentityReference": "public/assets/combat-stage/poses/enemies/enemy_serpent_mage_4x1_2560x768",
+    "styleReferences": [
+      "approved Option C four-class reference",
+      "Alistair V2 pilot",
+      "Goblin V2 pilot",
+      "Lion Champion V2 pilot"
+    ],
+    "masterSource": "public/assets/dev/option-c/combat-poses-v2/masters/serpent_oracle-master-source.png",
+    "boardSource": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/serpent_oracle-board-source.png",
+    "boardPrompt": "public/assets/dev/option-c/combat-poses-v2/manifests/serpent_oracle-board-prompt.txt",
+    "processorMeta": "public/assets/dev/option-c/combat-poses-v2/manifests/serpent_oracle-processor-meta.json",
+    "boardGeneratedAsOne2x2Family": true
+  },
+  "scaleDoctrine": {
+    "sharedScaleAcrossPoses": true,
+    "perPoseAutoScaling": false,
+    "fitToContentPerPose": false,
+    "scaleCorrectionOverrides": 0
+  },
+  "poses": [
+    {
+      "pose": "prepare",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_oracle/serpent_oracle-idle.png",
+      "sha256": "4bf6adb28a8c41bf46c59ee9cfb5aad386bb95f0cdb62b74e13df7b606cd6858",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        94,
+        113,
+        418,
+        393
+      ],
+      "transparentMargins": {
+        "left": 94,
+        "top": 113,
+        "right": 94,
+        "bottom": 119
+      },
+      "baseline": 425,
+      "pivot": [
+        256,
+        425
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        0
+      ],
+      "sourceCropBBox": [
+        27,
+        50,
+        615,
+        615
+      ],
+      "commonScaleOutputSize": [
+        325,
+        312
+      ],
+      "pastePosition": [
+        93,
+        113
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_oracle/serpent_oracle-dash.png",
+      "sha256": "deabee02276ccb8a312c025d017bcf3274b8a1ddea76d17435b22c974551826c",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        95,
+        88,
+        412,
+        424
+      ],
+      "transparentMargins": {
+        "left": 95,
+        "top": 88,
+        "right": 100,
+        "bottom": 88
+      },
+      "baseline": 425,
+      "pivot": [
+        256,
+        425
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        1
+      ],
+      "sourceCropBBox": [
+        11,
+        5,
+        593,
+        616
+      ],
+      "commonScaleOutputSize": [
+        321,
+        337
+      ],
+      "pastePosition": [
+        95,
+        88
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_oracle/serpent_oracle-attack.png",
+      "sha256": "fb7a0e2af94d7335529df1f6c943e38c199cbba6d42e7005b91e18130ec9343a",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        102,
+        88,
+        412,
+        425
+      ],
+      "transparentMargins": {
+        "left": 102,
+        "top": 88,
+        "right": 100,
+        "bottom": 87
+      },
+      "baseline": 425,
+      "pivot": [
+        256,
+        425
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        0
+      ],
+      "sourceCropBBox": [
+        47,
+        3,
+        616,
+        613
+      ],
+      "commonScaleOutputSize": [
+        314,
+        337
+      ],
+      "pastePosition": [
+        99,
+        88
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "cast",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/serpent_oracle/serpent_oracle-skill.png",
+      "sha256": "877b3eaf064adb87e11cd1254810f40179102876591a25bbd61e6a2f2187d4d7",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        90,
+        91,
+        419,
+        424
+      ],
+      "transparentMargins": {
+        "left": 90,
+        "top": 91,
+        "right": 93,
+        "bottom": 88
+      },
+      "baseline": 425,
+      "pivot": [
+        256,
+        425
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        1
+      ],
+      "sourceCropBBox": [
+        3,
+        3,
+        603,
+        607
+      ],
+      "commonScaleOutputSize": [
+        331,
+        334
+      ],
+      "pastePosition": [
+        90,
+        91
+      ],
+      "sourceEdgeTouch": false
+    }
+  ],
+  "qa": {
+    "identity": "OPERATOR_REVIEW_PENDING",
+    "style": "OPERATOR_REVIEW_PENDING",
+    "physicalScale": "PASS_MACHINE_SHARED_SCALE",
+    "morphology": "OPERATOR_REVIEW_PENDING",
+    "poseSemantics": "PASS_CANDIDATE",
+    "weapon": "PASS_CANDIDATE",
+    "pixelDensity": "PASS_MACHINE_SHARED_SCALE",
+    "vfxClearance": "PASS_MACHINE_BOUNDS",
+    "groundingRisk": "PASS_MACHINE_BASELINE",
+    "operatorApproval": "PENDING",
+    "qaBoard": "public/assets/dev/option-c/combat-poses-v2/qa/serpent_oracle-qa-board.png"
+  }
+}

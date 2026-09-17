@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Combat Poses V2 remaining 22 units production",
+  "productionPromotion": false,
+  "unitId": "archer",
+  "category": "HERO",
+  "canonicalReferenceFolder": "public/assets/combat-stage/poses/heroes/archer_sheet_4x1",
+  "master": "public/assets/dev/option-c/combat-poses-v2/masters/archer-master.png",
+  "board": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/archer-board.png",
+  "prepare": "public/assets/dev/option-c/combat-poses-v2/split-poses/archer/archer-idle.png",
+  "dash": "public/assets/dev/option-c/combat-poses-v2/split-poses/archer/archer-dash.png",
+  "attack": "public/assets/dev/option-c/combat-poses-v2/split-poses/archer/archer-attack.png",
+  "cast": "public/assets/dev/option-c/combat-poses-v2/split-poses/archer/archer-skill.png",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 425,
+  "pivot": [
+    256,
+    425
+  ],
+  "targetWorldSize": 2.05,
+  "deliveryFactor": 0.66,
+  "scaleCorrection": 1.0,
+  "sizeClass": "humanoid_hero",
+  "weaponType": "ornate recurved longbow and white-fletched arrows",
+  "qaStatus": "POSE_REPAIR",
+  "knownIssues": [
+    "SKILL remains too close to the ATTACK full-draw silhouette; local skill-pose repair is recommended after operator review."
+  ],
+  "generationProvenance": {
+    "model": "UNKNOWN",
+    "modelProvenance": "UNKNOWN",
+    "canonicalIdentityReference": "public/assets/combat-stage/poses/heroes/archer_sheet_4x1",
+    "styleReferences": [
+      "approved Option C four-class reference",
+      "Alistair V2 pilot",
+      "Goblin V2 pilot",
+      "Lion Champion V2 pilot"
+    ],
+    "masterSource": "public/assets/dev/option-c/combat-poses-v2/masters/archer-master-source.png",
+    "boardSource": "public/assets/dev/option-c/combat-poses-v2/boards-2x2/archer-board-source.png",
+    "boardPrompt": "public/assets/dev/option-c/combat-poses-v2/manifests/archer-board-prompt.txt",
+    "processorMeta": "public/assets/dev/option-c/combat-poses-v2/manifests/archer-processor-meta.json",
+    "boardGeneratedAsOne2x2Family": true
+  },
+  "scaleDoctrine": {
+    "sharedScaleAcrossPoses": true,
+    "perPoseAutoScaling": false,
+    "fitToContentPerPose": false,
+    "scaleCorrectionOverrides": 0
+  },
+  "poses": [
+    {
+      "pose": "prepare",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/archer/archer-idle.png",
+      "sha256": "3b8a8da36732e842af50319d20ddf3c854b7e865a3e9728cc2bbda4a6c7464e1",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        87,
+        101,
+        424,
+        425
+      ],
+      "transparentMargins": {
+        "left": 87,
+        "top": 101,
+        "right": 88,
+        "bottom": 87
+      },
+      "baseline": 425,
+      "pivot": [
+        256,
+        425
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        0
+      ],
+      "sourceCropBBox": [
+        3,
+        23,
+        616,
+        616
+      ],
+      "commonScaleOutputSize": [
+        337,
+        326
+      ],
+      "pastePosition": [
+        87,
+        99
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/archer/archer-dash.png",
+      "sha256": "98f0f0cce2b4670f9420f66f9ddd2d7c8c97eccbbea34093df36079b25f16bb5",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        94,
+        96,
+        418,
+        425
+      ],
+      "transparentMargins": {
+        "left": 94,
+        "top": 96,
+        "right": 94,
+        "bottom": 87
+      },
+      "baseline": 425,
+      "pivot": [
+        256,
+        425
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        0,
+        1
+      ],
+      "sourceCropBBox": [
+        3,
+        17,
+        591,
+        616
+      ],
+      "commonScaleOutputSize": [
+        324,
+        330
+      ],
+      "pastePosition": [
+        94,
+        95
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/archer/archer-attack.png",
+      "sha256": "0052edc2afc8b48ffbbfb1891712e147209fe16d04899fa381c1224184837659",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        91,
+        94,
+        420,
+        425
+      ],
+      "transparentMargins": {
+        "left": 91,
+        "top": 94,
+        "right": 92,
+        "bottom": 87
+      },
+      "baseline": 425,
+      "pivot": [
+        256,
+        425
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        0
+      ],
+      "sourceCropBBox": [
+        17,
+        3,
+        615,
+        605
+      ],
+      "commonScaleOutputSize": [
+        329,
+        331
+      ],
+      "pastePosition": [
+        91,
+        94
+      ],
+      "sourceEdgeTouch": false
+    },
+    {
+      "pose": "cast",
+      "path": "public/assets/dev/option-c/combat-poses-v2/split-poses/archer/archer-skill.png",
+      "sha256": "25960afe909a6162129c7224cca7ef6eb6f99e25dd5a816d7c5f6925577bf274",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBBox": [
+        89,
+        88,
+        414,
+        425
+      ],
+      "transparentMargins": {
+        "left": 89,
+        "top": 88,
+        "right": 98,
+        "bottom": 87
+      },
+      "baseline": 425,
+      "pivot": [
+        256,
+        425
+      ],
+      "scaleCorrection": 1.0,
+      "sourceGrid": [
+        1,
+        1
+      ],
+      "sourceCropBBox": [
+        3,
+        3,
+        609,
+        615
+      ],
+      "commonScaleOutputSize": [
+        334,
+        337
+      ],
+      "pastePosition": [
+        89,
+        88
+      ],
+      "sourceEdgeTouch": false
+    }
+  ],
+  "qa": {
+    "identity": "OPERATOR_REVIEW_PENDING",
+    "style": "OPERATOR_REVIEW_PENDING",
+    "physicalScale": "PASS_MACHINE_SHARED_SCALE",
+    "morphology": "OPERATOR_REVIEW_PENDING",
+    "poseSemantics": "REVIEW",
+    "weapon": "PASS_CANDIDATE",
+    "pixelDensity": "PASS_MACHINE_SHARED_SCALE",
+    "vfxClearance": "PASS_MACHINE_BOUNDS",
+    "groundingRisk": "PASS_MACHINE_BASELINE",
+    "operatorApproval": "PENDING",
+    "qaBoard": "public/assets/dev/option-c/combat-poses-v2/qa/archer-qa-board.png"
+  }
+}

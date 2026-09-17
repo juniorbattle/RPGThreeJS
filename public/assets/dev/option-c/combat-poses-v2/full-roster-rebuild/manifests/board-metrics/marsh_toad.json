@@ -1,0 +1,201 @@
+{
+  "unitId": "marsh_toad",
+  "canvasPerPose": [
+    512,
+    512
+  ],
+  "boardCanvas": [
+    1024,
+    1024
+  ],
+  "masterCoreExtentPx": 177,
+  "boardIdleCoreExtentPx": 346,
+  "sharedBoardToMasterScale": 0.5115606936416185,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "scaleCorrectionOverride": 0,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/marsh_toad-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/marsh_toad-clean.png",
+  "boardPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/marsh_toad-board.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/marsh_toad.txt",
+  "rawSha256": "0749ca29632903354ee81db7a3627ee207bba97426c5bb6ad6e5db797ef2a1ef",
+  "boardSha256": "4bde37902227ed07f4049f7e4a92d30cac73778183cbf83789398530dee3c0fe",
+  "poses": [
+    {
+      "pose": "idle",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/marsh_toad/marsh_toad-idle.png",
+      "sha256": "a83053cfea9add42290b237d3e7771ee9855015c3b50f2da1a437c90e69c99f9",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        131,
+        214,
+        478,
+        526
+      ],
+      "sourceCoreBBox": [
+        132,
+        225,
+        478,
+        526
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.5115606936416185,
+      "outputAlphaBBox": [
+        167,
+        297,
+        345,
+        456
+      ],
+      "outputCoreBBox": [
+        168,
+        302,
+        345,
+        456
+      ],
+      "outputCoreExtentPx": 177,
+      "transparentMargins": [
+        167,
+        297,
+        167,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/marsh_toad/marsh_toad-dash.png",
+      "sha256": "c216f5927bc0d1914382675dee01f5c8bf00b6fd1068b6104afb5181f57ad403",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        70,
+        191,
+        590,
+        490
+      ],
+      "sourceCoreBBox": [
+        73,
+        199,
+        588,
+        487
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.5115606936416185,
+      "outputAlphaBBox": [
+        123,
+        305,
+        389,
+        458
+      ],
+      "outputCoreBBox": [
+        124,
+        308,
+        388,
+        456
+      ],
+      "outputCoreExtentPx": 264,
+      "transparentMargins": [
+        123,
+        305,
+        123,
+        54
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/marsh_toad/marsh_toad-attack.png",
+      "sha256": "4f9d36bbf103182cb0757a21acc143d15cf306c837eba32e7c799f5eed316760",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        47,
+        165,
+        591,
+        480
+      ],
+      "sourceCoreBBox": [
+        48,
+        177,
+        591,
+        477
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.5115606936416185,
+      "outputAlphaBBox": [
+        116,
+        296,
+        395,
+        457
+      ],
+      "outputCoreBBox": [
+        116,
+        303,
+        395,
+        456
+      ],
+      "outputCoreExtentPx": 279,
+      "transparentMargins": [
+        116,
+        296,
+        117,
+        55
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "skill",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/marsh_toad/marsh_toad-skill.png",
+      "sha256": "b38ba863c80de666bd5a68fc948cfb333bdf794f0f71a209e8cf5fec69c72d32",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        120,
+        156,
+        577,
+        482
+      ],
+      "sourceCoreBBox": [
+        120,
+        168,
+        577,
+        481
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.5115606936416185,
+      "outputAlphaBBox": [
+        139,
+        291,
+        373,
+        458
+      ],
+      "outputCoreBBox": [
+        139,
+        297,
+        373,
+        456
+      ],
+      "outputCoreExtentPx": 234,
+      "transparentMargins": [
+        139,
+        291,
+        139,
+        54
+      ],
+      "cropped": false
+    }
+  ]
+}

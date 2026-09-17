@@ -1,0 +1,63 @@
+{
+  "unitId": "wild_boar",
+  "family": "SMALL_CREATURE",
+  "weaponOrAnatomy": "tusks and charge",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 456,
+  "pivot": [
+    256,
+    456
+  ],
+  "airborneOffset": 0,
+  "targetCoreExtentPx": 222,
+  "sourceDimensions": [
+    1448,
+    1086
+  ],
+  "sourceAlphaBBox": [
+    271,
+    246,
+    1184,
+    871
+  ],
+  "sourceCoreBBox": [
+    284,
+    269,
+    1184,
+    871
+  ],
+  "authoredBodyMassScale": 0.24666666666666667,
+  "appliedScale": 0.24666666666666667,
+  "scaleLimitedByExtremeAppendage": false,
+  "normalizedAlphaBBox": [
+    142,
+    302,
+    367,
+    456
+  ],
+  "normalizedCoreBBox": [
+    145,
+    308,
+    367,
+    456
+  ],
+  "normalizedCoreExtentPx": 222,
+  "transparentMargins": [
+    142,
+    302,
+    145,
+    56
+  ],
+  "safeMarginsPass": true,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/wild_boar-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/wild_boar-clean.png",
+  "masterPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/wild_boar-master.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/wild_boar.txt",
+  "rawSha256": "2c2b3a612c5ae7be7fcca1f3edd171ca77fc09f4b46f63f478a7f0f0ef38d41f",
+  "masterSha256": "9fa741dfc1f4d9e9a2186e42de81cf9fffa4d061977d60f24336822687380183",
+  "perPoseAutoScaling": false,
+  "fitToContent": false
+}

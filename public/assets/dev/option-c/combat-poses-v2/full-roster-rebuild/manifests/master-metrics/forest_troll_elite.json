@@ -1,0 +1,63 @@
+{
+  "unitId": "forest_troll_elite",
+  "family": "LARGE_ELITE_BOSS",
+  "weaponOrAnatomy": "massive wooden club",
+  "canvas": [
+    512,
+    512
+  ],
+  "baseline": 456,
+  "pivot": [
+    256,
+    456
+  ],
+  "airborneOffset": 0,
+  "targetCoreExtentPx": 414,
+  "sourceDimensions": [
+    1199,
+    1312
+  ],
+  "sourceAlphaBBox": [
+    99,
+    16,
+    1120,
+    1268
+  ],
+  "sourceCoreBBox": [
+    110,
+    43,
+    1110,
+    1268
+  ],
+  "authoredBodyMassScale": 0.3379591836734694,
+  "appliedScale": 0.3379591836734694,
+  "scaleLimitedByExtremeAppendage": false,
+  "normalizedAlphaBBox": [
+    83,
+    33,
+    428,
+    456
+  ],
+  "normalizedCoreBBox": [
+    87,
+    43,
+    425,
+    456
+  ],
+  "normalizedCoreExtentPx": 413,
+  "transparentMargins": [
+    83,
+    33,
+    84,
+    56
+  ],
+  "safeMarginsPass": true,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/forest_troll_elite-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/masters/forest_troll_elite-clean.png",
+  "masterPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/forest_troll_elite-master.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/forest_troll_elite.txt",
+  "rawSha256": "dbca26cb2062394fa4c4df871b008719d7920007b57ff5a2449704e296603dec",
+  "masterSha256": "f35a43b5acc0111c5ca8530263f708a9edc384052903269312f370e7eddce9dd",
+  "perPoseAutoScaling": false,
+  "fitToContent": false
+}

@@ -1,0 +1,221 @@
+{
+  "unitId": "archer",
+  "canvasPerPose": [
+    512,
+    512
+  ],
+  "boardCanvas": [
+    1024,
+    1024
+  ],
+  "masterCoreExtentPx": 334,
+  "boardIdleCoreExtentPx": 523,
+  "sharedBoardToMasterScale": 0.638623326959847,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "scaleCorrectionOverride": 0,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/archer-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/archer-clean.png",
+  "boardPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/archer-board.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/archer.txt",
+  "rawSha256": "bdf56fe22da230e723cb6835bc67ea1026529fd54f1000bf7f196e3baf213530",
+  "boardSha256": "2cb311aa2252a9e3463d22b463ce162feb42c96418b9e83da3d85c487ee7db91",
+  "poses": [
+    {
+      "pose": "idle",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/archer/archer-idle.png",
+      "sha256": "475ddd427dc2e3d8ced69fbe58be01721ab42b0a0bd7dd20b024e2829ae13a7c",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        143,
+        64,
+        454,
+        590
+      ],
+      "sourceCoreBBox": [
+        145,
+        66,
+        452,
+        589
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.638623326959847,
+      "outputAlphaBBox": [
+        157,
+        121,
+        356,
+        456
+      ],
+      "outputCoreBBox": [
+        159,
+        122,
+        354,
+        456
+      ],
+      "outputCoreExtentPx": 334,
+      "transparentMargins": [
+        157,
+        121,
+        156,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/archer/archer-dash.png",
+      "sha256": "322abe150cc9e047ba969f0336577579b1cb5c45e470a2d0ccb9cc1829c56473",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        30,
+        117,
+        532,
+        567
+      ],
+      "sourceCoreBBox": [
+        30,
+        118,
+        515,
+        566
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [
+        {
+          "bbox": [
+            356,
+            625,
+            367,
+            627
+          ],
+          "alphaPixels": 19
+        }
+      ],
+      "sharedScale": 0.638623326959847,
+      "outputAlphaBBox": [
+        101,
+        170,
+        421,
+        457
+      ],
+      "outputCoreBBox": [
+        101,
+        170,
+        411,
+        456
+      ],
+      "outputCoreExtentPx": 310,
+      "transparentMargins": [
+        101,
+        170,
+        91,
+        55
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/archer/archer-attack.png",
+      "sha256": "de42a96e9a98ddd9b18505b49c46c27040b8a360998562926b37211557ef6649",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        38,
+        0,
+        627,
+        562
+      ],
+      "sourceCoreBBox": [
+        40,
+        87,
+        626,
+        562
+      ],
+      "sourceEdgeTouch": true,
+      "removedEdgeFragments": [],
+      "sharedScale": 0.638623326959847,
+      "outputAlphaBBox": [
+        68,
+        97,
+        444,
+        456
+      ],
+      "outputCoreBBox": [
+        70,
+        153,
+        442,
+        456
+      ],
+      "outputCoreExtentPx": 372,
+      "transparentMargins": [
+        68,
+        97,
+        68,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "skill",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/archer/archer-skill.png",
+      "sha256": "338601e9197a863c5444fb4e99503c645c2480ed091907d7fa1c8b9db1d0e280",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        6,
+        0,
+        598,
+        564
+      ],
+      "sourceCoreBBox": [
+        12,
+        1,
+        580,
+        564
+      ],
+      "sourceEdgeTouch": true,
+      "removedEdgeFragments": [
+        {
+          "bbox": [
+            0,
+            159,
+            21,
+            173
+          ],
+          "alphaPixels": 175
+        }
+      ],
+      "sharedScale": 0.638623326959847,
+      "outputAlphaBBox": [
+        71,
+        96,
+        448,
+        456
+      ],
+      "outputCoreBBox": [
+        74,
+        96,
+        438,
+        456
+      ],
+      "outputCoreExtentPx": 364,
+      "transparentMargins": [
+        71,
+        96,
+        64,
+        56
+      ],
+      "cropped": false
+    }
+  ]
+}

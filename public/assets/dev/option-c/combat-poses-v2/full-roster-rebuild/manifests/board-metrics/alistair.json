@@ -1,0 +1,269 @@
+{
+  "unitId": "alistair",
+  "canvasPerPose": [
+    512,
+    512
+  ],
+  "boardCanvas": [
+    1024,
+    1024
+  ],
+  "masterCoreExtentPx": 342,
+  "boardIdleCoreExtentPx": 541,
+  "sharedBoardToMasterScale": 0.6321626617375231,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "scaleCorrectionOverride": 0,
+  "rawPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/alistair-raw.png",
+  "cleanPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/raw/boards-2x2/alistair-clean.png",
+  "boardPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/alistair-board.png",
+  "promptPath": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/alistair.txt",
+  "rawSha256": "904bfb1c0dcd50e71b257c2eb0bb75aa7a204658edeb12d286cfb110264f1bb8",
+  "boardSha256": "25b231e981e174538efbfb1c92ac01e17245d27463907e3836c4a2f234ca689e",
+  "poses": [
+    {
+      "pose": "idle",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/alistair/alistair-idle.png",
+      "sha256": "e824e2f939d377594449f15c1f78e0408291cef281478b9d6e25a8531f670f54",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        134,
+        46,
+        468,
+        595
+      ],
+      "sourceCoreBBox": [
+        136,
+        51,
+        464,
+        592
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "targetedOutputEdgeCleanup": [],
+      "sharedScale": 0.6321626617375231,
+      "outputAlphaBBox": [
+        151,
+        111,
+        362,
+        458
+      ],
+      "outputCoreBBox": [
+        152,
+        114,
+        360,
+        456
+      ],
+      "outputCoreExtentPx": 342,
+      "transparentMargins": [
+        151,
+        111,
+        150,
+        54
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "dash",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/alistair/alistair-dash.png",
+      "sha256": "00aff34643abcda4909befa5c731062655a4424e4119c603b4af98d4149c554e",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        3,
+        90,
+        580,
+        578
+      ],
+      "sourceCoreBBox": [
+        17,
+        95,
+        580,
+        577
+      ],
+      "sourceEdgeTouch": false,
+      "removedEdgeFragments": [],
+      "targetedOutputEdgeCleanup": [],
+      "sharedScale": 0.6321626617375231,
+      "outputAlphaBBox": [
+        70,
+        149,
+        434,
+        457
+      ],
+      "outputCoreBBox": [
+        78,
+        151,
+        434,
+        456
+      ],
+      "outputCoreExtentPx": 356,
+      "transparentMargins": [
+        70,
+        149,
+        78,
+        55
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "attack",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/alistair/alistair-attack.png",
+      "sha256": "9c3bf11379fc7a34d3985344121c319fefd804067a175504ee47da8c09e41ab7",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        14,
+        68,
+        627,
+        511
+      ],
+      "sourceCoreBBox": [
+        25,
+        90,
+        627,
+        511
+      ],
+      "sourceEdgeTouch": true,
+      "removedEdgeFragments": [],
+      "targetedOutputEdgeCleanup": [],
+      "sharedScale": 0.6321626617375231,
+      "outputAlphaBBox": [
+        59,
+        176,
+        446,
+        456
+      ],
+      "outputCoreBBox": [
+        66,
+        191,
+        446,
+        456
+      ],
+      "outputCoreExtentPx": 380,
+      "transparentMargins": [
+        59,
+        176,
+        66,
+        56
+      ],
+      "cropped": false
+    },
+    {
+      "pose": "skill",
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/alistair/alistair-skill.png",
+      "sha256": "9e78a2bacd4fd18d0a1e4f07e7c542b642205935aad0f693f074ad35bfbad220",
+      "sourceCellDimensions": [
+        627,
+        627
+      ],
+      "sourceAlphaBBox": [
+        0,
+        0,
+        584,
+        541
+      ],
+      "sourceCoreBBox": [
+        0,
+        23,
+        581,
+        535
+      ],
+      "sourceEdgeTouch": true,
+      "removedEdgeFragments": [],
+      "targetedOutputEdgeCleanup": [
+        {
+          "bbox": [
+            72,
+            206,
+            114,
+            326
+          ],
+          "alphaPixels": 3403
+        },
+        {
+          "bbox": [
+            121,
+            441,
+            123,
+            443
+          ],
+          "alphaPixels": 4
+        },
+        {
+          "bbox": [
+            124,
+            443,
+            143,
+            450
+          ],
+          "alphaPixels": 39
+        },
+        {
+          "bbox": [
+            319,
+            455,
+            320,
+            456
+          ],
+          "alphaPixels": 1
+        },
+        {
+          "bbox": [
+            330,
+            456,
+            333,
+            457
+          ],
+          "alphaPixels": 3
+        },
+        {
+          "bbox": [
+            337,
+            455,
+            340,
+            457
+          ],
+          "alphaPixels": 5
+        },
+        {
+          "bbox": [
+            401,
+            430,
+            402,
+            431
+          ],
+          "alphaPixels": 1
+        }
+      ],
+      "sharedScale": 0.6321626617375231,
+      "outputAlphaBBox": [
+        102,
+        118,
+        441,
+        460
+      ],
+      "outputCoreBBox": [
+        104,
+        132,
+        440,
+        456
+      ],
+      "outputCoreExtentPx": 336,
+      "transparentMargins": [
+        102,
+        118,
+        71,
+        52
+      ],
+      "cropped": false
+    }
+  ]
+}

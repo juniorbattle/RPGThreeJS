@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C full 25-unit roster rebuild",
+  "unitId": "serpent_elite_brute",
+  "category": "ELITE_BOSS",
+  "scaleFamily": "LARGE_ELITE_BOSS",
+  "weaponOrAnatomyLock": "heavy curved blade",
+  "artStyleAuthority": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/art-style-authority.png",
+    "sha256": "e4470e9506df2f4c84af286060e85b69983c87cb5bba27d1bb576f50847b7bd7",
+    "sourcePath": "C:\\Users\\miche\\AppData\\Local\\Temp\\codex-clipboard-21f24758-8fb5-4e50-97ee-7ad521b05315.png",
+    "role": "PRIMARY_AND_ONLY_ART_STYLE_AUTHORITY"
+  },
+  "canonicalIdentityReference": {
+    "unitId": "serpent_elite_brute",
+    "category": "ELITE_BOSS",
+    "family": "LARGE_ELITE_BOSS",
+    "weaponOrAnatomy": "heavy curved blade",
+    "canonicalFolder": "public/assets/combat-stage/poses/bosses/enemy_serpent_halberd_elite_4x1_2560x768",
+    "referenceBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/references/canonical/serpent_elite_brute.png",
+    "sources": [
+      {
+        "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_halberd_elite_4x1_2560x768/enemy_serpent_halberd_elite_4x1_2560x768_01_pose1.png",
+        "sha256": "0ba56e9e8f6dc83cc1f36368d9fd60195be85f5288d84406cc932664bd1c5668",
+        "dimensions": [
+          472,
+          645
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_halberd_elite_4x1_2560x768/enemy_serpent_halberd_elite_4x1_2560x768_02_pose2.png",
+        "sha256": "9efe1422fb931bb35c63db445778aac2f3da1570e705a4344f963a90d6beae94",
+        "dimensions": [
+          856,
+          484
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_halberd_elite_4x1_2560x768/enemy_serpent_halberd_elite_4x1_2560x768_03_pose3.png",
+        "sha256": "c1f7cc4fdd6a8c3322a5a597a07c4481d2d52402821e6efc336e3f4179221947",
+        "dimensions": [
+          624,
+          642
+        ]
+      },
+      {
+        "path": "public/assets/combat-stage/poses/bosses/enemy_serpent_halberd_elite_4x1_2560x768/enemy_serpent_halberd_elite_4x1_2560x768_04_pose4.png",
+        "sha256": "9d2e9b3bbc88ecd06563e868c06ec429bc0bbb2041c706162ed701e8daae68e0",
+        "dimensions": [
+          544,
+          643
+        ]
+      }
+    ]
+  },
+  "master": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/masters/serpent_elite_brute-master.png",
+    "sha256": "60f1b903466c294a7b5547e1a6ecd01c29163425842d56841a5eeddbee050528",
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGBA"
+  },
+  "board2x2": {
+    "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/boards-2x2/serpent_elite_brute-board.png",
+    "sha256": "f132d3715c95b6827d06b00e64f2a319a65855c33bd3a797db338e166287f45e",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "mode": "RGBA",
+    "alphaBBox": [
+      39,
+      39,
+      986,
+      968
+    ],
+    "safeMarginMin": 38
+  },
+  "poses": {
+    "idle": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_elite_brute/serpent_elite_brute-idle.png",
+      "sha256": "1c7b5818e7f924050a3ade4876462f2147545907f0f1c39bf9ff24f3818c89d2",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        121,
+        39,
+        393,
+        456
+      ],
+      "safeMarginMin": 39,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "dash": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_elite_brute/serpent_elite_brute-dash.png",
+      "sha256": "fd9425b404872131ae0676e0ca7d31eb671e76cfb68e3b1f491e378f8234754f",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        45,
+        146,
+        474,
+        456
+      ],
+      "safeMarginMin": 38,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "attack": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_elite_brute/serpent_elite_brute-attack.png",
+      "sha256": "1848b66c4ce044a2149a5c26d8d4e64f9040ffbb993ac8ff1258f315d6336ca5",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        39,
+        135,
+        472,
+        456
+      ],
+      "safeMarginMin": 39,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": false,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    },
+    "skill": {
+      "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_elite_brute/serpent_elite_brute-skill.png",
+      "sha256": "e904164ec70a9df2d3a2e6dbb2ffea995b09beb5343b8d5b92e2000c05a0775d",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "alphaBBox": [
+        56,
+        63,
+        457,
+        456
+      ],
+      "safeMarginMin": 55,
+      "canvasWidth": 512,
+      "canvasHeight": 512,
+      "bodyScaleLocked": true,
+      "characterBoundFx": true,
+      "releasedFxRemoved": false,
+      "pivot": [
+        256,
+        456
+      ],
+      "poseRegenerated": false
+    }
+  },
+  "prompts": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-prompts/serpent_elite_brute.txt",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-prompts/serpent_elite_brute.txt"
+  },
+  "metrics": {
+    "master": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/master-metrics/serpent_elite_brute.json",
+    "board": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/manifests/board-metrics/serpent_elite_brute.json"
+  },
+  "qaBoard": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/qa/per-unit/serpent_elite_brute-qa.png",
+  "pipelineDoctrine": {
+    "masterNormalizedBeforePoses": true,
+    "commonMasterCanvas": [
+      512,
+      512
+    ],
+    "commonBaseline": 456,
+    "commonPivotX": 256,
+    "perPoseAutoScalingUsed": false,
+    "fitToContentUsed": false,
+    "sharedBoardToMasterScale": 0.7173144876325088,
+    "scaleCorrectionOverride": 0,
+    "bodyScaleLocked": true,
+    "pixelDensityLocked": true,
+    "flexiblePoseCanvasEnabled": true
+  },
+  "machineValidation": {
+    "masterDimensionsPass": true,
+    "boardDimensionsPass": true,
+    "poseDimensionsPass": true,
+    "outputCropFlags": [],
+    "allOutputsNonEmpty": true
+  },
+  "operatorClassification": {
+    "category": "PASS_CANDIDATE",
+    "reason": "Single crescent polearm, elite mass, charge, cleave, and empowered skill remain coherent.",
+    "issues": {
+      "cropping": [],
+      "scale": [],
+      "weapon": [],
+      "pose": [],
+      "other": []
+    }
+  },
+  "finalCleanup": {
+    "status": "PASS",
+    "poseRecords": {
+      "idle": {
+        "unitId": "serpent_elite_brute",
+        "pose": "idle",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_elite_brute/serpent_elite_brute-idle.png",
+        "sourceSha256": "1c7b5818e7f924050a3ade4876462f2147545907f0f1c39bf9ff24f3818c89d2",
+        "finalSha256": "1c7b5818e7f924050a3ade4876462f2147545907f0f1c39bf9ff24f3818c89d2",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          121,
+          39,
+          393,
+          456
+        ],
+        "transparentMargins": [
+          121,
+          39,
+          119,
+          56
+        ],
+        "safeMarginMin": 39,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "dash": {
+        "unitId": "serpent_elite_brute",
+        "pose": "dash",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_elite_brute/serpent_elite_brute-dash.png",
+        "sourceSha256": "fd9425b404872131ae0676e0ca7d31eb671e76cfb68e3b1f491e378f8234754f",
+        "finalSha256": "fd9425b404872131ae0676e0ca7d31eb671e76cfb68e3b1f491e378f8234754f",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          45,
+          146,
+          474,
+          456
+        ],
+        "transparentMargins": [
+          45,
+          146,
+          38,
+          56
+        ],
+        "safeMarginMin": 38,
+        "targetMargin": 24,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "attack": {
+        "unitId": "serpent_elite_brute",
+        "pose": "attack",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_elite_brute/serpent_elite_brute-attack.png",
+        "sourceSha256": "1848b66c4ce044a2149a5c26d8d4e64f9040ffbb993ac8ff1258f315d6336ca5",
+        "finalSha256": "1848b66c4ce044a2149a5c26d8d4e64f9040ffbb993ac8ff1258f315d6336ca5",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          39,
+          135,
+          472,
+          456
+        ],
+        "transparentMargins": [
+          39,
+          135,
+          40,
+          56
+        ],
+        "safeMarginMin": 39,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": false,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      },
+      "skill": {
+        "unitId": "serpent_elite_brute",
+        "pose": "skill",
+        "path": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild/split-poses/serpent_elite_brute/serpent_elite_brute-skill.png",
+        "sourceSha256": "e904164ec70a9df2d3a2e6dbb2ffea995b09beb5343b8d5b92e2000c05a0775d",
+        "finalSha256": "e904164ec70a9df2d3a2e6dbb2ffea995b09beb5343b8d5b92e2000c05a0775d",
+        "sourceCanvas": [
+          512,
+          512
+        ],
+        "canvasWidth": 512,
+        "canvasHeight": 512,
+        "alphaBBox": [
+          56,
+          63,
+          457,
+          456
+        ],
+        "transparentMargins": [
+          56,
+          63,
+          55,
+          56
+        ],
+        "safeMarginMin": 55,
+        "targetMargin": 32,
+        "pivot": [
+          256,
+          456
+        ],
+        "bodyScaleLocked": true,
+        "pixelDensityLocked": true,
+        "perPoseAutoScaling": false,
+        "fitToContent": false,
+        "characterBoundFx": true,
+        "releasedFxRemoved": false,
+        "releasedFxDescription": null,
+        "restoration": null,
+        "poseRegenerated": false,
+        "regeneration": null
+      }
+    }
+  }
+}
