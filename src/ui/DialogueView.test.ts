@@ -168,7 +168,7 @@ describe('DialogueView narrative boundaries', () => {
     expect(overlay?.classList.contains('dialogue--speaker-card')).toBe(true);
     expect(overlay?.dataset.dialogueMode).toBe('SPEAKER_CARD');
     expect(root.querySelector('.dialogue__text')?.textContent).toBe('Condensed card.');
-    expect(root.querySelector<HTMLElement>('.dialogue__portrait--left')?.style.backgroundImage).toContain('/seraphine.png');
+    expect(root.querySelector<HTMLElement>('.dialogue__portrait--left')?.style.backgroundImage).toContain('/sage_seraphine.png');
     root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
     expect(overlay?.classList.contains('dialogue--cinematic-subtitle')).toBe(true);
     root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();

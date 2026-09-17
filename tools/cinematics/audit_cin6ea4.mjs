@@ -96,6 +96,7 @@ async function main() {
     'src/game/types.ts',
     'src/game/lionNarrative.ts',
     'public/assets/characters/pixel/full/',
+    'public/assets/characters/pixel/archive/non-demo/',
     'public/assets/cinematics/',
   ];
   const protectedChanges = auditPaths.filter((path) => protectedScope.some((prefix) => path === prefix || path.startsWith(prefix)));

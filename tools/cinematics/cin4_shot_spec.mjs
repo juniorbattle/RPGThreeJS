@@ -53,6 +53,7 @@ const CHARACTER_ROOT = 'public/assets/characters/pixel/';
 const CHARACTER_ASSET_ROOTS = Object.freeze([
   `${CHARACTER_ROOT}masters/`,
   `${CHARACTER_ROOT}full/`,
+  `${CHARACTER_ROOT}archive/non-demo/`,
 ]);
 const LOOK_TARGETS = new Set(['NONE', 'CAMERA', 'PLAYER_PARTY', 'OFFSCREEN_LEFT', 'OFFSCREEN_RIGHT']);
 const OPTIONAL_EARLY_RECRUITS = new Set(['cedric', 'lancer']);

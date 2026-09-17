@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = ROOT / "output/pdf/CIN-6E-A.2 Continuous Video Fidelity Gate.pdf"
 CACHE = ROOT / "tmp/pdfs/cin6ea2-review/cache"
 SELECTIONS = ROOT / "tools/cinematics/specs/cin6ea2_operator_selections.json"
+CAMPAIGN_CENSUS = ROOT / "tools/cinematics/specs/campaign_cinematic_census.json"
 PAGE_W, PAGE_H = landscape(A4)
 BG = HexColor("#090D14")
 PANEL = HexColor("#111925")
@@ -27,6 +28,7 @@ TEXT = HexColor("#F0EDE5")
 MUTED = HexColor("#A9B1BD")
 PASS = HexColor("#5ED3A1")
 REJECT = HexColor("#FF7777")
+CHARACTER_ASSET_PATHS = json.loads(CAMPAIGN_CENSUS.read_text(encoding="utf-8"))["characterAssetPaths"]
 
 
 def load_json(path: Path) -> dict:
@@ -194,7 +196,7 @@ def source_page(c: canvas.Canvas, page: int, source: dict, verdict: dict) -> Non
     passed = verdict["agentVerdict"] in {"AGENT_VIDEO_PASS_PENDING_OPERATOR", "OPERATOR_APPROVED"}
     color = PASS if passed else REJECT
     draw_title(c, "Source and canonical identity", f"Pilot {pilot} - {source['assetCandidateId']}",
-               f"Source SHA-256 {source['sourceSha256']} | canonical identity source: public/assets/characters/pixel/full/*.png")
+               f"Source SHA-256 {source['sourceSha256']} | canonical identity source: Character System pixel manifest")
     draw_badge(c, "OPERATOR_SOURCE_APPROVED", PAGE_W - 265, PAGE_H - 62, GOLD, 235)
     source_path = ROOT / source["sourcePath"]
     draw_image_fit(c, source_path, 30, 116, 555, 312)
@@ -206,7 +208,10 @@ def source_page(c: canvas.Canvas, page: int, source: dict, verdict: dict) -> Non
     ref_w = (PAGE_W - 625 - ref_gap * (len(refs) - 1)) / len(refs)
     for index, character in enumerate(refs):
         x = 600 + index * (ref_w + ref_gap)
-        draw_image_fit(c, ROOT / f"public/assets/characters/pixel/full/{character}.png", x, 168, ref_w, 260)
+        asset_path = CHARACTER_ASSET_PATHS.get(character)
+        if not asset_path:
+            raise KeyError(f"Missing canonical campaign asset path for {character}.")
+        draw_image_fit(c, ROOT / asset_path, x, 168, ref_w, 260)
         c.setFillColor(TEXT)
         c.setFont("Helvetica-Bold", 8)
         c.drawCentredString(x + ref_w / 2, 154, character.replace("_", " ").title())

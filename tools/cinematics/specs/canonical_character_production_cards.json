@@ -1376,10 +1376,10 @@
       "characterId": "shrine_apparition",
       "displayName": "Shrine Apparition",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/shrine_apparition.png"
+        "public/assets/characters/pixel/archive/non-demo/shrine_apparition.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/shrine_apparition.png"
+        "public/assets/characters/pixel/archive/non-demo/shrine_apparition.png"
       ],
       "referenceSha256": "91d675b9112acc147ebdaa0713bbd524ef54a1994439218a84b058740d303729",
       "canonicalAlphaBoundingBox": [

@@ -11,7 +11,7 @@
     "quality": "max",
     "exactModelExecution": "PROVEN",
     "imageAttempts": 14,
-    "canonicalCharacterAuthority": "public/assets/characters/pixel/full/*.png",
+    "canonicalCharacterAuthority": "public/assets/characters/pixel/{masters,full,archive/non-demo}/*.png",
     "authorityAppliedIndependentlyPerCharacter": true
   },
   "operatorImageSelections": {

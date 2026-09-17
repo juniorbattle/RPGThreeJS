@@ -4313,7 +4313,7 @@
         {
           "actorId": "shrine_apparition",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/shrine_apparition.png"
+            "public/assets/characters/pixel/archive/non-demo/shrine_apparition.png"
           ],
           "canonicalAlphaBoundingBox": [
             41,

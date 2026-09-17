@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "baseline": "ff743b08fb239d55e11ac5cd682950032a06e2e1",
-  "canonicalSpriteAuthority": "public/assets/characters/pixel/full/*.png",
+  "canonicalSpriteAuthority": "public/assets/characters/pixel/{masters,full,archive/non-demo}/*.png",
   "physicalScalePolicy": "Stable scale 1.0; spacing and staged subsets solve crowding.",
   "summary": {
     "staticSegments": 78,

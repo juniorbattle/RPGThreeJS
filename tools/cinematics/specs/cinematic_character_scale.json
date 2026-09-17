@@ -1,6 +1,11 @@
 {
   "schemaVersion": 1,
   "canonicalRoot": "public/assets/characters/pixel/",
+  "canonicalAssetRoots": [
+    "public/assets/characters/pixel/masters/",
+    "public/assets/characters/pixel/full/",
+    "public/assets/characters/pixel/archive/non-demo/"
+  ],
   "canonicalFacing": "SCREEN_RIGHT",
   "measurementConvention": "alpha bounding box, centered foot anchor at last visible alpha row",
   "reviewConvention": {
@@ -63,7 +68,7 @@
     },
     {
       "id": "aldric",
-      "asset": "public/assets/characters/pixel/full/aldric.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/aldric.png",
       "sourceSha256": "f7f6613eb5df339831a55331c5c2a6f1512b5a794b9452776498d96bd554bb12",
       "category": "HUMAN",
       "relativeStature": 1.01,
@@ -243,7 +248,7 @@
     },
     {
       "id": "chroniqueur",
-      "asset": "public/assets/characters/pixel/full/chroniqueur.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/chroniqueur.png",
       "sourceSha256": "3a23e4c0fb6e5f765dd4d69f2f216b16793e7bee056de2d38f257424eef3ce9c",
       "category": "HUMAN",
       "relativeStature": 0.98,
@@ -315,7 +320,7 @@
     },
     {
       "id": "eldwin",
-      "asset": "public/assets/characters/pixel/full/eldwin.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/eldwin.png",
       "sourceSha256": "b29568751a1a7195ca116054d5b4b77073f9ae6bd7d0ab7f29db535d370cab16",
       "category": "HUMAN",
       "relativeStature": 1.0,
@@ -459,7 +464,7 @@
     },
     {
       "id": "forest_viper",
-      "asset": "public/assets/characters/pixel/full/forest_viper.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/forest_viper.png",
       "sourceSha256": "29efeb39e1b49b213ecd4ad560c6482e7a7605cabefdf161081a7435b82cbc13",
       "category": "BEAST_SMALL",
       "relativeStature": 0.36,
@@ -495,7 +500,7 @@
     },
     {
       "id": "future_herbalist",
-      "asset": "public/assets/characters/pixel/full/future_herbalist.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/future_herbalist.png",
       "sourceSha256": "e9af0c25df2a661e7865140ce5f37b075a080411d0766b5ef614b95559ca7d41",
       "category": "HUMAN",
       "relativeStature": 0.98,
@@ -531,7 +536,7 @@
     },
     {
       "id": "future_lion_scribe",
-      "asset": "public/assets/characters/pixel/full/future_lion_scribe.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/future_lion_scribe.png",
       "sourceSha256": "edc13eb9bb48c7d1e4a5e07046adb4e4ecbe4ba431100761f7e88f64b19e31f6",
       "category": "HUMAN",
       "relativeStature": 0.96,
@@ -567,7 +572,7 @@
     },
     {
       "id": "future_lion_spearman",
-      "asset": "public/assets/characters/pixel/full/future_lion_spearman.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/future_lion_spearman.png",
       "sourceSha256": "ed7b77a983384169bc5c4173d8c5ca61d7ae84a83c8ce3a3194f0aec7312c59f",
       "category": "HUMAN",
       "relativeStature": 1.02,
@@ -603,7 +608,7 @@
     },
     {
       "id": "future_shadow_envoy",
-      "asset": "public/assets/characters/pixel/full/future_shadow_envoy.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/future_shadow_envoy.png",
       "sourceSha256": "5ed28820cde17b508cb35b907ddb2ebf286129ddc8c5656775fbd456a7aeb418",
       "category": "HUMAN",
       "relativeStature": 1.03,
@@ -639,7 +644,7 @@
     },
     {
       "id": "giant_mygale",
-      "asset": "public/assets/characters/pixel/full/giant_mygale.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/giant_mygale.png",
       "sourceSha256": "6f7a70970029be63cca1771030a1f6cf4abe3dc06ed8354ea7757d61c5ce265d",
       "category": "BEAST_LARGE",
       "relativeStature": 0.86,
@@ -711,7 +716,7 @@
     },
     {
       "id": "gunnar",
-      "asset": "public/assets/characters/pixel/full/gunnar.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/gunnar.png",
       "sourceSha256": "4d10124f7292e1245688f7489f178d239b7c66950f423b8587bd406e656a4c87",
       "category": "HUMAN",
       "relativeStature": 1.05,
@@ -855,7 +860,7 @@
     },
     {
       "id": "lyra",
-      "asset": "public/assets/characters/pixel/full/lyra.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/lyra.png",
       "sourceSha256": "bc6ea819babe9160744406afe235614cb737cd32f5b7a6de274b8204bc550bfd",
       "category": "HUMAN",
       "relativeStature": 0.99,
@@ -999,7 +1004,7 @@
     },
     {
       "id": "morvan",
-      "asset": "public/assets/characters/pixel/full/morvan.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/morvan.png",
       "sourceSha256": "d318169144b2113835597c68e478a3ab9aeb412dba243b03e768ab2839b1a212",
       "category": "HUMAN",
       "relativeStature": 1.0,
@@ -1035,7 +1040,7 @@
     },
     {
       "id": "mountain_ram",
-      "asset": "public/assets/characters/pixel/full/mountain_ram.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/mountain_ram.png",
       "sourceSha256": "bd2a143583cb7a1b00411474dca7593f97c35e1bdef05e9ce6e109b52c3a4131",
       "category": "BEAST_MEDIUM",
       "relativeStature": 0.72,
@@ -1107,7 +1112,7 @@
     },
     {
       "id": "river_crab",
-      "asset": "public/assets/characters/pixel/full/river_crab.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/river_crab.png",
       "sourceSha256": "3e66270cdc139282226d61542d3f0d76f32b2a076a871897b41bf32ebe73713b",
       "category": "BEAST_SMALL",
       "relativeStature": 0.34,
@@ -1143,7 +1148,7 @@
     },
     {
       "id": "sage_seraphine",
-      "asset": "public/assets/characters/pixel/full/seraphine.png",
+      "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
       "sourceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
       "category": "HUMAN",
       "relativeStature": 1.0,
@@ -1179,7 +1184,7 @@
     },
     {
       "id": "seal_guardian",
-      "asset": "public/assets/characters/pixel/full/seal_guardian.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/seal_guardian.png",
       "sourceSha256": "fae5ac576d866bf526d6bea20c0952c4a681cff2d8b0b51eacae65cff0a4c4ab",
       "category": "HUMANOID",
       "relativeStature": 1.13,
@@ -1431,7 +1436,7 @@
     },
     {
       "id": "shrine_apparition",
-      "asset": "public/assets/characters/pixel/full/shrine_apparition.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/shrine_apparition.png",
       "sourceSha256": "91d675b9112acc147ebdaa0713bbd524ef54a1994439218a84b058740d303729",
       "category": "SPECTRAL",
       "relativeStature": 1.06,
@@ -1539,7 +1544,7 @@
     },
     {
       "id": "swamp_crocodile",
-      "asset": "public/assets/characters/pixel/full/swamp_crocodile.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/swamp_crocodile.png",
       "sourceSha256": "317f0436f1c7b70a0240c4cebd044c94c805b8175dd4c9755319fa43d0a38f77",
       "category": "BEAST_LARGE",
       "relativeStature": 0.76,
@@ -1575,7 +1580,7 @@
     },
     {
       "id": "talon",
-      "asset": "public/assets/characters/pixel/full/talon.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/talon.png",
       "sourceSha256": "e27a6d2daca531c2a112875094bf91cc36cde056fa46d8bb64cfbc739fd0440f",
       "category": "HUMAN",
       "relativeStature": 1.0,
@@ -1611,7 +1616,7 @@
     },
     {
       "id": "troll",
-      "asset": "public/assets/characters/pixel/full/troll.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/troll.png",
       "sourceSha256": "0a07e663af2195724d6e1836a24b3e5c769342087d14f756145d95ecb95cd97a",
       "category": "BEAST_LARGE",
       "relativeStature": 1.18,
@@ -1647,7 +1652,7 @@
     },
     {
       "id": "undead_champion",
-      "asset": "public/assets/characters/pixel/full/undead_champion.png",
+      "asset": "public/assets/characters/pixel/archive/non-demo/undead_champion.png",
       "sourceSha256": "931e9b14cf08adc40ca09b1bc95a76d26f6b681206288fd1173b112c4dbafec5",
       "category": "UNDEAD",
       "relativeStature": 1.09,
@@ -1897,9 +1902,5 @@
       },
       "reviewBodyHeightPx": 583
     }
-  ],
-  "canonicalAssetRoots": [
-    "public/assets/characters/pixel/masters/",
-    "public/assets/characters/pixel/full/"
   ]
 }

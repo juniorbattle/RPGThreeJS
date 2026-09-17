@@ -18,6 +18,7 @@ const protectedPrefixes = [
   'src/ui/DialogueView.ts',
   'src/ui/TravelView.ts',
   'public/assets/characters/pixel/full/',
+  'public/assets/characters/pixel/archive/non-demo/',
   'public/assets/cinematics/',
 ];
 const knownFullSuiteFailures = {

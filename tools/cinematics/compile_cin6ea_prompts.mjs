@@ -30,7 +30,7 @@ function orderedUnique(values) {
 function referenceRole(path, index) {
   const image = `Image ${index + 1}`;
   if (path.includes('/gold/')) return `${image}: approved GOLD reference for world integration, rendering language, perspective, grounding, atmosphere and material response; do not reproduce its cast or editorial-cut defects.`;
-  if (path.includes('/characters/pixel/full/')) {
+  if (/\/characters\/pixel\/(?:masters|full|archive\/non-demo)\//u.test(path)) {
     const characterId = path.split('/').at(-1).replace(/\.png$/u, '');
     return `${image}: canonical full-body identity reference for ${characterId}; preserve identity, silhouette, costume, principal colors, weapon and defining accessories.`;
   }

@@ -17,6 +17,7 @@ const protectedPrefixes = [
   'src/combat/',
   'src/vfx/',
   'public/assets/characters/pixel/full/',
+  'public/assets/characters/pixel/archive/non-demo/',
   'public/assets/cinematics/',
 ];
 const textExtensions = new Set(['.js', '.mjs', '.ts', '.tsx', '.json', '.md', '.html', '.css', '.py', '.txt']);

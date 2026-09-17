@@ -6,7 +6,7 @@ import { loadAndValidateCinematicCharacterScale, validateCinematicCharacterScale
 const projectRoot = process.cwd();
 
 describe('CIN-6.6 deterministic character scale registry', () => {
-  it('covers all 52 real character identities across master authority and the remaining full backlog', async () => {
+  it('covers all 52 real character identities across master, active full and archived authorities', async () => {
     const { input, result } = await loadAndValidateCinematicCharacterScale(projectRoot);
     expect(result).toEqual({ valid: true, errors: [], profileCount: 52 });
     expect(input.characters).toHaveLength(52);

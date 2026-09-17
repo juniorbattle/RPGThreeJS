@@ -652,6 +652,10 @@ def broken_active_character_references() -> list[dict]:
 
 
 def main() -> None:
+    if (ARCHIVE_ROOT := FULL_ROOT.parent / "archive/non-demo/archive-manifest.json").is_file():
+        raise SystemExit(
+            f"Superseded by archive_non_demo_character_assets.py after {ARCHIVE_ROOT.relative_to(ROOT)} was created."
+        )
     manifest = load_manifest()
     before_assets = verify_production_assets(manifest)
     migration = migrate_active_references()

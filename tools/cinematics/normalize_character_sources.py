@@ -16,7 +16,8 @@ from typing import Any
 from PIL import Image, ImageDraw, ImageOps
 
 
-CANONICAL_ROOT = Path("public/assets/characters/pixel/full")
+CANONICAL_ROOT = Path("public/assets/characters/pixel")
+CAMPAIGN_CENSUS_PATH = Path("tools/cinematics/specs/campaign_cinematic_census.json")
 METADATA_PATH = Path("tools/cinematics/specs/cinematic_character_scale.json")
 REVIEW_ROOT = Path("tmp/cinematics/normalized-characters")
 REVIEW_SIZE = (520, 700)
@@ -44,7 +45,8 @@ RELATIVE_STATURE: dict[str, float] = {
     "goblin": 0.76, "gunnar": 1.05, "kestrel": 0.98, "lancer": 1.01,
     "lion_champion": 1.09, "lyra": 0.99, "maelor": 1.00, "marian": 1.00,
     "refugee_mother": 0.98, "sage_seraphine": 1.00, "seal_guardian": 1.13,
-    "seraphine": 1.00, "serpent_brute": 1.13, "serpent_duelist_elite": 1.04,
+    "serpent_brute": 1.13, "serpent_duelist_elite": 1.04,
+    "serpent_elite_brute": 1.20,
     "serpent_general_boss": 1.18, "serpent_oracle": 1.01, "serpent_raider": 1.03,
     "survivor": 0.98, "talon": 1.00, "villageoise": 0.97,
     "wounded_merchant": 1.00,
@@ -58,7 +60,7 @@ RELATIVE_STATURE: dict[str, float] = {
 }
 
 MAJOR_HUMANS = [
-    "alistair", "marian", "elara", "kestrel", "sage_seraphine", "seraphine",
+    "alistair", "marian", "elara", "kestrel", "sage_seraphine",
     "alaric", "lion_champion", "cedric", "lancer", "maelor", "gunnar", "talon",
 ]
 
@@ -96,8 +98,7 @@ def category_for(character_id: str) -> str:
     return "HUMAN"
 
 
-def inspect_asset(path: Path, root: Path) -> tuple[dict[str, Any], Image.Image]:
-    character_id = path.stem
+def inspect_asset(path: Path, root: Path, character_id: str) -> tuple[dict[str, Any], Image.Image]:
     with Image.open(path) as source:
         rgba = source.convert("RGBA")
     alpha = rgba.getchannel("A")
@@ -166,22 +167,30 @@ def write_contact_sheet(review_paths: dict[str, Path], output: Path) -> None:
 
 def build(project_root: Path) -> dict[str, Any]:
     canonical_root = project_root / CANONICAL_ROOT
+    campaign_census = json.loads((project_root / CAMPAIGN_CENSUS_PATH).read_text(encoding="utf-8"))
+    character_asset_paths = campaign_census["characterAssetPaths"]
     review_root = project_root / REVIEW_ROOT
     review_root.mkdir(parents=True, exist_ok=True)
     entries: list[dict[str, Any]] = []
     review_paths: dict[str, Path] = {}
-    for path in sorted(canonical_root.glob("*.png"), key=lambda item: item.stem):
-        entry, review = inspect_asset(path, project_root)
-        output = review_root / f"{path.stem}.png"
+    for character_id, asset_path in sorted(character_asset_paths.items()):
+        path = project_root / asset_path
+        entry, review = inspect_asset(path, project_root, character_id)
+        output = review_root / f"{character_id}.png"
         review.save(output, format="PNG", optimize=True)
         entries.append(entry)
-        review_paths[path.stem] = output
+        review_paths[character_id] = output
     if not entries:
         raise ValueError(f"No PNG assets found under {canonical_root}.")
     write_contact_sheet(review_paths, review_root / "major-human-contact-sheet.png")
     return {
         "schemaVersion": 1,
         "canonicalRoot": CANONICAL_ROOT.as_posix() + "/",
+        "canonicalAssetRoots": [
+            "public/assets/characters/pixel/masters/",
+            "public/assets/characters/pixel/full/",
+            "public/assets/characters/pixel/archive/non-demo/",
+        ],
         "canonicalFacing": "SCREEN_RIGHT",
         "measurementConvention": "alpha bounding box, centered foot anchor at last visible alpha row",
         "reviewConvention": {

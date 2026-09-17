@@ -1,0 +1,497 @@
+{
+  "schemaVersion": 1,
+  "status": "COMPLETE",
+  "archiveRoot": "public/assets/characters/pixel/archive/non-demo/",
+  "ACTIVE_FULL_IDENTITIES": [
+    "alaric",
+    "maelor",
+    "sage_seraphine",
+    "refugee_mother",
+    "survivor",
+    "villageoise",
+    "wounded_merchant"
+  ],
+  "ARCHIVED_NON_DEMO_IDENTITIES": [
+    "aldric",
+    "eldwin",
+    "gunnar",
+    "lyra",
+    "morvan",
+    "talon",
+    "chroniqueur",
+    "shrine_apparition",
+    "seal_guardian",
+    "troll",
+    "undead_champion",
+    "forest_viper",
+    "future_herbalist",
+    "future_lion_scribe",
+    "future_lion_spearman",
+    "future_shadow_envoy",
+    "giant_mygale",
+    "mountain_ram",
+    "river_crab",
+    "swamp_crocodile"
+  ],
+  "SERAPHINE_CANONICAL_ID": "sage_seraphine",
+  "SERAPHINE_ALIAS_RESOLUTION": {
+    "aliasId": "seraphine",
+    "canonicalAssetPath": "/assets/characters/pixel/full/sage_seraphine.png",
+    "archivedAliasSourcePath": "/assets/characters/pixel/archive/non-demo/seraphine.png",
+    "byteIdenticalBeforeArchive": true,
+    "activeProductionIdentities": [
+      "sage_seraphine"
+    ]
+  },
+  "FINAL_NON_COMBAT_GENERATION_QUEUE": [
+    "alaric",
+    "maelor",
+    "sage_seraphine",
+    "refugee_mother",
+    "survivor",
+    "villageoise",
+    "wounded_merchant"
+  ],
+  "OPTIONAL_GENERIC_QUEUE": [
+    "villageois",
+    "refugee"
+  ],
+  "BROKEN_REFERENCES": [],
+  "REMAINING_FULL_FILES": 7,
+  "ARCHIVED_FILE_COUNT": 21,
+  "counts": {
+    "archivedNonDemoIdentities": 20,
+    "seraphineAliasSourcesArchived": 1,
+    "archivedFiles": 21
+  },
+  "entries": [
+    {
+      "identity": "aldric",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/aldric.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/aldric.png",
+      "sha256": "f7f6613eb5df339831a55331c5c2a6f1512b5a794b9452776498d96bd554bb12",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "eldwin",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/eldwin.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/eldwin.png",
+      "sha256": "b29568751a1a7195ca116054d5b4b77073f9ae6bd7d0ab7f29db535d370cab16",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "gunnar",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/gunnar.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/gunnar.png",
+      "sha256": "4d10124f7292e1245688f7489f178d239b7c66950f423b8587bd406e656a4c87",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "lyra",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/lyra.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/lyra.png",
+      "sha256": "bc6ea819babe9160744406afe235614cb737cd32f5b7a6de274b8204bc550bfd",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "morvan",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/morvan.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/morvan.png",
+      "sha256": "d318169144b2113835597c68e478a3ab9aeb412dba243b03e768ab2839b1a212",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterDefinitions.ts",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterDefinitions.ts",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "talon",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/talon.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/talon.png",
+      "sha256": "e27a6d2daca531c2a112875094bf91cc36cde056fa46d8bb64cfbc739fd0440f",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts",
+        "src/game/catalog.ts",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "chroniqueur",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/chroniqueur.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/chroniqueur.png",
+      "sha256": "3a23e4c0fb6e5f765dd4d69f2f216b16793e7bee056de2d38f257424eef3ce9c",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "shrine_apparition",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/shrine_apparition.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/shrine_apparition.png",
+      "sha256": "91d675b9112acc147ebdaa0713bbd524ef54a1994439218a84b058740d303729",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/canonical_character_production_cards.json",
+        "tools/cinematics/specs/cinematic_character_scale.json",
+        "tools/cinematics/specs/final_dialogue_visual_segments.json",
+        "tools/cinematics/specs/final_future_production_manifest.json"
+      ],
+      "currentArchiveReferences": [
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/canonical_character_production_cards.json",
+        "tools/cinematics/specs/cinematic_character_scale.json",
+        "tools/cinematics/specs/final_dialogue_visual_segments.json",
+        "tools/cinematics/specs/final_future_production_manifest.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "seal_guardian",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/seal_guardian.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/seal_guardian.png",
+      "sha256": "fae5ac576d866bf526d6bea20c0952c4a681cff2d8b0b51eacae65cff0a4c4ab",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "troll",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/troll.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/troll.png",
+      "sha256": "0a07e663af2195724d6e1836a24b3e5c769342087d14f756145d95ecb95cd97a",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "undead_champion",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/undead_champion.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/undead_champion.png",
+      "sha256": "931e9b14cf08adc40ca09b1bc95a76d26f6b681206288fd1173b112c4dbafec5",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "src/combat/legacyCombatRuntime.js",
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "forest_viper",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/forest_viper.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/forest_viper.png",
+      "sha256": "29efeb39e1b49b213ecd4ad560c6482e7a7605cabefdf161081a7435b82cbc13",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "future_herbalist",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/future_herbalist.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/future_herbalist.png",
+      "sha256": "e9af0c25df2a661e7865140ce5f37b075a080411d0766b5ef614b95559ca7d41",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "future_lion_scribe",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/future_lion_scribe.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/future_lion_scribe.png",
+      "sha256": "edc13eb9bb48c7d1e4a5e07046adb4e4ecbe4ba431100761f7e88f64b19e31f6",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "future_lion_spearman",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/future_lion_spearman.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/future_lion_spearman.png",
+      "sha256": "ed7b77a983384169bc5c4173d8c5ca61d7ae84a83c8ce3a3194f0aec7312c59f",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "future_shadow_envoy",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/future_shadow_envoy.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/future_shadow_envoy.png",
+      "sha256": "5ed28820cde17b508cb35b907ddb2ebf286129ddc8c5656775fbd456a7aeb418",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "giant_mygale",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/giant_mygale.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/giant_mygale.png",
+      "sha256": "6f7a70970029be63cca1771030a1f6cf4abe3dc06ed8354ea7757d61c5ce265d",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "mountain_ram",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/mountain_ram.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/mountain_ram.png",
+      "sha256": "bd2a143583cb7a1b00411474dca7593f97c35e1bdef05e9ce6e109b52c3a4131",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "river_crab",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/river_crab.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/river_crab.png",
+      "sha256": "3e66270cdc139282226d61542d3f0d76f32b2a076a871897b41bf32ebe73713b",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "swamp_crocodile",
+      "classification": "NON_DEMO_IDENTITY",
+      "originalPath": "public/assets/characters/pixel/full/swamp_crocodile.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/swamp_crocodile.png",
+      "sha256": "317f0436f1c7b70a0240c4cebd044c94c805b8175dd4c9755319fa43d0a38f77",
+      "aliasOf": null,
+      "referencesBeforeArchive": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "currentArchiveReferences": [
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json"
+      ],
+      "originalFullReferencesRemaining": 0
+    },
+    {
+      "identity": "seraphine",
+      "classification": "SERAPHINE_ALIAS_SOURCE",
+      "originalPath": "public/assets/characters/pixel/full/seraphine.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/seraphine.png",
+      "sha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
+      "aliasOf": "sage_seraphine",
+      "referencesBeforeArchive": [
+        "src/render/assetManifest.ts",
+        "tools/cinematics/specs/campaign_cinematic_census.json",
+        "tools/cinematics/specs/cinematic_character_scale.json",
+        "tools/cinematics/specs/cinematic_continuity_bible.json"
+      ],
+      "currentArchiveReferences": [],
+      "originalFullReferencesRemaining": 0
+    }
+  ]
+}

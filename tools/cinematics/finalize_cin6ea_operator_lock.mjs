@@ -8,7 +8,7 @@ const FINALIZATION_BASELINE = '57ba69cf718ea630cc9306c4122666fd6b58420f';
 const PREPRODUCTION_BASELINE = '6683c6d3898db0216549c43f7d25c7d8fd46d70d';
 const MODEL = 'gpt-image-2.5-sunburst-2026-09-08';
 const QUALITY = 'max';
-const CANONICAL_AUTHORITY = 'public/assets/characters/pixel/full/*.png';
+const CANONICAL_AUTHORITY = 'public/assets/characters/pixel/{masters,full,archive/non-demo}/*.png';
 
 const paths = {
   profile: 'tools/cinematics/specs/final_visual_production_profile.json',

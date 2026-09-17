@@ -31,7 +31,11 @@ import { registerCharacterDefinition } from './OptionCManifestResolver';
 
 const PHASE4B_ROOT = '/assets/dev/option-c/phase4b';
 const ALISTAIR_CANDIDATE_ROOT = '/assets/dev/option-c/phase4c/alistair/normalized';
-const CANONICAL_ROOT = '/assets/characters/pixel/full';
+const DRAFT_IDLE_ASSETS = {
+  marian: '/assets/characters/pixel/masters/white_mage.png',
+  elara: '/assets/characters/pixel/masters/dark_mage.png',
+  morvan: '/assets/characters/pixel/archive/non-demo/morvan.png',
+} as const;
 
 function kestrelFrames(state: 'idle' | 'dash' | 'attack' | 'skill'): readonly string[] {
   return Array.from(
@@ -46,8 +50,8 @@ function kestrelFrames(state: 'idle' | 'dash' | 'attack' | 'skill'): readonly st
  * so the runtime pipeline can be stress-tested structurally.
  * This is explicitly marked ART_PENDING_CODEX.
  */
-function draftIdleFrames(characterId: string): readonly string[] {
-  return [`${CANONICAL_ROOT}/${characterId}.png`];
+function draftIdleFrames(characterId: keyof typeof DRAFT_IDLE_ASSETS): readonly string[] {
+  return [DRAFT_IDLE_ASSETS[characterId]];
 }
 
 function alistairKeyPose(state: 'idle' | 'dash' | 'attack' | 'skill'): readonly string[] {
@@ -667,18 +671,18 @@ const morvanDashMeta: OptionCAnimationMetadata = {
 };
 
 const morvanCodexSlots: readonly OptionCCodexHandoffSlot[] = [
-  { slotName: 'characterMaster', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static master', canonicalReference: '/assets/characters/pixel/full/morvan.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png', fileDestination: 'public/assets/dev/option-c/phase4c/morvan/master.png', runtimeSemanticKey: 'character:dark_knight:master' },
-  { slotName: 'idleSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 8], timingMetadata: '190ms/frame, loop', canonicalReference: '/assets/characters/pixel/full/morvan.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/', fileDestination: 'public/assets/dev/option-c/phase4c/morvan/idle/', runtimeSemanticKey: 'character:dark_knight:surface:*:state:idle' },
-  { slotName: 'dashSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 10], timingMetadata: '82ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/morvan.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/dash/', fileDestination: 'public/assets/dev/option-c/phase4c/morvan/dash/', runtimeSemanticKey: 'character:dark_knight:surface:*:state:dash' },
-  { slotName: 'attackSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '105ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/morvan.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/attack/', fileDestination: 'public/assets/dev/option-c/phase4c/morvan/attack/', runtimeSemanticKey: 'character:dark_knight:surface:*:state:attack' },
-  { slotName: 'skillSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '125ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/morvan.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/skill/', fileDestination: 'public/assets/dev/option-c/phase4c/morvan/cast/', runtimeSemanticKey: 'character:dark_knight:surface:*:state:cast' },
+  { slotName: 'characterMaster', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static master', canonicalReference: '/assets/characters/pixel/archive/non-demo/morvan.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png', fileDestination: 'public/assets/dev/option-c/phase4c/morvan/master.png', runtimeSemanticKey: 'character:dark_knight:master' },
+  { slotName: 'idleSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 8], timingMetadata: '190ms/frame, loop', canonicalReference: '/assets/characters/pixel/archive/non-demo/morvan.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/', fileDestination: 'public/assets/dev/option-c/phase4c/morvan/idle/', runtimeSemanticKey: 'character:dark_knight:surface:*:state:idle' },
+  { slotName: 'dashSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 10], timingMetadata: '82ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/archive/non-demo/morvan.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/dash/', fileDestination: 'public/assets/dev/option-c/phase4c/morvan/dash/', runtimeSemanticKey: 'character:dark_knight:surface:*:state:dash' },
+  { slotName: 'attackSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '105ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/archive/non-demo/morvan.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/attack/', fileDestination: 'public/assets/dev/option-c/phase4c/morvan/attack/', runtimeSemanticKey: 'character:dark_knight:surface:*:state:attack' },
+  { slotName: 'skillSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '125ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/archive/non-demo/morvan.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/skill/', fileDestination: 'public/assets/dev/option-c/phase4c/morvan/cast/', runtimeSemanticKey: 'character:dark_knight:surface:*:state:cast' },
 ];
 
 export const MORVAN_DEFINITION: OptionCCharacterDefinition = Object.freeze({
   identity: {
     id: 'dark_knight',
     displayName: 'Morvan',
-    canonicalSource: '/assets/characters/pixel/full/morvan.png',
+    canonicalSource: '/assets/characters/pixel/archive/non-demo/morvan.png',
     weapon: 'scythe',
     archetype: 'knight',
     silhouetteClass: 'heavy_dark',
@@ -693,13 +697,13 @@ export const MORVAN_DEFINITION: OptionCCharacterDefinition = Object.freeze({
     animationStates: ['idle', 'dash', 'attack', 'cast'] as const,
   },
   sources: {
-    canonical: '/assets/characters/pixel/full/morvan.png',
+    canonical: '/assets/characters/pixel/archive/non-demo/morvan.png',
   },
   masterStatus: 'SCALING_DRAFT',
   surfaceAssets: {
-    tableau: '/assets/characters/pixel/full/morvan.png',
-    strategic: '/assets/characters/pixel/full/morvan.png',
-    combatStage: '/assets/characters/pixel/full/morvan.png',
+    tableau: '/assets/characters/pixel/archive/non-demo/morvan.png',
+    strategic: '/assets/characters/pixel/archive/non-demo/morvan.png',
+    combatStage: '/assets/characters/pixel/archive/non-demo/morvan.png',
   },
   animations: [morvanIdleMeta, morvanDashMeta, morvanAttackMeta, morvanCastMeta],
   anchors: {

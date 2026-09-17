@@ -81,7 +81,7 @@ describe('Phase 4C roster census', () => {
 
   it('has canonical asset paths for every character', () => {
     for (const entry of PLAYABLE_ROSTER_CENSUS) {
-      expect(entry.canonicalAssetPath).toMatch(/^\/assets\/characters\/pixel\/(?:full|masters)\//);
+      expect(entry.canonicalAssetPath).toMatch(/^\/assets\/characters\/pixel\/(?:full|masters|archive\/non-demo)\//);
     }
   });
 
@@ -110,7 +110,7 @@ describe('Phase 4C canonical identity preservation', () => {
 
   it('keeps all draft characters canonical sources in the canonical path', () => {
     for (const def of SELECTED_BATCH) {
-      expect(def.identity.canonicalSource).toMatch(/^\/assets\/characters\/pixel\/(?:full|masters)\//);
+      expect(def.identity.canonicalSource).toMatch(/^\/assets\/characters\/pixel\/(?:full|masters|archive\/non-demo)\//);
       expect(def.identity.canonicalSource).not.toMatch(/\/dev\//);
     }
   });
@@ -609,7 +609,7 @@ describe('Phase 4C Codex handoff readiness', () => {
         expect(slot.expectedDimensions).toEqual([512, 512]);
         expect(slot.transparent).toBe(true);
         expect(slot.anchor).toBe('FOOT_CENTER');
-        expect(slot.canonicalReference).toMatch(/^\/assets\/characters\/pixel\/(?:full|masters)\//);
+        expect(slot.canonicalReference).toMatch(/^\/assets\/characters\/pixel\/(?:full|masters|archive\/non-demo)\//);
         expect(slot.kestrelReference).toContain('/assets/dev/option-c/phase4b/kestrel/');
         expect(slot.fileDestination).toContain('public/assets/dev/option-c/phase4c/');
         expect(slot.runtimeSemanticKey).toContain('character:');

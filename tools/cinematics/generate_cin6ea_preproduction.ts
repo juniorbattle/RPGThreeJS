@@ -132,13 +132,14 @@ function sceneCastManifest(beat: Json, stagingByDialogue: Map<string, Json>, cas
 async function main(): Promise<void> {
   await mkdir(SPECS, { recursive: true });
   await mkdir(REPORTS, { recursive: true });
-  const [familyPlan, audit, staging, castAudit, qc, remasterQueue] = await Promise.all([
+  const [familyPlan, audit, staging, castAudit, qc, remasterQueue, campaignCensus] = await Promise.all([
     json('tools/cinematics/specs/final_visual_family_plan.json'),
     json('tools/cinematics/specs/final_presentation_mode_audit.json'),
     json('tools/cinematics/specs/narrative_dialogue_staging.json'),
     json('tools/cinematics/specs/cinematic_dialogue_cast_audit.json'),
     json('public/assets/characters/pixel/canonical-character-qc.json'),
     json('tools/cinematics/specs/final_cinematic_remaster_queue.json'),
+    json('tools/cinematics/specs/campaign_cinematic_census.json'),
   ]);
 
   const familySpecs = familyPlan.families.map((family: Json) => ({
@@ -164,7 +165,8 @@ async function main(): Promise<void> {
   for (const characterId of characterIds) {
     const visual = characterVisuals[characterId];
     if (!visual) throw new Error(`Missing visual production card detail for ${characterId}.`);
-    const full = `public/assets/characters/pixel/full/${characterId}.png`;
+    const full = campaignCensus.characterAssetPaths?.[characterId];
+    if (!full) throw new Error(`Missing canonical campaign asset path for ${characterId}.`);
     characters.push({
       characterId,
       displayName: visual.displayName,

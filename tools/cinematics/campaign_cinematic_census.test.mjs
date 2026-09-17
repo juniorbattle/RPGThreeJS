@@ -452,7 +452,7 @@ describe('CIN-5 campaign cinematic census contract', () => {
     expect(census.productionDefault).toEqual({ current: 'TravelView', journeyAvailability: 'DEV_SELECTED', changedByCin5: false });
   });
 
-  it('inventories 52 real identities across master authority and the remaining full backlog', () => {
+  it('inventories 52 real identities across master, active full and archived authorities', () => {
     expect(census.characterAssets).toHaveLength(52);
     expect(Object.keys(census.characterAssetPaths)).toHaveLength(52);
     for (const id of census.characterAssets) expect(existsSync(resolve(projectRoot, census.characterAssetPaths[id])), id).toBe(true);

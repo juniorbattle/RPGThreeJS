@@ -1,6 +1,63 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "status": "COMPLETE",
+  "ACTIVE_FULL_IDENTITIES": [
+    "alaric",
+    "maelor",
+    "sage_seraphine",
+    "refugee_mother",
+    "survivor",
+    "villageoise",
+    "wounded_merchant"
+  ],
+  "ARCHIVED_NON_DEMO_IDENTITIES": [
+    "aldric",
+    "eldwin",
+    "gunnar",
+    "lyra",
+    "morvan",
+    "talon",
+    "chroniqueur",
+    "shrine_apparition",
+    "seal_guardian",
+    "troll",
+    "undead_champion",
+    "forest_viper",
+    "future_herbalist",
+    "future_lion_scribe",
+    "future_lion_spearman",
+    "future_shadow_envoy",
+    "giant_mygale",
+    "mountain_ram",
+    "river_crab",
+    "swamp_crocodile"
+  ],
+  "SERAPHINE_CANONICAL_ID": "sage_seraphine",
+  "SERAPHINE_ALIAS_RESOLUTION": {
+    "aliasId": "seraphine",
+    "canonicalAssetPath": "/assets/characters/pixel/full/sage_seraphine.png",
+    "archivedAliasSourcePath": "/assets/characters/pixel/archive/non-demo/seraphine.png",
+    "byteIdenticalBeforeArchive": true,
+    "activeProductionIdentities": [
+      "sage_seraphine"
+    ]
+  },
+  "FINAL_NON_COMBAT_GENERATION_QUEUE": [
+    "alaric",
+    "maelor",
+    "sage_seraphine",
+    "refugee_mother",
+    "survivor",
+    "villageoise",
+    "wounded_merchant"
+  ],
+  "OPTIONAL_GENERIC_QUEUE": [
+    "villageois",
+    "refugee"
+  ],
+  "BROKEN_REFERENCES": [],
+  "REMAINING_FULL_FILES": 7,
+  "ARCHIVED_FILE_COUNT": 21,
   "entries": [
     {
       "runtimeId": "alistair",
@@ -147,12 +204,22 @@
       "status": "MASTERED"
     },
     {
+      "runtimeId": "sage_seraphine",
+      "masterId": null,
+      "legacyFullPath": "/assets/characters/pixel/full/sage_seraphine.png",
+      "newMasterPath": null,
+      "canonicalAssetPath": "/assets/characters/pixel/full/sage_seraphine.png",
+      "aliasOf": null,
+      "status": "ACTIVE_DEMO_MASTER_PENDING"
+    },
+    {
       "runtimeId": "seraphine",
       "masterId": null,
-      "legacyFullPath": "/assets/characters/pixel/full/seraphine.png",
-      "newMasterPath": null,
+      "legacyFullPath": "/assets/characters/pixel/archive/non-demo/seraphine.png",
+      "newMasterPath": "/assets/characters/pixel/full/sage_seraphine.png",
+      "canonicalAssetPath": "/assets/characters/pixel/full/sage_seraphine.png",
       "aliasOf": "sage_seraphine",
-      "status": "SHARES_FUTURE_MASTER"
+      "status": "ALIAS_TO_ACTIVE_CANONICAL_IDENTITY"
     },
     {
       "runtimeId": "serpent_brute",
@@ -284,9 +351,8 @@
     }
   ],
   "counts": {
-    "records": 35,
+    "records": 36,
     "aliasesResolved": 10,
-    "aliasesCoveredByExistingMaster": 9,
-    "aliasesSharingFutureMaster": 1
+    "activeSeraphineProductionIdentities": 1
   }
 }

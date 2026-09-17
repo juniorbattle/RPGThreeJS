@@ -139,7 +139,7 @@ export const PLAYABLE_ROSTER_CENSUS: readonly OptionCRosterCensusEntry[] = Objec
   },
   {
     characterId: 'paladin',
-    canonicalAssetPath: '/assets/characters/pixel/full/aldric.png',
+    canonicalAssetPath: '/assets/characters/pixel/archive/non-demo/aldric.png',
     displayName: 'Aldric',
     role: 'Holy knight / hybrid',
     weapon: 'holy_mace',
@@ -156,7 +156,7 @@ export const PLAYABLE_ROSTER_CENSUS: readonly OptionCRosterCensusEntry[] = Objec
   },
   {
     characterId: 'dark_knight',
-    canonicalAssetPath: '/assets/characters/pixel/full/morvan.png',
+    canonicalAssetPath: '/assets/characters/pixel/archive/non-demo/morvan.png',
     displayName: 'Morvan',
     role: 'Dark melee / life-steal',
     weapon: 'scythe',
@@ -173,7 +173,7 @@ export const PLAYABLE_ROSTER_CENSUS: readonly OptionCRosterCensusEntry[] = Objec
   },
   {
     characterId: 'red_mage',
-    canonicalAssetPath: '/assets/characters/pixel/full/lyra.png',
+    canonicalAssetPath: '/assets/characters/pixel/archive/non-demo/lyra.png',
     displayName: 'Lyra',
     role: 'Hybrid melee/magic duelist',
     weapon: 'rapier',
@@ -190,7 +190,7 @@ export const PLAYABLE_ROSTER_CENSUS: readonly OptionCRosterCensusEntry[] = Objec
   },
   {
     characterId: 'enchanter',
-    canonicalAssetPath: '/assets/characters/pixel/full/eldwin.png',
+    canonicalAssetPath: '/assets/characters/pixel/archive/non-demo/eldwin.png',
     displayName: 'Eldwin',
     role: 'Support enchanter / debuffer',
     weapon: 'wand',
@@ -207,7 +207,7 @@ export const PLAYABLE_ROSTER_CENSUS: readonly OptionCRosterCensusEntry[] = Objec
   },
   {
     characterId: 'ninja',
-    canonicalAssetPath: '/assets/characters/pixel/full/talon.png',
+    canonicalAssetPath: '/assets/characters/pixel/archive/non-demo/talon.png',
     displayName: 'Talon',
     role: 'Silent assassin / ranged rogue',
     weapon: 'shuriken',
@@ -224,7 +224,7 @@ export const PLAYABLE_ROSTER_CENSUS: readonly OptionCRosterCensusEntry[] = Objec
   },
   {
     characterId: 'artillerist',
-    canonicalAssetPath: '/assets/characters/pixel/full/gunnar.png',
+    canonicalAssetPath: '/assets/characters/pixel/archive/non-demo/gunnar.png',
     displayName: 'Gunnar',
     role: 'Ranged AoE / siege',
     weapon: 'hand_cannon',
@@ -351,7 +351,7 @@ export const CHARACTER_IDENTITY_SPECS: readonly OptionCCharacterIdentity[] = Obj
   {
     id: 'paladin',
     displayName: 'Aldric',
-    canonicalSource: '/assets/characters/pixel/full/aldric.png',
+    canonicalSource: '/assets/characters/pixel/archive/non-demo/aldric.png',
     weapon: 'holy_mace',
     archetype: 'knight',
     silhouetteClass: 'heavy_holy',
@@ -368,7 +368,7 @@ export const CHARACTER_IDENTITY_SPECS: readonly OptionCCharacterIdentity[] = Obj
   {
     id: 'dark_knight',
     displayName: 'Morvan',
-    canonicalSource: '/assets/characters/pixel/full/morvan.png',
+    canonicalSource: '/assets/characters/pixel/archive/non-demo/morvan.png',
     weapon: 'scythe',
     archetype: 'knight',
     silhouetteClass: 'heavy_dark',
@@ -385,7 +385,7 @@ export const CHARACTER_IDENTITY_SPECS: readonly OptionCCharacterIdentity[] = Obj
   {
     id: 'red_mage',
     displayName: 'Lyra',
-    canonicalSource: '/assets/characters/pixel/full/lyra.png',
+    canonicalSource: '/assets/characters/pixel/archive/non-demo/lyra.png',
     weapon: 'rapier',
     archetype: 'mage',
     silhouetteClass: 'medium_hybrid',
@@ -402,7 +402,7 @@ export const CHARACTER_IDENTITY_SPECS: readonly OptionCCharacterIdentity[] = Obj
   {
     id: 'enchanter',
     displayName: 'Eldwin',
-    canonicalSource: '/assets/characters/pixel/full/eldwin.png',
+    canonicalSource: '/assets/characters/pixel/archive/non-demo/eldwin.png',
     weapon: 'wand',
     archetype: 'cleric',
     silhouetteClass: 'robed_scholar',
@@ -419,7 +419,7 @@ export const CHARACTER_IDENTITY_SPECS: readonly OptionCCharacterIdentity[] = Obj
   {
     id: 'ninja',
     displayName: 'Talon',
-    canonicalSource: '/assets/characters/pixel/full/talon.png',
+    canonicalSource: '/assets/characters/pixel/archive/non-demo/talon.png',
     weapon: 'shuriken',
     archetype: 'rogue',
     silhouetteClass: 'lithe_stealth',
@@ -436,7 +436,7 @@ export const CHARACTER_IDENTITY_SPECS: readonly OptionCCharacterIdentity[] = Obj
   {
     id: 'artillerist',
     displayName: 'Gunnar',
-    canonicalSource: '/assets/characters/pixel/full/gunnar.png',
+    canonicalSource: '/assets/characters/pixel/archive/non-demo/gunnar.png',
     weapon: 'hand_cannon',
     archetype: 'archer',
     silhouetteClass: 'medium_ranged',

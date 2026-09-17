@@ -907,7 +907,7 @@ async function main(): Promise<void> {
   const stagingPlan = {
     schemaVersion: 1,
     baseline: BASELINE,
-    canonicalSpriteAuthority: 'public/assets/characters/pixel/full/*.png',
+    canonicalSpriteAuthority: 'public/assets/characters/pixel/{masters,full,archive/non-demo}/*.png',
     physicalScalePolicy: 'Stable scale 1.0; spacing and staged subsets solve crowding.',
     summary: {
       staticSegments: staticSegments.length,

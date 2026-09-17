@@ -3,7 +3,7 @@
   "baseline": "57ba69cf718ea630cc9306c4122666fd6b58420f",
   "reviewTitle": "CIN-6E-A Final Operator-Approved Visual Production Lock",
   "referencePolicy": {
-    "sourceOfTruth": "public/assets/characters/pixel/full/*.png",
+    "sourceOfTruth": "public/assets/characters/pixel/{masters,full,archive/non-demo}/*.png",
     "rule": "Judge every character independently against the canonical full sprite. Preserve face visibility or concealment, headwear, silhouette, proportions, palette, costume or armor family, weapons, accessories, and distinctive shapes. A character is masked only when the matching canonical sprite is masked.",
     "staticTableauRule": "Static tableaux use the canonical runtime full sprites unchanged. Generated tableau assets are character-free backgrounds.",
     "operatorGate": "Operator image and dynamic-video review complete. Pilots A-F are approved; E-C supersedes rejected E-A and E-B."

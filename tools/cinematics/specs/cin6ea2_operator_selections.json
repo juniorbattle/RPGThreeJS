@@ -4,7 +4,7 @@
   "baseline": "57ba69cf718ea630cc9306c4122666fd6b58420f",
   "branch": "main",
   "lockedOn": "2026-09-12",
-  "absoluteCharacterIdentitySource": "public/assets/characters/pixel/full/*.png",
+  "absoluteCharacterIdentitySource": "public/assets/characters/pixel/{masters,full,archive/non-demo}/*.png",
   "newImageGenerationAllowed": false,
   "productionMediaMutationAllowed": false,
   "minimaxUploadAuthorization": {

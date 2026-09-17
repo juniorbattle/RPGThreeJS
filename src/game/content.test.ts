@@ -327,7 +327,7 @@ describe('campaign content integrity', () => {
       expect(characterProfiles[unit.visualProfileId]?.full, `${unit.id}:fullProfile`).toBe(unit.portrait);
       heroProfileIds.add(unit.visualProfileId);
       heroFullPaths.add(unit.portrait);
-      expect(unit.portrait, unit.id).toMatch(/^\/assets\/characters\/pixel\/(?:full|masters)\//);
+      expect(unit.portrait, unit.id).toMatch(/^\/assets\/characters\/pixel\/(?:full|masters|archive\/non-demo)\//);
       expectPublicAsset(unit.portrait, unit.id);
     }
     expect(heroProfileIds.size).toBe(units.length);
@@ -461,7 +461,7 @@ describe('campaign content integrity', () => {
       allPaths.push(profile.full, profile.dialogue, profile.ui, profile.fallback);
     }
     for (const path of allPaths) {
-      expect(path, `path:${path}`).toMatch(/\/assets\/characters\/pixel\/(?:full|masters)\//);
+      expect(path, `path:${path}`).toMatch(/\/assets\/characters\/pixel\/(?:full|masters|archive\/non-demo)\//);
       expectPublicAsset(path, `path:${path}`);
     }
   });

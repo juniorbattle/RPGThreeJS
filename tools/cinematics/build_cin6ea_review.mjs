@@ -10,10 +10,12 @@ const OUT = resolve(ROOT, 'tmp/cinematics/cin6ea/review');
 const SPEC_PATH = resolve(ROOT, 'tools/cinematics/specs/cin6ea_image_gate_review.json');
 const DYNAMIC_PATH = resolve(ROOT, 'tools/cinematics/specs/cin6ea2_operator_selections.json');
 const REGATE_PATH = resolve(ROOT, 'tools/cinematics/specs/cin6ea3_pilot_e_regate.json');
+const CAMPAIGN_CENSUS_PATH = resolve(ROOT, 'tools/cinematics/specs/campaign_cinematic_census.json');
 const ROOT_FROM_REVIEW = '../../../../';
 const escapeHtml = (value) => String(value)
   .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 const href = (path) => `${ROOT_FROM_REVIEW}${path.replaceAll('\\', '/')}`;
+const { characterAssetPaths } = JSON.parse(await readFile(CAMPAIGN_CENSUS_PATH, 'utf8'));
 
 const characterNames = {
   alaric: 'Alaric',
@@ -34,8 +36,10 @@ function statusClass(status) {
 }
 
 function characterReference(characterId) {
-  const path = `public/assets/characters/pixel/full/${characterId}.png`;
-  return `<figure class="reference"><a href="${href(path)}"><img loading="lazy" src="${href(path)}" alt="Canonical full sprite for ${escapeHtml(characterNames[characterId] ?? characterId)}"></a><figcaption>${escapeHtml(characterNames[characterId] ?? characterId)}<br><code>full/${escapeHtml(characterId)}.png</code></figcaption></figure>`;
+  const path = characterAssetPaths[characterId];
+  if (!path) throw new Error(`Missing canonical campaign asset path for ${characterId}.`);
+  const relativePath = path.replace('public/assets/characters/pixel/', '');
+  return `<figure class="reference"><a href="${href(path)}"><img loading="lazy" src="${href(path)}" alt="Canonical full sprite for ${escapeHtml(characterNames[characterId] ?? characterId)}"></a><figcaption>${escapeHtml(characterNames[characterId] ?? characterId)}<br><code>${escapeHtml(relativePath)}</code></figcaption></figure>`;
 }
 
 function assetCard(asset) {
