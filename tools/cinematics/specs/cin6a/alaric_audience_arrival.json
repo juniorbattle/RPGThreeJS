@@ -35,14 +35,14 @@
         "integration": {
           "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
           "layoutReference": "tmp/cinematics/cin4/cin66f_alaric_audience_arrival/shot_01/layout_reference.png",
-          "referenceAssets": ["public/assets/characters/pixel/full/sage_seraphine.png", "public/assets/characters/pixel/full/maelor.png", "public/assets/characters/pixel/full/alistair.png", "public/assets/characters/pixel/full/alaric.png"],
+          "referenceAssets": ["public/assets/characters/pixel/full/sage_seraphine.png", "public/assets/characters/pixel/full/maelor.png", "public/assets/characters/pixel/masters/alistair.png", "public/assets/characters/pixel/full/alaric.png"],
           "qualityGates": ["NO_COLLAGE_LOOK", "LIGHT_INTEGRATION", "GROUND_CONTACT", "DEPTH_INTEGRATION", "WORLD_INTEGRATION"]
         }
       },
       "characters": [
         { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.17, "groundY": 0.94 }, "scale": { "framing": "WIDE", "perspective": 0.78 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 40, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
         { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.31, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.82 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
-        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.43, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.76 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 20, "role": "SECONDARY", "screenRole": "SECONDARY", "factionRole": "HERO", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" },
+        { "id": "alistair", "asset": "public/assets/characters/pixel/masters/alistair.png", "position": { "x": 0.43, "groundY": 0.93 }, "scale": { "framing": "WIDE", "perspective": 0.76 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 20, "role": "SECONDARY", "screenRole": "SECONDARY", "factionRole": "HERO", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" },
         { "id": "alaric", "asset": "public/assets/characters/pixel/full/alaric.png", "position": { "x": 0.76, "groundY": 0.91 }, "scale": { "framing": "WIDE", "perspective": 0.88 }, "facing": "SCREEN_LEFT", "lookTarget": "PLAYER_PARTY", "depth": 10, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "FACTION_LEADER", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "WIDE_HOLD" },
@@ -88,7 +88,7 @@
         "integration": {
           "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
           "layoutReference": "tmp/cinematics/cin4/cin66f_alaric_audience_arrival/shot_03/layout_reference.png",
-          "referenceAssets": ["public/assets/characters/pixel/full/sage_seraphine.png", "public/assets/characters/pixel/full/maelor.png", "public/assets/characters/pixel/full/alistair.png", "public/assets/characters/pixel/full/alaric.png"],
+          "referenceAssets": ["public/assets/characters/pixel/full/sage_seraphine.png", "public/assets/characters/pixel/full/maelor.png", "public/assets/characters/pixel/masters/alistair.png", "public/assets/characters/pixel/full/alaric.png"],
           "qualityGates": ["NO_COLLAGE_LOOK", "LIGHT_INTEGRATION", "GROUND_CONTACT", "FOREGROUND_OCCLUSION", "DIALOGUE_SAFE_ZONE", "WORLD_INTEGRATION"]
         }
       },
@@ -96,7 +96,7 @@
       "characters": [
         { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.16, "groundY": 0.92 }, "scale": { "framing": "WIDE", "perspective": 0.77 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 40, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" },
         { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.30, "groundY": 0.91 }, "scale": { "framing": "WIDE", "perspective": 0.81 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" },
-        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.42, "groundY": 0.91 }, "scale": { "framing": "WIDE", "perspective": 0.75 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 20, "role": "SECONDARY", "screenRole": "SECONDARY", "factionRole": "HERO", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "alistair", "asset": "public/assets/characters/pixel/masters/alistair.png", "position": { "x": 0.42, "groundY": 0.91 }, "scale": { "framing": "WIDE", "perspective": 0.75 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alaric", "depth": 20, "role": "SECONDARY", "screenRole": "SECONDARY", "factionRole": "HERO", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
         { "id": "alaric", "asset": "public/assets/characters/pixel/full/alaric.png", "position": { "x": 0.75, "groundY": 0.90 }, "scale": { "framing": "WIDE", "perspective": 0.87 }, "facing": "SCREEN_LEFT", "lookTarget": "PLAYER_PARTY", "depth": 10, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "FACTION_LEADER", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "SLOW_PULL" },

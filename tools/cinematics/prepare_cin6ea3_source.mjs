@@ -9,8 +9,8 @@ const PROMPT_SPEC_PATH = 'tmp/cinematics/cin6ea/prompts/pilot_e_cinematic_keyfra
 const MANIFEST_PATH = 'tools/cinematics/specs/cin6ea_compiled_prompt_manifest.json';
 const REFERENCE_PATHS = [
   'tmp/cinematics/cin6ea/execution/images/pilot_e_cinematic_keyframe_a/pilot_e_cinematic_keyframe_a.png',
-  'public/assets/characters/pixel/full/cedric.png',
-  'public/assets/characters/pixel/full/kestrel.png',
+  'public/assets/characters/pixel/masters/rogue.png',
+  'public/assets/characters/pixel/masters/archer.png',
 ];
 
 const prompt = `Precision edit for RPGThreeJS CIN-6E-A.3. Edit Image 1 only and preserve its approved Pilot E-A Forest Road composition.

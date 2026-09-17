@@ -15,7 +15,7 @@
     "environment": "public/assets/generated/lion-phase/combat-stage/lion_sanctum_stage.webp",
     "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_young_dragon_encounter/shot_01/source.png" },
     "characters": [
-      { "id": "young_dragon_elite", "asset": "public/assets/characters/pixel/full/young_dragon_elite.png", "position": { "x": 0.68, "groundY": 0.98 }, "scale": { "framing": "MEDIUM", "perspective": 0.9 }, "facing": "SCREEN_LEFT", "lookTarget": "OFFSCREEN_LEFT", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      { "id": "young_dragon_elite", "asset": "public/assets/characters/pixel/masters/young_dragon_elite.png", "position": { "x": 0.68, "groundY": 0.98 }, "scale": { "framing": "MEDIUM", "perspective": 0.9 }, "facing": "SCREEN_LEFT", "lookTarget": "OFFSCREEN_LEFT", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
     ],
     "camera": { "mode": "STATIC" },
     "durationSeconds": 5,

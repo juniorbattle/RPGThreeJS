@@ -1,4 +1,4 @@
-import { readFile, readdir } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { loadAndValidateCinematicCharacterScale, validateCinematicCharacterScale } from './validate_cinematic_character_scale.mjs';
@@ -6,10 +6,10 @@ import { loadAndValidateCinematicCharacterScale, validateCinematicCharacterScale
 const projectRoot = process.cwd();
 
 describe('CIN-6.6 deterministic character scale registry', () => {
-  it('covers every immutable canonical full character with valid alpha and foot metadata', async () => {
+  it('covers all 52 real character identities across master authority and the remaining full backlog', async () => {
     const { input, result } = await loadAndValidateCinematicCharacterScale(projectRoot);
-    const files = (await readdir(resolve(projectRoot, input.canonicalRoot))).filter((name) => name.endsWith('.png'));
-    expect(result).toEqual({ valid: true, errors: [], profileCount: files.length });
+    expect(result).toEqual({ valid: true, errors: [], profileCount: 52 });
+    expect(input.characters).toHaveLength(52);
     expect(input.characters.every((entry) => entry.visibleBodyHeight === entry.alphaBounds.bottom - entry.alphaBounds.top)).toBe(true);
     expect(input.characters.every((entry) => entry.footAnchor.sourceY === entry.alphaBounds.bottom - 1)).toBe(true);
   });

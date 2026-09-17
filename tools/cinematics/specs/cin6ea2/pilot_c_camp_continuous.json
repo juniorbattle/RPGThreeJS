@@ -15,9 +15,9 @@
     "environment": "public/assets/generated/lion-phase/dialogue/camp_departure.webp",
     "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6ea2_pilot_c_camp_continuous/shot_01/source.png" },
     "characters": [
-      { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.27, "groundY": 0.85 }, "scale": { "framing": "WIDE", "perspective": 0.95 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_road", "depth": 30, "role": "SECONDARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
+      { "id": "marian", "asset": "public/assets/characters/pixel/masters/white_mage.png", "position": { "x": 0.27, "groundY": 0.85 }, "scale": { "framing": "WIDE", "perspective": 0.95 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_road", "depth": 30, "role": "SECONDARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
       { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.50, "groundY": 0.86 }, "scale": { "framing": "WIDE", "perspective": 1.0 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:alistair", "depth": 20, "role": "PRIMARY", "action": "STEP_FORWARD", "mirrorPolicy": "ALLOW" },
-      { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.71, "groundY": 0.87 }, "scale": { "framing": "WIDE", "perspective": 1.08 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_road", "depth": 10, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
+      { "id": "alistair", "asset": "public/assets/characters/pixel/masters/alistair.png", "position": { "x": 0.71, "groundY": 0.87 }, "scale": { "framing": "WIDE", "perspective": 1.08 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_road", "depth": 10, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
     ],
     "camera": { "mode": "SLOW_PUSH" },
     "durationSeconds": 5,

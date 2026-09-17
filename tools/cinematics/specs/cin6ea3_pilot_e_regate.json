@@ -31,12 +31,12 @@
   },
   "characterReferences": {
     "cedric": {
-      "path": "public/assets/characters/pixel/full/cedric.png",
-      "sha256": "ed71da3f7bd7ac94596bd4d20ef62047940d4457fbae7d6898f54ba221f6972f"
+      "path": "public/assets/characters/pixel/masters/rogue.png",
+      "sha256": "8216c95d16aec061331a212b0717ba155f7ff32b32bfaca1decbb27f788c3c14"
     },
     "kestrel": {
-      "path": "public/assets/characters/pixel/full/kestrel.png",
-      "sha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+      "path": "public/assets/characters/pixel/masters/archer.png",
+      "sha256": "cf9f50e30fe534ea9637857be43774ad19a39dbb721b0834a9bec54dd9e0c022"
     }
   },
   "gates": {

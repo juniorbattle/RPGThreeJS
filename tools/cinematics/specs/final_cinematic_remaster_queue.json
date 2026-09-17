@@ -101,7 +101,7 @@
       "cast": [
         {
           "id": "serpent_general_boss",
-          "asset": "public/assets/characters/pixel/full/serpent_general_boss.png",
+          "asset": "public/assets/characters/pixel/masters/serpent_general_boss.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -116,7 +116,7 @@
       "externalCast": [
         {
           "id": "serpent_general_boss",
-          "asset": "public/assets/characters/pixel/full/serpent_general_boss.png",
+          "asset": "public/assets/characters/pixel/masters/serpent_general_boss.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -158,7 +158,7 @@
       "cast": [
         {
           "id": "lion_champion",
-          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "asset": "public/assets/characters/pixel/masters/lion_champion.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -173,7 +173,7 @@
       "externalCast": [
         {
           "id": "lion_champion",
-          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "asset": "public/assets/characters/pixel/masters/lion_champion.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -238,7 +238,7 @@
       "cast": [
         {
           "id": "alistair",
-          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "asset": "public/assets/characters/pixel/masters/alistair.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -264,7 +264,7 @@
       "externalCast": [
         {
           "id": "alistair",
-          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "asset": "public/assets/characters/pixel/masters/alistair.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -327,7 +327,7 @@
         },
         {
           "id": "lion_champion",
-          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "asset": "public/assets/characters/pixel/masters/lion_champion.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -353,7 +353,7 @@
         },
         {
           "id": "lion_champion",
-          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "asset": "public/assets/characters/pixel/masters/lion_champion.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -405,7 +405,7 @@
         },
         {
           "id": "marian",
-          "asset": "public/assets/characters/pixel/full/marian.png",
+          "asset": "public/assets/characters/pixel/masters/white_mage.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -431,7 +431,7 @@
         },
         {
           "id": "marian",
-          "asset": "public/assets/characters/pixel/full/marian.png",
+          "asset": "public/assets/characters/pixel/masters/white_mage.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -472,7 +472,7 @@
       "cast": [
         {
           "id": "marian",
-          "asset": "public/assets/characters/pixel/full/marian.png",
+          "asset": "public/assets/characters/pixel/masters/white_mage.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -483,7 +483,7 @@
         },
         {
           "id": "alistair",
-          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "asset": "public/assets/characters/pixel/masters/alistair.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -498,7 +498,7 @@
       "externalCast": [
         {
           "id": "marian",
-          "asset": "public/assets/characters/pixel/full/marian.png",
+          "asset": "public/assets/characters/pixel/masters/white_mage.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -509,7 +509,7 @@
         },
         {
           "id": "alistair",
-          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "asset": "public/assets/characters/pixel/masters/alistair.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -550,7 +550,7 @@
       "cast": [
         {
           "id": "kestrel",
-          "asset": "public/assets/characters/pixel/full/kestrel.png",
+          "asset": "public/assets/characters/pixel/masters/archer.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -576,7 +576,7 @@
       "externalCast": [
         {
           "id": "kestrel",
-          "asset": "public/assets/characters/pixel/full/kestrel.png",
+          "asset": "public/assets/characters/pixel/masters/archer.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -629,7 +629,7 @@
       "cast": [
         {
           "id": "kestrel",
-          "asset": "public/assets/characters/pixel/full/kestrel.png",
+          "asset": "public/assets/characters/pixel/masters/archer.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -644,7 +644,7 @@
       "externalCast": [
         {
           "id": "kestrel",
-          "asset": "public/assets/characters/pixel/full/kestrel.png",
+          "asset": "public/assets/characters/pixel/masters/archer.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -698,7 +698,7 @@
         },
         {
           "id": "serpent_raider",
-          "asset": "public/assets/characters/pixel/full/serpent_raider.png",
+          "asset": "public/assets/characters/pixel/masters/serpent_raider.png",
           "assetStatus": "READY",
           "role": "THREAT",
           "stagingIntent": {
@@ -709,7 +709,7 @@
         },
         {
           "id": "alistair",
-          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "asset": "public/assets/characters/pixel/masters/alistair.png",
           "assetStatus": "READY",
           "role": "REACTION",
           "stagingIntent": {
@@ -735,7 +735,7 @@
         },
         {
           "id": "serpent_raider",
-          "asset": "public/assets/characters/pixel/full/serpent_raider.png",
+          "asset": "public/assets/characters/pixel/masters/serpent_raider.png",
           "assetStatus": "READY",
           "role": "THREAT",
           "stagingIntent": {
@@ -746,7 +746,7 @@
         },
         {
           "id": "alistair",
-          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "asset": "public/assets/characters/pixel/masters/alistair.png",
           "assetStatus": "READY",
           "role": "REACTION",
           "stagingIntent": {
@@ -835,7 +835,7 @@
       "cast": [
         {
           "id": "marian",
-          "asset": "public/assets/characters/pixel/full/marian.png",
+          "asset": "public/assets/characters/pixel/masters/white_mage.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -846,7 +846,7 @@
         },
         {
           "id": "alistair",
-          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "asset": "public/assets/characters/pixel/masters/alistair.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -861,7 +861,7 @@
       "externalCast": [
         {
           "id": "marian",
-          "asset": "public/assets/characters/pixel/full/marian.png",
+          "asset": "public/assets/characters/pixel/masters/white_mage.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -872,7 +872,7 @@
         },
         {
           "id": "alistair",
-          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "asset": "public/assets/characters/pixel/masters/alistair.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -924,7 +924,7 @@
         },
         {
           "id": "marian",
-          "asset": "public/assets/characters/pixel/full/marian.png",
+          "asset": "public/assets/characters/pixel/masters/white_mage.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -950,7 +950,7 @@
         },
         {
           "id": "marian",
-          "asset": "public/assets/characters/pixel/full/marian.png",
+          "asset": "public/assets/characters/pixel/masters/white_mage.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -1026,7 +1026,7 @@
         },
         {
           "id": "elara",
-          "asset": "public/assets/characters/pixel/full/elara.png",
+          "asset": "public/assets/characters/pixel/masters/dark_mage.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -1052,7 +1052,7 @@
         },
         {
           "id": "elara",
-          "asset": "public/assets/characters/pixel/full/elara.png",
+          "asset": "public/assets/characters/pixel/masters/dark_mage.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -1116,7 +1116,7 @@
         },
         {
           "id": "alistair",
-          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "asset": "public/assets/characters/pixel/masters/alistair.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -1153,7 +1153,7 @@
         },
         {
           "id": "alistair",
-          "asset": "public/assets/characters/pixel/full/alistair.png",
+          "asset": "public/assets/characters/pixel/masters/alistair.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -1207,7 +1207,7 @@
         },
         {
           "id": "serpent_general_boss",
-          "asset": "public/assets/characters/pixel/full/serpent_general_boss.png",
+          "asset": "public/assets/characters/pixel/masters/serpent_general_boss.png",
           "assetStatus": "READY",
           "role": "DEFEATED",
           "stagingIntent": {
@@ -1233,7 +1233,7 @@
         },
         {
           "id": "serpent_general_boss",
-          "asset": "public/assets/characters/pixel/full/serpent_general_boss.png",
+          "asset": "public/assets/characters/pixel/masters/serpent_general_boss.png",
           "assetStatus": "READY",
           "role": "DEFEATED",
           "stagingIntent": {
@@ -1275,7 +1275,7 @@
       "cast": [
         {
           "id": "lion_champion",
-          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "asset": "public/assets/characters/pixel/masters/lion_champion.png",
           "assetStatus": "READY",
           "role": "DEFEATED",
           "stagingIntent": {
@@ -1301,7 +1301,7 @@
       "externalCast": [
         {
           "id": "lion_champion",
-          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "asset": "public/assets/characters/pixel/masters/lion_champion.png",
           "assetStatus": "READY",
           "role": "DEFEATED",
           "stagingIntent": {
@@ -1353,7 +1353,7 @@
       "cast": [
         {
           "id": "cedric",
-          "asset": "public/assets/characters/pixel/full/cedric.png",
+          "asset": "public/assets/characters/pixel/masters/rogue.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1364,7 +1364,7 @@
         },
         {
           "id": "kestrel",
-          "asset": "public/assets/characters/pixel/full/kestrel.png",
+          "asset": "public/assets/characters/pixel/masters/archer.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -1379,7 +1379,7 @@
       "externalCast": [
         {
           "id": "cedric",
-          "asset": "public/assets/characters/pixel/full/cedric.png",
+          "asset": "public/assets/characters/pixel/masters/rogue.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1390,7 +1390,7 @@
         },
         {
           "id": "kestrel",
-          "asset": "public/assets/characters/pixel/full/kestrel.png",
+          "asset": "public/assets/characters/pixel/masters/archer.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -1432,7 +1432,7 @@
       "cast": [
         {
           "id": "lancer",
-          "asset": "public/assets/characters/pixel/full/lancer.png",
+          "asset": "public/assets/characters/pixel/masters/lancer.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1447,7 +1447,7 @@
       "externalCast": [
         {
           "id": "lancer",
-          "asset": "public/assets/characters/pixel/full/lancer.png",
+          "asset": "public/assets/characters/pixel/masters/lancer.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1649,7 +1649,7 @@
       "cast": [
         {
           "id": "forest_spider",
-          "asset": "public/assets/characters/pixel/full/forest_spider.png",
+          "asset": "public/assets/characters/pixel/masters/forest_spider.png",
           "assetStatus": "READY",
           "role": "THREAT",
           "stagingIntent": {
@@ -1664,7 +1664,7 @@
       "externalCast": [
         {
           "id": "forest_spider",
-          "asset": "public/assets/characters/pixel/full/forest_spider.png",
+          "asset": "public/assets/characters/pixel/masters/forest_spider.png",
           "assetStatus": "READY",
           "role": "THREAT",
           "stagingIntent": {
@@ -1705,7 +1705,7 @@
       "cast": [
         {
           "id": "forest_troll_elite",
-          "asset": "public/assets/characters/pixel/full/forest_troll_elite.png",
+          "asset": "public/assets/characters/pixel/masters/forest_troll_elite.png",
           "assetStatus": "READY",
           "role": "THREAT",
           "stagingIntent": {
@@ -1720,7 +1720,7 @@
       "externalCast": [
         {
           "id": "forest_troll_elite",
-          "asset": "public/assets/characters/pixel/full/forest_troll_elite.png",
+          "asset": "public/assets/characters/pixel/masters/forest_troll_elite.png",
           "assetStatus": "READY",
           "role": "THREAT",
           "stagingIntent": {
@@ -1761,7 +1761,7 @@
       "cast": [
         {
           "id": "serpent_duelist_elite",
-          "asset": "public/assets/characters/pixel/full/serpent_duelist_elite.png",
+          "asset": "public/assets/characters/pixel/masters/serpent_duelist_elite.png",
           "assetStatus": "READY",
           "role": "THREAT",
           "stagingIntent": {
@@ -1776,7 +1776,7 @@
       "externalCast": [
         {
           "id": "serpent_duelist_elite",
-          "asset": "public/assets/characters/pixel/full/serpent_duelist_elite.png",
+          "asset": "public/assets/characters/pixel/masters/serpent_duelist_elite.png",
           "assetStatus": "READY",
           "role": "THREAT",
           "stagingIntent": {
@@ -1818,7 +1818,7 @@
       "cast": [
         {
           "id": "young_dragon_elite",
-          "asset": "public/assets/characters/pixel/full/young_dragon_elite.png",
+          "asset": "public/assets/characters/pixel/masters/young_dragon_elite.png",
           "assetStatus": "READY",
           "role": "THREAT",
           "stagingIntent": {
@@ -1833,7 +1833,7 @@
       "externalCast": [
         {
           "id": "young_dragon_elite",
-          "asset": "public/assets/characters/pixel/full/young_dragon_elite.png",
+          "asset": "public/assets/characters/pixel/masters/young_dragon_elite.png",
           "assetStatus": "READY",
           "role": "THREAT",
           "stagingIntent": {
@@ -1874,7 +1874,7 @@
       "cast": [
         {
           "id": "serpent_oracle",
-          "asset": "public/assets/characters/pixel/full/serpent_oracle.png",
+          "asset": "public/assets/characters/pixel/masters/serpent_oracle.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1889,7 +1889,7 @@
       "externalCast": [
         {
           "id": "serpent_oracle",
-          "asset": "public/assets/characters/pixel/full/serpent_oracle.png",
+          "asset": "public/assets/characters/pixel/masters/serpent_oracle.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {

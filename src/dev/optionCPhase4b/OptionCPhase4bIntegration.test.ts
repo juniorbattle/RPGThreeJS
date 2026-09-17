@@ -56,7 +56,7 @@ describe('Option C Phase 4B runtime proof integration', () => {
   });
 
   it('preserves the canonical Kestrel identity asset outside the DEV namespace', () => {
-    expect(existsSync(resolve(process.cwd(), 'public/assets/characters/pixel/full/kestrel.png'))).toBe(true);
+    expect(existsSync(resolve(process.cwd(), 'public/assets/characters/pixel/masters/archer.png'))).toBe(true);
     expect(manifest.assets.some((asset) => asset.runtimeDerivative.includes('/characters/pixel/full/'))).toBe(false);
   });
 

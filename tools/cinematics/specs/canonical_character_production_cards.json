@@ -86,12 +86,12 @@
       "characterId": "alistair",
       "displayName": "Alistair",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/alistair.png"
+        "public/assets/characters/pixel/masters/alistair.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/alistair.png"
+        "public/assets/characters/pixel/masters/alistair.png"
       ],
-      "referenceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+      "referenceSha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
       "canonicalAlphaBoundingBox": [
         86,
         190,
@@ -166,12 +166,12 @@
       "characterId": "cedric",
       "displayName": "Cedric",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/cedric.png"
+        "public/assets/characters/pixel/masters/rogue.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/cedric.png"
+        "public/assets/characters/pixel/masters/rogue.png"
       ],
-      "referenceSha256": "ed71da3f7bd7ac94596bd4d20ef62047940d4457fbae7d6898f54ba221f6972f",
+      "referenceSha256": "8216c95d16aec061331a212b0717ba155f7ff32b32bfaca1decbb27f788c3c14",
       "canonicalAlphaBoundingBox": [
         36,
         210,
@@ -242,12 +242,12 @@
       "characterId": "elara",
       "displayName": "Elara",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/elara.png"
+        "public/assets/characters/pixel/masters/dark_mage.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/elara.png"
+        "public/assets/characters/pixel/masters/dark_mage.png"
       ],
-      "referenceSha256": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74",
+      "referenceSha256": "a6d4e3d518d9fff42e7155b9c5f0eb47aae5ddc7c1ef499ecfd8c33a677b8476",
       "canonicalAlphaBoundingBox": [
         89,
         148,
@@ -318,12 +318,12 @@
       "characterId": "forest_spider",
       "displayName": "Forest Spider",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/forest_spider.png"
+        "public/assets/characters/pixel/masters/forest_spider.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/forest_spider.png"
+        "public/assets/characters/pixel/masters/forest_spider.png"
       ],
-      "referenceSha256": "3c4b3ec8ab3fa17bed62208ad4af78eaf5d19273d4c66d081fe1d7d71ae04e42",
+      "referenceSha256": "129df0b3081af50bb0ac36bf70990b1d838a5806cd272d5775f5a0d532a13c1c",
       "canonicalAlphaBoundingBox": [
         27,
         243,
@@ -388,12 +388,12 @@
       "characterId": "forest_troll_elite",
       "displayName": "Forest Troll Elite",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/forest_troll_elite.png"
+        "public/assets/characters/pixel/masters/forest_troll_elite.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/forest_troll_elite.png"
+        "public/assets/characters/pixel/masters/forest_troll_elite.png"
       ],
-      "referenceSha256": "288964b0b9ebb17758498d3b9808c147526d6cb08ffcac753124f0b729e1e45f",
+      "referenceSha256": "f35a43b5acc0111c5ca8530263f708a9edc384052903269312f370e7eddce9dd",
       "canonicalAlphaBoundingBox": [
         20,
         131,
@@ -463,12 +463,12 @@
       "characterId": "kestrel",
       "displayName": "Kestrel",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/kestrel.png"
+        "public/assets/characters/pixel/masters/archer.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/kestrel.png"
+        "public/assets/characters/pixel/masters/archer.png"
       ],
-      "referenceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+      "referenceSha256": "cf9f50e30fe534ea9637857be43774ad19a39dbb721b0834a9bec54dd9e0c022",
       "canonicalAlphaBoundingBox": [
         29,
         188,
@@ -541,12 +541,12 @@
       "characterId": "lancer",
       "displayName": "Garen",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/lancer.png"
+        "public/assets/characters/pixel/masters/lancer.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/lancer.png"
+        "public/assets/characters/pixel/masters/lancer.png"
       ],
-      "referenceSha256": "3c1761e087a00f8079ee423e6b513494569566fe75b43fc30e69560ba7a6f012",
+      "referenceSha256": "2c8c8b443ff6b833abc213f9cdd85a64d3c07a36ba6907b7c849ef2e9ae075c1",
       "canonicalAlphaBoundingBox": [
         78,
         188,
@@ -616,12 +616,12 @@
       "characterId": "lion_champion",
       "displayName": "Lion Champion",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/lion_champion.png"
+        "public/assets/characters/pixel/masters/lion_champion.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/lion_champion.png"
+        "public/assets/characters/pixel/masters/lion_champion.png"
       ],
-      "referenceSha256": "344ef692bdbc16defe4de640104222274601f36a268e4fe73f2fbb11f720fc95",
+      "referenceSha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc",
       "canonicalAlphaBoundingBox": [
         27,
         97,
@@ -771,12 +771,12 @@
       "characterId": "marian",
       "displayName": "Marian",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/marian.png"
+        "public/assets/characters/pixel/masters/white_mage.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/marian.png"
+        "public/assets/characters/pixel/masters/white_mage.png"
       ],
-      "referenceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191",
+      "referenceSha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda",
       "canonicalAlphaBoundingBox": [
         61,
         163,
@@ -1004,12 +1004,12 @@
       "characterId": "serpent_brute",
       "displayName": "Serpent Brute",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/serpent_brute.png"
+        "public/assets/characters/pixel/masters/serpent_brute.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/serpent_brute.png"
+        "public/assets/characters/pixel/masters/serpent_brute.png"
       ],
-      "referenceSha256": "deb9bff683847720f82bdea4312a2b481f9173ab321292005a59ad656c4eb65a",
+      "referenceSha256": "07e1e98a2404bdb553ec27b93a623a1c5c0f8190778c1771f2eb90c773cb3eab",
       "canonicalAlphaBoundingBox": [
         87,
         150,
@@ -1075,12 +1075,12 @@
       "characterId": "serpent_duelist_elite",
       "displayName": "Serpent Duelist Elite",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/serpent_duelist_elite.png"
+        "public/assets/characters/pixel/masters/serpent_duelist_elite.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/serpent_duelist_elite.png"
+        "public/assets/characters/pixel/masters/serpent_duelist_elite.png"
       ],
-      "referenceSha256": "040f306678984338223c53ff67a2edff11141361fc00a56ff9c4fc62a2810c96",
+      "referenceSha256": "9948fa0343307aea2b2e05845bbba8cc985472a8c1e1ea30a480cc6b0c2f7e0d",
       "canonicalAlphaBoundingBox": [
         48,
         42,
@@ -1150,12 +1150,12 @@
       "characterId": "serpent_general_boss",
       "displayName": "Serpent General",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/serpent_general_boss.png"
+        "public/assets/characters/pixel/masters/serpent_general_boss.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/serpent_general_boss.png"
+        "public/assets/characters/pixel/masters/serpent_general_boss.png"
       ],
-      "referenceSha256": "15306dc49386b0f6297cb922cb886e22357aca756ca8e0a5e11d706c641a33c7",
+      "referenceSha256": "b5dc5c8d644ede7cdb83a82492976a82d8bf133936a0b0db7c696ecc416ba33d",
       "canonicalAlphaBoundingBox": [
         65,
         42,
@@ -1226,12 +1226,12 @@
       "characterId": "serpent_oracle",
       "displayName": "Serpent Oracle",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/serpent_oracle.png"
+        "public/assets/characters/pixel/masters/serpent_oracle.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/serpent_oracle.png"
+        "public/assets/characters/pixel/masters/serpent_oracle.png"
       ],
-      "referenceSha256": "85c885c64f479b8579430e60c6616f5bc0905106a6ce0d2b1a8c5bacb9a48f3a",
+      "referenceSha256": "f5010088c0a84be38522905929910f389124b1ed3ff76e7f998bfc1ca3773175",
       "canonicalAlphaBoundingBox": [
         51,
         157,
@@ -1301,12 +1301,12 @@
       "characterId": "serpent_raider",
       "displayName": "Serpent Raider",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/serpent_raider.png"
+        "public/assets/characters/pixel/masters/serpent_raider.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/serpent_raider.png"
+        "public/assets/characters/pixel/masters/serpent_raider.png"
       ],
-      "referenceSha256": "e62eca489417bc626f77abd4269e54d370af32dd399436e6e834f5c6f577aaed",
+      "referenceSha256": "4f4bfb55016f325544a598a34213567657d43159c895bff57ac740ed4892ed9f",
       "canonicalAlphaBoundingBox": [
         51,
         229,
@@ -1598,12 +1598,12 @@
       "characterId": "young_dragon_elite",
       "displayName": "Young Dragon Elite",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/young_dragon_elite.png"
+        "public/assets/characters/pixel/masters/young_dragon_elite.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/young_dragon_elite.png"
+        "public/assets/characters/pixel/masters/young_dragon_elite.png"
       ],
-      "referenceSha256": "2715cdd69c265b18cbd1d221f44af9f8b665b14c7c80509a646066d57f6641d7",
+      "referenceSha256": "4e74cda450e9f934884f1cb927fd50a760757d4a5c62de68b6eeb14ba6ab7158",
       "canonicalAlphaBoundingBox": [
         20,
         109,

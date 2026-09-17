@@ -50,8 +50,8 @@
       ],
       "characterReferenceSha256": {
         "maelor": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215",
-        "alistair": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
-        "marian": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191"
+        "alistair": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
+        "marian": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
       },
       "h3SpecPath": "tools/cinematics/specs/cin6ea2/pilot_c_camp_continuous.json",
       "dynamicResult": {
@@ -85,8 +85,8 @@
         "kestrel"
       ],
       "characterReferenceSha256": {
-        "cedric": "ed71da3f7bd7ac94596bd4d20ef62047940d4457fbae7d6898f54ba221f6972f",
-        "kestrel": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec"
+        "cedric": "8216c95d16aec061331a212b0717ba155f7ff32b32bfaca1decbb27f788c3c14",
+        "kestrel": "cf9f50e30fe534ea9637857be43774ad19a39dbb721b0834a9bec54dd9e0c022"
       },
       "h3SpecPath": "tools/cinematics/specs/cin6ea2/pilot_e_cedric_continuous.json",
       "quarantinedPriorOutput": "tmp/cinematics/cin4/cin6ea_pilot_e_cedric_continuous/shot_01/candidate_01_raw.mp4",
@@ -124,7 +124,7 @@
       ],
       "characterReferenceSha256": {
         "sage_seraphine": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
-        "elara": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74"
+        "elara": "a6d4e3d518d9fff42e7155b9c5f0eb47aae5ddc7c1ef499ecfd8c33a677b8476"
       },
       "h3SpecPath": "tools/cinematics/specs/cin6ea2/pilot_f_shadow_continuous.json",
       "stoppedPriorTracking": "tmp/cinematics/cin4/cin6ea_pilot_f_shadow_continuous/shot_01/candidate_01_raw.metadata.json",

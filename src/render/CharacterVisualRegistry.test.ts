@@ -18,12 +18,12 @@ describe('CharacterVisualRegistry', () => {
     expect(runtimeManifest).toEqual(publicManifest);
   });
 
-  it('makes all 25 promoted masters authoritative without replacing full roles', () => {
+  it('makes all 25 promoted masters authoritative for every non-combat role', () => {
     const profiles = listCharacterVisualProfiles();
     expect(profiles).toHaveLength(25);
     for (const profile of profiles) {
       expect(profile.master).toBe(`/assets/characters/pixel/masters/${profile.unitId}.png`);
-      expect(profile.full).toMatch(/^\/assets\/characters\/pixel\/full\//);
+      expect(profile.full).toBe(profile.master);
       expect(profile.dialogue).toBe(profile.full);
       expect(profile.ui).toBe(profile.full);
       expect(profile.combatPoseUnitId).toBe(profile.unitId);
@@ -32,9 +32,9 @@ describe('CharacterVisualRegistry', () => {
 
   it('resolves role-specific assets instead of overloading portrait', () => {
     expect(resolveCharacterAsset('warrior', 'master')).toBe('/assets/characters/pixel/masters/alistair.png');
-    expect(resolveCharacterAsset('warrior', 'dialogue')).toBe('/assets/characters/pixel/full/alistair.png');
-    expect(resolveCharacterAsset('warrior', 'ui')).toBe('/assets/characters/pixel/full/alistair.png');
+    expect(resolveCharacterAsset('warrior', 'dialogue')).toBe('/assets/characters/pixel/masters/alistair.png');
+    expect(resolveCharacterAsset('warrior', 'ui')).toBe('/assets/characters/pixel/masters/alistair.png');
     expect(resolveCharacterVisualProfile('kestrel')?.combatPoseUnitId).toBe('archer');
-    expect(resolveCharacterUnitId('/assets/characters/pixel/full/marian.png')).toBe('white_mage');
+    expect(resolveCharacterUnitId('/assets/characters/pixel/masters/white_mage.png')).toBe('white_mage');
   });
 });

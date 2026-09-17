@@ -48,7 +48,7 @@ describe('CIN-6C P1 adaptive cinematic production', () => {
       expect(spec.shots[0].durationSeconds).toBe(P1[id]);
       expect(spec.shots[0].source.type).toBe('ROOT_SOURCE');
       expect(spec.shots[0].characters.every((character) => (
-        character.asset.startsWith('public/assets/characters/pixel/full/')
+        /^public\/assets\/characters\/pixel\/(?:masters|full)\//u.test(character.asset)
       ))).toBe(true);
       expect((await validateShotSpec(spec, { projectRoot: root })).errors, id).toEqual([]);
     }

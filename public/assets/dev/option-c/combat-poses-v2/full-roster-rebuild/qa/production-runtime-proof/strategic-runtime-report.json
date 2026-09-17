@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "mission": "Character System V2 — Strategic Combat Runtime Proof",
-  "generatedAt": "2026-09-17T07:34:08.587Z",
+  "generatedAt": "2026-09-17T08:34:39.025Z",
   "status": "PASS",
   "requiredViewports": [
     "1366x768",
@@ -71,15 +71,15 @@
           "status": 200
         },
         {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/dark_mage/prepare.png",
+          "status": 200
+        },
+        {
           "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/white_mage/prepare.png",
           "status": 200
         },
         {
           "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/archer/prepare.png",
-          "status": 200
-        },
-        {
-          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/dark_mage/prepare.png",
           "status": 200
         },
         {
@@ -107,6 +107,10 @@
           "status": 200
         },
         {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/serpent_elite_brute/prepare.png",
+          "status": 200
+        },
+        {
           "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/wolf/prepare.png",
           "status": 200
         },
@@ -115,15 +119,15 @@
           "status": 200
         },
         {
-          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/forest_spider/prepare.png",
-          "status": 200
-        },
-        {
           "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/forest_badger/prepare.png",
           "status": 200
         },
         {
           "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/marsh_toad/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/forest_spider/prepare.png",
           "status": 200
         },
         {
@@ -239,6 +243,10 @@
         },
         {
           "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/serpent_duelist_elite/prepare.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/serpent_elite_brute/prepare.png",
           "status": 200
         },
         {

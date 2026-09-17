@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "mission": "Character System V2 — Production Combat Stage Runtime Proof",
-  "generatedAt": "2026-09-17T07:29:46.639Z",
+  "generatedAt": "2026-09-17T08:34:48.408Z",
   "baseUrl": "http://127.0.0.1:5173/",
   "status": "PASS",
   "requiredViewports": [
@@ -263,7 +263,7 @@
           "status": 200
         },
         {
-          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/dash.png",
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/cast.png",
           "status": 200
         },
         {
@@ -271,7 +271,7 @@
           "status": 200
         },
         {
-          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/cast.png",
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/dash.png",
           "status": 200
         }
       ]
@@ -711,11 +711,7 @@
           "status": 200
         },
         {
-          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/dash.png",
-          "status": 200
-        },
-        {
-          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/attack.png",
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/dash.png",
           "status": 200
         },
         {
@@ -723,7 +719,11 @@
           "status": 200
         },
         {
-          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/dash.png",
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/attack.png",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/dash.png",
           "status": 200
         },
         {
@@ -1011,11 +1011,11 @@
           "status": 200
         },
         {
-          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/dash.png",
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/cast.png",
           "status": 200
         },
         {
-          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/cast.png",
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/dash.png",
           "status": 200
         }
       ]
@@ -2094,11 +2094,11 @@
           "status": 200
         },
         {
-          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/archer/attack.png",
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/archer/cast.png",
           "status": 200
         },
         {
-          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/archer/cast.png",
+          "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/archer/attack.png",
           "status": 200
         }
       ]

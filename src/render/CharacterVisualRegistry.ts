@@ -58,8 +58,7 @@ const identityAliases = new Map<string, string>([
 
 for (const profile of PROFILES) {
   identityAliases.set(profile.unitId, profile.unitId);
-  // Full assets remain non-combat presentation authority during this mission,
-  // but their paths are valid compatibility identities at runtime.
+  // V2 masters own every non-combat identity role for the promoted roster.
   if (!identityAliases.has(profile.full)) identityAliases.set(profile.full, profile.unitId);
 }
 

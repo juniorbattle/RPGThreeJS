@@ -63,7 +63,7 @@ describe('CIN-5 campaign cinematic census contract', () => {
   });
 
   it('records the canonical character root', () => {
-    expect(census.canonicalCharacterRoot).toBe('public/assets/characters/pixel/full/');
+    expect(census.canonicalCharacterRoot).toBe('public/assets/characters/pixel/');
   });
 
   it('records SCREEN_RIGHT as canonical master facing', () => {
@@ -452,9 +452,10 @@ describe('CIN-5 campaign cinematic census contract', () => {
     expect(census.productionDefault).toEqual({ current: 'TravelView', journeyAvailability: 'DEV_SELECTED', changedByCin5: false });
   });
 
-  it('inventories 52 canonical full character assets', () => {
+  it('inventories 52 real identities across master authority and the remaining full backlog', () => {
     expect(census.characterAssets).toHaveLength(52);
-    for (const id of census.characterAssets) expect(existsSync(resolve(projectRoot, census.canonicalCharacterRoot, `${id}.png`)), id).toBe(true);
+    expect(Object.keys(census.characterAssetPaths)).toHaveLength(52);
+    for (const id of census.characterAssets) expect(existsSync(resolve(projectRoot, census.characterAssetPaths[id])), id).toBe(true);
   });
 
   it('inventories 22 current Lion-phase environments', () => {

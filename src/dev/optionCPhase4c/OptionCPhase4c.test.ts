@@ -81,7 +81,7 @@ describe('Phase 4C roster census', () => {
 
   it('has canonical asset paths for every character', () => {
     for (const entry of PLAYABLE_ROSTER_CENSUS) {
-      expect(entry.canonicalAssetPath).toMatch(/^\/assets\/characters\/pixel\/full\//);
+      expect(entry.canonicalAssetPath).toMatch(/^\/assets\/characters\/pixel\/(?:full|masters)\//);
     }
   });
 
@@ -104,13 +104,13 @@ describe('Phase 4C roster census', () => {
 
 describe('Phase 4C canonical identity preservation', () => {
   it('keeps Kestrel canonical source outside DEV namespace', () => {
-    expect(KESTREL_DEFINITION.identity.canonicalSource).toBe('/assets/characters/pixel/full/kestrel.png');
+    expect(KESTREL_DEFINITION.identity.canonicalSource).toBe('/assets/characters/pixel/masters/archer.png');
     expect(KESTREL_DEFINITION.identity.canonicalSource).not.toMatch(/\/dev\//);
   });
 
   it('keeps all draft characters canonical sources in the canonical path', () => {
     for (const def of SELECTED_BATCH) {
-      expect(def.identity.canonicalSource).toMatch(/^\/assets\/characters\/pixel\/full\//);
+      expect(def.identity.canonicalSource).toMatch(/^\/assets\/characters\/pixel\/(?:full|masters)\//);
       expect(def.identity.canonicalSource).not.toMatch(/\/dev\//);
     }
   });
@@ -609,7 +609,7 @@ describe('Phase 4C Codex handoff readiness', () => {
         expect(slot.expectedDimensions).toEqual([512, 512]);
         expect(slot.transparent).toBe(true);
         expect(slot.anchor).toBe('FOOT_CENTER');
-        expect(slot.canonicalReference).toContain('/assets/characters/pixel/full/');
+        expect(slot.canonicalReference).toMatch(/^\/assets\/characters\/pixel\/(?:full|masters)\//);
         expect(slot.kestrelReference).toContain('/assets/dev/option-c/phase4b/kestrel/');
         expect(slot.fileDestination).toContain('public/assets/dev/option-c/phase4c/');
         expect(slot.runtimeSemanticKey).toContain('character:');
@@ -740,7 +740,7 @@ describe('Phase 4C P0 selected batch scope', () => {
 
 describe('Phase 4C Elara structural definition', () => {
   it('Elara has canonical source', () => {
-    expect(ELARA_DEFINITION.identity.canonicalSource).toBe('/assets/characters/pixel/full/elara.png');
+    expect(ELARA_DEFINITION.identity.canonicalSource).toBe('/assets/characters/pixel/masters/dark_mage.png');
   });
 
   it('Elara has 4 animation states (idle, dash, attack, cast)', () => {
@@ -759,7 +759,7 @@ describe('Phase 4C Elara structural definition', () => {
   });
 
   it('Elara canonical source file exists on disk', () => {
-    const path = resolve(process.cwd(), 'public/assets/characters/pixel/full/elara.png');
+    const path = resolve(process.cwd(), 'public/assets/characters/pixel/masters/dark_mage.png');
     expect(existsSync(path)).toBe(true);
   });
 

@@ -15,7 +15,7 @@
     "environment": "public/assets/generated/lion-phase/dialogue/mystery_ambush.webp",
     "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_serpent_informant_encounter/shot_01/source.png" },
     "characters": [
-      { "id": "serpent_oracle", "asset": "public/assets/characters/pixel/full/serpent_oracle.png", "position": { "x": 0.7, "groundY": 0.98 }, "scale": { "framing": "MEDIUM", "perspective": 0.95 }, "facing": "SCREEN_LEFT", "lookTarget": "OFFSCREEN_LEFT", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      { "id": "serpent_oracle", "asset": "public/assets/characters/pixel/masters/serpent_oracle.png", "position": { "x": 0.7, "groundY": 0.98 }, "scale": { "framing": "MEDIUM", "perspective": 0.95 }, "facing": "SCREEN_LEFT", "lookTarget": "OFFSCREEN_LEFT", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
     ],
     "camera": { "mode": "STATIC" },
     "durationSeconds": 5,

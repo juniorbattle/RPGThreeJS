@@ -35,6 +35,7 @@ describe('CIN-6E-A.2 selected H3 dynamic gate', () => {
   it('proves every selected source, prompt, cast and canonical character hash', () => {
     const selections = readJson('tools/cinematics/specs/cin6ea2_operator_selections.json');
     const castData = readJson('tools/cinematics/specs/scene_cast_manifests.json');
+    const characterAssetPaths = readJson('tools/cinematics/specs/campaign_cinematic_census.json').characterAssetPaths;
     const castById = new Map(castData.manifests.map((entry) => [entry.id, entry]));
     for (const selected of selections.selectedH3Sources) {
       expect(existsSync(resolve(root, selected.sourcePath)), selected.sourcePath).toBe(true);
@@ -53,7 +54,8 @@ describe('CIN-6E-A.2 selected H3 dynamic gate', () => {
       expect(promptSpec.castManifestId).toBe(selected.castManifestId);
       expect(castById.get(selected.castManifestId).requiredCharacters).toEqual(selected.requiredCast);
       for (const [characterId, expectedHash] of Object.entries(selected.characterReferenceSha256)) {
-        expect(sha256(`public/assets/characters/pixel/full/${characterId}.png`)).toBe(expectedHash);
+        expect(characterAssetPaths[characterId], characterId).toBeDefined();
+        expect(sha256(characterAssetPaths[characterId])).toBe(expectedHash);
       }
     }
   });

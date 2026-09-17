@@ -14,8 +14,8 @@ SOURCE_DIR = ROOT / "tmp/cinematics/cin6ea/execution/images"
 EC = SOURCE_DIR / "pilot_e_cinematic_keyframe_c/pilot_e_cinematic_keyframe_c.png"
 EA = SOURCE_DIR / "pilot_e_cinematic_keyframe_a/pilot_e_cinematic_keyframe_a.png"
 EB = SOURCE_DIR / "pilot_e_cinematic_keyframe_b/pilot_e_cinematic_keyframe_b.png"
-CEDRIC = ROOT / "public/assets/characters/pixel/full/cedric.png"
-KESTREL = ROOT / "public/assets/characters/pixel/full/kestrel.png"
+CEDRIC = ROOT / "public/assets/characters/pixel/masters/rogue.png"
+KESTREL = ROOT / "public/assets/characters/pixel/masters/archer.png"
 PROVENANCE = SOURCE_DIR / "pilot_e_cinematic_keyframe_c/provenance.json"
 BOARD = REVIEW_DIR / "pilot-e-image-fidelity-gate.png"
 GATE_JSON = ROOT / "tools/cinematics/specs/cin6ea3_pilot_e_image_gate.json"
@@ -174,7 +174,7 @@ body{{margin:0;background:#0c0f13;color:#e7edf2;font:16px/1.45 Segoe UI,Arial,sa
 <p>Exact model: <code>{html.escape(result['candidate']['model'])}</code> · quality=max · H3 NOT STARTED.</p>
 <section class="hero"><h2>New candidate E-C</h2><a href="../../execution/images/pilot_e_cinematic_keyframe_c/pilot_e_cinematic_keyframe_c.png"><img src="../../execution/images/pilot_e_cinematic_keyframe_c/pilot_e_cinematic_keyframe_c.png" alt="Pilot E-C"></a></section>
 <section class="panel"><h2>Face and canonical comparison board</h2><a href="pilot-e-image-fidelity-gate.png"><img src="pilot-e-image-fidelity-gate.png" alt="CIN-6E-A.3 fidelity board"></a></section>
-<section class="panel"><h2>Canonical references</h2><div class="refs"><img src="../../../../../public/assets/characters/pixel/full/cedric.png" alt="Canonical Cedric"><img src="../../../../../public/assets/characters/pixel/full/kestrel.png" alt="Canonical Kestrel"></div></section>
+<section class="panel"><h2>Canonical references</h2><div class="refs"><img src="../../../../../public/assets/characters/pixel/masters/rogue.png" alt="Canonical Cedric"><img src="../../../../../public/assets/characters/pixel/masters/archer.png" alt="Canonical Kestrel"></div></section>
 <section class="panel"><h2>Gate values</h2><table><thead><tr><th>Gate</th><th>Status</th><th>Evidence</th></tr></thead><tbody>{rows}</tbody></table></section>
 <section class="panel"><h2>Rejected comparison sources</h2><div class="refs"><figure><figcaption>E-A — Kestrel mask absent</figcaption><img src="../../execution/images/pilot_e_cinematic_keyframe_a/pilot_e_cinematic_keyframe_a.png" alt="Rejected E-A"></figure><figure><figcaption>E-B — Cedric mask absent</figcaption><img src="../../execution/images/pilot_e_cinematic_keyframe_b/pilot_e_cinematic_keyframe_b.png" alt="Rejected E-B"></figure></div></section>
 </main></body></html>"""

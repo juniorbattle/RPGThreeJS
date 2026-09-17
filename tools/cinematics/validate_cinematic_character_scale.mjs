@@ -1,4 +1,4 @@
-import { access, readdir, readFile } from 'node:fs/promises';
+import { access, readFile } from 'node:fs/promises';
 import { isAbsolute, relative, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
@@ -21,7 +21,12 @@ export async function validateCinematicCharacterScale(input, options = {}) {
   if (!isRecord(input)) return { valid: false, errors: ['Scale metadata must be an object.'], profileCount: 0 };
   if (input.schemaVersion !== 1) errors.push('schemaVersion must be 1.');
   if (input.canonicalFacing !== 'SCREEN_RIGHT') errors.push('canonicalFacing must be SCREEN_RIGHT.');
-  if (input.canonicalRoot !== 'public/assets/characters/pixel/full/') errors.push('canonicalRoot must identify the immutable full-character directory.');
+  if (input.canonicalRoot !== 'public/assets/characters/pixel/') errors.push('canonicalRoot must identify the Character System pixel root.');
+  const canonicalAssetRoots = input.canonicalAssetRoots ?? [];
+  if (JSON.stringify(canonicalAssetRoots) !== JSON.stringify([
+    'public/assets/characters/pixel/masters/',
+    'public/assets/characters/pixel/full/',
+  ])) errors.push('canonicalAssetRoots must identify the V2 master authority and remaining full backlog.');
   for (const framing of SCALE_FRAMINGS) {
     const value = input.framingProfiles?.[framing]?.referenceVisibleBodyHeightPx;
     if (!Number.isInteger(value) || value < 64 || value > 1400) errors.push(`framingProfiles.${framing} must define a valid referenceVisibleBodyHeightPx.`);
@@ -34,7 +39,7 @@ export async function validateCinematicCharacterScale(input, options = {}) {
     if (!/^[a-z0-9_-]+$/u.test(character?.id ?? '')) errors.push(`${label}.id is invalid.`);
     else if (ids.has(character.id)) errors.push(`${label}.id duplicates '${character.id}'.`);
     else ids.add(character.id);
-    if (typeof character?.asset !== 'string' || !character.asset.startsWith(input.canonicalRoot ?? '')) errors.push(`${label}.asset is outside canonicalRoot.`);
+    if (typeof character?.asset !== 'string' || !canonicalAssetRoots.some((root) => character.asset.startsWith(root))) errors.push(`${label}.asset is outside canonicalAssetRoots.`);
     else if (assets.has(character.asset)) errors.push(`${label}.asset duplicates '${character.asset}'.`);
     else assets.add(character.asset);
     if (!Number.isFinite(character?.relativeStature) || character.relativeStature <= 0) errors.push(`${label}.relativeStature must be positive.`);
@@ -65,14 +70,7 @@ export async function validateCinematicCharacterScale(input, options = {}) {
     }
   }
 
-  const canonicalDir = resolve(projectRoot, input.canonicalRoot ?? 'missing');
-  try {
-    const canonicalPngs = (await readdir(canonicalDir)).filter((name) => name.endsWith('.png')).sort();
-    const recordedPngs = [...assets].map((asset) => asset.split('/').at(-1)).sort();
-    if (JSON.stringify(canonicalPngs) !== JSON.stringify(recordedPngs)) errors.push('Scale metadata must cover every canonical full-character PNG exactly once.');
-  } catch {
-    errors.push('canonicalRoot does not exist.');
-  }
+  if (ids.size !== 52 || assets.size !== 52) errors.push('Scale metadata must cover exactly 52 real character identities and canonical assets.');
   return { valid: errors.length === 0, errors, profileCount: ids.size };
 }
 

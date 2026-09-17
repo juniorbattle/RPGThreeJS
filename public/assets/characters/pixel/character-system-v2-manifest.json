@@ -8,7 +8,9 @@
   },
   "policy": {
     "masterAuthority": true,
-    "fullAssetsReplaced": false,
+    "fullAssetsReplaced": true,
+    "legacyCombatFullAssetsRetired": true,
+    "nonCombatRolesUseMaster": true,
     "commonWorldUnitsPerPixel": 0.00625,
     "scaleCorrection": 1.0,
     "variableCanvasSupported": true,
@@ -32,9 +34,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/alistair.png",
-        "dialogue": "/assets/characters/pixel/full/alistair.png",
-        "ui": "/assets/characters/pixel/full/alistair.png"
+        "full": "/assets/characters/pixel/masters/alistair.png",
+        "dialogue": "/assets/characters/pixel/masters/alistair.png",
+        "ui": "/assets/characters/pixel/masters/alistair.png"
       },
       "poses": {
         "prepare": {
@@ -132,9 +134,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/kestrel.png",
-        "dialogue": "/assets/characters/pixel/full/kestrel.png",
-        "ui": "/assets/characters/pixel/full/kestrel.png"
+        "full": "/assets/characters/pixel/masters/archer.png",
+        "dialogue": "/assets/characters/pixel/masters/archer.png",
+        "ui": "/assets/characters/pixel/masters/archer.png"
       },
       "poses": {
         "prepare": {
@@ -232,9 +234,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/cave_bat.png",
-        "dialogue": "/assets/characters/pixel/full/cave_bat.png",
-        "ui": "/assets/characters/pixel/full/cave_bat.png"
+        "full": "/assets/characters/pixel/masters/cave_bat.png",
+        "dialogue": "/assets/characters/pixel/masters/cave_bat.png",
+        "ui": "/assets/characters/pixel/masters/cave_bat.png"
       },
       "poses": {
         "prepare": {
@@ -332,9 +334,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/cave_rat.png",
-        "dialogue": "/assets/characters/pixel/full/cave_rat.png",
-        "ui": "/assets/characters/pixel/full/cave_rat.png"
+        "full": "/assets/characters/pixel/masters/cave_rat.png",
+        "dialogue": "/assets/characters/pixel/masters/cave_rat.png",
+        "ui": "/assets/characters/pixel/masters/cave_rat.png"
       },
       "poses": {
         "prepare": {
@@ -432,9 +434,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/elara.png",
-        "dialogue": "/assets/characters/pixel/full/elara.png",
-        "ui": "/assets/characters/pixel/full/elara.png"
+        "full": "/assets/characters/pixel/masters/dark_mage.png",
+        "dialogue": "/assets/characters/pixel/masters/dark_mage.png",
+        "ui": "/assets/characters/pixel/masters/dark_mage.png"
       },
       "poses": {
         "prepare": {
@@ -532,9 +534,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/forest_badger.png",
-        "dialogue": "/assets/characters/pixel/full/forest_badger.png",
-        "ui": "/assets/characters/pixel/full/forest_badger.png"
+        "full": "/assets/characters/pixel/masters/forest_badger.png",
+        "dialogue": "/assets/characters/pixel/masters/forest_badger.png",
+        "ui": "/assets/characters/pixel/masters/forest_badger.png"
       },
       "poses": {
         "prepare": {
@@ -632,9 +634,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/forest_spider.png",
-        "dialogue": "/assets/characters/pixel/full/forest_spider.png",
-        "ui": "/assets/characters/pixel/full/forest_spider.png"
+        "full": "/assets/characters/pixel/masters/forest_spider.png",
+        "dialogue": "/assets/characters/pixel/masters/forest_spider.png",
+        "ui": "/assets/characters/pixel/masters/forest_spider.png"
       },
       "poses": {
         "prepare": {
@@ -732,9 +734,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/forest_troll_elite.png",
-        "dialogue": "/assets/characters/pixel/full/forest_troll_elite.png",
-        "ui": "/assets/characters/pixel/full/forest_troll_elite.png"
+        "full": "/assets/characters/pixel/masters/forest_troll_elite.png",
+        "dialogue": "/assets/characters/pixel/masters/forest_troll_elite.png",
+        "ui": "/assets/characters/pixel/masters/forest_troll_elite.png"
       },
       "poses": {
         "prepare": {
@@ -832,9 +834,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/goblin.png",
-        "dialogue": "/assets/characters/pixel/full/goblin.png",
-        "ui": "/assets/characters/pixel/full/goblin.png"
+        "full": "/assets/characters/pixel/masters/goblin.png",
+        "dialogue": "/assets/characters/pixel/masters/goblin.png",
+        "ui": "/assets/characters/pixel/masters/goblin.png"
       },
       "poses": {
         "prepare": {
@@ -932,9 +934,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/lancer.png",
-        "dialogue": "/assets/characters/pixel/full/lancer.png",
-        "ui": "/assets/characters/pixel/full/lancer.png"
+        "full": "/assets/characters/pixel/masters/lancer.png",
+        "dialogue": "/assets/characters/pixel/masters/lancer.png",
+        "ui": "/assets/characters/pixel/masters/lancer.png"
       },
       "poses": {
         "prepare": {
@@ -1032,9 +1034,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/lion_champion.png",
-        "dialogue": "/assets/characters/pixel/full/lion_champion.png",
-        "ui": "/assets/characters/pixel/full/lion_champion.png"
+        "full": "/assets/characters/pixel/masters/lion_champion.png",
+        "dialogue": "/assets/characters/pixel/masters/lion_champion.png",
+        "ui": "/assets/characters/pixel/masters/lion_champion.png"
       },
       "poses": {
         "prepare": {
@@ -1132,9 +1134,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/marsh_toad.png",
-        "dialogue": "/assets/characters/pixel/full/marsh_toad.png",
-        "ui": "/assets/characters/pixel/full/marsh_toad.png"
+        "full": "/assets/characters/pixel/masters/marsh_toad.png",
+        "dialogue": "/assets/characters/pixel/masters/marsh_toad.png",
+        "ui": "/assets/characters/pixel/masters/marsh_toad.png"
       },
       "poses": {
         "prepare": {
@@ -1232,9 +1234,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/cedric.png",
-        "dialogue": "/assets/characters/pixel/full/cedric.png",
-        "ui": "/assets/characters/pixel/full/cedric.png"
+        "full": "/assets/characters/pixel/masters/rogue.png",
+        "dialogue": "/assets/characters/pixel/masters/rogue.png",
+        "ui": "/assets/characters/pixel/masters/rogue.png"
       },
       "poses": {
         "prepare": {
@@ -1332,9 +1334,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/serpent_brute.png",
-        "dialogue": "/assets/characters/pixel/full/serpent_brute.png",
-        "ui": "/assets/characters/pixel/full/serpent_brute.png"
+        "full": "/assets/characters/pixel/masters/serpent_brute.png",
+        "dialogue": "/assets/characters/pixel/masters/serpent_brute.png",
+        "ui": "/assets/characters/pixel/masters/serpent_brute.png"
       },
       "poses": {
         "prepare": {
@@ -1432,9 +1434,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/serpent_duelist_elite.png",
-        "dialogue": "/assets/characters/pixel/full/serpent_duelist_elite.png",
-        "ui": "/assets/characters/pixel/full/serpent_duelist_elite.png"
+        "full": "/assets/characters/pixel/masters/serpent_duelist_elite.png",
+        "dialogue": "/assets/characters/pixel/masters/serpent_duelist_elite.png",
+        "ui": "/assets/characters/pixel/masters/serpent_duelist_elite.png"
       },
       "poses": {
         "prepare": {
@@ -1532,9 +1534,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/serpent_brute.png",
-        "dialogue": "/assets/characters/pixel/full/serpent_brute.png",
-        "ui": "/assets/characters/pixel/full/serpent_brute.png"
+        "full": "/assets/characters/pixel/masters/serpent_elite_brute.png",
+        "dialogue": "/assets/characters/pixel/masters/serpent_elite_brute.png",
+        "ui": "/assets/characters/pixel/masters/serpent_elite_brute.png"
       },
       "poses": {
         "prepare": {
@@ -1632,9 +1634,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/serpent_general_boss.png",
-        "dialogue": "/assets/characters/pixel/full/serpent_general_boss.png",
-        "ui": "/assets/characters/pixel/full/serpent_general_boss.png"
+        "full": "/assets/characters/pixel/masters/serpent_general_boss.png",
+        "dialogue": "/assets/characters/pixel/masters/serpent_general_boss.png",
+        "ui": "/assets/characters/pixel/masters/serpent_general_boss.png"
       },
       "poses": {
         "prepare": {
@@ -1732,9 +1734,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/serpent_oracle.png",
-        "dialogue": "/assets/characters/pixel/full/serpent_oracle.png",
-        "ui": "/assets/characters/pixel/full/serpent_oracle.png"
+        "full": "/assets/characters/pixel/masters/serpent_oracle.png",
+        "dialogue": "/assets/characters/pixel/masters/serpent_oracle.png",
+        "ui": "/assets/characters/pixel/masters/serpent_oracle.png"
       },
       "poses": {
         "prepare": {
@@ -1832,9 +1834,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/serpent_raider.png",
-        "dialogue": "/assets/characters/pixel/full/serpent_raider.png",
-        "ui": "/assets/characters/pixel/full/serpent_raider.png"
+        "full": "/assets/characters/pixel/masters/serpent_raider.png",
+        "dialogue": "/assets/characters/pixel/masters/serpent_raider.png",
+        "ui": "/assets/characters/pixel/masters/serpent_raider.png"
       },
       "poses": {
         "prepare": {
@@ -1932,9 +1934,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/skeleton.png",
-        "dialogue": "/assets/characters/pixel/full/skeleton.png",
-        "ui": "/assets/characters/pixel/full/skeleton.png"
+        "full": "/assets/characters/pixel/masters/skeleton.png",
+        "dialogue": "/assets/characters/pixel/masters/skeleton.png",
+        "ui": "/assets/characters/pixel/masters/skeleton.png"
       },
       "poses": {
         "prepare": {
@@ -2032,9 +2034,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/venom_serpent.png",
-        "dialogue": "/assets/characters/pixel/full/venom_serpent.png",
-        "ui": "/assets/characters/pixel/full/venom_serpent.png"
+        "full": "/assets/characters/pixel/masters/venom_serpent.png",
+        "dialogue": "/assets/characters/pixel/masters/venom_serpent.png",
+        "ui": "/assets/characters/pixel/masters/venom_serpent.png"
       },
       "poses": {
         "prepare": {
@@ -2132,9 +2134,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/marian.png",
-        "dialogue": "/assets/characters/pixel/full/marian.png",
-        "ui": "/assets/characters/pixel/full/marian.png"
+        "full": "/assets/characters/pixel/masters/white_mage.png",
+        "dialogue": "/assets/characters/pixel/masters/white_mage.png",
+        "ui": "/assets/characters/pixel/masters/white_mage.png"
       },
       "poses": {
         "prepare": {
@@ -2232,9 +2234,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/wild_boar.png",
-        "dialogue": "/assets/characters/pixel/full/wild_boar.png",
-        "ui": "/assets/characters/pixel/full/wild_boar.png"
+        "full": "/assets/characters/pixel/masters/wild_boar.png",
+        "dialogue": "/assets/characters/pixel/masters/wild_boar.png",
+        "ui": "/assets/characters/pixel/masters/wild_boar.png"
       },
       "poses": {
         "prepare": {
@@ -2332,9 +2334,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/wolf.png",
-        "dialogue": "/assets/characters/pixel/full/wolf.png",
-        "ui": "/assets/characters/pixel/full/wolf.png"
+        "full": "/assets/characters/pixel/masters/wolf.png",
+        "dialogue": "/assets/characters/pixel/masters/wolf.png",
+        "ui": "/assets/characters/pixel/masters/wolf.png"
       },
       "poses": {
         "prepare": {
@@ -2432,9 +2434,9 @@
         }
       },
       "roles": {
-        "full": "/assets/characters/pixel/full/young_dragon_elite.png",
-        "dialogue": "/assets/characters/pixel/full/young_dragon_elite.png",
-        "ui": "/assets/characters/pixel/full/young_dragon_elite.png"
+        "full": "/assets/characters/pixel/masters/young_dragon_elite.png",
+        "dialogue": "/assets/characters/pixel/masters/young_dragon_elite.png",
+        "ui": "/assets/characters/pixel/masters/young_dragon_elite.png"
       },
       "poses": {
         "prepare": {

@@ -227,7 +227,7 @@ export function validateCampaignCinematicCensus({
   assert(census.schemaVersion === 1, 'schemaVersion must be 1.', errors);
   assert(census.baseline === 'c3074906bbf6882decf3d4ef482867a5af17ce3a', 'Baseline does not match CIN-4 HEAD.', errors);
   assert(census.campaign === 'lion', "campaign must be 'lion'.", errors);
-  assert(census.canonicalCharacterRoot === 'public/assets/characters/pixel/full/', 'Canonical character root is incorrect.', errors);
+  assert(census.canonicalCharacterRoot === 'public/assets/characters/pixel/', 'Canonical character root is incorrect.', errors);
   assert(census.canonicalFacing === 'SCREEN_RIGHT', 'Canonical facing must be SCREEN_RIGHT.', errors);
   assert(census.productionDefault?.current === 'TravelView' && census.productionDefault?.journeyAvailability === 'DEV_SELECTED' && census.productionDefault?.changedByCin5 === false, 'Production default doctrine changed.', errors);
 
@@ -449,7 +449,12 @@ export function validateCampaignCinematicCensus({
   assert(census.goldenPath.p0VideoCount === census.goldenPath.p0Targets.length, 'Golden path video count differs from target list.', errors);
 
   assert(census.characterAssets.length === 52 && new Set(census.characterAssets).size === 52, 'Canonical character inventory must contain 52 unique IDs.', errors);
-  for (const id of census.characterAssets) assert(existsSync(resolve(projectRoot, census.canonicalCharacterRoot, `${id}.png`)), `Canonical character inventory path missing for ${id}.`, errors);
+  assert(Object.keys(census.characterAssetPaths ?? {}).length === 52, 'Canonical character path inventory must contain 52 entries.', errors);
+  for (const id of census.characterAssets) {
+    const assetPath = census.characterAssetPaths?.[id];
+    assert(typeof assetPath === 'string' && assetPath.startsWith(census.canonicalCharacterRoot), `Canonical character path missing or outside root for ${id}.`, errors);
+    if (typeof assetPath === 'string') assert(existsSync(resolve(projectRoot, assetPath)), `Canonical character inventory path missing for ${id}.`, errors);
+  }
   assert(census.environmentAssets.length === 22 && new Set(census.environmentAssets).size === 22, 'Lion environment inventory must contain 22 unique files.', errors);
   for (const path of census.environmentAssets) assert(existsSync(resolve(projectRoot, path)), `Environment inventory path missing: ${path}.`, errors);
   for (const gap of census.assetGaps) assert(['BLOCKING_P0', 'BLOCKING_P1', 'OPTIONAL'].includes(gap.blockingSeverity), `Asset gap has invalid severity for ${gap.cinematic}.`, errors);

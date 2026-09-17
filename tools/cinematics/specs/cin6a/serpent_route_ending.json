@@ -17,7 +17,7 @@
       "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_serpent_route_ending/shot_01/source.png" },
       "characters": [
         { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.25, "groundY": 0.98 }, "heightPx": 590, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:serpent_general_boss", "depth": 20, "role": "PRIMARY", "action": "STEP_FORWARD", "mirrorPolicy": "ALLOW" },
-        { "id": "serpent_general_boss", "asset": "public/assets/characters/pixel/full/serpent_general_boss.png", "position": { "x": 0.74, "groundY": 0.98 }, "heightPx": 650, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:ground", "depth": 10, "role": "SECONDARY", "action": "LOWER_WEAPON", "mirrorPolicy": "ALLOW" }
+        { "id": "serpent_general_boss", "asset": "public/assets/characters/pixel/masters/serpent_general_boss.png", "position": { "x": 0.74, "groundY": 0.98 }, "heightPx": 650, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:ground", "depth": 10, "role": "SECONDARY", "action": "LOWER_WEAPON", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "WIDE_HOLD" },
       "durationSeconds": 6,
@@ -36,7 +36,7 @@
       ],
       "characters": [
         { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.29, "groundY": 0.99 }, "heightPx": 710, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:recovered_seal", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
-        { "id": "serpent_general_boss", "asset": "public/assets/characters/pixel/full/serpent_general_boss.png", "position": { "x": 0.78, "groundY": 0.99 }, "heightPx": 700, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:ground", "depth": 10, "role": "SECONDARY", "action": "STAND", "mirrorPolicy": "ALLOW" }
+        { "id": "serpent_general_boss", "asset": "public/assets/characters/pixel/masters/serpent_general_boss.png", "position": { "x": 0.78, "groundY": 0.99 }, "heightPx": 700, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:ground", "depth": 10, "role": "SECONDARY", "action": "STAND", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "CLOSE_FOCUS" },
       "durationSeconds": 6,
@@ -55,7 +55,7 @@
       ],
       "characters": [
         { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.29, "groundY": 0.99 }, "heightPx": 710, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:recovered_seal", "depth": 20, "role": "PRIMARY", "action": "STOP", "mirrorPolicy": "ALLOW" },
-        { "id": "serpent_general_boss", "asset": "public/assets/characters/pixel/full/serpent_general_boss.png", "position": { "x": 0.78, "groundY": 0.99 }, "heightPx": 700, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:ground", "depth": 10, "role": "SECONDARY", "action": "STAND", "mirrorPolicy": "ALLOW" }
+        { "id": "serpent_general_boss", "asset": "public/assets/characters/pixel/masters/serpent_general_boss.png", "position": { "x": 0.78, "groundY": 0.99 }, "heightPx": 700, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:ground", "depth": 10, "role": "SECONDARY", "action": "STAND", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "SLOW_PULL" },
       "durationSeconds": 6,

@@ -49,7 +49,11 @@ export const ACTION_RISK = Object.freeze({
 });
 export const PROP_KINDS = Object.freeze(['SEALED_ARTEFACT']);
 
-const CHARACTER_ROOT = 'public/assets/characters/pixel/full/';
+const CHARACTER_ROOT = 'public/assets/characters/pixel/';
+const CHARACTER_ASSET_ROOTS = Object.freeze([
+  `${CHARACTER_ROOT}masters/`,
+  `${CHARACTER_ROOT}full/`,
+]);
 const LOOK_TARGETS = new Set(['NONE', 'CAMERA', 'PLAYER_PARTY', 'OFFSCREEN_LEFT', 'OFFSCREEN_RIGHT']);
 const OPTIONAL_EARLY_RECRUITS = new Set(['cedric', 'lancer']);
 
@@ -203,7 +207,9 @@ export async function validateShotSpec(input, options = {}) {
     const depths = new Set();
     for (const character of shot.characters) {
       const label = `${prefix}.${character?.id ?? 'character'}`;
-      if (typeof character?.asset !== 'string' || !character.asset.startsWith(CHARACTER_ROOT)) errors.push(`${label}.asset must be under ${CHARACTER_ROOT}.`);
+      if (typeof character?.asset !== 'string' || !CHARACTER_ASSET_ROOTS.some((root) => character.asset.startsWith(root))) {
+        errors.push(`${label}.asset must be under an approved character asset root (${CHARACTER_ASSET_ROOTS.join(', ')}).`);
+      }
       if (!FACINGS.includes(character?.facing)) errors.push(`${label}.facing is invalid.`);
       if (!ROLES.includes(character?.role)) errors.push(`${label}.role is invalid.`);
       if (input.cast !== undefined) {

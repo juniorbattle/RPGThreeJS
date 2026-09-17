@@ -48,7 +48,7 @@ describe('CIN-6.6 finalization contracts', () => {
       for (const shot of spec.shots) {
         expect(shot.source.integration.method).toBe('OPENAI_BUILT_IN_IMAGE_GEN_EDIT');
         expect(shot.source.integration.qualityGates).toEqual(expect.arrayContaining(['NO_COLLAGE_LOOK', 'WORLD_INTEGRATION']));
-        expect(shot.characters.every((character) => character.asset.startsWith('public/assets/characters/pixel/full/'))).toBe(true);
+        expect(shot.characters.every((character) => /^public\/assets\/characters\/pixel\/(?:masters|full)\//u.test(character.asset))).toBe(true);
         expect(shot.characters.every((character) => character.scale && character.heightPx === undefined)).toBe(true);
       }
     }

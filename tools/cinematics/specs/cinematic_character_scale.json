@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "canonicalRoot": "public/assets/characters/pixel/full/",
+  "canonicalRoot": "public/assets/characters/pixel/",
   "canonicalFacing": "SCREEN_RIGHT",
   "measurementConvention": "alpha bounding box, centered foot anchor at last visible alpha row",
   "reviewConvention": {
@@ -99,145 +99,145 @@
     },
     {
       "id": "alistair",
-      "asset": "public/assets/characters/pixel/full/alistair.png",
-      "sourceSha256": "7e16df524ba10c6f42b08843eecafe5456425ba1e22f39567cd933fe23857942",
+      "asset": "public/assets/characters/pixel/masters/alistair.png",
+      "sourceSha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
       "category": "HUMAN",
       "relativeStature": 1.02,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 57,
-        "top": 84,
-        "right": 581,
-        "bottom": 735
+        "left": 144,
+        "top": 93,
+        "right": 398,
+        "bottom": 470
       },
-      "visibleBodyWidth": 524,
-      "visibleBodyHeight": 651,
+      "visibleBodyWidth": 254,
+      "visibleBodyHeight": 377,
       "footAnchor": {
-        "sourceX": 318.5,
-        "sourceY": 734,
-        "normalizedX": 0.497656,
-        "normalizedY": 0.955729
+        "sourceX": 270.5,
+        "sourceY": 469,
+        "normalizedX": 0.52832,
+        "normalizedY": 0.916016
       },
       "visualCenter": {
-        "sourceX": 318.5,
-        "sourceY": 409.0,
-        "normalizedX": 0.497656,
-        "normalizedY": 0.532552
+        "sourceX": 270.5,
+        "sourceY": 281.0,
+        "normalizedX": 0.52832,
+        "normalizedY": 0.548828
       },
       "transparentMargins": {
-        "left": 57,
-        "top": 84,
-        "right": 59,
-        "bottom": 33
+        "left": 144,
+        "top": 93,
+        "right": 114,
+        "bottom": 42
       },
       "reviewBodyHeightPx": 479
     },
     {
       "id": "cave_bat",
-      "asset": "public/assets/characters/pixel/full/cave_bat.png",
-      "sourceSha256": "727a221bb1c2f3a076c4f18bb84fdfd6c5fc83ee32ec1f36817ac067eaed52ca",
+      "asset": "public/assets/characters/pixel/masters/cave_bat.png",
+      "sourceSha256": "93d3d672f6ccb18cfef68313206ae393123641e4e0ec0db3eaa8d463ec6d4c18",
       "category": "BEAST_SMALL",
       "relativeStature": 0.34,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 59,
-        "top": 262,
-        "right": 581,
-        "bottom": 736
+        "left": 147,
+        "top": 187,
+        "right": 362,
+        "bottom": 362
       },
-      "visibleBodyWidth": 522,
-      "visibleBodyHeight": 474,
+      "visibleBodyWidth": 215,
+      "visibleBodyHeight": 175,
       "footAnchor": {
-        "sourceX": 319.5,
-        "sourceY": 735,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.957031
+        "sourceX": 254.0,
+        "sourceY": 361,
+        "normalizedX": 0.496094,
+        "normalizedY": 0.705078
       },
       "visualCenter": {
-        "sourceX": 319.5,
-        "sourceY": 498.5,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.649089
+        "sourceX": 254.0,
+        "sourceY": 274.0,
+        "normalizedX": 0.496094,
+        "normalizedY": 0.535156
       },
       "transparentMargins": {
-        "left": 59,
-        "top": 262,
-        "right": 59,
-        "bottom": 32
+        "left": 147,
+        "top": 187,
+        "right": 150,
+        "bottom": 150
       },
       "reviewBodyHeightPx": 160
     },
     {
       "id": "cave_rat",
-      "asset": "public/assets/characters/pixel/full/cave_rat.png",
-      "sourceSha256": "88a393e4a837ce84342a8e984e315ebfbba8d78f6454b725225e059d1b34f3f3",
+      "asset": "public/assets/characters/pixel/masters/cave_rat.png",
+      "sourceSha256": "042787f3f3081fc155d416c91d5d67347486e6a1f8cda95498f31bc4400fe3d1",
       "category": "BEAST_SMALL",
       "relativeStature": 0.32,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 32,
-        "top": 360,
-        "right": 608,
-        "bottom": 736
+        "left": 156,
+        "top": 341,
+        "right": 358,
+        "bottom": 458
       },
-      "visibleBodyWidth": 576,
-      "visibleBodyHeight": 376,
+      "visibleBodyWidth": 202,
+      "visibleBodyHeight": 117,
       "footAnchor": {
-        "sourceX": 319.5,
-        "sourceY": 735,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.957031
+        "sourceX": 256.5,
+        "sourceY": 457,
+        "normalizedX": 0.500977,
+        "normalizedY": 0.892578
       },
       "visualCenter": {
-        "sourceX": 319.5,
-        "sourceY": 547.5,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.712891
+        "sourceX": 256.5,
+        "sourceY": 399.0,
+        "normalizedX": 0.500977,
+        "normalizedY": 0.779297
       },
       "transparentMargins": {
-        "left": 32,
-        "top": 360,
-        "right": 32,
-        "bottom": 32
+        "left": 156,
+        "top": 341,
+        "right": 154,
+        "bottom": 54
       },
       "reviewBodyHeightPx": 150
     },
     {
       "id": "cedric",
-      "asset": "public/assets/characters/pixel/full/cedric.png",
-      "sourceSha256": "ed71da3f7bd7ac94596bd4d20ef62047940d4457fbae7d6898f54ba221f6972f",
+      "asset": "public/assets/characters/pixel/masters/rogue.png",
+      "sourceSha256": "8216c95d16aec061331a212b0717ba155f7ff32b32bfaca1decbb27f788c3c14",
       "category": "HUMAN",
       "relativeStature": 0.99,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 74,
-        "top": 86,
-        "right": 565,
-        "bottom": 734
+        "left": 127,
+        "top": 128,
+        "right": 396,
+        "bottom": 456
       },
-      "visibleBodyWidth": 491,
-      "visibleBodyHeight": 648,
+      "visibleBodyWidth": 269,
+      "visibleBodyHeight": 328,
       "footAnchor": {
-        "sourceX": 319.0,
-        "sourceY": 733,
-        "normalizedX": 0.498437,
-        "normalizedY": 0.954427
+        "sourceX": 261.0,
+        "sourceY": 455,
+        "normalizedX": 0.509766,
+        "normalizedY": 0.888672
       },
       "visualCenter": {
-        "sourceX": 319.0,
-        "sourceY": 409.5,
-        "normalizedX": 0.498437,
-        "normalizedY": 0.533203
+        "sourceX": 261.0,
+        "sourceY": 291.5,
+        "normalizedX": 0.509766,
+        "normalizedY": 0.569336
       },
       "transparentMargins": {
-        "left": 74,
-        "top": 86,
-        "right": 75,
-        "bottom": 34
+        "left": 127,
+        "top": 128,
+        "right": 116,
+        "bottom": 56
       },
       "reviewBodyHeightPx": 465
     },
@@ -279,37 +279,37 @@
     },
     {
       "id": "elara",
-      "asset": "public/assets/characters/pixel/full/elara.png",
-      "sourceSha256": "fc9a38e614b466c2258becac7b0f39618058b02a9b4ebdcaced541d2ebe99b74",
+      "asset": "public/assets/characters/pixel/masters/dark_mage.png",
+      "sourceSha256": "a6d4e3d518d9fff42e7155b9c5f0eb47aae5ddc7c1ef499ecfd8c33a677b8476",
       "category": "HUMAN",
       "relativeStature": 1.01,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 50,
-        "top": 99,
-        "right": 590,
-        "bottom": 735
+        "left": 177,
+        "top": 118,
+        "right": 335,
+        "bottom": 456
       },
-      "visibleBodyWidth": 540,
-      "visibleBodyHeight": 636,
+      "visibleBodyWidth": 158,
+      "visibleBodyHeight": 338,
       "footAnchor": {
-        "sourceX": 319.5,
-        "sourceY": 734,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.955729
+        "sourceX": 255.5,
+        "sourceY": 455,
+        "normalizedX": 0.499023,
+        "normalizedY": 0.888672
       },
       "visualCenter": {
-        "sourceX": 319.5,
-        "sourceY": 416.5,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.542318
+        "sourceX": 255.5,
+        "sourceY": 286.5,
+        "normalizedX": 0.499023,
+        "normalizedY": 0.55957
       },
       "transparentMargins": {
-        "left": 50,
-        "top": 99,
-        "right": 50,
-        "bottom": 33
+        "left": 177,
+        "top": 118,
+        "right": 177,
+        "bottom": 56
       },
       "reviewBodyHeightPx": 475
     },
@@ -351,109 +351,109 @@
     },
     {
       "id": "forest_badger",
-      "asset": "public/assets/characters/pixel/full/forest_badger.png",
-      "sourceSha256": "1f8c055bcebb7fc2cbacc6e121542fb0f1a04dea9bf9b81f830e72da2e34ba26",
+      "asset": "public/assets/characters/pixel/masters/forest_badger.png",
+      "sourceSha256": "f67efb06acb6e3cc714ff1991c38a6b6229596ede468998308a4658d6609400c",
       "category": "BEAST_SMALL",
       "relativeStature": 0.42,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 33,
-        "top": 314,
-        "right": 607,
-        "bottom": 735
+        "left": 159,
+        "top": 343,
+        "right": 352,
+        "bottom": 458
       },
-      "visibleBodyWidth": 574,
-      "visibleBodyHeight": 421,
+      "visibleBodyWidth": 193,
+      "visibleBodyHeight": 115,
       "footAnchor": {
-        "sourceX": 319.5,
-        "sourceY": 734,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.955729
+        "sourceX": 255.0,
+        "sourceY": 457,
+        "normalizedX": 0.498047,
+        "normalizedY": 0.892578
       },
       "visualCenter": {
-        "sourceX": 319.5,
-        "sourceY": 524.0,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.682292
+        "sourceX": 255.0,
+        "sourceY": 400.0,
+        "normalizedX": 0.498047,
+        "normalizedY": 0.78125
       },
       "transparentMargins": {
-        "left": 33,
-        "top": 314,
-        "right": 33,
-        "bottom": 33
+        "left": 159,
+        "top": 343,
+        "right": 160,
+        "bottom": 54
       },
       "reviewBodyHeightPx": 197
     },
     {
       "id": "forest_spider",
-      "asset": "public/assets/characters/pixel/full/forest_spider.png",
-      "sourceSha256": "3c4b3ec8ab3fa17bed62208ad4af78eaf5d19273d4c66d081fe1d7d71ae04e42",
+      "asset": "public/assets/characters/pixel/masters/forest_spider.png",
+      "sourceSha256": "129df0b3081af50bb0ac36bf70990b1d838a5806cd272d5775f5a0d532a13c1c",
       "category": "BEAST_MEDIUM",
       "relativeStature": 0.56,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 42,
-        "top": 262,
-        "right": 599,
-        "bottom": 736
+        "left": 160,
+        "top": 329,
+        "right": 352,
+        "bottom": 460
       },
-      "visibleBodyWidth": 557,
-      "visibleBodyHeight": 474,
+      "visibleBodyWidth": 192,
+      "visibleBodyHeight": 131,
       "footAnchor": {
-        "sourceX": 320.0,
-        "sourceY": 735,
-        "normalizedX": 0.5,
-        "normalizedY": 0.957031
+        "sourceX": 255.5,
+        "sourceY": 459,
+        "normalizedX": 0.499023,
+        "normalizedY": 0.896484
       },
       "visualCenter": {
-        "sourceX": 320.0,
-        "sourceY": 498.5,
-        "normalizedX": 0.5,
-        "normalizedY": 0.649089
+        "sourceX": 255.5,
+        "sourceY": 394.0,
+        "normalizedX": 0.499023,
+        "normalizedY": 0.769531
       },
       "transparentMargins": {
-        "left": 42,
-        "top": 262,
-        "right": 41,
-        "bottom": 32
+        "left": 160,
+        "top": 329,
+        "right": 160,
+        "bottom": 52
       },
       "reviewBodyHeightPx": 263
     },
     {
       "id": "forest_troll_elite",
-      "asset": "public/assets/characters/pixel/full/forest_troll_elite.png",
-      "sourceSha256": "288964b0b9ebb17758498d3b9808c147526d6cb08ffcac753124f0b729e1e45f",
+      "asset": "public/assets/characters/pixel/masters/forest_troll_elite.png",
+      "sourceSha256": "f35a43b5acc0111c5ca8530263f708a9edc384052903269312f370e7eddce9dd",
       "category": "BEAST_LARGE",
       "relativeStature": 1.22,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 28,
-        "top": 140,
-        "right": 612,
-        "bottom": 735
+        "left": 83,
+        "top": 33,
+        "right": 428,
+        "bottom": 456
       },
-      "visibleBodyWidth": 584,
-      "visibleBodyHeight": 595,
+      "visibleBodyWidth": 345,
+      "visibleBodyHeight": 423,
       "footAnchor": {
-        "sourceX": 319.5,
-        "sourceY": 734,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.955729
+        "sourceX": 255.0,
+        "sourceY": 455,
+        "normalizedX": 0.498047,
+        "normalizedY": 0.888672
       },
       "visualCenter": {
-        "sourceX": 319.5,
-        "sourceY": 437.0,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.56901
+        "sourceX": 255.0,
+        "sourceY": 244.0,
+        "normalizedX": 0.498047,
+        "normalizedY": 0.476562
       },
       "transparentMargins": {
-        "left": 28,
-        "top": 140,
-        "right": 28,
-        "bottom": 33
+        "left": 83,
+        "top": 33,
+        "right": 84,
+        "bottom": 56
       },
       "reviewBodyHeightPx": 573
     },
@@ -675,37 +675,37 @@
     },
     {
       "id": "goblin",
-      "asset": "public/assets/characters/pixel/full/goblin.png",
-      "sourceSha256": "7291bc9702181cb0e3b789f4cbe4bee89d79c4718ecf2cd904b624dd56ea9840",
+      "asset": "public/assets/characters/pixel/masters/goblin.png",
+      "sourceSha256": "0afee27c875ad0552c7a5e68d500af2a4b5c9876b9f4d6c331e4e2fb9aba41f0",
       "category": "HUMANOID",
       "relativeStature": 0.76,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 51,
-        "top": 195,
-        "right": 589,
-        "bottom": 736
+        "left": 159,
+        "top": 227,
+        "right": 354,
+        "bottom": 456
       },
-      "visibleBodyWidth": 538,
-      "visibleBodyHeight": 541,
+      "visibleBodyWidth": 195,
+      "visibleBodyHeight": 229,
       "footAnchor": {
-        "sourceX": 319.5,
-        "sourceY": 735,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.957031
+        "sourceX": 256.0,
+        "sourceY": 455,
+        "normalizedX": 0.5,
+        "normalizedY": 0.888672
       },
       "visualCenter": {
-        "sourceX": 319.5,
-        "sourceY": 465.0,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.605469
+        "sourceX": 256.0,
+        "sourceY": 341.0,
+        "normalizedX": 0.5,
+        "normalizedY": 0.666016
       },
       "transparentMargins": {
-        "left": 51,
-        "top": 195,
-        "right": 51,
-        "bottom": 32
+        "left": 159,
+        "top": 227,
+        "right": 158,
+        "bottom": 56
       },
       "reviewBodyHeightPx": 357
     },
@@ -747,109 +747,109 @@
     },
     {
       "id": "kestrel",
-      "asset": "public/assets/characters/pixel/full/kestrel.png",
-      "sourceSha256": "e948beb899eef71940aec200c3747e098a2c2f980ba16ec5e6e15b2ae5a700ec",
+      "asset": "public/assets/characters/pixel/masters/archer.png",
+      "sourceSha256": "cf9f50e30fe534ea9637857be43774ad19a39dbb721b0834a9bec54dd9e0c022",
       "category": "HUMAN",
       "relativeStature": 0.98,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 87,
-        "top": 84,
-        "right": 552,
-        "bottom": 736
+        "left": 162,
+        "top": 121,
+        "right": 351,
+        "bottom": 456
       },
-      "visibleBodyWidth": 465,
-      "visibleBodyHeight": 652,
+      "visibleBodyWidth": 189,
+      "visibleBodyHeight": 335,
       "footAnchor": {
-        "sourceX": 319.0,
-        "sourceY": 735,
-        "normalizedX": 0.498437,
-        "normalizedY": 0.957031
+        "sourceX": 256.0,
+        "sourceY": 455,
+        "normalizedX": 0.5,
+        "normalizedY": 0.888672
       },
       "visualCenter": {
-        "sourceX": 319.0,
-        "sourceY": 409.5,
-        "normalizedX": 0.498437,
-        "normalizedY": 0.533203
+        "sourceX": 256.0,
+        "sourceY": 288.0,
+        "normalizedX": 0.5,
+        "normalizedY": 0.5625
       },
       "transparentMargins": {
-        "left": 87,
-        "top": 84,
-        "right": 88,
-        "bottom": 32
+        "left": 162,
+        "top": 121,
+        "right": 161,
+        "bottom": 56
       },
       "reviewBodyHeightPx": 461
     },
     {
       "id": "lancer",
-      "asset": "public/assets/characters/pixel/full/lancer.png",
-      "sourceSha256": "3c1761e087a00f8079ee423e6b513494569566fe75b43fc30e69560ba7a6f012",
+      "asset": "public/assets/characters/pixel/masters/lancer.png",
+      "sourceSha256": "2c8c8b443ff6b833abc213f9cdd85a64d3c07a36ba6907b7c849ef2e9ae075c1",
       "category": "HUMAN",
       "relativeStature": 1.01,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 52,
-        "top": 117,
-        "right": 588,
-        "bottom": 736
+        "left": 165,
+        "top": 88,
+        "right": 349,
+        "bottom": 456
       },
-      "visibleBodyWidth": 536,
-      "visibleBodyHeight": 619,
+      "visibleBodyWidth": 184,
+      "visibleBodyHeight": 368,
       "footAnchor": {
-        "sourceX": 319.5,
-        "sourceY": 735,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.957031
+        "sourceX": 256.5,
+        "sourceY": 455,
+        "normalizedX": 0.500977,
+        "normalizedY": 0.888672
       },
       "visualCenter": {
-        "sourceX": 319.5,
-        "sourceY": 426.0,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.554688
+        "sourceX": 256.5,
+        "sourceY": 271.5,
+        "normalizedX": 0.500977,
+        "normalizedY": 0.530273
       },
       "transparentMargins": {
-        "left": 52,
-        "top": 117,
-        "right": 52,
-        "bottom": 32
+        "left": 165,
+        "top": 88,
+        "right": 163,
+        "bottom": 56
       },
       "reviewBodyHeightPx": 475
     },
     {
       "id": "lion_champion",
-      "asset": "public/assets/characters/pixel/full/lion_champion.png",
-      "sourceSha256": "344ef692bdbc16defe4de640104222274601f36a268e4fe73f2fbb11f720fc95",
+      "asset": "public/assets/characters/pixel/masters/lion_champion.png",
+      "sourceSha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc",
       "category": "HUMAN",
       "relativeStature": 1.09,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 65,
-        "top": 84,
-        "right": 575,
-        "bottom": 735
+        "left": 113,
+        "top": 38,
+        "right": 399,
+        "bottom": 461
       },
-      "visibleBodyWidth": 510,
-      "visibleBodyHeight": 651,
+      "visibleBodyWidth": 286,
+      "visibleBodyHeight": 423,
       "footAnchor": {
-        "sourceX": 319.5,
-        "sourceY": 734,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.955729
+        "sourceX": 255.5,
+        "sourceY": 460,
+        "normalizedX": 0.499023,
+        "normalizedY": 0.898438
       },
       "visualCenter": {
-        "sourceX": 319.5,
-        "sourceY": 409.0,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.532552
+        "sourceX": 255.5,
+        "sourceY": 249.0,
+        "normalizedX": 0.499023,
+        "normalizedY": 0.486328
       },
       "transparentMargins": {
-        "left": 65,
-        "top": 84,
-        "right": 65,
-        "bottom": 33
+        "left": 113,
+        "top": 38,
+        "right": 113,
+        "bottom": 51
       },
       "reviewBodyHeightPx": 512
     },
@@ -927,73 +927,73 @@
     },
     {
       "id": "marian",
-      "asset": "public/assets/characters/pixel/full/marian.png",
-      "sourceSha256": "152e6a17afbf99ae18aea2b14253db067fb76719beffd3809d9613b8ee6c8191",
+      "asset": "public/assets/characters/pixel/masters/white_mage.png",
+      "sourceSha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda",
       "category": "HUMAN",
       "relativeStature": 1.0,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 57,
-        "top": 84,
-        "right": 583,
-        "bottom": 736
+        "left": 171,
+        "top": 88,
+        "right": 341,
+        "bottom": 463
       },
-      "visibleBodyWidth": 526,
-      "visibleBodyHeight": 652,
+      "visibleBodyWidth": 170,
+      "visibleBodyHeight": 375,
       "footAnchor": {
-        "sourceX": 319.5,
-        "sourceY": 735,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.957031
+        "sourceX": 255.5,
+        "sourceY": 462,
+        "normalizedX": 0.499023,
+        "normalizedY": 0.902344
       },
       "visualCenter": {
-        "sourceX": 319.5,
-        "sourceY": 409.5,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.533203
+        "sourceX": 255.5,
+        "sourceY": 275.0,
+        "normalizedX": 0.499023,
+        "normalizedY": 0.537109
       },
       "transparentMargins": {
-        "left": 57,
-        "top": 84,
-        "right": 57,
-        "bottom": 32
+        "left": 171,
+        "top": 88,
+        "right": 171,
+        "bottom": 49
       },
       "reviewBodyHeightPx": 470
     },
     {
       "id": "marsh_toad",
-      "asset": "public/assets/characters/pixel/full/marsh_toad.png",
-      "sourceSha256": "28827f9b0068ac132bbe0a42bda9722ea78bc58b112f0c430ca3793a01ca721e",
+      "asset": "public/assets/characters/pixel/masters/marsh_toad.png",
+      "sourceSha256": "448de71310beb868ba3e7d3211ecaac20cd1a9c2bef13369c2ab05a1a5587d0e",
       "category": "BEAST_SMALL",
       "relativeStature": 0.4,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 39,
-        "top": 263,
-        "right": 602,
-        "bottom": 736
+        "left": 168,
+        "top": 295,
+        "right": 345,
+        "bottom": 456
       },
-      "visibleBodyWidth": 563,
-      "visibleBodyHeight": 473,
+      "visibleBodyWidth": 177,
+      "visibleBodyHeight": 161,
       "footAnchor": {
-        "sourceX": 320.0,
-        "sourceY": 735,
+        "sourceX": 256.0,
+        "sourceY": 455,
         "normalizedX": 0.5,
-        "normalizedY": 0.957031
+        "normalizedY": 0.888672
       },
       "visualCenter": {
-        "sourceX": 320.0,
-        "sourceY": 499.0,
+        "sourceX": 256.0,
+        "sourceY": 375.0,
         "normalizedX": 0.5,
-        "normalizedY": 0.64974
+        "normalizedY": 0.732422
       },
       "transparentMargins": {
-        "left": 39,
-        "top": 263,
-        "right": 38,
-        "bottom": 32
+        "left": 168,
+        "top": 295,
+        "right": 167,
+        "bottom": 56
       },
       "reviewBodyHeightPx": 188
     },
@@ -1143,7 +1143,7 @@
     },
     {
       "id": "sage_seraphine",
-      "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+      "asset": "public/assets/characters/pixel/full/seraphine.png",
       "sourceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
       "category": "HUMAN",
       "relativeStature": 1.0,
@@ -1214,218 +1214,218 @@
       "reviewBodyHeightPx": 531
     },
     {
-      "id": "seraphine",
-      "asset": "public/assets/characters/pixel/full/seraphine.png",
-      "sourceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
-      "category": "HUMAN",
-      "relativeStature": 1.0,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
-      "alphaBounds": {
-        "left": 96,
-        "top": 84,
-        "right": 544,
-        "bottom": 736
-      },
-      "visibleBodyWidth": 448,
-      "visibleBodyHeight": 652,
-      "footAnchor": {
-        "sourceX": 319.5,
-        "sourceY": 735,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.957031
-      },
-      "visualCenter": {
-        "sourceX": 319.5,
-        "sourceY": 409.5,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.533203
-      },
-      "transparentMargins": {
-        "left": 96,
-        "top": 84,
-        "right": 96,
-        "bottom": 32
-      },
-      "reviewBodyHeightPx": 470
-    },
-    {
       "id": "serpent_brute",
-      "asset": "public/assets/characters/pixel/full/serpent_brute.png",
-      "sourceSha256": "deb9bff683847720f82bdea4312a2b481f9173ab321292005a59ad656c4eb65a",
+      "asset": "public/assets/characters/pixel/masters/serpent_brute.png",
+      "sourceSha256": "07e1e98a2404bdb553ec27b93a623a1c5c0f8190778c1771f2eb90c773cb3eab",
       "category": "HUMAN",
       "relativeStature": 1.13,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 51,
-        "top": 122,
-        "right": 587,
-        "bottom": 735
+        "left": 151,
+        "top": 103,
+        "right": 366,
+        "bottom": 456
       },
-      "visibleBodyWidth": 536,
-      "visibleBodyHeight": 613,
+      "visibleBodyWidth": 215,
+      "visibleBodyHeight": 353,
       "footAnchor": {
-        "sourceX": 318.5,
-        "sourceY": 734,
-        "normalizedX": 0.497656,
-        "normalizedY": 0.955729
+        "sourceX": 258.0,
+        "sourceY": 455,
+        "normalizedX": 0.503906,
+        "normalizedY": 0.888672
       },
       "visualCenter": {
-        "sourceX": 318.5,
-        "sourceY": 428.0,
-        "normalizedX": 0.497656,
-        "normalizedY": 0.557292
+        "sourceX": 258.0,
+        "sourceY": 279.0,
+        "normalizedX": 0.503906,
+        "normalizedY": 0.544922
       },
       "transparentMargins": {
-        "left": 51,
-        "top": 122,
-        "right": 53,
-        "bottom": 33
+        "left": 151,
+        "top": 103,
+        "right": 146,
+        "bottom": 56
       },
       "reviewBodyHeightPx": 531
     },
     {
       "id": "serpent_duelist_elite",
-      "asset": "public/assets/characters/pixel/full/serpent_duelist_elite.png",
-      "sourceSha256": "040f306678984338223c53ff67a2edff11141361fc00a56ff9c4fc62a2810c96",
+      "asset": "public/assets/characters/pixel/masters/serpent_duelist_elite.png",
+      "sourceSha256": "9948fa0343307aea2b2e05845bbba8cc985472a8c1e1ea30a480cc6b0c2f7e0d",
       "category": "HUMAN",
       "relativeStature": 1.04,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 58,
+        "left": 98,
         "top": 64,
-        "right": 581,
-        "bottom": 736
+        "right": 416,
+        "bottom": 456
       },
-      "visibleBodyWidth": 523,
-      "visibleBodyHeight": 672,
+      "visibleBodyWidth": 318,
+      "visibleBodyHeight": 392,
       "footAnchor": {
-        "sourceX": 319.0,
-        "sourceY": 735,
-        "normalizedX": 0.498437,
-        "normalizedY": 0.957031
+        "sourceX": 256.5,
+        "sourceY": 455,
+        "normalizedX": 0.500977,
+        "normalizedY": 0.888672
       },
       "visualCenter": {
-        "sourceX": 319.0,
-        "sourceY": 399.5,
-        "normalizedX": 0.498437,
-        "normalizedY": 0.520182
+        "sourceX": 256.5,
+        "sourceY": 259.5,
+        "normalizedX": 0.500977,
+        "normalizedY": 0.506836
       },
       "transparentMargins": {
-        "left": 58,
+        "left": 98,
         "top": 64,
-        "right": 59,
-        "bottom": 32
+        "right": 96,
+        "bottom": 56
       },
       "reviewBodyHeightPx": 489
     },
     {
-      "id": "serpent_general_boss",
-      "asset": "public/assets/characters/pixel/full/serpent_general_boss.png",
-      "sourceSha256": "15306dc49386b0f6297cb922cb886e22357aca756ca8e0a5e11d706c641a33c7",
+      "id": "serpent_elite_brute",
+      "asset": "public/assets/characters/pixel/masters/serpent_elite_brute.png",
+      "sourceSha256": "60f1b903466c294a7b5547e1a6ecd01c29163425842d56841a5eeddbee050528",
       "category": "HUMAN",
-      "relativeStature": 1.18,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "relativeStature": 1.2,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 75,
-        "top": 63,
-        "right": 566,
-        "bottom": 737
+        "left": 121,
+        "top": 39,
+        "right": 389,
+        "bottom": 456
       },
-      "visibleBodyWidth": 491,
-      "visibleBodyHeight": 674,
+      "visibleBodyWidth": 268,
+      "visibleBodyHeight": 417,
       "footAnchor": {
-        "sourceX": 320.0,
-        "sourceY": 736,
-        "normalizedX": 0.5,
-        "normalizedY": 0.958333
+        "sourceX": 254.5,
+        "sourceY": 455,
+        "normalizedX": 0.49707,
+        "normalizedY": 0.888672
       },
       "visualCenter": {
-        "sourceX": 320.0,
-        "sourceY": 399.5,
-        "normalizedX": 0.5,
-        "normalizedY": 0.520182
+        "sourceX": 254.5,
+        "sourceY": 247.0,
+        "normalizedX": 0.49707,
+        "normalizedY": 0.482422
       },
       "transparentMargins": {
-        "left": 75,
-        "top": 63,
-        "right": 74,
-        "bottom": 31
+        "left": 121,
+        "top": 39,
+        "right": 123,
+        "bottom": 56
+      },
+      "reviewBodyHeightPx": 564
+    },
+    {
+      "id": "serpent_general_boss",
+      "asset": "public/assets/characters/pixel/masters/serpent_general_boss.png",
+      "sourceSha256": "b5dc5c8d644ede7cdb83a82492976a82d8bf133936a0b0db7c696ecc416ba33d",
+      "category": "HUMAN",
+      "relativeStature": 1.18,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
+      "alphaBounds": {
+        "left": 107,
+        "top": 57,
+        "right": 407,
+        "bottom": 456
+      },
+      "visibleBodyWidth": 300,
+      "visibleBodyHeight": 399,
+      "footAnchor": {
+        "sourceX": 256.5,
+        "sourceY": 455,
+        "normalizedX": 0.500977,
+        "normalizedY": 0.888672
+      },
+      "visualCenter": {
+        "sourceX": 256.5,
+        "sourceY": 256.0,
+        "normalizedX": 0.500977,
+        "normalizedY": 0.5
+      },
+      "transparentMargins": {
+        "left": 107,
+        "top": 57,
+        "right": 105,
+        "bottom": 56
       },
       "reviewBodyHeightPx": 555
     },
     {
       "id": "serpent_oracle",
-      "asset": "public/assets/characters/pixel/full/serpent_oracle.png",
-      "sourceSha256": "85c885c64f479b8579430e60c6616f5bc0905106a6ce0d2b1a8c5bacb9a48f3a",
+      "asset": "public/assets/characters/pixel/masters/serpent_oracle.png",
+      "sourceSha256": "f5010088c0a84be38522905929910f389124b1ed3ff76e7f998bfc1ca3773175",
       "category": "HUMAN",
       "relativeStature": 1.01,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 135,
-        "top": 84,
-        "right": 505,
-        "bottom": 736
+        "left": 173,
+        "top": 123,
+        "right": 341,
+        "bottom": 456
       },
-      "visibleBodyWidth": 370,
-      "visibleBodyHeight": 652,
+      "visibleBodyWidth": 168,
+      "visibleBodyHeight": 333,
       "footAnchor": {
-        "sourceX": 319.5,
-        "sourceY": 735,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.957031
+        "sourceX": 256.5,
+        "sourceY": 455,
+        "normalizedX": 0.500977,
+        "normalizedY": 0.888672
       },
       "visualCenter": {
-        "sourceX": 319.5,
-        "sourceY": 409.5,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.533203
+        "sourceX": 256.5,
+        "sourceY": 289.0,
+        "normalizedX": 0.500977,
+        "normalizedY": 0.564453
       },
       "transparentMargins": {
-        "left": 135,
-        "top": 84,
-        "right": 135,
-        "bottom": 32
+        "left": 173,
+        "top": 123,
+        "right": 171,
+        "bottom": 56
       },
       "reviewBodyHeightPx": 475
     },
     {
       "id": "serpent_raider",
-      "asset": "public/assets/characters/pixel/full/serpent_raider.png",
-      "sourceSha256": "e62eca489417bc626f77abd4269e54d370af32dd399436e6e834f5c6f577aaed",
+      "asset": "public/assets/characters/pixel/masters/serpent_raider.png",
+      "sourceSha256": "4f4bfb55016f325544a598a34213567657d43159c895bff57ac740ed4892ed9f",
       "category": "HUMAN",
       "relativeStature": 1.03,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 76,
-        "top": 84,
-        "right": 564,
-        "bottom": 736
+        "left": 166,
+        "top": 130,
+        "right": 344,
+        "bottom": 456
       },
-      "visibleBodyWidth": 488,
-      "visibleBodyHeight": 652,
+      "visibleBodyWidth": 178,
+      "visibleBodyHeight": 326,
       "footAnchor": {
-        "sourceX": 319.5,
-        "sourceY": 735,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.957031
+        "sourceX": 254.5,
+        "sourceY": 455,
+        "normalizedX": 0.49707,
+        "normalizedY": 0.888672
       },
       "visualCenter": {
-        "sourceX": 319.5,
-        "sourceY": 409.5,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.533203
+        "sourceX": 254.5,
+        "sourceY": 292.5,
+        "normalizedX": 0.49707,
+        "normalizedY": 0.571289
       },
       "transparentMargins": {
-        "left": 76,
-        "top": 84,
-        "right": 76,
-        "bottom": 32
+        "left": 166,
+        "top": 130,
+        "right": 168,
+        "bottom": 56
       },
       "reviewBodyHeightPx": 484
     },
@@ -1467,37 +1467,37 @@
     },
     {
       "id": "skeleton",
-      "asset": "public/assets/characters/pixel/full/skeleton.png",
-      "sourceSha256": "a4f074041a574be16c6099de56cf2f6262c667c892a24a85d3b0a14378d5bcd5",
+      "asset": "public/assets/characters/pixel/masters/skeleton.png",
+      "sourceSha256": "4e88e9697ac00f4130851eed8967655c9218edb13af212b3a20ded0b0d3f8d41",
       "category": "UNDEAD",
       "relativeStature": 1.0,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 52,
-        "top": 110,
-        "right": 589,
-        "bottom": 735
+        "left": 167,
+        "top": 122,
+        "right": 344,
+        "bottom": 457
       },
-      "visibleBodyWidth": 537,
-      "visibleBodyHeight": 625,
+      "visibleBodyWidth": 177,
+      "visibleBodyHeight": 335,
       "footAnchor": {
-        "sourceX": 320.0,
-        "sourceY": 734,
-        "normalizedX": 0.5,
-        "normalizedY": 0.955729
+        "sourceX": 255.0,
+        "sourceY": 456,
+        "normalizedX": 0.498047,
+        "normalizedY": 0.890625
       },
       "visualCenter": {
-        "sourceX": 320.0,
-        "sourceY": 422.0,
-        "normalizedX": 0.5,
-        "normalizedY": 0.549479
+        "sourceX": 255.0,
+        "sourceY": 289.0,
+        "normalizedX": 0.498047,
+        "normalizedY": 0.564453
       },
       "transparentMargins": {
-        "left": 52,
-        "top": 110,
-        "right": 51,
-        "bottom": 33
+        "left": 167,
+        "top": 122,
+        "right": 168,
+        "bottom": 55
       },
       "reviewBodyHeightPx": 470
     },
@@ -1683,37 +1683,37 @@
     },
     {
       "id": "venom_serpent",
-      "asset": "public/assets/characters/pixel/full/venom_serpent.png",
-      "sourceSha256": "f0b87a9b4b5c791006d25cbdb454e57d4efde0c30ca382902e77f3ec765ff615",
+      "asset": "public/assets/characters/pixel/masters/venom_serpent.png",
+      "sourceSha256": "bdab8a100d1a79247618690518b54a6828e3d64eb83c7e0fb735c7bfa7c79591",
       "category": "BEAST_MEDIUM",
       "relativeStature": 0.62,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 81,
-        "top": 212,
-        "right": 559,
-        "bottom": 734
+        "left": 162,
+        "top": 262,
+        "right": 346,
+        "bottom": 456
       },
-      "visibleBodyWidth": 478,
-      "visibleBodyHeight": 522,
+      "visibleBodyWidth": 184,
+      "visibleBodyHeight": 194,
       "footAnchor": {
-        "sourceX": 319.5,
-        "sourceY": 733,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.954427
+        "sourceX": 253.5,
+        "sourceY": 455,
+        "normalizedX": 0.495117,
+        "normalizedY": 0.888672
       },
       "visualCenter": {
-        "sourceX": 319.5,
-        "sourceY": 472.5,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.615234
+        "sourceX": 253.5,
+        "sourceY": 358.5,
+        "normalizedX": 0.495117,
+        "normalizedY": 0.700195
       },
       "transparentMargins": {
-        "left": 81,
-        "top": 212,
-        "right": 81,
-        "bottom": 34
+        "left": 162,
+        "top": 262,
+        "right": 166,
+        "bottom": 56
       },
       "reviewBodyHeightPx": 291
     },
@@ -1755,73 +1755,73 @@
     },
     {
       "id": "wild_boar",
-      "asset": "public/assets/characters/pixel/full/wild_boar.png",
-      "sourceSha256": "fa8a6101094ef5e4eb133a06d98ddacde9669a368985cb86a76a6b803dc452b2",
+      "asset": "public/assets/characters/pixel/masters/wild_boar.png",
+      "sourceSha256": "9fa741dfc1f4d9e9a2186e42de81cf9fffa4d061977d60f24336822687380183",
       "category": "BEAST_MEDIUM",
       "relativeStature": 0.68,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 33,
-        "top": 274,
-        "right": 607,
-        "bottom": 735
+        "left": 142,
+        "top": 302,
+        "right": 367,
+        "bottom": 456
       },
-      "visibleBodyWidth": 574,
-      "visibleBodyHeight": 461,
+      "visibleBodyWidth": 225,
+      "visibleBodyHeight": 154,
       "footAnchor": {
-        "sourceX": 319.5,
-        "sourceY": 734,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.955729
+        "sourceX": 254.0,
+        "sourceY": 455,
+        "normalizedX": 0.496094,
+        "normalizedY": 0.888672
       },
       "visualCenter": {
-        "sourceX": 319.5,
-        "sourceY": 504.0,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.65625
+        "sourceX": 254.0,
+        "sourceY": 378.5,
+        "normalizedX": 0.496094,
+        "normalizedY": 0.739258
       },
       "transparentMargins": {
-        "left": 33,
-        "top": 274,
-        "right": 33,
-        "bottom": 33
+        "left": 142,
+        "top": 302,
+        "right": 145,
+        "bottom": 56
       },
       "reviewBodyHeightPx": 320
     },
     {
       "id": "wolf",
-      "asset": "public/assets/characters/pixel/full/wolf.png",
-      "sourceSha256": "342dacc6d203c7fb9505725dd381598d9eb188570cadf5587099989e77a653d8",
+      "asset": "public/assets/characters/pixel/masters/wolf.png",
+      "sourceSha256": "90680e41acdb6275ec145e3e9c2e6211fd722b7e71edb1227fdca7dcfab54d07",
       "category": "BEAST_MEDIUM",
       "relativeStature": 0.66,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 33,
-        "top": 342,
-        "right": 607,
-        "bottom": 735
+        "left": 145,
+        "top": 279,
+        "right": 368,
+        "bottom": 457
       },
-      "visibleBodyWidth": 574,
-      "visibleBodyHeight": 393,
+      "visibleBodyWidth": 223,
+      "visibleBodyHeight": 178,
       "footAnchor": {
-        "sourceX": 319.5,
-        "sourceY": 734,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.955729
+        "sourceX": 256.0,
+        "sourceY": 456,
+        "normalizedX": 0.5,
+        "normalizedY": 0.890625
       },
       "visualCenter": {
-        "sourceX": 319.5,
-        "sourceY": 538.0,
-        "normalizedX": 0.499219,
-        "normalizedY": 0.700521
+        "sourceX": 256.0,
+        "sourceY": 367.5,
+        "normalizedX": 0.5,
+        "normalizedY": 0.717773
       },
       "transparentMargins": {
-        "left": 33,
-        "top": 342,
-        "right": 33,
-        "bottom": 33
+        "left": 145,
+        "top": 279,
+        "right": 144,
+        "bottom": 55
       },
       "reviewBodyHeightPx": 310
     },
@@ -1863,39 +1863,43 @@
     },
     {
       "id": "young_dragon_elite",
-      "asset": "public/assets/characters/pixel/full/young_dragon_elite.png",
-      "sourceSha256": "2715cdd69c265b18cbd1d221f44af9f8b665b14c7c80509a646066d57f6641d7",
+      "asset": "public/assets/characters/pixel/masters/young_dragon_elite.png",
+      "sourceSha256": "4e74cda450e9f934884f1cb927fd50a760757d4a5c62de68b6eeb14ba6ab7158",
       "category": "BEAST_LARGE",
       "relativeStature": 1.24,
-      "sourceWidth": 640,
-      "sourceHeight": 768,
+      "sourceWidth": 512,
+      "sourceHeight": 512,
       "alphaBounds": {
-        "left": 27,
-        "top": 118,
-        "right": 612,
-        "bottom": 736
+        "left": 48,
+        "top": 93,
+        "right": 465,
+        "bottom": 467
       },
-      "visibleBodyWidth": 585,
-      "visibleBodyHeight": 618,
+      "visibleBodyWidth": 417,
+      "visibleBodyHeight": 374,
       "footAnchor": {
-        "sourceX": 319.0,
-        "sourceY": 735,
-        "normalizedX": 0.498437,
-        "normalizedY": 0.957031
+        "sourceX": 256.0,
+        "sourceY": 466,
+        "normalizedX": 0.5,
+        "normalizedY": 0.910156
       },
       "visualCenter": {
-        "sourceX": 319.0,
-        "sourceY": 426.5,
-        "normalizedX": 0.498437,
-        "normalizedY": 0.555339
+        "sourceX": 256.0,
+        "sourceY": 279.5,
+        "normalizedX": 0.5,
+        "normalizedY": 0.545898
       },
       "transparentMargins": {
-        "left": 27,
-        "top": 118,
-        "right": 28,
-        "bottom": 32
+        "left": 48,
+        "top": 93,
+        "right": 47,
+        "bottom": 45
       },
       "reviewBodyHeightPx": 583
     }
+  ],
+  "canonicalAssetRoots": [
+    "public/assets/characters/pixel/masters/",
+    "public/assets/characters/pixel/full/"
   ]
 }

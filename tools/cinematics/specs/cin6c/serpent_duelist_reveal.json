@@ -15,7 +15,7 @@
     "environment": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
     "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_serpent_duelist_reveal/shot_01/source.png" },
     "characters": [
-      { "id": "serpent_duelist_elite", "asset": "public/assets/characters/pixel/full/serpent_duelist_elite.png", "position": { "x": 0.69, "groundY": 0.98 }, "scale": { "framing": "MEDIUM", "perspective": 1.0 }, "facing": "SCREEN_LEFT", "lookTarget": "OFFSCREEN_LEFT", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      { "id": "serpent_duelist_elite", "asset": "public/assets/characters/pixel/masters/serpent_duelist_elite.png", "position": { "x": 0.69, "groundY": 0.98 }, "scale": { "framing": "MEDIUM", "perspective": 1.0 }, "facing": "SCREEN_LEFT", "lookTarget": "OFFSCREEN_LEFT", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
     ],
     "camera": { "mode": "STATIC" },
     "durationSeconds": 5,

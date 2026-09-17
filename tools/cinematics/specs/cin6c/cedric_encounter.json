@@ -15,8 +15,8 @@
     "environment": "public/assets/generated/lion-phase/dialogue/mystery_recruit.webp",
     "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_cedric_encounter/shot_01/source.png" },
     "characters": [
-      { "id": "kestrel", "asset": "public/assets/characters/pixel/full/kestrel.png", "position": { "x": 0.27, "groundY": 0.98 }, "scale": { "framing": "WIDE", "perspective": 1.1 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:cedric", "depth": 20, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
-      { "id": "cedric", "asset": "public/assets/characters/pixel/full/cedric.png", "position": { "x": 0.72, "groundY": 0.98 }, "scale": { "framing": "WIDE", "perspective": 1.1 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:kestrel", "depth": 10, "role": "PRIMARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" }
+      { "id": "kestrel", "asset": "public/assets/characters/pixel/masters/archer.png", "position": { "x": 0.27, "groundY": 0.98 }, "scale": { "framing": "WIDE", "perspective": 1.1 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:cedric", "depth": 20, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+      { "id": "cedric", "asset": "public/assets/characters/pixel/masters/rogue.png", "position": { "x": 0.72, "groundY": 0.98 }, "scale": { "framing": "WIDE", "perspective": 1.1 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:kestrel", "depth": 10, "role": "PRIMARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" }
     ],
     "camera": { "mode": "WIDE_HOLD" },
     "durationSeconds": 5,

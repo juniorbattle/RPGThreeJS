@@ -169,21 +169,20 @@ def promote_assets() -> dict:
                 "characterBoundFx": bool(source_record["characterBoundFx"]),
             }
 
-        full_name = FULL_BY_MASTER[unit_id]
-        full_url = f"/assets/characters/pixel/full/{full_name}.png"
+        master_url = public_url(target_master)
         units.append({
             "unitId": unit_id,
             "scaleFamily": source_manifest["scaleFamily"],
             "worldUnitsPerPixel": WORLD_UNITS_PER_PIXEL,
             "master": {
-                "src": public_url(target_master),
+                "src": master_url,
                 "sha256": master_hash,
                 "sourceSizePx": {"width": 512, "height": 512},
             },
             "roles": {
-                "full": full_url,
-                "dialogue": full_url,
-                "ui": full_url,
+                "full": master_url,
+                "dialogue": master_url,
+                "ui": master_url,
             },
             "poses": poses,
         })
@@ -198,7 +197,9 @@ def promote_assets() -> dict:
         },
         "policy": {
             "masterAuthority": True,
-            "fullAssetsReplaced": False,
+            "fullAssetsReplaced": True,
+            "legacyCombatFullAssetsRetired": True,
+            "nonCombatRolesUseMaster": True,
             "commonWorldUnitsPerPixel": WORLD_UNITS_PER_PIXEL,
             "scaleCorrection": 1.0,
             "variableCanvasSupported": True,
@@ -374,13 +375,12 @@ def main() -> None:
     print(f"text corpus loaded: {len(corpus)} files", flush=True)
     cleanup = build_legacy_cleanup_plan(corpus)
     print("legacy cleanup plan complete", flush=True)
-    census = build_non_combat_census(corpus)
     print(json.dumps({
         "status": "PASS",
         "mastersPromoted": manifest["counts"]["masters"],
         "combatPosesPromoted": manifest["counts"]["combatPoses"],
         "legacyCleanupPlan": cleanup["counts"],
-        "nonCombatCensus": census["counts"],
+        "nonCombatCensus": "MAINTAINED_BY_FINAL_CLEANUP",
     }, indent=2))
 
 

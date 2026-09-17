@@ -70,7 +70,7 @@ describe('CombatPoseRegistry production V2', () => {
     expect(resolveCombatPoseUnitId('alistair')).toBe('alistair');
     expect(resolveCombatPoseUnitId('warrior')).toBe('alistair');
     expect(resolveCombatPoseUnitId('marian')).toBe('white_mage');
-    expect(resolveCombatPoseUnitId('/assets/characters/pixel/full/alistair.png')).toBe('alistair');
+    expect(resolveCombatPoseUnitId('/assets/characters/pixel/masters/alistair.png')).toBe('alistair');
     expect(resolveCombatPoseUnitId('serpent_captain')).toBe('serpent_general_boss');
     expect(resolveCombatPoseSet('forest_badger')?.unitId).toBe('forest_badger');
   });

@@ -37,7 +37,7 @@ export interface OptionCRosterCensusEntry {
 export const PLAYABLE_ROSTER_CENSUS: readonly OptionCRosterCensusEntry[] = Object.freeze([
   {
     characterId: 'warrior',
-    canonicalAssetPath: '/assets/characters/pixel/full/alistair.png',
+    canonicalAssetPath: '/assets/characters/pixel/masters/alistair.png',
     displayName: 'Alistair',
     role: 'Frontline knight / tank',
     weapon: 'greatsword',
@@ -54,7 +54,7 @@ export const PLAYABLE_ROSTER_CENSUS: readonly OptionCRosterCensusEntry[] = Objec
   },
   {
     characterId: 'white_mage',
-    canonicalAssetPath: '/assets/characters/pixel/full/marian.png',
+    canonicalAssetPath: '/assets/characters/pixel/masters/white_mage.png',
     displayName: 'Marian',
     role: 'Healer / support caster',
     weapon: 'crosier',
@@ -71,7 +71,7 @@ export const PLAYABLE_ROSTER_CENSUS: readonly OptionCRosterCensusEntry[] = Objec
   },
   {
     characterId: 'dark_mage',
-    canonicalAssetPath: '/assets/characters/pixel/full/elara.png',
+    canonicalAssetPath: '/assets/characters/pixel/masters/dark_mage.png',
     displayName: 'Elara',
     role: 'Arcane damage caster',
     weapon: 'grimoire',
@@ -88,7 +88,7 @@ export const PLAYABLE_ROSTER_CENSUS: readonly OptionCRosterCensusEntry[] = Objec
   },
   {
     characterId: 'archer',
-    canonicalAssetPath: '/assets/characters/pixel/full/kestrel.png',
+    canonicalAssetPath: '/assets/characters/pixel/masters/archer.png',
     displayName: 'Kestrel',
     role: 'Mobile ranged scout',
     weapon: 'longbow',
@@ -105,7 +105,7 @@ export const PLAYABLE_ROSTER_CENSUS: readonly OptionCRosterCensusEntry[] = Objec
   },
   {
     characterId: 'rogue',
-    canonicalAssetPath: '/assets/characters/pixel/full/cedric.png',
+    canonicalAssetPath: '/assets/characters/pixel/masters/rogue.png',
     displayName: 'Cedric',
     role: 'Stealth scout / backline DPS',
     weapon: 'dagger',
@@ -122,7 +122,7 @@ export const PLAYABLE_ROSTER_CENSUS: readonly OptionCRosterCensusEntry[] = Objec
   },
   {
     characterId: 'lancer',
-    canonicalAssetPath: '/assets/characters/pixel/full/lancer.png',
+    canonicalAssetPath: '/assets/characters/pixel/masters/lancer.png',
     displayName: 'Garen',
     role: 'Reach melee / spearman',
     weapon: 'long_spear',
@@ -249,7 +249,7 @@ export const CHARACTER_IDENTITY_SPECS: readonly OptionCCharacterIdentity[] = Obj
   {
     id: 'warrior',
     displayName: 'Alistair',
-    canonicalSource: '/assets/characters/pixel/full/alistair.png',
+    canonicalSource: '/assets/characters/pixel/masters/alistair.png',
     weapon: 'greatsword',
     archetype: 'knight',
     silhouetteClass: 'heavy_frontline',
@@ -266,7 +266,7 @@ export const CHARACTER_IDENTITY_SPECS: readonly OptionCCharacterIdentity[] = Obj
   {
     id: 'white_mage',
     displayName: 'Marian',
-    canonicalSource: '/assets/characters/pixel/full/marian.png',
+    canonicalSource: '/assets/characters/pixel/masters/white_mage.png',
     weapon: 'crosier',
     archetype: 'cleric',
     silhouetteClass: 'robed_caster',
@@ -283,7 +283,7 @@ export const CHARACTER_IDENTITY_SPECS: readonly OptionCCharacterIdentity[] = Obj
   {
     id: 'dark_mage',
     displayName: 'Elara',
-    canonicalSource: '/assets/characters/pixel/full/elara.png',
+    canonicalSource: '/assets/characters/pixel/masters/dark_mage.png',
     weapon: 'grimoire',
     archetype: 'mage',
     silhouetteClass: 'robed_arcane',
@@ -300,7 +300,7 @@ export const CHARACTER_IDENTITY_SPECS: readonly OptionCCharacterIdentity[] = Obj
   {
     id: 'archer',
     displayName: 'Kestrel',
-    canonicalSource: '/assets/characters/pixel/full/kestrel.png',
+    canonicalSource: '/assets/characters/pixel/masters/archer.png',
     weapon: 'longbow',
     archetype: 'archer',
     silhouetteClass: 'lithe_ranged',
@@ -317,7 +317,7 @@ export const CHARACTER_IDENTITY_SPECS: readonly OptionCCharacterIdentity[] = Obj
   {
     id: 'rogue',
     displayName: 'Cedric',
-    canonicalSource: '/assets/characters/pixel/full/cedric.png',
+    canonicalSource: '/assets/characters/pixel/masters/rogue.png',
     weapon: 'dagger',
     archetype: 'rogue',
     silhouetteClass: 'lithe_melee',
@@ -334,7 +334,7 @@ export const CHARACTER_IDENTITY_SPECS: readonly OptionCCharacterIdentity[] = Obj
   {
     id: 'lancer',
     displayName: 'Garen',
-    canonicalSource: '/assets/characters/pixel/full/lancer.png',
+    canonicalSource: '/assets/characters/pixel/masters/lancer.png',
     weapon: 'long_spear',
     archetype: 'knight',
     silhouetteClass: 'medium_frontline',

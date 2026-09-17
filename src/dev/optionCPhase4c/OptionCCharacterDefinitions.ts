@@ -130,18 +130,18 @@ const kestrelSkillMeta: OptionCAnimationMetadata = {
 };
 
 const kestrelCodexSlots: readonly OptionCCodexHandoffSlot[] = [
-  { slotName: 'characterMaster', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static master', canonicalReference: '/assets/characters/pixel/full/kestrel.png', kestrelReference: 'self', fileDestination: 'public/assets/dev/option-c/phase4c/kestrel/master.png', runtimeSemanticKey: 'character:archer:master' },
-  { slotName: 'idleSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 8], timingMetadata: '190ms/frame, loop', canonicalReference: '/assets/characters/pixel/full/kestrel.png', kestrelReference: 'self', fileDestination: 'public/assets/dev/option-c/phase4b/kestrel/idle/', runtimeSemanticKey: 'character:archer:surface:*:state:idle' },
-  { slotName: 'dashSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 10], timingMetadata: '82ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/kestrel.png', kestrelReference: 'self', fileDestination: 'public/assets/dev/option-c/phase4b/kestrel/dash/', runtimeSemanticKey: 'character:archer:surface:*:state:dash' },
-  { slotName: 'attackSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '105ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/kestrel.png', kestrelReference: 'self', fileDestination: 'public/assets/dev/option-c/phase4b/kestrel/attack/', runtimeSemanticKey: 'character:archer:surface:*:state:attack' },
-  { slotName: 'skillSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '125ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/kestrel.png', kestrelReference: 'self', fileDestination: 'public/assets/dev/option-c/phase4b/kestrel/skill/', runtimeSemanticKey: 'character:archer:surface:*:state:skill' },
+  { slotName: 'characterMaster', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static master', canonicalReference: '/assets/characters/pixel/masters/archer.png', kestrelReference: 'self', fileDestination: 'public/assets/dev/option-c/phase4c/kestrel/master.png', runtimeSemanticKey: 'character:archer:master' },
+  { slotName: 'idleSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 8], timingMetadata: '190ms/frame, loop', canonicalReference: '/assets/characters/pixel/masters/archer.png', kestrelReference: 'self', fileDestination: 'public/assets/dev/option-c/phase4b/kestrel/idle/', runtimeSemanticKey: 'character:archer:surface:*:state:idle' },
+  { slotName: 'dashSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 10], timingMetadata: '82ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/masters/archer.png', kestrelReference: 'self', fileDestination: 'public/assets/dev/option-c/phase4b/kestrel/dash/', runtimeSemanticKey: 'character:archer:surface:*:state:dash' },
+  { slotName: 'attackSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '105ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/masters/archer.png', kestrelReference: 'self', fileDestination: 'public/assets/dev/option-c/phase4b/kestrel/attack/', runtimeSemanticKey: 'character:archer:surface:*:state:attack' },
+  { slotName: 'skillSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '125ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/masters/archer.png', kestrelReference: 'self', fileDestination: 'public/assets/dev/option-c/phase4b/kestrel/skill/', runtimeSemanticKey: 'character:archer:surface:*:state:skill' },
 ];
 
 export const KESTREL_DEFINITION: OptionCCharacterDefinition = Object.freeze({
   identity: {
     id: 'archer',
     displayName: 'Kestrel',
-    canonicalSource: '/assets/characters/pixel/full/kestrel.png',
+    canonicalSource: '/assets/characters/pixel/masters/archer.png',
     weapon: 'longbow',
     archetype: 'archer',
     silhouetteClass: 'lithe_ranged',
@@ -156,7 +156,7 @@ export const KESTREL_DEFINITION: OptionCCharacterDefinition = Object.freeze({
     animationStates: ['idle', 'dash', 'attack', 'skill'] as const,
   },
   sources: {
-    canonical: '/assets/characters/pixel/full/kestrel.png',
+    canonical: '/assets/characters/pixel/masters/archer.png',
     phase4bRoot: PHASE4B_ROOT + '/kestrel',
   },
   masterStatus: 'GOLD_REFERENCE',
@@ -265,18 +265,18 @@ const alistairDashMeta: OptionCAnimationMetadata = {
 };
 
 const alistairCodexSlots: readonly OptionCCodexHandoffSlot[] = [
-  { slotName: 'characterMaster', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static master', canonicalReference: '/assets/characters/pixel/full/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/normalized/alistair-master.png', runtimeSemanticKey: 'character:warrior:master' },
-  { slotName: 'idleKeyPose', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static key-pose authority; no animation sequence', canonicalReference: '/assets/characters/pixel/full/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/normalized/alistair-idle.png', runtimeSemanticKey: 'character:warrior:surface:*:state:idle' },
-  { slotName: 'dashKeyPose', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static key-pose authority; no animation sequence', canonicalReference: '/assets/characters/pixel/full/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/dash/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/normalized/alistair-dash.png', runtimeSemanticKey: 'character:warrior:surface:*:state:dash' },
-  { slotName: 'attackKeyPose', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static key-pose authority; no animation sequence', canonicalReference: '/assets/characters/pixel/full/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/attack/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/normalized/alistair-attack.png', runtimeSemanticKey: 'character:warrior:surface:*:state:attack' },
-  { slotName: 'skillKeyPose', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static Tourbillon d’Acier key-pose authority; no animation sequence', canonicalReference: '/assets/characters/pixel/full/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/skill/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/normalized/alistair-skill.png', runtimeSemanticKey: 'character:warrior:surface:*:state:skill' },
+  { slotName: 'characterMaster', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static master', canonicalReference: '/assets/characters/pixel/masters/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/normalized/alistair-master.png', runtimeSemanticKey: 'character:warrior:master' },
+  { slotName: 'idleKeyPose', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static key-pose authority; no animation sequence', canonicalReference: '/assets/characters/pixel/masters/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/normalized/alistair-idle.png', runtimeSemanticKey: 'character:warrior:surface:*:state:idle' },
+  { slotName: 'dashKeyPose', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static key-pose authority; no animation sequence', canonicalReference: '/assets/characters/pixel/masters/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/dash/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/normalized/alistair-dash.png', runtimeSemanticKey: 'character:warrior:surface:*:state:dash' },
+  { slotName: 'attackKeyPose', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static key-pose authority; no animation sequence', canonicalReference: '/assets/characters/pixel/masters/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/attack/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/normalized/alistair-attack.png', runtimeSemanticKey: 'character:warrior:surface:*:state:attack' },
+  { slotName: 'skillKeyPose', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static Tourbillon d’Acier key-pose authority; no animation sequence', canonicalReference: '/assets/characters/pixel/masters/alistair.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/skill/', fileDestination: 'public/assets/dev/option-c/phase4c/alistair/normalized/alistair-skill.png', runtimeSemanticKey: 'character:warrior:surface:*:state:skill' },
 ];
 
 export const ALISTAIR_DEFINITION: OptionCCharacterDefinition = Object.freeze({
   identity: {
     id: 'warrior',
     displayName: 'Alistair',
-    canonicalSource: '/assets/characters/pixel/full/alistair.png',
+    canonicalSource: '/assets/characters/pixel/masters/alistair.png',
     weapon: 'greatsword',
     archetype: 'knight',
     silhouetteClass: 'heavy_frontline',
@@ -291,7 +291,7 @@ export const ALISTAIR_DEFINITION: OptionCCharacterDefinition = Object.freeze({
     animationStates: ['idle', 'dash', 'attack', 'skill'] as const,
   },
   sources: {
-    canonical: '/assets/characters/pixel/full/alistair.png',
+    canonical: '/assets/characters/pixel/masters/alistair.png',
   },
   masterStatus: 'FINAL_PRODUCTION_CANDIDATE',
   surfaceAssets: {
@@ -399,18 +399,18 @@ const marianDashMeta: OptionCAnimationMetadata = {
 };
 
 const marianCodexSlots: readonly OptionCCodexHandoffSlot[] = [
-  { slotName: 'characterMaster', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static master', canonicalReference: '/assets/characters/pixel/full/marian.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png', fileDestination: 'public/assets/dev/option-c/phase4c/marian/master.png', runtimeSemanticKey: 'character:white_mage:master' },
-  { slotName: 'idleSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 8], timingMetadata: '190ms/frame, loop', canonicalReference: '/assets/characters/pixel/full/marian.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/', fileDestination: 'public/assets/dev/option-c/phase4c/marian/idle/', runtimeSemanticKey: 'character:white_mage:surface:*:state:idle' },
-  { slotName: 'dashSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 10], timingMetadata: '82ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/marian.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/dash/', fileDestination: 'public/assets/dev/option-c/phase4c/marian/dash/', runtimeSemanticKey: 'character:white_mage:surface:*:state:dash' },
-  { slotName: 'attackSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '105ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/marian.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/attack/', fileDestination: 'public/assets/dev/option-c/phase4c/marian/attack/', runtimeSemanticKey: 'character:white_mage:surface:*:state:attack' },
-  { slotName: 'skillSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '125ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/marian.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/skill/', fileDestination: 'public/assets/dev/option-c/phase4c/marian/cast/', runtimeSemanticKey: 'character:white_mage:surface:*:state:cast' },
+  { slotName: 'characterMaster', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static master', canonicalReference: '/assets/characters/pixel/masters/white_mage.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png', fileDestination: 'public/assets/dev/option-c/phase4c/marian/master.png', runtimeSemanticKey: 'character:white_mage:master' },
+  { slotName: 'idleSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 8], timingMetadata: '190ms/frame, loop', canonicalReference: '/assets/characters/pixel/masters/white_mage.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/', fileDestination: 'public/assets/dev/option-c/phase4c/marian/idle/', runtimeSemanticKey: 'character:white_mage:surface:*:state:idle' },
+  { slotName: 'dashSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 10], timingMetadata: '82ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/masters/white_mage.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/dash/', fileDestination: 'public/assets/dev/option-c/phase4c/marian/dash/', runtimeSemanticKey: 'character:white_mage:surface:*:state:dash' },
+  { slotName: 'attackSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '105ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/masters/white_mage.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/attack/', fileDestination: 'public/assets/dev/option-c/phase4c/marian/attack/', runtimeSemanticKey: 'character:white_mage:surface:*:state:attack' },
+  { slotName: 'skillSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '125ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/masters/white_mage.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/skill/', fileDestination: 'public/assets/dev/option-c/phase4c/marian/cast/', runtimeSemanticKey: 'character:white_mage:surface:*:state:cast' },
 ];
 
 export const MARIAN_DEFINITION: OptionCCharacterDefinition = Object.freeze({
   identity: {
     id: 'white_mage',
     displayName: 'Marian',
-    canonicalSource: '/assets/characters/pixel/full/marian.png',
+    canonicalSource: '/assets/characters/pixel/masters/white_mage.png',
     weapon: 'crosier',
     archetype: 'cleric',
     silhouetteClass: 'robed_caster',
@@ -425,13 +425,13 @@ export const MARIAN_DEFINITION: OptionCCharacterDefinition = Object.freeze({
     animationStates: ['idle', 'dash', 'attack', 'cast'] as const,
   },
   sources: {
-    canonical: '/assets/characters/pixel/full/marian.png',
+    canonical: '/assets/characters/pixel/masters/white_mage.png',
   },
   masterStatus: 'SCALING_DRAFT',
   surfaceAssets: {
-    tableau: '/assets/characters/pixel/full/marian.png',
-    strategic: '/assets/characters/pixel/full/marian.png',
-    combatStage: '/assets/characters/pixel/full/marian.png',
+    tableau: '/assets/characters/pixel/masters/white_mage.png',
+    strategic: '/assets/characters/pixel/masters/white_mage.png',
+    combatStage: '/assets/characters/pixel/masters/white_mage.png',
   },
   animations: [marianIdleMeta, marianDashMeta, marianAttackMeta, marianCastMeta],
   anchors: {
@@ -533,18 +533,18 @@ const elaraDashMeta: OptionCAnimationMetadata = {
 };
 
 const elaraCodexSlots: readonly OptionCCodexHandoffSlot[] = [
-  { slotName: 'characterMaster', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static master', canonicalReference: '/assets/characters/pixel/full/elara.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png', fileDestination: 'public/assets/dev/option-c/phase4c/elara/master.png', runtimeSemanticKey: 'character:dark_mage:master' },
-  { slotName: 'idleSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 8], timingMetadata: '190ms/frame, loop', canonicalReference: '/assets/characters/pixel/full/elara.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/', fileDestination: 'public/assets/dev/option-c/phase4c/elara/idle/', runtimeSemanticKey: 'character:dark_mage:surface:*:state:idle' },
-  { slotName: 'dashSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 10], timingMetadata: '82ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/elara.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/dash/', fileDestination: 'public/assets/dev/option-c/phase4c/elara/dash/', runtimeSemanticKey: 'character:dark_mage:surface:*:state:dash' },
-  { slotName: 'attackSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '105ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/elara.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/attack/', fileDestination: 'public/assets/dev/option-c/phase4c/elara/attack/', runtimeSemanticKey: 'character:dark_mage:surface:*:state:attack' },
-  { slotName: 'skillSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '125ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/full/elara.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/skill/', fileDestination: 'public/assets/dev/option-c/phase4c/elara/cast/', runtimeSemanticKey: 'character:dark_mage:surface:*:state:cast' },
+  { slotName: 'characterMaster', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [1, 1], timingMetadata: 'static master', canonicalReference: '/assets/characters/pixel/masters/dark_mage.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/frame-01.png', fileDestination: 'public/assets/dev/option-c/phase4c/elara/master.png', runtimeSemanticKey: 'character:dark_mage:master' },
+  { slotName: 'idleSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 8], timingMetadata: '190ms/frame, loop', canonicalReference: '/assets/characters/pixel/masters/dark_mage.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/idle/', fileDestination: 'public/assets/dev/option-c/phase4c/elara/idle/', runtimeSemanticKey: 'character:dark_mage:surface:*:state:idle' },
+  { slotName: 'dashSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [6, 10], timingMetadata: '82ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/masters/dark_mage.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/dash/', fileDestination: 'public/assets/dev/option-c/phase4c/elara/dash/', runtimeSemanticKey: 'character:dark_mage:surface:*:state:dash' },
+  { slotName: 'attackSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '105ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/masters/dark_mage.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/attack/', fileDestination: 'public/assets/dev/option-c/phase4c/elara/attack/', runtimeSemanticKey: 'character:dark_mage:surface:*:state:attack' },
+  { slotName: 'skillSheet', expectedDimensions: [512, 512], transparent: true, anchor: 'FOOT_CENTER', surfaceScale: 1, frameCountRange: [8, 12], timingMetadata: '125ms/frame, oneShot->idle', canonicalReference: '/assets/characters/pixel/masters/dark_mage.png', kestrelReference: '/assets/dev/option-c/phase4b/kestrel/skill/', fileDestination: 'public/assets/dev/option-c/phase4c/elara/cast/', runtimeSemanticKey: 'character:dark_mage:surface:*:state:cast' },
 ];
 
 export const ELARA_DEFINITION: OptionCCharacterDefinition = Object.freeze({
   identity: {
     id: 'dark_mage',
     displayName: 'Elara',
-    canonicalSource: '/assets/characters/pixel/full/elara.png',
+    canonicalSource: '/assets/characters/pixel/masters/dark_mage.png',
     weapon: 'grimoire',
     archetype: 'mage',
     silhouetteClass: 'robed_arcane',
@@ -559,13 +559,13 @@ export const ELARA_DEFINITION: OptionCCharacterDefinition = Object.freeze({
     animationStates: ['idle', 'dash', 'attack', 'cast'] as const,
   },
   sources: {
-    canonical: '/assets/characters/pixel/full/elara.png',
+    canonical: '/assets/characters/pixel/masters/dark_mage.png',
   },
   masterStatus: 'SCALING_DRAFT',
   surfaceAssets: {
-    tableau: '/assets/characters/pixel/full/elara.png',
-    strategic: '/assets/characters/pixel/full/elara.png',
-    combatStage: '/assets/characters/pixel/full/elara.png',
+    tableau: '/assets/characters/pixel/masters/dark_mage.png',
+    strategic: '/assets/characters/pixel/masters/dark_mage.png',
+    combatStage: '/assets/characters/pixel/masters/dark_mage.png',
   },
   animations: [elaraIdleMeta, elaraDashMeta, elaraAttackMeta, elaraCastMeta],
   anchors: {

@@ -57,7 +57,7 @@ describe('CombatStage pose integration', () => {
   });
 
   it('renders PREPARE under a stable Stage unitRoot and swaps only poseVisual', async () => {
-    const attacker = source({ portrait: '/assets/characters/pixel/full/alistair.png', name: 'Warrior', team: 'player' });
+    const attacker = source({ portrait: '/assets/characters/pixel/masters/alistair.png', name: 'Warrior', team: 'player' });
     const target = source({ name: 'Unknown target', team: 'foe' });
     const baseProfile = resolveCombatStageProfile({ key: 'attack' })!;
     const profile = { ...baseProfile, transitionInMs: 0, transitionOutMs: 0 };

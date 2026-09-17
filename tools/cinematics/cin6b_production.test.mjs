@@ -51,9 +51,10 @@ describe('CIN-6B P0 completion production contract', () => {
   });
 
   it('uses authored physical ratios rather than canonical PNG canvas dimensions', () => {
-    for (const asset of ['villageoise', 'maelor', 'alaric', 'lion_champion']) {
-      expect(pngDimensions(`public/assets/characters/pixel/full/${asset}.png`)).toEqual({ width: 640, height: 768 });
+    for (const asset of ['villageoise', 'maelor', 'alaric']) {
+      expect(pngDimensions(census.characterAssetPaths[asset])).toEqual({ width: 640, height: 768 });
     }
+    expect(pngDimensions(census.characterAssetPaths.lion_champion)).toEqual({ width: 512, height: 512 });
 
     const boisMedium = boisSpec.shots[1];
     expect(boisMedium.characters.map(({ id, heightPx, position }) => ({ id, heightPx, groundY: position.groundY }))).toEqual([

@@ -16,7 +16,7 @@
       "environment": "public/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
       "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_witnesses_encounter/shot_01/source.png" },
       "characters": [
-        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.27, "groundY": 0.98 }, "heightPx": 580, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:survivor", "depth": 20, "role": "SECONDARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
+        { "id": "marian", "asset": "public/assets/characters/pixel/masters/white_mage.png", "position": { "x": 0.27, "groundY": 0.98 }, "heightPx": 580, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:survivor", "depth": 20, "role": "SECONDARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
         { "id": "survivor", "asset": "public/assets/characters/pixel/full/survivor.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 580, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "PRIMARY", "action": "STAND", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "SLOW_PULL" },
@@ -32,7 +32,7 @@
       "environment": "public/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
       "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_witnesses_encounter/shot_02/source.png" },
       "characters": [
-        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.31, "groundY": 0.98 }, "heightPx": 740, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:survivor", "depth": 20, "role": "SECONDARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" },
+        { "id": "marian", "asset": "public/assets/characters/pixel/masters/white_mage.png", "position": { "x": 0.31, "groundY": 0.98 }, "heightPx": 740, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:survivor", "depth": 20, "role": "SECONDARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" },
         { "id": "survivor", "asset": "public/assets/characters/pixel/full/survivor.png", "position": { "x": 0.69, "groundY": 0.98 }, "heightPx": 740, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "PRIMARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "PAN_SMALL_RIGHT" },
@@ -48,7 +48,7 @@
       "environment": "public/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
       "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_02", "path": "tmp/cinematics/cin4/cin6a_witnesses_encounter/shot_02/last_frame.png" },
       "characters": [
-        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.31, "groundY": 0.98 }, "heightPx": 740, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:survivor", "depth": 20, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "marian", "asset": "public/assets/characters/pixel/masters/white_mage.png", "position": { "x": 0.31, "groundY": 0.98 }, "heightPx": 740, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:survivor", "depth": 20, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
         { "id": "survivor", "asset": "public/assets/characters/pixel/full/survivor.png", "position": { "x": 0.69, "groundY": 0.98 }, "heightPx": 740, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "PRIMARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "STATIC" },

@@ -16,7 +16,7 @@
       "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
       "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_bois_clair_arrival/shot_01/source.png" },
       "characters": [
-        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.25, "groundY": 0.98 }, "heightPx": 570, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:burning_village", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
+        { "id": "alistair", "asset": "public/assets/characters/pixel/masters/alistair.png", "position": { "x": 0.25, "groundY": 0.98 }, "heightPx": 570, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:burning_village", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "TRACK_SMALL_RIGHT" },
       "durationSeconds": 5,
@@ -31,7 +31,7 @@
       "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
       "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_01", "path": "tmp/cinematics/cin4/cin6a_bois_clair_arrival/shot_01/last_frame.png" },
       "characters": [
-        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.25, "groundY": 0.98 }, "heightPx": 570, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:burning_village", "depth": 20, "role": "PRIMARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" }
+        { "id": "alistair", "asset": "public/assets/characters/pixel/masters/alistair.png", "position": { "x": 0.25, "groundY": 0.98 }, "heightPx": 570, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:burning_village", "depth": 20, "role": "PRIMARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "SUBJECT_FOCUS_RIGHT" },
       "durationSeconds": 5,
@@ -46,7 +46,7 @@
       "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
       "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_bois_clair_arrival/shot_03/source.png" },
       "characters": [
-        { "id": "serpent_raider", "asset": "public/assets/characters/pixel/full/serpent_raider.png", "position": { "x": 0.28, "groundY": 0.98 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:villageoise", "depth": 20, "role": "PRIMARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" },
+        { "id": "serpent_raider", "asset": "public/assets/characters/pixel/masters/serpent_raider.png", "position": { "x": 0.28, "groundY": 0.98 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:villageoise", "depth": 20, "role": "PRIMARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" },
         { "id": "villageoise", "asset": "public/assets/characters/pixel/full/villageoise.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 670, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:serpent_raider", "depth": 10, "role": "PRIMARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "PAN_SMALL_RIGHT" },
@@ -62,7 +62,7 @@
       "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
       "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_03", "path": "tmp/cinematics/cin4/cin6a_bois_clair_arrival/shot_03/last_frame.png" },
       "characters": [
-        { "id": "serpent_raider", "asset": "public/assets/characters/pixel/full/serpent_raider.png", "position": { "x": 0.28, "groundY": 0.98 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:villageoise", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "serpent_raider", "asset": "public/assets/characters/pixel/masters/serpent_raider.png", "position": { "x": 0.28, "groundY": 0.98 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:villageoise", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
         { "id": "villageoise", "asset": "public/assets/characters/pixel/full/villageoise.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 670, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:serpent_raider", "depth": 10, "role": "PRIMARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "STATIC" },

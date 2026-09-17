@@ -165,8 +165,8 @@ const regate = {
     verdictPath: VERDICT_PATH,
   },
   characterReferences: {
-    cedric: { path: 'public/assets/characters/pixel/full/cedric.png', sha256: await hash('public/assets/characters/pixel/full/cedric.png') },
-    kestrel: { path: 'public/assets/characters/pixel/full/kestrel.png', sha256: await hash('public/assets/characters/pixel/full/kestrel.png') },
+    cedric: { path: 'public/assets/characters/pixel/masters/rogue.png', sha256: await hash('public/assets/characters/pixel/masters/rogue.png') },
+    kestrel: { path: 'public/assets/characters/pixel/masters/archer.png', sha256: await hash('public/assets/characters/pixel/masters/archer.png') },
   },
   gates: {
     INTERNAL_CUT_COUNT: 0,

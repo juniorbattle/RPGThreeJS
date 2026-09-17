@@ -24,7 +24,7 @@
       "characters": [
         {
           "id": "cedric",
-          "asset": "public/assets/characters/pixel/full/cedric.png",
+          "asset": "public/assets/characters/pixel/masters/rogue.png",
           "position": {
             "x": 0.36,
             "groundY": 0.91
@@ -42,7 +42,7 @@
         },
         {
           "id": "kestrel",
-          "asset": "public/assets/characters/pixel/full/kestrel.png",
+          "asset": "public/assets/characters/pixel/masters/archer.png",
           "position": {
             "x": 0.63,
             "groundY": 0.89

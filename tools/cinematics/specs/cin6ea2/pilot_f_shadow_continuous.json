@@ -16,7 +16,7 @@
     "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6ea2_pilot_f_shadow_continuous/shot_01/source.png" },
     "characters": [
       { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.31, "groundY": 0.83 }, "scale": { "framing": "WIDE", "perspective": 1.0 }, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:shadow_marks", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
-      { "id": "elara", "asset": "public/assets/characters/pixel/full/elara.png", "position": { "x": 0.53, "groundY": 0.84 }, "scale": { "framing": "WIDE", "perspective": 1.0 }, "facing": "SCREEN_LEFT", "lookTarget": "EVENT_FOCUS:shadow_marks", "depth": 10, "role": "SECONDARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
+      { "id": "elara", "asset": "public/assets/characters/pixel/masters/dark_mage.png", "position": { "x": 0.53, "groundY": 0.84 }, "scale": { "framing": "WIDE", "perspective": 1.0 }, "facing": "SCREEN_LEFT", "lookTarget": "EVENT_FOCUS:shadow_marks", "depth": 10, "role": "SECONDARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
     ],
     "camera": { "mode": "SLOW_PUSH" },
     "durationSeconds": 5,

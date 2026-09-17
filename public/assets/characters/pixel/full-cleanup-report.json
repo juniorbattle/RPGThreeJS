@@ -1,0 +1,504 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "combatCharactersAlreadyMastered": {
+    "completed": 25,
+    "expected": 25
+  },
+  "combatFullReferencesMigrated": 891,
+  "combatFullFilesDeleted": {
+    "count": 24,
+    "files": [
+      "public/assets/characters/pixel/full/alistair.png",
+      "public/assets/characters/pixel/full/cave_bat.png",
+      "public/assets/characters/pixel/full/cave_rat.png",
+      "public/assets/characters/pixel/full/cedric.png",
+      "public/assets/characters/pixel/full/elara.png",
+      "public/assets/characters/pixel/full/forest_badger.png",
+      "public/assets/characters/pixel/full/forest_spider.png",
+      "public/assets/characters/pixel/full/forest_troll_elite.png",
+      "public/assets/characters/pixel/full/goblin.png",
+      "public/assets/characters/pixel/full/kestrel.png",
+      "public/assets/characters/pixel/full/lancer.png",
+      "public/assets/characters/pixel/full/lion_champion.png",
+      "public/assets/characters/pixel/full/marian.png",
+      "public/assets/characters/pixel/full/marsh_toad.png",
+      "public/assets/characters/pixel/full/serpent_brute.png",
+      "public/assets/characters/pixel/full/serpent_duelist_elite.png",
+      "public/assets/characters/pixel/full/serpent_general_boss.png",
+      "public/assets/characters/pixel/full/serpent_oracle.png",
+      "public/assets/characters/pixel/full/serpent_raider.png",
+      "public/assets/characters/pixel/full/skeleton.png",
+      "public/assets/characters/pixel/full/venom_serpent.png",
+      "public/assets/characters/pixel/full/wild_boar.png",
+      "public/assets/characters/pixel/full/wolf.png",
+      "public/assets/characters/pixel/full/young_dragon_elite.png"
+    ]
+  },
+  "combatFullFilesStillRequired": {
+    "count": 0,
+    "files": []
+  },
+  "aliasesResolved": 10,
+  "aliasesNotRequiringGeneration": {
+    "count": 9,
+    "runtimeIds": [
+      "cedric",
+      "elara",
+      "kestrel",
+      "lion_chief",
+      "marian",
+      "serpent_captain",
+      "serpent_elite_raider",
+      "warrior",
+      "young_wyrm"
+    ]
+  },
+  "brokenCharacterReferences": [],
+  "remainingFullFiles": 28,
+  "remainingRealNonCombatIdentities": 27,
+  "nonCombatMastersToGenerate": 18,
+  "generationQueue": {
+    "KEY_CHARACTER": [
+      "alaric",
+      "aldric",
+      "eldwin",
+      "gunnar",
+      "lyra",
+      "maelor",
+      "morvan",
+      "sage_seraphine",
+      "talon"
+    ],
+    "RECURRING_NPC": [
+      "chroniqueur"
+    ],
+    "SUPPORTING_NPC": [
+      "refugee_mother",
+      "shrine_apparition",
+      "survivor",
+      "villageoise",
+      "wounded_merchant"
+    ],
+    "MINOR_NPC": [
+      "seal_guardian",
+      "troll",
+      "undead_champion"
+    ]
+  },
+  "notDemoRequired": [
+    "forest_viper",
+    "future_herbalist",
+    "future_lion_scribe",
+    "future_lion_spearman",
+    "future_shadow_envoy",
+    "giant_mygale",
+    "mountain_ram",
+    "river_crab",
+    "swamp_crocodile"
+  ],
+  "reviewRequired": [],
+  "productionAssetIntegrity": {
+    "mastersVerifiedUnchanged": 25,
+    "combatPosesVerifiedUnchanged": 100,
+    "hashesBeforeAndAfterEqual": true
+  },
+  "strategicPolicy": "CombatPoseSet.prepare",
+  "combatStagePolicy": "V2 prepare/dash/attack/cast",
+  "newArtGenerated": false,
+  "deletionRecovery": "Deleted files are tracked legacy assets and remain recoverable from Git history until the cleanup is committed.",
+  "migration": {
+    "lastIdempotentRun": {
+      "pathOccurrencesMigrated": 0,
+      "sourceHashesMigrated": 0,
+      "eliteBruteIdentityCorrections": 0,
+      "changedFiles": []
+    },
+    "referenceAudit": {
+      "count": 891,
+      "activeSourceAndToolingReferences": 741,
+      "publicAndRuntimeManifestRoleReferences": 150,
+      "files": {
+        "src/combat/legacyCombatRuntime.js": 51,
+        "src/combat/stage/CombatPoseRegistry.test.ts": 1,
+        "src/combat/stage/CombatStagePose.test.ts": 1,
+        "src/dev/optionCPhase4b/OptionCPhase4bIntegration.test.ts": 1,
+        "src/dev/optionCPhase4c/OptionCCharacterDefinitions.ts": 34,
+        "src/dev/optionCPhase4c/OptionCCharacterRegistry.ts": 12,
+        "src/dev/optionCPhase4c/OptionCPhase4c.test.ts": 3,
+        "src/game/catalog.ts": 6,
+        "src/render/assetManifest.ts": 149,
+        "src/render/CharacterVisualRegistry.test.ts": 3,
+        "tools/cinematics/build_cin6ea3_image_gate.py": 4,
+        "tools/cinematics/cin3_config.mjs": 3,
+        "tools/cinematics/finalize_cin6ea3_video_gate.mjs": 4,
+        "tools/cinematics/prepare_cin6ea3_source.mjs": 2,
+        "tools/cinematics/prepare_cin6ea3_video_gate.mjs": 2,
+        "tools/cinematics/specs/campaign_cinematic_census.json": 51,
+        "tools/cinematics/specs/canonical_character_production_cards.json": 30,
+        "tools/cinematics/specs/cin6a/alaric_audience_arrival.json": 4,
+        "tools/cinematics/specs/cin6a/bois_clair_arrival.json": 4,
+        "tools/cinematics/specs/cin6a/camp_departure.json": 8,
+        "tools/cinematics/specs/cin6a/final_refuge_dossier.json": 3,
+        "tools/cinematics/specs/cin6a/first_refuge_arrival.json": 4,
+        "tools/cinematics/specs/cin6a/first_refuge_departure.json": 3,
+        "tools/cinematics/specs/cin6a/refugees_approach.json": 3,
+        "tools/cinematics/specs/cin6a/second_refuge_departure.json": 4,
+        "tools/cinematics/specs/cin6a/serpent_route_ending.json": 3,
+        "tools/cinematics/specs/cin6a/shadow_signs.json": 4,
+        "tools/cinematics/specs/cin6a/valmir_route_fork.json": 4,
+        "tools/cinematics/specs/cin6a/witnesses_encounter.json": 3,
+        "tools/cinematics/specs/cin6b/lion_trial_route_ending.json": 3,
+        "tools/cinematics/specs/cin6c/cedric_encounter.json": 2,
+        "tools/cinematics/specs/cin6c/garen_encounter.json": 1,
+        "tools/cinematics/specs/cin6c/serpent_duelist_reveal.json": 1,
+        "tools/cinematics/specs/cin6c/serpent_informant_encounter.json": 1,
+        "tools/cinematics/specs/cin6c/serpent_road_tension.json": 2,
+        "tools/cinematics/specs/cin6c/spider_nest_reveal.json": 1,
+        "tools/cinematics/specs/cin6c/troll_crossing_reveal.json": 1,
+        "tools/cinematics/specs/cin6c/young_dragon_encounter.json": 1,
+        "tools/cinematics/specs/cin6ea/pilot_e_cedric_continuous.json": 2,
+        "tools/cinematics/specs/cin6ea/pilot_f_shadow_continuous.json": 1,
+        "tools/cinematics/specs/cin6ea2/pilot_c_camp_continuous.json": 2,
+        "tools/cinematics/specs/cin6ea2/pilot_e_cedric_continuous.json": 2,
+        "tools/cinematics/specs/cin6ea2/pilot_f_shadow_continuous.json": 1,
+        "tools/cinematics/specs/cin6ea3/pilot_e_cedric_continuous.json": 2,
+        "tools/cinematics/specs/cin6ea3_pilot_e_image_gate.json": 2,
+        "tools/cinematics/specs/cin6ea3_pilot_e_regate.json": 2,
+        "tools/cinematics/specs/cin6ea_compiled_prompt_manifest.json": 28,
+        "tools/cinematics/specs/cin6ea_provenance_catalog.json": 28,
+        "tools/cinematics/specs/cinematic_character_scale.json": 24,
+        "tools/cinematics/specs/cinematic_continuity_bible.json": 11,
+        "tools/cinematics/specs/final_cinematic_remaster_queue.json": 52,
+        "tools/cinematics/specs/final_dialogue_visual_segments.json": 82,
+        "tools/cinematics/specs/final_future_production_manifest.json": 82,
+        "tools/cinematics/specs/lion_judgement_v2.json": 3
+      }
+    }
+  },
+  "treatedFiles": [
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/alistair.png",
+      "masterId": "alistair",
+      "newMasterPath": "public/assets/characters/pixel/masters/alistair.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "docs/art-direction/option-c/character-style-lock/qa-report.json",
+        "docs/art-direction/option-c/character-style-lock/roster-contract.json",
+        "public/assets/dev/option-c/combat-poses-v2/manifests/alistair-manifest.json",
+        "public/assets/dev/option-c/combat-poses-v2/manifests/full-roster-batch.json",
+        "public/assets/dev/option-c/combat-poses-v2/qa/build_pilot_qa.py",
+        "public/assets/dev/option-c/phase4c/alistair/provenance/alistair-attack-key-pose-a001.json",
+        "public/assets/dev/option-c/phase4c/alistair/provenance/alistair-dash-key-pose-a001.json",
+        "public/assets/dev/option-c/phase4c/alistair/provenance/alistair-dash-key-pose-a002.json",
+        "public/assets/dev/option-c/phase4c/alistair/provenance/alistair-dash-key-pose-a003.json",
+        "public/assets/dev/option-c/phase4c/alistair/provenance/alistair-idle-key-pose-a001.json",
+        "public/assets/dev/option-c/phase4c/alistair/provenance/alistair-master-candidate-a001.json",
+        "public/assets/dev/option-c/phase4c/alistair/provenance/alistair-master-candidate-a002.json",
+        "public/assets/dev/option-c/phase4c/alistair/provenance/alistair-master-candidate-a003-chroma.json",
+        "public/assets/dev/option-c/phase4c/alistair/provenance/alistair-skill-key-pose-a001.json",
+        "public/assets/dev/option-c/phase4c/phase4c-glm.json",
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json",
+        "tools/option-c/audit_alistair_candidate.py"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/cave_bat.png",
+      "masterId": "cave_bat",
+      "newMasterPath": "public/assets/characters/pixel/masters/cave_bat.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/cave_rat.png",
+      "masterId": "cave_rat",
+      "newMasterPath": "public/assets/characters/pixel/masters/cave_rat.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/cedric.png",
+      "masterId": "rogue",
+      "newMasterPath": "public/assets/characters/pixel/masters/rogue.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/elara.png",
+      "masterId": "dark_mage",
+      "newMasterPath": "public/assets/characters/pixel/masters/dark_mage.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "docs/art-direction/option-c/character-style-lock/qa-report.json",
+        "docs/art-direction/option-c/character-style-lock/roster-contract.json",
+        "public/assets/dev/option-c/phase4c/phase4c-glm.json",
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/forest_badger.png",
+      "masterId": "forest_badger",
+      "newMasterPath": "public/assets/characters/pixel/masters/forest_badger.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "docs/art-direction/option-c/phase4-pilot/qa/composite-results.json",
+        "docs/art-direction/option-c/phase4-pilot/qa/pilot-machine-qa.json",
+        "docs/art-direction/option-c/phase4-pilot/qa/surface-preview.html",
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/forest_spider.png",
+      "masterId": "forest_spider",
+      "newMasterPath": "public/assets/characters/pixel/masters/forest_spider.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/forest_troll_elite.png",
+      "masterId": "forest_troll_elite",
+      "newMasterPath": "public/assets/characters/pixel/masters/forest_troll_elite.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/goblin.png",
+      "masterId": "goblin",
+      "newMasterPath": "public/assets/characters/pixel/masters/goblin.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "public/assets/dev/option-c/combat-poses-v2/manifests/full-roster-batch.json",
+        "public/assets/dev/option-c/combat-poses-v2/manifests/goblin-manifest.json",
+        "public/assets/dev/option-c/combat-poses-v2/qa/build_pilot_qa.py",
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/kestrel.png",
+      "masterId": "archer",
+      "newMasterPath": "public/assets/characters/pixel/masters/archer.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "docs/art-direction/option-c/character-style-lock/qa-report.json",
+        "docs/art-direction/option-c/character-style-lock/roster-contract.json",
+        "docs/art-direction/option-c/phase4-pilot/manifests/build_pilot_manifest.py",
+        "docs/art-direction/option-c/phase4-pilot/manifests/generation-lineage.json",
+        "docs/art-direction/option-c/phase4-pilot/qa/audit-pilot.py",
+        "docs/art-direction/option-c/phase4-pilot/qa/pilot-machine-qa.json",
+        "public/assets/dev/option-c/phase4c/phase4c-glm.json",
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/lancer.png",
+      "masterId": "lancer",
+      "newMasterPath": "public/assets/characters/pixel/masters/lancer.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/lion_champion.png",
+      "masterId": "lion_champion",
+      "newMasterPath": "public/assets/characters/pixel/masters/lion_champion.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "public/assets/dev/option-c/combat-poses-v2/manifests/full-roster-batch.json",
+        "public/assets/dev/option-c/combat-poses-v2/manifests/lion-champion-manifest.json",
+        "public/assets/dev/option-c/combat-poses-v2/qa/build_pilot_qa.py",
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/marian.png",
+      "masterId": "white_mage",
+      "newMasterPath": "public/assets/characters/pixel/masters/white_mage.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "docs/art-direction/option-c/character-style-lock/qa-report.json",
+        "docs/art-direction/option-c/character-style-lock/roster-contract.json",
+        "public/assets/dev/option-c/phase4c/phase4c-glm.json",
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/marsh_toad.png",
+      "masterId": "marsh_toad",
+      "newMasterPath": "public/assets/characters/pixel/masters/marsh_toad.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/serpent_brute.png",
+      "masterId": "serpent_brute",
+      "newMasterPath": "public/assets/characters/pixel/masters/serpent_brute.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/serpent_duelist_elite.png",
+      "masterId": "serpent_duelist_elite",
+      "newMasterPath": "public/assets/characters/pixel/masters/serpent_duelist_elite.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/serpent_general_boss.png",
+      "masterId": "serpent_general_boss",
+      "newMasterPath": "public/assets/characters/pixel/masters/serpent_general_boss.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/serpent_oracle.png",
+      "masterId": "serpent_oracle",
+      "newMasterPath": "public/assets/characters/pixel/masters/serpent_oracle.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/serpent_raider.png",
+      "masterId": "serpent_raider",
+      "newMasterPath": "public/assets/characters/pixel/masters/serpent_raider.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/skeleton.png",
+      "masterId": "skeleton",
+      "newMasterPath": "public/assets/characters/pixel/masters/skeleton.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/venom_serpent.png",
+      "masterId": "venom_serpent",
+      "newMasterPath": "public/assets/characters/pixel/masters/venom_serpent.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/wild_boar.png",
+      "masterId": "wild_boar",
+      "newMasterPath": "public/assets/characters/pixel/masters/wild_boar.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/wolf.png",
+      "masterId": "wolf",
+      "newMasterPath": "public/assets/characters/pixel/masters/wolf.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    },
+    {
+      "legacyFullPath": "public/assets/characters/pixel/full/young_dragon_elite.png",
+      "masterId": "young_dragon_elite",
+      "newMasterPath": "public/assets/characters/pixel/masters/young_dragon_elite.png",
+      "activeReferences": [],
+      "historicalReferences": [
+        "tools/cleanup/specs/repo_clean_3_execution.json",
+        "tools/cleanup/specs/repo_clean_size_report.json"
+      ],
+      "classification": "UNUSED_ACTIVE_PATH_RETIRED",
+      "deleted": true
+    }
+  ]
+}

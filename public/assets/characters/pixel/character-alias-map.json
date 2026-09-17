@@ -1,0 +1,292 @@
+{
+  "schemaVersion": 1,
+  "status": "COMPLETE",
+  "entries": [
+    {
+      "runtimeId": "alistair",
+      "masterId": "alistair",
+      "legacyFullPath": "/assets/characters/pixel/full/alistair.png",
+      "newMasterPath": "/assets/characters/pixel/masters/alistair.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "archer",
+      "masterId": "archer",
+      "legacyFullPath": "/assets/characters/pixel/full/kestrel.png",
+      "newMasterPath": "/assets/characters/pixel/masters/archer.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "cave_bat",
+      "masterId": "cave_bat",
+      "legacyFullPath": "/assets/characters/pixel/full/cave_bat.png",
+      "newMasterPath": "/assets/characters/pixel/masters/cave_bat.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "cave_rat",
+      "masterId": "cave_rat",
+      "legacyFullPath": "/assets/characters/pixel/full/cave_rat.png",
+      "newMasterPath": "/assets/characters/pixel/masters/cave_rat.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "cedric",
+      "masterId": "rogue",
+      "legacyFullPath": "/assets/characters/pixel/full/cedric.png",
+      "newMasterPath": "/assets/characters/pixel/masters/rogue.png",
+      "aliasOf": "rogue",
+      "status": "COVERED_BY_EXISTING_MASTER"
+    },
+    {
+      "runtimeId": "dark_mage",
+      "masterId": "dark_mage",
+      "legacyFullPath": "/assets/characters/pixel/full/elara.png",
+      "newMasterPath": "/assets/characters/pixel/masters/dark_mage.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "elara",
+      "masterId": "dark_mage",
+      "legacyFullPath": "/assets/characters/pixel/full/elara.png",
+      "newMasterPath": "/assets/characters/pixel/masters/dark_mage.png",
+      "aliasOf": "dark_mage",
+      "status": "COVERED_BY_EXISTING_MASTER"
+    },
+    {
+      "runtimeId": "forest_badger",
+      "masterId": "forest_badger",
+      "legacyFullPath": "/assets/characters/pixel/full/forest_badger.png",
+      "newMasterPath": "/assets/characters/pixel/masters/forest_badger.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "forest_spider",
+      "masterId": "forest_spider",
+      "legacyFullPath": "/assets/characters/pixel/full/forest_spider.png",
+      "newMasterPath": "/assets/characters/pixel/masters/forest_spider.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "forest_troll_elite",
+      "masterId": "forest_troll_elite",
+      "legacyFullPath": "/assets/characters/pixel/full/forest_troll_elite.png",
+      "newMasterPath": "/assets/characters/pixel/masters/forest_troll_elite.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "goblin",
+      "masterId": "goblin",
+      "legacyFullPath": "/assets/characters/pixel/full/goblin.png",
+      "newMasterPath": "/assets/characters/pixel/masters/goblin.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "kestrel",
+      "masterId": "archer",
+      "legacyFullPath": "/assets/characters/pixel/full/kestrel.png",
+      "newMasterPath": "/assets/characters/pixel/masters/archer.png",
+      "aliasOf": "archer",
+      "status": "COVERED_BY_EXISTING_MASTER"
+    },
+    {
+      "runtimeId": "lancer",
+      "masterId": "lancer",
+      "legacyFullPath": "/assets/characters/pixel/full/lancer.png",
+      "newMasterPath": "/assets/characters/pixel/masters/lancer.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "lion_champion",
+      "masterId": "lion_champion",
+      "legacyFullPath": "/assets/characters/pixel/full/lion_champion.png",
+      "newMasterPath": "/assets/characters/pixel/masters/lion_champion.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "lion_chief",
+      "masterId": "lion_champion",
+      "legacyFullPath": "/assets/characters/pixel/full/lion_champion.png",
+      "newMasterPath": "/assets/characters/pixel/masters/lion_champion.png",
+      "aliasOf": "lion_champion",
+      "status": "COVERED_BY_EXISTING_MASTER"
+    },
+    {
+      "runtimeId": "marian",
+      "masterId": "white_mage",
+      "legacyFullPath": "/assets/characters/pixel/full/marian.png",
+      "newMasterPath": "/assets/characters/pixel/masters/white_mage.png",
+      "aliasOf": "white_mage",
+      "status": "COVERED_BY_EXISTING_MASTER"
+    },
+    {
+      "runtimeId": "marsh_toad",
+      "masterId": "marsh_toad",
+      "legacyFullPath": "/assets/characters/pixel/full/marsh_toad.png",
+      "newMasterPath": "/assets/characters/pixel/masters/marsh_toad.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "rogue",
+      "masterId": "rogue",
+      "legacyFullPath": "/assets/characters/pixel/full/cedric.png",
+      "newMasterPath": "/assets/characters/pixel/masters/rogue.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "seraphine",
+      "masterId": null,
+      "legacyFullPath": "/assets/characters/pixel/full/seraphine.png",
+      "newMasterPath": null,
+      "aliasOf": "sage_seraphine",
+      "status": "SHARES_FUTURE_MASTER"
+    },
+    {
+      "runtimeId": "serpent_brute",
+      "masterId": "serpent_brute",
+      "legacyFullPath": "/assets/characters/pixel/full/serpent_brute.png",
+      "newMasterPath": "/assets/characters/pixel/masters/serpent_brute.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "serpent_captain",
+      "masterId": "serpent_general_boss",
+      "legacyFullPath": "/assets/characters/pixel/full/serpent_general_boss.png",
+      "newMasterPath": "/assets/characters/pixel/masters/serpent_general_boss.png",
+      "aliasOf": "serpent_general_boss",
+      "status": "COVERED_BY_EXISTING_MASTER"
+    },
+    {
+      "runtimeId": "serpent_duelist_elite",
+      "masterId": "serpent_duelist_elite",
+      "legacyFullPath": "/assets/characters/pixel/full/serpent_duelist_elite.png",
+      "newMasterPath": "/assets/characters/pixel/masters/serpent_duelist_elite.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "serpent_elite_brute",
+      "masterId": "serpent_elite_brute",
+      "legacyFullPath": "/assets/characters/pixel/full/serpent_brute.png",
+      "newMasterPath": "/assets/characters/pixel/masters/serpent_elite_brute.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "serpent_elite_raider",
+      "masterId": "serpent_duelist_elite",
+      "legacyFullPath": "/assets/characters/pixel/full/serpent_duelist_elite.png",
+      "newMasterPath": "/assets/characters/pixel/masters/serpent_duelist_elite.png",
+      "aliasOf": "serpent_duelist_elite",
+      "status": "COVERED_BY_EXISTING_MASTER"
+    },
+    {
+      "runtimeId": "serpent_general_boss",
+      "masterId": "serpent_general_boss",
+      "legacyFullPath": "/assets/characters/pixel/full/serpent_general_boss.png",
+      "newMasterPath": "/assets/characters/pixel/masters/serpent_general_boss.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "serpent_oracle",
+      "masterId": "serpent_oracle",
+      "legacyFullPath": "/assets/characters/pixel/full/serpent_oracle.png",
+      "newMasterPath": "/assets/characters/pixel/masters/serpent_oracle.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "serpent_raider",
+      "masterId": "serpent_raider",
+      "legacyFullPath": "/assets/characters/pixel/full/serpent_raider.png",
+      "newMasterPath": "/assets/characters/pixel/masters/serpent_raider.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "skeleton",
+      "masterId": "skeleton",
+      "legacyFullPath": "/assets/characters/pixel/full/skeleton.png",
+      "newMasterPath": "/assets/characters/pixel/masters/skeleton.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "venom_serpent",
+      "masterId": "venom_serpent",
+      "legacyFullPath": "/assets/characters/pixel/full/venom_serpent.png",
+      "newMasterPath": "/assets/characters/pixel/masters/venom_serpent.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "warrior",
+      "masterId": "alistair",
+      "legacyFullPath": "/assets/characters/pixel/full/alistair.png",
+      "newMasterPath": "/assets/characters/pixel/masters/alistair.png",
+      "aliasOf": "alistair",
+      "status": "COVERED_BY_EXISTING_MASTER"
+    },
+    {
+      "runtimeId": "white_mage",
+      "masterId": "white_mage",
+      "legacyFullPath": "/assets/characters/pixel/full/marian.png",
+      "newMasterPath": "/assets/characters/pixel/masters/white_mage.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "wild_boar",
+      "masterId": "wild_boar",
+      "legacyFullPath": "/assets/characters/pixel/full/wild_boar.png",
+      "newMasterPath": "/assets/characters/pixel/masters/wild_boar.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "wolf",
+      "masterId": "wolf",
+      "legacyFullPath": "/assets/characters/pixel/full/wolf.png",
+      "newMasterPath": "/assets/characters/pixel/masters/wolf.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "young_dragon_elite",
+      "masterId": "young_dragon_elite",
+      "legacyFullPath": "/assets/characters/pixel/full/young_dragon_elite.png",
+      "newMasterPath": "/assets/characters/pixel/masters/young_dragon_elite.png",
+      "aliasOf": null,
+      "status": "MASTERED"
+    },
+    {
+      "runtimeId": "young_wyrm",
+      "masterId": "young_dragon_elite",
+      "legacyFullPath": "/assets/characters/pixel/full/young_dragon_elite.png",
+      "newMasterPath": "/assets/characters/pixel/masters/young_dragon_elite.png",
+      "aliasOf": "young_dragon_elite",
+      "status": "COVERED_BY_EXISTING_MASTER"
+    }
+  ],
+  "counts": {
+    "records": 35,
+    "aliasesResolved": 10,
+    "aliasesCoveredByExistingMaster": 9,
+    "aliasesSharingFutureMaster": 1
+  }
+}

@@ -33,7 +33,7 @@
         },
         {
           "id": "lion_champion",
-          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "asset": "public/assets/characters/pixel/masters/lion_champion.png",
           "position": { "x": 0.72, "groundY": 0.97 },
           "heightPx": 620,
           "facing": "SCREEN_LEFT",
@@ -74,7 +74,7 @@
         },
         {
           "id": "lion_champion",
-          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "asset": "public/assets/characters/pixel/masters/lion_champion.png",
           "position": { "x": 0.73, "groundY": 0.98 },
           "heightPx": 750,
           "facing": "SCREEN_LEFT",
@@ -116,7 +116,7 @@
         },
         {
           "id": "lion_champion",
-          "asset": "public/assets/characters/pixel/full/lion_champion.png",
+          "asset": "public/assets/characters/pixel/masters/lion_champion.png",
           "position": { "x": 0.73, "groundY": 0.98 },
           "heightPx": 750,
           "facing": "SCREEN_LEFT",

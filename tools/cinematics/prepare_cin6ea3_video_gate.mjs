@@ -89,8 +89,8 @@ const spec = {
     environment: 'public/assets/generated/lion-phase/dialogue/mystery_recruit.webp',
     source: { type: 'ROOT_SOURCE', output: SOURCE_PATH },
     characters: [
-      { id: 'cedric', asset: 'public/assets/characters/pixel/full/cedric.png', position: { x: 0.36, groundY: 0.91 }, scale: { framing: 'WIDE', perspective: 1.1 }, facing: 'SCREEN_RIGHT', lookTarget: 'CHARACTER:kestrel', depth: 20, role: 'PRIMARY', action: 'SHIFT_STANCE', mirrorPolicy: 'ALLOW' },
-      { id: 'kestrel', asset: 'public/assets/characters/pixel/full/kestrel.png', position: { x: 0.63, groundY: 0.89 }, scale: { framing: 'WIDE', perspective: 1.0 }, facing: 'SCREEN_LEFT', lookTarget: 'CHARACTER:cedric', depth: 10, role: 'SECONDARY', action: 'OBSERVE', mirrorPolicy: 'ALLOW' },
+      { id: 'cedric', asset: 'public/assets/characters/pixel/masters/rogue.png', position: { x: 0.36, groundY: 0.91 }, scale: { framing: 'WIDE', perspective: 1.1 }, facing: 'SCREEN_RIGHT', lookTarget: 'CHARACTER:kestrel', depth: 20, role: 'PRIMARY', action: 'SHIFT_STANCE', mirrorPolicy: 'ALLOW' },
+      { id: 'kestrel', asset: 'public/assets/characters/pixel/masters/archer.png', position: { x: 0.63, groundY: 0.89 }, scale: { framing: 'WIDE', perspective: 1.0 }, facing: 'SCREEN_LEFT', lookTarget: 'CHARACTER:cedric', depth: 10, role: 'SECONDARY', action: 'OBSERVE', mirrorPolicy: 'ALLOW' },
     ],
     camera: { mode: 'STATIC' },
     durationSeconds: 5,

@@ -16,8 +16,8 @@
       "environment": "public/assets/generated/lion-phase/dialogue/village_choice.webp",
       "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_second_refuge_departure/shot_01/source.png" },
       "characters": [
-        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.27, "groundY": 0.98 }, "heightPx": 590, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:onward_road", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
-        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.72, "groundY": 0.98 }, "heightPx": 590, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "SECONDARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
+        { "id": "marian", "asset": "public/assets/characters/pixel/masters/white_mage.png", "position": { "x": 0.27, "groundY": 0.98 }, "heightPx": 590, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:onward_road", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
+        { "id": "alistair", "asset": "public/assets/characters/pixel/masters/alistair.png", "position": { "x": 0.72, "groundY": 0.98 }, "heightPx": 590, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "SECONDARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "TRACK_SMALL_RIGHT" },
       "durationSeconds": 5,
@@ -32,8 +32,8 @@
       "environment": "public/assets/generated/lion-phase/dialogue/village_choice.webp",
       "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_second_refuge_departure/shot_02/source.png" },
       "characters": [
-        { "id": "marian", "asset": "public/assets/characters/pixel/full/marian.png", "position": { "x": 0.31, "groundY": 0.98 }, "heightPx": 730, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:onward_road", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
-        { "id": "alistair", "asset": "public/assets/characters/pixel/full/alistair.png", "position": { "x": 0.69, "groundY": 0.98 }, "heightPx": 730, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "SECONDARY", "action": "STOP", "mirrorPolicy": "ALLOW" }
+        { "id": "marian", "asset": "public/assets/characters/pixel/masters/white_mage.png", "position": { "x": 0.31, "groundY": 0.98 }, "heightPx": 730, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:onward_road", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "alistair", "asset": "public/assets/characters/pixel/masters/alistair.png", "position": { "x": 0.69, "groundY": 0.98 }, "heightPx": 730, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "SECONDARY", "action": "STOP", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "SLOW_PULL" },
       "durationSeconds": 5,

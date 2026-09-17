@@ -15,8 +15,8 @@
     "environment": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
     "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_serpent_road_tension/shot_01/source.png" },
     "characters": [
-      { "id": "serpent_raider", "asset": "public/assets/characters/pixel/full/serpent_raider.png", "position": { "x": 0.38, "groundY": 0.97 }, "scale": { "framing": "WIDE", "perspective": 1.05 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:serpent_brute", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
-      { "id": "serpent_brute", "asset": "public/assets/characters/pixel/full/serpent_brute.png", "position": { "x": 0.67, "groundY": 0.97 }, "scale": { "framing": "WIDE", "perspective": 1.0 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:serpent_raider", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      { "id": "serpent_raider", "asset": "public/assets/characters/pixel/masters/serpent_raider.png", "position": { "x": 0.38, "groundY": 0.97 }, "scale": { "framing": "WIDE", "perspective": 1.05 }, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:serpent_brute", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+      { "id": "serpent_brute", "asset": "public/assets/characters/pixel/masters/serpent_brute.png", "position": { "x": 0.67, "groundY": 0.97 }, "scale": { "framing": "WIDE", "perspective": 1.0 }, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:serpent_raider", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
     ],
     "camera": { "mode": "WIDE_HOLD" },
     "durationSeconds": 8,
