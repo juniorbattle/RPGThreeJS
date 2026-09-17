@@ -1,0 +1,182 @@
+{
+  "productionMasters": 37,
+  "combatPoses": 100,
+  "newMastersPromoted": 12,
+  "byteIdenticalPromotion": true,
+  "existing25MasterHashesUnchanged": true,
+  "combatPoseHashesUnchanged": true,
+  "activeFullReferences": [],
+  "fullDirectoryActive": false,
+  "manifestMasters": 37,
+  "manifestCombatPoses": 100,
+  "publicRuntimeManifestByteIdentical": true,
+  "promotionRecords": [
+    {
+      "characterId": "alaric",
+      "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/masters/alaric.png",
+      "destinationPath": "public/assets/characters/pixel/masters/alaric.png",
+      "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f",
+      "byteIdentical": true
+    },
+    {
+      "characterId": "maelor",
+      "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/masters/maelor.png",
+      "destinationPath": "public/assets/characters/pixel/masters/maelor.png",
+      "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+      "byteIdentical": true
+    },
+    {
+      "characterId": "sage_seraphine",
+      "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/masters/sage_seraphine.png",
+      "destinationPath": "public/assets/characters/pixel/masters/sage_seraphine.png",
+      "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
+      "byteIdentical": true
+    },
+    {
+      "characterId": "refugee_mother",
+      "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/masters/refugee_mother.png",
+      "destinationPath": "public/assets/characters/pixel/masters/refugee_mother.png",
+      "sha256": "864841b61f68c037f64b0a353f504592164ee797ca1583997e80887f549bad98",
+      "byteIdentical": true
+    },
+    {
+      "characterId": "survivor",
+      "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/masters/survivor.png",
+      "destinationPath": "public/assets/characters/pixel/masters/survivor.png",
+      "sha256": "2039a2566269065f6db0776170e1b6bda2f1803a721c8bc5a4eb279def16e48d",
+      "byteIdentical": true
+    },
+    {
+      "characterId": "villageoise",
+      "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/masters/villageoise.png",
+      "destinationPath": "public/assets/characters/pixel/masters/villageoise.png",
+      "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180",
+      "byteIdentical": true
+    },
+    {
+      "characterId": "wounded_merchant",
+      "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/masters/wounded_merchant.png",
+      "destinationPath": "public/assets/characters/pixel/masters/wounded_merchant.png",
+      "sha256": "07b689e4ff2b9fa24285e18576cf044717c6750abbd3c2cf4ef686488c4a45e1",
+      "byteIdentical": true
+    },
+    {
+      "characterId": "villageois",
+      "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/masters/villageois.png",
+      "destinationPath": "public/assets/characters/pixel/masters/villageois.png",
+      "sha256": "f395a95994dea46b586e15e7cc5ca5666ba7b660762dbd2b4506bf8c2375689b",
+      "byteIdentical": true
+    },
+    {
+      "characterId": "refugee",
+      "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/masters/refugee.png",
+      "destinationPath": "public/assets/characters/pixel/masters/refugee.png",
+      "sha256": "aaebf18c6f56e06f92b4827315a837e9f42150d61af02460c5c07592539932f9",
+      "byteIdentical": true
+    },
+    {
+      "characterId": "village_militia_spearman",
+      "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/masters/village_militia_spearman.png",
+      "destinationPath": "public/assets/characters/pixel/masters/village_militia_spearman.png",
+      "sha256": "b35b7f7ca5f7323c2f1e123b8047bd22735e756b11be08e5550d344eda476a5d",
+      "byteIdentical": true
+    },
+    {
+      "characterId": "village_militia_brute",
+      "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/masters/village_militia_brute.png",
+      "destinationPath": "public/assets/characters/pixel/masters/village_militia_brute.png",
+      "sha256": "8132e4162e4a3f57dfe6e2d206fc4d1b46c5debfba4352f0dafe3c3c9f2bf150",
+      "byteIdentical": true
+    },
+    {
+      "characterId": "village_militia_slinger",
+      "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/masters/village_militia_slinger.png",
+      "destinationPath": "public/assets/characters/pixel/masters/village_militia_slinger.png",
+      "sha256": "2a0c3d4743261cb445e6f999ab39c7c52083fd94c4c48d116a44836ca657c478",
+      "byteIdentical": true
+    }
+  ],
+  "status": "PASS",
+  "legacyFullArchived": [
+    {
+      "characterId": "alaric",
+      "formerPath": "public/assets/characters/pixel/full/alaric.png",
+      "archivePath": "public/assets/characters/pixel/archive/legacy-full/alaric.png",
+      "sha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b",
+      "replacementMasterPath": "public/assets/characters/pixel/masters/alaric.png",
+      "reason": "CHARACTER_SYSTEM_V2_MASTER_PROMOTION",
+      "reusedExistingByteIdenticalArchive": false
+    },
+    {
+      "characterId": "maelor",
+      "formerPath": "public/assets/characters/pixel/full/maelor.png",
+      "archivePath": "public/assets/characters/pixel/archive/legacy-full/maelor.png",
+      "sha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215",
+      "replacementMasterPath": "public/assets/characters/pixel/masters/maelor.png",
+      "reason": "CHARACTER_SYSTEM_V2_MASTER_PROMOTION",
+      "reusedExistingByteIdenticalArchive": false
+    },
+    {
+      "characterId": "sage_seraphine",
+      "formerPath": "public/assets/characters/pixel/full/sage_seraphine.png",
+      "archivePath": "public/assets/characters/pixel/archive/non-demo/seraphine.png",
+      "sha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
+      "replacementMasterPath": "public/assets/characters/pixel/masters/sage_seraphine.png",
+      "reason": "CHARACTER_SYSTEM_V2_MASTER_PROMOTION",
+      "reusedExistingByteIdenticalArchive": true
+    },
+    {
+      "characterId": "refugee_mother",
+      "formerPath": "public/assets/characters/pixel/full/refugee_mother.png",
+      "archivePath": "public/assets/characters/pixel/archive/legacy-full/refugee_mother.png",
+      "sha256": "819f5348ff22f1c6a6503a9e4186b2f61c1fff68b8cd16c90f4aa5eda1219e13",
+      "replacementMasterPath": "public/assets/characters/pixel/masters/refugee_mother.png",
+      "reason": "CHARACTER_SYSTEM_V2_MASTER_PROMOTION",
+      "reusedExistingByteIdenticalArchive": false
+    },
+    {
+      "characterId": "survivor",
+      "formerPath": "public/assets/characters/pixel/full/survivor.png",
+      "archivePath": "public/assets/characters/pixel/archive/legacy-full/survivor.png",
+      "sha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47",
+      "replacementMasterPath": "public/assets/characters/pixel/masters/survivor.png",
+      "reason": "CHARACTER_SYSTEM_V2_MASTER_PROMOTION",
+      "reusedExistingByteIdenticalArchive": false
+    },
+    {
+      "characterId": "villageoise",
+      "formerPath": "public/assets/characters/pixel/full/villageoise.png",
+      "archivePath": "public/assets/characters/pixel/archive/legacy-full/villageoise.png",
+      "sha256": "25a253fa81b72629087fd1701636ddbfe20347bdf8500a194092e19d1f8a9dd2",
+      "replacementMasterPath": "public/assets/characters/pixel/masters/villageoise.png",
+      "reason": "CHARACTER_SYSTEM_V2_MASTER_PROMOTION",
+      "reusedExistingByteIdenticalArchive": false
+    },
+    {
+      "characterId": "wounded_merchant",
+      "formerPath": "public/assets/characters/pixel/full/wounded_merchant.png",
+      "archivePath": "public/assets/characters/pixel/archive/legacy-full/wounded_merchant.png",
+      "sha256": "94ba6f08220e501d1f5a744b877670ca4902fdaf8ece3bd31db5b01f176a1d78",
+      "replacementMasterPath": "public/assets/characters/pixel/masters/wounded_merchant.png",
+      "reason": "CHARACTER_SYSTEM_V2_MASTER_PROMOTION",
+      "reusedExistingByteIdenticalArchive": false
+    }
+  ],
+  "legacyFullDeletedFromActiveRoot": 7,
+  "seraphineCanonicalId": "sage_seraphine",
+  "seraphineDuplicateActive": false,
+  "optionalCiviliansRegistered": [
+    "villageois",
+    "refugee"
+  ],
+  "genericVillageMilitiaRegistered": [
+    "village_militia_spearman",
+    "village_militia_brute",
+    "village_militia_slinger"
+  ],
+  "newArtGenerated": false,
+  "gameplayChanged": false,
+  "combatLogicChanged": false,
+  "vfxChanged": false,
+  "environmentChanged": false
+}

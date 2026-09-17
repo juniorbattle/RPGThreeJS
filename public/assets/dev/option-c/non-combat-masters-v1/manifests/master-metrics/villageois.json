@@ -1,0 +1,49 @@
+{
+  "unitId": "villageois",
+  "category": "OPTIONAL_CIVILIAN",
+  "familyClass": "STANDARD_HUMANOID",
+  "canvas": [
+    512,
+    512
+  ],
+  "alphaBounds": [
+    177,
+    126,
+    334,
+    456
+  ],
+  "coreBounds": [
+    179,
+    126,
+    333,
+    456
+  ],
+  "baseline": 456,
+  "measuredCoreBottom": 456,
+  "baselineDeltaPx": 0,
+  "targetCoreExtentPx": 330,
+  "normalizedCoreExtentPx": 330,
+  "authoredScale": 0.3583061889250814,
+  "appliedScale": 0.3583061889250814,
+  "scaleLimitedByExtremeAppendage": false,
+  "projectedFullSizeAtAuthoredScale": [
+    157,
+    330
+  ],
+  "transparentMargins": [
+    177,
+    126,
+    178,
+    56
+  ],
+  "safeMarginsPass": true,
+  "faceObscurationPolicy": "PASS_AGENT_VISUAL_REVIEW",
+  "reviewStatus": "OPERATOR_REVIEW_REQUIRED",
+  "identityAlias": null,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/qa/processed/villageois/clean.png",
+  "promptPath": "public/assets/dev/option-c/non-combat-masters-v1/manifests/prompts/villageois.txt",
+  "masterPath": "public/assets/dev/option-c/non-combat-masters-v1/masters/villageois.png",
+  "masterSha256": "f395a95994dea46b586e15e7cc5ca5666ba7b660762dbd2b4506bf8c2375689b"
+}

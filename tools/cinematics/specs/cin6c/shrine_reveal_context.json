@@ -15,7 +15,7 @@
     "environment": "public/assets/generated/lion-phase/dialogue/mystery_shrine.webp",
     "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_shrine_reveal_context/shot_01/source.png" },
     "characters": [
-      { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.22, "groundY": 0.98 }, "scale": { "framing": "WIDE", "perspective": 0.92 }, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:untouched_shrine", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/masters/sage_seraphine.png", "position": { "x": 0.22, "groundY": 0.98 }, "scale": { "framing": "WIDE", "perspective": 0.92 }, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:untouched_shrine", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
     ],
     "camera": { "mode": "STATIC" },
     "durationSeconds": 5,

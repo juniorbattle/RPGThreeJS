@@ -21,7 +21,7 @@
       "characters": [
         {
           "id": "alaric",
-          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "asset": "public/assets/characters/pixel/masters/alaric.png",
           "position": { "x": 0.31, "groundY": 0.97 },
           "heightPx": 680,
           "facing": "SCREEN_RIGHT",
@@ -62,7 +62,7 @@
       "characters": [
         {
           "id": "alaric",
-          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "asset": "public/assets/characters/pixel/masters/alaric.png",
           "position": { "x": 0.32, "groundY": 0.98 },
           "heightPx": 820,
           "facing": "SCREEN_RIGHT",
@@ -104,7 +104,7 @@
       "characters": [
         {
           "id": "alaric",
-          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "asset": "public/assets/characters/pixel/masters/alaric.png",
           "position": { "x": 0.32, "groundY": 0.98 },
           "heightPx": 820,
           "facing": "SCREEN_RIGHT",

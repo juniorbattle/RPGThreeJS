@@ -35,7 +35,7 @@
         "integration": {
           "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
           "layoutReference": "tmp/cinematics/cin4/cin66f_valmir_route_fork/shot_01/layout_reference.png",
-          "referenceAssets": ["public/assets/characters/pixel/full/sage_seraphine.png", "public/assets/characters/pixel/full/maelor.png", "public/assets/characters/pixel/masters/alistair.png"],
+          "referenceAssets": ["public/assets/characters/pixel/masters/sage_seraphine.png", "public/assets/characters/pixel/masters/maelor.png", "public/assets/characters/pixel/masters/alistair.png"],
           "qualityGates": ["NO_COLLAGE_LOOK", "TWO_PATH_GEOGRAPHY", "GROUND_CONTACT", "DEPTH_INTEGRATION", "WORLD_INTEGRATION"]
         }
       },
@@ -43,9 +43,9 @@
       "rightRouteSafeZone": { "x": 0.68, "y": 0.66, "width": 0.29, "height": 0.28 },
       "centerGroupSafeZone": { "x": 0.37, "y": 0.54, "width": 0.26, "height": 0.42 },
       "characters": [
-        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.40, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.68 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:left_route", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/masters/sage_seraphine.png", "position": { "x": 0.40, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.68 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:left_route", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
         { "id": "alistair", "asset": "public/assets/characters/pixel/masters/alistair.png", "position": { "x": 0.50, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.75 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:fork_center", "depth": 20, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "HERO", "requiredForNarrativeRead": true, "action": "STAND", "mirrorPolicy": "ALLOW" },
-        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.60, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.70 }, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:right_route", "depth": 10, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+        { "id": "maelor", "asset": "public/assets/characters/pixel/masters/maelor.png", "position": { "x": 0.60, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.70 }, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:right_route", "depth": 10, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "WIDE_HOLD" },
       "durationSeconds": 5,
@@ -64,7 +64,7 @@
         "integration": {
           "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
           "layoutReference": "tmp/cinematics/cin4/cin66f_valmir_route_fork/shot_02/layout_reference.png",
-          "referenceAssets": ["public/assets/characters/pixel/full/sage_seraphine.png", "public/assets/characters/pixel/full/maelor.png", "public/assets/characters/pixel/masters/alistair.png"],
+          "referenceAssets": ["public/assets/characters/pixel/masters/sage_seraphine.png", "public/assets/characters/pixel/masters/maelor.png", "public/assets/characters/pixel/masters/alistair.png"],
           "qualityGates": ["NO_COLLAGE_LOOK", "LEFT_ROUTE_SAFE_ZONE", "RIGHT_ROUTE_SAFE_ZONE", "CENTER_GROUP_SAFE_ZONE", "FINAL_FRAME", "WORLD_INTEGRATION"]
         }
       },
@@ -72,9 +72,9 @@
       "rightRouteSafeZone": { "x": 0.68, "y": 0.66, "width": 0.29, "height": 0.28 },
       "centerGroupSafeZone": { "x": 0.37, "y": 0.54, "width": 0.26, "height": 0.42 },
       "characters": [
-        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.40, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.68 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:left_route", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "LOOK", "mirrorPolicy": "ALLOW" },
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/masters/sage_seraphine.png", "position": { "x": 0.40, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.68 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:left_route", "depth": 30, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "LOOK", "mirrorPolicy": "ALLOW" },
         { "id": "alistair", "asset": "public/assets/characters/pixel/masters/alistair.png", "position": { "x": 0.50, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.75 }, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:fork_center", "depth": 20, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "HERO", "requiredForNarrativeRead": true, "action": "STOP", "mirrorPolicy": "ALLOW" },
-        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.60, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.70 }, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:right_route", "depth": 10, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "LOOK", "mirrorPolicy": "ALLOW" }
+        { "id": "maelor", "asset": "public/assets/characters/pixel/masters/maelor.png", "position": { "x": 0.60, "groundY": 0.96 }, "scale": { "framing": "WIDE", "perspective": 0.70 }, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:right_route", "depth": 10, "role": "PRIMARY", "screenRole": "PRIMARY", "factionRole": "ADVISER", "requiredForNarrativeRead": true, "action": "LOOK", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "STATIC" },
       "durationSeconds": 5,

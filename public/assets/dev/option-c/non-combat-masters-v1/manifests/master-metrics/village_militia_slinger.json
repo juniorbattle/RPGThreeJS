@@ -1,0 +1,49 @@
+{
+  "unitId": "village_militia_slinger",
+  "category": "VILLAGE_COMBATANT",
+  "familyClass": "STANDARD_HUMANOID",
+  "canvas": [
+    512,
+    512
+  ],
+  "alphaBounds": [
+    171,
+    122,
+    340,
+    456
+  ],
+  "coreBounds": [
+    172,
+    124,
+    339,
+    456
+  ],
+  "baseline": 456,
+  "measuredCoreBottom": 456,
+  "baselineDeltaPx": 0,
+  "targetCoreExtentPx": 332,
+  "normalizedCoreExtentPx": 332,
+  "authoredScale": 0.36205016357688113,
+  "appliedScale": 0.36205016357688113,
+  "scaleLimitedByExtremeAppendage": false,
+  "projectedFullSizeAtAuthoredScale": [
+    168,
+    333
+  ],
+  "transparentMargins": [
+    171,
+    122,
+    172,
+    56
+  ],
+  "safeMarginsPass": true,
+  "faceObscurationPolicy": "PASS_AGENT_VISUAL_REVIEW",
+  "reviewStatus": "OPERATOR_REVIEW_REQUIRED",
+  "identityAlias": null,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/qa/processed/village_militia_slinger/clean.png",
+  "promptPath": "public/assets/dev/option-c/non-combat-masters-v1/manifests/prompts/village_militia_slinger.txt",
+  "masterPath": "public/assets/dev/option-c/non-combat-masters-v1/masters/village_militia_slinger.png",
+  "masterSha256": "2a0c3d4743261cb445e6f999ab39c7c52083fd94c4c48d116a44836ca657c478"
+}

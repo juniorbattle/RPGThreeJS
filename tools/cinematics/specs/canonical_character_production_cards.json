@@ -8,17 +8,17 @@
       "characterId": "alaric",
       "displayName": "Alaric",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/alaric.png"
+        "public/assets/characters/pixel/masters/alaric.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/alaric.png"
+        "public/assets/characters/pixel/masters/alaric.png"
       ],
-      "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b",
+      "referenceSha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f",
       "canonicalAlphaBoundingBox": [
-        27,
-        56,
-        612,
-        742
+        136,
+        113,
+        374,
+        456
       ],
       "approvedExistingCinematicAppearances": [
         "lion_judgement",
@@ -693,17 +693,17 @@
       "characterId": "maelor",
       "displayName": "Intendant Maelor",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/maelor.png"
+        "public/assets/characters/pixel/masters/maelor.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/maelor.png"
+        "public/assets/characters/pixel/masters/maelor.png"
       ],
-      "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215",
+      "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
       "canonicalAlphaBoundingBox": [
-        134,
-        191,
-        504,
-        734
+        176,
+        118,
+        336,
+        456
       ],
       "approvedExistingCinematicAppearances": [
         "first_refuge_departure",
@@ -850,17 +850,17 @@
       "characterId": "refugee_mother",
       "displayName": "Refugee Mother",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/refugee_mother.png"
+        "public/assets/characters/pixel/masters/refugee_mother.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/refugee_mother.png"
+        "public/assets/characters/pixel/masters/refugee_mother.png"
       ],
-      "referenceSha256": "819f5348ff22f1c6a6503a9e4186b2f61c1fff68b8cd16c90f4aa5eda1219e13",
+      "referenceSha256": "864841b61f68c037f64b0a353f504592164ee797ca1583997e80887f549bad98",
       "canonicalAlphaBoundingBox": [
-        171,
-        213,
-        467,
-        734
+        183,
+        128,
+        330,
+        456
       ],
       "approvedExistingCinematicAppearances": [
         "refugees_approach"
@@ -923,17 +923,17 @@
       "characterId": "sage_seraphine",
       "displayName": "Sage Seraphine",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/sage_seraphine.png"
+        "public/assets/characters/pixel/masters/sage_seraphine.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/sage_seraphine.png"
+        "public/assets/characters/pixel/masters/sage_seraphine.png"
       ],
-      "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
+      "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
       "canonicalAlphaBoundingBox": [
-        127,
-        188,
-        512,
-        734
+        150,
+        110,
+        363,
+        456
       ],
       "approvedExistingCinematicAppearances": [
         "camp_departure",
@@ -1449,17 +1449,17 @@
       "characterId": "survivor",
       "displayName": "Survivor",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/survivor.png"
+        "public/assets/characters/pixel/masters/survivor.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/survivor.png"
+        "public/assets/characters/pixel/masters/survivor.png"
       ],
-      "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47",
+      "referenceSha256": "2039a2566269065f6db0776170e1b6bda2f1803a721c8bc5a4eb279def16e48d",
       "canonicalAlphaBoundingBox": [
-        157,
-        228,
-        511,
-        737
+        149,
+        121,
+        362,
+        456
       ],
       "approvedExistingCinematicAppearances": [
         "witnesses_encounter",
@@ -1525,17 +1525,17 @@
       "characterId": "villageoise",
       "displayName": "Villageoise",
       "canonicalFullBodyReferences": [
-        "public/assets/characters/pixel/full/villageoise.png"
+        "public/assets/characters/pixel/masters/villageoise.png"
       ],
       "canonicalPortraitReferences": [
-        "public/assets/characters/pixel/full/villageoise.png"
+        "public/assets/characters/pixel/masters/villageoise.png"
       ],
-      "referenceSha256": "25a253fa81b72629087fd1701636ddbfe20347bdf8500a194092e19d1f8a9dd2",
+      "referenceSha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180",
       "canonicalAlphaBoundingBox": [
-        188,
-        228,
-        444,
-        734
+        180,
+        128,
+        333,
+        456
       ],
       "approvedExistingCinematicAppearances": [
         "bois_clair_arrival"

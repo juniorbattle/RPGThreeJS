@@ -188,7 +188,6 @@ def build(project_root: Path) -> dict[str, Any]:
         "canonicalRoot": CANONICAL_ROOT.as_posix() + "/",
         "canonicalAssetRoots": [
             "public/assets/characters/pixel/masters/",
-            "public/assets/characters/pixel/full/",
             "public/assets/characters/pixel/archive/non-demo/",
         ],
         "canonicalFacing": "SCREEN_RIGHT",

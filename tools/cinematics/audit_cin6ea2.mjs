@@ -16,7 +16,6 @@ const protectedPrefixes = [
   'src/ui/TravelView.ts',
   'src/combat/',
   'src/vfx/',
-  'public/assets/characters/pixel/full/',
   'public/assets/characters/pixel/archive/non-demo/',
   'public/assets/cinematics/',
 ];

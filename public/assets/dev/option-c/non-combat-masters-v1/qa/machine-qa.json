@@ -1,0 +1,228 @@
+{
+  "expectedMasterCount": 12,
+  "actualMasterCount": 12,
+  "missing": [],
+  "unexpected": [],
+  "allCanvas512": true,
+  "allRgbaTransparent": true,
+  "allIdentityAliasesNull": true,
+  "allFacesObscured": true,
+  "facePolicyEvidence": "agent visual review plus per-unit prompt records; operator review remains required",
+  "units": [
+    {
+      "unitId": "alaric",
+      "path": "public/assets/dev/option-c/non-combat-masters-v1/masters/alaric.png",
+      "mode": "RGBA",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        136,
+        113,
+        374,
+        456
+      ],
+      "transparent": true,
+      "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+    },
+    {
+      "unitId": "maelor",
+      "path": "public/assets/dev/option-c/non-combat-masters-v1/masters/maelor.png",
+      "mode": "RGBA",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        176,
+        118,
+        336,
+        456
+      ],
+      "transparent": true,
+      "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+    },
+    {
+      "unitId": "sage_seraphine",
+      "path": "public/assets/dev/option-c/non-combat-masters-v1/masters/sage_seraphine.png",
+      "mode": "RGBA",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        150,
+        110,
+        363,
+        456
+      ],
+      "transparent": true,
+      "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
+    },
+    {
+      "unitId": "refugee_mother",
+      "path": "public/assets/dev/option-c/non-combat-masters-v1/masters/refugee_mother.png",
+      "mode": "RGBA",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        183,
+        128,
+        330,
+        456
+      ],
+      "transparent": true,
+      "sha256": "864841b61f68c037f64b0a353f504592164ee797ca1583997e80887f549bad98"
+    },
+    {
+      "unitId": "survivor",
+      "path": "public/assets/dev/option-c/non-combat-masters-v1/masters/survivor.png",
+      "mode": "RGBA",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        149,
+        121,
+        362,
+        456
+      ],
+      "transparent": true,
+      "sha256": "2039a2566269065f6db0776170e1b6bda2f1803a721c8bc5a4eb279def16e48d"
+    },
+    {
+      "unitId": "villageoise",
+      "path": "public/assets/dev/option-c/non-combat-masters-v1/masters/villageoise.png",
+      "mode": "RGBA",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        180,
+        128,
+        333,
+        456
+      ],
+      "transparent": true,
+      "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180"
+    },
+    {
+      "unitId": "wounded_merchant",
+      "path": "public/assets/dev/option-c/non-combat-masters-v1/masters/wounded_merchant.png",
+      "mode": "RGBA",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        179,
+        123,
+        331,
+        456
+      ],
+      "transparent": true,
+      "sha256": "07b689e4ff2b9fa24285e18576cf044717c6750abbd3c2cf4ef686488c4a45e1"
+    },
+    {
+      "unitId": "villageois",
+      "path": "public/assets/dev/option-c/non-combat-masters-v1/masters/villageois.png",
+      "mode": "RGBA",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        177,
+        126,
+        334,
+        456
+      ],
+      "transparent": true,
+      "sha256": "f395a95994dea46b586e15e7cc5ca5666ba7b660762dbd2b4506bf8c2375689b"
+    },
+    {
+      "unitId": "refugee",
+      "path": "public/assets/dev/option-c/non-combat-masters-v1/masters/refugee.png",
+      "mode": "RGBA",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        184,
+        128,
+        328,
+        456
+      ],
+      "transparent": true,
+      "sha256": "aaebf18c6f56e06f92b4827315a837e9f42150d61af02460c5c07592539932f9"
+    },
+    {
+      "unitId": "village_militia_spearman",
+      "path": "public/assets/dev/option-c/non-combat-masters-v1/masters/village_militia_spearman.png",
+      "mode": "RGBA",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        182,
+        105,
+        330,
+        456
+      ],
+      "transparent": true,
+      "sha256": "b35b7f7ca5f7323c2f1e123b8047bd22735e756b11be08e5550d344eda476a5d"
+    },
+    {
+      "unitId": "village_militia_brute",
+      "path": "public/assets/dev/option-c/non-combat-masters-v1/masters/village_militia_brute.png",
+      "mode": "RGBA",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        178,
+        111,
+        333,
+        456
+      ],
+      "transparent": true,
+      "sha256": "8132e4162e4a3f57dfe6e2d206fc4d1b46c5debfba4352f0dafe3c3c9f2bf150"
+    },
+    {
+      "unitId": "village_militia_slinger",
+      "path": "public/assets/dev/option-c/non-combat-masters-v1/masters/village_militia_slinger.png",
+      "mode": "RGBA",
+      "canvas": [
+        512,
+        512
+      ],
+      "alphaBounds": [
+        171,
+        122,
+        340,
+        456
+      ],
+      "transparent": true,
+      "sha256": "2a0c3d4743261cb445e6f999ab39c7c52083fd94c4c48d116a44836ca657c478"
+    }
+  ],
+  "sharedBaseline": 456,
+  "allSafeMargins": true,
+  "allBaselineDeltaWithin2Px": true,
+  "scaleLimitedUnits": [],
+  "operatorReviewStatus": "REQUIRED",
+  "protectedExistingMasterCount": 25,
+  "protectedExistingPoseCount": 100,
+  "protectedAssetHashesUnchangedDuringBuild": true,
+  "productionPromotionPerformed": false,
+  "productionOverwritePerformed": false,
+  "archivedIdentityGenerated": false
+}

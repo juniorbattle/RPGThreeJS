@@ -16,7 +16,7 @@
       "environment": "public/assets/generated/lion-phase/dialogue/epilogue.webp",
       "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6b_lion_trial_route_ending/shot_01/source.png" },
       "characters": [
-        { "id": "alaric", "asset": "public/assets/characters/pixel/full/alaric.png", "position": { "x": 0.31, "groundY": 0.97 }, "heightPx": 680, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:lion_champion", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "alaric", "asset": "public/assets/characters/pixel/masters/alaric.png", "position": { "x": 0.31, "groundY": 0.97 }, "heightPx": 680, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:lion_champion", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
         { "id": "lion_champion", "asset": "public/assets/characters/pixel/masters/lion_champion.png", "position": { "x": 0.72, "groundY": 0.97 }, "heightPx": 620, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alaric", "depth": 10, "role": "SECONDARY", "action": "LOWER_WEAPON", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "WIDE_HOLD" },
@@ -32,7 +32,7 @@
       "environment": "public/assets/generated/lion-phase/dialogue/epilogue.webp",
       "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6b_lion_trial_route_ending/shot_02/source.png" },
       "characters": [
-        { "id": "alaric", "asset": "public/assets/characters/pixel/full/alaric.png", "position": { "x": 0.32, "groundY": 0.98 }, "heightPx": 820, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:lion_champion", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "alaric", "asset": "public/assets/characters/pixel/masters/alaric.png", "position": { "x": 0.32, "groundY": 0.98 }, "heightPx": 820, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:lion_champion", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
         { "id": "lion_champion", "asset": "public/assets/characters/pixel/masters/lion_champion.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 750, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alaric", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "STATIC" },
@@ -48,7 +48,7 @@
       "environment": "public/assets/generated/lion-phase/dialogue/epilogue.webp",
       "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_02", "path": "tmp/cinematics/cin4/cin6b_lion_trial_route_ending/shot_02/last_frame.png" },
       "characters": [
-        { "id": "alaric", "asset": "public/assets/characters/pixel/full/alaric.png", "position": { "x": 0.32, "groundY": 0.98 }, "heightPx": 820, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:lion_champion", "depth": 20, "role": "PRIMARY", "action": "SMALL_HEAD_TURN", "mirrorPolicy": "ALLOW" },
+        { "id": "alaric", "asset": "public/assets/characters/pixel/masters/alaric.png", "position": { "x": 0.32, "groundY": 0.98 }, "heightPx": 820, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:lion_champion", "depth": 20, "role": "PRIMARY", "action": "SMALL_HEAD_TURN", "mirrorPolicy": "ALLOW" },
         { "id": "lion_champion", "asset": "public/assets/characters/pixel/masters/lion_champion.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 750, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:alaric", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "STATIC" },

@@ -58,7 +58,7 @@ interface ManifestUnit {
   unitId: string;
   scaleFamily: CharacterScaleFamily;
   worldUnitsPerPixel: number;
-  poses: Record<CombatPose, ManifestPose>;
+  poses: Partial<Record<CombatPose, ManifestPose>>;
 }
 
 const manifest = manifestJson as unknown as {
@@ -67,7 +67,7 @@ const manifest = manifestJson as unknown as {
   units: ManifestUnit[];
 };
 
-if (manifest.status !== 'PROMOTED' || manifest.counts.masters !== 25 || manifest.counts.combatPoses !== 100) {
+if (manifest.status !== 'PROMOTED' || manifest.counts.masters !== 37 || manifest.counts.combatPoses !== 100) {
   throw new Error('Character System V2 combat manifest failed its production gate.');
 }
 
@@ -82,7 +82,11 @@ function freezePose(pose: ManifestPose): CombatPoseAsset {
   });
 }
 
-const SETS = Object.freeze(manifest.units.map((unit): CombatPoseSet => Object.freeze({
+const SETS = Object.freeze(manifest.units
+  .filter((unit): unit is ManifestUnit & { poses: Record<CombatPose, ManifestPose> } => (
+    COMBAT_POSES.every((pose) => Boolean(unit.poses[pose]))
+  ))
+  .map((unit): CombatPoseSet => Object.freeze({
   unitId: unit.unitId,
   sourceFolder: `/assets/characters/pixel/combat/${unit.unitId}`,
   scaleFamily: unit.scaleFamily,
@@ -98,7 +102,8 @@ const SETS = Object.freeze(manifest.units.map((unit): CombatPoseSet => Object.fr
 const registry = new Map(SETS.map((set) => [set.unitId, set]));
 
 export function resolveCombatPoseUnitId(identity: string | null | undefined): string | undefined {
-  return resolveCharacterUnitId(identity);
+  const canonicalId = resolveCharacterUnitId(identity);
+  return canonicalId && registry.has(canonicalId) ? canonicalId : undefined;
 }
 
 export function resolveCombatPoseSet(unitId: string | null | undefined): CombatPoseSet | undefined {

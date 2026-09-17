@@ -1,0 +1,625 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C final master promotion runtime proof",
+  "generatedAt": "2026-09-17T19:04:25.259Z",
+  "status": "PASS",
+  "checks": {
+    "SIX_REQUIRED_ACTOR_ROLES": "PASS",
+    "MASTER_ASSETS_HTTP_200": "PASS",
+    "NO_TRANSPARENT_OR_BLANK_ACTOR": "PASS",
+    "SCALE_FRAMING_METADATA": "PASS",
+    "DIALOGUE_STATIC_TABLEAU": "PASS",
+    "STRATEGIC_PREPARE": "PASS",
+    "COMBAT_STAGE_V2": "PASS",
+    "CHARACTER_404S": "PASS",
+    "PAGE_ERRORS": "PASS"
+  },
+  "assets": [
+    {
+      "characterId": "alaric",
+      "proofRole": "KEY_STORY",
+      "src": "/assets/characters/pixel/masters/alaric.png",
+      "naturalWidth": 512,
+      "naturalHeight": 512,
+      "visiblePixels": 48057,
+      "alphaBounds": {
+        "left": 136,
+        "top": 113,
+        "right": 374,
+        "bottom": 456
+      },
+      "expectedAlphaBounds": {
+        "left": 136,
+        "top": 113,
+        "right": 374,
+        "bottom": 456
+      },
+      "expectedBaseline": 456,
+      "checks": {
+        "HTTP_200": "PASS",
+        "NON_BLANK": "PASS",
+        "CANVAS_512": "PASS",
+        "ALPHA_BOUNDS_AND_BASELINE": "PASS",
+        "MASTER_AUTHORITY": "PASS"
+      }
+    },
+    {
+      "characterId": "maelor",
+      "proofRole": "KEY_STORY",
+      "src": "/assets/characters/pixel/masters/maelor.png",
+      "naturalWidth": 512,
+      "naturalHeight": 512,
+      "visiblePixels": 31268,
+      "alphaBounds": {
+        "left": 176,
+        "top": 118,
+        "right": 336,
+        "bottom": 456
+      },
+      "expectedAlphaBounds": {
+        "left": 176,
+        "top": 118,
+        "right": 336,
+        "bottom": 456
+      },
+      "expectedBaseline": 456,
+      "checks": {
+        "HTTP_200": "PASS",
+        "NON_BLANK": "PASS",
+        "CANVAS_512": "PASS",
+        "ALPHA_BOUNDS_AND_BASELINE": "PASS",
+        "MASTER_AUTHORITY": "PASS"
+      }
+    },
+    {
+      "characterId": "sage_seraphine",
+      "proofRole": "SERAPHINE_CANONICAL",
+      "src": "/assets/characters/pixel/masters/sage_seraphine.png",
+      "naturalWidth": 512,
+      "naturalHeight": 512,
+      "visiblePixels": 38390,
+      "alphaBounds": {
+        "left": 150,
+        "top": 110,
+        "right": 363,
+        "bottom": 456
+      },
+      "expectedAlphaBounds": {
+        "left": 150,
+        "top": 110,
+        "right": 363,
+        "bottom": 456
+      },
+      "expectedBaseline": 456,
+      "checks": {
+        "HTTP_200": "PASS",
+        "NON_BLANK": "PASS",
+        "CANVAS_512": "PASS",
+        "ALPHA_BOUNDS_AND_BASELINE": "PASS",
+        "MASTER_AUTHORITY": "PASS"
+      }
+    },
+    {
+      "characterId": "villageoise",
+      "proofRole": "ACTIVE_CIVILIAN",
+      "src": "/assets/characters/pixel/masters/villageoise.png",
+      "naturalWidth": 512,
+      "naturalHeight": 512,
+      "visiblePixels": 30897,
+      "alphaBounds": {
+        "left": 180,
+        "top": 128,
+        "right": 333,
+        "bottom": 456
+      },
+      "expectedAlphaBounds": {
+        "left": 180,
+        "top": 128,
+        "right": 333,
+        "bottom": 456
+      },
+      "expectedBaseline": 456,
+      "checks": {
+        "HTTP_200": "PASS",
+        "NON_BLANK": "PASS",
+        "CANVAS_512": "PASS",
+        "ALPHA_BOUNDS_AND_BASELINE": "PASS",
+        "MASTER_AUTHORITY": "PASS"
+      }
+    },
+    {
+      "characterId": "alistair",
+      "proofRole": "EXISTING_COMBAT_HERO_MASTER_OUTSIDE_COMBAT",
+      "src": "/assets/characters/pixel/masters/alistair.png",
+      "naturalWidth": 512,
+      "naturalHeight": 512,
+      "visiblePixels": 42848,
+      "alphaBounds": {
+        "left": 158,
+        "top": 110,
+        "right": 354,
+        "bottom": 458
+      },
+      "expectedAlphaBounds": null,
+      "expectedBaseline": null,
+      "checks": {
+        "HTTP_200": "PASS",
+        "NON_BLANK": "PASS",
+        "CANVAS_512": "PASS",
+        "ALPHA_BOUNDS_AND_BASELINE": "PASS",
+        "MASTER_AUTHORITY": "PASS"
+      }
+    },
+    {
+      "characterId": "wounded_merchant",
+      "proofRole": "LEGACY_NPC_MIGRATED_TO_MASTER",
+      "src": "/assets/characters/pixel/masters/wounded_merchant.png",
+      "naturalWidth": 512,
+      "naturalHeight": 512,
+      "visiblePixels": 35252,
+      "alphaBounds": {
+        "left": 179,
+        "top": 123,
+        "right": 331,
+        "bottom": 456
+      },
+      "expectedAlphaBounds": {
+        "left": 179,
+        "top": 123,
+        "right": 331,
+        "bottom": 456
+      },
+      "expectedBaseline": 456,
+      "checks": {
+        "HTTP_200": "PASS",
+        "NON_BLANK": "PASS",
+        "CANVAS_512": "PASS",
+        "ALPHA_BOUNDS_AND_BASELINE": "PASS",
+        "MASTER_AUTHORITY": "PASS"
+      }
+    }
+  ],
+  "tableau": {
+    "status": "PASS",
+    "dialogueId": "ate_alaric_reports",
+    "castCount": 2,
+    "actorIds": [
+      "lion_champion",
+      "alaric"
+    ],
+    "dialogueVisible": true
+  },
+  "strategic": {
+    "status": "PASS",
+    "units": [
+      {
+        "unitId": "alistair",
+        "src": "/assets/characters/pixel/combat/alistair/prepare.png",
+        "scaleFamily": "STANDARD_HUMANOID",
+        "worldUnitsPerPixel": 0.00625,
+        "scaleCorrection": 1,
+        "visibleWorldHeight": 2.16875,
+        "baselineError": 0,
+        "spriteScaleY": 1,
+        "usesFullPortraitAsMapSprite": false
+      },
+      {
+        "unitId": "goblin",
+        "src": "/assets/characters/pixel/combat/goblin/prepare.png",
+        "scaleFamily": "SMALL_CREATURE",
+        "worldUnitsPerPixel": 0.00625,
+        "scaleCorrection": 1,
+        "visibleWorldHeight": 1.4312500000000001,
+        "baselineError": 0,
+        "spriteScaleY": 1,
+        "usesFullPortraitAsMapSprite": false
+      },
+      {
+        "unitId": "lion_champion",
+        "src": "/assets/characters/pixel/combat/lion_champion/prepare.png",
+        "scaleFamily": "LARGE_ELITE_BOSS",
+        "worldUnitsPerPixel": 0.00625,
+        "scaleCorrection": 1,
+        "visibleWorldHeight": 2.6625,
+        "baselineError": 0,
+        "spriteScaleY": 1,
+        "usesFullPortraitAsMapSprite": false
+      }
+    ]
+  },
+  "combatStage": {
+    "schemaVersion": 1,
+    "status": "PASS",
+    "devOnly": true,
+    "canonicalAssetsPromoted": true,
+    "gameplayChanged": false,
+    "combatLogicChanged": false,
+    "vfxChanged": false,
+    "environmentChanged": false,
+    "camera": "CombatStage.OrthographicCamera",
+    "grounding": "CombatStage proxy root + manifest baseline",
+    "viewport": {
+      "width": 1366,
+      "height": 768,
+      "devicePixelRatio": 1
+    },
+    "scenario": {
+      "id": "all-three",
+      "label": "Production scale hierarchy"
+    },
+    "environment": {
+      "requestedAssetId": "bois_clair_burning_stage",
+      "runtimeEnvironmentId": "bois_clair_burning"
+    },
+    "profile": {
+      "id": "QA_MULTI_TARGET",
+      "cameraFrustumHalfHeight": 3.1,
+      "targetSlots": [
+        "secondaryTargetLeft",
+        "secondaryTargetRight"
+      ]
+    },
+    "units": [
+      {
+        "id": "alistair",
+        "displayName": "Alistair",
+        "scaleCorrection": 1,
+        "targetWorldHeight": 2.15625,
+        "measuredVisibleWorldHeight": 2.15625,
+        "planeWorldSize": [
+          3.2,
+          3.2
+        ],
+        "footBaselinePx": 456,
+        "pivotPx": [
+          256,
+          456
+        ],
+        "alphaBBoxPx": [
+          151,
+          111,
+          362,
+          458
+        ],
+        "sourcePixelsPerWorldUnit": 160,
+        "screenRectPx": {
+          "left": 217.71,
+          "top": 261.629,
+          "right": 381.065,
+          "bottom": 528.494,
+          "width": 163.355,
+          "height": 266.865
+        },
+        "screenBaselinePx": {
+          "x": 299,
+          "y": 530.041
+        },
+        "screenPixelsPerWorldUnit": 123.7636,
+        "groundContactErrorWorld": 6.938893903907228e-17,
+        "topClearancePx": 261.629,
+        "sideClearancePx": 217.71,
+        "foregroundBackgroundDelta": 50.962,
+        "checks": {
+          "manifestLock": "PASS",
+          "scaleCorrection": "PASS",
+          "groundContact": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        }
+      },
+      {
+        "id": "goblin",
+        "displayName": "Goblin",
+        "scaleCorrection": 1,
+        "targetWorldHeight": 1.4312500000000001,
+        "measuredVisibleWorldHeight": 1.43125,
+        "planeWorldSize": [
+          3.2,
+          3.2
+        ],
+        "footBaselinePx": 456,
+        "pivotPx": [
+          256,
+          456
+        ],
+        "alphaBBoxPx": [
+          152,
+          227,
+          361,
+          456
+        ],
+        "sourcePixelsPerWorldUnit": 160,
+        "screenRectPx": {
+          "left": 787.516,
+          "top": 348.263,
+          "right": 949.323,
+          "bottom": 525.4,
+          "width": 161.806,
+          "height": 177.137
+        },
+        "screenBaselinePx": {
+          "x": 868.806,
+          "y": 525.4
+        },
+        "screenPixelsPerWorldUnit": 123.7636,
+        "groundContactErrorWorld": 6.938893903907228e-17,
+        "topClearancePx": 348.263,
+        "sideClearancePx": 416.677,
+        "foregroundBackgroundDelta": 68.714,
+        "checks": {
+          "manifestLock": "PASS",
+          "scaleCorrection": "PASS",
+          "groundContact": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        }
+      },
+      {
+        "id": "lion-champion",
+        "displayName": "Lion Champion",
+        "scaleCorrection": 1,
+        "targetWorldHeight": 2.63125,
+        "measuredVisibleWorldHeight": 2.63125,
+        "planeWorldSize": [
+          3.2,
+          3.2
+        ],
+        "footBaselinePx": 456,
+        "pivotPx": [
+          256,
+          456
+        ],
+        "alphaBBoxPx": [
+          115,
+          35,
+          396,
+          461
+        ],
+        "sourcePixelsPerWorldUnit": 160,
+        "screenRectPx": {
+          "left": 760.419,
+          "top": 205.162,
+          "right": 977.968,
+          "bottom": 530.815,
+          "width": 217.548,
+          "height": 325.653
+        },
+        "screenBaselinePx": {
+          "x": 868.806,
+          "y": 534.682
+        },
+        "screenPixelsPerWorldUnit": 123.7636,
+        "groundContactErrorWorld": 6.938893903907228e-17,
+        "topClearancePx": 205.162,
+        "sideClearancePx": 388.032,
+        "foregroundBackgroundDelta": 70.674,
+        "checks": {
+          "manifestLock": "PASS",
+          "scaleCorrection": "PASS",
+          "groundContact": "PASS",
+          "silhouetteReadability": "PASS",
+          "weaponReadability": "PASS",
+          "backgroundContrast": "PASS",
+          "vfxSafeSpace": "PASS"
+        }
+      }
+    ],
+    "checks": {
+      "assetManifestLock": "PASS",
+      "relativeSizeHierarchy": "PASS",
+      "grounding": "PASS",
+      "pixelDensityCoherence": "PASS",
+      "silhouetteReadability": "PASS",
+      "weaponReadability": "PASS",
+      "backgroundContrast": "PASS",
+      "vfxSafeSpace": "PASS"
+    },
+    "pixelDensityRatio": 1,
+    "minimumInterUnitGapPx": -190.452
+  },
+  "characterResponses": [
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/masters/lion_champion.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/masters/alaric.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/masters/maelor.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/masters/sage_seraphine.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/masters/villageoise.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/masters/wounded_merchant.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/masters/alistair.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/dark_mage/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/white_mage/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/archer/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/serpent_raider/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/serpent_brute/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/serpent_oracle/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/serpent_general_boss/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/serpent_elite_brute/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/serpent_duelist_elite/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/wolf/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/venom_serpent/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/forest_spider/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/forest_badger/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/marsh_toad/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/cave_rat/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/wild_boar/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/skeleton/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/masters/alaric.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/young_dragon_elite/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/forest_troll_elite/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/masters/alistair.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/masters/lion_champion.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/masters/goblin.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/character-system-v2-manifest.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/character-system-v2-manifest.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/character-system-v2-manifest.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/prepare.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/dash.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/attack.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/alistair/cast.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/dash.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/attack.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/goblin/cast.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/dash.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/cast.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/assets/characters/pixel/combat/lion_champion/attack.png",
+      "status": 200
+    }
+  ],
+  "characterRequestFailures": [],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "screenshots": [
+    "public/assets/dev/option-c/non-combat-masters-v1/qa/runtime-proof/dialogue-static-tableau.png",
+    "public/assets/dev/option-c/non-combat-masters-v1/qa/runtime-proof/combat-stage-v2.png"
+  ]
+}

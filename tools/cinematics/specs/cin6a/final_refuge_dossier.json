@@ -17,8 +17,8 @@
       "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_final_refuge_dossier/shot_01/source.png" },
       "characters": [
         { "id": "alistair", "asset": "public/assets/characters/pixel/masters/alistair.png", "position": { "x": 0.16, "groundY": 0.98 }, "heightPx": 500, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_gates", "depth": 30, "role": "SECONDARY", "action": "STOP", "mirrorPolicy": "ALLOW" },
-        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.36, "groundY": 0.98 }, "heightPx": 620, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_gates", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
-        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.76, "groundY": 0.98 }, "heightPx": 570, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:maelor", "depth": 10, "role": "SECONDARY", "action": "STAND", "mirrorPolicy": "ALLOW" }
+        { "id": "maelor", "asset": "public/assets/characters/pixel/masters/maelor.png", "position": { "x": 0.36, "groundY": 0.98 }, "heightPx": 620, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_gates", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/masters/sage_seraphine.png", "position": { "x": 0.76, "groundY": 0.98 }, "heightPx": 570, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:maelor", "depth": 10, "role": "SECONDARY", "action": "STAND", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "SLOW_PULL" },
       "durationSeconds": 6,
@@ -34,8 +34,8 @@
       "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_final_refuge_dossier/shot_02/source.png" },
       "characters": [
         { "id": "alistair", "asset": "public/assets/characters/pixel/masters/alistair.png", "position": { "x": 0.13, "groundY": 0.99 }, "heightPx": 520, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:maelor", "depth": 30, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
-        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.36, "groundY": 0.99 }, "heightPx": 680, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:sage_seraphine", "depth": 20, "role": "PRIMARY", "action": "SMALL_HEAD_TURN", "mirrorPolicy": "ALLOW" },
-        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.76, "groundY": 0.99 }, "heightPx": 630, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:maelor", "depth": 10, "role": "SECONDARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" }
+        { "id": "maelor", "asset": "public/assets/characters/pixel/masters/maelor.png", "position": { "x": 0.36, "groundY": 0.99 }, "heightPx": 680, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:sage_seraphine", "depth": 20, "role": "PRIMARY", "action": "SMALL_HEAD_TURN", "mirrorPolicy": "ALLOW" },
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/masters/sage_seraphine.png", "position": { "x": 0.76, "groundY": 0.99 }, "heightPx": 630, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:maelor", "depth": 10, "role": "SECONDARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "WIDE_HOLD" },
       "durationSeconds": 6,
@@ -51,8 +51,8 @@
       "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_02", "path": "tmp/cinematics/cin4/cin6a_final_refuge_dossier/shot_02/last_frame.png" },
       "characters": [
         { "id": "alistair", "asset": "public/assets/characters/pixel/masters/alistair.png", "position": { "x": 0.13, "groundY": 0.99 }, "heightPx": 520, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_gates", "depth": 30, "role": "SECONDARY", "action": "READY_STANCE", "mirrorPolicy": "ALLOW" },
-        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.36, "groundY": 0.99 }, "heightPx": 680, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_gates", "depth": 20, "role": "PRIMARY", "action": "LOWER_HAND", "mirrorPolicy": "ALLOW" },
-        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.76, "groundY": 0.99 }, "heightPx": 630, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:maelor", "depth": 10, "role": "SECONDARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" }
+        { "id": "maelor", "asset": "public/assets/characters/pixel/masters/maelor.png", "position": { "x": 0.36, "groundY": 0.99 }, "heightPx": 680, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:camp_gates", "depth": 20, "role": "PRIMARY", "action": "LOWER_HAND", "mirrorPolicy": "ALLOW" },
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/masters/sage_seraphine.png", "position": { "x": 0.76, "groundY": 0.99 }, "heightPx": 630, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:maelor", "depth": 10, "role": "SECONDARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "WIDE_HOLD" },
       "durationSeconds": 6,

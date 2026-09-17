@@ -17,7 +17,7 @@
       "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_first_refuge_departure/shot_01/source.png" },
       "characters": [
         { "id": "kestrel", "asset": "public/assets/characters/pixel/masters/archer.png", "position": { "x": 0.25, "groundY": 0.97 }, "heightPx": 590, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:smoke_horizon", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
-        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.73, "groundY": 0.97 }, "heightPx": 580, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:convoy", "depth": 10, "role": "SECONDARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
+        { "id": "maelor", "asset": "public/assets/characters/pixel/masters/maelor.png", "position": { "x": 0.73, "groundY": 0.97 }, "heightPx": 580, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:convoy", "depth": 10, "role": "SECONDARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "SLOW_PULL" },
       "durationSeconds": 4,
@@ -33,7 +33,7 @@
       "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_first_refuge_departure/shot_02/source.png" },
       "characters": [
         { "id": "kestrel", "asset": "public/assets/characters/pixel/masters/archer.png", "position": { "x": 0.31, "groundY": 0.98 }, "heightPx": 760, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:smoke_horizon", "depth": 20, "role": "PRIMARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" },
-        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 730, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:convoy", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+        { "id": "maelor", "asset": "public/assets/characters/pixel/masters/maelor.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 730, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:convoy", "depth": 10, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "PAN_SMALL_RIGHT" },
       "durationSeconds": 4,
@@ -49,7 +49,7 @@
       "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_02", "path": "tmp/cinematics/cin4/cin6a_first_refuge_departure/shot_02/last_frame.png" },
       "characters": [
         { "id": "kestrel", "asset": "public/assets/characters/pixel/masters/archer.png", "position": { "x": 0.31, "groundY": 0.98 }, "heightPx": 760, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:smoke_horizon", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
-        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 730, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:convoy", "depth": 10, "role": "SECONDARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
+        { "id": "maelor", "asset": "public/assets/characters/pixel/masters/maelor.png", "position": { "x": 0.73, "groundY": 0.98 }, "heightPx": 730, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:convoy", "depth": 10, "role": "SECONDARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "STATIC" },
       "durationSeconds": 4,

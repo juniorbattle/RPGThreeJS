@@ -1,17 +1,9 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "status": "COMPLETE",
-  "scope": "Active demo non-combat master scope after non-demo archival.",
+  "scope": "Production Character System V2 master authority after final legacy-full retirement.",
   "artDoctrine": "Future masters must match the approved 25 Character System V2 masters.",
-  "ACTIVE_FULL_IDENTITIES": [
-    "alaric",
-    "maelor",
-    "sage_seraphine",
-    "refugee_mother",
-    "survivor",
-    "villageoise",
-    "wounded_merchant"
-  ],
+  "ACTIVE_FULL_IDENTITIES": [],
   "ARCHIVED_NON_DEMO_IDENTITIES": [
     "aldric",
     "eldwin",
@@ -37,51 +29,32 @@
   "SERAPHINE_CANONICAL_ID": "sage_seraphine",
   "SERAPHINE_ALIAS_RESOLUTION": {
     "aliasId": "seraphine",
-    "canonicalAssetPath": "/assets/characters/pixel/full/sage_seraphine.png",
+    "canonicalAssetPath": "/assets/characters/pixel/masters/sage_seraphine.png",
     "archivedAliasSourcePath": "/assets/characters/pixel/archive/non-demo/seraphine.png",
-    "byteIdenticalBeforeArchive": true,
     "activeProductionIdentities": [
       "sage_seraphine"
     ]
   },
-  "FINAL_NON_COMBAT_GENERATION_QUEUE": [
-    "alaric",
-    "maelor",
-    "sage_seraphine",
-    "refugee_mother",
-    "survivor",
-    "villageoise",
-    "wounded_merchant"
-  ],
-  "OPTIONAL_GENERIC_QUEUE": [
-    "villageois",
-    "refugee"
-  ],
+  "FINAL_NON_COMBAT_GENERATION_QUEUE": [],
+  "OPTIONAL_GENERIC_QUEUE": [],
   "BROKEN_REFERENCES": [],
-  "REMAINING_FULL_FILES": 7,
+  "REMAINING_FULL_FILES": 0,
   "ARCHIVED_FILE_COUNT": 21,
   "counts": {
-    "activeDemoNonCombat": 7,
-    "optionalGenericNonCombat": 2,
-    "archivedNonDemoIdentities": 20,
-    "archivedFiles": 21,
-    "remainingFullFiles": 7,
-    "finalRequiredGenerationQueue": 7
+    "productionMasters": 37,
+    "combatCharacters": 25,
+    "keyStory": 3,
+    "activeCivilians": 4,
+    "optionalCivilians": 2,
+    "genericVillageMilitia": 3,
+    "remainingFullFiles": 0
   },
-  "remainingFullFiles": [
-    "public/assets/characters/pixel/full/alaric.png",
-    "public/assets/characters/pixel/full/maelor.png",
-    "public/assets/characters/pixel/full/sage_seraphine.png",
-    "public/assets/characters/pixel/full/refugee_mother.png",
-    "public/assets/characters/pixel/full/survivor.png",
-    "public/assets/characters/pixel/full/villageoise.png",
-    "public/assets/characters/pixel/full/wounded_merchant.png"
-  ],
+  "remainingFullFiles": [],
   "characters": [
     {
       "characterId": "alaric",
       "displayName": "Alaric",
-      "currentFullPath": "/assets/characters/pixel/full/alaric.png",
+      "currentFullPath": null,
       "runtimeSurfaces": [
         "CINEMATIC_TOOLING",
         "COMBAT_COMPATIBILITY",
@@ -93,12 +66,12 @@
       "staticTableauUsage": true,
       "cinematicReferenceUsage": true,
       "combatUnit": true,
-      "masterExists": false,
-      "masterPath": null,
+      "masterExists": true,
+      "masterPath": "/assets/characters/pixel/masters/alaric.png",
       "aliasOf": null,
       "demoRelevant": true,
-      "needsNewMaster": true,
-      "currentAssetStillRequired": true,
+      "needsNewMaster": false,
+      "currentAssetStillRequired": false,
       "generationPriority": "KEY_CHARACTER",
       "runtimeReferences": [
         "src/combat/legacyCombatRuntime.js",
@@ -114,12 +87,14 @@
         "tools/cinematics/specs/final_dialogue_visual_segments.json",
         "tools/cinematics/specs/final_future_production_manifest.json",
         "tools/cinematics/specs/lion_judgement_v2.json"
-      ]
+      ],
+      "legacyFullArchivePath": "/assets/characters/pixel/archive/legacy-full/alaric.png",
+      "productionStatus": "PROMOTED"
     },
     {
       "characterId": "maelor",
       "displayName": "Maelor",
-      "currentFullPath": "/assets/characters/pixel/full/maelor.png",
+      "currentFullPath": null,
       "runtimeSurfaces": [
         "CINEMATIC_TOOLING",
         "DIALOGUE",
@@ -130,12 +105,12 @@
       "staticTableauUsage": true,
       "cinematicReferenceUsage": true,
       "combatUnit": false,
-      "masterExists": false,
-      "masterPath": null,
+      "masterExists": true,
+      "masterPath": "/assets/characters/pixel/masters/maelor.png",
       "aliasOf": null,
       "demoRelevant": true,
-      "needsNewMaster": true,
-      "currentAssetStillRequired": true,
+      "needsNewMaster": false,
+      "currentAssetStillRequired": false,
       "generationPriority": "KEY_CHARACTER",
       "runtimeReferences": [
         "src/render/assetManifest.ts",
@@ -157,12 +132,14 @@
         "tools/cinematics/specs/final_cinematic_remaster_queue.json",
         "tools/cinematics/specs/final_dialogue_visual_segments.json",
         "tools/cinematics/specs/final_future_production_manifest.json"
-      ]
+      ],
+      "legacyFullArchivePath": "/assets/characters/pixel/archive/legacy-full/maelor.png",
+      "productionStatus": "PROMOTED"
     },
     {
       "characterId": "sage_seraphine",
       "displayName": "Sage Seraphine",
-      "currentFullPath": "/assets/characters/pixel/full/sage_seraphine.png",
+      "currentFullPath": null,
       "runtimeSurfaces": [
         "CINEMATIC_TOOLING",
         "DIALOGUE",
@@ -173,12 +150,12 @@
       "staticTableauUsage": true,
       "cinematicReferenceUsage": true,
       "combatUnit": false,
-      "masterExists": false,
-      "masterPath": null,
+      "masterExists": true,
+      "masterPath": "/assets/characters/pixel/masters/sage_seraphine.png",
       "aliasOf": null,
       "demoRelevant": true,
-      "needsNewMaster": true,
-      "currentAssetStillRequired": true,
+      "needsNewMaster": false,
+      "currentAssetStillRequired": false,
       "generationPriority": "KEY_CHARACTER",
       "runtimeReferences": [
         "src/render/assetManifest.ts",
@@ -201,12 +178,14 @@
         "tools/cinematics/specs/final_cinematic_remaster_queue.json",
         "tools/cinematics/specs/final_dialogue_visual_segments.json",
         "tools/cinematics/specs/final_future_production_manifest.json"
-      ]
+      ],
+      "legacyFullArchivePath": "/assets/characters/pixel/archive/non-demo/seraphine.png",
+      "productionStatus": "PROMOTED"
     },
     {
       "characterId": "refugee_mother",
       "displayName": "Refugee Mother",
-      "currentFullPath": "/assets/characters/pixel/full/refugee_mother.png",
+      "currentFullPath": null,
       "runtimeSurfaces": [
         "CINEMATIC_TOOLING",
         "DIALOGUE",
@@ -217,12 +196,12 @@
       "staticTableauUsage": true,
       "cinematicReferenceUsage": true,
       "combatUnit": false,
-      "masterExists": false,
-      "masterPath": null,
+      "masterExists": true,
+      "masterPath": "/assets/characters/pixel/masters/refugee_mother.png",
       "aliasOf": null,
       "demoRelevant": true,
-      "needsNewMaster": true,
-      "currentAssetStillRequired": true,
+      "needsNewMaster": false,
+      "currentAssetStillRequired": false,
       "generationPriority": "SUPPORTING_NPC",
       "runtimeReferences": [
         "src/render/assetManifest.ts",
@@ -235,12 +214,14 @@
         "tools/cinematics/specs/final_cinematic_remaster_queue.json",
         "tools/cinematics/specs/final_dialogue_visual_segments.json",
         "tools/cinematics/specs/final_future_production_manifest.json"
-      ]
+      ],
+      "legacyFullArchivePath": "/assets/characters/pixel/archive/legacy-full/refugee_mother.png",
+      "productionStatus": "PROMOTED"
     },
     {
       "characterId": "survivor",
       "displayName": "Survivor",
-      "currentFullPath": "/assets/characters/pixel/full/survivor.png",
+      "currentFullPath": null,
       "runtimeSurfaces": [
         "CINEMATIC_TOOLING",
         "DIALOGUE",
@@ -251,12 +232,12 @@
       "staticTableauUsage": true,
       "cinematicReferenceUsage": true,
       "combatUnit": false,
-      "masterExists": false,
-      "masterPath": null,
+      "masterExists": true,
+      "masterPath": "/assets/characters/pixel/masters/survivor.png",
       "aliasOf": null,
       "demoRelevant": true,
-      "needsNewMaster": true,
-      "currentAssetStillRequired": true,
+      "needsNewMaster": false,
+      "currentAssetStillRequired": false,
       "generationPriority": "SUPPORTING_NPC",
       "runtimeReferences": [
         "src/render/assetManifest.ts",
@@ -269,12 +250,14 @@
         "tools/cinematics/specs/final_cinematic_remaster_queue.json",
         "tools/cinematics/specs/final_dialogue_visual_segments.json",
         "tools/cinematics/specs/final_future_production_manifest.json"
-      ]
+      ],
+      "legacyFullArchivePath": "/assets/characters/pixel/archive/legacy-full/survivor.png",
+      "productionStatus": "PROMOTED"
     },
     {
       "characterId": "villageoise",
       "displayName": "Villageoise",
-      "currentFullPath": "/assets/characters/pixel/full/villageoise.png",
+      "currentFullPath": null,
       "runtimeSurfaces": [
         "CINEMATIC_TOOLING",
         "DIALOGUE",
@@ -285,12 +268,12 @@
       "staticTableauUsage": true,
       "cinematicReferenceUsage": true,
       "combatUnit": false,
-      "masterExists": false,
-      "masterPath": null,
+      "masterExists": true,
+      "masterPath": "/assets/characters/pixel/masters/villageoise.png",
       "aliasOf": null,
       "demoRelevant": true,
-      "needsNewMaster": true,
-      "currentAssetStillRequired": true,
+      "needsNewMaster": false,
+      "currentAssetStillRequired": false,
       "generationPriority": "SUPPORTING_NPC",
       "runtimeReferences": [
         "src/render/assetManifest.ts",
@@ -304,12 +287,14 @@
         "tools/cinematics/specs/final_cinematic_remaster_queue.json",
         "tools/cinematics/specs/final_dialogue_visual_segments.json",
         "tools/cinematics/specs/final_future_production_manifest.json"
-      ]
+      ],
+      "legacyFullArchivePath": "/assets/characters/pixel/archive/legacy-full/villageoise.png",
+      "productionStatus": "PROMOTED"
     },
     {
       "characterId": "wounded_merchant",
       "displayName": "Wounded Merchant",
-      "currentFullPath": "/assets/characters/pixel/full/wounded_merchant.png",
+      "currentFullPath": null,
       "runtimeSurfaces": [
         "CINEMATIC_TOOLING",
         "UI"
@@ -319,19 +304,21 @@
       "staticTableauUsage": false,
       "cinematicReferenceUsage": true,
       "combatUnit": false,
-      "masterExists": false,
-      "masterPath": null,
+      "masterExists": true,
+      "masterPath": "/assets/characters/pixel/masters/wounded_merchant.png",
       "aliasOf": null,
       "demoRelevant": true,
-      "needsNewMaster": true,
-      "currentAssetStillRequired": true,
+      "needsNewMaster": false,
+      "currentAssetStillRequired": false,
       "generationPriority": "SUPPORTING_NPC",
       "runtimeReferences": [
         "src/render/assetManifest.ts",
         "tools/cinematics/specs/campaign_cinematic_census.json",
         "tools/cinematics/specs/cinematic_character_scale.json",
         "tools/cinematics/specs/cinematic_continuity_bible.json"
-      ]
+      ],
+      "legacyFullArchivePath": "/assets/characters/pixel/archive/legacy-full/wounded_merchant.png",
+      "productionStatus": "PROMOTED"
     }
   ],
   "optionalGenericCharacters": [
@@ -339,21 +326,48 @@
       "characterId": "villageois",
       "displayName": "Villageois",
       "currentFullPath": null,
-      "masterExists": false,
+      "masterExists": true,
       "demoRelevant": true,
       "optional": true,
-      "needsNewMaster": true,
-      "generationPriority": "OPTIONAL_GENERIC"
+      "needsNewMaster": false,
+      "generationPriority": "OPTIONAL_GENERIC",
+      "masterPath": "/assets/characters/pixel/masters/villageois.png",
+      "productionStatus": "PROMOTED"
     },
     {
       "characterId": "refugee",
       "displayName": "Refugee",
       "currentFullPath": null,
-      "masterExists": false,
+      "masterExists": true,
       "demoRelevant": true,
       "optional": true,
-      "needsNewMaster": true,
-      "generationPriority": "OPTIONAL_GENERIC"
+      "needsNewMaster": false,
+      "generationPriority": "OPTIONAL_GENERIC",
+      "masterPath": "/assets/characters/pixel/masters/refugee.png",
+      "productionStatus": "PROMOTED"
     }
+  ],
+  "OPTIONAL_GENERIC_REGISTERED": [
+    "villageois",
+    "refugee"
+  ],
+  "GENERIC_VILLAGE_MILITIA_REGISTERED": [
+    "village_militia_spearman",
+    "village_militia_brute",
+    "village_militia_slinger"
+  ],
+  "PROMOTED_NON_COMBAT_MASTERS": [
+    "alaric",
+    "maelor",
+    "sage_seraphine",
+    "refugee_mother",
+    "survivor",
+    "villageoise",
+    "wounded_merchant",
+    "villageois",
+    "refugee",
+    "village_militia_spearman",
+    "village_militia_brute",
+    "village_militia_slinger"
   ]
 }

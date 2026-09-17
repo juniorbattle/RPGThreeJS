@@ -792,15 +792,15 @@
         "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
         "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
         "public/assets/characters/pixel/masters/alistair.png",
-        "public/assets/characters/pixel/full/sage_seraphine.png",
-        "public/assets/characters/pixel/full/maelor.png"
+        "public/assets/characters/pixel/masters/sage_seraphine.png",
+        "public/assets/characters/pixel/masters/maelor.png"
       ],
       "referenceSha256": {
         "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
         "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
         "public/assets/characters/pixel/masters/alistair.png": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
-        "public/assets/characters/pixel/full/sage_seraphine.png": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
-        "public/assets/characters/pixel/full/maelor.png": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        "public/assets/characters/pixel/masters/sage_seraphine.png": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
+        "public/assets/characters/pixel/masters/maelor.png": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
       },
       "outputPath": "tmp/cinematics/cin6ea/execution/images/pilot_b_travel_still_a/pilot_b_travel_still_a.png",
       "outputSha256": "2889673cdf291f99df215825c720dea92318ca7d518223796b23c284a5bafd15",
@@ -837,15 +837,15 @@
         "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
         "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
         "public/assets/characters/pixel/masters/alistair.png",
-        "public/assets/characters/pixel/full/sage_seraphine.png",
-        "public/assets/characters/pixel/full/maelor.png"
+        "public/assets/characters/pixel/masters/sage_seraphine.png",
+        "public/assets/characters/pixel/masters/maelor.png"
       ],
       "referenceSha256": {
         "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
         "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
         "public/assets/characters/pixel/masters/alistair.png": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
-        "public/assets/characters/pixel/full/sage_seraphine.png": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
-        "public/assets/characters/pixel/full/maelor.png": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+        "public/assets/characters/pixel/masters/sage_seraphine.png": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
+        "public/assets/characters/pixel/masters/maelor.png": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
       },
       "outputPath": null,
       "outputSha256": null,
@@ -880,13 +880,13 @@
       "promptSha256": "ba1f93b1b2180bb1c64699cd85b88042f382b346b0b5e2bb27facf31eab0325b",
       "referencePaths": [
         "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
-        "public/assets/characters/pixel/full/maelor.png",
+        "public/assets/characters/pixel/masters/maelor.png",
         "public/assets/characters/pixel/masters/alistair.png",
         "public/assets/characters/pixel/masters/white_mage.png"
       ],
       "referenceSha256": {
         "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
-        "public/assets/characters/pixel/full/maelor.png": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215",
+        "public/assets/characters/pixel/masters/maelor.png": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
         "public/assets/characters/pixel/masters/alistair.png": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
         "public/assets/characters/pixel/masters/white_mage.png": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
       },
@@ -923,13 +923,13 @@
       "promptSha256": "4393e01dbd2d11d853f3be044e8ea521de09510949fa927cc685cf8a3f62004a",
       "referencePaths": [
         "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png",
-        "public/assets/characters/pixel/full/maelor.png",
+        "public/assets/characters/pixel/masters/maelor.png",
         "public/assets/characters/pixel/masters/alistair.png",
         "public/assets/characters/pixel/masters/white_mage.png"
       ],
       "referenceSha256": {
         "tmp/cinematics/cin6ea/gold/camp_departure/frames/integration.png": "5d756ec1fffa774a6b305b7d2f1a5d1f3379ef53055fabccff7d9af843215137",
-        "public/assets/characters/pixel/full/maelor.png": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215",
+        "public/assets/characters/pixel/masters/maelor.png": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
         "public/assets/characters/pixel/masters/alistair.png": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
         "public/assets/characters/pixel/masters/white_mage.png": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
       },
@@ -1216,12 +1216,12 @@
       "promptSha256": "82aee037281ea3049db023d4003f3a3f1bd80855f06cf9a2b5c7978387c8d663",
       "referencePaths": [
         "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
-        "public/assets/characters/pixel/full/sage_seraphine.png",
+        "public/assets/characters/pixel/masters/sage_seraphine.png",
         "public/assets/characters/pixel/masters/dark_mage.png"
       ],
       "referenceSha256": {
         "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
-        "public/assets/characters/pixel/full/sage_seraphine.png": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
+        "public/assets/characters/pixel/masters/sage_seraphine.png": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
         "public/assets/characters/pixel/masters/dark_mage.png": "a6d4e3d518d9fff42e7155b9c5f0eb47aae5ddc7c1ef499ecfd8c33a677b8476"
       },
       "outputPath": "tmp/cinematics/cin6ea/execution/images/pilot_f_cinematic_keyframe_a/pilot_f_cinematic_keyframe_a.png",
@@ -1257,12 +1257,12 @@
       "promptSha256": "d766aa9230945cf1dbf2b3fc50ee181cfbddf8f839f5de9cbb759f843f289938",
       "referencePaths": [
         "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png",
-        "public/assets/characters/pixel/full/sage_seraphine.png",
+        "public/assets/characters/pixel/masters/sage_seraphine.png",
         "public/assets/characters/pixel/masters/dark_mage.png"
       ],
       "referenceSha256": {
         "tmp/cinematics/cin6ea/gold/valmir_route_fork/frames/integration.png": "4988750a7931fe5a0502755dd89dd5b5574cb55baf2235451e41d82fae3e9ef1",
-        "public/assets/characters/pixel/full/sage_seraphine.png": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
+        "public/assets/characters/pixel/masters/sage_seraphine.png": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
         "public/assets/characters/pixel/masters/dark_mage.png": "a6d4e3d518d9fff42e7155b9c5f0eb47aae5ddc7c1ef499ecfd8c33a677b8476"
       },
       "outputPath": null,

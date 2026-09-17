@@ -1,0 +1,49 @@
+{
+  "unitId": "refugee_mother",
+  "category": "ACTIVE_CIVILIAN",
+  "familyClass": "STANDARD_HUMANOID",
+  "canvas": [
+    512,
+    512
+  ],
+  "alphaBounds": [
+    183,
+    128,
+    330,
+    456
+  ],
+  "coreBounds": [
+    184,
+    129,
+    329,
+    456
+  ],
+  "baseline": 456,
+  "measuredCoreBottom": 456,
+  "baselineDeltaPx": 0,
+  "targetCoreExtentPx": 328,
+  "normalizedCoreExtentPx": 327,
+  "authoredScale": 0.35690968443960824,
+  "appliedScale": 0.35690968443960824,
+  "scaleLimitedByExtremeAppendage": false,
+  "projectedFullSizeAtAuthoredScale": [
+    147,
+    329
+  ],
+  "transparentMargins": [
+    183,
+    128,
+    182,
+    56
+  ],
+  "safeMarginsPass": true,
+  "faceObscurationPolicy": "PASS_AGENT_VISUAL_REVIEW",
+  "reviewStatus": "OPERATOR_REVIEW_REQUIRED",
+  "identityAlias": null,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/qa/processed/refugee_mother/clean.png",
+  "promptPath": "public/assets/dev/option-c/non-combat-masters-v1/manifests/prompts/refugee_mother.txt",
+  "masterPath": "public/assets/dev/option-c/non-combat-masters-v1/masters/refugee_mother.png",
+  "masterSha256": "864841b61f68c037f64b0a353f504592164ee797ca1583997e80887f549bad98"
+}

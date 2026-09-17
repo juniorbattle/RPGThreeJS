@@ -333,7 +333,7 @@ const EXTERNAL_SPRITE_HEIGHTS={
   '/assets/characters/pixel/archive/non-demo/undead_champion.png':2.18,
   '/assets/characters/pixel/masters/forest_troll_elite.png':2.3,
   '/assets/characters/pixel/masters/young_dragon_elite.png':2.22,
-  '/assets/characters/pixel/full/alaric.png':2.42,
+  '/assets/characters/pixel/masters/alaric.png':2.42,
   '/assets/characters/pixel/archive/non-demo/aldric.png':2.08,
   '/assets/characters/pixel/archive/non-demo/talon.png':2.05,
   '/assets/characters/pixel/masters/lancer.png':2.12
@@ -361,7 +361,7 @@ async function preloadExternalSprites(){
     ...strategicDefinitions.map(unit=>strategicVisualFor(unit)?.src||unit.portrait),
     ...Object.values(BOSS_PORTRAITS).map(portrait=>resolveStrategicUnitVisual(portrait)?.src||portrait),
     ...(OPTION_C_PROOF_ACTIVE?optionCUrls:[])
-  ].filter(url=>typeof url==='string'&&(url.startsWith('/assets/characters/pixel/combat/')||url.startsWith('/assets/characters/pixel/full/')||(OPTION_C_PROOF_ACTIVE&&url.startsWith(optionCAssets.root)))))];
+  ].filter(url=>typeof url==='string'&&(url.startsWith('/assets/characters/pixel/combat/')||url.startsWith('/assets/characters/pixel/masters/')||(OPTION_C_PROOF_ACTIVE&&url.startsWith(optionCAssets.root)))))];
   if(!urls.length)return;
   await Promise.all(urls.map(async url=>{
     if(externalSpriteCache.has(url))return;
@@ -688,7 +688,7 @@ for(const bossDef of BOSS_DEFS){ bossDef.gx=6; bossDef.gz=1; }
 const BOSS_PORTRAITS={
   serpent_captain:'/assets/characters/pixel/masters/serpent_general_boss.png',
   serpent_general_boss:'/assets/characters/pixel/masters/serpent_general_boss.png',
-  alaric:'/assets/characters/pixel/full/alaric.png',
+  alaric:'/assets/characters/pixel/masters/alaric.png',
   lion_chief:'/assets/characters/pixel/masters/lion_champion.png'
 };
 const BOSS_ESCORTS={

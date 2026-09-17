@@ -50,9 +50,9 @@ describe('CIN-6B P0 completion production contract', () => {
     }
   });
 
-  it('uses authored physical ratios rather than canonical PNG canvas dimensions', () => {
+  it('keeps authored physical ratios independent from the promoted 512px master canvases', () => {
     for (const asset of ['villageoise', 'maelor', 'alaric']) {
-      expect(pngDimensions(census.characterAssetPaths[asset])).toEqual({ width: 640, height: 768 });
+      expect(pngDimensions(census.characterAssetPaths[asset])).toEqual({ width: 512, height: 512 });
     }
     expect(pngDimensions(census.characterAssetPaths.lion_champion)).toEqual({ width: 512, height: 512 });
 

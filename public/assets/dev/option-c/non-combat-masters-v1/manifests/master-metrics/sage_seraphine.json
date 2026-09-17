@@ -1,0 +1,49 @@
+{
+  "unitId": "sage_seraphine",
+  "category": "KEY_STORY",
+  "familyClass": "STANDARD_HUMANOID",
+  "canvas": [
+    512,
+    512
+  ],
+  "alphaBounds": [
+    150,
+    110,
+    363,
+    456
+  ],
+  "coreBounds": [
+    152,
+    121,
+    361,
+    456
+  ],
+  "baseline": 456,
+  "measuredCoreBottom": 456,
+  "baselineDeltaPx": 0,
+  "targetCoreExtentPx": 336,
+  "normalizedCoreExtentPx": 335,
+  "authoredScale": 0.3762597984322508,
+  "appliedScale": 0.3762597984322508,
+  "scaleLimitedByExtremeAppendage": false,
+  "projectedFullSizeAtAuthoredScale": [
+    213,
+    347
+  ],
+  "transparentMargins": [
+    150,
+    110,
+    149,
+    56
+  ],
+  "safeMarginsPass": true,
+  "faceObscurationPolicy": "PASS_AGENT_VISUAL_REVIEW",
+  "reviewStatus": "OPERATOR_REVIEW_REQUIRED",
+  "identityAlias": null,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/qa/processed/sage_seraphine/clean.png",
+  "promptPath": "public/assets/dev/option-c/non-combat-masters-v1/manifests/prompts/sage_seraphine.txt",
+  "masterPath": "public/assets/dev/option-c/non-combat-masters-v1/masters/sage_seraphine.png",
+  "masterSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
+}

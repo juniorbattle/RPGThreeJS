@@ -1,0 +1,49 @@
+{
+  "unitId": "refugee",
+  "category": "OPTIONAL_CIVILIAN",
+  "familyClass": "STANDARD_HUMANOID",
+  "canvas": [
+    512,
+    512
+  ],
+  "alphaBounds": [
+    184,
+    128,
+    328,
+    456
+  ],
+  "coreBounds": [
+    185,
+    130,
+    327,
+    456
+  ],
+  "baseline": 456,
+  "measuredCoreBottom": 456,
+  "baselineDeltaPx": 0,
+  "targetCoreExtentPx": 326,
+  "normalizedCoreExtentPx": 326,
+  "authoredScale": 0.3555070883315158,
+  "appliedScale": 0.3555070883315158,
+  "scaleLimitedByExtremeAppendage": false,
+  "projectedFullSizeAtAuthoredScale": [
+    144,
+    327
+  ],
+  "transparentMargins": [
+    184,
+    128,
+    184,
+    56
+  ],
+  "safeMarginsPass": true,
+  "faceObscurationPolicy": "PASS_AGENT_VISUAL_REVIEW",
+  "reviewStatus": "OPERATOR_REVIEW_REQUIRED",
+  "identityAlias": null,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/qa/processed/refugee/clean.png",
+  "promptPath": "public/assets/dev/option-c/non-combat-masters-v1/manifests/prompts/refugee.txt",
+  "masterPath": "public/assets/dev/option-c/non-combat-masters-v1/masters/refugee.png",
+  "masterSha256": "aaebf18c6f56e06f92b4827315a837e9f42150d61af02460c5c07592539932f9"
+}

@@ -25,9 +25,8 @@ export async function validateCinematicCharacterScale(input, options = {}) {
   const canonicalAssetRoots = input.canonicalAssetRoots ?? [];
   if (JSON.stringify(canonicalAssetRoots) !== JSON.stringify([
     'public/assets/characters/pixel/masters/',
-    'public/assets/characters/pixel/full/',
     'public/assets/characters/pixel/archive/non-demo/',
-  ])) errors.push('canonicalAssetRoots must identify the V2 master authority, active full scope and non-demo archive.');
+  ])) errors.push('canonicalAssetRoots must identify the V2 master authority and non-demo archive.');
   for (const framing of SCALE_FRAMINGS) {
     const value = input.framingProfiles?.[framing]?.referenceVisibleBodyHeightPx;
     if (!Number.isInteger(value) || value < 64 || value > 1400) errors.push(`framingProfiles.${framing} must define a valid referenceVisibleBodyHeightPx.`);

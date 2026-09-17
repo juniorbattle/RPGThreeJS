@@ -15,7 +15,7 @@
     "environment": "public/assets/generated/lion-phase/dialogue/mystery_help.webp",
     "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6c_abandoned_cart_reveal/shot_01/source.png" },
     "characters": [
-      { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.22, "groundY": 0.98 }, "scale": { "framing": "MEDIUM", "perspective": 0.92 }, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:abandoned_cart", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
+      { "id": "maelor", "asset": "public/assets/characters/pixel/masters/maelor.png", "position": { "x": 0.22, "groundY": 0.98 }, "scale": { "framing": "MEDIUM", "perspective": 0.92 }, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:abandoned_cart", "depth": 10, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" }
     ],
     "camera": { "mode": "STATIC" },
     "durationSeconds": 5,

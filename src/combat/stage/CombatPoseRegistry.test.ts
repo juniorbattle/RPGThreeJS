@@ -100,6 +100,8 @@ describe('CombatPoseRegistry production V2', () => {
     expect(resolveCombatPoseSet('unknown_unit')).toBeUndefined();
     expect(resolveCombatPoseAsset('unknown_unit', 'attack')).toBeUndefined();
     expect(resolveStrategicUnitVisual('unknown_unit')).toBeUndefined();
+    expect(resolveCombatPoseUnitId('village_militia_spearman')).toBeUndefined();
+    expect(resolveCombatPoseSet('village_militia_spearman')).toBeUndefined();
   });
 
   it('falls back a missing requested semantic pose to PREPARE', () => {

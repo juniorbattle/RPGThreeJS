@@ -18,16 +18,17 @@ describe('CharacterVisualRegistry', () => {
     expect(runtimeManifest).toEqual(publicManifest);
   });
 
-  it('makes all 25 promoted masters authoritative for every non-combat role', () => {
+  it('makes all 37 promoted masters authoritative for every non-combat role', () => {
     const profiles = listCharacterVisualProfiles();
-    expect(profiles).toHaveLength(25);
+    expect(profiles).toHaveLength(37);
     for (const profile of profiles) {
       expect(profile.master).toBe(`/assets/characters/pixel/masters/${profile.unitId}.png`);
       expect(profile.full).toBe(profile.master);
       expect(profile.dialogue).toBe(profile.full);
       expect(profile.ui).toBe(profile.full);
-      expect(profile.combatPoseUnitId).toBe(profile.unitId);
     }
+    expect(profiles.filter((profile) => profile.combatPoseUnitId)).toHaveLength(25);
+    expect(resolveCharacterVisualProfile('village_militia_spearman')?.combatPoseUnitId).toBeUndefined();
   });
 
   it('resolves role-specific assets instead of overloading portrait', () => {
@@ -36,5 +37,7 @@ describe('CharacterVisualRegistry', () => {
     expect(resolveCharacterAsset('warrior', 'ui')).toBe('/assets/characters/pixel/masters/alistair.png');
     expect(resolveCharacterVisualProfile('kestrel')?.combatPoseUnitId).toBe('archer');
     expect(resolveCharacterUnitId('/assets/characters/pixel/masters/white_mage.png')).toBe('white_mage');
+    expect(resolveCharacterUnitId('seraphine')).toBe('sage_seraphine');
+    expect(resolveCharacterAsset('seraphine', 'dialogue')).toBe('/assets/characters/pixel/masters/sage_seraphine.png');
   });
 });

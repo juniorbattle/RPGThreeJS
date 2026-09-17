@@ -1,0 +1,49 @@
+{
+  "unitId": "alaric",
+  "category": "KEY_STORY",
+  "familyClass": "STANDARD_HUMANOID",
+  "canvas": [
+    512,
+    512
+  ],
+  "alphaBounds": [
+    136,
+    113,
+    374,
+    456
+  ],
+  "coreBounds": [
+    138,
+    114,
+    374,
+    456
+  ],
+  "baseline": 456,
+  "measuredCoreBottom": 456,
+  "baselineDeltaPx": 0,
+  "targetCoreExtentPx": 342,
+  "normalizedCoreExtentPx": 342,
+  "authoredScale": 0.37254901960784315,
+  "appliedScale": 0.37254901960784315,
+  "scaleLimitedByExtremeAppendage": false,
+  "projectedFullSizeAtAuthoredScale": [
+    238,
+    343
+  ],
+  "transparentMargins": [
+    136,
+    113,
+    138,
+    56
+  ],
+  "safeMarginsPass": true,
+  "faceObscurationPolicy": "PASS_AGENT_VISUAL_REVIEW",
+  "reviewStatus": "OPERATOR_REVIEW_REQUIRED",
+  "identityAlias": null,
+  "perPoseAutoScaling": false,
+  "fitToContent": false,
+  "sourcePath": "public/assets/dev/option-c/non-combat-masters-v1/qa/processed/alaric/clean.png",
+  "promptPath": "public/assets/dev/option-c/non-combat-masters-v1/manifests/prompts/alaric.txt",
+  "masterPath": "public/assets/dev/option-c/non-combat-masters-v1/masters/alaric.png",
+  "masterSha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+}

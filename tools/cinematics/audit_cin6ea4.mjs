@@ -95,7 +95,6 @@ async function main() {
     'src/game/store.ts',
     'src/game/types.ts',
     'src/game/lionNarrative.ts',
-    'public/assets/characters/pixel/full/',
     'public/assets/characters/pixel/archive/non-demo/',
     'public/assets/cinematics/',
   ];

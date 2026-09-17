@@ -14,10 +14,12 @@
     "commonWorldUnitsPerPixel": 0.00625,
     "scaleCorrection": 1.0,
     "variableCanvasSupported": true,
-    "byteIdenticalPromotion": true
+    "byteIdenticalPromotion": true,
+    "activeFullRootRetired": true,
+    "nonCombatOnlyMastersCanOmitCombatPoses": true
   },
   "counts": {
-    "masters": 25,
+    "masters": 37,
     "combatPoses": 100
   },
   "units": [
@@ -119,7 +121,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "archer",
@@ -219,7 +224,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "cave_bat",
@@ -319,7 +327,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "cave_rat",
@@ -419,7 +430,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "dark_mage",
@@ -519,7 +533,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "forest_badger",
@@ -619,7 +636,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "forest_spider",
@@ -719,7 +739,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "forest_troll_elite",
@@ -819,7 +842,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "goblin",
@@ -919,7 +945,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "lancer",
@@ -1019,7 +1048,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "lion_champion",
@@ -1119,7 +1151,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "marsh_toad",
@@ -1219,7 +1254,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "rogue",
@@ -1319,7 +1357,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "serpent_brute",
@@ -1419,7 +1460,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "serpent_duelist_elite",
@@ -1519,7 +1563,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "serpent_elite_brute",
@@ -1619,7 +1666,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "serpent_general_boss",
@@ -1719,7 +1769,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "serpent_oracle",
@@ -1819,7 +1872,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "serpent_raider",
@@ -1919,7 +1975,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "skeleton",
@@ -2019,7 +2078,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "venom_serpent",
@@ -2119,7 +2181,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "white_mage",
@@ -2219,7 +2284,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "wild_boar",
@@ -2319,7 +2387,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "wolf",
@@ -2419,7 +2490,10 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
     },
     {
       "unitId": "young_dragon_elite",
@@ -2519,7 +2593,410 @@
           "scaleCorrection": 1.0,
           "characterBoundFx": true
         }
-      }
+      },
+      "category": "COMBAT_CHARACTER",
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "PROMOTED_4_POSES"
+    },
+    {
+      "unitId": "alaric",
+      "category": "KEY_STORY",
+      "scaleFamily": "STANDARD_HUMANOID",
+      "worldUnitsPerPixel": 0.00625,
+      "canvasSize": {
+        "width": 512,
+        "height": 512
+      },
+      "alphaBounds": {
+        "left": 136,
+        "top": 113,
+        "right": 374,
+        "bottom": 456
+      },
+      "baseline": 456,
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "NOT_PRODUCED",
+      "master": {
+        "src": "/assets/characters/pixel/masters/alaric.png",
+        "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f",
+        "sourceSizePx": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "roles": {
+        "full": "/assets/characters/pixel/masters/alaric.png",
+        "dialogue": "/assets/characters/pixel/masters/alaric.png",
+        "ui": "/assets/characters/pixel/masters/alaric.png"
+      },
+      "poses": {}
+    },
+    {
+      "unitId": "maelor",
+      "category": "KEY_STORY",
+      "scaleFamily": "STANDARD_HUMANOID",
+      "worldUnitsPerPixel": 0.00625,
+      "canvasSize": {
+        "width": 512,
+        "height": 512
+      },
+      "alphaBounds": {
+        "left": 176,
+        "top": 118,
+        "right": 336,
+        "bottom": 456
+      },
+      "baseline": 456,
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "NOT_PRODUCED",
+      "master": {
+        "src": "/assets/characters/pixel/masters/maelor.png",
+        "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+        "sourceSizePx": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "roles": {
+        "full": "/assets/characters/pixel/masters/maelor.png",
+        "dialogue": "/assets/characters/pixel/masters/maelor.png",
+        "ui": "/assets/characters/pixel/masters/maelor.png"
+      },
+      "poses": {}
+    },
+    {
+      "unitId": "sage_seraphine",
+      "category": "KEY_STORY",
+      "scaleFamily": "STANDARD_HUMANOID",
+      "worldUnitsPerPixel": 0.00625,
+      "canvasSize": {
+        "width": 512,
+        "height": 512
+      },
+      "alphaBounds": {
+        "left": 150,
+        "top": 110,
+        "right": 363,
+        "bottom": 456
+      },
+      "baseline": 456,
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "NOT_PRODUCED",
+      "master": {
+        "src": "/assets/characters/pixel/masters/sage_seraphine.png",
+        "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
+        "sourceSizePx": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "roles": {
+        "full": "/assets/characters/pixel/masters/sage_seraphine.png",
+        "dialogue": "/assets/characters/pixel/masters/sage_seraphine.png",
+        "ui": "/assets/characters/pixel/masters/sage_seraphine.png"
+      },
+      "poses": {}
+    },
+    {
+      "unitId": "refugee_mother",
+      "category": "ACTIVE_CIVILIAN",
+      "scaleFamily": "STANDARD_HUMANOID",
+      "worldUnitsPerPixel": 0.00625,
+      "canvasSize": {
+        "width": 512,
+        "height": 512
+      },
+      "alphaBounds": {
+        "left": 183,
+        "top": 128,
+        "right": 330,
+        "bottom": 456
+      },
+      "baseline": 456,
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "NOT_PRODUCED",
+      "master": {
+        "src": "/assets/characters/pixel/masters/refugee_mother.png",
+        "sha256": "864841b61f68c037f64b0a353f504592164ee797ca1583997e80887f549bad98",
+        "sourceSizePx": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "roles": {
+        "full": "/assets/characters/pixel/masters/refugee_mother.png",
+        "dialogue": "/assets/characters/pixel/masters/refugee_mother.png",
+        "ui": "/assets/characters/pixel/masters/refugee_mother.png"
+      },
+      "poses": {}
+    },
+    {
+      "unitId": "survivor",
+      "category": "ACTIVE_CIVILIAN",
+      "scaleFamily": "STANDARD_HUMANOID",
+      "worldUnitsPerPixel": 0.00625,
+      "canvasSize": {
+        "width": 512,
+        "height": 512
+      },
+      "alphaBounds": {
+        "left": 149,
+        "top": 121,
+        "right": 362,
+        "bottom": 456
+      },
+      "baseline": 456,
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "NOT_PRODUCED",
+      "master": {
+        "src": "/assets/characters/pixel/masters/survivor.png",
+        "sha256": "2039a2566269065f6db0776170e1b6bda2f1803a721c8bc5a4eb279def16e48d",
+        "sourceSizePx": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "roles": {
+        "full": "/assets/characters/pixel/masters/survivor.png",
+        "dialogue": "/assets/characters/pixel/masters/survivor.png",
+        "ui": "/assets/characters/pixel/masters/survivor.png"
+      },
+      "poses": {}
+    },
+    {
+      "unitId": "villageoise",
+      "category": "ACTIVE_CIVILIAN",
+      "scaleFamily": "STANDARD_HUMANOID",
+      "worldUnitsPerPixel": 0.00625,
+      "canvasSize": {
+        "width": 512,
+        "height": 512
+      },
+      "alphaBounds": {
+        "left": 180,
+        "top": 128,
+        "right": 333,
+        "bottom": 456
+      },
+      "baseline": 456,
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "NOT_PRODUCED",
+      "master": {
+        "src": "/assets/characters/pixel/masters/villageoise.png",
+        "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180",
+        "sourceSizePx": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "roles": {
+        "full": "/assets/characters/pixel/masters/villageoise.png",
+        "dialogue": "/assets/characters/pixel/masters/villageoise.png",
+        "ui": "/assets/characters/pixel/masters/villageoise.png"
+      },
+      "poses": {}
+    },
+    {
+      "unitId": "wounded_merchant",
+      "category": "ACTIVE_CIVILIAN",
+      "scaleFamily": "STANDARD_HUMANOID",
+      "worldUnitsPerPixel": 0.00625,
+      "canvasSize": {
+        "width": 512,
+        "height": 512
+      },
+      "alphaBounds": {
+        "left": 179,
+        "top": 123,
+        "right": 331,
+        "bottom": 456
+      },
+      "baseline": 456,
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "NOT_PRODUCED",
+      "master": {
+        "src": "/assets/characters/pixel/masters/wounded_merchant.png",
+        "sha256": "07b689e4ff2b9fa24285e18576cf044717c6750abbd3c2cf4ef686488c4a45e1",
+        "sourceSizePx": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "roles": {
+        "full": "/assets/characters/pixel/masters/wounded_merchant.png",
+        "dialogue": "/assets/characters/pixel/masters/wounded_merchant.png",
+        "ui": "/assets/characters/pixel/masters/wounded_merchant.png"
+      },
+      "poses": {}
+    },
+    {
+      "unitId": "villageois",
+      "category": "OPTIONAL_CIVILIAN",
+      "scaleFamily": "STANDARD_HUMANOID",
+      "worldUnitsPerPixel": 0.00625,
+      "canvasSize": {
+        "width": 512,
+        "height": 512
+      },
+      "alphaBounds": {
+        "left": 177,
+        "top": 126,
+        "right": 334,
+        "bottom": 456
+      },
+      "baseline": 456,
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "NOT_PRODUCED",
+      "master": {
+        "src": "/assets/characters/pixel/masters/villageois.png",
+        "sha256": "f395a95994dea46b586e15e7cc5ca5666ba7b660762dbd2b4506bf8c2375689b",
+        "sourceSizePx": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "roles": {
+        "full": "/assets/characters/pixel/masters/villageois.png",
+        "dialogue": "/assets/characters/pixel/masters/villageois.png",
+        "ui": "/assets/characters/pixel/masters/villageois.png"
+      },
+      "poses": {}
+    },
+    {
+      "unitId": "refugee",
+      "category": "OPTIONAL_CIVILIAN",
+      "scaleFamily": "STANDARD_HUMANOID",
+      "worldUnitsPerPixel": 0.00625,
+      "canvasSize": {
+        "width": 512,
+        "height": 512
+      },
+      "alphaBounds": {
+        "left": 184,
+        "top": 128,
+        "right": 328,
+        "bottom": 456
+      },
+      "baseline": 456,
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "NOT_PRODUCED",
+      "master": {
+        "src": "/assets/characters/pixel/masters/refugee.png",
+        "sha256": "aaebf18c6f56e06f92b4827315a837e9f42150d61af02460c5c07592539932f9",
+        "sourceSizePx": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "roles": {
+        "full": "/assets/characters/pixel/masters/refugee.png",
+        "dialogue": "/assets/characters/pixel/masters/refugee.png",
+        "ui": "/assets/characters/pixel/masters/refugee.png"
+      },
+      "poses": {}
+    },
+    {
+      "unitId": "village_militia_spearman",
+      "category": "GENERIC_VILLAGE_MILITIA",
+      "scaleFamily": "STANDARD_HUMANOID",
+      "worldUnitsPerPixel": 0.00625,
+      "canvasSize": {
+        "width": 512,
+        "height": 512
+      },
+      "alphaBounds": {
+        "left": 182,
+        "top": 105,
+        "right": 330,
+        "bottom": 456
+      },
+      "baseline": 456,
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "NOT_PRODUCED",
+      "master": {
+        "src": "/assets/characters/pixel/masters/village_militia_spearman.png",
+        "sha256": "b35b7f7ca5f7323c2f1e123b8047bd22735e756b11be08e5550d344eda476a5d",
+        "sourceSizePx": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "roles": {
+        "full": "/assets/characters/pixel/masters/village_militia_spearman.png",
+        "dialogue": "/assets/characters/pixel/masters/village_militia_spearman.png",
+        "ui": "/assets/characters/pixel/masters/village_militia_spearman.png"
+      },
+      "poses": {}
+    },
+    {
+      "unitId": "village_militia_brute",
+      "category": "GENERIC_VILLAGE_MILITIA",
+      "scaleFamily": "STANDARD_HUMANOID",
+      "worldUnitsPerPixel": 0.00625,
+      "canvasSize": {
+        "width": 512,
+        "height": 512
+      },
+      "alphaBounds": {
+        "left": 178,
+        "top": 111,
+        "right": 333,
+        "bottom": 456
+      },
+      "baseline": 456,
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "NOT_PRODUCED",
+      "master": {
+        "src": "/assets/characters/pixel/masters/village_militia_brute.png",
+        "sha256": "8132e4162e4a3f57dfe6e2d206fc4d1b46c5debfba4352f0dafe3c3c9f2bf150",
+        "sourceSizePx": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "roles": {
+        "full": "/assets/characters/pixel/masters/village_militia_brute.png",
+        "dialogue": "/assets/characters/pixel/masters/village_militia_brute.png",
+        "ui": "/assets/characters/pixel/masters/village_militia_brute.png"
+      },
+      "poses": {}
+    },
+    {
+      "unitId": "village_militia_slinger",
+      "category": "GENERIC_VILLAGE_MILITIA",
+      "scaleFamily": "STANDARD_HUMANOID",
+      "worldUnitsPerPixel": 0.00625,
+      "canvasSize": {
+        "width": 512,
+        "height": 512
+      },
+      "alphaBounds": {
+        "left": 171,
+        "top": 122,
+        "right": 340,
+        "bottom": 456
+      },
+      "baseline": 456,
+      "productionStatus": "PROMOTED",
+      "combatPoseStatus": "NOT_PRODUCED",
+      "master": {
+        "src": "/assets/characters/pixel/masters/village_militia_slinger.png",
+        "sha256": "2a0c3d4743261cb445e6f999ab39c7c52083fd94c4c48d116a44836ca657c478",
+        "sourceSizePx": {
+          "width": 512,
+          "height": 512
+        }
+      },
+      "roles": {
+        "full": "/assets/characters/pixel/masters/village_militia_slinger.png",
+        "dialogue": "/assets/characters/pixel/masters/village_militia_slinger.png",
+        "ui": "/assets/characters/pixel/masters/village_militia_slinger.png"
+      },
+      "poses": {}
     }
-  ]
+  ],
+  "sourceRoots": {
+    "combatMasters": "public/assets/dev/option-c/combat-poses-v2/full-roster-rebuild",
+    "nonCombatMasters": "public/assets/dev/option-c/non-combat-masters-v1"
+  }
 }

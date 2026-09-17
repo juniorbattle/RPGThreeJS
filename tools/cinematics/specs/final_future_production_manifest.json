@@ -3704,28 +3704,28 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         },
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "alistair",
@@ -3826,15 +3826,15 @@
         {
           "actorId": "alaric",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/alaric.png"
+            "public/assets/characters/pixel/masters/alaric.png"
           ],
           "canonicalAlphaBoundingBox": [
-            27,
-            56,
-            612,
-            742
+            136,
+            113,
+            374,
+            456
           ],
-          "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b"
+          "referenceSha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
         }
       ],
       "futureVideoCastRequirements": []
@@ -3900,28 +3900,28 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "villageoise",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/villageoise.png"
+            "public/assets/characters/pixel/masters/villageoise.png"
           ],
           "canonicalAlphaBoundingBox": [
-            188,
-            228,
-            444,
-            734
+            180,
+            128,
+            333,
+            456
           ],
-          "referenceSha256": "25a253fa81b72629087fd1701636ddbfe20347bdf8500a194092e19d1f8a9dd2"
+          "referenceSha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180"
         }
       ],
       "futureVideoCastRequirements": []
@@ -4000,15 +4000,15 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         }
       ],
       "futureVideoCastRequirements": []
@@ -4057,15 +4057,15 @@
         {
           "actorId": "alaric",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/alaric.png"
+            "public/assets/characters/pixel/masters/alaric.png"
           ],
           "canonicalAlphaBoundingBox": [
-            27,
-            56,
-            612,
-            742
+            136,
+            113,
+            374,
+            456
           ],
-          "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b"
+          "referenceSha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
         }
       ],
       "futureVideoCastRequirements": []
@@ -4101,28 +4101,28 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         }
       ],
       "futureVideoCastRequirements": []
@@ -4158,28 +4158,28 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         }
       ],
       "futureVideoCastRequirements": []
@@ -4400,28 +4400,28 @@
         {
           "actorId": "villageoise",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/villageoise.png"
+            "public/assets/characters/pixel/masters/villageoise.png"
           ],
           "canonicalAlphaBoundingBox": [
-            188,
-            228,
-            444,
-            734
+            180,
+            128,
+            333,
+            456
           ],
-          "referenceSha256": "25a253fa81b72629087fd1701636ddbfe20347bdf8500a194092e19d1f8a9dd2"
+          "referenceSha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180"
         },
         {
           "actorId": "refugee_mother",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/refugee_mother.png"
+            "public/assets/characters/pixel/masters/refugee_mother.png"
           ],
           "canonicalAlphaBoundingBox": [
-            171,
-            213,
-            467,
-            734
+            183,
+            128,
+            330,
+            456
           ],
-          "referenceSha256": "819f5348ff22f1c6a6503a9e4186b2f61c1fff68b8cd16c90f4aa5eda1219e13"
+          "referenceSha256": "864841b61f68c037f64b0a353f504592164ee797ca1583997e80887f549bad98"
         }
       ],
       "futureVideoCastRequirements": []
@@ -4488,15 +4488,15 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "alistair",
@@ -4527,15 +4527,15 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         },
         {
           "actorId": "kestrel",
@@ -4579,15 +4579,15 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         }
       ],
       "futureVideoCastRequirements": []
@@ -4635,28 +4635,28 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         },
         {
           "actorId": "marian",
@@ -4746,41 +4746,41 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         },
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "alaric",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/alaric.png"
+            "public/assets/characters/pixel/masters/alaric.png"
           ],
           "canonicalAlphaBoundingBox": [
-            27,
-            56,
-            612,
-            742
+            136,
+            113,
+            374,
+            456
           ],
-          "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b"
+          "referenceSha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
         }
       ],
       "futureVideoCastRequirements": []
@@ -4814,15 +4814,15 @@
         {
           "actorId": "alaric",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/alaric.png"
+            "public/assets/characters/pixel/masters/alaric.png"
           ],
           "canonicalAlphaBoundingBox": [
-            27,
-            56,
-            612,
-            742
+            136,
+            113,
+            374,
+            456
           ],
-          "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b"
+          "referenceSha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
         }
       ],
       "futureVideoCastRequirements": []
@@ -4853,15 +4853,15 @@
         {
           "actorId": "alaric",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/alaric.png"
+            "public/assets/characters/pixel/masters/alaric.png"
           ],
           "canonicalAlphaBoundingBox": [
-            27,
-            56,
-            612,
-            742
+            136,
+            113,
+            374,
+            456
           ],
-          "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b"
+          "referenceSha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
         }
       ],
       "futureVideoCastRequirements": []
@@ -4939,28 +4939,28 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         },
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "young_dragon_elite",
@@ -5010,15 +5010,15 @@
         {
           "actorId": "survivor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/survivor.png"
+            "public/assets/characters/pixel/masters/survivor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            157,
-            228,
-            511,
-            737
+            149,
+            121,
+            362,
+            456
           ],
-          "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47"
+          "referenceSha256": "2039a2566269065f6db0776170e1b6bda2f1803a721c8bc5a4eb279def16e48d"
         }
       ],
       "futureVideoCastRequirements": []
@@ -5187,28 +5187,28 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         },
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         }
       ],
       "futureVideoCastRequirements": []
@@ -5246,28 +5246,28 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         }
       ],
       "futureVideoCastRequirements": []
@@ -5317,28 +5317,28 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         },
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         }
       ],
       "futureVideoCastRequirements": []
@@ -5374,28 +5374,28 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         },
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         }
       ],
       "futureVideoCastRequirements": []
@@ -5458,15 +5458,15 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         }
       ],
       "futureVideoCastRequirements": []
@@ -5513,15 +5513,15 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         }
       ],
       "futureVideoCastRequirements": []
@@ -5568,15 +5568,15 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         }
       ],
       "futureVideoCastRequirements": []
@@ -5665,15 +5665,15 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         },
         {
           "actorId": "serpent_oracle",
@@ -5733,15 +5733,15 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         }
       ],
       "futureVideoCastRequirements": []
@@ -5843,15 +5843,15 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         }
       ],
       "futureVideoCastRequirements": []
@@ -5898,15 +5898,15 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         }
       ],
       "futureVideoCastRequirements": []
@@ -5969,15 +5969,15 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         }
       ],
       "futureVideoCastRequirements": []
@@ -6024,15 +6024,15 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         }
       ],
       "futureVideoCastRequirements": []
@@ -6072,15 +6072,15 @@
         {
           "actorId": "alaric",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/alaric.png"
+            "public/assets/characters/pixel/masters/alaric.png"
           ],
           "canonicalAlphaBoundingBox": [
-            27,
-            56,
-            612,
-            742
+            136,
+            113,
+            374,
+            456
           ],
-          "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b"
+          "referenceSha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
         },
         {
           "actorId": "lion_champion",
@@ -6156,15 +6156,15 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         }
       ],
       "futureVideoCastRequirements": []
@@ -6211,15 +6211,15 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         }
       ],
       "futureVideoCastRequirements": []
@@ -6266,15 +6266,15 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         }
       ],
       "futureVideoCastRequirements": []
@@ -6355,15 +6355,15 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         },
         {
           "actorId": "serpent_raider",
@@ -6649,15 +6649,15 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         }
       ],
       "futureVideoCastRequirements": []
@@ -6886,28 +6886,28 @@
         {
           "actorId": "refugee_mother",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/refugee_mother.png"
+            "public/assets/characters/pixel/masters/refugee_mother.png"
           ],
           "canonicalAlphaBoundingBox": [
-            171,
-            213,
-            467,
-            734
+            183,
+            128,
+            330,
+            456
           ],
-          "referenceSha256": "819f5348ff22f1c6a6503a9e4186b2f61c1fff68b8cd16c90f4aa5eda1219e13"
+          "referenceSha256": "864841b61f68c037f64b0a353f504592164ee797ca1583997e80887f549bad98"
         },
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         }
       ],
       "futureVideoCastRequirements": []
@@ -6942,15 +6942,15 @@
         {
           "actorId": "refugee_mother",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/refugee_mother.png"
+            "public/assets/characters/pixel/masters/refugee_mother.png"
           ],
           "canonicalAlphaBoundingBox": [
-            171,
-            213,
-            467,
-            734
+            183,
+            128,
+            330,
+            456
           ],
-          "referenceSha256": "819f5348ff22f1c6a6503a9e4186b2f61c1fff68b8cd16c90f4aa5eda1219e13"
+          "referenceSha256": "864841b61f68c037f64b0a353f504592164ee797ca1583997e80887f549bad98"
         }
       ],
       "futureVideoCastRequirements": []
@@ -6985,15 +6985,15 @@
         {
           "actorId": "survivor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/survivor.png"
+            "public/assets/characters/pixel/masters/survivor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            157,
-            228,
-            511,
-            737
+            149,
+            121,
+            362,
+            456
           ],
-          "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47"
+          "referenceSha256": "2039a2566269065f6db0776170e1b6bda2f1803a721c8bc5a4eb279def16e48d"
         }
       ],
       "futureVideoCastRequirements": []
@@ -7028,15 +7028,15 @@
         {
           "actorId": "survivor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/survivor.png"
+            "public/assets/characters/pixel/masters/survivor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            157,
-            228,
-            511,
-            737
+            149,
+            121,
+            362,
+            456
           ],
-          "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47"
+          "referenceSha256": "2039a2566269065f6db0776170e1b6bda2f1803a721c8bc5a4eb279def16e48d"
         }
       ],
       "futureVideoCastRequirements": []
@@ -7072,28 +7072,28 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "survivor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/survivor.png"
+            "public/assets/characters/pixel/masters/survivor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            157,
-            228,
-            511,
-            737
+            149,
+            121,
+            362,
+            456
           ],
-          "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47"
+          "referenceSha256": "2039a2566269065f6db0776170e1b6bda2f1803a721c8bc5a4eb279def16e48d"
         }
       ],
       "futureVideoCastRequirements": []
@@ -7128,15 +7128,15 @@
         {
           "actorId": "refugee_mother",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/refugee_mother.png"
+            "public/assets/characters/pixel/masters/refugee_mother.png"
           ],
           "canonicalAlphaBoundingBox": [
-            171,
-            213,
-            467,
-            734
+            183,
+            128,
+            330,
+            456
           ],
-          "referenceSha256": "819f5348ff22f1c6a6503a9e4186b2f61c1fff68b8cd16c90f4aa5eda1219e13"
+          "referenceSha256": "864841b61f68c037f64b0a353f504592164ee797ca1583997e80887f549bad98"
         }
       ],
       "futureVideoCastRequirements": []
@@ -7171,15 +7171,15 @@
         {
           "actorId": "survivor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/survivor.png"
+            "public/assets/characters/pixel/masters/survivor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            157,
-            228,
-            511,
-            737
+            149,
+            121,
+            362,
+            456
           ],
-          "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47"
+          "referenceSha256": "2039a2566269065f6db0776170e1b6bda2f1803a721c8bc5a4eb279def16e48d"
         }
       ],
       "futureVideoCastRequirements": []
@@ -7215,15 +7215,15 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "serpent_raider",
@@ -7271,15 +7271,15 @@
         {
           "actorId": "survivor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/survivor.png"
+            "public/assets/characters/pixel/masters/survivor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            157,
-            228,
-            511,
-            737
+            149,
+            121,
+            362,
+            456
           ],
-          "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47"
+          "referenceSha256": "2039a2566269065f6db0776170e1b6bda2f1803a721c8bc5a4eb279def16e48d"
         }
       ],
       "futureVideoCastRequirements": []
@@ -7314,15 +7314,15 @@
         {
           "actorId": "refugee_mother",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/refugee_mother.png"
+            "public/assets/characters/pixel/masters/refugee_mother.png"
           ],
           "canonicalAlphaBoundingBox": [
-            171,
-            213,
-            467,
-            734
+            183,
+            128,
+            330,
+            456
           ],
-          "referenceSha256": "819f5348ff22f1c6a6503a9e4186b2f61c1fff68b8cd16c90f4aa5eda1219e13"
+          "referenceSha256": "864841b61f68c037f64b0a353f504592164ee797ca1583997e80887f549bad98"
         }
       ],
       "futureVideoCastRequirements": []
@@ -7398,28 +7398,28 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         }
       ],
       "futureVideoCastRequirements": []
@@ -7456,28 +7456,28 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         },
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "serpent_duelist_elite",
@@ -7521,15 +7521,15 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         }
       ],
       "futureVideoCastRequirements": []
@@ -7568,28 +7568,28 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         },
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "serpent_oracle",
@@ -7638,15 +7638,15 @@
         {
           "actorId": "alaric",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/alaric.png"
+            "public/assets/characters/pixel/masters/alaric.png"
           ],
           "canonicalAlphaBoundingBox": [
-            27,
-            56,
-            612,
-            742
+            136,
+            113,
+            374,
+            456
           ],
-          "referenceSha256": "3ae55de641426ff64830131f64888a4bbef88bf1b77df9f6f1d4acab33d23c9b"
+          "referenceSha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
         },
         {
           "actorId": "serpent_general_boss",
@@ -7708,15 +7708,15 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         },
         {
           "actorId": "elara",
@@ -7747,15 +7747,15 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         }
       ],
       "futureVideoCastRequirements": []
@@ -7866,15 +7866,15 @@
         {
           "actorId": "villageoise",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/villageoise.png"
+            "public/assets/characters/pixel/masters/villageoise.png"
           ],
           "canonicalAlphaBoundingBox": [
-            188,
-            228,
-            444,
-            734
+            180,
+            128,
+            333,
+            456
           ],
-          "referenceSha256": "25a253fa81b72629087fd1701636ddbfe20347bdf8500a194092e19d1f8a9dd2"
+          "referenceSha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180"
         },
         {
           "actorId": "serpent_raider",
@@ -7892,28 +7892,28 @@
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         },
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "alistair",
@@ -7961,15 +7961,15 @@
         {
           "actorId": "villageoise",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/villageoise.png"
+            "public/assets/characters/pixel/masters/villageoise.png"
           ],
           "canonicalAlphaBoundingBox": [
-            188,
-            228,
-            444,
-            734
+            180,
+            128,
+            333,
+            456
           ],
-          "referenceSha256": "25a253fa81b72629087fd1701636ddbfe20347bdf8500a194092e19d1f8a9dd2"
+          "referenceSha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180"
         }
       ],
       "futureVideoCastRequirements": []
@@ -8005,28 +8005,28 @@
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "villageoise",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/villageoise.png"
+            "public/assets/characters/pixel/masters/villageoise.png"
           ],
           "canonicalAlphaBoundingBox": [
-            188,
-            228,
-            444,
-            734
+            180,
+            128,
+            333,
+            456
           ],
-          "referenceSha256": "25a253fa81b72629087fd1701636ddbfe20347bdf8500a194092e19d1f8a9dd2"
+          "referenceSha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180"
         }
       ],
       "futureVideoCastRequirements": []
@@ -8156,41 +8156,41 @@
         {
           "actorId": "survivor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/survivor.png"
+            "public/assets/characters/pixel/masters/survivor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            157,
-            228,
-            511,
-            737
+            149,
+            121,
+            362,
+            456
           ],
-          "referenceSha256": "704c6b1fb09b5b40d8822fb41de73d21a011fd10f7c18504c5697e6aea7d0f47"
+          "referenceSha256": "2039a2566269065f6db0776170e1b6bda2f1803a721c8bc5a4eb279def16e48d"
         },
         {
           "actorId": "maelor",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/maelor.png"
+            "public/assets/characters/pixel/masters/maelor.png"
           ],
           "canonicalAlphaBoundingBox": [
-            134,
-            191,
-            504,
-            734
+            176,
+            118,
+            336,
+            456
           ],
-          "referenceSha256": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215"
+          "referenceSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
         },
         {
           "actorId": "sage_seraphine",
           "canonicalFullBodyReferences": [
-            "public/assets/characters/pixel/full/sage_seraphine.png"
+            "public/assets/characters/pixel/masters/sage_seraphine.png"
           ],
           "canonicalAlphaBoundingBox": [
-            127,
-            188,
-            512,
-            734
+            150,
+            110,
+            363,
+            456
           ],
-          "referenceSha256": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064"
+          "referenceSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
         }
       ],
       "futureVideoCastRequirements": []

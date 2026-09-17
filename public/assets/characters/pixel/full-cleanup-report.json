@@ -1,16 +1,8 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "status": "PASS",
   "FULL_CLEANUP": "PASS",
-  "ACTIVE_FULL_IDENTITIES": [
-    "alaric",
-    "maelor",
-    "sage_seraphine",
-    "refugee_mother",
-    "survivor",
-    "villageoise",
-    "wounded_merchant"
-  ],
+  "ACTIVE_FULL_IDENTITIES": [],
   "ARCHIVED_NON_DEMO_IDENTITIES": [
     "aldric",
     "eldwin",
@@ -36,30 +28,18 @@
   "SERAPHINE_CANONICAL_ID": "sage_seraphine",
   "SERAPHINE_ALIAS_RESOLUTION": {
     "aliasId": "seraphine",
-    "canonicalAssetPath": "/assets/characters/pixel/full/sage_seraphine.png",
+    "canonicalAssetPath": "/assets/characters/pixel/masters/sage_seraphine.png",
     "archivedAliasSourcePath": "/assets/characters/pixel/archive/non-demo/seraphine.png",
-    "byteIdenticalBeforeArchive": true,
     "activeProductionIdentities": [
       "sage_seraphine"
     ]
   },
-  "FINAL_NON_COMBAT_GENERATION_QUEUE": [
-    "alaric",
-    "maelor",
-    "sage_seraphine",
-    "refugee_mother",
-    "survivor",
-    "villageoise",
-    "wounded_merchant"
-  ],
-  "OPTIONAL_GENERIC_QUEUE": [
-    "villageois",
-    "refugee"
-  ],
+  "FINAL_NON_COMBAT_GENERATION_QUEUE": [],
+  "OPTIONAL_GENERIC_QUEUE": [],
   "BROKEN_REFERENCES": [],
-  "REMAINING_FULL_FILES": 7,
+  "REMAINING_FULL_FILES": 0,
   "ARCHIVED_FILE_COUNT": 21,
-  "ACTIVE_DEMO_NON_COMBAT": 7,
+  "ACTIVE_DEMO_NON_COMBAT": 0,
   "OPTIONAL_GENERIC_NON_COMBAT": 2,
   "ARCHIVED_NON_DEMO": 20,
   "SERAPHINE_DUPLICATE_RESOLVED": true,
@@ -121,9 +101,9 @@
     }
   },
   "productionAssetIntegrity": {
-    "mastersVerifiedUnchanged": 25,
-    "combatPosesVerifiedUnchanged": 100,
-    "verifiedAssets": 125
+    "existing25MastersVerifiedUnchanged": true,
+    "combatPosesVerifiedUnchanged": true,
+    "verifiedExistingAssets": 125
   },
   "strategicPolicy": "CombatPoseSet.prepare",
   "combatStagePolicy": "V2 prepare/dash/attack/cast",
@@ -133,5 +113,65 @@
   "combatLogicChanged": false,
   "vfxChanged": false,
   "environmentChanged": false,
-  "recovery": "Archived files remain byte-identical under archive/non-demo and all changes remain uncommitted."
+  "recovery": "Archived files remain byte-identical under archive/non-demo and all changes remain uncommitted.",
+  "OPTIONAL_GENERIC_REGISTERED": 2,
+  "GENERIC_VILLAGE_MILITIA_REGISTERED": 3,
+  "finalMasterPromotion": {
+    "promoted": 12,
+    "byteIdentical": true,
+    "finalLegacyIdentitiesMigrated": 7,
+    "activeFullReferencesRemaining": 0,
+    "productionMasters": 37
+  },
+  "activeReferenceMigration": {
+    "pathOccurrencesMigrated": 396,
+    "hashOccurrencesMigrated": 191,
+    "changedFiles": [
+      "src/combat/legacyCombatRuntime.js",
+      "src/render/assetManifest.ts",
+      "tools/cinematics/cin3_config.mjs",
+      "tools/cinematics/specs/campaign_cinematic_census.json",
+      "tools/cinematics/specs/canonical_character_production_cards.json",
+      "tools/cinematics/specs/cin6a/alaric_audience_arrival.json",
+      "tools/cinematics/specs/cin6a/bois_clair_arrival.json",
+      "tools/cinematics/specs/cin6a/bois_clair_saved.json",
+      "tools/cinematics/specs/cin6a/camp_departure.json",
+      "tools/cinematics/specs/cin6a/final_refuge_dossier.json",
+      "tools/cinematics/specs/cin6a/first_refuge_departure.json",
+      "tools/cinematics/specs/cin6a/forest_journey_tension.json",
+      "tools/cinematics/specs/cin6a/refugees_approach.json",
+      "tools/cinematics/specs/cin6a/ruins_approach_context.json",
+      "tools/cinematics/specs/cin6a/serpent_route_ending.json",
+      "tools/cinematics/specs/cin6a/shadow_signs.json",
+      "tools/cinematics/specs/cin6a/valmir_route_fork.json",
+      "tools/cinematics/specs/cin6a/witnesses_encounter.json",
+      "tools/cinematics/specs/cin6b/bois_clair_sacrificed.json",
+      "tools/cinematics/specs/cin6b/lion_trial_route_ending.json",
+      "tools/cinematics/specs/cin6c/abandoned_cart_reveal.json",
+      "tools/cinematics/specs/cin6c/injured_merchant_encounter.json",
+      "tools/cinematics/specs/cin6c/shrine_reveal_context.json",
+      "tools/cinematics/specs/cin6ea/pilot_f_shadow_continuous.json",
+      "tools/cinematics/specs/cin6ea2/pilot_c_camp_continuous.json",
+      "tools/cinematics/specs/cin6ea2/pilot_f_shadow_continuous.json",
+      "tools/cinematics/specs/cin6ea2_operator_selections.json",
+      "tools/cinematics/specs/cin6ea_compiled_prompt_manifest.json",
+      "tools/cinematics/specs/cin6ea_provenance_catalog.json",
+      "tools/cinematics/specs/cinematic_character_scale.json",
+      "tools/cinematics/specs/cinematic_continuity_bible.json",
+      "tools/cinematics/specs/final_cinematic_remaster_queue.json",
+      "tools/cinematics/specs/final_dialogue_visual_segments.json",
+      "tools/cinematics/specs/final_future_production_manifest.json",
+      "tools/cinematics/specs/lion_judgement_v2.json"
+    ],
+    "cinematicMetricRefresh": {
+      "changedFields": 174,
+      "changedFiles": [
+        "tools/cinematics/specs/canonical_character_production_cards.json",
+        "tools/cinematics/specs/cin6ea_compiled_prompt_manifest.json",
+        "tools/cinematics/specs/cin6ea_provenance_catalog.json",
+        "tools/cinematics/specs/final_dialogue_visual_segments.json",
+        "tools/cinematics/specs/final_future_production_manifest.json"
+      ]
+    }
+  }
 }

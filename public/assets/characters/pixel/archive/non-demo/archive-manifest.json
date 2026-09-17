@@ -2,15 +2,7 @@
   "schemaVersion": 1,
   "status": "COMPLETE",
   "archiveRoot": "public/assets/characters/pixel/archive/non-demo/",
-  "ACTIVE_FULL_IDENTITIES": [
-    "alaric",
-    "maelor",
-    "sage_seraphine",
-    "refugee_mother",
-    "survivor",
-    "villageoise",
-    "wounded_merchant"
-  ],
+  "ACTIVE_FULL_IDENTITIES": [],
   "ARCHIVED_NON_DEMO_IDENTITIES": [
     "aldric",
     "eldwin",
@@ -36,28 +28,16 @@
   "SERAPHINE_CANONICAL_ID": "sage_seraphine",
   "SERAPHINE_ALIAS_RESOLUTION": {
     "aliasId": "seraphine",
-    "canonicalAssetPath": "/assets/characters/pixel/full/sage_seraphine.png",
+    "canonicalAssetPath": "/assets/characters/pixel/masters/sage_seraphine.png",
     "archivedAliasSourcePath": "/assets/characters/pixel/archive/non-demo/seraphine.png",
-    "byteIdenticalBeforeArchive": true,
     "activeProductionIdentities": [
       "sage_seraphine"
     ]
   },
-  "FINAL_NON_COMBAT_GENERATION_QUEUE": [
-    "alaric",
-    "maelor",
-    "sage_seraphine",
-    "refugee_mother",
-    "survivor",
-    "villageoise",
-    "wounded_merchant"
-  ],
-  "OPTIONAL_GENERIC_QUEUE": [
-    "villageois",
-    "refugee"
-  ],
+  "FINAL_NON_COMBAT_GENERATION_QUEUE": [],
+  "OPTIONAL_GENERIC_QUEUE": [],
   "BROKEN_REFERENCES": [],
-  "REMAINING_FULL_FILES": 7,
+  "REMAINING_FULL_FILES": 0,
   "ARCHIVED_FILE_COUNT": 21,
   "counts": {
     "archivedNonDemoIdentities": 20,
@@ -493,5 +473,14 @@
       "currentArchiveReferences": [],
       "originalFullReferencesRemaining": 0
     }
+  ],
+  "OPTIONAL_GENERIC_REGISTERED": [
+    "villageois",
+    "refugee"
+  ],
+  "GENERIC_VILLAGE_MILITIA_REGISTERED": [
+    "village_militia_spearman",
+    "village_militia_brute",
+    "village_militia_slinger"
   ]
 }

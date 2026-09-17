@@ -44,7 +44,7 @@
       "cast": [
         {
           "id": "alaric",
-          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "asset": "public/assets/characters/pixel/masters/alaric.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -59,7 +59,7 @@
       "externalCast": [
         {
           "id": "alaric",
-          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "asset": "public/assets/characters/pixel/masters/alaric.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -249,7 +249,7 @@
         },
         {
           "id": "sage_seraphine",
-          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "asset": "public/assets/characters/pixel/masters/sage_seraphine.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -275,7 +275,7 @@
         },
         {
           "id": "sage_seraphine",
-          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "asset": "public/assets/characters/pixel/masters/sage_seraphine.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -316,7 +316,7 @@
       "cast": [
         {
           "id": "alaric",
-          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "asset": "public/assets/characters/pixel/masters/alaric.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -342,7 +342,7 @@
       "externalCast": [
         {
           "id": "alaric",
-          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "asset": "public/assets/characters/pixel/masters/alaric.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -394,7 +394,7 @@
       "cast": [
         {
           "id": "refugee_mother",
-          "asset": "public/assets/characters/pixel/full/refugee_mother.png",
+          "asset": "public/assets/characters/pixel/masters/refugee_mother.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -420,7 +420,7 @@
       "externalCast": [
         {
           "id": "refugee_mother",
-          "asset": "public/assets/characters/pixel/full/refugee_mother.png",
+          "asset": "public/assets/characters/pixel/masters/refugee_mother.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -561,7 +561,7 @@
         },
         {
           "id": "maelor",
-          "asset": "public/assets/characters/pixel/full/maelor.png",
+          "asset": "public/assets/characters/pixel/masters/maelor.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -587,7 +587,7 @@
         },
         {
           "id": "maelor",
-          "asset": "public/assets/characters/pixel/full/maelor.png",
+          "asset": "public/assets/characters/pixel/masters/maelor.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -687,7 +687,7 @@
       "cast": [
         {
           "id": "villageoise",
-          "asset": "public/assets/characters/pixel/full/villageoise.png",
+          "asset": "public/assets/characters/pixel/masters/villageoise.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -724,7 +724,7 @@
       "externalCast": [
         {
           "id": "villageoise",
-          "asset": "public/assets/characters/pixel/full/villageoise.png",
+          "asset": "public/assets/characters/pixel/masters/villageoise.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -913,7 +913,7 @@
       "cast": [
         {
           "id": "survivor",
-          "asset": "public/assets/characters/pixel/full/survivor.png",
+          "asset": "public/assets/characters/pixel/masters/survivor.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -939,7 +939,7 @@
       "externalCast": [
         {
           "id": "survivor",
-          "asset": "public/assets/characters/pixel/full/survivor.png",
+          "asset": "public/assets/characters/pixel/masters/survivor.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1015,7 +1015,7 @@
       "cast": [
         {
           "id": "sage_seraphine",
-          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "asset": "public/assets/characters/pixel/masters/sage_seraphine.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1041,7 +1041,7 @@
       "externalCast": [
         {
           "id": "sage_seraphine",
-          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "asset": "public/assets/characters/pixel/masters/sage_seraphine.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1094,7 +1094,7 @@
       "cast": [
         {
           "id": "maelor",
-          "asset": "public/assets/characters/pixel/full/maelor.png",
+          "asset": "public/assets/characters/pixel/masters/maelor.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1105,7 +1105,7 @@
         },
         {
           "id": "sage_seraphine",
-          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "asset": "public/assets/characters/pixel/masters/sage_seraphine.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -1131,7 +1131,7 @@
       "externalCast": [
         {
           "id": "maelor",
-          "asset": "public/assets/characters/pixel/full/maelor.png",
+          "asset": "public/assets/characters/pixel/masters/maelor.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1142,7 +1142,7 @@
         },
         {
           "id": "sage_seraphine",
-          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "asset": "public/assets/characters/pixel/masters/sage_seraphine.png",
           "assetStatus": "READY",
           "role": "SECONDARY",
           "stagingIntent": {
@@ -1196,7 +1196,7 @@
       "cast": [
         {
           "id": "sage_seraphine",
-          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "asset": "public/assets/characters/pixel/masters/sage_seraphine.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1222,7 +1222,7 @@
       "externalCast": [
         {
           "id": "sage_seraphine",
-          "asset": "public/assets/characters/pixel/full/sage_seraphine.png",
+          "asset": "public/assets/characters/pixel/masters/sage_seraphine.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1286,7 +1286,7 @@
         },
         {
           "id": "alaric",
-          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "asset": "public/assets/characters/pixel/masters/alaric.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1312,7 +1312,7 @@
         },
         {
           "id": "alaric",
-          "asset": "public/assets/characters/pixel/full/alaric.png",
+          "asset": "public/assets/characters/pixel/masters/alaric.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1537,7 +1537,7 @@
       "cast": [
         {
           "id": "survivor",
-          "asset": "public/assets/characters/pixel/full/survivor.png",
+          "asset": "public/assets/characters/pixel/masters/survivor.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1552,7 +1552,7 @@
       "externalCast": [
         {
           "id": "survivor",
-          "asset": "public/assets/characters/pixel/full/survivor.png",
+          "asset": "public/assets/characters/pixel/masters/survivor.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1593,7 +1593,7 @@
       "cast": [
         {
           "id": "maelor",
-          "asset": "public/assets/characters/pixel/full/maelor.png",
+          "asset": "public/assets/characters/pixel/masters/maelor.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {
@@ -1608,7 +1608,7 @@
       "externalCast": [
         {
           "id": "maelor",
-          "asset": "public/assets/characters/pixel/full/maelor.png",
+          "asset": "public/assets/characters/pixel/masters/maelor.png",
           "assetStatus": "READY",
           "role": "PRIMARY",
           "stagingIntent": {

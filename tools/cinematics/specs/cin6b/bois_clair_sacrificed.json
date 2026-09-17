@@ -16,7 +16,7 @@
       "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
       "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6b_bois_clair_sacrificed/shot_01/source.png" },
       "characters": [
-        { "id": "villageoise", "asset": "public/assets/characters/pixel/full/villageoise.png", "position": { "x": 0.72, "groundY": 0.98 }, "heightPx": 620, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:empty_road", "depth": 10, "role": "PRIMARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" }
+        { "id": "villageoise", "asset": "public/assets/characters/pixel/masters/villageoise.png", "position": { "x": 0.72, "groundY": 0.98 }, "heightPx": 620, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:empty_road", "depth": 10, "role": "PRIMARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "SLOW_PULL" },
       "durationSeconds": 6,
@@ -31,8 +31,8 @@
       "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
       "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6b_bois_clair_sacrificed/shot_02/source.png" },
       "characters": [
-        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.29, "groundY": 0.98 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:secured_stores", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
-        { "id": "villageoise", "asset": "public/assets/characters/pixel/full/villageoise.png", "position": { "x": 0.71, "groundY": 0.98 }, "heightPx": 680, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:secured_stores", "depth": 10, "role": "SECONDARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" }
+        { "id": "maelor", "asset": "public/assets/characters/pixel/masters/maelor.png", "position": { "x": 0.29, "groundY": 0.98 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:secured_stores", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "villageoise", "asset": "public/assets/characters/pixel/masters/villageoise.png", "position": { "x": 0.71, "groundY": 0.98 }, "heightPx": 680, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:secured_stores", "depth": 10, "role": "SECONDARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "STATIC" },
       "durationSeconds": 6,
@@ -47,8 +47,8 @@
       "environment": "public/assets/generated/lion-phase/combat-stage/bois_clair_burning_stage.webp",
       "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_02", "path": "tmp/cinematics/cin4/cin6b_bois_clair_sacrificed/shot_02/last_frame.png" },
       "characters": [
-        { "id": "maelor", "asset": "public/assets/characters/pixel/full/maelor.png", "position": { "x": 0.29, "groundY": 0.98 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:secured_stores", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
-        { "id": "villageoise", "asset": "public/assets/characters/pixel/full/villageoise.png", "position": { "x": 0.71, "groundY": 0.98 }, "heightPx": 680, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:secured_stores", "depth": 10, "role": "SECONDARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
+        { "id": "maelor", "asset": "public/assets/characters/pixel/masters/maelor.png", "position": { "x": 0.29, "groundY": 0.98 }, "heightPx": 700, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:secured_stores", "depth": 20, "role": "PRIMARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
+        { "id": "villageoise", "asset": "public/assets/characters/pixel/masters/villageoise.png", "position": { "x": 0.71, "groundY": 0.98 }, "heightPx": 680, "facing": "SCREEN_LEFT", "lookTarget": "ENVIRONMENT:secured_stores", "depth": 10, "role": "SECONDARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "STATIC" },
       "durationSeconds": 6,

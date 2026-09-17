@@ -17,7 +17,7 @@
       "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_refugees_approach/shot_01/source.png" },
       "characters": [
         { "id": "marian", "asset": "public/assets/characters/pixel/masters/white_mage.png", "position": { "x": 0.25, "groundY": 0.97 }, "heightPx": 570, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:refugee_mother", "depth": 20, "role": "SECONDARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" },
-        { "id": "refugee_mother", "asset": "public/assets/characters/pixel/full/refugee_mother.png", "position": { "x": 0.73, "groundY": 0.97 }, "heightPx": 570, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "PRIMARY", "action": "STAND", "mirrorPolicy": "ALLOW" }
+        { "id": "refugee_mother", "asset": "public/assets/characters/pixel/masters/refugee_mother.png", "position": { "x": 0.73, "groundY": 0.97 }, "heightPx": 570, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "PRIMARY", "action": "STAND", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "SLOW_PULL" },
       "durationSeconds": 4,
@@ -33,7 +33,7 @@
       "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_refugees_approach/shot_02/source.png" },
       "characters": [
         { "id": "marian", "asset": "public/assets/characters/pixel/masters/white_mage.png", "position": { "x": 0.30, "groundY": 0.98 }, "heightPx": 780, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:refugee_mother", "depth": 20, "role": "SECONDARY", "action": "REACT_SMALL", "mirrorPolicy": "ALLOW" },
-        { "id": "refugee_mother", "asset": "public/assets/characters/pixel/full/refugee_mother.png", "position": { "x": 0.70, "groundY": 0.98 }, "heightPx": 780, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "PRIMARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" }
+        { "id": "refugee_mother", "asset": "public/assets/characters/pixel/masters/refugee_mother.png", "position": { "x": 0.70, "groundY": 0.98 }, "heightPx": 780, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "PRIMARY", "action": "SHIFT_STANCE", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "PAN_SMALL_RIGHT" },
       "durationSeconds": 4,
@@ -49,7 +49,7 @@
       "source": { "type": "CHAIN_SOURCE", "fromShotId": "shot_02", "path": "tmp/cinematics/cin4/cin6a_refugees_approach/shot_02/last_frame.png" },
       "characters": [
         { "id": "marian", "asset": "public/assets/characters/pixel/masters/white_mage.png", "position": { "x": 0.30, "groundY": 0.98 }, "heightPx": 780, "facing": "SCREEN_RIGHT", "lookTarget": "CHARACTER:refugee_mother", "depth": 20, "role": "SECONDARY", "action": "OBSERVE", "mirrorPolicy": "ALLOW" },
-        { "id": "refugee_mother", "asset": "public/assets/characters/pixel/full/refugee_mother.png", "position": { "x": 0.70, "groundY": 0.98 }, "heightPx": 780, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "PRIMARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
+        { "id": "refugee_mother", "asset": "public/assets/characters/pixel/masters/refugee_mother.png", "position": { "x": 0.70, "groundY": 0.98 }, "heightPx": 780, "facing": "SCREEN_LEFT", "lookTarget": "CHARACTER:marian", "depth": 10, "role": "PRIMARY", "action": "IDLE_BREATH", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "WIDE_HOLD" },
       "durationSeconds": 4,

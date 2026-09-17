@@ -49,7 +49,7 @@
         "marian"
       ],
       "characterReferenceSha256": {
-        "maelor": "cd6e618c101a14805c451492f45ca8cc24c4a172ad4943a4b7222c3dabf94215",
+        "maelor": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
         "alistair": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
         "marian": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
       },
@@ -123,7 +123,7 @@
         "elara"
       ],
       "characterReferenceSha256": {
-        "sage_seraphine": "6446afd4e0849b6ade20e454bb8ef5ed1a0ef847bd241cc5f5c796eb45a47064",
+        "sage_seraphine": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
         "elara": "a6d4e3d518d9fff42e7155b9c5f0eb47aae5ddc7c1ef499ecfd8c33a677b8476"
       },
       "h3SpecPath": "tools/cinematics/specs/cin6ea2/pilot_f_shadow_continuous.json",

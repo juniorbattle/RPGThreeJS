@@ -11,7 +11,7 @@ export interface CharacterVisualProfile {
   readonly full: string;
   readonly dialogue: string;
   readonly ui: string;
-  readonly combatPoseUnitId: string;
+  readonly combatPoseUnitId: string | undefined;
 }
 
 interface ManifestUnit {
@@ -20,6 +20,7 @@ interface ManifestUnit {
   worldUnitsPerPixel: number;
   master: { src: string };
   roles: { full: string; dialogue: string; ui: string };
+  poses?: Record<string, unknown>;
 }
 
 const manifest = manifestJson as unknown as {
@@ -39,7 +40,7 @@ const PROFILES = Object.freeze(manifest.units.map((unit): CharacterVisualProfile
   full: unit.roles.full,
   dialogue: unit.roles.dialogue,
   ui: unit.roles.ui,
-  combatPoseUnitId: unit.unitId,
+  combatPoseUnitId: Object.keys(unit.poses ?? {}).length === 4 ? unit.unitId : undefined,
 })));
 
 const profilesById = new Map(PROFILES.map((profile) => [profile.unitId, profile]));
@@ -54,6 +55,7 @@ const identityAliases = new Map<string, string>([
   ['serpent_captain', 'serpent_general_boss'],
   ['young_wyrm', 'young_dragon_elite'],
   ['lion_chief', 'lion_champion'],
+  ['seraphine', 'sage_seraphine'],
 ]);
 
 for (const profile of PROFILES) {

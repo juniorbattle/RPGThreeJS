@@ -148,6 +148,13 @@ describe('CIN-6E-A final operator approval and visual production lock', () => {
       'public/assets/characters/pixel/full/river_crab.png',
       'public/assets/characters/pixel/full/swamp_crocodile.png',
       'public/assets/characters/pixel/full/seraphine.png',
+      'public/assets/characters/pixel/full/alaric.png',
+      'public/assets/characters/pixel/full/maelor.png',
+      'public/assets/characters/pixel/full/sage_seraphine.png',
+      'public/assets/characters/pixel/full/refugee_mother.png',
+      'public/assets/characters/pixel/full/survivor.png',
+      'public/assets/characters/pixel/full/villageoise.png',
+      'public/assets/characters/pixel/full/wounded_merchant.png',
     ]);
     const protectedDiff = execFileSync('git', [
       'diff', '--name-only', baseline, '--',

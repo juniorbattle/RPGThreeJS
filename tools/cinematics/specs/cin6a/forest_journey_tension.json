@@ -16,7 +16,7 @@
       "environment": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
       "source": { "type": "ROOT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_forest_journey_tension/shot_01/source.png" },
       "characters": [
-        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.27, "groundY": 0.96 }, "heightPx": 610, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:forest_trail", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/masters/sage_seraphine.png", "position": { "x": 0.27, "groundY": 0.96 }, "heightPx": 610, "facing": "SCREEN_RIGHT", "lookTarget": "ENVIRONMENT:forest_trail", "depth": 20, "role": "PRIMARY", "action": "WALK_SLOW", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "TRACK_SMALL_RIGHT" },
       "durationSeconds": 4,
@@ -31,7 +31,7 @@
       "environment": "public/assets/generated/lion-phase/combat-stage/forest_route_stage.webp",
       "source": { "type": "CUT_SOURCE", "output": "tmp/cinematics/cin4/cin6a_forest_journey_tension/shot_02/source.png" },
       "characters": [
-        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/full/sage_seraphine.png", "position": { "x": 0.35, "groundY": 0.97 }, "heightPx": 760, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:disturbed_brush", "depth": 20, "role": "PRIMARY", "action": "STOP", "mirrorPolicy": "ALLOW" }
+        { "id": "sage_seraphine", "asset": "public/assets/characters/pixel/masters/sage_seraphine.png", "position": { "x": 0.35, "groundY": 0.97 }, "heightPx": 760, "facing": "SCREEN_RIGHT", "lookTarget": "EVENT_FOCUS:disturbed_brush", "depth": 20, "role": "PRIMARY", "action": "STOP", "mirrorPolicy": "ALLOW" }
       ],
       "camera": { "mode": "SUBJECT_FOCUS_LEFT" },
       "durationSeconds": 5,
