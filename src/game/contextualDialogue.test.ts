@@ -202,17 +202,17 @@ describe('R3 pilot dialogue profiles', () => {
     const honourable = createInitialState();
     Object.assign(honourable.flags, { missionSuccess: true, helpedRefugees: true });
     expect(resolveGameDialogue('ate_maelor_seal_analysis', honourable)!.variantId).toBe('bois-clair-saved-honour');
-    expect(textOf('ate_maelor_seal_analysis', honourable, '2')).toContain('porté les habitants');
+    expect(textOf('ate_maelor_seal_analysis', honourable, '2')).toContain('choisi les captifs');
 
     const mixed = createInitialState();
     Object.assign(mixed.flags, { missionSuccess: true, prioritizedLoot: true, lionMandateAdvance: true });
     expect(resolveGameDialogue('ate_maelor_seal_analysis', mixed)!.variantId).toBe('bois-clair-saved-mixed');
-    expect(textOf('ate_maelor_seal_analysis', mixed, '2')).toContain('porte aussi des compromis');
+    expect(textOf('ate_maelor_seal_analysis', mixed, '2')).toContain('route qui y mène n’est pas devenue pure');
 
     const sacrificed = createInitialState();
     Object.assign(sacrificed.flags, { missionGreed: true, exploitedRefugees: true });
     expect(resolveGameDialogue('ate_maelor_seal_analysis', sacrificed)!.variantId).toBe('bois-clair-sacrificed');
-    expect(textOf('ate_maelor_seal_analysis', sacrificed, '2')).toContain('choisi les réserves');
+    expect(textOf('ate_maelor_seal_analysis', sacrificed, '2')).toContain('choisi ce qui permettait au village de durer');
 
     const contradictory = createInitialState();
     Object.assign(contradictory.flags, { missionSuccess: true, missionGreed: true });
