@@ -107,6 +107,8 @@ const ENEMY_VISUAL_SKILLS: Readonly<Record<string, readonly string[]>> = Object.
   serpent_raider: ['enemy_binding_shot'],
   serpent_brute: ['enemy_heavy_strike'],
   serpent_oracle: ['enemy_dark_bolt', 'enemy_hex'],
+  village_militia_spearman: [],
+  village_militia_slinger: [],
   serpent_elite_raider: ['enemy_binding_shot', 'boss_fortify', 'boss_pin', 'boss_flurry'],
   serpent_elite_brute: ['enemy_venom_strike', 'boss_guard', 'boss_quake', 'boss_slam'],
   serpent_duelist_elite: ['enemy_binding_shot', 'boss_fortify', 'boss_pin', 'boss_flurry'],
