@@ -923,7 +923,7 @@ const rawDialogues = [
         effects: [],
         choices: [
           { text: 'Stabiliser l’autel et transporter la preuve intacte.', next: '2', effects: [{ type: 'addReputation', amount: 5 }, { type: 'setFlag', key: 'shadowEvidence', value: true }], outcomePreview: { mode: 'soft', hints: ['Preuve complète', 'La compagnie transporte la balise'] } },
-          { text: 'Démonter l’autel et disperser sa résonance.', next: '3', effects: [{ type: 'addItem', itemId: 'iron_ore', quantity: 2 }, { type: 'addItem', itemId: 'grenade_entravante', quantity: 1 }, { type: 'addReputation', amount: -2 }, { type: 'setFlag', key: 'shadowFragments', value: true }], outcomePreview: { mode: 'soft', hints: ['Signal affaibli et fragments récupérés', 'Preuve définitive perdue'] },
+          { text: 'Démonter l’autel et disperser sa résonance.', next: '3', effects: [{ type: 'addItem', itemId: 'iron_ore', quantity: 2 }, { type: 'addItem', itemId: 'grenade_entravante', quantity: 1 }, { type: 'addReputation', amount: -2 }, { type: 'setFlag', key: 'shadowFragments', value: true }], outcomePreview: { mode: 'soft', hints: ['Signal affaibli et fragments récupérés', 'Preuve définitive perdue'] } },
         ],
       },
       { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'stern', tag: 'Preuve', text: 'Avec ceci, Alaric verra que son conflit dépasse les frontières du Lion. Ce que nous avons trouvé n’est pas une simple guerre de clan.', side: 'left', next: '2a', effects: [], choices: [] },
