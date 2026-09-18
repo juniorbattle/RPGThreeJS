@@ -171,7 +171,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     reward: 3,
     difficulty: 'dangerous',
     moralTone: 'greed',
-    hint: 'Les réserves de Bois-Clair opposent urgence et appât du gain.',
+    hint: 'Un convoi emporte les réserves de Bois-Clair tandis que le siège continue plus loin.',
   },
   {
     id: 'lion-valmir-road',
@@ -201,7 +201,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     reward: 3,
     difficulty: 'safe',
     moralTone: 'greed',
-    hint: 'Un sanctuaire oublié offre repos ou richesse.',
+    hint: 'Un sanctuaire encore actif offre un abri sûr et un reliquaire plein de ressources.',
   },
   {
     id: 'lion-second-trial-combat',
@@ -231,7 +231,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     reward: 4,
     difficulty: 'decisive',
     moralTone: 'pragmatic',
-    hint: 'Choisir ce qui sera sauvé : les habitants, les réserves, ou votre nom.',
+    hint: 'Le village est divisé entre les captifs au nord et ses réserves vitales au sud.',
   },
   {
     id: 'lion-second-refuge',
@@ -284,7 +284,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     depth: 14,
     lane: -0.75,
     contentId: 'mystery_dragon_roost',
-    label: 'Dernière tentation',
+    label: 'Nid du jeune dragon',
     icon: '◇',
     links: ['lion-shadow-signs'],
     risk: 2,
@@ -358,15 +358,15 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
 const FIRST_EVENT_VARIANTS: Readonly<Record<LionConductTier, AdaptiveRouteVariant>> = {
   honour: {
     type: 'event', contentId: 'mystery_help', label: 'Marchand blessé', icon: '◇', risk: 1, reward: 2,
-    difficulty: 'safe', moralTone: 'honour', hint: 'Aider un voyageur éprouve la générosité de la compagnie.',
+    difficulty: 'safe', moralTone: 'honour', hint: 'Un voyageur blessé demande des ressources alors que Bois-Clair reste devant vous.',
   },
   uncertain: {
     type: 'event', contentId: 'mystery_help', label: 'Marchand blessé', icon: '◇', risk: 1, reward: 2,
-    difficulty: 'safe', moralTone: 'pragmatic', hint: 'Aider un voyageur éprouve la générosité de la compagnie.',
+    difficulty: 'safe', moralTone: 'pragmatic', hint: 'Un voyageur blessé demande des ressources alors que Bois-Clair reste devant vous.',
   },
   infamy: {
     type: 'event', contentId: 'mystery_treasure', label: 'Chariot abandonné', icon: '◇', risk: 1, reward: 3,
-    difficulty: 'dangerous', moralTone: 'greed', hint: 'Des biens perdus peuvent être rendus ou ajoutés à votre butin.',
+    difficulty: 'dangerous', moralTone: 'greed', hint: 'Un chariot de réfugiés abandonné attend encore ses propriétaires — ou quelqu’un qui décidera à leur place.',
   },
 };
 
@@ -387,7 +387,7 @@ const FIRST_COMBAT_VARIANTS: Readonly<Record<LionConductTier, AdaptiveRouteVaria
 
 const SECOND_EVENT_VARIANT: AdaptiveRouteVariant = {
   type: 'event', contentId: 'old_shrine_event', label: 'Vieux sanctuaire', icon: '◇', risk: 1, reward: 3,
-  difficulty: 'safe', moralTone: 'greed', hint: 'Un sanctuaire oublié offre repos ou richesse.',
+  difficulty: 'safe', moralTone: 'greed', hint: 'Un sanctuaire encore actif offre un abri sûr et un reliquaire plein de ressources.',
 };
 
 const SECOND_COMBAT_VARIANTS: Readonly<Record<LionConductTier, AdaptiveRouteVariant>> = {
@@ -408,26 +408,26 @@ const SECOND_COMBAT_VARIANTS: Readonly<Record<LionConductTier, AdaptiveRouteVari
 const FINAL_EVENT_VARIANTS: Readonly<Record<LionConductTier, AdaptiveRouteVariant>> = {
   honour: {
     type: 'event', contentId: 'mystery_dragon_roost', label: 'Nid du jeune dragon', icon: '◇', risk: 3, reward: 4,
-    difficulty: 'dangerous', moralTone: 'greed', hint: 'Une dernière tentation oppose les gemmes à la retenue.',
+    difficulty: 'dangerous', moralTone: 'greed', hint: 'Un jeune dragon protège des gemmes près de la route des ruines.',
   },
   uncertain: {
     type: 'event', contentId: 'mystery_dragon_roost', label: 'Nid du jeune dragon', icon: '◇', risk: 3, reward: 4,
-    difficulty: 'dangerous', moralTone: 'greed', hint: 'Une dernière tentation oppose les gemmes à la retenue.',
+    difficulty: 'dangerous', moralTone: 'greed', hint: 'Un jeune dragon protège des gemmes près de la route des ruines.',
   },
   infamy: {
     type: 'event', contentId: 'serpent_informant', label: 'Informateur traqué', icon: '◇', risk: 2, reward: 3,
-    difficulty: 'dangerous', moralTone: 'pragmatic', hint: 'Protéger ou vendre un informateur déterminera votre dernier témoignage.',
+    difficulty: 'dangerous', moralTone: 'pragmatic', hint: 'Un déserteur Serpent traqué propose des informations que ses anciens alliés veulent faire taire.',
   },
 };
 
 const MANDATE_FIRST_EVENT_HONOUR: AdaptiveRouteVariant = {
   type: 'event', contentId: 'mystery_help', label: 'Marchand blessé', icon: '◇', risk: 1, reward: 2,
-  difficulty: 'safe', moralTone: 'honour', hint: 'Le mandat du Lion vous appelle à secourir les voyageurs de la route.',
+  difficulty: 'safe', moralTone: 'honour', hint: 'Le mandat du Lion vous pousse vers Bois-Clair lorsqu’un voyageur blessé réclame du temps et des ressources.',
 };
 
 const MANDATE_FIRST_EVENT_ADVANCE: AdaptiveRouteVariant = {
   type: 'event', contentId: 'mystery_help', label: 'Marchand blessé', icon: '◇', risk: 1, reward: 2,
-  difficulty: 'safe', moralTone: 'pragmatic', hint: 'L’avance du Lion attire les pragmatiques — un voyageur demande de l’aide.',
+  difficulty: 'safe', moralTone: 'pragmatic', hint: 'L’avance du Lion sécurise vos réserves, mais un voyageur blessé réclame maintenant une part de ce soutien.',
 };
 
 const MANDATE_FIRST_COMBAT_HONOUR: AdaptiveRouteVariant = {
@@ -447,12 +447,12 @@ const MANDATE_SECOND_COMBAT_ADVANCE: AdaptiveRouteVariant = {
 
 const FINAL_EVENT_AFTER_ELITE: AdaptiveRouteVariant = {
   type: 'event', contentId: 'mystery_shrine', label: 'Autel des voyageurs', icon: '◇', risk: 1, reward: 3,
-  difficulty: 'safe', moralTone: 'greed', hint: 'Après l’épreuve élite, un dernier autel mesure votre retenue.',
+  difficulty: 'safe', moralTone: 'greed', hint: 'Après l’épreuve élite, un autel de passage encore actif protège la route au prix de l’offrande qu’il enferme.',
 };
 
 const LANCER_RECRUIT_VARIANT: AdaptiveRouteVariant = {
   type: 'event', contentId: 'mystery_lancer_recruit', label: 'Volontaire de Bois-Clair', icon: '◇', risk: 1, reward: 3,
-  difficulty: 'safe', moralTone: 'honour', hint: 'Un jeune lancier de Bois-Clair offre sa lance au clan.',
+  difficulty: 'safe', moralTone: 'honour', hint: 'Un lancier de Bois-Clair veut décider lui-même ce que votre bannière mérite après le village.',
 };
 
 const FINAL_COMBAT_VARIANTS: Readonly<Record<LionConductTier, AdaptiveRouteVariant>> = {
