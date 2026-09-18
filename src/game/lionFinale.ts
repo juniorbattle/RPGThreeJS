@@ -343,7 +343,7 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
           { text: 'Assumer le dossier sans le falsifier.', next: 'outcome', effects: [] },
           {
             text: 'Présenter nos écarts comme des nécessités de route.',
-            next: bluff.succeeds ? 'outcome' : 'lie-rebuked',
+            next: bluff.succeeds ? 'bluff-accepted' : 'lie-rebuked',
             effects: bluff.succeeds
               ? [{ type: 'setFlag', key: 'alaricBluffSucceeded', value: true }]
               : [{ type: 'setFlag', key: 'liedToAlaric', value: true }],
@@ -363,6 +363,17 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
           : 'Votre réputation vous donne assez de crédit pour être entendu, pas assez pour effacer ce que les rapports peuvent encore établir. Vous venez de dépenser ce crédit en essayant de les réduire à des détails.',
       { tag: 'Mensonge', expression: 'hostile', side: 'right', next: 'outcome' },
     ));
+    if (bluff.succeeds) {
+      steps.push(makeStep(
+        'bluff-accepted',
+        'Chef Alaric',
+        'alaric',
+        bluff.minorStainCount === 1
+          ? 'Je connais le fait que vous essayez de replacer dans son contexte. Il n’est pas effacé, mais votre réputation et les voix qui vous accompagnent rendent cette lecture plausible. Je l’entendrai comme un écart de route, pas comme la preuve d’une conduite entière.'
+          : 'Votre nom et les témoignages qui l’accompagnent vous donnent assez de crédit pour que j’accepte cette lecture des faits mineurs. Ne confondez pas ce bénéfice du doute avec l’oubli : je juge votre route, pas la version la plus flatteuse de celle-ci.',
+        { tag: 'Bénéfice du doute', expression: 'neutral', side: 'right', next: 'outcome' },
+      ));
+    }
   }
 
   steps.push(makeStep('outcome', 'Chef Alaric', 'alaric', outcomeText(verdict), {
