@@ -95,8 +95,8 @@ describe('Narrative dialogue presentation adapter', () => {
   it('preserves factual anchors in every reduction', () => {
     expect(getNarrativeTextReduction('village_choice', '1a')?.displayText).toMatch(/captifs au nord.*réserves.*puits.*sud/i);
     expect(getNarrativeTextReduction('village_choice', '2a')?.displayText).toMatch(/vieux pont.*porte basse.*deux/i);
-    expect(getNarrativeTextReduction('final_refuge', '1')?.displayText).toMatch(/camp du Lion.*Sceau.*Alaric/i);
-    expect(getNarrativeTextReduction('final_refuge', '3')?.displayText).toMatch(/Bois-Clair.*réfugiés.*témoins.*convoi.*preuves/i);
+    expect(getNarrativeTextReduction('final_refuge', '1')?.displayText).toMatch(/camp du Lion.*Alaric.*témoins.*mémoire/i);
+    expect(getNarrativeTextReduction('final_refuge', '3')?.displayText).toMatch(/renommée.*Bois-Clair.*route.*témoins.*preuves/i);
     expect(getNarrativeTextReduction('lion_briefing', '1')).toBeUndefined();
   });
 
@@ -110,6 +110,6 @@ describe('Narrative dialogue presentation adapter', () => {
       dialogueSurfaceMode: 'STATIC_TABLEAU',
       segmentMode: 'STATIC_TABLEAU',
     });
-    expect(choice.choices?.map((entry) => entry.text)).toEqual(['Sauver les habitants.', 'Sécuriser les réserves.']);
+    expect(choice.choices?.map((entry) => entry.text)).toEqual(['Prendre le vieux pont et extraire les captifs.', 'Prendre la porte basse et sécuriser réserves et puits.']);
   });
 });

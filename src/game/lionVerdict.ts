@@ -88,7 +88,8 @@ function collectMajorBreaches(
   if (flags.betrayedInformant) breaches.push(fact('betrayed_informant', 'breach', 'decisive', 'betrayedInformant'));
   if (flags.exploitedRefugees) breaches.push(fact('exploited_refugees', 'breach', 'important', 'exploitedRefugees'));
   if (flags.desecratedShrine) breaches.push(fact('desecrated_shrine', 'breach', 'important', 'desecratedShrine'));
-  if (flags.liedToAlaric) breaches.push(fact('lied_to_alaric', 'breach', 'important', 'liedToAlaric'));
+  if (flags.brazenLieToAlaric) breaches.push(fact('brazen_lie_to_alaric', 'breach', 'decisive', 'brazenLieToAlaric'));
+  else if (flags.liedToAlaric) breaches.push(fact('lied_to_alaric', 'breach', 'important', 'liedToAlaric'));
   return breaches;
 }
 
@@ -136,6 +137,7 @@ function chooseRoute(
   shadowDisclosure: LionShadowDisclosure,
 ): LionFinalRoute {
   if (flags.lionTrialRequested) return 'lion_trial';
+  if (flags.brazenLieToAlaric) return 'lion_trial';
   if (!flags.missionSuccess || flags.missionGreed) return 'lion_trial';
   if (conductTier === 'infamy') return 'lion_trial';
   if (witnessState === 'silenced' || flags.betrayedInformant) return 'lion_trial';
@@ -166,6 +168,7 @@ function chooseStance(
     || flags.missionGreed
     || witnessState === 'silenced'
     || flags.betrayedInformant
+    || flags.brazenLieToAlaric
     || conductTier === 'infamy'
   ) return 'distrust';
 

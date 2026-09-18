@@ -20,11 +20,11 @@ describe('OPTION-C-P0 runtime presentation coverage lock', () => {
     const census = createRuntimePresentationStepCensus();
     expect(validateRuntimePresentationStepCensus(census)).toEqual([]);
     expect(census.summary).toMatchObject({
-      stateScenarios: 320,
-      runtimePresentationVariants: 125,
+      stateScenarios: 330,
+      runtimePresentationVariants: 132,
       canonicalDialogueSteps: 251,
-      runtimeReachablePresentationSteps: 274,
-      plannedRuntimePresentationSteps: 274,
+      runtimeReachablePresentationSteps: 276,
+      plannedRuntimePresentationSteps: 276,
       explicitLegitimateRuntimeOnlySteps: 0,
       missingFromPlan: 0,
       deadOrUnreachable: 2,
@@ -33,6 +33,12 @@ describe('OPTION-C-P0 runtime presentation coverage lock', () => {
       invalidVariantPlans: 0,
     });
     expect(census.entries.find((entry) => entry.key === 'lion_finale_judgement:open')).toMatchObject({
+      classification: 'VALID_PLANNED',
+    });
+    expect(census.entries.find((entry) => entry.key === 'lion_finale_judgement:bluff-accepted')).toMatchObject({
+      classification: 'VALID_PLANNED',
+    });
+    expect(census.entries.find((entry) => entry.key === 'lion_finale_judgement:brazen-lie-rebuked')).toMatchObject({
       classification: 'VALID_PLANNED',
     });
     expect(census.entries.filter((entry) => entry.classification === 'DEAD_OR_UNREACHABLE')).toEqual([
