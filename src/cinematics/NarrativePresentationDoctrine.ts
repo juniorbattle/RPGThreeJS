@@ -281,7 +281,7 @@ export const NARRATIVE_PRESENTATION_DOCTRINE: readonly NarrativePresentationDefi
   { beatId: 'dialogue:mystery_ambush', primaryInteractiveMode: 'STATIC_TABLEAU', mainEvent: false, cinematicRequirement: 'NONE', cinematicTier: 'NONE', cinematicPlacement: 'TBD', combatOutcome: 'NONE', notes: 'Legacy compatibility dialogue.' },
   { beatId: 'dialogue:mystery_troll_crossing_legacy', primaryInteractiveMode: 'STATIC_TABLEAU', mainEvent: false, cinematicRequirement: 'NONE', cinematicTier: 'NONE', cinematicPlacement: 'TBD', combatOutcome: 'NONE', notes: 'Legacy compatibility dialogue.' },
   { beatId: 'dialogue:serpent_duelist_trial_legacy', primaryInteractiveMode: 'STATIC_TABLEAU', mainEvent: false, cinematicRequirement: 'NONE', cinematicTier: 'NONE', cinematicPlacement: 'TBD', combatOutcome: 'NONE', notes: 'Legacy compatibility dialogue.' },
-  { beatId: 'dialogue:witnesses_on_road', primaryInteractiveMode: 'STATIC_TABLEAU', mainEvent: false, cinematicRequirement: 'NONE', cinematicTier: 'NONE', cinematicPlacement: 'TBD', combatOutcome: 'NONE', notes: 'Witnesses on road dialogue.' },
+  { beatId: 'dialogue:witnesses_on_road', primaryInteractiveMode: 'STATIC_TABLEAU', mainEvent: false, cinematicRequirement: 'NONE', cinematicTier: 'NONE', cinematicPlacement: 'TBD', combatOutcome: 'CONDITIONAL', combatTrigger: 'witness_road_clash', notes: 'Witnesses on road dialogue; choosing coercive silence escalates into the militia clash.' },
   { beatId: 'dialogue:shadow_signs', primaryInteractiveMode: 'STATIC_TABLEAU', mainEvent: false, cinematicRequirement: 'NONE', cinematicTier: 'NONE', cinematicPlacement: 'TBD', combatOutcome: 'NONE', notes: 'Shadow signs dialogue.' },
 ]);
 
