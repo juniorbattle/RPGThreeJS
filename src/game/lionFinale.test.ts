@@ -129,7 +129,8 @@ describe('Lion finale contextual dialogue', () => {
     const bluffChoice = dialogue.steps.flatMap((step) => step.choices ?? [])
       .find((choice) => choice.effects.some((effect) => effect.type === 'setFlag' && effect.key === 'alaricBluffSucceeded'));
     expect(bluffChoice).toBeDefined();
-    expect(bluffChoice?.next).toBe('outcome');
+    expect(bluffChoice?.next).toBe('bluff-accepted');
+    expect(dialogue.steps.find((step) => step.id === 'bluff-accepted')?.text).toMatch(/bénéfice du doute|lecture plausible/i);
   });
 
   it('exposes a bluff when too many minor traces contradict the framing', () => {
