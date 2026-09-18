@@ -94,6 +94,27 @@ function createPresentationStateScenarios(): StateScenario[] {
       }
     }
   }
+
+  for (const hasMerit of [false, true]) {
+    for (const shadow of SHADOW_PROFILES) {
+      const state = createInitialState();
+      state.reputation = 70;
+      state.flags = {
+        ...(hasMerit ? { helpedRefugees: true } : {}),
+        lionMandateAdvance: true,
+        ...shadow.flags,
+      };
+      scenarios.push({
+        id: [
+          'credible-bluff',
+          hasMerit ? 'merit' : 'no-merit',
+          shadow.id,
+        ].join('+'),
+        state,
+      });
+    }
+  }
+
   return scenarios;
 }
 
