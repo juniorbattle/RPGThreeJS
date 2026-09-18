@@ -36,8 +36,8 @@ describe('Narrative dialogue staging audit', () => {
     expect(audit.summary.unresolvedDialogueSpeakerAssociations).toBe(0);
     expect(audit.summary.staticUpperPlacementViolations).toBe(0);
     expect(audit.summary.videoPlacementRegressions).toBe(0);
-    expect(audit.summary.runtimeReachablePresentationSteps).toBe(274);
-    expect(audit.summary.plannedRuntimePresentationSteps).toBe(274);
+    expect(audit.summary.runtimeReachablePresentationSteps).toBe(276);
+    expect(audit.summary.plannedRuntimePresentationSteps).toBe(276);
     expect(audit.summary.explicitLegitimateRuntimeOnlySteps).toBe(0);
     expect(audit.summary.missingRuntimePresentationSteps).toBe(0);
     expect(audit.summary.deadOrUnreachablePresentationSteps).toBe(2);
