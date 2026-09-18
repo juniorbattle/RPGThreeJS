@@ -215,27 +215,27 @@ function outcomeText(verdict: LionVerdict): string {
   const saved = verdict.reasons.includes('saved_bois_clair');
   const sacrificed = verdict.reasons.includes('sacrificed_bois_clair');
   if (saved && sacrificed) {
-    return 'Deux récits de Bois-Clair survivent dans vos traces : le village sauvé et ses réserves sacrifiées. Pour le Lion, la faute la plus grave demeure inscrite malgré le salut des habitants.';
+    return 'Bois-Clair porte deux traces impossibles à confondre : des habitants sauvés et des réserves prises à leur place. Le Lion ne transformera pas l’une en excuse pour effacer l’autre.';
   }
   if (saved) {
-    return 'Bois-Clair tient encore. Quand le village brûlait, votre compagnie s’est placée entre ses habitants et les Serpents. Cet acte pèse plus lourd que les rumeurs de la route.';
+    return 'Bois-Clair tient encore parce que, lorsque le village s’est ouvert en deux, votre compagnie a choisi le vieux pont et ramené les captifs. Les rumeurs peuvent discuter votre nom ; elles ne peuvent pas rendre ces personnes à nouveau prisonnières.';
   }
   if (sacrificed) {
-    return 'À Bois-Clair, vous avez choisi les réserves pendant que le village payait le prix. Ni l’or ni la renommée ne peuvent effacer cette décision.';
+    return 'À Bois-Clair, vous avez tenu la porte basse pendant que les captifs partaient vers le nord. Les réserves ont survécu à cette décision. Ceux qui sont partis avec les Serpents aussi.';
   }
-  return 'Bois-Clair n’a pas été sauvé par votre compagnie. Sans ce fait décisif, le Lion ne peut reconnaître votre demande sur de simples promesses.';
+  return 'Bois-Clair ne peut pas témoigner d’un secours que votre compagnie n’a pas accompli. Sans ce fait, je ne bâtirai pas une reconnaissance sur ce que vous dites que vous auriez pu devenir.';
 }
 
 function witnessText(verdict: LionVerdict): string {
   switch (verdict.witnessState) {
     case 'supportive':
-      return 'Les survivants ont parlé librement. Leur témoignage confirme ce que vos actes ont laissé à Bois-Clair.';
+      return 'Les survivants sont venus avec leurs propres signes et leurs propres mots. Ils ne vous appartiennent pas — et précisément pour cela, leur témoignage compte.';
     case 'silenced':
-      return 'Les survivants se taisent parce que leur voix a été étouffée. Le Lion ne confondra pas la peur avec un témoignage favorable.';
+      return 'Les survivants qui auraient dû parler arrivent derrière un silence imposé par vos lames. Ne me demandez pas de traiter cette absence comme si personne n’avait rien vu.';
     case 'unprotected':
-      return 'Les survivants sont arrivés sans votre protection. Leur absence de soutien laisse votre récit sans appui direct.';
+      return 'Les survivants ont choisi leur propre route plutôt que votre escorte. Ils parleront peut-être encore, mais vous ne pouvez pas présenter leur distance comme un soutien.';
     case 'none':
-      return 'Aucun témoignage décisif n’est venu soutenir votre récit. Alaric doit donc s’en remettre aux traces laissées sur la route.';
+      return 'Aucune voix indépendante n’est venue fermer les trous de votre récit. Il ne reste donc que les traces : ce qui a brûlé, ce qui a été sauvé et ce que vos comptes ne peuvent pas expliquer.';
   }
 }
 
@@ -290,7 +290,7 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
     'open',
     'Chef Alaric',
     'alaric',
-    'Le Lion ne donne pas son Sceau à une réputation ni à une dernière phrase. Il pèse Bois-Clair, les voix qui ont survécu, vos choix sur la route et les preuves que vous apportez.',
+    'Je vous ai vus partir avec un nom en ruine et une mission assez simple pour tenir en une phrase. Vous revenez avec des morts, des témoins, des dettes, des preuves et des gens qui ne racontent pas tous la même histoire. C’est cela que le Lion va juger.',
     { tag: 'Ouverture', expression: 'stern', side: 'right', next: hasContradiction && !state.flags.liedToAlaric ? 'record' : 'outcome' },
   ));
 
@@ -299,7 +299,7 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
       'record',
       'Chef Alaric',
       'alaric',
-      'Votre dossier porte des mérites et des taches. Parlerez-vous avec eux, ou prétendrez-vous que votre conduite fut irréprochable ?',
+      'Il y a dans votre route des actes que vous défendrez volontiers et d’autres que personne ici ne peut ignorer. Vous pouvez entrer dans ce jugement avec eux — ou commencer par me mentir.',
       {
         tag: 'Déposition', expression: 'stern', side: 'right',
         choices: [
@@ -316,7 +316,7 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
       'lie-rebuked',
       'Champion du Lion',
       'lion_champion',
-      'Les rapports sont déjà sur cette table. Mentir maintenant n’effacera rien ; cela ajoutera seulement votre parole brisée au reste.',
+      'Les rapports sont déjà sur cette table, et certains ont été écrits par des gens qui n’avaient aucune raison de vous protéger. Mentir maintenant ne retire rien au passé ; cela ajoute seulement votre parole à la liste des choses que je dois mettre en doute.',
       { tag: 'Mensonge', expression: 'hostile', side: 'right', next: 'outcome' },
     ));
   }
@@ -330,7 +330,7 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
     MERIT_TEXT,
   );
   if (supportingMerits.length > 0) {
-    steps.push(makeStep('merits', 'Sage Séraphine', 'sage_seraphine', `Le dossier porte aussi ceci : ${listFrench(supportingMerits)}. Ces actes ne sont ni oubliés ni confondus avec la renommée.`, {
+    steps.push(makeStep('merits', 'Sage Séraphine', 'sage_seraphine', `Il y a aussi ceci, et personne ici n’a le droit de le réduire à une bonne réputation : ${listFrench(supportingMerits)}. Des personnes ont vécu différemment parce que ces décisions ont été prises.`, {
       tag: 'Mérites', expression: 'stern', side: 'left',
     }));
   }
@@ -340,14 +340,14 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
     BREACH_TEXT,
   );
   if (breaches.length > 0) {
-    steps.push(makeStep('breaches', 'Champion du Lion', 'lion_champion', `Le Lion n’écarte pas davantage les fautes graves : ${listFrench(breaches)}. Elles exigent une réponse, même après un acte héroïque.`, {
+    steps.push(makeStep('breaches', 'Champion du Lion', 'lion_champion', `Et le Lion ne fermera pas les yeux sur ce qui demeure grave : ${listFrench(breaches)}. Un acte héroïque peut peser lourd ; il ne transforme pas ces faits en autre chose.`, {
       tag: 'Brèches', expression: 'hostile', side: 'right',
     }));
   }
 
   const stains = factPhrases(verdict.minorStains, STAIN_TEXT);
   if (stains.length > 0) {
-    steps.push(makeStep('stains', 'Intendant Maelor', 'maelor', `Alaric se souvient de ${listFrench(stains)}. Ce sont des taches réelles ; elles ne valent pourtant pas, à elles seules, le sort de Bois-Clair.`, {
+    steps.push(makeStep('stains', 'Intendant Maelor', 'maelor', `Mes comptes gardent aussi ${listFrench(stains)}. Rien de cela n’est imaginaire, mais tout n’a pas le même poids. Si nous avons appris quelque chose sur cette route, c’est qu’un registre honnête doit savoir distinguer une tache d’une rupture.`, {
       tag: 'Réserves', expression: 'neutral', side: 'left',
     }));
   }
@@ -362,7 +362,7 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
     'intent',
     'Chef Alaric',
     'alaric',
-    'Voilà le dossier complet. Dites maintenant ce que vous demandez au Lion — et assumez la voie qui suivra.',
+    'Vous ne pouvez plus modifier la route qui mène jusqu’ici. Vous pouvez seulement choisir ce que vous demandez au Lion en la regardant telle qu’elle est. Parlez.',
     {
       tag: 'Intention', expression: 'stern', side: 'right',
       choices: [
@@ -390,10 +390,10 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
 export function buildSerpentPursuitPreCombat(state: Readonly<GameState>): DialogueSequence {
   const verdict = resolveLionVerdict(sourceOf(state));
   const recognition = verdict.stance === 'respect'
-    ? 'Votre conduite a répondu au mandat. Le Lion vous reconnaît sans réserve : le Sceau sera vôtre, si vous arrêtez maintenant le général Serpent.'
+    ? 'Vous avez accompli le mandat sans demander au Lion d’oublier ce qu’il a vu. Je reconnais votre clan sans réserve. Le Sceau sera vôtre si vous terminez maintenant ce que les Serpents ont commencé.'
     : verdict.stance === 'respect_with_reservations'
-      ? 'Je n’oublie ni vos compromis ni vos fautes. Mais Bois-Clair et les voix qui vous soutiennent pèsent davantage. Le Lion vous reconnaît avec ses réserves.'
-      : 'Votre dossier demeure partagé, mais les faits qui vous soutiennent suffisent. Le Lion vous reconnaît ; poursuivez le général et ramenez son artefact.';
+      ? 'Je n’oublie ni vos compromis ni vos fautes. Mais Bois-Clair tient, des voix libres soutiennent ce qui mérite de l’être et votre route forme un ensemble que le Lion peut reconnaître — avec ses réserves.'
+      : 'Votre route reste difficile à résumer proprement. Tant mieux. Les faits qui vous soutiennent suffisent à la reconnaissance ; le reste vous suivra. Poursuivez le général et ramenez son artefact.';
   return sequence('serpent_pursuit_pre_combat', 'lion_finale_judgement', [
     makeStep('1', 'Chef Alaric', 'alaric', recognition, { tag: 'Verdict', expression: 'stern', side: 'right', next: '2' }),
     makeStep('2', 'Général Serpent', 'serpent_general_boss', 'Alors le Lion vous envoie finir sa guerre. Venez donc reprendre l’artefact — et découvrez ce qui vous observe derrière nos bannières.', { tag: 'Confrontation', expression: 'hostile', side: 'right', next: '3' }),
@@ -503,7 +503,7 @@ export function buildLionEpilogue(state: Readonly<GameState>): DialogueSequence 
   return sequence('epilogue', 'epilogue', [
     makeStep('1', 'Sage Séraphine', 'sage_seraphine', routeText, { tag: 'Bilan', expression: 'mystical', side: 'left', next: '2' }),
     makeStep('2', 'Intendant Maelor', 'maelor', shadowText, { tag: revealed ? 'Vérité' : 'Conséquence', expression: 'neutral', side: 'left', next: '3' }),
-    makeStep('3', 'Sage Séraphine', 'sage_seraphine', 'Le premier Sceau est acquis. Mais la manière dont vous l’avez obtenu a déjà dessiné la prochaine guerre.', {
+    makeStep('3', 'Sage Séraphine', 'sage_seraphine', 'Le premier Sceau est acquis. Ce n’est pas la fin de cette route : c’est la première preuve de ce que notre clan choisit de devenir quand personne ne peut choisir à sa place.', {
       tag: 'Chronique', expression: 'stern', side: 'left',
       effects: [{ type: 'finishChapter', endingId }],
     }),
