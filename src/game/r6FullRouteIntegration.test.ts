@@ -366,6 +366,8 @@ describe('R6 runtime ownership and ordering lock', () => {
     expect(method.indexOf('await this.maybePlayATEs(nodeId)')).toBeGreaterThan(0);
     expect(method.indexOf('await this.maybePlayReputationEvent(nodeId)'))
       .toBeGreaterThan(method.indexOf('await this.maybePlayATEs(nodeId)'));
+    expect(method).toContain('await this.flushPendingCombat(node)');
+    expect(method).toContain('return true');
 
     const dualTriggerNodes = CONTEXTUAL_ATE_RULES
       .map((rule) => rule.triggerNodeId)
