@@ -216,7 +216,7 @@ async function main() {
     && pacing.invariants.DIALOGUE_STEPS_ON_VIDEO === 0
     && pacing.invariants.DIALOGUE_STEPS_ON_HOLD === 0
     && pacing.invariants.CHOICE_STEPS_ON_HOLD === 0
-    && visual.entries.length === 71
+    && visual.entries.length === 73
     && visual.entries.every((entry) => entry.segments.every((segment) => segment.mode === 'STATIC_TABLEAU'))
     && browserPass;
   const dialogueDirectionPass = coveragePass
