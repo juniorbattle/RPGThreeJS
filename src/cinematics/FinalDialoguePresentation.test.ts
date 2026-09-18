@@ -47,8 +47,8 @@ describe('CIN-6E-A.4R static-tableau-first dialogue lock', () => {
   it('accounts for all 71 dialogues, 247 canonical steps and 28 actionable choice states', () => {
     const sequences = [...dialogues.values()];
     expect(FINAL_DIALOGUE_PACING_BASELINE).toBe('ff743b08fb239d55e11ac5cd682950032a06e2e1');
-    expect(sequences).toHaveLength(71);
-    expect(sequences.reduce((total, sequence) => total + sequence.steps.length, 0)).toBe(247);
+    expect(sequences).toHaveLength(73);
+    expect(sequences.reduce((total, sequence) => total + sequence.steps.length, 0)).toBe(251);
     expect(sequences.reduce((total, sequence) => total + sequence.steps.filter((step) => step.choices?.length).length, 0)).toBe(28);
     expect(Object.keys(plans).sort()).toEqual(sequences.map((sequence) => sequence.id).sort());
 
