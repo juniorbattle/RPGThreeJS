@@ -32,11 +32,11 @@ describe('CIN-6D final narrative continuity lock', () => {
     expect(audit.summary.dialogues).toBe(dialogues.size);
     expect(audit.summary.steps).toBe(liveSteps);
     expect(audit.summary).toMatchObject({
-      dialogues: 71, steps: 247, actionableChoiceStates: 28,
-      KEEP: 243, POLISH: 4, MOVE: 0, CONDITIONALIZE: 0, CHANGE_SPEAKER: 0,
+      dialogues: 73, steps: 251, actionableChoiceStates: 28,
+      KEEP: 247, POLISH: 4, MOVE: 0, CONDITIONALIZE: 0, CHANGE_SPEAKER: 0,
       REMOVE_REDUNDANT_LINE: 0, ADD_TRANSITION_LINE: 0, CONTENT_BUG: 0, REVIEW: 0,
     });
-    expect(auditedSteps).toHaveLength(247);
+    expect(auditedSteps).toHaveLength(251);
     expect(audit.exactPolish).toHaveLength(4);
     expect(audit.exactPolish.every((entry: any) => entry.canonicalTextPreserved)).toBe(true);
   });
