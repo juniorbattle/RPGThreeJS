@@ -124,7 +124,6 @@ export interface StageSpriteSource {
   /** Authoritative downed status. Read-only — used to style KO target proxies. */
   downed?: boolean;
   /** Runtime frame animation owns this source's texture; static pose swaps must not compete with it. */
-  runtimeFrameAnimation?: boolean;
 }
 
 /** The subset of EffectComposer's RenderPass this module needs to mutate. */
@@ -937,7 +936,6 @@ export class CombatStage {
   }
 
   private resolvePoseSetForSource(source: StageSpriteSource): CombatPoseSet | null {
-    if (source.runtimeFrameAnimation) return null;
     const identities = [
       source.combatPoseUnitId,
       source.unitId,

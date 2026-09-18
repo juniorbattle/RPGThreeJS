@@ -10,8 +10,8 @@
     "visualFamilyCount": 13,
     "approvedAssetCount": 44,
     "promotedAssetCount": 44,
-    "totalContexts": 165,
-    "mappedContexts": 165,
+    "totalContexts": 167,
+    "mappedContexts": 167,
     "unmappedContexts": 0,
     "fallbackContexts": 0,
     "byteIdenticalAssets": 44
@@ -1684,6 +1684,26 @@
       ]
     },
     "dialogue:witnesses_on_road": {
+      "visualFamily": "WITNESS_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "witness_road_tableau",
+          "runtimeCandidatePath": "tableau/witness-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:pre_witness_road_clash": {
+      "visualFamily": "WITNESS_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "witness_road_tableau",
+          "runtimeCandidatePath": "tableau/witness-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:post_witness_road_clash": {
       "visualFamily": "WITNESS_ROAD",
       "plates": [
         {

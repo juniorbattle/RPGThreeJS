@@ -95,6 +95,8 @@ describe('CIN-6E-A final operator approval and visual production lock', () => {
       'src/combat/legacyCombatRuntime.js',
       'src/combat/protocol.ts',
       'src/combat/StrategicCharacterVisual.test.ts',
+      'src/combat/vfx/DemoVfxActionScope.ts',
+      'src/combat/vfx/gridDetectorV2.test.ts',
       'src/combat/stage/CombatStage.ts',
       'src/combat/stage/CombatStage.test.ts',
       'src/combat/stage/combatStageBackgrounds.ts',

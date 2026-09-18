@@ -1177,6 +1177,26 @@
         }
       ]
     },
+    "dialogue:pre_witness_road_clash": {
+      "visualFamily": "WITNESS_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "witness_road_tableau",
+          "runtimeCandidatePath": "tableau/witness-road-tableau.png"
+        }
+      ]
+    },
+    "dialogue:post_witness_road_clash": {
+      "visualFamily": "WITNESS_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "witness_road_tableau",
+          "runtimeCandidatePath": "tableau/witness-road-tableau.png"
+        }
+      ]
+    },
     "dialogue:shadow_signs": {
       "visualFamily": "SHADOW_RUINS",
       "plates": [

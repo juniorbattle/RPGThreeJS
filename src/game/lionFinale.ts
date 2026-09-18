@@ -362,17 +362,6 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
         ],
       },
     ));
-    steps.push(makeStep(
-      'lie-rebuked',
-      'Champion du Lion',
-      'lion_champion',
-      bluff.reason === 'serious_fact'
-        ? 'Vous essayez de présenter une rupture comme un simple détour. Ici, les faits sont trop lourds et les voix trop précises pour que votre réputation change leur nature. Ce n’est plus de l’interprétation : c’est un mensonge.'
-        : bluff.reason === 'too_many_traces'
-          ? 'Une tache peut se discuter. Plusieurs traces qui racontent la même habitude, beaucoup moins. Votre nom vous achète une audience, pas le droit de transformer une répétition en accident.'
-          : 'Votre réputation vous donne assez de crédit pour être entendu, pas assez pour effacer ce que les rapports peuvent encore établir. Vous venez de dépenser ce crédit en essayant de les réduire à des détails.',
-      { tag: 'Mensonge', expression: 'hostile', side: 'right', next: 'outcome' },
-    ));
     if (bluff.succeeds) {
       steps.push(makeStep(
         'bluff-accepted',
@@ -382,6 +371,18 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
           ? 'Je connais le fait que vous essayez de replacer dans son contexte. Il n’est pas effacé, mais votre réputation et les voix qui vous accompagnent rendent cette lecture plausible. Je l’entendrai comme un écart de route, pas comme la preuve d’une conduite entière.'
           : 'Votre nom et les témoignages qui l’accompagnent vous donnent assez de crédit pour que j’accepte cette lecture des faits mineurs. Ne confondez pas ce bénéfice du doute avec l’oubli : je juge votre route, pas la version la plus flatteuse de celle-ci.',
         { tag: 'Bénéfice du doute', expression: 'neutral', side: 'right', next: 'outcome' },
+      ));
+    } else {
+      steps.push(makeStep(
+        'lie-rebuked',
+        'Champion du Lion',
+        'lion_champion',
+        bluff.reason === 'serious_fact'
+          ? 'Vous essayez de présenter une rupture comme un simple détour. Ici, les faits sont trop lourds et les voix trop précises pour que votre réputation change leur nature. Ce n’est plus de l’interprétation : c’est un mensonge.'
+          : bluff.reason === 'too_many_traces'
+            ? 'Une tache peut se discuter. Plusieurs traces qui racontent la même habitude, beaucoup moins. Votre nom vous achète une audience, pas le droit de transformer une répétition en accident.'
+            : 'Votre réputation vous donne assez de crédit pour être entendu, pas assez pour effacer ce que les rapports peuvent encore établir. Vous venez de dépenser ce crédit en essayant de les réduire à des détails.',
+        { tag: 'Mensonge', expression: 'hostile', side: 'right', next: 'outcome' },
       ));
     }
     steps.push(makeStep(

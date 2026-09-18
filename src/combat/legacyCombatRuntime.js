@@ -32,16 +32,6 @@ import { CombatStage } from './stage/CombatStage';
 import { resolveStrategicUnitVisual } from './stage/CombatPoseRegistry';
 import { resolveCombatStageProfileUniversal, getStageProfileInfo, forceResolveCombatStageProfile } from './stage/combatStageProfiles';
 import { isActionPublished, playActionVfx as playPublishedActionVfx, getPublishedDraft, __devUpdateOverlay, __devClearOverlay, getActiveRegistry } from './vfx/PublishedVfxResolver';
-import { SpriteFrameAnimationController } from '../render/SpriteFrameAnimation';
-import {
-  OPTION_C_COMBAT_STAGE_BACKGROUND,
-  OPTION_C_STRATEGIC_BACKGROUND,
-  optionCAnimationDefinitionsFor,
-  optionCProofAssetsFor,
-  optionCRequiredImageUrlsFor,
-  isOptionCAnimationState,
-} from '../dev/optionCPhase4b/OptionCPhase4bAssets';
-import { optionCEnvironmentBackground } from '../dev/optionCPhase4b/OptionCEnvironmentRuntime';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
@@ -65,19 +55,11 @@ const dom={ ui:byId('ui'), turnbar:byId('turnbar'), hint:byId('hint'), panel:byI
 const campaignParams=new URLSearchParams(location.search);
 const CAMPAIGN_MODE=campaignParams.get('campaign')==='1'&&window.parent!==window;
 const CHARACTER_SYSTEM_V2_QA=import.meta.env.DEV&&campaignParams.get('charv2qa')==='1';
-const OPTION_C_PROOF_ROUTE=import.meta.env.DEV&&campaignParams.get('optionc')==='forest-road';
 let QA_ENABLED=false;
 let MOTION_QA_ENABLED=false;
 let GRID_DEBUG_ENABLED=false;
 let QA_FULL_AP=false;
 let QA_DEPLOY_ALL=false;
-let OPTION_C_PROOF_ACTIVE=false;
-let OPTION_C_PROOF_SURFACE='strategic';
-let OPTION_C_PROOF_CHARACTER='kestrel';
-let OPTION_C_PROOF_STRATEGIC_BACKGROUND=OPTION_C_STRATEGIC_BACKGROUND;
-let OPTION_C_PROOF_STAGE_BACKGROUND=OPTION_C_COMBAT_STAGE_BACKGROUND;
-let OPTION_C_PROOF_ENVIRONMENT=null;
-let optionCStageReplayToken=0;
 let COMBAT_ID='standalone';
 let COMBAT_SCENE_ID='forest_route';
 let COMBAT_OBJECTIVE='Vaincre tous les ennemis.';
@@ -339,8 +321,6 @@ const EXTERNAL_SPRITE_HEIGHTS={
   '/assets/characters/pixel/masters/lancer.png':2.12
 };
 async function preloadExternalSprites(){
-  const optionCAssets=optionCProofAssetsFor(OPTION_C_PROOF_CHARACTER);
-  const optionCUrls=optionCRequiredImageUrlsFor(OPTION_C_PROOF_CHARACTER);
   const strategicDefinitions=[
     ...CAMPAIGN_SQUAD,
     ...DEFS,
@@ -360,14 +340,13 @@ async function preloadExternalSprites(){
   const urls=[...new Set([
     ...strategicDefinitions.map(unit=>strategicVisualFor(unit)?.src||unit.portrait),
     ...Object.values(BOSS_PORTRAITS).map(portrait=>resolveStrategicUnitVisual(portrait)?.src||portrait),
-    ...(OPTION_C_PROOF_ACTIVE?optionCUrls:[])
-  ].filter(url=>typeof url==='string'&&(url.startsWith('/assets/characters/pixel/combat/')||url.startsWith('/assets/characters/pixel/masters/')||(OPTION_C_PROOF_ACTIVE&&url.startsWith(optionCAssets.root)))))];
+  ].filter(url=>typeof url==='string'&&(url.startsWith('/assets/characters/pixel/combat/')||url.startsWith('/assets/characters/pixel/masters/'))))];
   if(!urls.length)return;
   await Promise.all(urls.map(async url=>{
     if(externalSpriteCache.has(url))return;
     try{
       const tex=await new THREE.TextureLoader().loadAsync(url);
-      tex.colorSpace=THREE.SRGBColorSpace; tex.magFilter=THREE.NearestFilter; tex.minFilter=OPTION_C_PROOF_ACTIVE&&url.startsWith(optionCAssets.root)?THREE.NearestFilter:THREE.LinearFilter; tex.generateMipmaps=false;
+      tex.colorSpace=THREE.SRGBColorSpace; tex.magFilter=THREE.NearestFilter; tex.minFilter=THREE.LinearFilter; tex.generateMipmaps=false;
       const strategic=strategicVisuals.get(url);
       if(strategic){
         const scale=strategic.worldUnitsPerPixel*strategic.scaleCorrection;
@@ -380,10 +359,6 @@ async function preloadExternalSprites(){
       }
     }catch(err){
       console.warn('Sprite externe indisponible',url,err);
-      if(OPTION_C_PROOF_ACTIVE&&url.startsWith(optionCAssets.root)){
-        document.body.dataset.optionCAssetFailure=url;
-        window.parent.postMessage({type:'rpg-threejs:option-c-proof-error',asset:url},location.origin);
-      }
     }
   }));
 }
@@ -466,7 +441,7 @@ function buildGridOverlay(){
 }
 async function buildWorld(){
   G.backgroundLayers=new BackgroundLayerSystem(scene);
-  await G.backgroundLayers.load(OPTION_C_PROOF_ACTIVE?OPTION_C_STRATEGIC_BACKGROUND:combatBackgroundFor(COMBAT_SCENE_ID));
+  await G.backgroundLayers.load(combatBackgroundFor(COMBAT_SCENE_ID));
   G.environment=buildSceneAmbience(COMBAT_SCENE_ID);
   const pickMaterial=new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false,color:0x000000});
   const geoCache={};
@@ -1001,16 +976,8 @@ function createUnit(def){
     visualFacingX:def.team==='player'?1:-1,
     grp, spr, outline, mat, blob, teamGlow, teamRingUnder, teamRing, statusIndicatorGroup, spriteHeight:s.h, baseY:s.baseY??s.h*0.5,
     authoritativePhysicalScale:!!s.authoritativePhysicalScale,strategicVisualUnitId:strategicVisual?.unitId||null,strategicVisual:strategicVisual||null,
-    runtimeFrameAnimation:false, frameAnimation:null, frameAnimationUrl:'',
     cell(){ return cellAt(this.gx,this.gz); }
   };
-  const optionCFocusMatches=OPTION_C_PROOF_CHARACTER==='alistair'
-    ? (u.campaignId==='warrior'||u.name==='Alistair')
-    : (u.campaignId==='archer'||u.name==='Kestrel');
-  if(OPTION_C_PROOF_ACTIVE&&optionCFocusMatches){
-    u.runtimeFrameAnimation=true;
-    u.frameAnimation=new SpriteFrameAnimationController(optionCAnimationDefinitionsFor(OPTION_C_PROOF_CHARACTER),'idle',performance.now());
-  }
   const spriteScale=largeUnitSpriteScale(u);
   u.visualHeight=s.h*spriteScale;
   u.visualWidth=s.w*spriteScale;
@@ -1844,7 +1811,6 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
   const impactStarted=new Promise(resolve=>{signalImpact=resolve;}),impactFinished=new Promise(resolve=>{finishImpact=resolve;});
   // Align the isolated runtime-frame proof with the real attack choreography,
   // after Stage lead-in/settle rather than consuming it during the transition.
-  if(u.runtimeFrameAnimation&&u.frameAnimation)u.frameAnimation.play('attack',performance.now());
   const animation=attackAnim(u,spec,impactCx,impactCz,targets,{...context,onResolveImpact:async()=>{signalImpact(); await impactFinished;}});
   await Promise.race([impactStarted,animation]);
   const _preState=new Map(); _preState.set(u,{alive:u.alive,hp:u.hp,statuses:new Set(Object.keys(u.statuses))}); for(const _t of targets)_preState.set(_t,{alive:_t.alive,hp:_t.hp,statuses:new Set(Object.keys(_t.statuses))});
@@ -2073,9 +2039,7 @@ async function combatStageEnter(att,targets,spec,opts){ const presentation=getSk
   stageVigEl.classList.add('on'); stageTitleEl.classList.add('on'); dom.ui.classList.add('staging');
   const stationaryAttacker=Boolean(att.boss||att.elite);
   if(STAGE_QA_ENABLED){ const info=getStageProfileInfo(spec,presentation); const isSupport=info&&(info.layout==='support_single'||info.layout==='support_group'||info.layout==='self_target'); const dir=att.team==='player'?(isSupport?'L→L':'L→R'):(isSupport?'R→R':'R→L'); if(info)console.log('[Stage QA] '+spec.key+' → '+info.id+(info.explicit?' (explicit)':' (generic)')+' layout='+info.layout+' impact='+info.impactAnchor+' source='+(att.team||'?')+' dir='+dir+(stationaryAttacker?' [stationary]':'')); }
-  if(att.runtimeFrameAnimation&&att.frameAnimation)att.frameAnimation.play('attack',performance.now());
-  await Promise.all([wait(feel.stageLeadIn),combatStage.enter(att,targets,spec,{reducedGraphics:REDUCED_GRAPHICS,environmentId:COMBAT_SCENE_ID,profile:stageProfile,sourceTeam:att.team,stationaryAttacker,...(OPTION_C_PROOF_ACTIVE?{backgroundOverride:OPTION_C_PROOF_STAGE_BACKGROUND}:{})})]);
-  if(OPTION_C_PROOF_ACTIVE&&OPTION_C_PROOF_SURFACE==='combat-stage')markOptionCEnvironmentReady(); }
+  await Promise.all([wait(feel.stageLeadIn),combatStage.enter(att,targets,spec,{reducedGraphics:REDUCED_GRAPHICS,environmentId:COMBAT_SCENE_ID,profile:stageProfile,sourceTeam:att.team,stationaryAttacker})]); }
 async function combatStageExit(){
   killTweens(Grade.uniforms.vig); tween(Grade.uniforms.vig,{value:COMBAT_PRESENTATION.grade.vignette},0.5,easeInOut);
   if(stageVigEl)stageVigEl.classList.remove('on'); if(stageTitleEl)stageTitleEl.classList.remove('on'); if(dom.ui)dom.ui.classList.remove('staging');
@@ -2324,21 +2288,6 @@ function endGame(win){ if(G.over)return; restoreUnitFocus(); for(const u of G.un
 
 // ============================= RENDER LOOP =============================
 let _last=performance.now(), _t=0,_diagnosticsAt=0,_animationFrame=0,_runtimeDisposed=false;
-function syncOptionCFrameAnimation(u,now){
-  if(!u.runtimeFrameAnimation||!u.frameAnimation)return;
-  const sample=u.frameAnimation.sample(now);
-  const loaded=externalSpriteCache.get(sample.frameUrl);
-  if(!loaded){ document.body.dataset.optionCAssetFailure=sample.frameUrl; return; }
-  if(u.frameAnimationUrl!==sample.frameUrl){
-    u.frameAnimationUrl=sample.frameUrl;
-    u.mat.map=loaded.tex; u.mat.needsUpdate=true;
-    if(u.outline){u.outline.material.map=loaded.tex;u.outline.material.needsUpdate=true;}
-  }
-  if(G.stage)combatStage.setCombatUnitTexture(u,loaded.tex);
-  document.body.dataset.optionCAnimationState=sample.state;
-  document.body.dataset.optionCAnimationFrame=String(sample.frameIndex+1);
-  document.body.dataset.optionCCombatStageActive=String(combatStage.isActive());
-}
 function animate(){ if(_runtimeDisposed)return; _animationFrame=requestAnimationFrame(animate);
   const now=performance.now(); const dt=Math.min(0.05,(now-_last)/1000); _last=now; _t+=dt;
   updateTweens(dt); cameraFeedback.tick(dt); applyCam();
@@ -2346,7 +2295,7 @@ function animate(){ if(_runtimeDisposed)return; _animationFrame=requestAnimation
   const _shakeSample=cameraFeedback.sample();
   const _shakeOffset=shakeSampleToUvOffset(_shakeSample,innerWidth,innerHeight);
   ImpactShake.uniforms.shakeOffset.value.set(_shakeOffset.x,_shakeOffset.y);
-  for(const u of G.units){ syncOptionCFrameAnimation(u,now); const dx=camera.position.x-u.grp.position.x, dz=camera.position.z-u.grp.position.z; u.spr.rotation.y=Math.atan2(dx,dz); if(u.outline){ u.outline.rotation.y=u.spr.rotation.y; u.outline.material.opacity=Math.max(0.16,u.mat.opacity*0.44); }
+  for(const u of G.units){ const dx=camera.position.x-u.grp.position.x, dz=camera.position.z-u.grp.position.z; u.spr.rotation.y=Math.atan2(dx,dz); if(u.outline){ u.outline.rotation.y=u.spr.rotation.y; u.outline.material.opacity=Math.max(0.16,u.mat.opacity*0.44); }
     if(u.teamRing){ if(!u.alive){ u.teamRing.material.opacity=0; if(u.teamRingUnder)u.teamRingUnder.material.opacity=0; if(u.teamGlow)u.teamGlow.material.opacity=0; } else if(!u._motionPlaying){ const isActive=u===G.active&&!G.stage&&!G.over,isHover=G.hoverUnit===u,isTarget=G.mode==='target'&&G.pending&&G.pending.keys.has(cellKey(u.gx,u.gz))&&G.active&&u.team!==G.active.team; u.teamRing.material.opacity=Math.min(1,COMBAT_PRESENTATION.units.teamRingOpacity*(isActive?1.16:(isTarget?1.12:(isHover?1.08:0.94)))); if(u.teamRingUnder)u.teamRingUnder.material.opacity=isActive ? .68 : (isTarget ? .64 : (isHover ? .6 : .5)); if(u.teamGlow)u.teamGlow.material.opacity=isActive ? .28 : (isTarget ? .25 : (isHover ? .22 : (u.team==='player' ? .15 : .17))); } }
     syncBossIntentPresentation(u,_t);
     if(u.alive) u.spr.position.y=u.baseY+(u===G.active?Math.sin(_t*3.2)*0.05:0); syncStatusIndicators(u,_t); }
@@ -2519,105 +2468,6 @@ function qaPrepareCombat(){
   autoDeploy();
   beginBattle();
 }
-function optionCFocusUnit(){
-  return G.units.find(unit=>unit.alive&&(OPTION_C_PROOF_CHARACTER==='alistair'
-    ? (unit.campaignId==='warrior'||unit.name==='Alistair')
-    : (unit.campaignId==='archer'||unit.name==='Kestrel')))||null;
-}
-function setOptionCAnimation(state){
-  const focus=optionCFocusUnit();
-  if(!focus||!focus.frameAnimation||!isOptionCAnimationState(state))return false;
-  focus.frameAnimation.play(state,performance.now());
-  document.body.dataset.optionCRequestedAnimation=state;
-  return true;
-}
-function prepareOptionCStrategicProof(){
-  qaPrepareCombat();
-  const focus=optionCFocusUnit();
-  if(focus)selectUnit(focus);
-  dom.tutorial?.classList.add('hidden'); dom.bossTutorial?.classList.add('hidden');
-  document.body.dataset.optionCProofSurface='strategic';
-}
-async function playOptionCStageProof(replayToken){
-  qaPrepareCombat();
-  const owner=optionCFocusUnit();
-  const target=aliveUnits('foe')[0];
-  if(!owner||!target||OPTION_C_PROOF_SURFACE!=='combat-stage'||replayToken!==optionCStageReplayToken)return;
-  const gx=inBounds(target.gx-1,target.gz)?target.gx-1:owner.gx;
-  placeUnit(owner,gx,target.gz,true);
-  const spec=getSpec(owner,'attack',0,0);
-  // Keep this isolated DEV encounter inspectable across repeated stage passes.
-  target.hp=target.maxhp;
-  owner.ap=Math.max(owner.ap,spec.ap);
-  setOptionCAnimation('attack');
-  document.body.dataset.optionCProofSurface='combat-stage';
-  await executeAction(owner,spec,target.gx,target.gz);
-  if(OPTION_C_PROOF_SURFACE==='combat-stage'&&replayToken===optionCStageReplayToken){
-    window.setTimeout(()=>void playOptionCStageProof(replayToken),650);
-  }
-}
-function optionCEnvironmentFromMessage(surface,message){
-  const environment=message&&message.environment;
-  const expectedRole=surface==='strategic'?'STRATEGIC_COMBAT':'COMBAT_STAGE';
-  if(!environment||typeof environment!=='object')return null;
-  if(environment.surfaceRole!==expectedRole)return null;
-  if(typeof environment.contextId!=='string'||!environment.contextId.startsWith('combat:'))return null;
-  if(typeof environment.assetId!=='string'||!/^[a-z0-9_]+$/.test(environment.assetId))return null;
-  if(typeof environment.visualFamily!=='string')return null;
-  if(typeof environment.url!=='string'||!environment.url.startsWith('/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/'))return null;
-  return {...environment,surface};
-}
-function markOptionCEnvironmentReady(){
-  const environment=OPTION_C_PROOF_ENVIRONMENT;
-  if(!environment)return;
-  document.body.dataset.optionCEnvironmentReady='true';
-  document.body.dataset.optionCEnvironmentContext=environment.contextId;
-  document.body.dataset.optionCEnvironmentAsset=environment.assetId;
-  document.body.dataset.optionCEnvironmentFamily=environment.visualFamily;
-  document.body.dataset.optionCEnvironmentUrl=environment.url;
-  window.parent.postMessage({
-    type:'rpg-threejs:option-c-environment-ready',
-    contextId:environment.contextId,
-    assetId:environment.assetId,
-    url:environment.url
-  },location.origin);
-}
-function reportOptionCEnvironmentFailure(environment,error){
-  document.body.dataset.optionCEnvironmentReady='false';
-  window.parent.postMessage({type:'rpg-threejs:option-c-proof-error',asset:environment.url,error:String(error)},location.origin);
-}
-async function handleOptionCProofCommand(message){
-  if(!OPTION_C_PROOF_ACTIVE||!message||message.type!=='rpg-threejs:option-c-proof-command')return;
-  if(message.surface!=='strategic'&&message.surface!=='combat-stage')return;
-  const environment=optionCEnvironmentFromMessage(message.surface,message);
-  if(!environment){
-    window.parent.postMessage({type:'rpg-threejs:option-c-proof-error',asset:'invalid-environment-mapping'},location.origin);
-    return;
-  }
-  OPTION_C_PROOF_SURFACE=message.surface;
-  OPTION_C_PROOF_ENVIRONMENT=environment;
-  optionCStageReplayToken++;
-  document.body.dataset.optionCEnvironmentReady='false';
-  setOptionCAnimation(isOptionCAnimationState(message.animation)?message.animation:'idle');
-  try{
-    const background=optionCEnvironmentBackground(environment);
-    if(message.surface==='strategic'){
-      OPTION_C_PROOF_STRATEGIC_BACKGROUND=background;
-      await G.backgroundLayers.load(OPTION_C_PROOF_STRATEGIC_BACKGROUND);
-      prepareOptionCStrategicProof();
-      markOptionCEnvironmentReady();
-    }else{
-      OPTION_C_PROOF_STAGE_BACKGROUND=background;
-      const layer=background.layers&&background.layers[0];
-      const grounding=background.combatStageGrounding;
-      document.body.dataset.optionCCombatStageFit=layer?JSON.stringify({position:layer.position,size:layer.size}):'';
-      document.body.dataset.optionCCombatStageGrounding=grounding?JSON.stringify(grounding):'';
-      void playOptionCStageProof(optionCStageReplayToken).catch(error=>reportOptionCEnvironmentFailure(environment,error));
-    }
-  }catch(error){
-    reportOptionCEnvironmentFailure(environment,error);
-  }
-}
 function qaMotionUnit(preferBoss=false){ return (preferBoss?aliveUnits().find(unit=>unit.boss||unit.elite):null)||G.active&&G.active.alive&&G.active||aliveUnits('foe')[0]||aliveUnits('player')[0]||aliveUnits()[0]||null; }
 function clearQaBossIntentPreview(){ for(const unit of G.units){ unit._bossIntentPreview=undefined; clearBossIntentPresentation(unit); } }
 async function playQaMotionScenario(scenario){
@@ -2785,8 +2635,7 @@ function buildLabPlaybackContext(){
     },
   };
 }
-async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); document.body.classList.toggle('option-c-phase4b-combat',OPTION_C_PROOF_ACTIVE); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); disposeVfxComposerPanel=installVfxComposerPanel({enabled:VFX_LAB_ENABLED,playback:VFX_LAB_ENABLED?buildLabPlaybackContext():undefined}); installUnitMotionWorkbench({enabled:MOTION_QA_ENABLED,play:playQaMotionScenario,reset:resetQaMotion}); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none';
-  if(OPTION_C_PROOF_ACTIVE){document.body.dataset.optionCProofCharacter=OPTION_C_PROOF_CHARACTER;document.body.dataset.optionCProofReady='true';prepareOptionCStrategicProof();addEventListener('message',event=>{if(event.source===window.parent&&event.origin===location.origin)handleOptionCProofCommand(event.data);});}
+async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); buildSprites(); await preloadExternalSprites(); await initGame(); bindInput(); disposeVfxComposerPanel=installVfxComposerPanel({enabled:VFX_LAB_ENABLED,playback:VFX_LAB_ENABLED?buildLabPlaybackContext():undefined}); installUnitMotionWorkbench({enabled:MOTION_QA_ENABLED,play:playQaMotionScenario,reset:resetQaMotion}); bloom.enabled=!REDUCED_GRAPHICS; tiltPass.enabled=!REDUCED_GRAPHICS; animate(); dom.loading.style.display='none';
   // DEV QA: expose published VFX resolver functions for Playwright testing
   // Read-only helpers are always available; mutation helpers are DEV-gated.
   const _DEV_QA=VFX_LAB_ENABLED||QA_ENABLED||STAGE_QA_ENABLED;
@@ -2905,8 +2754,6 @@ function bootCampaign(message){
   GRID_DEBUG_ENABLED=QA_ENABLED&&campaignParams.get('grid')==='1';
   QA_FULL_AP=QA_ENABLED&&message.qaFullAp===true;
   QA_DEPLOY_ALL=QA_ENABLED&&message.qaDeployAll===true;
-  OPTION_C_PROOF_ACTIVE=OPTION_C_PROOF_ROUTE&&message.devOptionCProof===true;
-  OPTION_C_PROOF_CHARACTER=message.devOptionCProofCharacter==='alistair'?'alistair':'kestrel';
   IS_BOSS_COMBAT=!!message.config.isBoss; BOSS_SPAWNED=false;
   ENCOUNTER_ENEMY_VISUAL_IDS=Array.isArray(message.config.enemyVisualIds)?message.config.enemyVisualIds:[];
   ENCOUNTER_BOSS_VISUAL_ID=message.config.bossVisualId||'';

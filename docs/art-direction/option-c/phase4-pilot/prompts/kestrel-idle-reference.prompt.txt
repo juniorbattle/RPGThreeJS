@@ -1,9 +1,0 @@
-Use case: identity-preserve
-Asset type: KESTREL_IDLE_REFERENCE, single DEV gameplay pose
-Primary request: Create one calm combat-ready Kestrel idle reference. Both boots planted, balanced low-amplitude readiness, subtle breathing potential, shoulders relaxed but alert. Hold the bow diagonally down-forward with the full weapon and string readable. The silhouette must loop naturally without a large motion.
-Input hierarchy: the approved Kestrel Option C character master fixes proportions, costume, palette, mask, hood, bow, quiver, materials and pixel density; the canonical full Kestrel PNG overrides every conflict; the rejected 2x2 sheet informs pose language only.
-Identity invariants: deep forest-green pointed gold-embroidered hood; fully covered green cloth face with no skin; layered ragged green cloak; stitched torso; crossed brown harness, pouches and round brass buckle; dark trousers; leather bracers, knee guards and boots; warm-brown recurved longbow with intact string; rear-left quiver and white-feather arrows.
-Style: modern high-density pixel-stylized HD-2D, crisp deliberate clusters, controlled colored outlines, matte cloth and selective bronze highlights.
-Composition: exactly one full-body figure, three-quarter profile toward the right, all gear contained with at least 12% margin, grounded baseline.
-Background: 100% solid flat #FF00FF magenta.
-Constraints: no attack draw, run, jump, magic, environment, VFX, text, UI, border, logo, watermark, face exposure, duplicate limb, extra weapon or broken bowstring.

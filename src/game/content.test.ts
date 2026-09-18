@@ -244,12 +244,17 @@ describe('campaign content integrity', () => {
     }
   });
 
-  it('defines encounter ranks and measured red gem rewards for every combat', () => {
+  it('defines encounter ranks and measured red gem rewards, except the explicit no-loot Witness Road escalation', () => {
     const minGemRewards = { normal: 1, elite: 2, boss: 5 } as const;
 
     for (const combat of combatConfigs.values()) {
       expect(['normal', 'elite', 'boss']).toContain(combat.encounterRank);
-      expect(combat.rewards.materials.red_gem, combat.id).toBeGreaterThanOrEqual(minGemRewards[combat.encounterRank]);
+      if (combat.id === 'witness_road_clash') {
+        expect(combat.rewards.materials).toEqual({});
+        expect(combat.rewards.gold).toBe(0);
+      } else {
+        expect(combat.rewards.materials.red_gem, combat.id).toBeGreaterThanOrEqual(minGemRewards[combat.encounterRank]);
+      }
       if (combat.encounterRank === 'boss') expect(combat.isBoss, combat.id).toBe(true);
     }
   });
@@ -1308,7 +1313,7 @@ describe('V10C.2B offensive grenade items', () => {
 
   it('mystery_treasure take option rewards grenade_incendiaire', () => {
     const dialogue = dialogues.get('mystery_treasure')!;
-    const takeChoice = dialogue.steps[0]!.choices!.find((c) => c.text.includes('Prendre'));
+    const takeChoice = dialogue.steps[0]!.choices!.find((choice) => choice.effects.some((effect) => effect.type === 'setFlag' && effect.key === 'claimedLostTreasure'));
     expect(takeChoice).toBeDefined();
     const grenadeEffect = takeChoice!.effects.find((e): e is { type: 'addItem'; itemId: string; quantity: number } => e.type === 'addItem' && e.itemId === 'grenade_incendiaire');
     expect(grenadeEffect, 'mystery_treasure:grenade_incendiaire').toBeDefined();
@@ -1317,7 +1322,7 @@ describe('V10C.2B offensive grenade items', () => {
 
   it('shadow_signs break option rewards grenade_entravante', () => {
     const dialogue = dialogues.get('shadow_signs')!;
-    const breakChoice = dialogue.steps[0]!.choices!.find((c) => c.text.includes('Briser'));
+    const breakChoice = dialogue.steps[0]!.choices!.find((choice) => choice.effects.some((effect) => effect.type === 'setFlag' && effect.key === 'shadowFragments'));
     expect(breakChoice).toBeDefined();
     const grenadeEffect = breakChoice!.effects.find((e): e is { type: 'addItem'; itemId: string; quantity: number } => e.type === 'addItem' && e.itemId === 'grenade_entravante');
     expect(grenadeEffect, 'shadow_signs:grenade_entravante').toBeDefined();

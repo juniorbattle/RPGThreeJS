@@ -1,9 +1,0 @@
-Use case: identity-preserve
-Asset type: KESTREL_CAST_OR_SKILL_REFERENCE, single DEV gameplay pose
-Primary request: Create one Kestrel-specific precision technique pose, not spellcasting. Grounded focused stance, body turned right, bow angled upward-right, one arrow deliberately nocked while Kestrel sights a distant elevated target; communicate Tir de Precision / Fleche zenith through weapon mechanics alone.
-Input hierarchy: the approved Kestrel Option C character master fixes proportions, costume, palette, mask, hood, bow, quiver, materials and pixel density; the canonical full Kestrel PNG overrides every conflict; the rejected 2x2 sheet informs pose language only.
-Identity invariants: deep forest-green pointed gold-embroidered hood; fully covered green cloth face with no skin; layered ragged green cloak; stitched torso; crossed brown harness, pouches and round brass buckle; dark trousers; leather bracers, knee guards and boots; warm-brown recurved longbow with intact string; rear-left quiver and white-feather arrows.
-Style: modern high-density pixel-stylized HD-2D, crisp deliberate clusters, controlled colored outlines, matte cloth and selective bronze highlights.
-Composition: exactly one full-body figure, three-quarter profile toward the right, full bow and arrow contained with at least 12% margin, grounded baseline.
-Background: 100% solid flat #FF00FF magenta.
-Constraints: no magic aura, leaves, runes, spell circle, empty casting hand, projectile, impact, duplicate limb, face exposure, environment, VFX, text, UI, border, logo or watermark.

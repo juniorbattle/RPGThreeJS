@@ -3,7 +3,7 @@
 Status: **FINAL STRUCTURAL LOCK BEFORE ART PRODUCTION**
 Authority: This document is the single authoritative reference for the narrative presentation doctrine.
 Machine contract: `src/cinematics/NarrativePresentationDoctrine.ts`
-Demo matrix: `docs/art-direction/option-c/phase4c-glm/demo-presentation-matrix.md`
+Runtime authority: `src/cinematics/NarrativePresentationDoctrine.ts`
 
 ---
 

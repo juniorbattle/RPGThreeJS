@@ -21,19 +21,19 @@ describe('CIN-6D.5 final presentation mode audit', () => {
   it('classifies every player-facing audit unit under the six-value mode vocabulary', () => {
     const audit = readJson('tools/cinematics/specs/final_presentation_mode_audit.json');
     expect(audit.modeEnum).toEqual(MODES);
-    expect(audit.summary.playerFacingBeats).toBe(144);
-    expect(audit.beats).toHaveLength(144);
+    expect(audit.summary.playerFacingBeats).toBe(147);
+    expect(audit.beats).toHaveLength(147);
     expect(audit.summary.playerFacingBeatsUnclassified).toBe(0);
     expect(audit.beats.every((beat: any) => MODES.includes(beat.targetPresentationMode))).toBe(true);
     expect(audit.summary.targetModes).toEqual({
       CINEMATIC_VIDEO: 29,
       CINEMATIC_HOLD: 28,
       TRAVEL_STILL: 19,
-      STATIC_TABLEAU: 49,
-      COMBAT: 17,
+      STATIC_TABLEAU: 51,
+      COMBAT: 18,
       GAMEPLAY_UI: 2,
     });
-    expect(Object.values(audit.summary.targetModes).reduce((sum: number, value: any) => sum + value, 0)).toBe(144);
+    expect(Object.values(audit.summary.targetModes).reduce((sum: number, value: any) => sum + value, 0)).toBe(147);
   });
 
   it('covers all authoritative nodes and reachable edges', () => {
@@ -104,9 +104,9 @@ describe('CIN-6D.5 final presentation mode audit', () => {
     expect(audit.travelStillAudit).toHaveLength(14);
     expect(audit.travelStillAudit.every((entry: any) => entry.newAssetRequired && entry.uiSafeZone)).toBe(true);
     expect(audit.summary.tableauBackgroundsReusable).toBe(2);
-    expect(audit.summary.tableauBackgroundsRequiringRework).toBe(47);
-    expect(audit.tableauBackgroundAudit).toHaveLength(49);
-    expect(audit.tableauCastAudit).toHaveLength(49);
+    expect(audit.summary.tableauBackgroundsRequiringRework).toBe(49);
+    expect(audit.tableauBackgroundAudit).toHaveLength(51);
+    expect(audit.tableauCastAudit).toHaveLength(51);
     expect(audit.tableauCastAudit.every((entry: any) => !entry.missingSpeaker && !entry.futureRecruitShownUnconditionally && !entry.impossibleCast)).toBe(true);
     expect(audit.tableauCastAudit.every((entry: any) => entry.speakers.length && entry.targetCast.length)).toBe(true);
     expect(audit.summary.livingStillCandidates).toBe(10);

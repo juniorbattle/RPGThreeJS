@@ -1,9 +1,0 @@
-Use case: identity-preserve
-Asset type: KESTREL_ATTACK_REFERENCE, single DEV gameplay pose
-Primary request: Create one mechanically credible archer attack release reference facing right. Grounded wide stance, bow arm fully extended, draw hand at the masked cheek, one arrow correctly nocked on the string, bow under believable tension. Clear action silhouette without VFX.
-Input hierarchy: the approved Kestrel Option C character master fixes proportions, costume, palette, mask, hood, bow, quiver, materials and pixel density; the canonical full Kestrel PNG overrides every conflict; the rejected 2x2 sheet informs pose language only.
-Identity invariants: deep forest-green pointed gold-embroidered hood; fully covered green cloth face with no skin; layered ragged green cloak; stitched torso; crossed brown harness, pouches and round brass buckle; dark trousers; leather bracers, knee guards and boots; warm-brown recurved longbow with intact string; rear-left quiver and white-feather arrows.
-Style: modern high-density pixel-stylized HD-2D, crisp deliberate clusters, controlled colored outlines, matte cloth and selective bronze highlights.
-Composition: exactly one full-body figure, three-quarter profile toward the right, full bow and arrow contained with at least 12% margin, grounded baseline.
-Background: 100% solid flat #FF00FF magenta.
-Constraints: mechanically plausible bow/string/arrow, no extra arrow or weapon, duplicate limb, face exposure, environment, VFX, projectile trail, text, UI, border, logo or watermark.

@@ -98,7 +98,7 @@ describe('CIN-6.7 NarrativeStage campaign integration', () => {
     }
     const start = method('private async startCombat');
     expect(start).toContain("resolveCin6aJourneyTrigger({ hook: 'beforeCombat', combatId })");
-    expect(start).toContain("resolveCin6cJourneyTrigger(\n          { hook: 'beforeCombat', combatId }");
+    expect(start).toMatch(/resolveCin6cJourneyTrigger\(\s*\{ hook: 'beforeCombat', combatId \},\s*\{\s*flags: this\.state\.flags(?:,\s*boundaryResolved: this\.state\.resolvedNodeIds\.includes\(node\.id\))?\s*\},?\s*\)/u);
     expect(start).toContain('await this.playDialogue(config.preCombatDialogueId, node.label, {');
     expect(start).toContain('preserveBackdrop: false');
     expect(start).toContain('this.activeNarrativeStage?.prepareGlobalHandoff()');

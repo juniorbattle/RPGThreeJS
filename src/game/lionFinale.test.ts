@@ -131,6 +131,7 @@ describe('Lion finale contextual dialogue', () => {
     expect(bluffChoice).toBeDefined();
     expect(bluffChoice?.next).toBe('bluff-accepted');
     expect(dialogue.steps.find((step) => step.id === 'bluff-accepted')?.text).toMatch(/bénéfice du doute|lecture plausible/i);
+    expect(dialogue.steps.some((step) => step.id === 'lie-rebuked')).toBe(false);
   });
 
   it('exposes a bluff when too many minor traces contradict the framing', () => {
@@ -150,6 +151,7 @@ describe('Lion finale contextual dialogue', () => {
       .find((choice) => choice.effects.some((effect) => effect.type === 'setFlag' && effect.key === 'liedToAlaric'));
     expect(bluffChoice).toBeDefined();
     expect(bluffChoice?.next).toBe('lie-rebuked');
+    expect(dialogue.steps.some((step) => step.id === 'bluff-accepted')).toBe(false);
   });
 
   it('never lets reputation bluff away a serious breach', () => {

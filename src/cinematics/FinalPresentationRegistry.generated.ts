@@ -4497,5 +4497,96 @@ export const FINAL_PRESENTATION_BEATS = Object.freeze([
       "neverReplaysResolvedEvent": true,
       "mutatesGameTruth": false
     }
+  },
+  {
+    "beatId": "dialogue:pre_witness_road_clash",
+    "mode": "STATIC_TABLEAU",
+    "visualFamily": "WITNESS_ROAD",
+    "narrativePurpose": "The coercive witness choice must become visibly confrontational before tactical combat without inventing a cinematic.",
+    "nodeId": "lion-witnesses",
+    "contentId": "pre-combat:witness_road_clash",
+    "dialogueId": "pre_witness_road_clash",
+    "combatId": "witness_road_clash",
+    "assetRole": "TABLEAU_BACKGROUND",
+    "assetSlotId": "witness_road_tableau_background",
+    "sourceAsset": "/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+    "fallbackAsset": "/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+    "tableauBackgroundId": "witness_road_tableau_background",
+    "castOwnership": "STAGE_OWNS_CAST",
+    "staticCast": [
+      "survivor",
+      "alistair"
+    ],
+    "mediaSubjects": [],
+    "hasDialogue": true,
+    "hasChoice": false,
+    "continueOnly": false,
+    "preloadRefs": [
+      "/assets/generated/lion-phase/dialogue/witnesses_on_road.webp"
+    ],
+    "fallbackPolicy": {
+      "kind": "TABLEAU_LEGACY_BACKGROUND",
+      "assetId": "/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+      "neverReplaysResolvedEvent": true,
+      "mutatesGameTruth": false
+    }
+  },
+  {
+    "beatId": "combat:witness_road_clash",
+    "mode": "COMBAT",
+    "visualFamily": "WITNESS_ROAD",
+    "narrativePurpose": "The player explicitly chose coercive silence; tactical combat owns the militia confrontation.",
+    "nodeId": "lion-witnesses",
+    "contentId": "witness_road_clash",
+    "combatId": "witness_road_clash",
+    "assetRole": "COMBAT_SURFACE",
+    "assetSlotId": "EXISTING_TACTICAL_COMBAT_RUNTIME",
+    "fallbackAsset": "/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+    "castOwnership": "PRIMARY_GAMEPLAY_SURFACE",
+    "staticCast": [],
+    "mediaSubjects": [],
+    "hasDialogue": false,
+    "hasChoice": false,
+    "continueOnly": false,
+    "preloadRefs": [],
+    "fallbackPolicy": {
+      "kind": "NONE",
+      "assetId": "/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+      "neverReplaysResolvedEvent": true,
+      "mutatesGameTruth": false
+    }
+  },
+  {
+    "beatId": "dialogue:post_witness_road_clash",
+    "mode": "STATIC_TABLEAU",
+    "visualFamily": "WITNESS_ROAD",
+    "narrativePurpose": "The aftermath must name the irreversible consequence without turning it into a second spectacle beat.",
+    "nodeId": "lion-witnesses",
+    "contentId": "post-combat:witness_road_clash",
+    "dialogueId": "post_witness_road_clash",
+    "combatId": "witness_road_clash",
+    "assetRole": "TABLEAU_BACKGROUND",
+    "assetSlotId": "witness_road_tableau_background",
+    "sourceAsset": "/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+    "fallbackAsset": "/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+    "tableauBackgroundId": "witness_road_tableau_background",
+    "castOwnership": "STAGE_OWNS_CAST",
+    "staticCast": [
+      "marian",
+      "maelor"
+    ],
+    "mediaSubjects": [],
+    "hasDialogue": true,
+    "hasChoice": false,
+    "continueOnly": false,
+    "preloadRefs": [
+      "/assets/generated/lion-phase/dialogue/witnesses_on_road.webp"
+    ],
+    "fallbackPolicy": {
+      "kind": "TABLEAU_LEGACY_BACKGROUND",
+      "assetId": "/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+      "neverReplaysResolvedEvent": true,
+      "mutatesGameTruth": false
+    }
   }
 ] as const satisfies readonly ResolvedPresentationBeat[]);

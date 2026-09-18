@@ -1,22 +1,43 @@
 # Option C demo environment pack v1
 
-Status: `PRODUCTION_APPROVED` (operator authorization, 2026-09-16).
+Status: **PRODUCTION_APPROVED** (operator authorization, 2026-09-16).
 
-The immutable approved source remains under
-`public/assets/dev/option-c/phase4b/environment/demo-environment-pack-v1/`.
-Production uses byte-identical copies under
-`public/assets/generated/lion-phase/environments/demo-environment-pack-v1/`.
+## Production authority
 
-`promotion-manifest.json` records the source path, production path, surface
-role, visual family, SHA-256, width, and height for all 44 plates. The promoted
-map contains all 165 approved contexts and no generic fallback.
+The active runtime authority is:
 
-Reproduce the promotion/hash/coverage check with:
+- manifest: `src/render/data/demo-environment-pack-v1.production.json`
+- public assets:
+  `public/assets/generated/lion-phase/environments/demo-environment-pack-v1/`
 
-```powershell
-node tools/option-c/promote_demo_environment_pack.mjs --check
-```
+The promoted pack contains the approved Lion-demo environment plates and their
+deterministic context mappings. Runtime consumers must resolve production URLs;
+no `public/assets/dev/option-c` path is required.
 
-`production-smoke.json` is the production-build browser smoke result for one
-real Travel context, one four-actor Static Tableau, and all three strategic and
-Combat Stage environments. It uses no DEV environment override.
+## Source history
+
+The original DEV production pack, review screenshots and one-shot promotion
+pipeline were removed from the active tree by REPO-CLEAN-4 after production
+promotion was locked. Their exact files and provenance remain recoverable from
+Git history before the cleanup branch.
+
+The retained production manifests carry the approved identifiers, hashes,
+dimensions, surface roles and visual families required by runtime resolution.
+
+## Runtime contract
+
+The pack supports the current presentation roles:
+
+- TRAVEL
+- STATIC_TABLEAU
+- STRATEGIC_COMBAT
+- COMBAT_STAGE
+- CINEMATIC_SOURCE_ENVIRONMENT where applicable
+
+Missing contexts or roles are errors rather than generic visual fallbacks.
+
+## Change policy
+
+Do not modify the approved environment pixels during cinematic work unless a
+specific cinematic source treatment requires a derived asset. Derived cinematic
+sources must not silently replace the production gameplay plate.
