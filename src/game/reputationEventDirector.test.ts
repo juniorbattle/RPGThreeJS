@@ -366,12 +366,28 @@ describe('frequency, persistence, and content boundaries', () => {
       .toBeLessThan(source.indexOf('await this.maybePlayReputationEvent(nodeId)'));
   });
 
-  it('keeps every pilot social and non-combat while exposing consequence hints', () => {
+  it('keeps every reputation event social except the locked roadside Serpent escalation', () => {
     for (const definition of REPUTATION_EVENT_DEFINITIONS) {
       expect(dialogues.has(definition.dialogueId)).toBe(true);
-      expect(allEffects(definition.dialogueId).some((effect) => effect.type === 'startCombat')).toBe(false);
+      const combatEffects = allEffects(definition.dialogueId).filter((effect) => effect.type === 'startCombat');
+      if (definition.id === 'roadside-intimidation') {
+        expect(combatEffects).toEqual([{ type: 'startCombat', combatId: 'serpent_reprisals' }]);
+      } else {
+        expect(combatEffects, definition.id).toEqual([]);
+      }
       expect(definition.metadata?.consequenceHints?.length).toBeGreaterThan(0);
     }
+  });
+
+  it('makes GameApp consume a combat prepared by a post-node reputation event', () => {
+    const source = readFileSync(resolve(process.cwd(), 'src/game/GameApp.ts'), 'utf8');
+    const start = source.indexOf('private async playPostNodeNarrative');
+    const end = source.indexOf('\n  private async applyEffects', start);
+    const method = source.slice(start, end);
+    expect(method).toContain('await this.maybePlayATEs(nodeId)');
+    expect(method).toContain('await this.maybePlayReputationEvent(nodeId)');
+    expect(method).toContain('await this.flushPendingCombat(node)');
+    expect(method).toContain('return true');
   });
 
   it('does not add a schema field or misuse combat cooldown storage', () => {
