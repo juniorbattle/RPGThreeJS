@@ -211,6 +211,7 @@ describe('CIN-6E-A final visual preproduction system', () => {
       'src/combat/legacyCombatRuntime.js',
       'src/combat/protocol.ts',
       'src/combat/StrategicCharacterVisual.test.ts',
+      'src/combat/vfx/DemoVfxActionScope.ts',
       'src/combat/vfx/gridDetectorV2.test.ts',
       'src/combat/stage/CombatStage.ts',
       'src/combat/stage/CombatStage.test.ts',
