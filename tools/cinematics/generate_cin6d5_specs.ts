@@ -1036,7 +1036,7 @@ const auditReport = `# CIN-6D.5 — Full player-facing scene mode audit
 - Baseline: \`${BASELINE}\`
 - Nodes: **${summary.nodes}/21**
 - Reachable edges: **${summary.edges}/23**
-- Dialogues and context: **${summary.dialogues}/71**, covering **${summary.dialogueSteps}/247** steps
+- Dialogues and context: **${summary.dialogues}/73**, covering **${summary.dialogueSteps}/251** steps
 - Choice states with explicit owner: **${summary.choices}/28**
 - ATEs: **${summary.ate}/10**
 - Production videos: **${summary.productionVideos}/31**
