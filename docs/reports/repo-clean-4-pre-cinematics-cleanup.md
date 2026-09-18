@@ -246,6 +246,20 @@ The finalization test has no equivalent `src/game` / `src/cinematics` runtime-di
 
 The branch still requires one complete local gate rerun. The accepted failure envelope remains exactly the eleven historical `CasterMotionBackCompat.test.ts` failures.
 
+## Fourth operator-gate repair
+
+The fourth local validation run at `9b54672` confirmed that build and narrative staging are fully green and that runtime presentation coverage is internally consistent at 276/276 with zero missing presentation steps. The only unexpected remaining failure was an obsolete assertion in `src/cinematics/NarrativeStagingAudit.test.ts`, which still expected the pre-repair 274/274 runtime/planned step totals.
+
+That assertion now matches the validated staging contract:
+
+- `runtimeReachablePresentationSteps = 276`;
+- `plannedRuntimePresentationSteps = 276`;
+- `missingRuntimePresentationSteps = 0`.
+
+No runtime logic, narrative content, asset mapping, fallback behavior, or VFX registry state changed in this fourth repair.
+
+The branch requires one final complete local gate rerun. If that run reports only the eleven documented historical `CasterMotionBackCompat.test.ts` failures, the REPO-CLEAN-4 validation gate is satisfied under the report's accepted historical-exception envelope.
+
 ## Merge gate
 
 ```text
