@@ -5,10 +5,10 @@ describe('Narrative dialogue staging audit', () => {
   it('maps every reachable Lion-demo dialogue and step', () => {
     const audit = createNarrativeStagingAudit();
     expect(validateNarrativeStagingAudit(audit)).toEqual([]);
-    expect(audit.summary.totalReachableDialogues).toBe(71);
+    expect(audit.summary.totalReachableDialogues).toBe(73);
     expect(audit.summary.stagedDialogues).toBe(audit.summary.totalReachableDialogues);
     expect(audit.summary.stagedDialogueSteps).toBe(audit.summary.totalDialogueSteps);
-    expect(audit.summary.totalDialogueSteps).toBe(247);
+    expect(audit.summary.totalDialogueSteps).toBe(251);
     expect(audit.summary.unmappedDialogues).toEqual([]);
     expect(audit.summary.unmappedDialogueSteps).toEqual([]);
     expect(audit.summary.totalStagingRecords).toBe(audit.summary.totalDialogueSteps);
@@ -36,8 +36,8 @@ describe('Narrative dialogue staging audit', () => {
     expect(audit.summary.unresolvedDialogueSpeakerAssociations).toBe(0);
     expect(audit.summary.staticUpperPlacementViolations).toBe(0);
     expect(audit.summary.videoPlacementRegressions).toBe(0);
-    expect(audit.summary.runtimeReachablePresentationSteps).toBe(270);
-    expect(audit.summary.plannedRuntimePresentationSteps).toBe(270);
+    expect(audit.summary.runtimeReachablePresentationSteps).toBe(274);
+    expect(audit.summary.plannedRuntimePresentationSteps).toBe(274);
     expect(audit.summary.explicitLegitimateRuntimeOnlySteps).toBe(0);
     expect(audit.summary.missingRuntimePresentationSteps).toBe(0);
     expect(audit.summary.deadOrUnreachablePresentationSteps).toBe(2);
