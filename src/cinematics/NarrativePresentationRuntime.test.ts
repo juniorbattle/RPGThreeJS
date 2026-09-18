@@ -64,8 +64,8 @@ describe('CIN-6D.6 presentation runtime', () => {
     ]);
   });
 
-  it('matches all 144 planned beat identities and exact mode counts', () => {
-    expect(beats).toHaveLength(144);
+  it('matches all 147 planned beat identities and exact mode counts', () => {
+    expect(beats).toHaveLength(147);
     const runtime = new Map(beats.map((entry) => [entry.beatId, entry]));
     for (const planned of audit.beats) {
       expect(runtime.get(planned.beatId)?.mode, planned.beatId).toBe(planned.targetPresentationMode);
@@ -78,8 +78,8 @@ describe('CIN-6D.6 presentation runtime', () => {
       CINEMATIC_VIDEO: 29,
       CINEMATIC_HOLD: 28,
       TRAVEL_STILL: 19,
-      STATIC_TABLEAU: 49,
-      COMBAT: 17,
+      STATIC_TABLEAU: 51,
+      COMBAT: 18,
       GAMEPLAY_UI: 2,
     });
   });
@@ -148,9 +148,9 @@ describe('CIN-6D.6 presentation runtime', () => {
     }
   });
 
-  it('validates all 49 Static Tableau contracts identity by identity', () => {
+  it('validates all 51 Static Tableau contracts identity by identity', () => {
     const tableauBeats = beats.filter((entry) => entry.mode === 'STATIC_TABLEAU');
-    expect(tableauBeats).toHaveLength(49);
+    expect(tableauBeats).toHaveLength(51);
     for (const entry of tableauBeats) {
       expect(entry.castOwnership, entry.beatId).toBe('STAGE_OWNS_CAST');
       expect(entry.tableauBackgroundId, entry.beatId).toBeTruthy();
