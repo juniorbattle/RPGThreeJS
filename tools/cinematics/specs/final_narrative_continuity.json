@@ -745,16 +745,21 @@
       "depth": 13,
       "nodeType": "event",
       "authoritativeConditions": [
-        "RunSystem node reachability and canonical content effects"
+        "Witness treatment choice may remain social or escalate into the militia clash"
       ],
       "contentIds": [
-        "witnesses_on_road"
+        "witnesses_on_road",
+        "witness_road_clash"
       ],
       "beatKinds": [
         "ARRIVAL",
         "ENCOUNTER",
         "DIALOGUE",
         "DECISION",
+        "PRE_COMBAT",
+        "COMBAT",
+        "POST_COMBAT",
+        "AFTERMATH",
         "DEPARTURE"
       ],
       "location": "witness road",
@@ -772,11 +777,15 @@
       ],
       "staticFallback": "current-context generic NarrativeStage tableau when no reviewed media maps",
       "dialogueIds": [
-        "witnesses_on_road"
+        "witnesses_on_road",
+        "pre_witness_road_clash",
+        "post_witness_road_clash"
       ],
       "speakerRule": "Canonical dialogue actorId; advisers carry most field exposition; every speaker is staged or explicitly justified offscreen.",
       "choiceRule": "Canonical choice ids, order, effects and consequences remain owned by dialogue/game truth.",
-      "combatIds": [],
+      "combatIds": [
+        "witness_road_clash"
+      ],
       "entry": "ARRIVAL",
       "exit": "DEPARTURE",
       "nextNodeIds": [
