@@ -70,7 +70,7 @@ describe('CIN-6C P1 adaptive cinematic production', () => {
     for (const id of Object.keys(P1)) expect(presentation).toContain(`'${id}'`);
     expect(gameApp).toContain('resolveCin6aJourneyTrigger({ hook: \'beforeDialogue\', dialogueId })');
     expect(gameApp).toContain('resolveCin6cJourneyTrigger({ hook: \'beforeDialogue\', dialogueId }, { flags: this.state.flags })');
-    expect(gameApp).toContain('resolveCin6cJourneyTrigger(\n          { hook: \'beforeCombat\', combatId }');
+    expect(gameApp).toMatch(/resolveCin6cJourneyTrigger\(\s*\{ hook: 'beforeCombat', combatId \},\s*\{\s*flags: this\.state\.flags(?:,\s*boundaryResolved: this\.state\.resolvedNodeIds\.includes\(node\.id\))?\s*\},?\s*\)/u);
     expect(presentation).not.toMatch(/enterRunNode|applyEffects|saveAuto|state\.[A-Za-z]/);
     expect(runSystem).not.toContain('resolveCin6cJourneyTrigger');
   });
