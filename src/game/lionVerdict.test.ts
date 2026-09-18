@@ -129,6 +129,21 @@ describe('Lion cumulative verdict', () => {
     expect(result.finalRoute).toBe('serpent_pursuit');
   });
 
+  it('makes a brazen denial a decisive trust breach that forces the Lion Trial', () => {
+    const result = verdict({
+      helpedRefugees: true,
+      prioritizedVillage: true,
+      missionSuccess: true,
+      protectedWitnesses: true,
+      brazenLieToAlaric: true,
+      liedToAlaric: true,
+    }, 100);
+    expect(result.majorBreaches.map((entry) => entry.id)).toContain('brazen_lie_to_alaric');
+    expect(result.majorBreaches.map((entry) => entry.id)).not.toContain('lied_to_alaric');
+    expect(result.stance).toBe('distrust');
+    expect(result.finalRoute).toBe('lion_trial');
+  });
+
   it('J — a voluntary trial changes the route, not Alaric’s underlying stance', () => {
     const result = verdict({
       lionMandateHonour: true,
