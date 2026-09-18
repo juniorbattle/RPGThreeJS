@@ -217,7 +217,7 @@ describe('reputation event condition and weighting model', () => {
       .toContain('compagnie a les moyens d’agir');
     expect(resolveGameDialogue('rep_event_roadside_intimidation', high)!.variantId).toBeNull();
     expect(resolveGameDialogue('rep_event_roadside_intimidation', high)!.sequence.steps[0]!.text)
-      .toContain('toute compagnie visible devient une cible');
+      .toContain('Une troupe Serpent barre la route');
   });
 
   it('honours semantic precedence for contradictory legacy witness and village facts', () => {
