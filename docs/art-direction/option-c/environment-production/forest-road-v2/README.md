@@ -1,79 +1,44 @@
-# Forest Road v2 environment production
+# Forest Road v2 — production selection record
 
-## Scope
+Status: **PROMOTED / HISTORICAL SELECTION RECORD**
 
-This package is the Option C, DEV-only Forest Road / Forest Route environment family. It is a visual-production and operator-review package only. It does not replace production assets and does not change runtime, gameplay, narrative, combat logic, VFX, or character production.
+Forest Road v2 was the environment pilot that established the production
+composition rules later promoted into the Lion demo environment pack.
 
-The selected pipeline is:
+## Locked location identity
 
-- visual model: `baked_raster`
-- runtime object model: `none`
-- collision model: `none`
-- engine target: `project-native-review-only`
-- clean plate size: `1672x941` RGB PNG
+The production family preserves:
 
-## Location identity
+- ancient Lion-Court flagstone road;
+- carved waystone and ruined royal masonry;
+- stream and cascades;
+- forested waterfall ridge and mountain notch;
+- distant citadel direction;
+- blue-and-old-gold heraldic remnants.
 
-Every surface preserves the same authored geography:
+## Approved selections
 
-- ancient Lion-Court flagstone road
-- carved waystone and ruined royal masonry on the left
-- stream and cascades on the right
-- forested waterfall ridge and mountain notch in depth
-- distant citadel direction
-- blue-and-old-gold heraldic remnants
+| Surface | Selected candidate |
+| --- | --- |
+| Travel | B |
+| Static tableau | B |
+| Strategic combat | B |
+| Combat stage | C |
 
-## Candidate recommendations
+The original A/B/C candidate PNGs, comparison boards, overlays, machine QA and
+generation provenance were retired from the active tree after promotion. They
+remain available in Git history.
 
-| Surface | A | B | C | Recommendation |
-| --- | --- | --- | --- | --- |
-| Travel | pass | pass | pass | **B** |
-| Static tableau | pass | pass | pass with bright-UI caveat | **B** |
-| Strategic combat | pass with center-value caveat | pass | pass with center-value caveat | **B** |
-| Combat stage | pass with hotspot caveat | pass | pass | **C** |
+## Current production authority
 
-These are recommendations for operator review, not production selections.
+Use the promoted demo environment pack instead of historical DEV paths:
 
-## Review entry points
+`public/assets/generated/lion-phase/environments/demo-environment-pack-v1/`
 
-- `public/assets/dev/option-c/environments/forest-road-v2/reviews/forest-road-v2-travel-abc-comparison.png`
-- `public/assets/dev/option-c/environments/forest-road-v2/reviews/forest-road-v2-tableau-abc-comparison.png`
-- `public/assets/dev/option-c/environments/forest-road-v2/reviews/forest-road-v2-strategic-abc-comparison.png`
-- `public/assets/dev/option-c/environments/forest-road-v2/reviews/forest-road-v2-combat-stage-abc-comparison.png`
-- `public/assets/dev/option-c/environments/forest-road-v2/reviews/forest-road-v2-family-coherence-recommended.png`
-- `public/assets/dev/option-c/environments/forest-road-v2/reviews/forest-road-v2-tableau-b-staging-overlay.png`
-- `public/assets/dev/option-c/environments/forest-road-v2/reviews/forest-road-v2-strategic-b-dev-overlay.png`
+Runtime mappings are authoritative in:
 
-The clean candidates contain no overlay graphics. Staging and UI guides exist only in the two review overlays.
+`src/render/data/demo-environment-pack-v1.production.json`
 
-## QA and provenance
-
-- Human review: `qa/operator-review.md`
-- Machine QA: `public/assets/dev/option-c/environments/forest-road-v2/qa/forest-road-v2-machine-qa.json`
-- Provenance: `public/assets/dev/option-c/environments/forest-road-v2/provenance/generation-provenance.json`
-- Prompt set: `prompts/forest-road-v2-generation-prompts.md`
-
-The image backend did not expose an exact model identifier, so provenance is recorded as `UNKNOWN` instead of inferred.
-
-## Deterministic review rebuild
-
-Run the package-local review builder with a Python environment containing Pillow:
-
-```powershell
-python docs/art-direction/option-c/environment-production/forest-road-v2/build_review_artifacts.py
-```
-
-This rebuilds only comparison boards, overlays, hashes, dimensions, and zone metrics. It does not regenerate creative art.
-
-## Integration status
-
-- Production asset replacement: no
-- Runtime integration: no
-- Gameplay changes: no
-- Narrative changes: no
-- Combat logic changes: no
-- VFX changes: no
-- Character asset changes: no
-- Commit: no
-- Push: no
-
+This document is retained only because the B/B/B/C selection and Forest Road
+location grammar remain useful art-direction context for future cinematic
+staging.
