@@ -167,6 +167,25 @@ describe('Lion finale contextual dialogue', () => {
     expect(bluffChoice).toBeDefined();
   });
 
+  it('keeps an explicit reckless denial option that Alaric punishes immediately', () => {
+    const state = stateWith({
+      lionMandateAdvance: true,
+      missionSuccess: true,
+      protectedWitnesses: true,
+    }, 80);
+    const dialogue = buildLionFinaleJudgement(state);
+    const denial = dialogue.steps.flatMap((step) => step.choices ?? [])
+      .find((choice) => choice.effects.some((effect) => effect.type === 'setFlag' && effect.key === 'brazenLieToAlaric'));
+    expect(denial).toBeDefined();
+    expect(denial?.next).toBe('brazen-lie-rebuked');
+    expect(denial?.effects).toEqual(expect.arrayContaining([
+      { type: 'setFlag', key: 'liedToAlaric', value: true },
+      { type: 'setFlag', key: 'brazenLieToAlaric', value: true },
+    ]));
+    expect(dialogue.steps.find((step) => step.id === 'brazen-lie-rebuked')?.text)
+      .toMatch(/ce n’est plus seulement votre route.*c’est votre parole/i);
+  });
+
   it('offers one exclusive Shadow disclosure choice when evidence is undecided', () => {
     const dialogue = buildLionFinaleJudgement(stateWith({
       ...HONOUR_FLAGS,
