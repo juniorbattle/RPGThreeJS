@@ -175,7 +175,8 @@ const BREACH_TEXT: Readonly<Record<string, string>> = {
   betrayed_informant: 'l’informateur placé sur votre route a été vendu',
   exploited_refugees: 'les réfugiés ont payé votre passage',
   desecrated_shrine: 'un sanctuaire a été profané',
-  lied_to_alaric: 'vous avez menti devant cette cour',
+  brazen_lie_to_alaric: 'vous avez nié des faits établis devant Alaric',
+  lied_to_alaric: 'vous avez tenté de déformer des faits devant cette cour',
 };
 
 const STAIN_TEXT: Readonly<Record<string, string>> = {
@@ -349,6 +350,15 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
               : [{ type: 'setFlag', key: 'liedToAlaric', value: true }],
             outcomePreview: { mode: 'hidden', hints: [] },
           },
+          {
+            text: 'Nier les accusations et affirmer que les rapports mentent.',
+            next: 'brazen-lie-rebuked',
+            effects: [
+              { type: 'setFlag', key: 'liedToAlaric', value: true },
+              { type: 'setFlag', key: 'brazenLieToAlaric', value: true },
+            ],
+            outcomePreview: { mode: 'hidden', hints: [] },
+          },
         ],
       },
     ));
@@ -374,6 +384,13 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
         { tag: 'Bénéfice du doute', expression: 'neutral', side: 'right', next: 'outcome' },
       ));
     }
+    steps.push(makeStep(
+      'brazen-lie-rebuked',
+      'Chef Alaric',
+      'alaric',
+      'Assez. Vous ne discutez plus l’interprétation des faits : vous niez des rapports, des témoins et des traces que plusieurs voix indépendantes ont déjà confirmés. Vous me demandez de choisir votre version contre tout ce qui se tient devant moi. À cet instant, ce n’est plus seulement votre route que je mets en doute — c’est votre parole. Le Lion ne vous reconnaîtra pas sur cette base.',
+      { tag: 'Rupture de confiance', expression: 'hostile', side: 'right', next: 'outcome' },
+    ));
   }
 
   steps.push(makeStep('outcome', 'Chef Alaric', 'alaric', outcomeText(verdict), {
@@ -606,6 +623,7 @@ export const LION_CONTEXTUAL_DIALOGUE_STEP_CONTRACTS: Readonly<Record<string, re
     'record',
     'lie-rebuked',
     'bluff-accepted',
+    'brazen-lie-rebuked',
     'outcome',
     'merits',
     'breaches',
