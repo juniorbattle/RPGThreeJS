@@ -632,6 +632,11 @@ describe('campaign content integrity', () => {
       'village_militia_slinger',
       'village_militia_spearman',
     ]);
+    expect(combatConfigs.get('witness_road_clash')?.rewards).toMatchObject({
+      gold: 0,
+      reputation: -2,
+      materials: {},
+    });
   });
 
   it('lets roadside intimidation escalate only when the Serpent tribute is refused', () => {
