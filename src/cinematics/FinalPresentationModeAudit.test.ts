@@ -54,8 +54,8 @@ describe('CIN-6D.5 final presentation mode audit', () => {
       .filter((step) => (step.choices?.length ?? 0) > 0)
       .map((step) => `${sequence.id}:${step.id}`));
     const ateIds = Object.values(POST_NODE_ATE).flat();
-    expect(audit.summary.dialogues).toBe(71);
-    expect(audit.summary.dialogueSteps).toBe(247);
+    expect(audit.summary.dialogues).toBe(73);
+    expect(audit.summary.dialogueSteps).toBe(251);
     expect(audit.dialogueCoverage.map((entry: any) => entry.dialogueId)).toEqual([...dialogues.keys()].sort());
     expect(audit.summary.choices).toBe(28);
     expect(audit.choiceAudit.map((entry: any) => entry.choiceStateId)).toEqual(choiceIds.sort());
