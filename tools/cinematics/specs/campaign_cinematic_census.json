@@ -276,6 +276,7 @@
     { "combatId": "spider_nest", "preCombatDialogueId": "pre_spider_nest", "postCombatDialogueId": "post_spider_nest", "preVideoDecision": "UNIQUE_SPIDER_NEST_REVEAL_P1", "postVideoDecision": "NONE" },
     { "combatId": "marsh_crossing", "preCombatDialogueId": "pre_valmir_road", "postCombatDialogueId": "post_valmir_road", "preVideoDecision": "REUSE_BOIS_CLAIR_ROAD_TENSION", "postVideoDecision": "NONE" },
     { "combatId": "serpent_reprisals", "preCombatDialogueId": "pre_serpent_reprisals", "postCombatDialogueId": "post_serpent_reprisals", "preVideoDecision": "REUSE_SERPENT_ROAD_TENSION", "postVideoDecision": "NONE" },
+    { "combatId": "witness_road_clash", "preCombatDialogueId": "pre_witness_road_clash", "postCombatDialogueId": "post_witness_road_clash", "preVideoDecision": "REUSE_WITNESS_CONTEXT", "postVideoDecision": "NONE" },
     { "combatId": "serpent_checkpoint", "preCombatDialogueId": "pre_serpent_checkpoint", "postCombatDialogueId": "post_serpent_checkpoint", "preVideoDecision": "REUSE_SERPENT_ROAD_TENSION", "postVideoDecision": "NONE" },
     { "combatId": "road_to_valmir", "preCombatDialogueId": "pre_valmir_road", "postCombatDialogueId": "post_valmir_road", "preVideoDecision": "REUSE_BOIS_CLAIR_ROAD_TENSION", "postVideoDecision": "NONE" },
     { "combatId": "ruins_guardians", "preCombatDialogueId": "pre_ruins_guardians", "postCombatDialogueId": "post_ruins_guardians", "preVideoDecision": "REUSE_RUINS_APPROACH", "postVideoDecision": "NONE" },
