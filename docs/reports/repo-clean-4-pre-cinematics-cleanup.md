@@ -2,7 +2,7 @@
 
 ## Status
 
-**READY FOR OPERATOR REVIEW**
+**REVALIDATION REQUIRED — FIRST OPERATOR GATE REPAIRED**
 
 - Baseline `main`: `2fb6988ca78ed84b10a31801e296e151ae41d2f1`
 - Branch: `repo-cleanup-v4`
@@ -190,7 +190,23 @@ npm run build
 npm run cinematics:validate-narrative-staging
 ```
 
-Expected result: no new regression. Any failure introduced by this branch blocks merge.
+Expected result after the gate-repair commits: build and narrative staging pass, no new test regression remains, and the only accepted full-suite failures are the exactly 11 documented historical `CasterMotionBackCompat.test.ts` failures. Any additional failure blocks merge.
+
+## First operator-gate repair
+
+The first local validation run at branch commit `3aa30162` exposed one cleanup regression and several pre-existing baseline inconsistencies. The merge remained blocked while these were repaired on the cleanup branch.
+
+Repairs applied:
+
+- repaired the pre-existing unclosed Shadow Signs choice object in `src/game/content.ts`; the defect was byte-identical on the original `main` baseline and prevented TypeScript transformation, build, narrative staging and collection of dependent suites;
+- removed `src/combat/vfx/gridDetectorV2.test.ts`, whose only implementation dependency was the intentionally retired `tools/vfx/r1_2_1_grid_detector_v2.mjs` pipeline;
+- regenerated `src/cinematics/FinalPresentationRegistry.generated.ts` from the current canonical `final_presentation_mode_audit.json`, restoring the registry from 144 to 147 beats and including the Witness Road pre-combat, combat and aftermath beats;
+- reconciled the stale CIN-6C source assertion with the current state-aware `beforeCombat` resolver signature without weakening the presentation-only invariant;
+- reconciled the CIN-6E-A exact allowlists with already accepted post-lock runtime changes and the intentional grid-detector test retirement. No wildcard or directory-wide exemption was introduced.
+
+The protected published VFX registry remains intentionally unchanged and empty. The historical `CasterMotionBackCompat.test.ts` condition therefore remains the documented baseline exception: exactly 11 failures are expected until that VFX compatibility debt is addressed in its own scope.
+
+No merge is authorized by these repairs. The complete operator gate must be rerun after the patched branch is fetched.
 
 ## Merge gate
 
