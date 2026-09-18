@@ -267,11 +267,11 @@ export const CONTEXTUAL_DIALOGUE_DEFINITIONS: Readonly<Record<string, Contextual
         stepPatches: [
           {
             stepId: '1',
-            patch: { text: 'Général. La compagnie franchit le carrefour. Sans guide, ils ont tout de même repéré les lanternes vertes qui balisent nos embuscades.' },
+            patch: { text: 'Général. La compagnie franchit le carrefour. Sans guide, ils ont tout de même repéré nos lanternes vertes — et ils ont cessé de suivre celles qui semblent trop faciles.' },
           },
           {
             stepId: '3',
-            patch: { text: 'Ils apprennent seuls. Bien. Envoyez les brutes au pont. On verra si leur instinct suffit quand la piste se refermera sur eux.' },
+            patch: { text: 'Alors ne corrigez pas les lanternes. Laissez deux balises fausses et une vraie. S’ils apprennent seuls, je veux savoir quelle erreur ils préfèrent croire avant de fermer la piste.' },
           },
         ],
       },
@@ -286,7 +286,7 @@ export const CONTEXTUAL_DIALOGUE_DEFINITIONS: Readonly<Record<string, Contextual
         stepPatches: [
           {
             stepId: '2',
-            patch: { text: 'Une compagnie organisée, sans rôdeur pour lui ouvrir la piste. Ils apprennent donc seuls — trop vite pour de simples mercenaires. Qui les envoie ?' },
+            patch: { text: 'Sans rôdeur, ils ont pourtant cessé de réagir à nos barrages et commencent à lire leur logique. Ce n’est plus une troupe qu’on ralentit avec des hommes : il faut la forcer à révéler ses priorités.' },
           },
         ],
       },
@@ -297,7 +297,7 @@ export const CONTEXTUAL_DIALOGUE_DEFINITIONS: Readonly<Record<string, Contextual
         stepPatches: [
           {
             stepId: '2',
-            patch: { text: 'Une compagnie organisée. Cedric leur ouvre la piste ; il connaît nos lanternes et nos détours. Ils apprennent vite — trop vite pour des mercenaires. Qui les envoie ?' },
+            patch: { text: 'Cedric leur ouvre la piste, mais ce n’est plus seulement sa mémoire qui m’inquiète : ils commencent à comprendre pourquoi nos barrages existent. Forcez-les à choisir sous pression ; je veux savoir ce qu’ils protègent quand ils ne peuvent pas tout garder.' },
           },
         ],
       },
@@ -320,7 +320,7 @@ export const CONTEXTUAL_DIALOGUE_DEFINITIONS: Readonly<Record<string, Contextual
         when: verdictReason('sacrificed_bois_clair'),
         stepPatches: [{
           stepId: '2',
-          patch: { text: 'Même d’ici, je sens le poids de Bois-Clair. La compagnie a choisi les réserves pendant que les habitants payaient le prix. Le Sceau n’oubliera pas ce calcul.' },
+          patch: { text: 'Même d’ici, je sens la fracture : ils ont choisi ce qui permettait au village de durer, et des personnes ont payé ce calcul immédiatement. Le Sceau ne simplifiera pas cette contradiction pour nous.' },
         }],
       },
       {
@@ -329,7 +329,7 @@ export const CONTEXTUAL_DIALOGUE_DEFINITIONS: Readonly<Record<string, Contextual
         when: all(verdictReason('saved_bois_clair'), conduct('honour')),
         stepPatches: [{
           stepId: '2',
-          patch: { text: 'Même d’ici, je le sens : ils ont porté les habitants de Bois-Clair avant eux-mêmes. Leur conduite et le village sauvé résonnent d’une seule voix dans le Sceau.' },
+          patch: { text: 'Même d’ici, je le sens : ils ont choisi les captifs en sachant qu’ils abandonnaient les réserves et les puits. Le Sceau répond à ce sacrifice, pas à une victoire sans coût.' },
         }],
       },
       {
@@ -338,7 +338,7 @@ export const CONTEXTUAL_DIALOGUE_DEFINITIONS: Readonly<Record<string, Contextual
         when: verdictReason('saved_bois_clair'),
         stepPatches: [{
           stepId: '2',
-          patch: { text: 'Bois-Clair est sauvé, mais la route qui y mène porte aussi des compromis. Le Sceau distingue l’acte décisif des taches qui l’entourent ; il gardera les deux.' },
+          patch: { text: 'Bois-Clair tient encore, mais la route qui y mène n’est pas devenue pure pour autant. Le Sceau semble garder les décisions ensemble au lieu de choisir pour nous laquelle mérite d’être oubliée.' },
         }],
       },
     ],
