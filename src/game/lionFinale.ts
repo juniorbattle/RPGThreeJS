@@ -328,10 +328,10 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
     'Chef Alaric',
     'alaric',
     'Je vous ai vus partir avec un nom en ruine et une mission assez simple pour tenir en une phrase. Vous revenez avec des morts, des témoins, des dettes, des preuves et des gens qui ne racontent pas tous la même histoire. C’est cela que le Lion va juger.',
-    { tag: 'Ouverture', expression: 'stern', side: 'right', next: hasContradiction && !state.flags.liedToAlaric ? 'record' : 'outcome' },
+    { tag: 'Ouverture', expression: 'stern', side: 'right', next: hasContradiction && !state.flags.liedToAlaric && !state.flags.alaricBluffSucceeded ? 'record' : 'outcome' },
   ));
 
-  if (hasContradiction && !state.flags.liedToAlaric) {
+  if (hasContradiction && !state.flags.liedToAlaric && !state.flags.alaricBluffSucceeded) {
     steps.push(makeStep(
       'record',
       'Chef Alaric',
@@ -605,6 +605,7 @@ export const LION_CONTEXTUAL_DIALOGUE_STEP_CONTRACTS: Readonly<Record<string, re
     'open',
     'record',
     'lie-rebuked',
+    'bluff-accepted',
     'outcome',
     'merits',
     'breaches',
