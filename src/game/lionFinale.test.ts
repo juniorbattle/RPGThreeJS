@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { combatConfigs } from './content';
 import {
+  assessAlaricBluff,
   buildLionEpilogue,
   buildLionFinaleJudgement,
   buildLionTrialAftermath,
@@ -10,6 +11,7 @@ import {
   resolveLionFinaleExecution,
 } from './lionFinale';
 import { createInitialState } from './store';
+import { resolveLionVerdict } from './lionVerdict';
 import type { DialogueSequence, GameState, NarrativeEffect } from './types';
 
 function stateWith(flags: Record<string, boolean>, reputation = 30): GameState {
@@ -110,15 +112,58 @@ describe('Lion finale contextual dialogue', () => {
     expectValidTargets(dialogue);
   });
 
-  it('keeps a direct lie as an explicit historical choice before semantic resolution', () => {
-    const dialogue = buildLionFinaleJudgement(stateWith({
+  it('lets a credible bluff pass when only a minor stain is disputed', () => {
+    const state = stateWith({
       lionMandateAdvance: true,
       missionSuccess: true,
       protectedWitnesses: true,
-    }));
-    const lieChoice = dialogue.steps.flatMap((step) => step.choices ?? [])
+    }, 45);
+    const assessment = assessAlaricBluff(resolveLionVerdict({ flags: state.flags, reputation: state.reputation }));
+    expect(assessment).toMatchObject({
+      succeeds: true,
+      minorStainCount: 1,
+      reason: 'plausible_framing',
+    });
+
+    const dialogue = buildLionFinaleJudgement(state);
+    const bluffChoice = dialogue.steps.flatMap((step) => step.choices ?? [])
+      .find((choice) => choice.effects.some((effect) => effect.type === 'setFlag' && effect.key === 'alaricBluffSucceeded'));
+    expect(bluffChoice).toBeDefined();
+    expect(bluffChoice?.next).toBe('outcome');
+  });
+
+  it('exposes a bluff when too many minor traces contradict the framing', () => {
+    const state = stateWith({
+      lionMandateAdvance: true,
+      claimedLostTreasure: true,
+      prioritizedLoot: true,
+      missionSuccess: true,
+      protectedWitnesses: true,
+    }, 45);
+    const assessment = assessAlaricBluff(resolveLionVerdict({ flags: state.flags, reputation: state.reputation }));
+    expect(assessment.succeeds).toBe(false);
+    expect(assessment.reason).toBe('too_many_traces');
+
+    const dialogue = buildLionFinaleJudgement(state);
+    const bluffChoice = dialogue.steps.flatMap((step) => step.choices ?? [])
       .find((choice) => choice.effects.some((effect) => effect.type === 'setFlag' && effect.key === 'liedToAlaric'));
-    expect(lieChoice).toBeDefined();
+    expect(bluffChoice).toBeDefined();
+    expect(bluffChoice?.next).toBe('lie-rebuked');
+  });
+
+  it('never lets reputation bluff away a serious breach', () => {
+    const state = stateWith({
+      missionSuccess: true,
+      exploitedRefugees: true,
+      protectedWitnesses: true,
+    }, 100);
+    const assessment = assessAlaricBluff(resolveLionVerdict({ flags: state.flags, reputation: state.reputation }));
+    expect(assessment).toMatchObject({ succeeds: false, reason: 'serious_fact' });
+
+    const dialogue = buildLionFinaleJudgement(state);
+    const bluffChoice = dialogue.steps.flatMap((step) => step.choices ?? [])
+      .find((choice) => choice.effects.some((effect) => effect.type === 'setFlag' && effect.key === 'liedToAlaric'));
+    expect(bluffChoice).toBeDefined();
   });
 
   it('offers one exclusive Shadow disclosure choice when evidence is undecided', () => {
