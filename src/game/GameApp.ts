@@ -894,7 +894,7 @@ export class GameApp {
         if (action === 'skills') await this.openManagement('skills', undefined, 'temporary', false);
       }
       this.markResolved(node.id);
-      await this.playPostNodeNarrative(node.id);
+      if (await this.playPostNodeNarrative(node.id, node)) return;
       await this.enterCampaignPresentation();
       return;
     }
@@ -917,7 +917,7 @@ export class GameApp {
         if (this.pendingCombatId) await this.flushPendingCombat(node);
         else {
           this.markResolved(node.id);
-          await this.playPostNodeNarrative(node.id);
+          if (await this.playPostNodeNarrative(node.id, node)) return;
           await this.enterCampaignPresentation();
         }
         return;
@@ -934,7 +934,7 @@ export class GameApp {
       await this.flushPendingCombat(node);
     } else {
       this.markResolved(node.id);
-      await this.playPostNodeNarrative(node.id);
+      if (await this.playPostNodeNarrative(node.id, node)) return;
       await this.enterCampaignPresentation();
     }
   }
@@ -1072,9 +1072,18 @@ export class GameApp {
     return selection;
   }
 
-  private async playPostNodeNarrative(nodeId: string): Promise<void> {
+  private async playPostNodeNarrative(nodeId: string, node: RunNode): Promise<boolean> {
     await this.maybePlayATEs(nodeId);
+    if (this.pendingCombatId) {
+      await this.flushPendingCombat(node);
+      return true;
+    }
     await this.maybePlayReputationEvent(nodeId);
+    if (this.pendingCombatId) {
+      await this.flushPendingCombat(node);
+      return true;
+    }
+    return false;
   }
 
   private async applyEffects(effects: NarrativeEffect[]): Promise<void> {
@@ -1280,7 +1289,7 @@ export class GameApp {
         return;
       }
     }
-    await this.playPostNodeNarrative(node.id);
+    if (await this.playPostNodeNarrative(node.id, node)) return;
     await this.enterCampaignPresentation();
   }
 
