@@ -4,24 +4,29 @@
 
 Branch: `narrative-polish-pass`  
 Baseline: `e749b8227435bcbd8efefdc9bcdf53f6e63c419f`  
-Scope: final writing polish only.
+Scope: final writing polish plus one bounded judgement-resolution refinement for Alaric bluffing.
 
 ## Non-negotiable lock preserved
 
 This pass does **not** change:
 - campaign topology;
 - node IDs or links;
-- dialogue IDs, step IDs, speakers, actors or choice counts;
-- flags, effects, reputation/gold values or item rewards;
-- combat IDs, routes, verdict rules or ending IDs;
-- save schema or RunSystem branching logic.
+- canonical route selection, boss selection or ending IDs;
+- reputation/gold/item values;
+- combat IDs;
+- save schema;
+- the Conduct / Witness / Shadow / Reputation verdict architecture.
 
-The pass changes only:
+One localized judgement rule is added: Alaric can accept a bluff that reframes a small number of minor stains when the clan has enough public credibility. Serious breaches remain impossible to bluff away.
+
+The pass changes:
 - dialogue wording;
 - choice labels;
 - outcome-preview wording;
 - journey hint wording;
-- display-only reduced dialogue text already owned by NarrativeDialogueAdapter.
+- display-only reduced dialogue text already owned by NarrativeDialogueAdapter;
+- one new runtime judgement step, `bluff-accepted`;
+- one memory flag, `alaricBluffSucceeded`, used only to prevent replaying an already accepted bluff.
 
 ## Audit findings
 
@@ -41,13 +46,26 @@ The correction is not to invert them arbitrarily, but to make both acknowledge:
 - the legitimate concern in the opposing argument;
 - long-term consequences beyond immediate reputation or gold.
 
-### 3. Alistair / Kestrel function
+Long-term character doctrine:
+- they are not permanent moral opposites;
+- they may agree when experience brings them to the same conclusion;
+- they may strongly diverge when their values genuinely conflict;
+- their positions must evolve with what the clan has lived through;
+- later chapters should allow each adviser to surprise the player without betraying established character logic.
+
+### 3. Hero ensemble function
 
 Alistair remains the voice that converts debate into collective responsibility.
 
 Kestrel remains the voice of terrain, time pressure and tactical reality.
 
-Neither is turned into a third philosophical adviser.
+Marian owns care, aftermath, wounds and the human cost that strategic language can obscure.
+
+Elara owns arcane interpretation, uncertainty and the first perception of forces beyond the clan conflict.
+
+Cedric, Garen and later recruited heroes must keep gaining dialogue ownership whenever their knowledge, origin or lived experience makes them the most natural speaker.
+
+No hero should exist only as a combat unit once recruited. The ensemble must progressively accumulate narrative identity, while Alistair and Kestrel retain their especially strong early-route roles.
 
 ### 4. Serpent General
 
@@ -108,6 +126,14 @@ The scene no longer reads as a variable checklist. Maelor accepts that his accou
 ### Alaric judgement
 The same verdict inputs remain authoritative, but the language now emphasizes people, traces, witnesses and consequences rather than “merits/stains” as abstract counters.
 
+The deposition now distinguishes truth, bluff and lie:
+- a serious breach can never be erased by reputation;
+- one or two minor stains may be rhetorically reframed when public credibility is strong enough;
+- supportive witnesses can reinforce credibility but cannot cancel serious facts;
+- a failed bluff becomes an explicit lie and sets `liedToAlaric`;
+- a successful bluff sets `alaricBluffSucceeded` and receives an explicit “benefit of the doubt” response from Alaric;
+- the underlying historical facts remain in the verdict even when their interpretation is accepted.
+
 ## Presentation doctrine for Cinematics
 
 Cinematics must preserve the following distinctions:
@@ -124,15 +150,11 @@ Cinematics must preserve the following distinctions:
 
 ## Validation
 
-Structural comparison against baseline confirms unchanged:
-- dialogue/step ID sequence;
-- speaker and actor bindings;
-- effect arrays;
-- combat references;
-- flag keys;
-- next targets;
-- gold/reputation requirements;
-- contextual priorities;
-- Lion finale combat IDs, selected flags and ending IDs.
+Structural comparison before the bluff refinement confirmed unchanged campaign topology, combat references, route ownership and all existing choice consequences.
 
-This pass is therefore writing/presentation-only and compatible with the Final Narrative Structure Lock.
+After the bluff refinement, the only intentional semantic additions are:
+- `alaricBluffSucceeded`;
+- dynamic step `bluff-accepted`;
+- deterministic credibility assessment for the deposition.
+
+The Final Narrative Structure Lock remains intact because no campaign route, node topology, combat route, ending route, Conduct rule, Witness rule or Shadow rule is changed.
