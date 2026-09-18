@@ -260,6 +260,33 @@ No runtime logic, narrative content, asset mapping, fallback behavior, or VFX re
 
 The branch requires one final complete local gate rerun. If that run reports only the eleven documented historical `CasterMotionBackCompat.test.ts` failures, the REPO-CLEAN-4 validation gate is satisfied under the report's accepted historical-exception envelope.
 
+## Final operator-gate validation
+
+The complete gate was rerun on `57158b38` with a clean, synchronized working tree.
+
+Results:
+
+- `git pull --ff-only`: PASS;
+- `npm ci`: PASS;
+- `npm test`: 128/129 test files pass and 2,386/2,397 tests pass; the only 11 failures are the previously documented historical `CasterMotionBackCompat.test.ts` exception;
+- `npm run build`: PASS;
+- `npm run cinematics:validate-narrative-staging`: PASS with `"ok": true`;
+- staged dialogue coverage: 73/73 dialogues and 251/251 dialogue steps;
+- runtime presentation coverage: 276/276 planned, 0 missing;
+- unmapped dialogue/steps: 0;
+- layout, capacity and speaker-association violations: 0.
+
+Therefore:
+
+```text
+NEW_REGRESSIONS = 0
+KNOWN_HISTORICAL_VFX_EXCEPTION = 11
+REPO_CLEAN_4_VALIDATION_GATE = SATISFIED
+MERGE_AUTHORIZED = YES
+```
+
+Five `npm audit` findings remain outside this cleanup scope and were not auto-modified.
+
 ## Merge gate
 
 ```text
@@ -271,5 +298,6 @@ ENVIRONMENT_PRODUCTION_LOCK = YES
 CINEMATIC_MEDIA_LOCK = YES
 NARRATIVE_CHANGE = NO
 GAMEPLAY_CHANGE = NO
+VALIDATION_GATE = PASS_UNDER_DOCUMENTED_HISTORICAL_VFX_EXCEPTION
 READY_FOR_CINEMATICS_AFTER_VALIDATION = YES
 ```
