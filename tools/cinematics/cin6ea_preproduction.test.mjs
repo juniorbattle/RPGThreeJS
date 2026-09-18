@@ -302,6 +302,8 @@ describe('CIN-6E-A final visual preproduction system', () => {
       'src/cinematics/NarrativeStage.ts',
       'src/cinematics/NarrativeStage.test.ts',
       'src/cinematics/NarrativeStagingAudit.test.ts',
+      'src/game/contextualDialogue.test.ts',
+      'src/cinematics/NarrativePresentationRuntime.test.ts',
       'src/cinematics/NarrativeStagingAudit.ts',
       'src/cinematics/NarrativeTableau.ts',
       'src/cinematics/RuntimePresentationStepCensus.test.ts',
