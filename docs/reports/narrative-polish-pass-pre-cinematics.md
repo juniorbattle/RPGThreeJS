@@ -154,6 +154,14 @@ Cinematics must preserve the following distinctions:
 - The Serpent General should feel observant and strategic, not omniscient.
 - Shadow evidence must visually communicate both value and danger.
 
+## Future Judgement / Accusation Reference
+
+The broader post-Lion social-confrontation design is intentionally kept as a non-canonical future draft:
+
+`docs/narrative/judgement-and-accusation-doctrine-draft.md`
+
+It preserves the long-term distinction between objective truth, authority knowledge, accusation, evidence, witnesses and player response. It must be re-audited before any future implementation.
+
 ## Validation
 
 Structural comparison before the bluff refinement confirmed unchanged campaign topology, combat references, route ownership and all existing choice consequences.
