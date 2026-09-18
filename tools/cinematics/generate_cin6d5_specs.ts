@@ -117,6 +117,7 @@ const COMBAT_NODE: Record<string, string> = {
   spider_nest: 'lion-first-trial-combat',
   marsh_crossing: 'lion-valmir-road',
   serpent_reprisals: 'lion-first-trial-combat',
+  witness_road_clash: 'lion-witnesses',
   serpent_checkpoint: 'lion-second-trial-combat',
   road_to_valmir: 'lion-valmir-road',
   ruins_guardians: 'lion-final-trial-combat',
