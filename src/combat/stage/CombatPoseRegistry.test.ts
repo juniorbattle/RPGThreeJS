@@ -38,17 +38,17 @@ function visibleHeight(set: CombatPoseSet): number {
 }
 
 describe('CombatPoseRegistry production V2', () => {
-  it('covers the promoted 25-set / 100-PNG inventory exactly once', () => {
+  it('covers the promoted 27-set / 108-PNG inventory exactly once', () => {
     const sets = listCombatPoseSets();
     const registrySources = sets.flatMap((set) => COMBAT_POSES.map((pose) => set.poses[pose].src));
     const diskSources = listPngs(ASSET_ROOT).map((path) => path
       .slice(join(process.cwd(), 'public').length)
       .replaceAll('\\', '/'));
 
-    expect(sets).toHaveLength(25);
-    expect(registrySources).toHaveLength(100);
-    expect(new Set(registrySources).size).toBe(100);
-    expect(diskSources).toHaveLength(100);
+    expect(sets).toHaveLength(27);
+    expect(registrySources).toHaveLength(108);
+    expect(new Set(registrySources).size).toBe(108);
+    expect(diskSources).toHaveLength(108);
     expect([...registrySources].sort()).toEqual([...diskSources].sort());
     expect(registrySources.every((src) => src.startsWith('/assets/characters/pixel/combat/'))).toBe(true);
     expect(registrySources.some((src) => src.includes('/combat-stage/poses/'))).toBe(false);
@@ -93,6 +93,9 @@ describe('CombatPoseRegistry production V2', () => {
     expect(strategic.anchor).toEqual(set.poses.prepare.anchor);
     expect(strategic.worldUnitsPerPixel).toBe(set.worldUnitsPerPixel);
     expect(strategic.scaleCorrection).toBe(1);
+    for (const unitId of ['lancer', 'village_militia_spearman', 'village_militia_slinger']) {
+      expect(resolveStrategicUnitVisual(unitId)?.src).toBe(`/assets/characters/pixel/combat/${unitId}/prepare.png`);
+    }
   });
 
   it('returns undefined for unknown units so non-migrated sprites retain their fallback', () => {
@@ -100,8 +103,18 @@ describe('CombatPoseRegistry production V2', () => {
     expect(resolveCombatPoseSet('unknown_unit')).toBeUndefined();
     expect(resolveCombatPoseAsset('unknown_unit', 'attack')).toBeUndefined();
     expect(resolveStrategicUnitVisual('unknown_unit')).toBeUndefined();
-    expect(resolveCombatPoseUnitId('village_militia_spearman')).toBeUndefined();
-    expect(resolveCombatPoseSet('village_militia_spearman')).toBeUndefined();
+    expect(resolveCombatPoseUnitId('village_militia_brute')).toBeUndefined();
+    expect(resolveCombatPoseSet('village_militia_brute')).toBeUndefined();
+  });
+
+  it('resolves all four promoted village militia poses and keeps brute Master-only', () => {
+    for (const unitId of ['village_militia_spearman', 'village_militia_slinger']) {
+      expect(resolveCombatPoseUnitId(unitId)).toBe(unitId);
+      for (const pose of COMBAT_POSES) {
+        expect(resolveCombatPoseAsset(unitId, pose)?.src).toBe(`/assets/characters/pixel/combat/${unitId}/${pose}.png`);
+      }
+    }
+    expect(resolveCombatPoseAsset('village_militia_brute', 'prepare')).toBeUndefined();
   });
 
   it('falls back a missing requested semantic pose to PREPARE', () => {
@@ -144,16 +157,18 @@ describe('CombatPoseRegistry production V2', () => {
     }
   });
 
-  it('preserves normalized small < humanoid < elite/boss hierarchy', () => {
+  it('preserves normalized small < humanoid < elite/boss hierarchy outside the approved Lancer scale exception', () => {
     const sets = listCombatPoseSets();
     const heights = (family: CombatPoseSet['scaleFamily']) => sets
       .filter((set) => set.scaleFamily === family)
+      .filter((set) => set.unitId !== 'lancer')
       .map(visibleHeight);
     const small = heights('SMALL_CREATURE');
     const humanoid = heights('STANDARD_HUMANOID');
     const large = heights('LARGE_ELITE_BOSS');
     expect(Math.max(...small)).toBeLessThan(Math.min(...humanoid));
     expect(Math.max(...humanoid)).toBeLessThan(Math.min(...large));
+    expect(visibleHeight(resolveCombatPoseSet('lancer')!)).toBeCloseTo(2.5375);
   });
 
   it('supports all approved variable canvases without changing pixel scale', () => {

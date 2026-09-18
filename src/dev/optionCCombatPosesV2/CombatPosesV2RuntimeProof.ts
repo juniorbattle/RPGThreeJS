@@ -91,7 +91,7 @@ export interface CombatPosesV2RuntimeProofResult {
   schemaVersion: 1;
   status: 'PASS' | 'FAIL';
   devOnly: true;
-  canonicalAssetsPromoted: true;
+  canonicalAssetsPromoted: boolean;
   gameplayChanged: false;
   combatLogicChanged: false;
   vfxChanged: false;
@@ -134,7 +134,7 @@ async function validateManifest(unit: PilotRuntimeUnit): Promise<void> {
   const manifestUnit = manifest.units.find((candidate) => candidate.unitId === unit.combatPoseUnitId);
   const pose = manifestUnit?.poses[unit.pose];
   const bounds = pose?.alphaBoundsPx;
-  const valid = manifest.status === 'PROMOTED'
+  const valid = manifest.status === unit.expectedManifestStatus
     && manifestUnit?.worldUnitsPerPixel === unit.worldUnitsPerPixel
     && pose?.src === unit.imageUrl
     && pose.scaleCorrection === unit.scaleCorrection
@@ -388,9 +388,10 @@ export class CombatPosesV2RuntimeProof {
       );
       if (!entered) throw new Error('CombatStage refused the DEV runtime proof composition.');
 
-      await Promise.all(this.records.map((record) => this.stage!.setCombatUnitPose(
-        record.source,
-        record.config.pose,
+      await Promise.all(this.records.map((record) => (
+        record.config.useRegistryPose
+          ? this.stage!.setCombatUnitPose(record.source, record.config.pose)
+          : Promise.resolve(true)
       )));
 
       // One production tick installs the camera-local environment transform.
@@ -403,6 +404,7 @@ export class CombatPosesV2RuntimeProof {
       window.__OPTION_C_COMBAT_POSES_V2_PROOF__ = result;
       this.renderOverlay(result);
       document.body.dataset.optionCCombatPosesV2Status = result.status;
+      document.body.dataset.optionCCombatPosesV2CanonicalPromotion = String(result.canonicalAssetsPromoted);
       document.body.dataset.optionCCombatPosesV2Ready = 'true';
       window.addEventListener('resize', this.resizeHandler);
     } catch (error) {
@@ -478,6 +480,11 @@ export class CombatPosesV2RuntimeProof {
         throw new Error(`CombatStage proxy lookup failed for ${record.config.displayName}.`);
       }
       const mesh = poseVisual as THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>;
+      if (!record.config.useRegistryPose) {
+        const [, planeHeight] = runtimePlaneSize(record.config);
+        mesh.position.y = -STAGE_PROXY_Y_SINK
+          - planeHeight * (0.5 - record.config.footBaselinePx / record.config.sourceSizePx[1]);
+      }
       record.root = root;
       record.poseVisual = mesh;
     }
@@ -561,7 +568,7 @@ export class CombatPosesV2RuntimeProof {
       schemaVersion: 1,
       status,
       devOnly: true,
-      canonicalAssetsPromoted: true,
+      canonicalAssetsPromoted: this.records.every((record) => record.config.canonicalPromoted),
       gameplayChanged: false,
       combatLogicChanged: false,
       vfxChanged: false,
@@ -605,7 +612,7 @@ export class CombatPosesV2RuntimeProof {
     }
     const status = document.createElement('div');
     status.className = 'option-c-v2-proof__status';
-    status.textContent = `${result.status} · full assets untouched`;
+    status.textContent = `${result.status} · ${result.canonicalAssetsPromoted ? 'production assets' : 'DEV candidates'} · full assets untouched`;
     overlay.append(header, legend, status);
     this.root.appendChild(overlay);
   }

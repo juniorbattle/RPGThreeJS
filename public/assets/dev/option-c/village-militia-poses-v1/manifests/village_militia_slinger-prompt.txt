@@ -1,0 +1,9 @@
+Create one coherent exact 2x2 combat-pose board for the production Master village_militia_slinger.
+
+Identity authority: public/assets/characters/pixel/masters/village_militia_slinger.png only. Preserve the same ordinary local-militia human proportions, perceived body scale, pixel density, rust-red hood and scarf, fully shadowed/covered face, muted brown and charcoal layered leather-and-cloth armor, small shoulder plates, rough belts and pouches, ragged skirt panels, wrapped boots, and simple looped hand sling. Do not add a bow, quiver, sword, noble armor, royal ornament, elite styling, or Serpent-faction symbols.
+
+Exact cell order: top-left prepare, top-right dash, bottom-left attack, bottom-right cast. Prepare is a light grounded ranged-ready stance with the sling readable and no released ammunition. Dash is a quick skirmisher reposition toward screen-right with readable legs and attached equipment. Attack is the unmistakable sling release moment with clear torso rotation and arm extension, but no detached travelling stone or trail. Cast is the runtime slot but must read as a non-magical focused loading/concentration skill, clearly distinct from prepare.
+
+All four cells must show the exact same individual at the exact same physical body scale and pixel density. Preserve hood/head scale, concealed face, costume, palette, armor, pouches, and sling design. Keep every complete subject fully inside its own quadrant with safe empty margins. No body part or weapon may cross a cell edge. No detached FX, projectile, trail, remote impact, targeting reticle, spell aura, text, labels, UI, borders, or shadows.
+
+Project-native high-detail pixel-art combat sprite style with crisp controlled outlines, compact readable shading, transparent-ready rendering, and no painterly smoothing. Empty background must be fully transparent or solid flat #FF00FF. Exactly four poses only.

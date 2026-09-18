@@ -1,0 +1,175 @@
+{
+  "target": "creature",
+  "mode": "combat-poses-v2",
+  "prompt": "",
+  "role": "",
+  "input": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\public\\assets\\dev\\option-c\\village-militia-poses-v1\\sources\\village_militia_slinger-board-source.png",
+  "threshold": 70,
+  "edge_threshold": 140,
+  "duration": 200,
+  "rows": 2,
+  "cols": 2,
+  "cell_size": 512,
+  "fit_scale": 0.75,
+  "trim_border": 4,
+  "edge_clean_depth": 3,
+  "align": "feet",
+  "shared_scale": true,
+  "component_mode": "largest",
+  "component_padding": 0,
+  "min_component_area": 1,
+  "edge_touch_margin": 0,
+  "frame_labels": [
+    "village_militia_slinger-1",
+    "village_militia_slinger-2",
+    "village_militia_slinger-3",
+    "village_militia_slinger-4"
+  ],
+  "frames": [
+    {
+      "grid": [
+        0,
+        0
+      ],
+      "source_box": [
+        0,
+        0,
+        627,
+        627
+      ],
+      "component_mode": "largest",
+      "component_count": 79,
+      "selected_component_area": 83710,
+      "selected_component_bbox": [
+        160,
+        93,
+        481,
+        561
+      ],
+      "crop_bbox": [
+        160,
+        93,
+        481,
+        561
+      ],
+      "edge_touch": false,
+      "output_size": [
+        228,
+        333
+      ],
+      "paste_position": [
+        142,
+        115
+      ]
+    },
+    {
+      "grid": [
+        0,
+        1
+      ],
+      "source_box": [
+        627,
+        0,
+        1254,
+        627
+      ],
+      "component_mode": "largest",
+      "component_count": 64,
+      "selected_component_area": 86383,
+      "selected_component_bbox": [
+        90,
+        134,
+        511,
+        543
+      ],
+      "crop_bbox": [
+        90,
+        134,
+        511,
+        543
+      ],
+      "edge_touch": false,
+      "output_size": [
+        299,
+        291
+      ],
+      "paste_position": [
+        106,
+        157
+      ]
+    },
+    {
+      "grid": [
+        1,
+        0
+      ],
+      "source_box": [
+        0,
+        627,
+        627,
+        1254
+      ],
+      "component_mode": "largest",
+      "component_count": 75,
+      "selected_component_area": 102825,
+      "selected_component_bbox": [
+        77,
+        74,
+        616,
+        514
+      ],
+      "crop_bbox": [
+        77,
+        74,
+        616,
+        514
+      ],
+      "edge_touch": false,
+      "output_size": [
+        384,
+        313
+      ],
+      "paste_position": [
+        64,
+        135
+      ]
+    },
+    {
+      "grid": [
+        1,
+        1
+      ],
+      "source_box": [
+        627,
+        627,
+        1254,
+        1254
+      ],
+      "component_mode": "largest",
+      "component_count": 89,
+      "selected_component_area": 90932,
+      "selected_component_bbox": [
+        126,
+        75,
+        466,
+        530
+      ],
+      "crop_bbox": [
+        126,
+        75,
+        466,
+        530
+      ],
+      "edge_touch": false,
+      "output_size": [
+        242,
+        324
+      ],
+      "paste_position": [
+        135,
+        124
+      ]
+    }
+  ],
+  "edge_touch_frames": []
+}

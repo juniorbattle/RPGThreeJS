@@ -1,0 +1,175 @@
+{
+  "target": "creature",
+  "mode": "combat-poses-v2",
+  "prompt": "",
+  "role": "",
+  "input": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\public\\assets\\dev\\option-c\\village-militia-poses-v1\\sources\\village_militia_spearman-board-source.png",
+  "threshold": 70,
+  "edge_threshold": 140,
+  "duration": 200,
+  "rows": 2,
+  "cols": 2,
+  "cell_size": 512,
+  "fit_scale": 0.7,
+  "trim_border": 4,
+  "edge_clean_depth": 3,
+  "align": "feet",
+  "shared_scale": true,
+  "component_mode": "largest",
+  "component_padding": 0,
+  "min_component_area": 1,
+  "edge_touch_margin": 0,
+  "frame_labels": [
+    "village_militia_spearman-1",
+    "village_militia_spearman-2",
+    "village_militia_spearman-3",
+    "village_militia_spearman-4"
+  ],
+  "frames": [
+    {
+      "grid": [
+        0,
+        0
+      ],
+      "source_box": [
+        0,
+        0,
+        627,
+        627
+      ],
+      "component_mode": "largest",
+      "component_count": 65,
+      "selected_component_area": 78856,
+      "selected_component_bbox": [
+        179,
+        68,
+        436,
+        592
+      ],
+      "crop_bbox": [
+        179,
+        68,
+        436,
+        592
+      ],
+      "edge_touch": false,
+      "output_size": [
+        171,
+        350
+      ],
+      "paste_position": [
+        170,
+        86
+      ]
+    },
+    {
+      "grid": [
+        0,
+        1
+      ],
+      "source_box": [
+        627,
+        0,
+        1254,
+        627
+      ],
+      "component_mode": "largest",
+      "component_count": 122,
+      "selected_component_area": 83590,
+      "selected_component_bbox": [
+        59,
+        170,
+        581,
+        578
+      ],
+      "crop_bbox": [
+        59,
+        170,
+        581,
+        578
+      ],
+      "edge_touch": false,
+      "output_size": [
+        349,
+        272
+      ],
+      "paste_position": [
+        81,
+        164
+      ]
+    },
+    {
+      "grid": [
+        1,
+        0
+      ],
+      "source_box": [
+        0,
+        627,
+        627,
+        1254
+      ],
+      "component_mode": "largest",
+      "component_count": 127,
+      "selected_component_area": 79478,
+      "selected_component_bbox": [
+        7,
+        188,
+        543,
+        547
+      ],
+      "crop_bbox": [
+        7,
+        188,
+        543,
+        547
+      ],
+      "edge_touch": false,
+      "output_size": [
+        358,
+        240
+      ],
+      "paste_position": [
+        77,
+        196
+      ]
+    },
+    {
+      "grid": [
+        1,
+        1
+      ],
+      "source_box": [
+        627,
+        627,
+        1254,
+        1254
+      ],
+      "component_mode": "largest",
+      "component_count": 172,
+      "selected_component_area": 80601,
+      "selected_component_bbox": [
+        140,
+        27,
+        478,
+        529
+      ],
+      "crop_bbox": [
+        140,
+        27,
+        478,
+        529
+      ],
+      "edge_touch": false,
+      "output_size": [
+        226,
+        335
+      ],
+      "paste_position": [
+        143,
+        101
+      ]
+    }
+  ],
+  "edge_touch_frames": []
+}

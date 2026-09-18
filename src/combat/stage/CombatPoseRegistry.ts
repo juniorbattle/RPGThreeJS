@@ -67,7 +67,7 @@ const manifest = manifestJson as unknown as {
   units: ManifestUnit[];
 };
 
-if (manifest.status !== 'PROMOTED' || manifest.counts.masters !== 37 || manifest.counts.combatPoses !== 100) {
+if (manifest.status !== 'PROMOTED' || manifest.counts.masters !== 37 || manifest.counts.combatPoses !== 108) {
   throw new Error('Character System V2 combat manifest failed its production gate.');
 }
 

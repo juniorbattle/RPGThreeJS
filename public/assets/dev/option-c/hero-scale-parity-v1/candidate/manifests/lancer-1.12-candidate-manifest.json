@@ -1,0 +1,574 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Character System V2 \u2014 Lancer 1.12x DEV-only complete-identity candidate",
+  "status": "PASS",
+  "staticBuildStatus": "PASS",
+  "promotionStatus": "NOT_PROMOTED",
+  "reviewStatus": "READY_FOR_OPERATOR_VISUAL_REVIEW_AFTER_ATTACK_REPAIR",
+  "machineVerificationStatus": "PASS",
+  "operatorVisualReview": {
+    "status": "PENDING_REVIEW",
+    "pose": "attack",
+    "previousStatus": "REJECTED",
+    "previousFinding": "The attack spearhead terminated in a flat vertical cut and was visually incomplete.",
+    "rootCause": "INHERITED_FROM_PRODUCTION_ATTACK_SOURCE; the uniform 1.12x transform reproduces the same truncated silhouette.",
+    "resolutionStatus": "REPAIRED_DEV_CANDIDATE_PENDING_OPERATOR_REVIEW",
+    "authorizedAction": "Rebuild the complete attack weapon head from the straight master/prepare spearhead, cross-check its size against dash, and align it exactly to the attack shaft; no generation and no production edit."
+  },
+  "unitId": "lancer",
+  "displayName": "Garen",
+  "candidateRoot": "public/assets/dev/option-c/hero-scale-parity-v1/candidate",
+  "transform": {
+    "operation": "uniform-full-canvas-nearest-neighbor-scale-then-pivot-crop",
+    "factor": 1.12,
+    "sourceCanvasPx": [
+      512,
+      512
+    ],
+    "scaledCanvasPx": [
+      573,
+      573
+    ],
+    "canonicalPivotPx": [
+      256,
+      456
+    ],
+    "scaledPivotPx": [
+      287,
+      511
+    ],
+    "cropOriginPx": [
+      31,
+      55
+    ],
+    "outputCanvasPx": [
+      512,
+      512
+    ],
+    "fitToContent": false,
+    "perPoseScaling": false,
+    "artRegenerated": false
+  },
+  "runtimeContract": {
+    "worldUnitsPerPixel": 0.00625,
+    "worldUnitsPerPixelChanged": false,
+    "poseScaleCorrection": 1.0,
+    "scaleCorrectionChanged": false,
+    "canonicalPivotPx": [
+      256,
+      456
+    ],
+    "canonicalBaselineYpx": 456
+  },
+  "roles": {
+    "master": {
+      "source": {
+        "path": "public/assets/characters/pixel/masters/lancer.png",
+        "sha256": "2c8c8b443ff6b833abc213f9cdd85a64d3c07a36ba6907b7c849ef2e9ae075c1",
+        "canvasPx": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBoundsPx": [
+          165,
+          88,
+          349,
+          456
+        ],
+        "marginsPx": {
+          "left": 165,
+          "right": 163,
+          "top": 88,
+          "bottom": 56
+        }
+      },
+      "candidate": {
+        "path": "public/assets/dev/option-c/hero-scale-parity-v1/candidate/masters/lancer.png",
+        "sha256": "4cb15e26e168985a56666becf3c4d14ef8c35a95f784940f17e5a894b21a278d",
+        "canvasPx": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBoundsPx": [
+          154,
+          43,
+          360,
+          455
+        ],
+        "marginsPx": {
+          "left": 154,
+          "right": 152,
+          "top": 43,
+          "bottom": 57
+        },
+        "safeMarginMinimumPx": 43,
+        "safeMarginStatus": "PASS",
+        "operatorVisualStatus": "NOT_REVIEWED",
+        "postScaleRepair": null
+      },
+      "runtimeContract": {
+        "worldUnitsPerPixel": 0.00625,
+        "scaleCorrection": null,
+        "anchorPx": [
+          256,
+          456
+        ]
+      }
+    },
+    "prepare": {
+      "source": {
+        "path": "public/assets/characters/pixel/combat/lancer/prepare.png",
+        "sha256": "4b9a2a407e42494c943b1eb3a0710d541502ebd14dbf5a0be38c837d5bd86776",
+        "canvasPx": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBoundsPx": [
+          154,
+          93,
+          355,
+          456
+        ],
+        "marginsPx": {
+          "left": 154,
+          "right": 157,
+          "top": 93,
+          "bottom": 56
+        }
+      },
+      "candidate": {
+        "path": "public/assets/dev/option-c/hero-scale-parity-v1/candidate/combat/lancer/prepare.png",
+        "sha256": "71a8d68f765367eefe2317e1fea6b0d82c1957968d5208a23b57bc28a6f3fcfa",
+        "canvasPx": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBoundsPx": [
+          141,
+          49,
+          366,
+          455
+        ],
+        "marginsPx": {
+          "left": 141,
+          "right": 146,
+          "top": 49,
+          "bottom": 57
+        },
+        "safeMarginMinimumPx": 49,
+        "safeMarginStatus": "PASS",
+        "operatorVisualStatus": "NOT_REVIEWED",
+        "postScaleRepair": null
+      },
+      "runtimeContract": {
+        "worldUnitsPerPixel": 0.00625,
+        "scaleCorrection": 1.0,
+        "anchorPx": [
+          256,
+          456
+        ]
+      }
+    },
+    "dash": {
+      "source": {
+        "path": "public/assets/characters/pixel/combat/lancer/dash.png",
+        "sha256": "7e5f986c6c16b03b18389662096e2ab2894641ed588222bc3604b3b98e0d95ba",
+        "canvasPx": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBoundsPx": [
+          68,
+          215,
+          465,
+          456
+        ],
+        "marginsPx": {
+          "left": 68,
+          "right": 47,
+          "top": 215,
+          "bottom": 56
+        }
+      },
+      "candidate": {
+        "path": "public/assets/dev/option-c/hero-scale-parity-v1/candidate/combat/lancer/dash.png",
+        "sha256": "9d89be015f5292e3a04131da8791ebc7e3ddd6fbc56b461d417011acf277eb8f",
+        "canvasPx": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBoundsPx": [
+          45,
+          186,
+          489,
+          455
+        ],
+        "marginsPx": {
+          "left": 45,
+          "right": 23,
+          "top": 186,
+          "bottom": 57
+        },
+        "safeMarginMinimumPx": 23,
+        "safeMarginStatus": "PASS",
+        "operatorVisualStatus": "NOT_REVIEWED",
+        "postScaleRepair": null
+      },
+      "runtimeContract": {
+        "worldUnitsPerPixel": 0.00625,
+        "scaleCorrection": 1.0,
+        "anchorPx": [
+          256,
+          456
+        ]
+      }
+    },
+    "attack": {
+      "source": {
+        "path": "public/assets/characters/pixel/combat/lancer/attack.png",
+        "sha256": "beda46cc2bf76d8b3ea02940c07c799d803b02391e2516cdbbf87a7cbe5c87a4",
+        "canvasPx": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBoundsPx": [
+          49,
+          224,
+          451,
+          456
+        ],
+        "marginsPx": {
+          "left": 49,
+          "right": 61,
+          "top": 224,
+          "bottom": 56
+        }
+      },
+      "candidate": {
+        "path": "public/assets/dev/option-c/hero-scale-parity-v1/candidate/combat/lancer/attack.png",
+        "sha256": "2c57235b843c667e7a4c993ae2da695d38c683dfbe25ea12fe848265c7be916d",
+        "canvasPx": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBoundsPx": [
+          24,
+          196,
+          489,
+          455
+        ],
+        "marginsPx": {
+          "left": 24,
+          "right": 23,
+          "top": 196,
+          "bottom": 57
+        },
+        "safeMarginMinimumPx": 23,
+        "safeMarginStatus": "PASS",
+        "operatorVisualStatus": "PENDING_REVIEW_AFTER_CANONICAL_STRAIGHT_SPEARHEAD_REPAIR",
+        "postScaleRepair": {
+          "method": "straight-canonical-spearhead-transplant-after-common-scale",
+          "donorRole": "prepare",
+          "referenceRoles": [
+            "master",
+            "prepare",
+            "dash"
+          ],
+          "masterSearchRectPx": [
+            200,
+            35,
+            250,
+            165
+          ],
+          "prepareSearchRectPx": [
+            200,
+            40,
+            250,
+            165
+          ],
+          "targetRightMarginPx": 23,
+          "clearVerticalRangePx": [
+            220,
+            320
+          ],
+          "rotationDegreesClockwise": 90,
+          "additionalScale": 1.0,
+          "resampling": "none; exact 90-degree pixel transpose",
+          "artGenerated": false,
+          "productionModified": false,
+          "masterExtraction": {
+            "searchRectPx": [
+              200,
+              35,
+              250,
+              165
+            ],
+            "componentBoundsInSearchPx": [
+              13,
+              8,
+              50,
+              130
+            ],
+            "componentPixelCount": 1721,
+            "componentSizePx": [
+              37,
+              122
+            ]
+          },
+          "prepareExtraction": {
+            "searchRectPx": [
+              200,
+              40,
+              250,
+              165
+            ],
+            "componentBoundsInSearchPx": [
+              10,
+              9,
+              47,
+              125
+            ],
+            "componentPixelCount": 2012,
+            "componentSizePx": [
+              37,
+              116
+            ]
+          },
+          "masterHeadSizePx": [
+            37,
+            122
+          ],
+          "prepareHeadSizePx": [
+            37,
+            116
+          ],
+          "rotatedDonorSizePx": [
+            116,
+            37
+          ],
+          "destinationOriginPx": [
+            373,
+            258
+          ],
+          "clearRectPx": [
+            373,
+            220,
+            512,
+            320
+          ],
+          "receiverSeamColumnPx": 372,
+          "receiverSeamAlphaRunPx": [
+            272,
+            282
+          ],
+          "donorSeamAlphaRunPx": [
+            14,
+            24
+          ],
+          "translatedDonorSeamAlphaRunPx": [
+            272,
+            282
+          ],
+          "repairedSeamAlphaRunPx": [
+            272,
+            282
+          ],
+          "seamHeightDeltaPx": 0,
+          "seamRunAligned": true,
+          "dashReferenceRightMarginPx": 23,
+          "repairedAttackRightMarginPx": 23
+        }
+      },
+      "runtimeContract": {
+        "worldUnitsPerPixel": 0.00625,
+        "scaleCorrection": 1.0,
+        "anchorPx": [
+          256,
+          456
+        ]
+      }
+    },
+    "cast": {
+      "source": {
+        "path": "public/assets/characters/pixel/combat/lancer/cast.png",
+        "sha256": "c018ee5e0b31d3f6d5c7d30881b354855b1646a6bb00aa03fa72fe5c71e991ba",
+        "canvasPx": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBoundsPx": [
+          98,
+          103,
+          426,
+          456
+        ],
+        "marginsPx": {
+          "left": 98,
+          "right": 86,
+          "top": 103,
+          "bottom": 56
+        }
+      },
+      "candidate": {
+        "path": "public/assets/dev/option-c/hero-scale-parity-v1/candidate/combat/lancer/cast.png",
+        "sha256": "1c6f58d989f5300b8f1c6c5b0f823c4ad149627cec92ea37094ce3b71592d8ca",
+        "canvasPx": [
+          512,
+          512
+        ],
+        "mode": "RGBA",
+        "alphaBoundsPx": [
+          79,
+          60,
+          446,
+          455
+        ],
+        "marginsPx": {
+          "left": 79,
+          "right": 66,
+          "top": 60,
+          "bottom": 57
+        },
+        "safeMarginMinimumPx": 57,
+        "safeMarginStatus": "PASS",
+        "operatorVisualStatus": "NOT_REVIEWED",
+        "postScaleRepair": null
+      },
+      "runtimeContract": {
+        "worldUnitsPerPixel": 0.00625,
+        "scaleCorrection": 1.0,
+        "anchorPx": [
+          256,
+          456
+        ]
+      }
+    }
+  },
+  "bodyScaleAudit": {
+    "master": {
+      "boundsPx": [
+        213,
+        122,
+        360,
+        456
+      ],
+      "widthPx": 147,
+      "heightPx": 334
+    },
+    "prepare": {
+      "boundsPx": [
+        206,
+        128,
+        367,
+        456
+      ],
+      "widthPx": 161,
+      "heightPx": 328
+    },
+    "masterPrepareHeightRatio": 0.982,
+    "referenceMasterBodyHeightsPx": {
+      "Alistair": 346,
+      "Kestrel": 335,
+      "Cedric": 328
+    },
+    "referenceMedianHeightPx": 335
+  },
+  "safeMargins": {
+    "alphaThreshold": 8,
+    "minimumRequiredPx": 16,
+    "status": "PASS",
+    "qaRenderIsolation": "PASS: every reduced 512px canvas fits fully inside its own comparison cell; cyan halo is outside alpha pixels"
+  },
+  "protectedAssets": {
+    "status": "PASS",
+    "comparisons": {
+      "productionMasters": {
+        "beforeCount": 37,
+        "afterCount": 37,
+        "beforeManifestSha256": "061cb07496611cac8c890b66280927e2b5b8b0dfc2a38cae54841a653dc22599",
+        "afterManifestSha256": "061cb07496611cac8c890b66280927e2b5b8b0dfc2a38cae54841a653dc22599",
+        "changed": false
+      },
+      "productionCombatPoses": {
+        "beforeCount": 100,
+        "afterCount": 100,
+        "beforeManifestSha256": "a4a2eef6d395e423ee04abd76d7dd2c5dd725de2d680385d80876123e2fddf94",
+        "afterManifestSha256": "a4a2eef6d395e423ee04abd76d7dd2c5dd725de2d680385d80876123e2fddf94",
+        "changed": false
+      },
+      "militiaCandidates": {
+        "beforeCount": 32,
+        "afterCount": 32,
+        "beforeManifestSha256": "ff33559f5686cc0bbb110a53832cd6be15605fc68e7152a87592310c28f65f18",
+        "afterManifestSha256": "ff33559f5686cc0bbb110a53832cd6be15605fc68e7152a87592310c28f65f18",
+        "changed": false
+      }
+    },
+    "beforeManifest": "public/assets/dev/option-c/hero-scale-parity-v1/candidate/manifests/protected-assets-before.json",
+    "afterManifest": "public/assets/dev/option-c/hero-scale-parity-v1/candidate/manifests/protected-assets-after.json"
+  },
+  "invariants": {
+    "allFiveRolesBuilt": true,
+    "allCandidateCanvases512Rgba": true,
+    "sameUniformTransformAllRoles": true,
+    "attackRepairUsesAlreadyScaledCanonicalPixels": true,
+    "attackRepairSeamAligned": true,
+    "canonicalPivotPreserved": true,
+    "safeMargins": true,
+    "worldUnitsPerPixelUnchanged": true,
+    "scaleCorrectionUnchanged": true,
+    "productionAndMilitiaUnchanged": true,
+    "qaCellsDoNotOverlap": true,
+    "noGeneratedArtwork": true,
+    "noFitToContent": true,
+    "noPerPoseScaling": true
+  },
+  "qa": [
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/qa/lancer-1.12-master-parity.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/qa/lancer-1.12-complete-identity.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/qa/lancer-1.12-safe-margins.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/qa/lancer-1.12-attack-tip-diagnostic.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/qa/lancer-1.12-attack-three-pose-reference.png"
+  ],
+  "runtimeProof": {
+    "status": "PASS",
+    "method": "browser-only request substitution; no runtime or production path changes",
+    "report": "public/assets/dev/option-c/hero-scale-parity-v1/candidate/runtime-proof/lancer-1.12-runtime-proof-report.json",
+    "screenshots": [
+      "public/assets/dev/option-c/hero-scale-parity-v1/candidate/runtime-proof/lancer-1.12-travel-company-lineup.png",
+      "public/assets/dev/option-c/hero-scale-parity-v1/candidate/runtime-proof/lancer-1.12-company-register-garen.png",
+      "public/assets/dev/option-c/hero-scale-parity-v1/candidate/runtime-proof/lancer-1.12-strategic-primary-heroes.png",
+      "public/assets/dev/option-c/hero-scale-parity-v1/candidate/runtime-proof/lancer-1.12-combat-stage-garen-prepare.png",
+      "public/assets/dev/option-c/hero-scale-parity-v1/candidate/runtime-proof/lancer-1.12-combat-stage-garen-attack.png",
+      "public/assets/dev/option-c/hero-scale-parity-v1/candidate/runtime-proof/lancer-1.12-combat-stage-garen-attack-canvas.png"
+    ],
+    "sourceCoverage": {
+      "masters": true,
+      "primaryPrepare": true,
+      "candidateMaster": true,
+      "candidatePrepare": true,
+      "candidateAllFive": true
+    },
+    "browserErrors": [],
+    "failedRequests": []
+  },
+  "changes": {
+    "productionAssetsChanged": 0,
+    "militiaCandidatesChanged": 0,
+    "runtimeCodeChanged": false,
+    "gameplayChanged": false,
+    "newArtworkGenerated": false,
+    "attackCandidatePatchedFromCanonicalPoseReferences": true,
+    "committed": false,
+    "pushed": false
+  }
+}

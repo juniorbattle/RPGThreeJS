@@ -27,8 +27,10 @@ describe('CharacterVisualRegistry', () => {
       expect(profile.dialogue).toBe(profile.full);
       expect(profile.ui).toBe(profile.full);
     }
-    expect(profiles.filter((profile) => profile.combatPoseUnitId)).toHaveLength(25);
-    expect(resolveCharacterVisualProfile('village_militia_spearman')?.combatPoseUnitId).toBeUndefined();
+    expect(profiles.filter((profile) => profile.combatPoseUnitId)).toHaveLength(27);
+    expect(resolveCharacterVisualProfile('village_militia_spearman')?.combatPoseUnitId).toBe('village_militia_spearman');
+    expect(resolveCharacterVisualProfile('village_militia_slinger')?.combatPoseUnitId).toBe('village_militia_slinger');
+    expect(resolveCharacterVisualProfile('village_militia_brute')?.combatPoseUnitId).toBeUndefined();
   });
 
   it('resolves role-specific assets instead of overloading portrait', () => {

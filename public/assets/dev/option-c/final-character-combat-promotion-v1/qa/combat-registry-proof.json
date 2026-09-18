@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "manifestStatus": "PROMOTED",
+  "counts": {
+    "masters": 37,
+    "combatPoses": 108
+  },
+  "combatPoseIdentities": 27,
+  "militia": [
+    {
+      "unitId": "village_militia_spearman",
+      "poses": {
+        "prepare": "/assets/characters/pixel/combat/village_militia_spearman/prepare.png",
+        "dash": "/assets/characters/pixel/combat/village_militia_spearman/dash.png",
+        "attack": "/assets/characters/pixel/combat/village_militia_spearman/attack.png",
+        "cast": "/assets/characters/pixel/combat/village_militia_spearman/cast.png"
+      }
+    },
+    {
+      "unitId": "village_militia_slinger",
+      "poses": {
+        "prepare": "/assets/characters/pixel/combat/village_militia_slinger/prepare.png",
+        "dash": "/assets/characters/pixel/combat/village_militia_slinger/dash.png",
+        "attack": "/assets/characters/pixel/combat/village_militia_slinger/attack.png",
+        "cast": "/assets/characters/pixel/combat/village_militia_slinger/cast.png"
+      }
+    }
+  ],
+  "bruteCombatPoseStatus": "NOT_PRODUCED",
+  "brutePoseCount": 0,
+  "strategicPrepare": {
+    "visuals": [
+      {
+        "unitId": "village_militia_spearman",
+        "scaleFamily": "STANDARD_HUMANOID",
+        "src": "/assets/characters/pixel/combat/village_militia_spearman/prepare.png",
+        "sourceSizePx": {
+          "width": 512,
+          "height": 512
+        },
+        "alphaBoundsPx": {
+          "left": 170,
+          "top": 106,
+          "right": 341,
+          "bottom": 456
+        },
+        "anchor": {
+          "x": 256,
+          "y": 456
+        },
+        "worldUnitsPerPixel": 0.00625,
+        "scaleCorrection": 1
+      },
+      {
+        "unitId": "village_militia_slinger",
+        "scaleFamily": "STANDARD_HUMANOID",
+        "src": "/assets/characters/pixel/combat/village_militia_slinger/prepare.png",
+        "sourceSizePx": {
+          "width": 512,
+          "height": 512
+        },
+        "alphaBoundsPx": {
+          "left": 142,
+          "top": 123,
+          "right": 370,
+          "bottom": 456
+        },
+        "anchor": {
+          "x": 256,
+          "y": 456
+        },
+        "worldUnitsPerPixel": 0.00625,
+        "scaleCorrection": 1
+      }
+    ],
+    "brute": null
+  }
+}

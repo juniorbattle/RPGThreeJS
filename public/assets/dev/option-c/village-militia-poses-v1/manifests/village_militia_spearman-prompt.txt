@@ -1,0 +1,9 @@
+Create one coherent exact 2x2 combat-pose board for the production Master village_militia_spearman.
+
+Identity authority: public/assets/characters/pixel/masters/village_militia_spearman.png only. Preserve the same ordinary local-militia human proportions, perceived body scale, pixel density, domed steel helmet with nasal guard, concealed face, olive-green scarf/cowl, beige rough tunic, brown belts and pouches, brown trousers and wrapped boots, simple round wooden-and-metal shield, and full-length plain spear. Do not make the unit elite, noble, royal, cavalry, or Serpent-faction.
+
+Exact cell order: top-left prepare, top-right dash, bottom-left attack, bottom-right cast. Prepare is a grounded balanced ready stance. Dash is an obvious forward engagement toward screen-right with readable legs and a safely carried spear. Attack is an unmistakable committed spear thrust toward screen-right with body weight behind the stab. Cast is the runtime slot but must read as a non-magical defensive spear brace/guard skill, clearly distinct from prepare.
+
+All four cells must show the exact same individual at the exact same physical body scale and pixel density. Preserve helmet/head size, face concealment, costume, palette, materials, shield, and spear geometry. Keep every complete subject fully inside its own quadrant with safe empty margins. No body part or weapon may cross a cell edge. No detached FX, projectile, slash, beam, orb, aura, trail, text, labels, UI, borders, or shadows.
+
+Project-native high-detail pixel-art combat sprite style with crisp controlled outlines, compact readable shading, transparent-ready rendering, and no painterly smoothing. Empty background must be fully transparent or solid flat #FF00FF. Exactly four poses only.

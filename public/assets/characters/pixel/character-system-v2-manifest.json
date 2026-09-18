@@ -20,7 +20,7 @@
   },
   "counts": {
     "masters": 37,
-    "combatPoses": 100
+    "combatPoses": 108
   },
   "units": [
     {
@@ -956,7 +956,7 @@
       "worldUnitsPerPixel": 0.00625,
       "master": {
         "src": "/assets/characters/pixel/masters/lancer.png",
-        "sha256": "2c8c8b443ff6b833abc213f9cdd85a64d3c07a36ba6907b7c849ef2e9ae075c1",
+        "sha256": "4cb15e26e168985a56666becf3c4d14ef8c35a95f784940f17e5a894b21a278d",
         "sourceSizePx": {
           "width": 512,
           "height": 512
@@ -970,16 +970,16 @@
       "poses": {
         "prepare": {
           "src": "/assets/characters/pixel/combat/lancer/prepare.png",
-          "sha256": "4b9a2a407e42494c943b1eb3a0710d541502ebd14dbf5a0be38c837d5bd86776",
+          "sha256": "71a8d68f765367eefe2317e1fea6b0d82c1957968d5208a23b57bc28a6f3fcfa",
           "sourceSizePx": {
             "width": 512,
             "height": 512
           },
           "alphaBoundsPx": {
-            "left": 154,
-            "top": 93,
-            "right": 355,
-            "bottom": 456
+            "left": 141,
+            "top": 49,
+            "right": 504,
+            "bottom": 455
           },
           "anchor": {
             "x": 256,
@@ -990,16 +990,16 @@
         },
         "dash": {
           "src": "/assets/characters/pixel/combat/lancer/dash.png",
-          "sha256": "7e5f986c6c16b03b18389662096e2ab2894641ed588222bc3604b3b98e0d95ba",
+          "sha256": "9d89be015f5292e3a04131da8791ebc7e3ddd6fbc56b461d417011acf277eb8f",
           "sourceSizePx": {
             "width": 512,
             "height": 512
           },
           "alphaBoundsPx": {
-            "left": 68,
-            "top": 215,
-            "right": 465,
-            "bottom": 456
+            "left": 45,
+            "top": 186,
+            "right": 489,
+            "bottom": 455
           },
           "anchor": {
             "x": 256,
@@ -1010,16 +1010,16 @@
         },
         "attack": {
           "src": "/assets/characters/pixel/combat/lancer/attack.png",
-          "sha256": "beda46cc2bf76d8b3ea02940c07c799d803b02391e2516cdbbf87a7cbe5c87a4",
+          "sha256": "2c57235b843c667e7a4c993ae2da695d38c683dfbe25ea12fe848265c7be916d",
           "sourceSizePx": {
             "width": 512,
             "height": 512
           },
           "alphaBoundsPx": {
-            "left": 49,
-            "top": 224,
-            "right": 451,
-            "bottom": 456
+            "left": 24,
+            "top": 196,
+            "right": 489,
+            "bottom": 455
           },
           "anchor": {
             "x": 256,
@@ -1030,16 +1030,16 @@
         },
         "cast": {
           "src": "/assets/characters/pixel/combat/lancer/cast.png",
-          "sha256": "c018ee5e0b31d3f6d5c7d30881b354855b1646a6bb00aa03fa72fe5c71e991ba",
+          "sha256": "1c6f58d989f5300b8f1c6c5b0f823c4ad149627cec92ea37094ce3b71592d8ca",
           "sourceSizePx": {
             "width": 512,
             "height": 512
           },
           "alphaBoundsPx": {
-            "left": 98,
-            "top": 103,
-            "right": 426,
-            "bottom": 456
+            "left": 57,
+            "top": 60,
+            "right": 446,
+            "bottom": 455
           },
           "anchor": {
             "x": 256,
@@ -2912,7 +2912,7 @@
       },
       "baseline": 456,
       "productionStatus": "PROMOTED",
-      "combatPoseStatus": "NOT_PRODUCED",
+      "combatPoseStatus": "PROMOTED_4_POSES",
       "master": {
         "src": "/assets/characters/pixel/masters/village_militia_spearman.png",
         "sha256": "b35b7f7ca5f7323c2f1e123b8047bd22735e756b11be08e5550d344eda476a5d",
@@ -2926,7 +2926,88 @@
         "dialogue": "/assets/characters/pixel/masters/village_militia_spearman.png",
         "ui": "/assets/characters/pixel/masters/village_militia_spearman.png"
       },
-      "poses": {}
+      "poses": {
+        "prepare": {
+          "src": "/assets/characters/pixel/combat/village_militia_spearman/prepare.png",
+          "sha256": "11c0f6ec9872b21dd2d731205bd74601c41cecf94c6d1353bf195a63d21d71c8",
+          "sourceSizePx": {
+            "width": 512,
+            "height": 512
+          },
+          "alphaBoundsPx": {
+            "left": 170,
+            "top": 106,
+            "right": 341,
+            "bottom": 456
+          },
+          "anchor": {
+            "x": 256,
+            "y": 456
+          },
+          "scaleCorrection": 1.0,
+          "characterBoundFx": false
+        },
+        "dash": {
+          "src": "/assets/characters/pixel/combat/village_militia_spearman/dash.png",
+          "sha256": "71229a34a8a8ee7e59febb9d2d0beb960b84416e2246190e864d4d915e79dcd8",
+          "sourceSizePx": {
+            "width": 512,
+            "height": 512
+          },
+          "alphaBoundsPx": {
+            "left": 81,
+            "top": 184,
+            "right": 430,
+            "bottom": 456
+          },
+          "anchor": {
+            "x": 256,
+            "y": 456
+          },
+          "scaleCorrection": 1.0,
+          "characterBoundFx": false
+        },
+        "attack": {
+          "src": "/assets/characters/pixel/combat/village_militia_spearman/attack.png",
+          "sha256": "71fc6aa2822529e6b8d77e258ea238b7e3a3d3b5483b0c55b486705a1708e16b",
+          "sourceSizePx": {
+            "width": 512,
+            "height": 512
+          },
+          "alphaBoundsPx": {
+            "left": 77,
+            "top": 216,
+            "right": 435,
+            "bottom": 456
+          },
+          "anchor": {
+            "x": 256,
+            "y": 456
+          },
+          "scaleCorrection": 1.0,
+          "characterBoundFx": false
+        },
+        "cast": {
+          "src": "/assets/characters/pixel/combat/village_militia_spearman/cast.png",
+          "sha256": "24e2f9a166522c85378d5f02e7f68168c6bd4ab410e5eb59d2f239be0a128961",
+          "sourceSizePx": {
+            "width": 512,
+            "height": 512
+          },
+          "alphaBoundsPx": {
+            "left": 143,
+            "top": 121,
+            "right": 369,
+            "bottom": 456
+          },
+          "anchor": {
+            "x": 256,
+            "y": 456
+          },
+          "scaleCorrection": 1.0,
+          "characterBoundFx": false
+        }
+      }
     },
     {
       "unitId": "village_militia_brute",
@@ -2978,7 +3059,7 @@
       },
       "baseline": 456,
       "productionStatus": "PROMOTED",
-      "combatPoseStatus": "NOT_PRODUCED",
+      "combatPoseStatus": "PROMOTED_4_POSES",
       "master": {
         "src": "/assets/characters/pixel/masters/village_militia_slinger.png",
         "sha256": "2a0c3d4743261cb445e6f999ab39c7c52083fd94c4c48d116a44836ca657c478",
@@ -2992,7 +3073,88 @@
         "dialogue": "/assets/characters/pixel/masters/village_militia_slinger.png",
         "ui": "/assets/characters/pixel/masters/village_militia_slinger.png"
       },
-      "poses": {}
+      "poses": {
+        "prepare": {
+          "src": "/assets/characters/pixel/combat/village_militia_slinger/prepare.png",
+          "sha256": "83e28be13f380a00f78fb8f7aa163138a9b1e7ad825deb072a0b06184ea10fb4",
+          "sourceSizePx": {
+            "width": 512,
+            "height": 512
+          },
+          "alphaBoundsPx": {
+            "left": 142,
+            "top": 123,
+            "right": 370,
+            "bottom": 456
+          },
+          "anchor": {
+            "x": 256,
+            "y": 456
+          },
+          "scaleCorrection": 1.0,
+          "characterBoundFx": false
+        },
+        "dash": {
+          "src": "/assets/characters/pixel/combat/village_militia_slinger/dash.png",
+          "sha256": "27f1d5a296de9ce42b2d5725e46d9fafd6477a3a06fbc7163d0c2515e94634f8",
+          "sourceSizePx": {
+            "width": 512,
+            "height": 512
+          },
+          "alphaBoundsPx": {
+            "left": 106,
+            "top": 165,
+            "right": 405,
+            "bottom": 456
+          },
+          "anchor": {
+            "x": 256,
+            "y": 456
+          },
+          "scaleCorrection": 1.0,
+          "characterBoundFx": false
+        },
+        "attack": {
+          "src": "/assets/characters/pixel/combat/village_militia_slinger/attack.png",
+          "sha256": "444f612f3ead4fb60242458d4884d1dcd0de3fef4dc9d791bbe69ea463526b14",
+          "sourceSizePx": {
+            "width": 512,
+            "height": 512
+          },
+          "alphaBoundsPx": {
+            "left": 64,
+            "top": 143,
+            "right": 448,
+            "bottom": 456
+          },
+          "anchor": {
+            "x": 256,
+            "y": 456
+          },
+          "scaleCorrection": 1.0,
+          "characterBoundFx": false
+        },
+        "cast": {
+          "src": "/assets/characters/pixel/combat/village_militia_slinger/cast.png",
+          "sha256": "9066d47ced7bf92cdb7ef6b0a8f2f7fa5de43febd43d373211069360a3d3c9b0",
+          "sourceSizePx": {
+            "width": 512,
+            "height": 512
+          },
+          "alphaBoundsPx": {
+            "left": 135,
+            "top": 132,
+            "right": 377,
+            "bottom": 456
+          },
+          "anchor": {
+            "x": 256,
+            "y": 456
+          },
+          "scaleCorrection": 1.0,
+          "characterBoundFx": false
+        }
+      }
     }
   ],
   "sourceRoots": {

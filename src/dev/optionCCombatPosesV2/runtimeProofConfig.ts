@@ -9,7 +9,15 @@ export type PilotUnitId =
   | 'canvas-512'
   | 'canvas-640x512'
   | 'canvas-512x640'
-  | 'canvas-640x640';
+  | 'canvas-640x640'
+  | 'militia-spearman-prepare'
+  | 'militia-spearman-dash'
+  | 'militia-spearman-attack'
+  | 'militia-spearman-cast'
+  | 'militia-slinger-prepare'
+  | 'militia-slinger-dash'
+  | 'militia-slinger-attack'
+  | 'militia-slinger-cast';
 export type RuntimeProofScenarioId =
   | 'alistair-vs-goblin'
   | 'alistair-vs-lion-champion'
@@ -17,7 +25,11 @@ export type RuntimeProofScenarioId =
   | 'canvas-512'
   | 'canvas-640x512'
   | 'canvas-512x640'
-  | 'canvas-640x640';
+  | 'canvas-640x640'
+  | 'militia-pair-prepare'
+  | 'militia-pair-dash'
+  | 'militia-pair-attack'
+  | 'militia-pair-cast';
 export type RuntimeProofEnvironmentId = 'forest_route' | 'bois_clair_burning' | 'lion_sanctum';
 
 export interface PilotRuntimeUnit {
@@ -36,6 +48,9 @@ export interface PilotRuntimeUnit {
   worldUnitsPerPixel: number;
   team: 'player' | 'foe';
   contactShadowSize: readonly [number, number];
+  canonicalPromoted: boolean;
+  useRegistryPose: boolean;
+  expectedManifestStatus: 'PROMOTED' | 'DEV_REVIEW_READY';
 }
 
 interface ManifestPose {
@@ -85,7 +100,19 @@ function proofUnit(
     worldUnitsPerPixel: unit.worldUnitsPerPixel,
     team,
     contactShadowSize,
+    canonicalPromoted: true,
+    useRegistryPose: true,
+    expectedManifestStatus: 'PROMOTED',
   });
+}
+
+function militiaProofUnit(
+  id: PilotUnitId,
+  combatPoseUnitId: 'village_militia_spearman' | 'village_militia_slinger',
+  pose: CombatPose,
+  displayName: string,
+): PilotRuntimeUnit {
+  return proofUnit(id, combatPoseUnitId, pose, displayName, 'foe', [1.42, 0.58]);
 }
 
 export const PILOT_RUNTIME_UNITS: Readonly<Record<PilotUnitId, PilotRuntimeUnit>> = Object.freeze({
@@ -96,6 +123,14 @@ export const PILOT_RUNTIME_UNITS: Readonly<Record<PilotUnitId, PilotRuntimeUnit>
   'canvas-640x512': proofUnit('canvas-640x512', 'alistair', 'attack', '640×512 Attack', 'foe', [1.42, 0.58]),
   'canvas-512x640': proofUnit('canvas-512x640', 'forest_troll_elite', 'cast', '512×640 Cast', 'foe', [1.86, 0.76]),
   'canvas-640x640': proofUnit('canvas-640x640', 'lion_champion', 'cast', '640×640 Cast', 'foe', [1.86, 0.76]),
+  'militia-spearman-prepare': militiaProofUnit('militia-spearman-prepare', 'village_militia_spearman', 'prepare', 'Militia Spearman · Prepare'),
+  'militia-spearman-dash': militiaProofUnit('militia-spearman-dash', 'village_militia_spearman', 'dash', 'Militia Spearman · Dash'),
+  'militia-spearman-attack': militiaProofUnit('militia-spearman-attack', 'village_militia_spearman', 'attack', 'Militia Spearman · Attack'),
+  'militia-spearman-cast': militiaProofUnit('militia-spearman-cast', 'village_militia_spearman', 'cast', 'Militia Spearman · Cast/Skill'),
+  'militia-slinger-prepare': militiaProofUnit('militia-slinger-prepare', 'village_militia_slinger', 'prepare', 'Militia Slinger · Prepare'),
+  'militia-slinger-dash': militiaProofUnit('militia-slinger-dash', 'village_militia_slinger', 'dash', 'Militia Slinger · Dash'),
+  'militia-slinger-attack': militiaProofUnit('militia-slinger-attack', 'village_militia_slinger', 'attack', 'Militia Slinger · Attack'),
+  'militia-slinger-cast': militiaProofUnit('militia-slinger-cast', 'village_militia_slinger', 'cast', 'Militia Slinger · Cast/Skill'),
 });
 
 export interface RuntimeProofScenario {
@@ -203,6 +238,42 @@ export const RUNTIME_PROOF_SCENARIOS: Readonly<Record<RuntimeProofScenarioId, Ru
     attacker: 'canvas-640x640',
     targets: [] as const,
     profile: proofProfile([], 3.2),
+  }),
+  'militia-pair-prepare': Object.freeze({
+    id: 'militia-pair-prepare',
+    label: 'Village Militia · Prepare Pair',
+    environmentId: 'forest_route',
+    environmentAssetId: 'forest_route_stage',
+    attacker: 'militia-spearman-prepare',
+    targets: ['militia-slinger-prepare'] as const,
+    profile: proofProfile(['primaryTarget'], 2.8),
+  }),
+  'militia-pair-dash': Object.freeze({
+    id: 'militia-pair-dash',
+    label: 'Village Militia · Dash Pair',
+    environmentId: 'forest_route',
+    environmentAssetId: 'forest_route_stage',
+    attacker: 'militia-spearman-dash',
+    targets: ['militia-slinger-dash'] as const,
+    profile: proofProfile(['primaryTarget'], 2.8),
+  }),
+  'militia-pair-attack': Object.freeze({
+    id: 'militia-pair-attack',
+    label: 'Village Militia · Attack Pair',
+    environmentId: 'forest_route',
+    environmentAssetId: 'forest_route_stage',
+    attacker: 'militia-spearman-attack',
+    targets: ['militia-slinger-attack'] as const,
+    profile: proofProfile(['primaryTarget'], 2.8),
+  }),
+  'militia-pair-cast': Object.freeze({
+    id: 'militia-pair-cast',
+    label: 'Village Militia · Non-magical Cast/Skill Pair',
+    environmentId: 'forest_route',
+    environmentAssetId: 'forest_route_stage',
+    attacker: 'militia-spearman-cast',
+    targets: ['militia-slinger-cast'] as const,
+    profile: proofProfile(['primaryTarget'], 2.8),
   }),
 });
 

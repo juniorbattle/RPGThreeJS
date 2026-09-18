@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "staticBuildStatus": "PASS",
+  "reviewStatus": "READY_FOR_OPERATOR_VISUAL_REVIEW_AFTER_ATTACK_REPAIR",
+  "machineVerificationStatus": "PASS",
+  "operatorVisualReview": {
+    "status": "PENDING_REVIEW",
+    "pose": "attack",
+    "previousStatus": "REJECTED",
+    "previousFinding": "The attack spearhead terminated in a flat vertical cut and was visually incomplete.",
+    "rootCause": "INHERITED_FROM_PRODUCTION_ATTACK_SOURCE; the uniform 1.12x transform reproduces the same truncated silhouette.",
+    "resolutionStatus": "REPAIRED_DEV_CANDIDATE_PENDING_OPERATOR_REVIEW",
+    "authorizedAction": "Rebuild the complete attack weapon head from the straight master/prepare spearhead, cross-check its size against dash, and align it exactly to the attack shaft; no generation and no production edit."
+  },
+  "candidateManifest": "public/assets/dev/option-c/hero-scale-parity-v1/candidate/manifests/lancer-1.12-candidate-manifest.json",
+  "bodyScaleAudit": {
+    "master": {
+      "boundsPx": [
+        213,
+        122,
+        360,
+        456
+      ],
+      "widthPx": 147,
+      "heightPx": 334
+    },
+    "prepare": {
+      "boundsPx": [
+        206,
+        128,
+        367,
+        456
+      ],
+      "widthPx": 161,
+      "heightPx": 328
+    },
+    "masterPrepareHeightRatio": 0.982,
+    "referenceMasterBodyHeightsPx": {
+      "Alistair": 346,
+      "Kestrel": 335,
+      "Cedric": 328
+    },
+    "referenceMedianHeightPx": 335
+  },
+  "safeMargins": {
+    "master": {
+      "left": 154,
+      "right": 152,
+      "top": 43,
+      "bottom": 57
+    },
+    "prepare": {
+      "left": 141,
+      "right": 146,
+      "top": 49,
+      "bottom": 57
+    },
+    "dash": {
+      "left": 45,
+      "right": 23,
+      "top": 186,
+      "bottom": 57
+    },
+    "attack": {
+      "left": 24,
+      "right": 23,
+      "top": 196,
+      "bottom": 57
+    },
+    "cast": {
+      "left": 79,
+      "right": 66,
+      "top": 60,
+      "bottom": 57
+    }
+  },
+  "safeMarginsStatus": "PASS",
+  "protectedAssetsStatus": "PASS",
+  "qa": [
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/qa/lancer-1.12-master-parity.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/qa/lancer-1.12-complete-identity.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/qa/lancer-1.12-safe-margins.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/qa/lancer-1.12-attack-tip-diagnostic.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/qa/lancer-1.12-attack-three-pose-reference.png"
+  ],
+  "runtimeProofStatus": "PASS",
+  "runtimeProofReport": "public/assets/dev/option-c/hero-scale-parity-v1/candidate/runtime-proof/lancer-1.12-runtime-proof-report.json",
+  "runtimeProofScreenshots": [
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/runtime-proof/lancer-1.12-travel-company-lineup.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/runtime-proof/lancer-1.12-company-register-garen.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/runtime-proof/lancer-1.12-strategic-primary-heroes.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/runtime-proof/lancer-1.12-combat-stage-garen-prepare.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/runtime-proof/lancer-1.12-combat-stage-garen-attack.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/candidate/runtime-proof/lancer-1.12-combat-stage-garen-attack-canvas.png"
+  ],
+  "operatorGate": "STOP_BEFORE_PRODUCTION_PROMOTION"
+}

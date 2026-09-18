@@ -10,10 +10,26 @@ import {
 
 describe('Character System V2 runtime proof configuration', () => {
   it('uses promoted production assets with no hidden scale correction', () => {
-    for (const unit of Object.values(PILOT_RUNTIME_UNITS)) {
+    for (const unit of Object.values(PILOT_RUNTIME_UNITS).filter((candidate) => candidate.canonicalPromoted)) {
       expect(unit.imageUrl).toMatch(/^\/assets\/characters\/pixel\/combat\//);
       expect(unit.manifestUrl).toBe('/assets/characters/pixel/character-system-v2-manifest.json');
       expect(unit.scaleCorrection).toBe(1);
+      expect(worldUnitsPerSourcePixel(unit)).toBe(0.00625);
+      expect(unit.useRegistryPose).toBe(true);
+    }
+  });
+
+  it('maps all eight village militia poses through the promoted production registry', () => {
+    const militia = Object.values(PILOT_RUNTIME_UNITS).filter((unit) => unit.id.startsWith('militia-'));
+    expect(militia).toHaveLength(8);
+    expect(new Set(militia.map((unit) => unit.pose))).toEqual(new Set(['prepare', 'dash', 'attack', 'cast']));
+    for (const unit of militia) {
+      expect(unit.imageUrl).toMatch(/^\/assets\/characters\/pixel\/combat\/village_militia_/);
+      expect(unit.manifestUrl).toBe('/assets/characters/pixel/character-system-v2-manifest.json');
+      expect(unit.scaleCorrection).toBe(1);
+      expect(unit.canonicalPromoted).toBe(true);
+      expect(unit.useRegistryPose).toBe(true);
+      expect(unit.expectedManifestStatus).toBe('PROMOTED');
       expect(worldUnitsPerSourcePixel(unit)).toBe(0.00625);
     }
   });

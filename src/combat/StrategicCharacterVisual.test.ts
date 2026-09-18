@@ -10,6 +10,10 @@ describe('Strategic Character System V2 integration', () => {
     expect(runtime).toContain('const strategicVisual=strategicVisualFor(def)');
     expect(runtime).toContain('strategicVisual?.src||def.portrait');
     expect(resolveStrategicUnitVisual('alistair')?.src).toBe('/assets/characters/pixel/combat/alistair/prepare.png');
+    expect(resolveStrategicUnitVisual('lancer')?.src).toBe('/assets/characters/pixel/combat/lancer/prepare.png');
+    expect(resolveStrategicUnitVisual('village_militia_spearman')?.src).toBe('/assets/characters/pixel/combat/village_militia_spearman/prepare.png');
+    expect(resolveStrategicUnitVisual('village_militia_slinger')?.src).toBe('/assets/characters/pixel/combat/village_militia_slinger/prepare.png');
+    expect(resolveStrategicUnitVisual('village_militia_brute')).toBeUndefined();
   });
 
   it('retains portrait exclusively for UI and unmigrated fallback semantics', () => {

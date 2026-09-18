@@ -788,7 +788,7 @@
     {
       "id": "lancer",
       "asset": "public/assets/characters/pixel/masters/lancer.png",
-      "sourceSha256": "2c8c8b443ff6b833abc213f9cdd85a64d3c07a36ba6907b7c849ef2e9ae075c1",
+      "sourceSha256": "4cb15e26e168985a56666becf3c4d14ef8c35a95f784940f17e5a894b21a278d",
       "category": "HUMAN",
       "relativeStature": 1.01,
       "sourceWidth": 512,

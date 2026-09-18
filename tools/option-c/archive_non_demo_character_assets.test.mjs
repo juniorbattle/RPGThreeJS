@@ -75,11 +75,11 @@ describe('Option C final master promotion and archive pass', () => {
     });
   });
 
-  it('retains one hundred combat poses while promoting thirty-seven authoritative masters', async () => {
+  it('retains one hundred eight combat poses while promoting thirty-seven authoritative masters', async () => {
     const manifest = await readJson('public/assets/characters/pixel/character-system-v2-manifest.json');
     expect(manifest.units).toHaveLength(37);
     const assets = manifest.units.flatMap((unit) => [unit.master, ...Object.values(unit.poses)]);
-    expect(assets).toHaveLength(137);
+    expect(assets).toHaveLength(145);
     for (const asset of assets) {
       expect(await sha256(resolve(root, 'public', asset.src.replace(/^\//u, ''))), asset.src)
         .toBe(asset.sha256);

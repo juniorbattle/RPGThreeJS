@@ -1,0 +1,1703 @@
+{
+  "schemaVersion": 1,
+  "mission": "Option C Character System V2 Hero Scale Parity Audit \u2014 Lancer / Garen",
+  "status": "FOLLOW_UP_REQUIRED",
+  "sourceOfTruth": "CURRENT_LOCAL_WORKTREE",
+  "heroesAudited": "6/6",
+  "primaryClassification": "MASTER_BODY_SCALE_TOO_SMALL",
+  "classificationRationale": "Garen's weapon-agnostic Master body is 298px head-to-foot versus 346px Alistair, 335px Kestrel, and 328px Cedric. The 11.0% shortfall versus the 335px peer median exceeds the \u00b13px landmark uncertainty. His prepare pose preserves the Master ratio, and all audited runtimes preserve common source-pixel scale, so neither pose drift nor runtime presentation causes the difference. The vertical spear explains why historical core/full metrics concealed the underscaled body; it does not erase the measured body defect.",
+  "measurementPolicy": {
+    "boundsConvention": "half-open [left, top, right, bottom]",
+    "alphaThreshold": 8,
+    "baseline": 456,
+    "bodyAnnotationUncertaintyPx": 3,
+    "primaryEvidence": "manual visible anatomical/head-to-planted-foot landmarks on current production pixels",
+    "excluded": [
+      "spear",
+      "staff",
+      "bow",
+      "arrows",
+      "dagger extensions",
+      "detached FX",
+      "extreme cape/scarf extensions"
+    ],
+    "fullAlphaAuthoritativeForBodyScale": false,
+    "historicalCoreMetricsAuthoritativeForBodyScale": false,
+    "historicalCoreFinding": "Lancer normalizedCoreBBox includes the vertical spear and is therefore an envelope metric, not an anatomical body metric."
+  },
+  "manifestValidation": {
+    "publicPath": "public/assets/characters/pixel/character-system-v2-manifest.json",
+    "generatedPath": "src/render/generated/characterSystemV2Manifest.json",
+    "publicGeneratedValueParity": true,
+    "assetChecks": [
+      {
+        "unitId": "alistair",
+        "masterPathMatch": true,
+        "masterHashMatch": true,
+        "preparePathMatch": true,
+        "prepareHashMatch": true,
+        "commonWorldUnitsPerPixel": true,
+        "prepareScaleCorrection": true
+      },
+      {
+        "unitId": "white_mage",
+        "masterPathMatch": true,
+        "masterHashMatch": true,
+        "preparePathMatch": true,
+        "prepareHashMatch": true,
+        "commonWorldUnitsPerPixel": true,
+        "prepareScaleCorrection": true
+      },
+      {
+        "unitId": "dark_mage",
+        "masterPathMatch": true,
+        "masterHashMatch": true,
+        "preparePathMatch": true,
+        "prepareHashMatch": true,
+        "commonWorldUnitsPerPixel": true,
+        "prepareScaleCorrection": true
+      },
+      {
+        "unitId": "archer",
+        "masterPathMatch": true,
+        "masterHashMatch": true,
+        "preparePathMatch": true,
+        "prepareHashMatch": true,
+        "commonWorldUnitsPerPixel": true,
+        "prepareScaleCorrection": true
+      },
+      {
+        "unitId": "rogue",
+        "masterPathMatch": true,
+        "masterHashMatch": true,
+        "preparePathMatch": true,
+        "prepareHashMatch": true,
+        "commonWorldUnitsPerPixel": true,
+        "prepareScaleCorrection": true
+      },
+      {
+        "unitId": "lancer",
+        "masterPathMatch": true,
+        "masterHashMatch": true,
+        "preparePathMatch": true,
+        "prepareHashMatch": true,
+        "commonWorldUnitsPerPixel": true,
+        "prepareScaleCorrection": true
+      }
+    ],
+    "status": "PASS"
+  },
+  "heroes": [
+    {
+      "unitId": "alistair",
+      "displayName": "Alistair",
+      "masterPath": "public/assets/characters/pixel/masters/alistair.png",
+      "preparePath": "public/assets/characters/pixel/combat/alistair/prepare.png",
+      "master": {
+        "unitId": "alistair",
+        "assetRole": "master",
+        "path": "public/assets/characters/pixel/masters/alistair.png",
+        "sha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
+        "fullSpriteMetrics": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            158,
+            110,
+            354,
+            458
+          ],
+          "width": 196,
+          "height": 348,
+          "margins": {
+            "left": 158,
+            "right": 158,
+            "top": 110,
+            "bottom": 54
+          },
+          "authoritativeForBodyScale": false
+        },
+        "bodyMetrics": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            198,
+            110,
+            354,
+            456
+          ],
+          "bodyTop": 110,
+          "bodyBottom": 456,
+          "bodyWidth": 156,
+          "bodyHeight": 346,
+          "headBounds": [
+            240,
+            110,
+            316,
+            204
+          ],
+          "headTop": 110,
+          "headBottom": 204,
+          "headWidth": 76,
+          "headHeight": 94,
+          "shoulderWidth": 148,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            276.0,
+            283.0
+          ]
+        }
+      },
+      "prepare": {
+        "unitId": "alistair",
+        "assetRole": "prepare",
+        "path": "public/assets/characters/pixel/combat/alistair/prepare.png",
+        "sha256": "e824e2f939d377594449f15c1f78e0408291cef281478b9d6e25a8531f670f54",
+        "fullSpriteMetrics": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            151,
+            111,
+            362,
+            458
+          ],
+          "width": 211,
+          "height": 347,
+          "margins": {
+            "left": 151,
+            "right": 150,
+            "top": 111,
+            "bottom": 54
+          },
+          "authoritativeForBodyScale": false
+        },
+        "bodyMetrics": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            198,
+            111,
+            362,
+            456
+          ],
+          "bodyTop": 111,
+          "bodyBottom": 456,
+          "bodyWidth": 164,
+          "bodyHeight": 345,
+          "headBounds": [
+            245,
+            111,
+            322,
+            205
+          ],
+          "headTop": 111,
+          "headBottom": 205,
+          "headWidth": 77,
+          "headHeight": 94,
+          "shoulderWidth": 154,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            280.0,
+            283.5
+          ]
+        }
+      },
+      "fullSpriteMetrics": {
+        "master": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            158,
+            110,
+            354,
+            458
+          ],
+          "width": 196,
+          "height": 348,
+          "margins": {
+            "left": 158,
+            "right": 158,
+            "top": 110,
+            "bottom": 54
+          },
+          "authoritativeForBodyScale": false
+        },
+        "prepare": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            151,
+            111,
+            362,
+            458
+          ],
+          "width": 211,
+          "height": 347,
+          "margins": {
+            "left": 151,
+            "right": 150,
+            "top": 111,
+            "bottom": 54
+          },
+          "authoritativeForBodyScale": false
+        }
+      },
+      "bodyMetrics": {
+        "master": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            198,
+            110,
+            354,
+            456
+          ],
+          "bodyTop": 110,
+          "bodyBottom": 456,
+          "bodyWidth": 156,
+          "bodyHeight": 346,
+          "headBounds": [
+            240,
+            110,
+            316,
+            204
+          ],
+          "headTop": 110,
+          "headBottom": 204,
+          "headWidth": 76,
+          "headHeight": 94,
+          "shoulderWidth": 148,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            276.0,
+            283.0
+          ]
+        },
+        "prepare": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            198,
+            111,
+            362,
+            456
+          ],
+          "bodyTop": 111,
+          "bodyBottom": 456,
+          "bodyWidth": 164,
+          "bodyHeight": 345,
+          "headBounds": [
+            245,
+            111,
+            322,
+            205
+          ],
+          "headTop": 111,
+          "headBottom": 205,
+          "headWidth": 77,
+          "headHeight": 94,
+          "shoulderWidth": 154,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            280.0,
+            283.5
+          ]
+        }
+      },
+      "comparison": {
+        "masterVsPrepareParity": "PASS",
+        "bodyHeightDeltaPx": -1,
+        "bodyHeightRatio": 0.9971,
+        "perceivedMass": "CONTEXTUAL",
+        "weaponEnvelopeDistortion": "PRESENT_BUT_NOT_PRIMARY"
+      },
+      "runtime": {
+        "travel": "REFERENCE",
+        "companyRegister": "REFERENCE",
+        "strategic": "REFERENCE",
+        "combatStage": "REFERENCE",
+        "presentationPolicy": {
+          "travel": "MASTER full canvas; same CSS master scale and slot scale for all eight lineup members",
+          "companyRegister": "MASTER full canvas in selected-unit detail; shared object-fit contain and scale(1.3)",
+          "strategic": "prepare; common worldUnitsPerPixel=0.00625 and scaleCorrection=1",
+          "combatStage": "prepare; common worldUnitsPerPixel=0.00625 and per-pose scaleCorrection=1"
+        },
+        "runtimeAddsUnitSpecificScaleDiscrepancy": false
+      },
+      "result": "PASS_REFERENCE"
+    },
+    {
+      "unitId": "white_mage",
+      "displayName": "Marian",
+      "masterPath": "public/assets/characters/pixel/masters/white_mage.png",
+      "preparePath": "public/assets/characters/pixel/combat/white_mage/prepare.png",
+      "master": {
+        "unitId": "white_mage",
+        "assetRole": "master",
+        "path": "public/assets/characters/pixel/masters/white_mage.png",
+        "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda",
+        "fullSpriteMetrics": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            171,
+            88,
+            341,
+            463
+          ],
+          "width": 170,
+          "height": 375,
+          "margins": {
+            "left": 171,
+            "right": 171,
+            "top": 88,
+            "bottom": 49
+          },
+          "authoritativeForBodyScale": false
+        },
+        "bodyMetrics": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            205,
+            136,
+            332,
+            456
+          ],
+          "bodyTop": 136,
+          "bodyBottom": 456,
+          "bodyWidth": 127,
+          "bodyHeight": 320,
+          "headBounds": [
+            242,
+            136,
+            302,
+            202
+          ],
+          "headTop": 136,
+          "headBottom": 202,
+          "headWidth": 60,
+          "headHeight": 66,
+          "shoulderWidth": 116,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            268.5,
+            296.0
+          ]
+        }
+      },
+      "prepare": {
+        "unitId": "white_mage",
+        "assetRole": "prepare",
+        "path": "public/assets/characters/pixel/combat/white_mage/prepare.png",
+        "sha256": "1ab84b7bef8ff1e72b7ece90d0e8fc8f6e4a1ec6b2c4f76530b49af2b4f90a2e",
+        "fullSpriteMetrics": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            173,
+            89,
+            339,
+            463
+          ],
+          "width": 166,
+          "height": 374,
+          "margins": {
+            "left": 173,
+            "right": 173,
+            "top": 89,
+            "bottom": 49
+          },
+          "authoritativeForBodyScale": false
+        },
+        "bodyMetrics": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            207,
+            141,
+            333,
+            456
+          ],
+          "bodyTop": 141,
+          "bodyBottom": 456,
+          "bodyWidth": 126,
+          "bodyHeight": 315,
+          "headBounds": [
+            245,
+            141,
+            304,
+            205
+          ],
+          "headTop": 141,
+          "headBottom": 205,
+          "headWidth": 59,
+          "headHeight": 64,
+          "shoulderWidth": 116,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            270.0,
+            298.5
+          ]
+        }
+      },
+      "fullSpriteMetrics": {
+        "master": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            171,
+            88,
+            341,
+            463
+          ],
+          "width": 170,
+          "height": 375,
+          "margins": {
+            "left": 171,
+            "right": 171,
+            "top": 88,
+            "bottom": 49
+          },
+          "authoritativeForBodyScale": false
+        },
+        "prepare": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            173,
+            89,
+            339,
+            463
+          ],
+          "width": 166,
+          "height": 374,
+          "margins": {
+            "left": 173,
+            "right": 173,
+            "top": 89,
+            "bottom": 49
+          },
+          "authoritativeForBodyScale": false
+        }
+      },
+      "bodyMetrics": {
+        "master": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            205,
+            136,
+            332,
+            456
+          ],
+          "bodyTop": 136,
+          "bodyBottom": 456,
+          "bodyWidth": 127,
+          "bodyHeight": 320,
+          "headBounds": [
+            242,
+            136,
+            302,
+            202
+          ],
+          "headTop": 136,
+          "headBottom": 202,
+          "headWidth": 60,
+          "headHeight": 66,
+          "shoulderWidth": 116,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            268.5,
+            296.0
+          ]
+        },
+        "prepare": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            207,
+            141,
+            333,
+            456
+          ],
+          "bodyTop": 141,
+          "bodyBottom": 456,
+          "bodyWidth": 126,
+          "bodyHeight": 315,
+          "headBounds": [
+            245,
+            141,
+            304,
+            205
+          ],
+          "headTop": 141,
+          "headBottom": 205,
+          "headWidth": 59,
+          "headHeight": 64,
+          "shoulderWidth": 116,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            270.0,
+            298.5
+          ]
+        }
+      },
+      "comparison": {
+        "masterVsPrepareParity": "PASS",
+        "bodyHeightDeltaPx": -5,
+        "bodyHeightRatio": 0.9844,
+        "perceivedMass": "CONTEXTUAL",
+        "weaponEnvelopeDistortion": "PRESENT_BUT_NOT_PRIMARY"
+      },
+      "runtime": {
+        "travel": "REFERENCE",
+        "companyRegister": "REFERENCE",
+        "strategic": "REFERENCE",
+        "combatStage": "REFERENCE",
+        "presentationPolicy": {
+          "travel": "MASTER full canvas; same CSS master scale and slot scale for all eight lineup members",
+          "companyRegister": "MASTER full canvas in selected-unit detail; shared object-fit contain and scale(1.3)",
+          "strategic": "prepare; common worldUnitsPerPixel=0.00625 and scaleCorrection=1",
+          "combatStage": "prepare; common worldUnitsPerPixel=0.00625 and per-pose scaleCorrection=1"
+        },
+        "runtimeAddsUnitSpecificScaleDiscrepancy": false
+      },
+      "result": "PASS_REFERENCE"
+    },
+    {
+      "unitId": "dark_mage",
+      "displayName": "Elara",
+      "masterPath": "public/assets/characters/pixel/masters/dark_mage.png",
+      "preparePath": "public/assets/characters/pixel/combat/dark_mage/prepare.png",
+      "master": {
+        "unitId": "dark_mage",
+        "assetRole": "master",
+        "path": "public/assets/characters/pixel/masters/dark_mage.png",
+        "sha256": "a6d4e3d518d9fff42e7155b9c5f0eb47aae5ddc7c1ef499ecfd8c33a677b8476",
+        "fullSpriteMetrics": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            177,
+            118,
+            335,
+            456
+          ],
+          "width": 158,
+          "height": 338,
+          "margins": {
+            "left": 177,
+            "right": 177,
+            "top": 118,
+            "bottom": 56
+          },
+          "authoritativeForBodyScale": false
+        },
+        "bodyMetrics": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            201,
+            154,
+            329,
+            456
+          ],
+          "bodyTop": 154,
+          "bodyBottom": 456,
+          "bodyWidth": 128,
+          "bodyHeight": 302,
+          "headBounds": [
+            226,
+            154,
+            295,
+            219
+          ],
+          "headTop": 154,
+          "headBottom": 219,
+          "headWidth": 69,
+          "headHeight": 65,
+          "shoulderWidth": 124,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            265.0,
+            305.0
+          ]
+        }
+      },
+      "prepare": {
+        "unitId": "dark_mage",
+        "assetRole": "prepare",
+        "path": "public/assets/characters/pixel/combat/dark_mage/prepare.png",
+        "sha256": "87fd9e23e511b840a0ddc1e4d038076d9a488961ac8bbd16c4f0dc9574947cac",
+        "fullSpriteMetrics": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            166,
+            118,
+            346,
+            456
+          ],
+          "width": 180,
+          "height": 338,
+          "margins": {
+            "left": 166,
+            "right": 166,
+            "top": 118,
+            "bottom": 56
+          },
+          "authoritativeForBodyScale": false
+        },
+        "bodyMetrics": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            190,
+            158,
+            341,
+            456
+          ],
+          "bodyTop": 158,
+          "bodyBottom": 456,
+          "bodyWidth": 151,
+          "bodyHeight": 298,
+          "headBounds": [
+            216,
+            158,
+            300,
+            219
+          ],
+          "headTop": 158,
+          "headBottom": 219,
+          "headWidth": 84,
+          "headHeight": 61,
+          "shoulderWidth": 127,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            265.5,
+            307.0
+          ]
+        }
+      },
+      "fullSpriteMetrics": {
+        "master": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            177,
+            118,
+            335,
+            456
+          ],
+          "width": 158,
+          "height": 338,
+          "margins": {
+            "left": 177,
+            "right": 177,
+            "top": 118,
+            "bottom": 56
+          },
+          "authoritativeForBodyScale": false
+        },
+        "prepare": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            166,
+            118,
+            346,
+            456
+          ],
+          "width": 180,
+          "height": 338,
+          "margins": {
+            "left": 166,
+            "right": 166,
+            "top": 118,
+            "bottom": 56
+          },
+          "authoritativeForBodyScale": false
+        }
+      },
+      "bodyMetrics": {
+        "master": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            201,
+            154,
+            329,
+            456
+          ],
+          "bodyTop": 154,
+          "bodyBottom": 456,
+          "bodyWidth": 128,
+          "bodyHeight": 302,
+          "headBounds": [
+            226,
+            154,
+            295,
+            219
+          ],
+          "headTop": 154,
+          "headBottom": 219,
+          "headWidth": 69,
+          "headHeight": 65,
+          "shoulderWidth": 124,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            265.0,
+            305.0
+          ]
+        },
+        "prepare": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            190,
+            158,
+            341,
+            456
+          ],
+          "bodyTop": 158,
+          "bodyBottom": 456,
+          "bodyWidth": 151,
+          "bodyHeight": 298,
+          "headBounds": [
+            216,
+            158,
+            300,
+            219
+          ],
+          "headTop": 158,
+          "headBottom": 219,
+          "headWidth": 84,
+          "headHeight": 61,
+          "shoulderWidth": 127,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            265.5,
+            307.0
+          ]
+        }
+      },
+      "comparison": {
+        "masterVsPrepareParity": "PASS",
+        "bodyHeightDeltaPx": -4,
+        "bodyHeightRatio": 0.9868,
+        "perceivedMass": "CONTEXTUAL",
+        "weaponEnvelopeDistortion": "PRESENT_BUT_NOT_PRIMARY"
+      },
+      "runtime": {
+        "travel": "REFERENCE",
+        "companyRegister": "REFERENCE",
+        "strategic": "REFERENCE",
+        "combatStage": "REFERENCE",
+        "presentationPolicy": {
+          "travel": "MASTER full canvas; same CSS master scale and slot scale for all eight lineup members",
+          "companyRegister": "MASTER full canvas in selected-unit detail; shared object-fit contain and scale(1.3)",
+          "strategic": "prepare; common worldUnitsPerPixel=0.00625 and scaleCorrection=1",
+          "combatStage": "prepare; common worldUnitsPerPixel=0.00625 and per-pose scaleCorrection=1"
+        },
+        "runtimeAddsUnitSpecificScaleDiscrepancy": false
+      },
+      "result": "PASS_REFERENCE"
+    },
+    {
+      "unitId": "archer",
+      "displayName": "Kestrel",
+      "masterPath": "public/assets/characters/pixel/masters/archer.png",
+      "preparePath": "public/assets/characters/pixel/combat/archer/prepare.png",
+      "master": {
+        "unitId": "archer",
+        "assetRole": "master",
+        "path": "public/assets/characters/pixel/masters/archer.png",
+        "sha256": "cf9f50e30fe534ea9637857be43774ad19a39dbb721b0834a9bec54dd9e0c022",
+        "fullSpriteMetrics": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            162,
+            121,
+            351,
+            456
+          ],
+          "width": 189,
+          "height": 335,
+          "margins": {
+            "left": 162,
+            "right": 161,
+            "top": 121,
+            "bottom": 56
+          },
+          "authoritativeForBodyScale": false
+        },
+        "bodyMetrics": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            201,
+            121,
+            323,
+            456
+          ],
+          "bodyTop": 121,
+          "bodyBottom": 456,
+          "bodyWidth": 122,
+          "bodyHeight": 335,
+          "headBounds": [
+            220,
+            121,
+            299,
+            215
+          ],
+          "headTop": 121,
+          "headBottom": 215,
+          "headWidth": 79,
+          "headHeight": 94,
+          "shoulderWidth": 112,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            262.0,
+            288.5
+          ]
+        }
+      },
+      "prepare": {
+        "unitId": "archer",
+        "assetRole": "prepare",
+        "path": "public/assets/characters/pixel/combat/archer/prepare.png",
+        "sha256": "475ddd427dc2e3d8ced69fbe58be01721ab42b0a0bd7dd20b024e2829ae13a7c",
+        "fullSpriteMetrics": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            157,
+            121,
+            356,
+            457
+          ],
+          "width": 199,
+          "height": 336,
+          "margins": {
+            "left": 157,
+            "right": 156,
+            "top": 121,
+            "bottom": 55
+          },
+          "authoritativeForBodyScale": false
+        },
+        "bodyMetrics": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            196,
+            121,
+            322,
+            456
+          ],
+          "bodyTop": 121,
+          "bodyBottom": 456,
+          "bodyWidth": 126,
+          "bodyHeight": 335,
+          "headBounds": [
+            218,
+            121,
+            301,
+            216
+          ],
+          "headTop": 121,
+          "headBottom": 216,
+          "headWidth": 83,
+          "headHeight": 95,
+          "shoulderWidth": 114,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            259.0,
+            288.5
+          ]
+        }
+      },
+      "fullSpriteMetrics": {
+        "master": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            162,
+            121,
+            351,
+            456
+          ],
+          "width": 189,
+          "height": 335,
+          "margins": {
+            "left": 162,
+            "right": 161,
+            "top": 121,
+            "bottom": 56
+          },
+          "authoritativeForBodyScale": false
+        },
+        "prepare": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            157,
+            121,
+            356,
+            457
+          ],
+          "width": 199,
+          "height": 336,
+          "margins": {
+            "left": 157,
+            "right": 156,
+            "top": 121,
+            "bottom": 55
+          },
+          "authoritativeForBodyScale": false
+        }
+      },
+      "bodyMetrics": {
+        "master": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            201,
+            121,
+            323,
+            456
+          ],
+          "bodyTop": 121,
+          "bodyBottom": 456,
+          "bodyWidth": 122,
+          "bodyHeight": 335,
+          "headBounds": [
+            220,
+            121,
+            299,
+            215
+          ],
+          "headTop": 121,
+          "headBottom": 215,
+          "headWidth": 79,
+          "headHeight": 94,
+          "shoulderWidth": 112,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            262.0,
+            288.5
+          ]
+        },
+        "prepare": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            196,
+            121,
+            322,
+            456
+          ],
+          "bodyTop": 121,
+          "bodyBottom": 456,
+          "bodyWidth": 126,
+          "bodyHeight": 335,
+          "headBounds": [
+            218,
+            121,
+            301,
+            216
+          ],
+          "headTop": 121,
+          "headBottom": 216,
+          "headWidth": 83,
+          "headHeight": 95,
+          "shoulderWidth": 114,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            259.0,
+            288.5
+          ]
+        }
+      },
+      "comparison": {
+        "masterVsPrepareParity": "PASS",
+        "bodyHeightDeltaPx": 0,
+        "bodyHeightRatio": 1.0,
+        "perceivedMass": "CONTEXTUAL",
+        "weaponEnvelopeDistortion": "PRESENT_BUT_NOT_PRIMARY"
+      },
+      "runtime": {
+        "travel": "REFERENCE",
+        "companyRegister": "REFERENCE",
+        "strategic": "REFERENCE",
+        "combatStage": "REFERENCE",
+        "presentationPolicy": {
+          "travel": "MASTER full canvas; same CSS master scale and slot scale for all eight lineup members",
+          "companyRegister": "MASTER full canvas in selected-unit detail; shared object-fit contain and scale(1.3)",
+          "strategic": "prepare; common worldUnitsPerPixel=0.00625 and scaleCorrection=1",
+          "combatStage": "prepare; common worldUnitsPerPixel=0.00625 and per-pose scaleCorrection=1"
+        },
+        "runtimeAddsUnitSpecificScaleDiscrepancy": false
+      },
+      "result": "PASS_REFERENCE"
+    },
+    {
+      "unitId": "rogue",
+      "displayName": "Cedric",
+      "masterPath": "public/assets/characters/pixel/masters/rogue.png",
+      "preparePath": "public/assets/characters/pixel/combat/rogue/prepare.png",
+      "master": {
+        "unitId": "rogue",
+        "assetRole": "master",
+        "path": "public/assets/characters/pixel/masters/rogue.png",
+        "sha256": "8216c95d16aec061331a212b0717ba155f7ff32b32bfaca1decbb27f788c3c14",
+        "fullSpriteMetrics": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            127,
+            128,
+            396,
+            456
+          ],
+          "width": 269,
+          "height": 328,
+          "margins": {
+            "left": 127,
+            "right": 116,
+            "top": 128,
+            "bottom": 56
+          },
+          "authoritativeForBodyScale": false
+        },
+        "bodyMetrics": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            196,
+            128,
+            365,
+            456
+          ],
+          "bodyTop": 128,
+          "bodyBottom": 456,
+          "bodyWidth": 169,
+          "bodyHeight": 328,
+          "headBounds": [
+            243,
+            128,
+            319,
+            218
+          ],
+          "headTop": 128,
+          "headBottom": 218,
+          "headWidth": 76,
+          "headHeight": 90,
+          "shoulderWidth": 144,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            280.5,
+            292.0
+          ]
+        }
+      },
+      "prepare": {
+        "unitId": "rogue",
+        "assetRole": "prepare",
+        "path": "public/assets/characters/pixel/combat/rogue/prepare.png",
+        "sha256": "1f398114dae0dd38b6ebc67739a6b95d4d350e89cd30a39a9c28eb0517f183b9",
+        "fullSpriteMetrics": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            114,
+            128,
+            409,
+            457
+          ],
+          "width": 295,
+          "height": 329,
+          "margins": {
+            "left": 114,
+            "right": 103,
+            "top": 128,
+            "bottom": 55
+          },
+          "authoritativeForBodyScale": false
+        },
+        "bodyMetrics": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            176,
+            128,
+            374,
+            456
+          ],
+          "bodyTop": 128,
+          "bodyBottom": 456,
+          "bodyWidth": 198,
+          "bodyHeight": 328,
+          "headBounds": [
+            249,
+            128,
+            328,
+            219
+          ],
+          "headTop": 128,
+          "headBottom": 219,
+          "headWidth": 79,
+          "headHeight": 91,
+          "shoulderWidth": 146,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            275.0,
+            292.0
+          ]
+        }
+      },
+      "fullSpriteMetrics": {
+        "master": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            127,
+            128,
+            396,
+            456
+          ],
+          "width": 269,
+          "height": 328,
+          "margins": {
+            "left": 127,
+            "right": 116,
+            "top": 128,
+            "bottom": 56
+          },
+          "authoritativeForBodyScale": false
+        },
+        "prepare": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            114,
+            128,
+            409,
+            457
+          ],
+          "width": 295,
+          "height": 329,
+          "margins": {
+            "left": 114,
+            "right": 103,
+            "top": 128,
+            "bottom": 55
+          },
+          "authoritativeForBodyScale": false
+        }
+      },
+      "bodyMetrics": {
+        "master": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            196,
+            128,
+            365,
+            456
+          ],
+          "bodyTop": 128,
+          "bodyBottom": 456,
+          "bodyWidth": 169,
+          "bodyHeight": 328,
+          "headBounds": [
+            243,
+            128,
+            319,
+            218
+          ],
+          "headTop": 128,
+          "headBottom": 218,
+          "headWidth": 76,
+          "headHeight": 90,
+          "shoulderWidth": 144,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            280.5,
+            292.0
+          ]
+        },
+        "prepare": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            176,
+            128,
+            374,
+            456
+          ],
+          "bodyTop": 128,
+          "bodyBottom": 456,
+          "bodyWidth": 198,
+          "bodyHeight": 328,
+          "headBounds": [
+            249,
+            128,
+            328,
+            219
+          ],
+          "headTop": 128,
+          "headBottom": 219,
+          "headWidth": 79,
+          "headHeight": 91,
+          "shoulderWidth": 146,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            275.0,
+            292.0
+          ]
+        }
+      },
+      "comparison": {
+        "masterVsPrepareParity": "PASS",
+        "bodyHeightDeltaPx": 0,
+        "bodyHeightRatio": 1.0,
+        "perceivedMass": "CONTEXTUAL",
+        "weaponEnvelopeDistortion": "PRESENT_BUT_NOT_PRIMARY"
+      },
+      "runtime": {
+        "travel": "REFERENCE",
+        "companyRegister": "REFERENCE",
+        "strategic": "REFERENCE",
+        "combatStage": "REFERENCE",
+        "presentationPolicy": {
+          "travel": "MASTER full canvas; same CSS master scale and slot scale for all eight lineup members",
+          "companyRegister": "MASTER full canvas in selected-unit detail; shared object-fit contain and scale(1.3)",
+          "strategic": "prepare; common worldUnitsPerPixel=0.00625 and scaleCorrection=1",
+          "combatStage": "prepare; common worldUnitsPerPixel=0.00625 and per-pose scaleCorrection=1"
+        },
+        "runtimeAddsUnitSpecificScaleDiscrepancy": false
+      },
+      "result": "PASS_REFERENCE"
+    },
+    {
+      "unitId": "lancer",
+      "displayName": "Garen",
+      "masterPath": "public/assets/characters/pixel/masters/lancer.png",
+      "preparePath": "public/assets/characters/pixel/combat/lancer/prepare.png",
+      "master": {
+        "unitId": "lancer",
+        "assetRole": "master",
+        "path": "public/assets/characters/pixel/masters/lancer.png",
+        "sha256": "2c8c8b443ff6b833abc213f9cdd85a64d3c07a36ba6907b7c849ef2e9ae075c1",
+        "fullSpriteMetrics": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            165,
+            88,
+            349,
+            456
+          ],
+          "width": 184,
+          "height": 368,
+          "margins": {
+            "left": 165,
+            "right": 163,
+            "top": 88,
+            "bottom": 56
+          },
+          "authoritativeForBodyScale": false
+        },
+        "bodyMetrics": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            218,
+            158,
+            349,
+            456
+          ],
+          "bodyTop": 158,
+          "bodyBottom": 456,
+          "bodyWidth": 131,
+          "bodyHeight": 298,
+          "headBounds": [
+            248,
+            158,
+            311,
+            231
+          ],
+          "headTop": 158,
+          "headBottom": 231,
+          "headWidth": 63,
+          "headHeight": 73,
+          "shoulderWidth": 116,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            283.5,
+            307.0
+          ]
+        }
+      },
+      "prepare": {
+        "unitId": "lancer",
+        "assetRole": "prepare",
+        "path": "public/assets/characters/pixel/combat/lancer/prepare.png",
+        "sha256": "4b9a2a407e42494c943b1eb3a0710d541502ebd14dbf5a0be38c837d5bd86776",
+        "fullSpriteMetrics": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            154,
+            93,
+            355,
+            456
+          ],
+          "width": 201,
+          "height": 363,
+          "margins": {
+            "left": 154,
+            "right": 157,
+            "top": 93,
+            "bottom": 56
+          },
+          "authoritativeForBodyScale": false
+        },
+        "bodyMetrics": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            211,
+            163,
+            355,
+            456
+          ],
+          "bodyTop": 163,
+          "bodyBottom": 456,
+          "bodyWidth": 144,
+          "bodyHeight": 293,
+          "headBounds": [
+            245,
+            163,
+            313,
+            235
+          ],
+          "headTop": 163,
+          "headBottom": 235,
+          "headWidth": 68,
+          "headHeight": 72,
+          "shoulderWidth": 119,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            283.0,
+            309.5
+          ]
+        }
+      },
+      "fullSpriteMetrics": {
+        "master": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            165,
+            88,
+            349,
+            456
+          ],
+          "width": 184,
+          "height": 368,
+          "margins": {
+            "left": 165,
+            "right": 163,
+            "top": 88,
+            "bottom": 56
+          },
+          "authoritativeForBodyScale": false
+        },
+        "prepare": {
+          "canvasWidth": 512,
+          "canvasHeight": 512,
+          "baseline": 456,
+          "alphaBounds": [
+            154,
+            93,
+            355,
+            456
+          ],
+          "width": 201,
+          "height": 363,
+          "margins": {
+            "left": 154,
+            "right": 157,
+            "top": 93,
+            "bottom": 56
+          },
+          "authoritativeForBodyScale": false
+        }
+      },
+      "bodyMetrics": {
+        "master": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            218,
+            158,
+            349,
+            456
+          ],
+          "bodyTop": 158,
+          "bodyBottom": 456,
+          "bodyWidth": 131,
+          "bodyHeight": 298,
+          "headBounds": [
+            248,
+            158,
+            311,
+            231
+          ],
+          "headTop": 158,
+          "headBottom": 231,
+          "headWidth": 63,
+          "headHeight": 73,
+          "shoulderWidth": 116,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            283.5,
+            307.0
+          ]
+        },
+        "prepare": {
+          "measurementMethod": "manual landmark annotation on current production pixels; half-open bounds; weapons and extreme cape/scarf extensions excluded",
+          "measurementUncertaintyPx": 3,
+          "bodyBounds": [
+            211,
+            163,
+            355,
+            456
+          ],
+          "bodyTop": 163,
+          "bodyBottom": 456,
+          "bodyWidth": 144,
+          "bodyHeight": 293,
+          "headBounds": [
+            245,
+            163,
+            313,
+            235
+          ],
+          "headTop": 163,
+          "headBottom": 235,
+          "headWidth": 68,
+          "headHeight": 72,
+          "shoulderWidth": 119,
+          "bodyPixelArea": null,
+          "bodyOccupancyRatio": null,
+          "bodyAreaReliability": "NOT_REPORTED: semantic weapon/cape separation is not deterministically recoverable from flattened RGBA pixels",
+          "bodyCenter": [
+            283.0,
+            309.5
+          ]
+        }
+      },
+      "comparison": {
+        "masterVsPrepareParity": "PASS",
+        "bodyHeightDeltaPx": -5,
+        "bodyHeightRatio": 0.9832,
+        "perceivedMass": "LOWER_THAN_ARMORED_AND_WIDE_CAPE_PEERS",
+        "weaponEnvelopeDistortion": "YES_VERTICAL_SPEAR"
+      },
+      "runtime": {
+        "travel": "UNDERSIZED",
+        "companyRegister": "UNDERSIZED",
+        "strategic": "UNDERSIZED",
+        "combatStage": "UNDERSIZED",
+        "presentationPolicy": {
+          "travel": "MASTER full canvas; same CSS master scale and slot scale for all eight lineup members",
+          "companyRegister": "MASTER full canvas in selected-unit detail; shared object-fit contain and scale(1.3)",
+          "strategic": "prepare; common worldUnitsPerPixel=0.00625 and scaleCorrection=1",
+          "combatStage": "prepare; common worldUnitsPerPixel=0.00625 and per-pose scaleCorrection=1"
+        },
+        "runtimeAddsUnitSpecificScaleDiscrepancy": false
+      },
+      "result": "FOLLOW_UP_REQUIRED"
+    }
+  ],
+  "standardHumanoidComparison": {
+    "masterBodyHeightPx": {
+      "Alistair": 346,
+      "Kestrel": 335,
+      "Cedric": 328,
+      "Garen": 298
+    },
+    "masterBodyWidthPx": {
+      "Alistair": 156,
+      "Kestrel": 122,
+      "Cedric": 169,
+      "Garen": 131
+    }
+  },
+  "lancerQuestions": {
+    "A_headToFootSmaller": "YES \u2014 298px versus 328\u2013346px peers",
+    "B_bodyWidthMateriallyNarrower": "NO versus Kestrel; narrower than Alistair/Cedric, consistent with leaner armor and stance",
+    "C_headHelmetSmaller": "YES \u2014 73px high versus 90\u201394px peers",
+    "D_legsBodyProportionsSmaller": "YES in absolute pixels; internal proportions remain coherent",
+    "E_leanerSilhouetteOnly": "NO \u2014 lean mass contributes, but height and head size independently prove scale loss",
+    "F_masterPrepareBodyScaleCoherent": "YES \u2014 293/298 = 98.3%",
+    "G_spearInflatesFullSpriteMetrics": "YES",
+    "H_transparentPaddingContributes": "NO \u2014 common canvas/baseline and adequate margins; padding does not alter the equal-transform body measurement",
+    "I_visibleInRuntime": "YES \u2014 current surfaces preserve common pixel/canvas transforms, so the smaller body persists",
+    "J_scaleIncreaseBreaksRelationship": "NO at a conservative factor; 1.12x brings body height to 334px and retains about 44px top spear clearance on a 512px canvas when scaled around the canonical pivot"
+  },
+  "correction": {
+    "required": true,
+    "recommendedFactor": 1.1242,
+    "recommendedAction": "Prepare a separate candidate that scales the entire Lancer identity uniformly by 1.12 around the canonical pivot/baseline: Master, prepare, dash, attack, cast, and dependent manifest bounds together. Do not change worldUnitsPerPixel or only one pose. Re-run crop/safe-margin and the four runtime surfaces before any promotion.",
+    "performed": false
+  },
+  "runtimeAudit": {
+    "evidenceMode": "current implementation inspection plus focused live screenshots",
+    "liveProofStatus": "PASS",
+    "liveProofReport": "public/assets/dev/option-c/hero-scale-parity-v1/runtime-proof/runtime-proof-report.json",
+    "liveProofSourceCoverage": {
+      "masters": true,
+      "primaryPrepare": true
+    },
+    "travel": {
+      "result": "UNDERSIZED",
+      "unitSpecificRuntimeScale": false
+    },
+    "companyRegister": {
+      "result": "UNDERSIZED",
+      "unitSpecificRuntimeScale": false
+    },
+    "strategic": {
+      "result": "UNDERSIZED",
+      "unitSpecificRuntimeScale": false
+    },
+    "combatStage": {
+      "result": "UNDERSIZED",
+      "unitSpecificRuntimeScale": false
+    }
+  },
+  "protectedAssets": {
+    "expectedProductionMasterCount": 37,
+    "expectedProductionCombatPoseCount": 100,
+    "comparisons": {
+      "productionMasters": {
+        "beforeCount": 37,
+        "afterCount": 37,
+        "beforeManifestSha256": "061cb07496611cac8c890b66280927e2b5b8b0dfc2a38cae54841a653dc22599",
+        "afterManifestSha256": "061cb07496611cac8c890b66280927e2b5b8b0dfc2a38cae54841a653dc22599",
+        "changed": false
+      },
+      "productionCombatPoses": {
+        "beforeCount": 100,
+        "afterCount": 100,
+        "beforeManifestSha256": "a4a2eef6d395e423ee04abd76d7dd2c5dd725de2d680385d80876123e2fddf94",
+        "afterManifestSha256": "a4a2eef6d395e423ee04abd76d7dd2c5dd725de2d680385d80876123e2fddf94",
+        "changed": false
+      },
+      "militiaCandidates": {
+        "beforeCount": 32,
+        "afterCount": 32,
+        "beforeManifestSha256": "ff33559f5686cc0bbb110a53832cd6be15605fc68e7152a87592310c28f65f18",
+        "afterManifestSha256": "ff33559f5686cc0bbb110a53832cd6be15605fc68e7152a87592310c28f65f18",
+        "changed": false
+      }
+    },
+    "status": "PASS"
+  },
+  "changes": {
+    "productionMastersChanged": 0,
+    "productionCombatPosesChanged": 0,
+    "militiaCandidatesChanged": 0,
+    "gameplayChanged": false,
+    "uiChanged": false,
+    "combatLogicChanged": false,
+    "newArtGenerated": false
+  },
+  "qaPaths": [
+    "public/assets/dev/option-c/hero-scale-parity-v1/qa/hero-scale-parity-master-prepare.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/qa/hero-scale-parity-body-bounds.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/qa/hero-scale-parity-silhouette.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/qa/hero-scale-parity-report.json",
+    "public/assets/dev/option-c/hero-scale-parity-v1/runtime-proof/travel-company-lineup.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/runtime-proof/company-register-garen.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/runtime-proof/strategic-primary-heroes.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/runtime-proof/combat-stage-garen-prepare.png",
+    "public/assets/dev/option-c/hero-scale-parity-v1/runtime-proof/runtime-proof-report.json"
+  ]
+}
