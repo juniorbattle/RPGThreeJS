@@ -59,7 +59,7 @@ const ADAPTIVE_EVENT_DIALOGUES = new Set([
 const OPTIONAL_COMBAT_IDS = new Set([
   'forest_patrol', 'spider_nest', 'serpent_reprisals', 'serpent_checkpoint',
   'ruins_guardians', 'serpent_hunters', 'serpent_duelist_trial',
-  'troll_crossing', 'young_dragon_roost',
+  'troll_crossing', 'young_dragon_roost', 'witness_road_clash',
 ]);
 
 function roundTrip(state: GameState): GameState {
@@ -424,12 +424,12 @@ describe('R6 content reachability and reference integrity', () => {
     ));
     expect(unexplained).toEqual([]);
     expect([...LEGACY_COMPATIBILITY_DIALOGUES].every((id) => dialogues.has(id))).toBe(true);
-    expect(dialogues.size).toBe(71);
+    expect(dialogues.size).toBe(73);
   });
 
   it('validates every combat, ATE, R4, and contextual patch/anchor reference', () => {
     const runNodeIds = new Set(generateRunGraph(6100).nodes.map((node) => node.id));
-    expect(combatConfigs.size).toBe(17);
+    expect(combatConfigs.size).toBe(18);
     for (const combat of combatConfigs.values()) {
       expect(combat.preCombatDialogueId, `${combat.id}:pre`).toBeTruthy();
       expect(combat.postCombatDialogueId, `${combat.id}:post`).toBeTruthy();
@@ -452,14 +452,19 @@ describe('R6 content reachability and reference integrity', () => {
     }
   });
 
-  it('keeps all R4 scenes social and incapable of inventing Shadow knowledge or combat', () => {
+  it('keeps reputation events non-combat except the locked Serpent roadside escalation', () => {
     for (const event of REPUTATION_EVENT_DEFINITIONS) {
       const sequence = dialogues.get(event.dialogueId)!;
       const effects = sequence.steps.flatMap((step) => [
         ...step.effects,
         ...(step.choices ?? []).flatMap((choice) => choice.effects),
       ]);
-      expect(effects.some((effect) => effect.type === 'startCombat'), event.id).toBe(false);
+      const combatEffects = effects.filter((effect) => effect.type === 'startCombat');
+      if (event.id === 'roadside-intimidation') {
+        expect(combatEffects).toEqual([{ type: 'startCombat', combatId: 'serpent_reprisals' }]);
+      } else {
+        expect(combatEffects, event.id).toEqual([]);
+      }
       expect(effects.some((effect) => effect.type === 'setFlag' && [
         'shadowFragments', 'shadowEvidence', 'shadowRevealed', 'shadowConcealed',
       ].includes(effect.key)), event.id).toBe(false);
