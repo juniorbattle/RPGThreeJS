@@ -33,7 +33,6 @@ describe('CIN-6D.5 final presentation mode audit', () => {
       COMBAT: 18,
       GAMEPLAY_UI: 2,
     });
-    expect(Object.values(audit.summary.targetModes).reduce((sum: number, value: any) => sum + value, 0));
     expect(Object.values(audit.summary.targetModes).reduce((sum: number, value: any) => sum + value, 0)).toBe(147);
   });
 
