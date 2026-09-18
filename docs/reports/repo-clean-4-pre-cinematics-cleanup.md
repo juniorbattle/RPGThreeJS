@@ -226,6 +226,26 @@ The production environment resolver still fails closed for missing contexts. No 
 
 The branch still requires a complete local gate rerun. The only accepted full-suite failures remain exactly the eleven historical `CasterMotionBackCompat.test.ts` failures.
 
+## Third operator-gate repair
+
+The third local validation run at `7127756` reduced the unexpected failures to three: two presentation-census failures for `lion_finale_judgement:bluff-accepted` and one CIN-6E-A allowlist failure.
+
+The remaining presentation defect was traced to the runtime sequence builder, not to missing staging art. A successful Alaric bluff still inserted the failed-bluff `lie-rebuked` step into the resolved sequence before `bluff-accepted`. The generated presentation plans already model the intended mutually-exclusive branches. `buildLionFinaleJudgement` now emits exactly one of those two steps:
+
+- successful bluff -> `bluff-accepted`;
+- failed bluff -> `lie-rebuked`.
+
+Focused tests now assert that the opposite branch is absent in each case. The existing eight generated credible-bluff presentation variants already match this exclusive shape, so no additional generic or runtime-only presentation exception was introduced.
+
+The CIN-6E-A preproduction runtime allowlist now also authorizes the two tests modified by the consistency repair:
+
+- `src/cinematics/NarrativePresentationRuntime.test.ts`;
+- `src/game/contextualDialogue.test.ts`.
+
+The finalization test has no equivalent `src/game` / `src/cinematics` runtime-diff allowlist, so no unrelated authorization was added there.
+
+The branch still requires one complete local gate rerun. The accepted failure envelope remains exactly the eleven historical `CasterMotionBackCompat.test.ts` failures.
+
 ## Merge gate
 
 ```text
