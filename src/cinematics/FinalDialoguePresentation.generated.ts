@@ -7540,11 +7540,11 @@ export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({
         "stepDirections": [
           {
             "stepId": "3",
-            "speakerId": "maelor",
-            "addressedTo": "survivor",
-            "lookTarget": "survivor",
-            "facing": "RIGHT",
-            "resolution": "DIRECT_RESPONSE"
+            "speakerId": "survivor",
+            "addressedTo": "maelor",
+            "lookTarget": "maelor",
+            "facing": "LEFT",
+            "resolution": "OPPOSING_GROUP"
           },
           {
             "stepId": "3a",
@@ -7556,10 +7556,10 @@ export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({
           },
           {
             "stepId": "3b",
-            "speakerId": "survivor",
-            "addressedTo": "marian",
-            "lookTarget": "marian",
-            "facing": "LEFT",
+            "speakerId": "maelor",
+            "addressedTo": "survivor",
+            "lookTarget": "survivor",
+            "facing": "RIGHT",
             "resolution": "DIRECT_RESPONSE"
           },
           {
@@ -7630,6 +7630,169 @@ export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({
         "rationale": "This focused group preserves every speaker while leaving breathing room between canonical sprites."
       }
     ]
+  },
+  "pre_witness_road_clash": {
+    "dialogueId": "pre_witness_road_clash",
+    "originalMode": "STATIC_TABLEAU",
+    "sourceVideo": null,
+    "sourceVideoClassification": null,
+    "dialogueStartsAfterMedia": true,
+    "normalDialogueDuringVideo": 0,
+    "dialogueStepsOnHold": 0,
+    "choiceStepsOnHold": 0,
+    "finalFrameCast": [],
+    "finalFrameCastReferenceOnly": true,
+    "allowedHoldSpeakers": [],
+    "forbiddenHoldSpeakers": [],
+    "segments": [
+      {
+        "id": "pre_witness_road_clash:segment-1",
+        "mode": "STATIC_TABLEAU",
+        "stepIds": [
+          "1",
+          "2"
+        ],
+        "visibleCast": [
+          "alistair",
+          "survivor"
+        ],
+        "allowedSpeakers": [
+          "alistair",
+          "survivor"
+        ],
+        "forbiddenSpeakers": [],
+        "actors": [
+          {
+            "actorId": "alistair",
+            "screenPosition": "LEFT",
+            "scale": 1,
+            "facing": "RIGHT",
+            "lookTarget": "survivor",
+            "group": "PLAYER_COMPANY",
+            "dramaticSide": "LEFT",
+            "depth": 3,
+            "narrativeRole": "LISTENER",
+            "entryEffect": "FADE_IN"
+          },
+          {
+            "actorId": "survivor",
+            "screenPosition": "RIGHT",
+            "scale": 1,
+            "facing": "LEFT",
+            "lookTarget": "alistair",
+            "group": "LOCAL_CIVILIAN",
+            "dramaticSide": "RIGHT",
+            "depth": 3,
+            "narrativeRole": "LISTENER",
+            "entryEffect": "FADE_IN"
+          }
+        ],
+        "exits": [],
+        "stepDirections": [
+          {
+            "stepId": "1",
+            "speakerId": "survivor",
+            "addressedTo": "alistair",
+            "lookTarget": "alistair",
+            "facing": "LEFT",
+            "resolution": "OPPOSING_GROUP"
+          },
+          {
+            "stepId": "2",
+            "speakerId": "alistair",
+            "addressedTo": "survivor",
+            "lookTarget": "survivor",
+            "facing": "RIGHT",
+            "resolution": "DIRECT_RESPONSE"
+          }
+        ],
+        "transitionFromPrevious": "NONE",
+        "rationale": "Witness Road keeps the survivor opposite the company and stages the combat warning without video."
+      }
+    ]
+  },
+  "post_witness_road_clash": {
+    "dialogueId": "post_witness_road_clash",
+    "originalMode": "STATIC_TABLEAU",
+    "sourceVideo": null,
+    "sourceVideoClassification": null,
+    "dialogueStartsAfterMedia": true,
+    "normalDialogueDuringVideo": 0,
+    "dialogueStepsOnHold": 0,
+    "choiceStepsOnHold": 0,
+    "finalFrameCast": [],
+    "finalFrameCastReferenceOnly": true,
+    "allowedHoldSpeakers": [],
+    "forbiddenHoldSpeakers": [
+      "marian",
+      "maelor"
+    ],
+    "segments": [
+      {
+        "id": "post_witness_road_clash:segment-1",
+        "mode": "STATIC_TABLEAU",
+        "stepIds": [
+          "1",
+          "2"
+        ],
+        "visibleCast": [
+          "marian",
+          "maelor"
+        ],
+        "allowedSpeakers": [
+          "marian",
+          "maelor"
+        ],
+        "forbiddenSpeakers": [],
+        "actors": [
+          {
+            "actorId": "marian",
+            "screenPosition": "LEFT",
+            "scale": 1,
+            "facing": "RIGHT",
+            "lookTarget": "maelor",
+            "group": "PLAYER_COMPANY",
+            "dramaticSide": "LEFT",
+            "depth": 3,
+            "narrativeRole": "LISTENER",
+            "entryEffect": "FADE_IN"
+          },
+          {
+            "actorId": "maelor",
+            "screenPosition": "RIGHT",
+            "scale": 1,
+            "facing": "LEFT",
+            "lookTarget": "marian",
+            "group": "PLAYER_COMPANY",
+            "dramaticSide": "RIGHT",
+            "depth": 3,
+            "narrativeRole": "ADVISER",
+            "entryEffect": "FADE_IN"
+          }
+        ],
+        "exits": [],
+        "stepDirections": [
+          {
+            "stepId": "1",
+            "speakerId": "marian",
+            "addressedTo": "maelor",
+            "lookTarget": "maelor",
+            "facing": "RIGHT",
+            "resolution": "AUTHORED_CONVERSATION_TARGET"
+          },
+          {
+            "stepId": "2",
+            "speakerId": "maelor",
+            "addressedTo": "marian",
+            "lookTarget": "marian",
+            "facing": "LEFT",
+            "resolution": "AUTHORED_CONVERSATION_TARGET"
+          }
+        ],
+        "transitionFromPrevious": "NONE",
+        "rationale": "The aftermath stays inside the company so the combat consequence can be acknowledged without adding a second spectacle beat."
+      }
+    ]
   }
 } as const);
 export const FINAL_DIALOGUE_CANONICAL_PRESENTATION_SHAPES = Object.freeze({
@@ -7673,7 +7836,7 @@ export const FINAL_DIALOGUE_CANONICAL_PRESENTATION_SHAPES = Object.freeze({
   "mystery_treasure": "1@maelor@2|2@sage_seraphine@0|3@maelor@0",
   "mystery_shrine": "1@shrine_apparition@2|2@sage_seraphine@0|3@maelor@0",
   "serpent_informant": "1@serpent_oracle@2|2@sage_seraphine@0|3@maelor@0",
-  "witnesses_on_road": "0a@kestrel@0|0b@marian@0|1@survivor@2|2@survivor@0|2a@alistair@0|2b@survivor@0|3@maelor@0|3a@marian@0|3b@survivor@0|4@survivor@0|4a@kestrel@0|4b@sage_seraphine@0",
+  "witnesses_on_road": "0a@kestrel@0|0b@marian@0|1@survivor@2|2@survivor@0|2a@alistair@0|2b@survivor@0|3@survivor@0|3a@marian@0|3b@maelor@0|4@survivor@0|4a@kestrel@0|4b@sage_seraphine@0",
   "shadow_signs": "1@sage_seraphine@2|2@sage_seraphine@0|2a@elara@0|2b@alistair@0|3@maelor@0|3a@elara@0|3b@sage_seraphine@0",
   "old_shrine_event": "1@sage_seraphine@2|2@sage_seraphine@0|3@maelor@0",
   "lion_finale_judgement": "1@alaric@2",
@@ -7703,7 +7866,9 @@ export const FINAL_DIALOGUE_CANONICAL_PRESENTATION_SHAPES = Object.freeze({
   "rep_event_public_petition": "1@refugee_mother@2|2@refugee_mother@0|3@refugee_mother@0",
   "rep_event_bois_clair_denunciation": "1@refugee_mother@2|2@refugee_mother@0|3@refugee_mother@0",
   "final_refuge": "1@maelor@0|2@sage_seraphine@0|3@maelor@0|4@marian@0|5@alistair@0|6@sage_seraphine@0",
-  "pre_lion_chief": "1@alaric@0|2@alaric@0|3@lion_champion@0|4@lion_champion@0"
+  "pre_lion_chief": "1@alaric@0|2@alaric@0|3@lion_champion@0|4@lion_champion@0",
+  "pre_witness_road_clash": "1@survivor@0|2@alistair@0",
+  "post_witness_road_clash": "1@marian@0|2@maelor@0"
 } as const);
 export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
   "ate_first_refuge_watch": {
