@@ -54,7 +54,7 @@ describe('DialogueView narrative boundaries', () => {
     }
   });
 
-  it('keeps the default painted presentation unchanged', () => {
+  it('retains default painted compatibility for isolated tools without making it a production routing decision', () => {
     const root = document.createElement('div');
     const view = new DialogueView({
       root,

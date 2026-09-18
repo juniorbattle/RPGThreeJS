@@ -5,7 +5,7 @@ import { dialogues } from '../game/content';
 import { ALARIC_AUDIENCE_TABLEAU, createGenericNarrativeTableau } from './NarrativeTableau';
 import { applyFinalDialoguePresentationPlan } from './DialoguePresentationSegments';
 import { createNarrativeDialogueResolver } from './NarrativeDialogueAdapter';
-import { NarrativeSceneSurface } from './NarrativeSceneSurface';
+import { NarrativeSceneSurface, resolveNarrativeCastDensityScale } from './NarrativeSceneSurface';
 
 describe('NarrativeSceneSurface', () => {
   afterEach(() => document.body.replaceChildren());
@@ -27,7 +27,7 @@ describe('NarrativeSceneSurface', () => {
     expect(root.querySelectorAll('.narrative-cast__actor figcaption, .narrative-cast__actor [data-actor-label]')).toHaveLength(0);
   });
 
-  it('segments the six-person opening into stable full-scale four-person compositions', async () => {
+  it('segments the six-person opening into stable density-scaled four-person compositions', async () => {
     const sequence = dialogues.get('acte_ouverture')!;
     const tableau = applyFinalDialoguePresentationPlan(sequence, createGenericNarrativeTableau(sequence));
     const root = document.createElement('div');
@@ -40,6 +40,8 @@ describe('NarrativeSceneSurface', () => {
     const alistair = root.querySelector<HTMLElement>('[data-actor-id="alistair"]')!;
     const seraphine = root.querySelector<HTMLElement>('[data-actor-id="sage_seraphine"]')!;
     expect(root.querySelectorAll('.narrative-cast__actor')).toHaveLength(4);
+    expect(root.querySelector('.narrative-scene-surface__cast')?.getAttribute('data-cast-density-scale')).toBe('1.1');
+    expect(alistair.dataset.castDensityScale).toBe('1.1');
     expect(alistair.dataset.castState).toBe('ACTIVE');
     expect(seraphine.dataset.castState).toBe('LISTENING');
 
@@ -56,6 +58,15 @@ describe('NarrativeSceneSurface', () => {
     expect(root.querySelector('[data-actor-id="alistair"]')).toBeNull();
     expect(root.querySelector('[data-actor-id="marian"]')).toBeNull();
     expect(root.querySelector('[data-actor-id="kestrel"]')?.getAttribute('data-cast-state')).toBe('ACTIVE');
+  });
+
+  it('gives smaller casts progressively stronger premium presence without changing identity stature', () => {
+    const scales = [1, 2, 3, 4].map(resolveNarrativeCastDensityScale);
+    expect(scales[0]).toBeGreaterThan(scales[1]!);
+    expect(scales[1]).toBeGreaterThan(scales[2]!);
+    expect(scales[2]).toBeGreaterThan(scales[3]!);
+    expect(scales[3]).toBeGreaterThan(1);
+    expect(resolveNarrativeCastDensityScale(5)).toBe(1);
   });
 
   it('changes Maelor facing by addressee without changing his authored company-side position', async () => {

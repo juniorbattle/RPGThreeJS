@@ -273,7 +273,7 @@ export class DialogueView {
     element.dataset.expression = expression;
     element.textContent = isImage ? '' : portrait;
     element.style.backgroundImage = isImage ? `url("${portrait}")` : '';
-    element.style.setProperty('--dialogue-actor-height', `${Math.round((profile?.dialogueScale ?? 1) * 84)}%`);
+    element.style.setProperty('--dialogue-actor-height', `${Math.round((profile?.dialogueScale ?? 1) * 112)}%`);
     element.style.setProperty('--dialogue-actor-offset-x', profile?.dialogueSideOffset ?? '0px');
     element.classList.toggle('has-image', isImage);
   }

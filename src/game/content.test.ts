@@ -295,6 +295,7 @@ describe('campaign content integrity', () => {
     const visualProfiles = assets.visualProfiles as unknown as Record<string, VisualProfile>;
     const qc = characterQc as unknown as Record<string, CharacterQcEntry>;
 
+    const runtimeCroppedHeroProfiles = new Set(['alistair', 'marian', 'elara', 'kestrel', 'cedric', 'lancer']);
     for (const [id, profile] of Object.entries(characterProfiles)) {
       expect(visualProfiles[id], `${id}:visualProfile`).toBeTruthy();
       expectPublicAsset(profile.full, `${id}:full`);
@@ -303,7 +304,7 @@ describe('campaign content integrity', () => {
       expectPublicAsset(profile.fallback, `${id}:fallback`);
       expect(profile.dialogueScale, `${id}:dialogueScale`).toBeGreaterThan(0);
       expect(profile.combatHeight, `${id}:combatHeight`).toBeGreaterThan(0);
-      expect(profile.uiCropMode, `${id}:uiCropMode`).toBe('contain');
+      expect(profile.uiCropMode, `${id}:uiCropMode`).toBe(runtimeCroppedHeroProfiles.has(id) ? 'upper-body' : 'contain');
 
       for (const variant of ['full'] as const) {
         const metrics = qc[id]?.variants[variant];

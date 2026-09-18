@@ -15,6 +15,15 @@ function actorImage(actorId: string): string | undefined {
 
 type NarrativeStaticCastState = 'ACTIVE' | 'LISTENING' | 'BACKGROUND';
 
+/** Surface-owned density scale: identity stature remains in each actor spec. */
+export function resolveNarrativeCastDensityScale(castSize: number): number {
+  if (castSize <= 1) return 1.28;
+  if (castSize === 2) return 1.18;
+  if (castSize === 3) return 1.14;
+  if (castSize === 4) return 1.1;
+  return 1;
+}
+
 function castState(spec: NarrativeStagedActorSpec, speakerId?: string): NarrativeStaticCastState {
   if (spec.actorId === speakerId) return 'ACTIVE';
   return spec.narrativeRole === 'BACKGROUND' ? 'BACKGROUND' : 'LISTENING';
@@ -25,6 +34,7 @@ function applyActorState(
   spec: NarrativeStagedActorSpec,
   speakerId?: string,
   direction?: { facing?: 'LEFT' | 'RIGHT' | 'FORWARD'; lookTarget?: string | null },
+  castDensityScale = 1,
 ): void {
   const state = castState(spec, speakerId);
   const activeDirection = spec.actorId === speakerId ? direction : undefined;
@@ -37,10 +47,11 @@ function applyActorState(
   actor.dataset.dramaticSide = spec.dramaticSide ?? 'CENTER';
   actor.dataset.entryEffect = spec.entryEffect ?? 'NONE';
   actor.dataset.physicalScale = `${spec.scale}`;
+  actor.dataset.castDensityScale = `${castDensityScale}`;
   actor.classList.toggle('is-speaking', state === 'ACTIVE');
   actor.classList.toggle('is-listening', state === 'LISTENING');
   actor.classList.toggle('is-background', state === 'BACKGROUND');
-  actor.style.setProperty('--narrative-actor-scale', `${spec.scale}`);
+  actor.style.setProperty('--narrative-actor-scale', `${spec.scale * castDensityScale}`);
   actor.style.setProperty('--narrative-actor-depth', `${spec.depth}`);
 }
 
@@ -48,11 +59,12 @@ function actorElement(
   spec: NarrativeStagedActorSpec,
   speakerId?: string,
   actorImages: Readonly<Record<string, string>> = {},
+  castDensityScale = 1,
 ): HTMLElement {
   const actor = document.createElement('figure');
   actor.className = 'narrative-cast__actor';
   actor.dataset.actorId = spec.actorId;
-  applyActorState(actor, spec, speakerId);
+  applyActorState(actor, spec, speakerId, undefined, castDensityScale);
   const image = actorImages[spec.actorId] ?? actorImage(spec.actorId);
   if (image) {
     const img = document.createElement('img');
@@ -152,6 +164,8 @@ export class NarrativeSceneSurface {
     );
     const previousPhase = this.phases.find((candidate) => candidate.id === this.activePhaseId);
     const nextIds = new Set(phase.staticCast.map((actor) => actor.actorId));
+    const castDensityScale = resolveNarrativeCastDensityScale(phase.staticCast.length);
+    this.castLayer.dataset.castDensityScale = `${castDensityScale}`;
     const exiting = [...existing.values()].filter((actor) => !nextIds.has(actor.dataset.actorId ?? ''));
     const exitByActor = new Map((previousPhase?.exits ?? []).map((exit) => [exit.actorId, exit]));
     for (const actor of exiting) {
@@ -163,8 +177,8 @@ export class NarrativeSceneSurface {
     }
     const actors = phase.staticCast.map((spec) => {
       const alreadyStaged = existing.get(spec.actorId);
-      const actor = alreadyStaged ?? actorElement(spec, speakerId, this.actorImages);
-      applyActorState(actor, spec, speakerId, { facing: speakerFacing, lookTarget: speakerLookTarget });
+      const actor = alreadyStaged ?? actorElement(spec, speakerId, this.actorImages, castDensityScale);
+      applyActorState(actor, spec, speakerId, { facing: speakerFacing, lookTarget: speakerLookTarget }, castDensityScale);
       const effect = this.reducedMotion ? reducedEntryEffect(spec.entryEffect) : spec.entryEffect ?? 'NONE';
       actor.dataset.entryEffect = alreadyStaged ? 'NONE' : effect;
       actor.classList.toggle('is-entering', !alreadyStaged && effect !== 'NONE');

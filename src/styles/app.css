@@ -346,7 +346,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   position: absolute;
   bottom: clamp(198px, 22vh, 252px);
   width: clamp(300px, 42vw, 610px);
-  height: min(65vh, 724px);
+  height: min(70vh, 760px);
   display: grid;
   place-items: end center;
   color: rgba(255,240,200,.9);
@@ -383,7 +383,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   filter: blur(5px);
   pointer-events: none;
 }
-.dialogue__portrait.has-image { background-position: calc(50% + var(--dialogue-actor-offset-x, 0px)) calc(100% - 10px); background-repeat: no-repeat; background-size: auto var(--dialogue-actor-height, 86%); font-size: 0; mix-blend-mode: normal; }
+.dialogue__portrait.has-image { background-position: calc(50% + var(--dialogue-actor-offset-x, 0px)) calc(100% + 28px); background-repeat: no-repeat; background-size: auto var(--dialogue-actor-height, 112%); font-size: 0; mix-blend-mode: normal; image-rendering:pixelated; image-rendering:crisp-edges; }
 .dialogue__portrait.has-image::before { opacity: .56; }
 .dialogue__portrait.is-visible { opacity: 1; transform: translateY(0) scale(1.02); }
 .dialogue__portrait--left { left: clamp(-4px, 4vw, 76px); }
@@ -757,6 +757,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   text-transform: uppercase;
 }
 .travel-party {
+  --travel-master-scale: 2.45;
   position: absolute;
   inset: 0;
   z-index: 6;
@@ -783,7 +784,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   left: var(--hero-left);
   bottom: var(--hero-bottom);
   z-index: var(--hero-z);
-  width: clamp(86px, 8.4vw, 126px);
+  width: clamp(86px, 7.2vw, 140px);
   margin: 0;
   display: grid;
   justify-items: center;
@@ -808,6 +809,8 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   z-index: 1;
   width: 100%;
   height: auto;
+  transform: translateY(7%) scale(var(--travel-master-scale));
+  transform-origin: 50% 100%;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   filter: drop-shadow(0 14px 24px rgba(0,0,0,.82));
@@ -1438,7 +1441,13 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   height: 100%;
   object-fit: contain;
   object-position: center bottom;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
   filter: drop-shadow(0 8px 12px rgba(0,0,0,.55));
+}
+.roster-card__portrait[data-ui-crop="upper-body"] img {
+  transform: scale(2.05);
+  transform-origin: 50% 28%;
 }
 .roster-card__body { display: grid; gap: 4px; min-width: 0; }
 .roster-card strong { overflow: hidden; color: #fff0c8; font: 700 16px/1.05 var(--ui-font-title); text-overflow: ellipsis; white-space: nowrap; }
@@ -1519,17 +1528,21 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   z-index: 2;
   display: grid;
   place-items: end center;
-  width: min(74%, 360px);
-  height: min(63vh, 500px);
+  width: min(86%, 440px);
+  height: min(70vh, 610px);
   min-height: 360px;
-  padding-bottom: 30px;
-  transform: translateY(-18px);
+  padding-bottom: 18px;
+  transform: translateY(-4px);
 }
 .unit-stage__figure img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   object-position: center bottom;
+  transform: scale(1.3);
+  transform-origin: 50% 100%;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
   filter: drop-shadow(0 30px 28px rgba(0,0,0,.72)) drop-shadow(0 0 16px rgba(246,219,145,.12));
 }
 .unit-stage__base {
@@ -2735,8 +2748,8 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .narrative-scene-surface__environment { position:absolute; inset:-1.5%; background-color:#07101c; background-position:center; background-repeat:no-repeat; background-size:cover; filter:saturate(.9) contrast(1.05) brightness(.84); transform:scale(1.03); animation:narrative-still-breathe 18s ease-in-out infinite alternate; }
 .narrative-scene-surface__environment::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(2,4,9,.18),transparent 35%,rgba(2,4,9,.56) 90%),radial-gradient(ellipse at center,transparent 42%,rgba(0,0,0,.38)); }
 .narrative-scene-surface__cast { position:absolute; inset:0 1.5%; z-index:3; pointer-events:none; }
-.narrative-cast__actor { --narrative-actor-scale:1; --narrative-actor-depth:2; position:absolute; bottom:-14vh; left:50%; z-index:var(--narrative-actor-depth); width:min(36vw,66vh,700px); height:120vh; margin:0; opacity:.5; filter:saturate(.65) brightness(.62) contrast(.97) blur(.15px) drop-shadow(0 24px 28px rgba(0,0,0,.82)); transform:translateX(-50%) scale(var(--narrative-actor-scale)); transform-origin:50% 100%; transition:filter .28s ease,opacity .28s ease; }
-.narrative-cast__actor img { width:100%; height:100%; object-fit:contain; object-position:center bottom; image-rendering:auto; }
+.narrative-cast__actor { --narrative-actor-scale:1; --narrative-actor-depth:2; position:absolute; bottom:-5vh; left:50%; z-index:var(--narrative-actor-depth); width:min(36vw,66vh,700px); height:120vh; margin:0; opacity:.5; filter:saturate(.65) brightness(.62) contrast(.97) drop-shadow(0 24px 28px rgba(0,0,0,.82)); transform:translateX(-50%) scale(var(--narrative-actor-scale)); transform-origin:50% 100%; transition:filter .28s ease,opacity .28s ease; }
+.narrative-cast__actor img { width:100%; height:100%; object-fit:contain; object-position:center bottom; image-rendering:pixelated; image-rendering:crisp-edges; }
 .narrative-cast__actor[data-facing="LEFT"] img { transform:scaleX(-1); }
 .narrative-cast__actor[data-screen-position="FAR_LEFT"] { left:13%; }
 .narrative-cast__actor[data-screen-position="LEFT"] { left:28%; }
@@ -2747,7 +2760,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .narrative-cast__actor[data-screen-position="FAR_RIGHT"] { left:87%; }
 .narrative-cast__actor.is-speaking { z-index:6; opacity:1; filter:saturate(1.06) brightness(1.1) contrast(1.12) drop-shadow(0 28px 34px rgba(0,0,0,.88)); }
 .narrative-cast__actor.is-listening { opacity:.5; }
-.narrative-cast__actor.is-background { opacity:.26; filter:saturate(.45) brightness(.42) contrast(.9) blur(.35px) drop-shadow(0 20px 24px rgba(0,0,0,.78)); }
+.narrative-cast__actor.is-background { opacity:.26; filter:saturate(.45) brightness(.42) contrast(.9) drop-shadow(0 20px 24px rgba(0,0,0,.78)); }
 .narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor[data-screen-position="FAR_LEFT"] { left:16%; }
 .narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor[data-screen-position="CENTER_LEFT"] { left:38%; }
 .narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor[data-screen-position="CENTER_RIGHT"] { left:62%; }

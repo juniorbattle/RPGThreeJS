@@ -48,7 +48,7 @@ function computeTravelPartyLayout(count: number): TravelPartySlot[] {
     return TRAVEL_PARTY_LAYOUT.slice(0, count);
   }
   const scale = count > 8 ? 0.68 : count > 6 ? 0.78 : 0.88;
-  const spread = 64;
+  const spread = count === 8 ? 72 : 64;
   const start = 50 - spread / 2;
   const step = count > 1 ? spread / (count - 1) : 0;
   const slots: TravelPartySlot[] = [];
@@ -70,6 +70,7 @@ const TRAVEL_HERO_PALETTES: Record<string, TravelHeroPalette> = {
 };
 
 interface TravelPartyMember {
+  characterId: string;
   name: string;
   portrait: string;
   kind: string;
@@ -106,12 +107,12 @@ const TRAVEL_HERO_QUOTES: Record<string, readonly string[]> = {
 };
 
 const TRAVEL_ADVISORS: readonly TravelPartyMember[] = [
-  { name: 'Sage Séraphine', portrait: assets.pixelCharactersFull.seraphine!, kind: 'cleric', isAdvisor: true, quotes: [
+  { characterId: 'sage_seraphine', name: 'Sage Séraphine', portrait: assets.characterProfiles.sage_seraphine.full, kind: 'cleric', isAdvisor: true, quotes: [
     'La sagesse n’est pas dans la force, mais dans la compassion. Secourir les faibles vaut plus que mille victoires.',
     'Les étoiles ne mentent jamais. Mais elles ne disent jamais toute la vérité non plus.',
     'Chaque choix porte une ombre. Le mien est de veiller sur les vôtres.',
   ] },
-  { name: 'Intendant Maelor', portrait: assets.pixelCharactersFull.maelor!, kind: 'knight', isAdvisor: true, quotes: [
+  { characterId: 'maelor', name: 'Intendant Maelor', portrait: assets.characterProfiles.maelor.full, kind: 'knight', isAdvisor: true, quotes: [
     'Un clan ne survit pas par l’honneur seul. L’or, les alliances, le calcul — voilà ce qui tient une compagnie debout.',
     'Je ne porte pas d’épée. Je porte les comptes. Et c’est souvent plus lourd.',
     'Méfiez-vous des héros qui refusent de compter. Ce sont les premiers à vous ruiner.',
@@ -355,7 +356,7 @@ export class TravelView {
     const gems = state.inventory.materials.red_gem ?? 0;
     const clanMembers: TravelPartyMember[] = state.clan.members.map((unit) => {
       const def = unitById.get(unit.definitionId);
-      return { name: unit.name, portrait: def?.portrait ?? '', kind: def?.combatKind ?? 'knight', isAdvisor: false, quotes: TRAVEL_HERO_QUOTES[unit.definitionId] ?? [] };
+      return { characterId: def?.visualProfileId ?? unit.definitionId, name: unit.name, portrait: def?.portrait ?? '', kind: def?.combatKind ?? 'knight', isAdvisor: false, quotes: TRAVEL_HERO_QUOTES[unit.definitionId] ?? [] };
     });
     const party = [...clanMembers, ...TRAVEL_ADVISORS];
     const partyLayout = computeTravelPartyLayout(party.length);
@@ -411,10 +412,10 @@ export class TravelView {
         `;
         }).join('') || '<p class="travel-view__end">La route s’achève ici.</p>'}
       </div>
-      <div class="travel-party" aria-label="Compagnie en marche">
+      <div class="travel-party" data-presentation-scale="ENLARGED_COMPANY_LINEUP" aria-label="Compagnie en marche">
         ${party.map((member, index) => {
           const slot = partyLayout[index] ?? partyLayout[partyLayout.length - 1]!;
-          return `<figure class="travel-hero travel-hero--${escapeHtml(member.kind)}${member.isAdvisor ? ' travel-hero--advisor' : ''}" style="--hero-left:${slot.left}%;--hero-bottom:${slot.bottom}%;--hero-scale:${slot.scale};--hero-z:${slot.z}">
+          return `<figure class="travel-hero travel-hero--${escapeHtml(member.kind)}${member.isAdvisor ? ' travel-hero--advisor' : ''}" data-character-id="${escapeHtml(member.characterId)}" data-asset-ownership="MASTER_FULL_BODY" style="--hero-left:${slot.left}%;--hero-bottom:${slot.bottom}%;--hero-scale:${slot.scale};--hero-z:${slot.z}">
             <span class="travel-hero__shadow" aria-hidden="true"></span>
             <img class="travel-hero__sprite" src="${member.portrait}" alt="${escapeHtml(member.name)}">
             <figcaption>${escapeHtml(member.name)}</figcaption>

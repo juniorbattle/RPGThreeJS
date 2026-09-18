@@ -54,22 +54,24 @@ const categoryLabels: Record<ItemCategory, string> = {
 interface CharacterAssetProfile {
   full: string;
   ui: string;
+  uiCropMode: string;
 }
 
-function characterProfileFromPortrait(portrait: string): CharacterAssetProfile | undefined {
-  const match = /\/([^/]+)\.png$/.exec(portrait);
-  const key = match?.[1];
-  if (!key) return undefined;
+function characterProfile(definition: UnitDefinition): CharacterAssetProfile | undefined {
   const profiles = assets.characterProfiles as Record<string, CharacterAssetProfile>;
-  return profiles[key];
+  return profiles[definition.visualProfileId];
 }
 
 function unitFullPortrait(definition: UnitDefinition): string {
-  return characterProfileFromPortrait(definition.portrait)?.full ?? definition.portrait;
+  return characterProfile(definition)?.full ?? definition.portrait;
 }
 
 function unitUiPortrait(definition: UnitDefinition): string {
-  return characterProfileFromPortrait(definition.portrait)?.ui ?? definition.portrait;
+  return characterProfile(definition)?.ui ?? definition.portrait;
+}
+
+function unitUiCropMode(definition: UnitDefinition): string {
+  return characterProfile(definition)?.uiCropMode ?? 'contain';
 }
 
 const skillPresentation: Record<string, { name: string; description: string; ap?: number }> = Object.fromEntries(
@@ -207,7 +209,7 @@ export class ManagementView {
       const hpClass = unit.currentHealth === 0 ? ' is-fallen' : unit.currentHealth < maxHp ? ' is-wounded' : '';
       return `
         <button type="button" class="roster-card ui-panel ui-panel--dense${hpClass} ${unit.id === selected.id ? 'is-active' : ''}" data-unit="${unit.id}">
-          <span class="roster-card__portrait"><img src="${unitUiPortrait(def)}" alt=""></span>
+          <span class="roster-card__portrait" data-ui-crop="${unitUiCropMode(def)}"><img src="${unitUiPortrait(def)}" alt=""></span>
           <span class="roster-card__body"><strong>${unit.name}</strong><small>${def.className}</small></span>
           <span class="roster-card__hp">${unit.currentHealth}/${maxHp}</span>
           ${unit.narrativeLocked ? '<i title="Unité narrative">◆</i>' : ''}
@@ -219,10 +221,10 @@ export class ManagementView {
           <div class="roster__header"><div class="section-title ui-section-title">Compagnie</div><span>Membres ${state.clan.members.length}/${state.clan.maxSize}</span></div>
           <div class="roster__list">${roster}</div>
         </aside>
-        <section class="unit-stage" aria-label="Personnage sélectionné">
+        <section class="unit-stage" data-feature-presentation="MASTER_SHOWCASE" aria-label="Personnage sélectionné">
           <div class="unit-stage__banner" aria-hidden="true"><span>⚜</span></div>
           <div class="unit-stage__aura" aria-hidden="true"></div>
-          <div class="unit-stage__figure"><img src="${unitFullPortrait(definition)}" alt="${selected.name}"></div>
+          <div class="unit-stage__figure" data-asset-ownership="MASTER_FULL_BODY"><img src="${unitFullPortrait(definition)}" alt="${selected.name}"></div>
           <div class="unit-stage__base" aria-hidden="true"></div>
           <div class="unit-stage__caption"><span>Unité active</span><strong>${selected.name}</strong></div>
         </section>
@@ -521,7 +523,7 @@ export class ManagementView {
         <div class="roster__list">${state.clan.members.map((unit) => {
           const def = unitById.get(unit.definitionId)!;
           return `<button type="button" class="roster-card ui-panel ui-panel--dense ${unit.id === selected.id ? 'is-active' : ''}" data-unit="${unit.id}">
-            <span class="roster-card__portrait"><img src="${unitUiPortrait(def)}" alt=""></span>
+            <span class="roster-card__portrait" data-ui-crop="${unitUiCropMode(def)}"><img src="${unitUiPortrait(def)}" alt=""></span>
             <span class="roster-card__body"><strong>${unit.name}</strong><small>${def.className}</small></span>
           </button>`;
         }).join('')}</div>

@@ -39,17 +39,20 @@ describe('CIN-6.5 cinematic dialogue integration', () => {
     expect(narrativeDialogue).toContain('shouldPlayDialoguePreludeVideo(options.cinematicId)');
     expect(narrativeDialogue).toContain('await stage.presentDialogueTableau(');
     expect(narrativeDialogue).not.toContain('enterCinematicHold');
-    expect(method('private async playClassicDialogue')).not.toContain('resolveCin6aJourneyTrigger');
+    expect(GAME_APP).not.toContain('private async playClassicDialogue');
   });
 
-  it('uses static-tableau dialogue in production while retaining the classic safety path', () => {
+  it('uses canonical static-tableau dialogue and rebuilds failed authored staging as a generic Tableau', () => {
     const playDialogue = method('private async playDialogue');
     const narrativeDialogue = method('private async playNarrativeDialogue');
     expect(playDialogue).toContain('await this.playNarrativeDialogue');
     expect(narrativeDialogue).toContain('tableau?.stillImage ?? resolveDialogueBackdrop(sequence)');
-    expect(narrativeDialogue).toContain('await this.playClassicDialogue(sequence, fallbackLabel)');
-    expect(method('private async playClassicDialogue')).toContain("variant: 'dialogue'");
-    expect(method('private async playClassicDialogue')).toContain('this.dialogue.play(sequence)');
+    expect(narrativeDialogue).toContain('createGenericNarrativeTableau(sequence)');
+    expect(narrativeDialogue).toContain('validateDialogueCast(');
+    expect(narrativeDialogue).toContain('Canonical Tableau staging failed');
+    expect(narrativeDialogue).toContain("mode: 'narrative-stage'");
+    expect(narrativeDialogue).not.toContain('this.dialogue.play(sequence);');
+    expect(GAME_APP).not.toContain('playClassicDialogue');
   });
 
   it('keeps the presentation coordinator free of game truth and mutation', () => {

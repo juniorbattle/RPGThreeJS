@@ -59,6 +59,7 @@ import { createNarrativeDialogueResolver, resolveRepresentedDialogueActors } fro
 import { applyFinalDialoguePresentationPlan } from '../cinematics/DialoguePresentationSegments';
 import { resolveCinematicReduction, shouldPlayDialoguePreludeVideo } from '../cinematics/CinematicReductionPolicy';
 import {
+  createGenericNarrativeTableau,
   resolveNarrativeCombatTableau,
   resolveNarrativeDialogueTableau,
   validateDialogueCast,
@@ -950,7 +951,7 @@ export class GameApp {
     // Travel remains the production campaign boundary. Dialogue presentation is
     // independently owned by NarrativeStage so approved static tableaux are the
     // production background while dialogue truth and route semantics stay intact.
-    await this.playNarrativeDialogue(sequence, fallbackLabel, {
+    await this.playNarrativeDialogue(sequence, {
       ...narrativeOptions,
       cinematicId: narrativeOptions.cinematicId
         ?? resolveVideoCinematicTrigger({ hook: 'beforeDialogue', dialogueId })
@@ -966,31 +967,38 @@ export class GameApp {
 
   private async playNarrativeDialogue(
     sequence: DialogueSequence,
-    fallbackLabel: string | undefined,
     options: NarrativeDialogueOptions,
   ): Promise<void> {
-    const tableau = applyFinalDialoguePresentationPlan(sequence, options.tableau);
-    const stage = this.createNarrativeStage(tableau);
-    stage.bindDialogue(sequence);
+    let tableau = applyFinalDialoguePresentationPlan(sequence, options.tableau);
     const presentationBeat = resolveDialoguePresentation(sequence.id);
-    const stepPresentation = createNarrativeDialogueResolver(sequence, tableau, {
+    let stepPresentation = createNarrativeDialogueResolver(sequence, tableau, {
       mediaMode: 'STILL',
       hasMovingMedia: false,
     });
-    if (tableau) {
-      const alignment = validateDialogueCast(
+    let alignment = validateDialogueCast(
+      tableau,
+      sequence,
+      resolveRepresentedDialogueActors(sequence, stepPresentation),
+    );
+    if (alignment.status === 'FAIL') {
+      console.warn(`[NarrativeStage] Rebuilding ${tableau.id} with canonical generic Tableau staging: ${alignment.unresolved.join(', ')}`);
+      tableau = applyFinalDialoguePresentationPlan(sequence, createGenericNarrativeTableau(sequence));
+      stepPresentation = createNarrativeDialogueResolver(sequence, tableau, {
+        mediaMode: 'STILL',
+        hasMovingMedia: false,
+      });
+      alignment = validateDialogueCast(
         tableau,
         sequence,
         resolveRepresentedDialogueActors(sequence, stepPresentation),
       );
-      stage.element.dataset.dialogueCastAlignment = alignment.status;
       if (alignment.status === 'FAIL') {
-        console.error(`[NarrativeStage] Dialogue/cast mismatch in ${tableau.id}: ${alignment.unresolved.join(', ')}`);
-        this.disposeNarrativeStage(stage);
-        await this.playClassicDialogue(sequence, fallbackLabel);
-        return;
+        throw new Error(`[NarrativeStage] Canonical Tableau staging failed for ${sequence.id}: ${alignment.unresolved.join(', ')}`);
       }
     }
+    const stage = this.createNarrativeStage(tableau);
+    stage.bindDialogue(sequence);
+    stage.element.dataset.dialogueCastAlignment = alignment.status;
     const openDialogue = async () => {
       this.setMode('NARRATIVE');
       await this.dialogue.play(sequence, {
@@ -1047,25 +1055,6 @@ export class GameApp {
     } finally {
       if (!completed) this.disposeNarrativeStage(stage);
     }
-  }
-
-  private async playClassicDialogue(
-    sequence: DialogueSequence,
-    fallbackLabel?: string,
-    interlude?: () => Promise<unknown>,
-  ): Promise<void> {
-    let playPromise: Promise<void> | null = null;
-    await sceneTransition.run({
-      variant: 'dialogue',
-      label: sequence.title ?? fallbackLabel ?? '',
-      interlude,
-      ...(interlude ? { holdMs: 0 } : {}),
-      task: async () => {
-        this.setMode('NARRATIVE');
-        playPromise = this.dialogue.play(sequence);
-      },
-    });
-    await playPromise;
   }
 
   private async maybePlayATEs(nodeId: string): Promise<void> {

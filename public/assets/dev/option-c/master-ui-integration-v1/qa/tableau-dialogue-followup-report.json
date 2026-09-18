@@ -1,0 +1,3338 @@
+{
+  "schemaVersion": 2,
+  "mission": "Option C Character System V2 canonical Tableau dialogue and final scale follow-up",
+  "generatedAt": "2026-09-18T01:23:05.014Z",
+  "status": "PASS",
+  "viewports": [
+    "1366x768",
+    "1920x1080"
+  ],
+  "requiredCharacters": [
+    "alistair",
+    "white_mage",
+    "dark_mage",
+    "archer",
+    "rogue",
+    "lancer",
+    "alaric",
+    "maelor",
+    "sage_seraphine",
+    "refugee_mother",
+    "survivor",
+    "villageoise",
+    "wounded_merchant"
+  ],
+  "auditedCharacterIds": [
+    "sage_seraphine",
+    "alaric",
+    "serpent_general_boss",
+    "maelor",
+    "alistair",
+    "marian",
+    "elara",
+    "kestrel",
+    "cedric",
+    "lancer",
+    "warrior",
+    "white_mage",
+    "dark_mage",
+    "archer",
+    "rogue",
+    "refugee_mother",
+    "survivor",
+    "villageoise"
+  ],
+  "assetOnlyAudits": [
+    {
+      "characterId": "wounded_merchant",
+      "activeUiConsumer": false,
+      "validation": "MASTER_PATH_AND_FILE_BYTES",
+      "masterPath": "/assets/characters/pixel/masters/wounded_merchant.png",
+      "fileBytes": 110495,
+      "result": "PASS"
+    }
+  ],
+  "canonicalDialogueCensus": {
+    "dialogueCount": 71,
+    "stepCount": 247,
+    "staticTableauDialogueCount": 71,
+    "playerFacingStandaloneBottomDialogues": 0,
+    "failures": [],
+    "result": "PASS"
+  },
+  "protectedAssetHashes": {
+    "masters": {
+      "root": "public/assets/characters/pixel/masters",
+      "fileCount": 37,
+      "expectedCount": 37,
+      "manifestSha256": "103a31c804f2343198e318296a0d6c5d4ecf1eea5f8b61253750a3cea452d3c7",
+      "expectedManifestSha256": "103a31c804f2343198e318296a0d6c5d4ecf1eea5f8b61253750a3cea452d3c7",
+      "files": [
+        {
+          "path": "alaric.png",
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+        },
+        {
+          "path": "alistair.png",
+          "sha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be"
+        },
+        {
+          "path": "archer.png",
+          "sha256": "cf9f50e30fe534ea9637857be43774ad19a39dbb721b0834a9bec54dd9e0c022"
+        },
+        {
+          "path": "cave_bat.png",
+          "sha256": "93d3d672f6ccb18cfef68313206ae393123641e4e0ec0db3eaa8d463ec6d4c18"
+        },
+        {
+          "path": "cave_rat.png",
+          "sha256": "042787f3f3081fc155d416c91d5d67347486e6a1f8cda95498f31bc4400fe3d1"
+        },
+        {
+          "path": "dark_mage.png",
+          "sha256": "a6d4e3d518d9fff42e7155b9c5f0eb47aae5ddc7c1ef499ecfd8c33a677b8476"
+        },
+        {
+          "path": "forest_badger.png",
+          "sha256": "f67efb06acb6e3cc714ff1991c38a6b6229596ede468998308a4658d6609400c"
+        },
+        {
+          "path": "forest_spider.png",
+          "sha256": "129df0b3081af50bb0ac36bf70990b1d838a5806cd272d5775f5a0d532a13c1c"
+        },
+        {
+          "path": "forest_troll_elite.png",
+          "sha256": "f35a43b5acc0111c5ca8530263f708a9edc384052903269312f370e7eddce9dd"
+        },
+        {
+          "path": "goblin.png",
+          "sha256": "0afee27c875ad0552c7a5e68d500af2a4b5c9876b9f4d6c331e4e2fb9aba41f0"
+        },
+        {
+          "path": "lancer.png",
+          "sha256": "2c8c8b443ff6b833abc213f9cdd85a64d3c07a36ba6907b7c849ef2e9ae075c1"
+        },
+        {
+          "path": "lion_champion.png",
+          "sha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc"
+        },
+        {
+          "path": "maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+        },
+        {
+          "path": "marsh_toad.png",
+          "sha256": "448de71310beb868ba3e7d3211ecaac20cd1a9c2bef13369c2ab05a1a5587d0e"
+        },
+        {
+          "path": "refugee_mother.png",
+          "sha256": "864841b61f68c037f64b0a353f504592164ee797ca1583997e80887f549bad98"
+        },
+        {
+          "path": "refugee.png",
+          "sha256": "aaebf18c6f56e06f92b4827315a837e9f42150d61af02460c5c07592539932f9"
+        },
+        {
+          "path": "rogue.png",
+          "sha256": "8216c95d16aec061331a212b0717ba155f7ff32b32bfaca1decbb27f788c3c14"
+        },
+        {
+          "path": "sage_seraphine.png",
+          "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
+        },
+        {
+          "path": "serpent_brute.png",
+          "sha256": "07e1e98a2404bdb553ec27b93a623a1c5c0f8190778c1771f2eb90c773cb3eab"
+        },
+        {
+          "path": "serpent_duelist_elite.png",
+          "sha256": "9948fa0343307aea2b2e05845bbba8cc985472a8c1e1ea30a480cc6b0c2f7e0d"
+        },
+        {
+          "path": "serpent_elite_brute.png",
+          "sha256": "60f1b903466c294a7b5547e1a6ecd01c29163425842d56841a5eeddbee050528"
+        },
+        {
+          "path": "serpent_general_boss.png",
+          "sha256": "b5dc5c8d644ede7cdb83a82492976a82d8bf133936a0b0db7c696ecc416ba33d"
+        },
+        {
+          "path": "serpent_oracle.png",
+          "sha256": "f5010088c0a84be38522905929910f389124b1ed3ff76e7f998bfc1ca3773175"
+        },
+        {
+          "path": "serpent_raider.png",
+          "sha256": "4f4bfb55016f325544a598a34213567657d43159c895bff57ac740ed4892ed9f"
+        },
+        {
+          "path": "skeleton.png",
+          "sha256": "4e88e9697ac00f4130851eed8967655c9218edb13af212b3a20ded0b0d3f8d41"
+        },
+        {
+          "path": "survivor.png",
+          "sha256": "2039a2566269065f6db0776170e1b6bda2f1803a721c8bc5a4eb279def16e48d"
+        },
+        {
+          "path": "venom_serpent.png",
+          "sha256": "bdab8a100d1a79247618690518b54a6828e3d64eb83c7e0fb735c7bfa7c79591"
+        },
+        {
+          "path": "village_militia_brute.png",
+          "sha256": "8132e4162e4a3f57dfe6e2d206fc4d1b46c5debfba4352f0dafe3c3c9f2bf150"
+        },
+        {
+          "path": "village_militia_slinger.png",
+          "sha256": "2a0c3d4743261cb445e6f999ab39c7c52083fd94c4c48d116a44836ca657c478"
+        },
+        {
+          "path": "village_militia_spearman.png",
+          "sha256": "b35b7f7ca5f7323c2f1e123b8047bd22735e756b11be08e5550d344eda476a5d"
+        },
+        {
+          "path": "villageois.png",
+          "sha256": "f395a95994dea46b586e15e7cc5ca5666ba7b660762dbd2b4506bf8c2375689b"
+        },
+        {
+          "path": "villageoise.png",
+          "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180"
+        },
+        {
+          "path": "white_mage.png",
+          "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
+        },
+        {
+          "path": "wild_boar.png",
+          "sha256": "9fa741dfc1f4d9e9a2186e42de81cf9fffa4d061977d60f24336822687380183"
+        },
+        {
+          "path": "wolf.png",
+          "sha256": "90680e41acdb6275ec145e3e9c2e6211fd722b7e71edb1227fdca7dcfab54d07"
+        },
+        {
+          "path": "wounded_merchant.png",
+          "sha256": "07b689e4ff2b9fa24285e18576cf044717c6750abbd3c2cf4ef686488c4a45e1"
+        },
+        {
+          "path": "young_dragon_elite.png",
+          "sha256": "4e74cda450e9f934884f1cb927fd50a760757d4a5c62de68b6eeb14ba6ab7158"
+        }
+      ],
+      "result": "PASS"
+    },
+    "combatPoses": {
+      "root": "public/assets/characters/pixel/combat",
+      "fileCount": 100,
+      "expectedCount": 100,
+      "manifestSha256": "58d009fadb6c61c6f8dcd1f478f6a00d84a6d13a7a5493574530c93ba980fad8",
+      "expectedManifestSha256": "58d009fadb6c61c6f8dcd1f478f6a00d84a6d13a7a5493574530c93ba980fad8",
+      "files": [
+        {
+          "path": "alistair/attack.png",
+          "sha256": "6fa0116994812bf7cea5a8debb34676c1c4a2f6ef98b46b1c2084fbf6c8ae84e"
+        },
+        {
+          "path": "alistair/cast.png",
+          "sha256": "9e78a2bacd4fd18d0a1e4f07e7c542b642205935aad0f693f074ad35bfbad220"
+        },
+        {
+          "path": "alistair/dash.png",
+          "sha256": "00aff34643abcda4909befa5c731062655a4424e4119c603b4af98d4149c554e"
+        },
+        {
+          "path": "alistair/prepare.png",
+          "sha256": "e824e2f939d377594449f15c1f78e0408291cef281478b9d6e25a8531f670f54"
+        },
+        {
+          "path": "archer/attack.png",
+          "sha256": "de42a96e9a98ddd9b18505b49c46c27040b8a360998562926b37211557ef6649"
+        },
+        {
+          "path": "archer/cast.png",
+          "sha256": "338601e9197a863c5444fb4e99503c645c2480ed091907d7fa1c8b9db1d0e280"
+        },
+        {
+          "path": "archer/dash.png",
+          "sha256": "322abe150cc9e047ba969f0336577579b1cb5c45e470a2d0ccb9cc1829c56473"
+        },
+        {
+          "path": "archer/prepare.png",
+          "sha256": "475ddd427dc2e3d8ced69fbe58be01721ab42b0a0bd7dd20b024e2829ae13a7c"
+        },
+        {
+          "path": "cave_bat/attack.png",
+          "sha256": "807bd25e4ba5c18aadd4b3123de2e72f493dc433cd8558842a642f1c8a58a5eb"
+        },
+        {
+          "path": "cave_bat/cast.png",
+          "sha256": "121e8106387ab83eada13900e9de336dc94face5145132699b70af51d7208c11"
+        },
+        {
+          "path": "cave_bat/dash.png",
+          "sha256": "f0bf6056cae7d00c0e922b06cd34bed44152ffe8af629045f6d9834ea24572d8"
+        },
+        {
+          "path": "cave_bat/prepare.png",
+          "sha256": "0f8d2f677a502f1e09c229d3785c8d1348708b4330239eb3a4a7f320106a3c2f"
+        },
+        {
+          "path": "cave_rat/attack.png",
+          "sha256": "8279308458863d3a1a0ec8af0d66756b374cf9287caf379bed8f6f0f8b046430"
+        },
+        {
+          "path": "cave_rat/cast.png",
+          "sha256": "61829da625b633c9002a1c924a3cce266c23e1ca2ac816a5b9257a2f96295982"
+        },
+        {
+          "path": "cave_rat/dash.png",
+          "sha256": "ea2290ec65f80addf805055534e6b3388f3b3d6807dd6ab70f2df949efde3a74"
+        },
+        {
+          "path": "cave_rat/prepare.png",
+          "sha256": "4960de3bfee9093660a84311478a08fb98c5a5b65d08fd1047e645aad3f0988d"
+        },
+        {
+          "path": "dark_mage/attack.png",
+          "sha256": "44f92e6dde511abec6024a3d42bd978604273a5e71fe79699cd8b62b8f3aa091"
+        },
+        {
+          "path": "dark_mage/cast.png",
+          "sha256": "e9d138c84781c642e49c53bd1ff42235916c1e4f4a654b2fb19bfb812c10907d"
+        },
+        {
+          "path": "dark_mage/dash.png",
+          "sha256": "24b9a408415c201d8dd2d44f4c9f82c15411858fe2f8b01a5a61aedd2d718ab4"
+        },
+        {
+          "path": "dark_mage/prepare.png",
+          "sha256": "87fd9e23e511b840a0ddc1e4d038076d9a488961ac8bbd16c4f0dc9574947cac"
+        },
+        {
+          "path": "forest_badger/attack.png",
+          "sha256": "e64e653a75eadb9a7c4ede13b5b4712978b2f1d2b24c40d77e3b2658d0dcf6e8"
+        },
+        {
+          "path": "forest_badger/cast.png",
+          "sha256": "8cf736d48ad19b9a02c691e784e0e2900e50c8e06f27bf3988494756d80a4798"
+        },
+        {
+          "path": "forest_badger/dash.png",
+          "sha256": "8725437eff99a2419c89081a1b7913bddd8a26e0183311273511b27d42521695"
+        },
+        {
+          "path": "forest_badger/prepare.png",
+          "sha256": "355b4d963291508f5552a40588f65b620b239b06fa84d9d9b87efacaa2ca2287"
+        },
+        {
+          "path": "forest_spider/attack.png",
+          "sha256": "ac9a7a5b75c2fa317aa537122f9145a6d90a43d0e92a9a780eb3c13a66244cb1"
+        },
+        {
+          "path": "forest_spider/cast.png",
+          "sha256": "f078a47eceb725bda353394d30b37d75dcbec627485ecc263a391562d1c9ddff"
+        },
+        {
+          "path": "forest_spider/dash.png",
+          "sha256": "4670b6e1960bf502fe570287c817bb216781d347916c5551d79851017884db01"
+        },
+        {
+          "path": "forest_spider/prepare.png",
+          "sha256": "35451f9f9ed6da8e15e9bb8f92961d5e083463b88e9121fba0126062d4fe7b37"
+        },
+        {
+          "path": "forest_troll_elite/attack.png",
+          "sha256": "68cb01dfb0f8a990a737eeb00739e5a3619f1bb38ad88c49696930c9e45417ac"
+        },
+        {
+          "path": "forest_troll_elite/cast.png",
+          "sha256": "084cb1a9391d8d40dda41d3b522913530e3650f96c5f38146214df58fe0107bb"
+        },
+        {
+          "path": "forest_troll_elite/dash.png",
+          "sha256": "4ea0bac388d82e7099caeb3a2d823d6b874b419382098da29816b9d88630ffab"
+        },
+        {
+          "path": "forest_troll_elite/prepare.png",
+          "sha256": "187207c2c3c9681c14e61e888b51836bc08667263c79672a7c00b025f1b23d71"
+        },
+        {
+          "path": "goblin/attack.png",
+          "sha256": "d03d5aa154246ba41cb35ff6af8797654a796aaaafef178be544f74902834719"
+        },
+        {
+          "path": "goblin/cast.png",
+          "sha256": "1f1377c7df50c24dbbb9a271d3e45c4ed938e10b2e82d707fae4ee97d0e5fd43"
+        },
+        {
+          "path": "goblin/dash.png",
+          "sha256": "78c8b3e2c54bbc7e7abbb55ffc1958a6075f70ce417a6bcf210ea526e8433ba5"
+        },
+        {
+          "path": "goblin/prepare.png",
+          "sha256": "63f4386efc1880d0282dd1e5f93e4ab7802791df6ddf69bbfc5db9ef1ce14602"
+        },
+        {
+          "path": "lancer/attack.png",
+          "sha256": "beda46cc2bf76d8b3ea02940c07c799d803b02391e2516cdbbf87a7cbe5c87a4"
+        },
+        {
+          "path": "lancer/cast.png",
+          "sha256": "c018ee5e0b31d3f6d5c7d30881b354855b1646a6bb00aa03fa72fe5c71e991ba"
+        },
+        {
+          "path": "lancer/dash.png",
+          "sha256": "7e5f986c6c16b03b18389662096e2ab2894641ed588222bc3604b3b98e0d95ba"
+        },
+        {
+          "path": "lancer/prepare.png",
+          "sha256": "4b9a2a407e42494c943b1eb3a0710d541502ebd14dbf5a0be38c837d5bd86776"
+        },
+        {
+          "path": "lion_champion/attack.png",
+          "sha256": "7d5845118be49fe85c2f5fabf3f83034f970f8d7e157fdc103303ba23edd217c"
+        },
+        {
+          "path": "lion_champion/cast.png",
+          "sha256": "b815a7bed0de2c78663fb692ca068bb87cab571e68bf62548d29b5dbef19ceee"
+        },
+        {
+          "path": "lion_champion/dash.png",
+          "sha256": "749d5bd8635bf8556792d8fa820cf1aee059c18055f63b185767b40b4f6c9da4"
+        },
+        {
+          "path": "lion_champion/prepare.png",
+          "sha256": "96338159d52bcb027f6e31bf8c389289ddf5e4654721c1842c86086847be31eb"
+        },
+        {
+          "path": "marsh_toad/attack.png",
+          "sha256": "4f9d36bbf103182cb0757a21acc143d15cf306c837eba32e7c799f5eed316760"
+        },
+        {
+          "path": "marsh_toad/cast.png",
+          "sha256": "b38ba863c80de666bd5a68fc948cfb333bdf794f0f71a209e8cf5fec69c72d32"
+        },
+        {
+          "path": "marsh_toad/dash.png",
+          "sha256": "c216f5927bc0d1914382675dee01f5c8bf00b6fd1068b6104afb5181f57ad403"
+        },
+        {
+          "path": "marsh_toad/prepare.png",
+          "sha256": "a83053cfea9add42290b237d3e7771ee9855015c3b50f2da1a437c90e69c99f9"
+        },
+        {
+          "path": "rogue/attack.png",
+          "sha256": "39c857d8047175397df730100e701c240d7d4188f70a42b26745126ac553bb2e"
+        },
+        {
+          "path": "rogue/cast.png",
+          "sha256": "a5159b06aabe4c1636167140a9f66afafc00fb734b51858dee473bb2bbd6352a"
+        },
+        {
+          "path": "rogue/dash.png",
+          "sha256": "37feea0cfcee72264b0c23672975849c519d55e72c3972ec57601283acd5907f"
+        },
+        {
+          "path": "rogue/prepare.png",
+          "sha256": "1f398114dae0dd38b6ebc67739a6b95d4d350e89cd30a39a9c28eb0517f183b9"
+        },
+        {
+          "path": "serpent_brute/attack.png",
+          "sha256": "ccd05573dfd968378d73d0d878b1f2e27525fdc1ae83921eda28f9222d8ab6e3"
+        },
+        {
+          "path": "serpent_brute/cast.png",
+          "sha256": "389747e0c61c0e1fc6f12d4ab31ccac10d7fbd648c2a27ef984c541b2cbfa6a8"
+        },
+        {
+          "path": "serpent_brute/dash.png",
+          "sha256": "c65c2afc6cd6f756dcf8a18118c77bb2a7ed5430bdbfae0afd716a587c26821d"
+        },
+        {
+          "path": "serpent_brute/prepare.png",
+          "sha256": "34b37204ececc4c3830f5f473bcaed1315cf94dd2461aa998263144f845c8bcb"
+        },
+        {
+          "path": "serpent_duelist_elite/attack.png",
+          "sha256": "f048360cb97581a041e1043ec90ee50143cf5d2b16d83d2eb0063c26d008227c"
+        },
+        {
+          "path": "serpent_duelist_elite/cast.png",
+          "sha256": "ff7c8b9e405525524c221e656a3f0df9d86304112b427353fb3669c2aa667962"
+        },
+        {
+          "path": "serpent_duelist_elite/dash.png",
+          "sha256": "cc7146d3b7c9cd42cc898f75326621af786e35496b3b3457665ac77108bd5a85"
+        },
+        {
+          "path": "serpent_duelist_elite/prepare.png",
+          "sha256": "35b067ea0d29bb171ecf89ccd350b8e9dcd15032c9924ef4217954b3d4e7056c"
+        },
+        {
+          "path": "serpent_elite_brute/attack.png",
+          "sha256": "1848b66c4ce044a2149a5c26d8d4e64f9040ffbb993ac8ff1258f315d6336ca5"
+        },
+        {
+          "path": "serpent_elite_brute/cast.png",
+          "sha256": "e904164ec70a9df2d3a2e6dbb2ffea995b09beb5343b8d5b92e2000c05a0775d"
+        },
+        {
+          "path": "serpent_elite_brute/dash.png",
+          "sha256": "fd9425b404872131ae0676e0ca7d31eb671e76cfb68e3b1f491e378f8234754f"
+        },
+        {
+          "path": "serpent_elite_brute/prepare.png",
+          "sha256": "1c7b5818e7f924050a3ade4876462f2147545907f0f1c39bf9ff24f3818c89d2"
+        },
+        {
+          "path": "serpent_general_boss/attack.png",
+          "sha256": "a37bf5f1fc60ec08af2ca814eb61ae7788382e1bd62fe0f10f7cb7db6eeb7ffd"
+        },
+        {
+          "path": "serpent_general_boss/cast.png",
+          "sha256": "f9f1306b2d511d2f497d555bd447ae664e05941bd4a912347805c23a9ee34164"
+        },
+        {
+          "path": "serpent_general_boss/dash.png",
+          "sha256": "77de8236850a19e8bfd1a45ac7e53da9a2331867288e59d5e86c83af2cfbbc7e"
+        },
+        {
+          "path": "serpent_general_boss/prepare.png",
+          "sha256": "01538ac8848d2379587cf24666ba1d7236dd024fffd5a9ba1dbfca7409b975b8"
+        },
+        {
+          "path": "serpent_oracle/attack.png",
+          "sha256": "71e3ba616eba7dfde0455012d52cbe4bcfcf3b2c4fdd6c888993e795aa5e6f79"
+        },
+        {
+          "path": "serpent_oracle/cast.png",
+          "sha256": "a4a7418de51756f0f3f085d497379a51b830f5ae53c8dd63c8ce0af022e1cd39"
+        },
+        {
+          "path": "serpent_oracle/dash.png",
+          "sha256": "4018bb2f442e48eb8ce1d578987807e3a2291265ac24b0a57195255c0591a386"
+        },
+        {
+          "path": "serpent_oracle/prepare.png",
+          "sha256": "ffd9aa77472b6d4a1ba816cf4accbcd39704ad2dd6549ec0ebbeff7e2359166a"
+        },
+        {
+          "path": "serpent_raider/attack.png",
+          "sha256": "fc1c7fd387c3ee5ded8ac4f14349e837f04bccc0da2fcd68473167786f9ea5b8"
+        },
+        {
+          "path": "serpent_raider/cast.png",
+          "sha256": "4b893f3059ba1bf84dcb27b941bcaba25d20eb5024f8c0ff98f7025eb5c46fc2"
+        },
+        {
+          "path": "serpent_raider/dash.png",
+          "sha256": "ac7fc263f9bef974933bf580138a3f4ffb45481adc70a2543290b95034f71dd4"
+        },
+        {
+          "path": "serpent_raider/prepare.png",
+          "sha256": "6193dcb36d615686f115154a7f48994581aeb057a9ff2e368607166cb7ebeb74"
+        },
+        {
+          "path": "skeleton/attack.png",
+          "sha256": "770ebea7da9eac4ee180a6d9bf5e4d5e062826f8745455ee1c197c08e8c642ff"
+        },
+        {
+          "path": "skeleton/cast.png",
+          "sha256": "f22cd8720f3b800d5e537e9668360e1d56355e4645d321679728c978ce4865ed"
+        },
+        {
+          "path": "skeleton/dash.png",
+          "sha256": "af4684a506e38a35cf81d6b46755805be362fa279a5b2f2421a3367460ea0723"
+        },
+        {
+          "path": "skeleton/prepare.png",
+          "sha256": "918b35716cd366514466848ddb0506f1af05d1c400169689c9bf483c521984c4"
+        },
+        {
+          "path": "venom_serpent/attack.png",
+          "sha256": "0d53d73b1d4c73cbef0b67312074dfc280d06e0f2152536d2f48511da10853e4"
+        },
+        {
+          "path": "venom_serpent/cast.png",
+          "sha256": "8b265bb1ba854acde02db8596d78d007bc6b67113f4047909ee27c8d7396be8c"
+        },
+        {
+          "path": "venom_serpent/dash.png",
+          "sha256": "dc75935258f816a2ef5d4fa09b54da306953360b351ac3a276eb5c08387fb0d1"
+        },
+        {
+          "path": "venom_serpent/prepare.png",
+          "sha256": "208834e9ca0db24a3664fadd13b5bd0615353cff7637e46a23fb96e46e884c93"
+        },
+        {
+          "path": "white_mage/attack.png",
+          "sha256": "20a332457c506c7b4882816736a8e6e6644c823147e5d7fc680fe3f4842a987f"
+        },
+        {
+          "path": "white_mage/cast.png",
+          "sha256": "2eae70aac4cbe44bb9178fa8fee44c3b437df4c84c537c65108f98597dcc7a4c"
+        },
+        {
+          "path": "white_mage/dash.png",
+          "sha256": "e163ce75d756ac2f1b3630b9a55bbb0d16e69b88e7ac4554bfc7a657c76e00cf"
+        },
+        {
+          "path": "white_mage/prepare.png",
+          "sha256": "1ab84b7bef8ff1e72b7ece90d0e8fc8f6e4a1ec6b2c4f76530b49af2b4f90a2e"
+        },
+        {
+          "path": "wild_boar/attack.png",
+          "sha256": "f1fe8aafe089fe50b0d0ce570c9b918ab5a3090dd349444549a2ff2a057ba413"
+        },
+        {
+          "path": "wild_boar/cast.png",
+          "sha256": "97c05b5874d6b6a0243add0a3953c423adca7f4fe75538b5df80dbb369c1c4a0"
+        },
+        {
+          "path": "wild_boar/dash.png",
+          "sha256": "79c0c6a72a3a3f372e7951e8cf5d270a4839e34207112b2e09dec315915dbae6"
+        },
+        {
+          "path": "wild_boar/prepare.png",
+          "sha256": "a3f7cbf41c2677d12d86c1ee0453fe9a860046da1995177a6dd90ad493dad449"
+        },
+        {
+          "path": "wolf/attack.png",
+          "sha256": "431ca97b9fd3b2fb652d87a0db89490434d50cc8030072a74d7a681166db19b8"
+        },
+        {
+          "path": "wolf/cast.png",
+          "sha256": "100228c1e73f1a5fa23dbf2369765f0e5a8fca31970a131193334ac31cf3c0eb"
+        },
+        {
+          "path": "wolf/dash.png",
+          "sha256": "b9375c59b4afff7303512f08413dc30d535ffc6d0f55e1fc10180849b1905f27"
+        },
+        {
+          "path": "wolf/prepare.png",
+          "sha256": "3e7c15fd1452923c7046368c2d2f9cea2224c8a8ea48082eb25e337f0c2c727d"
+        },
+        {
+          "path": "young_dragon_elite/attack.png",
+          "sha256": "3e13cffa84c49fb608db73c3ab74e29599090933da4a556a63940e11b3106ea9"
+        },
+        {
+          "path": "young_dragon_elite/cast.png",
+          "sha256": "3b8dd469f26deebf168dd0413b1424cb3b0b4c05895604853f4f433bcbcebe1c"
+        },
+        {
+          "path": "young_dragon_elite/dash.png",
+          "sha256": "45a5eeab01db06a7069524cb510eec20864cde38d889295fc37ced57b37fb46b"
+        },
+        {
+          "path": "young_dragon_elite/prepare.png",
+          "sha256": "7e18d87bd031b4b740827017f8f53a67656badff53ba5846a4fdd5cdc793f2a6"
+        }
+      ],
+      "result": "PASS"
+    }
+  },
+  "requiredMasterPaths": [
+    "/assets/characters/pixel/masters/alistair.png",
+    "/assets/characters/pixel/masters/white_mage.png",
+    "/assets/characters/pixel/masters/dark_mage.png",
+    "/assets/characters/pixel/masters/archer.png",
+    "/assets/characters/pixel/masters/rogue.png",
+    "/assets/characters/pixel/masters/lancer.png",
+    "/assets/characters/pixel/masters/alaric.png",
+    "/assets/characters/pixel/masters/maelor.png",
+    "/assets/characters/pixel/masters/sage_seraphine.png",
+    "/assets/characters/pixel/masters/refugee_mother.png",
+    "/assets/characters/pixel/masters/survivor.png",
+    "/assets/characters/pixel/masters/villageoise.png",
+    "/assets/characters/pixel/masters/wounded_merchant.png"
+  ],
+  "records": [
+    {
+      "surface": "Canonical single-speaker Tableau",
+      "routeOrContext": "serpent_general_aftermath:serpent_general_aftermath:segment-1:1",
+      "characterIds": [
+        "sage_seraphine"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/sage_seraphine.png"
+      ],
+      "viewport": "1366x768",
+      "cropMode": "surface-default",
+      "scale": [
+        "none"
+      ],
+      "offset": [
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        425.36
+      ],
+      "visibleBodyViewportRatios": [
+        55.39
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 552.69,
+          "top": 312.18,
+          "right": 814.54,
+          "bottom": 737.55,
+          "width": 261.86,
+          "height": 425.36
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "sage_seraphine",
+          "src": "/assets/characters/pixel/masters/sage_seraphine.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Static Tableau (2 actor)",
+      "routeOrContext": "serpent_pursuit_pre_combat:serpent_pursuit_pre_combat:segment-1:1",
+      "characterIds": [
+        "alaric",
+        "serpent_general_boss"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/alaric.png",
+        "/assets/characters/pixel/masters/serpent_general_boss.png"
+      ],
+      "viewport": "1366x768",
+      "cropMode": "surface-default",
+      "scale": [
+        "none",
+        "matrix(-1, 0, 0, 1, 0, 0)"
+      ],
+      "offset": [
+        "50% 100%",
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        388.73,
+        452.2
+      ],
+      "visibleBodyViewportRatios": [
+        50.62,
+        58.88
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 255.48,
+          "top": 354.19,
+          "right": 525.22,
+          "bottom": 742.92,
+          "width": 269.73,
+          "height": 388.73
+        },
+        {
+          "left": 805.63,
+          "top": 290.73,
+          "right": 1145.63,
+          "bottom": 742.92,
+          "width": 340,
+          "height": 452.2
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "alaric",
+          "src": "/assets/characters/pixel/masters/alaric.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "serpent_general_boss",
+          "src": "/assets/characters/pixel/masters/serpent_general_boss.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(-1, 0, 0, 1, 0, 0)",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Static Tableau (4 actor)",
+      "routeOrContext": "acte_ouverture:acte_ouverture:segment-1:1",
+      "characterIds": [
+        "sage_seraphine",
+        "maelor",
+        "alistair",
+        "marian"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/sage_seraphine.png",
+        "/assets/characters/pixel/masters/maelor.png",
+        "/assets/characters/pixel/masters/alistair.png",
+        "/assets/characters/pixel/masters/white_mage.png"
+      ],
+      "viewport": "1366x768",
+      "cropMode": "surface-default",
+      "scale": [
+        "none",
+        "none",
+        "matrix(-1, 0, 0, 1, 0, 0)",
+        "matrix(-1, 0, 0, 1, 0, 0)"
+      ],
+      "offset": [
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        365.55,
+        357.1,
+        367.66,
+        396.19
+      ],
+      "visibleBodyViewportRatios": [
+        47.6,
+        46.5,
+        47.87,
+        51.59
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 120.5,
+          "top": 381.68,
+          "right": 345.53,
+          "bottom": 747.23,
+          "width": 225.03,
+          "height": 365.55
+        },
+        {
+          "left": 439.46,
+          "top": 390.13,
+          "right": 608.5,
+          "bottom": 747.23,
+          "width": 169.04,
+          "height": 357.1
+        },
+        {
+          "left": 738.46,
+          "top": 381.68,
+          "right": 945.54,
+          "bottom": 749.34,
+          "width": 207.07,
+          "height": 367.66
+        },
+        {
+          "left": 1043.7,
+          "top": 358.44,
+          "right": 1223.3,
+          "bottom": 754.62,
+          "width": 179.6,
+          "height": 396.19
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "sage_seraphine",
+          "src": "/assets/characters/pixel/masters/sage_seraphine.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "maelor",
+          "src": "/assets/characters/pixel/masters/maelor.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "alistair",
+          "src": "/assets/characters/pixel/masters/alistair.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(-1, 0, 0, 1, 0, 0)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "marian",
+          "src": "/assets/characters/pixel/masters/white_mage.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(-1, 0, 0, 1, 0, 0)",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "TravelView",
+      "routeOrContext": "production TravelView/full party",
+      "characterIds": [
+        "alistair",
+        "marian",
+        "elara",
+        "kestrel",
+        "cedric",
+        "lancer",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/alistair.png",
+        "/assets/characters/pixel/masters/white_mage.png",
+        "/assets/characters/pixel/masters/dark_mage.png",
+        "/assets/characters/pixel/masters/archer.png",
+        "/assets/characters/pixel/masters/rogue.png",
+        "/assets/characters/pixel/masters/lancer.png",
+        "/assets/characters/pixel/masters/sage_seraphine.png",
+        "/assets/characters/pixel/masters/maelor.png"
+      ],
+      "viewport": "1366x768",
+      "cropMode": "surface-default",
+      "scale": [
+        "matrix(2.45, 0, 0, 2.45, 0, 6.88406)",
+        "matrix(2.45, 0, 0, 2.45, 0, 6.88406)",
+        "matrix(2.45, 0, 0, 2.45, 0, 6.88406)",
+        "matrix(2.45, 0, 0, 2.45, 0, 6.88406)",
+        "matrix(2.45, 0, 0, 2.45, 0, 6.88406)",
+        "matrix(2.45, 0, 0, 2.45, 0, 6.88406)",
+        "matrix(2.45, 0, 0, 2.45, 0, 6.88406)",
+        "matrix(2.45, 0, 0, 2.45, 0, 6.88406)"
+      ],
+      "offset": [
+        "50% 50%",
+        "50% 50%",
+        "50% 50%",
+        "50% 50%",
+        "50% 50%",
+        "50% 50%",
+        "50% 50%",
+        "50% 50%"
+      ],
+      "objectFit": "fill",
+      "objectPosition": "50% 50%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        127.74,
+        137.65,
+        124.07,
+        122.97,
+        120.4,
+        135.08,
+        127,
+        124.07
+      ],
+      "visibleBodyViewportRatios": [
+        16.63,
+        17.92,
+        16.15,
+        16.01,
+        15.68,
+        17.59,
+        16.54,
+        16.15
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 155.26,
+          "top": 420.54,
+          "right": 227.21,
+          "bottom": 548.27,
+          "width": 71.94,
+          "height": 127.74
+        },
+        {
+          "left": 300.53,
+          "top": 404.48,
+          "right": 362.93,
+          "bottom": 542.12,
+          "width": 62.4,
+          "height": 137.65
+        },
+        {
+          "left": 443.24,
+          "top": 409.07,
+          "right": 501.23,
+          "bottom": 533.13,
+          "width": 58,
+          "height": 124.07
+        },
+        {
+          "left": 578.23,
+          "top": 406.61,
+          "right": 647.61,
+          "bottom": 529.57,
+          "width": 69.37,
+          "height": 122.97
+        },
+        {
+          "left": 705.9,
+          "top": 409.17,
+          "right": 804.64,
+          "bottom": 529.57,
+          "width": 98.74,
+          "height": 120.4
+        },
+        {
+          "left": 860.35,
+          "top": 398.05,
+          "right": 927.89,
+          "bottom": 533.13,
+          "width": 67.54,
+          "height": 135.08
+        },
+        {
+          "left": 995.34,
+          "top": 412.55,
+          "right": 1073.53,
+          "bottom": 539.55,
+          "width": 78.18,
+          "height": 127
+        },
+        {
+          "left": 1145.39,
+          "top": 423.47,
+          "right": 1204.11,
+          "bottom": 547.54,
+          "width": 58.73,
+          "height": 124.07
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "alistair",
+          "src": "/assets/characters/pixel/masters/alistair.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 6.88406)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "marian",
+          "src": "/assets/characters/pixel/masters/white_mage.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 6.88406)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "elara",
+          "src": "/assets/characters/pixel/masters/dark_mage.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 6.88406)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "kestrel",
+          "src": "/assets/characters/pixel/masters/archer.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 6.88406)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "cedric",
+          "src": "/assets/characters/pixel/masters/rogue.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 6.88406)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "lancer",
+          "src": "/assets/characters/pixel/masters/lancer.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 6.88406)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "sage_seraphine",
+          "src": "/assets/characters/pixel/masters/sage_seraphine.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 6.88406)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "maelor",
+          "src": "/assets/characters/pixel/masters/maelor.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 6.88406)",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "ManagementView party/roster",
+      "routeOrContext": "production ManagementView/clan/Alistair",
+      "characterIds": [
+        "warrior",
+        "white_mage",
+        "dark_mage",
+        "archer",
+        "rogue",
+        "lancer"
+      ],
+      "assetOwnership": "MASTER_RUNTIME_CROP",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/alistair.png",
+        "/assets/characters/pixel/masters/white_mage.png",
+        "/assets/characters/pixel/masters/dark_mage.png",
+        "/assets/characters/pixel/masters/archer.png",
+        "/assets/characters/pixel/masters/rogue.png",
+        "/assets/characters/pixel/masters/lancer.png",
+        "/assets/characters/pixel/masters/alistair.png"
+      ],
+      "viewport": "1366x768",
+      "cropMode": "upper-body, surface-default",
+      "scale": [
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(1.3, 0, 0, 1.3, 0, 0)"
+      ],
+      "offset": [
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        344.23
+      ],
+      "visibleBodyViewportRatios": [
+        44.82
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 515.55,
+          "top": 323.98,
+          "right": 709.43,
+          "bottom": 668.21,
+          "width": 193.88,
+          "height": 344.23
+        }
+      ],
+      "featuredUnit": {
+        "characterId": "Alistair",
+        "visibleBodyHeight": 344.23,
+        "panelHeight": 593.08,
+        "panelRatio": 58.04
+      },
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/alistair.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/white_mage.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/dark_mage.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/archer.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/rogue.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/lancer.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "Alistair",
+          "src": "/assets/characters/pixel/masters/alistair.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(1.3, 0, 0, 1.3, 0, 0)",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "ManagementView Marian showcase",
+      "routeOrContext": "production ManagementView/clan/Marian",
+      "characterIds": [
+        "warrior",
+        "white_mage",
+        "dark_mage",
+        "archer",
+        "rogue",
+        "lancer"
+      ],
+      "assetOwnership": "MASTER_RUNTIME_CROP",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/alistair.png",
+        "/assets/characters/pixel/masters/white_mage.png",
+        "/assets/characters/pixel/masters/dark_mage.png",
+        "/assets/characters/pixel/masters/archer.png",
+        "/assets/characters/pixel/masters/rogue.png",
+        "/assets/characters/pixel/masters/lancer.png",
+        "/assets/characters/pixel/masters/white_mage.png"
+      ],
+      "viewport": "1366x768",
+      "cropMode": "upper-body, surface-default",
+      "scale": [
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(1.3, 0, 0, 1.3, 0, 0)"
+      ],
+      "offset": [
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        370.94
+      ],
+      "visibleBodyViewportRatios": [
+        48.3
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 528.41,
+          "top": 301.51,
+          "right": 696.57,
+          "bottom": 672.44,
+          "width": 168.16,
+          "height": 370.94
+        }
+      ],
+      "featuredUnit": {
+        "characterId": "Marian",
+        "visibleBodyHeight": 370.94,
+        "panelHeight": 593.08,
+        "panelRatio": 62.54
+      },
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/alistair.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/white_mage.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/dark_mage.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/archer.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/rogue.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/lancer.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "Marian",
+          "src": "/assets/characters/pixel/masters/white_mage.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(1.3, 0, 0, 1.3, 0, 0)",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Canonical civilian Tableau",
+      "routeOrContext": "rep_event_village_memorial_request:rep_event_village_memorial_request:segment-1:1",
+      "characterIds": [
+        "refugee_mother"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/refugee_mother.png"
+      ],
+      "viewport": "1366x768",
+      "cropMode": "surface-default",
+      "scale": [
+        "none"
+      ],
+      "offset": [
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        403.23
+      ],
+      "visibleBodyViewportRatios": [
+        52.5
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 593.26,
+          "top": 334.31,
+          "right": 773.97,
+          "bottom": 737.55,
+          "width": 180.72,
+          "height": 403.23
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "refugee_mother",
+          "src": "/assets/characters/pixel/masters/refugee_mother.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Canonical civilian Tableau audit",
+      "routeOrContext": "rep_event_refuge_supply_offer:rep_event_refuge_supply_offer:segment-1:1",
+      "characterIds": [
+        "survivor"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/survivor.png"
+      ],
+      "viewport": "1366x768",
+      "cropMode": "surface-default",
+      "scale": [
+        "none"
+      ],
+      "offset": [
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        411.84
+      ],
+      "visibleBodyViewportRatios": [
+        53.63
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 551.46,
+          "top": 325.71,
+          "right": 813.31,
+          "bottom": 737.55,
+          "width": 261.86,
+          "height": 411.84
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "survivor",
+          "src": "/assets/characters/pixel/masters/survivor.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Canonical civilian Tableau audit",
+      "routeOrContext": "village_defense_aftermath:village_defense_aftermath:segment-1:1",
+      "characterIds": [
+        "villageoise"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/villageoise.png"
+      ],
+      "viewport": "1366x768",
+      "cropMode": "surface-default",
+      "scale": [
+        "none"
+      ],
+      "offset": [
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        403.23
+      ],
+      "visibleBodyViewportRatios": [
+        52.5
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 589.57,
+          "top": 334.31,
+          "right": 777.66,
+          "bottom": 737.55,
+          "width": 188.09,
+          "height": 403.23
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "villageoise",
+          "src": "/assets/characters/pixel/masters/villageoise.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Static Tableau civilian audit",
+      "routeOrContext": "ate_village_fear:ate_village_fear:segment-1:1",
+      "characterIds": [
+        "villageoise",
+        "refugee_mother"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/villageoise.png",
+        "/assets/characters/pixel/masters/refugee_mother.png"
+      ],
+      "viewport": "1366x768",
+      "cropMode": "surface-default",
+      "scale": [
+        "none",
+        "matrix(-1, 0, 0, 1, 0, 0)"
+      ],
+      "offset": [
+        "50% 100%",
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        371.73,
+        371.73
+      ],
+      "visibleBodyViewportRatios": [
+        48.4,
+        48.4
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 305.35,
+          "top": 371.19,
+          "right": 478.75,
+          "bottom": 742.92,
+          "width": 173.4,
+          "height": 371.73
+        },
+        {
+          "left": 891.77,
+          "top": 371.19,
+          "right": 1058.37,
+          "bottom": 742.92,
+          "width": 166.6,
+          "height": 371.73
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "villageoise",
+          "src": "/assets/characters/pixel/masters/villageoise.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "refugee_mother",
+          "src": "/assets/characters/pixel/masters/refugee_mother.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(-1, 0, 0, 1, 0, 0)",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Static Tableau choice audit",
+      "routeOrContext": "rep_event_refuge_supply_offer:rep_event_refuge_supply_offer:segment-1:1",
+      "characterIds": [
+        "survivor"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/survivor.png"
+      ],
+      "viewport": "1366x768",
+      "cropMode": "surface-default",
+      "scale": [
+        "none"
+      ],
+      "offset": [
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        411.84
+      ],
+      "visibleBodyViewportRatios": [
+        53.63
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 551.46,
+          "top": 325.71,
+          "right": 813.31,
+          "bottom": 737.55,
+          "width": 261.86,
+          "height": 411.84
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "survivor",
+          "src": "/assets/characters/pixel/masters/survivor.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Static Tableau pre-combat audit",
+      "routeOrContext": "pre_opening_trail:pre_opening_trail:segment-1:1",
+      "characterIds": [
+        "kestrel",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/archer.png",
+        "/assets/characters/pixel/masters/alistair.png",
+        "/assets/characters/pixel/masters/sage_seraphine.png"
+      ],
+      "viewport": "1366x768",
+      "cropMode": "surface-default",
+      "scale": [
+        "none",
+        "none",
+        "matrix(-1, 0, 0, 1, 0, 0)"
+      ],
+      "offset": [
+        "50% 100%",
+        "50% 100%",
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        366.8,
+        381.03,
+        378.84
+      ],
+      "visibleBodyViewportRatios": [
+        47.76,
+        49.61,
+        49.33
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 89.81,
+          "top": 378.28,
+          "right": 296.75,
+          "bottom": 745.08,
+          "width": 206.94,
+          "height": 366.8
+        },
+        {
+          "left": 575.7,
+          "top": 366.24,
+          "right": 790.3,
+          "bottom": 747.27,
+          "width": 214.6,
+          "height": 381.03
+        },
+        {
+          "left": 1057.19,
+          "top": 366.24,
+          "right": 1290.41,
+          "bottom": 745.08,
+          "width": 233.22,
+          "height": 378.84
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "kestrel",
+          "src": "/assets/characters/pixel/masters/archer.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "alistair",
+          "src": "/assets/characters/pixel/masters/alistair.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "sage_seraphine",
+          "src": "/assets/characters/pixel/masters/sage_seraphine.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(-1, 0, 0, 1, 0, 0)",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Static Tableau post-combat audit",
+      "routeOrContext": "post_opening_trail:post_opening_trail:segment-1:1",
+      "characterIds": [
+        "kestrel",
+        "alistair",
+        "maelor"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/archer.png",
+        "/assets/characters/pixel/masters/alistair.png",
+        "/assets/characters/pixel/masters/maelor.png"
+      ],
+      "viewport": "1366x768",
+      "cropMode": "surface-default",
+      "scale": [
+        "none",
+        "none",
+        "matrix(-1, 0, 0, 1, 0, 0)"
+      ],
+      "offset": [
+        "50% 100%",
+        "50% 100%",
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        366.8,
+        381.03,
+        370.08
+      ],
+      "visibleBodyViewportRatios": [
+        47.76,
+        49.61,
+        48.19
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 89.81,
+          "top": 378.28,
+          "right": 296.75,
+          "bottom": 745.08,
+          "width": 206.94,
+          "height": 366.8
+        },
+        {
+          "left": 575.7,
+          "top": 366.24,
+          "right": 790.3,
+          "bottom": 747.27,
+          "width": 214.6,
+          "height": 381.03
+        },
+        {
+          "left": 1085.66,
+          "top": 375,
+          "right": 1260.84,
+          "bottom": 745.08,
+          "width": 175.19,
+          "height": 370.08
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "kestrel",
+          "src": "/assets/characters/pixel/masters/archer.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "alistair",
+          "src": "/assets/characters/pixel/masters/alistair.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "maelor",
+          "src": "/assets/characters/pixel/masters/maelor.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(-1, 0, 0, 1, 0, 0)",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Canonical single-speaker Tableau",
+      "routeOrContext": "serpent_general_aftermath:serpent_general_aftermath:segment-1:1",
+      "characterIds": [
+        "sage_seraphine"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/sage_seraphine.png"
+      ],
+      "viewport": "1920x1080",
+      "cropMode": "surface-default",
+      "scale": [
+        "none"
+      ],
+      "offset": [
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        597.88
+      ],
+      "visibleBodyViewportRatios": [
+        55.36
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 776.84,
+          "top": 439.36,
+          "right": 1144.89,
+          "bottom": 1037.23,
+          "width": 368.06,
+          "height": 597.88
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "sage_seraphine",
+          "src": "/assets/characters/pixel/masters/sage_seraphine.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Static Tableau (2 actor)",
+      "routeOrContext": "serpent_pursuit_pre_combat:serpent_pursuit_pre_combat:segment-1:1",
+      "characterIds": [
+        "alaric",
+        "serpent_general_boss"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/alaric.png",
+        "/assets/characters/pixel/masters/serpent_general_boss.png"
+      ],
+      "viewport": "1920x1080",
+      "cropMode": "surface-default",
+      "scale": [
+        "none",
+        "matrix(-1, 0, 0, 1, 0, 0)"
+      ],
+      "offset": [
+        "50% 100%",
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        546.39,
+        635.6
+      ],
+      "visibleBodyViewportRatios": [
+        50.59,
+        58.85
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 359.11,
+          "top": 498.4,
+          "right": 738.24,
+          "bottom": 1044.79,
+          "width": 379.13,
+          "height": 546.39
+        },
+        {
+          "left": 1132.37,
+          "top": 409.2,
+          "right": 1610.26,
+          "bottom": 1044.79,
+          "width": 477.89,
+          "height": 635.6
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "alaric",
+          "src": "/assets/characters/pixel/masters/alaric.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "serpent_general_boss",
+          "src": "/assets/characters/pixel/masters/serpent_general_boss.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(-1, 0, 0, 1, 0, 0)",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Static Tableau (4 actor)",
+      "routeOrContext": "acte_ouverture:acte_ouverture:segment-1:1",
+      "characterIds": [
+        "sage_seraphine",
+        "maelor",
+        "alistair",
+        "marian"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/sage_seraphine.png",
+        "/assets/characters/pixel/masters/maelor.png",
+        "/assets/characters/pixel/masters/alistair.png",
+        "/assets/characters/pixel/masters/white_mage.png"
+      ],
+      "viewport": "1920x1080",
+      "cropMode": "surface-default",
+      "scale": [
+        "none",
+        "none",
+        "matrix(-1, 0, 0, 1, 0, 0)",
+        "matrix(-1, 0, 0, 1, 0, 0)"
+      ],
+      "offset": [
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        513.8,
+        501.92,
+        516.77,
+        556.86
+      ],
+      "visibleBodyViewportRatios": [
+        47.57,
+        46.47,
+        47.85,
+        51.56
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 169.37,
+          "top": 537.04,
+          "right": 485.67,
+          "bottom": 1050.84,
+          "width": 316.3,
+          "height": 513.8
+        },
+        {
+          "left": 617.7,
+          "top": 548.92,
+          "right": 855.3,
+          "bottom": 1050.84,
+          "width": 237.6,
+          "height": 501.92
+        },
+        {
+          "left": 1037.96,
+          "top": 537.04,
+          "right": 1329.01,
+          "bottom": 1053.81,
+          "width": 291.05,
+          "height": 516.77
+        },
+        {
+          "left": 1466.98,
+          "top": 504.37,
+          "right": 1719.43,
+          "bottom": 1061.24,
+          "width": 252.45,
+          "height": 556.86
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "sage_seraphine",
+          "src": "/assets/characters/pixel/masters/sage_seraphine.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "maelor",
+          "src": "/assets/characters/pixel/masters/maelor.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "alistair",
+          "src": "/assets/characters/pixel/masters/alistair.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(-1, 0, 0, 1, 0, 0)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "marian",
+          "src": "/assets/characters/pixel/masters/white_mage.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(-1, 0, 0, 1, 0, 0)",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "TravelView",
+      "routeOrContext": "production TravelView/full party",
+      "characterIds": [
+        "alistair",
+        "marian",
+        "elara",
+        "kestrel",
+        "cedric",
+        "lancer",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/alistair.png",
+        "/assets/characters/pixel/masters/white_mage.png",
+        "/assets/characters/pixel/masters/dark_mage.png",
+        "/assets/characters/pixel/masters/archer.png",
+        "/assets/characters/pixel/masters/rogue.png",
+        "/assets/characters/pixel/masters/lancer.png",
+        "/assets/characters/pixel/masters/sage_seraphine.png",
+        "/assets/characters/pixel/masters/maelor.png"
+      ],
+      "viewport": "1920x1080",
+      "cropMode": "surface-default",
+      "scale": [
+        "matrix(2.45, 0, 0, 2.45, 0, 9.67641)",
+        "matrix(2.45, 0, 0, 2.45, 0, 9.67641)",
+        "matrix(2.45, 0, 0, 2.45, 0, 9.67641)",
+        "matrix(2.45, 0, 0, 2.45, 0, 9.67641)",
+        "matrix(2.45, 0, 0, 2.45, 0, 9.67641)",
+        "matrix(2.45, 0, 0, 2.45, 0, 9.67641)",
+        "matrix(2.45, 0, 0, 2.45, 0, 9.67641)",
+        "matrix(2.45, 0, 0, 2.45, 0, 9.67641)"
+      ],
+      "offset": [
+        "50% 50%",
+        "50% 50%",
+        "50% 50%",
+        "50% 50%",
+        "50% 50%",
+        "50% 50%",
+        "50% 50%",
+        "50% 50%"
+      ],
+      "objectFit": "fill",
+      "objectPosition": "50% 50%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        179.55,
+        193.48,
+        174.39,
+        172.84,
+        169.23,
+        189.87,
+        178.52,
+        174.39
+      ],
+      "visibleBodyViewportRatios": [
+        16.63,
+        17.91,
+        16.15,
+        16,
+        15.67,
+        17.58,
+        16.53,
+        16.15
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 218.23,
+          "top": 591.34,
+          "right": 319.36,
+          "bottom": 770.89,
+          "width": 101.13,
+          "height": 179.55
+        },
+        {
+          "left": 422.43,
+          "top": 568.74,
+          "right": 510.14,
+          "bottom": 762.22,
+          "width": 87.71,
+          "height": 193.48
+        },
+        {
+          "left": 623.01,
+          "top": 575.2,
+          "right": 704.53,
+          "bottom": 749.59,
+          "width": 81.52,
+          "height": 174.39
+        },
+        {
+          "left": 812.75,
+          "top": 571.75,
+          "right": 910.27,
+          "bottom": 744.59,
+          "width": 97.51,
+          "height": 172.84
+        },
+        {
+          "left": 992.18,
+          "top": 575.36,
+          "right": 1130.97,
+          "bottom": 744.59,
+          "width": 138.79,
+          "height": 169.23
+        },
+        {
+          "left": 1209.27,
+          "top": 559.72,
+          "right": 1304.2,
+          "bottom": 749.59,
+          "width": 94.93,
+          "height": 189.87
+        },
+        {
+          "left": 1399.01,
+          "top": 580.09,
+          "right": 1508.91,
+          "bottom": 758.61,
+          "width": 109.9,
+          "height": 178.52
+        },
+        {
+          "left": 1609.91,
+          "top": 595.47,
+          "right": 1692.46,
+          "bottom": 769.86,
+          "width": 82.55,
+          "height": 174.39
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "alistair",
+          "src": "/assets/characters/pixel/masters/alistair.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 9.67641)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "marian",
+          "src": "/assets/characters/pixel/masters/white_mage.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 9.67641)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "elara",
+          "src": "/assets/characters/pixel/masters/dark_mage.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 9.67641)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "kestrel",
+          "src": "/assets/characters/pixel/masters/archer.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 9.67641)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "cedric",
+          "src": "/assets/characters/pixel/masters/rogue.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 9.67641)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "lancer",
+          "src": "/assets/characters/pixel/masters/lancer.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 9.67641)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "sage_seraphine",
+          "src": "/assets/characters/pixel/masters/sage_seraphine.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 9.67641)",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "maelor",
+          "src": "/assets/characters/pixel/masters/maelor.png",
+          "objectFit": "fill",
+          "objectPosition": "50% 50%",
+          "transform": "matrix(2.45, 0, 0, 2.45, 0, 9.67641)",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "ManagementView party/roster",
+      "routeOrContext": "production ManagementView/clan/Alistair",
+      "characterIds": [
+        "warrior",
+        "white_mage",
+        "dark_mage",
+        "archer",
+        "rogue",
+        "lancer"
+      ],
+      "assetOwnership": "MASTER_RUNTIME_CROP",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/alistair.png",
+        "/assets/characters/pixel/masters/white_mage.png",
+        "/assets/characters/pixel/masters/dark_mage.png",
+        "/assets/characters/pixel/masters/archer.png",
+        "/assets/characters/pixel/masters/rogue.png",
+        "/assets/characters/pixel/masters/lancer.png",
+        "/assets/characters/pixel/masters/alistair.png"
+      ],
+      "viewport": "1920x1080",
+      "cropMode": "upper-body, surface-default",
+      "scale": [
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(1.3, 0, 0, 1.3, 0, 0)"
+      ],
+      "offset": [
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        344.23
+      ],
+      "visibleBodyViewportRatios": [
+        31.87
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 792.55,
+          "top": 530.06,
+          "right": 986.43,
+          "bottom": 874.29,
+          "width": 193.88,
+          "height": 344.23
+        }
+      ],
+      "featuredUnit": {
+        "characterId": "Alistair",
+        "visibleBodyHeight": 344.23,
+        "panelHeight": 609.08,
+        "panelRatio": 56.52
+      },
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/alistair.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/white_mage.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/dark_mage.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/archer.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/rogue.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/lancer.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "Alistair",
+          "src": "/assets/characters/pixel/masters/alistair.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(1.3, 0, 0, 1.3, 0, 0)",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "ManagementView Marian showcase",
+      "routeOrContext": "production ManagementView/clan/Marian",
+      "characterIds": [
+        "warrior",
+        "white_mage",
+        "dark_mage",
+        "archer",
+        "rogue",
+        "lancer"
+      ],
+      "assetOwnership": "MASTER_RUNTIME_CROP",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/alistair.png",
+        "/assets/characters/pixel/masters/white_mage.png",
+        "/assets/characters/pixel/masters/dark_mage.png",
+        "/assets/characters/pixel/masters/archer.png",
+        "/assets/characters/pixel/masters/rogue.png",
+        "/assets/characters/pixel/masters/lancer.png",
+        "/assets/characters/pixel/masters/white_mage.png"
+      ],
+      "viewport": "1920x1080",
+      "cropMode": "upper-body, surface-default",
+      "scale": [
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(2.05, 0, 0, 2.05, 0, 0)",
+        "matrix(1.3, 0, 0, 1.3, 0, 0)"
+      ],
+      "offset": [
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%",
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        370.94
+      ],
+      "visibleBodyViewportRatios": [
+        34.35
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 805.41,
+          "top": 512.52,
+          "right": 973.57,
+          "bottom": 883.45,
+          "width": 168.16,
+          "height": 370.94
+        }
+      ],
+      "featuredUnit": {
+        "characterId": "Marian",
+        "visibleBodyHeight": 370.94,
+        "panelHeight": 609.08,
+        "panelRatio": 60.9
+      },
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/alistair.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/white_mage.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/dark_mage.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/archer.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/rogue.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "",
+          "src": "/assets/characters/pixel/masters/lancer.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(2.05, 0, 0, 2.05, 0, 0)",
+          "cropMode": "upper-body"
+        },
+        {
+          "characterId": "Marian",
+          "src": "/assets/characters/pixel/masters/white_mage.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(1.3, 0, 0, 1.3, 0, 0)",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Canonical civilian Tableau",
+      "routeOrContext": "rep_event_village_memorial_request:rep_event_village_memorial_request:segment-1:1",
+      "characterIds": [
+        "refugee_mother"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/refugee_mother.png"
+      ],
+      "viewport": "1920x1080",
+      "cropMode": "surface-default",
+      "scale": [
+        "none"
+      ],
+      "offset": [
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        566.77
+      ],
+      "visibleBodyViewportRatios": [
+        52.48
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 833.86,
+          "top": 470.46,
+          "right": 1087.87,
+          "bottom": 1037.23,
+          "width": 254.01,
+          "height": 566.77
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "refugee_mother",
+          "src": "/assets/characters/pixel/masters/refugee_mother.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Canonical civilian Tableau audit",
+      "routeOrContext": "rep_event_refuge_supply_offer:rep_event_refuge_supply_offer:segment-1:1",
+      "characterIds": [
+        "survivor"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/survivor.png"
+      ],
+      "viewport": "1920x1080",
+      "cropMode": "surface-default",
+      "scale": [
+        "none"
+      ],
+      "offset": [
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        578.87
+      ],
+      "visibleBodyViewportRatios": [
+        53.6
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 775.11,
+          "top": 458.36,
+          "right": 1143.16,
+          "bottom": 1037.23,
+          "width": 368.06,
+          "height": 578.87
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "survivor",
+          "src": "/assets/characters/pixel/masters/survivor.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Canonical civilian Tableau audit",
+      "routeOrContext": "village_defense_aftermath:village_defense_aftermath:segment-1:1",
+      "characterIds": [
+        "villageoise"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/villageoise.png"
+      ],
+      "viewport": "1920x1080",
+      "cropMode": "surface-default",
+      "scale": [
+        "none"
+      ],
+      "offset": [
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        566.77
+      ],
+      "visibleBodyViewportRatios": [
+        52.48
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 828.67,
+          "top": 470.46,
+          "right": 1093.05,
+          "bottom": 1037.23,
+          "width": 264.38,
+          "height": 566.77
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "villageoise",
+          "src": "/assets/characters/pixel/masters/villageoise.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Static Tableau civilian audit",
+      "routeOrContext": "ate_village_fear:ate_village_fear:segment-1:1",
+      "characterIds": [
+        "villageoise",
+        "refugee_mother"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/villageoise.png",
+        "/assets/characters/pixel/masters/refugee_mother.png"
+      ],
+      "viewport": "1920x1080",
+      "cropMode": "surface-default",
+      "scale": [
+        "none",
+        "matrix(-1, 0, 0, 1, 0, 0)"
+      ],
+      "offset": [
+        "50% 100%",
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        522.49,
+        522.49
+      ],
+      "visibleBodyViewportRatios": [
+        48.38,
+        48.38
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 429.2,
+          "top": 522.3,
+          "right": 672.92,
+          "bottom": 1044.79,
+          "width": 243.72,
+          "height": 522.49
+        },
+        {
+          "left": 1253.43,
+          "top": 522.3,
+          "right": 1487.6,
+          "bottom": 1044.79,
+          "width": 234.17,
+          "height": 522.49
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "villageoise",
+          "src": "/assets/characters/pixel/masters/villageoise.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "refugee_mother",
+          "src": "/assets/characters/pixel/masters/refugee_mother.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(-1, 0, 0, 1, 0, 0)",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Static Tableau choice audit",
+      "routeOrContext": "rep_event_refuge_supply_offer:rep_event_refuge_supply_offer:segment-1:1",
+      "characterIds": [
+        "survivor"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/survivor.png"
+      ],
+      "viewport": "1920x1080",
+      "cropMode": "surface-default",
+      "scale": [
+        "none"
+      ],
+      "offset": [
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        578.87
+      ],
+      "visibleBodyViewportRatios": [
+        53.6
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 775.11,
+          "top": 458.36,
+          "right": 1143.16,
+          "bottom": 1037.23,
+          "width": 368.06,
+          "height": 578.87
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "survivor",
+          "src": "/assets/characters/pixel/masters/survivor.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Static Tableau pre-combat audit",
+      "routeOrContext": "pre_opening_trail:pre_opening_trail:segment-1:1",
+      "characterIds": [
+        "kestrel",
+        "alistair",
+        "sage_seraphine"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/archer.png",
+        "/assets/characters/pixel/masters/alistair.png",
+        "/assets/characters/pixel/masters/sage_seraphine.png"
+      ],
+      "viewport": "1920x1080",
+      "cropMode": "surface-default",
+      "scale": [
+        "none",
+        "none",
+        "matrix(-1, 0, 0, 1, 0, 0)"
+      ],
+      "offset": [
+        "50% 100%",
+        "50% 100%",
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        515.56,
+        535.56,
+        532.48
+      ],
+      "visibleBodyViewportRatios": [
+        47.74,
+        49.59,
+        49.3
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 126.24,
+          "top": 532.26,
+          "right": 417.11,
+          "bottom": 1047.82,
+          "width": 290.87,
+          "height": 515.56
+        },
+        {
+          "left": 809.18,
+          "top": 515.33,
+          "right": 1110.82,
+          "bottom": 1050.9,
+          "width": 301.64,
+          "height": 535.56
+        },
+        {
+          "left": 1485.95,
+          "top": 515.33,
+          "right": 1813.75,
+          "bottom": 1047.82,
+          "width": 327.8,
+          "height": 532.48
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "kestrel",
+          "src": "/assets/characters/pixel/masters/archer.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "alistair",
+          "src": "/assets/characters/pixel/masters/alistair.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "sage_seraphine",
+          "src": "/assets/characters/pixel/masters/sage_seraphine.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(-1, 0, 0, 1, 0, 0)",
+          "cropMode": "surface-default"
+        }
+      ]
+    },
+    {
+      "surface": "Static Tableau post-combat audit",
+      "routeOrContext": "post_opening_trail:post_opening_trail:segment-1:1",
+      "characterIds": [
+        "kestrel",
+        "alistair",
+        "maelor"
+      ],
+      "assetOwnership": "MASTER_FULL_BODY",
+      "masterPaths": [
+        "/assets/characters/pixel/masters/archer.png",
+        "/assets/characters/pixel/masters/alistair.png",
+        "/assets/characters/pixel/masters/maelor.png"
+      ],
+      "viewport": "1920x1080",
+      "cropMode": "surface-default",
+      "scale": [
+        "none",
+        "none",
+        "matrix(-1, 0, 0, 1, 0, 0)"
+      ],
+      "offset": [
+        "50% 100%",
+        "50% 100%",
+        "50% 100%"
+      ],
+      "objectFit": "contain",
+      "objectPosition": "50% 100%",
+      "visible": true,
+      "clipped": false,
+      "duplicateActor": false,
+      "protectedUiCollision": false,
+      "overflow": false,
+      "hiddenSpeaker": false,
+      "actorOverlaps": 0,
+      "actorHeadOverlaps": 0,
+      "groundContactViolation": false,
+      "choiceGeometryViolation": false,
+      "travelLabelCollisions": 0,
+      "companyRegisterCollisions": 0,
+      "standaloneBottomPanel": false,
+      "visibleBodyHeights": [
+        515.56,
+        535.56,
+        520.17
+      ],
+      "visibleBodyViewportRatios": [
+        47.74,
+        49.59,
+        48.16
+      ],
+      "visibleBodyBounds": [
+        {
+          "left": 126.24,
+          "top": 532.26,
+          "right": 417.11,
+          "bottom": 1047.82,
+          "width": 290.87,
+          "height": 515.56
+        },
+        {
+          "left": 809.18,
+          "top": 515.33,
+          "right": 1110.82,
+          "bottom": 1050.9,
+          "width": 301.64,
+          "height": 535.56
+        },
+        {
+          "left": 1525.96,
+          "top": 527.64,
+          "right": 1772.2,
+          "bottom": 1047.82,
+          "width": 246.24,
+          "height": 520.17
+        }
+      ],
+      "result": "PASS",
+      "imageStyles": [
+        {
+          "characterId": "kestrel",
+          "src": "/assets/characters/pixel/masters/archer.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "alistair",
+          "src": "/assets/characters/pixel/masters/alistair.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "none",
+          "cropMode": "surface-default"
+        },
+        {
+          "characterId": "maelor",
+          "src": "/assets/characters/pixel/masters/maelor.png",
+          "objectFit": "contain",
+          "objectPosition": "50% 100%",
+          "transform": "matrix(-1, 0, 0, 1, 0, 0)",
+          "cropMode": "surface-default"
+        }
+      ]
+    }
+  ],
+  "beforeAfterComparisons": [
+    {
+      "surface": "Canonical single-speaker Tableau",
+      "viewport": "1366x768",
+      "before": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1366x768-normal-dialogue.png",
+      "after": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1366x768-normal-dialogue.png"
+    },
+    {
+      "surface": "Static Tableau (2 actor)",
+      "viewport": "1366x768",
+      "before": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1366x768-tableau-2-actor.png",
+      "after": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1366x768-tableau-2-actor.png"
+    },
+    {
+      "surface": "Static Tableau (4 actor)",
+      "viewport": "1366x768",
+      "before": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1366x768-tableau-4-actor.png",
+      "after": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1366x768-tableau-4-actor.png"
+    },
+    {
+      "surface": "TravelView",
+      "viewport": "1366x768",
+      "before": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1366x768-travel-advisors.png",
+      "after": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1366x768-travel-advisors.png"
+    },
+    {
+      "surface": "ManagementView party/roster",
+      "viewport": "1366x768",
+      "before": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1366x768-hero-party.png",
+      "after": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1366x768-hero-party.png"
+    },
+    {
+      "surface": "ManagementView Marian showcase",
+      "viewport": "1366x768",
+      "before": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1366x768-hero-party-marian.png",
+      "after": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1366x768-hero-party-marian.png"
+    },
+    {
+      "surface": "Canonical civilian Tableau",
+      "viewport": "1366x768",
+      "before": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1366x768-civilian-dialogue.png",
+      "after": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1366x768-civilian-dialogue.png"
+    },
+    {
+      "surface": "Static Tableau (4 actor)",
+      "viewport": "1920x1080",
+      "before": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1920x1080-tableau-4-actor.png",
+      "after": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1920x1080-tableau-4-actor.png"
+    },
+    {
+      "surface": "TravelView",
+      "viewport": "1920x1080",
+      "before": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1920x1080-travel-advisors.png",
+      "after": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1920x1080-travel-advisors.png"
+    },
+    {
+      "surface": "ManagementView party/roster",
+      "viewport": "1920x1080",
+      "before": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1920x1080-hero-party.png",
+      "after": "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1920x1080-hero-party.png"
+    }
+  ],
+  "browserErrors": [],
+  "characterRequestFailures": [],
+  "screenshots": [
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1366x768-normal-dialogue.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1366x768-normal-dialogue.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1366x768-tableau-2-actor.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1366x768-tableau-2-actor.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1366x768-tableau-4-actor.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1366x768-tableau-4-actor.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1366x768-travel-advisors.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1366x768-travel-advisors.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1366x768-hero-party.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1366x768-hero-party.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1366x768-hero-party-marian.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1366x768-hero-party-marian.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1366x768-civilian-dialogue.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1366x768-civilian-dialogue.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1920x1080-normal-dialogue.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1920x1080-tableau-2-actor.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1920x1080-tableau-4-actor.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1920x1080-tableau-4-actor.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1920x1080-travel-advisors.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1920x1080-travel-advisors.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1920x1080-hero-party.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-before-1920x1080-hero-party.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1920x1080-hero-party-marian.png",
+    "public/assets/dev/option-c/master-ui-integration-v1/qa/followup-after-1920x1080-civilian-dialogue.png"
+  ]
+}

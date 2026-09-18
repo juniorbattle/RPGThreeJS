@@ -64,7 +64,7 @@ describe('CIN-6.7 NarrativeStage campaign integration', () => {
 
   it('ends an approved video prelude before static-tableau dialogue begins', () => {
     const dialogue = method('private async playNarrativeDialogue');
-    expect(dialogue).toContain('const tableau = applyFinalDialoguePresentationPlan(sequence, options.tableau)');
+    expect(dialogue).toContain('let tableau = applyFinalDialoguePresentationPlan(sequence, options.tableau)');
     expect(dialogue).toContain('createNarrativeDialogueResolver(sequence, tableau, {');
     expect(dialogue).toContain("mediaMode: 'STILL'");
     expect(dialogue).toContain('hasMovingMedia: false');
@@ -77,6 +77,17 @@ describe('CIN-6.7 NarrativeStage campaign integration', () => {
     expect(dialogue).toContain("mode: 'narrative-stage'");
     expect(dialogue).toContain('root: stage.dialogueLayer');
     expect(STAGE).not.toMatch(/GameState|enterRunNode|combatConfigs|applyEffects|changeReputation|SaveRepository/);
+  });
+
+  it('keeps every player-facing character dialogue on canonical static Tableau staging', () => {
+    const dialogue = method('private async playNarrativeDialogue');
+    expect(dialogue).toContain('createGenericNarrativeTableau(sequence)');
+    expect(dialogue).toContain("mode: 'narrative-stage'");
+    expect(dialogue).toContain('root: stage.dialogueLayer');
+    expect(dialogue).toContain('throw new Error(`[NarrativeStage] Canonical Tableau staging failed');
+    expect(dialogue).not.toContain('playClassicDialogue');
+    expect(SOURCE).not.toContain('private async playClassicDialogue');
+    expect(SOURCE).not.toContain('this.dialogue.play(sequence);');
   });
 
   it('combines the real forest threat media and pre-combat dialogue before clean combat', () => {
