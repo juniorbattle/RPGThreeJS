@@ -1140,9 +1140,9 @@ const rawDialogues = [
     perspective: 'maelor',
     sceneArtId: 'acte_ouverture',
     steps: [
-      { id: '1', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Étude', text: 'Le Sceau du Lion résonne. Pas comme un objet de pouvoir — comme une porte. Chaque combat le rapproche de s’ouvrir.', side: 'left', next: '2', effects: [], choices: [] },
-      { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Écho lointain', text: 'Même d’ici, je le sens. Le Sceau ne choisit pas le plus fort — il choisit celui qui porte le poids des autres. Si la compagnie a tenu la route, le Sceau le sait déjà.', side: 'right', next: '3', effects: [], choices: [] },
-      { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'mystical', tag: 'Pressentiment', text: 'Quelque chose de l’autre côté commence à pousser. Ce n’est pas le Serpent qui devrait nous inquiéter. C’est ce qui attend derrière la porte.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '1', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Étude', text: 'J’ai passé des années à traiter les Sceaux comme des leviers : posséder la marque, gagner l’accès, convertir l’accès en pouvoir. Celui-ci réagit autrement. Il semble garder la mémoire de ce qu’on lui fait porter.', side: 'left', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Écho lointain', text: 'Alors, pour une fois, nos langages disent presque la même chose. Tu parles de poids ; moi de mémoire. Le Sceau ne récompense pas une vertu abstraite : il répond à ce que la compagnie accepte réellement de porter.', side: 'right', next: '3', effects: [], choices: [] },
+      { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'mystical', tag: 'Pressentiment', text: 'Et si le Sceau conserve vraiment ces traces, ce qui se réveille derrière lui ne trouvera pas seulement un porteur puissant. Il trouvera l’histoire entière du clan. Pour une fois, je ne sais pas quel prix inscrire en face de cela.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -1162,9 +1162,9 @@ const rawDialogues = [
     perspective: 'maelor',
     sceneArtId: 'shadow_signs',
     steps: [
-      { id: '1', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'mystical', tag: 'Observation', text: 'Les ruines s’éclairent. Les inscriptions anciennes brillent sans feu ni lune. La pierre froide depuis des siècles est tiède sous mes doigts.', side: 'left', next: '2', effects: [], choices: [] },
-      { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Résonance', text: 'Même d’ici, je sens la pierre chanter. Les vieilles choses ne dorment plus — elles écoutent. Elles attendent de voir qui porte le Sceau.', side: 'right', next: '3', effects: [], choices: [] },
-      { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'mystical', tag: 'Révélation', text: 'C’est le Sceau. Plus il s’approche, plus les vieilles choses se souviennent de ce qu’elles étaient. Et certaines… n’avaient pas besoin qu’on les réveille.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '1', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'mystical', tag: 'Observation', text: 'Je déteste les phénomènes qui refusent les comptes simples. La pierre chauffe sans feu, les inscriptions répondent sans mécanisme et chaque mesure change quand le Sceau approche. Nous avons dépassé le domaine où une provision ou une arme règle le problème.', side: 'left', next: '2', effects: [], choices: [] },
+      { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Résonance', text: 'Et je déteste les prophéties qui deviennent exactes trop tôt. Mais tu as raison sur un point : quelque chose écoute. La question n’est plus seulement ce que le Sceau nous donnera, mais ce que son porteur rendra visible.', side: 'right', next: '3', effects: [], choices: [] },
+      { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'mystical', tag: 'Révélation', text: 'Alors cessons de parler du Sceau comme d’une récompense. S’il ouvre des portes, certaines donnent peut-être sur des choses qu’aucun clan raisonnable ne devrait réveiller sans savoir comment les refermer.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
   {
