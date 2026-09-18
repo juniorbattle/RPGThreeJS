@@ -197,6 +197,42 @@ function listFrench(items: readonly string[]): string {
   return `${items.slice(0, -1).join(', ')} et ${items.at(-1)}`;
 }
 
+export interface AlaricBluffAssessment {
+  succeeds: boolean;
+  minorStainCount: number;
+  credibilityAllowance: number;
+  reason: 'serious_fact' | 'too_many_traces' | 'insufficient_credibility' | 'plausible_framing';
+}
+
+/**
+ * Alaric can accept a rhetorical bluff only when the dispute concerns minor,
+ * plausibly interpretable route decisions. Reputation buys the benefit of the
+ * doubt; free witnesses can reinforce it. Neither can erase a serious fact.
+ */
+export function assessAlaricBluff(verdict: LionVerdict): AlaricBluffAssessment {
+  if (verdict.majorBreaches.length > 0) {
+    return {
+      succeeds: false,
+      minorStainCount: verdict.minorStains.length,
+      credibilityAllowance: 0,
+      reason: 'serious_fact',
+    };
+  }
+
+  const reputationAllowance = verdict.reputation >= 70 ? 2 : verdict.reputation >= 45 ? 1 : 0;
+  const witnessAllowance = verdict.witnessState === 'supportive' ? 1 : 0;
+  const credibilityAllowance = Math.min(2, reputationAllowance + witnessAllowance);
+  const minorStainCount = verdict.minorStains.length;
+
+  if (credibilityAllowance === 0) {
+    return { succeeds: false, minorStainCount, credibilityAllowance, reason: 'insufficient_credibility' };
+  }
+  if (minorStainCount === 0 || minorStainCount > credibilityAllowance) {
+    return { succeeds: false, minorStainCount, credibilityAllowance, reason: 'too_many_traces' };
+  }
+  return { succeeds: true, minorStainCount, credibilityAllowance, reason: 'plausible_framing' };
+}
+
 function shadowChoiceEffects(disclosure: 'revealed' | 'concealed'): NarrativeEffect[] {
   if (disclosure === 'revealed') {
     return [
@@ -285,6 +321,7 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
   const verdict = resolveLionVerdict(sourceOf(state));
   const steps: DialogueStep[] = [];
   const hasContradiction = verdict.majorBreaches.length > 0 || verdict.minorStains.length > 0;
+  const bluff = assessAlaricBluff(verdict);
 
   steps.push(makeStep(
     'open',
@@ -305,8 +342,11 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
         choices: [
           { text: 'Assumer le dossier sans le falsifier.', next: 'outcome', effects: [] },
           {
-            text: 'Affirmer que notre conduite fut irréprochable.', next: 'lie-rebuked',
-            effects: [{ type: 'setFlag', key: 'liedToAlaric', value: true }],
+            text: 'Présenter nos écarts comme des nécessités de route.',
+            next: bluff.succeeds ? 'outcome' : 'lie-rebuked',
+            effects: bluff.succeeds
+              ? [{ type: 'setFlag', key: 'alaricBluffSucceeded', value: true }]
+              : [{ type: 'setFlag', key: 'liedToAlaric', value: true }],
             outcomePreview: { mode: 'hidden', hints: [] },
           },
         ],
@@ -316,7 +356,11 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
       'lie-rebuked',
       'Champion du Lion',
       'lion_champion',
-      'Les rapports sont déjà sur cette table, et certains ont été écrits par des gens qui n’avaient aucune raison de vous protéger. Mentir maintenant ne retire rien au passé ; cela ajoute seulement votre parole à la liste des choses que je dois mettre en doute.',
+      bluff.reason === 'serious_fact'
+        ? 'Vous essayez de présenter une rupture comme un simple détour. Ici, les faits sont trop lourds et les voix trop précises pour que votre réputation change leur nature. Ce n’est plus de l’interprétation : c’est un mensonge.'
+        : bluff.reason === 'too_many_traces'
+          ? 'Une tache peut se discuter. Plusieurs traces qui racontent la même habitude, beaucoup moins. Votre nom vous achète une audience, pas le droit de transformer une répétition en accident.'
+          : 'Votre réputation vous donne assez de crédit pour être entendu, pas assez pour effacer ce que les rapports peuvent encore établir. Vous venez de dépenser ce crédit en essayant de les réduire à des détails.',
       { tag: 'Mensonge', expression: 'hostile', side: 'right', next: 'outcome' },
     ));
   }
