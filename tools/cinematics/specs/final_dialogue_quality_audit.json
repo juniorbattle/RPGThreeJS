@@ -14,10 +14,10 @@
     "REVIEW"
   ],
   "summary": {
-    "dialogues": 71,
-    "steps": 247,
+    "dialogues": 73,
+    "steps": 251,
     "actionableChoiceStates": 28,
-    "KEEP": 243,
+    "KEEP": 247,
     "POLISH": 4,
     "MOVE": 0,
     "CONDITIONALIZE": 0,
@@ -1883,6 +1883,42 @@
           "stepId": "4b",
           "classification": "KEEP",
           "intent": "Canonical line remains coherent in every audited reachable context."
+        }
+      ]
+    },
+    {
+      "dialogueId": "pre_witness_road_clash",
+      "contexts": [
+        "pre-combat:witness_road_clash"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Final Narrative Structure Lock: canonical line carries the approved dialogue-to-combat consequence without changing prior story facts."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Final Narrative Structure Lock: canonical line carries the approved dialogue-to-combat consequence without changing prior story facts."
+        }
+      ]
+    },
+    {
+      "dialogueId": "post_witness_road_clash",
+      "contexts": [
+        "post-combat:witness_road_clash"
+      ],
+      "classifications": [
+        {
+          "stepId": "1",
+          "classification": "KEEP",
+          "intent": "Final Narrative Structure Lock: canonical line carries the approved dialogue-to-combat consequence without changing prior story facts."
+        },
+        {
+          "stepId": "2",
+          "classification": "KEEP",
+          "intent": "Final Narrative Structure Lock: canonical line carries the approved dialogue-to-combat consequence without changing prior story facts."
         }
       ]
     }

@@ -56,8 +56,8 @@ const HONOUR_FLAGS = {
 };
 
 describe('R5 content production boundaries', () => {
-  it('keeps topology and combat count stable while framing every production combat', () => {
-    expect(combatConfigs.size).toBe(17);
+  it('frames every production combat after the final dialogue-combat lock', () => {
+    expect(combatConfigs.size).toBe(18);
     for (const combat of combatConfigs.values()) {
       expect(combat.preCombatDialogueId, `${combat.id}:pre`).toBeTruthy();
       expect(combat.postCombatDialogueId, `${combat.id}:post`).toBeTruthy();

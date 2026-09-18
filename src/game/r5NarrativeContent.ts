@@ -90,7 +90,7 @@ export const R5_ADDITIONAL_DIALOGUES = [
     id: 'pre_serpent_reprisals',
     sceneArtId: 'forest_fork',
     steps: [
-      line('1', 'Caporal Serpent', 'serpent_raider', 'hostile', 'Dette de sang', 'La route parle de vous : des ordres contrariés, des hommes humiliés, des biens rendus à ceux que nous avions déjà dépouillés. Le général réclame un exemple.', '2', 'right'),
+      line('1', 'Caporal Serpent', 'serpent_raider', 'hostile', 'Ultimatum Serpent', 'Votre bannière a trop souvent refusé nos ordres, nos barrages et nos tributs. La route regarde désormais lequel de nous imposera son prix.', '2', 'right'),
       line('2', 'Alistair', 'alistair', 'stern', 'Réponse', 'Vous vouliez une bannière à clouer aux arbres. Approchez et découvrez si un clan déchu est vraiment une proie plus facile.', null),
     ],
   },
@@ -98,8 +98,8 @@ export const R5_ADDITIONAL_DIALOGUES = [
     id: 'post_serpent_reprisals',
     sceneArtId: 'forest_fork',
     steps: [
-      line('1', 'Alistair', 'alistair', 'stern', 'Exemple refusé', 'Ils étaient venus punir la compagnie. Ils repartent en laissant leurs armes et la preuve que le général commence à nous craindre.', '2'),
-      line('2', 'Kestrel', 'kestrel', 'neutral', 'Poursuite', 'Les survivants fuient vers Bois-Clair. Ils annonceront notre victoire, mais aussi notre position. Nous devons transformer leur peur en avance.', null),
+      line('1', 'Alistair', 'alistair', 'stern', 'Exemple refusé', 'Ils voulaient faire de notre bannière un exemple. Ils repartent en laissant leurs armes et la preuve que la route ne se paie pas toujours en or.', '2'),
+      line('2', 'Kestrel', 'kestrel', 'neutral', 'Poursuite', 'Les survivants emportent notre position et la nouvelle du refus. Qu’il s’agisse d’un tribut ou d’une représaille, les Serpents reviendront mieux préparés.', null),
     ],
   },
   {

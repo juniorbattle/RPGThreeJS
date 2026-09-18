@@ -31,18 +31,18 @@
   "summary": {
     "nodes": 21,
     "edges": 23,
-    "dialogues": 71,
-    "dialogueSteps": 247,
+    "dialogues": 73,
+    "dialogueSteps": 251,
     "choices": 28,
     "ate": 10,
     "productionVideos": 31,
-    "playerFacingBeats": 144,
+    "playerFacingBeats": 147,
     "targetModes": {
       "CINEMATIC_VIDEO": 29,
       "CINEMATIC_HOLD": 28,
       "TRAVEL_STILL": 19,
-      "STATIC_TABLEAU": 49,
-      "COMBAT": 17,
+      "STATIC_TABLEAU": 51,
+      "COMBAT": 18,
       "GAMEPLAY_UI": 2
     },
     "existingVideosRetained": 29,
@@ -50,7 +50,7 @@
     "holdExtractionsNeeded": 25,
     "newTravelStillsNeeded": 14,
     "tableauBackgroundsReusable": 2,
-    "tableauBackgroundsRequiringRework": 47,
+    "tableauBackgroundsRequiringRework": 49,
     "livingStillCandidates": 10,
     "runtimeFeaturesRequired": 10,
     "visualFamilies": 13,
@@ -225,6 +225,9 @@
         "media:witnesses_encounter",
         "dialogue:ate_lion_council_doubt",
         "dialogue:witnesses_on_road",
+        "dialogue:pre_witness_road_clash",
+        "combat:witness_road_clash",
+        "dialogue:post_witness_road_clash",
         "edge:lion-witnesses>lion-final-trial-event",
         "edge:lion-witnesses>lion-final-trial-combat"
       ]
@@ -706,6 +709,11 @@
       "targetMode": "STATIC_TABLEAU"
     },
     {
+      "dialogueId": "post_witness_road_clash",
+      "beatId": "dialogue:post_witness_road_clash",
+      "targetMode": "STATIC_TABLEAU"
+    },
+    {
       "dialogueId": "post_young_dragon_roost",
       "beatId": "dialogue:post_young_dragon_roost",
       "targetMode": "STATIC_TABLEAU"
@@ -773,6 +781,11 @@
     {
       "dialogueId": "pre_village_raid",
       "beatId": "dialogue:pre_village_raid",
+      "targetMode": "STATIC_TABLEAU"
+    },
+    {
+      "dialogueId": "pre_witness_road_clash",
+      "beatId": "dialogue:pre_witness_road_clash",
       "targetMode": "STATIC_TABLEAU"
     },
     {
@@ -3946,6 +3959,52 @@
       "bakedEnvironmentalFigures": true,
       "stateDependentBakedActor": false,
       "reason": "The semantic tableau is correct, but the current plate needs purpose-built sprite integration."
+    },
+    {
+      "beatId": "dialogue:pre_witness_road_clash",
+      "dialogueId": "pre_witness_road_clash",
+      "visualFamily": "WITNESS_ROAD",
+      "currentBackground": "/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+      "classification": "NEEDS_REWORK",
+      "perspective": "REAUTHOR_FOR_STAGED_CAST",
+      "horizon": "MATCH_FAMILY_CAMERA_HEIGHT",
+      "groundPlane": "ADD_PLAUSIBLE_CONTACT_AREA",
+      "foregroundStagingArea": "PROTECT_ENLARGED_CAST_LANES",
+      "lightingDirection": "MATCH_CANONICAL_SPRITE_KEY_LIGHT",
+      "lightingColor": "MATCH_VISUAL_FAMILY",
+      "spriteReadability": "REQUIRES_REWORK",
+      "faceReadability": "REQUIRES_REWORK",
+      "negativeSpace": "REQUIRES_AUTHORED_UI_SAFE_ZONE",
+      "visualClutter": "REDUCE_BEHIND_FACES",
+      "depth": "REBUILD_FOREGROUND_MIDGROUND_BACKGROUND",
+      "cinematicStyleCompatibility": "MATCH_FAMILY_GOLD_REFERENCE",
+      "bakedDuplicateCharacter": false,
+      "bakedEnvironmentalFigures": false,
+      "stateDependentBakedActor": false,
+      "reason": "Reuse the Witness Road family as a character-free pre-combat tableau."
+    },
+    {
+      "beatId": "dialogue:post_witness_road_clash",
+      "dialogueId": "post_witness_road_clash",
+      "visualFamily": "WITNESS_ROAD",
+      "currentBackground": "/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+      "classification": "NEEDS_REWORK",
+      "perspective": "REAUTHOR_FOR_STAGED_CAST",
+      "horizon": "MATCH_FAMILY_CAMERA_HEIGHT",
+      "groundPlane": "ADD_PLAUSIBLE_CONTACT_AREA",
+      "foregroundStagingArea": "PROTECT_ENLARGED_CAST_LANES",
+      "lightingDirection": "MATCH_CANONICAL_SPRITE_KEY_LIGHT",
+      "lightingColor": "MATCH_VISUAL_FAMILY",
+      "spriteReadability": "REQUIRES_REWORK",
+      "faceReadability": "REQUIRES_REWORK",
+      "negativeSpace": "REQUIRES_AUTHORED_UI_SAFE_ZONE",
+      "visualClutter": "REDUCE_BEHIND_FACES",
+      "depth": "REBUILD_FOREGROUND_MIDGROUND_BACKGROUND",
+      "cinematicStyleCompatibility": "MATCH_FAMILY_GOLD_REFERENCE",
+      "bakedDuplicateCharacter": false,
+      "bakedEnvironmentalFigures": false,
+      "stateDependentBakedActor": false,
+      "reason": "Reuse the Witness Road family as a character-free aftermath tableau."
     }
   ],
   "tableauCastAudit": [
@@ -5398,6 +5457,54 @@
         "sage_seraphine"
       ],
       "entireRosterJustified": true,
+      "missingSpeaker": false,
+      "futureRecruitShownUnconditionally": false,
+      "impossibleCast": false,
+      "bakedDuplicateCharacter": false
+    },
+    {
+      "dialogueId": "pre_witness_road_clash",
+      "speakers": [
+        "survivor",
+        "alistair"
+      ],
+      "hero": "alistair",
+      "advisers": [],
+      "listeners": [],
+      "externalActors": [
+        "survivor"
+      ],
+      "optionalRecruits": [],
+      "conditionalActors": [],
+      "targetCast": [
+        "survivor",
+        "alistair"
+      ],
+      "entireRosterJustified": false,
+      "missingSpeaker": false,
+      "futureRecruitShownUnconditionally": false,
+      "impossibleCast": false,
+      "bakedDuplicateCharacter": false
+    },
+    {
+      "dialogueId": "post_witness_road_clash",
+      "speakers": [
+        "marian",
+        "maelor"
+      ],
+      "hero": null,
+      "advisers": [
+        "maelor"
+      ],
+      "listeners": [],
+      "externalActors": [],
+      "optionalRecruits": [],
+      "conditionalActors": [],
+      "targetCast": [
+        "marian",
+        "maelor"
+      ],
+      "entireRosterJustified": false,
       "missingSpeaker": false,
       "futureRecruitShownUnconditionally": false,
       "impossibleCast": false,
@@ -11532,6 +11639,126 @@
         "CORRECT"
       ],
       "visualFamily": "SECOND_REFUGE"
+    },
+    {
+      "beatId": "dialogue:pre_witness_road_clash",
+      "nodeId": "lion-witnesses",
+      "edgeId": null,
+      "contentId": "pre-combat:witness_road_clash",
+      "dialogueId": "pre_witness_road_clash",
+      "combatId": "witness_road_clash",
+      "beatKind": "PRE_COMBAT_DIALOGUE",
+      "currentPresentation": "STATIC_TABLEAU",
+      "targetPresentationMode": "STATIC_TABLEAU",
+      "currentAsset": "/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+      "targetAssetRole": "witness_road_tableau_background",
+      "location": "witness road",
+      "timeContext": "current encounter time",
+      "activity": "dialogue",
+      "cast": [
+        "survivor",
+        "alistair"
+      ],
+      "speakerOwnership": "TABLEAU_OWNS_CAST",
+      "heroRepresentation": "HERO_REQUIRED",
+      "advisers": [],
+      "externalCast": [
+        "survivor"
+      ],
+      "hasDialogue": true,
+      "hasChoice": false,
+      "hasCombat": false,
+      "previousBeat": "dialogue:witnesses_on_road",
+      "nextBeat": "combat:witness_road_clash",
+      "contextContinuity": "CURRENT_CONTEXT_TABLEAU",
+      "holdAllowed": false,
+      "reason": "The coercive witness choice must become visibly confrontational before tactical combat without inventing a cinematic.",
+      "currentIssue": "The semantic mode is correct; the Witness Road plate remains the authored staging context.",
+      "futureMediaAction": "Reuse the Witness Road tableau family; no dedicated pre-combat video.",
+      "priority": "P0",
+      "disposition": [
+        "CORRECT",
+        "REUSE_CONTEXT"
+      ],
+      "visualFamily": "WITNESS_ROAD"
+    },
+    {
+      "beatId": "combat:witness_road_clash",
+      "nodeId": "lion-witnesses",
+      "edgeId": null,
+      "contentId": "witness_road_clash",
+      "dialogueId": null,
+      "combatId": "witness_road_clash",
+      "beatKind": "TACTICAL_COMBAT",
+      "currentPresentation": "COMBAT",
+      "targetPresentationMode": "COMBAT",
+      "currentAsset": null,
+      "targetAssetRole": "EXISTING_TACTICAL_COMBAT_RUNTIME",
+      "location": "witness road",
+      "timeContext": "immediately after pre-combat presentation",
+      "activity": "tactical combat",
+      "cast": [],
+      "speakerOwnership": "COMBAT_RUNTIME_OWNS_ACTORS",
+      "heroRepresentation": "HERO_REQUIRED",
+      "advisers": [],
+      "externalCast": [],
+      "hasDialogue": false,
+      "hasChoice": false,
+      "hasCombat": true,
+      "previousBeat": "dialogue:pre_witness_road_clash",
+      "nextBeat": "dialogue:post_witness_road_clash",
+      "contextContinuity": "COMBAT_IS_AN_EXPLICIT_RUNTIME_RUPTURE",
+      "holdAllowed": false,
+      "reason": "The player explicitly chose coercive silence; tactical combat owns the militia confrontation.",
+      "currentIssue": "No semantic mode mismatch.",
+      "futureMediaAction": "None. Gameplay owns the confrontation.",
+      "priority": "P0",
+      "disposition": [
+        "CORRECT"
+      ],
+      "visualFamily": "WITNESS_ROAD"
+    },
+    {
+      "beatId": "dialogue:post_witness_road_clash",
+      "nodeId": "lion-witnesses",
+      "edgeId": null,
+      "contentId": "post-combat:witness_road_clash",
+      "dialogueId": "post_witness_road_clash",
+      "combatId": "witness_road_clash",
+      "beatKind": "POST_COMBAT_DIALOGUE",
+      "currentPresentation": "STATIC_TABLEAU",
+      "targetPresentationMode": "STATIC_TABLEAU",
+      "currentAsset": "/assets/generated/lion-phase/dialogue/witnesses_on_road.webp",
+      "targetAssetRole": "witness_road_tableau_background",
+      "location": "witness road",
+      "timeContext": "current encounter time",
+      "activity": "dialogue",
+      "cast": [
+        "marian",
+        "maelor"
+      ],
+      "speakerOwnership": "TABLEAU_OWNS_CAST",
+      "heroRepresentation": "HERO_OPTIONAL",
+      "advisers": [
+        "maelor"
+      ],
+      "externalCast": [],
+      "hasDialogue": true,
+      "hasChoice": false,
+      "hasCombat": false,
+      "previousBeat": "combat:witness_road_clash",
+      "nextBeat": "context-exit:post-combat:witness_road_clash",
+      "contextContinuity": "CURRENT_CONTEXT_TABLEAU",
+      "holdAllowed": false,
+      "reason": "The aftermath must name the irreversible consequence without turning it into a second spectacle beat.",
+      "currentIssue": "The semantic mode is correct; the Witness Road family supplies the context.",
+      "futureMediaAction": "Reuse the Witness Road tableau family; no dedicated aftermath video.",
+      "priority": "P0",
+      "disposition": [
+        "CORRECT",
+        "REUSE_CONTEXT"
+      ],
+      "visualFamily": "WITNESS_ROAD"
     }
   ],
   "pacingAudit": {

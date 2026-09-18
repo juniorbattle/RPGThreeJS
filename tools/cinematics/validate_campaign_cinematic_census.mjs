@@ -363,7 +363,7 @@ export function validateCampaignCinematicCensus({
   }
 
   const actualCombats = deriveCombatTruth(projectRoot);
-  assert(actualCombats.length === 17, `Expected 17 production combat configs; derived ${actualCombats.length}.`, errors);
+  assert(actualCombats.length === 18, `Expected 18 production combat configs; derived ${actualCombats.length}.`, errors);
   assert(census.combatFraming.length === actualCombats.length, 'Combat framing count differs from production combat configs.', errors);
   for (const combat of actualCombats) {
     const planned = census.combatFraming.find((entry) => entry.combatId === combat.combatId);

@@ -366,9 +366,9 @@ describe('CIN-5 campaign cinematic census contract', () => {
     expect(census.goldenPath.p0Targets.every((target) => resolvableTargets.has(target))).toBe(true);
   });
 
-  it('records 17 production combat configs with pre and post dialogue', () => {
+  it('records 18 production combat configs with pre and post dialogue', () => {
     const combats = deriveCombatTruth(projectRoot);
-    expect(combats).toHaveLength(17);
+    expect(combats).toHaveLength(18);
     expect(combats.every((combat) => combat.preCombatDialogueId && combat.postCombatDialogueId)).toBe(true);
   });
 

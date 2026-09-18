@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { campaignNodes, combatConfigs, dialogues } from './content';
 import { dialogueChoiceSchema } from './types';
 import { assets } from '../render/assetManifest';
+import { resolveCharacterVisualProfile } from '../render/CharacterVisualRegistry';
 import { craftRecipes, createUnitInstance, getResolvedSkills, itemById, toCombatant, unitById, units, weaponById } from './catalog';
 import { skills } from './skills';
 import { prologuePanels } from './prologue';
@@ -436,16 +437,28 @@ describe('campaign content integrity', () => {
 
     for (const combat of combatConfigs.values()) {
       for (const id of combat.enemyVisualIds) {
-        expect(characterProfiles[id], `${combat.id}:${id}:asset`).toBeTruthy();
-        const visualProfile = visualProfiles[id];
-        expect(visualProfile, `${combat.id}:${id}:visualProfile`).toBeTruthy();
-        expect(visualProfile?.category, `${combat.id}:${id}:notHero`).not.toBe('playable_hero');
+        const legacyProfile = characterProfiles[id];
+        const legacyVisualProfile = visualProfiles[id];
+        const v2Profile = resolveCharacterVisualProfile(id);
+        expect(legacyProfile ?? v2Profile, `${combat.id}:${id}:asset`).toBeTruthy();
+        expect(legacyVisualProfile ?? v2Profile, `${combat.id}:${id}:visualProfile`).toBeTruthy();
+        if (legacyVisualProfile) {
+          expect(legacyVisualProfile.category, `${combat.id}:${id}:notHero`).not.toBe('playable_hero');
+        } else {
+          expect(v2Profile?.combatPoseUnitId, `${combat.id}:${id}:v2CombatPose`).toBe(id);
+        }
       }
       for (const id of combat.escortVisualIds) {
-        expect(characterProfiles[id], `${combat.id}:${id}:asset`).toBeTruthy();
-        const visualProfile = visualProfiles[id];
-        expect(visualProfile, `${combat.id}:${id}:visualProfile`).toBeTruthy();
-        expect(visualProfile?.category, `${combat.id}:${id}:notHero`).not.toBe('playable_hero');
+        const legacyProfile = characterProfiles[id];
+        const legacyVisualProfile = visualProfiles[id];
+        const v2Profile = resolveCharacterVisualProfile(id);
+        expect(legacyProfile ?? v2Profile, `${combat.id}:${id}:asset`).toBeTruthy();
+        expect(legacyVisualProfile ?? v2Profile, `${combat.id}:${id}:visualProfile`).toBeTruthy();
+        if (legacyVisualProfile) {
+          expect(legacyVisualProfile.category, `${combat.id}:${id}:notHero`).not.toBe('playable_hero');
+        } else {
+          expect(v2Profile?.combatPoseUnitId, `${combat.id}:${id}:v2CombatPose`).toBe(id);
+        }
       }
       if (combat.isBoss) {
         expect(combat.bossVisualId, `${combat.id}:bossVisualId`).toBeTruthy();
@@ -605,6 +618,33 @@ describe('campaign content integrity', () => {
     }
     expect(allEffects.includes('protectedWitnesses'), 'protectedWitnesses path exists').toBe(true);
     expect(allEffects.includes('silencedWitnesses'), 'silencedWitnesses path exists').toBe(true);
+  });
+
+  it('locks witness silence to a militia combat and removes the legacy gold purchase', () => {
+    const dialogue = dialogues.get('witnesses_on_road')!;
+    const choice = dialogue.steps.find((step) => step.id === '1')!.choices!.find((candidate) => candidate.text.includes('Faire taire'))!;
+    expect(choice.effects.some((effect) => effect.type === 'addGold')).toBe(false);
+    expect(choice.effects.some((effect) => effect.type === 'setFlag' && effect.key === 'silencedWitnesses')).toBe(true);
+    const escalation = dialogue.steps.find((step) => step.id === '3b')!;
+    expect(escalation.effects).toContainEqual({ type: 'startCombat', combatId: 'witness_road_clash' });
+    expect(combatConfigs.get('witness_road_clash')?.enemyVisualIds).toEqual([
+      'village_militia_spearman',
+      'village_militia_slinger',
+      'village_militia_spearman',
+    ]);
+    expect(combatConfigs.get('witness_road_clash')?.rewards).toMatchObject({
+      gold: 0,
+      reputation: -2,
+      materials: {},
+    });
+  });
+
+  it('lets roadside intimidation escalate only when the Serpent tribute is refused', () => {
+    const dialogue = dialogues.get('rep_event_roadside_intimidation')!;
+    const refusal = dialogue.steps.find((step) => step.id === '2')!;
+    expect(refusal.effects).toContainEqual({ type: 'startCombat', combatId: 'serpent_reprisals' });
+    const payment = dialogue.steps.find((step) => step.id === '1')!.choices!.find((choice) => choice.text.includes('Payer 20 or'))!;
+    expect(payment.effects.some((effect) => effect.type === 'startCombat')).toBe(false);
   });
 
   it('witnesses_on_road contest failure step exists and next targets are valid', () => {
@@ -945,34 +985,24 @@ describe('campaign content integrity', () => {
     expect(allFlagKeys.includes('lionMissionAccepted'), 'lion_briefing preserves lionMissionAccepted').toBe(true);
   });
 
-  it('V5.2 converted choices preserve flags, items, gold/reputation effects and next targets', () => {
-    const expectedFlags: Record<string, string[]> = {
-      village_defense_aftermath: ['protectedWitnesses'],
-      village_raid_aftermath: ['silencedWitnesses'],
-    };
-    for (const [dialogueId, expectedFlagKeys] of Object.entries(expectedFlags)) {
-      const dialogue = dialogues.get(dialogueId)!;
-      const allFlagKeys: string[] = [];
-      for (const step of dialogue.steps) {
-        for (const choice of step.choices ?? []) {
-          for (const effect of choice.effects) {
-            if (effect.type === 'setFlag') allFlagKeys.push(effect.key);
-          }
-        }
-      }
-      for (const expectedKey of expectedFlagKeys) {
-        expect(allFlagKeys.includes(expectedKey), `${dialogueId} preserves flag ${expectedKey}`).toBe(true);
-      }
-    }
+  it('keeps Bois-Clair aftermath effects while reserving witness authority for Witness Road', () => {
     const defenseDialogue = dialogues.get('village_defense_aftermath')!;
-    const hasItemEffect = defenseDialogue.steps.some((s) => s.choices?.some((c) => c.effects.some((e) => e.type === 'addItem' && e.itemId === 'potion')));
-    expect(hasItemEffect, 'village_defense_aftermath preserves potion item reward').toBe(true);
     const raidDialogue = dialogues.get('village_raid_aftermath')!;
-    const hasGoldEffect = raidDialogue.steps.some((s) => s.choices?.some((c) => c.effects.some((e) => e.type === 'addGold' && e.amount === -40)));
+    const aftermathEffects = [defenseDialogue, raidDialogue]
+      .flatMap((dialogue) => dialogue.steps)
+      .flatMap((step) => step.choices ?? [])
+      .flatMap((choice) => choice.effects);
+    expect(aftermathEffects.some((effect) => effect.type === 'setFlag' && effect.key === 'protectedWitnesses')).toBe(false);
+    expect(aftermathEffects.some((effect) => effect.type === 'setFlag' && effect.key === 'silencedWitnesses')).toBe(false);
+
+    const hasItemEffect = defenseDialogue.steps.some((s) => s.choices?.some((choice) => choice.effects.some((effect) => effect.type === 'addItem' && effect.itemId === 'potion')));
+    expect(hasItemEffect, 'village_defense_aftermath preserves potion item reward').toBe(true);
+    const hasGoldEffect = raidDialogue.steps.some((s) => s.choices?.some((choice) => choice.effects.some((effect) => effect.type === 'addGold' && effect.amount === -40)));
     expect(hasGoldEffect, 'village_raid_aftermath preserves gold -40 effect').toBe(true);
+
     const briefingDialogue = dialogues.get('lion_briefing')!;
-    const hasNext4 = briefingDialogue.steps.some((s) => s.choices?.some((c) => c.next === '4'));
-    const hasNext5 = briefingDialogue.steps.some((s) => s.choices?.some((c) => c.next === '5'));
+    const hasNext4 = briefingDialogue.steps.some((s) => s.choices?.some((choice) => choice.next === '4'));
+    const hasNext5 = briefingDialogue.steps.some((s) => s.choices?.some((choice) => choice.next === '5'));
     expect(hasNext4, 'lion_briefing preserves next target 4').toBe(true);
     expect(hasNext5, 'lion_briefing preserves next target 5').toBe(true);
   });

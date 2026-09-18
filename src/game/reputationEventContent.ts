@@ -47,8 +47,8 @@ export const REPUTATION_EVENT_DEFINITIONS: readonly ReputationEventDefinition[] 
     reputationCategory: 'hostile',
     priority: 10,
     metadata: {
-      consequenceHints: ['Public response', 'Gold or reputation consequence'],
-      contentTags: ['low-reputation-pilot'],
+      consequenceHints: ['Public response', 'Tribute or conditional Serpent combat'],
+      contentTags: ['low-reputation-pilot', 'dialogue-combat-escalation'],
     },
   },
   {
@@ -361,7 +361,7 @@ export const REPUTATION_EVENT_DIALOGUE_DEFINITIONS: Readonly<Record<string, Cont
         when: conduct('infamy'),
         stepPatches: [{
           stepId: '1',
-          patch: { text: 'Votre nom vous précède, et les récits ne parlent pas de héros. Sur cette route, beaucoup pensent pouvoir vous traiter comme vous avez traité les autres. Payez, ou répondez devant témoins.' },
+          patch: { text: 'Votre nom vous précède, et les récits ne parlent pas de héros. Une troupe Serpent pense pouvoir vous traiter comme vous avez traité les autres. Payez son tribut, ou répondez devant témoins.' },
         }],
       },
       {
@@ -370,7 +370,7 @@ export const REPUTATION_EVENT_DIALOGUE_DEFINITIONS: Readonly<Record<string, Cont
         when: conduct('honour'),
         stepPatches: [{
           stepId: '1',
-          patch: { text: 'Vos actes sur la route sont honorables. Cela n’empêche pas ces hommes de voir dans votre bannière une cible. Payez, ou défendez-la devant témoins.' },
+          patch: { text: 'Vos actes sur la route sont honorables. Cela n’empêche pas cette troupe Serpent de voir dans votre bannière une cible. Payez son tribut, ou défendez-la devant témoins.' },
         }],
       },
       {
@@ -379,7 +379,7 @@ export const REPUTATION_EVENT_DIALOGUE_DEFINITIONS: Readonly<Record<string, Cont
         when: publicReputation(undefined, 19),
         stepPatches: [{
           stepId: '1',
-          patch: { text: 'Votre bannière déchue ne fait plus peur à grand monde. Payez le passage, ou défendez votre nom devant tous ceux qui regardent.' },
+          patch: { text: 'Votre bannière déchue ne fait plus peur à grand monde. Les Serpents réclament leur tribut : payez le passage, ou défendez votre nom devant tous ceux qui regardent.' },
         }],
       },
     ],

@@ -142,10 +142,10 @@ async function main() {
 
   const invariantValues = Object.fromEntries(requiredZeroInvariantNames.map((name) => [name, pacing.invariants[name]]));
   const zeroInvariantPass = Object.values(invariantValues).every((value) => value === 0);
-  const coveragePass = pacing.invariants.DIALOGUES_ACCOUNTED === '71/71'
-    && pacing.invariants.ORIGINAL_STEPS_ACCOUNTED === '247/247'
+  const coveragePass = pacing.invariants.DIALOGUES_ACCOUNTED === '73/73'
+    && pacing.invariants.ORIGINAL_STEPS_ACCOUNTED === '251/251'
     && pacing.invariants.CHOICES_ACCOUNTED === '28/28'
-    && pacing.summary.finalSteps === 247;
+    && pacing.summary.finalSteps === 251;
   const transitionPass = (entry) => entry.transitionProbe?.videoToTableau?.transition === 'VIDEO_TO_TABLEAU'
     && entry.transitionProbe?.videoToTableau?.normalDialogueDuringVideo === '0'
     && entry.transitionProbe?.travelToTableau?.transition === 'TRAVEL_TO_TABLEAU'
@@ -216,7 +216,7 @@ async function main() {
     && pacing.invariants.DIALOGUE_STEPS_ON_VIDEO === 0
     && pacing.invariants.DIALOGUE_STEPS_ON_HOLD === 0
     && pacing.invariants.CHOICE_STEPS_ON_HOLD === 0
-    && visual.entries.length === 71
+    && visual.entries.length === 73
     && visual.entries.every((entry) => entry.segments.every((segment) => segment.mode === 'STATIC_TABLEAU'))
     && browserPass;
   const dialogueDirectionPass = coveragePass

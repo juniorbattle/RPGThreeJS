@@ -80,6 +80,8 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(postNode.indexOf('await this.maybePlayATEs(nodeId)')).toBeGreaterThan(-1);
     expect(postNode.indexOf('await this.maybePlayReputationEvent(nodeId)'))
       .toBeGreaterThan(postNode.indexOf('await this.maybePlayATEs(nodeId)'));
+    expect(postNode).toContain('await this.flushPendingCombat(node)');
+    expect(postNode).toContain('return true');
     // No presentation may be inserted between ATE and R4.
     expect(postNode).not.toContain('enterCampaignPresentation');
     expect(postNode).not.toContain('enterJourney');
