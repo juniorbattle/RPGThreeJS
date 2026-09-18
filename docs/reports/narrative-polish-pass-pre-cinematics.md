@@ -126,12 +126,18 @@ The scene no longer reads as a variable checklist. Maelor accepts that his accou
 ### Alaric judgement
 The same verdict inputs remain authoritative, but the language now emphasizes people, traces, witnesses and consequences rather than “merits/stains” as abstract counters.
 
-The deposition now distinguishes truth, bluff and lie:
+The deposition now exposes three explicit player postures:
+- **truthful deposition**: accept the record and let Alaric judge the facts;
+- **reasoned bluff**: rhetorically reframe a small number of minor stains when public credibility makes that reading plausible;
+- **brazen denial**: reject the reports and witnesses outright, even when the evidence is already established.
+
+Rules:
 - a serious breach can never be erased by reputation;
 - one or two minor stains may be rhetorically reframed when public credibility is strong enough;
 - supportive witnesses can reinforce credibility but cannot cancel serious facts;
-- a failed bluff becomes an explicit lie and sets `liedToAlaric`;
+- a failed reasoned bluff becomes an explicit lie and sets `liedToAlaric`;
 - a successful bluff sets `alaricBluffSucceeded` and receives an explicit “benefit of the doubt” response from Alaric;
+- a brazen denial sets both `liedToAlaric` and `brazenLieToAlaric`, creates a decisive trust breach, and forces the Lion Trial even at very high reputation;
 - the underlying historical facts remain in the verdict even when their interpretation is accepted.
 
 ## Presentation doctrine for Cinematics
@@ -152,9 +158,11 @@ Cinematics must preserve the following distinctions:
 
 Structural comparison before the bluff refinement confirmed unchanged campaign topology, combat references, route ownership and all existing choice consequences.
 
-After the bluff refinement, the only intentional semantic additions are:
+After the judgement refinement, the intentional semantic additions are:
 - `alaricBluffSucceeded`;
-- dynamic step `bluff-accepted`;
-- deterministic credibility assessment for the deposition.
+- `brazenLieToAlaric`;
+- dynamic steps `bluff-accepted` and `brazen-lie-rebuked`;
+- deterministic credibility assessment for the reasoned bluff;
+- decisive trust consequences for an explicit denial of established evidence.
 
 The Final Narrative Structure Lock remains intact because no campaign route, node topology, combat route, ending route, Conduct rule, Witness rule or Shadow rule is changed.
