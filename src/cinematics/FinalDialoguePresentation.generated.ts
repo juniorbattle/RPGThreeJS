@@ -15234,6 +15234,1184 @@ export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
           "rationale": "The lion_judgement video ends cleanly; the canonical-sprite tableau is visible before dialogue step open."
         }
       ]
+    },
+    "open@alaric@0|record@alaric@2|bluff-accepted@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|stains@maelor@0|witnesses@alaric@0|intent@alaric@2": {
+      "dialogueId": "lion_finale_judgement",
+      "originalMode": "CINEMATIC_HOLD",
+      "sourceVideo": "lion_judgement",
+      "sourceVideoClassification": "KEEP_MAJOR_VIDEO",
+      "dialogueStartsAfterMedia": true,
+      "normalDialogueDuringVideo": 0,
+      "dialogueStepsOnHold": 0,
+      "choiceStepsOnHold": 0,
+      "finalFrameCast": [
+        "alaric",
+        "lion_champion"
+      ],
+      "finalFrameCastReferenceOnly": true,
+      "allowedHoldSpeakers": [],
+      "forbiddenHoldSpeakers": [
+        "alaric",
+        "lion_champion",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "segments": [
+        {
+          "id": "lion_finale_judgement:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "open",
+            "record",
+            "bluff-accepted",
+            "outcome",
+            "merits",
+            "stains",
+            "witnesses",
+            "intent"
+          ],
+          "visibleCast": [
+            "sage_seraphine",
+            "maelor",
+            "alaric",
+            "lion_champion"
+          ],
+          "allowedSpeakers": [
+            "sage_seraphine",
+            "maelor",
+            "alaric",
+            "lion_champion"
+          ],
+          "forbiddenSpeakers": [],
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alaric",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alaric",
+              "screenPosition": "CENTER_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "AUTHORITY",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "lion_champion",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alaric",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stepDirections": [
+            {
+              "stepId": "open",
+              "speakerId": "alaric",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "record",
+              "speakerId": "alaric",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "bluff-accepted",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "outcome",
+              "speakerId": "alaric",
+              "addressedTo": "lion_champion",
+              "lookTarget": "lion_champion",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "merits",
+              "speakerId": "sage_seraphine",
+              "addressedTo": "alaric",
+              "lookTarget": "alaric",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "stains",
+              "speakerId": "maelor",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "witnesses",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "intent",
+              "speakerId": "alaric",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            }
+          ],
+          "transitionFromPrevious": "VIDEO_TO_TABLEAU",
+          "rationale": "The lion_judgement video ends cleanly; the canonical-sprite tableau is visible before dialogue step open."
+        }
+      ]
+    },
+    "open@alaric@0|record@alaric@2|bluff-accepted@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|stains@maelor@0|witnesses@alaric@0|shadow@alaric@0|intent@alaric@2": {
+      "dialogueId": "lion_finale_judgement",
+      "originalMode": "CINEMATIC_HOLD",
+      "sourceVideo": "lion_judgement",
+      "sourceVideoClassification": "KEEP_MAJOR_VIDEO",
+      "dialogueStartsAfterMedia": true,
+      "normalDialogueDuringVideo": 0,
+      "dialogueStepsOnHold": 0,
+      "choiceStepsOnHold": 0,
+      "finalFrameCast": [
+        "alaric",
+        "lion_champion"
+      ],
+      "finalFrameCastReferenceOnly": true,
+      "allowedHoldSpeakers": [],
+      "forbiddenHoldSpeakers": [
+        "alaric",
+        "lion_champion",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "segments": [
+        {
+          "id": "lion_finale_judgement:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "open",
+            "record",
+            "bluff-accepted",
+            "outcome",
+            "merits",
+            "stains",
+            "witnesses",
+            "shadow",
+            "intent"
+          ],
+          "visibleCast": [
+            "sage_seraphine",
+            "maelor",
+            "alaric",
+            "lion_champion"
+          ],
+          "allowedSpeakers": [
+            "sage_seraphine",
+            "maelor",
+            "alaric",
+            "lion_champion"
+          ],
+          "forbiddenSpeakers": [],
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alaric",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alaric",
+              "screenPosition": "CENTER_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "AUTHORITY",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "lion_champion",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alaric",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stepDirections": [
+            {
+              "stepId": "open",
+              "speakerId": "alaric",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "record",
+              "speakerId": "alaric",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "bluff-accepted",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "outcome",
+              "speakerId": "alaric",
+              "addressedTo": "lion_champion",
+              "lookTarget": "lion_champion",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "merits",
+              "speakerId": "sage_seraphine",
+              "addressedTo": "alaric",
+              "lookTarget": "alaric",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "stains",
+              "speakerId": "maelor",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "witnesses",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "shadow",
+              "speakerId": "alaric",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "intent",
+              "speakerId": "alaric",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            }
+          ],
+          "transitionFromPrevious": "VIDEO_TO_TABLEAU",
+          "rationale": "The lion_judgement video ends cleanly; the canonical-sprite tableau is visible before dialogue step open."
+        }
+      ]
+    },
+    "open@alaric@0|record@alaric@2|bluff-accepted@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|stains@maelor@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2": {
+      "dialogueId": "lion_finale_judgement",
+      "originalMode": "CINEMATIC_HOLD",
+      "sourceVideo": "lion_judgement",
+      "sourceVideoClassification": "KEEP_MAJOR_VIDEO",
+      "dialogueStartsAfterMedia": true,
+      "normalDialogueDuringVideo": 0,
+      "dialogueStepsOnHold": 0,
+      "choiceStepsOnHold": 0,
+      "finalFrameCast": [
+        "alaric",
+        "lion_champion"
+      ],
+      "finalFrameCastReferenceOnly": true,
+      "allowedHoldSpeakers": [],
+      "forbiddenHoldSpeakers": [
+        "alaric",
+        "lion_champion",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "segments": [
+        {
+          "id": "lion_finale_judgement:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "open",
+            "record",
+            "bluff-accepted",
+            "outcome",
+            "merits",
+            "stains",
+            "witnesses",
+            "shadow",
+            "intent"
+          ],
+          "visibleCast": [
+            "sage_seraphine",
+            "maelor",
+            "alaric",
+            "lion_champion"
+          ],
+          "allowedSpeakers": [
+            "sage_seraphine",
+            "maelor",
+            "alaric",
+            "lion_champion"
+          ],
+          "forbiddenSpeakers": [],
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alaric",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alaric",
+              "screenPosition": "CENTER_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "AUTHORITY",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "lion_champion",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alaric",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stepDirections": [
+            {
+              "stepId": "open",
+              "speakerId": "alaric",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "record",
+              "speakerId": "alaric",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "bluff-accepted",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "outcome",
+              "speakerId": "alaric",
+              "addressedTo": "lion_champion",
+              "lookTarget": "lion_champion",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "merits",
+              "speakerId": "sage_seraphine",
+              "addressedTo": "alaric",
+              "lookTarget": "alaric",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "stains",
+              "speakerId": "maelor",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "witnesses",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "shadow",
+              "speakerId": "alaric",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "intent",
+              "speakerId": "alaric",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            }
+          ],
+          "transitionFromPrevious": "VIDEO_TO_TABLEAU",
+          "rationale": "The lion_judgement video ends cleanly; the canonical-sprite tableau is visible before dialogue step open."
+        }
+      ]
+    },
+    "open@alaric@0|record@alaric@2|bluff-accepted@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|stains@maelor@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2": {
+      "dialogueId": "lion_finale_judgement",
+      "originalMode": "CINEMATIC_HOLD",
+      "sourceVideo": "lion_judgement",
+      "sourceVideoClassification": "KEEP_MAJOR_VIDEO",
+      "dialogueStartsAfterMedia": true,
+      "normalDialogueDuringVideo": 0,
+      "dialogueStepsOnHold": 0,
+      "choiceStepsOnHold": 0,
+      "finalFrameCast": [
+        "alaric",
+        "lion_champion"
+      ],
+      "finalFrameCastReferenceOnly": true,
+      "allowedHoldSpeakers": [],
+      "forbiddenHoldSpeakers": [
+        "alaric",
+        "lion_champion",
+        "sage_seraphine",
+        "maelor"
+      ],
+      "segments": [
+        {
+          "id": "lion_finale_judgement:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "open",
+            "record",
+            "bluff-accepted",
+            "outcome",
+            "merits",
+            "stains",
+            "witnesses",
+            "shadow",
+            "intent"
+          ],
+          "visibleCast": [
+            "sage_seraphine",
+            "maelor",
+            "alaric",
+            "lion_champion"
+          ],
+          "allowedSpeakers": [
+            "sage_seraphine",
+            "maelor",
+            "alaric",
+            "lion_champion"
+          ],
+          "forbiddenSpeakers": [],
+          "actors": [
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "maelor",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "maelor",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alaric",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alaric",
+              "screenPosition": "CENTER_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "maelor",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "AUTHORITY",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "lion_champion",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alaric",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stepDirections": [
+            {
+              "stepId": "open",
+              "speakerId": "alaric",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "record",
+              "speakerId": "alaric",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "bluff-accepted",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "outcome",
+              "speakerId": "alaric",
+              "addressedTo": "lion_champion",
+              "lookTarget": "lion_champion",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "merits",
+              "speakerId": "sage_seraphine",
+              "addressedTo": "alaric",
+              "lookTarget": "alaric",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "stains",
+              "speakerId": "maelor",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "witnesses",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "shadow",
+              "speakerId": "sage_seraphine",
+              "addressedTo": "alaric",
+              "lookTarget": "alaric",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "intent",
+              "speakerId": "alaric",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "DIRECT_RESPONSE"
+            }
+          ],
+          "transitionFromPrevious": "VIDEO_TO_TABLEAU",
+          "rationale": "The lion_judgement video ends cleanly; the canonical-sprite tableau is visible before dialogue step open."
+        }
+      ]
+    },
+    "open@alaric@0|record@alaric@2|bluff-accepted@alaric@0|outcome@alaric@0|stains@maelor@0|witnesses@alaric@0|intent@alaric@2": {
+      "dialogueId": "lion_finale_judgement",
+      "originalMode": "CINEMATIC_HOLD",
+      "sourceVideo": "lion_judgement",
+      "sourceVideoClassification": "KEEP_MAJOR_VIDEO",
+      "dialogueStartsAfterMedia": true,
+      "normalDialogueDuringVideo": 0,
+      "dialogueStepsOnHold": 0,
+      "choiceStepsOnHold": 0,
+      "finalFrameCast": [
+        "alaric",
+        "lion_champion"
+      ],
+      "finalFrameCastReferenceOnly": true,
+      "allowedHoldSpeakers": [],
+      "forbiddenHoldSpeakers": [
+        "alaric",
+        "lion_champion",
+        "maelor"
+      ],
+      "segments": [
+        {
+          "id": "lion_finale_judgement:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "open",
+            "record",
+            "bluff-accepted",
+            "outcome",
+            "stains",
+            "witnesses",
+            "intent"
+          ],
+          "visibleCast": [
+            "maelor",
+            "alaric",
+            "lion_champion"
+          ],
+          "allowedSpeakers": [
+            "maelor",
+            "alaric",
+            "lion_champion"
+          ],
+          "forbiddenSpeakers": [],
+          "actors": [
+            {
+              "actorId": "maelor",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alaric",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alaric",
+              "screenPosition": "CENTER_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "lion_champion",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "AUTHORITY",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "lion_champion",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alaric",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stepDirections": [
+            {
+              "stepId": "open",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "record",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "bluff-accepted",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "outcome",
+              "speakerId": "alaric",
+              "addressedTo": "lion_champion",
+              "lookTarget": "lion_champion",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "stains",
+              "speakerId": "maelor",
+              "addressedTo": "alaric",
+              "lookTarget": "alaric",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "witnesses",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "intent",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            }
+          ],
+          "transitionFromPrevious": "VIDEO_TO_TABLEAU",
+          "rationale": "The lion_judgement video ends cleanly; the canonical-sprite tableau is visible before dialogue step open."
+        }
+      ]
+    },
+    "open@alaric@0|record@alaric@2|bluff-accepted@alaric@0|outcome@alaric@0|stains@maelor@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2": {
+      "dialogueId": "lion_finale_judgement",
+      "originalMode": "CINEMATIC_HOLD",
+      "sourceVideo": "lion_judgement",
+      "sourceVideoClassification": "KEEP_MAJOR_VIDEO",
+      "dialogueStartsAfterMedia": true,
+      "normalDialogueDuringVideo": 0,
+      "dialogueStepsOnHold": 0,
+      "choiceStepsOnHold": 0,
+      "finalFrameCast": [
+        "alaric",
+        "lion_champion"
+      ],
+      "finalFrameCastReferenceOnly": true,
+      "allowedHoldSpeakers": [],
+      "forbiddenHoldSpeakers": [
+        "alaric",
+        "lion_champion",
+        "maelor"
+      ],
+      "segments": [
+        {
+          "id": "lion_finale_judgement:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "open",
+            "record",
+            "bluff-accepted",
+            "outcome",
+            "stains",
+            "witnesses",
+            "shadow",
+            "intent"
+          ],
+          "visibleCast": [
+            "maelor",
+            "alaric",
+            "lion_champion"
+          ],
+          "allowedSpeakers": [
+            "maelor",
+            "alaric",
+            "lion_champion"
+          ],
+          "forbiddenSpeakers": [],
+          "actors": [
+            {
+              "actorId": "maelor",
+              "screenPosition": "LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alaric",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alaric",
+              "screenPosition": "CENTER_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "lion_champion",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "AUTHORITY",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "lion_champion",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alaric",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stepDirections": [
+            {
+              "stepId": "open",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "record",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "bluff-accepted",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "outcome",
+              "speakerId": "alaric",
+              "addressedTo": "lion_champion",
+              "lookTarget": "lion_champion",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "stains",
+              "speakerId": "maelor",
+              "addressedTo": "alaric",
+              "lookTarget": "alaric",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "witnesses",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "shadow",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "intent",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            }
+          ],
+          "transitionFromPrevious": "VIDEO_TO_TABLEAU",
+          "rationale": "The lion_judgement video ends cleanly; the canonical-sprite tableau is visible before dialogue step open."
+        }
+      ]
+    },
+    "open@alaric@0|record@alaric@2|bluff-accepted@alaric@0|outcome@alaric@0|stains@maelor@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2": {
+      "dialogueId": "lion_finale_judgement",
+      "originalMode": "CINEMATIC_HOLD",
+      "sourceVideo": "lion_judgement",
+      "sourceVideoClassification": "KEEP_MAJOR_VIDEO",
+      "dialogueStartsAfterMedia": true,
+      "normalDialogueDuringVideo": 0,
+      "dialogueStepsOnHold": 0,
+      "choiceStepsOnHold": 0,
+      "finalFrameCast": [
+        "alaric",
+        "lion_champion"
+      ],
+      "finalFrameCastReferenceOnly": true,
+      "allowedHoldSpeakers": [],
+      "forbiddenHoldSpeakers": [
+        "alaric",
+        "lion_champion",
+        "maelor",
+        "sage_seraphine"
+      ],
+      "segments": [
+        {
+          "id": "lion_finale_judgement:segment-1",
+          "mode": "STATIC_TABLEAU",
+          "stepIds": [
+            "open",
+            "record",
+            "bluff-accepted",
+            "outcome",
+            "stains",
+            "witnesses",
+            "shadow",
+            "intent"
+          ],
+          "visibleCast": [
+            "maelor",
+            "sage_seraphine",
+            "alaric",
+            "lion_champion"
+          ],
+          "allowedSpeakers": [
+            "maelor",
+            "sage_seraphine",
+            "alaric",
+            "lion_champion"
+          ],
+          "forbiddenSpeakers": [],
+          "actors": [
+            {
+              "actorId": "maelor",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "sage_seraphine",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "sage_seraphine",
+              "screenPosition": "CENTER_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "alaric",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "ADVISER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "alaric",
+              "screenPosition": "CENTER_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "sage_seraphine",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "AUTHORITY",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "lion_champion",
+              "screenPosition": "FAR_RIGHT",
+              "scale": 1,
+              "facing": "LEFT",
+              "lookTarget": "alaric",
+              "group": "LION_COURT",
+              "dramaticSide": "RIGHT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            }
+          ],
+          "exits": [],
+          "stepDirections": [
+            {
+              "stepId": "open",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "record",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "bluff-accepted",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "OPPOSING_GROUP"
+            },
+            {
+              "stepId": "outcome",
+              "speakerId": "alaric",
+              "addressedTo": "lion_champion",
+              "lookTarget": "lion_champion",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "stains",
+              "speakerId": "maelor",
+              "addressedTo": "alaric",
+              "lookTarget": "alaric",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "witnesses",
+              "speakerId": "alaric",
+              "addressedTo": "maelor",
+              "lookTarget": "maelor",
+              "facing": "LEFT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "shadow",
+              "speakerId": "sage_seraphine",
+              "addressedTo": "alaric",
+              "lookTarget": "alaric",
+              "facing": "RIGHT",
+              "resolution": "DIRECT_RESPONSE"
+            },
+            {
+              "stepId": "intent",
+              "speakerId": "alaric",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
+              "facing": "LEFT",
+              "resolution": "DIRECT_RESPONSE"
+            }
+          ],
+          "transitionFromPrevious": "VIDEO_TO_TABLEAU",
+          "rationale": "The lion_judgement video ends cleanly; the canonical-sprite tableau is visible before dialogue step open."
+        }
+      ]
     }
   },
   "lion_trial_aftermath": {
