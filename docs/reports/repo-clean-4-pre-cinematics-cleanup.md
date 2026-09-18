@@ -208,6 +208,24 @@ The protected published VFX registry remains intentionally unchanged and empty. 
 
 No merge is authorized by these repairs. The complete operator gate must be rerun after the patched branch is fetched.
 
+## Second operator-gate repair
+
+The second local validation run at `ac8b21d` confirmed that the TypeScript/build repair was successful, but exposed sixteen additional consistency failures beyond the eleven historical VFX compatibility failures. Merge remained blocked.
+
+The follow-up repair reconciles those failures without restoring generic fallbacks or changing approved narrative intent:
+
+- added exact production environment mappings for `dialogue:pre_witness_road_clash` and `dialogue:post_witness_road_clash`, both reusing the approved `WITNESS_ROAD / witness_road_tableau` asset; production environment coverage is now 167/167 contexts with zero fallback contexts;
+- aligned final-presentation tests with the current canonical 147-beat registry, including 51 Static Tableaux and 18 combat beats;
+- added the missing runtime presentation-plan variant for the credible Alaric bluff when Shadow evidence is already revealed; this is the same staging composition as the already generated equivalent Alaric-shadow variant and differs only in runtime dialogue shape cardinality;
+- reconciled the remaining CIN-6C/CIN-6.7 source assertion with the state-aware `beforeCombat` resolver;
+- updated content tests to preserve the intentional zero-loot Witness Road escalation and to identify grenade-bearing choices by semantic effects/flags rather than obsolete prose;
+- aligned contextual/reputation prose assertions with the approved narrative-polish text;
+- added the active `src/combat/vfx/DemoVfxActionScope.ts` metadata module to both exact CIN-6E-A protected-change allowlists.
+
+The production environment resolver still fails closed for missing contexts. No generic environment fallback was introduced.
+
+The branch still requires a complete local gate rerun. The only accepted full-suite failures remain exactly the eleven historical `CasterMotionBackCompat.test.ts` failures.
+
 ## Merge gate
 
 ```text
