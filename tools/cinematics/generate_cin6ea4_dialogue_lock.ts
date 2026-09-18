@@ -849,10 +849,10 @@ async function main(): Promise<void> {
     CHOICE_EFFECT_CHANGE: 0,
     RECRUITMENT_TRUTH_CHANGE: 0,
   };
-  if (dialogues.size !== 71 || originalSteps !== 247 || choiceStates !== 28) {
+  if (dialogues.size !== 73 || originalSteps !== 251 || choiceStates !== 28) {
     throw new Error(`Authoritative scale drift: ${dialogues.size} dialogues, ${originalSteps} steps, ${choiceStates} choice states.`);
   }
-  if (Object.entries(invariants).some(([key, value]) => key.endsWith('_ACCOUNTED') ? !String(value).startsWith(key === 'DIALOGUES_ACCOUNTED' ? '71/' : key === 'ORIGINAL_STEPS_ACCOUNTED' ? '247/' : '28/') : Number(value) !== 0)) {
+  if (Object.entries(invariants).some(([key, value]) => key.endsWith('_ACCOUNTED') ? !String(value).startsWith(key === 'DIALOGUES_ACCOUNTED' ? '73/' : key === 'ORIGINAL_STEPS_ACCOUNTED' ? '251/' : '28/') : Number(value) !== 0)) {
     throw new Error(`Dialogue lock invariants failed: ${JSON.stringify(invariants)} ${JSON.stringify(factionSideViolationDetails)}`);
   }
 
