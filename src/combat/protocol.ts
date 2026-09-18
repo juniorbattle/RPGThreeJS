@@ -54,8 +54,6 @@ export const combatInitializeMessageSchema = z.object({
   devQa: z.boolean().default(false),
   qaFullAp: z.boolean().default(false),
   qaDeployAll: z.boolean().default(false),
-  devOptionCProof: z.boolean().default(false),
-  devOptionCProofCharacter: z.enum(['kestrel', 'alistair']).default('kestrel'),
 });
 export type CombatInitializeMessage = z.infer<typeof combatInitializeMessageSchema>;
 
