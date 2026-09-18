@@ -976,7 +976,6 @@ function createUnit(def){
     visualFacingX:def.team==='player'?1:-1,
     grp, spr, outline, mat, blob, teamGlow, teamRingUnder, teamRing, statusIndicatorGroup, spriteHeight:s.h, baseY:s.baseY??s.h*0.5,
     authoritativePhysicalScale:!!s.authoritativePhysicalScale,strategicVisualUnitId:strategicVisual?.unitId||null,strategicVisual:strategicVisual||null,
-    runtimeFrameAnimation:false, frameAnimation:null, frameAnimationUrl:'',
     cell(){ return cellAt(this.gx,this.gz); }
   };
   const spriteScale=largeUnitSpriteScale(u);
@@ -1812,7 +1811,6 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
   const impactStarted=new Promise(resolve=>{signalImpact=resolve;}),impactFinished=new Promise(resolve=>{finishImpact=resolve;});
   // Align the isolated runtime-frame proof with the real attack choreography,
   // after Stage lead-in/settle rather than consuming it during the transition.
-  if(u.runtimeFrameAnimation&&u.frameAnimation)u.frameAnimation.play('attack',performance.now());
   const animation=attackAnim(u,spec,impactCx,impactCz,targets,{...context,onResolveImpact:async()=>{signalImpact(); await impactFinished;}});
   await Promise.race([impactStarted,animation]);
   const _preState=new Map(); _preState.set(u,{alive:u.alive,hp:u.hp,statuses:new Set(Object.keys(u.statuses))}); for(const _t of targets)_preState.set(_t,{alive:_t.alive,hp:_t.hp,statuses:new Set(Object.keys(_t.statuses))});
