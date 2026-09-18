@@ -1,1 +1,0 @@
-Extract the Kestrel character master to a transparent background while preserving every character pixel and all three views exactly. Replace only the dark backdrop with genuine alpha transparency. Do not redraw, restyle, relight, crop or add text. This output was rejected because the generated checkerboard was baked RGB rather than alpha transparency.
