@@ -824,32 +824,22 @@
       ]
     },
     "combat:marsh_crossing": {
-      "visualFamily": "FOREST_ROAD",
+      "visualFamily": "VALMIR_ROAD",
       "plates": [
         {
           "surfaceRole": "STRATEGIC_COMBAT",
-          "assetId": "forest_route_strategic",
-          "runtimeCandidatePath": "strategic/forest-route-strategic.png"
-        },
-        {
-          "surfaceRole": "COMBAT_STAGE",
-          "assetId": "forest_route_stage",
-          "runtimeCandidatePath": "combat-stage/forest-route-stage.png"
+          "assetId": "valmir_road_tableau",
+          "runtimeCandidatePath": "tableau/valmir-road-tableau.png"
         }
       ]
     },
     "combat:road_to_valmir": {
-      "visualFamily": "FOREST_ROAD",
+      "visualFamily": "VALMIR_ROAD",
       "plates": [
         {
           "surfaceRole": "STRATEGIC_COMBAT",
-          "assetId": "forest_route_strategic",
-          "runtimeCandidatePath": "strategic/forest-route-strategic.png"
-        },
-        {
-          "surfaceRole": "COMBAT_STAGE",
-          "assetId": "forest_route_stage",
-          "runtimeCandidatePath": "combat-stage/forest-route-stage.png"
+          "assetId": "valmir_road_tableau",
+          "runtimeCandidatePath": "tableau/valmir-road-tableau.png"
         }
       ]
     },
