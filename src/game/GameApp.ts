@@ -50,6 +50,8 @@ import {
 import { JourneyCampaignBoundary } from '../journey/JourneyCampaignBoundary';
 import { resolveCampaignPresentation } from '../journey/JourneyPresentationPolicy';
 import { evaluateRouteCommit } from '../journey/RouteCommitGuard';
+import { isTraversalProductionEnabledForLeg } from '../traversal/TraversalFeaturePolicy';
+import type { LionTraversalLegId } from './LionCampaignTravelRelations';
 import type { JourneySecondaryActionPresentation } from '../cinematics/JourneyTypes';
 import { NarrativeStage } from '../cinematics/NarrativeStage';
 import { resolveCinematicPresentation, resolveDialoguePresentation } from '../cinematics/NarrativePresentationResolver';
@@ -639,6 +641,8 @@ export class GameApp {
    * current campaign boundary is presented — never what the campaign is.
    */
   private async enterCampaignPresentation(): Promise<void> {
+    // Traversal is intentionally not selected here yet. Its production gate remains false until
+    // route design/assets are approved; the first rollout will be T0 only.
     if (this.usesJourneyPresentation()) {
       await this.enterJourney();
       return;
@@ -648,6 +652,14 @@ export class GameApp {
 
   private usesJourneyPresentation(): boolean {
     return this.campaignPresentation === 'journey' && !this.journeyUnavailable;
+  }
+
+  /**
+   * Production-safe Traversal gate. This is deliberately fail-closed and is not wired
+   * to query params, DEV mode or automatic asset detection.
+   */
+  private usesTraversalPresentation(legId: LionTraversalLegId): boolean {
+    return isTraversalProductionEnabledForLeg(legId);
   }
 
   private async enterTravel(): Promise<void> {
