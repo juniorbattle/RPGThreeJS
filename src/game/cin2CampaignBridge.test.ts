@@ -75,6 +75,21 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(method('private async flushPendingCombat')).not.toContain('enterTravel');
   });
 
+  it('keeps Traversal production-disabled until the explicit T0 rollout gate is opened', () => {
+    const gate = readFileSync(resolve(process.cwd(), 'src/traversal/TraversalFeaturePolicy.ts'), 'utf8');
+    expect(gate).toContain('enabled: false');
+    expect(gate).toContain('designAssetsReady: false');
+    expect(gate).toContain("rolloutLegIds: Object.freeze(['T0']");
+    expect(SOURCE).toContain('private usesTraversalPresentation');
+    expect(SOURCE).toContain('isTraversalProductionEnabledForLeg(legId)');
+
+    const facade = method('private async enterCampaignPresentation');
+    expect(facade).not.toContain('usesTraversalPresentation(');
+    expect(facade).not.toContain('enterTraversal');
+    expect(facade).toContain('await this.enterJourney()');
+    expect(facade).toContain('await this.enterTravel()');
+  });
+
   it('keeps the R6 post-node ordering with the presentation strictly last', () => {
     const postNode = method('private async playPostNodeNarrative');
     expect(postNode.indexOf('await this.maybePlayATEs(nodeId)')).toBeGreaterThan(-1);
