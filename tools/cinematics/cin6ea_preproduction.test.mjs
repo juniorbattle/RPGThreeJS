@@ -207,6 +207,7 @@ describe('CIN-6E-A final visual preproduction system', () => {
 
   it('keeps protected game systems and visual assets unchanged outside authorized presentation-only runtime proofs', () => {
     const authorizedPostLockFiles = new Set([
+      'src/combat/vfx/CasterMotionBackCompat.test.ts',
       'src/combat/CombatBridge.ts',
       'src/combat/legacyCombatRuntime.js',
       'src/combat/protocol.ts',
