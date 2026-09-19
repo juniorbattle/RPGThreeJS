@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { LION_TRAVERSAL_LEGS } from '../game/LionCampaignTravelRelations';
+import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
 import { createInitialState } from '../game/store';
 import { getAvailableRunNodes } from '../game/runSystem';
 import { TraversalRunController } from './TraversalRunController';
