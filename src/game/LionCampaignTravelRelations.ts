@@ -5,12 +5,29 @@ import {
 
 export type LionTraversalLegId = 'T0' | 'T1' | 'T2' | 'T3' | 'T4';
 
+export type LionTraversalStageMode = 'MANDATORY_INTERRUPT' | 'IN_TRAVERSAL_FORK';
+
+export interface LionTraversalForkPresentation {
+  /** Fork choice is rendered over the live Traversal world; never TravelView/Journey. */
+  readonly surface: 'TRAVERSAL_OVERLAY';
+  /** Traversal scene/camera/world remain mounted while the choice is active. */
+  readonly keepTraversalMounted: true;
+  /** Slightly opaque/translucent edge treatment; center remains readable. */
+  readonly edgeTreatment: 'TRANSLUCENT_OPAQUE_EDGES';
+  /** Route-choice buttons live in a compact rail on the right side. */
+  readonly choicePlacement: 'RIGHT_CHOICE_RAIL';
+  /** Vehicle may slow or hold, but this is not a campaign/presentation exit. */
+  readonly locomotionWhileChoosing: 'SLOW_OR_HOLD';
+}
+
 export interface LionTraversalStage {
   /**
    * One ID means a mandatory route interruption.
    * Multiple IDs mean RunSystem owns the branch choice among these alternatives.
    */
   readonly nodeIds: readonly string[];
+  readonly mode: LionTraversalStageMode;
+  readonly forkPresentation?: LionTraversalForkPresentation;
 }
 
 export interface LionTraversalLeg {
@@ -31,8 +48,10 @@ export interface LionMajorCampaignTransition {
  * Playable travel relations only.
  *
  * RunSystem still owns which branch is available. Traversal presents the movement,
- * materializes route interrupts, hands each interrupt back to the existing node
- * resolver, then resumes the same leg until the destination anchor is reached.
+ * materializes route interrupts, and keeps fork agency inside the live traversal scene.
+ * A fork overlay never hands control to TravelView/Journey. After the choice is committed,
+ * the chosen node is resolved through the existing node authority and the same traversal leg
+ * continues until its destination anchor is reached.
  */
 export const LION_TRAVERSAL_LEGS: readonly LionTraversalLeg[] = Object.freeze([
   {
@@ -40,10 +59,20 @@ export const LION_TRAVERSAL_LEGS: readonly LionTraversalLeg[] = Object.freeze([
     originNodeId: 'lion-audience',
     destinationNodeId: 'lion-first-refuge',
     stages: [
-      { nodeIds: ['lion-opening-ambush'] },
-      { nodeIds: ['lion-nomad-crossroads'] },
-      { nodeIds: ['lion-refugees'] },
-      { nodeIds: ['lion-first-trial-event', 'lion-first-trial-combat'] },
+      { nodeIds: ['lion-opening-ambush'], mode: 'MANDATORY_INTERRUPT' },
+      { nodeIds: ['lion-nomad-crossroads'], mode: 'MANDATORY_INTERRUPT' },
+      { nodeIds: ['lion-refugees'], mode: 'MANDATORY_INTERRUPT' },
+      {
+        nodeIds: ['lion-first-trial-event', 'lion-first-trial-combat'],
+        mode: 'IN_TRAVERSAL_FORK',
+        forkPresentation: {
+          surface: 'TRAVERSAL_OVERLAY',
+          keepTraversalMounted: true,
+          edgeTreatment: 'TRANSLUCENT_OPAQUE_EDGES',
+          choicePlacement: 'RIGHT_CHOICE_RAIL',
+          locomotionWhileChoosing: 'SLOW_OR_HOLD',
+        },
+      },
     ],
   },
   {
@@ -51,9 +80,19 @@ export const LION_TRAVERSAL_LEGS: readonly LionTraversalLeg[] = Object.freeze([
     originNodeId: 'lion-first-refuge',
     destinationNodeId: 'lion-village-choice',
     stages: [
-      { nodeIds: ['lion-reserve-trail'] },
-      { nodeIds: ['lion-valmir-road'] },
-      { nodeIds: ['lion-second-trial-event', 'lion-second-trial-combat'] },
+      { nodeIds: ['lion-reserve-trail'], mode: 'MANDATORY_INTERRUPT' },
+      { nodeIds: ['lion-valmir-road'], mode: 'MANDATORY_INTERRUPT' },
+      {
+        nodeIds: ['lion-second-trial-event', 'lion-second-trial-combat'],
+        mode: 'IN_TRAVERSAL_FORK',
+        forkPresentation: {
+          surface: 'TRAVERSAL_OVERLAY',
+          keepTraversalMounted: true,
+          edgeTreatment: 'TRANSLUCENT_OPAQUE_EDGES',
+          choicePlacement: 'RIGHT_CHOICE_RAIL',
+          locomotionWhileChoosing: 'SLOW_OR_HOLD',
+        },
+      },
     ],
   },
   {
@@ -67,9 +106,19 @@ export const LION_TRAVERSAL_LEGS: readonly LionTraversalLeg[] = Object.freeze([
     originNodeId: 'lion-second-refuge',
     destinationNodeId: 'lion-shadow-signs',
     stages: [
-      { nodeIds: ['lion-lancer-recruit'] },
-      { nodeIds: ['lion-witnesses'] },
-      { nodeIds: ['lion-final-trial-event', 'lion-final-trial-combat'] },
+      { nodeIds: ['lion-lancer-recruit'], mode: 'MANDATORY_INTERRUPT' },
+      { nodeIds: ['lion-witnesses'], mode: 'MANDATORY_INTERRUPT' },
+      {
+        nodeIds: ['lion-final-trial-event', 'lion-final-trial-combat'],
+        mode: 'IN_TRAVERSAL_FORK',
+        forkPresentation: {
+          surface: 'TRAVERSAL_OVERLAY',
+          keepTraversalMounted: true,
+          edgeTreatment: 'TRANSLUCENT_OPAQUE_EDGES',
+          choicePlacement: 'RIGHT_CHOICE_RAIL',
+          locomotionWhileChoosing: 'SLOW_OR_HOLD',
+        },
+      },
     ],
   },
   {
