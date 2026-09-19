@@ -130,7 +130,11 @@ export const LION_TRAVERSAL_LEGS: readonly LionTraversalLeg[] = Object.freeze([
 ].map((leg) => Object.freeze({
   ...leg,
   stages: Object.freeze(leg.stages.map((stage) => Object.freeze({
+    ...stage,
     nodeIds: Object.freeze([...stage.nodeIds]),
+    forkPresentation: stage.forkPresentation
+      ? Object.freeze({ ...stage.forkPresentation })
+      : undefined,
   }))),
 })));
 
