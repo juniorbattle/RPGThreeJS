@@ -1,4 +1,4 @@
-import type { LionTraversalLeg } from '../game/LionCampaignTravelRelations';
+import type { LionTraversalLeg } from '../campaign/LionCampaignTravelRelations';
 import type { RunNode } from '../game/types';
 import { TraversalForkOverlay } from './TraversalForkOverlay';
 import {
