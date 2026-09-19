@@ -53,7 +53,7 @@ export interface LionMajorCampaignTransition {
  * the chosen node is resolved through the existing node authority and the same traversal leg
  * continues until its destination anchor is reached.
  */
-export const LION_TRAVERSAL_LEGS: readonly LionTraversalLeg[] = Object.freeze([
+const LION_TRAVERSAL_LEG_DEFINITIONS: readonly LionTraversalLeg[] = [
   {
     id: 'T0',
     originNodeId: 'lion-audience',
@@ -127,7 +127,10 @@ export const LION_TRAVERSAL_LEGS: readonly LionTraversalLeg[] = Object.freeze([
     destinationNodeId: 'lion-final-refuge',
     stages: [],
   },
-].map((leg) => Object.freeze({
+];
+
+export const LION_TRAVERSAL_LEGS: readonly LionTraversalLeg[] = Object.freeze(
+  LION_TRAVERSAL_LEG_DEFINITIONS.map((leg) => Object.freeze({
   ...leg,
   stages: Object.freeze(leg.stages.map((stage) => Object.freeze({
     ...stage,
@@ -136,7 +139,8 @@ export const LION_TRAVERSAL_LEGS: readonly LionTraversalLeg[] = Object.freeze([
       ? Object.freeze({ ...stage.forkPresentation })
       : undefined,
   }))),
-})));
+}))),
+);
 
 export const LION_MAJOR_CAMPAIGN_TRANSITIONS: readonly LionMajorCampaignTransition[] = Object.freeze([
   Object.freeze({
