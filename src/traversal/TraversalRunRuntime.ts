@@ -1,7 +1,7 @@
 import type {
   LionTraversalLeg,
   LionTraversalStage,
-} from '../game/LionCampaignTravelRelations';
+} from '../campaign/LionCampaignTravelRelations';
 
 export type TraversalRunPhase =
   | 'RUNNING'
