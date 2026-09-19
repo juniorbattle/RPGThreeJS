@@ -1167,8 +1167,8 @@ describe('V10B economy and content consistency', () => {
     }
   });
 
-  it('route graph structure remains 20 nodes with max depth 16', () => {
-    expect(campaignNodes).toHaveLength(20);
+  it('route graph structure remains 21 nodes within the current layout bounds', () => {
+    expect(campaignNodes).toHaveLength(21);
     expect(Math.max(...campaignNodes.map((n) => n.x))).toBeLessThanOrEqual(10);
   });
 });
