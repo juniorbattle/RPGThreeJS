@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { createInitialState } from '../game/store';
 import { getAvailableRunNodes } from '../game/runSystem';
-import { LION_TRAVERSAL_LEGS } from '../game/LionCampaignTravelRelations';
+import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
 import {
   activateTraversalStage,
   approachTraversalStage,
