@@ -39,6 +39,8 @@ export interface LionCampaignNodeDefinition {
     readonly required: readonly string[];
     readonly optional: readonly string[];
   };
+  /** Non-character narrative entities rendered by presentation logic, not Character System V2. */
+  readonly presentationEntities?: readonly string[];
   readonly entryPolicy: LionCampaignEntryPolicy;
   readonly exitPolicy: LionCampaignExitPolicy;
   readonly expectedNextNodeIds: readonly string[];
@@ -55,6 +57,9 @@ function node(
       required: Object.freeze([...definition.cast.required]),
       optional: Object.freeze([...definition.cast.optional]),
     }),
+    presentationEntities: definition.presentationEntities
+      ? Object.freeze([...definition.presentationEntities])
+      : undefined,
     expectedNextNodeIds: Object.freeze([...definition.expectedNextNodeIds]),
   });
 }
@@ -260,7 +265,7 @@ export const LION_CAMPAIGN_STRUCTURE: readonly LionCampaignNodeDefinition[] = Ob
     spatialRole: 'ROUTE_INTERRUPT',
     contentAuthority: 'DIALOGUE',
     allowedContentIds: ['mystery_lancer_recruit'],
-    expectedEnvironmentFamily: 'WITNESS_ROAD',
+    expectedEnvironmentFamily: 'SECOND_REFUGE',
     cast: { required: ['lancer'], optional: [] },
     entryPolicy: 'TRAVERSAL_INTERRUPT',
     exitPolicy: 'RESUME_TRAVERSAL',
@@ -290,8 +295,9 @@ export const LION_CAMPAIGN_STRUCTURE: readonly LionCampaignNodeDefinition[] = Ob
     expectedEnvironmentFamily: 'SHADOW_RUINS',
     cast: {
       required: ['sage_seraphine', 'maelor'],
-      optional: ['young_dragon_elite', 'serpent_oracle', 'shrine_apparition'],
+      optional: ['young_dragon_elite', 'serpent_oracle'],
     },
+    presentationEntities: ['shrine_apparition'],
     entryPolicy: 'TRAVERSAL_INTERRUPT',
     exitPolicy: 'RESUME_TRAVERSAL',
     expectedNextNodeIds: ['lion-shadow-signs'],
