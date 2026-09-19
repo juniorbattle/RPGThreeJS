@@ -32,9 +32,56 @@ import {
 } from './VfxPresetComposer';
 import { compileCasterMotion, createCasterMotionStep } from './CasterMotion';
 
-const registry = publishedRegistryData as PublishedVfxRegistry;
-const entries = Object.values(registry.actions) as PublishedVfxEntry[];
-const actionKeys = Object.keys(registry.actions);
+const durableRegistry = publishedRegistryData as PublishedVfxRegistry;
+
+/**
+ * Exact pre-reset V2.4 publications preserved as compatibility fixtures.
+ *
+ * The durable registry was intentionally RESET ALL and is allowed to be empty.
+ * Back-compat must therefore be proven against frozen historical entries instead
+ * of assuming that current operator publication state still contains 33 actions.
+ */
+const legacyEntries: readonly PublishedVfxEntry[] = Object.freeze([
+  Object.freeze({
+    actionKey: 'basic_greatsword_hit',
+    presetId: 'published_basic_greatsword_hit',
+    visualSlots: [{
+      id: 'slot_msr0a4qz_1',
+      candidateId: 'r1_1701',
+      sizeProfile: 'BIG',
+      timingProfile: 'NORMAL',
+      placementProfile: 'TARGET',
+    }],
+    choreography: 'TOGETHER',
+    technicalPolish: 'OFF',
+    autoPlacement: 'TARGET',
+    tier: 1,
+    fingerprint: '9cac19ba',
+  }),
+  Object.freeze({
+    actionKey: 'w_break_guard',
+    presetId: 'published_w_break_guard',
+    visualSlots: [{
+      id: 'slot_msr0nbxw_4',
+      candidateId: 'r1_0542',
+      sizeProfile: 'MID',
+      timingProfile: 'NORMAL',
+      placementProfile: 'AUTO',
+    }],
+    choreography: 'TOGETHER',
+    technicalPolish: 'OFF',
+    autoPlacement: 'TARGET',
+    tier: 2,
+    fingerprint: '4ea982bf',
+  }),
+]);
+
+const legacyRegistry: PublishedVfxRegistry = {
+  schemaVersion: 1,
+  actions: Object.fromEntries(legacyEntries.map((entry) => [entry.actionKey, entry])),
+};
+const entries = [...legacyEntries];
+const actionKeys = Object.keys(legacyRegistry.actions);
 
 /** Compile options mirroring production, with a fixed cadence for determinism. */
 const compileOptions = {
@@ -42,22 +89,27 @@ const compileOptions = {
   getCadence: () => ({ frameCount: 64, frameDurationMs: 33.125 }),
 };
 
-describe('Phase B back-compat — the real published registry', () => {
-  it('contains the expected 33 published actions', () => {
-    expect(actionKeys).toHaveLength(33);
+describe('Phase B back-compat — durable registry + historical fixtures', () => {
+  it('accepts the intentionally empty durable registry after RESET ALL', () => {
+    expect(Object.keys(durableRegistry.actions)).toHaveLength(0);
+    expect(validatePublishedRegistry(durableRegistry).ok).toBe(true);
   });
 
-  it('has no pre-existing entry carrying caster motion', () => {
+  it('keeps two exact pre-reset V2.4 publications as compatibility fixtures', () => {
+    expect(actionKeys).toEqual(['basic_greatsword_hit', 'w_break_guard']);
+  });
+
+  it('has no historical fixture carrying caster motion', () => {
     for (const entry of entries) {
       expect(entry.casterMotion).toBeUndefined();
     }
   });
 
-  it('still validates as a whole registry after the additive schema change', () => {
-    expect(validatePublishedRegistry(registry).ok).toBe(true);
+  it('validates the historical fixture registry after the additive schema change', () => {
+    expect(validatePublishedRegistry(legacyRegistry).ok).toBe(true);
   });
 
-  it('validates every individual entry unchanged', () => {
+  it('validates every historical fixture entry unchanged', () => {
     for (const entry of entries) {
       const result = validatePublishedEntry(entry);
       expect(result.errors).toEqual([]);
@@ -65,18 +117,18 @@ describe('Phase B back-compat — the real published registry', () => {
   });
 
   it('keeps schemaVersion at 1 — motion is additive, not a migration', () => {
-    expect(registry.schemaVersion).toBe(1);
+    expect(durableRegistry.schemaVersion).toBe(1);
+    expect(legacyRegistry.schemaVersion).toBe(1);
   });
 });
 
 describe('Phase B back-compat — fingerprint stability', () => {
   /**
-   * THE decisive test. Every stored fingerprint was computed BEFORE caster
-   * motion existed. Recomputing them with the Phase B code must reproduce the
-   * exact same hashes, otherwise the Composer would report all 33 published
-   * actions as "MODIFIED SINCE PUBLISH".
+   * THE decisive test. These stored fingerprints were computed BEFORE caster motion existed.
+   * Recomputing them with the Phase B code must reproduce the exact same hashes,
+   * independently of the current durable publication state.
    */
-  it('recomputes the identical stored fingerprint for all 33 published actions', () => {
+  it('recomputes the identical stored fingerprint for historical publications', () => {
     const drifted: string[] = [];
     for (const entry of entries) {
       const draft = publishedEntryToDraft(entry);
