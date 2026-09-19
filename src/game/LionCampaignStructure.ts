@@ -85,7 +85,7 @@ export const LION_CAMPAIGN_STRUCTURE: readonly LionCampaignNodeDefinition[] = Ob
       optional: [],
     },
     entryPolicy: 'LOCATION_ARRIVAL',
-    exitPolicy: 'START_TRAVERSAL',
+    exitPolicy: 'LOCATION_CONTINUATION',
     expectedNextNodeIds: ['lion-audience'],
   }),
   node({
@@ -341,7 +341,7 @@ export const LION_CAMPAIGN_STRUCTURE: readonly LionCampaignNodeDefinition[] = Ob
       optional: ['cedric', 'lancer'],
     },
     entryPolicy: 'LOCATION_ARRIVAL',
-    exitPolicy: 'START_TRAVERSAL',
+    exitPolicy: 'LOCATION_CONTINUATION',
     expectedNextNodeIds: ['lion-final-judgement'],
   }),
   node({
