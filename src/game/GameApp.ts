@@ -51,7 +51,7 @@ import { JourneyCampaignBoundary } from '../journey/JourneyCampaignBoundary';
 import { resolveCampaignPresentation } from '../journey/JourneyPresentationPolicy';
 import { evaluateRouteCommit } from '../journey/RouteCommitGuard';
 import { isTraversalProductionEnabledForLeg } from '../traversal/TraversalFeaturePolicy';
-import type { LionTraversalLegId } from './LionCampaignTravelRelations';
+import type { LionTraversalLegId } from '../campaign/LionCampaignTravelRelations';
 import type { JourneySecondaryActionPresentation } from '../cinematics/JourneyTypes';
 import { NarrativeStage } from '../cinematics/NarrativeStage';
 import { resolveCinematicPresentation, resolveDialoguePresentation } from '../cinematics/NarrativePresentationResolver';
