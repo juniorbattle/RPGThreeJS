@@ -32,6 +32,23 @@ describe('LionCampaignTravelRelations', () => {
       .toEqual(['lion-final-trial-event', 'lion-final-trial-combat']);
   });
 
+  it('keeps every fork inside the live traversal surface', () => {
+    const forkStages = LION_TRAVERSAL_LEGS
+      .flatMap((leg) => leg.stages)
+      .filter((stage) => stage.mode === 'IN_TRAVERSAL_FORK');
+
+    expect(forkStages).toHaveLength(3);
+    for (const stage of forkStages) {
+      expect(stage.forkPresentation).toEqual({
+        surface: 'TRAVERSAL_OVERLAY',
+        keepTraversalMounted: true,
+        edgeTreatment: 'TRANSLUCENT_OPAQUE_EDGES',
+        choicePlacement: 'RIGHT_CHOICE_RAIL',
+        locomotionWhileChoosing: 'SLOW_OR_HOLD',
+      });
+    }
+  });
+
   it('has no structural travel-relation debt', () => {
     expect(auditLionTravelRelations()).toEqual([]);
   });
