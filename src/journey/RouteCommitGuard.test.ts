@@ -12,11 +12,11 @@ function availableAt(nodeId: string): RunNode[] {
 }
 
 describe('route commit guard', () => {
-  it('authorizes route commitment only from campaign route surfaces', () => {
-    expect([...ROUTE_COMMIT_MODES]).toEqual(['TRAVEL', 'JOURNEY', 'NARRATIVE', 'TRAVERSAL']);
+  it('authorizes route commitment only from TRAVEL, JOURNEY, and NARRATIVE', () => {
+    expect([...ROUTE_COMMIT_MODES]).toEqual(['TRAVEL', 'JOURNEY', 'NARRATIVE']);
     const available = availableAt('lion-refugees');
     const nodeId = available[0]!.id;
-    for (const mode of ['TRAVEL', 'JOURNEY', 'NARRATIVE', 'TRAVERSAL']) {
+    for (const mode of ['TRAVEL', 'JOURNEY', 'NARRATIVE']) {
       expect(evaluateRouteCommit({ mode, commitInFlight: false, nodeId, listAvailable: () => available }))
         .toEqual({ authorized: true, node: available[0] });
     }
@@ -63,7 +63,6 @@ describe('route commit guard', () => {
     expect(isRouteCommitMode('TRAVEL')).toBe(true);
     expect(isRouteCommitMode('JOURNEY')).toBe(true);
     expect(isRouteCommitMode('NARRATIVE')).toBe(true);
-    expect(isRouteCommitMode('TRAVERSAL')).toBe(true);
     expect(isRouteCommitMode('RESULT')).toBe(false);
   });
 });
