@@ -1,4 +1,4 @@
-import type { LionTraversalLegId } from '../game/LionCampaignTravelRelations';
+import type { LionTraversalLegId } from '../campaign/LionCampaignTravelRelations';
 
 /**
  * Production safety gate for the playable Traversal runtime.
