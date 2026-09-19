@@ -32,6 +32,13 @@ describe('LionCampaignTravelRelations', () => {
       .toEqual(['lion-final-trial-event', 'lion-final-trial-combat']);
   });
 
+  it('preserves stage modes after runtime freezing', () => {
+    expect(LION_TRAVERSAL_LEGS.find((leg) => leg.id === 'T0')?.stages.map((stage) => stage.mode))
+      .toEqual(['MANDATORY_INTERRUPT', 'MANDATORY_INTERRUPT', 'MANDATORY_INTERRUPT', 'IN_TRAVERSAL_FORK']);
+    expect(LION_TRAVERSAL_LEGS.find((leg) => leg.id === 'T1')?.stages.at(-1)?.forkPresentation?.surface)
+      .toBe('TRAVERSAL_OVERLAY');
+  });
+
   it('keeps every fork inside the live traversal surface', () => {
     const forkStages = LION_TRAVERSAL_LEGS
       .flatMap((leg) => leg.stages)
