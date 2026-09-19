@@ -265,7 +265,7 @@ export const LION_CAMPAIGN_STRUCTURE: readonly LionCampaignNodeDefinition[] = Ob
     spatialRole: 'ROUTE_INTERRUPT',
     contentAuthority: 'DIALOGUE',
     allowedContentIds: ['mystery_lancer_recruit'],
-    expectedEnvironmentFamily: 'SECOND_REFUGE',
+    expectedEnvironmentFamily: 'WITNESS_ROAD',
     cast: { required: ['lancer'], optional: [] },
     entryPolicy: 'TRAVERSAL_INTERRUPT',
     exitPolicy: 'RESUME_TRAVERSAL',
