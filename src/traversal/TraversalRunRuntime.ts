@@ -5,6 +5,8 @@ import type {
 
 export type TraversalRunPhase =
   | 'RUNNING'
+  | 'DECISION'
+  | 'LOCAL_INTERACTION'
   | 'APPROACHING_STAGE'
   | 'FORK_OVERLAY'
   | 'NODE_HANDOFF'
@@ -15,6 +17,8 @@ export type TraversalRunPhase =
 
 export type TraversalWorldMountState = 'MOUNTED' | 'RELEASED';
 export type TraversalWorldVisibility = 'VISIBLE' | 'PRESERVED_BEHIND_NODE';
+export type TraversalLane = 0 | 1;
+export type TraversalLaneDirection = -1 | 1;
 
 export interface TraversalRunSession {
   readonly legId: LionTraversalLeg['id'];
@@ -24,6 +28,10 @@ export interface TraversalRunSession {
   readonly stageIndex: number;
   readonly routeProgress01: number;
   readonly resumeProgress01: number;
+  readonly currentLane: TraversalLane;
+  readonly consumedBeatIds: readonly string[];
+  readonly bypassedBeatIds: readonly string[];
+  readonly pendingBeatId: string | null;
   readonly worldMountState: TraversalWorldMountState;
   readonly worldVisibility: TraversalWorldVisibility;
   readonly activeStageNodeIds: readonly string[];
@@ -45,7 +53,10 @@ function requireSameLeg(session: TraversalRunSession, leg: LionTraversalLeg): vo
   }
 }
 
-export function createTraversalRunSession(leg: LionTraversalLeg): TraversalRunSession {
+export function createTraversalRunSession(
+  leg: LionTraversalLeg,
+  initialLane: TraversalLane = 0,
+): TraversalRunSession {
   return Object.freeze({
     legId: leg.id,
     originNodeId: leg.originNodeId,
@@ -54,12 +65,62 @@ export function createTraversalRunSession(leg: LionTraversalLeg): TraversalRunSe
     stageIndex: 0,
     routeProgress01: 0,
     resumeProgress01: 0,
+    currentLane: initialLane,
+    consumedBeatIds: Object.freeze([]),
+    bypassedBeatIds: Object.freeze([]),
+    pendingBeatId: null,
     worldMountState: 'MOUNTED',
     worldVisibility: 'VISIBLE',
     activeStageNodeIds: Object.freeze([]),
     forkOptionIds: Object.freeze([]),
     activeNodeId: null,
   });
+}
+
+/** A presentation hold, before any RunSystem choice is committed. */
+export function pauseTraversalForDecision(session: TraversalRunSession, beatId: string): TraversalRunSession {
+  if (session.phase !== 'RUNNING' || !beatId || session.consumedBeatIds.includes(beatId)) {
+    throw new Error('Traversal decision requires a fresh beat in RUNNING.');
+  }
+  return Object.freeze({ ...session, phase: 'DECISION', pendingBeatId: beatId,
+    resumeProgress01: session.routeProgress01 });
+}
+
+export function releaseTraversalDecision(session: TraversalRunSession): TraversalRunSession {
+  if (!['DECISION', 'LOCAL_INTERACTION'].includes(session.phase)) throw new Error('Traversal has no pending decision.');
+  return Object.freeze({ ...session, phase: 'RUNNING', pendingBeatId: null });
+}
+
+export function beginTraversalLocalInteraction(session: TraversalRunSession): TraversalRunSession {
+  if (session.phase !== 'DECISION') throw new Error('Local interaction requires a pending decision.');
+  return Object.freeze({ ...session, phase: 'LOCAL_INTERACTION' });
+}
+
+export function moveTraversalLane(
+  session: TraversalRunSession,
+  direction: TraversalLaneDirection,
+): TraversalRunSession {
+  if (!['RUNNING', 'APPROACHING_STAGE'].includes(session.phase)) return session;
+  const currentLane = Math.max(0, Math.min(1, session.currentLane + direction)) as TraversalLane;
+  if (currentLane === session.currentLane) return session;
+  return Object.freeze({ ...session, currentLane });
+}
+
+export function consumeTraversalBeat(
+  session: TraversalRunSession,
+  beatId: string,
+): TraversalRunSession {
+  if (!beatId || session.consumedBeatIds.includes(beatId)) return session;
+  return Object.freeze({
+    ...session,
+    consumedBeatIds: Object.freeze([...session.consumedBeatIds, beatId]),
+  });
+}
+
+export function bypassTraversalBeat(session: TraversalRunSession, beatId: string): TraversalRunSession {
+  const consumed = consumeTraversalBeat(session, beatId);
+  if (consumed.bypassedBeatIds.includes(beatId)) return consumed;
+  return Object.freeze({ ...consumed, bypassedBeatIds: Object.freeze([...consumed.bypassedBeatIds, beatId]) });
 }
 
 export function updateTraversalProgress(
@@ -179,11 +240,15 @@ export function finishTraversalNodeResolution(
   if (session.phase !== 'NODE_RESOLUTION') {
     throw new Error('Traversal node can only finish from NODE_RESOLUTION, got ' + session.phase + '.');
   }
+  const consumedBeatIds = session.activeNodeId && !session.consumedBeatIds.includes(session.activeNodeId)
+    ? Object.freeze([...session.consumedBeatIds, session.activeNodeId])
+    : session.consumedBeatIds;
   return Object.freeze({
     ...session,
     phase: 'RESUMING',
     stageIndex: session.stageIndex + 1,
     routeProgress01: session.resumeProgress01,
+    consumedBeatIds,
     worldMountState: 'MOUNTED',
     worldVisibility: 'VISIBLE',
     activeStageNodeIds: Object.freeze([]),

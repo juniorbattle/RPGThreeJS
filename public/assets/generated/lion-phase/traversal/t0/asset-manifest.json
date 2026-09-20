@@ -1,0 +1,153 @@
+{
+  "packId": "traversal-t0-preview-v3-confirm-before-commit",
+  "status": "PREVIEW_ONLY",
+  "productionGateReady": false,
+  "laneModel": "TWO_LANES",
+  "source": "built-in-imagegen-and-deterministic-assembly",
+  "assets": [
+    {
+      "id": "t0-far-panorama",
+      "path": "/assets/generated/lion-phase/traversal/t0/background/t0-far-panorama.png",
+      "role": "UNIQUE_HERO_BACKGROUND_NO_REPEAT",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "sha256": "e3fe8d905bcd460b42c43a1437f1c7cc29ae6d8d683984bc17a000a228a5e203",
+      "activeInRuntime": true
+    },
+    {
+      "id": "t0-far-panorama-loop",
+      "path": "/assets/generated/lion-phase/traversal/t0/background/t0-far-panorama-loop.png",
+      "role": "FAR_BACKGROUND_PARALLAX_LOOP",
+      "derivedFrom": "t0-far-panorama",
+      "derivation": "source plus horizontal mirror",
+      "width": 3344,
+      "height": 941,
+      "mode": "RGB",
+      "sha256": "643bf773080757d524259f9077d4c9b8d2cc66a329a3aeed64fda14963770875",
+      "activeInRuntime": false
+    },
+    {
+      "id": "t0-wide-road",
+      "path": "/assets/generated/lion-phase/traversal/t0/road/t0-wide-road.png",
+      "role": "UNDIVIDED_TWO_LANE_ROAD_SOURCE",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGBA",
+      "sha256": "1823b0995949e6ab13d73778a474a91a7afacf359d71472d8bb3931964b85f03",
+      "activeInRuntime": false
+    },
+    {
+      "id": "t0-wide-road-loop",
+      "path": "/assets/generated/lion-phase/traversal/t0/road/t0-wide-road-loop.png",
+      "role": "ROAD_PARALLAX_LOOP",
+      "derivedFrom": "t0-wide-road",
+      "derivation": "source plus horizontal mirror",
+      "width": 3344,
+      "height": 941,
+      "mode": "RGBA",
+      "sha256": "a77ba8bf7bbf40098516228f739b49936a9b3e21e003dd4ad0757ce2c6caa785",
+      "activeInRuntime": true
+    },
+    {
+      "id": "t0-wooden-4x4",
+      "path": "/assets/generated/lion-phase/traversal/t0/vehicle/wooden-4x4/clean.png",
+      "role": "DRIVERLESS_TRAVERSAL_VEHICLE",
+      "visibleWheels": 4,
+      "driverVisible": false,
+      "passengerVisible": false,
+      "playerClanHeraldry": false,
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "sha256": "b2bff8dc0e9b8393e58943700863760b883fc65a4c8a2f7dbdfc61509662e2f9",
+      "activeInRuntime": false
+    },
+    {
+      "id": "t0-merchant-caravan",
+      "path": "/assets/generated/lion-phase/traversal/t0/entities/merchant-caravan/clean.png",
+      "role": "OPTIONAL_NPC_ROUTE_BACKDROP",
+      "charactersBakedIn": false,
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "sha256": "3fa3837014d965d1b8c4fc1585c7196275f04203fbead961ce634c81e28be52a",
+      "activeInRuntime": true
+    },
+    {
+      "id": "fantasy-truck-v3",
+      "path": "/assets/generated/lion-phase/traversal/t0/vehicle/wooden-4x4/fantasy-truck-v3.png",
+      "role": "DRIVERLESS_FANTASY_TIMBER_TRUCK",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "sha256": "d04aaeaef51300e78809b66dd18df784be79e6318ddd91470f8597987bd2452f",
+      "activeInRuntime": true,
+      "visibleWheels": 4,
+      "driverVisible": false,
+      "passengerVisible": false,
+      "playerClanHeraldry": false
+    },
+    {
+      "id": "chest",
+      "path": "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/chest.png",
+      "role": "T0_PRESENTATION",
+      "width": 448,
+      "height": 512,
+      "mode": "RGBA",
+      "sha256": "f15a397e3c76d051fc5cd54ca799684b0d5e7962563f2469fdca74e5dcbcd36e",
+      "activeInRuntime": true
+    },
+    {
+      "id": "abandoned-cart",
+      "path": "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/abandoned-cart.png",
+      "role": "T0_PRESENTATION",
+      "width": 576,
+      "height": 512,
+      "mode": "RGBA",
+      "sha256": "2712ef99d7412a92dc21f28e6ed0b216f5341a7fe43aa69835479a57fa5fce0e",
+      "activeInRuntime": true
+    },
+    {
+      "id": "debris",
+      "path": "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/debris.png",
+      "role": "T0_PRESENTATION",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "sha256": "432b15f24a8da2c0a78867e105c5350e8b55641ba80ead7c2b2bac1a77735fad",
+      "activeInRuntime": true
+    },
+    {
+      "id": "waystone",
+      "path": "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/waystone.png",
+      "role": "T0_PRESENTATION",
+      "width": 448,
+      "height": 512,
+      "mode": "RGBA",
+      "sha256": "328da22910a5ddfba7cee4fd816dc0fe6087e9f2425c0c253ac553d1bdb2df62",
+      "activeInRuntime": true
+    },
+    {
+      "id": "barricade",
+      "path": "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/barricade.png",
+      "role": "T0_PRESENTATION",
+      "width": 576,
+      "height": 512,
+      "mode": "RGBA",
+      "sha256": "0af4c6c8aab606150c08581327f7c341dc9281eb4470feb651941d6c3e2762e3",
+      "activeInRuntime": true
+    },
+    {
+      "id": "foreground",
+      "path": "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/foreground.png",
+      "role": "T0_PRESENTATION",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "sha256": "d3f9789094a91ae6a93de9903cfaa6ec83d528260954bcb8b83c7572f748a03c",
+      "activeInRuntime": true
+    }
+  ],
+  "interactionModel": "PAUSE_CONFIRM_OR_SKIP_LOCAL_OPTIONALS_CANONICAL_MANDATORY_STAGES"
+}

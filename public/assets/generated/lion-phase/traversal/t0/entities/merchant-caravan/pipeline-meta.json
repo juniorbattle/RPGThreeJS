@@ -1,0 +1,11 @@
+{
+  "target": "asset",
+  "mode": "single",
+  "prompt": "Empty roadside merchant caravan camp prop, no characters or animals.",
+  "role": "",
+  "input": "C:\\Users\\miche\\.codex\\generated_images\\01a0b886-440f-70b2-928c-088f5d339093\\exec-465e5a9d-70f3-4c1a-996b-9d49af8ec2be.png",
+  "threshold": 100,
+  "edge_threshold": 150,
+  "duration": 200,
+  "single_size": 1024
+}

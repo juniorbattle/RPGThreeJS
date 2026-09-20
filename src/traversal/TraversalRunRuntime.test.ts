@@ -9,8 +9,10 @@ import {
   beginTraversalNodeResolution,
   chooseTraversalFork,
   completeTraversalRun,
+  consumeTraversalBeat,
   createTraversalRunSession,
   finishTraversalNodeResolution,
+  moveTraversalLane,
   resumeTraversalRun,
   updateTraversalProgress,
 } from './TraversalRunRuntime';
@@ -32,6 +34,29 @@ function resolveCurrentStage(
 }
 
 describe('TraversalRunRuntime', () => {
+  it('keeps the vehicle in exactly two discrete lanes and preserves lane state', () => {
+    const t0 = leg('T0');
+    let session = createTraversalRunSession(t0);
+    expect(session.currentLane).toBe(0);
+    session = moveTraversalLane(session, -1);
+    expect(session.currentLane).toBe(0);
+    session = moveTraversalLane(session, 1);
+    expect(session.currentLane).toBe(1);
+    session = moveTraversalLane(session, 1);
+    expect(session.currentLane).toBe(1);
+    session = resolveCurrentStage(session, t0, 'lion-opening-ambush', 0.2);
+    expect(session.currentLane).toBe(1);
+  });
+
+  it('records consumed route content once across interruption and resume', () => {
+    const t0 = leg('T0');
+    let session = createTraversalRunSession(t0);
+    session = consumeTraversalBeat(session, 't0:loot:road-cache');
+    session = consumeTraversalBeat(session, 't0:loot:road-cache');
+    session = resolveCurrentStage(session, t0, 'lion-opening-ambush', 0.2);
+    expect(session.consumedBeatIds).toEqual(['t0:loot:road-cache', 'lion-opening-ambush']);
+  });
+
   it('keeps one mounted T0 session across mandatory route interruptions', () => {
     const t0 = leg('T0');
     let session = createTraversalRunSession(t0);

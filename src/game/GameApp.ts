@@ -51,7 +51,9 @@ import { JourneyCampaignBoundary } from '../journey/JourneyCampaignBoundary';
 import { resolveCampaignPresentation } from '../journey/JourneyPresentationPolicy';
 import { evaluateRouteCommit } from '../journey/RouteCommitGuard';
 import { isTraversalProductionEnabledForLeg } from '../traversal/TraversalFeaturePolicy';
-import type { LionTraversalLegId } from '../campaign/LionCampaignTravelRelations';
+import { TraversalT0Scene } from '../traversal/TraversalT0Scene';
+import { TraversalPreviewSaves } from '../traversal/TraversalPreviewSaves';
+import { LION_TRAVERSAL_LEGS, type LionTraversalLegId } from '../campaign/LionCampaignTravelRelations';
 import type { JourneySecondaryActionPresentation } from '../cinematics/JourneyTypes';
 import { NarrativeStage } from '../cinematics/NarrativeStage';
 import { resolveCinematicPresentation, resolveDialoguePresentation } from '../cinematics/NarrativePresentationResolver';
@@ -117,7 +119,6 @@ const JOURNEY_MAX_REJECTIONS = 3;
 export class GameApp {
   private mode: AppMode = 'TITLE';
   private state: GameState = createInitialState();
-  private readonly saves = new SaveRepository();
   private readonly chrome = document.createElement('div');
   private readonly dialogue: DialogueView;
   private readonly management: ManagementView;
@@ -139,6 +140,7 @@ export class GameApp {
     dev: import.meta.env.DEV,
   });
   private journeyBoundary: JourneyCampaignBoundary | null = null;
+  private activeTraversal: TraversalT0Scene | null = null;
   private lastNarrativeCinematicBeat: ResolvedPresentationBeat | undefined;
   private activeNarrativeStage: NarrativeStage | null = null;
   // Latched after a catastrophic Journey failure so the fallback can never recurse into Journey.
@@ -148,6 +150,9 @@ export class GameApp {
     && new URLSearchParams(window.location.search).get('qa') === '1';
   private readonly cinematicQaEnabled = this.qaEnabled
     && new URLSearchParams(window.location.search).get('cinematic') === '1';
+  private readonly traversalT0QaEnabled = this.qaEnabled
+    && new URLSearchParams(window.location.search).get('traversal') === 't0';
+  private readonly saves = this.traversalT0QaEnabled ? new TraversalPreviewSaves() : new SaveRepository();
   // Explicit DEV-only end-to-end fixture: it only exposes the existing combat QA controls while
   // the real campaign/Journey controller continues to own route, dialogue and state progression.
   private readonly cin6aGoldenQaEnabled = this.qaEnabled
@@ -188,11 +193,13 @@ export class GameApp {
 
   async start(): Promise<void> {
     await this.cinematicRegistry.load();
-    if (this.cinematicQaEnabled) this.renderCinematicQa();
+    if (this.traversalT0QaEnabled) this.startTraversalT0Qa();
+    else if (this.cinematicQaEnabled) this.renderCinematicQa();
     else this.renderTitle();
   }
 
   dispose(): void {
+    this.disposeTraversal();
     this.disposeJourney();
     this.disposeNarrativeStage();
     this.cinematicPlayer.dispose();
@@ -203,6 +210,7 @@ export class GameApp {
   }
 
   private renderTitle(): void {
+    this.disposeTraversal();
     this.disposeJourney();
     this.disposeNarrativeStage();
     this.setMode('TITLE');
@@ -234,6 +242,62 @@ export class GameApp {
     this.chrome.querySelector('[data-action="new"]')?.addEventListener('click', () => void this.startNewChronicle());
     this.chrome.querySelector('[data-action="continue"]')?.addEventListener('click', () => void this.continueChronicle());
     this.chrome.querySelector('[data-action="qa"]')?.addEventListener('click', () => this.renderQaLab());
+  }
+
+  /** Isolated DEV proof. It consumes the real T0 relation and RunSystem without opening rollout. */
+  private startTraversalT0Qa(): void {
+    if (!this.traversalT0QaEnabled) {
+      this.renderTitle();
+      return;
+    }
+    const leg = LION_TRAVERSAL_LEGS.find((candidate) => candidate.id === 'T0');
+    if (!leg) throw new Error('Canonical Traversal leg T0 is missing.');
+    this.disposeTraversal();
+    this.disposeJourney();
+    this.disposeNarrativeStage();
+    this.travel.close();
+    this.exploration.close();
+    this.prologue.close();
+    this.combat.close();
+    this.state = createInitialState();
+    this.state.run.currentNodeId = leg.originNodeId;
+    this.state.currentNodeId = leg.originNodeId;
+    this.state.run.visitedNodeIds = [...new Set([...this.state.run.visitedNodeIds, leg.originNodeId])];
+    this.state.run.revealedNodeIds = [...new Set([...this.state.run.revealedNodeIds, leg.originNodeId])];
+    this.state.visitedNodeIds = [...new Set([...this.state.visitedNodeIds, leg.originNodeId])];
+    // Journey already establishes NARRATIVE as the authorized presentation mode for a mounted
+    // campaign surface. The explicit activeTraversal owner distinguishes this playable surface.
+    this.setMode('NARRATIVE');
+    document.body.dataset.campaignSurface = 'traversal';
+    this.canvas.hidden = true;
+    this.chrome.replaceChildren();
+    const traversal = new TraversalT0Scene({
+      root: this.root,
+      leg,
+      getState: () => this.state,
+      getAvailableNodes: () => getAvailableRunNodes(this.state),
+      onNodeHandoff: async (node) => { await this.commitRunNodeChoice(node.id); },
+      onArrival: async (destinationNodeId) => { await this.completeTraversalT0Qa(destinationNodeId); },
+      onMenu: () => this.renderTitle(),
+    });
+    this.activeTraversal = traversal;
+    traversal.open();
+  }
+
+  private async completeTraversalT0Qa(destinationNodeId: string): Promise<void> {
+    const traversal = this.activeTraversal;
+    if (!traversal || traversal.route.destinationNodeId !== destinationNodeId) return;
+    traversal.completeArrival();
+    this.disposeTraversal();
+    await this.commitRunNodeChoice(destinationNodeId);
+  }
+
+  private disposeTraversal(): void {
+    this.activeTraversal?.dispose();
+    this.activeTraversal = null;
+    if (document.body.dataset.campaignSurface === 'traversal') {
+      delete document.body.dataset.campaignSurface;
+    }
   }
 
   private renderQaLab(message = ''): void {
@@ -641,6 +705,7 @@ export class GameApp {
    * current campaign boundary is presented — never what the campaign is.
    */
   private async enterCampaignPresentation(): Promise<void> {
+    if (this.resumeActiveTraversalIfReady()) return;
     // Traversal is intentionally not selected here yet. Its production gate remains false until
     // route design/assets are approved; the first rollout will be T0 only.
     if (this.usesJourneyPresentation()) {
@@ -648,6 +713,24 @@ export class GameApp {
       return;
     }
     await this.enterTravel();
+  }
+
+  private resumeActiveTraversalIfReady(): boolean {
+    const traversal = this.activeTraversal;
+    const nodeId = traversal?.activeNodeId;
+    if (!traversal || !nodeId || !traversal.canResumeNode(nodeId)) return false;
+    if (!this.state.resolvedNodeIds.includes(nodeId)) return false;
+    this.activeNarrativeStage?.prepareGlobalHandoff();
+    this.disposeNarrativeStage();
+    this.disposeJourney();
+    this.travel.close();
+    this.combat.close();
+    this.setMode('NARRATIVE');
+    document.body.dataset.campaignSurface = 'traversal';
+    this.canvas.hidden = true;
+    this.chrome.replaceChildren();
+    traversal.resumeNode(nodeId);
+    return true;
   }
 
   private usesJourneyPresentation(): boolean {
@@ -674,6 +757,7 @@ export class GameApp {
   }
 
   private showTravel(): void {
+    this.disposeTraversal();
     this.disposeJourney();
     this.disposeNarrativeStage();
     this.setMode('TRAVEL');
@@ -832,6 +916,9 @@ export class GameApp {
       return false;
     }
     const node = decision.node;
+    const traversalHandoff = this.activeTraversal?.session.phase === 'NODE_HANDOFF'
+      ? this.activeTraversal
+      : null;
     let entered: RunNode | null = null;
     this.routeCommitInFlight = true;
     try {
@@ -849,6 +936,9 @@ export class GameApp {
           this.state.seenUniqueEvents.push(entered.contentId);
         }
         this.state.stepCounter += 1;
+        if (traversalHandoff?.activeNodeId === entered.id) {
+          traversalHandoff.beginNodeResolution(entered.id);
+        }
       }
     } finally {
       // The mutex protects only the single authoritative RunSystem mutation. Holding it while
@@ -1230,7 +1320,7 @@ export class GameApp {
           inventory: this.state.inventory.consumables,
           preferredUnitIds: this.state.deployment.unitIds,
           reducedGraphics: this.state.settings.reducedGraphics,
-          devQa: this.cin6aGoldenQaEnabled,
+          devQa: this.cin6aGoldenQaEnabled || this.traversalT0QaEnabled,
         });
         resolveCombatStart(combatSession);
         await combatSession.ready;
@@ -1248,6 +1338,7 @@ export class GameApp {
   ): Promise<void> {
     await this.playStandaloneCinematic({ hook: 'afterCombat', combatId: result.combatId, outcome: result.victory ? 'victory' : 'defeat' }, result.victory ? 'Victoire' : 'Défaite');
     if (!result.victory) {
+      this.disposeTraversal();
       this.state = this.saves.loadAuto() ?? this.state;
       failRunToCheckpoint(this.state);
       this.saves.saveAuto(this.state);

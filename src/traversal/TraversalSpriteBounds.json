@@ -1,0 +1,370 @@
+{
+  "/assets/characters/pixel/masters/alistair.png": {
+    "width": 512,
+    "height": 512,
+    "left": 158,
+    "top": 110,
+    "right": 354,
+    "bottom": 458
+  },
+  "/assets/characters/pixel/masters/archer.png": {
+    "width": 512,
+    "height": 512,
+    "left": 162,
+    "top": 121,
+    "right": 351,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/cave_bat.png": {
+    "width": 512,
+    "height": 512,
+    "left": 147,
+    "top": 187,
+    "right": 362,
+    "bottom": 362
+  },
+  "/assets/characters/pixel/masters/cave_rat.png": {
+    "width": 512,
+    "height": 512,
+    "left": 156,
+    "top": 341,
+    "right": 358,
+    "bottom": 458
+  },
+  "/assets/characters/pixel/masters/dark_mage.png": {
+    "width": 512,
+    "height": 512,
+    "left": 177,
+    "top": 118,
+    "right": 335,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/forest_badger.png": {
+    "width": 512,
+    "height": 512,
+    "left": 159,
+    "top": 343,
+    "right": 352,
+    "bottom": 458
+  },
+  "/assets/characters/pixel/masters/forest_spider.png": {
+    "width": 512,
+    "height": 512,
+    "left": 160,
+    "top": 329,
+    "right": 352,
+    "bottom": 460
+  },
+  "/assets/characters/pixel/masters/forest_troll_elite.png": {
+    "width": 512,
+    "height": 512,
+    "left": 83,
+    "top": 33,
+    "right": 428,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/goblin.png": {
+    "width": 512,
+    "height": 512,
+    "left": 159,
+    "top": 227,
+    "right": 354,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/lancer.png": {
+    "width": 512,
+    "height": 512,
+    "left": 154,
+    "top": 43,
+    "right": 360,
+    "bottom": 455
+  },
+  "/assets/characters/pixel/masters/lion_champion.png": {
+    "width": 512,
+    "height": 512,
+    "left": 113,
+    "top": 38,
+    "right": 399,
+    "bottom": 461
+  },
+  "/assets/characters/pixel/masters/marsh_toad.png": {
+    "width": 512,
+    "height": 512,
+    "left": 168,
+    "top": 295,
+    "right": 345,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/rogue.png": {
+    "width": 512,
+    "height": 512,
+    "left": 127,
+    "top": 128,
+    "right": 396,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/serpent_brute.png": {
+    "width": 512,
+    "height": 512,
+    "left": 151,
+    "top": 103,
+    "right": 366,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/serpent_duelist_elite.png": {
+    "width": 512,
+    "height": 512,
+    "left": 98,
+    "top": 64,
+    "right": 416,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/serpent_elite_brute.png": {
+    "width": 512,
+    "height": 512,
+    "left": 121,
+    "top": 39,
+    "right": 389,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/serpent_general_boss.png": {
+    "width": 512,
+    "height": 512,
+    "left": 107,
+    "top": 57,
+    "right": 407,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/serpent_oracle.png": {
+    "width": 512,
+    "height": 512,
+    "left": 173,
+    "top": 123,
+    "right": 341,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/serpent_raider.png": {
+    "width": 512,
+    "height": 512,
+    "left": 166,
+    "top": 130,
+    "right": 344,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/skeleton.png": {
+    "width": 512,
+    "height": 512,
+    "left": 167,
+    "top": 122,
+    "right": 344,
+    "bottom": 457
+  },
+  "/assets/characters/pixel/masters/venom_serpent.png": {
+    "width": 512,
+    "height": 512,
+    "left": 162,
+    "top": 262,
+    "right": 346,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/white_mage.png": {
+    "width": 512,
+    "height": 512,
+    "left": 171,
+    "top": 88,
+    "right": 341,
+    "bottom": 463
+  },
+  "/assets/characters/pixel/masters/wild_boar.png": {
+    "width": 512,
+    "height": 512,
+    "left": 142,
+    "top": 302,
+    "right": 367,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/wolf.png": {
+    "width": 512,
+    "height": 512,
+    "left": 145,
+    "top": 279,
+    "right": 368,
+    "bottom": 457
+  },
+  "/assets/characters/pixel/masters/young_dragon_elite.png": {
+    "width": 512,
+    "height": 512,
+    "left": 48,
+    "top": 93,
+    "right": 465,
+    "bottom": 467
+  },
+  "/assets/characters/pixel/masters/alaric.png": {
+    "width": 512,
+    "height": 512,
+    "left": 136,
+    "top": 113,
+    "right": 374,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/maelor.png": {
+    "width": 512,
+    "height": 512,
+    "left": 176,
+    "top": 118,
+    "right": 336,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/sage_seraphine.png": {
+    "width": 512,
+    "height": 512,
+    "left": 150,
+    "top": 110,
+    "right": 363,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/refugee_mother.png": {
+    "width": 512,
+    "height": 512,
+    "left": 183,
+    "top": 128,
+    "right": 330,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/survivor.png": {
+    "width": 512,
+    "height": 512,
+    "left": 149,
+    "top": 121,
+    "right": 362,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/villageoise.png": {
+    "width": 512,
+    "height": 512,
+    "left": 180,
+    "top": 128,
+    "right": 333,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/wounded_merchant.png": {
+    "width": 512,
+    "height": 512,
+    "left": 179,
+    "top": 123,
+    "right": 331,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/villageois.png": {
+    "width": 512,
+    "height": 512,
+    "left": 177,
+    "top": 126,
+    "right": 334,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/refugee.png": {
+    "width": 512,
+    "height": 512,
+    "left": 184,
+    "top": 128,
+    "right": 328,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/village_militia_spearman.png": {
+    "width": 512,
+    "height": 512,
+    "left": 182,
+    "top": 105,
+    "right": 330,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/village_militia_brute.png": {
+    "width": 512,
+    "height": 512,
+    "left": 178,
+    "top": 111,
+    "right": 333,
+    "bottom": 456
+  },
+  "/assets/characters/pixel/masters/village_militia_slinger.png": {
+    "width": 512,
+    "height": 512,
+    "left": 171,
+    "top": 122,
+    "right": 340,
+    "bottom": 456
+  },
+  "/assets/generated/lion-phase/traversal/t0/vehicle/wooden-4x4/clean.png": {
+    "width": 1024,
+    "height": 1024,
+    "left": 152,
+    "top": 293,
+    "right": 970,
+    "bottom": 726
+  },
+  "/assets/generated/lion-phase/traversal/t0/vehicle/wooden-4x4/fantasy-truck-v3.png": {
+    "width": 1254,
+    "height": 1254,
+    "left": 39,
+    "top": 227,
+    "right": 1236,
+    "bottom": 1009
+  },
+  "/assets/generated/lion-phase/traversal/t0/entities/merchant-caravan/clean.png": {
+    "width": 1024,
+    "height": 1024,
+    "left": 158,
+    "top": 323,
+    "right": 877,
+    "bottom": 689
+  },
+  "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/chest.png": {
+    "width": 448,
+    "height": 512,
+    "left": 32,
+    "top": 177,
+    "right": 420,
+    "bottom": 398
+  },
+  "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/abandoned-cart.png": {
+    "width": 576,
+    "height": 512,
+    "left": 34,
+    "top": 133,
+    "right": 558,
+    "bottom": 408
+  },
+  "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/debris.png": {
+    "width": 512,
+    "height": 512,
+    "left": 22,
+    "top": 145,
+    "right": 496,
+    "bottom": 411
+  },
+  "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/waystone.png": {
+    "width": 448,
+    "height": 512,
+    "left": 41,
+    "top": 59,
+    "right": 366,
+    "bottom": 386
+  },
+  "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/barricade.png": {
+    "width": 576,
+    "height": 512,
+    "left": 33,
+    "top": 106,
+    "right": 530,
+    "bottom": 385
+  },
+  "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/foreground.png": {
+    "width": 512,
+    "height": 512,
+    "left": 11,
+    "top": 63,
+    "right": 485,
+    "bottom": 382
+  }
+}

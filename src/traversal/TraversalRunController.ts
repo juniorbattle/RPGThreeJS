@@ -5,12 +5,20 @@ import {
   activateTraversalStage,
   approachTraversalStage,
   beginTraversalArrival,
+  beginTraversalLocalInteraction,
   beginTraversalNodeResolution,
   chooseTraversalFork,
   completeTraversalRun,
+  consumeTraversalBeat,
+  bypassTraversalBeat,
   createTraversalRunSession,
   finishTraversalNodeResolution,
+  moveTraversalLane,
+  pauseTraversalForDecision,
+  releaseTraversalDecision,
   resumeTraversalRun,
+  updateTraversalProgress,
+  type TraversalLaneDirection,
   type TraversalRunSession,
 } from './TraversalRunRuntime';
 
@@ -32,6 +40,34 @@ export class TraversalRunController {
 
   get session(): TraversalRunSession {
     return this.sessionState;
+  }
+
+  advanceTo(routeProgress01: number): void {
+    this.setSession(updateTraversalProgress(this.sessionState, routeProgress01));
+  }
+
+  moveLane(direction: TraversalLaneDirection): void {
+    this.setSession(moveTraversalLane(this.sessionState, direction));
+  }
+
+  consumeBeat(beatId: string): void {
+    this.setSession(consumeTraversalBeat(this.sessionState, beatId));
+  }
+
+  bypassBeat(beatId: string): void {
+    this.setSession(bypassTraversalBeat(this.sessionState, beatId));
+  }
+
+  pauseForDecision(beatId: string): void {
+    this.setSession(pauseTraversalForDecision(this.sessionState, beatId));
+  }
+
+  releaseDecision(): void {
+    this.setSession(releaseTraversalDecision(this.sessionState));
+  }
+
+  beginLocalInteraction(): void {
+    this.setSession(beginTraversalLocalInteraction(this.sessionState));
   }
 
   approachNextStage(routeProgress01: number): void {
