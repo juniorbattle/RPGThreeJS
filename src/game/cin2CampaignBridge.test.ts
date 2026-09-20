@@ -62,8 +62,10 @@ describe('CIN-2 campaign presentation bridge', () => {
 
   it('returns every campaign boundary through the presentation facade', () => {
     expect(occurrences('private async enterCampaignPresentation')).toBe(1);
-    // enterTravel() is reachable only from the facade's travel branch and the failure fallback.
-    expect(occurrences('await this.enterTravel();')).toBe(2);
+    // The T0 preview explicitly returns to destination confirmation after its exit transition.
+    expect(occurrences('await this.enterTravel();')).toBe(3);
+    expect(method('private async completeTraversalT0Qa')).toContain('await this.enterTravel()');
+    expect(method('private async completeTraversalT0Qa')).not.toContain('commitRunNodeChoice');
     expect(method('private async enterCampaignPresentation')).toContain('await this.enterJourney()');
     expect(method('private async failJourneyToTravel')).toContain('await this.enterTravel()');
     // Every post-node/return path uses the facade.

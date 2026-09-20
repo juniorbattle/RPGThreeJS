@@ -11,6 +11,8 @@ paths += ['/assets/generated/lion-phase/traversal/t0/vehicle/wooden-4x4/clean.pn
           '/assets/generated/lion-phase/traversal/t0/entities/merchant-caravan/clean.png']
 paths += [f'/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/{name}.png'
           for name in ['chest', 'abandoned-cart', 'debris', 'waystone', 'barricade', 'foreground']]
+paths += [f'/assets/generated/lion-phase/traversal/t0/forest-v4/{name}.png'
+          for name in ['fork-sign', 'woodland-blockade', 'resting-place', 'ruined-outpost', 'crossroads-ground', 'merchant-camp']]
 bounds = {}
 for url in paths:
     with Image.open(ROOT / 'public' / url.lstrip('/')) as image:

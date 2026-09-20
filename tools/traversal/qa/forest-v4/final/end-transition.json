@@ -1,0 +1,1538 @@
+[
+  {
+    "t": 95,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9114567999999998",
+      "road": "-8203.1112px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 201,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9127912000000001",
+      "road": "-8215.1208px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 300,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9138843999999997",
+      "road": "-8224.959599999996px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 387,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9149740000000003",
+      "road": "-8234.766000000003px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 469,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9159460000000003",
+      "road": "-8243.514000000003px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 559,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9170367999999999",
+      "road": "-8253.331199999999px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 640,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9180088000000001",
+      "road": "-8262.0792px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 722,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9191008000000003",
+      "road": "-8271.907200000003px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 824,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9202396000000006",
+      "road": "-8282.156400000005px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 930,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9215488000000004",
+      "road": "-8293.939200000004px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 1036,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9229300000000008",
+      "road": "-8306.370000000008px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 1157,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9243124000000004",
+      "road": "-8318.811600000003px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 1267,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9255484000000004",
+      "road": "-8329.935600000004px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 1377,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9269308000000008",
+      "road": "-8342.377200000008px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 1486,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9282388000000009",
+      "road": "-8354.149200000009px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 1595,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9295480000000014",
+      "road": "-8365.932000000012px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 1708,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9308560000000012",
+      "road": "-8377.70400000001px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 1824,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9322384000000007",
+      "road": "-8390.145600000007px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 1936,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9336196000000011",
+      "road": "-8402.57640000001px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 2041,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9349300000000015",
+      "road": "-8414.370000000014px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 2153,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9361660000000017",
+      "road": "-8425.494000000015px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 2255,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9374008000000011",
+      "road": "-8436.60720000001px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 2355,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9386392000000012",
+      "road": "-8447.752800000011px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 2456,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9398728000000011",
+      "road": "-8458.855200000009px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 2564,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9411820000000016",
+      "road": "-8470.638000000015px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 2681,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9424912000000015",
+      "road": "-8482.420800000014px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 2779,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9437272000000017",
+      "road": "-8493.544800000014px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 2902,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9452548000000017",
+      "road": "-8507.293200000016px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 3005,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9463444000000016",
+      "road": "-8517.099600000014px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 3102,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.947581600000002",
+      "road": "-8528.234400000018px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 3205,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9487456000000019",
+      "road": "-8538.710400000016px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 3307,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9499816000000019",
+      "road": "-8549.834400000016px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 3411,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9512896000000018",
+      "road": "-8561.606400000017px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 3519,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.952600000000002",
+      "road": "-8573.400000000018px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 3622,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9539092000000018",
+      "road": "-8585.182800000017px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 3743,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9552892000000016",
+      "road": "-8597.602800000015px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 3850,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9565984000000014",
+      "road": "-8609.385600000012px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 3958,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9579088000000018",
+      "road": "-8621.179200000017px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 4083,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9593620000000023",
+      "road": "-8634.25800000002px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 4186,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9605980000000024",
+      "road": "-8645.382000000021px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 4288,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9618340000000025",
+      "road": "-8656.506000000023px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 4393,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9630700000000025",
+      "road": "-8667.630000000023px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 4497,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9643792000000024",
+      "road": "-8679.412800000022px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 4607,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9656152000000024",
+      "road": "-8690.536800000022px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 4714,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.966924400000002",
+      "road": "-8702.319600000019px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 4828,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9683068000000022",
+      "road": "-8714.76120000002px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 4940,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9696148000000023",
+      "road": "-8726.533200000022px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 5043,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9709240000000027",
+      "road": "-8738.316000000024px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 5155,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9722332000000026",
+      "road": "-8750.098800000023px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 5260,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9734692000000025",
+      "road": "-8761.222800000023px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 5372,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9747784000000023",
+      "road": "-8773.00560000002px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 5471,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9760144000000023",
+      "road": "-8784.12960000002px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 5573,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9772504000000023",
+      "road": "-8795.25360000002px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 5688,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9786328000000024",
+      "road": "-8807.695200000022px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 5797,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9799408000000024",
+      "road": "-8819.467200000021px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 5899,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9810316000000027",
+      "road": "-8829.284400000024px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 5996,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9822688000000025",
+      "road": "-8840.419200000022px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 6103,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9835768000000028",
+      "road": "-8852.191200000025px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 6210,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9848128000000029",
+      "road": "-8863.315200000026px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 6311,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9860500000000036",
+      "road": "-8874.450000000033px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 6432,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9875032000000032",
+      "road": "-8887.52880000003px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 6529,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9886672000000033",
+      "road": "-8898.00480000003px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 6627,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9897580000000038",
+      "road": "-8907.822000000035px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 6733,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9911404000000031",
+      "road": "-8920.263600000028px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 6837,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9923752000000036",
+      "road": "-8931.376800000033px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 6935,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9936124000000035",
+      "road": "-8942.51160000003px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 7034,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9947032000000038",
+      "road": "-8952.328800000034px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 7131,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9958660000000041",
+      "road": "-8962.794000000038px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 7234,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9971020000000042",
+      "road": "-8973.918000000038px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 7334,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9983380000000042",
+      "road": "-8985.042000000038px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 7435,
+    "data": {
+      "destination": false,
+      "fade": "",
+      "phase": "RUNNING",
+      "progress": "0.9995020000000043",
+      "road": "-8995.518000000038px",
+      "travelView": false,
+      "truckX": 239.07144165039065
+    }
+  },
+  {
+    "t": 7535,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9003.106198375px",
+      "travelView": false,
+      "truckX": 251.4910888671875
+    }
+  },
+  {
+    "t": 7638,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9008.185643375px",
+      "travelView": false,
+      "truckX": 271.8125
+    }
+  },
+  {
+    "t": 7752,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9015.1878375px",
+      "travelView": false,
+      "truckX": 299.8214416503906
+    }
+  },
+  {
+    "t": 7867,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9022.42135px",
+      "travelView": false,
+      "truckX": 328.75
+    }
+  },
+  {
+    "t": 7974,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9030.553800374999px",
+      "travelView": false,
+      "truckX": 361.2857360839844
+    }
+  },
+  {
+    "t": 8082,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9040.109928374999px",
+      "travelView": false,
+      "truckX": 399.5089416503906
+    }
+  },
+  {
+    "t": 8183,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9048.918744px",
+      "travelView": false,
+      "truckX": 434.7410888671875
+    }
+  },
+  {
+    "t": 8290,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9059.054201500001px",
+      "travelView": false,
+      "truckX": 475.2857360839844
+    }
+  },
+  {
+    "t": 8404,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9071.332793499996px",
+      "travelView": false,
+      "truckX": 524.4017944335938
+    }
+  },
+  {
+    "t": 8503,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9083.153845999996px",
+      "travelView": false,
+      "truckX": 571.6785888671875
+    }
+  },
+  {
+    "t": 8614,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9096.542734375px",
+      "travelView": false,
+      "truckX": 625.2410888671875
+    }
+  },
+  {
+    "t": 8723,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9110.810834375001px",
+      "travelView": false,
+      "truckX": 682.3125
+    }
+  },
+  {
+    "t": 8824,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9124.257459375px",
+      "travelView": false,
+      "truckX": 736.0982666015625
+    }
+  },
+  {
+    "t": 8924,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9140.224653499996px",
+      "travelView": false,
+      "truckX": 799.9642944335938
+    }
+  },
+  {
+    "t": 9035,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9157.084558375002px",
+      "travelView": false,
+      "truckX": 867.4017944335938
+    }
+  },
+  {
+    "t": 9141,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9172.791084375px",
+      "travelView": false,
+      "truckX": 930.232177734375
+    }
+  },
+  {
+    "t": 9234,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9190.292695999997px",
+      "travelView": false,
+      "truckX": 1000.2410888671876
+    }
+  },
+  {
+    "t": 9350,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9209.680993375003px",
+      "travelView": false,
+      "truckX": 1077.794677734375
+    }
+  },
+  {
+    "t": 9459,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9231.103261499997px",
+      "travelView": false,
+      "truckX": 1163.482177734375
+    }
+  },
+  {
+    "t": 9570,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9252.326075374993px",
+      "travelView": false,
+      "truckX": 1248.375
+    }
+  },
+  {
+    "t": 9680,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9273.181515374992px",
+      "travelView": false,
+      "truckX": 1331.794677734375
+    }
+  },
+  {
+    "t": 9782,
+    "data": {
+      "destination": false,
+      "fade": "0",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9294.8540375px",
+      "travelView": false,
+      "truckX": 1418.482177734375
+    }
+  },
+  {
+    "t": 9884,
+    "data": {
+      "destination": false,
+      "fade": "0.02655555555551587",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9317.279420374993px",
+      "travelView": false,
+      "truckX": 1508.1876220703125
+    }
+  },
+  {
+    "t": 9977,
+    "data": {
+      "destination": false,
+      "fade": "0.12755555555554152",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9337.750213999998px",
+      "travelView": false,
+      "truckX": 1590.071533203125
+    }
+  },
+  {
+    "t": 10070,
+    "data": {
+      "destination": false,
+      "fade": "0.23533333333331877",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9360.278221499997px",
+      "travelView": false,
+      "truckX": 1680.1785888671875
+    }
+  },
+  {
+    "t": 10165,
+    "data": {
+      "destination": false,
+      "fade": "0.33633333333334486",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9382.030023375002px",
+      "travelView": false,
+      "truckX": 1767.1876220703125
+    }
+  },
+  {
+    "t": 10254,
+    "data": {
+      "destination": false,
+      "fade": "0.4373333333333064",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9404.401535999994px",
+      "travelView": false,
+      "truckX": 1856.669677734375
+    }
+  },
+  {
+    "t": 10335,
+    "data": {
+      "destination": false,
+      "fade": "0.5248888888888493",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9424.29656599999px",
+      "travelView": false,
+      "truckX": 1936.2501220703125
+    }
+  },
+  {
+    "t": 10415,
+    "data": {
+      "destination": false,
+      "fade": "0.6123333333333061",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9444.631170374994px",
+      "travelView": false,
+      "truckX": 2017.58935546875
+    }
+  },
+  {
+    "t": 10488,
+    "data": {
+      "destination": false,
+      "fade": "0.6999999999999994",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9465.48375px",
+      "travelView": false,
+      "truckX": 2101
+    }
+  },
+  {
+    "t": 10573,
+    "data": {
+      "destination": false,
+      "fade": "0.7874444444444562",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9486.748588375003px",
+      "travelView": false,
+      "truckX": 2186.0625
+    }
+  },
+  {
+    "t": 10641,
+    "data": {
+      "destination": false,
+      "fade": "0.8682222222221824",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9506.80497349999px",
+      "travelView": false,
+      "truckX": 2266.285888671875
+    }
+  },
+  {
+    "t": 10715,
+    "data": {
+      "destination": false,
+      "fade": "0.9489999999999732",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9527.257755374992px",
+      "travelView": false,
+      "truckX": 2348.098388671875
+    }
+  },
+  {
+    "t": 10786,
+    "data": {
+      "destination": false,
+      "fade": "1",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9548.13588537499px",
+      "travelView": false,
+      "truckX": 2431.607177734375
+    }
+  },
+  {
+    "t": 10844,
+    "data": {
+      "destination": false,
+      "fade": "1",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9564.025973499989px",
+      "travelView": false,
+      "truckX": 2495.169677734375
+    }
+  },
+  {
+    "t": 10900,
+    "data": {
+      "destination": false,
+      "fade": "1",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9580.168599999999px",
+      "travelView": false,
+      "truckX": 2559.7412109375
+    }
+  },
+  {
+    "t": 10959,
+    "data": {
+      "destination": false,
+      "fade": "1",
+      "phase": "ARRIVING",
+      "progress": "1",
+      "road": "-9598.316709375px",
+      "travelView": false,
+      "truckX": 2632.33056640625
+    }
+  },
+  {
+    "t": 11014,
+    "data": {
+      "destination": false,
+      "phase": "OTHER",
+      "travelView": false
+    }
+  },
+  {
+    "t": 11062,
+    "data": {
+      "destination": false,
+      "phase": "OTHER",
+      "travelView": false
+    }
+  },
+  {
+    "t": 11118,
+    "data": {
+      "destination": false,
+      "phase": "OTHER",
+      "travelView": false
+    }
+  },
+  {
+    "t": 11166,
+    "data": {
+      "destination": false,
+      "phase": "OTHER",
+      "travelView": false
+    }
+  },
+  {
+    "t": 11215,
+    "data": {
+      "destination": false,
+      "phase": "OTHER",
+      "travelView": false
+    }
+  },
+  {
+    "t": 11263,
+    "data": {
+      "destination": false,
+      "phase": "OTHER",
+      "travelView": false
+    }
+  },
+  {
+    "t": 11311,
+    "data": {
+      "destination": false,
+      "phase": "OTHER",
+      "travelView": false
+    }
+  },
+  {
+    "t": 11359,
+    "data": {
+      "destination": false,
+      "phase": "OTHER",
+      "travelView": false
+    }
+  },
+  {
+    "t": 11407,
+    "data": {
+      "destination": false,
+      "phase": "OTHER",
+      "travelView": false
+    }
+  },
+  {
+    "t": 11474,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 11571,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 11634,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 11710,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 11774,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 11841,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 11911,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 11975,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 12039,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 12106,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 12180,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 12247,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 12312,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 12382,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 12454,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 12554,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 12662,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 12753,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 12855,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 12958,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  },
+  {
+    "t": 13052,
+    "data": {
+      "destination": true,
+      "phase": "OTHER",
+      "travelView": true
+    }
+  }
+]

@@ -53,6 +53,7 @@ import { evaluateRouteCommit } from '../journey/RouteCommitGuard';
 import { isTraversalProductionEnabledForLeg } from '../traversal/TraversalFeaturePolicy';
 import { TraversalT0Scene } from '../traversal/TraversalT0Scene';
 import { TraversalPreviewSaves } from '../traversal/TraversalPreviewSaves';
+import { createRoadEncounterConfig } from '../traversal/TraversalRoadEncounter';
 import { LION_TRAVERSAL_LEGS, type LionTraversalLegId } from '../campaign/LionCampaignTravelRelations';
 import type { JourneySecondaryActionPresentation } from '../cinematics/JourneyTypes';
 import { NarrativeStage } from '../cinematics/NarrativeStage';
@@ -277,6 +278,7 @@ export class GameApp {
       getState: () => this.state,
       getAvailableNodes: () => getAvailableRunNodes(this.state),
       onNodeHandoff: async (node) => { await this.commitRunNodeChoice(node.id); },
+      onRoadCombat: combatId => this.playTraversalRoadCombat(combatId),
       onArrival: async (destinationNodeId) => { await this.completeTraversalT0Qa(destinationNodeId); },
       onMenu: () => this.renderTitle(),
     });
@@ -289,7 +291,36 @@ export class GameApp {
     if (!traversal || traversal.route.destinationNodeId !== destinationNodeId) return;
     traversal.completeArrival();
     this.disposeTraversal();
-    await this.commitRunNodeChoice(destinationNodeId);
+    // Arrival completes the physical leg, not the next canonical node.
+    // TravelView presents the available destination and owns its explicit confirmation.
+    await this.enterTravel();
+  }
+
+  private async playTraversalRoadCombat(combatId: string): Promise<boolean> {
+    const traversal = this.activeTraversal;
+    if (!traversal || !this.traversalT0QaEnabled) throw new Error('Road combat requires the isolated T0 preview.');
+    const config = createRoadEncounterConfig(combatId);
+    let combatSession!: ReturnType<CombatBridge['start']>;
+    await sceneTransition.run({ variant: 'combat', label: config.encounterLabel, task: async () => {
+      this.setMode('COMBAT');
+      combatSession = this.combat.start({
+        config, clan: this.state.clan.members.filter(unit => unit.currentHealth > 0).map(unit => toCombatant(unit)),
+        inventory: structuredClone(this.state.inventory.consumables),
+        preferredUnitIds: [...this.state.deployment.unitIds],
+        reducedGraphics: this.state.settings.reducedGraphics, devQa: true,
+      });
+      await combatSession.ready;
+    } });
+    const result = await combatSession.result;
+    // This preview combat has only a local outcome. Never call canonical resolveCombat/markResolved.
+    if (this.activeTraversal === traversal) {
+      this.combat.close();
+      this.setMode('NARRATIVE');
+      this.canvas.hidden = true;
+      document.body.dataset.campaignSurface = 'traversal';
+      this.chrome.replaceChildren();
+    }
+    return result.victory;
   }
 
   private disposeTraversal(): void {

@@ -218,6 +218,28 @@ export function chooseTraversalFork(
   });
 }
 
+/** Selection is stored by RunSystem; the presentation keeps no competing branch value. */
+export function continueTraversalAfterBranchSelection(session: TraversalRunSession): TraversalRunSession {
+  if (session.phase !== 'FORK_OVERLAY') throw new Error('Road selection requires the fork overlay.');
+  return Object.freeze({ ...session, phase: 'RUNNING', forkOptionIds: Object.freeze([]), activeNodeId: null });
+}
+
+export function handoffTraversalBranchEncounter(session: TraversalRunSession, nodeId: string): TraversalRunSession {
+  if (session.phase !== 'RUNNING' || !session.activeStageNodeIds.includes(nodeId)) {
+    throw new Error('Branch encounter is not in the current route stage.');
+  }
+  return Object.freeze({ ...session, phase: 'NODE_HANDOFF', activeNodeId: nodeId,
+    resumeProgress01: session.routeProgress01 });
+}
+
+/** Called only after RunSystem approves the optional canonical bypass. */
+export function skipTraversalStage(session: TraversalRunSession): TraversalRunSession {
+  if (!['RUNNING', 'DECISION'].includes(session.phase)) throw new Error('Cannot bypass an active node resolution.');
+  return Object.freeze({ ...session, phase: 'RUNNING', stageIndex: session.stageIndex + 1,
+    pendingBeatId: null, activeNodeId: null, activeStageNodeIds: Object.freeze([]),
+    forkOptionIds: Object.freeze([]) });
+}
+
 export function beginTraversalNodeResolution(
   session: TraversalRunSession,
 ): TraversalRunSession {

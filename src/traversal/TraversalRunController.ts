@@ -8,6 +8,9 @@ import {
   beginTraversalLocalInteraction,
   beginTraversalNodeResolution,
   chooseTraversalFork,
+  continueTraversalAfterBranchSelection,
+  handoffTraversalBranchEncounter,
+  skipTraversalStage,
   completeTraversalRun,
   consumeTraversalBeat,
   bypassTraversalBeat,
@@ -26,6 +29,7 @@ export interface TraversalRunControllerOptions {
   readonly leg: LionTraversalLeg;
   readonly getAvailableNodes: () => readonly RunNode[];
   readonly onNodeHandoff: (node: RunNode, session: TraversalRunSession) => void;
+  readonly onBranchSelect?: (nodeId: string) => boolean;
   readonly onSessionChange?: (session: TraversalRunSession) => void;
   readonly overlayRoot?: HTMLElement;
 }
@@ -68,6 +72,17 @@ export class TraversalRunController {
 
   beginLocalInteraction(): void {
     this.setSession(beginTraversalLocalInteraction(this.sessionState));
+  }
+
+  skipStage(): void {
+    this.setSession(skipTraversalStage(this.sessionState));
+  }
+
+  enterSelectedBranch(nodeId: string): void {
+    const node = this.options.getAvailableNodes().find(candidate => candidate.id === nodeId);
+    if (!node) throw new Error('Selected branch encounter is unavailable.');
+    this.setSession(handoffTraversalBranchEncounter(this.sessionState, nodeId));
+    this.options.onNodeHandoff(node, this.sessionState);
   }
 
   approachNextStage(routeProgress01: number): void {
@@ -134,6 +149,12 @@ export class TraversalRunController {
   }
 
   private selectFork(nodeId: string, availableNodes: readonly RunNode[]): void {
+    if (this.options.onBranchSelect) {
+      if (!this.sessionState.forkOptionIds.includes(nodeId) || !this.options.onBranchSelect(nodeId)) return;
+      this.disposeForkOverlay();
+      this.setSession(continueTraversalAfterBranchSelection(this.sessionState));
+      return;
+    }
     this.setSession(chooseTraversalFork(this.sessionState, nodeId));
     this.disposeForkOverlay();
     const node = availableNodes.find((candidate) => candidate.id === nodeId);

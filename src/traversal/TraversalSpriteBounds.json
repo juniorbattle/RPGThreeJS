@@ -366,5 +366,53 @@
     "top": 63,
     "right": 485,
     "bottom": 382
+  },
+  "/assets/generated/lion-phase/traversal/t0/forest-v4/fork-sign.png": {
+    "width": 1223,
+    "height": 1286,
+    "left": 161,
+    "top": 64,
+    "right": 1105,
+    "bottom": 1239
+  },
+  "/assets/generated/lion-phase/traversal/t0/forest-v4/woodland-blockade.png": {
+    "width": 2172,
+    "height": 724,
+    "left": 24,
+    "top": 88,
+    "right": 2143,
+    "bottom": 661
+  },
+  "/assets/generated/lion-phase/traversal/t0/forest-v4/resting-place.png": {
+    "width": 1860,
+    "height": 846,
+    "left": 12,
+    "top": 65,
+    "right": 1860,
+    "bottom": 811
+  },
+  "/assets/generated/lion-phase/traversal/t0/forest-v4/ruined-outpost.png": {
+    "width": 1983,
+    "height": 793,
+    "left": 10,
+    "top": 32,
+    "right": 1970,
+    "bottom": 730
+  },
+  "/assets/generated/lion-phase/traversal/t0/forest-v4/crossroads-ground.png": {
+    "width": 2098,
+    "height": 749,
+    "left": 10,
+    "top": 40,
+    "right": 2082,
+    "bottom": 718
+  },
+  "/assets/generated/lion-phase/traversal/t0/forest-v4/merchant-camp.png": {
+    "width": 2172,
+    "height": 724,
+    "left": 22,
+    "top": 40,
+    "right": 2149,
+    "bottom": 677
   }
 }

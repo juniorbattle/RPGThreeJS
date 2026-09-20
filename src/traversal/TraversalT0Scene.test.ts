@@ -5,7 +5,42 @@ import { getAvailableRunNodes } from '../game/runSystem';
 import { createInitialState } from '../game/store';
 import { TraversalT0Scene } from './TraversalT0Scene';
 
+function settle(scene: TraversalT0Scene): void {
+  (scene as unknown as { advanceTransition(seconds: number): void }).advanceTransition(.6);
+  (scene as unknown as { advanceTransition(seconds: number): void }).advanceTransition(.6);
+}
+
 describe('TraversalT0Scene', () => {
+  it('holds distance during entry and delays canonical handoff until the fade covers the road', () => {
+    vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
+    const state = createInitialState();
+    state.run.currentNodeId = state.currentNodeId = 'lion-audience';
+    const handoff = vi.fn();
+    const scene = new TraversalT0Scene({ root: document.body,
+      leg: LION_TRAVERSAL_LEGS.find(leg => leg.id === 'T0')!, getState: () => state,
+      getAvailableNodes: () => getAvailableRunNodes(state), onNodeHandoff: handoff,
+      onArrival: vi.fn(), onMenu: vi.fn() });
+    const clock = scene as unknown as { advance(seconds: number): void; advanceTransition(seconds: number): void };
+    scene.open();
+    clock.advance(5);
+    expect(scene.session.routeProgress01).toBe(0);
+    settle(scene);
+    document.querySelector<HTMLButtonElement>('[data-traversal-lane="1"]')!.click();
+    clock.advance(20);
+    document.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!.click();
+    expect(handoff).not.toHaveBeenCalled();
+    clock.advanceTransition(.14);
+    expect(handoff).not.toHaveBeenCalled();
+    expect(scene.element.style.getPropertyValue('--transition-opacity')).toBe('0.5');
+    clock.advance(10);
+    expect(scene.session.routeProgress01).toBe(.2);
+    clock.advanceTransition(.14);
+    expect(handoff).toHaveBeenCalledOnce();
+    settle(scene);
+    expect(handoff).toHaveBeenCalledOnce();
+    scene.dispose();
+  });
+
   afterEach(() => {
     document.body.replaceChildren();
     vi.restoreAllMocks();
@@ -27,8 +62,11 @@ describe('TraversalT0Scene', () => {
       onMenu: () => undefined,
     });
     scene.open();
+    settle(scene);
 
     expect(document.querySelectorAll('.traversal-world__road')).toHaveLength(1);
+    (scene as unknown as { advance(seconds: number): void }).advance(5);
+    expect(document.querySelector<HTMLElement>('[data-traversal-event-panel]')!.hidden).toBe(true);
     expect(document.querySelectorAll('[data-traversal-lane]')).toHaveLength(2);
     expect(document.querySelector('.traversal-t0')?.getAttribute('data-lane-count')).toBe('2');
     expect(document.querySelector('.traversal-vehicle img')?.getAttribute('src')).toContain('/vehicle/wooden-4x4/');
@@ -67,54 +105,134 @@ describe('TraversalT0Scene', () => {
       onMenu: () => undefined,
     });
     scene.open();
+    settle(scene);
     (scene as unknown as { advance: (seconds: number) => void }).advance(20);
 
     const advance = (seconds: number) => (scene as unknown as { advance: (seconds: number) => void }).advance(seconds);
     const button = (selector: string) => document.querySelector<HTMLButtonElement>(selector)!;
     const before = JSON.stringify(state);
     expect(scene.session.phase).toBe('DECISION');
-    expect(scene.session.routeProgress01).toBe(0.12);
+    expect(scene.session.routeProgress01).toBe(0.09);
     expect(handoff).not.toHaveBeenCalled();
     advance(20);
     button('[data-traversal-lane="1"]').click();
     expect(scene.session.currentLane).toBe(0);
-    expect(scene.session.routeProgress01).toBe(0.12);
+    expect(scene.session.routeProgress01).toBe(0.09);
     button('[data-traversal-confirm]').click();
+    settle(scene);
     expect(scene.session.phase).toBe('LOCAL_INTERACTION');
     expect(button('[data-traversal-skip]').hidden).toBe(true);
     advance(20);
-    expect(scene.session.routeProgress01).toBe(0.12);
+    expect(scene.session.routeProgress01).toBe(0.09);
     button('[data-traversal-confirm]').click();
+    settle(scene);
     expect(scene.session.phase).toBe('RUNNING');
     expect(JSON.stringify(state)).toBe(before);
     advance(20);
     expect(scene.session.phase).toBe('DECISION');
     expect(scene.session.routeProgress01).toBe(0.2);
     expect(scene.session.consumedBeatIds).toEqual(expect.arrayContaining([
-      't0:npc:roadside-merchant', 't0:enemy:wolf-scouts',
+      't0:npc:roadside-merchant',
     ]));
+    expect(scene.session.bypassedBeatIds).not.toContain('t0:enemy:wolf-scouts');
     expect(button('[data-traversal-skip]').hidden).toBe(true);
     button('[data-traversal-skip]').click();
     expect(scene.session.phase).toBe('DECISION');
     expect(handoff).not.toHaveBeenCalled();
     button('[data-traversal-confirm]').click();
+    settle(scene);
     expect(handoff).toHaveBeenCalledTimes(1);
     expect(handoff).toHaveBeenCalledWith(
       expect.objectContaining({ id: 'lion-opening-ambush' }),
       expect.objectContaining({ activeNodeId: 'lion-opening-ambush' }),
     );
     button('[data-traversal-confirm]').click();
+    settle(scene);
     expect(handoff).toHaveBeenCalledTimes(1);
     scene.beginNodeResolution('lion-opening-ambush');
     advance(20);
     expect(scene.session.routeProgress01).toBe(0.2);
     scene.resumeNode('lion-opening-ambush');
+    settle(scene);
     expect(scene.session.phase).toBe('RUNNING');
     expect(scene.session.routeProgress01).toBe(0.2);
     expect(scene.session.stageIndex).toBe(1);
     expect(scene.session.consumedBeatIds).toContain('t0:npc:roadside-merchant');
     advance(0.1);
     expect(scene.session.routeProgress01).toBeGreaterThan(0.2);
+    scene.dispose();
+  });
+
+  it('runs non-campaign combat while holding the same road session, then resumes without narrative mutation', async () => {
+    vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
+    const state = createInitialState();
+    state.run.currentNodeId = state.currentNodeId = 'lion-audience';
+    let finish!: (victory: boolean) => void;
+    const roadCombat = vi.fn(() => new Promise<boolean>(resolve => { finish = resolve; }));
+    const handoff = vi.fn();
+    const scene = new TraversalT0Scene({ root: document.body,
+      leg: LION_TRAVERSAL_LEGS.find(leg => leg.id === 'T0')!,
+      getState: () => state, getAvailableNodes: () => getAvailableRunNodes(state),
+      onNodeHandoff: handoff, onRoadCombat: roadCombat, onArrival: vi.fn(), onMenu: vi.fn() });
+    scene.open();
+    settle(scene);
+    document.querySelector<HTMLButtonElement>('[data-traversal-lane="1"]')!.click();
+    const advance = (seconds: number) => (scene as unknown as { advance(seconds: number): void }).advance(seconds);
+    advance(20);
+    document.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!.click();
+    settle(scene);
+    scene.beginNodeResolution('lion-opening-ambush');
+    scene.resumeNode('lion-opening-ambush');
+    settle(scene);
+    handoff.mockClear();
+    advance(10);
+    const snapshot = JSON.stringify(state);
+    expect(scene.session.routeProgress01).toBe(.30);
+    const interaction = (scene as unknown as { confirmDecision(): Promise<void> }).confirmDecision();
+    settle(scene);
+    expect(roadCombat).toHaveBeenCalledOnce();
+    advance(100);
+    expect(scene.session.routeProgress01).toBe(.30);
+    expect(handoff).not.toHaveBeenCalled();
+    finish(true);
+    await interaction;
+    expect(scene.session.phase).toBe('RUNNING');
+    expect(scene.session.consumedBeatIds).toContain('t0:enemy:wolf-scouts');
+    expect(JSON.stringify(state)).toBe(snapshot);
+    scene.dispose();
+  });
+
+  it('steers around a skipped subject and keeps it planted in the moving road until passed', () => {
+    vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
+    const state = createInitialState();
+    state.run.currentNodeId = state.currentNodeId = 'lion-audience';
+    const scene = new TraversalT0Scene({ root: document.body,
+      leg: LION_TRAVERSAL_LEGS.find(leg => leg.id === 'T0')!,
+      getState: () => state, getAvailableNodes: () => getAvailableRunNodes(state),
+      onNodeHandoff: vi.fn(), onArrival: vi.fn(), onMenu: vi.fn() });
+    scene.open();
+    settle(scene);
+    const advance = (seconds: number) => (scene as unknown as { advance(seconds: number): void }).advance(seconds);
+    advance(20);
+    const world = document.querySelector<HTMLElement>('.traversal-t0')!;
+    const subject = document.querySelector<HTMLElement>('[data-traversal-beat="t0:npc:roadside-merchant"]')!;
+    const beforeX = parseFloat(subject.style.left);
+    const beforeRoad = parseFloat(world.style.getPropertyValue('--road-offset'));
+    const beforeWheel = world.style.getPropertyValue('--wheel-angle');
+    advance(10);
+    expect(subject.style.left).toBe(`${beforeX}px`);
+    expect(world.style.getPropertyValue('--wheel-angle')).toBe(beforeWheel);
+    document.querySelector<HTMLButtonElement>('[data-traversal-skip]')!.click();
+    expect(scene.session.currentLane).toBe(1);
+    expect(subject.hidden).toBe(false);
+    document.querySelector<HTMLButtonElement>('[data-traversal-lane="0"]')!.click();
+    expect(scene.session.currentLane).toBe(1);
+    advance(.5);
+    expect(subject.hidden).toBe(false);
+    expect(parseFloat(subject.style.left) - beforeX).toBeCloseTo(parseFloat(world.style.getPropertyValue('--road-offset')) - beforeRoad);
+    expect(world.style.getPropertyValue('--wheel-angle')).not.toBe(beforeWheel);
+    advance(4.5);
+    expect(document.querySelector<HTMLButtonElement>('[data-traversal-lane="0"]')!.disabled).toBe(false);
     scene.dispose();
   });
 });

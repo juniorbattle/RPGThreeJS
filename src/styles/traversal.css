@@ -12,13 +12,19 @@
 .traversal-world, .traversal-world > div { position: absolute; inset: 0; }
 .traversal-world { overflow: hidden; }
 .traversal-world__far {
-  background: var(--traversal-far-image) calc(50% + var(--far-offset)) 50% / cover no-repeat;
-  transform: scale(1.04);
+  background: var(--traversal-far-image) var(--far-offset) 0 / 160% auto no-repeat;
 }
+.traversal-world__forest {
+  background: var(--traversal-forest-image) var(--forest-offset) 0 / auto 100% repeat-x;
+  bottom: 39% !important;
+}
+.traversal-t0[data-route-variant='lion-first-trial-combat'] .traversal-world__forest { filter: brightness(.72) saturate(.8); }
+.traversal-t0[data-route-variant='lion-first-trial-event'] .traversal-world__forest { filter: brightness(1.12) saturate(.9); }
+.traversal-world__forest { transition: filter 1.8s; }
 .traversal-world__haze { background: linear-gradient(180deg, #bde2ff0a, transparent 45%, #d5eeed15 60%, transparent); }
 .traversal-world .traversal-world__road {
-  top: 20%;
-  background: var(--traversal-road-image) var(--road-offset) 50% / auto 100% repeat-x;
+  top: 53%; bottom: 0;
+  background: var(--traversal-road-image) var(--road-offset) 50% / 94vw 100% repeat-x;
 }
 .traversal-world .traversal-world__lane-glow {
   inset: auto; top: calc(var(--traversal-lane-y) - 2%); left: 13%; width: 23%; height: 5%;
@@ -28,6 +34,7 @@
 .traversal-world__entities { pointer-events: none; }
 .traversal-world__foreground {
   z-index: 34; pointer-events: none;
+  background: var(--traversal-foreground-image) var(--foreground-offset) bottom / auto 28% repeat-x;
 }
 .traversal-world .traversal-foreground-prop { position: absolute; bottom: -9%; height: 24%; filter: brightness(.62) blur(1.3px); }
 .traversal-world .traversal-midground-prop { position: absolute; bottom: 50%; height: 13%; filter: saturate(.8) brightness(.9); }
@@ -42,10 +49,10 @@
 .traversal-sprite img { position: absolute; max-width: none; object-fit: fill; pointer-events: none; }
 .traversal-sprite.is-mirrored { transform: scaleX(-1); }
 .traversal-vehicle {
-  position: absolute; top: var(--traversal-lane-y); left: 25%; z-index: 22;
+  position: absolute; top: var(--traversal-lane-y); left: calc(25% + var(--vehicle-exit-x, 0px)); z-index: 22;
   height: var(--vehicle-height); aspect-ratio: 818 / 433; margin: 0;
   transform: translate(-50%, -100%); transition: top .38s cubic-bezier(.2,.72,.2,1);
-  pointer-events: none; animation: traversal-suspension .82s ease-in-out infinite alternate;
+  pointer-events: none; margin-top: var(--suspension-y, 0px);
 }
 .traversal-vehicle__art { z-index: 2; }
 .traversal-vehicle__shadow, .traversal-entity__body::after {
@@ -54,15 +61,18 @@
 }
 .traversal-vehicle__wheel {
   position: absolute; top: 67%; z-index: 3; width: 19%; aspect-ratio: 1; border-radius: 50%;
-  background: repeating-conic-gradient(#e0b47430 0 3deg, transparent 3deg 45deg);
-  opacity: .5; animation: traversal-wheel-spin .9s linear infinite; pointer-events: none;
+  overflow: hidden; pointer-events: none;
 }
+.traversal-vehicle__wheel > span { position: absolute; inset: 0; rotate: var(--wheel-angle, 0rad); }
 .traversal-vehicle__wheel--rear { left: 6.5%; }
 .traversal-vehicle__wheel--front { left: 65.5%; }
 .traversal-vehicle__dust {
   position: absolute; z-index: 1; top: 90%; left: -10%; width: 25%; height: 12%;
   border-radius: 50%; background: radial-gradient(ellipse,#e7be7770,transparent 70%);
-  filter: blur(4px); animation: traversal-dust 1.3s ease-out infinite;
+  filter: blur(4px); opacity: calc(.5 - var(--dust-phase, 0) * .5);
+  translate: calc(var(--dust-phase, 0) * -40px) 0;
+  scale: calc(.7 + var(--dust-phase, 0) * .7);
+  transition: opacity .3s;
 }
 .traversal-vehicle__dust--two { animation-delay: -.65s; }
 @keyframes traversal-suspension { to { margin-top: -2px; } }
@@ -70,7 +80,9 @@
 @keyframes traversal-dust { from { opacity: .5; translate: 10px 0; scale: .6; } to { opacity: 0; translate: -40px 2px; scale: 1.4; } }
 .traversal-t0:not([data-phase='RUNNING']) .traversal-vehicle,
 .traversal-t0:not([data-phase='RUNNING']) .traversal-vehicle * { animation-play-state: paused; }
-.traversal-t0:not([data-phase='RUNNING']) .traversal-vehicle__dust { visibility: hidden; }
+.traversal-t0:not([data-phase='RUNNING']):not([data-phase='ARRIVING']) .traversal-vehicle__dust { opacity: 0; }
+.traversal-t0[data-phase='ARRIVING']::after { background: #000; opacity: var(--arrival-fade, 0); z-index: 100; }
+.traversal-t0[data-phase='ARRIVING'] > :not(.traversal-world) { visibility: hidden; }
 .traversal-entity {
   --entity-height: calc(var(--vehicle-height) * .6);
   position: absolute; height: var(--entity-height); width: max-content;
@@ -83,6 +95,10 @@
 .traversal-entity[data-scale='booster'] { --entity-height: calc(var(--vehicle-height) * .32); }
 .traversal-entity__body { position: relative; height: 100%; isolation: isolate; }
 .traversal-entity__subject { z-index: 2; }
+.traversal-formation-member { position: absolute; left: calc(70% + var(--formation-index) * 75%); bottom: calc((var(--formation-index) - .5) * 5vh); height: 100%; z-index: 3; }
+.traversal-entity[data-formation='true'][data-placement='centered'] { --entity-height: calc(var(--vehicle-height) * .52); }
+.traversal-blocking-cart { position: absolute; height: calc(var(--vehicle-height) * .7); bottom: -1vh; left: 100px; }
+.traversal-blocking-debris { position: absolute; height: calc(var(--vehicle-height) * .3); bottom: 4vh; left: 70px; }
 .traversal-entity__backdrop {
   position: absolute; height: calc(var(--vehicle-height) * .67); bottom: 0;
   left: 72%; z-index: -1;
@@ -144,7 +160,7 @@
 .traversal-route-rail { margin-left: auto; width: 160px; height: 4px; background: #e1c38330; border-radius: 2px; overflow: hidden; }
 .traversal-route-rail i { display: block; width: calc(var(--route-progress) * 100%); height: 100%; background: #e1c383; }
 .traversal-route-rail span, .traversal-route-rail b { display: none; }
-.traversal-lanes { top: calc(63% - 18px); left: 0; display: grid; gap: calc(18vh - 36px); width: clamp(96px,10vw,146px); }
+.traversal-lanes { top: calc(65% - 18px); left: 0; display: grid; gap: calc(16vh - 36px); width: clamp(96px,10vw,146px); }
 .traversal-lanes button { min-height: 36px; padding: 6px 12px; border: 1px solid #e6cb8144; border-left: 0; border-radius: 0 5px 5px 0; background: #0b151bbf; color: #e2d6bd; font: 600 11px Cinzel,serif; text-align: left; cursor: pointer; }
 .traversal-lanes button.is-active { border-color: #e6cb81a0; background: #55482ded; color: #fff2cc; }
 .traversal-lanes button:disabled { cursor: default; opacity: 1; }
@@ -189,3 +205,58 @@
 @media (prefers-reduced-motion: reduce) {
   .traversal-t0 *, .traversal-t0 *::before, .traversal-t0 *::after { animation: none !important; transition-duration: .001ms !important; }
 }
+/* Physical places share their subject's road anchor. Supporting art stays behind the people. */
+.traversal-roadside-place { position: absolute; top: 57%; transform: translate(-12%, -100%); z-index: 4; filter: brightness(.88); }
+.traversal-entity[data-micro-scene='merchant'] .traversal-entity__backdrop { height: calc(var(--vehicle-height) * 1.22); left: -110%; bottom: 0; }
+.traversal-entity[data-micro-scene='rest'] .traversal-entity__backdrop { height: calc(var(--vehicle-height) * .86); left: -85%; bottom: -3%; }
+.traversal-entity[data-formation='true'][data-placement='lane'] .traversal-formation-member { bottom: calc(var(--formation-index) * 1vh); left: calc(80% + var(--formation-index) * 90%); height: 95%; }
+.traversal-entity[data-marker='danger'][data-placement='lane'] .traversal-entity__backdrop { height: calc(var(--vehicle-height) * .22); left: 95%; }
+.traversal-crossroads-ground { position: absolute; left: -90%; bottom: -5vh; height: 18vh; z-index: -2; }
+.traversal-entity--fork .traversal-entity__subject { height: calc(var(--vehicle-height) * .7); }
+.traversal-barrier--upper { height: calc(var(--vehicle-height) * .8); bottom: 35%; left: 0; }
+.traversal-entity[data-placement='centered'][data-formation='true'] .traversal-formation-member { bottom: calc((var(--formation-index) - .5) * 6vh); }
+.traversal-t0[data-assisted-bypass='true'] .traversal-vehicle { transition-duration: .65s; }
+/* Lane changes are essential spatial feedback, even with decorative motion reduced. */
+@media (prefers-reduced-motion: reduce) {
+  .traversal-t0 .traversal-vehicle { transition-duration: .25s !important; }
+  .traversal-t0 .traversal-world__lane-glow { transition-duration: .25s !important; }
+}
+/* Fusion pass: large places belong to the verge; their people meet the upper lane. */
+.traversal-world__road { mask-image: linear-gradient(to bottom, transparent, #000 12%); }
+.traversal-entity[data-roadside='true'] .traversal-entity__backdrop {
+  bottom: 4vh; left: -55%; filter: saturate(.82) brightness(.9);
+}
+.traversal-entity[data-micro-scene='merchant'] .traversal-entity__backdrop {
+  height: calc(var(--vehicle-height) * 1.18);
+}
+.traversal-entity[data-micro-scene='rest'] .traversal-entity__backdrop {
+  height: calc(var(--vehicle-height) * .75); left: -55%;
+}
+.traversal-grounding {
+  position: absolute; height: 14vh; left: -100%; bottom: -2vh; z-index: -3;
+  opacity: .7; filter: saturate(.65) brightness(.7);
+  mask-image: radial-gradient(ellipse at center, #000 25%, transparent 72%);
+}
+.traversal-entity[data-micro-scene='merchant'] .traversal-grounding { height: 22vh; left: -115%; bottom: -1vh; }
+.traversal-verge { position: absolute; height: 4.5vh; bottom: 2vh; z-index: 1; filter: brightness(.78) saturate(.8); }
+.traversal-verge--left { left: -110%; }
+.traversal-verge--right { left: 270%; height: 6vh; bottom: 3vh; }
+.traversal-entity[data-micro-scene='merchant'] .traversal-verge--right { left: 700%; }
+.traversal-entity[data-placement='centered'] .traversal-grounding { height: 27vh; left: -75%; bottom: -9vh; }
+.traversal-entity[data-placement='centered'] .traversal-verge--left { bottom: 4vh; left: 180%; }
+.traversal-entity[data-placement='centered'] .traversal-verge--right { bottom: -8vh; left: 180%; }
+.traversal-entity--fork .traversal-grounding { height: 11vh !important; bottom: -1vh !important; }
+.traversal-entity--fork .traversal-verge--left { bottom: 0 !important; left: -35% !important; }
+.traversal-entity--fork .traversal-verge--right { display: none; }
+.traversal-entity--fork .traversal-entity__subject { height: calc(var(--vehicle-height) * .54); }
+.traversal-blocking-cart { left: 55px; bottom: -3vh; transform: rotate(-8deg); }
+.traversal-blocking-debris { left: 15px; bottom: -4vh; }
+.traversal-barrier--upper { left: 65px; bottom: 60%; height: calc(var(--vehicle-height) * .95); }
+.traversal-transition {
+  position: absolute; inset: 0; z-index: 110; pointer-events: none;
+  background: #07100e; opacity: var(--transition-opacity, 0);
+}
+.traversal-t0[data-transition] .traversal-transition { pointer-events: auto; }
+.traversal-t0[data-transition='focus'] .traversal-transition { opacity: calc(var(--transition-opacity, 0) * .35); z-index: 42; }
+.traversal-t0[data-transition] .traversal-vehicle__dust { opacity: 0; }
+.traversal-t0[data-transition='fork'] .traversal-vehicle { transition: none !important; }

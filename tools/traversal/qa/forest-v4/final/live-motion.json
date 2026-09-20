@@ -1,0 +1,1298 @@
+[
+  {
+    "t": 83,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1341.1px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.012099600000000002",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.012099600000000002; --far-offset: -8.711712000000002px; --forest-offset: -23.957208000000005px; --road-offset: -108.89640000000001px; --foreground-offset: -132.853608px; --wheel-angle: 3.0249000000000006rad; --suspension-y: -1.011507154380013px; --dust-phase: 0.8376646153846155; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 190,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1330.36px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.013293600000000003",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.013293600000000003; --far-offset: -9.571392000000001px; --forest-offset: -26.321328000000005px; --road-offset: -119.64240000000002px; --foreground-offset: -145.96372800000003px; --wheel-angle: 3.323400000000001rad; --suspension-y: -1.2489440309231787px; --dust-phase: 0.920326153846154; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 278,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1320.94px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.01434",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.01434; --far-offset: -10.3248px; --forest-offset: -28.393200000000004px; --road-offset: -129.06px; --foreground-offset: -157.4532px; --wheel-angle: 3.585rad; --suspension-y: -1.2970298192291614px; --dust-phase: 0.9927692307692307; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 376,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1310.18px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.015535200000000002",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.015535200000000002; --far-offset: -11.185344000000002px; --forest-offset: -30.759696000000005px; --road-offset: -139.81680000000003px; --foreground-offset: -170.57649600000002px; --wheel-angle: 3.883800000000001rad; --suspension-y: -1.1613780680075063px; --dust-phase: 0.07551384615384638; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 477,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1299.44px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.016729200000000003",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.016729200000000003; --far-offset: -12.045024000000003px; --forest-offset: -33.12381600000001px; --road-offset: -150.56280000000004px; --foreground-offset: -183.68661600000001px; --wheel-angle: 4.1823000000000015rad; --suspension-y: -0.8442102586304917px; --dust-phase: 0.1581753846153849; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 565,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1290.02px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.017775600000000006",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.017775600000000006; --far-offset: -12.798432000000005px; --forest-offset: -35.19568800000001px; --road-offset: -159.98040000000006px; --foreground-offset: -195.17608800000008px; --wheel-angle: 4.443900000000002rad; --suspension-y: -0.45550436750167683px; --dust-phase: 0.230618461538462; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 641,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1280.61px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.018820800000000006",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.018820800000000006; --far-offset: -13.550976000000006px; --forest-offset: -37.26518400000001px; --road-offset: -169.38720000000006px; --foreground-offset: -206.6523840000001px; --wheel-angle: 4.705200000000001rad; --suspension-y: -0.01246070852034777px; --dust-phase: 0.30297846153846203; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 747,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1269.86px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.020016000000000006",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.020016000000000006; --far-offset: -14.411520000000005px; --forest-offset: -39.63168000000002px; --road-offset: -180.14400000000006px; --foreground-offset: -219.77568000000008px; --wheel-angle: 5.004000000000001rad; --suspension-y: 0.49281940104454464px; --dust-phase: 0.3857230769230774; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 844,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1260.45px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.021061200000000006",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.021061200000000006; --far-offset: -15.164064000000003px; --forest-offset: -41.70117600000001px; --road-offset: -189.55080000000007px; --foreground-offset: -231.25197600000004px; --wheel-angle: 5.265300000000001rad; --suspension-y: 0.8738969680604116px; --dust-phase: 0.4580830769230772; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 917,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1251.03px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.022107600000000012",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.022107600000000012; --far-offset: -15.917472000000009px; --forest-offset: -43.773048000000024px; --road-offset: -198.96840000000012px; --foreground-offset: -242.74144800000013px; --wheel-angle: 5.526900000000003rad; --suspension-y: 1.1502097517065224px; --dust-phase: 0.5305261538461548; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 1025,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1240.29px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.023301600000000013",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.023301600000000013; --far-offset: -16.77715200000001px; --forest-offset: -46.137168000000024px; --road-offset: -209.71440000000013px; --foreground-offset: -255.85156800000016px; --wheel-angle: 5.825400000000004rad; --suspension-y: 1.2951078875889275px; --dust-phase: 0.6131876923076933; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 1119,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1230.87px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.024348000000000012",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.024348000000000012; --far-offset: -17.53056000000001px; --forest-offset: -48.209040000000016px; --road-offset: -219.13200000000012px; --foreground-offset: -267.34104000000013px; --wheel-angle: 6.087000000000003rad; --suspension-y: 1.2556298656138833px; --dust-phase: 0.6856307692307702; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 1184,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1222.8px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.025244400000000018",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.025244400000000018; --far-offset: -18.17596800000001px; --forest-offset: -49.98391200000003px; --road-offset: -227.19960000000017px; --foreground-offset: -277.1835120000002px; --wheel-angle: 6.311100000000004rad; --suspension-y: 1.100866159394628px; --dust-phase: 0.7476892307692319; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 1259,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1214.73px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.026140800000000016",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.026140800000000016; --far-offset: -18.82137600000001px; --forest-offset: -51.758784000000034px; --road-offset: -235.26720000000014px; --foreground-offset: -287.02598400000016px; --wheel-angle: 6.535200000000004rad; --suspension-y: 0.8485446308486903px; --dust-phase: 0.8097476923076934; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 1359,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1203.98px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.027336000000000013",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.027336000000000013; --far-offset: -19.68192000000001px; --forest-offset: -54.12528000000003px; --road-offset: -246.0240000000001px; --foreground-offset: -300.14928000000015px; --wheel-angle: 6.834000000000003rad; --suspension-y: 0.40001390163701417px; --dust-phase: 0.8924923076923086; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 1454,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1194.57px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.028381200000000013",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.028381200000000013; --far-offset: -20.43446400000001px; --forest-offset: -56.194776000000026px; --road-offset: -255.4308000000001px; --foreground-offset: -311.62557600000014px; --wheel-angle: 7.0953000000000035rad; --suspension-y: -0.046298857884231645px; --dust-phase: 0.9648523076923086; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 1543,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1185.15px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.02942760000000002",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.02942760000000002; --far-offset: -21.187872000000016px; --forest-offset: -58.266648000000046px; --road-offset: -264.8484000000002px; --foreground-offset: -323.11504800000023px; --wheel-angle: 7.356900000000006rad; --suspension-y: -0.48753044719143723px; --dust-phase: 0.03729538461538613; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 1608,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1177.09px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.030322800000000018",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.030322800000000018; --far-offset: -21.832416000000013px; --forest-offset: -60.03914400000003px; --road-offset: -272.90520000000015px; --foreground-offset: -332.94434400000017px; --wheel-angle: 7.580700000000004rad; --suspension-y: -0.820280315400569px; --dust-phase: 0.09927076923077038; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 1683,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1169.03px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.031219200000000016",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.031219200000000016; --far-offset: -22.477824000000005px; --forest-offset: -61.814016000000024px; --road-offset: -280.9728000000001px; --foreground-offset: -342.78681600000016px; --wheel-angle: 7.804800000000004rad; --suspension-y: -1.080819726993821px; --dust-phase: 0.1613292307692317; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 1781,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1159.61px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.03226560000000002",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.03226560000000002; --far-offset: -23.231232000000013px; --forest-offset: -63.88588800000004px; --road-offset: -290.39040000000017px; --foreground-offset: -354.2762880000002px; --wheel-angle: 8.066400000000005rad; --suspension-y: -1.2626236189828295px; --dust-phase: 0.233772307692309; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 1845,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1151.54px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.03316200000000002",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.03316200000000002; --far-offset: -23.876640000000013px; --forest-offset: -65.66076000000002px; --road-offset: -298.45800000000014px; --foreground-offset: -364.1187600000002px; --wheel-angle: 8.290500000000003rad; --suspension-y: -1.2977818145829905px; --dust-phase: 0.2958307692307703; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 1921,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1143.49px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.034057200000000024",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.034057200000000024; --far-offset: -24.521184000000012px; --forest-offset: -67.43325600000004px; --road-offset: -306.5148000000002px; --foreground-offset: -373.94805600000024px; --wheel-angle: 8.514300000000006rad; --suspension-y: -1.218113424354055px; --dust-phase: 0.35780615384615544; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 1995,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1135.41px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.03495480000000002",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.03495480000000002; --far-offset: -25.16745600000002px; --forest-offset: -69.21050400000004px; --road-offset: -314.5932000000002px; --foreground-offset: -383.80370400000027px; --wheel-angle: 8.738700000000005rad; --suspension-y: -1.030149495469539px; --dust-phase: 0.4199476923076938; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 2071,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1126px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.036000000000000025",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.036000000000000025; --far-offset: -25.92000000000002px; --forest-offset: -71.28000000000004px; --road-offset: -324.0000000000002px; --foreground-offset: -395.28000000000026px; --wheel-angle: 9.000000000000007rad; --suspension-y: -0.6975447934005558px; --dust-phase: 0.49230769230769406; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 2169,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1116.58px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.03704640000000003",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.03704640000000003; --far-offset: -26.673408000000023px; --forest-offset: -73.35187200000006px; --road-offset: -333.4176000000003px; --foreground-offset: -406.7694720000004px; --wheel-angle: 9.261600000000008rad; --suspension-y: -0.2806155952296165px; --dust-phase: 0.5647507692307714; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 2251,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1107.18px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.03809160000000003",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.03809160000000003; --far-offset: -27.42595200000002px; --forest-offset: -75.42136800000006px; --road-offset: -342.82440000000025px; --foreground-offset: -418.2457680000003px; --wheel-angle: 9.522900000000007rad; --suspension-y: 0.1695934306763566px; --dust-phase: 0.6371107692307711; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 2335,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1097.77px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.03913680000000003",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.03913680000000003; --far-offset: -28.178496000000024px; --forest-offset: -77.49086400000004px; --road-offset: -352.23120000000023px; --foreground-offset: -429.7220640000002px; --wheel-angle: 9.784200000000006rad; --suspension-y: 0.5994241597138227px; --dust-phase: 0.709470769230771; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 2442,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1087.01px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.040332000000000034",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.040332000000000034; --far-offset: -29.039040000000025px; --forest-offset: -79.85736000000006px; --road-offset: -362.9880000000002px; --foreground-offset: -442.8453600000003px; --wheel-angle: 10.083000000000007rad; --suspension-y: 0.9999941574471553px; --dust-phase: 0.7922153846153868; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 2532,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1077.59px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.041378400000000044",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.041378400000000044; --far-offset: -29.79244800000003px; --forest-offset: -81.92923200000008px; --road-offset: -372.4056000000004px; --foreground-offset: -454.33483200000046px; --wheel-angle: 10.34460000000001rad; --suspension-y: 1.223676171140894px; --dust-phase: 0.8646584615384646; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 2626,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1068.19px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.04242360000000005",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.04242360000000005; --far-offset: -30.544992000000036px; --forest-offset: -83.9987280000001px; --road-offset: -381.8124000000005px; --foreground-offset: -465.8111280000005px; --wheel-angle: 10.605900000000013rad; --suspension-y: 1.2999894273979553px; --dust-phase: 0.9370184615384648; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 2724,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1057.43px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.043618800000000055",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.043618800000000055; --far-offset: -31.405536000000037px; --forest-offset: -86.36522400000011px; --road-offset: -392.5692000000005px; --foreground-offset: -478.93442400000055px; --wheel-angle: 10.904700000000012rad; --suspension-y: 1.1961440282472555px; --dust-phase: 0.019763076923080602; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 2811,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1048.02px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.04466400000000006",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.04466400000000006; --far-offset: -32.15808000000004px; --forest-offset: -88.43472000000011px; --road-offset: -401.9760000000005px; --foreground-offset: -490.4107200000006px; --wheel-angle: 11.166000000000015rad; --suspension-y: 0.9504570008042705px; --dust-phase: 0.09212307692308085; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 2879,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1039.96px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.045560400000000056",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.045560400000000056; --far-offset: -32.80348800000004px; --forest-offset: -90.2095920000001px; --road-offset: -410.0436000000005px; --foreground-offset: -500.2531920000006px; --wheel-angle: 11.390100000000013rad; --suspension-y: 0.647256099965939px; --dust-phase: 0.15418153846154217; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 2988,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1027.85px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.04690560000000005",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.04690560000000005; --far-offset: -33.77203200000004px; --forest-offset: -92.87308800000008px; --road-offset: -422.15040000000045px; --foreground-offset: -515.0234880000005px; --wheel-angle: 11.726400000000012rad; --suspension-y: 0.09450880075865502px; --dust-phase: 0.24731076923077266; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 3069,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1018.44px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.04795080000000005",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.04795080000000005; --far-offset: -34.52457600000004px; --forest-offset: -94.94258400000011px; --road-offset: -431.5572000000005px; --foreground-offset: -526.4997840000005px; --wheel-angle: 11.987700000000013rad; --suspension-y: -0.35380759548998447px; --dust-phase: 0.3196707692307729; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 3175,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "1009.04px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.04899600000000005",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.04899600000000005; --far-offset: -35.27712000000004px; --forest-offset: -97.0120800000001px; --road-offset: -440.96400000000045px; --foreground-offset: -537.9760800000006px; --wheel-angle: 12.249000000000013rad; --suspension-y: -0.7596105748776466px; --dust-phase: 0.39203076923077274; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 3244,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "999.618px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.05004240000000005",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.05004240000000005; --far-offset: -36.03052800000004px; --forest-offset: -99.0839520000001px; --road-offset: -450.38160000000045px; --foreground-offset: -549.4655520000006px; --wheel-angle: 12.510600000000013rad; --suspension-y: -1.0744317942028898px; --dust-phase: 0.46447384615384957; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 3345,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "990.212px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.051087600000000045",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.051087600000000045; --far-offset: -36.78307200000003px; --forest-offset: -101.1534480000001px; --road-offset: -459.7884000000004px; --foreground-offset: -560.9418480000005px; --wheel-angle: 12.771900000000011rad; --suspension-y: -1.2597276714718824px; --dust-phase: 0.5368338461538494; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 3433,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "980.805px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.05213280000000004",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.05213280000000004; --far-offset: -37.53561600000003px; --forest-offset: -103.22294400000008px; --road-offset: -469.1952000000004px; --foreground-offset: -572.4181440000004px; --wheel-angle: 13.033200000000011rad; --suspension-y: -1.2936550413620924px; --dust-phase: 0.6091938461538492; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 3502,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "972.737px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.05302920000000004",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.05302920000000004; --far-offset: -38.18102400000003px; --forest-offset: -104.99781600000009px; --road-offset: -477.26280000000037px; --foreground-offset: -582.2606160000005px; --wheel-angle: 13.25730000000001rad; --suspension-y: -1.1985704880958334px; --dust-phase: 0.6712523076923105; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 3574,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "964.67px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.05392560000000003",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.05392560000000003; --far-offset: -38.826432000000025px; --forest-offset: -106.77268800000006px; --road-offset: -485.3304000000002px; --foreground-offset: -592.1030880000003px; --wheel-angle: 13.481400000000008rad; --suspension-y: -0.9972696380292843px; --dust-phase: 0.7333107692307714; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 3650,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "956.591px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.05482320000000002",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.05482320000000002; --far-offset: -39.472704000000014px; --forest-offset: -108.54993600000006px; --road-offset: -493.4088000000002px; --foreground-offset: -601.9587360000003px; --wheel-angle: 13.705800000000005rad; --suspension-y: -0.7071553218957345px; --dust-phase: 0.7954523076923093; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 3735,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "948.534px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.05571840000000002",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.05571840000000002; --far-offset: -40.11724800000002px; --forest-offset: -110.32243200000003px; --road-offset: -501.4656000000002px; --foreground-offset: -611.7880320000003px; --wheel-angle: 13.929600000000006rad; --suspension-y: -0.35520739877582064px; --dust-phase: 0.857427692307694; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 3800,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "940.467px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.056614800000000014",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.056614800000000014; --far-offset: -40.762656000000014px; --forest-offset: -112.09730400000004px; --road-offset: -509.5332000000001px; --foreground-offset: -621.6305040000002px; --wheel-angle: 14.153700000000004rad; --suspension-y: 0.02865498109445758px; --dust-phase: 0.9194861538461548; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 3873,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "932.399px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.057511200000000005",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.057511200000000005; --far-offset: -41.408064px; --forest-offset: -113.87217600000001px; --road-offset: -517.6008px; --foreground-offset: -631.472976px; --wheel-angle: 14.3778rad; --suspension-y: 0.4099779809224564px; --dust-phase: 0.9815446153846158; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 3968,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "922.982px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.058557599999999994",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.058557599999999994; --far-offset: -42.161471999999996px; --forest-offset: -115.94404799999998px; --road-offset: -527.0183999999999px; --foreground-offset: -642.9624479999999px; --wheel-angle: 14.639399999999998rad; --suspension-y: 0.8069190593044345px; --dust-phase: 0.05398769230769176; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 4061,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "912.225px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.059752799999999995",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.059752799999999995; --far-offset: -43.022015999999994px; --forest-offset: -118.31054399999996px; --road-offset: -537.7751999999999px; --foreground-offset: -656.0857439999999px; --wheel-angle: 14.938199999999998rad; --suspension-y: 1.1391376641206512px; --dust-phase: 0.13673230769230713; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 4136,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "904.168px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.060647999999999994",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.060647999999999994; --far-offset: -43.66656px; --forest-offset: -120.08304px; --road-offset: -545.832px; --foreground-offset: -665.91504px; --wheel-angle: 15.161999999999999rad; --suspension-y: 1.2729504321027536px; --dust-phase: 0.19870769230769225; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 4219,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "896.1px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.061544399999999985",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.061544399999999985; --far-offset: -44.311967999999986px; --forest-offset: -121.85791199999998px; --road-offset: -553.8995999999999px; --foreground-offset: -675.7575119999998px; --wheel-angle: 15.386099999999995rad; --suspension-y: 1.2942060633636934px; --dust-phase: 0.2607661538461527; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 4289,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "888.033px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.06244079999999998",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.06244079999999998; --far-offset: -44.95737599999999px; --forest-offset: -123.63278399999996px; --road-offset: -561.9671999999998px; --foreground-offset: -685.5999839999997px; --wheel-angle: 15.610199999999995rad; --suspension-y: 1.200770254519707px; --dust-phase: 0.322824615384614; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 4371,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "878.626px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.06348599999999996",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.06348599999999996; --far-offset: -45.70991999999998px; --forest-offset: -125.70227999999993px; --road-offset: -571.3739999999997px; --foreground-offset: -697.0762799999995px; --wheel-angle: 15.87149999999999rad; --suspension-y: 0.95856344700994px; --dust-phase: 0.39518461538461297; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 4472,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "867.869px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.06468119999999994",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.06468119999999994; --far-offset: -46.57046399999996px; --forest-offset: -128.06877599999987px; --road-offset: -582.1307999999995px; --foreground-offset: -710.1995759999993px; --wheel-angle: 16.170299999999983rad; --suspension-y: 0.5428164491343793px; --dust-phase: 0.47792923076922655; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 4562,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "858.462px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.06572639999999992",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.06572639999999992; --far-offset: -47.323007999999945px; --forest-offset: -130.13827199999986px; --road-offset: -591.5375999999993px; --foreground-offset: -721.6758719999991px; --wheel-angle: 16.43159999999998rad; --suspension-y: 0.10693219565046155px; --dust-phase: 0.5502892307692255; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 4656,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "849.045px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.0667727999999999",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.0667727999999999; --far-offset: -48.07641599999993px; --forest-offset: -132.2101439999998px; --road-offset: -600.9551999999991px; --foreground-offset: -733.1653439999989px; --wheel-angle: 16.693199999999976rad; --suspension-y: -0.342302676356219px; --dust-phase: 0.6227323076923006; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 4741,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "839.627px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.06781919999999987",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.06781919999999987; --far-offset: -48.82982399999992px; --forest-offset: -134.28201599999974px; --road-offset: -610.3727999999988px; --foreground-offset: -744.6548159999985px; --wheel-angle: 16.954799999999967rad; --suspension-y: -0.7503130195678328px; --dust-phase: 0.6951753846153758; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 4810,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "831.57px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.06871439999999987",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.06871439999999987; --far-offset: -49.47436799999991px; --forest-offset: -136.05451199999973px; --road-offset: -618.4295999999988px; --foreground-offset: -754.4841119999985px; --wheel-angle: 17.178599999999967rad; --suspension-y: -1.0292613734281277px; --dust-phase: 0.75715076923076; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 4889,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "822.153px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1812.15px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.06976079999999985",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.06976079999999985; --far-offset: -50.22777599999988px; --forest-offset: -138.1263839999997px; --road-offset: -627.8471999999986px; --foreground-offset: -765.9735839999983px; --wheel-angle: 17.44019999999996rad; --suspension-y: -1.2386883173997514px; --dust-phase: 0.8295938461538351; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 4995,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "811.396px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1801.4px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.07095599999999982",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.07095599999999982; --far-offset: -51.088319999999875px; --forest-offset: -140.49287999999967px; --road-offset: -638.6039999999985px; --foreground-offset: -779.096879999998px; --wheel-angle: 17.738999999999958rad; --suspension-y: -1.2947321131745808px; --dust-phase: 0.9123384615384497; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 5093,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "800.639px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1790.64px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.0721511999999998",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.0721511999999998; --far-offset: -51.94886399999985px; --forest-offset: -142.8593759999996px; --road-offset: -649.3607999999982px; --foreground-offset: -792.2201759999979px; --wheel-angle: 18.03779999999995rad; --suspension-y: -1.1479765390852208px; --dust-phase: 0.9950830769230632; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 5190,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "789.893px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1779.89px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.07334519999999979",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.07334519999999979; --far-offset: -52.80854399999985px; --forest-offset: -145.22349599999959px; --road-offset: -660.1067999999981px; --foreground-offset: -805.3302959999977px; --wheel-angle: 18.336299999999948rad; --suspension-y: -0.8218115220140361px; --dust-phase: 0.07774461538460067; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 5290,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "779.126px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1769.13px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.07454159999999976",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.07454159999999976; --far-offset: -53.66995199999983px; --forest-offset: -147.59236799999954px; --road-offset: -670.8743999999979px; --foreground-offset: -818.4667679999974px; --wheel-angle: 18.63539999999994rad; --suspension-y: -0.36617984849784807px; --dust-phase: 0.16057230769229136; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 5389,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "768.38px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1758.38px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.07573559999999975",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.07573559999999975; --far-offset: -54.52963199999982px; --forest-offset: -149.9564879999995px; --road-offset: -681.6203999999977px; --foreground-offset: -831.5768879999972px; --wheel-angle: 18.933899999999937rad; --suspension-y: 0.14588844042269686px; --dust-phase: 0.24323384615382881; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 5485,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "757.623px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1747.62px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.07693079999999973",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.07693079999999973; --far-offset: -55.390175999999805px; --forest-offset: -152.32298399999945px; --road-offset: -692.3771999999975px; --foreground-offset: -844.700183999997px; --wheel-angle: 19.23269999999993rad; --suspension-y: 0.6356045211069361px; --dust-phase: 0.3259784615384424; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 5588,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "746.866px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1736.87px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.07812599999999971",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.07812599999999971; --far-offset: -56.250719999999795px; --forest-offset: -154.68947999999943px; --road-offset: -703.1339999999974px; --foreground-offset: -857.823479999997px; --wheel-angle: 19.531499999999927rad; --suspension-y: 1.0257631759332055px; --dust-phase: 0.4087230769230569; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 5678,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "737.459px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1727.46px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.07917119999999968",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.07917119999999968; --far-offset: -57.003263999999774px; --forest-offset: -156.75897599999936px; --road-offset: -712.5407999999971px; --foreground-offset: -869.2997759999965px; --wheel-angle: 19.79279999999992rad; --suspension-y: 1.2367832692100769px; --dust-phase: 0.48108307692305496; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 5758,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "728.052px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1718.05px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.08021639999999966",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.08021639999999966; --far-offset: -57.75580799999976px; --forest-offset: -158.82847199999932px; --road-offset: -721.9475999999968px; --foreground-offset: -880.7760719999962px; --wheel-angle: 20.054099999999913rad; --suspension-y: 1.2991918477516793px; --dust-phase: 0.5534430769230531; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 5868,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "717.285px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1707.28px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.08141279999999963",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.08141279999999963; --far-offset: -58.617215999999736px; --forest-offset: -161.19734399999928px; --road-offset: -732.7151999999967px; --foreground-offset: -893.9125439999959px; --wheel-angle: 20.35319999999991rad; --suspension-y: 1.179444161106382px; --dust-phase: 0.6362707692307438; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 5963,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "706.528px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1696.53px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.08260799999999961",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.08260799999999961; --far-offset: -59.47775999999972px; --forest-offset: -163.56383999999923px; --road-offset: -743.4719999999963px; --foreground-offset: -907.0358399999957px; --wheel-angle: 20.6519999999999rad; --suspension-y: 0.8749735810048657px; --dust-phase: 0.7190153846153573; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 6069,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "695.782px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1685.78px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.08380199999999959",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.08380199999999959; --far-offset: -60.33743999999971px; --forest-offset: -165.9279599999992px; --road-offset: -754.2179999999962px; --foreground-offset: -920.1459599999955px; --wheel-angle: 20.9504999999999rad; --suspension-y: 0.43394239544590374px; --dust-phase: 0.8016769230768948; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 6176,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "683.675px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1673.68px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.08514719999999955",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.08514719999999955; --far-offset: -61.305983999999675px; --forest-offset: -168.59145599999908px; --road-offset: -766.3247999999959px; --foreground-offset: -934.916255999995px; --wheel-angle: 21.286799999999886rad; --suspension-y: -0.14021267343504337px; --dust-phase: 0.8948061538461223; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 6276,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "672.918px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1662.92px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.08634239999999954",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.08634239999999954; --far-offset: -62.16652799999967px; --forest-offset: -170.9579519999991px; --road-offset: -777.0815999999958px; --foreground-offset: -948.039551999995px; --wheel-angle: 21.585599999999886rad; --suspension-y: -0.6306170372740644px; --dust-phase: 0.9775507692307376; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 6374,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "662.162px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1652.16px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.08753759999999951",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.08753759999999951; --far-offset: -63.02707199999964px; --forest-offset: -173.32444799999902px; --road-offset: -787.8383999999955px; --foreground-offset: -961.1628479999945px; --wheel-angle: 21.884399999999875rad; --suspension-y: -1.0222451859536088px; --dust-phase: 0.06029538461535035; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 6467,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "651.416px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1641.42px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.0887315999999995",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.0887315999999995; --far-offset: -63.88675199999963px; --forest-offset: -175.68856799999898px; --road-offset: -798.5843999999954px; --foreground-offset: -974.2729679999944px; --wheel-angle: 22.182899999999872rad; --suspension-y: -1.253617182815624px; --dust-phase: 0.1429569230768878; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 6555,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "641.998px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1632px"
+        }
+      ],
+      "panelHidden": true,
+      "phase": "RUNNING",
+      "progress": "0.08977799999999948",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.08977799999999948; --far-offset: -64.64015999999964px; --forest-offset: -177.760439999999px; --road-offset: -808.0019999999954px; --foreground-offset: -985.7624399999944px; --wheel-angle: 22.444499999999874rad; --suspension-y: -1.2957513662337183px; --dust-phase: 0.21539999999996465; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 6662,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "640px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1630px"
+        }
+      ],
+      "panelHidden": false,
+      "phase": "DECISION",
+      "progress": "0.09",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.09; --far-offset: -64.8px; --forest-offset: -178.2px; --road-offset: -810px; --foreground-offset: -988.1999999999999px; --wheel-angle: 22.5rad; --suspension-y: -1.2844411113207204px; --dust-phase: 0.23076923076923078; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 6728,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "640px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1630px"
+        }
+      ],
+      "panelHidden": false,
+      "phase": "DECISION",
+      "progress": "0.09",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.09; --far-offset: -64.8px; --forest-offset: -178.2px; --road-offset: -810px; --foreground-offset: -988.1999999999999px; --wheel-angle: 22.5rad; --suspension-y: -1.2844411113207204px; --dust-phase: 0.23076923076923078; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 6796,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "640px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1630px"
+        }
+      ],
+      "panelHidden": false,
+      "phase": "DECISION",
+      "progress": "0.09",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.09; --far-offset: -64.8px; --forest-offset: -178.2px; --road-offset: -810px; --foreground-offset: -988.1999999999999px; --wheel-angle: 22.5rad; --suspension-y: -1.2844411113207204px; --dust-phase: 0.23076923076923078; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 6852,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "640px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1630px"
+        }
+      ],
+      "panelHidden": false,
+      "phase": "DECISION",
+      "progress": "0.09",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.09; --far-offset: -64.8px; --forest-offset: -178.2px; --road-offset: -810px; --foreground-offset: -988.1999999999999px; --wheel-angle: 22.5rad; --suspension-y: -1.2844411113207204px; --dust-phase: 0.23076923076923078; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 6917,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "640px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1630px"
+        }
+      ],
+      "panelHidden": false,
+      "phase": "DECISION",
+      "progress": "0.09",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.09; --far-offset: -64.8px; --forest-offset: -178.2px; --road-offset: -810px; --foreground-offset: -988.1999999999999px; --wheel-angle: 22.5rad; --suspension-y: -1.2844411113207204px; --dust-phase: 0.23076923076923078; --vehicle-exit-x: 0px;"
+    }
+  },
+  {
+    "t": 6976,
+    "data": {
+      "entities": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "x": "640px"
+        },
+        {
+          "id": "t0:stage:0:lion-opening-ambush",
+          "x": "1630px"
+        }
+      ],
+      "panelHidden": false,
+      "phase": "DECISION",
+      "progress": "0.09",
+      "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.09; --far-offset: -64.8px; --forest-offset: -178.2px; --road-offset: -810px; --foreground-offset: -988.1999999999999px; --wheel-angle: 22.5rad; --suspension-y: -1.2844411113207204px; --dust-phase: 0.23076923076923078; --vehicle-exit-x: 0px;"
+    }
+  }
+]

@@ -1,41 +1,40 @@
-"""Audit immutable originals and publish accurate preview-only runtime asset provenance."""
+"""Audit preserved T0 artwork and publish named preview forest asset provenance."""
 import hashlib
 import json
 import re
+import subprocess
 from pathlib import Path
-from PIL import Image, ImageChops
-
+from PIL import Image
 ROOT = Path(__file__).resolve().parents[2]
 pack = ROOT / 'public/assets/generated/lion-phase/traversal/t0'
 path = pack / 'asset-manifest.json'
+baseline = json.loads(subprocess.check_output(['git', 'show', '04e969eb2273efb9c844c9c78cfd31e2f471be85:public/assets/generated/lion-phase/traversal/t0/asset-manifest.json'], cwd=ROOT))
 manifest = json.loads(path.read_text())
-active = re.findall(r"'(/assets/[^']+\.png)'", (ROOT / 'src/traversal/TraversalT0Assets.ts').read_text())
+assets = dict(re.findall(r"(\w+): '(/assets/[^']+\.png)'", (ROOT / 'src/traversal/TraversalT0Assets.ts').read_text()))
+sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+for entry in baseline['assets']:
+    assert sha(ROOT / 'public' / entry['path'].lstrip('/')) == entry['sha256'], entry['path']
 entries = {entry['path']: entry for entry in manifest['assets']}
 for entry in entries.values():
-    original = ROOT / 'public' / entry['path'].lstrip('/')
-    assert hashlib.sha256(original.read_bytes()).hexdigest() == entry['sha256'], entry['path']
-    entry['activeInRuntime'] = entry['path'] in active
-for url in active:
+    entry['activeInRuntime'] = entry['path'] in assets.values()
+for role, url in assets.items():
     source = ROOT / 'public' / url.lstrip('/')
     with Image.open(source) as image:
-        entry = entries.setdefault(url, {'id': source.stem, 'path': url, 'role': 'T0_PRESENTATION'})
-        entry.update(width=image.width, height=image.height, mode=image.mode,
-                     sha256=hashlib.sha256(source.read_bytes()).hexdigest(), activeInRuntime=True)
-entries[active[0]]['role'] = 'UNIQUE_HERO_BACKGROUND_NO_REPEAT'
-entries[active[2]].update(role='DRIVERLESS_FANTASY_TIMBER_TRUCK', visibleWheels=4,
-                         driverVisible=False, passengerVisible=False, playerClanHeraldry=False)
-manifest.update(packId='traversal-t0-preview-v3-confirm-before-commit',
-                status='PREVIEW_ONLY', productionGateReady=False,
-                interactionModel='PAUSE_CONFIRM_OR_SKIP_LOCAL_OPTIONALS_CANONICAL_MANDATORY_STAGES',
-                assets=list(entries.values()))
+        entry = entries.setdefault(url, {'id': 'forest-v4-' + role, 'path': url})
+        entry.update(role=role, width=image.width, height=image.height, mode=image.mode,
+                     sha256=sha(source), activeInRuntime=True)
+entries[assets['vehicle']].update(visibleWheels=4, driverVisible=False, passengerVisible=False, playerClanHeraldry=False)
+manifest.update(packId='traversal-t0-preview-v4-forest-road', status='PREVIEW_ONLY', productionGateReady=False,
+                interactionModel='PAUSE_CONFIRM_OR_SKIP_LOCAL_AND_CANONICAL_OPTIONALS_DEFERRED_BRANCH', assets=list(entries.values()))
 path.write_text(json.dumps(manifest, indent=2) + '\n')
-road = Image.open(ROOT / 'public' / active[1].lstrip('/'))
-edges_equal = ImageChops.difference(road.crop((0,0,1,road.height)),
-                                  road.crop((road.width-1,0,road.width,road.height))).getbbox() is None
-assert edges_equal
-report = dict(activeAssets=len(active), preservedOriginalAssets=len(entries)-7,
-              roadEdgePixelsEqual=edges_equal, productionEnabled=False,
-              localOptionalPersistentRewards=False,
-              alphaExtraction=json.loads((pack / 'entities/route-props-v3/extraction-qa.json').read_text()))
-(ROOT / 'tools/traversal/qa/asset-audit.json').write_text(json.dumps(report, indent=2) + '\n')
-print(json.dumps({key:value for key,value in report.items() if key != 'alphaExtraction'}))
+assembly = json.loads((pack / 'forest-v4/assembly.json').read_text())
+for row in assembly:
+    assert row['mirrored'] is False
+    assert sha(pack / 'forest-v4' / (row['name'] + '-source.png')) == row['sourceSha256']
+    assert sha(pack / 'forest-v4' / (row['name'] + '-loop.png')) == row['outputSha256']
+report = dict(activeAssets=len(assets), preservedBaselineAssets=len(baseline['assets']),
+              baselineCommit='04e969eb2273efb9c844c9c78cfd31e2f471be85', assembly=assembly,
+              productionEnabled=False, localOptionalPersistentRewards=False,
+              seamAcceptance='Non-mirrored end/start overlap; visual continuity requires live browser review.')
+(ROOT / 'tools/traversal/qa/forest-v4/asset-audit.json').write_text(json.dumps(report, indent=2) + '\n')
+print(json.dumps(dict(activeAssets=len(assets), preservedBaselineAssets=len(baseline['assets']), productionEnabled=False)))

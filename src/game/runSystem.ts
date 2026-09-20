@@ -2,6 +2,7 @@ import type {
   CampaignNode, GameState, InventoryState, RunGraph, RunLoot, RunNode, RunNodeType, RunState,
 } from './types';
 import { getLionConductTier, type LionConductTier } from './lionNarrative';
+import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
 
 export { getLionConductScore, getLionConductTier } from './lionNarrative';
 export type { LionConductTier } from './lionNarrative';
@@ -614,16 +615,52 @@ export function toCampaignNodes(run: RunState): CampaignNode[] {
   });
 }
 
+export function getAvailableRunEdges(run: RunState): { fromNodeId: string; toNodeId: string }[] {
+  const current = getRunNode(run);
+  const expand = (fromNodeId: string, ids: readonly string[], seen = new Set<string>()): { fromNodeId: string; toNodeId: string }[] => {
+    // Branch selection narrows the braid before following bypassed encounters.
+    const selected = Object.values(run.traversalBranches ?? {}).find((id) => ids.includes(id));
+    return (selected ? [selected] : ids).flatMap((id) => {
+      if (seen.has(id)) return [];
+      const nextSeen = new Set([...seen, id]);
+      return run.bypassedRouteNodeIds?.includes(id)
+        ? expand(id, getRunNode(run, id)?.links ?? [], nextSeen) : [{ fromNodeId, toNodeId: id }];
+    });
+  };
+  return current ? expand(current.id, current.links) : [];
+}
+
 export function getAvailableRunNodes(source: RunState | GameState): RunNode[] {
   const state = 'run' in source ? source : null;
   const run: RunState = state ? state.run : source as RunState;
-  const current = getRunNode(run);
-  return current
-    ? current.links
+  return [...new Set(getAvailableRunEdges(run).map(edge => edge.toNodeId))]
       .map((id) => getRunNode(run, id))
       .filter((node): node is RunNode => Boolean(node))
-      .map((node) => state ? resolveAdaptiveNode(state, node) : node)
-    : [];
+      .map((node) => state ? resolveAdaptiveNode(state, node) : node);
+}
+
+/** Records road choice only. No visit, dialogue, reward, or current-node mutation. */
+export function selectTraversalBranch(run: RunState, legId: string, nodeId: string): boolean {
+  const leg = LION_TRAVERSAL_LEGS.find((candidate) => candidate.id === legId && candidate.id === 'T0');
+  const stage = leg?.stages.find((candidate) => candidate.mode === 'IN_TRAVERSAL_FORK' && candidate.nodeIds.includes(nodeId));
+  if (!stage || run.traversalBranches?.[legId] || !getAvailableRunNodes(run).some((node) => node.id === nodeId)) return false;
+  run.traversalBranches = { ...run.traversalBranches, [legId]: nodeId };
+  if (!run.revealedNodeIds.includes(nodeId)) run.revealedNodeIds.push(nodeId);
+  return true;
+}
+
+/** Canonical opt-out: advance route availability without pretending the event happened. */
+export function bypassTraversalNode(run: RunState, legId: string, nodeId: string): boolean {
+  const leg = LION_TRAVERSAL_LEGS.find((candidate) => candidate.id === legId && candidate.id === 'T0');
+  const stage = leg?.stages.find((candidate) => candidate.nodeIds.includes(nodeId));
+  const optional = stage?.mode === 'OPTIONAL_INTERRUPT'
+    || (stage?.branchEncounterMode === 'OPTIONAL_INTERRUPT' && run.traversalBranches?.[legId] === nodeId);
+  if (!optional || !getAvailableRunNodes(run).some((node) => node.id === nodeId)) return false;
+  run.bypassedRouteNodeIds = [...new Set([...(run.bypassedRouteNodeIds ?? []), nodeId])];
+  for (const node of getAvailableRunNodes(run)) {
+    if (!run.revealedNodeIds.includes(node.id)) run.revealedNodeIds.push(node.id);
+  }
+  return true;
 }
 
 export function enterRunNode(run: RunState, nodeId: string): RunNode | null {
@@ -663,6 +700,17 @@ export function secureRunLoot(state: GameState): RunLoot {
 }
 
 export function failRunToCheckpoint(state: GameState): void {
+  const replayable = new Set<string>();
+  const visit = (id: string) => {
+    if (replayable.has(id)) return;
+    replayable.add(id);
+    getRunNode(state.run, id)?.links.forEach(visit);
+  };
+  getRunNode(state.run, state.run.checkpointNodeId)?.links.forEach(visit);
+  if (state.run.bypassedRouteNodeIds) state.run.bypassedRouteNodeIds = state.run.bypassedRouteNodeIds.filter(id => !replayable.has(id));
+  if (state.run.traversalBranches) state.run.traversalBranches = Object.fromEntries(
+    Object.entries(state.run.traversalBranches).filter(([, id]) => !replayable.has(id)),
+  );
   state.run.status = 'failed';
   state.run.currentNodeId = state.run.checkpointNodeId;
   state.run.temporaryLoot = { gold: 0, inventory: EMPTY_INVENTORY() };

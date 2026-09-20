@@ -1,0 +1,114 @@
+[
+  {
+    "lane": "0",
+    "progress": "0.8",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 65%; --route-progress: 0.8; --far-offset: -576px; --forest-offset: -1584px; --road-offset: -7200px; --foreground-offset: -8784px; --wheel-angle: 200rad; --suspension-y: 0.46853481000165015px; --dust-phase: 0.38461538461538464; --vehicle-exit-x: 0px; --transition-opacity: 0.10107142857138697;",
+    "transition": "fork",
+    "variant": "main"
+  },
+  {
+    "lane": "1",
+    "progress": "0.8",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 81%; --route-progress: 0.8; --far-offset: -576px; --forest-offset: -1584px; --road-offset: -7200px; --foreground-offset: -8784px; --wheel-angle: 200rad; --suspension-y: 0.46853481000165015px; --dust-phase: 0.38461538461538464; --vehicle-exit-x: 0px; --transition-opacity: 0.5878571428572676;",
+    "transition": "fork",
+    "variant": "lion-first-trial-combat"
+  },
+  {
+    "lane": "1",
+    "progress": "0.8008472000000005",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 81%; --route-progress: 0.8008472000000005; --far-offset: -576.6099840000004px; --forest-offset: -1585.6774560000013px; --road-offset: -7207.624800000005px; --foreground-offset: -8793.302256000006px; --wheel-angle: 200.21180000000015rad; --suspension-y: 0.1120623044571299px; --dust-phase: 0.44326769230773116; --vehicle-exit-x: 0px; --transition-opacity: 0;",
+    "transition": null,
+    "variant": "lion-first-trial-combat"
+  },
+  {
+    "lane": "1",
+    "progress": "0.8054192000000006",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 81%; --route-progress: 0.8054192000000006; --far-offset: -579.9018240000004px; --forest-offset: -1594.7300160000011px; --road-offset: -7248.772800000005px; --foreground-offset: -8843.502816000006px; --wheel-angle: 201.35480000000015rad; --suspension-y: -1.2885009435328258px; --dust-phase: 0.7597907692308091; --vehicle-exit-x: 0px; --transition-opacity: 0;",
+    "transition": null,
+    "variant": "lion-first-trial-combat"
+  },
+  {
+    "lane": "1",
+    "progress": "0.8098208000000003",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 81%; --route-progress: 0.8098208000000003; --far-offset: -583.0709760000002px; --forest-offset: -1603.4451840000006px; --road-offset: -7288.387200000003px; --foreground-offset: -8891.832384000003px; --wheel-angle: 202.45520000000008rad; --suspension-y: -0.3048466482054532px; --dust-phase: 0.064516923076945; --vehicle-exit-x: 0px; --transition-opacity: 0;",
+    "transition": null,
+    "variant": "lion-first-trial-combat"
+  },
+  {
+    "lane": "1",
+    "progress": "0.8143940000000001",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 81%; --route-progress: 0.8143940000000001; --far-offset: -586.36368px; --forest-offset: -1612.5001200000002px; --road-offset: -7329.546px; --foreground-offset: -8942.04612px; --wheel-angle: 203.5985rad; --suspension-y: 1.248253128985416px; --dust-phase: 0.38112307692307906; --vehicle-exit-x: 0px; --transition-opacity: 0;",
+    "transition": null,
+    "variant": "lion-first-trial-combat"
+  },
+  {
+    "lane": "1",
+    "progress": "0.8191340000000003",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 81%; --route-progress: 0.8191340000000003; --far-offset: -589.7764800000002px; --forest-offset: -1621.8853200000008px; --road-offset: -7372.206000000002px; --foreground-offset: -8994.091320000001px; --wheel-angle: 204.78350000000006rad; --suspension-y: 0.3516272723264049px; --dust-phase: 0.7092769230769381; --vehicle-exit-x: 0px; --transition-opacity: 0;",
+    "transition": null,
+    "variant": "lion-first-trial-combat"
+  },
+  {
+    "lane": "1",
+    "progress": "0.8238752000000008",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 81%; --route-progress: 0.8238752000000008; --far-offset: -593.1901440000006px; --forest-offset: -1631.2728960000013px; --road-offset: -7414.876800000006px; --foreground-offset: -9046.14969600001px; --wheel-angle: 205.96880000000021rad; --suspension-y: -1.2548614997367267px; --dust-phase: 0.037513846153902144; --vehicle-exit-x: 0px; --transition-opacity: 0;",
+    "transition": null,
+    "variant": "lion-first-trial-combat"
+  },
+  {
+    "lane": "1",
+    "progress": "0.8286164000000005",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 81%; --route-progress: 0.8286164000000005; --far-offset: -596.6038080000004px; --forest-offset: -1640.660472000001px; --road-offset: -7457.547600000004px; --foreground-offset: -9098.208072000005px; --wheel-angle: 207.1541000000001rad; --suspension-y: -0.3275250833009627px; --dust-phase: 0.36575076923080324; --vehicle-exit-x: 0px; --transition-opacity: 0;",
+    "transition": null,
+    "variant": "lion-first-trial-combat"
+  },
+  {
+    "lane": "1",
+    "progress": "0.8333576000000003",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 81%; --route-progress: 0.8333576000000003; --far-offset: -600.0174720000002px; --forest-offset: -1650.0480480000008px; --road-offset: -7500.218400000002px; --foreground-offset: -9150.266448000002px; --wheel-angle: 208.33940000000007rad; --suspension-y: 1.2611522907681132px; --dust-phase: 0.6939876923077114; --vehicle-exit-x: 0px; --transition-opacity: 0;",
+    "transition": null,
+    "variant": "lion-first-trial-combat"
+  },
+  {
+    "lane": "1",
+    "progress": "0.8380988000000007",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 81%; --route-progress: 0.8380988000000007; --far-offset: -603.4311360000005px; --forest-offset: -1659.4356240000013px; --road-offset: -7542.889200000006px; --foreground-offset: -9202.324824000007px; --wheel-angle: 209.52470000000017rad; --suspension-y: 0.3033020667304073px; --dust-phase: 0.022224615384661424; --vehicle-exit-x: 0px; --transition-opacity: 0;",
+    "transition": null,
+    "variant": "lion-first-trial-combat"
+  },
+  {
+    "lane": "1",
+    "progress": "0.8428400000000003",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 81%; --route-progress: 0.8428400000000003; --far-offset: -606.8448000000002px; --forest-offset: -1668.8232000000005px; --road-offset: -7585.560000000002px; --foreground-offset: -9254.383200000002px; --wheel-angle: 210.71000000000006rad; --suspension-y: -1.266977829081017px; --dust-phase: 0.35046153846155553; --vehicle-exit-x: 0px; --transition-opacity: 0;",
+    "transition": null,
+    "variant": "lion-first-trial-combat"
+  },
+  {
+    "lane": "1",
+    "progress": "0.8474108000000004",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 81%; --route-progress: 0.8474108000000004; --far-offset: -610.1357760000003px; --forest-offset: -1677.873384000001px; --road-offset: -7626.697200000003px; --foreground-offset: -9304.570584000005px; --wheel-angle: 211.85270000000008rad; --suspension-y: -0.3505983367234924px; --dust-phase: 0.6669015384615634; --vehicle-exit-x: 0px; --transition-opacity: 0;",
+    "transition": null,
+    "variant": "lion-first-trial-combat"
+  },
+  {
+    "lane": "1",
+    "progress": "0.8519840000000002",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 81%; --route-progress: 0.8519840000000002; --far-offset: -613.4284800000001px; --forest-offset: -1686.9283200000004px; --road-offset: -7667.856000000001px; --foreground-offset: -9354.784320000002px; --wheel-angle: 212.99600000000004rad; --suspension-y: 1.234223225818636px; --dust-phase: 0.9835076923077045; --vehicle-exit-x: 0px; --transition-opacity: 0;",
+    "transition": null,
+    "variant": "lion-first-trial-combat"
+  },
+  {
+    "lane": "1",
+    "progress": "0.8565560000000002",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 81%; --route-progress: 0.8565560000000002; --far-offset: -616.7203200000001px; --forest-offset: -1695.9808800000003px; --road-offset: -7709.004000000001px; --foreground-offset: -9404.984880000002px; --wheel-angle: 214.13900000000004rad; --suspension-y: 0.46556964704465703px; --dust-phase: 0.3000307692307825; --vehicle-exit-x: 0px; --transition-opacity: 0;",
+    "transition": null,
+    "variant": "lion-first-trial-combat"
+  },
+  {
+    "lane": "1",
+    "progress": "0.8611268000000005",
+    "style": "--traversal-far-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/far.png\"); --traversal-forest-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png\"); --traversal-foreground-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png\"); --traversal-road-image: url(\"/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png\"); --traversal-lane-y: 81%; --route-progress: 0.8611268000000005; --far-offset: -620.0112960000004px; --forest-offset: -1705.0310640000012px; --road-offset: -7750.1412000000055px; --foreground-offset: -9455.172264000006px; --wheel-angle: 215.28170000000011rad; --suspension-y: -1.19045639810927px; --dust-phase: 0.6164707692308045; --vehicle-exit-x: 0px; --transition-opacity: 0;",
+    "transition": null,
+    "variant": "lion-first-trial-combat"
+  }
+]

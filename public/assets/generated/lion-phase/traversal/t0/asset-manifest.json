@@ -1,5 +1,5 @@
 {
-  "packId": "traversal-t0-preview-v3-confirm-before-commit",
+  "packId": "traversal-t0-preview-v4-forest-road",
   "status": "PREVIEW_ONLY",
   "productionGateReady": false,
   "laneModel": "TWO_LANES",
@@ -13,7 +13,7 @@
       "height": 941,
       "mode": "RGB",
       "sha256": "e3fe8d905bcd460b42c43a1437f1c7cc29ae6d8d683984bc17a000a228a5e203",
-      "activeInRuntime": true
+      "activeInRuntime": false
     },
     {
       "id": "t0-far-panorama-loop",
@@ -47,7 +47,7 @@
       "height": 941,
       "mode": "RGBA",
       "sha256": "a77ba8bf7bbf40098516228f739b49936a9b3e21e003dd4ad0757ce2c6caa785",
-      "activeInRuntime": true
+      "activeInRuntime": false
     },
     {
       "id": "t0-wooden-4x4",
@@ -66,18 +66,18 @@
     {
       "id": "t0-merchant-caravan",
       "path": "/assets/generated/lion-phase/traversal/t0/entities/merchant-caravan/clean.png",
-      "role": "OPTIONAL_NPC_ROUTE_BACKDROP",
+      "role": "merchantCaravan",
       "charactersBakedIn": false,
       "width": 1024,
       "height": 1024,
       "mode": "RGBA",
       "sha256": "3fa3837014d965d1b8c4fc1585c7196275f04203fbead961ce634c81e28be52a",
-      "activeInRuntime": true
+      "activeInRuntime": false
     },
     {
       "id": "fantasy-truck-v3",
       "path": "/assets/generated/lion-phase/traversal/t0/vehicle/wooden-4x4/fantasy-truck-v3.png",
-      "role": "DRIVERLESS_FANTASY_TIMBER_TRUCK",
+      "role": "vehicle",
       "width": 1254,
       "height": 1254,
       "mode": "RGBA",
@@ -91,7 +91,7 @@
     {
       "id": "chest",
       "path": "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/chest.png",
-      "role": "T0_PRESENTATION",
+      "role": "chest",
       "width": 448,
       "height": 512,
       "mode": "RGBA",
@@ -101,7 +101,7 @@
     {
       "id": "abandoned-cart",
       "path": "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/abandoned-cart.png",
-      "role": "T0_PRESENTATION",
+      "role": "abandonedCart",
       "width": 576,
       "height": 512,
       "mode": "RGBA",
@@ -111,7 +111,7 @@
     {
       "id": "debris",
       "path": "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/debris.png",
-      "role": "T0_PRESENTATION",
+      "role": "debris",
       "width": 512,
       "height": 512,
       "mode": "RGBA",
@@ -121,7 +121,7 @@
     {
       "id": "waystone",
       "path": "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/waystone.png",
-      "role": "T0_PRESENTATION",
+      "role": "waystone",
       "width": 448,
       "height": 512,
       "mode": "RGBA",
@@ -131,23 +131,123 @@
     {
       "id": "barricade",
       "path": "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/barricade.png",
-      "role": "T0_PRESENTATION",
+      "role": "barricade",
       "width": 576,
       "height": 512,
       "mode": "RGBA",
       "sha256": "0af4c6c8aab606150c08581327f7c341dc9281eb4470feb651941d6c3e2762e3",
-      "activeInRuntime": true
+      "activeInRuntime": false
     },
     {
       "id": "foreground",
       "path": "/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/foreground.png",
-      "role": "T0_PRESENTATION",
+      "role": "foreground",
       "width": 512,
       "height": 512,
       "mode": "RGBA",
       "sha256": "d3f9789094a91ae6a93de9903cfaa6ec83d528260954bcb8b83c7572f748a03c",
       "activeInRuntime": true
+    },
+    {
+      "id": "forest-v4-farBackground",
+      "path": "/assets/generated/lion-phase/traversal/t0/forest-v4/far.png",
+      "role": "farBackground",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB",
+      "sha256": "15f926c201b5c85f0de31ed7911d8a58d3c381c916066bc80057b52172b3abbe",
+      "activeInRuntime": true
+    },
+    {
+      "id": "forest-v4-forest",
+      "path": "/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png",
+      "role": "forest",
+      "width": 1932,
+      "height": 738,
+      "mode": "RGBA",
+      "sha256": "25a68186044bc4a93d6e1fe735c8ffa2a3d6cbf765009fff1fc3f5b4e6c7776d",
+      "activeInRuntime": true
+    },
+    {
+      "id": "forest-v4-forkSign",
+      "path": "/assets/generated/lion-phase/traversal/t0/forest-v4/fork-sign.png",
+      "role": "forkSign",
+      "width": 1223,
+      "height": 1286,
+      "mode": "RGBA",
+      "sha256": "f8d519acac367f5c9faf9f17c6f64c504babb569a109af4913e032445ad41713",
+      "activeInRuntime": true
+    },
+    {
+      "id": "forest-v4-foregroundLayer",
+      "path": "/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png",
+      "role": "foregroundLayer",
+      "width": 1992,
+      "height": 724,
+      "mode": "RGBA",
+      "sha256": "8aee23da28c64f9334cb21ec3c9dc94702d54972be7bb22cb313ff86a0e4bfd6",
+      "activeInRuntime": true
+    },
+    {
+      "id": "forest-v4-road",
+      "path": "/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png",
+      "role": "road",
+      "width": 1376,
+      "height": 1024,
+      "mode": "RGBA",
+      "sha256": "dd26df529474a7ee7c2791476fe6c3e4a2552287bc213f360461aaf4191d680b",
+      "activeInRuntime": true
+    },
+    {
+      "id": "forest-v4-merchantCaravan",
+      "path": "/assets/generated/lion-phase/traversal/t0/forest-v4/merchant-camp.png",
+      "role": "merchantCaravan",
+      "width": 2172,
+      "height": 724,
+      "mode": "RGBA",
+      "sha256": "b4eabe1c20c058827ee29e4c6dd94da0eba49fbfb64f77286943368a8c812b11",
+      "activeInRuntime": true
+    },
+    {
+      "id": "forest-v4-restingPlace",
+      "path": "/assets/generated/lion-phase/traversal/t0/forest-v4/resting-place.png",
+      "role": "restingPlace",
+      "width": 1860,
+      "height": 846,
+      "mode": "RGBA",
+      "sha256": "3d6272014a67afcc44b58c006bdc11817c989f4f8deb96cb5e6f0beab633eeee",
+      "activeInRuntime": true
+    },
+    {
+      "id": "forest-v4-ruinedOutpost",
+      "path": "/assets/generated/lion-phase/traversal/t0/forest-v4/ruined-outpost.png",
+      "role": "ruinedOutpost",
+      "width": 1983,
+      "height": 793,
+      "mode": "RGBA",
+      "sha256": "01d7d3fe82c21fdce235a75da0faff2c09c6478ecba583f24806b3d6afc41a7f",
+      "activeInRuntime": true
+    },
+    {
+      "id": "forest-v4-crossroadsGround",
+      "path": "/assets/generated/lion-phase/traversal/t0/forest-v4/crossroads-ground.png",
+      "role": "crossroadsGround",
+      "width": 2098,
+      "height": 749,
+      "mode": "RGBA",
+      "sha256": "0d2dd4974e518ed551d43150d1a7b2283794c8b94e825c4a1f850358f7da910b",
+      "activeInRuntime": true
+    },
+    {
+      "id": "forest-v4-barricade",
+      "path": "/assets/generated/lion-phase/traversal/t0/forest-v4/woodland-blockade.png",
+      "role": "barricade",
+      "width": 2172,
+      "height": 724,
+      "mode": "RGBA",
+      "sha256": "2ac5989fe1521083a92e28237cfbed3c2d7ef9788023f24b4bc94175fbd3eff0",
+      "activeInRuntime": true
     }
   ],
-  "interactionModel": "PAUSE_CONFIRM_OR_SKIP_LOCAL_OPTIONALS_CANONICAL_MANDATORY_STAGES"
+  "interactionModel": "PAUSE_CONFIRM_OR_SKIP_LOCAL_AND_CANONICAL_OPTIONALS_DEFERRED_BRANCH"
 }

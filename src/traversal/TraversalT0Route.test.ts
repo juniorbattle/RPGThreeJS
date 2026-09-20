@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
 import { createInitialState } from '../game/store';
 import { resolveCharacterAsset } from '../render/CharacterVisualRegistry';
+import { beatPassedProgress } from './TraversalRoadSpace';
 import {
   auditTraversalT0Route,
   resolveTraversalBeatCrossing,
@@ -20,7 +21,7 @@ describe('TraversalT0Route', () => {
       state.run.graph.nodes,
       state.clan.members.map((member) => member.definitionId),
     );
-    const campaignBeats = route.beats.filter((beat) => beat.campaignNodeIds.length > 0);
+    const campaignBeats = route.beats.filter((beat) => beat.campaignNodeIds.length > 0 && !beat.branchNodeId);
     expect(campaignBeats.map((beat) => beat.campaignNodeIds))
       .toEqual(t0().stages.map((stage) => stage.nodeIds));
     expect(route.originNodeId).toBe(t0().originNodeId);
@@ -54,7 +55,7 @@ describe('TraversalT0Route', () => {
     expect(enemy?.mirrorX).toBe(true);
     expect(merchant?.characterId).toBe('wounded_merchant');
     expect(merchant?.visualAsset).toBe(resolveCharacterAsset('wounded_merchant', 'full'));
-    expect(merchant?.backdropAsset).toContain('/traversal/t0/entities/merchant-caravan/');
+    expect(merchant?.backdropAsset).toContain('/traversal/t0/forest-v4/merchant-camp.png');
   });
 
   it('triggers optional beats only on their lane and mandatory beats from either lane', () => {
@@ -63,7 +64,8 @@ describe('TraversalT0Route', () => {
     const merchant = route.beats.find((beat) => beat.type === 'npc')!;
     const mandatory = route.beats.find((beat) => beat.interactionPolicy === 'MANDATORY_CONFIRM')!;
     expect(resolveTraversalBeatCrossing(merchant, 0, merchant.progress01, 0)).toBe('TRIGGERED');
-    expect(resolveTraversalBeatCrossing(merchant, 0, merchant.progress01, 1)).toBe('BYPASSED');
+    expect(resolveTraversalBeatCrossing(merchant, 0, merchant.progress01, 1)).toBe('NONE');
+    expect(resolveTraversalBeatCrossing(merchant, merchant.progress01, beatPassedProgress(merchant.progress01), 1)).toBe('BYPASSED');
     expect(resolveTraversalBeatCrossing(mandatory, 0, mandatory.progress01, 0)).toBe('TRIGGERED');
     expect(resolveTraversalBeatCrossing(mandatory, 0, mandatory.progress01, 1)).toBe('TRIGGERED');
   });

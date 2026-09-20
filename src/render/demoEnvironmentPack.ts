@@ -114,12 +114,13 @@ export function demoEnvironmentUrlForContext(
 export function demoTravelEnvironment(
   currentNodeId: string,
   destinationNodeIds: readonly string[],
+  edgeOrigins: Readonly<Record<string, string>> = {},
 ): DemoEnvironmentPlate {
   if (destinationNodeIds.length === 0) {
     return demoEnvironmentPlateForContext(`node:${currentNodeId}`);
   }
   const plates = destinationNodeIds.map((destinationNodeId) =>
-    demoEnvironmentPlateForContext(`edge:${currentNodeId}>${destinationNodeId}`),
+    demoEnvironmentPlateForContext(`edge:${edgeOrigins[destinationNodeId] ?? currentNodeId}>${destinationNodeId}`),
   );
   const first = plates[0]!;
   if (plates.some((plate) => plate.publicUrl !== first.publicUrl)) {

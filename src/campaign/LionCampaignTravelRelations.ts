@@ -5,7 +5,7 @@ import {
 
 export type LionTraversalLegId = 'T0' | 'T1' | 'T2' | 'T3' | 'T4';
 
-export type LionTraversalStageMode = 'MANDATORY_INTERRUPT' | 'IN_TRAVERSAL_FORK';
+export type LionTraversalStageMode = 'MANDATORY_INTERRUPT' | 'OPTIONAL_INTERRUPT' | 'IN_TRAVERSAL_FORK';
 
 export interface LionTraversalForkPresentation {
   /** Fork choice is rendered over the live Traversal world; never TravelView/Journey. */
@@ -22,11 +22,13 @@ export interface LionTraversalForkPresentation {
 
 export interface LionTraversalStage {
   /**
-   * One ID means a mandatory route interruption.
+   * One ID is a route encounter; mode determines whether participation is required.
    * Multiple IDs mean RunSystem owns the branch choice among these alternatives.
    */
   readonly nodeIds: readonly string[];
   readonly mode: LionTraversalStageMode;
+  /** Participation of the encounter reached AFTER choosing a road variant. */
+  readonly branchEncounterMode?: 'OPTIONAL_INTERRUPT' | 'MANDATORY_INTERRUPT';
   readonly forkPresentation?: LionTraversalForkPresentation;
 }
 
@@ -60,11 +62,12 @@ const LION_TRAVERSAL_LEG_DEFINITIONS: readonly LionTraversalLeg[] = [
     destinationNodeId: 'lion-first-refuge',
     stages: [
       { nodeIds: ['lion-opening-ambush'], mode: 'MANDATORY_INTERRUPT' },
-      { nodeIds: ['lion-nomad-crossroads'], mode: 'MANDATORY_INTERRUPT' },
-      { nodeIds: ['lion-refugees'], mode: 'MANDATORY_INTERRUPT' },
+      { nodeIds: ['lion-nomad-crossroads'], mode: 'OPTIONAL_INTERRUPT' },
+      { nodeIds: ['lion-refugees'], mode: 'OPTIONAL_INTERRUPT' },
       {
         nodeIds: ['lion-first-trial-event', 'lion-first-trial-combat'],
         mode: 'IN_TRAVERSAL_FORK',
+        branchEncounterMode: 'OPTIONAL_INTERRUPT',
         forkPresentation: {
           surface: 'TRAVERSAL_OVERLAY',
           keepTraversalMounted: true,

@@ -16,6 +16,6 @@ describe('TraversalT0Assets', () => {
     }
     expect(TRAVERSAL_T0_ASSETS.vehicle).toContain('/vehicle/wooden-4x4/');
     expect(TRAVERSAL_T0_ASSETS.vehicle).not.toContain('/wagon/');
-    expect(TRAVERSAL_T0_ASSETS.merchantCaravan).toContain('/entities/merchant-caravan/');
+    expect(TRAVERSAL_T0_ASSETS.merchantCaravan).toContain('/forest-v4/merchant-camp.png');
   });
 });
