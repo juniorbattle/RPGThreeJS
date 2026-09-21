@@ -55,7 +55,7 @@ describe('TraversalT0Route', () => {
     expect(enemy?.mirrorX).toBe(true);
     expect(merchant?.characterId).toBe('wounded_merchant');
     expect(merchant?.visualAsset).toBe(resolveCharacterAsset('wounded_merchant', 'full'));
-    expect(merchant?.backdropAsset).toContain('/traversal/t0/forest-v4/merchant-camp.png');
+    expect(merchant?.locationId).toBe('merchant-halt');
   });
 
   it('triggers optional beats only on their lane and mandatory beats from either lane', () => {

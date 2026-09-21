@@ -1,0 +1,17 @@
+{
+  "first": {
+    "progress": 0.0031991999999999997,
+    "sectionX": 538.8565673828125,
+    "npcX": 911.53125,
+    "roadTransform": "translateX(-18.8934px)"
+  },
+  "second": {
+    "progress": 0.029799599999999964,
+    "sectionX": 381.7633056640625,
+    "npcX": 754.4375,
+    "roadTransform": "translateX(-175.987px)"
+  },
+  "sameCameraDeltaError": 0.00048828125,
+  "locationRetainedAfterConsumption": true,
+  "errors": []
+}

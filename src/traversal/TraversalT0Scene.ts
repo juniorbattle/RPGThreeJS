@@ -4,6 +4,8 @@ import { bypassTraversalNode, selectTraversalBranch } from '../game/runSystem';
 import { ROAD_SPACE, beatWorldX, beatPassedProgress, roadCameraX, roadWorldToScreen } from './TraversalRoadSpace';
 import { TRAVERSAL_T0_ASSETS } from './TraversalT0Assets';
 import { createTraversalSprite } from './TraversalSprite';
+import { TraversalWorldRenderer } from './TraversalWorldRenderer';
+import { traversalLocation } from './TraversalT0World';
 import { resolveCharacterVisualProfile, resolveCharacterAsset } from '../render/CharacterVisualRegistry';
 import {
   resolveTraversalBeatCrossing,
@@ -73,6 +75,7 @@ export class TraversalT0Scene {
 
   private readonly controller: TraversalRunController;
   private readonly entityElements = new Map<string, HTMLElement>();
+  private readonly worldRenderer = new TraversalWorldRenderer();
   private readonly stageBeats: readonly TraversalRouteBeat[];
   private frameId: number | null = null;
   private previousFrameMs = 0;
@@ -83,7 +86,6 @@ export class TraversalT0Scene {
   private assistedUntil = 0;
   private transition: { kind: string; elapsed: number; midpoint?: () => void; reveal: boolean } | null = null;
   private presentedBranch = 'main';
-  private readonly scenery: { element: HTMLElement; progress: number; branch?: string }[] = [];
 
   constructor(private readonly options: TraversalT0SceneOptions) {
     if (options.leg.id !== 'T0') throw new Error('TraversalT0Scene only accepts the canonical T0 leg.');
@@ -201,10 +203,6 @@ export class TraversalT0Scene {
   private build(): void {
     this.element.innerHTML = `
       <div class="traversal-world" aria-label="Route jouable unique à deux voies">
-        <div class="traversal-world__far" aria-hidden="true"></div>
-        <div class="traversal-world__forest" aria-hidden="true"></div>
-        <div class="traversal-world__haze" aria-hidden="true"></div>
-        <div class="traversal-world__midground" aria-hidden="true"></div>
         <div class="traversal-world__road" aria-hidden="true"></div>
         <div class="traversal-world__lane-glow" aria-hidden="true"></div>
         <div class="traversal-world__entities"></div>
@@ -238,10 +236,8 @@ export class TraversalT0Scene {
       </nav>
       <div class="traversal-toast" role="status" aria-live="polite"></div>
     `;
-    this.element.style.setProperty('--traversal-far-image', `url("${TRAVERSAL_T0_ASSETS.farBackground}")`);
-    this.element.style.setProperty('--traversal-forest-image', `url("${TRAVERSAL_T0_ASSETS.forest}")`);
+    this.element.querySelector('.traversal-world__road')!.append(this.worldRenderer.element);
     this.element.style.setProperty('--traversal-foreground-image', `url("${TRAVERSAL_T0_ASSETS.foregroundLayer}")`);
-    this.element.style.setProperty('--traversal-road-image', `url("${TRAVERSAL_T0_ASSETS.road}")`);
     const vehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
     const vehicleArt = createTraversalSprite(TRAVERSAL_T0_ASSETS.vehicle, 'traversal-vehicle__art');
     vehicle.style.aspectRatio = vehicleArt.style.aspectRatio;
@@ -266,16 +262,6 @@ export class TraversalT0Scene {
       wheel.append(rotor);
     }
     const entities = this.element.querySelector<HTMLElement>('.traversal-world__entities')!;
-    for (const dressing of [
-      { progress: .49, asset: TRAVERSAL_T0_ASSETS.ruinedOutpost, height: .95 },
-      { progress: .91, asset: TRAVERSAL_T0_ASSETS.barricade, height: .8, branch: 'lion-first-trial-combat' },
-    ]) {
-      const prop = createTraversalSprite(dressing.asset, 'traversal-roadside-place');
-      prop.style.height = `calc(var(--vehicle-height) * ${dressing.height})`;
-      prop.setAttribute('aria-hidden', 'true');
-      entities.append(prop);
-      this.scenery.push({ element: prop, progress: dressing.progress, branch: dressing.branch });
-    }
     for (const beat of this.route.beats) this.buildEntity(entities, beat);
   }
 
@@ -287,9 +273,9 @@ export class TraversalT0Scene {
     entity.dataset.placement = beat.placement.toLowerCase();
     entity.dataset.interactionPolicy = beat.interactionPolicy;
     if (beat.formation) entity.dataset.formation = 'true';
-    if (beat.backdropAsset === TRAVERSAL_T0_ASSETS.restingPlace) entity.dataset.microScene = 'rest';
-    if (beat.backdropAsset === TRAVERSAL_T0_ASSETS.merchantCaravan) entity.dataset.microScene = 'merchant';
-    if (entity.dataset.microScene) entity.dataset.roadside = 'true';
+    const location = beat.locationId ? traversalLocation(beat.locationId) : undefined;
+    if (location) entity.dataset.location = location.id;
+    if (location?.kind === 'ENVIRONMENT' && beat.lane === 0) entity.dataset.roadside = 'true';
     if (beat.lane !== null) entity.dataset.routeLane = String(beat.lane);
     entity.setAttribute('aria-label', `${markerLabel(beat)} : ${beat.label}, ${beatPlacementLabel(beat)}`);
     const family = resolveCharacterVisualProfile(beat.characterId ?? beat.visualAsset)?.scaleFamily;
@@ -300,15 +286,10 @@ export class TraversalT0Scene {
     marker.dataset.glyph = markerGlyph(beat);
     const body = document.createElement('span');
     body.className = 'traversal-entity__body';
-    if (entity.dataset.microScene || beat.type === 'fork' || beat.placement === 'CENTERED') {
-      body.append(createTraversalSprite(TRAVERSAL_T0_ASSETS.crossroadsGround, 'traversal-grounding'));
-      body.append(createTraversalSprite(TRAVERSAL_T0_ASSETS.foreground, 'traversal-verge traversal-verge--left'));
-      body.append(createTraversalSprite(TRAVERSAL_T0_ASSETS.foreground, 'traversal-verge traversal-verge--right'));
-    }
-    if (beat.backdropAsset) {
-      body.append(createTraversalSprite(beat.backdropAsset, 'traversal-entity__backdrop'));
-    }
-    if (beat.visualAsset) {
+    if (beat.type === 'fork') {
+      // Its sign belongs to the persistent junction; only the interaction marker is a beat.
+      body.classList.add('traversal-entity__body--location');
+    } else if (beat.visualAsset) {
       const image = createTraversalSprite(beat.visualAsset, 'traversal-entity__subject', beat.mirrorX);
       image.dataset.facing = 'left';
       image.classList.toggle('is-mirrored', Boolean(beat.mirrorX));
@@ -329,15 +310,6 @@ export class TraversalT0Scene {
     const label = document.createElement('strong');
     label.textContent = beat.label;
     entity.append(marker, body, label);
-    if (beat.placement === 'CENTERED' && beat.type !== 'fork') {
-      const blockade = document.createElement('span');
-      blockade.className = 'traversal-entity__roadblock';
-      blockade.setAttribute('aria-hidden', 'true');
-      blockade.append(createTraversalSprite(TRAVERSAL_T0_ASSETS.abandonedCart, 'traversal-blocking-cart'));
-      blockade.append(createTraversalSprite(TRAVERSAL_T0_ASSETS.debris, 'traversal-blocking-debris'));
-      blockade.append(createTraversalSprite(TRAVERSAL_T0_ASSETS.barricade, 'traversal-barrier traversal-barrier--upper'));
-      entity.prepend(blockade);
-    }
     entities.append(entity);
     this.entityElements.set(beat.id, entity);
   }
@@ -564,11 +536,12 @@ export class TraversalT0Scene {
     const exit = session.phase === 'ARRIVING' ? this.arrivalElapsed : 0;
     const exitDistance = exit * 160 + exit * exit * 150;
     const camera = roadCameraX(session.routeProgress01) + exitDistance * .25;
-    const screen = (worldX: number, factor = 1) => roadWorldToScreen(worldX, camera * factor, width);
-    this.element.style.setProperty('--far-offset', `${screen(0, ROAD_SPACE.farFactor)}px`);
-    this.element.style.setProperty('--forest-offset', `${screen(0, ROAD_SPACE.forestFactor)}px`);
+    const resolvedLocations = new Set(this.stageBeats.slice(0, session.stageIndex)
+      .flatMap(beat => beat.locationId ? [beat.locationId] : []));
+    this.worldRenderer.update(camera, width, this.presentedBranch, resolvedLocations);
+    const screen = (worldX: number) => roadWorldToScreen(worldX, camera, width);
     this.element.style.setProperty('--road-offset', `${screen(0)}px`);
-    this.element.style.setProperty('--foreground-offset', `${screen(0, ROAD_SPACE.foregroundFactor)}px`);
+    this.element.style.setProperty('--foreground-offset', `${screen(0)}px`);
     const drivenDistance = camera + exitDistance;
     this.element.style.setProperty('--wheel-angle', `${drivenDistance / ROAD_SPACE.wheelRadius}rad`);
     this.element.style.setProperty('--suspension-y', `${Math.sin(drivenDistance / 27) * 1.3}px`);
@@ -576,12 +549,6 @@ export class TraversalT0Scene {
     this.element.style.setProperty('--vehicle-exit-x', `${exitDistance * width / ROAD_SPACE.referenceWidth}px`);
     this.element.dataset.routeVariant = this.presentedBranch;
     this.element.dataset.assistedBypass = String(this.assistedUntil > session.routeProgress01);
-    for (const prop of this.scenery) {
-      const x = screen(beatWorldX(prop.progress));
-      prop.element.style.left = `${x}px`;
-      prop.element.hidden = x < -width || x > width * 1.3
-        || Boolean(prop.branch && prop.branch !== this.options.getState().run.traversalBranches?.T0);
-    }
     this.route.beats.forEach((beat) => {
       const entity = this.entityElements.get(beat.id);
       if (!entity) return;

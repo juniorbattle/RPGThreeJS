@@ -1,18 +1,8 @@
 export const TRAVERSAL_T0_ASSETS = Object.freeze({
-  farBackground: '/assets/generated/lion-phase/traversal/t0/forest-v4/far.png',
-  forest: '/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png',
   forkSign: '/assets/generated/lion-phase/traversal/t0/forest-v4/fork-sign.png',
   foregroundLayer: '/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png',
-  road: '/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png',
   vehicle: '/assets/generated/lion-phase/traversal/t0/vehicle/wooden-4x4/fantasy-truck-v3.png',
-  merchantCaravan: '/assets/generated/lion-phase/traversal/t0/forest-v4/merchant-camp.png',
-  restingPlace: '/assets/generated/lion-phase/traversal/t0/forest-v4/resting-place.png',
-  ruinedOutpost: '/assets/generated/lion-phase/traversal/t0/forest-v4/ruined-outpost.png',
-  crossroadsGround: '/assets/generated/lion-phase/traversal/t0/forest-v4/crossroads-ground.png',
   chest: '/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/chest.png',
   abandonedCart: '/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/abandoned-cart.png',
-  debris: '/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/debris.png',
   waystone: '/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/waystone.png',
-  barricade: '/assets/generated/lion-phase/traversal/t0/forest-v4/woodland-blockade.png',
-  foreground: '/assets/generated/lion-phase/traversal/t0/entities/route-props-v3/foreground.png',
 });

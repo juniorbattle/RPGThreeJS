@@ -1,0 +1,90 @@
+{
+  "generator": "built-in image_gen",
+  "postprocessing": "none; byte-identical copies",
+  "assets": [
+    {
+      "file": "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "source": "C:\\Users\\miche\\.codex\\generated_images\\01a0c0ff-2330-7eb0-be6a-a836c7e5feb5\\exec-33b20468-8dee-4076-a864-78e3acb1e9ee.png",
+      "sha256": "1b64195bc4cb92d5e8cd56c42a68fc85b250fe7cd64b1af7a4b4603ea8f13ccf",
+      "sourceIdentical": true,
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "bytes": 3615142
+    },
+    {
+      "file": "public/assets/generated/lion-phase/traversal/t0/world-v1/merchant-halt.png",
+      "source": "C:\\Users\\miche\\.codex\\generated_images\\01a0c0ff-2330-7eb0-be6a-a836c7e5feb5\\exec-06328d2a-3ae9-458c-80bc-24dab76d4534.png",
+      "sha256": "9816fa6456cac9a466cc9c756d23dd6635b1292d4138c1b3433681faf2769e12",
+      "sourceIdentical": true,
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "bytes": 3383058
+    },
+    {
+      "file": "public/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png",
+      "source": "C:\\Users\\miche\\.codex\\generated_images\\01a0c0ff-2330-7eb0-be6a-a836c7e5feb5\\exec-6cdabca7-be25-499e-93e5-d77de872d2a2.png",
+      "sha256": "d9445d596edf6063a4e46f57d1e90700d1f25904c7c0f353675eb9bf69bcbe58",
+      "sourceIdentical": true,
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "bytes": 3511807
+    },
+    {
+      "file": "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
+      "source": "C:\\Users\\miche\\.codex\\generated_images\\01a0c0ff-2330-7eb0-be6a-a836c7e5feb5\\exec-b340ac52-f1f3-4509-bbb3-f5327350ff6f.png",
+      "sha256": "82a708b225d0bd7c28f2b418329e6a999ebd9921dadfa5caf33ea64de9068876",
+      "sourceIdentical": true,
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "bytes": 3386487
+    },
+    {
+      "file": "public/assets/generated/lion-phase/traversal/t0/world-v1/resting-clearing.png",
+      "source": "C:\\Users\\miche\\.codex\\generated_images\\01a0c0ff-2330-7eb0-be6a-a836c7e5feb5\\exec-ced1d11c-e3d2-47f7-9937-2a3889ab49c2.png",
+      "sha256": "bbd05d66b2ea36409f75c6bbbf3336542b6d67df7f8f9c495c15b9dc76bdcb17",
+      "sourceIdentical": true,
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "bytes": 3385912
+    },
+    {
+      "file": "public/assets/generated/lion-phase/traversal/t0/world-v1/ambush-cleared.png",
+      "source": "C:\\Users\\miche\\.codex\\generated_images\\01a0c0ff-2330-7eb0-be6a-a836c7e5feb5\\exec-bf723676-9fa6-4254-aeaa-b873fa5f36cd.png",
+      "sha256": "473188f0f500323606b58f593ed5eb244cd9caada4f2855b7037f4a464f93c41",
+      "sourceIdentical": true,
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "bytes": 3352545
+    },
+    {
+      "file": "public/assets/generated/lion-phase/traversal/t0/world-v1/ruined-outpost.png",
+      "source": "C:\\Users\\miche\\.codex\\generated_images\\01a0c0ff-2330-7eb0-be6a-a836c7e5feb5\\exec-f75ef488-8d14-493b-8f6e-a0f567dd0d54.png",
+      "sha256": "a25162191ee1de2c406bdc62600e22f311eb1994a0ca2ad22c3e0fb83f68cb88",
+      "sourceIdentical": true,
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "bytes": 3422466
+    }
+  ]
+}

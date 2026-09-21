@@ -1,0 +1,183 @@
+{
+  "returned": true,
+  "captures": [
+    "merchant-route",
+    "ambush-route",
+    "ambush-cleared-runtime",
+    "simple-0.3",
+    "rest-gate",
+    "simple-0.75",
+    "fork-gate",
+    "fork-choice",
+    "branch-lion-first-trial-combat"
+  ],
+  "states": [
+    {
+      "phase": "RUNNING",
+      "progress": 0.0006000000000000001,
+      "variant": "main",
+      "title": "En route"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.09,
+      "variant": "main",
+      "title": "Marchand itinérant"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.0927996,
+      "variant": "main",
+      "title": "Marchand itinérant"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.2,
+      "variant": "main",
+      "title": "Piste des bêtes"
+    },
+    {
+      "phase": "NODE_HANDOFF",
+      "progress": 0.2,
+      "transition": "event",
+      "variant": "main",
+      "title": "Piste des bêtes"
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "progress": 0.2,
+      "transition": "event",
+      "variant": "main",
+      "title": "Piste des bêtes"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.2,
+      "transition": "return",
+      "variant": "main",
+      "title": "Piste des bêtes"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.3,
+      "variant": "main",
+      "title": "Loups des sous-bois"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.3024,
+      "variant": "main",
+      "title": "Loups des sous-bois"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.6,
+      "variant": "main",
+      "title": "Route des réfugiés"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.6025992000000002,
+      "variant": "main",
+      "title": "Route des réfugiés"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.75,
+      "variant": "main",
+      "title": "Garde du Lion"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.7526004000000002,
+      "variant": "main",
+      "title": "Garde du Lion"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.8,
+      "variant": "main",
+      "title": "Rencontre sur la route · Piste contestée"
+    },
+    {
+      "phase": "FORK_OVERLAY",
+      "progress": 0.8,
+      "variant": "main",
+      "title": "Rencontre sur la route · Piste contestée"
+    },
+    {
+      "phase": "fork-fade",
+      "progress": 0.8,
+      "variant": "main",
+      "opacity": "0.05964285714284674",
+      "lane": "0"
+    },
+    {
+      "phase": "fork-fade",
+      "progress": 0.8,
+      "variant": "main",
+      "opacity": "0.29785714285712206",
+      "lane": "0"
+    },
+    {
+      "phase": "fork-fade",
+      "progress": 0.8,
+      "variant": "main",
+      "opacity": "0.5949999999999688",
+      "lane": "0"
+    },
+    {
+      "phase": "fork-fade",
+      "progress": 0.8,
+      "variant": "main",
+      "opacity": "0.8928571428571428",
+      "lane": "0"
+    },
+    {
+      "phase": "fork-fade",
+      "progress": 0.8,
+      "variant": "lion-first-trial-combat",
+      "opacity": "0.8692857142857453",
+      "lane": "1"
+    },
+    {
+      "phase": "fork-fade",
+      "progress": 0.8,
+      "variant": "lion-first-trial-combat",
+      "opacity": "0.5714285714285712",
+      "lane": "1"
+    },
+    {
+      "phase": "fork-fade",
+      "progress": 0.8,
+      "variant": "lion-first-trial-combat",
+      "opacity": "0.2735714285714488",
+      "lane": "1"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.8023999999999999,
+      "variant": "lion-first-trial-combat",
+      "title": "Rencontre sur la route · Piste contestée"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.91,
+      "variant": "lion-first-trial-combat",
+      "title": "Patrouille Serpent"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.9124000000000002,
+      "variant": "lion-first-trial-combat",
+      "title": "Patrouille Serpent"
+    },
+    {
+      "phase": "ARRIVING",
+      "progress": 1,
+      "variant": "lion-first-trial-combat",
+      "title": "Patrouille Serpent"
+    }
+  ],
+  "errors": []
+}

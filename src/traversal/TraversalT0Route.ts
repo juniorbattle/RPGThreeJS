@@ -40,7 +40,8 @@ export interface TraversalRouteBeat {
   readonly campaignNodeIds: readonly string[];
   readonly characterId?: string;
   readonly visualAsset?: string;
-  readonly backdropAsset?: string;
+  /** References independent presentation geography, never owns its rendering. */
+  readonly locationId?: string;
   readonly mirrorX?: boolean;
   /** Conditional encounter on a road selected by RunSystem, not a second branch authority. */
   readonly branchNodeId?: string;
@@ -79,7 +80,7 @@ const AMBIENT_T0_BEATS: readonly TraversalRouteBeat[] = Object.freeze([
     campaignNodeIds: Object.freeze([]),
     characterId: 'wounded_merchant',
     visualAsset: resolveCharacterAsset('wounded_merchant', 'full'),
-    backdropAsset: TRAVERSAL_T0_ASSETS.merchantCaravan,
+    locationId: 'merchant-halt',
     mirrorX: false,
   }),
   Object.freeze({
@@ -118,7 +119,6 @@ const AMBIENT_T0_BEATS: readonly TraversalRouteBeat[] = Object.freeze([
     interactionPolicy: 'OPTIONAL_CONFIRM' as const,
     campaignNodeIds: Object.freeze([]),
     visualAsset: TRAVERSAL_T0_ASSETS.abandonedCart,
-    backdropAsset: TRAVERSAL_T0_ASSETS.debris,
   }),
   Object.freeze({
     id: 't0:booster:lion-ward',
@@ -213,7 +213,9 @@ function stageBeat(
     interactionPolicy: optional ? 'OPTIONAL_CONFIRM' : 'MANDATORY_CONFIRM',
     campaignNodeIds: Object.freeze([...stage.nodeIds]),
     // Recruits remain simple road encounters. Larger resting sites use upper-lane access.
-    ...(stage.nodeIds.includes('lion-refugees') ? { backdropAsset: TRAVERSAL_T0_ASSETS.restingPlace } : {}),
+    ...(stage.nodeIds.includes('lion-refugees') ? { locationId: 'resting-clearing' } : {}),
+    ...(stage.nodeIds.includes('lion-opening-ambush') ? { locationId: 'opening-ambush' } : {}),
+    ...(isFork ? { locationId: 'forest-junction' } : {}),
     ...(formation ? { formation } : {}),
     ...(isFork ? { visualAsset: TRAVERSAL_T0_ASSETS.forkSign } : characterId ? {
       characterId,
@@ -308,7 +310,7 @@ export function resolveTraversalT0Route(
       interactionPolicy: optional ? 'OPTIONAL_CONFIRM' : 'MANDATORY_CONFIRM',
       campaignNodeIds: Object.freeze([nodeId]), characterId,
       visualAsset: runNode.contentId === 'mystery_treasure' ? TRAVERSAL_T0_ASSETS.chest : resolveCharacterAsset(characterId, 'full'), mirrorX: true,
-      backdropAsset: isCombat ? TRAVERSAL_T0_ASSETS.debris : TRAVERSAL_T0_ASSETS.restingPlace,
+      locationId: 'selected-route',
       ...(composition ? { formation: composition } : {}),
     });
   });
@@ -319,7 +321,7 @@ export function resolveTraversalT0Route(
     const config = createRoadEncounterConfig(roadCombatId);
     const characterId = config.enemyVisualIds?.[0] ?? 'wolf';
     return Object.freeze({ ...beat, roadCombatId, characterId, label: config.encounterLabel,
-      formation: config.enemyVisualIds, backdropAsset: TRAVERSAL_T0_ASSETS.debris,
+      formation: config.enemyVisualIds,
       visualAsset: resolveCharacterAsset(characterId, 'full') });
   });
 

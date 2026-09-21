@@ -1,0 +1,14 @@
+{
+  "baseline": "16a07a1f32c3e1997b9049243df1dcf769ef0305",
+  "branch": "campaign-structure-1",
+  "changedTrackedPaths": [
+    "src/styles/traversal.css",
+    "src/traversal/TraversalT0Assets.test.ts",
+    "src/traversal/TraversalT0Assets.ts",
+    "src/traversal/TraversalT0Route.test.ts",
+    "src/traversal/TraversalT0Route.ts",
+    "src/traversal/TraversalT0Scene.ts"
+  ],
+  "unexpectedTrackedChanges": [],
+  "preexistingAssetsUnchanged": true
+}
