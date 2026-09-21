@@ -1,4 +1,10 @@
 {
+  "/assets/generated/lion-phase/traversal/t0/depth-v1/foreground/ferns.png": {
+    "width": 2017, "height": 780, "left": 63, "top": 18, "right": 1959, "bottom": 748
+  },
+  "/assets/generated/lion-phase/traversal/t0/depth-v1/foreground/roots.png": {
+    "width": 2172, "height": 724, "left": 75, "top": 183, "right": 2108, "bottom": 632
+  },
   "/assets/characters/pixel/masters/alistair.png": {
     "width": 512,
     "height": 512,

@@ -1,0 +1,167 @@
+{
+  "baseline": "7cfccfe37e6d5721db96748080b9552d4b4f32fb",
+  "assets": [
+    {
+      "runtimePath": "/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/candidates/expedition.png",
+      "intent": "A: covered expedition caravan",
+      "generator": "built-in image_gen",
+      "source": "C:/Users/miche/.codex/generated_images/01a0c5d7-7f3e-7ee2-9ed0-69fc84b070a5/exec-a78c241c-d23d-43f9-8a4e-34e864d0db8f.png",
+      "status": "candidate",
+      "active": false,
+      "sha256": "e09aec334eac5f3a320c2db04eed39ee72a5a22448ff0c3a78ad583243142cff",
+      "bounds": {
+        "width": 1706,
+        "height": 922,
+        "left": 122,
+        "top": 19,
+        "right": 1608,
+        "bottom": 850,
+        "transparent": 675446
+      }
+    },
+    {
+      "runtimePath": "/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/candidates/mechanical.png",
+      "intent": "B: reinforced mechanical road wagon, wheel texture source",
+      "generator": "built-in image_gen",
+      "source": "C:/Users/miche/.codex/generated_images/01a0c5d7-7f3e-7ee2-9ed0-69fc84b070a5/exec-28d33ba3-49fd-4127-a31e-67f12ef72976.png",
+      "status": "selected",
+      "active": true,
+      "sha256": "1bca6a34e3edf6345bdb94c803180404dcf8d809c384a67c156c021c06842038",
+      "bounds": {
+        "width": 1749,
+        "height": 899,
+        "left": 170,
+        "top": 83,
+        "right": 1622,
+        "bottom": 814,
+        "transparent": 762419
+      }
+    },
+    {
+      "runtimePath": "/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/candidates/armored.png",
+      "intent": "C: compact armored travel caravan",
+      "generator": "built-in image_gen",
+      "source": "C:/Users/miche/.codex/generated_images/01a0c5d7-7f3e-7ee2-9ed0-69fc84b070a5/exec-b947f6c8-02ad-4317-b646-2c54e5f2b378.png",
+      "status": "candidate",
+      "active": false,
+      "sha256": "a72af7118a69c74b6e20e1ec214d84c92d82e918341d093afff88a5a40852ccd",
+      "bounds": {
+        "width": 1727,
+        "height": 911,
+        "left": 141,
+        "top": 39,
+        "right": 1617,
+        "bottom": 850,
+        "transparent": 638475
+      }
+    },
+    {
+      "runtimePath": "/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/chassis.png",
+      "intent": "Selected B chassis without road wheels for independent rotation",
+      "generator": "built-in image_gen",
+      "source": "C:/Users/miche/.codex/generated_images/01a0c5d7-7f3e-7ee2-9ed0-69fc84b070a5/exec-09bf033b-7f85-438b-82d1-3a0841f04f92.png",
+      "status": "selected",
+      "active": true,
+      "sha256": "c5f2ba823ba0e5b1806112191798b78a7cfeeeefa7526083abe91ae331bde75e",
+      "bounds": {
+        "width": 1748,
+        "height": 899,
+        "left": 170,
+        "top": 81,
+        "right": 1624,
+        "bottom": 712,
+        "transparent": 857232
+      }
+    },
+    {
+      "runtimePath": "/assets/generated/lion-phase/traversal/t0/depth-v1/foreground/ferns.png",
+      "intent": "Near-camera organic fern occlusion",
+      "generator": "built-in image_gen",
+      "source": "C:/Users/miche/.codex/generated_images/01a0c5d7-7f3e-7ee2-9ed0-69fc84b070a5/exec-8fb482e9-466b-48e3-a56d-d30d903a27f9.png",
+      "status": "selected",
+      "active": true,
+      "sha256": "26b4b35e856666cb3bd812cc34814c326efa22111851a5ad974eda02034ba533",
+      "bounds": {
+        "width": 2017,
+        "height": 780,
+        "left": 63,
+        "top": 18,
+        "right": 1959,
+        "bottom": 748,
+        "transparent": 832562
+      }
+    },
+    {
+      "runtimePath": "/assets/generated/lion-phase/traversal/t0/depth-v1/foreground/roots.png",
+      "intent": "Low root and flower grouping; sparse foreground rhythm",
+      "generator": "built-in image_gen",
+      "source": "C:/Users/miche/.codex/generated_images/01a0c5d7-7f3e-7ee2-9ed0-69fc84b070a5/exec-c7126fae-fdba-44bb-977b-1fbe583b1d3f.png",
+      "status": "selected",
+      "active": true,
+      "sha256": "f5da4383e4f10da27754184e005f9694ab003b8993ad350e36c9724f8ef400c6",
+      "bounds": {
+        "width": 2172,
+        "height": 724,
+        "left": 75,
+        "top": 183,
+        "right": 2108,
+        "bottom": 632,
+        "transparent": 1119683
+      }
+    },
+    {
+      "runtimePath": "/assets/generated/lion-phase/traversal/t0/depth-v1/clearance/merchant-halt.png",
+      "intent": "Remove two foreground supply piles from lower travel corridor",
+      "generator": "built-in image_gen",
+      "source": "C:/Users/miche/.codex/generated_images/01a0c5d7-7f3e-7ee2-9ed0-69fc84b070a5/exec-7d4800f6-e473-4752-a52a-64d2d8939d22.png",
+      "status": "selected",
+      "active": true,
+      "sha256": "94a67f08c825379dd6f3cfd22d6c020fb5e6451cbd2d953d6a8771d0d884fa33",
+      "bounds": {
+        "width": 1536,
+        "height": 1024,
+        "left": 0,
+        "top": 0,
+        "right": 1536,
+        "bottom": 1024,
+        "transparent": 0
+      }
+    },
+    {
+      "runtimePath": "/assets/generated/lion-phase/traversal/t0/depth-v1/clearance/refugee-halt.png",
+      "intent": "Remove foreground cart fragments and supplies from lower corridor",
+      "generator": "built-in image_gen",
+      "source": "C:/Users/miche/.codex/generated_images/01a0c5d7-7f3e-7ee2-9ed0-69fc84b070a5/exec-064f1e2b-c9d5-45fd-8687-8f89678d63e6.png",
+      "status": "selected",
+      "active": true,
+      "sha256": "232610b915a48672faaadb2aacf649df304838eeeb888e94e9ccdd94b00c3677",
+      "bounds": {
+        "width": 1536,
+        "height": 1024,
+        "left": 0,
+        "top": 0,
+        "right": 1536,
+        "bottom": 1024,
+        "transparent": 0
+      }
+    },
+    {
+      "runtimePath": "/assets/generated/lion-phase/traversal/t0/depth-v1/clearance/damaged-caravan.png",
+      "intent": "Remove foreground wreckage from lower corridor; keep upper wreck",
+      "generator": "built-in image_gen",
+      "source": "C:/Users/miche/.codex/generated_images/01a0c5d7-7f3e-7ee2-9ed0-69fc84b070a5/exec-c0eb2043-a4cc-4680-96e8-27512a9e30c6.png",
+      "status": "selected",
+      "active": true,
+      "sha256": "cd6bf5375ec4d149098209d44d9a80da47268802f76b5145728d47307899bb7d",
+      "bounds": {
+        "width": 1536,
+        "height": 1024,
+        "left": 0,
+        "top": 0,
+        "right": 1536,
+        "bottom": 1024,
+        "transparent": 0
+      }
+    }
+  ]
+}

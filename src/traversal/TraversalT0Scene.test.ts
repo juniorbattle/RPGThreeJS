@@ -50,7 +50,7 @@ describe('TraversalT0Scene', () => {
     vi.restoreAllMocks();
   });
 
-  it('renders one two-lane road, the wooden 4x4, top event HUD and independent entities', () => {
+  it('renders one two-lane road, the travel caravan, top event HUD and independent entities', () => {
     vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
     vi.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => undefined);
     const state = createInitialState();
@@ -73,7 +73,7 @@ describe('TraversalT0Scene', () => {
     expect(document.querySelector<HTMLElement>('[data-traversal-event-panel]')!.hidden).toBe(true);
     expect(document.querySelectorAll('[data-traversal-lane]')).toHaveLength(2);
     expect(document.querySelector('.traversal-t0')?.getAttribute('data-lane-count')).toBe('2');
-    expect(document.querySelector('.traversal-vehicle img')?.getAttribute('src')).toContain('/vehicle/wooden-4x4/');
+    expect(document.querySelector('.traversal-vehicle img')?.getAttribute('src')).toContain('/vehicle/traversal-caravan/');
     expect(document.querySelector('.traversal-vehicle')?.getAttribute('data-empty-cabin')).toBe('true');
     expect(document.querySelector('.traversal-vehicle')?.getAttribute('data-visible-wheels')).toBe('4');
     expect(document.querySelectorAll('[data-traversal-beat]').length).toBeGreaterThanOrEqual(5);
@@ -284,5 +284,7 @@ describe('TraversalT0Scene', () => {
     expect(scene.session.bypassedBeatIds).toContain('t0:enemy:wolf-scouts');
     expect(scene.element.dataset.assistedBypass).toBe('false');
     scene.dispose();
-  });
+    // Integrates over 50 seconds of road motion with the complete scene DOM.
+    // This is a semantics check, not a five-second CPU performance benchmark.
+  }, 10000);
 });

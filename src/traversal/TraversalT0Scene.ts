@@ -5,6 +5,8 @@ import { ROAD_SPACE, beatWorldX, beatPassedProgress, roadCameraX, roadWorldToScr
 import { TRAVERSAL_T0_ASSETS } from './TraversalT0Assets';
 import { createTraversalSprite } from './TraversalSprite';
 import { TraversalWorldRenderer } from './TraversalWorldRenderer';
+import { buildTraversalCaravan, caravanWheelAngle, TRAVERSAL_CARAVAN } from './TraversalCaravan';
+import { setTraversalDepth, TraversalForegroundRenderer } from './TraversalDepth';
 import { traversalLocation } from './TraversalT0World';
 import { resolveCharacterVisualProfile, resolveCharacterAsset } from '../render/CharacterVisualRegistry';
 import {
@@ -77,7 +79,9 @@ export class TraversalT0Scene {
 
   private readonly controller: TraversalRunController;
   private readonly entityElements = new Map<string, HTMLElement>();
+  private readonly markerElements = new Map<string, HTMLElement>();
   private readonly worldRenderer = new TraversalWorldRenderer();
+  private readonly foregroundRenderer = new TraversalForegroundRenderer();
   private readonly stageBeats: readonly TraversalRouteBeat[];
   private frameId: number | null = null;
   private previousFrameMs = 0;
@@ -114,6 +118,7 @@ export class TraversalT0Scene {
           const entities = this.element.querySelector<HTMLElement>('.traversal-world__entities')!;
           for (const beat of this.route.beats.filter(candidate => candidate.branchNodeId)) {
             this.entityElements.get(beat.id)?.remove();
+            this.markerElements.get(beat.id)?.remove();
             this.buildEntity(entities, beat);
           }
           this.presentedBranch = current.run.traversalBranches!.T0!;
@@ -212,15 +217,16 @@ export class TraversalT0Scene {
       <div class="traversal-world" aria-label="Route jouable unique à deux voies">
         <div class="traversal-world__road" aria-hidden="true"></div>
         <div class="traversal-world__lane-glow" aria-hidden="true"></div>
+        <div class="traversal-world__actors">
         <div class="traversal-world__entities"></div>
-        <figure class="traversal-vehicle" aria-label="Véhicule 4x4 en bois de la compagnie" data-empty-cabin="true" data-visible-wheels="4">
+        <figure class="traversal-vehicle" aria-label="Caravane mécanique de voyage de la compagnie" data-empty-cabin="true" data-visible-wheels="4">
           <span class="traversal-vehicle__shadow" aria-hidden="true"></span>
           <span class="traversal-vehicle__dust traversal-vehicle__dust--one" aria-hidden="true"></span>
           <span class="traversal-vehicle__dust traversal-vehicle__dust--two" aria-hidden="true"></span>
-          <span class="traversal-vehicle__wheel traversal-vehicle__wheel--rear" aria-hidden="true"></span>
-          <span class="traversal-vehicle__wheel traversal-vehicle__wheel--front" aria-hidden="true"></span>
         </figure>
+        </div>
         <div class="traversal-world__foreground" aria-hidden="true"></div>
+        <div class="traversal-world__markers" aria-hidden="true"></div>
       </div>
       <div class="traversal-transition" aria-hidden="true"></div>
       <header class="traversal-hud traversal-hud--context">
@@ -245,37 +251,22 @@ export class TraversalT0Scene {
       <div class="traversal-pickup-feedback" role="status" aria-live="polite"></div>
     `;
     this.element.querySelector('.traversal-world__road')!.append(this.worldRenderer.element);
+    this.element.querySelector('.traversal-world')!.append(this.foregroundRenderer.element);
+    for (const [selector, plane] of [
+      ['.traversal-world__road', 'road-world'], ['.traversal-world__actors', 'road-actors'],
+      ['.traversal-world__foreground', 'foreground-extreme'], ['.traversal-world__markers', 'markers'],
+      ['.traversal-hud,.traversal-lanes,.traversal-event-panel,.traversal-toast,.traversal-pickup-feedback', 'ui'],
+    ] as const) this.element.querySelectorAll<HTMLElement>(selector).forEach(element => setTraversalDepth(element, plane));
     this.element.style.setProperty('--traversal-foreground-image', `url("${TRAVERSAL_T0_ASSETS.foregroundLayer}")`);
     const vehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
-    const vehicleArt = createTraversalSprite(TRAVERSAL_T0_ASSETS.vehicle, 'traversal-vehicle__art');
-    vehicle.style.aspectRatio = vehicleArt.style.aspectRatio;
-    vehicle.append(vehicleArt);
-    // Animate the actual wheel faces sampled from the approved truck sprite, not synthetic spokes.
-    const wheelFaces = [
-      { selector: '.traversal-vehicle__wheel--rear', x: 113, y: 748, width: 204, height: 230 },
-      { selector: '.traversal-vehicle__wheel--front', x: 811, y: 751, width: 227, height: 248 },
-    ];
-    for (const face of wheelFaces) {
-      const wheel = vehicle.querySelector<HTMLElement>(face.selector)!;
-      wheel.style.left = `${(face.x - 39) / 1197 * 100}%`;
-      wheel.style.top = `${(face.y - 227) / 782 * 100}%`;
-      wheel.style.width = `${face.width / 1197 * 100}%`;
-      wheel.style.height = `${face.height / 782 * 100}%`;
-      const rotor = document.createElement('span');
-      const image = document.createElement('img');
-      image.src = TRAVERSAL_T0_ASSETS.vehicle;
-      image.alt = '';
-      image.style.cssText = `position:absolute;width:${1254 / face.width * 100}%;height:${1254 / face.height * 100}%;left:${-face.x / face.width * 100}%;top:${-face.y / face.height * 100}%;max-width:none`;
-      rotor.append(image);
-      wheel.append(rotor);
-    }
+    buildTraversalCaravan(vehicle);
     const entities = this.element.querySelector<HTMLElement>('.traversal-world__entities')!;
     for (const beat of this.route.beats) this.buildEntity(entities, beat);
   }
 
   private buildEntity(entities: HTMLElement, beat: TraversalRouteBeat): void {
     const entity = document.createElement('article');
-    entity.className = `traversal-entity traversal-entity--${beat.type}`;
+    entity.className = `traversal-actor-anchor traversal-entity traversal-entity--${beat.type}`;
     entity.dataset.traversalBeat = beat.id;
     entity.dataset.marker = beat.marker;
     entity.dataset.category = beat.category;
@@ -336,7 +327,16 @@ export class TraversalT0Scene {
     }
     const label = document.createElement('strong');
     label.textContent = beat.label;
-    entity.append(marker, body, label);
+    entity.append(body, label);
+    const markerAnchor = document.createElement('div');
+    markerAnchor.className = 'traversal-actor-anchor traversal-marker-anchor';
+    markerAnchor.dataset.markerFor = beat.id;
+    for (const key of ['scale', 'category', 'marker', 'formation', 'placement']) {
+      if (entity.dataset[key]) markerAnchor.dataset[key] = entity.dataset[key];
+    }
+    markerAnchor.append(marker);
+    this.element.querySelector('.traversal-world__markers')!.append(markerAnchor);
+    this.markerElements.set(beat.id, markerAnchor);
     entities.append(entity);
     this.entityElements.set(beat.id, entity);
   }
@@ -637,13 +637,18 @@ export class TraversalT0Scene {
     const resolvedLocations = new Set(this.stageBeats.slice(0, session.stageIndex)
       .flatMap(beat => beat.locationId ? [beat.locationId] : []));
     this.worldRenderer.update(camera, width, this.presentedBranch, resolvedLocations);
+    this.foregroundRenderer.update(camera, width);
     const screen = (worldX: number) => roadWorldToScreen(worldX, camera, width);
     this.element.style.setProperty('--road-offset', `${screen(0)}px`);
     this.element.style.setProperty('--foreground-offset', `${screen(0) * ROAD_SPACE.foregroundFactor}px`);
     const entryDistance = 600 + Number.parseFloat(this.element.style.getPropertyValue('--vehicle-entry-x') || '0');
-    const drivenDistance = camera + exitDistance + entryDistance;
-    this.element.style.setProperty('--wheel-angle', `${drivenDistance / ROAD_SPACE.wheelRadius}rad`);
-    this.element.style.setProperty('--suspension-y', `${Math.sin(drivenDistance / 27) * 1.3}px`);
+    const drivenDistance = camera + exitDistance + entryDistance * ROAD_SPACE.referenceWidth / width;
+    // Mirrors --vehicle-height without forcing layout of the composite wheel subtree.
+    const vehicleHeight = Math.min((this.element.clientHeight || 823) * .24, width * (width <= 1000 ? .16 : .14));
+    this.element.style.setProperty('--wheel-angle', `${caravanWheelAngle(drivenDistance, vehicleHeight, width)}rad`);
+    const suspensionSpeed = session.phase === 'ARRIVING' ? 1
+      : session.phase === 'RUNNING' ? Math.min(1, this.speed / TRAVEL_SPEED_PER_SECOND) : 0;
+    this.element.style.setProperty('--suspension-y', `${Math.sin(drivenDistance / TRAVERSAL_CARAVAN.suspension.wavelength) * TRAVERSAL_CARAVAN.suspension.amplitude * suspensionSpeed}px`);
     this.element.style.setProperty('--dust-phase', String((drivenDistance % 130) / 130));
     this.element.style.setProperty('--vehicle-exit-x', `${exitDistance * width / ROAD_SPACE.referenceWidth}px`);
     this.element.dataset.routeVariant = this.presentedBranch;
@@ -671,6 +676,10 @@ export class TraversalT0Scene {
       entity.classList.toggle('is-near', Math.abs(beat.progress01 - session.routeProgress01) < 0.035);
       entity.hidden = session.phase === 'ARRIVING' || previousRoad || Boolean(branchUnavailable) || screenX < -width * .24 || screenX > width * 1.24
         || (!reacting && !bypassed && (ambientConsumed || stageConsumed));
+      const marker = this.markerElements.get(beat.id)!;
+      marker.style.left = entity.style.left;
+      marker.style.top = entity.style.top;
+      marker.hidden = entity.hidden;
     });
   }
 

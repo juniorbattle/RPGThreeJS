@@ -1,0 +1,44 @@
+{
+  "production": {
+    "traversalCount": 0,
+    "titleVisible": true
+  },
+  "human": {
+    "id": "t0:branch:lion-first-trial-event",
+    "lane": 0,
+    "ratio": 0.7799593082400814
+  },
+  "proportions": [
+    {
+      "width": 1080,
+      "height": 720,
+      "sourceRatio": 1.5
+    },
+    {
+      "width": 1080,
+      "height": 720,
+      "sourceRatio": 1.5
+    },
+    {
+      "width": 1080,
+      "height": 720,
+      "sourceRatio": 1.5
+    },
+    {
+      "width": 1080,
+      "height": 720,
+      "sourceRatio": 1.5
+    },
+    {
+      "width": 1080,
+      "height": 720,
+      "sourceRatio": 1.5
+    },
+    {
+      "width": 1080,
+      "height": 720,
+      "sourceRatio": 1.5
+    }
+  ],
+  "errors": []
+}

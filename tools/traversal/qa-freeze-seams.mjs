@@ -2,19 +2,19 @@ import { chromium } from 'playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const tag = process.argv[2] ?? 'final';
-const out = `tools/traversal/qa/freeze/${tag}`;
+const out = `${process.env.TRAVERSAL_QA_ROOT ?? 'tools/traversal/qa/freeze'}/${tag}`;
 await mkdir(out, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const context = await browser.newContext({ viewport: { width: 1463, height: 823 }, recordVideo: { dir: out, size: { width: 1463, height: 823 } } });
 const page = await context.newPage();
 const errors = [];
 page.on('pageerror', e => errors.push(String(e)));
-await page.goto('http://127.0.0.1:5182/tools/traversal/taxonomy-review.html');
+await page.goto(`http://127.0.0.1:${process.env.TRAVERSAL_QA_PORT ?? 5182}/tools/traversal/taxonomy-review.html`);
 await page.waitForFunction(() => window.review);
 await page.evaluate(async () => { await Promise.all([...document.images].map(i => i.decode().catch(() => {}))); });
 await page.evaluate(() => { window.review.scene.advance(20); window.review.settle(); });
 await page.screenshot({ path: `${out}/merchant.png` });
-await page.addStyleTag({ content: '.traversal-world__entities,.traversal-vehicle,.traversal-hud,.traversal-event-panel,.traversal-lanes,.traversal-world__foreground {visibility:hidden!important}' });
+await page.addStyleTag({ content: '.traversal-world__entities,.traversal-world__markers,.traversal-world__occlusion,.traversal-vehicle,.traversal-hud,.traversal-event-panel,.traversal-lanes,.traversal-world__foreground {visibility:hidden!important}' });
 const boundaries = [850,2050,3250,4850,5250,6850,8050,9650,10450];
 for (const boundary of boundaries) {
   await page.evaluate(async x => {

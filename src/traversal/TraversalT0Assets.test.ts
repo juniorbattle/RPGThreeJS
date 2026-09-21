@@ -15,8 +15,7 @@ describe('TraversalT0Assets', () => {
       expect(existsSync(publicPath(url))).toBe(true);
       expect(readFileSync(publicPath(url)).subarray(1, 4).toString('ascii')).toBe('PNG');
     }
-    expect(TRAVERSAL_T0_ASSETS.vehicle).toContain('/vehicle/wooden-4x4/');
-    expect(TRAVERSAL_T0_ASSETS.vehicle).not.toContain('/wagon/');
-    expect(TRAVERSAL_WORLD_ASSETS.merchant).toContain('/world-v1/reference-convergence/merchant-halt.png');
+    expect(TRAVERSAL_T0_ASSETS.vehicle).toContain('/vehicle/traversal-caravan/');
+    expect(TRAVERSAL_WORLD_ASSETS.merchant).toContain('/depth-v1/clearance/merchant-halt.png');
   });
 });

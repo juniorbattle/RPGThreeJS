@@ -1,0 +1,1154 @@
+[
+  {
+    "viewport": {
+      "width": 1463,
+      "height": 823
+    },
+    "state": {
+      "planes": [
+        {
+          "plane": "road-world",
+          "z": "0"
+        },
+        {
+          "plane": "road-actors",
+          "z": "20"
+        },
+        {
+          "plane": "foreground-extreme",
+          "z": "34"
+        },
+        {
+          "plane": "markers",
+          "z": "42"
+        },
+        {
+          "plane": "foreground-occlusion",
+          "z": "30"
+        },
+        {
+          "plane": "ui",
+          "z": "45"
+        },
+        {
+          "plane": "ui",
+          "z": "45"
+        },
+        {
+          "plane": "ui",
+          "z": "45"
+        },
+        {
+          "plane": "ui",
+          "z": "45"
+        },
+        {
+          "plane": "ui",
+          "z": "45"
+        },
+        {
+          "plane": "ui",
+          "z": "45"
+        }
+      ],
+      "wheels": [
+        {
+          "id": "far-rear",
+          "rect": {
+            "x": 237.2109375,
+            "y": 583.359375,
+            "width": 67.890625,
+            "height": 71.125,
+            "top": 583.359375,
+            "right": 305.1015625,
+            "bottom": 654.484375,
+            "left": 237.2109375
+          }
+        },
+        {
+          "id": "far-front",
+          "rect": {
+            "x": 469.7578125,
+            "y": 584.15625,
+            "width": 71.671875,
+            "height": 72.203125,
+            "top": 584.15625,
+            "right": 541.4296875,
+            "bottom": 656.359375,
+            "left": 469.7578125
+          }
+        },
+        {
+          "id": "near-rear",
+          "rect": {
+            "x": 184.5234375,
+            "y": 579.3125,
+            "width": 81.640625,
+            "height": 85.140625,
+            "top": 579.3125,
+            "right": 266.1640625,
+            "bottom": 664.453125,
+            "left": 184.5234375
+          }
+        },
+        {
+          "id": "near-front",
+          "rect": {
+            "x": 428.1171875,
+            "y": 581.203125,
+            "width": 81.640625,
+            "height": 85.140625,
+            "top": 581.203125,
+            "right": 509.7578125,
+            "bottom": 666.34375,
+            "left": 428.1171875
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "rect": {
+            "x": 640,
+            "y": 512.5625,
+            "width": 0,
+            "height": 154.0625,
+            "top": 512.5625,
+            "right": 640,
+            "bottom": 666.625,
+            "left": 640
+          }
+        }
+      ],
+      "art": [
+        {
+          "src": "http://127.0.0.1:5184/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "native": 1.5,
+          "rendered": 1.5
+        },
+        {
+          "src": "http://127.0.0.1:5184/assets/generated/lion-phase/traversal/t0/world-v1/ambush-cleared.png",
+          "native": 1.5,
+          "rendered": 1.5
+        },
+        {
+          "src": "http://127.0.0.1:5184/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "native": 1.5,
+          "rendered": 1.5
+        },
+        {
+          "src": "http://127.0.0.1:5184/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "native": 1.5,
+          "rendered": 1.5
+        },
+        {
+          "src": "http://127.0.0.1:5184/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/nomad-waystation.png",
+          "native": 1.5,
+          "rendered": 1.5
+        },
+        {
+          "src": "http://127.0.0.1:5184/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "native": 1.5,
+          "rendered": 1.5
+        }
+      ],
+      "plantCount": 28
+    },
+    "overlaps": [
+      {
+        "lane": 0,
+        "progress": 0.015,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 0,
+        "progress": 0.09,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 6
+      },
+      {
+        "lane": 0,
+        "progress": 0.2,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 0,
+        "progress": 0.3,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 0,
+        "progress": 0.4,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 0,
+        "progress": 0.49,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 0,
+        "progress": 0.54,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 0,
+        "progress": 0.6,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 0,
+        "progress": 0.75,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 6
+      },
+      {
+        "lane": 0,
+        "progress": 0.8,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 6
+      },
+      {
+        "lane": 0,
+        "progress": 0.91,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.015,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-2",
+            "heightRatio": 0.17751760145558104
+          }
+        ],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.09,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-3",
+            "heightRatio": 0.1474566885531208
+          }
+        ],
+        "visiblePlants": 6
+      },
+      {
+        "lane": 1,
+        "progress": 0.2,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-5",
+            "heightRatio": 0.17751760145558104
+          }
+        ],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.3,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-8",
+            "heightRatio": 0.17751760145558104
+          }
+        ],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.4,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-9",
+            "heightRatio": 0.1474566885531208
+          }
+        ],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.49,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-11",
+            "heightRatio": 0.17751760145558104
+          }
+        ],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.54,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-12",
+            "heightRatio": 0.1474566885531208
+          }
+        ],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.6,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-14",
+            "heightRatio": 0.17751760145558104
+          }
+        ],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.75,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-17",
+            "heightRatio": 0.17751760145558104
+          }
+        ],
+        "visiblePlants": 6
+      },
+      {
+        "lane": 1,
+        "progress": 0.8,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-17",
+            "heightRatio": 0.17751760145558104
+          },
+          {
+            "id": "near-road-18",
+            "heightRatio": 0.1474566885531208
+          }
+        ],
+        "visiblePlants": 6
+      },
+      {
+        "lane": 1,
+        "progress": 0.91,
+        "vehicleHeight": 197.515625,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-20",
+            "heightRatio": 0.17751760145558104
+          }
+        ],
+        "visiblePlants": 5
+      }
+    ],
+    "transitions": [
+      {
+        "lane": 0,
+        "vehicleTop": 357.453125,
+        "actorPlane": "20",
+        "foregroundPlane": "30",
+        "plants": [
+          {
+            "id": "near-road-6",
+            "left": "-245px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-7",
+            "left": "335px",
+            "top": "87.6%"
+          },
+          {
+            "id": "near-road-8",
+            "left": "660px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-9",
+            "left": "1155px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-10",
+            "left": "1495px",
+            "top": "87.6%"
+          }
+        ]
+      },
+      {
+        "lane": 1,
+        "vehicleTop": 449.109375,
+        "actorPlane": "20",
+        "foregroundPlane": "30",
+        "plants": [
+          {
+            "id": "near-road-6",
+            "left": "-245px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-7",
+            "left": "335px",
+            "top": "87.6%"
+          },
+          {
+            "id": "near-road-8",
+            "left": "660px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-9",
+            "left": "1155px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-10",
+            "left": "1495px",
+            "top": "87.6%"
+          }
+        ]
+      },
+      {
+        "lane": 0,
+        "vehicleTop": 353.234375,
+        "actorPlane": "20",
+        "foregroundPlane": "30",
+        "plants": [
+          {
+            "id": "near-road-6",
+            "left": "-245px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-7",
+            "left": "335px",
+            "top": "87.6%"
+          },
+          {
+            "id": "near-road-8",
+            "left": "660px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-9",
+            "left": "1155px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-10",
+            "left": "1495px",
+            "top": "87.6%"
+          }
+        ]
+      },
+      {
+        "lane": 1,
+        "vehicleTop": 449.078125,
+        "actorPlane": "20",
+        "foregroundPlane": "30",
+        "plants": [
+          {
+            "id": "near-road-6",
+            "left": "-245px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-7",
+            "left": "335px",
+            "top": "87.6%"
+          },
+          {
+            "id": "near-road-8",
+            "left": "660px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-9",
+            "left": "1155px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-10",
+            "left": "1495px",
+            "top": "87.6%"
+          }
+        ]
+      },
+      {
+        "lane": 0,
+        "vehicleTop": 357.4375,
+        "actorPlane": "20",
+        "foregroundPlane": "30",
+        "plants": [
+          {
+            "id": "near-road-6",
+            "left": "-245px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-7",
+            "left": "335px",
+            "top": "87.6%"
+          },
+          {
+            "id": "near-road-8",
+            "left": "660px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-9",
+            "left": "1155px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-10",
+            "left": "1495px",
+            "top": "87.6%"
+          }
+        ]
+      },
+      {
+        "lane": 1,
+        "vehicleTop": 453.3125,
+        "actorPlane": "20",
+        "foregroundPlane": "30",
+        "plants": [
+          {
+            "id": "near-road-6",
+            "left": "-245px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-7",
+            "left": "335px",
+            "top": "87.6%"
+          },
+          {
+            "id": "near-road-8",
+            "left": "660px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-9",
+            "left": "1155px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-10",
+            "left": "1495px",
+            "top": "87.6%"
+          }
+        ]
+      }
+    ],
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 960,
+      "height": 720
+    },
+    "state": {
+      "planes": [
+        {
+          "plane": "road-world",
+          "z": "0"
+        },
+        {
+          "plane": "road-actors",
+          "z": "20"
+        },
+        {
+          "plane": "foreground-extreme",
+          "z": "34"
+        },
+        {
+          "plane": "markers",
+          "z": "42"
+        },
+        {
+          "plane": "foreground-occlusion",
+          "z": "30"
+        },
+        {
+          "plane": "ui",
+          "z": "45"
+        },
+        {
+          "plane": "ui",
+          "z": "45"
+        },
+        {
+          "plane": "ui",
+          "z": "45"
+        },
+        {
+          "plane": "ui",
+          "z": "45"
+        },
+        {
+          "plane": "ui",
+          "z": "45"
+        },
+        {
+          "plane": "ui",
+          "z": "45"
+        }
+      ],
+      "wheels": [
+        {
+          "id": "far-rear",
+          "rect": {
+            "x": 140.0390625,
+            "y": 518.4375,
+            "width": 52.796875,
+            "height": 55.3125,
+            "top": 518.4375,
+            "right": 192.8359375,
+            "bottom": 573.75,
+            "left": 140.0390625
+          }
+        },
+        {
+          "id": "far-front",
+          "rect": {
+            "x": 320.8671875,
+            "y": 519.0625,
+            "width": 55.734375,
+            "height": 56.15625,
+            "top": 519.0625,
+            "right": 376.6015625,
+            "bottom": 575.21875,
+            "left": 320.8671875
+          }
+        },
+        {
+          "id": "near-rear",
+          "rect": {
+            "x": 99.0703125,
+            "y": 515.28125,
+            "width": 63.484375,
+            "height": 66.203125,
+            "top": 515.28125,
+            "right": 162.5546875,
+            "bottom": 581.484375,
+            "left": 99.0703125
+          }
+        },
+        {
+          "id": "near-front",
+          "rect": {
+            "x": 288.5078125,
+            "y": 516.75,
+            "width": 63.484375,
+            "height": 66.203125,
+            "top": 516.75,
+            "right": 351.9921875,
+            "bottom": 582.953125,
+            "left": 288.5078125
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "t0:npc:roadside-merchant",
+          "rect": {
+            "x": 419.953125,
+            "y": 463.390625,
+            "width": 0,
+            "height": 119.796875,
+            "top": 463.390625,
+            "right": 419.953125,
+            "bottom": 583.1875,
+            "left": 419.953125
+          }
+        }
+      ],
+      "art": [
+        {
+          "src": "http://127.0.0.1:5184/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "native": 1.5,
+          "rendered": 1.5
+        },
+        {
+          "src": "http://127.0.0.1:5184/assets/generated/lion-phase/traversal/t0/world-v1/ambush-cleared.png",
+          "native": 1.5,
+          "rendered": 1.5
+        },
+        {
+          "src": "http://127.0.0.1:5184/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "native": 1.5,
+          "rendered": 1.5
+        },
+        {
+          "src": "http://127.0.0.1:5184/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "native": 1.5,
+          "rendered": 1.5
+        },
+        {
+          "src": "http://127.0.0.1:5184/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/nomad-waystation.png",
+          "native": 1.5,
+          "rendered": 1.5
+        },
+        {
+          "src": "http://127.0.0.1:5184/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "native": 1.5,
+          "rendered": 1.4999998304578992
+        }
+      ],
+      "plantCount": 28
+    },
+    "overlaps": [
+      {
+        "lane": 0,
+        "progress": 0.015,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 0,
+        "progress": 0.09,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 6
+      },
+      {
+        "lane": 0,
+        "progress": 0.2,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 0,
+        "progress": 0.3,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 0,
+        "progress": 0.4,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 0,
+        "progress": 0.49,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 0,
+        "progress": 0.54,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 0,
+        "progress": 0.6,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 0,
+        "progress": 0.75,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 6
+      },
+      {
+        "lane": 0,
+        "progress": 0.8,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 6
+      },
+      {
+        "lane": 0,
+        "progress": 0.91,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.015,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-2",
+            "heightRatio": 0.1508646998982706
+          }
+        ],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.09,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-3",
+            "heightRatio": 0.12085452695829095
+          }
+        ],
+        "visiblePlants": 6
+      },
+      {
+        "lane": 1,
+        "progress": 0.2,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-5",
+            "heightRatio": 0.1508646998982706
+          },
+          {
+            "id": "near-road-6",
+            "heightRatio": 0.12085452695829095
+          }
+        ],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.3,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-8",
+            "heightRatio": 0.1508646998982706
+          }
+        ],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.4,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-9",
+            "heightRatio": 0.12085452695829095
+          }
+        ],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.49,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-11",
+            "heightRatio": 0.1508646998982706
+          },
+          {
+            "id": "near-road-12",
+            "heightRatio": 0.12085452695829095
+          }
+        ],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.54,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-12",
+            "heightRatio": 0.12085452695829095
+          }
+        ],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.6,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-14",
+            "heightRatio": 0.1508646998982706
+          }
+        ],
+        "visiblePlants": 5
+      },
+      {
+        "lane": 1,
+        "progress": 0.75,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-17",
+            "heightRatio": 0.1508646998982706
+          }
+        ],
+        "visiblePlants": 6
+      },
+      {
+        "lane": 1,
+        "progress": 0.8,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-17",
+            "heightRatio": 0.1508646998982706
+          },
+          {
+            "id": "near-road-18",
+            "heightRatio": 0.12085452695829095
+          }
+        ],
+        "visiblePlants": 6
+      },
+      {
+        "lane": 1,
+        "progress": 0.91,
+        "vehicleHeight": 153.59375,
+        "localOverlapEnvelopes": [
+          {
+            "id": "near-road-20",
+            "heightRatio": 0.1508646998982706
+          }
+        ],
+        "visiblePlants": 5
+      }
+    ],
+    "transitions": [
+      {
+        "lane": 0,
+        "vehicleTop": 331.921875,
+        "actorPlane": "20",
+        "foregroundPlane": "30",
+        "plants": [
+          {
+            "id": "near-road-6",
+            "left": "-160.766px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-7",
+            "left": "219.822px",
+            "top": "87.6%"
+          },
+          {
+            "id": "near-road-8",
+            "left": "433.083px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-9",
+            "left": "757.895px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-10",
+            "left": "980.998px",
+            "top": "87.6%"
+          }
+        ]
+      },
+      {
+        "lane": 1,
+        "vehicleTop": 415.78125,
+        "actorPlane": "20",
+        "foregroundPlane": "30",
+        "plants": [
+          {
+            "id": "near-road-6",
+            "left": "-160.766px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-7",
+            "left": "219.822px",
+            "top": "87.6%"
+          },
+          {
+            "id": "near-road-8",
+            "left": "433.083px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-9",
+            "left": "757.895px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-10",
+            "left": "980.998px",
+            "top": "87.6%"
+          }
+        ]
+      },
+      {
+        "lane": 0,
+        "vehicleTop": 331.90625,
+        "actorPlane": "20",
+        "foregroundPlane": "30",
+        "plants": [
+          {
+            "id": "near-road-6",
+            "left": "-160.766px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-7",
+            "left": "219.822px",
+            "top": "87.6%"
+          },
+          {
+            "id": "near-road-8",
+            "left": "433.083px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-9",
+            "left": "757.895px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-10",
+            "left": "980.998px",
+            "top": "87.6%"
+          }
+        ]
+      },
+      {
+        "lane": 1,
+        "vehicleTop": 412.078125,
+        "actorPlane": "20",
+        "foregroundPlane": "30",
+        "plants": [
+          {
+            "id": "near-road-6",
+            "left": "-160.766px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-7",
+            "left": "219.822px",
+            "top": "87.6%"
+          },
+          {
+            "id": "near-road-8",
+            "left": "433.083px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-9",
+            "left": "757.895px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-10",
+            "left": "980.998px",
+            "top": "87.6%"
+          }
+        ]
+      },
+      {
+        "lane": 0,
+        "vehicleTop": 328.21875,
+        "actorPlane": "20",
+        "foregroundPlane": "30",
+        "plants": [
+          {
+            "id": "near-road-6",
+            "left": "-160.766px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-7",
+            "left": "219.822px",
+            "top": "87.6%"
+          },
+          {
+            "id": "near-road-8",
+            "left": "433.083px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-9",
+            "left": "757.895px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-10",
+            "left": "980.998px",
+            "top": "87.6%"
+          }
+        ]
+      },
+      {
+        "lane": 1,
+        "vehicleTop": 412.0625,
+        "actorPlane": "20",
+        "foregroundPlane": "30",
+        "plants": [
+          {
+            "id": "near-road-6",
+            "left": "-160.766px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-7",
+            "left": "219.822px",
+            "top": "87.6%"
+          },
+          {
+            "id": "near-road-8",
+            "left": "433.083px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-9",
+            "left": "757.895px",
+            "top": "86.1%"
+          },
+          {
+            "id": "near-road-10",
+            "left": "980.998px",
+            "top": "87.6%"
+          }
+        ]
+      }
+    ],
+    "errors": []
+  }
+]

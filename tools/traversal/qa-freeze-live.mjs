@@ -2,11 +2,12 @@ import { chromium } from 'playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const browser = await chromium.launch({ headless: true });
-const root = 'tools/traversal/qa/freeze/live-final';
+const root = `${process.env.TRAVERSAL_QA_ROOT ?? 'tools/traversal/qa/freeze'}/live-final`;
 await mkdir(root, { recursive: true });
 async function run(mode) {
   const out = `${root}/${mode}`; await mkdir(out, { recursive: true });
-  const context = await browser.newContext({ viewport: { width: 1463, height: 823 }, ...(mode === 'meet-fight' ? { recordVideo: { dir: out, size: { width: 1463, height: 823 } } } : {}) });
+  const record = mode === 'meet-fight' || mode.endsWith('-review');
+  const context = await browser.newContext({ viewport: { width: 1463, height: 823 }, ...(record ? { recordVideo: { dir: out, size: { width: 1463, height: 823 } } } : {}) });
   const page = await context.newPage();
   const errors = [], states = [], captures = new Set(), scales = [];
   const started = Date.now();
@@ -15,7 +16,7 @@ async function run(mode) {
     if (captures.has(name)) return; captures.add(name);
     await page.screenshot({ path: `${out}/${name}.png` });
   };
-  await page.goto('http://127.0.0.1:5182/?qa=1&traversal=t0');
+  await page.goto(`http://127.0.0.1:${process.env.TRAVERSAL_QA_PORT ?? 5182}/?qa=1&traversal=t0`);
   await page.waitForSelector('.traversal-t0');
   await page.evaluate(() => {
     window.traversalEvidence = [];
@@ -57,6 +58,8 @@ async function run(mode) {
         : state.progress < .35 ? (mode === 'avoid' ? 0 : 1)
         : state.progress < .52 ? 1 : state.progress < .64 ? 0
         : state.progress < .78 ? 1 : mode === 'ignore-flee' ? 1 : 0;
+      if (mode === 'upper-review') lane = 0;
+      if (mode === 'lower-review') lane = 1;
       const control = page.locator(`[data-traversal-lane="${lane}"]`);
       if (await control.isEnabled() && state.lane !== lane) await control.click();
       for (const id of state.collected) { assert.equal(state.panel, false); await capture(`collect-${id.split(':').at(-1)}`); }
@@ -80,7 +83,7 @@ async function run(mode) {
       if (state.category === 'MANDATORY_EVENT') { assert.equal(await confirm.textContent(), 'Continuer'); assert.equal(await skip.isVisible(), false); await confirm.click(); }
         else if (state.category === 'OPTIONAL_COMBAT') {
         assert.equal(await confirm.textContent(), 'Combattre'); assert.equal(await skip.textContent(), 'Fuir');
-        if (mode === 'meet-fight' && state.progress === .3) { roadCombat = true; await confirm.click(); } else await skip.click();
+        if ((mode === 'meet-fight' && state.progress === .3) || mode === 'lower-review') { roadCombat = true; await confirm.click(); } else await skip.click();
       } else {
         assert.equal(await confirm.textContent(), 'Rencontrer'); assert.equal(await skip.textContent(), 'Ignorer');
         if (mode === 'meet-fight') { localDone = true; await confirm.click(); } else {
@@ -135,7 +138,7 @@ async function run(mode) {
   }
   await writeFile(`${out}/report.json`,JSON.stringify({returned,errors,states,scales,telemetry,verifiedReturns:returns,captures:[...captures]},null,2));
   await context.close();
-  if (mode === 'meet-fight') await page.video().saveAs(`${out}/journey.webm`);
+  if (record) await page.video().saveAs(`${out}/journey.webm`);
   assert.equal(returned,true,`${mode} must return to Travel View`); assert.deepEqual(errors,[]);
 }
 const modes = process.argv.slice(2);

@@ -2,7 +2,7 @@ import { preview } from 'vite';
 import { chromium } from 'playwright';
 import { writeFile } from 'node:fs/promises';
 import assert from 'node:assert/strict';
-const out='tools/traversal/qa/freeze';
+const out=process.env.TRAVERSAL_QA_ROOT ?? 'tools/traversal/qa/freeze';
 const server=await preview({preview:{port:5183,strictPort:true,host:'127.0.0.1'}});
 const browser=await chromium.launch();
 try {
@@ -14,7 +14,7 @@ try {
  assert.deepEqual(production,{traversalCount:0,titleVisible:true});
  await page.screenshot({path:`${out}/production-disabled.png`});
  await page.setViewportSize({width:960,height:720});
- await page.goto('http://127.0.0.1:5182/tools/traversal/taxonomy-review.html?seed=2');
+ await page.goto(`http://127.0.0.1:${process.env.TRAVERSAL_QA_PORT ?? 5182}/tools/traversal/taxonomy-review.html?seed=2`);
  await page.waitForFunction(()=>window.review);
  await page.evaluate(()=>{const {scene,settle}=window.review;for(let i=0;i<10&&scene.session.phase!=='FORK_OVERLAY';i++){
   scene.advance(20);settle();if(scene.session.phase==='DECISION'){

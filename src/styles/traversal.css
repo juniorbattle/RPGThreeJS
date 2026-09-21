@@ -42,7 +42,11 @@
   border-radius: 50%; background: radial-gradient(ellipse, #ffdc7d20, transparent 70%);
   transition: top .38s ease;
 }
-.traversal-world__entities { pointer-events: none; }
+.traversal-world__actors { isolation: isolate; }
+.traversal-world__entities { position: absolute; inset: 0; pointer-events: none; }
+.traversal-world__markers, .traversal-world__occlusion { pointer-events: none; }
+.traversal-world__occlusion .traversal-near-plant { position: absolute; transform: translate(-50%, -100%); }
+.traversal-world__occlusion .traversal-near-plant.is-mirrored { transform: translate(-50%, -100%) scaleX(-1); }
 .traversal-world__foreground {
   z-index: 34; pointer-events: none;
   background: var(--traversal-foreground-image) var(--foreground-offset) bottom / auto 18% repeat-x;
@@ -61,20 +65,20 @@
   position: absolute; top: var(--traversal-lane-y); left: calc(25% + var(--vehicle-exit-x, 0px) + var(--vehicle-entry-x, 0px)); z-index: 22;
   height: var(--vehicle-height); aspect-ratio: 818 / 433; margin: 0;
   transform: translate(-50%, -100%); transition: top .38s cubic-bezier(.2,.72,.2,1);
-  pointer-events: none; margin-top: var(--suspension-y, 0px);
+  pointer-events: none;
 }
-.traversal-vehicle__art { z-index: 2; }
+.traversal-vehicle__art { position: absolute; max-width: none; z-index: 2; translate: 0 var(--suspension-y, 0px); transition: translate .12s ease-out; }
 .traversal-vehicle__shadow, .traversal-entity__body::after {
   position: absolute; content: ''; bottom: -3%; left: 5%; width: 90%; height: 8%;
   border-radius: 50%; background: #271a0d66; filter: blur(4px); z-index: -1;
 }
 .traversal-vehicle__wheel {
-  position: absolute; top: 67%; z-index: 3; width: 19%; aspect-ratio: 1; border-radius: 50%;
-  overflow: hidden; pointer-events: none;
+  position: absolute; z-index: 3; pointer-events: none;
 }
-.traversal-vehicle__wheel > span { position: absolute; inset: 0; rotate: var(--wheel-angle, 0rad); }
-.traversal-vehicle__wheel--rear { left: 6.5%; }
-.traversal-vehicle__wheel--front { left: 65.5%; }
+.traversal-vehicle__wheel[data-wheel-plane='far'] { z-index: 1; filter: brightness(.68); }
+.traversal-vehicle__wheel-projection { position: absolute; height: 100%; aspect-ratio: 1; left: 50%; translate: -50% 0; }
+.traversal-vehicle__wheel-rotor { position: absolute; inset: 0; rotate: var(--wheel-angle, 0rad); border-radius: 50%; overflow: hidden; }
+.traversal-vehicle__wheel-rotor img { position: absolute; max-width: none; }
 .traversal-vehicle__dust {
   position: absolute; z-index: 1; top: 90%; left: -10%; width: 25%; height: 12%;
   border-radius: 50%; background: radial-gradient(ellipse,#e7be7770,transparent 70%);
@@ -92,21 +96,21 @@
 .traversal-t0:not([data-phase='RUNNING']):not([data-phase='ARRIVING']) .traversal-vehicle__dust { opacity: 0; }
 .traversal-t0[data-phase='ARRIVING']::after { background: #000; opacity: var(--arrival-fade, 0); z-index: 100; }
 .traversal-t0[data-phase='ARRIVING'] > :not(.traversal-world) { visibility: hidden; }
-.traversal-entity {
+.traversal-actor-anchor {
   --entity-height: calc(var(--vehicle-height) * .66);
   position: absolute; height: var(--entity-height); width: max-content;
   transform: translate(-50%, -100%); pointer-events: none;
 }
-.traversal-entity[data-scale='creature'] { --entity-height: calc(var(--vehicle-height) * .58); }
-.traversal-entity[data-scale='human'][data-category='OPTIONAL_EVENT'] { --entity-height: calc(var(--vehicle-height) * .78); }
-.traversal-entity[data-scale='elite'] { --entity-height: calc(var(--vehicle-height) * .7); }
-.traversal-entity[data-scale='loot'] { --entity-height: calc(var(--vehicle-height) * .34); }
-.traversal-entity[data-scale='obstacle'] { --entity-height: calc(var(--vehicle-height) * .49); }
-.traversal-entity[data-scale='booster'] { --entity-height: calc(var(--vehicle-height) * .32); }
+.traversal-actor-anchor[data-scale='creature'] { --entity-height: calc(var(--vehicle-height) * .58); }
+.traversal-actor-anchor[data-scale='human'][data-category='OPTIONAL_EVENT'] { --entity-height: calc(var(--vehicle-height) * .78); }
+.traversal-actor-anchor[data-scale='elite'] { --entity-height: calc(var(--vehicle-height) * .7); }
+.traversal-actor-anchor[data-scale='loot'] { --entity-height: calc(var(--vehicle-height) * .34); }
+.traversal-actor-anchor[data-scale='obstacle'] { --entity-height: calc(var(--vehicle-height) * .49); }
+.traversal-actor-anchor[data-scale='booster'] { --entity-height: calc(var(--vehicle-height) * .32); }
 .traversal-entity__body { position: relative; height: 100%; isolation: isolate; }
 .traversal-entity__subject { z-index: 2; }
 .traversal-formation-member { position: absolute; left: calc(70% + var(--formation-index) * 75%); bottom: calc((var(--formation-index) - .5) * 5vh); height: 100%; z-index: 3; }
-.traversal-entity[data-formation='true'][data-placement='centered'] { --entity-height: calc(var(--vehicle-height) * .52); }
+.traversal-actor-anchor[data-formation='true'][data-placement='centered'] { --entity-height: calc(var(--vehicle-height) * .52); }
 .traversal-entity__marker {
   position: absolute; bottom: calc(100% + 10px); left: 50%; z-index: 3;
   display: grid; place-items: center; width: clamp(19px, 1.65vw, 25px); aspect-ratio: 1;
@@ -115,8 +119,8 @@
   font: 700 12px/1 Inter, sans-serif;
 }
 .traversal-entity__marker::after { content: attr(data-glyph); transform: rotate(-45deg); }
-.traversal-entity[data-marker='danger'] .traversal-entity__marker { border-color: #ee977e; color: #ffd6c2; }
-.traversal-entity[data-marker='booster'] .traversal-entity__marker { border-color: #fbd878; }
+.traversal-marker-anchor[data-marker='danger'] .traversal-entity__marker { border-color: #ee977e; color: #ffd6c2; }
+.traversal-marker-anchor[data-marker='booster'] .traversal-entity__marker { border-color: #fbd878; }
 .traversal-entity > strong { display: none; }
 .traversal-entity__prop { display: block; position: relative; height: 100%; }
 .traversal-entity__prop--loot {
@@ -228,15 +232,15 @@
 .traversal-entity__body--location::after { display: none; }
 
 /* Each contact category has its own signal. Collectibles and debris are their own signs. */
-.traversal-entity[data-category='PICKUP'] .traversal-entity__marker,
-.traversal-entity[data-category='SIMPLE_OBSTACLE'] .traversal-entity__marker,
-.traversal-entity[data-category='ROUTE_CHOICE'] .traversal-entity__marker { display: none; }
-.traversal-entity[data-category='OPTIONAL_EVENT'] .traversal-entity__marker {
+.traversal-marker-anchor[data-category='PICKUP'] .traversal-entity__marker,
+.traversal-marker-anchor[data-category='SIMPLE_OBSTACLE'] .traversal-entity__marker,
+.traversal-marker-anchor[data-category='ROUTE_CHOICE'] .traversal-entity__marker { display: none; }
+.traversal-marker-anchor[data-category='OPTIONAL_EVENT'] .traversal-entity__marker {
   border-radius: 50% 50% 50% 0; transform: translateX(-50%); border-color: #cbdab6;
 }
-.traversal-entity[data-category='OPTIONAL_EVENT'] .traversal-entity__marker::after { transform: none; }
-.traversal-entity[data-category='OPTIONAL_COMBAT'] .traversal-entity__marker { background: #632d23; border-color: #fb9477; }
-.traversal-entity[data-category='MANDATORY_EVENT'] .traversal-entity__marker { border-width: 2px; box-shadow: 0 0 12px #ee854b77; }
+.traversal-marker-anchor[data-category='OPTIONAL_EVENT'] .traversal-entity__marker::after { transform: none; }
+.traversal-marker-anchor[data-category='OPTIONAL_COMBAT'] .traversal-entity__marker { background: #632d23; border-color: #fb9477; }
+.traversal-marker-anchor[data-category='MANDATORY_EVENT'] .traversal-entity__marker { border-width: 2px; box-shadow: 0 0 12px #ee854b77; }
 .traversal-gold {
   display: grid; place-items: center; height: 100%; aspect-ratio: 1; border: 3px double #ffe39c;
   border-radius: 50%; background: radial-gradient(circle at 35% 30%,#edc776,#926126);

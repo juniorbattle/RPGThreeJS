@@ -5,7 +5,6 @@ export const ROAD_SPACE = Object.freeze({
   truckX: 366,
   engagementX: 640,
   passedX: 160,
-  wheelRadius: 36,
   farFactor: .08,
   forestFactor: .22,
   foregroundFactor: 1.22,
