@@ -58,13 +58,16 @@ describe('TraversalT0Route', () => {
     expect(merchant?.locationId).toBe('merchant-halt');
   });
 
-  it('triggers optional beats only on their lane and mandatory beats from either lane', () => {
+  it('offers narrative decisions from either lane while combat remains avoidable by lane', () => {
     const state = createInitialState();
     const route = resolveTraversalT0Route(t0(), state.run.graph.nodes);
     const merchant = route.beats.find((beat) => beat.type === 'npc')!;
     const mandatory = route.beats.find((beat) => beat.interactionPolicy === 'MANDATORY_CONFIRM')!;
     expect(resolveTraversalBeatCrossing(merchant, 0, merchant.progress01, 0)).toBe('TRIGGERED');
-    expect(resolveTraversalBeatCrossing(merchant, 0, merchant.progress01, 1)).toBe('NONE');
+    expect(resolveTraversalBeatCrossing(merchant, 0, merchant.progress01, 1)).toBe('TRIGGERED');
+    const enemy = route.beats.find(beat => beat.category === 'OPTIONAL_COMBAT')!;
+    expect(resolveTraversalBeatCrossing(enemy, 0, enemy.progress01, 0)).toBe('NONE');
+    expect(resolveTraversalBeatCrossing(enemy, 0, enemy.progress01, 1)).toBe('TRIGGERED');
     expect(resolveTraversalBeatCrossing(merchant, merchant.progress01, beatPassedProgress(merchant.progress01), 1)).toBe('BYPASSED');
     expect(resolveTraversalBeatCrossing(mandatory, 0, mandatory.progress01, 0)).toBe('TRIGGERED');
     expect(resolveTraversalBeatCrossing(mandatory, 0, mandatory.progress01, 1)).toBe('TRIGGERED');

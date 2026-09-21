@@ -75,7 +75,7 @@ export interface TraversalRouteIssue {
 const AMBIENT_T0_BEATS: readonly TraversalRouteBeat[] = Object.freeze([
   Object.freeze({
     id: 't0:npc:roadside-merchant',
-    category: 'OPTIONAL_EVENT', engagement: 'LANE',
+    category: 'OPTIONAL_EVENT', engagement: 'ROUTE',
     type: 'npc' as const,
     progress01: 0.09,
     lane: 0 as const,
@@ -229,7 +229,8 @@ function stageBeat(
     marker: isFork ? 'fork' : isCombat ? 'danger' : 'speech',
     interactionPolicy: optional ? 'OPTIONAL_CONFIRM' : 'MANDATORY_CONFIRM',
     campaignNodeIds: Object.freeze([...stage.nodeIds]),
-    // Recruits remain simple road encounters. Larger resting sites use upper-lane access.
+    // Narrative situations occupy authored road sections; characters retain canonical scale.
+    ...(stage.nodeIds.includes('lion-nomad-crossroads') ? { locationId: 'nomad-waystation' } : {}),
     ...(stage.nodeIds.includes('lion-refugees') ? { locationId: 'resting-clearing' } : {}),
     ...(stage.nodeIds.includes('lion-opening-ambush') ? { locationId: 'opening-ambush' } : {}),
     ...(isFork ? { locationId: 'forest-junction' } : {}),

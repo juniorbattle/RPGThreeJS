@@ -1,0 +1,17 @@
+{
+  "source": "live/meet-fight/journey.webm",
+  "segments_seconds": [
+    [
+      84.318,
+      101.57
+    ],
+    [
+      129.16,
+      140.038
+    ]
+  ],
+  "fps": 12,
+  "frames": 339,
+  "duration_seconds": 28.25,
+  "editing": "One cut omits uneventful driving; event and fork transitions retain real-time speed."
+}

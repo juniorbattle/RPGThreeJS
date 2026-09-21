@@ -240,6 +240,7 @@ export class TraversalT0Scene {
         ${([0, 1] as const).map((lane) => `<button type="button" data-traversal-lane="${lane}">${laneLabel(lane)}</button>`).join('')}
       </nav>
       <div class="traversal-toast" role="status" aria-live="polite"></div>
+      <div class="traversal-pickup-feedback" role="status" aria-live="polite"></div>
     `;
     this.element.querySelector('.traversal-world__road')!.append(this.worldRenderer.element);
     this.element.style.setProperty('--traversal-foreground-image', `url("${TRAVERSAL_T0_ASSETS.foregroundLayer}")`);
@@ -294,10 +295,15 @@ export class TraversalT0Scene {
     const body = document.createElement('span');
     body.className = 'traversal-entity__body';
     if (beat.pickup === 'gold') {
-      const coin = document.createElement('span');
-      coin.className = 'traversal-gold';
-      coin.textContent = '✦';
-      body.append(coin);
+      const cluster = document.createElement('span');
+      cluster.className = 'traversal-gold-cluster';
+      for (let index = 0; index < 3; index++) {
+        const coin = document.createElement('span');
+        coin.className = 'traversal-gold';
+        coin.textContent = '✦';
+        cluster.append(coin);
+      }
+      body.append(cluster);
     } else if (beat.type === 'fork') {
       // Its sign belongs to the persistent junction; only the interaction marker is a beat.
       body.classList.add('traversal-entity__body--location');
@@ -307,9 +313,11 @@ export class TraversalT0Scene {
       image.classList.toggle('is-mirrored', Boolean(beat.mirrorX));
       body.append(image);
       if (beat.pickup === 'chest') {
-        const lid = image.cloneNode(true) as HTMLElement;
-        lid.classList.add('traversal-chest-lid');
-        body.append(lid);
+        // Shared source canvas/scale keeps the box grounded while its actual painted lid opens.
+        const opened = image.cloneNode(true) as HTMLElement;
+        opened.classList.add('traversal-chest-open');
+        opened.querySelector('img')!.src = TRAVERSAL_T0_ASSETS.chestOpen;
+        body.append(opened);
       }
       for (const [index, characterId] of (beat.formation?.slice(1) ?? []).entries()) {
         const asset = resolveCharacterAsset(characterId, 'full');
@@ -372,9 +380,11 @@ export class TraversalT0Scene {
       : time < half ? transitionEase(time / half) : 1 - transitionEase((time - half) / half);
     this.element.style.setProperty('--transition-opacity', String(Math.max(0, Math.min(1, opacity))));
     if (transition.kind === 'entry') {
-      this.element.style.setProperty('--vehicle-entry-x', `${-600 * (1 - transitionEase(time / half))}px`);
+      this.element.style.setProperty('--vehicle-entry-x', `${-600 * (1 - transitionEase(time / (half + TRAVERSAL_RHYTHM.restart)))}px`);
     }
-    if (time >= half * (transition.reveal ? 1 : 2)) {
+    const duration = transition.kind === 'entry' ? half + TRAVERSAL_RHYTHM.restart
+      : half * (transition.reveal ? 1 : 2);
+    if (time >= duration) {
       this.transition = null;
       delete this.element.dataset.transition;
       this.renderRuntimeState();
@@ -434,18 +444,19 @@ export class TraversalT0Scene {
           this.collectedAt.set(beat.id, nextProgress);
           this.controller.consumeBeat(beat.id);
           const toast = this.element.querySelector<HTMLElement>('.traversal-toast')!;
-          toast.textContent = beat.category === 'PICKUP'
-            ? `${beat.pickup === 'gold' ? '+5 pièces' : beat.pickup === 'chest' ? 'Coffre ouvert · +1 provision' : '+1 garde'} · aperçu local`
-            : 'Débris franchis · aucun dégât dans cet aperçu';
-          toast.classList.remove('is-visible');
-          void toast.offsetWidth;
-          toast.classList.add('is-visible');
+          if (beat.category === 'PICKUP') this.showPickupFeedback(beat);
+          else {
+            toast.textContent = 'Attention aux débris !';
+            toast.classList.remove('is-visible');
+            void toast.offsetWidth;
+            toast.classList.add('is-visible');
+          }
           continue;
         }
         this.controller.advanceTo(traversalContactProgress(beat));
         this.speed = 0;
         if (beat.category === 'ROUTE_CHOICE') {
-          this.controller.approachNextStage(beat.progress01);
+          this.startTransition('focus', () => this.controller.approachNextStage(beat.progress01));
           return;
         }
         this.controller.pauseForDecision(beat.id);
@@ -500,9 +511,10 @@ export class TraversalT0Scene {
             if (this.opened) this.startTransition('return', undefined, true);
           }
         } else if (this.session.phase === 'LOCAL_INTERACTION') {
-          this.controller.consumeBeat(beat.id);
-          this.controller.releaseDecision();
-          this.startTransition('return', undefined, true);
+          this.startTransition('return', () => {
+            this.controller.consumeBeat(beat.id);
+            this.controller.releaseDecision();
+          });
         } else {
           this.startTransition('event', () => this.controller.beginLocalInteraction());
         }
@@ -600,9 +612,12 @@ export class TraversalT0Scene {
       booster: 'Vous faites une courte halte près de la borne avant de repartir.',
     };
     panel.querySelector<HTMLElement>('[data-traversal-event-hint]')!.textContent = local
-      ? `${localDescriptions[beat.type] ?? ''} Aperçu local · aucun gain permanent.` : paused
+      ? localDescriptions[beat.type] ?? '' : paused
       ? mandatory ? 'Le passage est bloqué · continuez vers la rencontre.'
-        : beat.category === 'OPTIONAL_COMBAT' ? 'Combattre ou emprunter l’autre voie pour fuir.' : 'Faire halte auprès de ces voyageurs ou poursuivre la route.'
+        : beat.category === 'OPTIONAL_COMBAT' ? 'Des ennemis occupent votre voie.'
+        : beat.id === 't0:npc:roadside-merchant' ? 'Un marchand a installé son étal à l’abri des arbres.'
+        : beat.campaignNodeIds.includes('lion-refugees') ? 'Une mère et son enfant cherchent de l’aide sur la route.'
+        : 'Faire halte auprès de ces voyageurs ou poursuivre la route.'
       : mandatory ? 'Passage obligé · arrêt avant la rencontre.' : 'Restez sur cette voie pour vous arrêter, ou changez de voie pour passer.';
     panel.querySelector<HTMLElement>('[data-traversal-event-marker]')!.textContent = markerGlyph(beat);
     const portrait = panel.querySelector<HTMLImageElement>('[data-traversal-event-portrait]')!;
@@ -622,7 +637,7 @@ export class TraversalT0Scene {
     this.worldRenderer.update(camera, width, this.presentedBranch, resolvedLocations);
     const screen = (worldX: number) => roadWorldToScreen(worldX, camera, width);
     this.element.style.setProperty('--road-offset', `${screen(0)}px`);
-    this.element.style.setProperty('--foreground-offset', `${screen(0)}px`);
+    this.element.style.setProperty('--foreground-offset', `${screen(0) * ROAD_SPACE.foregroundFactor}px`);
     const entryDistance = 600 + Number.parseFloat(this.element.style.getPropertyValue('--vehicle-entry-x') || '0');
     const drivenDistance = camera + exitDistance + entryDistance;
     this.element.style.setProperty('--wheel-angle', `${drivenDistance / ROAD_SPACE.wheelRadius}rad`);
@@ -656,6 +671,8 @@ export class TraversalT0Scene {
   }
 
   private showContactToast(beat: TraversalRouteBeat, outcome: TraversalBeatCrossing): void {
+    // Passing scenery needs no narration. The visible manoeuvre is the feedback.
+    if (outcome === 'BYPASSED') return;
     const toast = this.element.querySelector<HTMLElement>('.traversal-toast');
     if (!toast) return;
     toast.textContent = outcome === 'TRIGGERED'
@@ -664,6 +681,23 @@ export class TraversalT0Scene {
     toast.classList.remove('is-visible');
     void toast.offsetWidth;
     toast.classList.add('is-visible');
+  }
+
+  private showPickupFeedback(beat: TraversalRouteBeat): void {
+    const feedback = this.element.querySelector<HTMLElement>('.traversal-pickup-feedback')!;
+    const icon = document.createElement('span');
+    icon.className = `traversal-pickup-feedback__icon traversal-pickup-feedback__icon--${beat.pickup}`;
+    icon.setAttribute('aria-hidden', 'true');
+    icon.textContent = beat.pickup === 'gold' ? '✦' : beat.pickup === 'chest' ? '▣' : '◆';
+    const amount = document.createElement('strong');
+    amount.textContent = beat.pickup === 'gold' ? '+5' : '+1';
+    const label = document.createElement('span');
+    label.textContent = beat.pickup === 'gold' ? 'pièces' : beat.pickup === 'chest' ? 'provision' : 'garde';
+    feedback.replaceChildren(icon, amount, label);
+    feedback.dataset.pickup = beat.pickup;
+    feedback.classList.remove('is-visible');
+    void feedback.offsetWidth;
+    feedback.classList.add('is-visible');
   }
 
   private readonly onKeyDown = (event: KeyboardEvent): void => {

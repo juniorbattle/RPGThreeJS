@@ -25,11 +25,13 @@ export interface TraversalWorldSection {
 const ROOT = '/assets/generated/lion-phase/traversal/t0/world-v1';
 export const TRAVERSAL_WORLD_ASSETS = Object.freeze({
   forest: `${ROOT}/forest-road.png`,
-  merchant: `${ROOT}/merchant-halt.png`,
+  merchant: `${ROOT}/reference-convergence/merchant-halt.png`,
   ambush: `${ROOT}/opening-ambush.png`,
   ambushCleared: `${ROOT}/ambush-cleared.png`,
   fork: `${ROOT}/forest-junction.png`,
-  rest: `${ROOT}/resting-clearing.png`,
+  rest: `${ROOT}/reference-convergence/refugee-halt.png`,
+  nomad: `${ROOT}/reference-convergence/nomad-waystation.png`,
+  caravan: `${ROOT}/reference-convergence/damaged-caravan.png`,
   ruins: `${ROOT}/ruined-outpost.png`,
 });
 
@@ -38,28 +40,32 @@ export const TRAVERSAL_WORLD_ASSETS = Object.freeze({
 // The merchant stands at world 1450, inside the clearing, but does not own it.
 export const TRAVERSAL_T0_WORLD: readonly TraversalWorldSection[] = Object.freeze(
   Array.from({ length: 10 }, (_, index): TraversalWorldSection => {
-    const worldStart = -350 + index * 1200;
+    // Give inhabited clearings longer approaches and departures. Adjacent forest/outpost
+    // intervals absorb the spacing; the same authored boundaries still meet exactly.
+    const boundaries = [-350, 850, 2050, 3250, 4850, 5250, 6850, 8050, 9650, 10450, 11650];
+    const worldStart = boundaries[index]!;
+    const worldEnd = boundaries[index + 1]!;
     const authored = ({
       1: { id: 'merchant-halt', kind: 'ENVIRONMENT', asset: TRAVERSAL_WORLD_ASSETS.merchant },
       2: { id: 'opening-ambush', kind: 'CORRIDOR', asset: TRAVERSAL_WORLD_ASSETS.ambush },
-      4: { id: 'ruined-outpost', kind: 'ENVIRONMENT', asset: TRAVERSAL_WORLD_ASSETS.ruins },
+      3: { id: 'nomad-waystation', kind: 'ENVIRONMENT', asset: TRAVERSAL_WORLD_ASSETS.nomad },
       5: { id: 'resting-clearing', kind: 'ENVIRONMENT', asset: TRAVERSAL_WORLD_ASSETS.rest },
       6: { id: 'forest-junction', kind: 'TRANSITION', asset: TRAVERSAL_WORLD_ASSETS.fork },
       7: { id: 'selected-route', kind: 'ENVIRONMENT', asset: TRAVERSAL_WORLD_ASSETS.forest },
-    } as const)[index as 1 | 2 | 4 | 5 | 6 | 7];
+    } as const)[index as 1 | 2 | 3 | 5 | 6 | 7];
     return Object.freeze({
       id: authored?.id ?? `forest-${index}`,
       kind: authored?.kind ?? 'FOREST',
-      worldStart, worldEnd: worldStart + 1200,
-      coreStart: worldStart + (index === 6 ? 780 : 240),
-      coreEnd: worldStart + (index === 6 ? 1080 : 960),
+      worldStart, worldEnd,
+      coreStart: worldStart + (index === 6 ? 780 : (worldEnd - worldStart) * .2),
+      coreEnd: worldStart + (index === 6 ? 1080 : (worldEnd - worldStart) * .8),
       asset: authored?.asset ?? TRAVERSAL_WORLD_ASSETS.forest,
       mirror: index % 2 === 0,
       ...(index === 2 ? { clearedAsset: TRAVERSAL_WORLD_ASSETS.ambushCleared } : {}),
       ...(index === 6 ? { props: Object.freeze([Object.freeze({ id: 'junction-sign',
-        asset: TRAVERSAL_T0_ASSETS.forkSign, worldX: 7840, groundPercent: 57, vehicleHeightRatio: .54 })]) } : {}),
+        asset: TRAVERSAL_T0_ASSETS.forkSign, worldX: 7840, groundPercent: 57, vehicleHeightRatio: .68 })]) } : {}),
       ...(index === 7 ? { variantAssets: Object.freeze({
-        'lion-first-trial-event': TRAVERSAL_WORLD_ASSETS.rest,
+        'lion-first-trial-event': TRAVERSAL_WORLD_ASSETS.caravan,
         'lion-first-trial-combat': TRAVERSAL_WORLD_ASSETS.ruins,
       }) } : {}),
     });

@@ -30,6 +30,8 @@ describe('TraversalForkOverlay', () => {
     document.querySelector<HTMLButtonElement>('[data-traversal-fork-choice="lion-first-trial-combat"]')?.click();
     expect(selected).toEqual(['lion-first-trial-combat']);
     expect(overlay.isCommitted).toBe(true);
+    expect(document.querySelector('.is-selected')?.getAttribute('data-traversal-fork-choice')).toBe('lion-first-trial-combat');
+    expect(document.querySelector('.traversal-fork-overlay__gauges')).toBeNull();
     overlay.dispose();
   });
 

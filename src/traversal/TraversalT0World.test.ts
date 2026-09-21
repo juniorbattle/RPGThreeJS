@@ -50,6 +50,9 @@ describe('T0 authored geography', () => {
     const clock = scene as unknown as { advance(seconds: number): void; advanceTransition(seconds: number): void };
     scene.open();
     clock.advanceTransition(.6);
+    expect(scene.session.routeProgress01).toBe(0);
+    expect(Number.parseFloat(scene.element.style.getPropertyValue('--vehicle-entry-x'))).toBeLessThan(0);
+    clock.advanceTransition(.4);
     clock.advance(10);
     clock.advanceTransition(1);
     const section = scene.element.querySelector<HTMLElement>('[data-world-section="merchant-halt"]')!;
@@ -71,6 +74,9 @@ describe('T0 authored geography', () => {
 
   it('only changes scenery from supplied resolved state and presented branch, keeping a single road camera', () => {
     const renderer = new TraversalWorldRenderer();
+    renderer.setDirections([{ id: 'lion-first-trial-event', label: 'Rencontre sur la route' }]);
+    renderer.setDirections([{ id: 'lion-first-trial-event', label: 'Marchand blessé' }]);
+    expect(renderer.element.querySelector('.traversal-sign-directions')?.textContent).toBe('↖ Marchand blessé');
     const camera = 810;
     const width = 960;
     renderer.update(camera, width, 'main', new Set());
@@ -82,6 +88,6 @@ describe('T0 authored geography', () => {
     expect(image('opening-ambush')).toBe(TRAVERSAL_WORLD_ASSETS.ambushCleared);
     expect(image('selected-route')).toBe(TRAVERSAL_WORLD_ASSETS.ruins);
     renderer.update(camera, width, 'lion-first-trial-event', new Set(['opening-ambush']));
-    expect(image('selected-route')).toBe(TRAVERSAL_WORLD_ASSETS.rest);
+    expect(image('selected-route')).toBe(TRAVERSAL_WORLD_ASSETS.caravan);
   });
 });

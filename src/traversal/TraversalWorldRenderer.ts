@@ -52,8 +52,14 @@ export class TraversalWorldRenderer {
     if (!sign) return;
     let labels = sign.querySelector<HTMLElement>('.traversal-sign-directions');
     if (!labels) { labels = document.createElement('span'); labels.className = 'traversal-sign-directions'; sign.append(labels); }
-    const text = choices.map((choice, index) => `${index === 0 ? '↗' : '→'} ${choice.label}`).join('\n');
-    if (labels.textContent !== text) labels.textContent = text;
+    const signature = JSON.stringify(choices.map(choice => [choice.id, choice.label]));
+    if (labels.dataset.choices === signature) return;
+    labels.dataset.choices = signature;
+    labels.replaceChildren(...choices.map((choice, index) => {
+      const direction = document.createElement('span');
+      direction.textContent = `${index === 0 ? '↖' : '→'} ${choice.label}`;
+      return direction;
+    }));
   }
 
   update(camera: number, viewportWidth: number, presentedBranch: string, resolvedLocations: ReadonlySet<string>): void {

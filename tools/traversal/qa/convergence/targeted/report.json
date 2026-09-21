@@ -1,0 +1,40 @@
+[
+  {
+    "seed": 0,
+    "phase": "DECISION",
+    "label": "Danger : Loups des sous-bois, Voie basse",
+    "scale": 0.5799593082400814
+  },
+  {
+    "seed": 1,
+    "phase": "DECISION",
+    "label": "Danger : Araignées de la forêt, Voie basse",
+    "scale": 0.5799593082400814
+  },
+  {
+    "seed": 2,
+    "phase": "DECISION",
+    "label": "Danger : Patrouille hostile, Voie basse",
+    "scale": 0.6600203458799593
+  },
+  {
+    "flee": {
+      "phase": "RUNNING",
+      "lane": 0,
+      "passed": false,
+      "visible": true
+    }
+  },
+  {
+    "ignored": {
+      "phase": "RUNNING",
+      "recorded": false,
+      "visible": true
+    }
+  },
+  {
+    "branch": "lion-first-trial-combat",
+    "opacity": "1",
+    "top": "traversal-transition"
+  }
+]

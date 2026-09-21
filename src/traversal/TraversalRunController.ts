@@ -104,8 +104,8 @@ export class TraversalRunController {
         { onSelect: (nodeId) => this.selectFork(nodeId, availableNodes) },
         {
           ...(this.options.overlayRoot ? { root: this.options.overlayRoot } : {}),
-          eyebrow: 'Route',
-          title: 'Choisir la route',
+          eyebrow: 'Carrefour',
+          title: 'Choix d’itinéraire',
         },
       );
       this.forkOverlay.mount();

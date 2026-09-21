@@ -1,0 +1,58 @@
+[
+  {
+    "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/merchant-halt.png",
+    "source": "C:\\Users\\miche\\.codex\\generated_images\\01a0c28d-0e2e-7452-89f1-c1d4835f9485\\exec-643fc3db-b5d9-474a-833f-36c73d7f8e4e.png",
+    "sha256": "1a007f66f49a4ba8d94427b8efb09b66cd656e49ca2cce14266fba8faec253c8",
+    "byteIdentical": true,
+    "size": [
+      1536,
+      1024
+    ]
+  },
+  {
+    "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/refugee-halt.png",
+    "source": "C:\\Users\\miche\\.codex\\generated_images\\01a0c28d-0e2e-7452-89f1-c1d4835f9485\\exec-5ce5d904-0b6a-411c-8d5f-c439d01c072e.png",
+    "sha256": "45fec737bcc705ab975c46f6eadc8aa16f26e3dcaabc93ae52f259831a109016",
+    "byteIdentical": true,
+    "size": [
+      1536,
+      1024
+    ]
+  },
+  {
+    "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/nomad-waystation.png",
+    "source": "C:\\Users\\miche\\.codex\\generated_images\\01a0c28d-0e2e-7452-89f1-c1d4835f9485\\exec-78f348db-8883-4ada-b599-b77ee36b13df.png",
+    "sha256": "7010ce775a143762bb0a4dee92ed0a081842dd4540d5b66e051cd1c10252c231",
+    "byteIdentical": true,
+    "size": [
+      1536,
+      1024
+    ]
+  },
+  {
+    "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/damaged-caravan.png",
+    "source": "C:\\Users\\miche\\.codex\\generated_images\\01a0c28d-0e2e-7452-89f1-c1d4835f9485\\exec-d3fe8f78-7067-4c90-922f-7e8d58becebb.png",
+    "sha256": "892ae3883868c0d1d3638b884b4f63e9a63b2393bdc0bb596a4824fadbd70651",
+    "byteIdentical": true,
+    "size": [
+      1536,
+      1024
+    ]
+  },
+  {
+    "path": "public/assets/generated/lion-phase/traversal/t0/entities/chest-v4/closed.png",
+    "sha256": "4120260cfdfcb8f880481c214ffde6e352bad19bf0943c223652e47b1d6955d4",
+    "size": [
+      768,
+      768
+    ]
+  },
+  {
+    "path": "public/assets/generated/lion-phase/traversal/t0/entities/chest-v4/open.png",
+    "sha256": "75b1a071c63287e32e783469e909e056582f5480f4278767e210c32faa7dab5f",
+    "size": [
+      768,
+      768
+    ]
+  }
+]

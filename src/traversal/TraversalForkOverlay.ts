@@ -1,5 +1,4 @@
 import type { RunNode } from '../game/types';
-import { ratingScale, runNodePresentation } from '../ui/RunNodePresentation';
 
 export interface TraversalForkOverlayCallbacks {
   onSelect: (nodeId: string) => void;
@@ -73,26 +72,19 @@ export class TraversalForkOverlay {
   }
 
   private buildChoice(node: RunNode, index: number): HTMLButtonElement {
-    const meta = runNodePresentation(node);
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'traversal-fork-overlay__choice';
     button.dataset.traversalForkChoice = node.id;
 
     const label = document.createElement('strong');
-    label.dataset.direction = index === 0 ? '↗' : '→';
+    label.dataset.direction = index === 0 ? '↖' : '→';
     label.textContent = node.label;
     const category = document.createElement('span');
     category.className = 'traversal-fork-overlay__meta';
-    category.textContent = meta.label + ' · ' + meta.difficulty;
-    const hint = document.createElement('small');
-    hint.className = 'traversal-fork-overlay__hint';
-    hint.textContent = meta.hint;
-    const gauges = document.createElement('span');
-    gauges.className = 'traversal-fork-overlay__gauges';
-    gauges.textContent = 'Risque ' + ratingScale(meta.risk) + ' · Gain ' + ratingScale(meta.reward);
+    category.textContent = node.type === 'combat' ? 'Piste occupée' : 'Halte en clairière';
 
-    button.append(label, category, hint, gauges);
+    button.append(label, category);
     button.addEventListener('click', () => this.commit(node.id));
     return button;
   }
@@ -101,7 +93,10 @@ export class TraversalForkOverlay {
     if (this.committed || this.disposed) return;
     this.committed = true;
     this.element.classList.add('traversal-fork-overlay--committed');
-    for (const button of this.element.querySelectorAll<HTMLButtonElement>('button')) button.disabled = true;
+    for (const button of this.element.querySelectorAll<HTMLButtonElement>('button')) {
+      button.disabled = true;
+      button.classList.toggle('is-selected', button.dataset.traversalForkChoice === nodeId);
+    }
     this.callbacks.onSelect(nodeId);
   }
 }

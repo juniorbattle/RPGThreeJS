@@ -28,6 +28,9 @@ describe('TraversalT0Scene', () => {
     document.querySelector<HTMLButtonElement>('[data-traversal-lane="1"]')!.click();
     clock.advance(20);
     settle(scene);
+    document.querySelector<HTMLButtonElement>('[data-traversal-skip]')!.click();
+    clock.advance(20);
+    settle(scene);
     document.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!.click();
     expect(handoff).not.toHaveBeenCalled();
     clock.advanceTransition(.30);
@@ -181,6 +184,9 @@ describe('TraversalT0Scene', () => {
     settle(scene);
     document.querySelector<HTMLButtonElement>('[data-traversal-lane="1"]')!.click();
     const advance = (seconds: number) => (scene as unknown as { advance(seconds: number): void }).advance(seconds);
+    advance(20);
+    settle(scene);
+    document.querySelector<HTMLButtonElement>('[data-traversal-skip]')!.click();
     advance(20);
     settle(scene);
     document.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!.click();

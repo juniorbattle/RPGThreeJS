@@ -414,5 +414,21 @@
     "top": 40,
     "right": 2149,
     "bottom": 677
+  },
+  "/assets/generated/lion-phase/traversal/t0/entities/chest-v4/closed.png": {
+    "width": 768,
+    "height": 768,
+    "left": 46,
+    "top": 393,
+    "right": 722,
+    "bottom": 730
+  },
+  "/assets/generated/lion-phase/traversal/t0/entities/chest-v4/open.png": {
+    "width": 768,
+    "height": 768,
+    "left": 38,
+    "top": 191,
+    "right": 729,
+    "bottom": 730
   }
 }
