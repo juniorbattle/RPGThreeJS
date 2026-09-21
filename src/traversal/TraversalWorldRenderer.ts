@@ -47,6 +47,15 @@ export class TraversalWorldRenderer {
     });
   }
 
+  setDirections(choices: readonly { id: string; label: string }[]): void {
+    const sign = this.element.querySelector<HTMLElement>('[data-location-prop="junction-sign"]');
+    if (!sign) return;
+    let labels = sign.querySelector<HTMLElement>('.traversal-sign-directions');
+    if (!labels) { labels = document.createElement('span'); labels.className = 'traversal-sign-directions'; sign.append(labels); }
+    const text = choices.map((choice, index) => `${index === 0 ? '↗' : '→'} ${choice.label}`).join('\n');
+    if (labels.textContent !== text) labels.textContent = text;
+  }
+
   update(camera: number, viewportWidth: number, presentedBranch: string, resolvedLocations: ReadonlySet<string>): void {
     // Exactly the same camera as the entities and wheel-distance calculation.
     this.element.style.transform = `translateX(${roadWorldToScreen(0, camera, viewportWidth)}px)`;

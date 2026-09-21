@@ -29,7 +29,7 @@ export interface TraversalRunControllerOptions {
   readonly leg: LionTraversalLeg;
   readonly getAvailableNodes: () => readonly RunNode[];
   readonly onNodeHandoff: (node: RunNode, session: TraversalRunSession) => void;
-  readonly onBranchSelect?: (nodeId: string) => boolean;
+  readonly onBranchSelect?: (nodeId: string) => boolean | Promise<boolean>;
   readonly onSessionChange?: (session: TraversalRunSession) => void;
   readonly overlayRoot?: HTMLElement;
 }
@@ -37,6 +37,7 @@ export interface TraversalRunControllerOptions {
 export class TraversalRunController {
   private sessionState: TraversalRunSession;
   private forkOverlay: TraversalForkOverlay | null = null;
+  private disposed = false;
 
   constructor(private readonly options: TraversalRunControllerOptions) {
     this.sessionState = createTraversalRunSession(options.leg);
@@ -145,12 +146,15 @@ export class TraversalRunController {
   }
 
   dispose(): void {
+    this.disposed = true;
     this.disposeForkOverlay();
   }
 
-  private selectFork(nodeId: string, availableNodes: readonly RunNode[]): void {
+  private async selectFork(nodeId: string, availableNodes: readonly RunNode[]): Promise<void> {
     if (this.options.onBranchSelect) {
-      if (!this.sessionState.forkOptionIds.includes(nodeId) || !this.options.onBranchSelect(nodeId)) return;
+      if (!this.sessionState.forkOptionIds.includes(nodeId)) return;
+      const accepted = await this.options.onBranchSelect(nodeId);
+      if (!accepted || this.disposed) return;
       this.disposeForkOverlay();
       this.setSession(continueTraversalAfterBranchSelection(this.sessionState));
       return;

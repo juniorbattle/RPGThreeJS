@@ -11,7 +11,7 @@ import {
 } from '../render/CharacterVisualRegistry';
 import { TRAVERSAL_T0_ASSETS } from './TraversalT0Assets';
 import type { TraversalLane } from './TraversalRunRuntime';
-import { beatPassedProgress } from './TraversalRoadSpace';
+import { ROAD_SPACE, beatPassedProgress } from './TraversalRoadSpace';
 import { createRoadEncounterConfig, resolveRoadEncounterId } from './TraversalRoadEncounter';
 import { combatConfigs } from '../game/content';
 
@@ -25,12 +25,17 @@ export type TraversalBeatType =
   | 'fork';
 
 export type TraversalBeatPlacement = 'LANE' | 'CENTERED';
+export type TraversalContentCategory = 'MANDATORY_EVENT' | 'OPTIONAL_EVENT' | 'OPTIONAL_COMBAT'
+  | 'PICKUP' | 'SIMPLE_OBSTACLE' | 'ROUTE_CHOICE';
 export type TraversalInteractionPolicy = 'OPTIONAL_CONFIRM' | 'MANDATORY_CONFIRM';
 export type TraversalBeatCrossing = 'NONE' | 'TRIGGERED' | 'BYPASSED';
 
 export interface TraversalRouteBeat {
   readonly id: string;
   readonly type: TraversalBeatType;
+  readonly category: TraversalContentCategory;
+  readonly engagement: 'LANE' | 'ROUTE';
+  readonly pickup?: 'chest' | 'gold' | 'ward';
   readonly progress01: number;
   readonly lane: TraversalLane | null;
   readonly placement: TraversalBeatPlacement;
@@ -70,6 +75,7 @@ export interface TraversalRouteIssue {
 const AMBIENT_T0_BEATS: readonly TraversalRouteBeat[] = Object.freeze([
   Object.freeze({
     id: 't0:npc:roadside-merchant',
+    category: 'OPTIONAL_EVENT', engagement: 'LANE',
     type: 'npc' as const,
     progress01: 0.09,
     lane: 0 as const,
@@ -85,6 +91,7 @@ const AMBIENT_T0_BEATS: readonly TraversalRouteBeat[] = Object.freeze([
   }),
   Object.freeze({
     id: 't0:enemy:wolf-scouts',
+    category: 'OPTIONAL_COMBAT', engagement: 'LANE',
     type: 'enemy' as const,
     progress01: 0.30,
     lane: 1 as const,
@@ -98,6 +105,7 @@ const AMBIENT_T0_BEATS: readonly TraversalRouteBeat[] = Object.freeze([
   }),
   Object.freeze({
     id: 't0:loot:road-cache',
+    category: 'PICKUP', engagement: 'LANE', pickup: 'chest',
     type: 'loot' as const,
     progress01: 0.49,
     lane: 1 as const,
@@ -110,6 +118,7 @@ const AMBIENT_T0_BEATS: readonly TraversalRouteBeat[] = Object.freeze([
   }),
   Object.freeze({
     id: 't0:obstacle:broken-cart',
+    category: 'SIMPLE_OBSTACLE', engagement: 'LANE',
     type: 'obstacle' as const,
     progress01: 0.68,
     lane: 0 as const,
@@ -122,6 +131,7 @@ const AMBIENT_T0_BEATS: readonly TraversalRouteBeat[] = Object.freeze([
   }),
   Object.freeze({
     id: 't0:booster:lion-ward',
+    category: 'PICKUP', engagement: 'LANE', pickup: 'ward',
     type: 'booster' as const,
     progress01: 0.75,
     lane: 1 as const,
@@ -131,6 +141,11 @@ const AMBIENT_T0_BEATS: readonly TraversalRouteBeat[] = Object.freeze([
     interactionPolicy: 'OPTIONAL_CONFIRM' as const,
     campaignNodeIds: Object.freeze([]),
     visualAsset: TRAVERSAL_T0_ASSETS.waystone,
+  }),
+  Object.freeze({
+    id: 't0:loot:gold', type: 'loot', category: 'PICKUP', engagement: 'LANE', pickup: 'gold',
+    progress01: .54, lane: 0, placement: 'LANE', label: 'Pièces égarées', marker: 'loot',
+    interactionPolicy: 'OPTIONAL_CONFIRM', campaignNodeIds: Object.freeze([]),
   }),
 ]);
 
@@ -205,6 +220,8 @@ function stageBeat(
   return Object.freeze({
     id: `t0:stage:${stageIndex}:${stage.nodeIds.join('+')}`,
     type: isFork ? 'fork' : 'campaign-node',
+    category: isFork ? 'ROUTE_CHOICE' : optional ? 'OPTIONAL_EVENT' : 'MANDATORY_EVENT',
+    engagement: 'ROUTE',
     progress01: (stageIndex + 1) / (stageCount + 1),
     lane: optional ? (stageIndex % 2) as TraversalLane : null,
     placement: optional ? 'LANE' : 'CENTERED',
@@ -228,7 +245,13 @@ function stageBeat(
   });
 }
 
-/** Pure contact rule: optional beats require their lane; mandatory beats ignore lane. */
+/** Direct objects meet the front of the truck; modal situations retain stopping room. */
+export function traversalContactProgress(beat: TraversalRouteBeat): number {
+  return beat.progress01 + (beat.category === 'PICKUP' || beat.category === 'SIMPLE_OBSTACLE'
+    ? (ROAD_SPACE.engagementX - ROAD_SPACE.truckX - 120) / ROAD_SPACE.length : 0);
+}
+
+/** Physical engagement and optional narrative refusal are separate concerns. */
 export function resolveTraversalBeatCrossing(
   beat: TraversalRouteBeat,
   previousProgress01: number,
@@ -236,8 +259,9 @@ export function resolveTraversalBeatCrossing(
   lane: TraversalLane,
 ): TraversalBeatCrossing {
   if (nextProgress01 <= previousProgress01) return 'NONE';
-  if (previousProgress01 < beat.progress01 && nextProgress01 >= beat.progress01) {
-    if (beat.interactionPolicy === 'MANDATORY_CONFIRM' || beat.lane === lane) return 'TRIGGERED';
+  const contact = traversalContactProgress(beat);
+  if (previousProgress01 < contact && nextProgress01 >= contact) {
+    if (beat.engagement === 'ROUTE' || beat.lane === lane) return 'TRIGGERED';
   }
   const passed = beatPassedProgress(beat.progress01);
   return beat.interactionPolicy === 'OPTIONAL_CONFIRM' && previousProgress01 < passed && nextProgress01 >= passed
@@ -304,12 +328,14 @@ export function resolveTraversalT0Route(
     const optional = fork.branchEncounterMode === 'OPTIONAL_INTERRUPT';
     return Object.freeze({
       id: `t0:branch:${nodeId}`, branchNodeId: nodeId, type: 'campaign-node',
+      category: optional ? isCombat ? 'OPTIONAL_COMBAT' : 'OPTIONAL_EVENT' : 'MANDATORY_EVENT',
+      engagement: isCombat && optional ? 'LANE' : 'ROUTE',
       progress01: .91, lane: optional ? index as TraversalLane : null,
       placement: optional ? 'LANE' : 'CENTERED', label: runNode.label,
       marker: isCombat ? 'danger' : 'speech',
       interactionPolicy: optional ? 'OPTIONAL_CONFIRM' : 'MANDATORY_CONFIRM',
       campaignNodeIds: Object.freeze([nodeId]), characterId,
-      visualAsset: runNode.contentId === 'mystery_treasure' ? TRAVERSAL_T0_ASSETS.chest : resolveCharacterAsset(characterId, 'full'), mirrorX: true,
+      visualAsset: runNode.contentId === 'mystery_treasure' ? TRAVERSAL_T0_ASSETS.abandonedCart : resolveCharacterAsset(characterId, 'full'), mirrorX: true,
       locationId: 'selected-route',
       ...(composition ? { formation: composition } : {}),
     });

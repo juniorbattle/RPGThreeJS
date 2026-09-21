@@ -15,6 +15,8 @@ import {
   type TraversalT0Route,
 } from './TraversalT0Route';
 import { TraversalRunController } from './TraversalRunController';
+import { TRAVERSAL_RHYTHM, transitionEase } from './TraversalTransition';
+import { traversalContactProgress } from './TraversalT0Route';
 import type { TraversalLane, TraversalRunSession } from './TraversalRunRuntime';
 
 const LANE_TOP_PERCENT: Record<TraversalLane, number> = { 0: 65, 1: 81 };
@@ -84,6 +86,9 @@ export class TraversalT0Scene {
   private arrivalElapsed = 0;
   private confirming = false;
   private assistedUntil = 0;
+  private readonly declinedBeats = new Set<string>();
+  private readonly collectedAt = new Map<string, number>();
+  private speed = 0;
   private transition: { kind: string; elapsed: number; midpoint?: () => void; reveal: boolean } | null = null;
   private presentedBranch = 'main';
 
@@ -100,23 +105,21 @@ export class TraversalT0Scene {
     this.controller = new TraversalRunController({
       leg: options.leg,
       getAvailableNodes: options.getAvailableNodes,
-      onBranchSelect: nodeId => {
-        if (!selectTraversalBranch(options.getState().run, 'T0', nodeId)) return false;
-        const current = options.getState();
-        this.route = resolveTraversalT0Route(options.leg, current.run.graph.nodes,
-          current.clan.members.map(member => member.definitionId), current.run.seed);
-        const entities = this.element.querySelector<HTMLElement>('.traversal-world__entities')!;
-        for (const beat of this.route.beats.filter(candidate => candidate.branchNodeId)) {
-          this.entityElements.get(beat.id)?.remove();
-          this.buildEntity(entities, beat);
-        }
+      onBranchSelect: nodeId => new Promise<boolean>(resolve => {
         this.startTransition('fork', () => {
+          if (!selectTraversalBranch(options.getState().run, 'T0', nodeId)) { resolve(false); return; }
+          const current = options.getState();
+          this.route = resolveTraversalT0Route(options.leg, current.run.graph.nodes,
+            current.clan.members.map(member => member.definitionId), current.run.seed);
+          const entities = this.element.querySelector<HTMLElement>('.traversal-world__entities')!;
+          for (const beat of this.route.beats.filter(candidate => candidate.branchNodeId)) {
+            this.entityElements.get(beat.id)?.remove();
+            this.buildEntity(entities, beat);
+          }
           this.presentedBranch = nodeId;
-          const lane = this.route.beats.find(beat => beat.branchNodeId === nodeId)?.lane ?? 0;
-          this.controller.moveLane(lane === 0 ? -1 : 1);
+          resolve(true);
         });
-        return true;
-      },
+      }),
       overlayRoot: this.element,
       onNodeHandoff: (node, session) => {
         this.startTransition('event', () => { void options.onNodeHandoff(node, session); });
@@ -129,6 +132,8 @@ export class TraversalT0Scene {
     this.element.dataset.laneCount = '2';
     this.element.setAttribute('aria-label', `Traversée de ${this.route.originLabel} vers ${this.route.destinationLabel}`);
     this.build();
+    this.worldRenderer.setDirections(state.run.graph.nodes.filter(node =>
+      options.leg.stages.find(stage => stage.mode === 'IN_TRAVERSAL_FORK')?.nodeIds.includes(node.id)));
   }
 
   get session(): TraversalRunSession { return this.controller.session; }
@@ -270,6 +275,8 @@ export class TraversalT0Scene {
     entity.className = `traversal-entity traversal-entity--${beat.type}`;
     entity.dataset.traversalBeat = beat.id;
     entity.dataset.marker = beat.marker;
+    entity.dataset.category = beat.category;
+    if (beat.pickup) entity.dataset.pickup = beat.pickup;
     entity.dataset.placement = beat.placement.toLowerCase();
     entity.dataset.interactionPolicy = beat.interactionPolicy;
     if (beat.formation) entity.dataset.formation = 'true';
@@ -286,7 +293,12 @@ export class TraversalT0Scene {
     marker.dataset.glyph = markerGlyph(beat);
     const body = document.createElement('span');
     body.className = 'traversal-entity__body';
-    if (beat.type === 'fork') {
+    if (beat.pickup === 'gold') {
+      const coin = document.createElement('span');
+      coin.className = 'traversal-gold';
+      coin.textContent = '✦';
+      body.append(coin);
+    } else if (beat.type === 'fork') {
       // Its sign belongs to the persistent junction; only the interaction marker is a beat.
       body.classList.add('traversal-entity__body--location');
     } else if (beat.visualAsset) {
@@ -294,6 +306,11 @@ export class TraversalT0Scene {
       image.dataset.facing = 'left';
       image.classList.toggle('is-mirrored', Boolean(beat.mirrorX));
       body.append(image);
+      if (beat.pickup === 'chest') {
+        const lid = image.cloneNode(true) as HTMLElement;
+        lid.classList.add('traversal-chest-lid');
+        body.append(lid);
+      }
       for (const [index, characterId] of (beat.formation?.slice(1) ?? []).entries()) {
         const asset = resolveCharacterAsset(characterId, 'full');
         if (!asset) throw new Error(`Missing canonical formation sprite: ${characterId}`);
@@ -329,6 +346,7 @@ export class TraversalT0Scene {
 
   private startTransition(kind: string, midpoint?: () => void, reveal = false): void {
     this.transition = { kind, midpoint, elapsed: 0, reveal };
+    if (kind === 'entry') this.element.style.setProperty('--vehicle-entry-x', '-600px');
     this.element.dataset.transition = kind;
     this.element.style.setProperty('--transition-opacity', reveal ? '1' : '0');
     this.renderRuntimeState();
@@ -338,46 +356,100 @@ export class TraversalT0Scene {
     const transition = this.transition;
     if (!transition) return;
     transition.elapsed += seconds;
-    const half = .28;
-    if (!transition.reveal && transition.elapsed >= half && transition.midpoint) {
+    const half = TRAVERSAL_RHYTHM.fade;
+    const time = Math.max(0, transition.elapsed - TRAVERSAL_RHYTHM.hold);
+    if (!transition.reveal && time >= half && transition.midpoint) {
+      this.element.style.setProperty('--transition-opacity', '1');
       const midpoint = transition.midpoint;
       transition.midpoint = undefined;
       midpoint();
       // A synchronous node result may already have started its return transition.
       if (this.transition !== transition) return;
+      // Preserve a fully covered paint before the reveal, including long browser frames.
+      return;
     }
-    const opacity = transition.reveal ? 1 - transition.elapsed / half
-      : transition.elapsed < half ? transition.elapsed / half : 2 - transition.elapsed / half;
+    const opacity = transition.reveal ? 1 - transitionEase(time / half)
+      : time < half ? transitionEase(time / half) : 1 - transitionEase((time - half) / half);
     this.element.style.setProperty('--transition-opacity', String(Math.max(0, Math.min(1, opacity))));
-    if (transition.elapsed >= half * (transition.reveal ? 1 : 2)) {
+    if (transition.kind === 'entry') {
+      this.element.style.setProperty('--vehicle-entry-x', `${-600 * (1 - transitionEase(time / half))}px`);
+    }
+    if (time >= half * (transition.reveal ? 1 : 2)) {
       this.transition = null;
       delete this.element.dataset.transition;
       this.renderRuntimeState();
+      this.speed = 0;
     }
   }
 
   private advance(deltaSeconds: number): void {
+    // Integrate physical braking in bounded steps, including throttled browser frames.
+    let remaining = deltaSeconds;
+    while (remaining > 0 && this.session.phase === 'RUNNING' && !this.transition) {
+      const step = Math.min(remaining, 1 / 60);
+      this.advanceRoadStep(step);
+      remaining -= step;
+    }
+  }
+
+  private advanceRoadStep(deltaSeconds: number): void {
     const session = this.controller.session;
     if (session.phase !== 'RUNNING' || this.transition) return;
     if (session.routeProgress01 >= this.assistedUntil) this.assistedUntil = 0;
     const previousProgress = session.routeProgress01;
-    const nextProgress = Math.min(1, previousProgress + deltaSeconds * TRAVEL_SPEED_PER_SECOND);
+    const eligible = this.route.beats.filter(beat => !session.consumedBeatIds.includes(beat.id)
+      && (!beat.campaignNodeIds.length || beat.id === this.nextStage?.id));
+    const stop = eligible.find(beat => !this.declinedBeats.has(beat.id)
+      && !['PICKUP', 'SIMPLE_OBSTACLE'].includes(beat.category)
+      && (beat.engagement === 'ROUTE' || beat.lane === session.currentLane)
+      && traversalContactProgress(beat) > previousProgress);
+    const distance = stop ? traversalContactProgress(stop) - previousProgress : Infinity;
+    const acceleration = TRAVEL_SPEED_PER_SECOND / TRAVERSAL_RHYTHM.brake;
+    const braking = distance <= TRAVEL_SPEED_PER_SECOND * TRAVERSAL_RHYTHM.brake / 2;
+    const velocity = braking ? Math.sqrt(2 * acceleration * distance) : this.speed;
+    const nextSpeed = braking ? Math.max(0, velocity - acceleration * deltaSeconds)
+      : Math.min(TRAVEL_SPEED_PER_SECOND, velocity + TRAVEL_SPEED_PER_SECOND / TRAVERSAL_RHYTHM.restart * deltaSeconds);
+    let movement = (velocity + nextSpeed) / 2 * deltaSeconds;
+    if (braking && distance < .00001) movement = distance;
+    this.speed = nextSpeed;
+    this.element.dataset.motion = braking ? 'decelerating' : nextSpeed < TRAVEL_SPEED_PER_SECOND ? 'accelerating' : 'cruising';
+    const nextProgress = Math.min(1, previousProgress + movement);
     // Resolve crossings in spatial order, including large frame deltas. Never step past a hold.
-    const contact = (beat: TraversalRouteBeat) => beat.interactionPolicy === 'MANDATORY_CONFIRM'
-      || (previousProgress < beat.progress01 && beat.lane === session.currentLane)
-      ? beat.progress01 : beatPassedProgress(beat.progress01);
-    for (const beat of [...this.route.beats].sort((a, b) => contact(a) - contact(b))) {
-      if (session.consumedBeatIds.includes(beat.id)) continue;
-      if (beat.campaignNodeIds.length && beat.id !== this.nextStage?.id) continue;
-      const outcome = resolveTraversalBeatCrossing(beat, previousProgress, nextProgress, session.currentLane);
+    const contact = (beat: TraversalRouteBeat) => !this.declinedBeats.has(beat.id)
+      && (beat.engagement === 'ROUTE' || beat.lane === session.currentLane)
+      ? traversalContactProgress(beat) : beatPassedProgress(beat.progress01);
+    for (const beat of eligible.sort((a, b) => contact(a) - contact(b))) {
+      const declined = this.declinedBeats.has(beat.id);
+      const outcome = declined ? previousProgress < beatPassedProgress(beat.progress01)
+        && nextProgress >= beatPassedProgress(beat.progress01) ? 'BYPASSED' : 'NONE'
+        : resolveTraversalBeatCrossing(beat, previousProgress, nextProgress, session.currentLane);
       if (outcome === 'NONE') continue;
       if (outcome === 'BYPASSED') {
         this.controller.bypassBeat(beat.id);
+        this.declinedBeats.delete(beat.id);
         this.bypassCanonical(beat);
         this.showContactToast(beat, outcome);
       } else {
-        this.controller.advanceTo(beat.progress01);
+        if (beat.category === 'PICKUP' || beat.category === 'SIMPLE_OBSTACLE') {
+          this.collectedAt.set(beat.id, nextProgress);
+          this.controller.consumeBeat(beat.id);
+          const toast = this.element.querySelector<HTMLElement>('.traversal-toast')!;
+          toast.textContent = beat.category === 'PICKUP'
+            ? `${beat.pickup === 'gold' ? '+5 pièces' : beat.pickup === 'chest' ? 'Coffre ouvert · +1 provision' : '+1 garde'} · aperçu local`
+            : 'Débris franchis · aucun dégât dans cet aperçu';
+          toast.classList.remove('is-visible');
+          void toast.offsetWidth;
+          toast.classList.add('is-visible');
+          continue;
+        }
+        this.controller.advanceTo(traversalContactProgress(beat));
+        this.speed = 0;
+        if (beat.category === 'ROUTE_CHOICE') {
+          this.controller.approachNextStage(beat.progress01);
+          return;
+        }
         this.controller.pauseForDecision(beat.id);
+        this.startTransition('focus');
         this.element.querySelector<HTMLButtonElement>('[data-traversal-confirm]:not(:disabled), [data-traversal-skip]:not([hidden])')?.focus({ preventScroll: true });
         return;
       }
@@ -391,8 +463,8 @@ export class TraversalT0Scene {
 
   private advanceArrival(deltaSeconds: number): void {
     this.arrivalElapsed += deltaSeconds;
-    this.element.style.setProperty('--arrival-fade', String(Math.min(1, Math.max(0, (this.arrivalElapsed - 2.4) / .9))));
-    if (this.arrivalElapsed >= 3.5 && this.arrivalRequested) {
+    this.element.style.setProperty('--arrival-fade', String(transitionEase((this.arrivalElapsed - 2.4) / TRAVERSAL_RHYTHM.fade)));
+    if (this.arrivalElapsed >= 2.4 + TRAVERSAL_RHYTHM.fade + TRAVERSAL_RHYTHM.hold && this.arrivalRequested) {
       this.arrivalRequested = false;
       void this.options.onArrival(this.route.destinationNodeId);
     }
@@ -432,8 +504,7 @@ export class TraversalT0Scene {
           this.controller.releaseDecision();
           this.startTransition('return', undefined, true);
         } else {
-          this.controller.beginLocalInteraction();
-          this.startTransition('focus');
+          this.startTransition('event', () => this.controller.beginLocalInteraction());
         }
       }
     } finally {
@@ -445,9 +516,10 @@ export class TraversalT0Scene {
   private skipDecision(): void {
     const beat = this.route.beats.find((candidate) => candidate.id === this.session.pendingBeatId);
     if (!beat || this.session.phase !== 'DECISION' || beat.interactionPolicy !== 'OPTIONAL_CONFIRM' || this.confirming) return;
-    this.controller.bypassBeat(beat.id);
-    if (beat.campaignNodeIds.length) this.bypassCanonical(beat);
-    else this.controller.releaseDecision();
+    if (this.transition) return;
+    this.declinedBeats.add(beat.id);
+    this.controller.releaseDecision();
+    this.speed = 0;
     if (beat.lane !== null && this.session.currentLane === beat.lane) {
       this.moveToLane(beat.lane === 0 ? 1 : 0);
       this.assistedUntil = beatPassedProgress(beat.progress01);
@@ -466,6 +538,10 @@ export class TraversalT0Scene {
 
   private renderRuntimeState(): void {
     const session = this.controller.session;
+    const forkIds = session.phase === 'FORK_OVERLAY' ? session.forkOptionIds
+      : this.nextStage?.category === 'ROUTE_CHOICE' ? this.nextStage.campaignNodeIds : [];
+    if (forkIds.length) this.worldRenderer.setDirections(this.options.getAvailableNodes()
+      .filter(node => forkIds.includes(node.id)));
     this.element.style.setProperty('--traversal-lane-y', `${LANE_TOP_PERCENT[session.currentLane]}%`);
     this.element.style.setProperty('--route-progress', String(session.routeProgress01));
     this.element.dataset.phase = session.phase;
@@ -492,7 +568,8 @@ export class TraversalT0Scene {
     const beat = this.route.beats.find((candidate) => candidate.id === session.pendingBeatId);
     const panel = this.element.querySelector<HTMLElement>('[data-traversal-event-panel]');
     if (!panel) return;
-    panel.hidden = !beat || !['DECISION', 'LOCAL_INTERACTION'].includes(session.phase);
+    panel.hidden = !beat || !['DECISION', 'LOCAL_INTERACTION'].includes(session.phase)
+      || this.transition?.kind === 'focus';
     if (!beat) return;
     const local = session.phase === 'LOCAL_INTERACTION';
     const paused = session.phase === 'DECISION' || local;
@@ -501,15 +578,19 @@ export class TraversalT0Scene {
     actions.hidden = !paused;
     const confirm = panel.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!;
     const skip = panel.querySelector<HTMLButtonElement>('[data-traversal-skip]')!;
-    confirm.textContent = local ? 'Reprendre la route' : mandatory ? 'Continuer' : 'Confirmer';
+    confirm.textContent = local ? 'Reprendre la route' : mandatory ? 'Continuer'
+      : beat.category === 'OPTIONAL_COMBAT' ? 'Combattre' : 'Rencontrer';
+    skip.textContent = beat.category === 'OPTIONAL_COMBAT' ? 'Fuir' : 'Ignorer';
     confirm.disabled = this.confirming || Boolean(this.transition);
     skip.hidden = mandatory || local;
     skip.disabled = this.confirming || Boolean(this.transition);
     panel.dataset.interactionPolicy = beat.interactionPolicy;
+    panel.dataset.category = beat.category;
     panel.dataset.placement = beat.placement.toLowerCase();
     panel.querySelector<HTMLElement>('[data-traversal-event-kind]')!.textContent = beat.type === 'fork' ? 'Choix d’itinéraire' : beat.interactionPolicy === 'MANDATORY_CONFIRM'
       ? 'Événement obligatoire'
-      : `Rencontre facultative · ${laneLabel(beat.lane!).toLowerCase()}`;
+      : beat.category === 'OPTIONAL_COMBAT' ? `Ennemis · ${laneLabel(beat.lane!).toLowerCase()}`
+      : 'Rencontre facultative';
     panel.querySelector<HTMLElement>('[data-traversal-event-title]')!.textContent = beat.label;
     const localDescriptions: Partial<Record<TraversalRouteBeat['type'], string>> = {
       npc: 'Vous faites halte près de l’étal et examinez les provisions du marchand.',
@@ -520,8 +601,8 @@ export class TraversalT0Scene {
     };
     panel.querySelector<HTMLElement>('[data-traversal-event-hint]')!.textContent = local
       ? `${localDescriptions[beat.type] ?? ''} Aperçu local · aucun gain permanent.` : paused
-      ? mandatory ? 'Route arrêtée · confirmez pour poursuivre.'
-        : 'Route arrêtée · entrer ou passer.'
+      ? mandatory ? 'Le passage est bloqué · continuez vers la rencontre.'
+        : beat.category === 'OPTIONAL_COMBAT' ? 'Combattre ou emprunter l’autre voie pour fuir.' : 'Faire halte auprès de ces voyageurs ou poursuivre la route.'
       : mandatory ? 'Passage obligé · arrêt avant la rencontre.' : 'Restez sur cette voie pour vous arrêter, ou changez de voie pour passer.';
     panel.querySelector<HTMLElement>('[data-traversal-event-marker]')!.textContent = markerGlyph(beat);
     const portrait = panel.querySelector<HTMLImageElement>('[data-traversal-event-portrait]')!;
@@ -542,7 +623,8 @@ export class TraversalT0Scene {
     const screen = (worldX: number) => roadWorldToScreen(worldX, camera, width);
     this.element.style.setProperty('--road-offset', `${screen(0)}px`);
     this.element.style.setProperty('--foreground-offset', `${screen(0)}px`);
-    const drivenDistance = camera + exitDistance;
+    const entryDistance = 600 + Number.parseFloat(this.element.style.getPropertyValue('--vehicle-entry-x') || '0');
+    const drivenDistance = camera + exitDistance + entryDistance;
     this.element.style.setProperty('--wheel-angle', `${drivenDistance / ROAD_SPACE.wheelRadius}rad`);
     this.element.style.setProperty('--suspension-y', `${Math.sin(drivenDistance / 27) * 1.3}px`);
     this.element.style.setProperty('--dust-phase', String((drivenDistance % 130) / 130));
@@ -557,6 +639,9 @@ export class TraversalT0Scene {
       entity.style.top = `${beat.type === 'fork' ? 57 : entity.dataset.roadside ? 61 : beat.placement === 'CENTERED' ? MANDATORY_TOP_PERCENT : LANE_TOP_PERCENT[beat.lane!]}%`;
       entity.style.zIndex = String(beat.placement === 'CENTERED' ? 20 : 14 + beat.lane! * 12);
       const ambientConsumed = session.consumedBeatIds.includes(beat.id);
+      const collectionProgress = this.collectedAt.get(beat.id);
+      const reacting = collectionProgress !== undefined && session.routeProgress01 - collectionProgress < .009;
+      entity.classList.toggle('is-collected', reacting && beat.category === 'PICKUP');
       const bypassed = session.bypassedBeatIds.includes(beat.id);
       const stageIndex = this.stageBeats.findIndex((candidate) => candidate.id === beat.id);
       const stageConsumed = (stageIndex >= 0 && stageIndex < session.stageIndex)
@@ -566,7 +651,7 @@ export class TraversalT0Scene {
       entity.style.opacity = '1';
       entity.classList.toggle('is-near', Math.abs(beat.progress01 - session.routeProgress01) < 0.035);
       entity.hidden = session.phase === 'ARRIVING' || Boolean(branchUnavailable) || screenX < -width * .24 || screenX > width * 1.24
-        || (!bypassed && (ambientConsumed || stageConsumed));
+        || (!reacting && !bypassed && (ambientConsumed || stageConsumed));
     });
   }
 

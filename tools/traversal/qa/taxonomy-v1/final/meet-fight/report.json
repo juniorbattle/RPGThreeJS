@@ -1,0 +1,455 @@
+{
+  "returned": true,
+  "errors": [],
+  "states": [
+    {
+      "phase": "RUNNING",
+      "progress": 0,
+      "transition": "entry",
+      "variant": "main",
+      "lane": 0,
+      "title": "En route",
+      "collected": [],
+      "panel": false
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.09,
+      "transition": "focus",
+      "variant": "main",
+      "lane": 0,
+      "title": "Marchand itinérant",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "LOCAL_INTERACTION",
+      "progress": 0.09,
+      "transition": "event",
+      "variant": "main",
+      "lane": 0,
+      "title": "Marchand itinérant",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": true,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.09,
+      "transition": "return",
+      "variant": "main",
+      "lane": 0,
+      "title": "Marchand itinérant",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.2,
+      "transition": "focus",
+      "variant": "main",
+      "lane": 1,
+      "title": "Piste des bêtes",
+      "category": "MANDATORY_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "NODE_HANDOFF",
+      "progress": 0.2,
+      "transition": "event",
+      "variant": "main",
+      "lane": 1,
+      "title": "Piste des bêtes",
+      "category": "MANDATORY_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "progress": 0.2,
+      "transition": "event",
+      "variant": "main",
+      "lane": 1,
+      "title": "Piste des bêtes",
+      "category": "MANDATORY_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.2,
+      "transition": "return",
+      "variant": "main",
+      "lane": 1,
+      "title": "Piste des bêtes",
+      "category": "MANDATORY_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.3,
+      "transition": "focus",
+      "variant": "main",
+      "lane": 1,
+      "title": "Loups des sous-bois",
+      "category": "OPTIONAL_COMBAT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "LOCAL_INTERACTION",
+      "progress": 0.3,
+      "transition": "event",
+      "variant": "main",
+      "lane": 1,
+      "title": "Loups des sous-bois",
+      "category": "OPTIONAL_COMBAT",
+      "collected": [],
+      "panel": true,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.3,
+      "transition": "return",
+      "variant": "main",
+      "lane": 1,
+      "title": "Loups des sous-bois",
+      "category": "OPTIONAL_COMBAT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.4,
+      "transition": "focus",
+      "variant": "main",
+      "lane": 1,
+      "title": "Croisement du rôdeur",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "NODE_HANDOFF",
+      "progress": 0.4,
+      "transition": "event",
+      "variant": "main",
+      "lane": 1,
+      "title": "Croisement du rôdeur",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "progress": 0.4,
+      "transition": "event",
+      "variant": "main",
+      "lane": 1,
+      "title": "Croisement du rôdeur",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.4,
+      "transition": "return",
+      "variant": "main",
+      "lane": 1,
+      "title": "Croisement du rôdeur",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.6,
+      "transition": "focus",
+      "variant": "main",
+      "lane": 0,
+      "title": "Route des réfugiés",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.6003375,
+      "variant": "main",
+      "lane": 1,
+      "title": "Route des réfugiés",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "accelerating"
+    },
+    {
+      "phase": "FORK_OVERLAY",
+      "progress": 0.8,
+      "variant": "main",
+      "lane": 0,
+      "title": "Route des réfugiés",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0",
+      "variant": "main",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0",
+      "variant": "main",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0.019675925925925927",
+      "variant": "main",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0.12620027434842254",
+      "variant": "main",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0.6769366110682553",
+      "variant": "lion-first-trial-event",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0.47209622612312596",
+      "variant": "lion-first-trial-event",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0.10776043792869283",
+      "variant": "lion-first-trial-event",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0.001026227580589012",
+      "variant": "lion-first-trial-event",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0",
+      "variant": "lion-first-trial-event",
+      "progress": "0.80006673335"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0",
+      "variant": "lion-first-trial-event",
+      "progress": "0.8003374999999999"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0",
+      "variant": "lion-first-trial-event",
+      "progress": "0.8008171334"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0",
+      "variant": "lion-first-trial-event",
+      "progress": "0.8013499999999999"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.8038003833999997,
+      "variant": "lion-first-trial-event",
+      "lane": 0,
+      "title": "Route des réfugiés",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "cruising"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.91,
+      "transition": "focus",
+      "variant": "lion-first-trial-event",
+      "lane": 0,
+      "title": "Marchand blessé",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "NODE_HANDOFF",
+      "progress": 0.91,
+      "transition": "event",
+      "variant": "lion-first-trial-event",
+      "lane": 0,
+      "title": "Marchand blessé",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "progress": 0.91,
+      "transition": "event",
+      "variant": "lion-first-trial-event",
+      "lane": 0,
+      "title": "Marchand blessé",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.91,
+      "transition": "return",
+      "variant": "lion-first-trial-event",
+      "lane": 0,
+      "title": "Marchand blessé",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating"
+    },
+    {
+      "phase": "ARRIVING",
+      "progress": 1,
+      "variant": "lion-first-trial-event",
+      "lane": 0,
+      "title": "Marchand blessé",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "cruising"
+    }
+  ],
+  "scales": [
+    {
+      "id": "t0:npc:roadside-merchant",
+      "category": "OPTIONAL_EVENT",
+      "family": "human",
+      "ratio": 0.5999525354006803
+    },
+    {
+      "id": "t0:stage:0:lion-opening-ambush",
+      "category": "MANDATORY_EVENT",
+      "family": "creature",
+      "ratio": 0.5199746855470295
+    },
+    {
+      "id": "t0:stage:0:lion-opening-ambush",
+      "category": "MANDATORY_EVENT",
+      "family": "creature",
+      "ratio": 0.5199746855470295
+    },
+    {
+      "id": "t0:enemy:wolf-scouts",
+      "category": "OPTIONAL_COMBAT",
+      "family": "creature",
+      "ratio": 0.5199746855470295
+    },
+    {
+      "id": "t0:enemy:wolf-scouts",
+      "category": "OPTIONAL_COMBAT",
+      "family": "creature",
+      "ratio": 0.5199746855470295
+    },
+    {
+      "id": "t0:stage:1:lion-nomad-crossroads",
+      "category": "OPTIONAL_EVENT",
+      "family": "human",
+      "ratio": 0.5999525354006803
+    },
+    {
+      "id": "t0:stage:1:lion-nomad-crossroads",
+      "category": "OPTIONAL_EVENT",
+      "family": "human",
+      "ratio": 0.5999525354006803
+    },
+    {
+      "id": "t0:loot:road-cache",
+      "category": "PICKUP",
+      "family": "loot",
+      "ratio": 0.2599477889407484
+    },
+    {
+      "id": "t0:stage:2:lion-refugees",
+      "category": "OPTIONAL_EVENT",
+      "family": "human",
+      "ratio": 0.5999525354006803
+    },
+    {
+      "id": "t0:obstacle:broken-cart",
+      "category": "SIMPLE_OBSTACLE",
+      "family": "obstacle",
+      "ratio": 0.44996440155051026
+    },
+    {
+      "id": "t0:stage:3:lion-first-trial-event+lion-first-trial-combat",
+      "category": "ROUTE_CHOICE",
+      "family": "fork",
+      "ratio": 0.5399889249268254
+    },
+    {
+      "id": "t0:branch:lion-first-trial-event",
+      "category": "OPTIONAL_EVENT",
+      "family": "human",
+      "ratio": 0.5999525354006803
+    }
+  ],
+  "captures": [
+    "decision-0.09",
+    "merchant-meet",
+    "mandatory-approach",
+    "decision-0.2",
+    "mandatory-combat",
+    "decision-0.3",
+    "random-combat",
+    "decision-0.4",
+    "canonical-dialogue",
+    "collect-road-cache",
+    "collect-gold",
+    "decision-0.6",
+    "obstacle-avoid",
+    "collect-lion-ward",
+    "fork-approach",
+    "fork-direct-choice",
+    "fork-resumed",
+    "decision-0.91",
+    "travel-return"
+  ]
+}

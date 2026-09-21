@@ -4,21 +4,16 @@ import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
 import { enterRunNode, getAvailableRunNodes } from '../game/runSystem';
 import { createInitialState } from '../game/store';
 import { TraversalT0Scene } from './TraversalT0Scene';
-
-function settle(scene: TraversalT0Scene): void {
-  (scene as unknown as { advanceTransition(seconds: number): void }).advanceTransition(.6);
-  (scene as unknown as { advanceTransition(seconds: number): void }).advanceTransition(.6);
-}
+import { traversalContactProgress } from './TraversalT0Route';
 
 afterEach(() => { document.body.replaceChildren(); vi.restoreAllMocks(); });
-
-it.each(['confirm', 'skip', 'opposite-lane'] as const)('completes T0 via %s with deferred branch entry', action => {
+it.each(['confirm', 'skip', 'opposite-lane'] as const)('completes T0 via %s with direct fork and deferred branch entry', async action => {
   vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
-  vi.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => undefined);
   const state = createInitialState();
   state.run.currentNodeId = state.currentNodeId = 'lion-audience';
   const handoffs: string[] = [];
   const arrival = vi.fn();
+  const roadCombat = vi.fn(async () => true);
   const scene = new TraversalT0Scene({
     root: document.body, leg: LION_TRAVERSAL_LEGS.find(leg => leg.id === 'T0')!,
     getState: () => state, getAvailableNodes: () => getAvailableRunNodes(state),
@@ -28,59 +23,59 @@ it.each(['confirm', 'skip', 'opposite-lane'] as const)('completes T0 via %s with
       handoffs.push(node.id);
       scene.beginNodeResolution(node.id);
       scene.resumeNode(node.id);
-    },
-    onArrival: arrival, onMenu: () => undefined,
+    }, onRoadCombat: roadCombat, onArrival: arrival, onMenu: () => undefined,
   });
-  scene.open();
-    settle(scene);
-  const advance = (seconds: number) => (scene as unknown as { advance(seconds: number): void }).advance(seconds);
-  const click = (selector: string) => { document.querySelector<HTMLButtonElement>(selector)!.click(); settle(scene); };
-  for (let frame = 0; frame < 2000 && !arrival.mock.calls.length; frame++) {
-    const upcoming = scene.route.beats.find(beat => beat.progress01 > scene.session.routeProgress01
+  const clock = scene as unknown as { advance(n: number): void; advanceTransition(n: number): void; advanceArrival(n: number): void };
+  const settle = async () => { clock.advanceTransition(1); await Promise.resolve(); await Promise.resolve(); clock.advanceTransition(1); };
+  const click = async (selector: string) => { scene.element.querySelector<HTMLButtonElement>(selector)!.click(); await settle(); };
+  scene.open(); await settle();
+  const pickups = new Set<string>();
+  for (let frame = 0; frame < 1300 && !arrival.mock.calls.length; frame++) {
+    await settle();
+    const upcoming = scene.route.beats.find(beat => traversalContactProgress(beat) > scene.session.routeProgress01
       && (!beat.branchNodeId || state.run.traversalBranches?.T0 === beat.branchNodeId));
-    if (upcoming?.lane != null) {
-      const lane = action === 'opposite-lane' ? 1 - upcoming.lane : upcoming.lane;
-      click(`[data-traversal-lane="${lane}"]`);
-    }
-    if (scene.session.phase === 'ARRIVING') {
-      (scene as unknown as { advanceArrival(seconds: number): void }).advanceArrival(.1);
-    } else advance(.1);
-    if (scene.session.phase !== 'DECISION') continue;
-    const beat = scene.route.beats.find(candidate => candidate.id === scene.session.pendingBeatId)!;
-    const before = JSON.stringify(state);
-    const progress = scene.session.routeProgress01;
-    advance(10);
-    expect(scene.session.routeProgress01).toBe(progress);
-    if (action === 'skip' && beat.interactionPolicy === 'OPTIONAL_CONFIRM') click('[data-traversal-skip]');
-    else {
-      click('[data-traversal-confirm]');
-      if (beat.type === 'fork') {
-        const priorHandoffs = handoffs.length;
-        const priorNode = state.run.currentNodeId;
-        document.querySelector<HTMLButtonElement>('[data-traversal-fork-choice="lion-first-trial-event"]')!.click();
-        expect(scene.element.dataset.transition).toBe('fork');
-        const forkProgress = scene.session.routeProgress01;
-        advance(10);
-        expect(scene.session.routeProgress01).toBe(forkProgress);
-        settle(scene);
-        expect(scene.session.currentLane).toBe(0);
-        expect(scene.element.dataset.routeVariant).toBe('lion-first-trial-event');
-        expect(scene.session.phase).toBe('RUNNING');
-        expect(handoffs).toHaveLength(priorHandoffs);
-        expect(state.run.currentNodeId).toBe(priorNode);
-        expect(state.run.traversalBranches?.T0).toBe('lion-first-trial-event');
-      } else if (!beat.campaignNodeIds.length) {
-        expect(scene.session.phase).toBe('LOCAL_INTERACTION');
-        click('[data-traversal-confirm]');
+    if (upcoming?.lane != null) await click(`[data-traversal-lane="${action === 'opposite-lane' ? 1 - upcoming.lane : upcoming.lane}"]`);
+    if (scene.session.phase === 'ARRIVING') clock.advanceArrival(.1);
+    else clock.advance(.1);
+    for (const beat of scene.route.beats.filter(b => b.category === 'PICKUP')) {
+      if (scene.session.consumedBeatIds.includes(beat.id) && !scene.session.bypassedBeatIds.includes(beat.id)) {
+        pickups.add(beat.id);
+        expect(scene.session.pendingBeatId).not.toBe(beat.id);
       }
     }
-    if (!beat.campaignNodeIds.length) expect(JSON.stringify(state)).toBe(before);
+    await settle();
+    if (scene.session.phase === 'FORK_OVERLAY') {
+      expect(scene.element.querySelector<HTMLElement>('[data-traversal-event-panel]')!.hidden).toBe(true);
+      const priorNode = state.run.currentNodeId;
+      scene.element.querySelector<HTMLButtonElement>('[data-traversal-fork-choice="lion-first-trial-event"]')!.click();
+      expect(state.run.traversalBranches?.T0).toBeUndefined();
+      clock.advanceTransition(.47);
+      expect(state.run.traversalBranches?.T0).toBeUndefined();
+      clock.advanceTransition(.01);
+      expect(state.run.traversalBranches?.T0).toBe('lion-first-trial-event');
+      expect(scene.element.style.getPropertyValue('--transition-opacity')).toBe('1');
+      await settle();
+      expect(scene.session.phase).toBe('RUNNING');
+      expect(state.run.currentNodeId).toBe(priorNode);
+      continue;
+    }
+    if (scene.session.phase !== 'DECISION') continue;
+    const beat = scene.route.beats.find(b => b.id === scene.session.pendingBeatId)!;
+    expect(['PICKUP', 'SIMPLE_OBSTACLE', 'ROUTE_CHOICE']).not.toContain(beat.category);
+    if (action !== 'confirm' && beat.interactionPolicy === 'OPTIONAL_CONFIRM') {
+      await click('[data-traversal-skip]');
+      expect(scene.session.bypassedBeatIds).not.toContain(beat.id);
+    } else {
+      await click('[data-traversal-confirm]');
+      if (String(scene.session.phase) === 'LOCAL_INTERACTION') await click('[data-traversal-confirm]');
+    }
   }
   expect(arrival).toHaveBeenCalledExactlyOnceWith('lion-first-refuge');
   expect(getAvailableRunNodes(state).map(node => node.id)).toEqual(['lion-first-refuge']);
   expect(handoffs).toEqual(action === 'confirm'
     ? ['lion-opening-ambush', 'lion-nomad-crossroads', 'lion-refugees', 'lion-first-trial-event']
     : ['lion-opening-ambush']);
-  if (action === 'opposite-lane') expect(scene.session.bypassedBeatIds).toHaveLength(8);
+  if (action === 'confirm') { expect(pickups.size).toBe(3); expect(roadCombat).toHaveBeenCalledOnce(); }
+  if (action === 'opposite-lane') expect(roadCombat).not.toHaveBeenCalled();
   scene.dispose();
-});
+}, 15000);

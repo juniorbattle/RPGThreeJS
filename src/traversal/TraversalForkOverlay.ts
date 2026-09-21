@@ -51,7 +51,7 @@ export class TraversalForkOverlay {
 
     const list = document.createElement('div');
     list.className = 'traversal-fork-overlay__choices';
-    for (const choice of choices) list.append(this.buildChoice(choice));
+    for (const [index, choice] of choices.entries()) list.append(this.buildChoice(choice, index));
     this.rail.append(list);
     this.element.append(this.rail);
   }
@@ -72,7 +72,7 @@ export class TraversalForkOverlay {
     if (this.previousFocus?.isConnected) this.previousFocus.focus();
   }
 
-  private buildChoice(node: RunNode): HTMLButtonElement {
+  private buildChoice(node: RunNode, index: number): HTMLButtonElement {
     const meta = runNodePresentation(node);
     const button = document.createElement('button');
     button.type = 'button';
@@ -80,6 +80,7 @@ export class TraversalForkOverlay {
     button.dataset.traversalForkChoice = node.id;
 
     const label = document.createElement('strong');
+    label.dataset.direction = index === 0 ? '↗' : '→';
     label.textContent = node.label;
     const category = document.createElement('span');
     category.className = 'traversal-fork-overlay__meta';

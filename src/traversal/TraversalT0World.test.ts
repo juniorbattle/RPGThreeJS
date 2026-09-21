@@ -51,10 +51,12 @@ describe('T0 authored geography', () => {
     scene.open();
     clock.advanceTransition(.6);
     clock.advance(10);
+    clock.advanceTransition(1);
     const section = scene.element.querySelector<HTMLElement>('[data-world-section="merchant-halt"]')!;
     const snapshot = JSON.stringify(state);
     scene.element.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!.click();
-    clock.advanceTransition(.6);
+    clock.advanceTransition(1);
+    clock.advanceTransition(1);
     scene.element.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!.click();
     clock.advanceTransition(.6);
     expect(scene.session.consumedBeatIds).toContain('t0:npc:roadside-merchant');

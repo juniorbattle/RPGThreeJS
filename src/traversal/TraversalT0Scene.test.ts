@@ -27,14 +27,15 @@ describe('TraversalT0Scene', () => {
     settle(scene);
     document.querySelector<HTMLButtonElement>('[data-traversal-lane="1"]')!.click();
     clock.advance(20);
+    settle(scene);
     document.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!.click();
     expect(handoff).not.toHaveBeenCalled();
-    clock.advanceTransition(.14);
+    clock.advanceTransition(.30);
     expect(handoff).not.toHaveBeenCalled();
-    expect(scene.element.style.getPropertyValue('--transition-opacity')).toBe('0.5');
+    expect(Number(scene.element.style.getPropertyValue('--transition-opacity'))).toBeCloseTo(.5);
     clock.advance(10);
     expect(scene.session.routeProgress01).toBe(.2);
-    clock.advanceTransition(.14);
+    clock.advanceTransition(.18);
     expect(handoff).toHaveBeenCalledOnce();
     settle(scene);
     expect(handoff).toHaveBeenCalledOnce();
@@ -107,6 +108,7 @@ describe('TraversalT0Scene', () => {
     scene.open();
     settle(scene);
     (scene as unknown as { advance: (seconds: number) => void }).advance(20);
+    settle(scene);
 
     const advance = (seconds: number) => (scene as unknown as { advance: (seconds: number) => void }).advance(seconds);
     const button = (selector: string) => document.querySelector<HTMLButtonElement>(selector)!;
@@ -130,6 +132,7 @@ describe('TraversalT0Scene', () => {
     expect(JSON.stringify(state)).toBe(before);
     advance(20);
     expect(scene.session.phase).toBe('DECISION');
+    settle(scene);
     expect(scene.session.routeProgress01).toBe(0.2);
     expect(scene.session.consumedBeatIds).toEqual(expect.arrayContaining([
       't0:npc:roadside-merchant',
@@ -179,6 +182,7 @@ describe('TraversalT0Scene', () => {
     document.querySelector<HTMLButtonElement>('[data-traversal-lane="1"]')!.click();
     const advance = (seconds: number) => (scene as unknown as { advance(seconds: number): void }).advance(seconds);
     advance(20);
+    settle(scene);
     document.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!.click();
     settle(scene);
     scene.beginNodeResolution('lion-opening-ambush');
@@ -186,6 +190,7 @@ describe('TraversalT0Scene', () => {
     settle(scene);
     handoff.mockClear();
     advance(10);
+    settle(scene);
     const snapshot = JSON.stringify(state);
     expect(scene.session.routeProgress01).toBe(.30);
     const interaction = (scene as unknown as { confirmDecision(): Promise<void> }).confirmDecision();
@@ -214,6 +219,7 @@ describe('TraversalT0Scene', () => {
     settle(scene);
     const advance = (seconds: number) => (scene as unknown as { advance(seconds: number): void }).advance(seconds);
     advance(20);
+    settle(scene);
     const world = document.querySelector<HTMLElement>('.traversal-t0')!;
     const subject = document.querySelector<HTMLElement>('[data-traversal-beat="t0:npc:roadside-merchant"]')!;
     const beforeX = parseFloat(subject.style.left);
@@ -223,6 +229,7 @@ describe('TraversalT0Scene', () => {
     expect(subject.style.left).toBe(`${beforeX}px`);
     expect(world.style.getPropertyValue('--wheel-angle')).toBe(beforeWheel);
     document.querySelector<HTMLButtonElement>('[data-traversal-skip]')!.click();
+    expect(scene.session.bypassedBeatIds).not.toContain('t0:npc:roadside-merchant');
     expect(scene.session.currentLane).toBe(1);
     expect(subject.hidden).toBe(false);
     document.querySelector<HTMLButtonElement>('[data-traversal-lane="0"]')!.click();
@@ -232,6 +239,7 @@ describe('TraversalT0Scene', () => {
     expect(parseFloat(subject.style.left) - beforeX).toBeCloseTo(parseFloat(world.style.getPropertyValue('--road-offset')) - beforeRoad);
     expect(world.style.getPropertyValue('--wheel-angle')).not.toBe(beforeWheel);
     advance(4.5);
+    expect(scene.session.bypassedBeatIds).toContain('t0:npc:roadside-merchant');
     expect(document.querySelector<HTMLButtonElement>('[data-traversal-lane="0"]')!.disabled).toBe(false);
     scene.dispose();
   });
