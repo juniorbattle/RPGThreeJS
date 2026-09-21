@@ -56,6 +56,10 @@ describe('TraversalT0Route', () => {
     expect(merchant?.characterId).toBe('wounded_merchant');
     expect(merchant?.visualAsset).toBe(resolveCharacterAsset('wounded_merchant', 'full'));
     expect(merchant?.locationId).toBe('merchant-halt');
+    expect(cedric?.lane).toBe(0);
+    expect(route.beats.filter(beat => beat.category === 'OPTIONAL_EVENT').every(beat => beat.lane === 0)).toBe(true);
+    expect(route.beats.filter(beat => beat.category === 'OPTIONAL_COMBAT').every(beat => beat.lane === 1)).toBe(true);
+    expect(route.beats.some(beat => beat.category === 'SIMPLE_OBSTACLE' || beat.id === 't0:obstacle:broken-cart')).toBe(false);
   });
 
   it('offers narrative decisions from either lane while combat remains avoidable by lane', () => {

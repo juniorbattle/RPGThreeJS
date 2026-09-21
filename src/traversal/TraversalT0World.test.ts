@@ -6,7 +6,7 @@ import { createInitialState } from '../game/store';
 import { getAvailableRunNodes } from '../game/runSystem';
 import { beatWorldX, ROAD_SPACE } from './TraversalRoadSpace';
 import { resolveTraversalT0Route } from './TraversalT0Route';
-import { TRAVERSAL_T0_WORLD, TRAVERSAL_WORLD_ASSETS, traversalLocation } from './TraversalT0World';
+import { TRAVERSAL_T0_WORLD, TRAVERSAL_WORLD_ASSETS, TRAVERSAL_SECTION_OVERLAP, resolveTraversalWorld, traversalLocation } from './TraversalT0World';
 import { TraversalT0Scene } from './TraversalT0Scene';
 import { TraversalWorldRenderer } from './TraversalWorldRenderer';
 
@@ -81,7 +81,7 @@ describe('T0 authored geography', () => {
     const width = 960;
     renderer.update(camera, width, 'main', new Set());
     expect(renderer.element.style.transform).toBe(`translateX(${-camera * width / ROAD_SPACE.referenceWidth}px)`);
-    const image = (id: string) => renderer.element.querySelector<HTMLImageElement>(`[data-world-section="${id}"] > img`)!.getAttribute('src');
+    const image = (id: string) => renderer.element.querySelector<HTMLImageElement>(`[data-world-section="${id}"] .traversal-world-section__painting > img`)!.getAttribute('src');
     expect(image('opening-ambush')).toBe(TRAVERSAL_WORLD_ASSETS.ambush);
     expect(image('selected-route')).toBe(TRAVERSAL_WORLD_ASSETS.forest);
     renderer.update(camera, width, 'lion-first-trial-combat', new Set(['opening-ambush']));
@@ -89,5 +89,27 @@ describe('T0 authored geography', () => {
     expect(image('selected-route')).toBe(TRAVERSAL_WORLD_ASSETS.ruins);
     renderer.update(camera, width, 'lion-first-trial-event', new Set(['opening-ambush']));
     expect(image('selected-route')).toBe(TRAVERSAL_WORLD_ASSETS.caravan);
+  });
+
+  it.each(['lion-first-trial-event', 'lion-first-trial-combat'])('replaces the old junction with the %s lateral road', branch => {
+    const sequence = resolveTraversalWorld(branch);
+    expect(sequence.some(s => s.id === 'forest-junction')).toBe(false);
+    const selected = sequence.find(s => s.id === 'selected-route')!;
+    expect(selected.worldStart).toBe(traversalLocation('selected-route')!.worldStart);
+    const approach = sequence.find(s => s.id === 'selected-approach')!;
+    expect(approach.worldStart).toBe(traversalLocation('forest-junction')!.worldStart);
+    expect(approach.asset).toBe(branch.endsWith('event') ? TRAVERSAL_WORLD_ASSETS.forest : TRAVERSAL_WORLD_ASSETS.ruins);
+    expect(selected.asset).toBe(branch.endsWith('event') ? TRAVERSAL_WORLD_ASSETS.caravan : TRAVERSAL_WORLD_ASSETS.ruins);
+    const renderer = new TraversalWorldRenderer();
+    renderer.update(7200, 1463, branch, new Set());
+    expect(renderer.element.querySelector('[data-world-section="forest-junction"]')).toBeNull();
+    expect(renderer.element.querySelector('[data-location-prop="junction-sign"]')).toBeNull();
+    expect(renderer.element.querySelector<HTMLElement>('[data-world-section="selected-route"]')!.hidden).toBe(false);
+    sequence.forEach((section, index) => {
+      expect(section.coreStart).toBeGreaterThan(section.worldStart + TRAVERSAL_SECTION_OVERLAP);
+      expect(section.coreEnd).toBeLessThan(section.worldEnd - TRAVERSAL_SECTION_OVERLAP);
+      if (index) expect(section.worldStart).toBe(sequence[index - 1]!.worldEnd);
+    });
+    expect(resolveTraversalWorld('lion-first-trial-event')).not.toEqual(resolveTraversalWorld('lion-first-trial-combat'));
   });
 });

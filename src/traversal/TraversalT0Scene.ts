@@ -116,7 +116,9 @@ export class TraversalT0Scene {
             this.entityElements.get(beat.id)?.remove();
             this.buildEntity(entities, beat);
           }
-          this.presentedBranch = nodeId;
+          this.presentedBranch = current.run.traversalBranches!.T0!;
+          // Mount the selected lateral road while the transition is fully opaque.
+          this.updateWorldTransforms();
           resolve(true);
         });
       }),
@@ -532,7 +534,7 @@ export class TraversalT0Scene {
     this.declinedBeats.add(beat.id);
     this.controller.releaseDecision();
     this.speed = 0;
-    if (beat.lane !== null && this.session.currentLane === beat.lane) {
+    if (beat.category === 'OPTIONAL_COMBAT' && beat.lane !== null && this.session.currentLane === beat.lane) {
       this.moveToLane(beat.lane === 0 ? 1 : 0);
       this.assistedUntil = beatPassedProgress(beat.progress01);
     }
@@ -662,10 +664,12 @@ export class TraversalT0Scene {
       const stageConsumed = (stageIndex >= 0 && stageIndex < session.stageIndex)
         || Boolean(beat.branchNodeId && session.stageIndex >= this.stageBeats.length);
       const branchUnavailable = beat.branchNodeId && this.options.getState().run.traversalBranches?.T0 !== beat.branchNodeId;
+      const previousRoad = this.presentedBranch !== 'main'
+        && beat.progress01 <= this.stageBeats.find(stage => stage.type === 'fork')!.progress01;
       entity.classList.toggle('is-consumed', !bypassed && (ambientConsumed || stageConsumed));
       entity.style.opacity = '1';
       entity.classList.toggle('is-near', Math.abs(beat.progress01 - session.routeProgress01) < 0.035);
-      entity.hidden = session.phase === 'ARRIVING' || Boolean(branchUnavailable) || screenX < -width * .24 || screenX > width * 1.24
+      entity.hidden = session.phase === 'ARRIVING' || previousRoad || Boolean(branchUnavailable) || screenX < -width * .24 || screenX > width * 1.24
         || (!reacting && !bypassed && (ambientConsumed || stageConsumed));
     });
   }

@@ -23,6 +23,8 @@ export interface TraversalWorldSection {
 }
 
 const ROOT = '/assets/generated/lion-phase/traversal/t0/world-v1';
+/** Logical road units on each side of a join; presentation only, outside owned intervals. */
+export const TRAVERSAL_SECTION_OVERLAP = 60;
 export const TRAVERSAL_WORLD_ASSETS = Object.freeze({
   forest: `${ROOT}/forest-road.png`,
   merchant: `${ROOT}/reference-convergence/merchant-halt.png`,
@@ -74,4 +76,25 @@ export const TRAVERSAL_T0_WORLD: readonly TraversalWorldSection[] = Object.freez
 
 export function traversalLocation(id: string): TraversalWorldSection | undefined {
   return TRAVERSAL_T0_WORLD.find(section => section.id === id);
+}
+
+/** Derive geography from the branch already committed by RunSystem. No route mutation.
+ * The fade changes camera axis: the junction and its sign do not exist on this lateral road.
+ * Keep the encounter's road coordinate/core so return-to-route and contact timing are stable.
+ */
+export function resolveTraversalWorld(presentedBranch: string): readonly TraversalWorldSection[] {
+  const selected = traversalLocation('selected-route')!;
+  const asset = selected.variantAssets?.[presentedBranch];
+  if (!asset) return TRAVERSAL_T0_WORLD;
+  const junction = traversalLocation('forest-junction')!;
+  return TRAVERSAL_T0_WORLD.map(section => {
+    if (section.id === junction.id) return Object.freeze({ ...section,
+      id: 'selected-approach', kind: 'ENVIRONMENT' as const,
+      // The human route approaches a caravan through open woods; the combat route
+      // enters the overgrown outpost perimeter. Keep authored image widths intact.
+      asset: asset === TRAVERSAL_WORLD_ASSETS.caravan ? TRAVERSAL_WORLD_ASSETS.forest : asset,
+      props: undefined,
+    });
+    return section.id === selected.id ? Object.freeze({ ...section, asset, variantAssets: undefined }) : section;
+  });
 }

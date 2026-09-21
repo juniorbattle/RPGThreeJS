@@ -213,7 +213,7 @@ describe('TraversalT0Scene', () => {
     scene.dispose();
   });
 
-  it('steers around a skipped subject and keeps it planted in the moving road until passed', () => {
+  it.each([0, 1] as const)('ignores a human on exact lane %s without steering and records bypass only after passing', lane => {
     vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
     const state = createInitialState();
     state.run.currentNodeId = state.currentNodeId = 'lion-audience';
@@ -223,6 +223,10 @@ describe('TraversalT0Scene', () => {
       onNodeHandoff: vi.fn(), onArrival: vi.fn(), onMenu: vi.fn() });
     scene.open();
     settle(scene);
+    const internals = scene as unknown as { moveToLane(lane: number): void; controller: { moveLane(direction: number): void } };
+    internals.moveToLane(lane);
+    const movement = vi.spyOn(internals, 'moveToLane');
+    const controllerMovement = vi.spyOn(internals.controller, 'moveLane');
     const advance = (seconds: number) => (scene as unknown as { advance(seconds: number): void }).advance(seconds);
     advance(20);
     settle(scene);
@@ -236,17 +240,49 @@ describe('TraversalT0Scene', () => {
     expect(world.style.getPropertyValue('--wheel-angle')).toBe(beforeWheel);
     document.querySelector<HTMLButtonElement>('[data-traversal-skip]')!.click();
     expect(scene.session.bypassedBeatIds).not.toContain('t0:npc:roadside-merchant');
-    expect(scene.session.currentLane).toBe(1);
+    expect(scene.session.currentLane).toBe(lane);
+    expect(movement).not.toHaveBeenCalled();
+    expect(controllerMovement).not.toHaveBeenCalled();
+    expect(world.dataset.assistedBypass).toBe('false');
     expect(subject.hidden).toBe(false);
-    document.querySelector<HTMLButtonElement>('[data-traversal-lane="0"]')!.click();
-    expect(scene.session.currentLane).toBe(1);
     advance(.5);
     expect(subject.hidden).toBe(false);
     expect(parseFloat(subject.style.left) - beforeX).toBeCloseTo(parseFloat(world.style.getPropertyValue('--road-offset')) - beforeRoad);
     expect(world.style.getPropertyValue('--wheel-angle')).not.toBe(beforeWheel);
     advance(4.5);
+    expect(scene.session.currentLane).toBe(lane);
+    expect(movement).not.toHaveBeenCalled();
+    expect(controllerMovement).not.toHaveBeenCalled();
     expect(scene.session.bypassedBeatIds).toContain('t0:npc:roadside-merchant');
     expect(document.querySelector<HTMLButtonElement>('[data-traversal-lane="0"]')!.disabled).toBe(false);
+    scene.dispose();
+  });
+
+  it('retains the physical assisted escape for optional combat Flee', () => {
+    vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
+    const state = createInitialState();
+    state.run.currentNodeId = state.currentNodeId = 'lion-audience';
+    const scene = new TraversalT0Scene({ root: document.body,
+      leg: LION_TRAVERSAL_LEGS.find(leg => leg.id === 'T0')!, getState: () => state,
+      getAvailableNodes: () => getAvailableRunNodes(state), onNodeHandoff: vi.fn(), onArrival: vi.fn(), onMenu: vi.fn() });
+    const clock = scene as unknown as { advance(n: number): void; moveToLane(lane: number): void };
+    scene.open(); settle(scene);
+    clock.moveToLane(1); clock.advance(20); settle(scene);
+    scene.element.querySelector<HTMLButtonElement>('[data-traversal-skip]')!.click();
+    clock.advance(20); settle(scene);
+    scene.element.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!.click(); settle(scene);
+    scene.beginNodeResolution('lion-opening-ambush'); scene.resumeNode('lion-opening-ambush'); settle(scene);
+    clock.advance(12); settle(scene);
+    expect(scene.session.pendingBeatId).toBe('t0:enemy:wolf-scouts');
+    scene.element.querySelector<HTMLButtonElement>('[data-traversal-skip]')!.click();
+    expect(scene.session.currentLane).toBe(0);
+    expect(scene.element.dataset.assistedBypass).toBe('true');
+    expect(scene.session.bypassedBeatIds).not.toContain('t0:enemy:wolf-scouts');
+    clock.moveToLane(1);
+    expect(scene.session.currentLane).toBe(0);
+    clock.advance(5);
+    expect(scene.session.bypassedBeatIds).toContain('t0:enemy:wolf-scouts');
+    expect(scene.element.dataset.assistedBypass).toBe('false');
     scene.dispose();
   });
 });

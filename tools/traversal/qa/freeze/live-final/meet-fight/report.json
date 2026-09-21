@@ -1,0 +1,851 @@
+{
+  "returned": true,
+  "errors": [],
+  "states": [
+    {
+      "phase": "RUNNING",
+      "progress": 0,
+      "transition": "entry",
+      "variant": "main",
+      "lane": 0,
+      "title": "En route",
+      "collected": [],
+      "panel": false,
+      "seconds": 1.518
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.09,
+      "transition": "focus",
+      "variant": "main",
+      "lane": 0,
+      "title": "Marchand itinérant",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 9.725
+    },
+    {
+      "phase": "LOCAL_INTERACTION",
+      "progress": 0.09,
+      "variant": "main",
+      "lane": 0,
+      "title": "Marchand itinérant",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": true,
+      "motion": "decelerating",
+      "seconds": 12.122
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.09,
+      "transition": "return",
+      "variant": "main",
+      "lane": 0,
+      "title": "Marchand itinérant",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 13.394
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.2,
+      "transition": "focus",
+      "variant": "main",
+      "lane": 1,
+      "title": "Piste des bêtes",
+      "category": "MANDATORY_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 23.13
+    },
+    {
+      "phase": "NODE_HANDOFF",
+      "progress": 0.2,
+      "transition": "event",
+      "variant": "main",
+      "lane": 1,
+      "title": "Piste des bêtes",
+      "category": "MANDATORY_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 24.809
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "progress": 0.2,
+      "transition": "event",
+      "variant": "main",
+      "lane": 1,
+      "title": "Piste des bêtes",
+      "category": "MANDATORY_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 25.289
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.2,
+      "transition": "return",
+      "variant": "main",
+      "lane": 1,
+      "title": "Piste des bêtes",
+      "category": "MANDATORY_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 59.661
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.3,
+      "transition": "focus",
+      "variant": "main",
+      "lane": 1,
+      "title": "Patrouille hostile",
+      "category": "OPTIONAL_COMBAT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 68.779
+    },
+    {
+      "phase": "LOCAL_INTERACTION",
+      "progress": 0.3,
+      "transition": "event",
+      "variant": "main",
+      "lane": 1,
+      "title": "Patrouille hostile",
+      "category": "OPTIONAL_COMBAT",
+      "collected": [],
+      "panel": true,
+      "motion": "decelerating",
+      "seconds": 70.539
+    },
+    {
+      "phase": "NODE_HANDOFF",
+      "progress": 0.4,
+      "transition": "event",
+      "variant": "main",
+      "lane": 1,
+      "title": "Croisement du rôdeur",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 100.863
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "progress": 0.4,
+      "transition": "event",
+      "variant": "main",
+      "lane": 1,
+      "title": "Croisement du rôdeur",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 101.349
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.4,
+      "transition": "return",
+      "variant": "main",
+      "lane": 1,
+      "title": "Croisement du rôdeur",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 108.065
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.6,
+      "transition": "focus",
+      "variant": "main",
+      "lane": 0,
+      "title": "Route des réfugiés",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 125.633
+    },
+    {
+      "phase": "NODE_HANDOFF",
+      "progress": 0.6,
+      "transition": "event",
+      "variant": "main",
+      "lane": 0,
+      "title": "Route des réfugiés",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 127.32
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "progress": 0.6,
+      "transition": "event",
+      "variant": "main",
+      "lane": 0,
+      "title": "Route des réfugiés",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 127.654
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.6,
+      "transition": "return",
+      "variant": "main",
+      "lane": 0,
+      "title": "Route des réfugiés",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 134.945
+    },
+    {
+      "phase": "FORK_OVERLAY",
+      "progress": 0.8,
+      "transition": "focus",
+      "variant": "main",
+      "lane": 0,
+      "title": "Route des réfugiés",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 152.969
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0",
+      "variant": "main",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0",
+      "variant": "main",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0.046117671339130424",
+      "variant": "main",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0.2348037106909734",
+      "variant": "main",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0.5693836821415603",
+      "variant": "main",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0.8223058326045574",
+      "variant": "main",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0.9959466608367662",
+      "variant": "main",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0.8542395188614361",
+      "variant": "lion-first-trial-event",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0.6104340636574546",
+      "variant": "lion-first-trial-event",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0.2715639687500653",
+      "variant": "lion-first-trial-event",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0.10776043792865353",
+      "variant": "lion-first-trial-event",
+      "progress": "0.8"
+    },
+    {
+      "phase": "fork-fade",
+      "opacity": "0",
+      "variant": "lion-first-trial-event",
+      "progress": "0.80000418335"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.8063983999999995,
+      "variant": "lion-first-trial-event",
+      "lane": 0,
+      "title": "Route des réfugiés",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "cruising",
+      "seconds": 155.518
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.91,
+      "transition": "focus",
+      "variant": "lion-first-trial-event",
+      "lane": 0,
+      "title": "Marchand blessé",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 164.508
+    },
+    {
+      "phase": "NODE_HANDOFF",
+      "progress": 0.91,
+      "transition": "event",
+      "variant": "lion-first-trial-event",
+      "lane": 0,
+      "title": "Marchand blessé",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 166.129
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "progress": 0.91,
+      "transition": "event",
+      "variant": "lion-first-trial-event",
+      "lane": 0,
+      "title": "Marchand blessé",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 166.449
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.91,
+      "transition": "return",
+      "variant": "lion-first-trial-event",
+      "lane": 0,
+      "title": "Marchand blessé",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "decelerating",
+      "seconds": 169.435
+    },
+    {
+      "phase": "ARRIVING",
+      "progress": 1,
+      "variant": "lion-first-trial-event",
+      "lane": 0,
+      "title": "Marchand blessé",
+      "category": "OPTIONAL_EVENT",
+      "collected": [],
+      "panel": false,
+      "motion": "cruising",
+      "seconds": 177.503
+    }
+  ],
+  "scales": [
+    {
+      "id": "t0:npc:roadside-merchant",
+      "category": "OPTIONAL_EVENT",
+      "family": "human",
+      "ratio": 0.7800015821533106
+    },
+    {
+      "id": "t0:stage:0:lion-opening-ambush",
+      "category": "MANDATORY_EVENT",
+      "family": "creature",
+      "ratio": 0.5199746855470295
+    },
+    {
+      "id": "t0:stage:0:lion-opening-ambush",
+      "category": "MANDATORY_EVENT",
+      "family": "creature",
+      "ratio": 0.5199746855470295
+    },
+    {
+      "id": "t0:enemy:wolf-scouts",
+      "category": "OPTIONAL_COMBAT",
+      "family": "human",
+      "ratio": 0.659995253540068
+    },
+    {
+      "id": "t0:enemy:wolf-scouts",
+      "category": "OPTIONAL_COMBAT",
+      "family": "human",
+      "ratio": 0.659995253540068
+    },
+    {
+      "id": "t0:stage:1:lion-nomad-crossroads",
+      "category": "OPTIONAL_EVENT",
+      "family": "human",
+      "ratio": 0.7800015821533106
+    },
+    {
+      "id": "t0:stage:2:lion-refugees",
+      "category": "OPTIONAL_EVENT",
+      "family": "human",
+      "ratio": 0.7800015821533106
+    },
+    {
+      "id": "t0:branch:lion-first-trial-event",
+      "category": "OPTIONAL_EVENT",
+      "family": "human",
+      "ratio": 0.7800015821533106
+    }
+  ],
+  "telemetry": [
+    {
+      "phase": "RUNNING",
+      "transition": "entry",
+      "progress": 0,
+      "variant": "main",
+      "opacity": 0,
+      "time": 1350.9000000059605
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0,
+      "variant": "main",
+      "opacity": 0,
+      "time": 1723.5999999940395
+    },
+    {
+      "phase": "DECISION",
+      "transition": "focus",
+      "progress": 0.09,
+      "variant": "main",
+      "opacity": 0,
+      "time": 9646.59999999404
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.09,
+      "variant": "main",
+      "opacity": 0,
+      "time": 10475.90000000596
+    },
+    {
+      "phase": "DECISION",
+      "transition": "event",
+      "progress": 0.09,
+      "variant": "main",
+      "opacity": 0,
+      "time": 11204.199999988079
+    },
+    {
+      "phase": "LOCAL_INTERACTION",
+      "transition": "event",
+      "progress": 0.09,
+      "variant": "main",
+      "opacity": 1,
+      "time": 11684.90000000596
+    },
+    {
+      "phase": "LOCAL_INTERACTION",
+      "progress": 0.09,
+      "variant": "main",
+      "opacity": 0,
+      "time": 12062.199999988079
+    },
+    {
+      "phase": "LOCAL_INTERACTION",
+      "transition": "return",
+      "progress": 0.09,
+      "variant": "main",
+      "opacity": 0,
+      "time": 12621
+    },
+    {
+      "phase": "RUNNING",
+      "transition": "return",
+      "progress": 0.09,
+      "variant": "main",
+      "opacity": 1,
+      "time": 13102
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.09,
+      "variant": "main",
+      "opacity": 0,
+      "time": 13456
+    },
+    {
+      "phase": "DECISION",
+      "transition": "focus",
+      "progress": 0.2,
+      "variant": "main",
+      "opacity": 0,
+      "time": 23044.30000001192
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.2,
+      "variant": "main",
+      "opacity": 0,
+      "time": 23874.80000001192
+    },
+    {
+      "phase": "NODE_HANDOFF",
+      "transition": "event",
+      "progress": 0.2,
+      "variant": "main",
+      "opacity": 0,
+      "time": 24654.09999999404
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "transition": "event",
+      "progress": 0.2,
+      "variant": "main",
+      "opacity": 1,
+      "time": 25136.80000001192
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "progress": 0.2,
+      "variant": "main",
+      "opacity": 0,
+      "time": 25532
+    },
+    {
+      "phase": "RUNNING",
+      "transition": "return",
+      "progress": 0.2,
+      "variant": "main",
+      "opacity": 1,
+      "time": 59532.69999998808
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.2,
+      "variant": "main",
+      "opacity": 0,
+      "time": 59980.19999998808
+    },
+    {
+      "phase": "DECISION",
+      "transition": "focus",
+      "progress": 0.3,
+      "variant": "main",
+      "opacity": 0,
+      "time": 68730
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.3,
+      "variant": "main",
+      "opacity": 0,
+      "time": 69578.19999998808
+    },
+    {
+      "phase": "LOCAL_INTERACTION",
+      "transition": "event",
+      "progress": 0.3,
+      "variant": "main",
+      "opacity": 0,
+      "time": 70384.69999998808
+    },
+    {
+      "phase": "LOCAL_INTERACTION",
+      "progress": 0.3,
+      "variant": "main",
+      "opacity": 0,
+      "time": 71243
+    },
+    {
+      "phase": "RUNNING",
+      "transition": "return",
+      "progress": 0.3,
+      "variant": "main",
+      "opacity": 1,
+      "time": 90356.30000001192
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.3,
+      "variant": "main",
+      "opacity": 0,
+      "time": 90803.5
+    },
+    {
+      "phase": "DECISION",
+      "transition": "focus",
+      "progress": 0.4,
+      "variant": "main",
+      "opacity": 0,
+      "time": 99543.80000001192
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.4,
+      "variant": "main",
+      "opacity": 0,
+      "time": 100398
+    },
+    {
+      "phase": "NODE_HANDOFF",
+      "transition": "event",
+      "progress": 0.4,
+      "variant": "main",
+      "opacity": 0,
+      "time": 100717.59999999404
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "transition": "event",
+      "progress": 0.4,
+      "variant": "main",
+      "opacity": 1,
+      "time": 101214.09999999404
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "progress": 0.4,
+      "variant": "main",
+      "opacity": 0,
+      "time": 101587
+    },
+    {
+      "phase": "RUNNING",
+      "transition": "return",
+      "progress": 0.4,
+      "variant": "main",
+      "opacity": 1,
+      "time": 107953.40000000596
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.4,
+      "variant": "main",
+      "opacity": 0,
+      "time": 108388.19999998808
+    },
+    {
+      "phase": "DECISION",
+      "transition": "focus",
+      "progress": 0.6,
+      "variant": "main",
+      "opacity": 0,
+      "time": 125470
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.6,
+      "variant": "main",
+      "opacity": 0,
+      "time": 126301.80000001192
+    },
+    {
+      "phase": "NODE_HANDOFF",
+      "transition": "event",
+      "progress": 0.6,
+      "variant": "main",
+      "opacity": 0,
+      "time": 127166.19999998808
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "transition": "event",
+      "progress": 0.6,
+      "variant": "main",
+      "opacity": 1,
+      "time": 127643.69999998808
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "progress": 0.6,
+      "variant": "main",
+      "opacity": 0,
+      "time": 128008.40000000596
+    },
+    {
+      "phase": "RUNNING",
+      "transition": "return",
+      "progress": 0.6,
+      "variant": "main",
+      "opacity": 1,
+      "time": 134943.69999998808
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.6,
+      "variant": "main",
+      "opacity": 0,
+      "time": 135389.90000000596
+    },
+    {
+      "phase": "RUNNING",
+      "transition": "focus",
+      "progress": 0.8,
+      "variant": "main",
+      "opacity": 0,
+      "time": 152457
+    },
+    {
+      "phase": "FORK_OVERLAY",
+      "transition": "focus",
+      "progress": 0.8,
+      "variant": "main",
+      "opacity": 1,
+      "time": 152941.5
+    },
+    {
+      "phase": "FORK_OVERLAY",
+      "progress": 0.8,
+      "variant": "main",
+      "opacity": 0,
+      "time": 153319.90000000596
+    },
+    {
+      "phase": "FORK_OVERLAY",
+      "transition": "fork",
+      "progress": 0.8,
+      "variant": "main",
+      "opacity": 0,
+      "time": 153932.30000001192
+    },
+    {
+      "phase": "RUNNING",
+      "transition": "fork",
+      "progress": 0.8,
+      "variant": "lion-first-trial-event",
+      "opacity": 1,
+      "time": 154443.5
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.8,
+      "variant": "lion-first-trial-event",
+      "opacity": 0,
+      "time": 154774.19999998808
+    },
+    {
+      "phase": "DECISION",
+      "transition": "focus",
+      "progress": 0.91,
+      "variant": "lion-first-trial-event",
+      "opacity": 0,
+      "time": 164363
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.91,
+      "variant": "lion-first-trial-event",
+      "opacity": 0,
+      "time": 165206
+    },
+    {
+      "phase": "NODE_HANDOFF",
+      "transition": "event",
+      "progress": 0.91,
+      "variant": "lion-first-trial-event",
+      "opacity": 0,
+      "time": 165964.30000001192
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "transition": "event",
+      "progress": 0.91,
+      "variant": "lion-first-trial-event",
+      "opacity": 1,
+      "time": 166443.30000001192
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "progress": 0.91,
+      "variant": "lion-first-trial-event",
+      "opacity": 0,
+      "time": 166840.59999999404
+    },
+    {
+      "phase": "RUNNING",
+      "transition": "return",
+      "progress": 0.91,
+      "variant": "lion-first-trial-event",
+      "opacity": 1,
+      "time": 169273.30000001192
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.91,
+      "variant": "lion-first-trial-event",
+      "opacity": 0,
+      "time": 169699.40000000596
+    },
+    {
+      "phase": "ARRIVING",
+      "progress": 1,
+      "variant": "lion-first-trial-event",
+      "opacity": 0,
+      "time": 177420.59999999404
+    }
+  ],
+  "verifiedReturns": 6,
+  "captures": [
+    "transition-entry",
+    "clean-travel",
+    "transition-focus",
+    "decision-0.09",
+    "transition-event",
+    "merchant-meet",
+    "transition-return",
+    "mandatory-approach",
+    "decision-0.2",
+    "mandatory-combat",
+    "decision-0.3",
+    "random-combat",
+    "canonical-dialogue",
+    "collect-road-cache",
+    "collect-gold",
+    "decision-0.6",
+    "uncluttered-road",
+    "collect-lion-ward",
+    "fork-approach",
+    "fork-direct-choice",
+    "fork-reveal",
+    "fork-resumed",
+    "decision-0.91",
+    "exit-right",
+    "travel-return"
+  ]
+}

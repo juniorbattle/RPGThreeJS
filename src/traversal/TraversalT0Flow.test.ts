@@ -7,7 +7,10 @@ import { TraversalT0Scene } from './TraversalT0Scene';
 import { traversalContactProgress } from './TraversalT0Route';
 
 afterEach(() => { document.body.replaceChildren(); vi.restoreAllMocks(); });
-it.each(['confirm', 'skip', 'opposite-lane'] as const)('completes T0 via %s with direct fork and deferred branch entry', async action => {
+it.each([
+  ['confirm', 'lion-first-trial-event'], ['skip', 'lion-first-trial-event'], ['opposite-lane', 'lion-first-trial-event'],
+  ['confirm', 'lion-first-trial-combat'], ['skip', 'lion-first-trial-combat'],
+] as const)('completes T0 via %s and %s with direct fork and deferred branch entry', async (action, branch) => {
   vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
   const state = createInitialState();
   state.run.currentNodeId = state.currentNodeId = 'lion-audience';
@@ -47,13 +50,16 @@ it.each(['confirm', 'skip', 'opposite-lane'] as const)('completes T0 via %s with
     if (scene.session.phase === 'FORK_OVERLAY') {
       expect(scene.element.querySelector<HTMLElement>('[data-traversal-event-panel]')!.hidden).toBe(true);
       const priorNode = state.run.currentNodeId;
-      scene.element.querySelector<HTMLButtonElement>('[data-traversal-fork-choice="lion-first-trial-event"]')!.click();
+      scene.element.querySelector<HTMLButtonElement>(`[data-traversal-fork-choice="${branch}"]`)!.click();
       expect(state.run.traversalBranches?.T0).toBeUndefined();
       clock.advanceTransition(.47);
       expect(state.run.traversalBranches?.T0).toBeUndefined();
       clock.advanceTransition(.01);
-      expect(state.run.traversalBranches?.T0).toBe('lion-first-trial-event');
+      expect(state.run.traversalBranches?.T0).toBe(branch);
       expect(scene.element.style.getPropertyValue('--transition-opacity')).toBe('1');
+      expect(scene.element.querySelector('[data-world-section="forest-junction"]')).toBeNull();
+      expect(scene.element.querySelector('[data-location-prop="junction-sign"]')).toBeNull();
+      expect(scene.element.dataset.routeVariant).toBe(branch);
       await settle();
       expect(scene.session.phase).toBe('RUNNING');
       expect(state.run.currentNodeId).toBe(priorNode);
@@ -73,9 +79,10 @@ it.each(['confirm', 'skip', 'opposite-lane'] as const)('completes T0 via %s with
   expect(arrival).toHaveBeenCalledExactlyOnceWith('lion-first-refuge');
   expect(getAvailableRunNodes(state).map(node => node.id)).toEqual(['lion-first-refuge']);
   expect(handoffs).toEqual(action === 'confirm'
-    ? ['lion-opening-ambush', 'lion-nomad-crossroads', 'lion-refugees', 'lion-first-trial-event']
+    ? ['lion-opening-ambush', 'lion-nomad-crossroads', 'lion-refugees', branch]
     : ['lion-opening-ambush']);
   if (action === 'confirm') { expect(pickups.size).toBe(3); expect(roadCombat).toHaveBeenCalledOnce(); }
   if (action === 'opposite-lane') expect(roadCombat).not.toHaveBeenCalled();
   scene.dispose();
-}, 15000);
+// This is a complete simulated road journey with real DOM rendering at each road step.
+}, 30000);

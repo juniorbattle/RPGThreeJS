@@ -1,0 +1,118 @@
+[
+  {
+    "id": "t0:npc:roadside-merchant",
+    "category": "OPTIONAL_EVENT",
+    "lane": 0,
+    "before": 0,
+    "after": 0,
+    "ratio": 0.7800015821533106,
+    "recorded": false,
+    "visible": true,
+    "assisted": "false"
+  },
+  {
+    "id": "t0:stage:0:lion-opening-ambush",
+    "ratio": 0.5199746855470295
+  },
+  {
+    "id": "t0:enemy:wolf-scouts",
+    "category": "OPTIONAL_COMBAT",
+    "lane": 1,
+    "before": 1,
+    "after": 0,
+    "ratio": 0.659995253540068,
+    "recorded": false,
+    "visible": true,
+    "assisted": "true"
+  },
+  {
+    "id": "t0:stage:1:lion-nomad-crossroads",
+    "category": "OPTIONAL_EVENT",
+    "lane": 0,
+    "before": 0,
+    "after": 0,
+    "ratio": 0.7800015821533106,
+    "recorded": false,
+    "visible": true,
+    "assisted": "false"
+  },
+  {
+    "id": "t0:stage:2:lion-refugees",
+    "category": "OPTIONAL_EVENT",
+    "lane": 0,
+    "before": 0,
+    "after": 0,
+    "ratio": 0.7800015821533106,
+    "recorded": false,
+    "visible": true,
+    "assisted": "false"
+  },
+  {
+    "branch": "lion-first-trial-event",
+    "opacity": "1",
+    "oldFork": false,
+    "sign": false
+  },
+  {
+    "phase": "RUNNING",
+    "progress": 0.8382007587500665
+  },
+  {
+    "id": "t0:npc:roadside-merchant",
+    "category": "OPTIONAL_EVENT",
+    "lane": 0,
+    "before": 0,
+    "after": 0,
+    "ratio": 0.7800015821533106,
+    "recorded": false,
+    "visible": true,
+    "assisted": "false"
+  },
+  {
+    "id": "t0:stage:0:lion-opening-ambush",
+    "ratio": 0.5199746855470295
+  },
+  {
+    "id": "t0:enemy:wolf-scouts",
+    "category": "OPTIONAL_COMBAT",
+    "lane": 1,
+    "before": 1,
+    "after": 0,
+    "ratio": 0.659995253540068,
+    "recorded": false,
+    "visible": true,
+    "assisted": "true"
+  },
+  {
+    "id": "t0:stage:1:lion-nomad-crossroads",
+    "category": "OPTIONAL_EVENT",
+    "lane": 0,
+    "before": 0,
+    "after": 0,
+    "ratio": 0.7800015821533106,
+    "recorded": false,
+    "visible": true,
+    "assisted": "false"
+  },
+  {
+    "id": "t0:stage:2:lion-refugees",
+    "category": "OPTIONAL_EVENT",
+    "lane": 0,
+    "before": 0,
+    "after": 0,
+    "ratio": 0.7800015821533106,
+    "recorded": false,
+    "visible": true,
+    "assisted": "false"
+  },
+  {
+    "branch": "lion-first-trial-combat",
+    "opacity": "1",
+    "oldFork": false,
+    "sign": false
+  },
+  {
+    "phase": "RUNNING",
+    "progress": 0.8391979751499997
+  }
+]

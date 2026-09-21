@@ -15,12 +15,28 @@
 }
 .traversal-world__sections { position: absolute; inset: 0; will-change: transform; }
 .traversal-world-section { position: absolute; top: 0; height: 100%; }
-.traversal-world-section > img {
-  display: block; position: relative; left: -60px; width: calc(100% + 120px); height: 100%; max-width: none;
-  /* Blend authored forest margins while every section retains its shared road coordinate. */
-  mask-image: linear-gradient(90deg, transparent, #000 120px, #000 calc(100% - 120px), transparent);
+.traversal-world-section__terrain {
+  --painting-width: 150vh;
+  position: absolute; top: 0; bottom: 0;
+  left: calc(-1 * var(--section-overlap)); width: calc(100% + 2 * var(--section-overlap));
+  overflow: hidden;
+  /* Incoming terrain fades over an OPAQUE outgoing image. Two fading images expose
+     the blue backdrop (25% at the midpoint). Mask outside the mirrored image. */
+  mask-image: linear-gradient(90deg, transparent, #000 calc(2 * var(--section-overlap)));
 }
-.traversal-world-section[data-section-kind='FOREST'] > img { object-fit: cover; }
+.traversal-world-section:first-child .traversal-world-section__terrain { mask-image: none; }
+.traversal-world-section__painting, .traversal-world-section__margin {
+  position: absolute; top: 0; height: 100%; width: var(--painting-width);
+}
+.traversal-world-section__painting { left: calc(50% - var(--painting-width) / 2); }
+.traversal-world-section__margin--before { right: calc(50% + var(--painting-width) / 2 - 2 * var(--section-overlap)); }
+.traversal-world-section__margin--after { left: calc(50% + var(--painting-width) / 2 - 2 * var(--section-overlap)); }
+.traversal-world-section__painting, .traversal-world-section__margin--after {
+  mask-image: linear-gradient(90deg, transparent, #000 calc(2 * var(--section-overlap)));
+}
+.traversal-world-section__terrain img {
+  display: block; width: 100%; height: 100%; max-width: none; object-fit: contain;
+}
 .traversal-world .traversal-world__lane-glow {
   inset: auto; top: calc(var(--traversal-lane-y) - 2%); left: 13%; width: 23%; height: 5%;
   border-radius: 50%; background: radial-gradient(ellipse, #ffdc7d20, transparent 70%);
@@ -82,6 +98,7 @@
   transform: translate(-50%, -100%); pointer-events: none;
 }
 .traversal-entity[data-scale='creature'] { --entity-height: calc(var(--vehicle-height) * .58); }
+.traversal-entity[data-scale='human'][data-category='OPTIONAL_EVENT'] { --entity-height: calc(var(--vehicle-height) * .78); }
 .traversal-entity[data-scale='elite'] { --entity-height: calc(var(--vehicle-height) * .7); }
 .traversal-entity[data-scale='loot'] { --entity-height: calc(var(--vehicle-height) * .34); }
 .traversal-entity[data-scale='obstacle'] { --entity-height: calc(var(--vehicle-height) * .49); }

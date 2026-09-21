@@ -117,19 +117,6 @@ const AMBIENT_T0_BEATS: readonly TraversalRouteBeat[] = Object.freeze([
     visualAsset: TRAVERSAL_T0_ASSETS.chest,
   }),
   Object.freeze({
-    id: 't0:obstacle:broken-cart',
-    category: 'SIMPLE_OBSTACLE', engagement: 'LANE',
-    type: 'obstacle' as const,
-    progress01: 0.68,
-    lane: 0 as const,
-    placement: 'LANE' as const,
-    label: 'Débris de chariot',
-    marker: 'obstacle' as const,
-    interactionPolicy: 'OPTIONAL_CONFIRM' as const,
-    campaignNodeIds: Object.freeze([]),
-    visualAsset: TRAVERSAL_T0_ASSETS.abandonedCart,
-  }),
-  Object.freeze({
     id: 't0:booster:lion-ward',
     category: 'PICKUP', engagement: 'LANE', pickup: 'ward',
     type: 'booster' as const,
@@ -223,7 +210,8 @@ function stageBeat(
     category: isFork ? 'ROUTE_CHOICE' : optional ? 'OPTIONAL_EVENT' : 'MANDATORY_EVENT',
     engagement: 'ROUTE',
     progress01: (stageIndex + 1) / (stageCount + 1),
-    lane: optional ? (stageIndex % 2) as TraversalLane : null,
+    // Human interactions live on the upper verge; mandatory situations span both lanes.
+    lane: optional ? 0 : null,
     placement: optional ? 'LANE' : 'CENTERED',
     label,
     marker: isFork ? 'fork' : isCombat ? 'danger' : 'speech',
@@ -321,7 +309,7 @@ export function resolveTraversalT0Route(
     beatIssues,
   ));
   const fork = leg.stages.find(stage => stage.mode === 'IN_TRAVERSAL_FORK')!;
-  const branchBeats = fork.nodeIds.map((nodeId, index): TraversalRouteBeat => {
+  const branchBeats = fork.nodeIds.map((nodeId): TraversalRouteBeat => {
     const runNode = runNodesById.get(nodeId)!;
     const isCombat = runNode.type === 'combat';
     const composition = isCombat ? combatConfigs.get(runNode.contentId)?.enemyVisualIds : undefined;
@@ -331,7 +319,7 @@ export function resolveTraversalT0Route(
       id: `t0:branch:${nodeId}`, branchNodeId: nodeId, type: 'campaign-node',
       category: optional ? isCombat ? 'OPTIONAL_COMBAT' : 'OPTIONAL_EVENT' : 'MANDATORY_EVENT',
       engagement: isCombat && optional ? 'LANE' : 'ROUTE',
-      progress01: .91, lane: optional ? index as TraversalLane : null,
+      progress01: .91, lane: optional ? isCombat ? 1 : 0 : null,
       placement: optional ? 'LANE' : 'CENTERED', label: runNode.label,
       marker: isCombat ? 'danger' : 'speech',
       interactionPolicy: optional ? 'OPTIONAL_CONFIRM' : 'MANDATORY_CONFIRM',

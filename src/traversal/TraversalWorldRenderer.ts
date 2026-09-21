@@ -1,17 +1,24 @@
 import { ROAD_SPACE, roadWorldToScreen } from './TraversalRoadSpace';
-import { TRAVERSAL_T0_WORLD, type TraversalWorldSection } from './TraversalT0World';
+import { TRAVERSAL_SECTION_OVERLAP, TRAVERSAL_WORLD_ASSETS, resolveTraversalWorld, type TraversalWorldSection } from './TraversalT0World';
 import { createTraversalSprite } from './TraversalSprite';
 
 /** Physical scenery is a sibling of actors: consuming/hiding a beat cannot remove a place. */
 export class TraversalWorldRenderer {
   readonly element = document.createElement('div');
-  private readonly sections: { definition: TraversalWorldSection; element: HTMLElement; image: HTMLImageElement }[];
+  private sections: { definition: TraversalWorldSection; element: HTMLElement; image: HTMLImageElement }[] = [];
   private readonly preloaded: HTMLImageElement[] = [];
+  private presentedBranch = 'main';
 
   constructor() {
     this.element.className = 'traversal-world__sections';
     this.element.setAttribute('aria-hidden', 'true');
-    this.sections = TRAVERSAL_T0_WORLD.map(definition => {
+    this.mount('main');
+  }
+
+  private mount(presentedBranch: string): void {
+    this.element.replaceChildren();
+    this.presentedBranch = presentedBranch;
+    this.sections = resolveTraversalWorld(presentedBranch).map(definition => {
       const element = document.createElement('div');
       element.className = 'traversal-world-section';
       element.dataset.worldSection = definition.id;
@@ -27,7 +34,26 @@ export class TraversalWorldRenderer {
       image.alt = '';
       image.draggable = false;
       if (definition.mirror) image.style.transform = 'scaleX(-1)';
-      element.append(image);
+      const terrain = document.createElement('div');
+      terrain.className = 'traversal-world-section__terrain';
+      // All paintings keep their native aspect ratio and the same vertical road scale.
+      // Wider authored intervals extend through cropped forest margins, never stretch art.
+      const margins = ['before', 'after'].map(side => {
+        const margin = document.createElement('div');
+        margin.className = `traversal-world-section__margin traversal-world-section__margin--${side}`;
+        const forest = document.createElement('img');
+        forest.src = TRAVERSAL_WORLD_ASSETS.forest;
+        forest.alt = '';
+        forest.draggable = false;
+        if (!definition.mirror) forest.style.transform = 'scaleX(-1)';
+        margin.append(forest);
+        return margin;
+      });
+      const painting = document.createElement('div');
+      painting.className = 'traversal-world-section__painting';
+      painting.append(image);
+      terrain.append(margins[0]!, painting, margins[1]!);
+      element.append(terrain);
       for (const prop of definition.props ?? []) {
         const sprite = createTraversalSprite(prop.asset, 'traversal-location-prop');
         sprite.dataset.locationProp = prop.id;
@@ -63,6 +89,8 @@ export class TraversalWorldRenderer {
   }
 
   update(camera: number, viewportWidth: number, presentedBranch: string, resolvedLocations: ReadonlySet<string>): void {
+    if (presentedBranch !== this.presentedBranch) this.mount(presentedBranch);
+    this.element.style.setProperty('--section-overlap', `${TRAVERSAL_SECTION_OVERLAP * viewportWidth / ROAD_SPACE.referenceWidth}px`);
     // Exactly the same camera as the entities and wheel-distance calculation.
     this.element.style.transform = `translateX(${roadWorldToScreen(0, camera, viewportWidth)}px)`;
     for (const { definition, element, image } of this.sections) {
