@@ -80,7 +80,7 @@ it.each([
   expect(getAvailableRunNodes(state).map(node => node.id)).toEqual(['lion-first-refuge']);
   expect(handoffs).toEqual(action === 'confirm'
     ? ['lion-opening-ambush', 'lion-nomad-crossroads', 'lion-refugees', branch]
-    : ['lion-opening-ambush', branch]);
+    : ['lion-opening-ambush', 'lion-nomad-crossroads', branch]);
   if (action === 'confirm') { expect(pickups.size).toBe(3); expect(roadCombat).toHaveBeenCalledOnce(); }
   if (action === 'opposite-lane') expect(roadCombat).not.toHaveBeenCalled();
   scene.dispose();

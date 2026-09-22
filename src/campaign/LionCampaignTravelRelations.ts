@@ -62,7 +62,7 @@ const LION_TRAVERSAL_LEG_DEFINITIONS: readonly LionTraversalLeg[] = [
     destinationNodeId: 'lion-first-refuge',
     stages: [
       { nodeIds: ['lion-opening-ambush'], mode: 'MANDATORY_INTERRUPT' },
-      { nodeIds: ['lion-nomad-crossroads'], mode: 'OPTIONAL_INTERRUPT' },
+      { nodeIds: ['lion-nomad-crossroads'], mode: 'MANDATORY_INTERRUPT' },
       { nodeIds: ['lion-refugees'], mode: 'OPTIONAL_INTERRUPT' },
       {
         nodeIds: ['lion-first-trial-event', 'lion-first-trial-combat'],

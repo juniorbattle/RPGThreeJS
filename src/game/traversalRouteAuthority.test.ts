@@ -14,7 +14,7 @@ describe('T0 canonical route participation', () => {
     const state = createInitialState();
     state.run = afterAmbush();
     state.run.checkpointNodeId = 'lion-audience';
-    bypassTraversalNode(state.run, 'T0', 'lion-nomad-crossroads');
+    enterRunNode(state.run, 'lion-nomad-crossroads');
     bypassTraversalNode(state.run, 'T0', 'lion-refugees');
     selectTraversalBranch(state.run, 'T0', 'lion-first-trial-event');
     failRunToCheckpoint(state);
@@ -22,10 +22,11 @@ describe('T0 canonical route participation', () => {
     expect(state.run.traversalBranches).toEqual({});
     expect(getAvailableRunNodes(state.run).map(node => node.id)).toEqual(['lion-opening-ambush']);
   });
-  it('bypasses secondary encounters without visits, rewards, or fake node entry', () => {
+  it('bypasses optional encounters without visits, rewards, or fake node entry', () => {
     const run = afterAmbush();
+    enterRunNode(run, 'lion-nomad-crossroads');
     const original = structuredClone(run);
-    expect(bypassTraversalNode(run, 'T0', 'lion-nomad-crossroads')).toBe(true);
+    expect(bypassTraversalNode(run, 'T0', 'lion-nomad-crossroads')).toBe(false);
     expect(getAvailableRunNodes(run).map(node => node.id)).toEqual(['lion-refugees']);
     expect(bypassTraversalNode(run, 'T0', 'lion-refugees')).toBe(true);
     expect(getAvailableRunNodes(run).map(node => node.id)).toEqual(['lion-first-trial-event', 'lion-first-trial-combat']);
@@ -37,11 +38,11 @@ describe('T0 canonical route participation', () => {
 
   it.each(['lion-first-trial-event', 'lion-first-trial-combat'])('records %s without entering it and requires its consequence before arrival', selected => {
     const run = afterAmbush();
-    bypassTraversalNode(run, 'T0', 'lion-nomad-crossroads');
+    enterRunNode(run, 'lion-nomad-crossroads');
     bypassTraversalNode(run, 'T0', 'lion-refugees');
     const visited = [...run.visitedNodeIds];
     expect(selectTraversalBranch(run, 'T0', selected)).toBe(true);
-    expect(run.currentNodeId).toBe('lion-opening-ambush');
+    expect(run.currentNodeId).toBe('lion-nomad-crossroads');
     expect(run.visitedNodeIds).toEqual(visited);
     expect(getAvailableRunNodes(run).map(node => node.id)).toEqual([selected]);
     expect(selectTraversalBranch(run, 'T0', selected)).toBe(false);
@@ -78,12 +79,12 @@ describe('T0 canonical route participation', () => {
   it('loads old saves and round-trips selected-but-unentered road choices', () => {
     const run = afterAmbush();
     expect(runStateSchema.parse(run)).toEqual(run);
-    bypassTraversalNode(run, 'T0', 'lion-nomad-crossroads');
+    enterRunNode(run, 'lion-nomad-crossroads');
     bypassTraversalNode(run, 'T0', 'lion-refugees');
     selectTraversalBranch(run, 'T0', 'lion-first-trial-event');
     const loaded = runStateSchema.parse(JSON.parse(JSON.stringify(run)));
     expect(getAvailableRunNodes(loaded).map(node => node.id)).toEqual(['lion-first-trial-event']);
-    expect(loaded.currentNodeId).toBe('lion-opening-ambush');
+    expect(loaded.currentNodeId).toBe('lion-nomad-crossroads');
   });
 
   it('preserves an already bypassed branch in a legacy save without replaying its outcome', () => {

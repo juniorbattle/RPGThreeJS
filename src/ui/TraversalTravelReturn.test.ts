@@ -10,7 +10,7 @@ it.each(['lion-first-trial-event', 'lion-first-trial-combat'])('offers Refuge in
   vi.useFakeTimers();
   const state = createInitialState();
   state.run.currentNodeId = state.currentNodeId = 'lion-opening-ambush';
-  bypassTraversalNode(state.run, 'T0', 'lion-nomad-crossroads');
+  enterRunNode(state.run, 'lion-nomad-crossroads');
   bypassTraversalNode(state.run, 'T0', 'lion-refugees');
   selectTraversalBranch(state.run, 'T0', branch);
   expect(bypassTraversalNode(state.run, 'T0', branch)).toBe(false);
