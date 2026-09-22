@@ -12,8 +12,8 @@ import type { LionTraversalLegId } from '../campaign/LionCampaignTravelRelations
  * Enabling Traversal requires an intentional source change and review.
  */
 export const TRAVERSAL_PRODUCTION_GATE = Object.freeze({
-  enabled: false,
-  designAssetsReady: false,
+  enabled: true,
+  designAssetsReady: true,
   rolloutLegIds: Object.freeze(['T0'] as const satisfies readonly LionTraversalLegId[]),
 });
 

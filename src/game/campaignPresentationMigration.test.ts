@@ -27,7 +27,7 @@ interface Harness {
   saves: { saveAuto: ReturnType<typeof vi.fn> };
   resolveRunNode: ReturnType<typeof vi.fn>;
   enterCampaignPresentation(): Promise<void>;
-  completeTraversalT0Qa(id: string): Promise<void>;
+  completeTraversalT0(id: string): Promise<void>;
   commitRunNodeChoice(id: string): Promise<boolean>;
 }
 
@@ -93,8 +93,8 @@ describe('production campaign presentation migration lifecycle', () => {
     document.body.dataset.campaignSurface = 'traversal';
     const before = structuredClone(app.state);
     const run = vi.spyOn(sceneTransition, 'run');
-    const completion = app.completeTraversalT0Qa('lion-first-refuge');
-    await app.completeTraversalT0Qa('lion-first-refuge');
+    const completion = app.completeTraversalT0('lion-first-refuge');
+    await app.completeTraversalT0('lion-first-refuge');
     expect(run).toHaveBeenCalledOnce();
     expect(scene.completeArrival).not.toHaveBeenCalled();
     expect(scene.element.isConnected).toBe(true);
@@ -117,7 +117,7 @@ describe('production campaign presentation migration lifecycle', () => {
     expect(sceneTransition.isActive).toBe(false);
     outcome.resolve(aborted);
     await completion;
-    await app.completeTraversalT0Qa('lion-first-refuge');
+    await app.completeTraversalT0('lion-first-refuge');
     expect(run).toHaveBeenCalledOnce();
     expect(scene.completeArrival).toHaveBeenCalledOnce();
   });
@@ -125,9 +125,9 @@ describe('production campaign presentation migration lifecycle', () => {
   it('ignores mismatched and non-arriving callbacks', async () => {
     const { app, boundary } = harness();
     app.activeTraversal = traversal();
-    await app.completeTraversalT0Qa('wrong-node');
+    await app.completeTraversalT0('wrong-node');
     app.activeTraversal.session.phase = 'NODE_RESOLUTION';
-    await app.completeTraversalT0Qa('lion-first-refuge');
+    await app.completeTraversalT0('lion-first-refuge');
     expect(boundary.present).not.toHaveBeenCalled();
     expect(app.activeTraversal.completeArrival).not.toHaveBeenCalled();
   });
@@ -157,7 +157,7 @@ describe('production campaign presentation migration lifecycle', () => {
     const { app, boundary, outcome, ready } = harness();
     const scene = traversal();
     app.activeTraversal = scene;
-    const completion = app.completeTraversalT0Qa('lion-first-refuge');
+    const completion = app.completeTraversalT0('lion-first-refuge');
     await vi.advanceTimersByTimeAsync(650);
     if (timing === 'after-ready') { ready.resolve(); await vi.runAllTimersAsync(); }
     outcome.reject(new Error('Injected presentation failure'));
@@ -204,7 +204,7 @@ describe('production campaign presentation migration lifecycle', () => {
     app.campaignPresentation = resolveCampaignPresentation({ search: '?journey=travel', dev: true });
     const scene = traversal();
     app.activeTraversal = scene;
-    const completion = app.completeTraversalT0Qa('lion-first-refuge');
+    const completion = app.completeTraversalT0('lion-first-refuge');
     await vi.runAllTimersAsync();
     await completion;
     expect(scene.completeArrival).toHaveBeenCalledOnce();
