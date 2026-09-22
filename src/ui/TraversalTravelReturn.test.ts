@@ -13,7 +13,7 @@ it.each(['lion-first-trial-event', 'lion-first-trial-combat'])('offers Refuge in
   enterRunNode(state.run, 'lion-nomad-crossroads');
   bypassTraversalNode(state.run, 'T0', 'lion-refugees');
   selectTraversalBranch(state.run, 'T0', branch);
-  expect(bypassTraversalNode(state.run, 'T0', branch)).toBe(false);
+  expect(bypassTraversalNode(structuredClone(state.run), 'T0', branch)).toBe(branch === 'lion-first-trial-event');
   expect(enterRunNode(state.run, branch)?.id).toBe(branch);
   state.currentNodeId = branch;
   const choose = vi.fn(async () => undefined);

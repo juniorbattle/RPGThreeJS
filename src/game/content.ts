@@ -6,6 +6,7 @@
   type CombatConfig,
 } from './types';
 import { R5_ADDITIONAL_DIALOGUES } from './r5NarrativeContent';
+import { CAMPAIGN_GRAMMAR_DIALOGUES } from './campaignGrammarContent';
 
 type RawCombatConfig = Omit<CombatConfig, 'enemyVisualIds' | 'escortVisualIds'> &
   Partial<Pick<CombatConfig, 'enemyVisualIds' | 'escortVisualIds'>>;
@@ -83,6 +84,7 @@ const combatVisualComposition: Record<string, Partial<Pick<CombatConfig, 'enemyV
 };
 
 const rawDialogues = [
+  ...CAMPAIGN_GRAMMAR_DIALOGUES,
   ...R5_ADDITIONAL_DIALOGUES,
   {
     id: 'acte_ouverture',

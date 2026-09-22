@@ -53,8 +53,9 @@
 
   /* Combat stage (focus cinématique) */
   #stagevig{position:fixed;inset:0;z-index:5;pointer-events:none;opacity:0;transition:opacity .42s;
-    background:radial-gradient(ellipse 60% 56% at 50% 50%,rgba(0,0,0,0) 32%,rgba(0,0,0,.66) 100%)}
+    background:radial-gradient(ellipse 78% 68% at 50% 50%,rgba(0,0,0,0) 55%,rgba(0,0,0,.18) 100%)}
   #stagevig.on{opacity:1}
+  body:has(#stagevig.on)::before{opacity:.3}
   #stagetitle{position:fixed;top:30px;left:50%;z-index:20;pointer-events:none;
     transform:translate(-50%,-18px) scale(.92);opacity:0;
     padding:11px 48px;border-radius:10px;background:rgba(12,16,28,.78);

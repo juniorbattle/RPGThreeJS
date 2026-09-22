@@ -80,12 +80,13 @@ const AMBIENT_T0_BEATS: readonly TraversalRouteBeat[] = Object.freeze([
     progress01: 0.09,
     lane: 0 as const,
     placement: 'LANE' as const,
-    label: 'Marchand itinérant',
+    label: 'Marchande itinérante',
     marker: 'speech' as const,
     interactionPolicy: 'OPTIONAL_CONFIRM' as const,
     campaignNodeIds: Object.freeze([]),
-    characterId: 'wounded_merchant',
-    visualAsset: resolveCharacterAsset('wounded_merchant', 'full'),
+    // Reviewed civilian master until a dedicated healthy peddler is authored.
+    characterId: 'villageoise',
+    visualAsset: resolveCharacterAsset('villageoise', 'full'),
     locationId: 'merchant-halt',
     mirrorX: false,
   }),
@@ -317,13 +318,13 @@ export function resolveTraversalT0Route(
     const isCombat = runNode.type === 'combat';
     const composition = isCombat ? combatConfigs.get(runNode.contentId)?.enemyVisualIds : undefined;
     const characterId = isCombat ? composition?.[0] ?? 'wolf' : 'survivor';
-    const optional = fork.branchEncounterMode === 'OPTIONAL_INTERRUPT';
+    const optional = fork.branchEncounterMode === 'OPTIONAL_INTERRUPT' || Boolean(fork.optionalBranchNodeIds?.includes(nodeId));
     return Object.freeze({
       id: `t0:branch:${nodeId}`, branchNodeId: nodeId, type: 'campaign-node',
       category: optional ? isCombat ? 'OPTIONAL_COMBAT' : 'OPTIONAL_EVENT' : 'MANDATORY_EVENT',
       engagement: isCombat && optional ? 'LANE' : 'ROUTE',
-      progress01: .91, lane: optional ? isCombat ? 1 : 0 : null,
-      placement: optional ? 'LANE' : 'CENTERED', label: runNode.label,
+      progress01: .91, lane: null,
+      placement: 'CENTERED', label: runNode.label,
       marker: isCombat ? 'danger' : 'speech',
       interactionPolicy: optional ? 'OPTIONAL_CONFIRM' : 'MANDATORY_CONFIRM',
       campaignNodeIds: Object.freeze([nodeId]), characterId,

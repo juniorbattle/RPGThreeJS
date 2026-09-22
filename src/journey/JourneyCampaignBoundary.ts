@@ -21,13 +21,14 @@ import { planJourneyBoundary, type JourneyBoundaryKind } from './JourneyRunNodeA
 import type { RunNode } from '../game/types';
 import type { NarrativeAuthoringMedia } from '../cinematics/NarrativePresentationPolicy';
 import type { PlayerFacingSurfaceMode } from '../cinematics/NarrativePresentationMode';
+import type { CampaignStatusHud } from '../ui/CampaignStatusHud';
 
 /**
  * Presents one campaign boundary through the CIN-1 Journey runtime and reports what the player
  * pressed. It owns presentation only: it never enters a run node, never mutates GameState and never
  * decides route validity. GameApp re-verifies the reported ID against RunSystem before committing.
  */
-export type JourneyBoundaryOutcomeKind = 'node' | 'secondary' | 'terminal' | 'aborted';
+export type JourneyBoundaryOutcomeKind = 'node' | 'secondary' | 'terminal' | 'aborted' | 'presentation-continue';
 
 export interface JourneyBoundaryOutcome {
   kind: JourneyBoundaryOutcomeKind;
@@ -53,6 +54,8 @@ export interface JourneyBoundaryRequest {
   available: readonly RunNode[];
   secondary?: readonly JourneySecondaryActionPresentation[];
   reducedMotion?: boolean;
+  /** Local continuation has no canonical route agency, even on a single-node edge. */
+  presentationOnly?: { continueLabel: string };
 }
 
 type JourneyPresentationSession = Pick<
@@ -70,6 +73,7 @@ type JourneyPresentationSession = Pick<
 };
 
 export interface JourneyCampaignBoundaryOptions {
+  statusHud?: CampaignStatusHud;
   player: CinematicPlayer;
   registry: CinematicRegistry;
   root?: HTMLElement;
@@ -96,6 +100,7 @@ export class JourneyCampaignBoundary {
     this.createSession = options.createSession ?? (() => new NarrativeStage({
       player: options.player,
       registry: options.registry,
+      statusHud: options.statusHud,
       mediaMode: options.mediaMode ?? 'VIDEO',
       dev: options.dev ?? false,
       ...(options.transitionRevealMs === undefined ? {} : { transitionRevealMs: options.transitionRevealMs }),
@@ -125,11 +130,16 @@ export class JourneyCampaignBoundary {
       ...(request.secondary ? { secondary: request.secondary } : {}),
     });
     const playId = cinematicId && !this.presentedKeys.has(key) ? cinematicId : undefined;
-    const presentationBeat = resolveBoundaryPrimaryPresentation(context, playId);
+    const resolvedPresentationBeat = resolveBoundaryPrimaryPresentation(context, playId);
     const presentationCandidates = resolveBoundaryPresentationCandidates(context);
     const session = this.createSession();
     this.session = session;
     const tableau = resolveNarrativeBoundaryTableau(key) ?? createGenericBoundaryTableau(key, plan.kind);
+    // A local departure uses its reviewed cast tableau; ordinary travel agency retains its still.
+    const presentationBeat = request.presentationOnly && tableau.staticFallbackOnly && resolvedPresentationBeat
+      ? { ...resolvedPresentationBeat, mode: 'STATIC_TABLEAU' as const, assetRole: 'TABLEAU_BACKGROUND' as const,
+        castOwnership: 'STAGE_OWNS_CAST' as const, sourceAsset: tableau.stillImage, travelStillSource: undefined }
+      : resolvedPresentationBeat;
     if (tableau) session.setTableau?.(tableau);
     const fallbackBackdrop = this.pendingBackdrop;
     this.pendingBackdrop = null;
@@ -193,10 +203,14 @@ export class JourneyCampaignBoundary {
       )
       || (presentationBeat?.mode === 'TRAVEL_STILL' && !presentationBeat.travelStillSource)
       || (presentationBeat?.mode === 'CINEMATIC_HOLD' && !playId && !fallbackBackdrop);
-    const commit = await session.requestAgency(plan.presentation);
+    const commit = await session.requestAgency(request.presentationOnly
+      ? { mode: 'single', choices: [], eyebrow: 'Départ', title: 'La compagnie prend la route',
+        continueLabel: request.presentationOnly.continueLabel }
+      : plan.presentation);
     if (commit.kind === 'secondary' && session.frozenSurface) this.captureBackdrop(session.frozenSurface);
     const trace = [...session.stateTrace];
-    this.disposeSession();
+    // The departure owner disposes under the next opaque cover, preserving visual continuity.
+    if (!request.presentationOnly) this.disposeSession();
 
     const base = {
       boundary: plan.kind,
@@ -207,6 +221,9 @@ export class JourneyCampaignBoundary {
       presentationMode: presentationBeat?.mode,
       presentationBeatId: presentationBeat?.beatId,
       fallbackActive,
+    };
+    if (request.presentationOnly) return {
+      kind: commit.kind === 'continue' ? 'presentation-continue' : 'aborted', id: null, ...base,
     };
     if (commit.kind === 'choice' && commit.id) return { kind: 'node', id: commit.id, ...base };
     if (commit.kind === 'secondary' && commit.id) return { kind: 'secondary', id: commit.id, ...base };

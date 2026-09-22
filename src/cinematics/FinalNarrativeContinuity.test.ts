@@ -1,3 +1,4 @@
+import { CAMPAIGN_GRAMMAR_PRESENTATIONS } from '../game/campaignGrammarContent';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -27,9 +28,11 @@ describe('CIN-6D final narrative continuity lock', () => {
 
   it('audits all dialogue steps and all actionable choices with no unresolved content item', () => {
     const audit = readJson('tools/cinematics/specs/final_dialogue_quality_audit.json');
-    const liveSteps = [...dialogues.values()].reduce((total, dialogue) => total + dialogue.steps.length, 0);
+    const reviewedDialogues = [...dialogues.values()].filter(sequence => !CAMPAIGN_GRAMMAR_PRESENTATIONS[sequence.id]);
+    expect(dialogues.size - reviewedDialogues.length).toBe(2);
+    const liveSteps = reviewedDialogues.reduce((total, dialogue) => total + dialogue.steps.length, 0);
     const auditedSteps = audit.entries.flatMap((entry: any) => entry.classifications);
-    expect(audit.summary.dialogues).toBe(dialogues.size);
+    expect(audit.summary.dialogues).toBe(reviewedDialogues.length);
     expect(audit.summary.steps).toBe(liveSteps);
     expect(audit.summary).toMatchObject({
       dialogues: 73, steps: 251, actionableChoiceStates: 28,

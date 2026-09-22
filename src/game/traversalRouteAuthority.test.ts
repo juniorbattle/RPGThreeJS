@@ -46,7 +46,9 @@ describe('T0 canonical route participation', () => {
     expect(run.visitedNodeIds).toEqual(visited);
     expect(getAvailableRunNodes(run).map(node => node.id)).toEqual([selected]);
     expect(selectTraversalBranch(run, 'T0', selected)).toBe(false);
-    expect(bypassTraversalNode(run, 'T0', selected)).toBe(false);
+    const bypassed = structuredClone(run);
+    expect(bypassTraversalNode(bypassed, 'T0', selected)).toBe(selected === 'lion-first-trial-event');
+    if (selected === 'lion-first-trial-event') expect(getAvailableRunNodes(bypassed).map(node => node.id)).toEqual(['lion-first-refuge']);
     expect(enterRunNode(run, 'lion-first-refuge')).toBeNull();
     expect(enterRunNode(run, selected)?.id).toBe(selected);
     expect(getAvailableRunNodes(run).map(node => node.id)).toEqual(['lion-first-refuge']);

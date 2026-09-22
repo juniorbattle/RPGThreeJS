@@ -5,9 +5,13 @@ import { createUnitInstance, getItemCategory, toCombatant } from './catalog';
 import { applyCombatProgress } from './combatProgress';
 import {
   addTemporaryLoot, enterRunNode, failRunToCheckpoint,
-  getAvailableRunNodes, getRunNode, secureRunLoot,
+  getAvailableRunNodes, getRunNode, secureRunLoot, bypassTraversalNode,
 } from './runSystem';
 import { changeReputation, getReputationRule } from './reputation';
+import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
+import { resolveTraversalIgnoreConsequence } from './TraversalOptionalConsequencePolicy';
+import { CLAN_ANCHOR_DIALOGUES, TRAVERSAL_LOCAL_NARRATIVES } from './campaignGrammarContent';
+import { resolveCharacterUnitId } from '../render/CharacterVisualRegistry';
 import {
   lionBossVictoryFacts,
   resolveLionFinaleExecution,
@@ -120,6 +124,7 @@ const JOURNEY_MAX_REJECTIONS = 3;
 export class GameApp {
   private mode: AppMode = 'TITLE';
   private state: GameState = createInitialState();
+  private readonly statusHud = new CampaignStatusHud(() => selectCampaignStatus(this.state));
   private readonly chrome = document.createElement('div');
   private readonly dialogue: DialogueView;
   private readonly management: ManagementView;
@@ -279,6 +284,27 @@ export class GameApp {
     this.traversalEntryInFlight = true;
     this.activeNarrativeStage?.prepareGlobalHandoff();
     try {
+      if (saveOrigin) {
+        let departure!: ReturnType<JourneyCampaignBoundary['present']>;
+        await sceneTransition.run({ variant: 'travel', holdMs: 0, task: async () => {
+          this.disposeNarrativeStage();
+          this.travel.close();
+          this.setMode('NARRATIVE');
+          this.canvas.hidden = true;
+          this.chrome.replaceChildren();
+          // The resolved origin is durable; watching the departure is intentionally not persisted.
+          this.saves.saveAuto(this.state);
+          const boundary = this.ensureJourneyBoundary();
+          departure = boundary.present({
+            currentNodeId: leg.originNodeId,
+            available: getAvailableRunNodes(this.state),
+            reducedMotion: this.state.settings.reducedGraphics,
+            presentationOnly: { continueLabel: 'Prendre la route' },
+          });
+          await Promise.race([boundary.waitUntilSurfaceReady(), departure]);
+        } });
+        if ((await departure).kind !== 'presentation-continue' || this.mode !== 'NARRATIVE') return;
+      }
       await sceneTransition.run({ variant: 'traversal', holdMs: 0, task: async () => {
         this.disposeNarrativeStage();
         this.disposeJourney();
@@ -295,6 +321,9 @@ export class GameApp {
           leg,
           getState: () => this.state,
           getAvailableNodes: () => getAvailableRunNodes(this.state),
+          statusHud: this.statusHud,
+          onOptionalIgnore: nodeId => this.ignoreTraversalOptionalNode(nodeId),
+          onLocalNarrative: beatId => this.playTraversalLocalNarrative(beatId),
           onNodeHandoff: async (node) => { await this.commitRunNodeChoice(node.id); },
           onRoadCombat: combatId => this.playTraversalRoadCombat(combatId),
           onArrival: async (destinationNodeId) => { await this.completeTraversalT0(destinationNodeId); },
@@ -302,11 +331,54 @@ export class GameApp {
         });
         this.activeTraversal = traversal;
         // No physical session is persisted. Until final arrival this remains the durable boundary.
-        if (saveOrigin) this.saves.saveAuto(this.state);
         traversal.open();
       } });
+    } catch (error) {
+      await this.failJourneyToTravel(error);
     } finally {
       this.traversalEntryInFlight = false;
+    }
+  }
+
+  private ignoreTraversalOptionalNode(nodeId: string): { accepted: boolean; feedback?: string } {
+    const traversal = this.activeTraversal;
+    if (!traversal || this.state.run.visitedNodeIds.includes(nodeId)
+      || this.state.run.bypassedRouteNodeIds?.includes(nodeId)) return { accepted: false };
+    const node = getAvailableRunNodes(this.state).find(candidate => candidate.id === nodeId);
+    if (!traversal || traversal.session.phase !== 'RUNNING' || !node
+      || !traversal.route.beats.some(beat => beat.campaignNodeIds.includes(nodeId))
+      || !bypassTraversalNode(this.state.run, traversal.session.legId, nodeId)) return { accepted: false };
+    const consequence = resolveTraversalIgnoreConsequence(traversal.session.legId, node);
+    if (consequence) {
+      changeReputation(this.state, consequence.reputation, `traversal-ignore:${node.id}`);
+      this.state.flags[consequence.flag] = true;
+      this.statusHud?.refresh();
+    }
+    return { accepted: true, feedback: consequence?.feedback };
+  }
+
+  /** Local dialogue borrows presentation, keeping its physical owner and canonical state intact. */
+  private async playTraversalLocalNarrative(beatId: string): Promise<void> {
+    const traversal = this.activeTraversal;
+    const dialogueId = TRAVERSAL_LOCAL_NARRATIVES[beatId];
+    if (!traversal || traversal.session.phase !== 'LOCAL_INTERACTION' || !dialogueId
+      || traversal.session.pendingBeatId !== beatId) throw new Error('Invalid local narrative request.');
+    let dialogue!: Promise<void>;
+    try {
+      await sceneTransition.run({ variant: 'traversal', holdMs: 0, task: async () => {
+        dialogue = this.playDialogue(dialogueId);
+        await this.activeNarrativeStage?.awaitMediaVisibleReady();
+      } });
+      await dialogue;
+    } finally {
+      this.activeNarrativeStage?.prepareGlobalHandoff();
+      await sceneTransition.run({ variant: 'traversal', holdMs: 0, task: async () => {
+        this.disposeNarrativeStage();
+        if (this.activeTraversal === traversal) {
+          this.setMode('NARRATIVE');
+          document.body.dataset.campaignSurface = 'traversal';
+        }
+      } });
     }
   }
 
@@ -931,6 +1003,7 @@ export class GameApp {
   private ensureJourneyBoundary(): JourneyCampaignBoundary {
     this.journeyBoundary ??= new JourneyCampaignBoundary({
       player: this.cinematicPlayer,
+      statusHud: this.statusHud,
       registry: this.cinematicRegistry,
       mediaMode: this.narrativeMediaMode,
       dev: import.meta.env.DEV,
@@ -947,6 +1020,7 @@ export class GameApp {
     this.disposeNarrativeStage();
     const stage = new NarrativeStage({
       player: this.cinematicPlayer,
+      statusHud: this.statusHud,
       registry: this.cinematicRegistry,
       mediaMode: this.narrativeMediaMode,
       dev: import.meta.env.DEV,
@@ -1054,6 +1128,19 @@ export class GameApp {
         securedGold = secureRunLoot(this.state).gold;
         this.state.flags[securedFlag] = true;
       }
+      const gatheringId = CLAN_ANCHOR_DIALOGUES[node.id];
+      const gatheringFlag = `clanArrival:${node.id}`;
+      if (gatheringId && !this.state.flags[gatheringFlag]) {
+        const sequence = resolveGameDialogue(gatheringId, this.state)!.sequence;
+        const clanActors = this.state.clan.members.map(member => resolveCharacterUnitId(member.definitionId))
+          .filter((id): id is string => Boolean(id));
+        await this.playDialogue(gatheringId, node.label, {
+          tableau: createGenericNarrativeTableau(sequence, clanActors),
+        });
+        this.state.flags[gatheringFlag] = true;
+      }
+      this.disposeNarrativeStage();
+      this.statusHud?.hide();
       let refugeMessage = '';
       while (true) {
         this.setMode('NARRATIVE');
@@ -1569,6 +1656,7 @@ export class GameApp {
   }
 
   private setMode(mode: AppMode): void {
+    if (mode !== 'NARRATIVE' && mode !== 'JOURNEY') this.statusHud?.hide();
     this.mode = mode;
     document.body.dataset.mode = mode.toLowerCase();
     document.body.classList.remove('mode-entering');

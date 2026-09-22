@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "method": "Original uninterrupted pre-audience to management run; final refuge screenshots and onward Journey verified by loading its byte-unmodified durable arrival checkpoint and choosing the existing pay-tribute option.",
+  "originalProof": {
+    "traversalMounts": 1,
+    "travelMounts": 0,
+    "maxHud": 1,
+    "removed": [
+      {
+        "phase": "COMPLETE",
+        "cover": 1
+      }
+    ],
+    "dialogues": [
+      "CAMP_DEPARTURE_TABLEAU",
+      "ALARIC_AUDIENCE_TABLEAU",
+      "AUDIENCE_ROAD_DEPARTURE_TABLEAU",
+      "ROADSIDE_PEDDLER_TABLEAU",
+      "FOREST_THREAT_TABLEAU",
+      "FOREST_AFTERMATH_TABLEAU",
+      "ATE_ALARIC_REPORTS_TABLEAU",
+      "MYSTERY_RECRUIT_TABLEAU",
+      "ATE_SERPENT_SCOUT_REPORT_TABLEAU",
+      "BOUNDARY_NODE_LION_NOMAD_CROSSROADS_ARRIVAL_TABLEAU",
+      "FIRST_REFUGE_GATHERING_TABLEAU",
+      "ATE_FIRST_REFUGE_WATCH_TABLEAU",
+      "REP_EVENT_ROADSIDE_INTIMIDATION_TABLEAU",
+      "PRE_SERPENT_REPRISALS_TABLEAU"
+    ],
+    "writes": [
+      "lion-camp",
+      "lion-audience",
+      "lion-nomad-crossroads"
+    ]
+  },
+  "stages": [
+    "BOUNDARY_NODE_LION_NOMAD_CROSSROADS_ARRIVAL_TABLEAU",
+    "FIRST_REFUGE_GATHERING_TABLEAU",
+    "ATE_FIRST_REFUGE_WATCH_TABLEAU",
+    "REP_EVENT_ROADSIDE_INTIMIDATION_TABLEAU",
+    "BOUNDARY_NODE_LION_FIRST_REFUGE_ARRIVAL_TABLEAU"
+  ],
+  "errors": [],
+  "final": {
+    "node": "lion-first-refuge",
+    "gold": 160,
+    "gems": 1,
+    "routeGold": 0,
+    "reputation": 33,
+    "flags": {
+      "prologueSeen": true,
+      "lionMissionAccepted": true,
+      "lionMandateHonour": true,
+      "chapterStarted": true,
+      "ate:ate_alaric_reports": true,
+      "recruitedCedric": true,
+      "ate:ate_serpent_scout_report": true,
+      "ignoredRefugees": true,
+      "abandonedMerchant": true,
+      "refugeSecured:lion-first-refuge": true,
+      "clanArrival:lion-first-refuge": true,
+      "ate:ate_first_refuge_watch": true,
+      "r4PaidRoadsideTribute": true
+    }
+  }
+}

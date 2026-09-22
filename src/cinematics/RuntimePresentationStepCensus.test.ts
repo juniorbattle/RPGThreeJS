@@ -21,10 +21,10 @@ describe('OPTION-C-P0 runtime presentation coverage lock', () => {
     expect(validateRuntimePresentationStepCensus(census)).toEqual([]);
     expect(census.summary).toMatchObject({
       stateScenarios: 330,
-      runtimePresentationVariants: 132,
-      canonicalDialogueSteps: 251,
-      runtimeReachablePresentationSteps: 276,
-      plannedRuntimePresentationSteps: 276,
+      runtimePresentationVariants: 134,
+      canonicalDialogueSteps: 257,
+      runtimeReachablePresentationSteps: 282,
+      plannedRuntimePresentationSteps: 282,
       explicitLegitimateRuntimeOnlySteps: 0,
       missingFromPlan: 0,
       deadOrUnreachable: 2,
