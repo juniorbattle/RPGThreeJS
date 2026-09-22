@@ -62,9 +62,10 @@ describe('CIN-2 campaign presentation bridge', () => {
 
   it('returns every campaign boundary through the presentation facade', () => {
     expect(occurrences('private async enterCampaignPresentation')).toBe(1);
-    // The T0 preview explicitly returns to destination confirmation after its exit transition.
-    expect(occurrences('await this.enterTravel();')).toBe(3);
-    expect(method('private async completeTraversalT0Qa')).toContain('await this.enterTravel()');
+    // Only exceptional policy/failure branches enter legacy TravelView.
+    expect(occurrences('await this.enterTravel();')).toBe(2);
+    expect(method('private async completeTraversalT0Qa')).toContain('await this.enterCampaignPresentation()');
+    expect(method('private async completeTraversalT0Qa')).not.toContain('enterTravel');
     expect(method('private async completeTraversalT0Qa')).not.toContain('commitRunNodeChoice');
     expect(method('private async enterCampaignPresentation')).toContain('await this.enterJourney()');
     expect(method('private async failJourneyToTravel')).toContain('await this.enterTravel()');

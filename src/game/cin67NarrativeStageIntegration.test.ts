@@ -18,11 +18,12 @@ function method(name: string): string {
 }
 
 describe('CIN-6.7 NarrativeStage campaign integration', () => {
-  it('keeps production on TravelView and accepts both DEV selectors', () => {
-    expect(resolveCampaignPresentation({ search: '', dev: true })).toBe('travel');
+  it('defaults production to NarrativeStage and accepts both DEV selectors', () => {
+    expect(resolveCampaignPresentation({ search: '', dev: true })).toBe('journey');
+    expect(resolveCampaignPresentation({ search: '', dev: false })).toBe('journey');
     expect(resolveCampaignPresentation({ search: '?journey=cinematic', dev: true })).toBe('journey');
     expect(resolveCampaignPresentation({ search: '?presentation=narrative', dev: true })).toBe('journey');
-    expect(resolveCampaignPresentation({ search: '?presentation=narrative', dev: false })).toBe('travel');
+    expect(resolveCampaignPresentation({ search: '?presentation=narrative', dev: false })).toBe('journey');
     expect(SOURCE).toContain('private readonly travel: TravelView');
     expect(SOURCE).toContain('this.travel = new TravelView({');
     expect(method('private async failJourneyToTravel')).toContain('await this.enterTravel()');

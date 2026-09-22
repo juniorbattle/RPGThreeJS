@@ -4,8 +4,8 @@
  * Decides only HOW the current campaign boundary is presented — never what the campaign is. Route
  * truth, node availability and progression stay entirely inside RunSystem.
  *
- * CIN-2 keeps TravelView as the production default. Cinematic Journey is a DEV-only selector so a
- * stale query string can never flip a shipped build into an unreviewed presentation.
+ * Journey/NarrativeStage is the normal campaign surface. Only DEV may explicitly select the
+ * legacy TravelView; production recovery is owned by GameApp's catastrophic-failure latch.
  */
 export type CampaignPresentationMode = 'travel' | 'journey';
 
@@ -15,19 +15,16 @@ export const PRESENTATION_SELECTOR_PARAM = 'presentation';
 export interface CampaignPresentationPolicyInput {
   /** `window.location.search` (with or without the leading `?`). */
   search: string;
-  /** `import.meta.env.DEV`. Journey is unavailable when false. */
+  /** `import.meta.env.DEV`. Allows the explicit legacy TravelView override. */
   dev: boolean;
 }
 
 /**
- * `?journey=cinematic` in a DEV build selects Journey. Everything else — no selector,
- * `?journey=travel`, an unknown value, or any production build — stays on TravelView.
+ * No selector is required. Existing cinematic/narrative selectors remain compatible; unknown
+ * values leave the default intact. An explicit DEV travel selector takes precedence.
  */
 export function resolveCampaignPresentation(input: CampaignPresentationPolicyInput): CampaignPresentationMode {
-  const selector = readJourneySelector(input.search);
-  const presentation = readPresentationSelector(input.search);
-  if (!input.dev) return 'travel';
-  return selector === 'cinematic' || presentation === 'narrative' ? 'journey' : 'travel';
+  return input.dev && isTravelForced(input.search) ? 'travel' : 'journey';
 }
 
 export function readJourneySelector(search: string): string | null {

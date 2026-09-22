@@ -9,7 +9,7 @@ export interface JourneyPresentationContext {
 }
 
 /**
- * CIN-6A lifecycle mappings are Journey-only until CIN-7 changes the production default.
+ * CIN-6A lifecycle mappings supply the normal Journey/Narrative campaign presentation.
  * They consume already-authoritative node/content/state facts and never mutate them.
  */
 export const CIN6A_JOURNEY_TRIGGERS = Object.freeze({
