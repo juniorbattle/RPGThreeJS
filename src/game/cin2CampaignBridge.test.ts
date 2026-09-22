@@ -64,9 +64,9 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(occurrences('private async enterCampaignPresentation')).toBe(1);
     // Only exceptional policy/failure branches enter legacy TravelView.
     expect(occurrences('await this.enterTravel();')).toBe(2);
-    expect(method('private async completeTraversalT0Qa')).toContain('await this.enterCampaignPresentation()');
-    expect(method('private async completeTraversalT0Qa')).not.toContain('enterTravel');
-    expect(method('private async completeTraversalT0Qa')).not.toContain('commitRunNodeChoice');
+    expect(method('private async completeTraversalT0')).toContain('await this.enterCampaignPresentation()');
+    expect(method('private async completeTraversalT0')).not.toContain('enterTravel');
+    expect(method('private async completeTraversalT0')).not.toContain('commitRunNodeChoice');
     expect(method('private async enterCampaignPresentation')).toContain('await this.enterJourney()');
     expect(method('private async failJourneyToTravel')).toContain('await this.enterTravel()');
     // Every post-node/return path uses the facade.
@@ -78,17 +78,17 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(method('private async flushPendingCombat')).not.toContain('enterTravel');
   });
 
-  it('keeps Traversal production-disabled until the explicit T0 rollout gate is opened', () => {
+  it('selects the explicitly approved T0 production rollout through the facade', () => {
     const gate = readFileSync(resolve(process.cwd(), 'src/traversal/TraversalFeaturePolicy.ts'), 'utf8');
-    expect(gate).toContain('enabled: false');
-    expect(gate).toContain('designAssetsReady: false');
+    expect(gate).toContain('enabled: true');
+    expect(gate).toContain('designAssetsReady: true');
     expect(gate).toContain("rolloutLegIds: Object.freeze(['T0']");
     expect(SOURCE).toContain('private usesTraversalPresentation');
     expect(SOURCE).toContain('isTraversalProductionEnabledForLeg(legId)');
 
     const facade = method('private async enterCampaignPresentation');
-    expect(facade).not.toContain('usesTraversalPresentation(');
-    expect(facade).not.toContain('enterTraversal');
+    expect(facade).toContain('usesTraversalPresentation(');
+    expect(facade).toContain('enterTraversalT0');
     expect(facade).toContain('await this.enterJourney()');
     expect(facade).toContain('await this.enterTravel()');
   });

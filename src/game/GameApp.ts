@@ -54,7 +54,7 @@ import { isTraversalProductionEnabledForLeg } from '../traversal/TraversalFeatur
 import { TraversalT0Scene } from '../traversal/TraversalT0Scene';
 import { TraversalPreviewSaves } from '../traversal/TraversalPreviewSaves';
 import { createRoadEncounterConfig } from '../traversal/TraversalRoadEncounter';
-import { LION_TRAVERSAL_LEGS, type LionTraversalLegId } from '../campaign/LionCampaignTravelRelations';
+import { LION_TRAVERSAL_LEGS, type LionTraversalLeg, type LionTraversalLegId } from '../campaign/LionCampaignTravelRelations';
 import type { JourneySecondaryActionPresentation } from '../cinematics/JourneyTypes';
 import { NarrativeStage } from '../cinematics/NarrativeStage';
 import { resolveCinematicPresentation, resolveDialoguePresentation } from '../cinematics/NarrativePresentationResolver';
@@ -142,6 +142,7 @@ export class GameApp {
   });
   private journeyBoundary: JourneyCampaignBoundary | null = null;
   private activeTraversal: TraversalT0Scene | null = null;
+  private traversalEntryInFlight = false;
   private traversalArrivalInFlight = false;
   private lastNarrativeCinematicBeat: ResolvedPresentationBeat | undefined;
   private activeNarrativeStage: NarrativeStage | null = null;
@@ -269,30 +270,47 @@ export class GameApp {
     this.state.visitedNodeIds = [...new Set([...this.state.visitedNodeIds, leg.originNodeId])];
     // Show the real Travel surface before the isolated preview's covered departure.
     this.showTravel();
-    await sceneTransition.run({ variant: 'traversal', holdMs: 0, task: async () => {
-      this.travel.close();
-      // Journey already establishes NARRATIVE as the authorized presentation mode for a mounted
-      // campaign surface. The explicit activeTraversal owner distinguishes this playable surface.
-      this.setMode('NARRATIVE');
-      document.body.dataset.campaignSurface = 'traversal';
-      this.canvas.hidden = true;
-      this.chrome.replaceChildren();
-      const traversal = new TraversalT0Scene({
-        root: this.root,
-        leg,
-        getState: () => this.state,
-        getAvailableNodes: () => getAvailableRunNodes(this.state),
-        onNodeHandoff: async (node) => { await this.commitRunNodeChoice(node.id); },
-        onRoadCombat: combatId => this.playTraversalRoadCombat(combatId),
-        onArrival: async (destinationNodeId) => { await this.completeTraversalT0Qa(destinationNodeId); },
-        onMenu: () => this.renderTitle(),
-      });
-      this.activeTraversal = traversal;
-      traversal.open();
-    } });
+    await this.enterTraversalT0(leg, false);
   }
 
-  private async completeTraversalT0Qa(destinationNodeId: string): Promise<void> {
+  /** Shared mount only; QA alone manufactures a state and uses its isolated save repository. */
+  private async enterTraversalT0(leg: LionTraversalLeg, saveOrigin = true): Promise<void> {
+    if (this.activeTraversal || this.traversalEntryInFlight) return;
+    this.traversalEntryInFlight = true;
+    this.activeNarrativeStage?.prepareGlobalHandoff();
+    try {
+      await sceneTransition.run({ variant: 'traversal', holdMs: 0, task: async () => {
+        this.disposeNarrativeStage();
+        this.disposeJourney();
+        this.travel.close();
+        this.combat.close();
+        // Journey already establishes NARRATIVE as the authorized presentation mode for a mounted
+        // campaign surface. The explicit activeTraversal owner distinguishes this playable surface.
+        this.setMode('NARRATIVE');
+        document.body.dataset.campaignSurface = 'traversal';
+        this.canvas.hidden = true;
+        this.chrome.replaceChildren();
+        const traversal = new TraversalT0Scene({
+          root: this.root,
+          leg,
+          getState: () => this.state,
+          getAvailableNodes: () => getAvailableRunNodes(this.state),
+          onNodeHandoff: async (node) => { await this.commitRunNodeChoice(node.id); },
+          onRoadCombat: combatId => this.playTraversalRoadCombat(combatId),
+          onArrival: async (destinationNodeId) => { await this.completeTraversalT0(destinationNodeId); },
+          onMenu: () => this.renderTitle(),
+        });
+        this.activeTraversal = traversal;
+        // No physical session is persisted. Until final arrival this remains the durable boundary.
+        if (saveOrigin) this.saves.saveAuto(this.state);
+        traversal.open();
+      } });
+    } finally {
+      this.traversalEntryInFlight = false;
+    }
+  }
+
+  private async completeTraversalT0(destinationNodeId: string): Promise<void> {
     const traversal = this.activeTraversal;
     if (!traversal || traversal.session.phase !== 'ARRIVING'
       || traversal.route.destinationNodeId !== destinationNodeId || this.traversalArrivalInFlight) return;
@@ -308,7 +326,10 @@ export class GameApp {
 
   private async playTraversalRoadCombat(combatId: string): Promise<boolean> {
     const traversal = this.activeTraversal;
-    if (!traversal || !this.traversalT0QaEnabled) throw new Error('Road combat requires the isolated T0 preview.');
+    if (!traversal || traversal.session.legId !== 'T0'
+      || traversal.session.phase !== 'LOCAL_INTERACTION') {
+      throw new Error('Road combat requires an active T0 local interaction.');
+    }
     const config = createRoadEncounterConfig(combatId);
     let combatSession!: ReturnType<CombatBridge['start']>;
     await sceneTransition.run({ variant: 'traversal', task: async () => {
@@ -317,12 +338,12 @@ export class GameApp {
         config, clan: this.state.clan.members.filter(unit => unit.currentHealth > 0).map(unit => toCombatant(unit)),
         inventory: structuredClone(this.state.inventory.consumables),
         preferredUnitIds: [...this.state.deployment.unitIds],
-        reducedGraphics: this.state.settings.reducedGraphics, devQa: true,
+        reducedGraphics: this.state.settings.reducedGraphics, devQa: this.traversalT0QaEnabled,
       });
       await combatSession.ready;
     } });
     const result = await combatSession.result;
-    // This preview combat has only a local outcome. Never call canonical resolveCombat/markResolved.
+    // Road combat has only a local outcome. Never call canonical resolveCombat/markResolved.
     return new Promise<boolean>((resolve, reject) => {
       void sceneTransition.run({ variant: 'traversal', holdMs: 0, task: async () => {
         if (this.activeTraversal === traversal) {
@@ -752,8 +773,20 @@ export class GameApp {
    */
   private async enterCampaignPresentation(): Promise<void> {
     if (this.resumeActiveTraversalIfReady()) return;
-    // Traversal is intentionally not selected here yet. Its production gate remains false until
-    // route design/assets are approved; the first rollout will be T0 only.
+    if (this.traversalEntryInFlight) return;
+    // An existing owner may only leave through final arrival, never through another entry.
+    if (this.activeTraversal && this.activeTraversal.session.phase !== 'ARRIVING') return;
+    const leg = !this.activeTraversal && this.state.run.status === 'active'
+      ? LION_TRAVERSAL_LEGS.find(candidate => candidate.id === 'T0'
+        && candidate.originNodeId === this.state.run.currentNodeId
+        && this.state.resolvedNodeIds.includes(candidate.originNodeId)
+        && this.usesTraversalPresentation(candidate.id)
+        && getAvailableRunNodes(this.state).some(node => candidate.stages[0]?.nodeIds.includes(node.id)))
+      : undefined;
+    if (leg) {
+      await this.enterTraversalT0(leg);
+      return;
+    }
     if (this.usesJourneyPresentation()) {
       await this.enterJourney();
       return;
@@ -1512,6 +1545,7 @@ export class GameApp {
         this.combat.close();
         this.travel.close();
         this.disposeJourney();
+        this.disposeTraversal();
         // Neutral holding mode: the presentation is chosen only after the resume profile is known,
         // so a reload never mounts a campaign surface it is about to replace.
         this.setMode('RESULT');
