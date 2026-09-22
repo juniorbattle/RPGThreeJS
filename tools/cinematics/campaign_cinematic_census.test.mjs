@@ -463,9 +463,18 @@ describe('CIN-5 campaign cinematic census contract', () => {
     for (const path of census.environmentAssets) expect(existsSync(resolve(projectRoot, path)), path).toBe(true);
   });
 
-  it('does not modify GameState or save-schema source files', () => {
+  it('preserves GameState and permits only the authorized optional T0 run fields', () => {
     const changed = execFileSync('git', ['status', '--short'], { cwd: projectRoot, encoding: 'utf8' });
-    expect(changed).not.toMatch(/src\/game\/(?:types|store)\.ts/);
+    expect(changed).not.toMatch(/src\/game\/store\.ts/);
+    const baseline = execFileSync('git', ['show', '04e969eb2273efb9c844c9c78cfd31e2f471be85:src/game/types.ts'], { cwd: projectRoot, encoding: 'utf8' }).replaceAll('\r\n', '\n');
+    const current = readFileSync(resolve(projectRoot, 'src/game/types.ts'), 'utf8').replaceAll('\r\n', '\n');
+    const authorizedExtension = [
+      '  // Optional fields preserve existing V6 saves. Bypass is not a visit or a resolution.',
+      '  bypassedRouteNodeIds: z.array(z.string()).optional(),',
+      '  traversalBranches: z.record(z.string(), z.string()).optional(),',
+      '',
+    ].join('\n');
+    expect(current.replace(authorizedExtension, '')).toBe(baseline);
   });
 
   it('allows only census-planned production media in the worktree', () => {

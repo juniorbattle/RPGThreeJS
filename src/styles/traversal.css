@@ -1,0 +1,295 @@
+/* T0 presentation. All positions use visible ground bounds; no canonical art is modified. */
+.traversal-t0 {
+  --vehicle-height: min(24vh, 14vw);
+  --traversal-lane-y: 63%;
+  --foreground-offset: 0px;
+  position: fixed; inset: 0; z-index: 40; overflow: hidden; isolation: isolate;
+  color: #fff4d2; background: #192f4e; font-family: Inter, sans-serif;
+}
+.traversal-t0 [hidden] { display: none !important; }
+.traversal-world, .traversal-world > div { position: absolute; inset: 0; }
+.traversal-world { overflow: hidden; }
+.traversal-world .traversal-world__road {
+  inset: 0;
+}
+.traversal-world__sections { position: absolute; inset: 0; will-change: transform; }
+.traversal-world-section { position: absolute; top: 0; height: 100%; }
+.traversal-world-section__terrain {
+  --painting-width: 150vh;
+  position: absolute; top: 0; bottom: 0;
+  left: calc(-1 * var(--section-overlap)); width: calc(100% + 2 * var(--section-overlap));
+  overflow: hidden;
+  /* Incoming terrain fades over an OPAQUE outgoing image. Two fading images expose
+     the blue backdrop (25% at the midpoint). Mask outside the mirrored image. */
+  mask-image: linear-gradient(90deg, transparent, #000 calc(2 * var(--section-overlap)));
+}
+.traversal-world-section:first-child .traversal-world-section__terrain { mask-image: none; }
+.traversal-world-section__painting, .traversal-world-section__margin {
+  position: absolute; top: 0; height: 100%; width: var(--painting-width);
+}
+.traversal-world-section__painting { left: calc(50% - var(--painting-width) / 2); }
+.traversal-world-section__margin--before { right: calc(50% + var(--painting-width) / 2 - 2 * var(--section-overlap)); }
+.traversal-world-section__margin--after { left: calc(50% + var(--painting-width) / 2 - 2 * var(--section-overlap)); }
+.traversal-world-section__painting, .traversal-world-section__margin--after {
+  mask-image: linear-gradient(90deg, transparent, #000 calc(2 * var(--section-overlap)));
+}
+.traversal-world-section__terrain img {
+  display: block; width: 100%; height: 100%; max-width: none; object-fit: contain;
+}
+.traversal-world .traversal-world__lane-glow {
+  inset: auto; top: calc(var(--traversal-lane-y) - 2%); left: 13%; width: 23%; height: 5%;
+  border-radius: 50%; background: radial-gradient(ellipse, #ffdc7d20, transparent 70%);
+  transition: top .38s ease;
+}
+.traversal-world__actors { isolation: isolate; }
+.traversal-world__entities { position: absolute; inset: 0; pointer-events: none; }
+.traversal-world__markers, .traversal-world__occlusion { pointer-events: none; }
+.traversal-world__occlusion .traversal-near-plant { position: absolute; transform: translate(-50%, -100%); }
+.traversal-world__occlusion .traversal-near-plant.is-mirrored { transform: translate(-50%, -100%) scaleX(-1); }
+.traversal-world__foreground {
+  z-index: 34; pointer-events: none;
+  background: var(--traversal-foreground-image) var(--foreground-offset) bottom / auto 18% repeat-x;
+}
+.traversal-t0::after {
+  content: ''; position: absolute; inset: 0; z-index: 38; pointer-events: none;
+  background: linear-gradient(90deg, #02050a35, transparent 12% 88%, #02050a35),
+    linear-gradient(180deg, #02050a30, transparent 18% 83%, #02050a80);
+}
+.traversal-t0--interrupted .traversal-world { filter: brightness(.55) saturate(.72); }
+.traversal-t0--interrupted > :not(.traversal-world):not(.traversal-fork-overlay) { visibility: hidden; }
+.traversal-sprite { position: relative; display: block; height: 100%; flex: none; }
+.traversal-sprite img { position: absolute; max-width: none; object-fit: fill; pointer-events: none; }
+.traversal-sprite.is-mirrored { transform: scaleX(-1); }
+.traversal-vehicle {
+  position: absolute; top: var(--traversal-lane-y); left: calc(25% + var(--vehicle-exit-x, 0px) + var(--vehicle-entry-x, 0px)); z-index: 22;
+  height: var(--vehicle-height); aspect-ratio: 818 / 433; margin: 0;
+  transform: translate(-50%, -100%); transition: top .38s cubic-bezier(.2,.72,.2,1);
+  pointer-events: none;
+}
+.traversal-vehicle__art { position: absolute; max-width: none; z-index: 2; translate: 0 var(--suspension-y, 0px); transition: translate .12s ease-out; }
+.traversal-vehicle__shadow, .traversal-entity__body::after {
+  position: absolute; content: ''; bottom: -3%; left: 5%; width: 90%; height: 8%;
+  border-radius: 50%; background: #271a0d66; filter: blur(4px); z-index: -1;
+}
+.traversal-vehicle__wheel {
+  position: absolute; z-index: 3; pointer-events: none;
+}
+.traversal-vehicle__wheel[data-wheel-plane='far'] { z-index: 1; filter: brightness(.68); }
+.traversal-vehicle__wheel-projection { position: absolute; height: 100%; aspect-ratio: 1; left: 50%; translate: -50% 0; }
+.traversal-vehicle__wheel-rotor { position: absolute; inset: 0; rotate: var(--wheel-angle, 0rad); border-radius: 50%; overflow: hidden; }
+.traversal-vehicle__wheel-rotor img { position: absolute; max-width: none; }
+.traversal-vehicle__dust {
+  position: absolute; z-index: 1; top: 90%; left: -10%; width: 25%; height: 12%;
+  border-radius: 50%; background: radial-gradient(ellipse,#e7be7770,transparent 70%);
+  filter: blur(4px); opacity: calc(.5 - var(--dust-phase, 0) * .5);
+  translate: calc(var(--dust-phase, 0) * -40px) 0;
+  scale: calc(.7 + var(--dust-phase, 0) * .7);
+  transition: opacity .3s;
+}
+.traversal-vehicle__dust--two { animation-delay: -.65s; }
+@keyframes traversal-suspension { to { margin-top: -2px; } }
+@keyframes traversal-wheel-spin { to { rotate: 360deg; } }
+@keyframes traversal-dust { from { opacity: .5; translate: 10px 0; scale: .6; } to { opacity: 0; translate: -40px 2px; scale: 1.4; } }
+.traversal-t0:not([data-phase='RUNNING']) .traversal-vehicle,
+.traversal-t0:not([data-phase='RUNNING']) .traversal-vehicle * { animation-play-state: paused; }
+.traversal-t0:not([data-phase='RUNNING']):not([data-phase='ARRIVING']) .traversal-vehicle__dust { opacity: 0; }
+.traversal-t0[data-phase='ARRIVING']::after { background: #000; opacity: var(--arrival-fade, 0); z-index: 100; }
+.traversal-t0[data-phase='ARRIVING'] > :not(.traversal-world) { visibility: hidden; }
+.traversal-actor-anchor {
+  --entity-height: calc(var(--vehicle-height) * .66);
+  position: absolute; height: var(--entity-height); width: max-content;
+  transform: translate(-50%, -100%); pointer-events: none;
+}
+.traversal-actor-anchor[data-scale='creature'] { --entity-height: calc(var(--vehicle-height) * .58); }
+.traversal-actor-anchor[data-scale='human'][data-category='OPTIONAL_EVENT'],
+.traversal-actor-anchor[data-scale='human'][data-category='MANDATORY_EVENT']:not([data-formation='true']) { --entity-height: calc(var(--vehicle-height) * .78); }
+.traversal-actor-anchor[data-scale='elite'] { --entity-height: calc(var(--vehicle-height) * .7); }
+.traversal-actor-anchor[data-scale='loot'] { --entity-height: calc(var(--vehicle-height) * .34); }
+.traversal-actor-anchor[data-scale='obstacle'] { --entity-height: calc(var(--vehicle-height) * .49); }
+.traversal-actor-anchor[data-scale='booster'] { --entity-height: calc(var(--vehicle-height) * .32); }
+.traversal-entity__body { position: relative; height: 100%; isolation: isolate; }
+.traversal-entity__subject { z-index: 2; }
+.traversal-formation-member { position: absolute; left: calc(70% + var(--formation-index) * 75%); bottom: calc((var(--formation-index) - .5) * 5vh); height: 100%; z-index: 3; }
+.traversal-actor-anchor[data-formation='true'][data-placement='centered'] { --entity-height: calc(var(--vehicle-height) * .52); }
+.traversal-entity__marker {
+  position: absolute; bottom: calc(100% + 10px); left: 50%; z-index: 3;
+  display: grid; place-items: center; width: clamp(19px, 1.65vw, 25px); aspect-ratio: 1;
+  border: 1px solid #f1d38c; transform: translateX(-50%) rotate(45deg);
+  background: #111b22ef; box-shadow: 0 2px 4px #0007; color: #fff2ce;
+  font: 700 12px/1 Inter, sans-serif;
+}
+.traversal-entity__marker::after { content: attr(data-glyph); transform: rotate(-45deg); }
+.traversal-marker-anchor[data-marker='danger'] .traversal-entity__marker { border-color: #ee977e; color: #ffd6c2; }
+.traversal-marker-anchor[data-marker='booster'] .traversal-entity__marker { border-color: #fbd878; }
+.traversal-entity > strong { display: none; }
+.traversal-entity__prop { display: block; position: relative; height: 100%; }
+.traversal-entity__prop--loot {
+  aspect-ratio: 1.7; border: 2px solid #49301c; border-radius: 9px 9px 3px 3px;
+  background: linear-gradient(90deg,transparent 12%,#bc9855 13% 18%,transparent 19% 80%,#bc9855 81% 86%,transparent 87%),linear-gradient(#b97832 0 42%,#573819 43% 49%,#875324 50%);
+  box-shadow: inset 0 2px #e5bc6e, 0 3px 5px #36210c88;
+}
+.traversal-entity__prop--loot::after { content: ''; position: absolute; top: 40%; left: 45%; width: 12%; height: 30%; background: #d2ad60; border: 1px solid #48301d; }
+.traversal-entity__prop--obstacle {
+  aspect-ratio: 1.9; border-bottom: 12px solid #694a2a;
+  background: repeating-linear-gradient(-12deg,transparent 0 14px,#976b36 15px 22px,transparent 23px 31px);
+}
+.traversal-entity__prop--obstacle::before, .traversal-entity__prop--obstacle::after {
+  content: ''; position: absolute; bottom: -12px; width: 35%; aspect-ratio: 1;
+  border: 6px double #49311d; border-radius: 50%; background: radial-gradient(#684321 0 15%,transparent 17%),repeating-conic-gradient(#73522c 0 8deg,transparent 9deg 58deg);
+}
+.traversal-entity__prop--obstacle::before { left: -5%; transform: rotate(-20deg) scaleY(.7); }
+.traversal-entity__prop--obstacle::after { right: 0; }
+.traversal-entity__prop--booster {
+  aspect-ratio: .7; border: 3px solid #807047; border-radius: 30% 30% 8% 8%;
+  background: radial-gradient(ellipse at 50% 40%,#fbe9a6 0 8%,#9b995a 9% 17%,#5c6355 18% 40%,#43483c 60%);
+  box-shadow: inset 3px 0 #9a9a70,0 0 12px #d8c97c55;
+}
+.traversal-entity__prop--fork, .traversal-entity__prop--campaign-node { aspect-ratio: .6; background: linear-gradient(90deg,transparent 42%,#664623 43% 55%,transparent 56%); }
+.traversal-hud, .traversal-lanes, .traversal-toast { position: absolute; z-index: 45; }
+.traversal-hud { top: 0; padding: 20px; pointer-events: none; }
+.traversal-hud p, .traversal-hud h1 { margin: 0; }
+.traversal-hud--context { left: 0; display: flex; gap: 12px; width: 31%; background: linear-gradient(110deg,#061017d9,transparent); }
+.traversal-hud__sigil { display: none; }
+.traversal-hud--context p { font: 600 9px Cinzel,serif; letter-spacing: .15em; color: #e1c383; }
+.traversal-hud--context h1 { margin: 4px 0; font: 600 clamp(16px,1.65vw,28px) Cinzel,serif; }
+.traversal-hud--context div > span { font: 11px Inter,sans-serif; color: #e2dbca; }
+.traversal-hud--progress { right: 0; width: 26%; text-align: right; background: linear-gradient(250deg,#061017d9,transparent); }
+.traversal-hud--progress p { margin: 8px 0 4px; font: 10px Cinzel,serif; color: #c9bd9f; }
+.traversal-hud--progress strong { display: block; font: 600 clamp(12px,1.1vw,18px) Cinzel,serif; }
+.traversal-hud--progress > span { color: #e1c383; font-size: 12px; }
+.traversal-route-rail { margin-left: auto; width: 160px; height: 4px; background: #e1c38330; border-radius: 2px; overflow: hidden; }
+.traversal-route-rail i { display: block; width: calc(var(--route-progress) * 100%); height: 100%; background: #e1c383; }
+.traversal-route-rail span, .traversal-route-rail b { display: none; }
+.traversal-lanes { top: calc(65% - 18px); left: 0; display: grid; gap: calc(16vh - 36px); width: clamp(96px,10vw,146px); }
+.traversal-lanes button { min-height: 36px; padding: 6px 12px; border: 1px solid #e6cb8144; border-left: 0; border-radius: 0 5px 5px 0; background: #0b151bbf; color: #e2d6bd; font: 600 11px Cinzel,serif; text-align: left; cursor: pointer; }
+.traversal-lanes button.is-active { border-color: #e6cb81a0; background: #55482ded; color: #fff2cc; }
+.traversal-lanes button:disabled { cursor: default; opacity: 1; }
+.traversal-event-panel {
+  position: absolute; top: 15px; left: 50%; z-index: 45; transform: translateX(-50%);
+  display: grid; grid-template-columns: 30px minmax(0,1fr); align-items: center; gap: 12px;
+  width: 36%; padding: 14px 16px; border: 1px solid #c9ac6d90; border-radius: 6px;
+  background: linear-gradient(125deg,#091722f5,#142127ee); box-shadow: 0 8px 22px #0004;
+  animation: traversal-panel-reveal .24s ease-out both;
+}
+.traversal-event-panel figure { display: none; }
+.traversal-event-panel__marker { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid #e1c383; border-radius: 50%; color: #f2d68e; font-size: 14px; }
+.traversal-event-panel small { display: block; font: 600 9px Cinzel,serif; color: #e1c383; letter-spacing: .06em; }
+.traversal-event-panel strong { display: block; margin-top: 3px; font: 600 clamp(14px,1.2vw,20px) Cinzel,serif; }
+.traversal-event-panel p { margin: 5px 0 0; font: 11px/1.45 Inter,sans-serif; color: #e2dbca; }
+.traversal-event-panel__actions { display: flex; gap: 10px; margin-top: 12px; }
+.traversal-event-panel button { padding: 8px 16px; border: 1px solid #d9ba78; border-radius: 4px; background: #cfaf6b; color: #17202a; font: 600 12px Inter,sans-serif; cursor: pointer; }
+.traversal-event-panel [data-traversal-skip] { background: transparent; color: #e2dbca; border-color: #e2dbca70; }
+.traversal-event-panel button:focus-visible, .traversal-lanes button:focus-visible { outline: 2px solid #fff6d6; outline-offset: 3px; }
+.traversal-event-panel button:disabled { opacity: .6; cursor: default; }
+.traversal-event-panel[data-interaction-policy='MANDATORY_CONFIRM'] { border-color: #d28e6b; }
+.traversal-toast { top: 26%; left: 50%; transform: translateX(-50%); opacity: 0; pointer-events: none; padding: 7px 12px; border-radius: 4px; background: #091722dd; font-size: 11px; }
+.traversal-toast.is-visible { animation: traversal-toast 2.7s ease both; }
+@keyframes traversal-toast { 0%,100% { opacity: 0; } 12%,75% { opacity: 1; } }
+@media (max-width: 1000px) {
+  .traversal-hud { padding: 12px; }
+  .traversal-hud--context { width: 46%; }
+  .traversal-hud--progress { width: 36%; }
+  .traversal-event-panel { top: 86px; width: min(480px,62vw); }
+  .traversal-t0 { --vehicle-height: min(24vh,16vw); }
+  .traversal-lanes { width: 90px; }
+  .traversal-lanes button { font-size: 9px; padding-left: 8px; }
+}
+@media (max-width: 620px) {
+  .traversal-hud--context p, .traversal-hud--context div > span { display: none; }
+  .traversal-hud--context h1 { font-size: 14px; }
+  .traversal-hud--progress p { margin-top: 0; }
+  .traversal-route-rail { width: 100px; }
+  .traversal-event-panel { top: 74px; width: calc(100% - 32px); }
+  .traversal-lanes { width: 64px; }
+  .traversal-lanes button { min-height: 30px; font-size: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .traversal-t0 *, .traversal-t0 *::before, .traversal-t0 *::after { animation: none !important; transition-duration: .001ms !important; }
+}
+.traversal-entity[data-formation='true'][data-placement='lane'] .traversal-formation-member { bottom: calc(var(--formation-index) * 1vh); left: calc(80% + var(--formation-index) * 90%); height: 95%; }
+.traversal-entity--fork .traversal-entity__subject { height: calc(var(--vehicle-height) * .7); }
+.traversal-entity[data-placement='centered'][data-formation='true'] .traversal-formation-member { bottom: calc((var(--formation-index) - .5) * 6vh); }
+.traversal-t0[data-assisted-bypass='true'] .traversal-vehicle { transition-duration: .65s; }
+/* Lane changes are essential spatial feedback, even with decorative motion reduced. */
+@media (prefers-reduced-motion: reduce) {
+  .traversal-t0 .traversal-vehicle { transition-duration: .25s !important; }
+  .traversal-t0 .traversal-world__lane-glow { transition-duration: .25s !important; }
+}
+.traversal-entity--fork .traversal-entity__subject { height: calc(var(--vehicle-height) * .54); }
+.traversal-transition {
+  position: absolute; inset: 0; z-index: 10000; pointer-events: none;
+  background: #07100e; opacity: var(--transition-opacity, 0);
+}
+.traversal-t0[data-transition] .traversal-transition { pointer-events: auto; }
+.traversal-t0[data-transition='focus'] .traversal-transition { opacity: calc(var(--transition-opacity, 0) * .35); z-index: 42; }
+.traversal-t0[data-transition] .traversal-vehicle__dust { opacity: 0; }
+.traversal-t0[data-transition='fork'] .traversal-vehicle { transition: none !important; }
+
+/* Authored location props are independent of interaction markers and survive consumption. */
+.traversal-location-prop { position: absolute; transform: translate(-50%, -100%); }
+.traversal-entity--fork { --entity-height: calc(var(--vehicle-height) * .54); }
+.traversal-entity__body--location { width: 1px; }
+.traversal-entity__body--location::after { display: none; }
+
+/* Each contact category has its own signal. Collectibles and debris are their own signs. */
+.traversal-marker-anchor[data-category='PICKUP'] .traversal-entity__marker,
+.traversal-marker-anchor[data-category='SIMPLE_OBSTACLE'] .traversal-entity__marker,
+.traversal-marker-anchor[data-category='ROUTE_CHOICE'] .traversal-entity__marker { display: none; }
+.traversal-marker-anchor[data-category='OPTIONAL_EVENT'] .traversal-entity__marker {
+  border-radius: 50% 50% 50% 0; transform: translateX(-50%); border-color: #cbdab6;
+}
+.traversal-marker-anchor[data-category='OPTIONAL_EVENT'] .traversal-entity__marker::after { transform: none; }
+.traversal-marker-anchor[data-category='OPTIONAL_COMBAT'] .traversal-entity__marker { background: #632d23; border-color: #fb9477; }
+.traversal-marker-anchor[data-category='MANDATORY_EVENT'] .traversal-entity__marker { border-width: 2px; box-shadow: 0 0 12px #ee854b77; }
+.traversal-gold {
+  display: grid; place-items: center; height: 100%; aspect-ratio: 1; border: 3px double #ffe39c;
+  border-radius: 50%; background: radial-gradient(circle at 35% 30%,#edc776,#926126);
+  color: #fff1b3; box-shadow: 3px 3px 0 #5c421e, 0 0 12px #e8bf6855; font-size: 18px;
+}
+.traversal-entity[data-pickup='gold'] { --entity-height: calc(var(--vehicle-height) * .19); }
+.traversal-gold-cluster { display: flex; align-items: end; gap: 14px; height: 100%; }
+.traversal-gold-cluster .traversal-gold:nth-child(2) { translate: 0 -9px; }
+.traversal-entity.is-collected .traversal-entity__body { animation: traversal-collect .65s ease-out both; }
+.traversal-entity[data-pickup='chest'].is-collected .traversal-entity__body { animation: traversal-chest-open .75s ease-out both; }
+.traversal-chest-open { display: none; }
+.traversal-entity[data-pickup='chest'].is-collected .traversal-entity__subject:not(.traversal-chest-open) { visibility: hidden; }
+.traversal-entity[data-pickup='chest'].is-collected .traversal-chest-open {
+  display: block; position: absolute; inset: 0;
+}
+.traversal-entity[data-pickup='chest'].is-collected::after {
+  content: '✦'; position: absolute; inset: -90% 0 0; text-align: center; color: #ffdf8b;
+  font-size: 32px; animation: traversal-collect .75s ease-out both;
+}
+@keyframes traversal-collect { 30% { filter: brightness(1.7); } to { opacity: 0; translate: 0 -36px; scale: .7; } }
+@keyframes traversal-chest-open { 25% { scale: 1.12 .85; filter: brightness(1.8); } 65% { scale: 1 1.08; opacity: 1; } to { opacity: 0; } }
+.traversal-sign-directions {
+  position: absolute; bottom: 50%; left: 50%; transform: translateX(-50%); display: block;
+  white-space: nowrap; color: #eadbb7; font: 600 clamp(10px,.85vw,13px)/1.6 Cinzel,serif;
+}
+.traversal-sign-directions > span { display: block; margin: 4px 0; padding: 5px 16px; background: linear-gradient(#604627,#312318); border: 1px solid #bba16c; box-shadow: 0 3px 6px #0008; }
+.traversal-sign-directions > span:first-child { clip-path: polygon(9% 0,100% 0,100% 100%,9% 100%,0 50%); }
+.traversal-sign-directions > span:last-child { clip-path: polygon(0 0,91% 0,100% 50%,91% 100%,0 100%); }
+.traversal-t0 .traversal-fork-overlay__edge-shade { backdrop-filter: none; }
+.traversal-t0 .traversal-fork-overlay__choice strong::before { content: attr(data-direction) ' '; color: #e1c383; }
+.traversal-t0 .traversal-fork-overlay__rail { top: 26%; transform: none; width: min(310px,30vw); padding: 14px; background: #0a191fef; box-shadow: 0 8px 22px #0004; border-radius: 6px; animation: traversal-panel-reveal .24s ease-out both; }
+.traversal-t0 .traversal-fork-overlay__eyebrow { color: #d1ba87; letter-spacing: .1em; }
+.traversal-t0 .traversal-fork-overlay__title { font-size: clamp(14px,1.3vw,19px); letter-spacing: 0; }
+.traversal-t0 .traversal-fork-overlay__choice { min-height: 58px; padding: 10px 12px; border-color: #bda16a70; border-radius: 4px; background: #172727; gap: 3px; }
+.traversal-t0 .traversal-fork-overlay__choice strong { font-size: 13px; }
+.traversal-t0 .traversal-fork-overlay__meta { font: 10px Inter,sans-serif; color: #c1baa6; text-transform: none; letter-spacing: 0; padding-left: 16px; }
+.traversal-t0 .traversal-fork-overlay--committed .traversal-fork-overlay__rail { opacity: 1; }
+.traversal-t0 .traversal-fork-overlay--committed .traversal-fork-overlay__choice:not(.is-selected) { opacity: .4; }
+.traversal-t0 .traversal-fork-overlay__choice.is-selected { background: #765c2a; border-color: #ffe2a0; box-shadow: 0 0 16px #dfbd6544; }
+.traversal-pickup-feedback { position: absolute; z-index: 46; top: calc(var(--traversal-lane-y) - 30%); left: 33%; display: flex; align-items: center; gap: 7px; padding: 7px 11px; border: 1px solid #d5b87480; border-radius: 5px; background: #091b20ef; opacity: 0; pointer-events: none; font-size: 11px; }
+.traversal-pickup-feedback strong { font-size: 19px; color: #ffe4a3; }
+.traversal-pickup-feedback__icon { display: grid; place-items: center; width: 23px; height: 23px; font-size: 18px; color: #f5d58b; }
+.traversal-pickup-feedback__icon--gold { border: 2px double #ffe39c; border-radius: 50%; background: #926126; font-size: 13px; }
+.traversal-pickup-feedback.is-visible { animation: traversal-pickup-pop 1.35s ease-out both; }
+@keyframes traversal-pickup-pop { 0% { opacity: 0; translate: 0 8px; scale: .9; } 16%,65% { opacity: 1; translate: 0 0; scale: 1; } 100% { opacity: 0; translate: 0 -16px; } }
+@keyframes traversal-panel-reveal { from { opacity: 0; margin-top: -6px; } to { opacity: 1; margin-top: 0; } }
+.scene-transition--traversal { background: #07100e; transition-timing-function: cubic-bezier(.33,0,.67,1); }
+.scene-transition--traversal::before, .scene-transition--traversal::after,
+.scene-transition--traversal .scene-transition__motif, .scene-transition--traversal .scene-transition__label { display: none; }
+.scene-transition--traversal.scene-transition--leaving { transition-timing-function: cubic-bezier(.33,0,.67,1); }
+@media (max-width: 760px) { .traversal-t0 .traversal-fork-overlay__rail { top: auto; bottom: 12px; width: min(310px,48vw); } }
+@media (prefers-reduced-motion: reduce) { .traversal-pickup-feedback.is-visible { animation: traversal-toast 1.35s linear both !important; } }

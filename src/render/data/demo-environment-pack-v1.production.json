@@ -10,8 +10,8 @@
     "visualFamilyCount": 13,
     "approvedAssetCount": 44,
     "promotedAssetCount": 44,
-    "totalContexts": 167,
-    "mappedContexts": 167,
+    "totalContexts": 169,
+    "mappedContexts": 169,
     "unmappedContexts": 0,
     "fallbackContexts": 0,
     "byteIdenticalAssets": 44
@@ -824,32 +824,22 @@
       ]
     },
     "combat:marsh_crossing": {
-      "visualFamily": "FOREST_ROAD",
+      "visualFamily": "VALMIR_ROAD",
       "plates": [
         {
           "surfaceRole": "STRATEGIC_COMBAT",
-          "assetId": "forest_route_strategic",
-          "runtimeCandidatePath": "strategic/forest-route-strategic.png"
-        },
-        {
-          "surfaceRole": "COMBAT_STAGE",
-          "assetId": "forest_route_stage",
-          "runtimeCandidatePath": "combat-stage/forest-route-stage.png"
+          "assetId": "valmir_road_tableau",
+          "runtimeCandidatePath": "tableau/valmir-road-tableau.png"
         }
       ]
     },
     "combat:road_to_valmir": {
-      "visualFamily": "FOREST_ROAD",
+      "visualFamily": "VALMIR_ROAD",
       "plates": [
         {
           "surfaceRole": "STRATEGIC_COMBAT",
-          "assetId": "forest_route_strategic",
-          "runtimeCandidatePath": "strategic/forest-route-strategic.png"
-        },
-        {
-          "surfaceRole": "COMBAT_STAGE",
-          "assetId": "forest_route_stage",
-          "runtimeCandidatePath": "combat-stage/forest-route-stage.png"
+          "assetId": "valmir_road_tableau",
+          "runtimeCandidatePath": "tableau/valmir-road-tableau.png"
         }
       ]
     },
@@ -1039,22 +1029,22 @@
       ]
     },
     "dialogue:mystery_shrine": {
-      "visualFamily": "VALMIR_ROAD",
+      "visualFamily": "SHADOW_RUINS",
       "plates": [
         {
           "surfaceRole": "STATIC_TABLEAU",
-          "assetId": "old_shrine_tableau",
-          "runtimeCandidatePath": "tableau/old-shrine-tableau.png"
+          "assetId": "shadow_ruins_tableau",
+          "runtimeCandidatePath": "tableau/shadow-ruins-tableau.png"
         }
       ]
     },
     "media:shrine_reveal_context": {
-      "visualFamily": "VALMIR_ROAD",
+      "visualFamily": "SHADOW_RUINS",
       "plates": [
         {
-          "surfaceRole": "CINEMATIC_SOURCE_ENVIRONMENT",
-          "assetId": "old_shrine_tableau",
-          "runtimeCandidatePath": "tableau/old-shrine-tableau.png"
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "shadow_ruins_tableau",
+          "runtimeCandidatePath": "tableau/shadow-ruins-tableau.png"
         }
       ]
     },
@@ -1634,12 +1624,12 @@
       ]
     },
     "media:serpent_informant_encounter": {
-      "visualFamily": "WITNESS_ROAD",
+      "visualFamily": "SHADOW_RUINS",
       "plates": [
         {
           "surfaceRole": "HOLD_SOURCE",
-          "assetId": "witness_road_tableau",
-          "runtimeCandidatePath": "tableau/witness-road-tableau.png"
+          "assetId": "shadow_ruins_tableau",
+          "runtimeCandidatePath": "tableau/shadow-ruins-tableau.png"
         }
       ]
     },
@@ -1744,12 +1734,12 @@
       ]
     },
     "dialogue:serpent_informant": {
-      "visualFamily": "FOREST_ROAD",
+      "visualFamily": "SHADOW_RUINS",
       "plates": [
         {
           "surfaceRole": "STATIC_TABLEAU",
-          "assetId": "forest_road_tableau",
-          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+          "assetId": "shadow_ruins_tableau",
+          "runtimeCandidatePath": "tableau/shadow-ruins-tableau.png"
         }
       ]
     },
@@ -2003,16 +1993,6 @@
         }
       ]
     },
-    "edge:lion-second-refuge>lion-witnesses": {
-      "visualFamily": "SECOND_REFUGE",
-      "plates": [
-        {
-          "surfaceRole": "TRAVEL",
-          "assetId": "second_refuge_morning_travel",
-          "runtimeCandidatePath": "travel/second-refuge-morning-travel.png"
-        }
-      ]
-    },
     "edge:lion-witnesses>lion-final-trial-event": {
       "visualFamily": "WITNESS_ROAD",
       "plates": [
@@ -2154,12 +2134,12 @@
       ]
     },
     "node:lion-reserve-trail": {
-      "visualFamily": "FOREST_ROAD",
+      "visualFamily": "VALMIR_ROAD",
       "plates": [
         {
           "surfaceRole": "HOLD_SOURCE",
-          "assetId": "forest_road_tableau",
-          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+          "assetId": "valmir_road_tableau",
+          "runtimeCandidatePath": "tableau/valmir-road-tableau.png"
         }
       ]
     },
@@ -2234,12 +2214,12 @@
       ]
     },
     "node:lion-final-trial-combat": {
-      "visualFamily": "FOREST_ROAD",
+      "visualFamily": "SHADOW_RUINS",
       "plates": [
         {
           "surfaceRole": "HOLD_SOURCE",
-          "assetId": "forest_road_tableau",
-          "runtimeCandidatePath": "tableau/forest-road-tableau.png"
+          "assetId": "shadow_ruins_tableau",
+          "runtimeCandidatePath": "tableau/shadow-ruins-tableau.png"
         }
       ]
     },
@@ -2270,6 +2250,36 @@
           "surfaceRole": "HOLD_SOURCE",
           "assetId": "lion_judgement_tableau",
           "runtimeCandidatePath": "tableau/lion-judgement-tableau.png"
+        }
+      ]
+    },
+    "edge:lion-second-refuge>lion-lancer-recruit": {
+      "visualFamily": "SECOND_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "second_refuge_morning_travel",
+          "runtimeCandidatePath": "travel/second-refuge-morning-travel.png"
+        }
+      ]
+    },
+    "node:lion-lancer-recruit": {
+      "visualFamily": "WITNESS_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "HOLD_SOURCE",
+          "assetId": "witness_road_tableau",
+          "runtimeCandidatePath": "tableau/witness-road-tableau.png"
+        }
+      ]
+    },
+    "edge:lion-lancer-recruit>lion-witnesses": {
+      "visualFamily": "WITNESS_ROAD",
+      "plates": [
+        {
+          "surfaceRole": "TRAVEL",
+          "assetId": "witness_road_travel",
+          "runtimeCandidatePath": "travel/witness-road-travel.png"
         }
       ]
     }

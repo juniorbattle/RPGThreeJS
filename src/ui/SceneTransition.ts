@@ -1,4 +1,6 @@
-export type TransitionVariant = 'fade' | 'launch' | 'dialogue' | 'travel' | 'combat' | 'boss' | 'result';
+import { TRAVERSAL_RHYTHM } from '../traversal/TraversalTransition';
+
+export type TransitionVariant = 'fade' | 'launch' | 'dialogue' | 'travel' | 'combat' | 'boss' | 'result' | 'traversal';
 export type TransitionStyle = 'fade' | 'wipe';
 
 export interface TransitionOptions {
@@ -18,6 +20,7 @@ interface TransitionTiming {
 }
 
 const TRANSITION_TIMINGS: Record<TransitionVariant, TransitionTiming> = {
+  traversal: { inMs: TRAVERSAL_RHYTHM.fade * 1000, holdMs: TRAVERSAL_RHYTHM.hold * 1000, outMs: TRAVERSAL_RHYTHM.fade * 1000 },
   fade: { inMs: 400, holdMs: 600, outMs: 400 },
   launch: { inMs: 500, holdMs: 1000, outMs: 500 },
   dialogue: { inMs: 500, holdMs: 1200, outMs: 500 },

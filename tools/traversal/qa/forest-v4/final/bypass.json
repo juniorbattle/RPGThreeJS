@@ -1,0 +1,982 @@
+{
+  "steering": [
+    {
+      "bottom": 447.4018096923828,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 555.4464569091797,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 558.8303680419922,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 559.3839569091797,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 559.9018096923828,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 560.2678680419922,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 560.4196624755859,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 560.3393096923828,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 560.0536041259766,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 559.5893096923828,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 559.0357513427734,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 558.5268096923828,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 558.0982513427734,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 557.8661041259766,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 557.8482513427734,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 558.0625152587891,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 558.5089569091797,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 559.0446624755859,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    },
+    {
+      "bottom": 559.5893096923828,
+      "style": "top 0.25s cubic-bezier(0.2, 0.72, 0.2, 1)"
+    }
+  ],
+  "pass": [
+    {
+      "t": 108,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "626.165px",
+        "phase": "RUNNING",
+        "progress": "0.40153719999999976",
+        "truckTop": 485.56251525878906
+      }
+    },
+    {
+      "t": 217,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "615.614px",
+        "phase": "RUNNING",
+        "progress": "0.4027095999999999",
+        "truckTop": 485.31251525878906
+      }
+    },
+    {
+      "t": 306,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "604.565px",
+        "phase": "RUNNING",
+        "progress": "0.4039371999999997",
+        "truckTop": 484.8928680419922
+      }
+    },
+    {
+      "t": 408,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "594.824px",
+        "phase": "RUNNING",
+        "progress": "0.40501959999999987",
+        "truckTop": 484.43751525878906
+      }
+    },
+    {
+      "t": 500,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "584.175px",
+        "phase": "RUNNING",
+        "progress": "0.4062027999999996",
+        "truckTop": 483.9464569091797
+      }
+    },
+    {
+      "t": 596,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "573.256px",
+        "phase": "RUNNING",
+        "progress": "0.40741600000000006",
+        "truckTop": 483.49110412597656
+      }
+    },
+    {
+      "t": 689,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "563.406px",
+        "phase": "RUNNING",
+        "progress": "0.4085103999999996",
+        "truckTop": 483.1964569091797
+      }
+    },
+    {
+      "t": 787,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "553.546px",
+        "phase": "RUNNING",
+        "progress": "0.4096060000000002",
+        "truckTop": 483.05360412597656
+      }
+    },
+    {
+      "t": 880,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "543.524px",
+        "phase": "RUNNING",
+        "progress": "0.4107196000000001",
+        "truckTop": 483.0803680419922
+      }
+    },
+    {
+      "t": 978,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "532px",
+        "phase": "RUNNING",
+        "progress": "0.41200000000000014",
+        "truckTop": 483.3303680419922
+      }
+    },
+    {
+      "t": 1073,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "522.075px",
+        "phase": "RUNNING",
+        "progress": "0.4131027999999997",
+        "truckTop": 483.68751525878906
+      }
+    },
+    {
+      "t": 1164,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "512.862px",
+        "phase": "RUNNING",
+        "progress": "0.41412639999999956",
+        "truckTop": 484.09825134277344
+      }
+    },
+    {
+      "t": 1253,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "502.203px",
+        "phase": "RUNNING",
+        "progress": "0.41531079999999965",
+        "truckTop": 484.59825134277344
+      }
+    },
+    {
+      "t": 1354,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "492.202px",
+        "phase": "RUNNING",
+        "progress": "0.416422",
+        "truckTop": 485.04466247558594
+      }
+    },
+    {
+      "t": 1445,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "482.396px",
+        "phase": "RUNNING",
+        "progress": "0.4175115999999999",
+        "truckTop": 485.3839569091797
+      }
+    },
+    {
+      "t": 1540,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "472.47px",
+        "phase": "RUNNING",
+        "progress": "0.4186143999999995",
+        "truckTop": 485.5893096923828
+      }
+    },
+    {
+      "t": 1631,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "461.66px",
+        "phase": "RUNNING",
+        "progress": "0.4198155999999999",
+        "truckTop": 485.62501525878906
+      }
+    },
+    {
+      "t": 1727,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "450.87px",
+        "phase": "RUNNING",
+        "progress": "0.42101439999999946",
+        "truckTop": 485.4553680419922
+      }
+    },
+    {
+      "t": 1818,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "441.842px",
+        "phase": "RUNNING",
+        "progress": "0.4220175999999998",
+        "truckTop": 485.16966247558594
+      }
+    },
+    {
+      "t": 1911,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "431.927px",
+        "phase": "RUNNING",
+        "progress": "0.42311919999999964",
+        "truckTop": 484.7589569091797
+      }
+    },
+    {
+      "t": 2005,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "422.078px",
+        "phase": "RUNNING",
+        "progress": "0.4242135999999998",
+        "truckTop": 484.30360412597656
+      }
+    },
+    {
+      "t": 2104,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "410.435px",
+        "phase": "RUNNING",
+        "progress": "0.42550719999999964",
+        "truckTop": 483.7589569091797
+      }
+    },
+    {
+      "t": 2203,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "399.614px",
+        "phase": "RUNNING",
+        "progress": "0.42670959999999974",
+        "truckTop": 483.35716247558594
+      }
+    },
+    {
+      "t": 2297,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "390.833px",
+        "phase": "RUNNING",
+        "progress": "0.4276851999999996",
+        "truckTop": 483.1339569091797
+      }
+    },
+    {
+      "t": 2384,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "380.8px",
+        "phase": "RUNNING",
+        "progress": "0.4287999999999999",
+        "truckTop": 483.04466247558594
+      }
+    },
+    {
+      "t": 2477,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "370.065px",
+        "phase": "RUNNING",
+        "progress": "0.42999279999999945",
+        "truckTop": 483.1428680419922
+      }
+    },
+    {
+      "t": 2547,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "361.878px",
+        "phase": "RUNNING",
+        "progress": "0.43090239999999935",
+        "truckTop": 483.3393096923828
+      }
+    },
+    {
+      "t": 2653,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "352.072px",
+        "phase": "RUNNING",
+        "progress": "0.43199199999999993",
+        "truckTop": 483.7053680419922
+      }
+    },
+    {
+      "t": 2746,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "341.196px",
+        "phase": "RUNNING",
+        "progress": "0.4332003999999993",
+        "truckTop": 484.1964569091797
+      }
+    },
+    {
+      "t": 2841,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "332.038px",
+        "phase": "RUNNING",
+        "progress": "0.43421799999999994",
+        "truckTop": 484.62501525878906
+      }
+    },
+    {
+      "t": 2933,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "320.504px",
+        "phase": "RUNNING",
+        "progress": "0.4354995999999997",
+        "truckTop": 485.12501525878906
+      }
+    },
+    {
+      "t": 3032,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "310.632px",
+        "phase": "RUNNING",
+        "progress": "0.4365963999999992",
+        "truckTop": 485.43751525878906
+      }
+    },
+    {
+      "t": 3128,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "300.686px",
+        "phase": "RUNNING",
+        "progress": "0.43770159999999964",
+        "truckTop": 485.61610412597656
+      }
+    },
+    {
+      "t": 3230,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "290.696px",
+        "phase": "RUNNING",
+        "progress": "0.4388115999999996",
+        "truckTop": 485.61610412597656
+      }
+    },
+    {
+      "t": 3318,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "279.96px",
+        "phase": "RUNNING",
+        "progress": "0.44000439999999913",
+        "truckTop": 485.41966247558594
+      }
+    },
+    {
+      "t": 3387,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "270.953px",
+        "phase": "RUNNING",
+        "progress": "0.4410051999999994",
+        "truckTop": 485.12501525878906
+      }
+    },
+    {
+      "t": 3491,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "261.222px",
+        "phase": "RUNNING",
+        "progress": "0.4420863999999991",
+        "truckTop": 484.7143096923828
+      }
+    },
+    {
+      "t": 3594,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "250.325px",
+        "phase": "RUNNING",
+        "progress": "0.44329719999999945",
+        "truckTop": 484.1964569091797
+      }
+    },
+    {
+      "t": 3687,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "239.633px",
+        "phase": "RUNNING",
+        "progress": "0.4444851999999994",
+        "truckTop": 483.7143096923828
+      }
+    },
+    {
+      "t": 3786,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "229.611px",
+        "phase": "RUNNING",
+        "progress": "0.44559879999999924",
+        "truckTop": 483.3393096923828
+      }
+    },
+    {
+      "t": 3880,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "218.865px",
+        "phase": "RUNNING",
+        "progress": "0.44679279999999927",
+        "truckTop": 483.09825134277344
+      }
+    },
+    {
+      "t": 3985,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "208px",
+        "phase": "RUNNING",
+        "progress": "0.44799999999999957",
+        "truckTop": 483.05360412597656
+      }
+    },
+    {
+      "t": 4074,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "198.01px",
+        "phase": "RUNNING",
+        "progress": "0.44910999999999957",
+        "truckTop": 483.18751525878906
+      }
+    },
+    {
+      "t": 4173,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "187.329px",
+        "phase": "RUNNING",
+        "progress": "0.45029679999999916",
+        "truckTop": 483.5089569091797
+      }
+    },
+    {
+      "t": 4271,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "176.356px",
+        "phase": "RUNNING",
+        "progress": "0.4515159999999996",
+        "truckTop": 483.97325134277344
+      }
+    },
+    {
+      "t": 4370,
+      "data": {
+        "assisted": "true",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "166.539px",
+        "phase": "RUNNING",
+        "progress": "0.4526067999999991",
+        "truckTop": 484.42860412597656
+      }
+    },
+    {
+      "t": 4465,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "155.598px",
+        "phase": "RUNNING",
+        "progress": "0.453822399999999",
+        "truckTop": 484.92860412597656
+      }
+    },
+    {
+      "t": 4561,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "144.831px",
+        "phase": "RUNNING",
+        "progress": "0.4550187999999991",
+        "truckTop": 485.3303680419922
+      }
+    },
+    {
+      "t": 4654,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "135.824px",
+        "phase": "RUNNING",
+        "progress": "0.4560195999999994",
+        "truckTop": 485.55360412597656
+      }
+    },
+    {
+      "t": 4763,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "124.181px",
+        "phase": "RUNNING",
+        "progress": "0.4573131999999993",
+        "truckTop": 485.6339569091797
+      }
+    },
+    {
+      "t": 4853,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "114.256px",
+        "phase": "RUNNING",
+        "progress": "0.45841599999999955",
+        "truckTop": 485.5089569091797
+      }
+    },
+    {
+      "t": 4944,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "104.223px",
+        "phase": "RUNNING",
+        "progress": "0.4595307999999992",
+        "truckTop": 485.23216247558594
+      }
+    },
+    {
+      "t": 5012,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "96.3064px",
+        "phase": "RUNNING",
+        "progress": "0.46041039999999905",
+        "truckTop": 484.91966247558594
+      }
+    },
+    {
+      "t": 5119,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "85.4092px",
+        "phase": "RUNNING",
+        "progress": "0.4616211999999994",
+        "truckTop": 484.41966247558594
+      }
+    },
+    {
+      "t": 5203,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "75.484px",
+        "phase": "RUNNING",
+        "progress": "0.46272399999999975",
+        "truckTop": 483.9553680419922
+      }
+    },
+    {
+      "t": 5294,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "65.5264px",
+        "phase": "RUNNING",
+        "progress": "0.46383039999999925",
+        "truckTop": 483.53575134277344
+      }
+    },
+    {
+      "t": 5392,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "54.6724px",
+        "phase": "RUNNING",
+        "progress": "0.4650363999999993",
+        "truckTop": 483.1964569091797
+      }
+    },
+    {
+      "t": 5482,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "44.9308px",
+        "phase": "RUNNING",
+        "progress": "0.46611879999999944",
+        "truckTop": 483.05360412597656
+      }
+    },
+    {
+      "t": 5588,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "35.038px",
+        "phase": "RUNNING",
+        "progress": "0.4672179999999999",
+        "truckTop": 483.0803680419922
+      }
+    },
+    {
+      "t": 5684,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "24.3028px",
+        "phase": "RUNNING",
+        "progress": "0.4684107999999995",
+        "truckTop": 483.29466247558594
+      }
+    },
+    {
+      "t": 5760,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "14.3884px",
+        "phase": "RUNNING",
+        "progress": "0.46951239999999933",
+        "truckTop": 483.6339569091797
+      }
+    },
+    {
+      "t": 5869,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "2.7244px",
+        "phase": "RUNNING",
+        "progress": "0.4708083999999994",
+        "truckTop": 484.16075134277344
+      }
+    },
+    {
+      "t": 5973,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "-6.3476px",
+        "phase": "RUNNING",
+        "progress": "0.47181639999999936",
+        "truckTop": 484.5803680419922
+      }
+    },
+    {
+      "t": 6065,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "-16.4564px",
+        "phase": "RUNNING",
+        "progress": "0.47293959999999974",
+        "truckTop": 485.03575134277344
+      }
+    },
+    {
+      "t": 6165,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "-27.98px",
+        "phase": "RUNNING",
+        "progress": "0.4742199999999999",
+        "truckTop": 485.42860412597656
+      }
+    },
+    {
+      "t": 6250,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "-38.7692px",
+        "phase": "RUNNING",
+        "progress": "0.4754187999999996",
+        "truckTop": 485.61610412597656
+      }
+    },
+    {
+      "t": 6355,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "-48.662px",
+        "phase": "RUNNING",
+        "progress": "0.476518",
+        "truckTop": 485.61610412597656
+      }
+    },
+    {
+      "t": 6449,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "-59.4512px",
+        "phase": "RUNNING",
+        "progress": "0.4777167999999995",
+        "truckTop": 485.41966247558594
+      }
+    },
+    {
+      "t": 6548,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "-69.4736px",
+        "phase": "RUNNING",
+        "progress": "0.4788303999999993",
+        "truckTop": 485.0803680419922
+      }
+    },
+    {
+      "t": 6637,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "-80.2844px",
+        "phase": "RUNNING",
+        "progress": "0.4800315999999997",
+        "truckTop": 484.60716247558594
+      }
+    },
+    {
+      "t": 6740,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "-90.242px",
+        "phase": "RUNNING",
+        "progress": "0.48113799999999995",
+        "truckTop": 484.1428680419922
+      }
+    },
+    {
+      "t": 6827,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "-99.2708px",
+        "phase": "RUNNING",
+        "progress": "0.4821411999999997",
+        "truckTop": 483.73216247558594
+      }
+    },
+    {
+      "t": 6923,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "-109.844px",
+        "phase": "RUNNING",
+        "progress": "0.483316",
+        "truckTop": 483.3393096923828
+      }
+    },
+    {
+      "t": 7019,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "-119.78px",
+        "phase": "RUNNING",
+        "progress": "0.48442",
+        "truckTop": 483.10716247558594
+      }
+    },
+    {
+      "t": 7101,
+      "data": {
+        "assisted": "false",
+        "lane": "0",
+        "npcHidden": false,
+        "npcX": "-129.651px",
+        "phase": "RUNNING",
+        "progress": "0.4855167999999996",
+        "truckTop": 483.04466247558594
+      }
+    }
+  ]
+}

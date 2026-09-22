@@ -1,0 +1,50 @@
+{
+  "source": "tools\\traversal\\qa\\final-convergence\\caravan\\processed\\raw-sheet-clean.png",
+  "sourceSha256": "f1de92474431f66cc840f5b1611eae0fe343ba4d5520b06e521a88f5853849b8",
+  "generator": "built-in image_gen",
+  "processing": "generate2dsprite chroma key, residual magenta removal, component crops only",
+  "bodyCrop": [
+    140,
+    20,
+    1400,
+    674
+  ],
+  "wheelCrop": [
+    619,
+    672,
+    919,
+    972
+  ],
+  "assets": [
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/closed-v1/chassis.png",
+      "sha256": "16b17208d6473f977cd14d0d122a91b876e8c3ac508edb227c7e5f0a7c912b46",
+      "size": [
+        1260,
+        654
+      ],
+      "bounds": [
+        8,
+        12,
+        1252,
+        648
+      ],
+      "bytes": 1354782
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/closed-v1/wheel.png",
+      "sha256": "cd7516ff563ad47f67c87697c643149a505a040a3d5f5a6a3d4fe238f8f77a70",
+      "size": [
+        300,
+        300
+      ],
+      "bounds": [
+        5,
+        6,
+        292,
+        292
+      ],
+      "bytes": 136790
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Traversal T0 — Revue du monde</title>
+<style>
+  *{box-sizing:border-box}body{margin:0;background:#091310;color:#eee7d7;font:15px/1.5 system-ui}main{max-width:1500px;margin:auto;padding:28px}
+  h1{font:500 30px Georgia;margin:0 0 8px}p{color:#b4c3b9;max-width:950px}nav{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 12px}
+  button,a{background:#172b23;color:#eee7d7;border:1px solid #42604f;border-radius:5px;padding:9px 14px;font:inherit;cursor:pointer;text-decoration:none}
+  button[aria-pressed=true]{background:#b8995b;color:#101811;border-color:#b8995b}label{display:inline-flex;gap:8px;align-items:center;margin:0 16px 14px 0}
+  img{width:100%;height:auto;display:block;border:1px solid #385143}figure{margin:0}figcaption{padding:12px 0;color:#d6c392}.links{display:flex;gap:12px;margin:18px 0;flex-wrap:wrap}
+  .note{font-size:13px;color:#97ad9f}video{max-width:960px;width:100%;display:block}details{margin-top:20px}
+</style>
+<main>
+<h1>Traversal T0 · Un monde continu</h1>
+<p>Captures du navigateur : lieux indépendants, route commune et personnages canoniques. Chaque lieu doit rester lisible lorsque ses occupants et l’interface d’interaction disparaissent.</p>
+<nav id="locations" aria-label="Lieu"></nav>
+<label><input id="actors" type="checkbox" checked> Personnages et interactions</label>
+<label><input id="baseline" type="checkbox"> Comparer au marchand du baseline</label>
+<figure><img id="capture" alt=""><figcaption id="caption"></figcaption></figure>
+<div class="links"><a href="/?qa=1&traversal=t0" target="_blank">Jouer le parcours T0</a><a href="ARCHITECTURE.md">Architecture</a><a href="REPORT.md">Résultats et limites</a><a href="PROMPTS.md">Prompts des assets</a></div>
+<details><summary>Défilement et interaction à 960 × 640</summary><p class="note">Enregistrement Chromium du parcours réel, de l’entrée au retour après l’interaction marchande.</p><video controls preload="metadata" src="final-merchant-960/merchant-motion.webm"></video></details>
+<p class="note">Travail non committé et non poussé, soumis à la revue visuelle de l’opérateur. Traversal reste désactivé en production et limité à T0.</p>
+</main>
+<script>
+const scenes=[
+ ['Marchand','final-combat/merchant-route','La halte forme une clairière commerçante, avec approche, cœur et retour à la forêt.'],
+ ['Embuscade','final-combat/ambush-route','L’arbre et le chariot bloquent la section entière, indépendamment des ennemis.'],
+ ['Après le combat','final-combat/ambush-cleared-runtime','Les débris persistent sur le bas-côté ; la route devient praticable.'],
+ ['Halte humaine','final-combat/rest-gate','Un abri et des provisions dans la forêt ; la rencontre reste un sprite indépendant.'],
+ ['Carrefour','final-combat/fork-gate','La piste latérale crée le carrefour. Le panneau appartient au lieu et persiste après le choix.'],
+ ['Branche combat','final-combat/branch-lion-first-trial-combat','L’ancien poste forestier encadre une rencontre de route facultative.'],
+ ['Branche humaine','final-event/branch-lion-first-trial-event','La route choisie traverse une halte dans les mêmes bois.']
+];
+let active=0; const image=document.querySelector('#capture'), caption=document.querySelector('#caption');
+const actors=document.querySelector('#actors'), baseline=document.querySelector('#baseline');
+function draw(){const [label,path,note]=scenes[active];image.src=baseline.checked?'baseline-merchant.png':path+(actors.checked?'':'-environment')+'.png';image.alt=baseline.checked?'Marchand avant refonte':label+(actors.checked?' avec acteurs':' sans acteurs');caption.textContent=baseline.checked?'Baseline 16a07a1 · composition précédente':note;document.querySelectorAll('nav button').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===active)));}
+scenes.forEach(([label],i)=>{const b=document.createElement('button');b.textContent=label;b.onclick=()=>{active=i;baseline.checked=false;draw()};document.querySelector('nav').append(b)});
+actors.onchange=baseline.onchange=draw;draw();
+</script>
+</html>

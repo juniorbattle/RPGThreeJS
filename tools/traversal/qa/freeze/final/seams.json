@@ -1,0 +1,126 @@
+{
+  "boundaries": [
+    850,
+    2050,
+    3250,
+    4850,
+    5250,
+    6850,
+    8050,
+    9650,
+    10450
+  ],
+  "assets": [
+    {
+      "name": "forest",
+      "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "width": 1536,
+      "height": 1024,
+      "minAlpha": 255,
+      "nonOpaque": 0
+    },
+    {
+      "name": "merchant",
+      "src": "/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/merchant-halt.png",
+      "width": 1536,
+      "height": 1024,
+      "minAlpha": 255,
+      "nonOpaque": 0
+    },
+    {
+      "name": "ambush",
+      "src": "/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png",
+      "width": 1536,
+      "height": 1024,
+      "minAlpha": 255,
+      "nonOpaque": 0
+    },
+    {
+      "name": "ambushCleared",
+      "src": "/assets/generated/lion-phase/traversal/t0/world-v1/ambush-cleared.png",
+      "width": 1536,
+      "height": 1024,
+      "minAlpha": 255,
+      "nonOpaque": 0
+    },
+    {
+      "name": "fork",
+      "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
+      "width": 1536,
+      "height": 1024,
+      "minAlpha": 255,
+      "nonOpaque": 0
+    },
+    {
+      "name": "rest",
+      "src": "/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/refugee-halt.png",
+      "width": 1536,
+      "height": 1024,
+      "minAlpha": 255,
+      "nonOpaque": 0
+    },
+    {
+      "name": "nomad",
+      "src": "/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/nomad-waystation.png",
+      "width": 1536,
+      "height": 1024,
+      "minAlpha": 255,
+      "nonOpaque": 0
+    },
+    {
+      "name": "caravan",
+      "src": "/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/damaged-caravan.png",
+      "width": 1536,
+      "height": 1024,
+      "minAlpha": 255,
+      "nonOpaque": 0
+    },
+    {
+      "name": "ruins",
+      "src": "/assets/generated/lion-phase/traversal/t0/world-v1/ruined-outpost.png",
+      "width": 1536,
+      "height": 1024,
+      "minAlpha": 255,
+      "nonOpaque": 0
+    }
+  ],
+  "proportions": [
+    {
+      "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "visible": true,
+      "sourceRatio": 1.5,
+      "renderRatio": 1.5
+    },
+    {
+      "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "visible": true,
+      "sourceRatio": 1.5,
+      "renderRatio": 1.5
+    },
+    {
+      "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "visible": true,
+      "sourceRatio": 1.5,
+      "renderRatio": 1.5
+    },
+    {
+      "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "visible": true,
+      "sourceRatio": 1.5,
+      "renderRatio": 1.5
+    },
+    {
+      "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "visible": true,
+      "sourceRatio": 1.5,
+      "renderRatio": 1.5
+    },
+    {
+      "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "visible": true,
+      "sourceRatio": 1.5,
+      "renderRatio": 1.5
+    }
+  ],
+  "errors": []
+}

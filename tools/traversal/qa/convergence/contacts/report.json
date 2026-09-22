@@ -1,0 +1,36 @@
+{
+  "roadSynchronization": {
+    "actor": -32.40625,
+    "place": -32.4000244140625,
+    "visible": true,
+    "bypassed": false
+  },
+  "road-cache": {
+    "before": 0.49839999999998985,
+    "after": 0.5091999999999887,
+    "phase": "RUNNING",
+    "collected": true,
+    "panel": false,
+    "transition": null,
+    "feedback": "▣+1provision",
+    "persistentStateUnchanged": true,
+    "silhouetteRatio": 0.34000474645993195
+  },
+  "gold": {
+    "before": 0.5481999999999844,
+    "after": 0.5589999999999832,
+    "phase": "RUNNING",
+    "collected": true,
+    "panel": false,
+    "transition": null,
+    "feedback": "✦+5pièces",
+    "persistentStateUnchanged": true,
+    "silhouetteRatio": 0.1899375049442291
+  },
+  "obstacleAvoid": {
+    "bypassed": true,
+    "phase": "RUNNING",
+    "panel": false
+  },
+  "errors": []
+}

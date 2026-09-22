@@ -1,0 +1,11 @@
+{
+  "target": "asset",
+  "mode": "single",
+  "prompt": "Driverless banner-free four-wheel wooden fantasy 4x4, right-facing side view.",
+  "role": "",
+  "input": "C:\\Users\\miche\\.codex\\generated_images\\01a0b886-440f-70b2-928c-088f5d339093\\exec-e8dadec3-ef9f-48e9-89c4-a43eb776d383.png",
+  "threshold": 100,
+  "edge_threshold": 150,
+  "duration": 200,
+  "single_size": 1024
+}

@@ -1,0 +1,101 @@
+{
+  "target": "asset",
+  "mode": "sheet",
+  "prompt": "",
+  "role": "",
+  "input": "C:\\Users\\miche\\.codex\\generated_images\\01a0c28d-0e2e-7452-89f1-c1d4835f9485\\exec-92b007b6-4a9f-4a92-985f-fb334560adda.png",
+  "threshold": 100,
+  "edge_threshold": 150,
+  "duration": 200,
+  "rows": 1,
+  "cols": 2,
+  "cell_size": 768,
+  "fit_scale": 0.9,
+  "trim_border": 0,
+  "edge_clean_depth": 0,
+  "align": "bottom",
+  "shared_scale": true,
+  "component_mode": "largest",
+  "component_padding": 0,
+  "min_component_area": 1,
+  "edge_touch_margin": 0,
+  "frame_labels": [
+    "sheet-1",
+    "sheet-2"
+  ],
+  "frames": [
+    {
+      "grid": [
+        0,
+        0
+      ],
+      "source_box": [
+        0,
+        0,
+        768,
+        1024
+      ],
+      "component_mode": "largest",
+      "component_count": 523,
+      "selected_component_area": 209010,
+      "selected_component_bbox": [
+        63,
+        446,
+        736,
+        782
+      ],
+      "crop_bbox": [
+        63,
+        446,
+        736,
+        782
+      ],
+      "edge_touch": false,
+      "output_size": [
+        676,
+        337
+      ],
+      "paste_position": [
+        46,
+        393
+      ]
+    },
+    {
+      "grid": [
+        0,
+        1
+      ],
+      "source_box": [
+        768,
+        0,
+        1536,
+        1024
+      ],
+      "component_mode": "largest",
+      "component_count": 415,
+      "selected_component_area": 318173,
+      "selected_component_bbox": [
+        35,
+        245,
+        723,
+        782
+      ],
+      "crop_bbox": [
+        35,
+        245,
+        723,
+        782
+      ],
+      "edge_touch": false,
+      "output_size": [
+        691,
+        539
+      ],
+      "paste_position": [
+        38,
+        191
+      ]
+    }
+  ],
+  "edge_touch_frames": []
+}

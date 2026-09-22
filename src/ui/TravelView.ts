@@ -1,5 +1,5 @@
 import { unitById } from '../game/catalog';
-import { getAvailableRunNodes } from '../game/runSystem';
+import { getAvailableRunNodes, getAvailableRunEdges } from '../game/runSystem';
 import { getReputationRule } from '../game/reputation';
 import { assets } from '../render/assetManifest';
 import { demoTravelEnvironment } from '../render/demoEnvironmentPack';
@@ -348,6 +348,7 @@ export class TravelView {
     const travelEnvironment = demoTravelEnvironment(
       state.run.currentNodeId,
       choices.map((choice) => choice.id),
+      Object.fromEntries(getAvailableRunEdges(state.run).map(edge => [edge.toNodeId, edge.fromNodeId])),
     );
     const roadmap = renderRoadmap(state, choices);
     const current = currentRunNode(state);

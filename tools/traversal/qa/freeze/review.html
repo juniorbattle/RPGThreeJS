@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Traversal T0 — revue finale</title>
+<style>
+body{background:#101b20;color:#eadfc5;font:16px/1.6 system-ui;margin:0;padding:28px;max-width:1600px;margin-inline:auto}h1,h2{font-family:Georgia,serif}h1{margin-bottom:4px}p{max-width:950px}a{color:#e6c274}section{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:24px 0}figure{margin:0;background:#17272e;border:1px solid #435155;border-radius:6px;overflow:hidden}img,video{display:block;width:100%;height:auto}figcaption{padding:10px 14px}small{color:#b0c2be}code{color:#ded5b5} @media(max-width:850px){section{grid-template-columns:1fr}body{padding:16px}}
+</style>
+<h1>Traversal T0 — revue des corrections</h1>
+<p>Proportions originales conservées. Images sources inchangées. Les captures ci-dessous correspondent au rendu final, après retrait des versions étirées.</p>
+<p><a href="FINAL-REPORT.md">Rapport détaillé</a> · <a href="final-audit.json">Validation agrégée</a> · <a href="full-tests.json">Tests</a></p>
+<h2>Deux routes après le même carrefour</h2>
+<section>
+<figure><a href="targeted/lion-first-trial-event-first-reveal.png"><img src="targeted/lion-first-trial-event-first-reveal.png" alt="Branche A après révélation"></a><figcaption>A · Forêt ouverte puis caravane endommagée.<br><small>lion-first-trial-event</small></figcaption></figure>
+<figure><a href="targeted/lion-first-trial-combat-first-reveal.png"><img src="targeted/lion-first-trial-combat-first-reveal.png" alt="Branche B après révélation"></a><figcaption>B · Périmètre de l'avant-poste en ruines.<br><small>lion-first-trial-combat</small></figcaption></figure>
+</section>
+<p>Dans les deux cas, le carrefour et son panneau ont disparu sous le fondu opaque. Le camion reprend automatiquement sa progression sur le nouvel axe.</p>
+<h2>Personnages sans marqueur</h2>
+<section>
+<figure><img src="targeted/lion-first-trial-event-subject-0.4.png" alt="Cédric sur la voie haute sans marqueur"><figcaption>Cédric · voie haute, hauteur perçue augmentée.</figcaption></figure>
+<figure><img src="targeted/lion-first-trial-event-subject-0.6.png" alt="Mère réfugiée sur la voie haute sans marqueur"><figcaption>Mère réfugiée · voie haute.</figcaption></figure>
+<figure><img src="targeted/lion-first-trial-event-subject-0.09.png" alt="Marchand sans marqueur"><figcaption>Marchand itinérant · Ignorer conserve la voie.</figcaption></figure>
+<figure><img src="wounded-person-narrow.png" alt="Personnage blessé dans une fenêtre étroite"><figcaption>Rencontre humaine de branche · 960 × 720.</figcaption></figure>
+</section>
+<h2>Raccord de terrain</h2>
+<section>
+<figure><img src="baseline/seam-3250.png" alt="Avant correction du raccord"><figcaption>Avant · bande bleutée issue du double masque de transparence.</figcaption></figure>
+<figure><img src="final/seam-3250.png" alt="Après correction du raccord"><figcaption>Après · fond opaque continu et proportions préservées.</figcaption></figure>
+</section>
+<p>Les variations et répétitions du terrain peint ne sont pas retouchées. Aucun art n'est régénéré pour masquer les limites.</p>
+<h2>Défilement et parcours</h2>
+<section>
+<figure><video controls preload="metadata" src="final/seam-scroll.webm"></video><figcaption>Audit des raccords, acteurs masqués. Les diagnostics de contraste au début sont temporaires ; le défilement final utilise la présentation normale.</figcaption></figure>
+<figure><video controls preload="metadata" src="live-final/meet-fight/journey.webm"></video><figcaption>Parcours complet Rencontrer / Combattre, retours sur route et arrivée TravelView.</figcaption></figure>
+</section>
+<p>Production désactivée, déploiement limité à T0. Aucun commit ni push. Le gel visuel reste soumis à la revue opérateur.</p>
+</html>

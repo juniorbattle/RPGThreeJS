@@ -1,0 +1,86 @@
+[
+  {
+    "name": "chest",
+    "bounds": [
+      32,
+      177,
+      420,
+      398
+    ],
+    "size": [
+      448,
+      512
+    ],
+    "touchesEdge": false
+  },
+  {
+    "name": "abandoned-cart",
+    "bounds": [
+      34,
+      133,
+      558,
+      408
+    ],
+    "size": [
+      576,
+      512
+    ],
+    "touchesEdge": false
+  },
+  {
+    "name": "debris",
+    "bounds": [
+      22,
+      145,
+      496,
+      411
+    ],
+    "size": [
+      512,
+      512
+    ],
+    "touchesEdge": false
+  },
+  {
+    "name": "waystone",
+    "bounds": [
+      41,
+      59,
+      366,
+      386
+    ],
+    "size": [
+      448,
+      512
+    ],
+    "touchesEdge": false
+  },
+  {
+    "name": "barricade",
+    "bounds": [
+      33,
+      106,
+      530,
+      385
+    ],
+    "size": [
+      576,
+      512
+    ],
+    "touchesEdge": false
+  },
+  {
+    "name": "foreground",
+    "bounds": [
+      11,
+      63,
+      485,
+      382
+    ],
+    "size": [
+      512,
+      512
+    ],
+    "touchesEdge": false
+  }
+]

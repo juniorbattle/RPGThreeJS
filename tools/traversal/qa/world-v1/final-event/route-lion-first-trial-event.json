@@ -1,0 +1,204 @@
+{
+  "returned": true,
+  "captures": [
+    "merchant-route",
+    "ambush-route",
+    "ambush-cleared-runtime",
+    "simple-0.3",
+    "simple-0.4",
+    "rest-gate",
+    "simple-0.75",
+    "fork-gate",
+    "fork-choice",
+    "branch-lion-first-trial-event"
+  ],
+  "states": [
+    {
+      "phase": "RUNNING",
+      "progress": 0,
+      "transition": "entry",
+      "variant": "main",
+      "title": "En route"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.09,
+      "variant": "main",
+      "title": "Marchand itinérant"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.09260039999999999,
+      "variant": "main",
+      "title": "Marchand itinérant"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.2,
+      "variant": "main",
+      "title": "Piste des bêtes"
+    },
+    {
+      "phase": "NODE_HANDOFF",
+      "progress": 0.2,
+      "transition": "event",
+      "variant": "main",
+      "title": "Piste des bêtes"
+    },
+    {
+      "phase": "NODE_RESOLUTION",
+      "progress": 0.2,
+      "transition": "event",
+      "variant": "main",
+      "title": "Piste des bêtes"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.2,
+      "transition": "return",
+      "variant": "main",
+      "title": "Piste des bêtes"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.3,
+      "variant": "main",
+      "title": "Patrouille hostile"
+    },
+    {
+      "phase": "LOCAL_INTERACTION",
+      "progress": 0.3,
+      "transition": "event",
+      "variant": "main",
+      "title": "Patrouille hostile"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.30159959999999997,
+      "variant": "main",
+      "title": "Patrouille hostile"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.4,
+      "variant": "main",
+      "title": "Croisement du rôdeur"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.4025992000000002,
+      "variant": "main",
+      "title": "Croisement du rôdeur"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.6,
+      "variant": "main",
+      "title": "Route des réfugiés"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.6026004000000001,
+      "variant": "main",
+      "title": "Route des réfugiés"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.75,
+      "variant": "main",
+      "title": "Garde du Lion"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.7525991999999999,
+      "variant": "main",
+      "title": "Garde du Lion"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.8,
+      "variant": "main",
+      "title": "Rencontre sur la route · Piste contestée"
+    },
+    {
+      "phase": "FORK_OVERLAY",
+      "progress": 0.8,
+      "variant": "main",
+      "title": "Rencontre sur la route · Piste contestée"
+    },
+    {
+      "phase": "fork-fade",
+      "progress": 0.8,
+      "variant": "main",
+      "opacity": "0",
+      "lane": "0"
+    },
+    {
+      "phase": "fork-fade",
+      "progress": 0.8,
+      "variant": "main",
+      "opacity": "0.2974999999999584",
+      "lane": "0"
+    },
+    {
+      "phase": "fork-fade",
+      "progress": 0.8,
+      "variant": "main",
+      "opacity": "0.5949999999999688",
+      "lane": "0"
+    },
+    {
+      "phase": "fork-fade",
+      "progress": 0.8,
+      "variant": "main",
+      "opacity": "0.8928571428571428",
+      "lane": "0"
+    },
+    {
+      "phase": "fork-fade",
+      "progress": 0.8,
+      "variant": "lion-first-trial-event",
+      "opacity": "0.8689285714285817",
+      "lane": "0"
+    },
+    {
+      "phase": "fork-fade",
+      "progress": 0.8,
+      "variant": "lion-first-trial-event",
+      "opacity": "0.5717857142857348",
+      "lane": "0"
+    },
+    {
+      "phase": "fork-fade",
+      "progress": 0.8,
+      "variant": "lion-first-trial-event",
+      "opacity": "0.2739285714286124",
+      "lane": "0"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.8021996,
+      "variant": "lion-first-trial-event",
+      "title": "Rencontre sur la route · Piste contestée"
+    },
+    {
+      "phase": "DECISION",
+      "progress": 0.91,
+      "variant": "lion-first-trial-event",
+      "title": "Marchand blessé"
+    },
+    {
+      "phase": "RUNNING",
+      "progress": 0.9124000000000001,
+      "variant": "lion-first-trial-event",
+      "title": "Marchand blessé"
+    },
+    {
+      "phase": "ARRIVING",
+      "progress": 1,
+      "variant": "lion-first-trial-event",
+      "title": "Marchand blessé"
+    }
+  ],
+  "errors": []
+}

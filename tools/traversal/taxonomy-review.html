@@ -1,0 +1,18 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>T0 deterministic presentation QA</title><body><script type="module">
+import '/src/styles/app.css';
+import '/src/styles/traversal.css';
+import { TraversalT0Scene } from '/src/traversal/TraversalT0Scene.ts';
+import { LION_TRAVERSAL_LEGS } from '/src/campaign/LionCampaignTravelRelations.ts';
+import { createInitialState } from '/src/game/store.ts';
+import { getAvailableRunNodes, enterRunNode } from '/src/game/runSystem.ts';
+const state=createInitialState();
+state.run.currentNodeId=state.currentNodeId='lion-audience';
+state.run.seed=Number(new URLSearchParams(location.search).get('seed') ?? 2);
+const scene=new TraversalT0Scene({root:document.body,leg:LION_TRAVERSAL_LEGS.find(x=>x.id==='T0'),
+ getState:()=>state,getAvailableNodes:()=>getAvailableRunNodes(state),onMenu:()=>{},onArrival:()=>{},
+ onNodeHandoff:node=>{enterRunNode(state.run,node.id);state.currentNodeId=node.id;scene.beginNodeResolution(node.id);scene.resumeNode(node.id);},
+ onRoadCombat:async()=>true});
+scene.open();cancelAnimationFrame(scene.frameId);
+window.review={scene,state,settle:()=>{scene.advanceTransition(1);scene.advanceTransition(1);}};
+window.review.settle();
+</script></body></html>

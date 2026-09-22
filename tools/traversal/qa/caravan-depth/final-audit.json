@@ -1,0 +1,153 @@
+{
+  "baseline": "7cfccfe37e6d5721db96748080b9552d4b4f32fb",
+  "tests": {
+    "total": 2466,
+    "passed": 2466,
+    "failed": 0,
+    "files": 145,
+    "focused": 55
+  },
+  "originalAssets": [
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "current": "1b64195bc4cb92d5e8cd56c42a68fc85b250fe7cd64b1af7a4b4603ea8f13ccf",
+      "baseline": "1b64195bc4cb92d5e8cd56c42a68fc85b250fe7cd64b1af7a4b4603ea8f13ccf"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/merchant-halt.png",
+      "current": "1a007f66f49a4ba8d94427b8efb09b66cd656e49ca2cce14266fba8faec253c8",
+      "baseline": "1a007f66f49a4ba8d94427b8efb09b66cd656e49ca2cce14266fba8faec253c8"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png",
+      "current": "d9445d596edf6063a4e46f57d1e90700d1f25904c7c0f353675eb9bf69bcbe58",
+      "baseline": "d9445d596edf6063a4e46f57d1e90700d1f25904c7c0f353675eb9bf69bcbe58"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/ambush-cleared.png",
+      "current": "473188f0f500323606b58f593ed5eb244cd9caada4f2855b7037f4a464f93c41",
+      "baseline": "473188f0f500323606b58f593ed5eb244cd9caada4f2855b7037f4a464f93c41"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
+      "current": "82a708b225d0bd7c28f2b418329e6a999ebd9921dadfa5caf33ea64de9068876",
+      "baseline": "82a708b225d0bd7c28f2b418329e6a999ebd9921dadfa5caf33ea64de9068876"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/refugee-halt.png",
+      "current": "45fec737bcc705ab975c46f6eadc8aa16f26e3dcaabc93ae52f259831a109016",
+      "baseline": "45fec737bcc705ab975c46f6eadc8aa16f26e3dcaabc93ae52f259831a109016"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/nomad-waystation.png",
+      "current": "7010ce775a143762bb0a4dee92ed0a081842dd4540d5b66e051cd1c10252c231",
+      "baseline": "7010ce775a143762bb0a4dee92ed0a081842dd4540d5b66e051cd1c10252c231"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/damaged-caravan.png",
+      "current": "892ae3883868c0d1d3638b884b4f63e9a63b2393bdc0bb596a4824fadbd70651",
+      "baseline": "892ae3883868c0d1d3638b884b4f63e9a63b2393bdc0bb596a4824fadbd70651"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/ruined-outpost.png",
+      "current": "a25162191ee1de2c406bdc62600e22f311eb1994a0ca2ad22c3e0fb83f68cb88",
+      "baseline": "a25162191ee1de2c406bdc62600e22f311eb1994a0ca2ad22c3e0fb83f68cb88"
+    }
+  ],
+  "newAssetsVerified": 9,
+  "journeys": [
+    {
+      "mode": "meet-fight",
+      "returned": true,
+      "errors": [],
+      "returns": [
+        {
+          "lane": 0,
+          "progress": 0.09
+        },
+        {
+          "lane": 1,
+          "progress": 0.2
+        },
+        {
+          "lane": 1,
+          "progress": 0.4
+        },
+        {
+          "lane": 0,
+          "progress": 0.6
+        },
+        {
+          "lane": 0,
+          "progress": 0.91
+        }
+      ]
+    },
+    {
+      "mode": "ignore-flee",
+      "returned": true,
+      "errors": [],
+      "returns": [
+        {
+          "lane": 1,
+          "progress": 0.2
+        }
+      ]
+    },
+    {
+      "mode": "avoid",
+      "returned": true,
+      "errors": [],
+      "returns": [
+        {
+          "lane": 0,
+          "progress": 0.2
+        }
+      ]
+    },
+    {
+      "mode": "upper-review",
+      "returned": true,
+      "errors": [],
+      "returns": [
+        {
+          "lane": 0,
+          "progress": 0.2
+        }
+      ]
+    },
+    {
+      "mode": "lower-review",
+      "returned": true,
+      "errors": [],
+      "returns": [
+        {
+          "lane": 1,
+          "progress": 0.2
+        },
+        {
+          "lane": 1,
+          "progress": 0.4
+        }
+      ]
+    }
+  ],
+  "production": {
+    "traversalCount": 0,
+    "titleVisible": true
+  },
+  "gate": {
+    "enabled": false,
+    "designAssetsReady": false,
+    "rolloutLegIds": [
+      "T0"
+    ]
+  },
+  "protectedPaths": [
+    "src/game",
+    "src/campaign",
+    "src/combat",
+    "src/render/CharacterVisualRegistry.ts",
+    "public/assets/characters"
+  ]
+}

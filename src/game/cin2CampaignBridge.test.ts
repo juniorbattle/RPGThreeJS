@@ -62,8 +62,10 @@ describe('CIN-2 campaign presentation bridge', () => {
 
   it('returns every campaign boundary through the presentation facade', () => {
     expect(occurrences('private async enterCampaignPresentation')).toBe(1);
-    // enterTravel() is reachable only from the facade's travel branch and the failure fallback.
-    expect(occurrences('await this.enterTravel();')).toBe(2);
+    // The T0 preview explicitly returns to destination confirmation after its exit transition.
+    expect(occurrences('await this.enterTravel();')).toBe(3);
+    expect(method('private async completeTraversalT0Qa')).toContain('await this.enterTravel()');
+    expect(method('private async completeTraversalT0Qa')).not.toContain('commitRunNodeChoice');
     expect(method('private async enterCampaignPresentation')).toContain('await this.enterJourney()');
     expect(method('private async failJourneyToTravel')).toContain('await this.enterTravel()');
     // Every post-node/return path uses the facade.
@@ -73,6 +75,21 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(resolveNode).not.toContain('enterTravel');
     expect(method('private async resolveCombat')).not.toContain('enterTravel');
     expect(method('private async flushPendingCombat')).not.toContain('enterTravel');
+  });
+
+  it('keeps Traversal production-disabled until the explicit T0 rollout gate is opened', () => {
+    const gate = readFileSync(resolve(process.cwd(), 'src/traversal/TraversalFeaturePolicy.ts'), 'utf8');
+    expect(gate).toContain('enabled: false');
+    expect(gate).toContain('designAssetsReady: false');
+    expect(gate).toContain("rolloutLegIds: Object.freeze(['T0']");
+    expect(SOURCE).toContain('private usesTraversalPresentation');
+    expect(SOURCE).toContain('isTraversalProductionEnabledForLeg(legId)');
+
+    const facade = method('private async enterCampaignPresentation');
+    expect(facade).not.toContain('usesTraversalPresentation(');
+    expect(facade).not.toContain('enterTraversal');
+    expect(facade).toContain('await this.enterJourney()');
+    expect(facade).toContain('await this.enterTravel()');
   });
 
   it('keeps the R6 post-node ordering with the presentation strictly last', () => {

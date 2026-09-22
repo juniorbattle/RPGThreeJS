@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Traversal T0 — revue finale</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#09171b;color:#e5e5d9;font:16px/1.5 system-ui}main{max-width:1400px;margin:auto;padding:32px}h1,h2{font-family:Georgia,serif;color:#e5c98d}h1{font-size:36px;margin-bottom:8px}p{max-width:1000px}a{color:#e5c98d}video{width:100%;max-height:75vh;background:#000;border:1px solid #4c5c59}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(390px,1fr));gap:20px}figure{margin:0;background:#11262b;border:1px solid #334944;border-radius:8px;overflow:hidden}figure img{display:block;width:100%}figcaption{padding:12px 16px}small{display:block;color:#acbeb7}.tag{display:inline-block;padding:5px 12px;margin:0 8px 8px 0;border:1px solid #607264;border-radius:20px;font-size:13px}section{margin:32px 0}summary{cursor:pointer;color:#e5c98d}code{color:#c8d7c9}@media(max-width:500px){main{padding:16px}.grid{grid-template-columns:1fr}}
+</style>
+<main>
+<h1>Traversal T0 — scènes de route & coffre</h1>
+<p>Revue du rendu Chromium : les lieux narratifs occupent une section complète de route, avec une chaussée toujours lisible. Nouveau coffre fermé/ouvert assorti au décor. L’ambuscade conserve sa composition et ses assets.</p>
+<p><span class="tag">T0 uniquement</span><span class="tag">Production désactivée</span><span class="tag">Non commité / non poussé</span></p>
+<p><a href="FINAL-REPORT.md">Rapport complet, 16 points</a> · <a href="ASSET-PROVENANCE.md">Provenance des assets</a> · <a href="../../taxonomy-review.html">Scène de contrôle déterministe</a> · <a href="/?qa=1&traversal=t0">Parcours réel DEV</a></p>
+<section><h2>Déplacement → rencontre → retour → carrefour → reprise</h2>
+<video controls preload="metadata" poster="live/ignore-flee/decision-0.4.png" src="transition-review.webm"></video>
+<p>Extraits du vrai parcours Chromium à vitesse réelle. Une coupe retire la conduite entre la rencontre et le carrefour. <a href="live/meet-fight/journey.webm">Enregistrement intégral</a> · <a href="transition-review.json">Origine et minutage</a></p>
+</section>
+<section><h2>Présence des événements</h2><div class="grid">
+<figure><a href="live/meet-fight/decision-0.2.png"><img src="live/meet-fight/decision-0.2.png"></a><figcaption>Ambuscade obligatoire<small>Composition acceptée préservée. Continuer, sans évitement.</small></figcaption></figure>
+<figure><a href="contacts/human-merchant.png"><img src="contacts/human-merchant.png"></a><figcaption>Halte du marchand<small>Étals, toiles, enseignes et bagages au premier plan.</small></figcaption></figure>
+<figure><a href="live/ignore-flee/decision-0.4.png"><img src="live/ignore-flee/decision-0.4.png"></a><figcaption>Halte de Cédric<small>Ruines, abri et table : une scène intégrée avant le choix.</small></figcaption></figure>
+<figure><a href="live/meet-fight/decision-0.6.png"><img src="live/meet-fight/decision-0.6.png"></a><figcaption>Camp des réfugiés<small>Tentes, feu et effets personnels encadrent les deux voies.</small></figcaption></figure>
+<figure><a href="live/meet-fight/decision-0.91.png"><img src="live/meet-fight/decision-0.91.png"></a><figcaption>Caravane endommagée<small>Décor de la branche narrative canonique.</small></figcaption></figure>
+<figure><a href="contacts/merchant-ignore-still-visible.png"><img src="contacts/merchant-ignore-still-visible.png"></a><figcaption>Ignorer reste un passage physique<small>Acteur et décor partagent le même déplacement ; le contournement est enregistré après dépassement.</small></figcaption></figure>
+</div></section>
+<section><h2>Coffre, proportions et voies</h2><div class="grid">
+<figure><a href="contacts/road-cache-before-contact.png"><img src="contacts/road-cache-before-contact.png"></a><figcaption>Coffre fermé<small>Bois et fer patinés ; silhouette à 34 % de la hauteur visible du camion.</small></figcaption></figure>
+<figure><a href="contacts/road-cache-moving-collection.png"><img src="contacts/road-cache-moving-collection.png"></a><figcaption>Coffre ouvert au contact<small>Vrai état peint, +1 provision, aucune pause ni fenêtre.</small></figcaption></figure>
+<figure><a href="contacts/gold-moving-collection.png"><img src="contacts/gold-moving-collection.png"></a><figcaption>Collecte d’or en roulant<small>Petit motif de pièces et retour +5.</small></figcaption></figure>
+<figure><a href="targeted/enemy-seed-0.png"><img src="targeted/enemy-seed-0.png"></a><figcaption>Camion / ennemis<small>Créatures à 58 %, menace de voie avec Combattre / Fuir.</small></figcaption></figure>
+<figure><a href="contacts/obstacle-readable.png"><img src="contacts/obstacle-readable.png"></a><figcaption>Camion / obstacle<small>Débris à 49 %, évités par changement de voie.</small></figcaption></figure>
+<figure><a href="targeted/flee-visible.png"><img src="targeted/flee-visible.png"></a><figcaption>Fuite physique<small>Changement de voie assisté, ennemis toujours présents.</small></figcaption></figure>
+</div></section>
+<section><h2>Carrefour et fin de trajet</h2><div class="grid">
+<figure><a href="live/meet-fight/fork-direct-choice.png"><img src="live/meet-fight/fork-direct-choice.png"></a><figcaption>Choix direct<small>Panneau physique, noms issus du RunSystem, interface compacte.</small></figcaption></figure>
+<figure><a href="targeted/fork-full-cover.png"><img src="targeted/fork-full-cover.png"></a><figcaption>Validation sous couverture complète<small>Opacité mesurée à 1 lors du changement de branche.</small></figcaption></figure>
+<figure><a href="live/meet-fight/fork-resumed.png"><img src="live/meet-fight/fork-resumed.png"></a><figcaption>Reprise automatique<small>Même trajet latéral, variante choisie.</small></figcaption></figure>
+<figure><a href="live/meet-fight/travel-return.png"><img src="live/meet-fight/travel-return.png"></a><figcaption>Retour à Travel View<small>La destination canonique reste à confirmer dans Travel View.</small></figcaption></figure>
+</div></section>
+<details><summary>Rapports bruts et limites de validation</summary><p><a href="live/meet-fight/report.json">Rencontrer / Combattre</a> · <a href="live/ignore-flee/report.json">Ignorer / Fuir</a> · <a href="live/avoid/report.json">Éviter</a> · <a href="contacts/report.json">Contacts</a> · <a href="targeted/report.json">Cas ciblés</a> · <a href="production-gate.json">Build production</a></p><p>Les combats sont terminés avec le contrôle de victoire QA existant : validation des entrées, sorties et autorités, pas de l’équilibrage. Les contrôles ciblés utilisent une horloge déterministe ; la vidéo provient de l’application réelle. Les récompenses des petits objets restent locales à l’aperçu. Validation visuelle opérateur avant tout commit.</p></details>
+</main></html>

@@ -1,0 +1,47 @@
+[
+  {
+    "name": "road",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "outputSize": [
+      1376,
+      1024
+    ],
+    "overlap": 160,
+    "mirrored": false,
+    "sourceSha256": "a5b36db220c802f0975fb10ec73468a95a43c1eabe90f7d67fc37c934a99a24e",
+    "outputSha256": "dd26df529474a7ee7c2791476fe6c3e4a2552287bc213f360461aaf4191d680b"
+  },
+  {
+    "name": "trees",
+    "sourceSize": [
+      2132,
+      738
+    ],
+    "outputSize": [
+      1932,
+      738
+    ],
+    "overlap": 200,
+    "mirrored": false,
+    "sourceSha256": "b57c9bf34faaa8dfa1e088502380e9882c010a6dde8645979c71775fa6bb8ab9",
+    "outputSha256": "25a68186044bc4a93d6e1fe735c8ffa2a3d6cbf765009fff1fc3f5b4e6c7776d"
+  },
+  {
+    "name": "foreground",
+    "sourceSize": [
+      2172,
+      724
+    ],
+    "outputSize": [
+      1992,
+      724
+    ],
+    "overlap": 180,
+    "mirrored": false,
+    "sourceSha256": "6ad4850b8408f91fd1d34e70baf52bb51ffe517a09233daf13a59d7675cafb04",
+    "outputSha256": "8aee23da28c64f9334cb21ec3c9dc94702d54972be7bb22cb313ff86a0e4bfd6"
+  }
+]

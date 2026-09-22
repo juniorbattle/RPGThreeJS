@@ -1,0 +1,53 @@
+{
+  "results": [
+    {
+      "name": "expedition",
+      "src": "/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/candidates/expedition.png",
+      "bounds": {
+        "width": 1706,
+        "height": 922,
+        "left": 122,
+        "right": 1608,
+        "top": 19,
+        "bottom": 850,
+        "transparent": 675446
+      },
+      "sha256": "e09aec334eac5f3a320c2db04eed39ee72a5a22448ff0c3a78ad583243142cff",
+      "status": "candidate",
+      "source": "built-in image_gen"
+    },
+    {
+      "name": "mechanical",
+      "src": "/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/candidates/mechanical.png",
+      "bounds": {
+        "width": 1749,
+        "height": 899,
+        "left": 170,
+        "right": 1622,
+        "top": 83,
+        "bottom": 814,
+        "transparent": 762419
+      },
+      "sha256": "1bca6a34e3edf6345bdb94c803180404dcf8d809c384a67c156c021c06842038",
+      "status": "candidate",
+      "source": "built-in image_gen"
+    },
+    {
+      "name": "armored",
+      "src": "/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/candidates/armored.png",
+      "bounds": {
+        "width": 1727,
+        "height": 911,
+        "left": 141,
+        "right": 1617,
+        "top": 39,
+        "bottom": 850,
+        "transparent": 638475
+      },
+      "sha256": "a72af7118a69c74b6e20e1ec214d84c92d82e918341d093afff88a5a40852ccd",
+      "status": "candidate",
+      "source": "built-in image_gen"
+    }
+  ],
+  "errors": []
+}

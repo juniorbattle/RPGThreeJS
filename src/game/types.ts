@@ -234,6 +234,9 @@ export const runStateSchema = z.object({
   revealedNodeIds: z.array(z.string()),
   visitedNodeIds: z.array(z.string()),
   temporaryLoot: runLootSchema,
+  // Optional fields preserve existing V6 saves. Bypass is not a visit or a resolution.
+  bypassedRouteNodeIds: z.array(z.string()).optional(),
+  traversalBranches: z.record(z.string(), z.string()).optional(),
   graph: runGraphSchema,
 });
 export type RunState = z.infer<typeof runStateSchema>;
