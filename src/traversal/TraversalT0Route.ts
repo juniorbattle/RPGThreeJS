@@ -198,6 +198,9 @@ function stageBeat(
     : representativeCharacter(definitions, partyCharacterIds, issues);
   const isFork = stage.mode === 'IN_TRAVERSAL_FORK';
   const optional = stage.mode === 'OPTIONAL_INTERRUPT';
+  // Participation and presentation are separate: Cedric is mandatory route-wide,
+  // but remains staged on the authored upper roadside rather than as a centered blockade.
+  const upperRoadside = optional || stage.nodeIds.includes('lion-nomad-crossroads');
   const label = isFork
     ? runNodes.map((node) => node.label).join(' · ') || 'Choisir la route'
     : runNodes[0]?.label ?? stage.nodeIds[0] ?? 'Étape de route';
@@ -210,9 +213,9 @@ function stageBeat(
     category: isFork ? 'ROUTE_CHOICE' : optional ? 'OPTIONAL_EVENT' : 'MANDATORY_EVENT',
     engagement: 'ROUTE',
     progress01: (stageIndex + 1) / (stageCount + 1),
-    // Human interactions live on the upper verge; mandatory situations span both lanes.
-    lane: optional ? 0 : null,
-    placement: optional ? 'LANE' : 'CENTERED',
+    // Human roadside interactions may be route-wide without becoming centered blockades.
+    lane: upperRoadside ? 0 : null,
+    placement: upperRoadside ? 'LANE' : 'CENTERED',
     label,
     marker: isFork ? 'fork' : isCombat ? 'danger' : 'speech',
     interactionPolicy: optional ? 'OPTIONAL_CONFIRM' : 'MANDATORY_CONFIRM',

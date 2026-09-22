@@ -29,14 +29,21 @@ describe('TraversalT0Route', () => {
     expect(route.legId).toBe('T0');
   });
 
-  it('uses exactly two normal lanes and centers every canonical mandatory stage', () => {
+  it('uses exactly two normal lanes while allowing mandatory roadside narrative staging', () => {
     const state = createInitialState();
     const route = resolveTraversalT0Route(t0(), state.run.graph.nodes);
     const optional = route.beats.filter((beat) => beat.interactionPolicy === 'OPTIONAL_CONFIRM');
     const mandatory = route.beats.filter((beat) => beat.interactionPolicy === 'MANDATORY_CONFIRM');
+    const cedric = mandatory.find((beat) => beat.campaignNodeIds.includes('lion-nomad-crossroads'))!;
+    const centeredMandatory = mandatory.filter((beat) => !beat.campaignNodeIds.includes('lion-nomad-crossroads'));
     expect(new Set(optional.map((beat) => beat.lane))).toEqual(new Set([0, 1]));
     expect(optional.every((beat) => beat.placement === 'LANE' && beat.lane !== null)).toBe(true);
-    expect(mandatory.every((beat) => beat.placement === 'CENTERED' && beat.lane === null)).toBe(true);
+    expect(cedric.category).toBe('MANDATORY_EVENT');
+    expect(cedric.engagement).toBe('ROUTE');
+    expect(cedric.interactionPolicy).toBe('MANDATORY_CONFIRM');
+    expect(cedric.lane).toBe(0);
+    expect(cedric.placement).toBe('LANE');
+    expect(centeredMandatory.every((beat) => beat.placement === 'CENTERED' && beat.lane === null)).toBe(true);
   });
 
   it('uses Character System V2 for Cedric and canonical creature visuals', () => {
@@ -56,7 +63,10 @@ describe('TraversalT0Route', () => {
     expect(merchant?.characterId).toBe('wounded_merchant');
     expect(merchant?.visualAsset).toBe(resolveCharacterAsset('wounded_merchant', 'full'));
     expect(merchant?.locationId).toBe('merchant-halt');
-    expect(cedric?.lane).toBeNull();
+    expect(cedric?.lane).toBe(0);
+    expect(cedric?.placement).toBe('LANE');
+    expect(cedric?.engagement).toBe('ROUTE');
+    expect(cedric?.interactionPolicy).toBe('MANDATORY_CONFIRM');
     expect(route.beats.filter(beat => beat.category === 'OPTIONAL_EVENT').every(beat => beat.lane === 0)).toBe(true);
     expect(route.beats.filter(beat => beat.category === 'OPTIONAL_COMBAT').every(beat => beat.lane === 1)).toBe(true);
     expect(route.beats.some(beat => beat.category === 'SIMPLE_OBSTACLE' || beat.id === 't0:obstacle:broken-cart')).toBe(false);
@@ -67,6 +77,7 @@ describe('TraversalT0Route', () => {
     const route = resolveTraversalT0Route(t0(), state.run.graph.nodes);
     const merchant = route.beats.find((beat) => beat.type === 'npc')!;
     const mandatory = route.beats.find((beat) => beat.interactionPolicy === 'MANDATORY_CONFIRM')!;
+    const cedric = route.beats.find((beat) => beat.campaignNodeIds.includes('lion-nomad-crossroads'))!;
     expect(resolveTraversalBeatCrossing(merchant, 0, merchant.progress01, 0)).toBe('TRIGGERED');
     expect(resolveTraversalBeatCrossing(merchant, 0, merchant.progress01, 1)).toBe('TRIGGERED');
     const enemy = route.beats.find(beat => beat.category === 'OPTIONAL_COMBAT')!;
@@ -75,6 +86,8 @@ describe('TraversalT0Route', () => {
     expect(resolveTraversalBeatCrossing(merchant, merchant.progress01, beatPassedProgress(merchant.progress01), 1)).toBe('BYPASSED');
     expect(resolveTraversalBeatCrossing(mandatory, 0, mandatory.progress01, 0)).toBe('TRIGGERED');
     expect(resolveTraversalBeatCrossing(mandatory, 0, mandatory.progress01, 1)).toBe('TRIGGERED');
+    expect(resolveTraversalBeatCrossing(cedric, 0, cedric.progress01, 0)).toBe('TRIGGERED');
+    expect(resolveTraversalBeatCrossing(cedric, 0, cedric.progress01, 1)).toBe('TRIGGERED');
   });
 
   it('engages either chosen branch from either lane, with no optional bypass', () => {
