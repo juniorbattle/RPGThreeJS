@@ -1,0 +1,239 @@
+{
+  "tag": "baseline",
+  "method": "Chromium RAF presentation sweep, real controller advance notifications, seven 3-second windows; modal decisions excluded",
+  "samples": [
+    {
+      "name": "start",
+      "frames": {
+        "mean": 16.758333333333333,
+        "p95": 16.799999999999727,
+        "max": 33.30000000000018
+      },
+      "fps": 59.67180507210343,
+      "longFramesOver33ms": 0,
+      "updateCost": {
+        "mean": 3.4204419895759606,
+        "p95": 4.799999982118607,
+        "max": 5.5
+      },
+      "worldUpdatesPerFrame": 2,
+      "dom": 306,
+      "images": 81,
+      "visibleSections": 3,
+      "visiblePlants": 5,
+      "visibleActors": 1,
+      "metrics": {
+        "LayoutDuration": 0.041811999999999995,
+        "RecalcStyleDuration": 0.510462,
+        "ScriptDuration": 0.090866,
+        "TaskDuration": 0.857791,
+        "LayoutCount": 541,
+        "RecalcStyleCount": 905
+      },
+      "heap": 4506640
+    },
+    {
+      "name": "quarter",
+      "frames": {
+        "mean": 16.758888888888887,
+        "p95": 16.800000000000182,
+        "max": 33.29999999999927
+      },
+      "fps": 59.66982695750183,
+      "longFramesOver33ms": 0,
+      "updateCost": {
+        "mean": 3.685082871610947,
+        "p95": 4.800000011920929,
+        "max": 6.200000017881393
+      },
+      "worldUpdatesPerFrame": 2,
+      "dom": 306,
+      "images": 81,
+      "visibleSections": 2,
+      "visiblePlants": 5,
+      "visibleActors": 2,
+      "metrics": {
+        "LayoutDuration": 0.043382000000000004,
+        "RecalcStyleDuration": 0.551798,
+        "ScriptDuration": 0.09475700000000001,
+        "TaskDuration": 0.8947320000000001,
+        "LayoutCount": 541,
+        "RecalcStyleCount": 905
+      },
+      "heap": 4654848
+    },
+    {
+      "name": "middle",
+      "frames": {
+        "mean": 16.666298342541438,
+        "p95": 16.799999999999272,
+        "max": 16.80000000000109
+      },
+      "fps": 60.001325996154605,
+      "longFramesOver33ms": 0,
+      "updateCost": {
+        "mean": 4.030769231555226,
+        "p95": 5.200000017881393,
+        "max": 6
+      },
+      "worldUpdatesPerFrame": 2,
+      "dom": 306,
+      "images": 81,
+      "visibleSections": 3,
+      "visiblePlants": 5,
+      "visibleActors": 3,
+      "metrics": {
+        "LayoutDuration": 0.04618000000000001,
+        "RecalcStyleDuration": 0.6059569999999999,
+        "ScriptDuration": 0.11130300000000001,
+        "TaskDuration": 0.9698360000000001,
+        "LayoutCount": 544,
+        "RecalcStyleCount": 910
+      },
+      "heap": 4761020
+    },
+    {
+      "name": "three-quarter",
+      "frames": {
+        "mean": 16.852513966480448,
+        "p95": 16.700000000000728,
+        "max": 50
+      },
+      "fps": 59.33832791884903,
+      "longFramesOver33ms": 1,
+      "updateCost": {
+        "mean": 3.759444445040491,
+        "p95": 5,
+        "max": 6.5
+      },
+      "worldUpdatesPerFrame": 2,
+      "dom": 304,
+      "images": 81,
+      "visibleSections": 3,
+      "visiblePlants": 6,
+      "visibleActors": 2,
+      "metrics": {
+        "LayoutDuration": 0.044991,
+        "RecalcStyleDuration": 0.5496240000000001,
+        "ScriptDuration": 0.10312899999999997,
+        "TaskDuration": 0.9360490000000001,
+        "LayoutCount": 538,
+        "RecalcStyleCount": 900
+      },
+      "heap": 4381492
+    },
+    {
+      "name": "branch-A",
+      "frames": {
+        "mean": 16.66574585635358,
+        "p95": 16.799999999999272,
+        "max": 16.80000000000291
+      },
+      "fps": 60.00331510028182,
+      "longFramesOver33ms": 0,
+      "updateCost": {
+        "mean": 3.9302197827415153,
+        "p95": 5.200000017881393,
+        "max": 6
+      },
+      "worldUpdatesPerFrame": 2,
+      "dom": 301,
+      "images": 80,
+      "visibleSections": 2,
+      "visiblePlants": 5,
+      "visibleActors": 1,
+      "metrics": {
+        "LayoutDuration": 0.04468,
+        "RecalcStyleDuration": 0.599783,
+        "ScriptDuration": 0.096698,
+        "TaskDuration": 0.9034439999999999,
+        "LayoutCount": 544,
+        "RecalcStyleCount": 910
+      },
+      "heap": 5211116
+    },
+    {
+      "name": "branch-B",
+      "frames": {
+        "mean": 16.947191011235947,
+        "p95": 16.799999999999272,
+        "max": 66.69999999999709
+      },
+      "fps": 59.006828880196274,
+      "longFramesOver33ms": 1,
+      "updateCost": {
+        "mean": 3.6139664793147723,
+        "p95": 5.0999999940395355,
+        "max": 6.800000011920929
+      },
+      "worldUpdatesPerFrame": 2,
+      "dom": 301,
+      "images": 80,
+      "visibleSections": 2,
+      "visiblePlants": 5,
+      "visibleActors": 1,
+      "metrics": {
+        "LayoutDuration": 0.04233500000000001,
+        "RecalcStyleDuration": 0.5301430000000003,
+        "ScriptDuration": 0.09973900000000002,
+        "TaskDuration": 0.959441,
+        "LayoutCount": 535,
+        "RecalcStyleCount": 896
+      },
+      "heap": 4908416
+    },
+    {
+      "name": "end",
+      "frames": {
+        "mean": 16.666666666666668,
+        "p95": 16.700000000000728,
+        "max": 16.80000000000291
+      },
+      "fps": 59.99999999999999,
+      "longFramesOver33ms": 0,
+      "updateCost": {
+        "mean": 3.44254143610185,
+        "p95": 4.5,
+        "max": 5.399999976158142
+      },
+      "worldUpdatesPerFrame": 2,
+      "dom": 301,
+      "images": 80,
+      "visibleSections": 3,
+      "visiblePlants": 6,
+      "visibleActors": 0,
+      "metrics": {
+        "LayoutDuration": 0.033241999999999994,
+        "RecalcStyleDuration": 0.5203850000000001,
+        "ScriptDuration": 0.09523700000000002,
+        "TaskDuration": 0.803464,
+        "LayoutCount": 357,
+        "RecalcStyleCount": 905
+      },
+      "heap": 5024656
+    }
+  ],
+  "events": {
+    "UpdateLayoutTree": {
+      "count": 6457,
+      "durationMs": 3899.617000000002
+    },
+    "Layout": {
+      "count": 3636,
+      "durationMs": 279.8999999999996
+    },
+    "PrePaint": {
+      "count": 1379,
+      "durationMs": 190.30900000000062
+    },
+    "Paint": {
+      "count": 15050,
+      "durationMs": 383.5599999999916
+    },
+    "Layerize": {
+      "count": 1379,
+      "durationMs": 181.23600000000027
+    }
+  },
+  "errors": []
+}

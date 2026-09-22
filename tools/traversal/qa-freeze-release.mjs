@@ -32,7 +32,7 @@ try {
  const human=await page.evaluate(()=>{const {scene}=window.review;const beat=scene.route.beats.find(b=>b.id===scene.session.pendingBeatId);
  const actor=scene.element.querySelector(`[data-traversal-beat="${beat.id}"]`);
  return{id:beat.id,lane:beat.lane,ratio:actor.getBoundingClientRect().height/scene.element.querySelector('.traversal-vehicle').getBoundingClientRect().height};});
- assert.equal(human.id,'t0:branch:lion-first-trial-event');assert.equal(human.lane,0);assert.ok(human.ratio>.77&&human.ratio<.79);
+ assert.equal(human.id,'t0:branch:lion-first-trial-event');assert.equal(human.lane,null);assert.ok(human.ratio>.77&&human.ratio<.79);
  const proportions=await page.evaluate(()=>[...document.querySelectorAll('.traversal-world-section__terrain img')].map(i=>{
   const r=i.getBoundingClientRect();return{width:r.width,height:r.height,sourceRatio:i.naturalWidth/i.naturalHeight};
  }).filter(i=>i.height>0));

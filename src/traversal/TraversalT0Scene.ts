@@ -95,6 +95,8 @@ export class TraversalT0Scene {
   private speed = 0;
   private transition: { kind: string; elapsed: number; midpoint?: () => void; reveal: boolean } | null = null;
   private presentedBranch = 'main';
+  private inAnimationFrame = false;
+  private frameRenderPending = false;
 
   constructor(private readonly options: TraversalT0SceneOptions) {
     if (options.leg.id !== 'T0') throw new Error('TraversalT0Scene only accepts the canonical T0 leg.');
@@ -131,7 +133,10 @@ export class TraversalT0Scene {
       onNodeHandoff: (node, session) => {
         this.startTransition('event', () => { void options.onNodeHandoff(node, session); });
       },
-      onSessionChange: () => this.renderRuntimeState(),
+      onSessionChange: () => {
+        if (this.inAnimationFrame) this.frameRenderPending = true;
+        else this.renderRuntimeState();
+      },
     });
     this.element.className = 'traversal-t0';
     this.element.dataset.traversalLeg = 'T0';
@@ -219,7 +224,7 @@ export class TraversalT0Scene {
         <div class="traversal-world__lane-glow" aria-hidden="true"></div>
         <div class="traversal-world__actors">
         <div class="traversal-world__entities"></div>
-        <figure class="traversal-vehicle" aria-label="Caravane mécanique de voyage de la compagnie" data-empty-cabin="true" data-visible-wheels="4">
+        <figure class="traversal-vehicle" aria-label="Caravane mécanique fermée de la compagnie" data-enclosed-cabin="true" data-visible-wheels="4">
           <span class="traversal-vehicle__shadow" aria-hidden="true"></span>
           <span class="traversal-vehicle__dust traversal-vehicle__dust--one" aria-hidden="true"></span>
           <span class="traversal-vehicle__dust traversal-vehicle__dust--two" aria-hidden="true"></span>
@@ -347,10 +352,16 @@ export class TraversalT0Scene {
       ? Math.min(1, Math.max(0, (timeMs - this.previousFrameMs) / 1000))
       : 0;
     this.previousFrameMs = timeMs;
+    // Physics may take several bounded steps; present their final state once per frame.
+    this.inAnimationFrame = true;
     if (this.transition && !document.hidden) this.advanceTransition(deltaSeconds);
     else if (this.controller.session.phase === 'RUNNING' && !document.hidden) this.advance(deltaSeconds);
     if (this.controller.session.phase === 'ARRIVING' && !document.hidden) this.advanceArrival(deltaSeconds);
-    this.updateWorldTransforms();
+    this.inAnimationFrame = false;
+    if (this.frameRenderPending) {
+      this.frameRenderPending = false;
+      this.renderRuntimeState();
+    } else this.updateWorldTransforms();
     this.frameId = window.requestAnimationFrame(this.tick);
   };
 
@@ -396,11 +407,21 @@ export class TraversalT0Scene {
 
   private advance(deltaSeconds: number): void {
     // Integrate physical braking in bounded steps, including throttled browser frames.
-    let remaining = deltaSeconds;
-    while (remaining > 0 && this.session.phase === 'RUNNING' && !this.transition) {
-      const step = Math.min(remaining, 1 / 60);
-      this.advanceRoadStep(step);
-      remaining -= step;
+    const alreadyInFrame = this.inAnimationFrame;
+    this.inAnimationFrame = true;
+    try {
+      let remaining = deltaSeconds;
+      while (remaining > 0 && this.session.phase === 'RUNNING' && !this.transition) {
+        const step = Math.min(remaining, 1 / 60);
+        this.advanceRoadStep(step);
+        remaining -= step;
+      }
+    } finally {
+      this.inAnimationFrame = alreadyInFrame;
+      if (!alreadyInFrame && this.frameRenderPending) {
+        this.frameRenderPending = false;
+        this.renderRuntimeState();
+      }
     }
   }
 
@@ -551,13 +572,14 @@ export class TraversalT0Scene {
   }
 
   private renderRuntimeState(): void {
+    if (this.inAnimationFrame) { this.frameRenderPending = true; return; }
     const session = this.controller.session;
     const forkIds = session.phase === 'FORK_OVERLAY' ? session.forkOptionIds
       : this.nextStage?.category === 'ROUTE_CHOICE' ? this.nextStage.campaignNodeIds : [];
     if (forkIds.length) this.worldRenderer.setDirections(this.options.getAvailableNodes()
       .filter(node => forkIds.includes(node.id)));
     this.element.style.setProperty('--traversal-lane-y', `${LANE_TOP_PERCENT[session.currentLane]}%`);
-    this.element.style.setProperty('--route-progress', String(session.routeProgress01));
+    this.element.querySelector<HTMLElement>('.traversal-route-rail')!.style.setProperty('--route-progress', String(session.routeProgress01));
     this.element.dataset.phase = session.phase;
     this.element.dataset.lane = String(session.currentLane);
     this.element.dataset.consumedBeats = String(session.consumedBeatIds.length);
@@ -571,8 +593,10 @@ export class TraversalT0Scene {
     const nextStage = this.nextStage;
     const next = this.element.querySelector<HTMLElement>('[data-traversal-next]');
     const distance = this.element.querySelector<HTMLElement>('[data-traversal-distance]');
-    if (next) next.textContent = nextStage?.label ?? this.route.destinationLabel;
-    if (distance) distance.textContent = `~ ${Math.max(0, (1 - session.routeProgress01) * this.route.distanceKm).toFixed(1)} km`;
+    const nextLabel = nextStage?.label ?? this.route.destinationLabel;
+    const distanceLabel = `~ ${Math.max(0, (1 - session.routeProgress01) * this.route.distanceKm).toFixed(1)} km`;
+    if (next && next.textContent !== nextLabel) next.textContent = nextLabel;
+    if (distance && distance.textContent !== distanceLabel) distance.textContent = distanceLabel;
     this.renderEventPanel();
     this.updateWorldTransforms();
   }
@@ -631,6 +655,9 @@ export class TraversalT0Scene {
   private updateWorldTransforms(): void {
     const session = this.controller.session;
     const width = this.element.clientWidth || ROAD_SPACE.referenceWidth;
+    // Read both viewport dimensions before any style writes to avoid forced layout.
+    const height = this.element.clientHeight || 823;
+    const vehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
     const exit = session.phase === 'ARRIVING' ? this.arrivalElapsed : 0;
     const exitDistance = exit * 160 + exit * exit * 150;
     const camera = roadCameraX(session.routeProgress01) + exitDistance * .25;
@@ -639,18 +666,17 @@ export class TraversalT0Scene {
     this.worldRenderer.update(camera, width, this.presentedBranch, resolvedLocations);
     this.foregroundRenderer.update(camera, width);
     const screen = (worldX: number) => roadWorldToScreen(worldX, camera, width);
-    this.element.style.setProperty('--road-offset', `${screen(0)}px`);
-    this.element.style.setProperty('--foreground-offset', `${screen(0) * ROAD_SPACE.foregroundFactor}px`);
+    this.element.querySelector<HTMLElement>('.traversal-world__foreground')!.style.setProperty('--foreground-offset', `${screen(0) * ROAD_SPACE.foregroundFactor}px`);
     const entryDistance = 600 + Number.parseFloat(this.element.style.getPropertyValue('--vehicle-entry-x') || '0');
     const drivenDistance = camera + exitDistance + entryDistance * ROAD_SPACE.referenceWidth / width;
     // Mirrors --vehicle-height without forcing layout of the composite wheel subtree.
-    const vehicleHeight = Math.min((this.element.clientHeight || 823) * .24, width * (width <= 1000 ? .16 : .14));
-    this.element.style.setProperty('--wheel-angle', `${caravanWheelAngle(drivenDistance, vehicleHeight, width)}rad`);
+    const vehicleHeight = Math.min(height * .24, width * (width <= 1000 ? .16 : .14));
+    vehicle.style.setProperty('--wheel-angle', `${caravanWheelAngle(drivenDistance, vehicleHeight, width)}rad`);
     const suspensionSpeed = session.phase === 'ARRIVING' ? 1
       : session.phase === 'RUNNING' ? Math.min(1, this.speed / TRAVEL_SPEED_PER_SECOND) : 0;
-    this.element.style.setProperty('--suspension-y', `${Math.sin(drivenDistance / TRAVERSAL_CARAVAN.suspension.wavelength) * TRAVERSAL_CARAVAN.suspension.amplitude * suspensionSpeed}px`);
-    this.element.style.setProperty('--dust-phase', String((drivenDistance % 130) / 130));
-    this.element.style.setProperty('--vehicle-exit-x', `${exitDistance * width / ROAD_SPACE.referenceWidth}px`);
+    vehicle.style.setProperty('--suspension-y', `${Math.sin(drivenDistance / TRAVERSAL_CARAVAN.suspension.wavelength) * TRAVERSAL_CARAVAN.suspension.amplitude * suspensionSpeed}px`);
+    vehicle.style.setProperty('--dust-phase', String((drivenDistance % 130) / 130));
+    vehicle.style.setProperty('--vehicle-exit-x', `${exitDistance * width / ROAD_SPACE.referenceWidth}px`);
     this.element.dataset.routeVariant = this.presentedBranch;
     this.element.dataset.assistedBypass = String(this.assistedUntil > session.routeProgress01);
     this.route.beats.forEach((beat) => {

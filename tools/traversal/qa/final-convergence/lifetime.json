@@ -1,0 +1,81 @@
+{
+  "cycles": [
+    {
+      "open": {
+        "raf": 1,
+        "keydown": 1,
+        "scenes": 1
+      },
+      "disposed": {
+        "raf": 0,
+        "keydown": 0,
+        "scenes": 0
+      }
+    },
+    {
+      "open": {
+        "raf": 1,
+        "keydown": 1,
+        "scenes": 1
+      },
+      "disposed": {
+        "raf": 0,
+        "keydown": 0,
+        "scenes": 0
+      }
+    },
+    {
+      "open": {
+        "raf": 1,
+        "keydown": 1,
+        "scenes": 1
+      },
+      "disposed": {
+        "raf": 0,
+        "keydown": 0,
+        "scenes": 0
+      }
+    },
+    {
+      "open": {
+        "raf": 1,
+        "keydown": 1,
+        "scenes": 1
+      },
+      "disposed": {
+        "raf": 0,
+        "keydown": 0,
+        "scenes": 0
+      }
+    },
+    {
+      "open": {
+        "raf": 1,
+        "keydown": 1,
+        "scenes": 1
+      },
+      "disposed": {
+        "raf": 0,
+        "keydown": 0,
+        "scenes": 0
+      }
+    },
+    {
+      "open": {
+        "raf": 1,
+        "keydown": 1,
+        "scenes": 1
+      },
+      "disposed": {
+        "raf": 0,
+        "keydown": 0,
+        "scenes": 0
+      }
+    }
+  ],
+  "counters": {
+    "documents": 1,
+    "nodes": 385,
+    "jsEventListeners": 20
+  }
+}

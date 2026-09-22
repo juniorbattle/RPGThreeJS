@@ -2,7 +2,6 @@
 .traversal-t0 {
   --vehicle-height: min(24vh, 14vw);
   --traversal-lane-y: 63%;
-  --road-offset: 0px;
   --foreground-offset: 0px;
   position: fixed; inset: 0; z-index: 40; overflow: hidden; isolation: isolate;
   color: #fff4d2; background: #192f4e; font-family: Inter, sans-serif;
@@ -102,7 +101,8 @@
   transform: translate(-50%, -100%); pointer-events: none;
 }
 .traversal-actor-anchor[data-scale='creature'] { --entity-height: calc(var(--vehicle-height) * .58); }
-.traversal-actor-anchor[data-scale='human'][data-category='OPTIONAL_EVENT'] { --entity-height: calc(var(--vehicle-height) * .78); }
+.traversal-actor-anchor[data-scale='human'][data-category='OPTIONAL_EVENT'],
+.traversal-actor-anchor[data-scale='human'][data-category='MANDATORY_EVENT']:not([data-formation='true']) { --entity-height: calc(var(--vehicle-height) * .78); }
 .traversal-actor-anchor[data-scale='elite'] { --entity-height: calc(var(--vehicle-height) * .7); }
 .traversal-actor-anchor[data-scale='loot'] { --entity-height: calc(var(--vehicle-height) * .34); }
 .traversal-actor-anchor[data-scale='obstacle'] { --entity-height: calc(var(--vehicle-height) * .49); }

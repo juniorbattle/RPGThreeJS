@@ -3,16 +3,19 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const browser = await chromium.launch({ headless: true });
 const root = `${process.env.TRAVERSAL_QA_ROOT ?? 'tools/traversal/qa/freeze'}/live-final`;
+const performanceOnly = process.env.TRAVERSAL_QA_PERFORMANCE_ONLY === '1';
 await mkdir(root, { recursive: true });
 async function run(mode) {
   const out = `${root}/${mode}`; await mkdir(out, { recursive: true });
-  const record = mode === 'meet-fight' || mode.endsWith('-review');
+  const record = !performanceOnly && (mode === 'meet-fight' || mode.endsWith('-review'));
   const context = await browser.newContext({ viewport: { width: 1463, height: 823 }, ...(record ? { recordVideo: { dir: out, size: { width: 1463, height: 823 } } } : {}) });
   const page = await context.newPage();
   const errors = [], states = [], captures = new Set(), scales = [];
   const started = Date.now();
   page.on('pageerror', e => errors.push(String(e)));
+  page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
   const capture = async name => {
+    if (performanceOnly) return;
     if (captures.has(name)) return; captures.add(name);
     await page.screenshot({ path: `${out}/${name}.png` });
   };
@@ -20,10 +23,16 @@ async function run(mode) {
   await page.waitForSelector('.traversal-t0');
   await page.evaluate(() => {
     window.traversalEvidence = [];
+    window.traversalFrames = [];
     const scene = document.querySelector('.traversal-t0');
     let previous = '';
-    const sample = () => {
+    let previousFrame;
+    const sample = now => {
       if (!scene.isConnected) return;
+      if (previousFrame !== undefined && scene.dataset.phase === 'RUNNING' && !scene.dataset.transition) {
+        window.traversalFrames.push({ progress: +scene.dataset.progress, ms: now - previousFrame });
+      }
+      previousFrame = now;
       const key = [scene.dataset.phase, scene.dataset.transition, scene.dataset.routeVariant].join('|');
       if (key !== previous) {
         window.traversalEvidence.push({phase:scene.dataset.phase, transition:scene.dataset.transition,
@@ -33,7 +42,7 @@ async function run(mode) {
       }
       requestAnimationFrame(sample);
     };
-    sample();
+    requestAnimationFrame(sample);
   });
   let returned = false, lastPhase, localDone = false, roadCombat = false;
   for (let frame = 0; frame < 1500; frame++) {
@@ -136,7 +145,15 @@ async function run(mode) {
       returns++; held = undefined;
     }
   }
-  await writeFile(`${out}/report.json`,JSON.stringify({returned,errors,states,scales,telemetry,verifiedReturns:returns,captures:[...captures]},null,2));
+  const performance = await page.evaluate(() => {
+    const bins = [[0,.2],[.2,.4],[.4,.6],[.6,.8],[.8,.94],[.94,1]];
+    return bins.map(([from,to]) => {
+      const frames = window.traversalFrames.filter(f=>f.progress>=from&&f.progress<to).map(f=>f.ms).sort((a,b)=>a-b);
+      return {from,to,count:frames.length,meanMs:frames.reduce((a,b)=>a+b,0)/frames.length,
+        p95Ms:frames[Math.floor(frames.length*.95)],longFramesOver33ms:frames.filter(t=>t>33.4).length};
+    });
+  });
+  await writeFile(`${out}/report.json`,JSON.stringify({returned,errors,states,scales,telemetry,performance,verifiedReturns:returns,captures:[...captures]},null,2));
   await context.close();
   if (record) await page.video().saveAs(`${out}/journey.webm`);
   assert.equal(returned,true,`${mode} must return to Travel View`); assert.deepEqual(errors,[]);

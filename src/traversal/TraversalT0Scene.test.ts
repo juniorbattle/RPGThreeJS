@@ -11,6 +11,25 @@ function settle(scene: TraversalT0Scene): void {
 }
 
 describe('TraversalT0Scene', () => {
+  it('coalesces bounded physics steps without stepping past the first decision', () => {
+    vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
+    const state = createInitialState();
+    state.run.currentNodeId = state.currentNodeId = 'lion-audience';
+    const scene = new TraversalT0Scene({ root: document.body,
+      leg: LION_TRAVERSAL_LEGS.find(leg => leg.id === 'T0')!, getState: () => state,
+      getAvailableNodes: () => getAvailableRunNodes(state), onNodeHandoff: vi.fn(),
+      onArrival: vi.fn(), onMenu: vi.fn() });
+    scene.open(); settle(scene);
+    const clock = scene as unknown as { advance(seconds: number): void; updateWorldTransforms(): void };
+    const updates = vi.spyOn(clock, 'updateWorldTransforms');
+    clock.advance(20);
+    expect(updates).toHaveBeenCalledOnce();
+    expect(scene.session.routeProgress01).toBe(.09);
+    expect(scene.session.phase).toBe('DECISION');
+    expect(scene.session.pendingBeatId).toBe('t0:npc:roadside-merchant');
+    scene.dispose();
+  });
+
   it('holds distance during entry and delays canonical handoff until the fade covers the road', () => {
     vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
     const state = createInitialState();
@@ -74,7 +93,7 @@ describe('TraversalT0Scene', () => {
     expect(document.querySelectorAll('[data-traversal-lane]')).toHaveLength(2);
     expect(document.querySelector('.traversal-t0')?.getAttribute('data-lane-count')).toBe('2');
     expect(document.querySelector('.traversal-vehicle img')?.getAttribute('src')).toContain('/vehicle/traversal-caravan/');
-    expect(document.querySelector('.traversal-vehicle')?.getAttribute('data-empty-cabin')).toBe('true');
+    expect(document.querySelector('.traversal-vehicle')?.getAttribute('data-enclosed-cabin')).toBe('true');
     expect(document.querySelector('.traversal-vehicle')?.getAttribute('data-visible-wheels')).toBe('4');
     expect(document.querySelectorAll('[data-traversal-beat]').length).toBeGreaterThanOrEqual(5);
     expect(document.querySelector('[data-traversal-leg="T0"]')?.getAttribute('data-single-road')).toBe('true');
@@ -231,13 +250,14 @@ describe('TraversalT0Scene', () => {
     advance(20);
     settle(scene);
     const world = document.querySelector<HTMLElement>('.traversal-t0')!;
+    const vehicle = world.querySelector<HTMLElement>('.traversal-vehicle')!;
     const subject = document.querySelector<HTMLElement>('[data-traversal-beat="t0:npc:roadside-merchant"]')!;
     const beforeX = parseFloat(subject.style.left);
-    const beforeRoad = parseFloat(world.style.getPropertyValue('--road-offset'));
-    const beforeWheel = world.style.getPropertyValue('--wheel-angle');
+    const beforeProgress = scene.session.routeProgress01;
+    const beforeWheel = vehicle.style.getPropertyValue('--wheel-angle');
     advance(10);
     expect(subject.style.left).toBe(`${beforeX}px`);
-    expect(world.style.getPropertyValue('--wheel-angle')).toBe(beforeWheel);
+    expect(vehicle.style.getPropertyValue('--wheel-angle')).toBe(beforeWheel);
     document.querySelector<HTMLButtonElement>('[data-traversal-skip]')!.click();
     expect(scene.session.bypassedBeatIds).not.toContain('t0:npc:roadside-merchant');
     expect(scene.session.currentLane).toBe(lane);
@@ -247,8 +267,9 @@ describe('TraversalT0Scene', () => {
     expect(subject.hidden).toBe(false);
     advance(.5);
     expect(subject.hidden).toBe(false);
-    expect(parseFloat(subject.style.left) - beforeX).toBeCloseTo(parseFloat(world.style.getPropertyValue('--road-offset')) - beforeRoad);
-    expect(world.style.getPropertyValue('--wheel-angle')).not.toBe(beforeWheel);
+    expect(parseFloat(subject.style.left)).toBeLessThan(beforeX);
+    expect(scene.session.routeProgress01).toBeGreaterThan(beforeProgress);
+    expect(vehicle.style.getPropertyValue('--wheel-angle')).not.toBe(beforeWheel);
     advance(4.5);
     expect(scene.session.currentLane).toBe(lane);
     expect(movement).not.toHaveBeenCalled();

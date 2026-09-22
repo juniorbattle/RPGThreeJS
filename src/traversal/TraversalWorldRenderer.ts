@@ -17,6 +17,7 @@ export class TraversalWorldRenderer {
 
   private mount(presentedBranch: string): void {
     this.element.replaceChildren();
+    this.preloaded.length = 0;
     this.presentedBranch = presentedBranch;
     this.sections = resolveTraversalWorld(presentedBranch).map(definition => {
       const element = document.createElement('div');
@@ -94,8 +95,9 @@ export class TraversalWorldRenderer {
     // Exactly the same camera as the entities and wheel-distance calculation.
     this.element.style.transform = `translateX(${roadWorldToScreen(0, camera, viewportWidth)}px)`;
     for (const { definition, element, image } of this.sections) {
-      element.hidden = definition.worldEnd < camera - 100
+      const hidden = definition.worldEnd < camera - 100
         || definition.worldStart > camera + ROAD_SPACE.referenceWidth + 100;
+      if (element.hidden !== hidden) element.hidden = hidden;
       const asset = (resolvedLocations.has(definition.id) ? definition.clearedAsset : undefined)
         ?? definition.variantAssets?.[presentedBranch] ?? definition.asset;
       if (image.getAttribute('src') !== asset) image.src = asset;

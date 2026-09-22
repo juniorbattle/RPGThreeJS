@@ -7,17 +7,17 @@ const ROOT = '/assets/generated/lion-phase/traversal/t0/vehicle/traversal-carava
  * Artistic constraints are visually audited, not inferred from these metadata labels.
  */
 export const TRAVERSAL_CARAVAN = Object.freeze({
-  chassis: `${ROOT}/chassis.png`,
-  wheelSource: `${ROOT}/candidates/mechanical.png`,
-  canvas: { width: 1748, height: 899 },
-  bounds: { left: 170, top: 81, width: 1454, height: 733 },
-  wheelTexture: { canvasWidth: 1749, canvasHeight: 899, x: 225, y: 486, width: 303, height: 316 },
+  chassis: `${ROOT}/closed-v1/chassis.png`,
+  wheelSource: `${ROOT}/closed-v1/wheel.png`,
+  canvas: { width: 1260, height: 654 },
+  bounds: { left: 0, top: 0, width: 1260, height: 766 },
+  wheelTexture: { canvasWidth: 300, canvasHeight: 300, x: 0, y: 0, width: 300, height: 300 },
   suspension: { amplitude: 1.1, wavelength: 27 },
   wheels: [
-    { id: 'far-rear', plane: 'far', x: 546, y: 637, rx: 126, ry: 132 },
-    { id: 'far-front', plane: 'far', x: 1416, y: 642, rx: 133, ry: 134 },
-    { id: 'near-rear', plane: 'near', x: 376, y: 648, rx: 151.5, ry: 158 },
-    { id: 'near-front', plane: 'near', x: 1280, y: 655, rx: 151.5, ry: 158 },
+    { id: 'far-rear', plane: 'far', x: 402, y: 595, rx: 125, ry: 129 },
+    { id: 'far-front', plane: 'far', x: 1100, y: 595, rx: 125, ry: 129 },
+    { id: 'near-rear', plane: 'near', x: 300, y: 616, rx: 145, ry: 150 },
+    { id: 'near-front', plane: 'near', x: 999, y: 616, rx: 145, ry: 150 },
   ],
 });
 

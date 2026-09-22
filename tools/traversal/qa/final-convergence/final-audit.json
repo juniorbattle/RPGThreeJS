@@ -1,0 +1,145 @@
+{
+  "baseline": "96954e7bb6b1416f4899858ee860079b776d48d5",
+  "branch": "campaign-structure-1",
+  "uncommitted": true,
+  "unpushed": true,
+  "tests": {
+    "focused-tests": {
+      "passed": 65,
+      "failed": 0,
+      "files": 15
+    },
+    "full-tests": {
+      "passed": 2469,
+      "failed": 0,
+      "files": 145
+    }
+  },
+  "journeys": [
+    {
+      "mode": "meet-fight",
+      "returned": true,
+      "errors": [],
+      "verifiedReturns": 6
+    },
+    {
+      "mode": "ignore-flee",
+      "returned": true,
+      "errors": [],
+      "verifiedReturns": 2
+    },
+    {
+      "mode": "avoid",
+      "returned": true,
+      "errors": [],
+      "verifiedReturns": 2
+    }
+  ],
+  "originals": [
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+      "sha256": "1b64195bc4cb92d5e8cd56c42a68fc85b250fe7cd64b1af7a4b4603ea8f13ccf"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/depth-v1/clearance/merchant-halt.png",
+      "sha256": "94a67f08c825379dd6f3cfd22d6c020fb5e6451cbd2d953d6a8771d0d884fa33"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png",
+      "sha256": "d9445d596edf6063a4e46f57d1e90700d1f25904c7c0f353675eb9bf69bcbe58"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/ambush-cleared.png",
+      "sha256": "473188f0f500323606b58f593ed5eb244cd9caada4f2855b7037f4a464f93c41"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
+      "sha256": "82a708b225d0bd7c28f2b418329e6a999ebd9921dadfa5caf33ea64de9068876"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/depth-v1/clearance/refugee-halt.png",
+      "sha256": "232610b915a48672faaadb2aacf649df304838eeeb888e94e9ccdd94b00c3677"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/reference-convergence/nomad-waystation.png",
+      "sha256": "7010ce775a143762bb0a4dee92ed0a081842dd4540d5b66e051cd1c10252c231"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/depth-v1/clearance/damaged-caravan.png",
+      "sha256": "cd6bf5375ec4d149098209d44d9a80da47268802f76b5145728d47307899bb7d"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/world-v1/ruined-outpost.png",
+      "sha256": "a25162191ee1de2c406bdc62600e22f311eb1994a0ca2ad22c3e0fb83f68cb88"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/chassis.png",
+      "sha256": "c5f2ba823ba0e5b1806112191798b78a7cfeeeefa7526083abe91ae331bde75e"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/candidates/mechanical.png",
+      "sha256": "1bca6a34e3edf6345bdb94c803180404dcf8d809c384a67c156c021c06842038"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/depth-v1/foreground/ferns.png",
+      "sha256": "26b4b35e856666cb3bd812cc34814c326efa22111851a5ad974eda02034ba533"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/depth-v1/foreground/roots.png",
+      "sha256": "f5da4383e4f10da27754184e005f9694ab003b8993ad350e36c9724f8ef400c6"
+    }
+  ],
+  "newAssets": [
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/closed-v1/chassis.png",
+      "sha256": "16b17208d6473f977cd14d0d122a91b876e8c3ac508edb227c7e5f0a7c912b46",
+      "size": [
+        1260,
+        654
+      ],
+      "bounds": [
+        8,
+        12,
+        1252,
+        648
+      ],
+      "bytes": 1354782
+    },
+    {
+      "path": "public/assets/generated/lion-phase/traversal/t0/vehicle/traversal-caravan/closed-v1/wheel.png",
+      "sha256": "cd7516ff563ad47f67c87697c643149a505a040a3d5f5a6a3d4fe238f8f77a70",
+      "size": [
+        300,
+        300
+      ],
+      "bounds": [
+        5,
+        6,
+        292,
+        292
+      ],
+      "bytes": 136790
+    }
+  ],
+  "rawSourceSha256": "84d5359e7703ba52c3d9dd8250d5420819f02ae3674eb31be404d2583af67198",
+  "referenceSha256": "1b2b893efaf1370bc18e18be74aa60c9939a79e1cf3b4c8a0ca22a7887b4b45e",
+  "protectedPaths": [
+    "src/game/runSystem.ts",
+    "src/game/types.ts",
+    "src/combat",
+    "src/render/CharacterVisualRegistry.ts",
+    "src/narrative",
+    "public/assets"
+  ],
+  "production": {
+    "traversalCount": 0,
+    "titleVisible": true
+  },
+  "gate": {
+    "enabled": false,
+    "designAssetsReady": false,
+    "rolloutLegIds": [
+      "T0"
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
 import assert from 'node:assert/strict';
-const out='tools/traversal/qa/caravan-depth/runtime';
+const out=`${process.env.TRAVERSAL_QA_ROOT ?? 'tools/traversal/qa/caravan-depth'}/runtime`;
 await mkdir(out,{recursive:true});
 const browser=await chromium.launch({headless:true});
 const results=[];
@@ -9,7 +9,7 @@ for(const viewport of [{width:1463,height:823},{width:960,height:720}]){
  const context=await browser.newContext({viewport,recordVideo:{dir:out,size:viewport}});
  const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(String(e)));
  page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});
- await page.goto('http://127.0.0.1:5184/tools/traversal/taxonomy-review.html');
+ await page.goto(`http://127.0.0.1:${process.env.TRAVERSAL_QA_PORT ?? 5184}/tools/traversal/taxonomy-review.html`);
  await page.waitForFunction(()=>window.review);
  await page.evaluate(async()=>Promise.all([...document.images].map(i=>i.decode().catch(()=>{}))));
  const prefix=`${viewport.width}`;

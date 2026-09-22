@@ -67,7 +67,8 @@ const LION_TRAVERSAL_LEG_DEFINITIONS: readonly LionTraversalLeg[] = [
       {
         nodeIds: ['lion-first-trial-event', 'lion-first-trial-combat'],
         mode: 'IN_TRAVERSAL_FORK',
-        branchEncounterMode: 'OPTIONAL_INTERRUPT',
+        // Choosing this road commits to its payoff; ordinary road combat stays optional.
+        branchEncounterMode: 'MANDATORY_INTERRUPT',
         forkPresentation: {
           surface: 'TRAVERSAL_OVERLAY',
           keepTraversalMounted: true,

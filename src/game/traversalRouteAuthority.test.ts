@@ -35,7 +35,7 @@ describe('T0 canonical route participation', () => {
     expect(run.graph).toEqual(original.graph);
   });
 
-  it.each(['lion-first-trial-event', 'lion-first-trial-combat'])('records %s without entering it; allows later opt-out and arrival', selected => {
+  it.each(['lion-first-trial-event', 'lion-first-trial-combat'])('records %s without entering it and requires its consequence before arrival', selected => {
     const run = afterAmbush();
     bypassTraversalNode(run, 'T0', 'lion-nomad-crossroads');
     bypassTraversalNode(run, 'T0', 'lion-refugees');
@@ -45,10 +45,12 @@ describe('T0 canonical route participation', () => {
     expect(run.visitedNodeIds).toEqual(visited);
     expect(getAvailableRunNodes(run).map(node => node.id)).toEqual([selected]);
     expect(selectTraversalBranch(run, 'T0', selected)).toBe(false);
-    expect(bypassTraversalNode(run, 'T0', selected)).toBe(true);
+    expect(bypassTraversalNode(run, 'T0', selected)).toBe(false);
+    expect(enterRunNode(run, 'lion-first-refuge')).toBeNull();
+    expect(enterRunNode(run, selected)?.id).toBe(selected);
     expect(getAvailableRunNodes(run).map(node => node.id)).toEqual(['lion-first-refuge']);
     expect(enterRunNode(run, 'lion-first-refuge')?.id).toBe('lion-first-refuge');
-    expect(run.visitedNodeIds).not.toContain(selected);
+    expect(run.visitedNodeIds).toContain(selected);
     expect(run.traversalBranches?.T0).toBe(selected);
   });
 
@@ -82,5 +84,14 @@ describe('T0 canonical route participation', () => {
     const loaded = runStateSchema.parse(JSON.parse(JSON.stringify(run)));
     expect(getAvailableRunNodes(loaded).map(node => node.id)).toEqual(['lion-first-trial-event']);
     expect(loaded.currentNodeId).toBe('lion-opening-ambush');
+  });
+
+  it('preserves an already bypassed branch in a legacy save without replaying its outcome', () => {
+    const run = afterAmbush();
+    run.traversalBranches = { T0: 'lion-first-trial-event' };
+    run.bypassedRouteNodeIds = ['lion-nomad-crossroads', 'lion-refugees', 'lion-first-trial-event'];
+    const loaded = runStateSchema.parse(JSON.parse(JSON.stringify(run)));
+    expect(getAvailableRunNodes(loaded).map(node => node.id)).toEqual(['lion-first-refuge']);
+    expect(loaded.visitedNodeIds).not.toContain('lion-first-trial-event');
   });
 });

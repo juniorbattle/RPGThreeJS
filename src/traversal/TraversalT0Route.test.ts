@@ -77,6 +77,17 @@ describe('TraversalT0Route', () => {
     expect(resolveTraversalBeatCrossing(mandatory, 0, mandatory.progress01, 1)).toBe('TRIGGERED');
   });
 
+  it('engages either chosen branch from either lane, with no optional bypass', () => {
+    const route = resolveTraversalT0Route(t0(), createInitialState().run.graph.nodes);
+    for (const beat of route.beats.filter(beat => beat.branchNodeId)) {
+      expect(beat.category).toBe('MANDATORY_EVENT');
+      expect(beat.interactionPolicy).toBe('MANDATORY_CONFIRM');
+      for (const lane of [0, 1] as const) {
+        expect(resolveTraversalBeatCrossing(beat, .90, .92, lane)).toBe('TRIGGERED');
+      }
+    }
+  });
+
   it('rejects missing canonical RunSystem nodes', () => {
     const state = createInitialState();
     const nodes = state.run.graph.nodes.filter((node) => node.id !== 'lion-nomad-crossroads');
