@@ -131,7 +131,7 @@ export class GameApp {
   private readonly cinematicPlayer = new CinematicPlayer(this.cinematicRegistry);
   private pendingCombatId: string | null = null;
   private pendingChapterBeatId: string | null = null;
-  // Presentation policy only. TravelView stays the production default; Journey is DEV-selected.
+  // Journey/NarrativeStage is the default; TravelView is recovery or an explicit DEV override.
   private readonly campaignPresentation = resolveCampaignPresentation({
     search: window.location.search,
     dev: import.meta.env.DEV,
@@ -142,6 +142,7 @@ export class GameApp {
   });
   private journeyBoundary: JourneyCampaignBoundary | null = null;
   private activeTraversal: TraversalT0Scene | null = null;
+  private traversalArrivalInFlight = false;
   private lastNarrativeCinematicBeat: ResolvedPresentationBeat | undefined;
   private activeNarrativeStage: NarrativeStage | null = null;
   // Latched after a catastrophic Journey failure so the fallback can never recurse into Journey.
@@ -293,10 +294,16 @@ export class GameApp {
 
   private async completeTraversalT0Qa(destinationNodeId: string): Promise<void> {
     const traversal = this.activeTraversal;
-    if (!traversal || traversal.route.destinationNodeId !== destinationNodeId) return;
+    if (!traversal || traversal.session.phase !== 'ARRIVING'
+      || traversal.route.destinationNodeId !== destinationNodeId || this.traversalArrivalInFlight) return;
     // Arrival completes the physical leg, not the next canonical node.
-    // TravelView presents the available destination and owns its explicit confirmation.
-    await this.enterTravel();
+    // The canonical boundary presents authoritative options for explicit player confirmation.
+    this.traversalArrivalInFlight = true;
+    try {
+      await this.enterCampaignPresentation();
+    } finally {
+      this.traversalArrivalInFlight = false;
+    }
   }
 
   private async playTraversalRoadCombat(combatId: string): Promise<boolean> {
@@ -793,7 +800,7 @@ export class GameApp {
     await sceneTransition.run({
       variant: arrivingTraversal ? 'traversal' : 'travel',
       task: async () => {
-        // Complete the physical leg while covered; TravelView retains destination authority.
+        // Legacy/debug or recovery arrival still completes physically under cover, without entry.
         arrivingTraversal?.completeArrival();
         this.showTravel();
         this.saves.saveAuto(this.state);
@@ -813,22 +820,31 @@ export class GameApp {
 
   private async enterJourney(): Promise<void> {
     this.activeNarrativeStage?.prepareGlobalHandoff();
+    const arrivingTraversal = this.activeTraversal?.session.phase === 'ARRIVING' ? this.activeTraversal : null;
     let boundaryPromise: Promise<void> | null = null;
-    await sceneTransition.run({
-      variant: 'travel',
-      task: async () => {
-        this.disposeNarrativeStage();
-        this.travel.close();
-        this.setMode('NARRATIVE');
-        this.canvas.hidden = true;
-        this.chrome.replaceChildren();
-        this.saves.saveAuto(this.state);
-        const boundary = this.ensureJourneyBoundary();
-        boundaryPromise = this.runJourneyBoundary();
-        await Promise.race([boundary.waitUntilSurfaceReady(), boundaryPromise]);
-      },
-    });
-    await boundaryPromise;
+    try {
+      await sceneTransition.run({
+        variant: arrivingTraversal ? 'traversal' : 'travel',
+        task: async () => {
+          // Final physical completion and unmount happen only once the shared cover is opaque.
+          arrivingTraversal?.completeArrival();
+          this.disposeTraversal();
+          this.disposeNarrativeStage();
+          this.travel.close();
+          this.setMode('NARRATIVE');
+          this.canvas.hidden = true;
+          this.chrome.replaceChildren();
+          this.saves.saveAuto(this.state);
+          const boundary = this.ensureJourneyBoundary();
+          boundaryPromise = this.runJourneyBoundary();
+          await Promise.race([boundary.waitUntilSurfaceReady(), boundaryPromise]);
+        },
+      });
+      await boundaryPromise;
+    } catch (error) {
+      // Recovery must start after SceneTransition releases its lock, including pre-ready failure.
+      await this.failJourneyToTravel(error);
+    }
   }
 
   /**
@@ -840,26 +856,19 @@ export class GameApp {
     while (this.mode === 'NARRATIVE') {
       const current = getRunNode(this.state.run);
       const available = getAvailableRunNodes(this.state);
-      let outcome;
-      try {
-        outcome = await this.ensureJourneyBoundary().present({
-          currentNodeId: current?.id ?? null,
-          currentContentId: current?.contentId ?? null,
-          ...(current?.label ? { currentLabel: current.label } : {}),
-          available,
-          secondary: JOURNEY_SECONDARY_ACTIONS,
-          reducedMotion: this.state.settings.reducedGraphics,
-        });
-      } catch (error) {
-        await this.failJourneyToTravel(error);
-        return;
-      }
+      const outcome = await this.ensureJourneyBoundary().present({
+        currentNodeId: current?.id ?? null,
+        currentContentId: current?.contentId ?? null,
+        ...(current?.label ? { currentLabel: current.label } : {}),
+        available,
+        secondary: JOURNEY_SECONDARY_ACTIONS,
+        reducedMotion: this.state.settings.reducedGraphics,
+      });
       if (outcome.kind === 'node' && outcome.id) {
         if (await this.commitRunNodeChoice(outcome.id)) return;
         rejections += 1;
         if (rejections >= JOURNEY_MAX_REJECTIONS) {
-          await this.failJourneyToTravel(new Error('Journey route commit repeatedly rejected.'));
-          return;
+          throw new Error('Journey route commit repeatedly rejected.');
         }
         continue;
       }
@@ -1095,9 +1104,8 @@ export class GameApp {
     if (!resolved) throw new Error(`Missing dialogue '${dialogueId}'.`);
     const { sequence } = resolved;
 
-    // Travel remains the production campaign boundary. Dialogue presentation is
-    // independently owned by NarrativeStage so approved static tableaux are the
-    // production background while dialogue truth and route semantics stay intact.
+    // Dialogue staging also uses NarrativeStage directly, independently of the campaign boundary,
+    // while dialogue truth and route semantics retain their existing owners.
     await this.playNarrativeDialogue(sequence, {
       ...narrativeOptions,
       cinematicId: narrativeOptions.cinematicId

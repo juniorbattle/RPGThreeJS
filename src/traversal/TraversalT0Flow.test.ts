@@ -77,6 +77,16 @@ it.each([
     }
   }
   expect(arrival).toHaveBeenCalledExactlyOnceWith('lion-first-refuge');
+  // The physical exit signals once even while GameApp waits for the covered handoff.
+  expect(scene.session.phase).toBe('ARRIVING');
+  clock.advanceArrival(10);
+  clock.advanceArrival(10);
+  expect(arrival).toHaveBeenCalledOnce();
+  const beforeCompletion = structuredClone(state);
+  scene.completeArrival();
+  expect(scene.session.phase).toBe('COMPLETE');
+  expect(state).toEqual(beforeCompletion);
+  expect(state.run.currentNodeId).not.toBe('lion-first-refuge');
   expect(getAvailableRunNodes(state).map(node => node.id)).toEqual(['lion-first-refuge']);
   expect(handoffs).toEqual(action === 'confirm'
     ? ['lion-opening-ambush', 'lion-nomad-crossroads', 'lion-refugees', branch]

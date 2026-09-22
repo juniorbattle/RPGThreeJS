@@ -207,6 +207,9 @@ describe('CIN-6E-A final visual preproduction system', () => {
 
   it('keeps protected game systems and visual assets unchanged outside authorized presentation-only runtime proofs', () => {
     const authorizedPostLockFiles = new Set([
+      // CAMPAIGN-PRESENTATION-MIGRATION-1 authorizes presentation policy, not route truth/media.
+      'src/journey/JourneyPresentationPolicy.ts',
+      'src/journey/JourneyPresentationPolicy.test.ts',
       'src/combat/vfx/CasterMotionBackCompat.test.ts',
       'src/combat/CombatBridge.ts',
       'src/combat/legacyCombatRuntime.js',
@@ -282,6 +285,8 @@ describe('CIN-6E-A final visual preproduction system', () => {
     ], { cwd: root, encoding: 'utf8' }).trim().split(/\r?\n/u).filter(Boolean);
     expect(protectedDiff.filter((path) => !authorizedPostLockFiles.has(path))).toEqual([]);
     const allowedRuntime = new Set([
+      'src/game/campaignPresentationMigration.test.ts',
+      'src/cinematics/Cin6aPresentation.ts', // Current presentation-policy comment only.
       'src/game/GameApp.ts',
       'src/game/catalog.ts',
       'src/game/content.test.ts',
