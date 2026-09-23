@@ -85,7 +85,11 @@ describe('production T0 orchestration with real scenes, RunSystem and saves', ()
     await vi.runAllTimersAsync();
     expect(app.activeTraversal).toBeNull();
     expect(boundary.present).toHaveBeenCalledOnce();
-    expect(boundary.present.mock.calls[0]![0].presentationOnly).toEqual({ continueLabel: 'Prendre la route' });
+    expect(boundary.present.mock.calls[0]![0].presentationOnly).toEqual({
+      eyebrow: 'Départ',
+      title: 'Vers Refuge du Lion',
+      continueLabel: 'Prendre la route',
+    });
     expect(app.resolveRunNode).not.toHaveBeenCalled();
     expect(app.state).toEqual(state);
     expect(app.saves.loadAuto()?.run.currentNodeId).toBe('lion-audience');

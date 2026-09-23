@@ -1,6 +1,6 @@
 # T0-CAMPAIGN-GRAMMAR-CONSOLIDATION-1
 
-Implementation and verification, 2026-09-22. Changes are **uncommitted, unpushed and unmerged** for operator review.
+Implementation and verification, 2026-09-22. Consolidation and follow-up presentation polish are committed and pushed on the review branch. The branch remains **unmerged** pending operator validation.
 
 ## 1. Starting state and revalidated baseline
 
@@ -34,7 +34,7 @@ Tests verify no `commitRunNodeChoice`, node entry or resolution from departure, 
 
 ## 4. Status HUD architecture and semantics
 
-`selectCampaignStatus(GameState)` returns secured gold, route gold, secured `red_gem`, route `red_gem`, reputation and `getReputationRule()` label. `CampaignStatusHud` only renders that snapshot. GameApp creates one instance; surfaces receive it by injection. Moving the same element between owners prevents duplicates. Owner-aware hide prevents stale disposal from removing the successor's HUD.
+`selectCampaignStatus(GameState)` returns secured gold, route gold, reputation and `getReputationRule()` label. Red gems are intentionally excluded from the campaign HUD because they are primarily a hero-upgrade/combat-progression resource rather than an on-route campaign signal. `CampaignStatusHud` only renders that snapshot. GameApp creates one instance; surfaces receive it by injection. Moving the same element between owners prevents duplicates. Owner-aware hide prevents stale disposal from removing the successor's HUD.
 
 | State | Shared HUD |
 |---|---|
@@ -187,3 +187,17 @@ The operator supplied a screenshot and requested a smaller opaque combat border.
 The healthy civilian is a reused reviewed profile, not dedicated peddler art. The refuge uses a reviewed environment alias; its final gathering/camp painting remains future art. Dense clan staging at narrow sizes represents the party compactly; future spritesheet staging can refine it through the same registry/composition seam. No new images, remasters, animation, music, ambience or SFX were produced. T1–T4 remain future rollout work.
 
 All changes remain on the requested branch and baseline commit. The exact modified/untracked inventory is in `t0-campaign-grammar-final-status.json`; staged paths and the protected diff are empty. The final suite including the CombatStage request passes 2508/2508 tests in 149 files (82.71 seconds), with no failures. **No commit, push or merge was performed.**
+
+
+## 16. Follow-up presentation polish
+
+Operator-reviewed presentation changes were added on the same branch after the original consolidation validation:
+
+- CampaignStatusHud now exposes only **Or** and **Réputation**. Gemmes remain in management/hero-upgrade surfaces.
+- The shared HUD keeps one read-only owner but receives a more Journey-native dark/gold frame, clearer hierarchy and tighter placement.
+- In Traversal the campaign HUD sits in the upper-left safe zone; the route-context block is offset beneath it so the two surfaces do not compete.
+- The departure agency copy is destination-led: **Départ → Vers [destination] → Prendre la route**.
+- Persistent **Voie haute / Voie basse** text is removed from normal play. Lane changing remains functional through discreet up/down controls and the existing keyboard/lane logic.
+- TraversalOptionalConsequencePolicy is intentionally unchanged.
+
+These follow-up edits require a final local TypeScript/build/test/browser pass before merge; the original 2508/2508 suite result predates this presentation-only follow-up.

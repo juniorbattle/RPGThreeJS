@@ -12,10 +12,12 @@ it('reads secured and route resources separately and refreshes without mutating 
   const before = structuredClone(state);
   const hud = new CampaignStatusHud(() => selectCampaignStatus(state));
   hud.show(document.body);
-  expect(selectCampaignStatus(state)).toEqual({ gold: 150, routeGold: 40, gems: 2, routeGems: 1,
+  expect(selectCampaignStatus(state)).toEqual({ gold: 150, routeGold: 40,
     reputation: 56, reputationLabel: 'Neutre' });
   expect(hud.element.textContent).toContain('+40 route');
-  expect(hud.element.textContent).toContain('+1 route');
+  expect(hud.element.textContent).not.toContain('Gemmes');
+  expect(hud.element.textContent).not.toContain('+1 route');
+  expect(hud.element.querySelectorAll('.campaign-status-hud__item')).toHaveLength(2);
   expect(state).toEqual(before);
   state.reputation = 38; state.gold = 151; state.run.temporaryLoot.gold = 0;
   hud.refresh();

@@ -91,6 +91,10 @@ describe('TraversalT0Scene', () => {
     (scene as unknown as { advance(seconds: number): void }).advance(5);
     expect(document.querySelector<HTMLElement>('[data-traversal-event-panel]')!.hidden).toBe(true);
     expect(document.querySelectorAll('[data-traversal-lane]')).toHaveLength(2);
+    expect(document.querySelector('.traversal-lanes')?.textContent).not.toContain('Voie haute');
+    expect(document.querySelector('.traversal-lanes')?.textContent).not.toContain('Voie basse');
+    expect(document.querySelector('.traversal-lanes')?.textContent).toContain('▲');
+    expect(document.querySelector('.traversal-lanes')?.textContent).toContain('▼');
     expect(document.querySelector('.traversal-t0')?.getAttribute('data-lane-count')).toBe('2');
     expect(document.querySelector('.traversal-vehicle img')?.getAttribute('src')).toContain('/vehicle/traversal-caravan/');
     expect(document.querySelector('.traversal-vehicle')?.getAttribute('data-enclosed-cabin')).toBe('true');

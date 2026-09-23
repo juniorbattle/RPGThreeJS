@@ -47,11 +47,13 @@ describe('journey campaign boundary', () => {
     const before = structuredClone(state);
     const boundary = createBoundary();
     const pending = boundary.present({ currentNodeId: 'lion-audience', available,
-      presentationOnly: { continueLabel: 'Prendre la route' } });
+      presentationOnly: { eyebrow: 'Départ', title: 'Vers Refuge du Lion', continueLabel: 'Prendre la route' } });
     await flush();
     expect(document.querySelector<HTMLElement>('.narrative-stage')?.dataset.narrativeTableau)
       .toBe('AUDIENCE_ROAD_DEPARTURE_TABLEAU');
     expect(document.querySelectorAll('.narrative-cast__actor')).toHaveLength(3);
+    expect(document.querySelector('.journey-overlay__eyebrow')?.textContent).toBe('Départ');
+    expect(document.querySelector('.journey-overlay__title')?.textContent).toBe('Vers Refuge du Lion');
     expect(document.querySelector('[data-journey-continue]')?.textContent).toContain('Prendre la route');
     expect(document.querySelectorAll('[data-journey-choice]')).toHaveLength(0);
     click('[data-journey-continue]');
