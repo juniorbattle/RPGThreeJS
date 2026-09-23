@@ -38,11 +38,6 @@ export class CampaignStatusHud {
     const value = this.snapshot();
     this.element.replaceChildren();
 
-    const crest = document.createElement('span');
-    crest.className = 'campaign-status-hud__crest';
-    crest.setAttribute('aria-hidden', 'true');
-    crest.textContent = '♜';
-
     const items = document.createElement('div');
     items.className = 'campaign-status-hud__items';
 
@@ -75,6 +70,6 @@ export class CampaignStatusHud {
 
     appendItem('gold', 'Or', String(value.gold), value.routeGold);
     appendItem('reputation', 'Réputation', `${value.reputation} · ${value.reputationLabel}`);
-    this.element.append(crest, items);
+    this.element.append(items);
   }
 }

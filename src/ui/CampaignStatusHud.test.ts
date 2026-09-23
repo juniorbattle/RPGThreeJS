@@ -18,6 +18,8 @@ it('reads secured and route resources separately and refreshes without mutating 
   expect(hud.element.textContent).not.toContain('Gemmes');
   expect(hud.element.textContent).not.toContain('+1 route');
   expect(hud.element.querySelectorAll('.campaign-status-hud__item')).toHaveLength(2);
+  expect(hud.element.querySelector('.campaign-status-hud__crest')).toBeNull();
+  expect(hud.element.children).toHaveLength(1);
   expect(state).toEqual(before);
   state.reputation = 38; state.gold = 151; state.run.temporaryLoot.gold = 0;
   hud.refresh();

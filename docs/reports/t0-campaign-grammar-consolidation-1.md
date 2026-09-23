@@ -201,3 +201,17 @@ Operator-reviewed presentation changes were added on the same branch after the o
 - TraversalOptionalConsequencePolicy is intentionally unchanged.
 
 These follow-up edits require a final local TypeScript/build/test/browser pass before merge; the original 2508/2508 suite result predates this presentation-only follow-up.
+
+## Presentation polish 2
+
+- Removed the standalone decorative crest column. The shared CampaignStatusHud now has two compact segments, Or and Réputation, with route gold shown only when non-zero. Gemmes remain absent.
+- In Journey, the smaller dark/navy HUD stays in the upper-left safe zone and clears the departure agency panel and the staged cast in the 1366×768 capture.
+- In Traversal, the HUD and route context share a 310 px left alignment, related navy/gold treatment and an 8 px vertical gap. The route context is less opaque. The next-stop readout stays on the right.
+- The temporary encounter panel is narrower, has less vertical padding and a softer surface/border. The merchant encounter capture retains readable text and clear Rencontrer/Ignorer actions. Lane controls and selectors remain unchanged.
+- TraversalOptionalConsequencePolicy and all consequence semantics are intentionally unchanged. The browser smoke confirmed one Traversal mount, no TravelView mount, maximum one HUD, and the HUD hidden during merchant dialogue and restored afterward.
+
+Validation: focused CampaignStatusHud/TraversalT0Scene/TraversalT0Flow suites **15/15 pass**; `node node_modules/typescript/bin/tsc --noEmit` **pass**; `npm run build` **pass** (existing large-chunk advisory); `git diff --check` **pass**. Full Vitest suite: **2507/2508 pass, 148/149 files pass**. Its sole failure is `tools/cinematics/cin6ea_preproduction.test.mjs`'s protected-runtime diff assertion: relative to its fixed baseline `57ba69c`, it flags four files already committed before this pass (`NarrativePresentationPlans.ts`, `TraversalOptionalConsequencePolicy.ts`, `campaignGrammarConsolidation.test.ts`, `campaignGrammarContent.ts`). This polish changes none of those paths; the guard was not weakened.
+
+Browser QA (built preview): [departure 1366×768](t0-campaign-grammar-browser/presentation-polish-2/departure-1366.png), [normal Traversal 1366×768](t0-campaign-grammar-browser/presentation-polish-2/traversal-1366.png), [optional merchant encounter 1366×768](t0-campaign-grammar-browser/presentation-polish-2/merchant-encounter-1366.png), [normal Traversal 540×800](t0-campaign-grammar-browser/presentation-polish-2/traversal-540.png). The four captures show no HUD/encounter collision; the world remains the dominant surface. Machine smoke evidence: `presentation-polish-2/result.json`.
+
+Final git status after the polish commit and branch push: clean working tree on `t0-campaign-grammar-consolidation-1`; no merge.

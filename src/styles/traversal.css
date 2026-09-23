@@ -148,10 +148,14 @@
 .traversal-hud, .traversal-lanes, .traversal-toast { position: absolute; z-index: 45; }
 .traversal-hud { top: 0; padding: 20px; pointer-events: none; }
 .traversal-hud p, .traversal-hud h1 { margin: 0; }
-.traversal-hud--context { top: 92px; left: 0; display: flex; gap: 12px; width: 31%; background: linear-gradient(110deg,#061017c4,transparent); }
+.traversal-hud--context {
+  top: 82px; left: 20px; display: flex; gap: 12px; width: 310px; padding: 8px 12px;
+  border-left: 1px solid rgba(218,184,105,.28);
+  background: linear-gradient(90deg,rgba(6,16,23,.59),rgba(6,16,23,.2));
+}
 .traversal-hud__sigil { display: none; }
 .traversal-hud--context p { font: 600 9px Cinzel,serif; letter-spacing: .15em; color: #e1c383; }
-.traversal-hud--context h1 { margin: 4px 0; font: 600 clamp(16px,1.65vw,28px) Cinzel,serif; }
+.traversal-hud--context h1 { margin: 3px 0; font: 600 clamp(16px,1.45vw,21px) Cinzel,serif; }
 .traversal-hud--context div > span { font: 11px Inter,sans-serif; color: #e2dbca; }
 .traversal-hud--progress { right: 0; width: 26%; text-align: right; background: linear-gradient(250deg,#061017d9,transparent); }
 .traversal-hud--progress p { margin: 8px 0 4px; font: 10px Cinzel,serif; color: #c9bd9f; }
@@ -177,9 +181,9 @@
 .traversal-lanes button:disabled { cursor: default; }
 .traversal-event-panel {
   position: absolute; top: 15px; left: 50%; z-index: 45; transform: translateX(-50%);
-  display: grid; grid-template-columns: 30px minmax(0,1fr); align-items: center; gap: 12px;
-  width: 36%; padding: 14px 16px; border: 1px solid #c9ac6d90; border-radius: 6px;
-  background: linear-gradient(125deg,#091722f5,#142127ee); box-shadow: 0 8px 22px #0004;
+  display: grid; grid-template-columns: 28px minmax(0,1fr); align-items: center; gap: 10px;
+  width: 32%; padding: 10px 13px; border: 1px solid #c9ac6d66; border-radius: 6px;
+  background: linear-gradient(125deg,#091722e9,#142127df); box-shadow: 0 7px 19px #0004;
   animation: traversal-panel-reveal .24s ease-out both;
 }
 .traversal-event-panel figure { display: none; }
@@ -187,7 +191,7 @@
 .traversal-event-panel small { display: block; font: 600 9px Cinzel,serif; color: #e1c383; letter-spacing: .06em; }
 .traversal-event-panel strong { display: block; margin-top: 3px; font: 600 clamp(14px,1.2vw,20px) Cinzel,serif; }
 .traversal-event-panel p { margin: 5px 0 0; font: 11px/1.45 Inter,sans-serif; color: #e2dbca; }
-.traversal-event-panel__actions { display: flex; gap: 10px; margin-top: 12px; }
+.traversal-event-panel__actions { display: flex; gap: 10px; margin-top: 9px; }
 .traversal-event-panel button { padding: 8px 16px; border: 1px solid #d9ba78; border-radius: 4px; background: #cfaf6b; color: #17202a; font: 600 12px Inter,sans-serif; cursor: pointer; }
 .traversal-event-panel [data-traversal-skip] { background: transparent; color: #e2dbca; border-color: #e2dbca70; }
 .traversal-event-panel button:focus-visible, .traversal-lanes button:focus-visible { outline: 2px solid #fff6d6; outline-offset: 3px; }
@@ -198,9 +202,9 @@
 @keyframes traversal-toast { 0%,100% { opacity: 0; } 12%,75% { opacity: 1; } }
 @media (max-width: 1000px) {
   .traversal-hud { padding: 12px; }
-  .traversal-hud--context { width: 46%; }
+  .traversal-hud--context { left: 12px; top: 78px; width: min(310px,calc(100vw - 24px)); padding: 8px 10px; }
   .traversal-hud--progress { width: 36%; }
-  .traversal-event-panel { top: 86px; width: min(480px,62vw); }
+  .traversal-event-panel { top: 162px; width: min(440px,62vw); }
   .traversal-t0 { --vehicle-height: min(24vh,16vw); }
   .traversal-lanes { left: 10px; width: 28px; }
   .traversal-lanes button { width: 28px; height: 28px; }
@@ -210,7 +214,8 @@
   .traversal-hud--context h1 { font-size: 14px; }
   .traversal-hud--progress p { margin-top: 0; }
   .traversal-route-rail { width: 100px; }
-  .traversal-event-panel { top: 74px; width: calc(100% - 32px); }
+  .traversal-hud--context { top: 70px; }
+  .traversal-event-panel { top: 118px; width: calc(100% - 32px); }
   .traversal-lanes { left: 8px; width: 26px; gap: 6px; }
   .traversal-lanes button { width: 26px; height: 26px; }
 }
