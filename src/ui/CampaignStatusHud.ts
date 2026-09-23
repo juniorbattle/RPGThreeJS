@@ -5,8 +5,6 @@ export function selectCampaignStatus(state: GameState) {
   return {
     gold: state.gold,
     routeGold: state.run.temporaryLoot.gold,
-    gems: state.inventory.materials.red_gem ?? 0,
-    routeGems: state.run.temporaryLoot.inventory.materials.red_gem ?? 0,
     reputation: state.reputation,
     reputationLabel: getReputationRule(state.reputation).label,
   };
@@ -39,22 +37,44 @@ export class CampaignStatusHud {
   refresh(): void {
     const value = this.snapshot();
     this.element.replaceChildren();
-    for (const [label, secured, route] of [
-      ['Or', value.gold, value.routeGold], ['Gemmes', value.gems, value.routeGems],
-      ['Réputation', `${value.reputation} · ${value.reputationLabel}`, 0],
-    ] as const) {
+
+    const crest = document.createElement('span');
+    crest.className = 'campaign-status-hud__crest';
+    crest.setAttribute('aria-hidden', 'true');
+    crest.textContent = '♜';
+
+    const items = document.createElement('div');
+    items.className = 'campaign-status-hud__items';
+
+    const appendItem = (kind: 'gold' | 'reputation', label: string, amount: string, route = 0) => {
       const item = document.createElement('div');
+      item.className = `campaign-status-hud__item campaign-status-hud__item--${kind}`;
+
+      const icon = document.createElement('span');
+      icon.className = 'campaign-status-hud__icon';
+      icon.setAttribute('aria-hidden', 'true');
+      icon.textContent = kind === 'gold' ? '✦' : '♜';
+
+      const copy = document.createElement('span');
+      copy.className = 'campaign-status-hud__copy';
       const name = document.createElement('small');
       name.textContent = label;
-      const amount = document.createElement('span');
-      amount.textContent = String(secured);
-      item.append(name, amount);
+      const amountNode = document.createElement('strong');
+      amountNode.textContent = amount;
+      copy.append(name, amountNode);
+
       if (route) {
         const pending = document.createElement('em');
         pending.textContent = `+${route} route`;
-        item.append(pending);
+        copy.append(pending);
       }
-      this.element.append(item);
-    }
+
+      item.append(icon, copy);
+      items.append(item);
+    };
+
+    appendItem('gold', 'Or', String(value.gold), value.routeGold);
+    appendItem('reputation', 'Réputation', `${value.reputation} · ${value.reputationLabel}`);
+    this.element.append(crest, items);
   }
 }

@@ -148,7 +148,7 @@
 .traversal-hud, .traversal-lanes, .traversal-toast { position: absolute; z-index: 45; }
 .traversal-hud { top: 0; padding: 20px; pointer-events: none; }
 .traversal-hud p, .traversal-hud h1 { margin: 0; }
-.traversal-hud--context { left: 0; display: flex; gap: 12px; width: 31%; background: linear-gradient(110deg,#061017d9,transparent); }
+.traversal-hud--context { top: 92px; left: 0; display: flex; gap: 12px; width: 31%; background: linear-gradient(110deg,#061017c4,transparent); }
 .traversal-hud__sigil { display: none; }
 .traversal-hud--context p { font: 600 9px Cinzel,serif; letter-spacing: .15em; color: #e1c383; }
 .traversal-hud--context h1 { margin: 4px 0; font: 600 clamp(16px,1.65vw,28px) Cinzel,serif; }
@@ -160,10 +160,21 @@
 .traversal-route-rail { margin-left: auto; width: 160px; height: 4px; background: #e1c38330; border-radius: 2px; overflow: hidden; }
 .traversal-route-rail i { display: block; width: calc(var(--route-progress) * 100%); height: 100%; background: #e1c383; }
 .traversal-route-rail span, .traversal-route-rail b { display: none; }
-.traversal-lanes { top: calc(65% - 18px); left: 0; display: grid; gap: calc(16vh - 36px); width: clamp(96px,10vw,146px); }
-.traversal-lanes button { min-height: 36px; padding: 6px 12px; border: 1px solid #e6cb8144; border-left: 0; border-radius: 0 5px 5px 0; background: #0b151bbf; color: #e2d6bd; font: 600 11px Cinzel,serif; text-align: left; cursor: pointer; }
-.traversal-lanes button.is-active { border-color: #e6cb81a0; background: #55482ded; color: #fff2cc; }
-.traversal-lanes button:disabled { cursor: default; opacity: 1; }
+.traversal-lanes {
+  top: 50%; left: 14px; display: grid; gap: 8px; width: 30px; transform: translateY(-50%);
+  opacity: .32; transition: opacity .2s ease;
+}
+.traversal-lanes:hover, .traversal-lanes:focus-within { opacity: .92; }
+.traversal-lanes button {
+  width: 30px; height: 30px; padding: 0; display: grid; place-items: center;
+  border: 1px solid rgba(230,203,129,.34); border-radius: 50%;
+  background: rgba(6,16,23,.58); color: rgba(245,226,179,.74);
+  box-shadow: 0 5px 16px rgba(0,0,0,.2), inset 0 1px rgba(255,244,214,.06);
+  font: 700 9px/1 Inter,sans-serif; text-align: center; cursor: pointer; backdrop-filter: blur(4px);
+}
+.traversal-lanes button.is-active { border-color: rgba(230,203,129,.2); background: rgba(6,16,23,.32); color: rgba(245,226,179,.28); }
+.traversal-lanes button:not(.is-active):hover { border-color: rgba(242,211,140,.72); color: #fff0c8; background: rgba(31,39,40,.82); }
+.traversal-lanes button:disabled { cursor: default; }
 .traversal-event-panel {
   position: absolute; top: 15px; left: 50%; z-index: 45; transform: translateX(-50%);
   display: grid; grid-template-columns: 30px minmax(0,1fr); align-items: center; gap: 12px;
@@ -191,8 +202,8 @@
   .traversal-hud--progress { width: 36%; }
   .traversal-event-panel { top: 86px; width: min(480px,62vw); }
   .traversal-t0 { --vehicle-height: min(24vh,16vw); }
-  .traversal-lanes { width: 90px; }
-  .traversal-lanes button { font-size: 9px; padding-left: 8px; }
+  .traversal-lanes { left: 10px; width: 28px; }
+  .traversal-lanes button { width: 28px; height: 28px; }
 }
 @media (max-width: 620px) {
   .traversal-hud--context p, .traversal-hud--context div > span { display: none; }
@@ -200,8 +211,8 @@
   .traversal-hud--progress p { margin-top: 0; }
   .traversal-route-rail { width: 100px; }
   .traversal-event-panel { top: 74px; width: calc(100% - 32px); }
-  .traversal-lanes { width: 64px; }
-  .traversal-lanes button { min-height: 30px; font-size: 8px; }
+  .traversal-lanes { left: 8px; width: 26px; gap: 6px; }
+  .traversal-lanes button { width: 26px; height: 26px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .traversal-t0 *, .traversal-t0 *::before, .traversal-t0 *::after { animation: none !important; transition-duration: .001ms !important; }

@@ -55,7 +55,7 @@ export interface JourneyBoundaryRequest {
   secondary?: readonly JourneySecondaryActionPresentation[];
   reducedMotion?: boolean;
   /** Local continuation has no canonical route agency, even on a single-node edge. */
-  presentationOnly?: { continueLabel: string };
+  presentationOnly?: { eyebrow?: string; title?: string; continueLabel: string };
 }
 
 type JourneyPresentationSession = Pick<
@@ -204,8 +204,13 @@ export class JourneyCampaignBoundary {
       || (presentationBeat?.mode === 'TRAVEL_STILL' && !presentationBeat.travelStillSource)
       || (presentationBeat?.mode === 'CINEMATIC_HOLD' && !playId && !fallbackBackdrop);
     const commit = await session.requestAgency(request.presentationOnly
-      ? { mode: 'single', choices: [], eyebrow: 'Départ', title: 'La compagnie prend la route',
-        continueLabel: request.presentationOnly.continueLabel }
+      ? {
+        mode: 'single',
+        choices: [],
+        eyebrow: request.presentationOnly.eyebrow ?? 'Départ',
+        title: request.presentationOnly.title ?? 'Prochaine destination',
+        continueLabel: request.presentationOnly.continueLabel,
+      }
       : plan.presentation);
     if (commit.kind === 'secondary' && session.frozenSurface) this.captureBackdrop(session.frozenSurface);
     const trace = [...session.stateTrace];

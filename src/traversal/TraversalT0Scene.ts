@@ -256,7 +256,7 @@ export class TraversalT0Scene {
       <section class="traversal-event-panel" data-traversal-event-panel aria-live="polite">
         <figure><img data-traversal-event-portrait alt=""></figure>
         <span class="traversal-event-panel__marker" data-traversal-event-marker>•••</span>
-        <div><small data-traversal-event-kind>Route ouverte</small><strong data-traversal-event-title>En route</strong><p data-traversal-event-hint>Surveillez les deux voies.</p>
+        <div><small data-traversal-event-kind>Route ouverte</small><strong data-traversal-event-title>En route</strong><p data-traversal-event-hint>Surveillez la route.</p>
           <div class="traversal-event-panel__actions" hidden><button type="button" data-traversal-confirm>Confirmer</button><button type="button" data-traversal-skip>Passer</button></div>
         </div>
       </section>
@@ -264,8 +264,8 @@ export class TraversalT0Scene {
         <div class="traversal-route-rail" aria-hidden="true"><i></i><span></span><span></span><span></span><span></span><b></b></div>
         <p>Prochain arrêt</p><strong data-traversal-next>${escapeHtml(this.route.destinationLabel)}</strong><span data-traversal-distance>${this.route.distanceKm.toFixed(1)} km</span>
       </aside>
-      <nav class="traversal-lanes" aria-label="Voie actuelle">
-        ${([0, 1] as const).map((lane) => `<button type="button" data-traversal-lane="${lane}">${laneLabel(lane)}</button>`).join('')}
+      <nav class="traversal-lanes" aria-label="Changer de trajectoire">
+        ${([0, 1] as const).map((lane) => `<button type="button" data-traversal-lane="${lane}" aria-label="${lane === 0 ? 'Monter' : 'Descendre'}"><span aria-hidden="true">${lane === 0 ? '▲' : '▼'}</span></button>`).join('')}
       </nav>
       <div class="traversal-toast" role="status" aria-live="polite"></div>
       <div class="traversal-pickup-feedback" role="status" aria-live="polite"></div>

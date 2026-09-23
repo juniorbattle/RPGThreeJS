@@ -295,11 +295,16 @@ export class GameApp {
           // The resolved origin is durable; watching the departure is intentionally not persisted.
           this.saves.saveAuto(this.state);
           const boundary = this.ensureJourneyBoundary();
+          const destinationLabel = getRunNode(this.state.run, leg.destinationNodeId)?.label ?? 'Prochaine destination';
           departure = boundary.present({
             currentNodeId: leg.originNodeId,
             available: getAvailableRunNodes(this.state),
             reducedMotion: this.state.settings.reducedGraphics,
-            presentationOnly: { continueLabel: 'Prendre la route' },
+            presentationOnly: {
+              eyebrow: 'Départ',
+              title: `Vers ${destinationLabel}`,
+              continueLabel: 'Prendre la route',
+            },
           });
           await Promise.race([boundary.waitUntilSurfaceReady(), departure]);
         } });
