@@ -6,6 +6,8 @@
   --campaign-gold-light: #f3d99c;
   --campaign-ivory: #fff1d2;
   --campaign-muted: #c9c6bf;
+  --campaign-title-font: 'Alegreya', Georgia, serif;
+  --campaign-data-font: 'Source Sans 3', Inter, system-ui, sans-serif;
 }
 
 .campaign-ui-frame {
@@ -22,8 +24,8 @@
 .campaign-ui-frame__corner {
   position: absolute;
   z-index: 2;
-  width: 27px;
-  height: 27px;
+  width: 23px;
+  height: 23px;
   pointer-events: none;
   background: url('./frame-corner.svg') center / contain no-repeat;
 }
@@ -31,8 +33,8 @@
 .campaign-ui-frame__corner--tr { top: -5px; right: -5px; transform: scaleX(-1); }
 .campaign-ui-frame__corner--bl { bottom: -5px; left: -5px; transform: scaleY(-1); }
 .campaign-ui-frame__corner--br { bottom: -5px; right: -5px; transform: rotate(180deg); }
-.campaign-ui-frame--compact .campaign-ui-frame__corner { width: 23px; height: 23px; }
-.campaign-ui-frame--hero .campaign-ui-frame__corner { width: 33px; height: 33px; }
+.campaign-ui-frame--compact .campaign-ui-frame__corner { width: 19px; height: 19px; }
+.campaign-ui-frame--hero .campaign-ui-frame__corner { width: 27px; height: 27px; }
 
 .campaign-ui-icon { display: inline-grid; place-items: center; flex: none; width: 28px; height: 28px; color: var(--campaign-gold); filter: drop-shadow(0 1px 3px #000a); }
 .campaign-ui-icon svg { display: block; width: 100%; height: 100%; }
@@ -46,7 +48,7 @@
   border: 1px solid var(--campaign-gold);
   border-radius: 2px;
   box-shadow: inset 0 0 0 2px rgba(9, 17, 26, .7), inset 0 0 0 3px rgba(255, 229, 171, .19), 0 4px 15px #0007;
-  font: 600 12px/1.2 Cinzel, serif;
+  font: 600 12px/1.2 var(--campaign-title-font);
   letter-spacing: .08em;
   text-transform: uppercase;
   cursor: pointer;

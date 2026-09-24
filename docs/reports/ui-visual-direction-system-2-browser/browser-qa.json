@@ -1,0 +1,205 @@
+{
+  "errors": [],
+  "captures": {
+    "departure": {
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 438,
+        "height": 64
+      },
+      "destination": null,
+      "encounter": null,
+      "departure": {
+        "x": 986,
+        "y": 676,
+        "width": 430,
+        "height": 110
+      },
+      "world": null
+    },
+    "normal": {
+      "hud": {
+        "x": 20,
+        "y": 18,
+        "width": 438,
+        "height": 64
+      },
+      "destination": {
+        "x": 1196,
+        "y": 18,
+        "width": 224,
+        "height": 68.640625
+      },
+      "encounter": null,
+      "departure": null,
+      "world": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 810
+      }
+    },
+    "merchant": {
+      "hud": {
+        "x": 20,
+        "y": 18,
+        "width": 438,
+        "height": 64
+      },
+      "destination": {
+        "x": 1196,
+        "y": 18,
+        "width": 224,
+        "height": 68.640625
+      },
+      "encounter": {
+        "x": 510,
+        "y": 91,
+        "width": 420,
+        "height": 109.53125
+      },
+      "departure": null,
+      "world": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 810
+      }
+    },
+    "narrow": {
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 56
+      },
+      "destination": {
+        "x": 405,
+        "y": 74,
+        "width": 205,
+        "height": 62.4375
+      },
+      "encounter": {
+        "x": 100,
+        "y": 145,
+        "width": 420,
+        "height": 107.53125
+      },
+      "departure": null,
+      "world": {
+        "x": 0,
+        "y": 0,
+        "width": 620,
+        "height": 780
+      }
+    },
+    "mobile": {
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 56
+      },
+      "destination": {
+        "x": 175,
+        "y": 74,
+        "width": 205,
+        "height": 62.4375
+      },
+      "encounter": {
+        "x": 10,
+        "y": 145,
+        "width": 370,
+        "height": 107.53125
+      },
+      "departure": null,
+      "world": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      }
+    }
+  },
+  "checks": {
+    "typography": {
+      "title": "Alegreya, Georgia, serif",
+      "label": "Alegreya, Georgia, serif",
+      "value": "\"Source Sans 3\", Inter, system-ui, sans-serif",
+      "fontReady": true
+    },
+    "hudCompactness": {
+      "before": {
+        "width": 520,
+        "height": 76
+      },
+      "after": {
+        "width": 438,
+        "height": 64
+      }
+    },
+    "departureCompactness": {
+      "before": {
+        "width": 510,
+        "height": 166.09375
+      },
+      "after": {
+        "width": 430,
+        "height": 110
+      }
+    },
+    "departureText": "DÉPART\n\nVERS REFUGE DU LION\nPRENDRE LA ROUTE",
+    "routeGoldText": "OR\n150\n+40 route\nRÉPUTATION\n30 · Méfiant",
+    "destinationCompactness": {
+      "before": {
+        "width": 270,
+        "height": 94
+      },
+      "after": {
+        "width": 224,
+        "height": 68.640625
+      }
+    },
+    "encounterCompactness": {
+      "before": {
+        "width": 460,
+        "height": 148.390625
+      },
+      "after": {
+        "width": 420,
+        "height": 109.53125
+      }
+    },
+    "encounterText": "RENCONTRE FACULTATIVE\nMarchande itinérante\n\nUne marchande a installé son étal à l’abri des arbres.\n\nRENCONTRER\nIGNORER",
+    "narrowHudCompactness": {
+      "before": {
+        "width": 360,
+        "height": 60
+      },
+      "after": {
+        "width": 340,
+        "height": 56
+      }
+    },
+    "narrowEncounterCompactness": {
+      "before": {
+        "width": 600,
+        "height": 135.390625
+      },
+      "after": {
+        "width": 420,
+        "height": 107.53125
+      }
+    },
+    "mobilePanelFit": {
+      "panelRight": 380,
+      "contentScrollWidth": 308,
+      "contentClientWidth": 308,
+      "actionsRight": 367,
+      "fits": true
+    },
+    "ignoreReturnedToRoad": true,
+    "pass": true
+  }
+}

@@ -16,13 +16,17 @@
     "vfx:validate-published": "node tools/vfx/validate-published-registry.mjs"
   },
   "dependencies": {
+    "@fontsource/alegreya": "5.1.1",
     "@fontsource/cinzel": "5.1.1",
     "@fontsource/inter": "5.1.1",
+    "@fontsource/source-sans-3": "5.1.1",
     "@fontsource/vt323": "5.1.1",
     "three": "0.160.0",
     "zod": "3.24.2"
   },
   "devDependencies": {
+    "@fontsource/cormorant-garamond": "5.1.1",
+    "@fontsource/marcellus": "5.1.1",
     "@types/three": "0.160.0",
     "happy-dom": "^20.11.0",
     "playwright": "^1.62.1",

@@ -312,27 +312,27 @@
 
 /* Compact campaign wayfinding and encounter chrome; scenery remains the primary surface. */
 .traversal-hud--context { display: none; }
-.traversal-hud--progress.campaign-ui-frame { position: absolute; top: 20px; right: 24px; width: 270px; min-height: 76px; padding: 12px 17px; display: grid; grid-template-columns: 37px minmax(0,1fr); gap: 10px; align-items: center; text-align: left; }
-.traversal-hud__destination-icon .campaign-ui-icon { width: 35px; height: 35px; }
-.traversal-hud--progress p { margin: 0 0 3px; color: var(--campaign-gold); font: 600 10px Cinzel, serif; letter-spacing: .1em; text-transform: uppercase; }
-.traversal-hud--progress strong { display: block; color: var(--campaign-ivory); font: 600 15px/1.2 Cinzel, serif; white-space: normal; }
-.traversal-hud--progress [data-traversal-distance] { color: var(--campaign-muted); font: 12px Inter, sans-serif; }
-.traversal-route-rail { grid-column: 1 / -1; grid-row: 2; width: 100%; height: 2px; margin: 3px 0 -2px; background: #c29a5c44; }
+.traversal-hud--progress.campaign-ui-frame { position: absolute; top: 18px; right: 20px; width: 224px; min-height: 64px; padding: 7px 11px; display: grid; grid-template-columns: 25px minmax(0,1fr); gap: 6px; align-items: center; text-align: left; }
+.traversal-hud__destination-icon .campaign-ui-icon { width: 25px; height: 25px; }
+.traversal-hud--progress p { margin: 0 0 1px; color: var(--campaign-gold); font: 600 9px/1.1 var(--campaign-title-font); letter-spacing: .08em; text-transform: uppercase; }
+.traversal-hud--progress strong { display: block; color: var(--campaign-ivory); font: 600 15px/1.05 var(--campaign-title-font); white-space: normal; }
+.traversal-hud--progress [data-traversal-distance] { color: var(--campaign-muted); font: 400 11px/1.1 var(--campaign-data-font); }
+.traversal-route-rail { grid-column: 1 / -1; grid-row: 2; width: 100%; height: 1px; margin: 0 0 -2px; background: #c29a5c44; }
 .traversal-hud__destination-copy { min-width: 0; }
-.traversal-event-panel.campaign-ui-frame { position: absolute; top: 112px; width: min(460px, calc(100vw - 48px)); padding: 14px 20px; grid-template-columns: 35px minmax(0,1fr); gap: 12px; }
-.traversal-event-panel__marker { width: 35px; height: 35px; border: 0; border-radius: 0; }
-.traversal-event-panel__marker .campaign-ui-icon { width: 35px; height: 35px; }
-.traversal-event-panel small { color: var(--campaign-gold); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
-.traversal-event-panel strong { color: var(--campaign-ivory); font-size: clamp(16px, 1.4vw, 21px); }
-.traversal-event-panel p { color: var(--campaign-muted); font-size: 12px; }
-.traversal-event-panel__actions { gap: 10px; margin-top: 12px; }
-.traversal-event-panel button.campaign-ui-button { flex: 1; min-height: 40px; padding: 9px 12px; font: 600 11px Cinzel, serif; letter-spacing: .06em; }
+.traversal-event-panel.campaign-ui-frame { position: absolute; top: 91px; width: min(420px, calc(100vw - 40px)); padding: 9px 14px; grid-template-columns: 27px minmax(0,1fr); gap: 9px; }
+.traversal-event-panel__marker { width: 27px; height: 27px; border: 0; border-radius: 0; }
+.traversal-event-panel__marker .campaign-ui-icon { width: 27px; height: 27px; }
+.traversal-event-panel small { color: var(--campaign-gold); font: 600 9px/1.1 var(--campaign-title-font); letter-spacing: .1em; text-transform: uppercase; }
+.traversal-event-panel strong { color: var(--campaign-ivory); font: 600 19px/1.1 var(--campaign-title-font); }
+.traversal-event-panel p { margin-top: 3px; color: var(--campaign-muted); font: 400 11px/1.25 var(--campaign-data-font); }
+.traversal-event-panel__actions { gap: 8px; margin-top: 7px; }
+.traversal-event-panel button.campaign-ui-button { flex: 1; min-height: 32px; padding: 5px 9px; font: 600 11px/1.1 var(--campaign-title-font); letter-spacing: .06em; }
 .traversal-event-panel [data-traversal-skip].campaign-ui-button--secondary { background: linear-gradient(#172b40, #071522); color: var(--campaign-ivory); border-color: var(--campaign-brass); }
 .traversal-event-panel[data-interaction-policy='MANDATORY_CONFIRM'] { border-color: var(--campaign-brass); }
 @media (max-width: 700px) {
-  .traversal-hud--progress.campaign-ui-frame { top: 80px; right: 10px; width: min(225px, calc(100vw - 20px)); min-height: 60px; padding: 8px 12px; grid-template-columns: 25px minmax(0,1fr); gap: 7px; }
-  .traversal-hud__destination-icon .campaign-ui-icon { width: 25px; height: 25px; }
+  .traversal-hud--progress.campaign-ui-frame { top: 74px; right: 10px; width: min(205px, calc(100vw - 20px)); min-height: 56px; padding: 6px 10px; grid-template-columns: 21px minmax(0,1fr); gap: 5px; }
+  .traversal-hud__destination-icon .campaign-ui-icon { width: 21px; height: 21px; }
   .traversal-hud--progress p { font-size: 8px; }
-  .traversal-hud--progress strong { font-size: 12px; }
-  .traversal-event-panel.campaign-ui-frame { top: 166px; width: calc(100vw - 20px); padding: 10px 14px; }
+  .traversal-hud--progress strong { font-size: 13px; }
+  .traversal-event-panel.campaign-ui-frame { top: 145px; width: min(420px, calc(100vw - 20px)); padding: 8px 12px; }
 }

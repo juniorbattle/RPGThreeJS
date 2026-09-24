@@ -70,6 +70,6 @@ export class CampaignStatusHud {
     appendItem('gold', 'Or', String(value.gold), value.routeGold);
     appendItem('reputation', 'Réputation', `${value.reputation} · ${value.reputationLabel}`);
     this.element.append(items);
-    decorateCampaignFrame(this.element, 'standard');
+    decorateCampaignFrame(this.element, 'compact');
   }
 }
