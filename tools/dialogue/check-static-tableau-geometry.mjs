@@ -4,18 +4,18 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const auditPath = 'docs/reports/dialogue-static-tableau-v2-review/composition-audit.json';
-const baselineRef = process.argv[2] ?? '350e26b701ce211c72c182fe35f3027a1b0bfd31';
+const baselineRef = process.argv[2] ?? '4c093e75cf107eb77cabec2d1ef0f6931feb4523';
 const before = JSON.parse(execFileSync('git', ['show', `${baselineRef}:${auditPath}`], { maxBuffer: 64 * 1024 * 1024 }).toString());
 const after = JSON.parse(await readFile(resolve(process.cwd(), auditPath), 'utf8'));
 assert.ok(after.metrics.length >= before.metrics.length, 'audited state count shrank');
 
-const intendedScale = { forest_troll_elite: 1.18, young_dragon_elite: 1.16, shrine_apparition: .82 };
-let unchangedActors = 0;
-let tunedActors = 0;
-let maxUnchangedActorDelta = 0;
+const previousDensityScale = { 1: 1.28, 2: 1.18, 3: 1.14, 4: 1.1 };
+let measuredActors = 0;
+let maxAnchorDelta = 0;
+let maxDesktopBaselineDelta = 0;
+let maxMobileBaselineDelta = 0;
 let maxCardDelta = 0;
 const rectKeys = ['x', 'y', 'width', 'height'];
-const actorKeys = ['anchorX', 'figureY', 'figureHeight', 'visualScale', 'centerX', 'visibleHeadY', 'visibleBodyHeight', 'visibleBodyWidth'];
 for (let index = 0; index < before.metrics.length; index += 1) {
   const prior = before.metrics[index];
   const current = after.metrics[index];
@@ -30,21 +30,21 @@ for (let index = 0; index < before.metrics.length; index += 1) {
   for (let actorIndex = 0; actorIndex < prior.actors.length; actorIndex += 1) {
     const oldActor = prior.actors[actorIndex];
     const newActor = current.actors[actorIndex];
-    const ratio = intendedScale[oldActor.actorId];
-    if (ratio) {
-      assert.ok(Math.abs(newActor.visualScale / oldActor.visualScale - ratio) <= .0001, `${label}:${oldActor.actorId}: unexpected scale`);
-      assert.ok(Math.abs(newActor.anchorX - oldActor.anchorX) <= .01, `${label}:${oldActor.actorId}: anchor moved`);
-      assert.ok(Math.abs((newActor.figureY + newActor.figureHeight) - (oldActor.figureY + oldActor.figureHeight)) <= .1,
-        `${label}:${oldActor.actorId}: theatrical baseline moved`);
-      tunedActors += 1;
-      continue;
+    const density = previousDensityScale[prior.actors.length] ?? 1;
+    const expectedRatio = 1.14 / density;
+    assert.ok(Math.abs(newActor.visualScale / oldActor.visualScale - expectedRatio) <= .0001,
+      `${label}:${oldActor.actorId}: scale differs from the single approved base`);
+    const anchorDelta = Math.abs(newActor.anchorX - oldActor.anchorX);
+    maxAnchorDelta = Math.max(maxAnchorDelta, anchorDelta);
+    assert.ok(anchorDelta <= 1, `${label}:${oldActor.actorId}: X anchor moved by ${anchorDelta}px`);
+    const baselineDelta = Math.abs((newActor.figureY + newActor.figureHeight) - (oldActor.figureY + oldActor.figureHeight));
+    if (prior.viewport.width >= 1000) {
+      maxDesktopBaselineDelta = Math.max(maxDesktopBaselineDelta, baselineDelta);
+      assert.ok(baselineDelta <= 1, `${label}:${oldActor.actorId}: desktop baseline moved by ${baselineDelta}px`);
+    } else {
+      maxMobileBaselineDelta = Math.max(maxMobileBaselineDelta, baselineDelta);
     }
-    for (const key of actorKeys) {
-      const delta = Math.abs(newActor[key] - oldActor[key]);
-      maxUnchangedActorDelta = Math.max(maxUnchangedActorDelta, delta);
-      assert.ok(delta <= .01, `${label}:${oldActor.actorId}: ${key} moved by ${delta}px`);
-    }
-    unchangedActors += 1;
+    measuredActors += 1;
   }
 }
-process.stdout.write(`PASS baseline ${baselineRef}: ${before.metrics.length} matched states, ${unchangedActors} unchanged actors, ${tunedActors} intentional silhouette instances; max unchanged actor delta ${maxUnchangedActorDelta}px, max card delta ${maxCardDelta}px\n`);
+process.stdout.write(`PASS baseline ${baselineRef}: ${before.metrics.length} matched states, ${measuredActors} actors at one cast-independent scale; max X anchor delta ${maxAnchorDelta}px, desktop baseline delta ${maxDesktopBaselineDelta}px, responsive baseline delta ${maxMobileBaselineDelta}px, card delta ${maxCardDelta}px\n`);

@@ -1,0 +1,1958 @@
+{
+  "entries": [
+    {
+      "id": "CAMP_DEPARTURE_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 976,
+        "y": 616.421875,
+        "width": 440,
+        "height": 169.578125,
+        "right": 1416,
+        "bottom": 786
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 438,
+        "clientWidth": 438,
+        "scrollHeight": 168,
+        "clientHeight": 168
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 991,
+          "y": 731,
+          "width": 410,
+          "height": 42,
+          "right": 1401,
+          "bottom": 773
+        }
+      ],
+      "actors": [
+        {
+          "id": "alistair",
+          "x": 608.2500152587891,
+          "bottom": 579.571092247963,
+          "visibleHeadY": 401.5269381403923,
+          "visibleHeight": 178.04415410757065,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "marian",
+          "x": 747.9219055175781,
+          "bottom": 553.748436331749,
+          "visibleHeadY": 390.27186489105225,
+          "visibleHeight": 163.47657144069672,
+          "scale": 0.72,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 901.5780944824219,
+          "bottom": 572.959376335144,
+          "visibleHeadY": 413.333603143692,
+          "visibleHeight": 159.62577319145203,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 438,
+        "height": 43.734375,
+        "right": 462,
+        "bottom": 63.734375
+      },
+      "pageOverflow": false,
+      "screenshot": "1440x810-camp_departure_tableau-next.jpg"
+    },
+    {
+      "id": "AUDIENCE_ROAD_DEPARTURE_TABLEAU",
+      "kind": "departure",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 986,
+        "y": 676,
+        "width": 430,
+        "height": 110,
+        "right": 1416,
+        "bottom": 786
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 428,
+        "clientWidth": 428,
+        "scrollHeight": 108,
+        "clientHeight": 108
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 1003,
+          "y": 737,
+          "width": 396,
+          "height": 36,
+          "right": 1399,
+          "bottom": 773
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 510.46873474121094,
+          "bottom": 550.6968770027161,
+          "visibleHeadY": 399.8625143766403,
+          "visibleHeight": 150.83436262607574,
+          "scale": 0.72,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 678.09375,
+          "bottom": 579.0625,
+          "visibleHeadY": 396.453125,
+          "visibleHeight": 182.609375,
+          "scale": 0.8,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 845.703125,
+          "bottom": 565.5437526702881,
+          "visibleHeadY": 410.01095628738403,
+          "visibleHeight": 155.53279638290405,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 438,
+        "height": 43.734375,
+        "right": 462,
+        "bottom": 63.734375
+      },
+      "pageOverflow": false,
+      "screenshot": "1440x810-audience_road_departure_tableau-departure.jpg"
+    },
+    {
+      "id": "AUDIENCE_ROAD_DEPARTURE_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 976,
+        "y": 616.421875,
+        "width": 440,
+        "height": 169.578125,
+        "right": 1416,
+        "bottom": 786
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 438,
+        "clientWidth": 438,
+        "scrollHeight": 168,
+        "clientHeight": 168
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 991,
+          "y": 731,
+          "width": 410,
+          "height": 42,
+          "right": 1401,
+          "bottom": 773
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 510.46873474121094,
+          "bottom": 550.6968770027161,
+          "visibleHeadY": 399.8625143766403,
+          "visibleHeight": 150.83436262607574,
+          "scale": 0.72,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 678.09375,
+          "bottom": 579.0625,
+          "visibleHeadY": 396.453125,
+          "visibleHeight": 182.609375,
+          "scale": 0.8,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 845.703125,
+          "bottom": 565.5437526702881,
+          "visibleHeadY": 410.01095628738403,
+          "visibleHeight": 155.53279638290405,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 438,
+        "height": 43.734375,
+        "right": 462,
+        "bottom": 63.734375
+      },
+      "pageOverflow": false,
+      "screenshot": "1440x810-audience_road_departure_tableau-next.jpg"
+    },
+    {
+      "id": "VALMIR_FORK_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 976,
+        "y": 616.421875,
+        "width": 440,
+        "height": 169.578125,
+        "right": 1416,
+        "bottom": 786
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 438,
+        "clientWidth": 438,
+        "scrollHeight": 168,
+        "clientHeight": 168
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 991,
+          "y": 731,
+          "width": 410,
+          "height": 42,
+          "right": 1401,
+          "bottom": 773
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 594.28125,
+          "bottom": 559.1296901702881,
+          "visibleHeadY": 410.39025354385376,
+          "visibleHeight": 148.73943662643433,
+          "scale": 0.71,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 733.9530944824219,
+          "bottom": 587.664844751358,
+          "visibleHeadY": 409.62071311473846,
+          "visibleHeight": 178.04413163661957,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 873.640625,
+          "bottom": 566.2218723297119,
+          "visibleHeadY": 414.78201246261597,
+          "visibleHeight": 151.43985986709595,
+          "scale": 0.74,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 438,
+        "height": 43.734375,
+        "right": 462,
+        "bottom": 63.734375
+      },
+      "pageOverflow": false,
+      "screenshot": "1440x810-valmir_fork_tableau-next.jpg"
+    },
+    {
+      "id": "VALMIR_FORK_TABLEAU",
+      "kind": "branch",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 24,
+        "y": 640.21875,
+        "width": 1392,
+        "height": 145.78125,
+        "right": 1416,
+        "bottom": 786
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 1392,
+        "clientWidth": 1392,
+        "scrollHeight": 146,
+        "clientHeight": 146
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 24,
+          "y": 640.21875,
+          "width": 340,
+          "height": 145.78125,
+          "right": 364,
+          "bottom": 786
+        },
+        {
+          "x": 1076,
+          "y": 640.21875,
+          "width": 340,
+          "height": 145.78125,
+          "right": 1416,
+          "bottom": 786
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 594.28125,
+          "bottom": 559.1296901702881,
+          "visibleHeadY": 410.39025354385376,
+          "visibleHeight": 148.73943662643433,
+          "scale": 0.71,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 733.9530944824219,
+          "bottom": 587.664844751358,
+          "visibleHeadY": 409.62071311473846,
+          "visibleHeight": 178.04413163661957,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 873.640625,
+          "bottom": 566.2218723297119,
+          "visibleHeadY": 414.78201246261597,
+          "visibleHeight": 151.43985986709595,
+          "scale": 0.74,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 438,
+        "height": 43.734375,
+        "right": 462,
+        "bottom": 63.734375
+      },
+      "pageOverflow": false,
+      "screenshot": "1440x810-valmir_fork_tableau-branch.jpg"
+    },
+    {
+      "id": "BOUNDARY_PROOF_ROAD_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 976,
+        "y": 616.421875,
+        "width": 440,
+        "height": 169.578125,
+        "right": 1416,
+        "bottom": 786
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 438,
+        "clientWidth": 438,
+        "scrollHeight": 168,
+        "clientHeight": 168
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 991,
+          "y": 731,
+          "width": 410,
+          "height": 42,
+          "right": 1401,
+          "bottom": 773
+        }
+      ],
+      "actors": [
+        {
+          "id": "alistair",
+          "x": 552.375,
+          "bottom": 580.0796895027161,
+          "visibleHeadY": 406.60080122947693,
+          "visibleHeight": 173.47888827323914,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "sage_seraphine",
+          "x": 706.03125,
+          "bottom": 551.375,
+          "visibleHeadY": 404.73046875,
+          "visibleHeight": 146.64453125,
+          "scale": 0.7,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 845.703125,
+          "bottom": 573.6375026702881,
+          "visibleHeadY": 418.10470628738403,
+          "visibleHeight": 155.53279638290405,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 438,
+        "height": 43.734375,
+        "right": 462,
+        "bottom": 63.734375
+      },
+      "pageOverflow": false,
+      "screenshot": "1440x810-boundary_proof_road_tableau-next.jpg"
+    },
+    {
+      "id": "CAMP_DEPARTURE_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 902,
+        "y": 574.421875,
+        "width": 440,
+        "height": 169.578125,
+        "right": 1342,
+        "bottom": 744
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 438,
+        "clientWidth": 438,
+        "scrollHeight": 168,
+        "clientHeight": 168
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 917,
+          "y": 689,
+          "width": 410,
+          "height": 42,
+          "right": 1327,
+          "bottom": 731
+        }
+      ],
+      "actors": [
+        {
+          "id": "alistair",
+          "x": 576.9843902587891,
+          "bottom": 548.492967247963,
+          "visibleHeadY": 370.4488131403923,
+          "visibleHeight": 178.04415410757065,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "marian",
+          "x": 709.5000305175781,
+          "bottom": 523.920311331749,
+          "visibleHeadY": 360.44373989105225,
+          "visibleHeight": 163.47657144069672,
+          "scale": 0.72,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 855.2499694824219,
+          "bottom": 541.881251335144,
+          "visibleHeadY": 382.255478143692,
+          "visibleHeight": 159.62577319145203,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 438,
+        "height": 43.734375,
+        "right": 462,
+        "bottom": 63.734375
+      },
+      "pageOverflow": false,
+      "screenshot": "1366x768-camp_departure_tableau-next.jpg"
+    },
+    {
+      "id": "AUDIENCE_ROAD_DEPARTURE_TABLEAU",
+      "kind": "departure",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 912,
+        "y": 634,
+        "width": 430,
+        "height": 110,
+        "right": 1342,
+        "bottom": 744
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 428,
+        "clientWidth": 428,
+        "scrollHeight": 108,
+        "clientHeight": 108
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 929,
+          "y": 695,
+          "width": 396,
+          "height": 36,
+          "right": 1325,
+          "bottom": 731
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 484.23435974121094,
+          "bottom": 520.8687520027161,
+          "visibleHeadY": 370.0343893766403,
+          "visibleHeight": 150.83436262607574,
+          "scale": 0.72,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 643.234375,
+          "bottom": 547.984375,
+          "visibleHeadY": 365.375,
+          "visibleHeight": 182.609375,
+          "scale": 0.8,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 802.25,
+          "bottom": 534.8718776702881,
+          "visibleHeadY": 379.33908128738403,
+          "visibleHeight": 155.53279638290405,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 438,
+        "height": 43.734375,
+        "right": 462,
+        "bottom": 63.734375
+      },
+      "pageOverflow": false,
+      "screenshot": "1366x768-audience_road_departure_tableau-departure.jpg"
+    },
+    {
+      "id": "AUDIENCE_ROAD_DEPARTURE_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 902,
+        "y": 574.421875,
+        "width": 440,
+        "height": 169.578125,
+        "right": 1342,
+        "bottom": 744
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 438,
+        "clientWidth": 438,
+        "scrollHeight": 168,
+        "clientHeight": 168
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 917,
+          "y": 689,
+          "width": 410,
+          "height": 42,
+          "right": 1327,
+          "bottom": 731
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 484.23435974121094,
+          "bottom": 520.8687520027161,
+          "visibleHeadY": 370.0343893766403,
+          "visibleHeight": 150.83436262607574,
+          "scale": 0.72,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 643.234375,
+          "bottom": 547.984375,
+          "visibleHeadY": 365.375,
+          "visibleHeight": 182.609375,
+          "scale": 0.8,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 802.25,
+          "bottom": 534.8718776702881,
+          "visibleHeadY": 379.33908128738403,
+          "visibleHeight": 155.53279638290405,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 438,
+        "height": 43.734375,
+        "right": 462,
+        "bottom": 63.734375
+      },
+      "pageOverflow": false,
+      "screenshot": "1366x768-audience_road_departure_tableau-next.jpg"
+    },
+    {
+      "id": "VALMIR_FORK_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 902,
+        "y": 574.421875,
+        "width": 440,
+        "height": 169.578125,
+        "right": 1342,
+        "bottom": 744
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 438,
+        "clientWidth": 438,
+        "scrollHeight": 168,
+        "clientHeight": 168
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 917,
+          "y": 689,
+          "width": 410,
+          "height": 42,
+          "right": 1327,
+          "bottom": 731
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 563.734375,
+          "bottom": 528.8953151702881,
+          "visibleHeadY": 380.15587854385376,
+          "visibleHeight": 148.73943662643433,
+          "scale": 0.71,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 696.2499694824219,
+          "bottom": 556.164844751358,
+          "visibleHeadY": 378.12071311473846,
+          "visibleHeight": 178.04413163661957,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 828.75,
+          "bottom": 535.5499973297119,
+          "visibleHeadY": 384.11013746261597,
+          "visibleHeight": 151.43985986709595,
+          "scale": 0.74,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 438,
+        "height": 43.734375,
+        "right": 462,
+        "bottom": 63.734375
+      },
+      "pageOverflow": false,
+      "screenshot": "1366x768-valmir_fork_tableau-next.jpg"
+    },
+    {
+      "id": "VALMIR_FORK_TABLEAU",
+      "kind": "branch",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 24,
+        "y": 598.21875,
+        "width": 1318,
+        "height": 145.78125,
+        "right": 1342,
+        "bottom": 744
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 1318,
+        "clientWidth": 1318,
+        "scrollHeight": 146,
+        "clientHeight": 146
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 24,
+          "y": 598.21875,
+          "width": 340,
+          "height": 145.78125,
+          "right": 364,
+          "bottom": 744
+        },
+        {
+          "x": 1002,
+          "y": 598.21875,
+          "width": 340,
+          "height": 145.78125,
+          "right": 1342,
+          "bottom": 744
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 563.734375,
+          "bottom": 528.8953151702881,
+          "visibleHeadY": 380.15587854385376,
+          "visibleHeight": 148.73943662643433,
+          "scale": 0.71,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 696.2499694824219,
+          "bottom": 556.164844751358,
+          "visibleHeadY": 378.12071311473846,
+          "visibleHeight": 178.04413163661957,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 828.75,
+          "bottom": 535.5499973297119,
+          "visibleHeadY": 384.11013746261597,
+          "visibleHeight": 151.43985986709595,
+          "scale": 0.74,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 438,
+        "height": 43.734375,
+        "right": 462,
+        "bottom": 63.734375
+      },
+      "pageOverflow": false,
+      "screenshot": "1366x768-valmir_fork_tableau-branch.jpg"
+    },
+    {
+      "id": "BOUNDARY_PROOF_ROAD_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 902,
+        "y": 574.421875,
+        "width": 440,
+        "height": 169.578125,
+        "right": 1342,
+        "bottom": 744
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 438,
+        "clientWidth": 438,
+        "scrollHeight": 168,
+        "clientHeight": 168
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 917,
+          "y": 689,
+          "width": 410,
+          "height": 42,
+          "right": 1327,
+          "bottom": 731
+        }
+      ],
+      "actors": [
+        {
+          "id": "alistair",
+          "x": 523.984375,
+          "bottom": 549.0015645027161,
+          "visibleHeadY": 375.52267622947693,
+          "visibleHeight": 173.47888827323914,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "sage_seraphine",
+          "x": 669.734375,
+          "bottom": 521.546875,
+          "visibleHeadY": 374.90234375,
+          "visibleHeight": 146.64453125,
+          "scale": 0.7,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 802.25,
+          "bottom": 542.5593776702881,
+          "visibleHeadY": 387.02658128738403,
+          "visibleHeight": 155.53279638290405,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 438,
+        "height": 43.734375,
+        "right": 462,
+        "bottom": 63.734375
+      },
+      "pageOverflow": false,
+      "screenshot": "1366x768-boundary_proof_road_tableau-next.jpg"
+    },
+    {
+      "id": "CAMP_DEPARTURE_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 200,
+        "y": 611.921875,
+        "width": 410,
+        "height": 158.078125,
+        "right": 610,
+        "bottom": 770
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 408,
+        "clientWidth": 408,
+        "scrollHeight": 156,
+        "clientHeight": 156
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 215,
+          "y": 715,
+          "width": 380,
+          "height": 42,
+          "right": 595,
+          "bottom": 757
+        }
+      ],
+      "actors": [
+        {
+          "id": "alistair",
+          "x": 261.875,
+          "bottom": 562.9226129055023,
+          "visibleHeadY": 434.73801624774933,
+          "visibleHeight": 128.184596657753,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "marian",
+          "x": 322.015625,
+          "bottom": 538.4334856271744,
+          "visibleHeadY": 420.73694705963135,
+          "visibleHeight": 117.69653856754303,
+          "scale": 0.72,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 388.171875,
+          "bottom": 558.1624422073364,
+          "visibleHeadY": 443.2383210659027,
+          "visibleHeight": 114.92412114143372,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 37.484375,
+        "right": 350,
+        "bottom": 47.484375
+      },
+      "pageOverflow": false,
+      "screenshot": "620x780-camp_departure_tableau-next.jpg"
+    },
+    {
+      "id": "AUDIENCE_ROAD_DEPARTURE_TABLEAU",
+      "kind": "departure",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 180,
+        "y": 668.328125,
+        "width": 430,
+        "height": 101.671875,
+        "right": 610,
+        "bottom": 770
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 428,
+        "clientWidth": 428,
+        "scrollHeight": 100,
+        "clientHeight": 100
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 194,
+          "y": 723,
+          "width": 402,
+          "height": 36,
+          "right": 596,
+          "bottom": 759
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 219.78125,
+          "bottom": 536.2364835739136,
+          "visibleHeadY": 427.6418106555939,
+          "visibleHeight": 108.5946729183197,
+          "scale": 0.72,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 291.95314025878906,
+          "bottom": 562.556443810463,
+          "visibleHeadY": 431.0850436091423,
+          "visibleHeight": 131.47140020132065,
+          "scale": 0.8,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 364.125,
+          "bottom": 550.8537893295288,
+          "visibleHeadY": 438.8764374256134,
+          "visibleHeight": 111.9773519039154,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 37.484375,
+        "right": 350,
+        "bottom": 47.484375
+      },
+      "pageOverflow": false,
+      "screenshot": "620x780-audience_road_departure_tableau-departure.jpg"
+    },
+    {
+      "id": "AUDIENCE_ROAD_DEPARTURE_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 200,
+        "y": 611.921875,
+        "width": 410,
+        "height": 158.078125,
+        "right": 610,
+        "bottom": 770
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 408,
+        "clientWidth": 408,
+        "scrollHeight": 156,
+        "clientHeight": 156
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 215,
+          "y": 715,
+          "width": 380,
+          "height": 42,
+          "right": 595,
+          "bottom": 757
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 219.78125,
+          "bottom": 536.2364835739136,
+          "visibleHeadY": 427.6418106555939,
+          "visibleHeight": 108.5946729183197,
+          "scale": 0.72,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 291.95314025878906,
+          "bottom": 562.556443810463,
+          "visibleHeadY": 431.0850436091423,
+          "visibleHeight": 131.47140020132065,
+          "scale": 0.8,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 364.125,
+          "bottom": 550.8537893295288,
+          "visibleHeadY": 438.8764374256134,
+          "visibleHeight": 111.9773519039154,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 37.484375,
+        "right": 350,
+        "bottom": 47.484375
+      },
+      "pageOverflow": false,
+      "screenshot": "620x780-audience_road_departure_tableau-next.jpg"
+    },
+    {
+      "id": "VALMIR_FORK_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 200,
+        "y": 611.921875,
+        "width": 410,
+        "height": 158.078125,
+        "right": 610,
+        "bottom": 770
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 408,
+        "clientWidth": 408,
+        "scrollHeight": 156,
+        "clientHeight": 156
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 215,
+          "y": 715,
+          "width": 380,
+          "height": 42,
+          "right": 595,
+          "bottom": 757
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 255.859375,
+          "bottom": 544.2774696350098,
+          "visibleHeadY": 437.19105434417725,
+          "visibleHeight": 107.08641529083252,
+          "scale": 0.71,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 316,
+          "bottom": 570.7194879055023,
+          "visibleHeadY": 442.53489124774933,
+          "visibleHeight": 128.184596657753,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 376.140625,
+          "bottom": 551.3420114517212,
+          "visibleHeadY": 442.3114287853241,
+          "visibleHeight": 109.0305826663971,
+          "scale": 0.74,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 37.484375,
+        "right": 350,
+        "bottom": 47.484375
+      },
+      "pageOverflow": false,
+      "screenshot": "620x780-valmir_fork_tableau-next.jpg"
+    },
+    {
+      "id": "VALMIR_FORK_TABLEAU",
+      "kind": "branch",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 10,
+        "y": 667,
+        "width": 600,
+        "height": 103,
+        "right": 610,
+        "bottom": 770
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 600,
+        "clientWidth": 600,
+        "scrollHeight": 103,
+        "clientHeight": 103
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 10,
+          "y": 667,
+          "width": 262.796875,
+          "height": 103,
+          "right": 272.796875,
+          "bottom": 770
+        },
+        {
+          "x": 347.1875,
+          "y": 667,
+          "width": 262.8125,
+          "height": 103,
+          "right": 610,
+          "bottom": 770
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 255.859375,
+          "bottom": 544.2774696350098,
+          "visibleHeadY": 437.19105434417725,
+          "visibleHeight": 107.08641529083252,
+          "scale": 0.71,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 316,
+          "bottom": 570.7194879055023,
+          "visibleHeadY": 442.53489124774933,
+          "visibleHeight": 128.184596657753,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 376.140625,
+          "bottom": 551.3420114517212,
+          "visibleHeadY": 442.3114287853241,
+          "visibleHeight": 109.0305826663971,
+          "scale": 0.74,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 37.484375,
+        "right": 350,
+        "bottom": 47.484375
+      },
+      "pageOverflow": false,
+      "screenshot": "620x780-valmir_fork_tableau-branch.jpg"
+    },
+    {
+      "id": "BOUNDARY_PROOF_ROAD_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 200,
+        "y": 611.921875,
+        "width": 410,
+        "height": 158.078125,
+        "right": 610,
+        "bottom": 770
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 408,
+        "clientWidth": 408,
+        "scrollHeight": 156,
+        "clientHeight": 156
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 215,
+          "y": 715,
+          "width": 380,
+          "height": 42,
+          "right": 595,
+          "bottom": 757
+        }
+      ],
+      "actors": [
+        {
+          "id": "alistair",
+          "x": 237.828125,
+          "bottom": 563.2887794971466,
+          "visibleHeadY": 438.3909639120102,
+          "visibleHeight": 124.89781558513641,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "sage_seraphine",
+          "x": 303.98435974121094,
+          "bottom": 536.7247090339661,
+          "visibleHeadY": 431.1465719938278,
+          "visibleHeight": 105.57813704013824,
+          "scale": 0.7,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 364.125,
+          "bottom": 558.6506643295288,
+          "visibleHeadY": 446.6733124256134,
+          "visibleHeight": 111.9773519039154,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 37.484375,
+        "right": 350,
+        "bottom": 47.484375
+      },
+      "pageOverflow": false,
+      "screenshot": "620x780-boundary_proof_road_tableau-next.jpg"
+    },
+    {
+      "id": "CAMP_DEPARTURE_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 10,
+        "y": 675.921875,
+        "width": 370,
+        "height": 158.078125,
+        "right": 380,
+        "bottom": 834
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 368,
+        "clientWidth": 368,
+        "scrollHeight": 156,
+        "clientHeight": 156
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 25,
+          "y": 779,
+          "width": 340,
+          "height": 42,
+          "right": 365,
+          "bottom": 821
+        }
+      ],
+      "actors": [
+        {
+          "id": "alistair",
+          "x": 164.734375,
+          "bottom": 613.045313000679,
+          "visibleHeadY": 509.66484874486923,
+          "visibleHeight": 103.38046425580978,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "marian",
+          "x": 202.56249237060547,
+          "bottom": 586.8468758761883,
+          "visibleHeadY": 491.9250075817108,
+          "visibleHeight": 94.92186829447746,
+          "scale": 0.72,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 244.17188262939453,
+          "bottom": 609.206248998642,
+          "visibleHeadY": 516.520305454731,
+          "visibleHeight": 92.68594354391098,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 37.484375,
+        "right": 350,
+        "bottom": 47.484375
+      },
+      "pageOverflow": false,
+      "screenshot": "390x844-camp_departure_tableau-next.jpg"
+    },
+    {
+      "id": "AUDIENCE_ROAD_DEPARTURE_TABLEAU",
+      "kind": "departure",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 10,
+        "y": 732.328125,
+        "width": 370,
+        "height": 101.671875,
+        "right": 380,
+        "bottom": 834
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 368,
+        "clientWidth": 368,
+        "scrollHeight": 100,
+        "clientHeight": 100
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 24,
+          "y": 787,
+          "width": 342,
+          "height": 36,
+          "right": 366,
+          "bottom": 823
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 138.25,
+          "bottom": 585.074999332428,
+          "visibleHeadY": 497.49374520778656,
+          "visibleHeight": 87.58125412464142,
+          "scale": 0.72,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 183.640625,
+          "bottom": 612.75,
+          "visibleHeadY": 506.71875,
+          "visibleHeight": 106.03125,
+          "scale": 0.8,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 229.04689025878906,
+          "bottom": 601.1624979972839,
+          "visibleHeadY": 510.853110909462,
+          "visibleHeight": 90.30938708782196,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 37.484375,
+        "right": 350,
+        "bottom": 47.484375
+      },
+      "pageOverflow": false,
+      "screenshot": "390x844-audience_road_departure_tableau-departure.jpg"
+    },
+    {
+      "id": "AUDIENCE_ROAD_DEPARTURE_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 10,
+        "y": 675.921875,
+        "width": 370,
+        "height": 158.078125,
+        "right": 380,
+        "bottom": 834
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 368,
+        "clientWidth": 368,
+        "scrollHeight": 156,
+        "clientHeight": 156
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 25,
+          "y": 779,
+          "width": 340,
+          "height": 42,
+          "right": 365,
+          "bottom": 821
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 138.25,
+          "bottom": 585.074999332428,
+          "visibleHeadY": 497.49374520778656,
+          "visibleHeight": 87.58125412464142,
+          "scale": 0.72,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 183.640625,
+          "bottom": 612.75,
+          "visibleHeadY": 506.71875,
+          "visibleHeight": 106.03125,
+          "scale": 0.8,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 229.04689025878906,
+          "bottom": 601.1624979972839,
+          "visibleHeadY": 510.853110909462,
+          "visibleHeight": 90.30938708782196,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 37.484375,
+        "right": 350,
+        "bottom": 47.484375
+      },
+      "pageOverflow": false,
+      "screenshot": "390x844-audience_road_departure_tableau-next.jpg"
+    },
+    {
+      "id": "VALMIR_FORK_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 10,
+        "y": 675.921875,
+        "width": 370,
+        "height": 158.078125,
+        "right": 380,
+        "bottom": 834
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 368,
+        "clientWidth": 368,
+        "scrollHeight": 156,
+        "clientHeight": 156
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 25,
+          "y": 779,
+          "width": 340,
+          "height": 42,
+          "right": 365,
+          "bottom": 821
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 160.9375,
+          "bottom": 593.709376335144,
+          "visibleHeadY": 507.3445408344269,
+          "visibleHeight": 86.36483550071716,
+          "scale": 0.71,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 198.78125762939453,
+          "bottom": 621.4828117489815,
+          "visibleHeadY": 518.1023362576962,
+          "visibleHeight": 103.38047549128532,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 236.60935974121094,
+          "bottom": 601.5562520027161,
+          "visibleHeadY": 513.623451590538,
+          "visibleHeight": 87.93280041217804,
+          "scale": 0.74,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 37.484375,
+        "right": 350,
+        "bottom": 47.484375
+      },
+      "pageOverflow": false,
+      "screenshot": "390x844-valmir_fork_tableau-next.jpg"
+    },
+    {
+      "id": "VALMIR_FORK_TABLEAU",
+      "kind": "branch",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 10,
+        "y": 734,
+        "width": 370,
+        "height": 100,
+        "right": 380,
+        "bottom": 834
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 370,
+        "clientWidth": 370,
+        "scrollHeight": 100,
+        "clientHeight": 100
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 10,
+          "y": 734,
+          "width": 180,
+          "height": 100,
+          "right": 190,
+          "bottom": 834
+        },
+        {
+          "x": 200,
+          "y": 734,
+          "width": 180,
+          "height": 100,
+          "right": 380,
+          "bottom": 834
+        }
+      ],
+      "actors": [
+        {
+          "id": "sage_seraphine",
+          "x": 160.9375,
+          "bottom": 593.709376335144,
+          "visibleHeadY": 507.3445408344269,
+          "visibleHeight": 86.36483550071716,
+          "scale": 0.71,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "alistair",
+          "x": 198.78125762939453,
+          "bottom": 621.4828117489815,
+          "visibleHeadY": 518.1023362576962,
+          "visibleHeight": 103.38047549128532,
+          "scale": 0.78,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 236.60935974121094,
+          "bottom": 601.5562520027161,
+          "visibleHeadY": 513.623451590538,
+          "visibleHeight": 87.93280041217804,
+          "scale": 0.74,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 37.484375,
+        "right": 350,
+        "bottom": 47.484375
+      },
+      "pageOverflow": false,
+      "screenshot": "390x844-valmir_fork_tableau-branch.jpg"
+    },
+    {
+      "id": "BOUNDARY_PROOF_ROAD_TABLEAU",
+      "kind": "next",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "placementMode": "SCENE_INTEGRATED",
+      "card": {
+        "x": 10,
+        "y": 675.921875,
+        "width": 370,
+        "height": 158.078125,
+        "right": 380,
+        "bottom": 834
+      },
+      "cardOverflow": {
+        "x": "visible",
+        "y": "visible",
+        "scrollWidth": 368,
+        "clientWidth": 368,
+        "scrollHeight": 156,
+        "clientHeight": 156
+      },
+      "clipped": [],
+      "clippedChoiceContent": [],
+      "clippedCorners": [],
+      "choiceBoxes": [
+        {
+          "x": 25,
+          "y": 779,
+          "width": 340,
+          "height": 42,
+          "right": 365,
+          "bottom": 821
+        }
+      ],
+      "actors": [
+        {
+          "id": "alistair",
+          "x": 149.59374237060547,
+          "bottom": 613.340626001358,
+          "visibleHeadY": 512.6109474897385,
+          "visibleHeight": 100.72967851161957,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "sage_seraphine",
+          "x": 191.203125,
+          "bottom": 585.46875,
+          "visibleHeadY": 500.3203125,
+          "visibleHeight": 85.1484375,
+          "scale": 0.7,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        },
+        {
+          "id": "maelor",
+          "x": 229.04689025878906,
+          "bottom": 609.5999979972839,
+          "visibleHeadY": 519.290610909462,
+          "visibleHeight": 90.30938708782196,
+          "scale": 0.76,
+          "placement": "SCENE_INTEGRATED",
+          "imageReady": true
+        }
+      ],
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 340,
+        "height": 37.484375,
+        "right": 350,
+        "bottom": 47.484375
+      },
+      "pageOverflow": false,
+      "screenshot": "390x844-boundary_proof_road_tableau-next.jpg"
+    }
+  ],
+  "failures": [],
+  "pageErrors": []
+}

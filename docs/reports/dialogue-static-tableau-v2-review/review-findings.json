@@ -18,6 +18,7 @@
       "continue": 334
     },
     "pageErrors": [],
+    "castCountInvarianceFailures": 0,
     "cardOverflowFailures": 0,
     "choiceHorizontalFailures": 0,
     "profiles": {
@@ -32,173 +33,208 @@
     },
     "presenceByCast": {
       "1440x810:4": {
-        "min": 0.44824183605335377,
-        "max": 0.5183656698391761
+        "min": 0.4645416142028055,
+        "max": 0.5372153023142874
       },
       "1440x810:1": {
-        "min": 0.5215905978355879,
-        "max": 0.7986096541086832
+        "min": 0.4645416142028055,
+        "max": 0.7112616803910997
       },
       "1440x810:2": {
-        "min": 0.48084129639613776,
-        "max": 0.6239137066735162
+        "min": 0.4645416142028055,
+        "max": 0.6027641190422905
       },
       "1440x810:3": {
         "min": 0.4645416142028055,
         "max": 0.7112616803910997
       },
       "1366x768:1": {
-        "min": 0.5250455240408579,
-        "max": 0.5490567522744337
+        "min": 0.4676186889410019,
+        "max": 0.48900368995964527
       },
       "620x780:1": {
-        "min": 0.3690000240619366,
-        "max": 0.38587502516233
+        "min": 0.3213258083050068,
+        "max": 0.3360205861238333
       },
       "390x844:1": {
-        "min": 0.3637444238527126,
-        "max": 0.38037907738256227
+        "min": 0.2632131859024554,
+        "max": 0.2752503742821409
       },
       "1366x768:2": {
-        "min": 0.48402639975150424,
-        "max": 0.6242168415337801
+        "min": 0.4676186889410019,
+        "max": 0.6030570287257433
       },
       "620x780:2": {
-        "min": 0.34017184391999855,
-        "max": 0.43869725786722624
+        "min": 0.3213258083050068,
+        "max": 0.41439273449090813
       },
       "390x844:2": {
-        "min": 0.293412783699578,
-        "max": 0.37839514483207776
+        "min": 0.2632131859024554,
+        "max": 0.33944871230713
       },
       "1366x768:4": {
-        "min": 0.4649675153195858,
-        "max": 0.5186176132410765
+        "min": 0.48187535628676414,
+        "max": 0.5374763589352369
       },
       "620x780:4": {
-        "min": 0.3049863894780477,
-        "max": 0.34017712672551476
+        "min": 0.3311223268508911,
+        "max": 0.3693287491798401
       },
       "390x844:4": {
-        "min": 0.24830410491798727,
-        "max": 0.27695457856237043
+        "min": 0.27123797815557904,
+        "max": 0.30253466794276124
       },
       "1366x768:3": {
         "min": 0.47759835608303547,
         "max": 0.7116073044016957
       },
       "620x780:3": {
-        "min": 0.313271395671062,
-        "max": 0.4667649480012747
+        "min": 0.3281833712871258,
+        "max": 0.48898334136376015
       },
       "390x844:3": {
-        "min": 0.2550493071288294,
-        "max": 0.3800158715361103
+        "min": 0.26883054047964194,
+        "max": 0.40054945781897594
       }
     },
     "findings": {
-      "heavy-overlap": 4,
-      "weak-presence": 29
+      "heavy-overlap": 8,
+      "weak-presence": 39
     }
   },
   "findings": [
     {
       "type": "weak-presence",
+      "dialogueId": "mystery_help",
+      "stepId": "1",
+      "actorId": "survivor",
+      "ratio": 0.3281833712871258
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_help",
+      "stepId": "1",
+      "actorId": "survivor",
+      "ratio": 0.3281833712871258
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_help",
+      "stepId": "1",
+      "actorId": "survivor",
+      "ratio": 0.26883054047964194
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_help",
+      "stepId": "1",
+      "actorId": "survivor",
+      "ratio": 0.26883054047964194
+    },
+    {
+      "type": "weak-presence",
       "dialogueId": "ate_alaric_reports",
       "stepId": "1",
       "actorId": "alaric",
-      "ratio": 0.355728483123657
+      "ratio": 0.3360205861238333
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "ate_alaric_reports",
+      "stepId": "1",
+      "actorId": "lion_champion",
+      "ratio": 0.33944871230713
     },
     {
       "type": "weak-presence",
       "dialogueId": "ate_alaric_reports",
       "stepId": "1",
       "actorId": "alaric",
-      "ratio": 0.3068310512468148
+      "ratio": 0.2752503742821409
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_recruit",
       "stepId": "0a",
       "actorId": "kestrel",
-      "ratio": 0.3474316344811366
+      "ratio": 0.3281833712871258
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_recruit",
       "stepId": "0a",
       "actorId": "cedric",
-      "ratio": 0.34017184391999855
+      "ratio": 0.3213258083050068
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_recruit",
       "stepId": "1",
       "actorId": "kestrel",
-      "ratio": 0.3474316344811366
+      "ratio": 0.3281833712871258
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_recruit",
       "stepId": "1",
       "actorId": "cedric",
-      "ratio": 0.34017184391999855
+      "ratio": 0.3213258083050068
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_recruit",
       "stepId": "0a",
       "actorId": "kestrel",
-      "ratio": 0.2996746418882885
+      "ratio": 0.26883054047964194
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_recruit",
       "stepId": "0a",
       "actorId": "cedric",
-      "ratio": 0.293412783699578
+      "ratio": 0.2632131859024554
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_recruit",
       "stepId": "1",
       "actorId": "kestrel",
-      "ratio": 0.2996746418882885
+      "ratio": 0.26883054047964194
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_recruit",
       "stepId": "1",
       "actorId": "cedric",
-      "ratio": 0.293412783699578
+      "ratio": 0.2632131859024554
     },
     {
       "type": "weak-presence",
-      "dialogueId": "lion_briefing",
-      "stepId": "1",
-      "actorId": "alistair",
-      "ratio": 0.27695457856237043
-    },
-    {
-      "type": "weak-presence",
-      "dialogueId": "lion_briefing",
-      "stepId": "1",
-      "actorId": "sage_seraphine",
-      "ratio": 0.2541811251527325
-    },
-    {
-      "type": "weak-presence",
-      "dialogueId": "lion_briefing",
-      "stepId": "1",
-      "actorId": "maelor",
-      "ratio": 0.24830410491798727
-    },
-    {
-      "type": "weak-presence",
-      "dialogueId": "lion_briefing",
+      "dialogueId": "lion_finale_judgement",
       "stepId": "1",
       "actorId": "alaric",
-      "ratio": 0.25197724256470305
+      "ratio": 0.3360205861238333
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_finale_judgement",
+      "stepId": "1",
+      "actorId": "alaric",
+      "ratio": 0.3360205861238333
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_finale_judgement",
+      "stepId": "1",
+      "actorId": "alaric",
+      "ratio": 0.2752503742821409
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_finale_judgement",
+      "stepId": "1",
+      "actorId": "alaric",
+      "ratio": 0.2752503742821409
     },
     {
       "type": "heavy-overlap",
@@ -208,45 +244,7 @@
         "alistair",
         "sage_seraphine"
       ],
-      "ratio": 0.7919896864740806
-    },
-    {
-      "type": "heavy-overlap",
-      "dialogueId": "lion_briefing",
-      "stepId": "1",
-      "actors": [
-        "sage_seraphine",
-        "maelor"
-      ],
-      "ratio": 0.7493179972436875
-    },
-    {
-      "type": "weak-presence",
-      "dialogueId": "lion_briefing",
-      "stepId": "3",
-      "actorId": "alistair",
-      "ratio": 0.27695457856237043
-    },
-    {
-      "type": "weak-presence",
-      "dialogueId": "lion_briefing",
-      "stepId": "3",
-      "actorId": "sage_seraphine",
-      "ratio": 0.2541811251527325
-    },
-    {
-      "type": "weak-presence",
-      "dialogueId": "lion_briefing",
-      "stepId": "3",
-      "actorId": "maelor",
-      "ratio": 0.24830410491798727
-    },
-    {
-      "type": "weak-presence",
-      "dialogueId": "lion_briefing",
-      "stepId": "3",
-      "actorId": "alaric",
-      "ratio": 0.25197724256470305
+      "ratio": 0.6839321274828225
     },
     {
       "type": "heavy-overlap",
@@ -256,7 +254,79 @@
         "alistair",
         "sage_seraphine"
       ],
-      "ratio": 0.7919896864740806
+      "ratio": 0.6839321274828225
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_briefing",
+      "stepId": "1",
+      "actorId": "sage_seraphine",
+      "ratio": 0.277657811958078
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_briefing",
+      "stepId": "1",
+      "actorId": "maelor",
+      "ratio": 0.27123797815557904
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_briefing",
+      "stepId": "1",
+      "actorId": "alaric",
+      "ratio": 0.2752503742821409
+    },
+    {
+      "type": "heavy-overlap",
+      "dialogueId": "lion_briefing",
+      "stepId": "1",
+      "actors": [
+        "alistair",
+        "sage_seraphine"
+      ],
+      "ratio": 0.8234711148627547
+    },
+    {
+      "type": "heavy-overlap",
+      "dialogueId": "lion_briefing",
+      "stepId": "1",
+      "actors": [
+        "sage_seraphine",
+        "maelor"
+      ],
+      "ratio": 0.7847820589079617
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_briefing",
+      "stepId": "3",
+      "actorId": "sage_seraphine",
+      "ratio": 0.277657811958078
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_briefing",
+      "stepId": "3",
+      "actorId": "maelor",
+      "ratio": 0.27123797815557904
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_briefing",
+      "stepId": "3",
+      "actorId": "alaric",
+      "ratio": 0.2752503742821409
+    },
+    {
+      "type": "heavy-overlap",
+      "dialogueId": "lion_briefing",
+      "stepId": "3",
+      "actors": [
+        "alistair",
+        "sage_seraphine"
+      ],
+      "ratio": 0.8234711148627547
     },
     {
       "type": "heavy-overlap",
@@ -266,84 +336,125 @@
         "sage_seraphine",
         "maelor"
       ],
-      "ratio": 0.7493179972436875
+      "ratio": 0.7847820589079617
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_dragon_roost",
       "stepId": "1",
       "actorId": "sage_seraphine",
-      "ratio": 0.2634240604972387
+      "ratio": 0.277657811958078
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_dragon_roost",
       "stepId": "1",
       "actorId": "maelor",
-      "ratio": 0.25733330690465267
+      "ratio": 0.27123797815557904
+    },
+    {
+      "type": "heavy-overlap",
+      "dialogueId": "mystery_dragon_roost",
+      "stepId": "1",
+      "actors": [
+        "maelor",
+        "young_dragon_elite"
+      ],
+      "ratio": 0.7234854901161499
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_dragon_roost",
       "stepId": "1",
       "actorId": "sage_seraphine",
-      "ratio": 0.2634240604972387
+      "ratio": 0.277657811958078
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_dragon_roost",
       "stepId": "1",
       "actorId": "maelor",
-      "ratio": 0.25733330690465267
+      "ratio": 0.27123797815557904
+    },
+    {
+      "type": "heavy-overlap",
+      "dialogueId": "mystery_dragon_roost",
+      "stepId": "1",
+      "actors": [
+        "maelor",
+        "young_dragon_elite"
+      ],
+      "ratio": 0.7234854901161499
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "village_defense_aftermath",
+      "stepId": "1",
+      "actorId": "villageoise",
+      "ratio": 0.3213258083050068
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "village_defense_aftermath",
+      "stepId": "1",
+      "actorId": "villageoise",
+      "ratio": 0.3213258083050068
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "village_defense_aftermath",
+      "stepId": "1",
+      "actorId": "villageoise",
+      "ratio": 0.2632131859024554
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "village_defense_aftermath",
+      "stepId": "1",
+      "actorId": "villageoise",
+      "ratio": 0.2632131859024554
     },
     {
       "type": "weak-presence",
       "dialogueId": "pre_opening_trail",
       "stepId": "1",
       "actorId": "kestrel",
-      "ratio": 0.2550493071288294
-    },
-    {
-      "type": "weak-presence",
-      "dialogueId": "pre_opening_trail",
-      "stepId": "1",
-      "actorId": "alistair",
-      "ratio": 0.28702561154749723
+      "ratio": 0.26883054047964194
     },
     {
       "type": "weak-presence",
       "dialogueId": "pre_opening_trail",
       "stepId": "1",
       "actorId": "sage_seraphine",
-      "ratio": 0.26342403606215925
+      "ratio": 0.277657811958078
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_troll_crossing",
       "stepId": "1",
       "actorId": "sage_seraphine",
-      "ratio": 0.26342403606215925
+      "ratio": 0.277657811958078
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_troll_crossing",
       "stepId": "1",
       "actorId": "maelor",
-      "ratio": 0.25733330690465267
+      "ratio": 0.27123797815557904
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_shrine",
       "stepId": "1",
       "actorId": "sage_seraphine",
-      "ratio": 0.26342403606215925
+      "ratio": 0.277657811958078
     },
     {
       "type": "weak-presence",
       "dialogueId": "mystery_shrine",
       "stepId": "1",
       "actorId": "maelor",
-      "ratio": 0.25733330690465267
+      "ratio": 0.27123797815557904
     }
   ]
 }

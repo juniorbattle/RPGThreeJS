@@ -2,10 +2,10 @@
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { dialogues } from '../game/content';
-import { ALARIC_AUDIENCE_TABLEAU, createGenericNarrativeTableau } from './NarrativeTableau';
+import { ALARIC_AUDIENCE_TABLEAU, AUDIENCE_ROAD_DEPARTURE_TABLEAU, CAMP_DEPARTURE_TABLEAU, VALMIR_FORK_TABLEAU, createGenericBoundaryTableau, createGenericNarrativeTableau } from './NarrativeTableau';
 import { applyFinalDialoguePresentationPlan } from './DialoguePresentationSegments';
 import { createNarrativeDialogueResolver } from './NarrativeDialogueAdapter';
-import { NarrativeSceneSurface, resolveNarrativeCastDensityScale } from './NarrativeSceneSurface';
+import { NarrativeSceneSurface, THEATRICAL_ACTOR_BASE_SCALE } from './NarrativeSceneSurface';
 import { resolveStaticTableauActorTuning, resolveStaticTableauComposition } from './StaticTableauComposition';
 
 describe('NarrativeSceneSurface', () => {
@@ -78,7 +78,7 @@ describe('NarrativeSceneSurface', () => {
     expect([troll, dragon, apparition].every((value) => value.xPercent === ordinary.xPercent && value.baselineVh === ordinary.baselineVh)).toBe(true);
   });
 
-  it('segments the six-person opening into stable density-scaled four-person compositions', async () => {
+  it('segments the six-person opening into stable four-person compositions', async () => {
     const sequence = dialogues.get('acte_ouverture')!;
     const tableau = applyFinalDialoguePresentationPlan(sequence, createGenericNarrativeTableau(sequence));
     const root = document.createElement('div');
@@ -91,8 +91,8 @@ describe('NarrativeSceneSurface', () => {
     const alistair = root.querySelector<HTMLElement>('[data-actor-id="alistair"]')!;
     const seraphine = root.querySelector<HTMLElement>('[data-actor-id="sage_seraphine"]')!;
     expect(root.querySelectorAll('.narrative-cast__actor')).toHaveLength(4);
-    expect(root.querySelector('.narrative-scene-surface__cast')?.getAttribute('data-cast-density-scale')).toBe('1.1');
-    expect(alistair.dataset.castDensityScale).toBe('1.1');
+    expect(root.querySelector('.narrative-scene-surface')?.getAttribute('data-cast-placement-mode')).toBe('THEATRICAL_FOREGROUND');
+    expect(alistair.style.getPropertyValue('--narrative-actor-scale')).toBe(`${THEATRICAL_ACTOR_BASE_SCALE}`);
     expect(alistair.dataset.castState).toBe('ACTIVE');
     expect(seraphine.dataset.castState).toBe('LISTENING');
 
@@ -111,13 +111,36 @@ describe('NarrativeSceneSurface', () => {
     expect(root.querySelector('[data-actor-id="kestrel"]')?.getAttribute('data-cast-state')).toBe('ACTIVE');
   });
 
-  it('gives smaller casts progressively stronger premium presence without changing identity stature', () => {
-    const scales = [1, 2, 3, 4].map(resolveNarrativeCastDensityScale);
-    expect(scales[0]).toBeGreaterThan(scales[1]!);
-    expect(scales[1]).toBeGreaterThan(scales[2]!);
-    expect(scales[2]).toBeGreaterThan(scales[3]!);
-    expect(scales[3]).toBeGreaterThan(1);
-    expect(resolveNarrativeCastDensityScale(5)).toBe(1);
+  it('keeps one actor at the same theatrical scale across one to four cast members', async () => {
+    const base = ALARIC_AUDIENCE_TABLEAU.phases![0]!.staticCast[0]!;
+    const root = document.createElement('div');
+    const samples: string[][] = [];
+    for (const count of [1, 2, 3, 4]) {
+      const tableau = { ...ALARIC_AUDIENCE_TABLEAU, phases: [{ ...ALARIC_AUDIENCE_TABLEAU.phases![0]!, staticCast: [base, ...ALARIC_AUDIENCE_TABLEAU.phases![0]!.staticCast.slice(1, count)] }] };
+      const surface = new NarrativeSceneSurface(root, tableau, { reducedMotion: true });
+      surface.mount();
+      await surface.whenRenderable();
+      const actor = surface.castLayer.querySelector<HTMLElement>(`[data-actor-id="${base.actorId}"]`)!;
+      samples.push([actor.style.left, actor.style.getPropertyValue('--tableau-baseline'), actor.style.getPropertyValue('--narrative-actor-scale')]);
+      surface.dispose();
+    }
+    expect(samples.every((sample) => JSON.stringify(sample) === JSON.stringify(samples[0]))).toBe(true);
+  });
+
+  it('requires scene-authored coordinates for each stage-owned journey cast', async () => {
+    const tableaux = [CAMP_DEPARTURE_TABLEAU, AUDIENCE_ROAD_DEPARTURE_TABLEAU, VALMIR_FORK_TABLEAU, createGenericBoundaryTableau('test:road', 'single')];
+    for (const tableau of tableaux) {
+      expect(tableau.castPlacementMode).toBe('SCENE_INTEGRATED');
+      const surface = new NarrativeSceneSurface(document.createElement('div'), tableau, { reducedMotion: true });
+      surface.mount();
+      await surface.whenRenderable();
+      expect(surface.element.dataset.dialogueSurfaceMode).toBeUndefined();
+      for (const actor of surface.castLayer.querySelectorAll<HTMLElement>('.narrative-cast__actor')) {
+        expect(actor.dataset.castPlacementMode).toBe('SCENE_INTEGRATED');
+        expect(actor.style.left).toBe(`${tableau.sceneCastPlacement![actor.dataset.actorId!]?.xPercent}%`);
+      }
+      surface.dispose();
+    }
   });
 
   it('changes Maelor facing by addressee without changing his authored company-side position', async () => {

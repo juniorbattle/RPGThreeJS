@@ -2595,10 +2595,10 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .journey-overlay { position:fixed; inset:0; z-index:9200; display:grid; place-items:end center; padding:clamp(12px,2vw,24px); pointer-events:auto; }
 .journey-overlay::before { content:''; position:absolute; inset:52% 0 0; z-index:0; pointer-events:none; background:linear-gradient(180deg,transparent,rgba(2,5,12,.62)); }
 .journey-overlay--standalone { background:linear-gradient(180deg,rgba(2,5,12,.72),rgba(2,5,12,.94)); }
-.journey-overlay__panel { position:relative; z-index:1; width:min(1040px,100%); max-height:min(34vh,330px); overflow:auto; padding:clamp(12px,1.6vw,18px); border:1px solid rgba(244,217,139,.4); background:linear-gradient(180deg,rgba(6,12,24,.66),rgba(3,6,13,.86)); box-shadow:0 18px 48px rgba(0,0,0,.64),inset 0 1px rgba(255,245,210,.1); backdrop-filter:blur(9px); }
+.journey-overlay__panel { position:relative; z-index:1; width:min(1040px,100%); overflow:visible; padding:clamp(12px,1.6vw,18px); border:1px solid rgba(244,217,139,.4); background:linear-gradient(180deg,rgba(6,12,24,.66),rgba(3,6,13,.86)); box-shadow:0 18px 48px rgba(0,0,0,.64),inset 0 1px rgba(255,245,210,.1); backdrop-filter:blur(9px); }
 .journey-overlay__header { min-width:0; }
 .journey-overlay--single { place-items:end end; }
-.journey-overlay--single .journey-overlay__panel { width:min(440px,100%); max-height:min(22vh,220px); padding:12px 14px; }
+.journey-overlay--single .journey-overlay__panel { width:min(440px,100%); padding:12px 14px; }
 .journey-overlay--branch .journey-overlay__panel { width:100%; max-height:none; overflow:visible; padding:0; border:0; background:transparent; box-shadow:none; backdrop-filter:none; }
 .journey-overlay--branch .journey-overlay__header { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 .journey-overlay__eyebrow { margin:0 0 5px; color:#72c7ff; font:700 9px Cinzel,serif; letter-spacing:.18em; text-transform:uppercase; }
@@ -2630,10 +2630,16 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 
 @media (max-width: 900px) {
   .journey-overlay { padding:10px; }
-  .journey-overlay--single .journey-overlay__panel { width:min(410px,100%); max-height:min(26vh,210px); }
+  .journey-overlay--single .journey-overlay__panel { width:min(410px,100%); }
   .journey-overlay--branch .journey-overlay__choices { grid-template-columns:minmax(210px,1fr) minmax(210px,1fr); gap:clamp(24px,12vw,150px); }
   .journey-overlay--branch .journey-overlay__choice { min-height:60px; padding:9px 11px; }
   .journey-overlay__hint { display:none; }
+}
+
+@media (max-width: 600px) {
+  .journey-overlay--branch .journey-overlay__choices { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .journey-overlay--branch .journey-overlay__choice { min-width:0; min-height:72px; }
+  .journey-overlay--branch .journey-overlay__choice b { font-size:13px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2767,16 +2773,6 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .narrative-cast__actor.is-speaking { z-index:6; opacity:1; filter:saturate(1.06) brightness(1.1) contrast(1.12) drop-shadow(0 28px 34px rgba(0,0,0,.88)); }
 .narrative-cast__actor.is-listening { opacity:.5; }
 .narrative-cast__actor.is-background { opacity:.26; filter:saturate(.45) brightness(.42) contrast(.9) drop-shadow(0 20px 24px rgba(0,0,0,.78)); }
-.narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor[data-screen-position="FAR_LEFT"] { left:16%; }
-.narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor[data-screen-position="CENTER_LEFT"] { left:38%; }
-.narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor[data-screen-position="CENTER_RIGHT"] { left:62%; }
-.narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor[data-screen-position="FAR_RIGHT"] { left:84%; }
-.narrative-scene-surface__cast[data-cast-count="7"] .narrative-cast__actor[data-screen-position="FAR_LEFT"] { left:12.5%; }
-.narrative-scene-surface__cast[data-cast-count="7"] .narrative-cast__actor[data-screen-position="LEFT"] { left:25%; }
-.narrative-scene-surface__cast[data-cast-count="7"] .narrative-cast__actor[data-screen-position="CENTER_LEFT"] { left:37.5%; }
-.narrative-scene-surface__cast[data-cast-count="7"] .narrative-cast__actor[data-screen-position="CENTER_RIGHT"] { left:62.5%; }
-.narrative-scene-surface__cast[data-cast-count="7"] .narrative-cast__actor[data-screen-position="RIGHT"] { left:75%; }
-.narrative-scene-surface__cast[data-cast-count="7"] .narrative-cast__actor[data-screen-position="FAR_RIGHT"] { left:87.5%; }
 .narrative-scene-surface__atmosphere { position:absolute; inset:0; z-index:7; pointer-events:none; opacity:.34; background:linear-gradient(105deg,transparent 8%,rgba(244,217,139,.09) 46%,transparent 72%); mix-blend-mode:screen; animation:narrative-atmosphere-drift 12s ease-in-out infinite alternate; }
 .narrative-scene-surface__focus { position:absolute; inset:0; z-index:8; pointer-events:none; background:linear-gradient(180deg,transparent 55%,rgba(1,4,10,.22)); }
 .narrative-cast__actor.is-entering[data-entry-effect="FADE_IN"] { animation:narrative-actor-fade-in .18s ease-out both; }
@@ -3031,11 +3027,6 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 }
 .campaign-status-hud em { color: #e7c66f; font-size: 9px; font-style: normal; white-space: nowrap; }
 .campaign-status-hud[data-layout="traversal"] { top: 18px; left: 20px; z-index: 46; }
-/* The departure has no speaker spotlight: show the whole company above its local agency. */
-.narrative-stage[data-narrative-tableau="AUDIENCE_ROAD_DEPARTURE_TABLEAU"] .narrative-cast__actor {
-  bottom: 26vh; width: min(32vw, 48vh); height: 72vh;
-  opacity: .96; filter: saturate(.95) brightness(1.03) drop-shadow(0 16px 20px #0009);
-}
 @media (max-width: 600px) {
   .campaign-status-hud {
     top: 12px; left: 12px; width: min(310px, calc(100vw - 24px)); min-height: 52px;
@@ -3061,7 +3052,12 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .campaign-status-hud em { color: var(--campaign-gold-light); font: 400 10px/1.05 var(--campaign-data-font); }
 .campaign-status-hud[data-layout="traversal"] { top: 18px; left: 20px; }
 
-.journey-overlay--departure .journey-overlay__panel.campaign-ui-frame { width: min(430px, 100%); max-height: min(29vh, 220px); padding: 12px 16px; overflow: visible; }
+.journey-overlay--departure .journey-overlay__panel.campaign-ui-frame { width: min(430px, 100%); padding: 12px 16px; overflow: visible; }
+.journey-overlay--departure .campaign-ui-frame__corner { width: 22px; height: 22px; }
+.journey-overlay--departure .campaign-ui-frame__corner--tl { top: 0; left: 0; }
+.journey-overlay--departure .campaign-ui-frame__corner--tr { top: 0; right: 0; }
+.journey-overlay--departure .campaign-ui-frame__corner--bl { bottom: 0; left: 0; }
+.journey-overlay--departure .campaign-ui-frame__corner--br { bottom: 0; right: 0; }
 .journey-overlay--departure .journey-overlay__eyebrow { margin-bottom: 1px; color: var(--campaign-gold); font: 600 10px/1.1 var(--campaign-title-font); letter-spacing: .11em; }
 .journey-overlay--departure .journey-overlay__title { color: var(--campaign-ivory); font: 700 clamp(20px, 2vw, 25px)/1.08 var(--campaign-title-font); letter-spacing: .015em; }
 .journey-overlay--departure .journey-overlay__choices { grid-template-columns: 1fr; margin-top: 9px; }

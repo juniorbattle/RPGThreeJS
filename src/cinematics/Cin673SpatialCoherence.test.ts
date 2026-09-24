@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { dialogues } from '../game/content';
 import { DialogueStagingDirector } from './DialogueStagingDirector';
 import { applyFinalDialoguePresentationPlan } from './DialoguePresentationSegments';
-import { resolveNarrativeCastDensityScale } from './NarrativeSceneSurface';
+import { THEATRICAL_ACTOR_BASE_SCALE } from './NarrativeSceneSurface';
 import {
   ALARIC_AUDIENCE_TABLEAU,
   createGenericNarrativeTableau,
@@ -95,12 +95,11 @@ describe('CIN-6.7.x spatial coherence', () => {
     });
   });
 
-  it('locks stronger cast-count-aware presence and equal speaker/listener transforms', () => {
+  it('locks cast-count-independent presence and equal speaker/listener transforms', () => {
     const css = readFileSync(resolve(process.cwd(), 'src/styles/app.css'), 'utf8');
-    expect(css).toContain('.narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor[data-screen-position="FAR_LEFT"] { left:16%; }');
-    expect(css).not.toContain('.narrative-scene-surface__cast[data-cast-count="6"] .narrative-cast__actor {');
+    expect(css).not.toContain('.narrative-scene-surface__cast[data-cast-count=');
     expect(css).toMatch(/data-narrative-placement="CENTER_UPPER"\] \.dialogue__box \{[^}]*top:14vh;[^}]*width:clamp\(560px,42vw,820px\);[^}]*min-height:190px;/);
-    expect(resolveNarrativeCastDensityScale(4)).toBeGreaterThan(1);
+    expect(THEATRICAL_ACTOR_BASE_SCALE).toBe(1.14);
     const actorRule = css.match(/\.narrative-cast__actor \{([^}]*)\}/)?.[1] ?? '';
     expect(actorRule).toMatch(/width:min\(36vw,66vh,700px\)/);
     expect(actorRule).toMatch(/opacity:\.5/);

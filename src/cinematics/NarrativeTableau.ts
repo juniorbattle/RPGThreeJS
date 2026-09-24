@@ -201,6 +201,10 @@ export interface NarrativeBeatSpec {
 
 export interface NarrativeTableauSpec {
   id: string;
+  /** Dialogue cast uses the theatrical plane; stage-owned journey cast belongs to its painted scene. */
+  castPlacementMode?: 'THEATRICAL_FOREGROUND' | 'SCENE_INTEGRATED';
+  /** Screen coordinates authored against this tableau's still, never inferred from cast size. */
+  sceneCastPlacement?: Readonly<Record<string, Readonly<{ xPercent: number; bottomVh: number; scale: number }>>>;
   /** Production background slot; independent from dialogue and authored tableau identity. */
   tableauBackgroundId?: string;
   grammar: NarrativeJourneyGrammar;
@@ -498,6 +502,12 @@ export function createGenericBoundaryTableau(
   };
   const tableau: NarrativeTableauSpec = {
     id: `BOUNDARY_${presentationKey.replace(/[^a-z0-9]+/gi, '_').toUpperCase()}_TABLEAU`,
+    castPlacementMode: 'SCENE_INTEGRATED',
+    sceneCastPlacement: {
+      alistair: { xPercent: 38, bottomVh: 26, scale: .76 },
+      sage_seraphine: { xPercent: 49, bottomVh: 29, scale: .7 },
+      maelor: { xPercent: 59, bottomVh: 26, scale: .76 },
+    },
     grammar: branch ? 'TWO_PATH_FORK' : 'SINGLE_ROUTE',
     family: 'JOURNEY',
     presentationKey,
@@ -528,6 +538,12 @@ export function createGenericBoundaryTableau(
 
 export const CAMP_DEPARTURE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   id: 'CAMP_DEPARTURE_TABLEAU',
+  castPlacementMode: 'SCENE_INTEGRATED',
+  sceneCastPlacement: {
+    alistair: { xPercent: 42, bottomVh: 26, scale: .78 },
+    marian: { xPercent: 52, bottomVh: 29, scale: .72 },
+    maelor: { xPercent: 63, bottomVh: 26, scale: .78 },
+  },
   grammar: 'SINGLE_ROUTE',
   presentationKey: 'node:lion-camp:arrival',
   family: 'JOURNEY',
@@ -559,6 +575,12 @@ export const CAMP_DEPARTURE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
 /** Releases Alaric's chamber and establishes the company back on the road before the first threat. */
 export const AUDIENCE_ROAD_DEPARTURE_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   id: 'AUDIENCE_ROAD_DEPARTURE_TABLEAU',
+  castPlacementMode: 'SCENE_INTEGRATED',
+  sceneCastPlacement: {
+    sage_seraphine: { xPercent: 35, bottomVh: 29, scale: .72 },
+    alistair: { xPercent: 47, bottomVh: 26, scale: .8 },
+    maelor: { xPercent: 59, bottomVh: 27, scale: .76 },
+  },
   grammar: 'DEPARTURE',
   presentationKey: 'edge:lion-audience>lion-opening-ambush',
   family: 'JOURNEY',
@@ -747,6 +769,12 @@ export const FOREST_AFTERMATH_TABLEAU = Object.freeze<NarrativeTableauSpec>({
 
 export const VALMIR_FORK_TABLEAU = Object.freeze<NarrativeTableauSpec>({
   id: 'VALMIR_FORK_TABLEAU',
+  castPlacementMode: 'SCENE_INTEGRATED',
+  sceneCastPlacement: {
+    sage_seraphine: { xPercent: 41, bottomVh: 28, scale: .71 },
+    alistair: { xPercent: 51, bottomVh: 25, scale: .78 },
+    maelor: { xPercent: 61, bottomVh: 27, scale: .74 },
+  },
   grammar: 'TWO_PATH_FORK',
   presentationKey: 'node:lion-valmir-road:arrival',
   family: 'JOURNEY',

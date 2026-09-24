@@ -61,11 +61,12 @@ async function show(dialogueId: string, stepId: string, activateChoices = false)
   });
   for (let attempt = 0; attempt < 60; attempt += 1) {
     const overlay = root.querySelector<HTMLElement>('.dialogue');
-    if (overlay?.dataset.dialogueStep === stepId && !overlay.classList.contains('dialogue--preparing-step')) break;
+    if (overlay?.dataset.dialogueSequence === dialogueId && overlay.dataset.dialogueStep === stepId
+      && !overlay.classList.contains('dialogue--preparing-step')) break;
     await new Promise((done) => setTimeout(done, 20));
   }
   const overlay = root.querySelector<HTMLElement>('.dialogue');
-  if (overlay?.dataset.dialogueStep !== stepId) throw new Error(`Dialogue failed to render ${dialogueId}:${stepId}`);
+  if (overlay?.dataset.dialogueSequence !== dialogueId || overlay.dataset.dialogueStep !== stepId) throw new Error(`Dialogue failed to render ${dialogueId}:${stepId}`);
   if (activateChoices) {
     for (let attempt = 0; attempt < 8 && !root.querySelector('.dialogue-choice'); attempt += 1) {
       root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
@@ -78,4 +79,24 @@ async function show(dialogueId: string, stepId: string, activateChoices = false)
   await new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)));
 }
 
-(window as Window & { tableauProof?: { catalog: typeof catalog; show: typeof show } }).tableauProof = { catalog, show };
+async function showCastCount(count: number): Promise<string> {
+  if (![1, 2, 3, 4].includes(count)) throw new Error(`Unsupported cast count ${count}`);
+  const dialogueId = 'acte_ouverture';
+  const stepId = catalog.find((entry) => entry.dialogueId === dialogueId)?.steps[0]?.stepId;
+  if (!stepId) throw new Error('Missing opening fixture');
+  await show(dialogueId, stepId);
+  const sequence = dialogues.get(dialogueId)!;
+  const base = resolveNarrativeDialogueTableau(dialogueId, sequence)!;
+  const tableau = applyFinalDialoguePresentationPlan(sequence, base);
+  const phase = tableau.phases!.find((candidate) => candidate.stepIds.includes(stepId))!;
+  const actorId = phase.staticCast[0]!.actorId;
+  surface?.dispose();
+  surface = new NarrativeSceneSurface(media, { ...tableau, phases: [{ ...phase, staticCast: phase.staticCast.slice(0, count) }] }, { reducedMotion: true });
+  surface.mount(tableau.stillImage ?? resolveDialogueBackdrop(sequence), phase.id);
+  await surface.setPhase(phase.id, actorId);
+  await surface.whenRenderable();
+  await new Promise<void>((done) => requestAnimationFrame(() => requestAnimationFrame(() => done())));
+  return actorId;
+}
+
+(window as Window & { tableauProof?: { catalog: typeof catalog; show: typeof show; showCastCount: typeof showCastCount } }).tableauProof = { catalog, show, showCastCount };

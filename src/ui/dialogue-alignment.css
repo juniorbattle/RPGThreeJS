@@ -194,22 +194,27 @@
     transform: translateX(-50%) !important;
   }
   .narrative-scene-surface .narrative-cast__actor {
-    bottom: 12vh;
-    width: min(54vw, 42vh);
+    bottom: 16vh;
+    width: min(58vw, 44vh);
   }
-  .narrative-scene-surface__cast[data-cast-count="1"] .narrative-cast__actor,
-  .narrative-scene-surface__cast[data-cast-count="2"] .narrative-cast__actor { width: min(62vw, 45vh); }
-  .narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor { bottom: 20vh; }
 }
 
 @media (max-width: 450px) {
   .dialogue.dialogue--choice-active .dialogue__box { bottom: calc(min(22dvh, 165px) + 36px) !important; }
-  .narrative-scene-surface .narrative-cast__actor { bottom: 23vh; width: min(74vw, 48vh); }
-  .narrative-scene-surface__cast[data-cast-count="1"] .narrative-cast__actor,
-  .narrative-scene-surface__cast[data-cast-count="2"] .narrative-cast__actor { bottom: 15vh; width: min(84vw, 51vh); }
-  .narrative-scene-surface__cast[data-cast-count="1"] .narrative-cast__actor { bottom: 15vh; width: min(96vw, 60vh); }
-  body:has(.dialogue--choice-active) .narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor { bottom: 31vh; }
-  .narrative-scene-surface__cast[data-cast-count="5"] .narrative-cast__actor,
-  .narrative-scene-surface__cast[data-cast-count="6"] .narrative-cast__actor,
-  .narrative-scene-surface__cast[data-cast-count="7"] .narrative-cast__actor { bottom: 22vh; width: min(72vw, 45vh); }
+  .narrative-scene-surface .narrative-cast__actor { bottom: 20vh; width: min(78vw, 49vh); }
+  body:has(.dialogue--choice-active) .narrative-scene-surface .narrative-cast__actor { bottom: 29vh; }
+}
+
+/* Journey cast is placed on each painted road, independently of dialogue cast size. */
+.narrative-scene-surface[data-cast-placement-mode="SCENE_INTEGRATED"] .narrative-cast__actor {
+  bottom: var(--tableau-baseline);
+  width: clamp(175px, 30vw, 310px);
+  height: min(70vh, 680px);
+  opacity: .96;
+  filter: saturate(.95) brightness(1.03) drop-shadow(0 16px 20px #0009);
+}
+@media (max-width: 700px) {
+  .narrative-scene-surface[data-cast-placement-mode="SCENE_INTEGRATED"] .narrative-cast__actor {
+    width: clamp(180px, 36vw, 230px);
+  }
 }

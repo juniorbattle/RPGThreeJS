@@ -271,6 +271,31 @@ try {
     }
     process.stdout.write(`Responsive silhouette ${dialogueId}\n`);
   }
+  const castCountSamples = [];
+  for (const viewport of [{ width: 1440, height: 810 }, { width: 1366, height: 768 }, { width: 620, height: 780 }, { width: 390, height: 844 }]) {
+    await page.setViewportSize(viewport);
+    for (const count of [1, 2, 3, 4]) {
+      const actorId = await page.evaluate((size) => window.tableauProof.showCastCount(size), count);
+      const sample = await page.evaluate((id) => {
+        const actor = [...document.querySelectorAll('.narrative-cast__actor')].find((element) => element.dataset.actorId === id);
+        if (!actor) throw new Error(`Missing invariance actor ${id}`);
+        const box = actor.getBoundingClientRect();
+        return { actorId: id, x: box.x, y: box.y, width: box.width, height: box.height,
+          anchorX: box.x + box.width / 2, bottom: box.bottom,
+          scale: Number(actor.style.getPropertyValue('--narrative-actor-scale')) };
+      }, actorId);
+      const filename = viewport.width === 1440 || viewport.width === 390
+        ? `cast-count-${viewport.width}x${viewport.height}-${count}.jpg` : null;
+      if (filename) await page.screenshot({ path: resolve(imageDir, filename), type: 'jpeg', quality: 78 });
+      castCountSamples.push({ viewport, count, ...sample, screenshot: filename });
+    }
+  }
+  const castCountFailures = castCountSamples.flatMap((sample) => {
+    const baseline = castCountSamples.find((entry) => entry.viewport.width === sample.viewport.width && entry.count === 1);
+    return ['anchorX', 'bottom', 'width', 'height', 'scale'].filter((key) => Math.abs(sample[key] - baseline[key]) > (key === 'scale' ? .001 : 1))
+      .map((key) => `${sample.viewport.width}x${sample.viewport.height}:cast${sample.count}:${key}`);
+  });
+  await writeFile(resolve(output, 'cast-count-invariance.json'), `${JSON.stringify({ samples: castCountSamples, failures: castCountFailures }, null, 2)}\n`);
   const summary = {
     dialogues: catalog.length,
     visualPhases: catalog.reduce((n, entry) => n + entry.phases.length, 0),
@@ -290,6 +315,7 @@ try {
       continue: metrics.filter((state) => state.cardContent.continueVisible).length,
     },
     pageErrors,
+    castCountInvarianceFailures: castCountFailures.length,
   };
   const cardFailures = metrics.filter((state) => state.cardOverflow.x !== 'hidden' || state.cardOverflow.y !== 'hidden'
     || state.cardOverflow.scrollWidth > state.cardOverflow.clientWidth + 1
@@ -307,7 +333,7 @@ try {
   if (cardFailures.length || choiceHorizontalFailures.length) {
     process.stderr.write(`CARD/CHOICE OVERFLOW FAILURES ${JSON.stringify({ card: cardFailures.slice(0, 12).map(({ dialogueId, stepId, state, viewport, cardOverflow, clippedCardContent }) => ({ dialogueId, stepId, state, viewport, cardOverflow, clippedCardContent })), choices: choiceHorizontalFailures.slice(0, 12).map(({ dialogueId, stepId, viewport, choiceOverflow }) => ({ dialogueId, stepId, viewport, choiceOverflow })) })}\n`);
   }
-  if (pageErrors.length || cardFailures.length || choiceHorizontalFailures.length) process.exitCode = 1;
+  if (pageErrors.length || cardFailures.length || choiceHorizontalFailures.length || castCountFailures.length) process.exitCode = 1;
 } finally {
   await browser?.close();
   server.kill();
