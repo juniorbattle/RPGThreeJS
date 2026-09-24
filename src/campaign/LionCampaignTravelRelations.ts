@@ -29,6 +29,8 @@ export interface LionTraversalStage {
   readonly mode: LionTraversalStageMode;
   /** Participation of the encounter reached AFTER choosing a road variant. */
   readonly branchEncounterMode?: 'OPTIONAL_INTERRUPT' | 'MANDATORY_INTERRUPT';
+  /** Per-node participation overrides; fork selection and topology remain unchanged. */
+  readonly optionalBranchNodeIds?: readonly string[];
   readonly forkPresentation?: LionTraversalForkPresentation;
 }
 
@@ -67,8 +69,9 @@ const LION_TRAVERSAL_LEG_DEFINITIONS: readonly LionTraversalLeg[] = [
       {
         nodeIds: ['lion-first-trial-event', 'lion-first-trial-combat'],
         mode: 'IN_TRAVERSAL_FORK',
-        // Choosing this road commits to its payoff; ordinary road combat stays optional.
+        // Combat commits to its payoff; the authored social event can be declined before dialogue.
         branchEncounterMode: 'MANDATORY_INTERRUPT',
+        optionalBranchNodeIds: Object.freeze(['lion-first-trial-event']),
         forkPresentation: {
           surface: 'TRAVERSAL_OVERLAY',
           keepTraversalMounted: true,

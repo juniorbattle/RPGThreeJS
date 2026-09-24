@@ -41,6 +41,29 @@ function click(selector: string): void {
 }
 
 describe('journey campaign boundary', () => {
+  it('reuses the reviewed departure but returns local continuation with no node identity', async () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-audience');
+    const before = structuredClone(state);
+    const boundary = createBoundary();
+    const pending = boundary.present({ currentNodeId: 'lion-audience', available,
+      presentationOnly: { eyebrow: 'Départ', title: 'Vers Refuge du Lion', continueLabel: 'Prendre la route' } });
+    await flush();
+    expect(document.querySelector<HTMLElement>('.narrative-stage')?.dataset.narrativeTableau)
+      .toBe('AUDIENCE_ROAD_DEPARTURE_TABLEAU');
+    expect(document.querySelectorAll('.narrative-cast__actor')).toHaveLength(3);
+    expect(document.querySelector('.journey-overlay__eyebrow')?.textContent).toBe('Départ');
+    expect(document.querySelector('.journey-overlay__title')?.textContent).toBe('Vers Refuge du Lion');
+    expect(document.querySelector('[data-journey-continue]')?.textContent).toContain('Prendre la route');
+    expect(document.querySelectorAll('[data-journey-choice]')).toHaveLength(0);
+    click('[data-journey-continue]');
+    expect(await pending).toMatchObject({ kind: 'presentation-continue', id: null,
+      presentationKey: 'edge:lion-audience>lion-opening-ambush' });
+    expect(state).toEqual(before);
+    expect(document.querySelectorAll('.narrative-stage')).toHaveLength(1);
+    boundary.dispose();
+    expect(document.querySelector('.narrative-stage')).toBeNull();
+  });
   beforeEach(() => {
     vi.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(() => undefined);
     vi.spyOn(HTMLMediaElement.prototype, 'load').mockImplementation(() => undefined);

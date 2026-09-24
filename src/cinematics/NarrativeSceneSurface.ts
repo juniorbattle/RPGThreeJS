@@ -1,5 +1,6 @@
 import type { DialogueSequence } from '../game/types';
 import { assets } from '../render/assetManifest';
+import { resolveCharacterAsset } from '../render/CharacterVisualRegistry';
 import { createGenericNarrativeTableau, type NarrativeActorEntryEffect, type NarrativeActorExitEffect, type NarrativeAddressResolution, type NarrativeLayoutPlacement, type NarrativeStagedActorSpec, type NarrativeTableauSpec, type NarrativeVisualPhaseSpec } from './NarrativeTableau';
 
 interface DialogueAssetProfile {
@@ -10,7 +11,7 @@ interface DialogueAssetProfile {
 function actorImage(actorId: string): string | undefined {
   const profiles = assets.characterProfiles as Record<string, DialogueAssetProfile | undefined>;
   const actors = assets.dialogueActors as Record<string, string | undefined>;
-  return profiles[actorId]?.full ?? profiles[actorId]?.dialogue ?? actors[actorId];
+  return resolveCharacterAsset(actorId, 'full') ?? profiles[actorId]?.full ?? profiles[actorId]?.dialogue ?? actors[actorId];
 }
 
 type NarrativeStaticCastState = 'ACTIVE' | 'LISTENING' | 'BACKGROUND';

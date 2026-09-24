@@ -4,7 +4,7 @@ import {
   FINAL_DIALOGUE_CANONICAL_PRESENTATION_SHAPES,
   FINAL_DIALOGUE_PRESENTATION_PLANS,
   FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS,
-} from './FinalDialoguePresentation.generated';
+} from './NarrativePresentationPlans';
 import {
   createGenericNarrativeTableau,
   resolveNarrativeStepLayout,
@@ -18,6 +18,7 @@ import {
   type NarrativeStagedActorSpec,
   type NarrativeTableauSpec,
   type NarrativeVisualPhaseSpec,
+  stageActors,
 } from './NarrativeTableau';
 import type { CinematicReductionClassification } from './CinematicReductionPolicy';
 
@@ -137,7 +138,12 @@ export function applyFinalDialoguePresentationPlan(
   const base = tableau ?? createGenericNarrativeTableau(sequence);
   const plan = resolveFinalDialoguePresentationPlan(sequence.id, sequence);
   if (!plan) return base;
-  const phases = plan.segments.map((segment) => phaseForSegment(sequence, base, segment));
+  const phases = plan.segments.map((segment) => {
+    const phase = phaseForSegment(sequence, base, segment);
+    if (!base.cast.optionalActors.length) return phase;
+    const cast = [...new Set([...segment.visibleCast, ...base.cast.optionalActors])].slice(0, 7);
+    return { ...phase, staticCast: stageActors(cast), mediaSubjects: cast };
+  });
   const beats = base.beats.map((beat) => {
     if (!beat.dialogueStepId) return beat;
     const step = sequence.steps.find((candidate) => candidate.id === beat.dialogueStepId);
@@ -149,7 +155,7 @@ export function applyFinalDialoguePresentationPlan(
         : 'SPEAKER_CARD' as const,
     };
   });
-  const visualActors = [...new Set(plan.segments.flatMap((segment) => [...segment.visibleCast]))];
+  const visualActors = [...new Set(phases.flatMap(phase => phase.staticCast.map(actor => actor.actorId)))];
   return Object.freeze({
     ...base,
     phases: Object.freeze(phases),

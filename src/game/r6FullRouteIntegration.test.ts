@@ -1,3 +1,4 @@
+import { TRAVERSAL_LOCAL_NARRATIVES, CLAN_ANCHOR_DIALOGUES } from './campaignGrammarContent';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -421,12 +422,13 @@ describe('R6 content reachability and reference integrity', () => {
     for (const id of Object.keys(CONTEXTUAL_DIALOGUE_DEFINITIONS)) production.add(id);
     for (const id of Object.keys(REPUTATION_EVENT_DIALOGUE_DEFINITIONS)) production.add(id);
 
+    for (const id of [...Object.values(TRAVERSAL_LOCAL_NARRATIVES), ...Object.values(CLAN_ANCHOR_DIALOGUES)]) production.add(id);
     const unexplained = [...dialogues.keys()].filter((id) => (
       !production.has(id) && !LEGACY_COMPATIBILITY_DIALOGUES.has(id)
     ));
     expect(unexplained).toEqual([]);
     expect([...LEGACY_COMPATIBILITY_DIALOGUES].every((id) => dialogues.has(id))).toBe(true);
-    expect(dialogues.size).toBe(73);
+    expect(dialogues.size).toBe(75);
   });
 
   it('validates every combat, ATE, R4, and contextual patch/anchor reference', () => {

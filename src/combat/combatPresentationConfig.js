@@ -119,6 +119,8 @@ export const COMBAT_PRESENTATION = {
     saturation: 0.93,
     contrast: 1.04,
     vignette: 1.04,
+    // Stage focus keeps the painted arena and actors readable around the edges.
+    stageVignette: 0.5,
     grain: 0.006,
     warm: [1.02, 1.0, 0.96],
     centerLift: ambientMist.centerWashOpacity,

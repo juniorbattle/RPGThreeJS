@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import { afterEach, expect, it, vi } from 'vitest';
 import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
-import { enterRunNode, getAvailableRunNodes } from '../game/runSystem';
+import { bypassTraversalNode, enterRunNode, getAvailableRunNodes } from '../game/runSystem';
 import { createInitialState } from '../game/store';
 import { TraversalT0Scene } from './TraversalT0Scene';
 import { traversalContactProgress } from './TraversalT0Route';
@@ -20,6 +20,7 @@ it.each([
   const scene = new TraversalT0Scene({
     root: document.body, leg: LION_TRAVERSAL_LEGS.find(leg => leg.id === 'T0')!,
     getState: () => state, getAvailableNodes: () => getAvailableRunNodes(state),
+    onOptionalIgnore: nodeId => ({ accepted: bypassTraversalNode(state.run, 'T0', nodeId) }),
     onNodeHandoff: node => {
       expect(enterRunNode(state.run, node.id)?.id).toBe(node.id);
       state.currentNodeId = node.id;
@@ -90,7 +91,7 @@ it.each([
   expect(getAvailableRunNodes(state).map(node => node.id)).toEqual(['lion-first-refuge']);
   expect(handoffs).toEqual(action === 'confirm'
     ? ['lion-opening-ambush', 'lion-nomad-crossroads', 'lion-refugees', branch]
-    : ['lion-opening-ambush', 'lion-nomad-crossroads', branch]);
+    : ['lion-opening-ambush', 'lion-nomad-crossroads', ...(branch === 'lion-first-trial-combat' ? [branch] : [])]);
   if (action === 'confirm') { expect(pickups.size).toBe(3); expect(roadCombat).toHaveBeenCalledOnce(); }
   if (action === 'opposite-lane') expect(roadCombat).not.toHaveBeenCalled();
   scene.dispose();

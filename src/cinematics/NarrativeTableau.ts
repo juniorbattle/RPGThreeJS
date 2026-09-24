@@ -1,4 +1,5 @@
 import type { DialogueSequence } from '../game/types';
+import { CAMPAIGN_GRAMMAR_PRESENTATIONS } from '../game/campaignGrammarContent';
 import {
   demoBoundaryEnvironmentUrl,
   demoEnvironmentUrlForContext,
@@ -408,18 +409,19 @@ function phaseForStep(
   };
 }
 
-export function createGenericNarrativeTableau(sequence: DialogueSequence): NarrativeTableauSpec {
+export function createGenericNarrativeTableau(sequence: DialogueSequence, additionalActors: readonly string[] = []): NarrativeTableauSpec {
   const family = inferTableauFamily(sequence);
   const speakers = [...new Set(sequence.steps.map((step) => step.actorId).filter((id): id is string => Boolean(id)))];
   const firstStep = sequence.steps[0];
   const phase = firstStep ? phaseForStep(sequence, firstStep, speakers, family) : undefined;
-  const stableCast = stageActors(speakers);
+  const visibleActors = [...new Set([...speakers, ...additionalActors])].slice(0, 7);
+  const stableCast = stageActors(visibleActors);
   const phases = phase ? [{
     ...phase,
     id: `${sequence.id}:tableau`,
     stepIds: sequence.steps.map((step) => step.id),
     staticCast: stableCast,
-    mediaSubjects: speakers,
+    mediaSubjects: visibleActors,
     negativeSpaceIntent: 'Keep one stable illustrated composition while cards and speaker emphasis change within it.',
     cameraIntent: family === 'PRE_COMBAT'
       ? 'One stable wide threat composition until the combat handoff.'
@@ -443,17 +445,17 @@ export function createGenericNarrativeTableau(sequence: DialogueSequence): Narra
   }));
   const tableau: NarrativeTableauSpec = {
     id: `${sequence.id.toUpperCase()}_TABLEAU`,
-    tableauBackgroundId: `${sequence.id}_tableau_bg`,
+    tableauBackgroundId: CAMPAIGN_GRAMMAR_PRESENTATIONS[sequence.id]?.backgroundId ?? `${sequence.id}_tableau_bg`,
     grammar: family === 'PRE_COMBAT' ? 'THREAT' : family === 'AFTERMATH' ? 'AFTERMATH' : 'APPROACH',
     dialogueId: sequence.id,
     family,
-    stillImage: demoEnvironmentUrlForContext(`dialogue:${sequence.id}`, 'STATIC_TABLEAU'),
+    stillImage: demoEnvironmentUrlForContext(CAMPAIGN_GRAMMAR_PRESENTATIONS[sequence.id]?.environmentContext ?? `dialogue:${sequence.id}`, 'STATIC_TABLEAU'),
     media: [],
     cast: {
-      visualActors: speakers,
+      visualActors: visibleActors,
       eventActors: speakers,
       playerRepresentatives: speakers.filter((id) => id === 'sage_seraphine' || id === 'maelor'),
-      optionalActors: [],
+      optionalActors: additionalActors.filter(id => !speakers.includes(id)),
       justifiedOffscreen: [],
     },
     anchors: [

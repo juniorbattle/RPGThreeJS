@@ -2032,7 +2032,7 @@ async function combatStageEnter(att,targets,spec,opts){ const presentation=getSk
   for(const o of G.units){ if(inv.has(o))continue; o._opSnap={mat:o.mat.opacity,blob:o.blob.material.opacity,vis:o.grp.visible};
     tween(o.mat,{opacity:0},0.2,easeOutCubic,()=>{ if(o._opSnap)o.grp.visible=false; }); tween(o.blob.material,{opacity:0},0.2,easeOutCubic); G._stageFaded.push(o); }
   if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
-  stageFrame(att,targets); killTweens(Grade.uniforms.vig); tween(Grade.uniforms.vig,{value:1.36},0.42,easeInOut);
+  stageFrame(att,targets); killTweens(Grade.uniforms.vig); tween(Grade.uniforms.vig,{value:COMBAT_PRESENTATION.grade.stageVignette},0.42,easeInOut);
   const etgt=targets.find(t=>t!==att&&t.team!==att.team);
   stageTitleEl.querySelector('b').textContent=spec.name||'Action';
   stageTitleEl.querySelector('small').textContent=att.name+(etgt?'  \u2192  '+etgt.name:'');

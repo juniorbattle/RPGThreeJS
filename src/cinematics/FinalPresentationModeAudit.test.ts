@@ -1,3 +1,4 @@
+import { CAMPAIGN_GRAMMAR_PRESENTATIONS } from '../game/campaignGrammarContent';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -50,13 +51,13 @@ describe('CIN-6D.5 final presentation mode audit', () => {
 
   it('contextualizes every dialogue, choice state and ATE', () => {
     const audit = readJson('tools/cinematics/specs/final_presentation_mode_audit.json');
-    const choiceIds = [...dialogues.values()].flatMap((sequence) => sequence.steps
+    const choiceIds = [...dialogues.values()].filter(sequence => !CAMPAIGN_GRAMMAR_PRESENTATIONS[sequence.id]).flatMap((sequence) => sequence.steps
       .filter((step) => (step.choices?.length ?? 0) > 0)
       .map((step) => `${sequence.id}:${step.id}`));
     const ateIds = Object.values(POST_NODE_ATE).flat();
     expect(audit.summary.dialogues).toBe(73);
     expect(audit.summary.dialogueSteps).toBe(251);
-    expect(audit.dialogueCoverage.map((entry: any) => entry.dialogueId)).toEqual([...dialogues.keys()].sort());
+    expect(audit.dialogueCoverage.map((entry: any) => entry.dialogueId)).toEqual([...dialogues.keys()].filter(id => !CAMPAIGN_GRAMMAR_PRESENTATIONS[id]).sort());
     expect(audit.summary.choices).toBe(28);
     expect(audit.choiceAudit.map((entry: any) => entry.choiceStateId)).toEqual(choiceIds.sort());
     expect(audit.choiceAudit.every((entry: any) => ['CINEMATIC_HOLD', 'STATIC_TABLEAU'].includes(entry.visualOwner))).toBe(true);

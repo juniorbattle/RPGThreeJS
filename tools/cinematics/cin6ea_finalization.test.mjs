@@ -91,12 +91,17 @@ describe('CIN-6E-A final operator approval and visual production lock', () => {
 
   it('changes no protected game system, production media or canonical sprite outside authorized presentation-only runtime proofs', () => {
     const authorizedPostLockFiles = new Set([
+      // T0-CAMPAIGN-GRAMMAR-CONSOLIDATION-1 explicitly authorizes the presentation-only departure seam.
+      'src/journey/JourneyCampaignBoundary.ts',
+      'src/journey/JourneyCampaignBoundary.test.ts',
       // CAMPAIGN-PRESENTATION-MIGRATION-1 authorizes presentation policy, not route truth/media.
       'src/journey/JourneyPresentationPolicy.ts',
       'src/journey/JourneyPresentationPolicy.test.ts',
       'src/combat/vfx/CasterMotionBackCompat.test.ts',
       'src/combat/CombatBridge.ts',
       'src/combat/legacyCombatRuntime.js',
+      // Operator requested lighter CombatStage edge grading on 2026-09-22.
+      'src/combat/combatPresentationConfig.js',
       'src/combat/protocol.ts',
       'src/combat/StrategicCharacterVisual.test.ts',
       'src/combat/vfx/DemoVfxActionScope.ts',

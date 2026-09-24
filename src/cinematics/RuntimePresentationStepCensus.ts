@@ -7,7 +7,7 @@ import {
   FINAL_DIALOGUE_CANONICAL_PRESENTATION_SHAPES,
   FINAL_DIALOGUE_PRESENTATION_PLANS,
   FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS,
-} from './FinalDialoguePresentation.generated';
+} from './NarrativePresentationPlans';
 import type { FinalDialoguePresentationPlan } from './DialoguePresentationSegments';
 
 export type RuntimePresentationPlans = Readonly<

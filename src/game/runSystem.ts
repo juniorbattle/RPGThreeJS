@@ -654,7 +654,8 @@ export function bypassTraversalNode(run: RunState, legId: string, nodeId: string
   const leg = LION_TRAVERSAL_LEGS.find((candidate) => candidate.id === legId && candidate.id === 'T0');
   const stage = leg?.stages.find((candidate) => candidate.nodeIds.includes(nodeId));
   const optional = stage?.mode === 'OPTIONAL_INTERRUPT'
-    || (stage?.branchEncounterMode === 'OPTIONAL_INTERRUPT' && run.traversalBranches?.[legId] === nodeId);
+    || ((stage?.branchEncounterMode === 'OPTIONAL_INTERRUPT' || stage?.optionalBranchNodeIds?.includes(nodeId))
+      && run.traversalBranches?.[legId] === nodeId);
   if (!optional || !getAvailableRunNodes(run).some((node) => node.id === nodeId)) return false;
   run.bypassedRouteNodeIds = [...new Set([...(run.bypassedRouteNodeIds ?? []), nodeId])];
   for (const node of getAvailableRunNodes(run)) {

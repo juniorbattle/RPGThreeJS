@@ -207,12 +207,17 @@ describe('CIN-6E-A final visual preproduction system', () => {
 
   it('keeps protected game systems and visual assets unchanged outside authorized presentation-only runtime proofs', () => {
     const authorizedPostLockFiles = new Set([
+      // T0-CAMPAIGN-GRAMMAR-CONSOLIDATION-1 explicitly authorizes the presentation-only departure seam.
+      'src/journey/JourneyCampaignBoundary.ts',
+      'src/journey/JourneyCampaignBoundary.test.ts',
       // CAMPAIGN-PRESENTATION-MIGRATION-1 authorizes presentation policy, not route truth/media.
       'src/journey/JourneyPresentationPolicy.ts',
       'src/journey/JourneyPresentationPolicy.test.ts',
       'src/combat/vfx/CasterMotionBackCompat.test.ts',
       'src/combat/CombatBridge.ts',
       'src/combat/legacyCombatRuntime.js',
+      // Operator requested lighter CombatStage edge grading on 2026-09-22.
+      'src/combat/combatPresentationConfig.js',
       'src/combat/protocol.ts',
       'src/combat/StrategicCharacterVisual.test.ts',
       'src/combat/vfx/DemoVfxActionScope.ts',
@@ -285,6 +290,8 @@ describe('CIN-6E-A final visual preproduction system', () => {
     ], { cwd: root, encoding: 'utf8' }).trim().split(/\r?\n/u).filter(Boolean);
     expect(protectedDiff.filter((path) => !authorizedPostLockFiles.has(path))).toEqual([]);
     const allowedRuntime = new Set([
+      // T0-CAMPAIGN-GRAMMAR-CONSOLIDATION-1 proves the new departure lifecycle.
+      'src/game/traversalT0ProductionRollout.test.ts',
       'src/game/campaignPresentationMigration.test.ts',
       'src/cinematics/Cin6aPresentation.ts', // Current presentation-policy comment only.
       'src/game/GameApp.ts',
@@ -335,6 +342,14 @@ describe('CIN-6E-A final visual preproduction system', () => {
       // Authorized T0 optional run fields; exact schema delta is guarded by the census test.
       'src/game/types.ts',
       'src/game/traversalRouteAuthority.test.ts',
+      // UI-VISUAL-DIRECTION-SYSTEM-1/2 and T0 grammar consolidation authorize these additive runtime/presentation files.
+      'src/cinematics/JourneyOverlay.ts',
+      'src/cinematics/JourneyOverlay.test.ts',
+      'src/cinematics/JourneySession.test.ts',
+      'src/cinematics/NarrativePresentationPlans.ts',
+      'src/game/TraversalOptionalConsequencePolicy.ts',
+      'src/game/campaignGrammarConsolidation.test.ts',
+      'src/game/campaignGrammarContent.ts',
     ]);
     const runtimeDiff = execFileSync('git', ['diff', '--name-only', baseline, '--', 'src/game', 'src/cinematics'], { cwd: root, encoding: 'utf8' })
       .trim().split(/\r?\n/u).filter(Boolean);

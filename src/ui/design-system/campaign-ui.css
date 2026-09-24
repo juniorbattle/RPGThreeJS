@@ -1,0 +1,62 @@
+:root {
+  --campaign-night: #07131f;
+  --campaign-night-deep: #030b15;
+  --campaign-brass: #b9904f;
+  --campaign-gold: #e4bd72;
+  --campaign-gold-light: #f3d99c;
+  --campaign-ivory: #fff1d2;
+  --campaign-muted: #c9c6bf;
+  --campaign-title-font: 'Alegreya', Georgia, serif;
+  --campaign-data-font: 'Source Sans 3', Inter, system-ui, sans-serif;
+}
+
+.campaign-ui-frame {
+  position: relative;
+  isolation: isolate;
+  color: var(--campaign-ivory);
+  border: 1px solid var(--campaign-brass);
+  border-radius: 2px;
+  background: linear-gradient(155deg, rgba(16, 34, 49, .96), rgba(4, 13, 24, .97) 65%, rgba(9, 25, 38, .96));
+  box-shadow: inset 0 0 0 3px rgba(3, 10, 18, .9), inset 0 0 0 4px rgba(213, 169, 92, .45), inset 0 1px 25px rgba(240, 199, 124, .07), 0 12px 30px rgba(0, 0, 0, .55);
+  backdrop-filter: blur(10px);
+}
+
+.campaign-ui-frame__corner {
+  position: absolute;
+  z-index: 2;
+  width: 23px;
+  height: 23px;
+  pointer-events: none;
+  background: url('./frame-corner.svg') center / contain no-repeat;
+}
+.campaign-ui-frame__corner--tl { top: -5px; left: -5px; }
+.campaign-ui-frame__corner--tr { top: -5px; right: -5px; transform: scaleX(-1); }
+.campaign-ui-frame__corner--bl { bottom: -5px; left: -5px; transform: scaleY(-1); }
+.campaign-ui-frame__corner--br { bottom: -5px; right: -5px; transform: rotate(180deg); }
+.campaign-ui-frame--compact .campaign-ui-frame__corner { width: 19px; height: 19px; }
+.campaign-ui-frame--hero .campaign-ui-frame__corner { width: 27px; height: 27px; }
+
+.campaign-ui-icon { display: inline-grid; place-items: center; flex: none; width: 28px; height: 28px; color: var(--campaign-gold); filter: drop-shadow(0 1px 3px #000a); }
+.campaign-ui-icon svg { display: block; width: 100%; height: 100%; }
+.campaign-ui-icon--gold { color: #f0c972; }
+.campaign-ui-icon--reputation { color: #e5b761; }
+.campaign-ui-divider { width: 1px; align-self: stretch; background: linear-gradient(transparent, var(--campaign-brass) 22% 78%, transparent); opacity: .8; }
+.campaign-ui-divider--horizontal { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--campaign-brass), transparent); }
+
+.campaign-ui-button {
+  position: relative;
+  border: 1px solid var(--campaign-gold);
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 2px rgba(9, 17, 26, .7), inset 0 0 0 3px rgba(255, 229, 171, .19), 0 4px 15px #0007;
+  font: 600 12px/1.2 var(--campaign-title-font);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter .16s ease, box-shadow .16s ease, transform .16s ease;
+}
+.campaign-ui-button--primary { background: linear-gradient(120deg, #8d662f, #ddb879 50%, #8e6632); color: #101924; }
+.campaign-ui-button--secondary { background: linear-gradient(#172b40, #071522); color: var(--campaign-ivory); }
+.campaign-ui-button:hover:not(:disabled) { filter: brightness(1.18); box-shadow: inset 0 0 0 2px rgba(9, 17, 26, .7), inset 0 0 0 3px rgba(255, 229, 171, .34), 0 0 18px #d5a85b55; }
+.campaign-ui-button:active:not(:disabled) { transform: translateY(1px); }
+.campaign-ui-button:focus-visible { outline: 2px solid var(--campaign-ivory); outline-offset: 3px; }
+.campaign-ui-button:disabled { opacity: .55; cursor: default; }

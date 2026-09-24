@@ -266,7 +266,9 @@ describe('journey session', () => {
       const raw = readFileSync(join(process.cwd(), 'src', 'cinematics', file), 'utf-8');
       const code = raw.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
       const specifiers = [...code.matchAll(/from '([^']+)'/g)].map((match) => match[1] ?? '');
-      expect(specifiers.filter((specifier) => !specifier.startsWith('./'))).toEqual([]);
+      // JourneyOverlay may import presentation-only campaign chrome, never gameplay state.
+      expect(specifiers.filter((specifier) => !specifier.startsWith('./')
+        && !(file === 'JourneyOverlay.ts' && specifier === '../ui/design-system/CampaignUi'))).toEqual([]);
       expect(code).not.toMatch(/GameState|enterRunNode|runSystem|combatConfigs|SaveRepository|DialogueView|TravelView/);
     }
   });

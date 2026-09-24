@@ -14,10 +14,12 @@ import { NarrativeSurfaceReadiness, type NarrativeSurfaceReadinessStatus, type N
 import type { ResolvedPresentationBeat, TravelStillSource } from './NarrativePresentationMode';
 import { TravelStillSurface } from './TravelStillSurface';
 import { validatePrimarySurface } from './NarrativePresentationTransition';
+import type { CampaignStatusHud } from '../ui/CampaignStatusHud';
 
 export type NarrativeMediaSurfaceKind = 'STILL' | 'STATIC_TABLEAU' | 'TRAVEL_STILL' | 'VIDEO' | 'HELD_VIDEO' | 'PASSIVE_BACKDROP' | 'FALLBACK' | 'NONE';
 
 export interface NarrativeStageOptions {
+  statusHud?: CampaignStatusHud;
   player: CinematicPlayer;
   registry: CinematicRegistry;
   root?: HTMLElement;
@@ -50,6 +52,7 @@ export class NarrativeStage {
   readonly transitionLayer = createLayer('transition');
   readonly utilityLayer = createLayer('utility');
   private readonly root: HTMLElement;
+  private readonly statusHud?: CampaignStatusHud;
   private readonly player: CinematicPlayer;
   private readonly session: JourneySession;
   private readonly utilityDock: NarrativeUtilityDock;
@@ -77,6 +80,7 @@ export class NarrativeStage {
 
   constructor(options: NarrativeStageOptions) {
     this.root = options.root ?? document.body;
+    this.statusHud = options.statusHud;
     this.player = options.player;
     this.mediaMode = options.mediaMode ?? 'VIDEO';
     this.loadingIndicatorDelayMs = options.loadingIndicatorDelayMs ?? DEFAULT_LOADING_INDICATOR_DELAY_MS;
@@ -96,7 +100,10 @@ export class NarrativeStage {
       root: this.element,
       mediaRoot: this.mediaLayer,
       agencyRoot: this.agencyLayer,
-      onStateChange: options.onStateChange,
+      onStateChange: (state, previous) => {
+        options.onStateChange?.(state, previous);
+        this.updateStatusHud(state);
+      },
     });
   }
 
@@ -185,6 +192,7 @@ export class NarrativeStage {
 
   bindDialogue(sequence: DialogueSequence): void {
     this.boundDialogue = sequence;
+    this.statusHud?.hide(this.element);
     this.sceneSurface?.bindDialogue(sequence);
   }
 
@@ -537,6 +545,7 @@ export class NarrativeStage {
   }
 
   dispose(): void {
+    this.statusHud?.hide(this.element);
     if (this.disposed) return;
     this.disposed = true;
     this.clearPreparationTimers();
@@ -713,6 +722,13 @@ export class NarrativeStage {
   private setMediaSurfaceKind(kind: NarrativeMediaSurfaceKind): void {
     this.mediaSurfaceKind = kind;
     this.element.dataset.narrativeMediaSurface = kind;
+    this.updateStatusHud(this.state);
+  }
+
+  private updateStatusHud(state: JourneySessionState): void {
+    if (!this.boundDialogue && !this.disposed && this.mediaSurfaceKind !== 'NONE'
+      && (state === 'FREEZE' || state === 'AGENCY')) this.statusHud?.show(this.element);
+    else this.statusHud?.hide(this.element);
   }
 
   private syncPrimarySurfaceInvariant(): void {

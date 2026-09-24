@@ -29,6 +29,21 @@ describe('journey overlay', () => {
     overlay.dispose();
   });
 
+  it('keeps destination-led departure copy and its campaign frame without changing the action', () => {
+    const { overlay, commits } = createOverlay({
+      mode: 'single', eyebrow: 'Départ', title: 'Vers Refuge du Lion',
+      continueLabel: 'Prendre la route', choices: [],
+    });
+    expect(overlay.element.classList).toContain('journey-overlay--departure');
+    expect(overlay.element.querySelectorAll('.campaign-ui-frame__corner')).toHaveLength(4);
+    expect(overlay.element.textContent).not.toContain('La compagnie prend la route');
+    const button = overlay.element.querySelector<HTMLButtonElement>('[data-journey-continue]')!;
+    expect(button.classList).toContain('campaign-ui-button');
+    button.click();
+    expect(commits).toEqual([{ kind: 'continue', id: null }]);
+    overlay.dispose();
+  });
+
   it('renders route choices with their presentation metadata', () => {
     const { overlay, commits } = createOverlay({
       title: 'La route se divise',

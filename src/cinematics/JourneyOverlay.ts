@@ -5,6 +5,7 @@ import type {
   JourneyCommitKind,
   JourneySecondaryActionPresentation,
 } from './JourneyTypes';
+import { decorateCampaignFrame } from '../ui/design-system/CampaignUi';
 
 export interface JourneyOverlayCallbacks {
   onCommit: (commit: JourneyCommit) => void;
@@ -45,6 +46,8 @@ export class JourneyOverlay {
     this.root = options.root ?? document.body;
     const mode = presentation.mode ?? (presentation.choices.length ? 'branch' : 'single');
     this.element.className = `journey-overlay journey-overlay--${mode}${options.standalone ? ' journey-overlay--standalone' : ''}`;
+    const isDeparture = mode === 'single' && presentation.eyebrow === 'Départ' && presentation.title?.startsWith('Vers ');
+    if (isDeparture) this.element.classList.add('journey-overlay--departure');
     this.element.setAttribute('role', 'dialog');
     this.element.setAttribute('aria-modal', 'true');
     this.element.setAttribute('aria-label', presentation.title ?? DEFAULT_TITLE);
@@ -90,6 +93,10 @@ export class JourneyOverlay {
     this.secondaryBar.hidden = !presentation.secondary?.length;
     for (const action of presentation.secondary ?? []) this.secondaryBar.append(this.buildSecondary(action));
     this.panel.append(this.secondaryBar);
+    if (isDeparture) {
+      decorateCampaignFrame(this.panel, 'hero');
+      this.panel.querySelector('.journey-overlay__choice--continue')?.classList.add('campaign-ui-button', 'campaign-ui-button--secondary');
+    }
 
     this.element.append(this.panel);
   }

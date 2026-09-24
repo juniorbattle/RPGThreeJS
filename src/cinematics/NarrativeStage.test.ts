@@ -4,6 +4,8 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { dialogues } from '../game/content';
+import { createInitialState } from '../game/store';
+import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
 import { CinematicPlayer } from './CinematicPlayer';
 import { CinematicRegistry } from './CinematicRegistry';
 import { applyFinalDialoguePresentationPlan } from './DialoguePresentationSegments';
@@ -39,6 +41,27 @@ function prepareDecodedFrame(width = 1920, height = 1080): HTMLVideoElement {
 }
 
 describe('NarrativeStage', () => {
+  it('shows the shared HUD at static agency, hides during playback/dialogue, and restores on held agency', async () => {
+    const state = createInitialState();
+    const hud = new CampaignStatusHud(() => selectCampaignStatus(state));
+    const registry = new CinematicRegistry(manifest);
+    const stage = new NarrativeStage({ player: new CinematicPlayer(registry), registry, statusHud: hud, transitionRevealMs: 0 });
+    stage.setTableau(CAMP_DEPARTURE_TABLEAU);
+    await stage.presentStill(CAMP_DEPARTURE_TABLEAU.stillImage);
+    expect(stage.element.contains(hud.element)).toBe(true);
+    const pending = stage.presentCinematic('intro', { reducedMotion: false });
+    expect(hud.element.isConnected).toBe(false);
+    const video = prepareDecodedFrame();
+    video.dispatchEvent(new Event('loadeddata'));
+    video.dispatchEvent(new Event('ended'));
+    await pending;
+    const agency = stage.requestAgency({ choices: [], continueLabel: 'Continuer' });
+    expect(stage.element.contains(hud.element)).toBe(true);
+    stage.bindDialogue(dialogues.get('lion_briefing')!);
+    expect(hud.element.isConnected).toBe(false);
+    stage.dispose();
+    await agency;
+  });
   beforeEach(() => {
     vi.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(() => undefined);
     vi.spyOn(HTMLMediaElement.prototype, 'load').mockImplementation(() => undefined);

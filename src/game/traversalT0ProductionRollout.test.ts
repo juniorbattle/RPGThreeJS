@@ -6,6 +6,7 @@ import { enterRunNode, getAvailableRunNodes } from './runSystem';
 import type { GameState, RunNode } from './types';
 import { TraversalT0Scene } from '../traversal/TraversalT0Scene';
 import { sceneTransition } from '../ui/SceneTransition';
+import type { JourneyBoundaryOutcome } from '../journey/JourneyCampaignBoundary';
 
 interface Harness {
   state: GameState;
@@ -13,7 +14,7 @@ interface Harness {
   mode: string;
   saves: SaveRepository;
   activeNarrativeStage: { prepareGlobalHandoff: ReturnType<typeof vi.fn>; dispose: ReturnType<typeof vi.fn> } | null;
-  journeyBoundary: { dispose: ReturnType<typeof vi.fn> } | null;
+  journeyBoundary: { dispose: ReturnType<typeof vi.fn>; present: ReturnType<typeof vi.fn>; waitUntilSurfaceReady: ReturnType<typeof vi.fn> } | null;
   travel: { open: ReturnType<typeof vi.fn>; close: ReturnType<typeof vi.fn> };
   combat: { start: ReturnType<typeof vi.fn>; close: ReturnType<typeof vi.fn> };
   enterJourney: ReturnType<typeof vi.fn>;
@@ -38,13 +39,19 @@ function harness() {
     traversalT0QaEnabled: false, traversalEntryInFlight: false, routeCommitInFlight: false,
     activeTraversal: null, traversalArrivalInFlight: false,
     activeNarrativeStage: { prepareGlobalHandoff: vi.fn(), dispose: vi.fn() },
-    journeyBoundary: { dispose: vi.fn() },
+    journeyBoundary: null as Harness['journeyBoundary'],
+    ensureJourneyBoundary() {
+      return this.journeyBoundary ??= { dispose: vi.fn(),
+        present: vi.fn(async () => ({ kind: 'presentation-continue', id: null })),
+        waitUntilSurfaceReady: vi.fn(async () => undefined) };
+    },
     travel: { open: vi.fn(), close: vi.fn() },
     combat: { start: vi.fn(() => ({ ready: Promise.resolve(), result: Promise.resolve({ victory: true }) })), close: vi.fn() },
     exploration: { close: vi.fn() }, prologue: { close: vi.fn() },
     saves: new SaveRepository(), enterJourney: vi.fn(async () => undefined),
     resolveRunNode: vi.fn(async () => undefined),
   }) as Harness;
+  (app as unknown as { ensureJourneyBoundary(): unknown }).ensureJourneyBoundary();
   return app;
 }
 
@@ -64,15 +71,29 @@ describe('production T0 orchestration with real scenes, RunSystem and saves', ()
     delete document.body.dataset.campaignSurface;
   });
 
-  it('mounts exactly once under cover from a resolved origin and saves before revealing', async () => {
+  it('holds at departure without committing, then mounts exactly once under cover', async () => {
     const app = harness();
     const state = structuredClone(app.state);
     const stage = app.activeNarrativeStage!, boundary = app.journeyBoundary!;
+    let continueDeparture!: (outcome: JourneyBoundaryOutcome) => void;
+    boundary.present.mockReturnValue(new Promise<JourneyBoundaryOutcome>(resolve => { continueDeparture = resolve; }));
     const save = vi.spyOn(app.saves, 'saveAuto');
     const open = vi.spyOn(TraversalT0Scene.prototype, 'open');
     const entry = app.enterCampaignPresentation();
     await app.enterCampaignPresentation();
     expect(app.activeTraversal).toBeNull();
+    await vi.runAllTimersAsync();
+    expect(app.activeTraversal).toBeNull();
+    expect(boundary.present).toHaveBeenCalledOnce();
+    expect(boundary.present.mock.calls[0]![0].presentationOnly).toEqual({
+      eyebrow: 'Départ',
+      title: 'Vers Refuge du Lion',
+      continueLabel: 'Prendre la route',
+    });
+    expect(app.resolveRunNode).not.toHaveBeenCalled();
+    expect(app.state).toEqual(state);
+    expect(app.saves.loadAuto()?.run.currentNodeId).toBe('lion-audience');
+    continueDeparture({ kind: 'presentation-continue', id: null } as JourneyBoundaryOutcome);
     await vi.advanceTimersByTimeAsync(650);
     expect(sceneTransition.isActive).toBe(true);
     expect(app.activeTraversal).toBeInstanceOf(TraversalT0Scene);
