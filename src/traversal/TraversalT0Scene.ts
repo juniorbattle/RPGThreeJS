@@ -2,7 +2,7 @@ import type { LionTraversalLeg } from '../campaign/LionCampaignTravelRelations';
 import type { GameState, RunNode } from '../game/types';
 import { selectTraversalBranch } from '../game/runSystem';
 import type { CampaignStatusHud } from '../ui/CampaignStatusHud';
-import { createCampaignIcon, decorateCampaignFrame } from '../ui/design-system/CampaignUi';
+import { createCampaignIcon, decorateCampaignButton, decorateCampaignFrame } from '../ui/design-system/CampaignUi';
 import { classifyTraversalInteraction } from './TraversalInteractionGrammar';
 import { ROAD_SPACE, beatWorldX, beatPassedProgress, roadCameraX, roadWorldToScreen } from './TraversalRoadSpace';
 import { TRAVERSAL_T0_ASSETS } from './TraversalT0Assets';
@@ -257,13 +257,13 @@ export class TraversalT0Scene {
       <section class="traversal-event-panel" data-traversal-event-panel aria-live="polite">
         <figure><img data-traversal-event-portrait alt=""></figure>
         <span class="traversal-event-panel__marker" data-traversal-event-marker>•••</span>
-        <div><small data-traversal-event-kind>Route ouverte</small><strong data-traversal-event-title>En route</strong><p data-traversal-event-hint>Surveillez la route.</p>
-          <div class="traversal-event-panel__actions" hidden><button class="campaign-ui-button campaign-ui-button--primary" type="button" data-traversal-confirm>Confirmer</button><button class="campaign-ui-button campaign-ui-button--secondary" type="button" data-traversal-skip>Passer</button></div>
+        <div><small class="campaign-ui-type--eyebrow" data-traversal-event-kind>Route ouverte</small><strong class="campaign-ui-type--title" data-traversal-event-title>En route</strong><p class="campaign-ui-type--body" data-traversal-event-hint>Surveillez la route.</p>
+          <div class="traversal-event-panel__actions" hidden><button type="button" data-traversal-confirm>Confirmer</button><button type="button" data-traversal-skip>Passer</button></div>
         </div>
       </section>
       <aside class="traversal-hud traversal-hud--progress" aria-label="Progression de route">
         <div class="traversal-route-rail" aria-hidden="true"><i></i><span></span><span></span><span></span><span></span><b></b></div>
-        <div class="traversal-hud__destination-icon"></div><div class="traversal-hud__destination-copy"><p>Prochain arrêt</p><strong data-traversal-next>${escapeHtml(this.route.destinationLabel)}</strong><span data-traversal-distance>${this.route.distanceKm.toFixed(1)} km</span></div>
+        <div class="traversal-hud__destination-icon"></div><div class="traversal-hud__destination-copy"><p class="campaign-ui-type--eyebrow">Prochain arrêt</p><strong class="campaign-ui-type--compact-title" data-traversal-next>${escapeHtml(this.route.destinationLabel)}</strong><span class="campaign-ui-type--metadata" data-traversal-distance>${this.route.distanceKm.toFixed(1)} km</span></div>
       </aside>
       <nav class="traversal-lanes" aria-label="Changer de trajectoire">
         ${([0, 1] as const).map((lane) => `<button type="button" data-traversal-lane="${lane}" aria-label="${lane === 0 ? 'Monter' : 'Descendre'}"><span aria-hidden="true">${lane === 0 ? '▲' : '▼'}</span></button>`).join('')}
@@ -276,6 +276,8 @@ export class TraversalT0Scene {
     decorateCampaignFrame(destination, 'compact');
     const eventPanel = this.element.querySelector<HTMLElement>('[data-traversal-event-panel]')!;
     decorateCampaignFrame(eventPanel, 'standard');
+    decorateCampaignButton(eventPanel.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!, 'primary');
+    decorateCampaignButton(eventPanel.querySelector<HTMLButtonElement>('[data-traversal-skip]')!, 'secondary');
     this.element.querySelector('.traversal-world__road')!.append(this.worldRenderer.element);
     this.element.querySelector('.traversal-world')!.append(this.foregroundRenderer.element);
     for (const [selector, plane] of [

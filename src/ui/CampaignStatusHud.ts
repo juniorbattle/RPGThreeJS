@@ -52,13 +52,16 @@ export class CampaignStatusHud {
       const copy = document.createElement('span');
       copy.className = 'campaign-status-hud__copy';
       const name = document.createElement('small');
+      name.classList.add('campaign-ui-type--eyebrow');
       name.textContent = label;
       const amountNode = document.createElement('strong');
+      amountNode.classList.add('campaign-ui-type--value');
       amountNode.textContent = amount;
       copy.append(name, amountNode);
 
       if (route) {
         const pending = document.createElement('em');
+        pending.classList.add('campaign-ui-type--metadata');
         pending.textContent = `+${route} route`;
         copy.append(pending);
       }

@@ -3065,7 +3065,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .journey-overlay--departure .journey-overlay__eyebrow { margin-bottom: 1px; color: var(--campaign-gold); font: 600 10px/1.1 var(--campaign-title-font); letter-spacing: .11em; }
 .journey-overlay--departure .journey-overlay__title { color: var(--campaign-ivory); font: 700 clamp(20px, 2vw, 25px)/1.08 var(--campaign-title-font); letter-spacing: .015em; }
 .journey-overlay--departure .journey-overlay__choices { grid-template-columns: 1fr; margin-top: 9px; }
-.journey-overlay--departure .journey-overlay__choice--continue.campaign-ui-button { min-height: 36px; padding: 6px 11px; font: 600 11px/1.15 var(--campaign-title-font); letter-spacing: .09em; background: linear-gradient(120deg, #162b3d, #091724 70%); color: var(--campaign-ivory); }
+.journey-overlay--departure .journey-overlay__choice--continue.campaign-ui-button { min-height: 36px; padding: 6px 11px; font: 600 11px/1.15 var(--campaign-title-font); letter-spacing: .09em; }
 
 @media (max-width: 700px) {
   .campaign-status-hud.campaign-ui-frame { width: min(340px, calc(100vw - 20px)); top: 10px; left: 10px; padding: 5px 9px; }

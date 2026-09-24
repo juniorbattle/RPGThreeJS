@@ -5,7 +5,7 @@ import type {
   JourneyCommitKind,
   JourneySecondaryActionPresentation,
 } from './JourneyTypes';
-import { decorateCampaignFrame } from '../ui/design-system/CampaignUi';
+import { decorateCampaignButton, decorateCampaignFrame } from '../ui/design-system/CampaignUi';
 
 export interface JourneyOverlayCallbacks {
   onCommit: (commit: JourneyCommit) => void;
@@ -56,13 +56,13 @@ export class JourneyOverlay {
 
     if (presentation.eyebrow) {
       const eyebrow = document.createElement('p');
-      eyebrow.className = 'journey-overlay__eyebrow';
+      eyebrow.className = 'journey-overlay__eyebrow campaign-ui-type--eyebrow';
       eyebrow.textContent = presentation.eyebrow;
       this.header.append(eyebrow);
     }
 
     const title = document.createElement('h2');
-    title.className = 'journey-overlay__title';
+    title.className = 'journey-overlay__title campaign-ui-type--title';
     title.textContent = presentation.title ?? DEFAULT_TITLE;
     this.header.append(title);
     if (presentation.caption) {
@@ -95,7 +95,7 @@ export class JourneyOverlay {
     this.panel.append(this.secondaryBar);
     if (isDeparture) {
       decorateCampaignFrame(this.panel, 'hero');
-      this.panel.querySelector('.journey-overlay__choice--continue')?.classList.add('campaign-ui-button', 'campaign-ui-button--secondary');
+      decorateCampaignButton(this.panel.querySelector<HTMLButtonElement>('.journey-overlay__choice--continue')!, 'primary');
     }
 
     this.element.append(this.panel);
