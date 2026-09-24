@@ -28,6 +28,13 @@ const X: Readonly<Record<StaticTableauCompositionProfile, Readonly<Record<Narrat
   FINALE_FOCUS: { FAR_LEFT: 20, LEFT: 33, CENTER_LEFT: 43, CENTER: 52, CENTER_RIGHT: 63, RIGHT: 74, FAR_RIGHT: 83 },
 };
 
+/** Identity-specific silhouette balance on the foreground plane; authored slots stay fixed. */
+const SILHOUETTE_SCALE: Readonly<Record<string, number>> = {
+  forest_troll_elite: 1.18,
+  young_dragon_elite: 1.16,
+  shrine_apparition: .82,
+};
+
 export function resolveStaticTableauComposition(
   tableau: NarrativeTableauSpec,
   phase: NarrativeVisualPhaseSpec,
@@ -48,5 +55,5 @@ export function resolveStaticTableauActorTuning(
   profile: StaticTableauCompositionProfile,
   actor: NarrativeStagedActorSpec,
 ): StaticTableauActorTuning {
-  return { xPercent: X[profile][actor.screenPosition], scale: 1, baselineVh: 3 };
+  return { xPercent: X[profile][actor.screenPosition], scale: SILHOUETTE_SCALE[actor.actorId] ?? 1, baselineVh: 3 };
 }

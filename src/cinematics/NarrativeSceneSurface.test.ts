@@ -65,6 +65,19 @@ describe('NarrativeSceneSurface', () => {
     expect(position.screenPosition).toBe('CENTER_LEFT');
   });
 
+  it('balances elite and apparition silhouettes without moving authored slots or baselines', () => {
+    const base = ALARIC_AUDIENCE_TABLEAU.phases![0]!.staticCast[0]!;
+    const tuning = (actorId: string) => resolveStaticTableauActorTuning('COMPANY_EXCHANGE', { ...base, actorId });
+    const ordinary = tuning('sage_seraphine');
+    const troll = tuning('forest_troll_elite');
+    const dragon = tuning('young_dragon_elite');
+    const apparition = tuning('shrine_apparition');
+    expect(troll.scale).toBeGreaterThan(ordinary.scale);
+    expect(dragon.scale).toBeGreaterThan(ordinary.scale);
+    expect(apparition.scale).toBeLessThan(ordinary.scale);
+    expect([troll, dragon, apparition].every((value) => value.xPercent === ordinary.xPercent && value.baselineVh === ordinary.baselineVh)).toBe(true);
+  });
+
   it('segments the six-person opening into stable density-scaled four-person compositions', async () => {
     const sequence = dialogues.get('acte_ouverture')!;
     const tableau = applyFinalDialoguePresentationPlan(sequence, createGenericNarrativeTableau(sequence));

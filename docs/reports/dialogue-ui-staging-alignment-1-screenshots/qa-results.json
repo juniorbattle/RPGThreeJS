@@ -9,6 +9,20 @@
       "speaker": "Séraphine",
       "cast": 3,
       "choices": 0,
+      "cardOverflow": {
+        "x": "hidden",
+        "y": "hidden",
+        "scrollWidth": 598,
+        "clientWidth": 598,
+        "scrollHeight": 142,
+        "clientHeight": 142
+      },
+      "panelOverflow": {
+        "x": "hidden",
+        "y": "auto",
+        "scrollWidth": 450,
+        "clientWidth": 450
+      },
       "errors": []
     },
     {
@@ -20,6 +34,20 @@
       "speaker": "Séraphine",
       "cast": 4,
       "choices": 3,
+      "cardOverflow": {
+        "x": "hidden",
+        "y": "hidden",
+        "scrollWidth": 598,
+        "clientWidth": 598,
+        "scrollHeight": 142,
+        "clientHeight": 142
+      },
+      "panelOverflow": {
+        "x": "hidden",
+        "y": "auto",
+        "scrollWidth": 450,
+        "clientWidth": 450
+      },
       "errors": []
     },
     {
@@ -31,6 +59,45 @@
       "speaker": "Séraphine",
       "cast": 4,
       "choices": 0,
+      "cardOverflow": {
+        "x": "hidden",
+        "y": "hidden",
+        "scrollWidth": 598,
+        "clientWidth": 598,
+        "scrollHeight": 142,
+        "clientHeight": 142
+      },
+      "panelOverflow": {
+        "x": "hidden",
+        "y": "auto",
+        "scrollWidth": 450,
+        "clientWidth": 450
+      },
+      "errors": []
+    },
+    {
+      "name": "desktop-portrait-fallback",
+      "width": 1440,
+      "height": 810,
+      "scenario": "portrait-fallback",
+      "screenshot": "desktop-portrait-fallback.jpg",
+      "speaker": "Séraphine",
+      "cast": 3,
+      "choices": 0,
+      "cardOverflow": {
+        "x": "hidden",
+        "y": "hidden",
+        "scrollWidth": 598,
+        "clientWidth": 598,
+        "scrollHeight": 118,
+        "clientHeight": 118
+      },
+      "panelOverflow": {
+        "x": "hidden",
+        "y": "auto",
+        "scrollWidth": 450,
+        "clientWidth": 450
+      },
       "errors": []
     },
     {
@@ -42,6 +109,20 @@
       "speaker": "Séraphine",
       "cast": 3,
       "choices": 0,
+      "cardOverflow": {
+        "x": "hidden",
+        "y": "hidden",
+        "scrollWidth": 594,
+        "clientWidth": 594,
+        "scrollHeight": 109,
+        "clientHeight": 109
+      },
+      "panelOverflow": {
+        "x": "hidden",
+        "y": "auto",
+        "scrollWidth": 584,
+        "clientWidth": 584
+      },
       "errors": []
     },
     {
@@ -53,6 +134,20 @@
       "speaker": "Séraphine",
       "cast": 4,
       "choices": 3,
+      "cardOverflow": {
+        "x": "hidden",
+        "y": "hidden",
+        "scrollWidth": 594,
+        "clientWidth": 594,
+        "scrollHeight": 109,
+        "clientHeight": 109
+      },
+      "panelOverflow": {
+        "x": "hidden",
+        "y": "auto",
+        "scrollWidth": 584,
+        "clientWidth": 584
+      },
       "errors": []
     },
     {
@@ -64,6 +159,45 @@
       "speaker": "Séraphine",
       "cast": 3,
       "choices": 0,
+      "cardOverflow": {
+        "x": "hidden",
+        "y": "hidden",
+        "scrollWidth": 364,
+        "clientWidth": 364,
+        "scrollHeight": 114,
+        "clientHeight": 114
+      },
+      "panelOverflow": {
+        "x": "hidden",
+        "y": "auto",
+        "scrollWidth": 354,
+        "clientWidth": 354
+      },
+      "errors": []
+    },
+    {
+      "name": "mobile-portrait-fallback",
+      "width": 390,
+      "height": 844,
+      "scenario": "portrait-fallback",
+      "screenshot": "mobile-portrait-fallback.jpg",
+      "speaker": "Séraphine",
+      "cast": 3,
+      "choices": 0,
+      "cardOverflow": {
+        "x": "hidden",
+        "y": "hidden",
+        "scrollWidth": 364,
+        "clientWidth": 364,
+        "scrollHeight": 114,
+        "clientHeight": 114
+      },
+      "panelOverflow": {
+        "x": "hidden",
+        "y": "auto",
+        "scrollWidth": 354,
+        "clientWidth": 354
+      },
       "errors": []
     },
     {
@@ -75,6 +209,20 @@
       "speaker": "Séraphine",
       "cast": 4,
       "choices": 3,
+      "cardOverflow": {
+        "x": "hidden",
+        "y": "hidden",
+        "scrollWidth": 364,
+        "clientWidth": 364,
+        "scrollHeight": 114,
+        "clientHeight": 114
+      },
+      "panelOverflow": {
+        "x": "hidden",
+        "y": "auto",
+        "scrollWidth": 354,
+        "clientWidth": 354
+      },
       "errors": []
     },
     {
@@ -86,6 +234,20 @@
       "speaker": "Séraphine",
       "cast": 4,
       "choices": 5,
+      "cardOverflow": {
+        "x": "hidden",
+        "y": "hidden",
+        "scrollWidth": 364,
+        "clientWidth": 364,
+        "scrollHeight": 114,
+        "clientHeight": 114
+      },
+      "panelOverflow": {
+        "x": "hidden",
+        "y": "auto",
+        "scrollWidth": 354,
+        "clientWidth": 354
+      },
       "errors": []
     }
   ]

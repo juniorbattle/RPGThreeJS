@@ -18,7 +18,7 @@
   column-gap: 17px;
   row-gap: 0;
   padding: 15px 19px 22px !important;
-  overflow: auto !important;
+  overflow: hidden !important;
   transform: translateX(-50%) !important;
   border-color: var(--campaign-brass);
   border-radius: 2px;
@@ -31,6 +31,17 @@
 .dialogue .dialogue__box:disabled { opacity: 1; cursor: default; }
 .dialogue .dialogue__box:focus-visible { outline: 2px solid var(--campaign-ivory); outline-offset: 3px; }
 .dialogue .dialogue__box::after { display: none; }
+/* Keep the visible 14px of each 19px corner inside the card's scroll bounds. */
+.dialogue .dialogue__box .campaign-ui-frame__corner {
+  width: 14px;
+  height: 14px;
+  background-size: 19px 19px;
+  background-position: -5px -5px;
+}
+.dialogue .dialogue__box .campaign-ui-frame__corner--tl { top: 0; left: 0; }
+.dialogue .dialogue__box .campaign-ui-frame__corner--tr { top: 0; right: 0; }
+.dialogue .dialogue__box .campaign-ui-frame__corner--bl { bottom: 0; left: 0; }
+.dialogue .dialogue__box .campaign-ui-frame__corner--br { bottom: 0; right: 0; }
 .dialogue .dialogue__box:has(.dialogue__card-portrait[hidden]) { grid-template-columns: minmax(0, 1fr) !important; }
 .dialogue .dialogue__card-portrait {
   position: relative;
@@ -107,7 +118,8 @@
   grid-template-columns: minmax(0, 1fr) !important;
   justify-content: stretch;
   gap: 6px !important;
-  overflow: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
   transform: translateX(-50%) !important;
 }
 .dialogue .dialogue-choice,
@@ -177,7 +189,8 @@
     width: calc(100% - 36px) !important;
     max-height: 29dvh !important;
     grid-template-columns: minmax(0, 1fr) !important;
-    overflow: auto !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
     transform: translateX(-50%) !important;
   }
   .narrative-scene-surface .narrative-cast__actor {

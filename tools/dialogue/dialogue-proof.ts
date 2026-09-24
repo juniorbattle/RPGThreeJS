@@ -11,6 +11,7 @@ const media = document.querySelector<HTMLElement>('#proof-media')!;
 const variant = new URLSearchParams(location.search).get('scenario') ?? 'standard';
 const choice = variant === 'choices' || variant === 'many-choices';
 const multi = variant === 'multi';
+const fallbackPortrait = variant === 'portrait-fallback';
 const cast = multi || choice
   ? [
       ['sage_seraphine', 'Séraphine'], ['maelor', 'Maelor'],
@@ -41,6 +42,8 @@ const steps: DialogueStep[] = cast.map(([actorId, speaker], index) => ({
 // A mapped presentation context is required by the production tableau factory.
 const sequence: DialogueSequence = { id: 'acte_ouverture', title: 'Dialogue', steps };
 const tableau = createGenericNarrativeTableau(sequence);
+// Keep the visual cast canonical while exercising the card's unregistered-speaker portrait fallback.
+if (fallbackPortrait) steps[0]!.actorId = 'unregistered_story_npc';
 const surface = new NarrativeSceneSurface(media, tableau, { reducedMotion: true });
 surface.mount('/assets/generated/lion-phase/dialogue/camp_departure.webp');
 const view = new DialogueView({ root, getState: createInitialState, applyEffects: async () => undefined });
@@ -49,6 +52,6 @@ void view.play(sequence, {
   reducedMotion: true,
   stepPresentation: () => ({ mode: choice ? 'SPATIAL_CHOICE' : 'SPEAKER_CARD', showPortrait: false }),
   beforeStepChange: async (step) => {
-    await surface.setPhase(tableau.phases![0]!.id, step.actorId);
+    await surface.setPhase(tableau.phases![0]!.id, fallbackPortrait ? 'sage_seraphine' : step.actorId);
   },
 });

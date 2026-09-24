@@ -10,9 +10,17 @@ export interface DialoguePortrait {
 
 /** Presentation metadata only. The image always comes from the canonical character roles. */
 const CROP_OVERRIDES: Readonly<Record<string, Partial<Omit<DialoguePortrait, 'src'>>>> = {
-  alaric: { cropY: '27%', scale: 3.25 },
-  maelor: { cropY: '26%', scale: 3.25 },
-  sage_seraphine: { cropY: '43%', scale: 3.4 },
+  sage_seraphine: { cropY: '90%' },
+  marian: { cropY: '100%' },
+  serpent_oracle: { cropY: '105%' },
+  refugee_mother: { cropY: '95%' },
+  serpent_brute: { cropY: '95%' },
+  lion_champion: { cropY: '45%' },
+  serpent_general_boss: { cropY: '42%' },
+  serpent_duelist_elite: { cropY: '45%' },
+  shrine_apparition: { cropY: '60%' },
+  forest_troll_elite: { cropY: '50%' },
+  young_dragon_elite: { cropX: '-50%', cropY: '82%' },
 };
 
 export function resolveDialoguePortrait(actorId: string | undefined): DialoguePortrait | undefined {
@@ -20,5 +28,5 @@ export function resolveDialoguePortrait(actorId: string | undefined): DialoguePo
   const profile = (assets.characterProfiles as Record<string, { ui?: string } | undefined>)[actorId];
   const src = resolveCharacterAsset(actorId, 'ui') ?? profile?.ui;
   if (!src?.startsWith('/')) return undefined;
-  return { src, cropX: '50%', cropY: '33%', scale: 3.25, ...CROP_OVERRIDES[actorId] };
+  return { src, cropX: '50%', cropY: '88%', scale: 4.3, ...CROP_OVERRIDES[actorId] };
 }

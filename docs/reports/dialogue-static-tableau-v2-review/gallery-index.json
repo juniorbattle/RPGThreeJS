@@ -3471,5 +3471,107 @@
       "width": 390,
       "height": 844
     }
+  },
+  {
+    "dialogueId": "mystery_troll_crossing",
+    "phaseId": "mystery_troll_crossing:segment-1",
+    "stepId": "1",
+    "kind": "silhouette-1366x768",
+    "screenshot": "214-mystery_troll_crossing-mystery_troll_crossing-segment-1-silhouette-1366x768.jpg",
+    "actorIds": [
+      "forest_troll_elite",
+      "sage_seraphine",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "mystery_troll_crossing",
+    "phaseId": "mystery_troll_crossing:segment-1",
+    "stepId": "1",
+    "kind": "silhouette-620x780",
+    "screenshot": "215-mystery_troll_crossing-mystery_troll_crossing-segment-1-silhouette-620x780.jpg",
+    "actorIds": [
+      "forest_troll_elite",
+      "sage_seraphine",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "mystery_troll_crossing",
+    "phaseId": "mystery_troll_crossing:segment-1",
+    "stepId": "1",
+    "kind": "silhouette-390x844",
+    "screenshot": "216-mystery_troll_crossing-mystery_troll_crossing-segment-1-silhouette-390x844.jpg",
+    "actorIds": [
+      "forest_troll_elite",
+      "sage_seraphine",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "dialogueId": "mystery_shrine",
+    "phaseId": "mystery_shrine:segment-1",
+    "stepId": "1",
+    "kind": "silhouette-1366x768",
+    "screenshot": "217-mystery_shrine-mystery_shrine-segment-1-silhouette-1366x768.jpg",
+    "actorIds": [
+      "shrine_apparition",
+      "sage_seraphine",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "mystery_shrine",
+    "phaseId": "mystery_shrine:segment-1",
+    "stepId": "1",
+    "kind": "silhouette-620x780",
+    "screenshot": "218-mystery_shrine-mystery_shrine-segment-1-silhouette-620x780.jpg",
+    "actorIds": [
+      "shrine_apparition",
+      "sage_seraphine",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "mystery_shrine",
+    "phaseId": "mystery_shrine:segment-1",
+    "stepId": "1",
+    "kind": "silhouette-390x844",
+    "screenshot": "219-mystery_shrine-mystery_shrine-segment-1-silhouette-390x844.jpg",
+    "actorIds": [
+      "shrine_apparition",
+      "sage_seraphine",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
   }
 ]

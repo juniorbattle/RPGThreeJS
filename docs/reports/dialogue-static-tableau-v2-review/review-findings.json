@@ -4,13 +4,24 @@
     "visualPhases": 82,
     "canonicalSteps": 257,
     "choiceStates": 29,
-    "auditedStates": 328,
-    "screenshots": 213,
+    "auditedStates": 334,
+    "screenshots": 219,
     "desktopScreenshots": 171,
-    "representativeScreenshots": 42,
+    "representativeScreenshots": 48,
+    "cardMeasurements": {
+      "maxHorizontalExcess": 0,
+      "maxVerticalExcess": 0,
+      "portraitReady": 334,
+      "portraitFallback": 0,
+      "tags": 327,
+      "outcomes": 6,
+      "continue": 334
+    },
     "pageErrors": [],
+    "cardOverflowFailures": 0,
+    "choiceHorizontalFailures": 0,
     "profiles": {
-      "COMPANY_EXCHANGE": 101,
+      "COMPANY_EXCHANGE": 107,
       "ADVISER_EXCHANGE": 31,
       "EVENT_SUBJECT_FOCUS": 54,
       "FINALE_FOCUS": 27,
@@ -26,7 +37,7 @@
       },
       "1440x810:1": {
         "min": 0.5215905978355879,
-        "max": 0.6767878002590604
+        "max": 0.7986096541086832
       },
       "1440x810:2": {
         "min": 0.48084129639613776,
@@ -34,7 +45,7 @@
       },
       "1440x810:3": {
         "min": 0.4645416142028055,
-        "max": 0.7455465415672021
+        "max": 0.7112616803910997
       },
       "1366x768:1": {
         "min": 0.5250455240408579,
@@ -74,20 +85,20 @@
       },
       "1366x768:3": {
         "min": 0.47759835608303547,
-        "max": 0.5374763589352369
+        "max": 0.7116073044016957
       },
       "620x780:3": {
         "min": 0.313271395671062,
-        "max": 0.3525472124417623
+        "max": 0.4667649480012747
       },
       "390x844:3": {
         "min": 0.2550493071288294,
-        "max": 0.28702561154749723
+        "max": 0.3800158715361103
       }
     },
     "findings": {
       "heavy-overlap": 4,
-      "weak-presence": 27
+      "weak-presence": 29
     }
   },
   "findings": [
@@ -275,13 +286,6 @@
       "type": "weak-presence",
       "dialogueId": "mystery_dragon_roost",
       "stepId": "1",
-      "actorId": "young_dragon_elite",
-      "ratio": 0.28474158811343225
-    },
-    {
-      "type": "weak-presence",
-      "dialogueId": "mystery_dragon_roost",
-      "stepId": "1",
       "actorId": "sage_seraphine",
       "ratio": 0.2634240604972387
     },
@@ -291,13 +295,6 @@
       "stepId": "1",
       "actorId": "maelor",
       "ratio": 0.25733330690465267
-    },
-    {
-      "type": "weak-presence",
-      "dialogueId": "mystery_dragon_roost",
-      "stepId": "1",
-      "actorId": "young_dragon_elite",
-      "ratio": 0.28474158811343225
     },
     {
       "type": "weak-presence",
@@ -319,6 +316,34 @@
       "stepId": "1",
       "actorId": "sage_seraphine",
       "ratio": 0.26342403606215925
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_troll_crossing",
+      "stepId": "1",
+      "actorId": "sage_seraphine",
+      "ratio": 0.26342403606215925
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_troll_crossing",
+      "stepId": "1",
+      "actorId": "maelor",
+      "ratio": 0.25733330690465267
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_shrine",
+      "stepId": "1",
+      "actorId": "sage_seraphine",
+      "ratio": 0.26342403606215925
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_shrine",
+      "stepId": "1",
+      "actorId": "maelor",
+      "ratio": 0.25733330690465267
     }
   ]
 }

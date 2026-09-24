@@ -2,6 +2,7 @@ import { spawn } from 'node:child_process';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { chromium } from 'playwright';
+import { compactGalleryNavigation } from './gallery-navigation.mjs';
 
 const root = process.cwd();
 const output = resolve(root, 'docs/reports/dialogue-static-tableau-v2-review');
@@ -113,8 +114,15 @@ async function measure(page, meta) {
       actorOverlaps.push({ actors: [a.actorId, b.actorId], ratio: area / Math.max(1, Math.min(a.visibleBodyHeight * a.visibleBodyWidth, b.visibleBodyHeight * b.visibleBodyWidth)) });
     }
     const active = actors.find((actor) => actor.state === 'ACTIVE');
-    const cardContent = [...(card?.querySelectorAll('.dialogue__speaker-block,.dialogue__text,.dialogue__outcomes') ?? [])]
-      .filter((element) => getComputedStyle(element).display !== 'none' && !element.hidden);
+    const cardContent = [...(card?.querySelectorAll('.dialogue__card-portrait,.dialogue__speaker-block,.dialogue__speaker,.dialogue__tag,.dialogue__divider,.dialogue__text,.dialogue__outcomes,.dialogue__continue') ?? [])]
+      .filter((element) => !element.hidden && getComputedStyle(element).display !== 'none');
+    const clippedCardContent = cardContent.filter((element) => {
+      const r = element.getBoundingClientRect();
+      return r.left < cardRect.x - 1 || r.right > cardRect.right + 1
+        || r.top < cardRect.y - 1 || r.bottom > cardRect.bottom + 1;
+    }).map((element) => element.className);
+    const cardStyle = getComputedStyle(card);
+    const choicesStyle = choicePanel ? getComputedStyle(choicePanel) : null;
     return {
       ...details,
       phaseId: document.querySelector('.narrative-scene-surface')?.getAttribute('data-visual-phase') ?? '',
@@ -122,11 +130,23 @@ async function measure(page, meta) {
       actorIds: actors.map((actor) => actor.actorId),
       viewport: { width: innerWidth, height: innerHeight },
       card: cardRect,
-      cardContentOverflow: cardContent.some((element) => {
-        const r = element.getBoundingClientRect();
-        return r.top < cardRect.y - 1 || r.bottom > cardRect.bottom + 1;
-      }),
+      cardOverflow: { x: cardStyle.overflowX, y: cardStyle.overflowY,
+        scrollWidth: card.scrollWidth, clientWidth: card.clientWidth,
+        scrollHeight: card.scrollHeight, clientHeight: card.clientHeight },
+      clippedCardContent,
+      cardContentOverflow: clippedCardContent.length > 0,
+      cardContent: {
+        portraitState: card.querySelector('.dialogue__card-portrait')?.getAttribute('data-portrait-state') ?? '',
+        portraitVisible: !card.querySelector('.dialogue__card-portrait')?.hidden,
+        tagVisible: !card.querySelector('.dialogue__tag')?.hidden,
+        outcomesVisible: !card.querySelector('.dialogue__outcomes')?.hidden,
+        continueVisible: !card.querySelector('.dialogue__continue')?.hidden,
+        speechLength: card.querySelector('.dialogue__text-reveal')?.textContent?.length ?? 0,
+      },
       choicePanel: rect(choicePanel),
+      choiceOverflow: choicePanel ? { x: choicesStyle.overflowX, y: choicesStyle.overflowY,
+        scrollWidth: choicePanel.scrollWidth, clientWidth: choicePanel.clientWidth,
+        scrollHeight: choicePanel.scrollHeight, clientHeight: choicePanel.clientHeight } : null,
       choiceRects,
       actorCardFaceObstruction: actors.some((actor) => actor.faceObstruction > .01),
       activeSpeakerVisible: Boolean(active && active.visibleHeadY >= 0 && active.visibleHeadY < innerHeight && active.imageReady),
@@ -231,6 +251,26 @@ try {
     }
     process.stdout.write(`Responsive profile ${profile}: ${sample.dialogueId}${choice ? ' with choices' : ''}\n`);
   }
+  for (const dialogueId of ['mystery_troll_crossing', 'mystery_shrine']) {
+    const sample = gallery.find((entry) => entry.dialogueId === dialogueId
+      && entry.viewport.width === 1440 && entry.kind.includes('phase-opening'));
+    if (!sample) throw new Error(`No silhouette sample for ${dialogueId}`);
+    for (const viewport of responsiveViewports) {
+      await page.setViewportSize(viewport);
+      await page.evaluate(({ id, stepId }) => window.tableauProof.show(id, stepId), { id: dialogueId, stepId: sample.stepId });
+      await page.waitForTimeout(450);
+      const info = await measure(page, {
+        dialogueId, stepId: sample.stepId, family: sample.family,
+        speakerId: sample.speakerId, state: 'speech',
+      });
+      metrics.push(info);
+      const kind = `silhouette-${viewport.width}x${viewport.height}`;
+      const screenshot = `${String(++imageIndex).padStart(3, '0')}-${slug(dialogueId)}-${slug(sample.phaseId)}-${kind}.jpg`;
+      await page.screenshot({ path: resolve(imageDir, screenshot), type: 'jpeg', quality: 78 });
+      gallery.push({ ...info, kind, screenshot });
+    }
+    process.stdout.write(`Responsive silhouette ${dialogueId}\n`);
+  }
   const summary = {
     dialogues: catalog.length,
     visualPhases: catalog.reduce((n, entry) => n + entry.phases.length, 0),
@@ -240,13 +280,34 @@ try {
     screenshots: gallery.length,
     desktopScreenshots: gallery.filter((entry) => entry.viewport.width === 1440).length,
     representativeScreenshots: gallery.filter((entry) => entry.viewport.width !== 1440).length,
+    cardMeasurements: {
+      maxHorizontalExcess: Math.max(...metrics.map((state) => state.cardOverflow.scrollWidth - state.cardOverflow.clientWidth)),
+      maxVerticalExcess: Math.max(...metrics.map((state) => state.cardOverflow.scrollHeight - state.cardOverflow.clientHeight)),
+      portraitReady: metrics.filter((state) => state.cardContent.portraitState === 'ready').length,
+      portraitFallback: metrics.filter((state) => state.cardContent.portraitState === 'fallback').length,
+      tags: metrics.filter((state) => state.cardContent.tagVisible).length,
+      outcomes: metrics.filter((state) => state.cardContent.outcomesVisible).length,
+      continue: metrics.filter((state) => state.cardContent.continueVisible).length,
+    },
     pageErrors,
   };
+  const cardFailures = metrics.filter((state) => state.cardOverflow.x !== 'hidden' || state.cardOverflow.y !== 'hidden'
+    || state.cardOverflow.scrollWidth > state.cardOverflow.clientWidth + 1
+    || state.cardOverflow.scrollHeight > state.cardOverflow.clientHeight + 1
+    || state.clippedCardContent.length > 0);
+  const choiceHorizontalFailures = metrics.filter((state) => state.state === 'choice'
+    && (state.choiceOverflow.x !== 'hidden'
+      || state.choiceOverflow.scrollWidth > state.choiceOverflow.clientWidth + 1));
+  summary.cardOverflowFailures = cardFailures.length;
+  summary.choiceHorizontalFailures = choiceHorizontalFailures.length;
   await writeFile(resolve(output, 'composition-audit.json'), `${JSON.stringify({ summary, catalog, metrics }, null, 2)}\n`);
-  await writeFile(resolve(output, 'gallery.html'), galleryHtml(gallery, summary));
+  await writeFile(resolve(output, 'gallery.html'), compactGalleryNavigation(galleryHtml(gallery, summary)));
   await writeFile(resolve(output, 'gallery-index.json'), `${JSON.stringify(gallery.map(({ dialogueId, phaseId, stepId, kind, screenshot, actorIds, compositionProfile, viewport }) => ({ dialogueId, phaseId, stepId, kind, screenshot, actorIds, compositionProfile, viewport })), null, 2)}\n`);
   process.stdout.write(`SUMMARY ${JSON.stringify(summary)}\n`);
-  if (pageErrors.length) process.exitCode = 1;
+  if (cardFailures.length || choiceHorizontalFailures.length) {
+    process.stderr.write(`CARD/CHOICE OVERFLOW FAILURES ${JSON.stringify({ card: cardFailures.slice(0, 12).map(({ dialogueId, stepId, state, viewport, cardOverflow, clippedCardContent }) => ({ dialogueId, stepId, state, viewport, cardOverflow, clippedCardContent })), choices: choiceHorizontalFailures.slice(0, 12).map(({ dialogueId, stepId, viewport, choiceOverflow }) => ({ dialogueId, stepId, viewport, choiceOverflow })) })}\n`);
+  }
+  if (pageErrors.length || cardFailures.length || choiceHorizontalFailures.length) process.exitCode = 1;
 } finally {
   await browser?.close();
   server.kill();

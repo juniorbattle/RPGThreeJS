@@ -37,7 +37,7 @@ async function capture(browser, { name, width, height, scenario, activateChoices
   await page.goto(`${base}/tools/dialogue/dialogue-proof.html?scenario=${scenario}`, { waitUntil: 'networkidle' });
   try { await page.locator('.dialogue__box').waitFor({ timeout: 10000 }); }
   catch { throw new Error(`${name}: dialogue did not mount; title=${await page.title()}; errors=${errors.join(' | ')}; body=${(await page.locator('body').innerHTML()).slice(0, 400)}`); }
-  await page.locator('.dialogue__card-portrait[data-portrait-state="ready"]').waitFor();
+  await page.locator(`.dialogue__card-portrait[data-portrait-state="${scenario === 'portrait-fallback' ? 'fallback' : 'ready'}"]`).waitFor({ state: 'attached' });
   if (activateChoices) await page.locator('.dialogue__box').click();
   if (activateChoices) await page.waitForTimeout(350);
   const proof = await page.evaluate(() => {
@@ -50,15 +50,33 @@ async function capture(browser, { name, width, height, scenario, activateChoices
     };
     const choices = [...document.querySelectorAll('.dialogue-choice')];
     const actors = [...document.querySelectorAll('.narrative-cast__actor')];
+    const cardStyle = getComputedStyle(box);
+    const panelStyle = getComputedStyle(panel);
+    const cardContent = [...box.querySelectorAll('.dialogue__card-portrait,.dialogue__speaker-block,.dialogue__speaker,.dialogue__tag,.dialogue__divider,.dialogue__text,.dialogue__outcomes,.dialogue__continue')]
+      .filter((element) => !element.hidden && getComputedStyle(element).display !== 'none');
+    const cardBounds = rect(box);
     return {
       speaker: document.querySelector('.dialogue__speaker')?.textContent,
       text: document.querySelector('.dialogue__text')?.textContent,
       portraitReady: document.querySelector('.dialogue__card-portrait')?.getAttribute('data-portrait-state') === 'ready',
+      portraitState: document.querySelector('.dialogue__card-portrait')?.getAttribute('data-portrait-state'),
+      portraitHidden: document.querySelector('.dialogue__card-portrait')?.hidden,
       portraitNaturalWidth: document.querySelector('.dialogue__card-portrait img')?.naturalWidth ?? 0,
       box: rect(box), textRect: rect(document.querySelector('.dialogue__text')),
       speakerRect: rect(document.querySelector('.dialogue__speaker')),
+      cardOverflow: { x: cardStyle.overflowX, y: cardStyle.overflowY,
+        scrollWidth: box.scrollWidth, clientWidth: box.clientWidth,
+        scrollHeight: box.scrollHeight, clientHeight: box.clientHeight },
+      clippedCardContent: cardContent.filter((element) => !(
+        element.getBoundingClientRect().left >= cardBounds.x - 1
+        && element.getBoundingClientRect().right <= cardBounds.x + cardBounds.width + 1
+        && element.getBoundingClientRect().top >= cardBounds.y - 1
+        && element.getBoundingClientRect().bottom <= cardBounds.y + cardBounds.height + 1
+      )).map((element) => element.className),
       panel: rect(panel), viewport,
       panelScrollable: panel.scrollHeight > panel.clientHeight + 1,
+      panelOverflow: { x: panelStyle.overflowX, y: panelStyle.overflowY,
+        scrollWidth: panel.scrollWidth, clientWidth: panel.clientWidth },
       choices: choices.map((choice) => ({ text: choice.textContent, disabled: choice.disabled, rect: rect(choice) })),
       actors: actors.map((actor) => ({ id: actor.dataset.actorId, state: actor.dataset.castState,
         imageReady: actor.querySelector('img')?.naturalWidth > 0, rect: rect(actor) })),
@@ -66,12 +84,22 @@ async function capture(browser, { name, width, height, scenario, activateChoices
     };
   });
   if (errors.length) throw new Error(`${name}: page errors: ${errors.join(' | ')}`);
-  if (!proof.speaker || !proof.text || !proof.portraitReady || proof.portraitNaturalWidth <= 0) throw new Error(`${name}: missing dialogue or portrait`);
+  if (!proof.speaker || !proof.text) throw new Error(`${name}: missing dialogue`);
+  if (scenario === 'portrait-fallback') {
+    if (proof.portraitState !== 'fallback' || !proof.portraitHidden || proof.portraitNaturalWidth !== 0)
+      throw new Error(`${name}: portrait fallback failed`);
+  } else if (!proof.portraitReady || proof.portraitNaturalWidth <= 0) throw new Error(`${name}: portrait failed`);
   if (!inside(proof.box, proof.viewport) || proof.scrollWidth > width + 1) throw new Error(`${name}: card outside viewport`);
   if (!inside(proof.textRect, proof.box) || !inside(proof.speakerRect, proof.box)) throw new Error(`${name}: speaker or text clipped by card`);
-  if (proof.actors.length < (scenario === 'standard' ? 3 : 4)) throw new Error(`${name}: cast incomplete`);
+  if (proof.cardOverflow.x !== 'hidden' || proof.cardOverflow.y !== 'hidden'
+    || proof.cardOverflow.scrollWidth > proof.cardOverflow.clientWidth + 1
+    || proof.cardOverflow.scrollHeight > proof.cardOverflow.clientHeight + 1
+    || proof.clippedCardContent.length) throw new Error(`${name}: card overflow ${JSON.stringify({ ...proof.cardOverflow, clipped: proof.clippedCardContent })}`);
+  if (proof.actors.length < (scenario === 'standard' || scenario === 'portrait-fallback' ? 3 : 4)) throw new Error(`${name}: cast incomplete`);
   if (proof.actors.some((actor) => !actor.imageReady)) throw new Error(`${name}: cast image failed to load`);
   if (activateChoices) {
+    if (proof.panelOverflow.x !== 'hidden' || proof.panelOverflow.scrollWidth > proof.panelOverflow.clientWidth + 1)
+      throw new Error(`${name}: horizontal choice overflow ${JSON.stringify(proof.panelOverflow)}`);
     const expectedChoices = scenario === 'many-choices' ? 5 : 3;
     if (proof.choices.length !== expectedChoices || !inside(proof.panel, proof.viewport)) throw new Error(`${name}: choice stack missing or outside viewport`);
     if (proof.box.y + proof.box.height > proof.panel.y + 2) throw new Error(`${name}: card overlaps choices`);
@@ -89,7 +117,8 @@ async function capture(browser, { name, width, height, scenario, activateChoices
     if (await page.locator('.dialogue').count()) throw new Error(`${name}: choice click did not advance`);
   }
   await page.close();
-  return { name, width, height, scenario, screenshot, speaker: proof.speaker, cast: proof.actors.length, choices: proof.choices.length, errors };
+  return { name, width, height, scenario, screenshot, speaker: proof.speaker, cast: proof.actors.length, choices: proof.choices.length,
+    cardOverflow: proof.cardOverflow, panelOverflow: proof.panelOverflow, errors };
 }
 
 let browser;
@@ -101,9 +130,11 @@ try {
     { name: 'desktop-standard', width: 1440, height: 810, scenario: 'standard' },
     { name: 'desktop-choices', width: 1440, height: 810, scenario: 'choices', activateChoices: true },
     { name: 'desktop-multi-cast', width: 1440, height: 810, scenario: 'multi' },
+    { name: 'desktop-portrait-fallback', width: 1440, height: 810, scenario: 'portrait-fallback' },
     { name: 'narrow-standard', width: 620, height: 780, scenario: 'standard' },
     { name: 'narrow-choices', width: 620, height: 780, scenario: 'choices', activateChoices: true },
     { name: 'mobile-standard', width: 390, height: 844, scenario: 'standard' },
+    { name: 'mobile-portrait-fallback', width: 390, height: 844, scenario: 'portrait-fallback' },
     { name: 'mobile-choices', width: 390, height: 844, scenario: 'choices', activateChoices: true },
     { name: 'mobile-many-choices', width: 390, height: 844, scenario: 'many-choices', activateChoices: true },
   ];
