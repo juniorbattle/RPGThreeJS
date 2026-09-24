@@ -3049,13 +3049,13 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .campaign-status-hud[data-layout="traversal"] { top: 10px; left: 10px; width: min(310px, calc(100vw - 20px)); }
 }
 
-/* Compact campaign UI: two fixed HUD columns, with each icon and text on one grid. */
-.campaign-status-hud.campaign-ui-frame { width: min(438px, calc(100vw - 40px)); min-height: 64px; padding: 6px 13px; }
-.campaign-status-hud__items { grid-template-columns: minmax(0, .39fr) minmax(0, .61fr); }
+/* Compact campaign UI: let the HUD fit its rows and align both columns from the top. */
+.campaign-status-hud.campaign-ui-frame { width: min(438px, calc(100vw - 40px)); min-height: 0; padding: 6px 13px; }
+.campaign-status-hud__items { grid-template-columns: minmax(0, .39fr) minmax(0, .61fr); align-items: stretch; }
 .campaign-status-hud__item { grid-template-columns: 27px max-content; justify-content: center; gap: 7px; padding: 1px 7px; }
 .campaign-status-hud__item + .campaign-status-hud__item { border-left: 1px solid var(--campaign-brass); padding-left: 14px; }
 .campaign-status-hud__icon.campaign-ui-icon { width: 27px; height: 27px; }
-.campaign-status-hud__copy { display: grid; grid-template-columns: minmax(0,1fr); gap: 0; align-content: center; }
+.campaign-status-hud__copy { display: grid; grid-template-columns: minmax(0,1fr); gap: 0; align-self: start; align-content: start; }
 .campaign-status-hud small { grid-column: auto; color: var(--campaign-gold); font: 600 9px/1.1 var(--campaign-title-font); letter-spacing: .11em; }
 .campaign-status-hud strong { color: var(--campaign-ivory); font: 600 17px/1.05 var(--campaign-data-font); letter-spacing: 0; }
 .campaign-status-hud em { color: var(--campaign-gold-light); font: 400 10px/1.05 var(--campaign-data-font); }
@@ -3068,7 +3068,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .journey-overlay--departure .journey-overlay__choice--continue.campaign-ui-button { min-height: 36px; padding: 6px 11px; font: 600 11px/1.15 var(--campaign-title-font); letter-spacing: .09em; background: linear-gradient(120deg, #162b3d, #091724 70%); color: var(--campaign-ivory); }
 
 @media (max-width: 700px) {
-  .campaign-status-hud.campaign-ui-frame { width: min(340px, calc(100vw - 20px)); min-height: 56px; top: 10px; left: 10px; padding: 5px 9px; }
+  .campaign-status-hud.campaign-ui-frame { width: min(340px, calc(100vw - 20px)); top: 10px; left: 10px; padding: 5px 9px; }
   .campaign-status-hud__item { grid-template-columns: 23px max-content; gap: 5px; padding: 1px 5px; }
   .campaign-status-hud__item + .campaign-status-hud__item { padding-left: 8px; }
   .campaign-status-hud__icon.campaign-ui-icon { width: 23px; height: 23px; }
