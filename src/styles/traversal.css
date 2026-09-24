@@ -327,6 +327,7 @@
 .traversal-event-panel p { margin-top: 3px; color: var(--campaign-muted); font: 400 11px/1.25 var(--campaign-data-font); }
 .traversal-event-panel__actions { gap: 8px; margin-top: 7px; }
 .traversal-event-panel button.campaign-ui-button { flex: 1; min-height: 32px; padding: 5px 9px; font: 600 11px/1.1 var(--campaign-title-font); letter-spacing: .06em; }
+.traversal-event-panel button.campaign-ui-button--primary { background: linear-gradient(120deg, #193d63, #235888 50%, #102b49); color: var(--campaign-ivory); }
 .traversal-event-panel [data-traversal-skip].campaign-ui-button--secondary { background: linear-gradient(#172b40, #071522); color: var(--campaign-ivory); border-color: var(--campaign-brass); }
 .traversal-event-panel[data-interaction-policy='MANDATORY_CONFIRM'] { border-color: var(--campaign-brass); }
 @media (max-width: 700px) {
