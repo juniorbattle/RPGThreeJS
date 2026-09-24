@@ -27,6 +27,9 @@ describe('TraversalT0Scene', () => {
     expect(scene.session.routeProgress01).toBe(.09);
     expect(scene.session.phase).toBe('DECISION');
     expect(scene.session.pendingBeatId).toBe('t0:npc:roadside-merchant');
+    expect(scene.element.querySelectorAll('.traversal-hud--progress .campaign-ui-icon svg')).toHaveLength(1);
+    expect(scene.element.querySelectorAll('.traversal-event-panel .campaign-ui-frame__corner')).toHaveLength(4);
+    expect(scene.element.querySelectorAll('.traversal-event-panel .campaign-ui-icon--merchant')).toHaveLength(1);
     scene.dispose();
   });
 

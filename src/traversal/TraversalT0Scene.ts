@@ -2,6 +2,7 @@ import type { LionTraversalLeg } from '../campaign/LionCampaignTravelRelations';
 import type { GameState, RunNode } from '../game/types';
 import { selectTraversalBranch } from '../game/runSystem';
 import type { CampaignStatusHud } from '../ui/CampaignStatusHud';
+import { createCampaignIcon, decorateCampaignFrame } from '../ui/design-system/CampaignUi';
 import { classifyTraversalInteraction } from './TraversalInteractionGrammar';
 import { ROAD_SPACE, beatWorldX, beatPassedProgress, roadCameraX, roadWorldToScreen } from './TraversalRoadSpace';
 import { TRAVERSAL_T0_ASSETS } from './TraversalT0Assets';
@@ -257,12 +258,12 @@ export class TraversalT0Scene {
         <figure><img data-traversal-event-portrait alt=""></figure>
         <span class="traversal-event-panel__marker" data-traversal-event-marker>•••</span>
         <div><small data-traversal-event-kind>Route ouverte</small><strong data-traversal-event-title>En route</strong><p data-traversal-event-hint>Surveillez la route.</p>
-          <div class="traversal-event-panel__actions" hidden><button type="button" data-traversal-confirm>Confirmer</button><button type="button" data-traversal-skip>Passer</button></div>
+          <div class="traversal-event-panel__actions" hidden><button class="campaign-ui-button campaign-ui-button--primary" type="button" data-traversal-confirm>Confirmer</button><button class="campaign-ui-button campaign-ui-button--secondary" type="button" data-traversal-skip>Passer</button></div>
         </div>
       </section>
       <aside class="traversal-hud traversal-hud--progress" aria-label="Progression de route">
         <div class="traversal-route-rail" aria-hidden="true"><i></i><span></span><span></span><span></span><span></span><b></b></div>
-        <p>Prochain arrêt</p><strong data-traversal-next>${escapeHtml(this.route.destinationLabel)}</strong><span data-traversal-distance>${this.route.distanceKm.toFixed(1)} km</span>
+        <div class="traversal-hud__destination-icon"></div><div class="traversal-hud__destination-copy"><p>Prochain arrêt</p><strong data-traversal-next>${escapeHtml(this.route.destinationLabel)}</strong><span data-traversal-distance>${this.route.distanceKm.toFixed(1)} km</span></div>
       </aside>
       <nav class="traversal-lanes" aria-label="Changer de trajectoire">
         ${([0, 1] as const).map((lane) => `<button type="button" data-traversal-lane="${lane}" aria-label="${lane === 0 ? 'Monter' : 'Descendre'}"><span aria-hidden="true">${lane === 0 ? '▲' : '▼'}</span></button>`).join('')}
@@ -270,6 +271,11 @@ export class TraversalT0Scene {
       <div class="traversal-toast" role="status" aria-live="polite"></div>
       <div class="traversal-pickup-feedback" role="status" aria-live="polite"></div>
     `;
+    const destination = this.element.querySelector<HTMLElement>('.traversal-hud--progress')!;
+    destination.querySelector('.traversal-hud__destination-icon')!.append(createCampaignIcon('destination'));
+    decorateCampaignFrame(destination, 'compact');
+    const eventPanel = this.element.querySelector<HTMLElement>('[data-traversal-event-panel]')!;
+    decorateCampaignFrame(eventPanel, 'standard');
     this.element.querySelector('.traversal-world__road')!.append(this.worldRenderer.element);
     this.element.querySelector('.traversal-world')!.append(this.foregroundRenderer.element);
     for (const [selector, plane] of [
@@ -685,7 +691,9 @@ export class TraversalT0Scene {
         : beat.campaignNodeIds.includes('lion-refugees') ? 'Une mère et son enfant cherchent de l’aide sur la route.'
         : 'Faire halte auprès de ces voyageurs ou poursuivre la route.'
       : mandatory ? 'Passage obligé · arrêt avant la rencontre.' : 'Restez sur cette voie pour vous arrêter, ou changez de voie pour passer.';
-    panel.querySelector<HTMLElement>('[data-traversal-event-marker]')!.textContent = markerGlyph(beat);
+    const marker = panel.querySelector<HTMLElement>('[data-traversal-event-marker]')!;
+    if (beat.type === 'npc') marker.replaceChildren(createCampaignIcon('merchant'));
+    else marker.textContent = markerGlyph(beat);
     const portrait = panel.querySelector<HTMLImageElement>('[data-traversal-event-portrait]')!;
     portrait.hidden = !beat.visualAsset;
     portrait.src = beat.visualAsset ?? '';

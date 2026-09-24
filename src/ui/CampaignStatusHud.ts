@@ -1,5 +1,6 @@
 import type { GameState } from '../game/types';
 import { getReputationRule } from '../game/reputation';
+import { createCampaignIcon, decorateCampaignFrame } from './design-system/CampaignUi';
 
 export function selectCampaignStatus(state: GameState) {
   return {
@@ -45,10 +46,8 @@ export class CampaignStatusHud {
       const item = document.createElement('div');
       item.className = `campaign-status-hud__item campaign-status-hud__item--${kind}`;
 
-      const icon = document.createElement('span');
-      icon.className = 'campaign-status-hud__icon';
-      icon.setAttribute('aria-hidden', 'true');
-      icon.textContent = kind === 'gold' ? '✦' : '♜';
+      const icon = createCampaignIcon(kind);
+      icon.classList.add('campaign-status-hud__icon');
 
       const copy = document.createElement('span');
       copy.className = 'campaign-status-hud__copy';
@@ -71,5 +70,6 @@ export class CampaignStatusHud {
     appendItem('gold', 'Or', String(value.gold), value.routeGold);
     appendItem('reputation', 'Réputation', `${value.reputation} · ${value.reputationLabel}`);
     this.element.append(items);
+    decorateCampaignFrame(this.element, 'standard');
   }
 }

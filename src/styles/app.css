@@ -7,6 +7,7 @@
 @import '@fontsource/inter/latin-600.css';
 @import '@fontsource/inter/latin-700.css';
 @import '../ui/theme/index.css';
+@import '../ui/design-system/campaign-ui.css';
 
 :root {
   color-scheme: dark;
@@ -3042,4 +3043,35 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .campaign-status-hud strong { font-size: 12px; }
   .campaign-status-hud em { font-size: 8px; }
   .campaign-status-hud[data-layout="traversal"] { top: 10px; left: 10px; width: min(310px, calc(100vw - 20px)); }
+}
+
+/* UI-VISUAL-DIRECTION-SYSTEM-1: the shared campaign frame on the existing HUD owner. */
+.campaign-status-hud.campaign-ui-frame { width: min(520px, calc(100vw - 48px)); min-height: 76px; padding: 11px 21px 10px; }
+.campaign-status-hud__items { grid-template-columns: minmax(0, .41fr) minmax(0, .59fr); }
+.campaign-status-hud__item { grid-template-columns: 36px minmax(0,1fr); gap: 12px; padding: 2px 11px; }
+.campaign-status-hud__item + .campaign-status-hud__item { border-left: 1px solid var(--campaign-brass); padding-left: 22px; }
+.campaign-status-hud__icon.campaign-ui-icon { width: 36px; height: 36px; }
+.campaign-status-hud__copy { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 7px; }
+.campaign-status-hud small { flex: 0 0 100%; color: var(--campaign-gold); font-size: 10px; letter-spacing: .14em; }
+.campaign-status-hud strong { color: var(--campaign-ivory); font-size: clamp(16px, 1.5vw, 21px); }
+.campaign-status-hud em { color: var(--campaign-gold-light); font-size: 11px; }
+.campaign-status-hud[data-layout="traversal"] { top: 20px; left: 24px; }
+
+.journey-overlay--departure .journey-overlay__panel.campaign-ui-frame { width: min(510px, 100%); max-height: min(32vh, 260px); padding: 19px 23px 18px; overflow: visible; }
+.journey-overlay--departure .journey-overlay__eyebrow { color: var(--campaign-gold); font-size: 11px; }
+.journey-overlay--departure .journey-overlay__title { color: var(--campaign-ivory); font-size: clamp(23px, 2.4vw, 34px); letter-spacing: .035em; }
+.journey-overlay--departure .journey-overlay__choices { grid-template-columns: 1fr; margin-top: 18px; }
+.journey-overlay--departure .journey-overlay__choice--continue.campaign-ui-button { min-height: 50px; padding: 10px 16px; font: 600 13px/1.2 Cinzel, serif; letter-spacing: .12em; background: linear-gradient(120deg, #162b3d, #091724 70%); color: var(--campaign-ivory); }
+
+@media (max-width: 700px) {
+  .campaign-status-hud.campaign-ui-frame { width: min(360px, calc(100vw - 20px)); min-height: 60px; top: 10px; left: 10px; padding: 7px 11px; }
+  .campaign-status-hud__item { grid-template-columns: 25px minmax(0,1fr); gap: 6px; padding: 1px 5px; }
+  .campaign-status-hud__item + .campaign-status-hud__item { padding-left: 9px; }
+  .campaign-status-hud__icon.campaign-ui-icon { width: 25px; height: 25px; }
+  .campaign-status-hud small { font-size: 8px; }
+  .campaign-status-hud strong { font-size: 13px; }
+  .campaign-status-hud em { font-size: 8px; }
+  .campaign-status-hud[data-layout="traversal"] { top: 10px; left: 10px; width: min(360px, calc(100vw - 20px)); }
+  .journey-overlay--departure .journey-overlay__panel.campaign-ui-frame { padding: 14px 17px; }
+  .journey-overlay--departure .journey-overlay__title { font-size: 21px; }
 }

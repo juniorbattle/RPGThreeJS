@@ -1,0 +1,103 @@
+{
+  "errors": [],
+  "captures": {
+    "departure": {
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 520,
+        "height": 76
+      },
+      "destination": null,
+      "encounter": null,
+      "departure": {
+        "x": 906,
+        "y": 619.90625,
+        "width": 510,
+        "height": 166.09375
+      },
+      "world": null
+    },
+    "normal": {
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 520,
+        "height": 76
+      },
+      "destination": {
+        "x": 1146,
+        "y": 20,
+        "width": 270,
+        "height": 94
+      },
+      "encounter": null,
+      "departure": null,
+      "world": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 810
+      }
+    },
+    "merchant": {
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "width": 520,
+        "height": 76
+      },
+      "destination": {
+        "x": 1146,
+        "y": 20,
+        "width": 270,
+        "height": 94
+      },
+      "encounter": {
+        "x": 490,
+        "y": 112,
+        "width": 460,
+        "height": 148.390625
+      },
+      "departure": null,
+      "world": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 810
+      }
+    },
+    "narrow": {
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "width": 360,
+        "height": 60
+      },
+      "destination": {
+        "x": 385,
+        "y": 80,
+        "width": 225,
+        "height": 76.390625
+      },
+      "encounter": {
+        "x": 10,
+        "y": 166,
+        "width": 600,
+        "height": 135.390625
+      },
+      "departure": null,
+      "world": {
+        "x": 0,
+        "y": 0,
+        "width": 620,
+        "height": 780
+      }
+    }
+  },
+  "checks": {
+    "departureText": "DÉPART\n\nVERS REFUGE DU LION\nPRENDRE LA ROUTE",
+    "encounterText": "RENCONTRE FACULTATIVE\nMarchande itinérante\n\nUne marchande a installé son étal à l’abri des arbres.\n\nRENCONTRER\nIGNORER",
+    "pass": true
+  }
+}
