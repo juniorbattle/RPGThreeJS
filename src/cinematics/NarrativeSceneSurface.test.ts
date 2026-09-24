@@ -5,7 +5,7 @@ import { dialogues } from '../game/content';
 import { ALARIC_AUDIENCE_TABLEAU, createGenericNarrativeTableau } from './NarrativeTableau';
 import { applyFinalDialoguePresentationPlan } from './DialoguePresentationSegments';
 import { createNarrativeDialogueResolver } from './NarrativeDialogueAdapter';
-import { NarrativeSceneSurface, resolveNarrativeCastDensityScale } from './NarrativeSceneSurface';
+import { NarrativeSceneSurface, resolveNarrativeCastDensityScale, resolveNarrativeGroundPlacement } from './NarrativeSceneSurface';
 
 describe('NarrativeSceneSurface', () => {
   afterEach(() => document.body.replaceChildren());
@@ -25,6 +25,19 @@ describe('NarrativeSceneSurface', () => {
     expect(root.querySelector('.narrative-scene-surface')?.getAttribute('data-dialogue-surface-mode')).toBe('STATIC_TABLEAU');
     expect(root.querySelector('.narrative-scene-surface__cast')?.getAttribute('data-crop-policy')).toBe('BOTTOM_INTENTIONAL');
     expect(root.querySelectorAll('.narrative-cast__actor figcaption, .narrative-cast__actor [data-actor-label]')).toHaveLength(0);
+  });
+
+  it('grounds far and near actors at different scene depths while retaining authored slots', () => {
+    const far = resolveNarrativeGroundPlacement('FAR_LEFT', 'AUDIENCE');
+    const near = resolveNarrativeGroundPlacement('CENTER', 'AUDIENCE');
+    expect(far.groundVh).toBeGreaterThan(near.groundVh);
+    expect(far.depthScale).toBeLessThan(near.depthScale);
+    const root = document.createElement('div');
+    const surface = new NarrativeSceneSurface(root, ALARIC_AUDIENCE_TABLEAU, { reducedMotion: true });
+    surface.mount('/audience.webp', 'AUDIENCE_COMPANY_RESPONSE');
+    const farActor = surface.castLayer.querySelector<HTMLElement>('[data-screen-position="FAR_LEFT"]');
+    expect(farActor?.style.getPropertyValue('--narrative-ground-bottom')).toBe(`${far.groundVh}vh`);
+    expect(farActor?.dataset.depthSlot).toBe('FAR');
   });
 
   it('segments the six-person opening into stable density-scaled four-person compositions', async () => {

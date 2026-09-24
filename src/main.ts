@@ -1,4 +1,5 @@
 import './styles/app.css';
+import './ui/dialogue-alignment.css';
 import { GameApp } from './game/GameApp';
 
 const root = document.querySelector<HTMLElement>('#app');

@@ -1,0 +1,92 @@
+{
+  "cases": [
+    {
+      "name": "desktop-standard",
+      "width": 1440,
+      "height": 810,
+      "scenario": "standard",
+      "screenshot": "desktop-standard.jpg",
+      "speaker": "Séraphine",
+      "cast": 3,
+      "choices": 0,
+      "errors": []
+    },
+    {
+      "name": "desktop-choices",
+      "width": 1440,
+      "height": 810,
+      "scenario": "choices",
+      "screenshot": "desktop-choices.jpg",
+      "speaker": "Séraphine",
+      "cast": 4,
+      "choices": 3,
+      "errors": []
+    },
+    {
+      "name": "desktop-multi-cast",
+      "width": 1440,
+      "height": 810,
+      "scenario": "multi",
+      "screenshot": "desktop-multi-cast.jpg",
+      "speaker": "Séraphine",
+      "cast": 4,
+      "choices": 0,
+      "errors": []
+    },
+    {
+      "name": "narrow-standard",
+      "width": 620,
+      "height": 780,
+      "scenario": "standard",
+      "screenshot": "narrow-standard.jpg",
+      "speaker": "Séraphine",
+      "cast": 3,
+      "choices": 0,
+      "errors": []
+    },
+    {
+      "name": "narrow-choices",
+      "width": 620,
+      "height": 780,
+      "scenario": "choices",
+      "screenshot": "narrow-choices.jpg",
+      "speaker": "Séraphine",
+      "cast": 4,
+      "choices": 3,
+      "errors": []
+    },
+    {
+      "name": "mobile-standard",
+      "width": 390,
+      "height": 844,
+      "scenario": "standard",
+      "screenshot": "mobile-standard.jpg",
+      "speaker": "Séraphine",
+      "cast": 3,
+      "choices": 0,
+      "errors": []
+    },
+    {
+      "name": "mobile-choices",
+      "width": 390,
+      "height": 844,
+      "scenario": "choices",
+      "screenshot": "mobile-choices.jpg",
+      "speaker": "Séraphine",
+      "cast": 4,
+      "choices": 3,
+      "errors": []
+    },
+    {
+      "name": "mobile-many-choices",
+      "width": 390,
+      "height": 844,
+      "scenario": "many-choices",
+      "screenshot": "mobile-many-choices.jpg",
+      "speaker": "Séraphine",
+      "cast": 4,
+      "choices": 5,
+      "errors": []
+    }
+  ]
+}
