@@ -1,0 +1,324 @@
+{
+  "summary": {
+    "dialogues": 75,
+    "visualPhases": 82,
+    "canonicalSteps": 257,
+    "choiceStates": 29,
+    "auditedStates": 328,
+    "screenshots": 213,
+    "desktopScreenshots": 171,
+    "representativeScreenshots": 42,
+    "pageErrors": [],
+    "profiles": {
+      "COMPANY_EXCHANGE": 101,
+      "ADVISER_EXCHANGE": 31,
+      "EVENT_SUBJECT_FOCUS": 54,
+      "FINALE_FOCUS": 27,
+      "AUTHORITY_AUDIENCE": 14,
+      "OPPOSING_GROUPS": 26,
+      "AFTERMATH_GROUP": 40,
+      "PRE_COMBAT_CONFRONTATION": 35
+    },
+    "presenceByCast": {
+      "1440x810:4": {
+        "min": 0.44824183605335377,
+        "max": 0.5183656698391761
+      },
+      "1440x810:1": {
+        "min": 0.5215905978355879,
+        "max": 0.6767878002590604
+      },
+      "1440x810:2": {
+        "min": 0.48084129639613776,
+        "max": 0.6239137066735162
+      },
+      "1440x810:3": {
+        "min": 0.4645416142028055,
+        "max": 0.7455465415672021
+      },
+      "1366x768:1": {
+        "min": 0.5250455240408579,
+        "max": 0.5490567522744337
+      },
+      "620x780:1": {
+        "min": 0.3690000240619366,
+        "max": 0.38587502516233
+      },
+      "390x844:1": {
+        "min": 0.3637444238527126,
+        "max": 0.38037907738256227
+      },
+      "1366x768:2": {
+        "min": 0.48402639975150424,
+        "max": 0.6242168415337801
+      },
+      "620x780:2": {
+        "min": 0.34017184391999855,
+        "max": 0.43869725786722624
+      },
+      "390x844:2": {
+        "min": 0.293412783699578,
+        "max": 0.37839514483207776
+      },
+      "1366x768:4": {
+        "min": 0.4649675153195858,
+        "max": 0.5186176132410765
+      },
+      "620x780:4": {
+        "min": 0.3049863894780477,
+        "max": 0.34017712672551476
+      },
+      "390x844:4": {
+        "min": 0.24830410491798727,
+        "max": 0.27695457856237043
+      },
+      "1366x768:3": {
+        "min": 0.47759835608303547,
+        "max": 0.5374763589352369
+      },
+      "620x780:3": {
+        "min": 0.313271395671062,
+        "max": 0.3525472124417623
+      },
+      "390x844:3": {
+        "min": 0.2550493071288294,
+        "max": 0.28702561154749723
+      }
+    },
+    "findings": {
+      "heavy-overlap": 4,
+      "weak-presence": 27
+    }
+  },
+  "findings": [
+    {
+      "type": "weak-presence",
+      "dialogueId": "ate_alaric_reports",
+      "stepId": "1",
+      "actorId": "alaric",
+      "ratio": 0.355728483123657
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "ate_alaric_reports",
+      "stepId": "1",
+      "actorId": "alaric",
+      "ratio": 0.3068310512468148
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_recruit",
+      "stepId": "0a",
+      "actorId": "kestrel",
+      "ratio": 0.3474316344811366
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_recruit",
+      "stepId": "0a",
+      "actorId": "cedric",
+      "ratio": 0.34017184391999855
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_recruit",
+      "stepId": "1",
+      "actorId": "kestrel",
+      "ratio": 0.3474316344811366
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_recruit",
+      "stepId": "1",
+      "actorId": "cedric",
+      "ratio": 0.34017184391999855
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_recruit",
+      "stepId": "0a",
+      "actorId": "kestrel",
+      "ratio": 0.2996746418882885
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_recruit",
+      "stepId": "0a",
+      "actorId": "cedric",
+      "ratio": 0.293412783699578
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_recruit",
+      "stepId": "1",
+      "actorId": "kestrel",
+      "ratio": 0.2996746418882885
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_recruit",
+      "stepId": "1",
+      "actorId": "cedric",
+      "ratio": 0.293412783699578
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_briefing",
+      "stepId": "1",
+      "actorId": "alistair",
+      "ratio": 0.27695457856237043
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_briefing",
+      "stepId": "1",
+      "actorId": "sage_seraphine",
+      "ratio": 0.2541811251527325
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_briefing",
+      "stepId": "1",
+      "actorId": "maelor",
+      "ratio": 0.24830410491798727
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_briefing",
+      "stepId": "1",
+      "actorId": "alaric",
+      "ratio": 0.25197724256470305
+    },
+    {
+      "type": "heavy-overlap",
+      "dialogueId": "lion_briefing",
+      "stepId": "1",
+      "actors": [
+        "alistair",
+        "sage_seraphine"
+      ],
+      "ratio": 0.7919896864740806
+    },
+    {
+      "type": "heavy-overlap",
+      "dialogueId": "lion_briefing",
+      "stepId": "1",
+      "actors": [
+        "sage_seraphine",
+        "maelor"
+      ],
+      "ratio": 0.7493179972436875
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_briefing",
+      "stepId": "3",
+      "actorId": "alistair",
+      "ratio": 0.27695457856237043
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_briefing",
+      "stepId": "3",
+      "actorId": "sage_seraphine",
+      "ratio": 0.2541811251527325
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_briefing",
+      "stepId": "3",
+      "actorId": "maelor",
+      "ratio": 0.24830410491798727
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "lion_briefing",
+      "stepId": "3",
+      "actorId": "alaric",
+      "ratio": 0.25197724256470305
+    },
+    {
+      "type": "heavy-overlap",
+      "dialogueId": "lion_briefing",
+      "stepId": "3",
+      "actors": [
+        "alistair",
+        "sage_seraphine"
+      ],
+      "ratio": 0.7919896864740806
+    },
+    {
+      "type": "heavy-overlap",
+      "dialogueId": "lion_briefing",
+      "stepId": "3",
+      "actors": [
+        "sage_seraphine",
+        "maelor"
+      ],
+      "ratio": 0.7493179972436875
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_dragon_roost",
+      "stepId": "1",
+      "actorId": "sage_seraphine",
+      "ratio": 0.2634240604972387
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_dragon_roost",
+      "stepId": "1",
+      "actorId": "maelor",
+      "ratio": 0.25733330690465267
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_dragon_roost",
+      "stepId": "1",
+      "actorId": "young_dragon_elite",
+      "ratio": 0.28474158811343225
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_dragon_roost",
+      "stepId": "1",
+      "actorId": "sage_seraphine",
+      "ratio": 0.2634240604972387
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_dragon_roost",
+      "stepId": "1",
+      "actorId": "maelor",
+      "ratio": 0.25733330690465267
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "mystery_dragon_roost",
+      "stepId": "1",
+      "actorId": "young_dragon_elite",
+      "ratio": 0.28474158811343225
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "pre_opening_trail",
+      "stepId": "1",
+      "actorId": "kestrel",
+      "ratio": 0.2550493071288294
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "pre_opening_trail",
+      "stepId": "1",
+      "actorId": "alistair",
+      "ratio": 0.28702561154749723
+    },
+    {
+      "type": "weak-presence",
+      "dialogueId": "pre_opening_trail",
+      "stepId": "1",
+      "actorId": "sage_seraphine",
+      "ratio": 0.26342403606215925
+    }
+  ]
+}

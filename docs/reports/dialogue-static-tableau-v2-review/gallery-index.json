@@ -1,0 +1,3475 @@
+[
+  {
+    "dialogueId": "acte_ouverture",
+    "phaseId": "acte_ouverture:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "001-acte_ouverture-acte_ouverture-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "alistair",
+      "marian"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "acte_ouverture",
+    "phaseId": "acte_ouverture:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "002-acte_ouverture-acte_ouverture-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "alistair",
+      "marian"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "acte_ouverture",
+    "phaseId": "acte_ouverture:segment-2",
+    "stepId": "5",
+    "kind": "phase-opening",
+    "screenshot": "003-acte_ouverture-acte_ouverture-segment-2-phase-opening.jpg",
+    "actorIds": [
+      "kestrel",
+      "elara",
+      "maelor",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "acte_ouverture",
+    "phaseId": "acte_ouverture:segment-2",
+    "stepId": "6",
+    "kind": "speaker-handoff",
+    "screenshot": "004-acte_ouverture-acte_ouverture-segment-2-speaker-handoff.jpg",
+    "actorIds": [
+      "kestrel",
+      "elara",
+      "maelor",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "acte_ouverture",
+    "phaseId": "acte_ouverture:segment-3",
+    "stepId": "9",
+    "kind": "phase-opening",
+    "screenshot": "005-acte_ouverture-acte_ouverture-segment-3-phase-opening.jpg",
+    "actorIds": [
+      "alistair"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_alaric_reports",
+    "phaseId": "ate_alaric_reports:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "006-ate_alaric_reports-ate_alaric_reports-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "lion_champion",
+      "alaric"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_alaric_reports",
+    "phaseId": "ate_alaric_reports:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "007-ate_alaric_reports-ate_alaric_reports-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "lion_champion",
+      "alaric"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_bois_clair_night_watch",
+    "phaseId": "ate_bois_clair_night_watch:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "008-ate_bois_clair_night_watch-ate_bois_clair_night_watch-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "marian",
+      "alistair",
+      "maelor",
+      "villageoise"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_bois_clair_night_watch",
+    "phaseId": "ate_bois_clair_night_watch:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "009-ate_bois_clair_night_watch-ate_bois_clair_night_watch-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "marian",
+      "alistair",
+      "maelor",
+      "villageoise"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_first_refuge_watch",
+    "phaseId": "ate_first_refuge_watch:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "010-ate_first_refuge_watch-ate_first_refuge_watch-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "marian",
+      "alistair",
+      "kestrel",
+      "maelor"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_first_refuge_watch",
+    "phaseId": "ate_first_refuge_watch:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "011-ate_first_refuge_watch-ate_first_refuge_watch-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "marian",
+      "alistair",
+      "kestrel",
+      "maelor"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_lion_council_doubt",
+    "phaseId": "ate_lion_council_doubt:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "012-ate_lion_council_doubt-ate_lion_council_doubt-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "lion_champion",
+      "alaric"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_lion_council_doubt",
+    "phaseId": "ate_lion_council_doubt:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "013-ate_lion_council_doubt-ate_lion_council_doubt-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "lion_champion",
+      "alaric"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_maelor_seal_analysis",
+    "phaseId": "ate_maelor_seal_analysis:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "014-ate_maelor_seal_analysis-ate_maelor_seal_analysis-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "maelor",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_maelor_seal_analysis",
+    "phaseId": "ate_maelor_seal_analysis:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "015-ate_maelor_seal_analysis-ate_maelor_seal_analysis-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "maelor",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_ruins_awaken",
+    "phaseId": "ate_ruins_awaken:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "016-ate_ruins_awaken-ate_ruins_awaken-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "maelor",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_ruins_awaken",
+    "phaseId": "ate_ruins_awaken:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "017-ate_ruins_awaken-ate_ruins_awaken-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "maelor",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_serpent_general_warning",
+    "phaseId": "ate_serpent_general_warning:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "018-ate_serpent_general_warning-ate_serpent_general_warning-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "serpent_oracle",
+      "serpent_general_boss"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_serpent_general_warning",
+    "phaseId": "ate_serpent_general_warning:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "019-ate_serpent_general_warning-ate_serpent_general_warning-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "serpent_oracle",
+      "serpent_general_boss"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_serpent_retreat_order",
+    "phaseId": "ate_serpent_retreat_order:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "020-ate_serpent_retreat_order-ate_serpent_retreat_order-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "serpent_general_boss",
+      "serpent_oracle"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_serpent_retreat_order",
+    "phaseId": "ate_serpent_retreat_order:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "021-ate_serpent_retreat_order-ate_serpent_retreat_order-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "serpent_general_boss",
+      "serpent_oracle"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_serpent_scout_report",
+    "phaseId": "ate_serpent_scout_report:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "022-ate_serpent_scout_report-ate_serpent_scout_report-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "serpent_raider",
+      "serpent_oracle",
+      "serpent_general_boss"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_serpent_scout_report",
+    "phaseId": "ate_serpent_scout_report:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "023-ate_serpent_scout_report-ate_serpent_scout_report-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "serpent_raider",
+      "serpent_oracle",
+      "serpent_general_boss"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_village_fear",
+    "phaseId": "ate_village_fear:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "024-ate_village_fear-ate_village_fear-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "villageoise",
+      "refugee_mother"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "ate_village_fear",
+    "phaseId": "ate_village_fear:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "025-ate_village_fear-ate_village_fear-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "villageoise",
+      "refugee_mother"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "camp_departure",
+    "phaseId": "camp_departure:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "026-camp_departure-camp_departure-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "maelor",
+      "alistair",
+      "marian",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "camp_departure",
+    "phaseId": "camp_departure:segment-1",
+    "stepId": "1a",
+    "kind": "speaker-handoff",
+    "screenshot": "027-camp_departure-camp_departure-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "maelor",
+      "alistair",
+      "marian",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "camp_departure",
+    "phaseId": "camp_departure:segment-2",
+    "stepId": "4",
+    "kind": "phase-opening",
+    "screenshot": "028-camp_departure-camp_departure-segment-2-phase-opening.jpg",
+    "actorIds": [
+      "kestrel",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "camp_departure",
+    "phaseId": "camp_departure:segment-2",
+    "stepId": "5",
+    "kind": "speaker-handoff",
+    "screenshot": "029-camp_departure-camp_departure-segment-2-speaker-handoff.jpg",
+    "actorIds": [
+      "kestrel",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "epilogue",
+    "phaseId": "epilogue:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "030-epilogue-epilogue-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "sage_seraphine"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "final_refuge",
+    "phaseId": "final_refuge:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "031-final_refuge-final_refuge-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "maelor",
+      "sage_seraphine",
+      "marian",
+      "alistair"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "final_refuge",
+    "phaseId": "final_refuge:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "032-final_refuge-final_refuge-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "maelor",
+      "sage_seraphine",
+      "marian",
+      "alistair"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "first_refuge_gathering",
+    "phaseId": "first_refuge_gathering:gathering",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "033-first_refuge_gathering-first_refuge_gathering-gathering-phase-opening.jpg",
+    "actorIds": [
+      "alistair",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "first_refuge_gathering",
+    "phaseId": "first_refuge_gathering:gathering",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "034-first_refuge_gathering-first_refuge_gathering-gathering-speaker-handoff.jpg",
+    "actorIds": [
+      "alistair",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "lion_briefing",
+    "phaseId": "lion_briefing:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "035-lion_briefing-lion_briefing-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "alistair",
+      "sage_seraphine",
+      "maelor",
+      "alaric"
+    ],
+    "compositionProfile": "AUTHORITY_AUDIENCE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "lion_briefing",
+    "phaseId": "lion_briefing:segment-1",
+    "stepId": "1b",
+    "kind": "speaker-handoff",
+    "screenshot": "036-lion_briefing-lion_briefing-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "alistair",
+      "sage_seraphine",
+      "maelor",
+      "alaric"
+    ],
+    "compositionProfile": "AUTHORITY_AUDIENCE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "lion_briefing",
+    "phaseId": "lion_briefing:segment-1",
+    "stepId": "3",
+    "kind": "choice",
+    "screenshot": "037-lion_briefing-lion_briefing-segment-1-choice.jpg",
+    "actorIds": [
+      "alistair",
+      "sage_seraphine",
+      "maelor",
+      "alaric"
+    ],
+    "compositionProfile": "AUTHORITY_AUDIENCE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "lion_finale_judgement",
+    "phaseId": "lion_finale_judgement:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "038-lion_finale_judgement-lion_finale_judgement-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "alaric"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "lion_finale_judgement",
+    "phaseId": "lion_finale_judgement:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "039-lion_finale_judgement-lion_finale_judgement-segment-1-choice.jpg",
+    "actorIds": [
+      "alaric"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "lion_trial_aftermath",
+    "phaseId": "lion_trial_aftermath:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "040-lion_trial_aftermath-lion_trial_aftermath-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "alaric"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_ambush",
+    "phaseId": "mystery_ambush:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "041-mystery_ambush-mystery_ambush-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "serpent_raider"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_dragon_roost",
+    "phaseId": "mystery_dragon_roost:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "042-mystery_dragon_roost-mystery_dragon_roost-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "young_dragon_elite"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_dragon_roost",
+    "phaseId": "mystery_dragon_roost:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "043-mystery_dragon_roost-mystery_dragon_roost-segment-1-choice.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "young_dragon_elite"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_dragon_roost",
+    "phaseId": "mystery_dragon_roost:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "044-mystery_dragon_roost-mystery_dragon_roost-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "young_dragon_elite"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_help",
+    "phaseId": "mystery_help:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "045-mystery_help-mystery_help-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_help",
+    "phaseId": "mystery_help:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "046-mystery_help-mystery_help-segment-1-choice.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_lancer_recruit",
+    "phaseId": "mystery_lancer_recruit:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "047-mystery_lancer_recruit-mystery_lancer_recruit-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "lancer"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_lancer_recruit",
+    "phaseId": "mystery_lancer_recruit:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "048-mystery_lancer_recruit-mystery_lancer_recruit-segment-1-choice.jpg",
+    "actorIds": [
+      "lancer"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_recruit",
+    "phaseId": "mystery_recruit:segment-1",
+    "stepId": "0a",
+    "kind": "phase-opening",
+    "screenshot": "049-mystery_recruit-mystery_recruit-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "kestrel",
+      "cedric"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_recruit",
+    "phaseId": "mystery_recruit:segment-1",
+    "stepId": "0b",
+    "kind": "speaker-handoff",
+    "screenshot": "050-mystery_recruit-mystery_recruit-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "kestrel",
+      "cedric"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_recruit",
+    "phaseId": "mystery_recruit:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "051-mystery_recruit-mystery_recruit-segment-1-choice.jpg",
+    "actorIds": [
+      "kestrel",
+      "cedric"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_shrine",
+    "phaseId": "mystery_shrine:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "052-mystery_shrine-mystery_shrine-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "shrine_apparition",
+      "sage_seraphine",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_shrine",
+    "phaseId": "mystery_shrine:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "053-mystery_shrine-mystery_shrine-segment-1-choice.jpg",
+    "actorIds": [
+      "shrine_apparition",
+      "sage_seraphine",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_shrine",
+    "phaseId": "mystery_shrine:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "054-mystery_shrine-mystery_shrine-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "shrine_apparition",
+      "sage_seraphine",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_treasure",
+    "phaseId": "mystery_treasure:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "055-mystery_treasure-mystery_treasure-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "maelor",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_treasure",
+    "phaseId": "mystery_treasure:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "056-mystery_treasure-mystery_treasure-segment-1-choice.jpg",
+    "actorIds": [
+      "maelor",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_treasure",
+    "phaseId": "mystery_treasure:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "057-mystery_treasure-mystery_treasure-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "maelor",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_troll_crossing",
+    "phaseId": "mystery_troll_crossing:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "058-mystery_troll_crossing-mystery_troll_crossing-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "forest_troll_elite",
+      "sage_seraphine",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_troll_crossing",
+    "phaseId": "mystery_troll_crossing:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "059-mystery_troll_crossing-mystery_troll_crossing-segment-1-choice.jpg",
+    "actorIds": [
+      "forest_troll_elite",
+      "sage_seraphine",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_troll_crossing",
+    "phaseId": "mystery_troll_crossing:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "060-mystery_troll_crossing-mystery_troll_crossing-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "forest_troll_elite",
+      "sage_seraphine",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "old_shrine_event",
+    "phaseId": "old_shrine_event:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "061-old_shrine_event-old_shrine_event-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "old_shrine_event",
+    "phaseId": "old_shrine_event:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "062-old_shrine_event-old_shrine_event-segment-1-choice.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "old_shrine_event",
+    "phaseId": "old_shrine_event:segment-1",
+    "stepId": "3",
+    "kind": "speaker-handoff",
+    "screenshot": "063-old_shrine_event-old_shrine_event-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_opening_trail",
+    "phaseId": "post_opening_trail:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "064-post_opening_trail-post_opening_trail-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "kestrel",
+      "alistair",
+      "maelor"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_opening_trail",
+    "phaseId": "post_opening_trail:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "065-post_opening_trail-post_opening_trail-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "kestrel",
+      "alistair",
+      "maelor"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_ruins_guardians",
+    "phaseId": "post_ruins_guardians:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "066-post_ruins_guardians-post_ruins_guardians-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "elara",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_ruins_guardians",
+    "phaseId": "post_ruins_guardians:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "067-post_ruins_guardians-post_ruins_guardians-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "elara",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_serpent_checkpoint",
+    "phaseId": "post_serpent_checkpoint:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "068-post_serpent_checkpoint-post_serpent_checkpoint-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "kestrel",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_serpent_checkpoint",
+    "phaseId": "post_serpent_checkpoint:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "069-post_serpent_checkpoint-post_serpent_checkpoint-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "kestrel",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_serpent_duelist_trial",
+    "phaseId": "post_serpent_duelist_trial:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "070-post_serpent_duelist_trial-post_serpent_duelist_trial-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "alistair",
+      "serpent_duelist_elite"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_serpent_duelist_trial",
+    "phaseId": "post_serpent_duelist_trial:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "071-post_serpent_duelist_trial-post_serpent_duelist_trial-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "alistair",
+      "serpent_duelist_elite"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_serpent_hunters",
+    "phaseId": "post_serpent_hunters:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "072-post_serpent_hunters-post_serpent_hunters-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "serpent_oracle"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_serpent_hunters",
+    "phaseId": "post_serpent_hunters:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "073-post_serpent_hunters-post_serpent_hunters-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "serpent_oracle"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_serpent_patrol",
+    "phaseId": "post_serpent_patrol:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "074-post_serpent_patrol-post_serpent_patrol-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "kestrel",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_serpent_patrol",
+    "phaseId": "post_serpent_patrol:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "075-post_serpent_patrol-post_serpent_patrol-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "kestrel",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_serpent_reprisals",
+    "phaseId": "post_serpent_reprisals:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "076-post_serpent_reprisals-post_serpent_reprisals-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "alistair",
+      "kestrel"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_serpent_reprisals",
+    "phaseId": "post_serpent_reprisals:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "077-post_serpent_reprisals-post_serpent_reprisals-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "alistair",
+      "kestrel"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_spider_nest",
+    "phaseId": "post_spider_nest:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "078-post_spider_nest-post_spider_nest-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "elara",
+      "maelor"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_spider_nest",
+    "phaseId": "post_spider_nest:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "079-post_spider_nest-post_spider_nest-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "elara",
+      "maelor"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_troll_crossing",
+    "phaseId": "post_troll_crossing:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "080-post_troll_crossing-post_troll_crossing-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "marian",
+      "maelor"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_troll_crossing",
+    "phaseId": "post_troll_crossing:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "081-post_troll_crossing-post_troll_crossing-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "marian",
+      "maelor"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_valmir_road",
+    "phaseId": "post_valmir_road:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "082-post_valmir_road-post_valmir_road-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "marian",
+      "kestrel",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_valmir_road",
+    "phaseId": "post_valmir_road:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "083-post_valmir_road-post_valmir_road-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "marian",
+      "kestrel",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_witness_road_clash",
+    "phaseId": "post_witness_road_clash:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "084-post_witness_road_clash-post_witness_road_clash-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "marian",
+      "maelor"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_witness_road_clash",
+    "phaseId": "post_witness_road_clash:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "085-post_witness_road_clash-post_witness_road_clash-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "marian",
+      "maelor"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_young_dragon_roost",
+    "phaseId": "post_young_dragon_roost:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "086-post_young_dragon_roost-post_young_dragon_roost-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "elara",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "post_young_dragon_roost",
+    "phaseId": "post_young_dragon_roost:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "087-post_young_dragon_roost-post_young_dragon_roost-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "elara",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_lion_chief",
+    "phaseId": "pre_lion_chief:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "088-pre_lion_chief-pre_lion_chief-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "alaric",
+      "lion_champion"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_lion_chief",
+    "phaseId": "pre_lion_chief:segment-1",
+    "stepId": "3",
+    "kind": "speaker-handoff",
+    "screenshot": "089-pre_lion_chief-pre_lion_chief-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "alaric",
+      "lion_champion"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_opening_trail",
+    "phaseId": "pre_opening_trail:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "090-pre_opening_trail-pre_opening_trail-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "kestrel",
+      "alistair",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_opening_trail",
+    "phaseId": "pre_opening_trail:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "091-pre_opening_trail-pre_opening_trail-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "kestrel",
+      "alistair",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_ruins_guardians",
+    "phaseId": "pre_ruins_guardians:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "092-pre_ruins_guardians-pre_ruins_guardians-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "elara",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_ruins_guardians",
+    "phaseId": "pre_ruins_guardians:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "093-pre_ruins_guardians-pre_ruins_guardians-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "elara",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_serpent_checkpoint",
+    "phaseId": "pre_serpent_checkpoint:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "094-pre_serpent_checkpoint-pre_serpent_checkpoint-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "kestrel",
+      "maelor"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_serpent_checkpoint",
+    "phaseId": "pre_serpent_checkpoint:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "095-pre_serpent_checkpoint-pre_serpent_checkpoint-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "kestrel",
+      "maelor"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_serpent_duelist_trial",
+    "phaseId": "pre_serpent_duelist_trial:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "096-pre_serpent_duelist_trial-pre_serpent_duelist_trial-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "serpent_duelist_elite"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_serpent_hunters",
+    "phaseId": "pre_serpent_hunters:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "097-pre_serpent_hunters-pre_serpent_hunters-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "serpent_raider"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_serpent_hunters",
+    "phaseId": "pre_serpent_hunters:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "098-pre_serpent_hunters-pre_serpent_hunters-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "serpent_raider"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_serpent_patrol",
+    "phaseId": "pre_serpent_patrol:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "099-pre_serpent_patrol-pre_serpent_patrol-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "kestrel",
+      "alistair"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_serpent_patrol",
+    "phaseId": "pre_serpent_patrol:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "100-pre_serpent_patrol-pre_serpent_patrol-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "kestrel",
+      "alistair"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_serpent_reprisals",
+    "phaseId": "pre_serpent_reprisals:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "101-pre_serpent_reprisals-pre_serpent_reprisals-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "alistair",
+      "serpent_raider"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_serpent_reprisals",
+    "phaseId": "pre_serpent_reprisals:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "102-pre_serpent_reprisals-pre_serpent_reprisals-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "alistair",
+      "serpent_raider"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_spider_nest",
+    "phaseId": "pre_spider_nest:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "103-pre_spider_nest-pre_spider_nest-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "elara",
+      "marian"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_spider_nest",
+    "phaseId": "pre_spider_nest:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "104-pre_spider_nest-pre_spider_nest-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "elara",
+      "marian"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_troll_crossing",
+    "phaseId": "pre_troll_crossing:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "105-pre_troll_crossing-pre_troll_crossing-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "forest_troll_elite"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_valmir_road",
+    "phaseId": "pre_valmir_road:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "106-pre_valmir_road-pre_valmir_road-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "kestrel",
+      "marian",
+      "maelor"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_valmir_road",
+    "phaseId": "pre_valmir_road:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "107-pre_valmir_road-pre_valmir_road-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "kestrel",
+      "marian",
+      "maelor"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_village_defense",
+    "phaseId": "pre_village_defense:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "108-pre_village_defense-pre_village_defense-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "serpent_raider"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_village_raid",
+    "phaseId": "pre_village_raid:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "109-pre_village_raid-pre_village_raid-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "serpent_brute"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_witness_road_clash",
+    "phaseId": "pre_witness_road_clash:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "110-pre_witness_road_clash-pre_witness_road_clash-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "alistair",
+      "survivor"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_witness_road_clash",
+    "phaseId": "pre_witness_road_clash:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "111-pre_witness_road_clash-pre_witness_road_clash-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "alistair",
+      "survivor"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "pre_young_dragon_roost",
+    "phaseId": "pre_young_dragon_roost:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "112-pre_young_dragon_roost-pre_young_dragon_roost-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "young_dragon_elite"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "refugee_trial",
+    "phaseId": "refugee_trial:segment-1",
+    "stepId": "0a",
+    "kind": "phase-opening",
+    "screenshot": "113-refugee_trial-refugee_trial-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "kestrel",
+      "marian",
+      "alistair",
+      "refugee_mother"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "refugee_trial",
+    "phaseId": "refugee_trial:segment-1",
+    "stepId": "0b",
+    "kind": "speaker-handoff",
+    "screenshot": "114-refugee_trial-refugee_trial-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "kestrel",
+      "marian",
+      "alistair",
+      "refugee_mother"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "refugee_trial",
+    "phaseId": "refugee_trial:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "115-refugee_trial-refugee_trial-segment-1-choice.jpg",
+    "actorIds": [
+      "kestrel",
+      "marian",
+      "alistair",
+      "refugee_mother"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "refugee_trial",
+    "phaseId": "refugee_trial:segment-2",
+    "stepId": "3",
+    "kind": "phase-opening",
+    "screenshot": "116-refugee_trial-refugee_trial-segment-2-phase-opening.jpg",
+    "actorIds": [
+      "maelor",
+      "marian",
+      "kestrel"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "refugee_trial",
+    "phaseId": "refugee_trial:segment-2",
+    "stepId": "3a",
+    "kind": "speaker-handoff",
+    "screenshot": "117-refugee_trial-refugee_trial-segment-2-speaker-handoff.jpg",
+    "actorIds": [
+      "maelor",
+      "marian",
+      "kestrel"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_bois_clair_denunciation",
+    "phaseId": "rep_event_bois_clair_denunciation:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "118-rep_event_bois_clair_denunciation-rep_event_bois_clair_denunciation-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "refugee_mother"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_bois_clair_denunciation",
+    "phaseId": "rep_event_bois_clair_denunciation:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "119-rep_event_bois_clair_denunciation-rep_event_bois_clair_denunciation-segment-1-choice.jpg",
+    "actorIds": [
+      "refugee_mother"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_brokered_information",
+    "phaseId": "rep_event_brokered_information:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "120-rep_event_brokered_information-rep_event_brokered_information-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_brokered_information",
+    "phaseId": "rep_event_brokered_information:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "121-rep_event_brokered_information-rep_event_brokered_information-segment-1-choice.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_displaced_family_demand",
+    "phaseId": "rep_event_displaced_family_demand:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "122-rep_event_displaced_family_demand-rep_event_displaced_family_demand-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_displaced_family_demand",
+    "phaseId": "rep_event_displaced_family_demand:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "123-rep_event_displaced_family_demand-rep_event_displaced_family_demand-segment-1-choice.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_fallen_banner_claimant",
+    "phaseId": "rep_event_fallen_banner_claimant:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "124-rep_event_fallen_banner_claimant-rep_event_fallen_banner_claimant-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "maelor",
+      "survivor"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_fallen_banner_claimant",
+    "phaseId": "rep_event_fallen_banner_claimant:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "125-rep_event_fallen_banner_claimant-rep_event_fallen_banner_claimant-segment-1-choice.jpg",
+    "actorIds": [
+      "maelor",
+      "survivor"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_fallen_banner_claimant",
+    "phaseId": "rep_event_fallen_banner_claimant:segment-1",
+    "stepId": "3",
+    "kind": "speaker-handoff",
+    "screenshot": "126-rep_event_fallen_banner_claimant-rep_event_fallen_banner_claimant-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "maelor",
+      "survivor"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_public_petition",
+    "phaseId": "rep_event_public_petition:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "127-rep_event_public_petition-rep_event_public_petition-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "refugee_mother"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_public_petition",
+    "phaseId": "rep_event_public_petition:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "128-rep_event_public_petition-rep_event_public_petition-segment-1-choice.jpg",
+    "actorIds": [
+      "refugee_mother"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_refuge_supply_offer",
+    "phaseId": "rep_event_refuge_supply_offer:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "129-rep_event_refuge_supply_offer-rep_event_refuge_supply_offer-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_refuge_supply_offer",
+    "phaseId": "rep_event_refuge_supply_offer:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "130-rep_event_refuge_supply_offer-rep_event_refuge_supply_offer-segment-1-choice.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_roadside_intimidation",
+    "phaseId": "rep_event_roadside_intimidation:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "131-rep_event_roadside_intimidation-rep_event_roadside_intimidation-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "maelor",
+      "serpent_raider"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_roadside_intimidation",
+    "phaseId": "rep_event_roadside_intimidation:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "132-rep_event_roadside_intimidation-rep_event_roadside_intimidation-segment-1-choice.jpg",
+    "actorIds": [
+      "maelor",
+      "serpent_raider"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_roadside_intimidation",
+    "phaseId": "rep_event_roadside_intimidation:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "133-rep_event_roadside_intimidation-rep_event_roadside_intimidation-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "maelor",
+      "serpent_raider"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_serpent_rumour_market",
+    "phaseId": "rep_event_serpent_rumour_market:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "134-rep_event_serpent_rumour_market-rep_event_serpent_rumour_market-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_serpent_rumour_market",
+    "phaseId": "rep_event_serpent_rumour_market:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "135-rep_event_serpent_rumour_market-rep_event_serpent_rumour_market-segment-1-choice.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_village_memorial_request",
+    "phaseId": "rep_event_village_memorial_request:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "136-rep_event_village_memorial_request-rep_event_village_memorial_request-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "refugee_mother"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "rep_event_village_memorial_request",
+    "phaseId": "rep_event_village_memorial_request:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "137-rep_event_village_memorial_request-rep_event_village_memorial_request-segment-1-choice.jpg",
+    "actorIds": [
+      "refugee_mother"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "reserve_trail",
+    "phaseId": "reserve_trail:segment-1",
+    "stepId": "0a",
+    "kind": "phase-opening",
+    "screenshot": "138-reserve_trail-reserve_trail-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "kestrel",
+      "alistair",
+      "maelor",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "reserve_trail",
+    "phaseId": "reserve_trail:segment-1",
+    "stepId": "0b",
+    "kind": "speaker-handoff",
+    "screenshot": "139-reserve_trail-reserve_trail-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "kestrel",
+      "alistair",
+      "maelor",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "reserve_trail",
+    "phaseId": "reserve_trail:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "140-reserve_trail-reserve_trail-segment-1-choice.jpg",
+    "actorIds": [
+      "kestrel",
+      "alistair",
+      "maelor",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "roadside_peddler",
+    "phaseId": "roadside_peddler:gathering",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "141-roadside_peddler-roadside_peddler-gathering-phase-opening.jpg",
+    "actorIds": [
+      "villageoise",
+      "alistair"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "roadside_peddler",
+    "phaseId": "roadside_peddler:gathering",
+    "stepId": "3",
+    "kind": "speaker-handoff",
+    "screenshot": "142-roadside_peddler-roadside_peddler-gathering-speaker-handoff.jpg",
+    "actorIds": [
+      "villageoise",
+      "alistair"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "roadside_peddler",
+    "phaseId": "roadside_peddler:gathering",
+    "stepId": "3",
+    "kind": "choice",
+    "screenshot": "143-roadside_peddler-roadside_peddler-gathering-choice.jpg",
+    "actorIds": [
+      "villageoise",
+      "alistair"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "serpent_duelist_trial",
+    "phaseId": "serpent_duelist_trial:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "144-serpent_duelist_trial-serpent_duelist_trial-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "serpent_duelist_elite"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "serpent_duelist_trial",
+    "phaseId": "serpent_duelist_trial:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "145-serpent_duelist_trial-serpent_duelist_trial-segment-1-choice.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "serpent_duelist_elite"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "serpent_duelist_trial",
+    "phaseId": "serpent_duelist_trial:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "146-serpent_duelist_trial-serpent_duelist_trial-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "serpent_duelist_elite"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "serpent_general_aftermath",
+    "phaseId": "serpent_general_aftermath:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "147-serpent_general_aftermath-serpent_general_aftermath-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "sage_seraphine"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "serpent_informant",
+    "phaseId": "serpent_informant:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "148-serpent_informant-serpent_informant-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "serpent_oracle"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "serpent_informant",
+    "phaseId": "serpent_informant:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "149-serpent_informant-serpent_informant-segment-1-choice.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "serpent_oracle"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "serpent_informant",
+    "phaseId": "serpent_informant:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "150-serpent_informant-serpent_informant-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "serpent_oracle"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "serpent_pursuit_pre_combat",
+    "phaseId": "serpent_pursuit_pre_combat:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "151-serpent_pursuit_pre_combat-serpent_pursuit_pre_combat-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "alaric",
+      "serpent_general_boss"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "serpent_pursuit_pre_combat",
+    "phaseId": "serpent_pursuit_pre_combat:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "152-serpent_pursuit_pre_combat-serpent_pursuit_pre_combat-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "alaric",
+      "serpent_general_boss"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "shadow_signs",
+    "phaseId": "shadow_signs:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "153-shadow_signs-shadow_signs-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "elara",
+      "alistair",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "shadow_signs",
+    "phaseId": "shadow_signs:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "154-shadow_signs-shadow_signs-segment-1-choice.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "elara",
+      "alistair",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "shadow_signs",
+    "phaseId": "shadow_signs:segment-1",
+    "stepId": "2a",
+    "kind": "speaker-handoff",
+    "screenshot": "155-shadow_signs-shadow_signs-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "elara",
+      "alistair",
+      "maelor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "village_choice",
+    "phaseId": "village_choice:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "156-village_choice-village_choice-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "marian",
+      "kestrel",
+      "villageoise",
+      "serpent_raider"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "village_choice",
+    "phaseId": "village_choice:segment-1",
+    "stepId": "1a",
+    "kind": "speaker-handoff",
+    "screenshot": "157-village_choice-village_choice-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "marian",
+      "kestrel",
+      "villageoise",
+      "serpent_raider"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "village_choice",
+    "phaseId": "village_choice:segment-2",
+    "stepId": "3",
+    "kind": "phase-opening",
+    "screenshot": "158-village_choice-village_choice-segment-2-phase-opening.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "alistair",
+      "villageoise"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "village_choice",
+    "phaseId": "village_choice:segment-2",
+    "stepId": "4",
+    "kind": "speaker-handoff",
+    "screenshot": "159-village_choice-village_choice-segment-2-speaker-handoff.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "alistair",
+      "villageoise"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "village_choice",
+    "phaseId": "village_choice:segment-2",
+    "stepId": "5",
+    "kind": "choice",
+    "screenshot": "160-village_choice-village_choice-segment-2-choice.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "alistair",
+      "villageoise"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "village_defense_aftermath",
+    "phaseId": "village_defense_aftermath:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "161-village_defense_aftermath-village_defense_aftermath-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "villageoise"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "village_defense_aftermath",
+    "phaseId": "village_defense_aftermath:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "162-village_defense_aftermath-village_defense_aftermath-segment-1-choice.jpg",
+    "actorIds": [
+      "villageoise"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "village_raid_aftermath",
+    "phaseId": "village_raid_aftermath:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening",
+    "screenshot": "163-village_raid_aftermath-village_raid_aftermath-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "maelor",
+      "villageoise"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "village_raid_aftermath",
+    "phaseId": "village_raid_aftermath:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "164-village_raid_aftermath-village_raid_aftermath-segment-1-choice.jpg",
+    "actorIds": [
+      "maelor",
+      "villageoise"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "village_raid_aftermath",
+    "phaseId": "village_raid_aftermath:segment-1",
+    "stepId": "2",
+    "kind": "speaker-handoff",
+    "screenshot": "165-village_raid_aftermath-village_raid_aftermath-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "maelor",
+      "villageoise"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "witnesses_on_road",
+    "phaseId": "witnesses_on_road:segment-1",
+    "stepId": "0a",
+    "kind": "phase-opening",
+    "screenshot": "166-witnesses_on_road-witnesses_on_road-segment-1-phase-opening.jpg",
+    "actorIds": [
+      "kestrel",
+      "marian",
+      "alistair",
+      "survivor"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "witnesses_on_road",
+    "phaseId": "witnesses_on_road:segment-1",
+    "stepId": "0b",
+    "kind": "speaker-handoff",
+    "screenshot": "167-witnesses_on_road-witnesses_on_road-segment-1-speaker-handoff.jpg",
+    "actorIds": [
+      "kestrel",
+      "marian",
+      "alistair",
+      "survivor"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "witnesses_on_road",
+    "phaseId": "witnesses_on_road:segment-1",
+    "stepId": "1",
+    "kind": "choice",
+    "screenshot": "168-witnesses_on_road-witnesses_on_road-segment-1-choice.jpg",
+    "actorIds": [
+      "kestrel",
+      "marian",
+      "alistair",
+      "survivor"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "witnesses_on_road",
+    "phaseId": "witnesses_on_road:segment-2",
+    "stepId": "3",
+    "kind": "phase-opening",
+    "screenshot": "169-witnesses_on_road-witnesses_on_road-segment-2-phase-opening.jpg",
+    "actorIds": [
+      "maelor",
+      "marian",
+      "kestrel",
+      "survivor"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "witnesses_on_road",
+    "phaseId": "witnesses_on_road:segment-2",
+    "stepId": "3a",
+    "kind": "speaker-handoff",
+    "screenshot": "170-witnesses_on_road-witnesses_on_road-segment-2-speaker-handoff.jpg",
+    "actorIds": [
+      "maelor",
+      "marian",
+      "kestrel",
+      "survivor"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "witnesses_on_road",
+    "phaseId": "witnesses_on_road:segment-3",
+    "stepId": "4b",
+    "kind": "phase-opening",
+    "screenshot": "171-witnesses_on_road-witnesses_on_road-segment-3-phase-opening.jpg",
+    "actorIds": [
+      "sage_seraphine"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1440,
+      "height": 810
+    }
+  },
+  {
+    "dialogueId": "mystery_help",
+    "phaseId": "mystery_help:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-1366x768",
+    "screenshot": "172-mystery_help-mystery_help-segment-1-phase-opening-1366x768.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "mystery_help",
+    "phaseId": "mystery_help:segment-1",
+    "stepId": "1",
+    "kind": "choice-1366x768",
+    "screenshot": "173-mystery_help-mystery_help-segment-1-choice-1366x768.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "mystery_help",
+    "phaseId": "mystery_help:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-620x780",
+    "screenshot": "174-mystery_help-mystery_help-segment-1-phase-opening-620x780.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "mystery_help",
+    "phaseId": "mystery_help:segment-1",
+    "stepId": "1",
+    "kind": "choice-620x780",
+    "screenshot": "175-mystery_help-mystery_help-segment-1-choice-620x780.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "mystery_help",
+    "phaseId": "mystery_help:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-390x844",
+    "screenshot": "176-mystery_help-mystery_help-segment-1-phase-opening-390x844.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "dialogueId": "mystery_help",
+    "phaseId": "mystery_help:segment-1",
+    "stepId": "1",
+    "kind": "choice-390x844",
+    "screenshot": "177-mystery_help-mystery_help-segment-1-choice-390x844.jpg",
+    "actorIds": [
+      "survivor"
+    ],
+    "compositionProfile": "COMPANY_EXCHANGE",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "dialogueId": "ate_alaric_reports",
+    "phaseId": "ate_alaric_reports:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-1366x768",
+    "screenshot": "178-ate_alaric_reports-ate_alaric_reports-segment-1-phase-opening-1366x768.jpg",
+    "actorIds": [
+      "lion_champion",
+      "alaric"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "ate_alaric_reports",
+    "phaseId": "ate_alaric_reports:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-620x780",
+    "screenshot": "179-ate_alaric_reports-ate_alaric_reports-segment-1-phase-opening-620x780.jpg",
+    "actorIds": [
+      "lion_champion",
+      "alaric"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "ate_alaric_reports",
+    "phaseId": "ate_alaric_reports:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-390x844",
+    "screenshot": "180-ate_alaric_reports-ate_alaric_reports-segment-1-phase-opening-390x844.jpg",
+    "actorIds": [
+      "lion_champion",
+      "alaric"
+    ],
+    "compositionProfile": "ADVISER_EXCHANGE",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "dialogueId": "mystery_recruit",
+    "phaseId": "mystery_recruit:segment-1",
+    "stepId": "0a",
+    "kind": "phase-opening-1366x768",
+    "screenshot": "181-mystery_recruit-mystery_recruit-segment-1-phase-opening-1366x768.jpg",
+    "actorIds": [
+      "kestrel",
+      "cedric"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "mystery_recruit",
+    "phaseId": "mystery_recruit:segment-1",
+    "stepId": "1",
+    "kind": "choice-1366x768",
+    "screenshot": "182-mystery_recruit-mystery_recruit-segment-1-choice-1366x768.jpg",
+    "actorIds": [
+      "kestrel",
+      "cedric"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "mystery_recruit",
+    "phaseId": "mystery_recruit:segment-1",
+    "stepId": "0a",
+    "kind": "phase-opening-620x780",
+    "screenshot": "183-mystery_recruit-mystery_recruit-segment-1-phase-opening-620x780.jpg",
+    "actorIds": [
+      "kestrel",
+      "cedric"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "mystery_recruit",
+    "phaseId": "mystery_recruit:segment-1",
+    "stepId": "1",
+    "kind": "choice-620x780",
+    "screenshot": "184-mystery_recruit-mystery_recruit-segment-1-choice-620x780.jpg",
+    "actorIds": [
+      "kestrel",
+      "cedric"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "mystery_recruit",
+    "phaseId": "mystery_recruit:segment-1",
+    "stepId": "0a",
+    "kind": "phase-opening-390x844",
+    "screenshot": "185-mystery_recruit-mystery_recruit-segment-1-phase-opening-390x844.jpg",
+    "actorIds": [
+      "kestrel",
+      "cedric"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "dialogueId": "mystery_recruit",
+    "phaseId": "mystery_recruit:segment-1",
+    "stepId": "1",
+    "kind": "choice-390x844",
+    "screenshot": "186-mystery_recruit-mystery_recruit-segment-1-choice-390x844.jpg",
+    "actorIds": [
+      "kestrel",
+      "cedric"
+    ],
+    "compositionProfile": "EVENT_SUBJECT_FOCUS",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "dialogueId": "lion_finale_judgement",
+    "phaseId": "lion_finale_judgement:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-1366x768",
+    "screenshot": "187-lion_finale_judgement-lion_finale_judgement-segment-1-phase-opening-1366x768.jpg",
+    "actorIds": [
+      "alaric"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "lion_finale_judgement",
+    "phaseId": "lion_finale_judgement:segment-1",
+    "stepId": "1",
+    "kind": "choice-1366x768",
+    "screenshot": "188-lion_finale_judgement-lion_finale_judgement-segment-1-choice-1366x768.jpg",
+    "actorIds": [
+      "alaric"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "lion_finale_judgement",
+    "phaseId": "lion_finale_judgement:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-620x780",
+    "screenshot": "189-lion_finale_judgement-lion_finale_judgement-segment-1-phase-opening-620x780.jpg",
+    "actorIds": [
+      "alaric"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "lion_finale_judgement",
+    "phaseId": "lion_finale_judgement:segment-1",
+    "stepId": "1",
+    "kind": "choice-620x780",
+    "screenshot": "190-lion_finale_judgement-lion_finale_judgement-segment-1-choice-620x780.jpg",
+    "actorIds": [
+      "alaric"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "lion_finale_judgement",
+    "phaseId": "lion_finale_judgement:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-390x844",
+    "screenshot": "191-lion_finale_judgement-lion_finale_judgement-segment-1-phase-opening-390x844.jpg",
+    "actorIds": [
+      "alaric"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "dialogueId": "lion_finale_judgement",
+    "phaseId": "lion_finale_judgement:segment-1",
+    "stepId": "1",
+    "kind": "choice-390x844",
+    "screenshot": "192-lion_finale_judgement-lion_finale_judgement-segment-1-choice-390x844.jpg",
+    "actorIds": [
+      "alaric"
+    ],
+    "compositionProfile": "FINALE_FOCUS",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "dialogueId": "lion_briefing",
+    "phaseId": "lion_briefing:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-1366x768",
+    "screenshot": "193-lion_briefing-lion_briefing-segment-1-phase-opening-1366x768.jpg",
+    "actorIds": [
+      "alistair",
+      "sage_seraphine",
+      "maelor",
+      "alaric"
+    ],
+    "compositionProfile": "AUTHORITY_AUDIENCE",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "lion_briefing",
+    "phaseId": "lion_briefing:segment-1",
+    "stepId": "3",
+    "kind": "choice-1366x768",
+    "screenshot": "194-lion_briefing-lion_briefing-segment-1-choice-1366x768.jpg",
+    "actorIds": [
+      "alistair",
+      "sage_seraphine",
+      "maelor",
+      "alaric"
+    ],
+    "compositionProfile": "AUTHORITY_AUDIENCE",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "lion_briefing",
+    "phaseId": "lion_briefing:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-620x780",
+    "screenshot": "195-lion_briefing-lion_briefing-segment-1-phase-opening-620x780.jpg",
+    "actorIds": [
+      "alistair",
+      "sage_seraphine",
+      "maelor",
+      "alaric"
+    ],
+    "compositionProfile": "AUTHORITY_AUDIENCE",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "lion_briefing",
+    "phaseId": "lion_briefing:segment-1",
+    "stepId": "3",
+    "kind": "choice-620x780",
+    "screenshot": "196-lion_briefing-lion_briefing-segment-1-choice-620x780.jpg",
+    "actorIds": [
+      "alistair",
+      "sage_seraphine",
+      "maelor",
+      "alaric"
+    ],
+    "compositionProfile": "AUTHORITY_AUDIENCE",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "lion_briefing",
+    "phaseId": "lion_briefing:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-390x844",
+    "screenshot": "197-lion_briefing-lion_briefing-segment-1-phase-opening-390x844.jpg",
+    "actorIds": [
+      "alistair",
+      "sage_seraphine",
+      "maelor",
+      "alaric"
+    ],
+    "compositionProfile": "AUTHORITY_AUDIENCE",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "dialogueId": "lion_briefing",
+    "phaseId": "lion_briefing:segment-1",
+    "stepId": "3",
+    "kind": "choice-390x844",
+    "screenshot": "198-lion_briefing-lion_briefing-segment-1-choice-390x844.jpg",
+    "actorIds": [
+      "alistair",
+      "sage_seraphine",
+      "maelor",
+      "alaric"
+    ],
+    "compositionProfile": "AUTHORITY_AUDIENCE",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "dialogueId": "mystery_dragon_roost",
+    "phaseId": "mystery_dragon_roost:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-1366x768",
+    "screenshot": "199-mystery_dragon_roost-mystery_dragon_roost-segment-1-phase-opening-1366x768.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "young_dragon_elite"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "mystery_dragon_roost",
+    "phaseId": "mystery_dragon_roost:segment-1",
+    "stepId": "1",
+    "kind": "choice-1366x768",
+    "screenshot": "200-mystery_dragon_roost-mystery_dragon_roost-segment-1-choice-1366x768.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "young_dragon_elite"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "mystery_dragon_roost",
+    "phaseId": "mystery_dragon_roost:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-620x780",
+    "screenshot": "201-mystery_dragon_roost-mystery_dragon_roost-segment-1-phase-opening-620x780.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "young_dragon_elite"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "mystery_dragon_roost",
+    "phaseId": "mystery_dragon_roost:segment-1",
+    "stepId": "1",
+    "kind": "choice-620x780",
+    "screenshot": "202-mystery_dragon_roost-mystery_dragon_roost-segment-1-choice-620x780.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "young_dragon_elite"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "mystery_dragon_roost",
+    "phaseId": "mystery_dragon_roost:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-390x844",
+    "screenshot": "203-mystery_dragon_roost-mystery_dragon_roost-segment-1-phase-opening-390x844.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "young_dragon_elite"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "dialogueId": "mystery_dragon_roost",
+    "phaseId": "mystery_dragon_roost:segment-1",
+    "stepId": "1",
+    "kind": "choice-390x844",
+    "screenshot": "204-mystery_dragon_roost-mystery_dragon_roost-segment-1-choice-390x844.jpg",
+    "actorIds": [
+      "sage_seraphine",
+      "maelor",
+      "young_dragon_elite"
+    ],
+    "compositionProfile": "OPPOSING_GROUPS",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "dialogueId": "village_defense_aftermath",
+    "phaseId": "village_defense_aftermath:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-1366x768",
+    "screenshot": "205-village_defense_aftermath-village_defense_aftermath-segment-1-phase-opening-1366x768.jpg",
+    "actorIds": [
+      "villageoise"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "village_defense_aftermath",
+    "phaseId": "village_defense_aftermath:segment-1",
+    "stepId": "1",
+    "kind": "choice-1366x768",
+    "screenshot": "206-village_defense_aftermath-village_defense_aftermath-segment-1-choice-1366x768.jpg",
+    "actorIds": [
+      "villageoise"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "village_defense_aftermath",
+    "phaseId": "village_defense_aftermath:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-620x780",
+    "screenshot": "207-village_defense_aftermath-village_defense_aftermath-segment-1-phase-opening-620x780.jpg",
+    "actorIds": [
+      "villageoise"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "village_defense_aftermath",
+    "phaseId": "village_defense_aftermath:segment-1",
+    "stepId": "1",
+    "kind": "choice-620x780",
+    "screenshot": "208-village_defense_aftermath-village_defense_aftermath-segment-1-choice-620x780.jpg",
+    "actorIds": [
+      "villageoise"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "village_defense_aftermath",
+    "phaseId": "village_defense_aftermath:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-390x844",
+    "screenshot": "209-village_defense_aftermath-village_defense_aftermath-segment-1-phase-opening-390x844.jpg",
+    "actorIds": [
+      "villageoise"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "dialogueId": "village_defense_aftermath",
+    "phaseId": "village_defense_aftermath:segment-1",
+    "stepId": "1",
+    "kind": "choice-390x844",
+    "screenshot": "210-village_defense_aftermath-village_defense_aftermath-segment-1-choice-390x844.jpg",
+    "actorIds": [
+      "villageoise"
+    ],
+    "compositionProfile": "AFTERMATH_GROUP",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "dialogueId": "pre_opening_trail",
+    "phaseId": "pre_opening_trail:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-1366x768",
+    "screenshot": "211-pre_opening_trail-pre_opening_trail-segment-1-phase-opening-1366x768.jpg",
+    "actorIds": [
+      "kestrel",
+      "alistair",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    }
+  },
+  {
+    "dialogueId": "pre_opening_trail",
+    "phaseId": "pre_opening_trail:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-620x780",
+    "screenshot": "212-pre_opening_trail-pre_opening_trail-segment-1-phase-opening-620x780.jpg",
+    "actorIds": [
+      "kestrel",
+      "alistair",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 620,
+      "height": 780
+    }
+  },
+  {
+    "dialogueId": "pre_opening_trail",
+    "phaseId": "pre_opening_trail:segment-1",
+    "stepId": "1",
+    "kind": "phase-opening-390x844",
+    "screenshot": "213-pre_opening_trail-pre_opening_trail-segment-1-phase-opening-390x844.jpg",
+    "actorIds": [
+      "kestrel",
+      "alistair",
+      "sage_seraphine"
+    ],
+    "compositionProfile": "PRE_COMBAT_CONFRONTATION",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  }
+]

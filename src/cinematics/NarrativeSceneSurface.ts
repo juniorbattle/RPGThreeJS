@@ -1,7 +1,8 @@
 import type { DialogueSequence } from '../game/types';
 import { assets } from '../render/assetManifest';
 import { resolveCharacterAsset } from '../render/CharacterVisualRegistry';
-import { createGenericNarrativeTableau, type NarrativeActorEntryEffect, type NarrativeActorExitEffect, type NarrativeAddressResolution, type NarrativeLayoutPlacement, type NarrativeScreenPosition, type NarrativeStagedActorSpec, type NarrativeTableauSpec, type NarrativeVisualPhaseSpec } from './NarrativeTableau';
+import { createGenericNarrativeTableau, type NarrativeActorEntryEffect, type NarrativeActorExitEffect, type NarrativeAddressResolution, type NarrativeLayoutPlacement, type NarrativeStagedActorSpec, type NarrativeTableauSpec, type NarrativeVisualPhaseSpec } from './NarrativeTableau';
+import { resolveStaticTableauActorTuning, resolveStaticTableauComposition, type StaticTableauCompositionProfile } from './StaticTableauComposition';
 
 interface DialogueAssetProfile {
   full: string;
@@ -25,18 +26,6 @@ export function resolveNarrativeCastDensityScale(castSize: number): number {
   return 1;
 }
 
-/** Stage geometry belongs to the scene surface, not the dialogue renderer. */
-export function resolveNarrativeGroundPlacement(
-  position: NarrativeScreenPosition,
-  family: NarrativeTableauSpec['family'] = 'FALLBACK',
-): Readonly<{ groundVh: number; depthScale: number }> {
-  const baseGround = family === 'AUDIENCE' || family === 'FINALE' ? 13 : family === 'ATE' ? 16 : 15;
-  if (position === 'FAR_LEFT' || position === 'FAR_RIGHT') return { groundVh: baseGround + 3, depthScale: .8 };
-  if (position === 'CENTER_LEFT' || position === 'CENTER_RIGHT') return { groundVh: baseGround + 1, depthScale: .9 };
-  if (position === 'LEFT' || position === 'RIGHT') return { groundVh: baseGround, depthScale: .96 };
-  return { groundVh: baseGround - 1, depthScale: 1 };
-}
-
 function castState(spec: NarrativeStagedActorSpec, speakerId?: string): NarrativeStaticCastState {
   if (spec.actorId === speakerId) return 'ACTIVE';
   return spec.narrativeRole === 'BACKGROUND' ? 'BACKGROUND' : 'LISTENING';
@@ -48,7 +37,7 @@ function applyActorState(
   speakerId?: string,
   direction?: { facing?: 'LEFT' | 'RIGHT' | 'FORWARD'; lookTarget?: string | null },
   castDensityScale = 1,
-  family: NarrativeTableauSpec['family'] = 'FALLBACK',
+  compositionProfile: StaticTableauCompositionProfile = 'COMPANY_EXCHANGE',
 ): void {
   const state = castState(spec, speakerId);
   const activeDirection = spec.actorId === speakerId ? direction : undefined;
@@ -65,10 +54,11 @@ function applyActorState(
   actor.classList.toggle('is-speaking', state === 'ACTIVE');
   actor.classList.toggle('is-listening', state === 'LISTENING');
   actor.classList.toggle('is-background', state === 'BACKGROUND');
-  const placement = resolveNarrativeGroundPlacement(spec.screenPosition, family);
-  actor.dataset.depthSlot = spec.screenPosition.startsWith('FAR_') ? 'FAR' : spec.screenPosition.startsWith('CENTER_') ? 'MID' : 'NEAR';
-  actor.style.setProperty('--narrative-actor-scale', `${spec.scale * castDensityScale * placement.depthScale}`);
-  actor.style.setProperty('--narrative-ground-bottom', `${placement.groundVh}vh`);
+  const tuning = resolveStaticTableauActorTuning(compositionProfile, spec);
+  actor.dataset.compositionProfile = compositionProfile;
+  actor.style.left = `${tuning.xPercent}%`;
+  actor.style.setProperty('--tableau-baseline', `${tuning.baselineVh}vh`);
+  actor.style.setProperty('--narrative-actor-scale', `${spec.scale * castDensityScale * tuning.scale}`);
   actor.style.setProperty('--narrative-actor-depth', `${spec.depth}`);
 }
 
@@ -77,12 +67,12 @@ function actorElement(
   speakerId?: string,
   actorImages: Readonly<Record<string, string>> = {},
   castDensityScale = 1,
-  family: NarrativeTableauSpec['family'] = 'FALLBACK',
+  compositionProfile: StaticTableauCompositionProfile = 'COMPANY_EXCHANGE',
 ): HTMLElement {
   const actor = document.createElement('figure');
   actor.className = 'narrative-cast__actor';
   actor.dataset.actorId = spec.actorId;
-  applyActorState(actor, spec, speakerId, undefined, castDensityScale, family);
+  applyActorState(actor, spec, speakerId, undefined, castDensityScale, compositionProfile);
   const image = actorImages[spec.actorId] ?? actorImage(spec.actorId);
   if (image) {
     const img = document.createElement('img');
@@ -184,6 +174,8 @@ export class NarrativeSceneSurface {
     const previousPhase = this.phases.find((candidate) => candidate.id === this.activePhaseId);
     const nextIds = new Set(phase.staticCast.map((actor) => actor.actorId));
     const castDensityScale = resolveNarrativeCastDensityScale(phase.staticCast.length);
+    const compositionProfile = resolveStaticTableauComposition(this.tableau, phase);
+    this.element.dataset.compositionProfile = compositionProfile;
     this.castLayer.dataset.castDensityScale = `${castDensityScale}`;
     const exiting = [...existing.values()].filter((actor) => !nextIds.has(actor.dataset.actorId ?? ''));
     const exitByActor = new Map((previousPhase?.exits ?? []).map((exit) => [exit.actorId, exit]));
@@ -196,8 +188,8 @@ export class NarrativeSceneSurface {
     }
     const actors = phase.staticCast.map((spec) => {
       const alreadyStaged = existing.get(spec.actorId);
-      const actor = alreadyStaged ?? actorElement(spec, speakerId, this.actorImages, castDensityScale, this.tableau.family);
-      applyActorState(actor, spec, speakerId, { facing: speakerFacing, lookTarget: speakerLookTarget }, castDensityScale, this.tableau.family);
+      const actor = alreadyStaged ?? actorElement(spec, speakerId, this.actorImages, castDensityScale, compositionProfile);
+      applyActorState(actor, spec, speakerId, { facing: speakerFacing, lookTarget: speakerLookTarget }, castDensityScale, compositionProfile);
       const effect = this.reducedMotion ? reducedEntryEffect(spec.entryEffect) : spec.entryEffect ?? 'NONE';
       actor.dataset.entryEffect = alreadyStaged ? 'NONE' : effect;
       actor.classList.toggle('is-entering', !alreadyStaged && effect !== 'NONE');

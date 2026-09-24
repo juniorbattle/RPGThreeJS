@@ -86,8 +86,7 @@
 .dialogue .dialogue__outcomes { grid-column: 2; grid-row: 4; margin: 5px 0 0; }
 .dialogue .dialogue__continue { right: 18px; bottom: 6px; color: var(--campaign-gold); font: 600 9px/1.1 var(--campaign-title-font); }
 
-.dialogue.dialogue--has-choices .dialogue__box,
-.dialogue.dialogue--spatial-choice .dialogue__box {
+.dialogue.dialogue--choice-active .dialogue__box {
   bottom: calc(min(22dvh, 165px) + 26px) !important;
   max-height: min(31dvh, 270px) !important;
 }
@@ -137,30 +136,15 @@
 .dialogue[data-speaker-side="right"] .dialogue-choice:hover:not(:disabled),
 .dialogue[data-speaker-side="right"] .dialogue-choice:focus-visible { transform: none; }
 
-/* Slot-specific contact lines make the cast sit inside the background ground plane. */
+/* The cast sits before the environment on one theatrical foreground plane. */
 .narrative-scene-surface .narrative-cast__actor {
-  bottom: var(--narrative-ground-bottom, 29vh);
-  width: min(32vw, 56vh, 470px);
-  height: min(60vh, 560px);
-  opacity: .68;
-  filter: saturate(.82) brightness(.8) drop-shadow(0 15px 18px #000a);
+  bottom: var(--tableau-baseline, 3vh);
+  opacity: .82;
+  filter: saturate(.84) brightness(.84) drop-shadow(0 24px 28px #000c);
 }
-.narrative-scene-surface .narrative-cast__actor.is-speaking { opacity: 1; filter: saturate(1) brightness(1.03) drop-shadow(0 18px 21px #000c); }
-.narrative-scene-surface .narrative-cast__actor.is-listening { opacity: .7; }
-.narrative-scene-surface .narrative-cast__actor.is-background { opacity: .42; }
-.narrative-scene-surface__cast::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  bottom: 11vh;
-  left: 0;
-  height: 12vh;
-  background: linear-gradient(transparent, rgba(2, 5, 9, .2));
-  pointer-events: none;
-}
-body:has(.dialogue--has-choices) .narrative-scene-surface .narrative-cast__actor {
-  bottom: calc(var(--narrative-ground-bottom, 15vh) + 13vh);
-}
+.narrative-scene-surface .narrative-cast__actor.is-speaking { opacity: 1; filter: saturate(1.05) brightness(1.06) drop-shadow(0 28px 31px #000e); }
+.narrative-scene-surface .narrative-cast__actor.is-listening { opacity: .8; }
+.narrative-scene-surface .narrative-cast__actor.is-background { opacity: .4; }
 
 @media (max-width: 680px) {
   .dialogue .dialogue__box,
@@ -180,8 +164,7 @@ body:has(.dialogue--has-choices) .narrative-scene-surface .narrative-cast__actor
   .dialogue .dialogue__speaker { font-size: 16px; }
   .dialogue .dialogue__text,
   .dialogue.dialogue--narrative .dialogue__text { font-size: 13px; line-height: 1.32; }
-  .dialogue.dialogue--has-choices .dialogue__box,
-  .dialogue.dialogue--spatial-choice .dialogue__box { bottom: calc(min(22dvh, 165px) + 18px) !important; max-height: 28dvh !important; }
+  .dialogue.dialogue--choice-active .dialogue__box { bottom: calc(min(22dvh, 165px) + 18px) !important; max-height: 28dvh !important; }
   .dialogue:has(.dialogue-choice:nth-child(4)) .dialogue__choices { max-height: min(20dvh, 170px) !important; }
   .dialogue .dialogue__choices,
   .dialogue[data-speaker-side="right"] .dialogue__choices,
@@ -197,5 +180,23 @@ body:has(.dialogue--has-choices) .narrative-scene-surface .narrative-cast__actor
     overflow: auto !important;
     transform: translateX(-50%) !important;
   }
-  .narrative-scene-surface .narrative-cast__actor { width: min(42vw, 38vh); height: 48vh; }
+  .narrative-scene-surface .narrative-cast__actor {
+    bottom: 12vh;
+    width: min(54vw, 42vh);
+  }
+  .narrative-scene-surface__cast[data-cast-count="1"] .narrative-cast__actor,
+  .narrative-scene-surface__cast[data-cast-count="2"] .narrative-cast__actor { width: min(62vw, 45vh); }
+  .narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor { bottom: 20vh; }
+}
+
+@media (max-width: 450px) {
+  .dialogue.dialogue--choice-active .dialogue__box { bottom: calc(min(22dvh, 165px) + 36px) !important; }
+  .narrative-scene-surface .narrative-cast__actor { bottom: 23vh; width: min(74vw, 48vh); }
+  .narrative-scene-surface__cast[data-cast-count="1"] .narrative-cast__actor,
+  .narrative-scene-surface__cast[data-cast-count="2"] .narrative-cast__actor { bottom: 15vh; width: min(84vw, 51vh); }
+  .narrative-scene-surface__cast[data-cast-count="1"] .narrative-cast__actor { bottom: 15vh; width: min(96vw, 60vh); }
+  body:has(.dialogue--choice-active) .narrative-scene-surface__cast[data-cast-count="4"] .narrative-cast__actor { bottom: 31vh; }
+  .narrative-scene-surface__cast[data-cast-count="5"] .narrative-cast__actor,
+  .narrative-scene-surface__cast[data-cast-count="6"] .narrative-cast__actor,
+  .narrative-scene-surface__cast[data-cast-count="7"] .narrative-cast__actor { bottom: 22vh; width: min(72vw, 45vh); }
 }

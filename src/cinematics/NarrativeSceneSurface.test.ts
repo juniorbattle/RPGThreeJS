@@ -5,7 +5,8 @@ import { dialogues } from '../game/content';
 import { ALARIC_AUDIENCE_TABLEAU, createGenericNarrativeTableau } from './NarrativeTableau';
 import { applyFinalDialoguePresentationPlan } from './DialoguePresentationSegments';
 import { createNarrativeDialogueResolver } from './NarrativeDialogueAdapter';
-import { NarrativeSceneSurface, resolveNarrativeCastDensityScale, resolveNarrativeGroundPlacement } from './NarrativeSceneSurface';
+import { NarrativeSceneSurface, resolveNarrativeCastDensityScale } from './NarrativeSceneSurface';
+import { resolveStaticTableauActorTuning, resolveStaticTableauComposition } from './StaticTableauComposition';
 
 describe('NarrativeSceneSurface', () => {
   afterEach(() => document.body.replaceChildren());
@@ -27,17 +28,41 @@ describe('NarrativeSceneSurface', () => {
     expect(root.querySelectorAll('.narrative-cast__actor figcaption, .narrative-cast__actor [data-actor-label]')).toHaveLength(0);
   });
 
-  it('grounds far and near actors at different scene depths while retaining authored slots', () => {
-    const far = resolveNarrativeGroundPlacement('FAR_LEFT', 'AUDIENCE');
-    const near = resolveNarrativeGroundPlacement('CENTER', 'AUDIENCE');
-    expect(far.groundVh).toBeGreaterThan(near.groundVh);
-    expect(far.depthScale).toBeLessThan(near.depthScale);
+  it('uses authored semantic slots for a foreground Audience composition without environmental depth', async () => {
+    const phase = ALARIC_AUDIENCE_TABLEAU.phases!.find((candidate) => candidate.id === 'AUDIENCE_COMPANY_RESPONSE')!;
+    const profile = resolveStaticTableauComposition(ALARIC_AUDIENCE_TABLEAU, phase);
+    expect(profile).toBe('AUTHORITY_AUDIENCE');
+    const far = phase.staticCast.find((actor) => actor.screenPosition === 'FAR_LEFT')!;
+    const center = phase.staticCast.find((actor) => actor.screenPosition === 'CENTER_RIGHT')!;
+    expect(resolveStaticTableauActorTuning(profile, far).baselineVh).toBe(resolveStaticTableauActorTuning(profile, center).baselineVh);
+    expect(resolveStaticTableauActorTuning(profile, far).scale).toBe(resolveStaticTableauActorTuning(profile, center).scale);
     const root = document.createElement('div');
     const surface = new NarrativeSceneSurface(root, ALARIC_AUDIENCE_TABLEAU, { reducedMotion: true });
     surface.mount('/audience.webp', 'AUDIENCE_COMPANY_RESPONSE');
-    const farActor = surface.castLayer.querySelector<HTMLElement>('[data-screen-position="FAR_LEFT"]');
-    expect(farActor?.style.getPropertyValue('--narrative-ground-bottom')).toBe(`${far.groundVh}vh`);
-    expect(farActor?.dataset.depthSlot).toBe('FAR');
+    await surface.setPhase(phase.id, 'alistair');
+    const actor = surface.castLayer.querySelector<HTMLElement>('[data-actor-id="alistair"]')!;
+    const originalGeometry = { left: actor.style.left, baseline: actor.style.getPropertyValue('--tableau-baseline'), scale: actor.style.getPropertyValue('--narrative-actor-scale') };
+    await surface.setPhase(phase.id, 'alaric');
+    expect({ left: actor.style.left, baseline: actor.style.getPropertyValue('--tableau-baseline'), scale: actor.style.getPropertyValue('--narrative-actor-scale') }).toEqual(originalGeometry);
+    expect(actor.dataset.screenPosition).toBe(phase.staticCast.find((candidate) => candidate.actorId === 'alistair')!.screenPosition);
+    expect(actor.style.getPropertyValue('--narrative-ground-bottom')).toBe('');
+    expect(actor.dataset.depthSlot).toBeUndefined();
+  });
+
+  it('selects theatrical grouping from scene context rather than cast count or the current speaker', () => {
+    const opening = dialogues.get('acte_ouverture')!;
+    const openingTableau = applyFinalDialoguePresentationPlan(opening, createGenericNarrativeTableau(opening));
+    const event = dialogues.get('ate_bois_clair_night_watch')!;
+    const eventTableau = applyFinalDialoguePresentationPlan(event, createGenericNarrativeTableau(event));
+    const audience = ALARIC_AUDIENCE_TABLEAU;
+    const profiles = [openingTableau, eventTableau, audience].map((tableau) =>
+      resolveStaticTableauComposition(tableau, tableau.phases![0]!));
+    expect([openingTableau, eventTableau, audience].map((tableau) => tableau.phases![0]!.staticCast.length)).toEqual([4, 4, 4]);
+    expect(profiles).toEqual(['COMPANY_EXCHANGE', 'EVENT_SUBJECT_FOCUS', 'AUTHORITY_AUDIENCE']);
+    const position = audience.phases![0]!.staticCast.find((actor) => actor.screenPosition === 'CENTER_LEFT')!;
+    expect(resolveStaticTableauActorTuning('AUTHORITY_AUDIENCE', position).xPercent)
+      .not.toBe(resolveStaticTableauActorTuning('COMPANY_EXCHANGE', position).xPercent);
+    expect(position.screenPosition).toBe('CENTER_LEFT');
   });
 
   it('segments the six-person opening into stable density-scaled four-person compositions', async () => {

@@ -1,83 +1,75 @@
-# DIALOGUE-UI-STAGING-ALIGNMENT-1
+# DIALOGUE-UI-STAGING-ALIGNMENT-1 — corrective Static Tableau V2 pass
 
-## Mission and baseline
+## Decision and authority
 
-Align production dialogue with the merged campaign UI Kit and place stage-owned characters inside the visible tableau. This is presentation work only. The branch was created directly from clean `main` at `dba502fe397c902b5f38a1efb95442531ca6be36`.
+The first branch pass adopted the campaign UI Kit, compact speech card, portraits, and semantic choices, but also tried to seat dialogue actors inside the environment with family-dependent ground lines and far/mid/near scale. The resulting characters were too small and the visual grammar converged with NarrativeStage. The adopted direction is a premium theatrical Static Tableau: the environment sets the place, while large canonical full-body sprites stand before it on a foreground plane.
 
-The four supplied previews set the composition target: a compact navy and antique-gold card with speaker, spoken text, a framed bust, and restrained choices over a dominant environment.
+This is presentation-only work on the existing dialogue-ui-staging-alignment-1 branch, based on main dba502fe397c902b5f38a1efb95442531ca6be36. No dialogue content, choice ID, effect, route, save schema, or canonical art changed. NarrativeStage still owns the VIDEO -> STATIC_TABLEAU -> dialogue handoff; NarrativeSceneSurface remains the single full-body cast owner. DialogueView uses a crop of the registered UI visual for speaker identity in the card, with the existing manifest fallback for unregistered story NPCs.
 
-## Authority and handoff audit
+## Corrective implementation
 
-| Concern | Existing authority and handoff | This pass |
-| --- | --- | --- |
-| Dialogue IDs, lines, steps, choices, gates, effects, routes | `src/game` content and `DialogueSequence`/`DialogueStep`; `DialogueView` advances the canonical graph and applies existing effects | No truth or progression code changed |
-| Dialogue presentation decision | `NarrativeDialogueAdapter` and `DialogueStagingDirector` derive visual mode, phase, text segments, speaker association, and choice lanes | Kept their contract |
-| Scene and cast | `NarrativeStage.presentDialogueTableau()` hands off after media; `NarrativeSceneSurface` owns the static cast and speaker focus | Added ground/depth presentation metadata within that owner |
-| Character image identity | `CharacterVisualRegistry` role resolution with existing `assetManifest.characterProfiles` fallback for non-manifest story NPCs | Card crop resolves the `ui` role; no copied or generated portraits |
-| Speaker metadata and text | Current `DialogueStep.speaker`, `tag`, `actorId`, `text` and adapter display segments | Card reads these fields directly |
-| UI rendering | `DialogueView` creates the card and semantic choice buttons | Decorates them with `CampaignUi` frame, button, divider, icon, and typography roles |
-| Safe zones | Tableau phase layout and speaker position are owned by the staging system; CSS placed earlier large dialogue modes in several lanes | One compact lower card and bounded choice stack reserve the lower viewport; cast feet and contact lines stay above or behind the card while faces remain visible |
-
-`VIDEO -> STATIC_TABLEAU -> dialogue` remains the handoff. The card portrait is a crop of the same registered identity, while `NarrativeSceneSurface` remains the only owner of full-body staged actors. A legacy large portrait is suppressed in NarrativeStage mode to avoid another full-body actor layer.
-
-## Implementation
-
-- **Dialogue card:** A 600px maximum lower card uses `campaign-ui-frame--compact`, Alegreya speaker text, Source Sans 3 speech, a kit divider, and a 94×102 portrait region. On narrow screens the portrait is 72×82 and the card remains inside the viewport. The scene background stays exposed.
-- **Portraits:** `resolveDialoguePortrait` reads the registry `ui` role, then the canonical manifest profile for story NPCs outside the V2 manifest. CSS crops the existing master at a standard scale with three small per-character crop overrides. Missing registration or image load error hides the portrait region and keeps the card readable. No PNG was modified or created.
-- **Staging:** `NarrativeSceneSurface` now resolves a family-aware ground contact line and a gentle slot depth scale for far, mid, and near positions. Authored cast slots, identity scale, facing, phase, and speaker state remain intact. The tableau background remains the dominant image.
-- **Choices:** Existing choice logic remains in `DialogueView`. Choice buttons now use `CampaignUi` secondary/disabled buttons and icons. The canonical speech card stays visible when choices activate; it becomes disabled while semantic, focusable choice buttons take focus. Three options form a compact bounded stack. Longer lists scroll inside the stack.
-- **Responsive safe zone:** The card and choices have separate lower viewport bands at 1440×810, 620×780, and 390×844. The scene cast rises during a choice state so its faces remain above the lower UI; the card and choices do not overlap.
-
-## Files changed
-
-| Path | Purpose |
+| Area | Final behavior |
 | --- | --- |
-| `src/ui/DialogueView.ts` | Kit decoration, card portrait, persistent speech during choices, stage portrait guard |
-| `src/ui/DialoguePortrait.ts` | Canonical portrait resolver and crop metadata |
-| `src/ui/dialogue-alignment.css` | Compact card, choices, responsive layout, cast presentation |
-| `src/ui/DialogueView.test.ts` | Portrait source/fallback, speech/choice persistence |
-| `src/cinematics/NarrativeSceneSurface.ts` | Scene-owned contact line and depth slot resolver |
-| `src/cinematics/NarrativeSceneSurface.test.ts` | Ground/depth geometry contract |
-| `src/main.ts` | Load dialogue alignment style after the existing theme |
-| `tools/dialogue/dialogue-proof.html` | Deterministic browser proof entry |
-| `tools/dialogue/dialogue-proof.ts` | Isolated production-component scene fixture |
-| `tools/dialogue/run-dialogue-ui-staging-qa.mjs` | Repeatable Playwright viewport and interaction QA |
-| `docs/reports/dialogue-ui-staging-alignment-1.md` | This report |
-| `docs/reports/dialogue-ui-staging-alignment-1-screenshots/*` | Seven visual captures and `qa-results.json` |
+| Environmental depth removed | Removed resolveNarrativeGroundPlacement, depthScale, data-depth-slot, family-driven ground offsets, and the pseudo-ground CSS band. |
+| Foreground presence | Restored the proven tall transparent-sprite canvas and cast-density scales: 1.28 for one actor, 1.18 for two, 1.14 for three, 1.10 for four. Intentional lower-body crop remains available. |
+| Composition | StaticTableauComposition maps existing semantic screen positions to visual X targets using scene family and authored actor groups. It never derives a profile from cast count and never changes authored slots or choice lanes. |
+| Speaker state | ACTIVE is fully lit, LISTENING remains readable at 0.8 opacity, and authored BACKGROUND actors remain dimmer. Speaker handoffs do not change actor X, scale, or baseline. |
+| Card and choices | The UI Kit, Alegreya speaker/title, Source Sans 3 speech, portrait crop/fallback, compact navy/gold card, and canonical semantic choice buttons remain. The card stays in the lower band until choices actually activate; it then stays visible above the choice stack. |
+| Responsive | Narrow and mobile layouts keep larger cast silhouettes. At 390px, a dense four-person choice lifts the whole foreground cast by 8vh solely for card clearance; no depth cue or actor-specific speaker movement is introduced. The speech card and choice stack have a measured gap. |
 
-The browser proof uses actual UI and tableau components, registered character art, and an existing environment-only camp background. Its speech and no-effect choices are isolated fixture data; they do not enter game content or save state.
+The eight reusable composition profiles are AUTHORITY_AUDIENCE, ADVISER_EXCHANGE, COMPANY_EXCHANGE, OPPOSING_GROUPS, EVENT_SUBJECT_FOCUS, PRE_COMBAT_CONFRONTATION, AFTERMATH_GROUP, and FINALE_FOCUS. Audience gives the delegation a left cluster and authority the right side; adviser and company scenes use different lane targets; opposing scenes retain faction separation. Existing phase changes and authored cast membership remain authoritative. **Phase-specific exceptions: 0. Per-step coordinate overrides: 0.**
 
-## Validation
+## Exhaustive review
+
+The current repository contains **75 reachable dialogues, 257 canonical steps, and 29 choice states**, rather than the approximately 71/247/28 counts in the corrective brief. The protected staging audit tests confirm the current 75/257 coverage; no content was added here. The browser harness renders the real production dialogue components and canonical assets. It measured **82 visual phases and 328 states**, including every canonical step, all 29 choices, and one representative speaker handoff in each phase that has one.
+
+The gallery contains **171 desktop captures at 1440×810** (every phase opening, material phase change, choice, and first handoff) and **42 representative captures** across the eight composition profiles at 1366×768, 620×780, and 390×844. All 15 desktop and 4 responsive contact sheets were inspected, including the Audience, dragon, refugee, finale, and dense choice scenes. Each gallery entry names dialogue, phase, speaker, cast, profile, and viewport. The JSON records semantic positions, alpha-visible geometry, cast state/opacity/scale, card and choice rectangles, and actor/actor and actor/card intersections.
+
+At 1440×810 the alpha-visible body-height ranges are:
+
+| Cast size | Visible viewport height |
+| --- | --- |
+| 1 | 52.2–67.7% |
+| 2 | 48.1–62.4% |
+| 3 | 46.5–74.6% |
+| 4 | 44.8–51.8% |
+
+The final browser run reported no page errors, offscreen heads, invisible speakers, missing images, card content overflow, page overflow, card/choice collision, card obstruction of the measured head band, or actor anchor/height/baseline jump above 1px across speech handoffs. Speech cards sit in the lower viewport band until the choice state begins. The former apparent horizontal jump was the alpha silhouette changing optical center when an authored facing flips; the actor anchor and size stay fixed.
+
+The advisory geometry review still records 27 weak-presence samples on representative narrow/mobile views under a desktop-oriented threshold, and four large alpha-bounding-box overlaps in the Audience cluster at narrow/mobile sizes. Those four overlap samples belong to one authored phase across speech and choice captures; direct inspection shows distinct faces and deliberate delegation grouping. Mobile visible-body ratios are lower than desktop because the card and choice stack consume more vertical room: the representative 390×844 four-person cast is 24.8–27.7%. Its choice state exposes the cast's heads and upper bodies after the safe-zone adjustment. These are visual tradeoffs for operator review, not silent automated passes.
+
+Evidence:
+
+- docs/reports/dialogue-static-tableau-v2-review/gallery.html
+- docs/reports/dialogue-static-tableau-v2-review/composition-audit.json
+- docs/reports/dialogue-static-tableau-v2-review/review-findings.json
+- docs/reports/dialogue-static-tableau-v2-review/contact-sheets/
+- docs/reports/dialogue-static-tableau-v2-review/screenshots/
+- docs/reports/dialogue-ui-staging-alignment-1-screenshots/
+
+## Verification
 
 | Check | Result |
 | --- | --- |
-| Focused dialogue/UI/NarrativeStage/Journey/Traversal tests | 9 files, 89/89 passing |
-| TypeScript (`node node_modules/typescript/bin/tsc --noEmit`) | Pass |
-| Production build (`node node_modules/vite/bin/vite.js build`) | Pass; existing large-chunk advisory only |
-| `git diff --check` | Pass |
-| Full Vitest suite | 150 files, 2,515/2,515 passing |
-| Browser QA (`node tools/dialogue/run-dialogue-ui-staging-qa.mjs`) | 8/8 states across 1440×810, 620×780, 390×844, including five mobile choices; no page errors, missing portrait, card overflow, card/choice overlap, or failed choice click |
+| Focused dialogue, staging, UI, NarrativeStage, Journey, Traversal | 12 files, 105/105 tests pass |
+| Full Vitest | 150 files, 2,516/2,516 tests pass |
+| TypeScript | Pass |
+| Production build | Pass; existing large-chunk advisory |
+| Existing dialogue browser interaction QA | 8/8 states pass |
+| Exhaustive browser capture | 75 dialogues, 82 phases, 257 steps, 29 choices, 328 measured states, 213 captures, zero page errors |
+| Git whitespace check | Pass |
 
-The local `npx` launcher is broken on this machine, so the repository-local TypeScript, Vite, and Vitest entry points were used.
+The local npx launcher is broken on this machine, so repository-local TypeScript, Vite, and Vitest entry points were used. The browser proof is a deterministic production-component harness with no effect writes, followed by manual gallery inspection. Final artistic acceptance remains with the operator, especially the four-person mobile Audience choice.
 
-## Screenshots
+## File map for this corrective commit
 
-All files are under `docs/reports/dialogue-ui-staging-alignment-1-screenshots/`:
+- src/cinematics/StaticTableauComposition.ts — semantic-to-visual profile tuning.
+- src/cinematics/NarrativeSceneSurface.ts and src/cinematics/NarrativeSceneSurface.test.ts — remove environmental depth and test stable foreground geometry.
+- src/ui/dialogue-alignment.css — theatrical cast lighting, stable lower card, and responsive safe zones.
+- tools/dialogue/static-tableau-v2-proof.html and .ts — canonical browser harness.
+- tools/dialogue/run-static-tableau-v2-review.mjs, analyze-static-tableau-v2-review.mjs, and create-static-tableau-contact-sheets.py — exhaustive capture, geometry review, and contact sheets.
+- docs/reports/dialogue-static-tableau-v2-review/ — gallery, machine audit, findings, captures, contact sheets.
+- docs/reports/dialogue-ui-staging-alignment-1-screenshots/ — updated original eight browser QA captures and results.
+- This report.
 
-- `desktop-standard.jpg`
-- `desktop-choices.jpg`
-- `desktop-multi-cast.jpg`
-- `narrow-standard.jpg`
-- `narrow-choices.jpg`
-- `mobile-standard.jpg`
-- `mobile-choices.jpg`
-- `mobile-many-choices.jpg`
-- `qa-results.json`
-
-## Non-goals and caveats
-
-No dialogue IDs, text, choice ordering, requirements, effects, routes, campaign topology, save schema, registry authority, combat, merchant, Traversal policy, RunSystem, production gates, core art, or backgrounds were changed. The browser fixture confirms layout with one existing camp environment and a three/four-person cast; final artistic acceptance across all authored backgrounds remains the operator's visual review. The default isolated dialogue mode retains its legacy full-body portrait compatibility, while production NarrativeStage uses stage-owned cast plus the compact card crop.
-
-## Future recommendation
-
-After operator review, any scene with an unusual ground plane can receive a small tableau-family or phase-specific presentation adjustment in `NarrativeSceneSurface` without changing dialogue truth or adding portrait assets.
+The earlier branch implementation in DialogueView, DialoguePortrait, the UI Kit integration, tests, main style import, and original browser fixture is retained. No merge was performed.
