@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
+import { existsSync, readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import {
-  combatHudCameraFov, combatPortraitCrop, combatPortraitFraming, renderCombatActionDock, renderCombatActionPreview, renderCombatObjective,
+  COMBAT_PORTRAIT_FRAMING, combatHudCameraFov, combatPortraitCrop, combatPortraitFraming, renderCombatActionDock, renderCombatActionPreview, renderCombatObjective,
   renderCombatSkillRows, renderCombatStatuses, renderCombatTurnOrder,
   renderCombatUnitCard, selectedCombatAction,
 } from './combatHudPresentation';
@@ -52,6 +54,32 @@ describe('combat HUD presentation', () => {
     const html = renderCombatTurnOrder([{ name: 'Loup', team: 'foe', portrait: wolf, alive: true, active: true }], 1, '1 / 1');
     expect(html).toContain('--combat-portrait-x:-21%');
     expect((html.match(/<img/g) ?? []).length).toBe(1);
+  });
+
+  it('explicitly frames every built-in runtime and recruit portrait at its canonical path', () => {
+    const runtime = readFileSync(resolve('src/combat/legacyCombatRuntime.js'), 'utf8');
+    const recruits = readFileSync(resolve('src/game/catalog.ts'), 'utf8');
+    const portraitFields = [...(runtime + recruits).matchAll(/portrait\s*:\s*'([^']+\.png)'/g)].map(match => match[1]!);
+    const bossPortraits = [...runtime.matchAll(/(?:serpent_captain|serpent_general_boss|alaric|lion_chief):'([^']+\.png)'/g)].map(match => match[1]!);
+    const reachable = [...new Set([...portraitFields, ...bossPortraits])].sort();
+    expect(reachable).toHaveLength(36);
+    expect(Object.keys(COMBAT_PORTRAIT_FRAMING).sort()).toEqual(reachable);
+    for (const portrait of reachable) {
+      expect(existsSync(resolve('public', portrait.slice(1))), portrait).toBe(true);
+      const framing = COMBAT_PORTRAIT_FRAMING[portrait]!;
+      expect(framing.scale).toBeGreaterThan(1);
+      expect(Number.isFinite(framing.x) && Number.isFinite(framing.y)).toBe(true);
+      const card = renderCombatUnitCard({ ...unit, portrait, statuses: [] }, '');
+      const turn = renderCombatTurnOrder([{ name: unit.name, team: 'player', portrait, alive: true, active: true }], 1, '1 / 1');
+      for (const html of [card, turn]) {
+        expect(html).toContain(`src="${portrait}"`);
+        expect(html).toContain(`--combat-portrait-scale:${framing.scale}`);
+        expect(html).toContain(`--combat-portrait-x:${framing.x}%`);
+        expect(html).toContain(`--combat-portrait-y:${framing.y}%`);
+      }
+    }
+    expect(combatPortraitFraming('/assets/characters/pixel/masters/future.png').style).toBe('');
+    expect(combatPortraitCrop('/assets/characters/pixel/masters/future.png')).toBe('contain');
   });
 
   it('highlights only the runtime active actor in turn order', () => {

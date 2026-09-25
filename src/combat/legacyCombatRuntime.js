@@ -2714,6 +2714,12 @@ async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED
       refreshPanel(u);
       return{ok:true,unit:u.name,status,turns};
     };
+    if(import.meta.env.DEV&&QA_ENABLED)_qaHelpers.inspectPortraitForHudQa=(portrait)=>{
+      const unit=G.units.find(u=>u.portrait===portrait);
+      if(!unit)return{error:'Portrait is not in this encounter'};
+      transientInspect(unit);
+      return{ok:true,unit:unit.name,portrait:unit.portrait};
+    };
     _qaHelpers.teleportActiveUnitNextToEnemy=()=>{
       const u=G.active;
       if(!u)return{error:'No active unit'};

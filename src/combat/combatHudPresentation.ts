@@ -14,24 +14,49 @@ export function combatPortraitCrop(portrait: string | undefined): CombatPortrait
   return 'contain';
 }
 
-/** Combat-only framing of the canonical 512px masters. Values are CSS translation percentages. */
-const PORTRAIT_FRAMING: Readonly<Record<string, { scale: number; x: number; y: number }>> = {
+/** Reviewed combat-only framing. Archive portraits are 640×768; masters are 512×512. */
+export const COMBAT_PORTRAIT_FRAMING: Readonly<Record<string, { scale: number; x: number; y: number }>> = {
+  '/assets/characters/pixel/archive/non-demo/aldric.png': { scale: 2.65, x: 0, y: 65 },
+  '/assets/characters/pixel/archive/non-demo/eldwin.png': { scale: 2.75, x: 0, y: 64 },
+  '/assets/characters/pixel/archive/non-demo/gunnar.png': { scale: 2.7, x: 0, y: 64 },
+  '/assets/characters/pixel/archive/non-demo/lyra.png': { scale: 2.75, x: 0, y: 62 },
+  '/assets/characters/pixel/archive/non-demo/morvan.png': { scale: 2.45, x: 0, y: 45 },
+  '/assets/characters/pixel/archive/non-demo/seal_guardian.png': { scale: 2.55, x: 0, y: 47 },
+  '/assets/characters/pixel/archive/non-demo/talon.png': { scale: 2.65, x: 0, y: 48 },
+  '/assets/characters/pixel/archive/non-demo/troll.png': { scale: 2.35, x: 0, y: 58 },
+  '/assets/characters/pixel/archive/non-demo/undead_champion.png': { scale: 2.5, x: 0, y: 58 },
+  '/assets/characters/pixel/masters/alaric.png': { scale: 3.1, x: 0, y: 47 },
+  '/assets/characters/pixel/masters/alistair.png': { scale: 3.0, x: 0, y: 53 },
   '/assets/characters/pixel/masters/archer.png': { scale: 3.45, x: 0, y: 40 },
+  '/assets/characters/pixel/masters/cave_rat.png': { scale: 3.1, x: -16, y: -72 },
   '/assets/characters/pixel/masters/white_mage.png': { scale: 3.15, x: 0, y: 45 },
   '/assets/characters/pixel/masters/dark_mage.png': { scale: 3.4, x: 0, y: 45 },
+  '/assets/characters/pixel/masters/forest_spider.png': { scale: 3.1, x: 0, y: -67 },
+  '/assets/characters/pixel/masters/forest_troll_elite.png': { scale: 2.45, x: -5, y: 54 },
+  '/assets/characters/pixel/masters/goblin.png': { scale: 3.15, x: 0, y: -8 },
+  '/assets/characters/pixel/masters/lancer.png': { scale: 2.9, x: 0, y: 64 },
+  '/assets/characters/pixel/masters/marsh_toad.png': { scale: 3.1, x: 0, y: -50 },
+  '/assets/characters/pixel/masters/rogue.png': { scale: 3.15, x: 0, y: 39 },
+  '/assets/characters/pixel/masters/serpent_brute.png': { scale: 3.05, x: 0, y: 44 },
+  '/assets/characters/pixel/masters/serpent_elite_brute.png': { scale: 2.65, x: 0, y: 61 },
   '/assets/characters/pixel/masters/serpent_oracle.png': { scale: 3.1, x: -3, y: 41 },
+  '/assets/characters/pixel/masters/serpent_raider.png': { scale: 3.35, x: 0, y: 38 },
   '/assets/characters/pixel/masters/serpent_duelist_elite.png': { scale: 2.9, x: 0, y: 46 },
   '/assets/characters/pixel/masters/serpent_general_boss.png': { scale: 2.75, x: 0, y: 45 },
   '/assets/characters/pixel/masters/lion_champion.png': { scale: 2.8, x: 0, y: 46 },
+  '/assets/characters/pixel/masters/skeleton.png': { scale: 3.2, x: 0, y: 41 },
+  '/assets/characters/pixel/masters/venom_serpent.png': { scale: 3.1, x: 0, y: -30 },
+  '/assets/characters/pixel/masters/village_militia_slinger.png': { scale: 3.25, x: 0, y: 39 },
+  '/assets/characters/pixel/masters/village_militia_spearman.png': { scale: 3.2, x: 0, y: 46 },
   '/assets/characters/pixel/masters/wolf.png': { scale: 2.45, x: -21, y: -38 },
   '/assets/characters/pixel/masters/forest_badger.png': { scale: 3.1, x: -23, y: -72 },
   '/assets/characters/pixel/masters/wild_boar.png': { scale: 2.55, x: -12, y: -57 },
-  '/assets/characters/pixel/masters/young_dragon_elite.png': { scale: 2, x: -30, y: 10 },
+  '/assets/characters/pixel/masters/young_dragon_elite.png': { scale: 2, x: -30, y: 15 },
 };
 
 export function combatPortraitFraming(portrait: string | undefined): { crop: CombatPortraitCrop; style: string } {
   const crop = combatPortraitCrop(portrait);
-  const framing = portrait ? PORTRAIT_FRAMING[portrait] : undefined;
+  const framing = portrait ? COMBAT_PORTRAIT_FRAMING[portrait] : undefined;
   return {
     crop,
     style: framing ? ` style="--combat-portrait-scale:${framing.scale};--combat-portrait-x:${framing.x}%;--combat-portrait-y:${framing.y}%"` : '',

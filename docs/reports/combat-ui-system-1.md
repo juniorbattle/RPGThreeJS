@@ -137,3 +137,66 @@ The final [browser QA record](combat-ui-system-1-polish-browser/browser-qa.json)
 The `StrategicCharacterVisual.test.ts` guard now checks that the approved presentation renderer receives the runtime's `u.portrait` and emits that exact canonical path, while excluding the strategic combat pose path. The two CIN-6E-A lock guards gained only `src/combat/combatHudPresentation.ts` and `src/combat/combatHudPresentation.test.ts` as exact approved presentation paths; their protected media and gameplay assertions remain intact. No canonical image, production media, combat rule, or encounter file changed in this pass.
 
 Files changed in this polish pass: `src/styles/combat-hud.css`, `src/combat/combatHudPresentation.ts`, `src/combat/combatHudPresentation.test.ts`, `src/combat/StrategicCharacterVisual.test.ts`, `tools/combat-ui-system-1-qa.mjs`, `tools/combat-ui-polish-visual-qa.mjs`, `tools/cinematics/cin6ea_finalization.test.mjs`, `tools/cinematics/cin6ea_preproduction.test.mjs`, this report, and the `combat-ui-system-1-polish-browser/` evidence directory.
+
+## Master visibility / portrait calibration pass
+
+This pass continues `combat-ui-system-1` from `ee43a5252b3e5d8a61399c62175b30f4179af21e`. The runtime still owns every action, value, target, turn, encounter, and camera decision described in the authority audit above. Only the combat presentation registry, CSS, a development-only inspection helper, QA tooling, and this report changed. No canonical portrait PNG, character visual registry, or save record changed.
+
+### Canonical combat portrait census
+
+The [source-derived census](combat-ui-system-1-master-browser/portrait-census.json) unions static `portrait` fields in the combat runtime and recruit catalogue with the combat boss portrait map. It contains **36 distinct currently built-in paths**. Each has an exact `scale`, `x`, and `y` entry in `COMBAT_PORTRAIT_FRAMING`; **zero built-in portraits rely on a family default**. The same canonical runtime `portrait` path is emitted for the card and turn order. Unknown future or campaign-supplied paths retain the existing safe generic family/contain fallback and are not silently mapped to another identity.
+
+| Source | Calibrated identities |
+| --- | --- |
+| Archive recruits and foes (9) | Aldric, Eldwin, Gunnar, Lyra, Morvan, Seal Guardian, Talon, Troll, Undead Champion |
+| Master heroes and boss-map identity (7) | Alaric, Alistair, Archer/Kestrel, Dark Mage, Lancer, Rogue, White Mage |
+| Standard enemies and small creatures (14) | Serpent Raider, Serpent Brute, Serpent Oracle, Militia Slinger, Militia Spearman, Wolf, Venom Serpent, Forest Spider, Forest Badger, Marsh Toad, Cave Rat, Wild Boar, Goblin, Skeleton |
+| Elite and boss portraits (6) | Serpent Duelist Elite, Serpent Elite Brute, Serpent General Boss, Lion Champion, Forest Troll Elite, Young Dragon Elite |
+
+The [contact sheet V2](combat-ui-system-1-master-browser/portrait-contact-sheet-v2.png) shows identity, canonical source, desktop card, desktop turn, mobile card, mobile turn, and final scale/X/Y for all 36. The four frame sizes are the actual production sizes: **58×62**, **40×40**, **47×55**, and **31×31**. [Sheet 1](combat-ui-system-1-master-browser/portrait-contact-sheet-v2-1.png), [sheet 2](combat-ui-system-1-master-browser/portrait-contact-sheet-v2-2.png), and [sheet 3](combat-ui-system-1-master-browser/portrait-contact-sheet-v2-3.png) are practical visual-review slices. All sources and rendered images decoded. Source review found archive files at 640×768 and master files at 512×512; the crop values account for the archive proportions and the low silhouettes of creatures. Morvan is composed around the hooded face and scythe arc; the dragon crop keeps its crest. The 31 px mobile turn portraits are still limited by source detail.
+
+### Controlled HUD growth
+
+Desktop growth is concentrated in the turn strip and action dock. At 1440×810, the turn strip changes from **437×58 to 491×66** (+12.36% width, +13.79% height); chips are **46×52** with **40×40** portraits. The action dock changes from **376×74 to 426×82** (+13.30% width, +10.81% height); actual action buttons are **78×70**. The active-turn banner receives slightly larger type and a clearer ornament; its content-sized rectangle changes only from 218×26 to 235×27. The card stays **248×169**, the objective **224×52**, the skill menu **338×191**, and the target preview **187×50**. The skill menu rises 7 px to clear the taller dock; the preview rises with the taller top rail, without enlarging. No full-width opaque rail was added.
+
+| 1440×810 surface | Before → after | Width Δ | Height Δ | Viewport area before → after |
+| --- | --- | ---: | ---: | ---: |
+| Turn order | 437×58 → 491×66 | +12.36% | +13.79% | 2.17% → 2.78% |
+| Active banner | 218×26 → 235×27 | +7.80% | +3.85% | 0.49% → 0.54% |
+| Unit card | 248×169 → 248×169 | 0% | 0% | 3.59% → 3.59% |
+| Action dock | 376×74 → 426×82 | +13.30% | +10.81% | 2.39% → 2.99% |
+| Objective | 224×52 → 224×52 | 0% | 0% | 1.00% → 1.00% |
+| Skills | 338×191 → 338×191 | 0% | 0% | 5.53% → 5.53% |
+| Preview | 187×50 → 187×50 | 0% | 0% | 0.80% → 0.80% |
+
+The [full geometry record](combat-ui-system-1-master-browser/master-geometry.json) contains width, height, relative surface-area changes, and viewport-area percentages for all seven surfaces at all four viewports. Persistent HUD occupancy below is the *union* of visible normal-state panel rectangles, clipped to the viewport. Center obstruction is the area of that union inside the central 50%×50% tactical rectangle, divided by that rectangle's area. These are geometry measurements, not a composite aesthetic score.
+
+| Viewport | Persistent HUD area before → after | Tactical center obstruction before → after |
+| --- | ---: | ---: |
+| 1440×810 | 11.16% → 12.43% | 0% → 0% |
+| 1366×768 | 12.40% → 13.81% | 0% → 0% |
+| 620×780 | 30.02% → 30.37% | 3.68% → 3.68% |
+| 390×844 | 30.99% → 30.99% | 6.59% → 6.59% |
+
+At 620×780, the turn strip gains 3 px height and slightly larger 32 px portraits; the card remains 220×168 and dock remains 604×74, so the previously documented starting-ally coverage does not increase. At 390×844, outer HUD rectangles remain unchanged, with turn portraits raised only to 31 px within the strip. The 390 action buttons measure 70×60, and 620 buttons 116×64. The contextual help button is hidden while the narrow skill menu is open, removing a visually observed collision over its Back button. Desktop card and dock remain separated; the tactical center stays unobstructed on desktop.
+
+### Browser comparison and QA
+
+Full-screen side-by-side captures compare the exact `ee43a525` baseline with this pass: [desktop normal](combat-ui-system-1-master-browser/before-after-desktop-normal.png), [selected action](combat-ui-system-1-master-browser/before-after-desktop-selected-action.png), [skills](combat-ui-system-1-master-browser/before-after-desktop-skills.png), [target preview](combat-ui-system-1-master-browser/before-after-desktop-target-preview.png), and [mobile normal](combat-ui-system-1-master-browser/before-after-mobile-normal.png). The 1440 desktop comparisons retain source-resolution screenshots; the mobile comparison uses 390×844 captures.
+
+The final [browser QA record](combat-ui-system-1-master-browser/browser-qa.json) has **68 captures and 0 errors** across 1440×810, 1366×768, 620×780, and 390×844. Each width covers normal turn, movement, attack, disabled and enabled skills, hover/selection, ally and enemy target previews, invalid target, status, expanded objective, expanded stats, boss, elite, and small creature. Browser checks cover document overflow, portrait decoding, action selection, mobile touch targets (minimum 44 px), unexpected panel scrolling, and card/dock, card/skill, skill/dock, skill/help, turn/objective, banner/objective, and preview/top-rail collisions. The contact sheet was inspected at production sizes for head and silhouette framing. [620 skills](combat-ui-system-1-master-browser/620x780-campaign-skills-enabled.jpg), [390 elite](combat-ui-system-1-master-browser/390x844-elite.jpg), [390 wolf](combat-ui-system-1-master-browser/390x844-campaign-small-creature.jpg), and [1440 boss portrait](combat-ui-system-1-master-browser/1440x810-boss-portrait.jpg) show the less common states.
+
+The QA-only `inspectPortraitForHudQa` helper selects an existing encounter unit for the card in development QA. It does not create units or change combat truth, and is unavailable in production. The existing `w_salvation` heal-description discrepancy remains untouched. The pre-existing 620 card coverage and limited source detail in tiny turn portraits remain visual caveats for operator review.
+
+### Master pass validation
+
+| Check | Result |
+| --- | --- |
+| Focused HUD/status/portrait/registry/UI Kit | 5 files, 45 passed; [log](combat-ui-system-1-master-browser/focused-tests.log) |
+| Combat regression | 61 files, 1,473 passed; [log](combat-ui-system-1-master-browser/combat-tests.log) |
+| Full Vitest | 151 files, 2,532 passed; [log](combat-ui-system-1-master-browser/full-vitest.log) |
+| TypeScript and production build | `npm run build` passed; [log](combat-ui-system-1-master-browser/build.log) |
+| Browser QA | 68 captures, 0 errors; [record](combat-ui-system-1-master-browser/browser-qa.json) |
+| `git diff --check` | Passed |
+
+Files changed in this master pass: `src/combat/combatHudPresentation.ts`, `src/combat/combatHudPresentation.test.ts`, `src/combat/legacyCombatRuntime.js` (development QA helper only), `src/styles/combat-hud.css`, `tools/combat-ui-system-1-qa.mjs`, `tools/combat-ui-master-visual-qa.mjs`, this report, and the `combat-ui-system-1-master-browser/` evidence directory.

@@ -277,3 +277,41 @@
   #panel:not(.deploy-preview) .du-aptitude small{color:#d8e0de}
   #menu:not(.deploy-roster) .ico .c{font-size:19px}
 }
+
+/* Master visibility: grow the two decision rails while leaving the tactical center open. */
+@media(min-width:701px){
+  #turnbar{height:66px;max-width:min(630px,calc(100vw - 570px));padding:5px 10px}
+  .turn-center{width:58px;height:54px;grid-template-rows:11px 25px 13px}
+  .turn-center b{font-size:24px;line-height:25px}
+  .turn-center span,.turn-center em{font-size:9px}
+  .chip{flex-basis:46px;width:46px;height:52px;grid-template-rows:40px 12px;opacity:.75}
+  .chip__portrait{width:40px;height:40px}
+  .chip__name{width:46px;font-size:9px;line-height:11px}
+  .chip.active .chip__name{font-size:9px}
+  #hint{top:84px;font-size:11px}
+  .hint__lead{font-size:12px}
+  .hint__sep::before{font-size:11px}
+  #menu:not(.deploy-roster) .ico{flex-basis:78px;width:78px;min-height:69px;grid-template-rows:30px 1fr;padding:6px 4px}
+  #menu:not(.deploy-roster) .ico .c{width:30px;height:30px;font-size:24px}
+  #menu:not(.deploy-roster) .ico .tx b{font-size:11px}
+  #menu:not(.deploy-roster) .ico .tx small{max-width:70px;font-size:9px}
+  #menu:not(.deploy-roster) .lbl{bottom:86px}
+  #skillmenu{bottom:95px}
+  #action-preview{top:118px}
+}
+@media(min-width:701px) and (max-width:900px){
+  #menu:not(.deploy-roster) .ico{flex:1 1 0}
+}
+@media(min-width:561px) and (max-width:700px){
+  #turnbar{height:56px}
+  .chip{flex-basis:37px;width:37px;height:44px;grid-template-rows:32px 11px}
+  .chip__portrait{width:32px;height:32px}
+  .chip__name{width:37px;font-size:8px}
+  #hint{top:69px}
+}
+@media(max-width:560px){
+  .chip__portrait{width:31px;height:31px}
+}
+@media(max-width:700px){
+  #ui:has(#skillmenu:not(.hidden)) #help{display:none}
+}
