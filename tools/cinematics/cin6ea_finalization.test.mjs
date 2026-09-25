@@ -100,6 +100,9 @@ describe('CIN-6E-A final operator approval and visual production lock', () => {
       'src/combat/vfx/CasterMotionBackCompat.test.ts',
       'src/combat/CombatBridge.ts',
       'src/combat/legacyCombatRuntime.js',
+      // COMBAT-UI-SYSTEM-1 approves this presentation-only renderer and its focused proof.
+      'src/combat/combatHudPresentation.ts',
+      'src/combat/combatHudPresentation.test.ts',
       // Operator requested lighter CombatStage edge grading on 2026-09-22.
       'src/combat/combatPresentationConfig.js',
       'src/combat/protocol.ts',

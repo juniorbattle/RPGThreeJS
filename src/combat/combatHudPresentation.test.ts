@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
-  combatHudCameraFov, combatPortraitCrop, renderCombatActionDock, renderCombatActionPreview, renderCombatObjective,
+  combatHudCameraFov, combatPortraitCrop, combatPortraitFraming, renderCombatActionDock, renderCombatActionPreview, renderCombatObjective,
   renderCombatSkillRows, renderCombatStatuses, renderCombatTurnOrder,
   renderCombatUnitCard, selectedCombatAction,
 } from './combatHudPresentation';
@@ -38,6 +38,20 @@ describe('combat HUD presentation', () => {
     expect(combatPortraitCrop('/assets/characters/pixel/masters/archer.png')).toBe('upper-body');
     expect(combatPortraitCrop('/assets/characters/pixel/masters/wolf.png')).toBe('creature');
     expect(renderCombatUnitCard({ ...unit, name: 'Loup', portrait: '/assets/characters/pixel/masters/wolf.png', statuses: [] }, '')).toContain('combat-portrait--creature');
+  });
+
+  it('applies combat-only framing to exact canonical portrait paths', () => {
+    const wolf = '/assets/characters/pixel/masters/wolf.png';
+    expect(combatPortraitFraming(wolf)).toEqual({
+      crop: 'creature',
+      style: ' style="--combat-portrait-scale:2.45;--combat-portrait-x:-21%;--combat-portrait-y:-38%"',
+    });
+    expect(combatPortraitCrop('/assets/characters/pixel/masters/serpent_raider.png')).toBe('upper-body');
+    expect(combatPortraitCrop('/assets/characters/pixel/masters/serpent_general_boss.png')).toBe('elite');
+    expect(combatPortraitFraming('/other/wolf.png').style).toBe('');
+    const html = renderCombatTurnOrder([{ name: 'Loup', team: 'foe', portrait: wolf, alive: true, active: true }], 1, '1 / 1');
+    expect(html).toContain('--combat-portrait-x:-21%');
+    expect((html.match(/<img/g) ?? []).length).toBe(1);
   });
 
   it('highlights only the runtime active actor in turn order', () => {

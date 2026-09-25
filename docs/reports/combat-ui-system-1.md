@@ -92,3 +92,48 @@ Representative captures:
 ## Remaining caveat
 
 The existing `w_salvation` catalogue description promises a 40% heal, while the combat runtime's current `getSpec` does not forward `healPercent`. The runtime's existing preview and heal execution therefore use their fallback amount (about 3 PV in the QA case). This task displays the amount the runtime actually computes and leaves the skill rule unchanged. The discrepancy needs separate gameplay authorization to fix.
+
+## Final premium polish pass
+
+This refinement continues the approved `combat-ui-system-1` branch at `6bb44de193e48966057971e26627a8dcc35d05a7`. It changes the active HUD's visual treatment and combat-only portrait framing. Combat state, action availability, AP, hit and damage formulas, movement, targeting, turn order, encounters, and camera behavior remain with their existing runtime owners. The approved rail positions remain; a narrow preview offset moves the strip below the journal to remove one measured collision.
+
+### Visual intensity and hierarchy
+
+- The active panels retain their dimensions and blue-black transparency. A brighter top brass edge, darker lower edge, inner line, subtle top light, and restrained exterior shadow give the plates depth without a larger opaque area.
+- Ivory names and actions now lead; warm gold distinguishes headings and selected actions; muted blue-gray stays on supporting metadata. Green HP, blue AP and ally cues, red enemy and danger cues, and gold interaction cues carry specific meanings.
+- The unit card uses a slightly wider portrait within its original card height, brighter Alegreya name, smaller gold role, clearer affiliation, stronger green HP fill and empty track, jewel-like AP pips, and a more legible aptitude block. All existing information remains.
+- The turn order keeps its compact strip. Active portrait and round medallion gain warm metallic light; upcoming actors remain readable but subordinate, and defeated actors stay visibly suppressed. The active banner uses a central ornament and brighter ivory on a deeper plate.
+- The dock retains its exact action mapping and position. Default, hover, selected, locked, and disabled states have distinct border, icon, text, and glow strength. Selected attack, movement, and skill states continue to come from runtime mode and pending action.
+- Skill rows gain framed icons, brighter descriptions and AP cost, a stronger header divider, a gold hover/focus treatment, and readable disabled styling. The clicked skill still enters runtime targeting; the dock retains selection while the menu closes.
+- The preview gains a brighter metal edge, distinct attacker/action/target text, stronger metrics, and red or green context accents while preserving its compact strip and runtime-computed numbers. At widths from 561 to 700 px it sits 31 px lower to clear the journal; the 390 px position is unchanged. The collapsed objective gains clearer title, progress, and separator treatment; its expanded body remains the same size and content.
+
+### Combat portrait crop strategy
+
+The renderer still uses each unit's canonical `portrait` path. `combatPortraitCrop` now treats known standard humanoid and elite/boss scale families as portrait subjects even when their shared asset profile requests `contain` for other UI contexts. Exact canonical paths in a small combat-only override registry adjust scale and focal offset for Kestrel, both mages, Serpent Oracle and elites, the Lion/Serpent bosses, wolf, badger, boar, and dragon. These offsets only alter CSS presentation; no PNG bytes, registry identities, or gameplay unit records changed.
+
+The [portrait contact sheet](combat-ui-system-1-polish-browser/portrait-contact-sheet.png) shows full source, approved baseline card crop, final card crop, and final turn-order crop for 16 subjects: Alistair, Kestrel, White Mage, Dark Mage, three standard Serpent roles, two Serpent elites, two bosses, wolf, badger, boar, dragon elite, and Alaric. All reviewed master canvases are 512×512; the wolf, badger, boar, and dragon have unusually low or wide silhouettes within those square canvases. The targeted offsets keep their heads and defining forms visible.
+
+### Before and after
+
+The [four-state side-by-side comparison](combat-ui-system-1-polish-browser/before-after-comparison.png) pairs the approved baseline with desktop normal, desktop skills, desktop target preview, and mobile normal at matching viewports. The [detail comparison](combat-ui-system-1-polish-browser/before-after-details.png) enlarges the card, skill panel and selected action, turn strip and phase marker, target preview, and mobile card/dock. The [footprint measurements](combat-ui-system-1-polish-browser/footprint-comparison.json) compare visible surface geometry state by state; the goal is no growth in the active rails.
+
+### Polish browser QA and remaining visual limits
+
+The expanded browser harness captures normal, movement, attack, disabled skills, expanded objective, and expanded stats at all four requested sizes. Campaign QA also captures enabled skills, hovered skill, status, ally and enemy preview, invalid target, and boss at each size. At 620×780, both starting allies project beneath the already approved lower-left card when status and aptitude are visible; that QA state repositions the active ally with the existing development helper before capturing a visible, genuine ally target preview. No live layout or camera safe zone was changed to conceal this limitation. The full-body canonical masters also limit facial detail at tiny turn-order sizes; the new framing improves occupancy without inventing pixels. The `w_salvation` gameplay discrepancy described above remains unchanged.
+
+The final [browser QA record](combat-ui-system-1-polish-browser/browser-qa.json) contains **56 captures and 0 errors** at 1440×810, 1366×768, 620×780, and 390×844. It checks document overflow, state visibility, loaded portraits, selected actions, expanded panels, and collisions among the card, dock, skill panel, phase marker, objective, journal, and action preview. The [footprint comparison](combat-ui-system-1-polish-browser/footprint-comparison.json) found **zero width or height increases** among matched visible HUD surfaces. The tactical scene and camera composition were left intact.
+
+### Final validation and guard maintenance
+
+| Check | Result |
+| --- | --- |
+| Focused HUD, status, portrait, registry, and UI Kit tests | 5 files, 44 passed; [log](combat-ui-system-1-polish-browser/focused-tests.log) |
+| Combat regression | 61 files, 1,472 passed; [log](combat-ui-system-1-polish-browser/combat-tests.log) |
+| Full Vitest | 151 files, 2,531 passed; [log](combat-ui-system-1-polish-browser/full-vitest.log) |
+| TypeScript and production build | `npm run build` passed; [log](combat-ui-system-1-polish-browser/build.log) |
+| Browser QA | 56 captures, 0 errors; no matched HUD footprint growth |
+| `git diff --check` | Passed |
+
+The `StrategicCharacterVisual.test.ts` guard now checks that the approved presentation renderer receives the runtime's `u.portrait` and emits that exact canonical path, while excluding the strategic combat pose path. The two CIN-6E-A lock guards gained only `src/combat/combatHudPresentation.ts` and `src/combat/combatHudPresentation.test.ts` as exact approved presentation paths; their protected media and gameplay assertions remain intact. No canonical image, production media, combat rule, or encounter file changed in this pass.
+
+Files changed in this polish pass: `src/styles/combat-hud.css`, `src/combat/combatHudPresentation.ts`, `src/combat/combatHudPresentation.test.ts`, `src/combat/StrategicCharacterVisual.test.ts`, `tools/combat-ui-system-1-qa.mjs`, `tools/combat-ui-polish-visual-qa.mjs`, `tools/cinematics/cin6ea_finalization.test.mjs`, `tools/cinematics/cin6ea_preproduction.test.mjs`, this report, and the `combat-ui-system-1-polish-browser/` evidence directory.

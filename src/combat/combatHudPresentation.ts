@@ -2,13 +2,51 @@
 import { assets } from '../render/assetManifest';
 import { resolveCharacterVisualProfile } from '../render/CharacterVisualRegistry';
 
-export type CombatPortraitCrop = 'upper-body' | 'creature' | 'contain';
+export type CombatPortraitCrop = 'upper-body' | 'creature' | 'elite' | 'contain';
 export function combatPortraitCrop(portrait: string | undefined): CombatPortraitCrop {
   if (!portrait) return 'contain';
   const profile = Object.values(assets.characterProfiles).find(value => value.ui === portrait);
   if (profile?.uiCropMode === 'upper-body') return 'upper-body';
-  if (resolveCharacterVisualProfile(portrait)?.scaleFamily === 'SMALL_CREATURE') return 'creature';
+  const family = resolveCharacterVisualProfile(portrait)?.scaleFamily;
+  if (family === 'SMALL_CREATURE') return 'creature';
+  if (family === 'LARGE_ELITE_BOSS') return 'elite';
+  if (family === 'STANDARD_HUMANOID') return 'upper-body';
   return 'contain';
+}
+
+/** Combat-only framing of the canonical 512px masters. Values are CSS translation percentages. */
+const PORTRAIT_FRAMING: Readonly<Record<string, { scale: number; x: number; y: number }>> = {
+  '/assets/characters/pixel/masters/archer.png': { scale: 3.45, x: 0, y: 40 },
+  '/assets/characters/pixel/masters/white_mage.png': { scale: 3.15, x: 0, y: 45 },
+  '/assets/characters/pixel/masters/dark_mage.png': { scale: 3.4, x: 0, y: 45 },
+  '/assets/characters/pixel/masters/serpent_oracle.png': { scale: 3.1, x: -3, y: 41 },
+  '/assets/characters/pixel/masters/serpent_duelist_elite.png': { scale: 2.9, x: 0, y: 46 },
+  '/assets/characters/pixel/masters/serpent_general_boss.png': { scale: 2.75, x: 0, y: 45 },
+  '/assets/characters/pixel/masters/lion_champion.png': { scale: 2.8, x: 0, y: 46 },
+  '/assets/characters/pixel/masters/wolf.png': { scale: 2.45, x: -21, y: -38 },
+  '/assets/characters/pixel/masters/forest_badger.png': { scale: 3.1, x: -23, y: -72 },
+  '/assets/characters/pixel/masters/wild_boar.png': { scale: 2.55, x: -12, y: -57 },
+  '/assets/characters/pixel/masters/young_dragon_elite.png': { scale: 2, x: -30, y: 10 },
+};
+
+export function combatPortraitFraming(portrait: string | undefined): { crop: CombatPortraitCrop; style: string } {
+  const crop = combatPortraitCrop(portrait);
+  const framing = portrait ? PORTRAIT_FRAMING[portrait] : undefined;
+  return {
+    crop,
+    style: framing ? ` style="--combat-portrait-scale:${framing.scale};--combat-portrait-x:${framing.x}%;--combat-portrait-y:${framing.y}%"` : '',
+  };
+}
+
+function portraitMarkup(portrait: string | undefined, name: string, cropOverride?: CombatPortraitCrop): { crop: CombatPortraitCrop; markup: string } {
+  const framing = combatPortraitFraming(portrait);
+  const crop = cropOverride ?? framing.crop;
+  return {
+    crop,
+    markup: portrait
+      ? `<img class="combat-portrait--${crop}" src="${combatHudEscape(portrait)}" alt=""${framing.style} />`
+      : `<span>${combatHudEscape(name.charAt(0))}</span>`,
+  };
 }
 
 export const combatHudEscape = (value: unknown): string => String(value ?? '').replace(/[&<>"']/g, character => ({
@@ -54,16 +92,14 @@ export function renderCombatStatuses(statuses: readonly CombatHudStatus[], alive
 }
 
 export function renderCombatUnitCard(unit: CombatHudUnit, statsHtml: string): string {
-  const portrait = unit.portrait
-    ? `<img class="combat-portrait--${unit.portraitCrop ?? combatPortraitCrop(unit.portrait)}" src="${combatHudEscape(unit.portrait)}" alt="" />`
-    : `<span>${combatHudEscape(unit.name.charAt(0))}</span>`;
+  const portrait = portraitMarkup(unit.portrait, unit.name, unit.portraitCrop);
   const hpPercent = unit.maxhp > 0 ? Math.max(0, Math.min(100, Math.round(unit.hp / unit.maxhp * 100))) : 0;
   const apPips = Array.from({ length: Math.max(0, unit.maxap) }, (_, index) => `<i class="${index < unit.ap ? 'on' : ''}" aria-hidden="true"></i>`).join('');
   const aptitude = unit.aptitude
     ? `<div class="du-aptitude"><span class="du-aptitude__label">Don inné</span><strong>${combatHudEscape(unit.aptitude.name)}</strong><small>${combatHudEscape(unit.aptitude.desc)}</small></div>`
     : '';
   const level = Number.isFinite(unit.level) ? `<span class="du-level">Niv. ${unit.level}</span>` : '';
-  return `<div class="details-unit"><div class="du-top"><div class="du-portrait">${portrait}</div><div class="du-id"><div class="nm">${combatHudEscape(unit.name)}</div><div class="du-role">${combatHudEscape(unit.className || '')}${level}</div></div><div class="du-team"><b class="team-badge">${unit.team === 'player' ? 'Allié' : 'Ennemi'}</b></div></div>` +
+  return `<div class="details-unit"><div class="du-top"><div class="du-portrait du-portrait--${portrait.crop}">${portrait.markup}</div><div class="du-id"><div class="nm">${combatHudEscape(unit.name)}</div><div class="du-role">${combatHudEscape(unit.className || '')}${level}</div></div><div class="du-team"><b class="team-badge">${unit.team === 'player' ? 'Allié' : 'Ennemi'}</b></div></div>` +
     `<div class="du-vitals"><div class="du-hp"><div class="unit-row"><span>PV</span><b>${unit.hp} / ${unit.maxhp}</b></div><div class="bar" role="meter" aria-label="Points de vie" aria-valuemin="0" aria-valuemax="${unit.maxhp}" aria-valuenow="${unit.hp}"><i style="width:${hpPercent}%"></i></div></div><div class="du-ap"><span>PA</span><div class="du-ap__pips" aria-label="${unit.ap} sur ${unit.maxap} points d'action">${apPips}</div></div></div>` +
     renderCombatStatuses(unit.statuses, unit.alive) + aptitude + statsHtml + '</div>';
 }
@@ -71,8 +107,8 @@ export function renderCombatUnitCard(unit: CombatHudUnit, statsHtml: string): st
 export interface CombatHudTurnUnit { name: string; team: 'player' | 'foe'; portrait?: string; portraitCrop?: CombatPortraitCrop; alive: boolean; active: boolean }
 export function renderCombatTurnOrder(order: readonly CombatHudTurnUnit[], round: number, step: string): string {
   const chips = order.map(unit => {
-    const portrait = unit.portrait ? `<img class="combat-portrait--${unit.portraitCrop ?? combatPortraitCrop(unit.portrait)}" src="${combatHudEscape(unit.portrait)}" alt="" />` : `<span>${combatHudEscape(unit.name.charAt(0))}</span>`;
-    return `<div class="chip ${unit.team === 'player' ? 'ally' : 'foe'}${unit.active ? ' active' : ''}${unit.alive ? '' : ' dead'}" title="${combatHudEscape(unit.name)}" aria-label="${combatHudEscape(unit.name)}${unit.active ? ', actif' : ''}"><div class="chip__portrait">${portrait}</div><div class="chip__name">${combatHudEscape(unit.name)}</div></div>`;
+    const portrait = portraitMarkup(unit.portrait, unit.name, unit.portraitCrop);
+    return `<div class="chip ${unit.team === 'player' ? 'ally' : 'foe'}${unit.active ? ' active' : ''}${unit.alive ? '' : ' dead'}" title="${combatHudEscape(unit.name)}" aria-label="${combatHudEscape(unit.name)}${unit.active ? ', actif' : ''}"><div class="chip__portrait">${portrait.markup}</div><div class="chip__name">${combatHudEscape(unit.name)}</div></div>`;
   }).join('');
   return `<div class="turn-center"><span>Manche</span><b>${round}</b><em>${combatHudEscape(step)}</em></div><div class="turn-sequence"><div class="turn-chips">${chips}</div></div>`;
 }

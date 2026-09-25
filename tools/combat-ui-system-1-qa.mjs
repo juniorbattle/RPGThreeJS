@@ -2,10 +2,12 @@ import { chromium } from 'playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-const output = resolve('docs/reports/combat-ui-system-1-browser');
+const output = resolve(process.env.COMBAT_UI_QA_OUTPUT || 'docs/reports/combat-ui-system-1-browser');
 const browser = await chromium.launch({ headless: true });
 const results = [];
 const errors = [];
+const viewports = [{ width: 1440, height: 810 }, { width: 1366, height: 768 }, { width: 620, height: 780 }, { width: 390, height: 844 }]
+  .filter(viewport => !process.env.COMBAT_UI_QA_VIEWPORT || String(viewport.width) === process.env.COMBAT_UI_QA_VIEWPORT);
 await mkdir(output, { recursive: true });
 
 async function measure(page, name, viewport) {
@@ -28,7 +30,9 @@ async function measure(page, name, viewport) {
       activeName: hudWindow.__qaHelpers?.getActiveUnitName?.() ?? '',
       mode: hudWindow.__qaHelpers?.getGameMode?.() ?? '',
       selectedAction: hudDocument.querySelector('#menu .ico.is-selected')?.getAttribute('data-a') ?? null,
+      actionPreviewText: hudDocument.querySelector('#action-preview')?.textContent?.trim() ?? '',
       skills: [...hudDocument.querySelectorAll('#skillmenu .combat-skill')].map(el => ({ name: el.querySelector('b')?.textContent, cost: el.querySelector('.combat-skill__cost')?.textContent, disabled: el.disabled })),
+      skillHovered: Boolean(hudDocument.querySelector('#skillmenu .combat-skill:hover')),
       portrait: hudDocument.querySelector('#panel .du-portrait img')?.getAttribute('src') ?? null,
       portraitLoaded: (() => { const image = hudDocument.querySelector('#panel .du-portrait img'); return image ? image.complete && image.naturalWidth > 0 : null; })(),
       statusCount: hudDocument.querySelectorAll('#panel .status-chip').length,
@@ -48,6 +52,9 @@ async function measure(page, name, viewport) {
   if (name.endsWith('-enemy-preview') && geometry.selectedAction !== 'attack') errors.push(`${name}: attack selection missing`);
   if (name.endsWith('-ally-preview') && geometry.selectedAction !== 'skill') errors.push(`${name}: skill selection missing`);
   if (name.endsWith('-status') && geometry.statusCount < 1) errors.push(`${name}: status missing`);
+  if (name.endsWith('-skill-hover') && !geometry.skillHovered) errors.push(`${name}: skill hover state missing`);
+  if (name.endsWith('-skills') && !geometry.skills.some(skill => skill.disabled)) errors.push(`${name}: disabled skill state missing`);
+  if (name.endsWith('-skills-enabled') && !geometry.skills.some(skill => !skill.disabled)) errors.push(`${name}: enabled skill state missing`);
   if (name.endsWith('-stats-expanded') && !geometry.statsExpanded) errors.push(`${name}: expanded stats missing`);
   if (name.endsWith('-objective-expanded') && !geometry.objectiveExpanded) errors.push(`${name}: expanded objective missing`);
   if (name.endsWith('-normal') && geometry.objectiveExpanded) errors.push(`${name}: objective should start collapsed`);
@@ -55,6 +62,9 @@ async function measure(page, name, viewport) {
   if (overlaps(geometry.boxes.panel, geometry.boxes.menu)) errors.push(`${name}: unit card overlaps action dock`);
   if (overlaps(geometry.boxes.panel, geometry.boxes.skillmenu)) errors.push(`${name}: unit card overlaps skill menu`);
   if (overlaps(geometry.boxes.hint, geometry.boxes.objective)) errors.push(`${name}: active banner overlaps objective`);
+  for (const upperHud of ['turnbar', 'hint', 'objective', 'log']) {
+    if (overlaps(geometry.boxes['action-preview'], geometry.boxes[upperHud])) errors.push(`${name}: action preview overlaps ${upperHud}`);
+  }
   if (geometry.panelScroll && !name.endsWith('-stats-expanded')) errors.push(`${name}: unexpected unit card scrollbar`);
   return geometry;
 }
@@ -95,7 +105,7 @@ async function openCampaignQa(page, isBoss) {
   return frame;
 }
 
-for (const viewport of process.env.COMBAT_UI_QA_CAMPAIGN_ONLY ? [] : [{ width: 1440, height: 810 }, { width: 1366, height: 768 }, { width: 620, height: 780 }, { width: 390, height: 844 }]) {
+for (const viewport of process.env.COMBAT_UI_QA_CAMPAIGN_ONLY ? [] : viewports) {
   const context = await browser.newContext({ viewport, deviceScaleFactor: 1 });
   await context.addInitScript(() => { localStorage.setItem('rpg-tutorial-seen', '1'); localStorage.setItem('rpg-boss-tutorial-seen', '1'); });
   const page = await context.newPage();
@@ -132,7 +142,7 @@ for (const viewport of process.env.COMBAT_UI_QA_CAMPAIGN_ONLY ? [] : [{ width: 1
   await context.close();
 }
 
-for (const viewport of [{ width: 1440, height: 810 }, { width: 390, height: 844 }]) {
+for (const viewport of viewports) {
   const context = await browser.newContext({ viewport, deviceScaleFactor: 1 });
   await context.addInitScript(() => { localStorage.setItem('rpg-tutorial-seen', '1'); localStorage.setItem('rpg-boss-tutorial-seen', '1'); });
   const page = await context.newPage();
@@ -145,11 +155,28 @@ for (const viewport of [{ width: 1440, height: 810 }, { width: 390, height: 844 
   await measure(page, `${prefix}-status`, viewport);
   await frame.locator('#menu .action-skill').click();
   await measure(page, `${prefix}-skills-enabled`, viewport);
+  await frame.locator('#skillmenu .combat-skill:not(:disabled)').first().hover();
+  await measure(page, `${prefix}-skill-hover`, viewport);
+  const allyCells = [[0, 0], [0, 3]];
+  if (viewport.width === 620) {
+    const placement = await frame.locator('body').evaluate(() => window.__qaHelpers.teleportActiveUnitNextToEnemy());
+    if (!placement.ok) errors.push(`${prefix}: ally target QA placement failed ${JSON.stringify(placement)}`);
+    else allyCells.unshift([placement.pos.gx, placement.pos.gz]);
+  }
   await frame.locator('#skillmenu [data-s="w_salvation"]').click();
-  const ally = await frame.locator('body').evaluate(() => window.__qaHelpers.getCellScreenPosition(0, 0));
-  await page.mouse.move(ally.screenX, ally.screenY);
-  await page.waitForTimeout(150);
-  if (!(await frame.locator('#action-preview').isVisible())) errors.push(`${prefix}: ally preview hidden at ${JSON.stringify(ally)}`);
+  let ally = null;
+  const allyAttempts = [];
+  for (const [gx, gz] of allyCells) {
+    const candidate = await frame.locator('body').evaluate((_element, cell) => window.__qaHelpers.getCellScreenPosition(cell.gx, cell.gz), { gx, gz });
+    await page.mouse.move(candidate.screenX, candidate.screenY);
+    await page.waitForTimeout(150);
+    const preview = frame.locator('#action-preview');
+    const visible = await preview.isVisible();
+    const target = visible ? await preview.locator('.action-preview__route span').last().textContent() : '';
+    allyAttempts.push({ gx, gz, ...candidate, visible, target });
+    if (visible && /Marian|Kestrel/.test(target)) { ally = candidate; break; }
+  }
+  if (!ally) errors.push(`${prefix}: ally preview hidden or target identity missing ${JSON.stringify(allyAttempts)}`);
   await measure(page, `${prefix}-ally-preview`, viewport);
   await page.keyboard.press('Escape');
   await frame.locator('body').evaluate(() => window.__qaHelpers.teleportActiveUnitNextToEnemy());
