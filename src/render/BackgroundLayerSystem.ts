@@ -163,6 +163,12 @@ export class BackgroundLayerSystem {
     this.root.visible = visible;
   }
 
+  /** Keep the passive painted plate covering a wider presentation-only camera FOV. */
+  setViewportScale(scale: number): void {
+    const safeScale = Number.isFinite(scale) && scale > 0 ? scale : 1;
+    for (const layer of this.layers) layer.mesh.scale.set(safeScale, safeScale, 1);
+  }
+
   dispose(): void {
     this.disposeLayers();
     this.root.removeFromParent();
