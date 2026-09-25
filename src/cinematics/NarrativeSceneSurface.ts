@@ -20,6 +20,9 @@ type NarrativeStaticCastState = 'ACTIVE' | 'LISTENING' | 'BACKGROUND';
 /** One approved foreground stature regardless of the number of speakers on stage. */
 export const THEATRICAL_ACTOR_BASE_SCALE = 1.14;
 
+/** Journey actors retain each road's authored perspective while reading clearly against the environment. */
+export const SCENE_INTEGRATED_ACTOR_BASE_SCALE = 1.2;
+
 function castState(spec: NarrativeStagedActorSpec, speakerId?: string): NarrativeStaticCastState {
   if (spec.actorId === speakerId) return 'ACTIVE';
   return spec.narrativeRole === 'BACKGROUND' ? 'BACKGROUND' : 'LISTENING';
@@ -52,7 +55,7 @@ function applyActorState(
     delete actor.dataset.compositionProfile;
     actor.style.left = `${scenePlacement.xPercent}%`;
     actor.style.setProperty('--tableau-baseline', `${scenePlacement.bottomVh}vh`);
-    actor.style.setProperty('--narrative-actor-scale', `${spec.scale * scenePlacement.scale}`);
+    actor.style.setProperty('--narrative-actor-scale', `${spec.scale * scenePlacement.scale * SCENE_INTEGRATED_ACTOR_BASE_SCALE}`);
   } else {
     const tuning = resolveStaticTableauActorTuning(compositionProfile, spec);
     actor.dataset.castPlacementMode = 'THEATRICAL_FOREGROUND';

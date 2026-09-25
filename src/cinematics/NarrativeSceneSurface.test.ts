@@ -5,7 +5,7 @@ import { dialogues } from '../game/content';
 import { ALARIC_AUDIENCE_TABLEAU, AUDIENCE_ROAD_DEPARTURE_TABLEAU, CAMP_DEPARTURE_TABLEAU, VALMIR_FORK_TABLEAU, createGenericBoundaryTableau, createGenericNarrativeTableau } from './NarrativeTableau';
 import { applyFinalDialoguePresentationPlan } from './DialoguePresentationSegments';
 import { createNarrativeDialogueResolver } from './NarrativeDialogueAdapter';
-import { NarrativeSceneSurface, THEATRICAL_ACTOR_BASE_SCALE } from './NarrativeSceneSurface';
+import { NarrativeSceneSurface, SCENE_INTEGRATED_ACTOR_BASE_SCALE, THEATRICAL_ACTOR_BASE_SCALE } from './NarrativeSceneSurface';
 import { resolveStaticTableauActorTuning, resolveStaticTableauComposition } from './StaticTableauComposition';
 
 describe('NarrativeSceneSurface', () => {
@@ -137,7 +137,11 @@ describe('NarrativeSceneSurface', () => {
       expect(surface.element.dataset.dialogueSurfaceMode).toBeUndefined();
       for (const actor of surface.castLayer.querySelectorAll<HTMLElement>('.narrative-cast__actor')) {
         expect(actor.dataset.castPlacementMode).toBe('SCENE_INTEGRATED');
-        expect(actor.style.left).toBe(`${tableau.sceneCastPlacement![actor.dataset.actorId!]?.xPercent}%`);
+        const placement = tableau.sceneCastPlacement![actor.dataset.actorId!]!;
+        const spec = tableau.phases![0]!.staticCast.find((candidate) => candidate.actorId === actor.dataset.actorId)!;
+        expect(actor.style.left).toBe(`${placement.xPercent}%`);
+        expect(actor.style.getPropertyValue('--tableau-baseline')).toBe(`${placement.bottomVh}vh`);
+        expect(Number(actor.style.getPropertyValue('--narrative-actor-scale'))).toBeCloseTo(spec.scale * placement.scale * SCENE_INTEGRATED_ACTOR_BASE_SCALE);
       }
       surface.dispose();
     }
