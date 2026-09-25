@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { resolveStrategicUnitVisual } from './stage/CombatPoseRegistry';
+import { renderCombatUnitCard } from './combatHudPresentation';
 
 const runtime = readFileSync(new URL('./legacyCombatRuntime.js', import.meta.url), 'utf8');
 
@@ -18,8 +19,12 @@ describe('Strategic Character System V2 integration', () => {
 
   it('retains portrait exclusively for UI and unmigrated fallback semantics', () => {
     expect(runtime).toContain('function uiPortraitFor(path){ return path; }');
-    expect(runtime).toContain('uiPortraitFor(u.portrait)');
+    expect(runtime).toContain('portrait:u.portrait');
     expect(runtime).toContain('uiPortraitFor(def.portrait)');
+    const uiPortrait = '/assets/characters/pixel/masters/alistair.png';
+    const card = renderCombatUnitCard({ name: 'Alistair', team: 'player', portrait: uiPortrait, hp: 10, maxhp: 10, ap: 1, maxap: 1, alive: true, statuses: [] }, '');
+    expect(card).toContain(`src="${uiPortrait}"`);
+    expect(card).not.toContain('/assets/characters/pixel/combat/alistair/prepare.png');
   });
 
   it('uses the registry physical scale and authored anchor without strategic rescaling', () => {

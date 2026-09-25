@@ -1,0 +1,3752 @@
+{
+  "results": [
+    {
+      "name": "1440x810-normal",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "screenshot": "1440x810-normal.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 502,
+          "y": 10,
+          "width": 437,
+          "height": 58,
+          "right": 939,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 610,
+          "y": 76,
+          "width": 220,
+          "height": 25,
+          "right": 830,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1154,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1378,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1154,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1378,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 627,
+          "width": 248,
+          "height": 169,
+          "right": 262,
+          "bottom": 796
+        },
+        "menu": {
+          "x": 532,
+          "y": 722,
+          "width": 376,
+          "height": 74,
+          "right": 908,
+          "bottom": 796
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 1164,
+          "y": 753,
+          "width": 258,
+          "height": 39,
+          "right": 1422,
+          "bottom": 792
+        },
+        "settings-btn": {
+          "x": 1392,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1426,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1440,
+      "documentHeight": 810,
+      "viewportWidth": 1440,
+      "viewportHeight": 810,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1440x810-objective-expanded",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "screenshot": "1440x810-objective-expanded.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 502,
+          "y": 10,
+          "width": 437,
+          "height": 58,
+          "right": 939,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 610,
+          "y": 76,
+          "width": 220,
+          "height": 25,
+          "right": 830,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1154,
+          "y": 10,
+          "width": 224,
+          "height": 126,
+          "right": 1378,
+          "bottom": 136
+        },
+        "log": {
+          "x": 1154,
+          "y": 142,
+          "width": 224,
+          "height": 29,
+          "right": 1378,
+          "bottom": 171
+        },
+        "panel": {
+          "x": 14,
+          "y": 627,
+          "width": 248,
+          "height": 169,
+          "right": 262,
+          "bottom": 796
+        },
+        "menu": {
+          "x": 532,
+          "y": 722,
+          "width": 376,
+          "height": 74,
+          "right": 908,
+          "bottom": 796
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 1164,
+          "y": 753,
+          "width": 258,
+          "height": 39,
+          "right": 1422,
+          "bottom": 792
+        },
+        "settings-btn": {
+          "x": 1392,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1426,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1440,
+      "documentHeight": 810,
+      "viewportWidth": 1440,
+      "viewportHeight": 810,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": true,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1440x810-stats-expanded",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "screenshot": "1440x810-stats-expanded.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 502,
+          "y": 10,
+          "width": 437,
+          "height": 58,
+          "right": 939,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 610,
+          "y": 76,
+          "width": 220,
+          "height": 25,
+          "right": 830,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1154,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1378,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1154,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1378,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 566,
+          "width": 248,
+          "height": 230,
+          "right": 262,
+          "bottom": 796
+        },
+        "menu": {
+          "x": 532,
+          "y": 722,
+          "width": 376,
+          "height": 74,
+          "right": 908,
+          "bottom": 796
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 1164,
+          "y": 753,
+          "width": 258,
+          "height": 39,
+          "right": 1422,
+          "bottom": 792
+        },
+        "settings-btn": {
+          "x": 1392,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1426,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1440,
+      "documentHeight": 810,
+      "viewportWidth": 1440,
+      "viewportHeight": 810,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": true,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1440x810-skills",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "screenshot": "1440x810-skills.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 502,
+          "y": 10,
+          "width": 437,
+          "height": 58,
+          "right": 939,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 610,
+          "y": 76,
+          "width": 220,
+          "height": 25,
+          "right": 830,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1154,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1378,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1154,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1378,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 627,
+          "width": 248,
+          "height": 169,
+          "right": 262,
+          "bottom": 796
+        },
+        "menu": {
+          "x": 532,
+          "y": 722,
+          "width": 376,
+          "height": 74,
+          "right": 908,
+          "bottom": 796
+        },
+        "skillmenu": {
+          "x": 551,
+          "y": 421,
+          "width": 338,
+          "height": 301,
+          "right": 889,
+          "bottom": 722
+        },
+        "action-preview": null,
+        "help": {
+          "x": 1164,
+          "y": 753,
+          "width": 258,
+          "height": 39,
+          "right": 1422,
+          "bottom": 792
+        },
+        "settings-btn": {
+          "x": 1392,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1426,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1440,
+      "documentHeight": 810,
+      "viewportWidth": 1440,
+      "viewportHeight": 810,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": "skill",
+      "skills": [
+        {
+          "name": "Tir Précis",
+          "cost": "2 PA",
+          "disabled": true
+        },
+        {
+          "name": "Bond du Faucon",
+          "cost": "3 PA",
+          "disabled": true
+        },
+        {
+          "name": "Pluie de Flèches",
+          "cost": "4 PA",
+          "disabled": true
+        },
+        {
+          "name": "Flèche du Zénith",
+          "cost": "5 PA",
+          "disabled": true
+        }
+      ],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1440x810-move",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "screenshot": "1440x810-move.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 502,
+          "y": 10,
+          "width": 437,
+          "height": 58,
+          "right": 939,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 579,
+          "y": 76,
+          "width": 282,
+          "height": 25,
+          "right": 861,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1154,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1378,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1154,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1378,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 627,
+          "width": 248,
+          "height": 169,
+          "right": 262,
+          "bottom": 796
+        },
+        "menu": {
+          "x": 532,
+          "y": 722,
+          "width": 376,
+          "height": 74,
+          "right": 908,
+          "bottom": 796
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 1164,
+          "y": 753,
+          "width": 258,
+          "height": 39,
+          "right": 1422,
+          "bottom": 792
+        },
+        "settings-btn": {
+          "x": 1392,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1426,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1440,
+      "documentHeight": 810,
+      "viewportWidth": 1440,
+      "viewportHeight": 810,
+      "activeName": "Archère",
+      "mode": "move",
+      "selectedAction": "move",
+      "skills": [
+        {
+          "name": "Tir Précis",
+          "cost": "2 PA",
+          "disabled": true
+        },
+        {
+          "name": "Bond du Faucon",
+          "cost": "3 PA",
+          "disabled": true
+        },
+        {
+          "name": "Pluie de Flèches",
+          "cost": "4 PA",
+          "disabled": true
+        },
+        {
+          "name": "Flèche du Zénith",
+          "cost": "5 PA",
+          "disabled": true
+        }
+      ],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1440x810-attack-menu",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "screenshot": "1440x810-attack-menu.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 502,
+          "y": 10,
+          "width": 437,
+          "height": 58,
+          "right": 939,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 610,
+          "y": 76,
+          "width": 220,
+          "height": 25,
+          "right": 830,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1154,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1378,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1154,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1378,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 627,
+          "width": 248,
+          "height": 169,
+          "right": 262,
+          "bottom": 796
+        },
+        "menu": {
+          "x": 532,
+          "y": 722,
+          "width": 376,
+          "height": 74,
+          "right": 908,
+          "bottom": 796
+        },
+        "skillmenu": {
+          "x": 551,
+          "y": 498,
+          "width": 338,
+          "height": 224,
+          "right": 889,
+          "bottom": 722
+        },
+        "action-preview": null,
+        "help": {
+          "x": 1164,
+          "y": 753,
+          "width": 258,
+          "height": 39,
+          "right": 1422,
+          "bottom": 792
+        },
+        "settings-btn": {
+          "x": 1392,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1426,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1440,
+      "documentHeight": 810,
+      "viewportWidth": 1440,
+      "viewportHeight": 810,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": "attack",
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1366x768-normal",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "1366x768-normal.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 465,
+          "y": 10,
+          "width": 437,
+          "height": 58,
+          "right": 902,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 573,
+          "y": 76,
+          "width": 220,
+          "height": 25,
+          "right": 793,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1080,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1304,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1080,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1304,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 585,
+          "width": 248,
+          "height": 169,
+          "right": 262,
+          "bottom": 754
+        },
+        "menu": {
+          "x": 495,
+          "y": 680,
+          "width": 376,
+          "height": 74,
+          "right": 871,
+          "bottom": 754
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 1090,
+          "y": 711,
+          "width": 258,
+          "height": 39,
+          "right": 1348,
+          "bottom": 750
+        },
+        "settings-btn": {
+          "x": 1318,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1352,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1366,
+      "documentHeight": 768,
+      "viewportWidth": 1366,
+      "viewportHeight": 768,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1366x768-objective-expanded",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "1366x768-objective-expanded.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 465,
+          "y": 10,
+          "width": 437,
+          "height": 58,
+          "right": 902,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 573,
+          "y": 76,
+          "width": 220,
+          "height": 25,
+          "right": 793,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1080,
+          "y": 10,
+          "width": 224,
+          "height": 126,
+          "right": 1304,
+          "bottom": 136
+        },
+        "log": {
+          "x": 1080,
+          "y": 142,
+          "width": 224,
+          "height": 29,
+          "right": 1304,
+          "bottom": 171
+        },
+        "panel": {
+          "x": 14,
+          "y": 585,
+          "width": 248,
+          "height": 169,
+          "right": 262,
+          "bottom": 754
+        },
+        "menu": {
+          "x": 495,
+          "y": 680,
+          "width": 376,
+          "height": 74,
+          "right": 871,
+          "bottom": 754
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 1090,
+          "y": 711,
+          "width": 258,
+          "height": 39,
+          "right": 1348,
+          "bottom": 750
+        },
+        "settings-btn": {
+          "x": 1318,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1352,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1366,
+      "documentHeight": 768,
+      "viewportWidth": 1366,
+      "viewportHeight": 768,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": true,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1366x768-stats-expanded",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "1366x768-stats-expanded.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 465,
+          "y": 10,
+          "width": 437,
+          "height": 58,
+          "right": 902,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 573,
+          "y": 76,
+          "width": 220,
+          "height": 25,
+          "right": 793,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1080,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1304,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1080,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1304,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 524,
+          "width": 248,
+          "height": 230,
+          "right": 262,
+          "bottom": 754
+        },
+        "menu": {
+          "x": 495,
+          "y": 680,
+          "width": 376,
+          "height": 74,
+          "right": 871,
+          "bottom": 754
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 1090,
+          "y": 711,
+          "width": 258,
+          "height": 39,
+          "right": 1348,
+          "bottom": 750
+        },
+        "settings-btn": {
+          "x": 1318,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1352,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1366,
+      "documentHeight": 768,
+      "viewportWidth": 1366,
+      "viewportHeight": 768,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": true,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1366x768-skills",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "1366x768-skills.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 465,
+          "y": 10,
+          "width": 437,
+          "height": 58,
+          "right": 902,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 573,
+          "y": 76,
+          "width": 220,
+          "height": 25,
+          "right": 793,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1080,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1304,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1080,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1304,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 585,
+          "width": 248,
+          "height": 169,
+          "right": 262,
+          "bottom": 754
+        },
+        "menu": {
+          "x": 495,
+          "y": 680,
+          "width": 376,
+          "height": 74,
+          "right": 871,
+          "bottom": 754
+        },
+        "skillmenu": {
+          "x": 514,
+          "y": 379,
+          "width": 338,
+          "height": 301,
+          "right": 852,
+          "bottom": 680
+        },
+        "action-preview": null,
+        "help": {
+          "x": 1090,
+          "y": 711,
+          "width": 258,
+          "height": 39,
+          "right": 1348,
+          "bottom": 750
+        },
+        "settings-btn": {
+          "x": 1318,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1352,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1366,
+      "documentHeight": 768,
+      "viewportWidth": 1366,
+      "viewportHeight": 768,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": "skill",
+      "skills": [
+        {
+          "name": "Tir Précis",
+          "cost": "2 PA",
+          "disabled": true
+        },
+        {
+          "name": "Bond du Faucon",
+          "cost": "3 PA",
+          "disabled": true
+        },
+        {
+          "name": "Pluie de Flèches",
+          "cost": "4 PA",
+          "disabled": true
+        },
+        {
+          "name": "Flèche du Zénith",
+          "cost": "5 PA",
+          "disabled": true
+        }
+      ],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1366x768-move",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "1366x768-move.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 465,
+          "y": 10,
+          "width": 437,
+          "height": 58,
+          "right": 902,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 542,
+          "y": 76,
+          "width": 282,
+          "height": 25,
+          "right": 824,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1080,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1304,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1080,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1304,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 585,
+          "width": 248,
+          "height": 169,
+          "right": 262,
+          "bottom": 754
+        },
+        "menu": {
+          "x": 495,
+          "y": 680,
+          "width": 376,
+          "height": 74,
+          "right": 871,
+          "bottom": 754
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 1090,
+          "y": 711,
+          "width": 258,
+          "height": 39,
+          "right": 1348,
+          "bottom": 750
+        },
+        "settings-btn": {
+          "x": 1318,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1352,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1366,
+      "documentHeight": 768,
+      "viewportWidth": 1366,
+      "viewportHeight": 768,
+      "activeName": "Archère",
+      "mode": "move",
+      "selectedAction": "move",
+      "skills": [
+        {
+          "name": "Tir Précis",
+          "cost": "2 PA",
+          "disabled": true
+        },
+        {
+          "name": "Bond du Faucon",
+          "cost": "3 PA",
+          "disabled": true
+        },
+        {
+          "name": "Pluie de Flèches",
+          "cost": "4 PA",
+          "disabled": true
+        },
+        {
+          "name": "Flèche du Zénith",
+          "cost": "5 PA",
+          "disabled": true
+        }
+      ],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1366x768-attack-menu",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "1366x768-attack-menu.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 465,
+          "y": 10,
+          "width": 437,
+          "height": 58,
+          "right": 902,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 573,
+          "y": 76,
+          "width": 220,
+          "height": 25,
+          "right": 793,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1080,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1304,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1080,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1304,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 585,
+          "width": 248,
+          "height": 169,
+          "right": 262,
+          "bottom": 754
+        },
+        "menu": {
+          "x": 495,
+          "y": 680,
+          "width": 376,
+          "height": 74,
+          "right": 871,
+          "bottom": 754
+        },
+        "skillmenu": {
+          "x": 514,
+          "y": 456,
+          "width": 338,
+          "height": 224,
+          "right": 852,
+          "bottom": 680
+        },
+        "action-preview": null,
+        "help": {
+          "x": 1090,
+          "y": 711,
+          "width": 258,
+          "height": 39,
+          "right": 1348,
+          "bottom": 750
+        },
+        "settings-btn": {
+          "x": 1318,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1352,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1366,
+      "documentHeight": 768,
+      "viewportWidth": 1366,
+      "viewportHeight": 768,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": "attack",
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "620x780-normal",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "screenshot": "620x780-normal.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 564,
+          "height": 53,
+          "right": 572,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 389,
+          "height": 37,
+          "right": 397,
+          "bottom": 103
+        },
+        "objective": {
+          "x": 407,
+          "y": 67,
+          "width": 205,
+          "height": 52,
+          "right": 612,
+          "bottom": 119
+        },
+        "log": {
+          "x": 407,
+          "y": 125,
+          "width": 205,
+          "height": 29,
+          "right": 612,
+          "bottom": 154
+        },
+        "panel": {
+          "x": 8,
+          "y": 524,
+          "width": 220,
+          "height": 168,
+          "right": 228,
+          "bottom": 692
+        },
+        "menu": {
+          "x": 8,
+          "y": 698,
+          "width": 604,
+          "height": 74,
+          "right": 612,
+          "bottom": 772
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 570,
+          "y": 656,
+          "width": 42,
+          "height": 38,
+          "right": 612,
+          "bottom": 694
+        },
+        "settings-btn": {
+          "x": 580,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 612,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 620,
+      "documentHeight": 780,
+      "viewportWidth": 620,
+      "viewportHeight": 780,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "620x780-objective-expanded",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "screenshot": "620x780-objective-expanded.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 564,
+          "height": 53,
+          "right": 572,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 389,
+          "height": 37,
+          "right": 397,
+          "bottom": 103
+        },
+        "objective": {
+          "x": 407,
+          "y": 67,
+          "width": 205,
+          "height": 126,
+          "right": 612,
+          "bottom": 193
+        },
+        "log": {
+          "x": 407,
+          "y": 199,
+          "width": 205,
+          "height": 29,
+          "right": 612,
+          "bottom": 228
+        },
+        "panel": {
+          "x": 8,
+          "y": 524,
+          "width": 220,
+          "height": 168,
+          "right": 228,
+          "bottom": 692
+        },
+        "menu": {
+          "x": 8,
+          "y": 698,
+          "width": 604,
+          "height": 74,
+          "right": 612,
+          "bottom": 772
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 570,
+          "y": 656,
+          "width": 42,
+          "height": 38,
+          "right": 612,
+          "bottom": 694
+        },
+        "settings-btn": {
+          "x": 580,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 612,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 620,
+      "documentHeight": 780,
+      "viewportWidth": 620,
+      "viewportHeight": 780,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": true,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "620x780-stats-expanded",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "screenshot": "620x780-stats-expanded.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 564,
+          "height": 53,
+          "right": 572,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 389,
+          "height": 37,
+          "right": 397,
+          "bottom": 103
+        },
+        "objective": {
+          "x": 407,
+          "y": 67,
+          "width": 205,
+          "height": 52,
+          "right": 612,
+          "bottom": 119
+        },
+        "log": {
+          "x": 407,
+          "y": 125,
+          "width": 205,
+          "height": 29,
+          "right": 612,
+          "bottom": 154
+        },
+        "panel": {
+          "x": 8,
+          "y": 463,
+          "width": 220,
+          "height": 229,
+          "right": 228,
+          "bottom": 692
+        },
+        "menu": {
+          "x": 8,
+          "y": 698,
+          "width": 604,
+          "height": 74,
+          "right": 612,
+          "bottom": 772
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 570,
+          "y": 656,
+          "width": 42,
+          "height": 38,
+          "right": 612,
+          "bottom": 694
+        },
+        "settings-btn": {
+          "x": 580,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 612,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 620,
+      "documentHeight": 780,
+      "viewportWidth": 620,
+      "viewportHeight": 780,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": true,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "620x780-skills",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "screenshot": "620x780-skills.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 564,
+          "height": 53,
+          "right": 572,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 389,
+          "height": 37,
+          "right": 397,
+          "bottom": 103
+        },
+        "objective": {
+          "x": 407,
+          "y": 67,
+          "width": 205,
+          "height": 52,
+          "right": 612,
+          "bottom": 119
+        },
+        "log": {
+          "x": 407,
+          "y": 125,
+          "width": 205,
+          "height": 29,
+          "right": 612,
+          "bottom": 154
+        },
+        "panel": {
+          "x": 8,
+          "y": 524,
+          "width": 220,
+          "height": 168,
+          "right": 228,
+          "bottom": 692
+        },
+        "menu": {
+          "x": 8,
+          "y": 698,
+          "width": 604,
+          "height": 74,
+          "right": 612,
+          "bottom": 772
+        },
+        "skillmenu": {
+          "x": 274,
+          "y": 395,
+          "width": 338,
+          "height": 301,
+          "right": 612,
+          "bottom": 696
+        },
+        "action-preview": null,
+        "help": {
+          "x": 570,
+          "y": 656,
+          "width": 42,
+          "height": 38,
+          "right": 612,
+          "bottom": 694
+        },
+        "settings-btn": {
+          "x": 580,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 612,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 620,
+      "documentHeight": 780,
+      "viewportWidth": 620,
+      "viewportHeight": 780,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": "skill",
+      "skills": [
+        {
+          "name": "Tir Précis",
+          "cost": "2 PA",
+          "disabled": true
+        },
+        {
+          "name": "Bond du Faucon",
+          "cost": "3 PA",
+          "disabled": true
+        },
+        {
+          "name": "Pluie de Flèches",
+          "cost": "4 PA",
+          "disabled": true
+        },
+        {
+          "name": "Flèche du Zénith",
+          "cost": "5 PA",
+          "disabled": true
+        }
+      ],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "620x780-move",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "screenshot": "620x780-move.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 564,
+          "height": 53,
+          "right": 572,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 389,
+          "height": 37,
+          "right": 397,
+          "bottom": 103
+        },
+        "objective": {
+          "x": 407,
+          "y": 67,
+          "width": 205,
+          "height": 52,
+          "right": 612,
+          "bottom": 119
+        },
+        "log": {
+          "x": 407,
+          "y": 125,
+          "width": 205,
+          "height": 29,
+          "right": 612,
+          "bottom": 154
+        },
+        "panel": {
+          "x": 8,
+          "y": 524,
+          "width": 220,
+          "height": 168,
+          "right": 228,
+          "bottom": 692
+        },
+        "menu": {
+          "x": 8,
+          "y": 698,
+          "width": 604,
+          "height": 74,
+          "right": 612,
+          "bottom": 772
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 570,
+          "y": 656,
+          "width": 42,
+          "height": 38,
+          "right": 612,
+          "bottom": 694
+        },
+        "settings-btn": {
+          "x": 580,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 612,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 620,
+      "documentHeight": 780,
+      "viewportWidth": 620,
+      "viewportHeight": 780,
+      "activeName": "Archère",
+      "mode": "move",
+      "selectedAction": "move",
+      "skills": [
+        {
+          "name": "Tir Précis",
+          "cost": "2 PA",
+          "disabled": true
+        },
+        {
+          "name": "Bond du Faucon",
+          "cost": "3 PA",
+          "disabled": true
+        },
+        {
+          "name": "Pluie de Flèches",
+          "cost": "4 PA",
+          "disabled": true
+        },
+        {
+          "name": "Flèche du Zénith",
+          "cost": "5 PA",
+          "disabled": true
+        }
+      ],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "620x780-attack-menu",
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "screenshot": "620x780-attack-menu.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 564,
+          "height": 53,
+          "right": 572,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 389,
+          "height": 37,
+          "right": 397,
+          "bottom": 103
+        },
+        "objective": {
+          "x": 407,
+          "y": 67,
+          "width": 205,
+          "height": 52,
+          "right": 612,
+          "bottom": 119
+        },
+        "log": {
+          "x": 407,
+          "y": 125,
+          "width": 205,
+          "height": 29,
+          "right": 612,
+          "bottom": 154
+        },
+        "panel": {
+          "x": 8,
+          "y": 524,
+          "width": 220,
+          "height": 168,
+          "right": 228,
+          "bottom": 692
+        },
+        "menu": {
+          "x": 8,
+          "y": 698,
+          "width": 604,
+          "height": 74,
+          "right": 612,
+          "bottom": 772
+        },
+        "skillmenu": {
+          "x": 274,
+          "y": 472,
+          "width": 338,
+          "height": 224,
+          "right": 612,
+          "bottom": 696
+        },
+        "action-preview": null,
+        "help": {
+          "x": 570,
+          "y": 656,
+          "width": 42,
+          "height": 38,
+          "right": 612,
+          "bottom": 694
+        },
+        "settings-btn": {
+          "x": 580,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 612,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 620,
+      "documentHeight": 780,
+      "viewportWidth": 620,
+      "viewportHeight": 780,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": "attack",
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "390x844-normal",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "390x844-normal.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 334,
+          "height": 53,
+          "right": 342,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 187,
+          "height": 42,
+          "right": 195,
+          "bottom": 108
+        },
+        "objective": {
+          "x": 203,
+          "y": 66,
+          "width": 179,
+          "height": 44,
+          "right": 382,
+          "bottom": 110
+        },
+        "log": {
+          "x": 203,
+          "y": 116,
+          "width": 179,
+          "height": 29,
+          "right": 382,
+          "bottom": 145
+        },
+        "panel": {
+          "x": 8,
+          "y": 579,
+          "width": 190,
+          "height": 182,
+          "right": 198,
+          "bottom": 761
+        },
+        "menu": {
+          "x": 8,
+          "y": 768,
+          "width": 374,
+          "height": 70,
+          "right": 382,
+          "bottom": 838
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 340,
+          "y": 723,
+          "width": 42,
+          "height": 38,
+          "right": 382,
+          "bottom": 761
+        },
+        "settings-btn": {
+          "x": 350,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 382,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "390x844-objective-expanded",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "390x844-objective-expanded.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 334,
+          "height": 53,
+          "right": 342,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 187,
+          "height": 42,
+          "right": 195,
+          "bottom": 108
+        },
+        "objective": {
+          "x": 203,
+          "y": 66,
+          "width": 179,
+          "height": 118,
+          "right": 382,
+          "bottom": 184
+        },
+        "log": {
+          "x": 203,
+          "y": 190,
+          "width": 179,
+          "height": 29,
+          "right": 382,
+          "bottom": 219
+        },
+        "panel": {
+          "x": 8,
+          "y": 579,
+          "width": 190,
+          "height": 182,
+          "right": 198,
+          "bottom": 761
+        },
+        "menu": {
+          "x": 8,
+          "y": 768,
+          "width": 374,
+          "height": 70,
+          "right": 382,
+          "bottom": 838
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 340,
+          "y": 723,
+          "width": 42,
+          "height": 38,
+          "right": 382,
+          "bottom": 761
+        },
+        "settings-btn": {
+          "x": 350,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 382,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": true,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "390x844-stats-expanded",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "390x844-stats-expanded.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 334,
+          "height": 53,
+          "right": 342,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 187,
+          "height": 42,
+          "right": 195,
+          "bottom": 108
+        },
+        "objective": {
+          "x": 203,
+          "y": 66,
+          "width": 179,
+          "height": 44,
+          "right": 382,
+          "bottom": 110
+        },
+        "log": {
+          "x": 203,
+          "y": 116,
+          "width": 179,
+          "height": 29,
+          "right": 382,
+          "bottom": 145
+        },
+        "panel": {
+          "x": 8,
+          "y": 518,
+          "width": 190,
+          "height": 243,
+          "right": 198,
+          "bottom": 761
+        },
+        "menu": {
+          "x": 8,
+          "y": 768,
+          "width": 374,
+          "height": 70,
+          "right": 382,
+          "bottom": 838
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 340,
+          "y": 723,
+          "width": 42,
+          "height": 38,
+          "right": 382,
+          "bottom": 761
+        },
+        "settings-btn": {
+          "x": 350,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 382,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": true,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "390x844-skills",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "390x844-skills.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 334,
+          "height": 53,
+          "right": 342,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 187,
+          "height": 42,
+          "right": 195,
+          "bottom": 108
+        },
+        "objective": {
+          "x": 203,
+          "y": 66,
+          "width": 179,
+          "height": 44,
+          "right": 382,
+          "bottom": 110
+        },
+        "log": {
+          "x": 203,
+          "y": 116,
+          "width": 179,
+          "height": 29,
+          "right": 382,
+          "bottom": 145
+        },
+        "panel": {
+          "x": 8,
+          "y": 579,
+          "width": 190,
+          "height": 182,
+          "right": 198,
+          "bottom": 761
+        },
+        "menu": {
+          "x": 8,
+          "y": 768,
+          "width": 374,
+          "height": 70,
+          "right": 382,
+          "bottom": 838
+        },
+        "skillmenu": {
+          "x": 8,
+          "y": 155,
+          "width": 374,
+          "height": 295,
+          "right": 382,
+          "bottom": 450
+        },
+        "action-preview": null,
+        "help": null,
+        "settings-btn": {
+          "x": 350,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 382,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": "skill",
+      "skills": [
+        {
+          "name": "Tir Précis",
+          "cost": "2 PA",
+          "disabled": true
+        },
+        {
+          "name": "Bond du Faucon",
+          "cost": "3 PA",
+          "disabled": true
+        },
+        {
+          "name": "Pluie de Flèches",
+          "cost": "4 PA",
+          "disabled": true
+        },
+        {
+          "name": "Flèche du Zénith",
+          "cost": "5 PA",
+          "disabled": true
+        }
+      ],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "390x844-move",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "390x844-move.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 334,
+          "height": 53,
+          "right": 342,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 187,
+          "height": 42,
+          "right": 195,
+          "bottom": 108
+        },
+        "objective": {
+          "x": 203,
+          "y": 66,
+          "width": 179,
+          "height": 44,
+          "right": 382,
+          "bottom": 110
+        },
+        "log": {
+          "x": 203,
+          "y": 116,
+          "width": 179,
+          "height": 29,
+          "right": 382,
+          "bottom": 145
+        },
+        "panel": {
+          "x": 8,
+          "y": 579,
+          "width": 190,
+          "height": 182,
+          "right": 198,
+          "bottom": 761
+        },
+        "menu": {
+          "x": 8,
+          "y": 768,
+          "width": 374,
+          "height": 70,
+          "right": 382,
+          "bottom": 838
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 340,
+          "y": 723,
+          "width": 42,
+          "height": 38,
+          "right": 382,
+          "bottom": 761
+        },
+        "settings-btn": {
+          "x": 350,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 382,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "activeName": "Archère",
+      "mode": "move",
+      "selectedAction": "move",
+      "skills": [
+        {
+          "name": "Tir Précis",
+          "cost": "2 PA",
+          "disabled": true
+        },
+        {
+          "name": "Bond du Faucon",
+          "cost": "3 PA",
+          "disabled": true
+        },
+        {
+          "name": "Pluie de Flèches",
+          "cost": "4 PA",
+          "disabled": true
+        },
+        {
+          "name": "Flèche du Zénith",
+          "cost": "5 PA",
+          "disabled": true
+        }
+      ],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "390x844-attack-menu",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "390x844-attack-menu.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 334,
+          "height": 53,
+          "right": 342,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 187,
+          "height": 42,
+          "right": 195,
+          "bottom": 108
+        },
+        "objective": {
+          "x": 203,
+          "y": 66,
+          "width": 179,
+          "height": 44,
+          "right": 382,
+          "bottom": 110
+        },
+        "log": {
+          "x": 203,
+          "y": 116,
+          "width": 179,
+          "height": 29,
+          "right": 382,
+          "bottom": 145
+        },
+        "panel": {
+          "x": 8,
+          "y": 579,
+          "width": 190,
+          "height": 182,
+          "right": 198,
+          "bottom": 761
+        },
+        "menu": {
+          "x": 8,
+          "y": 768,
+          "width": 374,
+          "height": 70,
+          "right": 382,
+          "bottom": 838
+        },
+        "skillmenu": {
+          "x": 8,
+          "y": 241,
+          "width": 374,
+          "height": 209,
+          "right": 382,
+          "bottom": 450
+        },
+        "action-preview": null,
+        "help": null,
+        "settings-btn": {
+          "x": 350,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 382,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "activeName": "Archère",
+      "mode": "menu",
+      "selectedAction": "attack",
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/archer.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1440x810-campaign-normal",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "screenshot": "1440x810-campaign-normal.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 592,
+          "y": 10,
+          "width": 257,
+          "height": 58,
+          "right": 849,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 615,
+          "y": 76,
+          "width": 210,
+          "height": 25,
+          "right": 825,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1154,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1378,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1154,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1378,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 558,
+          "width": 248,
+          "height": 239,
+          "right": 262,
+          "bottom": 796
+        },
+        "menu": {
+          "x": 532,
+          "y": 722,
+          "width": 376,
+          "height": 74,
+          "right": 908,
+          "bottom": 796
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 1164,
+          "y": 753,
+          "width": 258,
+          "height": 39,
+          "right": 1422,
+          "bottom": 792
+        },
+        "settings-btn": {
+          "x": 1392,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1426,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1440,
+      "documentHeight": 810,
+      "viewportWidth": 1440,
+      "viewportHeight": 810,
+      "activeName": "Marian",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/white_mage.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1440x810-campaign-status",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "screenshot": "1440x810-campaign-status.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 592,
+          "y": 10,
+          "width": 257,
+          "height": 58,
+          "right": 849,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 615,
+          "y": 76,
+          "width": 210,
+          "height": 25,
+          "right": 825,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1154,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1378,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1154,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1378,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 525,
+          "width": 248,
+          "height": 272,
+          "right": 262,
+          "bottom": 796
+        },
+        "menu": {
+          "x": 532,
+          "y": 722,
+          "width": 376,
+          "height": 74,
+          "right": 908,
+          "bottom": 796
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 1164,
+          "y": 753,
+          "width": 258,
+          "height": 39,
+          "right": 1422,
+          "bottom": 792
+        },
+        "settings-btn": {
+          "x": 1392,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1426,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1440,
+      "documentHeight": 810,
+      "viewportWidth": 1440,
+      "viewportHeight": 810,
+      "activeName": "Marian",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/white_mage.png",
+      "portraitLoaded": true,
+      "statusCount": 1,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1440x810-campaign-skills-enabled",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "screenshot": "1440x810-campaign-skills-enabled.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 592,
+          "y": 10,
+          "width": 257,
+          "height": 58,
+          "right": 849,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 615,
+          "y": 76,
+          "width": 210,
+          "height": 25,
+          "right": 825,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1154,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1378,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1154,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1378,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 525,
+          "width": 248,
+          "height": 272,
+          "right": 262,
+          "bottom": 796
+        },
+        "menu": {
+          "x": 532,
+          "y": 722,
+          "width": 376,
+          "height": 74,
+          "right": 908,
+          "bottom": 796
+        },
+        "skillmenu": {
+          "x": 551,
+          "y": 531,
+          "width": 338,
+          "height": 191,
+          "right": 889,
+          "bottom": 722
+        },
+        "action-preview": null,
+        "help": {
+          "x": 1164,
+          "y": 753,
+          "width": 258,
+          "height": 39,
+          "right": 1422,
+          "bottom": 792
+        },
+        "settings-btn": {
+          "x": 1392,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1426,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1440,
+      "documentHeight": 810,
+      "viewportWidth": 1440,
+      "viewportHeight": 810,
+      "activeName": "Marian",
+      "mode": "menu",
+      "selectedAction": "skill",
+      "skills": [
+        {
+          "name": "Lumière Salvatrice",
+          "cost": "2 PA",
+          "disabled": false
+        },
+        {
+          "name": "Purification",
+          "cost": "3 PA",
+          "disabled": false
+        }
+      ],
+      "portrait": "/assets/characters/pixel/masters/white_mage.png",
+      "portraitLoaded": true,
+      "statusCount": 1,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1440x810-campaign-ally-preview",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "screenshot": "1440x810-campaign-ally-preview.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 592,
+          "y": 10,
+          "width": 257,
+          "height": 58,
+          "right": 849,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 604,
+          "y": 76,
+          "width": 232,
+          "height": 25,
+          "right": 836,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1154,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1378,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1154,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1378,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 525,
+          "width": 248,
+          "height": 272,
+          "right": 262,
+          "bottom": 796
+        },
+        "menu": {
+          "x": 532,
+          "y": 722,
+          "width": 376,
+          "height": 74,
+          "right": 908,
+          "bottom": 796
+        },
+        "skillmenu": null,
+        "action-preview": {
+          "x": 587,
+          "y": 110,
+          "width": 266,
+          "height": 50,
+          "right": 853,
+          "bottom": 160
+        },
+        "help": {
+          "x": 1164,
+          "y": 753,
+          "width": 258,
+          "height": 39,
+          "right": 1422,
+          "bottom": 792
+        },
+        "settings-btn": {
+          "x": 1392,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1426,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1440,
+      "documentHeight": 810,
+      "viewportWidth": 1440,
+      "viewportHeight": 810,
+      "activeName": "Marian",
+      "mode": "target",
+      "selectedAction": "skill",
+      "skills": [
+        {
+          "name": "Lumière Salvatrice",
+          "cost": "2 PA",
+          "disabled": false
+        },
+        {
+          "name": "Purification",
+          "cost": "3 PA",
+          "disabled": false
+        }
+      ],
+      "portrait": "/assets/characters/pixel/masters/white_mage.png",
+      "portraitLoaded": true,
+      "statusCount": 1,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1440x810-campaign-invalid-target",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "screenshot": "1440x810-campaign-invalid-target.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 592,
+          "y": 10,
+          "width": 257,
+          "height": 58,
+          "right": 849,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 636,
+          "y": 76,
+          "width": 167,
+          "height": 25,
+          "right": 804,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1154,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1378,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1154,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1378,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 525,
+          "width": 248,
+          "height": 272,
+          "right": 262,
+          "bottom": 796
+        },
+        "menu": {
+          "x": 532,
+          "y": 722,
+          "width": 376,
+          "height": 74,
+          "right": 908,
+          "bottom": 796
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 1164,
+          "y": 753,
+          "width": 258,
+          "height": 39,
+          "right": 1422,
+          "bottom": 792
+        },
+        "settings-btn": {
+          "x": 1392,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1426,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1440,
+      "documentHeight": 810,
+      "viewportWidth": 1440,
+      "viewportHeight": 810,
+      "activeName": "Marian",
+      "mode": "target",
+      "selectedAction": "attack",
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/white_mage.png",
+      "portraitLoaded": true,
+      "statusCount": 1,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1440x810-campaign-enemy-preview",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "screenshot": "1440x810-campaign-enemy-preview.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 592,
+          "y": 10,
+          "width": 257,
+          "height": 58,
+          "right": 849,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 636,
+          "y": 76,
+          "width": 167,
+          "height": 25,
+          "right": 804,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1154,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1378,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1154,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1378,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 627,
+          "width": 248,
+          "height": 169,
+          "right": 262,
+          "bottom": 796
+        },
+        "menu": {
+          "x": 532,
+          "y": 722,
+          "width": 376,
+          "height": 74,
+          "right": 908,
+          "bottom": 796
+        },
+        "skillmenu": null,
+        "action-preview": {
+          "x": 627,
+          "y": 110,
+          "width": 187,
+          "height": 50,
+          "right": 813,
+          "bottom": 160
+        },
+        "help": {
+          "x": 1164,
+          "y": 753,
+          "width": 258,
+          "height": 39,
+          "right": 1422,
+          "bottom": 792
+        },
+        "settings-btn": {
+          "x": 1392,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1426,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1440,
+      "documentHeight": 810,
+      "viewportWidth": 1440,
+      "viewportHeight": 810,
+      "activeName": "Marian",
+      "mode": "target",
+      "selectedAction": "attack",
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/wolf.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "1440x810-boss",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "screenshot": "1440x810-boss.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 592,
+          "y": 10,
+          "width": 257,
+          "height": 58,
+          "right": 849,
+          "bottom": 68
+        },
+        "hint": {
+          "x": 615,
+          "y": 76,
+          "width": 210,
+          "height": 25,
+          "right": 825,
+          "bottom": 101
+        },
+        "objective": {
+          "x": 1154,
+          "y": 10,
+          "width": 224,
+          "height": 52,
+          "right": 1378,
+          "bottom": 62
+        },
+        "log": {
+          "x": 1154,
+          "y": 68,
+          "width": 224,
+          "height": 29,
+          "right": 1378,
+          "bottom": 97
+        },
+        "panel": {
+          "x": 14,
+          "y": 558,
+          "width": 248,
+          "height": 239,
+          "right": 262,
+          "bottom": 796
+        },
+        "menu": {
+          "x": 532,
+          "y": 722,
+          "width": 376,
+          "height": 74,
+          "right": 908,
+          "bottom": 796
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 1164,
+          "y": 753,
+          "width": 258,
+          "height": 39,
+          "right": 1422,
+          "bottom": 792
+        },
+        "settings-btn": {
+          "x": 1392,
+          "y": 12,
+          "width": 34,
+          "height": 34,
+          "right": 1426,
+          "bottom": 46
+        }
+      },
+      "documentWidth": 1440,
+      "documentHeight": 810,
+      "viewportWidth": 1440,
+      "viewportHeight": 810,
+      "activeName": "Marian",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/white_mage.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "390x844-campaign-normal",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "390x844-campaign-normal.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 334,
+          "height": 53,
+          "right": 342,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 187,
+          "height": 42,
+          "right": 195,
+          "bottom": 108
+        },
+        "objective": {
+          "x": 203,
+          "y": 66,
+          "width": 179,
+          "height": 44,
+          "right": 382,
+          "bottom": 110
+        },
+        "log": {
+          "x": 203,
+          "y": 116,
+          "width": 179,
+          "height": 29,
+          "right": 382,
+          "bottom": 145
+        },
+        "panel": {
+          "x": 8,
+          "y": 519,
+          "width": 190,
+          "height": 242,
+          "right": 198,
+          "bottom": 761
+        },
+        "menu": {
+          "x": 8,
+          "y": 768,
+          "width": 374,
+          "height": 70,
+          "right": 382,
+          "bottom": 838
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 340,
+          "y": 723,
+          "width": 42,
+          "height": 38,
+          "right": 382,
+          "bottom": 761
+        },
+        "settings-btn": {
+          "x": 350,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 382,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "activeName": "Marian",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/white_mage.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "390x844-campaign-status",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "390x844-campaign-status.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 334,
+          "height": 53,
+          "right": 342,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 187,
+          "height": 42,
+          "right": 195,
+          "bottom": 108
+        },
+        "objective": {
+          "x": 203,
+          "y": 66,
+          "width": 179,
+          "height": 44,
+          "right": 382,
+          "bottom": 110
+        },
+        "log": {
+          "x": 203,
+          "y": 116,
+          "width": 179,
+          "height": 29,
+          "right": 382,
+          "bottom": 145
+        },
+        "panel": {
+          "x": 8,
+          "y": 489,
+          "width": 190,
+          "height": 272,
+          "right": 198,
+          "bottom": 761
+        },
+        "menu": {
+          "x": 8,
+          "y": 768,
+          "width": 374,
+          "height": 70,
+          "right": 382,
+          "bottom": 838
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 340,
+          "y": 723,
+          "width": 42,
+          "height": 38,
+          "right": 382,
+          "bottom": 761
+        },
+        "settings-btn": {
+          "x": 350,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 382,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "activeName": "Marian",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/white_mage.png",
+      "portraitLoaded": true,
+      "statusCount": 1,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "390x844-campaign-skills-enabled",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "390x844-campaign-skills-enabled.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 334,
+          "height": 53,
+          "right": 342,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 187,
+          "height": 42,
+          "right": 195,
+          "bottom": 108
+        },
+        "objective": {
+          "x": 203,
+          "y": 66,
+          "width": 179,
+          "height": 44,
+          "right": 382,
+          "bottom": 110
+        },
+        "log": {
+          "x": 203,
+          "y": 116,
+          "width": 179,
+          "height": 29,
+          "right": 382,
+          "bottom": 145
+        },
+        "panel": {
+          "x": 8,
+          "y": 489,
+          "width": 190,
+          "height": 272,
+          "right": 198,
+          "bottom": 761
+        },
+        "menu": {
+          "x": 8,
+          "y": 768,
+          "width": 374,
+          "height": 70,
+          "right": 382,
+          "bottom": 838
+        },
+        "skillmenu": {
+          "x": 8,
+          "y": 264,
+          "width": 374,
+          "height": 186,
+          "right": 382,
+          "bottom": 450
+        },
+        "action-preview": null,
+        "help": null,
+        "settings-btn": {
+          "x": 350,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 382,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "activeName": "Marian",
+      "mode": "menu",
+      "selectedAction": "skill",
+      "skills": [
+        {
+          "name": "Lumière Salvatrice",
+          "cost": "2 PA",
+          "disabled": false
+        },
+        {
+          "name": "Purification",
+          "cost": "3 PA",
+          "disabled": false
+        }
+      ],
+      "portrait": "/assets/characters/pixel/masters/white_mage.png",
+      "portraitLoaded": true,
+      "statusCount": 1,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "390x844-campaign-ally-preview",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "390x844-campaign-ally-preview.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 334,
+          "height": 53,
+          "right": 342,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 187,
+          "height": 42,
+          "right": 195,
+          "bottom": 108
+        },
+        "objective": {
+          "x": 203,
+          "y": 66,
+          "width": 179,
+          "height": 44,
+          "right": 382,
+          "bottom": 110
+        },
+        "log": {
+          "x": 203,
+          "y": 116,
+          "width": 179,
+          "height": 29,
+          "right": 382,
+          "bottom": 145
+        },
+        "panel": {
+          "x": 8,
+          "y": 489,
+          "width": 190,
+          "height": 272,
+          "right": 198,
+          "bottom": 761
+        },
+        "menu": {
+          "x": 8,
+          "y": 768,
+          "width": 374,
+          "height": 70,
+          "right": 382,
+          "bottom": 838
+        },
+        "skillmenu": null,
+        "action-preview": {
+          "x": 93,
+          "y": 165,
+          "width": 204,
+          "height": 41,
+          "right": 297,
+          "bottom": 206
+        },
+        "help": {
+          "x": 340,
+          "y": 723,
+          "width": 42,
+          "height": 38,
+          "right": 382,
+          "bottom": 761
+        },
+        "settings-btn": {
+          "x": 350,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 382,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "activeName": "Marian",
+      "mode": "target",
+      "selectedAction": "skill",
+      "skills": [
+        {
+          "name": "Lumière Salvatrice",
+          "cost": "2 PA",
+          "disabled": false
+        },
+        {
+          "name": "Purification",
+          "cost": "3 PA",
+          "disabled": false
+        }
+      ],
+      "portrait": "/assets/characters/pixel/masters/white_mage.png",
+      "portraitLoaded": true,
+      "statusCount": 1,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "390x844-campaign-invalid-target",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "390x844-campaign-invalid-target.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 334,
+          "height": 53,
+          "right": 342,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 187,
+          "height": 42,
+          "right": 195,
+          "bottom": 108
+        },
+        "objective": {
+          "x": 203,
+          "y": 66,
+          "width": 179,
+          "height": 44,
+          "right": 382,
+          "bottom": 110
+        },
+        "log": {
+          "x": 203,
+          "y": 116,
+          "width": 179,
+          "height": 29,
+          "right": 382,
+          "bottom": 145
+        },
+        "panel": {
+          "x": 8,
+          "y": 489,
+          "width": 190,
+          "height": 272,
+          "right": 198,
+          "bottom": 761
+        },
+        "menu": {
+          "x": 8,
+          "y": 768,
+          "width": 374,
+          "height": 70,
+          "right": 382,
+          "bottom": 838
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 340,
+          "y": 723,
+          "width": 42,
+          "height": 38,
+          "right": 382,
+          "bottom": 761
+        },
+        "settings-btn": {
+          "x": 350,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 382,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "activeName": "Marian",
+      "mode": "target",
+      "selectedAction": "attack",
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/white_mage.png",
+      "portraitLoaded": true,
+      "statusCount": 1,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "390x844-campaign-enemy-preview",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "390x844-campaign-enemy-preview.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 334,
+          "height": 53,
+          "right": 342,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 187,
+          "height": 42,
+          "right": 195,
+          "bottom": 108
+        },
+        "objective": {
+          "x": 203,
+          "y": 66,
+          "width": 179,
+          "height": 44,
+          "right": 382,
+          "bottom": 110
+        },
+        "log": {
+          "x": 203,
+          "y": 116,
+          "width": 179,
+          "height": 29,
+          "right": 382,
+          "bottom": 145
+        },
+        "panel": {
+          "x": 8,
+          "y": 579,
+          "width": 190,
+          "height": 182,
+          "right": 198,
+          "bottom": 761
+        },
+        "menu": {
+          "x": 8,
+          "y": 768,
+          "width": 374,
+          "height": 70,
+          "right": 382,
+          "bottom": 838
+        },
+        "skillmenu": null,
+        "action-preview": {
+          "x": 124,
+          "y": 165,
+          "width": 142,
+          "height": 41,
+          "right": 266,
+          "bottom": 206
+        },
+        "help": {
+          "x": 340,
+          "y": 723,
+          "width": 42,
+          "height": 38,
+          "right": 382,
+          "bottom": 761
+        },
+        "settings-btn": {
+          "x": 350,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 382,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "activeName": "Marian",
+      "mode": "target",
+      "selectedAction": "attack",
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/wolf.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    },
+    {
+      "name": "390x844-boss",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "390x844-boss.jpg",
+      "boxes": {
+        "turnbar": {
+          "x": 8,
+          "y": 7,
+          "width": 334,
+          "height": 53,
+          "right": 342,
+          "bottom": 60
+        },
+        "hint": {
+          "x": 8,
+          "y": 66,
+          "width": 187,
+          "height": 42,
+          "right": 195,
+          "bottom": 108
+        },
+        "objective": {
+          "x": 203,
+          "y": 66,
+          "width": 179,
+          "height": 44,
+          "right": 382,
+          "bottom": 110
+        },
+        "log": {
+          "x": 203,
+          "y": 116,
+          "width": 179,
+          "height": 29,
+          "right": 382,
+          "bottom": 145
+        },
+        "panel": {
+          "x": 8,
+          "y": 519,
+          "width": 190,
+          "height": 242,
+          "right": 198,
+          "bottom": 761
+        },
+        "menu": {
+          "x": 8,
+          "y": 768,
+          "width": 374,
+          "height": 70,
+          "right": 382,
+          "bottom": 838
+        },
+        "skillmenu": null,
+        "action-preview": null,
+        "help": {
+          "x": 340,
+          "y": 723,
+          "width": 42,
+          "height": 38,
+          "right": 382,
+          "bottom": 761
+        },
+        "settings-btn": {
+          "x": 350,
+          "y": 12,
+          "width": 32,
+          "height": 32,
+          "right": 382,
+          "bottom": 44
+        }
+      },
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "activeName": "Marian",
+      "mode": "menu",
+      "selectedAction": null,
+      "skills": [],
+      "portrait": "/assets/characters/pixel/masters/white_mage.png",
+      "portraitLoaded": true,
+      "statusCount": 0,
+      "objectiveExpanded": false,
+      "statsExpanded": false,
+      "activeTurnCount": 1,
+      "panelScroll": false
+    }
+  ],
+  "errors": []
+}

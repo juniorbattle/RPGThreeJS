@@ -5,22 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chroniques d'Élyndra — Combat tactique HD-2D</title>
     <link rel="stylesheet" href="/src/styles/combat.css" />
+    <link rel="stylesheet" href="/src/styles/combat-hud.css" />
   </head>
   <body>
     <div id="combat-parallax" aria-hidden="true"></div>
     <div id="ui">
-      <div id="turnbar" class="panel hidden"></div>
+      <div id="turnbar" class="panel campaign-ui-frame campaign-ui-frame--compact hidden" aria-label="Ordre des tours"></div>
       <div id="hint"></div>
       <div id="hud-right-stack">
-        <div id="objective" class="panel hidden"></div>
+        <div id="objective" class="panel campaign-ui-frame campaign-ui-frame--compact hidden"></div>
         <div id="log" class="panel hidden"></div>
       </div>
       <button id="settings-btn" class="hud-gear" type="button" title="Réglages" aria-label="Réglages">&#9881;</button>
       <div id="settings" class="panel hidden" role="menu" aria-label="Réglages"></div>
-      <div id="panel" class="panel hidden"></div>
-      <div id="menu" class="panel hidden"></div>
-      <div id="skillmenu" class="panel hidden"></div>
-      <div id="action-preview" class="panel hidden" aria-live="polite"></div>
+      <div id="panel" class="panel campaign-ui-frame campaign-ui-frame--compact hidden"></div>
+      <div id="menu" class="panel campaign-ui-frame campaign-ui-frame--compact hidden" aria-label="Actions de combat"></div>
+      <div id="skillmenu" class="panel campaign-ui-frame campaign-ui-frame--compact hidden" aria-label="Choix de combat"></div>
+      <div id="action-preview" class="panel campaign-ui-frame campaign-ui-frame--compact hidden" aria-live="polite"></div>
       <div id="help" class="panel hidden">
         <details>
           <summary><b>Aide et commandes</b></summary>
