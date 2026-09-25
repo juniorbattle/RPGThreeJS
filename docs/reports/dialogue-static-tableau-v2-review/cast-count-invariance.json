@@ -1,0 +1,261 @@
+{
+  "samples": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "count": 1,
+      "actorId": "sage_seraphine",
+      "x": -8.498291015625,
+      "y": -322.3768310546875,
+      "width": 590.96533203125,
+      "height": 1108.0799560546875,
+      "anchorX": 286.984375,
+      "bottom": 785.703125,
+      "scale": 1.14,
+      "screenshot": "cast-count-1440x810-1.jpg"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "count": 2,
+      "actorId": "sage_seraphine",
+      "x": -8.498291015625,
+      "y": -322.3768310546875,
+      "width": 590.96533203125,
+      "height": 1108.0799560546875,
+      "anchorX": 286.984375,
+      "bottom": 785.703125,
+      "scale": 1.14,
+      "screenshot": "cast-count-1440x810-2.jpg"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "count": 3,
+      "actorId": "sage_seraphine",
+      "x": -8.498291015625,
+      "y": -322.3768310546875,
+      "width": 590.96533203125,
+      "height": 1108.0799560546875,
+      "anchorX": 286.984375,
+      "bottom": 785.703125,
+      "scale": 1.14,
+      "screenshot": "cast-count-1440x810-3.jpg"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "count": 4,
+      "actorId": "sage_seraphine",
+      "x": -8.498291015625,
+      "y": -322.3768310546875,
+      "width": 590.96533203125,
+      "height": 1108.0799560546875,
+      "anchorX": 286.984375,
+      "bottom": 785.703125,
+      "scale": 1.14,
+      "screenshot": "cast-count-1440x810-4.jpg"
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "count": 1,
+      "actorId": "sage_seraphine",
+      "x": -8.0631103515625,
+      "y": -305.6480712890625,
+      "width": 560.594970703125,
+      "height": 1050.6168212890625,
+      "anchorX": 272.234375,
+      "bottom": 744.96875,
+      "scale": 1.14,
+      "screenshot": null
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "count": 2,
+      "actorId": "sage_seraphine",
+      "x": -8.0631103515625,
+      "y": -305.6480712890625,
+      "width": 560.594970703125,
+      "height": 1050.6168212890625,
+      "anchorX": 272.234375,
+      "bottom": 744.96875,
+      "scale": 1.14,
+      "screenshot": null
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "count": 3,
+      "actorId": "sage_seraphine",
+      "x": -8.0631103515625,
+      "y": -305.6480712890625,
+      "width": 560.594970703125,
+      "height": 1050.6168212890625,
+      "anchorX": 272.234375,
+      "bottom": 744.96875,
+      "scale": 1.14,
+      "screenshot": null
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "count": 4,
+      "actorId": "sage_seraphine",
+      "x": -8.0631103515625,
+      "y": -305.6480712890625,
+      "width": 560.594970703125,
+      "height": 1050.6168212890625,
+      "anchorX": 272.234375,
+      "bottom": 744.96875,
+      "scale": 1.14,
+      "screenshot": null
+    },
+    {
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "count": 1,
+      "actorId": "sage_seraphine",
+      "x": -72.05436706542969,
+      "y": -411.8369140625,
+      "width": 391.2337646484375,
+      "height": 1067.0400390625,
+      "anchorX": 123.56251525878906,
+      "bottom": 655.203125,
+      "scale": 1.14,
+      "screenshot": null
+    },
+    {
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "count": 2,
+      "actorId": "sage_seraphine",
+      "x": -72.05436706542969,
+      "y": -411.8369140625,
+      "width": 391.2337646484375,
+      "height": 1067.0400390625,
+      "anchorX": 123.56251525878906,
+      "bottom": 655.203125,
+      "scale": 1.14,
+      "screenshot": null
+    },
+    {
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "count": 3,
+      "actorId": "sage_seraphine",
+      "x": -72.05436706542969,
+      "y": -411.8369140625,
+      "width": 391.2337646484375,
+      "height": 1067.0400390625,
+      "anchorX": 123.56251525878906,
+      "bottom": 655.203125,
+      "scale": 1.14,
+      "screenshot": null
+    },
+    {
+      "viewport": {
+        "width": 620,
+        "height": 780
+      },
+      "count": 4,
+      "actorId": "sage_seraphine",
+      "x": -72.05436706542969,
+      "y": -411.8369140625,
+      "width": 391.2337646484375,
+      "height": 1067.0400390625,
+      "anchorX": 123.56251525878906,
+      "bottom": 655.203125,
+      "scale": 1.14,
+      "screenshot": null
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "count": 1,
+      "actorId": "sage_seraphine",
+      "x": -95.66812133789062,
+      "y": -479.38525390625,
+      "width": 346.77374267578125,
+      "height": 1154.58837890625,
+      "anchorX": 77.71875,
+      "bottom": 675.203125,
+      "scale": 1.14,
+      "screenshot": "cast-count-390x844-1.jpg"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "count": 2,
+      "actorId": "sage_seraphine",
+      "x": -95.66812133789062,
+      "y": -479.38525390625,
+      "width": 346.77374267578125,
+      "height": 1154.58837890625,
+      "anchorX": 77.71875,
+      "bottom": 675.203125,
+      "scale": 1.14,
+      "screenshot": "cast-count-390x844-2.jpg"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "count": 3,
+      "actorId": "sage_seraphine",
+      "x": -95.66812133789062,
+      "y": -479.38525390625,
+      "width": 346.77374267578125,
+      "height": 1154.58837890625,
+      "anchorX": 77.71875,
+      "bottom": 675.203125,
+      "scale": 1.14,
+      "screenshot": "cast-count-390x844-3.jpg"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "count": 4,
+      "actorId": "sage_seraphine",
+      "x": -95.66812133789062,
+      "y": -479.38525390625,
+      "width": 346.77374267578125,
+      "height": 1154.58837890625,
+      "anchorX": 77.71875,
+      "bottom": 675.203125,
+      "scale": 1.14,
+      "screenshot": "cast-count-390x844-4.jpg"
+    }
+  ],
+  "failures": []
+}

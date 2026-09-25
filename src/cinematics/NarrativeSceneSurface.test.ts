@@ -2,10 +2,11 @@
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { dialogues } from '../game/content';
-import { ALARIC_AUDIENCE_TABLEAU, createGenericNarrativeTableau } from './NarrativeTableau';
+import { ALARIC_AUDIENCE_TABLEAU, AUDIENCE_ROAD_DEPARTURE_TABLEAU, CAMP_DEPARTURE_TABLEAU, VALMIR_FORK_TABLEAU, createGenericBoundaryTableau, createGenericNarrativeTableau } from './NarrativeTableau';
 import { applyFinalDialoguePresentationPlan } from './DialoguePresentationSegments';
 import { createNarrativeDialogueResolver } from './NarrativeDialogueAdapter';
-import { NarrativeSceneSurface, resolveNarrativeCastDensityScale } from './NarrativeSceneSurface';
+import { NarrativeSceneSurface, SCENE_INTEGRATED_ACTOR_BASE_SCALE, THEATRICAL_ACTOR_BASE_SCALE } from './NarrativeSceneSurface';
+import { resolveStaticTableauActorTuning, resolveStaticTableauComposition } from './StaticTableauComposition';
 
 describe('NarrativeSceneSurface', () => {
   afterEach(() => document.body.replaceChildren());
@@ -27,7 +28,57 @@ describe('NarrativeSceneSurface', () => {
     expect(root.querySelectorAll('.narrative-cast__actor figcaption, .narrative-cast__actor [data-actor-label]')).toHaveLength(0);
   });
 
-  it('segments the six-person opening into stable density-scaled four-person compositions', async () => {
+  it('uses authored semantic slots for a foreground Audience composition without environmental depth', async () => {
+    const phase = ALARIC_AUDIENCE_TABLEAU.phases!.find((candidate) => candidate.id === 'AUDIENCE_COMPANY_RESPONSE')!;
+    const profile = resolveStaticTableauComposition(ALARIC_AUDIENCE_TABLEAU, phase);
+    expect(profile).toBe('AUTHORITY_AUDIENCE');
+    const far = phase.staticCast.find((actor) => actor.screenPosition === 'FAR_LEFT')!;
+    const center = phase.staticCast.find((actor) => actor.screenPosition === 'CENTER_RIGHT')!;
+    expect(resolveStaticTableauActorTuning(profile, far).baselineVh).toBe(resolveStaticTableauActorTuning(profile, center).baselineVh);
+    expect(resolveStaticTableauActorTuning(profile, far).scale).toBe(resolveStaticTableauActorTuning(profile, center).scale);
+    const root = document.createElement('div');
+    const surface = new NarrativeSceneSurface(root, ALARIC_AUDIENCE_TABLEAU, { reducedMotion: true });
+    surface.mount('/audience.webp', 'AUDIENCE_COMPANY_RESPONSE');
+    await surface.setPhase(phase.id, 'alistair');
+    const actor = surface.castLayer.querySelector<HTMLElement>('[data-actor-id="alistair"]')!;
+    const originalGeometry = { left: actor.style.left, baseline: actor.style.getPropertyValue('--tableau-baseline'), scale: actor.style.getPropertyValue('--narrative-actor-scale') };
+    await surface.setPhase(phase.id, 'alaric');
+    expect({ left: actor.style.left, baseline: actor.style.getPropertyValue('--tableau-baseline'), scale: actor.style.getPropertyValue('--narrative-actor-scale') }).toEqual(originalGeometry);
+    expect(actor.dataset.screenPosition).toBe(phase.staticCast.find((candidate) => candidate.actorId === 'alistair')!.screenPosition);
+    expect(actor.style.getPropertyValue('--narrative-ground-bottom')).toBe('');
+    expect(actor.dataset.depthSlot).toBeUndefined();
+  });
+
+  it('selects theatrical grouping from scene context rather than cast count or the current speaker', () => {
+    const opening = dialogues.get('acte_ouverture')!;
+    const openingTableau = applyFinalDialoguePresentationPlan(opening, createGenericNarrativeTableau(opening));
+    const event = dialogues.get('ate_bois_clair_night_watch')!;
+    const eventTableau = applyFinalDialoguePresentationPlan(event, createGenericNarrativeTableau(event));
+    const audience = ALARIC_AUDIENCE_TABLEAU;
+    const profiles = [openingTableau, eventTableau, audience].map((tableau) =>
+      resolveStaticTableauComposition(tableau, tableau.phases![0]!));
+    expect([openingTableau, eventTableau, audience].map((tableau) => tableau.phases![0]!.staticCast.length)).toEqual([4, 4, 4]);
+    expect(profiles).toEqual(['COMPANY_EXCHANGE', 'EVENT_SUBJECT_FOCUS', 'AUTHORITY_AUDIENCE']);
+    const position = audience.phases![0]!.staticCast.find((actor) => actor.screenPosition === 'CENTER_LEFT')!;
+    expect(resolveStaticTableauActorTuning('AUTHORITY_AUDIENCE', position).xPercent)
+      .not.toBe(resolveStaticTableauActorTuning('COMPANY_EXCHANGE', position).xPercent);
+    expect(position.screenPosition).toBe('CENTER_LEFT');
+  });
+
+  it('balances elite and apparition silhouettes without moving authored slots or baselines', () => {
+    const base = ALARIC_AUDIENCE_TABLEAU.phases![0]!.staticCast[0]!;
+    const tuning = (actorId: string) => resolveStaticTableauActorTuning('COMPANY_EXCHANGE', { ...base, actorId });
+    const ordinary = tuning('sage_seraphine');
+    const troll = tuning('forest_troll_elite');
+    const dragon = tuning('young_dragon_elite');
+    const apparition = tuning('shrine_apparition');
+    expect(troll.scale).toBeGreaterThan(ordinary.scale);
+    expect(dragon.scale).toBeGreaterThan(ordinary.scale);
+    expect(apparition.scale).toBeLessThan(ordinary.scale);
+    expect([troll, dragon, apparition].every((value) => value.xPercent === ordinary.xPercent && value.baselineVh === ordinary.baselineVh)).toBe(true);
+  });
+
+  it('segments the six-person opening into stable four-person compositions', async () => {
     const sequence = dialogues.get('acte_ouverture')!;
     const tableau = applyFinalDialoguePresentationPlan(sequence, createGenericNarrativeTableau(sequence));
     const root = document.createElement('div');
@@ -40,8 +91,8 @@ describe('NarrativeSceneSurface', () => {
     const alistair = root.querySelector<HTMLElement>('[data-actor-id="alistair"]')!;
     const seraphine = root.querySelector<HTMLElement>('[data-actor-id="sage_seraphine"]')!;
     expect(root.querySelectorAll('.narrative-cast__actor')).toHaveLength(4);
-    expect(root.querySelector('.narrative-scene-surface__cast')?.getAttribute('data-cast-density-scale')).toBe('1.1');
-    expect(alistair.dataset.castDensityScale).toBe('1.1');
+    expect(root.querySelector('.narrative-scene-surface')?.getAttribute('data-cast-placement-mode')).toBe('THEATRICAL_FOREGROUND');
+    expect(alistair.style.getPropertyValue('--narrative-actor-scale')).toBe(`${THEATRICAL_ACTOR_BASE_SCALE}`);
     expect(alistair.dataset.castState).toBe('ACTIVE');
     expect(seraphine.dataset.castState).toBe('LISTENING');
 
@@ -60,13 +111,41 @@ describe('NarrativeSceneSurface', () => {
     expect(root.querySelector('[data-actor-id="kestrel"]')?.getAttribute('data-cast-state')).toBe('ACTIVE');
   });
 
-  it('gives smaller casts progressively stronger premium presence without changing identity stature', () => {
-    const scales = [1, 2, 3, 4].map(resolveNarrativeCastDensityScale);
-    expect(scales[0]).toBeGreaterThan(scales[1]!);
-    expect(scales[1]).toBeGreaterThan(scales[2]!);
-    expect(scales[2]).toBeGreaterThan(scales[3]!);
-    expect(scales[3]).toBeGreaterThan(1);
-    expect(resolveNarrativeCastDensityScale(5)).toBe(1);
+  it('keeps one actor at the same theatrical scale across one to four cast members', async () => {
+    const base = ALARIC_AUDIENCE_TABLEAU.phases![0]!.staticCast[0]!;
+    const root = document.createElement('div');
+    const samples: string[][] = [];
+    for (const count of [1, 2, 3, 4]) {
+      const tableau = { ...ALARIC_AUDIENCE_TABLEAU, phases: [{ ...ALARIC_AUDIENCE_TABLEAU.phases![0]!, staticCast: [base, ...ALARIC_AUDIENCE_TABLEAU.phases![0]!.staticCast.slice(1, count)] }] };
+      const surface = new NarrativeSceneSurface(root, tableau, { reducedMotion: true });
+      surface.mount();
+      await surface.whenRenderable();
+      const actor = surface.castLayer.querySelector<HTMLElement>(`[data-actor-id="${base.actorId}"]`)!;
+      samples.push([actor.style.left, actor.style.getPropertyValue('--tableau-baseline'), actor.style.getPropertyValue('--narrative-actor-scale')]);
+      surface.dispose();
+    }
+    expect(samples.every((sample) => JSON.stringify(sample) === JSON.stringify(samples[0]))).toBe(true);
+  });
+
+  it('requires scene-authored coordinates for each stage-owned journey cast', async () => {
+    expect(SCENE_INTEGRATED_ACTOR_BASE_SCALE).toBe(1.4);
+    const tableaux = [CAMP_DEPARTURE_TABLEAU, AUDIENCE_ROAD_DEPARTURE_TABLEAU, VALMIR_FORK_TABLEAU, createGenericBoundaryTableau('test:road', 'single')];
+    for (const tableau of tableaux) {
+      expect(tableau.castPlacementMode).toBe('SCENE_INTEGRATED');
+      const surface = new NarrativeSceneSurface(document.createElement('div'), tableau, { reducedMotion: true });
+      surface.mount();
+      await surface.whenRenderable();
+      expect(surface.element.dataset.dialogueSurfaceMode).toBeUndefined();
+      for (const actor of surface.castLayer.querySelectorAll<HTMLElement>('.narrative-cast__actor')) {
+        expect(actor.dataset.castPlacementMode).toBe('SCENE_INTEGRATED');
+        const placement = tableau.sceneCastPlacement![actor.dataset.actorId!]!;
+        const spec = tableau.phases![0]!.staticCast.find((candidate) => candidate.actorId === actor.dataset.actorId)!;
+        expect(actor.style.left).toBe(`${placement.xPercent}%`);
+        expect(actor.style.getPropertyValue('--tableau-baseline')).toBe(`${placement.bottomVh}vh`);
+        expect(Number(actor.style.getPropertyValue('--narrative-actor-scale'))).toBeCloseTo(spec.scale * placement.scale * SCENE_INTEGRATED_ACTOR_BASE_SCALE);
+      }
+      surface.dispose();
+    }
   });
 
   it('changes Maelor facing by addressee without changing his authored company-side position', async () => {

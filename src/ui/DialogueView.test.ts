@@ -7,8 +7,35 @@ import { dialogues } from '../game/content';
 import { createInitialState } from '../game/store';
 import type { DialogueSequence, NarrativeEffect } from '../game/types';
 import { DialogueView } from './DialogueView';
+import { resolveDialoguePortrait } from './DialoguePortrait';
 
 describe('DialogueView narrative boundaries', () => {
+  it('crops the canonical master into a compact frame and falls back when it cannot load', () => {
+    const portrait = resolveDialoguePortrait('alaric');
+    expect(portrait?.src).toBe('/assets/characters/pixel/masters/alaric.png');
+    expect(portrait?.scale).toBeGreaterThan(2);
+    expect(resolveDialoguePortrait('unregistered_actor')).toBeUndefined();
+
+    const root = document.createElement('div');
+    const view = new DialogueView({ root, getState: createInitialState, applyEffects: async () => undefined });
+    const sequence: DialogueSequence = {
+      id: 'portrait-proof',
+      steps: [{ id: '1', speaker: 'Alaric', actorId: 'alaric', text: 'La ligne reste visible.',
+        tag: '', portrait: '/uncanonical.png', expression: 'neutral', side: 'left', next: null, effects: [], choices: [] }],
+    };
+    void view.play(sequence, { reducedMotion: true });
+    const card = root.querySelector<HTMLElement>('.dialogue__box')!;
+    const frame = root.querySelector<HTMLElement>('.dialogue__card-portrait')!;
+    expect(card.classList.contains('campaign-ui-frame--compact')).toBe(true);
+    expect(root.querySelector('.dialogue__speaker')?.textContent).toBe('Alaric');
+    expect(root.querySelector('.dialogue__text')?.textContent).toBe('La ligne reste visible.');
+    expect(frame.querySelector('img')?.getAttribute('src')).toBe(portrait?.src);
+    frame.querySelector('img')?.dispatchEvent(new Event('error'));
+    expect(frame.hidden).toBe(true);
+    expect(frame.dataset.portraitState).toBe('fallback');
+    expect(root.querySelector('.dialogue__text')?.textContent).toBe('La ligne reste visible.');
+    view.close();
+  });
   it('renders the local contest hint without interpreting Lion campaign flags', () => {
     const state = createInitialState();
     state.reputation = 50;
@@ -168,7 +195,8 @@ describe('DialogueView narrative boundaries', () => {
     expect(overlay?.classList.contains('dialogue--speaker-card')).toBe(true);
     expect(overlay?.dataset.dialogueMode).toBe('SPEAKER_CARD');
     expect(root.querySelector('.dialogue__text')?.textContent).toBe('Condensed card.');
-    expect(root.querySelector<HTMLElement>('.dialogue__portrait--left')?.style.backgroundImage).toContain('/sage_seraphine.png');
+    expect(root.querySelector<HTMLElement>('.dialogue__portrait--left')?.style.backgroundImage).toBe('');
+    expect(root.querySelector<HTMLImageElement>('.dialogue__card-portrait img')?.src).toContain('/sage_seraphine.png');
     root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
     expect(overlay?.classList.contains('dialogue--cinematic-subtitle')).toBe(true);
     root.querySelector<HTMLButtonElement>('.dialogue__box')?.click();
@@ -180,7 +208,8 @@ describe('DialogueView narrative boundaries', () => {
     const choice = root.querySelector<HTMLButtonElement>('.dialogue-choice');
     expect(overlay?.dataset.narrativeAgencyState).toBe('ACTIVE');
     expect(overlay?.classList.contains('dialogue--choice-active')).toBe(true);
-    expect(root.querySelector<HTMLButtonElement>('.dialogue__box')?.hidden).toBe(true);
+    expect(root.querySelector<HTMLButtonElement>('.dialogue__box')?.disabled).toBe(true);
+    expect(root.querySelector('.dialogue__text')?.textContent).toBe('Canonical choice.');
     choice?.click();
     choice?.click();
     await completion;
@@ -261,7 +290,7 @@ describe('DialogueView narrative boundaries', () => {
     await completion;
   });
 
-  it('reserves final text before progressive reveal and keeps active choices free of a speaker card', () => {
+  it('reserves final text before progressive reveal and keeps active choices with their speech card', () => {
     vi.useFakeTimers();
     const root = document.createElement('div');
     document.body.append(root);
@@ -303,7 +332,7 @@ describe('DialogueView narrative boundaries', () => {
     expect(overlay.dataset.narrativeSceneMode).toBe('STATIC_TABLEAU');
     expect(overlay.dataset.narrativePlacement).toBe('LEFT_UPPER');
     expect(overlay.dataset.narrativeAgencyState).toBe('ACTIVE');
-    expect(root.querySelector<HTMLButtonElement>('.dialogue__box')?.hidden).toBe(true);
+    expect(root.querySelector<HTMLButtonElement>('.dialogue__box')?.disabled).toBe(true);
     expect(root.querySelectorAll('.dialogue-choice')).toHaveLength(2);
     const [firstChoice, secondChoice] = [...root.querySelectorAll<HTMLButtonElement>('.dialogue-choice')];
     expect(firstChoice?.textContent).toContain('Première voie');

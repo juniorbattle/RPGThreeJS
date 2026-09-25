@@ -4,6 +4,8 @@ import type { Contest, DialogueChoice, DialogueSequence, DialogueStep, GameState
 import { resolveContestOutcome } from '../game/contestResolution';
 import type { NarrativeDialogueResolver, NarrativeDialogueStepPresentation } from '../cinematics/NarrativeDialogueAdapter';
 import type { NarrativeChoiceScreenLane } from '../cinematics/NarrativeTableau';
+import { createCampaignIcon, decorateCampaignButton, decorateCampaignFrame, type CampaignIcon } from './design-system/CampaignUi';
+import { resolveDialoguePortrait } from './DialoguePortrait';
 
 interface DialogueViewOptions {
   root: HTMLElement;
@@ -122,16 +124,19 @@ export class DialogueView {
       </div>
       <div class="dialogue__choices" aria-label="Choix de dialogue"></div>
       <button class="dialogue__box ui-panel ui-panel--dialogue" type="button">
+        <span class="dialogue__card-portrait" aria-hidden="true"></span>
         <span class="dialogue__speaker-block">
           <span class="dialogue__speaker"></span>
           <span class="dialogue__tag"></span>
         </span>
-        <span class="dialogue__divider" aria-hidden="true"></span>
+        <span class="dialogue__divider campaign-ui-divider campaign-ui-divider--horizontal-compact" aria-hidden="true"></span>
         <span class="dialogue__text"><span class="dialogue__text-reveal"></span></span>
         <span class="dialogue__outcomes" aria-label="Conséquences"></span>
         <span class="dialogue__continue">Continuer ◆</span>
       </button>
     `;
+    const card = this.overlay.querySelector<HTMLButtonElement>('.dialogue__box');
+    if (card) decorateCampaignFrame(card, 'compact');
     (options.root ?? this.options.root).append(this.overlay);
     this.overlay.querySelector<HTMLButtonElement>('.dialogue__box')?.addEventListener('click', () => {
       void this.advancePresentation();
@@ -198,13 +203,15 @@ export class DialogueView {
     const choices = this.overlay.querySelector<HTMLElement>('.dialogue__choices');
     const continueLabel = this.overlay.querySelector<HTMLElement>('.dialogue__continue');
     const box = this.overlay.querySelector<HTMLButtonElement>('.dialogue__box');
-    if (!left || !right || !center || !speaker || !tag || !text || !outcomes || !choices || !continueLabel || !box) return;
+    const cardPortrait = this.overlay.querySelector<HTMLElement>('.dialogue__card-portrait');
+    if (!left || !right || !center || !speaker || !tag || !text || !outcomes || !choices || !continueLabel || !box || !cardPortrait) return;
 
     const cinematicOverlay = this.overlay.classList.contains('dialogue--cinematic');
     const narrativeStage = this.overlay.classList.contains('dialogue--narrative');
     this.choiceScreenLanes = presentation.choiceScreenLanes ?? [];
-    const portrait = presentation.showPortrait ? dialoguePortrait(step) : '';
-    const profile = presentation.showPortrait ? dialogueActorProfile(step) : undefined;
+    const showLegacyStagePortrait = presentation.showPortrait && !narrativeStage;
+    const portrait = showLegacyStagePortrait ? dialoguePortrait(step) : '';
+    const profile = showLegacyStagePortrait ? dialogueActorProfile(step) : undefined;
     this.overlay.dataset.speakerSide = step.side;
     this.overlay.dataset.dialogueMode = presentation.mode;
     this.overlay.dataset.dialogueStep = step.id;
@@ -227,13 +234,15 @@ export class DialogueView {
     this.overlay.dataset.narrativeAgencyState = step.choices?.length ? 'SETUP' : 'NONE';
     this.overlay.dataset.narrativeSpeakerCardPolicy = presentation.speakerCardPolicy ?? 'VISIBLE';
     box.hidden = false;
-    this.overlay.classList.toggle('dialogue--portrait-beat', narrativeStage && presentation.showPortrait);
+    box.disabled = false;
+    this.overlay.classList.remove('dialogue--portrait-beat');
+    this.setCardPortrait(cardPortrait, step.actorId);
     this.setPortrait(left, step.side === 'left' ? portrait : '', step.expression, step.side === 'left' ? profile : undefined);
     this.setPortrait(right, step.side === 'right' ? portrait : '', step.expression, step.side === 'right' ? profile : undefined);
     this.setPortrait(center, step.side === 'center' ? portrait : '', step.expression, step.side === 'center' ? profile : undefined);
-    left.classList.toggle('is-visible', presentation.showPortrait && step.side === 'left');
-    right.classList.toggle('is-visible', presentation.showPortrait && step.side === 'right');
-    center.classList.toggle('is-visible', presentation.showPortrait && step.side === 'center');
+    left.classList.toggle('is-visible', showLegacyStagePortrait && step.side === 'left');
+    right.classList.toggle('is-visible', showLegacyStagePortrait && step.side === 'right');
+    center.classList.toggle('is-visible', showLegacyStagePortrait && step.side === 'center');
     speaker.textContent = step.speaker;
     tag.textContent = step.tag;
     tag.hidden = !step.tag;
@@ -278,6 +287,31 @@ export class DialogueView {
     element.classList.toggle('has-image', isImage);
   }
 
+  private setCardPortrait(frame: HTMLElement, actorId: string | undefined): void {
+    const portrait = resolveDialoguePortrait(actorId);
+    frame.replaceChildren();
+    frame.hidden = !portrait;
+    frame.dataset.portraitState = portrait ? 'loading' : 'fallback';
+    if (!portrait) return;
+    frame.style.setProperty('--dialogue-crop-x', portrait.cropX);
+    frame.style.setProperty('--dialogue-crop-y', portrait.cropY);
+    frame.style.setProperty('--dialogue-crop-scale', `${portrait.scale}`);
+    const image = document.createElement('img');
+    image.src = portrait.src;
+    image.alt = '';
+    image.draggable = false;
+    image.addEventListener('load', () => {
+      if (frame.firstElementChild === image) frame.dataset.portraitState = 'ready';
+    });
+    image.addEventListener('error', () => {
+      if (frame.firstElementChild !== image) return;
+      frame.replaceChildren();
+      frame.hidden = true;
+      frame.dataset.portraitState = 'fallback';
+    });
+    frame.append(image);
+  }
+
   private createChoice(choice: DialogueChoice, screenLane?: NarrativeChoiceScreenLane): HTMLButtonElement {
     const button = document.createElement('button');
     button.className = 'dialogue-choice ui-panel ui-panel--dense';
@@ -296,10 +330,11 @@ export class DialogueView {
     button.disabled = isBlocked && !isContestable;
     button.classList.toggle('is-blocked', button.disabled);
     button.classList.toggle('dialogue-choice--contest', isContestable);
+    decorateCampaignButton(button, button.disabled ? 'disabled' : 'secondary');
 
     const icon = document.createElement('span');
     icon.className = 'dialogue-choice__icon';
-    icon.textContent = this.choiceIcon(choice);
+    icon.append(createCampaignIcon(this.choiceIcon(choice)));
 
     const body = document.createElement('span');
     body.className = 'dialogue-choice__body';
@@ -403,13 +438,13 @@ export class DialogueView {
     return badges;
   }
 
-  private choiceIcon(choice: DialogueChoice): string {
-    if (choice.effects.some((effect) => effect.type === 'startCombat')) return '⚔';
-    if (choice.effects.some((effect) => effect.type === 'recruitUnit')) return '♙';
-    if (choice.effects.some((effect) => effect.type === 'addGold' && effect.amount > 0)) return '◆';
-    if (choice.effects.some((effect) => effect.type === 'addReputation' && effect.amount > 0)) return '♜';
-    if (choice.effects.some((effect) => effect.type === 'addReputation' && effect.amount < 0)) return '⚖';
-    return '◇';
+  private choiceIcon(choice: DialogueChoice): CampaignIcon {
+    if (choice.effects.some((effect) => effect.type === 'startCombat')) return 'combat';
+    if (choice.effects.some((effect) => effect.type === 'recruitUnit')) return 'clan';
+    if (choice.effects.some((effect) => effect.type === 'addGold' && effect.amount > 0)) return 'gold';
+    if (choice.effects.some((effect) => effect.type === 'addReputation')) return 'reputation';
+    if (choice.effects.some((effect) => effect.type === 'addItem')) return 'reward';
+    return 'dialogue';
   }
 
   private choiceToneClass(choice: DialogueChoice): string {
@@ -472,7 +507,7 @@ export class DialogueView {
   }
 
   private async advancePresentation(): Promise<void> {
-    if (!this.current || !this.overlay || this.stepTransitionInFlight) return;
+    if (!this.current || !this.overlay || this.stepTransitionInFlight || this.overlay.classList.contains('dialogue--choice-active')) return;
     if (this.displaySegmentIndex < this.displaySegments.length - 1) {
       this.displaySegmentIndex += 1;
       const text = this.overlay.querySelector<HTMLElement>('.dialogue__text');
@@ -502,7 +537,7 @@ export class DialogueView {
     const box = this.overlay.querySelector<HTMLButtonElement>('.dialogue__box');
     if (!choices || !box) return;
     choices.replaceChildren(...this.current.choices.map((choice, index) => this.createChoice(choice, this.choiceScreenLanes[index])));
-    box.hidden = true;
+    box.disabled = true;
     this.overlay.classList.add('dialogue--choice-active');
     this.overlay.dataset.narrativeAgencyState = 'ACTIVE';
     choices.querySelector<HTMLButtonElement>('button:not([disabled])')?.focus();

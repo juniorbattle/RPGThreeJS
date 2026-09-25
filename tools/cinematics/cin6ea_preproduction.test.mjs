@@ -312,6 +312,7 @@ describe('CIN-6E-A final visual preproduction system', () => {
       'src/cinematics/NarrativePresentationDoctrine.test.ts',
       'src/cinematics/NarrativeSceneSurface.test.ts',
       'src/cinematics/NarrativeSceneSurface.ts',
+      'src/cinematics/StaticTableauComposition.ts', // Operator-approved theatrical composition on this branch.
       'src/cinematics/NarrativeStage.ts',
       'src/cinematics/NarrativeStage.test.ts',
       'src/cinematics/NarrativeStagingAudit.test.ts',
