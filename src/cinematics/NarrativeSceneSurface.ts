@@ -21,7 +21,7 @@ type NarrativeStaticCastState = 'ACTIVE' | 'LISTENING' | 'BACKGROUND';
 export const THEATRICAL_ACTOR_BASE_SCALE = 1.14;
 
 /** Journey actors retain each road's authored perspective while reading clearly against the environment. */
-export const SCENE_INTEGRATED_ACTOR_BASE_SCALE = 1.2;
+export const SCENE_INTEGRATED_ACTOR_BASE_SCALE = 1.4;
 
 function castState(spec: NarrativeStagedActorSpec, speakerId?: string): NarrativeStaticCastState {
   if (spec.actorId === speakerId) return 'ACTIVE';

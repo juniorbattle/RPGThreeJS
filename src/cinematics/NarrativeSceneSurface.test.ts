@@ -128,6 +128,7 @@ describe('NarrativeSceneSurface', () => {
   });
 
   it('requires scene-authored coordinates for each stage-owned journey cast', async () => {
+    expect(SCENE_INTEGRATED_ACTOR_BASE_SCALE).toBe(1.4);
     const tableaux = [CAMP_DEPARTURE_TABLEAU, AUDIENCE_ROAD_DEPARTURE_TABLEAU, VALMIR_FORK_TABLEAU, createGenericBoundaryTableau('test:road', 'single')];
     for (const tableau of tableaux) {
       expect(tableau.castPlacementMode).toBe('SCENE_INTEGRATED');
