@@ -106,7 +106,10 @@ it('secures loot, stages actual clan, gathers once, then opens management and pr
       for (const member of state.clan.members) expect(cast).toContain(resolveCharacterVisualProfile(member.definitionId)!.unitId);
       expect(options.tableau.tableauBackgroundId).toBe('first_refuge_gathering_environment');
     }),
-    exploration: { open: vi.fn(async () => { order.push('management'); return 'continue'; }) },
+    exploration: {
+      prepareBackground: vi.fn(async () => undefined),
+      open: vi.fn(async () => { order.push('management'); return 'continue'; }),
+    },
     playPostNodeNarrative: vi.fn(async () => { order.push('later-narrative'); return false; }),
     enterCampaignPresentation: vi.fn(async () => undefined),
   });

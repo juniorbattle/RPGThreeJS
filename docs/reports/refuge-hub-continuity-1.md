@@ -26,6 +26,12 @@ A single scoped `dialogue:first_refuge_gathering` binding now points to that pro
 
 The second hub uses the existing `SECOND_REFUGE` `HOLD_SOURCE` plate at `/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png`. Its title comes from the runtime node label, not the composited preview title.
 
+## Background readiness correction
+
+The initial second-refuge 1440 capture exposed the dark CSS fallback even though `--refuge-background` contained the correct URL. The hub now starts loading its resolved `presentation.background` before the arrival or gathering surface is disposed. A small `Image` load/decode helper records readiness and decoded dimensions for either refuge plate. `ExplorationView` keeps the hub hidden and inert until that request settles, then exposes it with `data-background-ready` and decoded dimensions. Its `open()` Promise still resolves only when the player chooses one of the existing actions. The same cached result is reused when returning from ManagementView or Rest.
+
+If loading or decoding fails, or the request stalls for ten seconds, the hub becomes usable with its existing dark background fallback and a `data-background-error` reason. No loading screen or extra HUD was introduced. The browser QA now checks the runtime ready state, independently decodes the URL in Chromium, confirms positive matching dimensions and the visible surface, and records `backgroundUrl`, `backgroundReady`, `naturalWidth`, and `naturalHeight` in its JSON for both refuges. On the refreshed initial captures, each plate decoded at **1672×941**. The initial second-refuge 1440 screenshot visibly shows its camp environment; the post-management 1440 and 390 captures do as well. The first-refuge 1440 composition remains unchanged.
+
 ## HUD, actions, and state semantics
 
 `GameApp` passes its one existing `CampaignStatusHud` instance into `ExplorationView`. The gathering dialogue hides it under dialogue policy. The hub mounts that same element with the existing `journey` layout; closing the hub removes it with owner-aware cleanup. Management owns its existing resource display while open. Returning to the hub remounts the same HUD element. No refuge-specific HUD, resource bar, or top menu was added.
@@ -47,12 +53,15 @@ The production-flow segment loads a committed first-refuge save fixture built th
 ## Validation
 
 - Focused refuge, shared HUD, campaign grammar, T0 production rollout, campaign presentation migration, R6 full-route, and historical cinematic guards: **12 files, 206 tests passed**.
+- Background-readiness focused rerun, including ExplorationView, RefugePresentation, refugeHubContinuity, CampaignStatusHud, campaign grammar, and the CIN-6E-A guard: **7 files, 41 tests passed**.
 - TypeScript `tsc --noEmit`: passed.
 - Production Vite build: passed. The existing large-chunk advisory remains.
-- Full Vitest with four maximum workers: **159 files, 2,558 tests passed**.
+- Full Vitest with four maximum workers: **160 files, 2,562 tests passed** after adding the readiness tests.
 - Scoped Chromium QA: passed with no page errors.
 - Historical T0 browser completion guard: passed from a copied arrival checkpoint in ignored temporary output; recorded historical evidence files were untouched.
 - `git diff --check`: passed.
+
+The historical CIN-6E-A file guard now includes the exact `src/game/refugeHubContinuity.test.ts` path, which was already committed at this branch's starting HEAD. Its baseline hash and protection assertions were not changed.
 
 ## Remaining visual and content caveats
 

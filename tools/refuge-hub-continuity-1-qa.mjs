@@ -82,14 +82,27 @@ async function startDirectHub(page, nodeId, { wounded = 0, loot = 25 } = {}) {
     const node = state.run.graph.nodes.find(candidate => candidate.id === nodeId);
     void app.resolveRunNode(node, false);
   }, { nodeId, wounded, loot });
+  await page.waitForFunction(() => {
+    const hub = document.querySelector('.exploration-stop');
+    return hub && hub.dataset.backgroundReady !== 'pending';
+  });
   await page.locator('.exploration-stop').waitFor({ state: 'visible' });
   await page.evaluate(() => document.fonts.ready);
 }
 
 async function assertHub(page, nodeId, asset, restDisabled) {
-  const sample = await page.evaluate(() => {
+  const sample = await page.evaluate(async () => {
     const hub = document.querySelector('.exploration-stop');
     const hud = document.querySelector('.campaign-status-hud');
+    const backgroundUrl = hub?.dataset.backgroundUrl ?? '';
+    const probe = new Image();
+    let probeError = null;
+    try {
+      probe.src = backgroundUrl;
+      await probe.decode();
+    } catch (error) {
+      probeError = String(error);
+    }
     const rect = element => { const { left, top, right, bottom, width, height } = element.getBoundingClientRect();
       return { left, top, right, bottom, width, height }; };
     return {
@@ -102,6 +115,17 @@ async function assertHub(page, nodeId, asset, restDisabled) {
       family: hub?.dataset.visualFamily,
       context: hub?.dataset.environmentContext,
       background: hub?.style.getPropertyValue('--refuge-background'),
+      backgroundUrl,
+      backgroundReady: hub?.dataset.backgroundReady === 'true',
+      naturalWidth: Number(hub?.dataset.backgroundNaturalWidth ?? 0),
+      naturalHeight: Number(hub?.dataset.backgroundNaturalHeight ?? 0),
+      backgroundError: hub?.dataset.backgroundError ?? null,
+      computedBackground: hub ? getComputedStyle(hub).backgroundImage : null,
+      surfaceVisible: hub ? getComputedStyle(hub).visibility === 'visible' && !hub.inert : false,
+      probeReady: !probeError && probe.complete && probe.naturalWidth > 0 && probe.naturalHeight > 0,
+      probeWidth: probe.naturalWidth,
+      probeHeight: probe.naturalHeight,
+      probeError,
       securedFeedback: hub?.querySelector('.exploration-stop__secured')?.textContent ?? null,
       actions: [...hub.querySelectorAll('[data-action]')].map(button => {
         const bounds = rect(button);
@@ -126,6 +150,20 @@ async function assertHub(page, nodeId, asset, restDisabled) {
   assert.equal(sample.topNavDuplicates, 0);
   assert.equal(sample.travelCount, 0);
   assert.equal(sample.nodeId, nodeId);
+  if (!sample.backgroundReady || !sample.probeReady) {
+    proof.errors.push(`Background readiness failed for ${nodeId}: ${JSON.stringify({
+      backgroundUrl: sample.backgroundUrl, backgroundError: sample.backgroundError,
+      probeError: sample.probeError,
+    })}`);
+  }
+  assert.equal(sample.backgroundUrl, asset);
+  assert.equal(sample.backgroundReady, true);
+  assert.ok(sample.naturalWidth > 0 && sample.naturalHeight > 0);
+  assert.equal(sample.surfaceVisible, true);
+  assert.equal(sample.probeReady, true);
+  assert.equal(sample.probeWidth, sample.naturalWidth);
+  assert.equal(sample.probeHeight, sample.naturalHeight);
+  assert.ok(sample.computedBackground.includes(asset));
   assert.ok(sample.background.includes(asset));
   assert.deepEqual(sample.actions.map(button => button.id), ['clan', 'shop', 'skills', 'rest', 'continue']);
   assert.equal(sample.actions.find(button => button.id === 'rest').disabled, restDisabled);
@@ -166,7 +204,7 @@ async function managementReturn(page, action, nodeId, asset) {
   assert.equal(after.counters.travelMounts, 0);
   const layout = await assertHub(page, nodeId, asset, await page.locator('[data-action="rest"]').isDisabled());
   assert.equal(layout.securedFeedback, '+0 or placé dans le coffre');
-  return { before, after };
+  return { before, after, layout };
 }
 
 async function installCommittedRefugeSave(page) {

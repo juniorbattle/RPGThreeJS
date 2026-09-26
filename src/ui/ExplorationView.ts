@@ -1,10 +1,12 @@
 import type { CampaignStatusHud } from './CampaignStatusHud';
 import { createCampaignIcon, type CampaignIcon } from './design-system/CampaignUi';
 import type { RefugePresentation } from './RefugePresentation';
+import { preloadRefugeBackground, type RefugeBackgroundReadiness } from './RefugeBackgroundReadiness';
 
 interface ExplorationViewOptions {
   root: HTMLElement;
   statusHud: CampaignStatusHud;
+  backgroundPreloader?: (backgroundUrl: string) => Promise<RefugeBackgroundReadiness>;
 }
 
 export type ExplorationAction = 'continue' | 'shop' | 'clan' | 'skills' | 'rest';
@@ -18,8 +20,18 @@ interface RestSummary {
 
 export class ExplorationView {
   private element: HTMLElement | null = null;
+  private readonly backgroundRequests = new Map<string, Promise<RefugeBackgroundReadiness>>();
 
   constructor(private readonly options: ExplorationViewOptions) {}
+
+  prepareBackground(backgroundUrl: string): Promise<RefugeBackgroundReadiness> {
+    let request = this.backgroundRequests.get(backgroundUrl);
+    if (!request) {
+      request = (this.options.backgroundPreloader ?? preloadRefugeBackground)(backgroundUrl);
+      this.backgroundRequests.set(backgroundUrl, request);
+    }
+    return request;
+  }
 
   open(presentation: RefugePresentation, reputationLabel: string, securedGold: number, rest: RestSummary): Promise<ExplorationAction> {
     this.close();
@@ -33,7 +45,11 @@ export class ExplorationView {
     section.dataset.refugeNode = presentation.nodeId;
     section.dataset.visualFamily = presentation.visualFamily;
     section.dataset.environmentContext = presentation.environmentContext;
+    section.dataset.backgroundUrl = presentation.background;
+    section.dataset.backgroundReady = 'pending';
     section.style.setProperty('--refuge-background', `url("${presentation.background}")`);
+    section.style.visibility = 'hidden';
+    section.inert = true;
     section.innerHTML = `
       <div class="exploration-stop__veil"></div>
       <header>
@@ -63,9 +79,22 @@ export class ExplorationView {
     this.options.root.append(section);
     this.element = section;
     this.options.statusHud.show(section);
+    void this.prepareBackground(presentation.background).then((result) => {
+      if (this.element !== section) return;
+      section.dataset.backgroundReady = String(result.backgroundReady);
+      section.dataset.backgroundNaturalWidth = String(result.naturalWidth);
+      section.dataset.backgroundNaturalHeight = String(result.naturalHeight);
+      if (!result.backgroundReady) {
+        section.dataset.backgroundError = result.error ?? 'Unknown background error.';
+        section.style.setProperty('--refuge-background', 'none');
+      }
+      section.style.visibility = 'visible';
+      section.inert = false;
+    });
     return new Promise((resolve) => {
       section.querySelectorAll<HTMLButtonElement>('[data-action]').forEach((button) => {
         button.addEventListener('click', () => {
+          if (section.dataset.backgroundReady === 'pending') return;
           const action = button.dataset.action as ExplorationAction;
           this.close();
           resolve(action);

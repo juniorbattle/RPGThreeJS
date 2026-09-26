@@ -1132,6 +1132,7 @@ export class GameApp {
     if (node.type === 'refuge') {
       const presentation = resolveRefugePresentation(node);
       if (!presentation) throw new Error(`Missing interactive refuge presentation for ${node.id}`);
+      const refugeBackground = this.exploration.prepareBackground(presentation.background);
       const securedFlag = `refugeSecured:${node.id}`;
       if (!this.state.flags[securedFlag]) {
         await this.playJourneyCinematic(resolveCin6aRefugeArrival(node.id), node.label);
@@ -1155,6 +1156,7 @@ export class GameApp {
         });
         this.state.flags[gatheringFlag] = true;
       }
+      await refugeBackground;
       this.disposeNarrativeStage();
       this.statusHud?.hide();
       let refugeMessage = '';

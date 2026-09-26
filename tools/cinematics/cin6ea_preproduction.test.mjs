@@ -369,6 +369,7 @@ describe('CIN-6E-A final visual preproduction system', () => {
       'src/cinematics/NarrativePresentationPlans.ts',
       'src/game/TraversalOptionalConsequencePolicy.ts',
       'src/game/campaignGrammarConsolidation.test.ts',
+      'src/game/refugeHubContinuity.test.ts', // Existing refuge integration test at this branch's approved HEAD.
       'src/game/campaignGrammarContent.ts',
     ]);
     const runtimeDiff = execFileSync('git', ['diff', '--name-only', baseline, '--', 'src/game', 'src/cinematics'], { cwd: root, encoding: 'utf8' })

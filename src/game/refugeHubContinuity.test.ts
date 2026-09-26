@@ -30,7 +30,7 @@ it('keeps the same first refuge and route state through management and Rest; onl
     statusHud: new CampaignStatusHud(() => selectCampaignStatus(state)),
     playJourneyCinematic: vi.fn(async () => undefined),
     playDialogue: vi.fn(async () => undefined),
-    exploration: { open: vi.fn(async (presentation: any, _reputation: string, securedGold: number, rest: any) => {
+    exploration: { prepareBackground: vi.fn(async () => undefined), open: vi.fn(async (presentation: any, _reputation: string, securedGold: number, rest: any) => {
       expect(state.resolvedNodeIds).not.toContain(node.id);
       expect(state.run.currentNodeId).toBe(originalNode);
       expect(state.stepCounter).toBe(originalStep);
@@ -45,6 +45,9 @@ it('keeps the same first refuge and route state through management and Rest; onl
     enterCampaignPresentation: vi.fn(async () => undefined),
   });
   await app.resolveRunNode(node, false);
+  expect(app.exploration.prepareBackground).toHaveBeenCalledExactlyOnceWith(
+    '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png',
+  );
   expect(opens).toHaveLength(5);
   expect(opens.map(open => open.presentation)).toEqual(Array(5).fill(opens[0]!.presentation));
   expect(opens[0]!.presentation).toMatchObject({ nodeId: node.id, title: node.label,
@@ -77,7 +80,7 @@ it('keeps the second refuge interactive without moving its post-node ATE before 
     statusHud: new CampaignStatusHud(() => selectCampaignStatus(state)),
     playJourneyCinematic: vi.fn(async () => { order.push('arrival'); }),
     playDialogue: vi.fn(async () => { order.push('gathering'); }),
-    exploration: { open: vi.fn(async (presentation: any) => {
+    exploration: { prepareBackground: vi.fn(async () => undefined), open: vi.fn(async (presentation: any) => {
       expect(presentation).toMatchObject({ nodeId: node.id, title: 'Dernier feu du Lion', visualFamily: 'SECOND_REFUGE' });
       order.push('hub');
       return order.filter(item => item === 'hub').length === 1 ? 'shop' : 'continue';
@@ -87,6 +90,9 @@ it('keeps the second refuge interactive without moving its post-node ATE before 
     enterCampaignPresentation: vi.fn(async () => undefined),
   });
   await app.resolveRunNode(node, false);
+  expect(app.exploration.prepareBackground).toHaveBeenCalledExactlyOnceWith(
+    '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png',
+  );
   expect(order).toEqual(['arrival', 'hub', 'management', 'hub', 'post-node']);
   expect(POST_NODE_ATE[node.id]).toContain('ate_bois_clair_night_watch');
   expect(app.playDialogue).not.toHaveBeenCalled();
