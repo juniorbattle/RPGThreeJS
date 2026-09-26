@@ -50,7 +50,7 @@ for(let i=0;i<1400;i++){
    gathering=true;
  }
  if(await page.locator('.exploration-stop').count()){
-   assert.ok(gathering);assert.equal(await page.locator('.campaign-status-hud').count(),0);
+   assert.ok(gathering);assert.equal(await page.locator('.campaign-status-hud').count(),1);
    await shot('refuge-management');management=true;
    await page.locator('.exploration-stop [data-action=continue]').click();continue;
  }

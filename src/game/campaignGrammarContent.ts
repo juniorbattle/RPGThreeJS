@@ -3,7 +3,7 @@ import { dialogueSequenceSchema } from './types';
 /** Presentation aliases reuse reviewed plates; replacing art does not change campaign logic. */
 export const CAMPAIGN_GRAMMAR_PRESENTATIONS: Readonly<Record<string, { environmentContext: string; backgroundId: string }>> = {
   roadside_peddler: { environmentContext: 'dialogue:mystery_recruit', backgroundId: 'roadside_peddler_environment' },
-  first_refuge_gathering: { environmentContext: 'dialogue:ate_first_refuge_watch', backgroundId: 'clan_anchor_environment' },
+  first_refuge_gathering: { environmentContext: 'dialogue:first_refuge_gathering', backgroundId: 'first_refuge_gathering_environment' },
 };
 
 export const CAMPAIGN_GRAMMAR_DIALOGUES = [

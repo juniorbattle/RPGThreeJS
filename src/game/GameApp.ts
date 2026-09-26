@@ -31,6 +31,7 @@ import { DialogueView, resolveDialogueBackdrop } from '../ui/DialogueView';
 import { ManagementView } from '../ui/ManagementView';
 import { TravelView } from '../ui/TravelView';
 import { ExplorationView } from '../ui/ExplorationView';
+import { resolveRefugePresentation } from '../ui/RefugePresentation';
 import { PrologueView } from '../ui/PrologueView';
 import { sceneTransition } from '../ui/SceneTransition';
 import type { TransitionVariant } from '../ui/SceneTransition';
@@ -195,7 +196,7 @@ export class GameApp {
       onSave: () => this.saves.saveManual(this.state),
       onOpenMenu: () => this.renderTitle(),
     });
-    this.exploration = new ExplorationView({ root });
+    this.exploration = new ExplorationView({ root, statusHud: this.statusHud });
     this.prologue = new PrologueView(root);
   }
 
@@ -1129,6 +1130,9 @@ export class GameApp {
 
   private async resolveRunNode(node: RunNode, initial: boolean): Promise<void> {
     if (node.type === 'refuge') {
+      const presentation = resolveRefugePresentation(node);
+      if (!presentation) throw new Error(`Missing interactive refuge presentation for ${node.id}`);
+      const refugeBackground = this.exploration.prepareBackground(presentation.background);
       const securedFlag = `refugeSecured:${node.id}`;
       if (!this.state.flags[securedFlag]) {
         await this.playJourneyCinematic(resolveCin6aRefugeArrival(node.id), node.label);
@@ -1152,6 +1156,7 @@ export class GameApp {
         });
         this.state.flags[gatheringFlag] = true;
       }
+      await refugeBackground;
       this.disposeNarrativeStage();
       this.statusHud?.hide();
       let refugeMessage = '';
@@ -1159,7 +1164,7 @@ export class GameApp {
         this.setMode('NARRATIVE');
         const restCost = getRestCost(this.state);
         const woundedCount = getWoundedUnitCount(this.state);
-        const action = await this.exploration.open(getReputationRule(this.state.reputation).label, securedGold, {
+        const action = await this.exploration.open(presentation, getReputationRule(this.state.reputation).label, securedGold, {
           cost: restCost,
           woundedCount,
           canRest: woundedCount > 0 && this.state.gold >= restCost,
