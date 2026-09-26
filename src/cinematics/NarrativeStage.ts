@@ -191,6 +191,7 @@ export class NarrativeStage {
   }
 
   bindDialogue(sequence: DialogueSequence): void {
+    this.utilityDock.dispose();
     this.boundDialogue = sequence;
     this.statusHud?.hide(this.element);
     this.sceneSurface?.bindDialogue(sequence);
@@ -290,6 +291,7 @@ export class NarrativeStage {
     fallbackAsset?: string,
   ): Promise<VideoCinematicResult> {
     if (beat.mode !== 'CINEMATIC_HOLD') throw new Error(`Hold beat '${beat.beatId}' is not CINEMATIC_HOLD.`);
+    this.utilityDock.dispose();
     this.setPresentationBeat(beat);
     this.element.dataset.narrativeHoldSemantics = 'DIALOGUE_FREE';
     this.element.dataset.dialogueStepsOnHold = '0';
@@ -428,6 +430,7 @@ export class NarrativeStage {
   }
 
   requestAgency(presentation: JourneyAgencyPresentation): Promise<JourneyCommit> {
+    this.utilityDock.dispose();
     this.ensureMounted();
     if (this.readiness && this.readiness.status !== 'VISIBLE') {
       this.element.dataset.narrativeInteractionBlocked = 'agency-before-surface-ready';
@@ -456,6 +459,7 @@ export class NarrativeStage {
     addressedTo?: string | null,
     addressResolution?: NarrativeAddressResolution,
   ): Promise<void> {
+    this.utilityDock.dispose();
     this.ensureMounted();
     if (dialogueSurfaceMode === 'STATIC_TABLEAU' && !this.sceneSurface) {
       await this.presentDialogueTableau(this.tableau?.stillImage, phaseId);
@@ -493,6 +497,7 @@ export class NarrativeStage {
   }
 
   beginTransition(transition: NarrativeTransitionKind): void {
+    this.utilityDock.dispose();
     this.ensureMounted();
     this.director?.seekKind('TRANSITION');
     this.element.dataset.narrativeTransition = transition;
@@ -502,6 +507,7 @@ export class NarrativeStage {
   /** Keeps the last tableau visible below the shared scene transition while its input is locked. */
   prepareGlobalHandoff(): void {
     if (this.disposed) return;
+    this.utilityDock.dispose();
     this.element.classList.add('narrative-stage--handoff');
     this.element.dataset.narrativeInteraction = 'LOCKED';
     this.dialogueLayer.inert = true;
@@ -581,6 +587,7 @@ export class NarrativeStage {
   }
 
   private beginSurfacePreparation(): NarrativeSurfaceReadiness {
+    this.utilityDock.dispose();
     this.clearPreparationTimers();
     this.readiness?.dispose();
     const readiness = new NarrativeSurfaceReadiness();

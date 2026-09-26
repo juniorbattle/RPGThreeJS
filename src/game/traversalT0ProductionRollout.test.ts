@@ -115,6 +115,51 @@ describe('production T0 orchestration with real scenes, RunSystem and saves', ()
     app.renderTitle();
   });
 
+  it('rebuilds unchanged departure after Company and Save, then Menu disposes it', async () => {
+    const app = harness();
+    const before = structuredClone(app.state);
+    const boundary = app.journeyBoundary!;
+    const resolvers: Array<(outcome: JourneyBoundaryOutcome) => void> = [];
+    boundary.present.mockImplementation(() => new Promise<JourneyBoundaryOutcome>(resolve => resolvers.push(resolve)));
+    const openManagement = vi.fn(async () => {
+      app.mode = 'MANAGEMENT';
+      app.saves.saveAuto(app.state);
+    });
+    Object.assign(app, { openManagement });
+    const saveManual = vi.spyOn(app.saves, 'saveManual');
+    const commitRoute = vi.spyOn(app, 'commitRunNodeChoice');
+    const entry = app.enterCampaignPresentation();
+    await vi.runAllTimersAsync();
+    expect(boundary.present).toHaveBeenCalledOnce();
+    expect(boundary.present.mock.calls[0]![0].secondary.map((action: { id: string }) => action.id))
+      .toEqual(['COMPANY', 'SAVE', 'MENU']);
+
+    resolvers.shift()!({ kind: 'secondary', id: 'COMPANY' } as JourneyBoundaryOutcome);
+    for (let index = 0; index < 20; index += 1) await Promise.resolve();
+    expect(openManagement).toHaveBeenCalledExactlyOnceWith('clan', undefined, 'temporary', false);
+    expect(app.mode).toBe('NARRATIVE');
+    expect(boundary.present).toHaveBeenCalledTimes(2);
+    expect(boundary.present.mock.calls[1]![0]).toEqual(boundary.present.mock.calls[0]![0]);
+    expect(app.state).toEqual(before);
+    expect(app.travel.open).not.toHaveBeenCalled();
+
+    resolvers.shift()!({ kind: 'secondary', id: 'SAVE' } as JourneyBoundaryOutcome);
+    for (let index = 0; index < 20; index += 1) await Promise.resolve();
+    expect(saveManual).toHaveBeenCalledOnce();
+    expect(boundary.present).toHaveBeenCalledTimes(3);
+    expect(app.state).toEqual(before);
+
+    resolvers.shift()!({ kind: 'secondary', id: 'MENU' } as JourneyBoundaryOutcome);
+    await finish(entry);
+    expect(app.mode).toBe('TITLE');
+    expect(boundary.dispose).toHaveBeenCalledOnce();
+    expect(app.activeTraversal).toBeNull();
+    expect(app.travel.open).not.toHaveBeenCalled();
+    expect(app.resolveRunNode).not.toHaveBeenCalled();
+    expect(commitRoute).not.toHaveBeenCalled();
+    expect(app.state).toEqual(before);
+  });
+
   it.each(['camp', 'unresolved', 'inactive', 'incompatible-route', 'T1', 'T2', 'T3', 'T4'])(
     'rejects %s as a new T0 entry', async kind => {
       const app = harness();

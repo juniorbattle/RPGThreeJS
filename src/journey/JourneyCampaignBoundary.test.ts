@@ -5,7 +5,7 @@ import { CinematicRegistry } from '../cinematics/CinematicRegistry';
 import { getAvailableRunNodes } from '../game/runSystem';
 import { createInitialState } from '../game/store';
 import type { GameState, RunNode } from '../game/types';
-import { JourneyCampaignBoundary } from './JourneyCampaignBoundary';
+import { JourneyCampaignBoundary, withPresentationOnlyContinuation } from './JourneyCampaignBoundary';
 import { edgeKey, nodeArrivalKey } from './JourneyPresentationResolver';
 
 const SECONDARY = Object.freeze([
@@ -41,6 +41,21 @@ function click(selector: string): void {
 }
 
 describe('journey campaign boundary', () => {
+  it('derives local continuation from planned agency without losing utilities or context', () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-refugees');
+    const planned = {
+      mode: 'branch' as const, eyebrow: 'Choisir la route', title: 'La route se divise',
+      caption: 'Deux routes', context: 'Depuis : Refuge',
+      choices: available.map(node => ({ id: node.id, label: node.label })), secondary: SECONDARY,
+    };
+    expect(withPresentationOnlyContinuation(planned, { title: 'Vers Refuge du Lion', continueLabel: 'Prendre la route' }))
+      .toEqual({ ...planned, mode: 'single', choices: [], caption: undefined,
+        eyebrow: 'Départ', title: 'Vers Refuge du Lion', continueLabel: 'Prendre la route' });
+    expect(withPresentationOnlyContinuation(planned, { continueLabel: 'Poursuivre' }).title)
+      .toBe(planned.title);
+  });
+
   it('reuses the reviewed departure but returns local continuation with no node identity', async () => {
     const state = createInitialState();
     const available = availableAt(state, 'lion-audience');
@@ -63,6 +78,33 @@ describe('journey campaign boundary', () => {
     expect(document.querySelectorAll('.narrative-stage')).toHaveLength(1);
     boundary.dispose();
     expect(document.querySelector('.narrative-stage')).toBeNull();
+  });
+
+  it('offers all three actions on post-Audience departure and reports them without route agency', async () => {
+    const state = createInitialState();
+    const available = availableAt(state, 'lion-audience');
+    const before = structuredClone(state);
+    const boundary = createBoundary();
+    const request = { currentNodeId: 'lion-audience', available, secondary: SECONDARY,
+      presentationOnly: { eyebrow: 'Départ', title: 'Vers Refuge du Lion', continueLabel: 'Prendre la route' } };
+    const pending = boundary.present(request);
+    await flush();
+    expect([...document.querySelectorAll<HTMLButtonElement>('.narrative-utility-dock [data-journey-secondary]')]
+      .map(button => button.dataset.journeySecondary)).toEqual(['COMPANY', 'SAVE', 'MENU']);
+    expect(document.querySelectorAll('.narrative-utility-dock')).toHaveLength(1);
+    expect(document.querySelector('[data-journey-continue]')?.textContent).toBe('Prendre la route');
+    click('[data-journey-secondary="COMPANY"]');
+    await expect(pending).resolves.toMatchObject({ kind: 'secondary', id: 'COMPANY' });
+    expect(document.querySelectorAll('.narrative-stage, .narrative-utility-dock')).toHaveLength(0);
+    expect(state).toEqual(before);
+
+    const restored = boundary.present(request);
+    await flush();
+    expect(document.querySelectorAll('.narrative-stage, .narrative-utility-dock')).toHaveLength(2);
+    click('[data-journey-continue]');
+    await expect(restored).resolves.toMatchObject({ kind: 'presentation-continue', id: null });
+    expect(state).toEqual(before);
+    boundary.dispose();
   });
   beforeEach(() => {
     vi.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(() => undefined);

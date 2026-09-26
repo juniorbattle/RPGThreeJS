@@ -2747,7 +2747,12 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .dialogue--spatial-choice .dialogue__choices,.dialogue--spatial-choice[data-speaker-side="right"] .dialogue__choices { grid-template-columns:1fr; gap:6px; max-height:164px; overflow:auto; }
   .dialogue--cinematic-subtitle .dialogue__box { grid-template-columns:1fr; gap:4px; }
   .dialogue--cinematic-subtitle .dialogue__text { grid-column:1; }
-  .narrative-utility-dock { max-width:calc(100vw - 20px); overflow:auto; }
+  .narrative-utility-dock { max-width:calc(100vw - 20px); overflow:visible; }
+}
+
+@media (max-width: 600px) {
+  .narrative-utility-dock { top:76px; right:10px; }
+  .narrative-utility-dock .journey-overlay__secondary-action { padding-inline:6px; font-size:9px; letter-spacing:.04em; }
 }
 
 @media (prefers-reduced-motion: reduce) {
