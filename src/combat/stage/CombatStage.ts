@@ -116,6 +116,8 @@ export interface StageSpriteSource {
   visualProfileId?: string | null;
   campaignId?: string | null;
   portrait?: string | null;
+  /** Presentation-only actor geometry multiplier from the tactical runtime. */
+  visualPresenceScale?: number;
   name?: string;
   /** Authoritative gameplay team field ('player' or 'foe'). Read-only — never mutated. */
   team?: string;
@@ -240,6 +242,7 @@ export class CombatStage {
   private width: number;
   private height: number;
   private readonly baseFrustumHalfHeight = 2.6;
+  private largePresenceFraming = false;
 
   private active = false;
   private activeProfile: CombatStageProfile | null = null;
@@ -318,7 +321,8 @@ export class CombatStage {
   handleResize(width: number, height: number): void {
     this.width = width;
     this.height = height;
-    this.applyFrustum(this.activeProfile ? this.activeProfile.cameraFrustumHalfHeight : this.baseFrustumHalfHeight);
+    if (this.activeProfile && this.largePresenceFraming && this.actorProxies().length) this.frameLargePresence(this.activeProfile);
+    else this.applyFrustum(this.activeProfile ? this.activeProfile.cameraFrustumHalfHeight : this.baseFrustumHalfHeight);
   }
 
   /**
@@ -337,6 +341,7 @@ export class CombatStage {
 
     const token = ++this.sessionToken;
     this.activeProfile = profile;
+    this.largePresenceFraming = [attacker, ...targets].some((unit) => (unit.visualPresenceScale ?? 1) > 1.05);
     this.reducedGraphics = Boolean(options.reducedGraphics);
     this.stationaryAttacker = Boolean(options.stationaryAttacker);
     this.sideAssignment = resolveStageSideAssignment(profile, options.sourceTeam ?? attacker.team ?? 'player');
@@ -384,6 +389,7 @@ export class CombatStage {
       await Promise.all(posedProxies.map((proxy) => preloadCombatPoseSet(proxy.poseSet!)));
       await Promise.all(posedProxies.map((proxy) => applyCombatUnitPose(proxy, 'prepare')));
       if (token !== this.sessionToken) return false;
+      if (this.largePresenceFraming) this.frameLargePresence(profile);
       this.poseQaSelection = 0;
 
       this.vfxProxyMap.clear();
@@ -842,6 +848,10 @@ export class CombatStage {
     this.clearUnitMotion();
     this.active = false;
     this.activeProfile = null;
+    this.largePresenceFraming = false;
+    this.camera.position.set(0, 1.35, 6);
+    this.camera.lookAt(0, 1.1, 0);
+    this.camera.updateMatrixWorld();
     this.sideAssignment = null;
     this.stationaryAttacker = false;
     this.impactAtMs = null;
@@ -873,6 +883,47 @@ export class CombatStage {
     this.camera.top = halfHeight;
     this.camera.bottom = -halfHeight;
     this.camera.updateProjectionMatrix();
+  }
+
+  /** Preserve authored large-unit scale while fitting the posed silhouettes. */
+  private frameLargePresence(profile: CombatStageProfile): void {
+    this.camera.position.set(0, 1.35, 6);
+    this.camera.lookAt(0, 1.1, 0);
+    this.camera.updateMatrixWorld();
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    for (const proxy of this.actorProxies()) {
+      const mesh = proxy.poseVisual;
+      mesh.updateWorldMatrix(true, false);
+      mesh.geometry.computeBoundingBox();
+      const box = mesh.geometry.boundingBox;
+      if (!box) continue;
+      for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) {
+        const p = mesh.localToWorld(new THREE.Vector3(x, y, 0)).applyMatrix4(this.camera.matrixWorldInverse);
+        minX = Math.min(minX, p.x); maxX = Math.max(maxX, p.x);
+        minY = Math.min(minY, p.y); maxY = Math.max(maxY, p.y);
+      }
+    }
+    if (!Number.isFinite(minX)) {
+      this.applyFrustum(profile.cameraFrustumHalfHeight);
+      return;
+    }
+    const aspect = this.width / Math.max(1, this.height);
+    const topMargin = 0.9, bottomMargin = 0.85, sideMargin = 0.4;
+    const halfHeight = Math.max(profile.cameraFrustumHalfHeight,
+      (maxY - minY + topMargin + bottomMargin) * 0.5,
+      (maxX - minX + sideMargin * 2) / (2 * aspect));
+    const centerX = (minX + maxX) * 0.5;
+    // On portrait screens width determines the zoom, leaving extra vertical
+    // room. Lower the actors into the painted ground band in that free space.
+    const narrowGroundBias = Math.min(1.4, Math.max(0, (0.8 - aspect) * 4));
+    const centerY = (minY + maxY + topMargin - bottomMargin) * 0.5 + narrowGroundBias;
+    this.camera.position.addScaledVector(new THREE.Vector3(1, 0, 0).applyQuaternion(this.camera.quaternion), centerX);
+    this.camera.position.addScaledVector(new THREE.Vector3(0, 1, 0).applyQuaternion(this.camera.quaternion), centerY);
+    this.camera.updateMatrixWorld();
+    this.applyFrustum(halfHeight);
+    // Stage plates are authored at 13.17 × 7.4 world units. Keep the painted
+    // environment covering a taller responsive frustum without scaling actors.
+    this.backgroundLayers.setViewportScale(Math.max(1, (halfHeight * 2 + 0.1) / 7.4));
   }
 
   private buildMaskElement(): HTMLDivElement {
@@ -968,6 +1019,7 @@ export class CombatStage {
     const params = spr?.geometry?.parameters ?? {};
     const width = typeof params.width === 'number' && params.width > 0 ? params.width : 1.4;
     const height = typeof params.height === 'number' && params.height > 0 ? params.height : 1.9;
+    const presentationScale = Number.isFinite(source.visualPresenceScale) && (source.visualPresenceScale ?? 0) > 0 ? source.visualPresenceScale! : 1;
 
     // `unitRoot` owns the authoritative Stage transform. Texture, geometry and
     // anchor offsets live only on its `poseVisual` child.
@@ -1019,6 +1071,7 @@ export class CombatStage {
       unitRoot,
       poseVisual: mesh,
       poseSet,
+      presentationScale,
       canonicalVisual: Object.freeze({
         geometry: canonicalGeometry,
         texture: map,

@@ -13,6 +13,8 @@ export interface CombatPoseVisualUnit {
   unitRoot: THREE.Object3D;
   poseVisual: CombatPoseMesh;
   poseSet: CombatPoseSet | null;
+  /** Reviewed large-unit scale applied to visual geometry and authored pose offsets. */
+  presentationScale?: number;
   canonicalVisual: Readonly<{
     geometry: THREE.PlaneGeometry;
     texture: THREE.Texture | null;
@@ -136,11 +138,12 @@ export async function setCombatUnitPose(
       continue;
     }
     const layout = resolveCombatPoseLayout(set, attempt.asset);
-    unit.poseVisual.geometry = geometryFor(unit, attempt.asset, layout.width, layout.height);
+    const presenceScale = unit.presentationScale ?? 1;
+    unit.poseVisual.geometry = geometryFor(unit, attempt.asset, layout.width * presenceScale, layout.height * presenceScale);
     unit.poseVisual.material.map = texture;
     unit.poseVisual.material.needsUpdate = true;
-    const offsetY = layout.offsetY + unit.poseOriginYOffset;
-    unit.poseBasePosition.set(layout.offsetX, offsetY, unit.canonicalVisual.position.z);
+    const offsetY = layout.offsetY * presenceScale + unit.poseOriginYOffset;
+    unit.poseBasePosition.set(layout.offsetX * presenceScale, offsetY, unit.canonicalVisual.position.z);
     syncPoseVisualPosition(unit);
     unit.currentPose = attempt.pose;
     return { pose: attempt.pose, usedFallback: attempt.pose !== requestedPose };

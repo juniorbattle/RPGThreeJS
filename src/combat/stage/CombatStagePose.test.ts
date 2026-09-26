@@ -4,6 +4,8 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vite
 import { CombatStage, type RenderPassLike, type StageSpriteSource, type UniformLike } from './CombatStage';
 import { resolveCombatPoseLayout, resolveCombatPoseSet } from './CombatPoseRegistry';
 import { clearCombatPoseTextureCacheForTests } from './CombatPoseVisual';
+import { combatLargeUnitPresenceScale } from '../combatPresencePresentation';
+import { resolveStrategicUnitVisual } from './CombatPoseRegistry';
 import { resolveCombatStageProfile } from './combatStageProfiles';
 
 beforeAll(() => {
@@ -124,5 +126,40 @@ describe('CombatStage pose integration', () => {
     expect(await stage.setCombatUnitPose(attacker, 'attack')).toBe(false);
     expect(stage.attackerPoseVisualSnapshot()).toMatchObject({ unitId: null, pose: null, width: 1.4, height: 1.9 });
     warning.mockRestore();
+  });
+
+  it('scales a large opponent across pose swaps while keeping its semantic root fixed', async () => {
+    const attacker = source({ portrait: '/assets/characters/pixel/masters/archer.png', team: 'player' });
+    const presence = combatLargeUnitPresenceScale(resolveStrategicUnitVisual('young_dragon_elite'), 'elite');
+    const target = source({ combatPoseUnitId: 'young_dragon_elite', name: 'Jeune dragon', team: 'foe', visualPresenceScale: presence });
+    const baseProfile = resolveCombatStageProfile({ key: 'attack' })!;
+    const profile = { ...baseProfile, transitionInMs: 0, transitionOutMs: 0 };
+    expect(await stage.enter(attacker, [target], { key: 'attack' }, { profile })).toBe(true);
+    const root = stage.targetUnitRootTransform()!;
+    const set = resolveCombatPoseSet('young_dragon_elite')!;
+    const prepare = resolveCombatPoseLayout(set, set.poses.prepare);
+    expect(stage.targetPoseVisualSnapshot()?.height).toBeCloseTo(prepare.height * presence);
+    const targetMesh = stage.scene.getObjectByName('CombatStageUnitRoot:Jeune dragon')?.getObjectByName('poseVisual') as THREE.Mesh;
+    targetMesh.updateWorldMatrix(true, false);
+    targetMesh.geometry.computeBoundingBox();
+    const bounds = targetMesh.geometry.boundingBox!;
+    stage.camera.updateMatrixWorld();
+    for (const x of [bounds.min.x, bounds.max.x]) for (const y of [bounds.min.y, bounds.max.y]) {
+      const projected = targetMesh.localToWorld(new THREE.Vector3(x, y, 0)).project(stage.camera);
+      expect(Math.abs(projected.x)).toBeLessThan(1);
+      expect(Math.abs(projected.y)).toBeLessThan(1);
+    }
+    expect(await stage.setCombatUnitPose(target, 'attack')).toBe(true);
+    const attack = resolveCombatPoseLayout(set, set.poses.attack);
+    expect(stage.targetPoseVisualSnapshot()?.height).toBeCloseTo(attack.height * presence);
+    targetMesh.updateWorldMatrix(true, false);
+    targetMesh.geometry.computeBoundingBox();
+    const attackBounds = targetMesh.geometry.boundingBox!;
+    for (const x of [attackBounds.min.x, attackBounds.max.x]) for (const y of [attackBounds.min.y, attackBounds.max.y]) {
+      const projected = targetMesh.localToWorld(new THREE.Vector3(x, y, 0)).project(stage.camera);
+      expect(Math.abs(projected.x)).toBeLessThan(1);
+      expect(Math.abs(projected.y)).toBeLessThan(1);
+    }
+    expect(stage.targetUnitRootTransform()?.position.equals(root.position)).toBe(true);
   });
 });

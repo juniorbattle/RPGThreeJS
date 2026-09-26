@@ -231,6 +231,8 @@ describe('CIN-6E-A final visual preproduction system', () => {
       'src/combat/stage/combatStageBackgrounds.test.ts',
       'src/combat/stage/CombatPoseRegistry.ts',
       'src/combat/stage/CombatPoseRegistry.test.ts',
+      // COMBAT-SHELL-UI-KIT-ADOPTION-1 scales posed large-unit geometry only.
+      'src/combat/stage/CombatPoseVisual.ts',
       'src/combat/stage/CombatPoseVisual.test.ts',
       'src/combat/stage/CombatStagePose.test.ts',
       'public/assets/characters/pixel/full/alistair.png',
