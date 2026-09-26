@@ -10,8 +10,8 @@
     "visualFamilyCount": 13,
     "approvedAssetCount": 44,
     "promotedAssetCount": 44,
-    "totalContexts": 169,
-    "mappedContexts": 169,
+    "totalContexts": 170,
+    "mappedContexts": 170,
     "unmappedContexts": 0,
     "fallbackContexts": 0,
     "byteIdenticalAssets": 44
@@ -1334,6 +1334,16 @@
       ]
     },
     "dialogue:ate_first_refuge_watch": {
+      "visualFamily": "FIRST_REFUGE",
+      "plates": [
+        {
+          "surfaceRole": "STATIC_TABLEAU",
+          "assetId": "first_refuge_tableau",
+          "runtimeCandidatePath": "tableau/first-refuge-tableau.png"
+        }
+      ]
+    },
+    "dialogue:first_refuge_gathering": {
       "visualFamily": "FIRST_REFUGE",
       "plates": [
         {
