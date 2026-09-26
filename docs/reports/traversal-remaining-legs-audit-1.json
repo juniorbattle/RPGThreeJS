@@ -1,0 +1,139 @@
+{
+  "task": "TRAVERSAL-REMAINING-LEGS-AUDIT-1",
+  "kind": "audit-architecture-plan",
+  "baseline": {
+    "branch": "traversal-remaining-legs-audit-1",
+    "baseBranch": "main",
+    "baseCommit": "d300ca95487732a459b50cfc82bf2407bb4a264e",
+    "productionGate": { "enabled": true, "designAssetsReady": true, "rolloutLegIds": ["T0"] },
+    "productionBehaviourChanged": false
+  },
+  "genericVsT0": {
+    "generic": [
+      "src/traversal/TraversalRunRuntime.ts",
+      "src/traversal/TraversalRunController.ts",
+      "src/traversal/TraversalForkOverlay.ts",
+      "src/traversal/TraversalRoadSpace.ts",
+      "src/traversal/TraversalTransition.ts",
+      "src/traversal/TraversalSprite.ts",
+      "src/traversal/TraversalInteractionGrammar.ts",
+      "src/traversal/TraversalDepth.ts (planes only)",
+      "src/traversal/TraversalFeaturePolicy.ts"
+    ],
+    "genericMechanicsT0Assets": [
+      "src/traversal/TraversalWorldRenderer.ts (imports resolveTraversalWorld + T0 forest margin)",
+      "src/traversal/TraversalDepth.ts (TRAVERSAL_OCCLUDERS t0 ferns/roots)",
+      "src/traversal/TraversalCaravan.ts (t0 caravan paint + wheel metadata)",
+      "src/traversal/TraversalRoadEncounter.ts (ROAD_POOL forest pool)"
+    ],
+    "t0Only": [
+      "src/traversal/TraversalT0Scene.ts",
+      "src/traversal/TraversalT0Route.ts",
+      "src/traversal/TraversalT0World.ts",
+      "src/traversal/TraversalT0Assets.ts",
+      "src/game/TraversalOptionalConsequencePolicy.ts",
+      "src/game/GameApp.ts (enterCampaignPresentation leg scan, enterTraversalT0, playTraversalRoadCombat, startTraversalT0Qa)",
+      "src/game/runSystem.ts (selectTraversalBranch + bypassTraversalNode 'T0' literals at 644, 654)"
+    ]
+  },
+  "extractionSeams": [
+    "TraversalLegPresentation contract: resolveRoute + world + vehicle + foreground + ambientBeats + roadEncounterPool + distanceKm per leg",
+    "TraversalT0Scene -> generic TraversalScene (leg.id flows to selectTraversalBranch/traversalBranches)",
+    "TraversalWorldRenderer: inject resolveWorld(branch) + marginAsset",
+    "runSystem: drop 'T0' literals in selectTraversalBranch/bypassTraversalNode",
+    "GameApp: scan LION_TRAVERSAL_LEGS by origin + gate instead of id==='T0'"
+  ],
+  "legs": {
+    "T0": {
+      "origin": "lion-audience", "destination": "lion-first-refuge",
+      "stages": ["lion-opening-ambush(MANDATORY)", "lion-nomad-crossroads(MANDATORY)", "lion-refugees(OPTIONAL)", "fork:lion-first-trial-event|lion-first-trial-combat"],
+      "productionEnabled": true,
+      "galleryRun": "t0-reference"
+    },
+    "T1": {
+      "origin": "lion-first-refuge", "destination": "lion-village-choice",
+      "stages": ["lion-reserve-trail(MANDATORY)", "lion-valmir-road(MANDATORY)", "fork:lion-second-trial-event|lion-second-trial-combat(strict,both-mandatory)"],
+      "productionEnabled": false,
+      "currentPresentation": "Journey + NarrativeStage + held valmir_route_fork cinematic over live fork choice",
+      "assetStatus": "VALMIR_ROAD + BOIS_CLAIR plates exist as perspective vistas; no side-on traversal sections",
+      "missingAssets": ["4-6 side-on 1536x1024 world sections", "cleared variant after lion-valmir-road", "two branch reads for second-trial fork", "optional missionGreed/missionSuccess aftermath read"]
+    },
+    "T2": {
+      "origin": "lion-village-choice", "destination": "lion-second-refuge", "stages": [],
+      "productionEnabled": false,
+      "retirementPlan": "Keep 'T2' id; later convert to NARRATIVE_HANDOFF/direct-link audit; village-choice exitPolicy START_TRAVERSAL -> narrative continuation; no physical travel between Bois-Clair and Second Refuge",
+      "existingSurface": "edge:lion-village-choice>lion-second-refuge TRAVEL plate second-refuge-morning-travel.png"
+    },
+    "T3": {
+      "origin": "lion-second-refuge", "destination": "lion-shadow-signs",
+      "stages": ["lion-lancer-recruit(MANDATORY)", "lion-witnesses(MANDATORY,exit ROUTE_FORK)", "fork:lion-final-trial-event|lion-final-trial-combat(strict)"],
+      "productionEnabled": false,
+      "assetStatus": "WITNESS_ROAD + SHADOW_RUINS plates exist as vistas; no traversal sections; day->moonlit transition authored",
+      "missingAssets": ["5-7 side-on sections across witness road + shadow ruins", "junction + two branch reads (dragon roost / infested ruins)"]
+    },
+    "T4": {
+      "origin": "lion-shadow-signs", "destination": "lion-final-refuge", "stages": [],
+      "productionEnabled": false,
+      "assetStatus": "final-refuge-travel.png byte-identical to tableau; vista only",
+      "missingAssets": ["2-3 side-on night-ruins-to-camp sections"]
+    }
+  },
+  "finalRefuge": {
+    "currentRunNodeType": "story",
+    "contentId": "final_refuge",
+    "interactiveRefugeEntry": false,
+    "clanAnchorDialogue": null,
+    "refugeDepartureCinematic": null,
+    "arrivalCinematicBeforeDialogue": "final_refuge_dossier",
+    "nextNode": "lion-final-judgement (LION_MAJOR_CAMPAIGN_TRANSITIONS direct)",
+    "futurePlan": "story->refuge type conversion + INTERACTIVE_REFUGES entry; secure loot -> final_refuge pre-dialogue -> hub (Clan/Shop/Amelioration/Repos/Reprendre la route) -> markResolved -> post-node narrative -> judgement journey",
+    "mustNotTouch": ["buildLionFinaleJudgement", "resolveLionFinaleExecution", "resolvePendingLionFinaleCombat", "finale combat ids"]
+  },
+  "cinematicBoundaries": {
+    "noNewVideoForLegs": true,
+    "premiumRemasterMoments": ["intro", "alaric_audience", "bois_clair_arrival", "lion_judgement", "final_boss"],
+    "existingCoverage": ["bois_clair_arrival", "shadow_signs", "final_refuge_dossier", "ruins_approach_context", "garen_encounter", "shrine_reveal_context", "young_dragon_encounter", "serpent_informant_encounter", "serpent_road_tension", "valmir_route_fork", "bois_clair_saved", "bois_clair_sacrificed"]
+  },
+  "gallery": {
+    "dir": "docs/reports/traversal-remaining-legs-audit-1-browser",
+    "index": "gallery-index.json",
+    "humanIndex": "index.md",
+    "runs": ["t0-reference", "final-act-main", "t3-combat-branch", "t1-combat-branch"],
+    "contactSheets": ["asset-sheet-t0-world-reference.png", "asset-sheet-t1-bois-clair.png", "asset-sheet-t3-t4-final.png"],
+    "method": "unmodified app, RunSystem-built durable save, title Continue, real UI clicks; DEV QA victory control only for combat"
+  },
+  "t0T4Assumptions": {
+    "code": [
+      "src/game/runSystem.ts:644,654 (selectTraversalBranch/bypassTraversalNode 'T0')",
+      "src/game/GameApp.ts:262,415,866 (T0 scan, road combat, T0 QA preview)",
+      "src/game/TraversalOptionalConsequencePolicy.ts:13 (legId !== 'T0' -> null)",
+      "src/traversal/TraversalT0Scene.ts:109,123,133,149 (guard, selectTraversalBranch('T0'), traversalBranches.T0, dataset)"
+    ],
+    "tests": [
+      "src/campaign/LionCampaignTravelRelations.test.ts (exact T0-T4 list, 13 interrupts, 3 forks)",
+      "src/game/traversalRouteAuthority.test.ts (T1 bypass expected false)",
+      "src/game/campaignGrammarConsolidation.test.ts",
+      "src/traversal/TraversalFeaturePolicy.test.ts",
+      "src/traversal/TraversalRunRuntime.test.ts", "src/traversal/TraversalRunController.test.ts",
+      "src/traversal/TraversalT0Scene.test.ts", "src/traversal/TraversalT0Route.test.ts",
+      "src/traversal/TraversalT0World.test.ts", "src/traversal/TraversalT0Flow.test.ts",
+      "src/ui/TraversalTravelReturn.test.ts", "src/game/traversalT0ProductionRollout.test.ts",
+      "src/game/cin2CampaignBridge.test.ts"
+    ],
+    "docs": [
+      "docs/reports/traversal-t0-production-rollout-1.md",
+      "docs/TRAVERSAL_T0_FINAL_CONVERGENCE.md",
+      "docs/reports/campaign-presentation-migration-1.md"
+    ]
+  },
+  "branchSequence": [
+    "TRAVERSAL-GENERIC-RUNTIME-1",
+    "TRAVERSAL-T1-PRODUCTION-1",
+    "BOIS-CLAIR-SECOND-REFUGE-HANDOFF-1",
+    "TRAVERSAL-T3-PRODUCTION-1",
+    "TRAVERSAL-T4-PRODUCTION-1",
+    "FINAL-REFUGE-PREPARATION-1",
+    "FINAL-ACT-TABLEAU-CONTINUITY-1",
+    "KEY-CINEMATIC-REMASTER-1"
+  ]
+}

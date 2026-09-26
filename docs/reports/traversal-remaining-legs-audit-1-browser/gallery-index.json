@@ -1,0 +1,4027 @@
+{
+  "task": "TRAVERSAL-REMAINING-LEGS-AUDIT-1",
+  "baseline": "d300ca95487732a459b50cfc82bf2407bb4a264e",
+  "url": "http://127.0.0.1:5203/?qa=1&cin6a=golden",
+  "method": "Unmodified app, RunSystem-built durable save, title Continue, real UI clicks. Only combat uses the DEV QA victory control.",
+  "runs": [
+    {
+      "id": "t3-combat-branch",
+      "description": "From resolved lion-witnesses: T3 fork, combat branch, until Shadow Signs dialogue.",
+      "captures": [
+        "t3c-cinematic-witnesses-witnesses_encounter",
+        "t3-final-fork-combat-run",
+        "t3c-dialogue-final-trial-combat-pre_ruins_guardians",
+        "t3-final-combat-current",
+        "t3c-dialogue-final-trial-combat-post_ruins_guardians",
+        "t3-shadow-approach-after-combat-current",
+        "shadow-signs-after-combat-branch"
+      ],
+      "surfaces": [
+        {
+          "key": "cinematic:lion-witnesses:http://127.0.0.1:5203/assets/cinematics/witnesses_encounter.mp4",
+          "node": "lion-witnesses",
+          "name": "t3c-cinematic-witnesses-witnesses_encounter"
+        },
+        {
+          "key": "journey:lion-witnesses:true",
+          "node": "lion-witnesses",
+          "name": "t3-final-fork-combat-run"
+        },
+        {
+          "key": "dialogue:pre_ruins_guardians",
+          "node": "lion-final-trial-combat",
+          "name": "t3c-dialogue-final-trial-combat-pre_ruins_guardians"
+        },
+        {
+          "key": "combat:lion-final-trial-combat",
+          "node": "lion-final-trial-combat",
+          "name": "t3-final-combat-current"
+        },
+        {
+          "key": "dialogue:post_ruins_guardians",
+          "node": "lion-final-trial-combat",
+          "name": "t3c-dialogue-final-trial-combat-post_ruins_guardians"
+        },
+        {
+          "key": "journey:lion-final-trial-combat:true",
+          "node": "lion-final-trial-combat",
+          "name": "t3-shadow-approach-after-combat-current"
+        },
+        {
+          "key": "dialogue:shadow_signs",
+          "node": "lion-shadow-signs",
+          "name": "shadow-signs-after-combat-branch"
+        }
+      ],
+      "choices": [],
+      "journeyPicks": [
+        {
+          "node": "lion-witnesses",
+          "picked": "lion-final-trial-combat",
+          "options": [
+            "lion-final-trial-event",
+            "lion-final-trial-combat"
+          ]
+        }
+      ],
+      "completed": true,
+      "combatTicks": 2
+    },
+    {
+      "id": "t1-combat-branch",
+      "description": "From resolved lion-valmir-road: T1 fork, combat branch, until the Bois-Clair approach Journey.",
+      "captures": [
+        "t1c-cinematic-valmir-road-valmir_route_fork",
+        "t1-current-06b-second-trial-fork-combat-run",
+        "t1c-cinematic-second-trial-combat-serpent_road_tension",
+        "t1c-dialogue-second-trial-combat-pre_serpent_checkpoint",
+        "t1-current-07b-second-trial-combat",
+        "t1c-dialogue-second-trial-combat-post_serpent_checkpoint",
+        "bois-clair-current-01b-approach-after-combat"
+      ],
+      "surfaces": [
+        {
+          "key": "cinematic:lion-valmir-road:http://127.0.0.1:5203/assets/cinematics/valmir_route_fork.mp4",
+          "node": "lion-valmir-road",
+          "name": "t1c-cinematic-valmir-road-valmir_route_fork"
+        },
+        {
+          "key": "journey:lion-valmir-road:true",
+          "node": "lion-valmir-road",
+          "name": "t1-current-06b-second-trial-fork-combat-run"
+        },
+        {
+          "key": "cinematic:lion-second-trial-combat:http://127.0.0.1:5203/assets/cinematics/serpent_road_tension.mp4",
+          "node": "lion-second-trial-combat",
+          "name": "t1c-cinematic-second-trial-combat-serpent_road_tension"
+        },
+        {
+          "key": "dialogue:pre_serpent_checkpoint",
+          "node": "lion-second-trial-combat",
+          "name": "t1c-dialogue-second-trial-combat-pre_serpent_checkpoint"
+        },
+        {
+          "key": "combat:lion-second-trial-combat",
+          "node": "lion-second-trial-combat",
+          "name": "t1-current-07b-second-trial-combat"
+        },
+        {
+          "key": "dialogue:post_serpent_checkpoint",
+          "node": "lion-second-trial-combat",
+          "name": "t1c-dialogue-second-trial-combat-post_serpent_checkpoint"
+        },
+        {
+          "key": "journey:lion-second-trial-combat:true",
+          "node": "lion-second-trial-combat",
+          "name": "bois-clair-current-01b-approach-after-combat"
+        }
+      ],
+      "choices": [],
+      "journeyPicks": [
+        {
+          "node": "lion-valmir-road",
+          "picked": "lion-second-trial-combat",
+          "options": [
+            "lion-second-trial-event",
+            "lion-second-trial-combat"
+          ]
+        }
+      ],
+      "completed": true,
+      "combatTicks": 2
+    },
+    {
+      "id": "t0-reference",
+      "description": "Production T0 (gate-enabled) from normally resolved lion-audience; lane 0; first-trial event branch.",
+      "captures": [
+        "t0-reference-departure-journey",
+        "t0-reference-normal-travel",
+        "t0-reference-normal-travel-390",
+        "t0-reference-optional-interrupt",
+        "t0-reference-local-dialogue",
+        "t0-reference-dialogue-return",
+        "t0-reference-mandatory-interrupt",
+        "t0-reference-mandatory-interrupt-390",
+        "t0-reference-combat",
+        "t0-reference-combat-return",
+        "t0-reference-canonical-dialogue",
+        "t0-reference-canonical-dialogue-return",
+        "t0-reference-optional-canonical-interrupt",
+        "t0-reference-fork",
+        "t0-reference-fork-390",
+        "t0-reference-arrival",
+        "t0-reference-arrival-agency"
+      ],
+      "surfaces": [
+        {
+          "key": "journey:departure",
+          "node": "lion-audience",
+          "name": "t0-reference-departure-journey"
+        },
+        {
+          "key": "decision:OPTIONAL_EVENT:1",
+          "node": "lion-audience",
+          "name": "t0-reference-optional-interrupt"
+        },
+        {
+          "key": "dlg:peddler",
+          "node": "lion-audience",
+          "name": "t0-reference-local-dialogue"
+        },
+        {
+          "key": "decision:MANDATORY_EVENT:2",
+          "node": "lion-audience",
+          "name": "t0-reference-mandatory-interrupt"
+        },
+        {
+          "key": "combat:lion-opening-ambush",
+          "node": "lion-opening-ambush",
+          "name": "t0-reference-combat"
+        },
+        {
+          "key": "decision:MANDATORY_EVENT:4",
+          "node": "lion-opening-ambush",
+          "name": null
+        },
+        {
+          "key": "dlg:recruit",
+          "node": "lion-nomad-crossroads",
+          "name": "t0-reference-canonical-dialogue"
+        },
+        {
+          "key": "decision:OPTIONAL_EVENT:6",
+          "node": "lion-nomad-crossroads",
+          "name": "t0-reference-optional-canonical-interrupt"
+        },
+        {
+          "key": "fork",
+          "node": "lion-refugees",
+          "name": "t0-reference-fork"
+        },
+        {
+          "key": "decision:OPTIONAL_EVENT:9",
+          "node": "lion-refugees",
+          "name": null
+        },
+        {
+          "key": "arriving",
+          "node": "lion-first-trial-event",
+          "name": "t0-reference-arrival"
+        },
+        {
+          "key": "journey:arrival",
+          "node": "lion-first-trial-event",
+          "name": "t0-reference-arrival-agency"
+        }
+      ],
+      "choices": [
+        {
+          "sequence": "roadside_peddler",
+          "picked": "Saluer la colporteuse et reprendre la route.",
+          "options": [
+            "Saluer la colporteuse et reprendre la route."
+          ]
+        },
+        {
+          "sequence": "mystery_recruit",
+          "picked": "Recruter Cedric — 50 or.♜Réputation ≥ 20●240 or disponible♙Secours rogue♜Réputation +3",
+          "options": [
+            "Recruter Cedric — 50 or.♜Réputation ≥ 20●240 or disponible♙Secours rogue♜Réputation +3",
+            "Décliner."
+          ]
+        },
+        {
+          "sequence": "refugee_trial",
+          "picked": "Partager nos réserves et leur ouvrir la route — 40 or.◇40 or engagés◇Les familles repartent équipées●190 or disponible",
+          "options": [
+            "Partager nos réserves et leur ouvrir la route — 40 or.◇40 or engagés◇Les familles repartent équipées●190 or disponible",
+            "Vendre l’itinéraire contre leurs 40 dernières pièces.◇40 or récupérés◇Les réfugiés paient l’itinéraire"
+          ]
+        },
+        {
+          "sequence": "mystery_help",
+          "picked": "Laisser 30 or de vivres et remettre le chariot en état.●150 or disponible♜Réputation +8",
+          "options": [
+            "Laisser 30 or de vivres et remettre le chariot en état.●150 or disponible♜Réputation +8",
+            "Garder nos réserves et reprendre la route vers Bois-Clair.♜Réputation -2"
+          ]
+        }
+      ],
+      "journeyPicks": [],
+      "completed": true,
+      "combatTicks": 2
+    },
+    {
+      "id": "final-act-main",
+      "description": "From resolved lion-first-refuge through T1 (event), Bois-Clair, Second Refuge, T3 (event), Shadow Signs, Final Refuge, to the Judgement / final boss entry. First dialogue option everywhere.",
+      "captures": [
+        "t1-current-01-first-refuge-departure",
+        "t1-current-01-first-refuge-departure-390",
+        "t1-current-02-reserve-trail",
+        "t1-current-03-reserve-trail-choice",
+        "t1-current-04-valmir-road-departure",
+        "flow-dialogue-valmir-road-pre_valmir_road",
+        "t1-current-05-valmir-road-combat",
+        "flow-dialogue-valmir-road-post_valmir_road",
+        "flow-dialogue-valmir-road-ate_serpent_general_warning",
+        "flow-cinematic-valmir-road-valmir_route_fork",
+        "t1-current-06-second-trial-fork",
+        "t1-current-06-second-trial-fork-390",
+        "flow-cinematic-second-trial-event-shrine_reveal_context",
+        "t1-current-07-second-trial-event",
+        "bois-clair-current-01-approach",
+        "flow-cinematic-village-choice-bois_clair_arrival",
+        "bois-clair-current-03-dialogue",
+        "bois-clair-current-03-dialogue-390",
+        "bois-clair-current-04-choice",
+        "flow-dialogue-village-choice-pre_village_defense",
+        "bois-clair-current-05-combat",
+        "flow-dialogue-village-choice-village_defense_aftermath",
+        "flow-dialogue-village-choice-ate_maelor_seal_analysis",
+        "flow-dialogue-village-choice-rep_event_roadside_intimidation",
+        "flow-dialogue-village-choice-pre_serpent_reprisals",
+        "flow-dialogue-village-choice-post_serpent_reprisals",
+        "bois-clair-current-07-handoff-to-second-refuge",
+        "second-refuge-current-02-hub",
+        "second-refuge-current-02-hub-390",
+        "flow-dialogue-second-refuge-ate_bois_clair_night_watch",
+        "second-refuge-current-04-departure",
+        "t3-garen-current",
+        "t3-garen-choice-current",
+        "t3-witness-road-departure-current",
+        "t3-witnesses-current",
+        "t3-witnesses-current-390",
+        "t3-witnesses-decision-current",
+        "flow-dialogue-witnesses-ate_lion_council_doubt",
+        "flow-cinematic-witnesses-witnesses_encounter",
+        "t3-final-fork-current",
+        "t3-final-fork-current-390",
+        "flow-cinematic-final-trial-event-young_dragon_encounter",
+        "flow-dialogue-final-trial-event-mystery_dragon_roost",
+        "flow-dialogue-final-trial-event-pre_young_dragon_roost",
+        "t3-final-event-combat-current",
+        "flow-dialogue-final-trial-event-post_young_dragon_roost",
+        "t3-shadow-approach-current",
+        "shadow-signs-dialogue-current",
+        "shadow-signs-evidence-choice-current",
+        "flow-dialogue-shadow-signs-ate_ruins_awaken",
+        "flow-dialogue-shadow-signs-ate_serpent_retreat_order",
+        "t4-current-handoff",
+        "final-refuge-dialogue-current",
+        "final-refuge-dialogue-current-390",
+        "flow-dialogue-final-refuge-rep_event_village_memorial_request",
+        "final-refuge-departure-current",
+        "flow-cinematic-final-judgement-lion_judgement",
+        "judgement-current",
+        "judgement-current-390",
+        "judgement-choice-current",
+        "flow-cinematic-final-judgement-serpent_general_reveal",
+        "flow-dialogue-final-judgement-serpent_pursuit_pre_combat",
+        "final-boss-current"
+      ],
+      "surfaces": [
+        {
+          "key": "journey:lion-first-refuge:true",
+          "node": "lion-first-refuge",
+          "name": "t1-current-01-first-refuge-departure"
+        },
+        {
+          "key": "dialogue:reserve_trail",
+          "node": "lion-reserve-trail",
+          "name": "t1-current-02-reserve-trail"
+        },
+        {
+          "key": "choice:reserve_trail",
+          "node": "lion-reserve-trail",
+          "name": "t1-current-03-reserve-trail-choice"
+        },
+        {
+          "key": "journey:lion-reserve-trail:true",
+          "node": "lion-reserve-trail",
+          "name": "t1-current-04-valmir-road-departure"
+        },
+        {
+          "key": "dialogue:pre_valmir_road",
+          "node": "lion-valmir-road",
+          "name": "flow-dialogue-valmir-road-pre_valmir_road"
+        },
+        {
+          "key": "combat:lion-valmir-road",
+          "node": "lion-valmir-road",
+          "name": "t1-current-05-valmir-road-combat"
+        },
+        {
+          "key": "dialogue:post_valmir_road",
+          "node": "lion-valmir-road",
+          "name": "flow-dialogue-valmir-road-post_valmir_road"
+        },
+        {
+          "key": "dialogue:ate_serpent_general_warning",
+          "node": "lion-valmir-road",
+          "name": "flow-dialogue-valmir-road-ate_serpent_general_warning"
+        },
+        {
+          "key": "cinematic:lion-valmir-road:http://127.0.0.1:5203/assets/cinematics/valmir_route_fork.mp4",
+          "node": "lion-valmir-road",
+          "name": "flow-cinematic-valmir-road-valmir_route_fork"
+        },
+        {
+          "key": "journey:lion-valmir-road:true",
+          "node": "lion-valmir-road",
+          "name": "t1-current-06-second-trial-fork"
+        },
+        {
+          "key": "cinematic:lion-second-trial-event:http://127.0.0.1:5203/assets/cinematics/shrine_reveal_context.mp4",
+          "node": "lion-second-trial-event",
+          "name": "flow-cinematic-second-trial-event-shrine_reveal_context"
+        },
+        {
+          "key": "dialogue:old_shrine_event",
+          "node": "lion-second-trial-event",
+          "name": "t1-current-07-second-trial-event"
+        },
+        {
+          "key": "choice:old_shrine_event",
+          "node": "lion-second-trial-event",
+          "name": null
+        },
+        {
+          "key": "journey:lion-second-trial-event:true",
+          "node": "lion-second-trial-event",
+          "name": "bois-clair-current-01-approach"
+        },
+        {
+          "key": "cinematic:lion-village-choice:http://127.0.0.1:5203/assets/cinematics/bois_clair_arrival.mp4",
+          "node": "lion-village-choice",
+          "name": "flow-cinematic-village-choice-bois_clair_arrival"
+        },
+        {
+          "key": "dialogue:village_choice",
+          "node": "lion-village-choice",
+          "name": "bois-clair-current-03-dialogue"
+        },
+        {
+          "key": "choice:village_choice",
+          "node": "lion-village-choice",
+          "name": "bois-clair-current-04-choice"
+        },
+        {
+          "key": "dialogue:pre_village_defense",
+          "node": "lion-village-choice",
+          "name": "flow-dialogue-village-choice-pre_village_defense"
+        },
+        {
+          "key": "combat:lion-village-choice",
+          "node": "lion-village-choice",
+          "name": "bois-clair-current-05-combat"
+        },
+        {
+          "key": "dialogue:village_defense_aftermath",
+          "node": "lion-village-choice",
+          "name": "flow-dialogue-village-choice-village_defense_aftermath"
+        },
+        {
+          "key": "choice:village_defense_aftermath",
+          "node": "lion-village-choice",
+          "name": null
+        },
+        {
+          "key": "dialogue:ate_maelor_seal_analysis",
+          "node": "lion-village-choice",
+          "name": "flow-dialogue-village-choice-ate_maelor_seal_analysis"
+        },
+        {
+          "key": "dialogue:rep_event_roadside_intimidation",
+          "node": "lion-village-choice",
+          "name": "flow-dialogue-village-choice-rep_event_roadside_intimidation"
+        },
+        {
+          "key": "choice:rep_event_roadside_intimidation",
+          "node": "lion-village-choice",
+          "name": null
+        },
+        {
+          "key": "dialogue:pre_serpent_reprisals",
+          "node": "lion-village-choice",
+          "name": "flow-dialogue-village-choice-pre_serpent_reprisals"
+        },
+        {
+          "key": "dialogue:post_serpent_reprisals",
+          "node": "lion-village-choice",
+          "name": "flow-dialogue-village-choice-post_serpent_reprisals"
+        },
+        {
+          "key": "journey:lion-village-choice:true",
+          "node": "lion-village-choice",
+          "name": "bois-clair-current-07-handoff-to-second-refuge"
+        },
+        {
+          "key": "hub:lion-second-refuge",
+          "node": "lion-second-refuge",
+          "name": "second-refuge-current-02-hub"
+        },
+        {
+          "key": "dialogue:ate_bois_clair_night_watch",
+          "node": "lion-second-refuge",
+          "name": "flow-dialogue-second-refuge-ate_bois_clair_night_watch"
+        },
+        {
+          "key": "journey:lion-second-refuge:true",
+          "node": "lion-second-refuge",
+          "name": "second-refuge-current-04-departure"
+        },
+        {
+          "key": "dialogue:mystery_lancer_recruit",
+          "node": "lion-lancer-recruit",
+          "name": "t3-garen-current"
+        },
+        {
+          "key": "choice:mystery_lancer_recruit",
+          "node": "lion-lancer-recruit",
+          "name": "t3-garen-choice-current"
+        },
+        {
+          "key": "journey:lion-lancer-recruit:true",
+          "node": "lion-lancer-recruit",
+          "name": "t3-witness-road-departure-current"
+        },
+        {
+          "key": "dialogue:witnesses_on_road",
+          "node": "lion-witnesses",
+          "name": "t3-witnesses-current"
+        },
+        {
+          "key": "choice:witnesses_on_road",
+          "node": "lion-witnesses",
+          "name": "t3-witnesses-decision-current"
+        },
+        {
+          "key": "dialogue:ate_lion_council_doubt",
+          "node": "lion-witnesses",
+          "name": "flow-dialogue-witnesses-ate_lion_council_doubt"
+        },
+        {
+          "key": "cinematic:lion-witnesses:http://127.0.0.1:5203/assets/cinematics/witnesses_encounter.mp4",
+          "node": "lion-witnesses",
+          "name": "flow-cinematic-witnesses-witnesses_encounter"
+        },
+        {
+          "key": "journey:lion-witnesses:true",
+          "node": "lion-witnesses",
+          "name": "t3-final-fork-current"
+        },
+        {
+          "key": "cinematic:lion-final-trial-event:http://127.0.0.1:5203/assets/cinematics/young_dragon_encounter.mp4",
+          "node": "lion-final-trial-event",
+          "name": "flow-cinematic-final-trial-event-young_dragon_encounter"
+        },
+        {
+          "key": "dialogue:mystery_dragon_roost",
+          "node": "lion-final-trial-event",
+          "name": "flow-dialogue-final-trial-event-mystery_dragon_roost"
+        },
+        {
+          "key": "choice:mystery_dragon_roost",
+          "node": "lion-final-trial-event",
+          "name": null
+        },
+        {
+          "key": "dialogue:pre_young_dragon_roost",
+          "node": "lion-final-trial-event",
+          "name": "flow-dialogue-final-trial-event-pre_young_dragon_roost"
+        },
+        {
+          "key": "combat:lion-final-trial-event",
+          "node": "lion-final-trial-event",
+          "name": "t3-final-event-combat-current"
+        },
+        {
+          "key": "dialogue:post_young_dragon_roost",
+          "node": "lion-final-trial-event",
+          "name": "flow-dialogue-final-trial-event-post_young_dragon_roost"
+        },
+        {
+          "key": "journey:lion-final-trial-event:true",
+          "node": "lion-final-trial-event",
+          "name": "t3-shadow-approach-current"
+        },
+        {
+          "key": "dialogue:shadow_signs",
+          "node": "lion-shadow-signs",
+          "name": "shadow-signs-dialogue-current"
+        },
+        {
+          "key": "choice:shadow_signs",
+          "node": "lion-shadow-signs",
+          "name": "shadow-signs-evidence-choice-current"
+        },
+        {
+          "key": "dialogue:ate_ruins_awaken",
+          "node": "lion-shadow-signs",
+          "name": "flow-dialogue-shadow-signs-ate_ruins_awaken"
+        },
+        {
+          "key": "dialogue:ate_serpent_retreat_order",
+          "node": "lion-shadow-signs",
+          "name": "flow-dialogue-shadow-signs-ate_serpent_retreat_order"
+        },
+        {
+          "key": "journey:lion-shadow-signs:true",
+          "node": "lion-shadow-signs",
+          "name": "t4-current-handoff"
+        },
+        {
+          "key": "dialogue:final_refuge",
+          "node": "lion-final-refuge",
+          "name": "final-refuge-dialogue-current"
+        },
+        {
+          "key": "dialogue:rep_event_village_memorial_request",
+          "node": "lion-final-refuge",
+          "name": "flow-dialogue-final-refuge-rep_event_village_memorial_request"
+        },
+        {
+          "key": "choice:rep_event_village_memorial_request",
+          "node": "lion-final-refuge",
+          "name": null
+        },
+        {
+          "key": "journey:lion-final-refuge:true",
+          "node": "lion-final-refuge",
+          "name": "final-refuge-departure-current"
+        },
+        {
+          "key": "cinematic:lion-final-judgement:http://127.0.0.1:5203/assets/cinematics/lion_judgement.mp4",
+          "node": "lion-final-judgement",
+          "name": "flow-cinematic-final-judgement-lion_judgement"
+        },
+        {
+          "key": "dialogue:lion_finale_judgement",
+          "node": "lion-final-judgement",
+          "name": "judgement-current"
+        },
+        {
+          "key": "choice:lion_finale_judgement",
+          "node": "lion-final-judgement",
+          "name": "judgement-choice-current"
+        },
+        {
+          "key": "cinematic:lion-final-judgement:http://127.0.0.1:5203/assets/cinematics/serpent_general_reveal.mp4",
+          "node": "lion-final-judgement",
+          "name": "flow-cinematic-final-judgement-serpent_general_reveal"
+        },
+        {
+          "key": "dialogue:serpent_pursuit_pre_combat",
+          "node": "lion-final-judgement",
+          "name": "flow-dialogue-final-judgement-serpent_pursuit_pre_combat"
+        },
+        {
+          "key": "combat:lion-final-judgement",
+          "node": "lion-final-judgement",
+          "name": "final-boss-current"
+        }
+      ],
+      "choices": [
+        {
+          "sequence": "reserve_trail",
+          "step": "1",
+          "picked": "Frapper le convoi et saisir les réserves.◇120 or et matériel◇Le détour privilégie les réserves",
+          "options": [
+            "Frapper le convoi et saisir les réserves.◇120 or et matériel◇Le détour privilégie les réserves",
+            "Marquer le convoi et continuer vers le village.◇Le convoi reste hors de portée◇La compagnie garde son avance"
+          ]
+        },
+        {
+          "sequence": "old_shrine_event",
+          "step": "1",
+          "picked": "Entretenir le foyer et laisser le reliquaire intact.◇Halte sûre pour la compagnie◇Le sanctuaire reste intact",
+          "options": [
+            "Entretenir le foyer et laisser le reliquaire intact.◇Halte sûre pour la compagnie◇Le sanctuaire reste intact",
+            "Ouvrir le reliquaire et emporter les pièces utiles.◇Ressources récupérées◇Le refuge est dépouillé"
+          ]
+        },
+        {
+          "sequence": "village_choice",
+          "step": "5",
+          "picked": "Prendre le vieux pont et extraire les captifs.◇Captifs prioritaires◇Réserves et puits laissés au sud",
+          "options": [
+            "Prendre le vieux pont et extraire les captifs.◇Captifs prioritaires◇Réserves et puits laissés au sud",
+            "Prendre la porte basse et sécuriser réserves et puits.◇Réserves et puits sécurisés◇Captifs laissés au nord"
+          ]
+        },
+        {
+          "sequence": "village_defense_aftermath",
+          "step": "1",
+          "picked": "Refuser toute récompense.◇Le village s’en souviendra◇Le clan gagne en respect",
+          "options": [
+            "Refuser toute récompense.◇Le village s’en souviendra◇Le clan gagne en respect",
+            "Accepter leur gratitude et leurs provisions.◇Le village s’en souviendra◇Le clan reçoit l’aide promise"
+          ]
+        },
+        {
+          "sequence": "rep_event_roadside_intimidation",
+          "step": "1",
+          "picked": "Refuser le tribut et tenir la route.◇Confrontation Serpent◇Votre réputation peut évoluer",
+          "options": [
+            "Refuser le tribut et tenir la route.◇Confrontation Serpent◇Votre réputation peut évoluer",
+            "Payer 20 or et poursuivre la route.●530 or disponible"
+          ]
+        },
+        {
+          "sequence": "mystery_lancer_recruit",
+          "step": "1",
+          "picked": "Accueillir Garen dans la compagnie.⚠Risque : modéré◇Garen pèse votre conduite avant de se lier.",
+          "options": [
+            "Accueillir Garen dans la compagnie.⚠Risque : modéré◇Garen pèse votre conduite avant de se lier.",
+            "Lui demander de rester protéger Bois-Clair.♜Réputation +2"
+          ]
+        },
+        {
+          "sequence": "witnesses_on_road",
+          "step": "1",
+          "picked": "Protéger les témoins jusqu’au camp.⚠Risque : élevé◇Les témoins doutent de votre protection.",
+          "options": [
+            "Protéger les témoins jusqu’au camp.⚠Risque : élevé◇Les témoins doutent de votre protection.",
+            "Faire taire les témoins, quel qu’en soit le prix.◇Les témoins résisteront◇Votre conduite sera jugée"
+          ]
+        },
+        {
+          "sequence": "mystery_dragon_roost",
+          "step": "1",
+          "picked": "Chasser le jeune dragon et prendre les gemmes.⚔Risque combat",
+          "options": [
+            "Chasser le jeune dragon et prendre les gemmes.⚔Risque combat",
+            "Sceller l’accès, cartographier le nid et poursuivre.♜Réputation +4"
+          ]
+        },
+        {
+          "sequence": "shadow_signs",
+          "step": "1",
+          "picked": "Stabiliser l’autel et transporter la preuve intacte.◇Preuve complète◇La compagnie transporte la balise",
+          "options": [
+            "Stabiliser l’autel et transporter la preuve intacte.◇Preuve complète◇La compagnie transporte la balise",
+            "Démonter l’autel et disperser sa résonance.◇Signal affaibli et fragments récupérés◇Preuve définitive perdue"
+          ]
+        },
+        {
+          "sequence": "rep_event_village_memorial_request",
+          "step": "1",
+          "picked": "Porter les noms et demander leur lecture.◇Geste mémoriel public◇Le verdict reste fondé sur les faits",
+          "options": [
+            "Porter les noms et demander leur lecture.◇Geste mémoriel public◇Le verdict reste fondé sur les faits",
+            "Financer un mémorial local — 35 or.●890 or disponible♜Réputation +1"
+          ]
+        },
+        {
+          "sequence": "lion_finale_judgement",
+          "step": "record",
+          "picked": "Assumer le dossier sans le falsifier.",
+          "options": [
+            "Assumer le dossier sans le falsifier.",
+            "Présenter nos écarts comme des nécessités de route.",
+            "Nier les accusations et affirmer que les rapports mentent."
+          ]
+        },
+        {
+          "sequence": "lion_finale_judgement",
+          "step": "shadow",
+          "picked": "Révéler les preuves des Ombres.◇Le Lion apprendra la menace◇Votre parole gagnera en crédibilité",
+          "options": [
+            "Révéler les preuves des Ombres.◇Le Lion apprendra la menace◇Votre parole gagnera en crédibilité",
+            "Conserver les preuves au sein du clan."
+          ]
+        },
+        {
+          "sequence": "lion_finale_judgement",
+          "step": "intent",
+          "picked": "Assumer nos actes et réclamer le Sceau.",
+          "options": [
+            "Assumer nos actes et réclamer le Sceau.",
+            "Demander l’épreuve du Lion.◇Le Sceau sera jugé par la loi martiale du Lion"
+          ]
+        }
+      ],
+      "journeyPicks": [
+        {
+          "node": "lion-valmir-road",
+          "picked": "lion-second-trial-event",
+          "options": [
+            "lion-second-trial-event",
+            "lion-second-trial-combat"
+          ]
+        },
+        {
+          "node": "lion-witnesses",
+          "picked": "lion-final-trial-event",
+          "options": [
+            "lion-final-trial-event",
+            "lion-final-trial-combat"
+          ]
+        }
+      ],
+      "completed": true,
+      "combatTicks": 8
+    }
+  ],
+  "captures": [
+    {
+      "file": "t3c-cinematic-witnesses-witnesses_encounter.png",
+      "run": "t3-combat-branch",
+      "viewport": "1440x810",
+      "note": "cinematic:lion-witnesses:http://127.0.0.1:5203/assets/cinematics/witnesses_encounter.mp4",
+      "state": {
+        "node": "lion-witnesses",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/witnesses_encounter.mp4",
+          "time": 12,
+          "skip": false
+        },
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_WITNESSES_ARRIVAL_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "edge:lion-witnesses>lion-final-trial-event",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "ENVIRONMENT_ONLY",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "La route se divise",
+          "choices": [
+            "lion-final-trial-event",
+            "lion-final-trial-combat"
+          ],
+          "continueLabel": null
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/witnesses_encounter.mp4"
+        ]
+      }
+    },
+    {
+      "file": "t3-final-fork-combat-run.png",
+      "run": "t3-combat-branch",
+      "viewport": "1440x810",
+      "note": "journey:lion-witnesses:true",
+      "state": {
+        "node": "lion-witnesses",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/witnesses_encounter.mp4",
+          "time": 12,
+          "skip": false
+        },
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_WITNESSES_ARRIVAL_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "edge:lion-witnesses>lion-final-trial-event",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "ENVIRONMENT_ONLY",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "La route se divise",
+          "choices": [
+            "lion-final-trial-event",
+            "lion-final-trial-combat"
+          ],
+          "continueLabel": null
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/witnesses_encounter.mp4"
+        ]
+      }
+    },
+    {
+      "file": "t3c-dialogue-final-trial-combat-pre_ruins_guardians.png",
+      "run": "t3-combat-branch",
+      "viewport": "1440x810",
+      "note": "dialogue:pre_ruins_guardians",
+      "state": {
+        "node": "lion-final-trial-combat",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "PRE_RUINS_GUARDIANS_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "dialogue:pre_ruins_guardians",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "pre_ruins_guardians",
+          "step": "1",
+          "actor": "elara",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/dark_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png"
+        ]
+      }
+    },
+    {
+      "file": "t3-final-combat-current.png",
+      "run": "t3-combat-branch",
+      "viewport": "1440x810",
+      "note": "combat:lion-final-trial-combat",
+      "state": {
+        "node": "lion-final-trial-combat",
+        "resolved": false,
+        "mode": "combat",
+        "transition": false,
+        "combat": true,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t3c-dialogue-final-trial-combat-post_ruins_guardians.png",
+      "run": "t3-combat-branch",
+      "viewport": "1440x810",
+      "note": "dialogue:post_ruins_guardians",
+      "state": {
+        "node": "lion-final-trial-combat",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "POST_RUINS_GUARDIANS_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "dialogue:post_ruins_guardians",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "post_ruins_guardians",
+          "step": "1",
+          "actor": "elara",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/dark_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png"
+        ]
+      }
+    },
+    {
+      "file": "t3-shadow-approach-after-combat-current.png",
+      "run": "t3-combat-branch",
+      "viewport": "1440x810",
+      "note": "journey:lion-final-trial-combat:true",
+      "state": {
+        "node": "lion-final-trial-combat",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_FINAL_TRIAL_COMBAT_ARRIVAL_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "edge:lion-final-trial-combat>lion-shadow-signs",
+          "mode": "TRAVEL_STILL",
+          "readiness": "VISIBLE",
+          "castOwnership": "TRAVEL_SURFACE_OWNS_ENVIRONMENT",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "Signes des Ombres",
+          "choices": [],
+          "continueLabel": "Continuer"
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "shadow-signs-after-combat-branch.png",
+      "run": "t3-combat-branch",
+      "viewport": "1440x810",
+      "note": "dialogue:shadow_signs",
+      "state": {
+        "node": "lion-shadow-signs",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "SHADOW_SIGNS_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "dialogue:shadow_signs",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "shadow_signs",
+          "step": "1",
+          "actor": "sage_seraphine",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/dark_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alistair.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png"
+        ]
+      }
+    },
+    {
+      "file": "t1c-cinematic-valmir-road-valmir_route_fork.png",
+      "run": "t1-combat-branch",
+      "viewport": "1440x810",
+      "note": "cinematic:lion-valmir-road:http://127.0.0.1:5203/assets/cinematics/valmir_route_fork.mp4",
+      "state": {
+        "node": "lion-valmir-road",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/valmir_route_fork.mp4",
+          "time": 10,
+          "skip": false
+        },
+        "stage": {
+          "tableau": "VALMIR_FORK_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "edge:lion-valmir-road>lion-second-trial-event",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "ENVIRONMENT_ONLY",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "La route se divise",
+          "choices": [
+            "lion-second-trial-event",
+            "lion-second-trial-combat"
+          ],
+          "continueLabel": null
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/valmir_route_fork.mp4"
+        ]
+      }
+    },
+    {
+      "file": "t1-current-06b-second-trial-fork-combat-run.png",
+      "run": "t1-combat-branch",
+      "viewport": "1440x810",
+      "note": "journey:lion-valmir-road:true",
+      "state": {
+        "node": "lion-valmir-road",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/valmir_route_fork.mp4",
+          "time": 10,
+          "skip": false
+        },
+        "stage": {
+          "tableau": "VALMIR_FORK_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "edge:lion-valmir-road>lion-second-trial-event",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "ENVIRONMENT_ONLY",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "La route se divise",
+          "choices": [
+            "lion-second-trial-event",
+            "lion-second-trial-combat"
+          ],
+          "continueLabel": null
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/valmir_route_fork.mp4"
+        ]
+      }
+    },
+    {
+      "file": "t1c-cinematic-second-trial-combat-serpent_road_tension.png",
+      "run": "t1-combat-branch",
+      "viewport": "1440x810",
+      "note": "cinematic:lion-second-trial-combat:http://127.0.0.1:5203/assets/cinematics/serpent_road_tension.mp4",
+      "state": {
+        "node": "lion-second-trial-combat",
+        "resolved": false,
+        "mode": "result",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/serpent_road_tension.mp4",
+          "time": 1.377944,
+          "skip": true
+        },
+        "stage": {
+          "tableau": "PRE_SERPENT_CHECKPOINT_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "media:serpent_road_tension",
+          "mode": "CINEMATIC_VIDEO",
+          "readiness": "VISIBLE",
+          "castOwnership": "VIDEO_OWNS_CAST",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/serpent_road_tension.mp4"
+        ]
+      }
+    },
+    {
+      "file": "t1c-dialogue-second-trial-combat-pre_serpent_checkpoint.png",
+      "run": "t1-combat-branch",
+      "viewport": "1440x810",
+      "note": "dialogue:pre_serpent_checkpoint",
+      "state": {
+        "node": "lion-second-trial-combat",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "PRE_SERPENT_CHECKPOINT_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "dialogue:pre_serpent_checkpoint",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "pre_serpent_checkpoint",
+          "step": "1",
+          "actor": "kestrel",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/archer.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png"
+        ]
+      }
+    },
+    {
+      "file": "t1-current-07b-second-trial-combat.png",
+      "run": "t1-combat-branch",
+      "viewport": "1440x810",
+      "note": "combat:lion-second-trial-combat",
+      "state": {
+        "node": "lion-second-trial-combat",
+        "resolved": false,
+        "mode": "combat",
+        "transition": false,
+        "combat": true,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t1c-dialogue-second-trial-combat-post_serpent_checkpoint.png",
+      "run": "t1-combat-branch",
+      "viewport": "1440x810",
+      "note": "dialogue:post_serpent_checkpoint",
+      "state": {
+        "node": "lion-second-trial-combat",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "POST_SERPENT_CHECKPOINT_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "dialogue:post_serpent_checkpoint",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "post_serpent_checkpoint",
+          "step": "1",
+          "actor": "kestrel",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/archer.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png"
+        ]
+      }
+    },
+    {
+      "file": "bois-clair-current-01b-approach-after-combat.png",
+      "run": "t1-combat-branch",
+      "viewport": "1440x810",
+      "note": "journey:lion-second-trial-combat:true",
+      "state": {
+        "node": "lion-second-trial-combat",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_SECOND_TRIAL_COMBAT_ARRIVAL_TABLEAU",
+          "family": "BOIS_CLAIR",
+          "beat": "edge:lion-second-trial-combat>lion-village-choice",
+          "mode": "TRAVEL_STILL",
+          "readiness": "VISIBLE",
+          "castOwnership": "TRAVEL_SURFACE_OWNS_ENVIRONMENT",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "Bois-Clair assiégé",
+          "choices": [],
+          "continueLabel": "Continuer"
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t0-reference-departure-journey.png",
+      "run": "t0-reference",
+      "viewport": "1440x810",
+      "note": "journey:departure",
+      "state": {
+        "node": "lion-audience",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "AUDIENCE_ROAD_DEPARTURE_TABLEAU",
+          "family": "FOREST_ROAD",
+          "beat": "edge:lion-audience>lion-opening-ambush",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/travel/forest-road-travel.png\")"
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "Vers Refuge du Lion",
+          "choices": [],
+          "continueLabel": "Prendre la route"
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alistair.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png"
+        ]
+      }
+    },
+    {
+      "file": "t0-reference-normal-travel.png",
+      "run": "t0-reference",
+      "viewport": "1440x810",
+      "note": "one-shot return",
+      "state": {
+        "node": "lion-audience",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": {
+          "phase": "RUNNING",
+          "progress": 0.047398799999999824,
+          "transition": null,
+          "interruption": null,
+          "category": null,
+          "grammar": null,
+          "fork": false
+        },
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t0-reference-normal-travel-390.png",
+      "run": "t0-reference",
+      "viewport": "390x844",
+      "note": "one-shot return",
+      "state": {
+        "node": "lion-audience",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": {
+          "phase": "RUNNING",
+          "progress": 0.047398799999999824,
+          "transition": null,
+          "interruption": null,
+          "category": null,
+          "grammar": null,
+          "fork": false
+        },
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t0-reference-optional-interrupt.png",
+      "run": "t0-reference",
+      "viewport": "1440x810",
+      "note": "decision:OPTIONAL_EVENT:1",
+      "state": {
+        "node": "lion-audience",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": {
+          "phase": "DECISION",
+          "progress": 0.09,
+          "transition": null,
+          "interruption": null,
+          "category": "OPTIONAL_EVENT",
+          "grammar": "LOCAL_MICRO_NARRATIVE",
+          "fork": false
+        },
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t0-reference-local-dialogue.png",
+      "run": "t0-reference",
+      "viewport": "1440x810",
+      "note": "dlg:peddler",
+      "state": {
+        "node": "lion-audience",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "ROADSIDE_PEDDLER_TABLEAU",
+          "family": null,
+          "beat": null,
+          "mode": null,
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-crossroads-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "roadside_peddler",
+          "step": "1",
+          "actor": "villageoise",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": {
+          "phase": "LOCAL_INTERACTION",
+          "progress": 0.09,
+          "transition": null,
+          "interruption": null,
+          "category": "OPTIONAL_EVENT",
+          "grammar": "LOCAL_MICRO_NARRATIVE",
+          "fork": false
+        },
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/villageoise.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alistair.png"
+        ]
+      }
+    },
+    {
+      "file": "t0-reference-dialogue-return.png",
+      "run": "t0-reference",
+      "viewport": "1440x810",
+      "note": "one-shot return",
+      "state": {
+        "node": "lion-audience",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": {
+          "phase": "RUNNING",
+          "progress": 0.09399837515000008,
+          "transition": null,
+          "interruption": null,
+          "category": null,
+          "grammar": null,
+          "fork": false
+        },
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t0-reference-mandatory-interrupt.png",
+      "run": "t0-reference",
+      "viewport": "1440x810",
+      "note": "decision:MANDATORY_EVENT:2",
+      "state": {
+        "node": "lion-audience",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": {
+          "phase": "DECISION",
+          "progress": 0.2,
+          "transition": null,
+          "interruption": null,
+          "category": "MANDATORY_EVENT",
+          "grammar": "CANONICAL_INTERRUPT",
+          "fork": false
+        },
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t0-reference-mandatory-interrupt-390.png",
+      "run": "t0-reference",
+      "viewport": "390x844",
+      "note": "decision:MANDATORY_EVENT:2",
+      "state": {
+        "node": "lion-audience",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": {
+          "phase": "DECISION",
+          "progress": 0.2,
+          "transition": null,
+          "interruption": null,
+          "category": "MANDATORY_EVENT",
+          "grammar": "CANONICAL_INTERRUPT",
+          "fork": false
+        },
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t0-reference-combat.png",
+      "run": "t0-reference",
+      "viewport": "1440x810",
+      "note": "combat:lion-opening-ambush",
+      "state": {
+        "node": "lion-opening-ambush",
+        "resolved": false,
+        "mode": "combat",
+        "transition": false,
+        "combat": true,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": {
+          "phase": "NODE_RESOLUTION",
+          "progress": 0.2,
+          "transition": null,
+          "interruption": "lion-opening-ambush",
+          "category": null,
+          "grammar": null,
+          "fork": false
+        },
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t0-reference-combat-return.png",
+      "run": "t0-reference",
+      "viewport": "1440x810",
+      "note": "one-shot return",
+      "state": {
+        "node": "lion-opening-ambush",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": {
+          "phase": "RUNNING",
+          "progress": 0.2050003916999999,
+          "transition": null,
+          "interruption": null,
+          "category": null,
+          "grammar": null,
+          "fork": false
+        },
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t0-reference-canonical-dialogue.png",
+      "run": "t0-reference",
+      "viewport": "1440x810",
+      "note": "dlg:recruit",
+      "state": {
+        "node": "lion-nomad-crossroads",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "MYSTERY_RECRUIT_TABLEAU",
+          "family": "FOREST_ROAD",
+          "beat": "dialogue:mystery_recruit",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-crossroads-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "mystery_recruit",
+          "step": "0a",
+          "actor": "kestrel",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": {
+          "phase": "NODE_RESOLUTION",
+          "progress": 0.4,
+          "transition": null,
+          "interruption": "lion-nomad-crossroads",
+          "category": null,
+          "grammar": null,
+          "fork": false
+        },
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/archer.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/rogue.png"
+        ]
+      }
+    },
+    {
+      "file": "t0-reference-canonical-dialogue-return.png",
+      "run": "t0-reference",
+      "viewport": "1440x810",
+      "note": "one-shot return",
+      "state": {
+        "node": "lion-nomad-crossroads",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": {
+          "phase": "RUNNING",
+          "progress": 0.40479999999999994,
+          "transition": null,
+          "interruption": null,
+          "category": null,
+          "grammar": null,
+          "fork": false
+        },
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t0-reference-optional-canonical-interrupt.png",
+      "run": "t0-reference",
+      "viewport": "1440x810",
+      "note": "decision:OPTIONAL_EVENT:6",
+      "state": {
+        "node": "lion-nomad-crossroads",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": {
+          "phase": "DECISION",
+          "progress": 0.6,
+          "transition": null,
+          "interruption": null,
+          "category": "OPTIONAL_EVENT",
+          "grammar": "CANONICAL_INTERRUPT",
+          "fork": false
+        },
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t0-reference-fork.png",
+      "run": "t0-reference",
+      "viewport": "1440x810",
+      "note": "fork",
+      "state": {
+        "node": "lion-refugees",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": {
+          "phase": "FORK_OVERLAY",
+          "progress": 0.8,
+          "transition": null,
+          "interruption": null,
+          "category": null,
+          "grammar": null,
+          "fork": true
+        },
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t0-reference-fork-390.png",
+      "run": "t0-reference",
+      "viewport": "390x844",
+      "note": "fork",
+      "state": {
+        "node": "lion-refugees",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": {
+          "phase": "FORK_OVERLAY",
+          "progress": 0.8,
+          "transition": null,
+          "interruption": null,
+          "category": null,
+          "grammar": null,
+          "fork": true
+        },
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t0-reference-arrival.png",
+      "run": "t0-reference",
+      "viewport": "1440x810",
+      "note": "arriving",
+      "state": {
+        "node": "lion-first-trial-event",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": {
+          "phase": "ARRIVING",
+          "progress": 1,
+          "transition": null,
+          "interruption": null,
+          "category": null,
+          "grammar": null,
+          "fork": false
+        },
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t0-reference-arrival-agency.png",
+      "run": "t0-reference",
+      "viewport": "1440x810",
+      "note": "journey:arrival",
+      "state": {
+        "node": "lion-first-trial-event",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_FIRST_TRIAL_EVENT_ARRIVAL_TABLEAU",
+          "family": "FIRST_REFUGE",
+          "beat": "edge:lion-first-trial-event>lion-first-refuge",
+          "mode": "TRAVEL_STILL",
+          "readiness": "VISIBLE",
+          "castOwnership": "TRAVEL_SURFACE_OWNS_ENVIRONMENT",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "Refuge du Lion",
+          "choices": [],
+          "continueLabel": "Continuer"
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t1-current-01-first-refuge-departure.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "journey:lion-first-refuge:true",
+      "state": {
+        "node": "lion-first-refuge",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_FIRST_REFUGE_ARRIVAL_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "edge:lion-first-refuge>lion-reserve-trail",
+          "mode": "TRAVEL_STILL",
+          "readiness": "VISIBLE",
+          "castOwnership": "TRAVEL_SURFACE_OWNS_ENVIRONMENT",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "Chemin des réserves",
+          "choices": [],
+          "continueLabel": "Continuer"
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t1-current-01-first-refuge-departure-390.png",
+      "run": "final-act-main",
+      "viewport": "390x844",
+      "note": "journey:lion-first-refuge:true",
+      "state": {
+        "node": "lion-first-refuge",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_FIRST_REFUGE_ARRIVAL_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "edge:lion-first-refuge>lion-reserve-trail",
+          "mode": "TRAVEL_STILL",
+          "readiness": "VISIBLE",
+          "castOwnership": "TRAVEL_SURFACE_OWNS_ENVIRONMENT",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "Chemin des réserves",
+          "choices": [],
+          "continueLabel": "Continuer"
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t1-current-02-reserve-trail.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:reserve_trail",
+      "state": {
+        "node": "lion-reserve-trail",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "RESERVE_TRAIL_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "dialogue:reserve_trail",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/valmir-road-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "reserve_trail",
+          "step": "0a",
+          "actor": "kestrel",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/archer.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alistair.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png"
+        ]
+      }
+    },
+    {
+      "file": "t1-current-03-reserve-trail-choice.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "choice:reserve_trail",
+      "state": {
+        "node": "lion-reserve-trail",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "RESERVE_TRAIL_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "dialogue:reserve_trail",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/valmir-road-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "reserve_trail",
+          "step": "1",
+          "actor": "maelor",
+          "choices": [
+            "Frapper le convoi et saisir les réserves.◇120 or et matériel◇Le détour privilégie les réserves",
+            "Marquer le convoi et continuer vers le village.◇Le convoi reste hors de portée◇La compagnie garde son avance"
+          ],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/archer.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alistair.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png"
+        ]
+      }
+    },
+    {
+      "file": "t1-current-04-valmir-road-departure.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "journey:lion-reserve-trail:true",
+      "state": {
+        "node": "lion-reserve-trail",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_RESERVE_TRAIL_ARRIVAL_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "edge:lion-reserve-trail>lion-valmir-road",
+          "mode": "TRAVEL_STILL",
+          "readiness": "VISIBLE",
+          "castOwnership": "TRAVEL_SURFACE_OWNS_ENVIRONMENT",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "Route de Bois-Clair",
+          "choices": [],
+          "continueLabel": "Continuer"
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "flow-dialogue-valmir-road-pre_valmir_road.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:pre_valmir_road",
+      "state": {
+        "node": "lion-valmir-road",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "PRE_VALMIR_ROAD_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "dialogue:pre_valmir_road",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "pre_valmir_road",
+          "step": "1",
+          "actor": "kestrel",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/archer.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/white_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png"
+        ]
+      }
+    },
+    {
+      "file": "t1-current-05-valmir-road-combat.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "combat:lion-valmir-road",
+      "state": {
+        "node": "lion-valmir-road",
+        "resolved": false,
+        "mode": "combat",
+        "transition": false,
+        "combat": true,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "flow-dialogue-valmir-road-post_valmir_road.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:post_valmir_road",
+      "state": {
+        "node": "lion-valmir-road",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "POST_VALMIR_ROAD_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "dialogue:post_valmir_road",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "post_valmir_road",
+          "step": "1",
+          "actor": "marian",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/white_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/archer.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png"
+        ]
+      }
+    },
+    {
+      "file": "flow-dialogue-valmir-road-ate_serpent_general_warning.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:ate_serpent_general_warning",
+      "state": {
+        "node": "lion-valmir-road",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "ATE_SERPENT_GENERAL_WARNING_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "dialogue:ate_serpent_general_warning",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/serpent-finale-tableau-aftermath.png\")"
+        },
+        "dialogue": {
+          "sequence": "ate_serpent_general_warning",
+          "step": "1",
+          "actor": "serpent_oracle",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/serpent_oracle.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/serpent_general_boss.png"
+        ]
+      }
+    },
+    {
+      "file": "flow-cinematic-valmir-road-valmir_route_fork.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "cinematic:lion-valmir-road:http://127.0.0.1:5203/assets/cinematics/valmir_route_fork.mp4",
+      "state": {
+        "node": "lion-valmir-road",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/valmir_route_fork.mp4",
+          "time": 10,
+          "skip": false
+        },
+        "stage": {
+          "tableau": "VALMIR_FORK_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "edge:lion-valmir-road>lion-second-trial-event",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "ENVIRONMENT_ONLY",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "La route se divise",
+          "choices": [
+            "lion-second-trial-event",
+            "lion-second-trial-combat"
+          ],
+          "continueLabel": null
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/valmir_route_fork.mp4"
+        ]
+      }
+    },
+    {
+      "file": "t1-current-06-second-trial-fork.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "journey:lion-valmir-road:true",
+      "state": {
+        "node": "lion-valmir-road",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/valmir_route_fork.mp4",
+          "time": 10,
+          "skip": false
+        },
+        "stage": {
+          "tableau": "VALMIR_FORK_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "edge:lion-valmir-road>lion-second-trial-event",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "ENVIRONMENT_ONLY",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "La route se divise",
+          "choices": [
+            "lion-second-trial-event",
+            "lion-second-trial-combat"
+          ],
+          "continueLabel": null
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/valmir_route_fork.mp4"
+        ]
+      }
+    },
+    {
+      "file": "t1-current-06-second-trial-fork-390.png",
+      "run": "final-act-main",
+      "viewport": "390x844",
+      "note": "journey:lion-valmir-road:true",
+      "state": {
+        "node": "lion-valmir-road",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/valmir_route_fork.mp4",
+          "time": 10,
+          "skip": false
+        },
+        "stage": {
+          "tableau": "VALMIR_FORK_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "edge:lion-valmir-road>lion-second-trial-event",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "ENVIRONMENT_ONLY",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "La route se divise",
+          "choices": [
+            "lion-second-trial-event",
+            "lion-second-trial-combat"
+          ],
+          "continueLabel": null
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/valmir_route_fork.mp4"
+        ]
+      }
+    },
+    {
+      "file": "flow-cinematic-second-trial-event-shrine_reveal_context.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "cinematic:lion-second-trial-event:http://127.0.0.1:5203/assets/cinematics/shrine_reveal_context.mp4",
+      "state": {
+        "node": "lion-second-trial-event",
+        "resolved": false,
+        "mode": "result",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/shrine_reveal_context.mp4",
+          "time": 1.367672,
+          "skip": true
+        },
+        "stage": {
+          "tableau": "OLD_SHRINE_EVENT_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "media:shrine_reveal_context",
+          "mode": "CINEMATIC_VIDEO",
+          "readiness": "VISIBLE",
+          "castOwnership": "VIDEO_OWNS_CAST",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/shrine_reveal_context.mp4"
+        ]
+      }
+    },
+    {
+      "file": "t1-current-07-second-trial-event.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:old_shrine_event",
+      "state": {
+        "node": "lion-second-trial-event",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "OLD_SHRINE_EVENT_TABLEAU",
+          "family": "VALMIR_ROAD",
+          "beat": "dialogue:old_shrine_event",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/old-shrine-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "old_shrine_event",
+          "step": "1",
+          "actor": "sage_seraphine",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png"
+        ]
+      }
+    },
+    {
+      "file": "bois-clair-current-01-approach.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "journey:lion-second-trial-event:true",
+      "state": {
+        "node": "lion-second-trial-event",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_SECOND_TRIAL_EVENT_ARRIVAL_TABLEAU",
+          "family": "BOIS_CLAIR",
+          "beat": "edge:lion-second-trial-event>lion-village-choice",
+          "mode": "TRAVEL_STILL",
+          "readiness": "VISIBLE",
+          "castOwnership": "TRAVEL_SURFACE_OWNS_ENVIRONMENT",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "Bois-Clair assiégé",
+          "choices": [],
+          "continueLabel": "Continuer"
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "flow-cinematic-village-choice-bois_clair_arrival.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "cinematic:lion-village-choice:http://127.0.0.1:5203/assets/cinematics/bois_clair_arrival.mp4",
+      "state": {
+        "node": "lion-village-choice",
+        "resolved": false,
+        "mode": "result",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/bois_clair_arrival.mp4",
+          "time": 1.389475,
+          "skip": true
+        },
+        "stage": {
+          "tableau": "VILLAGE_CHOICE_TABLEAU",
+          "family": "BOIS_CLAIR",
+          "beat": "media:bois_clair_arrival",
+          "mode": "CINEMATIC_VIDEO",
+          "readiness": "VISIBLE",
+          "castOwnership": "VIDEO_OWNS_CAST",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/bois_clair_arrival.mp4"
+        ]
+      }
+    },
+    {
+      "file": "bois-clair-current-03-dialogue.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:village_choice",
+      "state": {
+        "node": "lion-village-choice",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "VILLAGE_CHOICE_TABLEAU",
+          "family": "BOIS_CLAIR",
+          "beat": "dialogue:village_choice",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png\")"
+        },
+        "dialogue": {
+          "sequence": "village_choice",
+          "step": "1",
+          "actor": "villageoise",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/white_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/archer.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/villageoise.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/serpent_raider.png"
+        ]
+      }
+    },
+    {
+      "file": "bois-clair-current-03-dialogue-390.png",
+      "run": "final-act-main",
+      "viewport": "390x844",
+      "note": "dialogue:village_choice",
+      "state": {
+        "node": "lion-village-choice",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "VILLAGE_CHOICE_TABLEAU",
+          "family": "BOIS_CLAIR",
+          "beat": "dialogue:village_choice",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png\")"
+        },
+        "dialogue": {
+          "sequence": "village_choice",
+          "step": "1",
+          "actor": "villageoise",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/white_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/archer.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/villageoise.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/serpent_raider.png"
+        ]
+      }
+    },
+    {
+      "file": "bois-clair-current-04-choice.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "choice:village_choice",
+      "state": {
+        "node": "lion-village-choice",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "VILLAGE_CHOICE_TABLEAU",
+          "family": "BOIS_CLAIR",
+          "beat": "dialogue:village_choice",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png\")"
+        },
+        "dialogue": {
+          "sequence": "village_choice",
+          "step": "5",
+          "actor": "villageoise",
+          "choices": [
+            "Prendre le vieux pont et extraire les captifs.◇Captifs prioritaires◇Réserves et puits laissés au sud",
+            "Prendre la porte basse et sécuriser réserves et puits.◇Réserves et puits sécurisés◇Captifs laissés au nord"
+          ],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alistair.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/villageoise.png"
+        ]
+      }
+    },
+    {
+      "file": "flow-dialogue-village-choice-pre_village_defense.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:pre_village_defense",
+      "state": {
+        "node": "lion-village-choice",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "PRE_VILLAGE_DEFENSE_TABLEAU",
+          "family": "BOIS_CLAIR",
+          "beat": "dialogue:pre_village_defense",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png\")"
+        },
+        "dialogue": {
+          "sequence": "pre_village_defense",
+          "step": "1",
+          "actor": "serpent_raider",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/serpent_raider.png"
+        ]
+      }
+    },
+    {
+      "file": "bois-clair-current-05-combat.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "combat:lion-village-choice",
+      "state": {
+        "node": "lion-village-choice",
+        "resolved": false,
+        "mode": "combat",
+        "transition": false,
+        "combat": true,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "flow-dialogue-village-choice-village_defense_aftermath.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:village_defense_aftermath",
+      "state": {
+        "node": "lion-village-choice",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "VILLAGE_DEFENSE_AFTERMATH_TABLEAU",
+          "family": "BOIS_CLAIR",
+          "beat": "dialogue:village_defense_aftermath",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-saved.png\")"
+        },
+        "dialogue": {
+          "sequence": "village_defense_aftermath",
+          "step": "1",
+          "actor": "villageoise",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/villageoise.png"
+        ]
+      }
+    },
+    {
+      "file": "flow-dialogue-village-choice-ate_maelor_seal_analysis.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:ate_maelor_seal_analysis",
+      "state": {
+        "node": "lion-village-choice",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "ATE_MAELOR_SEAL_ANALYSIS_TABLEAU",
+          "family": "BOIS_CLAIR",
+          "beat": "dialogue:ate_maelor_seal_analysis",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "ate_maelor_seal_analysis",
+          "step": "1",
+          "actor": "maelor",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png"
+        ]
+      }
+    },
+    {
+      "file": "flow-dialogue-village-choice-rep_event_roadside_intimidation.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:rep_event_roadside_intimidation",
+      "state": {
+        "node": "lion-village-choice",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "REP_EVENT_ROADSIDE_INTIMIDATION_TABLEAU",
+          "family": "FOREST_ROAD",
+          "beat": "dialogue:rep_event_roadside_intimidation",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "rep_event_roadside_intimidation",
+          "step": "1",
+          "actor": "serpent_raider",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/serpent_raider.png"
+        ]
+      }
+    },
+    {
+      "file": "flow-dialogue-village-choice-pre_serpent_reprisals.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:pre_serpent_reprisals",
+      "state": {
+        "node": "lion-village-choice",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "PRE_SERPENT_REPRISALS_TABLEAU",
+          "family": "FOREST_ROAD",
+          "beat": "dialogue:pre_serpent_reprisals",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "pre_serpent_reprisals",
+          "step": "1",
+          "actor": "serpent_raider",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alistair.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/serpent_raider.png"
+        ]
+      }
+    },
+    {
+      "file": "flow-dialogue-village-choice-post_serpent_reprisals.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:post_serpent_reprisals",
+      "state": {
+        "node": "lion-village-choice",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "POST_SERPENT_REPRISALS_TABLEAU",
+          "family": "FOREST_ROAD",
+          "beat": "dialogue:post_serpent_reprisals",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "post_serpent_reprisals",
+          "step": "1",
+          "actor": "alistair",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alistair.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/archer.png"
+        ]
+      }
+    },
+    {
+      "file": "bois-clair-current-07-handoff-to-second-refuge.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "journey:lion-village-choice:true",
+      "state": {
+        "node": "lion-village-choice",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_VILLAGE_CHOICE_ARRIVAL_TABLEAU",
+          "family": "SECOND_REFUGE",
+          "beat": "edge:lion-village-choice>lion-second-refuge",
+          "mode": "TRAVEL_STILL",
+          "readiness": "VISIBLE",
+          "castOwnership": "TRAVEL_SURFACE_OWNS_ENVIRONMENT",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "Dernier feu du Lion",
+          "choices": [],
+          "continueLabel": "Continuer"
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "second-refuge-current-02-hub.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "hub:lion-second-refuge",
+      "state": {
+        "node": "lion-second-refuge",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": {
+          "node": "lion-second-refuge",
+          "family": "SECOND_REFUGE",
+          "background": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png",
+          "ready": "true"
+        },
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "second-refuge-current-02-hub-390.png",
+      "run": "final-act-main",
+      "viewport": "390x844",
+      "note": "hub:lion-second-refuge",
+      "state": {
+        "node": "lion-second-refuge",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": {
+          "node": "lion-second-refuge",
+          "family": "SECOND_REFUGE",
+          "background": "/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png",
+          "ready": "true"
+        },
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "flow-dialogue-second-refuge-ate_bois_clair_night_watch.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:ate_bois_clair_night_watch",
+      "state": {
+        "node": "lion-second-refuge",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "ATE_BOIS_CLAIR_NIGHT_WATCH_TABLEAU",
+          "family": "SECOND_REFUGE",
+          "beat": "dialogue:ate_bois_clair_night_watch",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png\")"
+        },
+        "dialogue": {
+          "sequence": "ate_bois_clair_night_watch",
+          "step": "1",
+          "actor": "villageoise",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/white_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alistair.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/villageoise.png"
+        ]
+      }
+    },
+    {
+      "file": "second-refuge-current-04-departure.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "journey:lion-second-refuge:true",
+      "state": {
+        "node": "lion-second-refuge",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_SECOND_REFUGE_ARRIVAL_TABLEAU",
+          "family": "SECOND_REFUGE",
+          "beat": "edge:lion-second-refuge>lion-lancer-recruit",
+          "mode": "TRAVEL_STILL",
+          "readiness": "VISIBLE",
+          "castOwnership": "TRAVEL_SURFACE_OWNS_ENVIRONMENT",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "Volontaire de Bois-Clair",
+          "choices": [],
+          "continueLabel": "Continuer"
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t3-garen-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:mystery_lancer_recruit",
+      "state": {
+        "node": "lion-lancer-recruit",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "MYSTERY_LANCER_RECRUIT_TABLEAU",
+          "family": "SECOND_REFUGE",
+          "beat": "dialogue:mystery_lancer_recruit",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "mystery_lancer_recruit",
+          "step": "1",
+          "actor": "lancer",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/lancer.png"
+        ]
+      }
+    },
+    {
+      "file": "t3-garen-choice-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "choice:mystery_lancer_recruit",
+      "state": {
+        "node": "lion-lancer-recruit",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "MYSTERY_LANCER_RECRUIT_TABLEAU",
+          "family": "SECOND_REFUGE",
+          "beat": "dialogue:mystery_lancer_recruit",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "mystery_lancer_recruit",
+          "step": "1",
+          "actor": "lancer",
+          "choices": [
+            "Accueillir Garen dans la compagnie.⚠Risque : modéré◇Garen pèse votre conduite avant de se lier.",
+            "Lui demander de rester protéger Bois-Clair.♜Réputation +2"
+          ],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/lancer.png"
+        ]
+      }
+    },
+    {
+      "file": "t3-witness-road-departure-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "journey:lion-lancer-recruit:true",
+      "state": {
+        "node": "lion-lancer-recruit",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_LANCER_RECRUIT_ARRIVAL_TABLEAU",
+          "family": "WITNESS_ROAD",
+          "beat": "edge:lion-lancer-recruit>lion-witnesses",
+          "mode": "TRAVEL_STILL",
+          "readiness": "VISIBLE",
+          "castOwnership": "TRAVEL_SURFACE_OWNS_ENVIRONMENT",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "Témoins de Bois-Clair",
+          "choices": [],
+          "continueLabel": "Continuer"
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "t3-witnesses-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:witnesses_on_road",
+      "state": {
+        "node": "lion-witnesses",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "WITNESSES_ON_ROAD_TABLEAU",
+          "family": "WITNESS_ROAD",
+          "beat": "dialogue:witnesses_on_road",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "witnesses_on_road",
+          "step": "0a",
+          "actor": "kestrel",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/archer.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/white_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alistair.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/survivor.png"
+        ]
+      }
+    },
+    {
+      "file": "t3-witnesses-current-390.png",
+      "run": "final-act-main",
+      "viewport": "390x844",
+      "note": "dialogue:witnesses_on_road",
+      "state": {
+        "node": "lion-witnesses",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "WITNESSES_ON_ROAD_TABLEAU",
+          "family": "WITNESS_ROAD",
+          "beat": "dialogue:witnesses_on_road",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "witnesses_on_road",
+          "step": "0a",
+          "actor": "kestrel",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/archer.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/white_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alistair.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/survivor.png"
+        ]
+      }
+    },
+    {
+      "file": "t3-witnesses-decision-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "choice:witnesses_on_road",
+      "state": {
+        "node": "lion-witnesses",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "WITNESSES_ON_ROAD_TABLEAU",
+          "family": "WITNESS_ROAD",
+          "beat": "dialogue:witnesses_on_road",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "witnesses_on_road",
+          "step": "1",
+          "actor": "survivor",
+          "choices": [
+            "Protéger les témoins jusqu’au camp.⚠Risque : élevé◇Les témoins doutent de votre protection.",
+            "Faire taire les témoins, quel qu’en soit le prix.◇Les témoins résisteront◇Votre conduite sera jugée"
+          ],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/archer.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/white_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alistair.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/survivor.png"
+        ]
+      }
+    },
+    {
+      "file": "flow-dialogue-witnesses-ate_lion_council_doubt.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:ate_lion_council_doubt",
+      "state": {
+        "node": "lion-witnesses",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "ATE_LION_COUNCIL_DOUBT_TABLEAU",
+          "family": "WITNESS_ROAD",
+          "beat": "dialogue:ate_lion_council_doubt",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "ate_lion_council_doubt",
+          "step": "1",
+          "actor": "lion_champion",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/lion_champion.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alaric.png"
+        ]
+      }
+    },
+    {
+      "file": "flow-cinematic-witnesses-witnesses_encounter.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "cinematic:lion-witnesses:http://127.0.0.1:5203/assets/cinematics/witnesses_encounter.mp4",
+      "state": {
+        "node": "lion-witnesses",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/witnesses_encounter.mp4",
+          "time": 12,
+          "skip": false
+        },
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_WITNESSES_ARRIVAL_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "edge:lion-witnesses>lion-final-trial-event",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "ENVIRONMENT_ONLY",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "La route se divise",
+          "choices": [
+            "lion-final-trial-event",
+            "lion-final-trial-combat"
+          ],
+          "continueLabel": null
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/witnesses_encounter.mp4"
+        ]
+      }
+    },
+    {
+      "file": "t3-final-fork-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "journey:lion-witnesses:true",
+      "state": {
+        "node": "lion-witnesses",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/witnesses_encounter.mp4",
+          "time": 12,
+          "skip": false
+        },
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_WITNESSES_ARRIVAL_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "edge:lion-witnesses>lion-final-trial-event",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "ENVIRONMENT_ONLY",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "La route se divise",
+          "choices": [
+            "lion-final-trial-event",
+            "lion-final-trial-combat"
+          ],
+          "continueLabel": null
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/witnesses_encounter.mp4"
+        ]
+      }
+    },
+    {
+      "file": "t3-final-fork-current-390.png",
+      "run": "final-act-main",
+      "viewport": "390x844",
+      "note": "journey:lion-witnesses:true",
+      "state": {
+        "node": "lion-witnesses",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/witnesses_encounter.mp4",
+          "time": 12,
+          "skip": false
+        },
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_WITNESSES_ARRIVAL_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "edge:lion-witnesses>lion-final-trial-event",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "ENVIRONMENT_ONLY",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "La route se divise",
+          "choices": [
+            "lion-final-trial-event",
+            "lion-final-trial-combat"
+          ],
+          "continueLabel": null
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/witnesses_encounter.mp4"
+        ]
+      }
+    },
+    {
+      "file": "flow-cinematic-final-trial-event-young_dragon_encounter.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "cinematic:lion-final-trial-event:http://127.0.0.1:5203/assets/cinematics/young_dragon_encounter.mp4",
+      "state": {
+        "node": "lion-final-trial-event",
+        "resolved": false,
+        "mode": "result",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/young_dragon_encounter.mp4",
+          "time": 1.363217,
+          "skip": true
+        },
+        "stage": {
+          "tableau": "MYSTERY_DRAGON_ROOST_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "media:young_dragon_encounter",
+          "mode": "CINEMATIC_VIDEO",
+          "readiness": "VISIBLE",
+          "castOwnership": "VIDEO_OWNS_CAST",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/young_dragon_encounter.mp4"
+        ]
+      }
+    },
+    {
+      "file": "flow-dialogue-final-trial-event-mystery_dragon_roost.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:mystery_dragon_roost",
+      "state": {
+        "node": "lion-final-trial-event",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "MYSTERY_DRAGON_ROOST_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "dialogue:mystery_dragon_roost",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/dragon-roost-area.png\")"
+        },
+        "dialogue": {
+          "sequence": "mystery_dragon_roost",
+          "step": "1",
+          "actor": "young_dragon_elite",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/young_dragon_elite.png"
+        ]
+      }
+    },
+    {
+      "file": "flow-dialogue-final-trial-event-pre_young_dragon_roost.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:pre_young_dragon_roost",
+      "state": {
+        "node": "lion-final-trial-event",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "PRE_YOUNG_DRAGON_ROOST_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "dialogue:pre_young_dragon_roost",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "pre_young_dragon_roost",
+          "step": "1",
+          "actor": "young_dragon_elite",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/young_dragon_elite.png"
+        ]
+      }
+    },
+    {
+      "file": "t3-final-event-combat-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "combat:lion-final-trial-event",
+      "state": {
+        "node": "lion-final-trial-event",
+        "resolved": false,
+        "mode": "combat",
+        "transition": false,
+        "combat": true,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "flow-dialogue-final-trial-event-post_young_dragon_roost.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:post_young_dragon_roost",
+      "state": {
+        "node": "lion-final-trial-event",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "POST_YOUNG_DRAGON_ROOST_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "dialogue:post_young_dragon_roost",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "post_young_dragon_roost",
+          "step": "1",
+          "actor": "elara",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/dark_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png"
+        ]
+      }
+    },
+    {
+      "file": "t3-shadow-approach-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "journey:lion-final-trial-event:true",
+      "state": {
+        "node": "lion-final-trial-event",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_FINAL_TRIAL_EVENT_ARRIVAL_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "edge:lion-final-trial-event>lion-shadow-signs",
+          "mode": "TRAVEL_STILL",
+          "readiness": "VISIBLE",
+          "castOwnership": "TRAVEL_SURFACE_OWNS_ENVIRONMENT",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "Signes des Ombres",
+          "choices": [],
+          "continueLabel": "Continuer"
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "shadow-signs-dialogue-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:shadow_signs",
+      "state": {
+        "node": "lion-shadow-signs",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "SHADOW_SIGNS_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "dialogue:shadow_signs",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "shadow_signs",
+          "step": "1",
+          "actor": "sage_seraphine",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/dark_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alistair.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/lancer.png"
+        ]
+      }
+    },
+    {
+      "file": "shadow-signs-evidence-choice-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "choice:shadow_signs",
+      "state": {
+        "node": "lion-shadow-signs",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "SHADOW_SIGNS_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "dialogue:shadow_signs",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "shadow_signs",
+          "step": "1",
+          "actor": "sage_seraphine",
+          "choices": [
+            "Stabiliser l’autel et transporter la preuve intacte.◇Preuve complète◇La compagnie transporte la balise",
+            "Démonter l’autel et disperser sa résonance.◇Signal affaibli et fragments récupérés◇Preuve définitive perdue"
+          ],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/dark_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alistair.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/lancer.png"
+        ]
+      }
+    },
+    {
+      "file": "flow-dialogue-shadow-signs-ate_ruins_awaken.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:ate_ruins_awaken",
+      "state": {
+        "node": "lion-shadow-signs",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "ATE_RUINS_AWAKEN_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "dialogue:ate_ruins_awaken",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "ate_ruins_awaken",
+          "step": "1",
+          "actor": "maelor",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png"
+        ]
+      }
+    },
+    {
+      "file": "flow-dialogue-shadow-signs-ate_serpent_retreat_order.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:ate_serpent_retreat_order",
+      "state": {
+        "node": "lion-shadow-signs",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "ATE_SERPENT_RETREAT_ORDER_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "dialogue:ate_serpent_retreat_order",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "ate_serpent_retreat_order",
+          "step": "1",
+          "actor": "serpent_general_boss",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/serpent_general_boss.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/serpent_oracle.png"
+        ]
+      }
+    },
+    {
+      "file": "t4-current-handoff.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "journey:lion-shadow-signs:true",
+      "state": {
+        "node": "lion-shadow-signs",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_SHADOW_SIGNS_ARRIVAL_TABLEAU",
+          "family": "FINAL_REFUGE",
+          "beat": "edge:lion-shadow-signs>lion-final-refuge",
+          "mode": "TRAVEL_STILL",
+          "readiness": "VISIBLE",
+          "castOwnership": "TRAVEL_SURFACE_OWNS_ENVIRONMENT",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "Refuge avant le Sceau",
+          "choices": [],
+          "continueLabel": "Continuer"
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "final-refuge-dialogue-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:final_refuge",
+      "state": {
+        "node": "lion-final-refuge",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "FINAL_REFUGE_TABLEAU",
+          "family": "FINAL_REFUGE",
+          "beat": "dialogue:final_refuge",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/final-refuge-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "final_refuge",
+          "step": "1",
+          "actor": "maelor",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/white_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/lancer.png"
+        ]
+      }
+    },
+    {
+      "file": "final-refuge-dialogue-current-390.png",
+      "run": "final-act-main",
+      "viewport": "390x844",
+      "note": "dialogue:final_refuge",
+      "state": {
+        "node": "lion-final-refuge",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "FINAL_REFUGE_TABLEAU",
+          "family": "FINAL_REFUGE",
+          "beat": "dialogue:final_refuge",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/final-refuge-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "final_refuge",
+          "step": "1",
+          "actor": "maelor",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/white_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/lancer.png"
+        ]
+      }
+    },
+    {
+      "file": "flow-dialogue-final-refuge-rep_event_village_memorial_request.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:rep_event_village_memorial_request",
+      "state": {
+        "node": "lion-final-refuge",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "REP_EVENT_VILLAGE_MEMORIAL_REQUEST_TABLEAU",
+          "family": "BOIS_CLAIR",
+          "beat": "dialogue:rep_event_village_memorial_request",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png\")"
+        },
+        "dialogue": {
+          "sequence": "rep_event_village_memorial_request",
+          "step": "1",
+          "actor": "refugee_mother",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/refugee_mother.png"
+        ]
+      }
+    },
+    {
+      "file": "final-refuge-departure-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "journey:lion-final-refuge:true",
+      "state": {
+        "node": "lion-final-refuge",
+        "resolved": true,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "BOUNDARY_NODE_LION_FINAL_REFUGE_ARRIVAL_TABLEAU",
+          "family": "LION_JUDGEMENT",
+          "beat": "edge:lion-final-refuge>lion-final-judgement",
+          "mode": "TRAVEL_STILL",
+          "readiness": "VISIBLE",
+          "castOwnership": "TRAVEL_SURFACE_OWNS_ENVIRONMENT",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": {
+          "title": "Jugement du Sceau",
+          "choices": [],
+          "continueLabel": "Continuer"
+        },
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    },
+    {
+      "file": "flow-cinematic-final-judgement-lion_judgement.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "cinematic:lion-final-judgement:http://127.0.0.1:5203/assets/cinematics/lion_judgement.mp4",
+      "state": {
+        "node": "lion-final-judgement",
+        "resolved": false,
+        "mode": "result",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/lion_judgement.mp4",
+          "time": 1.365028,
+          "skip": true
+        },
+        "stage": {
+          "tableau": "LION_FINALE_JUDGEMENT_TABLEAU",
+          "family": "LION_JUDGEMENT",
+          "beat": "media:lion_judgement",
+          "mode": "CINEMATIC_VIDEO",
+          "readiness": "VISIBLE",
+          "castOwnership": "VIDEO_OWNS_CAST",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/lion_judgement.mp4"
+        ]
+      }
+    },
+    {
+      "file": "judgement-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:lion_finale_judgement",
+      "state": {
+        "node": "lion-final-judgement",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "LION_FINALE_JUDGEMENT_TABLEAU",
+          "family": "LION_JUDGEMENT",
+          "beat": "dialogue:lion_finale_judgement",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "lion_finale_judgement",
+          "step": "open",
+          "actor": "alaric",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alaric.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/lion_champion.png"
+        ]
+      }
+    },
+    {
+      "file": "judgement-current-390.png",
+      "run": "final-act-main",
+      "viewport": "390x844",
+      "note": "dialogue:lion_finale_judgement",
+      "state": {
+        "node": "lion-final-judgement",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "LION_FINALE_JUDGEMENT_TABLEAU",
+          "family": "LION_JUDGEMENT",
+          "beat": "dialogue:lion_finale_judgement",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "lion_finale_judgement",
+          "step": "open",
+          "actor": "alaric",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alaric.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/lion_champion.png"
+        ]
+      }
+    },
+    {
+      "file": "judgement-choice-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "choice:lion_finale_judgement",
+      "state": {
+        "node": "lion-final-judgement",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "LION_FINALE_JUDGEMENT_TABLEAU",
+          "family": "LION_JUDGEMENT",
+          "beat": "dialogue:lion_finale_judgement",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "lion_finale_judgement",
+          "step": "record",
+          "actor": "alaric",
+          "choices": [
+            "Assumer le dossier sans le falsifier.",
+            "Présenter nos écarts comme des nécessités de route.",
+            "Nier les accusations et affirmer que les rapports mentent."
+          ],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alaric.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/lion_champion.png"
+        ]
+      }
+    },
+    {
+      "file": "flow-cinematic-final-judgement-serpent_general_reveal.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "cinematic:lion-final-judgement:http://127.0.0.1:5203/assets/cinematics/serpent_general_reveal.mp4",
+      "state": {
+        "node": "lion-final-judgement",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": {
+          "src": "http://127.0.0.1:5203/assets/cinematics/serpent_general_reveal.mp4",
+          "time": 1.378293,
+          "skip": true
+        },
+        "stage": {
+          "tableau": "SERPENT_PURSUIT_PRE_COMBAT_TABLEAU",
+          "family": "SERPENT_FINALE",
+          "beat": "media:serpent_general_reveal",
+          "mode": "CINEMATIC_VIDEO",
+          "readiness": "VISIBLE",
+          "castOwnership": "VIDEO_OWNS_CAST",
+          "environment": null
+        },
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/cinematics/serpent_general_reveal.mp4"
+        ]
+      }
+    },
+    {
+      "file": "flow-dialogue-final-judgement-serpent_pursuit_pre_combat.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:serpent_pursuit_pre_combat",
+      "state": {
+        "node": "lion-final-judgement",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "SERPENT_PURSUIT_PRE_COMBAT_TABLEAU",
+          "family": "SERPENT_FINALE",
+          "beat": "dialogue:serpent_pursuit_pre_combat",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/serpent-finale-tableau-aftermath.png\")"
+        },
+        "dialogue": {
+          "sequence": "serpent_pursuit_pre_combat",
+          "step": "1",
+          "actor": "alaric",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alaric.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/serpent_general_boss.png"
+        ]
+      }
+    },
+    {
+      "file": "final-boss-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "combat:lion-final-judgement",
+      "state": {
+        "node": "lion-final-judgement",
+        "resolved": false,
+        "mode": "combat",
+        "transition": false,
+        "combat": true,
+        "cinematic": null,
+        "stage": null,
+        "dialogue": null,
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": []
+      }
+    }
+  ],
+  "errors": []
+}
