@@ -12,10 +12,16 @@ inventory, and recommended branch order.
 - Baseline commit: `d300ca95487732a459b50cfc82bf2407bb4a264e`.
 - Production gate: `TRAVERSAL_PRODUCTION_GATE` is fail-closed with `rolloutLegIds: ['T0']` —
   no query-string, DEV, or environment override (`src/traversal/TraversalFeaturePolicy.ts:14-18`).
-- Gallery evidence: `docs/reports/traversal-remaining-legs-audit-1-browser/` (17 T0 reference
-  captures + final-act route captures + 3 asset contact sheets + `gallery-index.json` + `index.md`).
+- Gallery evidence: `docs/reports/traversal-remaining-legs-audit-1-browser/` (97 indexed current
+  production captures, including 17 T0 references and required named aliases, plus 3 asset
+  contact sheets, `gallery-index.json`, `index.md`, and static `index.html`).
   Method: unmodified app, RunSystem-built durable saves resumed through the real title-screen
   Continue, real UI clicks; combat advances via the existing DEV QA victory control only.
+- Validation refreshed on this branch: focused relation/runtime/controller/feature/structure/full-route/
+  historical-guard/refuge suites **71/71**; full Vitest **2562/2562** across **160** files;
+  `tsc --noEmit` and `vite build` passed. The full gallery runner completed 4/4 routes with
+  zero recorded page errors, and the static HTML index rendered 97 cards in Chromium. The
+  build emitted the existing large-chunk advisory.
 
 ## 2. Current Traversal architecture
 
@@ -89,6 +95,25 @@ Production flow today (T0 only):
 | `TraversalFeaturePolicy` | Generic gate | `rolloutLegIds` is the single control point |
 | `runSystem` branch/bypass | Generic shape | Two `id === 'T0'` literals |
 | `GameApp` traversal integration | T0-only | `candidate.id === 'T0'` entry, `enterTraversalT0`, road-combat leg check, `activeTraversal: TraversalT0Scene` type, `?qa=1&traversal=t0` preview |
+
+Responsibility classification for the extraction branch (the labels are intentional boundaries):
+
+| Responsibility and source | Classification | Target |
+|---|---|---|
+| Phase transitions and stage completion (`TraversalRunRuntime.ts:51-61, 146-175, 304`) | GENERIC_ALREADY | Keep shared; receives `LionTraversalLeg` |
+| Stage activation, fork callbacks, handoff (`TraversalRunController.ts:37`) | GENERIC_ALREADY | Keep shared; receives leg and callbacks |
+| Fork UI contract (`TraversalForkOverlay.ts:13`, `LionCampaignTravelRelations.ts:10-20`) | PRESENTATION_ONLY | Reuse with relation-owned fork semantics |
+| T0 forest art, foreground, caravan, ambient props (`TraversalT0Assets.ts:1`, `TraversalT0World.ts:46-103`) | SHOULD_BECOME_DATA | Inject per-leg world/presentation config |
+| T0 route copy, 4 km pacing, forest encounter pool (`TraversalT0Route.ts:118-131, 264-356`) | SHOULD_BECOME_DATA | Per-leg route authoring; stages still from relation |
+| Scene DOM, movement, hit tests, interaction panels (`TraversalT0Scene.ts:82-773`) | SHOULD_BECOME_SHARED_RUNTIME | Extract generic `TraversalScene` with T0 adapter |
+| Scene T0 guard and branch lookup (`TraversalT0Scene.ts:109,123,133,163`) | T0_SPECIFIC | Replace literals with injected `leg.id` |
+| World renderer's fixed T0 import (`TraversalWorldRenderer.ts:2,22,46`) | SHOULD_BECOME_SHARED_RUNTIME | Inject world resolver and margin art |
+| Active-scene lifecycle and local combat checks (`GameApp.ts:150,283-446,865-873`) | SHOULD_BECOME_SHARED_RUNTIME | Generic scene type/entry and gated leg scan |
+| Traversal rollout (`TraversalFeaturePolicy.ts:14-38`) | CAMPAIGN_AUTHORITY — DO NOT MOVE | Keep `rolloutLegIds: ['T0']` until later approvals |
+| Leg topology and stage membership (`LionCampaignTravelRelations.ts:54-151`) | CAMPAIGN_AUTHORITY — DO NOT MOVE | T2 semantics change only in its later branch |
+| Anchor role, entry/exit policy (`LionCampaignStructure.ts:73-346`) | CAMPAIGN_AUTHORITY — DO NOT MOVE | Keep separate from visual config |
+| Branch selection, bypass and available edges (`runSystem.ts:618-658`) | CAMPAIGN_AUTHORITY — DO NOT MOVE | Generalize T0 literal within RunSystem |
+| Shared gold/reputation/route-loot HUD (`CampaignStatusHud.ts:8,16,73`) | PRESENTATION_ONLY | Read state; reuse without duplicating HUD or changing loot |
 
 ## 4. Target generic architecture
 
@@ -170,21 +195,38 @@ Target: Bois-Clair resolution → NarrativeStage continuity → Second Refuge ar
 refuge hub. **No physical Traversal leg between them.**
 
 - Keep the literal id `T2` in `LionTraversalLegId` (historical numbering; T3/T4 keep their ids).
-- Later branch changes `LION_TRAVERSAL_LEG_DEFINITIONS` T2 entry to a non-playable kind
-  (e.g. `kind: 'NARRATIVE_HANDOFF'` or removing it from the playable-legs list while keeping the
-  type). Auditing must continue to cover the *edge* `village-choice → second-refuge` as a direct
-  link; `auditLionTravelRelations` currently iterates legs only, so a handoff entry needs an
-  equivalent direct-link check (same class as `LION_MAJOR_CAMPAIGN_TRANSITIONS`).
+- Introduce a future playable-leg type equivalent to
+  `LionPlayableTraversalLegId = 'T0' | 'T1' | 'T3' | 'T4'`. Keep the historical
+  `LionTraversalLegId` for compatibility, while typed production rollout gates and playable
+  leg definitions exclude T2.
+- Preferred later representation: remove the T2 object from the **playable**
+  `LION_TRAVERSAL_LEG_DEFINITIONS`, retain historical `T2` in the persisted leg-id union, and
+  declare `T2` in a separate `LION_NARRATIVE_HANDOFFS` relation with the same origin/destination.
+  Audit that direct edge explicitly (same class as `LION_MAJOR_CAMPAIGN_TRANSITIONS`), because
+  `auditLionTravelRelations` currently walks only playable legs. Do not renumber T3/T4.
 - `LionCampaignStructure`: `lion-village-choice.exitPolicy` is currently `START_TRAVERSAL`
   (`:247`); the retirement branch flips it to a narrative-continuation policy.
   `lion-second-refuge.exitPolicy` stays `START_TRAVERSAL` (T3 origin).
-- Presentation today is already the target: a Journey/TRAVEL surface on
+- Current production selection does **not** consult T2: `GameApp.enterCampaignPresentation`
+  selects only `candidate.id === 'T0'` (`GameApp.ts:865-877`) and otherwise enters Journey.
+  Journey receives `getAvailableRunNodes` from RunSystem (`GameApp.ts:973-985`), which derives
+  choices from the RunGraph's direct edges (`runSystem.ts:618-639`); the relation table is used
+  by the audit and by T0 branch/bypass validation, not by this T2 Journey handoff.
+- Current presentation is a Journey/TRAVEL surface on
   `edge:lion-village-choice>lion-second-refuge` (SECOND_REFUGE `second_refuge_morning_travel`)
-  plus `ate_bois_clair_night_watch` inside the refuge — the retirement only removes the *declared
-  playable leg*, not the surface.
+  plus `ate_bois_clair_night_watch` inside the refuge. The later handoff branch should stage
+  **Bois-Clair saved/sacrificed aftermath → company regroup → time shift → second-refuge night
+  arrival** through NarrativeStage, then open the existing hub. Existing outcome tableaux and
+  `second-refuge-night-tableau.png` cover the location; the morning travel still belongs to the
+  later outbound T3 departure. Do not move or auto-resolve either RunNode.
 - Test impact (retirement branch, not this one): `LionCampaignTravelRelations.test.ts` asserts
   exactly `['T0'..'T4']` (line 10), 13 interrupts, and 3 forks — the T2 semantics change must keep
   ids stable and update only the playable-leg expectations.
+- Save compatibility: production never starts T2 because the gate is T0-only; existing durable
+  saves still resume at `lion-village-choice` or `lion-second-refuge`, and those ids and their
+  direct link must stay stable. Preserve the serialized `traversalBranches` and
+  `bypassedRouteNodeIds` shapes; ignore or safely reject a hand-authored historical `T2` branch
+  entry instead of adding a save-schema migration. Exercise reload/Continue at both anchors.
 
 ## 7. T3 audit — Second Refuge → Garen → Witnesses → final fork → Shadow Signs
 
@@ -218,6 +260,12 @@ with an embedded lighting shift at the fork/ruins approach.
 Distinct boundaries to preserve: `lion-witnesses` (survivor testimony, WITNESS_ROAD) and
 `lion-shadow-signs` (evidence reveal, SHADOW_RUINS) must remain separate canonical nodes with the
 Traversal fork between them; the fork decision stays a `TRAVERSAL_OVERLAY` on the mounted world.
+The existing controller's `NODE_HANDOFF → NODE_RESOLUTION → RESUMING` path can carry Garen,
+Witnesses, event dialogue, and both event-branch and combat-branch combat returns without
+changing campaign resolution. T3's two pre-fork stages and both fork branches are mandatory;
+no T0 optional-ignore policy should be copied. Local road props/combat remain separate from
+canonical stage combat. The gallery's dragon-roost **event** branch enters combat, so an
+`event` RunNode cannot be assumed to mean dialogue only.
 
 ## 8. T4 audit — Shadow Signs → Final Refuge
 
@@ -235,10 +283,46 @@ side-on sections (they are perspective vistas, not sections). Arrival must land 
 `lion-final-refuge` exactly as today (Journey-style agency) — the preparation hub is a separate
 later change (§13).
 
+The **45–75 second** unobstructed-travel estimate is a prototype hypothesis, not an acceptance
+contract. Calibrate final T4 duration from runtime playtesting at desktop and mobile. A trial
+composition could spend roughly one third in cool ruins, one third in a quieter open road, and
+one third revealing the restrained warm camp. Keep zero authored campaign stops. Ambient props
+may reward looking around but cannot become required route blockers or fabricated encounters.
+
+Visual contracts for later art approval:
+
+| Leg | Family progression | Landmarks and pressure | Arrival seam |
+|---|---|---|---|
+| T1 | FIRST_REFUGE → VALMIR_ROAD → BOIS_CLAIR | Open mountain/light and convoy geography; smoke and pressure accumulate toward the village; fork reads as shrine vs checkpoint | Physical arrival precedes `bois_clair_arrival` and canonical village choice |
+| T3 | SECOND_REFUGE → WITNESS_ROAD → SHADOW_RUINS | Warm safe departure → daylight human road and testimony → uncertainty → ancient ruin influence; never start visually corrupted | Fork and combat resume on road, then physical arrival precedes Shadow Signs evidence dialogue |
+| T4 | SHADOW_RUINS → FINAL_REFUGE | Quiet aftermath, cool ruins yielding to restrained warm camp; longer visual breathing and no artificial density | Arrive at the existing final-refuge story boundary until preparation-hub branch |
+
 ## 9. Asset inventory
 
 Production pack `public/assets/generated/lion-phase/environments/demo-environment-pack-v1`
 (manifest `src/render/data/demo-environment-pack-v1.production.json`):
+
+The machine-readable report contains **43 per-segment production asset entries** with full
+repository paths, dimensions, role, clean-environment status, baked-cast status, and usability.
+`node tools/traversal-remaining-legs-audit-1-inventory.mjs` regenerates that inventory from the
+approved manifest and MP4 headers. The table below summarizes the per-leg decisions; every
+listed PNG is environment-only with no baked actors, while the cinematic clips are fixed
+editorial shots whose cast varies. None is a lateral Traversal section.
+
+| Leg / segment | Current production image/still (under the pack root above) | Current video (under `public/assets/cinematics/`) | Size and use |
+|---|---|---|---|
+| T1 / refuge exit | `tableau/first-refuge-tableau.png`, `travel/first-refuge-travel.png` | `first_refuge_departure.mp4` | PNG 1672×941; video 1920×1080; tableau for NarrativeStage, travel plate for Journey |
+| T1 / reserve and Valmir | `tableau/valmir-road-tableau.png`, `travel/valmir-road-travel.png`, `tableau/old-shrine-tableau.png` | `valmir_route_fork.mp4`, `shrine_reveal_context.mp4`, `serpent_road_tension.mp4`, `troll_crossing_reveal.mp4`, `serpent_duelist_reveal.mp4` | PNG 1672×941; videos 1920×1080; vistas/holds and content cinematics only |
+| T1 / Bois-Clair | `tableau/bois-clair-tableau-burning.png`, `travel/bois-clair-travel.png`, `tableau/bois-clair-tableau-aftermath-saved.png`, `tableau/bois-clair-tableau-aftermath-sacrificed.png`, `strategic/bois-clair-burning-strategic.png`, `combat-stage/bois-clair-burning-stage.png` | `bois_clair_arrival.mp4`, `bois_clair_saved.mp4`, `bois_clair_sacrificed.mp4` | PNG 1672×941; videos 1920×1080; outcome-specific holds and combat art, no world layers |
+| T3 / refuge exit | `tableau/second-refuge-night-tableau.png`, `travel/second-refuge-morning-travel.png` | `second_refuge_departure.mp4` | PNG 1672×941; video 1920×1080; preserve warm night → morning departure progression |
+| T3 / Garen and witnesses | `tableau/witness-road-tableau.png`, `travel/witness-road-travel.png` | `garen_encounter.mp4`, `witnesses_encounter.mp4` | PNG 1671×941; videos 1920×1080; daylight human road, staged cast stays in NarrativeStage/video |
+| T3 / fork and ruins | `tableau/dragon-roost-area.png`, `travel/shadow-ruins-approach.png`, `tableau/shadow-ruins-tableau.png`, `strategic/lion-sanctum-strategic.png`, `combat-stage/lion-sanctum-stage.png` | `young_dragon_encounter.mp4`, `serpent_informant_encounter.mp4`, `shrine_reveal_context.mp4`, `ruins_approach_context.mp4`, `serpent_road_tension.mp4`, `shadow_signs.mp4` | PNG 1672×941; videos 1920×1080; moonlit holds/approach and combat art, unsuitable as lateral road sections |
+| T4 / ruins departure | `tableau/shadow-ruins-tableau.png`, `travel/shadow-ruins-approach.png` | — | 1672×941; cool ruin palette reference and Journey/NarrativeStage source |
+| T4 / final camp | `travel/final-refuge-travel.png`, `tableau/final-refuge-tableau.png` | `final_refuge_dossier.mp4` at destination | PNG 1672×941; video 1920×1080; warm arrival hold, not a Traversal world section |
+
+Tableau PNGs are suitable NarrativeStage backgrounds; travel PNGs are existing Journey plates
+and possible staged stills if mapped; strategic/combat-stage PNGs belong only to those combat
+surfaces. The MP4s are cinematic beats, not NarrativeStage backgrounds or Traversal layers.
 
 - 13 visual families, 44 approved assets, 44 promoted, 170 contexts mapped, 0 unmapped, 0 fallback;
   all 44 assets byte-identical between approved and promoted forms.
@@ -252,26 +336,35 @@ Production pack `public/assets/generated/lion-phase/environments/demo-environmen
   `witness-road-tableau.png` = `witness-road-travel.png`;
   `final-refuge-tableau.png` = `final-refuge-travel.png`.
 - Every campaign edge/node in scope already has a mapped TRAVEL plate / HOLD_SOURCE tableau
-  (verified in manifest `mappings`; full list in JSON report).
+  (verified in manifest `mappings`; per-leg production paths are in the JSON inventory).
 - State-sensitive plates exist and must be respected: `bois-clair-tableau-burning` vs
   `…-aftermath-saved`/`…-sacrificed`; `second-refuge-night-tableau` vs
   `second-refuge-morning-travel`; `dragon-roost-area` vs generic `shadow-ruins-tableau`.
 - Contact sheets: `asset-sheet-t0-world-reference.png`, `asset-sheet-t1-bois-clair.png`,
   `asset-sheet-t3-t4-final.png` in the browser gallery directory. Findings: T0 sections are
   lateral road paintings with a low empty road band; all final-act plates are three-quarter
-  perspective vistas with a receding road and no actors baked in — suitable as NarrativeStage /
-  Journey surfaces and as *style/palette reference*, not as Traversal sections.
+  perspective vistas with a receding road and no actors baked in — suitable for their mapped
+  NarrativeStage/Journey/combat surfaces and as *style/palette reference*, not as Traversal sections.
 
 ## 10. Missing asset inventory
 
-Nothing in production blocks enabling the legs logically — the gaps are Traversal-world art:
+Campaign topology and content already define the legs. The production gaps are generic scene
+integration and Traversal-world art:
 
 | Leg | Needed | Reuse |
 |---|---|---|
-| T1 | ~4–6 side-on sections: refuge-edge forest → Valmir road (daylight, smoke on horizon) → junction → two branch reads (shrine approach / fortified checkpoint) → Bois-Clair burning outskirts; cleared variant after `lion-valmir-road` combat; optional Bois-Clair aftermath read keyed on `missionGreed`/`missionSuccess` | caravan, wheels, occluder sprites, chest/cart/waystone props, marker set |
+| T1 | ~4–6 side-on sections: refuge-edge forest → Valmir road (daylight, smoke on horizon) → junction → two branch reads (shrine approach / fortified checkpoint) → Bois-Clair burning outskirts; cleared variant after `lion-valmir-road` combat. Traversal ends on approach to `lion-village-choice`; saved/sacrificed aftermath stays under that canonical node after arrival. | caravan, wheels, occluder sprites, chest/cart/waystone props, marker set |
 | T3 | ~5–7 sections: morning refuge exit → witness road (open fields) → junction → two branch reads (dragon roost / infested ruins) → moonlit ruins approach to `lion-shadow-signs` | same vehicle/props; serpent/ruins enemy sprites exist in character registry for beats |
 | T4 | 2–3 sections: night ruins edge → final approach into the lit camp | smallest leg; likely no cleared variants |
 | All | No new video required for the legs themselves | existing encounter/reveal cinematics already cover stage content (§14) |
+
+The needed section types by segment are: T1 refuge-edge departure, open Valmir/convoy road,
+shrine/checkpoint fork reads, and smoke-led Bois-Clair approach; T3 warm second-refuge exit,
+daylight Witness road, neutral junction, distinct event/combat branch reads, and a gradual
+moonlit ruins reveal; T4 cool ruins departure, open quiet transition, and restrained warm camp
+arrival. The approved vista plates in §9 provide palette and landmarks, but none can fill these
+missing lateral sections directly. Retain existing caravan/props where they fit the new art;
+approve any new prop set against each visual family rather than assuming T0 forest dressing fits.
 
 ## 11. Final-act gallery findings
 
@@ -314,6 +407,22 @@ Key observations (all in `gallery-index.json` state snapshots):
   `CIN6A_REFUGE_DEPARTURES` has no final-refuge entry.
 - `CLAN_ANCHOR_DIALOGUES` maps only `lion-first-refuge → first_refuge_gathering`
   (`campaignGrammarContent.ts:38-40`).
+
+Current assertions/guards that the preparation branch must update together:
+
+| Current rule | Evidence | Later migration |
+|---|---|---|
+| Canonical map and generated RunNode are story | `src/game/content.ts:34`; `src/game/runSystem.ts:328-332` | Change canonical node type to `refuge`; retain id, link, content id |
+| Hub entry requires `node.type === 'refuge'` | `src/game/GameApp.ts:1132`; `src/ui/RefugePresentation.ts:14-43` | Register FINAL_REFUGE presentation and reuse existing hub actions |
+| Campaign structure says REFUGE role but DIALOGUE authority / continuation exit | `src/campaign/LionCampaignStructure.ts:332-346`; structure tests | Update entry/exit contract to pre-dialogue → hub → departure, retain direct judgement edge |
+| Cinematic census explicitly says story-only and no shop/rest agency | `tools/cinematics/specs/campaign_cinematic_census.json:52,190`; `tools/cinematics/campaign_cinematic_census.test.mjs:191-193` | Revise census and assertion after hub rollout; keep dossier before dialogue |
+| Tests pin story-only behavior | `src/game/cin2CampaignBridge.test.ts:202-213`; `src/game/refugeHubContinuity.test.ts:102-111`; `src/ui/RefugePresentation.test.ts:36-39` | Replace with node/dialogue/hub/departure tests in preparation branch |
+| Route and finale integration assume present node order | `src/game/r6FullRouteIntegration.test.ts:250,570,628`; `src/game/r5NarrativeExpansion.test.ts:89,221`; `src/game/lionFinale.test.ts` | Keep ids and judgement/boss behavior; test hub on both fresh and resumed saves |
+
+Recommendation: **change the canonical RunNode type to `refuge` (A)**. Campaign structure
+already calls this anchor a REFUGE; retaining a story node with a special management attachment
+would create a second way into shop/rest authority. The entry dialogue must be a one-time
+preparation beat before the existing hub, never a replacement for it.
 
 ## 13. Final refuge future preparation-hub plan
 

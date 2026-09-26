@@ -9,7 +9,7 @@
  *
  * Run from the repository root: node tools/traversal-remaining-legs-audit-1-gallery.mjs
  */
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { createServer } from 'vite';
 
@@ -32,12 +32,14 @@ const index = {
 };
 
 // Partial runs (--only=...) merge into the existing index instead of discarding earlier evidence.
-try {
-  const previous = JSON.parse(await readFile(`${output}/gallery-index.json`, 'utf8'));
-  if (Array.isArray(previous?.runs)) index.runs.push(...previous.runs);
-  if (Array.isArray(previous?.captures)) index.captures.push(...previous.captures);
-  if (Array.isArray(previous?.errors)) index.errors.push(...previous.errors);
-} catch { /* first run */ }
+if (only) {
+  try {
+    const previous = JSON.parse(await readFile(`${output}/gallery-index.json`, 'utf8'));
+    if (Array.isArray(previous?.runs)) index.runs.push(...previous.runs);
+    if (Array.isArray(previous?.captures)) index.captures.push(...previous.captures);
+    if (Array.isArray(previous?.errors)) index.errors.push(...previous.errors);
+  } catch { /* first run */ }
+}
 
 await mkdir(output, { recursive: true });
 const server = await createServer({ server: { host: '127.0.0.1', port, strictPort: true, watch: null, hmr: false } });
@@ -465,12 +467,28 @@ async function runT1Combat() {
 }
 
 const runners = { t0: runT0WithReturns, final: runFinalAct, t3c: runT3Combat, t1c: runT1Combat };
+async function addRequiredAliases() {
+  const aliases = {
+    't3-final-event-current': 'flow-dialogue-final-trial-event-mystery_dragon_roost',
+    'shadow-signs-current': 'shadow-signs-dialogue-current',
+    'final-refuge-current': 'final-refuge-dialogue-current',
+  };
+  for (const [name, source] of Object.entries(aliases)) {
+    if (index.captures.some(capture => capture.file === `${name}.png`)) continue;
+    const original = index.captures.find(capture => capture.file === `${source}.png`);
+    if (!original) { index.errors.push(`Missing alias source: ${source}.png`); continue; }
+    await copyFile(`${output}/${source}.png`, `${output}/${name}.png`);
+    index.captures.push({ ...original, file: `${name}.png`, note: `${original.note}; named alias of ${source}.png` });
+    index.runs.find(run => run.id === original.run)?.captures.push(name);
+  }
+}
 try {
   for (const [id, runner] of Object.entries(runners)) {
     if (only && !only.includes(id)) continue;
     try { await runner(); } catch (error) { index.errors.push(`${id}: ${error.stack ?? error}`); console.error(error); }
   }
 } finally {
+  await addRequiredAliases();
   await writeFile(`${output}/gallery-index.json`, JSON.stringify(index, null, 2));
   await browser.close();
   await server.close();

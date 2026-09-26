@@ -1,6 +1,11 @@
 # TRAVERSAL-REMAINING-LEGS-AUDIT-1 — browser gallery index
 
 Observation-only gallery of **current production** (Traversal gate = T0 only).
+Open `index.html` for a thumbnail gallery (97 indexed captures). `gallery-index.json` holds
+the source run and live state snapshot for each capture; all four browser runs completed with
+zero recorded page errors. `t3-final-event-current.png`, `shadow-signs-current.png`, and
+`final-refuge-current.png` are named aliases of their corresponding dialogue captures so the
+requested review set has stable filenames.
 Method: unmodified app served by an in-process Vite DEV server at `?qa=1&cin6a=golden`;
 durable saves are built through the real RunSystem and resumed via the title-screen Continue
 button; all interactions are real UI clicks except combat, which uses the existing DEV QA
@@ -28,7 +33,7 @@ Contact sheets (asset review): `asset-sheet-t0-world-reference.png`,
 | `t0-reference-arrival.png` | ARRIVING at `lion-first-refuge` |
 | `t0-reference-arrival-agency.png` | Canonical destination boundary (explicit agency) |
 
-## Run `final-act-main` — current production route, event branches (63 captures)
+## Run `final-act-main` — current production route, event branches (66 captures, including 3 aliases)
 
 T1 corridor (today: Journey/NarrativeStage, no traversal):
 `t1-current-01-first-refuge-departure(-390)`, `t1-current-02-reserve-trail`,

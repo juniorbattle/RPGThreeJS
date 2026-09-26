@@ -317,7 +317,10 @@
         "judgement-choice-current",
         "flow-cinematic-final-judgement-serpent_general_reveal",
         "flow-dialogue-final-judgement-serpent_pursuit_pre_combat",
-        "final-boss-current"
+        "final-boss-current",
+        "t3-final-event-current",
+        "shadow-signs-current",
+        "final-refuge-current"
       ],
       "surfaces": [
         {
@@ -4020,6 +4023,122 @@
         "hub": null,
         "traversal": null,
         "backgrounds": []
+      }
+    },
+    {
+      "file": "t3-final-event-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:mystery_dragon_roost; named alias of flow-dialogue-final-trial-event-mystery_dragon_roost.png",
+      "state": {
+        "node": "lion-final-trial-event",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "MYSTERY_DRAGON_ROOST_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "dialogue:mystery_dragon_roost",
+          "mode": "CINEMATIC_HOLD",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/dragon-roost-area.png\")"
+        },
+        "dialogue": {
+          "sequence": "mystery_dragon_roost",
+          "step": "1",
+          "actor": "young_dragon_elite",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/young_dragon_elite.png"
+        ]
+      }
+    },
+    {
+      "file": "shadow-signs-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:shadow_signs; named alias of shadow-signs-dialogue-current.png",
+      "state": {
+        "node": "lion-shadow-signs",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "SHADOW_SIGNS_TABLEAU",
+          "family": "SHADOW_RUINS",
+          "beat": "dialogue:shadow_signs",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "shadow_signs",
+          "step": "1",
+          "actor": "sage_seraphine",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/dark_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/alistair.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/lancer.png"
+        ]
+      }
+    },
+    {
+      "file": "final-refuge-current.png",
+      "run": "final-act-main",
+      "viewport": "1440x810",
+      "note": "dialogue:final_refuge; named alias of final-refuge-dialogue-current.png",
+      "state": {
+        "node": "lion-final-refuge",
+        "resolved": false,
+        "mode": "narrative",
+        "transition": false,
+        "combat": false,
+        "cinematic": null,
+        "stage": {
+          "tableau": "FINAL_REFUGE_TABLEAU",
+          "family": "FINAL_REFUGE",
+          "beat": "dialogue:final_refuge",
+          "mode": "STATIC_TABLEAU",
+          "readiness": "VISIBLE",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "environment": "url(\"/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/final-refuge-tableau.png\")"
+        },
+        "dialogue": {
+          "sequence": "final_refuge",
+          "step": "1",
+          "actor": "maelor",
+          "choices": [],
+          "revealed": true
+        },
+        "journey": null,
+        "hub": null,
+        "traversal": null,
+        "backgrounds": [
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/maelor.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/sage_seraphine.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/white_mage.png",
+          "http://127.0.0.1:5203/assets/characters/pixel/masters/lancer.png"
+        ]
       }
     }
   ],
