@@ -235,6 +235,18 @@ describe('CIN-6E-A final visual preproduction system', () => {
       'src/combat/stage/CombatPoseVisual.ts',
       'src/combat/stage/CombatPoseVisual.test.ts',
       'src/combat/stage/CombatStagePose.test.ts',
+      // COMBAT-SHELL-UI-KIT-ADOPTION-1 authorizes the narrow Essoufflé semantic fix.
+      // AP creation, AP regeneration, costs, initiative and turn economy remain unchanged.
+      'src/combat/combatExhaustion.ts',
+      'src/combat/combatExhaustion.test.ts',
+      // COMBAT-SHELL-UI-KIT-ADOPTION-1 approves presentation-only combat shell,
+      // large-unit presence and status-anchor helpers with their focused proofs.
+      'src/combat/combatPresencePresentation.ts',
+      'src/combat/combatPresencePresentation.test.ts',
+      'src/combat/combatShellPresentation.ts',
+      'src/combat/combatShellPresentation.test.ts',
+      'src/combat/statusAnchorPresentation.ts',
+      'src/combat/statusAnchorPresentation.test.ts',
       'public/assets/characters/pixel/full/alistair.png',
       'public/assets/characters/pixel/full/cave_bat.png',
       'public/assets/characters/pixel/full/cave_rat.png',
@@ -320,6 +332,8 @@ describe('CIN-6E-A final visual preproduction system', () => {
       'src/cinematics/StaticTableauComposition.ts', // Operator-approved theatrical composition on this branch.
       'src/cinematics/NarrativeStage.ts',
       'src/cinematics/NarrativeStage.test.ts',
+      // NARRATIVE-STAGE-UTILITY-CONSISTENCY-1 authorizes focused utility lifecycle coverage.
+      'src/cinematics/NarrativeUtilityDock.test.ts',
       'src/cinematics/NarrativeStagingAudit.test.ts',
       'src/game/contextualDialogue.test.ts',
       'src/cinematics/NarrativePresentationRuntime.test.ts',
