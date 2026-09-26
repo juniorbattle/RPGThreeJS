@@ -51,7 +51,7 @@ import {
   JOURNEY_QA_SCENARIOS,
   runJourneyQaScenario,
 } from '../cinematics/JourneyQaScenarios';
-import { JourneyCampaignBoundary } from '../journey/JourneyCampaignBoundary';
+import { JourneyCampaignBoundary, type JourneyBoundaryRequest } from '../journey/JourneyCampaignBoundary';
 import { resolveCampaignPresentation } from '../journey/JourneyPresentationPolicy';
 import { evaluateRouteCommit } from '../journey/RouteCommitGuard';
 import { isTraversalProductionEnabledForLeg } from '../traversal/TraversalFeaturePolicy';
@@ -286,6 +286,18 @@ export class GameApp {
     try {
       if (saveOrigin) {
         let departure!: ReturnType<JourneyCampaignBoundary['present']>;
+        const destinationLabel = getRunNode(this.state.run, leg.destinationNodeId)?.label ?? 'Prochaine destination';
+        const departureRequest: JourneyBoundaryRequest = {
+          currentNodeId: leg.originNodeId,
+          available: getAvailableRunNodes(this.state),
+          secondary: JOURNEY_SECONDARY_ACTIONS,
+          reducedMotion: this.state.settings.reducedGraphics,
+          presentationOnly: {
+            eyebrow: 'Départ',
+            title: `Vers ${destinationLabel}`,
+            continueLabel: 'Prendre la route',
+          },
+        };
         await sceneTransition.run({ variant: 'travel', holdMs: 0, task: async () => {
           this.disposeNarrativeStage();
           this.travel.close();
@@ -295,20 +307,16 @@ export class GameApp {
           // The resolved origin is durable; watching the departure is intentionally not persisted.
           this.saves.saveAuto(this.state);
           const boundary = this.ensureJourneyBoundary();
-          const destinationLabel = getRunNode(this.state.run, leg.destinationNodeId)?.label ?? 'Prochaine destination';
-          departure = boundary.present({
-            currentNodeId: leg.originNodeId,
-            available: getAvailableRunNodes(this.state),
-            reducedMotion: this.state.settings.reducedGraphics,
-            presentationOnly: {
-              eyebrow: 'Départ',
-              title: `Vers ${destinationLabel}`,
-              continueLabel: 'Prendre la route',
-            },
-          });
+          departure = boundary.present(departureRequest);
           await Promise.race([boundary.waitUntilSurfaceReady(), departure]);
         } });
-        if ((await departure).kind !== 'presentation-continue' || this.mode !== 'NARRATIVE') return;
+        let outcome = await departure;
+        while (outcome.kind === 'secondary' && outcome.id && this.mode === 'NARRATIVE') {
+          if (!await this.handleJourneySecondary(outcome.id)) return;
+          // A committed overlay is single-use. Rebuild the same local agency from unchanged truth.
+          outcome = await this.ensureJourneyBoundary().present(departureRequest);
+        }
+        if (outcome.kind !== 'presentation-continue' || this.mode !== 'NARRATIVE') return;
       }
       await sceneTransition.run({ variant: 'traversal', holdMs: 0, task: async () => {
         this.disposeNarrativeStage();

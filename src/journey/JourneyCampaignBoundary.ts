@@ -6,6 +6,7 @@ import { copyNarrativeBackdrop, releaseNarrativeBackdrop } from '../cinematics/J
 import { NarrativeStage } from '../cinematics/NarrativeStage';
 import { createGenericBoundaryTableau, resolveNarrativeBoundaryTableau, type NarrativeTableauSpec } from '../cinematics/NarrativeTableau';
 import type {
+  JourneyAgencyPresentation,
   JourneySecondaryActionPresentation,
   JourneySessionState,
 } from '../cinematics/JourneyTypes';
@@ -56,6 +57,22 @@ export interface JourneyBoundaryRequest {
   reducedMotion?: boolean;
   /** Local continuation has no canonical route agency, even on a single-node edge. */
   presentationOnly?: { eyebrow?: string; title?: string; continueLabel: string };
+}
+
+/** A local continuation borrows the planned agency's utilities and context, but offers no route. */
+export function withPresentationOnlyContinuation(
+  presentation: JourneyAgencyPresentation,
+  continuation: NonNullable<JourneyBoundaryRequest['presentationOnly']>,
+): JourneyAgencyPresentation {
+  return {
+    ...presentation,
+    mode: 'single',
+    choices: [],
+    caption: undefined,
+    eyebrow: continuation.eyebrow ?? 'Départ',
+    title: continuation.title ?? presentation.title ?? 'Prochaine destination',
+    continueLabel: continuation.continueLabel,
+  };
 }
 
 type JourneyPresentationSession = Pick<
@@ -204,18 +221,12 @@ export class JourneyCampaignBoundary {
       || (presentationBeat?.mode === 'TRAVEL_STILL' && !presentationBeat.travelStillSource)
       || (presentationBeat?.mode === 'CINEMATIC_HOLD' && !playId && !fallbackBackdrop);
     const commit = await session.requestAgency(request.presentationOnly
-      ? {
-        mode: 'single',
-        choices: [],
-        eyebrow: request.presentationOnly.eyebrow ?? 'Départ',
-        title: request.presentationOnly.title ?? 'Prochaine destination',
-        continueLabel: request.presentationOnly.continueLabel,
-      }
+      ? withPresentationOnlyContinuation(plan.presentation, request.presentationOnly)
       : plan.presentation);
     if (commit.kind === 'secondary' && session.frozenSurface) this.captureBackdrop(session.frozenSurface);
     const trace = [...session.stateTrace];
     // The departure owner disposes under the next opaque cover, preserving visual continuity.
-    if (!request.presentationOnly) this.disposeSession();
+    if (!request.presentationOnly || commit.kind !== 'continue') this.disposeSession();
 
     const base = {
       boundary: plan.kind,
@@ -227,9 +238,9 @@ export class JourneyCampaignBoundary {
       presentationBeatId: presentationBeat?.beatId,
       fallbackActive,
     };
-    if (request.presentationOnly) return {
-      kind: commit.kind === 'continue' ? 'presentation-continue' : 'aborted', id: null, ...base,
-    };
+    if (request.presentationOnly) return commit.kind === 'secondary' && commit.id
+      ? { kind: 'secondary', id: commit.id, ...base }
+      : { kind: commit.kind === 'continue' ? 'presentation-continue' : 'aborted', id: null, ...base };
     if (commit.kind === 'choice' && commit.id) return { kind: 'node', id: commit.id, ...base };
     if (commit.kind === 'secondary' && commit.id) return { kind: 'secondary', id: commit.id, ...base };
     if (commit.kind === 'continue') {

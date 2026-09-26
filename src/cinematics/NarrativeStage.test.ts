@@ -202,6 +202,25 @@ describe('NarrativeStage', () => {
     expect(dock?.hasAttribute('aria-label')).toBe(false);
   });
 
+  it('shows utilities only during agency, and removes them on dialogue, transition, and disposal', async () => {
+    const actions = [{ id: 'COMPANY', label: 'Compagnie' }, { id: 'SAVE', label: 'Sauvegarder' }, { id: 'MENU', label: 'Menu' }];
+    for (let index = 0; index < 3; index += 1) {
+      const { stage } = createStage();
+      expect(document.querySelector('.narrative-utility-dock')).toBeNull();
+      await stage.presentPaintedFallback('Camp');
+      expect(document.querySelector('.narrative-utility-dock')).toBeNull();
+      const pending = stage.requestAgency({ mode: 'single', choices: [], secondary: actions });
+      expect(document.querySelectorAll('.narrative-utility-dock')).toHaveLength(1);
+      if (index === 0) stage.bindDialogue(dialogues.get('lion_briefing')!);
+      else if (index === 1) stage.beginTransition('CROSSFADE');
+      else stage.prepareGlobalHandoff();
+      expect(document.querySelector('.narrative-utility-dock')).toBeNull();
+      stage.dispose();
+      await expect(pending).resolves.toEqual({ kind: 'aborted', id: null });
+      expect(document.querySelectorAll('.narrative-stage, .narrative-utility-dock')).toHaveLength(0);
+    }
+  });
+
   it('replaces intro with optional reaction media without leaving duplicate owners', async () => {
     const multi: NarrativeTableauSpec = {
       ...CAMP_DEPARTURE_TABLEAU,

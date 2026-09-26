@@ -1,0 +1,817 @@
+{
+  "viewportChecks": {
+    "ordinary-1440": {
+      "size": [
+        1440,
+        810
+      ],
+      "stageCount": 1,
+      "agencyCount": 1,
+      "dockCount": 1,
+      "actions": [
+        {
+          "id": "COMPANY",
+          "disabled": false,
+          "rect": {
+            "x": 1182,
+            "y": 33,
+            "right": 1260.9375,
+            "bottom": 61
+          }
+        },
+        {
+          "id": "SAVE",
+          "disabled": false,
+          "rect": {
+            "x": 1263.9375,
+            "y": 33,
+            "right": 1354.96875,
+            "bottom": 61
+          }
+        },
+        {
+          "id": "MENU",
+          "disabled": false,
+          "rect": {
+            "x": 1357.96875,
+            "y": 33,
+            "right": 1407,
+            "bottom": 61
+          }
+        }
+      ],
+      "dock": {
+        "x": 1177,
+        "y": 28,
+        "right": 1412,
+        "bottom": 66,
+        "width": 235,
+        "height": 38
+      },
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "right": 462,
+        "bottom": 63.734375,
+        "width": 438,
+        "height": 43.734375
+      },
+      "agency": {
+        "x": 976,
+        "y": 616.421875,
+        "right": 1416,
+        "bottom": 786,
+        "width": 440,
+        "height": 169.578125
+      },
+      "documentOverflow": false,
+      "dockOverflow": false,
+      "travelCount": 0
+    },
+    "after-audience-1440": {
+      "size": [
+        1440,
+        810
+      ],
+      "stageCount": 1,
+      "agencyCount": 1,
+      "dockCount": 1,
+      "actions": [
+        {
+          "id": "COMPANY",
+          "disabled": false,
+          "rect": {
+            "x": 1182,
+            "y": 33,
+            "right": 1260.9375,
+            "bottom": 61
+          }
+        },
+        {
+          "id": "SAVE",
+          "disabled": false,
+          "rect": {
+            "x": 1263.9375,
+            "y": 33,
+            "right": 1354.96875,
+            "bottom": 61
+          }
+        },
+        {
+          "id": "MENU",
+          "disabled": false,
+          "rect": {
+            "x": 1357.96875,
+            "y": 33,
+            "right": 1407,
+            "bottom": 61
+          }
+        }
+      ],
+      "dock": {
+        "x": 1177,
+        "y": 28,
+        "right": 1412,
+        "bottom": 66,
+        "width": 235,
+        "height": 38
+      },
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "right": 462,
+        "bottom": 63.734375,
+        "width": 438,
+        "height": 43.734375
+      },
+      "agency": {
+        "x": 986,
+        "y": 676,
+        "right": 1416,
+        "bottom": 786,
+        "width": 430,
+        "height": 110
+      },
+      "documentOverflow": false,
+      "dockOverflow": false,
+      "travelCount": 0
+    },
+    "branch-1440": {
+      "size": [
+        1440,
+        810
+      ],
+      "stageCount": 1,
+      "agencyCount": 1,
+      "dockCount": 1,
+      "actions": [
+        {
+          "id": "COMPANY",
+          "disabled": false,
+          "rect": {
+            "x": 1182,
+            "y": 33,
+            "right": 1260.9375,
+            "bottom": 61
+          }
+        },
+        {
+          "id": "SAVE",
+          "disabled": false,
+          "rect": {
+            "x": 1263.9375,
+            "y": 33,
+            "right": 1354.96875,
+            "bottom": 61
+          }
+        },
+        {
+          "id": "MENU",
+          "disabled": false,
+          "rect": {
+            "x": 1357.96875,
+            "y": 33,
+            "right": 1407,
+            "bottom": 61
+          }
+        }
+      ],
+      "dock": {
+        "x": 1177,
+        "y": 28,
+        "right": 1412,
+        "bottom": 66,
+        "width": 235,
+        "height": 38
+      },
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "right": 462,
+        "bottom": 63.734375,
+        "width": 438,
+        "height": 43.734375
+      },
+      "agency": {
+        "x": 24,
+        "y": 640.21875,
+        "right": 1416,
+        "bottom": 786,
+        "width": 1392,
+        "height": 145.78125
+      },
+      "documentOverflow": false,
+      "dockOverflow": false,
+      "travelCount": 0
+    },
+    "static-1366": {
+      "size": [
+        1366,
+        768
+      ],
+      "stageCount": 1,
+      "agencyCount": 1,
+      "dockCount": 1,
+      "actions": [
+        {
+          "id": "COMPANY",
+          "disabled": false,
+          "rect": {
+            "x": 1126,
+            "y": 15,
+            "right": 1204.9375,
+            "bottom": 43
+          }
+        },
+        {
+          "id": "SAVE",
+          "disabled": false,
+          "rect": {
+            "x": 1207.9375,
+            "y": 15,
+            "right": 1298.96875,
+            "bottom": 43
+          }
+        },
+        {
+          "id": "MENU",
+          "disabled": false,
+          "rect": {
+            "x": 1301.96875,
+            "y": 15,
+            "right": 1351,
+            "bottom": 43
+          }
+        }
+      ],
+      "dock": {
+        "x": 1121,
+        "y": 10,
+        "right": 1356,
+        "bottom": 48,
+        "width": 235,
+        "height": 38
+      },
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "right": 462,
+        "bottom": 63.734375,
+        "width": 438,
+        "height": 43.734375
+      },
+      "agency": {
+        "x": 902,
+        "y": 574.421875,
+        "right": 1342,
+        "bottom": 744,
+        "width": 440,
+        "height": 169.578125
+      },
+      "documentOverflow": false,
+      "dockOverflow": false,
+      "travelCount": 0
+    },
+    "departure-1440": {
+      "size": [
+        1440,
+        810
+      ],
+      "stageCount": 1,
+      "agencyCount": 1,
+      "dockCount": 1,
+      "actions": [
+        {
+          "id": "COMPANY",
+          "disabled": false,
+          "rect": {
+            "x": 1182,
+            "y": 33,
+            "right": 1260.9375,
+            "bottom": 61
+          }
+        },
+        {
+          "id": "SAVE",
+          "disabled": false,
+          "rect": {
+            "x": 1263.9375,
+            "y": 33,
+            "right": 1354.96875,
+            "bottom": 61
+          }
+        },
+        {
+          "id": "MENU",
+          "disabled": false,
+          "rect": {
+            "x": 1357.96875,
+            "y": 33,
+            "right": 1407,
+            "bottom": 61
+          }
+        }
+      ],
+      "dock": {
+        "x": 1177,
+        "y": 28,
+        "right": 1412,
+        "bottom": 66,
+        "width": 235,
+        "height": 38
+      },
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "right": 462,
+        "bottom": 63.734375,
+        "width": 438,
+        "height": 43.734375
+      },
+      "agency": {
+        "x": 986,
+        "y": 676,
+        "right": 1416,
+        "bottom": 786,
+        "width": 430,
+        "height": 110
+      },
+      "documentOverflow": false,
+      "dockOverflow": false,
+      "travelCount": 0
+    },
+    "departure-1366": {
+      "size": [
+        1366,
+        768
+      ],
+      "stageCount": 1,
+      "agencyCount": 1,
+      "dockCount": 1,
+      "actions": [
+        {
+          "id": "COMPANY",
+          "disabled": false,
+          "rect": {
+            "x": 1126,
+            "y": 15,
+            "right": 1204.9375,
+            "bottom": 43
+          }
+        },
+        {
+          "id": "SAVE",
+          "disabled": false,
+          "rect": {
+            "x": 1207.9375,
+            "y": 15,
+            "right": 1298.96875,
+            "bottom": 43
+          }
+        },
+        {
+          "id": "MENU",
+          "disabled": false,
+          "rect": {
+            "x": 1301.96875,
+            "y": 15,
+            "right": 1351,
+            "bottom": 43
+          }
+        }
+      ],
+      "dock": {
+        "x": 1121,
+        "y": 10,
+        "right": 1356,
+        "bottom": 48,
+        "width": 235,
+        "height": 38
+      },
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "right": 462,
+        "bottom": 63.734375,
+        "width": 438,
+        "height": 43.734375
+      },
+      "agency": {
+        "x": 912,
+        "y": 634,
+        "right": 1342,
+        "bottom": 744,
+        "width": 430,
+        "height": 110
+      },
+      "documentOverflow": false,
+      "dockOverflow": false,
+      "travelCount": 0
+    },
+    "departure-620": {
+      "size": [
+        620,
+        780
+      ],
+      "stageCount": 1,
+      "agencyCount": 1,
+      "dockCount": 1,
+      "actions": [
+        {
+          "id": "COMPANY",
+          "disabled": false,
+          "rect": {
+            "x": 380,
+            "y": 15,
+            "right": 458.9375,
+            "bottom": 43
+          }
+        },
+        {
+          "id": "SAVE",
+          "disabled": false,
+          "rect": {
+            "x": 461.9375,
+            "y": 15,
+            "right": 552.96875,
+            "bottom": 43
+          }
+        },
+        {
+          "id": "MENU",
+          "disabled": false,
+          "rect": {
+            "x": 555.96875,
+            "y": 15,
+            "right": 605,
+            "bottom": 43
+          }
+        }
+      ],
+      "dock": {
+        "x": 375,
+        "y": 10,
+        "right": 610,
+        "bottom": 48,
+        "width": 235,
+        "height": 38
+      },
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "right": 350,
+        "bottom": 47.484375,
+        "width": 340,
+        "height": 37.484375
+      },
+      "agency": {
+        "x": 180,
+        "y": 668.328125,
+        "right": 610,
+        "bottom": 770,
+        "width": 430,
+        "height": 101.671875
+      },
+      "documentOverflow": false,
+      "dockOverflow": false,
+      "travelCount": 0
+    },
+    "departure-390": {
+      "size": [
+        390,
+        844
+      ],
+      "stageCount": 1,
+      "agencyCount": 1,
+      "dockCount": 1,
+      "actions": [
+        {
+          "id": "COMPANY",
+          "disabled": false,
+          "rect": {
+            "x": 158.953125,
+            "y": 81,
+            "right": 235.203125,
+            "bottom": 109
+          }
+        },
+        {
+          "id": "SAVE",
+          "disabled": false,
+          "rect": {
+            "x": 238.203125,
+            "y": 81,
+            "right": 327.15625,
+            "bottom": 109
+          }
+        },
+        {
+          "id": "MENU",
+          "disabled": false,
+          "rect": {
+            "x": 330.15625,
+            "y": 81,
+            "right": 375,
+            "bottom": 109
+          }
+        }
+      ],
+      "dock": {
+        "x": 153.953125,
+        "y": 76,
+        "right": 380,
+        "bottom": 114,
+        "width": 226.046875,
+        "height": 38
+      },
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "right": 350,
+        "bottom": 47.484375,
+        "width": 340,
+        "height": 37.484375
+      },
+      "agency": {
+        "x": 10,
+        "y": 732.328125,
+        "right": 380,
+        "bottom": 834,
+        "width": 370,
+        "height": 101.671875
+      },
+      "documentOverflow": false,
+      "dockOverflow": false,
+      "travelCount": 0
+    },
+    "departure-390-route-gold": {
+      "size": [
+        390,
+        844
+      ],
+      "stageCount": 1,
+      "agencyCount": 1,
+      "dockCount": 1,
+      "actions": [
+        {
+          "id": "COMPANY",
+          "disabled": false,
+          "rect": {
+            "x": 158.953125,
+            "y": 81,
+            "right": 235.203125,
+            "bottom": 109
+          }
+        },
+        {
+          "id": "SAVE",
+          "disabled": false,
+          "rect": {
+            "x": 238.203125,
+            "y": 81,
+            "right": 327.15625,
+            "bottom": 109
+          }
+        },
+        {
+          "id": "MENU",
+          "disabled": false,
+          "rect": {
+            "x": 330.15625,
+            "y": 81,
+            "right": 375,
+            "bottom": 109
+          }
+        }
+      ],
+      "dock": {
+        "x": 153.953125,
+        "y": 76,
+        "right": 380,
+        "bottom": 114,
+        "width": 226.046875,
+        "height": 38
+      },
+      "hud": {
+        "x": 10,
+        "y": 10,
+        "right": 350,
+        "bottom": 55.875,
+        "width": 340,
+        "height": 45.875
+      },
+      "agency": {
+        "x": 10,
+        "y": 732.328125,
+        "right": 380,
+        "bottom": 834,
+        "width": 370,
+        "height": 101.671875
+      },
+      "documentOverflow": false,
+      "dockOverflow": false,
+      "travelCount": 0
+    },
+    "post-management-1440": {
+      "size": [
+        1440,
+        810
+      ],
+      "stageCount": 1,
+      "agencyCount": 1,
+      "dockCount": 1,
+      "actions": [
+        {
+          "id": "COMPANY",
+          "disabled": false,
+          "rect": {
+            "x": 1182,
+            "y": 33,
+            "right": 1260.9375,
+            "bottom": 61
+          }
+        },
+        {
+          "id": "SAVE",
+          "disabled": false,
+          "rect": {
+            "x": 1263.9375,
+            "y": 33,
+            "right": 1354.96875,
+            "bottom": 61
+          }
+        },
+        {
+          "id": "MENU",
+          "disabled": false,
+          "rect": {
+            "x": 1357.96875,
+            "y": 33,
+            "right": 1407,
+            "bottom": 61
+          }
+        }
+      ],
+      "dock": {
+        "x": 1177,
+        "y": 28,
+        "right": 1412,
+        "bottom": 66,
+        "width": 235,
+        "height": 38
+      },
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "right": 462,
+        "bottom": 63.734375,
+        "width": 438,
+        "height": 43.734375
+      },
+      "agency": {
+        "x": 986,
+        "y": 676,
+        "right": 1416,
+        "bottom": 786,
+        "width": 430,
+        "height": 110
+      },
+      "documentOverflow": false,
+      "dockOverflow": false,
+      "travelCount": 0
+    },
+    "post-save-1440": {
+      "size": [
+        1440,
+        810
+      ],
+      "stageCount": 1,
+      "agencyCount": 1,
+      "dockCount": 1,
+      "actions": [
+        {
+          "id": "COMPANY",
+          "disabled": false,
+          "rect": {
+            "x": 1182,
+            "y": 33,
+            "right": 1260.9375,
+            "bottom": 61
+          }
+        },
+        {
+          "id": "SAVE",
+          "disabled": false,
+          "rect": {
+            "x": 1263.9375,
+            "y": 33,
+            "right": 1354.96875,
+            "bottom": 61
+          }
+        },
+        {
+          "id": "MENU",
+          "disabled": false,
+          "rect": {
+            "x": 1357.96875,
+            "y": 33,
+            "right": 1407,
+            "bottom": 61
+          }
+        }
+      ],
+      "dock": {
+        "x": 1177,
+        "y": 28,
+        "right": 1412,
+        "bottom": 66,
+        "width": 235,
+        "height": 38
+      },
+      "hud": {
+        "x": 24,
+        "y": 20,
+        "right": 462,
+        "bottom": 63.734375,
+        "width": 438,
+        "height": 43.734375
+      },
+      "agency": {
+        "x": 986,
+        "y": 676,
+        "right": 1416,
+        "bottom": 786,
+        "width": 430,
+        "height": 110
+      },
+      "documentOverflow": false,
+      "dockOverflow": false,
+      "travelCount": 0
+    }
+  },
+  "lifecycle": {
+    "audience": {
+      "state": {
+        "mode": "NARRATIVE",
+        "routeNode": "lion-audience",
+        "stepCounter": 1,
+        "resolvedNodeIds": [
+          "lion-audience"
+        ],
+        "available": [
+          "lion-opening-ambush"
+        ]
+      },
+      "dialogueUtilityCount": 0,
+      "departureActions": 3
+    },
+    "dialogue": {
+      "stageCount": 1,
+      "dockCount": 0
+    },
+    "cinematic": {
+      "during": 0,
+      "after": 0,
+      "stageCount": 1
+    }
+  },
+  "flow": {
+    "before": {
+      "mode": "NARRATIVE",
+      "routeNode": "lion-audience",
+      "stepCounter": 0,
+      "resolvedNodeIds": [
+        "lion-audience"
+      ],
+      "available": [
+        "lion-opening-ambush"
+      ]
+    },
+    "afterContinue": {
+      "mode": "NARRATIVE",
+      "routeNode": "lion-audience",
+      "stepCounter": 0,
+      "resolvedNodeIds": [
+        "lion-audience"
+      ],
+      "available": [
+        "lion-opening-ambush"
+      ]
+    },
+    "counts": {
+      "stageMounts": 3,
+      "dockMounts": 3,
+      "traversalMounts": 1,
+      "travelMounts": 0,
+      "maxStages": 1,
+      "maxDocks": 1,
+      "maxAgency": 1,
+      "autoSaves": 2,
+      "manualSaves": 1,
+      "routeCommits": [],
+      "nodeResolutions": []
+    }
+  },
+  "errors": [],
+  "pass": true
+}
