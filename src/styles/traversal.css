@@ -97,7 +97,7 @@
 .traversal-vehicle__dust {
   position: absolute; z-index: 1; top: 90%; left: -10%; width: 25%; height: 12%;
   border-radius: 50%; background: radial-gradient(ellipse,#e7be7770,transparent 70%);
-  filter: blur(4px); opacity: calc(.5 - var(--dust-phase, 0) * .5);
+  filter: blur(4px); opacity: var(--dust-opacity, 0);
   translate: calc(var(--dust-phase, 0) * -40px) 0;
   scale: calc(.7 + var(--dust-phase, 0) * .7);
   transition: opacity .3s;
@@ -108,7 +108,7 @@
 @keyframes traversal-dust { from { opacity: .5; translate: 10px 0; scale: .6; } to { opacity: 0; translate: -40px 2px; scale: 1.4; } }
 .traversal-t0:not([data-phase='RUNNING']) .traversal-vehicle,
 .traversal-t0:not([data-phase='RUNNING']) .traversal-vehicle * { animation-play-state: paused; }
-.traversal-t0:not([data-phase='RUNNING']):not([data-phase='ARRIVING']) .traversal-vehicle__dust { opacity: 0; }
+.traversal-t0[data-departure] .traversal-fork-overlay { opacity: 0; pointer-events: none; }
 .traversal-t0[data-phase='ARRIVING']::after { background: #000; opacity: var(--arrival-fade, 0); z-index: 100; }
 .traversal-t0[data-phase='ARRIVING'] > :not(.traversal-world) { visibility: hidden; }
 .traversal-actor-anchor {
@@ -253,7 +253,8 @@
   background: #000; opacity: var(--transition-opacity, 0);
 }
 .traversal-t0[data-transition] .traversal-transition { pointer-events: auto; }
-.traversal-t0[data-transition] .traversal-vehicle__dust { opacity: 0; }
+.traversal-t0[data-transition='entry'] .traversal-vehicle__dust,
+.traversal-t0[data-transition='event'] .traversal-vehicle__dust { opacity: 0; }
 .traversal-t0[data-transition='fork'] .traversal-vehicle { transition: none !important; }
 
 /* Authored location props are independent of interaction markers and survive consumption. */

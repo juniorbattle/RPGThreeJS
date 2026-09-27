@@ -36,13 +36,28 @@ it.each([
   const click = async (selector: string) => { scene.element.querySelector<HTMLButtonElement>(selector)!.click(); await settle(); };
   scene.open(); await settle();
   const segments = new Set<string>();
+  let coastVerified = false;
   for (let frame = 0; frame < 1300 && !arrival.mock.calls.length; frame++) {
     await settle();
     if (scene.element.dataset.view === 'route') segments.add(scene.element.dataset.routeSegment!);
     if (scene.element.dataset.view === 'route' && action === 'opposite-lane') {
       await click(`[data-traversal-lane="${frame % 2}"]`);
     }
-    if (scene.session.phase === 'ARRIVING') clock.advanceArrival(.1);
+    if (scene.session.phase === 'ARRIVING') {
+      if (!coastVerified) {
+        const motion = scene as unknown as { routeRenderer: { distance: number }; speed: number;
+          routeRun: { progress01: number } };
+        const canonicalProgress = scene.session.routeProgress01;
+        const routeProgress = motion.routeRun.progress01;
+        const worldBefore = motion.routeRenderer.distance;
+        clock.advanceArrival(.35);
+        expect(motion.routeRenderer.distance).toBeGreaterThan(worldBefore);
+        expect(motion.speed).toBeGreaterThan(2);
+        expect(scene.session.routeProgress01).toBe(canonicalProgress);
+        expect(motion.routeRun.progress01).toBe(routeProgress);
+        coastVerified = true;
+      } else clock.advanceArrival(.1);
+    }
     else clock.advance(.1);
     await settle();
     if (scene.session.phase === 'FORK_OVERLAY') {
@@ -50,6 +65,13 @@ it.each([
       const priorNode = state.run.currentNodeId;
       scene.element.querySelector<HTMLButtonElement>(`[data-traversal-fork-choice="${branch}"]`)!.click();
       expect(state.run.traversalBranches?.T0).toBeUndefined();
+      expect(scene.element.dataset.departure).toBe('fork');
+      scene.element.querySelector<HTMLButtonElement>(`[data-traversal-fork-choice="${branch}"]`)!.click();
+      expect(state.run.traversalBranches?.T0).toBeUndefined();
+      clock.advance(.12);
+      expect(Number(scene.element.dataset.vehicleOffset)).toBeGreaterThan(0);
+      expect(scene.element.style.getPropertyValue('--transition-opacity')).toBe('0');
+      clock.advance(.16);
       clock.advanceTransition(.47);
       expect(state.run.traversalBranches?.T0).toBeUndefined();
       clock.advanceTransition(.01);
@@ -69,12 +91,24 @@ it.each([
     if (action !== 'confirm' && beat.interactionPolicy === 'OPTIONAL_CONFIRM') {
       await click('[data-traversal-skip]');
       expect(scene.session.bypassedBeatIds).toContain(beat.id);
+      if (beat.campaignNodeIds.includes('lion-refugees')) {
+        expect(scene.element.dataset.departure).toBe('return');
+        expect(scene.element.dataset.visualMoving).toBe('true');
+        expect(scene.element.querySelector<HTMLElement>('[data-traversal-event-panel]')!.hidden).toBe(true);
+        const bypassCount = state.run.bypassedRouteNodeIds?.filter(id => id === 'lion-refugees').length ?? 0;
+        scene.element.querySelector<HTMLButtonElement>('[data-traversal-skip]')!.click();
+        expect(state.run.bypassedRouteNodeIds?.filter(id => id === 'lion-refugees')).toHaveLength(bypassCount);
+        clock.advance(.12);
+        expect(Number(scene.element.dataset.vehicleOffset)).toBeGreaterThan(0);
+        expect(scene.element.style.getPropertyValue('--transition-opacity')).toBe('0');
+      }
     } else {
       await click('[data-traversal-confirm]');
       if (String(scene.session.phase) === 'LOCAL_INTERACTION') await click('[data-traversal-confirm]');
     }
   }
   expect(arrival).toHaveBeenCalledExactlyOnceWith('lion-first-refuge');
+  expect(coastVerified).toBe(true);
   // The physical exit signals once even while GameApp waits for the covered handoff.
   expect(scene.session.phase).toBe('ARRIVING');
   clock.advanceArrival(10);

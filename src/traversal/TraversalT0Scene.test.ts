@@ -62,6 +62,10 @@ describe('TraversalT0Scene Lot A', () => {
     const { scene } = makeScene();
     scene.open(); await settle(scene);
     clock(scene).advance(12.1);
+    expect(scene.element.dataset.presentation).toBe('checkpoint-approach');
+    const routeDistance = Number(scene.element.dataset.visualWorldDistance);
+    clock(scene).advance(.28);
+    expect(Number(scene.element.dataset.visualWorldDistance)).toBeGreaterThan(routeDistance);
     expect(scene.element.dataset.transition).toBe('focus');
     expect(scene.element.dataset.view).toBe('route');
     clock(scene).advanceTransition(.3);
@@ -94,6 +98,7 @@ describe('TraversalT0Scene Lot A', () => {
     expect(Number(scene.element.dataset.routeProgress)).toBeGreaterThan(.8);
     clock(scene).advance(4);
     expect(scene.session.routeProgress01).toBe(.2);
+    clock(scene).advance(.28);
     expect(scene.element.dataset.transition).toBe('focus');
     expect(handoff).not.toHaveBeenCalled();
     await settle(scene);
@@ -111,6 +116,16 @@ describe('TraversalT0Scene Lot A', () => {
     );
     scene.beginNodeResolution('lion-opening-ambush');
     scene.resumeNode('lion-opening-ambush');
+    expect(scene.element.dataset.departure).toBeUndefined();
+    expect(scene.element.dataset.transition).toBeUndefined();
+    expect(scene.element.style.getPropertyValue('--transition-opacity')).toBe('0');
+    expect(scene.element.dataset.routeSegment).toBe('route-2');
+    expect(scene.element.dataset.view).toBe('route');
+    expect(() => scene.resumeNode('lion-opening-ambush')).toThrow();
+    document.body.classList.add('scene-transition--locked');
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', cancelable: true }));
+    expect(scene.session.currentLane).toBe(0);
+    document.body.classList.remove('scene-transition--locked');
     expect(scene.element.dataset.routeSegment).toBe('route-2');
     expect(scene.element.dataset.view).toBe('route');
     expect(scene.element.dataset.routeWorld).toBe('shared');

@@ -83,6 +83,7 @@ describe('T0 authored geography', () => {
     expect(Number.parseFloat(scene.element.style.getPropertyValue('--vehicle-entry-x'))).toBeLessThan(0);
     clock.advanceTransition(.4);
     clock.advance(13);
+    clock.advance(.28);
     clock.advanceTransition(1);
     const section = scene.element.querySelector<HTMLElement>('[data-world-section="opening-ambush"]')!;
     const snapshot = JSON.stringify(state);
