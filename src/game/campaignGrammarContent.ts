@@ -32,9 +32,6 @@ export const CAMPAIGN_GRAMMAR_DIALOGUES = [
   }),
 ];
 
-export const TRAVERSAL_LOCAL_NARRATIVES: Readonly<Record<string, string>> = {
-  't0:npc:roadside-merchant': 'roadside_peddler',
-};
 export const CLAN_ANCHOR_DIALOGUES: Readonly<Record<string, string>> = {
   'lion-first-refuge': 'first_refuge_gathering',
 };

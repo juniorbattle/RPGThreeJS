@@ -7,8 +7,8 @@ const ROOT = '/assets/generated/lion-phase/traversal/t0/vehicle/traversal-carava
  * Artistic constraints are visually audited, not inferred from these metadata labels.
  */
 export const TRAVERSAL_CARAVAN = Object.freeze({
-  chassis: `${ROOT}/closed-v1/chassis.png`,
-  wheelSource: `${ROOT}/closed-v1/wheel.png`,
+  chassis: `${ROOT}/chassis.png`,
+  wheelSource: `${ROOT}/wheel.png`,
   canvas: { width: 1260, height: 654 },
   bounds: { left: 0, top: 0, width: 1260, height: 766 },
   wheelTexture: { canvasWidth: 300, canvasHeight: 300, x: 0, y: 0, width: 300, height: 300 },

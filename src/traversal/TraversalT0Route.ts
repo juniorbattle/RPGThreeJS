@@ -11,21 +11,14 @@ import {
 } from '../render/CharacterVisualRegistry';
 import { TRAVERSAL_T0_ASSETS } from './TraversalT0Assets';
 import type { TraversalLane } from './TraversalRunRuntime';
-import { ROAD_SPACE, beatPassedProgress } from './TraversalRoadSpace';
+import { beatPassedProgress } from './TraversalRoadSpace';
 import { combatConfigs } from '../game/content';
 
-export type TraversalBeatType =
-  | 'campaign-node'
-  | 'npc'
-  | 'enemy'
-  | 'obstacle'
-  | 'loot'
-  | 'booster'
-  | 'fork';
+export type TraversalBeatType = 'campaign-node' | 'fork';
 
 export type TraversalBeatPlacement = 'LANE' | 'CENTERED';
 export type TraversalContentCategory = 'MANDATORY_EVENT' | 'OPTIONAL_EVENT' | 'OPTIONAL_COMBAT'
-  | 'PICKUP' | 'SIMPLE_OBSTACLE' | 'ROUTE_CHOICE';
+  | 'ROUTE_CHOICE';
 export type TraversalInteractionPolicy = 'OPTIONAL_CONFIRM' | 'MANDATORY_CONFIRM';
 export type TraversalBeatCrossing = 'NONE' | 'TRIGGERED' | 'BYPASSED';
 
@@ -34,12 +27,11 @@ export interface TraversalRouteBeat {
   readonly type: TraversalBeatType;
   readonly category: TraversalContentCategory;
   readonly engagement: 'LANE' | 'ROUTE';
-  readonly pickup?: 'chest' | 'gold' | 'ward';
   readonly progress01: number;
   readonly lane: TraversalLane | null;
   readonly placement: TraversalBeatPlacement;
   readonly label: string;
-  readonly marker: 'danger' | 'speech' | 'loot' | 'booster' | 'fork' | 'obstacle';
+  readonly marker: 'danger' | 'speech' | 'fork';
   readonly interactionPolicy: TraversalInteractionPolicy;
   readonly campaignNodeIds: readonly string[];
   readonly characterId?: string;
@@ -49,7 +41,6 @@ export interface TraversalRouteBeat {
   readonly mirrorX?: boolean;
   /** Conditional encounter on a road selected by RunSystem, not a second branch authority. */
   readonly branchNodeId?: string;
-  readonly roadCombatId?: string;
   readonly formation?: readonly string[];
 }
 
@@ -69,7 +60,7 @@ export interface TraversalRouteIssue {
   readonly detail: string;
 }
 
-// Lot A presents only canonical checkpoint beats. Road extras remain deferred to pursuit/risk work.
+// T0 presents canonical checkpoint beats only. Local road prototypes are not route defaults.
 
 function campaignNode(nodeId: string, issues: TraversalRouteIssue[]): LionCampaignNodeDefinition | undefined {
   const definition = getLionCampaignNodeDefinition(nodeId);
@@ -172,10 +163,9 @@ function stageBeat(
   });
 }
 
-/** Direct objects meet the front of the truck; modal situations retain stopping room. */
+/** Canonical situations meet their authored checkpoint at the same route progress. */
 export function traversalContactProgress(beat: TraversalRouteBeat): number {
-  return beat.progress01 + (beat.category === 'PICKUP' || beat.category === 'SIMPLE_OBSTACLE'
-    ? (ROAD_SPACE.engagementX - ROAD_SPACE.truckX - 120) / ROAD_SPACE.length : 0);
+  return beat.progress01;
 }
 
 /** Physical engagement and optional narrative refusal are separate concerns. */
