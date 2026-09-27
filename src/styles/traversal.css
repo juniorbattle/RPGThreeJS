@@ -4,7 +4,7 @@
   --traversal-lane-y: 63%;
   --foreground-offset: 0px;
   position: fixed; inset: 0; z-index: 40; overflow: hidden; isolation: isolate;
-  color: #fff4d2; background: #192f4e; font-family: Inter, sans-serif;
+  color: #fff4d2; background: #071b1e; font-family: Inter, sans-serif;
 }
 .traversal-t0 [hidden] { display: none !important; }
 .traversal-world, .traversal-world > div { position: absolute; inset: 0; }
@@ -12,7 +12,23 @@
 .traversal-world .traversal-world__road {
   inset: 0;
 }
-.traversal-world__sections { position: absolute; inset: 0; will-change: transform; }
+.traversal-route-loop { position: absolute; inset: 0; overflow: hidden; }
+.traversal-route-loop > div { position: absolute; pointer-events: none; }
+.traversal-route-loop__speed-lines {
+  inset: 53% 0 13%; opacity: var(--route-rush-opacity, 0);
+  background: linear-gradient(90deg, transparent 4%, #d4caaa18 21%, transparent 39%, #e1d0aa12 68%, transparent 84%);
+}
+.traversal-t0[data-view='route'] .traversal-world__sections,
+.traversal-t0[data-view='route'] .traversal-world__foreground,
+.traversal-t0[data-view='route'] .traversal-world__occlusion,
+.traversal-t0[data-view='route'] .traversal-world__entities,
+.traversal-t0[data-view='route'] .traversal-world__markers { visibility: hidden; }
+.traversal-t0[data-view='route'] .traversal-world__foreground,
+.traversal-t0[data-view='route'] .traversal-world__occlusion { visibility: visible; }
+.traversal-world__route-sections { visibility: hidden; }
+.traversal-t0[data-view='route'] .traversal-world__route-sections { visibility: visible; }
+.traversal-t0[data-view='checkpoint'] .traversal-route-loop { visibility: hidden; }
+.traversal-world__sections, .traversal-world__route-sections { position: absolute; inset: 0; will-change: transform; }
 .traversal-world-section { position: absolute; top: 0; height: 100%; }
 .traversal-world-section__terrain {
   --painting-width: 150vh;
@@ -81,7 +97,7 @@
 .traversal-vehicle__dust {
   position: absolute; z-index: 1; top: 90%; left: -10%; width: 25%; height: 12%;
   border-radius: 50%; background: radial-gradient(ellipse,#e7be7770,transparent 70%);
-  filter: blur(4px); opacity: calc(.5 - var(--dust-phase, 0) * .5);
+  filter: blur(4px); opacity: var(--dust-opacity, 0);
   translate: calc(var(--dust-phase, 0) * -40px) 0;
   scale: calc(.7 + var(--dust-phase, 0) * .7);
   transition: opacity .3s;
@@ -92,7 +108,7 @@
 @keyframes traversal-dust { from { opacity: .5; translate: 10px 0; scale: .6; } to { opacity: 0; translate: -40px 2px; scale: 1.4; } }
 .traversal-t0:not([data-phase='RUNNING']) .traversal-vehicle,
 .traversal-t0:not([data-phase='RUNNING']) .traversal-vehicle * { animation-play-state: paused; }
-.traversal-t0:not([data-phase='RUNNING']):not([data-phase='ARRIVING']) .traversal-vehicle__dust { opacity: 0; }
+.traversal-t0[data-departure] .traversal-fork-overlay { opacity: 0; pointer-events: none; }
 .traversal-t0[data-phase='ARRIVING']::after { background: #000; opacity: var(--arrival-fade, 0); z-index: 100; }
 .traversal-t0[data-phase='ARRIVING'] > :not(.traversal-world) { visibility: hidden; }
 .traversal-actor-anchor {
@@ -234,11 +250,11 @@
 .traversal-entity--fork .traversal-entity__subject { height: calc(var(--vehicle-height) * .54); }
 .traversal-transition {
   position: absolute; inset: 0; z-index: 10000; pointer-events: none;
-  background: #07100e; opacity: var(--transition-opacity, 0);
+  background: #000; opacity: var(--transition-opacity, 0);
 }
 .traversal-t0[data-transition] .traversal-transition { pointer-events: auto; }
-.traversal-t0[data-transition='focus'] .traversal-transition { opacity: calc(var(--transition-opacity, 0) * .35); z-index: 42; }
-.traversal-t0[data-transition] .traversal-vehicle__dust { opacity: 0; }
+.traversal-t0[data-transition='entry'] .traversal-vehicle__dust,
+.traversal-t0[data-transition='event'] .traversal-vehicle__dust { opacity: 0; }
 .traversal-t0[data-transition='fork'] .traversal-vehicle { transition: none !important; }
 
 /* Authored location props are independent of interaction markers and survive consumption. */
@@ -317,7 +333,13 @@
 .traversal-hud--progress p { margin: 0 0 1px; color: var(--campaign-gold); font: 600 9px/1.1 var(--campaign-title-font); letter-spacing: .08em; text-transform: uppercase; }
 .traversal-hud--progress strong { display: block; color: var(--campaign-ivory); font: 600 15px/1.05 var(--campaign-title-font); white-space: normal; }
 .traversal-hud--progress [data-traversal-distance] { color: var(--campaign-muted); font: 400 11px/1.1 var(--campaign-data-font); }
-.traversal-route-rail { grid-column: 1 / -1; grid-row: 2; width: 100%; height: 1px; margin: 0 0 -2px; background: #c29a5c44; }
+.traversal-route-rail { grid-column: 1 / -1; grid-row: 2; width: 100%; height: auto; min-height: 11px; margin: 0; overflow: visible; background: none; display: flex; align-items: center; justify-content: space-between; gap: 2px; }
+.traversal-route-rail .traversal-route-rail__stop { width: 10px; height: 10px; border: 1px solid #bd9a62; border-radius: 50%; background: #102638; color: #ead9ad; font-size: 8px; display: grid; place-items: center; }
+.traversal-route-rail__stop > span { display: inline !important; }
+.traversal-route-rail__stop[data-current='true'] { background: #e6c27c; box-shadow: 0 0 8px #ffe5a6; color: #16314a; }
+.traversal-route-rail__stop[data-complete='true'] { background: #ad8650; }
+.traversal-route-rail__stop[data-kind='fork'] { border-radius: 2px; transform: rotate(45deg); }
+.traversal-route-rail__stop[data-kind='fork'] > span { transform: rotate(-45deg); }
 .traversal-hud__destination-copy { min-width: 0; }
 .traversal-event-panel.campaign-ui-frame { position: absolute; top: 91px; width: min(420px, calc(100vw - 40px)); padding: 9px 14px; grid-template-columns: 27px minmax(0,1fr); gap: 9px; }
 .traversal-event-panel__marker { width: 27px; height: 27px; border: 0; border-radius: 0; }
@@ -336,4 +358,7 @@
   .traversal-hud--progress p { font-size: 8px; }
   .traversal-hud--progress strong { font-size: 13px; }
   .traversal-event-panel.campaign-ui-frame { top: 145px; width: min(420px, calc(100vw - 20px)); padding: 8px 12px; }
+  .traversal-lanes { left: 10px; width: 44px; gap: 10px; opacity: .88; }
+  .traversal-lanes button { width: 44px; height: 44px; font-size: 14px; background: rgba(6,16,23,.78); }
+  .traversal-lanes button.is-active { background: rgba(29,62,73,.9); color: #ffe6a4; border-color: #e6cb81; }
 }

@@ -1,0 +1,533 @@
+{
+  "runs": [
+    {
+      "id": "branch-a",
+      "branch": "lion-first-trial-event",
+      "helpRefugees": true,
+      "routes": {
+        "route-1": {
+          "startMs": 2805.600000023842,
+          "speed": {
+            "0.1": 1.036896173451914,
+            "0.5": 1.637983544768242,
+            "0.9": 2.2159057763490626
+          },
+          "lastProgress": 1,
+          "completedAtMs": 15232.399999976158,
+          "visibleAtMs": 3240.100000023842,
+          "motionStartMs": 3333,
+          "readyAtMs": 17382.399999976158,
+          "durationMs": 11899,
+          "routeToCheckpointDeadMs": 2150,
+          "checkpointToRouteDeadMs": 460
+        },
+        "route-2": {
+          "startMs": 24728.5,
+          "speed": {
+            "0.1": 1.038610724404563,
+            "0.5": 1.6839502668526025,
+            "0.9": 2.3137737942513734
+          },
+          "lastProgress": 1,
+          "completedAtMs": 40191.60000002384,
+          "visibleAtMs": 25188.399999976158,
+          "motionStartMs": 25220.5,
+          "readyAtMs": 42357.10000002384,
+          "durationMs": 14971,
+          "routeToCheckpointDeadMs": 2166,
+          "checkpointToRouteDeadMs": 437
+        },
+        "route-3": {
+          "startMs": 46611.30000001192,
+          "speed": {
+            "0.1": 1.0394343184751706,
+            "0.5": 1.677213996471245,
+            "0.9": 2.3153493123321756
+          },
+          "lastProgress": 1,
+          "completedAtMs": 62060.5,
+          "visibleAtMs": 47047.80000001192,
+          "motionStartMs": 47079.19999998808,
+          "readyAtMs": 64207.19999998808,
+          "durationMs": 14981,
+          "routeToCheckpointDeadMs": 2147,
+          "checkpointToRouteDeadMs": 435
+        },
+        "route-4": {
+          "startMs": 69222.5,
+          "speed": {
+            "0.1": 1.0946021857128294,
+            "0.5": 1.761619525628562,
+            "0.9": 2.41181446951095
+          },
+          "lastProgress": 1,
+          "completedAtMs": 81670.80000001192,
+          "visibleAtMs": 69657.19999998808,
+          "motionStartMs": 69689.19999998808,
+          "readyAtMs": 83818,
+          "durationMs": 11982,
+          "routeToCheckpointDeadMs": 2147,
+          "checkpointToRouteDeadMs": 474
+        },
+        "route-5a": {
+          "startMs": 84903.69999998808,
+          "speed": {
+            "0.1": 1.0950550848386202,
+            "0.5": 1.7846132495824254,
+            "0.9": 2.460236407299403
+          },
+          "lastProgress": 1,
+          "completedAtMs": 100401.89999997616,
+          "visibleAtMs": 85377.80000001192,
+          "motionStartMs": 85469,
+          "readyAtMs": 102552.39999997616,
+          "durationMs": 14933,
+          "routeToCheckpointDeadMs": 2151,
+          "checkpointToRouteDeadMs": 432
+        },
+        "route-6": {
+          "startMs": 104796.30000001192,
+          "speed": {
+            "0.1": 1.2433545064371125,
+            "0.5": 1.9574473912059285,
+            "0.9": 2.658641673202621
+          },
+          "lastProgress": 1,
+          "completedAtMs": 125268.80000001192,
+          "visibleAtMs": 105228.5,
+          "motionStartMs": 105291.80000001192,
+          "durationMs": 19977,
+          "routeToCheckpointDeadMs": null,
+          "checkpointToRouteDeadMs": null
+        }
+      },
+      "transitions": [
+        {
+          "kind": "entry",
+          "durationMs": 435
+        },
+        {
+          "kind": "focus",
+          "durationMs": 1000
+        },
+        {
+          "kind": "event",
+          "durationMs": 987
+        },
+        {
+          "kind": "return",
+          "durationMs": 460
+        },
+        {
+          "kind": "focus",
+          "durationMs": 998
+        },
+        {
+          "kind": "event",
+          "durationMs": 947
+        },
+        {
+          "kind": "return",
+          "durationMs": 437
+        },
+        {
+          "kind": "focus",
+          "durationMs": 984
+        },
+        {
+          "kind": "event",
+          "durationMs": 936
+        },
+        {
+          "kind": "return",
+          "durationMs": 435
+        },
+        {
+          "kind": "focus",
+          "durationMs": 959
+        },
+        {
+          "kind": "fork",
+          "durationMs": 935
+        },
+        {
+          "kind": "focus",
+          "durationMs": 998
+        },
+        {
+          "kind": "event",
+          "durationMs": 970
+        },
+        {
+          "kind": "return",
+          "durationMs": 432
+        }
+      ],
+      "globalTransitions": [
+        {
+          "atMs": 18996.100000023842,
+          "segment": "route-1",
+          "entries": 1,
+          "exits": 0,
+          "durationMs": 2798
+        },
+        {
+          "atMs": 24268,
+          "segment": "route-1",
+          "entries": 1,
+          "exits": 0,
+          "durationMs": 953
+        },
+        {
+          "atMs": 46175.60000002384,
+          "segment": "route-2",
+          "entries": 2,
+          "exits": 1,
+          "durationMs": 904
+        },
+        {
+          "atMs": 68755.19999998808,
+          "segment": "route-3",
+          "entries": 3,
+          "exits": 2,
+          "durationMs": 964
+        },
+        {
+          "atMs": 104345,
+          "segment": "route-5a",
+          "entries": 5,
+          "exits": 4,
+          "durationMs": 947
+        }
+      ],
+      "checkpointEvents": [
+        {
+          "kind": "entry",
+          "segment": "route-1",
+          "atMs": 15732.800000011921
+        },
+        {
+          "kind": "exit",
+          "segment": "route-2",
+          "atMs": 24728.5
+        },
+        {
+          "kind": "entry",
+          "segment": "route-2",
+          "atMs": 40663.80000001192
+        },
+        {
+          "kind": "exit",
+          "segment": "route-3",
+          "atMs": 46611.30000001192
+        },
+        {
+          "kind": "entry",
+          "segment": "route-3",
+          "atMs": 62529.80000001192
+        },
+        {
+          "kind": "exit",
+          "segment": "route-4",
+          "atMs": 69222.5
+        },
+        {
+          "kind": "entry",
+          "segment": "route-4",
+          "atMs": 82166.39999997616
+        },
+        {
+          "kind": "exit",
+          "segment": "route-5a",
+          "atMs": 84903.69999998808
+        },
+        {
+          "kind": "entry",
+          "segment": "route-5a",
+          "atMs": 100884.39999997616
+        },
+        {
+          "kind": "exit",
+          "segment": "route-6",
+          "atMs": 104796.30000001192
+        }
+      ],
+      "laneMoves": [
+        {
+          "lane": 1,
+          "progress": 0.301375,
+          "atMs": 6830.199999988079
+        },
+        {
+          "lane": 0,
+          "progress": 0.55275,
+          "atMs": 9861.100000023842
+        }
+      ],
+      "frameIssues": [],
+      "maxSceneCount": 1,
+      "checkpointEntries": 5,
+      "checkpointExits": 5,
+      "arrivalCallbacks": 1,
+      "progressionErrors": [],
+      "complete": true
+    },
+    {
+      "id": "branch-b",
+      "branch": "lion-first-trial-combat",
+      "helpRefugees": false,
+      "routes": {
+        "route-1": {
+          "startMs": 1214.3999999761581,
+          "speed": {
+            "0.1": 1.04081981273728,
+            "0.5": 1.635374576454074,
+            "0.9": 2.2159057763490626
+          },
+          "lastProgress": 1,
+          "completedAtMs": 13664.800000011921,
+          "visibleAtMs": 1634.199999988079,
+          "motionStartMs": 1725.3999999761581,
+          "readyAtMs": 15813,
+          "durationMs": 11939,
+          "routeToCheckpointDeadMs": 2148,
+          "checkpointToRouteDeadMs": 468
+        },
+        "route-2": {
+          "startMs": 22962.399999976158,
+          "speed": {
+            "0.1": 1.0394343184751704,
+            "0.5": 1.6862180409150476,
+            "0.9": 2.3168923483401
+          },
+          "lastProgress": 1,
+          "completedAtMs": 38442.59999996424,
+          "visibleAtMs": 23430.19999998808,
+          "motionStartMs": 23462.69999998808,
+          "readyAtMs": 40602.09999996424,
+          "durationMs": 14980,
+          "routeToCheckpointDeadMs": 2160,
+          "checkpointToRouteDeadMs": 455
+        },
+        "route-3": {
+          "startMs": 44372.5,
+          "speed": {
+            "0.1": 1.0411003957373632,
+            "0.5": 1.6794549712504,
+            "0.9": 2.3168923483401
+          },
+          "lastProgress": 1,
+          "completedAtMs": 59843.69999998808,
+          "visibleAtMs": 44827.30000001192,
+          "motionStartMs": 44857.19999998808,
+          "readyAtMs": 61984.89999997616,
+          "durationMs": 14987,
+          "routeToCheckpointDeadMs": 2141,
+          "checkpointToRouteDeadMs": 945
+        },
+        "route-4": {
+          "startMs": 63009.39999997616,
+          "speed": {
+            "0.1": 1.092401598899886,
+            "0.5": 1.7674458941692577,
+            "0.9": 2.4138671985426967
+          },
+          "lastProgress": 1,
+          "completedAtMs": 75495.59999996424,
+          "visibleAtMs": 63489.09999996424,
+          "motionStartMs": 63893.39999997616,
+          "readyAtMs": 77632.5,
+          "durationMs": 11602,
+          "routeToCheckpointDeadMs": 2137,
+          "checkpointToRouteDeadMs": 491
+        },
+        "route-5b": {
+          "startMs": 78370.89999997616,
+          "speed": {
+            "0.1": 1.0950550848386202,
+            "0.5": 1.7894701458859925,
+            "0.9": 2.4627825947271518
+          },
+          "lastProgress": 1,
+          "completedAtMs": 93885,
+          "visibleAtMs": 78861.89999997616,
+          "motionStartMs": 78955.09999996424,
+          "readyAtMs": 96035.59999996424,
+          "durationMs": 14930,
+          "routeToCheckpointDeadMs": 2151,
+          "checkpointToRouteDeadMs": 440
+        },
+        "route-6": {
+          "startMs": 101890.19999998808,
+          "speed": {
+            "0.1": 1.2426747783246386,
+            "0.5": 1.9537124865236253,
+            "0.9": 2.6606297573883078
+          },
+          "lastProgress": 1,
+          "completedAtMs": 122350.80000001192,
+          "visibleAtMs": 102329.80000001192,
+          "motionStartMs": 102393.09999996424,
+          "durationMs": 19958,
+          "routeToCheckpointDeadMs": null,
+          "checkpointToRouteDeadMs": null
+        }
+      },
+      "transitions": [
+        {
+          "kind": "entry",
+          "durationMs": 420
+        },
+        {
+          "kind": "focus",
+          "durationMs": 1000
+        },
+        {
+          "kind": "event",
+          "durationMs": 968
+        },
+        {
+          "kind": "return",
+          "durationMs": 468
+        },
+        {
+          "kind": "focus",
+          "durationMs": 994
+        },
+        {
+          "kind": "event",
+          "durationMs": 966
+        },
+        {
+          "kind": "return",
+          "durationMs": 455
+        },
+        {
+          "kind": "focus",
+          "durationMs": 967
+        },
+        {
+          "kind": "return",
+          "durationMs": 945
+        },
+        {
+          "kind": "focus",
+          "durationMs": 986
+        },
+        {
+          "kind": "fork",
+          "durationMs": 953
+        },
+        {
+          "kind": "focus",
+          "durationMs": 967
+        },
+        {
+          "kind": "event",
+          "durationMs": 967
+        },
+        {
+          "kind": "return",
+          "durationMs": 440
+        }
+      ],
+      "globalTransitions": [
+        {
+          "atMs": 17401.69999998808,
+          "segment": "route-1",
+          "entries": 1,
+          "exits": 0,
+          "durationMs": 2573
+        },
+        {
+          "atMs": 22526.5,
+          "segment": "route-1",
+          "entries": 1,
+          "exits": 0,
+          "durationMs": 936
+        },
+        {
+          "atMs": 43937.69999998808,
+          "segment": "route-2",
+          "entries": 2,
+          "exits": 1,
+          "durationMs": 950
+        },
+        {
+          "atMs": 98059.30000001192,
+          "segment": "route-5b",
+          "entries": 5,
+          "exits": 4,
+          "durationMs": 2291
+        },
+        {
+          "atMs": 101452.39999997616,
+          "segment": "route-5b",
+          "entries": 5,
+          "exits": 4,
+          "durationMs": 941
+        }
+      ],
+      "checkpointEvents": [
+        {
+          "kind": "entry",
+          "segment": "route-1",
+          "atMs": 14133.399999976158
+        },
+        {
+          "kind": "exit",
+          "segment": "route-2",
+          "atMs": 22962.399999976158
+        },
+        {
+          "kind": "entry",
+          "segment": "route-2",
+          "atMs": 38937.19999998808
+        },
+        {
+          "kind": "exit",
+          "segment": "route-3",
+          "atMs": 44372.5
+        },
+        {
+          "kind": "entry",
+          "segment": "route-3",
+          "atMs": 60311.80000001192
+        },
+        {
+          "kind": "exit",
+          "segment": "route-3",
+          "atMs": 62544.5
+        },
+        {
+          "kind": "entry",
+          "segment": "route-4",
+          "atMs": 75987.80000001192
+        },
+        {
+          "kind": "exit",
+          "segment": "route-5b",
+          "atMs": 78370.89999997616
+        },
+        {
+          "kind": "entry",
+          "segment": "route-5b",
+          "atMs": 94352.39999997616
+        },
+        {
+          "kind": "exit",
+          "segment": "route-6",
+          "atMs": 101890.19999998808
+        }
+      ],
+      "laneMoves": [],
+      "frameIssues": [],
+      "maxSceneCount": 1,
+      "checkpointEntries": 5,
+      "checkpointExits": 5,
+      "arrivalCallbacks": 1,
+      "progressionErrors": [],
+      "complete": true
+    }
+  ]
+}

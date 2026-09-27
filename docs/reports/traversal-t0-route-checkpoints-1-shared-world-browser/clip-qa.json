@@ -1,0 +1,18 @@
+{
+  "reachedRoute2": true,
+  "sawCheckpoint": true,
+  "sawFocusBlack": true,
+  "sawReturnBlack": true,
+  "sawCanonicalCombat": true,
+  "laneMoves": [
+    {
+      "lane": 1,
+      "progress": 0.25276666666666664
+    },
+    {
+      "lane": 0,
+      "progress": 0.5347000000000001
+    }
+  ],
+  "errors": []
+}

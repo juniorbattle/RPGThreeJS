@@ -6,13 +6,39 @@ import { createInitialState } from '../game/store';
 import { getAvailableRunNodes } from '../game/runSystem';
 import { beatWorldX, ROAD_SPACE } from './TraversalRoadSpace';
 import { resolveTraversalT0Route } from './TraversalT0Route';
-import { TRAVERSAL_T0_WORLD, TRAVERSAL_WORLD_ASSETS, TRAVERSAL_SECTION_OVERLAP, resolveTraversalWorld, traversalLocation } from './TraversalT0World';
+import { TRAVERSAL_T0_WORLD, TRAVERSAL_T0_ROUTE_WORLD, TRAVERSAL_T0_ROUTE_WORLD_PERIOD,
+  t0RouteWorldCamera, TRAVERSAL_WORLD_ASSETS,
+  TRAVERSAL_SECTION_OVERLAP, resolveTraversalWorld, traversalLocation } from './TraversalT0World';
 import { TraversalT0Scene } from './TraversalT0Scene';
 import { TraversalWorldRenderer } from './TraversalWorldRenderer';
 
 afterEach(() => { document.body.replaceChildren(); vi.restoreAllMocks(); });
 
 describe('T0 authored geography', () => {
+  it('renders every Route from the exact generic checkpoint forest without event dressing', () => {
+    expect(TRAVERSAL_T0_ROUTE_WORLD.every(section => section.asset === TRAVERSAL_WORLD_ASSETS.forest
+      && section.kind === 'FOREST' && !section.props && !section.variantAssets)).toBe(true);
+    const renderer = new TraversalWorldRenderer();
+    renderer.updateRoute(t0RouteWorldCamera(4800), ROAD_SPACE.referenceWidth);
+    const visible = [...renderer.routeElement.querySelectorAll<HTMLElement>('[data-world-section]')]
+      .filter(section => !section.hidden);
+    expect(visible.length).toBeGreaterThan(0);
+    expect(visible.every(section => section.querySelector('.traversal-world-section__painting > img')
+      ?.getAttribute('src') === TRAVERSAL_WORLD_ASSETS.forest)).toBe(true);
+    expect(renderer.routeElement.querySelector('[data-location-prop], [data-traversal-beat]')).toBeNull();
+    expect(renderer.element.querySelector('[data-world-section="opening-ambush"]')).not.toBeNull();
+    expect(t0RouteWorldCamera(4800)).toBe(4800);
+    expect(t0RouteWorldCamera(4800 + TRAVERSAL_T0_ROUTE_WORLD_PERIOD)).toBe(4800);
+    const loopEnd = TRAVERSAL_T0_ROUTE_WORLD[0]!.worldStart + TRAVERSAL_T0_ROUTE_WORLD_PERIOD;
+    expect(t0RouteWorldCamera(loopEnd - 1)).toBe(loopEnd - 1);
+    renderer.updateRoute(t0RouteWorldCamera(loopEnd - 1), ROAD_SPACE.referenceWidth);
+    const crossing = [...renderer.routeElement.querySelectorAll<HTMLElement>('[data-world-section]')]
+      .filter(section => !section.hidden);
+    expect(crossing.some(section => section.dataset.worldSection === 'route-forest-0-wrap')).toBe(true);
+    expect(crossing.every(section => section.querySelector('.traversal-world-section__painting > img')
+      ?.getAttribute('src') === TRAVERSAL_WORLD_ASSETS.forest && !section.querySelector('[data-location-prop]'))).toBe(true);
+  });
+
   it('covers the entire driven road and exit without holes, and places referenced beats inside their locations', () => {
     const state = createInitialState();
     const leg = LION_TRAVERSAL_LEGS.find(leg => leg.id === 'T0')!;
@@ -40,8 +66,9 @@ describe('T0 authored geography', () => {
     }
   });
 
-  it('keeps physical places and the junction sign when interaction actors are removed or consumed', () => {
+  it('keeps checkpoint geography separate from actors while excluding the merchant halt', async () => {
     vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
+    vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue();
     const state = createInitialState();
     state.run.currentNodeId = state.currentNodeId = 'lion-audience';
     const scene = new TraversalT0Scene({ root: document.body,
@@ -49,20 +76,19 @@ describe('T0 authored geography', () => {
       getAvailableNodes: () => getAvailableRunNodes(state), onNodeHandoff: vi.fn(), onArrival: vi.fn(), onMenu: vi.fn() });
     const clock = scene as unknown as { advance(seconds: number): void; advanceTransition(seconds: number): void };
     scene.open();
+    await (scene as unknown as { routeRenderer: { ready: Promise<void> } }).routeRenderer.ready;
+    await new Promise<void>(resolve => setTimeout(resolve, 0));
     clock.advanceTransition(.6);
     expect(scene.session.routeProgress01).toBe(0);
     expect(Number.parseFloat(scene.element.style.getPropertyValue('--vehicle-entry-x'))).toBeLessThan(0);
     clock.advanceTransition(.4);
-    clock.advance(10);
+    clock.advance(13);
+    clock.advance(.28);
     clock.advanceTransition(1);
-    const section = scene.element.querySelector<HTMLElement>('[data-world-section="merchant-halt"]')!;
+    const section = scene.element.querySelector<HTMLElement>('[data-world-section="opening-ambush"]')!;
     const snapshot = JSON.stringify(state);
-    scene.element.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!.click();
-    clock.advanceTransition(1);
-    clock.advanceTransition(1);
-    scene.element.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!.click();
-    clock.advanceTransition(.6);
-    expect(scene.session.consumedBeatIds).toContain('t0:npc:roadside-merchant');
+    expect(scene.element.dataset.view).toBe('checkpoint');
+    expect(scene.element.querySelector('[data-world-section="merchant-halt"]')).toBeNull();
     expect(section.hidden).toBe(false);
     scene.element.querySelector('.traversal-world__entities')!.replaceChildren();
     expect(section.isConnected).toBe(true);

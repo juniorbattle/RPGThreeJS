@@ -2383,6 +2383,10 @@ button:disabled { cursor: not-allowed; opacity: .35; }
     linear-gradient(90deg, rgba(1,3,10,.42), transparent 24%, transparent 76%, rgba(1,3,10,.42));
   box-shadow: inset 0 0 110px rgba(0,0,0,.48);
 }
+.scene-transition--traversal { background: #000; }
+.scene-transition--traversal::before,
+.scene-transition--traversal::after,
+.scene-transition--traversal .scene-transition__motif { display: none; }
 
 /* ── Fade style: quiet, storybook-like transitions ── */
 .scene-transition--fade {

@@ -10,7 +10,7 @@ import { createTraversalSprite } from './TraversalSprite';
 import { TraversalWorldRenderer } from './TraversalWorldRenderer';
 import { buildTraversalCaravan, caravanWheelAngle, TRAVERSAL_CARAVAN } from './TraversalCaravan';
 import { setTraversalDepth, TraversalForegroundRenderer } from './TraversalDepth';
-import { traversalLocation } from './TraversalT0World';
+import { t0RouteWorldCamera, traversalLocation } from './TraversalT0World';
 import { resolveCharacterVisualProfile, resolveCharacterAsset } from '../render/CharacterVisualRegistry';
 import {
   resolveTraversalBeatCrossing,
@@ -23,6 +23,9 @@ import { TraversalRunController } from './TraversalRunController';
 import { TRAVERSAL_RHYTHM, transitionEase } from './TraversalTransition';
 import { traversalContactProgress } from './TraversalT0Route';
 import type { TraversalLane, TraversalRunSession } from './TraversalRunRuntime';
+import { advanceRouteRun, createRouteRun, setRouteLane, type TraversalRouteRunState } from './TraversalRouteRun';
+import { resolveT0RouteSegment, T0_ROUTE_SEGMENTS, type T0RouteSegment } from './TraversalT0CheckpointRoute';
+import { TraversalRouteRenderer } from './TraversalRouteRenderer';
 
 const LANE_TOP_PERCENT: Record<TraversalLane, number> = { 0: 65, 1: 81 };
 const MANDATORY_TOP_PERCENT = 73;
@@ -87,6 +90,7 @@ export class TraversalT0Scene {
   private readonly entityElements = new Map<string, HTMLElement>();
   private readonly markerElements = new Map<string, HTMLElement>();
   private readonly worldRenderer = new TraversalWorldRenderer();
+  private readonly routeRenderer = new TraversalRouteRenderer();
   private readonly foregroundRenderer = new TraversalForegroundRenderer();
   private readonly stageBeats: readonly TraversalRouteBeat[];
   private frameId: number | null = null;
@@ -94,16 +98,31 @@ export class TraversalT0Scene {
   private opened = false;
   private arrivalRequested = false;
   private arrivalElapsed = 0;
+  private arrivalVisualSpeed = 0;
+  private arrivalExitDistance = 0;
   private confirming = false;
   private assistedUntil = 0;
   private readonly declinedBeats = new Set<string>();
   private readonly collectedAt = new Map<string, number>();
   private speed = 0;
-  private transition: { kind: string; elapsed: number; midpoint?: () => void; reveal: boolean } | null = null;
+  private focusStartSpeed = 0;
+  private approachElapsed: number | null = null;
+  private departure: { kind: 'return' | 'fork'; elapsed: number; distance: number;
+    midpoint: () => void | Promise<void> } | null = null;
+  private transition: { kind: string; elapsed: number; midpoint?: () => void | Promise<void>;
+    reveal: boolean; waitingForReady: boolean; blackHoldRemaining: number } | null = null;
   private presentedBranch = 'main';
   private inAnimationFrame = false;
   private frameRenderPending = false;
   private hudVisible = false;
+  private routeIndex = 0;
+  private routeSegment: T0RouteSegment = resolveT0RouteSegment(0);
+  private routeRun: TraversalRouteRunState = createRouteRun(this.routeSegment, 0);
+  private viewMode: 'ROUTE' | 'CHECKPOINT' = 'ROUTE';
+  private checkpointBeat: TraversalRouteBeat | null = null;
+  private checkpointElapsed = 0;
+  private checkpointEntries = 0;
+  private checkpointExits = 0;
 
   constructor(private readonly options: TraversalT0SceneOptions) {
     if (options.leg.id !== 'T0') throw new Error('TraversalT0Scene only accepts the canonical T0 leg.');
@@ -119,7 +138,7 @@ export class TraversalT0Scene {
       leg: options.leg,
       getAvailableNodes: options.getAvailableNodes,
       onBranchSelect: nodeId => new Promise<boolean>(resolve => {
-        this.startTransition('fork', () => {
+        this.beginCheckpointDeparture('fork', () => {
           if (!selectTraversalBranch(options.getState().run, 'T0', nodeId)) { resolve(false); return; }
           const current = options.getState();
           this.route = resolveTraversalT0Route(options.leg, current.run.graph.nodes,
@@ -131,8 +150,10 @@ export class TraversalT0Scene {
             this.buildEntity(entities, beat);
           }
           this.presentedBranch = current.run.traversalBranches!.T0!;
+          this.checkpointExits++;
+          this.startRoute(4);
           // Mount the selected lateral road while the transition is fully opaque.
-          this.updateWorldTransforms();
+          this.updateWorldTransforms(true);
           resolve(true);
         });
       }),
@@ -147,7 +168,10 @@ export class TraversalT0Scene {
     });
     this.element.className = 'traversal-t0';
     this.element.dataset.traversalLeg = 'T0';
-    this.element.dataset.singleRoad = 'true';
+    this.element.dataset.singleRoad = 'false';
+    this.element.dataset.view = 'route';
+    this.element.dataset.routeSegment = 'route-1';
+    this.element.dataset.routeWorld = 'shared';
     this.element.dataset.laneCount = '2';
     this.element.setAttribute('aria-label', `Traversée de ${this.route.originLabel} vers ${this.route.destinationLabel}`);
     this.build();
@@ -212,7 +236,14 @@ export class TraversalT0Scene {
     this.controller.finishNodeResolution(nodeId);
     this.element.classList.remove('traversal-t0--interrupted');
     delete this.element.dataset.interruption;
-    this.startTransition('return', undefined, true);
+    this.checkpointExits++;
+    // GameApp already covers the return from canonical content. Mount the next Route
+    // under that cover so its reveal is the only return transition.
+    this.transition = null;
+    delete this.element.dataset.transition;
+    this.element.style.setProperty('--transition-opacity', '0');
+    this.startRoute(this.controller.session.stageIndex === this.options.leg.stages.length
+      ? 5 : this.controller.session.stageIndex);
     this.renderRuntimeState();
   }
 
@@ -262,7 +293,7 @@ export class TraversalT0Scene {
         </div>
       </section>
       <aside class="traversal-hud traversal-hud--progress" aria-label="Progression de route">
-        <div class="traversal-route-rail" aria-hidden="true"><i></i><span></span><span></span><span></span><span></span><b></b></div>
+        <div class="traversal-route-rail" aria-label="Étapes de Traversal">${['Départ', ...T0_ROUTE_SEGMENTS.map(route => route.railLabel)].map((label, index) => `<span class="traversal-route-rail__stop" data-rail-stop="${index}" data-kind="${index === 4 ? 'fork' : 'checkpoint'}" title="${label}"><span>${index === 4 ? '◇' : index === 6 ? '◎' : '•'}</span></span>`).join('')}</div>
         <div class="traversal-hud__destination-icon"></div><div class="traversal-hud__destination-copy"><p class="campaign-ui-type--eyebrow">Prochain arrêt</p><strong class="campaign-ui-type--compact-title" data-traversal-next>${escapeHtml(this.route.destinationLabel)}</strong><span class="campaign-ui-type--metadata" data-traversal-distance>${this.route.distanceKm.toFixed(1)} km</span></div>
       </aside>
       <nav class="traversal-lanes" aria-label="Changer de trajectoire">
@@ -279,6 +310,8 @@ export class TraversalT0Scene {
     decorateCampaignButton(eventPanel.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!, 'primary');
     decorateCampaignButton(eventPanel.querySelector<HTMLButtonElement>('[data-traversal-skip]')!, 'secondary');
     this.element.querySelector('.traversal-world__road')!.append(this.worldRenderer.element);
+    this.element.querySelector('.traversal-world__road')!.append(this.worldRenderer.routeElement);
+    this.element.querySelector('.traversal-world__road')!.append(this.routeRenderer.element);
     this.element.querySelector('.traversal-world')!.append(this.foregroundRenderer.element);
     for (const [selector, plane] of [
       ['.traversal-world__road', 'road-world'], ['.traversal-world__actors', 'road-actors'],
@@ -377,9 +410,11 @@ export class TraversalT0Scene {
     this.previousFrameMs = timeMs;
     // Physics may take several bounded steps; present their final state once per frame.
     this.inAnimationFrame = true;
+    const wasArriving = this.controller.session.phase === 'ARRIVING';
     if (this.transition && !document.hidden) this.advanceTransition(deltaSeconds);
+    else if (this.departure && !document.hidden) this.advanceCheckpointDeparture(deltaSeconds);
     else if (this.controller.session.phase === 'RUNNING' && !document.hidden) this.advance(deltaSeconds);
-    if (this.controller.session.phase === 'ARRIVING' && !document.hidden) this.advanceArrival(deltaSeconds);
+    if (wasArriving && !document.hidden) this.advanceArrival(deltaSeconds);
     this.inAnimationFrame = false;
     if (this.frameRenderPending) {
       this.frameRenderPending = false;
@@ -388,17 +423,55 @@ export class TraversalT0Scene {
     this.frameId = window.requestAnimationFrame(this.tick);
   };
 
-  private startTransition(kind: string, midpoint?: () => void, reveal = false): void {
-    this.transition = { kind, midpoint, elapsed: 0, reveal };
+  private startTransition(kind: string, midpoint?: () => void | Promise<void>, reveal = false): void {
+    if (kind === 'focus') this.focusStartSpeed = this.speed;
+    this.transition = { kind, midpoint, elapsed: 0, reveal, waitingForReady: false, blackHoldRemaining: 0 };
     if (kind === 'entry') this.element.style.setProperty('--vehicle-entry-x', '-600px');
     this.element.dataset.transition = kind;
     this.element.style.setProperty('--transition-opacity', reveal ? '1' : '0');
     this.renderRuntimeState();
+    if (reveal && this.viewMode === 'ROUTE') {
+      const transition = this.transition;
+      transition.waitingForReady = true;
+      void Promise.all([this.routeRenderer.ready, this.worldRenderer.readyRouteVisible(),
+        this.foregroundRenderer.readyVisible()]).then(() => {
+        if (this.transition === transition) transition.waitingForReady = false;
+      }, error => {
+        console.error('[Traversal] Shared route art did not decode.', error);
+        if (this.transition === transition) transition.waitingForReady = false;
+      });
+    }
   }
 
   private advanceTransition(seconds: number): void {
     const transition = this.transition;
     if (!transition) return;
+    if (transition.kind === 'focus' && this.viewMode === 'ROUTE') {
+      const braking = 1 - transitionEase(transition.elapsed / TRAVERSAL_RHYTHM.fade);
+      const visualSpeed = this.focusStartSpeed * braking;
+      const visibleSeconds = Math.max(0, Math.min(seconds, TRAVERSAL_RHYTHM.fade - transition.elapsed));
+      this.routeRenderer.advance(visibleSeconds * 1000, visualSpeed);
+      this.speed = visualSpeed;
+      this.element.style.setProperty('--route-rush-opacity', String(Math.max(0,
+        (this.routeRun.progress01 - .55) * 1.2 * braking)));
+      this.element.dataset.motion = 'decelerating';
+    }
+    if (this.departure && this.viewMode === 'CHECKPOINT') {
+      const visibleSeconds = Math.max(0, Math.min(seconds,
+        TRAVERSAL_RHYTHM.hold + TRAVERSAL_RHYTHM.fade - transition.elapsed));
+      this.advanceDepartureMotion(visibleSeconds);
+    }
+    if (transition.waitingForReady || (transition.reveal && this.viewMode === 'ROUTE' && !this.routeRenderer.isReady)) {
+      this.element.style.setProperty('--transition-opacity', '1');
+      return;
+    }
+    if (transition.blackHoldRemaining > 0) {
+      const held = Math.min(seconds, transition.blackHoldRemaining);
+      transition.blackHoldRemaining -= held;
+      seconds -= held;
+      this.element.style.setProperty('--transition-opacity', '1');
+      if (seconds <= 0) return;
+    }
     transition.elapsed += seconds;
     const half = TRAVERSAL_RHYTHM.fade;
     const time = Math.max(0, transition.elapsed - TRAVERSAL_RHYTHM.hold);
@@ -406,9 +479,25 @@ export class TraversalT0Scene {
       this.element.style.setProperty('--transition-opacity', '1');
       const midpoint = transition.midpoint;
       transition.midpoint = undefined;
-      midpoint();
+      if (this.departure) this.finishCheckpointDeparture();
+      const readiness = midpoint();
       // A synchronous node result may already have started its return transition.
       if (this.transition !== transition) return;
+      transition.elapsed = TRAVERSAL_RHYTHM.hold + half;
+      transition.blackHoldRemaining = TRAVERSAL_RHYTHM.hold;
+      if (readiness) {
+        transition.waitingForReady = true;
+        void readiness.then(() => {
+          if (this.transition !== transition) return;
+          transition.waitingForReady = false;
+          transition.elapsed = TRAVERSAL_RHYTHM.hold + half;
+        }, error => {
+          console.error('[Traversal] Checkpoint art did not decode.', error);
+          if (this.transition !== transition) return;
+          transition.waitingForReady = false;
+          transition.elapsed = TRAVERSAL_RHYTHM.hold + half;
+        });
+      }
       // Preserve a fully covered paint before the reveal, including long browser frames.
       return;
     }
@@ -424,102 +513,178 @@ export class TraversalT0Scene {
       this.transition = null;
       delete this.element.dataset.transition;
       this.renderRuntimeState();
-      this.speed = 0;
+      if (this.session.phase !== 'ARRIVING') this.speed = 0;
     }
   }
 
   private advance(deltaSeconds: number): void {
-    // Integrate physical braking in bounded steps, including throttled browser frames.
+    // Both the pure route clock and the authored checkpoint approach clamp their own bounds.
+    // Present one state per animation frame, even after a throttled browser frame.
     const alreadyInFrame = this.inAnimationFrame;
     this.inAnimationFrame = true;
     try {
-      let remaining = deltaSeconds;
-      while (remaining > 0 && this.session.phase === 'RUNNING' && !this.transition) {
-        const step = Math.min(remaining, 1 / 60);
-        this.advanceRoadStep(step);
-        remaining -= step;
-      }
+      if (deltaSeconds > 0 && this.departure && !this.transition) this.advanceCheckpointDeparture(deltaSeconds);
+      else if (deltaSeconds > 0 && this.session.phase === 'RUNNING' && !this.transition) this.advanceRoadStep(deltaSeconds);
     } finally {
       this.inAnimationFrame = alreadyInFrame;
       if (!alreadyInFrame && this.frameRenderPending) {
         this.frameRenderPending = false;
         this.renderRuntimeState();
-      }
+      } else if (!alreadyInFrame) this.updateWorldTransforms();
     }
   }
 
   private advanceRoadStep(deltaSeconds: number): void {
-    const session = this.controller.session;
-    if (session.phase !== 'RUNNING' || this.transition) return;
-    if (session.routeProgress01 >= this.assistedUntil) this.assistedUntil = 0;
-    const previousProgress = session.routeProgress01;
-    const eligible = this.route.beats.filter(beat => !session.consumedBeatIds.includes(beat.id)
-      && (!beat.campaignNodeIds.length || beat.id === this.nextStage?.id));
-    const stop = eligible.find(beat => !this.declinedBeats.has(beat.id)
-      && !['PICKUP', 'SIMPLE_OBSTACLE'].includes(beat.category)
-      && (beat.engagement === 'ROUTE' || beat.lane === session.currentLane)
-      && traversalContactProgress(beat) > previousProgress);
-    const distance = stop ? traversalContactProgress(stop) - previousProgress : Infinity;
-    const acceleration = TRAVEL_SPEED_PER_SECOND / TRAVERSAL_RHYTHM.brake;
-    const braking = distance <= TRAVEL_SPEED_PER_SECOND * TRAVERSAL_RHYTHM.brake / 2;
-    const velocity = braking ? Math.sqrt(2 * acceleration * distance) : this.speed;
-    const nextSpeed = braking ? Math.max(0, velocity - acceleration * deltaSeconds)
-      : Math.min(TRAVEL_SPEED_PER_SECOND, velocity + TRAVEL_SPEED_PER_SECOND / TRAVERSAL_RHYTHM.restart * deltaSeconds);
-    let movement = (velocity + nextSpeed) / 2 * deltaSeconds;
-    if (braking && distance < .00001) movement = distance;
-    this.speed = nextSpeed;
-    this.element.dataset.motion = braking ? 'decelerating' : nextSpeed < TRAVEL_SPEED_PER_SECOND ? 'accelerating' : 'cruising';
-    const nextProgress = Math.min(1, previousProgress + movement);
-    // Resolve crossings in spatial order, including large frame deltas. Never step past a hold.
-    const contact = (beat: TraversalRouteBeat) => !this.declinedBeats.has(beat.id)
-      && (beat.engagement === 'ROUTE' || beat.lane === session.currentLane)
-      ? traversalContactProgress(beat) : beatPassedProgress(beat.progress01);
-    for (const beat of eligible.sort((a, b) => contact(a) - contact(b))) {
-      const declined = this.declinedBeats.has(beat.id);
-      const outcome = declined ? previousProgress < beatPassedProgress(beat.progress01)
-        && nextProgress >= beatPassedProgress(beat.progress01) ? 'BYPASSED' : 'NONE'
-        : resolveTraversalBeatCrossing(beat, previousProgress, nextProgress, session.currentLane);
-      if (outcome === 'NONE') continue;
-      if (outcome === 'BYPASSED') {
-        this.bypassCanonical(beat);
-        this.controller.bypassBeat(beat.id);
-        this.declinedBeats.delete(beat.id);
-        this.showContactToast(beat, outcome);
-      } else {
-        if (beat.category === 'PICKUP' || beat.category === 'SIMPLE_OBSTACLE') {
-          this.collectedAt.set(beat.id, nextProgress);
-          this.controller.consumeBeat(beat.id);
-          const toast = this.element.querySelector<HTMLElement>('.traversal-toast')!;
-          if (beat.category === 'PICKUP') this.showPickupFeedback(beat);
-          else {
-            toast.textContent = 'Attention aux débris !';
-            toast.classList.remove('is-visible');
-            void toast.offsetWidth;
-            toast.classList.add('is-visible');
-          }
-          continue;
-        }
-        this.controller.advanceTo(traversalContactProgress(beat));
-        this.speed = 0;
-        if (beat.category === 'ROUTE_CHOICE') {
-          this.startTransition('focus', () => this.controller.approachNextStage(beat.progress01));
-          return;
-        }
-        this.controller.pauseForDecision(beat.id);
-        this.startTransition('focus');
-        this.element.querySelector<HTMLButtonElement>('[data-traversal-confirm]:not(:disabled), [data-traversal-skip]:not([hidden])')?.focus({ preventScroll: true });
-        return;
+    if (this.session.phase !== 'RUNNING' || this.transition) return;
+    if (this.approachElapsed !== null) { this.advanceRouteApproach(deltaSeconds); return; }
+    if (this.viewMode === 'CHECKPOINT') { this.advanceCheckpointStep(deltaSeconds); return; }
+    const previous = this.routeRun;
+    this.routeRun = advanceRouteRun(previous, this.routeSegment, deltaSeconds * 1000);
+    if (this.routeRun === previous) return;
+    const restart = transitionEase(this.routeRun.elapsedMs / (TRAVERSAL_RHYTHM.restart * 1000));
+    this.routeRenderer.advance(this.routeRun.elapsedMs - previous.elapsedMs,
+      (previous.speed + this.routeRun.speed) / 2 * restart);
+    this.speed = this.routeRun.speed * restart;
+    this.element.dataset.motion = this.routeRun.progress01 > .8 ? 'rushing' : 'cruising';
+    this.element.style.setProperty('--route-rush-opacity', String(Math.max(0, (this.routeRun.progress01 - .55) * 1.2)));
+    const start = this.routeIndex === 0 ? 0 : this.routeIndex === 5 ? .91
+      : this.routeIndex === 4 ? .8 : this.stageBeats[this.routeIndex - 1]!.progress01;
+    const end = this.routeIndex === 5 ? 1 : this.routeIndex === 4 ? .91
+      : this.stageBeats[this.routeIndex]!.progress01;
+    this.controller.advanceTo(start + (end - start) * this.routeRun.progress01);
+    if (!this.routeRun.complete) return;
+    if (this.routeSegment.checkpointKind === 'ARRIVAL') {
+      if (!this.arrivalRequested) {
+        this.arrivalRequested = true;
+        this.arrivalVisualSpeed = this.speed;
+        this.arrivalElapsed = 0;
+        this.arrivalExitDistance = 0;
+        this.controller.beginArrival(1);
       }
+      return;
     }
-    if (nextProgress !== previousProgress) this.controller.advanceTo(nextProgress);
-    if (!this.nextStage && nextProgress >= 1 && !this.arrivalRequested) {
-      this.arrivalRequested = true;
-      this.controller.beginArrival(1);
+    const checkpointId = this.routeSegment.nextCheckpointId;
+    const beat = this.routeSegment.checkpointKind === 'FORK' ? this.stageBeats[3]
+      : this.route.beats.find(candidate => candidate.campaignNodeIds.includes(checkpointId ?? '')
+        && (this.routeSegment.checkpointKind !== 'BRANCH' || candidate.branchNodeId === checkpointId));
+    if (!beat) throw new Error(`T0 checkpoint beat missing: ${checkpointId}`);
+    this.checkpointBeat = beat;
+    this.approachElapsed = 0;
+    this.element.dataset.presentation = 'checkpoint-approach';
+    this.renderRuntimeState();
+  }
+
+  private advanceRouteApproach(seconds: number): void {
+    const elapsed = this.approachElapsed;
+    if (elapsed === null) return;
+    const duration = .28;
+    const next = Math.min(duration, elapsed + seconds);
+    const speed = this.routeRun.speed * (1 - .42 * transitionEase(next / duration));
+    this.routeRenderer.advance((next - elapsed) * 1000, (this.speed + speed) / 2);
+    this.speed = speed;
+    this.approachElapsed = next;
+    this.element.dataset.motion = 'decelerating';
+    this.element.style.setProperty('--route-rush-opacity', String(Math.max(0,
+      (this.routeRun.progress01 - .55) * 1.2 * (speed / this.routeRun.speed))));
+    if (next < duration) return;
+    this.approachElapsed = null;
+    delete this.element.dataset.presentation;
+    this.startTransition('focus', () => {
+      this.viewMode = 'CHECKPOINT';
+      this.element.dataset.view = 'checkpoint';
+      this.checkpointElapsed = 0;
+      this.checkpointEntries++;
+      this.element.dataset.checkpointEntries = String(this.checkpointEntries);
+      this.updateWorldTransforms();
+      return Promise.all([this.worldRenderer.readyVisible(), this.foregroundRenderer.readyVisible()]).then(() => undefined);
+    });
+  }
+
+  private beginCheckpointDeparture(kind: 'return' | 'fork', midpoint: () => void | Promise<void>): void {
+    if (this.departure) return;
+    this.transition = null;
+    delete this.element.dataset.transition;
+    this.element.style.setProperty('--transition-opacity', '0');
+    this.departure = { kind, midpoint, elapsed: 0, distance: 0 };
+    this.element.dataset.departure = kind;
+    this.element.dataset.presentation = 'checkpoint-departure';
+    this.element.dataset.motion = 'departing';
+    this.speed = this.routeSegment.vMin * .48;
+    this.renderRuntimeState();
+  }
+
+  private advanceDepartureMotion(seconds: number): void {
+    const departure = this.departure;
+    if (!departure || seconds <= 0) return;
+    const previousSpeed = this.speed;
+    departure.elapsed += seconds;
+    this.speed = this.routeSegment.vMin * (.48 + .75 * transitionEase(departure.elapsed / .55));
+    departure.distance += (previousSpeed + this.speed) / 2 * seconds * 1000 * .28;
+  }
+
+  private advanceCheckpointDeparture(seconds: number): void {
+    const departure = this.departure;
+    if (!departure) return;
+    const visible = Math.min(seconds, Math.max(0, .28 - departure.elapsed));
+    this.advanceDepartureMotion(visible);
+    if (departure.elapsed < .28) return;
+    this.startTransition(departure.kind, departure.midpoint);
+  }
+
+  private finishCheckpointDeparture(): void {
+    this.departure = null;
+    delete this.element.dataset.departure;
+    delete this.element.dataset.presentation;
+  }
+
+  private advanceCheckpointStep(deltaSeconds: number): void {
+    const beat = this.checkpointBeat;
+    if (!beat) return;
+    this.checkpointElapsed = Math.min(1.15, this.checkpointElapsed + deltaSeconds);
+    this.speed = this.routeSegment.vMin * (1 - this.checkpointElapsed / 1.15);
+    this.element.dataset.motion = 'decelerating';
+    if (this.checkpointElapsed < 1.15) return;
+    this.checkpointBeat = null;
+    this.speed = 0;
+    if (this.routeSegment.checkpointKind === 'FORK') {
+      this.controller.approachNextStage(beat.progress01);
+    } else if (this.routeSegment.checkpointKind === 'BRANCH') {
+      this.controller.enterSelectedBranch(beat.branchNodeId!);
+    } else if (beat.interactionPolicy === 'OPTIONAL_CONFIRM') {
+      this.controller.pauseForDecision(beat.id);
+      this.element.querySelector<HTMLButtonElement>('[data-traversal-confirm]')?.focus({ preventScroll: true });
+    } else {
+      this.controller.approachNextStage(beat.progress01);
     }
   }
 
+  private startRoute(index: number): void {
+    this.routeIndex = index;
+    this.routeSegment = resolveT0RouteSegment(index, this.options.getState().run.traversalBranches?.T0);
+    this.routeRun = createRouteRun(this.routeSegment, index, this.session.currentLane);
+    this.viewMode = 'ROUTE';
+    this.element.dataset.view = 'route';
+    this.element.dataset.routeSegment = this.routeSegment.id;
+    this.element.dataset.routeWorld = 'shared';
+    this.element.dataset.routeProgress = '0';
+    this.element.style.setProperty('--route-rush-opacity', '0');
+    this.checkpointBeat = null;
+    this.checkpointElapsed = 0;
+    this.speed = 0;
+  }
+
   private advanceArrival(deltaSeconds: number): void {
+    const prior = this.arrivalElapsed;
     this.arrivalElapsed += deltaSeconds;
+    const coast = (time: number): number => time <= .35 ? 1 - .06 * transitionEase(time / .35)
+      : time < 2.05 ? .94 * (1 - transitionEase((time - .35) / 1.7)) : 0;
+    const nextSpeed = this.arrivalVisualSpeed * coast(this.arrivalElapsed);
+    this.routeRenderer.advance(deltaSeconds * 1000, this.arrivalVisualSpeed *
+      (coast(prior) + coast(this.arrivalElapsed)) / 2);
+    this.speed = nextSpeed;
+    this.arrivalExitDistance += deltaSeconds * 1000 * this.arrivalVisualSpeed *
+      (coast(prior) + coast(this.arrivalElapsed)) / 2 * .28 * 1.15;
+    this.element.dataset.presentation = 'final-arrival-coast';
     this.element.style.setProperty('--arrival-fade', String(transitionEase((this.arrivalElapsed - 2.4) / TRAVERSAL_RHYTHM.fade)));
     if (this.arrivalElapsed >= 2.4 + TRAVERSAL_RHYTHM.fade + TRAVERSAL_RHYTHM.hold && this.arrivalRequested) {
       this.arrivalRequested = false;
@@ -529,7 +694,7 @@ export class TraversalT0Scene {
 
   private async confirmDecision(): Promise<void> {
     const beat = this.route.beats.find((candidate) => candidate.id === this.session.pendingBeatId);
-    if (!beat || this.confirming || this.transition) return;
+    if (!beat || this.confirming || this.transition || this.departure) return;
     this.confirming = true;
     this.renderEventPanel();
     try {
@@ -590,24 +755,25 @@ export class TraversalT0Scene {
 
   private skipDecision(): void {
     const beat = this.route.beats.find((candidate) => candidate.id === this.session.pendingBeatId);
-    if (!beat || this.session.phase !== 'DECISION' || beat.interactionPolicy !== 'OPTIONAL_CONFIRM' || this.confirming) return;
-    if (this.transition) return;
-    this.declinedBeats.add(beat.id);
+    if (!beat || this.session.phase !== 'DECISION' || beat.interactionPolicy !== 'OPTIONAL_CONFIRM'
+      || !beat.campaignNodeIds.includes('lion-refugees') || this.confirming) return;
+    if (this.transition || this.departure) return;
+    // The existing GameApp/RunSystem bypass authority accepts only an active road session.
     this.controller.releaseDecision();
-    this.speed = 0;
-    if (beat.category === 'OPTIONAL_COMBAT' && beat.lane !== null && this.session.currentLane === beat.lane) {
-      this.moveToLane(beat.lane === 0 ? 1 : 0);
-      this.assistedUntil = beatPassedProgress(beat.progress01);
-    }
+    this.bypassCanonical(beat);
+    this.controller.bypassBeat(beat.id);
+    this.checkpointExits++;
+    this.beginCheckpointDeparture('return', () => { this.startRoute(3); this.updateWorldTransforms(); });
     this.renderRuntimeState();
-    this.showContactToast(beat, 'BYPASSED');
   }
 
   private moveToLane(lane: TraversalLane): void {
-    if (this.transition || this.assistedUntil > this.session.routeProgress01) return;
+    if (this.transition || this.departure || this.approachElapsed !== null
+      || document.body.classList.contains('scene-transition--locked') || this.viewMode !== 'ROUTE') return;
     const current = this.controller.session.currentLane;
     if (lane === current) return;
     this.controller.moveLane(lane < current ? -1 : 1);
+    this.routeRun = setRouteLane(this.routeRun, lane);
     this.renderRuntimeState();
   }
 
@@ -626,22 +792,32 @@ export class TraversalT0Scene {
     if (forkIds.length) this.worldRenderer.setDirections(this.options.getAvailableNodes()
       .filter(node => forkIds.includes(node.id)));
     this.element.style.setProperty('--traversal-lane-y', `${LANE_TOP_PERCENT[session.currentLane]}%`);
-    this.element.querySelector<HTMLElement>('.traversal-route-rail')!.style.setProperty('--route-progress', String(session.routeProgress01));
+    this.element.querySelectorAll<HTMLElement>('[data-rail-stop]').forEach(stop => {
+      const stopIndex = Number(stop.dataset.railStop);
+      stop.dataset.complete = String(stopIndex <= this.routeIndex);
+      stop.dataset.current = String(stopIndex === this.routeIndex + 1);
+    });
     this.element.dataset.phase = session.phase;
     this.element.dataset.lane = String(session.currentLane);
     this.element.dataset.consumedBeats = String(session.consumedBeatIds.length);
     this.element.dataset.progress = String(session.routeProgress01);
+    this.element.dataset.routeProgress = String(this.routeRun.progress01);
+    this.element.dataset.routeSpeed = String(this.routeRun.speed);
+    this.element.dataset.checkpointExits = String(this.checkpointExits);
     this.element.querySelectorAll<HTMLButtonElement>('[data-traversal-lane]').forEach((button) => {
       const active = Number(button.dataset.traversalLane) === session.currentLane;
       button.classList.toggle('is-active', active);
       button.setAttribute('aria-current', active ? 'true' : 'false');
-      button.disabled = Boolean(this.transition) || session.phase !== 'RUNNING' || this.assistedUntil > session.routeProgress01;
+      button.disabled = Boolean(this.transition || this.departure || this.approachElapsed !== null)
+        || session.phase !== 'RUNNING' || this.viewMode !== 'ROUTE';
     });
     const nextStage = this.nextStage;
     const next = this.element.querySelector<HTMLElement>('[data-traversal-next]');
     const distance = this.element.querySelector<HTMLElement>('[data-traversal-distance]');
-    const nextLabel = nextStage?.label ?? this.route.destinationLabel;
-    const distanceLabel = `~ ${Math.max(0, (1 - session.routeProgress01) * this.route.distanceKm).toFixed(1)} km`;
+    const nextLabel = this.routeSegment.checkpointKind === 'FORK' ? 'Choix d’itinéraire'
+      : this.routeSegment.checkpointKind === 'ARRIVAL' ? this.route.destinationLabel
+      : nextStage?.label ?? this.routeSegment.railLabel;
+    const distanceLabel = `Route ${this.routeIndex + 1}/6 · ${Math.ceil((this.routeSegment.durationMs - this.routeRun.elapsedMs) / 1000)} s`;
     if (next && next.textContent !== nextLabel) next.textContent = nextLabel;
     if (distance && distance.textContent !== distanceLabel) distance.textContent = distanceLabel;
     this.renderEventPanel();
@@ -654,7 +830,7 @@ export class TraversalT0Scene {
     const panel = this.element.querySelector<HTMLElement>('[data-traversal-event-panel]');
     if (!panel) return;
     panel.hidden = !beat || !['DECISION', 'LOCAL_INTERACTION'].includes(session.phase)
-      || this.transition?.kind === 'focus';
+      || this.transition?.kind === 'focus' || Boolean(this.departure);
     if (!beat) return;
     const local = session.phase === 'LOCAL_INTERACTION';
     const paused = session.phase === 'DECISION' || local;
@@ -663,12 +839,12 @@ export class TraversalT0Scene {
     actions.hidden = !paused;
     const confirm = panel.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!;
     const skip = panel.querySelector<HTMLButtonElement>('[data-traversal-skip]')!;
-    confirm.textContent = local ? 'Reprendre la route' : mandatory ? 'Continuer'
+    confirm.textContent = beat.campaignNodeIds.includes('lion-refugees') ? 'Aider' : local ? 'Reprendre la route' : mandatory ? 'Continuer'
       : beat.category === 'OPTIONAL_COMBAT' ? 'Combattre' : 'Rencontrer';
-    skip.textContent = beat.category === 'OPTIONAL_COMBAT' ? 'Fuir' : 'Ignorer';
-    confirm.disabled = this.confirming || Boolean(this.transition);
+    skip.textContent = beat.campaignNodeIds.includes('lion-refugees') ? 'Passer' : beat.category === 'OPTIONAL_COMBAT' ? 'Fuir' : 'Ignorer';
+    confirm.disabled = this.confirming || Boolean(this.transition || this.departure);
     skip.hidden = mandatory || local;
-    skip.disabled = this.confirming || Boolean(this.transition);
+    skip.disabled = this.confirming || Boolean(this.transition || this.departure);
     panel.dataset.interactionPolicy = beat.interactionPolicy;
     panel.dataset.category = beat.category;
     panel.dataset.grammar = classifyTraversalInteraction(beat);
@@ -689,7 +865,6 @@ export class TraversalT0Scene {
       ? localDescriptions[beat.type] ?? '' : paused
       ? mandatory ? 'Le passage est bloqué · continuez vers la rencontre.'
         : beat.category === 'OPTIONAL_COMBAT' ? 'Des ennemis occupent votre voie.'
-        : beat.id === 't0:npc:roadside-merchant' ? 'Une marchande a installé son étal à l’abri des arbres.'
         : beat.campaignNodeIds.includes('lion-refugees') ? 'Une mère et son enfant cherchent de l’aide sur la route.'
         : 'Faire halte auprès de ces voyageurs ou poursuivre la route.'
       : mandatory ? 'Passage obligé · arrêt avant la rencontre.' : 'Restez sur cette voie pour vous arrêter, ou changez de voie pour passer.';
@@ -702,37 +877,58 @@ export class TraversalT0Scene {
     portrait.classList.toggle('is-mirrored', Boolean(beat.mirrorX));
   }
 
-  private updateWorldTransforms(): void {
+  private updateWorldTransforms(forceWorld = false): void {
     const session = this.controller.session;
     const width = this.element.clientWidth || ROAD_SPACE.referenceWidth;
     // Read both viewport dimensions before any style writes to avoid forced layout.
     const height = this.element.clientHeight || 823;
+    if (this.viewMode === 'ROUTE') {
+      this.worldRenderer.updateRoute(t0RouteWorldCamera(this.routeRenderer.distance), width);
+    }
     const vehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
-    const exit = session.phase === 'ARRIVING' ? this.arrivalElapsed : 0;
-    const exitDistance = exit * 160 + exit * exit * 150;
-    const camera = roadCameraX(session.routeProgress01) + exitDistance * .25;
-    const resolvedLocations = new Set(this.stageBeats.slice(0, session.stageIndex)
-      .flatMap(beat => beat.locationId ? [beat.locationId] : []));
-    this.worldRenderer.update(camera, width, this.presentedBranch, resolvedLocations);
-    this.foregroundRenderer.update(camera, width);
-    const screen = (worldX: number) => roadWorldToScreen(worldX, camera, width);
-    this.element.querySelector<HTMLElement>('.traversal-world__foreground')!.style.setProperty('--foreground-offset', `${screen(0) * ROAD_SPACE.foregroundFactor}px`);
+    const exitDistance = session.phase === 'ARRIVING' ? this.arrivalExitDistance : 0;
+    const departureDistance = this.departure?.distance ?? 0;
+    const checkpointCamera = this.checkpointBeat
+      ? roadCameraX(this.checkpointBeat.progress01) - 650 * (1 - this.checkpointElapsed / 1.15)
+      : roadCameraX(session.routeProgress01);
+    const camera = checkpointCamera + departureDistance;
+    if (this.viewMode === 'CHECKPOINT' || forceWorld) {
+      const resolvedLocations = new Set(this.stageBeats.slice(0, session.stageIndex)
+        .flatMap(beat => beat.locationId ? [beat.locationId] : []));
+      this.worldRenderer.update(camera, width, this.presentedBranch, resolvedLocations);
+      this.foregroundRenderer.update(camera, width);
+      this.element.querySelector<HTMLElement>('.traversal-world__foreground')!.style.setProperty('--foreground-offset',
+        `${roadWorldToScreen(0, camera, width) * ROAD_SPACE.foregroundFactor}px`);
+    } else {
+      const routeCamera = t0RouteWorldCamera(this.routeRenderer.distance);
+      this.foregroundRenderer.update(routeCamera, width);
+      this.element.querySelector<HTMLElement>('.traversal-world__foreground')!.style.setProperty('--foreground-offset',
+        `${roadWorldToScreen(0, routeCamera, width) * ROAD_SPACE.foregroundFactor}px`);
+    }
     const entryDistance = 600 + Number.parseFloat(this.element.style.getPropertyValue('--vehicle-entry-x') || '0');
-    const drivenDistance = camera + exitDistance + entryDistance * ROAD_SPACE.referenceWidth / width;
+    const drivenDistance = (this.viewMode === 'ROUTE' ? this.routeRenderer.distance : camera)
+      + exitDistance + departureDistance * .24 + entryDistance * ROAD_SPACE.referenceWidth / width;
     // Mirrors --vehicle-height without forcing layout of the composite wheel subtree.
     const vehicleHeight = Math.min(height * .24, width * (width <= 1000 ? .16 : .14));
     vehicle.style.setProperty('--wheel-angle', `${caravanWheelAngle(drivenDistance, vehicleHeight, width)}rad`);
-    const suspensionSpeed = session.phase === 'ARRIVING' ? 1
-      : session.phase === 'RUNNING' ? Math.min(1, this.speed / TRAVEL_SPEED_PER_SECOND) : 0;
+    const suspensionSpeed = Math.min(1, this.speed / this.routeSegment.vMax);
     vehicle.style.setProperty('--suspension-y', `${Math.sin(drivenDistance / TRAVERSAL_CARAVAN.suspension.wavelength) * TRAVERSAL_CARAVAN.suspension.amplitude * suspensionSpeed}px`);
-    vehicle.style.setProperty('--dust-phase', String((drivenDistance % 130) / 130));
-    vehicle.style.setProperty('--vehicle-exit-x', `${exitDistance * width / ROAD_SPACE.referenceWidth}px`);
+    const dustPhase = (drivenDistance % 130) / 130;
+    vehicle.style.setProperty('--dust-phase', String(dustPhase));
+    vehicle.style.setProperty('--dust-opacity', String(Math.max(0,
+      (.5 - dustPhase * .5) * Math.min(1, this.speed / this.routeSegment.vMin))));
+    const vehicleOffset = (exitDistance + departureDistance * .24) * width / ROAD_SPACE.referenceWidth;
+    vehicle.style.setProperty('--vehicle-exit-x', `${vehicleOffset}px`);
+    this.element.dataset.visualSpeed = String(this.speed);
+    this.element.dataset.visualWorldDistance = String(this.routeRenderer.distance);
+    this.element.dataset.vehicleOffset = String(vehicleOffset);
+    this.element.dataset.visualMoving = this.speed > .12 ? 'true' : 'false';
     this.element.dataset.routeVariant = this.presentedBranch;
-    this.element.dataset.assistedBypass = String(this.assistedUntil > session.routeProgress01);
-    this.route.beats.forEach((beat) => {
+    this.element.dataset.assistedBypass = 'false';
+    if (this.viewMode === 'CHECKPOINT' || forceWorld) this.route.beats.forEach((beat) => {
       const entity = this.entityElements.get(beat.id);
       if (!entity) return;
-      const screenX = screen(beatWorldX(beat.progress01));
+      const screenX = roadWorldToScreen(beatWorldX(beat.progress01), camera, width);
       entity.style.left = `${screenX}px`;
       entity.style.top = `${beat.type === 'fork' ? 57 : entity.dataset.roadside ? 61 : beat.placement === 'CENTERED' ? MANDATORY_TOP_PERCENT : LANE_TOP_PERCENT[beat.lane!]}%`;
       entity.style.zIndex = String(beat.placement === 'CENTERED' ? 20 : 14 + beat.lane! * 12);
@@ -791,6 +987,11 @@ export class TraversalT0Scene {
 
   private readonly onKeyDown = (event: KeyboardEvent): void => {
     if (!this.opened || event.defaultPrevented) return;
+    if ((this.transition || this.departure || this.approachElapsed !== null
+      || document.body.classList.contains('scene-transition--locked')) && event.key !== 'Escape') {
+      if (['ArrowUp', 'ArrowDown', 'w', 'W', 's', 'S'].includes(event.key)) event.preventDefault();
+      return;
+    }
     if (event.key === 'ArrowUp' || event.key.toLowerCase() === 'w') {
       event.preventDefault();
       this.moveToLane(0);
