@@ -5,14 +5,12 @@ import {
   activateTraversalStage,
   approachTraversalStage,
   beginTraversalArrival,
-  beginTraversalLocalInteraction,
   beginTraversalNodeResolution,
   chooseTraversalFork,
   continueTraversalAfterBranchSelection,
   handoffTraversalBranchEncounter,
   skipTraversalStage,
   completeTraversalRun,
-  consumeTraversalBeat,
   bypassTraversalBeat,
   createTraversalRunSession,
   finishTraversalNodeResolution,
@@ -55,10 +53,6 @@ export class TraversalRunController {
     this.setSession(moveTraversalLane(this.sessionState, direction));
   }
 
-  consumeBeat(beatId: string): void {
-    this.setSession(consumeTraversalBeat(this.sessionState, beatId));
-  }
-
   bypassBeat(beatId: string): void {
     this.setSession(bypassTraversalBeat(this.sessionState, beatId));
   }
@@ -69,10 +63,6 @@ export class TraversalRunController {
 
   releaseDecision(): void {
     this.setSession(releaseTraversalDecision(this.sessionState));
-  }
-
-  beginLocalInteraction(): void {
-    this.setSession(beginTraversalLocalInteraction(this.sessionState));
   }
 
   skipStage(): void {

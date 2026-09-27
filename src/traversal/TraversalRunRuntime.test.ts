@@ -9,7 +9,6 @@ import {
   beginTraversalNodeResolution,
   chooseTraversalFork,
   completeTraversalRun,
-  consumeTraversalBeat,
   createTraversalRunSession,
   finishTraversalNodeResolution,
   moveTraversalLane,
@@ -48,13 +47,11 @@ describe('TraversalRunRuntime', () => {
     expect(session.currentLane).toBe(1);
   });
 
-  it('records consumed route content once across interruption and resume', () => {
+  it('records the canonical node across interruption and resume', () => {
     const t0 = leg('T0');
     let session = createTraversalRunSession(t0);
-    session = consumeTraversalBeat(session, 't0:loot:road-cache');
-    session = consumeTraversalBeat(session, 't0:loot:road-cache');
     session = resolveCurrentStage(session, t0, 'lion-opening-ambush', 0.2);
-    expect(session.consumedBeatIds).toEqual(['t0:loot:road-cache', 'lion-opening-ambush']);
+    expect(session.consumedBeatIds).toEqual(['lion-opening-ambush']);
   });
 
   it('keeps one mounted T0 session across mandatory route interruptions', () => {

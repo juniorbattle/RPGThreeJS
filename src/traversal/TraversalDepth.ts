@@ -19,7 +19,7 @@ export function setTraversalDepth(element: HTMLElement, plane: keyof typeof TRAV
   element.style.zIndex = String(TRAVERSAL_DEPTH[plane]);
 }
 
-const ROOT = '/assets/generated/lion-phase/traversal/t0/depth-v1/foreground';
+const ROOT = '/assets/generated/lion-phase/traversal/t0/foreground';
 export const TRAVERSAL_FOREGROUND_ASSETS = Object.freeze({ fern: `${ROOT}/ferns.png`, roots: `${ROOT}/roots.png` });
 
 /** Camera-side plants rooted BELOW the lower road, not collision/interaction beats.

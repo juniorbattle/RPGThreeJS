@@ -10,7 +10,7 @@ import {
 import { changeReputation, getReputationRule } from './reputation';
 import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
 import { resolveTraversalIgnoreConsequence } from './TraversalOptionalConsequencePolicy';
-import { CLAN_ANCHOR_DIALOGUES, TRAVERSAL_LOCAL_NARRATIVES } from './campaignGrammarContent';
+import { CLAN_ANCHOR_DIALOGUES } from './campaignGrammarContent';
 import { resolveCharacterUnitId } from '../render/CharacterVisualRegistry';
 import {
   lionBossVictoryFacts,
@@ -59,7 +59,6 @@ import { evaluateRouteCommit } from '../journey/RouteCommitGuard';
 import { isTraversalProductionEnabledForLeg } from '../traversal/TraversalFeaturePolicy';
 import { TraversalT0Scene } from '../traversal/TraversalT0Scene';
 import { TraversalPreviewSaves } from '../traversal/TraversalPreviewSaves';
-import { createRoadEncounterConfig } from '../traversal/TraversalRoadEncounter';
 import { LION_TRAVERSAL_LEGS, type LionTraversalLeg, type LionTraversalLegId } from '../campaign/LionCampaignTravelRelations';
 import type { JourneySecondaryActionPresentation } from '../cinematics/JourneyTypes';
 import { NarrativeStage } from '../cinematics/NarrativeStage';
@@ -338,9 +337,7 @@ export class GameApp {
           getAvailableNodes: () => getAvailableRunNodes(this.state),
           statusHud: this.statusHud,
           onOptionalIgnore: nodeId => this.ignoreTraversalOptionalNode(nodeId),
-          onLocalNarrative: beatId => this.playTraversalLocalNarrative(beatId),
           onNodeHandoff: async (node) => { await this.commitRunNodeChoice(node.id); },
-          onRoadCombat: combatId => this.playTraversalRoadCombat(combatId),
           onArrival: async (destinationNodeId) => { await this.completeTraversalT0(destinationNodeId); },
           onMenu: () => this.renderTitle(),
         });
@@ -372,31 +369,6 @@ export class GameApp {
     return { accepted: true, feedback: consequence?.feedback };
   }
 
-  /** Local dialogue borrows presentation, keeping its physical owner and canonical state intact. */
-  private async playTraversalLocalNarrative(beatId: string): Promise<void> {
-    const traversal = this.activeTraversal;
-    const dialogueId = TRAVERSAL_LOCAL_NARRATIVES[beatId];
-    if (!traversal || traversal.session.phase !== 'LOCAL_INTERACTION' || !dialogueId
-      || traversal.session.pendingBeatId !== beatId) throw new Error('Invalid local narrative request.');
-    let dialogue!: Promise<void>;
-    try {
-      await sceneTransition.run({ variant: 'traversal', holdMs: 0, task: async () => {
-        dialogue = this.playDialogue(dialogueId);
-        await this.activeNarrativeStage?.awaitMediaVisibleReady();
-      } });
-      await dialogue;
-    } finally {
-      this.activeNarrativeStage?.prepareGlobalHandoff();
-      await sceneTransition.run({ variant: 'traversal', holdMs: 0, task: async () => {
-        this.disposeNarrativeStage();
-        if (this.activeTraversal === traversal) {
-          this.setMode('NARRATIVE');
-          document.body.dataset.campaignSurface = 'traversal';
-        }
-      } });
-    }
-  }
-
   private async completeTraversalT0(destinationNodeId: string): Promise<void> {
     const traversal = this.activeTraversal;
     if (!traversal || traversal.session.phase !== 'ARRIVING'
@@ -409,41 +381,6 @@ export class GameApp {
     } finally {
       this.traversalArrivalInFlight = false;
     }
-  }
-
-  private async playTraversalRoadCombat(combatId: string): Promise<boolean> {
-    const traversal = this.activeTraversal;
-    if (!traversal || traversal.session.legId !== 'T0'
-      || traversal.session.phase !== 'LOCAL_INTERACTION') {
-      throw new Error('Road combat requires an active T0 local interaction.');
-    }
-    const config = createRoadEncounterConfig(combatId);
-    let combatSession!: ReturnType<CombatBridge['start']>;
-    await sceneTransition.run({ variant: 'traversal', task: async () => {
-      this.setMode('COMBAT');
-      combatSession = this.combat.start({
-        config, clan: this.state.clan.members.filter(unit => unit.currentHealth > 0).map(unit => toCombatant(unit)),
-        inventory: structuredClone(this.state.inventory.consumables),
-        preferredUnitIds: [...this.state.deployment.unitIds],
-        reducedGraphics: this.state.settings.reducedGraphics, devQa: this.traversalT0QaEnabled,
-      });
-      await combatSession.ready;
-    } });
-    const result = await combatSession.result;
-    // Road combat has only a local outcome. Never call canonical resolveCombat/markResolved.
-    return new Promise<boolean>((resolve, reject) => {
-      void sceneTransition.run({ variant: 'traversal', holdMs: 0, task: async () => {
-        if (this.activeTraversal === traversal) {
-          this.combat.close();
-          this.setMode('NARRATIVE');
-          this.canvas.hidden = true;
-          document.body.dataset.campaignSurface = 'traversal';
-          this.chrome.replaceChildren();
-        }
-        // Let the mounted road begin its same-position reveal under this full cover.
-        resolve(result.victory);
-      } }).catch(reject);
-    });
   }
 
   private disposeTraversal(): void {

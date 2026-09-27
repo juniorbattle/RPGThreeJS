@@ -6,9 +6,7 @@ import { dialogues, POST_NODE_ATE } from './content';
 import { bypassTraversalNode, enterRunNode, getAvailableRunNodes, selectTraversalBranch } from './runSystem';
 import { resolveTraversalIgnoreConsequence } from './TraversalOptionalConsequencePolicy';
 import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
-import { createGenericNarrativeTableau } from '../cinematics/NarrativeTableau';
 import { resolveCharacterVisualProfile } from '../render/CharacterVisualRegistry';
-import { sceneTransition } from '../ui/SceneTransition';
 
 afterEach(() => { vi.restoreAllMocks(); document.body.replaceChildren(); });
 
@@ -120,26 +118,4 @@ it('secures loot, stages actual clan, gathers once, then opens management and pr
   expect(app.playDialogue).toHaveBeenCalledOnce();
   expect(state.gold).toBe(gold + 40);
   expect(POST_NODE_ATE['lion-first-refuge']).toContain('ate_first_refuge_watch');
-});
-
-it('borrows a covered local dialogue and returns the same road without campaign mutation or save', async () => {
-  const state = createInitialState(), before = structuredClone(state);
-  const traversal = { session: { phase: 'LOCAL_INTERACTION', pendingBeatId: 't0:npc:roadside-merchant' } };
-  const order: string[] = [];
-  vi.spyOn(sceneTransition, 'run').mockImplementation(async options => { order.push('cover'); await options.task(); });
-  const app = Object.assign(Object.create(GameApp.prototype), { state, activeTraversal: traversal,
-    playDialogue: vi.fn(async (id: string) => {
-      order.push(id);
-      const sequence = dialogues.get(id)!;
-      expect(sequence.steps).toHaveLength(3);
-      expect(sequence.steps.some(step => step.actorId === 'wounded_merchant')).toBe(false);
-      expect(createGenericNarrativeTableau(sequence).stillImage).toBeTruthy();
-    }),
-    activeNarrativeStage: null, saves: { saveAuto: vi.fn() },
-  });
-  await app.playTraversalLocalNarrative('t0:npc:roadside-merchant');
-  expect(order).toEqual(['cover', 'roadside_peddler', 'cover']);
-  expect(app.activeTraversal).toBe(traversal);
-  expect(state).toEqual(before);
-  expect(app.saves.saveAuto).not.toHaveBeenCalled();
 });

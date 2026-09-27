@@ -6,7 +6,6 @@ import type {
 export type TraversalRunPhase =
   | 'RUNNING'
   | 'DECISION'
-  | 'LOCAL_INTERACTION'
   | 'APPROACHING_STAGE'
   | 'FORK_OVERLAY'
   | 'NODE_HANDOFF'
@@ -87,13 +86,8 @@ export function pauseTraversalForDecision(session: TraversalRunSession, beatId: 
 }
 
 export function releaseTraversalDecision(session: TraversalRunSession): TraversalRunSession {
-  if (!['DECISION', 'LOCAL_INTERACTION'].includes(session.phase)) throw new Error('Traversal has no pending decision.');
+  if (session.phase !== 'DECISION') throw new Error('Traversal has no pending decision.');
   return Object.freeze({ ...session, phase: 'RUNNING', pendingBeatId: null });
-}
-
-export function beginTraversalLocalInteraction(session: TraversalRunSession): TraversalRunSession {
-  if (session.phase !== 'DECISION') throw new Error('Local interaction requires a pending decision.');
-  return Object.freeze({ ...session, phase: 'LOCAL_INTERACTION' });
 }
 
 export function moveTraversalLane(

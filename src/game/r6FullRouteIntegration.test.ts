@@ -1,4 +1,4 @@
-import { TRAVERSAL_LOCAL_NARRATIVES, CLAN_ANCHOR_DIALOGUES } from './campaignGrammarContent';
+import { CLAN_ANCHOR_DIALOGUES } from './campaignGrammarContent';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -46,6 +46,8 @@ const LEGACY_COMPATIBILITY_DIALOGUES = new Set([
   'mystery_ambush',
   'mystery_troll_crossing',
   'serpent_duelist_trial',
+  // Source dialogue remains available for old saves although its T0 route beat was removed.
+  'roadside_peddler',
 ]);
 
 const ADAPTIVE_EVENT_DIALOGUES = new Set([
@@ -422,7 +424,7 @@ describe('R6 content reachability and reference integrity', () => {
     for (const id of Object.keys(CONTEXTUAL_DIALOGUE_DEFINITIONS)) production.add(id);
     for (const id of Object.keys(REPUTATION_EVENT_DIALOGUE_DEFINITIONS)) production.add(id);
 
-    for (const id of [...Object.values(TRAVERSAL_LOCAL_NARRATIVES), ...Object.values(CLAN_ANCHOR_DIALOGUES)]) production.add(id);
+    for (const id of Object.values(CLAN_ANCHOR_DIALOGUES)) production.add(id);
     const unexplained = [...dialogues.keys()].filter((id) => (
       !production.has(id) && !LEGACY_COMPATIBILITY_DIALOGUES.has(id)
     ));

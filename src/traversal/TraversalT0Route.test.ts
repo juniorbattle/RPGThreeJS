@@ -3,6 +3,7 @@ import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
 import { createInitialState } from '../game/store';
 import { resolveCharacterAsset } from '../render/CharacterVisualRegistry';
 import { auditTraversalT0Route, resolveTraversalBeatCrossing, resolveTraversalT0Route } from './TraversalT0Route';
+import { TRAVERSAL_T0_ASSETS } from './TraversalT0Assets';
 
 const t0 = () => LION_TRAVERSAL_LEGS.find(leg => leg.id === 'T0')!;
 const route = () => {
@@ -21,8 +22,7 @@ describe('TraversalT0Route', () => {
       .toEqual(t0().stages.map(stage => stage.nodeIds));
     expect(resolved.beats).toHaveLength(6);
     expect(resolved.beats.every(beat => beat.campaignNodeIds.length > 0)).toBe(true);
-    expect(resolved.beats.some(beat => beat.id.includes('roadside-merchant') || beat.category === 'PICKUP'
-      || beat.category === 'SIMPLE_OBSTACLE' || beat.roadCombatId)).toBe(false);
+    expect(resolved.beats.every(beat => beat.campaignNodeIds.length > 0)).toBe(true);
   });
 
   it('keeps Cedric, Refugees, and both branch consequences on their authored sections', () => {
@@ -49,6 +49,18 @@ describe('TraversalT0Route', () => {
       expect(beat.branchNodeId).toBe(beat.campaignNodeIds[0]);
       expect(beat.engagement).toBe('ROUTE');
     }
+  });
+
+  it('uses the retained cart only for a canonical treasure branch assignment', () => {
+    const state = createInitialState();
+    const nodes = state.run.graph.nodes.map(node => node.id === 'lion-first-trial-event'
+      ? { ...node, contentId: 'mystery_treasure' } : node);
+    const resolved = resolveTraversalT0Route(t0(), nodes,
+      state.clan.members.map(member => member.definitionId));
+    expect(resolved.beats.find(beat => beat.branchNodeId === 'lion-first-trial-event')?.visualAsset)
+      .toBe(TRAVERSAL_T0_ASSETS.abandonedCart);
+    expect(resolved.beats.filter(beat => !beat.branchNodeId)
+      .some(beat => beat.visualAsset === TRAVERSAL_T0_ASSETS.abandonedCart)).toBe(false);
   });
 
   it('rejects missing canonical RunSystem nodes', () => {

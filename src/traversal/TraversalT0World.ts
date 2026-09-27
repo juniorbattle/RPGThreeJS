@@ -23,20 +23,16 @@ export interface TraversalWorldSection {
 }
 
 const ROOT = '/assets/generated/lion-phase/traversal/t0/world-v1';
-// Clearance-only derivatives retain all upper roadside identity. Originals remain
-// byte-identical in world-v1; provenance records the removed lower-road prop piles.
-const CLEARANCE = '/assets/generated/lion-phase/traversal/t0/depth-v1/clearance';
 /** Logical road units on each side of a join; presentation only, outside owned intervals. */
 export const TRAVERSAL_SECTION_OVERLAP = 60;
 export const TRAVERSAL_WORLD_ASSETS = Object.freeze({
   forest: `${ROOT}/forest-road.png`,
-  merchant: `${CLEARANCE}/merchant-halt.png`,
   ambush: `${ROOT}/opening-ambush.png`,
   ambushCleared: `${ROOT}/ambush-cleared.png`,
   fork: `${ROOT}/forest-junction.png`,
-  rest: `${CLEARANCE}/refugee-halt.png`,
-  nomad: `${ROOT}/reference-convergence/nomad-waystation.png`,
-  caravan: `${CLEARANCE}/damaged-caravan.png`,
+  rest: `${ROOT}/refugee-halt.png`,
+  nomad: `${ROOT}/nomad-waystation.png`,
+  caravan: `${ROOT}/damaged-caravan.png`,
   ruins: `${ROOT}/ruined-outpost.png`,
 });
 

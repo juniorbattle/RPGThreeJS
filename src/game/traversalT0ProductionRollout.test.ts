@@ -23,7 +23,6 @@ interface Harness {
   continueChronicle(): Promise<void>;
   renderTitle(): void;
   commitRunNodeChoice(id: string): Promise<boolean>;
-  playTraversalRoadCombat(id: string): Promise<boolean>;
 }
 
 function harness() {
@@ -209,27 +208,4 @@ describe('production T0 orchestration with real scenes, RunSystem and saves', ()
     app.renderTitle();
   });
 
-  it.each([true, false])('returns road combat victory=%s locally with no QA privileges or canonical mutations', async victory => {
-    const app = harness();
-    await finish(app.enterCampaignPresentation());
-    const scene = app.activeTraversal!;
-    (scene as unknown as { controller: { sessionState: unknown } }).controller.sessionState = {
-      ...scene.session, phase: 'LOCAL_INTERACTION',
-    };
-    app.combat.start.mockReturnValue({ ready: Promise.resolve(), result: Promise.resolve({ victory }) });
-    const state = structuredClone(app.state);
-    const saved = localStorage.getItem('rpg-threejs:autosave:v6');
-    const result = app.playTraversalRoadCombat('wolf_pack');
-    await vi.runAllTimersAsync();
-    expect(await result).toBe(victory);
-    expect(app.combat.start).toHaveBeenCalledOnce();
-    expect(app.combat.start.mock.calls[0]![0]).toMatchObject({ devQa: false, config: { rewards: { gold: 0, reputation: 0 } } });
-    expect(app.state).toEqual(state);
-    expect(localStorage.getItem('rpg-threejs:autosave:v6')).toBe(saved);
-    expect(app.resolveRunNode).not.toHaveBeenCalled();
-    expect(app.activeTraversal).toBe(scene);
-    expect(app.mode).toBe('NARRATIVE');
-    app.renderTitle();
-    await expect(app.playTraversalRoadCombat('wolf_pack')).rejects.toThrow('active T0');
-  });
 });

@@ -1,5 +1,7 @@
 # Traversal T0 — final convergence pass
 
+> Historical pre-Lot-A record. The status and runtime claims below describe that earlier pass, not the current approved T0. Its `tools/traversal/qa` captures were removed during [TRAVERSAL-T0-CLEANUP-1](reports/traversal-t0-cleanup-1.md); Git history preserves them. Use the linked cleanup report and its retained Lot A evidence for the current implementation.
+
 Engineering validation and Chromium journeys passed. **Awaiting operator visual review.** Production remains disabled; changes are uncommitted and unpushed.
 
 Baseline: `campaign-structure-1`, `96954e7bb6b1416f4899858ee860079b776d48d5`, matching the tracked upstream at intake. Existing untracked QA captures were preserved. This pass extends the accepted implementation; it does not replace the campaign, world or return architecture.

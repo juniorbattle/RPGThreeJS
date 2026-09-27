@@ -15,7 +15,6 @@ it.each([
   state.run.currentNodeId = state.currentNodeId = 'lion-audience';
   const handoffs: string[] = [];
   const arrival = vi.fn();
-  const roadCombat = vi.fn(async () => true);
   const scene = new TraversalT0Scene({
     root: document.body, leg: LION_TRAVERSAL_LEGS.find(leg => leg.id === 'T0')!,
     getState: () => state, getAvailableNodes: () => getAvailableRunNodes(state),
@@ -29,7 +28,7 @@ it.each([
       handoffs.push(node.id);
       scene.beginNodeResolution(node.id);
       scene.resumeNode(node.id);
-    }, onRoadCombat: roadCombat, onArrival: arrival, onMenu: () => undefined,
+    }, onArrival: arrival, onMenu: () => undefined,
   });
   const clock = scene as unknown as { advance(n: number): void; advanceTransition(n: number): void; advanceArrival(n: number): void };
   const settle = async () => { clock.advanceTransition(1); await Promise.resolve(); await Promise.resolve(); clock.advanceTransition(1); };
@@ -104,7 +103,6 @@ it.each([
       }
     } else {
       await click('[data-traversal-confirm]');
-      if (String(scene.session.phase) === 'LOCAL_INTERACTION') await click('[data-traversal-confirm]');
     }
   }
   expect(arrival).toHaveBeenCalledExactlyOnceWith('lion-first-refuge');
@@ -123,7 +121,6 @@ it.each([
   expect(handoffs).toEqual(action === 'confirm'
     ? ['lion-opening-ambush', 'lion-nomad-crossroads', 'lion-refugees', branch]
     : ['lion-opening-ambush', 'lion-nomad-crossroads', branch]);
-  expect(roadCombat).not.toHaveBeenCalled();
   expect(segments).toEqual(new Set(['route-1', 'route-2', 'route-3', 'route-4',
     branch === 'lion-first-trial-event' ? 'route-5a' : 'route-5b', 'route-6']));
   scene.dispose();
