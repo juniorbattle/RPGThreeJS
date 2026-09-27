@@ -6,13 +6,28 @@ import { createInitialState } from '../game/store';
 import { getAvailableRunNodes } from '../game/runSystem';
 import { beatWorldX, ROAD_SPACE } from './TraversalRoadSpace';
 import { resolveTraversalT0Route } from './TraversalT0Route';
-import { TRAVERSAL_T0_WORLD, TRAVERSAL_WORLD_ASSETS, TRAVERSAL_SECTION_OVERLAP, resolveTraversalWorld, traversalLocation } from './TraversalT0World';
+import { TRAVERSAL_T0_WORLD, TRAVERSAL_T0_ROUTE_SLICE_WORLD, TRAVERSAL_WORLD_ASSETS,
+  TRAVERSAL_SECTION_OVERLAP, resolveTraversalWorld, traversalLocation } from './TraversalT0World';
 import { TraversalT0Scene } from './TraversalT0Scene';
 import { TraversalWorldRenderer } from './TraversalWorldRenderer';
 
 afterEach(() => { document.body.replaceChildren(); vi.restoreAllMocks(); });
 
 describe('T0 authored geography', () => {
+  it('renders Route 1/2 from the exact generic checkpoint forest without event dressing', () => {
+    expect(TRAVERSAL_T0_ROUTE_SLICE_WORLD.every(section => section.asset === TRAVERSAL_WORLD_ASSETS.forest
+      && section.kind === 'FOREST' && !section.props && !section.variantAssets)).toBe(true);
+    const renderer = new TraversalWorldRenderer();
+    renderer.updateRoute(4800, ROAD_SPACE.referenceWidth);
+    const visible = [...renderer.routeElement.querySelectorAll<HTMLElement>('[data-world-section]')]
+      .filter(section => !section.hidden);
+    expect(visible.length).toBeGreaterThan(0);
+    expect(visible.every(section => section.querySelector('.traversal-world-section__painting > img')
+      ?.getAttribute('src') === TRAVERSAL_WORLD_ASSETS.forest)).toBe(true);
+    expect(renderer.routeElement.querySelector('[data-location-prop], [data-traversal-beat]')).toBeNull();
+    expect(renderer.element.querySelector('[data-world-section="opening-ambush"]')).not.toBeNull();
+  });
+
   it('covers the entire driven road and exit without holes, and places referenced beats inside their locations', () => {
     const state = createInitialState();
     const leg = LION_TRAVERSAL_LEGS.find(leg => leg.id === 'T0')!;
@@ -42,6 +57,7 @@ describe('T0 authored geography', () => {
 
   it('keeps checkpoint geography separate from actors while excluding the merchant halt', async () => {
     vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
+    vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue();
     const state = createInitialState();
     state.run.currentNodeId = state.currentNodeId = 'lion-audience';
     const scene = new TraversalT0Scene({ root: document.body,
@@ -50,6 +66,7 @@ describe('T0 authored geography', () => {
     const clock = scene as unknown as { advance(seconds: number): void; advanceTransition(seconds: number): void };
     scene.open();
     await (scene as unknown as { routeRenderer: { ready: Promise<void> } }).routeRenderer.ready;
+    await new Promise<void>(resolve => setTimeout(resolve, 0));
     clock.advanceTransition(.6);
     expect(scene.session.routeProgress01).toBe(0);
     expect(Number.parseFloat(scene.element.style.getPropertyValue('--vehicle-entry-x'))).toBeLessThan(0);

@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
 import { getAvailableRunNodes } from '../game/runSystem';
 import { createInitialState } from '../game/store';
-import { TRAVERSAL_FOREST_ROUTE_ASSETS } from './TraversalRouteRenderer';
+import { TRAVERSAL_WORLD_ASSETS } from './TraversalT0World';
 import { TraversalT0Scene } from './TraversalT0Scene';
 
 const clock = (scene: TraversalT0Scene) => scene as unknown as {
@@ -12,13 +12,15 @@ const clock = (scene: TraversalT0Scene) => scene as unknown as {
 };
 async function settle(scene: TraversalT0Scene): Promise<void> {
   await (scene as unknown as { routeRenderer: { ready: Promise<void> } }).routeRenderer.ready;
-  clock(scene).advanceTransition(.6);
   await new Promise<void>(resolve => setTimeout(resolve, 0));
-  clock(scene).advanceTransition(.6);
+  clock(scene).advanceTransition(1);
+  await new Promise<void>(resolve => setTimeout(resolve, 0));
+  clock(scene).advanceTransition(1);
 }
 function makeScene(onNodeHandoff = vi.fn()) {
   vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
   vi.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => undefined);
+  vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue();
   const state = createInitialState();
   state.run.currentNodeId = state.currentNodeId = 'lion-audience';
   const scene = new TraversalT0Scene({ root: document.body,
@@ -34,11 +36,14 @@ describe('TraversalT0Scene Lot A', () => {
   it('opens one two-lane fast route with the existing caravan and no local road extras', async () => {
     const { scene } = makeScene();
     scene.open(); await settle(scene);
-    expect(scene.element.dataset).toMatchObject({ traversalLeg: 'T0', view: 'route',
+    expect(scene.element.dataset).toMatchObject({ traversalLeg: 'T0', view: 'route', routeWorld: 'shared',
       routeSegment: 'route-1', laneCount: '2', singleRoad: 'false' });
     expect(scene.element.querySelectorAll('.traversal-route-loop')).toHaveLength(1);
-    expect(Object.values(TRAVERSAL_FOREST_ROUTE_ASSETS).every(asset => asset.includes('/forest-v4/'))).toBe(true);
-    expect(scene.element.querySelectorAll('.traversal-route-loop__trees, .traversal-route-loop__median, .traversal-route-loop__foreground')).toHaveLength(3);
+    const genericSections = [...scene.element.querySelectorAll<HTMLElement>('.traversal-world__route-sections [data-world-section]')];
+    expect(genericSections).toHaveLength(14);
+    expect(genericSections.every(section => section.dataset.sectionKind === 'FOREST'
+      && section.querySelector('.traversal-world-section__painting > img')?.getAttribute('src') === TRAVERSAL_WORLD_ASSETS.forest
+      && !section.querySelector('[data-location-prop]'))).toBe(true);
     expect(scene.element.querySelectorAll('.traversal-world__road')).toHaveLength(1);
     expect(scene.element.querySelectorAll('[data-traversal-lane]')).toHaveLength(2);
     expect(scene.element.querySelector('.traversal-vehicle')?.getAttribute('data-visible-wheels')).toBe('4');
@@ -108,6 +113,7 @@ describe('TraversalT0Scene Lot A', () => {
     scene.resumeNode('lion-opening-ambush');
     expect(scene.element.dataset.routeSegment).toBe('route-2');
     expect(scene.element.dataset.view).toBe('route');
+    expect(scene.element.dataset.routeWorld).toBe('shared');
     expect(scene.session.stageIndex).toBe(1);
     expect(handoff).toHaveBeenCalledOnce();
     scene.dispose();

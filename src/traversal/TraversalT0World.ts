@@ -76,6 +76,20 @@ export const TRAVERSAL_T0_WORLD: readonly TraversalWorldSection[] = Object.freez
   }),
 );
 
+/** Route 1/2 visual proof: the same painted forest-road section and join geometry
+ * as checkpoints, repeated without any authored event section or roadside prop.
+ * This is presentation geography; the route runner still owns time and progress.
+ */
+export const TRAVERSAL_T0_ROUTE_SLICE_WORLD: readonly TraversalWorldSection[] = Object.freeze(
+  Array.from({ length: 14 }, (_, index): TraversalWorldSection => {
+    const worldStart = -350 + index * 1200;
+    return Object.freeze({ id: `route-forest-${index}`, kind: 'FOREST',
+      worldStart, worldEnd: worldStart + 1200,
+      coreStart: worldStart + 240, coreEnd: worldStart + 960,
+      asset: TRAVERSAL_WORLD_ASSETS.forest, mirror: index % 2 === 0 });
+  }),
+);
+
 export function traversalLocation(id: string): TraversalWorldSection | undefined {
   return TRAVERSAL_T0_WORLD.find(section => section.id === id);
 }

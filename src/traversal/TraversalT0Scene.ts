@@ -118,6 +118,8 @@ export class TraversalT0Scene {
   private checkpointEntries = 0;
   private checkpointExits = 0;
 
+  private get usesSharedRouteWorld(): boolean { return this.routeIndex <= 1; }
+
   constructor(private readonly options: TraversalT0SceneOptions) {
     if (options.leg.id !== 'T0') throw new Error('TraversalT0Scene only accepts the canonical T0 leg.');
     const state = options.getState();
@@ -165,6 +167,7 @@ export class TraversalT0Scene {
     this.element.dataset.singleRoad = 'false';
     this.element.dataset.view = 'route';
     this.element.dataset.routeSegment = 'route-1';
+    this.element.dataset.routeWorld = 'shared';
     this.element.dataset.laneCount = '2';
     this.element.setAttribute('aria-label', `Traversée de ${this.route.originLabel} vers ${this.route.destinationLabel}`);
     this.build();
@@ -298,6 +301,7 @@ export class TraversalT0Scene {
     decorateCampaignButton(eventPanel.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!, 'primary');
     decorateCampaignButton(eventPanel.querySelector<HTMLButtonElement>('[data-traversal-skip]')!, 'secondary');
     this.element.querySelector('.traversal-world__road')!.append(this.worldRenderer.element);
+    this.element.querySelector('.traversal-world__road')!.append(this.worldRenderer.routeElement);
     this.element.querySelector('.traversal-world__road')!.append(this.routeRenderer.element);
     this.element.querySelector('.traversal-world')!.append(this.foregroundRenderer.element);
     for (const [selector, plane] of [
@@ -414,11 +418,32 @@ export class TraversalT0Scene {
     this.element.dataset.transition = kind;
     this.element.style.setProperty('--transition-opacity', reveal ? '1' : '0');
     this.renderRuntimeState();
+    if (reveal && this.viewMode === 'ROUTE' && this.usesSharedRouteWorld) {
+      const transition = this.transition;
+      transition.waitingForReady = true;
+      void Promise.all([this.routeRenderer.ready, this.worldRenderer.readyRouteVisible(),
+        this.foregroundRenderer.readyVisible()]).then(() => {
+        if (this.transition === transition) transition.waitingForReady = false;
+      }, error => {
+        console.error('[Traversal] Shared route art did not decode.', error);
+        if (this.transition === transition) transition.waitingForReady = false;
+      });
+    }
   }
 
   private advanceTransition(seconds: number): void {
     const transition = this.transition;
     if (!transition) return;
+    if (transition.kind === 'focus' && this.viewMode === 'ROUTE' && this.usesSharedRouteWorld) {
+      const braking = 1 - transitionEase(transition.elapsed / TRAVERSAL_RHYTHM.fade);
+      const visualSpeed = this.routeRun.speed * braking;
+      const visibleSeconds = Math.max(0, Math.min(seconds, TRAVERSAL_RHYTHM.fade - transition.elapsed));
+      this.routeRenderer.advance(visibleSeconds * 1000, visualSpeed);
+      this.speed = visualSpeed;
+      this.element.style.setProperty('--route-rush-opacity', String(Math.max(0,
+        (this.routeRun.progress01 - .55) * 1.2 * braking)));
+      this.element.dataset.motion = 'decelerating';
+    }
     if (transition.waitingForReady || (transition.reveal && this.viewMode === 'ROUTE' && !this.routeRenderer.isReady)) {
       this.element.style.setProperty('--transition-opacity', '1');
       return;
@@ -496,9 +521,11 @@ export class TraversalT0Scene {
     const previous = this.routeRun;
     this.routeRun = advanceRouteRun(previous, this.routeSegment, deltaSeconds * 1000);
     if (this.routeRun === previous) return;
+    const restart = this.usesSharedRouteWorld
+      ? transitionEase(this.routeRun.elapsedMs / (TRAVERSAL_RHYTHM.restart * 1000)) : 1;
     this.routeRenderer.advance(this.routeRun.elapsedMs - previous.elapsedMs,
-      (previous.speed + this.routeRun.speed) / 2);
-    this.speed = this.routeRun.speed;
+      (previous.speed + this.routeRun.speed) / 2 * restart);
+    this.speed = this.routeRun.speed * restart;
     this.element.dataset.motion = this.routeRun.progress01 > .8 ? 'rushing' : 'cruising';
     this.element.style.setProperty('--route-rush-opacity', String(Math.max(0, (this.routeRun.progress01 - .55) * 1.2)));
     const start = this.routeIndex === 0 ? 0 : this.routeIndex === 5 ? .91
@@ -556,6 +583,7 @@ export class TraversalT0Scene {
     this.viewMode = 'ROUTE';
     this.element.dataset.view = 'route';
     this.element.dataset.routeSegment = this.routeSegment.id;
+    this.element.dataset.routeWorld = this.usesSharedRouteWorld ? 'shared' : 'legacy';
     this.element.dataset.routeProgress = '0';
     this.element.style.setProperty('--route-rush-opacity', '0');
     this.checkpointBeat = null;
@@ -760,7 +788,10 @@ export class TraversalT0Scene {
     const width = this.element.clientWidth || ROAD_SPACE.referenceWidth;
     // Read both viewport dimensions before any style writes to avoid forced layout.
     const height = this.element.clientHeight || 823;
-    if (this.viewMode === 'ROUTE') this.routeRenderer.render();
+    if (this.viewMode === 'ROUTE') {
+      this.routeRenderer.render();
+      if (this.usesSharedRouteWorld) this.worldRenderer.updateRoute(this.routeRenderer.distance, width);
+    }
     const vehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
     const exit = session.phase === 'ARRIVING' ? this.arrivalElapsed : 0;
     const exitDistance = exit * 160 + exit * exit * 150;
@@ -775,6 +806,10 @@ export class TraversalT0Scene {
       this.foregroundRenderer.update(camera, width);
       this.element.querySelector<HTMLElement>('.traversal-world__foreground')!.style.setProperty('--foreground-offset',
         `${roadWorldToScreen(0, camera, width) * ROAD_SPACE.foregroundFactor}px`);
+    } else if (this.usesSharedRouteWorld) {
+      this.foregroundRenderer.update(this.routeRenderer.distance, width);
+      this.element.querySelector<HTMLElement>('.traversal-world__foreground')!.style.setProperty('--foreground-offset',
+        `${roadWorldToScreen(0, this.routeRenderer.distance, width) * ROAD_SPACE.foregroundFactor}px`);
     }
     const entryDistance = 600 + Number.parseFloat(this.element.style.getPropertyValue('--vehicle-entry-x') || '0');
     const drivenDistance = (this.viewMode === 'ROUTE' ? this.routeRenderer.distance : camera)

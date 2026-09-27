@@ -37,13 +37,19 @@
   inset: 53% 0 13%; opacity: var(--route-rush-opacity, 0);
   background: linear-gradient(90deg, transparent 4%, #d4caaa18 21%, transparent 39%, #e1d0aa12 68%, transparent 84%);
 }
+.traversal-t0[data-route-world='shared'] .traversal-route-loop { background: transparent; }
+.traversal-t0[data-route-world='shared'] .traversal-route-loop > :not(.traversal-route-loop__speed-lines) { display: none; }
 .traversal-t0[data-view='route'] .traversal-world__sections,
 .traversal-t0[data-view='route'] .traversal-world__foreground,
 .traversal-t0[data-view='route'] .traversal-world__occlusion,
 .traversal-t0[data-view='route'] .traversal-world__entities,
 .traversal-t0[data-view='route'] .traversal-world__markers { visibility: hidden; }
+.traversal-t0[data-route-world='shared'][data-view='route'] .traversal-world__foreground,
+.traversal-t0[data-route-world='shared'][data-view='route'] .traversal-world__occlusion { visibility: visible; }
+.traversal-world__route-sections { visibility: hidden; }
+.traversal-t0[data-route-world='shared'][data-view='route'] .traversal-world__route-sections { visibility: visible; }
 .traversal-t0[data-view='checkpoint'] .traversal-route-loop { visibility: hidden; }
-.traversal-world__sections { position: absolute; inset: 0; will-change: transform; }
+.traversal-world__sections, .traversal-world__route-sections { position: absolute; inset: 0; will-change: transform; }
 .traversal-world-section { position: absolute; top: 0; height: 100%; }
 .traversal-world-section__terrain {
   --painting-width: 150vh;

@@ -1,5 +1,10 @@
 # TRAVERSAL-T0-ROUTE-CHECKPOINTS-1 — forest continuity final pass
 
+Historical review state at `6df766d`. Route 1 and Route 2 now use the shared
+`world-v1/forest-road.png` checkpoint renderer; see
+[the shared-world vertical slice](traversal-t0-route-checkpoints-1-shared-world-slice.md).
+Routes 3–6 retain the presentation described below.
+
 ## Scope and changed files
 
 This pass stays on `traversal-t0-route-checkpoints-1`, based on `main`
