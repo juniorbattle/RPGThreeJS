@@ -12,7 +12,6 @@ import {
 import { TRAVERSAL_T0_ASSETS } from './TraversalT0Assets';
 import type { TraversalLane } from './TraversalRunRuntime';
 import { ROAD_SPACE, beatPassedProgress } from './TraversalRoadSpace';
-import { createRoadEncounterConfig, resolveRoadEncounterId } from './TraversalRoadEncounter';
 import { combatConfigs } from '../game/content';
 
 export type TraversalBeatType =
@@ -70,72 +69,7 @@ export interface TraversalRouteIssue {
   readonly detail: string;
 }
 
-// Spatial presentation only. Campaign order and branch validity remain owned by the relation and
-// RunSystem records passed into the resolver.
-const AMBIENT_T0_BEATS: readonly TraversalRouteBeat[] = Object.freeze([
-  Object.freeze({
-    id: 't0:npc:roadside-merchant',
-    category: 'OPTIONAL_EVENT', engagement: 'ROUTE',
-    type: 'npc' as const,
-    progress01: 0.09,
-    lane: 0 as const,
-    placement: 'LANE' as const,
-    label: 'Marchande itinérante',
-    marker: 'speech' as const,
-    interactionPolicy: 'OPTIONAL_CONFIRM' as const,
-    campaignNodeIds: Object.freeze([]),
-    // Reviewed civilian master until a dedicated healthy peddler is authored.
-    characterId: 'villageoise',
-    visualAsset: resolveCharacterAsset('villageoise', 'full'),
-    locationId: 'merchant-halt',
-    mirrorX: false,
-  }),
-  Object.freeze({
-    id: 't0:enemy:wolf-scouts',
-    category: 'OPTIONAL_COMBAT', engagement: 'LANE',
-    type: 'enemy' as const,
-    progress01: 0.30,
-    lane: 1 as const,
-    placement: 'LANE' as const,
-    label: 'Éclaireurs sauvages',
-    marker: 'danger' as const,
-    interactionPolicy: 'OPTIONAL_CONFIRM' as const,
-    campaignNodeIds: Object.freeze([]),
-    visualAsset: resolveCharacterAsset('wolf', 'full'),
-    mirrorX: true,
-  }),
-  Object.freeze({
-    id: 't0:loot:road-cache',
-    category: 'PICKUP', engagement: 'LANE', pickup: 'chest',
-    type: 'loot' as const,
-    progress01: 0.49,
-    lane: 1 as const,
-    placement: 'LANE' as const,
-    label: 'Cache de route',
-    marker: 'loot' as const,
-    interactionPolicy: 'OPTIONAL_CONFIRM' as const,
-    campaignNodeIds: Object.freeze([]),
-    visualAsset: TRAVERSAL_T0_ASSETS.chest,
-  }),
-  Object.freeze({
-    id: 't0:booster:lion-ward',
-    category: 'PICKUP', engagement: 'LANE', pickup: 'ward',
-    type: 'booster' as const,
-    progress01: 0.75,
-    lane: 1 as const,
-    placement: 'LANE' as const,
-    label: 'Garde du Lion',
-    marker: 'booster' as const,
-    interactionPolicy: 'OPTIONAL_CONFIRM' as const,
-    campaignNodeIds: Object.freeze([]),
-    visualAsset: TRAVERSAL_T0_ASSETS.waystone,
-  }),
-  Object.freeze({
-    id: 't0:loot:gold', type: 'loot', category: 'PICKUP', engagement: 'LANE', pickup: 'gold',
-    progress01: .54, lane: 0, placement: 'LANE', label: 'Pièces égarées', marker: 'loot',
-    interactionPolicy: 'OPTIONAL_CONFIRM', campaignNodeIds: Object.freeze([]),
-  }),
-]);
+// Lot A presents only canonical checkpoint beats. Road extras remain deferred to pursuit/risk work.
 
 function campaignNode(nodeId: string, issues: TraversalRouteIssue[]): LionCampaignNodeDefinition | undefined {
   const definition = getLionCampaignNodeDefinition(nodeId);
@@ -293,7 +227,7 @@ export function resolveTraversalT0Route(
   leg: LionTraversalLeg,
   runNodes: readonly RunNode[],
   partyDefinitionIds: readonly string[] = [],
-  seed = 0,
+  _seed = 0,
 ): TraversalT0Route {
   const issues = auditTraversalT0Route(leg, runNodes, partyDefinitionIds);
   if (issues.length > 0) {
@@ -334,16 +268,6 @@ export function resolveTraversalT0Route(
     });
   });
   if (beatIssues.length > 0) throw new Error(beatIssues.map((issue) => issue.detail).join('\n'));
-  const ambientBeats = AMBIENT_T0_BEATS.map(beat => {
-    if (beat.type !== 'enemy') return beat;
-    const roadCombatId = resolveRoadEncounterId(seed);
-    const config = createRoadEncounterConfig(roadCombatId);
-    const characterId = config.enemyVisualIds?.[0] ?? 'wolf';
-    return Object.freeze({ ...beat, roadCombatId, characterId, label: config.encounterLabel,
-      formation: config.enemyVisualIds,
-      visualAsset: resolveCharacterAsset(characterId, 'full') });
-  });
-
   return Object.freeze({
     legId: 'T0',
     originNodeId: leg.originNodeId,
@@ -351,7 +275,7 @@ export function resolveTraversalT0Route(
     originLabel: runNodesById.get(leg.originNodeId)!.label,
     destinationLabel: runNodesById.get(leg.destinationNodeId)!.label,
     distanceKm: 4,
-    beats: Object.freeze([...stageBeats, ...ambientBeats, ...branchBeats]
+    beats: Object.freeze([...stageBeats, ...branchBeats]
       .sort((a, b) => a.progress01 - b.progress01)),
   });
 }

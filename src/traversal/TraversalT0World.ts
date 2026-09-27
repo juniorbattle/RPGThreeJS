@@ -42,7 +42,7 @@ export const TRAVERSAL_WORLD_ASSETS = Object.freeze({
 
 // Each section owns a whole interval, including its approach and departure terrain.
 // Alternating edge orientation joins the same painted forest boundary to itself.
-// The merchant stands at world 1450, inside the clearing, but does not own it.
+// Lot A keeps the authored checkpoint approaches but no longer presents the merchant halt.
 export const TRAVERSAL_T0_WORLD: readonly TraversalWorldSection[] = Object.freeze(
   Array.from({ length: 10 }, (_, index): TraversalWorldSection => {
     // Give inhabited clearings longer approaches and departures. Adjacent forest/outpost
@@ -51,13 +51,12 @@ export const TRAVERSAL_T0_WORLD: readonly TraversalWorldSection[] = Object.freez
     const worldStart = boundaries[index]!;
     const worldEnd = boundaries[index + 1]!;
     const authored = ({
-      1: { id: 'merchant-halt', kind: 'ENVIRONMENT', asset: TRAVERSAL_WORLD_ASSETS.merchant },
       2: { id: 'opening-ambush', kind: 'CORRIDOR', asset: TRAVERSAL_WORLD_ASSETS.ambush },
       3: { id: 'nomad-waystation', kind: 'ENVIRONMENT', asset: TRAVERSAL_WORLD_ASSETS.nomad },
       5: { id: 'resting-clearing', kind: 'ENVIRONMENT', asset: TRAVERSAL_WORLD_ASSETS.rest },
       6: { id: 'forest-junction', kind: 'TRANSITION', asset: TRAVERSAL_WORLD_ASSETS.fork },
       7: { id: 'selected-route', kind: 'ENVIRONMENT', asset: TRAVERSAL_WORLD_ASSETS.forest },
-    } as const)[index as 1 | 2 | 3 | 5 | 6 | 7];
+    } as const)[index as 2 | 3 | 5 | 6 | 7];
     return Object.freeze({
       id: authored?.id ?? `forest-${index}`,
       kind: authored?.kind ?? 'FOREST',

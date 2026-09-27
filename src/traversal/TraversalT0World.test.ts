@@ -40,7 +40,7 @@ describe('T0 authored geography', () => {
     }
   });
 
-  it('keeps physical places and the junction sign when interaction actors are removed or consumed', () => {
+  it('keeps checkpoint geography separate from actors while excluding the merchant halt', () => {
     vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
     const state = createInitialState();
     state.run.currentNodeId = state.currentNodeId = 'lion-audience';
@@ -53,16 +53,12 @@ describe('T0 authored geography', () => {
     expect(scene.session.routeProgress01).toBe(0);
     expect(Number.parseFloat(scene.element.style.getPropertyValue('--vehicle-entry-x'))).toBeLessThan(0);
     clock.advanceTransition(.4);
-    clock.advance(10);
+    clock.advance(13);
     clock.advanceTransition(1);
-    const section = scene.element.querySelector<HTMLElement>('[data-world-section="merchant-halt"]')!;
+    const section = scene.element.querySelector<HTMLElement>('[data-world-section="opening-ambush"]')!;
     const snapshot = JSON.stringify(state);
-    scene.element.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!.click();
-    clock.advanceTransition(1);
-    clock.advanceTransition(1);
-    scene.element.querySelector<HTMLButtonElement>('[data-traversal-confirm]')!.click();
-    clock.advanceTransition(.6);
-    expect(scene.session.consumedBeatIds).toContain('t0:npc:roadside-merchant');
+    expect(scene.element.dataset.view).toBe('checkpoint');
+    expect(scene.element.querySelector('[data-world-section="merchant-halt"]')).toBeNull();
     expect(section.hidden).toBe(false);
     scene.element.querySelector('.traversal-world__entities')!.replaceChildren();
     expect(section.isConnected).toBe(true);

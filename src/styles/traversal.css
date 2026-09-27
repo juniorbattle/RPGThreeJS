@@ -12,6 +12,34 @@
 .traversal-world .traversal-world__road {
   inset: 0;
 }
+.traversal-route-loop { position: absolute; inset: 0; overflow: hidden; }
+.traversal-route-loop__far, .traversal-route-loop__road, .traversal-route-loop__speed-lines {
+  position: absolute; inset: 0; background-repeat: repeat-x; background-size: auto 100%;
+}
+.traversal-route-loop__far {
+  background-image: url('/assets/generated/lion-phase/traversal/t0/background/t0-far-panorama-loop.png');
+  background-position: var(--route-far-x, 0px) center;
+}
+.traversal-route-loop__road {
+  background-image: url('/assets/generated/lion-phase/traversal/t0/road/t0-wide-road-loop.png');
+  background-position: var(--route-road-x, 0px) center;
+}
+.traversal-route-loop__speed-lines {
+  opacity: var(--route-rush-opacity, 0); background-size: 100% 100%;
+  background-image: linear-gradient(90deg, transparent 5%, #ffefbd35 18%, transparent 25%,
+    transparent 55%, #fff1c529 72%, transparent 77%);
+  transition: opacity .25s ease;
+}
+.traversal-route-loop::after {
+  content: ''; position: absolute; top: 73%; left: 0; width: 100%; height: 2px;
+  background: repeating-linear-gradient(90deg, #f7dc984a 0 38px, transparent 38px 76px);
+  opacity: .65; pointer-events: none;
+}
+.traversal-t0[data-view='route'] .traversal-world__sections,
+.traversal-t0[data-view='route'] .traversal-world__foreground,
+.traversal-t0[data-view='route'] .traversal-world__entities,
+.traversal-t0[data-view='route'] .traversal-world__markers { visibility: hidden; }
+.traversal-t0[data-view='checkpoint'] .traversal-route-loop { visibility: hidden; }
 .traversal-world__sections { position: absolute; inset: 0; will-change: transform; }
 .traversal-world-section { position: absolute; top: 0; height: 100%; }
 .traversal-world-section__terrain {
@@ -317,7 +345,13 @@
 .traversal-hud--progress p { margin: 0 0 1px; color: var(--campaign-gold); font: 600 9px/1.1 var(--campaign-title-font); letter-spacing: .08em; text-transform: uppercase; }
 .traversal-hud--progress strong { display: block; color: var(--campaign-ivory); font: 600 15px/1.05 var(--campaign-title-font); white-space: normal; }
 .traversal-hud--progress [data-traversal-distance] { color: var(--campaign-muted); font: 400 11px/1.1 var(--campaign-data-font); }
-.traversal-route-rail { grid-column: 1 / -1; grid-row: 2; width: 100%; height: 1px; margin: 0 0 -2px; background: #c29a5c44; }
+.traversal-route-rail { grid-column: 1 / -1; grid-row: 2; width: 100%; height: auto; min-height: 11px; margin: 0; overflow: visible; background: none; display: flex; align-items: center; justify-content: space-between; gap: 2px; }
+.traversal-route-rail .traversal-route-rail__stop { width: 10px; height: 10px; border: 1px solid #bd9a62; border-radius: 50%; background: #102638; color: #ead9ad; font-size: 8px; display: grid; place-items: center; }
+.traversal-route-rail__stop > span { display: inline !important; }
+.traversal-route-rail__stop[data-current='true'] { background: #e6c27c; box-shadow: 0 0 8px #ffe5a6; color: #16314a; }
+.traversal-route-rail__stop[data-complete='true'] { background: #ad8650; }
+.traversal-route-rail__stop[data-kind='fork'] { border-radius: 2px; transform: rotate(45deg); }
+.traversal-route-rail__stop[data-kind='fork'] > span { transform: rotate(-45deg); }
 .traversal-hud__destination-copy { min-width: 0; }
 .traversal-event-panel.campaign-ui-frame { position: absolute; top: 91px; width: min(420px, calc(100vw - 40px)); padding: 9px 14px; grid-template-columns: 27px minmax(0,1fr); gap: 9px; }
 .traversal-event-panel__marker { width: 27px; height: 27px; border: 0; border-radius: 0; }
@@ -336,4 +370,7 @@
   .traversal-hud--progress p { font-size: 8px; }
   .traversal-hud--progress strong { font-size: 13px; }
   .traversal-event-panel.campaign-ui-frame { top: 145px; width: min(420px, calc(100vw - 20px)); padding: 8px 12px; }
+  .traversal-lanes { left: 10px; width: 44px; gap: 10px; opacity: .88; }
+  .traversal-lanes button { width: 44px; height: 44px; font-size: 14px; background: rgba(6,16,23,.78); }
+  .traversal-lanes button.is-active { background: rgba(29,62,73,.9); color: #ffe6a4; border-color: #e6cb81; }
 }
