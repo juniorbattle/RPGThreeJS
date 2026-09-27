@@ -34,6 +34,7 @@ import { ExplorationView } from '../ui/ExplorationView';
 import { resolveRefugePresentation } from '../ui/RefugePresentation';
 import { PrologueView } from '../ui/PrologueView';
 import { sceneTransition } from '../ui/SceneTransition';
+import { TRAVERSAL_RHYTHM } from '../traversal/TraversalTransition';
 import type { TransitionVariant } from '../ui/SceneTransition';
 import { CinematicPlayer } from '../cinematics/CinematicPlayer';
 import { CinematicRegistry } from '../cinematics/CinematicRegistry';
@@ -885,7 +886,7 @@ export class GameApp {
     const nodeId = traversal?.activeNodeId;
     if (!traversal || !nodeId || !traversal.canResumeNode(nodeId)) return false;
     if (!this.state.resolvedNodeIds.includes(nodeId)) return false;
-    void sceneTransition.run({ variant: 'traversal', holdMs: 0, task: async () => {
+    void sceneTransition.run({ variant: 'traversal', holdMs: TRAVERSAL_RHYTHM.hold * 1000, task: async () => {
       if (this.activeTraversal !== traversal) return;
       this.activeNarrativeStage?.prepareGlobalHandoff();
       this.disposeNarrativeStage();

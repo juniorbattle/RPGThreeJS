@@ -4,7 +4,7 @@
   --traversal-lane-y: 63%;
   --foreground-offset: 0px;
   position: fixed; inset: 0; z-index: 40; overflow: hidden; isolation: isolate;
-  color: #fff4d2; background: #192f4e; font-family: Inter, sans-serif;
+  color: #fff4d2; background: #071b1e; font-family: Inter, sans-serif;
 }
 .traversal-t0 [hidden] { display: none !important; }
 .traversal-world, .traversal-world > div { position: absolute; inset: 0; }
@@ -12,31 +12,34 @@
 .traversal-world .traversal-world__road {
   inset: 0;
 }
-.traversal-route-loop { position: absolute; inset: 0; overflow: hidden; }
-.traversal-route-loop__far, .traversal-route-loop__road, .traversal-route-loop__speed-lines {
-  position: absolute; inset: 0; background-repeat: repeat-x; background-size: auto 100%;
-}
+.traversal-route-loop { position: absolute; inset: 0; overflow: hidden; background: #0b2426; }
+.traversal-route-loop > div { position: absolute; pointer-events: none; }
 .traversal-route-loop__far {
-  background-image: url('/assets/generated/lion-phase/traversal/t0/background/t0-far-panorama-loop.png');
-  background-position: var(--route-far-x, 0px) center;
+  inset: 0; background: url('/assets/generated/lion-phase/traversal/t0/forest-v4/far.png') center / cover no-repeat;
+  transform: translate3d(var(--route-far-drift, 0px), 0, 0) scale(1.08);
+}
+.traversal-route-loop__trees {
+  inset: 0 0 37%; background: url('/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png') var(--route-trees-x, 0px) bottom / auto 100% repeat-x;
 }
 .traversal-route-loop__road {
-  background-image: url('/assets/generated/lion-phase/traversal/t0/road/t0-wide-road-loop.png');
-  background-position: var(--route-road-x, 0px) center;
+  inset: 49% 0 0; background: url('/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png') var(--route-road-x, 0px) center / auto 100% repeat-x;
+  mask-image: linear-gradient(180deg, transparent, #000 9%, #000);
+}
+.traversal-route-loop__median {
+  inset: 63% 0 23%; background: url('/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png') var(--route-median-x, 0px) bottom / auto 100% repeat-x;
+  filter: brightness(.85);
+  mask-image: linear-gradient(180deg, transparent 20%, #000 60%, #000 76%, transparent);
+}
+.traversal-route-loop__foreground {
+  inset: 79% 0 0; background: url('/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png') var(--route-foreground-x, 0px) bottom / auto 100% repeat-x;
 }
 .traversal-route-loop__speed-lines {
-  opacity: var(--route-rush-opacity, 0); background-size: 100% 100%;
-  background-image: linear-gradient(90deg, transparent 5%, #ffefbd35 18%, transparent 25%,
-    transparent 55%, #fff1c529 72%, transparent 77%);
-  transition: opacity .25s ease;
-}
-.traversal-route-loop::after {
-  content: ''; position: absolute; top: 73%; left: 0; width: 100%; height: 2px;
-  background: repeating-linear-gradient(90deg, #f7dc984a 0 38px, transparent 38px 76px);
-  opacity: .65; pointer-events: none;
+  inset: 53% 0 13%; opacity: var(--route-rush-opacity, 0);
+  background: linear-gradient(90deg, transparent 4%, #d4caaa18 21%, transparent 39%, #e1d0aa12 68%, transparent 84%);
 }
 .traversal-t0[data-view='route'] .traversal-world__sections,
 .traversal-t0[data-view='route'] .traversal-world__foreground,
+.traversal-t0[data-view='route'] .traversal-world__occlusion,
 .traversal-t0[data-view='route'] .traversal-world__entities,
 .traversal-t0[data-view='route'] .traversal-world__markers { visibility: hidden; }
 .traversal-t0[data-view='checkpoint'] .traversal-route-loop { visibility: hidden; }
@@ -262,10 +265,9 @@
 .traversal-entity--fork .traversal-entity__subject { height: calc(var(--vehicle-height) * .54); }
 .traversal-transition {
   position: absolute; inset: 0; z-index: 10000; pointer-events: none;
-  background: #07100e; opacity: var(--transition-opacity, 0);
+  background: #000; opacity: var(--transition-opacity, 0);
 }
 .traversal-t0[data-transition] .traversal-transition { pointer-events: auto; }
-.traversal-t0[data-transition='focus'] .traversal-transition { opacity: calc(var(--transition-opacity, 0) * .35); z-index: 42; }
 .traversal-t0[data-transition] .traversal-vehicle__dust { opacity: 0; }
 .traversal-t0[data-transition='fork'] .traversal-vehicle { transition: none !important; }
 

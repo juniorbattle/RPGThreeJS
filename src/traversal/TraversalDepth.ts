@@ -53,6 +53,12 @@ export class TraversalForegroundRenderer {
       return { worldX: definition.worldX, element };
     });
   }
+  readyVisible(): Promise<void> | void {
+    if (typeof Image.prototype.decode !== 'function') return;
+    const images = this.pieces.filter(piece => !piece.element.hidden)
+      .flatMap(piece => Array.from(piece.element.querySelectorAll('img')));
+    return Promise.all(images.map(image => image.decode())).then(() => undefined);
+  }
   update(camera: number, width: number): void {
     if (camera === this.lastCamera && width === this.lastWidth) return;
     this.lastCamera = camera;

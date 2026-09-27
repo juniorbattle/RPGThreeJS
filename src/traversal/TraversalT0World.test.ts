@@ -40,7 +40,7 @@ describe('T0 authored geography', () => {
     }
   });
 
-  it('keeps checkpoint geography separate from actors while excluding the merchant halt', () => {
+  it('keeps checkpoint geography separate from actors while excluding the merchant halt', async () => {
     vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(1);
     const state = createInitialState();
     state.run.currentNodeId = state.currentNodeId = 'lion-audience';
@@ -49,6 +49,7 @@ describe('T0 authored geography', () => {
       getAvailableNodes: () => getAvailableRunNodes(state), onNodeHandoff: vi.fn(), onArrival: vi.fn(), onMenu: vi.fn() });
     const clock = scene as unknown as { advance(seconds: number): void; advanceTransition(seconds: number): void };
     scene.open();
+    await (scene as unknown as { routeRenderer: { ready: Promise<void> } }).routeRenderer.ready;
     clock.advanceTransition(.6);
     expect(scene.session.routeProgress01).toBe(0);
     expect(Number.parseFloat(scene.element.style.getPropertyValue('--vehicle-entry-x'))).toBeLessThan(0);

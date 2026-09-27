@@ -3,14 +3,17 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
 import { getAvailableRunNodes } from '../game/runSystem';
 import { createInitialState } from '../game/store';
+import { TRAVERSAL_FOREST_ROUTE_ASSETS } from './TraversalRouteRenderer';
 import { TraversalT0Scene } from './TraversalT0Scene';
 
 const clock = (scene: TraversalT0Scene) => scene as unknown as {
   advance(seconds: number): void;
   advanceTransition(seconds: number): void;
 };
-function settle(scene: TraversalT0Scene): void {
+async function settle(scene: TraversalT0Scene): Promise<void> {
+  await (scene as unknown as { routeRenderer: { ready: Promise<void> } }).routeRenderer.ready;
   clock(scene).advanceTransition(.6);
+  await new Promise<void>(resolve => setTimeout(resolve, 0));
   clock(scene).advanceTransition(.6);
 }
 function makeScene(onNodeHandoff = vi.fn()) {
@@ -28,12 +31,14 @@ function makeScene(onNodeHandoff = vi.fn()) {
 afterEach(() => { document.body.replaceChildren(); vi.restoreAllMocks(); });
 
 describe('TraversalT0Scene Lot A', () => {
-  it('opens one two-lane fast route with the existing caravan and no local road extras', () => {
+  it('opens one two-lane fast route with the existing caravan and no local road extras', async () => {
     const { scene } = makeScene();
-    scene.open(); settle(scene);
+    scene.open(); await settle(scene);
     expect(scene.element.dataset).toMatchObject({ traversalLeg: 'T0', view: 'route',
       routeSegment: 'route-1', laneCount: '2', singleRoad: 'false' });
     expect(scene.element.querySelectorAll('.traversal-route-loop')).toHaveLength(1);
+    expect(Object.values(TRAVERSAL_FOREST_ROUTE_ASSETS).every(asset => asset.includes('/forest-v4/'))).toBe(true);
+    expect(scene.element.querySelectorAll('.traversal-route-loop__trees, .traversal-route-loop__median, .traversal-route-loop__foreground')).toHaveLength(3);
     expect(scene.element.querySelectorAll('.traversal-world__road')).toHaveLength(1);
     expect(scene.element.querySelectorAll('[data-traversal-lane]')).toHaveLength(2);
     expect(scene.element.querySelector('.traversal-vehicle')?.getAttribute('data-visible-wheels')).toBe('4');
@@ -48,13 +53,35 @@ describe('TraversalT0Scene Lot A', () => {
     scene.dispose();
   });
 
-  it('crescendos on Route 1, frames the authored ambush, and hands off once under cover', () => {
+  it('swaps route to checkpoint only at a fully black midpoint and blocks lane input', async () => {
+    const { scene } = makeScene();
+    scene.open(); await settle(scene);
+    clock(scene).advance(12.1);
+    expect(scene.element.dataset.transition).toBe('focus');
+    expect(scene.element.dataset.view).toBe('route');
+    clock(scene).advanceTransition(.3);
+    expect(scene.element.dataset.view).toBe('route');
+    scene.element.querySelector<HTMLButtonElement>('[data-traversal-lane="1"]')!.click();
+    expect(scene.session.currentLane).toBe(0);
+    clock(scene).advanceTransition(.18);
+    expect(scene.element.style.getPropertyValue('--transition-opacity')).toBe('1');
+    expect(scene.element.dataset.view).toBe('checkpoint');
+    expect(scene.element.dataset.checkpointEntries).toBe('1');
+    clock(scene).advance(2);
+    expect(scene.session.phase).toBe('RUNNING');
+    await settle(scene);
+    expect(scene.element.dataset.transition).toBeUndefined();
+    expect(scene.element.dataset.checkpointEntries).toBe('1');
+    scene.dispose();
+  });
+
+  it('crescendos on Route 1, frames the authored ambush, and hands off once under cover', async () => {
     const handoff = vi.fn();
     const { scene } = makeScene(handoff);
     scene.open();
     clock(scene).advance(5);
     expect(scene.session.routeProgress01).toBe(0);
-    settle(scene);
+    await settle(scene);
     clock(scene).advance(2);
     const earlySpeed = Number(scene.element.dataset.routeSpeed);
     clock(scene).advance(8);
@@ -64,7 +91,7 @@ describe('TraversalT0Scene Lot A', () => {
     expect(scene.session.routeProgress01).toBe(.2);
     expect(scene.element.dataset.transition).toBe('focus');
     expect(handoff).not.toHaveBeenCalled();
-    settle(scene);
+    await settle(scene);
     expect(scene.element.dataset.view).toBe('checkpoint');
     expect(scene.element.querySelector('[data-world-section="opening-ambush"]')).not.toBeNull();
     clock(scene).advance(1.2);

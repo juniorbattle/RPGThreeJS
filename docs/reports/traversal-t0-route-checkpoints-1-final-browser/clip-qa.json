@@ -1,0 +1,14 @@
+{
+  "reachedRoute2": true,
+  "sawCheckpoint": true,
+  "laneMoves": [
+    {
+      "lane": 1,
+      "progress": 0.25414999999999993
+    },
+    {
+      "lane": 0,
+      "progress": 0.5360833333333334
+    }
+  ]
+}

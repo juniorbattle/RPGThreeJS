@@ -89,6 +89,14 @@ export class TraversalWorldRenderer {
     }));
   }
 
+  /** Hold the black midpoint until the currently visible checkpoint art is decoded. */
+  readyVisible(): Promise<void> | void {
+    if (typeof Image.prototype.decode !== 'function') return;
+    const images = this.sections.filter(section => !section.element.hidden)
+      .flatMap(section => Array.from(section.element.querySelectorAll('img')));
+    return Promise.all(images.map(image => image.decode())).then(() => undefined);
+  }
+
   update(camera: number, viewportWidth: number, presentedBranch: string, resolvedLocations: ReadonlySet<string>): void {
     if (presentedBranch !== this.presentedBranch) this.mount(presentedBranch);
     this.element.style.setProperty('--section-overlap', `${TRAVERSAL_SECTION_OVERLAP * viewportWidth / ROAD_SPACE.referenceWidth}px`);
