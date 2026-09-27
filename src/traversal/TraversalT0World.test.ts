@@ -6,7 +6,8 @@ import { createInitialState } from '../game/store';
 import { getAvailableRunNodes } from '../game/runSystem';
 import { beatWorldX, ROAD_SPACE } from './TraversalRoadSpace';
 import { resolveTraversalT0Route } from './TraversalT0Route';
-import { TRAVERSAL_T0_WORLD, TRAVERSAL_T0_ROUTE_SLICE_WORLD, TRAVERSAL_WORLD_ASSETS,
+import { TRAVERSAL_T0_WORLD, TRAVERSAL_T0_ROUTE_WORLD, TRAVERSAL_T0_ROUTE_WORLD_PERIOD,
+  t0RouteWorldCamera, TRAVERSAL_WORLD_ASSETS,
   TRAVERSAL_SECTION_OVERLAP, resolveTraversalWorld, traversalLocation } from './TraversalT0World';
 import { TraversalT0Scene } from './TraversalT0Scene';
 import { TraversalWorldRenderer } from './TraversalWorldRenderer';
@@ -14,11 +15,11 @@ import { TraversalWorldRenderer } from './TraversalWorldRenderer';
 afterEach(() => { document.body.replaceChildren(); vi.restoreAllMocks(); });
 
 describe('T0 authored geography', () => {
-  it('renders Route 1/2 from the exact generic checkpoint forest without event dressing', () => {
-    expect(TRAVERSAL_T0_ROUTE_SLICE_WORLD.every(section => section.asset === TRAVERSAL_WORLD_ASSETS.forest
+  it('renders every Route from the exact generic checkpoint forest without event dressing', () => {
+    expect(TRAVERSAL_T0_ROUTE_WORLD.every(section => section.asset === TRAVERSAL_WORLD_ASSETS.forest
       && section.kind === 'FOREST' && !section.props && !section.variantAssets)).toBe(true);
     const renderer = new TraversalWorldRenderer();
-    renderer.updateRoute(4800, ROAD_SPACE.referenceWidth);
+    renderer.updateRoute(t0RouteWorldCamera(4800), ROAD_SPACE.referenceWidth);
     const visible = [...renderer.routeElement.querySelectorAll<HTMLElement>('[data-world-section]')]
       .filter(section => !section.hidden);
     expect(visible.length).toBeGreaterThan(0);
@@ -26,6 +27,16 @@ describe('T0 authored geography', () => {
       ?.getAttribute('src') === TRAVERSAL_WORLD_ASSETS.forest)).toBe(true);
     expect(renderer.routeElement.querySelector('[data-location-prop], [data-traversal-beat]')).toBeNull();
     expect(renderer.element.querySelector('[data-world-section="opening-ambush"]')).not.toBeNull();
+    expect(t0RouteWorldCamera(4800)).toBe(4800);
+    expect(t0RouteWorldCamera(4800 + TRAVERSAL_T0_ROUTE_WORLD_PERIOD)).toBe(4800);
+    const loopEnd = TRAVERSAL_T0_ROUTE_WORLD[0]!.worldStart + TRAVERSAL_T0_ROUTE_WORLD_PERIOD;
+    expect(t0RouteWorldCamera(loopEnd - 1)).toBe(loopEnd - 1);
+    renderer.updateRoute(t0RouteWorldCamera(loopEnd - 1), ROAD_SPACE.referenceWidth);
+    const crossing = [...renderer.routeElement.querySelectorAll<HTMLElement>('[data-world-section]')]
+      .filter(section => !section.hidden);
+    expect(crossing.some(section => section.dataset.worldSection === 'route-forest-0-wrap')).toBe(true);
+    expect(crossing.every(section => section.querySelector('.traversal-world-section__painting > img')
+      ?.getAttribute('src') === TRAVERSAL_WORLD_ASSETS.forest && !section.querySelector('[data-location-prop]'))).toBe(true);
   });
 
   it('covers the entire driven road and exit without holes, and places referenced beats inside their locations', () => {

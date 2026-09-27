@@ -40,7 +40,7 @@ describe('TraversalT0Scene Lot A', () => {
       routeSegment: 'route-1', laneCount: '2', singleRoad: 'false' });
     expect(scene.element.querySelectorAll('.traversal-route-loop')).toHaveLength(1);
     const genericSections = [...scene.element.querySelectorAll<HTMLElement>('.traversal-world__route-sections [data-world-section]')];
-    expect(genericSections).toHaveLength(14);
+    expect(genericSections).toHaveLength(16);
     expect(genericSections.every(section => section.dataset.sectionKind === 'FOREST'
       && section.querySelector('.traversal-world-section__painting > img')?.getAttribute('src') === TRAVERSAL_WORLD_ASSETS.forest
       && !section.querySelector('[data-location-prop]'))).toBe(true);
@@ -116,6 +116,24 @@ describe('TraversalT0Scene Lot A', () => {
     expect(scene.element.dataset.routeWorld).toBe('shared');
     expect(scene.session.stageIndex).toBe(1);
     expect(handoff).toHaveBeenCalledOnce();
+    scene.dispose();
+  });
+
+  it('uses one shared forest policy for all six route indices and both Route 5 branches', () => {
+    const { scene, state } = makeScene();
+    const startRoute = (scene as unknown as { startRoute(index: number): void }).startRoute.bind(scene);
+    for (const index of [0, 1, 2, 3, 5]) {
+      startRoute(index);
+      expect(scene.element.dataset.view).toBe('route');
+      expect(scene.element.dataset.routeWorld).toBe('shared');
+      expect(scene.element.querySelectorAll('.traversal-vehicle')).toHaveLength(1);
+    }
+    for (const branch of ['lion-first-trial-event', 'lion-first-trial-combat'] as const) {
+      state.run.traversalBranches = { ...state.run.traversalBranches, T0: branch };
+      startRoute(4);
+      expect(scene.element.dataset.routeSegment).toBe(branch.endsWith('event') ? 'route-5a' : 'route-5b');
+      expect(scene.element.dataset.routeWorld).toBe('shared');
+    }
     scene.dispose();
   });
 });

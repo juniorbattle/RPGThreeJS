@@ -12,42 +12,21 @@
 .traversal-world .traversal-world__road {
   inset: 0;
 }
-.traversal-route-loop { position: absolute; inset: 0; overflow: hidden; background: #0b2426; }
+.traversal-route-loop { position: absolute; inset: 0; overflow: hidden; }
 .traversal-route-loop > div { position: absolute; pointer-events: none; }
-.traversal-route-loop__far {
-  inset: 0; background: url('/assets/generated/lion-phase/traversal/t0/forest-v4/far.png') center / cover no-repeat;
-  transform: translate3d(var(--route-far-drift, 0px), 0, 0) scale(1.08);
-}
-.traversal-route-loop__trees {
-  inset: 0 0 37%; background: url('/assets/generated/lion-phase/traversal/t0/forest-v4/trees-loop.png') var(--route-trees-x, 0px) bottom / auto 100% repeat-x;
-}
-.traversal-route-loop__road {
-  inset: 49% 0 0; background: url('/assets/generated/lion-phase/traversal/t0/forest-v4/road-loop.png') var(--route-road-x, 0px) center / auto 100% repeat-x;
-  mask-image: linear-gradient(180deg, transparent, #000 9%, #000);
-}
-.traversal-route-loop__median {
-  inset: 63% 0 23%; background: url('/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png') var(--route-median-x, 0px) bottom / auto 100% repeat-x;
-  filter: brightness(.85);
-  mask-image: linear-gradient(180deg, transparent 20%, #000 60%, #000 76%, transparent);
-}
-.traversal-route-loop__foreground {
-  inset: 79% 0 0; background: url('/assets/generated/lion-phase/traversal/t0/forest-v4/foreground-loop.png') var(--route-foreground-x, 0px) bottom / auto 100% repeat-x;
-}
 .traversal-route-loop__speed-lines {
   inset: 53% 0 13%; opacity: var(--route-rush-opacity, 0);
   background: linear-gradient(90deg, transparent 4%, #d4caaa18 21%, transparent 39%, #e1d0aa12 68%, transparent 84%);
 }
-.traversal-t0[data-route-world='shared'] .traversal-route-loop { background: transparent; }
-.traversal-t0[data-route-world='shared'] .traversal-route-loop > :not(.traversal-route-loop__speed-lines) { display: none; }
 .traversal-t0[data-view='route'] .traversal-world__sections,
 .traversal-t0[data-view='route'] .traversal-world__foreground,
 .traversal-t0[data-view='route'] .traversal-world__occlusion,
 .traversal-t0[data-view='route'] .traversal-world__entities,
 .traversal-t0[data-view='route'] .traversal-world__markers { visibility: hidden; }
-.traversal-t0[data-route-world='shared'][data-view='route'] .traversal-world__foreground,
-.traversal-t0[data-route-world='shared'][data-view='route'] .traversal-world__occlusion { visibility: visible; }
+.traversal-t0[data-view='route'] .traversal-world__foreground,
+.traversal-t0[data-view='route'] .traversal-world__occlusion { visibility: visible; }
 .traversal-world__route-sections { visibility: hidden; }
-.traversal-t0[data-route-world='shared'][data-view='route'] .traversal-world__route-sections { visibility: visible; }
+.traversal-t0[data-view='route'] .traversal-world__route-sections { visibility: visible; }
 .traversal-t0[data-view='checkpoint'] .traversal-route-loop { visibility: hidden; }
 .traversal-world__sections, .traversal-world__route-sections { position: absolute; inset: 0; will-change: transform; }
 .traversal-world-section { position: absolute; top: 0; height: 100%; }

@@ -1,5 +1,6 @@
 import { ROAD_SPACE, roadWorldToScreen } from './TraversalRoadSpace';
-import { TRAVERSAL_SECTION_OVERLAP, TRAVERSAL_T0_ROUTE_SLICE_WORLD, TRAVERSAL_WORLD_ASSETS,
+import { TRAVERSAL_SECTION_OVERLAP, TRAVERSAL_T0_ROUTE_WORLD, TRAVERSAL_T0_ROUTE_WORLD_PERIOD,
+  TRAVERSAL_WORLD_ASSETS,
   resolveTraversalWorld, type TraversalWorldSection } from './TraversalT0World';
 import { createTraversalSprite } from './TraversalSprite';
 
@@ -8,7 +9,7 @@ type RenderedSection = { definition: TraversalWorldSection; element: HTMLElement
 /** Physical scenery is a sibling of actors: consuming/hiding a beat cannot remove a place. */
 export class TraversalWorldRenderer {
   readonly element = document.createElement('div');
-  /** The same section renderer, filled only with the generic forest painting for Route 1/2. */
+  /** The checkpoint-scale section renderer, filled only with generic forest for every Route. */
   readonly routeElement = document.createElement('div');
   private sections: RenderedSection[] = [];
   private readonly routeSections: RenderedSection[];
@@ -21,7 +22,15 @@ export class TraversalWorldRenderer {
     this.routeElement.className = 'traversal-world__route-sections';
     this.routeElement.setAttribute('aria-hidden', 'true');
     this.mount('main');
-    this.routeSections = TRAVERSAL_T0_ROUTE_SLICE_WORLD.map(definition =>
+    // The two overlap sections cover the viewport as the camera crosses the loop join.
+    const wrap = TRAVERSAL_T0_ROUTE_WORLD.slice(0, 2).map(definition => Object.freeze({
+      ...definition, id: `${definition.id}-wrap`,
+      worldStart: definition.worldStart + TRAVERSAL_T0_ROUTE_WORLD_PERIOD,
+      worldEnd: definition.worldEnd + TRAVERSAL_T0_ROUTE_WORLD_PERIOD,
+      coreStart: definition.coreStart + TRAVERSAL_T0_ROUTE_WORLD_PERIOD,
+      coreEnd: definition.coreEnd + TRAVERSAL_T0_ROUTE_WORLD_PERIOD,
+    }));
+    this.routeSections = [...TRAVERSAL_T0_ROUTE_WORLD, ...wrap].map(definition =>
       this.createSection(definition, this.routeElement));
   }
 

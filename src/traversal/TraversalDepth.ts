@@ -25,7 +25,7 @@ export const TRAVERSAL_FOREGROUND_ASSETS = Object.freeze({ fern: `${ROOT}/ferns.
 /** Camera-side plants rooted BELOW the lower road, not collision/interaction beats.
  * Spacing leaves full-wheel openings; fixed world coordinates survive return/fork.
  */
-export const TRAVERSAL_OCCLUDERS = Object.freeze(Array.from({ length: 28 }, (_, index) => ({
+export const TRAVERSAL_OCCLUDERS = Object.freeze(Array.from({ length: 40 }, (_, index) => ({
   id: `near-road-${index}`,
   worldX: -120 + index * 435 + [0, 60, -35, 110][index % 4]!,
   asset: index % 3 === 1 ? TRAVERSAL_FOREGROUND_ASSETS.roots : TRAVERSAL_FOREGROUND_ASSETS.fern,

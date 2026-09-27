@@ -76,11 +76,10 @@ export const TRAVERSAL_T0_WORLD: readonly TraversalWorldSection[] = Object.freez
   }),
 );
 
-/** Route 1/2 visual proof: the same painted forest-road section and join geometry
- * as checkpoints, repeated without any authored event section or roadside prop.
- * This is presentation geography; the route runner still owns time and progress.
+/** Every active T0 Route uses checkpoint-scale forest painting without event dressing.
+ * RouteRun still owns time, speed and progress; this is presentation geography only.
  */
-export const TRAVERSAL_T0_ROUTE_SLICE_WORLD: readonly TraversalWorldSection[] = Object.freeze(
+export const TRAVERSAL_T0_ROUTE_WORLD: readonly TraversalWorldSection[] = Object.freeze(
   Array.from({ length: 14 }, (_, index): TraversalWorldSection => {
     const worldStart = -350 + index * 1200;
     return Object.freeze({ id: `route-forest-${index}`, kind: 'FOREST',
@@ -89,6 +88,16 @@ export const TRAVERSAL_T0_ROUTE_SLICE_WORLD: readonly TraversalWorldSection[] = 
       asset: TRAVERSAL_WORLD_ASSETS.forest, mirror: index % 2 === 0 });
   }),
 );
+
+/** The painted sections repeat after an even count so the mirrored joins keep their phase. */
+export const TRAVERSAL_T0_ROUTE_WORLD_PERIOD = TRAVERSAL_T0_ROUTE_WORLD.at(-1)!.worldEnd
+  - TRAVERSAL_T0_ROUTE_WORLD[0]!.worldStart;
+
+export function t0RouteWorldCamera(distance: number): number {
+  const first = TRAVERSAL_T0_ROUTE_WORLD[0]!.worldStart;
+  return ((distance - first) % TRAVERSAL_T0_ROUTE_WORLD_PERIOD + TRAVERSAL_T0_ROUTE_WORLD_PERIOD)
+    % TRAVERSAL_T0_ROUTE_WORLD_PERIOD + first;
+}
 
 export function traversalLocation(id: string): TraversalWorldSection | undefined {
   return TRAVERSAL_T0_WORLD.find(section => section.id === id);
