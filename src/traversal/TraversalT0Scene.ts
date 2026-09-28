@@ -31,6 +31,10 @@ import { createRouteRisk, resolveRouteRisk, type TraversalRouteRiskState } from 
 import { t0RouteHazards } from './TraversalT0Risk';
 import { TraversalRouteRiskRenderer } from './TraversalRouteRiskRenderer';
 import { resolveTraversalRiskEnabled } from './TraversalRiskPresentationPolicy';
+import { createRouteReward, resolveRouteReward, type TraversalRouteRewardState } from './TraversalRouteReward';
+import { t0RoutePickups } from './TraversalT0Reward';
+import { TraversalRouteRewardRenderer } from './TraversalRouteRewardRenderer';
+import { resolveTraversalRewardEnabled } from './TraversalRewardPresentationPolicy';
 
 const LANE_TOP_PERCENT: Record<TraversalLane, number> = { 0: 65, 1: 81 };
 const MANDATORY_TOP_PERCENT = 73;
@@ -45,6 +49,7 @@ export interface TraversalT0SceneOptions {
   readonly onNodeHandoff: (node: RunNode, session: TraversalRunSession) => void | Promise<void>;
   readonly onArrival: (destinationNodeId: string) => void | Promise<void>;
   readonly statusHud?: CampaignStatusHud;
+  readonly onRouteRewardPickup?: (reward: { readonly id: string; readonly gold: number }) => boolean;
   readonly onOptionalIgnore?: (nodeId: string) => { accepted: boolean; feedback?: string };
   readonly onMenu: () => void;
 }
@@ -94,6 +99,10 @@ export class TraversalT0Scene {
   private readonly riskQa = import.meta.env.DEV
     && new URLSearchParams(window.location.search).get('qa') === '1';
   private readonly riskRenderer = this.riskEnabled ? new TraversalRouteRiskRenderer() : null;
+  private readonly rewardEnabled = resolveTraversalRewardEnabled({
+    dev: import.meta.env.DEV, search: window.location.search,
+  });
+  private readonly rewardRenderer = this.rewardEnabled ? new TraversalRouteRewardRenderer() : null;
   private readonly foregroundRenderer = new TraversalForegroundRenderer();
   private readonly stageBeats: readonly TraversalRouteBeat[];
   private frameId: number | null = null;
@@ -121,6 +130,7 @@ export class TraversalT0Scene {
   private routeSegment: T0RouteSegment = resolveT0RouteSegment(0);
   private routeRun: TraversalRouteRunState = createRouteRun(this.routeSegment, 0);
   private routeRisk: TraversalRouteRiskState = createRouteRisk(this.routeSegment.id);
+  private routeReward: TraversalRouteRewardState = createRouteReward(this.routeSegment.id);
   private lastRiskSpeedBefore: number | null = null;
   private lastRiskSpeedAfter: number | null = null;
   private viewMode: 'ROUTE' | 'CHECKPOINT' = 'ROUTE';
@@ -179,6 +189,7 @@ export class TraversalT0Scene {
     this.element.dataset.routeWorld = 'shared';
     this.element.dataset.laneCount = '2';
     if (this.riskQa) this.element.dataset.riskEnabled = this.riskEnabled ? 'dev' : 'off';
+    if (this.rewardEnabled && this.riskQa) this.element.dataset.rewardEnabled = 'dev';
     this.element.setAttribute('aria-label', `Traversée de ${this.route.originLabel} vers ${this.route.destinationLabel}`);
     this.build();
     this.worldRenderer.setDirections(state.run.graph.nodes.filter(node =>
@@ -318,6 +329,7 @@ export class TraversalT0Scene {
     this.element.querySelector('.traversal-world__road')!.append(this.worldRenderer.routeElement);
     this.element.querySelector('.traversal-world__road')!.append(this.routeRenderer.element);
     if (this.riskRenderer) this.element.querySelector('.traversal-world__actors')!.append(this.riskRenderer.element);
+    if (this.rewardRenderer) this.element.querySelector('.traversal-world__actors')!.append(this.rewardRenderer.element);
     this.element.querySelector('.traversal-world')!.append(this.foregroundRenderer.element);
     for (const [selector, plane] of [
       ['.traversal-world__road', 'road-world'], ['.traversal-world__actors', 'road-actors'],
@@ -329,6 +341,7 @@ export class TraversalT0Scene {
     buildTraversalCaravan(vehicle);
     this.riskRenderer?.bindVehicle(vehicle);
     this.riskRenderer?.reset(t0RouteHazards(this.routeSegment.id));
+    this.rewardRenderer?.reset(t0RoutePickups(this.routeSegment.id));
     const entities = this.element.querySelector<HTMLElement>('.traversal-world__entities')!;
     for (const beat of this.route.beats) this.buildEntity(entities, beat);
   }
@@ -535,11 +548,22 @@ export class TraversalT0Scene {
     const restart = transitionEase(this.routeRun.elapsedMs / (TRAVERSAL_RHYTHM.restart * 1000));
     this.routeRenderer.advance(this.routeRun.elapsedMs - previous.elapsedMs,
       (previous.speed + this.routeRun.speed) / 2 * restart);
+    const activeDriving = !this.routeRun.complete && !this.departure
+      && !document.body.classList.contains('scene-transition--locked');
+    if (this.rewardEnabled) {
+      const resolved = resolveRouteReward(this.routeReward, t0RoutePickups(this.routeSegment.id),
+        previous.progress01, this.routeRun.progress01, this.routeRun.lane, activeDriving);
+      this.routeReward = resolved.state;
+      for (const outcome of resolved.outcomes) {
+        if (outcome.result !== 'COLLECTED') continue;
+        if (this.options.onRouteRewardPickup?.({ id: outcome.pickup.id, gold: outcome.pickup.gold })) {
+          this.rewardRenderer?.collect(outcome.pickup, this.routeRun.elapsedMs);
+        }
+      }
+    }
     if (this.riskEnabled) {
-      const activeRiskDriving = !this.routeRun.complete && !this.departure
-        && !document.body.classList.contains('scene-transition--locked');
       const resolved = resolveRouteRisk(this.routeRisk, t0RouteHazards(this.routeSegment.id),
-        previous.progress01, this.routeRun.progress01, this.routeRun.lane, activeRiskDriving);
+        previous.progress01, this.routeRun.progress01, this.routeRun.lane, activeDriving);
       this.routeRisk = resolved.state;
       for (const outcome of resolved.outcomes) {
         if (outcome.result !== 'COLLISION') continue;
@@ -548,6 +572,7 @@ export class TraversalT0Scene {
         this.lastRiskSpeedAfter = this.routeRun.speed;
         this.riskRenderer?.impact(outcome.hazard, this.routeRun.elapsedMs);
         this.riskRenderer?.reforecastUnseen(this.routeRenderer.distance, this.element.clientWidth || ROAD_SPACE.referenceWidth);
+        this.rewardRenderer?.reforecastUnseen(this.routeRenderer.distance, this.element.clientWidth || ROAD_SPACE.referenceWidth);
       }
     }
     this.speed = this.routeRun.speed * restart;
@@ -670,9 +695,11 @@ export class TraversalT0Scene {
     this.routeSegment = resolveT0RouteSegment(index, this.options.getState().run.traversalBranches?.T0);
     this.routeRun = createRouteRun(this.routeSegment, index, this.session.currentLane);
     this.routeRisk = createRouteRisk(this.routeSegment.id);
+    this.routeReward = createRouteReward(this.routeSegment.id);
     this.lastRiskSpeedBefore = null;
     this.lastRiskSpeedAfter = null;
     this.riskRenderer?.reset(t0RouteHazards(this.routeSegment.id));
+    this.rewardRenderer?.reset(t0RoutePickups(this.routeSegment.id));
     this.viewMode = 'ROUTE';
     this.element.dataset.view = 'route';
     this.element.dataset.routeSegment = this.routeSegment.id;
@@ -862,6 +889,20 @@ export class TraversalT0Scene {
         this.element.dataset.riskSpeedBefore = String(this.lastRiskSpeedBefore ?? '');
         this.element.dataset.riskSpeedAfter = String(this.lastRiskSpeedAfter ?? '');
         this.element.dataset.riskRecoveryProgress = String(routeSpeedRecovery01(this.routeRun, this.routeSegment));
+      }
+    }
+    if (this.rewardRenderer) {
+      const active = this.viewMode === 'ROUTE' && session.phase === 'RUNNING'
+        && !this.transition && !this.departure && this.approachElapsed === null
+        && !this.routeRun.complete && !document.body.classList.contains('scene-transition--locked');
+      const pickups = t0RoutePickups(this.routeSegment.id);
+      this.rewardRenderer.update(pickups, this.routeReward, this.routeRun.progress01,
+        this.routeRun.elapsedMs, this.routeSegment.durationMs, this.routeRenderer.distance,
+        width, active, progress => forecastRouteDistance(this.routeRun, this.routeSegment, progress));
+      if (this.riskQa) {
+        this.element.dataset.rewardResolved = JSON.stringify(this.routeReward.resolvedPickupIds);
+        this.element.dataset.rewardCollected = JSON.stringify(this.routeReward.collectedPickupIds);
+        this.element.dataset.rewardGold = String(this.routeReward.collectedGold);
       }
     }
     const vehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;

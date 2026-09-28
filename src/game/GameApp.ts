@@ -336,6 +336,7 @@ export class GameApp {
           getState: () => this.state,
           getAvailableNodes: () => getAvailableRunNodes(this.state),
           statusHud: this.statusHud,
+          onRouteRewardPickup: reward => this.acceptTraversalRouteReward(reward),
           onOptionalIgnore: nodeId => this.ignoreTraversalOptionalNode(nodeId),
           onNodeHandoff: async (node) => { await this.commitRunNodeChoice(node.id); },
           onArrival: async (destinationNodeId) => { await this.completeTraversalT0(destinationNodeId); },
@@ -367,6 +368,15 @@ export class GameApp {
       this.statusHud?.refresh();
     }
     return { accepted: true, feedback: consequence?.feedback };
+  }
+
+  private acceptTraversalRouteReward(reward: { readonly id: string; readonly gold: number }): boolean {
+    const traversal = this.activeTraversal;
+    if (!traversal || traversal.session.legId !== 'T0' || traversal.session.phase !== 'RUNNING'
+      || !Number.isInteger(reward.gold) || reward.gold <= 0) return false;
+    addTemporaryLoot(this.state.run, { gold: reward.gold });
+    this.statusHud.refresh();
+    return true;
   }
 
   private async completeTraversalT0(destinationNodeId: string): Promise<void> {
