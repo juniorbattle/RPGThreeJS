@@ -1,0 +1,787 @@
+{
+  "expected": [
+    "risk-r1-before",
+    "risk-r1-before-620",
+    "risk-r1-before-390",
+    "risk-r1-impact",
+    "risk-r1-recovered",
+    "risk-r1-dodge-before",
+    "risk-r1-dodge-after",
+    "risk-r3-boulder",
+    "risk-r3-boulder-390",
+    "risk-r5b-roadblock",
+    "risk-r5b-roadblock-390",
+    "risk-r6-telegraph",
+    "risk-r6-telegraph-620",
+    "risk-r6-telegraph-390",
+    "risk-r6-visible",
+    "risk-r6-dodged"
+  ],
+  "missing": [],
+  "responsive": [
+    {
+      "file": "risk-r1-before-620.png",
+      "run": "branch-a",
+      "viewport": "620x780",
+      "state": {
+        "atMs": 6299.099999964237,
+        "node": "lion-audience",
+        "visitedNodeIds": [
+          "lion-camp",
+          "lion-audience"
+        ],
+        "bypassedNodeIds": [],
+        "selectedBranch": null,
+        "sceneCount": 1,
+        "phase": "RUNNING",
+        "view": "route",
+        "segment": "route-1",
+        "routeWorld": "shared",
+        "routeProgress": 0.2902666666666667,
+        "sessionProgress": 0.05805333333333334,
+        "speed": 1.2548144119525926,
+        "visualSpeed": 1.2548144119525926,
+        "visualWorldDistance": 1009.4113444800222,
+        "vehicleRight": 236.5703125,
+        "departure": null,
+        "transition": null,
+        "coverOpacity": 0,
+        "globalCoverPresent": false,
+        "globalCoverOpacity": 0,
+        "routeVisible": true,
+        "checkpointVisible": false,
+        "caravanCount": 1,
+        "riskMarkupCount": 1,
+        "legacyRouteSceneryVisible": false,
+        "genericImages": [
+          {
+            "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+            "loaded": true,
+            "props": 0
+          },
+          {
+            "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+            "loaded": true,
+            "props": 0
+          }
+        ],
+        "checkpointImages": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/refugee-halt.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png"
+        ],
+        "authoredPropsVisible": 0,
+        "entries": 0,
+        "exits": 0,
+        "branch": "main",
+        "eventPanel": false,
+        "optionalDecision": false,
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "mode": "narrative",
+        "travelView": false,
+        "destinationAgency": false,
+        "arrivalCallbacks": 0,
+        "overflowPx": 0,
+        "controls": [
+          {
+            "x": 10,
+            "y": 341,
+            "width": 44,
+            "height": 44,
+            "reachable": true
+          },
+          {
+            "x": 10,
+            "y": 395,
+            "width": 44,
+            "height": 44,
+            "reachable": true
+          }
+        ],
+        "risk": {
+          "enabled": true,
+          "segment": "route-1",
+          "collisionCount": 0,
+          "lastCollisionId": "",
+          "speedBefore": 0,
+          "speedAfter": 0,
+          "recovery01": 1,
+          "resolved": [],
+          "active": [
+            "t0:r1:branch-1"
+          ],
+          "impact": false,
+          "hazards": [
+            {
+              "id": "t0:r1:branch-1",
+              "lane": 0,
+              "progress01": 0.38,
+              "x": 324.671875,
+              "topY": 445.033447265625,
+              "groundY": 510.955322265625,
+              "width": 132.921875,
+              "visual": "fallen-branch-a",
+              "imageSrc": "/assets/generated/lion-phase/traversal/t0/risk/fallen-branch-a.png",
+              "imageLoaded": true,
+              "warningX": 324.6640625,
+              "warningVisible": false,
+              "telegraph": false
+            }
+          ],
+          "vehicleGroundY": 507,
+          "vehicleWidth": 163.140625,
+          "vehicleCenterX": 155
+        }
+      }
+    },
+    {
+      "file": "risk-r1-before-390.png",
+      "run": "branch-a",
+      "viewport": "390x844",
+      "state": {
+        "atMs": 6564.399999976158,
+        "node": "lion-audience",
+        "visitedNodeIds": [
+          "lion-camp",
+          "lion-audience"
+        ],
+        "bypassedNodeIds": [],
+        "selectedBranch": null,
+        "sceneCount": 1,
+        "phase": "RUNNING",
+        "view": "route",
+        "segment": "route-1",
+        "routeWorld": "shared",
+        "routeProgress": 0.31249166666666667,
+        "sessionProgress": 0.062498333333333336,
+        "speed": 1.2899035645507828,
+        "visualSpeed": 1.2899035645507828,
+        "visualWorldDistance": 1104.41690208763,
+        "vehicleRight": 148.8125,
+        "departure": null,
+        "transition": null,
+        "coverOpacity": 0,
+        "globalCoverPresent": false,
+        "globalCoverOpacity": 0,
+        "routeVisible": true,
+        "checkpointVisible": false,
+        "caravanCount": 1,
+        "riskMarkupCount": 1,
+        "legacyRouteSceneryVisible": false,
+        "genericImages": [
+          {
+            "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+            "loaded": true,
+            "props": 0
+          },
+          {
+            "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+            "loaded": true,
+            "props": 0
+          }
+        ],
+        "checkpointImages": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/refugee-halt.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png"
+        ],
+        "authoredPropsVisible": 0,
+        "entries": 0,
+        "exits": 0,
+        "branch": "main",
+        "eventPanel": false,
+        "optionalDecision": false,
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "mode": "narrative",
+        "travelView": false,
+        "destinationAgency": false,
+        "arrivalCallbacks": 0,
+        "overflowPx": 0,
+        "controls": [
+          {
+            "x": 10,
+            "y": 373,
+            "width": 44,
+            "height": 44,
+            "reachable": true
+          },
+          {
+            "x": 10,
+            "y": 427,
+            "width": 44,
+            "height": 44,
+            "reachable": true
+          }
+        ],
+        "risk": {
+          "enabled": true,
+          "segment": "route-1",
+          "collisionCount": 0,
+          "lastCollisionId": "",
+          "speedBefore": 0,
+          "speedAfter": 0,
+          "recovery01": 1,
+          "resolved": [],
+          "active": [
+            "t0:r1:branch-1"
+          ],
+          "impact": false,
+          "hazards": [
+            {
+              "id": "t0:r1:branch-1",
+              "lane": 0,
+              "progress01": 0.38,
+              "x": 178.890625,
+              "topY": 509.6131286621094,
+              "groundY": 551.0819091796875,
+              "width": 83.609375,
+              "visual": "fallen-branch-a",
+              "imageSrc": "/assets/generated/lion-phase/traversal/t0/risk/fallen-branch-a.png",
+              "imageLoaded": true,
+              "warningX": 178.8828125,
+              "warningVisible": false,
+              "telegraph": false
+            }
+          ],
+          "vehicleGroundY": 548.59375,
+          "vehicleWidth": 102.625,
+          "vehicleCenterX": 97.5
+        }
+      }
+    },
+    {
+      "file": "risk-r3-boulder-390.png",
+      "run": "branch-a",
+      "viewport": "390x844",
+      "state": {
+        "atMs": 56901.19999998808,
+        "node": "lion-nomad-crossroads",
+        "visitedNodeIds": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads"
+        ],
+        "bypassedNodeIds": [],
+        "selectedBranch": null,
+        "sceneCount": 1,
+        "phase": "RUNNING",
+        "view": "route",
+        "segment": "route-3",
+        "routeWorld": "shared",
+        "routeProgress": 0.6399733333333337,
+        "sessionProgress": 0.5279946666666667,
+        "speed": 1.951041432793652,
+        "visualSpeed": 1.951041432793652,
+        "visualWorldDistance": 16149.089459780214,
+        "vehicleRight": 148.8125,
+        "departure": null,
+        "transition": null,
+        "coverOpacity": 0,
+        "globalCoverPresent": false,
+        "globalCoverOpacity": 0,
+        "routeVisible": true,
+        "checkpointVisible": false,
+        "caravanCount": 1,
+        "riskMarkupCount": 2,
+        "legacyRouteSceneryVisible": false,
+        "genericImages": [
+          {
+            "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+            "loaded": true,
+            "props": 0
+          },
+          {
+            "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+            "loaded": true,
+            "props": 0
+          },
+          {
+            "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+            "loaded": true,
+            "props": 0
+          }
+        ],
+        "checkpointImages": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png"
+        ],
+        "authoredPropsVisible": 0,
+        "entries": 2,
+        "exits": 2,
+        "branch": "main",
+        "eventPanel": false,
+        "optionalDecision": false,
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "mode": "narrative",
+        "travelView": false,
+        "destinationAgency": false,
+        "arrivalCallbacks": 0,
+        "overflowPx": 0,
+        "controls": [
+          {
+            "x": 10,
+            "y": 373,
+            "width": 44,
+            "height": 44,
+            "reachable": true
+          },
+          {
+            "x": 10,
+            "y": 427,
+            "width": 44,
+            "height": 44,
+            "reachable": true
+          }
+        ],
+        "risk": {
+          "enabled": true,
+          "segment": "route-3",
+          "collisionCount": 1,
+          "lastCollisionId": "t0:r3:branch-1",
+          "speedBefore": 1.3281869765863,
+          "speedAfter": 1,
+          "recovery01": 1,
+          "resolved": [
+            "t0:r3:branch-1"
+          ],
+          "active": [
+            "t0:r3:block-2"
+          ],
+          "impact": false,
+          "hazards": [
+            {
+              "id": "t0:r3:block-2",
+              "lane": 1,
+              "progress01": 0.68,
+              "x": 186.578125,
+              "topY": 641.765625,
+              "groundY": 686.296875,
+              "width": 78.609375,
+              "visual": "boulder-b",
+              "imageSrc": "/assets/generated/lion-phase/traversal/t0/risk/boulder-b.png",
+              "imageLoaded": true,
+              "warningX": 186.5703125,
+              "warningVisible": false,
+              "telegraph": false
+            }
+          ],
+          "vehicleGroundY": 548.59375,
+          "vehicleWidth": 102.625,
+          "vehicleCenterX": 97.5
+        }
+      }
+    },
+    {
+      "file": "risk-r6-telegraph-390.png",
+      "run": "branch-a",
+      "viewport": "390x844",
+      "state": {
+        "atMs": 118027.59999996424,
+        "node": "lion-first-trial-event",
+        "visitedNodeIds": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads",
+          "lion-refugees",
+          "lion-first-trial-event"
+        ],
+        "bypassedNodeIds": [],
+        "selectedBranch": "lion-first-trial-event",
+        "sceneCount": 1,
+        "phase": "RUNNING",
+        "view": "route",
+        "segment": "route-6",
+        "routeWorld": "shared",
+        "routeProgress": 0.624975,
+        "sessionProgress": 0.96624775,
+        "speed": 2.2253378899219216,
+        "visualSpeed": 2.2253378899219216,
+        "visualWorldDistance": 38402.9165498627,
+        "vehicleRight": 148.8125,
+        "departure": null,
+        "transition": null,
+        "coverOpacity": 0,
+        "globalCoverPresent": false,
+        "globalCoverOpacity": 0,
+        "routeVisible": true,
+        "checkpointVisible": false,
+        "caravanCount": 1,
+        "riskMarkupCount": 3,
+        "legacyRouteSceneryVisible": false,
+        "genericImages": [
+          {
+            "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+            "loaded": true,
+            "props": 0
+          },
+          {
+            "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+            "loaded": true,
+            "props": 0
+          }
+        ],
+        "checkpointImages": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/damaged-caravan.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png"
+        ],
+        "authoredPropsVisible": 0,
+        "entries": 5,
+        "exits": 5,
+        "branch": "lion-first-trial-event",
+        "eventPanel": false,
+        "optionalDecision": false,
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "mode": "narrative",
+        "travelView": false,
+        "destinationAgency": false,
+        "arrivalCallbacks": 0,
+        "overflowPx": 0,
+        "controls": [
+          {
+            "x": 10,
+            "y": 373,
+            "width": 44,
+            "height": 44,
+            "reachable": true
+          },
+          {
+            "x": 10,
+            "y": 427,
+            "width": 44,
+            "height": 44,
+            "reachable": true
+          }
+        ],
+        "risk": {
+          "enabled": true,
+          "segment": "route-6",
+          "collisionCount": 0,
+          "lastCollisionId": "",
+          "speedBefore": 0,
+          "speedAfter": 0,
+          "recovery01": 1,
+          "resolved": [
+            "t0:r6:branch-1",
+            "t0:r6:block-2"
+          ],
+          "active": [
+            "t0:r6:branch-3"
+          ],
+          "impact": false,
+          "hazards": [
+            {
+              "id": "t0:r6:branch-3",
+              "lane": 0,
+              "progress01": 0.75,
+              "x": 536.078125,
+              "topY": 509.6131286621094,
+              "groundY": 551.0819091796875,
+              "width": 83.609375,
+              "visual": "fallen-branch-a",
+              "imageSrc": "/assets/generated/lion-phase/traversal/t0/risk/fallen-branch-a.png",
+              "imageLoaded": true,
+              "warningX": 361.98895263671875,
+              "warningVisible": true,
+              "telegraph": true
+            }
+          ],
+          "vehicleGroundY": 683.609375,
+          "vehicleWidth": 102.625,
+          "vehicleCenterX": 97.5
+        }
+      }
+    },
+    {
+      "file": "risk-r6-telegraph-620.png",
+      "run": "branch-a",
+      "viewport": "620x780",
+      "state": {
+        "atMs": 118253.39999997616,
+        "node": "lion-first-trial-event",
+        "visitedNodeIds": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads",
+          "lion-refugees",
+          "lion-first-trial-event"
+        ],
+        "bypassedNodeIds": [],
+        "selectedBranch": "lion-first-trial-event",
+        "sceneCount": 1,
+        "phase": "RUNNING",
+        "view": "route",
+        "segment": "route-6",
+        "routeWorld": "shared",
+        "routeProgress": 0.6358050000000003,
+        "sessionProgress": 0.9672224500000001,
+        "speed": 2.2480472959596454,
+        "visualSpeed": 2.2480472959596454,
+        "visualWorldDistance": 38538.568865268906,
+        "vehicleRight": 236.5703125,
+        "departure": null,
+        "transition": null,
+        "coverOpacity": 0,
+        "globalCoverPresent": false,
+        "globalCoverOpacity": 0,
+        "routeVisible": true,
+        "checkpointVisible": false,
+        "caravanCount": 1,
+        "riskMarkupCount": 3,
+        "legacyRouteSceneryVisible": false,
+        "genericImages": [
+          {
+            "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+            "loaded": true,
+            "props": 0
+          },
+          {
+            "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+            "loaded": true,
+            "props": 0
+          }
+        ],
+        "checkpointImages": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/damaged-caravan.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png"
+        ],
+        "authoredPropsVisible": 0,
+        "entries": 5,
+        "exits": 5,
+        "branch": "lion-first-trial-event",
+        "eventPanel": false,
+        "optionalDecision": false,
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "mode": "narrative",
+        "travelView": false,
+        "destinationAgency": false,
+        "arrivalCallbacks": 0,
+        "overflowPx": 0,
+        "controls": [
+          {
+            "x": 10,
+            "y": 341,
+            "width": 44,
+            "height": 44,
+            "reachable": true
+          },
+          {
+            "x": 10,
+            "y": 395,
+            "width": 44,
+            "height": 44,
+            "reachable": true
+          }
+        ],
+        "risk": {
+          "enabled": true,
+          "segment": "route-6",
+          "collisionCount": 0,
+          "lastCollisionId": "",
+          "speedBefore": 0,
+          "speedAfter": 0,
+          "recovery01": 1,
+          "resolved": [
+            "t0:r6:branch-1",
+            "t0:r6:block-2"
+          ],
+          "active": [
+            "t0:r6:branch-3"
+          ],
+          "impact": false,
+          "hazards": [
+            {
+              "id": "t0:r6:branch-3",
+              "lane": 0,
+              "progress01": 0.75,
+              "x": 794.734375,
+              "topY": 445.033447265625,
+              "groundY": 510.955322265625,
+              "width": 132.921875,
+              "visual": "fallen-branch-a",
+              "imageSrc": "/assets/generated/lion-phase/traversal/t0/risk/fallen-branch-a.png",
+              "imageLoaded": true,
+              "warningX": 591.9822998046875,
+              "warningVisible": true,
+              "telegraph": true
+            }
+          ],
+          "vehicleGroundY": 631.796875,
+          "vehicleWidth": 163.140625,
+          "vehicleCenterX": 155
+        }
+      }
+    },
+    {
+      "file": "risk-r5b-roadblock-390.png",
+      "run": "branch-b",
+      "viewport": "390x844",
+      "state": {
+        "atMs": 90156.39999997616,
+        "node": "lion-nomad-crossroads",
+        "visitedNodeIds": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads"
+        ],
+        "bypassedNodeIds": [
+          "lion-refugees"
+        ],
+        "selectedBranch": "lion-first-trial-combat",
+        "sceneCount": 1,
+        "phase": "RUNNING",
+        "view": "route",
+        "segment": "route-5b",
+        "routeWorld": "shared",
+        "routeProgress": 0.6199733333333337,
+        "sessionProgress": 0.8681970666666667,
+        "speed": 1.6217944482039006,
+        "visualSpeed": 1.6217944482039006,
+        "visualWorldDistance": 28959.4085085304,
+        "vehicleRight": 148.8125,
+        "departure": null,
+        "transition": null,
+        "coverOpacity": 0,
+        "globalCoverPresent": false,
+        "globalCoverOpacity": 0,
+        "routeVisible": true,
+        "checkpointVisible": false,
+        "caravanCount": 1,
+        "riskMarkupCount": 3,
+        "legacyRouteSceneryVisible": false,
+        "genericImages": [
+          {
+            "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+            "loaded": true,
+            "props": 0
+          },
+          {
+            "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+            "loaded": true,
+            "props": 0
+          }
+        ],
+        "checkpointImages": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/ruined-outpost.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/ruined-outpost.png"
+        ],
+        "authoredPropsVisible": 0,
+        "entries": 4,
+        "exits": 4,
+        "branch": "lion-first-trial-combat",
+        "eventPanel": false,
+        "optionalDecision": false,
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "mode": "narrative",
+        "travelView": false,
+        "destinationAgency": false,
+        "arrivalCallbacks": 0,
+        "overflowPx": 0,
+        "controls": [
+          {
+            "x": 10,
+            "y": 373,
+            "width": 44,
+            "height": 44,
+            "reachable": true
+          },
+          {
+            "x": 10,
+            "y": 427,
+            "width": 44,
+            "height": 44,
+            "reachable": true
+          }
+        ],
+        "risk": {
+          "enabled": true,
+          "segment": "route-5b",
+          "collisionCount": 1,
+          "lastCollisionId": "t0:r5b:branch-2",
+          "speedBefore": 1.8425408234162566,
+          "speedAfter": 1.05,
+          "recovery01": 0.5554999999999988,
+          "resolved": [
+            "t0:r5b:block-1",
+            "t0:r5b:branch-2"
+          ],
+          "active": [
+            "t0:r5b:block-3"
+          ],
+          "impact": false,
+          "hazards": [
+            {
+              "id": "t0:r5b:block-3",
+              "lane": 1,
+              "progress01": 0.68,
+              "x": 225.625,
+              "topY": 651.5474853515625,
+              "groundY": 685.6724853515625,
+              "width": 81.109375,
+              "visual": "roadblock-b",
+              "imageSrc": "/assets/generated/lion-phase/traversal/t0/risk/roadblock-b.png",
+              "imageLoaded": true,
+              "warningX": 225.6171875,
+              "warningVisible": false,
+              "telegraph": false
+            }
+          ],
+          "vehicleGroundY": 548.59375,
+          "vehicleWidth": 102.625,
+          "vehicleCenterX": 97.5
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "runsComplete": true,
+  "riskFailures": [],
+  "blackFrames": [],
+  "imperfectBlackFrames": [],
+  "routeWorldFailures": [],
+  "canonicalFailures": [],
+  "checkpointFailures": [],
+  "coastFailures": [],
+  "simultaneousWorlds": [],
+  "frameIssues": [],
+  "oldRouteArt": [],
+  "duplicateCaravans": [],
+  "overflow": [],
+  "unreachableControls": [],
+  "riskOffMarkup": []
+}

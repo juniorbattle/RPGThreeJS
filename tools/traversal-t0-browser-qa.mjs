@@ -3,9 +3,13 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { createServer } from 'vite';
 
-const riskQa = process.argv.includes('--risk');
+const artQa = process.argv.includes('--risk-art-evidence');
+const artOffQa = process.argv.includes('--risk-art-off-evidence');
+const riskQa = process.argv.includes('--risk') || artQa;
 const freshOffEvidence = process.argv.includes('--risk-off-evidence');
-const output = riskQa ? 'docs/reports/traversal-t0-route-risk-1-browser'
+const output = artQa ? 'docs/reports/traversal-t0-route-risk-art-1-browser'
+  : artOffQa ? 'docs/reports/traversal-t0-route-risk-art-1-browser/off'
+  : riskQa ? 'docs/reports/traversal-t0-route-risk-1-browser'
   : freshOffEvidence ? 'docs/reports/traversal-t0-route-risk-1-browser/off-work'
     : 'docs/reports/traversal-t0-cleanup-1-browser';
 const port = 5217;
@@ -13,7 +17,11 @@ const base = `http://127.0.0.1:${port}/?qa=1&traversal=t0${riskQa ? '&traversalR
 const desktop = { width: 1440, height: 810 };
 const mobile = [{ width: 620, height: 780 }, { width: 390, height: 844 }];
 const referenceForest = '/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png';
-const evidence = new Set([
+const evidence = new Set(artQa ? [
+  'risk-r1-before', 'risk-r1-impact', 'risk-r1-recovered',
+  'risk-r1-dodge-before', 'risk-r1-dodge-after', 'risk-r3-boulder',
+  'risk-r5b-roadblock', 'risk-r6-telegraph', 'risk-r6-visible', 'risk-r6-dodged',
+] : artOffQa ? ['01-route-1-early'] : [
   '01-route-1-early', 'cp1-b-black', 'cp1-c-after-reveal', '04-route-3-early',
   '04-refugees-aider', 'fork-a-black', 'fork-b-checkpoint', '06-route-5a', '06-cp5a-branch-checkpoint',
   '08-route-6-rush', '09-route-6-coast', '09-arrival', '10-destination-agency',
@@ -28,7 +36,8 @@ await mkdir(output, { recursive: true });
 const server = await createServer({ server: { host: '127.0.0.1', port, strictPort: true, watch: null, hmr: false } });
 await server.listen();
 const browser = await chromium.launch({ headless: true });
-const gallery = { task: riskQa ? 'TRAVERSAL-T0-ROUTE-RISK-1' : 'TRAVERSAL-T0-CLEANUP-1', url: base,
+const gallery = { task: artQa || artOffQa ? 'TRAVERSAL-T0-ROUTE-RISK-ART-1'
+  : riskQa ? 'TRAVERSAL-T0-ROUTE-RISK-1' : 'TRAVERSAL-T0-CLEANUP-1', url: base,
   method: 'DEV-only T0 QA entry, real-time requestAnimationFrame, real UI interaction and combat QA victory control',
   captures: [], blackFrames: [], runs: [], errors: [] };
 
@@ -148,6 +157,7 @@ async function snapshot(page) {
       routeVisible: Boolean(routeLayer && getComputedStyle(routeLayer).visibility !== 'hidden'),
       checkpointVisible: Boolean(checkpointLayer && getComputedStyle(checkpointLayer).visibility !== 'hidden'),
       caravanCount: root?.querySelectorAll('.traversal-vehicle').length ?? 0,
+      riskMarkupCount: root?.querySelectorAll('[data-risk-hazard]').length ?? 0,
       legacyRouteSceneryVisible,
       genericImages: genericSections.map(section => ({ src: section.querySelector('.traversal-world-section__painting > img')?.getAttribute('src'),
         loaded: Boolean(section.querySelector('.traversal-world-section__painting > img')?.naturalWidth),
@@ -183,14 +193,21 @@ async function snapshot(page) {
         impact: root.querySelector('.traversal-vehicle')?.classList.contains('traversal-vehicle--risk-impact') ?? false,
         hazards: [...root.querySelectorAll('[data-risk-hazard]:not([hidden])')].map(mark => {
           const rect = mark.getBoundingClientRect();
-          const warning = mark.querySelector('.traversal-route-risk__warning')?.getBoundingClientRect();
+          const warningElement = mark.querySelector('.traversal-route-risk__warning');
+          const warning = warningElement?.getBoundingClientRect();
+          const obstacle = mark.querySelector('img');
           return { id: mark.dataset.riskHazard, lane: Number(mark.dataset.riskLane),
             progress01: Number(mark.dataset.riskProgress), x: rect.x + rect.width / 2,
-            groundY: rect.bottom, warningX: warning?.x + warning?.width / 2,
-            warningVisible: Boolean(warning && warning.right > 0 && warning.left < innerWidth),
+            topY: rect.top, groundY: rect.bottom, width: rect.width,
+            visual: mark.dataset.riskVisual, imageSrc: obstacle?.getAttribute('src'),
+            imageLoaded: Boolean(obstacle?.complete && obstacle.naturalWidth),
+            warningX: warning?.x + warning?.width / 2,
+            warningVisible: Boolean(warning && getComputedStyle(warningElement).visibility === 'visible'
+              && warning.right > 0 && warning.left < innerWidth),
             telegraph: mark.dataset.telegraph === 'true' };
         }),
         vehicleGroundY: root.querySelector('.traversal-vehicle')?.getBoundingClientRect().bottom ?? null,
+        vehicleWidth: root.querySelector('.traversal-vehicle')?.getBoundingClientRect().width ?? null,
         vehicleCenterX: (() => { const rect = root.querySelector('.traversal-vehicle')?.getBoundingClientRect();
           return rect ? rect.x + rect.width / 2 : null; })(),
       } : null,
@@ -237,6 +254,15 @@ async function capture(page, name, run, viewports = []) {
       state: await snapshot(page) });
     if (name.includes('black')) gallery.blackFrames.push({ file, blackPixelRatio: await blackPixelRatio(page, png) });
   };
+  if (artQa && name === 'risk-r6-telegraph') {
+    for (const viewport of [mobile[1], mobile[0]]) {
+      await page.setViewportSize(viewport);
+      await shot(`-${viewport.width}`);
+    }
+    await page.setViewportSize(desktop);
+    await shot('');
+    return;
+  }
   await shot('');
   if (viewports.length) {
     for (const viewport of viewports) {
@@ -359,7 +385,7 @@ async function driveRun(branch, helpRefugees) {
       if (seen.has(name)) return;
       seen.add(name);
       if (!evidence.has(name)) return;
-      await capture(page, name, run, viewports);
+      await capture(page, name, run, artQa && name === 'risk-r1-dodge-before' ? [] : viewports);
       console.log(run.id, name);
     };
     if (run.id === 'branch-a') {
@@ -401,6 +427,10 @@ async function driveRun(branch, helpRefugees) {
         await take('03-route-2');
       if (s.segment === 'route-3' && s.view === 'route' && !s.transition && s.routeProgress > .12 && s.routeProgress < .3)
         await take('04-route-3-early', mobile);
+      if (riskQa && s.segment === 'route-3' && s.view === 'route' && s.routeProgress < .68
+        && s.risk?.hazards.some(hazard => hazard.id === 't0:r3:block-2'
+          && hazard.x < desktop.width * .78 && hazard.imageLoaded))
+        await take('risk-r3-boulder', [mobile[1]]);
       if (s.segment === 'route-3' && s.view === 'route' && !s.transition && s.routeProgress > .84 && s.routeProgress < .97)
         await take('04-route-3-rush');
       if (s.segment === 'route-3' && s.transition === 'focus' && s.coverOpacity >= .999)
@@ -448,8 +478,14 @@ async function driveRun(branch, helpRefugees) {
         await page.locator('[data-traversal-lane="1"]').click(); seen.add('risk-r6-dodge');
         run.laneMoves.push({ lane: 1, progress: s.routeProgress, atMs: s.atMs });
       }
-      if (riskQa && s.segment === 'route-6' && s.view === 'route' && s.routeProgress > .63
-        && s.routeProgress < .71) await take('risk-r6-telegraph', mobile);
+      if (riskQa && s.segment === 'route-6' && s.view === 'route' && s.routeProgress > .60
+        && s.routeProgress < .66 && s.risk?.hazards.some(hazard =>
+          hazard.id === 't0:r6:branch-3' && hazard.warningVisible))
+        await take('risk-r6-telegraph', mobile);
+      if (riskQa && s.segment === 'route-6' && s.view === 'route' && s.routeProgress < .75
+        && s.risk?.hazards.some(hazard => hazard.id === 't0:r6:branch-3'
+          && !hazard.warningVisible && hazard.x < desktop.width * .8 && hazard.imageLoaded))
+        await take('risk-r6-visible');
       if (riskQa && s.segment === 'route-6' && s.view === 'route' && s.routeProgress > .77)
         await take('risk-r6-dodged');
       if (s.phase === 'ARRIVING' && s.visualSpeed > .1 && s.vehicleRight < desktop.width)
@@ -473,6 +509,10 @@ async function driveRun(branch, helpRefugees) {
       }
       if (riskQa && s.segment === 'route-5b' && s.view === 'route' && s.routeProgress > .43
         && s.routeProgress < .5) await take('risk-r5b-two-lanes', mobile);
+      if (riskQa && s.segment === 'route-5b' && s.view === 'route' && s.routeProgress < .68
+        && s.risk?.hazards.some(hazard => hazard.id === 't0:r5b:block-3'
+          && hazard.x < desktop.width * .78 && hazard.imageLoaded))
+        await take('risk-r5b-roadblock', [mobile[1]]);
       if (riskQa && s.segment === 'route-5b' && s.view === 'route' && s.routeProgress > .58
         && !seen.has('risk-r5b-second-lane')) {
         await page.locator('[data-traversal-lane="1"]').click(); seen.add('risk-r5b-second-lane');
@@ -576,7 +616,14 @@ try {
     riskVisibility: run.riskVisibility, riskCheckpointImpactLeaks: run.riskCheckpointImpactLeaks,
     riskCheckpointHazards: run.riskCheckpointHazards,
   })) }, null, 2)}\n`);
-  const expected = [
+  const expected = artQa ? [
+    'risk-r1-before', 'risk-r1-before-620', 'risk-r1-before-390',
+    'risk-r1-impact', 'risk-r1-recovered', 'risk-r1-dodge-before',
+    'risk-r1-dodge-after', 'risk-r3-boulder', 'risk-r3-boulder-390',
+    'risk-r5b-roadblock', 'risk-r5b-roadblock-390',
+    'risk-r6-telegraph', 'risk-r6-telegraph-620',
+    'risk-r6-telegraph-390', 'risk-r6-visible', 'risk-r6-dodged',
+  ] : artOffQa ? ['01-route-1-early'] : [
     '01-route-1-early', 'cp1-b-black', 'cp1-c-after-reveal', '04-route-3-early',
     '04-refugees-aider', 'fork-a-black', 'fork-b-checkpoint', '06-route-5a', '06-cp5a-branch-checkpoint',
     '08-route-6-rush', '09-route-6-coast', '09-arrival', '10-destination-agency',
@@ -674,14 +721,21 @@ try {
      if (a?.riskVisibility['t0:r6:branch-3']?.leadMs < 900)
        failures.push('C: high-speed telegraph appeared too late');
      for (const capture of gallery.captures.filter(capture =>
-       ['risk-r1-before', 'risk-r1-dodge-before', 'risk-r6-telegraph', 'risk-r5b-two-lanes']
+       artQa || ['risk-r1-before', 'risk-r1-dodge-before', 'risk-r6-telegraph', 'risk-r5b-two-lanes']
          .some(name => capture.file.startsWith(name)))) {
        const hazards = capture.state.risk?.hazards ?? [];
-       if (!hazards.length || !hazards.some(hazard => hazard.warningVisible))
+       if (artQa && !hazards.every(hazard => hazard.imageLoaded
+         && hazard.imageSrc === `/assets/generated/lion-phase/traversal/t0/risk/${hazard.visual}.png`))
+         failures.push(`${capture.file}: obstacle image missing`);
+       if ((artQa ? capture.file.startsWith('risk-r6-telegraph') : true)
+         && (!hazards.length || !hazards.some(hazard => hazard.warningVisible)))
          failures.push(`${capture.file}: no readable hazard warning`);
        const height = Number(capture.viewport.split('x')[1]);
        if (hazards.some(hazard => Math.abs(hazard.groundY - height * (hazard.lane === 0 ? .65 : .81)) > 24))
          failures.push(`${capture.file}: hazard ground is outside its lane`);
+       if (artQa && hazards.some(hazard => hazard.width > capture.state.risk.vehicleWidth * .85
+         || (hazard.lane === 1 ? hazard.topY - height * .65 : height * .81 - hazard.groundY) < 0))
+         failures.push(`${capture.file}: obstacle reads across both lanes`);
      }
      return failures;
    })() : [];
@@ -698,7 +752,8 @@ try {
       capture.state.legacyRouteSceneryVisible).map(capture => capture.file),
     duplicateCaravans: gallery.captures.filter(capture => capture.state.caravanCount > 1).map(capture => capture.file),
     overflow: gallery.captures.filter(capture => capture.state.overflowPx > 0).map(capture => capture.file),
-    unreachableControls: gallery.captures.filter(capture => capture.state.controls.some(control => !control.reachable)).map(capture => capture.file) };
+    unreachableControls: gallery.captures.filter(capture => capture.state.controls.some(control => !control.reachable)).map(capture => capture.file),
+    riskOffMarkup: artOffQa ? gallery.captures.filter(capture => capture.state.riskMarkupCount > 0).map(capture => capture.file) : [] };
   qaResult = qa;
   await writeFile(`${output}/browser-qa.json`, `${JSON.stringify(qa, null, 2)}\n`);
   const cards = gallery.captures.map(capture => `<figure><img src="${capture.file}" loading="lazy"><figcaption>${capture.file} · ${capture.viewport}</figcaption></figure>`).join('');
@@ -715,6 +770,6 @@ if (!qaResult || qaResult.missing.length || qaResult.imperfectBlackFrames.length
    || qaResult.checkpointFailures.length || qaResult.coastFailures.length || qaResult.riskFailures.length
   || qaResult.simultaneousWorlds.length || qaResult.frameIssues.length
   || qaResult.oldRouteArt.length || qaResult.duplicateCaravans.length
-  || qaResult.overflow.length || qaResult.unreachableControls.length
+  || qaResult.overflow.length || qaResult.unreachableControls.length || qaResult.riskOffMarkup.length
   || qaResult.errors.length || !qaResult.runsComplete)
   throw new Error('Canonical T0 browser QA did not pass.');

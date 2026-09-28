@@ -1,16 +1,18 @@
 import { ROAD_SPACE } from './TraversalRoadSpace';
 import type { TraversalRouteHazard, TraversalRouteRiskState } from './TraversalRouteRisk';
+import { resolveRouteRiskVisual } from './TraversalRouteRiskVisual';
 
 const TELEGRAPH_MS = 2800;
 const IMPACT_MS = 520;
 
-/** DEV risk marks only. Road coordinates follow TraversalRouteRenderer's visual distance. */
+/** Risk obstacle presentation. Road coordinates follow TraversalRouteRenderer's visual distance. */
 export class TraversalRouteRiskRenderer {
   readonly element = document.createElement('div');
   private readonly marks = new Map<string, HTMLElement>();
   private readonly contactDistances = new Map<string, number>();
   private vehicle: HTMLElement | null = null;
   private impactUntilMs = -1;
+  private impactHazardId: string | null = null;
 
   constructor() {
     this.element.className = 'traversal-route-risk';
@@ -26,12 +28,14 @@ export class TraversalRouteRiskRenderer {
     this.contactDistances.clear();
     this.clearImpact();
     for (const hazard of hazards) {
+      const visual = resolveRouteRiskVisual(hazard);
       const mark = document.createElement('span');
-      mark.className = `traversal-route-risk__hazard traversal-route-risk__hazard--${hazard.kind}`;
+      mark.className = `traversal-route-risk__hazard traversal-route-risk__hazard--${visual.kind}`;
       mark.dataset.riskHazard = hazard.id;
       mark.dataset.riskLane = String(hazard.lane);
       mark.dataset.riskProgress = String(hazard.progress01);
-      mark.innerHTML = '<span class="traversal-route-risk__warning">!</span><span class="traversal-route-risk__bar">DEV</span>';
+      mark.dataset.riskVisual = `${visual.kind}-${visual.variant}`;
+      mark.innerHTML = `<span class="traversal-route-risk__warning"><i>!</i></span><img src="${visual.src}" alt="" draggable="false">`;
       mark.hidden = true;
       this.element.append(mark);
       this.marks.set(hazard.id, mark);
@@ -40,6 +44,7 @@ export class TraversalRouteRiskRenderer {
 
   impact(hazard: TraversalRouteHazard, elapsedMs: number): void {
     this.impactUntilMs = elapsedMs + IMPACT_MS;
+    this.impactHazardId = hazard.id;
     const burst = this.element.querySelector<HTMLElement>('.traversal-route-risk__impact')!;
     burst.style.top = `${hazard.lane === 0 ? 65 : 81}%`;
     burst.classList.remove('is-active');
@@ -61,6 +66,7 @@ export class TraversalRouteRiskRenderer {
 
   clearImpact(): void {
     this.impactUntilMs = -1;
+    this.impactHazardId = null;
     this.element.querySelector('.traversal-route-risk__impact')?.classList.remove('is-active');
     this.vehicle?.classList.remove('traversal-vehicle--risk-impact');
   }
@@ -80,7 +86,8 @@ export class TraversalRouteRiskRenderer {
       const mark = this.marks.get(hazard.id);
       if (!mark) continue;
       const remainingMs = (hazard.progress01 - progress01) * durationMs;
-      if (resolved.has(hazard.id) || remainingMs < 0 || remainingMs > TELEGRAPH_MS) {
+      const visibleAtImpact = hazard.id === this.impactHazardId && elapsedMs < this.impactUntilMs;
+      if ((resolved.has(hazard.id) || remainingMs < 0) && !visibleAtImpact || remainingMs > TELEGRAPH_MS) {
         mark.hidden = true;
         continue;
       }
@@ -94,6 +101,7 @@ export class TraversalRouteRiskRenderer {
       mark.style.top = `${hazard.lane === 0 ? 65 : 81}%`;
       mark.style.setProperty('--telegraph-shift', `${Math.max(0, screenX - (viewportWidth - 28))}px`);
       mark.dataset.telegraph = String(screenX > viewportWidth - 28);
+      mark.dataset.warning = String(screenX > viewportWidth * .92);
       mark.hidden = false;
     }
   }
