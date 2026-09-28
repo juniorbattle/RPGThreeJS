@@ -3,9 +3,13 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { createServer } from 'vite';
 
-const output = 'docs/reports/traversal-t0-cleanup-1-browser';
+const riskQa = process.argv.includes('--risk');
+const freshOffEvidence = process.argv.includes('--risk-off-evidence');
+const output = riskQa ? 'docs/reports/traversal-t0-route-risk-1-browser'
+  : freshOffEvidence ? 'docs/reports/traversal-t0-route-risk-1-browser/off-work'
+    : 'docs/reports/traversal-t0-cleanup-1-browser';
 const port = 5217;
-const base = `http://127.0.0.1:${port}/?qa=1&traversal=t0`;
+const base = `http://127.0.0.1:${port}/?qa=1&traversal=t0${riskQa ? '&traversalRisk=1' : ''}`;
 const desktop = { width: 1440, height: 810 };
 const mobile = [{ width: 620, height: 780 }, { width: 390, height: 844 }];
 const referenceForest = '/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png';
@@ -16,18 +20,22 @@ const evidence = new Set([
   '12-refugees-passer', 'passer-departure', 'refugees-b-return-black',
   '11-route-5b', '11-cp5b-branch-checkpoint', '11-route-6-rush-b', '11-arrival-b',
   'responsive-route-3-refugees-black-390',
+  'risk-r1-before', 'risk-r1-impact', 'risk-r1-recovered',
+  'risk-r1-dodge-before', 'risk-r1-dodge-after', 'risk-r5b-two-lanes',
+  'risk-r5b-second-impact', 'risk-r6-telegraph', 'risk-r6-dodged',
 ]);
 await mkdir(output, { recursive: true });
 const server = await createServer({ server: { host: '127.0.0.1', port, strictPort: true, watch: null, hmr: false } });
 await server.listen();
 const browser = await chromium.launch({ headless: true });
-const gallery = { task: 'TRAVERSAL-T0-CLEANUP-1', url: base,
+const gallery = { task: riskQa ? 'TRAVERSAL-T0-ROUTE-RISK-1' : 'TRAVERSAL-T0-CLEANUP-1', url: base,
   method: 'DEV-only T0 QA entry, real-time requestAnimationFrame, real UI interaction and combat QA victory control',
   captures: [], blackFrames: [], runs: [], errors: [] };
 
 async function makePage(context) {
   const page = await context.newPage();
   page.on('pageerror', error => gallery.errors.push(error.message));
+  page.on('console', message => { if (message.type() === 'error') gallery.errors.push(`console: ${message.text()}`); });
   page.on('response', response => {
     if (response.status() >= 400 && response.url().includes('/assets/'))
       gallery.errors.push(`asset ${response.status()}: ${response.url()}`);
@@ -104,7 +112,7 @@ async function makePage(context) {
 }
 
 async function snapshot(page) {
-  return page.evaluate(() => {
+  return page.evaluate((riskQa) => {
     const root = document.querySelector('.traversal-t0');
     const app = window.__routeQaApp;
     const panel = root?.querySelector('[data-traversal-event-panel]');
@@ -164,8 +172,30 @@ async function snapshot(page) {
       arrivalCallbacks: window.__routeQaArrivalCount ?? 0,
       overflowPx: Math.max(0, document.documentElement.scrollWidth - innerWidth),
       controls,
+      risk: riskQa && root ? {
+        enabled: root.dataset.riskEnabled === 'dev', segment: root.dataset.riskSegment,
+        collisionCount: Number(root.dataset.riskCollisionCount ?? 0),
+        lastCollisionId: root.dataset.riskLastCollisionId ?? '',
+        speedBefore: Number(root.dataset.riskSpeedBefore), speedAfter: Number(root.dataset.riskSpeedAfter),
+        recovery01: Number(root.dataset.riskRecoveryProgress ?? 1),
+        resolved: JSON.parse(root.dataset.riskResolvedHazards ?? '[]'),
+        active: JSON.parse(root.dataset.riskActiveHazards ?? '[]'),
+        impact: root.querySelector('.traversal-vehicle')?.classList.contains('traversal-vehicle--risk-impact') ?? false,
+        hazards: [...root.querySelectorAll('[data-risk-hazard]:not([hidden])')].map(mark => {
+          const rect = mark.getBoundingClientRect();
+          const warning = mark.querySelector('.traversal-route-risk__warning')?.getBoundingClientRect();
+          return { id: mark.dataset.riskHazard, lane: Number(mark.dataset.riskLane),
+            progress01: Number(mark.dataset.riskProgress), x: rect.x + rect.width / 2,
+            groundY: rect.bottom, warningX: warning?.x + warning?.width / 2,
+            warningVisible: Boolean(warning && warning.right > 0 && warning.left < innerWidth),
+            telegraph: mark.dataset.telegraph === 'true' };
+        }),
+        vehicleGroundY: root.querySelector('.traversal-vehicle')?.getBoundingClientRect().bottom ?? null,
+        vehicleCenterX: (() => { const rect = root.querySelector('.traversal-vehicle')?.getBoundingClientRect();
+          return rect ? rect.x + rect.width / 2 : null; })(),
+      } : null,
     };
-  });
+  }, riskQa);
 }
 
 async function blackPixelRatio(page, png) {
@@ -235,18 +265,48 @@ async function driveRun(branch, helpRefugees) {
   const run = { id: branch.endsWith('event') ? 'branch-a' : 'branch-b', branch, helpRefugees,
     startedAt: Date.now(), routes: {}, transitions: [], globalTransitions: [], checkpointEvents: [], progressionErrors: [],
     laneMoves: [], routeStates: {}, checkpointStates: {}, branchSelectionCount: 0, bypassCount: 0,
-    maxSceneCount: 0, maxEntries: 0, maxExits: 0, arrivalCallbacks: 0, complete: false };
+    maxSceneCount: 0, maxEntries: 0, maxExits: 0, arrivalCallbacks: 0, complete: false,
+    riskSegments: {}, riskEvents: [], riskVisibility: {}, riskCheckpointImpactLeaks: [],
+    riskCheckpointHazards: [] };
   gallery.runs.push(run);
   const seen = new Set();
   let previous = null;
   let lastSegment = null;
   let activeTransition = null;
   let activeGlobal = null;
+  const lastHazardView = new Map();
   const startWall = Date.now();
   for (let tick = 0; tick < 7200; tick++) {
     await page.waitForTimeout(previous?.transition || previous?.globalCoverOpacity > 0
       || previous?.routeProgress > .93 ? 18 : 80);
     const s = await snapshot(page);
+    if (riskQa && s.risk && s.segment) {
+      const segmentRisk = run.riskSegments[s.segment] ??= { collisions: 0, resolved: [], recoverySamples: [] };
+      if (s.risk.collisionCount > segmentRisk.collisions) {
+        const lastContactView = lastHazardView.get(s.risk.lastCollisionId);
+        run.riskEvents.push({ segment: s.segment, progress: s.routeProgress,
+          id: s.risk.lastCollisionId, before: s.risk.speedBefore, after: s.risk.speedAfter,
+          impact: s.risk.impact, collisionCount: s.risk.collisionCount,
+          contactGapPx: lastContactView ? Math.abs(lastContactView.x - lastContactView.vehicleCenterX) : null });
+      }
+      segmentRisk.collisions = Math.max(segmentRisk.collisions, s.risk.collisionCount);
+      segmentRisk.resolved = s.risk.resolved;
+      if (s.risk.recovery01 < 1 && (!segmentRisk.recoverySamples.length
+        || s.atMs - segmentRisk.recoverySamples.at(-1).atMs > 400))
+        segmentRisk.recoverySamples.push({ atMs: s.atMs, progress: s.routeProgress,
+          speed: s.speed, recovery01: s.risk.recovery01 });
+      for (const hazard of s.risk.hazards) {
+        lastHazardView.set(hazard.id, { x: hazard.x, vehicleCenterX: s.risk.vehicleCenterX });
+        if (!run.riskVisibility[hazard.id]) run.riskVisibility[hazard.id] = { segment: s.segment, progress: s.routeProgress,
+          leadMs: Math.round((hazard.progress01 - s.routeProgress) *
+            (s.segment === 'route-1' || s.segment === 'route-4' ? 12000
+              : s.segment === 'route-6' ? 20000 : 15000)), ...hazard };
+      }
+      if (s.view === 'checkpoint' && s.risk.impact)
+        run.riskCheckpointImpactLeaks.push(s.segment);
+      if (s.view === 'checkpoint' && s.risk.active.length)
+        run.riskCheckpointHazards.push(s.segment);
+    }
     if (s.segment && s.segment !== lastSegment) { console.log(run.id, s.segment); lastSegment = s.segment; }
     run.maxSceneCount = Math.max(run.maxSceneCount, s.sceneCount);
     run.maxEntries = Math.max(run.maxEntries, s.entries);
@@ -305,18 +365,24 @@ async function driveRun(branch, helpRefugees) {
     if (run.id === 'branch-a') {
       if (s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .12 && s.routeProgress < .28)
         await take('01-route-1-early');
-      if (s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .3 && !seen.has('lane-low')) {
+      if (!riskQa && s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .3 && !seen.has('lane-low')) {
         await page.locator('[data-traversal-lane="1"]').click();
         seen.add('lane-low');
         run.laneMoves.push({ lane: 1, progress: s.routeProgress, atMs: s.atMs });
       }
-      if (s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .55 && !seen.has('lane-high')) {
+      if (!riskQa && s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .55 && !seen.has('lane-high')) {
         await page.locator('[data-traversal-lane="0"]').click();
         seen.add('lane-high');
         run.laneMoves.push({ lane: 0, progress: s.routeProgress, atMs: s.atMs });
       }
       if (s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .83 && s.routeProgress < .96)
         await take('02-route-1-rush', [mobile[1]]);
+      if (riskQa && s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .23 && s.routeProgress < .31)
+        await take('risk-r1-before', mobile);
+      if (riskQa && s.segment === 'route-1' && s.risk?.collisionCount === 1 && s.risk.impact)
+        await take('risk-r1-impact');
+      if (riskQa && s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .62
+        && s.risk?.recovery01 === 1) await take('risk-r1-recovered');
       if (s.segment === 'route-1' && s.transition === 'focus' && s.view === 'route' && s.coverOpacity < .5)
         await take('cp1-a-before-fade');
       if (s.segment === 'route-1' && s.transition === 'focus' && s.coverOpacity >= .999)
@@ -367,11 +433,53 @@ async function driveRun(branch, helpRefugees) {
         await take('07-route-6-early', mobile);
       if (s.segment === 'route-6' && s.view === 'route' && s.routeProgress > .85 && s.routeProgress < .97)
         await take('08-route-6-rush');
+      if (riskQa && s.segment === 'route-6' && s.view === 'route' && s.routeProgress > .17
+        && !seen.has('risk-r6-lane-1')) {
+        await page.locator('[data-traversal-lane="1"]').click(); seen.add('risk-r6-lane-1');
+        run.laneMoves.push({ lane: 1, progress: s.routeProgress, atMs: s.atMs });
+      }
+      if (riskQa && s.segment === 'route-6' && s.view === 'route' && s.routeProgress > .41
+        && !seen.has('risk-r6-lane-0')) {
+        await page.locator('[data-traversal-lane="0"]').click(); seen.add('risk-r6-lane-0');
+        run.laneMoves.push({ lane: 0, progress: s.routeProgress, atMs: s.atMs });
+      }
+      if (riskQa && s.segment === 'route-6' && s.view === 'route' && s.routeProgress > .60
+        && !seen.has('risk-r6-dodge')) {
+        await page.locator('[data-traversal-lane="1"]').click(); seen.add('risk-r6-dodge');
+        run.laneMoves.push({ lane: 1, progress: s.routeProgress, atMs: s.atMs });
+      }
+      if (riskQa && s.segment === 'route-6' && s.view === 'route' && s.routeProgress > .63
+        && s.routeProgress < .71) await take('risk-r6-telegraph', mobile);
+      if (riskQa && s.segment === 'route-6' && s.view === 'route' && s.routeProgress > .77)
+        await take('risk-r6-dodged');
       if (s.phase === 'ARRIVING' && s.visualSpeed > .1 && s.vehicleRight < desktop.width)
         await take('09-route-6-coast');
       if (s.phase === 'ARRIVING') await take('09-arrival', mobile);
       if (!s.sceneCount && s.destinationAgency && s.arrivalCallbacks > 0) await take('10-destination-agency');
     } else {
+      if (riskQa && s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .20
+        && !seen.has('risk-r1-dodge')) {
+        await page.locator('[data-traversal-lane="1"]').click(); seen.add('risk-r1-dodge');
+        run.laneMoves.push({ lane: 1, progress: s.routeProgress, atMs: s.atMs });
+      }
+      if (riskQa && s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .23
+        && s.routeProgress < .31) await take('risk-r1-dodge-before', mobile);
+      if (riskQa && s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .43)
+        await take('risk-r1-dodge-after');
+      if (riskQa && s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .51
+        && !seen.has('risk-r1-return')) {
+        await page.locator('[data-traversal-lane="0"]').click(); seen.add('risk-r1-return');
+        run.laneMoves.push({ lane: 0, progress: s.routeProgress, atMs: s.atMs });
+      }
+      if (riskQa && s.segment === 'route-5b' && s.view === 'route' && s.routeProgress > .43
+        && s.routeProgress < .5) await take('risk-r5b-two-lanes', mobile);
+      if (riskQa && s.segment === 'route-5b' && s.view === 'route' && s.routeProgress > .58
+        && !seen.has('risk-r5b-second-lane')) {
+        await page.locator('[data-traversal-lane="1"]').click(); seen.add('risk-r5b-second-lane');
+        run.laneMoves.push({ lane: 1, progress: s.routeProgress, atMs: s.atMs });
+      }
+      if (riskQa && s.segment === 'route-5b' && s.risk?.collisionCount === 2 && s.risk.impact)
+        await take('risk-r5b-second-impact');
       if (s.segment === 'route-3' && s.view === 'route' && s.routeProgress > .86
         && !seen.has('mobile-black-setup')) {
         seen.add('mobile-black-setup');
@@ -464,6 +572,9 @@ try {
     visitedNodeIds: run.visitedNodeIds, bypassedNodeIds: run.bypassedNodeIds,
     selectedBranch: run.selectedBranch, branchSelectionCount: run.branchSelectionCount,
     bypassCount: run.bypassCount, coastSamples: run.coastSamples,
+    riskSegments: run.riskSegments, riskEvents: run.riskEvents,
+    riskVisibility: run.riskVisibility, riskCheckpointImpactLeaks: run.riskCheckpointImpactLeaks,
+    riskCheckpointHazards: run.riskCheckpointHazards,
   })) }, null, 2)}\n`);
   const expected = [
     '01-route-1-early', 'cp1-b-black', 'cp1-c-after-reveal', '04-route-3-early',
@@ -476,6 +587,11 @@ try {
     'fork-b-checkpoint-390', '06-route-5a-620', '06-route-5a-390',
     '11-route-5b-620', '11-route-5b-390', '09-arrival-620', '09-arrival-390',
     'passer-departure-390',
+    ...(riskQa ? ['risk-r1-before', 'risk-r1-before-620', 'risk-r1-before-390',
+      'risk-r1-impact', 'risk-r1-recovered', 'risk-r1-dodge-before',
+      'risk-r1-dodge-before-620', 'risk-r1-dodge-before-390', 'risk-r1-dodge-after',
+      'risk-r5b-two-lanes', 'risk-r5b-second-impact', 'risk-r6-telegraph',
+      'risk-r6-dodged'] : []),
   ];
   const files = new Set(gallery.captures.map(capture => capture.file));
   const routeWorldFailures = gallery.runs.flatMap(run => {
@@ -530,9 +646,48 @@ try {
       failures.push(`${run.id}: caravan did not exit right edge`);
     return failures;
   });
-  const qa = { expected, missing: expected.filter(name => !files.has(`${name}.png`)),
+   const riskFailures = riskQa ? (() => {
+     const [a, b] = gallery.runs;
+     const failures = [];
+     if (a?.riskSegments['route-1']?.collisions !== 1) failures.push('A: Route 1 did not collide once');
+     if (b?.riskSegments['route-1']?.collisions !== 0
+       || !b?.riskSegments['route-1']?.resolved.includes('t0:r1:branch-1'))
+       failures.push('B: Route 1 dodge did not resolve safely');
+     const firstHit = a?.riskEvents.find(event => event.segment === 'route-1');
+     if (!firstHit || !firstHit.impact || firstHit.before <= firstHit.after || firstHit.after !== 1)
+       failures.push('A: impact or immediate momentum loss missing');
+     if (!a?.riskSegments['route-1']?.recoverySamples.some(sample => sample.recovery01 > .6 && sample.speed > 1))
+       failures.push('A: bounded speed recovery missing');
+     if (a?.riskSegments['route-6']?.collisions !== 0
+       || !a?.riskSegments['route-6']?.resolved.includes('t0:r6:branch-3'))
+       failures.push('C: high-speed Route 6 dodge failed');
+     if (b?.riskSegments['route-5b']?.collisions !== 2
+       || b?.riskEvents.filter(event => event.segment === 'route-5b').length !== 2)
+       failures.push('D/E: separate-lane hazards or second recovery collision failed');
+     if (gallery.runs.some(run => run.riskCheckpointImpactLeaks.length))
+       failures.push('F: impact leaked into checkpoint');
+     if (gallery.runs.some(run => run.riskCheckpointHazards.length))
+       failures.push('F: hazard survived into checkpoint');
+     if (gallery.runs.some(run => run.riskEvents.some(event =>
+       event.contactGapPx === null || event.contactGapPx > 110)))
+       failures.push('Collision did not align with the caravan');
+     if (a?.riskVisibility['t0:r6:branch-3']?.leadMs < 900)
+       failures.push('C: high-speed telegraph appeared too late');
+     for (const capture of gallery.captures.filter(capture =>
+       ['risk-r1-before', 'risk-r1-dodge-before', 'risk-r6-telegraph', 'risk-r5b-two-lanes']
+         .some(name => capture.file.startsWith(name)))) {
+       const hazards = capture.state.risk?.hazards ?? [];
+       if (!hazards.length || !hazards.some(hazard => hazard.warningVisible))
+         failures.push(`${capture.file}: no readable hazard warning`);
+       const height = Number(capture.viewport.split('x')[1]);
+       if (hazards.some(hazard => Math.abs(hazard.groundY - height * (hazard.lane === 0 ? .65 : .81)) > 24))
+         failures.push(`${capture.file}: hazard ground is outside its lane`);
+     }
+     return failures;
+   })() : [];
+   const qa = { expected, missing: expected.filter(name => !files.has(`${name}.png`)),
     responsive: gallery.captures.filter(capture => capture.viewport !== '1440x810'),
-    errors: gallery.errors, runsComplete: gallery.runs.every(run => run.complete),
+     errors: gallery.errors, runsComplete: gallery.runs.every(run => run.complete), riskFailures,
     blackFrames: gallery.blackFrames,
     imperfectBlackFrames: gallery.blackFrames.filter(frame => frame.blackPixelRatio < .999),
     routeWorldFailures, canonicalFailures, checkpointFailures, coastFailures,
@@ -547,17 +702,17 @@ try {
   qaResult = qa;
   await writeFile(`${output}/browser-qa.json`, `${JSON.stringify(qa, null, 2)}\n`);
   const cards = gallery.captures.map(capture => `<figure><img src="${capture.file}" loading="lazy"><figcaption>${capture.file} · ${capture.viewport}</figcaption></figure>`).join('');
-  await writeFile(`${output}/index.html`, `<!doctype html><meta charset="utf-8"><title>Canonical T0 browser QA</title><style>body{margin:0;background:#08131d;color:#e8dec5;font:14px sans-serif;padding:24px}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px}figure{margin:0}img{width:100%;border:1px solid #866f4b}figcaption{padding:8px}</style><h1>Canonical T0 browser QA</h1><p><a href="browser-qa.json">Browser QA</a> · <a href="motion-flow.json">Motion data</a></p><main>${cards}</main>`);
+   await writeFile(`${output}/index.html`, `<!doctype html><meta charset="utf-8"><title>Canonical T0 browser QA</title><style>body{margin:0;background:#08131d;color:#e8dec5;font:14px sans-serif;padding:24px}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px}figure{margin:0}img{width:100%;border:1px solid #866f4b}figcaption{padding:8px}</style><h1>Canonical T0 browser QA${riskQa ? ' · DEV Route Risk' : ''}</h1><p><a href="browser-qa.json">Browser QA</a> · <a href="motion-flow.json">Motion data</a></p><main>${cards}</main>`);
   console.log(JSON.stringify({ complete: qa.runsComplete, captures: gallery.captures.length,
     missing: qa.missing, imperfectBlackFrames: qa.imperfectBlackFrames,
     simultaneousWorlds: qa.simultaneousWorlds, duplicateCaravans: qa.duplicateCaravans,
     frameIssues: qa.frameIssues, oldRouteArt: qa.oldRouteArt,
-    routeWorldFailures, canonicalFailures, checkpointFailures, coastFailures,
+     routeWorldFailures, canonicalFailures, checkpointFailures, coastFailures, riskFailures,
     errors: gallery.errors }, null, 2));
 }
 if (!qaResult || qaResult.missing.length || qaResult.imperfectBlackFrames.length
   || qaResult.routeWorldFailures.length || qaResult.canonicalFailures.length
-  || qaResult.checkpointFailures.length || qaResult.coastFailures.length
+   || qaResult.checkpointFailures.length || qaResult.coastFailures.length || qaResult.riskFailures.length
   || qaResult.simultaneousWorlds.length || qaResult.frameIssues.length
   || qaResult.oldRouteArt.length || qaResult.duplicateCaravans.length
   || qaResult.overflow.length || qaResult.unreachableControls.length
