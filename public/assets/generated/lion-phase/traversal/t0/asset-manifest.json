@@ -48,17 +48,17 @@
       "id": "risk-boulder-a",
       "path": "/assets/generated/lion-phase/traversal/t0/risk/boulder-a.png",
       "role": "risk",
-      "width": 524,
-      "height": 257,
-      "sha256": "d5c40021397e1de470ac0f727a59259d61da50ae04e41e0f36d2015803470556"
+      "width": 530,
+      "height": 241,
+      "sha256": "12f455732156a72d875ddd5b4d59d165593e7c73d51e7933eb660982b2e343e8"
     },
     {
       "id": "risk-boulder-b",
       "path": "/assets/generated/lion-phase/traversal/t0/risk/boulder-b.png",
       "role": "risk",
-      "width": 496,
-      "height": 281,
-      "sha256": "6066f42d2422fa797bc7d9921aa7f390bd53ea846d402d89353be94fcc9ba1e9"
+      "width": 490,
+      "height": 318,
+      "sha256": "ac97b427b421d84a2eb27ef3c8b4afdc690783d65a971541a1ac30e2f0e7ed95"
     },
     {
       "id": "risk-fallen-branch-a",
@@ -80,17 +80,17 @@
       "id": "risk-roadblock-a",
       "path": "/assets/generated/lion-phase/traversal/t0/risk/roadblock-a.png",
       "role": "risk",
-      "width": 501,
-      "height": 254,
-      "sha256": "afc31e61fe860556b2426879ef9bd30ae22ba0123a4a13e3a1d13605ae6c7cd3"
+      "width": 520,
+      "height": 261,
+      "sha256": "e39ce65273eef96d41e8647849b5af96f62963a5883ed5c818c0da2408da12fc"
     },
     {
       "id": "risk-roadblock-b",
       "path": "/assets/generated/lion-phase/traversal/t0/risk/roadblock-b.png",
       "role": "risk",
-      "width": 537,
-      "height": 226,
-      "sha256": "5f35221669abe442c23323826792f07faba0834ba5b24ec18bb7c2c02fd0d98e"
+      "width": 550,
+      "height": 209,
+      "sha256": "b47912c04831f11aa5efc2d2a0228f48e6876c7ebc5c0b2610557bb9fa0893ca"
     },
     {
       "id": "vehicle-traversal-caravan-chassis",
