@@ -99,6 +99,29 @@
 }
 .traversal-t0[data-view='checkpoint'] .traversal-route-risk,
 .traversal-t0[data-phase='ARRIVING'] .traversal-route-risk { visibility: hidden; }
+.traversal-route-reward { position: absolute; inset: 0; pointer-events: none; z-index: 24; }
+.traversal-route-reward__pickup {
+  position: absolute; width: clamp(24px, 3.5vw, 40px); aspect-ratio: 1;
+  transform: translate(-50%, -88%); display: grid; place-items: center;
+  border: 2px solid #ffe0a0; border-radius: 50%;
+  color: #fff2bd; background: radial-gradient(circle at 35% 30%, #e3af4e, #845119 72%);
+  box-shadow: 0 0 0 3px #25150999, 0 4px 12px #0d0907b8, inset 0 1px 3px #fff3b1;
+}
+.traversal-route-reward__pickup[hidden] { display: none; }
+.traversal-route-reward__pickup i { font: normal 700 clamp(15px, 2vw, 22px) Georgia, serif; }
+.traversal-route-reward__pickup small { position: absolute; top: 100%; font: 600 8px Inter, sans-serif;
+  color: #ffe2a7; text-shadow: 0 1px 2px #110d08; }
+.traversal-route-reward__feedback { position: absolute; left: 25%; opacity: 0;
+  transform: translate(-50%, calc(-1 * var(--vehicle-height) - 8px));
+  padding: 3px 9px; border: 1px solid #d3a353; border-radius: 20px;
+  color: #ffe4a0; background: #211b13e8; white-space: nowrap;
+  font: 700 clamp(13px, 1.5vw, 18px) Inter, sans-serif; text-shadow: 0 1px 2px #140b06;
+  box-shadow: 0 2px 8px #140b06aa; }
+.traversal-route-reward__feedback.is-active { animation: traversal-reward-collect .45s ease-out both; }
+@keyframes traversal-reward-collect { 0% { opacity: 0; translate: 0 4px; scale: .8; }
+  25% { opacity: 1; scale: 1; } 100% { opacity: 0; translate: 0 -22px; scale: 1.04; } }
+.traversal-t0[data-view='checkpoint'] .traversal-route-reward,
+.traversal-t0[data-phase='ARRIVING'] .traversal-route-reward { visibility: hidden; }
 .traversal-world__entities { position: absolute; inset: 0; pointer-events: none; }
 .traversal-world__markers, .traversal-world__occlusion { pointer-events: none; }
 .traversal-world__occlusion .traversal-near-plant { position: absolute; transform: translate(-50%, -100%); }

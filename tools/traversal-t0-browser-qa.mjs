@@ -1,4 +1,8 @@
 /** Canonical T0 regression: both real paths, shared world, checkpoints and motion. */
+if (process.argv.includes('--reward-qa')) {
+  await import('./traversal-t0-reward-qa.mjs');
+  process.exit(0);
+}
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { createServer, preview } from 'vite';
