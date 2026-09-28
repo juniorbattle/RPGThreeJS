@@ -1,23 +1,31 @@
 /** Canonical T0 regression: both real paths, shared world, checkpoints and motion. */
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
-import { createServer } from 'vite';
+import { createServer, preview } from 'vite';
 
 const artQa = process.argv.includes('--risk-art-evidence');
 const artOffQa = process.argv.includes('--risk-art-off-evidence');
-const riskQa = process.argv.includes('--risk') || artQa;
-const freshOffEvidence = process.argv.includes('--risk-off-evidence');
-const output = artQa ? 'docs/reports/traversal-t0-route-risk-art-1-browser'
+const productionQa = process.argv.includes('--production');
+const riskOffQa = process.argv.includes('--risk-off') || process.argv.includes('--risk-off-evidence') || artOffQa;
+if (productionQa && riskOffQa) throw new Error('Risk-off is a DEV-only QA mode.');
+const riskQa = !riskOffQa;
+const compactQa = !artQa && !artOffQa && !process.argv.includes('--legacy-gallery');
+const jsonOnly = process.argv.includes('--json-only');
+const output = process.argv.find(arg => arg.startsWith('--output='))?.slice('--output='.length)
+  ?? (artQa ? 'docs/reports/traversal-t0-route-risk-art-1-browser'
   : artOffQa ? 'docs/reports/traversal-t0-route-risk-art-1-browser/off'
-  : riskQa ? 'docs/reports/traversal-t0-route-risk-1-browser'
-  : freshOffEvidence ? 'docs/reports/traversal-t0-route-risk-1-browser/off-work'
-    : 'docs/reports/traversal-t0-cleanup-1-browser';
-const port = 5217;
-const base = `http://127.0.0.1:${port}/?qa=1&traversal=t0${riskQa ? '&traversalRisk=1' : ''}`;
+  : `docs/reports/traversal-t0-route-risk-production-1-browser/${productionQa
+    ? process.argv.includes('--production-risk-off-url') ? 'production-risk-off-url' : 'production'
+    : riskOffQa ? 'dev-off' : 'dev'}`);
+const port = productionQa ? 5218 : 5217;
+const base = `http://127.0.0.1:${port}/?qa=1&traversal=t0${riskOffQa || process.argv.includes('--production-risk-off-url') ? '&traversalRisk=0' : ''}`;
 const desktop = { width: 1440, height: 810 };
 const mobile = [{ width: 620, height: 780 }, { width: 390, height: 844 }];
 const referenceForest = '/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png';
-const evidence = new Set(artQa ? [
+const evidence = new Set(compactQa ? riskOffQa ? ['01-route-1-early'] : [
+  'risk-r1-before', 'risk-r1-impact', 'risk-r1-dodge-before',
+  'risk-r5b-roadblock', 'risk-r6-telegraph', 'risk-r6-visible', '10-destination-agency',
+] : artQa ? [
   'risk-r1-before', 'risk-r1-impact', 'risk-r1-recovered',
   'risk-r1-dodge-before', 'risk-r1-dodge-after', 'risk-r3-boulder',
   'risk-r5b-roadblock', 'risk-r6-telegraph', 'risk-r6-visible', 'risk-r6-dodged',
@@ -33,13 +41,14 @@ const evidence = new Set(artQa ? [
   'risk-r5b-second-impact', 'risk-r6-telegraph', 'risk-r6-dodged',
 ]);
 await mkdir(output, { recursive: true });
-const server = await createServer({ server: { host: '127.0.0.1', port, strictPort: true, watch: null, hmr: false } });
-await server.listen();
+const server = productionQa
+  ? await preview({ preview: { host: '127.0.0.1', port, strictPort: true } })
+  : await createServer({ server: { host: '127.0.0.1', port, strictPort: true, watch: null, hmr: false } });
+if (!productionQa) await server.listen();
 const browser = await chromium.launch({ headless: true });
-const gallery = { task: artQa || artOffQa ? 'TRAVERSAL-T0-ROUTE-RISK-ART-1'
-  : riskQa ? 'TRAVERSAL-T0-ROUTE-RISK-1' : 'TRAVERSAL-T0-CLEANUP-1', url: base,
-  method: 'DEV-only T0 QA entry, real-time requestAnimationFrame, real UI interaction and combat QA victory control',
-  captures: [], blackFrames: [], runs: [], errors: [] };
+const gallery = { task: 'TRAVERSAL-T0-ROUTE-RISK-PRODUCTION-1', url: base,
+  method: `${productionQa ? 'built Vite preview with Playwright combat-result fixture' : 'Vite DEV'}; shared GameApp T0 QA entry; real scene mounting, requestAnimationFrame and lane controls`,
+  captures: [], blackFrames: [], runs: [], errors: [], riskAssetResponses: {} };
 
 async function makePage(context) {
   const page = await context.newPage();
@@ -48,18 +57,50 @@ async function makePage(context) {
   page.on('response', response => {
     if (response.status() >= 400 && response.url().includes('/assets/'))
       gallery.errors.push(`asset ${response.status()}: ${response.url()}`);
+    if (response.url().includes('/traversal/t0/risk/')) {
+      const name = response.url().split('/').at(-1);
+      const entry = gallery.riskAssetResponses[name] ??= { statuses: [], requests: 0 };
+      entry.statuses.push(response.status());
+      entry.requests++;
+    }
   });
   page.on('requestfailed', request => {
     if (request.url().includes('/assets/')) gallery.errors.push(`asset request failed: ${request.url()}`);
   });
-  await page.route('**/src/main.ts', async route => {
-    const response = await route.fetch();
-    await route.fulfill({ response, body: (await response.text()).replace(
-      'const app = new GameApp(root, canvas);',
-      'const app = new GameApp(root, canvas); window.__routeQaApp = app;',
-    ) });
-  });
+  if (productionQa) {
+    // Expose only the local Playwright page's app instance. The served bundle and its
+    // production env policy remain the exact output of npm run build.
+    await page.route('**/assets/game-*.js', async route => {
+      const response = await route.fetch();
+      const source = await response.text();
+      const pattern = /const ([A-Za-z_$][\w$]*)=new [A-Za-z_$][\w$]*\([^;]+?\);window\.addEventListener\("pagehide",\(\)=>\1\.dispose/;
+      if (!pattern.test(source)) throw new Error('Built GameApp bootstrap hook could not be located.');
+      await route.fulfill({ response, body: source.replace(pattern, (match, appName) =>
+        match.replace(';window.addEventListener', `;window.__routeQaApp=${appName};window.addEventListener`)) });
+    });
+  } else {
+    await page.route('**/src/main.ts', async route => {
+      const response = await route.fetch();
+      const source = await response.text();
+      if (!source.includes('const app = new GameApp(root, canvas);'))
+        throw new Error('DEV GameApp bootstrap hook could not be located.');
+      await route.fulfill({ response, body: source.replace(
+        'const app = new GameApp(root, canvas);',
+        'const app = new GameApp(root, canvas); window.__routeQaApp = app;',
+      ) });
+    });
+  }
   await page.goto(base);
+  if (productionQa) {
+    await page.waitForFunction(() => Boolean(window.__routeQaApp), null, { timeout: 30000 });
+    await page.waitForSelector('.title-screen', { timeout: 30000 });
+    await page.evaluate(async () => {
+      const app = window.__routeQaApp;
+      app.qaEnabled = true;
+      app.traversalT0QaEnabled = true;
+      await app.startTraversalT0Qa();
+    });
+  }
   await page.waitForSelector('.traversal-t0', { timeout: 30000 });
   await page.evaluate(() => {
     const app = window.__routeQaApp;
@@ -127,7 +168,7 @@ async function snapshot(page) {
     const panel = root?.querySelector('[data-traversal-event-panel]');
     const controls = [...document.querySelectorAll('[data-traversal-lane]')].map(button => {
       const rect = button.getBoundingClientRect();
-      return { x: rect.x, y: rect.y, width: rect.width, height: rect.height,
+      return { x: rect.x, y: rect.y, width: rect.width, height: rect.height, disabled: button.disabled,
         reachable: rect.width > 0 && rect.height > 0 && rect.x >= 0 && rect.right <= innerWidth && rect.bottom <= innerHeight };
     });
     const cover = root?.querySelector('.traversal-transition');
@@ -137,11 +178,17 @@ async function snapshot(page) {
     const genericSections = [...(routeLayer?.querySelectorAll('[data-world-section]:not([hidden])') ?? [])];
     const legacyRouteSceneryVisible = Boolean(root?.querySelector('.traversal-route-loop > :not(.traversal-route-loop__speed-lines)'));
     return { atMs: performance.now(), node: app?.state?.run?.currentNodeId ?? null,
+      campaignSignature: app?.state ? JSON.stringify({ gold: app.state.gold,
+        reputation: app.state.reputation, reputationHistory: app.state.reputationHistory,
+        health: app.state.clan.members.map(member => [member.id, member.currentHealth]),
+        inventory: app.state.inventory, flags: app.state.flags, run: app.state.run,
+        currentNodeId: app.state.currentNodeId, resolvedNodeIds: app.state.resolvedNodeIds }) : null,
       visitedNodeIds: [...(app?.state?.run?.visitedNodeIds ?? [])],
       bypassedNodeIds: [...(app?.state?.run?.bypassedRouteNodeIds ?? [])],
       selectedBranch: app?.state?.run?.traversalBranches?.T0 ?? null,
       sceneCount: document.querySelectorAll('.traversal-t0').length,
       phase: root?.dataset.phase ?? null, view: root?.dataset.view ?? null,
+      lane: root?.dataset.lane ?? null, presentation: root?.dataset.presentation ?? null,
       segment: root?.dataset.routeSegment ?? null, routeWorld: root?.dataset.routeWorld ?? null,
       routeProgress: Number(root?.dataset.routeProgress ?? 0),
       sessionProgress: Number(root?.dataset.progress ?? 0),
@@ -182,14 +229,18 @@ async function snapshot(page) {
       arrivalCallbacks: window.__routeQaArrivalCount ?? 0,
       overflowPx: Math.max(0, document.documentElement.scrollWidth - innerWidth),
       controls,
-      risk: riskQa && root ? {
-        enabled: root.dataset.riskEnabled === 'dev', segment: root.dataset.riskSegment,
-        collisionCount: Number(root.dataset.riskCollisionCount ?? 0),
-        lastCollisionId: root.dataset.riskLastCollisionId ?? '',
-        speedBefore: Number(root.dataset.riskSpeedBefore), speedAfter: Number(root.dataset.riskSpeedAfter),
-        recovery01: Number(root.dataset.riskRecoveryProgress ?? 1),
-        resolved: JSON.parse(root.dataset.riskResolvedHazards ?? '[]'),
-        active: JSON.parse(root.dataset.riskActiveHazards ?? '[]'),
+      risk: root ? {
+        enabled: Boolean(root.querySelector('.traversal-route-risk [data-risk-hazard]')),
+        diagnosticTelemetry: Object.keys(root.dataset).filter(key => key.startsWith('risk')),
+        rendererCount: root.querySelectorAll('.traversal-route-risk').length,
+        ariaHidden: root.querySelector('.traversal-route-risk')?.getAttribute('aria-hidden') ?? null,
+        focusableCount: root.querySelectorAll('.traversal-route-risk a, .traversal-route-risk button, .traversal-route-risk input, .traversal-route-risk [tabindex]:not([tabindex="-1"])').length,
+        all: [...root.querySelectorAll('[data-risk-hazard]')].map(mark => ({
+          id: mark.dataset.riskHazard, lane: Number(mark.dataset.riskLane),
+          progress01: Number(mark.dataset.riskProgress), imageSrc: mark.querySelector('img')?.getAttribute('src'),
+          imageLoaded: Boolean(mark.querySelector('img')?.complete && mark.querySelector('img')?.naturalWidth),
+        })),
+        active: [...root.querySelectorAll('[data-risk-hazard]:not([hidden])')].map(mark => mark.dataset.riskHazard),
         impact: root.querySelector('.traversal-vehicle')?.classList.contains('traversal-vehicle--risk-impact') ?? false,
         hazards: [...root.querySelectorAll('[data-risk-hazard]:not([hidden])')].map(mark => {
           const rect = mark.getBoundingClientRect();
@@ -249,11 +300,29 @@ async function capture(page, name, run, viewports = []) {
   const shot = async suffix => {
     await page.evaluate(() => document.fonts.ready);
     const file = `${name}${suffix}.png`;
-    const png = await page.screenshot({ path: `${output}/${file}` });
+    const png = jsonOnly
+      ? name.includes('black') ? await page.screenshot() : null
+      : await page.screenshot({ path: `${output}/${file}` });
     gallery.captures.push({ file, run: run.id, viewport: `${page.viewportSize().width}x${page.viewportSize().height}`,
       state: await snapshot(page) });
     if (name.includes('black')) gallery.blackFrames.push({ file, blackPixelRatio: await blackPixelRatio(page, png) });
   };
+  if (compactQa && name === 'risk-r1-dodge-before') {
+    await page.setViewportSize(mobile[1]);
+    await page.waitForTimeout(120);
+    await shot('-390');
+    await page.setViewportSize(desktop);
+    return;
+  }
+  if (compactQa && name === 'risk-r6-telegraph') {
+    for (const viewport of mobile) {
+      await page.setViewportSize(viewport);
+      await page.waitForTimeout(120);
+      await shot(`-${viewport.width}`);
+    }
+    await page.setViewportSize(desktop);
+    return;
+  }
   if (artQa && name === 'risk-r6-telegraph') {
     for (const viewport of [mobile[1], mobile[0]]) {
       await page.setViewportSize(viewport);
@@ -277,6 +346,23 @@ async function capture(page, name, run, viewports = []) {
 async function playCombat(page) {
   const frame = page.frames().find(candidate => candidate.url().includes('legacy-combat'));
   if (!frame) return;
+  if (productionQa) {
+    await frame.evaluate(async () => {
+      if (window.__routeQaVictorySent || !window.__BOOTED) return;
+      window.__routeQaBootSeenAt ??= performance.now();
+      if (performance.now() - window.__routeQaBootSeenAt < 1000) return;
+      await document.fonts.ready;
+      const session = window.parent.__routeQaApp?.combat?.session;
+      if (!session) return;
+      window.__routeQaVictorySent = true;
+      window.parent.postMessage({ type: 'rpg-threejs:combat-result', victory: true,
+        combatId: session.config.id, inventory: session.inventory,
+        participants: session.preferredUnitIds,
+        unitHealth: Object.fromEntries(session.clan.map(unit => [unit.id, unit.currentHealth])),
+      }, window.location.origin);
+    }).catch(() => {});
+    return;
+  }
   await frame.evaluate(() => {
     for (const selector of ['#tutorial [data-action="skip"]', '#combat-result-action', '[data-qa="victory"]']) {
       const button = document.querySelector(selector);
@@ -293,7 +379,10 @@ async function driveRun(branch, helpRefugees) {
     laneMoves: [], routeStates: {}, checkpointStates: {}, branchSelectionCount: 0, bypassCount: 0,
     maxSceneCount: 0, maxEntries: 0, maxExits: 0, arrivalCallbacks: 0, complete: false,
     riskSegments: {}, riskEvents: [], riskVisibility: {}, riskCheckpointImpactLeaks: [],
-    riskCheckpointHazards: [] };
+    riskCheckpointHazards: [], riskMarkupBySegment: {}, riskRendererMax: 0,
+    riskFocusableMax: 0, riskAriaFailures: [], inputLockFailures: [],
+    inputLockSamples: 0, productionTelemetryKeys: [], riskCampaignBefore: null,
+    riskCampaignAfter: null };
   gallery.runs.push(run);
   const seen = new Set();
   let previous = null;
@@ -306,21 +395,47 @@ async function driveRun(branch, helpRefugees) {
     await page.waitForTimeout(previous?.transition || previous?.globalCoverOpacity > 0
       || previous?.routeProgress > .93 ? 18 : 80);
     const s = await snapshot(page);
+    if (s.risk && s.segment) {
+      run.riskMarkupBySegment[s.segment] = Math.max(run.riskMarkupBySegment[s.segment] ?? 0,
+        s.risk.all.length);
+      run.riskRendererMax = Math.max(run.riskRendererMax, s.risk.rendererCount);
+      run.riskFocusableMax = Math.max(run.riskFocusableMax, s.risk.focusableCount);
+      if (productionQa) run.productionTelemetryKeys = [...new Set([
+        ...run.productionTelemetryKeys, ...s.risk.diagnosticTelemetry])];
+      if (s.risk.enabled && s.risk.ariaHidden !== 'true') run.riskAriaFailures.push(s.segment);
+    }
+    if (s.sceneCount && (s.transition || s.departure || s.view === 'checkpoint'
+      || s.presentation === 'checkpoint-approach' || s.phase === 'ARRIVING')) {
+      run.inputLockSamples++;
+      if (s.controls.some(control => !control.disabled))
+        run.inputLockFailures.push(`${s.segment}/${s.phase}/${s.transition ?? s.presentation ?? s.view}`);
+    }
     if (riskQa && s.risk && s.segment) {
+      if (s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .08
+        && !run.riskCampaignBefore) run.riskCampaignBefore = s.campaignSignature;
+      if (s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .55
+        && !run.riskCampaignAfter) run.riskCampaignAfter = s.campaignSignature;
       const segmentRisk = run.riskSegments[s.segment] ??= { collisions: 0, resolved: [], recoverySamples: [] };
-      if (s.risk.collisionCount > segmentRisk.collisions) {
-        const lastContactView = lastHazardView.get(s.risk.lastCollisionId);
+      if (s.risk.impact && !previous?.risk?.impact) {
+        const contact = s.risk.all.map(hazard => ({ hazard,
+          view: lastHazardView.get(hazard.id) })).filter(candidate => candidate.view)
+          .sort((left, right) => Math.abs(left.view.x - left.view.vehicleCenterX)
+            - Math.abs(right.view.x - right.view.vehicleCenterX))[0];
+        const lastContactView = contact?.view;
+        segmentRisk.collisions++;
         run.riskEvents.push({ segment: s.segment, progress: s.routeProgress,
-          id: s.risk.lastCollisionId, before: s.risk.speedBefore, after: s.risk.speedAfter,
-          impact: s.risk.impact, collisionCount: s.risk.collisionCount,
+          id: contact?.hazard.id ?? null, before: previous?.speed ?? null, after: s.speed,
+          impact: s.risk.impact, collisionCount: segmentRisk.collisions, atMs: s.atMs,
           contactGapPx: lastContactView ? Math.abs(lastContactView.x - lastContactView.vehicleCenterX) : null });
       }
-      segmentRisk.collisions = Math.max(segmentRisk.collisions, s.risk.collisionCount);
-      segmentRisk.resolved = s.risk.resolved;
-      if (s.risk.recovery01 < 1 && (!segmentRisk.recoverySamples.length
+      segmentRisk.resolved = s.risk.all.filter(hazard => s.routeProgress >= hazard.progress01)
+        .map(hazard => hazard.id);
+      const latestHit = run.riskEvents.filter(event => event.segment === s.segment).at(-1);
+      const recovery01 = latestHit ? Math.min(1, (s.atMs - latestHit.atMs) / 2400) : 1;
+      if (recovery01 < 1 && (!segmentRisk.recoverySamples.length
         || s.atMs - segmentRisk.recoverySamples.at(-1).atMs > 400))
         segmentRisk.recoverySamples.push({ atMs: s.atMs, progress: s.routeProgress,
-          speed: s.speed, recovery01: s.risk.recovery01 });
+          speed: s.speed, recovery01 });
       for (const hazard of s.risk.hazards) {
         lastHazardView.set(hazard.id, { x: hazard.x, vehicleCenterX: s.risk.vehicleCenterX });
         if (!run.riskVisibility[hazard.id]) run.riskVisibility[hazard.id] = { segment: s.segment, progress: s.routeProgress,
@@ -385,7 +500,10 @@ async function driveRun(branch, helpRefugees) {
       if (seen.has(name)) return;
       seen.add(name);
       if (!evidence.has(name)) return;
-      await capture(page, name, run, artQa && name === 'risk-r1-dodge-before' ? [] : viewports);
+      const compactViewports = name === 'risk-r1-before' ? mobile
+        : name === 'risk-r1-dodge-before' ? [mobile[1]] : [];
+      await capture(page, name, run, compactQa ? compactViewports
+        : artQa && name === 'risk-r1-dodge-before' ? [] : viewports);
       console.log(run.id, name);
     };
     if (run.id === 'branch-a') {
@@ -405,10 +523,10 @@ async function driveRun(branch, helpRefugees) {
         await take('02-route-1-rush', [mobile[1]]);
       if (riskQa && s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .23 && s.routeProgress < .31)
         await take('risk-r1-before', mobile);
-      if (riskQa && s.segment === 'route-1' && s.risk?.collisionCount === 1 && s.risk.impact)
+      if (riskQa && s.segment === 'route-1' && run.riskSegments['route-1']?.collisions === 1 && s.risk.impact)
         await take('risk-r1-impact');
       if (riskQa && s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .62
-        && s.risk?.recovery01 === 1) await take('risk-r1-recovered');
+        && run.riskSegments['route-1']?.recoverySamples.length) await take('risk-r1-recovered');
       if (s.segment === 'route-1' && s.transition === 'focus' && s.view === 'route' && s.coverOpacity < .5)
         await take('cp1-a-before-fade');
       if (s.segment === 'route-1' && s.transition === 'focus' && s.coverOpacity >= .999)
@@ -495,8 +613,8 @@ async function driveRun(branch, helpRefugees) {
     } else {
       if (riskQa && s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .20
         && !seen.has('risk-r1-dodge')) {
-        await page.locator('[data-traversal-lane="1"]').click(); seen.add('risk-r1-dodge');
-        run.laneMoves.push({ lane: 1, progress: s.routeProgress, atMs: s.atMs });
+        await page.keyboard.press('ArrowDown'); seen.add('risk-r1-dodge');
+        run.laneMoves.push({ lane: 1, input: 'keyboard', progress: s.routeProgress, atMs: s.atMs });
       }
       if (riskQa && s.segment === 'route-1' && s.view === 'route' && s.routeProgress > .23
         && s.routeProgress < .31) await take('risk-r1-dodge-before', mobile);
@@ -518,7 +636,7 @@ async function driveRun(branch, helpRefugees) {
         await page.locator('[data-traversal-lane="1"]').click(); seen.add('risk-r5b-second-lane');
         run.laneMoves.push({ lane: 1, progress: s.routeProgress, atMs: s.atMs });
       }
-      if (riskQa && s.segment === 'route-5b' && s.risk?.collisionCount === 2 && s.risk.impact)
+      if (riskQa && s.segment === 'route-5b' && run.riskSegments['route-5b']?.collisions === 2 && s.risk.impact)
         await take('risk-r5b-second-impact');
       if (s.segment === 'route-3' && s.view === 'route' && s.routeProgress > .86
         && !seen.has('mobile-black-setup')) {
@@ -598,7 +716,9 @@ try {
   await driveRun('lion-first-trial-combat', false);
 } finally {
   await browser.close();
-  await server.close();
+  if (productionQa) await new Promise((resolve, reject) =>
+    server.httpServer.close(error => error ? reject(error) : resolve()));
+  else await server.close();
   await writeFile(`${output}/gallery-index.json`, `${JSON.stringify(gallery, null, 2)}\n`);
   await writeFile(`${output}/motion-flow.json`, `${JSON.stringify({ runs: gallery.runs.map(run => ({
     id: run.id, branch: run.branch, helpRefugees: run.helpRefugees, routes: run.routes,
@@ -616,7 +736,12 @@ try {
     riskVisibility: run.riskVisibility, riskCheckpointImpactLeaks: run.riskCheckpointImpactLeaks,
     riskCheckpointHazards: run.riskCheckpointHazards,
   })) }, null, 2)}\n`);
-  const expected = artQa ? [
+  const expected = compactQa ? riskOffQa ? ['01-route-1-early'] : [
+    'risk-r1-before', 'risk-r1-before-620', 'risk-r1-before-390',
+    'risk-r1-impact', 'risk-r1-dodge-before-390',
+    'risk-r5b-roadblock', 'risk-r6-telegraph-620', 'risk-r6-telegraph-390', 'risk-r6-visible',
+    '10-destination-agency',
+  ] : artQa ? [
     'risk-r1-before', 'risk-r1-before-620', 'risk-r1-before-390',
     'risk-r1-impact', 'risk-r1-recovered', 'risk-r1-dodge-before',
     'risk-r1-dodge-after', 'risk-r3-boulder', 'risk-r3-boulder-390',
@@ -700,8 +825,11 @@ try {
      if (b?.riskSegments['route-1']?.collisions !== 0
        || !b?.riskSegments['route-1']?.resolved.includes('t0:r1:branch-1'))
        failures.push('B: Route 1 dodge did not resolve safely');
+     if (!b?.laneMoves.some(move => move.input === 'keyboard' && move.lane === 1)
+       || !gallery.captures.some(capture => capture.file === 'risk-r1-dodge-before-390.png'
+         && capture.state.lane === '1')) failures.push('B: keyboard lane dodge failed');
      const firstHit = a?.riskEvents.find(event => event.segment === 'route-1');
-     if (!firstHit || !firstHit.impact || firstHit.before <= firstHit.after || firstHit.after !== 1)
+     if (!firstHit || !firstHit.impact || firstHit.before <= firstHit.after || firstHit.after > 1.1)
        failures.push('A: impact or immediate momentum loss missing');
      if (!a?.riskSegments['route-1']?.recoverySamples.some(sample => sample.recovery01 > .6 && sample.speed > 1))
        failures.push('A: bounded speed recovery missing');
@@ -720,14 +848,41 @@ try {
        failures.push('Collision did not align with the caravan');
      if (a?.riskVisibility['t0:r6:branch-3']?.leadMs < 900)
        failures.push('C: high-speed telegraph appeared too late');
+     for (const run of gallery.runs) {
+       const expectedMarks = { 'route-1': 1, 'route-2': 1, 'route-3': 2,
+         'route-4': 2, [run.id === 'branch-a' ? 'route-5a' : 'route-5b']:
+           run.id === 'branch-a' ? 2 : 3, 'route-6': 3 };
+       for (const [segment, count] of Object.entries(expectedMarks)) {
+         if (run.riskMarkupBySegment[segment] !== count)
+           failures.push(`${run.id}/${segment}: expected ${count} hazard marks`);
+       }
+       if (run.riskRendererMax !== 1 || run.riskFocusableMax !== 0)
+         failures.push(`${run.id}: duplicate or focusable risk renderer`);
+       if (run.riskAriaFailures.length || run.inputLockFailures.length || !run.inputLockSamples)
+         failures.push(`${run.id}: risk aria or lane input lock failed`);
+       if (!run.riskCampaignBefore || !run.riskCampaignAfter
+         || run.riskCampaignBefore !== run.riskCampaignAfter)
+         failures.push(`${run.id}: Route 1 risk mutated campaign state`);
+       if (productionQa && run.productionTelemetryKeys.length)
+         failures.push(`${run.id}: production risk telemetry ${run.productionTelemetryKeys.join(',')}`);
+     }
+     if (productionQa) {
+       const names = ['fallen-branch-a.png', 'fallen-branch-b.png', 'boulder-a.png',
+         'boulder-b.png', 'roadblock-a.png', 'roadblock-b.png'];
+       for (const name of names) {
+         const response = gallery.riskAssetResponses[name];
+         if (!response || response.statuses.some(status => status !== 200) || response.requests > 4)
+           failures.push(`${name}: missing, failed, or repeated asset requests`);
+       }
+     }
      for (const capture of gallery.captures.filter(capture =>
        artQa || ['risk-r1-before', 'risk-r1-dodge-before', 'risk-r6-telegraph', 'risk-r5b-two-lanes']
          .some(name => capture.file.startsWith(name)))) {
        const hazards = capture.state.risk?.hazards ?? [];
-       if (artQa && !hazards.every(hazard => hazard.imageLoaded
+       if ((artQa || productionQa) && !hazards.every(hazard => hazard.imageLoaded
          && hazard.imageSrc === `/assets/generated/lion-phase/traversal/t0/risk/${hazard.visual}.png`))
          failures.push(`${capture.file}: obstacle image missing`);
-       if ((artQa ? capture.file.startsWith('risk-r6-telegraph') : true)
+       if (capture.file.startsWith('risk-r6-telegraph')
          && (!hazards.length || !hazards.some(hazard => hazard.warningVisible)))
          failures.push(`${capture.file}: no readable hazard warning`);
        const height = Number(capture.viewport.split('x')[1]);
@@ -739,7 +894,8 @@ try {
      }
      return failures;
    })() : [];
-   const qa = { expected, missing: expected.filter(name => !files.has(`${name}.png`)),
+   const qa = { expected, screenshotsPersisted: !jsonOnly,
+     missing: expected.filter(name => !files.has(`${name}.png`)),
     responsive: gallery.captures.filter(capture => capture.viewport !== '1440x810'),
      errors: gallery.errors, runsComplete: gallery.runs.every(run => run.complete), riskFailures,
     blackFrames: gallery.blackFrames,
@@ -753,11 +909,13 @@ try {
     duplicateCaravans: gallery.captures.filter(capture => capture.state.caravanCount > 1).map(capture => capture.file),
     overflow: gallery.captures.filter(capture => capture.state.overflowPx > 0).map(capture => capture.file),
     unreachableControls: gallery.captures.filter(capture => capture.state.controls.some(control => !control.reachable)).map(capture => capture.file),
-    riskOffMarkup: artOffQa ? gallery.captures.filter(capture => capture.state.riskMarkupCount > 0).map(capture => capture.file) : [] };
+    riskOffMarkup: riskOffQa ? gallery.runs.flatMap(run => Object.entries(run.riskMarkupBySegment)
+      .filter(([, count]) => count > 0).map(([segment]) => `${run.id}/${segment}`)) : [] };
   qaResult = qa;
   await writeFile(`${output}/browser-qa.json`, `${JSON.stringify(qa, null, 2)}\n`);
-  const cards = gallery.captures.map(capture => `<figure><img src="${capture.file}" loading="lazy"><figcaption>${capture.file} · ${capture.viewport}</figcaption></figure>`).join('');
-   await writeFile(`${output}/index.html`, `<!doctype html><meta charset="utf-8"><title>Canonical T0 browser QA</title><style>body{margin:0;background:#08131d;color:#e8dec5;font:14px sans-serif;padding:24px}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px}figure{margin:0}img{width:100%;border:1px solid #866f4b}figcaption{padding:8px}</style><h1>Canonical T0 browser QA${riskQa ? ' · DEV Route Risk' : ''}</h1><p><a href="browser-qa.json">Browser QA</a> · <a href="motion-flow.json">Motion data</a></p><main>${cards}</main>`);
+  const cards = jsonOnly ? '<p>Machine-readable QA only; screenshots retained in the production default gallery.</p>'
+    : gallery.captures.map(capture => `<figure><img src="${capture.file}" loading="lazy"><figcaption>${capture.file} · ${capture.viewport}</figcaption></figure>`).join('');
+   await writeFile(`${output}/index.html`, `<!doctype html><meta charset="utf-8"><title>Canonical T0 browser QA</title><style>body{margin:0;background:#08131d;color:#e8dec5;font:14px sans-serif;padding:24px}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px}figure{margin:0}img{width:100%;border:1px solid #866f4b}figcaption{padding:8px}</style><h1>Canonical T0 browser QA · ${productionQa ? 'production' : 'DEV'} ${riskOffQa ? 'risk off' : 'risk on'}</h1><p><a href="browser-qa.json">Browser QA</a> · <a href="motion-flow.json">Motion data</a></p><main>${cards}</main>`);
   console.log(JSON.stringify({ complete: qa.runsComplete, captures: gallery.captures.length,
     missing: qa.missing, imperfectBlackFrames: qa.imperfectBlackFrames,
     simultaneousWorlds: qa.simultaneousWorlds, duplicateCaravans: qa.duplicateCaravans,

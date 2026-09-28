@@ -1,0 +1,4257 @@
+{
+  "task": "TRAVERSAL-T0-ROUTE-RISK-PRODUCTION-1",
+  "url": "http://127.0.0.1:5217/?qa=1&traversal=t0&traversalRisk=0",
+  "method": "Vite DEV; shared GameApp T0 QA entry; real scene mounting, requestAnimationFrame and lane controls",
+  "captures": [
+    {
+      "file": "01-route-1-early.png",
+      "run": "branch-a",
+      "viewport": "1440x810",
+      "state": {
+        "atMs": 4608,
+        "node": "lion-audience",
+        "campaignSignature": "{\"gold\":150,\"reputation\":30,\"reputationHistory\":[],\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90]],\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"flags\":{},\"run\":{\"id\":\"lion-1768626720\",\"seed\":1768626720,\"regionId\":\"lion-forest\",\"status\":\"active\",\"currentNodeId\":\"lion-audience\",\"checkpointNodeId\":\"lion-camp\",\"revealedNodeIds\":[\"lion-camp\",\"lion-audience\"],\"visitedNodeIds\":[\"lion-camp\",\"lion-audience\"],\"temporaryLoot\":{\"gold\":0,\"inventory\":{\"consumables\":{},\"accessories\":{},\"materials\":{},\"weapons\":{}}},\"graph\":{\"nodes\":[{\"id\":\"lion-camp\",\"type\":\"story\",\"depth\":0,\"links\":[\"lion-audience\"],\"contentId\":\"camp_departure\",\"label\":\"Camp du Lion\",\"icon\":\"◆\",\"x\":-9.375,\"z\":0,\"risk\":0,\"reward\":1,\"difficulty\":\"safe\",\"moralTone\":\"neutral\",\"hint\":\"La compagnie se rassemble avant de demander le premier Sceau.\"},{\"id\":\"lion-audience\",\"type\":\"story\",\"depth\":1,\"links\":[\"lion-opening-ambush\"],\"contentId\":\"lion_briefing\",\"label\":\"Audience d’Alaric\",\"icon\":\"♛\",\"x\":-8.125,\"z\":0,\"risk\":0,\"reward\":2,\"difficulty\":\"safe\",\"moralTone\":\"honour\",\"hint\":\"Recevoir la mission du Vieux Lion avant de prendre la route.\"},{\"id\":\"lion-opening-ambush\",\"type\":\"combat\",\"depth\":2,\"links\":[\"lion-nomad-crossroads\"],\"contentId\":\"forest_ambush\",\"label\":\"Piste des bêtes\",\"icon\":\"⚔\",\"x\":-6.875,\"z\":0,\"risk\":1,\"reward\":2,\"difficulty\":\"standard\",\"moralTone\":\"neutral\",\"hint\":\"Des créatures affamées rôdent sur la première piste.\"},{\"id\":\"lion-nomad-crossroads\",\"type\":\"event\",\"depth\":3,\"links\":[\"lion-refugees\"],\"contentId\":\"mystery_recruit\",\"label\":\"Croisement du rôdeur\",\"icon\":\"◇\",\"x\":-5.625,\"z\":0,\"risk\":1,\"reward\":2,\"difficulty\":\"safe\",\"moralTone\":\"pragmatic\",\"hint\":\"Un éclaireur nomade propose ses services à la compagnie.\"},{\"id\":\"lion-refugees\",\"type\":\"event\",\"depth\":4,\"links\":[\"lion-first-trial-event\",\"lion-first-trial-combat\"],\"contentId\":\"refugee_trial\",\"label\":\"Route des réfugiés\",\"icon\":\"◇\",\"x\":-4.375,\"z\":0,\"risk\":1,\"reward\":2,\"difficulty\":\"safe\",\"moralTone\":\"honour\",\"hint\":\"Des familles affamées mettent votre parole à l’épreuve.\"},{\"id\":\"lion-first-trial-event\",\"type\":\"event\",\"depth\":5,\"links\":[\"lion-first-refuge\"],\"contentId\":\"mystery_help\",\"label\":\"Rencontre sur la route\",\"icon\":\"◇\",\"x\":-3.125,\"z\":-1.0875,\"risk\":1,\"reward\":2,\"difficulty\":\"safe\",\"moralTone\":\"pragmatic\",\"hint\":\"Une rencontre peut renforcer la compagnie ou éprouver sa conduite.\"},{\"id\":\"lion-first-trial-combat\",\"type\":\"combat\",\"depth\":5,\"links\":[\"lion-first-refuge\"],\"contentId\":\"forest_patrol\",\"label\":\"Piste contestée\",\"icon\":\"⚔\",\"x\":-3.125,\"z\":1.0875,\"risk\":2,\"reward\":2,\"difficulty\":\"standard\",\"moralTone\":\"neutral\",\"hint\":\"Un affrontement direct permet de sécuriser le chemin du refuge.\"},{\"id\":\"lion-first-refuge\",\"type\":\"refuge\",\"depth\":6,\"links\":[\"lion-reserve-trail\"],\"contentId\":\"forest_refuge\",\"label\":\"Refuge du Lion\",\"icon\":\"⌂\",\"x\":-1.875,\"z\":0,\"risk\":0,\"reward\":1,\"difficulty\":\"safe\",\"moralTone\":\"neutral\",\"hint\":\"Sécuriser le butin, acheter, améliorer et préparer Bois-Clair.\"},{\"id\":\"lion-reserve-trail\",\"type\":\"event\",\"depth\":7,\"links\":[\"lion-valmir-road\"],\"contentId\":\"reserve_trail\",\"label\":\"Chemin des réserves\",\"icon\":\"◇\",\"x\":-0.625,\"z\":0,\"risk\":2,\"reward\":3,\"difficulty\":\"dangerous\",\"moralTone\":\"greed\",\"hint\":\"Un convoi emporte les réserves de Bois-Clair tandis que le siège continue plus loin.\"},{\"id\":\"lion-valmir-road\",\"type\":\"combat\",\"depth\":8,\"links\":[\"lion-second-trial-event\",\"lion-second-trial-combat\"],\"contentId\":\"road_to_valmir\",\"label\":\"Route de Bois-Clair\",\"icon\":\"⚔\",\"x\":0.625,\"z\":0,\"risk\":2,\"reward\":2,\"difficulty\":\"standard\",\"moralTone\":\"neutral\",\"hint\":\"Des créatures ont envahi la voie menant aux habitants menacés.\"},{\"id\":\"lion-second-trial-event\",\"type\":\"event\",\"depth\":9,\"links\":[\"lion-village-choice\"],\"contentId\":\"old_shrine_event\",\"label\":\"Vieux sanctuaire\",\"icon\":\"◇\",\"x\":1.875,\"z\":-1.0875,\"risk\":1,\"reward\":3,\"difficulty\":\"safe\",\"moralTone\":\"greed\",\"hint\":\"Un sanctuaire encore actif offre un abri sûr et un reliquaire plein de ressources.\"},{\"id\":\"lion-second-trial-combat\",\"type\":\"combat\",\"depth\":9,\"links\":[\"lion-village-choice\"],\"contentId\":\"serpent_checkpoint\",\"label\":\"Barrage renforcé\",\"icon\":\"⚔\",\"x\":1.875,\"z\":1.0875,\"risk\":3,\"reward\":3,\"difficulty\":\"dangerous\",\"moralTone\":\"neutral\",\"hint\":\"Après le refuge, la compagnie peut affronter une opposition plus dangereuse.\"},{\"id\":\"lion-village-choice\",\"type\":\"story\",\"depth\":10,\"links\":[\"lion-second-refuge\"],\"contentId\":\"village_choice\",\"label\":\"Bois-Clair assiégé\",\"icon\":\"⌂\",\"x\":3.125,\"z\":0,\"risk\":3,\"reward\":4,\"difficulty\":\"decisive\",\"moralTone\":\"pragmatic\",\"hint\":\"Le village est divisé entre les captifs au nord et ses réserves vitales au sud.\"},{\"id\":\"lion-second-refuge\",\"type\":\"refuge\",\"depth\":11,\"links\":[\"lion-lancer-recruit\"],\"contentId\":\"forest_refuge\",\"label\":\"Dernier feu du Lion\",\"icon\":\"⌂\",\"x\":4.375,\"z\":0,\"risk\":0,\"reward\":1,\"difficulty\":\"safe\",\"moralTone\":\"neutral\",\"hint\":\"Dernière halte avant de rassembler les conséquences de vos actes.\"},{\"id\":\"lion-lancer-recruit\",\"type\":\"event\",\"depth\":12,\"links\":[\"lion-witnesses\"],\"contentId\":\"mystery_lancer_recruit\",\"label\":\"Volontaire de Bois-Clair\",\"icon\":\"◇\",\"x\":5.625,\"z\":0,\"risk\":1,\"reward\":3,\"difficulty\":\"safe\",\"moralTone\":\"honour\",\"hint\":\"Un jeune lancier de Bois-Clair veut voir ce que votre clan fera du Sceau.\"},{\"id\":\"lion-witnesses\",\"type\":\"event\",\"depth\":13,\"links\":[\"lion-final-trial-event\",\"lion-final-trial-combat\"],\"contentId\":\"witnesses_on_road\",\"label\":\"Témoins de Bois-Clair\",\"icon\":\"◇\",\"x\":6.875,\"z\":0,\"risk\":1,\"reward\":2,\"difficulty\":\"safe\",\"moralTone\":\"honour\",\"hint\":\"Les survivants peuvent confirmer vos actes ou dénoncer votre abandon.\"},{\"id\":\"lion-final-trial-event\",\"type\":\"event\",\"depth\":14,\"links\":[\"lion-shadow-signs\"],\"contentId\":\"mystery_dragon_roost\",\"label\":\"Nid du jeune dragon\",\"icon\":\"◇\",\"x\":8.125,\"z\":-1.0875,\"risk\":2,\"reward\":3,\"difficulty\":\"dangerous\",\"moralTone\":\"greed\",\"hint\":\"Une dernière rencontre mesure ce que vaut encore votre parole.\"},{\"id\":\"lion-final-trial-combat\",\"type\":\"combat\",\"depth\":14,\"links\":[\"lion-shadow-signs\"],\"contentId\":\"ruins_guardians\",\"label\":\"Ruines infestées\",\"icon\":\"⚔\",\"x\":8.125,\"z\":1.0875,\"risk\":2,\"reward\":3,\"difficulty\":\"standard\",\"moralTone\":\"neutral\",\"hint\":\"Un dernier passage hostile mène aux traces laissées par les Ombres.\"},{\"id\":\"lion-shadow-signs\",\"type\":\"mystery\",\"depth\":15,\"links\":[\"lion-final-refuge\"],\"contentId\":\"shadow_signs\",\"label\":\"Signes des Ombres\",\"icon\":\"?\",\"x\":9.375,\"z\":0,\"risk\":2,\"reward\":4,\"difficulty\":\"dangerous\",\"moralTone\":\"mystery\",\"hint\":\"Une piste sombre relie les Serpents à une menace plus ancienne.\"},{\"id\":\"lion-final-refuge\",\"type\":\"story\",\"depth\":16,\"links\":[\"lion-final-judgement\"],\"contentId\":\"final_refuge\",\"label\":\"Refuge avant le Sceau\",\"icon\":\"⌂\",\"x\":10.625,\"z\":0,\"risk\":0,\"reward\":1,\"difficulty\":\"safe\",\"moralTone\":\"neutral\",\"hint\":\"Rassembler le dossier complet avant de comparaître devant Alaric.\"},{\"id\":\"lion-final-judgement\",\"type\":\"boss\",\"depth\":17,\"links\":[],\"contentId\":\"lion_finale_judgement\",\"label\":\"Jugement du Sceau\",\"icon\":\"♛\",\"x\":11.875,\"z\":0,\"risk\":3,\"reward\":3,\"difficulty\":\"decisive\",\"moralTone\":\"pragmatic\",\"hint\":\"Alaric rend son verdict. Le Sceau sera accordé par respect ou par force.\"}]}},\"currentNodeId\":\"lion-audience\",\"resolvedNodeIds\":[]}",
+        "visitedNodeIds": [
+          "lion-camp",
+          "lion-audience"
+        ],
+        "bypassedNodeIds": [],
+        "selectedBranch": null,
+        "sceneCount": 1,
+        "phase": "RUNNING",
+        "view": "route",
+        "lane": "0",
+        "presentation": null,
+        "segment": "route-1",
+        "routeWorld": "shared",
+        "routeProgress": 0.12499166666666667,
+        "sessionProgress": 0.024998333333333334,
+        "speed": 1.053704101757814,
+        "visualSpeed": 1.053704101757814,
+        "visualWorldDistance": 373.96639110826914,
+        "vehicleRight": 519.875,
+        "departure": null,
+        "transition": null,
+        "coverOpacity": 0,
+        "globalCoverPresent": false,
+        "globalCoverOpacity": 0,
+        "routeVisible": true,
+        "checkpointVisible": false,
+        "caravanCount": 1,
+        "riskMarkupCount": 0,
+        "legacyRouteSceneryVisible": false,
+        "genericImages": [
+          {
+            "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+            "loaded": true,
+            "props": 0
+          },
+          {
+            "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+            "loaded": true,
+            "props": 0
+          }
+        ],
+        "checkpointImages": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/refugee-halt.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png"
+        ],
+        "authoredPropsVisible": 0,
+        "entries": 0,
+        "exits": 0,
+        "branch": "main",
+        "eventPanel": false,
+        "optionalDecision": false,
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "mode": "narrative",
+        "travelView": false,
+        "destinationAgency": false,
+        "arrivalCallbacks": 0,
+        "overflowPx": 0,
+        "controls": [
+          {
+            "x": 14,
+            "y": 371,
+            "width": 30,
+            "height": 30,
+            "disabled": false,
+            "reachable": true
+          },
+          {
+            "x": 14,
+            "y": 409,
+            "width": 30,
+            "height": 30,
+            "disabled": false,
+            "reachable": true
+          }
+        ],
+        "risk": {
+          "enabled": false,
+          "diagnosticTelemetry": [
+            "riskEnabled"
+          ],
+          "rendererCount": 0,
+          "ariaHidden": null,
+          "focusableCount": 0,
+          "all": [],
+          "active": [],
+          "impact": false,
+          "hazards": [],
+          "vehicleGroundY": 526.5,
+          "vehicleWidth": 319.75,
+          "vehicleCenterX": 360
+        }
+      }
+    }
+  ],
+  "blackFrames": [],
+  "runs": [
+    {
+      "id": "branch-a",
+      "branch": "lion-first-trial-event",
+      "helpRefugees": true,
+      "startedAt": 1790622506437,
+      "routes": {
+        "route-1": {
+          "startMs": 2646.099999964237,
+          "speed": {
+            "0.1": 1.0359394842154281,
+            "0.5": 1.6353589533648045,
+            "0.9": 2.2159057763490626
+          },
+          "lastProgress": 1,
+          "completedAtMs": 15118.199999988079,
+          "visibleAtMs": 3123.899999976158,
+          "motionStartMs": 3220.2999999523163,
+          "readyAtMs": 17547.599999964237,
+          "durationMs": 11898,
+          "routeToCheckpointDeadMs": 2429,
+          "checkpointToRouteDeadMs": 0
+        },
+        "route-2": {
+          "startMs": 24370.899999976158,
+          "speed": {
+            "0.1": 1.0419478376083704,
+            "0.5": 1.6839502668526025,
+            "0.9": 2.316887777129773
+          },
+          "lastProgress": 1,
+          "completedAtMs": 39336.799999952316,
+          "motionStartMs": 24370.899999976158,
+          "visibleAtMs": 24370.899999976158,
+          "readyAtMs": 41786.299999952316,
+          "durationMs": 14966,
+          "routeToCheckpointDeadMs": 2450,
+          "checkpointToRouteDeadMs": 0
+        },
+        "route-3": {
+          "startMs": 45910.69999998808,
+          "speed": {
+            "0.1": 1.0394343184751706,
+            "0.5": 1.683950266852603,
+            "0.9": 2.3153493123321756
+          },
+          "lastProgress": 1,
+          "completedAtMs": 60894.799999952316,
+          "visibleAtMs": 45910.69999998808,
+          "motionStartMs": 45944.299999952316,
+          "readyAtMs": 63334.799999952316,
+          "durationMs": 14951,
+          "routeToCheckpointDeadMs": 2440,
+          "checkpointToRouteDeadMs": 0
+        },
+        "route-4": {
+          "startMs": 67870.69999998808,
+          "speed": {
+            "0.1": 1.0934988177291494,
+            "0.5": 1.761619525628562,
+            "0.9": 2.41181446951095
+          },
+          "lastProgress": 1,
+          "completedAtMs": 79868.29999995232,
+          "motionStartMs": 67870.69999998808,
+          "visibleAtMs": 67870.69999998808,
+          "readyAtMs": 82263.59999996424,
+          "durationMs": 11998,
+          "routeToCheckpointDeadMs": 2395,
+          "checkpointToRouteDeadMs": 487
+        },
+        "route-5a": {
+          "startMs": 83290.09999996424,
+          "speed": {
+            "0.1": 1.094144869495686,
+            "0.5": 1.784627748447603,
+            "0.9": 2.462787608975161
+          },
+          "lastProgress": 1,
+          "completedAtMs": 98781.69999998808,
+          "visibleAtMs": 83776.69999998808,
+          "motionStartMs": 83859.5,
+          "readyAtMs": 101208.09999996424,
+          "durationMs": 14922,
+          "routeToCheckpointDeadMs": 2426,
+          "checkpointToRouteDeadMs": 0
+        },
+        "route-6": {
+          "startMs": 103369,
+          "speed": {
+            "0.1": 1.242670698565453,
+            "0.5": 1.959326036353955,
+            "0.9": 2.660633688189
+          },
+          "lastProgress": 1,
+          "completedAtMs": 123363.59999996424,
+          "visibleAtMs": 103369,
+          "motionStartMs": 103392.29999995232,
+          "durationMs": 19971,
+          "routeToCheckpointDeadMs": null,
+          "checkpointToRouteDeadMs": null
+        }
+      },
+      "transitions": [
+        {
+          "kind": "entry",
+          "durationMs": 478
+        },
+        {
+          "kind": "focus",
+          "durationMs": 965
+        },
+        {
+          "kind": "event",
+          "durationMs": 975
+        },
+        {
+          "kind": "focus",
+          "durationMs": 987
+        },
+        {
+          "kind": "event",
+          "durationMs": 954
+        },
+        {
+          "kind": "focus",
+          "durationMs": 996
+        },
+        {
+          "kind": "event",
+          "durationMs": 945
+        },
+        {
+          "kind": "focus",
+          "durationMs": 965
+        },
+        {
+          "kind": "fork",
+          "durationMs": 980
+        },
+        {
+          "kind": "focus",
+          "durationMs": 955
+        },
+        {
+          "kind": "event",
+          "durationMs": 983
+        }
+      ],
+      "globalTransitions": [
+        {
+          "atMs": 19130.899999976158,
+          "segment": "route-1",
+          "entries": 1,
+          "exits": 0,
+          "durationMs": 2411
+        },
+        {
+          "atMs": 23970.19999998808,
+          "segment": "route-1",
+          "entries": 1,
+          "exits": 0,
+          "durationMs": 885
+        },
+        {
+          "atMs": 45497.59999996424,
+          "segment": "route-2",
+          "entries": 2,
+          "exits": 1,
+          "durationMs": 902
+        },
+        {
+          "atMs": 67437.59999996424,
+          "segment": "route-3",
+          "entries": 3,
+          "exits": 2,
+          "durationMs": 916
+        },
+        {
+          "atMs": 102954.89999997616,
+          "segment": "route-5a",
+          "entries": 5,
+          "exits": 4,
+          "durationMs": 894
+        }
+      ],
+      "checkpointEvents": [
+        {
+          "kind": "entry",
+          "segment": "route-1",
+          "atMs": 15887
+        },
+        {
+          "kind": "exit",
+          "segment": "route-2",
+          "atMs": 24370.899999976158
+        },
+        {
+          "kind": "entry",
+          "segment": "route-2",
+          "atMs": 40119.09999996424
+        },
+        {
+          "kind": "exit",
+          "segment": "route-3",
+          "atMs": 45910.69999998808
+        },
+        {
+          "kind": "entry",
+          "segment": "route-3",
+          "atMs": 61664.39999997616
+        },
+        {
+          "kind": "exit",
+          "segment": "route-4",
+          "atMs": 67870.69999998808
+        },
+        {
+          "kind": "entry",
+          "segment": "route-4",
+          "atMs": 80611.39999997616
+        },
+        {
+          "kind": "exit",
+          "segment": "route-5a",
+          "atMs": 83290.09999996424
+        },
+        {
+          "kind": "entry",
+          "segment": "route-5a",
+          "atMs": 99558.39999997616
+        },
+        {
+          "kind": "exit",
+          "segment": "route-6",
+          "atMs": 103369
+        }
+      ],
+      "progressionErrors": [],
+      "laneMoves": [
+        {
+          "lane": 1,
+          "progress": 0.30275833333333335,
+          "atMs": 6736.399999976158
+        },
+        {
+          "lane": 0,
+          "progress": 0.5513583333333334,
+          "atMs": 9718.199999988079
+        }
+      ],
+      "routeStates": {
+        "route-1": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.055549999999999995
+        },
+        "route-2": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.05332666666666652
+        },
+        "route-3": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.053326666666666765
+        },
+        "route-4": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.051391666666666426
+        },
+        "route-5a": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.0522200000000002
+        },
+        "route-6": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.054159999999999854
+        }
+      },
+      "checkpointStates": {
+        "route-1": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png"
+        ],
+        "route-2": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/ambush-cleared.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png"
+        ],
+        "route-3": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/refugee-halt.png"
+        ],
+        "route-4": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/refugee-halt.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png"
+        ],
+        "route-5a": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/damaged-caravan.png"
+        ]
+      },
+      "branchSelectionCount": 1,
+      "bypassCount": 0,
+      "maxSceneCount": 1,
+      "maxEntries": 5,
+      "maxExits": 5,
+      "arrivalCallbacks": 1,
+      "complete": true,
+      "riskSegments": {},
+      "riskEvents": [],
+      "riskVisibility": {},
+      "riskCheckpointImpactLeaks": [],
+      "riskCheckpointHazards": [],
+      "riskMarkupBySegment": {
+        "route-1": 0,
+        "route-2": 0,
+        "route-3": 0,
+        "route-4": 0,
+        "route-5a": 0,
+        "route-6": 0
+      },
+      "riskRendererMax": 0,
+      "riskFocusableMax": 0,
+      "riskAriaFailures": [],
+      "inputLockFailures": [],
+      "inputLockSamples": 889,
+      "productionTelemetryKeys": [],
+      "riskCampaignBefore": null,
+      "riskCampaignAfter": null,
+      "lastState": {
+        "atMs": 126908.59999996424,
+        "node": "lion-first-trial-event",
+        "campaignSignature": "{\"gold\":110,\"reputation\":50,\"reputationHistory\":[{\"delta\":1,\"source\":\"combat:forest_ambush\",\"value\":31},{\"delta\":3,\"source\":\"narrative\",\"value\":34},{\"delta\":8,\"source\":\"narrative\",\"value\":42},{\"delta\":8,\"source\":\"narrative\",\"value\":50}],\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true,\"helpedRefugees\":true,\"ate:ate_village_fear\":true,\"helpedMerchant\":true},\"run\":{\"id\":\"lion-1768626720\",\"seed\":1768626720,\"regionId\":\"lion-forest\",\"status\":\"active\",\"currentNodeId\":\"lion-first-trial-event\",\"checkpointNodeId\":\"lion-camp\",\"revealedNodeIds\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\",\"lion-refugees\",\"lion-first-trial-event\",\"lion-first-trial-combat\",\"lion-first-refuge\"],\"visitedNodeIds\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\",\"lion-refugees\",\"lion-first-trial-event\"],\"temporaryLoot\":{\"gold\":0,\"inventory\":{\"consumables\":{\"potion\":2},\"accessories\":{},\"materials\":{\"red_gem\":1,\"iron_ore\":1},\"weapons\":{}}},\"graph\":{\"nodes\":[{\"id\":\"lion-camp\",\"type\":\"story\",\"depth\":0,\"links\":[\"lion-audience\"],\"contentId\":\"camp_departure\",\"label\":\"Camp du Lion\",\"icon\":\"◆\",\"x\":-9.375,\"z\":0,\"risk\":0,\"reward\":1,\"difficulty\":\"safe\",\"moralTone\":\"neutral\",\"hint\":\"La compagnie se rassemble avant de demander le premier Sceau.\"},{\"id\":\"lion-audience\",\"type\":\"story\",\"depth\":1,\"links\":[\"lion-opening-ambush\"],\"contentId\":\"lion_briefing\",\"label\":\"Audience d’Alaric\",\"icon\":\"♛\",\"x\":-8.125,\"z\":0,\"risk\":0,\"reward\":2,\"difficulty\":\"safe\",\"moralTone\":\"honour\",\"hint\":\"Recevoir la mission du Vieux Lion avant de prendre la route.\"},{\"id\":\"lion-opening-ambush\",\"type\":\"combat\",\"depth\":2,\"links\":[\"lion-nomad-crossroads\"],\"contentId\":\"forest_ambush\",\"label\":\"Piste des bêtes\",\"icon\":\"⚔\",\"x\":-6.875,\"z\":0,\"risk\":1,\"reward\":2,\"difficulty\":\"standard\",\"moralTone\":\"neutral\",\"hint\":\"Des créatures affamées rôdent sur la première piste.\"},{\"id\":\"lion-nomad-crossroads\",\"type\":\"event\",\"depth\":3,\"links\":[\"lion-refugees\"],\"contentId\":\"mystery_recruit\",\"label\":\"Croisement du rôdeur\",\"icon\":\"◇\",\"x\":-5.625,\"z\":0,\"risk\":1,\"reward\":2,\"difficulty\":\"safe\",\"moralTone\":\"pragmatic\",\"hint\":\"Un éclaireur nomade propose ses services à la compagnie.\"},{\"id\":\"lion-refugees\",\"type\":\"event\",\"depth\":4,\"links\":[\"lion-first-trial-event\",\"lion-first-trial-combat\"],\"contentId\":\"refugee_trial\",\"label\":\"Route des réfugiés\",\"icon\":\"◇\",\"x\":-4.375,\"z\":0,\"risk\":1,\"reward\":2,\"difficulty\":\"safe\",\"moralTone\":\"honour\",\"hint\":\"Des familles affamées mettent votre parole à l’épreuve.\"},{\"id\":\"lion-first-trial-event\",\"type\":\"event\",\"depth\":5,\"links\":[\"lion-first-refuge\"],\"contentId\":\"mystery_help\",\"label\":\"Marchand blessé\",\"icon\":\"◇\",\"x\":-3.125,\"z\":-1.0875,\"risk\":1,\"reward\":2,\"difficulty\":\"safe\",\"moralTone\":\"honour\",\"hint\":\"Un voyageur blessé demande des ressources alors que Bois-Clair reste devant vous.\"},{\"id\":\"lion-first-trial-combat\",\"type\":\"combat\",\"depth\":5,\"links\":[\"lion-first-refuge\"],\"contentId\":\"spider_nest\",\"label\":\"Nid venimeux\",\"icon\":\"⚔\",\"x\":-3.125,\"z\":1.0875,\"risk\":2,\"reward\":2,\"difficulty\":\"standard\",\"moralTone\":\"neutral\",\"hint\":\"Des créatures venimeuses ont envahi le sentier du refuge.\"},{\"id\":\"lion-first-refuge\",\"type\":\"refuge\",\"depth\":6,\"links\":[\"lion-reserve-trail\"],\"contentId\":\"forest_refuge\",\"label\":\"Refuge du Lion\",\"icon\":\"⌂\",\"x\":-1.875,\"z\":0,\"risk\":0,\"reward\":1,\"difficulty\":\"safe\",\"moralTone\":\"neutral\",\"hint\":\"Sécuriser le butin, acheter, améliorer et préparer Bois-Clair.\"},{\"id\":\"lion-reserve-trail\",\"type\":\"event\",\"depth\":7,\"links\":[\"lion-valmir-road\"],\"contentId\":\"reserve_trail\",\"label\":\"Chemin des réserves\",\"icon\":\"◇\",\"x\":-0.625,\"z\":0,\"risk\":2,\"reward\":3,\"difficulty\":\"dangerous\",\"moralTone\":\"greed\",\"hint\":\"Un convoi emporte les réserves de Bois-Clair tandis que le siège continue plus loin.\"},{\"id\":\"lion-valmir-road\",\"type\":\"combat\",\"depth\":8,\"links\":[\"lion-second-trial-event\",\"lion-second-trial-combat\"],\"contentId\":\"road_to_valmir\",\"label\":\"Route de Bois-Clair\",\"icon\":\"⚔\",\"x\":0.625,\"z\":0,\"risk\":2,\"reward\":2,\"difficulty\":\"standard\",\"moralTone\":\"neutral\",\"hint\":\"Des créatures ont envahi la voie menant aux habitants menacés.\"},{\"id\":\"lion-second-trial-event\",\"type\":\"event\",\"depth\":9,\"links\":[\"lion-village-choice\"],\"contentId\":\"old_shrine_event\",\"label\":\"Vieux sanctuaire\",\"icon\":\"◇\",\"x\":1.875,\"z\":-1.0875,\"risk\":1,\"reward\":3,\"difficulty\":\"safe\",\"moralTone\":\"greed\",\"hint\":\"Un sanctuaire encore actif offre un abri sûr et un reliquaire plein de ressources.\"},{\"id\":\"lion-second-trial-combat\",\"type\":\"combat\",\"depth\":9,\"links\":[\"lion-village-choice\"],\"contentId\":\"serpent_checkpoint\",\"label\":\"Barrage renforcé\",\"icon\":\"⚔\",\"x\":1.875,\"z\":1.0875,\"risk\":3,\"reward\":3,\"difficulty\":\"dangerous\",\"moralTone\":\"neutral\",\"hint\":\"Après le refuge, la compagnie peut affronter une opposition plus dangereuse.\"},{\"id\":\"lion-village-choice\",\"type\":\"story\",\"depth\":10,\"links\":[\"lion-second-refuge\"],\"contentId\":\"village_choice\",\"label\":\"Bois-Clair assiégé\",\"icon\":\"⌂\",\"x\":3.125,\"z\":0,\"risk\":3,\"reward\":4,\"difficulty\":\"decisive\",\"moralTone\":\"pragmatic\",\"hint\":\"Le village est divisé entre les captifs au nord et ses réserves vitales au sud.\"},{\"id\":\"lion-second-refuge\",\"type\":\"refuge\",\"depth\":11,\"links\":[\"lion-lancer-recruit\"],\"contentId\":\"forest_refuge\",\"label\":\"Dernier feu du Lion\",\"icon\":\"⌂\",\"x\":4.375,\"z\":0,\"risk\":0,\"reward\":1,\"difficulty\":\"safe\",\"moralTone\":\"neutral\",\"hint\":\"Dernière halte avant de rassembler les conséquences de vos actes.\"},{\"id\":\"lion-lancer-recruit\",\"type\":\"event\",\"depth\":12,\"links\":[\"lion-witnesses\"],\"contentId\":\"mystery_lancer_recruit\",\"label\":\"Volontaire de Bois-Clair\",\"icon\":\"◇\",\"x\":5.625,\"z\":0,\"risk\":1,\"reward\":3,\"difficulty\":\"safe\",\"moralTone\":\"honour\",\"hint\":\"Un jeune lancier de Bois-Clair veut voir ce que votre clan fera du Sceau.\"},{\"id\":\"lion-witnesses\",\"type\":\"event\",\"depth\":13,\"links\":[\"lion-final-trial-event\",\"lion-final-trial-combat\"],\"contentId\":\"witnesses_on_road\",\"label\":\"Témoins de Bois-Clair\",\"icon\":\"◇\",\"x\":6.875,\"z\":0,\"risk\":1,\"reward\":2,\"difficulty\":\"safe\",\"moralTone\":\"honour\",\"hint\":\"Les survivants peuvent confirmer vos actes ou dénoncer votre abandon.\"},{\"id\":\"lion-final-trial-event\",\"type\":\"event\",\"depth\":14,\"links\":[\"lion-shadow-signs\"],\"contentId\":\"mystery_dragon_roost\",\"label\":\"Nid du jeune dragon\",\"icon\":\"◇\",\"x\":8.125,\"z\":-1.0875,\"risk\":2,\"reward\":3,\"difficulty\":\"dangerous\",\"moralTone\":\"greed\",\"hint\":\"Une dernière rencontre mesure ce que vaut encore votre parole.\"},{\"id\":\"lion-final-trial-combat\",\"type\":\"combat\",\"depth\":14,\"links\":[\"lion-shadow-signs\"],\"contentId\":\"ruins_guardians\",\"label\":\"Ruines infestées\",\"icon\":\"⚔\",\"x\":8.125,\"z\":1.0875,\"risk\":2,\"reward\":3,\"difficulty\":\"standard\",\"moralTone\":\"neutral\",\"hint\":\"Un dernier passage hostile mène aux traces laissées par les Ombres.\"},{\"id\":\"lion-shadow-signs\",\"type\":\"mystery\",\"depth\":15,\"links\":[\"lion-final-refuge\"],\"contentId\":\"shadow_signs\",\"label\":\"Signes des Ombres\",\"icon\":\"?\",\"x\":9.375,\"z\":0,\"risk\":2,\"reward\":4,\"difficulty\":\"dangerous\",\"moralTone\":\"mystery\",\"hint\":\"Une piste sombre relie les Serpents à une menace plus ancienne.\"},{\"id\":\"lion-final-refuge\",\"type\":\"story\",\"depth\":16,\"links\":[\"lion-final-judgement\"],\"contentId\":\"final_refuge\",\"label\":\"Refuge avant le Sceau\",\"icon\":\"⌂\",\"x\":10.625,\"z\":0,\"risk\":0,\"reward\":1,\"difficulty\":\"safe\",\"moralTone\":\"neutral\",\"hint\":\"Rassembler le dossier complet avant de comparaître devant Alaric.\"},{\"id\":\"lion-final-judgement\",\"type\":\"boss\",\"depth\":17,\"links\":[],\"contentId\":\"lion_finale_judgement\",\"label\":\"Jugement du Sceau\",\"icon\":\"♛\",\"x\":11.875,\"z\":0,\"risk\":3,\"reward\":3,\"difficulty\":\"decisive\",\"moralTone\":\"pragmatic\",\"hint\":\"Alaric rend son verdict. Le Sceau sera accordé par respect ou par force.\"}]},\"traversalBranches\":{\"T0\":\"lion-first-trial-event\"}},\"currentNodeId\":\"lion-first-trial-event\",\"resolvedNodeIds\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\",\"lion-refugees\",\"lion-first-trial-event\"]}",
+        "visitedNodeIds": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads",
+          "lion-refugees",
+          "lion-first-trial-event"
+        ],
+        "bypassedNodeIds": [],
+        "selectedBranch": "lion-first-trial-event",
+        "sceneCount": 0,
+        "phase": null,
+        "view": null,
+        "lane": null,
+        "presentation": null,
+        "segment": null,
+        "routeWorld": null,
+        "routeProgress": 0,
+        "sessionProgress": 0,
+        "speed": 0,
+        "visualSpeed": 0,
+        "visualWorldDistance": 0,
+        "vehicleRight": null,
+        "departure": null,
+        "transition": null,
+        "coverOpacity": 0,
+        "globalCoverPresent": true,
+        "globalCoverOpacity": 1,
+        "routeVisible": false,
+        "checkpointVisible": false,
+        "caravanCount": 0,
+        "riskMarkupCount": 0,
+        "legacyRouteSceneryVisible": false,
+        "genericImages": [],
+        "checkpointImages": [],
+        "authoredPropsVisible": 0,
+        "entries": 0,
+        "exits": 0,
+        "branch": null,
+        "eventPanel": false,
+        "optionalDecision": false,
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "mode": "narrative",
+        "travelView": false,
+        "destinationAgency": true,
+        "arrivalCallbacks": 1,
+        "overflowPx": 0,
+        "controls": [],
+        "risk": null
+      },
+      "visitedNodeIds": [
+        "lion-camp",
+        "lion-audience",
+        "lion-opening-ambush",
+        "lion-nomad-crossroads",
+        "lion-refugees",
+        "lion-first-trial-event"
+      ],
+      "bypassedNodeIds": [],
+      "selectedBranch": "lion-first-trial-event",
+      "frameIssues": [],
+      "coastSamples": [
+        {
+          "t": 123340.69999998808,
+          "progress": 1,
+          "worldDistance": 44548.56032000978,
+          "speed": 2.7,
+          "vehicleRight": 519.875,
+          "viewport": 1440
+        },
+        {
+          "t": 123357,
+          "progress": 1,
+          "worldDistance": 44561.10745964943,
+          "speed": 2.698941325152281,
+          "vehicleRight": 534.0625,
+          "viewport": 1440
+        },
+        {
+          "t": 123372.39999997616,
+          "progress": 1,
+          "worldDistance": 44573.72055119039,
+          "speed": 2.695879693224213,
+          "vehicleRight": 548.34375,
+          "viewport": 1440
+        },
+        {
+          "t": 123388.39999997616,
+          "progress": 1,
+          "worldDistance": 44586.239799540715,
+          "speed": 2.691060216552212,
+          "vehicleRight": 562.515625,
+          "viewport": 1440
+        },
+        {
+          "t": 123405,
+          "progress": 1,
+          "worldDistance": 44598.808174842874,
+          "speed": 2.6846349511814385,
+          "vehicleRight": 576.75,
+          "viewport": 1440
+        },
+        {
+          "t": 123423.29999995232,
+          "progress": 1,
+          "worldDistance": 44611.343300819455,
+          "speed": 2.676838948128006,
+          "vehicleRight": 590.9375,
+          "viewport": 1440
+        },
+        {
+          "t": 123439.89999997616,
+          "progress": 1,
+          "worldDistance": 44623.83926162712,
+          "speed": 2.6678833819241983,
+          "vehicleRight": 605.078125,
+          "viewport": 1440
+        },
+        {
+          "t": 123456.29999995232,
+          "progress": 1,
+          "worldDistance": 44636.291128874625,
+          "speed": 2.6579794271023225,
+          "vehicleRight": 619.171875,
+          "viewport": 1440
+        },
+        {
+          "t": 123471.59999996424,
+          "progress": 1,
+          "worldDistance": 44648.546715274846,
+          "speed": 2.6474692310024976,
+          "vehicleRight": 633.046875,
+          "viewport": 1440
+        },
+        {
+          "t": 123490.79999995232,
+          "progress": 1,
+          "worldDistance": 44660.97399719188,
+          "speed": 2.636239067055394,
+          "vehicleRight": 647.109375,
+          "viewport": 1440
+        },
+        {
+          "t": 123506.69999998808,
+          "progress": 1,
+          "worldDistance": 44673.20071594257,
+          "speed": 2.624827521024006,
+          "vehicleRight": 660.953125,
+          "viewport": 1440
+        },
+        {
+          "t": 123522.09999996424,
+          "progress": 1,
+          "worldDistance": 44685.37414992063,
+          "speed": 2.6133110237488535,
+          "vehicleRight": 674.734375,
+          "viewport": 1440
+        },
+        {
+          "t": 123539.39999997616,
+          "progress": 1,
+          "worldDistance": 44697.56714717988,
+          "speed": 2.6018289502665,
+          "vehicleRight": 688.53125,
+          "viewport": 1440
+        },
+        {
+          "t": 123555.29999995232,
+          "progress": 1,
+          "worldDistance": 44709.70719041794,
+          "speed": 2.5906617418053473,
+          "vehicleRight": 702.265625,
+          "viewport": 1440
+        },
+        {
+          "t": 123573.89999997616,
+          "progress": 1,
+          "worldDistance": 44721.79624566971,
+          "speed": 2.580020572897687,
+          "vehicleRight": 715.953125,
+          "viewport": 1440
+        },
+        {
+          "t": 123590.09999996424,
+          "progress": 1,
+          "worldDistance": 44733.83726642222,
+          "speed": 2.570116618075802,
+          "vehicleRight": 729.59375,
+          "viewport": 1440
+        },
+        {
+          "t": 123606.29999995232,
+          "progress": 1,
+          "worldDistance": 44745.76247282408,
+          "speed": 2.561211437805346,
+          "vehicleRight": 743.078125,
+          "viewport": 1440
+        },
+        {
+          "t": 123622.69999998808,
+          "progress": 1,
+          "worldDistance": 44757.64894769244,
+          "speed": 2.55345072585964,
+          "vehicleRight": 756.53125,
+          "viewport": 1440
+        },
+        {
+          "t": 123639.39999997616,
+          "progress": 1,
+          "worldDistance": 44769.57381971443,
+          "speed": 2.547007795094486,
+          "vehicleRight": 770.03125,
+          "viewport": 1440
+        },
+        {
+          "t": 123656.29999995232,
+          "progress": 1,
+          "worldDistance": 44781.472257190035,
+          "speed": 2.5421442475079674,
+          "vehicleRight": 783.5,
+          "viewport": 1440
+        },
+        {
+          "t": 123673.5,
+          "progress": 1,
+          "worldDistance": 44793.35213904105,
+          "speed": 2.539071257632375,
+          "vehicleRight": 796.953125,
+          "viewport": 1440
+        },
+        {
+          "t": 123689.29999995232,
+          "progress": 1,
+          "worldDistance": 44805.22233164141,
+          "speed": 2.538,
+          "vehicleRight": 810.390625,
+          "viewport": 1440
+        },
+        {
+          "t": 123705.89999997616,
+          "progress": 1,
+          "worldDistance": 44817.0172794218,
+          "speed": 2.537278735110625,
+          "vehicleRight": 823.734375,
+          "viewport": 1440
+        },
+        {
+          "t": 123721.59999996424,
+          "progress": 1,
+          "worldDistance": 44828.87653987251,
+          "speed": 2.5351166672464527,
+          "vehicleRight": 837.15625,
+          "viewport": 1440
+        },
+        {
+          "t": 123739.39999997616,
+          "progress": 1,
+          "worldDistance": 44840.65151547683,
+          "speed": 2.531568188310794,
+          "vehicleRight": 850.484375,
+          "viewport": 1440
+        },
+        {
+          "t": 123755.29999995232,
+          "progress": 1,
+          "worldDistance": 44852.47755776267,
+          "speed": 2.5266192735563835,
+          "vehicleRight": 863.875,
+          "viewport": 1440
+        },
+        {
+          "t": 123772.29999995232,
+          "progress": 1,
+          "worldDistance": 44864.206732226674,
+          "speed": 2.5203576902983866,
+          "vehicleRight": 877.15625,
+          "viewport": 1440
+        },
+        {
+          "t": 123789.19999998808,
+          "progress": 1,
+          "worldDistance": 44875.97410697147,
+          "speed": 2.512736725785658,
+          "vehicleRight": 890.46875,
+          "viewport": 1440
+        },
+        {
+          "t": 123805.39999997616,
+          "progress": 1,
+          "worldDistance": 44887.70281413147,
+          "speed": 2.5038189457289883,
+          "vehicleRight": 903.75,
+          "viewport": 1440
+        },
+        {
+          "t": 123822.5,
+          "progress": 1,
+          "worldDistance": 44899.38685729971,
+          "speed": 2.493633222038235,
+          "vehicleRight": 916.96875,
+          "viewport": 1440
+        },
+        {
+          "t": 123839.39999997616,
+          "progress": 1,
+          "worldDistance": 44910.950880717784,
+          "speed": 2.482280469041104,
+          "vehicleRight": 930.0625,
+          "viewport": 1440
+        },
+        {
+          "t": 123856,
+          "progress": 1,
+          "worldDistance": 44922.528500314074,
+          "speed": 2.469652634592007,
+          "vehicleRight": 943.171875,
+          "viewport": 1440
+        },
+        {
+          "t": 123872,
+          "progress": 1,
+          "worldDistance": 44933.97555307662,
+          "speed": 2.4559294491162182,
+          "vehicleRight": 956.125,
+          "viewport": 1440
+        },
+        {
+          "t": 123888.89999997616,
+          "progress": 1,
+          "worldDistance": 44945.424514044484,
+          "speed": 2.440974301040698,
+          "vehicleRight": 969.09375,
+          "viewport": 1440
+        },
+        {
+          "t": 123906.59999996424,
+          "progress": 1,
+          "worldDistance": 44956.800916991946,
+          "speed": 2.424895223109004,
+          "vehicleRight": 981.96875,
+          "viewport": 1440
+        },
+        {
+          "t": 123922.59999996424,
+          "progress": 1,
+          "worldDistance": 44968.03216373648,
+          "speed": 2.4078271282401755,
+          "vehicleRight": 994.671875,
+          "viewport": 1440
+        },
+        {
+          "t": 123938.69999998808,
+          "progress": 1,
+          "worldDistance": 44979.24853224121,
+          "speed": 2.3895931047480063,
+          "vehicleRight": 1007.375,
+          "viewport": 1440
+        },
+        {
+          "t": 123955.09999996424,
+          "progress": 1,
+          "worldDistance": 44990.37721280745,
+          "speed": 2.370321594243547,
+          "vehicleRight": 1019.96875,
+          "viewport": 1440
+        },
+        {
+          "t": 123972.89999997616,
+          "progress": 1,
+          "worldDistance": 45001.34762563049,
+          "speed": 2.350165851125582,
+          "vehicleRight": 1032.390625,
+          "viewport": 1440
+        },
+        {
+          "t": 123989.29999995232,
+          "progress": 1,
+          "worldDistance": 45012.287309092615,
+          "speed": 2.3289117631265945,
+          "vehicleRight": 1044.765625,
+          "viewport": 1440
+        },
+        {
+          "t": 124006.09999996424,
+          "progress": 1,
+          "worldDistance": 45023.06080169591,
+          "speed": 2.306842369097598,
+          "vehicleRight": 1056.96875,
+          "viewport": 1440
+        },
+        {
+          "t": 124022.19999998808,
+          "progress": 1,
+          "worldDistance": 45033.857473524025,
+          "speed": 2.2835793265332573,
+          "vehicleRight": 1069.1875,
+          "viewport": 1440
+        },
+        {
+          "t": 124039.19999998808,
+          "progress": 1,
+          "worldDistance": 45044.41606666873,
+          "speed": 2.2597051591400295,
+          "vehicleRight": 1081.140625,
+          "viewport": 1440
+        },
+        {
+          "t": 124055.59999996424,
+          "progress": 1,
+          "worldDistance": 45054.92427868632,
+          "speed": 2.234825216219532,
+          "vehicleRight": 1093.03125,
+          "viewport": 1440
+        },
+        {
+          "t": 124071.79999995232,
+          "progress": 1,
+          "worldDistance": 45065.314198155436,
+          "speed": 2.209109543884368,
+          "vehicleRight": 1104.796875,
+          "viewport": 1440
+        },
+        {
+          "t": 124089.59999996424,
+          "progress": 1,
+          "worldDistance": 45075.52087549587,
+          "speed": 2.1827481757518767,
+          "vehicleRight": 1116.34375,
+          "viewport": 1440
+        },
+        {
+          "t": 124106.5,
+          "progress": 1,
+          "worldDistance": 45085.6635880515,
+          "speed": 2.1554522329881065,
+          "vehicleRight": 1127.828125,
+          "viewport": 1440
+        },
+        {
+          "t": 124122.89999997616,
+          "progress": 1,
+          "worldDistance": 45095.67691294677,
+          "speed": 2.1274070036535537,
+          "vehicleRight": 1139.15625,
+          "viewport": 1440
+        },
+        {
+          "t": 124138.39999997616,
+          "progress": 1,
+          "worldDistance": 45105.498654500596,
+          "speed": 2.098815695925702,
+          "vehicleRight": 1150.28125,
+          "viewport": 1440
+        },
+        {
+          "t": 124156.09999996424,
+          "progress": 1,
+          "worldDistance": 45115.243855272834,
+          "speed": 2.0693625642284905,
+          "vehicleRight": 1161.3125,
+          "viewport": 1440
+        },
+        {
+          "t": 124172.09999996424,
+          "progress": 1,
+          "worldDistance": 45124.792686495224,
+          "speed": 2.0394288395530213,
+          "vehicleRight": 1172.109375,
+          "viewport": 1440
+        },
+        {
+          "t": 124189.89999997616,
+          "progress": 1,
+          "worldDistance": 45134.25717104704,
+          "speed": 2.008682602625072,
+          "vehicleRight": 1182.828125,
+          "viewport": 1440
+        },
+        {
+          "t": 124206,
+          "progress": 1,
+          "worldDistance": 45143.57647106718,
+          "speed": 1.9773310929042496,
+          "vehicleRight": 1193.375,
+          "viewport": 1440
+        },
+        {
+          "t": 124223,
+          "progress": 1,
+          "worldDistance": 45152.74782380261,
+          "speed": 1.9454031823004119,
+          "vehicleRight": 1203.765625,
+          "viewport": 1440
+        },
+        {
+          "t": 124238.79999995232,
+          "progress": 1,
+          "worldDistance": 45161.71504046024,
+          "speed": 1.913123778813552,
+          "vehicleRight": 1213.90625,
+          "viewport": 1440
+        },
+        {
+          "t": 124256.79999995232,
+          "progress": 1,
+          "worldDistance": 45170.583674112335,
+          "speed": 1.8801327019789507,
+          "vehicleRight": 1223.953125,
+          "viewport": 1440
+        },
+        {
+          "t": 124273.69999998808,
+          "progress": 1,
+          "worldDistance": 45179.29689596725,
+          "speed": 1.8466516671052167,
+          "vehicleRight": 1233.8125,
+          "viewport": 1440
+        },
+        {
+          "t": 124289.09999996424,
+          "progress": 1,
+          "worldDistance": 45187.80172682733,
+          "speed": 1.8129141074547088,
+          "vehicleRight": 1243.4375,
+          "viewport": 1440
+        },
+        {
+          "t": 124305.89999997616,
+          "progress": 1,
+          "worldDistance": 45196.14875264084,
+          "speed": 1.7787493234839205,
+          "vehicleRight": 1252.890625,
+          "viewport": 1440
+        },
+        {
+          "t": 124322.79999995232,
+          "progress": 1,
+          "worldDistance": 45204.433710860045,
+          "speed": 1.7437669261823598,
+          "vehicleRight": 1262.265625,
+          "viewport": 1440
+        },
+        {
+          "t": 124338.19999998808,
+          "progress": 1,
+          "worldDistance": 45212.45754256429,
+          "speed": 1.7088284715121078,
+          "vehicleRight": 1271.34375,
+          "viewport": 1440
+        },
+        {
+          "t": 124355.39999997616,
+          "progress": 1,
+          "worldDistance": 45220.36504004334,
+          "speed": 1.6733346931794404,
+          "vehicleRight": 1280.296875,
+          "viewport": 1440
+        },
+        {
+          "t": 124372.19999998808,
+          "progress": 1,
+          "worldDistance": 45228.10582729975,
+          "speed": 1.6375238424954075,
+          "vehicleRight": 1289.0625,
+          "viewport": 1440
+        },
+        {
+          "t": 124388.89999997616,
+          "progress": 1,
+          "worldDistance": 45235.633648145886,
+          "speed": 1.601641753949316,
+          "vehicleRight": 1297.578125,
+          "viewport": 1440
+        },
+        {
+          "t": 124406.39999997616,
+          "progress": 1,
+          "worldDistance": 45243.03792252542,
+          "speed": 1.5652848412323617,
+          "vehicleRight": 1305.953125,
+          "viewport": 1440
+        },
+        {
+          "t": 124423.09999996424,
+          "progress": 1,
+          "worldDistance": 45250.228847640115,
+          "speed": 1.5289170153478537,
+          "vehicleRight": 1314.09375,
+          "viewport": 1440
+        },
+        {
+          "t": 124439.5,
+          "progress": 1,
+          "worldDistance": 45257.29205284461,
+          "speed": 1.4921288377298987,
+          "vehicleRight": 1322.09375,
+          "viewport": 1440
+        },
+        {
+          "t": 124455.69999998808,
+          "progress": 1,
+          "worldDistance": 45264.14208519245,
+          "speed": 1.4553893842309193,
+          "vehicleRight": 1329.84375,
+          "viewport": 1440
+        },
+        {
+          "t": 124474,
+          "progress": 1,
+          "worldDistance": 45270.8607352922,
+          "speed": 1.418284738843885,
+          "vehicleRight": 1337.453125,
+          "viewport": 1440
+        },
+        {
+          "t": 124489.79999995232,
+          "progress": 1,
+          "worldDistance": 45277.405614060015,
+          "speed": 1.3810646058174223,
+          "vehicleRight": 1344.859375,
+          "viewport": 1440
+        },
+        {
+          "t": 124506,
+          "progress": 1,
+          "worldDistance": 45283.73862109706,
+          "speed": 1.3439814514301869,
+          "vehicleRight": 1352.03125,
+          "viewport": 1440
+        },
+        {
+          "t": 124522.5,
+          "progress": 1,
+          "worldDistance": 45289.93572078782,
+          "speed": 1.3066172187005924,
+          "vehicleRight": 1359.046875,
+          "viewport": 1440
+        },
+        {
+          "t": 124539.09999996424,
+          "progress": 1,
+          "worldDistance": 45295.95803741961,
+          "speed": 1.2692239411754522,
+          "vehicleRight": 1365.859375,
+          "viewport": 1440
+        },
+        {
+          "t": 124555.39999997616,
+          "progress": 1,
+          "worldDistance": 45301.80550268148,
+          "speed": 1.2318304907646247,
+          "vehicleRight": 1372.484375,
+          "viewport": 1440
+        },
+        {
+          "t": 124572.39999997616,
+          "progress": 1,
+          "worldDistance": 45307.47818326756,
+          "speed": 1.194465739377967,
+          "vehicleRight": 1378.90625,
+          "viewport": 1440
+        },
+        {
+          "t": 124589.5,
+          "progress": 1,
+          "worldDistance": 45312.94387677888,
+          "speed": 1.157381726767555,
+          "vehicleRight": 1385.09375,
+          "viewport": 1440
+        },
+        {
+          "t": 124606.5,
+          "progress": 1,
+          "worldDistance": 45318.26877023762,
+          "speed": 1.1201603856117652,
+          "vehicleRight": 1391.109375,
+          "viewport": 1440
+        },
+        {
+          "t": 124622.09999996424,
+          "progress": 1,
+          "worldDistance": 45323.38955634979,
+          "speed": 1.0832759793502977,
+          "vehicleRight": 1396.90625,
+          "viewport": 1440
+        },
+        {
+          "t": 124639.79999995232,
+          "progress": 1,
+          "worldDistance": 45328.368535022426,
+          "speed": 1.046312845557297,
+          "vehicleRight": 1402.546875,
+          "viewport": 1440
+        },
+        {
+          "t": 124656.39999997616,
+          "progress": 1,
+          "worldDistance": 45333.17507788398,
+          "speed": 1.0095224245663754,
+          "vehicleRight": 1407.984375,
+          "viewport": 1440
+        },
+        {
+          "t": 124672.79999995232,
+          "progress": 1,
+          "worldDistance": 45337.78281330726,
+          "speed": 0.9731520260704284,
+          "vehicleRight": 1413.203125,
+          "viewport": 1440
+        },
+        {
+          "t": 124688.59999996424,
+          "progress": 1,
+          "worldDistance": 45342.24826286224,
+          "speed": 0.9367921805082435,
+          "vehicleRight": 1418.265625,
+          "viewport": 1440
+        },
+        {
+          "t": 124705.69999998808,
+          "progress": 1,
+          "worldDistance": 45346.51907537197,
+          "speed": 0.9009068340070258,
+          "vehicleRight": 1423.09375,
+          "viewport": 1440
+        },
+        {
+          "t": 124722.79999995232,
+          "progress": 1,
+          "worldDistance": 45350.647981489914,
+          "speed": 0.8650923610054987,
+          "vehicleRight": 1427.765625,
+          "viewport": 1440
+        },
+        {
+          "t": 124738.59999996424,
+          "progress": 1,
+          "worldDistance": 45354.61015963884,
+          "speed": 0.8295946145839613,
+          "vehicleRight": 1432.25,
+          "viewport": 1440
+        },
+        {
+          "t": 124759.69999998808,
+          "progress": 1,
+          "worldDistance": 45358.38490847579,
+          "speed": 0.7946518729140072,
+          "vehicleRight": 1436.53125,
+          "viewport": 1440
+        },
+        {
+          "t": 124772.5,
+          "progress": 1,
+          "worldDistance": 45362.01938497998,
+          "speed": 0.7598718671190751,
+          "vehicleRight": 1440.640625,
+          "viewport": 1440
+        },
+        {
+          "t": 124789.5,
+          "progress": 1,
+          "worldDistance": 45365.4921727872,
+          "speed": 0.7254950307480159,
+          "vehicleRight": 1444.5625,
+          "viewport": 1440
+        },
+        {
+          "t": 124805.09999996424,
+          "progress": 1,
+          "worldDistance": 45368.785855247,
+          "speed": 0.69175215505323,
+          "vehicleRight": 1448.296875,
+          "viewport": 1440
+        },
+        {
+          "t": 124823.59999996424,
+          "progress": 1,
+          "worldDistance": 45371.942196354714,
+          "speed": 0.6582654273747232,
+          "vehicleRight": 1451.875,
+          "viewport": 1440
+        },
+        {
+          "t": 124839.09999996424,
+          "progress": 1,
+          "worldDistance": 45374.94309823729,
+          "speed": 0.625268311963973,
+          "vehicleRight": 1455.265625,
+          "viewport": 1440
+        },
+        {
+          "t": 124856.39999997616,
+          "progress": 1,
+          "worldDistance": 45377.790917824204,
+          "speed": 0.592789680730836,
+          "vehicleRight": 1458.484375,
+          "viewport": 1440
+        },
+        {
+          "t": 124873.19999998808,
+          "progress": 1,
+          "worldDistance": 45380.47243641931,
+          "speed": 0.5610479247360095,
+          "vehicleRight": 1461.53125,
+          "viewport": 1440
+        },
+        {
+          "t": 124889,
+          "progress": 1,
+          "worldDistance": 45383.02258014706,
+          "speed": 0.5296893411953993,
+          "vehicleRight": 1464.40625,
+          "viewport": 1440
+        },
+        {
+          "t": 124905.39999997616,
+          "progress": 1,
+          "worldDistance": 45385.41352836357,
+          "speed": 0.4991179808826626,
+          "vehicleRight": 1467.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124922.79999995232,
+          "progress": 1,
+          "worldDistance": 45387.67697474106,
+          "speed": 0.46899424216649954,
+          "vehicleRight": 1469.6875,
+          "viewport": 1440
+        },
+        {
+          "t": 124939.29999995232,
+          "progress": 1,
+          "worldDistance": 45389.80111143653,
+          "speed": 0.4395330014058607,
+          "vehicleRight": 1472.078125,
+          "viewport": 1440
+        },
+        {
+          "t": 124956,
+          "progress": 1,
+          "worldDistance": 45391.78910379295,
+          "speed": 0.4107631305106024,
+          "vehicleRight": 1474.328125,
+          "viewport": 1440
+        },
+        {
+          "t": 124971.69999998808,
+          "progress": 1,
+          "worldDistance": 45393.63352871461,
+          "speed": 0.3828792626297601,
+          "vehicleRight": 1476.421875,
+          "viewport": 1440
+        },
+        {
+          "t": 124989.39999997616,
+          "progress": 1,
+          "worldDistance": 45395.35006917441,
+          "speed": 0.355735393051802,
+          "vehicleRight": 1478.359375,
+          "viewport": 1440
+        },
+        {
+          "t": 125006.69999998808,
+          "progress": 1,
+          "worldDistance": 45396.96067713049,
+          "speed": 0.3290469011973504,
+          "vehicleRight": 1480.1875,
+          "viewport": 1440
+        },
+        {
+          "t": 125023.29999995232,
+          "progress": 1,
+          "worldDistance": 45398.430664696636,
+          "speed": 0.3034778690893567,
+          "vehicleRight": 1481.859375,
+          "viewport": 1440
+        },
+        {
+          "t": 125039,
+          "progress": 1,
+          "worldDistance": 45399.79153410616,
+          "speed": 0.278587746618153,
+          "vehicleRight": 1483.390625,
+          "viewport": 1440
+        },
+        {
+          "t": 125055.29999995232,
+          "progress": 1,
+          "worldDistance": 45401.030902075436,
+          "speed": 0.2547031179577689,
+          "vehicleRight": 1484.796875,
+          "viewport": 1440
+        },
+        {
+          "t": 125072.29999995232,
+          "progress": 1,
+          "worldDistance": 45402.16779680548,
+          "speed": 0.23156494450885545,
+          "vehicleRight": 1486.078125,
+          "viewport": 1440
+        },
+        {
+          "t": 125088.39999997616,
+          "progress": 1,
+          "worldDistance": 45403.198652666804,
+          "speed": 0.20934859754711554,
+          "vehicleRight": 1487.25,
+          "viewport": 1440
+        },
+        {
+          "t": 125105.39999997616,
+          "progress": 1,
+          "worldDistance": 45404.122572809116,
+          "speed": 0.18820740172532446,
+          "vehicleRight": 1488.296875,
+          "viewport": 1440
+        },
+        {
+          "t": 125123,
+          "progress": 1,
+          "worldDistance": 45404.95518785374,
+          "speed": 0.16791537185182218,
+          "vehicleRight": 1489.234375,
+          "viewport": 1440
+        },
+        {
+          "t": 125138.29999995232,
+          "progress": 1,
+          "worldDistance": 45405.69110429231,
+          "speed": 0.14874402512344234,
+          "vehicleRight": 1490.078125,
+          "viewport": 1440
+        },
+        {
+          "t": 125155.5,
+          "progress": 1,
+          "worldDistance": 45406.34395603699,
+          "speed": 0.13049110947008233,
+          "vehicleRight": 1490.8125,
+          "viewport": 1440
+        },
+        {
+          "t": 125172.29999995232,
+          "progress": 1,
+          "worldDistance": 45406.91394908261,
+          "speed": 0.11330403408182291,
+          "vehicleRight": 1491.453125,
+          "viewport": 1440
+        },
+        {
+          "t": 125189.39999997616,
+          "progress": 1,
+          "worldDistance": 45407.40613480079,
+          "speed": 0.09721167086850453,
+          "vehicleRight": 1492.015625,
+          "viewport": 1440
+        },
+        {
+          "t": 125205.39999997616,
+          "progress": 1,
+          "worldDistance": 45407.82338760843,
+          "speed": 0.08232912415560985,
+          "vehicleRight": 1492.484375,
+          "viewport": 1440
+        },
+        {
+          "t": 125222.19999998808,
+          "progress": 1,
+          "worldDistance": 45408.17603969421,
+          "speed": 0.0685058141624241,
+          "vehicleRight": 1492.890625,
+          "viewport": 1440
+        },
+        {
+          "t": 125239.29999995232,
+          "progress": 1,
+          "worldDistance": 45408.46681552291,
+          "speed": 0.05586365918806315,
+          "vehicleRight": 1493.21875,
+          "viewport": 1440
+        },
+        {
+          "t": 125255.69999998808,
+          "progress": 1,
+          "worldDistance": 45408.70005213487,
+          "speed": 0.044496328745473254,
+          "vehicleRight": 1493.484375,
+          "viewport": 1440
+        },
+        {
+          "t": 125272.79999995232,
+          "progress": 1,
+          "worldDistance": 45408.88426765272,
+          "speed": 0.034295595057192,
+          "vehicleRight": 1493.6875,
+          "viewport": 1440
+        },
+        {
+          "t": 125288.69999998808,
+          "progress": 1,
+          "worldDistance": 45409.023748183645,
+          "speed": 0.0253624592316193,
+          "vehicleRight": 1493.84375,
+          "viewport": 1440
+        },
+        {
+          "t": 125306.59999996424,
+          "progress": 1,
+          "worldDistance": 45409.12398245571,
+          "speed": 0.0177676062032379,
+          "vehicleRight": 1493.953125,
+          "viewport": 1440
+        },
+        {
+          "t": 125323.29999995232,
+          "progress": 1,
+          "worldDistance": 45409.19228915026,
+          "speed": 0.011448259729692262,
+          "vehicleRight": 1494.03125,
+          "viewport": 1440
+        },
+        {
+          "t": 125339.19999998808,
+          "progress": 1,
+          "worldDistance": 45409.23402089107,
+          "speed": 0.006508599482070174,
+          "vehicleRight": 1494.078125,
+          "viewport": 1440
+        },
+        {
+          "t": 125355.5,
+          "progress": 1,
+          "worldDistance": 45409.25605990539,
+          "speed": 0.002917839492469475,
+          "vehicleRight": 1494.109375,
+          "viewport": 1440
+        },
+        {
+          "t": 125372.19999998808,
+          "progress": 1,
+          "worldDistance": 45409.264608874015,
+          "speed": 0.000738691143491121,
+          "vehicleRight": 1494.109375,
+          "viewport": 1440
+        },
+        {
+          "t": 125388.89999997616,
+          "progress": 1,
+          "worldDistance": 45409.266325837125,
+          "speed": 1.0537581742986467e-7,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125405.79999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125421.59999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125438.5,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125454.79999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125471.5,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125487.79999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125506.5,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125522.5,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125538.79999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125556.29999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125571.59999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125590,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125605.69999998808,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125621.29999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125638.59999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125655.69999998808,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125670.79999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125687.89999997616,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125705.39999997616,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125723.19999998808,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125739.19999998808,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125755.69999998808,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125773.19999998808,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125790.69999998808,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125805.69999998808,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125824.09999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125839.29999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125856.29999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125873.5,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125889.29999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125906.19999998808,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125924.19999998808,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125941.69999998808,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125956.5,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125973.59999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125989.5,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126006.29999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126023.89999997616,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126039.09999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126055.79999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126073.59999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126089,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126106.89999997616,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126122.29999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126138.09999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126154.29999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126171.59999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126187.79999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126204.59999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126222.59999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126243.89999997616,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126255.5,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126271.39999997616,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126288.29999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126304.59999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126321.79999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126338.29999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126354.69999998808,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126371.5,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126387.89999997616,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126406.29999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126422.19999998808,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126438.19999998808,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126455.59999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126472.09999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126490.09999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126505.09999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126521.19999998808,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126538.79999995232,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126556.59999996424,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 126571.39999997616,
+          "progress": 1,
+          "worldDistance": 45409.266326084966,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        }
+      ],
+      "elapsedWallMs": 124374
+    },
+    {
+      "id": "branch-b",
+      "branch": "lion-first-trial-combat",
+      "helpRefugees": false,
+      "startedAt": 1790622631944,
+      "routes": {
+        "route-1": {
+          "startMs": 1171.5999999642372,
+          "speed": {
+            "0.1": 1.038832329745913,
+            "0.5": 1.6405766912225506,
+            "0.9": 2.217733152651367
+          },
+          "lastProgress": 1,
+          "completedAtMs": 13618.5,
+          "visibleAtMs": 1597.800000011921,
+          "motionStartMs": 1680.8999999761581,
+          "readyAtMs": 16028.800000011921,
+          "durationMs": 11938,
+          "routeToCheckpointDeadMs": 2410,
+          "checkpointToRouteDeadMs": 0
+        },
+        "route-2": {
+          "startMs": 22723.099999964237,
+          "speed": {
+            "0.1": 1.0394293629805056,
+            "0.5": 1.6861910442217691,
+            "0.9": 2.3145608850854744
+          },
+          "lastProgress": 1,
+          "completedAtMs": 37712.89999997616,
+          "visibleAtMs": 22723.099999964237,
+          "motionStartMs": 22749.899999976158,
+          "readyAtMs": 40130.59999996424,
+          "durationMs": 14963,
+          "routeToCheckpointDeadMs": 2418,
+          "checkpointToRouteDeadMs": 0
+        },
+        "route-3": {
+          "startMs": 44144.19999998808,
+          "speed": {
+            "0.1": 1.0394343184751702,
+            "0.5": 1.6817094017892211,
+            "0.9": 2.3137785596739584
+          },
+          "lastProgress": 1,
+          "completedAtMs": 59152.89999997616,
+          "visibleAtMs": 44144.19999998808,
+          "motionStartMs": 44178,
+          "readyAtMs": 61568.5,
+          "durationMs": 14975,
+          "routeToCheckpointDeadMs": 2416,
+          "checkpointToRouteDeadMs": 1234
+        },
+        "route-4": {
+          "startMs": 62611,
+          "speed": {
+            "0.1": 1.092408130787037,
+            "0.5": 1.761619525628562,
+            "0.9": 2.4148678729688204
+          },
+          "lastProgress": 1,
+          "completedAtMs": 75119.69999998808,
+          "visibleAtMs": 63100,
+          "motionStartMs": 63197.09999996424,
+          "readyAtMs": 77514.30000001192,
+          "durationMs": 11923,
+          "routeToCheckpointDeadMs": 2395,
+          "checkpointToRouteDeadMs": 478
+        },
+        "route-5b": {
+          "startMs": 78532,
+          "speed": {
+            "0.1": 1.092355379102961,
+            "0.5": 1.7797994688392293,
+            "0.9": 2.464435019880126
+          },
+          "lastProgress": 1,
+          "completedAtMs": 94033.5,
+          "visibleAtMs": 79010.39999997616,
+          "motionStartMs": 79094.19999998808,
+          "readyAtMs": 96448.39999997616,
+          "durationMs": 14939,
+          "routeToCheckpointDeadMs": 2415,
+          "checkpointToRouteDeadMs": 0
+        },
+        "route-6": {
+          "startMs": 102025.59999996424,
+          "speed": {
+            "0.1": 1.2440474531249999,
+            "0.5": 1.957458640712158,
+            "0.9": 2.661932538410004
+          },
+          "lastProgress": 1,
+          "completedAtMs": 122034.09999996424,
+          "visibleAtMs": 102025.59999996424,
+          "motionStartMs": 102059,
+          "durationMs": 19975,
+          "routeToCheckpointDeadMs": null,
+          "checkpointToRouteDeadMs": null
+        }
+      },
+      "transitions": [
+        {
+          "kind": "entry",
+          "durationMs": 426
+        },
+        {
+          "kind": "focus",
+          "durationMs": 965
+        },
+        {
+          "kind": "event",
+          "durationMs": 1066
+        },
+        {
+          "kind": "focus",
+          "durationMs": 961
+        },
+        {
+          "kind": "event",
+          "durationMs": 996
+        },
+        {
+          "kind": "focus",
+          "durationMs": 951
+        },
+        {
+          "kind": "return",
+          "durationMs": 979
+        },
+        {
+          "kind": "focus",
+          "durationMs": 944
+        },
+        {
+          "kind": "fork",
+          "durationMs": 950
+        },
+        {
+          "kind": "focus",
+          "durationMs": 979
+        },
+        {
+          "kind": "event",
+          "durationMs": 985
+        }
+      ],
+      "globalTransitions": [
+        {
+          "atMs": 17751.099999964237,
+          "segment": "route-1",
+          "entries": 1,
+          "exits": 0,
+          "durationMs": 2158
+        },
+        {
+          "atMs": 22294.5,
+          "segment": "route-1",
+          "entries": 1,
+          "exits": 0,
+          "durationMs": 925
+        },
+        {
+          "atMs": 43696.80000001192,
+          "segment": "route-2",
+          "entries": 2,
+          "exits": 1,
+          "durationMs": 934
+        },
+        {
+          "atMs": 98453.5,
+          "segment": "route-5b",
+          "entries": 5,
+          "exits": 4,
+          "durationMs": 2088
+        },
+        {
+          "atMs": 101607.09999996424,
+          "segment": "route-5b",
+          "entries": 5,
+          "exits": 4,
+          "durationMs": 890
+        }
+      ],
+      "checkpointEvents": [
+        {
+          "kind": "entry",
+          "segment": "route-1",
+          "atMs": 14387.800000011921
+        },
+        {
+          "kind": "exit",
+          "segment": "route-2",
+          "atMs": 22723.099999964237
+        },
+        {
+          "kind": "entry",
+          "segment": "route-2",
+          "atMs": 38471.30000001192
+        },
+        {
+          "kind": "exit",
+          "segment": "route-3",
+          "atMs": 44144.19999998808
+        },
+        {
+          "kind": "entry",
+          "segment": "route-3",
+          "atMs": 59912.19999998808
+        },
+        {
+          "kind": "exit",
+          "segment": "route-3",
+          "atMs": 61866.19999998808
+        },
+        {
+          "kind": "entry",
+          "segment": "route-4",
+          "atMs": 75871.59999996424
+        },
+        {
+          "kind": "exit",
+          "segment": "route-5b",
+          "atMs": 78532
+        },
+        {
+          "kind": "entry",
+          "segment": "route-5b",
+          "atMs": 94817.5
+        },
+        {
+          "kind": "exit",
+          "segment": "route-6",
+          "atMs": 102025.59999996424
+        }
+      ],
+      "progressionErrors": [],
+      "laneMoves": [],
+      "routeStates": {
+        "route-1": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.05138333333333332
+        },
+        "route-2": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.054439999999999905
+        },
+        "route-3": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.05333333333333334
+        },
+        "route-4": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.052774999999999635
+        },
+        "route-5b": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.05555333333333353
+        },
+        "route-6": {
+          "routeWorld": "shared",
+          "routeVisible": true,
+          "checkpointVisible": false,
+          "legacyRouteSceneryVisible": false,
+          "genericImages": [
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            },
+            {
+              "src": "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+              "loaded": true,
+              "props": 0
+            }
+          ],
+          "authoredPropsVisible": 0,
+          "caravanCount": 1,
+          "progress": 0.05249500000000044
+        }
+      },
+      "checkpointStates": {
+        "route-1": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/opening-ambush.png"
+        ],
+        "route-2": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/ambush-cleared.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png"
+        ],
+        "route-3": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/nomad-waystation.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/refugee-halt.png"
+        ],
+        "route-4": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/refugee-halt.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-junction.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/forest-road.png"
+        ],
+        "route-5b": [
+          "/assets/generated/lion-phase/traversal/t0/world-v1/ruined-outpost.png",
+          "/assets/generated/lion-phase/traversal/t0/world-v1/ruined-outpost.png"
+        ]
+      },
+      "branchSelectionCount": 1,
+      "bypassCount": 1,
+      "maxSceneCount": 1,
+      "maxEntries": 5,
+      "maxExits": 5,
+      "arrivalCallbacks": 1,
+      "complete": true,
+      "riskSegments": {},
+      "riskEvents": [],
+      "riskVisibility": {},
+      "riskCheckpointImpactLeaks": [],
+      "riskCheckpointHazards": [],
+      "riskMarkupBySegment": {
+        "route-1": 0,
+        "route-2": 0,
+        "route-3": 0,
+        "route-4": 0,
+        "route-5b": 0,
+        "route-6": 0
+      },
+      "riskRendererMax": 0,
+      "riskFocusableMax": 0,
+      "riskAriaFailures": [],
+      "inputLockFailures": [],
+      "inputLockSamples": 911,
+      "productionTelemetryKeys": [],
+      "riskCampaignBefore": null,
+      "riskCampaignAfter": null,
+      "lastState": {
+        "atMs": 125596.30000001192,
+        "node": "lion-first-trial-combat",
+        "campaignSignature": "{\"gold\":150,\"reputation\":33,\"reputationHistory\":[{\"delta\":1,\"source\":\"combat:forest_ambush\",\"value\":31},{\"delta\":3,\"source\":\"narrative\",\"value\":34},{\"delta\":-2,\"source\":\"traversal-ignore:lion-refugees\",\"value\":32},{\"delta\":1,\"source\":\"combat:forest_patrol\",\"value\":33}],\"health\":[[\"warrior\",140],[\"white_mage\",100],[\"dark_mage\",75],[\"archer\",90],[\"rogue\",100]],\"inventory\":{\"consumables\":{\"potion\":4,\"revive_vial\":1,\"antidote\":2},\"accessories\":{},\"materials\":{},\"weapons\":{}},\"flags\":{\"ate:ate_alaric_reports\":true,\"recruitedCedric\":true,\"ate:ate_serpent_scout_report\":true,\"ignoredRefugees\":true},\"run\":{\"id\":\"lion-1768752238\",\"seed\":1768752238,\"regionId\":\"lion-forest\",\"status\":\"active\",\"currentNodeId\":\"lion-first-trial-combat\",\"checkpointNodeId\":\"lion-camp\",\"revealedNodeIds\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\",\"lion-refugees\",\"lion-first-trial-event\",\"lion-first-trial-combat\",\"lion-first-refuge\"],\"visitedNodeIds\":[\"lion-camp\",\"lion-audience\",\"lion-opening-ambush\",\"lion-nomad-crossroads\",\"lion-first-trial-combat\"],\"temporaryLoot\":{\"gold\":115,\"inventory\":{\"consumables\":{},\"accessories\":{},\"materials\":{\"red_gem\":2,\"iron_ore\":2},\"weapons\":{}}},\"graph\":{\"nodes\":[{\"id\":\"lion-camp\",\"type\":\"story\",\"depth\":0,\"links\":[\"lion-audience\"],\"contentId\":\"camp_departure\",\"label\":\"Camp du Lion\",\"icon\":\"◆\",\"x\":-9.375,\"z\":0,\"risk\":0,\"reward\":1,\"difficulty\":\"safe\",\"moralTone\":\"neutral\",\"hint\":\"La compagnie se rassemble avant de demander le premier Sceau.\"},{\"id\":\"lion-audience\",\"type\":\"story\",\"depth\":1,\"links\":[\"lion-opening-ambush\"],\"contentId\":\"lion_briefing\",\"label\":\"Audience d’Alaric\",\"icon\":\"♛\",\"x\":-8.125,\"z\":0,\"risk\":0,\"reward\":2,\"difficulty\":\"safe\",\"moralTone\":\"honour\",\"hint\":\"Recevoir la mission du Vieux Lion avant de prendre la route.\"},{\"id\":\"lion-opening-ambush\",\"type\":\"combat\",\"depth\":2,\"links\":[\"lion-nomad-crossroads\"],\"contentId\":\"forest_ambush\",\"label\":\"Piste des bêtes\",\"icon\":\"⚔\",\"x\":-6.875,\"z\":0,\"risk\":1,\"reward\":2,\"difficulty\":\"standard\",\"moralTone\":\"neutral\",\"hint\":\"Des créatures affamées rôdent sur la première piste.\"},{\"id\":\"lion-nomad-crossroads\",\"type\":\"event\",\"depth\":3,\"links\":[\"lion-refugees\"],\"contentId\":\"mystery_recruit\",\"label\":\"Croisement du rôdeur\",\"icon\":\"◇\",\"x\":-5.625,\"z\":0,\"risk\":1,\"reward\":2,\"difficulty\":\"safe\",\"moralTone\":\"pragmatic\",\"hint\":\"Un éclaireur nomade propose ses services à la compagnie.\"},{\"id\":\"lion-refugees\",\"type\":\"event\",\"depth\":4,\"links\":[\"lion-first-trial-event\",\"lion-first-trial-combat\"],\"contentId\":\"refugee_trial\",\"label\":\"Route des réfugiés\",\"icon\":\"◇\",\"x\":-4.375,\"z\":0,\"risk\":1,\"reward\":2,\"difficulty\":\"safe\",\"moralTone\":\"honour\",\"hint\":\"Des familles affamées mettent votre parole à l’épreuve.\"},{\"id\":\"lion-first-trial-event\",\"type\":\"event\",\"depth\":5,\"links\":[\"lion-first-refuge\"],\"contentId\":\"mystery_help\",\"label\":\"Marchand blessé\",\"icon\":\"◇\",\"x\":-3.125,\"z\":-1.0875,\"risk\":1,\"reward\":2,\"difficulty\":\"safe\",\"moralTone\":\"honour\",\"hint\":\"Un voyageur blessé demande des ressources alors que Bois-Clair reste devant vous.\"},{\"id\":\"lion-first-trial-combat\",\"type\":\"combat\",\"depth\":5,\"links\":[\"lion-first-refuge\"],\"contentId\":\"forest_patrol\",\"label\":\"Patrouille Serpent\",\"icon\":\"⚔\",\"x\":-3.125,\"z\":1.0875,\"risk\":2,\"reward\":2,\"difficulty\":\"standard\",\"moralTone\":\"neutral\",\"hint\":\"Des éclaireurs Serpent surveillent la route sans renfort élite.\"},{\"id\":\"lion-first-refuge\",\"type\":\"refuge\",\"depth\":6,\"links\":[\"lion-reserve-trail\"],\"contentId\":\"forest_refuge\",\"label\":\"Refuge du Lion\",\"icon\":\"⌂\",\"x\":-1.875,\"z\":0,\"risk\":0,\"reward\":1,\"difficulty\":\"safe\",\"moralTone\":\"neutral\",\"hint\":\"Sécuriser le butin, acheter, améliorer et préparer Bois-Clair.\"},{\"id\":\"lion-reserve-trail\",\"type\":\"event\",\"depth\":7,\"links\":[\"lion-valmir-road\"],\"contentId\":\"reserve_trail\",\"label\":\"Chemin des réserves\",\"icon\":\"◇\",\"x\":-0.625,\"z\":0,\"risk\":2,\"reward\":3,\"difficulty\":\"dangerous\",\"moralTone\":\"greed\",\"hint\":\"Un convoi emporte les réserves de Bois-Clair tandis que le siège continue plus loin.\"},{\"id\":\"lion-valmir-road\",\"type\":\"combat\",\"depth\":8,\"links\":[\"lion-second-trial-event\",\"lion-second-trial-combat\"],\"contentId\":\"road_to_valmir\",\"label\":\"Route de Bois-Clair\",\"icon\":\"⚔\",\"x\":0.625,\"z\":0,\"risk\":2,\"reward\":2,\"difficulty\":\"standard\",\"moralTone\":\"neutral\",\"hint\":\"Des créatures ont envahi la voie menant aux habitants menacés.\"},{\"id\":\"lion-second-trial-event\",\"type\":\"event\",\"depth\":9,\"links\":[\"lion-village-choice\"],\"contentId\":\"old_shrine_event\",\"label\":\"Vieux sanctuaire\",\"icon\":\"◇\",\"x\":1.875,\"z\":-1.0875,\"risk\":1,\"reward\":3,\"difficulty\":\"safe\",\"moralTone\":\"greed\",\"hint\":\"Un sanctuaire encore actif offre un abri sûr et un reliquaire plein de ressources.\"},{\"id\":\"lion-second-trial-combat\",\"type\":\"combat\",\"depth\":9,\"links\":[\"lion-village-choice\"],\"contentId\":\"serpent_checkpoint\",\"label\":\"Barrage renforcé\",\"icon\":\"⚔\",\"x\":1.875,\"z\":1.0875,\"risk\":3,\"reward\":3,\"difficulty\":\"dangerous\",\"moralTone\":\"neutral\",\"hint\":\"Après le refuge, la compagnie peut affronter une opposition plus dangereuse.\"},{\"id\":\"lion-village-choice\",\"type\":\"story\",\"depth\":10,\"links\":[\"lion-second-refuge\"],\"contentId\":\"village_choice\",\"label\":\"Bois-Clair assiégé\",\"icon\":\"⌂\",\"x\":3.125,\"z\":0,\"risk\":3,\"reward\":4,\"difficulty\":\"decisive\",\"moralTone\":\"pragmatic\",\"hint\":\"Le village est divisé entre les captifs au nord et ses réserves vitales au sud.\"},{\"id\":\"lion-second-refuge\",\"type\":\"refuge\",\"depth\":11,\"links\":[\"lion-lancer-recruit\"],\"contentId\":\"forest_refuge\",\"label\":\"Dernier feu du Lion\",\"icon\":\"⌂\",\"x\":4.375,\"z\":0,\"risk\":0,\"reward\":1,\"difficulty\":\"safe\",\"moralTone\":\"neutral\",\"hint\":\"Dernière halte avant de rassembler les conséquences de vos actes.\"},{\"id\":\"lion-lancer-recruit\",\"type\":\"event\",\"depth\":12,\"links\":[\"lion-witnesses\"],\"contentId\":\"mystery_lancer_recruit\",\"label\":\"Volontaire de Bois-Clair\",\"icon\":\"◇\",\"x\":5.625,\"z\":0,\"risk\":1,\"reward\":3,\"difficulty\":\"safe\",\"moralTone\":\"honour\",\"hint\":\"Un jeune lancier de Bois-Clair veut voir ce que votre clan fera du Sceau.\"},{\"id\":\"lion-witnesses\",\"type\":\"event\",\"depth\":13,\"links\":[\"lion-final-trial-event\",\"lion-final-trial-combat\"],\"contentId\":\"witnesses_on_road\",\"label\":\"Témoins de Bois-Clair\",\"icon\":\"◇\",\"x\":6.875,\"z\":0,\"risk\":1,\"reward\":2,\"difficulty\":\"safe\",\"moralTone\":\"honour\",\"hint\":\"Les survivants peuvent confirmer vos actes ou dénoncer votre abandon.\"},{\"id\":\"lion-final-trial-event\",\"type\":\"event\",\"depth\":14,\"links\":[\"lion-shadow-signs\"],\"contentId\":\"mystery_dragon_roost\",\"label\":\"Nid du jeune dragon\",\"icon\":\"◇\",\"x\":8.125,\"z\":-1.0875,\"risk\":2,\"reward\":3,\"difficulty\":\"dangerous\",\"moralTone\":\"greed\",\"hint\":\"Une dernière rencontre mesure ce que vaut encore votre parole.\"},{\"id\":\"lion-final-trial-combat\",\"type\":\"combat\",\"depth\":14,\"links\":[\"lion-shadow-signs\"],\"contentId\":\"ruins_guardians\",\"label\":\"Ruines infestées\",\"icon\":\"⚔\",\"x\":8.125,\"z\":1.0875,\"risk\":2,\"reward\":3,\"difficulty\":\"standard\",\"moralTone\":\"neutral\",\"hint\":\"Un dernier passage hostile mène aux traces laissées par les Ombres.\"},{\"id\":\"lion-shadow-signs\",\"type\":\"mystery\",\"depth\":15,\"links\":[\"lion-final-refuge\"],\"contentId\":\"shadow_signs\",\"label\":\"Signes des Ombres\",\"icon\":\"?\",\"x\":9.375,\"z\":0,\"risk\":2,\"reward\":4,\"difficulty\":\"dangerous\",\"moralTone\":\"mystery\",\"hint\":\"Une piste sombre relie les Serpents à une menace plus ancienne.\"},{\"id\":\"lion-final-refuge\",\"type\":\"story\",\"depth\":16,\"links\":[\"lion-final-judgement\"],\"contentId\":\"final_refuge\",\"label\":\"Refuge avant le Sceau\",\"icon\":\"⌂\",\"x\":10.625,\"z\":0,\"risk\":0,\"reward\":1,\"difficulty\":\"safe\",\"moralTone\":\"neutral\",\"hint\":\"Rassembler le dossier complet avant de comparaître devant Alaric.\"},{\"id\":\"lion-final-judgement\",\"type\":\"boss\",\"depth\":17,\"links\":[],\"contentId\":\"lion_finale_judgement\",\"label\":\"Jugement du Sceau\",\"icon\":\"♛\",\"x\":11.875,\"z\":0,\"risk\":3,\"reward\":3,\"difficulty\":\"decisive\",\"moralTone\":\"pragmatic\",\"hint\":\"Alaric rend son verdict. Le Sceau sera accordé par respect ou par force.\"}]},\"bypassedRouteNodeIds\":[\"lion-refugees\"],\"traversalBranches\":{\"T0\":\"lion-first-trial-combat\"}},\"currentNodeId\":\"lion-first-trial-combat\",\"resolvedNodeIds\":[\"lion-opening-ambush\",\"lion-nomad-crossroads\",\"lion-first-trial-combat\"]}",
+        "visitedNodeIds": [
+          "lion-camp",
+          "lion-audience",
+          "lion-opening-ambush",
+          "lion-nomad-crossroads",
+          "lion-first-trial-combat"
+        ],
+        "bypassedNodeIds": [
+          "lion-refugees"
+        ],
+        "selectedBranch": "lion-first-trial-combat",
+        "sceneCount": 0,
+        "phase": null,
+        "view": null,
+        "lane": null,
+        "presentation": null,
+        "segment": null,
+        "routeWorld": null,
+        "routeProgress": 0,
+        "sessionProgress": 0,
+        "speed": 0,
+        "visualSpeed": 0,
+        "visualWorldDistance": 0,
+        "vehicleRight": null,
+        "departure": null,
+        "transition": null,
+        "coverOpacity": 0,
+        "globalCoverPresent": true,
+        "globalCoverOpacity": 1,
+        "routeVisible": false,
+        "checkpointVisible": false,
+        "caravanCount": 0,
+        "riskMarkupCount": 0,
+        "legacyRouteSceneryVisible": false,
+        "genericImages": [],
+        "checkpointImages": [],
+        "authoredPropsVisible": 0,
+        "entries": 0,
+        "exits": 0,
+        "branch": null,
+        "eventPanel": false,
+        "optionalDecision": false,
+        "fork": false,
+        "combat": false,
+        "dialogue": false,
+        "cinematic": false,
+        "mode": "narrative",
+        "travelView": false,
+        "destinationAgency": true,
+        "arrivalCallbacks": 1,
+        "overflowPx": 0,
+        "controls": [],
+        "risk": null
+      },
+      "visitedNodeIds": [
+        "lion-camp",
+        "lion-audience",
+        "lion-opening-ambush",
+        "lion-nomad-crossroads",
+        "lion-first-trial-combat"
+      ],
+      "bypassedNodeIds": [
+        "lion-refugees"
+      ],
+      "selectedBranch": "lion-first-trial-combat",
+      "frameIssues": [],
+      "coastSamples": [
+        {
+          "t": 122009.80000001192,
+          "progress": 1,
+          "worldDistance": 44548.079752789665,
+          "speed": 2.7,
+          "vehicleRight": 519.875,
+          "viewport": 1440
+        },
+        {
+          "t": 122025.80000001192,
+          "progress": 1,
+          "worldDistance": 44560.62689242931,
+          "speed": 2.698941325152281,
+          "vehicleRight": 534.0625,
+          "viewport": 1440
+        },
+        {
+          "t": 122040.89999997616,
+          "progress": 1,
+          "worldDistance": 44573.239983970285,
+          "speed": 2.6958796932242093,
+          "vehicleRight": 548.34375,
+          "viewport": 1440
+        },
+        {
+          "t": 122057.39999997616,
+          "progress": 1,
+          "worldDistance": 44585.83457003998,
+          "speed": 2.6910262390670554,
+          "vehicleRight": 562.609375,
+          "viewport": 1440
+        },
+        {
+          "t": 122073.59999996424,
+          "progress": 1,
+          "worldDistance": 44598.32760664611,
+          "speed": 2.6846349511814385,
+          "vehicleRight": 576.75,
+          "viewport": 1440
+        },
+        {
+          "t": 122090.69999998808,
+          "progress": 1,
+          "worldDistance": 44610.86273262271,
+          "speed": 2.676838948127999,
+          "vehicleRight": 590.9375,
+          "viewport": 1440
+        },
+        {
+          "t": 122106.69999998808,
+          "progress": 1,
+          "worldDistance": 44623.28399899413,
+          "speed": 2.667940041298569,
+          "vehicleRight": 605,
+          "viewport": 1440
+        },
+        {
+          "t": 122124.19999998808,
+          "progress": 1,
+          "worldDistance": 44635.81056158381,
+          "speed": 2.6579794271023225,
+          "vehicleRight": 619.171875,
+          "viewport": 1440
+        },
+        {
+          "t": 122141.09999996424,
+          "progress": 1,
+          "worldDistance": 44648.14027209681,
+          "speed": 2.6474037540521964,
+          "vehicleRight": 633.125,
+          "viewport": 1440
+        },
+        {
+          "t": 122158.09999996424,
+          "progress": 1,
+          "worldDistance": 44660.49342901256,
+          "speed": 2.636239067055394,
+          "vehicleRight": 647.109375,
+          "viewport": 1440
+        },
+        {
+          "t": 122174,
+          "progress": 1,
+          "worldDistance": 44672.72014776325,
+          "speed": 2.624827521024006,
+          "vehicleRight": 660.953125,
+          "viewport": 1440
+        },
+        {
+          "t": 122190.80000001192,
+          "progress": 1,
+          "worldDistance": 44684.966753717694,
+          "speed": 2.6132417494807676,
+          "vehicleRight": 674.8125,
+          "viewport": 1440
+        },
+        {
+          "t": 122207.5,
+          "progress": 1,
+          "worldDistance": 44697.1594299892,
+          "speed": 2.6017609329446065,
+          "vehicleRight": 688.609375,
+          "viewport": 1440
+        },
+        {
+          "t": 122224.19999998808,
+          "progress": 1,
+          "worldDistance": 44709.29916107345,
+          "speed": 2.5905962459478036,
+          "vehicleRight": 702.359375,
+          "viewport": 1440
+        },
+        {
+          "t": 122241.89999997616,
+          "progress": 1,
+          "worldDistance": 44721.31567456046,
+          "speed": 2.5800205728976775,
+          "vehicleRight": 715.953125,
+          "viewport": 1440
+        },
+        {
+          "t": 122257.69999998808,
+          "progress": 1,
+          "worldDistance": 44733.28472514769,
+          "speed": 2.5701733114560033,
+          "vehicleRight": 729.5,
+          "viewport": 1440
+        },
+        {
+          "t": 122274,
+          "progress": 1,
+          "worldDistance": 44745.281902691466,
+          "speed": 2.561211437805346,
+          "vehicleRight": 743.078125,
+          "viewport": 1440
+        },
+        {
+          "t": 122291.89999997616,
+          "progress": 1,
+          "worldDistance": 44757.23988261626,
+          "speed": 2.5534078627868912,
+          "vehicleRight": 756.625,
+          "viewport": 1440
+        },
+        {
+          "t": 122307,
+          "progress": 1,
+          "worldDistance": 44769.09324860517,
+          "speed": 2.547007795094486,
+          "vehicleRight": 770.03125,
+          "viewport": 1440
+        },
+        {
+          "t": 122324.69999998808,
+          "progress": 1,
+          "worldDistance": 44780.99168608077,
+          "speed": 2.5421442475079674,
+          "vehicleRight": 783.5,
+          "viewport": 1440
+        },
+        {
+          "t": 122341.09999996424,
+          "progress": 1,
+          "worldDistance": 44792.8715679318,
+          "speed": 2.539071257632373,
+          "vehicleRight": 796.953125,
+          "viewport": 1440
+        },
+        {
+          "t": 122358,
+          "progress": 1,
+          "worldDistance": 44804.74176053214,
+          "speed": 2.538,
+          "vehicleRight": 810.390625,
+          "viewport": 1440
+        },
+        {
+          "t": 122375,
+          "progress": 1,
+          "worldDistance": 44816.53670831253,
+          "speed": 2.537278735110625,
+          "vehicleRight": 823.734375,
+          "viewport": 1440
+        },
+        {
+          "t": 122391,
+          "progress": 1,
+          "worldDistance": 44828.39596876325,
+          "speed": 2.53511666724645,
+          "vehicleRight": 837.15625,
+          "viewport": 1440
+        },
+        {
+          "t": 122407.69999998808,
+          "progress": 1,
+          "worldDistance": 44840.170944367565,
+          "speed": 2.531568188310794,
+          "vehicleRight": 850.484375,
+          "viewport": 1440
+        },
+        {
+          "t": 122425.09999996424,
+          "progress": 1,
+          "worldDistance": 44852.06772191584,
+          "speed": 2.5265855311919787,
+          "vehicleRight": 863.953125,
+          "viewport": 1440
+        },
+        {
+          "t": 122441,
+          "progress": 1,
+          "worldDistance": 44863.79672101001,
+          "speed": 2.5203159723239987,
+          "vehicleRight": 877.234375,
+          "viewport": 1440
+        },
+        {
+          "t": 122458.09999996424,
+          "progress": 1,
+          "worldDistance": 44875.49353548041,
+          "speed": 2.512736725785658,
+          "vehicleRight": 890.46875,
+          "viewport": 1440
+        },
+        {
+          "t": 122474.59999996424,
+          "progress": 1,
+          "worldDistance": 44887.22224264041,
+          "speed": 2.5038189457289883,
+          "vehicleRight": 903.75,
+          "viewport": 1440
+        },
+        {
+          "t": 122490.69999998808,
+          "progress": 1,
+          "worldDistance": 44898.90628580866,
+          "speed": 2.4936332220382256,
+          "vehicleRight": 916.96875,
+          "viewport": 1440
+        },
+        {
+          "t": 122507.5,
+          "progress": 1,
+          "worldDistance": 44910.53980358323,
+          "speed": 2.4822084266232443,
+          "vehicleRight": 930.140625,
+          "viewport": 1440
+        },
+        {
+          "t": 122524.69999998808,
+          "progress": 1,
+          "worldDistance": 44922.04792868949,
+          "speed": 2.469652634592007,
+          "vehicleRight": 943.171875,
+          "viewport": 1440
+        },
+        {
+          "t": 122541.09999996424,
+          "progress": 1,
+          "worldDistance": 44933.49498145204,
+          "speed": 2.4559294491162182,
+          "vehicleRight": 956.125,
+          "viewport": 1440
+        },
+        {
+          "t": 122558.89999997616,
+          "progress": 1,
+          "worldDistance": 44944.9439424199,
+          "speed": 2.440974301040698,
+          "vehicleRight": 969.09375,
+          "viewport": 1440
+        },
+        {
+          "t": 122574.5,
+          "progress": 1,
+          "worldDistance": 44956.38823326041,
+          "speed": 2.424795614142927,
+          "vehicleRight": 982.046875,
+          "viewport": 1440
+        },
+        {
+          "t": 122591.5,
+          "progress": 1,
+          "worldDistance": 44967.551591795316,
+          "speed": 2.4078271282401755,
+          "vehicleRight": 994.671875,
+          "viewport": 1440
+        },
+        {
+          "t": 122607.30000001192,
+          "progress": 1,
+          "worldDistance": 44978.76796030004,
+          "speed": 2.3895931047480063,
+          "vehicleRight": 1007.375,
+          "viewport": 1440
+        },
+        {
+          "t": 122624,
+          "progress": 1,
+          "worldDistance": 44989.89664086628,
+          "speed": 2.370321594243547,
+          "vehicleRight": 1019.96875,
+          "viewport": 1440
+        },
+        {
+          "t": 122641.59999996424,
+          "progress": 1,
+          "worldDistance": 45000.9328497073,
+          "speed": 2.350041468636636,
+          "vehicleRight": 1032.46875,
+          "viewport": 1440
+        },
+        {
+          "t": 122657.09999996424,
+          "progress": 1,
+          "worldDistance": 45011.87193804139,
+          "speed": 2.328781599837167,
+          "vehicleRight": 1044.84375,
+          "viewport": 1440
+        },
+        {
+          "t": 122674.89999997616,
+          "progress": 1,
+          "worldDistance": 45022.64481268975,
+          "speed": 2.306706630959201,
+          "vehicleRight": 1057.03125,
+          "viewport": 1440
+        },
+        {
+          "t": 122692,
+          "progress": 1,
+          "worldDistance": 45033.37690125838,
+          "speed": 2.283579326533237,
+          "vehicleRight": 1069.1875,
+          "viewport": 1440
+        },
+        {
+          "t": 122707.5,
+          "progress": 1,
+          "worldDistance": 45043.99875801528,
+          "speed": 2.2595587217585997,
+          "vehicleRight": 1081.203125,
+          "viewport": 1440
+        },
+        {
+          "t": 122724.19999998808,
+          "progress": 1,
+          "worldDistance": 45054.44370628714,
+          "speed": 2.2348252162195323,
+          "vehicleRight": 1093.03125,
+          "viewport": 1440
+        },
+        {
+          "t": 122740.59999996424,
+          "progress": 1,
+          "worldDistance": 45064.83362575627,
+          "speed": 2.2091095438843458,
+          "vehicleRight": 1104.796875,
+          "viewport": 1440
+        },
+        {
+          "t": 122757.5,
+          "progress": 1,
+          "worldDistance": 45075.0403030967,
+          "speed": 2.1827481757518767,
+          "vehicleRight": 1116.34375,
+          "viewport": 1440
+        },
+        {
+          "t": 122775.09999996424,
+          "progress": 1,
+          "worldDistance": 45085.18301565233,
+          "speed": 2.1554522329881065,
+          "vehicleRight": 1127.828125,
+          "viewport": 1440
+        },
+        {
+          "t": 122791.19999998808,
+          "progress": 1,
+          "worldDistance": 45095.196340547605,
+          "speed": 2.1274070036535293,
+          "vehicleRight": 1139.15625,
+          "viewport": 1440
+        },
+        {
+          "t": 122807.19999998808,
+          "progress": 1,
+          "worldDistance": 45105.01808210142,
+          "speed": 2.0988156959257025,
+          "vehicleRight": 1150.28125,
+          "viewport": 1440
+        },
+        {
+          "t": 122825.09999996424,
+          "progress": 1,
+          "worldDistance": 45114.82121779293,
+          "speed": 2.0691841729115032,
+          "vehicleRight": 1161.375,
+          "viewport": 1440
+        },
+        {
+          "t": 122840.89999997616,
+          "progress": 1,
+          "worldDistance": 45124.36921088316,
+          "speed": 2.0392465888043536,
+          "vehicleRight": 1172.1875,
+          "viewport": 1440
+        },
+        {
+          "t": 122857.5,
+          "progress": 1,
+          "worldDistance": 45133.77659832404,
+          "speed": 2.008682602625072,
+          "vehicleRight": 1182.828125,
+          "viewport": 1440
+        },
+        {
+          "t": 122874.5,
+          "progress": 1,
+          "worldDistance": 45143.15125683548,
+          "speed": 1.977141594414862,
+          "vehicleRight": 1193.4375,
+          "viewport": 1440
+        },
+        {
+          "t": 122890.80000001192,
+          "progress": 1,
+          "worldDistance": 45152.26725089657,
+          "speed": 1.9454031823003837,
+          "vehicleRight": 1203.765625,
+          "viewport": 1440
+        },
+        {
+          "t": 122906.80000001192,
+          "progress": 1,
+          "worldDistance": 45161.2344675542,
+          "speed": 1.913123778813552,
+          "vehicleRight": 1213.90625,
+          "viewport": 1440
+        },
+        {
+          "t": 122924.19999998808,
+          "progress": 1,
+          "worldDistance": 45170.10310120629,
+          "speed": 1.8801327019789507,
+          "vehicleRight": 1223.953125,
+          "viewport": 1440
+        },
+        {
+          "t": 122940.69999998808,
+          "progress": 1,
+          "worldDistance": 45178.76461726376,
+          "speed": 1.8468535533881536,
+          "vehicleRight": 1233.75,
+          "viewport": 1440
+        },
+        {
+          "t": 122958.5,
+          "progress": 1,
+          "worldDistance": 45187.37190967376,
+          "speed": 1.8127095461021783,
+          "vehicleRight": 1243.5,
+          "viewport": 1440
+        },
+        {
+          "t": 122974.89999997616,
+          "progress": 1,
+          "worldDistance": 45195.71797890464,
+          "speed": 1.7785422744161585,
+          "vehicleRight": 1252.9375,
+          "viewport": 1440
+        },
+        {
+          "t": 122991.30000001192,
+          "progress": 1,
+          "worldDistance": 45203.90431208457,
+          "speed": 1.7439763055835538,
+          "vehicleRight": 1262.203125,
+          "viewport": 1440
+        },
+        {
+          "t": 123007.39999997616,
+          "progress": 1,
+          "worldDistance": 45211.97696965341,
+          "speed": 1.7088284715121078,
+          "vehicleRight": 1271.34375,
+          "viewport": 1440
+        },
+        {
+          "t": 123025.09999996424,
+          "progress": 1,
+          "worldDistance": 45219.88446713246,
+          "speed": 1.6733346931794404,
+          "vehicleRight": 1280.296875,
+          "viewport": 1440
+        },
+        {
+          "t": 123041.19999998808,
+          "progress": 1,
+          "worldDistance": 45227.579402779455,
+          "speed": 1.6377391652489317,
+          "vehicleRight": 1289,
+          "viewport": 1440
+        },
+        {
+          "t": 123057,
+          "progress": 1,
+          "worldDistance": 45235.15307536854,
+          "speed": 1.601641753949316,
+          "vehicleRight": 1297.578125,
+          "viewport": 1440
+        },
+        {
+          "t": 123074,
+          "progress": 1,
+          "worldDistance": 45242.55734974807,
+          "speed": 1.5652848412323617,
+          "vehicleRight": 1305.953125,
+          "viewport": 1440
+        },
+        {
+          "t": 123091.59999996424,
+          "progress": 1,
+          "worldDistance": 45249.79107999196,
+          "speed": 1.5286972990078942,
+          "vehicleRight": 1314.15625,
+          "viewport": 1440
+        },
+        {
+          "t": 123107.69999998808,
+          "progress": 1,
+          "worldDistance": 45256.811479933735,
+          "speed": 1.4921288377298982,
+          "vehicleRight": 1322.09375,
+          "viewport": 1440
+        },
+        {
+          "t": 123124.30000001192,
+          "progress": 1,
+          "worldDistance": 45263.70225900874,
+          "speed": 1.4551676015384885,
+          "vehicleRight": 1329.890625,
+          "viewport": 1440
+        },
+        {
+          "t": 123140.80000001192,
+          "progress": 1,
+          "worldDistance": 45270.41987023491,
+          "speed": 1.4180621786834484,
+          "vehicleRight": 1337.5,
+          "viewport": 1440
+        },
+        {
+          "t": 123158.30000001192,
+          "progress": 1,
+          "worldDistance": 45276.92504088209,
+          "speed": 1.3810646058174212,
+          "vehicleRight": 1344.859375,
+          "viewport": 1440
+        },
+        {
+          "t": 123174.30000001192,
+          "progress": 1,
+          "worldDistance": 45283.2956758003,
+          "speed": 1.343757857061387,
+          "vehicleRight": 1352.078125,
+          "viewport": 1440
+        },
+        {
+          "t": 123190.80000001192,
+          "progress": 1,
+          "worldDistance": 45289.45514747637,
+          "speed": 1.3066172187005909,
+          "vehicleRight": 1359.046875,
+          "viewport": 1440
+        },
+        {
+          "t": 123207.69999998808,
+          "progress": 1,
+          "worldDistance": 45295.51299917476,
+          "speed": 1.2690000000000012,
+          "vehicleRight": 1365.90625,
+          "viewport": 1440
+        },
+        {
+          "t": 123224.80000001192,
+          "progress": 1,
+          "worldDistance": 45301.32492923529,
+          "speed": 1.2318304907646238,
+          "vehicleRight": 1372.484375,
+          "viewport": 1440
+        },
+        {
+          "t": 123240.39999997616,
+          "progress": 1,
+          "worldDistance": 45306.99760982137,
+          "speed": 1.1944657393779328,
+          "vehicleRight": 1378.90625,
+          "viewport": 1440
+        },
+        {
+          "t": 123257.89999997616,
+          "progress": 1,
+          "worldDistance": 45312.4957074308,
+          "speed": 1.157158558925301,
+          "vehicleRight": 1385.125,
+          "viewport": 1440
+        },
+        {
+          "t": 123273.89999997616,
+          "progress": 1,
+          "worldDistance": 45317.7881966579,
+          "speed": 1.120160385611764,
+          "vehicleRight": 1391.109375,
+          "viewport": 1440
+        },
+        {
+          "t": 123290.30000001192,
+          "progress": 1,
+          "worldDistance": 45322.93931232709,
+          "speed": 1.0830541863239944,
+          "vehicleRight": 1396.953125,
+          "viewport": 1440
+        },
+        {
+          "t": 123308.5,
+          "progress": 1,
+          "worldDistance": 45327.887961309185,
+          "speed": 1.0463128455572948,
+          "vehicleRight": 1402.546875,
+          "viewport": 1440
+        },
+        {
+          "t": 123324,
+          "progress": 1,
+          "worldDistance": 45332.69450417074,
+          "speed": 1.0095224245663736,
+          "vehicleRight": 1407.984375,
+          "viewport": 1440
+        },
+        {
+          "t": 123342.39999997616,
+          "progress": 1,
+          "worldDistance": 45337.329486328796,
+          "speed": 0.9729335882873567,
+          "vehicleRight": 1413.234375,
+          "viewport": 1440
+        },
+        {
+          "t": 123359.89999997616,
+          "progress": 1,
+          "worldDistance": 45341.767689015476,
+          "speed": 0.9367921805082413,
+          "vehicleRight": 1418.265625,
+          "viewport": 1440
+        },
+        {
+          "t": 123374.39999997616,
+          "progress": 1,
+          "worldDistance": 45346.06372583851,
+          "speed": 0.9006914905920194,
+          "vehicleRight": 1423.125,
+          "viewport": 1440
+        },
+        {
+          "t": 123391.09999996424,
+          "progress": 1,
+          "worldDistance": 45350.19162924392,
+          "speed": 0.8648788282315863,
+          "vehicleRight": 1427.796875,
+          "viewport": 1440
+        },
+        {
+          "t": 123407.09999996424,
+          "progress": 1,
+          "worldDistance": 45354.12958552502,
+          "speed": 0.8295946145839587,
+          "vehicleRight": 1432.25,
+          "viewport": 1440
+        },
+        {
+          "t": 123423.69999998808,
+          "progress": 1,
+          "worldDistance": 45357.92658422095,
+          "speed": 0.7944424666522675,
+          "vehicleRight": 1436.546875,
+          "viewport": 1440
+        },
+        {
+          "t": 123440.5,
+          "progress": 1,
+          "worldDistance": 45361.56008698495,
+          "speed": 0.7596647891202495,
+          "vehicleRight": 1440.65625,
+          "viewport": 1440
+        },
+        {
+          "t": 123457,
+          "progress": 1,
+          "worldDistance": 45365.01159840632,
+          "speed": 0.725495030748012,
+          "vehicleRight": 1444.5625,
+          "viewport": 1440
+        },
+        {
+          "t": 123474.19999998808,
+          "progress": 1,
+          "worldDistance": 45368.3246502393,
+          "speed": 0.6915502357106826,
+          "vehicleRight": 1448.3125,
+          "viewport": 1440
+        },
+        {
+          "t": 123490.80000001192,
+          "progress": 1,
+          "worldDistance": 45371.48005382585,
+          "speed": 0.6580663539169107,
+          "vehicleRight": 1451.890625,
+          "viewport": 1440
+        },
+        {
+          "t": 123506.89999997616,
+          "progress": 1,
+          "worldDistance": 45374.462523589355,
+          "speed": 0.6252683119639695,
+          "vehicleRight": 1455.265625,
+          "viewport": 1440
+        },
+        {
+          "t": 123524.39999997616,
+          "progress": 1,
+          "worldDistance": 45377.31034317627,
+          "speed": 0.5927896807308327,
+          "vehicleRight": 1458.484375,
+          "viewport": 1440
+        },
+        {
+          "t": 123541,
+          "progress": 1,
+          "worldDistance": 45380.00757240208,
+          "speed": 0.5608584055851388,
+          "vehicleRight": 1461.546875,
+          "viewport": 1440
+        },
+        {
+          "t": 123556.89999997616,
+          "progress": 1,
+          "worldDistance": 45382.556838206365,
+          "speed": 0.5295033584368009,
+          "vehicleRight": 1464.421875,
+          "viewport": 1440
+        },
+        {
+          "t": 123575,
+          "progress": 1,
+          "worldDistance": 45384.94693054256,
+          "speed": 0.49893568467628235,
+          "vehicleRight": 1467.140625,
+          "viewport": 1440
+        },
+        {
+          "t": 123590.5,
+          "progress": 1,
+          "worldDistance": 45387.19639969254,
+          "speed": 0.4689942421664959,
+          "vehicleRight": 1469.6875,
+          "viewport": 1440
+        },
+        {
+          "t": 123607.39999997616,
+          "progress": 1,
+          "worldDistance": 45389.32053638801,
+          "speed": 0.4395330014058568,
+          "vehicleRight": 1472.078125,
+          "viewport": 1440
+        },
+        {
+          "t": 123624.89999997616,
+          "progress": 1,
+          "worldDistance": 45391.2970200504,
+          "speed": 0.41093329050000027,
+          "vehicleRight": 1474.328125,
+          "viewport": 1440
+        },
+        {
+          "t": 123640.80000001192,
+          "progress": 1,
+          "worldDistance": 45393.15295379962,
+          "speed": 0.38287926262975697,
+          "vehicleRight": 1476.421875,
+          "viewport": 1440
+        },
+        {
+          "t": 123659,
+          "progress": 1,
+          "worldDistance": 45394.8794579381,
+          "speed": 0.35557417555892007,
+          "vehicleRight": 1478.375,
+          "viewport": 1440
+        },
+        {
+          "t": 123676.19999998808,
+          "progress": 1,
+          "worldDistance": 45396.48010201556,
+          "speed": 0.3290469011973471,
+          "vehicleRight": 1480.1875,
+          "viewport": 1440
+        },
+        {
+          "t": 123691.69999998808,
+          "progress": 1,
+          "worldDistance": 45397.950089581704,
+          "speed": 0.30347786908935337,
+          "vehicleRight": 1481.859375,
+          "viewport": 1440
+        },
+        {
+          "t": 123709.09999996424,
+          "progress": 1,
+          "worldDistance": 45399.31095899123,
+          "speed": 0.27858774661814967,
+          "vehicleRight": 1483.390625,
+          "viewport": 1440
+        },
+        {
+          "t": 123723.80000001192,
+          "progress": 1,
+          "worldDistance": 45400.5503269605,
+          "speed": 0.2547031179577658,
+          "vehicleRight": 1484.796875,
+          "viewport": 1440
+        },
+        {
+          "t": 123741.30000001192,
+          "progress": 1,
+          "worldDistance": 45401.68722169055,
+          "speed": 0.2315649445088526,
+          "vehicleRight": 1486.078125,
+          "viewport": 1440
+        },
+        {
+          "t": 123757.19999998808,
+          "progress": 1,
+          "worldDistance": 45402.71807755187,
+          "speed": 0.20934859754711302,
+          "vehicleRight": 1487.25,
+          "viewport": 1440
+        },
+        {
+          "t": 123773.89999997616,
+          "progress": 1,
+          "worldDistance": 45403.64727250766,
+          "speed": 0.18808294898240463,
+          "vehicleRight": 1488.296875,
+          "viewport": 1440
+        },
+        {
+          "t": 123791.5,
+          "progress": 1,
+          "worldDistance": 45404.47461260528,
+          "speed": 0.16791537185181965,
+          "vehicleRight": 1489.234375,
+          "viewport": 1440
+        },
+        {
+          "t": 123807.19999998808,
+          "progress": 1,
+          "worldDistance": 45405.214699451906,
+          "speed": 0.14863161130937524,
+          "vehicleRight": 1490.078125,
+          "viewport": 1440
+        },
+        {
+          "t": 123825.09999996424,
+          "progress": 1,
+          "worldDistance": 45405.86704027046,
+          "speed": 0.1303849920078458,
+          "vehicleRight": 1490.8125,
+          "viewport": 1440
+        },
+        {
+          "t": 123841.80000001192,
+          "progress": 1,
+          "worldDistance": 45406.433373567095,
+          "speed": 0.1133040340818212,
+          "vehicleRight": 1491.453125,
+          "viewport": 1440
+        },
+        {
+          "t": 123858.59999996424,
+          "progress": 1,
+          "worldDistance": 45406.92555928527,
+          "speed": 0.09721167086850284,
+          "vehicleRight": 1492.015625,
+          "viewport": 1440
+        },
+        {
+          "t": 123873.69999998808,
+          "progress": 1,
+          "worldDistance": 45407.34281209291,
+          "speed": 0.08232912415560872,
+          "vehicleRight": 1492.484375,
+          "viewport": 1440
+        },
+        {
+          "t": 123891.19999998808,
+          "progress": 1,
+          "worldDistance": 45407.69738948229,
+          "speed": 0.06842656860610748,
+          "vehicleRight": 1492.890625,
+          "viewport": 1440
+        },
+        {
+          "t": 123907.89999997616,
+          "progress": 1,
+          "worldDistance": 45407.98623997168,
+          "speed": 0.05586365918806202,
+          "vehicleRight": 1493.21875,
+          "viewport": 1440
+        },
+        {
+          "t": 123924,
+          "progress": 1,
+          "worldDistance": 45408.21947658364,
+          "speed": 0.044496328745472116,
+          "vehicleRight": 1493.484375,
+          "viewport": 1440
+        },
+        {
+          "t": 123940.59999996424,
+          "progress": 1,
+          "worldDistance": 45408.40369210149,
+          "speed": 0.034295595057191146,
+          "vehicleRight": 1493.6875,
+          "viewport": 1440
+        },
+        {
+          "t": 123957.5,
+          "progress": 1,
+          "worldDistance": 45408.54317263242,
+          "speed": 0.02536245923161845,
+          "vehicleRight": 1493.84375,
+          "viewport": 1440
+        },
+        {
+          "t": 123974.69999998808,
+          "progress": 1,
+          "worldDistance": 45408.643406904484,
+          "speed": 0.017767606203237057,
+          "vehicleRight": 1493.953125,
+          "viewport": 1440
+        },
+        {
+          "t": 123990.80000001192,
+          "progress": 1,
+          "worldDistance": 45408.711713599034,
+          "speed": 0.011448259729691698,
+          "vehicleRight": 1494.03125,
+          "viewport": 1440
+        },
+        {
+          "t": 124007.09999996424,
+          "progress": 1,
+          "worldDistance": 45408.753636776644,
+          "speed": 0.006482953962738363,
+          "vehicleRight": 1494.078125,
+          "viewport": 1440
+        },
+        {
+          "t": 124024.69999998808,
+          "progress": 1,
+          "worldDistance": 45408.775575434185,
+          "speed": 0.002900560812233859,
+          "vehicleRight": 1494.109375,
+          "viewport": 1440
+        },
+        {
+          "t": 124041,
+          "progress": 1,
+          "worldDistance": 45408.78403305573,
+          "speed": 0.0007386911434908393,
+          "vehicleRight": 1494.109375,
+          "viewport": 1440
+        },
+        {
+          "t": 124059,
+          "progress": 1,
+          "worldDistance": 45408.78576017722,
+          "speed": 2.6344987695381404e-8,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124073.5,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124090.19999998808,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124106.39999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124123.39999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124140.09999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124156.59999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124174.59999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124191.69999998808,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124206.59999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124223.59999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124240.80000001192,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124258.5,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124274.89999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124289.89999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124306.89999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124323.89999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124339.5,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124356,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124373.39999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124390.89999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124406.89999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124425.89999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124441.5,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124458.19999998808,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124475,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124491.89999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124508.69999998808,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124525.89999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124541.30000001192,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124558.19999998808,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124575,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124591.39999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124607.59999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124625,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124641.19999998808,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124657.80000001192,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124674.69999998808,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124691,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124707.09999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124724.09999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124741.30000001192,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124759.30000001192,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124774.19999998808,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124790.39999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124806.5,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124823.5,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124840.39999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124855.80000001192,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124873.09999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124891.80000001192,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124905.69999998808,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124923,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124939.80000001192,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124956.39999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124974.09999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 124990,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125007.30000001192,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125024.09999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125040.30000001192,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125058.09999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125074.39999997616,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125090,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125106.59999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125123.59999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125139.80000001192,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125158.59999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125173.19999998808,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125190.19999998808,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125206.19999998808,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125222.80000001192,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125240.09999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        },
+        {
+          "t": 125256.09999996424,
+          "progress": 1,
+          "worldDistance": 45408.78576023845,
+          "speed": 0,
+          "vehicleRight": 1494.125,
+          "viewport": 1440
+        }
+      ],
+      "elapsedWallMs": 124530
+    }
+  ],
+  "errors": [],
+  "riskAssetResponses": {}
+}

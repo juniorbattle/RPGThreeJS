@@ -39,8 +39,10 @@ describe('TraversalT0Scene Lot A', () => {
     expect(scene.element.dataset).toMatchObject({ traversalLeg: 'T0', view: 'route', routeWorld: 'shared',
       routeSegment: 'route-1', laneCount: '2', singleRoad: 'false' });
     expect(scene.element.querySelectorAll('.traversal-route-loop')).toHaveLength(1);
-    expect(scene.element.querySelector('.traversal-route-risk')).toBeNull();
-    expect(scene.element.querySelector('[data-risk-hazard]')).toBeNull();
+    expect(scene.element.querySelectorAll('.traversal-route-risk')).toHaveLength(1);
+    expect(scene.element.querySelector('.traversal-route-risk')?.getAttribute('aria-hidden')).toBe('true');
+    expect(scene.element.querySelector('[data-risk-hazard]')?.getAttribute('data-risk-hazard'))
+      .toBe('t0:r1:branch-1');
     const genericSections = [...scene.element.querySelectorAll<HTMLElement>('.traversal-world__route-sections [data-world-section]')];
     expect(genericSections).toHaveLength(16);
     expect(genericSections.every(section => section.dataset.sectionKind === 'FOREST'
@@ -95,8 +97,11 @@ describe('TraversalT0Scene Lot A', () => {
     await settle(scene);
     clock(scene).advance(2);
     const earlySpeed = Number(scene.element.dataset.routeSpeed);
-    clock(scene).advance(8);
+    clock(scene).advance(2.6);
+    expect(Number(scene.element.dataset.routeSpeed)).toBe(1);
+    clock(scene).advance(2.4);
     expect(Number(scene.element.dataset.routeSpeed)).toBeGreaterThan(earlySpeed);
+    clock(scene).advance(3);
     expect(Number(scene.element.dataset.routeProgress)).toBeGreaterThan(.8);
     clock(scene).advance(4);
     expect(scene.session.routeProgress01).toBe(.2);

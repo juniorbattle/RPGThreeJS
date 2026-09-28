@@ -1,0 +1,24 @@
+{
+  "expected": [
+    "01-route-1-early"
+  ],
+  "screenshotsPersisted": false,
+  "missing": [],
+  "responsive": [],
+  "errors": [],
+  "runsComplete": true,
+  "riskFailures": [],
+  "blackFrames": [],
+  "imperfectBlackFrames": [],
+  "routeWorldFailures": [],
+  "canonicalFailures": [],
+  "checkpointFailures": [],
+  "coastFailures": [],
+  "simultaneousWorlds": [],
+  "frameIssues": [],
+  "oldRouteArt": [],
+  "duplicateCaravans": [],
+  "overflow": [],
+  "unreachableControls": [],
+  "riskOffMarkup": []
+}
