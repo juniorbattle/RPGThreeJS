@@ -30,6 +30,7 @@ import { TraversalRouteRenderer } from './TraversalRouteRenderer';
 import { createRouteRisk, resolveRouteRisk, type TraversalRouteRiskState } from './TraversalRouteRisk';
 import { t0RouteHazards } from './TraversalT0Risk';
 import { TraversalRouteRiskRenderer } from './TraversalRouteRiskRenderer';
+import { resolveTraversalRiskEnabled } from './TraversalRiskPresentationPolicy';
 
 const LANE_TOP_PERCENT: Record<TraversalLane, number> = { 0: 65, 1: 81 };
 const MANDATORY_TOP_PERCENT = 73;
@@ -87,8 +88,11 @@ export class TraversalT0Scene {
   private readonly markerElements = new Map<string, HTMLElement>();
   private readonly worldRenderer = new TraversalWorldRenderer();
   private readonly routeRenderer = new TraversalRouteRenderer();
-  private readonly riskEnabled = import.meta.env.DEV
-    && new URLSearchParams(window.location.search).get('traversalRisk') === '1';
+  private readonly riskEnabled = resolveTraversalRiskEnabled({
+    dev: import.meta.env.DEV, search: window.location.search,
+  });
+  private readonly riskQa = import.meta.env.DEV
+    && new URLSearchParams(window.location.search).get('qa') === '1';
   private readonly riskRenderer = this.riskEnabled ? new TraversalRouteRiskRenderer() : null;
   private readonly foregroundRenderer = new TraversalForegroundRenderer();
   private readonly stageBeats: readonly TraversalRouteBeat[];
@@ -174,7 +178,7 @@ export class TraversalT0Scene {
     this.element.dataset.routeSegment = 'route-1';
     this.element.dataset.routeWorld = 'shared';
     this.element.dataset.laneCount = '2';
-    if (this.riskEnabled) this.element.dataset.riskEnabled = 'dev';
+    if (this.riskQa) this.element.dataset.riskEnabled = this.riskEnabled ? 'dev' : 'off';
     this.element.setAttribute('aria-label', `Traversée de ${this.route.originLabel} vers ${this.route.destinationLabel}`);
     this.build();
     this.worldRenderer.setDirections(state.run.graph.nodes.filter(node =>
@@ -844,19 +848,21 @@ export class TraversalT0Scene {
       this.riskRenderer.update(hazards, this.routeRisk, this.routeRun.progress01,
         this.routeRun.elapsedMs, this.routeSegment.durationMs, this.routeRenderer.distance,
         width, active, progress => forecastRouteDistance(this.routeRun, this.routeSegment, progress));
-      this.element.dataset.riskSegment = this.routeRisk.segmentId;
-      this.element.dataset.riskProgress = String(this.routeRun.progress01);
-      this.element.dataset.riskLane = String(this.routeRun.lane);
-      this.element.dataset.riskActiveHazards = JSON.stringify([...this.riskRenderer.element
-        .querySelectorAll<HTMLElement>('[data-risk-hazard]:not([hidden])')].map(mark => mark.dataset.riskHazard));
-      this.element.dataset.riskHazards = JSON.stringify(hazards.map(hazard => ({
-        id: hazard.id, lane: hazard.lane, progress01: hazard.progress01 })));
-      this.element.dataset.riskResolvedHazards = JSON.stringify(this.routeRisk.resolvedHazardIds);
-      this.element.dataset.riskCollisionCount = String(this.routeRisk.collisionCount);
-      this.element.dataset.riskLastCollisionId = this.routeRisk.lastCollisionId ?? '';
-      this.element.dataset.riskSpeedBefore = String(this.lastRiskSpeedBefore ?? '');
-      this.element.dataset.riskSpeedAfter = String(this.lastRiskSpeedAfter ?? '');
-      this.element.dataset.riskRecoveryProgress = String(routeSpeedRecovery01(this.routeRun, this.routeSegment));
+      if (this.riskQa) {
+        this.element.dataset.riskSegment = this.routeRisk.segmentId;
+        this.element.dataset.riskProgress = String(this.routeRun.progress01);
+        this.element.dataset.riskLane = String(this.routeRun.lane);
+        this.element.dataset.riskActiveHazards = JSON.stringify([...this.riskRenderer.element
+          .querySelectorAll<HTMLElement>('[data-risk-hazard]:not([hidden])')].map(mark => mark.dataset.riskHazard));
+        this.element.dataset.riskHazards = JSON.stringify(hazards.map(hazard => ({
+          id: hazard.id, lane: hazard.lane, progress01: hazard.progress01 })));
+        this.element.dataset.riskResolvedHazards = JSON.stringify(this.routeRisk.resolvedHazardIds);
+        this.element.dataset.riskCollisionCount = String(this.routeRisk.collisionCount);
+        this.element.dataset.riskLastCollisionId = this.routeRisk.lastCollisionId ?? '';
+        this.element.dataset.riskSpeedBefore = String(this.lastRiskSpeedBefore ?? '');
+        this.element.dataset.riskSpeedAfter = String(this.lastRiskSpeedAfter ?? '');
+        this.element.dataset.riskRecoveryProgress = String(routeSpeedRecovery01(this.routeRun, this.routeSegment));
+      }
     }
     const vehicle = this.element.querySelector<HTMLElement>('.traversal-vehicle')!;
     const exitDistance = session.phase === 'ARRIVING' ? this.arrivalExitDistance : 0;

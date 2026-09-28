@@ -2,14 +2,41 @@
 import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { advanceRouteRun, createRouteRun, resetRouteSpeed } from './TraversalRouteRun';
+import { advanceRouteRun, createRouteRun, resetRouteSpeed, DEFAULT_ROUTE_SPEED_RECOVERY_MS } from './TraversalRouteRun';
 import { createRouteRisk, resolveRouteRisk } from './TraversalRouteRisk';
 import { TraversalRouteRiskRenderer } from './TraversalRouteRiskRenderer';
 import { resolveRouteRiskVisual } from './TraversalRouteRiskVisual';
 import { T0_ROUTE_HAZARDS, t0RouteHazards } from './TraversalT0Risk';
-import { resolveT0RouteSegment } from './TraversalT0CheckpointRoute';
+import { resolveT0RouteSegment, T0_ROUTE_SEGMENTS } from './TraversalT0CheckpointRoute';
 
 describe('T0 Route risk authoring', () => {
+  it('locks approved authoring, route clocks, recovery, and ephemeral module boundaries', () => {
+    expect(T0_ROUTE_HAZARDS.map(({ id, segmentId, progress01, lane }) =>
+      [id, segmentId, progress01, lane])).toEqual([
+      ['t0:r1:branch-1', 'route-1', .38, 0],
+      ['t0:r2:branch-1', 'route-2', .48, 1],
+      ['t0:r3:branch-1', 'route-3', .32, 0],
+      ['t0:r3:block-2', 'route-3', .68, 1],
+      ['t0:r4:block-1', 'route-4', .31, 1],
+      ['t0:r4:branch-2', 'route-4', .68, 0],
+      ['t0:r5a:branch-1', 'route-5a', .30, 0],
+      ['t0:r5a:block-2', 'route-5a', .66, 1],
+      ['t0:r5b:block-1', 'route-5b', .27, 1],
+      ['t0:r5b:branch-2', 'route-5b', .53, 0],
+      ['t0:r5b:block-3', 'route-5b', .68, 1],
+      ['t0:r6:branch-1', 'route-6', .24, 0],
+      ['t0:r6:block-2', 'route-6', .49, 1],
+      ['t0:r6:branch-3', 'route-6', .75, 0],
+    ]);
+    expect(T0_ROUTE_SEGMENTS.map(segment => segment.durationMs))
+      .toEqual([12000, 15000, 15000, 12000, 15000, 20000]);
+    expect(DEFAULT_ROUTE_SPEED_RECOVERY_MS).toBe(2400);
+    for (const name of ['TraversalRouteRisk.ts', 'TraversalT0Risk.ts',
+      'TraversalRouteRiskRenderer.ts', 'TraversalRouteRiskVisual.ts']) {
+      const source = readFileSync(resolve(process.cwd(), 'src/traversal', name), 'utf8');
+      expect(source).not.toMatch(/from ['"][^'"]*(?:game|campaign|save)[^'"]*['"]/i);
+    }
+  });
   it('resolves all authored hazards to deterministic, transparent production images', () => {
     const visualNames = new Set<string>();
     for (const hazard of T0_ROUTE_HAZARDS) {
@@ -84,11 +111,20 @@ describe('T0 Route risk authoring', () => {
     const vehicle = document.createElement('div');
     renderer.bindVehicle(vehicle);
     renderer.reset(t0RouteHazards('route-1'));
+    renderer.update(t0RouteHazards('route-1'), createRouteRisk('route-1'), .2,
+      2400, 12000, 0, 1000, true, () => 1200);
+    const internals = renderer as unknown as {
+      marks: Map<string, HTMLElement>; contactDistances: Map<string, number>;
+    };
+    expect(internals.marks.size).toBe(1);
+    expect(internals.contactDistances.size).toBe(1);
     renderer.impact(t0RouteHazards('route-1')[0]!, 4000);
     expect(vehicle.classList.contains('traversal-vehicle--risk-impact')).toBe(true);
     renderer.reset(t0RouteHazards('route-2'));
     expect(renderer.element.querySelector('[data-risk-hazard="t0:r1:branch-1"]')).toBeNull();
     expect(renderer.element.querySelectorAll('[data-risk-hazard]')).toHaveLength(1);
+    expect(internals.marks.size).toBe(1);
+    expect(internals.contactDistances.size).toBe(0);
     expect(vehicle.classList.contains('traversal-vehicle--risk-impact')).toBe(false);
     expect(createRouteRisk('route-2').resolvedHazardIds).toEqual([]);
   });
